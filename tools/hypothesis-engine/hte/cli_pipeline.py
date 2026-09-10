@@ -22,6 +22,11 @@ def _cmd_run(args: argparse.Namespace) -> int:
         "replay_only": args.replay_only,
         "seeds": args.seeds,
         "budget": args.budget,
+        "writeback": args.writeback,
+        "writeback_branch": args.branch,
+        "writeback_floor_P": args.writeback_floor_p,
+        "writeback_floor_u_max": args.writeback_floor_u_max,
+        "skip_publish": args.skip_publish,
     }
     if args.campaign:
         config["campaign"] = args.campaign
@@ -51,6 +56,11 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument("--dry-run", action="store_true", help="hte.publish.publish's own dry_run: plan the commit and gdrive mirror, run neither")
     run_p.add_argument("--replay-only", action="store_true", help="every LLM call (hte.runner.run_campaign and hte.referee.referee) runs from committed cache only")
     run_p.add_argument("--from-run", default=None, help="an existing campaign run directory; skips period choice and run_campaign, reusing its own artifacts")
+    run_p.add_argument("--writeback", action="store_true", help="hte.canon_writeback.write_back as an optional stage after referee and before publish")
+    run_p.add_argument("--branch", default=None, help="the bucket-canon branch write_back targets, e.g. 07-mind; required with --writeback")
+    run_p.add_argument("--writeback-floor-p", type=float, default=0.6, help="write_back's own floor_P")
+    run_p.add_argument("--writeback-floor-u-max", type=float, default=0.5, help="write_back's own floor_u_max")
+    run_p.add_argument("--skip-publish", action="store_true", help="skip the publish stage (commit + gdrive); use when a PR already carries that step")
     run_p.set_defaults(func=_cmd_run)
 
     return parser

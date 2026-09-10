@@ -1,0 +1,1975 @@
+[
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "7fecfa4fde691a06",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via Human scholarly comparative-religion analysis.",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9706877692486436,
+    "elo": 2900.3847783738556,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "human-scholarly-comparison",
+        "label": "Human scholarly comparative-religion analysis"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9706877692486436,
+      "P": 0.9706877692486436
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "3d5d342b3cf93b33",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9584735239279087,
+    "elo": 2760.720139913498,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [
+      "clm-corr-figure-mapping-4df4c4639a"
+    ],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": "T4",
+    "opinion": {
+      "b": 0.12439195549205057,
+      "d": 0.0,
+      "u": 0.8756080445079494,
+      "a": 0.9525741268224334,
+      "P": 0.9584735239279087
+    },
+    "evidenceCitations": [
+      {
+        "ref": "clm-corr-figure-mapping-4df4c4639a",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-figure-mapping-4df4c4639a",
+        "quote": "Gautama Buddha is proposed as a cross-tradition correlate of Confucius (shared motifs: lawgiver)."
+      }
+    ]
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "bf187d2d135bb898",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha shares a motif with Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2711.1324109744724,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "parallels",
+        "label": "Shares a motif with"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "9026b862a17ff7eb",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha textually borrows from Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2705.410526944147,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "borrows-from",
+        "label": "Textually borrows from"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "abe033a67de6194a",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha structurally echoes Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2703.2736822021034,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "structurally-echoes",
+        "label": "Structurally echoes"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "ffdbd98f044eeee2",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via Other (mechanism, unnamed).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2703.200000000001,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "other-mechanism",
+        "label": "Other (mechanism, unnamed)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "e7e1691179079a77",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha maps to (a proposed figure correspondence) Confucius, in the context of Other (place, unnamed), via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2701.6294730558548,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "other-place",
+        "label": "Other (place, unnamed)"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "a951b76bdaace101",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Bah\u00e1'u'll\u00e1h maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2701.600000000001,
+    "slots": {
+      "ACTOR": {
+        "id": "bahaullah",
+        "label": "Bah\u00e1'u'll\u00e1h"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "974960f2db40818a",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Mu\u1e25ammad maps to (a proposed figure correspondence) Confucius, in the context of Other (place, unnamed), via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2699.3157904787245,
+    "slots": {
+      "ACTOR": {
+        "id": "muhammad",
+        "label": "Mu\u1e25ammad"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "other-place",
+        "label": "Other (place, unnamed)"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "211ac4288a73779e",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha other (action, unnamed) Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2698.3263177978984,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "other-action",
+        "label": "Other (action, unnamed)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "35dc414638599dce",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Confucius maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2695.840000000001,
+    "slots": {
+      "ACTOR": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "afb359b85c3878e5",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Guru Nanak maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2690.4000000000005,
+    "slots": {
+      "ACTOR": {
+        "id": "guru-nanak",
+        "label": "Guru Nanak"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "e552b1c34d73fde4",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha maps to (a proposed figure correspondence) Confucius, in the context of Bahai, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.9525741268224334,
+    "elo": 2687.399903254073,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "bahai",
+        "label": "Bahai"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.9525741268224334,
+      "P": 0.9525741268224334
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "fdc0510fc4688e48",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha maps to (a proposed figure correspondence) Abraham, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8807970779778823,
+    "elo": 2305.686317797897,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "abraham",
+        "label": "Abraham"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8807970779778823,
+      "P": 0.8807970779778823
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "9f89080de75ac7d5",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Laozi maps to (a proposed figure correspondence) Bah\u00e1'u'll\u00e1h, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8807970779778823,
+    "elo": 2303.1999999999994,
+    "slots": {
+      "ACTOR": {
+        "id": "laozi",
+        "label": "Laozi"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "bahaullah",
+        "label": "Bah\u00e1'u'll\u00e1h"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8807970779778823,
+      "P": 0.8807970779778823
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "7242397f62eeb3b8",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha maps to (a proposed figure correspondence) David, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8807970779778823,
+    "elo": 2302.313682202102,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "david",
+        "label": "David"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8807970779778823,
+      "P": 0.8807970779778823
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "8241626ccd5e1d9f",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Moses maps to (a proposed figure correspondence) Confucius, in the context of Other (place, unnamed), via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8807970779778823,
+    "elo": 2296.873682202102,
+    "slots": {
+      "ACTOR": {
+        "id": "moses",
+        "label": "Moses"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "other-place",
+        "label": "Other (place, unnamed)"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8807970779778823,
+      "P": 0.8807970779778823
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "a45da1352184b93a",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "David maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8807970779778823,
+    "elo": 2296.7999999999997,
+    "slots": {
+      "ACTOR": {
+        "id": "david",
+        "label": "David"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8807970779778823,
+      "P": 0.8807970779778823
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "81d6512936c11ba6",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Laozi maps to (a proposed figure correspondence) Bah\u00e1'u'll\u00e1h, in the context of Other (place, unnamed), via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8807970779778823,
+    "elo": 2292.9599999999996,
+    "slots": {
+      "ACTOR": {
+        "id": "laozi",
+        "label": "Laozi"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "bahaullah",
+        "label": "Bah\u00e1'u'll\u00e1h"
+      },
+      "PLACE": {
+        "id": "other-place",
+        "label": "Other (place, unnamed)"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8807970779778823,
+      "P": 0.8807970779778823
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "700a7a5e865442f3",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Laozi maps to (a proposed figure correspondence) Bah\u00e1'u'll\u00e1h, in the context of Bahai, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8807970779778823,
+    "elo": 2291.545614846609,
+    "slots": {
+      "ACTOR": {
+        "id": "laozi",
+        "label": "Laozi"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "bahaullah",
+        "label": "Bah\u00e1'u'll\u00e1h"
+      },
+      "PLACE": {
+        "id": "bahai",
+        "label": "Bahai"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8807970779778823,
+      "P": 0.8807970779778823
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "b1f3ff1e087c1564",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha maps to (a proposed figure correspondence) Other (object, unnamed), in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8175744761936437,
+    "elo": 2105.4707923889778,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "other-object",
+        "label": "Other (object, unnamed)"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8175744761936437,
+      "P": 0.8175744761936437
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "bf41694c02ddd2e2",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Other (actor, unnamed) maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8175744761936437,
+    "elo": 2103.2,
+    "slots": {
+      "ACTOR": {
+        "id": "other-actor",
+        "label": "Other (actor, unnamed)"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8175744761936437,
+      "P": 0.8175744761936437
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "f0476643491b4565",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Other (actor, unnamed) maps to (a proposed figure correspondence) Confucius, in the context of Islam, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8175744761936437,
+    "elo": 2102.56,
+    "slots": {
+      "ACTOR": {
+        "id": "other-actor",
+        "label": "Other (actor, unnamed)"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "islam",
+        "label": "Islam"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8175744761936437,
+      "P": 0.8175744761936437
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "4f48f58db2e1012b",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gilgamesh maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.8175744761936437,
+    "elo": 2095.2,
+    "slots": {
+      "ACTOR": {
+        "id": "gilgamesh",
+        "label": "Gilgamesh"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.8175744761936437,
+      "P": 0.8175744761936437
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "81c3c66357620bc1",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Deucalion maps to (a proposed figure correspondence) Confucius, in the context of Greek, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.6224593312018546,
+    "elo": 1709.6000000000001,
+    "slots": {
+      "ACTOR": {
+        "id": "deucalion",
+        "label": "Deucalion"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "greek",
+        "label": "Greek"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.6224593312018546,
+      "P": 0.6224593312018546
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "03993de9aa48b9ee",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha maps to (a proposed figure correspondence) Deucalion, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.6224593312018546,
+    "elo": 1701.7178902232924,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "deucalion",
+        "label": "Deucalion"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.6224593312018546,
+      "P": 0.6224593312018546
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "af2fcf6d1bc3a5bb",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Deucalion maps to (a proposed figure correspondence) Bah\u00e1'u'll\u00e1h, in the context of Greek, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.6224593312018546,
+    "elo": 1699.389473055854,
+    "slots": {
+      "ACTOR": {
+        "id": "deucalion",
+        "label": "Deucalion"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "bahaullah",
+        "label": "Bah\u00e1'u'll\u00e1h"
+      },
+      "PLACE": {
+        "id": "greek",
+        "label": "Greek"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.6224593312018546,
+      "P": 0.6224593312018546
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "ad6a01d079227174",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Krishna maps to (a proposed figure correspondence) Confucius, in the context of Buddhism, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.6224593312018546,
+    "elo": 1694.5600000000002,
+    "slots": {
+      "ACTOR": {
+        "id": "krishna",
+        "label": "Krishna"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.6224593312018546,
+      "P": 0.6224593312018546
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "3df2a796d03dae1e",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha shares a motif with Bah\u00e1'u'll\u00e1h, in the context of Buddhism, via Other (mechanism, unnamed).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.44762574180723586,
+    "elo": 1454.171779924931,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "parallels",
+        "label": "Shares a motif with"
+      },
+      "OBJECT": {
+        "id": "bahaullah",
+        "label": "Bah\u00e1'u'll\u00e1h"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "other-mechanism",
+        "label": "Other (mechanism, unnamed)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [
+      "clm-corr-motif-parallel-86b6e200bf",
+      "clm-corr-motif-parallel-86b6e200bf-counter-0",
+      "clm-corr-motif-parallel-fab8ab2488-counter-0"
+    ],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": "T4",
+    "opinion": {
+      "b": 0.0,
+      "d": 0.5300882847821915,
+      "u": 0.46991171521780845,
+      "a": 0.9525741268224334,
+      "P": 0.44762574180723586
+    },
+    "evidenceCitations": [
+      {
+        "ref": "clm-corr-motif-parallel-86b6e200bf",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-motif-parallel-86b6e200bf",
+        "quote": "This cluster appears parallel to the motif of 'founder' in buddhism and bahai traditions."
+      },
+      {
+        "ref": "clm-corr-motif-parallel-86b6e200bf-counter-0",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-motif-parallel-86b6e200bf/counterConsiderations[0]",
+        "quote": "May be due to cultural exchange or borrowing"
+      },
+      {
+        "ref": "clm-corr-motif-parallel-fab8ab2488-counter-0",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-motif-parallel-fab8ab2488/counterConsiderations[0]",
+        "quote": "Counter-claim may be due to linguistic borrowing or cultural exchange."
+      }
+    ]
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "58b473122b760430",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha shares a motif with Confucius, in the context of Buddhism, via Other (mechanism, unnamed).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.7126613789094424,
+    "elo": 1381.9829746605915,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "parallels",
+        "label": "Shares a motif with"
+      },
+      "OBJECT": {
+        "id": "confucius",
+        "label": "Confucius"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "other-mechanism",
+        "label": "Other (mechanism, unnamed)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [
+      "clm-corr-motif-parallel-fab8ab2488-counter-0"
+    ],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": "T4",
+    "opinion": {
+      "b": 0.0,
+      "d": 0.2518573002956571,
+      "u": 0.7481426997043429,
+      "a": 0.9525741268224334,
+      "P": 0.7126613789094424
+    },
+    "evidenceCitations": [
+      {
+        "ref": "clm-corr-motif-parallel-fab8ab2488-counter-0",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-motif-parallel-fab8ab2488/counterConsiderations[0]",
+        "quote": "Counter-claim may be due to linguistic borrowing or cultural exchange."
+      }
+    ]
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "cd0a106ffc5b018b",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha shares a motif with Gautama Buddha, in the context of Buddhism, via Other (mechanism, unnamed).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.7126613789094424,
+    "elo": 1359.6970295093217,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "parallels",
+        "label": "Shares a motif with"
+      },
+      "OBJECT": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "other-mechanism",
+        "label": "Other (mechanism, unnamed)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [
+      "clm-corr-motif-parallel-fab8ab2488-counter-0"
+    ],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": "T4",
+    "opinion": {
+      "b": 0.0,
+      "d": 0.2518573002956571,
+      "u": 0.7481426997043429,
+      "a": 0.9525741268224334,
+      "P": 0.7126613789094424
+    },
+    "evidenceCitations": [
+      {
+        "ref": "clm-corr-motif-parallel-fab8ab2488-counter-0",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-motif-parallel-fab8ab2488/counterConsiderations[0]",
+        "quote": "Counter-claim may be due to linguistic borrowing or cultural exchange."
+      }
+    ]
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "99efbb284ad8dea3",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha shares a motif with Abraham, in the context of Buddhism, via Other (mechanism, unnamed).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.6589619038100695,
+    "elo": 1319.3769394045496,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "parallels",
+        "label": "Shares a motif with"
+      },
+      "OBJECT": {
+        "id": "abraham",
+        "label": "Abraham"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "other-mechanism",
+        "label": "Other (mechanism, unnamed)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [
+      "clm-corr-motif-parallel-fab8ab2488-counter-0"
+    ],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": "T4",
+    "opinion": {
+      "b": 0.0,
+      "d": 0.2518573002956571,
+      "u": 0.7481426997043429,
+      "a": 0.8807970779778823,
+      "P": 0.6589619038100695
+    },
+    "evidenceCitations": [
+      {
+        "ref": "clm-corr-motif-parallel-fab8ab2488-counter-0",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-motif-parallel-fab8ab2488/counterConsiderations[0]",
+        "quote": "Counter-claim may be due to linguistic borrowing or cultural exchange."
+      }
+    ]
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "e3455cd8251c0bc7",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha shares a motif with David, in the context of Buddhism, via Other (mechanism, unnamed).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.6589619038100695,
+    "elo": 1316.1769394045498,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "parallels",
+        "label": "Shares a motif with"
+      },
+      "OBJECT": {
+        "id": "david",
+        "label": "David"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "other-mechanism",
+        "label": "Other (mechanism, unnamed)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [
+      "clm-corr-motif-parallel-fab8ab2488-counter-0"
+    ],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": "T4",
+    "opinion": {
+      "b": 0.0,
+      "d": 0.2518573002956571,
+      "u": 0.7481426997043429,
+      "a": 0.8807970779778823,
+      "P": 0.6589619038100695
+    },
+    "evidenceCitations": [
+      {
+        "ref": "clm-corr-motif-parallel-fab8ab2488-counter-0",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-motif-parallel-fab8ab2488/counterConsiderations[0]",
+        "quote": "Counter-claim may be due to linguistic borrowing or cultural exchange."
+      }
+    ]
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "92f9292d61628c16",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Deucalion maps to (a proposed figure correspondence) Abraham, in the context of Greek, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.37754066879814546,
+    "elo": 1301.5263177978975,
+    "slots": {
+      "ACTOR": {
+        "id": "deucalion",
+        "label": "Deucalion"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "abraham",
+        "label": "Abraham"
+      },
+      "PLACE": {
+        "id": "greek",
+        "label": "Greek"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.37754066879814546,
+      "P": 0.37754066879814546
+    },
+    "evidenceCitations": []
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "53d815b9e480ef0a",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha shares a motif with Other (object, unnamed), in the context of Buddhism, via Other (mechanism, unnamed).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.6116623758288766,
+    "elo": 1283.9899718879399,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "parallels",
+        "label": "Shares a motif with"
+      },
+      "OBJECT": {
+        "id": "other-object",
+        "label": "Other (object, unnamed)"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "other-mechanism",
+        "label": "Other (mechanism, unnamed)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [
+      "clm-corr-motif-parallel-fab8ab2488-counter-0"
+    ],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": "T4",
+    "opinion": {
+      "b": 0.0,
+      "d": 0.2518573002956571,
+      "u": 0.7481426997043429,
+      "a": 0.8175744761936437,
+      "P": 0.6116623758288766
+    },
+    "evidenceCitations": [
+      {
+        "ref": "clm-corr-motif-parallel-fab8ab2488-counter-0",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-motif-parallel-fab8ab2488/counterConsiderations[0]",
+        "quote": "Counter-claim may be due to linguistic borrowing or cultural exchange."
+      }
+    ]
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "757d5db207c7e8f2",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Gautama Buddha shares a motif with Deucalion, in the context of Buddhism, via Other (mechanism, unnamed).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.4656884045015152,
+    "elo": 1118.615953144558,
+    "slots": {
+      "ACTOR": {
+        "id": "buddha",
+        "label": "Gautama Buddha"
+      },
+      "ACTION": {
+        "id": "parallels",
+        "label": "Shares a motif with"
+      },
+      "OBJECT": {
+        "id": "deucalion",
+        "label": "Deucalion"
+      },
+      "PLACE": {
+        "id": "buddhism",
+        "label": "Buddhism"
+      },
+      "MECHANISM": {
+        "id": "other-mechanism",
+        "label": "Other (mechanism, unnamed)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [
+      "clm-corr-motif-parallel-fab8ab2488-counter-0"
+    ],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": "T4",
+    "opinion": {
+      "b": 0.0,
+      "d": 0.2518573002956571,
+      "u": 0.7481426997043429,
+      "a": 0.6224593312018546,
+      "P": 0.4656884045015152
+    },
+    "evidenceCitations": [
+      {
+        "ref": "clm-corr-motif-parallel-fab8ab2488-counter-0",
+        "sourceId": "buddhism",
+        "citation": "correlations/clm-corr-motif-parallel-fab8ab2488/counterConsiderations[0]",
+        "quote": "Counter-claim may be due to linguistic borrowing or cultural exchange."
+      }
+    ]
+  },
+  {
+    "engine": "hte",
+    "runId": "sacred-history-20260910T180835Z",
+    "campaign": "sacred-history",
+    "hypothesisId": "ced9895ac97bd28e",
+    "model": "sonnet",
+    "tierAssigned": null,
+    "branch": "07-mind",
+    "title": "Deucalion maps to (a proposed figure correspondence) Other (object, unnamed), in the context of Greek, via AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap).",
+    "summary": null,
+    "kind": "derivation",
+    "posterior": 0.2689414213699951,
+    "elo": 1101.6000000000001,
+    "slots": {
+      "ACTOR": {
+        "id": "deucalion",
+        "label": "Deucalion"
+      },
+      "ACTION": {
+        "id": "maps-to",
+        "label": "Maps to (a proposed figure correspondence)"
+      },
+      "OBJECT": {
+        "id": "other-object",
+        "label": "Other (object, unnamed)"
+      },
+      "PLACE": {
+        "id": "greek",
+        "label": "Greek"
+      },
+      "MECHANISM": {
+        "id": "entity-graph-resolver",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)"
+      }
+    },
+    "addressTimeBin": 9,
+    "evidenceRefs": [],
+    "derivesFromSlugs": [],
+    "accepted": false,
+    "canon_tier": "candidate",
+    "origin": "engine",
+    "source_tier": null,
+    "opinion": {
+      "b": 0.0,
+      "d": 0.0,
+      "u": 1.0,
+      "a": 0.2689414213699951,
+      "P": 0.2689414213699951
+    },
+    "evidenceCitations": []
+  }
+]
