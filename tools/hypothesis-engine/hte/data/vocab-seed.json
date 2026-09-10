@@ -1,0 +1,90 @@
+{
+  "default_alpha": 1.0,
+  "alpha": {
+    "actor": 1.0, "action": 1.0, "object": 1.0, "place": 1.0,
+    "time": 1.0, "mechanism": 1.0, "relation": 1.0
+  },
+  "by_slot": {
+    "actor": [
+      {"id": "neolithic-farmers-anatolia", "slot": "actor", "label": "Neolithic farmers, Anatolia",
+       "prior_logit": 2.0, "consensus_status": "consensus",
+       "definition_url": null},
+      {"id": "egyptian-old-kingdom-workforce", "slot": "actor", "label": "Egyptian Old Kingdom workforce",
+       "prior_logit": 1.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "mesopotamian-city-state-labor", "slot": "actor", "label": "Mesopotamian city-state labor",
+       "prior_logit": 1.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "minoan-crete-polity", "slot": "actor", "label": "Minoan Crete polity",
+       "prior_logit": 1.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "indus-valley-urban-planners", "slot": "actor", "label": "Indus Valley urban planners",
+       "prior_logit": 1.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "pre-columbian-mesoamerican-builders", "slot": "actor", "label": "Pre-Columbian Mesoamerican builders",
+       "prior_logit": 1.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "bronze-age-aegean-traders", "slot": "actor", "label": "Bronze Age Aegean traders",
+       "prior_logit": 0.5, "consensus_status": "contested", "definition_url": null},
+      {"id": "extraterrestrials", "slot": "actor", "label": "Extraterrestrials",
+       "prior_logit": -4.0, "consensus_status": "fringe",
+       "definition_url": null},
+      {"id": "lost-advanced-civilization", "slot": "actor", "label": "Lost advanced civilization",
+       "prior_logit": -3.0, "consensus_status": "fringe", "definition_url": null},
+      {"id": "deity-literal-agent", "slot": "actor", "label": "Deity as a physically intervening agent",
+       "prior_logit": -2.5, "consensus_status": "fringe", "definition_url": null},
+      {"id": "natural-cataclysm", "slot": "actor", "label": "Natural cataclysm (non-agentive)",
+       "prior_logit": -1.0, "consensus_status": "contested", "definition_url": null},
+      {"id": "unknown-actor", "slot": "actor", "label": "Unknown actor (unidentified)",
+       "prior_logit": 0.0, "consensus_status": "contested", "definition_url": null}
+    ],
+    "action": [
+      {"id": "built", "slot": "action", "label": "Built", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "destroyed", "slot": "action", "label": "Destroyed", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "abandoned", "slot": "action", "label": "Abandoned", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "buried", "slot": "action", "label": "Buried", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "transported", "slot": "action", "label": "Transported", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "carved", "slot": "action", "label": "Carved", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "painted", "slot": "action", "label": "Painted", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "migrated-to", "slot": "action", "label": "Migrated to", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "traded-with", "slot": "action", "label": "Traded with", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "worshipped-at", "slot": "action", "label": "Worshipped at", "prior_logit": -0.5, "consensus_status": "contested", "definition_url": null}
+    ],
+    "object": [
+      {"id": "catalhoyuk-shrine", "slot": "object", "label": "Çatalhöyük shrine", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "stone-circle", "slot": "object", "label": "Stone circle", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "burial-mound", "slot": "object", "label": "Burial mound", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "ziggurat", "slot": "object", "label": "Ziggurat", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "megalithic-tomb", "slot": "object", "label": "Megalithic tomb", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "rock-art-panel", "slot": "object", "label": "Rock art panel", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "pottery-cache", "slot": "object", "label": "Pottery cache", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "fortification-wall", "slot": "object", "label": "Fortification wall", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "irrigation-canal", "slot": "object", "label": "Irrigation canal", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "standing-stone", "slot": "object", "label": "Standing stone", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null}
+    ],
+    "place": [
+      {"id": "catalhoyuk", "slot": "place", "label": "Çatalhöyük", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "gobekli-tepe", "slot": "place", "label": "Göbekli Tepe", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "stonehenge", "slot": "place", "label": "Stonehenge", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "giza-plateau", "slot": "place", "label": "Giza plateau", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "uruk", "slot": "place", "label": "Uruk", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "mohenjo-daro", "slot": "place", "label": "Mohenjo-daro", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "teotihuacan", "slot": "place", "label": "Teotihuacan", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "lascaux", "slot": "place", "label": "Lascaux", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "orkney-islands", "slot": "place", "label": "Orkney Islands", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "jericho", "slot": "place", "label": "Jericho", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null}
+    ],
+    "mechanism": [
+      {"id": "organized-human-labor", "slot": "mechanism", "label": "Organized human labor",
+       "prior_logit": 0.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "trade-network-diffusion", "slot": "mechanism", "label": "Trade-network diffusion",
+       "prior_logit": 0.3, "consensus_status": "consensus", "definition_url": null},
+      {"id": "ritual-practice", "slot": "mechanism", "label": "Ritual practice",
+       "prior_logit": 0.0, "consensus_status": "contested", "definition_url": null},
+      {"id": "environmental-adaptation", "slot": "mechanism", "label": "Environmental adaptation",
+       "prior_logit": 0.3, "consensus_status": "consensus", "definition_url": null},
+      {"id": "lost-technique", "slot": "mechanism", "label": "Lost technique",
+       "prior_logit": -1.5, "consensus_status": "fringe", "definition_url": null},
+      {"id": "unknown-technology", "slot": "mechanism", "label": "Unknown technology",
+       "prior_logit": -2.5, "consensus_status": "fringe",
+       "definition_url": null}
+    ],
+    "time": [],
+    "relation": []
+  }
+}

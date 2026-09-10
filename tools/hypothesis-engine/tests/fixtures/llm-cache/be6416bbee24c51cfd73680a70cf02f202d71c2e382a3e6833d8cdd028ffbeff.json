@@ -1,0 +1,36 @@
+{
+  "model": "sonnet",
+  "role": "generator",
+  "prompt_sha256": "01b2ba10d04d3d77e72be223f73eec35e96c3dd65017fbb397e08ce68cbdd1e9",
+  "response": {
+    "proposals": [
+      {
+        "actor": "alpha-team",
+        "action": "sighted",
+        "object": "comet-q",
+        "place": "alpha-observatory",
+        "mechanism": "transit-timing-method",
+        "time_hint": "T1",
+        "supporting_evidence_ids": [
+          "gt-alpha"
+        ],
+        "rationale": "Evidence explicitly states the Alpha team achieved the first confirmed sighting of comet Q using the transit-timing method, placing the action at their home observatory."
+      },
+      {
+        "actor": "beta-team",
+        "action": "extended",
+        "object": "comet-q",
+        "place": "beta-observatory",
+        "mechanism": "other-mechanism",
+        "time_hint": "T2",
+        "supporting_evidence_ids": [
+          "gt-beta"
+        ],
+        "rationale": "Material evidence directly credits the Beta Observatory with extending comet Q's tracked orbit tenfold; the mechanism used for this extension is not specified in the evidence.",
+        "other_labels": {
+          "mechanism": "Evidence does not specify which observational method Beta Observatory used to extend the orbit tracking."
+        }
+      }
+    ]
+  }
+}

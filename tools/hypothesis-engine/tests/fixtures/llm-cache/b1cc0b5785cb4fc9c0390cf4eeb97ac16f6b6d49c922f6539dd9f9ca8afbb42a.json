@@ -1,0 +1,21 @@
+{
+  "model": "haiku",
+  "prompt_sha256": "0876023e0e1248b6d92dec0d97ca74e277247016303377b1b9730e652d807160",
+  "response": {
+    "items": [
+      {
+        "claim": "In 1955, comet Q was sighted by an unverified observer using an unspecified observational method.",
+        "kind": "astronomical",
+        "quote": "In 1955, an unverified observer reported a rival sighting of comet Q using an unspecified method.",
+        "tier": "T5"
+      },
+      {
+        "claim": "A 1970 peer review process found no independent confirmation of the 1955 sighting and downgraded its status.",
+        "kind": "textual",
+        "quote": "A 1970 review found no independent confirmation and downgraded the claim to unconfirmed.",
+        "tier": "T3"
+      }
+    ]
+  },
+  "role": "extractor"
+}

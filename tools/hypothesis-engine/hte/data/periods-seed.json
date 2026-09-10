@@ -1,0 +1,138 @@
+[
+  {
+    "id": "younger-dryas-boundary",
+    "label": "Younger Dryas boundary",
+    "corpus": null,
+    "calendar": "ka",
+    "start_ka": 12.9,
+    "end_ka": 11.7,
+    "calendar_note": "12.9 to 11.7 ka BP, the Younger Dryas Impact Hypothesis window.",
+    "expected_evidence_kinds": ["geological", "material", "astronomical", "model_prior"],
+    "factors": {
+      "uncertainty": 0.9,
+      "novelty": 0.8,
+      "coverage_gap": 0.9,
+      "historical_gap": 0.95,
+      "disagreement": 0.85
+    },
+    "gaps": [
+      {
+        "id": "gap-yd-platinum-anomaly",
+        "kind": "unexcavated-site",
+        "description": "Platinum-anomaly strata at additional Younger Dryas boundary sites beyond the confirmed set, to test whether the anomaly is regional or the hemispheric layer the impact hypothesis claims.",
+        "cost": 5.0
+      },
+      {
+        "id": "gap-yd-nanodiamond-survey",
+        "kind": "unread-archive",
+        "description": "Independent nanodiamond and microspherule re-analyses of contested boundary-layer samples, where the original identification has been disputed by later labs.",
+        "cost": 4.0
+      },
+      {
+        "id": "gap-yd-megafauna-extinction-dating",
+        "kind": "undated-stratum",
+        "description": "High-resolution radiocarbon dating of North American megafauna extinction relative to the boundary layer, to test synchroneity against a gradual-climate alternative.",
+        "cost": 3.0
+      }
+    ]
+  },
+  {
+    "id": "neolithic-anatolia",
+    "label": "Neolithic Anatolia",
+    "corpus": null,
+    "calendar": "bce",
+    "start_bce": 9500,
+    "end_bce": 7000,
+    "calendar_note": "9500 to 7000 BCE, the pre-pottery Neolithic transition around Gobekli Tepe and Catalhoyuk.",
+    "expected_evidence_kinds": ["material", "genetic", "iconographic", "model_prior"],
+    "factors": {
+      "uncertainty": 0.75,
+      "novelty": 0.7,
+      "coverage_gap": 0.6,
+      "historical_gap": 0.55,
+      "disagreement": 0.6
+    },
+    "gaps": [
+      {
+        "id": "gap-na-gobekli-lower-strata",
+        "kind": "unexcavated-site",
+        "description": "Lower, still-buried enclosure strata at Gobekli Tepe, to test whether monumental construction preceded or followed the shift to cultivation.",
+        "cost": 6.0
+      },
+      {
+        "id": "gap-na-domestication-genomes",
+        "kind": "unread-archive",
+        "description": "Ancient-DNA panels from early domesticated wheat and sheep lineages across the wider Fertile Crescent, to date the domestication event against the site's own occupation sequence.",
+        "cost": 4.0
+      },
+      {
+        "id": "gap-na-catalhoyuk-figurine-corpus",
+        "kind": "unread-archive",
+        "description": "The full figurine and wall-painting corpus at Catalhoyuk, cross-catalogued against Gobekli Tepe's pillar iconography for a shared or independent symbolic tradition.",
+        "cost": 3.0
+      }
+    ]
+  },
+  {
+    "id": "bronze-age-collapse",
+    "label": "Bronze Age collapse",
+    "corpus": null,
+    "calendar": "bce",
+    "start_bce": 1200,
+    "end_bce": 1150,
+    "calendar_note": "1200 to 1150 BCE, the Late Bronze Age collapse across the Eastern Mediterranean.",
+    "expected_evidence_kinds": ["textual", "material", "geological", "model_prior"],
+    "factors": {
+      "uncertainty": 0.65,
+      "novelty": 0.55,
+      "coverage_gap": 0.5,
+      "historical_gap": 0.7,
+      "disagreement": 0.65
+    },
+    "gaps": [
+      {
+        "id": "gap-bac-hittite-archive-tail",
+        "kind": "unread-archive",
+        "description": "The final decades of Hittite royal correspondence at Hattusa, to test whether the collapse reads as sudden in the state's own contemporary record or only in retrospect.",
+        "cost": 4.0
+      },
+      {
+        "id": "gap-bac-drought-proxy-synthesis",
+        "kind": "unexcavated-site",
+        "description": "Additional pollen and speleothem drought-proxy cores from Cyprus and the Levant, to test the multi-year-drought reading against the invasion and systems-collapse readings.",
+        "cost": 5.0
+      },
+      {
+        "id": "gap-bac-sea-peoples-toponyms",
+        "kind": "untranslated-text",
+        "description": "Egyptian toponym lists naming the Sea Peoples' constituent groups, cross-referenced against Aegean and Anatolian place names for a real, rather than a formulaic, origin claim.",
+        "cost": 3.0
+      }
+    ]
+  },
+  {
+    "id": "quantum-history",
+    "label": "Quantum history",
+    "corpus": "quantum-history",
+    "calendar": "ce",
+    "start_ce": 1900,
+    "end_ce": 2026,
+    "calendar_note": "1900 to 2026 CE, the calibration control period: a well-documented, densely cited modern record this campaign already ingests (hte.corpus.quantum_history), run alongside the archaeological candidates so the selection procedure is checked against a period with a known, low missing-mass answer rather than only against periods with none.",
+    "expected_evidence_kinds": ["textual", "model_prior"],
+    "factors": {
+      "uncertainty": 0.1,
+      "novelty": 0.1,
+      "coverage_gap": 0.05,
+      "historical_gap": 0.05,
+      "disagreement": 0.1
+    },
+    "gaps": [
+      {
+        "id": "gap-qh-second-revolution-actor-vocabulary",
+        "kind": "unread-archive",
+        "description": "Named-actor attributions for matrix-wave-mechanics, the EPR paradox, Bell's inequality, and the no-cloning theorem, currently confounded onto one catch-all actor in the shipped vocabulary (2026-09-10 run's own meta-review flag).",
+        "cost": 2.0
+      }
+    ]
+  }
+]

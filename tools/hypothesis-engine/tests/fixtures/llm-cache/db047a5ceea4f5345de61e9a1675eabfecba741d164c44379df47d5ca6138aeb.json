@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "prompt_sha256": "a1835c12c44587742b96d9694fb67fc20e99e5324f5277a7ae2dfa64a7c4327c",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.9,
+    "expected_evidence": [
+      "Observatory logbooks/observation registers recording transit-timing sessions for the named comet",
+      "Published papers or circulars (e.g., in an astronomical journal, IAU circular, or observatory bulletin) reporting the timing results",
+      "Photographic plates, chronograph/clock-drive records, or transit-instrument readings from the observatory archive",
+      "Institutional correspondence or annual reports naming the team/personnel involved",
+      "Star/comet ephemeris calculations or reduction sheets derived from the transit timings",
+      "Secondary citations of the observation in later comet orbit-determination literature"
+    ],
+    "rationale": "This hypothesis is dated 1900-1999, which falls entirely outside the periods covered by the supplied detectability table (upper-paleolithic through classical, i.e. prehistoric through antiquity). None of the given rows are directly applicable, so I cannot cite a table-derived score for this interval; any figure I give for a 20th-century case is necessarily model-prior (unverified, drawn from general knowledge of modern scientific record-keeping rather than from the supplied dataset). Treated as model-prior: 20th-century observatories running transit-timing programs typically produced durable textual and material records - logbooks, published journal notes, IAU circulars, photographic plates - and these institutional archives have a strong survival and cataloguing tradition (many are digitized or held in observatory/university archives). This is qualitatively very different from the prehistoric/ancient regimes in the table, where textual detectability is near zero and even astronomical/material evidence is capped around 0.4-0.7. For a real, named 20th-century observatory and team, I would expect high detectability (roughly 0.85-0.95) for textual and material evidence, since routine scientific practice of that era demanded documentation and archiving. However, the placeholder-style entity names ('alpha-team', 'comet-q', 'alpha-observatory') suggest this may be a templated/anonymized hypothesis rather than a fully specified historical claim, which adds genuine uncertainty about whether the underlying event is real, obscure, or fictional - if the underlying event is fabricated or never occurred, no amount of archival search would find genuine corroborating evidence, and this would count as evidence against the hypothesis rather than a detectability failure. Given the strong general survivability of 20th-century institutional/scientific records, I do not think low detectability can explain an absence of evidence here; if no record can be found for a specific real observatory in this period, that absence is more likely informative of falsity than of poor preservation."
+  },
+  "role": "preservation_critic"
+}

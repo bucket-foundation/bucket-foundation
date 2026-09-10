@@ -1,0 +1,9 @@
+{
+  "model": "sonnet",
+  "prompt_sha256": "0b1c01a16c69a6330fc35d2c11d95766acb05d30c90e3d7e716beb267f437cb4",
+  "response": {
+    "p_a_wins": 0.5,
+    "rationale": "Both hypotheses have identical evidential state (b=0, d=0, u=1.0), meaning no actual evidence supports or refutes either; the only difference is the base-rate atomicity parameter 'a', which is a prior, not evidence, so there is no basis to favor one over the other."
+  },
+  "role": "judge"
+}

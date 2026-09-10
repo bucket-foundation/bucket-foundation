@@ -1,0 +1,85 @@
+{
+  "_note": "Seed vocabulary for the quantum-history corpus (hte.corpus.quantum_history), read against quantum/07-history's 16 cards. Mirrors vocab-seed.json's shape and its founder-prior pattern: a consensus core plus a handful of contested or fringe readings, here quantum-foundations skepticism and popular quantum-mysticism claims standing in for vocab-seed.json's lost-civilization and extraterrestrial actors, so prior-profile robustness and target-blind self-report have a non-consensus reading to test against.",
+  "default_alpha": 1.0,
+  "alpha": {
+    "actor": 1.0, "action": 1.0, "object": 1.0, "place": 1.0,
+    "time": 1.0, "mechanism": 1.0, "relation": 1.0
+  },
+  "by_slot": {
+    "actor": [
+      {"id": "planck-1900", "slot": "actor", "label": "Max Planck",
+       "prior_logit": 2.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "einstein", "slot": "actor", "label": "Albert Einstein",
+       "prior_logit": 2.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "bohr", "slot": "actor", "label": "Niels Bohr",
+       "prior_logit": 2.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "heisenberg-schrodinger", "slot": "actor", "label": "Heisenberg and Schrödinger",
+       "prior_logit": 2.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "bell-cern", "slot": "actor", "label": "John Stewart Bell",
+       "prior_logit": 1.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "aspect-clauser-zeilinger", "slot": "actor", "label": "Aspect, Clauser, and Zeilinger",
+       "prior_logit": 1.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "feynman-deutsch", "slot": "actor", "label": "Feynman and Deutsch",
+       "prior_logit": 1.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "shor-bell-labs", "slot": "actor", "label": "Peter Shor, Bell Labs",
+       "prior_logit": 1.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "google-quantum-ai", "slot": "actor", "label": "Google Quantum AI",
+       "prior_logit": 0.5, "consensus_status": "contested", "definition_url": null},
+      {"id": "ibm-quantum", "slot": "actor", "label": "IBM Quantum",
+       "prior_logit": 0.5, "consensus_status": "contested", "definition_url": null},
+      {"id": "vendor-marketing", "slot": "actor", "label": "Vendor launch-day marketing (unnamed press desk)",
+       "prior_logit": -1.5, "consensus_status": "contested", "definition_url": null},
+      {"id": "quantum-mysticism-popularizers", "slot": "actor", "label": "Quantum-mysticism popularizers",
+       "prior_logit": -4.0, "consensus_status": "fringe", "definition_url": null},
+      {"id": "quantum-winter-doomsayers", "slot": "actor", "label": "Quantum-winter doomsayers",
+       "prior_logit": -2.5, "consensus_status": "fringe", "definition_url": null},
+      {"id": "unknown-actor", "slot": "actor", "label": "Unknown actor (unidentified)",
+       "prior_logit": 0.0, "consensus_status": "contested", "definition_url": null}
+    ],
+    "action": [
+      {"id": "quantized", "slot": "action", "label": "Quantized", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "proved", "slot": "action", "label": "Proved", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "proposed", "slot": "action", "label": "Proposed", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "demonstrated", "slot": "action", "label": "Demonstrated experimentally", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "factored", "slot": "action", "label": "Factored (an integer, in polynomial time)", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "violated", "slot": "action", "label": "Violated (an inequality bound)", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "published", "slot": "action", "label": "Published", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "claimed-advantage", "slot": "action", "label": "Claimed a computational advantage", "prior_logit": -0.5, "consensus_status": "contested", "definition_url": null},
+      {"id": "rebutted-classically", "slot": "action", "label": "Rebutted with a classical simulation", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "achieved-below-threshold", "slot": "action", "label": "Achieved below-threshold error correction", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null}
+    ],
+    "object": [
+      {"id": "blackbody-spectrum", "slot": "object", "label": "Blackbody spectrum", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "matrix-wave-mechanics", "slot": "object", "label": "Matrix and wave mechanics", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "epr-paradox", "slot": "object", "label": "The EPR paradox", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "bell-inequality", "slot": "object", "label": "Bell's inequality", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "no-cloning-theorem", "slot": "object", "label": "The no-cloning theorem", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "bb84-protocol", "slot": "object", "label": "The BB84 protocol", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "shors-algorithm", "slot": "object", "label": "Shor's algorithm", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "threshold-theorem", "slot": "object", "label": "The threshold theorem", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "sycamore-supremacy-claim", "slot": "object", "label": "The Sycamore quantum-supremacy claim", "prior_logit": -0.5, "consensus_status": "contested", "definition_url": null},
+      {"id": "willow-below-threshold-result", "slot": "object", "label": "Willow's below-threshold surface code", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "majorana-topological-qubit", "slot": "object", "label": "The Majorana topological-qubit claim", "prior_logit": -1.0, "consensus_status": "contested", "definition_url": null}
+    ],
+    "place": [
+      {"id": "solvay-brussels", "slot": "place", "label": "Solvay Conference, Brussels", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "copenhagen", "slot": "place", "label": "Copenhagen", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "princeton-ias", "slot": "place", "label": "Institute for Advanced Study, Princeton", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "cern", "slot": "place", "label": "CERN", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "berkeley", "slot": "place", "label": "Berkeley", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "bell-labs-nj", "slot": "place", "label": "Bell Labs, New Jersey", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "mit", "slot": "place", "label": "MIT", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "google-santa-barbara", "slot": "place", "label": "Google Quantum AI, Santa Barbara", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "ibm-yorktown", "slot": "place", "label": "IBM T.J. Watson, Yorktown Heights", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "unknown-place", "slot": "place", "label": "Unknown place (unidentified)", "prior_logit": 0.0, "consensus_status": "contested", "definition_url": null}
+    ],
+    "mechanism": [
+      {"id": "quantization", "slot": "mechanism", "label": "Energy quantization", "prior_logit": 0.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "wave-particle-duality", "slot": "mechanism", "label": "Wave-particle duality", "prior_logit": 0.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "entanglement", "slot": "mechanism", "label": "Entanglement", "prior_logit": 0.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "decoherence", "slot": "mechanism", "label": "Decoherence", "prior_logit": 0.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "quantum-error-correction", "slot": "mechanism", "label": "Quantum error correction", "prior_logit": 0.5, "consensus_status": "consensus", "definition_url": null},
+      {"id": "hidden-variable-theory", "slot": "mechanism", "label": "Local hidden-variable theory", "prior_logit": -2.0, "consensus_status": "fringe", "definition_url": null}
+    ]
+  }
+}

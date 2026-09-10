@@ -1,0 +1,53 @@
+{
+  "_note": "Illustrative placeholders (main.tex def:detect, fig:detectability). This table is a claim about the corpus that a new excavation or archive access can revise; it is not calibrated. Values are delta(period, kind) in [0, 1].",
+  "periods": [
+    "upper-paleolithic",
+    "younger-dryas",
+    "early-holocene",
+    "neolithic",
+    "bronze-age",
+    "iron-age",
+    "classical"
+  ],
+  "kinds": [
+    "material",
+    "textual",
+    "genetic",
+    "linguistic",
+    "astronomical",
+    "geological",
+    "oral_tradition",
+    "iconographic",
+    "model_prior"
+  ],
+  "table": {
+    "upper-paleolithic": {
+      "material": 0.35, "textual": 0.0, "genetic": 0.25, "linguistic": 0.05,
+      "astronomical": 0.7, "geological": 0.6, "oral_tradition": 0.1, "iconographic": 0.1, "model_prior": 0.3
+    },
+    "younger-dryas": {
+      "material": 0.35, "textual": 0.0, "genetic": 0.3, "linguistic": 0.05,
+      "astronomical": 0.7, "geological": 0.65, "oral_tradition": 0.1, "iconographic": 0.1, "model_prior": 0.3
+    },
+    "early-holocene": {
+      "material": 0.45, "textual": 0.02, "genetic": 0.35, "linguistic": 0.1,
+      "astronomical": 0.65, "geological": 0.6, "oral_tradition": 0.15, "iconographic": 0.2, "model_prior": 0.35
+    },
+    "neolithic": {
+      "material": 0.55, "textual": 0.1, "genetic": 0.45, "linguistic": 0.2,
+      "astronomical": 0.6, "geological": 0.55, "oral_tradition": 0.25, "iconographic": 0.35, "model_prior": 0.4
+    },
+    "bronze-age": {
+      "material": 0.65, "textual": 0.35, "genetic": 0.55, "linguistic": 0.35,
+      "astronomical": 0.55, "geological": 0.5, "oral_tradition": 0.35, "iconographic": 0.5, "model_prior": 0.45
+    },
+    "iron-age": {
+      "material": 0.75, "textual": 0.65, "genetic": 0.65, "linguistic": 0.55,
+      "astronomical": 0.5, "geological": 0.45, "oral_tradition": 0.4, "iconographic": 0.65, "model_prior": 0.5
+    },
+    "classical": {
+      "material": 0.85, "textual": 0.85, "genetic": 0.75, "linguistic": 0.7,
+      "astronomical": 0.45, "geological": 0.4, "oral_tradition": 0.4, "iconographic": 0.75, "model_prior": 0.55
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "prompt_sha256": "1435acc3c818a29499d7ab4ea3a028a845ad7d3968856ba442129affaba36741",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.9,
+    "expected_evidence": [
+      "Observatory logbooks and observing schedules from alpha-observatory documenting transit-timing sessions for comet-q",
+      "Published astronomical bulletins, journal papers, or IAU circulars reporting the 'extension' of comet-q's observed arc/orbit via transit-timing methods",
+      "Raw or reduced timing data (transit timings, photographic plates, or photoelectric records) attributable to alpha-team",
+      "Correspondence, telegrams, or institutional reports between alpha-team and other observatories confirming or disputing the extended observation",
+      "Instrument records (telescope specifications, timing apparatus, clock/chronograph calibration logs) used for the transit-timing method",
+      "Personnel/institutional records establishing alpha-team's existence, affiliation, and observing campaign at alpha-observatory",
+      "Later citations or orbital-catalog entries (e.g., comet orbit revisions) referencing the extended observational arc"
+    ],
+    "rationale": "Important mismatch: the hypothesis's interval [1900,1999] is a 20th-century modern-era event, but the provided detectability table only spans upper-paleolithic through classical periods (roughly pre-500 CE), so no row directly applies. This appears to be an out-of-scope combination for the supplied table, and I'm extrapolating rather than reading a matching cell. Treating this as model-prior extrapolation (flagged as low-tier/unverified per instructions): 20th-century scientific astronomy is characterized by systematic, redundant, and institutionally archived record-keeping \u2014 observatory logbooks, peer-reviewed journals, international circulars (e.g., IAU-style bulletins), photographic/photoelectric data, and correspondence \u2014 all of which are routinely preserved in institutional archives, library systems, and now digitized repositories. If the classical period (textual=0.85, astronomical=0.45, material=0.85) already shows strong textual/material detectability using far more fragile media (papyrus, inscriptions, oral transmission), a 20th-century transit-timing observation campaign at a named observatory should be substantially MORE detectable across textual, astronomical, and institutional/model_prior channels, given printing, photography, telegraphy, and archival science. I suggest a detectability_adjustment of 0.9, reflecting high expected preservation of textual and astronomical evidence types specifically, while flagging that oral_tradition, linguistic, and genetic evidence categories are largely irrelevant/inapplicable for this kind of institutional scientific claim. If no corroborating observatory records, publications, or citations for 'alpha-team', 'comet-q', or 'alpha-observatory' can be found despite this high expected detectability, that absence would weigh more heavily toward the hypothesis being unsubstantiated or fictitious (e.g., placeholder/test names) rather than toward evidence having been lost, since the 20th-century record-keeping environment is unusually robust."
+  },
+  "role": "preservation_critic"
+}

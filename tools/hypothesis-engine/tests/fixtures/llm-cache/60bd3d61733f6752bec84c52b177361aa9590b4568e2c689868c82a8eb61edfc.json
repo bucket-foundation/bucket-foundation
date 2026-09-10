@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "prompt_sha256": "043087a11cc38287cf00834becf794df5b0f2b7c24967b1bebb1e9c4b29f9439",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.93,
+    "expected_evidence": [
+      "Observatory logbooks/registers at 'alpha-observatory' recording the transit-timing observation of comet-q",
+      "Published astronomical circulars or journal notices (e.g., style of IAU/Astronomische Nachrichten reports) announcing or confirming the sighting",
+      "Raw or reduced transit-timing instrument data (timing charts, chronograph tapes, or photographic plates) tied to the observation",
+      "Correspondence/telegrams between alpha-observatory and other observatories or astronomical unions confirming or disputing the sighting",
+      "Institutional archives (annual reports, staff observation registers) of alpha-observatory naming the observer ('other-actor') and date",
+      "Secondary press or popular-science coverage (newspapers, almanacs) mentioning the comet sighting",
+      "Star/comet catalogs or ephemeris updates incorporating the observation"
+    ],
+    "rationale": "The hypothesis places the event in 1900-1999, a period not represented in the supplied detectability table (which only extends through 'classical', roughly pre-500 CE). Extrapolating the table's clear upward trend across periods (e.g., textual detectability rises from 0.0 in upper-paleolithic to 0.85 by classical, astronomical from 0.7 down to 0.45 as it becomes less uniquely diagnostic relative to textual/material corroboration), a 20th-century context for an institutional astronomical observation should sit near the ceiling for textual, material, and astronomical evidence categories -- modern observatories kept systematic logbooks, published in peer-reviewed/professional circulars, and archived instrument data as standard practice, and international astronomical communication networks (telegrams, circulars) existed specifically to record and disseminate such sightings. This is model-prior reasoning about general 20th-century scientific record-keeping practices, not drawn from the supplied evidence text, so it should be treated as a low-tier unverified assumption. Because no period-specific detectability row exists for 1900-1999, I extrapolate a composite adjustment near the classical-period ceiling (0.85 textual/material) but pushed higher (~0.93) to reflect the further century-plus of improved archival, photographic, and institutional preservation infrastructure. Absence of a positively identified sighting record for this specific placement (actor='other-actor', observatory='alpha-observatory', comet-q) would therefore weigh more heavily against the hypothesis than in a low-detectability era, though localized record loss (e.g., wartime archive destruction, obscure/minor observatory with poor preservation, or an unremarkable/non-priority observation not deemed worth wide circulation) could still plausibly explain a gap without implying falsity. Given generically high 20th-century detectability, if no corroborating observatory record, circular, or press mention can be found, that absence is moderately more suggestive of the event not having occurred (or of misattribution of actor/place) than it would be for prehistoric hypotheses in this table."
+  },
+  "role": "preservation_critic"
+}

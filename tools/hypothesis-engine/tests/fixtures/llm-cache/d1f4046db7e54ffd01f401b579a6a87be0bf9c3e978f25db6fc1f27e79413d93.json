@@ -1,0 +1,37 @@
+{
+  "model": "sonnet",
+  "prompt_sha256": "c8167c65748914ca0fe119a8806d11adcab9f6fb59ddf11ef998572c4e68aa68",
+  "response": {
+    "proposals": [
+      {
+        "action": "sighted",
+        "actor": "alpha-team",
+        "mechanism": "transit-timing-method",
+        "object": "comet-q",
+        "place": "alpha-observatory",
+        "rationale": "Direct material evidence states the Alpha team made the first confirmed sighting of comet Q using the transit-timing method, independently confirmed in 1962.",
+        "supporting_evidence_ids": [
+          "gt-alpha",
+          "gt-alpha-confirm"
+        ],
+        "time_hint": "T1"
+      },
+      {
+        "action": "extended",
+        "actor": "beta-team",
+        "mechanism": "other-mechanism",
+        "object": "comet-q",
+        "other_labels": {
+          "mechanism": "No method is stated for the orbit extension in the evidence, so neither transit-timing nor photometric can be confirmed."
+        },
+        "place": "beta-observatory",
+        "rationale": "Material evidence directly attributes the tenfold extension of comet Q's tracked orbit to the Beta Observatory; the method used is not specified, so 'other-mechanism' is used pending further detail.",
+        "supporting_evidence_ids": [
+          "gt-beta"
+        ],
+        "time_hint": "T2"
+      }
+    ]
+  },
+  "role": "generator"
+}
