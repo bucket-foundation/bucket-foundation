@@ -1,5 +1,13 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, funding wave 1
+
+Bead `ros-09`, branch `docs/ros-09-funding-wave-1`. Four funder-facing documents under `learning/research-os/funding/`, drawn from this intake's own funding research plus fresh WebFetch verification against every funder's live site on 2026-09-10 (not a re-read of the 2026-09-09 pass's cached figures).
+
+Shipped: `FAST-FORWARD-2026.md` (the 2026-09-18 deadline holds, confirmed by ffwd.org's own banner, which supersedes a stale September 7 date still on the same page; eligibility holds conditionally on the founder starting either state incorporation or a fiscal-sponsor application this week, since Bucket Foundation today has neither; draft narrative answers and a founder-input checklist). `WAVE-1-TARGETS.md` (Tools Competition, Digital Public Goods Alliance registration, Renaissance Philanthropy's AI for Education fund, and NLnet NGI Zero as the four wave-1 targets; four of the eight section K candidates verified closed or non-fitting and are logged with sources so the next pass does not re-check them: Chan Zuckerberg Initiative, no open call; Schmidt Sciences, open calls exist but all three are climate programs; Emerson Collective, confirmed closed to unsolicited submissions; Institute of Education Sciences, verified open but its FY2027 RFAs are methods-and-training grants with an LOI deadline that already passed; NewSchools Venture Fund's "open portal" read from the prior pass is corrected, its 2026 cycle is confirmed closed). `FISCAL-SPONSOR-DECISION.md` (Hack Club Bank, the prior pass's top pick, is confirmed ineligible: its own eligibility page requires a project led by teenagers 13 to 18, disqualifying a founder-led adult nonprofit outright; Players Philanthropy Fund recommended over Social Good Fund on fee alone, 6% flat against Social Good Fund's 8% at Bucket's budget size). `BUDGET-PHASE-1.md` (a twelve-month Phase 1 budget built by annualizing the system review's own Phase 1 monthly cost ranges across a build, pilot-semester, and evaluation sub-period breakdown, low/expected/high totals of $4,425, $19,125, and $83,610).
+
+Every dollar figure and deadline in the four documents cites the file or URL it came from; five points found on this pass correct or sharpen the prior 2026-09-09 funding research and are called out inline rather than silently overwritten: the Fast Forward deadline's stale-date discrepancy, HCB's disqualification, NewSchools' closed 2026 cycle, IES's fit and timing problem, and NLnet's newly surfaced European-dimension eligibility caveat.
+
 ## 2026-09-10, canon and Academy corpus ingestion
 
 Branch `feat/ros-canon-ingest`. Two ingestion importers that grow the Research
