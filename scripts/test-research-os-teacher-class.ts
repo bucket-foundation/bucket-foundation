@@ -1,7 +1,9 @@
 /**
  * Unit tests: the teacher class view and the Production accept path
  * (bkt-ros, ros-06), src/lib/research-os/class-view.ts,
- * src/lib/research-os/reviewer.ts's isReviewerEmail, and
+ * src/lib/research-os/reviewer.ts's isReviewerEmail,
+ * src/lib/research-os/db.ts's filterClassesForReviewer (the class-scoping
+ * decision: a reviewer for one class never reads another reviewer's), and
  * src/lib/research-os/stages.ts's onProductionReview composed with the
  * real (unmodified) src/lib/research-os/engine-bridge.ts's
  * buildProductionOutboxRow. No database: matching every other
@@ -25,6 +27,7 @@ import { join } from "node:path";
 import { seedPathOrder, buildClassGrid, findBlockedLearners, findReadyForHarderTarget } from "../src/lib/research-os/class-view";
 import type { GraphNode, GraphEdge, LearnerNodeState, Stage } from "../src/lib/research-os/types";
 import { isReviewerEmail } from "../src/lib/research-os/reviewer";
+import { filterClassesForReviewer } from "../src/lib/research-os/db";
 import { onProductionReview, onProductionReturned } from "../src/lib/research-os/stages";
 import { buildProductionOutboxRow, type GraphProductionRow } from "../src/lib/research-os/engine-bridge";
 
@@ -189,6 +192,32 @@ test("findReadyForHarderTarget: a root node never qualifies (nothing to have alr
   const byLearner = new Map([["l1", [] as LearnerNodeState[]]]);
   const out = findReadyForHarderTarget(SYNTH_NODES, SYNTH_EDGES, ["l1"], byLearner);
   assert.ok(!out.some((r) => r.nodeId === "A" || r.nodeId === "X" || r.nodeId === "Y"));
+});
+
+// ---------------------------------------------------------------------------
+// Class scoping: a reviewer never reads a class they do not own
+// ---------------------------------------------------------------------------
+
+const CLASS_A = { id: "class-a", name: "Period 1", reviewer_email: "teacher-a@school.example", created_at: "2026-09-01T00:00:00Z" };
+const CLASS_B = { id: "class-b", name: "Period 2", reviewer_email: "teacher-b@school.example", created_at: "2026-09-01T00:00:00Z" };
+
+test("filterClassesForReviewer: a reviewer for class A sees only class A, never class B", () => {
+  const out = filterClassesForReviewer([CLASS_A, CLASS_B], "teacher-a@school.example");
+  assert.deepEqual(
+    out.map((c) => c.id),
+    ["class-a"],
+  );
+});
+
+test("filterClassesForReviewer: a reviewer owning no class in the table gets an empty grid, not class B's", () => {
+  const out = filterClassesForReviewer([CLASS_B], "teacher-a@school.example");
+  assert.equal(out.length, 0);
+});
+
+test("filterClassesForReviewer: case- and whitespace-insensitive against reviewer_email, matching reviewer.ts's own comparison", () => {
+  const out = filterClassesForReviewer([CLASS_A], " TEACHER-A@SCHOOL.EXAMPLE ");
+  assert.equal(out.length, 1);
+  assert.equal(out[0].id, "class-a");
 });
 
 // ---------------------------------------------------------------------------

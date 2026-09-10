@@ -61,6 +61,7 @@ Both `approved` and `returned` call `recordEvidence` now. Earlier in this bead's
 
 - A fixture class of three learners over the real seed path (`supabase/seed/research-os-sky-blue.json`): grid shape, a mid-path learner's cell values, a near-done learner's target cell staying `access`.
 - `findBlockedLearners` / `findReadyForHarderTarget` against a small synthetic graph (`A -> B -> C`, `X,Y -> Z -> W`): stale-past-threshold, not-yet-stale, never-opened, already-mastered, all-prerequisites-met, one-prerequisite-short, already-started, root-never-qualifies.
+- `filterClassesForReviewer` (`db.ts`'s `loadClassesForReviewer` scoping decision, split out for this reason): a reviewer for class A sees only class A, a reviewer who owns no row in the table gets an empty result, case- and whitespace-insensitive against `reviewer_email`.
 - `isReviewerEmail`: allows an allowlisted address (case- and whitespace-insensitive), rejects a non-reviewer, fails closed on an unset or empty allowlist.
 - `onProductionReview` / `onProductionReturned`: the evidence event shape each produces, including `fromStage`/`toStage`/`reviewId`, and that a return never lowers `nextStage`.
 - The real, unmodified `buildProductionOutboxRow` accepts a production shaped exactly like what the accept path produces, and throws on a `"draft"` (returned) row, proving the accept-path-to-outbox wiring at the data-shape level.

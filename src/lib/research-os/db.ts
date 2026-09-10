@@ -226,14 +226,33 @@ export interface ClassRow {
  * JS costs nothing today and stays correct regardless of what characters
  * an email contains.
  */
+interface RawClassRow {
+  id: string;
+  name: string;
+  reviewer_email: string;
+  created_at: string;
+}
+
+/**
+ * The scoping decision alone, no I/O -- split out from loadClassesForReviewer
+ * so the "a reviewer for class A never sees class B" guarantee is
+ * unit-testable with no network call (scripts/test-research-os-teacher-class.ts,
+ * "class scoping"), the same reason isReviewerEmail was split out of
+ * verifyReviewer. Case-insensitive, matching reviewer.ts's own allowlist
+ * comparison.
+ */
+export function filterClassesForReviewer(rows: RawClassRow[], reviewerEmail: string): ClassRow[] {
+  const wanted = reviewerEmail.trim().toLowerCase();
+  return rows
+    .filter((r) => r.reviewer_email.trim().toLowerCase() === wanted)
+    .map((r) => ({ id: r.id, name: r.name, reviewerEmail: r.reviewer_email, createdAt: r.created_at }));
+}
+
 export async function loadClassesForReviewer(reviewerEmail: string): Promise<ClassRow[]> {
   const svc = graphService();
   const { data, error } = await svc.from("classes").select("id,name,reviewer_email,created_at");
   if (error) throw new Error(`loadClassesForReviewer: query failed: ${error.message}`);
-  const wanted = reviewerEmail.trim().toLowerCase();
-  return ((data as { id: string; name: string; reviewer_email: string; created_at: string }[]) || [])
-    .filter((r) => r.reviewer_email.trim().toLowerCase() === wanted)
-    .map((r) => ({ id: r.id, name: r.name, reviewerEmail: r.reviewer_email, createdAt: r.created_at }));
+  return filterClassesForReviewer((data as RawClassRow[]) || [], reviewerEmail);
 }
 
 /** Every graph.class_members row for the given classes, as classId -> learnerIds. */
