@@ -15,6 +15,14 @@ const BRANCHES = [
   { num: "VIII", slug: "earth",       name: "earth",       note: "geosciences · biosphere" },
 ];
 
+const RESEARCH_OS_STAGES = [
+  "Access",
+  "Awareness",
+  "Understanding",
+  "Internalization",
+  "Production",
+];
+
 const MARQUEE = [
   "free to read",
   "paid to cite",
@@ -201,6 +209,65 @@ export default function Presentation() {
             <Stat roman="LXXVI"  label="seed figures"            sub="pass-1 · canon-tier" />
             <Stat roman="MCCCLXXII" label="Einstein works indexed" sub="via OpenAlex" />
             <Stat roman="CDLX"   label="Kruse corpus posts"      sub="05 · biophysics" />
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════ */}
+      {/* RESEARCH OS · for K-12                                       */}
+      {/* ════════════════════════════════════════════════════════════ */}
+      <section className="stone-bone relative border-t-4 border-[color:var(--basalt)] grain">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-14 md:py-24">
+          <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
+            <div className="col-span-12 md:col-span-5">
+              <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] mb-4">
+                § Research OS · K-12
+              </div>
+              <h2 className="font-display uppercase text-[clamp(1.8rem,4vw,3rem)] leading-[1.08] chisel tracking-[0.005em]">
+                Research OS{" "}
+                <span className="ed-italic text-[color:var(--aegean-deep)] font-normal lowercase">for</span>{" "}
+                K-12
+              </h2>
+              <p className="mt-6 text-[16px] leading-[1.75] text-[color:var(--basalt-2)] max-w-md">
+                Bucket becomes the operating system a student runs inside
+                from the first year of school to the research frontier.
+                Every idea on the map has the same five stages: you can
+                reach it, you know it exists, you can explain it, you can
+                use it on a problem you have never seen, and you can add
+                something new to it.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/research-os"
+                  className="px-6 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[11px] inline-flex items-center min-h-[44px]"
+                >
+                  Research OS →
+                </Link>
+                <Link
+                  href="/research-os/workspace"
+                  className="px-6 py-3 border-2 border-[color:var(--aegean)] text-[color:var(--aegean-deep)] hover:bg-[color:var(--aegean)] hover:text-[color:var(--bone)] transition small-caps text-[11px] inline-flex items-center min-h-[44px]"
+                >
+                  Try the prototype
+                </Link>
+              </div>
+            </div>
+            <div className="col-span-12 md:col-span-7">
+              <ol className="grid grid-cols-1 sm:grid-cols-5 gap-px bg-[color:var(--hairline)] grid-hairlines">
+                {RESEARCH_OS_STAGES.map((s, i) => (
+                  <li
+                    key={s}
+                    className="bg-[color:var(--bone)] p-4 sm:p-5 flex sm:flex-col items-center sm:items-start gap-3 sm:gap-2"
+                  >
+                    <span className="font-display text-[color:var(--gold-deep)] text-[20px] leading-none">
+                      {i + 1}
+                    </span>
+                    <span className="font-display uppercase text-[13px] tracking-[0.04em] text-[color:var(--basalt)]">
+                      {s}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </div>
       </section>

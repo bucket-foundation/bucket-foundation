@@ -31,6 +31,63 @@ Date 2026-09-09. Branch `feat/research-os-k12`.
 
 None.
 
+## Iteration 3, site alignment
+
+Date 2026-09-10. Branch `feat/ros-site-alignment`.
+
+Task: align the public site with the Research OS for K-12 direction where it
+fits, without removing any existing direction. Authoritative paragraph:
+"Bucket becomes the operating system a student runs inside from the first
+year of school to the research frontier. Everything humans know sits on one
+map, in layers, from the first fact a child can hold to the deepest laws we
+have, across every subject from physics to history. A twelve-year-old who
+asks why the sky is blue gets walked backward to what they already know and
+forward, one source at a time, to the physics that answers it. Every idea on
+the map has the same five stages: you can reach it, you know it exists, you
+can explain it, you can use it on a problem you have never seen, and you can
+add something new to it. The student's work is the same thing a scientist
+makes: a claim, the evidence, the sources, and proof they can use the idea
+somewhere new. The map is the game. The AI finds, quotes, checks, and
+organizes. The student asks the question, sketches the idea, works through
+the hard part, and writes the answer, because the point is that the kid is
+smarter next year than this year. Teachers see their whole class on the same
+map. When a student adds something the map accepts, they get paid for it the
+same way any researcher on Bucket does. Bucket is a nonprofit, so the OS is
+free to any learner anywhere in the world. Bucket is where a person learns to
+produce knowledge, starting on day one."
+
+### Edited
+
+- `src/components/Header.tsx`: added a "Research OS" primary-nav item
+  (`/research-os`) between Academy and Access; every existing nav item kept,
+  none reordered otherwise.
+- `src/components/Presentation.tsx`: added a "Research OS for K-12" section
+  on the home page, placed after the hero section and before the AI-native
+  and thesis sections. Carries the five stages (Access, Awareness,
+  Understanding, Internalization, Production), two sentences quoted from the
+  authoritative paragraph above, and links to `/research-os` and
+  `/research-os/workspace`. No existing home-page section changed.
+- `src/app/research-os/page.tsx`: prototype link label changed from "open the
+  Phase 0 prototype →" to "Try the prototype →" (same href, same styling);
+  added a "Read the plan ↗" link to `learning/research-os/PLAN.md` on
+  GitHub. The five stage names on this page already matched the authoritative
+  five (Access, Awareness, Understanding, Internalization, Production); no
+  further copy changed, since no other sentence on the page conflicted with
+  the authoritative paragraph. Old link text recorded verbatim in
+  `_intake/research-os-k12/DELETIONS.md`.
+- `MANIFESTO.md`, section 5 ("Who bucket is for"): appended one sentence at
+  the end of the section: "Bucket is where a person learns to produce
+  knowledge, starting on day one." No other sentence in the manifesto
+  changed.
+- `public/llms.txt`: added a line for `/research-os` under "Pages you can
+  read for free".
+- `_intake/research-os-k12/DELETIONS.md`, `_intake/research-os-k12/CHANGELOG.md`:
+  this pass's own ledger entries.
+
+### Removed
+
+None.
+
 ## Iteration 2
 
 Date 2026-09-10. Branch `intake/research-os-k12-literature`, rebased onto `main` after PR #3
