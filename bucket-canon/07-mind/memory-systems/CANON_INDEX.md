@@ -30,6 +30,7 @@ Inherited from `bucket-canon/README.md` and `_intake/2026-05-19-canon-intake/RUB
 - Only canon-tier: axioms / laws / principles / primary derivations. No outcomes, no transcript, no commentariat.
 - Every record passed RUBRIC.md Stage-0 hard gate (E1-E9) + canon_score >= 70 (intake.py --min-score 70).
 - Every anchor DOI was hand-verified to resolve to the intended foundational primary work (not a review/textbook/commentary) before seeding.
+- Every record carries `provenance_signoff: "pending: gianyrox"`, backfilled 2026-09-10 (canon intake pass two, `intake/ros-canon-promotion-2`) per the ros-11 governance rule: a named human founder is the pending approver, and no sign-off has happened yet.
 - Superseded entries move to `_archive/<YYYY-MM>/`. Re-runs converge (stable bkt-sha1(doi) ids).
 
 ## Verification, 2026-09-10 addition

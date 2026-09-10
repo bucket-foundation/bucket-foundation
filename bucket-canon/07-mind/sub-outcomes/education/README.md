@@ -2,14 +2,15 @@
 
 ## What this folder is
 
-Intervention and meta-analysis studies on tutoring and mastery-learning
-effectiveness. Every record here reports an educational outcome (an effect
-size on test performance) rather than a primary mechanism of mind. Per
-RUBRIC.md Stage-0 rule E7, an outcome/application study does not enter
-`bucket-canon/07-mind/` proper; it lives in `sub-outcomes/<topic>/` instead,
-the convention `05-biophysics/README.md` documents for `sub-outcomes/
-longevity/` (downstream-application records that cross-mirror the gdrive
-outcome canon rather than sitting in the foundation-tier branch).
+Intervention and meta-analysis studies on tutoring, mastery-learning, and
+AI-assisted-learning effectiveness, and on human-AI team performance. Every
+record here reports an educational or team-performance outcome (an effect
+size) rather than a primary mechanism of mind. Per RUBRIC.md Stage-0 rule
+E7, an outcome/application study does not enter `bucket-canon/07-mind/`
+proper; it lives in `sub-outcomes/<topic>/` instead, the convention
+`05-biophysics/README.md` documents for `sub-outcomes/longevity/`
+(downstream-application records that cross-mirror the gdrive outcome canon
+rather than sitting in the foundation-tier branch).
 
 This is the first `sub-outcomes/` folder built under `07-mind/`, mirroring
 that documented convention: same dossier shape as a canon folder
@@ -30,16 +31,26 @@ claim.
 
 ## Dependency convention
 
-Each record names the `07-mind` canon-tier foundation it depends on, in
-`primary-papers.yaml` (`depends_on_foundation`) and in the index table
-below. All four entries here depend on the same foundation: the
-retrieval-practice / testing-effect mechanism in
+Each record names the canon-tier foundation it depends on, in
+`primary-papers.yaml` (`depends_on_foundation`) and in the index tables.
+The pass-one four, plus five of the pass-two seven, depend on the same
+foundation: the retrieval-practice / testing-effect mechanism in
 `bucket-canon/07-mind/memory-systems/` (Roediger and Karpicke 2006, DOI
-`10.1111/j.1745-6916.2006.00012.x`). Mastery learning and step-based
-tutoring both work by inserting frequent low-stakes retrieval-and-feedback
+`10.1111/j.1745-6916.2006.00012.x`). Mastery learning, step-based
+tutoring, and AI-tutoring RCTs all work by inserting, or in Kosmyna et
+al. 2025's case removing, frequent low-stakes retrieval-and-feedback
 checkpoints; the outcome studies here measure the effect size of that
-mechanism at the classroom and system scale. Establishing the mechanism
-itself is the job of the foundation record they depend on.
+mechanism at the classroom, field-deployment, or national-program scale.
+Kosmyna et al. 2025 depends instead on the external-memory-offloading
+foundation, Sparrow, Liu and Wegner 2011 (DOI `10.1126/science.1207745`,
+same `memory-systems/` folder). The two human-AI complementarity
+meta-analyses, Vaccaro, Almaatouq and Malone 2024 and Bansal et al. 2021,
+depend on the information-foraging foundation, Pirolli and Card 1999
+(DOI `10.1037/0033-295x.106.4.643`, `bucket-canon/04-information/
+information-foraging/`): both measure when a human-AI pair forages a
+task's information space better together than either does alone.
+Establishing each mechanism itself is the job of the foundation record it
+depends on.
 
 ## Files in this dossier
 
