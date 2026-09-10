@@ -2,9 +2,74 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
-## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
+## ros-06: teacher class view and the Production accept path
 
-Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
+Date 2026-09-10. Branch `feat/ros-06-teacher-class-view`, `learning/research-os/PLAN-REVISION-1.md` section 3 item 5. Concurrent with a frontier/closure-edges pass and an engine-side pass; this work touched neither `src/lib/research-os/frontier.ts`, `closure.ts`, the graph-edges migration, `scripts/research-os/ingest/`, nor `src/lib/research-os/engine*`/`tools/hypothesis-engine`.
+
+### Added
+
+- `supabase/migrations/20260910030000_research_os_classes.sql`: `graph.classes`, `graph.class_members`, RLS on both, plus `graph.productions.notes` (jsonb, append-only).
+- `src/lib/research-os/class-view.ts`: `seedPathOrder`, `buildClassGrid`, `findBlockedLearners`, `findReadyForHarderTarget`, pure functions over plain graph arrays.
+- `src/app/api/research-os/class/route.ts` and `src/app/research-os/class/page.tsx`: the class view, `GET /api/research-os/class`, server-side data loading and computation, reviewer-gated, scoped to the caller's own classes.
+- `scripts/test-research-os-teacher-class.ts`: 17 `node:test` cases (fixture class on the real seed path, blocked/ready computations, the reviewer gate, the accept path's evidence shape against the real `buildProductionOutboxRow`, a static RLS-policy check on the new migration). Wired into `npm run test:research-os`.
+- `learning/research-os/TEACHER-LAYER.md`: the data model, the two-layer gate (RLS plus a server check), the accept path's approve/return semantics, and what Phase 1 roster sync (OneRoster/Clever/ClassLink) replaces.
+
+### Edited
+
+- `src/lib/research-os/reviewer.ts`: split `isReviewerEmail` out of `verifyReviewer` for unit testing with no network call.
+- `src/lib/research-os/stages.ts`: added `onProductionReview` (approve) and `onProductionReturned` (return); added `fromStage`, `toStage`, `reviewId` to `EvidenceEvent`; added `"production_returned"` to `EvidenceKind`.
+- `src/lib/research-os/db.ts`: added `loadClassesForReviewer`, `loadClassMembers`, `loadLearnerStatesForMany`, and `emitProductionOutboxIfAccepted` (extracted from `/api/research-os/production`'s own inline outbox block, now shared).
+- `src/app/api/research-os/production/route.ts`: its outbox-emission block replaced with a call to the new shared `emitProductionOutboxIfAccepted`; original text below.
+- `src/app/api/research-os/review/route.ts`: the production decision branch now sets a return's status to `"draft"` (was `"returned"`), appends a teacher note to the production's own `notes` column, and calls `recordEvidence` on both approve and return (a mid-review fix, see below); header comment updated to match.
+- `src/app/research-os/review/page.tsx`: a breadcrumb link to `/research-os/class`.
+- `package.json`: `test:research-os` now also runs `scripts/test-research-os-teacher-class.ts`.
+
+**Mid-review fix.** `ros-02`'s evidence-schema pass (`docs/ros-02-learner-state-model`, `src/lib/research-os/EVIDENCE-SCHEMA.md`) found that a returned Production left `graph.learner_node_state.stage` at `"production"` with no evidence event recording the correction, since only the approve branch called `recordEvidence`. `onProductionReturned` closes this per `EVIDENCE-SCHEMA.md`'s own "corrective event" section: `stage` stays at `"production"` (the high-water-mark rule every transition function already enforces never runs backward), and a `"production_returned"` evidence event, `fromStage`/`toStage` both `"production"`, records the correction instead.
+
+### Removed
+
+None.
+
+### Original text replaced in `src/app/api/research-os/production/route.ts`'s POST handler
+
+```ts
+  // Engine bridge task item 3: an accepted production is the engine's own
+  // evidence item. Unreachable today (the status validation above never lets
+  // a learner set "accepted"), wired for Phase 1's teacher-accept path. Best
+  // effort: a failed emit never fails the production save itself, the same
+  // way academy's own mirror jobs treat a sync step as best effort.
+  if (data?.status === "accepted" && data?.target_node_id) {
+    try {
+      const targetNode = await findNodeById(data.target_node_id as string);
+      const row = buildProductionOutboxRow(
+        {
+          id: data.id as string,
+          target_node_id: data.target_node_id as string,
+          claim: (data.claim as string | null) ?? null,
+          evidence: (data.evidence as unknown[]) ?? [],
+          sources: (data.sources as unknown[]) ?? [],
+          status: data.status as string,
+          created_at: data.created_at as string,
+          updated_at: data.updated_at as string | undefined,
+        },
+        targetNode ? { slug: targetNode.slug, title: targetNode.title, tier: targetNode.tier, branch: targetNode.branch } : null,
+      );
+      await writeProductionOutbox(row);
+    } catch {
+      // best effort, see comment above
+    }
+  }
+```
+
+This logic is preserved, unchanged in behavior, as `db.ts`'s `emitProductionOutboxIfAccepted`, now called from both `/api/research-os/production`'s POST and `/api/research-os/review`'s new accept path.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (111/111 pass), `next lint` on every touched file, `agf-lint-voice-src check` on every touched source file, `agf-lint-voice check` on `learning/research-os/TEACHER-LAYER.md`: all clean.
+
+## Iteration 6: Phase 1 stub closures
+
+Closure table, diagnostic probe, real quotes, review hold. Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
 listed stubs, scoped to the review's own Phase 1 boundary (section 8). Rebased twice
 onto `main`: once after the site-alignment PR (#12) merged, once after the hypothesis
 engine bridge (#14) and the `hte` refusal-handling PR (#10) both merged; both rebases
