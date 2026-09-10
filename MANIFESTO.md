@@ -65,6 +65,8 @@ If you are one of those people, bucket is for you. If you are building for those
 
 If you are not, if you want the next viral consumer app, the next billion-dollar enterprise SaaS, the next AI agent that books your flights, bucket is *not* for you, and there is no apology for that. The next Renaissance is not built by the median user. It was not built by the median user the first time, and it will not be built by the median user this time. It is built by a small number of brilliant humans with the right tools and the right substrate. Bucket is the substrate.
 
+Bucket is where a person learns to produce knowledge, starting on day one.
+
 ## 6. What bucket is not
 
 bucket is not:

@@ -65,3 +65,15 @@ verbatim rather than only in the diff.
   scattering that makes the daytime sky blue makes a sunset red." to "A
   sunset looks red. Using the lambda^-4 law, explain why the SAME
   scattering that makes the daytime sky blue makes a sunset red instead."
+
+## 2026-09-10, `src/app/research-os/page.tsx`, site alignment pass
+
+**Reason.** The site-alignment task requires a visible "Try the prototype"
+link on this page. The existing prototype link's label was replaced to carry
+that exact text; its href and styling are unchanged. A second link, "Read
+the plan ↗", was added pointing to `learning/research-os/PLAN.md` on
+GitHub; nothing was removed to make room for it.
+
+**Original text, replaced in the prototype link:**
+
+> open the Phase 0 prototype →

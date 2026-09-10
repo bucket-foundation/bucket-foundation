@@ -93,13 +93,21 @@ export default function ResearchOsPage() {
           quote, and organizes the evidence. The learner writes every sentence.
           Free to any learner, anywhere.
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/research-os/workspace"
             className="inline-block px-5 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)]"
           >
-            open the Phase 0 prototype →
+            Try the prototype →
           </Link>
+          <a
+            href="https://github.com/bucket-foundation/bucket-foundation/blob/main/learning/research-os/PLAN.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-5 py-3 text-[12px] small-caps tracking-[0.14em] border-2 border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition"
+          >
+            Read the plan ↗
+          </a>
         </div>
         <div className="carved-rule max-w-xs mt-10" />
 
