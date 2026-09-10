@@ -38,6 +38,22 @@ const MARQUEE = [
   "widen producing",
 ];
 
+function toRoman(n: number): string {
+  const table: [number, string][] = [
+    [1000, "M"], [900, "CM"], [500, "D"], [400, "CD"], [100, "C"], [90, "XC"],
+    [50, "L"], [40, "XL"], [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"],
+  ];
+  let out = "";
+  let rest = n;
+  for (const [value, sym] of table) {
+    while (rest >= value) {
+      out += sym;
+      rest -= value;
+    }
+  }
+  return out;
+}
+
 export default function Presentation() {
   const branches = getBranches();
   const globeBranches: GlobeBranch[] = branches.map((b) => ({
@@ -47,6 +63,11 @@ export default function Presentation() {
     status: b.status,
     entryCount: b.entryCount,
   }));
+  // Both stats below are computed from the same getBranches() scan the
+  // globe uses, so the homepage stat strip cannot drift from bucket-canon/
+  // the way a hand-typed figure can.
+  const totalClaimCards = branches.reduce((sum, b) => sum + b.entryCount, 0);
+  const lastBranchName = branches[branches.length - 1]?.name ?? "";
 
   return (
     <main className="min-h-screen stone-bone">
@@ -146,9 +167,9 @@ export default function Presentation() {
         {/* Bottom hero stat strip, Roman inscription ledger */}
         <div className="relative border-t-2 border-[color:var(--basalt)]">
           <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            <Stat roman="VIII"   label="canon branches"          sub="mathematics → earth" />
+            <Stat roman={toRoman(branches.length)} label="canon branches" sub={`mathematics → ${lastBranchName}`} />
             <Stat roman="LXXVI"  label="seed figures"            sub="pass-1 · canon-tier" />
-            <Stat roman="MCCCLXXII" label="Einstein works indexed" sub="via OpenAlex" />
+            <Stat roman={toRoman(totalClaimCards)} label="canon claim cards" sub="live count, bucket-canon/" />
             <Stat roman="CDLX"   label="Kruse corpus posts"      sub="05 · biophysics" />
           </div>
         </div>

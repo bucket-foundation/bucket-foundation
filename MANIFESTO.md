@@ -38,7 +38,7 @@ Concretely:
 - A **bucket** is a content-addressed folder containing a paper, a manifest, and an HTTP 402 payment receipt.
 - The **canon** is the small set of buckets that have been judged to contain *foundations*, axioms, real math, rules, laws, principles, primary derivations, across seven branches: mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind.
 - The **protocol** is the open specification (CC0-in-intent) that lets anyone implement a bucket. There is no permission to ask. No node is authoritative.
-- The **payout** is the on-chain receipt that routes citation fees back to the original author at a default rate of ≥80% of net receipts.
+- The **payout** is the on-chain receipt built to route citation fees back to the original author at a target rate of ≥80% of net receipts; reader-side settlement is live today, the author-side split is the next piece of the rail to ship.
 
 That is the whole machine. The novelty is not in any single piece. It is in the convention that holds them together and the license that makes the convention impossible to enclose.
 
