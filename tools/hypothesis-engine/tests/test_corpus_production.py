@@ -1,7 +1,19 @@
 """`hte.corpus.production`: the K-12 research-production adapter, exercised
-against the 12 shipped fixtures under `hte/data/production-fixtures/` and,
+against the 14 shipped fixtures under `hte/data/production-fixtures/`
+(the 12 original `PRODUCTION-SCHEMA.md`-shaped fixtures, `prod-001.json`
+through `prod-012.json`, plus `research-os-sky-blue.json`, two `graph.
+productions`-shaped rows converted from the founder's own Research OS seed,
+`bucket-foundation` PR #6's `supabase/seed/research-os-sky-blue.json`) and,
 for `load_supabase`, against a monkeypatched `urllib.request.urlopen`
 returning those same fixtures as REST rows. No network.
+
+The Research OS shape gets its own test class below
+(`TestResearchOSNativeShape`); every test above it exercises the original
+12-fixture set's own invariants, now against a 14-fixture directory, so
+several counts below were widened from exact equality to containment where
+the Research OS conversion's own values (a `research_question` with no
+`RQ##:` prefix, a `school_or_district_id` outside the two original pilot
+districts) legitimately extend rather than replace the original set.
 """
 from __future__ import annotations
 
@@ -24,10 +36,10 @@ def corpus():
 # --------------------------------------------------------------------------
 
 
-def test_load_raw_reads_all_twelve_fixtures():
+def test_load_raw_reads_all_fourteen_fixtures():
     productions = production.load_raw()
-    assert len(productions) == 12
-    assert len({p.id for p in productions}) == 12
+    assert len(productions) == 14
+    assert len({p.id for p in productions}) == 14
 
 
 def test_fixtures_cover_at_least_four_of_the_seven_runnable_questions():
@@ -35,14 +47,21 @@ def test_fixtures_cover_at_least_four_of_the_seven_runnable_questions():
     covered = {p.research_question.split(":")[0] for p in productions}
     runnable = {f"RQ{n}" for n in (19, 21, 22, 24, 25, 26, 27)}
     assert len(covered & runnable) >= 4
-    # the fixture set as shipped exercises every one of the seven
-    assert covered == runnable
+    # the original 12-fixture set exercises exactly the seven runnable
+    # questions; the two Research OS conversions add an eighth,
+    # non-"RQ##:"-prefixed research_question, so containment replaces the
+    # original set's exact equality.
+    assert runnable.issubset(covered)
 
 
 def test_fixtures_span_three_grade_bands_and_two_districts():
     productions = production.load_raw()
-    assert {p.grade_band for p in productions} == {"6-8", "9-10", "11-12"}
-    assert {p.school_or_district_id for p in productions} == {"district-a", "district-b"}
+    # the two Research OS conversions add their own grade band(s) (derived
+    # from the target node's tier) and the fixed "research-os-phase-0"
+    # sentinel (Phase 0 has no roster or district concept), so both checks
+    # became containment once research-os-sky-blue.json landed.
+    assert {"6-8", "9-10", "11-12"}.issubset({p.grade_band for p in productions})
+    assert {"district-a", "district-b"}.issubset({p.school_or_district_id for p in productions})
 
 
 def test_fixtures_cover_every_author_role_and_review_status():
@@ -57,13 +76,17 @@ def test_fixtures_cover_every_author_role_and_review_status():
 
 
 def test_load_default_status_min_counts(corpus):
-    # 12 productions minus the one draft (prod-008) excluded by the default
-    # status_min="peer-reviewed" leaves 11 contributing evidence.
+    # 14 productions minus the two mapped to "draft" (prod-008, and
+    # ros-sky-blue-001 whose Research OS status "submitted" maps to
+    # "draft", RESEARCH_OS_STATUS_MAP) excluded by the default
+    # status_min="peer-reviewed" leaves 12 contributing evidence.
     contributing_ids = {e.id.rsplit("-c", 1)[0] for e in corpus.evidence}
     assert "prod-008" not in contributing_ids
-    assert len(contributing_ids) == 11
-    # every production still gets a Source, including the filtered-out draft
+    assert "ros-sky-blue-001" not in contributing_ids
+    assert len(contributing_ids) == 12
+    # every production still gets a Source, including the filtered-out drafts
     assert "prod-008" in corpus.sources
+    assert "ros-sky-blue-001" in corpus.sources
     assert len(corpus.evidence) > 0
     assert len(corpus.ground_truth) > 0
 
@@ -232,3 +255,127 @@ def test_load_supabase_uses_env_vars_when_args_omitted(monkeypatch):
 
     result = production.load_supabase()
     assert len(result.evidence) > 0
+
+
+# --------------------------------------------------------------------------
+# Research OS native shape (bkt-hte, docs/PRODUCTION-SCHEMA-ALIGNMENT.md):
+# `graph.productions` rows, auto-detected and normalized onto this module's
+# own PRODUCTION-SCHEMA.md shape by `Production.from_dict`. The older
+# fixture shape's own tests above keep passing unchanged, since
+# `is_research_os_record` returns `False` for anything carrying `claims`.
+# --------------------------------------------------------------------------
+
+
+def _research_os_row(**overrides):
+    row = {
+        "id": "ros-test-1",
+        "learner_id": "33333333-3333-4333-8333-333333333333",
+        "target_node_id": "why-the-sky-is-blue",
+        "claim": "Blue scatters more than red.",
+        "evidence": [{"node_id": "rayleigh-scattering-law", "quote": "steeply on the wavelength of the light", "locator": "graph.nodes.summary"}],
+        "sources": [{"label": "Rayleigh 1871", "doi": "10.1080/14786447108640507"}],
+        "transfer_proof": {},
+        "status": "submitted",
+        "created_at": "2026-09-01T00:00:00Z",
+        "updated_at": "2026-09-02T00:00:00Z",
+    }
+    row.update(overrides)
+    return row
+
+
+def test_is_research_os_record_detects_graph_productions_shape():
+    assert production.is_research_os_record(_research_os_row()) is True
+    assert production.is_research_os_record(production.load_raw()[0].to_dict()) is False
+    assert production.is_research_os_record({"not": "a dict with target_node_id"}) is False
+
+
+def test_normalize_drops_learner_id_entirely():
+    normalized = production.normalize_research_os_record(_research_os_row())
+    assert "learner_id" not in normalized
+    assert "33333333-3333-4333-8333-333333333333" not in json.dumps(normalized)
+
+
+@pytest.mark.parametrize(
+    "research_os_status,expected",
+    [("draft", "draft"), ("submitted", "draft"), ("accepted", "accepted"), ("returned", "draft")],
+)
+def test_normalize_maps_every_research_os_status(research_os_status, expected):
+    normalized = production.normalize_research_os_record(_research_os_row(status=research_os_status))
+    assert normalized["review"]["status"] == expected
+    assert normalized["review"]["history"][-1]["status"] == expected
+
+
+@pytest.mark.parametrize(
+    "tier,expected_band",
+    [(3, "3-5"), (5, "3-5"), (6, "6-8"), (8, "6-8"), (9, "9-10"), (10, "9-10"), (11, "11-12"), (90, "canon")],
+)
+def test_normalize_buckets_tier_into_a_grade_band(tier, expected_band):
+    row = _research_os_row(_target_node={"slug": "x", "title": "X", "tier": tier, "branch": "02-physics"})
+    normalized = production.normalize_research_os_record(row)
+    assert normalized["grade_band"] == expected_band
+
+
+def test_normalize_grade_band_is_unknown_without_a_target_node_join():
+    normalized = production.normalize_research_os_record(_research_os_row())
+    assert normalized["grade_band"] == "unknown"
+
+
+def test_normalize_claim_gets_supports_stance_and_all_null_slots():
+    normalized = production.normalize_research_os_record(_research_os_row())
+    claim = normalized["claims"][0]
+    assert claim["stance"] == "supports"
+    assert claim["slots"] == {"actor": None, "action": None, "object": None, "place": None, "mechanism": None}
+    assert claim["interval"] is None
+
+
+def test_normalize_evidence_entries_carry_the_full_source_citation_set():
+    normalized = production.normalize_research_os_record(_research_os_row())
+    entry = normalized["claims"][0]["evidence"][0]
+    assert entry["source_id"] == "rayleigh-scattering-law"
+    assert entry["tier"] == "T2"  # a doi-bearing source
+    assert entry["citations"] == [{"type": "doi", "value": "10.1080/14786447108640507"}]
+
+
+def test_normalize_citation_only_source_with_no_evidence_span_synthesizes_one_entry_per_source():
+    row = _research_os_row(evidence=[], sources=[{"label": "NASA Space Place", "url": "https://spaceplace.nasa.gov/blue-sky/en/"}])
+    normalized = production.normalize_research_os_record(row)
+    entries = normalized["claims"][0]["evidence"]
+    assert len(entries) == 1
+    assert entries[0]["tier"] == "T4"  # no doi, url-only source
+    assert entries[0]["citations"] == [{"type": "url", "value": "https://spaceplace.nasa.gov/blue-sky/en/"}]
+    assert "citation only" in entries[0]["quote"]
+
+
+def test_normalize_empty_row_yields_no_claims():
+    row = _research_os_row(claim=None, evidence=[], sources=[])
+    normalized = production.normalize_research_os_record(row)
+    assert normalized["claims"] == []
+
+
+def test_normalize_raises_without_id_or_target_node_id():
+    with pytest.raises(ValueError, match="id"):
+        production.normalize_research_os_record({"target_node_id": "x"})
+    with pytest.raises(ValueError, match="target_node_id"):
+        production.normalize_research_os_record({"id": "x"})
+
+
+def test_production_from_dict_auto_normalizes_a_research_os_row():
+    p = production.Production.from_dict(_research_os_row())
+    assert p.id == "ros-test-1"
+    assert p.review.status == "draft"  # "submitted" mapped down
+    assert len(p.claims) == 1
+
+
+def test_research_os_sky_blue_fixture_loads_and_contributes_a_source():
+    productions = production.load_raw()
+    ros = {p.id: p for p in productions if p.id.startswith("ros-sky-blue-")}
+    assert set(ros) == {"ros-sky-blue-001", "ros-sky-blue-002"}
+    assert ros["ros-sky-blue-001"].review.status == "draft"  # "submitted" mapped down
+    assert ros["ros-sky-blue-002"].review.status == "accepted"
+
+    corpus = production.load()  # default status_min="peer-reviewed"
+    assert "ros-sky-blue-002" in {e.id.rsplit("-c", 1)[0] for e in corpus.evidence}
+    # a physics claim carries no dated interval, so it never contributes
+    # ground truth even once accepted (normalize_research_os_record's own
+    # documented gap)
+    assert not any(g.id.startswith("ros-sky-blue") for g in corpus.ground_truth)

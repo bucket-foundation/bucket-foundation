@@ -1,0 +1,237 @@
+Research OS hypothesize route, not yet applied
+================================================
+
+Two hunks, both unified diffs against `bucket-foundation` PR #6's own
+`feat/research-os-k12-phase0` branch (verified to apply cleanly against
+that branch's real file content, 2026-09-10):
+
+1. `src/lib/research-os/types.ts`: adds `HypothesizeResult` and its three
+   supporting interfaces, the shape `src/app/api/research-os/hypothesize/
+   route.ts` below returns.
+2. `src/app/api/research-os/hypothesize/route.ts`, new file: `POST
+   {productionId}` loads the caller's own production (an ownership check
+   this patch adds on purpose, closing the same gap PR #6's own
+   `production/route.ts` POST handler left open, named in that PR's
+   review), forwards it to `hte-serve` on `127.0.0.1` with a timeout, and
+   returns the trimmed, camelCased result.
+
+Apply with `git apply tools/hypothesis-engine/docs/research-os-hypothesize-
+route.patch` from the bucket-foundation repo root, after PR #6 has merged
+and `src/lib/research-os/types.ts` exists on `main`. This file stays
+unapplied until then; it becomes its own PR once PR #6 lands, per the task
+that produced it (see `tools/hypothesis-engine/docs/PRODUCTION-SCHEMA-
+ALIGNMENT.md`'s own closing section).
+
+Env this route reads: `HTE_SERVE_URL` (default `http://127.0.0.1:8420`),
+`HTE_SERVE_TIMEOUT_S` (default `20`). Start `hte-serve` alongside the
+Next.js app in fake mode to exercise this route without the `claude` CLI:
+
+    cd tools/hypothesis-engine
+    python3 -m hte.serve --port 8420 --fake
+
+diff --git a/src/lib/research-os/types.ts b/src/lib/research-os/types.ts
+index 7121cd1..a2fa995 100644
+--- a/src/lib/research-os/types.ts
++++ b/src/lib/research-os/types.ts
+@@ -68,3 +68,43 @@ export interface LearnerNodeState {
+   confidence?: number | null;
+   updatedAt?: string;
+ }
++
++/**
++ * `hte-serve`'s own `POST /hypothesize` response (`tools/hypothesis-
++ * engine/hte/api.py`'s `_build_response`), trimmed to what the workspace
++ * UI needs and reshaped to this file's own camelCase convention. Built by
++ * `src/app/api/research-os/hypothesize/route.ts` (see that file's own
++ * patch, `tools/hypothesis-engine/docs/research-os-hypothesize-route.
++ * patch`, not yet applied to this tree).
++ */
++export interface HypothesizeCorpusSummary {
++  nProductions: number;
++  statusMin: string;
++  priorProfile: string;
++  nSources: number | null;
++  nEvidence: number | null;
++  nHypothesesGenerated: number | null;
++  nSurvivors: number | null;
++}
++
++export interface HypothesizeGapNode {
++  id: string;
++  kind: string;
++  description: string;
++  valueOfInformation: number;
++}
++
++export interface HypothesizeCalibration {
++  mode: string | null;
++  brierScore: number | null;
++  coverageOfTruth: number | null;
++}
++
++export interface HypothesizeResult {
++  runId: string;
++  artifactVersion: string | null;
++  corpus: HypothesizeCorpusSummary;
++  timeline: { bins: Array<{ timeBin: string; rankedHypotheses: unknown[] }> };
++  gapNodes: HypothesizeGapNode[];
++  calibration: HypothesizeCalibration | null;
++}
+diff --git a/src/app/api/research-os/hypothesize/route.ts b/src/app/api/research-os/hypothesize/route.ts
+new file mode 100644
+index 0000000..a90ca79
+--- /dev/null
++++ b/src/app/api/research-os/hypothesize/route.ts
+@@ -0,0 +1,152 @@
++/**
++ * POST /api/research-os/hypothesize, forwards one production to the
++ * hypothesis engine's `hte-serve` HTTP face (bkt-hte; see
++ * tools/hypothesis-engine/docs/PRODUCTION-SCHEMA-ALIGNMENT.md and this
++ * file's own patch, tools/hypothesis-engine/docs/research-os-hypothesize-
++ * route.patch, where this file lives before landing as its own PR).
++ *
++ * Loads the caller's own production row (and, best-effort, its target
++ * node's `slug`/`title`/`tier`/`branch`, so `hte.corpus.production.
++ * normalize_research_os_record`'s optional `_target_node` enrichment
++ * resolves a real `grade_band` instead of `"unknown"`), then POSTs that
++ * row as-is to `hte-serve`, which auto-detects and normalizes the
++ * Research OS shape (`production.is_research_os_record` /
++ * `normalize_research_os_record`, `PRODUCTION-SCHEMA-ALIGNMENT.md`'s own
++ * field-by-field table). No local shape conversion happens in this file.
++ *
++ * `hte/serve.py` carries no authentication of its own (its own header
++ * comment says so): it binds to `127.0.0.1` and trusts whatever process
++ * starts it alongside this app. This route is that trusted caller; never
++ * expose `hte-serve`'s own port outside localhost, and never forward a
++ * production this route has not first verified the caller owns (the
++ * `.eq("learner_id", learnerId)` filter below closes the same
++ * ownership gap PR #6's own `production/route.ts` POST handler left
++ * open, flagged in that PR's review).
++ *
++ * Auth: Authorization: Bearer <supabase access token>, required, same as
++ * every other `/api/research-os/*` route (`src/lib/research-os/db.ts`).
++ *
++ * Env: `HTE_SERVE_URL` (default `http://127.0.0.1:8420`),
++ * `HTE_SERVE_TIMEOUT_S` (default `20`).
++ */
++import { NextRequest, NextResponse } from "next/server";
++import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
++import type { HypothesizeResult } from "@/lib/research-os/types";
++
++export const runtime = "nodejs";
++export const dynamic = "force-dynamic";
++
++const HTE_SERVE_URL = (process.env.HTE_SERVE_URL ?? "http://127.0.0.1:8420").replace(/\/+$/, "");
++const HTE_TIMEOUT_MS = Number(process.env.HTE_SERVE_TIMEOUT_S ?? 20) * 1000;
++
++function bad(status: number, error: string) {
++  return NextResponse.json({ error }, { status });
++}
++
++interface HypothesizeBody {
++  productionId?: string;
++}
++
++interface HteServeResponse {
++  ok?: boolean;
++  error?: string;
++  run_id?: string;
++  artifact_version?: string | null;
++  corpus?: {
++    n_productions?: number; status_min?: string; prior_profile?: string;
++    n_sources?: number | null; n_evidence?: number | null;
++    n_hypotheses_generated?: number | null; n_survivors?: number | null;
++  };
++  timeline?: { bins?: Array<{ time_bin: string; ranked_hypotheses: unknown[] }> };
++  gap_nodes?: Array<{ id: string; kind: string; description: string; value_of_information: number }>;
++  calibration?: { mode: string | null; brier_score: number | null; coverage_of_truth: number | null } | null;
++}
++
++export async function POST(req: NextRequest) {
++  if (!configured()) return bad(503, "research_os_unavailable");
++  const learnerId = await verifyLearner(req);
++  if (!learnerId) return bad(401, "unauthorized");
++
++  let body: HypothesizeBody;
++  try {
++    body = (await req.json()) as HypothesizeBody;
++  } catch {
++    return bad(400, "bad_request");
++  }
++  const productionId = (body.productionId || "").trim();
++  if (!productionId) return bad(400, "productionId is required");
++
++  const svc = graphService();
++
++  // Ownership check before anything leaves this process: never forward a
++  // production this caller does not own, service-role bypasses RLS so the
++  // filter below is the only boundary (docs/PRODUCTION-SCHEMA-ALIGNMENT.md,
++  // and the PR #6 review this patch responds to).
++  const { data: production, error: prodErr } = await svc
++    .from("productions")
++    .select("*")
++    .eq("id", productionId)
++    .eq("learner_id", learnerId)
++    .maybeSingle();
++  if (prodErr) return bad(500, "read_failed");
++  if (!production) return bad(404, "production_not_found");
++
++  const { data: node } = await svc
++    .from("nodes")
++    .select("slug,title,tier,branch")
++    .eq("id", production.target_node_id)
++    .maybeSingle();
++
++  const payload = {
++    productions: [{ ...production, _target_node: node ?? undefined }],
++    status_min: "draft",
++  };
++
++  const controller = new AbortController();
++  const timer = setTimeout(() => controller.abort(), HTE_TIMEOUT_MS);
++  let hteResponse: Response;
++  try {
++    hteResponse = await fetch(`${HTE_SERVE_URL}/hypothesize`, {
++      method: "POST",
++      headers: { "content-type": "application/json" },
++      body: JSON.stringify(payload),
++      signal: controller.signal,
++    });
++  } catch (e: unknown) {
++    const err = e as { name?: string };
++    if (err?.name === "AbortError") return bad(504, "hte_serve_timeout");
++    return bad(502, "hte_serve_unreachable");
++  } finally {
++    clearTimeout(timer);
++  }
++
++  const hteBody = (await hteResponse.json().catch(() => null)) as HteServeResponse | null;
++  if (!hteResponse.ok || !hteBody || hteBody.ok === false) {
++    return bad(502, hteBody?.error || `hte-serve returned ${hteResponse.status}`);
++  }
++
++  const result: HypothesizeResult = {
++    runId: hteBody.run_id ?? "",
++    artifactVersion: hteBody.artifact_version ?? null,
++    corpus: {
++      nProductions: hteBody.corpus?.n_productions ?? 0,
++      statusMin: hteBody.corpus?.status_min ?? "draft",
++      priorProfile: hteBody.corpus?.prior_profile ?? "consensus",
++      nSources: hteBody.corpus?.n_sources ?? null,
++      nEvidence: hteBody.corpus?.n_evidence ?? null,
++      nHypothesesGenerated: hteBody.corpus?.n_hypotheses_generated ?? null,
++      nSurvivors: hteBody.corpus?.n_survivors ?? null,
++    },
++    timeline: {
++      bins: (hteBody.timeline?.bins ?? []).map((b) => ({ timeBin: b.time_bin, rankedHypotheses: b.ranked_hypotheses })),
++    },
++    gapNodes: (hteBody.gap_nodes ?? []).map((g) => ({
++      id: g.id, kind: g.kind, description: g.description, valueOfInformation: g.value_of_information,
++    })),
++    calibration: hteBody.calibration
++      ? { mode: hteBody.calibration.mode, brierScore: hteBody.calibration.brier_score, coverageOfTruth: hteBody.calibration.coverage_of_truth }
++      : null,
++  };
++
++  return NextResponse.json({ result }, { headers: { "cache-control": "no-store" } });
++}
