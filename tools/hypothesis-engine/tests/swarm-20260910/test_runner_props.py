@@ -141,8 +141,8 @@ def test_resolve_time_binning_pinned_resolution_ignores_empty_ground_truth():
 
 # --------------------------------------------------------------------------
 # `_grow_vocab`: a proposal naming a slot string `Slot(...)` cannot parse is
-# skipped (logged, not raised); every other proposal in the same response is
-# still added.
+# skipped and logged, so parsing continues past it; every other proposal in
+# the same response is still added.
 # --------------------------------------------------------------------------
 
 
@@ -223,8 +223,8 @@ def test_first_document_returns_none_for_a_name_it_does_not_special_case():
 
 # --------------------------------------------------------------------------
 # `_target_blind_check`: a corrupt (non-JSON) state file falls back to
-# `prior_rate=None` (steady, first-run reading) rather than raising, and
-# overwrites the file with this run's own valid rate.
+# `prior_rate=None` (a steady, first-run reading) instead of raising an
+# error, and overwrites the file with this run's own valid rate.
 # --------------------------------------------------------------------------
 
 

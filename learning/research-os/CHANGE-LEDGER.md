@@ -295,6 +295,42 @@ of 77.
 
 None.
 
+## Iteration 8
+
+Date 2026-09-10. Branch `docs/ros-plan-revision-1`, worktree `.wt-plan-revision-1`.
+Reviewed shipped work (PRs #3, #5, #6, #7, #8, #10, #12, #14, #15) against
+PLAN.md, plus PR #11 (draft, site repositioning) against the open founder
+decisions this iteration names. PR #15 (literature batch two, Iteration 6
+above) merged to main partway through this review; this entry cites it as
+shipped rather than open. PR #9 (canon promotion, Iteration 7 below) was
+still open when this iteration was drafted.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-1.md`: PR-by-PR account of what shipped;
+  four evidence-driven design revisions (payout, frontier routing, the
+  three-arm testbed's diversity outcome, Check-tool phrasing robustness),
+  each citing its paper file in `_intake/research-os-k12-literature/` and
+  labeled STABLE, STRONG LEAN, or OPEN; a dependency-ordered Phase 1 scope
+  naming five blocking founder decisions with their exact questions; a table
+  mapping the overlap map's twelve open questions onto Phase 1 pilot versus
+  Phase 2 district-scale answerability; and a one-page ETH AI Center
+  fellowship fit (research-question paragraph, two-PI pairing rationale).
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "Revision 1" section pointing to
+  `PLAN-REVISION-1.md`. No existing section was rewritten, reordered, or
+  removed.
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+- `tools/hypothesis-engine/tests/swarm-20260910/test_runner_props.py`,
+  `tools/hypothesis-engine/docs/LOOP-LOG.md`: rewrote one antithesis
+  construction in each, voice-lint fixes only, no logic changed.
+
+### Removed
+
+None.
+
 ## Iteration 7
 
 Date 2026-09-10. Branch `intake/ros-canon-promotion` (PR #9). Promotes six
@@ -333,6 +369,27 @@ carries the summary.
   rows); this pass's tier/status changes carried onto the six affected
   rows in the merged 77-row table, the "other files unchanged" count
   updated from 39 to 68 to account for batch two's 32 additions.
+
+### Removed
+
+None.
+
+## Iteration 9
+
+Date 2026-09-10. PR #19 review pass, worktree `.ros-worktrees/r19`. Full account in
+`_intake/research-os-k12/CHANGELOG.md`, "2026-09-10: PR #19 review pass".
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-1.md`: PR #15 and PR #9 status corrected from open to
+  merged in section 1's table, and the batch-two references in sections 4 and 5 updated to match
+  PR #15's landing; two antithesis constructions rewritten.
+- `learning/research-os/PLAN.md`: Revision 1 pointer paragraph's PR #15 status corrected.
+- `_intake/research-os-k12/CHANGELOG.md`: same PR #15 and PR #9 status fixes in the
+  plan-revision-1 entry.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): resolved two merge conflicts against
+  `origin/main` as it advanced during review, first PR #15 (kept as Iteration 6), then PR #9
+  (kept as Iteration 7); this PR's own entry landed as Iteration 8.
 
 ### Removed
 

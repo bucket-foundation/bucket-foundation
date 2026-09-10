@@ -11,7 +11,7 @@ Dated entries from the hourly optimization loop. Newest entry first.
   cases) are not a code defect: both need the sibling `bucket-foundation/
   education-atlas` repo checked out next to this one, and this session's
   GitHub scope is `bucket-foundation/bucket-foundation` only, so it
-  cannot be fetched. Blocked, not fixed; no PR opened.
+  cannot be fetched. Blocked on that missing repo; no fix attempted, no PR opened.
 - **Random campaigns**: `hte-synth run --seeds 0-29` (fake mode), 30/30
   seeds, `coverage_of_truth` mean 1.0 (floor 0.8), `brier_true_only` mean
   0.0082 (max 0.25), gate PASS, no crash. A repeat run matched every
