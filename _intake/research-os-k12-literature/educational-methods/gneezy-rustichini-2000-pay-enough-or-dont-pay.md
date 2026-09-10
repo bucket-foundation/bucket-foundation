@@ -10,6 +10,9 @@ url: "https://doi.org/10.1162/003355300554917"
 openalex_id: "https://openalex.org/W2168112513"
 branch: "educational-methods"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml (id bkt-c74ae7c50c71)"
+promoted_at: "2026-09-10"
 why_it_matters: >
   The founding field-and-lab evidence that small monetary incentives can perform worse
   than no incentive at all, non-monotonic in payment size. It sets a hard constraint on
@@ -33,6 +36,12 @@ how_it_bears_on_research_os: >
 ---
 
 # Pay Enough or Don't Pay at All
+
+> **Promoted to canon, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` (id `bkt-c74ae7c50c71`, `canon_score` 70) and
+> `bucket-canon/07-mind/curiosity-and-motivation/CANON_INDEX.md`. This file stays
+> in place as the Research OS-specific reading of the paper; the canon entry is
+> the citeable record.
 
 Field and lab evidence that small monetary incentives can produce worse behavior than
 no incentive at all, non-monotonic in payment size rather than linearly beneficial.

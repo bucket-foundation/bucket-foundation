@@ -9,6 +9,9 @@ url: "https://doi.org/10.1037/0033-2909.116.1.75"
 openalex_id: "https://openalex.org/W2160269795"
 branch: "educational-methods"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml (id bkt-e97009024405)"
+promoted_at: "2026-09-10"
 why_it_matters: >
   Reinterprets curiosity as an information gap, the felt distance between what a
   learner knows and what they want to know, that motivates closing the gap. A routing
@@ -31,6 +34,12 @@ how_it_bears_on_research_os: >
 ---
 
 # The Psychology of Curiosity: A Review and Reinterpretation
+
+> **Promoted to canon, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` (id `bkt-e97009024405`, `canon_score` 70) and
+> `bucket-canon/07-mind/curiosity-and-motivation/CANON_INDEX.md`. This file stays
+> in place as the Research OS-specific reading of the paper; the canon entry is
+> the citeable record.
 
 Reinterprets curiosity as arising from a perceived information gap between current and
 desired knowledge, predicts curiosity peaks at intermediate rather than extreme

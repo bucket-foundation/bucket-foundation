@@ -14,6 +14,10 @@ url: "https://doi.org/10.1596/1813-9450-11125"
 openalex_id: "https://openalex.org/W4410575792"
 branch: "hci-human-ai-collaboration"
 tier: "candidate"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-d6f23a78e535)"
+promoted_at: "2026-09-10"
+depends_on_foundation: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-0333f4a853f3, Roediger and Karpicke 2006)"
 why_it_matters: >
   A randomized field evaluation of an AI tutor (Microsoft Copilot-based) deployed after school
   in Nigerian secondary schools, measuring effects on English proficiency after six weeks of
@@ -37,6 +41,14 @@ how_it_bears_on_research_os: >
 ---
 
 # From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria
+
+> **Promoted to outcome tier, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
+> `bkt-d6f23a78e535`, `canon_score` 50) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
+> Outcome tier, not canon: it reports an intervention or team-performance effect
+> size, RUBRIC E7, and depends on the foundation record named by
+> Roediger and Karpicke 2006. This file stays in place as the Research OS-specific reading;
+> the canon entry is the citeable record.
 
 A World Bank randomized evaluation of an after-school AI tutoring program in Nigerian secondary
 schools, six weeks of structured access to a Microsoft Copilot-based tutor with a facilitator on
