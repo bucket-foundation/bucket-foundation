@@ -52,9 +52,14 @@ def test_missing_manifest_in_from_run_skips_downstream_stages(tmp_path):
         "pipeline_out_dir": str(tmp_path / "pipeline-out"),
     })
 
-    assert summary["outcome"] == "ok"  # every stage reports ok=True, just not run
+    # tests/swarm/FINDINGS-2026-09-10.md, FINDING-2026-09-10-005b: a
+    # from_run naming a directory with no MANIFEST.json is a real
+    # failure now, surfaced as such - emit_paper fails outright and
+    # referee/publish cascade-skip off that failure.
+    assert summary["outcome"] == "error"
     for name in ("emit_paper", "referee", "publish"):
         assert summary["stages"][name]["ran"] is False
+    assert summary["stages"]["emit_paper"]["ok"] is False
     assert summary["paper_dir"] is None
 
 

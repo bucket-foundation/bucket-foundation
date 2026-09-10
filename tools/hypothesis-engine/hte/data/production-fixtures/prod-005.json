@@ -1,0 +1,75 @@
+{
+  "id": "prod-005",
+  "created_at": "2026-04-01T00:00:00Z",
+  "author_role": "student",
+  "grade_band": "6-8",
+  "school_or_district_id": "district-a",
+  "research_question": "RQ19: does a reviewed production's detectability and tier move the engine's ranked hypotheses in a calibrated direction?",
+  "claims": [
+    {
+      "text": "Building on an earlier accepted classroom production about Alpha Observatory's sighting record, this production's own reviewed corroboration should raise the same address's tier a second time, converging rather than double-counting.",
+      "stance": "extends",
+      "slots": {
+        "actor": "student-researcher",
+        "action": "raised",
+        "object": "tier-assignment",
+        "place": "classroom-workspace",
+        "mechanism": null
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "prod-001",
+          "locator": "claim:0",
+          "quote": "A reviewed classroom production that adds independent corroboration to an existing engine hypothesis should raise that hypothesis's assigned tier rather than its ranking alone.",
+          "kind": "textual",
+          "tier": "T3",
+          "citations": [
+            {
+              "type": "feed402_envelope",
+              "value": "env-prod-001-cited"
+            }
+          ]
+        },
+        {
+          "source_id": "src-hte-self-report-2026-04",
+          "locator": "self-report.json:calibration_summary",
+          "quote": "The second campaign's self-report again logged a rising tier reading for the same address rather than a jump in Elo rank.",
+          "kind": "model_prior",
+          "tier": "T3",
+          "citations": [
+            {
+              "type": "feed402_envelope",
+              "value": "env-hte-fixture-2026-04-05"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "accepted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2026-04-01"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2026-04-08"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2026-04-15"
+      },
+      {
+        "status": "accepted",
+        "date": "2026-04-22"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}

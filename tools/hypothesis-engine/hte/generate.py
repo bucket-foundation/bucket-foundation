@@ -18,6 +18,7 @@ own "scoring and display prune the result; generation does not."
 from __future__ import annotations
 
 import itertools
+import random
 from typing import Iterable, Iterator
 
 from .address import (
@@ -29,7 +30,7 @@ from .address import (
     encode_sequence_indices,
     time_bin_index,
 )
-from .concepts import ConsensusStatus, Slot, Vocabulary
+from .concepts import ConsensusStatus, Slot, Vocabulary, other_id
 from .evidence import EvidenceItem
 from .hypothesis import Hypothesis, Placement, Sequence
 from .timeline import Interval, Resolution, relate
@@ -139,6 +140,82 @@ def enumerate_placements(
         )
         yield Hypothesis.from_placement(placement, vocab, span_start=span_start, bin_width=bin_width)
         count += 1
+
+
+def combinatorial_sample(
+    vocab: Vocabulary,
+    time_bins: Iterable[int],
+    *,
+    max_items: int,
+    seed: int = 0,
+    span_start: int = DEFAULT_SPAN_START,
+    bin_width: int = DEFAULT_BIN_WIDTH,
+) -> list[Hypothesis]:
+    """A bounded, seeded random sample of up to `max_items` distinct
+    placements drawn from the same `ACTOR x ACTION x OBJECT x PLACE x
+    TIME_BIN x MECHANISM` space `enumerate_placements` enumerates in
+    full, `OTHER` included on every axis like any other concept.
+
+    `enumerate_placements(..., max_items=n)` truncates its own lazy
+    `itertools.product`, which varies TIME_BIN fastest and ACTOR
+    slowest (that function's own docstring): a small `n` against a
+    corpus-sized vocabulary never advances ACTOR, ACTION, OBJECT, or
+    PLACE past their first vocabulary entry at all, so every
+    "combinatorial" hypothesis a small cap keeps names the same one
+    actor/action/object/place combo, differing only in mechanism and
+    time bin. This is a concrete, confirmed failure this function
+    exists to fix: a 20-item cap over the quantum-history vocabulary
+    reproduced the corpus's own first actor, "Max Planck," on every
+    combinatorial hypothesis the cap let through, and reproduced it
+    identically across every repeated seed, since `enumerate_
+    placements` itself never varies with one.
+
+    This function instead draws each of its `max_items` placements
+    independently (`random.Random(seed).choice` per axis), so every
+    concept on every axis, `OTHER` included, gets a fair chance of
+    appearing regardless of how small `max_items` is relative to the
+    full space. The same `seed` over the same vocabulary and time bins
+    always draws the same sample; a different `seed` draws a different
+    one, so `hte.runner.run_campaign`'s own repeated-seed loop sees a
+    different combinatorial slice on every seed instead of
+    re-enumerating the identical prefix each time. Draws that
+    collide on an already-sampled address are retried, up to a bounded
+    number of attempts, rather than returned as duplicates; a `max_
+    items` at or above the full space's own size returns that whole
+    space (bounded attempts still terminate: every draw eventually
+    lands on one of the few addresses not yet seen).
+    """
+    axes = {slot: vocab.concepts(slot) for slot in PLACEMENT_CONCEPT_SLOTS}
+    bins = list(time_bins)
+    if not bins or any(not concepts for concepts in axes.values()) or max_items <= 0:
+        return []
+
+    total_space = len(bins)
+    for concepts in axes.values():
+        total_space *= len(concepts)
+    target = min(max_items, total_space)
+
+    rng = random.Random(seed)
+    seen: set[int] = set()
+    out: list[Hypothesis] = []
+    max_attempts = max(target * 20, 20)
+    attempts = 0
+    while len(out) < target and attempts < max_attempts:
+        attempts += 1
+        placement = Placement(
+            actor=rng.choice(axes[Slot.ACTOR]).id,
+            action=rng.choice(axes[Slot.ACTION]).id,
+            object=rng.choice(axes[Slot.OBJECT]).id,
+            place=rng.choice(axes[Slot.PLACE]).id,
+            mechanism=rng.choice(axes[Slot.MECHANISM]).id,
+            interval=_interval_for_bin(rng.choice(bins), span_start, bin_width),
+        )
+        hyp = Hypothesis.from_placement(placement, vocab, span_start=span_start, bin_width=bin_width)
+        if hyp.address in seen:
+            continue
+        seen.add(hyp.address)
+        out.append(hyp)
+    return out
 
 
 # --------------------------------------------------------------------------
@@ -256,6 +333,59 @@ def _hypothesis_from_address(
     )
 
 
+def _hypothesis_from_evidence_slots(
+    item: EvidenceItem,
+    vocab: Vocabulary,
+    *,
+    span_start: int = DEFAULT_SPAN_START,
+    bin_width: int = DEFAULT_BIN_WIDTH,
+) -> Hypothesis | None:
+    """The placement hypothesis `item` itself claims, straight off its own
+    best-effort extracted slots (`hte.evidence.EvidenceItem.actor`/.../
+    `interval`, `bkt-hte-evidence-slots`), rather than off any address it
+    happens to already point at (`_referenced_addresses`, which needs a
+    prior linking pass, `hte.link.link_evidence`, that has not run yet at
+    generation time). This is the same reading `hte.calibrate.
+    _placement_from_item` gives an item for the discovery-date holdout.
+    The two functions stay separate: `hte.calibrate` already imports
+    from this module, and importing back would cycle.
+
+    Every concept-bearing slot `item` names nothing for reads as `OTHER`
+    (`hte.concepts.other_id`), never an arbitrary vocabulary entry: a
+    placement built by falling back to vocabulary order instead (its
+    first concept, or whichever slot a caller happened to hold fixed)
+    would silently misattribute a real actor, place, or mechanism to an
+    item that never named one.
+
+    Returns `None` when `item` names no interval at all (nothing to
+    place on the TIME_BIN axis, the same rule `hte.calibrate.
+    _placement_from_item` already applies); when a named slot value is a
+    raw, vocabulary-unresolved label (`Hypothesis.from_placement`'s own
+    `KeyError`, left by an extraction pass, `hte.roles.extract`'s
+    ensemble, whose free-text slot no fuzzy match has resolved to a
+    concept id yet) instead of a known concept id; or when the item's
+    own interval starts before this run's own TIME_BIN span (`hte.
+    timeline.time_bin_index`'s own `ValueError`, a bullet's incidental
+    mention of an earlier year, "since Newton's 1687 Principia," pulled
+    into `hte.corpus.quantum_history._extract_interval`'s min/max span
+    alongside the bullet's real, in-span date). Either failure drops
+    just this one item's own direct placement and leaves the generation
+    pass over the rest of the evidence set to continue, matching
+    `_hypothesis_from_address`'s own decode-failure contract above.
+    """
+    if item.interval is None:
+        return None
+    values: dict[str, str] = {}
+    for slot in PLACEMENT_CONCEPT_SLOTS:
+        value = getattr(item, slot.value)
+        values[slot.value] = value if value is not None else other_id(slot)
+    placement = Placement(interval=item.interval, **values)
+    try:
+        return Hypothesis.from_placement(placement, vocab, span_start=span_start, bin_width=bin_width)
+    except (KeyError, ValueError):
+        return None
+
+
 def _evidence_cluster_hypotheses(
     evidence_items: Iterable[EvidenceItem], vocab: Vocabulary, resolution: Resolution,
     *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
@@ -265,18 +395,38 @@ def _evidence_cluster_hypotheses(
     `resolution`, then re-emits each cluster's own placements
     (`HISTORY-HYPOTHESIS-ENGINE-SPEC.md` §5's "enumerate ... from the
     cluster's own claims"). Sequence readings are left to the other three
-    generators and to `sequences_from`."""
+    generators and to `sequences_from`.
+
+    Every item's cluster also gains the placement `item` itself claims
+    (`_hypothesis_from_evidence_slots`), not only whatever placements it
+    already points at through `supports`/`refutes`: those need a prior
+    linking pass this generator runs before, so an unlinked item (every
+    item, the first time a corpus generates) contributed nothing at all
+    before this was added, the root cause behind a population that never
+    grew past the handful of items an earlier `generate()` role call
+    happened to link. This is what guarantees "at least one placement
+    per evidence item that carries a slot," `bkt-hte-evidence-slots`'s
+    own coverage requirement for this generator.
+    """
     hyps_by_key: dict[tuple, dict[int, Hypothesis]] = {}
     ids_by_key: dict[tuple, set[str]] = {}
+
+    def _add(item: EvidenceItem, hyp: Hypothesis) -> None:
+        bucket = timeline_bin(hyp.content.interval, resolution)
+        key = (item.kind, bucket.start, bucket.end)
+        hyps_by_key.setdefault(key, {})[hyp.address] = hyp
+        ids_by_key.setdefault(key, set()).add(item.id)
+
     for item in evidence_items:
         for address in _referenced_addresses(item):
             hyp = _hypothesis_from_address(address, vocab, span_start=span_start, bin_width=bin_width)
             if hyp is None or hyp.is_sequence:
                 continue
-            bucket = timeline_bin(hyp.content.interval, resolution)
-            key = (item.kind, bucket.start, bucket.end)
-            hyps_by_key.setdefault(key, {})[hyp.address] = hyp
-            ids_by_key.setdefault(key, set()).add(item.id)
+            _add(item, hyp)
+
+        own_hyp = _hypothesis_from_evidence_slots(item, vocab, span_start=span_start, bin_width=bin_width)
+        if own_hyp is not None:
+            _add(item, own_hyp)
 
     out: list[Hypothesis] = []
     for key, hyps in hyps_by_key.items():
@@ -297,15 +447,37 @@ def _claim_gap_hypotheses(
     concept-bearing slots, the other four plus TIME_BIN stay fixed at the
     evidence's own attested values while that one slot sweeps its full
     vocabulary, `OTHER` included, per `IDEAL-STATE-AND-UNKNOWNS-SPEC.md`
-    §6a."""
+    §6a.
+
+    A base to sweep comes from two places: any placement `item` already
+    points at through `supports`/`refutes` (`_referenced_addresses`, as
+    before), and the placement `item` itself claims straight off its own
+    extracted slots (`_hypothesis_from_evidence_slots`, `OTHER` filling
+    any slot it names nothing for rather than an arbitrary vocabulary
+    entry). The second source is what keeps this generator's neighbors
+    anchored on an item's own attested actor/action/object/place/
+    mechanism instead of on whatever slot value a different, unrelated
+    generator or role happened to fill in first; sweeping the gap slot
+    away from a real value and toward `OTHER` (or any other named
+    concept) turns each alternative into its own hypothesis, letting the
+    tournament separate them by the evidence on file, weighing each
+    slot value on its own terms instead of on which one the base
+    placement was built from.
+    """
     out: list[Hypothesis] = []
     seen: set[tuple[int, str, str]] = set()
     for item in evidence_items:
+        bases: dict[int, Placement] = {}
         for address in _referenced_addresses(item):
             base_hyp = _hypothesis_from_address(address, vocab, span_start=span_start, bin_width=bin_width)
             if base_hyp is None or base_hyp.is_sequence:
                 continue
-            base = base_hyp.content
+            bases[base_hyp.address] = base_hyp.content
+        own_hyp = _hypothesis_from_evidence_slots(item, vocab, span_start=span_start, bin_width=bin_width)
+        if own_hyp is not None:
+            bases[own_hyp.address] = own_hyp.content
+
+        for base in bases.values():
             for slot in PLACEMENT_CONCEPT_SLOTS:
                 for concept in vocab.concepts(slot):
                     mutated = _with_slot(base, slot, concept.id)
@@ -356,7 +528,15 @@ def _cross_period_hypotheses(
     against independent recurrence"). When more than one other bin is on
     file, `seed` picks a fixed one deterministically rather than copying
     into every one of them, keeping this generator's output one analogy
-    per source placement instead of a combinatorial fan-out."""
+    per source placement instead of a combinatorial fan-out.
+
+    A source placement comes from the same two places `_evidence_
+    cluster_hypotheses` and `_claim_gap_hypotheses` read: any address
+    `item` already points at (`_referenced_addresses`), and the
+    placement `item` itself claims off its own extracted slots
+    (`_hypothesis_from_evidence_slots`), so an item that carries a slot
+    but no link yet still gets a cross-period neighbor.
+    """
     named: list[tuple[EvidenceItem, int, Placement]] = []
     bins: set[int] = set()
     for item in evidence_items:
@@ -366,6 +546,12 @@ def _cross_period_hypotheses(
                 continue
             tbin = time_bin_index(hyp.content.interval.start, span_start, bin_width)
             named.append((item, tbin, hyp.content))
+            bins.add(tbin)
+
+        own_hyp = _hypothesis_from_evidence_slots(item, vocab, span_start=span_start, bin_width=bin_width)
+        if own_hyp is not None:
+            tbin = time_bin_index(own_hyp.content.interval.start, span_start, bin_width)
+            named.append((item, tbin, own_hyp.content))
             bins.add(tbin)
 
     distinct_bins = sorted(bins)
@@ -456,6 +642,7 @@ def sequences_from(placements: Iterable[Hypothesis], *, max_pairs: int) -> Itera
 __all__ = [
     "PLACEMENT_CONCEPT_SLOTS",
     "enumerate_placements",
+    "combinatorial_sample",
     "neighbors",
     "from_evidence",
     "sequences_from",

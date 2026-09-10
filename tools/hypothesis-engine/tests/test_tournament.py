@@ -79,6 +79,27 @@ def test_run_unopined_hypothesis_seeds_at_neutral_elo():
     assert elos[h.address] == pytest.approx(1500.0)
 
 
+def test_run_seeds_a_positive_readable_elo_at_extreme_disbelief():
+    # A survivor kept for its own high disbelief (main.tex's own worked
+    # examples reach d>=0.9) projects a P near zero; the unclamped
+    # affine map (base 1500, scale 400) would seed a large negative
+    # rating there (confirmed on a live run: P=0.022 seeded Elo0=-18.2).
+    # The widened clamp guarantees a positive floor instead.
+    vocab = _small_vocab()
+    h = _hypothesis(vocab, "aliens", "tech")
+    opinions = {h.address: Opinion(b=0.0, d=0.97, u=0.03, a=0.1)}  # P ~= 0.003
+    elos = run([h], opinions, _null_judge, rounds=0)
+    assert elos[h.address] > 0.0
+
+
+def test_run_seeds_a_bounded_ceiling_at_extreme_belief():
+    vocab = _small_vocab()
+    h = _hypothesis(vocab, "farmers", "labor")
+    opinions = {h.address: Opinion(b=0.999999, d=0.0, u=0.000001, a=0.9)}  # P ~= 1.0
+    elos = run([h], opinions, _null_judge, rounds=0)
+    assert 0.0 < elos[h.address] < 3500.0
+
+
 def test_run_odd_population_gives_the_last_hypothesis_a_bye():
     vocab = _small_vocab()
     hyps = [
@@ -107,6 +128,86 @@ def test_run_informative_judge_favors_the_stated_winner():
 
     elos = run([h_a, h_b], opinions, judge_a_always_wins, rounds=3)
     assert elos[h_a.address] > elos[h_b.address]
+
+
+# --------------------------------------------------------------------------
+# run: judge_batch (the throughput wiring hook, `bkt-hte-throughput`)
+# --------------------------------------------------------------------------
+
+
+def test_run_with_judge_batch_matches_run_with_the_equivalent_single_judge():
+    """A `judge_batch` that just maps `judge` over its own pairs must
+    produce the identical Elo ratings a plain per-pair `judge` call
+    would, round for round: `run`'s own math does not change, only how
+    the scores reach it."""
+    vocab = _small_vocab()
+    h_a = _hypothesis(vocab, "farmers", "labor")
+    h_b = _hypothesis(vocab, "aliens", "tech")
+    opinions = {h_a.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.5), h_b.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.5)}
+
+    def judge_a_always_wins(a, b, _ctx):
+        return 1.0 if a.address == h_a.address else 0.0
+
+    def batch(pairs):
+        return [judge_a_always_wins(a, b, ctx) for a, b, ctx in pairs]
+
+    without_batch = run([h_a, h_b], opinions, judge_a_always_wins, rounds=3)
+    with_batch = run([h_a, h_b], opinions, judge_a_always_wins, rounds=3, judge_batch=batch)
+    assert with_batch == without_batch
+
+
+def test_run_with_judge_batch_calls_it_once_per_round_not_once_per_pair():
+    vocab = _small_vocab()
+    hyps = [
+        _hypothesis(vocab, "farmers", "labor"),
+        _hypothesis(vocab, "aliens", "tech"),
+        _hypothesis(vocab, "farmers", "tech"),
+        _hypothesis(vocab, "aliens", "labor"),
+    ]
+    opinions = {h.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.5) for h in hyps}
+    calls = []
+
+    def batch(pairs):
+        calls.append(len(pairs))
+        return [0.5] * len(pairs)
+
+    run(hyps, opinions, _null_judge, rounds=3, judge_batch=batch)
+    # 4 hypotheses -> 2 pairs a round, one `judge_batch` call per round.
+    assert calls == [2, 2, 2]
+
+
+def test_run_with_judge_batch_and_an_odd_population_still_pairs_and_byes_correctly():
+    vocab = _small_vocab()
+    hyps = [
+        _hypothesis(vocab, "farmers", "labor"),
+        _hypothesis(vocab, "aliens", "tech"),
+        _hypothesis(vocab, "farmers", "tech"),
+    ]
+    opinions = {h.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.5) for h in hyps}
+    calls = []
+
+    def batch(pairs):
+        calls.append(len(pairs))
+        return [0.5] * len(pairs)
+
+    # 3 hypotheses -> 1 pair plus a bye every round, so `judge_batch` is
+    # still called once a round, with exactly one pair each time.
+    elos = run(hyps, opinions, _null_judge, rounds=2, judge_batch=batch)
+    assert len(elos) == 3
+    assert calls == [1, 1]
+
+
+def test_run_with_judge_batch_and_a_single_hypothesis_never_calls_it():
+    vocab = _small_vocab()
+    hyps = [_hypothesis(vocab, "farmers", "labor")]
+    opinions = {h.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.5) for h in hyps}
+
+    def batch(_pairs):
+        raise AssertionError("judge_batch must not be called for a round with zero pairs")
+
+    # A lone hypothesis is a bye every round; must not raise.
+    elos = run(hyps, opinions, _null_judge, rounds=2, judge_batch=batch)
+    assert len(elos) == 1
 
 
 # --------------------------------------------------------------------------

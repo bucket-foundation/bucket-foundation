@@ -1,7 +1,14 @@
 from hte.address import time_bin_index
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
-from hte.generate import PLACEMENT_CONCEPT_SLOTS, enumerate_placements, from_evidence, neighbors, sequences_from
+from hte.generate import (
+    PLACEMENT_CONCEPT_SLOTS,
+    combinatorial_sample,
+    enumerate_placements,
+    from_evidence,
+    neighbors,
+    sequences_from,
+)
 from hte.hypothesis import Hypothesis, Placement, Sequence
 from hte.timeline import AllenRelation, Interval, Resolution, relate
 
@@ -86,6 +93,71 @@ def test_enumerate_placements_respects_max_items():
     tbin = time_bin_index(_interval().start)
     hyps = list(enumerate_placements(vocab, [tbin], max_items=5))
     assert len(hyps) == 5
+
+
+# --------------------------------------------------------------------------
+# combinatorial_sample
+# --------------------------------------------------------------------------
+
+
+def test_combinatorial_sample_respects_max_items():
+    vocab = _small_vocab()
+    tbin = time_bin_index(_interval().start)
+    hyps = combinatorial_sample(vocab, [tbin], max_items=5, seed=0)
+    assert len(hyps) == 5
+
+
+def test_combinatorial_sample_is_deterministic_given_seed():
+    vocab = _small_vocab()
+    tbin = time_bin_index(_interval().start)
+    first = [h.address for h in combinatorial_sample(vocab, [tbin], max_items=6, seed=3)]
+    second = [h.address for h in combinatorial_sample(vocab, [tbin], max_items=6, seed=3)]
+    assert first == second
+
+
+def test_combinatorial_sample_different_seeds_can_differ():
+    vocab = _small_vocab()
+    tbin = time_bin_index(_interval().start)
+    a = {h.address for h in combinatorial_sample(vocab, [tbin], max_items=4, seed=0)}
+    b = {h.address for h in combinatorial_sample(vocab, [tbin], max_items=4, seed=1)}
+    assert a != b
+
+
+def test_combinatorial_sample_does_not_pin_every_draw_to_the_first_actor():
+    # The failure this function replaces `enumerate_placements` for: a
+    # cap far smaller than the full space never advanced ACTOR past its
+    # first vocabulary entry (`enumerate_placements`'s own fixed
+    # left-to-right order). A random sample large enough relative to
+    # this tiny 2-actor vocabulary should see both actors.
+    vocab = _small_vocab()
+    tbin = time_bin_index(_interval().start)
+    hyps = combinatorial_sample(vocab, [tbin], max_items=20, seed=0)
+    actors_seen = {h.content.actor for h in hyps}
+    # `_small_vocab()`'s 2 named actors plus `Vocabulary`'s own
+    # auto-appended `other-actor` placeholder (`hasOther`, every slot).
+    assert actors_seen == {"farmers", "aliens", "other-actor"}
+
+
+def test_combinatorial_sample_never_exceeds_the_full_space_size():
+    vocab = _small_vocab()
+    tbin = time_bin_index(_interval().start)
+    full = 1
+    for slot in PLACEMENT_CONCEPT_SLOTS:
+        full *= len(vocab.concepts(slot))
+    hyps = combinatorial_sample(vocab, [tbin], max_items=1000, seed=0)
+    assert len(hyps) == full
+    assert len({h.address for h in hyps}) == full
+
+
+def test_combinatorial_sample_returns_empty_list_for_zero_max_items():
+    vocab = _small_vocab()
+    tbin = time_bin_index(_interval().start)
+    assert combinatorial_sample(vocab, [tbin], max_items=0, seed=0) == []
+
+
+def test_combinatorial_sample_returns_empty_list_for_no_time_bins():
+    vocab = _small_vocab()
+    assert combinatorial_sample(vocab, [], max_items=5, seed=0) == []
 
 
 # --------------------------------------------------------------------------
@@ -200,6 +272,81 @@ def test_from_evidence_ignores_undecodable_addresses():
     # Should not raise, and contributes nothing.
     generated = from_evidence([bad_item], vocab, Resolution.CENTURY)
     assert generated == []
+
+
+# --------------------------------------------------------------------------
+# from_evidence: generation off an item's own extracted slots, no prior
+# link required (`bkt-hte-evidence-slots`'s own generation-coverage fix)
+# --------------------------------------------------------------------------
+
+
+def _unlinked_item(vocab: Vocabulary, **slots) -> EvidenceItem:
+    """An evidence item carrying only its own best-effort extracted
+    slots, `supports`/`refutes` both empty: the shape `hte.corpus.
+    quantum_history` and `hte.roles.extract` hand generation before any
+    linking pass has run."""
+    span = EvidenceSpan("doc", "loc", "quote", 0, 5)
+    return EvidenceItem(
+        id=slots.pop("id", "ev-unlinked"), kind=EvidenceKind.TEXTUAL, tier=Tier.T2,
+        source_id="s1", span=span, provenance="manual", **slots,
+    )
+
+
+def test_evidence_cluster_emits_a_placement_for_an_unlinked_item_with_slots():
+    vocab = _small_vocab()
+    item = _unlinked_item(vocab, actor="farmers", action="built", interval=_interval())
+    generated = from_evidence([item], vocab, Resolution.CENTURY)
+    cluster_hyps = [h for h in generated if h.meta.get("generator") == "evidence-cluster"]
+    assert any(h.content.actor == "farmers" and h.content.action == "built" for h in cluster_hyps)
+
+
+def test_evidence_cluster_fills_a_missing_slot_with_other_not_an_arbitrary_concept():
+    vocab = _small_vocab()
+    # Names only actor; object/place/mechanism/action are all unasserted.
+    item = _unlinked_item(vocab, actor="farmers", interval=_interval())
+    generated = from_evidence([item], vocab, Resolution.CENTURY)
+    [cluster_hyp] = [h for h in generated if h.meta.get("generator") == "evidence-cluster"]
+    assert cluster_hyp.content.actor == "farmers"
+    assert cluster_hyp.content.action == "other-action"
+    assert cluster_hyp.content.object == "other-object"
+    assert cluster_hyp.content.place == "other-place"
+    assert cluster_hyp.content.mechanism == "other-mechanism"
+
+
+def test_evidence_cluster_item_with_no_interval_contributes_no_own_placement():
+    vocab = _small_vocab()
+    item = _unlinked_item(vocab, actor="farmers")  # no interval at all
+    generated = from_evidence([item], vocab, Resolution.CENTURY)
+    assert generated == []
+
+
+def test_evidence_cluster_ignores_an_interval_before_the_run_span():
+    # A bullet mentioning an incidental earlier year can widen an item's
+    # own extracted interval past the run's own TIME_BIN span start;
+    # this drops that one item's own placement instead of raising.
+    vocab = _small_vocab()
+    item = _unlinked_item(vocab, actor="farmers", interval=Interval(start=-25000, end=-24999))
+    generated = from_evidence([item], vocab, Resolution.CENTURY, span_start=-20000, bin_width=100)
+    assert generated == []
+
+
+def test_claim_gap_sweeps_around_an_unlinked_item_too():
+    vocab = _small_vocab()
+    item = _unlinked_item(vocab, actor="farmers", mechanism="labor", interval=_interval())
+    generated = from_evidence([item], vocab, Resolution.CENTURY)
+    gap_hyps = [h for h in generated if h.meta.get("generator") == "claim-gap"]
+    mechanisms_seen = {h.content.mechanism for h in gap_hyps if h.meta.get("gap_slot") == "mechanism"}
+    assert {"labor", "tech", "other-mechanism"} <= mechanisms_seen
+
+
+def test_cross_period_copies_an_unlinked_item_into_another_attested_bin():
+    vocab = _small_vocab()
+    near = _unlinked_item(vocab, id="ev-near", actor="farmers", interval=_interval())
+    far = _unlinked_item(vocab, id="ev-far", actor="farmers",
+                          interval=Interval(start=-13000, end=-12901))
+    generated = from_evidence([near, far], vocab, Resolution.CENTURY, seed=0)
+    cross_hyps = [h for h in generated if h.meta.get("generator") == "cross-period-analogy"]
+    assert len(cross_hyps) >= 2
 
 
 # --------------------------------------------------------------------------

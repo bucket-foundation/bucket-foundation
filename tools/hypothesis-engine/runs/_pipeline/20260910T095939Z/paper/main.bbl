@@ -1,0 +1,77 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{bkthte2026design}{unpublished}{}{}
+      \name{author}{1}{}{%
+        {{hash=c56f5093c926ffb3f20bd2c9a65e4a1f}{%
+           family={{Bucket Foundation}},
+           familyi={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{c56f5093c926ffb3f20bd2c9a65e4a1f}
+      \strng{fullhash}{c56f5093c926ffb3f20bd2c9a65e4a1f}
+      \strng{fullhashraw}{c56f5093c926ffb3f20bd2c9a65e4a1f}
+      \strng{bibnamehash}{c56f5093c926ffb3f20bd2c9a65e4a1f}
+      \strng{authorbibnamehash}{c56f5093c926ffb3f20bd2c9a65e4a1f}
+      \strng{authornamehash}{c56f5093c926ffb3f20bd2c9a65e4a1f}
+      \strng{authorfullhash}{c56f5093c926ffb3f20bd2c9a65e4a1f}
+      \strng{authorfullhashraw}{c56f5093c926ffb3f20bd2c9a65e4a1f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Unpublished manuscript, Bucket Foundation. Held in this repository at papers/history-hypothesis-engine/main.tex; internal companion report, no DOI or arXiv id, see this file's own header comment.}
+      \field{title}{A Hypothesis Engine over History}
+      \field{year}{2026}
+    \endentry
+    \entry{josang2016subjective}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=732492ebae7a76ed0f341c5a3a998566}{%
+           family={J{ø}sang},
+           familyi={J\bibinitperiod},
+           given={Audun},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{732492ebae7a76ed0f341c5a3a998566}
+      \strng{fullhash}{732492ebae7a76ed0f341c5a3a998566}
+      \strng{fullhashraw}{732492ebae7a76ed0f341c5a3a998566}
+      \strng{bibnamehash}{732492ebae7a76ed0f341c5a3a998566}
+      \strng{authorbibnamehash}{732492ebae7a76ed0f341c5a3a998566}
+      \strng{authornamehash}{732492ebae7a76ed0f341c5a3a998566}
+      \strng{authorfullhash}{732492ebae7a76ed0f341c5a3a998566}
+      \strng{authorfullhashraw}{732492ebae7a76ed0f341c5a3a998566}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{series}{Artificial Intelligence: Foundations, Theory, and Algorithms}
+      \field{title}{Subjective Logic: A Formalism for Reasoning Under Uncertainty}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1007/978-3-319-42337-1
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

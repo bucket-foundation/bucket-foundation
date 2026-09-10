@@ -1,0 +1,826 @@
+{
+  "default_alpha": 1.0,
+  "alpha": {
+    "actor": 1.0,
+    "action": 1.0,
+    "object": 1.0,
+    "place": 1.0,
+    "time": 1.0,
+    "mechanism": 1.0,
+    "relation": 1.0
+  },
+  "by_slot": {
+    "actor": [
+      {
+        "id": "polity-afg",
+        "slot": "actor",
+        "label": "Afghanistan education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-bgd",
+        "slot": "actor",
+        "label": "Bangladesh education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-bra",
+        "slot": "actor",
+        "label": "Brazil education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-chn",
+        "slot": "actor",
+        "label": "China education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-cod",
+        "slot": "actor",
+        "label": "Congo, Dem. Rep. education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-deu",
+        "slot": "actor",
+        "label": "Germany education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-eth",
+        "slot": "actor",
+        "label": "Ethiopia education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-fin",
+        "slot": "actor",
+        "label": "Finland education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-gbr",
+        "slot": "actor",
+        "label": "United Kingdom education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-idn",
+        "slot": "actor",
+        "label": "Indonesia education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-ind",
+        "slot": "actor",
+        "label": "India education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-jpn",
+        "slot": "actor",
+        "label": "Japan education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-ken",
+        "slot": "actor",
+        "label": "Kenya education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-kor",
+        "slot": "actor",
+        "label": "Korea, Rep. education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-mex",
+        "slot": "actor",
+        "label": "Mexico education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-mli",
+        "slot": "actor",
+        "label": "Mali education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-ner",
+        "slot": "actor",
+        "label": "Niger education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-nga",
+        "slot": "actor",
+        "label": "Nigeria education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-pak",
+        "slot": "actor",
+        "label": "Pakistan education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-sgp",
+        "slot": "actor",
+        "label": "Singapore education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-tcd",
+        "slot": "actor",
+        "label": "Chad education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-usa",
+        "slot": "actor",
+        "label": "United States education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-vnm",
+        "slot": "actor",
+        "label": "Viet Nam education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-yem",
+        "slot": "actor",
+        "label": "Yemen, Rep. education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "polity-zaf",
+        "slot": "actor",
+        "label": "South Africa education system",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "ministries-of-education",
+        "slot": "actor",
+        "label": "Ministries of education",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "teachers",
+        "slot": "actor",
+        "label": "Teachers",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "families",
+        "slot": "actor",
+        "label": "Families",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "ngos",
+        "slot": "actor",
+        "label": "NGOs",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "funders",
+        "slot": "actor",
+        "label": "Funders",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "innate-ability-determinism",
+        "slot": "actor",
+        "label": "Innate-ability determinism (outcomes are fixed by inherited ability alone)",
+        "prior_logit": -2.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "single-variable-poverty-determinism",
+        "slot": "actor",
+        "label": "Poverty alone determines the outcome",
+        "prior_logit": -0.5,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "ed-tech-solutionism",
+        "slot": "actor",
+        "label": "Education technology alone will close the gap",
+        "prior_logit": -2.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "colonial-legacy-sole-cause",
+        "slot": "actor",
+        "label": "Colonial-era legacy is the sole cause",
+        "prior_logit": -0.5,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "testing-industrial-complex",
+        "slot": "actor",
+        "label": "The standardized-testing industry drives the outcome for its own ends",
+        "prior_logit": -2.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      }
+    ],
+    "action": [
+      {
+        "id": "improved",
+        "slot": "action",
+        "label": "Improved",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "worsened",
+        "slot": "action",
+        "label": "Worsened",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "stagnant",
+        "slot": "action",
+        "label": "Stagnant",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "object": [
+      {
+        "id": "hd-hci-hlos",
+        "slot": "object",
+        "label": "Harmonized test scores (Human Capital Index)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "owid-mys",
+        "slot": "object",
+        "label": "Mean years of schooling (population 15+)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "pisa-math",
+        "slot": "object",
+        "label": "PISA mathematics mean score (15-year-olds)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "pisa-read",
+        "slot": "object",
+        "label": "PISA reading mean score (15-year-olds)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "pisa-scie",
+        "slot": "object",
+        "label": "PISA science mean score (15-year-olds)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "schbsp-1-welec",
+        "slot": "object",
+        "label": "Primary schools with access to electricity (%)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "schbsp-1-wintern",
+        "slot": "object",
+        "label": "Primary schools with internet for pedagogy (%)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "schbsp-1-wwata",
+        "slot": "object",
+        "label": "Primary schools with basic drinking water (%)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-adt-1524-lt-zs",
+        "slot": "object",
+        "label": "Youth literacy rate (15-24)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-adt-litr-zs",
+        "slot": "object",
+        "label": "Adult literacy rate (15+)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-enr-prim-fm-zs",
+        "slot": "object",
+        "label": "Gender parity index, primary enrollment",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-enr-seco-fm-zs",
+        "slot": "object",
+        "label": "Gender parity index, secondary enrollment",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-enr-tert-fm-zs",
+        "slot": "object",
+        "label": "Gender parity index, tertiary enrollment",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-lpv-prim",
+        "slot": "object",
+        "label": "Learning poverty (share unable to read by age 10)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-pre-enrr",
+        "slot": "object",
+        "label": "Pre-primary gross enrollment ratio",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-prm-cmpt-zs",
+        "slot": "object",
+        "label": "Primary completion rate",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-prm-enrl-tc-zs",
+        "slot": "object",
+        "label": "Pupil-teacher ratio, primary",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-prm-nenr",
+        "slot": "object",
+        "label": "Primary net enrollment rate",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-prm-prsl-zs",
+        "slot": "object",
+        "label": "Persistence to last grade of primary",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-prm-tcaq-zs",
+        "slot": "object",
+        "label": "Trained teachers in primary education (% of total)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-prm-uner",
+        "slot": "object",
+        "label": "Children out of school, primary",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-sec-cmpt-lo-zs",
+        "slot": "object",
+        "label": "Lower-secondary completion rate",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-sec-enrl-tc-zs",
+        "slot": "object",
+        "label": "Pupil-teacher ratio, secondary",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-sec-nenr",
+        "slot": "object",
+        "label": "Secondary net enrollment rate",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-sec-prog-zs",
+        "slot": "object",
+        "label": "Progression to secondary school",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-ter-enrr",
+        "slot": "object",
+        "label": "Tertiary gross enrollment ratio",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-xpd-totl-gb-zs",
+        "slot": "object",
+        "label": "Government expenditure on education (% of public spending)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "se-xpd-totl-gd-zs",
+        "slot": "object",
+        "label": "Government expenditure on education (% of GDP)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "sl-uem-neet-zs",
+        "slot": "object",
+        "label": "Youth not in education, employment or training (NEET)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "uis-ofst-2",
+        "slot": "object",
+        "label": "Adolescents out of school, lower secondary",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "place": [
+      {
+        "id": "country-afg",
+        "slot": "place",
+        "label": "Afghanistan",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-bgd",
+        "slot": "place",
+        "label": "Bangladesh",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-bra",
+        "slot": "place",
+        "label": "Brazil",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-chn",
+        "slot": "place",
+        "label": "China",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-cod",
+        "slot": "place",
+        "label": "Congo, Dem. Rep.",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-deu",
+        "slot": "place",
+        "label": "Germany",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-eth",
+        "slot": "place",
+        "label": "Ethiopia",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-fin",
+        "slot": "place",
+        "label": "Finland",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-gbr",
+        "slot": "place",
+        "label": "United Kingdom",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-idn",
+        "slot": "place",
+        "label": "Indonesia",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-ind",
+        "slot": "place",
+        "label": "India",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-jpn",
+        "slot": "place",
+        "label": "Japan",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-ken",
+        "slot": "place",
+        "label": "Kenya",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-kor",
+        "slot": "place",
+        "label": "Korea, Rep.",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-mex",
+        "slot": "place",
+        "label": "Mexico",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-mli",
+        "slot": "place",
+        "label": "Mali",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-ner",
+        "slot": "place",
+        "label": "Niger",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-nga",
+        "slot": "place",
+        "label": "Nigeria",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-pak",
+        "slot": "place",
+        "label": "Pakistan",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-sgp",
+        "slot": "place",
+        "label": "Singapore",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-tcd",
+        "slot": "place",
+        "label": "Chad",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-usa",
+        "slot": "place",
+        "label": "United States",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-vnm",
+        "slot": "place",
+        "label": "Viet Nam",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-yem",
+        "slot": "place",
+        "label": "Yemen, Rep.",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "country-zaf",
+        "slot": "place",
+        "label": "South Africa",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "mechanism": [
+      {
+        "id": "funding",
+        "slot": "mechanism",
+        "label": "Funding",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "teacher-supply",
+        "slot": "mechanism",
+        "label": "Teacher supply",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "curriculum",
+        "slot": "mechanism",
+        "label": "Curriculum",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "language-of-instruction",
+        "slot": "mechanism",
+        "label": "Language of instruction",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "conflict",
+        "slot": "mechanism",
+        "label": "Conflict",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "pandemic-closure",
+        "slot": "mechanism",
+        "label": "Pandemic closure",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "measurement-change",
+        "slot": "mechanism",
+        "label": "Measurement change",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "time": [],
+    "relation": []
+  }
+}

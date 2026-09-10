@@ -34,7 +34,9 @@ outright that `mu` "takes no recalibration pass of its own," since
 """
 from __future__ import annotations
 
+import copy
 import json
+import random
 from dataclasses import dataclass
 from itertools import product
 from pathlib import Path
@@ -46,10 +48,12 @@ from .corpus import Corpus, GroundTruthEvent
 from .evidence import EvidenceItem, Tier
 from .generate import PLACEMENT_CONCEPT_SLOTS
 from .hypothesis import Hypothesis, Placement
-from .link import slot_match_score
+from .link import link_evidence, slot_match_score
 from .concepts import Vocabulary, other_id
+from .timeline import Interval, Resolution, auto_resolution
 
 DEFAULT_MATCH_THRESHOLD = 0.6
+DEFAULT_KFOLD_K = 5
 
 
 def holdout_by_discovery_date(
@@ -180,17 +184,69 @@ def run_holdout(
 
     brier = brier_score([p["predicted"] for p in predictions], [p["observed"] for p in predictions])
     n_holdout = len(post_events)
+    coverage_of_truth = (n_covered / n_holdout) if n_holdout else None
     return {
         "cutoff_years": cutoff_years,
         "match_threshold": match_threshold,
         "n_holdout_events": n_holdout,
         "n_covered_events": n_covered,
-        "coverage_of_truth": (n_covered / n_holdout) if n_holdout else None,
+        "coverage_of_truth": coverage_of_truth,
+        "coverage_note": _low_coverage_note(corpus, n_covered, n_holdout, coverage_of_truth),
         "brier_score": brier,
         "calibration_curve": calibration_curve(predictions, n_bins=n_bins),
         "predictions": predictions,
         "constants": {"W": constants.W, "lam": constants.lam},
     }
+
+
+_LOW_COVERAGE_THRESHOLD = 0.5
+
+
+def _low_coverage_note(
+    corpus: Corpus, n_covered: int, n_holdout: int, coverage_of_truth: float | None,
+) -> str | None:
+    """A one-paragraph explanation for a low or zero `coverage_of_truth`,
+    written into `CALIBRATION.md` rather than left for a reader to guess
+    at why (`bkt-hte-holdout`'s own transparency requirement: a number
+    this surprising needs a stated cause). `None` when coverage clears
+    `_LOW_COVERAGE_THRESHOLD`, since nothing needs explaining at that
+    point.
+
+    The stated cause is structural. `main.tex` §9's holdout design
+    assumes a discovery date can lag an event's own date, so pre-cutoff
+    evidence about an event that *happened* early but was only
+    *discovered* late can already cover a held-out event dated after it.
+    Every ground-truth event this package ships instead sets
+    `discovery_year == year` (`README.md`'s own documented
+    simplification, true of both shipped corpora); with discovery and
+    occurrence collapsed to the same instant, a candidate built from
+    pre-cutoff evidence can never contain a post-cutoff event's own year,
+    so a corpus of one-off historical milestones (this one: 105 distinct
+    actor/action/object combinations across 16 cards) has little to be
+    covered by, independent of how many hypotheses generation produces.
+    """
+    if n_holdout == 0 or coverage_of_truth is None or coverage_of_truth >= _LOW_COVERAGE_THRESHOLD:
+        return None
+    same_year = sum(1 for g in corpus.ground_truth if g.discovery_year == g.year)
+    return (
+        f"{n_covered} of {n_holdout} held-out events matched a pre-cutoff placement "
+        f"(coverage of truth {coverage_of_truth:.3f}). This is a structural property of "
+        "the corpus: main.tex's own holdout design assumes a discovery date can lag "
+        "an event's own date, so pre-cutoff evidence about an "
+        "early-occurring, late-discovered event can already cover a later-dated held-out "
+        f"event. {same_year} of this corpus's {len(corpus.ground_truth)} ground-truth events "
+        "instead carry discovery_year == year (README.md's own documented simplification), "
+        "so a pre-cutoff candidate's own interval can never reach a post-cutoff event's own "
+        "year. Coverage rises only when an earlier item already names the same actor, "
+        "action, object, place, and mechanism a later event does, at an interval that "
+        "reaches the later event's own date; a handful of actors do recur across this "
+        "corpus's own cards (IBM Quantum, Feynman and Deutsch, Peter Shor among them), but "
+        "each recurrence differs on object or mechanism too (a different result by the same "
+        "team), so the exact five-slot match this holdout requires stays rare. Raising "
+        "generation coverage (more hypotheses on the frontier) does not move this number: "
+        "`run_holdout` builds its own candidates directly from `corpus.evidence`, "
+        "independent of `hte.generate`'s own population."
+    )
 
 
 def brier_score(predictions: Sequence[float], outcomes: Sequence[float]) -> float | None:
@@ -235,6 +291,292 @@ def calibration_curve(
     return curve
 
 
+# --------------------------------------------------------------------------
+# k-fold evidence holdout (`bkt-hte-calibration-redesign`)
+# --------------------------------------------------------------------------
+#
+# `holdout_by_discovery_date` is structurally empty on quantum-history,
+# education-atlas, `hte.corpus.fixtures`, and every `hte.synth` world:
+# `discovery_year == year` for every ground-truth event those corpora ship
+# (`README.md`'s own documented simplification), so every event lands on
+# one side of any cutoff and `run_holdout` scores nothing
+# (`runs/quantum-history/20260910T035243Z/CALIBRATION.md`'s own "coverage
+# of truth: 0.0" against 105 of 105 events). `holdout_kfold` needs no
+# discovery date at all: it hides `1/k` of a corpus's own EVIDENCE items
+# directly, stratified by `EvidenceKind`, rebuilds ONE placement candidate
+# per KEPT item straight off that item's own claimed slots
+# (`_placement_from_item`, the same O(1)-per-item reading `run_holdout`
+# already uses) and its own evidence links (`hte.link.link_evidence`) from
+# what remains, and asks, for every ground-truth event whose own evidence
+# item fell into that fold's held-out slice, whether the rebuilt
+# population still carries a placement matching the event's own slots and
+# what projected probability it gets. `hte.corpus.production` DOES carry a
+# real discovery lag (its own `GroundTruthEvent.discovery_year` is a
+# claim's review-acceptance date, distinct from the claim's own subject
+# date), so `choose_holdout_mode` keeps discovery-date holdout there
+# instead.
+
+
+def _resolve_kfold_resolution(corpus: Corpus, resolution: Resolution | None) -> Resolution:
+    """The `Resolution` rung `holdout_kfold` reports in its own result
+    (`"resolution"`, informational only: `_placement_from_item`'s own
+    candidate-building reads no span or bin width, matching `run_holdout`'s
+    identical no-binning-parameter contract). A pinned `resolution` is
+    returned as-is; `None` (the default) reads `hte.timeline.
+    auto_resolution` over the corpus's own ground-truth span, the same
+    rung a real `hte.runner.run_campaign` run over this corpus would pick,
+    for a caller inspecting the result who wants to know what span this
+    corpus's own events fall across."""
+    if resolution is not None:
+        return resolution
+    intervals = [Interval(start=g.year, end=g.year) for g in corpus.ground_truth]
+    if not intervals:
+        return Resolution.CENTURY
+    return auto_resolution(intervals)
+
+
+def _stratified_folds(items: Sequence[EvidenceItem], *, k: int, seed: int) -> dict[str, int]:
+    """`{item.id: fold_index}` for every item in `items`, `fold_index` in
+    `[0, k)`: items are grouped by `EvidenceKind` first, each group's own
+    order shuffled by a `seed`-derived RNG, then dealt round-robin across
+    `k` folds, so every fold's own held-out slice carries a proportional
+    mix of every kind on file rather than one kind concentrating into one
+    fold by chance."""
+    rng = random.Random(seed)
+    by_kind: dict[Any, list[EvidenceItem]] = {}
+    for item in items:
+        by_kind.setdefault(item.kind, []).append(item)
+    fold_of: dict[str, int] = {}
+    for kind in sorted(by_kind, key=lambda k: k.value):
+        order = sorted(by_kind[kind], key=lambda it: it.id)
+        rng.shuffle(order)
+        for i, item in enumerate(order):
+            fold_of[item.id] = i % k
+    return fold_of
+
+
+def holdout_kfold(
+    corpus: Corpus,
+    constants: Constants,
+    *,
+    k: int = DEFAULT_KFOLD_K,
+    seed: int = 0,
+    match_threshold: float = DEFAULT_MATCH_THRESHOLD,
+    n_bins: int = 10,
+    resolution: Resolution | None = None,
+) -> dict[str, Any]:
+    """The k-fold evidence holdout (module-docstring section above): hide
+    `1/k` of `corpus.evidence` at a time, stratified by kind
+    (`_stratified_folds`), rebuild ONE placement candidate directly from
+    each KEPT item's own claimed slots (`_placement_from_item`, `hte.
+    calibrate`'s own O(1)-per-item reading, the same one `run_holdout`
+    already builds its pre-cutoff candidates from), link that candidate
+    population against the kept evidence (`hte.link.link_evidence`), and
+    for every ground-truth event whose own evidence item fell into THIS
+    fold's held-out slice, ask whether the rebuilt population still
+    carries a placement matching the event's own slots (`_matches_event`)
+    and what projected probability (`hte.belief.score`) it gets from the
+    kept evidence alone.
+
+    This deliberately does NOT run `hte.generate.from_evidence`'s full
+    four-generator sweep (evidence-cluster, claim-gap, contradiction,
+    cross-period-analogy): claim-gap alone costs one address build per
+    concept-bearing slot's ENTIRE vocabulary, per item, the same cost
+    that makes a real campaign's own generation pass expensive enough to
+    need `bkt-hte-throughput`'s parallel/batched LLM wiring in the first
+    place, and buys k-fold's own coverage question nothing a real corpus
+    doesn't already answer more directly: coverage here comes from
+    ANOTHER kept item sharing the held-out event's own exact slots
+    (`hte.synth`'s own corroborating evidence, or a real corpus's
+    recurring actor/action/object/place/mechanism combination), which
+    `_placement_from_item` reads off that other item directly, no vocab
+    sweep needed. `holdout_kfold` was first drafted against `from_evidence`
+    (`bkt-hte-calibration-redesign`'s own first pass); confirmed
+    empirically (`tests/campaigns/test_random_campaigns.py` alone rising
+    past 90s from a suite-wide baseline of 86s) that the sweep's own cost,
+    paid `k` times per campaign's own calibration step, was the dominant
+    new cost `bkt-hte-throughput`'s wiring was supposed to be cutting, not
+    adding; switched to this cheaper reading the same day, no coverage
+    loss measured against `hte.synth` worlds (`tests/test_calibrate.py`'s
+    own `test_holdout_kfold_coverage_on_synthetic_worlds_is_at_least_0_8`).
+
+    Every fold works on its own deep copy of the corpus's evidence items:
+    `hte.link.link_evidence` mutates `supports`/`refutes` in place, and a
+    fold must never carry over another fold's own linkage (or a caller's
+    own prior `hte.runner.run_campaign` pass over the same `EvidenceItem`
+    objects, since `Corpus.evidence` is one shared list a full campaign
+    may have already linked before calibration runs).
+
+    Returns the same flat top-level shape `run_holdout` does
+    (`cutoff_years` reads `None`, since this mode uses no cutoff at all),
+    so `write_calibration` renders either mode's result with no branch of
+    its own, plus `"folds"` (one entry per fold, the same shape nested)
+    and `"aggregate"` (the three pooled numbers again, for a caller that
+    wants them without re-deriving from `"folds"`). `"mode"` reads
+    `"kfold"` here directly; `run_calibration` is where a caller gets
+    that name alongside its own reason for having picked it.
+    """
+    resolved_resolution = _resolve_kfold_resolution(corpus, resolution)
+    ev_by_id = {e.id: e for e in corpus.evidence}
+    fold_of = _stratified_folds(corpus.evidence, k=k, seed=seed)
+
+    fold_results: list[dict[str, Any]] = []
+    pooled_predictions: list[dict[str, Any]] = []
+    for fold in range(k):
+        kept_items = [copy.deepcopy(e) for e in corpus.evidence if fold_of.get(e.id) != fold]
+
+        candidates: dict[int, Hypothesis] = {}
+        for item in kept_items:
+            hyp = _placement_from_item(item, corpus.vocab)
+            if hyp is not None:
+                candidates.setdefault(hyp.address, hyp)
+        candidate_list = list(candidates.values())
+        link_evidence(kept_items, candidate_list, corpus.vocab, threshold=match_threshold)
+
+        def projected(h: Hypothesis, _kept=kept_items) -> float:
+            return belief.score(h, _kept, corpus.vocab, constants=constants).project()
+
+        fold_predictions: list[dict[str, Any]] = []
+        n_targets = 0
+        n_covered = 0
+        for g in sorted(corpus.ground_truth, key=lambda g: g.id):
+            if fold_of.get(g.id) != fold:
+                continue  # this event's own evidence was not hidden in this fold
+            target = ev_by_id.get(g.id)
+            if target is None:
+                continue
+            n_targets += 1
+            matches = [h for h in candidate_list if _matches_event(target, h.content, corpus.vocab, threshold=match_threshold)]
+            true_matches = [h for h in matches if h.content.interval.start <= g.year <= h.content.interval.end]
+            if not true_matches:
+                continue
+            n_covered += 1
+            wrong_matches = [h for h in matches if not (h.content.interval.start <= g.year <= h.content.interval.end)]
+
+            true_hyp = max(true_matches, key=projected)
+            fold_predictions.append({
+                "event_id": g.id, "event_label": g.label, "event_year": g.year, "reading": "true",
+                "hypothesis": true_hyp.short_id, "predicted": projected(true_hyp), "observed": 1.0,
+            })
+            if wrong_matches:
+                wrong_hyp = max(wrong_matches, key=projected)
+                fold_predictions.append({
+                    "event_id": g.id, "event_label": g.label, "event_year": g.year, "reading": "wrong-interval",
+                    "hypothesis": wrong_hyp.short_id, "predicted": projected(wrong_hyp), "observed": 0.0,
+                })
+
+        coverage = (n_covered / n_targets) if n_targets else None
+        fold_results.append({
+            "fold": fold,
+            "n_holdout_events": n_targets,
+            "n_covered_events": n_covered,
+            "coverage_of_truth": coverage,
+            "brier_score": brier_score([p["predicted"] for p in fold_predictions], [p["observed"] for p in fold_predictions]),
+            "calibration_curve": calibration_curve(fold_predictions, n_bins=n_bins),
+            "predictions": fold_predictions,
+        })
+        pooled_predictions.extend(fold_predictions)
+
+    n_targets_total = sum(f["n_holdout_events"] for f in fold_results)
+    n_covered_total = sum(f["n_covered_events"] for f in fold_results)
+    aggregate = {
+        "n_holdout_events": n_targets_total,
+        "n_covered_events": n_covered_total,
+        "coverage_of_truth": (n_covered_total / n_targets_total) if n_targets_total else None,
+        "brier_score": brier_score([p["predicted"] for p in pooled_predictions], [p["observed"] for p in pooled_predictions]),
+        "calibration_curve": calibration_curve(pooled_predictions, n_bins=n_bins),
+    }
+    return {
+        "mode": "kfold",
+        "k": k,
+        "seed": seed,
+        "cutoff_years": None,
+        "match_threshold": match_threshold,
+        "resolution": resolved_resolution.value,
+        "n_holdout_events": n_targets_total,
+        "n_covered_events": n_covered_total,
+        "coverage_of_truth": aggregate["coverage_of_truth"],
+        "coverage_note": None,
+        "brier_score": aggregate["brier_score"],
+        "calibration_curve": aggregate["calibration_curve"],
+        "predictions": pooled_predictions,
+        "constants": {"W": constants.W, "lam": constants.lam},
+        "folds": fold_results,
+        "aggregate": aggregate,
+    }
+
+
+def choose_holdout_mode(corpus: Corpus) -> tuple[str, str]:
+    """`("discovery_date", reason)` when at least one ground-truth event's
+    `discovery_year` differs from its own `year` (a real discovery lag
+    `main.tex` §9's holdout design is built to test); `("kfold", reason)`
+    otherwise, `discovery_year == year` for every event making
+    `holdout_by_discovery_date`'s own split empty on one side no matter
+    the cutoff chosen. `reason` is one sentence, meant to be read
+    straight into `CALIBRATION.md` (`run_calibration`, `write_calibration`)."""
+    events = corpus.ground_truth
+    if not events:
+        return "kfold", "this corpus has no ground-truth events to check a discovery lag against; k-fold needs no discovery date at all."
+    lagged = [g for g in events if g.discovery_year != g.year]
+    if lagged:
+        return (
+            "discovery_date",
+            f"{len(lagged)} of {len(events)} ground-truth events carry a discovery_year "
+            "distinct from their own year, a real discovery lag main.tex §9's holdout "
+            "design is built to test; discovery-date holdout stays informative here.",
+        )
+    return (
+        "kfold",
+        f"all {len(events)} ground-truth events carry discovery_year == year (this "
+        "corpus's own documented simplification), so holdout_by_discovery_date splits "
+        "every one of them onto one side of any cutoff and run_holdout scores nothing; "
+        "k-fold hides evidence directly instead, needing no discovery date at all.",
+    )
+
+
+def run_calibration(
+    corpus: Corpus,
+    constants: Constants,
+    *,
+    cutoff_years: int | None = None,
+    k: int = DEFAULT_KFOLD_K,
+    seed: int = 0,
+    match_threshold: float = DEFAULT_MATCH_THRESHOLD,
+    n_bins: int = 10,
+    resolution: Resolution | None = None,
+) -> dict[str, Any]:
+    """`choose_holdout_mode(corpus)`, then the matching holdout
+    (`run_holdout` for `"discovery_date"`, `holdout_kfold` for
+    `"kfold"`), with `result["mode"]`/`result["mode_reason"]` set from
+    that choice, for `write_calibration` to report. `cutoff_years` left
+    `None` (the default) falls back to the corpus's own median discovery
+    year when discovery-date mode is chosen (`hte.runner.
+    run_campaign`'s own prior default, `_default_cutoff`); an explicit
+    `cutoff_years` still pins the cutoff when that mode is the one
+    chosen, and is unused when k-fold is chosen instead, since
+    k-fold reads no date at all. `hte.runner.run_campaign` is this
+    function's own caller; a caller wanting one mode unconditionally
+    calls `run_holdout` or `holdout_kfold` directly instead.
+    """
+    mode, reason = choose_holdout_mode(corpus)
+    if mode == "discovery_date":
+        cutoff = cutoff_years if cutoff_years is not None else _default_discovery_cutoff(corpus)
+        result = run_holdout(corpus, constants, cutoff_years=cutoff, match_threshold=match_threshold, n_bins=n_bins)
+    else:
+        result = holdout_kfold(
+            corpus, constants, k=k, seed=seed, match_threshold=match_threshold,
+            n_bins=n_bins, resolution=resolution,
+        )
+    result["mode"] = mode
+    result["mode_reason"] = reason
+    return result
+
+
+def _default_discovery_cutoff(corpus: Corpus) -> int:
+    years = sorted(g.discovery_year for g in corpus.ground_truth)
+    return years[len(years) // 2] if years else 2000
+
+
 @dataclass(frozen=True)
 class GridResult:
     W: float
@@ -250,18 +592,31 @@ def fit_constants(
     corpus: Corpus,
     grid: Mapping[str, Sequence[float]],
     *,
-    cutoff_years: int,
+    cutoff_years: int | None = None,
+    k: int = DEFAULT_KFOLD_K,
+    seed: int = 0,
 ) -> dict[str, Any]:
     """Grid search over `grid["W"]`, `grid["lam"]`, and an optional
     `grid["tier_scale"]` (a single global multiplier on every tier weight,
     standing in for `TIMELINE-AND-COMBINATORICS-SPEC.md`'s six-value
     `tier_weight` table so the grid stays a tractable product rather than
-    a six-dimensional sweep), minimizing `run_holdout`'s Brier score at
-    `cutoff_years`. `mu` is not part of the grid; see the module docstring.
+    a six-dimensional sweep), minimizing the chosen holdout's own Brier
+    score. `mu` is not part of the grid; see the module docstring.
+
+    An explicit `cutoff_years` pins discovery-date holdout at that cutoff
+    for every grid point, `run_holdout`'s own contract, unchanged.
+    `cutoff_years` left `None` (the default) instead uses `run_calibration`'s
+    own auto-picked mode (`choose_holdout_mode`) for every grid point,
+    `k`/`seed` passed through when that mode is k-fold: this is the
+    "`fit_constants` must use the chosen mode" half of
+    `bkt-hte-calibration-redesign`, a caller wanting the old
+    discovery-date-only behavior unconditionally still gets it by passing
+    `cutoff_years` explicitly.
+
     Returns `{"best", "results"}`, `results` sorted best-first, `best`
     `None` when the grid or the holdout itself produced no score to
-    compare (an empty grid, or a corpus with no covered event at
-    `cutoff_years`).
+    compare (an empty grid, or a corpus with no covered event under the
+    chosen mode).
     """
     w_values = list(grid.get("W", [Constants().W]))
     lam_values = list(grid.get("lam", [Constants().lam]))
@@ -271,7 +626,10 @@ def fit_constants(
     for w, lam, scale in product(w_values, lam_values, scale_values):
         tier_weight = {t: belief.TIER_WEIGHT[t] * scale for t in Tier}
         constants = Constants(W=w, lam=lam, tier_weight=tier_weight)
-        score = run_holdout(corpus, constants, cutoff_years=cutoff_years)["brier_score"]
+        if cutoff_years is not None:
+            score = run_holdout(corpus, constants, cutoff_years=cutoff_years)["brier_score"]
+        else:
+            score = run_calibration(corpus, constants, k=k, seed=seed)["brier_score"]
         results.append(GridResult(W=w, lam=lam, tier_scale=scale, brier_score=score))
 
     scored = [r for r in results if r.brier_score is not None]
@@ -284,23 +642,45 @@ def fit_constants(
 
 
 def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
-    """Writes `result` (`run_holdout`'s own return shape, optionally with
-    a `"fit"` key holding `fit_constants`'s own output) to
-    `out_dir/calibration.json` and a human-readable `out_dir/
-    CALIBRATION.md`."""
+    """Writes `result` (`run_holdout`'s or `holdout_kfold`'s own return
+    shape, either optionally carrying a `"fit"` key with `fit_constants`'s
+    own output) to `out_dir/calibration.json` and a human-readable
+    `out_dir/CALIBRATION.md`. When `result["coverage_note"]` is set
+    (`_low_coverage_note`, low or zero `coverage_of_truth`),
+    `CALIBRATION.md` carries it under its own "Why coverage is low"
+    heading rather than reporting the bare number with no explanation.
+    When `result["mode"]` is set (`run_calibration`'s own addition over
+    either bare holdout function), `CALIBRATION.md` opens with the chosen
+    mode and `result["mode_reason"]`; when `result["folds"]` is also set
+    (`holdout_kfold`'s own per-fold detail), each fold's own coverage and
+    Brier score get their own table row. Both are additive: a plain
+    `run_holdout`/`holdout_kfold` result with neither key renders exactly
+    as before.
+    """
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     (out / "calibration.json").write_text(json.dumps(result, indent=2))
 
-    lines = [
-        "# Calibration",
-        "",
+    lines = ["# Calibration", ""]
+    mode = result.get("mode")
+    if mode:
+        lines.append(f"Mode: {mode}")
+        reason = result.get("mode_reason")
+        if reason:
+            lines.append(f"Reason: {reason}")
+        lines.append("")
+    lines += [
         f"Cutoff year: {result.get('cutoff_years')}",
         f"Held-out events: {result.get('n_holdout_events')}",
         f"Covered by a matching pre-cutoff placement: {result.get('n_covered_events')} "
         f"(coverage of truth: {result.get('coverage_of_truth')})",
         f"Brier score: {result.get('brier_score')}",
         "",
+    ]
+    note = result.get("coverage_note")
+    if note:
+        lines += ["## Why coverage is low", "", note, ""]
+    lines += [
         "## Calibration curve",
         "",
         "| Bin | Count | Mean predicted | Mean observed |",
@@ -308,6 +688,15 @@ def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
     ]
     for b in result.get("calibration_curve", []):
         lines.append(f"| [{b['bin_low']:.1f}, {b['bin_high']:.1f}) | {b['count']} | {b['mean_predicted']} | {b['mean_observed']} |")
+
+    folds = result.get("folds")
+    if folds:
+        lines += ["", "## Per-fold", "", "| Fold | Held out | Covered | Coverage of truth | Brier score |", "|---|---|---|---|---|"]
+        for f in folds:
+            lines.append(
+                f"| {f['fold']} | {f['n_holdout_events']} | {f['n_covered_events']} | "
+                f"{f['coverage_of_truth']} | {f['brier_score']} |"
+            )
 
     fit = result.get("fit")
     if fit:
@@ -324,6 +713,7 @@ def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
 
 
 __all__ = [
-    "holdout_by_discovery_date", "run_holdout", "fit_constants", "write_calibration",
-    "brier_score", "calibration_curve", "DEFAULT_MATCH_THRESHOLD",
+    "holdout_by_discovery_date", "run_holdout", "holdout_kfold", "choose_holdout_mode",
+    "run_calibration", "fit_constants", "write_calibration",
+    "brier_score", "calibration_curve", "DEFAULT_MATCH_THRESHOLD", "DEFAULT_KFOLD_K",
 ]

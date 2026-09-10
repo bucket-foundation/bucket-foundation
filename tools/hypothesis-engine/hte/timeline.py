@@ -192,7 +192,25 @@ def relate(a: Interval, b: Interval) -> AllenRelation:
     `relate_total` (trivially, since this is an ordinary function) plus
     `relate_before_iff` through `relate_metBy_iff`'s closed-arithmetic
     characterization of the first four branches, carried over unchanged.
+
+    One special case sits ahead of that inherited order: the Lean
+    `relate` (`Bucket.Timeline.relate`) checks `meets`/`metBy` before
+    `equal` too, so two zero-length intervals collapsed onto the same
+    point (`a.start = a.stop = b.start = b.stop`) satisfy the `meets`
+    condition first there as well; `relate_converse_meets_metBy`'s own
+    `hnondeg` hypothesis exists precisely to exclude that one collision
+    from the converse-symmetry proof, rather than to declare `meets` the
+    intended answer for it (FINDING-2026-09-10-001,
+    `tests/swarm/FINDINGS-2026-09-10.md`). This function special-cases
+    exactly that collision to `equal` up front, restoring `relate`'s own
+    reflexivity (`relate(a, a) == equal` for every `a`, zero-length
+    included) and converse symmetry for every pair with no exclusion.
+    The general order below is otherwise unchanged from the Lean source:
+    this is a narrowly-scoped, Python-only divergence added ahead of the
+    inherited branch chain, which itself keeps its original order.
     """
+    if a.start == a.end and b.start == b.end and a.start == b.start:
+        return AllenRelation.EQUAL
     if a.end < b.start:
         return AllenRelation.BEFORE
     if b.end < a.start:

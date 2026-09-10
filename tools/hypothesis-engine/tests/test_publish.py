@@ -129,6 +129,43 @@ def test_publish_live_mode_no_pdf_skips_rclone(tmp_path, monkeypatch):
     assert all(c[0] != "rclone" for c in calls)
 
 
+def test_publish_excludes_a_decoy_publish_json_from_git_add(tmp_path, monkeypatch):
+    """A `paper_dir` already carrying a `PUBLISH.json` from a prior
+    attempt (a dry-run, or a live publish retried after a partial
+    failure) must not have that leftover file swept into `git add -f`:
+    it carries the prior attempt's own commit sha and share link, not
+    this one's (PR #4 review finding, `_paper_files()` did not exclude
+    `PUBLISH.json` the way it already excluded `main.log`)."""
+    run_dir = _run_dir(tmp_path)
+    paper_dir = _paper_dir(tmp_path, with_pdf=True)
+    (paper_dir / "PUBLISH.json").write_text(
+        json.dumps({"commit_sha": "decoy0000", "share_link": "https://drive.google.com/decoy"})
+    )
+
+    calls = []
+
+    class FakeCompleted:
+        def __init__(self, stdout):
+            self.stdout = stdout
+
+    def fake_run(cmd, **kwargs):
+        calls.append(cmd)
+        if cmd[:2] == ["git", "rev-parse"]:
+            return FakeCompleted("abc1234\n")
+        if cmd[:2] == ["rclone", "link"]:
+            return FakeCompleted("https://drive.google.com/fake\n")
+        return FakeCompleted("")
+
+    monkeypatch.setattr(publish, "_run", fake_run)
+
+    result = publish.publish(run_dir, paper_dir, dry_run=False)
+
+    git_add_call = calls[0]
+    assert git_add_call[:2] == ["git", "add"]
+    assert not any(arg.endswith("PUBLISH.json") for arg in git_add_call), git_add_call
+    assert not any("PUBLISH.json" in f for f in result["files"])
+
+
 def test_mint_hook_always_raises(tmp_path):
     with pytest.raises(NotImplementedError, match="wallet key"):
         publish.mint_hook(tmp_path)

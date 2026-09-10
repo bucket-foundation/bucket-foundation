@@ -82,7 +82,7 @@ def test_quantum_history_evidence_carries_extracted_slots_and_intervals():
 
 def test_quantum_history_planck_milestone_resolves_actor_and_year():
     corpus = quantum_history.ingest()
-    planck_items = [e for e in corpus.evidence if e.actor == "planck-1900"]
+    planck_items = [e for e in corpus.evidence if e.actor == "planck"]
     assert planck_items
     assert any(e.interval is not None and e.interval.start <= 1900 <= e.interval.end for e in planck_items)
 
@@ -92,7 +92,7 @@ def test_extract_slots_matches_actor_by_word_overlap():
     slots = quantum_history._extract_slots(
         "1900 -- Max Planck proposes energy quantization to explain the blackbody spectrum.", vocab,
     )
-    assert slots["actor"] == "planck-1900"
+    assert slots["actor"] == "planck"
     assert slots["interval"] == Interval(start=1900, end=1900)
     assert slots["stance"] == Stance.POSITIVE
 

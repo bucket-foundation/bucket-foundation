@@ -133,12 +133,30 @@ def timeline_views(
     return {"bins": bins_out, "event_views": event_views, "pair_views": pair_views}
 
 
+def _fmt(value: float | None, decimals: int) -> str:
+    """`value` rounded to `decimals` places, or the literal string
+    `"None"` when there is nothing to score (an unopined or unrated
+    hypothesis, `_posterior`/`elos.get`'s own missing-safe reading):
+    `TIMELINE.md`'s own display layer, never `timeline.json`, which
+    keeps every value at full precision for a caller that re-derives
+    from it."""
+    return f"{value:.{decimals}f}" if value is not None else "None"
+
+
 def write_views(views: dict, out_dir: str | Path) -> None:
     """Writes `views` to `out_dir/timeline.json` verbatim, and a human-
     readable `out_dir/TIMELINE.md` table alongside it, creating `out_dir`
     if it does not exist. `timeline.json` round trips: `json.loads` over
     its own text reproduces `views` exactly, since every value in it is a
-    plain JSON type, string, number, bool, `None`, list, or dict."""
+    plain JSON type, string, number, bool, `None`, list, or dict.
+
+    `TIMELINE.md`'s own table lists every one of a bin's own `ranked_
+    hypotheses` (`timeline_views`'s `top_k` is where display pruning, if
+    any, already happened; this function prunes nothing further), each
+    row's posterior rounded to 3 decimals and its Elo to 1, both purely
+    a display rounding: `timeline.json` alongside it keeps every value
+    at the full precision `timeline_views` computed.
+    """
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     (out / "timeline.json").write_text(json.dumps(views, indent=2))
@@ -151,7 +169,8 @@ def write_views(views: dict, out_dir: str | Path) -> None:
         lines.append("|---|---|---|---|")
         for entry in b["ranked_hypotheses"]:
             lines.append(
-                f"| {entry['hypothesis_id']} | {entry['slots']} | {entry['posterior']} | {entry['elo']} |"
+                f"| {entry['hypothesis_id']} | {entry['slots']} | "
+                f"{_fmt(entry['posterior'], 3)} | {_fmt(entry['elo'], 1)} |"
             )
         lines.append("")
 

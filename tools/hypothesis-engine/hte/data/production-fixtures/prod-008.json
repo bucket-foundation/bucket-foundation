@@ -1,0 +1,50 @@
+{
+  "id": "prod-008",
+  "created_at": "2026-08-01T00:00:00Z",
+  "author_role": "student",
+  "grade_band": "11-12",
+  "school_or_district_id": "district-b",
+  "research_question": "RQ27: does locking a production's evaluation criteria before check runs reduce bias, the way Registered Reports do?",
+  "claims": [
+    {
+      "text": "Locking a production's evaluation criteria before its check step runs, the way Registered Reports lock analysis plans before results are known, should reduce hindsight bias in which spans get accepted as support.",
+      "stance": "supports",
+      "slots": {
+        "actor": "student-researcher",
+        "action": "locked",
+        "object": "evaluation-criteria",
+        "place": "classroom-workspace",
+        "mechanism": "registered-reports-locking"
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-lit-chambers-2013",
+          "locator": "introduction",
+          "quote": "Registered Reports lock a study's analysis plan before results are known, reducing publication and hindsight bias.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "doi",
+              "value": "10.1016/j.cortex.2012.12.016"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2026-08-01"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}

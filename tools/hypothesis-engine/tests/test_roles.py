@@ -87,6 +87,50 @@ def test_preservation_critique_reads_table(monkeypatch):
     assert result["detectability_adjustment"] == 0.8
 
 
+def _distinct_hyps(corpus, n: int) -> list[Hypothesis]:
+    """`n` hypotheses over the fixture vocab's own 3 actors x 2
+    mechanisms (6 distinct addresses, `_corpus()`'s own full slot pool),
+    each carrying a distinguishable `short_id` for order-checking."""
+    combos = [(a, m) for a in ("alpha-team", "beta-team", "unverified-observer")
+              for m in ("transit-timing-method", "photometric-method")]
+    return [_hyp(corpus, actor=a) if m == "transit-timing-method" else Hypothesis.from_placement(
+        Placement(actor=a, action="sighted", object="comet-q", place="alpha-observatory",
+                  mechanism=m, interval=Interval(start=1950, end=1950)),
+        corpus.vocab,
+    ) for a, m in combos[:n]]
+
+
+def test_preservation_critique_many_matches_serial_calls_in_order(monkeypatch, tmp_path):
+    """`bkt-hte-throughput`: `preservation_critique_many` over N
+    hypotheses must return the identical per-hypothesis results
+    `preservation_critique` would, one call at a time, in the same
+    order, whichever worker finished first."""
+    corpus = _corpus()
+    hyps = _distinct_hyps(corpus, 6)
+    table = {"material": 0.8}
+
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
+        assert role == "preservation_critic"
+        for h in hyps:
+            if f"actor={h.content.actor!r}" in prompt and f"mechanism={h.content.mechanism!r}" in prompt:
+                tag = h.short_id
+                break
+        else:
+            raise AssertionError(f"no known hypothesis found in prompt: {prompt!r}")
+        return {
+            "expected_evidence": [f"a record for {tag}"], "could_have_survived": True,
+            "detectability_adjustment": 0.8, "rationale": tag,
+        }
+
+    _patch(monkeypatch, fake)
+    serial = [roles.preservation_critique(h, table, cache_dir=str(tmp_path / "serial")) for h in hyps]
+    many = roles.preservation_critique_many(hyps, table, cache_dir=str(tmp_path / "many"), workers=4)
+
+    assert len(many) == 6
+    assert [r["rationale"] for r in many] == [h.short_id for h in hyps]
+    assert [r["rationale"] for r in many] == [r["rationale"] for r in serial]
+
+
 def test_judge_returns_clipped_float(monkeypatch):
     corpus = _corpus()
     a = _hyp(corpus, actor="alpha-team")

@@ -333,7 +333,7 @@ are the two pieces still open.
 
 ```bash
 cd tools/hypothesis-engine
-python3 -m pytest -q
+make test
 ```
 
 `tests/conftest.py` puts this directory on `sys.path`, so no install step is
@@ -353,6 +353,89 @@ values are load-bearing for that cache (`generate_n`, `combinatorial_max_items`,
 the campaign name itself): changing any of them changes a prompt's text,
 and so its cache key, and needs the cache regenerated to match.
 
+### Hypothesis profiles and the Makefile
+
+`tests/conftest.py` registers two hypothesis profiles. `fast` (40 examples
+per property, no per-example deadline) is the default. `full` (300
+examples) is opt-in via `HTE_TEST_PROFILE=full`. A handful of properties
+pin their own `max_examples` at the call site regardless of profile
+(documented at each one); those run at their pinned count either way.
+
+| Target | Profile | Scope | Stops on first failure |
+|---|---|---|---|
+| `make test` | `fast` | everything not marked `slow` | yes |
+| `make test-full` | `full` | everything | no |
+| `make test-durations` | `fast` | everything, `--durations=0` | no |
+| `make test-cov` | `full` | everything, branch coverage over `hte/` | no |
+
+`make test`/`make test-full` run under `pytest-xdist` (`-n auto`, one
+worker per CPU core) when it is installed, serially otherwise; it is not
+installed in this environment as of 2026-09-10 (`pip install --user
+pytest-xdist`, no sudo needed).
+
+A test earns the `slow` mark in `tests/conftest.py`'s `_SLOW_NODEIDS` by
+measured duration: anything that took longer than 2 seconds under the
+`fast` profile in a `make test-durations` run, whether from a pinned
+`max_examples=300`, a real fixture cost (a LaTeX/matplotlib subprocess, a
+20-seed campaign fixture, an on-disk parquet write), or per-example work.
+The list lives in one place (`tests/conftest.py`) rather than as
+individual `@pytest.mark.slow` decorators scattered across test files;
+refresh it by rerunning `make test-durations` and updating the set by
+hand. As of 2026-09-10, 13 of 661 tests carry the mark.
+
+Wall time on this machine, 2026-09-10:
+
+| Run | Time | Result |
+|---|---|---|
+| Whole suite, before this change (implicit 300 examples throughout) | 128.2s | 655 passed, 2 failed |
+| `make test-full` (full profile, everything) | 127.1s | 659 passed, 2 failed |
+| `fast` profile, `not slow`, run to completion | 59.2s | 646 passed, 2 failed, 13 deselected |
+
+`make test` itself carries `-x` and currently stops at 38.6s on the first
+of those 2 failures; the completion time above runs the same `fast`/`not
+slow` selection without `-x` for a fair before/after comparison. Both
+failures predate this profile/Makefile work and sit outside it:
+`tests/swarm/test_unknowns_props.py::test_surprise_is_empty_when_every_item_is_linked`
+and its neighbor `test_surprise_flags_an_item_naming_no_materialized_address`
+each do `from conftest import evidence_item`. Neither `tests/swarm/` nor
+`tests/swarm2/` carries an `__init__.py`, so pytest's default import mode
+gives both directories' `conftest.py` the same bare module name
+`conftest`; whichever one is imported second during collection wins that
+name in `sys.modules` for every later bare `from conftest import ...` in
+the run, and `evidence_item` is defined only in `tests/swarm/conftest.py`.
+Fixing it belongs to whoever owns `tests/swarm/test_unknowns_props.py`.
+
+`make test-cov` writes the standard HTML report to `.coverage-html/`
+(gitignored) and `tests/COVERAGE.md`: the 15 files with the lowest
+coverage percentage, each with its uncovered line ranges, as the target
+list for the next test swarm.
+
+## Corpora
+
+Every corpus below is registered in both `hte.cli._CORPUS_LOADERS` and
+`hte.runner._CORPUS_LOADERS` (kept as two separate dicts, one per
+module's own `--corpus`/`cfg["corpus"]` contract), so any of them runs
+through `campaign run`, `calibrate`, and `hte-synth`-style scripted use
+the same way.
+
+| `--corpus` | Loader | Ground truth | Holdout mode picked |
+|---|---|---|---|
+| `quantum-history` | `hte.corpus.quantum_history.ingest` | 105 events, `discovery_year == year` | k-fold |
+| `fixtures` | `hte.corpus.fixtures.build` | 6 events, `discovery_year == year` | k-fold |
+| `education-atlas` | `hte.corpus.education_atlas.load` | 125 severity-flagged problem rows, `discovery_year == year` | k-fold |
+| `production` | `hte.corpus.production.load` | 8 accepted claims, `discovery_year` = review-acceptance date | discovery-date |
+
+"Holdout mode picked" is `hte.calibrate.choose_holdout_mode`'s own read
+of each corpus's own ground truth (`bkt-hte-calibration-redesign`): every
+corpus above except `production` sets `discovery_year == year` for every
+event, so `hte.calibrate.holdout_by_discovery_date` would split every
+one of them onto one side of any cutoff and score nothing;
+`hte.calibrate.run_calibration` picks `hte.calibrate.holdout_kfold`
+instead, and the reason lands in that run's own `CALIBRATION.md`.
+`production` carries a real discovery lag (a claim's own review-
+acceptance date, distinct from its subject date), so discovery-date
+holdout stays informative there and is what gets picked.
+
 ## Running a real campaign
 
 ```bash
@@ -361,6 +444,10 @@ python3 -m hte.cli campaign run --corpus quantum-history --seeds 3
 python3 -m hte.cli calibrate --corpus quantum-history --fit
 python3 -m hte.cli views runs/default/<timestamp>/
 ```
+
+Any other registered corpus runs the same way, `--corpus education-atlas`
+or `--corpus production` in place of `--corpus quantum-history` above
+(`docs/K12-INTEGRATION.md`, `docs/RESEARCH-OS-INTEGRATION.md`).
 
 or, once installed (`pip install -e .`), the `hte` console script directly.
 Every LLM call `run_campaign` makes shells out to the `claude` CLI already

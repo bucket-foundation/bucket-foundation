@@ -1,0 +1,54 @@
+{
+  "id": "prod-006",
+  "created_at": "2026-04-10T00:00:00Z",
+  "author_role": "agent",
+  "grade_band": "11-12",
+  "school_or_district_id": "district-a",
+  "research_question": "RQ25: does reliability-weighted aggregation of many student slot judgments converge on expert-grade output, the way Galaxy Zoo did for morphology?",
+  "claims": [
+    {
+      "text": "Weighting many students' filled ACTOR and MECHANISM slots by each student's own track record converges on the same reading an expert extraction would give, the way distributed volunteer classification converged on expert galaxy morphology.",
+      "stance": "supports",
+      "slots": {
+        "actor": "research-agent-contributor",
+        "action": "converged",
+        "object": "slot-extraction-agreement",
+        "place": "engine-pipeline",
+        "mechanism": "reliability-weighting"
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-lit-lintott-2008",
+          "locator": "abstract",
+          "quote": "Independent volunteer classifications, weighted by reliability, converged on expert-grade morphological classification at scale.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "doi",
+              "value": "10.1111/j.1365-2966.2008.13689.x"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "peer-reviewed",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2026-04-10"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2026-04-17"
+      }
+    ]
+  },
+  "provenance": "phase-0-education-atlas-pilot"
+}

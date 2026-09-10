@@ -105,20 +105,49 @@ class Opinion:
 
 def fuse(o1: Opinion, o2: Opinion) -> Opinion:
     """Jøsang's cumulative fusion of two independent opinions sharing one
-    base rate (`Bucket.Belief.fuse`). The denominator vanishes only when
-    both opinions are fully dogmatic (`u1 = u2 = 0`); that case returns the
-    neutral opinion (`u := 1`) rather than dividing by zero, since
-    cumulative fusion has no standard reading for two opinions that both
-    claim total certainty."""
-    denom = o1.u + o2.u - o1.u * o2.u
-    if denom == 0:
+    base rate (`Bucket.Belief.fuse`, Jøsang, *Subjective Logic*, the
+    cumulative-fusion operator's own dogmatic-opinion case). The
+    denominator `u1 + u2 - u1*u2` vanishes only when both opinions are
+    fully dogmatic (`u1 = u2 = 0`), and that case splits in two: two
+    dogmatic opinions that AGREE (same `b`, same `d`) fuse to that shared
+    verdict unchanged, since there is nothing left to reconcile; two
+    dogmatic opinions that DISAGREE have no fused answer of their own
+    under cumulative fusion (Jøsang's own formalism leaves this
+    undefined), so that case alone falls back to the neutral vacuous
+    opinion (`u := 1`) rather than dividing by zero
+    (FINDING-2026-09-10-003, `tests/swarm/FINDINGS-2026-09-10.md`).
+    """
+    if o1.u == 0.0 and o2.u == 0.0:
+        if o1.b == o2.b and o1.d == o2.d:
+            return Opinion(b=o1.b, d=o1.d, u=0.0, a=(o1.a + o2.a) / 2)
         return Opinion(b=0.0, d=0.0, u=1.0, a=o1.a)
+    denom = o1.u + o2.u - o1.u * o2.u
     b = (o1.b * o2.u + o2.b * o1.u) / denom
     d = (o1.d * o2.u + o2.d * o1.u) / denom
     u = (o1.u * o2.u) / denom
+    # The combined base rate's own denominator, `a_denom = u1 + u2 -
+    # 2*u1*u2`, is checked against a relative epsilon rather than exact
+    # zero: when u1 sits a handful of floating-point ULPs below 1.0 (a
+    # realistic shape once pooled evidence weight dwarfs W) and u2 == 1.0
+    # (the vacuous opinion), a_denom lands a few ULPs above zero instead
+    # of exactly zero, so the exact-equality guard used to let the
+    # division run anyway and catastrophically amplify that rounding
+    # error (FINDING-2026-09-10-004). Past the epsilon window, the
+    # fallback is the mean base rate weighted by each opinion's own
+    # confidence `1 - u` (an opinion at u == 1 carries no information
+    # about its own base rate and is weighted out entirely), rather than
+    # a plain unweighted average; when both weights are zero too (both
+    # opinions fully vacuous, `u1 = u2 = 1`, the one case this epsilon
+    # window still reaches exactly), that reduces to the plain average.
     a_denom = o1.u + o2.u - 2 * o1.u * o2.u
-    if a_denom == 0:
-        a = (o1.a + o2.a) / 2
+    if abs(a_denom) < 1e-9:
+        weight1 = 1.0 - o1.u
+        weight2 = 1.0 - o2.u
+        total_weight = weight1 + weight2
+        if total_weight > 0:
+            a = (weight1 * o1.a + weight2 * o2.a) / total_weight
+        else:
+            a = (o1.a + o2.a) / 2
     else:
         a = (o1.a * o2.u + o2.a * o1.u - (o1.a + o2.a) * o1.u * o2.u) / a_denom
     return Opinion(b=b, d=d, u=u, a=a)
@@ -230,11 +259,20 @@ def detectability(table: DetectabilityTable, period: str, kind: EvidenceKind, de
 
 
 def detectability_scale(e_raw_absence: float, delta: float) -> float:
-    """`e_absence = delta * e_raw_absence` (`Eq. detectability`): absence of
-    evidence read as a likelihood ratio, scaled by detectability in place of
-    a flat tier. As `delta -> 0` the ratio approaches 1 and absence stops
-    discriminating; as `delta -> 1` it recovers the flat-tier treatment as
-    its high-detectability limit."""
+    """`e_absence = delta * e_raw_absence` (`Eq. detectability`, `main.tex`
+    §Belief model: "e_absence = delta(period, medium, region) *
+    e_raw-absence"): absence of evidence read as a likelihood ratio,
+    scaled by detectability in place of a flat tier. As `delta -> 0` the
+    ratio itself goes to 0, not 1: the absence item's weight vanishes, so
+    it stops contributing to either side of the pooled weight rather than
+    turning neutral. As `delta -> 1` it recovers the flat-tier treatment
+    as its high-detectability limit, `e_absence == e_raw_absence`.
+
+    (FINDING-2026-09-10-002, `tests/swarm/FINDINGS-2026-09-10.md`: an
+    earlier revision of this docstring claimed the `delta -> 0` limit was
+    1, contradicting this same formula; the formula is what `main.tex`'s
+    own `eq:detectability` states, so the docstring was the one fixed.)
+    """
     return delta * e_raw_absence
 
 

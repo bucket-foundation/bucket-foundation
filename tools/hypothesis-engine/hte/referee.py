@@ -26,10 +26,17 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-from . import llm
+from . import artifacts, llm
 from .paper import BuildResult, build_pdf
 
 MAX_ITERATIONS = 4
+
+# `hte.paper._MAIN_TEX`'s own header comment names the run directory a
+# paper was emitted from: "...self-report.json under\n% <run_dir>).
+# Load order...". Reading it back lets `check_run_provenance` below
+# confirm that run directory still loads clean through `hte.artifacts.
+# load_run`, without `referee` itself taking a `run_dir` parameter.
+_RUN_DIR_COMMENT_RE = re.compile(r"%\s*(\S+)\)\.\s*Load order", re.MULTILINE)
 
 REFEREE_SCHEMA: dict[str, Any] = {
     "type": "object",
@@ -164,6 +171,29 @@ def check_bibliography(refs_bib_path: Path) -> dict[str, Any]:
         else:
             problems.append(e["key"])
     return {"ok": not problems, "problems": problems, "documented_exceptions": exceptions, "n_entries": len(entries)}
+
+
+def find_run_dir(tex: str) -> Path | None:
+    """The run directory `hte.paper.emit_paper` named in `tex`'s own
+    header comment, or `None` when `tex` carries no such comment (a
+    fixture paper, or a paper built by an older emitter)."""
+    m = _RUN_DIR_COMMENT_RE.search(tex)
+    return Path(m.group(1)) if m else None
+
+
+def check_run_provenance(run_dir: Path) -> dict[str, Any]:
+    """`papers/PAPER-STANDARDS.md`'s "every number traces to a source"
+    rule, applied to this package's own generated-from-run reports: the
+    run directory `run_dir` (`find_run_dir`'s own read of this paper's
+    header comment) still loads clean through `hte.artifacts.load_run`,
+    confirming the artifact set a reader would need to verify this
+    paper's own numbers against has not been deleted, moved, or
+    corrupted since `emit_paper` ran."""
+    try:
+        artifacts.load_run(run_dir)
+        return {"ok": True, "run_dir": str(run_dir)}
+    except Exception as exc:  # noqa: BLE001 - any load failure is this check's own finding
+        return {"ok": False, "run_dir": str(run_dir), "error": f"{type(exc).__name__}: {exc}"}
 
 
 def run_voice_lint(paper_dir: Path, *, fix: bool) -> dict[str, Any]:
@@ -368,6 +398,16 @@ def referee(paper_dir: str | Path, *, cache_dir: str | None = None, replay_only:
             "issue": f"accepted exception, self-citation to an internal companion report with no DOI: {', '.join(bib_check['documented_exceptions'])}",
             "fix": "none needed; disclosed in refs.bib's own header comment",
         })
+
+    run_dir = find_run_dir(tex_text)
+    if run_dir is not None:
+        provenance_check = check_run_provenance(run_dir)
+        if not provenance_check["ok"]:
+            findings.append({
+                "severity": "High", "location": "main.tex header comment",
+                "issue": f"the run directory this paper reports on no longer loads: {provenance_check['error']}",
+                "fix": "not auto-fixed: the run directory itself is missing or corrupted, nothing in this paper's own text can repair that",
+            })
 
     run_voice_lint(paper_dir, fix=True)
     voice_after = run_voice_lint(paper_dir, fix=False)

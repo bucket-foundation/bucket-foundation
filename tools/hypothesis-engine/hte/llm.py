@@ -20,16 +20,46 @@ the same model and prompt is free and returns the exact answer the first
 run got, and a `replay_only=True` run (`hte campaign run --replay-only`,
 every test in this package) executes from committed cache files with no
 subprocess call at all.
+
+This module adds one more mode, orthogonal to the cache:
+setting the `HTE_LLM_MODE` environment variable to `"fake"`, or passing
+`complete(..., mode="fake")` directly, dispatches every call straight to
+`hte.fakellm.complete` instead of `claude -p`, no subprocess, no cache
+read or write either way. This is what lets `hte.cli_synth`'s random
+campaigns and `tests/campaigns/test_random_campaigns.py` run the whole
+engine loop, every role included, in seconds with no network access and
+no `claude` CLI on the machine at all.
+
+`complete_many()` maps `complete()` over a list of prompts through
+`hte.parallel.pmap`, `hte.parallel.configure`'s own worker count and cap
+applied, instead of calling each one strictly in sequence: the pattern
+`bkt-hte-throughput` was filed against, `hte.runner.run_campaign`'s
+critic, preservation critique, and judge calls each running one
+`claude -p` subprocess at a time, 20-40 seconds apiece, for every one of
+a few hundred hypotheses. This module also raises `hte.parallel.
+RateLimit` (re-exported here as `RateLimit`) when a CLI response's own
+stdout or stderr carries a 429, "rate limit", "spend limit", or "usage
+limit" marker, so `pmap` can pause every worker instead of treating a
+shared account limit as one item's own failure; `stats()` reports, per
+role, how many calls this process has made, how many of those were cache
+hits, how many hit a rate-limit pause, and their cumulative wall time,
+for whoever wires a campaign's own `MANIFEST.json` to carry it.
 """
 from __future__ import annotations
 
 import hashlib
 import json
+import os
+import re
 import subprocess
+import threading
+import time
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
+
+from .parallel import RateLimit, pmap
 
 MODEL_POLICY_PATH = Path(__file__).parent / "data" / "model-policy.json"
 
@@ -71,6 +101,121 @@ class LLMInvocationError(LLMError):
 class LLMInvalidResponseError(LLMError):
     """The response was not JSON, or was missing a required schema key,
     on both the first attempt and the one corrective retry."""
+
+
+# Every marker `_check_rate_limit` treats as a shared account limit rather
+# than an ordinary CLI or model failure. `429` is matched at a word
+# boundary (`\b429\b`) so a plain year or count that happens to end in
+# those three digits ("1429", "42900") never trips it; the other three are
+# matched as a phrase, case-insensitively, with `[ _-]?` between the two
+# words so "rate limit", "rate_limit", and "rate-limit" all match the one
+# pattern.
+_RATE_LIMIT_PATTERNS = [
+    re.compile(r"\b429\b"),
+    re.compile(r"rate[ _-]?limit", re.IGNORECASE),
+    re.compile(r"spend[ _-]?limit", re.IGNORECASE),
+    re.compile(r"usage[ _-]?limit", re.IGNORECASE),
+]
+
+# A best-effort read of a reset time or window off the same text, for
+# `RateLimit.reset_hint`. Absent from a message that names no such
+# hint, `RateLimitAborted`'s own text then omits the sentence entirely
+# rather than printing "hint: None".
+_RESET_HINT_RE = re.compile(
+    r"((?:retry|try again) after [^\n.]+|resets? (?:at|in) [^\n.]+|"
+    r"try again (?:at|in) [^\n.]+)",
+    re.IGNORECASE,
+)
+
+
+def _check_rate_limit(*texts: str) -> None:
+    """Raise `RateLimit` if any of `texts` carries a 429, rate-limit,
+    spend-limit, or usage-limit marker. Called against a fresh CLI
+    response's own stdout/stderr (and, for an `is_error` envelope, its
+    `result` text) before this module raises anything else for that
+    call, so a rate limit is never mistaken for an ordinary invocation
+    or parse failure."""
+    combined = "\n".join(t for t in texts if t)
+    if not combined:
+        return
+    if any(p.search(combined) for p in _RATE_LIMIT_PATTERNS):
+        hint_match = _RESET_HINT_RE.search(combined)
+        hint = hint_match.group(1).strip() if hint_match else None
+        raise RateLimit(
+            "claude -p reported a rate/spend/usage limit marker in its own "
+            f"output: {combined[:300]!r}",
+            reset_hint=hint,
+        )
+
+
+@dataclass
+class _RoleStats:
+    """One role's own tally inside `stats()`'s snapshot."""
+    calls: int = 0
+    cache_hits: int = 0
+    rate_limit_pauses: int = 0
+    wall_time_s: float = 0.0
+
+    def to_dict(self) -> dict[str, float | int]:
+        return {
+            "calls": self.calls, "cache_hits": self.cache_hits,
+            "rate_limit_pauses": self.rate_limit_pauses, "wall_time_s": self.wall_time_s,
+        }
+
+
+class _StatsRegistry:
+    """Process-wide, thread-safe counters `complete()` updates on every
+    call, `complete_many()` included (it calls `complete()` from several
+    `hte.parallel.pmap` worker threads at once). A fresh Python process
+    starts empty; nothing in this module reads its own counters back, a
+    caller wanting one campaign's own numbers rather than a cumulative
+    total across every campaign this process has run should call
+    `reset_stats()` at the start of a run."""
+
+    def __init__(self) -> None:
+        self._lock = threading.Lock()
+        self._by_role: dict[str, _RoleStats] = {}
+
+    def record_call(self, role: str, *, cache_hit: bool, wall_time_s: float) -> None:
+        with self._lock:
+            row = self._by_role.setdefault(role, _RoleStats())
+            row.calls += 1
+            if cache_hit:
+                row.cache_hits += 1
+            row.wall_time_s += wall_time_s
+
+    def record_rate_limit_pause(self, role: str) -> None:
+        with self._lock:
+            row = self._by_role.setdefault(role, _RoleStats())
+            row.rate_limit_pauses += 1
+
+    def snapshot(self) -> dict[str, dict[str, float | int]]:
+        with self._lock:
+            return {role: row.to_dict() for role, row in self._by_role.items()}
+
+    def reset(self) -> None:
+        with self._lock:
+            self._by_role.clear()
+
+
+_STATS = _StatsRegistry()
+
+
+def stats() -> dict[str, dict[str, float | int]]:
+    """A snapshot of every `complete()` call this process has made so
+    far, keyed by `role`: `calls`, `cache_hits`, `rate_limit_pauses`, and
+    cumulative `wall_time_s`. Safe to call from any thread at any time;
+    the returned dict is a copy, so a caller embedding it into
+    `MANIFEST.json` (`hte.runner.run_campaign`, once wired) is free to
+    mutate it without touching this module's own state."""
+    return _STATS.snapshot()
+
+
+def reset_stats() -> None:
+    """Clear every counter `stats()` reports. A caller starting a fresh
+    campaign calls this first if it wants that campaign's own numbers
+    rather than a cumulative total across this process's prior calls."""
+    _STATS.reset()
 
 
 @lru_cache(maxsize=1)
@@ -168,6 +313,7 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float)
         raise LLMInvocationError("the `claude` CLI is not on PATH") from exc
     except subprocess.TimeoutExpired as exc:
         raise LLMInvocationError(f"claude -p timed out after {timeout}s") from exc
+    _check_rate_limit(proc.stdout, proc.stderr)
     if proc.returncode != 0:
         raise LLMInvocationError(
             f"claude -p exited {proc.returncode}: {proc.stderr.strip() or proc.stdout.strip()}"
@@ -177,6 +323,7 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float)
     except json.JSONDecodeError as exc:
         raise LLMInvocationError(f"claude -p produced non-JSON stdout: {proc.stdout[:500]!r}") from exc
     if envelope.get("is_error"):
+        _check_rate_limit(str(envelope.get("result", "")))
         raise LLMInvocationError(f"claude -p reported is_error: {envelope.get('result')!r}")
     return envelope
 
@@ -206,6 +353,7 @@ def complete(
     cache_dir: str | Path,
     replay_only: bool = False,
     timeout: float = DEFAULT_TIMEOUT_S,
+    mode: str | None = None,
 ) -> dict[str, Any]:
     """A JSON completion matching `schema`, cached by sha256 of `(model,
     prompt)` under `cache_dir`.
@@ -222,11 +370,29 @@ def complete(
     as JSON or is missing a key `schema["required"]` names gets one
     corrective retry before this function raises
     `LLMInvalidResponseError`.
+
+    `mode="fake"` (or the `HTE_LLM_MODE=fake` environment variable, read
+    when `mode` is left `None`) short-circuits every rule above: no cache
+    lookup, no `claude -p`, no `cache_dir` access at all, and the call
+    dispatches straight to `hte.fakellm.complete` instead. `cache_dir`/
+    `replay_only`/`timeout`/`model` are accepted but unused in this mode,
+    so every existing `hte.roles` call site works unchanged in either
+    mode.
     """
+    start = time.monotonic()
+    resolved_mode = mode if mode is not None else os.environ.get("HTE_LLM_MODE")
+    if resolved_mode == "fake":
+        from . import fakellm
+        response = fakellm.complete(prompt, role=role, schema=schema)
+        _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
+        return response
+
     resolved_model = model or resolve_model(role)
     cache_path = _cache_path(cache_dir, resolved_model, prompt)
     if cache_path.exists():
-        return _read_cache(cache_path)
+        response = _read_cache(cache_path)
+        _STATS.record_call(role, cache_hit=True, wall_time_s=time.monotonic() - start)
+        return response
     if replay_only:
         raise LLMCacheMissError(
             f"replay_only=True and no cache file for role={role!r} model={resolved_model!r} "
@@ -237,17 +403,77 @@ def complete(
     last_error = "no attempt made"
     for attempt in range(2):
         call_prompt = prompt if attempt == 0 else _retry_prompt(prompt, schema, last_error)
-        envelope = _invoke_cli(call_prompt, resolved_model, schema, timeout)
+        try:
+            envelope = _invoke_cli(call_prompt, resolved_model, schema, timeout)
+        except RateLimit:
+            _STATS.record_rate_limit_pause(role)
+            raise
         try:
             response = _parse_response(envelope, required)
         except LLMInvalidResponseError as exc:
             last_error = str(exc)
             continue
         _write_cache(cache_path, model=resolved_model, role=role, prompt=prompt, response=response)
+        _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
         return response
+    _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
     raise LLMInvalidResponseError(
         f"role={role!r} model={resolved_model!r}: invalid JSON after one retry: {last_error}"
     )
+
+
+def complete_many(
+    prompts: Sequence[str],
+    *,
+    role: str,
+    schema: dict[str, Any],
+    model: str | None = None,
+    cache_dir: str | Path,
+    replay_only: bool = False,
+    timeout: float = DEFAULT_TIMEOUT_S,
+    mode: str | None = None,
+    workers: int | None = None,
+) -> list[dict[str, Any]]:
+    """`complete()` mapped over `prompts`, in the same order, through
+    `hte.parallel.pmap` (`workers` at a time, `hte.parallel.configure`'s
+    own default and cap applied when `workers` is left `None`).
+
+    Every prompt already sitting in `cache_dir`'s cache is read inline,
+    before `pmap` is ever called, so a `complete_many` run over a mostly-
+    cached prompt list never occupies a worker thread for a prompt that
+    was going to return instantly anyway; only the prompts that reach
+    `claude -p` (or `hte.fakellm` in fake mode, which keeps no
+    cache of its own and so is never treated as a cache hit here) compete
+    for the `workers` slots. `hte.parallel.RateLimit` raised by any one
+    prompt propagates out of `pmap` (and so out of this function) the
+    same way it would out of a single `complete()` call; it is not
+    caught here.
+    """
+    results: list[dict[str, Any] | None] = [None] * len(prompts)
+    resolved_mode = mode if mode is not None else os.environ.get("HTE_LLM_MODE")
+    pending: list[int] = []
+    for i, prompt in enumerate(prompts):
+        if resolved_mode != "fake":
+            resolved_model = model or resolve_model(role)
+            cache_path = _cache_path(cache_dir, resolved_model, prompt)
+            if cache_path.exists():
+                start = time.monotonic()
+                results[i] = _read_cache(cache_path)
+                _STATS.record_call(role, cache_hit=True, wall_time_s=time.monotonic() - start)
+                continue
+        pending.append(i)
+
+    if pending:
+        def _call(i: int) -> dict[str, Any]:
+            return complete(
+                prompts[i], role=role, schema=schema, model=model, cache_dir=cache_dir,
+                replay_only=replay_only, timeout=timeout, mode=mode,
+            )
+
+        for idx, response in zip(pending, pmap(_call, pending, workers=workers)):
+            results[idx] = response
+
+    return results  # type: ignore[return-value]
 
 
 @dataclass(frozen=True)

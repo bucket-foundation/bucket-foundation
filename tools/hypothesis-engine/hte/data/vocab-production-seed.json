@@ -1,0 +1,370 @@
+{
+  "default_alpha": 1.0,
+  "alpha": {
+    "actor": 1.0,
+    "action": 1.0,
+    "object": 1.0,
+    "place": 1.0,
+    "time": 1.0,
+    "mechanism": 1.0,
+    "relation": 1.0
+  },
+  "by_slot": {
+    "actor": [
+      {
+        "id": "student-researcher",
+        "slot": "actor",
+        "label": "Individual K-12 student researcher",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "teacher-reviewer",
+        "slot": "actor",
+        "label": "Classroom teacher acting as reviewer",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "peer-review-panel",
+        "slot": "actor",
+        "label": "Peer panel of student reviewers",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "bucket-foundation-reviewer",
+        "slot": "actor",
+        "label": "Bucket Foundation research-grade reviewer",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "district-research-collaborator",
+        "slot": "actor",
+        "label": "Adult researcher collaborating with a district's production pipeline",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "research-agent-contributor",
+        "slot": "actor",
+        "label": "AI research agent contributing under adult supervision",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "reviewer-halo-effect",
+        "slot": "actor",
+        "label": "A reviewer's own reputation alone sets a production's tier",
+        "prior_logit": -2.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "self-citation-inflation",
+        "slot": "actor",
+        "label": "A student citing their own prior productions alone inflates a claim's tier",
+        "prior_logit": -1.0,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "engine-blind-trust",
+        "slot": "actor",
+        "label": "The engine's ranking alone should decide acceptance with no human sign-off",
+        "prior_logit": -2.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "citation-count-validity",
+        "slot": "actor",
+        "label": "Citation count alone makes a claim valid regardless of source quality",
+        "prior_logit": -1.0,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "payment-motivated-fabrication",
+        "slot": "actor",
+        "label": "A citation payment alone explains a production's claim, evidence is incidental",
+        "prior_logit": -2.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      }
+    ],
+    "action": [
+      {
+        "id": "raised",
+        "slot": "action",
+        "label": "Raised",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "lowered",
+        "slot": "action",
+        "label": "Lowered",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "held-steady",
+        "slot": "action",
+        "label": "Held steady",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "corroborated",
+        "slot": "action",
+        "label": "Corroborated",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "contradicted",
+        "slot": "action",
+        "label": "Contradicted",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "superseded",
+        "slot": "action",
+        "label": "Superseded",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "converged",
+        "slot": "action",
+        "label": "Converged",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "diverged",
+        "slot": "action",
+        "label": "Diverged",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "locked",
+        "slot": "action",
+        "label": "Locked",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "unlocked",
+        "slot": "action",
+        "label": "Unlocked",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "object": [
+      {
+        "id": "tier-assignment",
+        "slot": "object",
+        "label": "Tier assignment",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "hypothesis-ranking",
+        "slot": "object",
+        "label": "Hypothesis ranking",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "fusion-weight",
+        "slot": "object",
+        "label": "Belief-fusion weight",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "artifact-validity-score",
+        "slot": "object",
+        "label": "Artifact-validity score",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "check-verdict",
+        "slot": "object",
+        "label": "Check-tool verdict",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "calibration-cadence",
+        "slot": "object",
+        "label": "Calibration re-scoring cadence",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "slot-extraction-agreement",
+        "slot": "object",
+        "label": "Reliability-weighted slot-extraction agreement",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "routing-traffic",
+        "slot": "object",
+        "label": "Frontier-node routing traffic",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "evaluation-criteria",
+        "slot": "object",
+        "label": "Locked evaluation criteria",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "detectability-score",
+        "slot": "object",
+        "label": "Detectability score",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "place": [
+      {
+        "id": "district-a-schools",
+        "slot": "place",
+        "label": "District A school sites",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "district-b-schools",
+        "slot": "place",
+        "label": "District B school sites",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "classroom-workspace",
+        "slot": "place",
+        "label": "Research OS classroom workspace",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "engine-pipeline",
+        "slot": "place",
+        "label": "Hypothesis-engine campaign pipeline",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "review-session",
+        "slot": "place",
+        "label": "Teacher or peer review session",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "time": [],
+    "mechanism": [
+      {
+        "id": "reviewer-training",
+        "slot": "mechanism",
+        "label": "Reviewer calibration training",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "rescoring-cadence",
+        "slot": "mechanism",
+        "label": "Re-scoring cadence change",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "context-window-scope",
+        "slot": "mechanism",
+        "label": "Isolated-quote versus full-document check scope",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "reliability-weighting",
+        "slot": "mechanism",
+        "label": "Reliability-weighted aggregation",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "citation-payment-incentive",
+        "slot": "mechanism",
+        "label": "Citation-payment incentive",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "registered-reports-locking",
+        "slot": "mechanism",
+        "label": "Registered-Reports-style criteria locking",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "cross-family-judging",
+        "slot": "mechanism",
+        "label": "Cross-family judge model",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "relation": []
+  }
+}

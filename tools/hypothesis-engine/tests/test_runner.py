@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from hte import llm, runner
+from hte.corpus import education_atlas, production
 
 FIXTURE_CACHE = str(Path(__file__).parent / "fixtures" / "llm-cache")
 
@@ -88,3 +89,96 @@ def test_run_campaign_is_deterministic_across_runs(tmp_path):
     assert {h.address for h in a1.hypotheses} == {h.address for h in a2.hypotheses}
     assert a1.self_report == a2.self_report
     assert a1.coverage == a2.coverage
+
+
+def test_manifest_carries_llm_stats(tmp_path):
+    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path)}
+    artifacts = runner.run_campaign(cfg)
+    manifest = json.loads((artifacts.run_dir / "MANIFEST.json").read_text())
+    assert "llm_stats" in manifest
+    # Every role this replay-only fixture campaign calls read entirely
+    # from cache, so every counted call is a cache hit and none of them
+    # shelled out to `claude -p`.
+    assert manifest["llm_stats"]
+    assert all(row["calls"] == row["cache_hits"] for row in manifest["llm_stats"].values())
+
+
+# --------------------------------------------------------------------------
+# Corpus registration (`bkt-hte-corpus-registration`): education-atlas and
+# production, alongside quantum-history and fixtures, in `_CORPUS_LOADERS`.
+# --------------------------------------------------------------------------
+
+
+def test_education_atlas_and_production_are_registered_corpus_loaders():
+    assert "education-atlas" in runner._CORPUS_LOADERS
+    assert runner._CORPUS_LOADERS["education-atlas"] is education_atlas.load
+    assert "production" in runner._CORPUS_LOADERS
+    assert runner._CORPUS_LOADERS["production"] is production.load
+
+
+@pytest.mark.parametrize("corpus_name", ["education-atlas", "production"])
+def test_campaign_run_replay_only_fails_only_on_cache_miss(tmp_path, corpus_name):
+    """No cache has ever been seeded for these two corpora
+    (`bkt-hte-corpus-registration`); a `replay_only=True` run must reach
+    all the way to the first uncached LLM call and fail there with
+    `hte.llm.LLMCacheMissError`, the first LLM call sitting earlier in
+    the pipeline than any corpus-loading or generation bug would."""
+    cfg = {
+        "campaign": corpus_name, "corpus": corpus_name, "out_dir": str(tmp_path),
+        "cache_dir": str(tmp_path / "empty-cache"), "replay_only": True, "seeds": 1,
+        "generate_n": 1, "combinatorial_max_items": 1, "max_hypotheses": 5,
+        "tournament_rounds": 1, "max_time_bins": 2, "run_extraction": False,
+    }
+    with pytest.raises(llm.LLMCacheMissError):
+        runner.run_campaign(cfg)
+
+
+def test_production_campaign_run_completes_end_to_end_in_fake_mode(tmp_path, monkeypatch):
+    # `production.load()`'s own fixture set is small (20 sources, 12
+    # evidence items, 8 ground-truth events) end to end, no trimming
+    # needed to keep this fast.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    cfg = {
+        "campaign": "production", "corpus": "production", "out_dir": str(tmp_path),
+        "cache_dir": str(tmp_path / "cache"), "replay_only": False, "seeds": 1,
+        "generate_n": 1, "combinatorial_max_items": 1, "max_hypotheses": 5,
+        "tournament_rounds": 1, "max_time_bins": 2, "run_extraction": False,
+    }
+    artifacts = runner.run_campaign(cfg)
+    assert artifacts.run_dir.is_dir()
+    assert (artifacts.run_dir / "MANIFEST.json").is_file()
+    assert (artifacts.run_dir / "CALIBRATION.md").is_file()
+    manifest = json.loads((artifacts.run_dir / "MANIFEST.json").read_text())
+    assert manifest["corpus"] == "production"
+
+
+def test_education_atlas_campaign_run_completes_end_to_end_in_fake_mode(tmp_path, monkeypatch):
+    # `education_atlas.load()`'s own shipped sample is real-corpus-sized
+    # (84 sources, 4655 evidence items): `hte.generate.from_evidence`'s
+    # claim-gap generator sweeps every slot for every evidence item
+    # against this module's own full vocabulary (84+ concepts on some
+    # slots), a pre-existing cost this test does not own or need to pay
+    # to prove corpus registration and the fake-mode path both work; a
+    # loader trimmed to a handful of evidence items exercises the exact
+    # same registration and campaign wiring at pytest-suite speed.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+
+    def _small_education_atlas():
+        corpus = education_atlas.load()
+        corpus.evidence = corpus.evidence[:12]
+        return corpus
+
+    runner._CORPUS_LOADERS["_test-education-atlas-small"] = _small_education_atlas
+    try:
+        cfg = {
+            "campaign": "education-atlas", "corpus": "_test-education-atlas-small", "out_dir": str(tmp_path),
+            "cache_dir": str(tmp_path / "cache"), "replay_only": False, "seeds": 1,
+            "generate_n": 1, "combinatorial_max_items": 1, "max_hypotheses": 5,
+            "tournament_rounds": 1, "max_time_bins": 2, "run_extraction": False,
+        }
+        artifacts = runner.run_campaign(cfg)
+    finally:
+        runner._CORPUS_LOADERS.pop("_test-education-atlas-small", None)
+    assert artifacts.run_dir.is_dir()
+    assert (artifacts.run_dir / "MANIFEST.json").is_file()
+    assert (artifacts.run_dir / "CALIBRATION.md").is_file()

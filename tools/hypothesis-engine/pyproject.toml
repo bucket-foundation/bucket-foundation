@@ -12,6 +12,7 @@ dependencies = []
 [project.scripts]
 hte = "hte.cli:main"
 hte-pipeline = "hte.cli_pipeline:main"
+hte-synth = "hte.cli_synth:main"
 
 [tool.setuptools.packages.find]
 include = ["hte", "hte.*"]
@@ -21,3 +22,6 @@ hte = ["data/*.json", "data/retrieval-fixtures/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "slow: measured to exceed 2s under the `fast` hypothesis profile (excluded by `make test`'s `-m \"not slow\"`; see tests/conftest.py)",
+]

@@ -46,8 +46,14 @@ def _minimal_run(tmp_path, *, with_calibration: bool = True) -> Path:
     }
     (run_dir / "timeline.json").write_text(json.dumps(timeline))
     if with_calibration:
+        # `hte.calibrate.write_calibration`'s own current (post-`bkt-hte-
+        # calibration-redesign`) shape: `n_holdout_events`/
+        # `n_covered_events`, replacing the pre-redesign `n_sources` this
+        # fixture used to carry (`hte.artifacts`'s own module docstring
+        # names that exact drift as this contract's motivating bug).
         calibration = {
-            "cutoff_years": 1950, "n_sources": 2, "brier_score": 0.02,
+            "mode": "discovery_date", "cutoff_years": 1950, "n_holdout_events": 2, "n_covered_events": 2,
+            "brier_score": 0.02,
             "calibration_curve": [{"bin_low": 0.8, "bin_high": 0.9, "count": 1, "mean_predicted": 0.85, "mean_observed": 1.0}],
             "constants": {"W": 2.0, "lam": 0.5},
         }
@@ -68,7 +74,7 @@ def test_tex_escape_escapes_every_special_character():
 
 
 def test_fmt_handles_none_bool_float_int():
-    assert paper._fmt(None) == "n/a"
+    assert paper._fmt(None) == "not recorded"
     assert paper._fmt(True) == "true"
     assert paper._fmt(False) == "false"
     assert paper._fmt(0.12345) == "0.123"
@@ -96,9 +102,9 @@ def test_load_run_reads_every_artifact(tmp_path):
     run_dir = _minimal_run(tmp_path)
     data = paper.load_run(run_dir)
     assert data.campaign == "camp"
-    assert data.counts["n_survivors"] == 4
-    assert data.calibration["brier_score"] == 0.02
-    assert data.self_report["missing_mass_estimate"] == 0.1
+    assert data.counts.n_survivors == 4
+    assert data.calibration.brier_score == 0.02
+    assert data.self_report.missing_mass_estimate == 0.1
 
 
 def test_load_run_without_calibration_reads_none(tmp_path):
@@ -116,7 +122,7 @@ def test_emit_paper_writes_every_expected_file(tmp_path):
     assert result["run_id"] == "20260101T000000Z"
     assert set(result["figures"]) == {"fig_bin_topk.py", "fig_calibration_curve.py", "fig_opinion_histogram.py"}
 
-    for name in ["main.tex", "bucket.sty", "refs.bib", "Makefile"]:
+    for name in ["main.tex", "bucket.sty", "refs.bib", "common.bib", "Makefile"]:
         assert (out_dir / name).is_file(), name
     for name in result["figures"]:
         assert (out_dir / "figures" / name).is_file()
@@ -127,23 +133,53 @@ def test_emit_paper_writes_every_expected_file(tmp_path):
     assert "4" in tex  # n_survivors, read straight from the artifact
 
 
+def test_emit_paper_writes_no_absolute_paths_anywhere(tmp_path):
+    """PR #4 review finding: `main.tex`'s `\\addbibresource` and every
+    figure script's `RUN_DIR` used to bake this checkout's own absolute
+    path, home directory and username included, into a file `emit_paper`
+    writes (`COMMON_BIB`'s old `str(COMMON_BIB)` reference; each figure
+    script's old `str(run_dir.resolve())`). A fresh synth run over a
+    fake, tmp-path `run_dir`/`out_dir` (no LLM, no network, this
+    package's own fake-mode fixture) still must not carry `/home/`, this
+    checkout's own `REPO_ROOT`, or either fixture directory's own
+    absolute string into any file this emitter writes."""
+    run_dir = _minimal_run(tmp_path)
+    out_dir = tmp_path / "paper"
+    result = paper.emit_paper(run_dir, out_dir)
+
+    emitted = [out_dir / "main.tex", out_dir / "refs.bib", out_dir / "common.bib", out_dir / "Makefile"]
+    emitted += [out_dir / "figures" / name for name in result["figures"]]
+
+    forbidden = {
+        "/home/": "a home-directory path",
+        str(paper.REPO_ROOT): "this checkout's own REPO_ROOT",
+        str(run_dir.resolve()): "the fixture's own absolute run_dir",
+        str(out_dir.resolve()): "the fixture's own absolute out_dir",
+    }
+    for path in emitted:
+        assert path.is_file(), path
+        text = path.read_text()
+        for needle, label in forbidden.items():
+            assert needle not in text, f"{path} carries {label} ({needle!r})"
+
+
 def test_emit_paper_without_calibration_states_that_plainly(tmp_path):
     run_dir = _minimal_run(tmp_path, with_calibration=False)
     out_dir = tmp_path / "paper"
     paper.emit_paper(run_dir, out_dir)
     tex = (out_dir / "main.tex").read_text()
-    assert "executed no discovery-date holdout" in tex
+    assert "executed no discovery-date or k-fold holdout" in tex
 
 
 def test_calibration_table_escapes_bin_bracket_so_it_does_not_eat_the_next_row():
     run_dir_data = paper.RunData(
-        run_dir=Path("."), manifest={"campaign": "c", "counts": {}}, timeline={},
-        calibration={
-            "cutoff_years": 1950, "n_sources": 1, "brier_score": 0.1,
-            "calibration_curve": [{"bin_low": 0.7, "bin_high": 0.8, "count": 1, "mean_predicted": 0.75, "mean_observed": 1.0}],
-            "constants": {"W": 2.0, "lam": 0.5},
-        },
-        self_report={},
+        run_dir=Path("."), manifest=paper.ManifestArtifact(campaign="c"), timeline=paper.TimelineArtifact(),
+        calibration=paper.CalibrationArtifact(
+            mode="discovery_date", cutoff_years=1950, n_holdout_events=1, n_covered_events=1, brier_score=0.1,
+            calibration_curve=[{"bin_low": 0.7, "bin_high": 0.8, "count": 1, "mean_predicted": 0.75, "mean_observed": 1.0}],
+            constants={"W": 2.0, "lam": 0.5},
+        ),
+        self_report=paper.SelfReportArtifact(),
     )
     rendered = paper._calibration(run_dir_data)
     assert "{[}0.7, 0.8{)}" in rendered
