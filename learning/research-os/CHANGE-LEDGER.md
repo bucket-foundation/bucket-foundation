@@ -2,6 +2,82 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
+
+Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
+listed stubs, scoped to the review's own Phase 1 boundary (section 8). Rebased twice
+onto `main`: once after the site-alignment PR (#12) merged, once after the hypothesis
+engine bridge (#14) and the `hte` refusal-handling PR (#10) both merged; both rebases
+carried forward the concurrent work unchanged, resolving only the files this work and
+the engine bridge both touched (`package.json`'s `test:research-os` script,
+`src/app/api/research-os/route/route.ts`, `src/lib/research-os/db.ts`).
+
+### Added
+
+- `src/lib/research-os/closure.ts` (from the preserved wip commits; item 1):
+  `ancestorsOf` and `computeAncestorClosure`, the in-memory counterpart to
+  `graph.prereq_ancestor`.
+- `supabase/migrations/20260910010000_research_os_prereq_ancestor.sql` (from the
+  preserved wip commits; item 1): the closure table itself, public-read RLS.
+- `scripts/rebuild-prereq-ancestor.ts` (item 1): rebuilds `graph.prereq_ancestor` for
+  one branch from `graph.edges`, delete-and-reinsert, matching
+  `scripts/seed-research-os.mjs`'s idempotent pattern. Wired to
+  `npm run rebuild:research-os-ancestors`.
+- `scripts/test-research-os-closure.ts` (item 1): unit tests for `ancestorsOf` /
+  `computeAncestorClosure`, plus equivalence tests asserting `computeFrontier`'s
+  full-graph walk and its closure-pruned walk agree on every synthetic learner state
+  the routing test file already covers.
+- `src/lib/research-os/probe.ts` (item 2): `probeDue`, `selectProbeNodes`,
+  `probeQuestion`, `buildProbe` -- pure functions deciding whether a diagnostic probe
+  is due (no learner state on any ancestor of the target) and which 3-5 ancestor
+  nodes, at rising tiers, to ask about.
+- `src/lib/research-os/grounding.ts` (item 2): `gradeExplanation`, extracted from the
+  Check tool's original inline grading call in `workspace/route.ts` so the probe route
+  reuses the identical grading logic instead of a second copy of the prompt.
+- `src/app/api/research-os/probe/route.ts` (item 2): `GET` (is a probe due, and its
+  questions) and `POST` (grade one answer via `gradeExplanation`, apply
+  `onProbeCheckResult`).
+- `scripts/test-research-os-probe.ts` (item 2): unit tests for every function in
+  `probe.ts` plus `stages.ts`'s new `onProbeCheckResult`.
+- `src/lib/research-os/passages.ts` (item 3): a curated table of verbatim, under-90-
+  word passages with a locator and URL, verified character-for-character against the
+  live source (raw HTML/wikitext fetch, never a paraphrase) for Tyndall 1869, Rayleigh
+  1871, NASA Space Place, and the cited Wikipedia revisions. Carries a
+  `voice-ignore-file` marker (the passages are verbatim quotations).
+- `src/lib/research-os/reviewer.ts` (item 4): `verifyReviewer`, an
+  `RESEARCH_OS_REVIEWER_EMAILS` env-var allowlist gate, with a TODO pointing at the
+  real roster-backed role the review's gap analysis calls for (Phase 1+).
+- `src/app/api/research-os/review/route.ts` (item 4): `GET` (pending transfer-item
+  holds and submitted Productions) and `POST` (approve/return, gated by
+  `verifyReviewer`; an approval logs evidence on the learner's own state and, for a
+  transfer item, advances it to Internalization).
+- `src/app/research-os/review/page.tsx` (item 4): the reviewer queue UI.
+- `stages.ts`'s `onProbeCheckResult` and `onTeacherReview` (items 2 and 4): new stage
+  transitions; `EvidenceKind` gained `"teacher_review"`.
+
+### Edited
+
+- `src/lib/research-os/frontier.ts`: `computeFrontier` gained the optional fifth
+  `ancestorRows` argument the Phase 0 PR's header comment had already documented but
+  never implemented; pruning logic split into `pruneToClosure`. Every existing caller
+  and test keeps working unchanged (the argument defaults to the original full-graph
+  walk).
+- `src/lib/research-os/db.ts`: added `loadAncestorRows` (item 1) and refactored
+  `verifyLearner` into a shared `verifyToken` plus the new `verifyLearnerIdentity`
+  (item 4, so `reviewer.ts` can read the caller's email).
+- `src/app/api/research-os/route/route.ts`: reads `graph.prereq_ancestor` via
+  `loadAncestorRows` and passes the rows to `computeFrontier` (item 1).
+- `src/app/api/research-os/workspace/route.ts`: the `check` case now calls
+  `grounding.ts`'s `gradeExplanation` instead of an inline prompt (item 2); the
+  `quote` case now returns a curated verbatim passage when one exists, or the node's
+  own summary labeled `"summary"` when it does not (item 3).
+- `src/app/research-os/workspace/page.tsx`: renders the diagnostic probe panel when
+  due (item 2) and the quote tool's new `kind`/`locator` fields (item 3).
+
+### Removed
+
+None.
+
 ## Iteration 1
 
 Date 2026-09-09. Branch `feat/research-os-k12`.
