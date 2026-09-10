@@ -76,6 +76,11 @@ export default function Page() {
             title="Education"
             body="The education-atlas corpus — Bucket's founding education-reform research, led by The Knowledge-Access Gradient. Three crises, a 270× access cliff, the consume-vs-produce gap. Free to read."
           />
+          <HubCard
+            href="/research-os"
+            title="Research OS"
+            body="A K-12 research workspace over the same graph. The AI finds, quotes, checks, and organizes; the learner writes. Five states per concept, a teacher view, and student productions that enter the graph as citable nodes."
+          />
         </div>
 
         <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
