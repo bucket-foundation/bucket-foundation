@@ -600,6 +600,45 @@ unchanged (487 nodes, 820 edges, 0 review items); canon importer now 7 edges (2 
 scans 517 nodes across 8 branches and proposes 36 edges, confidence 0.3-0.65, none
 applied.
 
+## Iteration 14: PR #27 review pass
+
+Date 2026-09-10. Review pass on PR #27 (`feat/ros-03-confidence-routing`), worktree
+`.ros-worktrees/r27`. Numbered past Iteration 13, the highest number already in this
+file.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this pass's own entry added; a stale
+  cross-reference in the ros-03 entry ("Iteration 11") corrected to "Iteration 13,
+  ros-03 routing", the number that entry landed as.
+- `learning/research-os/CHANGE-LEDGER.md`, this file: this pass's own entry.
+
+### Removed
+
+None.
+
+### Verified
+
+Leak scan on the full diff's added lines (2096 lines): no keys, `.env` contents, IPs,
+non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII,
+`/home/gian` paths, or Claude session URLs. `computeFrontier`'s Dijkstra variant
+checked against `scripts/test-research-os-routing.ts`, an unmodified file with
+hardcoded seed-graph assertions predating confidence, green against the new
+implementation: a real old-output equivalence check. Cost function
+`-log(confidence)` confirmed monotone and non-negative via `edgeConfidence()`'s
+`(0, 1]` clamp; a synthetic cycle (`a -> b -> c -> a`, `c -> target`) and a
+zero-indegree target both confirmed to terminate by direct execution, settling
+every node exactly once.
+`writeEdgeFlags` confirmed scoped to the token-verified `learnerId` only, no
+client-supplied learner id path; a write failure caught and logged, never surfacing
+to the route response. `infer-edges.ts` has no `--apply` mode; its output (both
+`infer-preview.json` and `review-list.json`) diffed byte-identical across two runs
+(`generated_at` excluded). `canon-atom-map.json`'s three new resolutions checked
+against `learning/app/corpus/02-physics.json` directly, all three atom ids exist with
+matching titles. `npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run
+test:research-os` (117/117), `next lint`, `agf-lint-voice check` / `agf-lint-voice-src
+check` on every touched file: all clean. Not behind `origin/main`, no merge required.
+
 ## Iteration 10
 
 Date 2026-09-10. Branch `feat/ros-canon-ingest`, worktree `wt-ingest`. Numbered
