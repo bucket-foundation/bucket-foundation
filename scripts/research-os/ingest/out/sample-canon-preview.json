@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-10T17:57:03.466Z",
+  "generated_at": "2026-09-10T18:45:19.357Z",
   "branch": "02-physics",
   "stats": {
     "entries": 6,
     "nodes": 8,
-    "edges": 4,
-    "reviewItems": 4
+    "edges": 7,
+    "reviewItems": 1
   },
   "nodes": [
     {
@@ -218,7 +218,22 @@
       "provenance": {
         "type": "canon_entry",
         "concept": "bell-theorem"
-      }
+      },
+      "confidence": 0.9,
+      "confidenceSource": "canon_map"
+    },
+    {
+      "fromSlug": "canon-bell-theorem-d8a749ee80a7",
+      "toSlug": "academy-02-physics-quantum-entanglement",
+      "kind": "derives_from",
+      "weight": null,
+      "provenance": {
+        "type": "canon_entry",
+        "concept": "bell-theorem",
+        "matched_by": "map"
+      },
+      "confidence": 0.9,
+      "confidenceSource": "canon_map"
     },
     {
       "fromSlug": "canon-gauge-principle-94b77c829202",
@@ -228,7 +243,35 @@
       "provenance": {
         "type": "canon_entry",
         "concept": "gauge-principle"
-      }
+      },
+      "confidence": 0.9,
+      "confidenceSource": "canon_map"
+    },
+    {
+      "fromSlug": "canon-quantum-field-theory-8a764cb991dd",
+      "toSlug": "academy-02-physics-qft-idea",
+      "kind": "derives_from",
+      "weight": null,
+      "provenance": {
+        "type": "canon_entry",
+        "concept": "quantum-field-theory",
+        "matched_by": "map"
+      },
+      "confidence": 0.9,
+      "confidenceSource": "canon_map"
+    },
+    {
+      "fromSlug": "canon-quantum-mechanics-32eb9d2f876d",
+      "toSlug": "academy-02-physics-wavefunction",
+      "kind": "derives_from",
+      "weight": null,
+      "provenance": {
+        "type": "canon_entry",
+        "concept": "quantum-mechanics",
+        "matched_by": "map"
+      },
+      "confidence": 0.9,
+      "confidenceSource": "canon_map"
     },
     {
       "fromSlug": "canon-special-relativity-3c15369083eb",
@@ -239,7 +282,9 @@
         "type": "canon_entry",
         "concept": "special-relativity",
         "matched_by": "slug"
-      }
+      },
+      "confidence": 0.9,
+      "confidenceSource": "canon_map"
     },
     {
       "fromSlug": "canon-standard-model-63eba80794b4",
@@ -250,7 +295,9 @@
         "type": "canon_entry",
         "concept": "standard-model",
         "matched_by": "slug"
-      }
+      },
+      "confidence": 0.9,
+      "confidenceSource": "canon_map"
     }
   ],
   "_comment": "Committed sample of scripts/research-os/ingest/out/canon-preview.json (gitignored in full, but this file is the FULL real output for all 6 bucket-canon/02-physics/ dossiers today, small enough to commit whole). Regenerate with npm run ingest:research-os:canon."

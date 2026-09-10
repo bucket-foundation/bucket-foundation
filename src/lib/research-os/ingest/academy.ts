@@ -9,7 +9,7 @@
  */
 
 import type { IngestNodeDraft, IngestEdgeDraft, IngestResult, ReviewItem } from "./types";
-import { slugifyPart } from "./types";
+import { slugifyPart, CONFIDENCE_DEFAULTS } from "./types";
 
 /** An atom entry as learning/app/corpus/*.json's `atoms` array holds it.
  * Only the fields this importer reads; the corpus carries many more
@@ -240,6 +240,10 @@ export function buildAcademyFileImport(file: AcademyCorpusFile): IngestResult {
         kind: "prerequisite",
         weight: 1.0,
         provenance: { type: "academy_atom", source: file.sourceFile },
+        // bkt-ros ros-03 item 1: an Academy `requires` reference is
+        // curator-authored, full confidence.
+        confidence: CONFIDENCE_DEFAULTS.academy_requires,
+        confidenceSource: "academy_requires",
       });
     }
   }

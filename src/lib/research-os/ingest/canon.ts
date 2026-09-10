@@ -16,7 +16,7 @@
  */
 
 import type { IngestNodeDraft, IngestEdgeDraft, IngestResult, ReviewItem } from "./types";
-import { slugifyPart } from "./types";
+import { slugifyPart, CONFIDENCE_DEFAULTS } from "./types";
 import { academyNodeSlug } from "./academy";
 
 /** The subset of src/lib/canon-primary.ts's `PrimaryPaper` this importer
@@ -160,6 +160,10 @@ export function buildCanonCitesEdge(paper: CanonPaperLike): IngestEdgeDraft | nu
     kind: "cites",
     weight: null,
     provenance: { type: "canon_entry", concept: paper.concept },
+    // bkt-ros ros-03 item 1: every edge this importer writes carries the
+    // same canon_map confidence, curator-verified bibliographic linkage.
+    confidence: CONFIDENCE_DEFAULTS.canon_map,
+    confidenceSource: "canon_map",
   };
 }
 
@@ -256,6 +260,11 @@ export function buildCanonImport(input: BuildCanonImportInput): IngestResult {
       kind: "derives_from",
       weight: null,
       provenance: { type: "canon_entry", concept: paper.concept, matched_by: match.matchedBy },
+      // bkt-ros ros-03 item 1: a canon-atom-map.json / slug match is
+      // reviewer-curated but a heuristic match, one notch below the
+      // Academy corpus's own hand-authored `requires` edges.
+      confidence: CONFIDENCE_DEFAULTS.canon_map,
+      confidenceSource: "canon_map",
     });
   }
 

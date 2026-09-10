@@ -38,6 +38,14 @@ export interface IngestEdgeDraft {
   kind: EdgeKind;
   weight?: number | null;
   provenance?: Record<string, unknown>;
+  /** graph.edges.confidence / confidence_source (bkt-ros ros-03 item 1's
+   * backfill rule): seed and academy_requires write 1.0, canon_map writes
+   * 0.9, an offline inference proposal (never applied by its own script)
+   * writes a value in CONFIDENCE_DEFAULTS.inferred's neighborhood. Left
+   * optional so an edge kind this ingestion slice does not score (none,
+   * today) still type-checks. */
+  confidence?: number | null;
+  confidenceSource?: string | null;
 }
 
 export type ReviewItemKind =
@@ -57,7 +65,13 @@ export type ReviewItemKind =
   | "unresolved_requires"
   /** A `requires` cycle within one source file's atoms. Cyclic atoms fall
    * back to the tier base rather than an unbounded topological depth. */
-  | "prerequisite_cycle";
+  | "prerequisite_cycle"
+  /** scripts/research-os/ingest/infer-edges.ts's own output (bkt-ros
+   * ros-03 item 4): a `prerequisite` edge proposed from lexical overlap
+   * and tier ordering, never applied by that script -- a reviewer decides
+   * whether to add it to the seed, an importer's source data, or reject
+   * it. */
+  | "inferred_prerequisite_proposal";
 
 export interface ReviewItem {
   /** Stable across re-runs: (kind + the item's own natural key), so
@@ -75,6 +89,24 @@ export interface IngestResult {
   reviewList: ReviewItem[];
   stats: Record<string, number>;
 }
+
+/**
+ * graph.edges.confidence_source -> its default confidence (bkt-ros ros-03
+ * item 1's backfill rule). `academy.ts` and `canon.ts` set these directly
+ * on every edge they write; `infer.ts` scores its own proposals in
+ * INFERRED_CONFIDENCE_MIN..INFERRED_CONFIDENCE_MAX rather than this flat
+ * default, but 'inferred' still names 0.5 here as the systemwide fallback
+ * for any edge tagged 'inferred' with no finer-grained score attached.
+ * 'teacher' has no entry: a teacher's confirmation is a reviewer action
+ * (learning/research-os/ROUTING.md, "how a teacher resolves a flag"), not
+ * an ingestion-time backfill.
+ */
+export const CONFIDENCE_DEFAULTS: Record<"seed" | "academy_requires" | "canon_map" | "inferred", number> = {
+  seed: 1.0,
+  academy_requires: 1.0,
+  canon_map: 0.9,
+  inferred: 0.5,
+};
 
 /** Turns a free-text segment into a URL/slug-safe token: lowercase,
  * non-alphanumeric runs collapsed to one hyphen, trimmed of leading/
