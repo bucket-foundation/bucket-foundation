@@ -69,7 +69,7 @@ function toGraphWithEngineFixture(seed: Seed): { nodes: GraphNode[]; edges: Grap
     kind: "derivation",
     tier: 2,
     branch: "02-physics",
-    summary: "An engine hypothesis, not a Phase 0 path node.",
+    summary: "An engine hypothesis fixture for frontier tests.",
     provenance: { type: "engine_hypothesis" },
   };
   nodes.push(engineNode);
@@ -114,7 +114,7 @@ test("exactly half the prerequisites held: still a candidate, the default thresh
   assert.equal(candidates[0].heldFraction, 0.5);
 });
 
-test("a held prerequisite below minStage (awareness, not understanding) does not count as held", () => {
+test("a prerequisite held only at awareness, below the understanding minStage, does not count as held", () => {
   const { nodes, edges } = toGraphWithEngineFixture(loadSeed());
   const states: LearnerNodeState[] = [
     state("tyndall-scattering-by-small-particles", "awareness"),

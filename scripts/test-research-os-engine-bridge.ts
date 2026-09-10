@@ -32,7 +32,7 @@ test("engineTierToGraphTier: T1..T6 map straight onto their own smallint", () =>
   assert.equal(engineTierToGraphTier(" T2 "), 2, "trims surrounding whitespace");
 });
 
-test("engineTierToGraphTier: missing or unrecognized reads as T6, not a guess", () => {
+test("engineTierToGraphTier: missing or unrecognized reads as the engine's least-reliable rung T6", () => {
   assert.equal(engineTierToGraphTier(undefined), 6);
   assert.equal(engineTierToGraphTier(null), 6);
   assert.equal(engineTierToGraphTier(""), 6);
@@ -93,9 +93,9 @@ test("buildEngineNode: fixture hypothesis becomes a well-formed node draft", () 
 });
 
 test("buildEngineNode: kind 'artifact' and an explicit summary both pass through", () => {
-  const draft = buildEngineNode(fixtureHypothesis({ kind: "artifact", summary: "An emitted export, not a claim." }));
+  const draft = buildEngineNode(fixtureHypothesis({ kind: "artifact", summary: "An emitted export artifact." }));
   assert.equal(draft.kind, "artifact");
-  assert.equal(draft.summary, "An emitted export, not a claim.");
+  assert.equal(draft.summary, "An emitted export artifact.");
 });
 
 test("buildEngineNode: a missing required field throws rather than writing a broken row", () => {
@@ -158,7 +158,7 @@ test("buildProductionOutboxRow: a null target node is allowed (engine falls back
   assert.equal(row._target_node, null);
 });
 
-test("buildProductionOutboxRow: missing updated_at falls back to null, not undefined", () => {
+test("buildProductionOutboxRow: missing updated_at falls back to null", () => {
   const { updated_at: _drop, ...withoutUpdatedAt } = fixtureProduction();
   const row = buildProductionOutboxRow(withoutUpdatedAt as GraphProductionRow, fixtureTargetNode);
   assert.equal(row.updated_at, null);
