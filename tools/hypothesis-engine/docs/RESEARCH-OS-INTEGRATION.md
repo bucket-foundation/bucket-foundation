@@ -310,3 +310,135 @@ K12-INTEGRATION.md`'s slot-frame table draws for question 19 between a
 tier move and a rank move. Writing this back onto the production's own
 row is Research OS's own job; `hte.corpus.production.load_supabase`
 only reads the row, it never writes one.
+
+## Calling the engine
+
+`hte.api.hypothesize` (`hte/api.py`) is the one function everything above
+routes through: a production record or a list of them in, the ranked
+timeline, gap nodes, coverage, surprise items, and self-report out.
+`hte/serve.py` puts an HTTP face on it; `hte/mcp_tool.py` names the tool
+shape bucket-mcp registers to reach that face. No wiring here touches
+`bucket-mcp.py` itself, the same seam this file names throughout.
+
+Start the server in fake mode, no `claude` CLI, no network, against the
+shipped fixtures:
+
+```bash
+cd tools/hypothesis-engine
+python3 -m hte.serve --port 8420 --fake
+# or, once installed: hte-serve --port 8420 --fake
+```
+
+Call it with the 12 shipped production fixtures:
+
+```bash
+python3 -c "
+import json
+from hte.corpus import production
+records = [p.to_dict() for p in production.load_raw()]
+print(json.dumps({'productions': records, 'status_min': 'draft', 'seeds': 1, 'max_hypotheses': 20}))
+" > /tmp/hypothesize-request.json
+
+curl -sf -X POST http://127.0.0.1:8420/hypothesize \
+  -H 'Content-Type: application/json' \
+  --data @/tmp/hypothesize-request.json | python3 -m json.tool
+```
+
+`GET /health` returns `{"ok": true, "status": "healthy"}` with no
+campaign run. `hte/serve.py` carries no authentication of any kind: bind
+it to `127.0.0.1` and let whatever process starts it alongside bucket-mcp
+own the trust boundary; bucket-mcp is the only intended caller.
+
+`hte/mcp_tool.py`'s `TOOL_DEFINITION` is the `hypothesize` tool
+bucket-mcp registers, an HTTP call to the server above from bucket-mcp's
+own tool handler:
+
+```typescript
+import { TOOL_DEFINITION } from "./hypothesize-tool.json"; // hte/mcp_tool.py's TOOL_DEFINITION, exported once as JSON
+
+const HTE_SERVE_URL = process.env.HTE_SERVE_URL ?? "http://127.0.0.1:8420";
+
+server.registerTool(TOOL_DEFINITION.name, TOOL_DEFINITION, async (input) => {
+  const res = await fetch(`${HTE_SERVE_URL}/hypothesize`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(input),
+  });
+  const body = await res.json();
+  if (!res.ok || body.ok === false) {
+    return { isError: true, content: [{ type: "text", text: body.error ?? `hte-serve returned ${res.status}` }] };
+  }
+  return { content: [{ type: "text", text: JSON.stringify(body) }] };
+});
+```
+
+## Literature adapter
+
+`hte.corpus.literature` reads the literature corpus PR #5 shipped
+(`_intake/research-os-k12-literature/`, 45 DOI-verified papers, now merged
+to `main`) into a fourth `Corpus`, next to `quantum_history`,
+`education_atlas`, and `production`. One `Source` per card, keyed by its
+own DOI; `EvidenceItem`s from each card's `key_claims` bullets, a real
+span pointing at the checked-in file's own line range and quote; a
+`GroundTruthEvent` when a card is a meta-analysis or reports a replication
+directly; a stemma edge when a card cites another card in the same corpus
+by its own first author. The full mapping lives in `hte/corpus/
+literature.py`'s own top docstring.
+
+This closes a gap the question map above names twice, without moving
+either question's own class: question 22, "isolated-quote versus
+full-document-context checking on productions," already runs a generic,
+no-production version "over `quantum_history`'s own evidence spans"; that
+generic run now has a second, closer-fitting corpus, since `quantum_
+history`'s own spans are chapter prose about ancient history and
+`literature`'s own spans are the real, DOI-verified academic quotes the
+question is asking about. Question 23, "cross-family versus same-family
+judge on held-out placements," gains the same second option, gated on the
+same engine-side blocker `hte.llm.complete`'s Claude-only model policy
+sets for its cross-family half either way.
+
+Two of `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.
+md`'s own twelve closing questions cite papers this corpus now carries as
+ingestible sources rather than prose citations alone. Its question 2
+(Bloom 1984, VanLehn 2011, Kulik and Fletcher 2016; extends
+`RESEARCH-QUESTIONS.md` Q8) and question 9 (Roediger and Karpicke 2006;
+extends `RESEARCH-QUESTIONS.md` Q2 and Q33) both name papers a
+`literature` campaign can hold out and calibrate against directly today.
+Bloom 1984's own two-sigma claim and Kulik, Kulik, and Bangert-Drowns
+1990's own meta-analytic correction of it, a real stemma edge and a real
+`GroundTruthEvent` dated 1990, is the corpus's own worked example: a
+`hte.calibrate.run_holdout` pass over `literature` tests whether the
+engine's belief fusion favors the later, larger-sample correction over
+the earlier, smaller-sample claim, the same question question 2 asks of a
+constrained-AI workspace, one level down, over the engine's own citation
+graph instead of a classroom. No question this corpus touches reaches a
+real K-12 learner or classroom; every "out of scope" question above stays
+out of scope here too, for the same reason it did before this adapter
+existed.
+
+Registration is not done in this pass, new files only per this work's own
+brief: `_CORPUS_LOADERS` in `hte/cli.py:18` and `hte/runner.py:91` would
+each need one added line,
+
+```python
+_CORPUS_LOADERS["literature"] = literature.load
+```
+
+the same one-line addition `production`'s own registration made, after
+which a campaign runs the way a `quantum-history`, `education-atlas`, or
+`production` campaign runs:
+
+```bash
+cd tools/hypothesis-engine
+python3 -m hte.cli campaign run --corpus literature --seeds 3
+```
+
+`literature.load()` takes no local corpus by default: it fetches the 45
+cards straight from `bucket-foundation/bucket-foundation` on GitHub and
+caches them under `$LITERATURE_CARDS_DIR` or the platform temp dir, the
+same shape `hte.corpus.production.load_supabase` gives its own
+Supabase-backed corpus. Its own default `ref`, PR #5's source branch, 404s
+once that branch is gone (it merged mid-review of this exact module;
+`ref="main"` is what keeps working after that). `literature.load(cards_
+dir)` reads a local checkout instead, no network, the path every test in
+`tests/test_corpus_literature.py` takes.
