@@ -14,6 +14,7 @@ from hte.unknowns import (
     prior_profiles,
     robustness,
     surprise,
+    unresolved_slot_gaps,
     value_of_information,
 )
 
@@ -259,3 +260,60 @@ def test_active_priority_defaults_missing_weight_to_zero():
         weights={"uncertainty": 1.0},
     )
     assert result == pytest.approx(1.0)
+
+
+# --------------------------------------------------------------------------
+# unresolved_slot_gaps (ros-12 item 4, GapNode wiring)
+# --------------------------------------------------------------------------
+
+
+def _evidence(item_id: str, *, actor=None, action=None, object=None, place=None, mechanism=None,
+              supports=None, refutes=None) -> EvidenceItem:
+    span = EvidenceSpan("doc", "loc", "quote", 0, 5)
+    return EvidenceItem(
+        id=item_id, kind=EvidenceKind.MATERIAL, tier=Tier.T1, source_id="s", span=span, provenance="manual",
+        actor=actor, action=action, object=object, place=place, mechanism=mechanism,
+        supports=supports or [], refutes=refutes or [],
+    )
+
+
+def test_unresolved_slot_gaps_skips_a_fully_resolved_item():
+    item = _evidence("ev-full", actor="farmers", action="built", object="shrine", place="site", mechanism="labor")
+    assert unresolved_slot_gaps([item], [], {}) == []
+
+
+def test_unresolved_slot_gaps_emits_one_gap_per_item_missing_any_slot():
+    item = _evidence("ev-partial", actor="farmers", action="built")
+    gaps = unresolved_slot_gaps([item], [], {})
+    assert len(gaps) == 1
+    gap = gaps[0]
+    assert gap.id == "gap-ev-partial"
+    assert gap.kind == "unresolved-slot"
+    assert "object" in gap.description and "place" in gap.description and "mechanism" in gap.description
+    assert "actor" not in gap.description.split(":")[1]
+
+
+def test_unresolved_slot_gaps_would_move_is_the_sorted_union_of_supports_and_refutes():
+    item = _evidence("ev-gap", supports=[5, 1], refutes=[1, 3])
+    gap = unresolved_slot_gaps([item], [], {})[0]
+    assert gap.would_move == [1, 3, 5]
+
+
+def test_unresolved_slot_gaps_ranked_by_value_of_information_highest_first():
+    vocab = _small_vocab()
+    h1 = _hypothesis(vocab, "farmers", "labor")
+    h2 = _hypothesis(vocab, "aliens", "tech")
+    low_voi = _evidence("ev-low", actor="farmers", supports=[h1.address])
+    high_voi = _evidence("ev-high", actor="farmers", supports=[h1.address, h2.address])
+    opinions = {
+        h1.address: Opinion(b=0.1, d=0.1, u=0.8, a=0.5),
+        h2.address: Opinion(b=0.1, d=0.1, u=0.9, a=0.5),
+    }
+    gaps = unresolved_slot_gaps([low_voi, high_voi], [h1, h2], opinions)
+    assert [g.id for g in gaps] == ["gap-ev-high", "gap-ev-low"]
+
+
+def test_unresolved_slot_gaps_respects_limit():
+    items = [_evidence(f"ev-{i}", actor="farmers") for i in range(5)]
+    gaps = unresolved_slot_gaps(items, [], {}, limit=2)
+    assert len(gaps) == 2
