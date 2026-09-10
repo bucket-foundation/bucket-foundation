@@ -157,7 +157,7 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
 
     ingestion_index = (fake_repo_root / "CANON-INGESTION-INDEX.md").read_text()
     assert "Recent additions" in ingestion_index
-    assert "build-history write-back" in ingestion_index
+    assert "Build-history write-back" in ingestion_index
 
     envelope_path = fake_repo_root / "public" / "research" / "hypotheses" / "test-camp-20260101T000000Z.json"
     envelope = json.loads(envelope_path.read_text())

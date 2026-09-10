@@ -381,7 +381,12 @@ def render_card(candidate: Candidate, ctx: RunContext, *, branch: str) -> str:
 
 
 def render_index(cards: list[tuple[Candidate, Path]], *, branch: str) -> str:
-    lines = [f"# {branch} - hypothesis cards (candidate tier)", "", "Written by `hte.canon_writeback.write_back`. See `docs/BUILD-HISTORY.md`.", ""]
+    lines = [
+        f"# {branch} hypothesis cards",
+        "",
+        "Candidate tier throughout. Written by `hte.canon_writeback.write_back`. See `docs/BUILD-HISTORY.md`.",
+        "",
+    ]
     lines.append("| Hypothesis | P(h) | u | Elo | Card |")
     lines.append("|---|---|---|---|---|")
     for candidate, path in sorted(cards, key=lambda pair: pair[0].posterior, reverse=True):
@@ -399,11 +404,11 @@ def render_index(cards: list[tuple[Candidate, Path]], *, branch: str) -> str:
 def _ingestion_index_addendum(cards: list[tuple[Candidate, Path]], *, branch: str, ctx: RunContext) -> str:
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     lines = [
-        f"## Recent additions, {today} (build-history write-back)",
+        f"## Recent additions, {today}",
         "",
-        f"{len(cards)} hypothesis card(s) written from `hte.canon_writeback.write_back` over "
-        f"`{ctx.manifest.corpus}` run `{ctx.run_id}`, `canon_tier: candidate` throughout "
-        "(promotion to canon stays a human review step, `GOVERNANCE.md`).",
+        f"Build-history write-back. {len(cards)} hypothesis card(s) written from `hte.canon_"
+        f"writeback.write_back` over `{ctx.manifest.corpus}` run `{ctx.run_id}`, `canon_tier: "
+        "candidate` throughout. Promotion to canon stays a human review step, `GOVERNANCE.md`.",
         "",
         "| Title | Path | Type |",
         "|---|---|---|",
