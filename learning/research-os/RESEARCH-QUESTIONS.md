@@ -54,3 +54,20 @@ Source: `_intake/research-os-k12/raw/lit-ai-for-science.md` (42 papers, all iden
 25. Does reliability-weighted aggregation of many student judgments converge on expert-grade output for slot extraction, as Galaxy Zoo did for morphology (Lintott and others 2008, doi:10.1111/j.1365-2966.2008.13689.x)? Study: weight students by track record; compare with expert labels.
 26. Which frontier nodes attract student routing over time, and does the engine's generator narrow or widen the question set relative to that traffic? Messeri and Crockett 2024 (doi:10.1038/s41586-024-07146-0). Study: longitudinal comparison of routed targets and generated hypotheses.
 27. Does locking a production's evaluation criteria before check runs reduce bias, the way Registered Reports do for human research (Chambers 2013, doi:10.1016/j.cortex.2012.12.016)?
+
+## From the educational-methods literature
+
+Source: `_intake/research-os-k12/raw/lit-educational-methods.md` (49 sources, DOIs resolved against Crossref).
+
+28. Do the five states form one ordered latent trait, as SOLO and ICAP do, or several dimensions? Rasch or IRT fit on state items across many atoms.
+29. Does frontier-backward routing beat forward sequencing on delayed retention and motivation at matched time on task? RCT on the same atoms.
+30. Does a citation payment change the self-explanation and struggle behaviors that predict transfer (Chi and others 1989, 1994; Kapur 2008, 2014)? Three conditions: no payment, credential only, payment.
+31. What share of accepted productions is net-new synthesis versus restated source material, by grade band? Blind expert coding against cited sources.
+32. Does teacher access to state-level data change grouping and intervention decisions, and do outcomes match Black and Wiliam's range? Classrooms randomized to the class view.
+33. Do FSRS intervals need to differ by state, given different forgetting curves for recall and production?
+34. Does population-average prerequisite mastery misroute learners that individualized estimates would catch (Pardos and Heffernan 2010, doi:10.1007/978-3-642-13470-8_24)? Simulation plus field comparison.
+35. Does the expertise reversal effect cross the five states, so that scaffolds that help at Access slow learners at Internalization? Scaffold intensity crossed with state.
+36. At what rate do learners turn repeated check queries into indirect answer requests? Transcript coding after Wang and others 2024.
+37. Does sourcing skill built inside the workspace transfer to open-web evaluation, benchmarked against McGrew 2020 (doi:10.1016/j.compedu.2019.103711)?
+38. What minimum engagement rate precedes a detectable gain, given Oreopoulos and Low 2026? Dose-response field study.
+39. Does payment eligibility change who participates by prior achievement or socioeconomic status? Submission and acceptance rates by baseline quartile.
