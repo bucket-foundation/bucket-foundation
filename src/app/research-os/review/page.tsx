@@ -167,7 +167,10 @@ export default function ResearchOsReviewPage() {
           <Link href="/research-os" className="underline decoration-[color:var(--gold)] underline-offset-4">
             § Research OS · K-12
           </Link>
-          {" / review, Phase 1 reviewer queue"}
+          {" / review, Phase 1 reviewer queue · "}
+          <Link href="/research-os/class" className="underline decoration-[color:var(--gold)] underline-offset-4">
+            class view
+          </Link>
         </div>
         <h1 className="font-display uppercase text-[clamp(1.5rem,4vw,2.5rem)] leading-[1.1] chisel text-[color:var(--basalt)]">
           review queue
