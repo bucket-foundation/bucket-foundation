@@ -118,3 +118,11 @@ full-text index.
 | Canon concept node, Hypothesis Address Space and Subjective-Logic Belief | `bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md` | canon card | [10.5281/zenodo.22694649](https://doi.org/10.5281/zenodo.22694649) |
 
 Full context: `CANON-CONTRIBUTIONS-2026-09-10.md`.
+
+## Recent additions, 2026-09-10
+
+Build-history write-back. 0 hypothesis card(s) written from `hte.canon_writeback.write_back` over `sacred-history` run `sacred-history-20260910T180835Z`, `canon_tier: candidate` throughout. Promotion to canon stays a human review step, `GOVERNANCE.md`.
+
+| Title | Path | Type |
+|---|---|---|
+| 07-mind hypotheses index | `bucket-canon/07-mind/hypotheses/INDEX.md` | index |
