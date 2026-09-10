@@ -107,6 +107,7 @@ def test_load_run_succeeds_on_a_fresh_hte_synth_run(fresh_synth_run):
 
 
 @requires_real_runs
+@pytest.mark.allow_subprocess  # emit_paper shells out to a real `python3 figures/fig_*.py` render
 @pytest.mark.parametrize("run_dir", REAL_RUN_DIRS, ids=[str(d.relative_to(REPO_RUNS)) for d in REAL_RUN_DIRS])
 def test_emit_paper_builds_a_tex_for_every_real_run_directory(run_dir, tmp_path, monkeypatch):
     # `emit_paper` itself makes no LLM call (`hte/paper.py` imports
@@ -120,6 +121,7 @@ def test_emit_paper_builds_a_tex_for_every_real_run_directory(run_dir, tmp_path,
     assert result["campaign"]
 
 
+@pytest.mark.allow_subprocess  # emit_paper shells out to a real `python3 figures/fig_*.py` render
 def test_emit_paper_builds_a_tex_for_a_fresh_hte_synth_run(fresh_synth_run, tmp_path, monkeypatch):
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
     out_dir = tmp_path / "synth-paper"
@@ -129,6 +131,7 @@ def test_emit_paper_builds_a_tex_for_a_fresh_hte_synth_run(fresh_synth_run, tmp_
 
 
 @pytest.mark.slow
+@pytest.mark.allow_subprocess  # emit_paper's figure renders plus build_pdf's real `make pdf`/pdflatex
 def test_make_pdf_builds_over_a_fresh_hte_synth_run(fresh_synth_run, tmp_path, monkeypatch):
     """`make pdf` on one run directory (the fresh synth one: cheap,
     deterministic, and independent of which real run directories a given
