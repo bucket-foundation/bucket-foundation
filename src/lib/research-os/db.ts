@@ -12,7 +12,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
 import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind } from "./types";
-import type { EngineNodeDraft, ProductionOutboxEnvelope } from "./engine-bridge";
+import type { EngineNodeDraft, ProductionOutboxRow } from "./engine-bridge";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -277,7 +277,7 @@ export async function upsertEngineHypothesisNode(draft: EngineNodeDraft): Promis
 }
 
 /** Every `graph.nodes.id` for a given list of slugs, as a slug -> id map. A
- * slug absent from the graph is simply absent from the returned map. */
+ * slug absent from the graph is absent from the returned map. */
 export async function resolveNodeIdsBySlug(slugs: string[]): Promise<Map<string, string>> {
   const out = new Map<string, string>();
   const unique = Array.from(new Set(slugs.filter(Boolean)));
@@ -325,28 +325,28 @@ export async function writeEngineEdges(
 }
 
 /**
- * Write an accepted production's envelope to `public.research_os_
- * productions_outbox` (task item 3). Idempotent on `graph_production_id`'s
- * own unique constraint: re-emitting the same production updates its one
- * outbox row instead of inserting a second one.
+ * Write an accepted production's row to `public.research_os_
+ * productions_outbox` (task item 3). Idempotent on `id`'s own primary key
+ * (the bridge's own migration, `graph.productions.id` reused verbatim):
+ * re-emitting the same production updates its one outbox row instead of
+ * inserting a second one.
  */
-export async function writeProductionOutbox(envelope: ProductionOutboxEnvelope, graphProductionId: string): Promise<void> {
+export async function writeProductionOutbox(row: ProductionOutboxRow): Promise<void> {
   const svc = publicService();
   const { error } = await svc.from("research_os_productions_outbox").upsert(
     {
-      id: envelope.id,
-      graph_production_id: graphProductionId,
-      created_at: envelope.created_at,
-      author_role: envelope.author_role,
-      grade_band: envelope.grade_band,
-      school_or_district_id: envelope.school_or_district_id,
-      research_question: envelope.research_question,
-      claims: envelope.claims,
-      review: envelope.review,
-      provenance: envelope.provenance,
+      id: row.id,
+      target_node_id: row.target_node_id,
+      claim: row.claim,
+      evidence: row.evidence,
+      sources: row.sources,
+      status: row.status,
+      created_at: row.created_at,
+      updated_at: row.updated_at,
+      _target_node: row._target_node,
       emitted_at: new Date().toISOString(),
     },
-    { onConflict: "graph_production_id" },
+    { onConflict: "id" },
   );
   if (error) throw new Error(`writeProductionOutbox: upsert failed: ${error.message}`);
 }
