@@ -1,5 +1,41 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #30 review pass
+
+Review of `feat/ros-12-engine-wiring` (PR #30) in worktree `review/pr30`. Leak scan
+against the full diff's added lines found no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs. `agf-lint-voice check` found four "X, not Y" antithesis
+constructions the branch introduced (two `BEADS-PENDING.jsonl` status lines, two test
+description/assert strings); rewritten to state the point once, positively, no behavior
+change. Correctness spot-checks against the branch: `authorizeHypothesize` refuses a null
+production and a foreign `learner_id` alike; `research_os_outbox`'s `mark_consumed` is
+idempotent and a second read returns nothing new; `unresolved_slot_gaps` and
+`campaign_research_os.py`'s corpus-loader registration are both covered by an
+autouse fixture that restores `hte.runner._CORPUS_LOADERS` after every test; `upsertGapNode`
+and `writeEngineEdges` share the same slug-based idempotency key `upsertEngineHypothesisNode`
+already used. Merged `origin/main` (PR #27, PR #28) after both landed: six real conflicts
+(`BEADS-PENDING.jsonl`, `_intake/research-os-k12/CHANGELOG.md`, `_intake/research-os-k12/
+DELETIONS.md`, `learning/research-os/CHANGE-LEDGER.md`, `package.json`, `src/lib/research-os/
+db.ts`), every one a genuine "both sides added something at the same place" case, resolved
+by keeping both additions (the two `test:research-os` script lists combined into one chain,
+`db.ts`'s two new type imports combined into one line). Gates rerun clean post-merge:
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (151/151 pass),
+`npx eslint` on every PR #30 file, engine `ruff check`, engine `make test` (951 passed, 14
+deselected). End-to-end verification (post-merge, fixture-driven, no live Supabase):
+`buildProductionOutboxRow` on a fixture accepted production (the exact shape
+`emitProductionOutboxIfAccepted`, ros-06's teacher-accept path, now calls), fed through the
+real `hte.corpus.research_os_outbox` reader (exactly one unconsumed row, `mark_consumed`
+idempotent, a second read returns nothing new), the real `campaign_research_os.run()` in fake
+LLM mode against that row folded into the 14 shipped fixtures (3 accepted hypotheses, 11
+gaps), and the real `toEngineHypothesisInput`/`buildEngineNode`/`toGapNodeInput`/
+`buildGapNode` mapping, landing on both an `engine_hypothesis`-typed and a `gap`-typed node
+draft carrying full engine provenance. `learning/research-os/ENGINE-BRIDGE.md`'s "Item 3's
+write-side hook is unreached today" stub updated to record this: the hook is reached through
+a real reviewer decision now (ros-06 landed), the untested leg narrowed to the live Supabase
+read/write alone. Verification scripts (`scripts/_e2e-review-tmp*.ts`,
+`tools/hypothesis-engine/_e2e_review_tmp.py`) were run once and removed, not part of this PR.
+
 ## 2026-09-10, engine bridge wiring and hypothesize route (ros-12, ros-13)
 
 Branch `feat/ros-12-engine-wiring`. Closes the engine bridge's three open

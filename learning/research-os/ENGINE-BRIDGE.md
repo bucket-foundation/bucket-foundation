@@ -195,14 +195,27 @@ engine's own `SUPABASE_SERVICE_KEY` ever hold that role.
 
 ## Stubs, open items
 
-- **Item 3's write-side hook is unreached today.** `/api/research-os/
-  production`'s POST handler only emits to the outbox when a write leaves
-  a production at status `"accepted"`; Phase 0 has no teacher-accept path
-  (task item 6), so no production ever reaches that status through a real
-  learner flow yet. The hook is wired and tested
-  (`scripts/test-research-os-engine-bridge.ts`) against a fixture, not
-  against a live accept; ros-12's own outbox reader and campaign caller
-  are exercised the same way, against fixtures, for the same reason.
+- **Item 3's write-side hook is reached, real Supabase writes still
+  untested.** `ros-06` (PR #28) shipped the teacher-accept path,
+  `/api/research-os/review`'s POST now flips a submitted production to
+  `"accepted"` and calls `db.ts`'s shared `emitProductionOutboxIfAccepted`
+  (the same function `/api/research-os/production`'s own POST already
+  called); a real reviewer decision reaches the outbox write now, not
+  only a fixture. A PR #30 review pass (2026-09-10, post-merge) chained
+  every pure leg of the pipeline against a fixture shaped exactly like
+  `emitProductionOutboxIfAccepted`'s own output (`buildProductionOutboxRow`
+  on a fixture accepted production): fed through the real
+  `hte.corpus.research_os_outbox` reader (exactly one unconsumed row,
+  `mark_consumed` idempotent, a second read returns nothing new), the real
+  `campaign_research_os.run()` in fake LLM mode, and the real
+  `toEngineHypothesisInput`/`buildEngineNode`/`toGapNodeInput`/
+  `buildGapNode` mapping, landing on both an `engine_hypothesis`-typed and
+  a `gap`-typed node draft with full engine provenance. The one leg still
+  untested is the live Supabase read (`/api/research-os/review`'s own
+  production lookup) and write (`writeProductionOutbox`'s upsert,
+  `upsertEngineHypothesisNode`'s upsert): no live instance is available in
+  a review sandbox, the same boundary `apply-engine-campaign.ts`'s own
+  header comment already names.
 - **`engineFrontier`'s "prerequisite" reading is `derives_from`, not
   `prerequisite`.** Item 1 writes only `cites` and `derives_from` edges for
   an engine hypothesis node, never `prerequisite`; `engine-frontier.ts`'s

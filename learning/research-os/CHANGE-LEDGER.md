@@ -2,6 +2,39 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #30 review pass
+
+Date 2026-09-10. Review of `feat/ros-12-engine-wiring` (PR #30), worktree `review/pr30`.
+Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, PR #30 review pass".
+
+### Edited
+
+- `BEADS-PENDING.jsonl`, `scripts/test-research-os-apply-engine-campaign.ts`,
+  `scripts/test-research-os-engine-bridge.ts`: four antithesis constructions rewritten,
+  no behavior change.
+- `learning/research-os/ENGINE-BRIDGE.md`: "Item 3's write-side hook is unreached today"
+  updated to record that ros-06's teacher-accept path (PR #28, merged) reaches it through a
+  real reviewer decision now, narrowed to the live-Supabase leg still untested.
+- Merged `origin/main` (PR #27, PR #28): six conflicts resolved keeping both sides'
+  additions (`BEADS-PENDING.jsonl`, `_intake/research-os-k12/CHANGELOG.md`,
+  `_intake/research-os-k12/DELETIONS.md`, `learning/research-os/CHANGE-LEDGER.md`,
+  `package.json`'s `test:research-os` script chain, `src/lib/research-os/db.ts`'s two
+  new type imports).
+
+### Removed
+
+None.
+
+### Verified
+
+Leak scan clean. Gates rerun post-merge: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+`npm run test:research-os` (151/151), `npx eslint`, engine `ruff check`, engine `make test`
+(951 passed, 14 deselected). End-to-end path run once (fixture-driven, no live Supabase):
+an approved production's outbox row (`buildProductionOutboxRow`) through the real outbox
+reader (exactly one row, idempotent consumption), the real stubbed campaign (3 accepted
+hypotheses, 11 gaps), and the real TS mapping, landing on an `engine_hypothesis` node draft
+and a `gap` node draft, both with full engine provenance.
+
 ## Engine Bridge Wiring and Hypothesize Route: ros-12 and ros-13
 
 Date 2026-09-10. Branch `feat/ros-12-engine-wiring`, closing PR #14's own
