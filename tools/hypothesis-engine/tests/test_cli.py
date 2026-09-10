@@ -1,7 +1,8 @@
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
-from hte import cli
+from hte import cli, llm
 
 FIXTURE_CACHE = str(Path(__file__).parent / "fixtures" / "llm-cache")
 
@@ -79,7 +80,14 @@ def test_views_command_missing_run_dir_fails(tmp_path, capsys):
 # --------------------------------------------------------------------------
 
 
-def test_campaign_run_accepts_constants_default(tmp_path, capsys):
+def test_campaign_run_accepts_constants_default(tmp_path, monkeypatch, capsys):
+    # `FINDING-2026-09-10-501`: no `--replay-only`/`--cache-dir` here, so a
+    # cache miss with `HTE_LLM_MODE` unset would shell out to a real
+    # `claude -p` for every role in the campaign. Force fake mode, the
+    # same guard every direct `hypothesize()` test in `tests/test_api.py`
+    # already sets, since this test cares about `--constants` parsing,
+    # not a real model call.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
     rc = cli.main([
         "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
         "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
@@ -90,12 +98,37 @@ def test_campaign_run_accepts_constants_default(tmp_path, capsys):
     assert "run written to" in capsys.readouterr().out
 
 
-def test_campaign_run_accepts_constants_fitted(tmp_path, capsys):
+def test_campaign_run_accepts_constants_fitted(tmp_path, monkeypatch, capsys):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")  # see FINDING-2026-09-10-501 above
     rc = cli.main([
         "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
         "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
         "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
         "--constants", "fitted",
+    ])
+    assert rc == 0
+    assert "run written to" in capsys.readouterr().out
+
+
+def test_campaign_run_constants_default_never_shells_out_to_claude(tmp_path, monkeypatch, capsys):
+    # `FINDING-2026-09-10-501` regression: this is the same command shape
+    # `test_campaign_run_accepts_constants_default` above runs, with
+    # `hte.llm.subprocess.run` stubbed to fail loudly instead of trusting
+    # that `HTE_LLM_MODE=fake` alone keeps `_invoke_cli` from ever
+    # reaching it. `test_llm.py`'s own tests use the identical
+    # `monkeypatch.setattr(llm, "subprocess", ...)` pattern to inject a
+    # real call's response; here the stub's only job is to prove no call
+    # happens at all.
+    def _refuse(*args, **kwargs):
+        raise AssertionError("hte.llm attempted a real subprocess.run call under HTE_LLM_MODE=fake")
+
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=_refuse))
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    rc = cli.main([
+        "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
+        "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
+        "--constants", "default",
     ])
     assert rc == 0
     assert "run written to" in capsys.readouterr().out
@@ -114,6 +147,7 @@ def test_campaign_run_omitting_constants_defaults_to_fitted(tmp_path, monkeypatc
     # No `--constants` flag at all: `runner.DEFAULT_CONFIG["constants"]`
     # ("fitted") stands, matching `hte campaign run`'s own documented
     # default with no CLI override needed.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")  # see FINDING-2026-09-10-501 above
     captured: dict = {}
     real_run_campaign = cli.runner.run_campaign
 
