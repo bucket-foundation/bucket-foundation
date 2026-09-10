@@ -24,6 +24,7 @@ from dataclasses import dataclass
 from typing import Any, Callable, Mapping, Sequence
 
 from . import llm
+from . import provenance as prov
 from .concepts import Slot, Vocabulary
 from .evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Stance, Tier
 from .hypothesis import Hypothesis, Placement
@@ -185,6 +186,12 @@ def generate(context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = 
     outside the vocabulary for a slot by writing `other-<slot>` as that
     slot's value and adding a one-line reason to `other_labels[slot]`,
     per `hte.concepts.other_id`'s open-world placeholder.
+
+    Passes `hte.provenance.collect(evidence)` as `hte.llm.complete`'s own
+    `provenance=` (`docs/PRIVACY.md`): whatever production/learner ids
+    the evidence in play carries, so `hte.purge` can find this call's own
+    cached response later, keyed off `<cache_dir>/index.jsonl` rather
+    than the prompt text.
     """
     vocab: Vocabulary = context["vocab"]
     evidence: Sequence[EvidenceItem] = context.get("evidence", [])
@@ -210,7 +217,10 @@ def generate(context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = 
         "rationale."
     )
     return _with_refusal_default(
-        lambda: llm.complete(prompt, role="generator", schema=GENERATE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        lambda: llm.complete(
+            prompt, role="generator", schema=GENERATE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only,
+            provenance=prov.collect(evidence),
+        ),
         role="generator", default=GENERATE_DEFAULT,
     )
 
@@ -260,7 +270,12 @@ def critique(h: Hypothesis, evidence: Sequence[EvidenceItem], *, cache_dir: str,
     scoring. `evidence` should be the items naming `h.address` in
     `supports` or `refutes`; the critic reads only what it is handed, per
     target-blind generation's rule that the same evidence produces the
-    same critique regardless of which reading it favors."""
+    same critique regardless of which reading it favors.
+
+    Passes `hte.provenance.collect(support + refute)` as `hte.llm.
+    complete`'s own `provenance=` (`docs/PRIVACY.md`): only the evidence
+    this one call quotes in its own prompt; the full `evidence` sequence
+    handed in may itself name items unrelated to `h`."""
     support = [e for e in evidence if h.address in e.supports]
     refute = [e for e in evidence if h.address in e.refutes]
     prompt = (
@@ -278,7 +293,10 @@ def critique(h: Hypothesis, evidence: Sequence[EvidenceItem], *, cache_dir: str,
         "set is not itself a contradiction."
     )
     return _with_refusal_default(
-        lambda: llm.complete(prompt, role="critic", schema=CRITIQUE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        lambda: llm.complete(
+            prompt, role="critic", schema=CRITIQUE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only,
+            provenance=prov.collect(support + refute),
+        ),
         role="critic", default=CRITIQUE_DEFAULT, log_id=h.short_id,
     )
 
@@ -316,7 +334,10 @@ def unknown_unknown(vocab: Vocabulary, evidence: Sequence[EvidenceItem], *, cach
     §7): proposes slot values outside the current vocabulary, feeding
     `hte.concepts.Vocabulary`'s open-world `OTHER` mass directly. It never
     scores a hypothesis, only names candidates a later `Vocabulary.add`
-    call may or may not accept."""
+    call may or may not accept.
+
+    Passes `hte.provenance.collect(evidence)` as `hte.llm.complete`'s own
+    `provenance=` (`docs/PRIVACY.md`), same as `generate`."""
     existing = "\n".join(
         f"{slot.value}: {[c.label for c in vocab.concepts(slot)]}" for slot in
         (Slot.ACTOR, Slot.ACTION, Slot.OBJECT, Slot.PLACE, Slot.MECHANISM)
@@ -334,7 +355,10 @@ def unknown_unknown(vocab: Vocabulary, evidence: Sequence[EvidenceItem], *, cach
         "Return an empty proposals list if the evidence names nothing new."
     )
     return _with_refusal_default(
-        lambda: llm.complete(prompt, role="unknown_unknown", schema=UNKNOWN_UNKNOWN_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        lambda: llm.complete(
+            prompt, role="unknown_unknown", schema=UNKNOWN_UNKNOWN_SCHEMA, cache_dir=cache_dir, replay_only=replay_only,
+            provenance=prov.collect(evidence),
+        ),
         role="unknown_unknown", default=UNKNOWN_UNKNOWN_DEFAULT,
     )
 

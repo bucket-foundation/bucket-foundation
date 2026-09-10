@@ -379,3 +379,103 @@ def test_research_os_sky_blue_fixture_loads_and_contributes_a_source():
     # ground truth even once accepted (normalize_research_os_record's own
     # documented gap)
     assert not any(g.id.startswith("ros-sky-blue") for g in corpus.ground_truth)
+
+
+# --------------------------------------------------------------------------
+# Real production-form shape (PR #37's own seam finding): `evidence`/
+# `sources` as plain newline-split string arrays, exactly what
+# `src/app/research-os/workspace/page.tsx`'s own
+# `production.evidence.split("\n").filter(Boolean)` sends, and what
+# `src/app/api/research-os/production/route.ts`'s `POST` stores verbatim
+# (`evidence: body.evidence ?? []`, no shape validation of its own,
+# confirmed against `git show origin/main:src/app/api/research-os/
+# production/route.ts`). This is the shape a real, accepted production
+# carries; the older dict-shaped tests above cover the Quote tool's own
+# shape, which `_research_os_evidence` still accepts too.
+# --------------------------------------------------------------------------
+
+
+def test_normalize_accepts_the_real_production_form_string_shape():
+    row = _research_os_row(
+        evidence=["Rayleigh scattering bends blue light more than red.", "  ", ""],
+        sources=["10.1080/14786447108640507"],
+    )
+    normalized = production.normalize_research_os_record(row)
+    entries = normalized["claims"][0]["evidence"]
+    # the two blank/whitespace-only lines contribute nothing
+    evidence_entries = [e for e in entries if e["locator"] == "(uncited)"]
+    assert len(evidence_entries) == 1
+    assert evidence_entries[0]["quote"] == "Rayleigh scattering bends blue light more than red."
+    assert evidence_entries[0]["tier"] == "T4"
+    assert evidence_entries[0]["citations"] == [], "an evidence line and a sources line are unpaired, never fused"
+
+
+@pytest.mark.parametrize(
+    "source_line,expected_type,expected_tier",
+    [
+        ("10.1080/14786447108640507", "doi", "T2"),
+        ("doi:10.1080/14786447108640507", "doi", "T2"),
+        ("https://spaceplace.nasa.gov/blue-sky/en/", "url", "T4"),
+        ("NASA Space Place", "url", "T4"),
+    ],
+)
+def test_normalize_string_source_lines_parse_by_shape(source_line, expected_type, expected_tier):
+    row = _research_os_row(evidence=[], sources=[source_line])
+    normalized = production.normalize_research_os_record(row)
+    entries = normalized["claims"][0]["evidence"]
+    assert len(entries) == 1
+    assert entries[0]["tier"] == expected_tier
+    assert entries[0]["citations"][0]["type"] == expected_type
+    assert "citation only" in entries[0]["quote"]
+
+
+def test_normalize_string_evidence_lines_get_per_production_scoped_source_ids():
+    """Two productions in the same ingest batch each writing their own
+    unpaired evidence line 0 must not collide onto one `_build_corpus`-
+    created `Source` node (`_string_evidence_entries`'s own docstring)."""
+    row_a = _research_os_row(id="ros-scope-a", evidence=["line a"], sources=[])
+    row_b = _research_os_row(id="ros-scope-b", evidence=["line b"], sources=[])
+    a = production.Production.from_dict(row_a)
+    b = production.Production.from_dict(row_b)
+    id_a = a.claims[0].evidence[0].source_id
+    id_b = b.claims[0].evidence[0].source_id
+    assert id_a != id_b
+    assert "ros-scope-a" in id_a
+    assert "ros-scope-b" in id_b
+
+
+def test_normalize_mixed_dict_and_string_evidence_both_land():
+    """A row may mix the Quote tool's dict shape with the real form's
+    string shape (a caller-supplied fixture alongside a form-shaped
+    entry): `_research_os_evidence` reads each item by its own type."""
+    row = _research_os_row(
+        evidence=[
+            {"node_id": "rayleigh-scattering-law", "quote": "steeply on the wavelength", "locator": "graph.nodes.summary"},
+            "a plain evidence line",
+        ],
+        sources=[{"label": "Rayleigh 1871", "doi": "10.1080/14786447108640507"}],
+    )
+    normalized = production.normalize_research_os_record(row)
+    entries = normalized["claims"][0]["evidence"]
+    quotes = {e["quote"] for e in entries}
+    assert "steeply on the wavelength" in quotes
+    assert "a plain evidence line" in quotes
+    dict_entry = next(e for e in entries if e["quote"] == "steeply on the wavelength")
+    string_entry = next(e for e in entries if e["quote"] == "a plain evidence line")
+    assert dict_entry["citations"], "the dict-shaped branch still attaches its own closed citation set"
+    assert string_entry["citations"] == [], "the string-shaped branch never fuses in the dict-shaped sources"
+
+
+def test_production_from_dict_with_string_shape_builds_a_corpus_with_no_attribute_error():
+    """The bug PR #37's seam check found: a real production's plain
+    string `evidence`/`sources` used to raise `AttributeError` inside
+    `Production.from_dict` (`.get()` on a `str`), which `hte.corpus.
+    research_os_outbox._build`'s own per-row isolation now also survives
+    even if a future shape change reintroduces it."""
+    row = _research_os_row(evidence=["a line of evidence"], sources=["https://example.edu/x"])
+    p = production.Production.from_dict(row)
+    corpus = production._build_corpus(
+        [p], status_min="draft", retrieval_run_id="test", source_path_for=lambda prod: f"test:{prod.id}",
+    )
+    assert len(corpus.evidence) == 2
+    assert len(corpus.sources) == 3  # the production itself, plus one per evidence/source line

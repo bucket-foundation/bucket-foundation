@@ -23,7 +23,7 @@ def _refuse_role(target_role: str, *, truncation_reason: str | None = None):
     matches `target_role`, and fails loudly for any other role, so a
     test using this catches a call it did not expect to reach `complete()`
     at all."""
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         if role != target_role:
             raise AssertionError(f"unexpected role {role!r} reached complete() in this test")
         envelope = {"stop_reason": truncation_reason or "refusal", "session_id": "should-never-leak"}
@@ -47,7 +47,7 @@ def test_generate_grounds_prompt_in_vocab_and_parses_response(monkeypatch):
     corpus = _corpus()
     seen = {}
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         seen["role"] = role
         seen["prompt"] = prompt
         seen["schema"] = schema
@@ -70,7 +70,7 @@ def test_critique_only_shows_related_evidence(monkeypatch):
     corpus.evidence[0].supports.append(h.address)
     seen = {}
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         seen["role"] = role
         seen["prompt"] = prompt
         return {"keep": True, "issues": [], "rationale": "fine"}
@@ -85,7 +85,7 @@ def test_critique_only_shows_related_evidence(monkeypatch):
 def test_unknown_unknown_lists_existing_vocab(monkeypatch):
     corpus = _corpus()
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         assert role == "unknown_unknown"
         assert "alpha-team" in prompt or "Alpha Observatory team" in prompt
         return {"proposals": [{"slot": "actor", "label": "Gamma Team", "rationale": "new actor in evidence"}]}
@@ -99,7 +99,7 @@ def test_preservation_critique_reads_table(monkeypatch):
     corpus = _corpus()
     h = _hyp(corpus)
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         assert role == "preservation_critic"
         return {"expected_evidence": ["an observatory logbook"], "could_have_survived": True, "detectability_adjustment": 0.8, "rationale": "well-documented era"}
 
@@ -158,7 +158,7 @@ def test_judge_returns_clipped_float(monkeypatch):
     a = _hyp(corpus, actor="alpha-team")
     b = _hyp(corpus, actor="beta-team")
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         assert role == "judge"
         return {"p_a_wins": 1.4, "rationale": "a is much stronger"}
 
@@ -172,7 +172,7 @@ def test_meta_review_summarizes_population(monkeypatch):
     corpus = _corpus()
     pop = [_hyp(corpus, actor="alpha-team"), _hyp(corpus, actor="beta-team")]
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         assert role == "meta_review"
         return {"summary": "two consensus readings", "flags": [], "recommended_actions": ["widen next round"]}
 
@@ -182,7 +182,7 @@ def test_meta_review_summarizes_population(monkeypatch):
 
 
 def test_self_report_returns_required_fields(monkeypatch):
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         assert role == "self_report"
         return {
             "assumptions": ["evidence is textual"], "incomplete_vocabularies": ["mechanism"],
@@ -204,7 +204,7 @@ def test_extract_high_agreement_no_escalation(monkeypatch):
 
     calls = {"n": 0}
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         calls["n"] += 1
         assert role == "extractor"
         return {"items": [{"kind": "textual", "tier": "T2", "quote": quote, "claim": "confirmed independently"}]}
@@ -228,7 +228,7 @@ def test_extract_low_agreement_escalates(monkeypatch):
     text = fixtures.FIXTURE_DOCS[doc_id]
     adjudicated_quote = "the Beta Observatory had extended comet Q's tracked orbit tenfold"
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         if role == "extractor":
             n = fake.n
             fake.n += 1
@@ -257,7 +257,7 @@ def test_extract_carries_slot_fields_through_when_the_model_names_them(monkeypat
     text = fixtures.FIXTURE_DOCS[doc_id]
     quote = "the first confirmed sighting of comet Q, tracked by the Alpha team using the transit-timing method"
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         return {"items": [{
             "kind": "material", "tier": "T1", "quote": quote, "claim": "first sighting",
             "actor": "Alpha Observatory team", "action": "sighted", "object": "Comet Q",
@@ -280,7 +280,7 @@ def test_extract_leaves_slots_none_when_the_model_omits_them(monkeypatch):
     text = fixtures.FIXTURE_DOCS[doc_id]
     quote = "A 1962 follow-up confirmed the sighting independently"
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         return {"items": [{"kind": "textual", "tier": "T2", "quote": quote, "claim": "confirmed"}]}
 
     _patch(monkeypatch, fake)
@@ -296,7 +296,7 @@ def test_extract_drops_items_whose_quote_is_not_found_verbatim(monkeypatch):
     doc_id = "doc-alpha"
     text = fixtures.FIXTURE_DOCS[doc_id]
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         return {"items": [{"kind": "textual", "tier": "T3", "quote": "this text does not appear anywhere", "claim": "hallucinated"}]}
 
     _patch(monkeypatch, fake)
@@ -490,7 +490,7 @@ def test_extract_refusal_pass_defaults_to_empty_items_and_logs(monkeypatch):
     quote = "A 1962 follow-up confirmed the sighting independently"
     roles.reset_refusal_log()
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         assert role == "extractor"
         if "pass 2" in prompt:
             raise roles.llm.ModelRefusal(
@@ -513,7 +513,7 @@ def test_extract_escalation_refusal_defaults_to_empty_extraction(monkeypatch):
     text = fixtures.FIXTURE_DOCS[doc_id]
     roles.reset_refusal_log()
 
-    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
         if role == "extractor":
             # Three passes that share no quote at all: agreement stays 0,
             # forcing escalation.
