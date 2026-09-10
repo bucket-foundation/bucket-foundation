@@ -4,6 +4,9 @@ import Globe from "./Globe";
 import InverseOmega from "./InverseOmega";
 import AiPasteCTA from "./AiPasteCTA";
 import ScrollReveal from "./ScrollReveal";
+import CanonGlobeMount from "@/app/canon/CanonGlobeMount";
+import { getBranches } from "@/lib/canon-fs";
+import type { GlobeBranch } from "./CanonGlobe";
 
 const BRANCHES = [
   { num: "I",    slug: "mathematics", name: "mathematics", note: "axioms · real math" },
@@ -36,6 +39,15 @@ const MARQUEE = [
 ];
 
 export default function Presentation() {
+  const branches = getBranches();
+  const globeBranches: GlobeBranch[] = branches.map((b) => ({
+    slug: b.slug,
+    numeral: b.numeral,
+    name: b.name,
+    status: b.status,
+    entryCount: b.entryCount,
+  }));
+
   return (
     <main className="min-h-screen stone-bone">
       {/* ════════════════════════════════════════════════════════════ */}
@@ -122,14 +134,13 @@ export default function Presentation() {
           </div>
         </div>
 
-        {/* Canon search, creeps in from the bottom on scroll rather than leading the hero */}
-        <ScrollReveal className="relative flex justify-center pt-8 pb-4 md:pt-14 md:pb-8">
-          <Link href="/canon/search" aria-label="Search the canon" className="group flex flex-col items-center">
-            <Globe size={300} mode="basalt" />
-            <span className="mt-5 small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] group-hover:text-[color:var(--basalt)] transition">
-              search the canon underneath it →
-            </span>
-          </Link>
+        {/* Canon search, the real tool (same component /canon/search runs), creeps in
+            from the bottom on scroll rather than leading the hero. */}
+        <ScrollReveal className="relative pt-8 pb-4 md:pt-14 md:pb-8">
+          <div className="text-center small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-2">
+            search the canon underneath it
+          </div>
+          <CanonGlobeMount branches={globeBranches} />
         </ScrollReveal>
 
         {/* Bottom hero stat strip, Roman inscription ledger */}
