@@ -1,5 +1,97 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10: literature corpus promotion pass two
+
+Branch `intake/ros-canon-promotion-2`. Thirteen more records from
+`_intake/research-os-k12-literature/` promoted, screened against all 117
+cards excluding the six pass-one promotions (PR #9,
+`intake/ros-canon-promotion`).
+
+### Added
+
+- `bucket-canon/07-mind/curiosity-and-motivation/` (new dossier): four
+  canon-tier records (Loewenstein 1994; Gruber, Gelman, and Ranganath
+  2014; Deci and Ryan 2000; Gneezy and Rustichini 2000), each run through
+  `tools/canon-pipeline/intake.py --min-score 70` and re-verified
+  idempotent across two re-runs (`added=0 kept=4 changed=False` both
+  times).
+- `bucket-canon/07-mind/cognition-and-automation/` (new dossier): one
+  canon-tier record (Bainbridge 1983), same convergence check
+  (`added=0 kept=1 changed=False` both re-runs).
+- `bucket-canon/04-information/information-foraging/` (new dossier): one
+  canon-tier record (Pirolli and Card 1999), same convergence check
+  (`added=0 kept=1 changed=False` both re-runs), placed in
+  `04-information/` rather than `07-mind/` per the task brief and a
+  boundary-call note added to `04-information/README.md`.
+- `bucket-canon/07-mind/sub-outcomes/education/`: seven more outcome-tier
+  records added to the existing dossier, five AI-tutoring and
+  generative-AI-in-learning RCTs and field evaluations depending on the
+  Roediger and Karpicke 2006 foundation (Kestin et al. 2025; Bastani et
+  al. 2025; Wang et al. 2024, Tutor CoPilot; De Simone et al. 2025,
+  Nigeria) or the Sparrow, Liu, and Wegner 2011 foundation (Kosmyna et
+  al. 2025), and two human-AI complementarity meta-analyses depending on
+  the newly promoted Pirolli and Card 1999 information-foraging
+  foundation (Vaccaro, Almaatouq, and Malone 2024; Bansal et al. 2021).
+- `bucket-canon/TAXONOMY_NOTES.md`: one new open question, whether the two
+  human-AI complementarity meta-analyses need a dedicated
+  `sub-outcomes/human-ai-collaboration/` home instead of sharing
+  `sub-outcomes/education/`; not resolved, both records placed in the
+  existing folder with a pointer.
+- `provenance_signoff: "pending: gianyrox"` on every record this pass
+  promotes, and backfilled onto the ten records pass one promoted
+  (`07-mind/memory-systems/`'s three canon records, one of which,
+  Scoville and Milner 1957, predates PR #9 entirely, seeded 2026-05-19,
+  and `sub-outcomes/education/`'s four pass-one outcome records), per the
+  ros-11 governance rule: a named human founder is the
+  pending approver on every canon or outcome record, and no sign-off has
+  happened yet.
+- `CANON-INGESTION-INDEX.md`: a dated table of the thirteen promotions.
+
+### Edited
+
+- Thirteen intake cards marked `status: promoted` with a `promoted_to`
+  pointer (and, for the seven outcome-tier cards, a
+  `depends_on_foundation` pointer) and a canon-or-outcome-record callout
+  in the body; claim text unchanged in all thirteen.
+- `_intake/research-os-k12-literature/README.md`: index table status and
+  tier columns updated for the thirteen rows, plus a new section
+  recording the pass.
+- `bucket-canon/07-mind/README.md`, `bucket-canon/04-information/README.md`:
+  one short addition each, naming the new subfolders outside the
+  originally proposed list.
+- `bucket-canon/07-mind/sub-outcomes/education/README.md` and
+  `CANON_INDEX.md`: extended scope line, dependency convention, and
+  outcome-entries table for the seven new records.
+- `bucket-canon/07-mind/memory-systems/CANON_INDEX.md`: one line noting
+  the signoff backfill.
+
+### Removed
+
+None.
+
+### Verified
+
+- `tools/canon-pipeline/intake.py` run twice on each of the three new
+  canon dossiers: `curiosity-and-motivation` (`added=4` then `added=0
+  kept=4 changed=False` twice), `cognition-and-automation` and
+  `information-foraging` (`added=1` then `added=0 kept=1 changed=False`
+  twice each). `07-mind/memory-systems` re-run after the signoff backfill
+  also stayed `added=0 kept=3 changed=False`.
+- No file under `src/` or `public/` is touched by this pass, so no
+  `npm run build` gate applies to it. `canon-primary.ts` walks
+  `bucket-canon/<branch>/<concept>/primary-papers.yaml` one level deep;
+  the three new canon dossiers sit at that depth and are picked up
+  without code changes, `sub-outcomes/education/` sits two levels deep
+  and stays off the served canon surface, unchanged from the pass-one
+  convention.
+- `.github/workflows/feed.yml` (`canon-feed`) runs on push to `main` and
+  regenerates `feed.json`/`feed.xml` from the git diff via
+  `tools/feed/parse.py`; this pass does not hand-edit either file, the
+  bot commits its own events after merge.
+- `public/llms.txt` enumerates canon branches, not individual entries,
+  and routes agents to the live `/api/research` endpoint; no edit needed
+  for new DOI-backed records.
+
 ## 2026-09-10, ros-04 workspace hardening (PR TBD)
 
 `feat/ros-04-workspace-hardening`, worktree `.ros-worktrees/ros04`, branched from

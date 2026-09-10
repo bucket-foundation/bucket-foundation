@@ -2,6 +2,58 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## Iteration 19: canon-intake promotion pass two
+
+Date 2026-09-10. Branch `intake/ros-canon-promotion-2`. Promotes thirteen
+more records from `_intake/research-os-k12-literature/` into
+`bucket-canon/`, screened against all 117 cards excluding the six pass-one
+promotions (Iteration 7, PR #9). Full detail in
+`_intake/research-os-k12/CHANGELOG.md`'s matching entry; this ledger
+carries the summary.
+
+### Added
+
+- Three new canon dossiers: `bucket-canon/07-mind/curiosity-and-motivation/`
+  (Loewenstein 1994; Gruber, Gelman, and Ranganath 2014; Deci and Ryan
+  2000; Gneezy and Rustichini 2000), `bucket-canon/07-mind/
+  cognition-and-automation/` (Bainbridge 1983), and `bucket-canon/
+  04-information/information-foraging/` (Pirolli and Card 1999).
+- Seven records added to the existing `bucket-canon/07-mind/
+  sub-outcomes/education/` dossier: five AI-tutoring and
+  generative-AI-in-learning RCTs and field evaluations (Kestin et al.
+  2025; Bastani et al. 2025; Wang et al. 2024, Tutor CoPilot; De Simone
+  et al. 2025, Nigeria; Kosmyna et al. 2025) and two human-AI
+  complementarity meta-analyses (Vaccaro, Almaatouq, and Malone 2024;
+  Bansal et al. 2021), each naming the canon-tier foundation it depends
+  on.
+- `provenance_signoff: "pending: gianyrox"` on all thirteen new records
+  and backfilled onto the ten pass-one records, per the ros-11
+  governance rule: a named human founder is the pending approver on
+  every canon or outcome record, and no sign-off has happened yet.
+- One `bucket-canon/TAXONOMY_NOTES.md` open question: whether the two
+  human-AI complementarity meta-analyses need a dedicated
+  `sub-outcomes/human-ai-collaboration/` home; not resolved, both stay in
+  `sub-outcomes/education/` with a pointer.
+
+### Edited
+
+- Thirteen intake cards marked `status: promoted` with pointers (seven
+  also gain `depends_on_foundation`); claim text unchanged in all
+  thirteen.
+- `bucket-canon/07-mind/README.md`, `bucket-canon/04-information/README.md`:
+  short additions naming the new subfolders.
+- `bucket-canon/07-mind/sub-outcomes/education/README.md`,
+  `CANON_INDEX.md`, and `bucket-canon/07-mind/memory-systems/
+  CANON_INDEX.md`: extended for the new records and the signoff
+  backfill.
+- `_intake/research-os-k12-literature/README.md`: index table updated for
+  the thirteen rows, plus a new section recording the pass.
+- `CANON-INGESTION-INDEX.md`: a dated table of the thirteen promotions.
+
+### Removed
+
+None.
+
 ## PR #35 review pass
 
 Date 2026-09-10. Review of `feat/ros-07-compliance-part-a` (PR #35), worktree `review/pr35`.

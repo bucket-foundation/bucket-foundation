@@ -63,6 +63,43 @@ Fortunato et al. 2018), and whether AlphaFold (Jumper et al. 2021) becomes
 a `05-biophysics` method card or stays a `research-landscape/` entry. Full
 context: `bucket-canon/TAXONOMY_NOTES.md`.
 
+### 07-mind and 04-information promotions, pass two, `intake/ros-canon-promotion-2`
+
+Thirteen more papers promoted from `_intake/research-os-k12-literature/`
+(pass two of the same corpus, PR #9 was pass one), all resolved live via
+`tools/canon-pipeline/canon.py resolve <doi>` (Crossref + OpenAlex). Six
+canon-tier across three new dossiers, converged idempotently through
+`tools/canon-pipeline/intake.py --min-score 70` (each ran twice, second
+run `added=0` on every dossier); seven outcome-tier, added to the
+existing `07-mind/sub-outcomes/education/` per RUBRIC.md Stage-0 rule E7.
+Every record in this pass, and every record carried over from pass one,
+carries `provenance_signoff: "pending: gianyrox"` per the ros-11 named-
+human-sign-off governance rule: a named founder is the pending approver
+on every promoted record, and no sign-off has happened yet.
+
+| Title | Path | Tier |
+|---|---|---|
+| The Psychology of Curiosity: A Review and Reinterpretation | `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` | canon |
+| States of Curiosity Modulate Hippocampus-Dependent Learning via the Dopaminergic Circuit | `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` | canon |
+| The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior | `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` | canon |
+| Pay Enough or Don't Pay at All | `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` | canon |
+| Ironies of automation | `bucket-canon/07-mind/cognition-and-automation/primary-papers.yaml` | canon |
+| Information foraging. | `bucket-canon/04-information/information-foraging/primary-papers.yaml` | canon |
+| AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Generative AI without guardrails can harm learning: Evidence from high school mathematics | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing Task | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| When Combinations of Humans and AI Are Useful: A Systematic Review and Meta-Analysis | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+
+One taxonomy question logged rather than resolved: whether the two
+human-AI complementarity meta-analyses need a dedicated
+`sub-outcomes/human-ai-collaboration/` home instead of sharing
+`sub-outcomes/education/`. Full context: `bucket-canon/TAXONOMY_NOTES.md`.
+These sit outside the FTS counts above until a future pass runs them
+through the same full-text index.
+
 ### 04-information hypothesis-engine artifacts, PR #10
 
 Seven Bucket-authored primary-method artifacts entered `04-information`.
