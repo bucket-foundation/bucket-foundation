@@ -152,6 +152,65 @@ def test_parse_frontmatter_still_raises_on_a_real_missing_opener():
         literature._parse_frontmatter("title: not frontmatter at all\n", "bad.md")
 
 
+def test_parse_frontmatter_missing_required_field_names_the_file():
+    # Silent-failures review finding 7a: a card missing a required field
+    # (here, `authors:`) used to raise a bare `KeyError: 'authors'` with
+    # no indication of which of a 45-card-and-growing corpus's own files
+    # to fix.
+    raw = (
+        '---\n'
+        'title: "A Card Missing Authors"\n'
+        'year: 2021\n'
+        'venue: "Some Journal"\n'
+        'doi: "10.1000/missing-authors"\n'
+        'url: "https://doi.org/10.1000/missing-authors"\n'
+        'openalex_id: null\n'
+        'branch: "educational-methods"\n'
+        'tier: "canon"\n'
+        'why_it_matters: >\n'
+        '  It has no authors field.\n'
+        'key_claims:\n'
+        '  - "A claim."\n'
+        'research_questions_it_leaves_open:\n'
+        '  - "An open question."\n'
+        'how_it_bears_on_research_os: >\n'
+        '  It bears directly.\n'
+        '---\n\n# Title\n'
+    )
+    with pytest.raises(ValueError, match=r"missing-authors\.md carries no 'authors' field"):
+        literature._parse_frontmatter(raw, "educational-methods/missing-authors.md")
+
+
+def test_parse_frontmatter_non_numeric_year_names_the_file():
+    # Silent-failures review finding 7a: a card with a non-numeric
+    # `year:` used to raise a bare `ValueError: invalid literal for
+    # int()...` with no file name either.
+    raw = (
+        '---\n'
+        'title: "A Card With A Bad Year"\n'
+        'authors:\n'
+        '  - "Author, A."\n'
+        'year: not-a-number\n'
+        'venue: "Some Journal"\n'
+        'doi: "10.1000/bad-year"\n'
+        'url: "https://doi.org/10.1000/bad-year"\n'
+        'openalex_id: null\n'
+        'branch: "educational-methods"\n'
+        'tier: "canon"\n'
+        'why_it_matters: >\n'
+        '  It has a bad year.\n'
+        'key_claims:\n'
+        '  - "A claim."\n'
+        'research_questions_it_leaves_open:\n'
+        '  - "An open question."\n'
+        'how_it_bears_on_research_os: >\n'
+        '  It bears directly.\n'
+        '---\n\n# Title\n'
+    )
+    with pytest.raises(ValueError, match=r"bad-year\.md: invalid literal for int\(\)"):
+        literature._parse_frontmatter(raw, "educational-methods/bad-year.md")
+
+
 # --------------------------------------------------------------------------
 # tier
 # --------------------------------------------------------------------------
@@ -454,6 +513,80 @@ def test_ensure_cards_cached_over_monkeypatched_urllib(tmp_path, monkeypatch):
     captured_urls.clear()
     literature.load(ref="fake-ref")
     assert not any(literature.GITHUB_RAW_BASE in u for u in captured_urls)
+
+
+def test_fetch_card_text_wraps_url_error_naming_path_and_ref(monkeypatch):
+    """Silent-failures review finding 4: `_fetch_card_text` used to have
+    no `try/except` at all, unlike its sibling `_fetch_card_paths`, so a
+    network blip fetching one card raised a bare, low-level `urllib`
+    exception naming neither the path nor the ref. It must now wrap the
+    same way."""
+    def fake_urlopen(request, timeout=30):  # noqa: ANN001 - matches urllib's own signature
+        raise literature.urllib.error.URLError("connection reset")
+
+    monkeypatch.setattr(literature.urllib.request, "urlopen", fake_urlopen)
+    with pytest.raises(RuntimeError, match="ai-and-researchers/some-card.md.*fake-ref"):
+        literature._fetch_card_text(f"{literature.GITHUB_INTAKE_PATH}/ai-and-researchers/some-card.md", "fake-ref")
+
+
+def test_ensure_cards_cached_leaves_no_partial_final_file_on_a_write_failure(tmp_path, monkeypatch):
+    """Silent-failures review finding 4: a crash mid-write (disk full,
+    SIGKILL, Ctrl-C) must never leave a `dest`-named file on disk that a
+    later `load()` call's `dest.is_file()` cache-hit check would treat
+    as permanently valid; `_ensure_cards_cached` writes through a
+    `.tmp` path and an atomic `rename` for exactly this reason (`hte.
+    llm._write_cache`'s own convention). This test forces the write
+    itself to fail and checks the real, final-named file was never
+    created."""
+    monkeypatch.setenv("LITERATURE_CARDS_DIR", str(tmp_path / "cache"))
+    real_cards = literature.load_raw(FIXTURES_DIR)
+    one_card = real_cards[0]
+    tree_payload = {"tree": [{"path": f"{literature.GITHUB_INTAKE_PATH}/{one_card.relative_path}", "type": "blob"}]}
+    raw_text = (FIXTURES_DIR / one_card.relative_path).read_text()
+
+    class FakeResponse:
+        def __init__(self, payload: bytes) -> None:
+            self._payload = payload
+
+        def read(self) -> bytes:
+            return self._payload
+
+        def __enter__(self) -> "FakeResponse":
+            return self
+
+        def __exit__(self, *exc_info: object) -> bool:
+            return False
+
+    def fake_urlopen(request, timeout=30):  # noqa: ANN001 - matches urllib's own signature
+        url = request.full_url
+        if "api.github.com" in url:
+            return FakeResponse(json.dumps(tree_payload).encode("utf-8"))
+        return FakeResponse(raw_text.encode("utf-8"))
+
+    monkeypatch.setattr(literature.urllib.request, "urlopen", fake_urlopen)
+
+    real_write_text = literature.Path.write_text
+
+    def flaky_write_text(self, *args, **kwargs):
+        if self.name.endswith(".tmp"):
+            raise OSError("simulated disk full mid-write")
+        return real_write_text(self, *args, **kwargs)
+
+    monkeypatch.setattr(literature.Path, "write_text", flaky_write_text)
+
+    with pytest.raises(OSError, match="simulated disk full"):
+        literature._ensure_cards_cached("fake-ref")
+
+    dest = (tmp_path / "cache") / one_card.relative_path
+    assert not dest.exists()
+
+    # the write failure is not permanent: a later, successful attempt
+    # (the flaky patch removed) fetches this card fresh rather than
+    # treating anything left behind as an already-valid cache entry
+    monkeypatch.setattr(literature.Path, "write_text", real_write_text)
+    literature._ensure_cards_cached("fake-ref")
+    assert dest.is_file()
+    assert dest.read_text() == raw_text
 
 
 def test_live_fetch_lists_cards_or_skips_when_offline():

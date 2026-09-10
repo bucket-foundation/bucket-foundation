@@ -4,6 +4,7 @@ end to end on an ephemeral localhost port, fake mode only
 """
 from __future__ import annotations
 
+import http.client
 import json
 import threading
 import urllib.error
@@ -12,7 +13,7 @@ from http.server import ThreadingHTTPServer
 
 import pytest
 
-from hte import mcp_tool
+from hte import mcp_tool, serve
 from hte.corpus import production
 from hte.serve import DEFAULT_MAX_BODY_BYTES, _Handler
 
@@ -129,3 +130,80 @@ def test_get_unknown_route_returns_404(server):
         pytest.fail("expected a 404")
     except urllib.error.HTTPError as exc:
         assert exc.code == 404
+
+
+def test_post_unknown_route_returns_404(server):
+    status, payload = _post(server, "/no-such-route", b"{}")
+    assert status == 404
+    assert payload["ok"] is False
+
+
+# --------------------------------------------------------------------------
+# Content-Length edge cases: `do_POST` checks the header itself before it
+# ever reads a body, a branch distinct from the bad-JSON and oversized-body
+# paths above and untested by either.
+# --------------------------------------------------------------------------
+
+
+def _post_raw(address, path: str, *, content_length_header: str | None) -> tuple[int, dict]:
+    """A `POST` with full control over whether/what `Content-Length` header
+    is sent, below `urllib.request`'s own level (it always computes and
+    sends a correct one for a `bytes` body), using `http.client`'s own
+    low-level `putrequest`/`putheader`/`endheaders` so a missing or
+    malformed header reaches the server exactly as this test intends."""
+    conn = http.client.HTTPConnection(address[0], address[1], timeout=10)
+    try:
+        conn.putrequest("POST", "/hypothesize", skip_accept_encoding=True)
+        conn.putheader("Content-Type", "application/json")
+        if content_length_header is not None:
+            conn.putheader("Content-Length", content_length_header)
+        conn.endheaders()
+        resp = conn.getresponse()
+        return resp.status, json.loads(resp.read())
+    finally:
+        conn.close()
+
+
+def test_post_hypothesize_missing_content_length_returns_400(server):
+    status, payload = _post_raw(server, "/hypothesize", content_length_header=None)
+    assert status == 400
+    assert payload["ok"] is False
+    assert "Content-Length" in payload["error"]
+
+
+def test_post_hypothesize_non_integer_content_length_returns_400(server):
+    status, payload = _post_raw(server, "/hypothesize", content_length_header="not-a-number")
+    assert status == 400
+    assert payload["ok"] is False
+    assert "Content-Length" in payload["error"]
+
+
+def test_post_hypothesize_negative_content_length_returns_400(server):
+    status, payload = _post_raw(server, "/hypothesize", content_length_header="-1")
+    assert status == 400
+    assert payload["ok"] is False
+    assert "Content-Length" in payload["error"]
+
+
+# --------------------------------------------------------------------------
+# unexpected exception -> 500: `hypothesize()` documents its own error
+# contract (`RequestValidationError`/`CampaignError`), so `do_POST`'s own
+# catch-all is meant to be unreachable; this test forces it anyway, so a
+# real bug surfaces as the documented shape instead of crashing the
+# handler thread or leaking exception text onto the wire.
+# --------------------------------------------------------------------------
+
+
+def test_post_hypothesize_with_unexpected_exception_returns_500(server, monkeypatch):
+    def _boom(request, *, config=None):
+        raise RuntimeError("an ordinary bug, not a HypothesizeError, and not for the client to read")
+
+    monkeypatch.setattr(serve, "hypothesize", _boom)
+    body = json.dumps(_fixture_request()).encode("utf-8")
+    status, payload = _post(server, "/hypothesize", body)
+    assert status == 500
+    assert payload["ok"] is False
+    assert payload["error"] == "internal error: RuntimeError"
+    # the bug's own message never reaches the client, only the bare
+    # exception class name
+    assert "ordinary bug" not in payload["error"]
