@@ -26,6 +26,20 @@ def paper_dir():
     shutil.rmtree(dest, ignore_errors=True)
 
 
+@pytest.fixture(autouse=True)
+def _real_llm_mode(monkeypatch):
+    """This file's two end-to-end tests below (`LLM_CACHE`, `replay_
+    only=True`) assert the real cache-replay contract (a hit returns the
+    seeded response, a miss raises `LLMCacheMissError`); an ambient
+    `HTE_LLM_MODE=fake` would dispatch straight to `hte.fakellm` instead,
+    which has no stand-in for the `referee` role at all and raises
+    `KeyError` rather than either outcome those tests check for. Pinning
+    it unset here keeps this file correct under `env -u HTE_LLM_MODE make
+    test` and `HTE_LLM_MODE=fake make test` alike; harmless for every
+    other test in this file, none of which touch `HTE_LLM_MODE`."""
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
+
+
 # --------------------------------------------------------------------------
 # Pure checks, no build, no LLM call
 # --------------------------------------------------------------------------
@@ -146,6 +160,7 @@ def test_apply_targeted_rewrites_applies_unique_rewrite(tmp_path, monkeypatch):
 # --------------------------------------------------------------------------
 
 
+@pytest.mark.allow_subprocess  # referee() always calls run_voice_lint's real `agf-lint-voice` subprocess
 def test_referee_end_to_end_fixes_bare_ref_and_antithesis_replay_only(paper_dir):
     before = (paper_dir / "main.tex").read_text()
     assert r"\ref{sec:intro}" in before

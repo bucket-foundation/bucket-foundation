@@ -21,6 +21,10 @@ import pytest
 from hte.concepts import Slot
 from hte.corpus import education_atlas
 
+# `sample_dir` below falls back to a real `gh repo clone`; opts every test
+# in this module out of `tests/conftest.py`'s autouse subprocess guard.
+pytestmark = pytest.mark.allow_subprocess
+
 
 @pytest.fixture(scope="module")
 def sample_dir(tmp_path_factory):

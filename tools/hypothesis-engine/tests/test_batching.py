@@ -1,6 +1,8 @@
 import json
 from types import SimpleNamespace
 
+import pytest
+
 from hte import batching, llm, roles
 from hte.belief import Opinion
 from hte.corpus import fixtures
@@ -32,6 +34,23 @@ def _fake_run(responses: list[tuple[int, str]]):
 
     run.calls = calls
     return run
+
+
+@pytest.fixture(autouse=True)
+def _real_llm_mode(monkeypatch):
+    """Most tests below exercise `hte.batching`'s real (non-fake) path
+    through their own `SimpleNamespace(run=...)` stand-in for `llm.
+    subprocess`; `llm.complete` checks `HTE_LLM_MODE` before ever
+    consulting that stand-in, so an ambient `HTE_LLM_MODE=fake` would
+    silently reroute all of them to `hte.fakellm` instead. Pinning it
+    unset here, rather than trusting the shell, keeps this file correct
+    under `env -u HTE_LLM_MODE make test` and `HTE_LLM_MODE=fake make
+    test` alike; the handful of tests below that want fake mode still
+    call their own `monkeypatch.setenv("HTE_LLM_MODE", "fake")` on this
+    same, shared `monkeypatch` fixture instance, layering their own
+    setup on top of this one exactly as `tests/swarm3/conftest.py`'s own
+    `fake_llm_mode`/override pair already does the other way around."""
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
 
 
 # --------------------------------------------------------------------------

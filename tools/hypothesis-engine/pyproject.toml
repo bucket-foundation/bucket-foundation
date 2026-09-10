@@ -25,4 +25,5 @@ hte = ["data/*.json", "data/retrieval-fixtures/*.json"]
 testpaths = ["tests"]
 markers = [
     "slow: measured to exceed 2s under the `fast` hypothesis profile (excluded by `make test`'s `-m \"not slow\"`; see tests/conftest.py)",
+    "allow_subprocess: opts out of tests/conftest.py's autouse subprocess.run/Popen guard for a test that legitimately shells out for real (a live `gh repo clone`, say) rather than through an LLM call",
 ]

@@ -641,6 +641,226 @@ def fit_constants(
     }
 
 
+# --------------------------------------------------------------------------
+# pooled coordinate-descent fit (`docs/CALIBRATION-FIT-2026-09-10.md`)
+# --------------------------------------------------------------------------
+#
+# `fit_constants`'s own grid search (above) fits `W`/`lam`/`tier_scale`
+# against ONE corpus's own holdout. Real-corpus k-fold Brier runs 0.36 to
+# 0.42 while a synthetic `hte.synth` world's own runs near 0.008
+# (`docs/CALIBRATION-FIT-2026-09-10.md`'s own before-table): the constants
+# this package ships were tuned to synth alone, never checked against a
+# real corpus's own holdout at all. `fit_constants_pooled` is the wider
+# fit that check calls for: every named constant (`W`, `lam`, `mu`,
+# `alpha`, a single global `tier_scale` standing in for the six-value
+# `tier_weight` table, `fit_constants`'s own documented simplification
+# reused here rather than a six-dimensional sweep, and `hte.belief.
+# Constants.detectability_floor`) fit jointly against a POOLED objective:
+# the mean k-fold Brier score across every corpus a caller hands it, with
+# a penalty when a named subset (synth worlds, by convention) reads a
+# `coverage_of_truth` below its own target. `mu` and `alpha` are included
+# in the search per this fit's own stated scope even though neither
+# affects `hte.belief.score`'s own output (`Constants`'s own docstring):
+# their own fitted value is recorded, never observed to move the loss.
+
+
+_FIT_PARAM_NAMES: tuple[str, ...] = ("W", "lam", "mu", "alpha", "tier_scale", "detectability_floor")
+
+_FIT_PARAM_BOUNDS: dict[str, tuple[float, float]] = {
+    "W": (0.5, 8.0), "lam": (0.05, 2.0), "mu": (0.0, 2.0), "alpha": (0.1, 5.0),
+    "tier_scale": (0.25, 3.0), "detectability_floor": (0.0, 0.6),
+}
+
+# Additive step offsets tried around the running-best value for each
+# parameter, per coordinate-descent sweep (`_coordinate_descent`).
+# `detectability_floor` starts at `0.0` (`Constants`'s own default), where
+# a MULTIPLICATIVE step could never move it at all; every parameter here
+# uses the same additive convention for that reason, rather than mixing
+# additive and multiplicative steps across the six.
+_FIT_PARAM_STEPS: dict[str, tuple[float, ...]] = {
+    "W": (-1.0, -0.5, 0.5, 1.0, 2.0),
+    "lam": (-0.3, -0.15, 0.15, 0.3),
+    "mu": (-0.3, 0.3),
+    "alpha": (-0.5, 0.5, 1.0),
+    "tier_scale": (-0.5, -0.25, 0.25, 0.5),
+    "detectability_floor": (0.1, 0.2, 0.3),
+}
+
+DEFAULT_MIN_SYNTH_COVERAGE = 0.9
+DEFAULT_COVERAGE_PENALTY_WEIGHT = 2.0
+
+
+def _vector_to_constants(vector: Mapping[str, float]) -> Constants:
+    tier_weight = {t: belief.TIER_WEIGHT[t] * vector["tier_scale"] for t in Tier}
+    return Constants(
+        W=vector["W"], lam=vector["lam"], mu=vector["mu"], alpha=vector["alpha"],
+        tier_weight=tier_weight, detectability_floor=vector["detectability_floor"],
+    )
+
+
+def _default_fit_vector() -> dict[str, float]:
+    d = Constants()
+    return {"W": d.W, "lam": d.lam, "mu": d.mu, "alpha": d.alpha, "tier_scale": 1.0, "detectability_floor": d.detectability_floor}
+
+
+def evaluate_pooled(
+    corpora: Mapping[str, Corpus],
+    vector: Mapping[str, float],
+    *,
+    coverage_targets: Mapping[str, float] | None = None,
+    coverage_penalty_weight: float = DEFAULT_COVERAGE_PENALTY_WEIGHT,
+    k: int = DEFAULT_KFOLD_K,
+    seed: int = 0,
+) -> dict[str, Any]:
+    """One point in the pooled search space, scored: `hte.calibrate.
+    run_calibration` (its own auto-picked discovery-date/k-fold mode,
+    `choose_holdout_mode`) over every corpus in `corpora`, at the
+    `Constants` `vector` builds (`_vector_to_constants`).
+
+    `loss = mean_brier + penalty`: `mean_brier` is the plain mean of
+    every corpus's own `brier_score` that is not `None` (a corpus with no
+    covered event contributes nothing to the mean rather than a
+    fabricated zero); `penalty` sums, over every `(name, target)` pair in
+    `coverage_targets`, `coverage_penalty_weight * max(0, target -
+    coverage_of_truth)` when that corpus's own `coverage_of_truth` is
+    known and below `target` (missing coverage, or a corpus `coverage_
+    targets` does not name, contributes nothing). A caller wanting the
+    penalty enforced only on synth worlds (`docs/CALIBRATION-FIT-2026-09-
+    10.md`'s own "a penalty on synth coverage dropping below 0.9") passes
+    `coverage_targets` naming only those.
+    """
+    constants = _vector_to_constants(vector)
+    per_corpus: list[dict[str, Any]] = []
+    briers: list[float] = []
+    penalty = 0.0
+    for name, corpus in corpora.items():
+        result = run_calibration(corpus, constants, k=k, seed=seed)
+        coverage = result["coverage_of_truth"]
+        per_corpus.append({
+            "name": name, "mode": result["mode"], "brier_score": result["brier_score"],
+            "coverage_of_truth": coverage, "n_holdout_events": result["n_holdout_events"],
+        })
+        if result["brier_score"] is not None:
+            briers.append(result["brier_score"])
+        target = (coverage_targets or {}).get(name)
+        if target is not None and coverage is not None and coverage < target:
+            penalty += coverage_penalty_weight * (target - coverage)
+    mean_brier = (sum(briers) / len(briers)) if briers else None
+    loss = (mean_brier if mean_brier is not None else 1.0) + penalty
+    return {
+        "vector": dict(vector), "loss": loss, "mean_brier": mean_brier,
+        "penalty": penalty, "per_corpus": per_corpus,
+    }
+
+
+def fit_constants_pooled(
+    corpora: Mapping[str, Corpus],
+    *,
+    coverage_targets: Mapping[str, float] | None = None,
+    coverage_penalty_weight: float = DEFAULT_COVERAGE_PENALTY_WEIGHT,
+    k: int = DEFAULT_KFOLD_K,
+    seed: int = 0,
+    passes: int = 1,
+    start: Mapping[str, float] | None = None,
+) -> dict[str, Any]:
+    """Coordinate descent over `_FIT_PARAM_NAMES` against `evaluate_
+    pooled`'s own loss, starting from `Constants()`'s own values
+    (`_default_fit_vector`) unless `start` overrides them. One sweep
+    (`passes=1`, the default) tries every `_FIT_PARAM_STEPS` offset for
+    each parameter in `_FIT_PARAM_NAMES` order, keeping whichever step
+    (if any) lowers the running-best loss before moving to the next
+    parameter; a second or later pass repeats the same sweep from
+    wherever the previous one left off, and the search stops early,
+    before `passes` is reached, the first time a whole sweep finds no
+    improving step at all.
+
+    Returns `{"best", "history", "passes_run"}`: `best` is `evaluate_
+    pooled`'s own result dict at the winning vector; `history` is every
+    evaluated point, baseline first, in evaluation order (an audit trail;
+    reproducing `best` needs only its own `vector`); `passes_run` is how
+    many full sweeps ran, `<= passes`.
+    """
+    vector = dict(start) if start is not None else _default_fit_vector()
+    best = evaluate_pooled(corpora, vector, coverage_targets=coverage_targets, coverage_penalty_weight=coverage_penalty_weight, k=k, seed=seed)
+    history = [best]
+    passes_run = 0
+    for _pass in range(passes):
+        passes_run += 1
+        improved_this_pass = False
+        for name in _FIT_PARAM_NAMES:
+            lo, hi = _FIT_PARAM_BOUNDS[name]
+            for step in _FIT_PARAM_STEPS[name]:
+                candidate = dict(best["vector"])
+                candidate[name] = min(hi, max(lo, candidate[name] + step))
+                if candidate[name] == best["vector"][name]:
+                    continue
+                result = evaluate_pooled(corpora, candidate, coverage_targets=coverage_targets, coverage_penalty_weight=coverage_penalty_weight, k=k, seed=seed)
+                history.append(result)
+                if result["loss"] < best["loss"]:
+                    best = result
+                    improved_this_pass = True
+        if not improved_this_pass:
+            break
+    return {"best": best, "history": history, "passes_run": passes_run}
+
+
+def build_pooled_fit_corpora(
+    synth_seeds: Sequence[int] = tuple(range(10)),
+    *,
+    education_atlas_countries: Sequence[str] = ("USA", "GBR", "KEN", "BRA", "IND", "NGA", "FIN", "JPN"),
+    education_atlas_years: tuple[int, int] = (2010, 2024),
+) -> tuple[dict[str, Corpus], dict[str, float]]:
+    """`(corpora, coverage_targets)` for `fit_constants_pooled`'s own
+    pooled objective: one `hte.synth.make_small_world(seed).corpus` per
+    `synth_seeds` entry (key `f"synth-{seed}"`), plus `quantum-history`,
+    `production` (`status_min="draft"`, so a draft-only campaign still
+    contributes evidence to fit against), `education-atlas`, and
+    `literature` (`hte.corpus.literature.DEFAULT_FIXTURES_DIR`, the local
+    6-card fixture set, never a live GitHub fetch). `coverage_targets`
+    names `DEFAULT_MIN_SYNTH_COVERAGE` for every synth entry only, per
+    `docs/CALIBRATION-FIT-2026-09-10.md`'s own "a penalty on synth
+    coverage" scope; none of the four real corpora carries one.
+
+    `education_atlas_countries`/`education_atlas_years` restrict `hte.
+    corpus.education_atlas.load`'s own sample to a fixed 8-country,
+    full-span-year subset rather than all 25 sample countries: `hte.link.
+    link_evidence`'s own per-fold cost (`hte.calibrate.holdout_kfold`'s
+    own module-docstring section) scales with candidate population size,
+    and the full 25-country sample's own ~4,700 evidence items measured
+    well past two minutes for one `run_calibration` call alone, a cost
+    this fit pays dozens of times per coordinate-descent sweep. The
+    8-country subset (~1,500 evidence items, chosen for income- and
+    region-spread rather than at random: two high-income Western
+    economies, two East/South Asian economies, one Latin American, two
+    Sub-Saharan African, one Nordic) measured close to 20 seconds a call,
+    the one real-corpus term in the pooled objective's own dominant cost
+    but tractable across a bounded coordinate-descent budget.
+
+    This function is a thin, lazy-import orchestration layer over `hte.
+    synth` and every `hte.corpus.*` loader (imported inside this function
+    body, never at this module's own top level: `hte.synth` itself
+    imports FROM `hte.calibrate`, `calibration_curve`, so a top-level
+    `from . import synth` here would be a real import cycle); `hte.
+    calibrate`'s own lower-level `fit_constants_pooled`/`evaluate_pooled`
+    take a plain `Mapping[str, Corpus]` and know nothing about where any
+    of them came from.
+    """
+    from . import synth as synth_module
+    from .corpus import education_atlas, literature, production, quantum_history
+
+    corpora: dict[str, Corpus] = {}
+    coverage_targets: dict[str, float] = {}
+    for s in synth_seeds:
+        name = f"synth-{s}"
+        corpora[name] = synth_module.make_small_world(s).corpus
+        coverage_targets[name] = DEFAULT_MIN_SYNTH_COVERAGE
+    corpora["quantum-history"] = quantum_history.ingest()
+    corpora["production"] = production.load(status_min="draft")
+    corpora["education-atlas"] = education_atlas.load(countries=education_atlas_countries, years=education_atlas_years)
+    corpora["literature"] = literature.load(cards_dir=literature.DEFAULT_FIXTURES_DIR)
+    return corpora, coverage_targets
+
+
 def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
     """Writes `result` (`run_holdout`'s or `holdout_kfold`'s own return
     shape, either optionally carrying a `"fit"` key with `fit_constants`'s
@@ -716,4 +936,6 @@ __all__ = [
     "holdout_by_discovery_date", "run_holdout", "holdout_kfold", "choose_holdout_mode",
     "run_calibration", "fit_constants", "write_calibration",
     "brier_score", "calibration_curve", "DEFAULT_MATCH_THRESHOLD", "DEFAULT_KFOLD_K",
+    "evaluate_pooled", "fit_constants_pooled", "build_pooled_fit_corpora",
+    "DEFAULT_MIN_SYNTH_COVERAGE", "DEFAULT_COVERAGE_PENALTY_WEIGHT",
 ]

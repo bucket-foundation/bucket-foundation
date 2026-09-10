@@ -133,6 +133,17 @@ class CampaignError(HypothesizeError):
 
 
 def _validate_production_record(idx: int, raw: Any, vocab: Vocabulary, errors: list[str]) -> None:
+    """`vocab` (`production.load_vocab()`, the fixed K-12 production seed)
+    is used below for enum-shaped fields only (`author_role`, `review.
+    status`, evidence `kind`/`tier`, claim `stance`): every one of those
+    has a fixed, closed set of legal values no corpus content ever
+    extends. A claim's own `slots` values are NOT checked against `vocab`
+    here: `hte.corpus.production._build_corpus` resolves every slot value
+    for real, via `hte.vocab_induce.induce`, once the full corpus is
+    built, so a value this fixed seed does not yet name (a Research OS
+    graph-node id, `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own physics
+    case) is not a validation error, it is a concept this request's own
+    campaign is about to induce."""
     prefix = f"productions[{idx}]"
     if not isinstance(raw, dict):
         errors.append(f"{prefix}: expected an object, got {type(raw).__name__}")
@@ -179,11 +190,6 @@ def _validate_production_record(idx: int, raw: Any, vocab: Vocabulary, errors: l
         slots = claim.get("slots") or {}
         if not isinstance(slots, dict):
             errors.append(f"{cprefix}.slots: expected an object, got {type(slots).__name__}")
-        else:
-            for slot in production._SLOT_KEYS:
-                value = slots.get(slot.value)
-                if value is not None and vocab.get(slot, value) is None:
-                    errors.append(f"{cprefix}.slots.{slot.value}: unknown concept id {value!r}")
 
         interval = claim.get("interval")
         if interval is not None and (not isinstance(interval, dict) or "start" not in interval or "end" not in interval):
