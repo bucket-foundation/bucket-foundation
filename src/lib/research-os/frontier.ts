@@ -1,21 +1,34 @@
 /**
- * Research OS for K-12, Phase 0, frontier-backward routing (bkt-ros).
+ * Research OS for K-12, Phase 0/1, frontier-backward routing (bkt-ros).
  * Implements RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3 "Frontier-backward
- * routing, in steps" 2-4 and 6-7, scoped down to the task's Phase 0 slice:
- * "hardcoded scope: ... walks prerequisite edges backward to the nearest
- * nodes at stage >= understanding (treat no record as access), and returns
- * the ordered forward chain." No diagnostic probe (review step 5) and no
- * `graph.prereq_ancestor` closure table (review step 3): the Phase 0 subgraph
- * is 15-25 nodes, so a request-time BFS over `graph.edges` is fast enough and
- * a precomputed closure table would be premature (see the migration's header
- * comment for the full Phase 0/1 boundary).
+ * routing, in steps" 2-4 and 6-7. Phase 0 shipped this as a hardcoded scope:
+ * "walks prerequisite edges backward to the nearest nodes at stage >=
+ * understanding (treat no record as access), and returns the ordered forward
+ * chain," with no `graph.prereq_ancestor` closure table (review step 3) and
+ * no diagnostic probe (review step 5, now src/lib/research-os/probe.ts).
+ * Phase 1 adds the closure table below as an optional pruning input; the
+ * request-time BFS itself is unchanged and stays the fallback.
  *
  * Deliberately dependency-free: no Supabase types, no fetch. This is a pure
  * function over plain arrays so it is unit-testable with synthetic learner
  * states and no database (scripts/test-research-os-routing.ts).
+ *
+ * PHASE 1 UPDATE (bkt-ros, closing stub list item 1): computeFrontier now
+ * takes an optional fifth argument, `ancestorRows`, the precomputed rows
+ * from `graph.prereq_ancestor` (src/lib/research-os/closure.ts's
+ * `PrereqAncestorRow`). When supplied, the routable subgraph is pruned to
+ * the target's closure (the target plus its listed ancestors) before the
+ * same backward walk below runs, instead of scanning every node and edge in
+ * the branch. This is the "prunes to a target's closure before walking when
+ * available" behavior closure.ts's own header describes. Omitting the
+ * argument (or passing an empty array) falls back to the original
+ * full-graph walk unchanged, so every existing caller and test keeps
+ * working with no change. Equivalence between the two paths is asserted in
+ * scripts/test-research-os-closure.ts.
  */
 import type { GraphNode, GraphEdge, LearnerNodeState, Stage } from "./types";
 import { stageAtLeast } from "./types";
+import type { PrereqAncestorRow } from "./closure";
 
 export interface FrontierStep {
   node: GraphNode;
@@ -35,30 +48,70 @@ export interface FrontierResult {
 }
 
 /**
+ * Prunes `nodes`/`edges` down to `targetNodeId` plus its listed ancestors
+ * when `ancestorRows` has rows for that target; otherwise returns the input
+ * unchanged. Split out from computeFrontier so the pruning step and the
+ * backward walk each stay a single, testable responsibility (equivalence
+ * between the two is what scripts/test-research-os-closure.ts asserts: this
+ * function must never change which nodes the walk below can reach, only how
+ * many nodes/edges it has to scan to reach them).
+ */
+function pruneToClosure(
+  nodes: GraphNode[],
+  edges: GraphEdge[],
+  targetNodeId: string,
+  ancestorRows?: PrereqAncestorRow[],
+): { nodes: GraphNode[]; edges: GraphEdge[] } {
+  if (!ancestorRows || ancestorRows.length === 0) return { nodes, edges };
+
+  const closureIds = new Set<string>([targetNodeId]);
+  for (const row of ancestorRows) {
+    if (row.nodeId === targetNodeId) closureIds.add(row.ancestorId);
+  }
+  // No rows for this specific target (e.g. the closure table has been
+  // rebuilt for a different branch, or not yet for this one): fall back to
+  // the full graph rather than incorrectly routing to just the target.
+  if (closureIds.size === 1) return { nodes, edges };
+
+  return {
+    nodes: nodes.filter((n) => closureIds.has(n.id)),
+    edges: edges.filter((e) => closureIds.has(e.fromId) && closureIds.has(e.toId)),
+  };
+}
+
+/**
  * Compute the frontier-backward route to `targetNodeId`.
  *
  * @param nodes  every node in the routable subgraph (Phase 0: the seeded path)
  * @param edges  every edge in that subgraph; only `kind === 'prerequisite'` is walked
  * @param states the learner's known states; a node absent from this array is
  *               treated as stage 'access', matching the task's routing rule
+ * @param ancestorRows optional graph.prereq_ancestor rows (any node, not
+ *               just the target; only rows whose nodeId matches
+ *               targetNodeId are used). When present, the routable subgraph
+ *               is pruned to the target's closure before walking; omitted
+ *               or empty falls back to the original full-graph walk.
  */
 export function computeFrontier(
   nodes: GraphNode[],
   edges: GraphEdge[],
   states: LearnerNodeState[],
   targetNodeId: string,
+  ancestorRows?: PrereqAncestorRow[],
 ): FrontierResult {
-  const byId = new Map(nodes.map((n) => [n.id, n]));
-  const target = byId.get(targetNodeId);
+  const target = nodes.find((n) => n.id === targetNodeId);
   if (!target) throw new Error(`computeFrontier: target node ${targetNodeId} not found`);
+
+  const { nodes: scopedNodes, edges: scopedEdges } = pruneToClosure(nodes, edges, targetNodeId, ancestorRows);
+  const byId = new Map(scopedNodes.map((n) => [n.id, n]));
 
   const stateByNode = new Map(states.map((s) => [s.nodeId, s.stage]));
   const stageOf = (nodeId: string): Stage => stateByNode.get(nodeId) ?? "access";
 
   // backward adjacency over prerequisite edges: to -> [from, from, ...]
   const backward = new Map<string, string[]>();
-  for (const n of nodes) backward.set(n.id, []);
-  for (const e of edges) {
+  for (const n of scopedNodes) backward.set(n.id, []);
+  for (const e of scopedEdges) {
     if (e.kind !== "prerequisite") continue;
     if (!backward.has(e.toId)) continue; // edge endpoint outside this subgraph, ignore
     backward.get(e.toId)!.push(e.fromId);

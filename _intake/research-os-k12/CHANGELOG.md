@@ -30,6 +30,32 @@ Dry run against the current repo: 487 nodes / 820 edges from the Academy
 corpus, 8 nodes / 4 edges from the canon dossiers, 4 review items (all
 `unmatched_derives_from`), zero tier violations, zero orphan edges.
 
+## 2026-09-10 (Phase 1 stub closures)
+
+Branch `feat/ros-phase0-stubs`. Closed four of the Phase 0 PR's (#6) listed stubs,
+scoped to section 8's Phase 1 boundary: the `prereq_ancestor` closure table
+(`src/lib/research-os/closure.ts`, `scripts/rebuild-prereq-ancestor.ts`, migration
+`20260910010000_research_os_prereq_ancestor.sql`, wired into
+`computeFrontier`/`frontier.ts` and `GET /api/research-os/route`); the diagnostic
+probe (`src/lib/research-os/probe.ts`, `GET`/`POST /api/research-os/probe`, a
+workspace-page panel); real verbatim Quote passages for Tyndall 1869, Rayleigh 1871,
+NASA Space Place, and Wikipedia (`src/lib/research-os/passages.ts`, each entry
+verified against the live source before being added, with a labeled fallback to the
+node's own summary for the sources not yet verified); and the teacher review hold
+(`graph.teacher_reviews` migration `20260910020000_research_os_teacher_reviews.sql`,
+`src/lib/research-os/reviewer.ts`'s env-var allowlist with a Phase 1 roster TODO,
+`/api/research-os/review`, `/research-os/review`). Full account in
+`learning/research-os/CHANGE-LEDGER.md`'s "Iteration 6" entry.
+
+Rebased twice onto `main`: after the site-alignment PR (#12), and again after the
+hypothesis engine bridge (#14) and the `hte` refusal-handling PR (#10). The second
+rebase touched three shared files (`package.json`, `src/app/api/research-os/route/
+route.ts`, `src/lib/research-os/db.ts`); both sides' additions were kept.
+
+Gates run: `npm ci`; `npx tsc --noEmit` clean; `npm run test:research-os` (routing +
+closure + probe + engine-bridge + engine-frontier, 52/52); `npm run build`; `eslint`
+and `agf-lint-voice-src check` clean on every file this pass touched.
+
 ## 2026-09-10: PR #19 review pass
 
 Review of PR #19 (`docs/ros-plan-revision-1`) before merge. Leak scan on the full diff against

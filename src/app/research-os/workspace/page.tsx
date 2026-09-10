@@ -64,6 +64,28 @@ interface RouteResponse {
   error?: string;
 }
 
+// Phase 1 (bkt-ros item 2): the diagnostic probe, fired for a signed-in
+// learner with no state on any ancestor of the target
+// (src/lib/research-os/probe.ts's probeDue). See
+// src/app/api/research-os/probe/route.ts.
+interface ProbeQuestion {
+  nodeId: string;
+  nodeSlug: string;
+  nodeTitle: string;
+  tier: number;
+  prompt: string;
+}
+interface ProbeResponse {
+  due: boolean;
+  questions: ProbeQuestion[];
+  error?: string;
+}
+interface ProbeAnswerResult {
+  result: string;
+  feedback: string;
+  stage: string;
+}
+
 const STAGE_LABEL: Record<Stage, string> = {
   access: "Access",
   awareness: "Awareness",
@@ -110,7 +132,7 @@ export default function ResearchOsWorkspacePage() {
 
   const [locateQuery, setLocateQuery] = useState("");
   const [locateResults, setLocateResults] = useState<Array<{ nodeId: string; slug: string; title: string; summary: string | null; citation: string }>>([]);
-  const [quote, setQuote] = useState<{ quotable_span: string | null; citation: string } | null>(null);
+  const [quote, setQuote] = useState<{ kind?: "quote" | "summary"; quotable_span: string | null; locator?: string | null; citation: string } | null>(null);
   const [explanation, setExplanation] = useState("");
   const [checkResult, setCheckResult] = useState<{ result: string; feedback: string; citations: string[] } | null>(null);
   const [organizeClaim, setOrganizeClaim] = useState("");
@@ -122,6 +144,12 @@ export default function ResearchOsWorkspacePage() {
   const [production, setProduction] = useState({ claim: "", evidence: "", sources: "", transferProof: "" });
   const [productionStatus, setProductionStatus] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
+
+  // Phase 1 (bkt-ros item 2): diagnostic probe state.
+  const [probe, setProbe] = useState<ProbeResponse | null>(null);
+  const [probeAnswers, setProbeAnswers] = useState<Record<string, string>>({});
+  const [probeResults, setProbeResults] = useState<Record<string, ProbeAnswerResult>>({});
+  const [probeBusy, setProbeBusy] = useState<string | null>(null);
 
   useEffect(() => {
     if (!supabase) return;
@@ -156,6 +184,52 @@ export default function ResearchOsWorkspacePage() {
   useEffect(() => {
     loadRoute();
   }, [loadRoute]);
+
+  // Only a signed-in learner has ancestor state to probe against, so this
+  // only fires once token is set (an anonymous visitor never sees a probe).
+  const loadProbe = useCallback(async () => {
+    if (!token) {
+      setProbe(null);
+      return;
+    }
+    try {
+      const res = await fetch(`/api/research-os/probe?target=${encodeURIComponent(TARGET_SLUG)}`, { headers: authHeaders() });
+      const data = (await res.json()) as ProbeResponse;
+      setProbe(res.ok ? data : null);
+    } catch {
+      setProbe(null);
+    }
+  }, [token, authHeaders]);
+
+  useEffect(() => {
+    loadProbe();
+  }, [loadProbe]);
+
+  async function submitProbeAnswer(nodeId: string) {
+    const answer = (probeAnswers[nodeId] || "").trim();
+    if (!token || !answer) return;
+    setProbeBusy(nodeId);
+    try {
+      const res = await fetch("/api/research-os/probe", {
+        method: "POST",
+        headers: { "content-type": "application/json", ...authHeaders() },
+        body: JSON.stringify({ nodeId, answer }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setProbeResults((r) => ({ ...r, [nodeId]: data }));
+        // Answering even one question resolves the cold-start condition
+        // (probeDue requires NO ancestor state at all), so both the probe
+        // panel and the route/frontier can change; reload both.
+        loadProbe();
+        loadRoute();
+      } else {
+        setProbeResults((r) => ({ ...r, [nodeId]: { result: "error", feedback: data.error || "Probe grading failed.", stage: "" } }));
+      }
+    } finally {
+      setProbeBusy(null);
+    }
+  }
 
   async function sendOtp() {
     if (!supabase || !email.trim()) return;
@@ -388,6 +462,45 @@ export default function ResearchOsWorkspacePage() {
           </p>
         )}
 
+        {/* Phase 1 (bkt-ros item 2): diagnostic probe, shown only when the
+            signed-in learner has no state on any ancestor of the target. */}
+        {probe?.due && probe.questions.length > 0 && (
+          <div className="mt-8 p-4 bg-[color:var(--bone)] border border-[color:var(--gold-deep)]">
+            <div className="font-display uppercase text-[14px] mb-1">quick check first</div>
+            <p className="text-[12px] text-[color:var(--basalt-2)] mb-3">
+              Before the map: what do you already know? Answer any of these in your own words -- the AI only grades
+              against what you already know, it never writes the answer for you.
+            </p>
+            <div className="flex flex-col gap-4">
+              {probe.questions.map((q) => {
+                const result = probeResults[q.nodeId];
+                return (
+                  <div key={q.nodeId} className="border-t border-[color:var(--hairline)] pt-3">
+                    <div className="text-[13px] text-[color:var(--basalt)]">{q.prompt}</div>
+                    <textarea
+                      value={probeAnswers[q.nodeId] || ""}
+                      onChange={(e) => setProbeAnswers((a) => ({ ...a, [q.nodeId]: e.target.value }))}
+                      className="mt-2 border border-[color:var(--hairline)] px-2 py-1 text-[13px] w-full bg-white/60 min-h-[60px]"
+                    />
+                    <button
+                      onClick={() => submitProbeAnswer(q.nodeId)}
+                      disabled={!token || probeBusy === q.nodeId || !!result}
+                      className="mt-2 text-[12px] small-caps underline disabled:opacity-50"
+                    >
+                      {probeBusy === q.nodeId ? "checking…" : result ? "checked" : "check my answer"}
+                    </button>
+                    {result && (
+                      <p className="mt-1 text-[12px] text-[color:var(--basalt-2)]">
+                        <strong>{result.result}</strong>: {result.feedback}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {route && (
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
             {/* Vertical map + engine frontier */}
@@ -469,9 +582,17 @@ export default function ResearchOsWorkspacePage() {
                     {busy === "quote" ? "fetching…" : "quote this node's source"}
                   </button>
                   {quote && (
-                    <p className="mt-2 text-[12px] text-[color:var(--basalt-2)]">
-                      &ldquo;{quote.quotable_span}&rdquo;, {quote.citation}
-                    </p>
+                    <div className="mt-2 text-[12px] text-[color:var(--basalt-2)]">
+                      {quote.kind === "summary" && (
+                        <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] mb-1">
+                          summary (no verified verbatim passage for this source yet)
+                        </div>
+                      )}
+                      <p>
+                        &ldquo;{quote.quotable_span}&rdquo;, {quote.citation}
+                        {quote.locator ? ` (${quote.locator})` : ""}
+                      </p>
+                    </div>
                   )}
                 </div>
 

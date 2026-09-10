@@ -30,9 +30,11 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { callGroundedModel, parseModelJson, selectProvider } from "@/lib/research-os/llm";
+import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
 import { onCheckResult } from "@/lib/research-os/stages";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
 
 export const runtime = "nodejs";
@@ -42,7 +44,6 @@ function bad(status: number, error: string) {
   return NextResponse.json({ error }, { status });
 }
 
-const MAX_CHECK_TOKENS = 500;
 const MAX_ORGANIZE_TOKENS = 500;
 const MAX_EXPLANATION_CHARS = 2000;
 
@@ -58,15 +59,6 @@ function rateLimited(key: string): boolean {
   hits.push(now);
   rlBuckets.set(key, hits);
   return hits.length > RL_MAX;
-}
-
-function citationLabel(node: { title: string; provenance?: Provenance }): string {
-  const p = node.provenance;
-  if (!p) return node.title;
-  const who = p.author ? `${p.author}` : p.publisher || "";
-  const when = p.year ? ` (${p.year})` : "";
-  const what = p.title ? `. ${p.title}.` : "";
-  return `${who}${when}${what}`.trim() || node.title;
 }
 
 interface WorkspaceBody {
@@ -134,18 +126,27 @@ export async function POST(req: NextRequest) {
         .maybeSingle();
       if (error || !node) return bad(404, "node_not_found");
       const p = (node.provenance || {}) as Provenance;
+
+      // Phase 1 (bkt-ros, closing stub list item "full passage-level source
+      // extraction"): a small curated table (src/lib/research-os/passages.ts)
+      // carries a real, under-90-word, verbatim passage with a locator for
+      // every node whose source text we have independently verified --
+      // Tyndall 1869, Rayleigh 1871, NASA Space Place, and the cited
+      // Wikipedia revisions. A node not in that table (no verified full-text
+      // access to its primary source yet, e.g. Rayleigh's third 1871 paper,
+      // or a canon-bridge node with no provenance of its own) falls back to
+      // the node's own seeded summary, labeled "summary" rather than
+      // "quote" so the client never presents a paraphrase as a verbatim
+      // quotation.
+      const passage = getPassage(node.slug);
       return NextResponse.json(
         {
           nodeId: node.id,
-          // Phase 0 has no full source-text corpus ingested, so the
-          // "exact span" Quote returns is the seeded, human-authored
-          // summary the node itself carries, paired with its real
-          // citation. Full passage-level source extraction is Phase 1
-          // ingestion work (review gap analysis, "Standards and textbook
-          // ingestion parser").
-          quotable_span: node.summary,
+          kind: passage ? "quote" : "summary",
+          quotable_span: passage ? passage.text : node.summary,
+          locator: passage ? passage.locator : null,
           citation: citationLabel({ title: node.title, provenance: p }),
-          source: { author: p.author, year: p.year, title: p.title, publisher: p.publisher, doi: p.doi, url: p.url, license: p.license },
+          source: { author: p.author, year: p.year, title: p.title, publisher: p.publisher, doi: p.doi, url: passage?.url ?? p.url, license: p.license },
         },
         { headers: { "cache-control": "no-store" } },
       );
@@ -173,61 +174,19 @@ export async function POST(req: NextRequest) {
         prereqSummaries = prereqNodes || [];
       }
 
-      const allowLabel = citationLabel(node);
-      const grounding = [
-        `CONCEPT: ${node.title}`,
-        `GROUNDING TRUTH: ${node.summary}`,
-        ...prereqSummaries.map((p) => `PREREQUISITE (already covered): ${p.title} -- ${p.summary}`),
-        `ALLOWED CITATION (copy verbatim if you cite anything, cite nothing else): "${allowLabel}"`,
-      ].join("\n\n");
-
       const provider = selectProvider();
       if (!provider) return bad(503, "Check isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY).");
 
-      const system = `You are the Check tool in Bucket's Research OS workspace. You NEVER write or correct the learner's explanation, you only judge it against the GROUNDING.
-
-HARD RULES:
-1. Judge ONLY against the GROUNDING TRUTH and its listed PREREQUISITEs. Never use outside knowledge to decide the verdict.
-2. If the explanation is unrelated to the grounding or you cannot judge it from the grounding, set "abstained": true and "result": "unknown".
-3. "result" is "support" (the explanation is consistent with and grounded in the material), "contradiction" (it conflicts with the material), or "unknown" (not enough to tell).
-4. NEVER rewrite the learner's explanation. Return a short "feedback" string: if support, name what makes it grounded; if contradiction or unknown, ask ONE guiding question or name what part of the grounding to revisit -- never supply the corrected sentence.
-5. Cite only the exact ALLOWED CITATION string if you reference the source, and only if you leaned on it. Empty citations array if not.
-6. "confidence" is "high" only when the grounding directly and fully settles the verdict; "medium" partial; "low" when stretching (consider abstaining instead).
-
-Respond with ONLY a JSON object, no markdown fences:
-{"result": "support"|"contradiction"|"unknown", "confidence": "high"|"medium"|"low", "abstained": boolean, "feedback": string, "citations": string[]}`;
-
-      let text: string;
+      let safe: Awaited<ReturnType<typeof gradeExplanation>>;
       try {
-        text = await callGroundedModel(
-          provider,
-          system,
-          [{ role: "user", content: `${grounding}\n\n---\nLEARNER'S EXPLANATION: ${explanation}` }],
-          MAX_CHECK_TOKENS,
-        );
+        safe = await gradeExplanation(provider, node, prereqSummaries, explanation);
       } catch (e: unknown) {
         const err = e as { status?: number };
         if (err?.status === 401) return bad(503, "Check credentials are invalid on the server.");
         if (err?.status === 429) return bad(429, "Rate limited, try again in a moment.");
         return bad(502, "check_failed");
       }
-
-      interface CheckOut {
-        result: "support" | "contradiction" | "unknown";
-        confidence: "high" | "medium" | "low";
-        abstained: boolean;
-        feedback: string;
-        citations: string[];
-      }
-      const parsed = parseModelJson<CheckOut>(text);
-      const safe: CheckOut = parsed ?? {
-        result: "unknown",
-        confidence: "low",
-        abstained: true,
-        feedback: "I had trouble grounding a verdict. Try rephrasing your explanation.",
-        citations: [],
-      };
-      const citations = (safe.citations || []).filter((c) => c.trim() === allowLabel);
+      const citations = safe.citations;
 
       const { data: existingState } = await svc
         .from("learner_node_state")

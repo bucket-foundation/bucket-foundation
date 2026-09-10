@@ -13,6 +13,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
 import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind } from "./types";
 import type { EngineNodeDraft, ProductionOutboxRow } from "./engine-bridge";
+import type { PrereqAncestorRow } from "./closure";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -57,12 +58,19 @@ export function publicService(): SupabaseClient {
   return _pub;
 }
 
+export interface VerifiedIdentity {
+  id: string;
+  email: string | null;
+}
+
 /**
- * Verify the caller's Supabase access token and return their user id, or
+ * Verify the caller's Supabase access token and return their id + email, or
  * null. We never trust a client-supplied user id, only the token, verified
  * by gotrue, decides identity (matches /api/academy/progress verifyUser).
+ * Shared by verifyLearner below and reviewer.ts's verifyReviewer, which
+ * additionally checks the email against its allowlist.
  */
-export async function verifyLearner(req: NextRequest): Promise<string | null> {
+async function verifyToken(req: NextRequest): Promise<VerifiedIdentity | null> {
   const auth = req.headers.get("authorization") || "";
   const m = auth.match(/^Bearer\s+(.+)$/i);
   if (!m) return null;
@@ -74,10 +82,21 @@ export async function verifyLearner(req: NextRequest): Promise<string | null> {
     });
     const { data, error } = await verifier.auth.getUser(token);
     if (error || !data?.user?.id) return null;
-    return data.user.id;
+    return { id: data.user.id, email: data.user.email ?? null };
   } catch {
     return null;
   }
+}
+
+/** Verify the caller's token and return their user id, or null. */
+export async function verifyLearner(req: NextRequest): Promise<string | null> {
+  const identity = await verifyToken(req);
+  return identity?.id ?? null;
+}
+
+/** Verify the caller's token and return their full identity (id + email), or null. */
+export async function verifyLearnerIdentity(req: NextRequest): Promise<VerifiedIdentity | null> {
+  return verifyToken(req);
 }
 
 interface NodeRow {
@@ -157,6 +176,31 @@ export async function loadLearnerStates(learnerId: string, nodeIds: string[]): P
     confidence: r.confidence,
     updatedAt: r.updated_at,
   }));
+}
+
+interface AncestorRow {
+  node_id: string;
+  ancestor_id: string;
+  min_hops: number;
+}
+
+/**
+ * Every graph.prereq_ancestor row for `targetId` (bkt-ros, Phase 1 item 1).
+ * Fails open to an empty array on any read error (missing table on a
+ * fresh environment that has not run scripts/rebuild-prereq-ancestor.ts
+ * yet, a network blip, etc.) instead of throwing, matching the
+ * migration's documented fallback: an empty result makes
+ * frontier.ts's computeFrontier fall back to its original full-graph walk.
+ */
+export async function loadAncestorRows(targetId: string): Promise<PrereqAncestorRow[]> {
+  const svc = graphService();
+  try {
+    const { data, error } = await svc.from("prereq_ancestor").select("node_id,ancestor_id,min_hops").eq("node_id", targetId);
+    if (error) return [];
+    return ((data as AncestorRow[]) || []).map((r) => ({ nodeId: r.node_id, ancestorId: r.ancestor_id, minHops: r.min_hops }));
+  } catch {
+    return [];
+  }
 }
 
 export async function findNodeBySlug(slug: string): Promise<GraphNode | null> {
