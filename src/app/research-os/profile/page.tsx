@@ -156,8 +156,8 @@ export default function ResearchOsProfilePage() {
           your profile
         </h1>
         <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
-          Two questions, nothing else. No birthdate, no name. This tells the workspace whether it needs a parent or
-          school&rsquo;s consent on file before you can use the AI tools.
+          Two questions, nothing else. No birthdate, no name. This tells us if a parent or your school needs to say
+          yes before you can use the AI tools.
         </p>
 
         <div className="mt-6 p-4 bg-[color:var(--bone)] shadow-[inset_0_1px_0_rgba(239,232,212,0.6)]">
@@ -247,8 +247,8 @@ export default function ResearchOsProfilePage() {
               <div className="text-[13px] text-[color:var(--basalt-2)] leading-[1.6]">
                 {isMinorBucket && !consentOnFile ? (
                   <p>
-                    Profile saved. A learner under 18 still needs parent or school consent on file before using the
-                    AI tools. Ask a teacher or parent to complete that step, then come back to the{" "}
+                    Profile saved. If you are under 18, a parent or your school still needs to say yes before you
+                    can use the AI tools. Ask them to do that, then come back to the{" "}
                     <Link href="/research-os/workspace" className="underline decoration-[color:var(--gold)] underline-offset-4">
                       workspace
                     </Link>

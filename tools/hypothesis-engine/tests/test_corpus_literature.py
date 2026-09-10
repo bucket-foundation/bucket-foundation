@@ -1,8 +1,10 @@
 """`hte.corpus.literature`: the Research OS for K-12 literature-corpus
-adapter (PR #5, `_intake/research-os-k12-literature/`), exercised against
-the 6 real cards checked in under `hte/data/literature-fixtures/` (copied
-verbatim from the PR branch, the founder's own repo content). Every test
-below passes `cards_dir` explicitly and never touches the network.
+adapter (PR #5, `_intake/research-os-k12-literature/`, grown by PR #15's
+own "literature batch two"), exercised against the 6 real batch-one cards
+checked in under `hte/data/literature-fixtures/` plus the 6 real
+batch-two cards checked in under `hte/data/literature-fixtures-batch-
+two/` (both copied verbatim from the two PRs' own real content). Every
+test below passes `cards_dir` explicitly and never touches the network.
 
 The two tests under "network fetch" are the exception: one monkeypatches
 `urllib.request.urlopen` so the fetch-and-cache path is exercised
@@ -24,6 +26,7 @@ from hte.corpus import literature
 from hte.evidence import EvidenceKind, Tier
 
 FIXTURES_DIR = literature.DEFAULT_FIXTURES_DIR
+FIXTURES_DIR_BATCH_TWO = literature.DEFAULT_FIXTURES_DIR_BATCH_TWO
 
 
 @pytest.fixture(scope="module")
@@ -34,6 +37,21 @@ def cards():
 @pytest.fixture(scope="module")
 def corpus():
     return literature.load(FIXTURES_DIR)
+
+
+@pytest.fixture(scope="module")
+def cards_batch_two():
+    return literature.load_raw(FIXTURES_DIR_BATCH_TWO)
+
+
+@pytest.fixture(scope="module")
+def cards_both():
+    return literature.load_raw([FIXTURES_DIR, FIXTURES_DIR_BATCH_TWO])
+
+
+@pytest.fixture(scope="module")
+def corpus_both():
+    return literature.load(literature.DEFAULT_CARDS_DIRS)
 
 
 def _card(cards_, needle: str):
@@ -133,7 +151,7 @@ def test_parse_frontmatter_skips_a_leading_voice_ignore_file_comment_and_keeps_s
     assert len(card.key_claims) == 1
     claim = card.key_claims[0]
     # the span locates the exact quote inside the real, full file text,
-    # header line included, not a header-stripped slice of it
+    # the header line's own length folded into the offset math
     assert raw[claim.char_start:claim.char_end] == claim.text == "The header does not corrupt the span."
     lines = raw.splitlines()
     located = "\n".join(lines[claim.line_start - 1:claim.line_end])
@@ -146,8 +164,8 @@ def test_parse_frontmatter_skips_a_leading_voice_ignore_file_comment_and_keeps_s
 
 
 def test_parse_frontmatter_still_raises_on_a_real_missing_opener():
-    # A card with neither a comment header nor a `---` opener is still a
-    # real error, not silently swallowed by the header-skip.
+    # A card with neither a comment header nor a `---` opener still
+    # raises a real error; the header-skip logic never swallows it.
     with pytest.raises(ValueError, match="has no frontmatter opening"):
         literature._parse_frontmatter("title: not frontmatter at all\n", "bad.md")
 
@@ -432,6 +450,98 @@ def test_corpus_json_round_trips(corpus):
     assert len(restored.evidence) == len(corpus.evidence)
     assert len(restored.sources) == len(corpus.sources)
     assert len(restored.ground_truth) == len(corpus.ground_truth)
+
+
+# --------------------------------------------------------------------------
+# batch two: a second 6-card fixture root (PR #15), and multi-root loading
+# --------------------------------------------------------------------------
+
+
+def test_load_raw_reads_all_six_batch_two_fixtures(cards_batch_two):
+    assert len(cards_batch_two) == 6
+    assert len({c.doi for c in cards_batch_two}) == 6
+
+
+def test_batch_two_fixtures_span_five_branches(cards_batch_two):
+    branches = {c.relative_path.split("/", 1)[0] for c in cards_batch_two}
+    assert branches == {
+        "educational-methods", "hci-human-ai-collaboration",
+        "prerequisite-knowledge-graphs", "scientific-discovery-metascience", "ai-and-researchers",
+    }
+
+
+def test_batch_two_fixture_carries_a_new_area_not_in_batch_one(cards_batch_two):
+    # prerequisite-knowledge-graphs is PR #15's own new area, absent from
+    # batch one entirely (this module's own top docstring, "Batches").
+    pan = _card(cards_batch_two, "pan-et-al-2017")
+    assert pan.relative_path.startswith("prerequisite-knowledge-graphs/")
+
+
+def test_batch_two_fixture_header_is_skipped_the_same_way_batch_one_s_is(cards_batch_two):
+    # Confirms the parser skips the `voice-ignore-file` header on a
+    # batch-two card exactly as it does on batch one's own fixtures
+    # (`test_parse_frontmatter_skips_a_leading_voice_ignore_file_comment_
+    # and_keeps_spans_correct` above already regression-tests the parser
+    # itself directly; this checks a real batch-two fixture file on disk
+    # carries that header and still parses).
+    kitano_path = literature.DEFAULT_FIXTURES_DIR_BATCH_TWO / "ai-and-researchers" / "kitano-2021-nobel-turing-challenge.md"
+    raw = kitano_path.read_text()
+    assert raw.startswith("<!-- voice-ignore-file:")
+    kitano = _card(cards_batch_two, "kitano-2021")
+    assert kitano.title == "Nobel Turing Challenge: Creating the Engine for Scientific Discovery"
+    for claim in kitano.key_claims:
+        assert raw[claim.char_start:claim.char_end] == claim.text
+
+
+def test_cards_from_a_single_root_are_tagged_batch_one(cards):
+    assert all(c.batch == "batch-1" for c in cards)
+
+
+def test_cards_from_a_sequence_of_roots_are_tagged_by_position(cards_both):
+    by_root = {c.relative_path: c.batch for c in cards_both}
+    bloom = next(path for path in by_root if "bloom-1984" in path)
+    kitano = next(path for path in by_root if "kitano-2021" in path)
+    assert by_root[bloom] == "batch-1"
+    assert by_root[kitano] == "batch-2"
+
+
+def test_load_default_cards_dirs_constant_is_both_fixture_batches():
+    assert literature.DEFAULT_CARDS_DIRS == (literature.DEFAULT_FIXTURES_DIR, literature.DEFAULT_FIXTURES_DIR_BATCH_TWO)
+
+
+def test_both_batches_combine_to_twelve_disjoint_sources(corpus_both):
+    assert len(corpus_both.sources) == 12
+    assert len(corpus_both.evidence) == 36  # 3 key_claims per card, 12 cards
+
+
+def test_both_batches_source_batches_field_names_its_own_root(corpus_both):
+    bloom_doi = "10.3102/0013189x013006004"  # batch one
+    kitano_doi = "10.1038/s41540-021-00189-3"  # batch two
+    assert corpus_both.sources[bloom_doi].batches == ["batch-1"]
+    assert corpus_both.sources[kitano_doi].batches == ["batch-2"]
+
+
+def test_a_doi_shared_by_two_roots_dedupes_to_the_first_and_merges_batches(tmp_path):
+    # A synthetic second root repeating one of batch one's own DOIs (the
+    # real fixture batches never collide; this exercises the dedup path
+    # `_build_corpus` takes when they would) must not double-count that
+    # source's evidence, and must fold the second root's own batch label
+    # onto the first root's `Source.batches` rather than replacing it.
+    dupe_root = tmp_path / "dupe-batch"
+    (dupe_root / "educational-methods").mkdir(parents=True)
+    bloom_path = literature.DEFAULT_FIXTURES_DIR / "educational-methods" / "bloom-1984-two-sigma-problem.md"
+    (dupe_root / "educational-methods" / "bloom-1984-two-sigma-problem.md").write_text(bloom_path.read_text())
+
+    corpus = literature.load([literature.DEFAULT_FIXTURES_DIR, dupe_root])
+    bloom_doi = "10.3102/0013189x013006004"
+    assert corpus.sources[bloom_doi].batches == ["batch-1", "batch-2"]
+    assert len([e for e in corpus.evidence if e.source_id == bloom_doi]) == 3  # not 6
+
+
+def test_load_default_matches_both_batches_combined():
+    default_corpus = literature.load_default()
+    both = literature.load(literature.DEFAULT_CARDS_DIRS)
+    assert len(default_corpus.sources) == len(both.sources) == 12
 
 
 # --------------------------------------------------------------------------

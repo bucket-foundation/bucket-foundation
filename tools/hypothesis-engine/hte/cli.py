@@ -12,7 +12,7 @@ from pathlib import Path
 
 from . import calibrate, export, runner
 from .belief import Constants
-from .corpus import education_atlas, fixtures as fixtures_corpus, production, research_os_outbox, sacred_history
+from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
 from .corpus import quantum_history
 
 _CORPUS_LOADERS = {
@@ -27,6 +27,11 @@ _CORPUS_LOADERS = {
     # this same loader there at call time for a real campaign run, see that
     # script's own header comment.
     "research-os": research_os_outbox.load,
+    # `literature.load_default`: both literature fixture batches combined
+    # (`bkt-hte-literature-batch-two`), no network, deterministic; see
+    # that function's own docstring for why it does not read the real
+    # 82-card `LOCAL_INTAKE_DIR` tree yet.
+    "literature": literature.load_default,
     "sacred-history": sacred_history.ingest,
 }
 

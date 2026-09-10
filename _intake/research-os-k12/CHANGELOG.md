@@ -1,5 +1,75 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #44 review pass
+
+Review of `docs/ros-plan-revision-2` (PR #44) in worktree `.ros-worktrees/r44`, docs-only.
+Leak scan against the full diff found no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs. `gh pr list --state merged --limit 50` against the twenty PRs merged
+in the #20-#40 range found one miscount: `PLAN-REVISION-2.md` and its four pointer/ledger
+mentions said "nineteen PRs merged since" revision 1; twenty merged in that range, PR #36
+(engine-only, no Research OS file touched) omitted from the table without being named as
+out of scope. Fixed in all five places (`PLAN-REVISION-2.md`, `PLAN.md`'s and
+`PLAN-REVISION-1.md`'s Revision 2 pointers, this file, `CHANGE-LEDGER.md`) to name PR #36's
+exclusion explicitly. Three of the five founder decisions' "Exact question, unchanged"
+quotes were not in fact verbatim against `PLAN-REVISION-1.md`: decision 2 dropped the
+parenthetical "(its own audience, its own funding path, cross-linked but not subordinate)",
+decision 3 dropped the clause "a 'what the engine is ranking now' view for researchers and
+funders", and decision 5 dropped the parenthetical PR #11 branch title
+`` `feat/site: reposition around reform education, Research OS as its own tab` ``; all three
+restored to match `PLAN-REVISION-1.md` exactly. `npm ci && npm run test:research-os`: 213
+passed, 0 failed across 17 files, matching the draft's own claim exactly. Engine `make test`
+run fresh under both `HTE_LLM_MODE` states (`fake` and unset) after merging `origin/main`
+(the branch was behind, gate 4): 1046 passed, 18 deselected, 0 failed both times, no hang.
+This is higher than the draft's cited 1018, because merging `origin/main` pulled in PR #43
+(merged after this pass's own cited `main` commit `af5b7c9ea`), which added tests to
+`test_canon_writeback.py`; the draft's 1018 figure stays accurate as a claim about that
+specific commit, so the text was not changed. All five cited literature card paths under
+`_intake/research-os-k12-literature/` confirmed to exist on disk. The power-analysis figures
+in section 2d (119, 405, 691 learners per arm; 17 classes per arm at ICC 0.10; d approx 1.0
+minimum detectable effect at Phase 1's feasible enrollment) checked exact against
+`study/PREREGISTRATION-DRAFT.md`'s own tables. `PLAN.md` and `PLAN-REVISION-1.md`'s own
+diffs are pure appends, a "Revision 2" pointer paragraph each, no prior line touched.
+Nothing under `src/` or `public/` changed. `agf-lint-voice check` clean on the four files it
+scans (`PLAN.md`, `PLAN-REVISION-1.md`, `PLAN-REVISION-2.md`, `CHANGE-LEDGER.md`); this file
+sits under the corpus's own known `_intake` ignore-list gap, so a manual grep pass for
+em/en dashes, the banned-word list, and "not X but Y" antithesis across every added line in
+all five files found no hit beyond two banned-word instances, both quoted examples inside a change-ledger entry
+describing a prior fix. Merged.
+
+## 2026-09-10, plan revision 2
+
+Branch `docs/ros-plan-revision-2`, worktree `.ros-worktrees/plan2`. Read
+`PLAN-REVISION-1.md`, `LEARNER-STATE-MODEL.md` (section 5's batch-three
+evidence lines), `ROUTING.md`, `TEACHER-LAYER.md`, `WORKSPACE.md`,
+`ENGINE-BRIDGE.md`, `INGESTION.md`, `compliance/README.md`,
+`study/PREREGISTRATION-DRAFT.md`'s feasibility-pilot finding,
+`funding/WAVE-1-TARGETS.md`, `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s
+twelve questions with batch-two and batch-three evidence, the four
+batch-three cards named in the founder's own brief (Vaccaro, Almaatouq, and
+Malone 2024; Bansal and colleagues 2021; Buçinca, Malaya, and Gajos 2021;
+Alzetta and colleagues 2018), `BEADS-PENDING.jsonl`'s status lines for
+`ros-02` through `ros-13` plus the batch-three bead, and `gh pr list
+--state merged --limit 40` against `main` at `af5b7c9ea`. Wrote
+`learning/research-os/PLAN-REVISION-2.md`: a PR-by-PR account of nineteen
+of the twenty PRs shipped since revision 1 (#20 through #40, PR #36
+excluded as engine-only), with app and
+engine test counts run live in this pass (`npm run test:research-os`, 213
+passed, 0 failed; `make test` in `tools/hypothesis-engine`, 1018 passed, 18
+deselected, 0 failed under both `HTE_LLM_MODE` states); four evidence-driven
+revisions from batch three, each labeled STABLE or STRONG LEAN; a seven-item
+Phase 1 scope, ordered by dependency, with a bead id on each remaining item;
+the five founder decisions restated verbatim from revision 1 with new
+information and a recommended default on each; six operational blockers
+with an action and an owner each, including a search for an "OpenAI key
+rotation note" that turned up no such artifact anywhere in this repository,
+recorded as a confirmed gap rather than assumed; and an updated
+Phase-1-versus-district table, correcting question 7's own blocker:
+`ros-12`'s engine wiring already shipped, so the live-Supabase-apply gap is
+what remains. Appended a pointer paragraph to `PLAN.md` under a new
+"Revision 2" heading and to `PLAN-REVISION-1.md`; no existing text in either
+file was changed or removed.
+
 ## 2026-09-10, ros-04 workspace hardening (PR TBD)
 
 `feat/ros-04-workspace-hardening`, worktree `.ros-worktrees/ros04`, branched from
