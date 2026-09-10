@@ -192,11 +192,33 @@ def test_bridge_export_marks_accepted_by_the_given_floors(linking_run):
     items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, branch="02-physics")
     assert len(items) == 2
     assert all(item["accepted"] for item in items)
-    assert all(item["canonTier"] == "candidate" for item in items)
+    # canon_tier and origin are constant regardless of accepted: every
+    # exported hypothesis is candidate-tier engine output, never canon.
+    assert all(item["canon_tier"] == "candidate" for item in items)
+    assert all(item["origin"] == "engine" for item in items)
 
     items_strict = bridge_export.export_for_bridge(run_dir, floor_P=0.99, floor_u_max=0.01, branch="02-physics")
     assert all(not item["accepted"] for item in items_strict)
-    assert all(item["canonTier"] is None for item in items_strict)
+    assert all(item["canon_tier"] == "candidate" for item in items_strict)
+
+
+def test_bridge_export_carries_full_opinion_and_never_tier_assigned(linking_run):
+    run_dir, h_supported, _ = linking_run
+    items = bridge_export.export_for_bridge(run_dir, branch="02-physics")
+    by_id = {item["hypothesisId"]: item for item in items}
+    supported = by_id[h_supported.short_id]
+
+    # `tierAssigned` feeds `graph.nodes.tier` on the TS side, which
+    # overloads a K-12 grade band and a canon sentinel (PR #28); this
+    # module never populates it with hte.evidence.Tier data.
+    assert supported["tierAssigned"] is None
+    assert supported["source_tier"] in {"T1", "T2", "T3", "T4", "T5", "T6"}
+
+    opinion = supported["opinion"]
+    for key in ("b", "d", "u", "a", "P"):
+        assert key in opinion
+    assert opinion["P"] == supported["posterior"]
+    assert 0.0 <= opinion["u"] <= 1.0
 
 
 def test_bridge_export_slots_are_id_and_label_objects(linking_run):
@@ -220,3 +242,67 @@ def test_replay_vocab_growth_skips_unknown_slot(caplog):
     vocab = Vocabulary()
     canon_writeback._replay_vocab_growth(vocab, [{"slot": "not-a-real-slot", "id": "x", "label": "X"}])
     # No exception; nothing added under a bogus slot name.
+
+
+# --------------------------------------------------------------------------
+# PR #22 (`feat/ros-canon-ingest`, merged to `main`) seam: its canon-entry
+# importer (`src/lib/research-os/ingest/canon.ts`, driven by `src/lib/
+# canon-primary.ts`'s `findPrimaryFiles`) walks exactly one shape,
+# `bucket-canon/02-physics/<concept>/primary-papers.yaml`, hardcoding
+# `BRANCH = "02-physics"` in its own CLI (`scripts/research-os/ingest/
+# canon-import.ts`). It carries no markdown or frontmatter reader at all;
+# "frontmatter" does not apply to this importer, a fact this test
+# captures directly rather than assumed. A faithful copy of its own
+# two-part gate (branch match, then a `primary-papers.yaml` file
+# present) is what decides whether an on-disk canon entry is even a
+# candidate for that importer to read; `docs/BUILD-HISTORY.md` and a PR
+# #22 comment both name this finding.
+# --------------------------------------------------------------------------
+
+
+def _pr22_findable(card_path: Path, branch: str) -> bool:
+    """A faithful copy of `findPrimaryFiles`' own two-part gate
+    (`src/lib/canon-primary.ts`, read from `origin/main` at PR #22's own
+    merge): only `branch == "02-physics"` is ever scanned by the CLI
+    (`canon-import.ts`'s own hardcoded `BRANCH` constant), and even then
+    only a `primary-papers.yaml` sibling of the entry counts, never an
+    arbitrary `.md` file. Returns whether `card_path` could ever be
+    found by that importer as it stands."""
+    if branch != "02-physics":
+        return False
+    concept_dir = card_path.parent
+    return (concept_dir / "primary-papers.yaml").is_file()
+
+
+def test_write_back_cards_are_invisible_to_the_pr22_canon_importer(tmp_path, linking_run, monkeypatch):
+    """`hte.canon_writeback.write_back`'s own `hypotheses/<address>.md`
+    cards are a fourth on-disk canon shape (alongside `sub-claims/`,
+    dossiers, and `concepts/`), and PR #22's importer reads none of the
+    other three either: it never lists a branch directory for markdown
+    at all, only for one exact YAML filename, scoped to one hardcoded
+    branch. Whatever branch a build-history campaign targets (`07-mind`
+    for the sacred-history campaign this task runs), and even on the one
+    branch the importer does scan, this module's own cards clear
+    `_pr22_findable` as `False`: nothing ingests them as canon, by
+    omission rather than by an explicit exclusion rule, since the
+    importer's own scan surface never reaches a `hypotheses/` folder at
+    all."""
+    run_dir, h_supported, _ = linking_run
+    fake_repo_root = tmp_path / "fake-repo"
+    fake_repo_root.mkdir()
+    out_root = fake_repo_root / "bucket-canon"
+    monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
+    monkeypatch.setattr(canon_writeback, "_emit_feed_events", lambda events: 0)
+
+    for branch in ("07-mind", "02-physics"):
+        paths = canon_writeback.write_back(
+            run_dir, branch=branch, floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=False,
+        )
+        card_paths = [p for p in paths if p.parent.name == "hypotheses" and p.suffix == ".md" and p.name != "INDEX.md"]
+        assert card_paths
+        for card_path in card_paths:
+            assert not _pr22_findable(card_path, branch)
+            # `canon_tier: candidate` on every card is the second half of
+            # the same invariant: even a future importer that DID learn
+            # to read this shape must not read one of these as `canon`.
+            assert "**canon_tier:** candidate" in card_path.read_text()
