@@ -441,8 +441,6 @@ def test_default_config_defaults_constants_to_fitted():
 
 
 def test_run_campaign_honors_an_explicit_constants_default(tmp_path, monkeypatch):
-    from hte.belief import Constants
-
     captured: dict = {}
     real_load_constants = runner.load_constants
 

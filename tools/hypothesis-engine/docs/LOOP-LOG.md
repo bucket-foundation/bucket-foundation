@@ -2,6 +2,37 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, PR review
+
+- **PR #29 reviewed and merged** (`feat/hte-calibration-vocab-rebased`,
+  "corpus-induced vocabulary, calibration fit report, real-corpus
+  sweeps"). Engine-only diff (`tools/hypothesis-engine/`), no Research OS
+  app surfaces touched.
+- **Secrets**: keys, tokens, IPs, non-public hostnames, personal emails,
+  PII, absolute `/home/gian` paths, Claude session URLs: none found in
+  the diff.
+- **QA**: `hte.vocab_induce.induce` reads only `Corpus.evidence`, built
+  by `hte.corpus.production._build_corpus` from `Production` objects
+  `normalize_research_os_record` already normalized; no path reads
+  `graph.productions` or learner data directly. `hte.api.hypothesize`'s
+  signature and `hte.corpus.production.load_supabase` are unchanged, so
+  PR #30's callers still compile once main merges. `learner_id`/
+  `transfer_proof` stay excluded from every code path this PR touches;
+  `docs/CALIBRATION-FIT-2026-09-10.md` and the three `runs/realsweep/*/
+  SUMMARY.md` files carry only params and aggregate metrics, no raw
+  learner text. Fixed one Low defect on the branch before merge: an
+  unused `Constants` import in `tests/test_runner.py`
+  (`ruff` F401), introduced by this PR's own diff; the sole other
+  `ruff` hit in this PR's files (`hte/cli_synth.py`'s pre-existing F541)
+  predates this PR and was left alone.
+- **Gates**: merged `origin/main` (pulling in PR #28) into the review
+  branch first, clean, no conflicts. `make test`: 988 passed, 18
+  deselected, 0 failed. `ruff check .`: 36 pre-existing errors outside
+  this PR's own files, 0 in files this PR touches after the fix above.
+- **Voice**: `agf-lint-voice check` and `agf-lint-voice-src check` on
+  every file this PR touches: 0 violations.
+- Squash-merged via `gh pr merge 29 --squash --delete-branch`.
+
 ## 2026-09-10, tick 2
 
 - **Engine health**: installed `pandas`/`pyarrow`, resolving tick 1's
