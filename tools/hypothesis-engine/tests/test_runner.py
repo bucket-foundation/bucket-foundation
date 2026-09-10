@@ -40,6 +40,22 @@ FIXTURE_CONFIG = {
 }
 
 
+@pytest.fixture(autouse=True)
+def _real_llm_mode(monkeypatch):
+    """`FIXTURE_CONFIG` above pins `replay_only=True` against a real,
+    committed cache (`FIXTURE_CACHE`) with no `HTE_LLM_MODE` of its own:
+    every test below that builds a config from it is asserting the real
+    cache-replay contract (a hit returns the seeded response, a miss
+    raises `LLMCacheMissError`), which an ambient `HTE_LLM_MODE=fake`
+    would silently swap for `hte.fakellm`'s generic stand-ins instead,
+    breaking that contract without ever raising. Pinning it unset here
+    (harmless for this file's own explicitly fake-mode tests, which each
+    call their own `monkeypatch.setenv("HTE_LLM_MODE", "fake")` on top of
+    this) keeps this file correct under `env -u HTE_LLM_MODE make test`
+    and `HTE_LLM_MODE=fake make test` alike."""
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
+
+
 def test_run_campaign_end_to_end_replay_only(tmp_path):
     cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path)}
     artifacts = runner.run_campaign(cfg)
@@ -429,3 +445,41 @@ def test_resolve_time_binning_span_covers_every_known_year(gt_years, evidence_ye
     _resolution, span_start, _bin_width = runner._resolve_time_binning({"resolution": None}, corpus)
     for year in gt_years + evidence_years:
         assert year >= span_start, f"year {year} falls outside computed span_start {span_start}"
+
+
+# --------------------------------------------------------------------------
+# constants loading (docs/CALIBRATION-FIT-2026-09-10.md, hte.belief.load_constants)
+# --------------------------------------------------------------------------
+
+
+def test_default_config_defaults_constants_to_fitted():
+    assert runner.DEFAULT_CONFIG["constants"] == "fitted"
+
+
+def test_run_campaign_honors_an_explicit_constants_default(tmp_path, monkeypatch):
+    captured: dict = {}
+    real_load_constants = runner.load_constants
+
+    def spy(source):
+        captured["source"] = source
+        return real_load_constants(source)
+
+    monkeypatch.setattr(runner, "load_constants", spy)
+    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path), "constants": "default"}
+    runner.run_campaign(cfg)
+    assert captured["source"] == "default"
+
+
+def test_run_campaign_with_no_constants_key_falls_back_to_the_default_config(tmp_path, monkeypatch):
+    captured: dict = {}
+    real_load_constants = runner.load_constants
+
+    def spy(source):
+        captured["source"] = source
+        return real_load_constants(source)
+
+    monkeypatch.setattr(runner, "load_constants", spy)
+    cfg = {k: v for k, v in FIXTURE_CONFIG.items() if k != "constants"}
+    cfg["out_dir"] = str(tmp_path)
+    runner.run_campaign(cfg)
+    assert captured["source"] == "fitted"  # DEFAULT_CONFIG's own default, no override given

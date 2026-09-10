@@ -12,7 +12,7 @@ from pathlib import Path
 
 from . import calibrate, export, runner
 from .belief import Constants
-from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox
+from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
 from .corpus import quantum_history
 
 _CORPUS_LOADERS = {
@@ -32,6 +32,7 @@ _CORPUS_LOADERS = {
     # that function's own docstring for why it does not read the real
     # 82-card `LOCAL_INTAKE_DIR` tree yet.
     "literature": literature.load_default,
+    "sacred-history": sacred_history.ingest,
 }
 
 
@@ -60,6 +61,7 @@ def _cmd_campaign_run(args: argparse.Namespace) -> int:
         ("max_hypotheses", args.max_hypotheses),
         ("tournament_rounds", args.tournament_rounds),
         ("resolution", args.resolution),
+        ("constants", args.constants),
     ):
         if value is not None:
             config[key] = value
@@ -128,6 +130,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--resolution", default=None,
         choices=["year", "decade", "century", "millennium", "era"],
         help="pin the TIME_BIN rung instead of auto-selecting one from the corpus's own ground-truth span",
+    )
+    run_p.add_argument(
+        "--constants", default=None, choices=["fitted", "default"],
+        help="'fitted' (default): hte.belief.load_constants's own pooled-fit result "
+             "(docs/CALIBRATION-FIT-2026-09-10.md), falling back to bare defaults with "
+             "no fitted file on disk; 'default': opt out, use Constants() unconditionally",
     )
     run_p.set_defaults(func=_cmd_campaign_run)
 

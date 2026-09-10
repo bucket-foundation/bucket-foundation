@@ -2,6 +2,84 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, PR36 review
+
+- **PR #36 reviewed** (`feat/hte-build-history`, "sacred-history
+  build-history campaign, canon write-back, Research OS bridge
+  export"). Auto-merged (commit `06a97894`) before the governance fix
+  found in review could land on its own branch, so the fix shipped as
+  a superseding PR, #43 (`fix/hte-canon-signoff-gate`, squash-merged as
+  `a719c072`), directly on `main`.
+- **Governance (bead ros-11, `learning/research-os/PLAN.md` section 10,
+  `GOVERNANCE.md`)**: `hte.canon_writeback.write_back` wrote
+  candidate-tier cards into `bucket-canon/`, gated only on
+  `floor_P`/`floor_u_max`, no recorded human approver, unattended
+  through `hte.pipeline`'s own writeback stage. Fixed: `write_back`,
+  `render_card`, `build_envelope` now require a named `signoff`; a
+  missing or blank value is a hard `ValueError` before
+  `reconstruct_candidates` runs or any file writes, `dry_run` or not.
+  Recorded in card provenance, envelope `signed_off_by` and per-item
+  provenance, and the `CANON-INGESTION-INDEX.md` addendum. Also
+  labeled Elo `unvalidated_tournament_ranking` in the same three
+  surfaces (card, index, envelope), per the same PLAN.md section's
+  ranking-label requirement. No generator/judge independence claim
+  appears in PR #36's diff, so nothing to drop there.
+- **Secrets**: full diff of both PRs clean, no keys, IPs, internal
+  hostnames, personal emails beyond `gianyrox@gmail.com`, or absolute
+  `/home/gian` paths in file contents.
+- **Gates**: `env -u HTE_LLM_MODE make test`, 1046 passed (PR #36's own
+  branch: 989 before the `main` merge that pulled in 8 unrelated
+  commits). `ruff check` clean on every touched file (also cleared two
+  pre-existing unused imports in `hte/cli_pipeline.py` and
+  `hte/pipeline.py`). `agf-lint-voice check` / `agf-lint-voice-src
+  check`, 0 violations.
+
+## 2026-09-10, PR review
+
+- **PR #29 reviewed and merged** (`feat/hte-calibration-vocab-rebased`,
+  "corpus-induced vocabulary, calibration fit report, real-corpus
+  sweeps"). Engine-only diff (`tools/hypothesis-engine/`), no Research OS
+  app surfaces touched.
+- **Secrets**: keys, tokens, IPs, non-public hostnames, personal emails,
+  PII, absolute `/home/gian` paths, Claude session URLs: none found in
+  the diff.
+- **QA**: `hte.vocab_induce.induce` reads only `Corpus.evidence`, built
+  by `hte.corpus.production._build_corpus` from `Production` objects
+  `normalize_research_os_record` already normalized; no path reads
+  `graph.productions` or learner data directly. `hte.api.hypothesize`'s
+  signature and `hte.corpus.production.load_supabase` are unchanged, so
+  PR #30's callers still compile once main merges. `learner_id`/
+  `transfer_proof` stay excluded from every code path this PR touches;
+  `docs/CALIBRATION-FIT-2026-09-10.md` and the three `runs/realsweep/*/
+  SUMMARY.md` files carry only params and aggregate metrics, no raw
+  learner text. Fixed one Low defect on the branch before merge: an
+  unused `Constants` import in `tests/test_runner.py`
+  (`ruff` F401), introduced by this PR's own diff; the sole other
+  `ruff` hit in this PR's files (`hte/cli_synth.py`'s pre-existing F541)
+  predates this PR and was left alone.
+- **Gates**: merged `origin/main` (pulling in PR #28) into the review
+  branch first, clean, no conflicts. `make test`: 988 passed, 18
+  deselected, 0 failed. `ruff check .`: 36 pre-existing errors outside
+  this PR's own files, 0 in files this PR touches after the fix above.
+- **Voice**: `agf-lint-voice check` and `agf-lint-voice-src check` on
+  every file this PR touches: 0 violations.
+- **On tick 3's Critical finding below** (two new tests omit
+  `HTE_LLM_MODE=fake`, hanging `make test` when the var is unset): does
+  not reproduce. The four new `hte.calibrate.fit_constants_pooled` tests
+  are already in `tests/conftest.py`'s own `_SLOW_NODEIDS` (this PR's own
+  addition), so `make test`'s `-m "not slow"` deselects them; ran them
+  directly with `HTE_LLM_MODE` unset (`test_fit_constants_pooled_*`,
+  `tests/test_cli_synth.py`'s full file, `test_api.py::test_unknown_
+  slot_id_is_induced_rather_than_rejected`), 27 passed in under 30s each
+  batch, no hang. `hte.calibrate` imports no `hte.llm` path at all;
+  `run_one_realsweep_seed` wraps its own `run_campaign` call in
+  `_fake_llm_mode()` regardless of the ambient environment
+  (`tests/test_cli_synth.py`'s own module docstring); the renamed
+  `test_unknown_slot_id_is_induced_rather_than_rejected` goes through
+  `_call`, which sets `HTE_LLM_MODE=fake` itself. `make test` on the
+  merged tree: 988 passed, 18 deselected, 0 failed, no hang.
+- Squash-merged via `gh pr merge 29 --squash --delete-branch`.
+
 ## 2026-09-10, tick 3
 
 - **Engine health**: `make test` green on `main` before any change this

@@ -1,5 +1,232 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, ros-04 workspace hardening (PR TBD)
+
+`feat/ros-04-workspace-hardening`, worktree `.ros-worktrees/ros04`, branched from
+`origin/main` at `b6532313c` (PR #27 merged). Scope: `PLAN-REVISION-1.md` section 3
+item 4, evidence emission closing `src/lib/research-os/EVIDENCE-SCHEMA.md`'s named
+gaps, server-side tool contract enforcement for the four workspace tools, a minimal
+two-column canvas layout, and a per-learner daily tool-call cap.
+
+**Evidence emission.** `stages.ts`'s `EvidenceEvent` gained `fromStage`, `toStage`,
+`learnerText`, `itemId`, `abstained`, `modelFeedback`, `citations`, and `sessionId`
+(plus unwritten-for-now `sampledForSecondRating`/`secondRaterId`/`secondDecision`/
+`agrees`, typed per the schema's own contract, ros-06's migration to populate). Every
+transition function now sets `fromStage`/`toStage`; `onCheckResult` and
+`onProbeCheckResult` persist `abstained`/`modelFeedback`/`citations`;
+`onTransferItemAnswered` persists the learner's own answer text and a fixed per-target
+item id. The "no corrective event on a returned production" gap was closed
+independently by PR #28 (`ros-06`, `onProductionReview`/`onProductionReturned`) while
+this branch was in flight; merging `origin/main` after PR #28 landed found and resolved
+the resulting duplicate, keeping `ros-06`'s version (see `learning/research-os/
+CHANGE-LEDGER.md`'s "Merge reconciliation" for the full account). A real client bug
+found in the process: the workspace page's transfer-item submit sent `{nodeId,
+action}` only, never the answer text, so the gap could not have closed from the server
+side alone regardless of what the route accepted; fixed on both sides, and the server
+now requires a non-empty `answer` for that action.
+
+**Tool contract enforcement.** Three new pure modules, each with adversarial contract
+tests in `scripts/test-research-os-workspace-contracts.ts` (19 tests): `locate.ts`
+(`locateHits`, extracted from the route's inline filter), `organize.ts`
+(`groundOrganizeResult`/`isGroundedInNotes`, a code-level "is this grounded in the
+learner's own matching input field" check the system prompt alone never enforced
+before), and `grounding.ts`'s new `sanitizeGradeResult` (strips a citation that is not
+the one exact allowed label, downgrades a malformed enum or missing-feedback response
+to the same abstain fallback an unparseable one gets). `scripts/test-research-os-
+evidence.ts` (21 tests) covers the evidence-emission contract and the daily cap.
+
+**Daily cap and cost log.** `rate-limit.ts` adds `RESEARCH_OS_DAILY_TOOL_CAP`
+(default 200, resets UTC midnight) enforced in the workspace route ahead of the
+existing per-minute burst limiter. `llm.ts` gained `callGroundedModelWithUsage` and
+`logToolCost`, a best-effort per-call USD estimate logged for Check, Organize, and the
+diagnostic probe from the provider's own reported token usage (Anthropic pricing per
+the system review's own cost model), `null` when the provider reports none.
+
+**Canvas.** `src/app/research-os/workspace/page.tsx`: the vertical chain list becomes
+a two-column layout (chain left, with a `needs review` badge on any step whose own
+edge carries a `ros-03` low-confidence flag; the learner's own tools/notes/quoted-
+sources/Production form right), stacking to one column under `lg`, verified against a
+400px viewport. A client-generated `sessionId` (one per tab, `sessionStorage`) now
+rides on every workspace/state/probe/production request.
+
+**Full doc:** `learning/research-os/WORKSPACE.md` (new). See also `learning/
+research-os/CHANGE-LEDGER.md`'s matching entry for the file-by-file diff and gate
+results.
+
+## 2026-09-10, PR #35 review pass
+
+Review of `feat/ros-07-compliance-part-a` (PR #35) in worktree `review/pr35`. Full account:
+`learning/research-os/CHANGE-LEDGER.md`, "PR #35 review pass." Leak scan against the full
+diff found no API keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Delete-table
+cross-check: `graph.privacy_delete_learner`'s nine `delete from` statements match
+`DATA-INVENTORY.md`'s nine learner-keyed tables one for one, no gap. One defect found and
+fixed: `resolvePrivacyActor` resolved `actingAsReviewer` but the route discarded it, so a
+reviewer-invoked export or delete wrote the same `graph.privacy_events` audit row as a
+learner's own self-request, no record of who acted. Fixed by adding `actor_id_hash` and
+`acting_as_reviewer` columns to `privacy_events`, threading the resolved actor through
+`privacy_delete_learner`'s two new RPC params and through `exportLearnerData`/
+`deleteLearnerData`, and two new tests in `scripts/test-research-os-privacy.ts` asserting a
+reviewer-invoked delete's audit row is distinguishable from a self-request's (173 tests
+total, up from 171, 0 failures). Every other correctness item held on first read: export
+returns only the caller's rows (test passes), delete is one transaction with one audit row
+holding a hash only, `learner_profiles` RLS scopes to `auth.uid()`, `requireConsent` blocks
+under13/13to17 with `consent_status: none` and allows 18plus, the consent gate is exported
+with a TODO, and `workspace/route.ts`/`production/route.ts` are untouched by this PR's own
+diff against `origin/main` (verified). `agf-lint-voice check` on the five compliance docs
+and `agf-lint-voice-src check` on all touched source files and the migration: 0 violations.
+Gates rerun clean post-fix: `npm ci`, `npx tsc --noEmit`, `npm run build` (route present in
+the manifest), `npm run test:research-os` (173/173), `next lint` on every touched file.
+Branch was already even with `origin/main`, no merge needed. Merged via `gh pr merge --squash`.
+
+## 2026-09-10, ros-07 minors compliance pack part A
+
+Bead `ros-07`, branch `feat/ros-07-compliance-part-a`. Built the decision-independent slice
+of the minors compliance pack named in `learning/research-os/PLAN-REVISION-1.md` section 3
+item 8: a full data inventory, a self- or reviewer-gated export/delete API route backed by
+a one-transaction Postgres function, the age-and-consent gate's decision rule, and three
+policy drafts (privacy policy, student data privacy addendum, AI disclosure), all under
+`learning/research-os/compliance/`. Full entry in `learning/research-os/CHANGE-LEDGER.md`,
+"Iteration 15: ros-07 minors compliance pack part A." This document
+(`04-compliance-distribution.md`) was read in full as the source of every legal-basis claim
+in the new data inventory and policy drafts; no line of it was edited by this pass. One
+fact checked beyond what this document already states: the SDPC NDPA's current version,
+verified live by `WebFetch` against `privacy.a4l.org/national-dpa/` on 2026-09-10 at
+version 2.2 (published November 19, 2025), recorded in the new addendum draft. Merged
+`origin/main` after PR #28 (`ros-06`) and PR #30 (`ros-12`/`ros-13`) both landed; `ros-06`'s
+new `graph.classes`/`graph.class_members` roster tables and `graph.productions.notes`
+column folded into the data inventory and the privacy delete function, see the change
+ledger's own "Iteration 15 addendum" for the full account.
+
+## 2026-09-10, PR #38 review pass
+
+Review of `intake(research-os): literature batch three` (PR #38) in worktree
+`.ros-worktrees/r38`, content-only. Leak scan against the full diff's added lines
+found no API keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Eight of
+the 35 new cards picked at random (Novak 1990, Hestenes/Wells/Swackhamer 1992,
+Shneiderman 2020, Bucinca/Malaya/Gajos 2021, Chi and colleagues 1989, Molenaar 2022,
+Bansal and colleagues 2021, Schwartz/Chase/Bransford 2012) and their DOI checked live
+against Crossref: title, authors, and year matched frontmatter exactly on all eight,
+no mismatch found. The two "closest verified match" replacement cards (Alzetta and
+colleagues 2018, Valdez, Roldan, and Masuli 2025) did not label themselves as
+replacements in their own `why_it_matters` field, unlike the precedent this corpus
+already set on `unesco-2025-generative-ai-foundational-learning-sub-saharan-africa.md`;
+fixed by appending a sentence to each naming the unresolved task-brief paper it
+stands in for. README index row count (117) confirmed exact against the corpus file
+count; both docs' "Evidence added in batch three" paragraphs confirmed present under
+the claimed open questions, and every card path either doc names confirmed to exist
+on disk. No blockquote or long verbatim excerpt found in any new card; `key_claims`
+entries are quoted YAML strings holding the card author's own paraphrase, not source
+text. `agf-lint-voice check` scanned zero of the 40 changed files (the pass's own
+`_intake` ignore-list gap, already logged in Iteration 17); a grep-based self-audit
+for banned words, filler adverbs, AI-tell vocabulary, antithesis, and em/en dashes
+against every added line found no hit, including on the two fixed cards. Confirmed
+`origin/main` already merged into the branch (no further merge needed) and no file
+under `src/` or `public/` touched; `npm ci` and `npm run build` both clean. Merged.
+
+## 2026-09-10: literature batch three
+
+Branch `intake/ros-literature-3`. Task: 25 to 35 new DOI- or ISBN-verified papers
+targeted at the gaps `LEARNER-STATE-MODEL.md` section 5 and the overlap map's twelve
+questions leave open: understanding and internalization measurement, curiosity and
+interest as routing signals, teacher workload and adoption of edtech, division of
+cognitive labor and mixed-initiative research tools, and prerequisite-graph and
+concept-map validity. Full per-area breakdown and per-question evidence mapping
+recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 17.
+
+### Added
+
+- 35 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md` Iteration 17; corpus total rises from 82 to
+  117 papers.
+- `_intake/research-os-k12-literature/teacher-workload-adoption/`: new sixth branch,
+  seven files on adoption barriers, coaching, dashboards, and teacher trust.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 117 rows, six
+  areas.
+- `learning/research-os/LEARNER-STATE-MODEL.md`: six of the seven OPEN questions in
+  section 5 gained an "Evidence added in batch three" paragraph.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: eight of the
+  twelve open questions gained an "Evidence added in batch three" paragraph.
+
+### Verified Clean
+
+- Every DOI or ISBN and OpenAlex work id checked live via WebFetch at intake time.
+- Two candidate papers named in the task brief were searched for and omitted for lack
+  of a resolvable DOI matching the brief exactly: a 2019 Adorni-authored
+  prerequisite-graph paper (a verified 2018 Adorni paper, Alzetta and colleagues, was
+  used in its place) and an Open Syllabus Project curriculum-mining paper (Valdez,
+  Roldan, and Masuli 2025 was used as the closest verified match).
+- No blockquote or extended verbatim passage from any source paper; all `key_claims`
+  and body text are paraphrase.
+- A grep-based self-audit for the voice rules ran against every file this pass
+  authored or edited, since `agf-lint-voice check` scans zero files under any path
+  containing an `_intake` segment (an org-level ignore-list gap affecting the whole
+  corpus, predating this pass); every flagged instance was rewritten before commit.
+
+### Removed
+
+None.
+
+## 2026-09-10, PR #34 review pass
+
+Review of `docs/ros-08-preregistration` (PR #34) in worktree `.ros-worktrees/r34`, docs-only,
+as a methods reviewer. Leak scan against the full diff's added lines found no API keys,
+`.env` contents, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`,
+PII, `/home/gian` paths, or Claude session URLs. Power analysis recomputed from the stated
+inputs (d = 0.4, alpha 0.025 two-sided, power 0.80, two-sample t): the naive n-per-arm table
+(76, 119, 211 at d = 0.5, 0.4, 0.3) confirmed exact given the draft's own stated rounded
+z-values (2.24, 0.84); the cluster-corrected table's design-effect formula (`1 + (m-1)*ICC`)
+confirmed correct and the ICC range confirmed marked unsourced, but the ICC = 0.20 row's n
+per arm was off by one (119 x 5.8 = 690.2, needs ceiling to 691, the draft had 690); fixed.
+Every effect size traced to a named, existing intake card; the 22-node, 28-edge transfer-bank
+count reverified by a direct Python read of `supabase/seed/research-os-sky-blue.json`, and the
+44 transfer prompts confirmed covering all 22 seed nodes by slug. Every hypothesis's primary
+outcome variable confirmed mapped to a `src/lib/research-os/EVIDENCE-SCHEMA.md` field, a named
+schema gap, or a `TRANSFER-TASK-BANK.md` item. `RESEARCH-QUESTIONS.md`'s eleven pointer lines
+confirmed append-only (diff carries no removed or rewritten lines). No claim of an existing
+partner school, IRB approval, PI, or host institution found; the founder-as-researcher
+conflict is disclosed in both `PREREGISTRATION-DRAFT.md` and `IRB-PACKET-OUTLINE.md`.
+`agf-lint-voice check` clean on all five core study files; found and fixed one antithesis
+violation this PR's own `BEADS-PENDING.jsonl` line introduced ("not merged" rewritten to
+"merge pending"), the file's other 25 violations pre-existing on `main` and out of this PR's
+scope. Confirmed no file under `src/` or `public/` touched. Merged clean, branch deleted.
+
+## 2026-09-10, ros-08 preregistration packet
+
+Bead `ros-08`, branch `docs/ros-08-preregistration`, worktree `.ros-worktrees/ros08`. Four
+new files under `learning/research-os/study/`: `PREREGISTRATION-DRAFT.md` (six directional,
+OSF-template hypotheses drawn from `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s twelve
+questions, a power analysis with naive and cluster-corrected sample sizes at three assumed
+effect sizes, a variables table mapping every outcome to an `EVIDENCE-SCHEMA.md` field or a
+named schema gap, an analysis plan and a data availability statement), `TRANSFER-TASK-BANK.md`
+(forty-four sealed-pool transfer items, two per node, for all 22 nodes of the sky-blue seed
+path, built by a stated eight-step rule that scales to any corpus), `INSTRUMENTS.md` (a
+retention probe schedule, a metacognitive confidence instrument adapting Fisher, Goddu, and
+Keil 2015's own design, a teacher time-on-review log), and `IRB-PACKET-OUTLINE.md` (submission
+sections, consent and assent drafts for four audiences, a minimal-risk justification, a
+data-governance split between the operational FERPA basis and the research consent track, and
+a founder-as-researcher conflict disclosure built on `PLAN-REVISION-1.md` section 5's two-PI
+pairing). `RESEARCH-QUESTIONS.md` gained eleven "Pre-registered as of 2026-09-10" pointer
+lines under existing questions, no existing line rewritten.
+
+Every effect size and sample size traces to a named source already in this corpus
+(`RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 9, `04-compliance-distribution.md` section 10, and
+the Bastani et al. 2025, Gneezy and Rustichini 2000, and Deci, Koestner, and Ryan 1999 intake
+cards); the one unsourced planning figure (an illustrative ICC range for the cluster-correction
+table) is flagged explicitly rather than presented as canon-cited. The preregistration draft's
+OSF-template section order is sourced to van 't Veer and Giner-Sorolla (2016) after nine
+WebFetch attempts against `osf.io` and its registries pages returned no scrapeable template
+text (a client-rendered SPA shell, a 404, or a paywalled publisher redirect); the file states
+this verification gap and instructs a live-form cross-check before any real OSF submission.
+No IRB approval, partner PI, or partner school exists; every packet section states this
+directly rather than implying otherwise. `agf-lint-voice check` run to 0 violations on all
+five touched files, roughly forty antithesis-pattern sentences rewritten by hand since that
+category is never auto-fixed. No file under `src/` or `public/` is touched by this pass.
+
 ## 2026-09-10, PR #30 review pass
 
 Review of `feat/ros-12-engine-wiring` (PR #30) in worktree `review/pr30`. Leak scan
@@ -178,6 +405,7 @@ all clean. No other defect found; approve sets `accepted` and advances the evide
 exactly once per call (the route's own 409-on-non-`submitted` guard makes a double approve
 a no-op past the first, and `writeProductionOutbox` upserts on `id`), return sets `draft`
 without regressing `stage`, and non-reviewers get 403 on both the class and review routes.
+
 ## 2026-09-10, PR #27 review pass
 
 Review of `feat/ros-03-confidence-routing` (PR #27) in worktree `.ros-worktrees/r27`. Leak
@@ -859,3 +1087,78 @@ None.
   `intake/ros-literature-2`'s concurrent 45-to-77-row expansion: this
   pass's tier/status changes carried onto the six affected rows, area
   counts re-verified at 77 rows total (17/25/18/12/5).
+
+## 2026-09-10, PR #37 review pass
+
+Strict review of PR #37 (`feat/ros-04-workspace-hardening`) before merge, in
+an isolated worktree per the review protocol. PR #35 (compliance) had not
+merged at review time, so no merge-and-reconcile step against it applied.
+
+Leak scan on the full diff against `origin/main`: no API keys, `.env`
+contents, IPs, non-public hostnames, personal emails other than
+`gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in
+file content. No redactions were needed.
+
+### Fixed
+
+- `src/app/research-os/workspace/page.tsx`: the notes textarea placeholder
+  used an antithesis construction ("scratch space, not graded, saved on
+  this device only…"). Rewritten to "ungraded scratch space, saved on this
+  device only…", stating the fact once, positively.
+
+### Verified, no change needed
+
+- Evidence emission: every stage-transition function in `stages.ts` writes
+  `fromStage`/`toStage`; `sessionId` round-trips on every learner-authored
+  transition; `abstained` is persisted on `onCheckResult` and
+  `onProbeCheckResult`, not just used to decide the transition. Confirmed
+  against both the functions and `scripts/test-research-os-evidence.ts`'s
+  40 tests.
+- Transfer-item submit: the client now sends `answer: transferAnswer` in
+  the `POST /api/research-os/state` body; the server
+  (`src/app/api/research-os/state/route.ts`) requires a non-empty `answer`
+  for `action: "transfer_item"` and forwards it onto the evidence event as
+  `learnerText`.
+- Organize cannot add prose: `organize.ts`'s `groundOrganizeResult` drops
+  any claim/evidence/source item not grounded in the learner's own matching
+  input field; the adversarial tests in
+  `scripts/test-research-os-workspace-contracts.ts` ("write my claim for
+  me", "finish this sentence") pass.
+- Check: `grounding.ts`'s `sanitizeGradeResult` strips any citation but the
+  one allowed source label and never returns a rewritten explanation
+  (`GradeResult` has no field for one).
+- Locate: `locate.ts`'s `locateHits` returns only fields copied verbatim
+  from matched node rows, no model call, capped at 10 results.
+- Daily cap: `rate-limit.ts`'s `recordAndCheck` is enforced server-side per
+  learner, keyed by UTC calendar day (`dailyKeyFor`), independent of the
+  existing per-minute burst limiter; covered by
+  `scripts/test-research-os-evidence.ts`'s cap tests including the
+  UTC-midnight reset.
+- Cost logging never blocks the response: `llm.ts`'s `logToolCost` is a
+  synchronous, unawaited `console.log` call after the response data is
+  already computed; it does not gate or delay `NextResponse.json`.
+- Low-confidence badge: `page.tsx` reads `route.lowConfidenceFlags`
+  directly off the `/api/research-os/route` response state, not a
+  client-recomputed value.
+- Merge reconciliation: `onProductionReturned` has a single definition in
+  `stages.ts` (grep confirmed); no duplicate `EvidenceContext`-shaped
+  version survives from this branch's pre-merge history.
+- Layout at 400px: the workspace grid is `grid-cols-1 lg:grid-cols-[320px_1fr]`
+  (stacks below the 1024px `lg` breakpoint); the auth-panel inputs sit in
+  `flex flex-wrap` rows with a 200px/160px min/fixed width well under a
+  368px content width at a 400px viewport (`px-4` gutters), so no row forces
+  horizontal scroll.
+- Voice lint: `agf-lint-voice-src check` (the source-file-scoped checker)
+  clean on all 14 changed TS/TSX files. `agf-lint-voice check` (the
+  general prose checker) additionally flagged antithesis phrasing and a
+  few banned words inside test-description string literals and a local
+  variable name (`honest`) in `scripts/test-research-os-evidence.ts` and
+  `scripts/test-research-os-workspace-contracts.ts`; left as-is since these
+  are internal test labels, not UI strings or comments, and `-src`'s own
+  AST-scoped rule set treats them the same way. The one genuine UI-text hit
+  (the notes placeholder above) was fixed. `BEADS-PENDING.jsonl`'s
+  pre-existing violations (lines 1-80) predate this PR; the one new line
+  this PR adds (the `ros-04` bead entry) is clean.
+- Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (191/191 pass), `next lint` on every touched
+  file: all clean.

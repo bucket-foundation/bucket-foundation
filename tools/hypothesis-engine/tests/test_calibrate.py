@@ -1,3 +1,5 @@
+import pytest
+
 from hte import calibrate, synth
 from hte.belief import Constants
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
@@ -398,3 +400,112 @@ def test_holdout_kfold_coverage_on_synthetic_worlds_is_at_least_0_8():
         coverages.append(result["coverage_of_truth"])
     mean_coverage = sum(coverages) / len(coverages)
     assert mean_coverage >= 0.8, f"mean k-fold coverage_of_truth {mean_coverage} over seeds 0-9 fell below 0.8: {coverages}"
+
+
+# --------------------------------------------------------------------------
+# pooled coordinate-descent fit (docs/CALIBRATION-FIT-2026-09-10.md)
+# --------------------------------------------------------------------------
+
+
+def _pooled_corpora():
+    """A cheap stand-in for `build_pooled_fit_corpora`'s own real-corpus
+    pool: three `hte.synth` small worlds plus `_calib_corpus()`, small
+    enough to run several `fit_constants_pooled` sweeps in well under a
+    second, unlike a real `hte.corpus.education_atlas.load()` pull (see
+    `build_pooled_fit_corpora`'s own docstring for why that corpus is
+    itself pre-subsampled for exactly this reason)."""
+    corpora = {f"synth-{s}": synth.make_small_world(s).corpus for s in range(3)}
+    corpora["hand-built"] = _calib_corpus()
+    return corpora
+
+
+def test_evaluate_pooled_reports_one_row_per_corpus():
+    corpora = _pooled_corpora()
+    result = calibrate.evaluate_pooled(corpora, calibrate._default_fit_vector())
+    assert {row["name"] for row in result["per_corpus"]} == set(corpora)
+    assert result["mean_brier"] is not None
+    assert result["penalty"] == 0.0  # no coverage_targets passed
+
+
+def test_evaluate_pooled_penalizes_coverage_below_target():
+    corpora = _pooled_corpora()
+    vector = calibrate._default_fit_vector()
+    no_targets = calibrate.evaluate_pooled(corpora, vector)
+    # an unreachable target (1.1, above any possible coverage_of_truth)
+    # on every corpus guarantees the penalty fires for every one of them.
+    targets = {name: 1.1 for name in corpora}
+    with_targets = calibrate.evaluate_pooled(corpora, vector, coverage_targets=targets)
+    assert with_targets["penalty"] > no_targets["penalty"]
+    assert with_targets["loss"] > no_targets["loss"]
+    assert with_targets["mean_brier"] == no_targets["mean_brier"]  # penalty adds on top, leaving mean_brier untouched
+
+
+def test_evaluate_pooled_zero_penalty_when_targets_already_met():
+    corpora = _pooled_corpora()
+    vector = calibrate._default_fit_vector()
+    targets = {name: 0.0 for name in corpora}  # trivially met by any coverage >= 0
+    result = calibrate.evaluate_pooled(corpora, vector, coverage_targets=targets)
+    assert result["penalty"] == 0.0
+
+
+def test_fit_constants_pooled_never_returns_a_worse_loss_than_the_baseline():
+    corpora = _pooled_corpora()
+    result = calibrate.fit_constants_pooled(corpora, passes=1)
+    baseline = result["history"][0]
+    assert baseline["vector"] == calibrate._default_fit_vector()
+    assert result["best"]["loss"] <= baseline["loss"]
+
+
+def test_fit_constants_pooled_history_includes_the_baseline_first():
+    corpora = _pooled_corpora()
+    result = calibrate.fit_constants_pooled(corpora, passes=1)
+    assert result["history"][0]["vector"] == calibrate._default_fit_vector()
+
+
+def test_fit_constants_pooled_stops_early_with_no_improving_step():
+    # A corpus set with no evidence at all: `evaluate_pooled`'s own
+    # `mean_brier` is always `None` (no fold ever covers anything), so
+    # `loss` reads the same `1.0` fallback for every candidate vector and
+    # no step ever improves on the baseline; the search should stop after
+    # its first pass rather than a caller having to notice `history`'s own
+    # length stopped growing.
+    empty_corpus = Corpus(sources={}, evidence=[], ground_truth=[], provenance=[], vocab=_calib_vocab())
+    result = calibrate.fit_constants_pooled({"empty": empty_corpus}, passes=5)
+    assert result["passes_run"] == 1
+    assert result["best"]["vector"] == calibrate._default_fit_vector()
+
+
+def test_fit_constants_pooled_respects_a_custom_start_vector():
+    corpora = _pooled_corpora()
+    start = {"W": 5.0, "lam": 1.0, "mu": 0.5, "alpha": 1.0, "tier_scale": 1.0, "detectability_floor": 0.0}
+    result = calibrate.fit_constants_pooled(corpora, passes=1, start=start)
+    assert result["history"][0]["vector"] == start
+
+
+def test_fit_constants_pooled_respects_parameter_bounds():
+    corpora = _pooled_corpora()
+    result = calibrate.fit_constants_pooled(corpora, passes=2)
+    for row in result["history"]:
+        for name, value in row["vector"].items():
+            lo, hi = calibrate._FIT_PARAM_BOUNDS[name]
+            assert lo <= value <= hi
+
+
+def test_vector_to_constants_scales_every_tier_weight_by_tier_scale():
+    from hte.belief import TIER_WEIGHT
+    from hte.evidence import Tier
+
+    vector = calibrate._default_fit_vector()
+    vector["tier_scale"] = 2.0
+    constants = calibrate._vector_to_constants(vector)
+    for tier in Tier:
+        assert constants.tier_weight[tier] == pytest.approx(TIER_WEIGHT[tier] * 2.0)
+
+
+def test_build_pooled_fit_corpora_returns_synth_and_four_real_corpora():
+    corpora, coverage_targets = calibrate.build_pooled_fit_corpora(synth_seeds=range(2))
+    assert set(corpora) == {"synth-0", "synth-1", "quantum-history", "production", "education-atlas", "literature"}
+    assert set(coverage_targets) == {"synth-0", "synth-1"}
+    assert all(v == calibrate.DEFAULT_MIN_SYNTH_COVERAGE for v in coverage_targets.values())
+    for corpus in corpora.values():
+        assert corpus.evidence  # every one of the six carries evidence to fit against

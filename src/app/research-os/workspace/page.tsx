@@ -21,12 +21,57 @@
  * task item 6. TODO(Phase 1, review section 4 gap analysis "Role system",
  * "Under-13 consent flow"): this page has no age gate and no guardian
  * consent flow, deliberately out of Phase 0 scope.
+ *
+ * ros-04 UPDATE ("workspace hardening, Phase 1 canvas item 3"): a
+ * two-column layout replaces the single vertical chain list -- the left
+ * column is the routed chain (unchanged in substance, now carrying a
+ * low-confidence badge from `route.lowConfidenceFlags`, PR #27/ros-03's
+ * confidence-weighted routing), the right column is the learner's own
+ * workspace (the four tools, a notes scratchpad, the running "sources I
+ * have quoted" list built from Quote calls, and the Production form). No
+ * drag-and-drop: see learning/research-os/WORKSPACE.md for what this
+ * Phase 1 canvas adds and what it deliberately does not. Every request
+ * this page makes now also carries a client-generated `sessionId`
+ * (EVIDENCE-SCHEMA.md's session grouping), created once per browser tab
+ * and kept in sessionStorage so a reload mid-sitting keeps the same id.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 
 const TARGET_SLUG = "why-the-sky-is-blue";
+
+// Phase 0 has no sealed, held-out transfer-item pool (LEARNER-STATE-MODEL.md
+// section 4's "Transfer-task construction rule" names the real pool as
+// Phase 2 work); this fixed id stands in for the one hardcoded transfer
+// prompt below so the evidence log at least records WHICH item was
+// answered, forwarded verbatim rather than checked against a pool table
+// that does not exist yet.
+const TRANSFER_ITEM_ID = "why-the-sky-is-blue::sunset-red-lambda4-v1";
+
+const SESSION_STORAGE_KEY = "research-os-session-id";
+const NOTES_STORAGE_KEY = `research-os-notes:${TARGET_SLUG}`;
+
+/** One session id per browser tab, per EVIDENCE-SCHEMA.md ("client-generated
+ * ... so a session id is stable across a reconnect"). sessionStorage (not
+ * localStorage) so a fresh tab starts a fresh sitting, matching "one
+ * session groups every tool call and evidence event from one workspace
+ * sitting." Falls back to a timestamp+random id when crypto.randomUUID is
+ * unavailable (an older browser, or a non-secure context). */
+function readOrCreateSessionId(): string {
+  try {
+    const existing = window.sessionStorage.getItem(SESSION_STORAGE_KEY);
+    if (existing) return existing;
+    const id = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    window.sessionStorage.setItem(SESSION_STORAGE_KEY, id);
+    return id;
+  } catch {
+    // sessionStorage unavailable (private mode, SSR): a per-render id still
+    // lets every call in THIS request carry a session id, just not one
+    // stable across a reload.
+    return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  }
+}
 
 type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
 
@@ -51,11 +96,27 @@ interface EngineFrontierCandidate {
   totalCount: number;
   heldFraction: number;
 }
+/** One edge on the returned chain flagged below the confidence floor
+ * (ros-03's LOW_CONFIDENCE_THRESHOLD): the route still walked through it,
+ * a teacher should confirm it. Matches src/lib/research-os/frontier.ts's
+ * LowConfidenceFlag. */
+interface LowConfidenceFlag {
+  edgeId?: string;
+  fromNodeId: string;
+  toNodeId: string;
+  confidence: number;
+}
+
 interface RouteResponse {
   target: GraphNodeLite;
   frontier: GraphNodeLite[];
   chain: ChainStep[];
   gap: GraphNodeLite[];
+  /** ros-03 item 2/3: every low-confidence edge on the returned chain (PR
+   * #27). Matched against a chain step by `fromNodeId === step.node.id`
+   * (frontier.ts's parentEdge runs ancestor -> its parent toward the
+   * target, so a step's own outgoing edge is keyed by its own node id). */
+  lowConfidenceFlags: LowConfidenceFlag[];
   /** Engine bridge task item 2: engine-generated candidate targets this
    * learner is close to being ready for, empty until one has been ingested
    * (src/lib/research-os/engine-bridge.ts) into this branch. */
@@ -130,20 +191,53 @@ export default function ResearchOsWorkspacePage() {
   const [routeError, setRouteError] = useState<string | null>(null);
   const [selected, setSelected] = useState<GraphNodeLite | null>(null);
 
+  // ros-04: one session id per tab (EVIDENCE-SCHEMA.md), created lazily so
+  // it never runs during SSR (window is unavailable there).
+  const [sessionId, setSessionId] = useState<string>("");
+  useEffect(() => {
+    setSessionId(readOrCreateSessionId());
+  }, []);
+
   const [locateQuery, setLocateQuery] = useState("");
   const [locateResults, setLocateResults] = useState<Array<{ nodeId: string; slug: string; title: string; summary: string | null; citation: string }>>([]);
   const [quote, setQuote] = useState<{ kind?: "quote" | "summary"; quotable_span: string | null; locator?: string | null; citation: string } | null>(null);
+  // ros-04, canvas item 3: "sources I have quoted", every distinct Quote
+  // result this sitting, most recent first. Client-side only (no new
+  // backend route): Quote is already logged server-side per tool call
+  // (workspace/route.ts's logToolCall), this list is the learner's own
+  // working view of what they have pulled so far.
+  const [quotedSources, setQuotedSources] = useState<Array<{ nodeId: string; nodeTitle: string; kind?: "quote" | "summary"; quotable_span: string | null; locator?: string | null; citation: string }>>([]);
   const [explanation, setExplanation] = useState("");
   const [checkResult, setCheckResult] = useState<{ result: string; feedback: string; citations: string[] } | null>(null);
   const [organizeClaim, setOrganizeClaim] = useState("");
   const [organizeEvidence, setOrganizeEvidence] = useState("");
   const [organizeSources, setOrganizeSources] = useState("");
-  const [organized, setOrganized] = useState<{ claim: string; evidence: string[]; sources: string[] } | null>(null);
+  const [organized, setOrganized] = useState<{ claim: string; evidence: string[]; sources: string[]; abstained?: boolean } | null>(null);
   const [transferAnswer, setTransferAnswer] = useState("");
   const [transferSaved, setTransferSaved] = useState(false);
   const [production, setProduction] = useState({ claim: "", evidence: "", sources: "", transferProof: "" });
   const [productionStatus, setProductionStatus] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
+
+  // ros-04, canvas item 3: a free scratch notes area in the right column,
+  // persisted per-target to localStorage only (no backend route; a
+  // scratchpad the Production form below stays independent of -- that
+  // form is where a learner's real claim/evidence/sources save server-side).
+  const [notes, setNotes] = useState("");
+  useEffect(() => {
+    try {
+      setNotes(window.localStorage.getItem(NOTES_STORAGE_KEY) || "");
+    } catch {
+      /* localStorage unavailable; notes just stay session-local via state */
+    }
+  }, []);
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(NOTES_STORAGE_KEY, notes);
+    } catch {
+      /* best effort */
+    }
+  }, [notes]);
 
   // Phase 1 (bkt-ros item 2): diagnostic probe state.
   const [probe, setProbe] = useState<ProbeResponse | null>(null);
@@ -213,7 +307,7 @@ export default function ResearchOsWorkspacePage() {
       const res = await fetch("/api/research-os/probe", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ nodeId, answer }),
+        body: JSON.stringify({ nodeId, answer, sessionId }),
       });
       const data = await res.json();
       if (res.ok) {
@@ -271,7 +365,7 @@ export default function ResearchOsWorkspacePage() {
       await fetch("/api/research-os/state", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ nodeId: node.id, action: "open" }),
+        body: JSON.stringify({ nodeId: node.id, action: "open", sessionId }),
       });
       loadRoute();
     } catch {
@@ -286,7 +380,7 @@ export default function ResearchOsWorkspacePage() {
       const res = await fetch("/api/research-os/workspace", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ action: "locate", query: locateQuery }),
+        body: JSON.stringify({ action: "locate", query: locateQuery, sessionId }),
       });
       const data = await res.json();
       setLocateResults(res.ok ? data.results : []);
@@ -302,10 +396,18 @@ export default function ResearchOsWorkspacePage() {
       const res = await fetch("/api/research-os/workspace", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ action: "quote", nodeId: selected.id }),
+        body: JSON.stringify({ action: "quote", nodeId: selected.id, sessionId }),
       });
       const data = await res.json();
-      if (res.ok) setQuote(data);
+      if (res.ok) {
+        setQuote(data);
+        // "sources I have quoted" (canvas item 3): keep the most recent
+        // quote per node, newest node first.
+        setQuotedSources((prev) => [
+          { nodeId: selected.id, nodeTitle: selected.title, kind: data.kind, quotable_span: data.quotable_span, locator: data.locator, citation: data.citation },
+          ...prev.filter((q) => q.nodeId !== selected.id),
+        ]);
+      }
     } finally {
       setBusy(null);
     }
@@ -318,7 +420,7 @@ export default function ResearchOsWorkspacePage() {
       const res = await fetch("/api/research-os/workspace", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ action: "check", nodeId: selected.id, explanation }),
+        body: JSON.stringify({ action: "check", nodeId: selected.id, explanation, sessionId }),
       });
       const data = await res.json();
       if (res.ok) {
@@ -339,7 +441,7 @@ export default function ResearchOsWorkspacePage() {
       const res = await fetch("/api/research-os/workspace", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ action: "organize", claim: organizeClaim, evidenceNotes: organizeEvidence, sourceNotes: organizeSources }),
+        body: JSON.stringify({ action: "organize", claim: organizeClaim, evidenceNotes: organizeEvidence, sourceNotes: organizeSources, sessionId }),
       });
       const data = await res.json();
       if (res.ok) {
@@ -355,10 +457,14 @@ export default function ResearchOsWorkspacePage() {
     if (!token || !selected || !transferAnswer.trim()) return;
     setBusy("transfer");
     try {
+      // ros-04 fix: this call used to send only {nodeId, action}, never the
+      // learner's own answer text -- EVIDENCE-SCHEMA.md's "no stored ...
+      // transfer-item answer" gap. `answer` and `itemId` now round-trip
+      // onto the evidence event (stages.ts's onTransferItemAnswered).
       await fetch("/api/research-os/state", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ nodeId: selected.id, action: "transfer_item" }),
+        body: JSON.stringify({ nodeId: selected.id, action: "transfer_item", answer: transferAnswer, itemId: TRANSFER_ITEM_ID, sessionId }),
       });
       setTransferSaved(true);
       loadRoute();
@@ -381,6 +487,7 @@ export default function ResearchOsWorkspacePage() {
           sources: production.sources.split("\n").filter(Boolean),
           transferProof: { text: production.transferProof },
           status,
+          sessionId,
         }),
       });
       const data = await res.json();
@@ -503,20 +610,39 @@ export default function ResearchOsWorkspacePage() {
 
         {route && (
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
-            {/* Vertical map + engine frontier */}
+            {/* Left column: the routed chain, one stop per prerequisite
+                node between the learner's frontier and the target
+                (ros-04 canvas item 3). Stage badges as before; a
+                low-confidence badge (ros-03/PR #27's lowConfidenceFlags)
+                now marks a step whose own edge toward the target fell
+                below the routing confidence floor and should have a
+                teacher's eyes on it. */}
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-px bg-[color:var(--hairline)]">
-                {route.chain.map((step) => (
-                  <button
-                    key={step.node.id}
-                    onClick={() => openNode(step.node)}
-                    className="text-left bg-[color:var(--bone)] p-3 flex items-center justify-between gap-2"
-                    style={{ outline: selected?.id === step.node.id ? "2px solid var(--gold-deep)" : "none" }}
-                  >
-                    <span className="text-[13px] text-[color:var(--basalt)]">{step.node.title}</span>
-                    <StageBadge stage={step.stage} />
-                  </button>
-                ))}
+                {route.chain.map((step) => {
+                  const flag = route.lowConfidenceFlags.find((f) => f.fromNodeId === step.node.id);
+                  return (
+                    <button
+                      key={step.node.id}
+                      onClick={() => openNode(step.node)}
+                      className="text-left bg-[color:var(--bone)] p-3 flex items-center justify-between gap-2"
+                      style={{ outline: selected?.id === step.node.id ? "2px solid var(--gold-deep)" : "none" }}
+                    >
+                      <span className="text-[13px] text-[color:var(--basalt)] min-w-0 truncate">{step.node.title}</span>
+                      <span className="flex items-center gap-1 flex-shrink-0">
+                        {flag && (
+                          <span
+                            className="inline-flex items-center text-[10px] small-caps tracking-[0.1em] px-2 py-1 rounded-sm bg-red-100 text-red-800"
+                            title={`Routing confidence ${Math.round(flag.confidence * 100)}%, below the review floor. A teacher should confirm this prerequisite link.`}
+                          >
+                            needs review
+                          </span>
+                        )}
+                        <StageBadge stage={step.stage} />
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Engine bridge task item 2: engine-generated candidates this
@@ -622,9 +748,51 @@ export default function ResearchOsWorkspacePage() {
                   <button onClick={runOrganize} disabled={!token || busy === "organize"} className="mt-2 text-[12px] small-caps underline">
                     {busy === "organize" ? "organizing…" : "organize into a scaffold"}
                   </button>
-                  {organized && <p className="mt-2 text-[11px] text-[color:var(--basalt-2)]">Copied into the Production form below.</p>}
+                  {organized?.abstained && (
+                    <p className="mt-2 text-[11px] text-[color:var(--basalt-2)]">
+                      Nothing here was grounded in your own notes, so Organize left the scaffold empty rather than adding anything new. Write more in
+                      claim/evidence/source notes and try again.
+                    </p>
+                  )}
+                  {organized && !organized.abstained && <p className="mt-2 text-[11px] text-[color:var(--basalt-2)]">Copied into the Production form below.</p>}
                 </div>
               </div>
+
+              {/* Right column, "the learner's workspace" (ros-04 canvas item
+                  3): a free scratch notes area, separate from the graded
+                  Production form below it. */}
+              <div className="p-4 bg-[color:var(--bone)]">
+                <label htmlFor="research-os-notes" className="font-display uppercase text-[14px] mb-2 block">
+                  notes
+                </label>
+                <textarea
+                  id="research-os-notes"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  placeholder="ungraded scratch space, saved on this device only…"
+                  className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] w-full bg-white/60 min-h-[90px]"
+                />
+              </div>
+
+              {/* "sources I have quoted" (ros-04 canvas item 3): every
+                  distinct Quote result this sitting, client-accumulated
+                  from runQuote's own response. */}
+              {quotedSources.length > 0 && (
+                <div className="p-4 bg-[color:var(--bone)]">
+                  <div className="font-display uppercase text-[14px] mb-2">sources i have quoted</div>
+                  <ul className="flex flex-col gap-3">
+                    {quotedSources.map((q) => (
+                      <li key={q.nodeId} className="text-[12px] text-[color:var(--basalt-2)] border-t border-[color:var(--hairline)] pt-2">
+                        <div className="small-caps text-[10px] text-[color:var(--aegean-deep)]">{q.nodeTitle}{q.kind === "summary" ? " · summary" : ""}</div>
+                        <p>
+                          &ldquo;{q.quotable_span}&rdquo;, {q.citation}
+                          {q.locator ? ` (${q.locator})` : ""}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* Transfer item, only meaningful on the target once Understanding is reached */}
               {selected?.id === route.target.id && (

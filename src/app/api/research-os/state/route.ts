@@ -56,9 +56,19 @@ export async function GET(req: NextRequest) {
   });
 }
 
+const MAX_TRANSFER_ANSWER_CHARS = 2000;
+
 interface StateBody {
   nodeId?: string;
   action?: "open" | "transfer_item";
+  /** The learner's own transfer-item answer text (EVIDENCE-SCHEMA.md's
+   * "no stored ... transfer-item answer" gap); required only for
+   * action "transfer_item". */
+  answer?: string;
+  /** The fixed per-target transfer-item id (state route header + this
+   * file's POST handler); required only for action "transfer_item". */
+  itemId?: string;
+  sessionId?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -75,6 +85,12 @@ export async function POST(req: NextRequest) {
   const nodeId = (body.nodeId || "").trim();
   if (!nodeId) return bad(400, "nodeId is required");
   if (body.action !== "open" && body.action !== "transfer_item") return bad(400, "unknown action");
+  const sessionId = (body.sessionId || "").trim() || undefined;
+  const answer = (body.answer || "").trim();
+  if (body.action === "transfer_item") {
+    if (!answer) return bad(400, "answer is required");
+    if (answer.length > MAX_TRANSFER_ANSWER_CHARS) return bad(400, "answer too long");
+  }
 
   const svc = graphService();
   const { data: existing } = await svc
@@ -85,7 +101,10 @@ export async function POST(req: NextRequest) {
     .maybeSingle();
   const currentStage = ((existing?.stage as Stage | undefined) ?? "access") as Stage;
 
-  const transition = body.action === "open" ? onNodeOpened(currentStage) : onTransferItemAnswered(currentStage);
+  const transition =
+    body.action === "open"
+      ? onNodeOpened(currentStage, { sessionId })
+      : onTransferItemAnswered(currentStage, { learnerText: answer, itemId: (body.itemId || "").trim() || undefined, sessionId });
 
   await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
 

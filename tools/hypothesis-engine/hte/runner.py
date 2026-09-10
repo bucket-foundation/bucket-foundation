@@ -21,10 +21,10 @@ from typing import Any, Callable, Sequence
 
 from . import artifacts, batching, calibrate, export, link, llm, roles, tournament, unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
-from .belief import Constants, Opinion, load_detectability_table, score as belief_score
+from .belief import Opinion, load_constants, load_detectability_table, score as belief_score
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
-from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production
+from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history
 from .evidence import EvidenceItem
 from .generate import combinatorial_sample, from_evidence
 from .hypothesis import Hypothesis
@@ -89,6 +89,13 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # k-fold over discovery-date for this corpus's own ground truth.
     "holdout_k": 5,
     "holdout_seed": 0,
+    # `"fitted"` (the default) reads `hte.belief.load_constants`'s own
+    # pooled-fit result (`docs/CALIBRATION-FIT-2026-09-10.md`,
+    # `hte/data/constants-fitted.json`), falling back to `Constants()`'s
+    # bare defaults with no such file on disk; `"default"` opts out
+    # explicitly (`hte campaign run --constants default`), matching
+    # `load_constants`'s own two-value contract.
+    "constants": "fitted",
 }
 
 _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
@@ -97,6 +104,7 @@ _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
     "education-atlas": education_atlas.load,
     "production": production.load,
     "literature": literature.load_default,
+    "sacred-history": sacred_history.ingest,
 }
 
 
@@ -438,7 +446,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     for h, note in zip(survivors, preservation_results):
         logger.log(f"preservation critique on {h.short_id}: could_have_survived={note.get('could_have_survived')}")
 
-    constants = Constants()
+    constants = load_constants(cfg["constants"])
     opinions = {h.address: belief_score(h, corpus.evidence, corpus.vocab, table, constants=constants) for h in survivors}
 
     judge = _judge_adapter(cache_dir, replay_only)
