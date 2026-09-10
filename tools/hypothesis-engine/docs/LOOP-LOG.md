@@ -2,6 +2,36 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, tick 3
+
+- **Engine health**: `make test` green on `main` before any change this
+  tick, 931 passed (fast profile, `EDUCATION_ATLAS_DIR` set to the sibling
+  checkout). No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake mode), 30/30
+  seeds, coverage_of_truth mean 1.0, brier_true_only mean 0.0082, gate
+  PASS. A repeat run matched every metric exactly; no nondeterminism.
+  Still no `realsweep` subcommand on `main` (PR #29 below adds one,
+  unmerged).
+- **Test swarm**: `hte/corpus/__init__.py` (92.6%, `tests/COVERAGE.md`'s
+  next least-covered file, untouched by `swarm`/`swarm2`/`swarm3`/
+  `swarm-20260910`: `GroundTruthEvent`, `RetrievalEnvelope`, `Corpus`,
+  including `Corpus.save`/`load`'s own file round trip). 10 new tests in
+  `tests/swarm-20260910/test_corpus_init_props.py`. All pass; no defect.
+  Full suite: 941 passed.
+- **PRs opened**: 1, #32 (`test/hte-corpus-init-coverage-20260910`).
+- **PRs reviewed**: #32 (own; reviewed and squash-merged, all criteria
+  met). #28, #29, #30 each already carried a review at their current head
+  sha from an earlier tick this hour (posted 19:29-20:11 UTC); this tick
+  verified the existing reviews rather than duplicating them: #28
+  (`ba6c8451`) 2 Medium QA findings on the accept-path's missing
+  class/roster ownership check and an unbounded input field, verdict "fix
+  or note before merge"; #29 (`97d7bbb4`) 1 Critical (two new tests omit
+  `HTE_LLM_MODE=fake`, hanging `make test` whenever `HTE_LLM_MODE` is
+  unset), verdict "changes requested"; #30 (`da7ae955`) 2 Low, verdict
+  "approve". None are `fix/hte-`/`test/hte-` branches this loop opened, so
+  none merged.
+- **Blocked**: nothing.
+
 ## 2026-09-10, tick 2
 
 - **Engine health**: installed `pandas`/`pyarrow`, resolving tick 1's
