@@ -137,6 +137,17 @@ def test_self_report_carries_assumptions_and_refusal_counts(monkeypatch):
     assert isinstance(response["self_report"]["refusal_counts"], dict)
 
 
+def test_response_carries_which_model_backed_each_role_alongside_run_id(monkeypatch):
+    # `run_id` alone identifies a run; a caller storing this run's
+    # provenance against a learner's production needs which model
+    # produced it too (`manifest["models"]`, `model-policy.json`'s own
+    # shape).
+    response = _call({"productions": _fixture_records()}, monkeypatch)
+    assert response["run_id"]
+    assert response["models"]["roles"]["generator"]
+    assert response["models"]["escalation"]
+
+
 def test_prior_profile_shifts_the_reported_profile_without_erroring(monkeypatch):
     for profile in ("consensus", "skeptic", "fringe", "uniform"):
         response = _call({"productions": _fixture_records(), "prior_profile": profile}, monkeypatch)

@@ -293,9 +293,16 @@ def _sanitize(text: str, run_dir: Path) -> str:
     """`text` with this call's own temp run directory, and anything that
     looks like an absolute filesystem path, replaced by a placeholder.
     Applied to every exception message this module re-raises, per this
-    module's own "never an absolute path in the response" contract."""
+    module's own "never an absolute path in the response" contract. The
+    path-root allowlist below covers every root a real deployment of this
+    package is known to run under (a developer's own `/home` or `/Users`,
+    a container's `/root` or `/app`, a server's `/srv` or `/opt`, and
+    `/tmp`/`/var` for a temp or log path); a root outside this list stays
+    a gap this backstop leaves open behind the explicit `run_dir`
+    replacement above, worth widening the moment a real deployment names
+    a root not yet on it."""
     sanitized = text.replace(str(run_dir), "<run_dir>")
-    return re.sub(r"/(?:home|tmp|Users|var)/\S*", "<path>", sanitized)
+    return re.sub(r"/(?:home|tmp|Users|var|srv|opt|root|app|mnt|data|etc)/\S*", "<path>", sanitized)
 
 
 # --------------------------------------------------------------------------
@@ -434,6 +441,13 @@ def _build_response(
         "ok": True,
         "run_id": f"{manifest.get('campaign', 'hypothesize')}-{manifest.get('timestamp', '')}",
         "artifact_version": manifest.get("run_artifact_version"),
+        # `manifest["models"]` (`hte.llm._model_policy()`, `model-policy.json`'s
+        # own role-to-CLI-alias map plus the `escalation` fallback): a
+        # caller storing this run's provenance alongside a learner's
+        # production needs which model backed it, not just this run's id,
+        # so both travel together rather than only `run_id` reaching the
+        # response.
+        "models": manifest.get("models"),
         "corpus": {
             "n_productions": n_productions, "status_min": status_min, "prior_profile": prior_profile,
             "n_sources": counts.get("n_sources"), "n_evidence": counts.get("n_evidence"),
@@ -538,15 +552,24 @@ def hypothesize(request: dict[str, Any], *, config: dict[str, Any] | None = None
         with _temporary_corpus_loader(corpus) as loader_key, _llm_mode_override(llm_mode):
             run_cfg["corpus"] = loader_key
             run_cfg["out_dir"] = str(temp_root)
+            # `artifacts = run_campaign(...)` and the `_build_response(...)`
+            # call that turns them into this function's own return value
+            # share one try/except: a bug in response assembly (a manifest
+            # shape edge case, a `None` where a dict was expected) is just
+            # as much a failure of "run this campaign and hand back its
+            # result" as `run_campaign` raising outright, and both must
+            # reach the caller as the one documented `CampaignError`
+            # contract, never a bare `KeyError`/`TypeError`/`AttributeError`
+            # that bypasses it.
             try:
                 artifacts = runner.run_campaign(run_cfg)
+                elapsed = time.monotonic() - started
+                return _build_response(
+                    artifacts, corpus=corpus, prior_profile=prior_profile, status_min=status_min,
+                    n_productions=len(productions), elapsed_s=elapsed,
+                )
             except Exception as exc:
                 raise CampaignError(_sanitize(f"{type(exc).__name__}: {exc}", temp_root)) from exc
-        elapsed = time.monotonic() - started
-        return _build_response(
-            artifacts, corpus=corpus, prior_profile=prior_profile, status_min=status_min,
-            n_productions=len(productions), elapsed_s=elapsed,
-        )
     finally:
         shutil.rmtree(temp_root, ignore_errors=True)
 

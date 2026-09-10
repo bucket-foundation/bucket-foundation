@@ -179,6 +179,14 @@ TOOL_DEFINITION: dict[str, Any] = {
             "error": {"type": "string"},
             "run_id": {"type": "string"},
             "artifact_version": {"type": "string"},
+            "models": {
+                "type": "object",
+                "description": "Which CLI model alias backed each role this run (model-policy.json's own shape: roles + escalation).",
+                "properties": {
+                    "roles": {"type": "object"},
+                    "escalation": {"type": "string"},
+                },
+            },
             "corpus": {
                 "type": "object",
                 "properties": {

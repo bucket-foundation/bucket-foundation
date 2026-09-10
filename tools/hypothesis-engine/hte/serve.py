@@ -26,6 +26,7 @@ import json
 import os
 import sys
 import time
+import traceback
 import uuid
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
@@ -133,9 +134,20 @@ class _Handler(BaseHTTPRequestHandler):
             self._write_json(502, {"ok": False, "error": str(exc), "request_id": request_id})
             _log(request_id, f"POST /hypothesize 502 ({type(exc).__name__}) {time.monotonic() - started:.3f}s")
             return
-        except Exception as exc:  # pragma: no cover - defensive; hypothesize() documents its own error contract
+        except Exception as exc:
+            # `hypothesize()` documents its own error contract
+            # (`RequestValidationError`/`CampaignError`, both handled
+            # above), so this branch should not fire; when a bug means it
+            # does anyway, the client-facing body stays a bare class name
+            # per this module's own "never a prompt or a request body, and
+            # nothing an operator needs a traceback for reaches the wire"
+            # rule, but the full message and traceback go to stderr, the
+            # one place an operator debugging a repeated 500 can read
+            # them (`_log`'s own request_id ties this line back to that
+            # 500's own response).
             self._write_json(500, {"ok": False, "error": f"internal error: {type(exc).__name__}", "request_id": request_id})
-            _log(request_id, f"POST /hypothesize 500 ({type(exc).__name__}) {time.monotonic() - started:.3f}s")
+            _log(request_id, f"POST /hypothesize 500 ({type(exc).__name__}: {exc}) {time.monotonic() - started:.3f}s")
+            traceback.print_exc(file=sys.stderr)
             return
 
         response["request_id"] = request_id
