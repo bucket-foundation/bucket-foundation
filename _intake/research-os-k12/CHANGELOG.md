@@ -1,5 +1,26 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10 (plan revision 1)
+
+Branch `docs/ros-plan-revision-1`. Read PLAN.md, RESEARCH-QUESTIONS.md,
+`RESEARCH-OS-K12-SYSTEM-REVIEW.md` sections 4, 8, 9, 10, 11,
+`OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, `ENGINE-BRIDGE.md`, this file,
+`BEADS-PENDING.jsonl`, PR #15 (open, branch `intake/ros-literature-2-batch2`,
+read directly since unmerged), and PR #11 (draft). Wrote
+`learning/research-os/PLAN-REVISION-1.md`: a PR-by-PR account of what shipped
+since PLAN.md (#3, #5, #6, #7, #8, #9, #10, #12, #14, #15); four
+evidence-driven design revisions (payout under Gneezy and Rustichini 2000 and
+Mekler 2017, frontier routing under Gasparetti 2017, a class-level diversity
+outcome for the three-arm testbed under Doshi and Hauser 2024, Check-tool
+phrasing robustness under Binz and Schulz 2023), each labeled STABLE, STRONG
+LEAN, or OPEN; a dependency-ordered Phase 1 scope naming five blocking
+founder decisions; a table mapping the overlap map's twelve open questions
+onto Phase 1 pilot versus Phase 2 district-scale answerability; and the ETH
+AI Center fellowship fit (portal opens 2026-09-15). Appended a pointer
+paragraph to `PLAN.md` under a new "Revision 1" heading; no existing text in
+`PLAN.md` was changed or removed. No file in this folder was edited or
+removed.
+
 ## 2026-09-10 (hypothesis engine bridge)
 
 Branch `feat/ros-engine-bridge`, worktree review of a WIP commit against PR #10

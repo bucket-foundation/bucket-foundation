@@ -218,3 +218,34 @@ partial work preserved after 429 spend-limit stop") against PR #10
 
 None (the superseded envelope-conversion code is preserved verbatim in
 `_intake/research-os-k12/DELETIONS.md`, per this repo's own no-deletions policy).
+
+## Iteration 5
+
+Date 2026-09-10. Branch `docs/ros-plan-revision-1`, worktree `.wt-plan-revision-1`.
+Reviewed shipped work (PRs #3, #5, #6, #7, #8, #10, #12, #14) and two open PRs
+(#9, canon promotion; #15, `intake/ros-literature-2-batch2`, literature batch
+two) against PLAN.md, plus PR #11 (draft, site repositioning) against the
+open founder decisions this iteration names.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-1.md`: PR-by-PR account of what shipped;
+  four evidence-driven design revisions (payout, frontier routing, the
+  three-arm testbed's diversity outcome, Check-tool phrasing robustness),
+  each citing its paper file in `_intake/research-os-k12-literature/` and
+  labeled STABLE, STRONG LEAN, or OPEN; a dependency-ordered Phase 1 scope
+  naming five blocking founder decisions with their exact questions; a table
+  mapping the overlap map's twelve open questions onto Phase 1 pilot versus
+  Phase 2 district-scale answerability; and a one-page ETH AI Center
+  fellowship fit (research-question paragraph, two-PI pairing rationale).
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "Revision 1" section pointing to
+  `PLAN-REVISION-1.md`. No existing section was rewritten, reordered, or
+  removed.
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+
+### Removed
+
+None.
