@@ -139,21 +139,56 @@ except ImportError:  # pragma: no cover - exercised only in a pandas-less enviro
 # parent / "data"` convention one level down from a `corpus/` submodule.
 EDUCATION_VOCAB_PATH = Path(__file__).resolve().parents[1] / "data" / "vocab-education-seed.json"
 
-# `education-atlas` is a sibling repo, cloned next to this one
-# (`~/agfarms/education-atlas`, the same convention every other
-# `~/agfarms/<venture>/` clone follows), outside this repo's own tree;
-# there is no `parents[N]` path to it the way `hte.corpus.quantum_history.
-# DEFAULT_CORPUS_DIR` reaches `quantum/07-history` inside this repo.
-# `parents[4]` is this repo's own root (`bucket-foundation/`, the same
-# depth `quantum_history.DEFAULT_CORPUS_DIR` climbs to); its parent is
-# the ventures folder a sibling clone sits in.
-DEFAULT_SAMPLE_DIR = Path(__file__).resolve().parents[4].parent / "education-atlas" / "data" / "processed" / "sample"
+# `education-atlas` is a sibling repo, cloned next to this one, outside
+# this repo's own tree; there is no `parents[N]` path to it the way
+# `hte.corpus.quantum_history.DEFAULT_CORPUS_DIR` reaches `quantum/07-
+# history` inside this repo. `parents[4]` is this repo's own root
+# (`bucket-foundation/`, the same depth `quantum_history.
+# DEFAULT_CORPUS_DIR` climbs to).
+_REPO_ROOT = Path(__file__).resolve().parents[4]
+
+
+def _resolve_education_atlas_root() -> Path | None:
+    """The `education-atlas` sibling checkout's own repo root, or `None`
+    when none of the three candidates below can be found: this repo's
+    own clone layout varies (a worktree, a fork checked out somewhere
+    other than `~/agfarms/bucket-foundation`), so `~/agfarms/education-
+    atlas` is one convention this org follows, one candidate among
+    three rather than a guarantee.
+
+    Checked in order: `$EDUCATION_ATLAS_DIR` (an explicit override,
+    trusted at whatever path it names; `load()`'s own `FileNotFoundError`
+    is what checks the sample subdirectory underneath it once read, the
+    same contract an explicit `sample_dir` argument already carries);
+    then `../education-atlas` relative to this repo's own root (a
+    sibling checkout inside whatever parent directory this repo itself
+    was cloned into); then `~/agfarms/education-atlas` (this org's own
+    default convention, `CLAUDE.md`'s "Most venture folders" note), each
+    of the latter two checked for existence before it is returned."""
+    env = os.environ.get("EDUCATION_ATLAS_DIR")
+    if env:
+        return Path(env)
+    for candidate in (_REPO_ROOT.parent / "education-atlas", Path.home() / "agfarms" / "education-atlas"):
+        if candidate.is_dir():
+            return candidate
+    return None
+
+
+_EDUCATION_ATLAS_ROOT = _resolve_education_atlas_root()
+# `None` when no sibling checkout was found anywhere above: `load()`'s
+# own `_resolve_sample_dir` still honors an explicit `sample_dir`
+# argument or `EDUCATION_ATLAS_SAMPLE_DIR` even then, and raises a named
+# `FileNotFoundError` rather than an `AttributeError` on `None` if a
+# caller falls all the way through to this default with neither set.
+DEFAULT_SAMPLE_DIR: Path | None = (
+    _EDUCATION_ATLAS_ROOT / "data" / "processed" / "sample" if _EDUCATION_ATLAS_ROOT is not None else None
+)
 
 # This repo's own local mirror of the atlas's education content
 # (`src/content/education/*.md`, non-recursive: the three top-level docs,
 # not the `deep/`/`foundations/`/`landscape/` subdirectories, per the
 # literal glob this module was asked to read).
-LOCAL_EDUCATION_CONTENT_DIR = Path(__file__).resolve().parents[4] / "src" / "content" / "education"
+LOCAL_EDUCATION_CONTENT_DIR = _REPO_ROOT / "src" / "content" / "education"
 
 _ATLAS_DOC_NAMES = ("EDUCATION_PROBLEMS.md", "REFORM_THESIS.md")
 
@@ -272,6 +307,12 @@ def _resolve_sample_dir(sample_dir: str | Path | None) -> Path:
     env = os.environ.get("EDUCATION_ATLAS_SAMPLE_DIR")
     if env:
         return Path(env)
+    if DEFAULT_SAMPLE_DIR is None:
+        raise FileNotFoundError(
+            "education-atlas checkout not found; set EDUCATION_ATLAS_DIR (the repo root) "
+            "or EDUCATION_ATLAS_SAMPLE_DIR (the sample directory directly), or clone the "
+            "sibling repo to ../education-atlas or ~/agfarms/education-atlas"
+        )
     return DEFAULT_SAMPLE_DIR
 
 

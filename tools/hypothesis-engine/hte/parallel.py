@@ -173,6 +173,7 @@ def _run_one(
     backoff: tuple[float, float],
     on_error: str,
     default: R | None,
+    default_exceptions: tuple[type[BaseException], ...] | None,
 ) -> Any:
     attempt = 0
     while True:
@@ -184,7 +185,7 @@ def _run_one(
                 raise RateLimitAborted(gate.pauses, gate.reset_hint) from exc
             gate.wait_if_paused()
             continue
-        except Exception:
+        except Exception as exc:
             attempt += 1
             if attempt <= retries:
                 time.sleep(_delay_for(backoff, attempt))
@@ -193,6 +194,16 @@ def _run_one(
                 raise
             if on_error == "skip":
                 return _SKIP
+            # `on_error == "default"`. `default_exceptions`, when given,
+            # narrows which exception types this item's own exhausted
+            # retries are allowed to resolve to `default` for; anything
+            # outside that allowlist propagates instead, same as
+            # `on_error == "raise"`, rather than silently substituting a
+            # default this item's own failure was never one of the caller's
+            # named, expected cases for. `None` (the default) preserves
+            # this function's prior behavior: every exception defaults.
+            if default_exceptions is not None and not isinstance(exc, default_exceptions):
+                raise
             return default
         else:
             # A real `fn(item)` success, first attempt or after a
@@ -215,6 +226,7 @@ def pmap(
     backoff: tuple[float, float] = (5, 30),
     on_error: str = "raise",
     default: R | None = None,
+    default_exceptions: tuple[type[BaseException], ...] | None = None,
     max_rate_limit_pauses: int = 3,
 ) -> list[R]:
     """`fn` mapped over `items`, `workers` at a time (`configure`'s own
@@ -233,7 +245,26 @@ def pmap(
     `"raise"` (the default) re-raises the item's own last exception out
     of `pmap` itself; `"skip"` drops that item from the returned list
     (which then carries fewer entries than `items`); `"default"` fills
-    `default` in that item's place instead.
+    `default` in that item's place instead, unless `default_exceptions`
+    says otherwise (below).
+
+    `default_exceptions`, meaningful only alongside `on_error="default"`,
+    narrows which exception types are allowed to resolve to `default`:
+    an item whose exhausted-retries exception is not an instance of one
+    of `default_exceptions` propagates out of `pmap` instead, the same as
+    `on_error="raise"` would for it. This module itself defines no
+    exception types of its own beyond `RateLimit`/`RateLimitAborted` and
+    imports nothing from a caller's own package (see this module's own
+    top docstring), so it cannot know which exceptions a caller considers
+    "an expected, default-worthy case" (`hte.llm.ModelRefusal`/
+    `ModelTruncation`, for `hte.llm.complete_many`'s own caller) versus
+    "a real failure that must not be silently absorbed" (a malformed-JSON
+    parse error, a missing CLI, a plain bug); `default_exceptions` is how
+    a caller states that distinction without this module needing to
+    import the caller's own exception types to enforce it. Leaving it
+    `None` (the default) preserves this function's prior behavior: every
+    exception, of any type, resolves to `default` once retries are
+    exhausted.
 
     `RateLimit` is not a per-item failure: every worker pauses for a
     shared backoff window (the same `backoff` bounds, scaled by how many
@@ -265,7 +296,7 @@ def pmap(
         futures = {
             pool.submit(
                 _run_one, fn, item, gate=gate, retries=retries, backoff=backoff,
-                on_error=on_error, default=default,
+                on_error=on_error, default=default, default_exceptions=default_exceptions,
             ): idx
             for idx, item in enumerate(item_list)
         }

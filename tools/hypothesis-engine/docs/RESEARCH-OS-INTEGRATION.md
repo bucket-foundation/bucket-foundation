@@ -236,12 +236,16 @@ JSON shape `docs/PRODUCTION-SCHEMA.md` defines (a strict restructuring of
 `PLAN.md` §5's own YAML, one production holding many claims instead of
 one claim per record) into an `hte.corpus.Corpus`, either from local JSON
 files (`load`) or from a live Supabase deployment (`load_supabase`,
-`03-data-services.md` section J). Twelve fixture productions under
+`03-data-services.md` section J). Fourteen fixture productions under
 `hte/data/production-fixtures/` exercise all seven of questions 19, 21,
 22, 24, 25, 26, and 27 across three grade bands and two districts,
 including a citation chain of depth two (one production citing a second,
 which itself cites a third) and one production retracted after
-acceptance.
+acceptance: twelve `PRODUCTION-SCHEMA.md`-shaped `prod-*.json` files plus
+`research-os-sky-blue.json`'s two `graph.productions`-shaped rows
+(`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`), `production.load_raw()`
+normalizing the latter onto the former's own shape before either reaches
+`_build_corpus`.
 
 The corpus is registered (`bkt-hte-corpus-registration`), the same line
 `K12-INTEGRATION.md` names for `education-atlas`, added to both
@@ -329,7 +333,7 @@ python3 -m hte.serve --port 8420 --fake
 # or, once installed: hte-serve --port 8420 --fake
 ```
 
-Call it with the 12 shipped production fixtures:
+Call it with the 14 shipped production fixtures:
 
 ```bash
 python3 -c "
