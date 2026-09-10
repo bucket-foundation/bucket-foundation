@@ -71,3 +71,18 @@ Source: `_intake/research-os-k12/raw/lit-educational-methods.md` (49 sources, DO
 37. Does sourcing skill built inside the workspace transfer to open-web evaluation, benchmarked against McGrew 2020 (doi:10.1016/j.compedu.2019.103711)?
 38. What minimum engagement rate precedes a detectable gain, given Oreopoulos and Low 2026? Dose-response field study.
 39. Does payment eligibility change who participates by prior achievement or socioeconomic status? Submission and acceptance rates by baseline quartile.
+
+## From the HCI and human-AI collaboration literature
+
+Source: `_intake/research-os-k12/raw/lit-hci-human-ai.md` (56 sources checked against Crossref, OpenAlex, and arXiv).
+
+40. Does a mandatory check step before a claim enters the graph change critical-thinking transfer compared with unchecked note-taking? Between-group comparison with a validated transfer battery at a delay of weeks.
+41. Does disagreement surfacing raise engagement with primary sources compared with silent conflict resolution? Log-based comparison with click-through and claim quality as outcomes.
+42. Does the AI ghostwriter effect (Draxler and others 2023) appear when organize drafts a claim sentence from a quote? Authorship-perception survey on auto-drafted versus self-drafted sentences.
+43. What level of system initiative in find suits each age band? Developmental comparison with search efficacy and frustration as outcomes.
+44. Does a check-only critic change error-correction speed and retention compared with a critic that also supplies the fix? Two-by-two design after CodeAid.
+45. Do children over-trust a provenance card's verified badge the way they over-trust a warm chat reply (Kurian 2023, doi:10.1177/14639491231206004)? Think-aloud with true and fabricated cards.
+46. Does exposing belief-score components and critic disagreement to teachers, instead of a single score, produce better-calibrated trust? Dashboard detail manipulated; trust measured against accuracy.
+47. Do eight-year-olds and sixteen-year-olds generate different requirements for the shared workspace? Cooperative-inquiry sessions across age bands (Druin 1999).
+48. Does a paid, citable production model shift a learner's identity from consumer to contributor over a school year, and does that predict later voluntary source use? Longitudinal survey with log-based tracking.
+49. Does the process-exposing class view raise teacher load past a usable threshold (Verbert and others 2013, doi:10.1177/0002764213479363)? Load and usefulness measured together in the pilot.
