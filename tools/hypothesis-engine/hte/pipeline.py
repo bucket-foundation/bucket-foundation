@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import json
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
@@ -51,6 +51,11 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # card path it would write rather than writing any of them.
     "writeback": False,
     "writeback_branch": None,
+    # A named human approver, required whenever `writeback=True` (PLAN.md
+    # section 10, GOVERNANCE.md): `hte.canon_writeback.write_back` itself
+    # hard-refuses a missing signoff, and this stage checks it up front
+    # too so the failure reads as a labeled precondition failure.
+    "writeback_signoff": None,
     "writeback_floor_P": 0.6,
     "writeback_floor_u_max": 0.5,
     "writeback_out_root": "bucket-canon",
@@ -243,11 +248,18 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
                         "writeback", pipeline_dir / "writeback",
                         "writeback=True but writeback_branch was not given",
                     )
+                elif not cfg["writeback_signoff"]:
+                    stages["writeback"] = _failed_stage(
+                        "writeback", pipeline_dir / "writeback",
+                        "writeback=True but writeback_signoff was not given: a named human "
+                        "approver is required before any write into bucket-canon/ (PLAN.md "
+                        "section 10, GOVERNANCE.md)",
+                    )
                 else:
                     def _writeback() -> list[str]:
                         from . import canon_writeback
                         paths = canon_writeback.write_back(
-                            run_dir, branch=cfg["writeback_branch"],
+                            run_dir, branch=cfg["writeback_branch"], signoff=cfg["writeback_signoff"],
                             floor_P=cfg["writeback_floor_P"], floor_u_max=cfg["writeback_floor_u_max"],
                             out_root=cfg["writeback_out_root"], dry_run=cfg["dry_run"],
                         )
