@@ -715,3 +715,140 @@ def test_live_fetch_lists_cards_or_skips_when_offline():
     assert any("bloom-1984-two-sigma-problem.md" in p for p in paths)
     assert all(p.endswith(".md") for p in paths)
     assert not any(p.endswith("/README.md") for p in paths)
+
+
+# --------------------------------------------------------------------------
+# multi-root batch discovery (`load_local`, `bkt-hte-generation-coverage`):
+# every batch so far (PR #5, #15, and #38 as of this writing, still open)
+# has landed as more files inside the SAME `_intake/research-os-k12-
+# literature/` tree, so `discover_card_roots` finds exactly one root
+# against a real checkout (`test_discover_card_roots_finds_the_primary_
+# root_in_this_checkout` below). Every other test in this section builds
+# its own temp `_intake`-shaped directory instead, so a THIRD, differently
+# named batch root (the shape a future batch might land in, PR #38 is not
+# it) is exercised deterministically whether or not that PR has merged.
+# --------------------------------------------------------------------------
+
+
+def _write_card(directory, relative_path: str, *, doi: str, title: str = "A test card", year: int = 2020) -> None:
+    path = directory / relative_path
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        "---\n"
+        f'title: "{title}"\n'
+        "authors:\n"
+        '  - "Test, Author"\n'
+        f"year: {year}\n"
+        'venue: "Test Venue"\n'
+        f'doi: "{doi}"\n'
+        'why_it_matters: >\n'
+        "  It matters for this test.\n"
+        "key_claims:\n"
+        '  - "A claim."\n'
+        "research_questions_it_leaves_open:\n"
+        '  - "A question."\n'
+        'how_it_bears_on_research_os: >\n'
+        "  It bears on the test.\n"
+        "---\n"
+    )
+
+
+def test_discover_card_roots_finds_the_primary_root_in_this_checkout():
+    roots = literature.discover_card_roots()
+    names = {r.name for r in roots}
+    assert "research-os-k12-literature" in names
+
+
+def test_discover_card_roots_returns_empty_for_a_missing_intake_dir(tmp_path):
+    assert literature.discover_card_roots(tmp_path / "no-such-intake") == []
+
+
+def test_discover_card_roots_picks_up_a_third_batch_root(tmp_path):
+    """The coordinator's own ask (`bkt-hte-generation-coverage`): a batch
+    landing under a distinctly named sibling directory, rather than as
+    more files inside the primary tree, must be picked up with no code
+    change. Simulated here with a temp `_intake/` carrying the primary
+    root plus a `-3`-suffixed sibling, since PR #38 (literature batch
+    three) had not merged as of this test's own writing and, even once
+    it does, lands inside the primary tree rather than as a new root
+    (see this section's own header comment)."""
+    intake = tmp_path / "_intake"
+    _write_card(intake / "research-os-k12-literature", "area/one.md", doi="10.1/one")
+    _write_card(intake / "research-os-k12-literature-3", "area/three.md", doi="10.1/three")
+
+    roots = literature.discover_card_roots(intake)
+
+    assert [r.name for r in roots] == ["research-os-k12-literature", "research-os-k12-literature-3"]
+
+
+def test_discover_card_roots_follows_a_declared_batch_roots_heading(tmp_path):
+    intake = tmp_path / "_intake"
+    primary = intake / "research-os-k12-literature"
+    _write_card(primary, "area/one.md", doi="10.1/one")
+    (primary / "README.md").write_text(
+        "# Literature corpus\n\nSome text.\n\n## Batch roots\n\n"
+        "- `external-batch-drop`\n\nMore text.\n"
+    )
+    _write_card(intake / "external-batch-drop", "area/external.md", doi="10.1/external")
+
+    roots = literature.discover_card_roots(intake)
+
+    assert {r.name for r in roots} == {"research-os-k12-literature", "external-batch-drop"}
+
+
+def test_load_all_local_cards_merges_every_root_and_tags_batch_root(tmp_path):
+    intake = tmp_path / "_intake"
+    _write_card(intake / "research-os-k12-literature", "area/one.md", doi="10.1/one")
+    _write_card(intake / "research-os-k12-literature-2", "area/two.md", doi="10.1/two")
+
+    cards = literature.load_all_local_cards(intake)
+
+    assert {c.doi for c in cards} == {"10.1/one", "10.1/two"}
+    by_doi = {c.doi: c for c in cards}
+    assert by_doi["10.1/one"].batch_root == "research-os-k12-literature"
+    assert by_doi["10.1/two"].batch_root == "research-os-k12-literature-2"
+
+
+def test_load_all_local_cards_skips_an_unparseable_card_and_keeps_the_rest(tmp_path, caplog):
+    intake = tmp_path / "_intake" / "research-os-k12-literature"
+    _write_card(intake, "area/good.md", doi="10.1/good")
+    bad = intake / "area" / "bad.md"
+    bad.write_text("---\ntitle: \"no doi here\"\n---\n")
+
+    cards = literature.load_all_local_cards(tmp_path / "_intake")
+
+    assert [c.doi for c in cards] == ["10.1/good"]
+    assert any("bad.md" in r.message for r in caplog.records)
+
+
+def test_dedupe_cards_by_doi_keeps_the_later_root_and_warns(caplog):
+    older = literature._parse_frontmatter(
+        '---\ntitle: "T"\nauthors:\n  - "A"\nyear: 2020\nvenue: "V"\ndoi: "10.1/x"\n'
+        'why_it_matters: >\n  m\nkey_claims:\n  - "c"\n'
+        'research_questions_it_leaves_open:\n  - "q"\nhow_it_bears_on_research_os: >\n  b\n---\n',
+        "area/older.md",
+    )
+    older = literature.dataclasses.replace(older, batch_root="research-os-k12-literature")
+    newer = literature.dataclasses.replace(older, relative_path="area/newer.md", batch_root="research-os-k12-literature-3")
+
+    deduped = literature._dedupe_cards_by_doi([older, newer])
+
+    assert len(deduped) == 1
+    assert deduped[0].relative_path == "area/newer.md"
+    assert any("10.1/x" in r.message for r in caplog.records)
+
+
+def test_load_local_builds_a_corpus_from_two_batch_roots(tmp_path):
+    intake = tmp_path / "_intake"
+    _write_card(intake / "research-os-k12-literature", "area/one.md", doi="10.1/one", year=2020)
+    _write_card(intake / "research-os-k12-literature-3", "area/three.md", doi="10.1/three", year=2023)
+
+    corpus = literature.load_local(intake)
+
+    assert {"10.1/one", "10.1/three"} <= set(corpus.sources)
+    assert len(corpus.evidence) == 2  # one key_claims bullet per card
+
+
+def test_load_local_raises_a_clear_error_when_no_root_is_found(tmp_path):
+    with pytest.raises(FileNotFoundError, match="research-os-k12-literature"):
+        literature.load_local(tmp_path / "_intake")
