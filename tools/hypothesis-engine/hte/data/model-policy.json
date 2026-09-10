@@ -1,0 +1,14 @@
+{
+  "_note": "Which Claude model backs each hte.roles function (bkt-hte-self-accounting). Values are CLI model aliases, passed straight through to `claude -p --model`. `escalation` is not a role; hte.roles.extract reaches for it when its three-member ensemble disagrees above the agreement threshold in hte/roles.py's EXTRACT_AGREEMENT_THRESHOLD.",
+  "roles": {
+    "generator": "sonnet",
+    "critic": "sonnet",
+    "unknown_unknown": "sonnet",
+    "preservation_critic": "sonnet",
+    "judge": "sonnet",
+    "meta_review": "sonnet",
+    "self_report": "sonnet",
+    "extractor": "haiku"
+  },
+  "escalation": "opus"
+}

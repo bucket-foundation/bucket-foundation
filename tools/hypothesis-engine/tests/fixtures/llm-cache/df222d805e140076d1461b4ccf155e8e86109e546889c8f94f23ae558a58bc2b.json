@@ -1,0 +1,34 @@
+{
+  "model": "sonnet",
+  "prompt_sha256": "b9a903d44ae04cda688c3cb5dbd90904f00bfef31fc985241f8ffc6e320add34",
+  "response": {
+    "proposals": [
+      {
+        "label": "Confirmed",
+        "rationale": "gt-alpha-confirm: 'A 1962 follow-up confirmed the sighting independently' describes a distinct verification action, not equivalent to 'Sighted' or 'Extended the tracked orbit of'.",
+        "slot": "action"
+      },
+      {
+        "label": "Claimed",
+        "rationale": "gt-beta-contested: 'A contested 2015 press release claimed a further tenfold extension' \u2014 this is an unverified assertion, distinct from the confirmed 'Extended the tracked orbit of' action already in the vocabulary.",
+        "slot": "action"
+      },
+      {
+        "label": "Downgraded to unconfirmed",
+        "rationale": "gt-gamma-downgrade / doc-gamma-ex-1: 'A 1970 review found no independent confirmation and downgraded the claim to unconfirmed' names a distinct evaluative action not covered by 'Sighted' or 'Extended the tracked orbit of'.",
+        "slot": "action"
+      },
+      {
+        "label": "Independent review body",
+        "rationale": "gt-gamma-downgrade / doc-gamma-ex-1 attribute the downgrade to 'a 1970 review', a specific evaluating actor distinct from the named observatory teams or the unverified observer.",
+        "slot": "actor"
+      },
+      {
+        "label": "Press release / media source",
+        "rationale": "gt-beta-contested attributes the contested extension claim to 'a contested 2015 press release', a specific source type distinct from the Alpha/Beta observatory teams or the unverified observer.",
+        "slot": "actor"
+      }
+    ]
+  },
+  "role": "unknown_unknown"
+}

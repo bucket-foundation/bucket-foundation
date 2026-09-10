@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "prompt_sha256": "8de38ee3b8fbf73ed62e760c55bc090288d7277bb77b4d6c3a2db547a00f3868",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.9,
+    "expected_evidence": [
+      "Observatory logbooks or observation registers from alpha-observatory recording a transit-timing observation of comet-q by beta-team (textual/material)",
+      "Published astronomical bulletin, circular, or journal article (e.g., analogous to IAU Circulars or observatory annual reports) announcing or confirming the sighting (textual)",
+      "Photographic plates, transit-instrument timing charts, or chronograph tape records from the transit-timing method (material/astronomical)",
+      "Correspondence or telegrams between beta-team and other observatories reporting timing data (textual)",
+      "Institutional archive records (personnel logs, funding/grant records, equipment maintenance logs) placing beta-team at alpha-observatory during the claimed interval (material)",
+      "Newspaper or popular science coverage of the comet sighting, if notable (textual/model_prior-adjacent secondary evidence)",
+      "Later citations or catalog entries referencing this observation in comet orbital-element compilations (textual/astronomical)"
+    ],
+    "rationale": "The supplied detectability table only covers pre-modern periods (upper-paleolithic through classical), none of which apply to the hypothesis's stated interval of 1900-1999 (a 20th-century, modern-era event). Treating this as an unmapped period, I extrapolate from the table's trend (detectability rising sharply from prehistory to classical, especially for textual and material evidence) via model-prior: by the 20th century, institutional science practice involved routine, redundant, and durable recordkeeping \u2014 observatory logbooks, peer-reviewed bulletins, photographic/chronograph data, and archival correspondence \u2014 all produced in multiple copies and often deposited in libraries or institutional archives, making survival highly likely absent deliberate destruction or the observatory/team simply not existing. This exceeds even the 'classical' row's textual/material ceiling (0.85), so I suggest a detectability_adjustment of ~0.9 (flagged as model-prior extrapolation, not read from the table, since no matching row exists). Given this high detectability, if beta-team, alpha-observatory, and comet-q are real entities and the sighting occurred, corroborating textual/astronomical/material evidence should very plausibly have survived and be findable; its absence would weigh more heavily against the hypothesis's truth than it would in low-detectability prehistoric contexts, though it could still indicate the entities are fictional/composite or the specific claimed method/actor pairing is invented even if some underlying comet sighting occurred.\""
+  },
+  "role": "preservation_critic"
+}

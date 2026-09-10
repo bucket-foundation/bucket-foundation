@@ -144,11 +144,20 @@ class Hypothesis:
     is not recomputed from `content` on every access, so a `Hypothesis`
     stays a stable, addressable record even if the vocabulary it was built
     against later changes.
+
+    `meta` is an open, additive extension point, empty by default: a
+    generator in `hte.generate` (`from_evidence`) sets `meta["generator"]`
+    and `meta["evidence"]` on a hypothesis it produces, the lighter,
+    generator-facing analog of `HISTORY-HYPOTHESIS-ENGINE-SPEC.md` §3's
+    `provenance.derived_by` shape. A hand-authored hypothesis, or one built
+    by `from_placement`/`from_sequence` directly, carries no generator
+    provenance and keeps `meta` at its default `{}`.
     """
     address: int
     content: HypothesisContent
     claims: list[str] = field(default_factory=list)
     depends_on: list[int] = field(default_factory=list)
+    meta: dict = field(default_factory=dict)
 
     @property
     def short_id(self) -> str:
@@ -203,6 +212,7 @@ class Hypothesis:
             "content": self.content.to_dict(),
             "claims": list(self.claims),
             "depends_on": list(self.depends_on),
+            "meta": dict(self.meta),
         }
 
     @classmethod
@@ -218,6 +228,7 @@ class Hypothesis:
         return cls(
             address=d["address"], content=content,
             claims=list(d.get("claims", [])), depends_on=list(d.get("depends_on", [])),
+            meta=dict(d.get("meta", {})),
         )
 
     def save(self, path: str | Path) -> None:
