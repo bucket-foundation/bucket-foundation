@@ -26,6 +26,8 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
+from . import artifacts as artifacts_mod
+
 REPO_ROOT = Path(__file__).resolve().parents[3]
 GDRIVE_BASE = "gdrive:AGFarms/Nucleus/bucket-foundation/papers"
 
@@ -142,11 +144,17 @@ def publish(run_dir: str | Path, paper_dir: str | Path, *, dry_run: bool = True)
     """
     run_dir = Path(run_dir)
     paper_dir = Path(paper_dir)
-    manifest_path = run_dir / "MANIFEST.json"
-    if not manifest_path.is_file():
-        raise PublishError(f"no MANIFEST.json under {run_dir}; nothing to publish")
-    manifest = json.loads(manifest_path.read_text())
-    campaign = manifest["campaign"]
+    # `load_manifest`, not `load_run`: this function commits whatever
+    # artifact files `run_dir` carries by name alone (`_run_artifact_
+    # files` below), valid JSON or not, and must not fail over one of
+    # THOSE other files' own unrelated bad content the way reading all
+    # four through `load_run` would (`hte.artifacts.load_manifest`'s own
+    # docstring names this exact case).
+    try:
+        manifest = artifacts_mod.load_manifest(run_dir)
+    except FileNotFoundError:
+        raise PublishError(f"no MANIFEST.json under {run_dir}; nothing to publish") from None
+    campaign = manifest.campaign
     run_id = run_dir.name
 
     pdf_path = paper_dir / "main.pdf"

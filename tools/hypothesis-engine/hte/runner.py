@@ -19,7 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Sequence
 
-from . import batching, calibrate, export, link, llm, roles, tournament, unknowns
+from . import artifacts, batching, calibrate, export, link, llm, roles, tournament, unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
 from .belief import Constants, Opinion, load_detectability_table, score as belief_score
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
@@ -480,6 +480,14 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "meta_review": meta_review_result,
     }
     self_report = roles.self_report(run_summary, cache_dir=cache_dir, replay_only=replay_only)
+    # `hte.artifacts.validate_self_report` reads `self_report` through
+    # the same contract `hte.paper`/`hte.referee`/`hte.publish`/`hte.
+    # pipeline` load it back with, before it ever touches disk: this
+    # role's own response shape drifting from that contract is caught
+    # here, at the one call site that would introduce it, rather than
+    # downstream (`bkt-hte-artifact-contract`, `hte.artifacts`'s own
+    # module docstring).
+    artifacts.validate_self_report(self_report, path=str(run_dir / "self-report.json"))
     (run_dir / "self-report.json").write_text(json.dumps(self_report, indent=2))
     logger.log(f"self-report: missing_mass_estimate={self_report.get('missing_mass_estimate')} target_blind_steady={self_report.get('target_blind_steady')}")
 
@@ -501,6 +509,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "campaign": cfg["campaign"],
         "timestamp": timestamp,
         "corpus": cfg["corpus"],
+        "run_artifact_version": artifacts.RUN_ARTIFACT_VERSION,
         "constants": {"W": constants.W, "lam": constants.lam, "mu": constants.mu, "alpha": constants.alpha, "theta_prune": constants.theta_prune},
         "time_binning": {"resolution": resolution.value, "span_start": span_start, "bin_width": bin_width, "bin_labels": bin_labels},
         "models": llm._model_policy(),
@@ -512,6 +521,14 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "extraction": extraction_note,
         "counts": run_summary,
     }
+    # `hte.artifacts.validate_manifest` builds a `ManifestArtifact` from
+    # this exact dict before it is ever written: a required field this
+    # module forgot to set, or a shape `hte.artifacts` cannot read, fails
+    # loudly right here instead of only surfacing downstream inside
+    # `hte.paper.emit_paper` over a run already committed to disk (this
+    # contract's own motivating incident, `hte.artifacts`'s module
+    # docstring).
+    artifacts.validate_manifest(manifest, path=str(run_dir / "MANIFEST.json"))
     (run_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=2, default=str))
     logger.log("run complete")
 

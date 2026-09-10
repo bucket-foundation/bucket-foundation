@@ -24,6 +24,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from . import artifacts as artifacts_mod
 from . import paper as paper_mod
 from . import periods as periods_mod
 from . import publish as publish_mod
@@ -135,11 +136,22 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
         from_run_dir = Path(cfg["from_run"])
         if not from_run_dir.is_dir():
             from_run_error = f"from_run={cfg['from_run']!r} does not exist or is not a directory"
-        elif not (from_run_dir / "MANIFEST.json").is_file():
-            from_run_error = (
-                f"from_run={cfg['from_run']!r} exists but has no MANIFEST.json "
-                "(not a usable campaign run directory)"
-            )
+        else:
+            # `hte.artifacts.load_run` is this pipeline's own artifact
+            # contract (`bkt-hte-artifact-contract`): reading `from_run`
+            # through it, rather than only checking `MANIFEST.json`'s own
+            # existence, catches a malformed or drifted manifest here,
+            # at this precondition, with a clear `from_run_error` message,
+            # instead of only surfacing three stages later as an
+            # `emit_paper` crash over a run this pipeline already
+            # accepted as usable.
+            try:
+                artifacts_mod.load_run(from_run_dir)
+            except Exception as exc:  # noqa: BLE001 - any artifact-contract failure is this precondition's own finding
+                from_run_error = (
+                    f"from_run={cfg['from_run']!r} exists but fails hte.artifacts.load_run "
+                    f"(not a usable campaign run directory): {type(exc).__name__}: {exc}"
+                )
 
     if cfg["from_run"]:
         stages["choose_period"] = _skipped_stage(

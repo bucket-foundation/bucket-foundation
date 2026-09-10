@@ -27,9 +27,19 @@ import json
 import re
 import shutil
 import subprocess
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
+
+from .artifacts import (
+    CalibrationArtifact,
+    ManifestArtifact,
+    RunCounts,
+    RunData,
+    SelfReportArtifact,
+    TimelineArtifact,
+    load_run,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 TEMPLATE_DIR = REPO_ROOT / "papers" / "template"
@@ -51,11 +61,13 @@ def tex_escape(value: Any) -> str:
 
 
 def _fmt(value: Any, nd: int = 3) -> str:
-    """A LaTeX-safe rendering of one artifact value: `None` reads
-    `n/a`, a bool reads `true`/`false`, a float rounds to `nd` places,
-    everything else is escaped and stringified."""
+    """A LaTeX-safe rendering of one artifact value: `None` (`hte.
+    artifacts`'s own fallback for a field a run's own artifact files
+    left out, module docstring) reads `not recorded`, a bool reads
+    `true`/`false`, a float rounds to `nd` places, everything else is
+    escaped and stringified."""
     if value is None:
-        return "n/a"
+        return "not recorded"
     if isinstance(value, bool):
         return "true" if value else "false"
     if isinstance(value, float):
@@ -79,46 +91,16 @@ def _title_case(campaign: str) -> str:
     return " ".join(w if w.isupper() else w.capitalize() for w in words)
 
 
-def _read_json(path: Path) -> dict[str, Any] | None:
-    if not path.is_file():
-        return None
-    return json.loads(path.read_text())
-
-
-@dataclass
-class RunData:
-    """Every artifact this module reads out of one run directory, loaded
-    once."""
-    run_dir: Path
-    manifest: dict[str, Any]
-    timeline: dict[str, Any]
-    calibration: dict[str, Any] | None
-    self_report: dict[str, Any]
-
-    @property
-    def campaign(self) -> str:
-        return self.manifest["campaign"]
-
-    @property
-    def counts(self) -> dict[str, Any]:
-        return self.manifest.get("counts", {})
-
-
-def load_run(run_dir: str | Path) -> RunData:
-    """Every artifact `emit_paper` needs from `run_dir`
-    (`hte.runner.run_campaign`'s own output layout). Raises
-    `FileNotFoundError` when `MANIFEST.json` itself is missing, since
-    every other file's absence is at worst a smaller paper (no
-    calibration section, an empty timeline table) rather than nothing to
-    report at all."""
-    run_dir = Path(run_dir)
-    manifest = _read_json(run_dir / "MANIFEST.json")
-    if manifest is None:
-        raise FileNotFoundError(f"no MANIFEST.json under {run_dir}")
-    timeline = _read_json(run_dir / "timeline.json") or {"bins": [], "event_views": [], "pair_views": []}
-    calibration = _read_json(run_dir / "calibration.json")
-    self_report = _read_json(run_dir / "self-report.json") or {}
-    return RunData(run_dir=run_dir, manifest=manifest, timeline=timeline, calibration=calibration, self_report=self_report)
+# `RunData`/`load_run` are `hte.artifacts`'s own contract, re-exported
+# here (rather than redefined) so every number this module prints reads
+# through the one loader `hte.runner.run_campaign` writes against
+# (`hte.artifacts`'s own module docstring names the drift this closes:
+# `hte.paper` used to carry its own copy of this dataclass and a direct
+# `data.calibration['n_sources']` index that crashed the moment `hte.
+# calibrate`'s own output shape moved out from under it, with nothing
+# catching the two falling out of sync). `hte/paper.py`'s public API
+# keeps both names so `from hte import paper; paper.load_run(...)` and
+# `paper.RunData(...)` still work for every existing caller and test.
 
 
 # --------------------------------------------------------------------------
@@ -126,9 +108,9 @@ def load_run(run_dir: str | Path) -> RunData:
 # --------------------------------------------------------------------------
 
 
-def _deduped_posteriors(timeline: dict[str, Any]) -> dict[str, float]:
+def _deduped_posteriors(timeline: TimelineArtifact) -> dict[str, float]:
     """Every distinct hypothesis id's own posterior, read off
-    `timeline["bins"][*]["ranked_hypotheses"]` (the only place a run's
+    `timeline.bins[*]["ranked_hypotheses"]` (the only place a run's
     per-hypothesis posterior survives to disk), first occurrence wins.
     The same hypothesis can appear in more than one bin's top-`k` list
     only if its own interval spans that bin's own start, which none of
@@ -136,7 +118,7 @@ def _deduped_posteriors(timeline: dict[str, Any]) -> dict[str, float]:
     here anyway, as a documented defensive read rather than an assumed
     invariant."""
     out: dict[str, float] = {}
-    for b in timeline.get("bins", []):
+    for b in timeline.bins:
         for entry in b.get("ranked_hypotheses", []):
             posterior = entry.get("posterior")
             hid = entry.get("hypothesis_id")
@@ -145,9 +127,9 @@ def _deduped_posteriors(timeline: dict[str, Any]) -> dict[str, float]:
     return out
 
 
-def _bin_rows(timeline: dict[str, Any]) -> list[dict[str, Any]]:
+def _bin_rows(timeline: TimelineArtifact) -> list[dict[str, Any]]:
     rows = []
-    for b in timeline.get("bins", []):
+    for b in timeline.bins:
         ranked = b.get("ranked_hypotheses", [])
         top = ranked[0] if ranked else None
         rows.append({
@@ -432,39 +414,40 @@ def _glossary_entries() -> str:
 
 def _abstract(data: RunData) -> str:
     counts = data.counts
-    coverage = counts.get("coverage", {})
-    target_blind = counts.get("target_blind", {})
-    sr = data.self_report
+    coverage = counts.coverage
+    target_blind = counts.target_blind
+    cal = data.calibration
     calibration_line = (
-        f"A discovery-date holdout over {data.calibration['n_sources']} split-worthy sources scored a Brier "
-        f"score of {_fmt(data.calibration['brier_score'])}."
-        if data.calibration else
-        "This run executed no discovery-date holdout (no split-worthy source, or calibration was disabled)."
+        f"A {'discovery-date' if cal.mode in (None, 'discovery_date') else 'k-fold'} holdout over "
+        f"{_fmt(cal.n_holdout_events)} held-out ground-truth events ({_fmt(cal.n_covered_events)} covered "
+        f"by this run's own pre-holdout evidence) scored a Brier score of {_fmt(cal.brier_score)}."
+        if cal else
+        "This run executed no discovery-date or k-fold holdout (this corpus's own ground truth offered "
+        "nothing to hold out, or calibration was disabled)."
     )
     return (
         f"We report one automated run of the Bucket Foundation history hypothesis engine "
         f"\\autocite{{bkthte2026design}} over the {tex_escape(_title_case(data.campaign))} corpus, "
         f"with no human editing any hypothesis, evidence item, or score. From "
-        f"{_fmt(counts.get('n_sources'))} sources and {_fmt(counts.get('n_evidence'))} evidence items, "
-        f"the engine generated {_fmt(counts.get('n_hypotheses_generated'))} distinct hypothesis addresses "
-        f"and carried {_fmt(counts.get('n_survivors'))} past its critic filter to scoring and the ranking "
+        f"{_fmt(counts.n_sources)} sources and {_fmt(counts.n_evidence)} evidence items, "
+        f"the engine generated {_fmt(counts.n_hypotheses_generated)} distinct hypothesis addresses "
+        f"and carried {_fmt(counts.n_survivors)} past its critic filter to scoring and the ranking "
         f"tournament. A Chao1 coverage estimate over the generation seeds put the observed share of the "
-        f"address space at {_fmt(coverage.get('coverage_low'))} to {_fmt(coverage.get('coverage_high'))}, "
-        f"with a Good-Turing missing-mass estimate of {_fmt(coverage.get('missing_mass'))}. "
-        f"{_fmt(round((counts.get('robustness_stable_fraction') or 0.0) * 100, 1))}\\% of survivors held a "
+        f"address space at {_fmt(coverage.coverage_low)} to {_fmt(coverage.coverage_high)}, "
+        f"with a Good-Turing missing-mass estimate of {_fmt(coverage.missing_mass)}. "
+        f"{_fmt(round((counts.robustness_stable_fraction or 0.0) * 100, 1))}\\% of survivors held a "
         f"stable projected probability across the four prior-belief profiles this package ships. "
         f"{calibration_line} The generator's own target-blind check reported a non-consensus actor or "
-        f"mechanism proposal rate of {_fmt(target_blind.get('rate'))} "
-        f"({'its first run for this campaign, so nothing to compare against yet' if target_blind.get('first_run') else 'steady against the previous run' if target_blind.get('steady') else 'not steady against the previous run'}). "
+        f"mechanism proposal rate of {_fmt(target_blind.rate)} "
+        f"({'its first run for this campaign, so nothing to compare against yet' if target_blind.first_run else 'steady against the previous run' if target_blind.steady else 'not steady against the previous run'}). "
         f"We state every number in this report from the run's own persisted artifacts, and list where those "
         f"artifacts stop short of a full per-hypothesis accounting in \\Cref{{sec:limitations}}."
     )
 
 
 def _method(data: RunData) -> str:
-    cfg = data.manifest.get("config", {})
-    models = data.manifest.get("models", {}).get("roles", {})
-    extraction = data.manifest.get("extraction")
+    cfg = data.manifest.config
+    extraction = data.manifest.extraction
     extraction_line = (
         f"An extraction ensemble of three independent passes ran once over this corpus's first document "
         f"(\\texttt{{{tex_escape(extraction.get('doc_id'))}}}), producing {_fmt(extraction.get('items'))} evidence "
@@ -492,7 +475,7 @@ def _method(data: RunData) -> str:
 
 
 def _models_table(data: RunData) -> str:
-    models = data.manifest.get("models", {}).get("roles", {})
+    models = data.manifest.models.get("roles", {})
     rows = "\n    ".join(
         f"{tex_escape(role)} & \\texttt{{{tex_escape(model)}}} \\\\" for role, model in sorted(models.items())
     )
@@ -512,16 +495,16 @@ def _bins_table_rows(data: RunData) -> str:
 
 def _results(data: RunData) -> str:
     counts = data.counts
-    coverage = counts.get("coverage", {})
-    n_events = len(data.timeline.get("event_views", []))
-    n_pairs = len(data.timeline.get("pair_views", []))
-    vocab_added = counts.get("vocab_added", [])
+    coverage = counts.coverage
+    n_events = len(data.timeline.event_views)
+    n_pairs = len(data.timeline.pair_views)
+    vocab_added = counts.vocab_added
     by_slot: dict[str, int] = {}
     for v in vocab_added:
         by_slot[v.get("slot", "unknown")] = by_slot.get(v.get("slot", "unknown"), 0) + 1
     vocab_line = ", ".join(f"{n} {slot}" for slot, n in sorted(by_slot.items())) or "none"
 
-    meta_review = counts.get("meta_review", {})
+    meta_review = counts.meta_review
     meta_review_block = (
         (meta_review.get("summary", "") or "").strip() + "\n\nFlags:\n" +
         "\n".join(f"- {f}" for f in meta_review.get("flags", [])) +
@@ -538,17 +521,17 @@ def _results(data: RunData) -> str:
         f"object and place) and {_fmt(n_pairs)} competing-sequence pair groups.\n\n"
         f"The unknown-unknown role grew the vocabulary by {_fmt(len(vocab_added))} concepts this run "
         f"({tex_escape(vocab_line)}). The Chao1 coverage estimate over this run's generation seeds put the "
-        f"observed hypothesis count at {_fmt(coverage.get('observed'))} against a Chao1 estimate of "
-        f"{_fmt(coverage.get('chao1_estimate'), nd=1)}, a missing-mass estimate of "
-        f"{_fmt(coverage.get('missing_mass'))}, and a 95\\% coverage band of "
-        f"[{_fmt(coverage.get('coverage_low'))}, {_fmt(coverage.get('coverage_high'))}].\n\n"
+        f"observed hypothesis count at {_fmt(coverage.observed)} against a Chao1 estimate of "
+        f"{_fmt(coverage.chao1_estimate, nd=1)}, a missing-mass estimate of "
+        f"{_fmt(coverage.missing_mass)}, and a 95\\% coverage band of "
+        f"[{_fmt(coverage.coverage_low)}, {_fmt(coverage.coverage_high)}].\n\n"
         f"\\Cref{{tab:robustness}} summarizes robustness across the four prior-belief profiles "
         f"(\\texttt{{consensus}}, \\texttt{{skeptic}}, \\texttt{{fringe}}, \\texttt{{uniform}}); the underlying "
         f"per-hypothesis projections are not themselves persisted by this run (\\Cref{{sec:limitations}}), so "
         f"only the aggregate stable/unstable split is reported. The surprise rate, evidence naming no address "
-        f"any survivor materialized, was {_fmt(counts.get('surprise_rate'))} "
-        f"({_fmt(round((counts.get('surprise_rate') or 0.0) * counts.get('n_evidence', 0)))} of "
-        f"{_fmt(counts.get('n_evidence'))} evidence items, by the same reasoning).\n\n"
+        f"any survivor materialized, was {_fmt(counts.surprise_rate)} "
+        f"({_fmt(round((counts.surprise_rate or 0.0) * (counts.n_evidence or 0)))} of "
+        f"{_fmt(counts.n_evidence)} evidence items, by the same reasoning).\n\n"
         f"The evolver's meta-review pass, reading this run's whole survivor population and its opinions at "
         f"once, reported the following. This is the role's own output, quoted verbatim: paraphrasing a "
         f"model's structural read of its own run risks losing the detail a meta-review pass exists to "
@@ -560,8 +543,8 @@ def _results(data: RunData) -> str:
 
 def _robustness_rows(data: RunData) -> str:
     counts = data.counts
-    n = counts.get("n_survivors") or 0
-    fraction = counts.get("robustness_stable_fraction")
+    n = counts.n_survivors or 0
+    fraction = counts.robustness_stable_fraction
     if fraction is None or not n:
         return "Stable & n/a \\\\\n    Unstable & n/a \\\\\n    Total & " + _fmt(n) + " \\\\"
     stable = round(fraction * n)
@@ -572,15 +555,15 @@ def _robustness_rows(data: RunData) -> str:
 def _calibration(data: RunData) -> str:
     if not data.calibration:
         return (
-            "This run executed no discovery-date holdout: either no source in the corpus had ground-truth "
-            "events on both sides of a discovery-date cutoff (\\texttt{hte.calibrate.holdout\\_by\\_discovery\\_"
-            "date}), or the run's own config disabled calibration outright. \\Cref{fig:calibration-curve} "
-            "still renders, with a plain diagonal reference line and no observed points, so a reader comparing "
-            "several run reports side by side sees the same figure slot either way."
+            "This run executed no discovery-date or k-fold holdout: either this corpus's own ground truth "
+            "offered nothing to hold out (\\texttt{hte.calibrate.choose\\_holdout\\_mode}), or the run's own "
+            "config disabled calibration outright. \\Cref{fig:calibration-curve} still renders, with a plain "
+            "diagonal reference line and no observed points, so a reader comparing several run reports side "
+            "by side sees the same figure slot either way."
         )
     cal = data.calibration
     rows = []
-    for b in cal.get("calibration_curve", []):
+    for b in cal.calibration_curve:
         if b.get("count", 0) == 0:
             continue
         # The bin label is wrapped in a brace group: a bare `[` right
@@ -592,14 +575,25 @@ def _calibration(data: RunData) -> str:
             f"{{[}}{b['bin_low']:.1f}, {b['bin_high']:.1f}{{)}} & {b['count']} & {_fmt(b['mean_predicted'])} & {_fmt(b['mean_observed'])} \\\\"
         )
     rows_text = "\n    ".join(rows) if rows else "\\multicolumn{4}{c}{no non-empty calibration bins} \\\\"
-    constants = cal.get("constants", {})
+    constants = cal.constants
+    # `cal.mode` reads `None` for a run written before `hte.calibrate`'s
+    # own `bkt-hte-calibration-redesign` (`hte.artifacts`'s own module
+    # docstring), every one of which ran discovery-date holdout, the only
+    # mode that predates the field; `"discovery_date"` and `None` are
+    # read the same way here for that reason.
+    mode_line = (
+        f"This run held out sources by discovery date at a cutoff of {_fmt(cal.cutoff_years)}"
+        if cal.mode in (None, "discovery_date") else
+        f"This run held out evidence via {_fmt(cal.k)}-fold cross-validation (seed {_fmt(cal.seed)})"
+    )
     return (
-        f"This run held out sources by discovery date at a cutoff of {_fmt(cal.get('cutoff_years'))}, scoring "
-        f"the {_fmt(cal.get('n_sources'))} split-worthy sources under belief constants $W={_fmt(constants.get('W'), nd=1)}$, "
-        f"$\\lambda={_fmt(constants.get('lam'), nd=2)}$. The resulting Brier score was {_fmt(cal.get('brier_score'))}. "
+        f"{mode_line}, scoring {_fmt(cal.n_holdout_events)} held-out ground-truth events "
+        f"({_fmt(cal.n_covered_events)} covered by this run's own pre-holdout evidence) under belief "
+        f"constants $W={_fmt(constants.get('W'), nd=1)}$, $\\lambda={_fmt(constants.get('lam'), nd=2)}$. "
+        f"The resulting Brier score was {_fmt(cal.brier_score)}. "
         f"\\Cref{{tab:calibration}} lists every non-empty reliability bin; \\Cref{{fig:calibration-curve}} plots "
         f"the same bins against the diagonal a perfectly calibrated run would sit on.\n\n"
-        f"\\begin{{table}}[htbp]\n  \\centering\n  \\caption{{Discovery-date holdout reliability bins.}}\n"
+        f"\\begin{{table}}[htbp]\n  \\centering\n  \\caption{{Discovery-date/k-fold holdout reliability bins.}}\n"
         f"  \\label{{tab:calibration}}\n  \\begin{{tabular}}{{@{{}}lccc@{{}}}}\n    \\toprule\n"
         f"    Predicted bin & Count & Mean predicted & Mean observed \\\\\n    \\midrule\n    {rows_text}\n"
         f"    \\bottomrule\n  \\end{{tabular}}\n\\end{{table}}"
@@ -607,8 +601,7 @@ def _calibration(data: RunData) -> str:
 
 
 def _limitations(data: RunData) -> str:
-    sr = data.self_report
-    sr_block = json.dumps(sr, indent=2)
+    sr_block = json.dumps(asdict(data.self_report), indent=2)
     return (
         "Two of this run's own aggregates, robustness and surprise, are reported here only as the single "
         "scalar `MANIFEST.json` carries (\\texttt{robustness\\_stable\\_fraction}, \\texttt{surprise\\_rate}); "
@@ -805,7 +798,7 @@ def _render_main_tex(data: RunData, run_id: str) -> str:
         common_bib=str(COMMON_BIB),
         glossary_entries=_glossary_entries(),
         title=tex_escape(f"{_title_case(data.campaign)}: An Automated Hypothesis-Engine Campaign"),
-        date=_run_date(data.manifest.get("timestamp", "")),
+        date=_run_date(data.manifest.timestamp or ""),
         abstract=_abstract(data),
         campaign_escaped=tex_escape(data.campaign),
         method=_method(data),
