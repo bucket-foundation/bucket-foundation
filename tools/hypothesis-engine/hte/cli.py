@@ -12,7 +12,7 @@ from pathlib import Path
 
 from . import calibrate, export, runner
 from .belief import Constants
-from .corpus import education_atlas, fixtures as fixtures_corpus, production
+from .corpus import education_atlas, fixtures as fixtures_corpus, production, research_os_outbox
 from .corpus import quantum_history
 
 _CORPUS_LOADERS = {
@@ -20,6 +20,13 @@ _CORPUS_LOADERS = {
     "fixtures": fixtures_corpus.build,
     "education-atlas": education_atlas.load,
     "production": production.load,
+    # ros-12 item 2: `public.research_os_productions_outbox`, read (not
+    # marked consumed) through the existing normalizer. `hte.runner.
+    # run_campaign` has its own separate `_CORPUS_LOADERS` (`hte/runner.py`)
+    # this dict does not feed; `scripts/campaign_research_os.py` registers
+    # this same loader there at call time for a real campaign run, see that
+    # script's own header comment.
+    "research-os": research_os_outbox.load,
 }
 
 

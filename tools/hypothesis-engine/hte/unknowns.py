@@ -355,6 +355,59 @@ def active_priority(
     return sum(weights.get(name, 0.0) * value for name, value in factors.items())
 
 
+_UNRESOLVED_SLOT_GAP_LIMIT = 25
+
+
+def unresolved_slot_gaps(
+    evidence_items: Sequence[EvidenceItem],
+    hypotheses: Sequence[Hypothesis],
+    opinions: Mapping[int, Opinion],
+    *,
+    limit: int = _UNRESOLVED_SLOT_GAP_LIMIT,
+) -> list[GapNode]:
+    """One `GapNode` per evidence item naming no value for at least one of
+    its five concept slots (`actor`/`action`/`object`/`place`/`mechanism`),
+    ranked by `value_of_information` against `hypotheses`/`opinions` and
+    capped at `limit`, highest value first.
+
+    A generalization of `hte.api._rank_gap_nodes` (`hte-serve`'s own
+    `/hypothesize` response builder), public here so `hte.runner`'s own
+    campaign loop can read a live gap-node queue instead of leaving `hte.
+    unknowns.GapNode` built but never called from a campaign
+    (`learning/research-os/ENGINE-BRIDGE.md`'s own "GapNode/
+    value_of_information are still unwired"). `hte/api.py` keeps its own
+    inline reading for now rather than importing this function, since it is
+    under active review as this function lands (see that module's own
+    `_rank_gap_nodes`); a future pass can fold one into the other once that
+    review settles, `scripts/campaign_research_os.py`'s own header comment
+    tracks this.
+
+    `kind` is always `"unresolved-slot"`, `id` is `f"gap-{item.id}"`, and
+    `would_move` is the sorted union of `item.supports`/`item.refutes`,
+    matching `_rank_gap_nodes`'s own reading of this gap kind."""
+    nodes: list[GapNode] = []
+    for item in evidence_items:
+        unresolved = [
+            name for name, value in (
+                ("actor", item.actor), ("action", item.action), ("object", item.object),
+                ("place", item.place), ("mechanism", item.mechanism),
+            ) if value is None
+        ]
+        if not unresolved:
+            continue
+        would_move = sorted(set(item.supports) | set(item.refutes))
+        nodes.append(GapNode(
+            id=f"gap-{item.id}", kind="unresolved-slot",
+            description=f"evidence {item.id} names no value for: {', '.join(unresolved)}",
+            would_move=would_move,
+        ))
+    scored = sorted(
+        ((node, value_of_information(node, hypotheses, opinions)) for node in nodes),
+        key=lambda pair: pair[1], reverse=True,
+    )
+    return [node for node, _voi in scored[:limit]]
+
+
 __all__ = [
     "good_turing_missing_mass",
     "chao1",
@@ -365,4 +418,5 @@ __all__ = [
     "GapNode",
     "value_of_information",
     "active_priority",
+    "unresolved_slot_gaps",
 ]

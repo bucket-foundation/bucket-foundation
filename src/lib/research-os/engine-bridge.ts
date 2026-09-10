@@ -184,6 +184,125 @@ export function buildEngineEdges(input: EngineHypothesisInput): EngineEdgeDraft[
 }
 
 // ---------------------------------------------------------------------------
+// Direction 1b: a campaign's own gap node -> a graph.nodes/graph.edges pair
+// (ros-12 item 4, "GapNode wiring"). `hte.unknowns.GapNode`/`value_of_
+// information` shipped built but never called from `hte.runner`
+// (learning/research-os/ENGINE-BRIDGE.md's own "Stubs, open items");
+// `tools/hypothesis-engine/scripts/campaign_research_os.py` closes that
+// gap on the read side (`hte.unknowns.unresolved_slot_gaps`), this section
+// closes it on the write side, the same "graph node plus edges" shape
+// direction 1 above already gives an accepted hypothesis.
+// ---------------------------------------------------------------------------
+
+export interface GapNodeInput {
+  /** Which engine produced this, e.g. "hte" (`tools/hypothesis-engine`). */
+  engine: string;
+  /** The same run id the campaign's own accepted hypotheses carry (`EngineHypothesisInput.runId`). */
+  runId: string;
+  /** The corpus or campaign name. */
+  campaign: string;
+  /** `hte.unknowns.GapNode.id`, e.g. "gap-ev-001". */
+  gapId: string;
+  /** `hte.unknowns.GapNode.kind`, e.g. "unresolved-slot". */
+  kind: string;
+  /** `hte.unknowns.GapNode.description`. */
+  description: string;
+  /** `hte.unknowns.value_of_information`'s own score for this gap against the campaign's own survivors. */
+  valueOfInformation: number;
+  /** Which canon branch this gap's subject falls under. */
+  branch: string;
+  /** `hte.hypothesis.Hypothesis.short_id` for every hypothesis `hte.unknowns.GapNode.would_move`
+   * names, "the node it concerns." Resolved to that hypothesis's own `engineNodeSlug` at write
+   * time (below); a hypothesis this same campaign did not also write as a node (never survived
+   * its own critic filter) drops out the same way `writeEngineEdges` already drops any
+   * unresolved slug, never raised. */
+  concernsHypothesisIds: string[];
+}
+
+export interface GapNodeProvenance extends Provenance {
+  type: "gap";
+  engine: string;
+  run_id: string;
+  campaign: string;
+  gap_id: string;
+  gap_kind: string;
+  value_of_information: number;
+  concerns_hypothesis_ids: string[];
+}
+
+export interface GapNodeDraft {
+  slug: string;
+  title: string;
+  kind: Extract<NodeKind, "artifact">;
+  tier: number;
+  branch: string;
+  summary: string;
+  provenance: GapNodeProvenance;
+}
+
+/**
+ * Deterministic on `(engine, runId, gapId)`, the same idempotency shape
+ * `engineNodeSlug` gives an engine hypothesis node (task item 1's own
+ * convention, reused here): a repeat write of the same gap updates the
+ * same row rather than inserting a duplicate.
+ */
+export function gapNodeSlug(engine: string, runId: string, gapId: string): string {
+  return `gap-${slugifyPart(engine)}-${slugifyPart(runId)}-${slugifyPart(gapId)}`;
+}
+
+/**
+ * A campaign's own gap node, as the `graph.nodes` row `db.ts`'s
+ * `upsertGapNode` writes (ros-12 item 4): kind `artifact`, provenance
+ * `type: "gap"`, so the router and class view can list it alongside every
+ * other artifact-kind node without a schema change. `tier` is fixed at
+ * `6`, the engine's own least-reliable rung (`engineTierToGraphTier`'s
+ * default): a gap marks an absence in the corpus, carrying no reliability
+ * rating of its own to assign. Pure: no I/O.
+ */
+export function buildGapNode(input: GapNodeInput): GapNodeDraft {
+  requireNonEmpty(input.engine, "engine");
+  requireNonEmpty(input.runId, "runId");
+  requireNonEmpty(input.gapId, "gapId");
+  requireNonEmpty(input.branch, "branch");
+  requireNonEmpty(input.description, "description");
+  return {
+    slug: gapNodeSlug(input.engine, input.runId, input.gapId),
+    title: `Gap: ${input.description}`,
+    kind: "artifact",
+    tier: 6,
+    branch: input.branch,
+    summary: input.description,
+    provenance: {
+      type: "gap",
+      engine: input.engine,
+      run_id: input.runId,
+      campaign: input.campaign,
+      gap_id: input.gapId,
+      gap_kind: input.kind,
+      value_of_information: input.valueOfInformation,
+      concerns_hypothesis_ids: input.concernsHypothesisIds,
+    },
+  };
+}
+
+/**
+ * One `cites` edge per hypothesis this gap concerns, targeting that
+ * hypothesis's own `engineNodeSlug` (task item 1's convention): "an edge
+ * to the node it concerns" (ros-12 item 4). `cites` rather than
+ * `prerequisite`: `src/lib/research-os/frontier.ts` and `closure.ts` walk
+ * only `prerequisite` edges for real routing, and `engine-frontier.ts`
+ * walks only `derives_from`; `cites` is the one edge kind task item 1
+ * already established as inert to both, so a gap node's own edges add
+ * traceability without perturbing either routing algorithm.
+ */
+export function buildGapEdges(input: GapNodeInput): EngineEdgeDraft[] {
+  return input.concernsHypothesisIds.map((hypothesisId) => ({
+    toSlug: engineNodeSlug(input.engine, input.runId, hypothesisId),
+    kind: "cites" as const,
+  }));
+}
+
+// ---------------------------------------------------------------------------
 // Direction 2: an accepted Research OS production -> the outbox row the
 // engine ingests (task item 3)
 // ---------------------------------------------------------------------------

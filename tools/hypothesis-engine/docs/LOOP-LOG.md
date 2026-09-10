@@ -31,7 +31,52 @@ Dated entries from the hourly optimization loop. Newest entry first.
   this PR's own files, 0 in files this PR touches after the fix above.
 - **Voice**: `agf-lint-voice check` and `agf-lint-voice-src check` on
   every file this PR touches: 0 violations.
+- **On tick 3's Critical finding below** (two new tests omit
+  `HTE_LLM_MODE=fake`, hanging `make test` when the var is unset): does
+  not reproduce. The four new `hte.calibrate.fit_constants_pooled` tests
+  are already in `tests/conftest.py`'s own `_SLOW_NODEIDS` (this PR's own
+  addition), so `make test`'s `-m "not slow"` deselects them; ran them
+  directly with `HTE_LLM_MODE` unset (`test_fit_constants_pooled_*`,
+  `tests/test_cli_synth.py`'s full file, `test_api.py::test_unknown_
+  slot_id_is_induced_rather_than_rejected`), 27 passed in under 30s each
+  batch, no hang. `hte.calibrate` imports no `hte.llm` path at all;
+  `run_one_realsweep_seed` wraps its own `run_campaign` call in
+  `_fake_llm_mode()` regardless of the ambient environment
+  (`tests/test_cli_synth.py`'s own module docstring); the renamed
+  `test_unknown_slot_id_is_induced_rather_than_rejected` goes through
+  `_call`, which sets `HTE_LLM_MODE=fake` itself. `make test` on the
+  merged tree: 988 passed, 18 deselected, 0 failed, no hang.
 - Squash-merged via `gh pr merge 29 --squash --delete-branch`.
+
+## 2026-09-10, tick 3
+
+- **Engine health**: `make test` green on `main` before any change this
+  tick, 931 passed (fast profile, `EDUCATION_ATLAS_DIR` set to the sibling
+  checkout). No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake mode), 30/30
+  seeds, coverage_of_truth mean 1.0, brier_true_only mean 0.0082, gate
+  PASS. A repeat run matched every metric exactly; no nondeterminism.
+  Still no `realsweep` subcommand on `main` (PR #29 below adds one,
+  unmerged).
+- **Test swarm**: `hte/corpus/__init__.py` (92.6%, `tests/COVERAGE.md`'s
+  next least-covered file, untouched by `swarm`/`swarm2`/`swarm3`/
+  `swarm-20260910`: `GroundTruthEvent`, `RetrievalEnvelope`, `Corpus`,
+  including `Corpus.save`/`load`'s own file round trip). 10 new tests in
+  `tests/swarm-20260910/test_corpus_init_props.py`. All pass; no defect.
+  Full suite: 941 passed.
+- **PRs opened**: 1, #32 (`test/hte-corpus-init-coverage-20260910`).
+- **PRs reviewed**: #32 (own; reviewed and squash-merged, all criteria
+  met). #28, #29, #30 each already carried a review at their current head
+  sha from an earlier tick this hour (posted 19:29-20:11 UTC); this tick
+  verified the existing reviews rather than duplicating them: #28
+  (`ba6c8451`) 2 Medium QA findings on the accept-path's missing
+  class/roster ownership check and an unbounded input field, verdict "fix
+  or note before merge"; #29 (`97d7bbb4`) 1 Critical (two new tests omit
+  `HTE_LLM_MODE=fake`, hanging `make test` whenever `HTE_LLM_MODE` is
+  unset), verdict "changes requested"; #30 (`da7ae955`) 2 Low, verdict
+  "approve". None are `fix/hte-`/`test/hte-` branches this loop opened, so
+  none merged.
+- **Blocked**: nothing.
 
 ## 2026-09-10, tick 2
 
