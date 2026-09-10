@@ -97,6 +97,61 @@ def test_quoted_title_with_embedded_quotes_is_unescaped():
     assert card.title == 'The "What" and "Why" of Goal Pursuits'
 
 
+def test_parse_frontmatter_skips_a_leading_voice_ignore_file_comment_and_keeps_spans_correct():
+    # Regression test for the blocker every one of the 6 shipped fixtures
+    # tripped: a card opens with a `voice-ignore-file` HTML comment line
+    # (CLAUDE.md's escape hatch for verbatim founder material) before its
+    # own `---` frontmatter opener. `_parse_frontmatter` must skip that
+    # header rather than raising "no frontmatter opening `---`", and every
+    # `Claim` span must still offset into the *full* raw text, header
+    # included, not just the post-header slice.
+    raw = (
+        '<!-- voice-ignore-file: verbatim copy of a founder-authored literature card -->\n'
+        '---\n'
+        'title: "A Card With A Header"\n'
+        'authors:\n'
+        '  - "Author, A."\n'
+        'year: 2021\n'
+        'venue: "Some Journal"\n'
+        'doi: "10.1000/header-card"\n'
+        'url: "https://doi.org/10.1000/header-card"\n'
+        'openalex_id: null\n'
+        'branch: "educational-methods"\n'
+        'tier: "canon"\n'
+        'why_it_matters: >\n'
+        '  It has a header.\n'
+        'key_claims:\n'
+        '  - "The header does not corrupt the span."\n'
+        'research_questions_it_leaves_open:\n'
+        '  - "An open question."\n'
+        'how_it_bears_on_research_os: >\n'
+        '  It bears directly.\n'
+        '---\n\n# Title\n'
+    )
+    card = literature._parse_frontmatter(raw, "educational-methods/header-card.md")
+    assert card.title == "A Card With A Header"
+    assert len(card.key_claims) == 1
+    claim = card.key_claims[0]
+    # the span locates the exact quote inside the real, full file text,
+    # header line included, not a header-stripped slice of it
+    assert raw[claim.char_start:claim.char_end] == claim.text == "The header does not corrupt the span."
+    lines = raw.splitlines()
+    located = "\n".join(lines[claim.line_start - 1:claim.line_end])
+    assert claim.text in located
+    # the claim's own line sits after the header's one extra line, same
+    # line number it would carry in a header-less card plus 1
+    header_free_raw = raw.split("\n", 1)[1]
+    header_free_claim = literature._parse_frontmatter(header_free_raw, "x.md").key_claims[0]
+    assert claim.line_start == header_free_claim.line_start + 1
+
+
+def test_parse_frontmatter_still_raises_on_a_real_missing_opener():
+    # A card with neither a comment header nor a `---` opener is still a
+    # real error, not silently swallowed by the header-skip.
+    with pytest.raises(ValueError, match="has no frontmatter opening"):
+        literature._parse_frontmatter("title: not frontmatter at all\n", "bad.md")
+
+
 # --------------------------------------------------------------------------
 # tier
 # --------------------------------------------------------------------------

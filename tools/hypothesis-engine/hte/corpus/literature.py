@@ -182,6 +182,13 @@ corpus.education_atlas` reads:
   quoted scalar (Deci and Ryan 2000's own title quotes "What" and "Why"),
   is unescaped by hand; a card using a YAML escape beyond that one is
   outside this parser's own scope.
+- **A leading `voice-ignore-file` comment is not frontmatter.** A card
+  carrying verbatim founder material opens with one or more `<!-- ... -->`
+  lines, `CLAUDE.md`'s own escape hatch for the org voice linter, before
+  its own `---` frontmatter opener; `_parse_frontmatter` skips that header
+  and shifts every `Claim` span's line number and char offset by its own
+  length, so a span still locates the exact quote inside the file's real,
+  full text.
 """
 from __future__ import annotations
 
@@ -289,6 +296,13 @@ _QUOTED_SCALAR_RE = re.compile(r'^(\w+):\s*"(.*)"\s*(?:#.*)?$')
 _BARE_SCALAR_RE = re.compile(r'^(\w+):\s*(\S+)\s*(?:#.*)?$')
 _LIST_ITEM_RE = re.compile(r'^  - "(.*)"\s*(?:#.*)?$')
 
+# One or more leading `<!-- ... -->` HTML-comment lines, the `CLAUDE.md`
+# `voice-ignore-file` escape hatch every shipped fixture in this corpus
+# carries ahead of its own `---` frontmatter opener. `.` does not match a
+# newline by default, so this matches only single-line comments, the one
+# shape this corpus's own cards use.
+_LEADING_COMMENT_LINES_RE = re.compile(r"^(?:<!--.*-->\n)+")
+
 
 def _unescape(text: str) -> str:
     """The one YAML escape this corpus's own cards use, `\\"` for an
@@ -387,20 +401,34 @@ def _parse_block_scalar(field_lines: list[tuple[int, int, str]]) -> str:
 
 
 def _parse_frontmatter(raw: str, relative_path: str) -> Card:
-    if not raw.startswith("---\n"):
+    # A card is free to open with one or more `<!-- ... -->` HTML-comment
+    # lines before its own frontmatter, the `CLAUDE.md` `voice-ignore-file`
+    # escape hatch every one of this corpus's shipped fixtures carries
+    # (verbatim founder material the org voice linter would otherwise
+    # flag). `header_len`/`header_lines` are that header's own char length
+    # and line count, `0` for a card with no header at all, so the offset
+    # math below still lands on `raw`'s real line numbers and char offsets
+    # whether or not a header is present.
+    header_match = _LEADING_COMMENT_LINES_RE.match(raw)
+    header_len = header_match.end() if header_match else 0
+    header_lines = raw.count("\n", 0, header_len)
+    body = raw[header_len:]
+    if not body.startswith("---\n"):
         raise ValueError(f"literature adapter: {relative_path} has no frontmatter opening `---`")
-    end = raw.find("\n---\n", 4)
+    end = raw.find("\n---\n", header_len + 4)
     if end < 0:
         raise ValueError(f"literature adapter: {relative_path} has no frontmatter closing `---`")
-    fm_text = raw[4:end]
+    fm_text = raw[header_len + 4:end]
     fm_lines = _iter_lines_with_offsets(fm_text)
     # `_iter_lines_with_offsets` line numbers and char offsets are both
-    # relative to `fm_text`, sliced past the opening `"---\n"` line; shift
-    # the line number by 1 (that opening line is the file's own line 1) and
-    # the char offset by 4 (that line's own length), so `Claim.line_start`/
-    # `line_end`/`char_start`/`char_end` all land on `raw`, the file's own
-    # full text, its own local slice left behind.
-    fm_lines = [(lineno + 1, offset + 4, line) for lineno, offset, line in fm_lines]
+    # relative to `fm_text`, sliced past any leading comment header plus
+    # the opening `"---\n"` line; shift the line number by `header_lines +
+    # 1` (that opening line is the file's own line `header_lines + 1`) and
+    # the char offset by `header_len + 4` (the header's own length plus
+    # that opening line's own length), so `Claim.line_start`/`line_end`/
+    # `char_start`/`char_end` all land on `raw`, the file's own full text,
+    # its own local slice left behind.
+    fm_lines = [(lineno + header_lines + 1, offset + header_len + 4, line) for lineno, offset, line in fm_lines]
     fields = dict(_split_frontmatter_fields(fm_lines))
 
     title = _parse_scalar(fields["title"]) or ""
