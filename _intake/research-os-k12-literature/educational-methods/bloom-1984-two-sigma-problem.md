@@ -8,7 +8,11 @@ doi: "10.3102/0013189x013006004"
 url: "https://doi.org/10.3102/0013189x013006004"
 openalex_id: "https://openalex.org/W2172010324"
 branch: "educational-methods"
-tier: "canon"
+tier: "outcome"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-ce3245fc58e7)"
+promoted_at: "2026-09-10"
+depends_on_foundation: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-0333f4a853f3, Roediger and Karpicke 2006)"
 why_it_matters: >
   Names the empirical ceiling any one-to-one-tutoring-equivalent system is chasing: a
   two-standard-deviation achievement gain from individual human tutoring plus
@@ -31,6 +35,15 @@ how_it_bears_on_research_os: >
 ---
 
 # The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One Tutoring
+
+> **Promoted to outcome tier, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
+> `bkt-ce3245fc58e7`, `canon_score` 70) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
+> Outcome tier, not canon: it reports a tutoring-intervention effect size,
+> RUBRIC E7, and depends on the retrieval-practice/testing-effect mechanism
+> in `bucket-canon/07-mind/memory-systems/` (Roediger and Karpicke 2006).
+> This file stays in place as the Research OS-specific reading; the
+> sub-outcomes entry is the citeable record.
 
 Names the empirical ceiling any one-to-one-tutoring-equivalent system is chasing: a two-standard-deviation achievement gain from individual human tutoring plus mastery-based feedback, the benchmark Research OS for K-12's five-state ladder and constrained AI tutor implicitly compete against.
 

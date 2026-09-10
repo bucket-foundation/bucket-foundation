@@ -163,3 +163,41 @@ against `main` since the PR's head branch was already deleted).
 ### Removed
 
 None.
+
+## Iteration 4
+
+Date 2026-09-10. Branch `intake/ros-canon-promotion` (PR #9). Promotes six
+records from `_intake/research-os-k12-literature/` into `bucket-canon/`,
+opens two taxonomy questions without resolving them, and closes the
+site-registry-registration question `README.md` had left open. Full detail
+in `_intake/research-os-k12/CHANGELOG.md`'s matching entry; this ledger
+carries the summary.
+
+### Added
+
+- Two canon-tier records in `bucket-canon/07-mind/memory-systems/`
+  (Roediger and Karpicke 2006; Sparrow, Liu, and Wegner 2011).
+- `bucket-canon/07-mind/sub-outcomes/education/`, a new outcome-tier
+  dossier: four records (Bloom 1984; Kulik, Kulik, and Bangert-Drowns
+  1990; VanLehn 2011; Kulik and Fletcher 2016), each naming its
+  `07-mind/memory-systems/` foundation.
+- `bucket-canon/TAXONOMY_NOTES.md`, opening two branch-placement questions
+  (metascience/sociology-of-science home; AlphaFold method-card-versus-
+  landscape) and carrying forward the pre-existing psychodynamic-theory
+  question.
+
+### Edited
+
+- Six intake cards marked `status: promoted` with pointers; two marked
+  `status: open-question` with a `TAXONOMY_NOTES.md` pointer; claim text
+  unchanged in all eight.
+- `bucket-canon/05-biophysics/README.md`, `bucket-canon/07-mind/README.md`:
+  short pointer additions/fixes, no scope-note text removed.
+- `_intake/research-os-k12/README.md`: "Site registry registration"
+  section updated from "not yet done" to done, since `feat(site): align
+  public site with Research OS for K-12 (#12)` (merged into this branch
+  2026-09-10) added the `NAV` entry the section had scoped and documented.
+
+### Removed
+
+None.

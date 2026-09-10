@@ -22,6 +22,8 @@ url: "https://doi.org/10.1126/science.aao0185"
 openalex_id: "https://openalex.org/W2793071066"
 branch: "scientific-discovery-metascience"
 tier: "canon"
+status: "open-question"
+taxonomy_question: "bucket-canon/TAXONOMY_NOTES.md, home for metascience and sociology-of-science material (07-mind vs 04-information); raised 2026-09-10, not resolved, not promoted"
 why_it_matters: >
   A review-scale synthesis of the science of science field, the quantitative study of how
   science itself grows, is cited, and is organized, the closest existing discipline to
