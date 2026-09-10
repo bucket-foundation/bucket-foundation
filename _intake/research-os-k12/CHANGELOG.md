@@ -1,5 +1,37 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, ros-08 preregistration packet
+
+Bead `ros-08`, branch `docs/ros-08-preregistration`, worktree `.ros-worktrees/ros08`. Four
+new files under `learning/research-os/study/`: `PREREGISTRATION-DRAFT.md` (six directional,
+OSF-template hypotheses drawn from `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s twelve
+questions, a power analysis with naive and cluster-corrected sample sizes at three assumed
+effect sizes, a variables table mapping every outcome to an `EVIDENCE-SCHEMA.md` field or a
+named schema gap, an analysis plan and a data availability statement), `TRANSFER-TASK-BANK.md`
+(forty-four sealed-pool transfer items, two per node, for all 22 nodes of the sky-blue seed
+path, built by a stated eight-step rule that scales to any corpus), `INSTRUMENTS.md` (a
+retention probe schedule, a metacognitive confidence instrument adapting Fisher, Goddu, and
+Keil 2015's own design, a teacher time-on-review log), and `IRB-PACKET-OUTLINE.md` (submission
+sections, consent and assent drafts for four audiences, a minimal-risk justification, a
+data-governance split between the operational FERPA basis and the research consent track, and
+a founder-as-researcher conflict disclosure built on `PLAN-REVISION-1.md` section 5's two-PI
+pairing). `RESEARCH-QUESTIONS.md` gained eleven "Pre-registered as of 2026-09-10" pointer
+lines under existing questions, no existing line rewritten.
+
+Every effect size and sample size traces to a named source already in this corpus
+(`RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 9, `04-compliance-distribution.md` section 10, and
+the Bastani et al. 2025, Gneezy and Rustichini 2000, and Deci, Koestner, and Ryan 1999 intake
+cards); the one unsourced planning figure (an illustrative ICC range for the cluster-correction
+table) is flagged explicitly rather than presented as canon-cited. The preregistration draft's
+OSF-template section order is sourced to van 't Veer and Giner-Sorolla (2016) after nine
+WebFetch attempts against `osf.io` and its registries pages returned no scrapeable template
+text (a client-rendered SPA shell, a 404, or a paywalled publisher redirect); the file states
+this verification gap and instructs a live-form cross-check before any real OSF submission.
+No IRB approval, partner PI, or partner school exists; every packet section states this
+directly rather than implying otherwise. `agf-lint-voice check` run to 0 violations on all
+five touched files, roughly forty antithesis-pattern sentences rewritten by hand since that
+category is never auto-fixed. No file under `src/` or `public/` is touched by this pass.
+
 ## 2026-09-10, PR #27 review pass
 
 Review of `feat/ros-03-confidence-routing` (PR #27) in worktree `.ros-worktrees/r27`. Leak
