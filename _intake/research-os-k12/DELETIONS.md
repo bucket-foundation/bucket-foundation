@@ -399,3 +399,11 @@ commit.
 **Original text, replaced in the "Iteration 6" heading:**
 
 > ## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
+
+## 2026-09-10, `src/app/research-os/workspace/page.tsx`, notes-field placeholder rewritten for voice review (PR #37 review pass)
+
+**Reason.** PR review for `ros-04` ran `agf-lint-voice check` on every changed file. The notes textarea placeholder used the banned antithesis construction (rule 4, "X, not Y"). Rewritten to state the fact once, positively.
+
+**Original text, replaced in the notes textarea placeholder:**
+
+> scratch space, not graded, saved on this device only…

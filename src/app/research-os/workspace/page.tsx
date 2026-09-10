@@ -769,7 +769,7 @@ export default function ResearchOsWorkspacePage() {
                   id="research-os-notes"
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="scratch space, not graded, saved on this device only…"
+                  placeholder="ungraded scratch space, saved on this device only…"
                   className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] w-full bg-white/60 min-h-[90px]"
                 />
               </div>

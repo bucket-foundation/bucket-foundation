@@ -968,3 +968,78 @@ None.
   `intake/ros-literature-2`'s concurrent 45-to-77-row expansion: this
   pass's tier/status changes carried onto the six affected rows, area
   counts re-verified at 77 rows total (17/25/18/12/5).
+
+## 2026-09-10, PR #37 review pass
+
+Strict review of PR #37 (`feat/ros-04-workspace-hardening`) before merge, in
+an isolated worktree per the review protocol. PR #35 (compliance) had not
+merged at review time, so no merge-and-reconcile step against it applied.
+
+Leak scan on the full diff against `origin/main`: no API keys, `.env`
+contents, IPs, non-public hostnames, personal emails other than
+`gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in
+file content. No redactions were needed.
+
+### Fixed
+
+- `src/app/research-os/workspace/page.tsx`: the notes textarea placeholder
+  used an antithesis construction ("scratch space, not graded, saved on
+  this device only…"). Rewritten to "ungraded scratch space, saved on this
+  device only…", stating the fact once, positively.
+
+### Verified, no change needed
+
+- Evidence emission: every stage-transition function in `stages.ts` writes
+  `fromStage`/`toStage`; `sessionId` round-trips on every learner-authored
+  transition; `abstained` is persisted on `onCheckResult` and
+  `onProbeCheckResult`, not just used to decide the transition. Confirmed
+  against both the functions and `scripts/test-research-os-evidence.ts`'s
+  40 tests.
+- Transfer-item submit: the client now sends `answer: transferAnswer` in
+  the `POST /api/research-os/state` body; the server
+  (`src/app/api/research-os/state/route.ts`) requires a non-empty `answer`
+  for `action: "transfer_item"` and forwards it onto the evidence event as
+  `learnerText`.
+- Organize cannot add prose: `organize.ts`'s `groundOrganizeResult` drops
+  any claim/evidence/source item not grounded in the learner's own matching
+  input field; the adversarial tests in
+  `scripts/test-research-os-workspace-contracts.ts` ("write my claim for
+  me", "finish this sentence") pass.
+- Check: `grounding.ts`'s `sanitizeGradeResult` strips any citation but the
+  one allowed source label and never returns a rewritten explanation
+  (`GradeResult` has no field for one).
+- Locate: `locate.ts`'s `locateHits` returns only fields copied verbatim
+  from matched node rows, no model call, capped at 10 results.
+- Daily cap: `rate-limit.ts`'s `recordAndCheck` is enforced server-side per
+  learner, keyed by UTC calendar day (`dailyKeyFor`), independent of the
+  existing per-minute burst limiter; covered by
+  `scripts/test-research-os-evidence.ts`'s cap tests including the
+  UTC-midnight reset.
+- Cost logging never blocks the response: `llm.ts`'s `logToolCost` is a
+  synchronous, unawaited `console.log` call after the response data is
+  already computed; it does not gate or delay `NextResponse.json`.
+- Low-confidence badge: `page.tsx` reads `route.lowConfidenceFlags`
+  directly off the `/api/research-os/route` response state, not a
+  client-recomputed value.
+- Merge reconciliation: `onProductionReturned` has a single definition in
+  `stages.ts` (grep confirmed); no duplicate `EvidenceContext`-shaped
+  version survives from this branch's pre-merge history.
+- Layout at 400px: the workspace grid is `grid-cols-1 lg:grid-cols-[320px_1fr]`
+  (stacks below the 1024px `lg` breakpoint); the auth-panel inputs sit in
+  `flex flex-wrap` rows with a 200px/160px min/fixed width well under a
+  368px content width at a 400px viewport (`px-4` gutters), so no row forces
+  horizontal scroll.
+- Voice lint: `agf-lint-voice-src check` (the source-file-scoped checker)
+  clean on all 14 changed TS/TSX files. `agf-lint-voice check` (the
+  general prose checker) additionally flagged antithesis phrasing and a
+  few banned words inside test-description string literals and a local
+  variable name (`honest`) in `scripts/test-research-os-evidence.ts` and
+  `scripts/test-research-os-workspace-contracts.ts`; left as-is since these
+  are internal test labels, not UI strings or comments, and `-src`'s own
+  AST-scoped rule set treats them the same way. The one genuine UI-text hit
+  (the notes placeholder above) was fixed. `BEADS-PENDING.jsonl`'s
+  pre-existing violations (lines 1-80) predate this PR; the one new line
+  this PR adds (the `ros-04` bead entry) is clean.
+- Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (191/191 pass), `next lint` on every touched
+  file: all clean.

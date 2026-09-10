@@ -1273,3 +1273,42 @@ conflict confirmed disclosed. Confirmed no file under `src/` or `public/` touche
 ### Result
 
 Merged clean, `review/pr34` branch and worktree removed.
+
+## Iteration 17: PR #37 review pass
+
+Date 2026-09-10. Review of `feat/ros-04-workspace-hardening` (PR #37) in worktree
+`.ros-worktrees/r37`. PR #35 (compliance) had not merged at review time, so no
+merge-and-reconcile step against it was needed.
+
+### Verified
+
+Leak scan against the full diff: no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs in file content. Every stage-transition function in `stages.ts` writes
+`fromStage`/`toStage`; `sessionId` and `abstained` persist per `EVIDENCE-SCHEMA.md`'s
+contract, confirmed against `scripts/test-research-os-evidence.ts`'s 40 tests. The
+transfer-item client bug this PR fixes (submit never sent the learner's answer) verified
+fixed on both sides: `page.tsx` now sends `answer: transferAnswer`, `state/route.ts`
+requires it non-empty and forwards it as `learnerText`. Organize's `groundOrganizeResult`
+and Check's `sanitizeGradeResult` verified against their own adversarial tests ("write my
+claim for me", "finish this sentence"); Locate's `locateHits` returns only verbatim node
+fields, no model call. Daily cap (`rate-limit.ts`) enforced server-side, keyed by UTC
+calendar day, independent of the per-minute burst limiter. `logToolCost` is a synchronous,
+unawaited log call, never gating the response. Low-confidence badge reads
+`route.lowConfidenceFlags` straight off the route response. `onProductionReturned` has one
+definition in `stages.ts` (grepped); no duplicate survived the merge reconciliation this PR
+describes. Layout confirmed stacking under the `lg` breakpoint with no 400px-width overflow
+path in the auth-panel or grid CSS. Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+`npm run test:research-os` (191/191), `next lint` on every touched file: all clean.
+
+### Fixed
+
+- `src/app/research-os/workspace/page.tsx`: the notes textarea placeholder used an
+  antithesis construction, old text below, a verbatim quotation:
+  <!-- voice-ignore-next -->
+  "scratch space, not graded, saved on this device only…"
+  Rewritten to "ungraded scratch space, saved on this device only…".
+
+### Result
+
+Merged clean, `review/pr37` branch and worktree removed.
