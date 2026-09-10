@@ -94,6 +94,19 @@ https://www.bucket.foundation/protocol/envelope
 - /.well-known/ai-plugin.json, ChatGPT plugin manifest
 - /api/research, zero-key research proxy
 
+## Primary research (papers)
+
+Bucket-authored primary-method papers and their design specs, source-linked
+until a dedicated site route ships (see `/research/papers` for the vendored
+paper index):
+
+- A Hypothesis Engine over History (design paper + Lean formalization):
+  https://github.com/bucket-foundation/bucket-foundation/blob/main/papers/history-hypothesis-engine/main.pdf
+- Canon concept node for the method above:
+  https://github.com/bucket-foundation/bucket-foundation/blob/main/bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md
+- Engine design specs and survey:
+  https://github.com/bucket-foundation/bucket-foundation/tree/main/_intake/hypothesis-engine
+
 ## Source
 
 - bucket-foundation: https://github.com/bucket-foundation/bucket-foundation

@@ -238,6 +238,67 @@ were needed.
   `npm run test:research-os` (8/8 pass), `next lint` on every touched file:
   all clean.
 
+## 2026-09-10: PR #10 review pass
+
+Review of PR #10 (`feat/hte-k12-research-os`) before merge. Leak scan on the
+full diff against `origin/main` found no API keys, no `.env` contents, no
+server IPs, no non-public hostnames, no personal emails other than
+`gianyrox@gmail.com`, no PII, no `/home/gian` paths, and no Claude session
+URLs in file content. No redactions were needed.
+
+### Fixed
+
+- `tools/hypothesis-engine/hte/api.py`: `_build_response()` ran outside
+  `hypothesize()`'s `try`/`except`, so a bug there (a manifest shape edge
+  case) escaped as a bare `TypeError` instead of the documented
+  `CampaignError` contract; moved the call inside. `_sanitize()`'s
+  path-redaction regex covered `/home`, `/tmp`, `/Users`, `/var`; extended
+  to `/srv`, `/opt`, `/root`, `/app`, `/mnt`, `/data`, `/etc`. Rewrote a
+  docstring sentence that used an antithesis construction ("not a blanket
+  guarantee").
+- `tools/hypothesis-engine/hte/serve.py`: the unexpected-500 branch now
+  logs the exception and a traceback to stderr for an operator debugging a
+  repeat failure; the client-facing body stays a bare class name.
+- `tools/hypothesis-engine/hte/api.py`, `hte/mcp_tool.py`,
+  `docs/research-os-hypothesize-route.patch`: `hypothesize()`'s response
+  carried `run_id` but not which model backed the run; `manifest["models"]`
+  (`model-policy.json`'s role map) was already in `MANIFEST.json` but never
+  reached the HTTP/MCP response. Added it to `_build_response()`, the MCP
+  tool's `outputSchema`, and the not-yet-applied route patch's TS types,
+  plus `tests/test_api.py::test_response_carries_which_model_backed_each_
+  role_alongside_run_id`.
+
+### Verified, no change needed
+
+- The `hypothesize` surface reads `graph.productions` rows (via
+  `normalize_research_os_record`) but writes nothing back to any PR #6
+  graph table; no code path in the engine, `hte-serve`, or the MCP tool
+  definition ever writes a claim or synthesis on a learner's behalf.
+  `docs/research-os-hypothesize-route.patch`'s own route (not yet applied;
+  becomes its own PR once PR #6 lands) adds the ownership check
+  (`.eq("learner_id", learnerId)` after `verifyLearner(req)`) that closes
+  PR #6's own review-flagged IDOR gap before forwarding a production to
+  `hte-serve`.
+- `tools/hypothesis-engine/docs/PRODUCTION-SCHEMA-ALIGNMENT.md` documents,
+  field by field, why `graph.productions` rows do not map onto
+  `PRODUCTION-SCHEMA.md` one to one, and names every gap by hand
+  (`learner_id` dropped, `transfer_proof` dropped, `status` mapped
+  conservatively) rather than silently coercing the shape.
+- Gates: `make test` in `tools/hypothesis-engine` (882 passed), `ruff check`
+  on every touched Python file, `npm ci`, `npx tsc --noEmit`, `npm run
+  build`, `npm run test:research-os` (8/8 pass): all clean.
+
+### Note
+
+This worktree (`.wt-fix10`) had a second, unrelated process actively
+writing to `hte/llm.py`, `hte/parallel.py`, `hte/runner.py`,
+`hte/timeline.py`, `hte/generate.py`, and several `tests/*.py` files
+throughout this review, on top of a legitimate `wip(feat/hte-k12-
+research-os): partial work preserved` commit already on this branch. None
+of that in-progress content is part of this review pass's commit; only the
+five files listed under "Fixed" above were staged and committed, isolated
+by hunk where a touched file also carried unrelated unstaged content.
+
 ## 2026-09-10, literature batch two
 
 Branch `intake/ros-literature-2`. Task: 31 new DOI-verified papers bearing on the twelve open
@@ -245,12 +306,12 @@ questions in `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, emphasis on 2023-2026
 across six areas: LLM assistance and learning outcomes, cognitive offloading and metacognition,
 prerequisite and knowledge-graph learning, AI for research evaluation, understanding as a
 scientific goal, and motivation and payment. Full per-area breakdown and per-question evidence
-mapping recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 4.
+mapping recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 6.
 
 ### Added
 
 - 31 files under `_intake/research-os-k12-literature/`, listed in
-  `learning/research-os/CHANGE-LEDGER.md` Iteration 4; corpus total rises from 45 to 77 papers.
+  `learning/research-os/CHANGE-LEDGER.md` Iteration 6; corpus total rises from 45 to 77 papers.
 - `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/`: new fifth branch, five
   files on automatic prerequisite-edge inference and learning-path routing.
 

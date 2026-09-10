@@ -320,14 +320,18 @@ def test_evidence_cluster_item_with_no_interval_contributes_no_own_placement():
     assert generated == []
 
 
-def test_evidence_cluster_ignores_an_interval_before_the_run_span():
+def test_evidence_cluster_clamps_an_interval_before_the_run_span():
     # A bullet mentioning an incidental earlier year can widen an item's
-    # own extracted interval past the run's own TIME_BIN span start;
-    # this drops that one item's own placement instead of raising.
+    # own extracted interval past the run's own TIME_BIN span start.
+    # `hte.timeline.time_bin_index` clamps that to bin 0 rather than
+    # raising (`bkt-hte-binning-clamp`, 2026-09-10), so this item's own
+    # placement is kept, landing in the span's own earliest bin, instead
+    # of being dropped the way an unresolved-vocabulary `KeyError` still
+    # is.
     vocab = _small_vocab()
     item = _unlinked_item(vocab, actor="farmers", interval=Interval(start=-25000, end=-24999))
     generated = from_evidence([item], vocab, Resolution.CENTURY, span_start=-20000, bin_width=100)
-    assert generated == []
+    assert generated != []
 
 
 def test_claim_gap_sweeps_around_an_unlinked_item_too():
