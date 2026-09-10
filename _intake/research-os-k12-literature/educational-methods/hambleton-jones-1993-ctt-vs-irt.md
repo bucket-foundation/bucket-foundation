@@ -20,7 +20,7 @@ key_claims:
   - "Item response theory models the probability of a correct response as a function of a latent trait and item parameters (difficulty, discrimination, guessing), producing item and person statistics that are, in principle, sample-invariant."
   - "IRT enables computer-adaptive testing and item banking in a way classical test theory does not support well."
 research_questions_it_leaves_open:
-  - "How well IRT's sample-invariance assumption holds for very young test-takers whose item parameters may shift with reading ability rather than the target construct."
+  - "How well IRT's sample-invariance assumption holds for young test-takers whose item parameters may shift with reading ability rather than the target construct."
   - "How to combine an IRT proficiency estimate with a retention-decay term, exactly the composition problem mastery.ts solves with FSRS."
 how_it_bears_on_research_os: >
   Explains why the shipped fusion formula reaches for IRT/Elo rather than classical test
@@ -42,7 +42,7 @@ The IRT half of the mastery formula's own fusion (proficiency to the alpha power
 
 ## Research Questions It Leaves Open
 
-- How well IRT's sample-invariance assumption holds for very young test-takers whose item parameters may shift with reading ability rather than the target construct.
+- How well IRT's sample-invariance assumption holds for young test-takers whose item parameters may shift with reading ability rather than the target construct.
 - How to combine an IRT proficiency estimate with a retention-decay term, exactly the composition problem mastery.ts solves with FSRS.
 
 ## How It Bears on Research OS

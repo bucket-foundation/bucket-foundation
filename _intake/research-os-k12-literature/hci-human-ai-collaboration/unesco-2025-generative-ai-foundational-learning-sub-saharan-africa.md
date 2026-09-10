@@ -10,9 +10,11 @@ openalex_id: "https://openalex.org/W4416794937"
 branch: "hci-human-ai-collaboration"
 tier: "candidate"
 why_it_matters: >
-  An institutional evidence review of generative-AI deployments for foundational learning
-  in Sub-Saharan African school systems, the closest verified match to the AI-tutoring
-  deployment literature in lower-resource school systems the task named by region.
+  This UNESCO evidence review surveys generative-AI deployments for foundational literacy and numeracy
+  across Sub-Saharan African school systems and finds that connectivity, teacher training, and language
+  coverage decide whether a pilot scales, ahead of model capability. It gives Research OS a region-wide
+  evidence base for the infrastructure and language constraints a single country-level field study
+  cannot show on its own.
 key_claims:
   - "Early generative-AI pilots for foundational literacy and numeracy in Sub-Saharan African school systems show promise on narrow, well-scoped tasks but face large infrastructure, connectivity, and teacher-training gaps before they can scale."
   - "Deployments that pair AI tools with structured teacher support and offline-capable delivery outperform unstructured, chatbot-style deployments on foundational-learning outcomes."

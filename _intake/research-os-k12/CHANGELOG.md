@@ -1,5 +1,14 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10 (literature corpus and overlap map)
+
+Added `_intake/research-os-k12-literature/` (45 verified papers across four areas, see its own
+README for the index) and `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` (the shared-substrate map
+between Research OS and the hypothesis engine, closing with twelve open questions extending
+`learning/research-os/RESEARCH-QUESTIONS.md`). Logged in full in
+`learning/research-os/CHANGE-LEDGER.md`, Iteration 2. No existing file in this folder was edited
+or removed.
+
 ## 2026-09-10, system review fold-in
 
 Folded in the system review pass from the main working tree (`RESEARCH-OS-K12-SYSTEM-REVIEW.md`

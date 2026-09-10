@@ -30,3 +30,33 @@ Date 2026-09-09. Branch `feat/research-os-k12`.
 ### Removed
 
 None.
+
+## Iteration 2
+
+Date 2026-09-10. Branch `intake/research-os-k12-literature`, rebased onto `main` after PR #3
+merged (squash `391fe1bf9`).
+
+### Added
+
+- `_intake/research-os-k12-literature/`: 46 canon-intake files, one per verified paper (DOI
+  checked against OpenAlex, Crossref, Semantic Scholar, or DataCite), across four areas:
+  educational methods (12), HCI and human-AI collaboration (12), scientific discovery and
+  metascience (9), AI and researchers (13). Each carries frontmatter (title, authors, year,
+  venue, doi, url, openalex_id, branch, tier) plus why_it_matters, key_claims,
+  research_questions_it_leaves_open, and how_it_bears_on_research_os.
+- `_intake/research-os-k12-literature/README.md`: the intake index and a note on this corpus's
+  relationship to the existing `_intake/research-os-k12/raw/lit-*.md` passes.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: a file-path-level map of
+  where Research OS for K-12 and the hypothesis engine share substrate (graph schema, production
+  envelope, citation and payment rail, the constrained tool surface versus the generation loop),
+  closing with twelve open questions extending `RESEARCH-QUESTIONS.md`'s own 49.
+
+### Edited
+
+- A paper whose DOI already appears in `_intake/research-os-k12/raw/lit-educational-methods.md`,
+  `lit-hci-human-ai.md`, or `lit-ai-for-science.md` carries a closing line in this pass naming
+  which raw file it is cross-indexed against; no line in any raw file was changed.
+
+### Removed
+
+None.
