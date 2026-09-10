@@ -6,8 +6,10 @@
  * override), an unresolved map entry, and an entry with no match at all
  * (the review-list path). A second block runs the importer against the
  * REAL bucket-canon/02-physics/ dossiers and the real Academy corpus, and
- * asserts the exact 2-law/4-source split and 2-matched/4-unmatched split
- * this repo's current six dossiers produce.
+ * asserts the exact 2-law/4-source split and 5-matched/1-unmatched split
+ * this repo's current six dossiers and canon-atom-map.json produce (bkt-ros
+ * ros-03 item 4 resolved three of the four review-list entries the
+ * previous, canon-only-ingestion pass left unmatched).
  *
  * Run:
  *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/test-ingest-canon.ts
@@ -173,7 +175,7 @@ test("buildCanonImport: is idempotent on repeat input (pure function determinism
 
 const REPO_ROOT = resolve(__dirname, "..", "..", "..");
 
-test("buildCanonImport: the real bucket-canon/02-physics/ dossiers produce exactly the 2-law/4-source, 2-matched/4-unmatched split", () => {
+test("buildCanonImport: the real bucket-canon/02-physics/ dossiers produce exactly the 2-law/4-source, 5-matched/1-unmatched split", () => {
   const allPapers = loadPrimaryPapers();
   const papers = allPapers.filter((p) => p.branch === "02-physics").map((p) => ({ ...p }));
   assert.equal(papers.length, 6, "one entry per dossier folder today: bell-theorem, gauge-principle, quantum-field-theory, quantum-mechanics, special-relativity, standard-model");
@@ -181,9 +183,12 @@ test("buildCanonImport: the real bucket-canon/02-physics/ dossiers produce exact
   const authorsLabelByPaperId = new Map(papers.map((p) => [p.id, authorsShort(p)]));
   const files = loadAcademyCorpusFiles(REPO_ROOT);
   const fullAtomIndex: AcademyAtomRef[] = files.flatMap((f) => f.atoms.map((a) => ({ branch: f.branch, sourceFile: f.sourceFile, atomId: a.id, title: a.title })));
-  const overrideMap: CanonAtomMap = JSON.parse(readFileSync(join(__dirname, "canon-atom-map.json"), "utf8"));
-  delete (overrideMap as Record<string, unknown>)._comment;
-  delete (overrideMap as Record<string, unknown>)._seed_note;
+  const rawOverrideMap: Record<string, unknown> = JSON.parse(readFileSync(join(__dirname, "canon-atom-map.json"), "utf8"));
+  const overrideMap: CanonAtomMap = {};
+  for (const [key, value] of Object.entries(rawOverrideMap)) {
+    if (key.startsWith("_")) continue; // every "_comment"-style annotation key, matching canon-import.ts's own loadOverrideMap
+    overrideMap[key] = value as CanonAtomMap[string];
+  }
 
   const result = buildCanonImport({ papers, authorsLabelByPaperId, atomIndex: fullAtomIndex, overrideMap });
 
@@ -193,11 +198,20 @@ test("buildCanonImport: the real bucket-canon/02-physics/ dossiers produce exact
   assert.equal(sourceNodes.length, 2, "one bibliographic source node per law entry");
   assert.equal(result.nodes.length, 8, "6 entry nodes + 2 source nodes");
 
+  // bkt-ros ros-03 item 4 resolved three of the four review-list entries
+  // this test originally found unmatched (bell-theorem, quantum-field-
+  // theory, quantum-mechanics), adding explicit canon-atom-map.json rows;
+  // gauge-principle stays unmatched (no Academy atom covers gauge
+  // invariance or Yang-Mills theory).
   const derivesFrom = result.edges.filter((e) => e.kind === "derives_from");
-  assert.equal(derivesFrom.length, 2, "special-relativity and standard-model match an Academy atom id exactly");
+  assert.equal(
+    derivesFrom.length,
+    5,
+    "special-relativity and standard-model match an Academy atom id exactly; bell-theorem, quantum-field-theory, and quantum-mechanics match via canon-atom-map.json",
+  );
   assert.equal(
     result.reviewList.filter((r) => r.kind === "unmatched_derives_from").length,
-    4,
-    "bell-theorem, gauge-principle, quantum-field-theory, quantum-mechanics have no matching Academy atom id and no map override",
+    1,
+    "gauge-principle has no matching Academy atom id and no map override",
   );
 });

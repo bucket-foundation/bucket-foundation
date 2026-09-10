@@ -111,10 +111,13 @@ interface NodeRow {
   provenance: Record<string, unknown> | null;
 }
 interface EdgeRow {
+  id: string;
   from_id: string;
   to_id: string;
   kind: string;
   weight: number | null;
+  confidence: number | null;
+  confidence_source: string | null;
 }
 interface StateRow {
   node_id: string;
@@ -148,14 +151,17 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
 
   const { data: edgeRows, error: edgeErr } = await svc
     .from("edges")
-    .select("from_id,to_id,kind,weight")
+    .select("id,from_id,to_id,kind,weight,confidence,confidence_source")
     .in("from_id", ids);
   if (edgeErr) throw new Error(`loadSubgraph: edge query failed: ${edgeErr.message}`);
   const edges: GraphEdge[] = ((edgeRows as EdgeRow[]) || []).map((r) => ({
+    id: r.id,
     fromId: r.from_id,
     toId: r.to_id,
     kind: r.kind as GraphEdge["kind"],
     weight: r.weight,
+    confidence: r.confidence,
+    confidenceSource: r.confidence_source,
   }));
 
   return { nodes, edges };
@@ -182,6 +188,7 @@ interface AncestorRow {
   node_id: string;
   ancestor_id: string;
   min_hops: number;
+  min_confidence: number;
 }
 
 /**
@@ -195,12 +202,45 @@ interface AncestorRow {
 export async function loadAncestorRows(targetId: string): Promise<PrereqAncestorRow[]> {
   const svc = graphService();
   try {
-    const { data, error } = await svc.from("prereq_ancestor").select("node_id,ancestor_id,min_hops").eq("node_id", targetId);
+    const { data, error } = await svc
+      .from("prereq_ancestor")
+      .select("node_id,ancestor_id,min_hops,min_confidence")
+      .eq("node_id", targetId);
     if (error) return [];
-    return ((data as AncestorRow[]) || []).map((r) => ({ nodeId: r.node_id, ancestorId: r.ancestor_id, minHops: r.min_hops }));
+    return ((data as AncestorRow[]) || []).map((r) => ({
+      nodeId: r.node_id,
+      ancestorId: r.ancestor_id,
+      minHops: r.min_hops,
+      minConfidence: r.min_confidence,
+    }));
   } catch {
     return [];
   }
+}
+
+/**
+ * Upsert a low-confidence-edge flag for one (edge, learner) pair (bkt-ros
+ * ros-03 item 3: "low-confidence edges on a returned chain are written to a
+ * graph.edge_flags table ... so ros-06's class view can surface them").
+ * `onConflict: "edge_id,learner_id"` plus `ignoreDuplicates` makes a repeat
+ * route call for the same learner over the same weak edge a no-op rather
+ * than a growing row-per-request log: `created_at` records when the flag
+ * was FIRST raised. Flags with no `edgeId` (a fixture edge, never a live
+ * database row) are silently skipped rather than erroring: there is
+ * nothing in graph.edges for them to reference.
+ */
+export async function writeEdgeFlags(
+  learnerId: string,
+  targetNodeId: string,
+  flags: { edgeId?: string }[],
+): Promise<void> {
+  const rows = flags
+    .filter((f): f is { edgeId: string } => Boolean(f.edgeId))
+    .map((f) => ({ edge_id: f.edgeId, learner_id: learnerId, target_node_id: targetNodeId }));
+  if (rows.length === 0) return;
+  const svc = graphService();
+  const { error } = await svc.from("edge_flags").upsert(rows, { onConflict: "edge_id,learner_id", ignoreDuplicates: true });
+  if (error) throw new Error(`writeEdgeFlags: upsert failed: ${error.message}`);
 }
 
 export async function findNodeBySlug(slug: string): Promise<GraphNode | null> {

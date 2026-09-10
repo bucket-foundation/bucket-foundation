@@ -34,6 +34,7 @@ interface EdgeRow {
   from_id: string;
   to_id: string;
   kind: string;
+  confidence: number | null;
 }
 
 async function main(): Promise<void> {
@@ -64,12 +65,17 @@ async function main(): Promise<void> {
   }
   const nodeIds = nodes.map((n) => n.id);
 
-  const { data: edgeRows, error: edgeErr } = await svc.from("edges").select("from_id,to_id,kind").in("from_id", nodeIds).eq("kind", "prerequisite");
+  const { data: edgeRows, error: edgeErr } = await svc
+    .from("edges")
+    .select("from_id,to_id,kind,confidence")
+    .in("from_id", nodeIds)
+    .eq("kind", "prerequisite");
   if (edgeErr) throw new Error(`edge query failed: ${edgeErr.message}`);
   const edges: GraphEdge[] = ((edgeRows as EdgeRow[]) || []).map((r) => ({
     fromId: r.from_id,
     toId: r.to_id,
     kind: r.kind as GraphEdge["kind"],
+    confidence: r.confidence,
   }));
 
   const closure = computeAncestorClosure(nodes, edges);
@@ -85,7 +91,12 @@ async function main(): Promise<void> {
     return;
   }
 
-  const rows = closure.map((r) => ({ node_id: r.nodeId, ancestor_id: r.ancestorId, min_hops: r.minHops }));
+  const rows = closure.map((r) => ({
+    node_id: r.nodeId,
+    ancestor_id: r.ancestorId,
+    min_hops: r.minHops,
+    min_confidence: r.minConfidence,
+  }));
   const { error: insErr } = await svc.from("prereq_ancestor").insert(rows);
   if (insErr) throw new Error(`insert failed: ${insErr.message}`);
 

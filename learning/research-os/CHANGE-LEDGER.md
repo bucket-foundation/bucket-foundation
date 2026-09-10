@@ -471,6 +471,102 @@ Date 2026-09-10. PR #19 review pass, worktree `.ros-worktrees/r19`. Full account
 
 None.
 
+## Iteration 11, ros-03: confidence-weighted routing, edge flags, offline edge inference
+
+Date 2026-09-10. Branch `feat/ros-03-confidence-routing`, worktree `ros03`. PLAN-
+REVISION-1.md section 2b ("Frontier routing under Gasparetti 2017") and section 3
+items 2 and 3.
+
+### Added
+
+- `supabase/migrations/20260910030000_research_os_edge_confidence.sql`: `confidence`
+  (real, default 1.0) and `confidence_source` (text, checked against `seed`,
+  `academy_requires`, `canon_map`, `inferred`, `teacher`) on `graph.edges`;
+  `min_confidence` (real, default 1.0) on `graph.prereq_ancestor`.
+- `supabase/migrations/20260910030100_research_os_edge_flags.sql`: `graph.edge_flags`
+  (`edge_id`, `learner_id`, `target_node_id`, `created_at`), unique on
+  `(edge_id, learner_id)` so a repeat route call never grows a duplicate row. No
+  `resolved` column; a teacher resolves a flag by editing the edge's own confidence
+  (`learning/research-os/ROUTING.md`).
+- `src/lib/research-os/ingest/infer.ts`: `tokenize`, `jaccardOverlap`,
+  `inferredConfidence`, `inferEdges` (item 4). Pure, no filesystem access, no model
+  call.
+- `scripts/research-os/ingest/infer-edges.ts`: the CLI wrapper. Rebuilds the Academy,
+  canon, and seed node populations in memory and proposes `prerequisite` edges from
+  lexical overlap and tier ordering. No `--apply` mode, every proposal lands on the
+  review list.
+- `scripts/research-os/ingest/test-ingest-infer.ts`, `scripts/test-research-os-
+  confidence.ts`: 15 and 8 `node:test` cases.
+- `scripts/research-os/ingest/out/sample-infer-preview.json`: a committed sample of
+  the real 36-proposal output (`.gitignore` gains a matching exception).
+- `learning/research-os/ROUTING.md`: the routing rule, the confidence-source table,
+  the threshold, the teacher-flag path, and the offline inference contract.
+
+### Edited
+
+- `src/lib/research-os/types.ts`: `GraphEdge` gained `id`, `confidence`,
+  `confidenceSource`; new `DEFAULT_EDGE_CONFIDENCE`, `LOW_CONFIDENCE_THRESHOLD`,
+  `edgeConfidence()`.
+- `src/lib/research-os/closure.ts`: `ancestorsOf` now returns `Map<string,
+  AncestorInfo>` (`hops` plus `minConfidence`) instead of `Map<string, number>`;
+  `PrereqAncestorRow` gained `minConfidence`. Every caller (`computeAncestorClosure`,
+  `scripts/rebuild-prereq-ancestor.ts`, `scripts/test-research-os-closure.ts`)
+  updated; `probe.ts` and its route/test only ever read `.keys()`, unaffected.
+- `src/lib/research-os/frontier.ts`: `computeFrontier`'s backward walk is now a
+  Dijkstra variant over edge cost `-log(confidence)` instead of a plain BFS, ties
+  broken by fewer hops (item 2); reduces to the exact prior shortest-hop result when
+  every edge defaults to full confidence, so every routing test that predates
+  confidence keeps passing unchanged. `FrontierStep` gained `edgeConfidence` and
+  `pathConfidence`; `FrontierResult` gained `lowConfidenceFlags`.
+- `src/lib/research-os/db.ts`: `loadSubgraph` and `loadAncestorRows` read the new
+  columns; new `writeEdgeFlags` (item 3).
+- `src/app/api/research-os/route/route.ts`: returns `lowConfidenceFlags`; writes them
+  to `graph.edge_flags` for a signed-in learner, best-effort, never failing the route
+  response on a write error.
+- `scripts/rebuild-prereq-ancestor.ts`: reads edge confidence, writes
+  `min_confidence`.
+- `scripts/seed-research-os.mjs`: every seed edge defaults to `confidence: 1.0,
+  confidence_source: "seed"`.
+- `src/lib/research-os/ingest/types.ts`: `IngestEdgeDraft` gained `confidence` /
+  `confidenceSource`; `ReviewItemKind` gained `inferred_prerequisite_proposal`; new
+  `CONFIDENCE_DEFAULTS`.
+- `src/lib/research-os/ingest/academy.ts`: every `requires` edge writes `confidence:
+  1.0, confidenceSource: "academy_requires"`.
+- `src/lib/research-os/ingest/canon.ts`: every `cites` / `derives_from` edge writes
+  `confidence: 0.9, confidenceSource: "canon_map"`.
+- `scripts/research-os/ingest/academy-import.ts`, `.../canon-import.ts`: the
+  Supabase upsert now carries `confidence` / `confidence_source`.
+- `scripts/research-os/ingest/canon-atom-map.json` (item 4): three of the four
+  `unmatched_derives_from` review items resolved by hand, `bell-theorem` ->
+  `quantum-entanglement`, `quantum-field-theory` -> `qft-idea`, `quantum-mechanics` ->
+  `wavefunction`. `gauge-principle` stays on the review list; no Academy atom covers
+  gauge invariance or Yang-Mills theory.
+- `scripts/research-os/ingest/test-ingest-canon.ts`: the real-dossier assertion
+  updated from 4-unmatched to the new 5-matched/1-unmatched split.
+- `scripts/research-os/ingest/out/sample-canon-preview.json`,
+  `sample-review-list.json`, `sample-academy-preview.json`: regenerated against the
+  new real output (7 canon edges, 1 review item, confidence fields on every edge).
+- `package.json`: `test:research-os` runs the two new test files; new
+  `ingest:research-os:infer` script.
+- `.gitignore`, `learning/research-os/INGESTION.md`: the new sample file and the new
+  dry-run numbers.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (117/117
+pass, 8 new confidence-routing tests plus 15 new inference tests, every pre-existing
+research-os test file green with no assertion loosened beyond the two the real-dossier
+count required), `next lint` on every touched file, `agf-lint-voice-src check` /
+`agf-lint-voice check` on every touched file/doc: all clean. Dry run: Academy importer
+unchanged (487 nodes, 820 edges, 0 review items); canon importer now 7 edges (2 cites,
+5 derives_from) and 1 review item (was 4 edges, 4 review items); offline inference
+scans 517 nodes across 8 branches and proposes 36 edges, confidence 0.3-0.65, none
+applied.
+
 ## Iteration 10
 
 Date 2026-09-10. Branch `feat/ros-canon-ingest`, worktree `wt-ingest`. Numbered

@@ -1,5 +1,30 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, confidence-weighted routing, edge flags, offline edge inference (ros-03)
+
+Branch `feat/ros-03-confidence-routing`. Full account:
+`learning/research-os/CHANGE-LEDGER.md`'s "Iteration 11" entry and
+`learning/research-os/ROUTING.md`.
+
+Shipped: `graph.edges.confidence` / `confidence_source`, backfilled by every
+importer (`seed` and `academy_requires` at 1.0, `canon_map` at 0.9);
+`graph.prereq_ancestor.min_confidence`. `computeFrontier`'s backward walk
+(`src/lib/research-os/frontier.ts`) is now a confidence-weighted Dijkstra
+variant, preferring the highest-confidence chain to a target and returning
+`lowConfidenceFlags` for any edge on the chain below 0.6, exactly reproducing
+the prior shortest-hop result when every edge carries the default
+confidence. `GET /api/research-os/route` returns the flags and writes them
+to a new `graph.edge_flags` table for a signed-in learner. A new offline,
+no-model edge-inference pass (`scripts/research-os/ingest/infer-edges.ts`,
+`src/lib/research-os/ingest/infer.ts`) proposes 36 `prerequisite` edges from
+lexical overlap and tier ordering across the 517-node combined graph,
+confidence 0.3 to 0.65, all landing on the review list, none applied.
+`scripts/research-os/ingest/canon-atom-map.json` gained three explicit
+mappings, resolving `bell-theorem`, `quantum-field-theory`, and
+`quantum-mechanics` from the prior pass's four unmatched entries;
+`gauge-principle` stays unmatched, no Academy atom covers it. 23 new unit
+tests; 117/117 passing across the full `test:research-os` suite.
+
 ## 2026-09-10, canon and Academy corpus ingestion
 
 Branch `feat/ros-canon-ingest`. Two ingestion importers that grow the Research
