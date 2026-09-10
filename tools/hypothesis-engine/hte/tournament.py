@@ -24,13 +24,31 @@ Critic = Callable[[Hypothesis, dict], dict]
 _ELO_BASE = 1500.0
 _ELO_SCALE = 400.0
 _ELO_DIVISOR = 400.0
-_LOGIT_EPS = 1e-9
+
+# `_logit`'s own clamp band. An earlier draft clamped only at the literal
+# probability boundary (`eps = 1e-9`, guarding against `logit(0)`/`logit(1)`
+# raising or returning infinity), which left every ordinary survivor's
+# seed unclamped: a hypothesis the tournament kept for its own high
+# disbelief (`main.tex`'s own worked examples reach `d >= 0.9`, `P` in
+# the low hundredths) seeded a large *negative* Elo, confirmed on a
+# live quantum-history run (`P = 0.0220` seeded
+# `Elo0 = -18.2`, unreadable as a rating and, worse, indistinguishable in
+# sign from a data error). Widening the clamp to `0.03` instead of `1e-9`
+# keeps the seed's own worst case positive: at `P = eps`,
+# `logit(eps) = ln(eps/(1-eps)) ~= -3.48`, so `Elo0 = 1500 + 400*(-3.48)
+# ~= 110`; at `P = 1 - eps`, `Elo0 ~= 2890`. Every `P` inside `(eps, 1-eps)`
+# (ordinary belief, `0.03` to `0.97`) still seeds the exact unclamped
+# `1500 + 400*logit(P)` value; only the two tails, `P` closer to total
+# disbelief or total belief than that, get pulled in to the guaranteed-
+# positive floor or ceiling.
+_LOGIT_EPS = 0.03
 
 
 def _logit(p: float) -> float:
-    """`ln(p / (1 - p))`, clamped to `[eps, 1 - eps]` first so a
-    projected posterior of exactly `0.0` or `1.0` seeds a large, finite
-    Elo rating instead of raising or returning an infinity."""
+    """`ln(p / (1 - p))`, clamped to `[_LOGIT_EPS, 1 - _LOGIT_EPS]` first:
+    a projected posterior at or past that band seeds the floor or
+    ceiling Elo the module docstring above works out, instead of an
+    unbounded (and, at the low end, negative) rating."""
     p = min(max(p, _LOGIT_EPS), 1.0 - _LOGIT_EPS)
     return math.log(p / (1.0 - p))
 

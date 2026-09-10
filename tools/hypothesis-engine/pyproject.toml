@@ -12,6 +12,7 @@ dependencies = []
 [project.scripts]
 hte = "hte.cli:main"
 hte-pipeline = "hte.cli_pipeline:main"
+hte-synth = "hte.cli_synth:main"
 
 [tool.setuptools.packages.find]
 include = ["hte", "hte.*"]

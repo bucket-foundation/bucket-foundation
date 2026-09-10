@@ -79,6 +79,27 @@ def test_run_unopined_hypothesis_seeds_at_neutral_elo():
     assert elos[h.address] == pytest.approx(1500.0)
 
 
+def test_run_seeds_a_positive_readable_elo_at_extreme_disbelief():
+    # A survivor kept for its own high disbelief (main.tex's own worked
+    # examples reach d>=0.9) projects a P near zero; the unclamped
+    # affine map (base 1500, scale 400) would seed a large negative
+    # rating there (confirmed on a live run: P=0.022 seeded Elo0=-18.2).
+    # The widened clamp guarantees a positive floor instead.
+    vocab = _small_vocab()
+    h = _hypothesis(vocab, "aliens", "tech")
+    opinions = {h.address: Opinion(b=0.0, d=0.97, u=0.03, a=0.1)}  # P ~= 0.003
+    elos = run([h], opinions, _null_judge, rounds=0)
+    assert elos[h.address] > 0.0
+
+
+def test_run_seeds_a_bounded_ceiling_at_extreme_belief():
+    vocab = _small_vocab()
+    h = _hypothesis(vocab, "farmers", "labor")
+    opinions = {h.address: Opinion(b=0.999999, d=0.0, u=0.000001, a=0.9)}  # P ~= 1.0
+    elos = run([h], opinions, _null_judge, rounds=0)
+    assert 0.0 < elos[h.address] < 3500.0
+
+
 def test_run_odd_population_gives_the_last_hypothesis_a_bye():
     vocab = _small_vocab()
     hyps = [

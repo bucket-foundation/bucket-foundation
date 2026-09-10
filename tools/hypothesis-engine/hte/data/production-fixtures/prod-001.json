@@ -1,0 +1,62 @@
+{
+  "id": "prod-001",
+  "created_at": "2026-02-10T00:00:00Z",
+  "author_role": "student",
+  "grade_band": "6-8",
+  "school_or_district_id": "district-a",
+  "research_question": "RQ19: does a reviewed production's detectability and tier move the engine's ranked hypotheses in a calibrated direction?",
+  "claims": [
+    {
+      "text": "A reviewed classroom production that adds independent corroboration to an existing engine hypothesis should raise that hypothesis's assigned tier rather than its ranking alone.",
+      "stance": "supports",
+      "slots": {
+        "actor": "student-researcher",
+        "action": "raised",
+        "object": "tier-assignment",
+        "place": "classroom-workspace",
+        "mechanism": null
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-hte-self-report-2026-02",
+          "locator": "self-report.json:calibration_summary",
+          "quote": "The campaign's own self-report logged a calibration summary noting that a corroborating T2 item raises a hypothesis's tier reading before it moves that hypothesis's Elo rank.",
+          "kind": "model_prior",
+          "tier": "T3",
+          "citations": [
+            {
+              "type": "feed402_envelope",
+              "value": "env-hte-fixture-2026-02-10"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "accepted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2026-02-10"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2026-02-17"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2026-02-24"
+      },
+      {
+        "status": "accepted",
+        "date": "2026-03-02"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}

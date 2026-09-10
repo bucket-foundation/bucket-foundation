@@ -180,17 +180,69 @@ def run_holdout(
 
     brier = brier_score([p["predicted"] for p in predictions], [p["observed"] for p in predictions])
     n_holdout = len(post_events)
+    coverage_of_truth = (n_covered / n_holdout) if n_holdout else None
     return {
         "cutoff_years": cutoff_years,
         "match_threshold": match_threshold,
         "n_holdout_events": n_holdout,
         "n_covered_events": n_covered,
-        "coverage_of_truth": (n_covered / n_holdout) if n_holdout else None,
+        "coverage_of_truth": coverage_of_truth,
+        "coverage_note": _low_coverage_note(corpus, n_covered, n_holdout, coverage_of_truth),
         "brier_score": brier,
         "calibration_curve": calibration_curve(predictions, n_bins=n_bins),
         "predictions": predictions,
         "constants": {"W": constants.W, "lam": constants.lam},
     }
+
+
+_LOW_COVERAGE_THRESHOLD = 0.5
+
+
+def _low_coverage_note(
+    corpus: Corpus, n_covered: int, n_holdout: int, coverage_of_truth: float | None,
+) -> str | None:
+    """A one-paragraph explanation for a low or zero `coverage_of_truth`,
+    written into `CALIBRATION.md` rather than left for a reader to guess
+    at why (`bkt-hte-holdout`'s own transparency requirement: a number
+    this surprising needs a stated cause). `None` when coverage clears
+    `_LOW_COVERAGE_THRESHOLD`, since nothing needs explaining at that
+    point.
+
+    The stated cause is structural. `main.tex` §9's holdout design
+    assumes a discovery date can lag an event's own date, so pre-cutoff
+    evidence about an event that *happened* early but was only
+    *discovered* late can already cover a held-out event dated after it.
+    Every ground-truth event this package ships instead sets
+    `discovery_year == year` (`README.md`'s own documented
+    simplification, true of both shipped corpora); with discovery and
+    occurrence collapsed to the same instant, a candidate built from
+    pre-cutoff evidence can never contain a post-cutoff event's own year,
+    so a corpus of one-off historical milestones (this one: 105 distinct
+    actor/action/object combinations across 16 cards) has little to be
+    covered by, independent of how many hypotheses generation produces.
+    """
+    if n_holdout == 0 or coverage_of_truth is None or coverage_of_truth >= _LOW_COVERAGE_THRESHOLD:
+        return None
+    same_year = sum(1 for g in corpus.ground_truth if g.discovery_year == g.year)
+    return (
+        f"{n_covered} of {n_holdout} held-out events matched a pre-cutoff placement "
+        f"(coverage of truth {coverage_of_truth:.3f}). This is a structural property of "
+        "the corpus: main.tex's own holdout design assumes a discovery date can lag "
+        "an event's own date, so pre-cutoff evidence about an "
+        "early-occurring, late-discovered event can already cover a later-dated held-out "
+        f"event. {same_year} of this corpus's {len(corpus.ground_truth)} ground-truth events "
+        "instead carry discovery_year == year (README.md's own documented simplification), "
+        "so a pre-cutoff candidate's own interval can never reach a post-cutoff event's own "
+        "year. Coverage rises only when an earlier item already names the same actor, "
+        "action, object, place, and mechanism a later event does, at an interval that "
+        "reaches the later event's own date; a handful of actors do recur across this "
+        "corpus's own cards (IBM Quantum, Feynman and Deutsch, Peter Shor among them), but "
+        "each recurrence differs on object or mechanism too (a different result by the same "
+        "team), so the exact five-slot match this holdout requires stays rare. Raising "
+        "generation coverage (more hypotheses on the frontier) does not move this number: "
+        "`run_holdout` builds its own candidates directly from `corpus.evidence`, "
+        "independent of `hte.generate`'s own population."
+    )
 
 
 def brier_score(predictions: Sequence[float], outcomes: Sequence[float]) -> float | None:
@@ -287,7 +339,11 @@ def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
     """Writes `result` (`run_holdout`'s own return shape, optionally with
     a `"fit"` key holding `fit_constants`'s own output) to
     `out_dir/calibration.json` and a human-readable `out_dir/
-    CALIBRATION.md`."""
+    CALIBRATION.md`. When `result["coverage_note"]` is set
+    (`_low_coverage_note`, low or zero `coverage_of_truth`),
+    `CALIBRATION.md` carries it under its own "Why coverage is low"
+    heading rather than reporting the bare number with no explanation.
+    """
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     (out / "calibration.json").write_text(json.dumps(result, indent=2))
@@ -301,6 +357,11 @@ def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
         f"(coverage of truth: {result.get('coverage_of_truth')})",
         f"Brier score: {result.get('brier_score')}",
         "",
+    ]
+    note = result.get("coverage_note")
+    if note:
+        lines += ["## Why coverage is low", "", note, ""]
+    lines += [
         "## Calibration curve",
         "",
         "| Bin | Count | Mean predicted | Mean observed |",

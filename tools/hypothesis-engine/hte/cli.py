@@ -22,8 +22,16 @@ _CORPUS_LOADERS = {
 
 
 def _cmd_campaign_run(args: argparse.Namespace) -> int:
+    # `--campaign` defaults to `None` (`build_parser`'s own default), read
+    # here as "name this campaign after its own corpus": a `runs/default/`
+    # folder gave no hint which corpus a stray run directory came from
+    # once more than one corpus had ever been run, and every campaign
+    # this package ships runs exactly one corpus for its whole life, so
+    # the corpus name is already the campaign's own natural identity.
+    # `--campaign` still overrides it for a caller running the same
+    # corpus under two named campaigns side by side.
     config = {
-        "campaign": args.campaign,
+        "campaign": args.campaign or args.corpus,
         "corpus": args.corpus,
         "out_dir": args.out,
         "replay_only": args.replay_only,
@@ -93,7 +101,7 @@ def build_parser() -> argparse.ArgumentParser:
     run_p = campaign_sub.add_parser("run", help="run one campaign end to end")
     run_p.add_argument("--corpus", default="quantum-history", choices=sorted(_CORPUS_LOADERS))
     run_p.add_argument("--out", default="runs")
-    run_p.add_argument("--campaign", default="default")
+    run_p.add_argument("--campaign", default=None, help="default: the corpus name (--corpus)")
     run_p.add_argument("--cache-dir", default=None)
     run_p.add_argument("--replay-only", action="store_true")
     run_p.add_argument("--seeds", type=int, default=3)

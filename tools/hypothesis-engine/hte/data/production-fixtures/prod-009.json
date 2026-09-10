@@ -1,0 +1,62 @@
+{
+  "id": "prod-009",
+  "created_at": "2026-04-01T00:00:00Z",
+  "author_role": "teacher",
+  "grade_band": "6-8",
+  "school_or_district_id": "district-b",
+  "research_question": "RQ22: does isolated-quote checking overcredit cherry-picked spans compared with full-document-context checking?",
+  "claims": [
+    {
+      "text": "A teacher-run full-document check on the same quotes this class submitted overturned two isolated-quote 'supported' verdicts into 'contradicted'.",
+      "stance": "refutes",
+      "slots": {
+        "actor": "teacher-reviewer",
+        "action": "contradicted",
+        "object": "check-verdict",
+        "place": "review-session",
+        "mechanism": "context-window-scope"
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-lit-wadden-2022",
+          "locator": "section:4.1",
+          "quote": "Full-document context reversed a meaningful share of isolated-quote verification labels in our own re-check.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "url",
+              "value": "https://arxiv.org/abs/2112.01640"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "accepted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2026-04-01"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2026-04-08"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2026-04-15"
+      },
+      {
+        "status": "accepted",
+        "date": "2026-04-22"
+      }
+    ]
+  },
+  "provenance": "phase-0-education-atlas-pilot"
+}

@@ -61,10 +61,22 @@ _WORD_RE = re.compile(r"[a-z0-9]+")
 # Stopwords excluded from the word-overlap match below: generic enough
 # (an article, a conjunction, a preposition) that sharing one with a
 # vocabulary label says nothing about whether a bullet names that
-# concept.
+# concept. `"quantum"` joins this list for a domain-specific reason
+# rather than a grammatical one: this corpus is a history of quantum
+# physics, so nearly every bullet contains the word, and a short label
+# built from it (`"IBM Quantum"`, two content words) cleared
+# `_SLOT_MATCH_MIN_SCORE` against bullets naming Yuri Manin, Wootters
+# and Zurek, and other actors with no connection to IBM at all, purely
+# because both the bullet and the label say "quantum" (confirmed empirically:
+# `_best_concept_match` was attaching `ibm-quantum` to more than a
+# third of this corpus's pre-1993 milestone bullets before this fix).
+# A word this common across both a corpus's own bullets and its own
+# vocabulary labels carries the same zero discriminative signal a
+# grammatical stopword does, for this corpus's own domain.
 _STOPWORDS = frozenset({
     "a", "an", "the", "and", "or", "of", "in", "on", "at", "to", "for",
     "with", "by", "its", "is", "was", "are", "were", "be", "as", "that",
+    "quantum",
 })
 
 # The word-overlap fraction (of a label's own content words found in the

@@ -191,3 +191,62 @@ def test_write_calibration_produces_files(tmp_path):
     assert "Brier score" in md
     assert "Held-out events" in md
     assert "confirm" in md
+
+
+# --------------------------------------------------------------------------
+# coverage_note: a stated explanation when coverage_of_truth is low
+# --------------------------------------------------------------------------
+
+
+def _zero_coverage_corpus() -> Corpus:
+    """A corpus with exactly one held-out event, dated well after cutoff,
+    naming an actor no pre-cutoff evidence ever names: `coverage_of_truth`
+    comes out `0.0`, the same structural shape (`discovery_year == year`
+    for every event, no actor recurrence across the cutoff) the shipped
+    quantum-history corpus has at scale."""
+    vocab = _calib_vocab()
+    evidence = [
+        EvidenceItem(id="planck-early", kind=EvidenceKind.TEXTUAL, tier=Tier.T1, source_id="doc-1",
+                     span=_span("doc-1"), provenance="test",
+                     interval=Interval(1895, 1905), **_PLANCK_SLOTS),
+        EvidenceItem(id="uncovered", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-5",
+                     span=_span("doc-5"), provenance="test",
+                     actor="einstein", action="proposed", object="relativity", place="zurich",
+                     mechanism="relativity-mech"),
+    ]
+    ground_truth = [
+        GroundTruthEvent(id="planck-early", label="Planck's own account", year=1900, doc_id="doc-1", discovery_year=1900),
+        GroundTruthEvent(id="uncovered", label="An unrelated later event", year=1980, doc_id="doc-5", discovery_year=1980),
+    ]
+    return Corpus(sources={}, evidence=evidence, ground_truth=ground_truth, provenance=[], vocab=vocab)
+
+
+def test_low_coverage_note_present_and_explains_discovery_year():
+    corpus = _zero_coverage_corpus()
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910)
+    assert result["coverage_of_truth"] == 0.0
+    assert result["coverage_note"] is not None
+    assert "discovery_year" in result["coverage_note"]
+
+
+def test_high_coverage_has_no_note():
+    corpus = _calib_corpus()
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910)
+    assert result["coverage_of_truth"] >= 0.5
+    assert result["coverage_note"] is None
+
+
+def test_write_calibration_includes_why_coverage_is_low_when_present(tmp_path):
+    corpus = _zero_coverage_corpus()
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910)
+    calibrate.write_calibration(result, tmp_path)
+    md = (tmp_path / "CALIBRATION.md").read_text()
+    assert "## Why coverage is low" in md
+
+
+def test_write_calibration_omits_the_heading_when_coverage_is_high(tmp_path):
+    corpus = _calib_corpus()
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910)
+    calibrate.write_calibration(result, tmp_path)
+    md = (tmp_path / "CALIBRATION.md").read_text()
+    assert "## Why coverage is low" not in md

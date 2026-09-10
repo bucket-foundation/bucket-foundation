@@ -26,7 +26,7 @@ from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
 from .corpus import fixtures as fixtures_corpus
 from .evidence import EvidenceItem
-from .generate import enumerate_placements, from_evidence
+from .generate import combinatorial_sample, from_evidence
 from .hypothesis import Hypothesis
 from .timeline import Interval, Resolution, RESOLUTION_WIDTH_YEARS, auto_resolution, bin_bounds, bin_label
 
@@ -37,13 +37,31 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "cache_dir": None,           # defaults to <out_dir>/_llm-cache
     "replay_only": False,
     "seeds": 3,
-    "generate_n": 5,
+    # Raised from 5/20/40 (`bkt-hte-evidence-slots`'s own coverage fix):
+    # once `hte.generate.from_evidence` builds a placement per evidence
+    # item's own extracted slots instead of only per already-linked
+    # address, a corpus this package's size (16 sources, 161 evidence
+    # items, 105 ground-truth events) generates thousands of distinct
+    # addresses; a `max_hypotheses` still in the tens kept only the
+    # lowest few dozen by raw address value, which this address scheme's
+    # own TIME_BIN prime (`hte.address.PRIMES[4] == 11`, the fastest-
+    # growing factor in the whole product) reads as "the earliest
+    # century bin with any hypothesis at all," collapsing the kept
+    # population onto one seed. 400 clears every one of this corpus's 13
+    # decade bins with real depth in most of them (empirically checked
+    # against the shipped quantum-history corpus, `bkt-hte-evidence-
+    # slots`'s own regression note).
+    "generate_n": 20,
     "generate_evidence_sample": 8,
-    "combinatorial_max_items": 20,
-    "max_hypotheses": 40,
+    "combinatorial_max_items": 150,
+    "max_hypotheses": 400,
     "tournament_rounds": 2,
     "top_k": 5,
-    "max_time_bins": 4,
+    # Raised from 4 for the same reason: a strided 4-bin sample was
+    # built for `hte.address`'s own archaeological-scale span and hides
+    # most of a corpus whose own ground truth now spans 13 decade bins
+    # once generation reaches all of them.
+    "max_time_bins": 20,
     "cutoff_years": None,        # defaults to the corpus's own median ground-truth year
     "run_calibration": True,
     "run_extraction": True,
@@ -287,10 +305,10 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     by_address: dict[int, Hypothesis] = {h.address: h for h in llm_hypotheses}
     run_counts: list[dict[int, int]] = []
     for seed in range(cfg["seeds"]):
-        combinatorial = list(enumerate_placements(
-            corpus.vocab, time_bins, max_items=cfg["combinatorial_max_items"],
+        combinatorial = combinatorial_sample(
+            corpus.vocab, time_bins, max_items=cfg["combinatorial_max_items"], seed=seed,
             span_start=span_start, bin_width=bin_width,
-        ))
+        )
         evidence_driven = from_evidence(
             corpus.evidence, corpus.vocab, resolution, seed=seed,
             span_start=span_start, bin_width=bin_width,
@@ -373,8 +391,13 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     logger.log(f"self-report: missing_mass_estimate={self_report.get('missing_mass_estimate')} target_blind_steady={self_report.get('target_blind_steady')}")
 
     bin_labels = {tbin: bin_label(span_start + tbin * bin_width, resolution) for tbin in time_bins}
+    # `cfg["top_k"]` is a display-pruning knob for a population much larger
+    # than the critic-filtered survivor set; a run's own timeline view
+    # should list every surviving hypothesis in each bin it landed in
+    # rather than silently dropping survivors below an unrelated default,
+    # so the floor here is the survivor count itself.
     views = export.timeline_views(
-        survivors, opinions, elos, time_bins, top_k=cfg["top_k"],
+        survivors, opinions, elos, time_bins, top_k=max(cfg["top_k"], len(survivors)),
         span_start=span_start, bin_width=bin_width, bin_labels=bin_labels,
     )
     export.write_views(views, run_dir)

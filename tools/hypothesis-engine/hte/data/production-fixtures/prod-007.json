@@ -1,0 +1,62 @@
+{
+  "id": "prod-007",
+  "created_at": "2026-06-25T00:00:00Z",
+  "author_role": "student",
+  "grade_band": "9-10",
+  "school_or_district_id": "district-b",
+  "research_question": "RQ26: which frontier nodes attract student routing over time, and does the generator's own question set track that traffic?",
+  "claims": [
+    {
+      "text": "The frontier nodes this cohort's own routing traffic concentrated on were the same ones the engine's generator later proposed the most new hypotheses against, so the generator tracked routed traffic rather than working ahead of it.",
+      "stance": "supports",
+      "slots": {
+        "actor": "student-researcher",
+        "action": "converged",
+        "object": "routing-traffic",
+        "place": "classroom-workspace",
+        "mechanism": null
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-lit-messeri-crockett-2024",
+          "locator": "discussion",
+          "quote": "AI tools risk an illusion of exploratory breadth if they narrow rather than track where researchers already look.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "doi",
+              "value": "10.1038/s41586-024-07146-0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "accepted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2026-06-25"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2026-07-02"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2026-07-09"
+      },
+      {
+        "status": "accepted",
+        "date": "2026-07-16"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}

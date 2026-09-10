@@ -55,7 +55,7 @@ def test_evidence_item_slots_roundtrip():
     item = EvidenceItem(
         id="ev-3", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="src-1",
         span=_span(), provenance="manual",
-        actor="planck-1900", action="proposed", object="blackbody-spectrum",
+        actor="planck", action="proposed", object="blackbody-spectrum",
         place="solvay-brussels", mechanism="quantization",
         interval=Interval(start=1900, end=1900), stance=Stance.NEGATIVE,
     )

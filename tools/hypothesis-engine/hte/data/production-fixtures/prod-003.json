@@ -1,0 +1,58 @@
+{
+  "id": "prod-003",
+  "created_at": "2026-03-05T00:00:00Z",
+  "author_role": "teacher",
+  "grade_band": "11-12",
+  "school_or_district_id": "district-b",
+  "research_question": "RQ22: does isolated-quote checking overcredit cherry-picked spans compared with full-document-context checking?",
+  "claims": [
+    {
+      "text": "Checking a quoted span against its full source document, not the isolated quote alone, changes whether a claim reads as supported.",
+      "stance": "supports",
+      "slots": {
+        "actor": "teacher-reviewer",
+        "action": "corroborated",
+        "object": "check-verdict",
+        "place": "review-session",
+        "mechanism": "context-window-scope"
+      },
+      "interval": {
+        "start": 2025,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-lit-wadden-2022",
+          "locator": "section:3.2",
+          "quote": "Verification judgments shift between isolated-quote and full-document-context conditions.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "url",
+              "value": "https://arxiv.org/abs/2112.01640"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "teacher-reviewed",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2026-03-05"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2026-03-12"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2026-03-19"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}

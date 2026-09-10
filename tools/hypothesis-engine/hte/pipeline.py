@@ -84,6 +84,18 @@ def _skipped_stage(name: str, stage_dir: Path, reason: str) -> StageResult:
     return result
 
 
+def _failed_stage(name: str, stage_dir: Path, reason: str) -> StageResult:
+    """A stage that did not run because its own precondition failed,
+    distinct from `_skipped_stage`'s intentional, non-failing skip
+    (FINDING-2026-09-10-005, `tests/swarm/FINDINGS-2026-09-10.md`): `ok`
+    reads `False` here, so this stage's failure is never laundered into
+    `run_pipeline`'s own `all(s.ok for s in stages.values())` outcome
+    check the way a deliberate `_skipped_stage` skip is by design."""
+    result = StageResult(name=name, ran=False, ok=False, seconds=0.0, error=reason)
+    _write_stage_json(stage_dir, result)
+    return result
+
+
 def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
     """Runs the whole pipeline once and returns `{"pipeline_dir",
     "stages", "run_dir", "paper_dir", "outcome"}`. `config` overrides
@@ -109,6 +121,25 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
     stages: dict[str, StageResult] = {}
     run_dir: Path | None = Path(cfg["from_run"]) if cfg["from_run"] else None
     campaign_name = cfg["campaign"] or cfg["corpus"]
+
+    # FINDING-2026-09-10-005/006 (`tests/swarm/FINDINGS-2026-09-10.md`): a
+    # `from_run` that was given but names a missing or malformed run
+    # directory (no `MANIFEST.json`) is a real, actionable failure, not
+    # the same "nothing to do" shape as `from_run` never being given at
+    # all. `from_run_error` names precisely which of those two ways it
+    # failed, quoting the actual path, so `emit_paper` below can fail
+    # loudly instead of reusing the generic "from_run was not given"
+    # skip reason for a `from_run` that WAS given.
+    from_run_error: str | None = None
+    if cfg["from_run"]:
+        from_run_dir = Path(cfg["from_run"])
+        if not from_run_dir.is_dir():
+            from_run_error = f"from_run={cfg['from_run']!r} does not exist or is not a directory"
+        elif not (from_run_dir / "MANIFEST.json").is_file():
+            from_run_error = (
+                f"from_run={cfg['from_run']!r} exists but has no MANIFEST.json "
+                "(not a usable campaign run directory)"
+            )
 
     if cfg["from_run"]:
         stages["choose_period"] = _skipped_stage(
@@ -147,7 +178,12 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
         stages["run_campaign"] = _time_stage("run_campaign", pipeline_dir / "run_campaign", _run_campaign)
 
     paper_dir = pipeline_dir / "paper"
-    if run_dir is None or not (Path(run_dir) / "MANIFEST.json").is_file():
+    if from_run_error is not None:
+        stages["emit_paper"] = _failed_stage("emit_paper", pipeline_dir / "emit_paper", from_run_error)
+        reason = f"emit_paper failed: {from_run_error}"
+        stages["referee"] = _skipped_stage("referee", pipeline_dir / "referee", reason)
+        stages["publish"] = _skipped_stage("publish", pipeline_dir / "publish", reason)
+    elif run_dir is None or not (Path(run_dir) / "MANIFEST.json").is_file():
         reason = "no usable run directory: from_run was not given and run_campaign did not produce one"
         stages["emit_paper"] = _skipped_stage("emit_paper", pipeline_dir / "emit_paper", reason)
         stages["referee"] = _skipped_stage("referee", pipeline_dir / "referee", reason)
@@ -171,7 +207,16 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
                 lambda: publish_mod.publish(run_dir, paper_dir, dry_run=cfg["dry_run"]),
             )
 
-    outcome = "ok" if all(s.ok for s in stages.values()) else "failed"
+    if all(s.ok for s in stages.values()):
+        outcome = "ok"
+    elif from_run_error is not None:
+        # A bad from_run is a configuration error caught before any stage
+        # ran, its own distinct outcome value from "failed" (a stage that
+        # ran and raised), so a caller who typos --from-run gets a loud,
+        # distinguishable outcome (FINDING-2026-09-10-005b).
+        outcome = "error"
+    else:
+        outcome = "failed"
     summary = {
         "pipeline_dir": str(pipeline_dir),
         "timestamp": timestamp,
