@@ -1,5 +1,78 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #38 review pass
+
+Review of `intake(research-os): literature batch three` (PR #38) in worktree
+`.ros-worktrees/r38`, content-only. Leak scan against the full diff's added lines
+found no API keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Eight of
+the 35 new cards picked at random (Novak 1990, Hestenes/Wells/Swackhamer 1992,
+Shneiderman 2020, Bucinca/Malaya/Gajos 2021, Chi and colleagues 1989, Molenaar 2022,
+Bansal and colleagues 2021, Schwartz/Chase/Bransford 2012) and their DOI checked live
+against Crossref: title, authors, and year matched frontmatter exactly on all eight,
+no mismatch found. The two "closest verified match" replacement cards (Alzetta and
+colleagues 2018, Valdez, Roldan, and Masuli 2025) did not label themselves as
+replacements in their own `why_it_matters` field, unlike the precedent this corpus
+already set on `unesco-2025-generative-ai-foundational-learning-sub-saharan-africa.md`;
+fixed by appending a sentence to each naming the unresolved task-brief paper it
+stands in for. README index row count (117) confirmed exact against the corpus file
+count; both docs' "Evidence added in batch three" paragraphs confirmed present under
+the claimed open questions, and every card path either doc names confirmed to exist
+on disk. No blockquote or long verbatim excerpt found in any new card; `key_claims`
+entries are quoted YAML strings holding the card author's own paraphrase, not source
+text. `agf-lint-voice check` scanned zero of the 40 changed files (the pass's own
+`_intake` ignore-list gap, already logged in Iteration 17); a grep-based self-audit
+for banned words, filler adverbs, AI-tell vocabulary, antithesis, and em/en dashes
+against every added line found no hit, including on the two fixed cards. Confirmed
+`origin/main` already merged into the branch (no further merge needed) and no file
+under `src/` or `public/` touched; `npm ci` and `npm run build` both clean. Merged.
+
+## 2026-09-10: literature batch three
+
+Branch `intake/ros-literature-3`. Task: 25 to 35 new DOI- or ISBN-verified papers
+targeted at the gaps `LEARNER-STATE-MODEL.md` section 5 and the overlap map's twelve
+questions leave open: understanding and internalization measurement, curiosity and
+interest as routing signals, teacher workload and adoption of edtech, division of
+cognitive labor and mixed-initiative research tools, and prerequisite-graph and
+concept-map validity. Full per-area breakdown and per-question evidence mapping
+recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 17.
+
+### Added
+
+- 35 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md` Iteration 17; corpus total rises from 82 to
+  117 papers.
+- `_intake/research-os-k12-literature/teacher-workload-adoption/`: new sixth branch,
+  seven files on adoption barriers, coaching, dashboards, and teacher trust.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 117 rows, six
+  areas.
+- `learning/research-os/LEARNER-STATE-MODEL.md`: six of the seven OPEN questions in
+  section 5 gained an "Evidence added in batch three" paragraph.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: eight of the
+  twelve open questions gained an "Evidence added in batch three" paragraph.
+
+### Verified Clean
+
+- Every DOI or ISBN and OpenAlex work id checked live via WebFetch at intake time.
+- Two candidate papers named in the task brief were searched for and omitted for lack
+  of a resolvable DOI matching the brief exactly: a 2019 Adorni-authored
+  prerequisite-graph paper (a verified 2018 Adorni paper, Alzetta and colleagues, was
+  used in its place) and an Open Syllabus Project curriculum-mining paper (Valdez,
+  Roldan, and Masuli 2025 was used as the closest verified match).
+- No blockquote or extended verbatim passage from any source paper; all `key_claims`
+  and body text are paraphrase.
+- A grep-based self-audit for the voice rules ran against every file this pass
+  authored or edited, since `agf-lint-voice check` scans zero files under any path
+  containing an `_intake` segment (an org-level ignore-list gap affecting the whole
+  corpus, predating this pass); every flagged instance was rewritten before commit.
+
+### Removed
+
+None.
+
 ## 2026-09-10, PR #34 review pass
 
 Review of `docs/ros-08-preregistration` (PR #34) in worktree `.ros-worktrees/r34`, docs-only,
@@ -234,6 +307,7 @@ all clean. No other defect found; approve sets `accepted` and advances the evide
 exactly once per call (the route's own 409-on-non-`submitted` guard makes a double approve
 a no-op past the first, and `writeProductionOutbox` upserts on `id`), return sets `draft`
 without regressing `stage`, and non-reviewers get 403 on both the class and review routes.
+
 ## 2026-09-10, PR #27 review pass
 
 Review of `feat/ros-03-confidence-routing` (PR #27) in worktree `.ros-worktrees/r27`. Leak
