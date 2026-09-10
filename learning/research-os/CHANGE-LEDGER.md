@@ -1155,3 +1155,122 @@ os/privacy` both present in the route manifest), `npm run test:research-os` (171
 failures, `class_members` fixture rows added to the privacy test's own store), `next lint`
 on every touched file. `agf-lint-voice check`/`agf-lint-voice-src check` clean after one more
 manual antithesis rewrite pass on the updated inventory rows and migration comments.
+
+## Iteration 15: ros-08 preregistration packet
+
+Date 2026-09-10. Bead `ros-08`, branch `docs/ros-08-preregistration`, worktree
+`.ros-worktrees/ros08`. Four new files under a new `learning/research-os/study/`
+directory, plus eleven pointer-line appends to `RESEARCH-QUESTIONS.md`. Docs only.
+
+### Added
+
+- `learning/research-os/study/PREREGISTRATION-DRAFT.md`: an OSF-standard-template
+  preregistration draft (Study Information, Design Plan, Sampling Plan, Variables, Analysis
+  Plan, Other, plus a data availability statement), registering six directional, primary
+  hypotheses (H1 through H6) drawn from six of the twelve questions in
+  `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, each sourced to a named RCT or meta-analysis
+  in `_intake/research-os-k12-literature/`, with the six left-out questions named and reasoned
+  against `PLAN-REVISION-1.md` section 4's own Phase-1-versus-district-scale table. A power
+  analysis computes naive and cluster-corrected per-arm sample sizes at three assumed effect
+  sizes (d = 0.3, 0.4, 0.5, sourced to `RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 9 and
+  `04-compliance-distribution.md` section 10's own heuristic) and three illustrative ICC
+  values, finding Phase 1's realistic enrollment underpowered for a confirmatory H1 test and
+  registering Phase 1 explicitly as a feasibility and effect-size-estimation pilot, with the
+  fully powered target held for a Phase 2 extension of this same registration. The template
+  section order is sourced to van 't Veer and Giner-Sorolla (2016), the published source OSF's
+  own template traces to, after nine WebFetch attempts against `osf.io` and its registries
+  pages returned either a client-rendered shell with no template text, a 404, or a paywalled
+  publisher redirect; the file states this verification gap directly and instructs a live-form
+  cross-check before any real OSF submission.
+- `learning/research-os/study/TRANSFER-TASK-BANK.md`: forty-four transfer items, two per node,
+  for every node in the sky-blue seed path (`supabase/seed/research-os-sky-blue.json`, read in
+  full, 22 nodes and 28 edges), each built by an eight-step construction rule (multi-hop
+  requirement, Barnett-and-Ceci near/far transfer tagging, a documented per-node misconception
+  as the distractor source, Bloom-revised process tagging, a stable sealed-pool item id for
+  exposure control) so the rule scales to any future corpus. The three canon-bridge nodes'
+  items are grounded in `learning/app/corpus/02-physics.json`'s own `waves`/`em-waves`/
+  `wave-optics` atom lesson text, read directly rather than assumed from the bridge node's own
+  routing-only summary.
+- `learning/research-os/study/INSTRUMENTS.md`: three pilot instruments not built in the shipped
+  codebase today, each stating what exists to build on and the exact optional schema fields it
+  needs. A retention probe schedule (immediate, 1 week, 8 weeks) reusing `probe.ts`'s due-ness
+  and grading pattern against `TRANSFER-TASK-BANK.md`'s sealed pool rather than repurposing the
+  cold-start-only `probeDue` trigger itself. A metacognitive confidence item fired after every
+  Check result, plus an unrelated-topic confidence probe adapting Fisher, Goddu, and Keil
+  (2015)'s own design, both read against Lee and colleagues (2025)'s confidence-versus-critical-
+  thinking finding. A teacher time-on-review log operationalizing `04-compliance-distribution.md`
+  section 11's "net-save time" adoption bar as a measured outcome against a pre-collected
+  teacher baseline.
+- `learning/research-os/study/IRB-PACKET-OUTLINE.md`: the sections a university IRB submission
+  needs, with consent and assent language drafted for parents, students under 13, students 13
+  to 17, and teachers; a minimal-risk justification naming the two design choices (the active
+  full-chatbot comparison arm, the no-cash-to-minors scope of H3) most likely to draw reviewer
+  questions; a data-governance section separating the operational FERPA school-official basis
+  from the research consent track FERPA's studies exception does not cover; and a conflict-of-
+  interest disclosure naming the two-PI pairing from `PLAN-REVISION-1.md` section 5 as the
+  structural mitigation rather than disclosure alone. States plainly, at both the top and the
+  close, that no IRB approval, partner PI, or partner school exists yet.
+
+### Edited
+
+- `learning/research-os/RESEARCH-QUESTIONS.md`: appended one "Pre-registered as of
+  2026-09-10" pointer line under each of eleven existing numbered questions the
+  preregistration draft's six hypotheses cover (Q2, Q5, Q8, Q11, Q13, Q19, Q22, Q24, Q29,
+  Q30, Q33), each naming the hypothesis and whether it is confirmatory or a moderator/
+  exploratory sub-claim at Phase 1; no existing question line rewritten.
+- `_intake/research-os-k12/CHANGELOG.md`, this iteration's own entry.
+- `learning/research-os/CHANGE-LEDGER.md`, this file: this iteration's own entry.
+- `BEADS-PENDING.jsonl`: appended a `ros-08` status line recording this iteration's outcome.
+
+### Verified
+
+Every effect size and sample-size figure in `PREREGISTRATION-DRAFT.md` traces to a named
+source: the d = 0.4-to-0.5 heuristic and the 60-to-70-per-arm figure to
+`RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 9 and `04-compliance-distribution.md` section 10
+directly (both already in the corpus, quoted rather than re-derived); Bastani and colleagues
+(2025)'s percentage figures read from that paper's own intake card and cited as directional
+support only, since the card carries no standard deviation to convert into a comparable
+Cohen's d; the cluster-correction ICC range stated explicitly as unsourced within this corpus
+and flagged for replacement. `TRANSFER-TASK-BANK.md`'s 22-node, 28-edge count verified against
+a direct Python read of `supabase/seed/research-os-sky-blue.json` rather than assumed from its
+own header comment. `agf-lint-voice check` run to 0 violations on all five touched files
+(`banned`, `adverb`, `antithesis`, `heading`, `meta` all clear; `aitell` and `dash` already
+clear); the antithesis category needed roughly forty hand rewrites across the four new files,
+none auto-fixable. No file under `src/` or `public/` is touched by this pass, so no
+`npm run build` gate applies to it.
+
+## Iteration 16: PR #34 review pass
+
+Date 2026-09-10. Review of `docs/ros-08-preregistration` (PR #34) in worktree
+`.ros-worktrees/r34`, docs-only, methods review.
+
+### Verified
+
+Leak scan against the full diff's added lines: no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
+session URLs. Power analysis recomputed from the stated inputs (d = 0.4, alpha 0.025
+two-sided, power 0.80, two-sample t): naive n-per-arm table (76, 119, 211) confirmed exact
+against the draft's own stated rounded z-values (2.24, 0.84); cluster-correction formula
+(`1 + (m-1)*ICC`) confirmed correct, ICC range confirmed marked unsourced. Every effect size
+traced to a named, existing intake card. `TRANSFER-TASK-BANK.md`'s 22-node, 28-edge count and
+44-item, all-nodes-covered claim reverified by a direct Python read of
+`supabase/seed/research-os-sky-blue.json`. Every hypothesis's primary outcome variable
+confirmed mapped to an `EVIDENCE-SCHEMA.md` field, a named schema gap, or a transfer-bank
+item. `RESEARCH-QUESTIONS.md`'s eleven pointer lines confirmed append-only. No claim of an
+existing partner school, IRB approval, PI, or host institution found; the founder-as-researcher
+conflict confirmed disclosed. Confirmed no file under `src/` or `public/` touched.
+
+### Fixed
+
+- `learning/research-os/study/PREREGISTRATION-DRAFT.md`: the cluster-corrected sample-size
+  table's ICC = 0.20 row read 690 (119 x 5.8 = 690.2, truncated instead of rounded up to 691,
+  inconsistent with the ceiling convention the ICC = 0.05 and 0.10 rows both used);
+  corrected to 691.
+- `BEADS-PENDING.jsonl`: this PR's own new `ros-08` status line ended "PR opened against main,
+  not merged," an antithesis construction `agf-lint-voice check` flags; rewritten to "PR opened
+  against main, merge pending." The file's other 25 violations predate this PR (confirmed
+  against `origin/main`'s own copy) and are out of this review's scope.
+
+### Result
+
+Merged clean, `review/pr34` branch and worktree removed.

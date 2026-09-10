@@ -45,6 +45,62 @@ new `graph.classes`/`graph.class_members` roster tables and `graph.productions.n
 column folded into the data inventory and the privacy delete function, see the change
 ledger's own "Iteration 15 addendum" for the full account.
 
+## 2026-09-10, PR #34 review pass
+
+Review of `docs/ros-08-preregistration` (PR #34) in worktree `.ros-worktrees/r34`, docs-only,
+as a methods reviewer. Leak scan against the full diff's added lines found no API keys,
+`.env` contents, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`,
+PII, `/home/gian` paths, or Claude session URLs. Power analysis recomputed from the stated
+inputs (d = 0.4, alpha 0.025 two-sided, power 0.80, two-sample t): the naive n-per-arm table
+(76, 119, 211 at d = 0.5, 0.4, 0.3) confirmed exact given the draft's own stated rounded
+z-values (2.24, 0.84); the cluster-corrected table's design-effect formula (`1 + (m-1)*ICC`)
+confirmed correct and the ICC range confirmed marked unsourced, but the ICC = 0.20 row's n
+per arm was off by one (119 x 5.8 = 690.2, needs ceiling to 691, the draft had 690); fixed.
+Every effect size traced to a named, existing intake card; the 22-node, 28-edge transfer-bank
+count reverified by a direct Python read of `supabase/seed/research-os-sky-blue.json`, and the
+44 transfer prompts confirmed covering all 22 seed nodes by slug. Every hypothesis's primary
+outcome variable confirmed mapped to a `src/lib/research-os/EVIDENCE-SCHEMA.md` field, a named
+schema gap, or a `TRANSFER-TASK-BANK.md` item. `RESEARCH-QUESTIONS.md`'s eleven pointer lines
+confirmed append-only (diff carries no removed or rewritten lines). No claim of an existing
+partner school, IRB approval, PI, or host institution found; the founder-as-researcher
+conflict is disclosed in both `PREREGISTRATION-DRAFT.md` and `IRB-PACKET-OUTLINE.md`.
+`agf-lint-voice check` clean on all five core study files; found and fixed one antithesis
+violation this PR's own `BEADS-PENDING.jsonl` line introduced ("not merged" rewritten to
+"merge pending"), the file's other 25 violations pre-existing on `main` and out of this PR's
+scope. Confirmed no file under `src/` or `public/` touched. Merged clean, branch deleted.
+
+## 2026-09-10, ros-08 preregistration packet
+
+Bead `ros-08`, branch `docs/ros-08-preregistration`, worktree `.ros-worktrees/ros08`. Four
+new files under `learning/research-os/study/`: `PREREGISTRATION-DRAFT.md` (six directional,
+OSF-template hypotheses drawn from `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s twelve
+questions, a power analysis with naive and cluster-corrected sample sizes at three assumed
+effect sizes, a variables table mapping every outcome to an `EVIDENCE-SCHEMA.md` field or a
+named schema gap, an analysis plan and a data availability statement), `TRANSFER-TASK-BANK.md`
+(forty-four sealed-pool transfer items, two per node, for all 22 nodes of the sky-blue seed
+path, built by a stated eight-step rule that scales to any corpus), `INSTRUMENTS.md` (a
+retention probe schedule, a metacognitive confidence instrument adapting Fisher, Goddu, and
+Keil 2015's own design, a teacher time-on-review log), and `IRB-PACKET-OUTLINE.md` (submission
+sections, consent and assent drafts for four audiences, a minimal-risk justification, a
+data-governance split between the operational FERPA basis and the research consent track, and
+a founder-as-researcher conflict disclosure built on `PLAN-REVISION-1.md` section 5's two-PI
+pairing). `RESEARCH-QUESTIONS.md` gained eleven "Pre-registered as of 2026-09-10" pointer
+lines under existing questions, no existing line rewritten.
+
+Every effect size and sample size traces to a named source already in this corpus
+(`RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 9, `04-compliance-distribution.md` section 10, and
+the Bastani et al. 2025, Gneezy and Rustichini 2000, and Deci, Koestner, and Ryan 1999 intake
+cards); the one unsourced planning figure (an illustrative ICC range for the cluster-correction
+table) is flagged explicitly rather than presented as canon-cited. The preregistration draft's
+OSF-template section order is sourced to van 't Veer and Giner-Sorolla (2016) after nine
+WebFetch attempts against `osf.io` and its registries pages returned no scrapeable template
+text (a client-rendered SPA shell, a 404, or a paywalled publisher redirect); the file states
+this verification gap and instructs a live-form cross-check before any real OSF submission.
+No IRB approval, partner PI, or partner school exists; every packet section states this
+directly rather than implying otherwise. `agf-lint-voice check` run to 0 violations on all
+five touched files, roughly forty antithesis-pattern sentences rewritten by hand since that
+category is never auto-fixed. No file under `src/` or `public/` is touched by this pass.
+
 ## 2026-09-10, PR #30 review pass
 
 Review of `feat/ros-12-engine-wiring` (PR #30) in worktree `review/pr30`. Leak scan
