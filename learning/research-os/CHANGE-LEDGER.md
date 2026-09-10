@@ -221,6 +221,36 @@ None (the superseded envelope-conversion code is preserved verbatim in
 
 ## Iteration 5
 
+Date 2026-09-10. Branch `feat/hte-k12-research-os`, PR #10 review pass.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/api.py`: moved the `_build_response()` call inside
+  `hypothesize()`'s `try`/`except` so a response-assembly bug reaches the documented
+  `CampaignError` contract instead of escaping as a bare exception; widened
+  `_sanitize()`'s path-redaction regex to `/srv`, `/opt`, `/root`, `/app`, `/mnt`, `/data`,
+  `/etc`; added `manifest["models"]` to the response so a caller gets which model backed
+  a run alongside `run_id`.
+- `tools/hypothesis-engine/hte/serve.py`: unexpected-500 branch logs the exception and a
+  traceback to stderr.
+- `tools/hypothesis-engine/hte/mcp_tool.py`: added `models` to the `hypothesize` tool's
+  `outputSchema`.
+- `tools/hypothesis-engine/docs/research-os-hypothesize-route.patch`: threaded `models`
+  through the not-yet-applied TS route's types and response mapping; corrected the two
+  unified-diff hunk headers' line counts to match.
+- `tools/hypothesis-engine/tests/test_api.py`: added
+  `test_response_carries_which_model_backed_each_role_alongside_run_id`.
+
+Full detail in `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10: PR #10 review pass"
+entry, including the leak scan, the graph-table overlap verification, and a note on an
+unrelated concurrent process sharing this review's worktree.
+
+### Removed
+
+None.
+
+## Iteration 6
+
 Date 2026-09-10. Branch `docs/ros-plan-revision-1`, worktree `.wt-plan-revision-1`.
 Reviewed shipped work (PRs #3, #5, #6, #7, #8, #10, #12, #14) and two open PRs
 (#9, canon promotion; #15, `intake/ros-literature-2-batch2`, literature batch

@@ -239,3 +239,16 @@ GitHub; nothing was removed to make room for it.
 **Original text, replaced in the prototype link:**
 
 > open the Phase 0 prototype →
+
+## 2026-09-10, PR #10 review pass, voice-lint construction swap
+
+**Reason.** `agf-lint-voice-src check` flagged an antithesis construction in
+`tools/hypothesis-engine/hte/api.py`'s `_sanitize()` docstring.
+
+- `tools/hypothesis-engine/hte/api.py` (`_sanitize()` docstring): "a root
+  outside this list still reaches the response unredacted, so this is a
+  backstop behind the explicit `run_dir` replacement above, **not a
+  blanket guarantee for every possible filesystem layout**." to "a root
+  outside this list stays a gap this backstop leaves open behind the
+  explicit `run_dir` replacement above, worth widening the moment a real
+  deployment names a root not yet on it."

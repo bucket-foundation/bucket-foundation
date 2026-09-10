@@ -7,10 +7,13 @@ the resolution ladder that buckets a point on the axis at five widths.
 """
 from __future__ import annotations
 
+import logging
 import math
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Sequence
+
+logger = logging.getLogger("hte.timeline")
 
 # --------------------------------------------------------------------------
 # Calendar mapping
@@ -368,9 +371,29 @@ def time_bin_index(year: int, span_start: int = DEFAULT_SPAN_START, bin_width: i
     at `span_start` (`TIME_BIN`, `main.tex` §Combinatorics). `TIME_BIN` is a
     numeric axis rather than a named concept vocabulary, so this function,
     not `hte.concepts.Vocabulary`, is what `hte.address.encode` calls to
-    resolve a placement's time slot."""
+    resolve a placement's time slot.
+
+    A `year` before `span_start` clamps to bin 0 rather than raising
+    (`bkt-hte-binning-clamp`, 2026-09-10: an `education-atlas` campaign
+    died here, `ValueError: year 2000 sits before the span start 2002`,
+    over a generator-role proposal whose own `time_hint` named a year
+    this run's own span, built before that proposal ever existed, had
+    not been widened to cover). `hte.address.encode_indices` needs a
+    non-negative `TIME_BIN` index for its own Gödel-prime encoding
+    (`idx < 0` raises there), so "extend the ladder leftward" is not
+    available to this function on its own; clamping to the span's own
+    earliest bin, with one warning logged naming the shortfall, is the
+    fallback this function owns. `hte.runner._resolve_time_binning`'s own
+    span, built from the union of every ground-truth date and every
+    evidence item's own interval, is the primary defense that keeps this
+    branch rare; this is the backstop for whatever that union still does
+    not cover (a hallucinated year naming no evidence item at all)."""
     if year < span_start:
-        raise ValueError(f"year {year} sits before the span start {span_start}")
+        logger.warning(
+            "hte.timeline.time_bin_index: year %d sits %d year(s) before span_start %d; "
+            "clamped to bin 0 rather than raising", year, span_start - year, span_start,
+        )
+        return 0
     return (year - span_start) // bin_width
 
 
