@@ -166,6 +166,91 @@ None.
 
 ## Iteration 4
 
+Date 2026-09-10. Branch `feat/ros-engine-bridge`, worktree
+`bucket-foundation-ros-bridge`. Reviewed a WIP commit ("wip(feat/ros-engine-bridge):
+partial work preserved after 429 spend-limit stop") against PR #10
+(`feat/hte-k12-research-os`, merging concurrently), which lands `hte.api.hypothesize`,
+`hte/serve.py`, `hte/mcp_tool.py`, the literature corpus adapter, and
+`hte.corpus.production.is_research_os_record`/`normalize_research_os_record` in
+`tools/hypothesis-engine`.
+
+### Added
+
+- `learning/research-os/ENGINE-BRIDGE.md`: data flow, tables, idempotency keys, what
+  PR #10 covers versus this PR, and open stubs.
+- `supabase/migrations/20260910010000_research_os_engine_bridge.sql`: a
+  `graph.edges (from_id, to_id, kind)` unique index (item 1's own edge idempotency),
+  and `public.research_os_productions_outbox` (item 3).
+- `scripts/test-research-os-engine-bridge.ts`: unit tests for the engine node/edge
+  builder (item 1) and the production outbox row builder (item 3), against fixtures.
+- `scripts/test-research-os-engine-frontier.ts`: unit tests for `findFrontierEngineTargets`
+  (item 2), against the sky-blue seed plus a synthetic engine fixture node.
+
+### Edited
+
+- `src/lib/research-os/engine-bridge.ts`: item 1's section (`buildEngineNode`,
+  `buildEngineEdges`, `engineNodeSlug`, `engineTierToGraphTier`) kept as the WIP wrote
+  it. Item 3's section rebuilt: dropped the hand-built `PRODUCTION-SCHEMA.md` envelope
+  conversion (`buildProductionEnvelope` and its supporting types), superseded by PR
+  #10's own server-side normalizer; added `buildProductionOutboxRow`, which writes the
+  raw `graph.productions` row (plus an optional `_target_node` join) that normalizer
+  already reads directly. Full reasoning and the dropped code, verbatim:
+  `_intake/research-os-k12/DELETIONS.md`.
+- `src/lib/research-os/db.ts`: `writeProductionOutbox`'s signature simplified to match
+  the raw-row outbox contract (one argument, no separate `graphProductionId`, since the
+  outbox row's own `id` now is the production's real id).
+- `src/app/api/research-os/production/route.ts`: updated to call
+  `buildProductionOutboxRow`/the new `writeProductionOutbox` signature; the emit now
+  runs even when the target node join fails to resolve (the engine's own normalizer
+  already tolerates a missing `_target_node`, per its own docstring); the header
+  comment's reference to a `scripts/sync-productions-outbox.mjs` file that was never
+  built was removed.
+- `src/app/research-os/workspace/page.tsx`: added the "from the engine" panel that
+  renders `route.engineFrontier` (item 2's data was already plumbed by the WIP; this
+  iteration adds the render, the WIP's own +10 lines were the type definitions only).
+- `package.json`: `test:research-os` now runs all three research-os test files in
+  sequence (`test-research-os-routing.ts`, `test-research-os-engine-bridge.ts`,
+  `test-research-os-engine-frontier.ts`).
+- `_intake/research-os-k12/DELETIONS.md`, `_intake/research-os-k12/CHANGELOG.md`: this
+  iteration's own entries.
+
+### Removed
+
+None (the superseded envelope-conversion code is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`, per this repo's own no-deletions policy).
+
+## Iteration 5
+
+Date 2026-09-10. Branch `feat/hte-k12-research-os`, PR #10 review pass.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/api.py`: moved the `_build_response()` call inside
+  `hypothesize()`'s `try`/`except` so a response-assembly bug reaches the documented
+  `CampaignError` contract instead of escaping as a bare exception; widened
+  `_sanitize()`'s path-redaction regex to `/srv`, `/opt`, `/root`, `/app`, `/mnt`, `/data`,
+  `/etc`; added `manifest["models"]` to the response so a caller gets which model backed
+  a run alongside `run_id`.
+- `tools/hypothesis-engine/hte/serve.py`: unexpected-500 branch logs the exception and a
+  traceback to stderr.
+- `tools/hypothesis-engine/hte/mcp_tool.py`: added `models` to the `hypothesize` tool's
+  `outputSchema`.
+- `tools/hypothesis-engine/docs/research-os-hypothesize-route.patch`: threaded `models`
+  through the not-yet-applied TS route's types and response mapping; corrected the two
+  unified-diff hunk headers' line counts to match.
+- `tools/hypothesis-engine/tests/test_api.py`: added
+  `test_response_carries_which_model_backed_each_role_alongside_run_id`.
+
+Full detail in `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10: PR #10 review pass"
+entry, including the leak scan, the graph-table overlap verification, and a note on an
+unrelated concurrent process sharing this review's worktree.
+
+### Removed
+
+None.
+
+## Iteration 6
+
 Date 2026-09-10. Branch `intake/ros-canon-promotion` (PR #9). Promotes six
 records from `_intake/research-os-k12-literature/` into `bucket-canon/`,
 opens two taxonomy questions without resolving them, and closes the

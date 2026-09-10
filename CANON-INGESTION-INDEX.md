@@ -37,6 +37,8 @@ Total source docs: 24,183.
 
 ## Recent additions, 2026-09-10
 
+### 07-mind promotions, PR #9 `intake/ros-canon-promotion`
+
 Six papers promoted from `_intake/research-os-k12-literature/` into
 `bucket-canon/07-mind/` (`intake/ros-canon-promotion`), all resolved live
 via `tools/canon-pipeline/canon.py resolve <doi>` (Crossref + OpenAlex).
@@ -60,3 +62,22 @@ promotions: metascience and sociology-of-science branch home (Jones 2009;
 Fortunato et al. 2018), and whether AlphaFold (Jumper et al. 2021) becomes
 a `05-biophysics` method card or stays a `research-landscape/` entry. Full
 context: `bucket-canon/TAXONOMY_NOTES.md`.
+
+### 04-information hypothesis-engine artifacts, PR #10
+
+Seven Bucket-authored primary-method artifacts entered `04-information`.
+These are repo-native contributions added by hand. They sit outside the
+FTS counts above until a future pass runs them through the same
+full-text index.
+
+| Title | Path | Type |
+|---|---|---|
+| A Hypothesis Engine over History (design paper) | `papers/history-hypothesis-engine/main.tex` | primary method |
+| AI Hypothesis Generation for Scientific Discovery, 2026 | `_intake/hypothesis-engine/SURVEY-AI-HYPOTHESIS-GENERATION.md` | review |
+| History Hypothesis Engine: Design Spec | `_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md` | design spec |
+| Hypothesis Engine: Ideal State and Unknowns | `_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md` | design spec |
+| Timeline and Combinatorics Spec | `_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md` | design spec |
+| Crosswalk: History Hypothesis Engine vs Quantum Algorithm Discovery | `_intake/hypothesis-engine/CROSSWALK-QUANTUM-ALGORITHM-DISCOVERY.md` | design spec |
+| Canon concept node, Hypothesis Address Space and Subjective-Logic Belief | `bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md` | canon card |
+
+Full context: `CANON-CONTRIBUTIONS-2026-09-10.md`.
