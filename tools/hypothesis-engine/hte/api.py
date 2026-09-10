@@ -236,8 +236,9 @@ def _normalize_research_os_records(raw_list: list[Any], errors: list[str]) -> li
     `PRODUCTION-SCHEMA.md`'s own shape passes through untouched
     (`production.is_research_os_record` returns `False` for it).
 
-    A malformed Research OS record (missing `id` or `target_node_id`, the
-    two fields `normalize_research_os_record` cannot default around) is
+    A malformed Research OS record (missing `id` or `target_node_id`, an
+    unrecognized `status`, or neither `updated_at` nor `created_at`,
+    every field `normalize_research_os_record` cannot default around) is
     collected into `errors` the same way every other problem this module
     finds is, rather than raising past this function: `hypothesize()`
     still reports every problem in one request together, per its own

@@ -95,6 +95,88 @@ class pages (a separate agent's own concurrent scope).
 - `agf-lint-voice-src check` / `agf-lint-voice check` on every file this
   pass authored or edited: 0 violations.
 
+## 2026-09-10, PR #25 review pass
+
+Review of `docs/ros-02-learner-state-model` (PR #25) in worktree `review/pr25`. Leak scan
+against the full diff's added lines found no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs. Six code claims spot-checked against `origin/main` (`stages.ts`'s five
+transition functions, `probe.ts`'s cold-start-only firing, the review route's production
+branch never calling `recordEvidence`, `learner_node_state`/`teacher_reviews` schema shape,
+`academyNodeSlug`'s slug format, `mastery.ts`'s `inferDepth` thresholds and `fuseMastery`
+formula) all matched the paper's description, including the named bug: a returned production
+leaves `stage` at `production` uncorrected. README index row count (82) matched the corpus
+file count (82) exactly. Every framework mapping table states "No counterpart" with a reason
+where one applies, rather than forcing a match.
+
+Two real citation errors found and fixed: `anderson-krathwohl-2001-taxonomy-revision.md` and
+`wiske-1998-teaching-for-understanding.md` both carried the same wrong Open Library `url`
+(`OL3906603W`, which resolves to an unrelated book, "Russia's Road to Democracy"), corrected
+to the verified work ids (`OL16641840W` and `OL16467129W`) after cross-checking against
+Open Library's search API. The ISBNs themselves were correct in both files. Two banned
+filler-word instances fixed in `CHANGE-LEDGER.md` and the Perkins card; `agf-lint-voice
+check` was clean on every file it scanned.
+
+## 2026-09-10, learner state model and mapping paper
+
+Branch `docs/ros-02-learner-state-model` (bead `ros-02`). Docs only, no code or migration
+changed. `learning/research-os/LEARNER-STATE-MODEL.md` defines the five learner states
+operationally (entry condition, evidence, judge, decay rule, each checked against
+`src/lib/research-os/stages.ts`, `probe.ts`, and the two Phase 0 migrations rather than
+restated from `PLAN.md` alone), maps them against ICAP, SOLO, Bloom revised, Perkins's
+understanding performances, and the founder's original three-level model, maps them against
+the shipped Academy Recall/Apply/Derive/Teach ladder and the FSRS/IRT signals (finding no
+code path connects the two systems today, confirmed by a full-codebase search), and lays out
+the three-arm pilot's measurement plan: an outcome variable per state, the transfer-task
+construction rule for Internalization, an inter-rater procedure for teacher judgments, and
+the minimal logging schema the workspace has to emit. Seven questions marked OPEN, each tied
+to the paper that poses it. `src/lib/research-os/EVIDENCE-SCHEMA.md` states the evidence
+jsonb contract `ros-04` and `ros-06` implement against, closing seven concrete gaps between
+what `graph.learner_node_state.evidence` stores today and what the measurement plan needs,
+including one real bug found while writing this pass: a returned production leaves the
+learner's `stage` at `production` uncorrected, since the review route's production branch
+never calls `recordEvidence`.
+
+### Added
+
+- `learning/research-os/LEARNER-STATE-MODEL.md`: the mapping paper, five sections per the
+  bead's own scope, states defined operationally, framework mapping tables, shipped-code
+  mapping, measurement plan, seven OPEN questions.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: the evidence jsonb contract, docs only, no code
+  changed in this pass.
+- Five intake cards under `_intake/research-os-k12-literature/educational-methods/`, none of
+  which had a card before this pass despite being cited by DOI in `PLAN.md` section 2 already:
+  `chi-wylie-2014-icap-framework.md` (ICAP), `biggs-collis-1982-solo-taxonomy.md` (SOLO),
+  `anderson-krathwohl-2001-taxonomy-revision.md` (Bloom revised, ISBN-verified, no Crossref
+  DOI), `perkins-1993-teaching-for-understanding.md` (ERIC- and ISSN-verified, no DOI), and
+  `wiske-1998-teaching-for-understanding.md` (ISBN-verified, no DOI).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: five new rows in the index table, the
+  paper count updated from 77 to 82 and the educational-methods count from 17 to 22, a new
+  section noting which records carry an ISBN or ERIC id instead of a DOI and why.
+- `BEADS-PENDING.jsonl`: one status line appended for `ros-02`, the original line left
+  unedited.
+- `learning/research-os/CHANGE-LEDGER.md`, `_intake/research-os-k12/CHANGELOG.md`, this
+  file: this pass's own entries.
+
+### Removed
+
+None.
+
+## 2026-09-10, funding wave 1
+
+Bead `ros-09`, branch `docs/ros-09-funding-wave-1`. Four funder-facing documents under `learning/research-os/funding/`, drawn from this intake's own funding research plus fresh WebFetch verification against every funder's live site on 2026-09-10 (not a re-read of the 2026-09-09 pass's cached figures).
+
+Shipped: `FAST-FORWARD-2026.md` (the 2026-09-18 deadline holds, confirmed by ffwd.org's own banner, which supersedes a stale September 7 date still on the same page; eligibility holds conditionally on the founder starting either state incorporation or a fiscal-sponsor application this week, since Bucket Foundation today has neither; draft narrative answers and a founder-input checklist). `WAVE-1-TARGETS.md` (Tools Competition, Digital Public Goods Alliance registration, Renaissance Philanthropy's AI for Education fund, and NLnet NGI Zero as the four wave-1 targets; four of the eight section K candidates verified closed or non-fitting and are logged with sources so the next pass does not re-check them: Chan Zuckerberg Initiative, no open call; Schmidt Sciences, open calls exist but all three are climate programs; Emerson Collective, confirmed closed to unsolicited submissions; Institute of Education Sciences, verified open but its FY2027 RFAs are methods-and-training grants with an LOI deadline that already passed; NewSchools Venture Fund's "open portal" read from the prior pass is corrected, its 2026 cycle is confirmed closed). `FISCAL-SPONSOR-DECISION.md` (Hack Club Bank, the prior pass's top pick, is confirmed ineligible: its own eligibility page requires a project led by teenagers 13 to 18, disqualifying a founder-led adult nonprofit outright; Players Philanthropy Fund recommended over Social Good Fund on fee alone, 6% flat against Social Good Fund's 8% at Bucket's budget size). `BUDGET-PHASE-1.md` (a twelve-month Phase 1 budget built by annualizing the system review's own Phase 1 monthly cost ranges across a build, pilot-semester, and evaluation sub-period breakdown, low/expected/high totals of $4,425, $19,125, and $83,610).
+
+Every dollar figure and deadline in the four documents cites the file or URL it came from; five points found on this pass correct or sharpen the prior 2026-09-09 funding research and are called out inline rather than silently overwritten: the Fast Forward deadline's stale-date discrepancy, HCB's disqualification, NewSchools' closed 2026 cycle, IES's fit and timing problem, and NLnet's newly surfaced European-dimension eligibility caveat.
+
+### 2026-09-10, PR #26 review corrections
+
+Review pass on PR #26 caught three citation-accuracy errors, fixed before merge. `FAST-FORWARD-2026.md` section 2 cited `00-BASE-INFO-MEMO.md` gap G-5 as "no sponsor contacted"; G-5 is the registered-agent-address gap, the "no sponsor contacted" line is the memo's own status header, not a gap entry, corrected to cite gaps G-1 through G-4 plus the status line directly. The same section's founder-action item 1 claimed the memo states "same-week turnaround" for a New York filing; the memo states the $75 cost only, no turnaround figure, the claim is removed and replaced with an instruction to confirm turnaround directly with the state. `FISCAL-SPONSOR-DECISION.md` section 1 and section 4 item 3 told the founder to remove HCB from `00-COVER-LETTER.md`; the cover letter never names HCB, only `00-BASE-INFO-MEMO.md` section 3.2 does, corrected to point at the right file. WebFetch re-verified against live sites on 2026-09-10: the Fast Forward deadline and eligibility text, the Tools Competition Phase I date, the Players Philanthropy Fund fee, and HCB's own eligibility page; all four held as stated.
+
 ## 2026-09-10, canon and Academy corpus ingestion
 
 Branch `feat/ros-canon-ingest`. Two ingestion importers that grow the Research

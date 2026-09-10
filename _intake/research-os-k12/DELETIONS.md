@@ -312,8 +312,27 @@ new `unresolved_slot_gaps`, pending PR #20's review landing).
 **Reason.** `agf-lint-voice`'s pre-commit hook flagged an appended-clause
 heading in `learning/research-os/CHANGE-LEDGER.md`, pre-existing from an
 earlier iteration and caught only now because this branch's own edits
-touch the same file.
+touch the same file. Fixed locally as "## Iteration 6: Phase 1 Stub
+Closures"; merging `origin/main` afterward brought in the `ros-09`
+funding-wave-1 branch's own independent fix of the identical heading
+("## Iteration 6: Phase 1 stub closures"), landed there via that
+branch's own PR #26 review pass. The merge kept `origin/main`'s version
+rather than carrying two competing fixes of the same line forward.
 
 - `learning/research-os/CHANGE-LEDGER.md` (heading): "## Iteration 6,
   Phase 1 stub closures: closure table, diagnostic probe, real quotes,
-  review hold" to "## Iteration 6: Phase 1 Stub Closures".
+  review hold" to "## Iteration 6: Phase 1 stub closures".
+
+## 2026-09-10, ros-12 merge pass, voice-lint construction swap
+
+**Reason.** Merging `origin/main` into `feat/ros-12-engine-wiring` pulled
+in `tools/hypothesis-engine/docs/LOOP-LOG.md`'s "tick 2" entry (the
+hourly optimization loop, a separate autonomous process), which carried
+an antithesis construction the pre-commit hook caught on the merge
+commit.
+
+- `tools/hypothesis-engine/docs/LOOP-LOG.md` ("tick 2" entry): "own
+  documented fake-mode short-circuit, a test-isolation quirk, not a code
+  defect; `make test` runs with it unset from here on." to "own
+  documented fake-mode short-circuit, a test-isolation quirk; `make test`
+  runs with it unset from here on."

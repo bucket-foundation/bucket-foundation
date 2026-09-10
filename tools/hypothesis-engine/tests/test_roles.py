@@ -1,3 +1,5 @@
+import pytest
+
 from hte import parallel as parallel_module
 from hte import roles
 from hte.corpus import fixtures
@@ -394,6 +396,43 @@ def test_preservation_critique_many_one_refusal_defaults_and_completes(monkeypat
         if h.short_id != refuse_short_id:
             assert by_short_id[h.short_id]["rationale"] == h.short_id
     assert roles.refusal_log()["preservation_critic"] == [refuse_short_id]
+
+
+def test_preservation_critique_many_non_refusal_failure_propagates_instead_of_defaulting(monkeypatch, tmp_path):
+    """Silent-failures review finding 1: a failure other than
+    `ModelRefusal`/`ModelTruncation` (here, `LLMInvalidResponseError`,
+    the shape a systematic malformed-JSON bug would also take) must
+    propagate out of `preservation_critique_many` instead of being
+    silently absorbed into `PRESERVATION_CRITIQUE_DEFAULT` and logged as
+    an ordinary refusal, `hte.parallel.pmap`'s own `default_exceptions`
+    wiring (`hte.llm.complete_many`) now enforces."""
+    corpus = _corpus()
+    hyps = _distinct_hyps(corpus, 4)
+    table = {"material": 0.8}
+    fail_short_id = hyps[2].short_id
+    roles.reset_refusal_log()
+    monkeypatch.setattr(parallel_module.time, "sleep", lambda s: None)  # skip pmap's own retry backoff
+
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None, **_kwargs):
+        assert role == "preservation_critic"
+        for h in hyps:
+            if f"actor={h.content.actor!r}" in prompt and f"mechanism={h.content.mechanism!r}" in prompt:
+                if h.short_id == fail_short_id:
+                    raise roles.llm.LLMInvalidResponseError("malformed JSON on both attempts")
+                return {
+                    "expected_evidence": [], "could_have_survived": True,
+                    "detectability_adjustment": 0.9, "rationale": h.short_id,
+                }
+        raise AssertionError(f"no known hypothesis found in prompt: {prompt!r}")
+
+    _patch(monkeypatch, fake)
+    with pytest.raises(roles.llm.LLMInvalidResponseError, match="malformed JSON"):
+        roles.preservation_critique_many(hyps, table, cache_dir=str(tmp_path), workers=4)
+
+    # nothing was defaulted or mislabeled as a refusal: the call raised
+    # before `preservation_critique_many`'s own refusal-logging loop
+    # ever ran over its (never produced) results
+    assert roles.refusal_log() == {}
 
 
 def test_judge_refusal_defaults_to_coin_flip(monkeypatch):
