@@ -10,6 +10,9 @@ url: "https://doi.org/10.1111/j.1745-6916.2006.00012.x"
 openalex_id: "https://openalex.org/W2133705455"
 branch: "educational-methods"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-0333f4a853f3)"
+promoted_at: "2026-09-10"
 why_it_matters: >
   The empirical basis for spaced retrieval and the testing effect, the mechanism the FSRS
   spaced-review scheduler already shipping in Academy's mastery.ts is built to exploit.
@@ -28,6 +31,12 @@ how_it_bears_on_research_os: >
 ---
 
 # The Power of Testing Memory: Basic Research and Implications for Educational Practice
+
+> **Promoted to canon, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/memory-systems/primary-papers.yaml` (id `bkt-0333f4a853f3`,
+> `canon_score` 85) and `bucket-canon/07-mind/memory-systems/CANON_INDEX.md`. This file stays
+> in place as the Research OS-specific reading of the paper; the canon entry is the citeable
+> record.
 
 The empirical basis for spaced retrieval and the testing effect, the mechanism the FSRS spaced-review scheduler already shipping in Academy's mastery.ts is built to exploit.
 
