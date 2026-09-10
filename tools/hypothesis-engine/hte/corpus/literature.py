@@ -189,6 +189,54 @@ corpus.education_atlas` reads:
   and shifts every `Claim` span's line number and char offset by its own
   length, so a span still locates the exact quote inside the file's real,
   full text.
+
+Batches (`bkt-hte-literature-batch-two`, PR #15, "evidence on the twelve
+open questions" in `_intake/research-os-k12-literature/README.md` and
+`_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`).
+Batch two shipped 31 new cards plus one already-drafted card folded into
+the index (Bastani and others 2025), landing inside the exact same
+`_intake/research-os-k12-literature/` tree PR #5's batch one already
+occupies, area by area, rather than a sibling directory: PR #15 added a
+fifth area, `prerequisite-knowledge-graphs`, and grew the other four.
+Every batch-two card carries the identical frontmatter shape batch one's
+own cards do (this module's own docstring above needed no new field, no
+new scalar/list/block-scalar grammar, and no new slot-lexicon entry to
+read a batch-two card: `_extraction_text`, `_classify_method`,
+and the four slot lexicons already read whatever a card's title,
+`why_it_matters`, and `key_claims` name, batch one's cards or batch
+two's), so on GitHub, at any ref past PR #15's merge, the two batches are
+already one indistinguishable tree; nothing downstream of `load_raw`
+needs a "which batch" reading to score, fuse, or tournament a batch-two
+card's evidence any differently from a batch-one card's.
+
+What *does* need a "which batch" reading is provenance: `Source.batches`
+(`hte.evidence.Source`) names which named card root(s) contributed a
+source, so a caller building a corpus from more than one root, e.g. the
+6-card batch-one fixture set (`DEFAULT_FIXTURES_DIR`) plus the 6-card
+batch-two fixture set (`DEFAULT_FIXTURES_DIR_BATCH_TWO`), can tell which
+root each source came from without re-reading the file tree. `cards_dir`
+on `load_raw`/`load` accepts a single directory (batch one's own
+call shape, kept working unchanged) or a sequence of directories, one per
+named root, read and concatenated in order and tagged `"batch-1"`,
+`"batch-2"`, ... by that order's own position; `DEFAULT_CARDS_DIRS`
+names the canonical "both fixture batches" pair callers who want the
+combined 12-card fixture corpus pass explicitly. `cards_dir=None` keeps
+meaning "fetch over the network at `ref`" regardless: a caller who wants
+"the real, on-disk, already-merged 82-card tree this repo's own `main`
+carries past PR #15" calls `load_default()` instead, which reads that one
+real local root (no batch split; the real tree has none) when this
+package is running inside a checkout that has it, falling back to
+`load()`'s own network fetch otherwise. `load_default` is `_CORPUS_LOADERS`'s
+own zero-arg registration (`hte/cli.py`, `hte/runner.py`), the shape every
+other corpus loader there already has.
+
+A DOI appearing under more than one root (two fixture batches drawing on
+the same real 82-card tree could pick the same paper twice by accident)
+dedupes to the first root's own card: `_build_corpus` builds each `Source`
+once, from the first cards list entry naming that DOI, and appends every
+later root's own batch label onto that same `Source.batches` list rather
+than re-adding its evidence a second time, so `corpus.evidence`'s own
+count never double-counts a paper two roots both happen to carry.
 """
 from __future__ import annotations
 
@@ -201,7 +249,7 @@ import urllib.request
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 from ..concepts import Slot, Vocabulary, other_id
 from ..evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
@@ -213,9 +261,25 @@ from . import Corpus, GroundTruthEvent, RetrievalEnvelope
 # `*_VOCAB_PATH` uses.
 LITERATURE_VOCAB_PATH = Path(__file__).resolve().parents[1] / "data" / "vocab-literature-seed.json"
 DEFAULT_FIXTURES_DIR = Path(__file__).resolve().parents[1] / "data" / "literature-fixtures"
+# Batch two's own 6-card fixture subset (`bkt-hte-literature-batch-two`,
+# PR #15), the same "verbatim copy, `voice-ignore-file` header prepended"
+# convention `DEFAULT_FIXTURES_DIR` already carries for batch one.
+DEFAULT_FIXTURES_DIR_BATCH_TWO = Path(__file__).resolve().parents[1] / "data" / "literature-fixtures-batch-two"
+# The canonical "both batches" pair a caller wanting the combined,
+# 12-card fixture corpus passes to `load`/`load_raw` as `cards_dir`; see
+# this module's own top docstring, "Batches," for why this is not
+# `cards_dir`'s own default (that default stays the network fetch).
+DEFAULT_CARDS_DIRS: tuple[Path, ...] = (DEFAULT_FIXTURES_DIR, DEFAULT_FIXTURES_DIR_BATCH_TWO)
 
 GITHUB_REPO = "bucket-foundation/bucket-foundation"
 GITHUB_INTAKE_PATH = "_intake/research-os-k12-literature"
+# `tools/hypothesis-engine/hte/corpus/literature.py` -> parents[4] is this
+# repo's own root (`bucket-foundation/`): `hte/corpus` -> `hte` -> `hypothesis-
+# engine` -> `tools` -> repo root. `load_default` reads this real, on-disk
+# path directly, no network, when it exists (true on `main` past PR #5 and
+# PR #15 both merging); see this module's own top docstring, "Batches."
+_REPO_ROOT = Path(__file__).resolve().parents[4]
+LOCAL_INTAKE_DIR = _REPO_ROOT / GITHUB_INTAKE_PATH
 # PR #5's own branch, the ref this module was built against; GitHub deletes
 # a merged PR's own source branch by this repo's default settings, so this
 # exact ref 404s once PR #5 merges (it merged mid-review, in fact, while
@@ -258,7 +322,10 @@ class Claim:
 class Card:
     """One literature card, parsed losslessly from its own frontmatter and
     file location; `_build_corpus` below is the lossy projection onto
-    `hte.corpus.Corpus`."""
+    `hte.corpus.Corpus`. `batch` names which card root (position in a
+    `load_raw(cards_dir=[...])` call's own list, `"batch-1"` for a single
+    directory) this card was read from; see this module's own top
+    docstring, "Batches.\""""
     doi: str
     title: str
     authors: tuple[str, ...]
@@ -269,6 +336,7 @@ class Card:
     key_claims: tuple[Claim, ...]
     research_questions: tuple[str, ...]
     how_it_bears_on_research_os: str
+    batch: str = "batch-1"
 
     @property
     def first_author_surname(self) -> str:
@@ -400,7 +468,7 @@ def _parse_block_scalar(field_lines: list[tuple[int, int, str]]) -> str:
     return " ".join(parts)
 
 
-def _parse_frontmatter(raw: str, relative_path: str) -> Card:
+def _parse_frontmatter(raw: str, relative_path: str, batch: str = "batch-1") -> Card:
     # A card is free to open with one or more `<!-- ... -->` HTML-comment
     # lines before its own frontmatter, the `CLAUDE.md` `voice-ignore-file`
     # escape hatch every one of this corpus's shipped fixtures carries
@@ -469,13 +537,14 @@ def _parse_frontmatter(raw: str, relative_path: str) -> Card:
         doi=doi, title=title, authors=authors, year=year, venue=venue,
         relative_path=relative_path, why_it_matters=why_it_matters, key_claims=key_claims,
         research_questions=research_questions, how_it_bears_on_research_os=how_it_bears,
+        batch=batch,
     )
 
 
-def _parse_card_file(path: Path, root: Path) -> Card:
+def _parse_card_file(path: Path, root: Path, batch: str = "batch-1") -> Card:
     raw = path.read_text()
     relative_path = str(path.relative_to(root)).replace(os.sep, "/")
-    return _parse_frontmatter(raw, relative_path)
+    return _parse_frontmatter(raw, relative_path, batch)
 
 
 # --------------------------------------------------------------------------
@@ -713,15 +782,29 @@ def _build_corpus(cards: list[Card]) -> Corpus:
     fetched_at = datetime.now(timezone.utc).isoformat()
 
     for card in cards:
+        if card.doi in sources:
+            # A DOI already seen under an earlier root's own card: dedupe to
+            # that first card's Source/evidence/ground-truth/provenance, and
+            # fold only this root's own batch label onto the existing
+            # Source.batches list. See this module's own top docstring,
+            # "Batches," for why a later root's own duplicate never adds a
+            # second copy of the same paper's evidence.
+            if card.batch not in sources[card.doi].batches:
+                sources[card.doi].batches.append(card.batch)
+            continue
+
         tier = _evidence_tier(card)
         findings_text = _extraction_text(card)
         method = _classify_method(findings_text)
         kind = _evidence_kind(method)
         stemma_parents = _detect_stemma_parents(card, surnames_to_dois)
 
-        sources[card.doi] = Source(id=card.doi, kind=kind, date=str(card.year), stemma_parents=stemma_parents)
+        sources[card.doi] = Source(
+            id=card.doi, kind=kind, date=str(card.year),
+            stemma_parents=stemma_parents, batches=[card.batch],
+        )
         provenance.append(RetrievalEnvelope(
-            retrieval_run_id="literature-adapter-file-ingest", doc_id=card.doi,
+            retrieval_run_id=f"literature-adapter-file-ingest-{card.batch}", doc_id=card.doi,
             source_path=card.relative_path, fetched_at=fetched_at, fixture=True,
             citation_count=len(card.key_claims), lineage_count=len(stemma_parents),
         ))
@@ -861,35 +944,89 @@ def _ensure_cards_cached(ref: str) -> Path:
     return cache_dir
 
 
-def load_raw(cards_dir: str | Path | None = None, *, ref: str = DEFAULT_REF) -> list[Card]:
-    """Every `Card` at `cards_dir` (a directory of `<branch>/<slug>.md`
-    files, PR #5's own tree shape) or, when `cards_dir` is `None`, at
-    `ref` on GitHub (fetched and cached first by `_ensure_cards_cached`),
-    parsed losslessly and returned in path order. No filtering; that is
-    `load`'s own job on the way to a `Corpus`, and this corpus, unlike
-    `hte.corpus.production`'s review ladder, has no maturity gate of its
-    own to filter on: every card PR #5 ships already carries a checked
-    DOI."""
-    directory = Path(cards_dir) if cards_dir is not None else _ensure_cards_cached(ref)
-    if not directory.is_dir():
-        raise FileNotFoundError(f"literature adapter: cards directory not found: {directory}")
-    paths = _iter_card_paths(directory)
-    if not paths:
-        raise FileNotFoundError(f"literature adapter: no card files found under {directory}")
-    return [_parse_card_file(path, directory) for path in paths]
+def _normalize_roots(cards_dir: str | Path | Sequence[str | Path] | None, ref: str) -> list[Path]:
+    """`cards_dir` read as a list of card roots: `None` fetches (and
+    caches) the single network root at `ref`; a bare path or string is one
+    root (batch one's own call shape, kept working unchanged); anything
+    else is read as an already-iterable sequence of roots, one per named
+    batch, in that sequence's own order. See this module's own top
+    docstring, "Batches.\""""
+    if cards_dir is None:
+        return [_ensure_cards_cached(ref)]
+    if isinstance(cards_dir, (str, Path)):
+        return [Path(cards_dir)]
+    return [Path(root) for root in cards_dir]
 
 
-def load(cards_dir: str | Path | None = None, *, ref: str = DEFAULT_REF) -> Corpus:
+def load_raw(
+    cards_dir: str | Path | Sequence[str | Path] | None = None,
+    *, ref: str = DEFAULT_REF,
+) -> list[Card]:
+    """Every `Card` across every root in `cards_dir`, parsed losslessly and
+    returned in root order then path order within each root. `cards_dir`
+    is a single directory of `<branch>/<slug>.md` files (PR #5's own tree
+    shape, one root, tagged `"batch-1"`), a sequence of such directories
+    (one root per named batch, tagged `"batch-1"`/`"batch-2"`/... by
+    position; `DEFAULT_CARDS_DIRS` is the canonical "both fixture batches"
+    pair), or `None` (fetch the single network root at `ref` on GitHub,
+    cached first by `_ensure_cards_cached`, tagged `"batch-1"`). No
+    filtering and no cross-root dedup; that is `load`'s own job on the way
+    to a `Corpus`, and this corpus, unlike `hte.corpus.production`'s
+    review ladder, has no maturity gate of its own to filter on: every
+    card PR #5 or PR #15 ships already carries a checked DOI."""
+    roots = _normalize_roots(cards_dir, ref)
+    cards: list[Card] = []
+    for batch_index, directory in enumerate(roots, start=1):
+        if not directory.is_dir():
+            raise FileNotFoundError(f"literature adapter: cards directory not found: {directory}")
+        paths = _iter_card_paths(directory)
+        if not paths:
+            raise FileNotFoundError(f"literature adapter: no card files found under {directory}")
+        batch = f"batch-{batch_index}"
+        cards.extend(_parse_card_file(path, directory, batch) for path in paths)
+    return cards
+
+
+def load(
+    cards_dir: str | Path | Sequence[str | Path] | None = None,
+    *, ref: str = DEFAULT_REF,
+) -> Corpus:
     """The literature corpus as a `Corpus`: `load_raw(cards_dir, ref=ref)`
-    projected onto `hte.corpus.Corpus` by `_build_corpus`. See this
-    module's own top docstring for the full `Source`/`EvidenceItem`/
-    `GroundTruthEvent`/stemma mapping."""
+    projected onto `hte.corpus.Corpus` by `_build_corpus`, which dedupes a
+    DOI shared by more than one root down to its first root's own card
+    (folding every later root's own batch label onto that same `Source`
+    instead). See this module's own top docstring for the full `Source`/
+    `EvidenceItem`/`GroundTruthEvent`/stemma mapping."""
     return _build_corpus(load_raw(cards_dir, ref=ref))
+
+
+def load_default() -> Corpus:
+    """`_CORPUS_LOADERS`'s own zero-arg registration (`hte/cli.py`,
+    `hte/runner.py`), the shape every other corpus loader there already
+    has: `load(DEFAULT_CARDS_DIRS)`, both fixture batches combined (12
+    cards, no network, deterministic).
+
+    This does *not* read the real, on-disk `LOCAL_INTAKE_DIR` tree (82
+    cards past PR #15): that tree carries a gap this module does not yet
+    handle, three educational-methods cards a later, separate pass (bead
+    `ros-02`, "Framework mapping papers") added with `doi: null` plus an
+    `isbn`/ERIC-id field instead of a DOI (Anderson and Krathwohl 2001,
+    Perkins 1993, Wiske 1998; `_intake/research-os-k12-literature/README.
+    md`'s own "canon-intake promotions" section names the same three
+    non-DOI records). `_parse_frontmatter` requires a real `doi:` and
+    raises on a `null` one, so `load(LOCAL_INTAKE_DIR)` fails on those
+    three cards today; giving every non-DOI source a stable fallback id
+    (an `isbn:`-prefixed slug, say) is real, separate follow-up work this
+    pass does not take on, since it touches `Source.id`/`EvidenceItem.
+    source_id`/`GroundTruthEvent.doc_id`'s own DOI-shaped id convention
+    everywhere in this module, not just batch two's own cards."""
+    return load(DEFAULT_CARDS_DIRS)
 
 
 __all__ = [
     "Card", "Claim",
-    "load_vocab", "load_raw", "load",
-    "LITERATURE_VOCAB_PATH", "DEFAULT_FIXTURES_DIR", "EVIDENCE_PROVENANCE_TAG",
+    "load_vocab", "load_raw", "load", "load_default",
+    "LITERATURE_VOCAB_PATH", "DEFAULT_FIXTURES_DIR", "DEFAULT_FIXTURES_DIR_BATCH_TWO",
+    "DEFAULT_CARDS_DIRS", "LOCAL_INTAKE_DIR", "EVIDENCE_PROVENANCE_TAG",
     "GITHUB_REPO", "GITHUB_INTAKE_PATH", "DEFAULT_REF",
 ]
