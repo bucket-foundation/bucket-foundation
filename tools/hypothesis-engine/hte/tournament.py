@@ -18,6 +18,11 @@ from .hypothesis import Hypothesis
 
 Judge = Callable[[Hypothesis, Hypothesis, dict], float]
 Critic = Callable[[Hypothesis, dict], dict]
+# One round's whole batch of `(a, b, context)` triples in, `P(a beats b)`
+# per triple out, same order: `docs/THROUGHPUT.md`'s own wiring recipe for
+# `run`'s judge calls (`hte.batching.batch_judge`, or any callable of the
+# same shape).
+BatchJudge = Callable[[Sequence[tuple[Hypothesis, Hypothesis, dict]]], Sequence[float]]
 
 # Elo's own logistic base and scale, and the seeding scale `Eq. rank`
 # gives the projected posterior: `Elo0 = 1500 + 400 * logit(P(h))`.
@@ -75,6 +80,7 @@ def run(
     k: float = 32.0,
     seed: int = 0,
     context: dict | None = None,
+    judge_batch: BatchJudge | None = None,
 ) -> dict[int, float]:
     """Elo seeded from the projected posterior, then updated over `rounds`
     Swiss-style pairwise debate rounds (`main.tex` §Engine loop): each
@@ -89,6 +95,21 @@ def run(
     `hypotheses` always produces the same sequence of pairings, and a
     different `seed` only ever changes how ties are broken, never the
     ratings' math.
+
+    `judge_batch` (default `None`, the single-call fallback: every pair
+    goes through `judge` one at a time, exactly as before) is an optional
+    `docs/THROUGHPUT.md`-shaped hook: when given, each round's WHOLE list
+    of paired `(a, b, context)` triples goes through one `judge_batch`
+    call instead of `len(order) // 2` separate `judge` calls, `hte.
+    batching.batch_judge` (or any callable of the same shape) wired in by
+    a caller (`hte.runner.run_campaign`) that wants the round's pairs
+    scored in parallel or batched into fewer `claude -p` calls. `judge`
+    itself is still required even when `judge_batch` is given: a bye
+    round (an odd hypothesis out) and any caller inspecting `judge`'s own
+    signature both still see a plain per-pair callable, and `judge_batch`
+    validating internally (`hte.batching.batch_judge`'s own per-id
+    fallback) may itself call `judge`-shaped single calls for whichever
+    pairs it could not batch.
 
     This function runs one full tournament from a fixed `opinions`
     snapshot. `main.tex`'s own "every fixed number of rounds, `Eq.
@@ -106,12 +127,18 @@ def run(
 
     for _ in range(rounds):
         order = sorted(by_address, key=lambda addr: (-elo[addr], tiebreak[addr]))
-        for pos in range(0, len(order) - 1, 2):
-            addr_a, addr_b = order[pos], order[pos + 1]
-            h_a, h_b = by_address[addr_a], by_address[addr_b]
+        pairs = [(order[pos], order[pos + 1]) for pos in range(0, len(order) - 1, 2)]
+        if not pairs:
+            continue
+
+        if judge_batch is not None:
+            scores = list(judge_batch([(by_address[a], by_address[b], ctx) for a, b in pairs]))
+        else:
+            scores = [judge(by_address[a], by_address[b], ctx) for a, b in pairs]
+
+        for (addr_a, addr_b), score_a in zip(pairs, scores):
             elo_a, elo_b = elo[addr_a], elo[addr_b]
             expected_a = 1.0 / (1.0 + 10.0 ** ((elo_b - elo_a) / _ELO_DIVISOR))
-            score_a = judge(h_a, h_b, ctx)
             delta = k * (score_a - expected_a)
             elo[addr_a] = elo_a + delta
             elo[addr_b] = elo_b - delta
@@ -140,4 +167,4 @@ def critic_filter(hypotheses: Sequence[Hypothesis], critic: Critic) -> list[tupl
     return survivors
 
 
-__all__ = ["Judge", "Critic", "run", "critic_filter"]
+__all__ = ["Judge", "Critic", "BatchJudge", "run", "critic_filter"]

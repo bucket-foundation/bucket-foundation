@@ -243,23 +243,33 @@ including a citation chain of depth two (one production citing a second,
 which itself cites a third) and one production retracted after
 acceptance.
 
-Registering the corpus is the one line `K12-INTEGRATION.md` already names
-for `education-atlas`, added to both `_CORPUS_LOADERS` dicts:
+The corpus is registered (`bkt-hte-corpus-registration`), the same line
+`K12-INTEGRATION.md` names for `education-atlas`, added to both
+`_CORPUS_LOADERS` dicts:
 
 ```python
 _CORPUS_LOADERS["production"] = production.load
 ```
 
-Once that line lands, question 19's own holdout campaign, "does adding
-productions change hypothesis rankings in a calibrated direction," runs
-the same way a `quantum-history` or `education-atlas` campaign runs today:
+Question 19's own holdout campaign, "does adding productions change
+hypothesis rankings in a calibrated direction," runs the same way a
+`quantum-history` or `education-atlas` campaign runs:
 
 ```bash
 cd tools/hypothesis-engine
 python3 -m hte.cli campaign run --corpus production --seeds 3
 ```
 
-pending that registration.
+Unlike the other three shipped corpora, `production`'s own ground truth
+carries a real discovery lag: `GroundTruthEvent.discovery_year` is the
+date a claim's production was accepted, distinct from the claim's own
+subject date (`_build_corpus`'s own docstring in `hte/corpus/
+production.py`). `hte.calibrate.choose_holdout_mode` reads that lag as
+informative and keeps discovery-date holdout for this corpus
+(`bkt-hte-calibration-redesign`), the one shipped corpus where it does;
+`quantum-history`, `education-atlas`, and `fixtures` all fall back to
+k-fold evidence holdout instead, `discovery_year == year` for every
+event they ship.
 
 ### The write-side hook
 

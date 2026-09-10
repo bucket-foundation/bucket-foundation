@@ -224,6 +224,24 @@ PRESERVATION_CRITIQUE_SCHEMA: dict[str, Any] = {
 }
 
 
+def _preservation_critique_prompt(h: Hypothesis, table: Mapping[Any, float], period: str | None) -> str:
+    rows = [f"{k}: {v}" for k, v in table.items()] if table else ["(no detectability table supplied)"]
+    return (
+        "For this hypothesis, if it were true, what evidence would you "
+        "expect to exist, and could that evidence plausibly have survived "
+        "to be found, given the detectability context below? A low "
+        "detectability score should explain an absence of evidence before "
+        "falsity does.\n\n"
+        f"Hypothesis: {_describe_hypothesis(h)}\n"
+        f"Period: {period or '(unspecified)'}\n\n"
+        f"Detectability table rows:\n" + "\n".join(rows) + "\n\n"
+        "Return the evidence kinds and forms you would expect, whether "
+        "detection was plausible, and your own suggested detectability "
+        "adjustment in [0, 1] for this hypothesis's period and evidence "
+        "kinds."
+    )
+
+
 def preservation_critique(
     h: Hypothesis,
     table: Mapping[Any, float],
@@ -244,25 +262,40 @@ def preservation_critique(
     override the table's stored value with the critic's read rather than
     accepting it as-is.
     """
-    rows = [f"{k}: {v}" for k, v in table.items()] if table else ["(no detectability table supplied)"]
-    prompt = (
-        "For this hypothesis, if it were true, what evidence would you "
-        "expect to exist, and could that evidence plausibly have survived "
-        "to be found, given the detectability context below? A low "
-        "detectability score should explain an absence of evidence before "
-        "falsity does.\n\n"
-        f"Hypothesis: {_describe_hypothesis(h)}\n"
-        f"Period: {period or '(unspecified)'}\n\n"
-        f"Detectability table rows:\n" + "\n".join(rows) + "\n\n"
-        "Return the evidence kinds and forms you would expect, whether "
-        "detection was plausible, and your own suggested detectability "
-        "adjustment in [0, 1] for this hypothesis's period and evidence "
-        "kinds."
-    )
+    prompt = _preservation_critique_prompt(h, table, period)
     return llm.complete(
         prompt, role="preservation_critic", schema=PRESERVATION_CRITIQUE_SCHEMA,
         cache_dir=cache_dir, replay_only=replay_only,
     )
+
+
+def preservation_critique_many(
+    hypotheses: Sequence[Hypothesis],
+    table: Mapping[Any, float],
+    *,
+    period: str | None = None,
+    cache_dir: str,
+    replay_only: bool = False,
+    workers: int | None = None,
+) -> list[dict[str, Any]]:
+    """`preservation_critique`'s own contract, one dict per hypothesis in
+    `hypotheses`, in the same order, run through `hte.llm.complete_many`
+    (`hte.parallel.pmap` underneath, `workers` at a time, `hte.parallel.
+    configure`'s own default and `HTE_LLM_WORKERS` env read applied when
+    `workers` is left `None`) instead of one `hte.llm.complete` call at a
+    time (`docs/THROUGHPUT.md`'s own wiring recipe for this role: unlike
+    the critic and judge, a preservation critique has no natural batched-
+    array shape of its own, since each hypothesis needs its own full
+    prompt against the same table; parallelizing the per-item calls
+    still turns `N` sequential 20-40s subprocess calls into `N / workers`
+    wall-clock time).
+    """
+    prompts = [_preservation_critique_prompt(h, table, period) for h in hypotheses]
+    responses = llm.complete_many(
+        prompts, role="preservation_critic", schema=PRESERVATION_CRITIQUE_SCHEMA,
+        cache_dir=cache_dir, replay_only=replay_only, workers=workers,
+    )
+    return list(responses)
 
 
 # --------------------------------------------------------------------------
@@ -604,6 +637,6 @@ def extract(
 
 __all__ = [
     "generate", "critique", "unknown_unknown", "preservation_critique",
-    "judge", "meta_review", "self_report", "extract", "ExtractionResult",
-    "EXTRACT_ENSEMBLE_SIZE", "EXTRACT_AGREEMENT_THRESHOLD",
+    "preservation_critique_many", "judge", "meta_review", "self_report",
+    "extract", "ExtractionResult", "EXTRACT_ENSEMBLE_SIZE", "EXTRACT_AGREEMENT_THRESHOLD",
 ]

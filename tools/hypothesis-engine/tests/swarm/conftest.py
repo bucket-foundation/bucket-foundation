@@ -23,20 +23,16 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from hypothesis import settings
 from hypothesis import strategies as st
 
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from hte.timeline import Interval
 
-# A shared, CI-safe profile: enough cases to earn the task's "at least 500
-# cases" bar in spirit (hypothesis shrinks and dedups, so raw example count
-# is not directly comparable to seeded-random's, but 300 examples per
-# property, run across ~60 properties, is well past 500 total case-checks)
-# without letting one file run for minutes under this sandbox's CPU limits.
-settings.register_profile("swarm", max_examples=300, deadline=None)
-settings.load_profile("swarm")
+# The active hypothesis profile (`fast`, 40 examples, default; `full`, 300
+# examples, via `HTE_TEST_PROFILE=full`) is registered and loaded once in
+# `tests/conftest.py`, which pytest imports before this file. Nothing here
+# loads a profile of its own.
 
 # --------------------------------------------------------------------------
 # Years, intervals (BCE/CE boundary, zero-length instants)

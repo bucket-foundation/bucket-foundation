@@ -7,7 +7,7 @@ from __future__ import annotations
 import math
 
 import pytest
-from conftest import intervals, interval_pairs, years
+from tests.swarm.conftest import intervals, interval_pairs, years
 from hypothesis import assume, given
 from hypothesis import strategies as st
 

@@ -6,7 +6,7 @@ from __future__ import annotations
 import math
 
 import pytest
-from conftest import cyclic_sources, evidence_item, evidence_kinds_st, evidence_weights, positive_W, simplex_points, unit_floats
+from tests.swarm.conftest import cyclic_sources, evidence_item, evidence_kinds_st, evidence_weights, positive_W, simplex_points, unit_floats
 from hypothesis import assume, given
 from hypothesis import strategies as st
 

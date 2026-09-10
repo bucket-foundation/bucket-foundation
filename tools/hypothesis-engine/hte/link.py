@@ -20,6 +20,7 @@ returning a new list.
 from __future__ import annotations
 
 import difflib
+import re
 import unicodedata
 from typing import Sequence
 
@@ -65,16 +66,77 @@ def _label(vocab: Vocabulary, slot: Slot, concept_id_or_label: str) -> str:
     return concept.label if concept is not None else concept_id_or_label
 
 
+_TOKEN_RE = re.compile(r"[a-z0-9]+")
+
+# A token shorter than this many characters must match another token
+# exactly to count as the same word; below this length, a single-digit
+# or two-digit run is more likely a disambiguating suffix (`"Actor 5"`
+# vs `"Actor 10"`, an era-name index, a short id fragment) than a
+# real spelling variant, so no fuzzy credit is given for it. Chosen
+# short of `hte.synth`'s own `_random_label`'s 14-character labels (a
+# same-length full-word token is always eligible for the ratio floor
+# below) and long enough that "5"/"10"/"14" all fall under it.
+MIN_TOKEN_LEN = 3
+
+# The per-token `difflib.SequenceMatcher` ratio a token pair at or above
+# `MIN_TOKEN_LEN` must clear to count as the same word (a near-miss
+# spelling or a pluralization, `"Farmer"`/`"Farmers"` scores `0.923`);
+# short of this floor the token pair is read as two different words,
+# not a partial match, so `_token_ratio` reports `0.0` rather than a
+# low but nonzero number a caller's own threshold might still clear.
+TOKEN_RATIO_FLOOR = 0.85
+
+
+def _tokenize(text: str) -> tuple[str, ...]:
+    return tuple(_TOKEN_RE.findall(text))
+
+
+def _token_ratio(a: str, b: str) -> float:
+    """`1.0` for identical tokens; the `difflib` ratio, clamped to `0.0`
+    below `TOKEN_RATIO_FLOOR`, for a token pair both at least
+    `MIN_TOKEN_LEN` long; `0.0` for anything shorter that isn't an exact
+    match, since a short token (a number, an index suffix, an
+    abbreviation) carries too little material for a character-ratio
+    fuzzy match to mean anything."""
+    if a == b:
+        return 1.0
+    if len(a) < MIN_TOKEN_LEN or len(b) < MIN_TOKEN_LEN:
+        return 0.0
+    ratio = difflib.SequenceMatcher(None, a, b).ratio()
+    return ratio if ratio >= TOKEN_RATIO_FLOOR else 0.0
+
+
 def slot_match_score(item_value: str, hyp_value: str, vocab: Vocabulary, slot: Slot) -> float:
-    """`1.0` on an exact concept-id match; otherwise the label-similarity
-    ratio (`difflib.SequenceMatcher`, diacritic- and case-folded) between
-    the two values' own vocabulary labels, falling back to the raw value
-    itself when it does not resolve to a known concept id. Neither
-    `main.tex` nor `HISTORY-HYPOTHESIS-ENGINE-SPEC.md` names a fixed
-    fuzzy-match formula for slot identity (`hte.belief.edge_strength`'s
-    own blended formula scores an item's evidentiary *strength*, a
-    different question from whether two slot values name the same
-    concept), so this ratio is this module's own documented choice.
+    """`1.0` on an exact concept-id match or on two labels that tokenize
+    identically after normalization; otherwise a token-level match
+    between the two values' own vocabulary labels (diacritic- and
+    case-folded, split into `[a-z0-9]+` runs), falling back to the raw
+    value itself when it does not resolve to a known concept id. Two
+    labels with a different number of tokens are never a match (`0.0`):
+    `"planck"` (one token) against `"planck-1900"` (two) is a different
+    concept: an index or a year appended to a shared name, regardless of
+    how high a whole-string character ratio would read. Same token
+    count: each position is compared by
+    `_token_ratio`, and the match score is the WORST-scoring position
+    (`min`), so one disambiguating token that fails to match (`"5"` vs
+    `"10"` in `"Actor 5"`/`"Actor 10"`) drags the whole pair to `0.0`
+    even when every other token lines up exactly. Neither `main.tex` nor
+    `HISTORY-HYPOTHESIS-ENGINE-SPEC.md` names a fixed fuzzy-match formula
+    for slot identity (`hte.belief.edge_strength`'s own blended formula
+    scores an item's evidentiary *strength*, a different question from
+    whether two slot values name the same concept), so this scheme is
+    this module's own documented choice.
+
+    Fixed 2026-09-10 (`bkt-hte-linker-fuzzy-fix`): the previous
+    whole-string `difflib.SequenceMatcher` ratio cross-linked near-
+    identical labels sharing a long common prefix, `"Actor 5"`/`"Actor
+    10"` scored `~0.8`, `"planck"`/`"planck-1900"` scored high enough to
+    clear `link_evidence`'s own default `threshold=0.6` too, silently
+    treating two different concepts as the same slot value. `hte.synth`'s
+    own random-label generator (`_random_label`) was written around this
+    exact defect for its synthetic worlds; this fix closes it in the
+    comparator itself instead of only working around it at the label-
+    generation layer.
     """
     if item_value == hyp_value:
         return 1.0
@@ -82,7 +144,12 @@ def slot_match_score(item_value: str, hyp_value: str, vocab: Vocabulary, slot: S
     b = _normalize(_label(vocab, slot, hyp_value))
     if not a or not b:
         return 0.0
-    return difflib.SequenceMatcher(None, a, b).ratio()
+    if a == b:
+        return 1.0
+    tokens_a, tokens_b = _tokenize(a), _tokenize(b)
+    if not tokens_a or not tokens_b or len(tokens_a) != len(tokens_b):
+        return 0.0
+    return min(_token_ratio(x, y) for x, y in zip(tokens_a, tokens_b))
 
 
 def _effective_score(raw_score: float, strength: float) -> float:

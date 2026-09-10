@@ -67,6 +67,48 @@ def test_batch_judge_in_fake_mode_matches_serial(tmp_path, monkeypatch):
 
 
 # --------------------------------------------------------------------------
+# Multiple chunks run through hte.parallel.pmap (`bkt-hte-throughput`):
+# batching cuts the call count, `workers` runs the resulting chunks
+# concurrently, and the two compound rather than batching alone leaving
+# the reduced chunk count to run one at a time. Order must still match a
+# fully serial run regardless of which chunk's worker finishes first.
+# --------------------------------------------------------------------------
+
+
+def test_batch_critique_multiple_chunks_preserve_order_under_pmap(tmp_path, monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    corpus, hyps = _hypotheses(24)
+
+    serial = [roles.critique(h, corpus.evidence, cache_dir=tmp_path, replay_only=False) for h in hyps]
+    batched = batching.batch_critique(hyps, corpus.evidence, batch_size=8, cache_dir=tmp_path, replay_only=False, workers=4)
+
+    assert len(batched) == 24
+    assert batched == serial
+
+
+def test_batch_judge_multiple_chunks_preserve_order_under_pmap(tmp_path, monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    corpus, hyps = _hypotheses(24)
+    opinions = {h.address: Opinion(b=0.2, d=0.1, u=0.7, a=0.5) for h in hyps}
+    context = {"opinions": opinions}
+    pairs = [(hyps[i], hyps[i + 1], context) for i in range(0, 24, 2)]
+
+    serial = [roles.judge(a, b, context, cache_dir=tmp_path, replay_only=False) for a, b, _ in pairs]
+    batched = batching.batch_judge(pairs, batch_size=8, cache_dir=tmp_path, replay_only=False, workers=4)
+
+    assert len(batched) == 12
+    assert batched == serial
+
+
+def test_batch_critique_empty_input_returns_empty_list_no_pmap_call(tmp_path):
+    assert batching.batch_critique([], [], batch_size=8, cache_dir=tmp_path) == []
+
+
+def test_batch_judge_empty_input_returns_empty_list_no_pmap_call(tmp_path):
+    assert batching.batch_judge([], batch_size=8, cache_dir=tmp_path) == []
+
+
+# --------------------------------------------------------------------------
 # Missing-id fallback: a batch response that leaves an id out entirely
 # --------------------------------------------------------------------------
 

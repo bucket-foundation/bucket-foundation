@@ -145,6 +145,38 @@ def test_slot_match_score_unrelated_labels_is_low():
     assert slot_match_score("farmers", "aliens", vocab, Slot.ACTOR) < 0.5
 
 
+def test_slot_match_score_numeric_index_suffix_does_not_cross_link():
+    # `bkt-hte-linker-fuzzy-fix`: two different concepts sharing a long
+    # common prefix and differing only in a short numeric suffix must
+    # never read as the same slot value, the exact defect `hte.synth`'s
+    # own `_random_label` was written to dodge (see that module's
+    # docstring).
+    vocab = Vocabulary()
+    vocab.add(Concept("actor-5", Slot.ACTOR, "Actor 5", 0.0, ConsensusStatus.CONSENSUS))
+    vocab.add(Concept("actor-10", Slot.ACTOR, "Actor 10", 0.0, ConsensusStatus.CONSENSUS))
+    assert slot_match_score("Actor 5", "Actor 10", vocab, Slot.ACTOR) == 0.0
+    assert slot_match_score("actor-5", "actor-10", vocab, Slot.ACTOR) == 0.0
+
+
+def test_slot_match_score_year_suffixed_label_does_not_cross_link():
+    # Same defect, a different shape: a bare name against that name plus
+    # an appended year/index is a different token count, never a match.
+    vocab = Vocabulary()
+    vocab.add(Concept("planck", Slot.ACTOR, "Planck", 0.0, ConsensusStatus.CONSENSUS))
+    vocab.add(Concept("planck-1900", Slot.ACTOR, "Planck-1900", 0.0, ConsensusStatus.CONSENSUS))
+    assert slot_match_score("planck", "planck-1900", vocab, Slot.ACTOR) == 0.0
+    assert slot_match_score("Planck", "Planck-1900", vocab, Slot.ACTOR) == 0.0
+
+
+def test_slot_match_score_near_miss_spelling_still_matches():
+    # A real spelling/pluralization variant of a long-enough word still
+    # gets fuzzy credit; the fix above targets short disambiguating
+    # tokens and token-count mismatches only.
+    vocab = _vocab()
+    score = slot_match_score("Farmer", "Farmers", vocab, Slot.ACTOR)
+    assert score > 0.85
+
+
 def test_a_weak_item_needs_a_cleaner_fuzzy_match_than_a_strong_one():
     vocab = _vocab()
     h = _hyp(vocab)

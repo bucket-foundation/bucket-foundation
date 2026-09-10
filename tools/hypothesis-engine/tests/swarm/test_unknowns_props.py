@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import pytest
-from conftest import fresh_vocabulary, vocabulary_with_extra
+from tests.swarm.conftest import fresh_vocabulary, vocabulary_with_extra
 from hypothesis import given
 from hypothesis import strategies as st
 
@@ -136,7 +136,7 @@ def _placement_hypothesis(address: int) -> Hypothesis:
 
 @given(st.lists(st.integers(min_value=1, max_value=1000), min_size=1, max_size=8, unique=True))
 def test_surprise_is_empty_when_every_item_is_linked(addresses):
-    from conftest import evidence_item
+    from tests.swarm.conftest import evidence_item
 
     hyps = [_placement_hypothesis(a) for a in addresses]
     items = [evidence_item(f"e{i}", supports=[a]) for i, a in enumerate(addresses)]
@@ -144,7 +144,7 @@ def test_surprise_is_empty_when_every_item_is_linked(addresses):
 
 
 def test_surprise_flags_an_item_naming_no_materialized_address():
-    from conftest import evidence_item
+    from tests.swarm.conftest import evidence_item
 
     hyps = [_placement_hypothesis(1)]
     stray = evidence_item("stray", refutes=[999])

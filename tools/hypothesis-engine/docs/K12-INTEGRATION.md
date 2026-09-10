@@ -92,15 +92,16 @@ physics history:
 
 `hte/cli.py` and `hte/runner.py` each keep their own `_CORPUS_LOADERS`
 dict, a fixed map from a `--corpus` name to a zero-argument loader
-function; today that map holds `"quantum-history"` and `"fixtures"`
-only. `hte.corpus.education_atlas.load` already matches the loader
-signature both dicts expect (every one of its own parameters carries a
-default, so `education_atlas.load()` alone resolves a sample directory
-from `EDUCATION_ATLAS_SAMPLE_DIR` or the sibling-clone convention and
-returns a `Corpus`); registering it is one added line in each of those
-two files, `"education-atlas": education_atlas.load`, left for whichever
-change lands next in `hte/cli.py`/`hte/runner.py`. Once that line is in
-place, a K-12 campaign runs exactly like a quantum-history one:
+function; `"education-atlas": education_atlas.load` is registered in
+both (`bkt-hte-corpus-registration`), alongside `"quantum-history"`,
+`"fixtures"`, and `"production"` (`RESEARCH-OS-INTEGRATION.md`).
+`hte.corpus.education_atlas.load` matches the loader signature both
+dicts expect (every one of its own parameters carries a default, so
+`education_atlas.load()` alone resolves a sample directory from
+`EDUCATION_ATLAS_SAMPLE_DIR` or the sibling-clone convention and returns
+a `Corpus`); its own vocabulary (`hte/data/vocab-education-seed.json`)
+loads automatically inside `load()`, no separate wiring needed. A K-12
+campaign runs exactly like a quantum-history one:
 
 ```bash
 cd tools/hypothesis-engine
@@ -109,8 +110,14 @@ python3 -m hte.cli calibrate --corpus education-atlas --fit
 python3 -m hte.cli views runs/default/<timestamp>/
 ```
 
-Ahead of that registration landing, the adapter and its corpus are
-callable and tested on their own:
+`education-atlas`'s own ground truth sets `discovery_year == year` for
+every flagged problem row (this module's own docstring), the same shape
+quantum-history ships; `hte.calibrate.choose_holdout_mode` reads this as
+k-fold (`hte.calibrate.holdout_kfold`) rather than discovery-date holdout,
+so `calibrate --fit` above runs that mode automatically.
+
+The adapter and its corpus are also callable and tested on their own,
+with no campaign wiring involved:
 
 ```bash
 cd tools/hypothesis-engine

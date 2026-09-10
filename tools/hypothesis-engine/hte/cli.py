@@ -12,12 +12,14 @@ from pathlib import Path
 
 from . import calibrate, export, runner
 from .belief import Constants
-from .corpus import fixtures as fixtures_corpus
+from .corpus import education_atlas, fixtures as fixtures_corpus, production
 from .corpus import quantum_history
 
 _CORPUS_LOADERS = {
     "quantum-history": quantum_history.ingest,
     "fixtures": fixtures_corpus.build,
+    "education-atlas": education_atlas.load,
+    "production": production.load,
 }
 
 

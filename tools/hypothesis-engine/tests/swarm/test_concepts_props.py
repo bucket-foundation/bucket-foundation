@@ -4,7 +4,7 @@ probability."""
 from __future__ import annotations
 
 import pytest
-from conftest import (
+from tests.swarm.conftest import (
     fresh_vocabulary,
     unicode_nonempty_labels,
     vocabulary_with_extra,

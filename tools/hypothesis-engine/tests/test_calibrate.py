@@ -1,4 +1,4 @@
-from hte import calibrate
+from hte import calibrate, synth
 from hte.belief import Constants
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from hte.corpus import Corpus, GroundTruthEvent, fixtures
@@ -250,3 +250,151 @@ def test_write_calibration_omits_the_heading_when_coverage_is_high(tmp_path):
     calibrate.write_calibration(result, tmp_path)
     md = (tmp_path / "CALIBRATION.md").read_text()
     assert "## Why coverage is low" not in md
+
+
+# --------------------------------------------------------------------------
+# holdout_kfold / choose_holdout_mode / run_calibration
+# (`bkt-hte-calibration-redesign`)
+#
+# `_calib_corpus()` (above) sets `discovery_year == year` for every one of
+# its 5 events, the same structural shape quantum-history, education-atlas,
+# `hte.corpus.fixtures`, and every `hte.synth` world share, so it doubles
+# as the k-fold fixture here: `choose_holdout_mode` must read it as
+# "kfold", the same read `run_calibration`/`fit_constants` fall back to
+# when no `cutoff_years` is given.
+# --------------------------------------------------------------------------
+
+
+def _lagged_corpus() -> Corpus:
+    """A corpus with a real discovery lag on at least one event, the
+    shape `hte.corpus.production` ships: `choose_holdout_mode` must read
+    this one as `"discovery_date"`."""
+    corpus = _calib_corpus()
+    lagged = corpus.ground_truth[0]
+    corpus.ground_truth[0] = GroundTruthEvent(
+        id=lagged.id, label=lagged.label, year=lagged.year, doc_id=lagged.doc_id,
+        discovery_year=lagged.year + 20,
+    )
+    return corpus
+
+
+def test_choose_holdout_mode_is_kfold_when_every_event_has_no_discovery_lag():
+    mode, reason = calibrate.choose_holdout_mode(_calib_corpus())
+    assert mode == "kfold"
+    assert "discovery_year == year" in reason
+
+
+def test_choose_holdout_mode_is_discovery_date_when_an_event_is_lagged():
+    mode, reason = calibrate.choose_holdout_mode(_lagged_corpus())
+    assert mode == "discovery_date"
+    assert "discovery lag" in reason
+
+
+def test_choose_holdout_mode_is_kfold_with_no_ground_truth_at_all():
+    vocab = _calib_vocab()
+    corpus = Corpus(sources={}, evidence=[], ground_truth=[], provenance=[], vocab=vocab)
+    mode, reason = calibrate.choose_holdout_mode(corpus)
+    assert mode == "kfold"
+    assert "no ground-truth events" in reason
+
+
+def test_holdout_kfold_targets_every_event_across_folds_exactly_once():
+    # 5 evidence items, k=5: stratified round-robin (one kind) deals
+    # exactly one item per fold, so every ground-truth event is the
+    # held-out target of exactly one fold.
+    corpus = _calib_corpus()
+    result = calibrate.holdout_kfold(corpus, Constants(), k=5, seed=0)
+    assert sum(f["n_holdout_events"] for f in result["folds"]) == len(corpus.ground_truth)
+    assert result["n_holdout_events"] == len(corpus.ground_truth)
+
+
+def test_holdout_kfold_shape_matches_run_holdout_for_write_calibration():
+    corpus = _calib_corpus()
+    result = calibrate.holdout_kfold(corpus, Constants(), k=5, seed=0)
+    for key in ("cutoff_years", "n_holdout_events", "n_covered_events", "coverage_of_truth",
+                "coverage_note", "brier_score", "calibration_curve", "predictions", "constants"):
+        assert key in result
+    assert result["cutoff_years"] is None
+    assert result["mode"] == "kfold"
+    assert len(result["folds"]) == 5
+
+
+def test_holdout_kfold_is_deterministic_for_a_fixed_seed():
+    corpus = _calib_corpus()
+    a = calibrate.holdout_kfold(corpus, Constants(), k=5, seed=3)
+    b = calibrate.holdout_kfold(corpus, Constants(), k=5, seed=3)
+    assert a["coverage_of_truth"] == b["coverage_of_truth"]
+    assert a["predictions"] == b["predictions"]
+
+
+def test_holdout_kfold_does_not_mutate_the_corpus_evidence_links():
+    # `link_evidence` runs against deep copies per fold; the caller's own
+    # `corpus.evidence` must come back with `supports`/`refutes` exactly
+    # as it went in.
+    corpus = _calib_corpus()
+    before = [(e.id, list(e.supports), list(e.refutes)) for e in corpus.evidence]
+    calibrate.holdout_kfold(corpus, Constants(), k=5, seed=0)
+    after = [(e.id, list(e.supports), list(e.refutes)) for e in corpus.evidence]
+    assert before == after
+
+
+def test_run_calibration_picks_kfold_and_sets_mode_fields():
+    corpus = _calib_corpus()
+    result = calibrate.run_calibration(corpus, Constants(), k=5, seed=0)
+    assert result["mode"] == "kfold"
+    assert result["mode_reason"]
+    assert result["brier_score"] is not None
+
+
+def test_run_calibration_picks_discovery_date_and_honors_an_explicit_cutoff():
+    corpus = _lagged_corpus()
+    result = calibrate.run_calibration(corpus, Constants(), cutoff_years=1910)
+    assert result["mode"] == "discovery_date"
+    assert result["cutoff_years"] == 1910
+
+
+def test_fit_constants_without_cutoff_years_uses_the_auto_picked_mode():
+    corpus = _calib_corpus()
+    fit = calibrate.fit_constants(corpus, {"W": [1.0, 2.0]})
+    assert fit["best"] is not None
+    assert len(fit["results"]) == 2
+
+
+def test_write_calibration_reports_mode_and_reason(tmp_path):
+    corpus = _calib_corpus()
+    result = calibrate.run_calibration(corpus, Constants(), k=5, seed=0)
+    calibrate.write_calibration(result, tmp_path)
+    md = (tmp_path / "CALIBRATION.md").read_text()
+    assert "Mode: kfold" in md
+    assert "Reason:" in md
+    assert "## Per-fold" in md
+
+
+def test_write_calibration_omits_mode_line_for_a_bare_run_holdout_result(tmp_path):
+    corpus = _calib_corpus()
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910)
+    calibrate.write_calibration(result, tmp_path)
+    md = (tmp_path / "CALIBRATION.md").read_text()
+    assert "Mode:" not in md
+    assert "## Per-fold" not in md
+
+
+# --------------------------------------------------------------------------
+# k-fold coverage on `hte.synth` worlds with known planted truth
+# --------------------------------------------------------------------------
+
+
+def test_holdout_kfold_coverage_on_synthetic_worlds_is_at_least_0_8():
+    """`bkt-hte-calibration-redesign`'s own validation bar: mean
+    `coverage_of_truth` across a batch of `hte.synth` small worlds
+    (planted truth, `hte.synth.make_small_world`) must clear `0.8`. No
+    LLM call is needed, `holdout_kfold` runs only `hte.generate.
+    from_evidence`/`hte.link.link_evidence`/`hte.belief.score`."""
+    coverages = []
+    for seed in range(10):
+        world = synth.make_small_world(seed)
+        result = calibrate.holdout_kfold(world.corpus, Constants(), k=5, seed=seed)
+        assert result["coverage_of_truth"] is not None
+        coverages.append(result["coverage_of_truth"])
+    mean_coverage = sum(coverages) / len(coverages)
+    assert mean_coverage >= 0.8, f"mean k-fold coverage_of_truth {mean_coverage} over seeds 0-9 fell below 0.8: {coverages}"

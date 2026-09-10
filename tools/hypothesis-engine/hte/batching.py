@@ -40,6 +40,7 @@ from typing import Any, Mapping, Sequence
 from . import llm, roles
 from .evidence import EvidenceItem
 from .hypothesis import Hypothesis, Placement
+from .parallel import pmap
 
 # --------------------------------------------------------------------------
 # Shared rendering (this module's own copy; see the module docstring)
@@ -180,27 +181,44 @@ def batch_critique(
     batch_size: int = 8,
     cache_dir: str,
     replay_only: bool = False,
+    workers: int | None = None,
 ) -> list[dict[str, Any]]:
     """`hte.roles.critique`'s own `keep`/`issues`/`rationale` contract,
     one dict per hypothesis in `hypotheses`, in the same order,
     `batch_size` hypotheses per `claude -p` call instead of one call per
-    hypothesis. `evidence` is the full evidence sequence (matching `hte.
-    roles.critique`'s own signature), filtered per hypothesis the same
-    way that function filters it.
+    hypothesis, `workers` chunks in flight at a time (`hte.parallel.pmap`,
+    `hte.parallel.configure`'s own default and `HTE_LLM_WORKERS` env read
+    applied when `workers` is left `None`): `docs/THROUGHPUT.md`'s own
+    "batching and parallelism compound" reading, `batch_size` cutting the
+    call count and `workers` running the resulting chunks concurrently,
+    rather than batching alone leaving the reduced chunk count to run
+    one at a time. `evidence` is the full evidence sequence (matching
+    `hte.roles.critique`'s own signature), filtered per hypothesis the
+    same way that function filters it.
 
     Any hypothesis the batch response's own array is missing, repeats,
     or leaves short a required key falls back to one direct `hte.roles.
-    critique` call for that hypothesis alone; a whole chunk whose
-    response fails outright (`hte.llm.LLMError`) falls back the same way
-    for every hypothesis in it. `hte.parallel.RateLimit` propagates
-    unchanged, it is not caught or retried here.
+    critique` call for that hypothesis alone (run serially, after every
+    chunk's own batch call has returned); a whole chunk whose response
+    fails outright (`hte.llm.LLMError`) falls back the same way for
+    every hypothesis in it. `hte.parallel.RateLimit` propagates out of
+    `pmap` unchanged; `pmap` itself is what pauses every in-flight chunk
+    for it rather than treating it as one chunk's own failure.
     """
-    results_by_id: dict[str, dict[str, Any]] = {}
-    for chunk in _chunks(list(hypotheses), batch_size):
-        entries = _run_batch(
+    chunks = _chunks(list(hypotheses), batch_size)
+    if not chunks:
+        return []
+
+    def _run_chunk(chunk: list[Hypothesis]) -> list[Any]:
+        return _run_batch(
             _critique_batch_prompt(chunk, evidence), role="critic", schema=CRITIQUE_BATCH_SCHEMA,
             cache_dir=cache_dir, replay_only=replay_only,
         )
+
+    chunk_entries = pmap(_run_chunk, chunks, workers=workers)
+
+    results_by_id: dict[str, dict[str, Any]] = {}
+    for chunk, entries in zip(chunks, chunk_entries):
         by_id = _validated_entries(entries, _CRITIQUE_REQUIRED)
         for h in chunk:
             entry = by_id.get(h.short_id)
@@ -271,26 +289,41 @@ def batch_judge(
     batch_size: int = 8,
     cache_dir: str,
     replay_only: bool = False,
+    workers: int | None = None,
 ) -> list[float]:
     """`hte.roles.judge`'s own `P(a beats b)` contract, one float per
     `(a, b, context)` triple in `pairs`, in the same order, `batch_size`
-    pairs per `claude -p` call instead of one call per pair.
+    pairs per `claude -p` call instead of one call per pair, `workers`
+    chunks in flight at a time (`hte.parallel.pmap`, `hte.parallel.
+    configure`'s own default and `HTE_LLM_WORKERS` env read applied when
+    `workers` is left `None`), the same batching-and-parallelism
+    compounding `batch_critique` documents.
 
     Any pair the batch response's own array is missing, repeats, or
     leaves short a required key falls back to one direct `hte.roles.
-    judge` call for that pair alone, the same fallback contract
-    `batch_critique` follows. Pair ids are assigned per chunk (`"0"`,
-    `"1"`, ...) rather than derived from the two hypotheses, since a
-    tournament may judge the same ordered pair more than once across
-    different rounds; the id only ever needs to be unique inside its own
-    chunk's prompt and response.
+    judge` call for that pair alone (serial, after every chunk's own
+    batch call has returned), the same fallback contract `batch_critique`
+    follows. Pair ids are assigned per chunk (`"0"`, `"1"`, ...) rather
+    than derived from the two hypotheses, since a tournament may judge
+    the same ordered pair more than once across different rounds; the id
+    only ever needs to be unique inside its own chunk's prompt and
+    response.
     """
-    out: list[float] = [0.0] * len(pairs)
-    for start in range(0, len(pairs), batch_size):
-        chunk = list(pairs[start:start + batch_size])
+    chunk_starts = list(range(0, len(pairs), batch_size))
+    chunks = [list(pairs[start:start + batch_size]) for start in chunk_starts]
+    if not chunks:
+        return []
+
+    def _run_chunk(chunk: list[JudgePair]) -> list[Any]:
         local_ids = [str(i) for i in range(len(chunk))]
         prompt = _judge_batch_prompt([(lid, a, b, ctx) for lid, (a, b, ctx) in zip(local_ids, chunk)])
-        entries = _run_batch(prompt, role="judge", schema=JUDGE_BATCH_SCHEMA, cache_dir=cache_dir, replay_only=replay_only)
+        return _run_batch(prompt, role="judge", schema=JUDGE_BATCH_SCHEMA, cache_dir=cache_dir, replay_only=replay_only)
+
+    chunk_entries = pmap(_run_chunk, chunks, workers=workers)
+
+    out: list[float] = [0.0] * len(pairs)
+    for start, chunk, entries in zip(chunk_starts, chunks, chunk_entries):
+        local_ids = [str(i) for i in range(len(chunk))]
         by_id = _validated_entries(entries, _JUDGE_REQUIRED)
         for lid, (a, b, ctx) in zip(local_ids, chunk):
             entry = by_id.get(lid)

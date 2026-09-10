@@ -3,7 +3,7 @@ prior_logit summation, and Hypothesis JSON round trips."""
 from __future__ import annotations
 
 import pytest
-from conftest import unicode_nonempty_labels
+from tests.swarm.conftest import unicode_nonempty_labels
 from hypothesis import given
 from hypothesis import strategies as st
 

@@ -35,6 +35,7 @@ that prose earns its keep. `hte.link.link_evidence` is the reader.
 """
 from __future__ import annotations
 
+import logging
 import re
 import unicodedata
 from datetime import datetime, timezone
@@ -46,6 +47,8 @@ from ..evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance,
 from ..generate import PLACEMENT_CONCEPT_SLOTS
 from ..timeline import Interval
 from . import Corpus, GroundTruthEvent, RetrievalEnvelope
+
+_LOGGER = logging.getLogger(__name__)
 
 DEFAULT_CORPUS_DIR = Path(__file__).resolve().parents[4] / "quantum" / "07-history"
 QUANTUM_VOCAB_PATH = Path(__file__).resolve().parents[1] / "data" / "vocab-seed-quantum-history.json"
@@ -285,13 +288,50 @@ def load_vocab() -> Vocabulary:
     return Vocabulary.load(QUANTUM_VOCAB_PATH)
 
 
+def _drop_dangling_stemma_parents(sources: dict[str, Source]) -> None:
+    """`FINDING-2026-09-10-102`: a card's `## Sources` cross-references
+    are matched by regex alone (`_CROSS_REF_RE`), against no check that
+    the matched id names a card this ingest read (a typo'd or
+    renamed id, or an ingest over a partial subdirectory of the corpus,
+    each leaves a `stemma_parents` entry naming no `Source` this `Corpus`
+    carries). Mutates every `Source` in `sources` in place (`Source` is
+    not frozen), dropping any `stemma_parents` entry absent from
+    `sources`' own keys and logging one warning line per drop, the same
+    "resolves, or is excluded" contract `hte.corpus.education_atlas`'s
+    own OWID-stemma rule already applies at construction time. Must run
+    only after every card (and the chapter) has been parsed and added to
+    `sources`: a card can cite a SIBLING card `card_paths`' own sort order
+    has not reached yet, a forward reference that is not dangling once
+    the whole directory is read, so resolving against a partial `sources`
+    dict mid-loop would misclassify it."""
+    for key, source in sources.items():
+        resolved = [p for p in source.stemma_parents if p in sources]
+        dangling = [p for p in source.stemma_parents if p not in sources]
+        for parent in dangling:
+            _LOGGER.warning(
+                "quantum_history.ingest: source %r cites stemma parent %r, "
+                "not present in the ingested corpus; dropped as dangling", key, parent,
+            )
+        source.stemma_parents = resolved
+
+
 def ingest(corpus_dir: str | Path | None = None, *, retrieval_run_id: str = "fixture-quantum-history-ingest") -> Corpus:
     """Parse every `T-*.md` card and `_CHAPTER.md` under `corpus_dir`
     (default `DEFAULT_CORPUS_DIR`) into a `Corpus`: one `Source` per file,
     one `EvidenceItem` per milestone or claim bullet, one `GroundTruthEvent`
     per dated milestone bullet, and one fixture `RetrievalEnvelope` per
     file. Raises `FileNotFoundError` if `corpus_dir` does not exist, rather
-    than returning a silently empty corpus."""
+    than returning a silently empty corpus.
+
+    Every parsed card's own `stemma_parents` is resolved against the full
+    set of sources this call ingests once every card is read
+    (`_drop_dangling_stemma_parents`, `FINDING-2026-09-10-102`): a
+    cross-reference naming no card present in `corpus_dir` is dropped,
+    with a warning logged, rather than left dangling in the returned
+    `Corpus`. `RetrievalEnvelope.lineage_count` is computed from each
+    source's own POST-filter `stemma_parents`, so it always agrees with
+    the edges the returned `Corpus` carries.
+    """
     directory = Path(corpus_dir) if corpus_dir is not None else DEFAULT_CORPUS_DIR
     if not directory.is_dir():
         raise FileNotFoundError(f"quantum-history corpus directory not found: {directory}")
@@ -301,7 +341,9 @@ def ingest(corpus_dir: str | Path | None = None, *, retrieval_run_id: str = "fix
     sources: dict[str, Source] = {}
     evidence: list[EvidenceItem] = []
     ground_truth: list[GroundTruthEvent] = []
-    provenance: list[RetrievalEnvelope] = []
+    # `(doc_id, source_path, citation_count)` per file, envelopes built
+    # after stemma filtering so `lineage_count` reads the filtered count.
+    envelope_specs: list[tuple[str, str, int]] = []
 
     card_paths = sorted(p for p in directory.glob("T-*.md"))
     for path in card_paths:
@@ -309,21 +351,25 @@ def ingest(corpus_dir: str | Path | None = None, *, retrieval_run_id: str = "fix
         sources[source.id] = source
         evidence.extend(card_evidence)
         ground_truth.extend(card_ground_truth)
-        provenance.append(RetrievalEnvelope(
-            retrieval_run_id=retrieval_run_id, doc_id=source.id, source_path=str(path),
-            fetched_at=fetched_at, fixture=True, citation_count=citation_count,
-            lineage_count=len(source.stemma_parents),
-        ))
+        envelope_specs.append((source.id, str(path), citation_count))
 
     chapter_path = directory / "_CHAPTER.md"
     if chapter_path.is_file():
         chapter_source, chapter_evidence = _parse_chapter(chapter_path, vocab)
         sources[chapter_source.id] = chapter_source
         evidence.extend(chapter_evidence)
-        provenance.append(RetrievalEnvelope(
-            retrieval_run_id=retrieval_run_id, doc_id=chapter_source.id, source_path=str(chapter_path),
-            fetched_at=fetched_at, fixture=True, citation_count=0, lineage_count=0,
-        ))
+        envelope_specs.append((chapter_source.id, str(chapter_path), 0))
+
+    _drop_dangling_stemma_parents(sources)
+
+    provenance = [
+        RetrievalEnvelope(
+            retrieval_run_id=retrieval_run_id, doc_id=doc_id, source_path=source_path,
+            fetched_at=fetched_at, fixture=True, citation_count=citation_count,
+            lineage_count=len(sources[doc_id].stemma_parents),
+        )
+        for doc_id, source_path, citation_count in envelope_specs
+    ]
 
     return Corpus(sources=sources, evidence=evidence, ground_truth=ground_truth, provenance=provenance, vocab=vocab)
 

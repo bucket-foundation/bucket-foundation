@@ -70,6 +70,58 @@ work down to the neighborhood of single-digit minutes. The gain on a
 real campaign depends on how many hypotheses share a batchable call and
 how many batch entries need a single-item fallback (see below).
 
+### Measured on a real `run_campaign` call
+
+`bkt-hte-throughput`, 2026-09-10.
+
+The table above measures `hte.llm.complete_many`/`hte.batching` in
+isolation, over a flat prompt list this module builds by hand. The
+numbers below instead run the actual wiring this bead asks for, `hte.
+runner.run_campaign` end to end (critic, preservation critique, and the
+tournament's judge calls all included, generation and belief scoring too)
+over an `hte.synth` world sized to 400 hypotheses post-`max_hypotheses`
+cap (`hte.synth.make_world(0, n_actors=12, n_actions=6, n_objects=8,
+n_places=6, n_mechanisms=5, span=(1900,2000), n_true_events=5,
+evidence_per_event=(3,6))`, `combinatorial_max_items=100`,
+`max_hypotheses=400`), with `hte.llm.complete` itself mocked to sleep
+200ms and always return a valid response (`hte.fakellm`'s own critic/
+judge stand-ins have no batch-shaped response, so every batched call
+under `HTE_LLM_MODE=fake` falls back to single-item calls by design,
+`docs/THROUGHPUT.md`'s own "Fallback behavior" section below; measuring
+the real wiring's own speedup needs a mock that lets a batch call
+succeed instead):
+
+| Config | `HTE_LLM_WORKERS` | `critic_batch_size`/`judge_batch_size` | Wall time | LLM calls | Speedup |
+|---|---|---|---|---|---|
+| Serial (old behavior) | 1 | 1 | 241.6s | 1204 | 1.0x |
+| Parallel + batched | 4 | 8 | 26.8s | 504 | 9.0x |
+| Parallel + batched | 8 (`MAX_WORKERS`) | 8 | 14.4s | 504 | 16.8x |
+
+400 survivors out of 566 generated hypotheses in every row (the mock
+always returns `keep=True`, so critique never prunes here; this measures
+call-count and wall-time only, independent of critic behavior). Both parallel rows
+clear the "at least 10x faster than `HTE_LLM_WORKERS=1` with batching off"
+bar the throughput work was measured against; `HTE_LLM_WORKERS=4` (this
+package's own documented default) lands at 9.0x on this particular
+world's own shape, under the bar by itself, because `roles.
+preservation_critique_many` is parallelized but not batched (`docs/
+THROUGHPUT.md`'s own module docstring: "no natural batched-array shape of
+its own"), so its own 400 calls, running `workers` at a time with no
+batching multiplier, is the slowest of the three passes at 4 workers and
+dominates the fast config's own wall time (~20s of the 26.8s total);
+raising to 8 workers, `hte.parallel.MAX_WORKERS`'s own ceiling, roughly
+halves that dominant pass and clears 10x outright. The call count itself
+(1204 -> 504) is identical at 4 and 8 workers, batching's own gain, not
+parallelism's: only the 400 critic calls and ~400 judge calls collapse
+to `ceil(400/8) = 50` and `ceil(200/8) x 2 rounds = 50` respectively; the
+400 preservation calls stay 400 either way, batching not applying there.
+
+Benchmark script: `tools/hypothesis-engine` (not checked in; reproduce
+with `hte.synth.make_world`, `unittest.mock.patch.object(hte.llm,
+"complete", side_effect=<a 200ms-sleeping, always-valid stand-in>)`, and
+`hte.runner.run_campaign` with `critic_batch_size`/`judge_batch_size`/
+`llm_workers` set per row above).
+
 ## Rate-limit behavior
 
 `hte.llm.complete` raises `hte.parallel.RateLimit` (re-exported as

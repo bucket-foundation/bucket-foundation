@@ -4,7 +4,7 @@ stemma self-references included."""
 from __future__ import annotations
 
 import pytest
-from conftest import unicode_labels
+from tests.swarm.conftest import unicode_labels
 from hypothesis import given
 from hypothesis import strategies as st
 
