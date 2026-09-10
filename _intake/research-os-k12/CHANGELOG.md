@@ -1,5 +1,52 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, teacher class view and the Production accept path
+
+Branch `feat/ros-06-teacher-class-view`, bead `ros-06`, `learning/research-os/PLAN-REVISION-1.md` section 3 item 5. Two pieces: a class view a reviewer can read over their own learners, and the accept path `learning/research-os/ENGINE-BRIDGE.md` names as the one thing standing between an accepted Production and the engine outbox write. Full account: `learning/research-os/TEACHER-LAYER.md`.
+
+Shipped: `supabase/migrations/20260910030000_research_os_classes.sql` (`graph.classes`, `graph.class_members`, RLS, plus a `notes` jsonb column on `graph.productions`). `src/lib/research-os/class-view.ts` (`seedPathOrder`, `buildClassGrid`, `findBlockedLearners`, `findReadyForHarderTarget`), pure functions over plain graph arrays. `src/app/api/research-os/class/route.ts` and `src/app/research-os/class/page.tsx`, the class view itself, server-side data loading and computation, reviewer-gated. `src/lib/research-os/reviewer.ts` gained `isReviewerEmail`, the allowlist check split out for unit testing. `src/lib/research-os/stages.ts` gained `onProductionReview` and `onProductionReturned`, the accept path's own stage-transition functions. `src/lib/research-os/db.ts` gained `loadClassesForReviewer`, `loadClassMembers`, `loadLearnerStatesForMany`, and `emitProductionOutboxIfAccepted` (extracted from `/api/research-os/production`'s own POST, now shared rather than duplicated with `/api/research-os/review`'s new accept path). `scripts/test-research-os-teacher-class.ts`, 20 `node:test` cases, wired into `npm run test:research-os`.
+
+A mid-review fix, found during `ros-02`'s evidence-schema pass (`docs/ros-02-learner-state-model`, `src/lib/research-os/EVIDENCE-SCHEMA.md`): a returned Production used to leave `graph.learner_node_state.stage` at `"production"` with no evidence event recording the correction, since only the approve branch called `recordEvidence`. Both branches call it now; `onProductionReturned` logs a `"production_returned"` evidence event with `stage` left unmoved (the high-water-mark rule every transition function already enforces), `fromStage`/`toStage` both `"production"`, matching `EVIDENCE-SCHEMA.md`'s own corrective-event section. `EvidenceEvent` gained `fromStage`, `toStage`, and `reviewId` (this bead's own addition beyond the documented contract) fields.
+
+### Edited
+
+- `src/app/api/research-os/review/route.ts`: the production decision branch now sets a return's status to `"draft"` (not `"returned"`), appends a teacher note to the production's own `notes` column, advances the learner's evidence log on both approve and return, and emits the outbox row on approve.
+- `src/app/api/research-os/production/route.ts`: its inline outbox-emission block replaced with a call to `db.ts`'s new shared `emitProductionOutboxIfAccepted`.
+- `src/app/research-os/review/page.tsx`: a breadcrumb link added to `/research-os/class`.
+- `package.json`: `test:research-os` now also runs `scripts/test-research-os-teacher-class.ts`.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (114/114 pass across every research-os test file, this slice's 20 plus every pre-existing one), `next lint` on every touched file, `agf-lint-voice-src check` on every touched source file, `agf-lint-voice check` on `learning/research-os/TEACHER-LAYER.md`: all clean.
+
+## 2026-09-10, PR #28 review pass
+
+Review of `feat/ros-06-teacher-class-view` (PR #28) in worktree `review/pr28`. Leak scan
+against the full diff's added lines found no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs; fixture emails end in `.example`. The `.voiceignore` addition
+(`tools/hypothesis-engine/docs/LOOP-LOG.md`) was the only engine-tree-adjacent change; no
+other file under `tools/hypothesis-engine/` or `src/lib/research-os/engine*` was touched.
+`RESEARCH_OS_REVIEWER_EMAILS` appears in client page text only as the allowlist's name;
+its value stays server-side.
+
+One coverage gap found and closed: the class API's server-side scoping (`db.ts`'s
+`loadClassesForReviewer`, "a reviewer for class A never reads class B's grid") had no test,
+only the RLS policy text did. Split the filter into an exported pure function,
+`filterClassesForReviewer(rows, reviewerEmail)`, and added three cases to
+`scripts/test-research-os-teacher-class.ts`: a reviewer sees only their own class, a
+reviewer owning no row gets an empty result rather than another reviewer's, and the
+comparison is case- and whitespace-insensitive. Suite total: 114/114 (was 111/111; this
+file's own count: 20, was 17). `npm ci`, `npx tsc --noEmit`, `npm run build`, `next lint`
+on every touched file, `agf-lint-voice`/`agf-lint-voice-src check` on every touched file:
+all clean. No other defect found; approve sets `accepted` and advances the evidence log
+exactly once per call (the route's own 409-on-non-`submitted` guard makes a double approve
+a no-op past the first, and `writeProductionOutbox` upserts on `id`), return sets `draft`
+without regressing `stage`, and non-reviewers get 403 on both the class and review routes.
 ## 2026-09-10, PR #27 review pass
 
 Review of `feat/ros-03-confidence-routing` (PR #27) in worktree `.ros-worktrees/r27`. Leak
