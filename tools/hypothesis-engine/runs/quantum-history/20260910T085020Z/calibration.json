@@ -1,0 +1,1063 @@
+{
+  "mode": "kfold",
+  "k": 5,
+  "seed": 0,
+  "cutoff_years": null,
+  "match_threshold": 0.6,
+  "resolution": "decade",
+  "n_holdout_events": 105,
+  "n_covered_events": 17,
+  "coverage_of_truth": 0.1619047619047619,
+  "coverage_note": null,
+  "brier_score": 0.42287985891391355,
+  "calibration_curve": [
+    {
+      "bin_low": 0.0,
+      "bin_high": 0.1,
+      "count": 11,
+      "mean_predicted": 0.06701017152630061,
+      "mean_observed": 0.36363636363636365
+    },
+    {
+      "bin_low": 0.1,
+      "bin_high": 0.2,
+      "count": 7,
+      "mean_predicted": 0.13246375758013115,
+      "mean_observed": 0.8571428571428571
+    },
+    {
+      "bin_low": 0.2,
+      "bin_high": 0.3,
+      "count": 1,
+      "mean_predicted": 0.20751604040976718,
+      "mean_observed": 1.0
+    },
+    {
+      "bin_low": 0.3,
+      "bin_high": 0.4,
+      "count": 2,
+      "mean_predicted": 0.3110590449183292,
+      "mean_observed": 1.0
+    },
+    {
+      "bin_low": 0.4,
+      "bin_high": 0.5,
+      "count": 3,
+      "mean_predicted": 0.4548900117396599,
+      "mean_observed": 1.0
+    },
+    {
+      "bin_low": 0.5,
+      "bin_high": 0.6,
+      "count": 3,
+      "mean_predicted": 0.5178179664763872,
+      "mean_observed": 0.3333333333333333
+    },
+    {
+      "bin_low": 0.6,
+      "bin_high": 0.7,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.7,
+      "bin_high": 0.8,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.8,
+      "bin_high": 0.9,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.9,
+      "bin_high": 1.0,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    }
+  ],
+  "predictions": [
+    {
+      "event_id": "T-foundations-ms-4",
+      "event_label": "1966 \u2014 Kochen\u2013Specker / Bell's review of no-hidden-variable proofs \u2014 Bell (Rev. Mod. Phys. 38, 447), Kochen & Specker (1967) \u2014 contextuality as a separate no-go (see F-contextuality) \u2014 T1",
+      "event_year": 1966,
+      "reading": "true",
+      "hypothesis": "25316679ff65cbde",
+      "predicted": 0.11315696362968256,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-birth-ms-3",
+      "event_label": "1982 \u2014 No-cloning theorem: an unknown quantum state cannot be copied \u2014 Wootters & Zurek; Dieks \u2014 the security root of quantum crypto (see F-nocloning) \u2014 T1 Nature 299, 802 (1982)",
+      "event_year": 1982,
+      "reading": "true",
+      "hypothesis": "c4fb0eda510e7e4d",
+      "predicted": 0.16706924457371258,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-ecera-ms-1",
+      "event_label": "2021 (Nov) \u2014 Eagle, 127 qubits, first processor over 100 \u2014 IBM \u2014 physical scaling continues \u2014 T4 IBM announcement",
+      "event_year": 2021,
+      "reading": "true",
+      "hypothesis": "d26534dfafcb3add",
+      "predicted": 0.00988049136409671,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-ecera-ms-1",
+      "event_label": "2021 (Nov) \u2014 Eagle, 127 qubits, first processor over 100 \u2014 IBM \u2014 physical scaling continues \u2014 T4 IBM announcement",
+      "event_year": 2021,
+      "reading": "wrong-interval",
+      "hypothesis": "7a24ba8fb6e29336",
+      "predicted": 0.08797942240507681,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-ecera-ms-6",
+      "event_label": "2024 (Apr) \u2014 12 logical qubits on trapped-ion H2 at ~800\u00d7 fewer errors than physical, with active syndrome extraction \u2014 Microsoft + Quantinuum \u2014 logical-over-physical advantage demonstrated \u2014 [T3\u2192T2] arXiv:2404.02280",
+      "event_year": 2024,
+      "reading": "true",
+      "hypothesis": "e3943ec55a7f513c",
+      "predicted": 0.1032937107297721,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-ecera-ms-6",
+      "event_label": "2024 (Apr) \u2014 12 logical qubits on trapped-ion H2 at ~800\u00d7 fewer errors than physical, with active syndrome extraction \u2014 Microsoft + Quantinuum \u2014 logical-over-physical advantage demonstrated \u2014 [T3\u2192T2] arXiv:2404.02280",
+      "event_year": 2024,
+      "reading": "wrong-interval",
+      "hypothesis": "3db32cf3121b8e5e",
+      "predicted": 0.07326421732271579,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-formalism-ms-6",
+      "event_label": "1928 \u2014 Relativistic electron equation; antimatter implied by the negative-energy solutions \u2014 Paul Dirac \u2014 QM meets special relativity; the positron was found by Anderson in 1932 \u2014 T1 Dirac, Proc. R. Soc. A 117, 610 (1928)",
+      "event_year": 1928,
+      "reading": "true",
+      "hypothesis": "5ee868ee7c66b136",
+      "predicted": 0.3110590449183292,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-formalism-ms-6",
+      "event_label": "1928 \u2014 Relativistic electron equation; antimatter implied by the negative-energy solutions \u2014 Paul Dirac \u2014 QM meets special relativity; the positron was found by Anderson in 1932 \u2014 T1 Dirac, Proc. R. Soc. A 117, 610 (1928)",
+      "event_year": 1928,
+      "reading": "wrong-interval",
+      "hypothesis": "71fc90d01b168e1e",
+      "predicted": 0.5373175384441035,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-old-ms-0",
+      "event_label": "1900 (14 Dec) \u2014 Quantum hypothesis: energy exchanged in units E = h\u03bd, fitting the blackbody spectrum \u2014 Max Planck, presented to the German Physical Society \u2014 introduced h, the constant the whole field is named after; Planck saw it as a mathematical device, not a physical quantum \u2014 T1 Planck, Verhandlungen der DPG 2, 237 (1900)",
+      "event_year": 1900,
+      "reading": "true",
+      "hypothesis": "5ee868ee7c66b136",
+      "predicted": 0.3110590449183292,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-qinfobirth-ms-1",
+      "event_label": "1973 \u2014 Holevo bound: a qubit conveys at most one bit of accessible classical information; the general capacity limit for quantum channels \u2014 Alexander Holevo \u2014 a founding theorem of quantum information theory (later completed by the HSW theorem, 1996\u201398) \u2014 T1 Holevo, Probl. Peredachi Inf. 9(3), 3 (1973)",
+      "event_year": 1973,
+      "reading": "true",
+      "hypothesis": "0aee79e84870b4b8",
+      "predicted": 0.07663460781702182,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-qinfobirth-ms-1",
+      "event_label": "1973 \u2014 Holevo bound: a qubit conveys at most one bit of accessible classical information; the general capacity limit for quantum channels \u2014 Alexander Holevo \u2014 a founding theorem of quantum information theory (later completed by the HSW theorem, 1996\u201398) \u2014 T1 Holevo, Probl. Peredachi Inf. 9(3), 3 (1973)",
+      "event_year": 1973,
+      "reading": "wrong-interval",
+      "hypothesis": "83bedfc7cd7988d6",
+      "predicted": 0.08856342298352407,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-early-ms-3",
+      "event_label": "1996 \u2014 Threshold theorem: below a critical physical error rate, arbitrarily long computation is possible \u2014 Aharonov\u2013Ben-Or; Knill\u2013Laflamme\u2013Zurek; Kitaev \u2014 the theoretical license for fault tolerance (see S-qec) \u2014 T1 STOC 1997; Science 279, 342 (1998)",
+      "event_year": 1996,
+      "reading": "true",
+      "hypothesis": "df971134baf914cd",
+      "predicted": 0.5080681804925291,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-early-ms-3",
+      "event_label": "1996 \u2014 Threshold theorem: below a critical physical error rate, arbitrarily long computation is possible \u2014 Aharonov\u2013Ben-Or; Knill\u2013Laflamme\u2013Zurek; Kitaev \u2014 the theoretical license for fault tolerance (see S-qec) \u2014 T1 STOC 1997; Science 279, 342 (1998)",
+      "event_year": 1996,
+      "reading": "wrong-interval",
+      "hypothesis": "83bedfc7cd7988d6",
+      "predicted": 0.05898266560022432,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-foundations-ms-8",
+      "event_label": "1973 \u2014 Holevo bound: a qubit carries at most one classical bit of accessible information \u2014 Alexander Holevo (Moscow) \u2014 a founding theorem of quantum information theory (see T-qinfobirth) \u2014 T1 Holevo, Probl. Peredachi Inf. 9, 3 (1973)",
+      "event_year": 1973,
+      "reading": "true",
+      "hypothesis": "0aee79e84870b4b8",
+      "predicted": 0.20751604040976718,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-foundations-ms-8",
+      "event_label": "1973 \u2014 Holevo bound: a qubit carries at most one classical bit of accessible information \u2014 Alexander Holevo (Moscow) \u2014 a founding theorem of quantum information theory (see T-qinfobirth) \u2014 T1 Holevo, Probl. Peredachi Inf. 9, 3 (1973)",
+      "event_year": 1973,
+      "reading": "wrong-interval",
+      "hypothesis": "df971134baf914cd",
+      "predicted": 0.5080681804925291,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-qinfobirth-ms-5",
+      "event_label": "1984 \u2014 BB84 quantum key distribution: Wiesner's conjugate coding turned into a working key-exchange protocol \u2014 Charles Bennett & Gilles Brassard \u2014 quantum information's first technology; still deployed (see A-qkd) \u2014 T1 Proc. IEEE Int. Conf. Computers, Systems and Signal Processing, Bangalore, 175 (1984)",
+      "event_year": 1984,
+      "reading": "true",
+      "hypothesis": "ca15a1df2656df61",
+      "predicted": 0.4359448254148233,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-race-ms-8",
+      "event_label": "2019 (Jan) \u2014 IBM Q System One, the first integrated, rack-and-chandelier commercial quantum system \u2014 IBM \u2014 productization and industrial design begin \u2014 T4 IBM announcement",
+      "event_year": 2019,
+      "reading": "true",
+      "hypothesis": "d26534dfafcb3add",
+      "predicted": 0.030365200076333688,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-race-ms-8",
+      "event_label": "2019 (Jan) \u2014 IBM Q System One, the first integrated, rack-and-chandelier commercial quantum system \u2014 IBM \u2014 productization and industrial design begin \u2014 T4 IBM announcement",
+      "event_year": 2019,
+      "reading": "wrong-interval",
+      "hypothesis": "7a24ba8fb6e29336",
+      "predicted": 0.09101484209934088,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-birth-ms-0",
+      "event_label": "1980 \u2014 Quantum computation floated in *Computable and Uncomputable* \u2014 Yuri Manin \u2014 earliest published suggestion (in Russian, so little-noticed in the West for years) \u2014 T1 Manin, Sovetskoye Radio (1980)",
+      "event_year": 1980,
+      "reading": "true",
+      "hypothesis": "2327b1803300bff8",
+      "predicted": 0.47744058399845135,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-birth-ms-0",
+      "event_label": "1980 \u2014 Quantum computation floated in *Computable and Uncomputable* \u2014 Yuri Manin \u2014 earliest published suggestion (in Russian, so little-noticed in the West for years) \u2014 T1 Manin, Sovetskoye Radio (1980)",
+      "event_year": 1980,
+      "reading": "wrong-interval",
+      "hypothesis": "0ecf89e8b1fb4624",
+      "predicted": 0.1226359330309798,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-birth-ms-9",
+      "event_label": "1994 \u2014 Simon's problem: the exponential separation that directly inspired Shor \u2014 Daniel Simon \u2014 the algorithmic template (period-finding) Shor generalized \u2014 T1 Proc. 35th FOCS, 116 (1994)",
+      "event_year": 1994,
+      "reading": "true",
+      "hypothesis": "c1f9920e593e7069",
+      "predicted": 0.15688386035768961,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-birth-ms-9",
+      "event_label": "1994 \u2014 Simon's problem: the exponential separation that directly inspired Shor \u2014 Daniel Simon \u2014 the algorithmic template (period-finding) Shor generalized \u2014 T1 Proc. 35th FOCS, 116 (1994)",
+      "event_year": 1994,
+      "reading": "wrong-interval",
+      "hypothesis": "6029c22fcb4a5ae2",
+      "predicted": 0.06291643498603647,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-ecera-ms-8",
+      "event_label": "2025 (Feb) \u2014 Majorana 1 \"first topological qubit\" \u2014 Microsoft \u2014 [T4, contested] Nature's referees noted the published data \"does not, on its own, determine whether Majorana zero modes are present\"; strong skepticism (APS Physics, Science News, Aaronson)",
+      "event_year": 2025,
+      "reading": "true",
+      "hypothesis": "1df825282de5d40f",
+      "predicted": 0.09035161546133884,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-formalism-ms-3",
+      "event_label": "1927 (Feb\u2013Mar) \u2014 Uncertainty principle: \u0394x\u0394p \u2273 \u0127/2 \u2014 Heisenberg \u2014 conjugate observables cannot be jointly sharp \u2014 T1 Heisenberg, Zeitschrift f\u00fcr Physik 43, 172 (1927)",
+      "event_year": 1927,
+      "reading": "true",
+      "hypothesis": "8711788d191de91f",
+      "predicted": 0.45128462580570516,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-formalism-ms-3",
+      "event_label": "1927 (Feb\u2013Mar) \u2014 Uncertainty principle: \u0394x\u0394p \u2273 \u0127/2 \u2014 Heisenberg \u2014 conjugate observables cannot be jointly sharp \u2014 T1 Heisenberg, Zeitschrift f\u00fcr Physik 43, 172 (1927)",
+      "event_year": 1927,
+      "reading": "wrong-interval",
+      "hypothesis": "58ae6ce05122bee3",
+      "predicted": 0.06715896667359725,
+      "observed": 0.0
+    },
+    {
+      "event_id": "T-qinfobirth-ms-3",
+      "event_label": "1982 \u2014 No-cloning theorem: an unknown quantum state cannot be perfectly copied \u2014 Wootters & Zurek (Nature); Dieks (Phys. Lett. A) \u2014 the security root of quantum cryptography; makes eavesdropping detectable (see F-nocloning) \u2014 T1 Nature 299, 802 (1982)",
+      "event_year": 1982,
+      "reading": "true",
+      "hypothesis": "c4fb0eda510e7e4d",
+      "predicted": 0.15204532100693952,
+      "observed": 1.0
+    },
+    {
+      "event_id": "T-solvay-ms-2",
+      "event_label": "1935 \u2014 Unable to defeat consistency, Einstein shifts ground to *completeness* and *locality*: the EPR paper (see T-epr) \u2014 the debate's most productive turn \u2014 T1 Phys. Rev. 47, 777 (1935)",
+      "event_year": 1935,
+      "reading": "true",
+      "hypothesis": "a21942d6e5086829",
+      "predicted": 0.112161269732142,
+      "observed": 1.0
+    }
+  ],
+  "constants": {
+    "W": 2.0,
+    "lam": 0.5
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "n_holdout_events": 21,
+      "n_covered_events": 1,
+      "coverage_of_truth": 0.047619047619047616,
+      "brier_score": 0.7864905711585243,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 1,
+          "mean_predicted": 0.11315696362968256,
+          "mean_observed": 1.0
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": [
+        {
+          "event_id": "T-foundations-ms-4",
+          "event_label": "1966 \u2014 Kochen\u2013Specker / Bell's review of no-hidden-variable proofs \u2014 Bell (Rev. Mod. Phys. 38, 447), Kochen & Specker (1967) \u2014 contextuality as a separate no-go (see F-contextuality) \u2014 T1",
+          "event_year": 1966,
+          "reading": "true",
+          "hypothesis": "25316679ff65cbde",
+          "predicted": 0.11315696362968256,
+          "observed": 1.0
+        }
+      ]
+    },
+    {
+      "fold": 1,
+      "n_holdout_events": 24,
+      "n_covered_events": 6,
+      "coverage_of_truth": 0.25,
+      "brier_score": 0.45897370219089345,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 5,
+          "mean_predicted": 0.06726443237848703,
+          "mean_observed": 0.4
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 2,
+          "mean_predicted": 0.13518147765174235,
+          "mean_observed": 1.0
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 2,
+          "mean_predicted": 0.3110590449183292,
+          "mean_observed": 1.0
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 1,
+          "mean_predicted": 0.5373175384441035,
+          "mean_observed": 0.0
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": [
+        {
+          "event_id": "T-birth-ms-3",
+          "event_label": "1982 \u2014 No-cloning theorem: an unknown quantum state cannot be copied \u2014 Wootters & Zurek; Dieks \u2014 the security root of quantum crypto (see F-nocloning) \u2014 T1 Nature 299, 802 (1982)",
+          "event_year": 1982,
+          "reading": "true",
+          "hypothesis": "c4fb0eda510e7e4d",
+          "predicted": 0.16706924457371258,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-ecera-ms-1",
+          "event_label": "2021 (Nov) \u2014 Eagle, 127 qubits, first processor over 100 \u2014 IBM \u2014 physical scaling continues \u2014 T4 IBM announcement",
+          "event_year": 2021,
+          "reading": "true",
+          "hypothesis": "d26534dfafcb3add",
+          "predicted": 0.00988049136409671,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-ecera-ms-1",
+          "event_label": "2021 (Nov) \u2014 Eagle, 127 qubits, first processor over 100 \u2014 IBM \u2014 physical scaling continues \u2014 T4 IBM announcement",
+          "event_year": 2021,
+          "reading": "wrong-interval",
+          "hypothesis": "7a24ba8fb6e29336",
+          "predicted": 0.08797942240507681,
+          "observed": 0.0
+        },
+        {
+          "event_id": "T-ecera-ms-6",
+          "event_label": "2024 (Apr) \u2014 12 logical qubits on trapped-ion H2 at ~800\u00d7 fewer errors than physical, with active syndrome extraction \u2014 Microsoft + Quantinuum \u2014 logical-over-physical advantage demonstrated \u2014 [T3\u2192T2] arXiv:2404.02280",
+          "event_year": 2024,
+          "reading": "true",
+          "hypothesis": "e3943ec55a7f513c",
+          "predicted": 0.1032937107297721,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-ecera-ms-6",
+          "event_label": "2024 (Apr) \u2014 12 logical qubits on trapped-ion H2 at ~800\u00d7 fewer errors than physical, with active syndrome extraction \u2014 Microsoft + Quantinuum \u2014 logical-over-physical advantage demonstrated \u2014 [T3\u2192T2] arXiv:2404.02280",
+          "event_year": 2024,
+          "reading": "wrong-interval",
+          "hypothesis": "3db32cf3121b8e5e",
+          "predicted": 0.07326421732271579,
+          "observed": 0.0
+        },
+        {
+          "event_id": "T-formalism-ms-6",
+          "event_label": "1928 \u2014 Relativistic electron equation; antimatter implied by the negative-energy solutions \u2014 Paul Dirac \u2014 QM meets special relativity; the positron was found by Anderson in 1932 \u2014 T1 Dirac, Proc. R. Soc. A 117, 610 (1928)",
+          "event_year": 1928,
+          "reading": "true",
+          "hypothesis": "5ee868ee7c66b136",
+          "predicted": 0.3110590449183292,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-formalism-ms-6",
+          "event_label": "1928 \u2014 Relativistic electron equation; antimatter implied by the negative-energy solutions \u2014 Paul Dirac \u2014 QM meets special relativity; the positron was found by Anderson in 1932 \u2014 T1 Dirac, Proc. R. Soc. A 117, 610 (1928)",
+          "event_year": 1928,
+          "reading": "wrong-interval",
+          "hypothesis": "71fc90d01b168e1e",
+          "predicted": 0.5373175384441035,
+          "observed": 0.0
+        },
+        {
+          "event_id": "T-old-ms-0",
+          "event_label": "1900 (14 Dec) \u2014 Quantum hypothesis: energy exchanged in units E = h\u03bd, fitting the blackbody spectrum \u2014 Max Planck, presented to the German Physical Society \u2014 introduced h, the constant the whole field is named after; Planck saw it as a mathematical device, not a physical quantum \u2014 T1 Planck, Verhandlungen der DPG 2, 237 (1900)",
+          "event_year": 1900,
+          "reading": "true",
+          "hypothesis": "5ee868ee7c66b136",
+          "predicted": 0.3110590449183292,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-qinfobirth-ms-1",
+          "event_label": "1973 \u2014 Holevo bound: a qubit conveys at most one bit of accessible classical information; the general capacity limit for quantum channels \u2014 Alexander Holevo \u2014 a founding theorem of quantum information theory (later completed by the HSW theorem, 1996\u201398) \u2014 T1 Holevo, Probl. Peredachi Inf. 9(3), 3 (1973)",
+          "event_year": 1973,
+          "reading": "true",
+          "hypothesis": "0aee79e84870b4b8",
+          "predicted": 0.07663460781702182,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-qinfobirth-ms-1",
+          "event_label": "1973 \u2014 Holevo bound: a qubit conveys at most one bit of accessible classical information; the general capacity limit for quantum channels \u2014 Alexander Holevo \u2014 a founding theorem of quantum information theory (later completed by the HSW theorem, 1996\u201398) \u2014 T1 Holevo, Probl. Peredachi Inf. 9(3), 3 (1973)",
+          "event_year": 1973,
+          "reading": "wrong-interval",
+          "hypothesis": "83bedfc7cd7988d6",
+          "predicted": 0.08856342298352407,
+          "observed": 0.0
+        }
+      ]
+    },
+    {
+      "fold": 2,
+      "n_holdout_events": 19,
+      "n_covered_events": 2,
+      "coverage_of_truth": 0.10526315789473684,
+      "brier_score": 0.28290999303051045,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 1,
+          "mean_predicted": 0.05898266560022432,
+          "mean_observed": 0.0
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 1,
+          "mean_predicted": 0.20751604040976718,
+          "mean_observed": 1.0
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 2,
+          "mean_predicted": 0.5080681804925291,
+          "mean_observed": 0.5
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": [
+        {
+          "event_id": "T-early-ms-3",
+          "event_label": "1996 \u2014 Threshold theorem: below a critical physical error rate, arbitrarily long computation is possible \u2014 Aharonov\u2013Ben-Or; Knill\u2013Laflamme\u2013Zurek; Kitaev \u2014 the theoretical license for fault tolerance (see S-qec) \u2014 T1 STOC 1997; Science 279, 342 (1998)",
+          "event_year": 1996,
+          "reading": "true",
+          "hypothesis": "df971134baf914cd",
+          "predicted": 0.5080681804925291,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-early-ms-3",
+          "event_label": "1996 \u2014 Threshold theorem: below a critical physical error rate, arbitrarily long computation is possible \u2014 Aharonov\u2013Ben-Or; Knill\u2013Laflamme\u2013Zurek; Kitaev \u2014 the theoretical license for fault tolerance (see S-qec) \u2014 T1 STOC 1997; Science 279, 342 (1998)",
+          "event_year": 1996,
+          "reading": "wrong-interval",
+          "hypothesis": "83bedfc7cd7988d6",
+          "predicted": 0.05898266560022432,
+          "observed": 0.0
+        },
+        {
+          "event_id": "T-foundations-ms-8",
+          "event_label": "1973 \u2014 Holevo bound: a qubit carries at most one classical bit of accessible information \u2014 Alexander Holevo (Moscow) \u2014 a founding theorem of quantum information theory (see T-qinfobirth) \u2014 T1 Holevo, Probl. Peredachi Inf. 9, 3 (1973)",
+          "event_year": 1973,
+          "reading": "true",
+          "hypothesis": "0aee79e84870b4b8",
+          "predicted": 0.20751604040976718,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-foundations-ms-8",
+          "event_label": "1973 \u2014 Holevo bound: a qubit carries at most one classical bit of accessible information \u2014 Alexander Holevo (Moscow) \u2014 a founding theorem of quantum information theory (see T-qinfobirth) \u2014 T1 Holevo, Probl. Peredachi Inf. 9, 3 (1973)",
+          "event_year": 1973,
+          "reading": "wrong-interval",
+          "hypothesis": "df971134baf914cd",
+          "predicted": 0.5080681804925291,
+          "observed": 0.0
+        }
+      ]
+    },
+    {
+      "fold": 3,
+      "n_holdout_events": 20,
+      "n_covered_events": 2,
+      "coverage_of_truth": 0.1,
+      "brier_score": 0.42221119556056347,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 2,
+          "mean_predicted": 0.06069002108783728,
+          "mean_observed": 0.5
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 1,
+          "mean_predicted": 0.4359448254148233,
+          "mean_observed": 1.0
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": [
+        {
+          "event_id": "T-qinfobirth-ms-5",
+          "event_label": "1984 \u2014 BB84 quantum key distribution: Wiesner's conjugate coding turned into a working key-exchange protocol \u2014 Charles Bennett & Gilles Brassard \u2014 quantum information's first technology; still deployed (see A-qkd) \u2014 T1 Proc. IEEE Int. Conf. Computers, Systems and Signal Processing, Bangalore, 175 (1984)",
+          "event_year": 1984,
+          "reading": "true",
+          "hypothesis": "ca15a1df2656df61",
+          "predicted": 0.4359448254148233,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-race-ms-8",
+          "event_label": "2019 (Jan) \u2014 IBM Q System One, the first integrated, rack-and-chandelier commercial quantum system \u2014 IBM \u2014 productization and industrial design begin \u2014 T4 IBM announcement",
+          "event_year": 2019,
+          "reading": "true",
+          "hypothesis": "d26534dfafcb3add",
+          "predicted": 0.030365200076333688,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-race-ms-8",
+          "event_label": "2019 (Jan) \u2014 IBM Q System One, the first integrated, rack-and-chandelier commercial quantum system \u2014 IBM \u2014 productization and industrial design begin \u2014 T4 IBM announcement",
+          "event_year": 2019,
+          "reading": "wrong-interval",
+          "hypothesis": "7a24ba8fb6e29336",
+          "predicted": 0.09101484209934088,
+          "observed": 0.0
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "n_holdout_events": 21,
+      "n_covered_events": 6,
+      "coverage_of_truth": 0.2857142857142857,
+      "brier_score": 0.4048061154227195,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 3,
+          "mean_predicted": 0.07347567237365753,
+          "mean_observed": 0.3333333333333333
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 4,
+          "mean_predicted": 0.13593159603193772,
+          "mean_observed": 0.75
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 2,
+          "mean_predicted": 0.46436260490207826,
+          "mean_observed": 1.0
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": [
+        {
+          "event_id": "T-birth-ms-0",
+          "event_label": "1980 \u2014 Quantum computation floated in *Computable and Uncomputable* \u2014 Yuri Manin \u2014 earliest published suggestion (in Russian, so little-noticed in the West for years) \u2014 T1 Manin, Sovetskoye Radio (1980)",
+          "event_year": 1980,
+          "reading": "true",
+          "hypothesis": "2327b1803300bff8",
+          "predicted": 0.47744058399845135,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-birth-ms-0",
+          "event_label": "1980 \u2014 Quantum computation floated in *Computable and Uncomputable* \u2014 Yuri Manin \u2014 earliest published suggestion (in Russian, so little-noticed in the West for years) \u2014 T1 Manin, Sovetskoye Radio (1980)",
+          "event_year": 1980,
+          "reading": "wrong-interval",
+          "hypothesis": "0ecf89e8b1fb4624",
+          "predicted": 0.1226359330309798,
+          "observed": 0.0
+        },
+        {
+          "event_id": "T-birth-ms-9",
+          "event_label": "1994 \u2014 Simon's problem: the exponential separation that directly inspired Shor \u2014 Daniel Simon \u2014 the algorithmic template (period-finding) Shor generalized \u2014 T1 Proc. 35th FOCS, 116 (1994)",
+          "event_year": 1994,
+          "reading": "true",
+          "hypothesis": "c1f9920e593e7069",
+          "predicted": 0.15688386035768961,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-birth-ms-9",
+          "event_label": "1994 \u2014 Simon's problem: the exponential separation that directly inspired Shor \u2014 Daniel Simon \u2014 the algorithmic template (period-finding) Shor generalized \u2014 T1 Proc. 35th FOCS, 116 (1994)",
+          "event_year": 1994,
+          "reading": "wrong-interval",
+          "hypothesis": "6029c22fcb4a5ae2",
+          "predicted": 0.06291643498603647,
+          "observed": 0.0
+        },
+        {
+          "event_id": "T-ecera-ms-8",
+          "event_label": "2025 (Feb) \u2014 Majorana 1 \"first topological qubit\" \u2014 Microsoft \u2014 [T4, contested] Nature's referees noted the published data \"does not, on its own, determine whether Majorana zero modes are present\"; strong skepticism (APS Physics, Science News, Aaronson)",
+          "event_year": 2025,
+          "reading": "true",
+          "hypothesis": "1df825282de5d40f",
+          "predicted": 0.09035161546133884,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-formalism-ms-3",
+          "event_label": "1927 (Feb\u2013Mar) \u2014 Uncertainty principle: \u0394x\u0394p \u2273 \u0127/2 \u2014 Heisenberg \u2014 conjugate observables cannot be jointly sharp \u2014 T1 Heisenberg, Zeitschrift f\u00fcr Physik 43, 172 (1927)",
+          "event_year": 1927,
+          "reading": "true",
+          "hypothesis": "8711788d191de91f",
+          "predicted": 0.45128462580570516,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-formalism-ms-3",
+          "event_label": "1927 (Feb\u2013Mar) \u2014 Uncertainty principle: \u0394x\u0394p \u2273 \u0127/2 \u2014 Heisenberg \u2014 conjugate observables cannot be jointly sharp \u2014 T1 Heisenberg, Zeitschrift f\u00fcr Physik 43, 172 (1927)",
+          "event_year": 1927,
+          "reading": "wrong-interval",
+          "hypothesis": "58ae6ce05122bee3",
+          "predicted": 0.06715896667359725,
+          "observed": 0.0
+        },
+        {
+          "event_id": "T-qinfobirth-ms-3",
+          "event_label": "1982 \u2014 No-cloning theorem: an unknown quantum state cannot be perfectly copied \u2014 Wootters & Zurek (Nature); Dieks (Phys. Lett. A) \u2014 the security root of quantum cryptography; makes eavesdropping detectable (see F-nocloning) \u2014 T1 Nature 299, 802 (1982)",
+          "event_year": 1982,
+          "reading": "true",
+          "hypothesis": "c4fb0eda510e7e4d",
+          "predicted": 0.15204532100693952,
+          "observed": 1.0
+        },
+        {
+          "event_id": "T-solvay-ms-2",
+          "event_label": "1935 \u2014 Unable to defeat consistency, Einstein shifts ground to *completeness* and *locality*: the EPR paper (see T-epr) \u2014 the debate's most productive turn \u2014 T1 Phys. Rev. 47, 777 (1935)",
+          "event_year": 1935,
+          "reading": "true",
+          "hypothesis": "a21942d6e5086829",
+          "predicted": 0.112161269732142,
+          "observed": 1.0
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "n_holdout_events": 105,
+    "n_covered_events": 17,
+    "coverage_of_truth": 0.1619047619047619,
+    "brier_score": 0.42287985891391355,
+    "calibration_curve": [
+      {
+        "bin_low": 0.0,
+        "bin_high": 0.1,
+        "count": 11,
+        "mean_predicted": 0.06701017152630061,
+        "mean_observed": 0.36363636363636365
+      },
+      {
+        "bin_low": 0.1,
+        "bin_high": 0.2,
+        "count": 7,
+        "mean_predicted": 0.13246375758013115,
+        "mean_observed": 0.8571428571428571
+      },
+      {
+        "bin_low": 0.2,
+        "bin_high": 0.3,
+        "count": 1,
+        "mean_predicted": 0.20751604040976718,
+        "mean_observed": 1.0
+      },
+      {
+        "bin_low": 0.3,
+        "bin_high": 0.4,
+        "count": 2,
+        "mean_predicted": 0.3110590449183292,
+        "mean_observed": 1.0
+      },
+      {
+        "bin_low": 0.4,
+        "bin_high": 0.5,
+        "count": 3,
+        "mean_predicted": 0.4548900117396599,
+        "mean_observed": 1.0
+      },
+      {
+        "bin_low": 0.5,
+        "bin_high": 0.6,
+        "count": 3,
+        "mean_predicted": 0.5178179664763872,
+        "mean_observed": 0.3333333333333333
+      },
+      {
+        "bin_low": 0.6,
+        "bin_high": 0.7,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.7,
+        "bin_high": 0.8,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.8,
+        "bin_high": 0.9,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.9,
+        "bin_high": 1.0,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      }
+    ]
+  },
+  "mode_reason": "all 105 ground-truth events carry discovery_year == year (this corpus's own documented simplification), so holdout_by_discovery_date splits every one of them onto one side of any cutoff and run_holdout scores nothing; k-fold hides evidence directly instead, needing no discovery date at all."
+}

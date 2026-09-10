@@ -1,0 +1,264 @@
+{
+  "campaign": "quantum-history",
+  "timestamp": "20260910T085020Z",
+  "corpus": "quantum-history",
+  "constants": {
+    "W": 2.0,
+    "lam": 0.5,
+    "mu": 0.5,
+    "alpha": 1.0,
+    "theta_prune": 0.6
+  },
+  "time_binning": {
+    "resolution": "decade",
+    "span_start": 1900,
+    "bin_width": 10,
+    "bin_labels": {
+      "0": "1900s",
+      "1": "1910s",
+      "2": "1920s",
+      "3": "1930s",
+      "4": "1940s",
+      "5": "1950s",
+      "6": "1960s",
+      "7": "1970s",
+      "8": "1980s",
+      "9": "1990s",
+      "10": "2000s",
+      "11": "2010s",
+      "12": "2020s"
+    }
+  },
+  "models": {
+    "_note": "Which Claude model backs each hte.roles function (bkt-hte-self-accounting). Values are CLI model aliases, passed straight through to `claude -p --model`. `escalation` is not a role; hte.roles.extract reaches for it when its three-member ensemble disagrees above the agreement threshold in hte/roles.py's EXTRACT_AGREEMENT_THRESHOLD.",
+    "roles": {
+      "generator": "sonnet",
+      "critic": "sonnet",
+      "unknown_unknown": "sonnet",
+      "preservation_critic": "sonnet",
+      "judge": "sonnet",
+      "meta_review": "sonnet",
+      "self_report": "sonnet",
+      "extractor": "haiku",
+      "referee": "sonnet"
+    },
+    "escalation": "opus"
+  },
+  "cache": {
+    "files": 919,
+    "total_bytes": 2118123
+  },
+  "llm_stats": {
+    "extractor": {
+      "calls": 3,
+      "cache_hits": 3,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 0.0002051629708148539
+    },
+    "escalation": {
+      "calls": 1,
+      "cache_hits": 1,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 4.084600368514657e-05
+    },
+    "unknown_unknown": {
+      "calls": 1,
+      "cache_hits": 1,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 4.9623020458966494e-05
+    },
+    "generator": {
+      "calls": 1,
+      "cache_hits": 1,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 7.699400885030627e-05
+    },
+    "critic": {
+      "calls": 51,
+      "cache_hits": 6,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 4161.078591220139
+    },
+    "preservation_critic": {
+      "calls": 176,
+      "cache_hits": 93,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 2641.019223922689
+    },
+    "judge": {
+      "calls": 22,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 865.6220163228572
+    },
+    "meta_review": {
+      "calls": 1,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 137.31366064900067
+    },
+    "self_report": {
+      "calls": 1,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 37.74183734098915
+    }
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "git_sha": "7d332741c",
+  "config": {
+    "campaign": "quantum-history",
+    "corpus": "quantum-history",
+    "out_dir": "runs",
+    "cache_dir": null,
+    "replay_only": false,
+    "seeds": 3,
+    "generate_n": 20,
+    "generate_evidence_sample": 8,
+    "combinatorial_max_items": 150,
+    "max_hypotheses": 400,
+    "tournament_rounds": 2,
+    "top_k": 5,
+    "max_time_bins": 20,
+    "cutoff_years": null,
+    "run_calibration": true,
+    "run_extraction": true,
+    "resolution": null,
+    "link_threshold": 0.6,
+    "critic_batch_size": 8,
+    "judge_batch_size": 8,
+    "llm_workers": null,
+    "holdout_k": 5,
+    "holdout_seed": 0,
+    "verbose": false
+  },
+  "extraction": {
+    "doc_id": "_CHAPTER",
+    "items": 5,
+    "agreement": 0.2,
+    "escalated": true
+  },
+  "counts": {
+    "campaign": "quantum-history",
+    "n_sources": 16,
+    "n_evidence": 161,
+    "n_hypotheses_generated": 5990,
+    "n_survivors": 176,
+    "vocab_added": [
+      {
+        "slot": "actor",
+        "id": "uu-dowling-and-milburn",
+        "label": "Dowling and Milburn",
+        "rationale": "T-2ndrev-ms-1/ms-2/claim-0 credit Jonathan P. Dowling & Gerard J. Milburn as the named authors who coined/crystallized the 'second quantum revolution' term; no existing actor label covers them."
+      },
+      {
+        "slot": "actor",
+        "id": "uu-haroche-and-wineland",
+        "label": "Haroche and Wineland",
+        "rationale": "T-2ndrev-ms-3/claim-1 name Serge Haroche and David Wineland as the 2012 Nobel laureates honored for single-system control; distinct from the existing 'Aspect, Clauser, and Zeilinger' and 'Feynman and Deutsch' entries."
+      },
+      {
+        "slot": "actor",
+        "id": "uu-hanson-group-tu-delft-hensen-bernien-et-al",
+        "label": "Hanson group, TU Delft (Hensen, Bernien et al.)",
+        "rationale": "T-belltests-ms-0 attributes the 2015 loophole-free Bell test to Hensen, Bernien et al. of the Hanson group at TU Delft, a named actor not present in the vocabulary."
+      },
+      {
+        "slot": "actor",
+        "id": "uu-eu-quantum-flagship",
+        "label": "EU Quantum Flagship",
+        "rationale": "T-2ndrev-ms-4 names the EU Quantum Flagship (and national strategies) as the institutional actor adopting the 'second quantum revolution' framing into policy."
+      },
+      {
+        "slot": "action",
+        "id": "uu-crystallized-a-term",
+        "label": "Crystallized (a term)",
+        "rationale": "T-2ndrev-claim-0 explicitly states Dowling & Milburn 'crystallized' the term, a distinct action from 'Proposed' or 'Published' since it denotes fixing terminology for an existing idea."
+      },
+      {
+        "slot": "action",
+        "id": "uu-awarded-a-prize",
+        "label": "Awarded (a prize)",
+        "rationale": "T-2ndrev-ms-3 describes the 2012 Nobel Prize being awarded to Haroche & Wineland, an action not covered by the existing list."
+      },
+      {
+        "slot": "action",
+        "id": "uu-closed-a-loophole",
+        "label": "Closed (a loophole)",
+        "rationale": "T-belltests-ms-0 states the Hensen et al. 2015 experiment 'closes detection + locality together,' a distinct experimental action from 'Violated (an inequality bound)'."
+      },
+      {
+        "slot": "object",
+        "id": "uu-the-second-quantum-revolution-framing-term",
+        "label": "The second quantum revolution (framing/term)",
+        "rationale": "T-2ndrev-ms-1/ms-2/claim-0 center on this named conceptual framing as the object being proposed, published, and adopted, which is not represented among existing object labels."
+      },
+      {
+        "slot": "object",
+        "id": "uu-loophole-free-bell-test-nv-center-entanglement-swapping",
+        "label": "Loophole-free Bell test (NV-center entanglement swapping)",
+        "rationale": "T-belltests-ms-0 describes a specific experimental object\u2014the 2015 Hensen et al. loophole-free test\u2014distinct from the general 'Bell's inequality' object already listed."
+      },
+      {
+        "slot": "place",
+        "id": "uu-tu-delft",
+        "label": "TU Delft",
+        "rationale": "T-belltests-ms-0 locates the 2015 loophole-free Bell test at TU Delft (Hanson group), a site not in the current place vocabulary."
+      },
+      {
+        "slot": "mechanism",
+        "id": "uu-single-system-single-quantum-control",
+        "label": "Single-system/single-quantum control",
+        "rationale": "T-2ndrev-ms-0 and claim-1 identify active engineering/control of individual quantum systems (ions, cavity QED) as the substantive technical mechanism distinguishing the 'second revolution,' distinct from existing mechanisms like 'Entanglement' or 'Decoherence'."
+      },
+      {
+        "slot": "mechanism",
+        "id": "uu-event-ready-entanglement-swapping",
+        "label": "Event-ready entanglement swapping",
+        "rationale": "T-belltests-ms-0 specifies 'event-ready entanglement swapping' between distant NV centers as the specific mechanism enabling the loophole-free test, more specific than the generic 'Entanglement' entry."
+      }
+    ],
+    "coverage": {
+      "observed": 5990,
+      "chao1_estimate": 226770.0,
+      "missing_mass": 0.039963942307692304,
+      "coverage_low": 0.023006908931579858,
+      "coverage_high": 0.031006800844816097
+    },
+    "robustness_stable_fraction": 1.0,
+    "surprise_rate": 0.13043478260869565,
+    "calibration_brier": 0.42287985891391355,
+    "target_blind": {
+      "rate": 0.95,
+      "prior_rate": 0.95,
+      "steady": true,
+      "first_run": false
+    },
+    "meta_review": {
+      "summary": "The 176-hypothesis frontier looks diverse at the slot level (13+ actions, several mechanisms, ~15 places, a wide interval spread from 1900-2009) but this diversity is largely cosmetic. Opinion vectors repeat to many decimal places across dozens of hypotheses that differ only in 'action' or 'object' (e.g. all 13 Planck/1900/blackbody-spectrum/quantization variants share b=0.0664, d=0.9238 regardless of whether Planck 'quantized', 'proved', 'proposed', 'published', or 'uu-awarded-a-prize'), indicating the evaluator's output is effectively a lookup keyed on (actor, place, mechanism, interval) rather than genuinely sensitive to what action/object is claimed. Two structural artifacts stand out only in aggregate: (1) the 'a' (authority/base-rate) parameter takes a small fixed set of sigmoid-like constants that track actor identity almost 1:1 (mainstream physicists ~0.88-0.92, corporate/mystic 'fringe' actors like vendor-marketing and quantum-mysticism-popularizers ~0.002-0.27), so no hypothesis ever lets specific evidence override the actor-identity prior; (2) belief (b) never exceeds ~0.15 anywhere in the frontier except one mega-cluster keyed on place='solvay-brussels' + interval=[1927,2009] (an 82-year span), where b jumps to ~0.44-0.54 uniformly regardless of object plausibility - even for anachronistic pairings (Einstein/Heisenberg-Schrodinger + shors-algorithm, no-cloning-theorem, willow-below-threshold-result at 'Solvay 1927-2009'). This looks like an interval-width/place artifact rather than content-driven belief, and it is being recombined indiscriminately across implausible objects instead of being stress-tested. Uncertainty (u) is essentially flat at ~0.009-0.012 across the entire population regardless of period, source density, or anachronism risk - the engine never produces a genuine high-uncertainty ('we don't know') reading. Exploration depth is also asymmetric: Einstein gets exhaustive action-verb permutation for EPR/Solvay narratives (30+ variants, almost all at princeton-ias, all landing in the same low-to-moderate belief band), while alternative actors for the same events (Bohr, Heisenberg-Schrodinger, Podolsky/Rosen-equivalent) get only 1-4 shallow 'other-action' instances, and alternative places for Planck-1900/EPR-1935 are mostly left as generic 'other-place'/'unknown-place' or single-instance afterthoughts rather than historically specific or deeply explored. Net effect: the population presents surface-level slot variation but has converged on a narrow set of opinion clusters, with no branch expressing strong confident belief backed by content-specific reasoning, no branch expressing high genuine uncertainty, and no branch where a low-authority actor or an unconventional place/mechanism combination is allowed to earn high belief from evidence.",
+      "flags": [
+        "Opinion collapse / lookup-table degeneracy: dozens of hypotheses that differ only in 'action' or 'object' produce numerically identical (to many decimals) b/d/u triples, meaning those slots are cosmetically varied but not actually discriminating in the evaluation - the action/object dimensions are not being genuinely tested.",
+        "Actor-locked authority prior: the 'a' parameter is drawn from a small fixed set of values that map almost 1:1 to actor identity (mainstream physicists always ~0.88-0.92, corporate/fringe actors always ~0.002-0.27); no hypothesis decouples authority from actor identity, so the population never explores 'fringe actor turns out credible' or 'mainstream actor's specific claim is weak'.",
+        "Belief ceiling with one gamed exception: virtually the entire frontier is disbelief-dominated (b<0.15) except a place='solvay-brussels'+interval=[1927,2009] mega-cluster where b~0.44-0.54; this 82-year interval boost applies almost uniformly across wildly different (including anachronistic) objects, suggesting an interval-width/place artifact rather than genuine evidential support, and it is unexamined - no sub-interval splits test whether the belief survives narrowing the window.",
+        "Flat uncertainty: u sits at ~0.009-0.012 for essentially all 176 hypotheses regardless of period, source density, or plausibility - the population never generates a high-uncertainty 'genuinely unresolved' reading, which is implausible for a 100+ year, multi-source historical domain.",
+        "Asymmetric exploration depth: Einstein-centric EPR/Solvay narratives receive exhaustive action-verb permutation (30+ variants) while alternative actors (Bohr, Heisenberg-Schrodinger) for the same objects/periods get only a handful of generic 'other-action' placeholders - dissenting causal narratives are underdeveloped relative to the consensus narrative.",
+        "Place slot under-exploration: the Planck/1900/blackbody-spectrum cluster almost never varies place beyond 'other-place'/'unknown-place' despite a well-documented historical location (Berlin); EPR/1935 is overwhelmingly princeton-ias with only single-instance dissents elsewhere - no deep place-based alternative-history branch exists for these canonical episodes.",
+        "No high-confidence dissenting reading anywhere: for every canonical episode (Planck 1900, EPR 1935, Bell inequality 1964), all actor/mechanism variants converge to the same low-belief/high-disbelief band - there is no competing hypothesis in the population that reaches high belief while attributing the episode to a different actor, place, or mechanism than the consensus one.",
+        "Anachronism hypotheses (google-quantum-ai/sycamore, willow-below-threshold-result, shors-algorithm, no-cloning-theorem, quantum-error-correction) exist but are sparse (1-2 instances each) and get absorbed into the same generic clusters (including the gamed solvay-brussels/[1927,2009] high-belief cluster) rather than forming a dedicated, sharply-scored rejection branch."
+      ],
+      "recommended_actions": [
+        "Split the place='solvay-brussels'+interval=[1927,2009] mega-cluster into narrower sub-intervals (e.g., 1927-1935, 1935-1960, 1960-2009) and re-evaluate, to test whether the elevated belief is content-driven or an artifact of interval slack.",
+        "Recombine fringe/low-authority actors (vendor-marketing, quantum-mysticism-popularizers, bell-cern) with the high-belief solvay-brussels/[1927,2009] place+interval combination to check whether belief boost is truly independent of actor authority - if fringe actors also spike to b~0.5 in that slot combo, it confirms a place/interval artifact rather than genuine evidence.",
+        "Widen exploration of Bohr and Heisenberg-Schrodinger as primary actors for EPR-paradox and blackbody-spectrum episodes with the same full action-verb permutation depth currently given only to Einstein, to surface genuine dissenting causal narratives rather than single generic 'other-action' placeholders.",
+        "Generalize the Planck-1900 and EPR-1935 clusters by replacing 'other-place'/'unknown-place' with historically specific alternative locations (e.g., Berlin for Planck) and score them, to determine whether place specificity is currently suppressed rather than genuinely tested.",
+        "Widen the next generation to explicitly target high-uncertainty (u) readings - construct hypotheses from genuinely ambiguous/low-source-density sub-periods or contested attributions and verify the opinion engine can output u meaningfully above the current ~0.01 floor.",
+        "Isolate and score the anachronism hypotheses (shors-algorithm, no-cloning-theorem, willow-below-threshold-result, sycamore-supremacy-claim, quantum-error-correction) in their own narrow-interval, actor-appropriate-era branch (rather than folding them into 1927-2009 Solvay) to check whether the engine can produce a strong, non-gamed rejection signal for genuine anachronisms.",
+        "Audit the opinion-generation function for the apparent (actor, place, mechanism, interval)-keyed lookup behavior - confirm whether 'action' and 'object' are intended to influence b/d/u at all, and if so, why so many hypotheses that vary only those fields return identical opinions to 10+ decimal places."
+      ]
+    }
+  }
+}
