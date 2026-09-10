@@ -82,6 +82,8 @@ async function applyToSupabase(nodes: IngestNodeDraft[], edges: IngestEdgeDraft[
       kind: e.kind,
       weight: e.weight ?? null,
       provenance: e.provenance ?? {},
+      confidence: e.confidence ?? null,
+      confidence_source: e.confidenceSource ?? null,
     }))
     .filter((r) => r.from_id && r.to_id);
   if (edgeRows.length > 0) {

@@ -8,8 +8,8 @@ Dated entries from the hourly optimization loop. Newest entry first.
   `education-atlas` block. `make test` green with `HTE_LLM_MODE` unset:
   867 passed, 13 skipped. `HTE_LLM_MODE=fake` set for the test run itself
   (not just real engine runs) breaks 2 unrelated tests via `hte.llm`'s
-  own documented fake-mode short-circuit, a test-isolation quirk, not a
-  code defect; `make test` runs with it unset from here on. No PR needed.
+  own documented fake-mode short-circuit, a test-isolation quirk;
+  `make test` runs with it unset from here on. No PR needed.
 - **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
   PASS, no crash; repeat run matched every metric exactly, no
   nondeterminism. Still no `--corpus`/`realsweep`.

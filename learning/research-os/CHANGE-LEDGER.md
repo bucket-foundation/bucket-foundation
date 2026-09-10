@@ -500,6 +500,145 @@ Date 2026-09-10. PR #19 review pass, worktree `.ros-worktrees/r19`. Full account
 
 None.
 
+## Iteration 13, ros-03 routing
+
+Date 2026-09-10. Branch `feat/ros-03-confidence-routing`, worktree `ros03`.
+Confidence-weighted routing, edge flags, and offline edge inference, PLAN-
+REVISION-1.md section 2b ("Frontier routing under Gasparetti 2017") and
+section 3 items 2 and 3. Numbered past the file's existing Iteration 12
+(the highest number already in this file) rather than reusing 11, which
+`docs/ros-09-funding-wave-1` and a bare `## Iteration 11` heading both
+already claim.
+
+### Added
+
+- `supabase/migrations/20260910030000_research_os_edge_confidence.sql`: `confidence`
+  (real, default 1.0) and `confidence_source` (text, checked against `seed`,
+  `academy_requires`, `canon_map`, `inferred`, `teacher`) on `graph.edges`;
+  `min_confidence` (real, default 1.0) on `graph.prereq_ancestor`.
+- `supabase/migrations/20260910030100_research_os_edge_flags.sql`: `graph.edge_flags`
+  (`edge_id`, `learner_id`, `target_node_id`, `created_at`), unique on
+  `(edge_id, learner_id)` so a repeat route call never grows a duplicate row. No
+  `resolved` column; a teacher resolves a flag by editing the edge's own confidence
+  (`learning/research-os/ROUTING.md`).
+- `src/lib/research-os/ingest/infer.ts`: `tokenize`, `jaccardOverlap`,
+  `inferredConfidence`, `inferEdges` (item 4). Pure, no filesystem access, no model
+  call.
+- `scripts/research-os/ingest/infer-edges.ts`: the CLI wrapper. Rebuilds the Academy,
+  canon, and seed node populations in memory and proposes `prerequisite` edges from
+  lexical overlap and tier ordering. No `--apply` mode, every proposal lands on the
+  review list.
+- `scripts/research-os/ingest/test-ingest-infer.ts`, `scripts/test-research-os-
+  confidence.ts`: 15 and 8 `node:test` cases.
+- `scripts/research-os/ingest/out/sample-infer-preview.json`: a committed sample of
+  the real 36-proposal output (`.gitignore` gains a matching exception).
+- `learning/research-os/ROUTING.md`: the routing rule, the confidence-source table,
+  the threshold, the teacher-flag path, and the offline inference contract.
+
+### Edited
+
+- `src/lib/research-os/types.ts`: `GraphEdge` gained `id`, `confidence`,
+  `confidenceSource`; new `DEFAULT_EDGE_CONFIDENCE`, `LOW_CONFIDENCE_THRESHOLD`,
+  `edgeConfidence()`.
+- `src/lib/research-os/closure.ts`: `ancestorsOf` now returns `Map<string,
+  AncestorInfo>` (`hops` plus `minConfidence`) instead of `Map<string, number>`;
+  `PrereqAncestorRow` gained `minConfidence`. Every caller (`computeAncestorClosure`,
+  `scripts/rebuild-prereq-ancestor.ts`, `scripts/test-research-os-closure.ts`)
+  updated; `probe.ts` and its route/test only ever read `.keys()`, unaffected.
+- `src/lib/research-os/frontier.ts`: `computeFrontier`'s backward walk is now a
+  Dijkstra variant over edge cost `-log(confidence)` instead of a plain BFS, ties
+  broken by fewer hops (item 2); reduces to the exact prior shortest-hop result when
+  every edge defaults to full confidence, so every routing test that predates
+  confidence keeps passing unchanged. `FrontierStep` gained `edgeConfidence` and
+  `pathConfidence`; `FrontierResult` gained `lowConfidenceFlags`.
+- `src/lib/research-os/db.ts`: `loadSubgraph` and `loadAncestorRows` read the new
+  columns; new `writeEdgeFlags` (item 3).
+- `src/app/api/research-os/route/route.ts`: returns `lowConfidenceFlags`; writes them
+  to `graph.edge_flags` for a signed-in learner, best-effort, never failing the route
+  response on a write error.
+- `scripts/rebuild-prereq-ancestor.ts`: reads edge confidence, writes
+  `min_confidence`.
+- `scripts/seed-research-os.mjs`: every seed edge defaults to `confidence: 1.0,
+  confidence_source: "seed"`.
+- `src/lib/research-os/ingest/types.ts`: `IngestEdgeDraft` gained `confidence` /
+  `confidenceSource`; `ReviewItemKind` gained `inferred_prerequisite_proposal`; new
+  `CONFIDENCE_DEFAULTS`.
+- `src/lib/research-os/ingest/academy.ts`: every `requires` edge writes `confidence:
+  1.0, confidenceSource: "academy_requires"`.
+- `src/lib/research-os/ingest/canon.ts`: every `cites` / `derives_from` edge writes
+  `confidence: 0.9, confidenceSource: "canon_map"`.
+- `scripts/research-os/ingest/academy-import.ts`, `.../canon-import.ts`: the
+  Supabase upsert now carries `confidence` / `confidence_source`.
+- `scripts/research-os/ingest/canon-atom-map.json` (item 4): three of the four
+  `unmatched_derives_from` review items resolved by hand, `bell-theorem` ->
+  `quantum-entanglement`, `quantum-field-theory` -> `qft-idea`, `quantum-mechanics` ->
+  `wavefunction`. `gauge-principle` stays on the review list; no Academy atom covers
+  gauge invariance or Yang-Mills theory.
+- `scripts/research-os/ingest/test-ingest-canon.ts`: the real-dossier assertion
+  updated from 4-unmatched to the new 5-matched/1-unmatched split.
+- `scripts/research-os/ingest/out/sample-canon-preview.json`,
+  `sample-review-list.json`, `sample-academy-preview.json`: regenerated against the
+  new real output (7 canon edges, 1 review item, confidence fields on every edge).
+- `package.json`: `test:research-os` runs the two new test files; new
+  `ingest:research-os:infer` script.
+- `.gitignore`, `learning/research-os/INGESTION.md`: the new sample file and the new
+  dry-run numbers.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (117/117
+pass, 8 new confidence-routing tests plus 15 new inference tests, every pre-existing
+research-os test file green with no assertion loosened beyond the two the real-dossier
+count required), `next lint` on every touched file, `agf-lint-voice-src check` /
+`agf-lint-voice check` on every touched file/doc: all clean. Dry run: Academy importer
+unchanged (487 nodes, 820 edges, 0 review items); canon importer now 7 edges (2 cites,
+5 derives_from) and 1 review item (was 4 edges, 4 review items); offline inference
+scans 517 nodes across 8 branches and proposes 36 edges, confidence 0.3-0.65, none
+applied.
+
+## Iteration 14: PR #27 review pass
+
+Date 2026-09-10. Review pass on PR #27 (`feat/ros-03-confidence-routing`), worktree
+`.ros-worktrees/r27`. Numbered past Iteration 13, the highest number already in this
+file.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this pass's own entry added; a stale
+  cross-reference in the ros-03 entry ("Iteration 11") corrected to "Iteration 13,
+  ros-03 routing", the number that entry landed as.
+- `learning/research-os/CHANGE-LEDGER.md`, this file: this pass's own entry.
+
+### Removed
+
+None.
+
+### Verified
+
+Leak scan on the full diff's added lines (2096 lines): no keys, `.env` contents, IPs,
+non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII,
+`/home/gian` paths, or Claude session URLs. `computeFrontier`'s Dijkstra variant
+checked against `scripts/test-research-os-routing.ts`, an unmodified file with
+hardcoded seed-graph assertions predating confidence, green against the new
+implementation: a real old-output equivalence check. Cost function
+`-log(confidence)` confirmed monotone and non-negative via `edgeConfidence()`'s
+`(0, 1]` clamp; a synthetic cycle (`a -> b -> c -> a`, `c -> target`) and a
+zero-indegree target both confirmed to terminate by direct execution, settling
+every node exactly once.
+`writeEdgeFlags` confirmed scoped to the token-verified `learnerId` only, no
+client-supplied learner id path; a write failure caught and logged, never surfacing
+to the route response. `infer-edges.ts` has no `--apply` mode; its output (both
+`infer-preview.json` and `review-list.json`) diffed byte-identical across two runs
+(`generated_at` excluded). `canon-atom-map.json`'s three new resolutions checked
+against `learning/app/corpus/02-physics.json` directly, all three atom ids exist with
+matching titles. `npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run
+test:research-os` (117/117), `next lint`, `agf-lint-voice check` / `agf-lint-voice-src
+check` on every touched file: all clean. Not behind `origin/main`, no merge required.
+
 ## Iteration 10
 
 Date 2026-09-10. Branch `feat/ros-canon-ingest`, worktree `wt-ingest`. Numbered

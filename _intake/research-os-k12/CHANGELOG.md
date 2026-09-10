@@ -1,5 +1,68 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #27 review pass
+
+Review of `feat/ros-03-confidence-routing` (PR #27) in worktree `.ros-worktrees/r27`. Leak
+scan against the full diff's added lines (2096 lines) found no API keys, `.env` contents,
+IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian`
+paths, or Claude session URLs.
+
+Correctness: `frontier.ts`'s Dijkstra variant confirmed non-regressive by running
+`scripts/test-research-os-routing.ts`, an unmodified pre-confidence test file with hardcoded
+seed-graph assertions written against the old plain-BFS walk, a real old-output
+equivalence check rather than `computeFrontier` compared against itself. Cost function
+`-log(confidence)` confirmed monotone (confidence clamped to `(0, 1]` by `edgeConfidence()`,
+so cost is non-negative and strictly decreasing in confidence), ties broken on hop count.
+Cycle and unreachable-target handling verified directly: a synthetic 4-node cycle (`a -> b ->
+c -> a`, `c -> target`) settles every node once with no hang; a target with zero incoming
+prerequisite edges routes to itself. `writeEdgeFlags` confirmed scoped to the signed-in
+learner only (`learnerId` comes from `verifyLearner`'s own token verification, never
+client-supplied), the service-role client bypasses RLS but the ownership boundary is enforced
+in application code; a write failure is caught and logged, never surfaced to the route
+response. `infer-edges.ts` has no `--apply` mode at all (stronger than a flag gate), and its
+output was confirmed deterministic by running it twice and diffing both `infer-preview.json`
+and `review-list.json` byte-for-byte (excluding the `generated_at` timestamp): zero diff.
+`canon-atom-map.json`'s three new resolutions (`bell-theorem` -> `quantum-entanglement`,
+`quantum-field-theory` -> `qft-idea`, `quantum-mechanics` -> `wavefunction`) checked against
+`learning/app/corpus/02-physics.json` directly: all three atom ids exist with titles matching
+the claimed concepts.
+
+One stale cross-reference found and fixed: this file's own ros-03 entry (below) pointed at
+`CHANGE-LEDGER.md`'s "Iteration 11" entry, but that entry landed as "Iteration 13, ros-03
+routing" (a numbering collision the ledger's own note explains); corrected in place.
+
+Gates: not behind `origin/main` (no merge needed); `npm ci`, `npx tsc --noEmit`, `npm run
+build` all clean; `npm run test:research-os` 117/117 passing; `next lint` clean on every
+touched file; `agf-lint-voice check` / `agf-lint-voice-src check` clean on every touched
+file (pre-existing violations found elsewhere in `.gitignore`, `BEADS-PENDING.jsonl`, and
+`sample-canon-preview.json`'s `_comment` are outside this PR's added lines, left as-is).
+Merged via `gh pr merge --squash --delete-branch`.
+
+## 2026-09-10, confidence-weighted routing, edge flags, offline edge inference (ros-03)
+
+Branch `feat/ros-03-confidence-routing`. Full account:
+`learning/research-os/CHANGE-LEDGER.md`'s "Iteration 13, ros-03 routing" entry and
+`learning/research-os/ROUTING.md`.
+
+Shipped: `graph.edges.confidence` / `confidence_source`, backfilled by every
+importer (`seed` and `academy_requires` at 1.0, `canon_map` at 0.9);
+`graph.prereq_ancestor.min_confidence`. `computeFrontier`'s backward walk
+(`src/lib/research-os/frontier.ts`) is now a confidence-weighted Dijkstra
+variant, preferring the highest-confidence chain to a target and returning
+`lowConfidenceFlags` for any edge on the chain below 0.6, exactly reproducing
+the prior shortest-hop result when every edge carries the default
+confidence. `GET /api/research-os/route` returns the flags and writes them
+to a new `graph.edge_flags` table for a signed-in learner. A new offline,
+no-model edge-inference pass (`scripts/research-os/ingest/infer-edges.ts`,
+`src/lib/research-os/ingest/infer.ts`) proposes 36 `prerequisite` edges from
+lexical overlap and tier ordering across the 517-node combined graph,
+confidence 0.3 to 0.65, all landing on the review list, none applied.
+`scripts/research-os/ingest/canon-atom-map.json` gained three explicit
+mappings, resolving `bell-theorem`, `quantum-field-theory`, and
+`quantum-mechanics` from the prior pass's four unmatched entries;
+`gauge-principle` stays unmatched, no Academy atom covers it. 23 new unit
+tests; 117/117 passing across the full `test:research-os` suite.
+
 ## 2026-09-10, PR #25 review pass
 
 Review of `docs/ros-02-learner-state-model` (PR #25) in worktree `review/pr25`. Leak scan
