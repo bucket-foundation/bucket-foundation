@@ -79,7 +79,11 @@ def test_views_command_missing_run_dir_fails(tmp_path, capsys):
 # --------------------------------------------------------------------------
 
 
-def test_campaign_run_accepts_constants_default(tmp_path, capsys):
+def test_campaign_run_accepts_constants_default(tmp_path, monkeypatch, capsys):
+    # `HTE_LLM_MODE=fake` keeps this off the real `claude` subprocess path
+    # (see `tests/test_api.py`'s own convention); the CLI has no
+    # `--llm-mode` flag, so the env var is the seam.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
     rc = cli.main([
         "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
         "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
@@ -90,7 +94,8 @@ def test_campaign_run_accepts_constants_default(tmp_path, capsys):
     assert "run written to" in capsys.readouterr().out
 
 
-def test_campaign_run_accepts_constants_fitted(tmp_path, capsys):
+def test_campaign_run_accepts_constants_fitted(tmp_path, monkeypatch, capsys):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
     rc = cli.main([
         "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
         "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
@@ -113,7 +118,10 @@ def test_campaign_run_rejects_an_unknown_constants_value(capsys):
 def test_campaign_run_omitting_constants_defaults_to_fitted(tmp_path, monkeypatch, capsys):
     # No `--constants` flag at all: `runner.DEFAULT_CONFIG["constants"]`
     # ("fitted") stands, matching `hte campaign run`'s own documented
-    # default with no CLI override needed.
+    # default with no CLI override needed. `HTE_LLM_MODE=fake` keeps this
+    # off the real `claude` subprocess path (see `tests/test_api.py`'s
+    # own convention).
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
     captured: dict = {}
     real_run_campaign = cli.runner.run_campaign
 

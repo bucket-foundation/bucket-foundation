@@ -51,11 +51,15 @@ def test_complete_mode_fake_does_not_touch_cache_dir(tmp_path):
     assert not cache_dir.exists()
 
 
+@pytest.mark.allow_subprocess  # deliberately takes the real `claude -p` path, bounded by timeout=1.0
 def test_complete_mode_fake_ignored_when_not_set(monkeypatch, tmp_path):
     """Without `mode="fake"` and no `HTE_LLM_MODE` set, `complete()` still
     takes the real `claude -p` path (and so still raises on a cache
     miss with no `replay_only`, exercised elsewhere); this just confirms
-    the env var is read fresh on every call."""
+    the env var is read fresh on every call. `timeout=1.0` bounds the
+    real subprocess call this deliberately makes to a `FileNotFoundError`
+    or a fast `TimeoutExpired`, either of which `_invoke_cli` turns into
+    the `LLMInvocationError` asserted below, never a hang."""
     monkeypatch.delenv("HTE_LLM_MODE", raising=False)
     with pytest.raises(llm.LLMInvocationError):
         llm.complete(
