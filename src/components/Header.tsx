@@ -34,6 +34,7 @@ const NAV: NavItem[] = [
       { href: "/ladder",  label: "The depth ladder", meta: "mastery → frontier → produce" },
     ],
   },
+  { href: "/research-os",    label: "Research OS" },
   { href: "/access",         label: "Access" },
   { href: "/chat",           label: "Chat" },
   { href: "/about",          label: "About" },

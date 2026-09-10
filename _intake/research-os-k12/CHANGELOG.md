@@ -1,6 +1,49 @@
 # Changelog: _intake/research-os-k12/
 
-## 2026-09-10 (literature corpus and overlap map)
+## 2026-09-10, site alignment pass
+
+Branch `feat/ros-site-alignment`. Aligned the public site with the Research OS
+for K-12 direction without removing any existing direction. Per the
+authoritative paragraph carried in the task brief (also recorded in
+`learning/research-os/CHANGE-LEDGER.md`).
+
+### Edited (outside this folder, logged here per the task's ledger requirement)
+
+- `src/components/Header.tsx`: added a "Research OS" primary-nav item linking
+  to `/research-os`, between Academy and Access; every existing item kept.
+- `src/components/Presentation.tsx` (home page): added a "Research OS for
+  K-12" section after the hero and before the AI-native and thesis sections,
+  with the five stages (Access, Awareness, Understanding, Internalization,
+  Production), two sentences from the authoritative paragraph, and links to
+  `/research-os` and `/research-os/workspace`.
+- `src/app/research-os/page.tsx`: prototype link label changed to "Try the
+  prototype →"; added a "Read the plan ↗" link to
+  `learning/research-os/PLAN.md` on GitHub. Five stage names were already
+  Access, Awareness, Understanding, Internalization, Production; no change
+  needed there. See `DELETIONS.md` for the replaced link text.
+- `MANIFESTO.md`, section 5 ("Who bucket is for"): appended one sentence at
+  the end of the section, "Bucket is where a person learns to produce
+  knowledge, starting on day one." No other text in the section changed.
+- `public/llms.txt`: added a line for `/research-os` to the "Pages you can
+  read for free" list.
+
+### Removed
+
+None.
+
+## 2026-09-10: PR #5 post-merge review followup
+
+PR #5 merged (`397066318`) before this review pass completed, so its two residual issues land
+here as a direct commit against `main` instead of a PR update. Leak scan of the full PR #5 diff
+found no secrets, PII, non-public hostnames, or local paths. Citation check on 8 of the 45 files
+against Crossref and DataCite matched frontmatter DOI, title, authors, and year in every case. No
+file reproduces more than a paraphrase of its source, so no deletions were needed. Fixed the
+parenthetical heading below and the paper-count error (46 to 45) in
+`learning/research-os/CHANGE-LEDGER.md`; added a `voice-ignore-line` marker to the one corpus line
+carrying a real em dash, a journal's own name. `npm ci` and `npm run build` both pass. Full detail
+in `learning/research-os/CHANGE-LEDGER.md`, Iteration 3.
+
+## 2026-09-10: literature corpus and overlap map
 
 Added `_intake/research-os-k12-literature/` (45 verified papers across four areas, see its own
 README for the index) and `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` (the shared-substrate map
