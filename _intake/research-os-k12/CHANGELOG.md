@@ -1,5 +1,51 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10: literature batch three
+
+Branch `intake/ros-literature-3`. Task: 25 to 35 new DOI- or ISBN-verified papers
+targeted at the gaps `LEARNER-STATE-MODEL.md` section 5 and the overlap map's twelve
+questions leave open: understanding and internalization measurement, curiosity and
+interest as routing signals, teacher workload and adoption of edtech, division of
+cognitive labor and mixed-initiative research tools, and prerequisite-graph and
+concept-map validity. Full per-area breakdown and per-question evidence mapping
+recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 15.
+
+### Added
+
+- 35 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md` Iteration 15; corpus total rises from 82 to
+  117 papers.
+- `_intake/research-os-k12-literature/teacher-workload-adoption/`: new sixth branch,
+  seven files on adoption barriers, coaching, dashboards, and teacher trust.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 117 rows, six
+  areas.
+- `learning/research-os/LEARNER-STATE-MODEL.md`: six of the seven OPEN questions in
+  section 5 gained an "Evidence added in batch three" paragraph.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: eight of the
+  twelve open questions gained an "Evidence added in batch three" paragraph.
+
+### Verified Clean
+
+- Every DOI or ISBN and OpenAlex work id checked live via WebFetch at intake time.
+- Two candidate papers named in the task brief were searched for and omitted for lack
+  of a resolvable DOI matching the brief exactly: a 2019 Adorni-authored
+  prerequisite-graph paper (a verified 2018 Adorni paper, Alzetta and colleagues, was
+  used in its place) and an Open Syllabus Project curriculum-mining paper (Valdez,
+  Roldan, and Masuli 2025 was used as the closest verified match).
+- No blockquote or extended verbatim passage from any source paper; all `key_claims`
+  and body text are paraphrase.
+- A grep-based self-audit for the voice rules ran against every file this pass
+  authored or edited, since `agf-lint-voice check` scans zero files under any path
+  containing an `_intake` segment (an org-level ignore-list gap affecting the whole
+  corpus, predating this pass); every flagged instance was rewritten before commit.
+
+### Removed
+
+None.
+
 ## 2026-09-10, PR #27 review pass
 
 Review of `feat/ros-03-confidence-routing` (PR #27) in worktree `.ros-worktrees/r27`. Leak
