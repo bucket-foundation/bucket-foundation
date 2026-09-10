@@ -85,19 +85,7 @@ export default function Presentation() {
           }}
         />
 
-        {/* Inscription marquee, the creed, always moving */}
-        <div className="relative border-b-2 border-[color:var(--basalt)] overflow-hidden">
-          <div className="stele-track font-display uppercase text-[clamp(1.5rem,3vw,2.25rem)] tracking-[0.2em] py-4 text-[color:var(--basalt)]/75">
-            {[...MARQUEE, ...MARQUEE].map((t, i) => (
-              <span key={i} className="px-10 inline-flex items-center gap-10">
-                <span className="chisel">{t}</span>
-                <span className="text-[color:var(--gold)] text-2xl leading-none">◆</span>
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto px-4 md:px-6 pt-16 md:pt-28 pb-4 md:pb-8 text-center">
+        <div className="relative max-w-2xl mx-auto px-4 md:px-6 pt-16 md:pt-24 pb-4 md:pb-8 text-center">
           <div className="carve-in font-mono-mark uppercase text-[10px] tracking-[0.4em] text-[color:var(--basalt-2)] mb-10 flex items-center justify-center gap-2">
             <span className="text-[color:var(--crimson)]">◆</span>
             bucket foundation · nonprofit
@@ -107,25 +95,22 @@ export default function Presentation() {
             <Image
               src="/brand/omega-stonepunk.png"
               alt="The bucket.foundation mark, a carved inverse omega"
-              width={84}
-              height={84}
+              width={72}
+              height={72}
               priority
               className="rounded-sm border-2 border-[color:var(--basalt)] shadow-[0_20px_30px_-18px_rgba(13,13,13,0.45)]"
             />
           </div>
 
-          <h1 className="carve-in-2 font-display uppercase text-[clamp(2.75rem,9vw,7rem)] leading-[0.95] chisel tracking-[0.01em]">
+          <h1 className="carve-in-2 font-display uppercase text-[clamp(1.9rem,10vw,5rem)] leading-[0.95] chisel tracking-[0.01em] whitespace-nowrap">
             reform <span className="inlay-gold">education.</span>
           </h1>
 
-          <div className="mt-8 carve-in-3 carved-rule max-w-xs mx-auto" />
+          <div className="mt-6 carve-in-3 carved-rule max-w-xs mx-auto" />
 
-          <p className="mt-10 carve-in-4 mx-auto max-w-2xl text-[19px] md:text-[21px] text-[color:var(--basalt)] font-semibold leading-[1.6]">
-            For five thousand years the world widened reading and never widened
-            producing. Bucket is the operating system a student runs inside from
-            the first year of school to the research frontier, a canon of
-            foundations underneath every step, and every citation pays its
-            author, forever.
+          <p className="mt-8 carve-in-4 mx-auto max-w-lg text-[17px] md:text-[19px] text-[color:var(--basalt)] font-semibold leading-[1.6]">
+            Bucket is the operating system a student runs inside from the first
+            year of school to the research frontier.
           </p>
 
           <div className="mt-10 carve-in-5 flex flex-wrap justify-center gap-3">
@@ -155,13 +140,63 @@ export default function Presentation() {
           </div>
         </div>
 
-        {/* Canon search, the real tool (same component /canon/search runs), creeps in
-            from the bottom on scroll rather than leading the hero. */}
-        <ScrollReveal className="relative pt-8 pb-4 md:pt-14 md:pb-8">
-          <div className="text-center small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-2">
-            search the canon underneath it
+        {/* Canon search, the real tool (same component /canon/search runs), creeps
+            in from the bottom on scroll rather than leading the hero, protrudes
+            above this section's own top edge, and carries a left branch nav
+            beside the tool's own built-in right sidebar. Full page width; the
+            snap-gravity-target class gives it a soft scroll-snap pull once it
+            is close to centered (see globals.css, reduced-motion respected). */}
+        <ScrollReveal className="relative -mt-10 md:-mt-20 lg:-mt-28 z-10">
+          <div className="snap-gravity-target w-full px-2 sm:px-4 md:px-6">
+            <div className="text-center small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-3">
+              search the canon underneath it
+            </div>
+
+            {/* Mobile and tablet: branch chips above the globe, horizontally scrollable */}
+            <nav
+              aria-label="Canon branches"
+              className="lg:hidden flex gap-2 overflow-x-auto pb-3 px-1 -mx-1"
+            >
+              {branches.map((b) => (
+                <Link
+                  key={b.slug}
+                  href={`/canon/${b.slug}`}
+                  className="flex-shrink-0 px-3 py-1.5 text-[11px] font-mono-mark rounded-full border border-[color:var(--hairline)] whitespace-nowrap text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)] hover:border-[color:var(--basalt)] transition"
+                >
+                  {b.numeral} · {b.name}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)] gap-0 lg:gap-6 items-start max-w-[1800px] mx-auto">
+              {/* Desktop left nav, beside the tool's own right sidebar */}
+              <nav
+                aria-label="Canon branches"
+                className="hidden lg:flex flex-col gap-1 sticky top-24 pt-4"
+              >
+                <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--aegean-deep)] mb-2 px-3">
+                  branches
+                </div>
+                {branches.map((b) => (
+                  <Link
+                    key={b.slug}
+                    href={`/canon/${b.slug}`}
+                    className="px-3 py-2 text-[13px] font-mono-mark rounded-sm hover:bg-[color:var(--bone-2)] transition flex items-baseline justify-between gap-2 text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)]"
+                  >
+                    <span>{b.numeral}. {b.name}</span>
+                    <span className="text-[10px] text-[color:var(--aegean-deep)]">{b.entryCount}</span>
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="min-w-0">
+                <CanonGlobeMount
+                  branches={globeBranches}
+                  containerClassName="relative w-full mx-0 md:h-[88vh] md:max-h-[1000px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
+                />
+              </div>
+            </div>
           </div>
-          <CanonGlobeMount branches={globeBranches} />
         </ScrollReveal>
 
         {/* Bottom hero stat strip, Roman inscription ledger */}
@@ -191,12 +226,12 @@ export default function Presentation() {
                 K-12
               </h2>
               <p className="mt-6 text-[16px] leading-[1.75] text-[color:var(--basalt-2)] max-w-md">
-                Bucket becomes the operating system a student runs inside
-                from the first year of school to the research frontier.
-                Every idea on the map has the same five stages: you can
-                reach it, you know it exists, you can explain it, you can
-                use it on a problem you have never seen, and you can add
-                something new to it.
+                For five thousand years the world widened reading and never
+                widened producing. Every idea on the map has the same five
+                stages: you can reach it, you know it exists, you can explain
+                it, you can use it on a problem you have never seen, and you
+                can add something new to it, citeable and paid like anyone
+                else&apos;s foundation.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
