@@ -28,8 +28,8 @@ how_it_bears_on_research_os: >
   generation step could, in principle, surface something an expert would call novel: the
   same low-diversity risk this study documents for LLM idea generation is a direct concern
   for a generator drawing repeatedly from the same fixed slot vocabulary, and argues for
-  treating the engine's own self-report's coverage-rate checks as a diversity audit, not
-  only a calibration one.
+  treating the engine's own self-report's coverage-rate checks as a diversity audit, beyond
+  a calibration one.
 ---
 
 # Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers
@@ -49,4 +49,4 @@ The most direct empirical test available of whether an LLM can generate research
 
 ## How It Bears on Research OS
 
-Is the closest existing evidence for whether the hypothesis engine's own combinatorial generation step could, in principle, surface something an expert would call novel: the same low-diversity risk this study documents for LLM idea generation is a direct concern for a generator drawing repeatedly from the same fixed slot vocabulary, and argues for treating the engine's own self-report's coverage-rate checks as a diversity audit, not only a calibration one.
+Is the closest existing evidence for whether the hypothesis engine's own combinatorial generation step could, in principle, surface something an expert would call novel: the same low-diversity risk this study documents for LLM idea generation is a direct concern for a generator drawing repeatedly from the same fixed slot vocabulary, and argues for treating the engine's own self-report's coverage-rate checks as a diversity audit, beyond a calibration one.

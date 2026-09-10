@@ -22,7 +22,7 @@ one structured file per paper with plain-language claims, named open questions, 
 tying the paper to a specific part of the Research OS or engine design, which the raw notes do
 not carry in per-paper form. A file whose paper also appears in one of those raw passes carries a
 closing line naming which raw file it is cross-indexed against; a reader who wants the full,
-unfiltered research-agent pass for an area should start from the raw file, not this corpus.
+unfiltered research-agent pass for an area should start from the raw file instead of this corpus.
 
 ## Index
 
