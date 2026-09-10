@@ -1196,3 +1196,49 @@ pass, since changing an org-level ignore file is outside this task's scope). Eve
 instance was rewritten before commit; `LEARNER-STATE-MODEL.md`, outside the `_intake`
 tree, was scanned by the real linter directly and returned zero violations,
 corroborating the self-audit's own result.
+
+## Iteration 18: PR #38 review pass
+
+Date 2026-09-10. Review of Iteration 17's own PR (#38) in worktree `.ros-worktrees/r38`,
+content-only.
+
+### Added
+
+None.
+
+### Edited
+
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md`:
+  appended a sentence to `why_it_matters` naming it as the closest verified match to the
+  unresolved 2019-dated Adorni prerequisite paper named in the task brief. Iteration 17's
+  own `why_it_matters` text carried no such label; the precedent for labeling a
+  replacement card directly, set by `unesco-2025-generative-ai-foundational-learning-sub-saharan-africa.md`'s
+  `why_it_matters` field, was not followed on this card. No other text changed.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/valdez-roldan-masuli-2025-course-prerequisite-network-centrality.md`:
+  same fix, naming it as the closest verified match to the unresolved Open Syllabus
+  Project curriculum-mining paper named in the task brief. No other text changed.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this review pass.
+
+### Removed
+
+None.
+
+### Verified
+
+Eight of the 35 new cards picked at random (Novak 1990, Hestenes/Wells/Swackhamer 1992,
+Shneiderman 2020, Bucinca/Malaya/Gajos 2021, Chi and colleagues 1989, Molenaar 2022,
+Bansal and colleagues 2021, Schwartz/Chase/Bransford 2012), DOI checked live against
+Crossref: title, authors, and year matched frontmatter exactly on all eight. README
+index row count (117) confirmed exact against `find`'s own corpus file count. Both
+`LEARNER-STATE-MODEL.md` section 5 (six paragraphs) and the overlap map (eight
+paragraphs) confirmed to carry the claimed "Evidence added in batch three" count, and
+every card path either doc names confirmed to resolve to a file on disk. No blockquote
+or long verbatim excerpt found in any new card. Leak scan against the full diff's added
+lines found no keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs.
+`agf-lint-voice check` scanned zero of the 40 changed files, reconfirming Iteration 17's
+own finding on the `_intake` ignore-list gap; a grep-based self-audit against the full
+banned-word, filler-adverb, AI-tell, antithesis, and em/en-dash rule lists found no hit
+on any added line, including the two fixed cards. `origin/main` already merged into the
+branch. No file under `src/` or `public/` touched. `npm ci` and `npm run build` both
+clean.

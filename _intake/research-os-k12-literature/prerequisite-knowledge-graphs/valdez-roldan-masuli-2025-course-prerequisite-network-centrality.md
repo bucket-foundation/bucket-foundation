@@ -16,7 +16,10 @@ why_it_matters: >
   identify which courses sit at structurally central points, a technique directly
   applicable to Research OS's own `graph.prereq_ancestor` structure for finding
   frontier nodes with many downstream dependents, rather than routing by
-  prerequisite-confidence alone.
+  prerequisite-confidence alone. Closest verified match to an Open Syllabus Project
+  curriculum-mining paper named in the task brief, which had no resolvable DOI; this
+  paper's own prerequisite-network analysis covers the same curriculum-structure
+  ground.
 key_claims:
   - "A civil engineering curriculum's prerequisite structure, modeled as a directed graph with courses as vertices and prerequisite requirements as edges, showed a small number of courses with centrality scores far above the network's own median, indicating a small set of structurally central courses."
   - "Betweenness centrality and out-degree centrality identified different courses as most central, evidence that which node counts as structurally important depends on which centrality measure is chosen rather than there being one settled answer."

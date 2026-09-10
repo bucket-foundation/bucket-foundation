@@ -19,7 +19,10 @@ why_it_matters: >
   agreement rate the annotators reached. This is a labeling-level, rather than a
   state-classification-level, agreement baseline, extending the kind of comparison
   point `jonsson-svingby-2007-scoring-rubrics-reliability-validity.md` supplies for
-  rubric scoring into the prerequisite-edge domain.
+  rubric scoring into the prerequisite-edge domain. Closest verified match to a
+  2019-dated Adorni-authored prerequisite paper named in the task brief, which had
+  no resolvable DOI; this 2018 paper carries Adorni as a co-author and covers the
+  same prerequisite-annotation ground.
 key_claims:
   - "The PRET dataset annotates prerequisite relations between terms extracted from an introductory computer science textbook, with each candidate pair independently labeled by multiple human annotators rather than a single rater."
   - "Inter-annotator agreement on whether one term is a prerequisite of another was moderate, lower than agreement rates reported for simpler labeling tasks, evidence prerequisite judgment carries real subjectivity even among trained annotators reading the same source text."

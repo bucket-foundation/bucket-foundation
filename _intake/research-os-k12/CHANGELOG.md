@@ -1,5 +1,32 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #38 review pass
+
+Review of `intake(research-os): literature batch three` (PR #38) in worktree
+`.ros-worktrees/r38`, content-only. Leak scan against the full diff's added lines
+found no API keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Eight of
+the 35 new cards picked at random (Novak 1990, Hestenes/Wells/Swackhamer 1992,
+Shneiderman 2020, Bucinca/Malaya/Gajos 2021, Chi and colleagues 1989, Molenaar 2022,
+Bansal and colleagues 2021, Schwartz/Chase/Bransford 2012) and their DOI checked live
+against Crossref: title, authors, and year matched frontmatter exactly on all eight,
+no mismatch found. The two "closest verified match" replacement cards (Alzetta and
+colleagues 2018, Valdez, Roldan, and Masuli 2025) did not label themselves as
+replacements in their own `why_it_matters` field, unlike the precedent this corpus
+already set on `unesco-2025-generative-ai-foundational-learning-sub-saharan-africa.md`;
+fixed by appending a sentence to each naming the unresolved task-brief paper it
+stands in for. README index row count (117) confirmed exact against the corpus file
+count; both docs' "Evidence added in batch three" paragraphs confirmed present under
+the claimed open questions, and every card path either doc names confirmed to exist
+on disk. No blockquote or long verbatim excerpt found in any new card; `key_claims`
+entries are quoted YAML strings holding the card author's own paraphrase, not source
+text. `agf-lint-voice check` scanned zero of the 40 changed files (the pass's own
+`_intake` ignore-list gap, already logged in Iteration 17); a grep-based self-audit
+for banned words, filler adverbs, AI-tell vocabulary, antithesis, and em/en dashes
+against every added line found no hit, including on the two fixed cards. Confirmed
+`origin/main` already merged into the branch (no further merge needed) and no file
+under `src/` or `public/` touched; `npm ci` and `npm run build` both clean. Merged.
+
 ## 2026-09-10: literature batch three
 
 Branch `intake/ros-literature-3`. Task: 25 to 35 new DOI- or ISBN-verified papers
