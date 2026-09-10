@@ -1,10 +1,10 @@
 /**
  * Unit tests: the engine <-> Research OS graph bridge (bkt-ros, engine
- * bridge task items 1 and 3), src/lib/research-os/engine-bridge.ts. Every
- * function under test is pure (no I/O), so each test runs against a plain
- * fixture object with no database, matching scripts/test-research-os-
- * routing.ts's own convention (node:test + node:assert, no framework
- * configured in this repo).
+ * bridge task items 1 and 3, ros-12 item 4's GapNode wiring),
+ * src/lib/research-os/engine-bridge.ts. Every function under test is pure
+ * (no I/O), so each test runs against a plain fixture object with no
+ * database, matching scripts/test-research-os-routing.ts's own convention
+ * (node:test + node:assert, no framework configured in this repo).
  *
  * Run:
  *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-engine-bridge.ts
@@ -17,7 +17,11 @@ import {
   buildEngineNode,
   buildEngineEdges,
   buildProductionOutboxRow,
+  gapNodeSlug,
+  buildGapNode,
+  buildGapEdges,
   type EngineHypothesisInput,
+  type GapNodeInput,
   type GraphProductionRow,
 } from "../src/lib/research-os/engine-bridge";
 
@@ -179,4 +183,75 @@ test("buildProductionOutboxRow: non-array evidence/sources coerce to empty array
   );
   assert.deepEqual(row.evidence, []);
   assert.deepEqual(row.sources, []);
+});
+
+// ---------------------------------------------------------------------------
+// ros-12 item 4: a campaign's own gap node -> a graph.nodes/graph.edges pair
+// ---------------------------------------------------------------------------
+
+function fixtureGap(overrides: Partial<GapNodeInput> = {}): GapNodeInput {
+  return {
+    engine: "hte",
+    runId: "runs/research-os/2026-09-10T12-00-00Z",
+    campaign: "research-os",
+    gapId: "gap-ev-001",
+    kind: "unresolved-slot",
+    description: "evidence ev-001 names no value for: actor, mechanism",
+    valueOfInformation: 0.42,
+    branch: "02-physics",
+    concernsHypothesisIds: ["h-af3c", "h-0912"],
+    ...overrides,
+  };
+}
+
+test("gapNodeSlug: deterministic on (engine, runId, gapId)", () => {
+  const a = gapNodeSlug("hte", "runs/research-os/2026-09-10T12-00-00Z", "gap-ev-001");
+  const b = gapNodeSlug("hte", "runs/research-os/2026-09-10T12-00-00Z", "gap-ev-001");
+  assert.equal(a, b);
+  assert.match(a, /^gap-hte-runs-research-os-2026-09-10t12-00-00z-gap-ev-001$/);
+});
+
+test("gapNodeSlug: any one of the three inputs changing changes the slug, and never collides with engineNodeSlug", () => {
+  const base = gapNodeSlug("hte", "run-1", "gap-1");
+  assert.notEqual(gapNodeSlug("hte2", "run-1", "gap-1"), base);
+  assert.notEqual(gapNodeSlug("hte", "run-2", "gap-1"), base);
+  assert.notEqual(gapNodeSlug("hte", "run-1", "gap-2"), base);
+  assert.notEqual(base, engineNodeSlug("hte", "run-1", "gap-1"), "gap- and engine- prefixes never collide");
+});
+
+test("buildGapNode: fixture gap becomes a well-formed artifact-kind node draft", () => {
+  const draft = buildGapNode(fixtureGap());
+  assert.equal(draft.slug, gapNodeSlug("hte", "runs/research-os/2026-09-10T12-00-00Z", "gap-ev-001"));
+  assert.equal(draft.kind, "artifact");
+  assert.equal(draft.tier, 6, "a gap is an absence, not a reliability-rated claim");
+  assert.equal(draft.branch, "02-physics");
+  assert.match(draft.title, /^Gap: /);
+  assert.equal(draft.summary, "evidence ev-001 names no value for: actor, mechanism");
+  assert.equal(draft.provenance.type, "gap");
+  assert.equal(draft.provenance.engine, "hte");
+  assert.equal(draft.provenance.run_id, "runs/research-os/2026-09-10T12-00-00Z");
+  assert.equal(draft.provenance.campaign, "research-os");
+  assert.equal(draft.provenance.gap_id, "gap-ev-001");
+  assert.equal(draft.provenance.gap_kind, "unresolved-slot");
+  assert.equal(draft.provenance.value_of_information, 0.42);
+  assert.deepEqual(draft.provenance.concerns_hypothesis_ids, ["h-af3c", "h-0912"]);
+});
+
+test("buildGapNode: a missing required field throws rather than writing a broken row", () => {
+  assert.throws(() => buildGapNode(fixtureGap({ description: "" })), /description is required/);
+  assert.throws(() => buildGapNode(fixtureGap({ engine: "" })), /engine is required/);
+  assert.throws(() => buildGapNode(fixtureGap({ branch: "   " })), /branch is required/);
+});
+
+test("buildGapEdges: one cites edge per concerned hypothesis, targeting that hypothesis's own engineNodeSlug", () => {
+  const input = fixtureGap();
+  const edges = buildGapEdges(input);
+  assert.deepEqual(edges, [
+    { toSlug: engineNodeSlug("hte", "runs/research-os/2026-09-10T12-00-00Z", "h-af3c"), kind: "cites" },
+    { toSlug: engineNodeSlug("hte", "runs/research-os/2026-09-10T12-00-00Z", "h-0912"), kind: "cites" },
+  ]);
+});
+
+test("buildGapEdges: no concerned hypotheses yields no edges", () => {
+  assert.deepEqual(buildGapEdges(fixtureGap({ concernsHypothesisIds: [] })), []);
 });

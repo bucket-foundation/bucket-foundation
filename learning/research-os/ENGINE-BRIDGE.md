@@ -43,12 +43,16 @@ This PR does not touch it; see "What PR #10 covers" below.
 | `graph.nodes` | private (`graph`, outside PostgREST's schema list) | `src/lib/research-os/db.ts`'s `upsertEngineHypothesisNode` (item 1) | `loadSubgraph`, `findNodeById`, the `/api/research-os/route` handler |
 | `graph.edges` | private (`graph`) | `db.ts`'s `writeEngineEdges` (item 1) | `loadSubgraph` |
 | `graph.productions` | private (`graph`) | the existing `/api/research-os/production` route | the same route, on an accepted write, feeds item 3's outbox |
-| `public.research_os_productions_outbox` | public (PostgREST default schema, deliberately) | `db.ts`'s `writeProductionOutbox` (item 3) | `hte.corpus.production.load_supabase(table="research_os_productions_outbox")`, PR #10, once pointed at this table |
+| `public.research_os_productions_outbox` | public (PostgREST default schema, deliberately) | `db.ts`'s `writeProductionOutbox` (item 3) | `hte.corpus.research_os_outbox.load`/`load_and_consume` (ros-12 item 2, registered as the `"research-os"` corpus in `hte.cli`'s own `_CORPUS_LOADERS`), and `tools/hypothesis-engine/scripts/campaign_research_os.py`'s `fetch_and_build` (ros-12 item 3) |
 
 `public.research_os_productions_outbox` is defined in
 `supabase/migrations/20260910010000_research_os_engine_bridge.sql`,
 alongside a `graph.edges (from_id, to_id, kind)` unique index item 1's own
-edge writer needs.
+edge writer needs. `supabase/migrations/
+20260910030000_research_os_outbox_consumed_at.sql` (ros-12 item 2) adds
+the row's own `consumed_at` column, `null` until a reader has used it:
+`hte.corpus.research_os_outbox.fetch_unconsumed_rows` filters on
+`consumed_at is null`; `mark_consumed` sets it.
 
 ## Idempotency keys
 
@@ -62,6 +66,14 @@ edge writer needs.
 - **Production outbox row (item 3).** `public.research_os_productions_
   outbox.id`, the production's own `graph.productions.id` reused verbatim
   (no synthetic prefix): `writeProductionOutbox` upserts on `id`.
+- **Outbox consumption (ros-12 item 2).** `consumed_at`, a per-row
+  timestamp: `mark_consumed` setting it on an already-consumed row
+  overwrites it with a later time, so a retry after a partial failure
+  never needs to check which ids already carry one first.
+- **Gap node (ros-12 item 4).** `graph.nodes.slug`, deterministic on
+  `(engine, runId, gapId)` via `engine-bridge.ts`'s `gapNodeSlug`, the same
+  shape `engineNodeSlug` gives an accepted hypothesis (item 1), with a
+  `gap-` rather than `engine-` prefix so the two never collide.
 
 ## Why the outbox carries the raw row
 
@@ -121,30 +133,76 @@ engine's own `SUPABASE_SERVICE_KEY` ever hold that role.
 | A Research OS learner sees an engine hypothesis as a study target | Not touched | Item 2: `engine-frontier.ts`'s `findFrontierEngineTargets`, surfaced on `/api/research-os/route`'s `engineFrontier` field and the workspace page's "from the engine" panel |
 | A Research OS production reaches the engine | `hte.corpus.production.is_research_os_record`/`normalize_research_os_record`: auto-detects and normalizes a raw `graph.productions`-shaped row, server-side, once it arrives | Item 3: the outbox table and writer that gets an accepted production's raw row *to* the engine in the first place |
 | Calling `hte.api.hypothesize` over HTTP | `hte/api.py`, `hte/serve.py` (`POST /hypothesize`, `GET /health`), `hte/mcp_tool.py`'s `TOOL_DEFINITION` | Not touched |
-| The Next.js route that calls `hte-serve` | `docs/research-os-hypothesize-route.patch`, an unapplied patch against `src/app/api/research-os/hypothesize/route.ts` and `src/lib/research-os/types.ts`'s `HypothesizeResult`. Explicitly deferred to its own PR once PR #6 merged (it has) | Not touched; still unapplied after this PR, same as PR #10 left it |
+| The Next.js route that calls `hte-serve` | `docs/research-os-hypothesize-route.patch`, an unapplied patch against `src/app/api/research-os/hypothesize/route.ts` and `src/lib/research-os/types.ts`'s `HypothesizeResult`. Explicitly deferred to its own PR once PR #6 merged (it has) | Not touched; applied in ros-13 (`src/app/api/research-os/hypothesize/route.ts`, `src/lib/research-os/hypothesize-auth.ts`'s `authorizeHypothesize`) |
 | Literature corpus adapter | `hte/corpus/literature.py`, 45 DOI-verified papers | Not touched |
+| Outbox reader, campaign-run caller, GapNode wiring | Not touched | ros-12 items 2 to 4, `hte.corpus.research_os_outbox`, `tools/hypothesis-engine/scripts/campaign_research_os.py`, `scripts/research-os/apply-engine-campaign.ts`, `engine-bridge.ts`'s `buildGapNode`/`buildGapEdges`, `db.ts`'s `upsertGapNode` |
+
+## Stubs Closed: ros-12 and ros-13
+
+- **The route patch.** `tools/hypothesis-engine/docs/research-os-
+  hypothesize-route.patch` applied against current `main`
+  (`src/app/api/research-os/hypothesize/route.ts`,
+  `src/lib/research-os/types.ts`'s `HypothesizeResult`). The ownership
+  check moved into its own named, unit-tested function,
+  `authorizeHypothesize` (`src/lib/research-os/hypothesize-auth.ts`,
+  `scripts/test-research-os-hypothesize-route.ts`), rather than living only
+  inside the un-testable Supabase query filter the patch originally wrote.
+- **The outbox reader.** `hte.corpus.research_os_outbox` (ros-12 item 2):
+  `fetch_unconsumed_rows`/`mark_consumed`/`load`/`load_and_consume`,
+  reading `consumed_at is null` rows through `hte.corpus.production`'s
+  existing normalizer (`Production.from_dict` already detects and
+  normalizes a `graph.productions`-shaped row, PR #10) and marking every
+  row it read consumed. Registered as the `"research-os"` corpus in
+  `hte.cli`'s own `_CORPUS_LOADERS`. `supabase/migrations/
+  20260910030000_research_os_outbox_consumed_at.sql` adds the column.
+  Tested against a fixture row and a monkeypatched `urllib.request.
+  urlopen`, `tools/hypothesis-engine/tests/test_corpus_research_os_
+  outbox.py`.
+- **The campaign-run caller.** `tools/hypothesis-engine/scripts/
+  campaign_research_os.py` (ros-12 item 3): `run(corpus, ...)` registers a
+  corpus into `hte.runner`'s own `_CORPUS_LOADERS` at call time (a runtime
+  dict assignment on an already-imported module, leaving `hte/runner.py`
+  itself untouched while PR #20 reviewed and merged that file concurrently
+  with this work), runs one campaign, and
+  returns an export of every survivor as one `EngineHypothesisInput` each,
+  plus the run's own gap-node queue (see below). `main()` chains this to
+  the outbox reader and to `mark_consumed`, only once the export has
+  written to disk. `scripts/research-os/apply-engine-campaign.ts` reads
+  that export and applies it through the existing PR #14 adapter
+  (`buildEngineNode`/`buildEngineEdges`, `upsertEngineHypothesisNode`/
+  `writeEngineEdges`). Tested in fake mode (`HTE_LLM_MODE=fake`, no
+  network or API key) against the 14 shipped production fixtures,
+  `tools/hypothesis-engine/tests/test_campaign_research_os.py`; the export
+  <-> `EngineHypothesisInput`/`GapNodeInput` mapping is tested separately,
+  `scripts/test-research-os-apply-engine-campaign.ts`.
+- **`GapNode`/`value_of_information` wiring.** `hte.unknowns.
+  unresolved_slot_gaps` (ros-12 item 4) is the public, tested
+  generalization of `hte.api`'s own private `_rank_gap_nodes`: one
+  `GapNode` per evidence item missing a concept slot, ranked by
+  `value_of_information` against the campaign's own survivors and
+  opinions. `campaign_research_os.py`'s own `export_gap_nodes` calls it
+  after every campaign run; `apply-engine-campaign.ts` writes each gap as
+  a `graph.nodes` row (`buildGapNode`: kind `artifact`, provenance
+  `type: "gap"`) with one `cites` edge per hypothesis it concerns
+  (`buildGapEdges`, targeting that hypothesis's own `engineNodeSlug`);
+  `cites` rather than `prerequisite`, since `frontier.ts`/`closure.ts`
+  walk only `prerequisite` edges for real routing and `engine-frontier.ts`
+  walks only `derives_from`, so a gap's own edges add traceability without
+  perturbing either. `hte/api.py` keeps its own private `_rank_gap_nodes`
+  for now rather than importing `unresolved_slot_gaps`, since that file
+  was under active review (PR #20) as this landed; folding one into the
+  other is a follow-up once that review settles.
 
 ## Stubs, open items
 
-- **The outbox has no reader yet.** `writeProductionOutbox` writes rows;
-  nothing in `tools/hypothesis-engine` points `load_supabase` at
-  `research_os_productions_outbox` today. That one-line wiring
-  (`load_supabase(table="research_os_productions_outbox")` inside a
-  registered `--corpus research-os` loader, the same one-line pattern
-  `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` names for `production` and
-  `literature`) is engine-side work, out of this PR's own scope.
-- **Item 3's hook is unreached today.** `/api/research-os/production`'s
-  POST handler only emits to the outbox when a write leaves a production
-  at status `"accepted"`; Phase 0 has no teacher-accept path (task item 6),
-  so no production ever reaches that status yet. The hook is wired and
-  tested (`scripts/test-research-os-engine-bridge.ts`) against a fixture,
-  not against a live accept.
-- **Item 1 has no caller yet either.** Nothing in `tools/hypothesis-engine`
-  calls `upsertEngineHypothesisNode`/`writeEngineEdges` after a real
-  campaign run; a campaign's own accepted-hypothesis list would need a
-  small script or `hte.runner` hook to walk it and call these. This PR
-  ships the write path and its idempotency; the scheduler that would drive
-  it is separate, unbuilt work.
+- **Item 3's write-side hook is unreached today.** `/api/research-os/
+  production`'s POST handler only emits to the outbox when a write leaves
+  a production at status `"accepted"`; Phase 0 has no teacher-accept path
+  (task item 6), so no production ever reaches that status through a real
+  learner flow yet. The hook is wired and tested
+  (`scripts/test-research-os-engine-bridge.ts`) against a fixture, not
+  against a live accept; ros-12's own outbox reader and campaign caller
+  are exercised the same way, against fixtures, for the same reason.
 - **`engineFrontier`'s "prerequisite" reading is `derives_from`, not
   `prerequisite`.** Item 1 writes only `cites` and `derives_from` edges for
   an engine hypothesis node, never `prerequisite`; `engine-frontier.ts`'s
@@ -153,9 +211,34 @@ engine's own `SUPABASE_SERVICE_KEY` ever hold that role.
   walks. A future engine hypothesis with a real prerequisite structure of
   its own may want its own edge kind rather than reusing `derives_from` for
   both "canon it builds on" and "concept it requires."
-- **`GapNode`/`value_of_information` are still unwired**, unchanged from
-  `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s own accounting
-  (`hte/unknowns.py:273`, `:289`, `:323`, recorded there as built but never
-  called from `hte.runner`): this PR's `engineFrontier` reads only
-  accepted hypothesis nodes already in the graph, never a live gap-node
-  queue.
+- **`hte/api.py`'s own `_rank_gap_nodes` stays a private duplicate of
+  `hte.unknowns.unresolved_slot_gaps` for now** (see above), pending PR
+  #20's own review landing.
+- **Real tier assignment for an engine hypothesis is still unbuilt.**
+  `docs/RESEARCH-OS-INTEGRATION.md`'s own "hypothesize_result" section
+  names `tier_assigned` as future wiring; `campaign_research_os.py`'s own
+  export leaves it unset, so `engineTierToGraphTier`'s documented default
+  (`T6`) applies to every hypothesis node a campaign run writes today.
+
+## Running a campaign end to end
+
+From `tools/hypothesis-engine`:
+
+```bash
+python3 scripts/campaign_research_os.py --out runs/research-os-export.json
+```
+
+Then, from the `bucket-foundation` repo root:
+
+```bash
+npx ts-node --compiler-options '{"module":"commonjs"}' \
+  scripts/research-os/apply-engine-campaign.ts \
+  tools/hypothesis-engine/runs/research-os-export.json
+```
+
+The first command needs `SUPABASE_URL`/`SUPABASE_SERVICE_KEY` (the outbox
+read and the consumed-marking write) and, unless `HTE_LLM_MODE=fake` is
+set, a working `claude -p` for the campaign's own model calls. The second
+needs `NEXT_PUBLIC_SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY`. `--dry-run`
+on the first command writes the export but leaves every outbox row
+unconsumed, for a rehearsal run.

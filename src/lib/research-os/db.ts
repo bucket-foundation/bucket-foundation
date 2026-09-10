@@ -12,7 +12,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
 import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind } from "./types";
-import type { EngineNodeDraft, ProductionOutboxRow } from "./engine-bridge";
+import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow } from "./engine-bridge";
 import type { PrereqAncestorRow } from "./closure";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
@@ -306,6 +306,47 @@ export async function upsertEngineHypothesisNode(draft: EngineNodeDraft): Promis
     .select("id,slug,title,kind,tier,branch,summary,labels,provenance")
     .single();
   if (error) throw new Error(`upsertEngineHypothesisNode: upsert failed: ${error.message}`);
+  const r = data as NodeRow;
+  return {
+    id: r.id,
+    slug: r.slug,
+    title: r.title,
+    kind: r.kind as GraphNode["kind"],
+    tier: r.tier,
+    branch: r.branch,
+    summary: r.summary,
+    labels: r.labels ?? undefined,
+    provenance: r.provenance ?? undefined,
+  };
+}
+
+/**
+ * A campaign's own gap node (ros-12 item 4, `engine-bridge.ts`'s
+ * `buildGapNode`) as a `graph.nodes` row. Same upsert shape as
+ * `upsertEngineHypothesisNode` above (kept as its own function rather than
+ * a shared generic one, so a future change to either write path never
+ * risks the other): idempotent on `slug`, `engine-bridge.ts`'s
+ * `gapNodeSlug` is deterministic on `(engine, runId, gapId)`.
+ */
+export async function upsertGapNode(draft: GapNodeDraft): Promise<GraphNode> {
+  const svc = graphService();
+  const { data, error } = await svc
+    .from("nodes")
+    .upsert(
+      {
+        slug: draft.slug,
+        title: draft.title,
+        kind: draft.kind,
+        tier: draft.tier,
+        branch: draft.branch,
+        summary: draft.summary,
+        provenance: draft.provenance,
+      },
+      { onConflict: "slug" },
+    )
+    .select("id,slug,title,kind,tier,branch,summary,labels,provenance")
+    .single();
+  if (error) throw new Error(`upsertGapNode: upsert failed: ${error.message}`);
   const r = data as NodeRow;
   return {
     id: r.id,

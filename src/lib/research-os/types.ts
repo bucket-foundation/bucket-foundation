@@ -68,3 +68,49 @@ export interface LearnerNodeState {
   confidence?: number | null;
   updatedAt?: string;
 }
+
+/**
+ * `hte-serve`'s own `POST /hypothesize` response (`tools/hypothesis-
+ * engine/hte/api.py`'s `_build_response`), trimmed to what the workspace
+ * UI needs and reshaped to this file's own camelCase convention. Built by
+ * `src/app/api/research-os/hypothesize/route.ts` (see that file's own
+ * patch, `tools/hypothesis-engine/docs/research-os-hypothesize-route.
+ * patch`, not yet applied to this tree).
+ */
+export interface HypothesizeCorpusSummary {
+  nProductions: number;
+  statusMin: string;
+  priorProfile: string;
+  nSources: number | null;
+  nEvidence: number | null;
+  nHypothesesGenerated: number | null;
+  nSurvivors: number | null;
+}
+
+export interface HypothesizeGapNode {
+  id: string;
+  kind: string;
+  description: string;
+  valueOfInformation: number;
+}
+
+export interface HypothesizeCalibration {
+  mode: string | null;
+  brierScore: number | null;
+  coverageOfTruth: number | null;
+}
+
+export interface HypothesizeModels {
+  roles: Record<string, string>;
+  escalation: string;
+}
+
+export interface HypothesizeResult {
+  runId: string;
+  artifactVersion: string | null;
+  models: HypothesizeModels | null;
+  corpus: HypothesizeCorpusSummary;
+  timeline: { bins: Array<{ timeBin: string; rankedHypotheses: unknown[] }> };
+  gapNodes: HypothesizeGapNode[];
+  calibration: HypothesizeCalibration | null;
+}

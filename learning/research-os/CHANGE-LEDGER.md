@@ -2,7 +2,90 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
-## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
+## Engine Bridge Wiring and Hypothesize Route: ros-12 and ros-13
+
+Date 2026-09-10. Branch `feat/ros-12-engine-wiring`, closing PR #14's own
+three engine bridge stubs and applying PR #10's own unapplied hypothesize
+route patch. Worked in a dedicated worktree alongside two other
+concurrent efforts on this repo: PR #20 (`fix(hte): PR #10 review
+findings...`, open, reviewing/merging `hte/api.py`, `hte/corpus/
+education_atlas.py`, `hte/corpus/literature.py`, `hte/corpus/
+production.py`, `hte/generate.py`, `hte/llm.py`, `hte/parallel.py`,
+`hte/runner.py`, `hte/timeline.py`, and their test files, none of which
+this branch edits) and a separate agent's own work on `src/lib/research-
+os/frontier.ts`, `closure.ts`, and the review and class pages (also not
+touched here). Full account: `learning/research-os/ENGINE-BRIDGE.md`.
+
+### Added
+
+- `src/app/api/research-os/hypothesize/route.ts`,
+  `src/lib/research-os/types.ts`'s `HypothesizeResult` (ros-13): `tools/
+  hypothesis-engine/docs/research-os-hypothesize-route.patch`, applied
+  cleanly against current `main` with no conflicts.
+- `src/lib/research-os/hypothesize-auth.ts` (`authorizeHypothesize`,
+  ros-13): the patch's own inline `.eq("learner_id", learnerId)` ownership
+  filter pulled into a named, pure, unit-tested function (the review item
+  that produced this branch's own ros-13 bead: "add a route test that a
+  learner can only hypothesize over their own productions").
+  `scripts/test-research-os-hypothesize-route.ts`.
+- `tools/hypothesis-engine/hte/corpus/research_os_outbox.py` (ros-12 item
+  2): `fetch_unconsumed_rows`, `mark_consumed`, `fetch_and_build`, `load`,
+  `load_and_consume`. Reads `public.research_os_productions_outbox`
+  filtered to `consumed_at is null`, through `hte.corpus.production`'s
+  existing normalizer (`Production.from_dict`). Registered as the
+  `"research-os"` corpus in `hte.cli`'s own `_CORPUS_LOADERS`.
+- `supabase/migrations/20260910030000_research_os_outbox_consumed_at.sql`
+  (ros-12 item 2): adds `consumed_at` to the outbox table, additive,
+  idempotent.
+- `tools/hypothesis-engine/tests/test_corpus_research_os_outbox.py`
+  (ros-12 item 2): 8 tests, monkeypatched `urllib.request.urlopen`, one
+  fixture row shaped like a real outbox row.
+- `hte.unknowns.unresolved_slot_gaps` (ros-12 item 4, `tools/
+  hypothesis-engine/hte/unknowns.py`): a public generalization of `hte.
+  api`'s own private `_rank_gap_nodes`, one `GapNode` per evidence item
+  missing a concept slot, ranked by `value_of_information`. 6 new tests
+  in `tools/hypothesis-engine/tests/test_unknowns.py`.
+- `tools/hypothesis-engine/scripts/campaign_research_os.py` (ros-12 item
+  3, the campaign-run caller): `run()`/`main()`, `_register_corpus`
+  (registers a corpus into `hte.runner._CORPUS_LOADERS` at call time, a
+  runtime dict assignment rather than a `hte/runner.py` edit),
+  `export_accepted_hypotheses`, `export_gap_nodes`. 7 tests in fake mode
+  against the 14 shipped production fixtures, `tools/hypothesis-engine/
+  tests/test_campaign_research_os.py`.
+- `src/lib/research-os/engine-bridge.ts`'s `gapNodeSlug`, `buildGapNode`,
+  `buildGapEdges`, `GapNodeInput`, `GapNodeDraft`, `GapNodeProvenance`
+  (ros-12 item 4, write side): a gap becomes a `graph.nodes` row of kind
+  `artifact`, provenance `type: "gap"`, with a `cites` edge (not
+  `prerequisite`, `frontier.ts`/`closure.ts` walk only that edge kind for
+  real routing) to every hypothesis node it concerns. 6 new tests in
+  `scripts/test-research-os-engine-bridge.ts`.
+- `src/lib/research-os/db.ts`'s `upsertGapNode` (ros-12 item 4): the same
+  upsert shape as `upsertEngineHypothesisNode`, kept as its own function.
+- `scripts/research-os/apply-engine-campaign.ts` (ros-12 item 3, write
+  side): `applyEngineCampaign`, `toEngineHypothesisInput`,
+  `toGapNodeInput`. Applies `campaign_research_os.py`'s own JSON export
+  through the PR #14 adapter into `graph.nodes`/`graph.edges`. 4 tests for
+  the mapping functions, `scripts/test-research-os-apply-engine-
+  campaign.ts`.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/cli.py`: `_CORPUS_LOADERS` gained the
+  `"research-os"` entry.
+- `package.json`'s `test:research-os` script: chained in
+  `scripts/test-research-os-hypothesize-route.ts` and
+  `scripts/test-research-os-apply-engine-campaign.ts`.
+- `learning/research-os/ENGINE-BRIDGE.md`: the "Stubs, open items"
+  section split into "Stubs Closed: ros-12 and ros-13" (what shipped) and
+  a narrower "Stubs, open items" (what remains); a "Running a campaign
+  end to end" section added. Original text preserved verbatim in
+  `_intake/research-os-k12/DELETIONS.md`.
+
+### Removed
+
+None.
+
+## Iteration 6: Phase 1 Stub Closures
 
 Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
 listed stubs, scoped to the review's own Phase 1 boundary (section 8). Rebased twice

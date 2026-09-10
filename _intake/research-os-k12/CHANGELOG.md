@@ -1,5 +1,100 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, engine bridge wiring and hypothesize route (ros-12, ros-13)
+
+Branch `feat/ros-12-engine-wiring`. Closes the engine bridge's three open
+stubs (`learning/research-os/ENGINE-BRIDGE.md`) and applies the
+`research-os-hypothesize-route.patch` PR #10 shipped unapplied. Full
+account: `learning/research-os/ENGINE-BRIDGE.md`.
+
+### Added
+
+- `src/app/api/research-os/hypothesize/route.ts`,
+  `src/lib/research-os/types.ts`'s `HypothesizeResult` and its supporting
+  interfaces: `tools/hypothesis-engine/docs/research-os-hypothesize-
+  route.patch`, applied against current `main`.
+- `src/lib/research-os/hypothesize-auth.ts` (`authorizeHypothesize`): the
+  patch's own inline ownership filter, pulled into a named, unit-tested
+  function, `scripts/test-research-os-hypothesize-route.ts`.
+- `tools/hypothesis-engine/hte/corpus/research_os_outbox.py`
+  (`fetch_unconsumed_rows`/`mark_consumed`/`fetch_and_build`/`load`/
+  `load_and_consume`): the outbox reader, registered as the `"research-os"`
+  corpus in `hte.cli`'s own `_CORPUS_LOADERS`.
+  `supabase/migrations/20260910030000_research_os_outbox_consumed_at.sql`
+  adds the row's own `consumed_at` column. Tested against a fixture row,
+  `tools/hypothesis-engine/tests/test_corpus_research_os_outbox.py`.
+- `hte.unknowns.unresolved_slot_gaps`
+  (`tools/hypothesis-engine/hte/unknowns.py`): a public, tested
+  generalization of `hte.api`'s own private `_rank_gap_nodes`, one
+  `GapNode` per evidence item missing a concept slot, ranked by
+  `value_of_information`. Tested,
+  `tools/hypothesis-engine/tests/test_unknowns.py`.
+- `tools/hypothesis-engine/scripts/campaign_research_os.py`: the
+  campaign-run caller, `run()`/`main()`, registers a corpus into
+  `hte.runner`'s own `_CORPUS_LOADERS` at call time, runs one campaign,
+  and exports every survivor plus the run's own gap-node queue as JSON.
+  Tested in fake mode against the 14 shipped production fixtures,
+  `tools/hypothesis-engine/tests/test_campaign_research_os.py`.
+- `src/lib/research-os/engine-bridge.ts`'s `gapNodeSlug`/`buildGapNode`/
+  `buildGapEdges`, `src/lib/research-os/db.ts`'s `upsertGapNode`: the
+  write side of GapNode wiring, a gap becomes a `graph.nodes` row of kind
+  `artifact`, provenance `type: "gap"`, with a `cites` edge to each
+  hypothesis it concerns. Tested,
+  `scripts/test-research-os-engine-bridge.ts`.
+- `scripts/research-os/apply-engine-campaign.ts`
+  (`applyEngineCampaign`/`toEngineHypothesisInput`/`toGapNodeInput`):
+  applies `campaign_research_os.py`'s own export through the PR #14
+  adapter into `graph.nodes`/`graph.edges`. Mapping functions tested,
+  `scripts/test-research-os-apply-engine-campaign.ts`.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/cli.py`: registers `research_os_outbox.load`
+  under the `"research-os"` corpus name.
+- `learning/research-os/ENGINE-BRIDGE.md`: the three stubs marked closed,
+  a "Running a campaign end to end" section, and the outbox table's
+  `consumed_at` column documented.
+
+### Removed
+
+None.
+
+### Not touched (PR #20 scope, another agent reviewing/merging concurrently)
+
+`hte/api.py`, `hte/corpus/education_atlas.py`, `hte/corpus/literature.py`,
+`hte/corpus/production.py`, `hte/generate.py`, `hte/llm.py`,
+`hte/parallel.py`, `hte/runner.py`, `hte/timeline.py`, and their matching
+test files. The campaign-run caller registers its own corpus into
+`hte.runner._CORPUS_LOADERS` at call time (a runtime dict assignment)
+rather than editing that module; `hte/api.py`'s own private
+`_rank_gap_nodes` stays a duplicate of the new public
+`unresolved_slot_gaps` for now, a follow-up once PR #20 lands. Also not
+touched: `src/lib/research-os/frontier.ts`, `closure.ts`, the review and
+class pages (a separate agent's own concurrent scope).
+
+### Verified
+
+- `cd tools/hypothesis-engine && python3 -m pytest tests/
+  test_corpus_research_os_outbox.py tests/test_unknowns.py tests/
+  test_campaign_research_os.py -q`: 43 passed.
+- `cd tools/hypothesis-engine && ruff check` on every file this pass
+  authored or edited: 0 violations (36 pre-existing violations elsewhere
+  in the tree, none in a file this pass touched, unchanged from before
+  this branch).
+- `cd tools/hypothesis-engine && make test` (fast profile): 896 passed
+  outside this pass's own scope, plus this pass's own 43, against 3
+  pre-existing failures unrelated to this work (`education-atlas sample
+  directory not found`, a worktree-relative path-resolution gap
+  `hte/corpus/education_atlas.py` is not touched here to fix, PR #20's own
+  scope) and one flaky live-network test
+  (`test_live_fetch_lists_cards_or_skips_when_offline`, an
+  `IncompleteRead` against a real GitHub API call).
+- `npm ci`, `npx tsc --noEmit`, `npm run build`: clean.
+- `npx eslint` on every touched `.ts` file: clean.
+- `npm run test:research-os`: 108 passed, 0 failed.
+- `agf-lint-voice-src check` / `agf-lint-voice check` on every file this
+  pass authored or edited: 0 violations.
+
 ## 2026-09-10, canon and Academy corpus ingestion
 
 Branch `feat/ros-canon-ingest`. Two ingestion importers that grow the Research
