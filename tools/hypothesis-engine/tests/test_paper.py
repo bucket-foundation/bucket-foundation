@@ -113,6 +113,7 @@ def test_load_run_without_calibration_reads_none(tmp_path):
     assert data.calibration is None
 
 
+@pytest.mark.allow_subprocess  # emit_paper shells out to a real `python3 figures/fig_*.py` render
 def test_emit_paper_writes_every_expected_file(tmp_path):
     run_dir = _minimal_run(tmp_path)
     out_dir = tmp_path / "paper"
@@ -133,6 +134,7 @@ def test_emit_paper_writes_every_expected_file(tmp_path):
     assert "4" in tex  # n_survivors, read straight from the artifact
 
 
+@pytest.mark.allow_subprocess  # emit_paper shells out to a real `python3 figures/fig_*.py` render
 def test_emit_paper_writes_no_absolute_paths_anywhere(tmp_path):
     """PR #4 review finding: `main.tex`'s `\\addbibresource` and every
     figure script's `RUN_DIR` used to bake this checkout's own absolute
@@ -163,6 +165,7 @@ def test_emit_paper_writes_no_absolute_paths_anywhere(tmp_path):
             assert needle not in text, f"{path} carries {label} ({needle!r})"
 
 
+@pytest.mark.allow_subprocess  # emit_paper shells out to a real `python3 figures/fig_*.py` render
 def test_emit_paper_without_calibration_states_that_plainly(tmp_path):
     run_dir = _minimal_run(tmp_path, with_calibration=False)
     out_dir = tmp_path / "paper"
@@ -186,6 +189,7 @@ def test_calibration_table_escapes_bin_bracket_so_it_does_not_eat_the_next_row()
 
 
 @requires_real_run
+@pytest.mark.allow_subprocess  # emit_paper's figure renders plus build_pdf's real `make pdf`/pdflatex
 def test_emit_paper_and_build_pdf_over_a_real_run():
     dest = SCRATCH_ROOT / f"_test-paper-{uuid.uuid4().hex[:8]}"
     try:

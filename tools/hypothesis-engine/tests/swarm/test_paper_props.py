@@ -9,10 +9,17 @@ import shutil
 import tempfile
 from pathlib import Path
 
+import pytest
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
 from hte import paper
+
+# Both tests below call `emit_paper`, which shells out to a real
+# `python3 figures/fig_*.py` render (see this module's own comment two
+# lines down); opts the whole file out of `tests/conftest.py`'s autouse
+# subprocess guard.
+pytestmark = pytest.mark.allow_subprocess
 
 # emit_paper shells out to `python3 figures/fig_*.py` three times per call
 # (real matplotlib renders): the shared "swarm" profile's 300

@@ -85,6 +85,7 @@ def _real_run_dir_from_test_paper_fixture() -> Path | None:
     return candidate if (candidate / "MANIFEST.json").is_file() else None
 
 
+@pytest.mark.allow_subprocess  # a real manifest routes through emit_paper's own python3 figure renders
 def test_from_run_with_a_real_manifest_attempts_emit_paper():
     real_run = _real_run_dir_from_test_paper_fixture()
     if real_run is None:

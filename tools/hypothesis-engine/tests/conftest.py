@@ -1,6 +1,8 @@
 import os
+import subprocess
 import sys
 from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -64,3 +66,52 @@ def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item
     for item in items:
         if item.nodeid in _SLOW_NODEIDS:
             item.add_marker(pytest.mark.slow)
+
+
+# ---------------------------------------------------------------------------
+# Suite-wide guard: no real subprocess, ever, by default
+# ---------------------------------------------------------------------------
+# A test that calls `cli.main(["campaign", "run", ...])` (or anything else
+# that reaches `hte.llm.complete`) without `HTE_LLM_MODE=fake` or
+# `replay_only=True` falls through to a real `claude -p` subprocess call,
+# 20-40s and a live network dependency per call, and can hang `make test`
+# indefinitely (the incident this fixture exists to make structurally
+# impossible again: three tests in `tests/test_cli.py` did exactly this).
+# This patches the real `subprocess.run`/`subprocess.Popen` to raise
+# instead of spawning, for every test in the suite, unless the test
+# carries `@pytest.mark.allow_subprocess` (registered in `pyproject.
+# toml`). As of 2026-09-10 every use is one of three real, non-LLM
+# subprocess calls the package itself makes on purpose: `hte.paper`'s
+# figure renders (`python3 figures/fig_*.py`) and `make pdf`/`pdflatex`
+# (`tests/test_paper.py`, `tests/test_artifacts.py`, `tests/swarm/
+# test_paper_props.py`, `tests/swarm/test_pipeline_props.py`),
+# `hte.referee`'s `agf-lint-voice` call (`tests/test_referee.py`'s one
+# end-to-end test), and `gh repo clone` in `tests/
+# test_corpus_education_atlas.py`; plus one deliberate, `timeout`-bounded
+# real `claude -p` attempt in `tests/test_fakellm.py` that asserts the
+# real-path failure gets wrapped into `LLMInvocationError`.
+#
+# This does not fight the suite's own existing subprocess stand-ins.
+# `tests/test_llm.py`, `tests/test_batching.py`, and the property swarm
+# monkeypatch `hte.llm.subprocess` itself to a `SimpleNamespace(run=...)`,
+# rebinding that name away from the real module entirely, so those calls
+# never reach this guard either way. A test that patches the real
+# `subprocess.run` directly (`tests/swarm/test_llm_props.py`, `tests/
+# swarm/test_publish_props.py`) does so from inside its own test body,
+# which pytest runs after this function-scoped autouse fixture's own
+# setup, so that test's patch is the one active for the rest of its body
+# (and this fixture's patch is what such a test restores to on exit, not
+# the real `subprocess.run`).
+@pytest.fixture(autouse=True)
+def _no_real_subprocess(request: pytest.FixtureRequest, monkeypatch: pytest.MonkeyPatch) -> None:
+    if request.node.get_closest_marker("allow_subprocess") is not None:
+        return
+
+    def _forbidden(*args: Any, **kwargs: Any) -> Any:
+        raise RuntimeError(
+            "test attempted to spawn a subprocess; set HTE_LLM_MODE=fake or "
+            "--replay-only, or opt out with the `allow_subprocess` marker"
+        )
+
+    monkeypatch.setattr(subprocess, "run", _forbidden)
+    monkeypatch.setattr(subprocess, "Popen", _forbidden)
