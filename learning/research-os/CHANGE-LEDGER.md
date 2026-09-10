@@ -577,3 +577,94 @@ six `bucket-canon/02-physics/` dossiers, `special-relativity` and
 `standard-model` match an Academy atom id exactly, `bell-theorem`,
 `gauge-principle`, `quantum-field-theory`, and `quantum-mechanics` do not).
 Zero orphan edges in either run.
+
+## Iteration 11
+
+Date 2026-09-10. Branch `docs/ros-02-learner-state-model`, worktree `ros02`. Bead `ros-02`,
+the learner-state mapping paper every later Research OS outcome claim depends on. Docs only,
+no code, no migration, no schema change.
+
+### Added
+
+- `learning/research-os/LEARNER-STATE-MODEL.md`: the five states defined operationally
+  against `src/lib/research-os/stages.ts`, `probe.ts`, and the two Phase 0 migrations (entry
+  condition, evidence, judge, decay rule, per state, read from the shipped code rather than
+  `PLAN.md` alone);
+  mapping tables against ICAP, SOLO, Bloom revised, Perkins's understanding performances, and
+  the founder's three-level model; a mapping to the shipped Academy Recall, Apply, Derive,
+  Teach ladder and to FSRS and IRT signals, finding no code path connects Research OS state
+  transitions to Academy's `M = P^alpha * R^beta` fusion today; the three-arm pilot's
+  measurement plan (outcome variable per state, the Internalization transfer-task
+  construction rule, an inter-rater procedure for teacher judgments, the minimal logging
+  schema); and seven questions marked OPEN, each tied to the paper that poses it.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: the evidence jsonb contract `ros-04` and `ros-06`
+  implement against. Docs only; no `EvidenceEvent` field, no migration column, added in this
+  pass.
+- `_intake/research-os-k12-literature/educational-methods/chi-wylie-2014-icap-framework.md`,
+  `biggs-collis-1982-solo-taxonomy.md`, `anderson-krathwohl-2001-taxonomy-revision.md`,
+  `perkins-1993-teaching-for-understanding.md`, `wiske-1998-teaching-for-understanding.md`:
+  five intake cards for the framework citations `PLAN.md` section 2 already cited by DOI but
+  that had no corpus card. Every citation DOI- or ISBN-verified before writing the card; the
+  three with no Crossref DOI (Anderson and Krathwohl 2001, Perkins 1993, Wiske 1998) carry an
+  ISBN or an ERIC id and ISSN instead, each file's own "Verification note" naming the exact
+  records checked.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: five new index rows, paper count 77 to 82,
+  educational-methods count 17 to 22, a new note on which records lack a Crossref DOI and why.
+- `BEADS-PENDING.jsonl`: one status line appended for `ros-02`; the original line unedited.
+- `_intake/research-os-k12/CHANGELOG.md`, this file: this iteration's own entries.
+
+### Removed
+
+None.
+
+### Verified
+
+Read in full before writing: `learning/research-os/PLAN.md`, `PLAN-REVISION-1.md`,
+`RESEARCH-QUESTIONS.md`, `_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md` section
+3, `src/lib/research-os/stages.ts`, `types.ts`, `probe.ts`, `grounding.ts`, `frontier.ts`,
+`reviewer.ts`, `db.ts`'s `recordEvidence`, `src/app/api/research-os/review/route.ts`,
+`supabase/migrations/20260910000000_research_os_graph.sql`,
+`supabase/migrations/20260910020000_research_os_teacher_reviews.sql`,
+`supabase/migrations/20260612000000_academy_progress.sql`, `src/lib/academy/mastery.ts`,
+`learning/EPIC.md`, `src/lib/depth-ladder.ts`, and `src/lib/research-os/ingest/academy.ts`.
+Every framework citation (ICAP, SOLO, Bloom revised, Anderson and Krathwohl 2001, Perkins
+1993, Wiske 1998) resolved by DOI, ISBN, or ERIC id via WebFetch against `doi.org`,
+`api.openalex.org`, `openlibrary.org`, and `api.ies.ed.gov` before this paper cited it. A
+full-text search of `src/lib/research-os/` and `src/app/api/research-os/` for `retrievability`,
+`stability`, `fsrs`, `theta`, and `proficiency` returned zero matches, the evidence for
+section 3's central finding that no code path joins Research OS state transitions to
+Academy's FSRS/IRT signals today. No file under `src/` outside the two new docs files is
+touched by this pass, so no `npm run build` gate applies to it; `agf-lint-voice check` run
+against every file this pass authored.
+
+## Iteration 12
+
+Date 2026-09-10. Review pass on PR #25 (`docs/ros-02-learner-state-model`), worktree
+`review/pr25`. Docs only.
+
+### Edited
+
+- `anderson-krathwohl-2001-taxonomy-revision.md`, `wiske-1998-teaching-for-understanding.md`:
+  fixed a wrong Open Library `url` shared by both cards (`OL3906603W`, "Russia's Road to
+  Democracy," unrelated to either book), replaced with the verified work ids `OL16641840W`
+  and `OL16467129W`; each confirmed against Open Library's own work record before writing.
+- `perkins-1993-teaching-for-understanding.md`, this file: removed two banned filler-word
+  instances flagged by voice review.
+
+### Verified
+
+Leak scan on the full diff's added lines: no keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs. Six code claims spot-checked against `origin/main`: `stages.ts`'s five
+transition functions, `probe.ts`'s cold-start-only firing, the review route's production
+branch never calling `recordEvidence` (confirmed, the named bug is real), the
+`learner_node_state`/`teacher_reviews` schema shape (single `confidence` column with no
+writer, single `reviewer_id` with no second-rater columns), `academyNodeSlug`'s slug format,
+and `mastery.ts`'s `inferDepth` thresholds plus `fuseMastery` formula. All matched. README
+index row count (82) matched the corpus file count (82) exactly, `find` counted per branch:
+22 educational methods, 25 HCI, 18 scientific discovery, 12 AI and researchers, 5
+prerequisite graphs. Every framework mapping table states "No counterpart" with a reason
+where one applies. `agf-lint-voice check` clean on every file it scanned.

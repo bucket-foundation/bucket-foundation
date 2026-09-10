@@ -1,5 +1,75 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #25 review pass
+
+Review of `docs/ros-02-learner-state-model` (PR #25) in worktree `review/pr25`. Leak scan
+against the full diff's added lines found no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs. Six code claims spot-checked against `origin/main` (`stages.ts`'s five
+transition functions, `probe.ts`'s cold-start-only firing, the review route's production
+branch never calling `recordEvidence`, `learner_node_state`/`teacher_reviews` schema shape,
+`academyNodeSlug`'s slug format, `mastery.ts`'s `inferDepth` thresholds and `fuseMastery`
+formula) all matched the paper's description, including the named bug: a returned production
+leaves `stage` at `production` uncorrected. README index row count (82) matched the corpus
+file count (82) exactly. Every framework mapping table states "No counterpart" with a reason
+where one applies, rather than forcing a match.
+
+Two real citation errors found and fixed: `anderson-krathwohl-2001-taxonomy-revision.md` and
+`wiske-1998-teaching-for-understanding.md` both carried the same wrong Open Library `url`
+(`OL3906603W`, which resolves to an unrelated book, "Russia's Road to Democracy"), corrected
+to the verified work ids (`OL16641840W` and `OL16467129W`) after cross-checking against
+Open Library's search API. The ISBNs themselves were correct in both files. Two banned
+filler-word instances fixed in `CHANGE-LEDGER.md` and the Perkins card; `agf-lint-voice
+check` was clean on every file it scanned.
+
+## 2026-09-10, learner state model and mapping paper
+
+Branch `docs/ros-02-learner-state-model` (bead `ros-02`). Docs only, no code or migration
+changed. `learning/research-os/LEARNER-STATE-MODEL.md` defines the five learner states
+operationally (entry condition, evidence, judge, decay rule, each checked against
+`src/lib/research-os/stages.ts`, `probe.ts`, and the two Phase 0 migrations rather than
+restated from `PLAN.md` alone), maps them against ICAP, SOLO, Bloom revised, Perkins's
+understanding performances, and the founder's original three-level model, maps them against
+the shipped Academy Recall/Apply/Derive/Teach ladder and the FSRS/IRT signals (finding no
+code path connects the two systems today, confirmed by a full-codebase search), and lays out
+the three-arm pilot's measurement plan: an outcome variable per state, the transfer-task
+construction rule for Internalization, an inter-rater procedure for teacher judgments, and
+the minimal logging schema the workspace has to emit. Seven questions marked OPEN, each tied
+to the paper that poses it. `src/lib/research-os/EVIDENCE-SCHEMA.md` states the evidence
+jsonb contract `ros-04` and `ros-06` implement against, closing seven concrete gaps between
+what `graph.learner_node_state.evidence` stores today and what the measurement plan needs,
+including one real bug found while writing this pass: a returned production leaves the
+learner's `stage` at `production` uncorrected, since the review route's production branch
+never calls `recordEvidence`.
+
+### Added
+
+- `learning/research-os/LEARNER-STATE-MODEL.md`: the mapping paper, five sections per the
+  bead's own scope, states defined operationally, framework mapping tables, shipped-code
+  mapping, measurement plan, seven OPEN questions.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: the evidence jsonb contract, docs only, no code
+  changed in this pass.
+- Five intake cards under `_intake/research-os-k12-literature/educational-methods/`, none of
+  which had a card before this pass despite being cited by DOI in `PLAN.md` section 2 already:
+  `chi-wylie-2014-icap-framework.md` (ICAP), `biggs-collis-1982-solo-taxonomy.md` (SOLO),
+  `anderson-krathwohl-2001-taxonomy-revision.md` (Bloom revised, ISBN-verified, no Crossref
+  DOI), `perkins-1993-teaching-for-understanding.md` (ERIC- and ISSN-verified, no DOI), and
+  `wiske-1998-teaching-for-understanding.md` (ISBN-verified, no DOI).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: five new rows in the index table, the
+  paper count updated from 77 to 82 and the educational-methods count from 17 to 22, a new
+  section noting which records carry an ISBN or ERIC id instead of a DOI and why.
+- `BEADS-PENDING.jsonl`: one status line appended for `ros-02`, the original line left
+  unedited.
+- `learning/research-os/CHANGE-LEDGER.md`, `_intake/research-os-k12/CHANGELOG.md`, this
+  file: this pass's own entries.
+
+### Removed
+
+None.
+
 ## 2026-09-10, funding wave 1
 
 Bead `ros-09`, branch `docs/ros-09-funding-wave-1`. Four funder-facing documents under `learning/research-os/funding/`, drawn from this intake's own funding research plus fresh WebFetch verification against every funder's live site on 2026-09-10 (not a re-read of the 2026-09-09 pass's cached figures).
