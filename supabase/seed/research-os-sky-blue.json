@@ -1,0 +1,234 @@
+{
+  "_comment": "Research OS for K-12, Phase 0 seed path: why is the sky blue. See _intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md section 8 (Phase 0 prototype slice: one canon branch, 02-physics; grades 3-5 up to Rayleigh scattering; 15-25 nodes). Loaded by scripts/seed-research-os.mjs. Every provenance entry is a verified real source: NASA Space Place and Wikipedia for the grade-level facts, the Tyndall 1869 and Rayleigh 1871 papers (DOIs confirmed by resolving doi.org to the publisher record) for the primary-source and law tiers.",
+  "target_slug": "why-the-sky-is-blue",
+  "nodes": [
+    {
+      "slug": "light-travels-in-straight-lines",
+      "title": "Light travels in straight lines",
+      "kind": "fact",
+      "tier": 3,
+      "branch": "02-physics",
+      "summary": "Light moves in a straight path until it hits something that reflects it, bends it, or scatters it.",
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+    },
+    {
+      "slug": "sunlight-looks-white",
+      "title": "Sunlight looks white",
+      "kind": "fact",
+      "tier": 3,
+      "branch": "02-physics",
+      "summary": "Sunlight looks white to our eyes, even though, as later nodes show, it is a mix of every visible color.",
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+    },
+    {
+      "slug": "air-is-made-of-tiny-particles",
+      "title": "Air is made of tiny particles",
+      "kind": "fact",
+      "tier": 3,
+      "branch": "02-physics",
+      "summary": "Air is made of countless tiny particles, mostly nitrogen and oxygen molecules, far too small to see.",
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+    },
+    {
+      "slug": "white-light-splits-into-colors",
+      "title": "White light splits into colors",
+      "kind": "fact",
+      "tier": 4,
+      "branch": "02-physics",
+      "summary": "White light can split into the colors of the rainbow: red, orange, yellow, green, blue, and violet, the way a prism or raindrop shows.",
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+    },
+    {
+      "slug": "each-color-is-a-wavelength",
+      "title": "Each color is a wavelength",
+      "kind": "concept",
+      "tier": 4,
+      "branch": "02-physics",
+      "summary": "Each color of light has its own wavelength. Red light has a longer wavelength; blue and violet light have shorter wavelengths.",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Electromagnetic spectrum", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Electromagnetic_spectrum", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "light-can-scatter-off-small-things",
+      "title": "Light can scatter off small things",
+      "kind": "fact",
+      "tier": 4,
+      "branch": "02-physics",
+      "summary": "When light meets something much smaller than itself, some of the light bounces off in new directions instead of continuing straight. This is called scattering.",
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+    },
+    {
+      "slug": "waves-have-wavelength-and-frequency",
+      "title": "Waves have wavelength and frequency",
+      "kind": "concept",
+      "tier": 5,
+      "branch": "02-physics",
+      "summary": "A wave repeats itself in space. The distance between two repeats is its wavelength; a shorter wavelength means more repeats fit into the same distance.",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Electromagnetic spectrum", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Electromagnetic_spectrum", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "visible-light-is-part-of-em-spectrum",
+      "title": "Visible light is part of the electromagnetic spectrum",
+      "kind": "concept",
+      "tier": 5,
+      "branch": "02-physics",
+      "summary": "Visible light is a narrow band, about 380 to 750 nanometers, inside the much larger electromagnetic spectrum that also includes radio waves, infrared, ultraviolet, and X-rays.",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Electromagnetic spectrum", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Electromagnetic_spectrum", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "blue-violet-have-shortest-visible-wavelengths",
+      "title": "Blue and violet have the shortest visible wavelengths",
+      "kind": "fact",
+      "tier": 5,
+      "branch": "02-physics",
+      "summary": "Among visible colors, violet and blue sit at the short-wavelength end (about 380-500 nm) and red sits at the long-wavelength end (about 625-750 nm).",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Electromagnetic spectrum", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Electromagnetic_spectrum", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "light-as-a-wave",
+      "title": "Light travels as a wave",
+      "kind": "concept",
+      "tier": 7,
+      "branch": "02-physics",
+      "summary": "Light travels as an electromagnetic wave, and how it interacts with matter depends on the relation between its wavelength and the size of what it meets.",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Electromagnetic spectrum", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Electromagnetic_spectrum", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "air-molecules-are-much-smaller-than-light-wavelengths",
+      "title": "Air molecules are much smaller than light's wavelength",
+      "kind": "fact",
+      "tier": 7,
+      "branch": "02-physics",
+      "summary": "Nitrogen and oxygen molecules, roughly a few tenths of a nanometer across, are thousands of times smaller than visible-light wavelengths (about 400-700 nm).",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Rayleigh scattering", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/w/index.php?title=Rayleigh_scattering&oldid=1372319937", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "tyndall-scattering-by-small-particles",
+      "title": "Tyndall's experiments on scattering by small particles",
+      "kind": "primary_source",
+      "tier": 8,
+      "branch": "02-physics",
+      "summary": "John Tyndall showed experimentally that light scattered by small particles suspended in a clear medium comes out bluish and polarized, tying a scattered blue color to scattering by particles far smaller than the light's wavelength.",
+      "provenance": { "type": "primary_source", "author": "John Tyndall", "year": 1869, "title": "On the blue colour of the sky, the polarization of skylight, and on the polarization of light by cloudy matter generally", "publisher": "Proceedings of the Royal Society of London", "volume": "17", "pages": "223-233", "doi": "10.1098/rspl.1868.0033" }
+    },
+    {
+      "slug": "scattering-strength-depends-on-particle-size-vs-wavelength",
+      "title": "Scattering strength depends on particle size versus wavelength",
+      "kind": "concept",
+      "tier": 8,
+      "branch": "02-physics",
+      "summary": "How strongly a particle scatters light, and how that scattering depends on wavelength, changes with the particle's size relative to the wavelength. Particles much smaller than the wavelength, like air molecules, scatter short wavelengths far more strongly than long ones.",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Rayleigh scattering", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/w/index.php?title=Rayleigh_scattering&oldid=1372319937", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "rayleigh-1871-sky-color-papers",
+      "title": "Rayleigh's 1871 papers on the light from the sky",
+      "kind": "primary_source",
+      "tier": 9,
+      "branch": "02-physics",
+      "summary": "Lord Rayleigh's 1871 papers derived the polarization and color of skylight from scattering by particles much smaller than the light's wavelength, putting Tyndall's observation on a mathematical footing.",
+      "provenance": { "type": "primary_source", "author": "J. W. Strutt (Lord Rayleigh)", "year": 1871, "title": "On the light from the sky, its polarization and colour", "publisher": "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, Series 4", "volume": "41", "issue": "271, 273", "pages": "107-120, 274-279", "doi": "10.1080/14786447108640452" }
+    },
+    {
+      "slug": "rayleigh-scattering-law",
+      "title": "Rayleigh scattering law",
+      "kind": "law",
+      "tier": 9,
+      "branch": "02-physics",
+      "summary": "For particles much smaller than the wavelength of light, the intensity of scattered light depends on the particle's size and refractive index and, steeply, on the wavelength of the light.",
+      "provenance": { "type": "primary_source", "author": "J. W. Strutt (Lord Rayleigh)", "year": 1871, "title": "On the scattering of light by small particles", "publisher": "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, Series 4", "volume": "41", "issue": "275", "pages": "447-454", "doi": "10.1080/14786447108640507" }
+    },
+    {
+      "slug": "lambda-minus-4-law",
+      "title": "The lambda^-4 law",
+      "kind": "derivation",
+      "tier": 9,
+      "branch": "02-physics",
+      "summary": "Rayleigh-scattering intensity is proportional to 1/wavelength^4 (I_scattered is proportional to lambda^-4), holding the particle's size, distance, and refractive index fixed. This is the steep wavelength dependence Rayleigh derived in the scattering paper.",
+      "provenance": { "type": "primary_source", "author": "J. W. Strutt (Lord Rayleigh)", "year": 1871, "title": "On the scattering of light by small particles", "publisher": "The London, Edinburgh, and Dublin Philosophical Magazine and Journal of Science, Series 4", "volume": "41", "issue": "275", "pages": "447-454", "doi": "10.1080/14786447108640507" }
+    },
+    {
+      "slug": "blue-scatters-more-than-red",
+      "title": "Blue scatters far more than red",
+      "kind": "derivation",
+      "tier": 10,
+      "branch": "02-physics",
+      "summary": "Comparing violet/blue light (about 400 nm) to red light (about 700 nm) through the lambda^-4 law: (700/400)^4 is about 9.4, so short wavelengths scatter close to an order of magnitude more than long ones.",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Rayleigh scattering", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/w/index.php?title=Rayleigh_scattering&oldid=1372319937", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "sky-is-blue-not-violet",
+      "title": "Why the sky reads as blue and not violet",
+      "kind": "fact",
+      "tier": 10,
+      "branch": "02-physics",
+      "summary": "Sunlight scatters violet even more than blue, but the sky reads as blue because the Sun emits less violet than blue, the upper atmosphere absorbs some violet, and human eyes are more sensitive to blue than violet.",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Diffuse sky radiation", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Diffuse_sky_radiation", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "why-the-sky-is-blue",
+      "title": "Why the sky is blue",
+      "kind": "concept",
+      "tier": 10,
+      "branch": "02-physics",
+      "summary": "Rayleigh scattering by air molecules, molecules much smaller than light's wavelength, scatters short (blue/violet) wavelengths far more than long (red) ones. Scattered blue light reaches our eyes from every direction in the sky, which is why the sky looks blue.",
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Diffuse sky radiation", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Diffuse_sky_radiation", "license": "CC-BY-SA-4.0" }
+    },
+    {
+      "slug": "canon-waves",
+      "title": "Waves and the wave equation (canon bridge)",
+      "kind": "concept",
+      "tier": 90,
+      "branch": "02-physics",
+      "summary": "Bridge node mirroring the Bucket Academy 02-physics canon atom `waves` (Waves and the wave equation). Routing-only: the full lesson lives in learning/app/corpus/02-physics.json.",
+      "provenance": { "type": "mirror", "source": "learning/app/corpus/02-physics.json", "academy_atom_id": "waves", "note": "Canon-join bridge node per RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3 (generalizes/example_of let atom and canon coexist as one graph)." }
+    },
+    {
+      "slug": "canon-em-waves",
+      "title": "Electromagnetic waves (canon bridge)",
+      "kind": "concept",
+      "tier": 90,
+      "branch": "02-physics",
+      "summary": "Bridge node mirroring the Bucket Academy 02-physics canon atom `em-waves` (Electromagnetic waves). Routing-only: the full lesson lives in learning/app/corpus/02-physics.json.",
+      "provenance": { "type": "mirror", "source": "learning/app/corpus/02-physics.json", "academy_atom_id": "em-waves", "note": "Canon-join bridge node per RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3." }
+    },
+    {
+      "slug": "canon-wave-optics",
+      "title": "Wave optics, interference and diffraction (canon bridge)",
+      "kind": "concept",
+      "tier": 90,
+      "branch": "02-physics",
+      "summary": "Bridge node mirroring the Bucket Academy 02-physics canon atom `wave-optics` (Wave optics, interference and diffraction). Routing-only: the full lesson lives in learning/app/corpus/02-physics.json.",
+      "provenance": { "type": "mirror", "source": "learning/app/corpus/02-physics.json", "academy_atom_id": "wave-optics", "note": "Canon-join bridge node per RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3." }
+    }
+  ],
+  "edges": [
+    { "from": "light-travels-in-straight-lines", "to": "light-can-scatter-off-small-things", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "sunlight-looks-white", "to": "white-light-splits-into-colors", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "white-light-splits-into-colors", "to": "each-color-is-a-wavelength", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "air-is-made-of-tiny-particles", "to": "light-can-scatter-off-small-things", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "each-color-is-a-wavelength", "to": "waves-have-wavelength-and-frequency", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "waves-have-wavelength-and-frequency", "to": "visible-light-is-part-of-em-spectrum", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "visible-light-is-part-of-em-spectrum", "to": "blue-violet-have-shortest-visible-wavelengths", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "blue-violet-have-shortest-visible-wavelengths", "to": "light-as-a-wave", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "light-can-scatter-off-small-things", "to": "light-as-a-wave", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "light-as-a-wave", "to": "air-molecules-are-much-smaller-than-light-wavelengths", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "air-is-made-of-tiny-particles", "to": "air-molecules-are-much-smaller-than-light-wavelengths", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "air-molecules-are-much-smaller-than-light-wavelengths", "to": "tyndall-scattering-by-small-particles", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "tyndall-scattering-by-small-particles", "to": "scattering-strength-depends-on-particle-size-vs-wavelength", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "scattering-strength-depends-on-particle-size-vs-wavelength", "to": "rayleigh-1871-sky-color-papers", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "rayleigh-1871-sky-color-papers", "to": "rayleigh-scattering-law", "kind": "derives_from", "weight": 1.0 },
+    { "from": "rayleigh-1871-sky-color-papers", "to": "rayleigh-scattering-law", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "rayleigh-scattering-law", "to": "lambda-minus-4-law", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "lambda-minus-4-law", "to": "blue-scatters-more-than-red", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "blue-violet-have-shortest-visible-wavelengths", "to": "blue-scatters-more-than-red", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "blue-scatters-more-than-red", "to": "sky-is-blue-not-violet", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "sky-is-blue-not-violet", "to": "why-the-sky-is-blue", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "blue-scatters-more-than-red", "to": "why-the-sky-is-blue", "kind": "prerequisite", "weight": 1.0 },
+    { "from": "tyndall-scattering-by-small-particles", "to": "why-the-sky-is-blue", "kind": "cites", "weight": null },
+    { "from": "rayleigh-scattering-law", "to": "why-the-sky-is-blue", "kind": "cites", "weight": null },
+    { "from": "waves-have-wavelength-and-frequency", "to": "canon-waves", "kind": "example_of", "weight": null },
+    { "from": "light-as-a-wave", "to": "canon-waves", "kind": "example_of", "weight": null },
+    { "from": "visible-light-is-part-of-em-spectrum", "to": "canon-em-waves", "kind": "generalizes", "weight": null },
+    { "from": "rayleigh-scattering-law", "to": "canon-wave-optics", "kind": "example_of", "weight": null }
+  ]
+}

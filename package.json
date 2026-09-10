@@ -26,6 +26,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-kruse-token.ts",
+    "test:research-os": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-research-os-routing.ts",
+    "seed:research-os": "node scripts/seed-research-os.mjs",
     "mint-kruse-token": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/mint-kruse-token.ts",
     "revoke-kruse-token": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/revoke-kruse-token.ts",
     "mint-and-register": "npx ts-node ./scripts/simpleMintAndRegister.ts",
