@@ -18,14 +18,118 @@ LLM's own character offsets are not trustworthy enough to hand straight to
 """
 from __future__ import annotations
 
+import logging
+import threading
 from dataclasses import dataclass
-from typing import Any, Mapping, Sequence
+from typing import Any, Callable, Mapping, Sequence
 
 from . import llm
 from .concepts import Slot, Vocabulary
 from .evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Stance, Tier
 from .hypothesis import Hypothesis, Placement
 from .timeline import Interval
+
+logger = logging.getLogger("hte.roles")
+
+
+# --------------------------------------------------------------------------
+# Refusal/truncation defaults (`bkt-hte-refusal-handling`, 2026-09-10)
+# --------------------------------------------------------------------------
+#
+# Every role below has a documented, schema-valid default it falls back to
+# when `hte.llm.complete`/`complete_many` raises `ModelRefusal` or
+# `ModelTruncation`: the model declined or was cut off, and one such call,
+# out of the hundreds a real campaign makes, must never abort the whole
+# run (`hte.runner.run_campaign`'s own motivating incident, a `production`
+# campaign that died on exactly one refused critic call among hundreds).
+#
+# `_REFUSAL_LOG` is the process-wide record of every `(role, id)` pair a
+# default was substituted for: `hte.runner.run_campaign` reads it back
+# into `MANIFEST.json["refusals"]` and `run.log`, and `self_report`'s own
+# default reads its running count. It carries only the caller-supplied
+# `log_id` (a hypothesis short id, a judge pair id, a document id), never
+# prompt text or anything from the exception's own envelope.
+
+
+class _RefusalLog:
+    """Thread-safe `{role: [affected ids]}`, appended to by
+    `_with_refusal_default` and by `preservation_critique_many`'s own
+    identity check against `PRESERVATION_CRITIQUE_DEFAULT` (that path
+    substitutes a default inside `hte.llm.complete_many`'s own `pmap`
+    call, one level below where `_with_refusal_default` could catch it,
+    so it records here directly instead)."""
+
+    def __init__(self) -> None:
+        self._lock = threading.Lock()
+        self._by_role: dict[str, list[str]] = {}
+
+    def record(self, role: str, log_id: str) -> None:
+        with self._lock:
+            self._by_role.setdefault(role, []).append(log_id or "(unlabeled)")
+
+    def snapshot(self) -> dict[str, list[str]]:
+        with self._lock:
+            return {role: list(ids) for role, ids in self._by_role.items()}
+
+    def reset(self) -> None:
+        with self._lock:
+            self._by_role.clear()
+
+
+_REFUSAL_LOG = _RefusalLog()
+
+
+def refusal_log() -> dict[str, list[str]]:
+    """`{role: [affected ids]}` for every default substituted so far in
+    this process. Safe to write verbatim into `MANIFEST.json` or
+    `run.log`: every id is whatever `log_id` the call site passed, never
+    prompt text or an exception's own envelope."""
+    return _REFUSAL_LOG.snapshot()
+
+
+def reset_refusal_log() -> None:
+    """Clear `refusal_log()`'s own record. `hte.runner.run_campaign`
+    calls this alongside `hte.llm.reset_stats()` at the start of a run,
+    so each run's own manifest reports only that run's own refusals."""
+    _REFUSAL_LOG.reset()
+
+
+def _refusal_count() -> int:
+    """Total refusal-plus-truncation events `hte.llm.stats()` has
+    recorded so far this process, across every role: the one number
+    `meta_review`'s and `self_report`'s own defaults name, so a minimal
+    fallback response still tells a downstream reader something without
+    re-deriving it from `MANIFEST.json` itself."""
+    return sum(row.get("refusals", 0) + row.get("truncations", 0) for row in llm.stats().values())
+
+
+def _with_refusal_default(
+    fn: Callable[[], dict[str, Any]], *, role: str, default: Any, log_id: str = "",
+) -> dict[str, Any]:
+    """Call `fn()` (a zero-argument thunk wrapping one `hte.llm.complete`
+    call), returning `default` in place of raising when the model
+    refused or was truncated (`hte.llm.ModelRefusal`/`ModelTruncation`).
+    `default` may be a plain dict (most roles) or a zero-argument
+    callable (`meta_review`/`self_report`, whose own default needs
+    `_refusal_count()`'s current value, read only once the refusal has
+    happened rather than pre-computed before `fn()` even ran).
+    Logs one warning naming `role` and, when given, `log_id` (a
+    hypothesis short id, a judge pair id, a document id): never the
+    prompt text, matching `hte.llm.ModelRefusal`/`ModelTruncation`'s own
+    rule that nothing here carries prompt content or an unsanitized
+    envelope. Every other exception (`hte.llm.LLMInvalidResponseError`,
+    `hte.parallel.RateLimit`, ...) passes through unchanged; only a
+    refusal or truncation gets absorbed."""
+    try:
+        return fn()
+    except (llm.ModelRefusal, llm.ModelTruncation) as exc:
+        kind = "refusal" if isinstance(exc, llm.ModelRefusal) else f"truncation ({exc.reason})"
+        logger.warning(
+            "hte.roles: role=%r%s defaulted after a model %s (prompt_sha256=%s)",
+            role, f" id={log_id!r}" if log_id else "", kind, exc.prompt_sha256,
+        )
+        _REFUSAL_LOG.record(role, log_id)
+        return default() if callable(default) else default
 
 # --------------------------------------------------------------------------
 # generate
@@ -55,6 +159,11 @@ GENERATE_SCHEMA: dict[str, Any] = {
     },
     "required": ["proposals"],
 }
+
+# `generator` refused/truncated default (`bkt-hte-refusal-handling`):
+# an empty proposal list, so this generation round contributes nothing
+# rather than aborting the campaign; the next round or seed still runs.
+GENERATE_DEFAULT: dict[str, Any] = {"proposals": []}
 
 
 def _vocab_slot_options(vocab: Vocabulary, slot: Slot) -> list[dict[str, str]]:
@@ -100,7 +209,10 @@ def generate(context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = 
         "brackets above that it draws on (may be empty), and a one-line "
         "rationale."
     )
-    return llm.complete(prompt, role="generator", schema=GENERATE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only)
+    return _with_refusal_default(
+        lambda: llm.complete(prompt, role="generator", schema=GENERATE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="generator", default=GENERATE_DEFAULT,
+    )
 
 
 # --------------------------------------------------------------------------
@@ -115,6 +227,15 @@ CRITIQUE_SCHEMA: dict[str, Any] = {
         "rationale": {"type": "string"},
     },
     "required": ["keep", "issues", "rationale"],
+}
+
+# `critic` refused/truncated default (`bkt-hte-refusal-handling`): reject
+# the hypothesis rather than keep it, since `keep=True` on no real
+# critique would silently launder an unexamined hypothesis through to
+# scoring; `keep=False` is the conservative reading, matching a
+# hypothesis a real critique found a contradiction in.
+CRITIQUE_DEFAULT: dict[str, Any] = {
+    "keep": False, "issues": ["model refused or was truncated"], "rationale": "model refused or was truncated",
 }
 
 
@@ -148,15 +269,18 @@ def critique(h: Hypothesis, evidence: Sequence[EvidenceItem], *, cache_dir: str,
         "alone is never grounds to reject it.\n\n"
         f"Hypothesis: {_describe_hypothesis(h)}\n"
         f"Claims: {h.claims}\n\n"
-        f"Supporting evidence:\n" + "\n".join(_evidence_line(e) for e in support) + "\n\n"
-        f"Refuting evidence:\n" + "\n".join(_evidence_line(e) for e in refute) + "\n\n"
+        "Supporting evidence:\n" + "\n".join(_evidence_line(e) for e in support) + "\n\n"
+        "Refuting evidence:\n" + "\n".join(_evidence_line(e) for e in refute) + "\n\n"
         "Return keep=false only if the evidence itself contradicts the "
         "hypothesis (for example the actor is not attested inside the "
         "stated time bin, or the place sits outside every tradition the "
         "actor belongs to). List every such issue found; an empty evidence "
         "set is not itself a contradiction."
     )
-    return llm.complete(prompt, role="critic", schema=CRITIQUE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only)
+    return _with_refusal_default(
+        lambda: llm.complete(prompt, role="critic", schema=CRITIQUE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="critic", default=CRITIQUE_DEFAULT, log_id=h.short_id,
+    )
 
 
 # --------------------------------------------------------------------------
@@ -182,6 +306,10 @@ UNKNOWN_UNKNOWN_SCHEMA: dict[str, Any] = {
     "required": ["proposals"],
 }
 
+# `unknown_unknown` refused/truncated default: an empty proposal list,
+# same reasoning as `GENERATE_DEFAULT` above.
+UNKNOWN_UNKNOWN_DEFAULT: dict[str, Any] = {"proposals": []}
+
 
 def unknown_unknown(vocab: Vocabulary, evidence: Sequence[EvidenceItem], *, cache_dir: str, replay_only: bool = False) -> dict[str, Any]:
     """The unknown-unknown generator (`IDEAL-STATE-AND-UNKNOWNS-SPEC.md`
@@ -205,7 +333,10 @@ def unknown_unknown(vocab: Vocabulary, evidence: Sequence[EvidenceItem], *, cach
         f"Current vocabulary:\n{existing}\n\n"
         "Return an empty proposals list if the evidence names nothing new."
     )
-    return llm.complete(prompt, role="unknown_unknown", schema=UNKNOWN_UNKNOWN_SCHEMA, cache_dir=cache_dir, replay_only=replay_only)
+    return _with_refusal_default(
+        lambda: llm.complete(prompt, role="unknown_unknown", schema=UNKNOWN_UNKNOWN_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="unknown_unknown", default=UNKNOWN_UNKNOWN_DEFAULT,
+    )
 
 
 # --------------------------------------------------------------------------
@@ -221,6 +352,17 @@ PRESERVATION_CRITIQUE_SCHEMA: dict[str, Any] = {
         "rationale": {"type": "string"},
     },
     "required": ["expected_evidence", "could_have_survived", "detectability_adjustment", "rationale"],
+}
+
+# `preservation_critic` refused/truncated default: a neutral
+# `detectability_adjustment` (the midpoint of `[0, 1]`) and
+# `could_have_survived=True`, the permissive reading that does not, on
+# its own, penalize a hypothesis a real critique never assessed.
+PRESERVATION_CRITIQUE_DEFAULT: dict[str, Any] = {
+    "expected_evidence": [],
+    "could_have_survived": True,
+    "detectability_adjustment": 0.5,
+    "rationale": "model refused or was truncated; defaulted to a neutral detectability adjustment",
 }
 
 
@@ -263,9 +405,12 @@ def preservation_critique(
     accepting it as-is.
     """
     prompt = _preservation_critique_prompt(h, table, period)
-    return llm.complete(
-        prompt, role="preservation_critic", schema=PRESERVATION_CRITIQUE_SCHEMA,
-        cache_dir=cache_dir, replay_only=replay_only,
+    return _with_refusal_default(
+        lambda: llm.complete(
+            prompt, role="preservation_critic", schema=PRESERVATION_CRITIQUE_SCHEMA,
+            cache_dir=cache_dir, replay_only=replay_only,
+        ),
+        role="preservation_critic", default=PRESERVATION_CRITIQUE_DEFAULT, log_id=h.short_id,
     )
 
 
@@ -289,12 +434,30 @@ def preservation_critique_many(
     prompt against the same table; parallelizing the per-item calls
     still turns `N` sequential 20-40s subprocess calls into `N / workers`
     wall-clock time).
+
+    A refused or truncated call for one hypothesis resolves to
+    `PRESERVATION_CRITIQUE_DEFAULT` in its place (`hte.llm.complete_many`'s
+    own `default=` wiring) rather than aborting every other hypothesis in
+    `hypotheses` alongside it; each such substitution is logged and
+    recorded into `refusal_log()` under `"preservation_critic"`, by
+    identity against `PRESERVATION_CRITIQUE_DEFAULT` since the default is
+    substituted one level below `_with_refusal_default` (inside `hte.
+    llm.complete_many`'s own `pmap` call), where the triggering exception
+    itself is no longer in scope to catch directly.
     """
     prompts = [_preservation_critique_prompt(h, table, period) for h in hypotheses]
     responses = llm.complete_many(
         prompts, role="preservation_critic", schema=PRESERVATION_CRITIQUE_SCHEMA,
         cache_dir=cache_dir, replay_only=replay_only, workers=workers,
+        default=PRESERVATION_CRITIQUE_DEFAULT,
     )
+    for h, response in zip(hypotheses, responses):
+        if response is PRESERVATION_CRITIQUE_DEFAULT:
+            logger.warning(
+                "hte.roles: role='preservation_critic' id=%r defaulted after a model refusal or truncation",
+                h.short_id,
+            )
+            _REFUSAL_LOG.record("preservation_critic", h.short_id)
     return list(responses)
 
 
@@ -309,6 +472,13 @@ JUDGE_SCHEMA: dict[str, Any] = {
         "rationale": {"type": "string"},
     },
     "required": ["p_a_wins", "rationale"],
+}
+
+# `judge` refused/truncated default: `p_a_wins=0.5`, a coin flip, the
+# only reading that carries no directional opinion either hypothesis
+# could exploit.
+JUDGE_DEFAULT: dict[str, Any] = {
+    "p_a_wins": 0.5, "rationale": "model refused or was truncated; defaulted to a coin-flip p_a_wins",
 }
 
 
@@ -332,7 +502,10 @@ def judge(a: Hypothesis, b: Hypothesis, context: Mapping[str, Any], *, cache_dir
         "blind: apply the identical standard regardless of which reading, "
         "orthodox or fringe, either hypothesis favors."
     )
-    response = llm.complete(prompt, role="judge", schema=JUDGE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only)
+    response = _with_refusal_default(
+        lambda: llm.complete(prompt, role="judge", schema=JUDGE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="judge", default=JUDGE_DEFAULT, log_id=f"{a.short_id}-v-{b.short_id}",
+    )
     return max(0.0, min(1.0, float(response["p_a_wins"])))
 
 
@@ -349,6 +522,21 @@ META_REVIEW_SCHEMA: dict[str, Any] = {
     },
     "required": ["summary", "flags", "recommended_actions"],
 }
+
+
+def _meta_review_default() -> dict[str, Any]:
+    """`meta_review` refused/truncated default: a minimal valid response
+    that names the current refusal/truncation count (`_refusal_count()`)
+    rather than fabricating a review of a frontier the model never saw."""
+    n = _refusal_count()
+    return {
+        "summary": (
+            f"meta-review unavailable: the model refused or was truncated "
+            f"({n} refusal/truncation event(s) recorded this run so far)."
+        ),
+        "flags": ["model-refusal"],
+        "recommended_actions": ["rerun meta_review once the refusal or truncation clears"],
+    }
 
 
 def meta_review(
@@ -377,7 +565,10 @@ def meta_review(
         "actions for the evolver (recombine, split, generalize, or widen "
         "the next generation round)."
     )
-    return llm.complete(prompt, role="meta_review", schema=META_REVIEW_SCHEMA, cache_dir=cache_dir, replay_only=replay_only)
+    return _with_refusal_default(
+        lambda: llm.complete(prompt, role="meta_review", schema=META_REVIEW_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="meta_review", default=_meta_review_default,
+    )
 
 
 # --------------------------------------------------------------------------
@@ -399,6 +590,28 @@ SELF_REPORT_SCHEMA: dict[str, Any] = {
         "calibration_summary", "target_blind_steady", "target_blind_note",
     ],
 }
+
+
+def _self_report_default() -> dict[str, Any]:
+    """`self_report` refused/truncated default: a minimal valid response
+    naming the current refusal/truncation count, rather than fabricating
+    a self-assessment the model never produced. `hte.runner.run_campaign`
+    appends its own summary line to `assumptions` on top of whatever this
+    default (or a real response) already carries, so the run's own
+    refusal tally is never only visible here."""
+    n = _refusal_count()
+    note = (
+        f"self-report unavailable: the model refused or was truncated "
+        f"({n} refusal/truncation event(s) recorded this run so far, see MANIFEST.json['refusals'])."
+    )
+    return {
+        "assumptions": [note],
+        "incomplete_vocabularies": [],
+        "missing_mass_estimate": 0.0,
+        "calibration_summary": note,
+        "target_blind_steady": False,
+        "target_blind_note": note,
+    }
 
 
 def self_report(run: Mapping[str, Any], *, cache_dir: str, replay_only: bool = False) -> dict[str, Any]:
@@ -426,7 +639,10 @@ def self_report(run: Mapping[str, Any], *, cache_dir: str, replay_only: bool = F
         "target-blindness instead of vocabulary drift.\n\n"
         f"Run data: {dict(run)}"
     )
-    return llm.complete(prompt, role="self_report", schema=SELF_REPORT_SCHEMA, cache_dir=cache_dir, replay_only=replay_only)
+    return _with_refusal_default(
+        lambda: llm.complete(prompt, role="self_report", schema=SELF_REPORT_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="self_report", default=_self_report_default,
+    )
 
 
 # --------------------------------------------------------------------------
@@ -467,6 +683,14 @@ EXTRACT_SCHEMA: dict[str, Any] = {
     },
     "required": ["items"],
 }
+
+# `extractor` (and its `escalation` adjudicator) refused/truncated
+# default: an empty extraction, since there is no safe non-empty
+# fallback for "what did this document say" the way a keep/reject or a
+# 0.5 midpoint exists for the other roles; the ensemble's own agreement
+# scoring already treats a pass contributing nothing as ordinary
+# low-agreement input rather than a special case.
+EXTRACT_EMPTY_DEFAULT: dict[str, Any] = {"items": []}
 
 EXTRACT_ENSEMBLE_SIZE = 3
 EXTRACT_AGREEMENT_THRESHOLD = 0.5
@@ -561,7 +785,10 @@ def extract(
     passes: list[list[dict[str, Any]]] = []
     for i in range(EXTRACT_ENSEMBLE_SIZE):
         prompt = _extract_prompt(document_text, vocab, i)
-        response = llm.complete(prompt, role="extractor", schema=EXTRACT_SCHEMA, cache_dir=cache_dir, replay_only=replay_only)
+        response = _with_refusal_default(
+            lambda p=prompt: llm.complete(p, role="extractor", schema=EXTRACT_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+            role="extractor", default=EXTRACT_EMPTY_DEFAULT, log_id=f"{doc_id}-pass{i}",
+        )
         passes.append(response.get("items", []))
 
     by_quote: dict[str, list[dict[str, Any]]] = {}
@@ -592,9 +819,12 @@ def extract(
             f"Pass summaries:\n{summary}\n\n"
             f"Document:\n{document_text}"
         )
-        response = llm.complete(
-            prompt, role="escalation", schema=EXTRACT_SCHEMA,
-            model=llm.escalation_model(), cache_dir=cache_dir, replay_only=replay_only,
+        response = _with_refusal_default(
+            lambda: llm.complete(
+                prompt, role="escalation", schema=EXTRACT_SCHEMA,
+                model=llm.escalation_model(), cache_dir=cache_dir, replay_only=replay_only,
+            ),
+            role="escalation", default=EXTRACT_EMPTY_DEFAULT, log_id=doc_id,
         )
         raw_items = response.get("items", [])
     else:
@@ -639,4 +869,7 @@ __all__ = [
     "generate", "critique", "unknown_unknown", "preservation_critique",
     "preservation_critique_many", "judge", "meta_review", "self_report",
     "extract", "ExtractionResult", "EXTRACT_ENSEMBLE_SIZE", "EXTRACT_AGREEMENT_THRESHOLD",
+    "GENERATE_DEFAULT", "CRITIQUE_DEFAULT", "UNKNOWN_UNKNOWN_DEFAULT",
+    "PRESERVATION_CRITIQUE_DEFAULT", "JUDGE_DEFAULT", "EXTRACT_EMPTY_DEFAULT",
+    "refusal_log", "reset_refusal_log",
 ]

@@ -42,6 +42,8 @@ url: "https://doi.org/10.1038/s41586-021-03819-2"
 openalex_id: "https://openalex.org/W3177828909"
 branch: "scientific-discovery-metascience"
 tier: "canon"
+status: "open-question"
+taxonomy_question: "bucket-canon/05-biophysics/README.md + bucket-canon/TAXONOMY_NOTES.md, primary method card vs research-landscape entry; raised 2026-09-10, not resolved, not promoted"
 why_it_matters: >
   The reference case for AI achieving expert-level performance on an unsolved scientific
   problem, protein structure prediction, the standing benchmark against which any claim of

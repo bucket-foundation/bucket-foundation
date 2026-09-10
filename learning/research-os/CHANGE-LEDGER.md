@@ -221,7 +221,186 @@ None (the superseded envelope-conversion code is preserved verbatim in
 
 ## Iteration 5
 
-Date 2026-09-10. Branch `feat/ros-canon-ingest`, worktree `wt-ingest`. A
+Date 2026-09-10. Branch `feat/hte-k12-research-os`, PR #10 review pass.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/api.py`: moved the `_build_response()` call inside
+  `hypothesize()`'s `try`/`except` so a response-assembly bug reaches the documented
+  `CampaignError` contract instead of escaping as a bare exception; widened
+  `_sanitize()`'s path-redaction regex to `/srv`, `/opt`, `/root`, `/app`, `/mnt`, `/data`,
+  `/etc`; added `manifest["models"]` to the response so a caller gets which model backed
+  a run alongside `run_id`.
+- `tools/hypothesis-engine/hte/serve.py`: unexpected-500 branch logs the exception and a
+  traceback to stderr.
+- `tools/hypothesis-engine/hte/mcp_tool.py`: added `models` to the `hypothesize` tool's
+  `outputSchema`.
+- `tools/hypothesis-engine/docs/research-os-hypothesize-route.patch`: threaded `models`
+  through the not-yet-applied TS route's types and response mapping; corrected the two
+  unified-diff hunk headers' line counts to match.
+- `tools/hypothesis-engine/tests/test_api.py`: added
+  `test_response_carries_which_model_backed_each_role_alongside_run_id`.
+
+Full detail in `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10: PR #10 review pass"
+entry, including the leak scan, the graph-table overlap verification, and a note on an
+unrelated concurrent process sharing this review's worktree.
+
+### Removed
+
+None.
+
+## Iteration 6
+
+Date 2026-09-10. Branch `intake/ros-literature-2`. Literature batch two: 31 new papers plus one
+already-committed paper (Bastani and colleagues 2025) folded into the index, for a corpus total
+of 77.
+
+### Added
+
+- 31 new files under `_intake/research-os-k12-literature/`, one per paper, DOI-checked against
+  OpenAlex or Crossref at intake time: 12 in `hci-human-ai-collaboration/` (6 on LLM assistance
+  and learning outcomes, 6 on cognitive offloading and metacognition), 4 in `educational-methods/`
+  on motivation and payment, 5 in a new `prerequisite-knowledge-graphs/` branch on automatic
+  prerequisite-edge inference and learning-path routing, 7 in `scientific-discovery-metascience/`
+  on AI systems that generate or evaluate research hypotheses, and 3 in `ai-and-researchers/` on
+  scientific understanding as a goal distinct from predictive accuracy.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/`: new branch folder, five
+  files (Pan and colleagues 2017, Liang and colleagues 2018, Roy and colleagues 2019, Gasparetti
+  and colleagues 2017, Gligorea and colleagues 2023).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index table extended from 45 to 77 rows across
+  five areas (the fifth, prerequisite and knowledge-graph learning, new this pass); intro
+  paragraph and final per-area count line updated to match.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: each of the twelve open
+  questions gained an "Evidence added in batch two" paragraph naming the new papers relevant to
+  it and whether they support, complicate, or partially contradict the design bet the question
+  poses. No existing sentence in the twelve-question list was removed or reworded.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass appended, logged below in
+  this same iteration for cross-reference.
+
+### Verified Clean
+
+- Every new paper's DOI and OpenAlex work id were checked live via WebFetch against
+  `api.openalex.org` or `api.crossref.org` at intake time; none are placeholders.
+- No file reproduces a blockquote or extended verbatim passage from its source paper; every
+  file's `key_claims` and body are paraphrase, matching this corpus's existing convention.
+- A paper searched for but not found with a resolvable DOI (Talukdar and Cohen 2012's Wikipedia
+  prerequisite-structure paper; a distinct World Bank Nigeria follow-up beyond the de Simone 2025
+  paper already in the corpus; a Si, Yang, and Hashimoto 2025 ideation-execution-gap follow-up)
+  was omitted rather than included without a checkable citation.
+
+### Removed
+
+None.
+
+## Iteration 8
+
+Date 2026-09-10. Branch `docs/ros-plan-revision-1`, worktree `.wt-plan-revision-1`.
+Reviewed shipped work (PRs #3, #5, #6, #7, #8, #10, #12, #14, #15) against
+PLAN.md, plus PR #11 (draft, site repositioning) against the open founder
+decisions this iteration names. PR #15 (literature batch two, Iteration 6
+above) merged to main partway through this review; this entry cites it as
+shipped rather than open. PR #9 (canon promotion, Iteration 7 below) was
+still open when this iteration was drafted.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-1.md`: PR-by-PR account of what shipped;
+  four evidence-driven design revisions (payout, frontier routing, the
+  three-arm testbed's diversity outcome, Check-tool phrasing robustness),
+  each citing its paper file in `_intake/research-os-k12-literature/` and
+  labeled STABLE, STRONG LEAN, or OPEN; a dependency-ordered Phase 1 scope
+  naming five blocking founder decisions with their exact questions; a table
+  mapping the overlap map's twelve open questions onto Phase 1 pilot versus
+  Phase 2 district-scale answerability; and a one-page ETH AI Center
+  fellowship fit (research-question paragraph, two-PI pairing rationale).
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "Revision 1" section pointing to
+  `PLAN-REVISION-1.md`. No existing section was rewritten, reordered, or
+  removed.
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+- `tools/hypothesis-engine/tests/swarm-20260910/test_runner_props.py`,
+  `tools/hypothesis-engine/docs/LOOP-LOG.md`: rewrote one antithesis
+  construction in each, voice-lint fixes only, no logic changed.
+
+### Removed
+
+None.
+
+## Iteration 7
+
+Date 2026-09-10. Branch `intake/ros-canon-promotion` (PR #9). Promotes six
+records from `_intake/research-os-k12-literature/` into `bucket-canon/`,
+opens two taxonomy questions without resolving them, and closes the
+site-registry-registration question `README.md` had left open. Full detail
+in `_intake/research-os-k12/CHANGELOG.md`'s matching entry; this ledger
+carries the summary.
+
+### Added
+
+- Two canon-tier records in `bucket-canon/07-mind/memory-systems/`
+  (Roediger and Karpicke 2006; Sparrow, Liu, and Wegner 2011).
+- `bucket-canon/07-mind/sub-outcomes/education/`, a new outcome-tier
+  dossier: four records (Bloom 1984; Kulik, Kulik, and Bangert-Drowns
+  1990; VanLehn 2011; Kulik and Fletcher 2016), each naming its
+  `07-mind/memory-systems/` foundation.
+- `bucket-canon/TAXONOMY_NOTES.md`, opening two branch-placement questions
+  (metascience/sociology-of-science home; AlphaFold method-card-versus-
+  landscape) and carrying forward the pre-existing psychodynamic-theory
+  question.
+
+### Edited
+
+- Six intake cards marked `status: promoted` with pointers; two marked
+  `status: open-question` with a `TAXONOMY_NOTES.md` pointer; claim text
+  unchanged in all eight.
+- `bucket-canon/05-biophysics/README.md`, `bucket-canon/07-mind/README.md`:
+  short pointer additions/fixes, no scope-note text removed.
+- `_intake/research-os-k12/README.md`: "Site registry registration"
+  section updated from "not yet done" to done, since `feat(site): align
+  public site with Research OS for K-12 (#12)` (merged into this branch
+  2026-09-10) added the `NAV` entry the section had scoped and documented.
+- `_intake/research-os-k12-literature/README.md`: merged against
+  `intake/ros-literature-2`'s concurrent batch-two expansion (45 to 77
+  rows); this pass's tier/status changes carried onto the six affected
+  rows in the merged 77-row table, the "other files unchanged" count
+  updated from 39 to 68 to account for batch two's 32 additions.
+
+### Removed
+
+None.
+
+## Iteration 9
+
+Date 2026-09-10. PR #19 review pass, worktree `.ros-worktrees/r19`. Full account in
+`_intake/research-os-k12/CHANGELOG.md`, "2026-09-10: PR #19 review pass".
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-1.md`: PR #15 and PR #9 status corrected from open to
+  merged in section 1's table, and the batch-two references in sections 4 and 5 updated to match
+  PR #15's landing; two antithesis constructions rewritten.
+- `learning/research-os/PLAN.md`: Revision 1 pointer paragraph's PR #15 status corrected.
+- `_intake/research-os-k12/CHANGELOG.md`: same PR #15 and PR #9 status fixes in the
+  plan-revision-1 entry.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): resolved two merge conflicts against
+  `origin/main` as it advanced during review, first PR #15 (kept as Iteration 6), then PR #9
+  (kept as Iteration 7); this PR's own entry landed as Iteration 8.
+
+### Removed
+
+None.
+
+## Iteration 10
+
+Date 2026-09-10. Branch `feat/ros-canon-ingest`, worktree `wt-ingest`. Numbered
+Iteration 10 rather than 5: origin/main used "Iteration 5" for a concurrent PR
+#10 review pass and ran through Iteration 9 (a PR #19 review pass) by the time
+this branch merged, per `git merge origin/main`'s own conflict here. A
 canon-to-graph ingestion slice: two importers that grow the graph beyond the
 22-node Phase 0 seed with no model in the loop, per `_intake/research-os-k12/
 RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 3 and `02-architecture.md` section

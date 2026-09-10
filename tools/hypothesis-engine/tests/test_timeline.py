@@ -149,9 +149,19 @@ def test_time_bin_index_matches_paper_span():
     assert time_bin_index(last_year, DEFAULT_SPAN_START, DEFAULT_BIN_WIDTH) == 199
 
 
-def test_time_bin_index_rejects_year_before_span():
-    with pytest.raises(ValueError):
-        time_bin_index(DEFAULT_SPAN_START - 1)
+def test_time_bin_index_clamps_year_before_span(caplog):
+    # `bkt-hte-binning-clamp`, 2026-09-10: a year before `span_start`
+    # clamps to bin 0 and logs a warning, instead of raising, since
+    # `hte.address.encode_indices` needs a non-negative TIME_BIN index
+    # and has no other bin to fall back to for a too-early year.
+    with caplog.at_level("WARNING", logger="hte.timeline"):
+        assert time_bin_index(DEFAULT_SPAN_START - 1) == 0
+    assert any("clamped to bin 0" in r.message for r in caplog.records)
+
+
+def test_time_bin_index_does_not_clamp_a_year_at_or_after_span_start():
+    assert time_bin_index(DEFAULT_SPAN_START) == 0
+    assert time_bin_index(DEFAULT_SPAN_START + DEFAULT_BIN_WIDTH) == 1
 
 
 def test_combine_date_observations_weights_tighter_sigma_more():

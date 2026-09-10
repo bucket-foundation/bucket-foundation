@@ -49,6 +49,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import os
 import re
 import subprocess
@@ -60,6 +61,8 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from .parallel import RateLimit, pmap
+
+logger = logging.getLogger("hte.llm")
 
 MODEL_POLICY_PATH = Path(__file__).parent / "data" / "model-policy.json"
 
@@ -101,6 +104,63 @@ class LLMInvocationError(LLMError):
 class LLMInvalidResponseError(LLMError):
     """The response was not JSON, or was missing a required schema key,
     on both the first attempt and the one corrective retry."""
+
+
+class _RefusalLike(LLMError):
+    """Shared field contract for `ModelRefusal`/`ModelTruncation`: `role`,
+    a sha256 of the prompt text that triggered it (never the prompt
+    itself), the CLI's own reported `total_cost_usd` for that one call
+    (`None` when the envelope carried none), and `envelope`, a copy of
+    the CLI's own JSON result with `_sanitize_envelope`'s session/account
+    identifiers already stripped. Every field here is safe to embed in a
+    log line, `MANIFEST.json`, or a role's own default response
+    (`hte.roles`'s own per-role fallback contract); this class's own
+    `__str__` never includes `stderr` or an unsanitized envelope, the
+    two places an account field could otherwise leak through
+    (2026-09-10's own motivating incident: a `production` campaign's
+    critic stage hit this exact `stop_reason`, on `claude -p`'s own
+    nonzero exit, and the prior code folded the whole raw envelope,
+    `session_id` included, into `LLMInvocationError`'s message, which
+    then landed verbatim in the run's own uncaught-traceback log)."""
+
+    def __init__(self, *, role: str, prompt_sha256: str, cost_usd: float | None, envelope: dict[str, Any]) -> None:
+        self.role = role
+        self.prompt_sha256 = prompt_sha256
+        self.cost_usd = cost_usd
+        self.envelope = envelope
+        super().__init__(self._message())
+
+    def _message(self) -> str:
+        raise NotImplementedError
+
+
+class ModelRefusal(_RefusalLike):
+    """`_invoke_cli`'s own envelope carried `stop_reason == "refusal"`:
+    the model declined to answer this one prompt. `hte.roles` absorbs
+    this into every role's own documented default (a critic's `keep`
+    defaults to `False`, a judge's `p_a_wins` to `0.5`, ...) rather than
+    letting it reach `hte.runner.run_campaign` uncaught."""
+
+    def _message(self) -> str:
+        cost = f"${self.cost_usd:.4f}" if self.cost_usd is not None else "unknown"
+        return f"role={self.role!r} prompt_sha256={self.prompt_sha256[:12]}: model refused (cost={cost})"
+
+
+class ModelTruncation(_RefusalLike):
+    """`_invoke_cli`'s own envelope either carried `stop_reason ==
+    "max_tokens"`, or an empty completion (no `structured_output`, no
+    usable `result` text) with no refusal marker at all: the model ran
+    out of budget, or produced nothing, rather than declining outright.
+    `reason` names which: `"max_tokens"` or `"empty_result"`. Same
+    absorb-into-a-default contract as `ModelRefusal`."""
+
+    def __init__(self, *, role: str, prompt_sha256: str, cost_usd: float | None, envelope: dict[str, Any], reason: str) -> None:
+        self.reason = reason
+        super().__init__(role=role, prompt_sha256=prompt_sha256, cost_usd=cost_usd, envelope=envelope)
+
+    def _message(self) -> str:
+        cost = f"${self.cost_usd:.4f}" if self.cost_usd is not None else "unknown"
+        return f"role={self.role!r} prompt_sha256={self.prompt_sha256[:12]}: model truncated ({self.reason}, cost={cost})"
 
 
 # Every marker `_check_rate_limit` treats as a shared account limit rather
@@ -150,16 +210,26 @@ def _check_rate_limit(*texts: str) -> None:
 
 @dataclass
 class _RoleStats:
-    """One role's own tally inside `stats()`'s snapshot."""
+    """One role's own tally inside `stats()`'s snapshot. `refusals`/
+    `truncations` count every `ModelRefusal`/`ModelTruncation` this
+    process has raised for this role (2026-09-10, `bkt-hte-refusal-
+    handling`): each one still absorbed into a documented default by
+    `hte.roles` rather than aborting the call, but tallied here so
+    `hte.runner.run_campaign`'s own `MANIFEST.json` can report how many times
+    it happened without re-deriving it from `hte.roles.refusal_log()`
+    alone."""
     calls: int = 0
     cache_hits: int = 0
     rate_limit_pauses: int = 0
     wall_time_s: float = 0.0
+    refusals: int = 0
+    truncations: int = 0
 
     def to_dict(self) -> dict[str, float | int]:
         return {
             "calls": self.calls, "cache_hits": self.cache_hits,
             "rate_limit_pauses": self.rate_limit_pauses, "wall_time_s": self.wall_time_s,
+            "refusals": self.refusals, "truncations": self.truncations,
         }
 
 
@@ -188,6 +258,18 @@ class _StatsRegistry:
         with self._lock:
             row = self._by_role.setdefault(role, _RoleStats())
             row.rate_limit_pauses += 1
+
+    def record_refusal(self, role: str, *, wall_time_s: float) -> None:
+        with self._lock:
+            row = self._by_role.setdefault(role, _RoleStats())
+            row.refusals += 1
+            row.wall_time_s += wall_time_s
+
+    def record_truncation(self, role: str, *, wall_time_s: float) -> None:
+        with self._lock:
+            row = self._by_role.setdefault(role, _RoleStats())
+            row.truncations += 1
+            row.wall_time_s += wall_time_s
 
     def snapshot(self) -> dict[str, dict[str, float | int]]:
         with self._lock:
@@ -259,6 +341,30 @@ def _cache_path(cache_dir: str | Path, model: str, prompt: str) -> Path:
     return Path(cache_dir) / f"{_cache_key(model, prompt)}.json"
 
 
+def _prompt_sha256(prompt: str) -> str:
+    """sha256 of `prompt` alone (no `model`, unlike `_cache_key`): the id
+    `ModelRefusal`/`ModelTruncation` and `_write_cache`'s own cache
+    payload both carry, so a refusal's `prompt_sha256` can be checked
+    against a cached response's own `prompt_sha256` field without ever
+    handling the prompt text itself."""
+    return hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+
+
+_SESSION_ID_KEYS = frozenset({"session_id", "uuid"})
+
+
+def _sanitize_envelope(envelope: dict[str, Any]) -> dict[str, Any]:
+    """A shallow copy of `envelope` with every key this module treats as
+    a session or account identifier removed: `session_id` (the CLI's
+    own resumable-session id) and `uuid` (this one result event's own
+    id). `--no-session-persistence` (`_invoke_cli`'s own argv) already
+    keeps the CLI from writing a resumable session to disk; this is the
+    matching in-process rule for the envelope this module reads back,
+    so `ModelRefusal`/`ModelTruncation`, and anything built from them
+    (`MANIFEST.json`, `run.log`), never carry one."""
+    return {k: v for k, v in envelope.items() if k not in _SESSION_ID_KEYS}
+
+
 def _read_cache(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text())["response"]
 
@@ -268,7 +374,7 @@ def _write_cache(path: Path, *, model: str, role: str, prompt: str, response: di
     payload = {
         "model": model,
         "role": role,
-        "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
+        "prompt_sha256": _prompt_sha256(prompt),
         "response": response,
     }
     tmp = path.with_suffix(".json.tmp")
@@ -287,7 +393,37 @@ def _retry_prompt(prompt: str, schema: dict[str, Any], error: str) -> str:
     )
 
 
-def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float) -> dict[str, Any]:
+_TRUNCATION_STOP_REASONS = frozenset({"max_tokens"})
+
+
+def _raise_for_stop_reason(envelope: dict[str, Any], *, role: str, prompt: str) -> None:
+    """Raise `ModelRefusal`/`ModelTruncation` when `envelope`'s own
+    `stop_reason` (or a missing/empty completion with no explicit
+    `stop_reason` at all) names one; return with no side effect for an
+    ordinary envelope. `_invoke_cli` calls this against every envelope it
+    manages to parse, BEFORE its own exit-code/`is_error` checks decide
+    whether to raise the generic `LLMInvocationError`: `claude -p` exits
+    nonzero for a refusal (2026-09-10's own motivating incident), so a
+    refusal classified only after an exit-code check would never be
+    reached. Every field on the exception raised here comes from
+    `_sanitize_envelope`'s own copy plus a sha256 of `prompt`, never the
+    prompt text or the envelope's raw `session_id`/`uuid`."""
+    stop_reason = envelope.get("stop_reason")
+    kwargs = dict(
+        role=role, prompt_sha256=_prompt_sha256(prompt),
+        cost_usd=envelope.get("total_cost_usd"), envelope=_sanitize_envelope(envelope),
+    )
+    if stop_reason == "refusal":
+        raise ModelRefusal(**kwargs)
+    if stop_reason in _TRUNCATION_STOP_REASONS:
+        raise ModelTruncation(reason="max_tokens", **kwargs)
+    if envelope.get("structured_output") is None:
+        result = envelope.get("result")
+        if result is None or (isinstance(result, str) and not result.strip()):
+            raise ModelTruncation(reason="empty_result", **kwargs)
+
+
+def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float, *, role: str) -> dict[str, Any]:
     """One `claude -p` call, returning the parsed outer result envelope.
     `--tools ""` disables every tool so the role can only read the prompt
     text handed to it, matching the source material's target-blind rule
@@ -295,7 +431,23 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float)
     (`main.tex` §8's target-blind corpus construction). `--setting-sources
     ""` and the fixed `SYSTEM_PROMPT` above skip this repository's own
     CLAUDE.md, skills, and hooks, so a role prompt costs only the tokens it
-    contains rather than this project's whole ambient context."""
+    contains rather than this project's whole ambient context.
+
+    The envelope is parsed from `proc.stdout` even when `proc.returncode
+    != 0` (`bkt-hte-refusal-handling`, 2026-09-10): `claude -p` exits 1
+    for a refusal, `stop_reason` and all, on stdout as ordinary JSON, so
+    parsing was gated on a zero exit code before this fix, and the
+    refusal fell through to the generic `LLMInvocationError` below,
+    which folded the *entire* raw envelope (`session_id`, cost, and
+    usage fields included) into its own message via
+    `proc.stdout.strip()`, the exact incident that motivated this
+    rewrite. Neither `LLMInvocationError` branch below ever includes an
+    unsanitized envelope or `proc.stderr` in its own message for that
+    reason; a plain invocation failure (a non-JSON stdout, the CLI
+    missing from `PATH`, ...) still names a bounded snippet of whatever
+    plain-text error the CLI itself printed, since that text carries no
+    structured session/account fields to begin with.
+    """
     argv = [
         "claude", "-p", prompt,
         "--model", model,
@@ -314,17 +466,36 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float)
     except subprocess.TimeoutExpired as exc:
         raise LLMInvocationError(f"claude -p timed out after {timeout}s") from exc
     _check_rate_limit(proc.stdout, proc.stderr)
+
+    envelope: dict[str, Any] | None = None
+    if proc.stdout:
+        try:
+            envelope = json.loads(proc.stdout)
+        except json.JSONDecodeError:
+            envelope = None
+
+    if envelope is not None:
+        _raise_for_stop_reason(envelope, role=role, prompt=prompt)
+
     if proc.returncode != 0:
+        if envelope is not None:
+            raise LLMInvocationError(
+                f"claude -p exited {proc.returncode} for role={role!r}: stop_reason="
+                f"{envelope.get('stop_reason')!r} is_error={envelope.get('is_error')!r} "
+                "(no refusal/truncation match; the envelope's own session/account fields are omitted)"
+            )
         raise LLMInvocationError(
-            f"claude -p exited {proc.returncode}: {proc.stderr.strip() or proc.stdout.strip()}"
+            f"claude -p exited {proc.returncode} for role={role!r}: "
+            f"{(proc.stderr or proc.stdout).strip()[:300]!r}"
         )
-    try:
-        envelope = json.loads(proc.stdout)
-    except json.JSONDecodeError as exc:
-        raise LLMInvocationError(f"claude -p produced non-JSON stdout: {proc.stdout[:500]!r}") from exc
+    if envelope is None:
+        raise LLMInvocationError(f"claude -p produced non-JSON stdout: {proc.stdout[:500]!r}")
     if envelope.get("is_error"):
         _check_rate_limit(str(envelope.get("result", "")))
-        raise LLMInvocationError(f"claude -p reported is_error: {envelope.get('result')!r}")
+        raise LLMInvocationError(
+            f"claude -p reported is_error for role={role!r}: stop_reason={envelope.get('stop_reason')!r} "
+            "(no refusal/truncation match; the envelope's own session/account fields are omitted)"
+        )
     return envelope
 
 
@@ -378,6 +549,15 @@ def complete(
     `replay_only`/`timeout`/`model` are accepted but unused in this mode,
     so every existing `hte.roles` call site works unchanged in either
     mode.
+
+    A `stop_reason` of `"refusal"` or `"max_tokens"`, or an empty
+    completion, raises `ModelRefusal`/`ModelTruncation` instead of
+    either of the two outcomes above, with no corrective retry (retrying
+    with the same content only refuses again): this function itself
+    never absorbs either into a default value, `hte.roles`'s own
+    per-role fallback does that at the caller, so every existing direct
+    `complete()` call site that has not opted into a default still sees
+    the raise.
     """
     start = time.monotonic()
     resolved_mode = mode if mode is not None else os.environ.get("HTE_LLM_MODE")
@@ -404,9 +584,19 @@ def complete(
     for attempt in range(2):
         call_prompt = prompt if attempt == 0 else _retry_prompt(prompt, schema, last_error)
         try:
-            envelope = _invoke_cli(call_prompt, resolved_model, schema, timeout)
+            envelope = _invoke_cli(call_prompt, resolved_model, schema, timeout, role=role)
         except RateLimit:
             _STATS.record_rate_limit_pause(role)
+            raise
+        except ModelRefusal:
+            # No corrective retry: the retry prompt below is for invalid
+            # JSON shape while the answer itself was given, and re-asking with the
+            # same content would only refuse again. `hte.roles`'s own
+            # per-role default absorbs this at the caller.
+            _STATS.record_refusal(role, wall_time_s=time.monotonic() - start)
+            raise
+        except ModelTruncation:
+            _STATS.record_truncation(role, wall_time_s=time.monotonic() - start)
             raise
         try:
             response = _parse_response(envelope, required)
@@ -433,6 +623,7 @@ def complete_many(
     timeout: float = DEFAULT_TIMEOUT_S,
     mode: str | None = None,
     workers: int | None = None,
+    default: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     """`complete()` mapped over `prompts`, in the same order, through
     `hte.parallel.pmap` (`workers` at a time, `hte.parallel.configure`'s
@@ -448,6 +639,18 @@ def complete_many(
     prompt propagates out of `pmap` (and so out of this function) the
     same way it would out of a single `complete()` call; it is not
     caught here.
+
+    `default`, when given, is wired through as `hte.parallel.pmap`'s own
+    `on_error="default"`/`default=` pair (`bkt-hte-refusal-handling`):
+    a prompt whose `complete()` call keeps failing (`ModelRefusal`/
+    `ModelTruncation` chief among them, since `pmap`'s own retries give
+    a fresh `claude -p` call, and so a fresh chance to answer, before
+    giving up) resolves to `default` in its place in the returned list
+    rather than aborting every other prompt in `prompts` alongside it.
+    `hte.llm.stats()` still records the refusal/truncation itself
+    (`complete()`'s own bookkeeping, unaffected by how the caller
+    absorbs it); `default=None` (the default) preserves this function's
+    prior behavior, one failing prompt raises out of the whole call.
     """
     results: list[dict[str, Any] | None] = [None] * len(prompts)
     resolved_mode = mode if mode is not None else os.environ.get("HTE_LLM_MODE")
@@ -470,7 +673,12 @@ def complete_many(
                 replay_only=replay_only, timeout=timeout, mode=mode,
             )
 
-        for idx, response in zip(pending, pmap(_call, pending, workers=workers)):
+        pmap_kwargs: dict[str, Any] = {"workers": workers}
+        if default is not None:
+            pmap_kwargs["on_error"] = "default"
+            pmap_kwargs["default"] = default
+
+        for idx, response in zip(pending, pmap(_call, pending, **pmap_kwargs)):
             results[idx] = response
 
     return results  # type: ignore[return-value]

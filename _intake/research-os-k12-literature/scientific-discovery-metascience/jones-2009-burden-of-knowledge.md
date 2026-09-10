@@ -9,6 +9,8 @@ url: "https://doi.org/10.1111/j.1467-937x.2008.00531.x"
 openalex_id: "https://openalex.org/W3124253902"
 branch: "scientific-discovery-metascience"
 tier: "canon"
+status: "open-question"
+taxonomy_question: "bucket-canon/TAXONOMY_NOTES.md, home for metascience and sociology-of-science material (07-mind vs 04-information); raised 2026-09-10, not resolved, not promoted"
 why_it_matters: >
   Establishes that the average age of a researcher's first major discovery and the size of
   a research team have both risen across the 20th century, a structural argument for why
