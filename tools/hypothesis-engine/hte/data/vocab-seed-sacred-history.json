@@ -1,0 +1,676 @@
+{
+  "by_slot": {
+    "actor": [
+      {
+        "id": "other-actor",
+        "slot": "actor",
+        "label": "Other (actor, unnamed)",
+        "prior_logit": 0.0,
+        "consensus_status": "other",
+        "definition_url": null
+      },
+      {
+        "id": "abraham",
+        "slot": "actor",
+        "label": "Abraham",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "bahaullah",
+        "slot": "actor",
+        "label": "Bah\u00e1'u'll\u00e1h",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "confucius",
+        "slot": "actor",
+        "label": "Confucius",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "david",
+        "slot": "actor",
+        "label": "David",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "deucalion",
+        "slot": "actor",
+        "label": "Deucalion",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "buddha",
+        "slot": "actor",
+        "label": "Gautama Buddha",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "gilgamesh",
+        "slot": "actor",
+        "label": "Gilgamesh",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "guru-nanak",
+        "slot": "actor",
+        "label": "Guru Nanak",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "jesus",
+        "slot": "actor",
+        "label": "Jesus of Nazareth",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "joseph-smith",
+        "slot": "actor",
+        "label": "Joseph Smith",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "krishna",
+        "slot": "actor",
+        "label": "Krishna",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "laozi",
+        "slot": "actor",
+        "label": "Laozi",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "mahavira",
+        "slot": "actor",
+        "label": "Mah\u0101v\u012bra",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "manu",
+        "slot": "actor",
+        "label": "Manu",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "moses",
+        "slot": "actor",
+        "label": "Moses",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "muhammad",
+        "slot": "actor",
+        "label": "Mu\u1e25ammad",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "noah",
+        "slot": "actor",
+        "label": "Noah",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "rama",
+        "slot": "actor",
+        "label": "Rama",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "saoshyant",
+        "slot": "actor",
+        "label": "Saoshyant",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "utnapishtim",
+        "slot": "actor",
+        "label": "Utnapishtim",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "yu-the-great",
+        "slot": "actor",
+        "label": "Yu the Great",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "zoroaster",
+        "slot": "actor",
+        "label": "Zoroaster",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "deity-literal-agent",
+        "slot": "actor",
+        "label": "A deity acting as a literal, physically intervening historical agent behind the correlation",
+        "prior_logit": -2.5,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "mythicist-non-historicity",
+        "slot": "actor",
+        "label": "The correlated figure is a purely legendary construct with no historical referent at all",
+        "prior_logit": -2.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "channeled-modern-revelation",
+        "slot": "actor",
+        "label": "A modern channeled or claimed-revelation text stands in direct, unbroken continuity with the ancient transmission it claims to extend",
+        "prior_logit": -3.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "euhemerist-deification",
+        "slot": "actor",
+        "label": "The correlated figure began as an ordinary human later elevated to legendary or divine status by tradition",
+        "prior_logit": -1.0,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "hyperdiffusionist-borrowing",
+        "slot": "actor",
+        "label": "The correlation reflects one tradition borrowing the narrative wholesale from another rather than each arising independently",
+        "prior_logit": -1.0,
+        "consensus_status": "contested",
+        "definition_url": null
+      }
+    ],
+    "action": [
+      {
+        "id": "other-action",
+        "slot": "action",
+        "label": "Other (action, unnamed)",
+        "prior_logit": 0.0,
+        "consensus_status": "other",
+        "definition_url": null
+      },
+      {
+        "id": "maps-to",
+        "slot": "action",
+        "label": "Maps to (a proposed figure correspondence)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "parallels",
+        "slot": "action",
+        "label": "Shares a motif with",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "structurally-echoes",
+        "slot": "action",
+        "label": "Structurally echoes",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "borrows-from",
+        "slot": "action",
+        "label": "Textually borrows from",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "precedes-chronologically",
+        "slot": "action",
+        "label": "Precedes chronologically",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "derives-from-common-source",
+        "slot": "action",
+        "label": "Derives from a hypothesized common source",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "shares-etymology-with",
+        "slot": "action",
+        "label": "Shares an etymology with",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "object": [
+      {
+        "id": "other-object",
+        "slot": "object",
+        "label": "Other (object, unnamed)",
+        "prior_logit": 0.0,
+        "consensus_status": "other",
+        "definition_url": null
+      },
+      {
+        "id": "abraham",
+        "slot": "object",
+        "label": "Abraham",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "bahaullah",
+        "slot": "object",
+        "label": "Bah\u00e1'u'll\u00e1h",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "confucius",
+        "slot": "object",
+        "label": "Confucius",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "david",
+        "slot": "object",
+        "label": "David",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "deucalion",
+        "slot": "object",
+        "label": "Deucalion",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "buddha",
+        "slot": "object",
+        "label": "Gautama Buddha",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "gilgamesh",
+        "slot": "object",
+        "label": "Gilgamesh",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "guru-nanak",
+        "slot": "object",
+        "label": "Guru Nanak",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "jesus",
+        "slot": "object",
+        "label": "Jesus of Nazareth",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "joseph-smith",
+        "slot": "object",
+        "label": "Joseph Smith",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "krishna",
+        "slot": "object",
+        "label": "Krishna",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "laozi",
+        "slot": "object",
+        "label": "Laozi",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "mahavira",
+        "slot": "object",
+        "label": "Mah\u0101v\u012bra",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "manu",
+        "slot": "object",
+        "label": "Manu",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "moses",
+        "slot": "object",
+        "label": "Moses",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "muhammad",
+        "slot": "object",
+        "label": "Mu\u1e25ammad",
+        "prior_logit": 1.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "noah",
+        "slot": "object",
+        "label": "Noah",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "rama",
+        "slot": "object",
+        "label": "Rama",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "saoshyant",
+        "slot": "object",
+        "label": "Saoshyant",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "utnapishtim",
+        "slot": "object",
+        "label": "Utnapishtim",
+        "prior_logit": -1.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "yu-the-great",
+        "slot": "object",
+        "label": "Yu the Great",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "zoroaster",
+        "slot": "object",
+        "label": "Zoroaster",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "place": [
+      {
+        "id": "other-place",
+        "slot": "place",
+        "label": "Other (place, unnamed)",
+        "prior_logit": 0.0,
+        "consensus_status": "other",
+        "definition_url": null
+      },
+      {
+        "id": "bahai",
+        "slot": "place",
+        "label": "Bahai",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "buddhism",
+        "slot": "place",
+        "label": "Buddhism",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "christianity",
+        "slot": "place",
+        "label": "Christianity",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "greek",
+        "slot": "place",
+        "label": "Greek",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "hinduism",
+        "slot": "place",
+        "label": "Hinduism",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "islam",
+        "slot": "place",
+        "label": "Islam",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "jainism",
+        "slot": "place",
+        "label": "Jainism",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "judaism",
+        "slot": "place",
+        "label": "Judaism",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "lds",
+        "slot": "place",
+        "label": "Lds",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "mesopotamian",
+        "slot": "place",
+        "label": "Mesopotamian",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "sikhism",
+        "slot": "place",
+        "label": "Sikhism",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "tao-confucian",
+        "slot": "place",
+        "label": "Tao Confucian",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "zoroastrianism",
+        "slot": "place",
+        "label": "Zoroastrianism",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "time": [
+      {
+        "id": "other-time",
+        "slot": "time",
+        "label": "Other (time, unnamed)",
+        "prior_logit": 0.0,
+        "consensus_status": "other",
+        "definition_url": null
+      }
+    ],
+    "mechanism": [
+      {
+        "id": "other-mechanism",
+        "slot": "mechanism",
+        "label": "Other (mechanism, unnamed)",
+        "prior_logit": 0.0,
+        "consensus_status": "other",
+        "definition_url": null
+      },
+      {
+        "id": "entity-graph-resolver",
+        "slot": "mechanism",
+        "label": "AI entity-graph resolver (0.40 embedding cosine + 0.25 fuzzy label + 0.10 motif overlap)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "human-scholarly-comparison",
+        "slot": "mechanism",
+        "label": "Human scholarly comparative-religion analysis",
+        "prior_logit": 0.5,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "independent-invention",
+        "slot": "mechanism",
+        "label": "Independent invention, convergent narrative with no contact between traditions",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "common-source-reconstruction",
+        "slot": "mechanism",
+        "label": "Reconstruction from a hypothesized common ancestral source",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "hyperdiffusion",
+        "slot": "mechanism",
+        "label": "Cultural diffusion through direct or indirect contact between traditions",
+        "prior_logit": -0.5,
+        "consensus_status": "contested",
+        "definition_url": null
+      }
+    ],
+    "relation": [
+      {
+        "id": "other-relation",
+        "slot": "relation",
+        "label": "Other (relation, unnamed)",
+        "prior_logit": 0.0,
+        "consensus_status": "other",
+        "definition_url": null
+      }
+    ]
+  },
+  "alpha": {
+    "actor": 1.0,
+    "action": 1.0,
+    "object": 1.0,
+    "place": 1.0,
+    "time": 1.0,
+    "mechanism": 1.0,
+    "relation": 1.0
+  },
+  "default_alpha": 1.0
+}
