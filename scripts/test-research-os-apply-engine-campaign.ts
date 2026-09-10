@@ -88,7 +88,7 @@ test("toGapNodeInput: every export field carries straight through", () => {
   assert.deepEqual(input.concernsHypothesisIds, entry.concernsHypothesisIds);
 });
 
-test("toGapNodeInput: an empty concernsHypothesisIds list carries through as empty, not dropped", () => {
+test("toGapNodeInput: an empty concernsHypothesisIds list carries through as an empty array", () => {
   const input = toGapNodeInput(fixtureGapEntry({ concernsHypothesisIds: [] }));
   assert.deepEqual(input.concernsHypothesisIds, []);
 });

@@ -223,7 +223,7 @@ test("buildGapNode: fixture gap becomes a well-formed artifact-kind node draft",
   const draft = buildGapNode(fixtureGap());
   assert.equal(draft.slug, gapNodeSlug("hte", "runs/research-os/2026-09-10T12-00-00Z", "gap-ev-001"));
   assert.equal(draft.kind, "artifact");
-  assert.equal(draft.tier, 6, "a gap is an absence, not a reliability-rated claim");
+  assert.equal(draft.tier, 6, "a gap carries no reliability rating of its own");
   assert.equal(draft.branch, "02-physics");
   assert.match(draft.title, /^Gap: /);
   assert.equal(draft.summary, "evidence ev-001 names no value for: actor, mechanism");
