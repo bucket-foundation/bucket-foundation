@@ -24,7 +24,7 @@ from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
 from .belief import Opinion, load_constants, load_detectability_table, score as belief_score
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
-from .corpus import education_atlas, fixtures as fixtures_corpus, production, sacred_history
+from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history
 from .evidence import EvidenceItem
 from .generate import combinatorial_sample, from_evidence
 from .hypothesis import Hypothesis
@@ -103,6 +103,7 @@ _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
     "fixtures": fixtures_corpus.build,
     "education-atlas": education_atlas.load,
     "production": production.load,
+    "literature": literature.load_default,
     "sacred-history": sacred_history.ingest,
 }
 
