@@ -1,0 +1,210 @@
+records:
+- id: bkt-ce3245fc58e7
+  title: 'The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One Tutoring'
+  authors:
+  - family: Bloom
+    given: Benjamin S.
+    orcid: null
+  year: 1984
+  venue:
+    name: Educational Researcher
+    issn: 0013-189X
+    publisher: null
+  doi: 10.3102/0013189x013006004
+  canonical_url: https://doi.org/10.3102/0013189x013006004
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: SAGE Publishing
+  citation_count: 2489
+  concepts:
+  - Formative assessment
+  - Subject matter
+  - Tutor
+  - Mathematics education
+  - Class (philosophy)
+  - Psychology
+  - Corrective feedback
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T14:24:18Z'
+  canon_score: 70
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +25 well-cited (2489)
+  - +15 survived >5y (year=1984)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: >-
+    RUBRIC E7 (intervention/outcome study reporting an effect size instead
+    of a primary mechanism claim); routed to sub-outcomes/education per the
+    05-biophysics/sub-outcomes/longevity precedent rather than into
+    07-mind/ proper.
+  depends_on_foundation:
+    doi: 10.1111/j.1745-6916.2006.00012.x
+    path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
+    title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
+    relation: >-
+      Mastery-based corrective feedback is a classroom-scale instance of the
+      retrieval-practice/testing-effect mechanism; this paper's tutoring
+      condition measures that mechanism's classroom-scale outcome, and the
+      foundation record above establishes the mechanism itself.
+
+- id: bkt-46a9894f6dd8
+  title: 'Effectiveness of Mastery Learning Programs: A Meta-Analysis'
+  authors:
+  - family: Kulik
+    given: Chen-Lin C.
+    orcid: null
+  - family: Kulik
+    given: James A.
+    orcid: null
+  - family: Bangert-Drowns
+    given: Robert L.
+    orcid: null
+  year: 1990
+  venue:
+    name: Review of Educational Research
+    issn: 0034-6543
+    publisher: null
+  doi: 10.3102/00346543060002265
+  canonical_url: https://doi.org/10.3102/00346543060002265
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: SAGE Publishing
+  citation_count: 559
+  concepts:
+  - Mastery learning
+  - Psychology
+  - Mathematics education
+  - Meta-analysis
+  - Class (philosophy)
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T14:24:19Z'
+  canon_score: 65
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (559)
+  - +15 survived >5y (year=1990)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: >-
+    RUBRIC E7 (108-study meta-analysis reporting an intervention effect
+    size instead of a primary mechanism claim); routed to
+    sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1111/j.1745-6916.2006.00012.x
+    path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
+    title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
+    relation: >-
+      A large-sample replication check on Bloom 1984's tutoring-equivalent
+      claim; both interventions rest on the same retrieval-practice/testing-
+      effect mechanism, this record tempers Bloom's effect-size estimate.
+
+- id: bkt-1fa55749afd0
+  title: 'The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring Systems'
+  authors:
+  - family: VanLehn
+    given: Kurt
+    orcid: https://orcid.org/0000-0001-5635-2003
+  year: 2011
+  venue:
+    name: Educational Psychologist
+    issn: 0046-1520
+    publisher: null
+  doi: 10.1080/00461520.2011.611369
+  canonical_url: https://doi.org/10.1080/00461520.2011.611369
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: Routledge
+  citation_count: 2190
+  concepts:
+  - Intelligent tutoring system
+  - Computer science
+  - Educational psychology
+  - Human-computer interaction
+  - Mathematics education
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T14:24:19Z'
+  canon_score: 70
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +25 well-cited (2190)
+  - +15 survived >5y (year=2011)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: >-
+    RUBRIC E7 (meta-analysis reporting tutoring-system effect sizes instead
+    of a primary mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1111/j.1745-6916.2006.00012.x
+    path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
+    title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
+    relation: >-
+      Step-based tutoring feedback (intermediate-step correction) is a
+      system-scale instance of frequent retrieval-and-feedback checkpoints,
+      the same mechanism the testing effect establishes at the item scale.
+
+- id: bkt-2cce3fc65496
+  title: Effectiveness of Intelligent Tutoring Systems
+  authors:
+  - family: Kulik
+    given: James A.
+    orcid: null
+  - family: Fletcher
+    given: J. D.
+    orcid: https://orcid.org/0000-0001-8415-5314
+  year: 2016
+  venue:
+    name: Review of Educational Research
+    issn: 0034-6543
+    publisher: null
+  doi: 10.3102/0034654315581420
+  canonical_url: https://doi.org/10.3102/0034654315581420
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: SAGE Publishing
+  citation_count: 875
+  concepts:
+  - Intelligent tutoring system
+  - Computer science
+  - Educational assessment
+  - Artificial intelligence
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T14:24:19Z'
+  canon_score: 65
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (875)
+  - +15 survived >5y (online-first year=2015; print year=2016)
+  canon_branch_hints: []
+  tier: OUTCOME
+  outcome_reason: >-
+    RUBRIC E7 (50-study meta-analysis reporting an intervention effect size
+    instead of a primary mechanism claim); routed to
+    sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1111/j.1745-6916.2006.00012.x
+    path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
+    title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
+    relation: >-
+      Updates VanLehn 2011's estimate with a larger, more recent sample of
+      the same underlying mechanism (frequent retrieval-and-feedback
+      checkpoints at system scale).

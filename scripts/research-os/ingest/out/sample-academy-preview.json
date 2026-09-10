@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-09-10T17:57:02.001Z",
+  "_comment": "Small committed sample of scripts/research-os/ingest/out/academy-preview.json (gitignored in full). Regenerate the full preview with npm run ingest:research-os:academy.",
+  "stats": {
+    "files": 8,
+    "nodes": 487,
+    "edges": 820,
+    "reviewItems": 0
+  },
+  "nodes": [
+    {
+      "slug": "academy-02-physics-kinematics",
+      "title": "Kinematics \u2014 describing motion",
+      "kind": "concept",
+      "tier": 13,
+      "branch": "02-physics",
+      "summary": "Position, velocity, and acceleration are the three layers of motion, each the time-derivative of the one before.",
+      "labels": {
+        "en": {
+          "title": "Kinematics \u2014 describing motion"
+        }
+      },
+      "provenance": {
+        "type": "academy_atom",
+        "source": "learning/app/corpus/02-physics.json",
+        "atom_id": "kinematics",
+        "branch": "02-physics",
+        "corpus_type": "concept"
+      }
+    },
+    {
+      "slug": "academy-02-physics-newton-laws",
+      "title": "Newton's three laws of motion",
+      "kind": "concept",
+      "tier": 14,
+      "branch": "02-physics",
+      "summary": "Inertia, F = ma, and action\u2013reaction together turn forces into predicted motion.",
+      "labels": {
+        "en": {
+          "title": "Newton's three laws of motion"
+        }
+      },
+      "provenance": {
+        "type": "academy_atom",
+        "source": "learning/app/corpus/02-physics.json",
+        "atom_id": "newton-laws",
+        "branch": "02-physics",
+        "corpus_type": "result"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "fromSlug": "academy-02-physics-kinematics",
+      "toSlug": "academy-02-physics-newton-laws",
+      "kind": "prerequisite",
+      "weight": 1,
+      "provenance": {
+        "type": "academy_atom",
+        "source": "learning/app/corpus/02-physics.json"
+      }
+    }
+  ]
+}

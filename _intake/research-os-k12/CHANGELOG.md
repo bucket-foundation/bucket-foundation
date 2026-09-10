@@ -1,5 +1,127 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, canon and Academy corpus ingestion
+
+Branch `feat/ros-canon-ingest`. Two ingestion importers that grow the Research
+OS graph past the Phase 0 seed's 22 nodes, no model in the loop. Full account:
+`learning/research-os/INGESTION.md`.
+
+Shipped: `src/lib/research-os/ingest/academy.ts` (`buildAcademyImport`), which
+maps all 487 atoms across `learning/app/corpus/*.json`'s eight importable
+branch files to `graph.nodes` drafts (kind `concept` or `law` from the atom's
+own `type`; tier `13 + requires-depth`, monotonic by construction) and every
+`requires` edge to a `prerequisite` edge, idempotent on `(source file, atom
+id)`. `src/lib/research-os/ingest/canon.ts` (`buildCanonImport`), which maps
+`bucket-canon/02-physics/`'s six dossiers to a `law` or `primary_source` node
+(tier 90, the seed's own canon-bridge sentinel) with a `cites` edge to its own
+bibliographic source (law-kind dossiers only) and a `derives_from` edge to a
+matched Academy atom, by exact slug or `canon-atom-map.json` override; four of
+the six dossiers have no match and land on the review list rather than being
+guessed. `src/lib/research-os/ingest/validate.ts` (orphan-edge and
+tier-monotonicity checks, shared by both importers and their tests) and
+`.../review.ts` (the merge helper behind `scripts/research-os/ingest/out/
+review-list.json`). Two CLI scripts (`academy-import.ts`, `canon-import.ts`,
+dry-run default, `--apply` upserts through the graph-schema service-role
+client). 42 unit tests across three files, run via `npm run test:research-os`,
+including two run against the real corpus and the real bucket-canon dossiers
+on disk.
+
+Dry run against the current repo: 487 nodes / 820 edges from the Academy
+corpus, 8 nodes / 4 edges from the canon dossiers, 4 review items (all
+`unmatched_derives_from`), zero tier violations, zero orphan edges.
+
+## 2026-09-10 (Phase 1 stub closures)
+
+Branch `feat/ros-phase0-stubs`. Closed four of the Phase 0 PR's (#6) listed stubs,
+scoped to section 8's Phase 1 boundary: the `prereq_ancestor` closure table
+(`src/lib/research-os/closure.ts`, `scripts/rebuild-prereq-ancestor.ts`, migration
+`20260910010000_research_os_prereq_ancestor.sql`, wired into
+`computeFrontier`/`frontier.ts` and `GET /api/research-os/route`); the diagnostic
+probe (`src/lib/research-os/probe.ts`, `GET`/`POST /api/research-os/probe`, a
+workspace-page panel); real verbatim Quote passages for Tyndall 1869, Rayleigh 1871,
+NASA Space Place, and Wikipedia (`src/lib/research-os/passages.ts`, each entry
+verified against the live source before being added, with a labeled fallback to the
+node's own summary for the sources not yet verified); and the teacher review hold
+(`graph.teacher_reviews` migration `20260910020000_research_os_teacher_reviews.sql`,
+`src/lib/research-os/reviewer.ts`'s env-var allowlist with a Phase 1 roster TODO,
+`/api/research-os/review`, `/research-os/review`). Full account in
+`learning/research-os/CHANGE-LEDGER.md`'s "Iteration 6" entry.
+
+Rebased twice onto `main`: after the site-alignment PR (#12), and again after the
+hypothesis engine bridge (#14) and the `hte` refusal-handling PR (#10). The second
+rebase touched three shared files (`package.json`, `src/app/api/research-os/route/
+route.ts`, `src/lib/research-os/db.ts`); both sides' additions were kept.
+
+Gates run: `npm ci`; `npx tsc --noEmit` clean; `npm run test:research-os` (routing +
+closure + probe + engine-bridge + engine-frontier, 52/52); `npm run build`; `eslint`
+and `agf-lint-voice-src check` clean on every file this pass touched.
+
+## 2026-09-10: PR #19 review pass
+
+Review of PR #19 (`docs/ros-plan-revision-1`) before merge. Leak scan on the full diff against
+`origin/main` found no API keys, no `.env` contents, no server IPs, no non-public hostnames, no
+personal emails other than `gianyrox@gmail.com`, no PII, no `/home/gian` paths, and no Claude
+session URLs in any line this PR adds. No redactions were needed.
+
+Two PRs this revision names as still open merged to main during the review itself, so the
+shipped-work table and its cross-references were fixed twice, once per PR, rather than once.
+
+### Fixed
+
+- `learning/research-os/PLAN-REVISION-1.md`: the PR #15 row in section 1's shipped-work table and
+  the batch-two references in sections 4 and 5 said PR #15 was still open; PR #15 merged to main
+  (`e51b1db6e`) partway through this review, so the entries now read it as shipped. The PR #9 row
+  said unmerged; PR #9 merged to main (`d0f2c1262`) partway through this same review, so that row
+  now reads it as shipped too. Rewrote two antithesis constructions ("real at the code level ...
+  not just an analogy"; "the process trail ... not only the final submitted claim").
+- `learning/research-os/PLAN.md`: the "Revision 1" pointer paragraph said PR #15 was open; updated
+  to reflect the merge.
+- `_intake/research-os-k12/CHANGELOG.md` (this file, the plan-revision-1 entry above): same PR #15
+  status fix.
+- `learning/research-os/CHANGE-LEDGER.md`: merging `origin/main` produced two conflicts in
+  sequence as main advanced during review, first against main's own Iteration 6 (PR #15), then
+  against main's own Iteration 7 (PR #9). Kept every entry: main's stay Iteration 6 and Iteration
+  7, this PR's own plan-revision entry lands as Iteration 8, and this review pass as Iteration 9.
+
+### Verified, no change needed
+
+- All five cited paper files (Gneezy and Rustichini 2000, Mekler and colleagues 2017, Gasparetti
+  and colleagues 2017, Doshi and Hauser 2024, Binz and Schulz 2023) exist under
+  `_intake/research-os-k12-literature/` with frontmatter matching the claims made about them.
+- Three ETH AI Center section claims spot-checked against code on `main`: `computeFrontier` in
+  `src/lib/research-os/frontier.ts`, `hypothesize()` in `tools/hypothesis-engine/hte/api.py`, and
+  `research_os_productions_outbox` in `supabase/migrations/20260910010000_research_os_engine_
+  bridge.sql` plus `src/lib/research-os/db.ts`. All three exist as described.
+- The four design revisions in section 2 each carry one of STABLE, STRONG LEAN, or OPEN.
+- The PR #9 shipped-work row's claims, checked against the merged content directly, not just its
+  merge status: the two promoted records and the two taxonomy questions it names match
+  `bucket-canon/07-mind/memory-systems/` and `bucket-canon/TAXONOMY_NOTES.md` on main.
+- `agf-lint-voice check` / `agf-lint-voice-src check` on every file this PR touches: 0 violations
+  after the fixes above.
+- Gates: nothing under `src/` or `public/` is touched by this PR; no build needed.
+
+## 2026-09-10 (plan revision 1)
+
+Branch `docs/ros-plan-revision-1`. Read PLAN.md, RESEARCH-QUESTIONS.md,
+`RESEARCH-OS-K12-SYSTEM-REVIEW.md` sections 4, 8, 9, 10, 11,
+`OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, `ENGINE-BRIDGE.md`, this file,
+`BEADS-PENDING.jsonl`, PR #15 (branch `intake/ros-literature-2-batch2`, open
+when this pass began and merged to main partway through it), and PR #11
+(draft). Wrote
+`learning/research-os/PLAN-REVISION-1.md`: a PR-by-PR account of what shipped
+since PLAN.md (#3, #5, #6, #7, #8, #9, #10, #12, #14, #15); four
+evidence-driven design revisions (payout under Gneezy and Rustichini 2000 and
+Mekler 2017, frontier routing under Gasparetti 2017, a class-level diversity
+outcome for the three-arm testbed under Doshi and Hauser 2024, Check-tool
+phrasing robustness under Binz and Schulz 2023), each labeled STABLE, STRONG
+LEAN, or OPEN; a dependency-ordered Phase 1 scope naming five blocking
+founder decisions; a table mapping the overlap map's twelve open questions
+onto Phase 1 pilot versus Phase 2 district-scale answerability; and the ETH
+AI Center fellowship fit (portal opens 2026-09-15). Appended a pointer
+paragraph to `PLAN.md` under a new "Revision 1" heading; no existing text in
+`PLAN.md` was changed or removed. No file in this folder was edited or
+removed.
+
 ## 2026-09-10 (hypothesis engine bridge)
 
 Branch `feat/ros-engine-bridge`, worktree review of a WIP commit against PR #10
@@ -298,3 +420,119 @@ research-os): partial work preserved` commit already on this branch. None
 of that in-progress content is part of this review pass's commit; only the
 five files listed under "Fixed" above were staged and committed, isolated
 by hunk where a touched file also carried unrelated unstaged content.
+
+## 2026-09-10, literature batch two
+
+Branch `intake/ros-literature-2`. Task: 31 new DOI-verified papers bearing on the twelve open
+questions in `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, emphasis on 2023-2026 empirical work,
+across six areas: LLM assistance and learning outcomes, cognitive offloading and metacognition,
+prerequisite and knowledge-graph learning, AI for research evaluation, understanding as a
+scientific goal, and motivation and payment. Full per-area breakdown and per-question evidence
+mapping recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 6.
+
+### Added
+
+- 31 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md` Iteration 6; corpus total rises from 45 to 77 papers.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/`: new fifth branch, five
+  files on automatic prerequisite-edge inference and learning-path routing.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 77 rows, five areas.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: each of the twelve open
+  questions gained an "Evidence added in batch two" paragraph.
+
+### Verified Clean
+
+- Every DOI and OpenAlex work id checked live via WebFetch at intake time.
+- Three candidate papers named in the task brief were searched for and omitted for lack of a
+  resolvable DOI or a findable published record: Talukdar and Cohen (2012, no DOI on OpenAlex or
+  Crossref), a distinct World Bank Nigeria follow-up beyond the de Simone (2025) paper already in
+  the corpus, and a Si, Yang, and Hashimoto (2025) ideation-execution-gap follow-up.
+- No blockquote or extended verbatim passage from any source paper; all `key_claims` and body
+  text are paraphrase.
+
+### Removed
+
+None.
+
+## 2026-09-10: literature corpus promoted into canon
+
+Branch `intake/ros-canon-promotion` (PR #9). Six records from
+`_intake/research-os-k12-literature/` promoted into `bucket-canon/07-mind/`;
+two more opened as taxonomy questions, not promoted.
+
+### Added
+
+- `bucket-canon/07-mind/memory-systems/`: two canon-tier records added
+  (Roediger and Karpicke 2006; Sparrow, Liu, and Wegner 2011), both run
+  through `tools/canon-pipeline/intake.py --min-score 70` and re-verified
+  idempotent (`added=0 kept=3 changed=False` on re-run).
+- `bucket-canon/07-mind/sub-outcomes/education/` (new dossier, mirrors the
+  `05-biophysics/sub-outcomes/longevity/` convention): four outcome-tier
+  records (Bloom 1984; Kulik, Kulik, and Bangert-Drowns 1990; VanLehn 2011;
+  Kulik and Fletcher 2016), each naming the `07-mind/memory-systems/`
+  foundation it depends on.
+- `bucket-canon/TAXONOMY_NOTES.md` (new file): opens two branch-placement
+  questions without resolving them or creating a new branch, metascience
+  and sociology-of-science home (Jones 2009; Fortunato et al. 2018,
+  candidates `07-mind` vs `04-information`) and AlphaFold as a
+  `05-biophysics` method card versus a `research-landscape/` entry (Jumper
+  et al. 2021). Also carries the pre-existing psychodynamic-theory question
+  `07-mind/README.md` referenced but never filed.
+- `CANON-INGESTION-INDEX.md`: a dated table of the six promotions plus a
+  pointer to the two open taxonomy questions.
+
+### Edited
+
+- Six intake cards (`roediger-karpicke-2006-power-of-testing.md`,
+  `sparrow-liu-wegner-2011-google-effects-on-memory.md`,
+  `bloom-1984-two-sigma-problem.md`,
+  `kulik-kulik-bangert-drowns-1990-mastery-learning-meta-analysis.md`,
+  `vanlehn-2011-relative-effectiveness-tutoring.md`,
+  `kulik-fletcher-2016-intelligent-tutoring-meta-analysis.md`): marked
+  `status: promoted` with a `promoted_to` pointer and a canon-record
+  callout in the body; the underlying claims are unchanged.
+- Two intake cards (`jones-2009-burden-of-knowledge.md`,
+  `fortunato-et-al-2018-science-of-science.md`) and one
+  (`jumper-et-al-2021-alphafold.md`): marked `status: open-question` with a
+  `taxonomy_question` pointer into `TAXONOMY_NOTES.md`; no promotion, no
+  claim text changed.
+- `bucket-canon/05-biophysics/README.md`: four-line open note under the
+  promotion rule, pointing to the AlphaFold taxonomy question.
+- `bucket-canon/07-mind/README.md`: one-line path fix,
+  `TAXONOMY_NOTES.md` to `../TAXONOMY_NOTES.md`, in the existing
+  psychodynamic-theory reference (the file it references now lives at
+  `bucket-canon/TAXONOMY_NOTES.md`, one level above `07-mind/`).
+- `_intake/research-os-k12-literature/README.md`: noted the six
+  promotions and two open questions against the corpus index.
+- `_intake/research-os-k12/README.md`: the "Site registry registration"
+  section updated from "not yet done" to done, `feat(site): align public
+  site with Research OS for K-12 (#12)` landed the `NAV` entry this
+  section had documented the path for; kept the original search as
+  record.
+
+### Removed
+
+None.
+
+### Verified
+
+- `tools/canon-pipeline/intake.py bucket-canon/07-mind/memory-systems
+  --min-score 70`: `total=3 added=0 updated=0 kept=3 rejected=0 failed=0
+  changed=False`, confirms the promoted records converge byte-identical to
+  what the pipeline resolves live.
+- `agf-lint-voice check` on every file this pass authored or edited: 0
+  violations (pre-existing violations in untouched lines of
+  `bucket-canon/05-biophysics/README.md`, `bucket-canon/07-mind/README.md`,
+  and `bucket-canon/07-mind/memory-systems/CANON_INDEX.md` predate this
+  branch and are out of scope; `+25 highly cited (N)` adverb hits in
+  `primary-papers.yaml` are `tools/canon-pipeline/scoring.py`'s fixed
+  machine-emitted string, unchanged from the pre-existing convention).
+- No file under `src/` or `public/` is touched by this pass, so no
+  `npm run build` gate applies to it.
+- `_intake/research-os-k12-literature/README.md` merged cleanly against
+  `intake/ros-literature-2`'s concurrent 45-to-77-row expansion: this
+  pass's tier/status changes carried onto the six affected rows, area
+  counts re-verified at 77 rows total (17/25/18/12/5).

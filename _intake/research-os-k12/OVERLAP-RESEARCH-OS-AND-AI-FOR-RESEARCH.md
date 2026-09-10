@@ -173,52 +173,140 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    Sparrow, Liu, and Wegner (2011) show the same pattern for memory and search. Research OS's own
    three-arm testbed (constrained AI, full chatbot, no-AI control) is built to answer this directly.
    Extends `RESEARCH-QUESTIONS.md` Q8 and Q11.
+
+   *Evidence added in batch two, supports the design bet:* Risko and Gilbert (2016) supply the general
+   offloading framework the testbed's three arms are built to separate; Ward (2021) and Fisher, Goddu,
+   and Keil (2015) each predict a friction-dependent misattribution effect the scoped workspace's
+   required steps should reduce relative to a full chatbot; Bastani and colleagues (2025) and Kosmyna
+   and colleagues (2025) supply causal (exam performance) and physiological (EEG connectivity) evidence
+   for the same guardrail-versus-unrestricted split; Macnamara and colleagues (2024) argue any post-test
+   must be unassisted and scheduled after a retention interval, since learners do not notice their own
+   skill decay. *Complicates:* Doshi and Hauser (2024) add a class-level cost, reduced diversity across
+   many learners' productions, invisible to any per-student outcome the testbed currently measures.
 2. **Does a scoped find/quote/check/organize interface replicate a two-sigma-class tutoring effect at
    graph-routed scale.** Bloom (1984) sets the target effect size; VanLehn (2011) and Kulik and
    Fletcher (2016) measure how far intelligent tutoring systems close that gap without a human tutor.
    Extends `RESEARCH-QUESTIONS.md` Q8.
+
+   *Evidence added in batch two, supports the design bet:* Slijepcevic and Yaylali (2025) find a
+   deployed, Socratic-style AI tutor (Khanmigo) outperforming unassisted search on physics learning
+   outcomes, a real-world data point for scoped-tool tutoring beating no-AI, though the study lacks the
+   testbed's own full-chatbot comparison arm.
 3. **Does frontier-backward routing beat forward sequencing on retention and transfer.** Barnett and
    Ceci (2002) frame what counts as a transfer claim worth testing; `PLAN.md` §1 lists routing itself
    as a hypothesis awaiting the test its own section 7 describes. Extends `RESEARCH-QUESTIONS.md` Q5
    and Q29.
+
+   *Evidence added in batch two, supports the design bet:* Pan and colleagues (2017), Liang and
+   colleagues (2018), Roy and colleagues (2019), and Gasparetti and colleagues (2017) are direct
+   precedent for the two operations frontier-backward routing needs, inferring a prerequisite edge and
+   walking it backward to build a route, and Gligorea and colleagues (2023)'s review places the
+   approach inside a wider adaptive-learning field rather than a design without precedent. *Complicates:*
+   Gasparetti and colleagues (2017) find instructor disagreement concentrates on weak or optional
+   prerequisite pairs, a warning that not every learned edge should enter `graph.prereq_ancestor` at
+   `canon` tier.
 4. **Do AI-generated hypotheses meet the novelty and testability bar a domain scientist applies, and
    does a reviewed K-12 production meet the same bar.** The AI-for-science literature on evaluating
    generated hypotheses (Si, Yang, and Hashimoto 2024; Lu and others 2024), read alongside Auchincloss
    and others (2014) on the missing-instrument and reporting-quality problem `PLAN.md` §5 already cites
    as a constraint on the production record. Extends `RESEARCH-QUESTIONS.md` Q21.
+
+   *Evidence added in batch two, supports the design bet:* Gottweis and colleagues (2026)'s wet-lab
+   validation arm and Yamada and colleagues (2025)'s workshop-acceptance result each raise the bar for
+   what counts as a passed check, human peer review rather than an automated pass or fail; Zhou and
+   colleagues (2024, HypoGeniC), Kumar and colleagues (2024), and Schmidgall and colleagues (2025) supply
+   cheaper, classroom-scale evaluation methods (a downstream classifier's accuracy, overlap with an
+   expert's own model answer, staged human feedback) closer to what a single class's production data can
+   support than a wet-lab or workshop-review step. Ghafarollahi and Buehler (2024, SciAgents) and
+   Mitchener and colleagues (2025, Kosmos) bear on the engine's own generation and traceability design
+   rather than directly on the K-12 novelty bar.
 5. **Does a citation-payment incentive change the quality of self-explanation and productive struggle,
    or crowd it out.** Deci and Ryan (2000) on self-determination theory and Kapur (2008) on productive
    failure both predict a payment framed the wrong way could shift a student from mastery to
    performance goals. Extends `RESEARCH-QUESTIONS.md` Q13 and Q30.
+
+   *Evidence added in batch two, supports the design bet:* Deci, Koestner, and Ryan (1999)'s 128-study
+   meta-analysis names the exact reward category, tangible, expected, performance-contingent, a
+   citation-on-acceptance payment falls into; Fryer (2011) points the payout toward the process the
+   four-tool workspace already logs rather than the final grade. *Complicates:* Gneezy and Rustichini
+   (2000) warn a small payment can underperform no payment at all, a non-monotonic risk the payout pilot
+   must clear rather than assume away; Mekler and colleagues (2017) partially contradict the simple
+   crowd-out story by finding a non-payment, recognition-style element raised performance with no
+   measured motivational cost, supporting `RESEARCH-QUESTIONS.md` Q13's recognition-only arm as a real
+   design option rather than a fallback.
 6. **Does isolated-quote checking or full-document-context checking change a critic tool's accuracy.**
    `docs/RESEARCH-OS-INTEGRATION.md` question 22 names this directly as a Research OS question the
    engine's own held-out corpus can answer cheaply, no production required, before the same comparison
    runs on production data. Is `RESEARCH-QUESTIONS.md` Q22 itself.
+
+   *Evidence added in batch two:* no batch-two paper tests this question directly. Binz and Schulz
+   (2023)'s finding that GPT-3's reasoning accuracy swings sharply with small phrasing changes is
+   tangential support for treating any single-pass model check as fragile, worth the isolated-versus-
+   full-context comparison this question already proposes running before trusting Check at either
+   setting.
 7. **Can literature-based discovery over a slot-filled hypothesis space close named gap nodes.**
    Swanson's ABC-model papers on undiscovered public knowledge are the founding case for treating an
    unmade connection as itself a discoverable object, exactly what `hte.unknowns.GapNode` formalizes.
    Extends `RESEARCH-QUESTIONS.md` Q20.
+
+   *Evidence added in batch two, supports the design bet:* Ghafarollahi and Buehler (2024, SciAgents)
+   sample paths through a literature-derived knowledge graph as seeds for hypothesis proposal, the
+   closest published system to a `hypothesize` query walking `graph.node`/`graph.edge` toward an
+   engine gap node; Roy and colleagues (2019)'s finding that citation and reference structure predicts
+   prerequisite relations suggests `graph.edge`'s own `cites` kind could double as a gap-relevance
+   signal.
 8. **Does named human sign-off change how a downstream system should weight a claim's detectability and
    tier.** Holstein and Aleven (2022) on human-AI complementarity in classrooms and Birhane and others
    (2023) on human oversight of AI-assisted science both bear on how `docs/PRODUCTION-SCHEMA.md`'s
    review ladder should set the tier a production enters belief fusion at. Extends `RESEARCH-QUESTIONS.
    md` Q19 and Q24.
+
+   *Evidence added in batch two, supports the design bet:* Macnamara and colleagues (2024)'s finding
+   that learners cannot self-assess their own AI-assisted skill decay argues sign-off cannot be
+   self-reported and must come from an external reviewer; Schmidgall and colleagues (2025, Agent
+   Laboratory) find intermediate-stage human feedback improves output quality more than end-only review,
+   supporting teacher review sited at Production rather than only at a finished claim.
 9. **Does spaced retrieval practice interact differently with a machine-graded checkpoint than a
    human-graded one.** Roediger and Karpicke (2006) establish the testing effect; Corbett and Anderson
    (1994) and Piech and others (2015) are the two knowledge-tracing models Research OS's own FSRS-plus-
    IRT/Elo fusion sits between. Extends `RESEARCH-QUESTIONS.md` Q2 and Q33.
+
+   *Evidence added in batch two:* no batch-two paper tests spaced retrieval against a machine-graded
+   checkpoint directly. Stadler, Bannert, and Sailer (2024)'s finding that LLM assistance during inquiry
+   lowers both effort and depth together is tangential support for suspecting a machine-graded
+   checkpoint could mask the same depth loss a human grader would catch, worth carrying into this
+   question's own test design.
 10. **What division of cognitive labor between a student-researcher and the AI holds across the five
     learner states, and does it shift with age.** The AI-for-science literature on human-AI division of
     labor in research (Wang and others 2023; Messeri and Crockett 2024), read against `PLAN.md` §5's
     own claim that the generator role never belongs in a student workspace at any age. Not yet posed in
     `RESEARCH-QUESTIONS.md`; the closest neighbor is Q26 on which frontier nodes attract routing.
+
+    *Evidence added in batch two, supports the design bet:* Schmidgall and colleagues (2025, Agent
+    Laboratory) keep a human in the loop at every pipeline stage by design, the same constraint
+    Research OS's workspace enforces by construction; Binz and Schulz (2023)'s method, probing a model
+    with canonical psychology tasks rather than one benchmark score, is a candidate way to test whether
+    the division of labor actually shifts with a learner's own age or state rather than staying fixed.
 11. **Does the burden of knowledge predict where an engine's gap nodes cluster, and does routing
     students at those gaps produce citable productions.** Jones's work on the burden of knowledge and
     the shrinking of an individual researcher's reachable frontier motivates reading `hte.unknowns.
     GapNode` clustering as a measurable, generational signal rather than a per-run artifact. Extends
     `RESEARCH-QUESTIONS.md` Q20 and Q26.
+
+    *Evidence added in batch two, supports the design bet:* Kitano (2021)'s discovery spectrum, from
+    confirming a known result to formulating a new framework, gives a way to score whether a routed gap
+    node produces a merely confirming production or a genuinely gap-closing one, sharpening what
+    "citable production" should mean for this question.
 12. **Is scientific understanding, as distinct from predictive accuracy, achievable by an AI system, and
     what would count as evidence a K-12 production reached it.** Krenn and others (2022) and de Regt's
     work on scientific understanding both bear directly on whether Production, the highest of Research
     OS's five states, should be graded on correctness alone or on a harder, understanding-specific bar.
     Not yet posed in `RESEARCH-QUESTIONS.md`; a candidate Q50.
+
+    *Evidence added in batch two, supports and complicates the design bet:* Messeri and Crockett
+    (2024) name the illusion of explanatory depth directly, a learner who cannot reconstruct their own
+    claim without the AI has this illusion whatever grade a surface-correctness check assigns, arguing
+    Production needs a harder bar than passing Check; Kitano (2021)'s graded discovery spectrum offers
+    that harder bar as a non-binary scale rather than a single pass or fail; Binz and Schulz (2023)
+    supply a probing method, testing a system or a production against a battery of tasks rather than one
+    score, for telling a surface match from real understanding.

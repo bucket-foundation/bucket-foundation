@@ -27,11 +27,19 @@
  * nearest first (src/lib/research-os/engine-frontier.ts). Empty until an
  * engine hypothesis has been ingested into this branch; the workspace page
  * renders it only when non-empty.
+ *
+ * Phase 1 (bkt-ros, closing stub list item 1): also reads
+ * graph.prereq_ancestor for the target (db.ts's loadAncestorRows) and
+ * passes the rows to computeFrontier, which prunes the walk to the target's
+ * closure when rows exist. An empty result (table not yet rebuilt for this
+ * branch, or a read error) is a normal input: computeFrontier treats it as
+ * no closure table yet and falls back to its original full-graph walk
+ * unchanged.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { computeFrontier } from "@/lib/research-os/frontier";
 import { findFrontierEngineTargets } from "@/lib/research-os/engine-frontier";
-import { configured, loadSubgraph, loadLearnerStates, verifyLearner } from "@/lib/research-os/db";
+import { configured, loadSubgraph, loadLearnerStates, loadAncestorRows, verifyLearner } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -67,7 +75,12 @@ export async function GET(req: NextRequest) {
 
   const states = learnerId ? await loadLearnerStates(learnerId, nodes.map((n) => n.id)) : [];
 
-  const result = computeFrontier(nodes, edges, states, target.id);
+  // Phase 1 item 1: prune to the target's precomputed closure when
+  // graph.prereq_ancestor has rows for it. loadAncestorRows fails open to
+  // [], which computeFrontier treats as "no closure table yet" and falls
+  // back to its original full-graph walk -- never a hard failure here.
+  const ancestorRows = await loadAncestorRows(target.id);
+  const result = computeFrontier(nodes, edges, states, target.id, ancestorRows);
   const engineFrontier = findFrontierEngineTargets(nodes, edges, states);
 
   return NextResponse.json(
