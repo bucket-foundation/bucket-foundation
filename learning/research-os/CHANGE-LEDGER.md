@@ -1614,3 +1614,72 @@ banned-word, filler-adverb, AI-tell, antithesis, and em/en-dash rule lists found
 on any added line, including the two fixed cards. `origin/main` already merged into the
 branch. No file under `src/` or `public/` touched. `npm ci` and `npm run build` both
 clean.
+
+## Iteration 19: plan revision 2
+
+Date 2026-09-10. Branch `docs/ros-plan-revision-2`, worktree
+`.ros-worktrees/plan2`. Read `PLAN-REVISION-1.md` in full,
+`LEARNER-STATE-MODEL.md` (including section 5's batch-three evidence lines),
+`ROUTING.md`, `TEACHER-LAYER.md`, `WORKSPACE.md`, `ENGINE-BRIDGE.md`,
+`INGESTION.md`, `compliance/README.md`, `study/PREREGISTRATION-DRAFT.md`,
+`funding/WAVE-1-TARGETS.md`, `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s
+twelve questions with their batch-two and batch-three evidence, the
+batch-three intake cards for Vaccaro, Almaatouq, and Malone (2024), Bansal
+and colleagues (2021), Buçinca, Malaya, and Gajos (2021), and Alzetta and
+colleagues (2018), `BEADS-PENDING.jsonl`'s status lines for `ros-02` through
+`ros-13` and the batch-three bead, and `gh pr list --state merged --limit
+40` against `main` at `af5b7c9ea`. Ran `npm run test:research-os` (213
+passed, 0 failed, 17 files) and `tools/hypothesis-engine`'s `make test`
+under both `HTE_LLM_MODE` states (1018 passed, 18 deselected, 0 failed)
+live in this pass rather than relying on the counts named in prior bead
+entries, which predate later merges.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-2.md`: a PR-by-PR account of the
+  nineteen PRs shipped since revision 1 (#20 through #40) with live test
+  counts; four evidence-driven revisions from batch three, each citing its
+  paper file and labeled STABLE or STRONG LEAN, human-AI complementarity
+  under Vaccaro, Bansal, and Buçinca (with a concrete Check-tool commit-step
+  design response and an H1 measurement addition), progression
+  unidimensionality under Alonzo and Steedle (a `placementMethod` evidence
+  field), prerequisite annotation agreement under Alzetta (a confidence-
+  ceiling and same-section-conflation-warning policy for `ros-13`), and the
+  `ros-08` power finding forcing a feasibility-pilot qualifier onto every
+  Phase 1 description; a seven-item dependency-ordered Phase 1 scope with
+  bead ids; the five founder decisions restated verbatim with new
+  information and a recommended default each; six named operational
+  blockers with an action and an owner each; and an updated twelve-question
+  Phase-1-versus-district table correcting question 7's own blocker from
+  engine wiring (closed by `ros-12`) to the live-Supabase-apply gap.
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "Revision 2" pointer paragraph
+  alongside the existing "Revision 1" section. No existing text changed or
+  removed.
+- `learning/research-os/PLAN-REVISION-1.md`: appended a pointer paragraph
+  naming `PLAN-REVISION-2.md`. No existing text changed or removed.
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+
+### Removed
+
+None.
+
+### Verified
+
+`agf-lint-voice check` on `PLAN-REVISION-2.md`: 0 violations after fixing
+five heading clauses, six antithesis constructions, two banned words
+(`actually`, `genuine`), and one meta-commentary phrase found on the first
+pass. Every PR number and merge state in section 1's table cross-checked
+against `gh pr list --state merged --limit 40`, run fresh against `main` at
+`af5b7c9ea`. The `ros-11` "no shipped status line" claim confirmed by `grep
+-n "ros-11" CHANGE-LEDGER.md _intake/research-os-k12/CHANGELOG.md`, zero
+hits in either file. The `OPENAI_API_KEY` claim in section 5 confirmed by a
+direct read of `src/lib/research-os/llm.ts`: the real provider seam is
+`LLM_BASE_URL`/`LLM_API_KEY` plus an Anthropic fallback, no
+`OPENAI_API_KEY` read anywhere in `src/lib/research-os/` or
+`src/app/api/research-os/`. No file under `src/` or `public/` touched, so
+no `npm run build` gate applies to this pass's own changes; the test counts
+above were run to report Section 1's own numbers, a verification step
+independent of any test change this pass makes.

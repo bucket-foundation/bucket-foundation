@@ -1,5 +1,37 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, plan revision 2
+
+Branch `docs/ros-plan-revision-2`, worktree `.ros-worktrees/plan2`. Read
+`PLAN-REVISION-1.md`, `LEARNER-STATE-MODEL.md` (section 5's batch-three
+evidence lines), `ROUTING.md`, `TEACHER-LAYER.md`, `WORKSPACE.md`,
+`ENGINE-BRIDGE.md`, `INGESTION.md`, `compliance/README.md`,
+`study/PREREGISTRATION-DRAFT.md`'s feasibility-pilot finding,
+`funding/WAVE-1-TARGETS.md`, `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s
+twelve questions with batch-two and batch-three evidence, the four
+batch-three cards named in the founder's own brief (Vaccaro, Almaatouq, and
+Malone 2024; Bansal and colleagues 2021; Buçinca, Malaya, and Gajos 2021;
+Alzetta and colleagues 2018), `BEADS-PENDING.jsonl`'s status lines for
+`ros-02` through `ros-13` plus the batch-three bead, and `gh pr list
+--state merged --limit 40` against `main` at `af5b7c9ea`. Wrote
+`learning/research-os/PLAN-REVISION-2.md`: a PR-by-PR account of the
+nineteen PRs shipped since revision 1 (#20 through #40), with app and
+engine test counts run live in this pass (`npm run test:research-os`, 213
+passed, 0 failed; `make test` in `tools/hypothesis-engine`, 1018 passed, 18
+deselected, 0 failed under both `HTE_LLM_MODE` states); four evidence-driven
+revisions from batch three, each labeled STABLE or STRONG LEAN; a seven-item
+Phase 1 scope, ordered by dependency, with a bead id on each remaining item;
+the five founder decisions restated verbatim from revision 1 with new
+information and a recommended default on each; six operational blockers
+with an action and an owner each, including a search for an "OpenAI key
+rotation note" that turned up no such artifact anywhere in this repository,
+recorded as a confirmed gap rather than assumed; and an updated
+Phase-1-versus-district table, correcting question 7's own blocker:
+`ros-12`'s engine wiring already shipped, so the live-Supabase-apply gap is
+what remains. Appended a pointer paragraph to `PLAN.md` under a new
+"Revision 2" heading and to `PLAN-REVISION-1.md`; no existing text in either
+file was changed or removed.
+
 ## 2026-09-10, ros-04 workspace hardening (PR TBD)
 
 `feat/ros-04-workspace-hardening`, worktree `.ros-worktrees/ros04`, branched from
