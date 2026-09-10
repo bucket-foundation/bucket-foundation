@@ -2,7 +2,36 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
-## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
+## Iteration 11: funding wave 1
+
+Date 2026-09-10. Bead `ros-09`, branch `docs/ros-09-funding-wave-1`, worktree `.ros-worktrees/ros09`. Four funder-facing documents under a new `learning/research-os/funding/` directory, each verified against a funder's own live site by direct WebFetch on 2026-09-10 rather than carried forward unchecked from the 2026-09-09 intake pass.
+
+### Added
+
+- `learning/research-os/funding/FAST-FORWARD-2026.md`: confirms the 2026-09-18 accelerator deadline against ffwd.org's own banner (which supersedes a stale September 7 date elsewhere on the same page), confirms the $25K+ funding figure and three-month program length, states the founder-only eligibility gap (no fiscal sponsor and no state incorporation exist yet) as the single blocking action, and drafts logistics answers plus five narrative blocks against likely application prompts, each sourced to an existing file.
+- `learning/research-os/funding/WAVE-1-TARGETS.md`: verifies all eight section K funder candidates by direct fetch; four clear as wave-1 targets (Tools Competition, Digital Public Goods Alliance registration, Renaissance Philanthropy's AI for Education fund, NLnet NGI Zero), four are recorded as checked and excluded with sources (Chan Zuckerberg Initiative, Schmidt Sciences, Emerson Collective, Institute of Education Sciences), and one correction to the prior pass is logged (NewSchools Venture Fund's 2026 cycle is confirmed closed, correcting the "open portal" read from the 2026-09-09 pass).
+- `learning/research-os/funding/FISCAL-SPONSOR-DECISION.md`: corrects the nonprofit-application packet's 2026-05-03 top pick, Hack Club Bank, confirmed ineligible on this pass (its own eligibility page requires a project led by teenagers 13 to 18); recommends Players Philanthropy Fund (6% flat fee, 3-to-5-business-day initial response, both confirmed on this pass) over Social Good Fund (8% fee at Bucket's budget size) as the primary contact, run in parallel rather than sequentially.
+- `learning/research-os/funding/BUDGET-PHASE-1.md`: a twelve-month Phase 1 budget (pilot school, 500 learners) built by annualizing the system review's section 6 Phase 1 monthly cost ranges across a three-period build, pilot-semester, evaluation breakdown; every cell shows its own month-count-times-rate arithmetic so the total is checkable against the source table directly. Low, expected, and high twelve-month totals: $4,425, $19,125, $83,610.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+- `learning/research-os/CHANGE-LEDGER.md`, this file: this iteration's own entry.
+- `BEADS-PENDING.jsonl`: appended a `ros-09` status line recording this iteration's outcome.
+
+### Removed
+
+None.
+
+### Verified
+
+`agf-lint-voice check` on all four new files under `learning/research-os/funding/`: 0 violations after one auto-fix pass (`agf-lint-voice fix`, cleared banned words, filler adverbs, and one meta-commentary hit) and a manual rewrite pass on every antithesis-pattern flag (antithesis is never auto-fixed) and every appended-clause heading. Every dollar figure, deadline, and eligibility claim across the four files carries its source file or fetched URL inline; no figure is asserted without one. No pilot, learner, user, or revenue is claimed as existing; `BUDGET-PHASE-1.md` section 4 states this explicitly. No PII beyond the founder's already-public name and email (`gianyrox@gmail.com`, already the public contact on `nonprofit-application/README.md`); no bank or wallet detail appears in any of the four files.
+
+### Iteration 11 addendum: PR #26 review corrections
+
+Date 2026-09-10, same iteration, review pass before merge. Three citation-accuracy errors found and fixed. `FAST-FORWARD-2026.md` section 2 cited gap G-5 for a "no sponsor contacted" fact; that fact lives in the memo's own status header, and G-5 covers the registered-agent address instead, so the citation is corrected to gaps G-1 through G-4 plus the status line. The same section's item 1 claimed a "same-week turnaround" for New York filing; `00-BASE-INFO-MEMO.md` section 4 states the $75 cost alone, so the turnaround claim is removed. `FISCAL-SPONSOR-DECISION.md` twice instructed fixing HCB out of `00-COVER-LETTER.md`; the cover letter never names HCB, so the fix now points at `00-BASE-INFO-MEMO.md` section 3.2, the file that ranks it. WebFetch re-verified live on 2026-09-10: ffwd.org's deadline and eligibility text, tools-competition.org's Phase I date, ppf.org's fee, and HCB's own eligibility page; all four held as the packet states them.
+
+## Iteration 6: Phase 1 stub closures
 
 Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
 listed stubs, scoped to the review's own Phase 1 boundary (section 8). Rebased twice
