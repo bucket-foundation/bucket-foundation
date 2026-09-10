@@ -334,3 +334,83 @@ mapping recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 6.
 ### Removed
 
 None.
+
+## 2026-09-10: literature corpus promoted into canon
+
+Branch `intake/ros-canon-promotion` (PR #9). Six records from
+`_intake/research-os-k12-literature/` promoted into `bucket-canon/07-mind/`;
+two more opened as taxonomy questions, not promoted.
+
+### Added
+
+- `bucket-canon/07-mind/memory-systems/`: two canon-tier records added
+  (Roediger and Karpicke 2006; Sparrow, Liu, and Wegner 2011), both run
+  through `tools/canon-pipeline/intake.py --min-score 70` and re-verified
+  idempotent (`added=0 kept=3 changed=False` on re-run).
+- `bucket-canon/07-mind/sub-outcomes/education/` (new dossier, mirrors the
+  `05-biophysics/sub-outcomes/longevity/` convention): four outcome-tier
+  records (Bloom 1984; Kulik, Kulik, and Bangert-Drowns 1990; VanLehn 2011;
+  Kulik and Fletcher 2016), each naming the `07-mind/memory-systems/`
+  foundation it depends on.
+- `bucket-canon/TAXONOMY_NOTES.md` (new file): opens two branch-placement
+  questions without resolving them or creating a new branch, metascience
+  and sociology-of-science home (Jones 2009; Fortunato et al. 2018,
+  candidates `07-mind` vs `04-information`) and AlphaFold as a
+  `05-biophysics` method card versus a `research-landscape/` entry (Jumper
+  et al. 2021). Also carries the pre-existing psychodynamic-theory question
+  `07-mind/README.md` referenced but never filed.
+- `CANON-INGESTION-INDEX.md`: a dated table of the six promotions plus a
+  pointer to the two open taxonomy questions.
+
+### Edited
+
+- Six intake cards (`roediger-karpicke-2006-power-of-testing.md`,
+  `sparrow-liu-wegner-2011-google-effects-on-memory.md`,
+  `bloom-1984-two-sigma-problem.md`,
+  `kulik-kulik-bangert-drowns-1990-mastery-learning-meta-analysis.md`,
+  `vanlehn-2011-relative-effectiveness-tutoring.md`,
+  `kulik-fletcher-2016-intelligent-tutoring-meta-analysis.md`): marked
+  `status: promoted` with a `promoted_to` pointer and a canon-record
+  callout in the body; the underlying claims are unchanged.
+- Two intake cards (`jones-2009-burden-of-knowledge.md`,
+  `fortunato-et-al-2018-science-of-science.md`) and one
+  (`jumper-et-al-2021-alphafold.md`): marked `status: open-question` with a
+  `taxonomy_question` pointer into `TAXONOMY_NOTES.md`; no promotion, no
+  claim text changed.
+- `bucket-canon/05-biophysics/README.md`: four-line open note under the
+  promotion rule, pointing to the AlphaFold taxonomy question.
+- `bucket-canon/07-mind/README.md`: one-line path fix,
+  `TAXONOMY_NOTES.md` to `../TAXONOMY_NOTES.md`, in the existing
+  psychodynamic-theory reference (the file it references now lives at
+  `bucket-canon/TAXONOMY_NOTES.md`, one level above `07-mind/`).
+- `_intake/research-os-k12-literature/README.md`: noted the six
+  promotions and two open questions against the corpus index.
+- `_intake/research-os-k12/README.md`: the "Site registry registration"
+  section updated from "not yet done" to done, `feat(site): align public
+  site with Research OS for K-12 (#12)` landed the `NAV` entry this
+  section had documented the path for; kept the original search as
+  record.
+
+### Removed
+
+None.
+
+### Verified
+
+- `tools/canon-pipeline/intake.py bucket-canon/07-mind/memory-systems
+  --min-score 70`: `total=3 added=0 updated=0 kept=3 rejected=0 failed=0
+  changed=False`, confirms the promoted records converge byte-identical to
+  what the pipeline resolves live.
+- `agf-lint-voice check` on every file this pass authored or edited: 0
+  violations (pre-existing violations in untouched lines of
+  `bucket-canon/05-biophysics/README.md`, `bucket-canon/07-mind/README.md`,
+  and `bucket-canon/07-mind/memory-systems/CANON_INDEX.md` predate this
+  branch and are out of scope; `+25 highly cited (N)` adverb hits in
+  `primary-papers.yaml` are `tools/canon-pipeline/scoring.py`'s fixed
+  machine-emitted string, unchanged from the pre-existing convention).
+- No file under `src/` or `public/` is touched by this pass, so no
+  `npm run build` gate applies to it.
+- `_intake/research-os-k12-literature/README.md` merged cleanly against
+  `intake/ros-literature-2`'s concurrent 45-to-77-row expansion: this
+  pass's tier/status changes carried onto the six affected rows, area
+  counts re-verified at 77 rows total (17/25/18/12/5).

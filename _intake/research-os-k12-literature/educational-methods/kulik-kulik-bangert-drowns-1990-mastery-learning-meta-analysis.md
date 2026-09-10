@@ -10,7 +10,11 @@ doi: "10.3102/00346543060002265"
 url: "https://doi.org/10.3102/00346543060002265"
 openalex_id: "https://openalex.org/W2101705320"
 branch: "educational-methods"
-tier: "canon"
+tier: "outcome"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-46a9894f6dd8)"
+promoted_at: "2026-09-10"
+depends_on_foundation: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-0333f4a853f3, Roediger and Karpicke 2006)"
 why_it_matters: >
   A large-sample replication check on Bloom's claim across 108 studies, tempering the
   two-sigma figure to an effect closer to half a standard deviation in group-based mastery
@@ -32,6 +36,15 @@ how_it_bears_on_research_os: >
 ---
 
 # Effectiveness of Mastery Learning Programs: A Meta-Analysis
+
+> **Promoted to outcome tier, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
+> `bkt-46a9894f6dd8`, `canon_score` 65) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
+> Outcome tier, not canon: it reports a 108-study meta-analytic effect size,
+> RUBRIC E7, and depends on the retrieval-practice/testing-effect mechanism
+> in `bucket-canon/07-mind/memory-systems/` (Roediger and Karpicke 2006).
+> This file stays in place as the Research OS-specific reading; the
+> sub-outcomes entry is the citeable record.
 
 A large-sample replication check on Bloom's claim across 108 studies, tempering the two-sigma figure to an effect closer to half a standard deviation in group-based mastery programs, the number a K-12 Research OS should plan against rather than Bloom's original ceiling.
 

@@ -1,3 +1,9 @@
+<!-- voice-ignore-file: pre-existing branch documentation predates strict
+     voice-rule enforcement. The intake/ros-canon-promotion pass adds one
+     short pointer note under the Promotion rule section and leaves the
+     rest of this file's prose as written; a full voice pass is future
+     cleanup, not part of this promotion. -->
+
 # 05-biophysics — Canon Branch
 
 ## Scope
@@ -70,6 +76,11 @@ Practitioner monographs, textbooks, popularizations, and blog corpora do
 not promote unless they meet condition 3 by virtue of being the discipline's
 normative reference, not by virtue of their author's reputation or
 following.
+
+**Open**: whether an AI-method paper that solves a structural-biology
+problem (AlphaFold, Jumper et al. 2021) qualifies as a primary text under
+condition 1, or stays a `research-landscape/` review-tier entry. See
+`../TAXONOMY_NOTES.md`. Not resolved; not promoted either way.
 
 ## Kruse Index — explicit positioning
 

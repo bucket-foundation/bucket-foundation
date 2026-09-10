@@ -11,6 +11,9 @@ url: "https://doi.org/10.1126/science.1207745"
 openalex_id: "https://openalex.org/W1964596829"
 branch: "hci-human-ai-collaboration"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-2f40cfaacd63)"
+promoted_at: "2026-09-10"
 why_it_matters: >
   The empirical demonstration that easy external access to information changes what people
   bother to remember, directly relevant to whether a constrained Locate and Quote tool
@@ -31,6 +34,12 @@ how_it_bears_on_research_os: >
 ---
 
 # Google Effects on Memory: Cognitive Consequences of Having Information at Our Fingertips
+
+> **Promoted to canon, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/memory-systems/primary-papers.yaml` (id `bkt-2f40cfaacd63`,
+> `canon_score` 85) and `bucket-canon/07-mind/memory-systems/CANON_INDEX.md`. This file stays
+> in place as the Research OS-specific reading of the paper; the canon entry is the citeable
+> record.
 
 The empirical demonstration that easy external access to information changes what people bother to remember, directly relevant to whether a constrained Locate and Quote tool shifts what a student retains versus what they route back to the tool for.
 
