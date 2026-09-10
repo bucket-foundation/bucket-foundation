@@ -100,7 +100,7 @@ export default function ResearchOsPage() {
         </div>
         <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
           Each concept in the graph carries one of five states for each learner.
-          The states reuse the Academy's mastery signals and add a reviewed
+          The states reuse the Academy&apos;s mastery signals and add a reviewed
           production at the top. A teacher can see, question, and override any
           state, and the override is recorded.
         </p>
@@ -140,10 +140,10 @@ export default function ResearchOsPage() {
         </div>
         <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
           A learner or a teacher picks a frontier: a concept at the edge of a
-          branch, or a live hypothesis from Bucket's hypothesis engine. The
+          branch, or a live hypothesis from Bucket&apos;s hypothesis engine. The
           router walks the prerequisite graph backward to what the learner
           already understands, then forward again to the target. Supports fade
-          as the learner's state rises.
+          as the learner&apos;s state rises.
         </p>
 
         <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">

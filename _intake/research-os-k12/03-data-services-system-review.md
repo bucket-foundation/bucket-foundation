@@ -1,7 +1,5 @@
 # Research OS for K-12: Vendor and Data-Source Map
 
-Same content as `03-data-services-system-review.md`, folded in from the separate system-review pass on 2026-09-10; see `CHANGELOG.md` in this folder.
-
 Bucket Foundation, bucket.foundation. Verified 2026-09-09 against each vendor's own pages unless a row says "unverified". Product under evaluation: one knowledge graph in tiers across all subjects from first facts to frontier laws; frontier-backward routing to what a learner already knows; five learner states per node (Access, Awareness, Understanding, Internalization, Production); student workspace with AI limited to find, quote, check, organize; teacher class view; student productions accepted into the graph earn citation payments over x402 on Base; free to any learner worldwide. Stack: Next.js on Vercel, Supabase, Dynamic auth, x402 on Base, feed402, Story Protocol, MIT-licensed code.
 
 Recommendation codes used in every table:
