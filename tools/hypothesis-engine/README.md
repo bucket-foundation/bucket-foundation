@@ -425,6 +425,18 @@ the same way.
 | `education-atlas` | `hte.corpus.education_atlas.load` | 125 severity-flagged problem rows, `discovery_year == year` | k-fold |
 | `production` | `hte.corpus.production.load` | 8 accepted claims, `discovery_year` = review-acceptance date | discovery-date |
 
+`education-atlas` reads a live clone of the sibling `bucket-foundation/
+education-atlas` repo (its `data/processed/sample/` ships Parquet, not
+committed into this repo), resolved in order: `$EDUCATION_ATLAS_DIR`
+(the sibling repo's own root) or `$EDUCATION_ATLAS_SAMPLE_DIR` (the
+sample directory directly, an explicit `sample_dir` argument's own
+finer-grained sibling), then `../education-atlas` relative to this
+repo's own root, then `~/agfarms/education-atlas`. A checkout not found
+at any of those raises `FileNotFoundError` from `education_atlas.load()`
+naming both env vars; `tests/test_corpus_education_atlas.py` and `tests/
+test_runner.py`'s own education-atlas end-to-end tests skip instead of
+failing when none exists.
+
 "Holdout mode picked" is `hte.calibrate.choose_holdout_mode`'s own read
 of each corpus's own ground truth (`bkt-hte-calibration-redesign`): every
 corpus above except `production` sets `discovery_year == year` for every
