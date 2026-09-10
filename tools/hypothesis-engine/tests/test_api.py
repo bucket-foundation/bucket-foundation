@@ -232,6 +232,18 @@ def test_bad_evidence_kind_raises_request_validation_error(monkeypatch):
         hypothesize({"productions": record})
 
 
+def test_bad_citation_type_raises_request_validation_error(monkeypatch):
+    # `FINDING-2026-09-10-401`: `mcp_tool.TOOL_DEFINITION`'s own schema fixes
+    # a citation's `type` to `doi`/`url`/`feed402_envelope`; this record
+    # names a fourth value no citation in this package's own shape ever
+    # produces.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    record = copy.deepcopy(_fixture_records()[0])
+    record["claims"][0]["evidence"][0]["citations"][0]["type"] = "not-a-real-citation-type"
+    with pytest.raises(RequestValidationError, match="not-a-real-citation-type"):
+        hypothesize({"productions": record})
+
+
 def test_bad_status_min_raises_request_validation_error(monkeypatch):
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
     with pytest.raises(RequestValidationError):
