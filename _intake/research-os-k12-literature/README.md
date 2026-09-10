@@ -48,6 +48,11 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [Deep Knowledge Tracing](educational-methods/piech-2015-deep-knowledge-tracing.md) | Educational methods | 2015 | canon | verified |
 | [The Power of Testing Memory: Basic Research and Implications for Educational Practice](educational-methods/roediger-karpicke-2006-power-of-testing.md) | Educational methods | 2006 | canon | promoted |
 | [Learning Trajectory Based Instruction](educational-methods/sztajn-et-al-2012-learning-trajectories.md) | Educational methods | 2012 | canon | verified |
+| [The ICAP Framework: Linking Cognitive Engagement to Active Learning Outcomes](educational-methods/chi-wylie-2014-icap-framework.md) | Educational methods | 2014 | canon | verified |
+| [Origin and Description of the SOLO Taxonomy](educational-methods/biggs-collis-1982-solo-taxonomy.md) | Educational methods | 1982 | canon | verified |
+| [A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives](educational-methods/anderson-krathwohl-2001-taxonomy-revision.md) | Educational methods | 2001 | canon | verified |
+| [Teaching for Understanding](educational-methods/perkins-1993-teaching-for-understanding.md) | Educational methods | 1993 | canon | verified |
+| [Teaching for Understanding: Linking Research with Practice](educational-methods/wiske-1998-teaching-for-understanding.md) | Educational methods | 1998 | canon | verified |
 | [Ironies of automation](hci-human-ai-collaboration/bainbridge-1983-ironies-of-automation.md) | HCI and human-AI collaboration | 1983 | canon | verified |
 | [Generative AI without guardrails can harm learning: Evidence from high school mathematics](hci-human-ai-collaboration/bastani-et-al-2025-generative-ai-can-harm-learning.md) | HCI and human-AI collaboration | 2025 | canon | verified |
 | [From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria](hci-human-ai-collaboration/de-simone-2025-chalkboards-to-chatbots-nigeria.md) | HCI and human-AI collaboration | 2025 | candidate | verified |
@@ -109,9 +114,26 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [Prerequisite Relation Learning for Concepts in MOOCs](prerequisite-knowledge-graphs/pan-et-al-2017-prerequisite-relation-learning-moocs.md) | Prerequisite and knowledge-graph learning | 2017 | canon | verified |
 | [Inferring Concept Prerequisite Relations from Online Educational Resources](prerequisite-knowledge-graphs/roy-et-al-2019-inferring-concept-prerequisite-relations.md) | Prerequisite and knowledge-graph learning | 2019 | canon | verified |
 
-77 papers: 17 educational methods, 25 HCI and human-AI collaboration, 18 scientific discovery and
+82 papers: 22 educational methods, 25 HCI and human-AI collaboration, 18 scientific discovery and
 metascience, 12 AI and researchers, 5 prerequisite and knowledge-graph learning. Every DOI listed
-above was checked at intake time; none are placeholders.
+above was checked at intake time; none are placeholders. Three of the 22 educational-methods
+records (Anderson and Krathwohl 2001, Perkins 1993, Wiske 1998) are a book and a magazine article
+with no Crossref DOI; each carries a `doi: null` frontmatter field and an `isbn` (or, for the 1993
+magazine article, an ERIC id and ISSN) instead, verified against Open Library, OpenAlex, and ERIC,
+with each file's own "Verification note" section naming the exact records checked. A fourth,
+Biggs and Collis 1982, does carry a Crossref DOI (its SOLO taxonomy chapter) cross-checked against
+the same book's ISBN, confirming both resolve to the same 1982 Academic Press volume.
+
+## Framework mapping papers, added 2026-09-10
+
+`learning/research-os/LEARNER-STATE-MODEL.md` (bead `ros-02`) maps the five Research OS learner
+states against ICAP, SOLO, Bloom revised, and Perkins's understanding performances, none of which
+had an intake card before this pass. Five files added: `chi-wylie-2014-icap-framework.md`,
+`biggs-collis-1982-solo-taxonomy.md`, `anderson-krathwohl-2001-taxonomy-revision.md`,
+`perkins-1993-teaching-for-understanding.md`, and `wiske-1998-teaching-for-understanding.md`, all
+under `educational-methods/`. Every citation was verified by DOI or ISBN before the card was
+written; `biggs-collis-1982-solo-taxonomy.md` cross-checks its chapter DOI against the book's own
+ISBN, confirming both resolve to the same 1982 Academic Press volume.
 
 ## Canon-intake promotions and open questions, 2026-09-10
 

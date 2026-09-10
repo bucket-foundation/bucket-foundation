@@ -25,15 +25,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
-import { buildProductionOutboxRow } from "@/lib/research-os/engine-bridge";
-import {
-  configured,
-  graphService,
-  verifyLearner,
-  recordEvidence,
-  findNodeById,
-  writeProductionOutbox,
-} from "@/lib/research-os/db";
+import { configured, graphService, verifyLearner, recordEvidence, emitProductionOutboxIfAccepted } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -125,29 +117,21 @@ export async function POST(req: NextRequest) {
 
   // Engine bridge task item 3: an accepted production is the engine's own
   // evidence item. Unreachable today (the status validation above never lets
-  // a learner set "accepted"), wired for Phase 1's teacher-accept path. Best
-  // effort: a failed emit never fails the production save itself, the same
-  // way academy's own mirror jobs treat a sync step as best effort.
-  if (data?.status === "accepted" && data?.target_node_id) {
-    try {
-      const targetNode = await findNodeById(data.target_node_id as string);
-      const row = buildProductionOutboxRow(
-        {
-          id: data.id as string,
-          target_node_id: data.target_node_id as string,
-          claim: (data.claim as string | null) ?? null,
-          evidence: (data.evidence as unknown[]) ?? [],
-          sources: (data.sources as unknown[]) ?? [],
-          status: data.status as string,
-          created_at: data.created_at as string,
-          updated_at: data.updated_at as string | undefined,
-        },
-        targetNode ? { slug: targetNode.slug, title: targetNode.title, tier: targetNode.tier, branch: targetNode.branch } : null,
-      );
-      await writeProductionOutbox(row);
-    } catch {
-      // best effort, see comment above
-    }
+  // a learner set "accepted"), wired for Phase 1's teacher-accept path
+  // (bkt-ros ros-06, /api/research-os/review's POST), which shares this
+  // exact emit function rather than duplicating it. See db.ts's
+  // emitProductionOutboxIfAccepted for the best-effort posture.
+  if (data) {
+    await emitProductionOutboxIfAccepted({
+      id: data.id as string,
+      target_node_id: data.target_node_id as string,
+      claim: (data.claim as string | null) ?? null,
+      evidence: (data.evidence as unknown[]) ?? [],
+      sources: (data.sources as unknown[]) ?? [],
+      status: data.status as string,
+      created_at: data.created_at as string,
+      updated_at: data.updated_at as string | undefined,
+    });
   }
 
   return NextResponse.json({ production: data }, { headers: { "cache-control": "no-store" } });

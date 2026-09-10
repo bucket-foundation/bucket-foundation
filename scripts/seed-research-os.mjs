@@ -157,6 +157,10 @@ async function write(seed) {
     kind: e.kind,
     weight: e.weight ?? null,
     provenance: e.provenance ?? {},
+    // bkt-ros ros-03 item 1's backfill rule: every hand-authored seed edge
+    // is full confidence, source 'seed'.
+    confidence: e.confidence ?? 1.0,
+    confidence_source: e.confidence_source ?? "seed",
   }));
   const { error: edgeErr } = await svc.from("edges").insert(edgeRows);
   if (edgeErr) throw new Error(`edge insert failed: ${edgeErr.message}`);

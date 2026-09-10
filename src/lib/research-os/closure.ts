@@ -15,45 +15,62 @@
  *     probe is due.
  *
  * Mirrors RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3's
- * `graph.prereq_ancestor (node_id, ancestor_id, min_hops)` shape exactly, so
- * rows computed here upsert directly into that table with no reshaping.
+ * `graph.prereq_ancestor (node_id, ancestor_id, min_hops)` shape, extended
+ * (bkt-ros ros-03 item 1) with a `min_confidence` column: the minimum
+ * single-edge confidence along the same shortest-hop path `min_hops`
+ * already walks, a cheap summary statistic. frontier.ts's computeFrontier
+ * runs the heavier confidence-optimal, max-product search at request time,
+ * over live graph.edges, when a learner routes; that walk is the source of
+ * routing confidence. The closure table here stays a fast pruning input
+ * (see frontier.ts's `ancestorRows` parameter).
  */
 import type { GraphEdge, GraphNode } from "./types";
+import { edgeConfidence } from "./types";
 
 export interface PrereqAncestorRow {
   nodeId: string;
   ancestorId: string;
   minHops: number;
+  minConfidence: number;
+}
+
+export interface AncestorInfo {
+  hops: number;
+  minConfidence: number;
 }
 
 /**
  * Every ancestor of `targetId` reachable backward over `prerequisite` edges,
- * with the minimum hop count to each. Unconditional: does not stop at any
+ * with the minimum hop count to each and the minimum single-edge confidence
+ * along that same shortest-hop path. Unconditional: does not stop at any
  * mastery boundary (that is frontier.ts's job) -- this is the full
  * graph-structural closure, exactly what a `graph.prereq_ancestor` row set
  * for one node represents. `targetId` itself is never included.
  */
-export function ancestorsOf(targetId: string, edges: GraphEdge[]): Map<string, number> {
-  const backward = new Map<string, string[]>();
+export function ancestorsOf(targetId: string, edges: GraphEdge[]): Map<string, AncestorInfo> {
+  const backward = new Map<string, GraphEdge[]>();
   for (const e of edges) {
     if (e.kind !== "prerequisite") continue;
     if (!backward.has(e.toId)) backward.set(e.toId, []);
-    backward.get(e.toId)!.push(e.fromId);
+    backward.get(e.toId)!.push(e);
   }
 
-  const hops = new Map<string, number>();
+  const info = new Map<string, AncestorInfo>();
   const seen = new Set<string>([targetId]);
-  const queue: Array<[string, number]> = [[targetId, 0]];
+  const queue: string[] = [targetId];
   while (queue.length) {
-    const [cur, h] = queue.shift()!;
-    for (const prev of backward.get(cur) ?? []) {
+    const cur = queue.shift()!;
+    const curHops = cur === targetId ? 0 : info.get(cur)!.hops;
+    const curConfidence = cur === targetId ? 1 : info.get(cur)!.minConfidence;
+    for (const e of backward.get(cur) ?? []) {
+      const prev = e.fromId;
       if (seen.has(prev)) continue;
       seen.add(prev);
-      hops.set(prev, h + 1);
-      queue.push([prev, h + 1]);
+      info.set(prev, { hops: curHops + 1, minConfidence: Math.min(curConfidence, edgeConfidence(e)) });
+      queue.push(prev);
     }
   }
-  return hops;
+  return info;
 }
 
 /**
@@ -71,8 +88,8 @@ export function computeAncestorClosure(nodes: GraphNode[], edges: GraphEdge[]): 
     // tsconfig has no explicit `target` (TS defaults below ES2015), and
     // iterating a Map/Set with `for...of` or a spread needs
     // --downlevelIteration or an ES2015+ target (TS2802).
-    ancestorsOf(n.id, edges).forEach((minHops, ancestorId) => {
-      rows.push({ nodeId: n.id, ancestorId, minHops });
+    ancestorsOf(n.id, edges).forEach((info, ancestorId) => {
+      rows.push({ nodeId: n.id, ancestorId, minHops: info.hops, minConfidence: info.minConfidence });
     });
   }
   return rows;

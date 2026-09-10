@@ -2,9 +2,103 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
-## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
+## ros-06: teacher class view and the Production accept path
 
-Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
+Date 2026-09-10. Branch `feat/ros-06-teacher-class-view`, `learning/research-os/PLAN-REVISION-1.md` section 3 item 5. Concurrent with a frontier/closure-edges pass and an engine-side pass; this work touched neither `src/lib/research-os/frontier.ts`, `closure.ts`, the graph-edges migration, `scripts/research-os/ingest/`, nor `src/lib/research-os/engine*`/`tools/hypothesis-engine`.
+
+### Added
+
+- `supabase/migrations/20260910030000_research_os_classes.sql`: `graph.classes`, `graph.class_members`, RLS on both, plus `graph.productions.notes` (jsonb, append-only).
+- `src/lib/research-os/class-view.ts`: `seedPathOrder`, `buildClassGrid`, `findBlockedLearners`, `findReadyForHarderTarget`, pure functions over plain graph arrays.
+- `src/app/api/research-os/class/route.ts` and `src/app/research-os/class/page.tsx`: the class view, `GET /api/research-os/class`, server-side data loading and computation, reviewer-gated, scoped to the caller's own classes.
+- `scripts/test-research-os-teacher-class.ts`: 20 `node:test` cases (fixture class on the real seed path, blocked/ready computations, the reviewer gate, the accept path's evidence shape against the real `buildProductionOutboxRow`, a static RLS-policy check on the new migration). Wired into `npm run test:research-os`.
+- `learning/research-os/TEACHER-LAYER.md`: the data model, the two-layer gate (RLS plus a server check), the accept path's approve/return semantics, and what Phase 1 roster sync (OneRoster/Clever/ClassLink) replaces.
+
+### Edited
+
+- `src/lib/research-os/reviewer.ts`: split `isReviewerEmail` out of `verifyReviewer` for unit testing with no network call.
+- `src/lib/research-os/stages.ts`: added `onProductionReview` (approve) and `onProductionReturned` (return); added `fromStage`, `toStage`, `reviewId` to `EvidenceEvent`; added `"production_returned"` to `EvidenceKind`.
+- `src/lib/research-os/db.ts`: added `loadClassesForReviewer`, `loadClassMembers`, `loadLearnerStatesForMany`, and `emitProductionOutboxIfAccepted` (extracted from `/api/research-os/production`'s own inline outbox block, now shared).
+- `src/app/api/research-os/production/route.ts`: its outbox-emission block replaced with a call to the new shared `emitProductionOutboxIfAccepted`; original text preserved in `_intake/research-os-k12/DELETIONS.md`.
+- `src/app/api/research-os/review/route.ts`: the production decision branch now sets a return's status to `"draft"` (was `"returned"`), appends a teacher note to the production's own `notes` column, and calls `recordEvidence` on both approve and return (a mid-review fix, see below); header comment updated to match, original text in `DELETIONS.md`.
+- `src/app/research-os/review/page.tsx`: a breadcrumb link to `/research-os/class`.
+- `package.json`: `test:research-os` now also runs `scripts/test-research-os-teacher-class.ts`.
+
+**Mid-review fix.** `ros-02`'s evidence-schema pass (`docs/ros-02-learner-state-model`, `src/lib/research-os/EVIDENCE-SCHEMA.md`) found that a returned Production left `graph.learner_node_state.stage` at `"production"` with no evidence event recording the correction, since only the approve branch called `recordEvidence`. `onProductionReturned` closes this per `EVIDENCE-SCHEMA.md`'s own "corrective event" section: `stage` stays at `"production"` (the high-water-mark rule every transition function already enforces never runs backward), and a `"production_returned"` evidence event, `fromStage`/`toStage` both `"production"`, records the correction instead.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (114/114 pass), `next lint` on every touched file, `agf-lint-voice-src check` on every touched source file, `agf-lint-voice check` on `learning/research-os/TEACHER-LAYER.md`: all clean.
+
+## Iteration 13
+
+PR #28 review pass. Date 2026-09-10. Review pass on PR #28 (`feat/ros-06-teacher-class-view`), worktree
+`review/pr28`. Full account in `_intake/research-os-k12/CHANGELOG.md`,
+"2026-09-10, PR #28 review pass".
+
+### Edited
+
+- `src/lib/research-os/db.ts`: `loadClassesForReviewer`'s scoping filter split into an
+  exported pure function, `filterClassesForReviewer(rows, reviewerEmail)`, so the "a
+  reviewer for class A never reads class B" guarantee is unit-testable with no network call.
+  `loadClassesForReviewer` now calls it; behavior unchanged.
+- `scripts/test-research-os-teacher-class.ts`: three cases added for
+  `filterClassesForReviewer` (own class only, no class owned yields an empty result,
+  case/whitespace insensitivity); header comment and the file's own test count
+  updated (17 to 20).
+- `learning/research-os/TEACHER-LAYER.md`, `_intake/research-os-k12/CHANGELOG.md`, this
+  file: test-count references updated to match (111/111 to 114/114 suite-wide, 17 to 20 for
+  this file).
+
+### Removed
+
+None.
+
+### Verified
+
+Leak scan on the full diff's added lines: no keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs; fixture emails end in `.example`. `.voiceignore`'s
+`tools/hypothesis-engine/docs/LOOP-LOG.md` line was the only engine-tree-adjacent change.
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (114/114 pass),
+`next lint` on every touched file, `agf-lint-voice`/`agf-lint-voice-src check`: all clean.
+
+## Iteration 11: funding wave 1
+
+Date 2026-09-10. Bead `ros-09`, branch `docs/ros-09-funding-wave-1`, worktree `.ros-worktrees/ros09`. Four funder-facing documents under a new `learning/research-os/funding/` directory, each verified against a funder's own live site by direct WebFetch on 2026-09-10 rather than carried forward unchecked from the 2026-09-09 intake pass.
+
+### Added
+
+- `learning/research-os/funding/FAST-FORWARD-2026.md`: confirms the 2026-09-18 accelerator deadline against ffwd.org's own banner (which supersedes a stale September 7 date elsewhere on the same page), confirms the $25K+ funding figure and three-month program length, states the founder-only eligibility gap (no fiscal sponsor and no state incorporation exist yet) as the single blocking action, and drafts logistics answers plus five narrative blocks against likely application prompts, each sourced to an existing file.
+- `learning/research-os/funding/WAVE-1-TARGETS.md`: verifies all eight section K funder candidates by direct fetch; four clear as wave-1 targets (Tools Competition, Digital Public Goods Alliance registration, Renaissance Philanthropy's AI for Education fund, NLnet NGI Zero), four are recorded as checked and excluded with sources (Chan Zuckerberg Initiative, Schmidt Sciences, Emerson Collective, Institute of Education Sciences), and one correction to the prior pass is logged (NewSchools Venture Fund's 2026 cycle is confirmed closed, correcting the "open portal" read from the 2026-09-09 pass).
+- `learning/research-os/funding/FISCAL-SPONSOR-DECISION.md`: corrects the nonprofit-application packet's 2026-05-03 top pick, Hack Club Bank, confirmed ineligible on this pass (its own eligibility page requires a project led by teenagers 13 to 18); recommends Players Philanthropy Fund (6% flat fee, 3-to-5-business-day initial response, both confirmed on this pass) over Social Good Fund (8% fee at Bucket's budget size) as the primary contact, run in parallel rather than sequentially.
+- `learning/research-os/funding/BUDGET-PHASE-1.md`: a twelve-month Phase 1 budget (pilot school, 500 learners) built by annualizing the system review's section 6 Phase 1 monthly cost ranges across a three-period build, pilot-semester, evaluation breakdown; every cell shows its own month-count-times-rate arithmetic so the total is checkable against the source table directly. Low, expected, and high twelve-month totals: $4,425, $19,125, $83,610.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+- `learning/research-os/CHANGE-LEDGER.md`, this file: this iteration's own entry.
+- `BEADS-PENDING.jsonl`: appended a `ros-09` status line recording this iteration's outcome.
+
+### Removed
+
+None.
+
+### Verified
+
+`agf-lint-voice check` on all four new files under `learning/research-os/funding/`: 0 violations after one auto-fix pass (`agf-lint-voice fix`, cleared banned words, filler adverbs, and one meta-commentary hit) and a manual rewrite pass on every antithesis-pattern flag (antithesis is never auto-fixed) and every appended-clause heading. Every dollar figure, deadline, and eligibility claim across the four files carries its source file or fetched URL inline; no figure is asserted without one. No pilot, learner, user, or revenue is claimed as existing; `BUDGET-PHASE-1.md` section 4 states this explicitly. No PII beyond the founder's already-public name and email (`gianyrox@gmail.com`, already the public contact on `nonprofit-application/README.md`); no bank or wallet detail appears in any of the four files.
+
+### Iteration 11 addendum: PR #26 review corrections
+
+Date 2026-09-10, same iteration, review pass before merge. Three citation-accuracy errors found and fixed. `FAST-FORWARD-2026.md` section 2 cited gap G-5 for a "no sponsor contacted" fact; that fact lives in the memo's own status header, and G-5 covers the registered-agent address instead, so the citation is corrected to gaps G-1 through G-4 plus the status line. The same section's item 1 claimed a "same-week turnaround" for New York filing; `00-BASE-INFO-MEMO.md` section 4 states the $75 cost alone, so the turnaround claim is removed. `FISCAL-SPONSOR-DECISION.md` twice instructed fixing HCB out of `00-COVER-LETTER.md`; the cover letter never names HCB, so the fix now points at `00-BASE-INFO-MEMO.md` section 3.2, the file that ranks it. WebFetch re-verified live on 2026-09-10: ffwd.org's deadline and eligibility text, tools-competition.org's Phase I date, ppf.org's fee, and HCB's own eligibility page; all four held as the packet states them.
+
+## Iteration 6: Phase 1 stub closures
+
+Closure table, diagnostic probe, real quotes, review hold. Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
 listed stubs, scoped to the review's own Phase 1 boundary (section 8). Rebased twice
 onto `main`: once after the site-alignment PR (#12) merged, once after the hypothesis
 engine bridge (#14) and the `hte` refusal-handling PR (#10) both merged; both rebases
@@ -471,6 +565,145 @@ Date 2026-09-10. PR #19 review pass, worktree `.ros-worktrees/r19`. Full account
 
 None.
 
+## Iteration 13, ros-03 routing
+
+Date 2026-09-10. Branch `feat/ros-03-confidence-routing`, worktree `ros03`.
+Confidence-weighted routing, edge flags, and offline edge inference, PLAN-
+REVISION-1.md section 2b ("Frontier routing under Gasparetti 2017") and
+section 3 items 2 and 3. Numbered past the file's existing Iteration 12
+(the highest number already in this file) rather than reusing 11, which
+`docs/ros-09-funding-wave-1` and a bare `## Iteration 11` heading both
+already claim.
+
+### Added
+
+- `supabase/migrations/20260910030000_research_os_edge_confidence.sql`: `confidence`
+  (real, default 1.0) and `confidence_source` (text, checked against `seed`,
+  `academy_requires`, `canon_map`, `inferred`, `teacher`) on `graph.edges`;
+  `min_confidence` (real, default 1.0) on `graph.prereq_ancestor`.
+- `supabase/migrations/20260910030100_research_os_edge_flags.sql`: `graph.edge_flags`
+  (`edge_id`, `learner_id`, `target_node_id`, `created_at`), unique on
+  `(edge_id, learner_id)` so a repeat route call never grows a duplicate row. No
+  `resolved` column; a teacher resolves a flag by editing the edge's own confidence
+  (`learning/research-os/ROUTING.md`).
+- `src/lib/research-os/ingest/infer.ts`: `tokenize`, `jaccardOverlap`,
+  `inferredConfidence`, `inferEdges` (item 4). Pure, no filesystem access, no model
+  call.
+- `scripts/research-os/ingest/infer-edges.ts`: the CLI wrapper. Rebuilds the Academy,
+  canon, and seed node populations in memory and proposes `prerequisite` edges from
+  lexical overlap and tier ordering. No `--apply` mode, every proposal lands on the
+  review list.
+- `scripts/research-os/ingest/test-ingest-infer.ts`, `scripts/test-research-os-
+  confidence.ts`: 15 and 8 `node:test` cases.
+- `scripts/research-os/ingest/out/sample-infer-preview.json`: a committed sample of
+  the real 36-proposal output (`.gitignore` gains a matching exception).
+- `learning/research-os/ROUTING.md`: the routing rule, the confidence-source table,
+  the threshold, the teacher-flag path, and the offline inference contract.
+
+### Edited
+
+- `src/lib/research-os/types.ts`: `GraphEdge` gained `id`, `confidence`,
+  `confidenceSource`; new `DEFAULT_EDGE_CONFIDENCE`, `LOW_CONFIDENCE_THRESHOLD`,
+  `edgeConfidence()`.
+- `src/lib/research-os/closure.ts`: `ancestorsOf` now returns `Map<string,
+  AncestorInfo>` (`hops` plus `minConfidence`) instead of `Map<string, number>`;
+  `PrereqAncestorRow` gained `minConfidence`. Every caller (`computeAncestorClosure`,
+  `scripts/rebuild-prereq-ancestor.ts`, `scripts/test-research-os-closure.ts`)
+  updated; `probe.ts` and its route/test only ever read `.keys()`, unaffected.
+- `src/lib/research-os/frontier.ts`: `computeFrontier`'s backward walk is now a
+  Dijkstra variant over edge cost `-log(confidence)` instead of a plain BFS, ties
+  broken by fewer hops (item 2); reduces to the exact prior shortest-hop result when
+  every edge defaults to full confidence, so every routing test that predates
+  confidence keeps passing unchanged. `FrontierStep` gained `edgeConfidence` and
+  `pathConfidence`; `FrontierResult` gained `lowConfidenceFlags`.
+- `src/lib/research-os/db.ts`: `loadSubgraph` and `loadAncestorRows` read the new
+  columns; new `writeEdgeFlags` (item 3).
+- `src/app/api/research-os/route/route.ts`: returns `lowConfidenceFlags`; writes them
+  to `graph.edge_flags` for a signed-in learner, best-effort, never failing the route
+  response on a write error.
+- `scripts/rebuild-prereq-ancestor.ts`: reads edge confidence, writes
+  `min_confidence`.
+- `scripts/seed-research-os.mjs`: every seed edge defaults to `confidence: 1.0,
+  confidence_source: "seed"`.
+- `src/lib/research-os/ingest/types.ts`: `IngestEdgeDraft` gained `confidence` /
+  `confidenceSource`; `ReviewItemKind` gained `inferred_prerequisite_proposal`; new
+  `CONFIDENCE_DEFAULTS`.
+- `src/lib/research-os/ingest/academy.ts`: every `requires` edge writes `confidence:
+  1.0, confidenceSource: "academy_requires"`.
+- `src/lib/research-os/ingest/canon.ts`: every `cites` / `derives_from` edge writes
+  `confidence: 0.9, confidenceSource: "canon_map"`.
+- `scripts/research-os/ingest/academy-import.ts`, `.../canon-import.ts`: the
+  Supabase upsert now carries `confidence` / `confidence_source`.
+- `scripts/research-os/ingest/canon-atom-map.json` (item 4): three of the four
+  `unmatched_derives_from` review items resolved by hand, `bell-theorem` ->
+  `quantum-entanglement`, `quantum-field-theory` -> `qft-idea`, `quantum-mechanics` ->
+  `wavefunction`. `gauge-principle` stays on the review list; no Academy atom covers
+  gauge invariance or Yang-Mills theory.
+- `scripts/research-os/ingest/test-ingest-canon.ts`: the real-dossier assertion
+  updated from 4-unmatched to the new 5-matched/1-unmatched split.
+- `scripts/research-os/ingest/out/sample-canon-preview.json`,
+  `sample-review-list.json`, `sample-academy-preview.json`: regenerated against the
+  new real output (7 canon edges, 1 review item, confidence fields on every edge).
+- `package.json`: `test:research-os` runs the two new test files; new
+  `ingest:research-os:infer` script.
+- `.gitignore`, `learning/research-os/INGESTION.md`: the new sample file and the new
+  dry-run numbers.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (117/117
+pass, 8 new confidence-routing tests plus 15 new inference tests, every pre-existing
+research-os test file green with no assertion loosened beyond the two the real-dossier
+count required), `next lint` on every touched file, `agf-lint-voice-src check` /
+`agf-lint-voice check` on every touched file/doc: all clean. Dry run: Academy importer
+unchanged (487 nodes, 820 edges, 0 review items); canon importer now 7 edges (2 cites,
+5 derives_from) and 1 review item (was 4 edges, 4 review items); offline inference
+scans 517 nodes across 8 branches and proposes 36 edges, confidence 0.3-0.65, none
+applied.
+
+## Iteration 14: PR #27 review pass
+
+Date 2026-09-10. Review pass on PR #27 (`feat/ros-03-confidence-routing`), worktree
+`.ros-worktrees/r27`. Numbered past Iteration 13, the highest number already in this
+file.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this pass's own entry added; a stale
+  cross-reference in the ros-03 entry ("Iteration 11") corrected to "Iteration 13,
+  ros-03 routing", the number that entry landed as.
+- `learning/research-os/CHANGE-LEDGER.md`, this file: this pass's own entry.
+
+### Removed
+
+None.
+
+### Verified
+
+Leak scan on the full diff's added lines (2096 lines): no keys, `.env` contents, IPs,
+non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII,
+`/home/gian` paths, or Claude session URLs. `computeFrontier`'s Dijkstra variant
+checked against `scripts/test-research-os-routing.ts`, an unmodified file with
+hardcoded seed-graph assertions predating confidence, green against the new
+implementation: a real old-output equivalence check. Cost function
+`-log(confidence)` confirmed monotone and non-negative via `edgeConfidence()`'s
+`(0, 1]` clamp; a synthetic cycle (`a -> b -> c -> a`, `c -> target`) and a
+zero-indegree target both confirmed to terminate by direct execution, settling
+every node exactly once.
+`writeEdgeFlags` confirmed scoped to the token-verified `learnerId` only, no
+client-supplied learner id path; a write failure caught and logged, never surfacing
+to the route response. `infer-edges.ts` has no `--apply` mode; its output (both
+`infer-preview.json` and `review-list.json`) diffed byte-identical across two runs
+(`generated_at` excluded). `canon-atom-map.json`'s three new resolutions checked
+against `learning/app/corpus/02-physics.json` directly, all three atom ids exist with
+matching titles. `npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run
+test:research-os` (117/117), `next lint`, `agf-lint-voice check` / `agf-lint-voice-src
+check` on every touched file: all clean. Not behind `origin/main`, no merge required.
+
 ## Iteration 10
 
 Date 2026-09-10. Branch `feat/ros-canon-ingest`, worktree `wt-ingest`. Numbered
@@ -548,3 +781,94 @@ six `bucket-canon/02-physics/` dossiers, `special-relativity` and
 `standard-model` match an Academy atom id exactly, `bell-theorem`,
 `gauge-principle`, `quantum-field-theory`, and `quantum-mechanics` do not).
 Zero orphan edges in either run.
+
+## Iteration 11
+
+Date 2026-09-10. Branch `docs/ros-02-learner-state-model`, worktree `ros02`. Bead `ros-02`,
+the learner-state mapping paper every later Research OS outcome claim depends on. Docs only,
+no code, no migration, no schema change.
+
+### Added
+
+- `learning/research-os/LEARNER-STATE-MODEL.md`: the five states defined operationally
+  against `src/lib/research-os/stages.ts`, `probe.ts`, and the two Phase 0 migrations (entry
+  condition, evidence, judge, decay rule, per state, read from the shipped code rather than
+  `PLAN.md` alone);
+  mapping tables against ICAP, SOLO, Bloom revised, Perkins's understanding performances, and
+  the founder's three-level model; a mapping to the shipped Academy Recall, Apply, Derive,
+  Teach ladder and to FSRS and IRT signals, finding no code path connects Research OS state
+  transitions to Academy's `M = P^alpha * R^beta` fusion today; the three-arm pilot's
+  measurement plan (outcome variable per state, the Internalization transfer-task
+  construction rule, an inter-rater procedure for teacher judgments, the minimal logging
+  schema); and seven questions marked OPEN, each tied to the paper that poses it.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: the evidence jsonb contract `ros-04` and `ros-06`
+  implement against. Docs only; no `EvidenceEvent` field, no migration column, added in this
+  pass.
+- `_intake/research-os-k12-literature/educational-methods/chi-wylie-2014-icap-framework.md`,
+  `biggs-collis-1982-solo-taxonomy.md`, `anderson-krathwohl-2001-taxonomy-revision.md`,
+  `perkins-1993-teaching-for-understanding.md`, `wiske-1998-teaching-for-understanding.md`:
+  five intake cards for the framework citations `PLAN.md` section 2 already cited by DOI but
+  that had no corpus card. Every citation DOI- or ISBN-verified before writing the card; the
+  three with no Crossref DOI (Anderson and Krathwohl 2001, Perkins 1993, Wiske 1998) carry an
+  ISBN or an ERIC id and ISSN instead, each file's own "Verification note" naming the exact
+  records checked.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: five new index rows, paper count 77 to 82,
+  educational-methods count 17 to 22, a new note on which records lack a Crossref DOI and why.
+- `BEADS-PENDING.jsonl`: one status line appended for `ros-02`; the original line unedited.
+- `_intake/research-os-k12/CHANGELOG.md`, this file: this iteration's own entries.
+
+### Removed
+
+None.
+
+### Verified
+
+Read in full before writing: `learning/research-os/PLAN.md`, `PLAN-REVISION-1.md`,
+`RESEARCH-QUESTIONS.md`, `_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md` section
+3, `src/lib/research-os/stages.ts`, `types.ts`, `probe.ts`, `grounding.ts`, `frontier.ts`,
+`reviewer.ts`, `db.ts`'s `recordEvidence`, `src/app/api/research-os/review/route.ts`,
+`supabase/migrations/20260910000000_research_os_graph.sql`,
+`supabase/migrations/20260910020000_research_os_teacher_reviews.sql`,
+`supabase/migrations/20260612000000_academy_progress.sql`, `src/lib/academy/mastery.ts`,
+`learning/EPIC.md`, `src/lib/depth-ladder.ts`, and `src/lib/research-os/ingest/academy.ts`.
+Every framework citation (ICAP, SOLO, Bloom revised, Anderson and Krathwohl 2001, Perkins
+1993, Wiske 1998) resolved by DOI, ISBN, or ERIC id via WebFetch against `doi.org`,
+`api.openalex.org`, `openlibrary.org`, and `api.ies.ed.gov` before this paper cited it. A
+full-text search of `src/lib/research-os/` and `src/app/api/research-os/` for `retrievability`,
+`stability`, `fsrs`, `theta`, and `proficiency` returned zero matches, the evidence for
+section 3's central finding that no code path joins Research OS state transitions to
+Academy's FSRS/IRT signals today. No file under `src/` outside the two new docs files is
+touched by this pass, so no `npm run build` gate applies to it; `agf-lint-voice check` run
+against every file this pass authored.
+
+## Iteration 12
+
+Date 2026-09-10. Review pass on PR #25 (`docs/ros-02-learner-state-model`), worktree
+`review/pr25`. Docs only.
+
+### Edited
+
+- `anderson-krathwohl-2001-taxonomy-revision.md`, `wiske-1998-teaching-for-understanding.md`:
+  fixed a wrong Open Library `url` shared by both cards (`OL3906603W`, "Russia's Road to
+  Democracy," unrelated to either book), replaced with the verified work ids `OL16641840W`
+  and `OL16467129W`; each confirmed against Open Library's own work record before writing.
+- `perkins-1993-teaching-for-understanding.md`, this file: removed two banned filler-word
+  instances flagged by voice review.
+
+### Verified
+
+Leak scan on the full diff's added lines: no keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs. Six code claims spot-checked against `origin/main`: `stages.ts`'s five
+transition functions, `probe.ts`'s cold-start-only firing, the review route's production
+branch never calling `recordEvidence` (confirmed, the named bug is real), the
+`learner_node_state`/`teacher_reviews` schema shape (single `confidence` column with no
+writer, single `reviewer_id` with no second-rater columns), `academyNodeSlug`'s slug format,
+and `mastery.ts`'s `inferDepth` thresholds plus `fuseMastery` formula. All matched. README
+index row count (82) matched the corpus file count (82) exactly, `find` counted per branch:
+22 educational methods, 25 HCI, 18 scientific discovery, 12 AI and researchers, 5
+prerequisite graphs. Every framework mapping table states "No counterpart" with a reason
+where one applies. `agf-lint-voice check` clean on every file it scanned.
