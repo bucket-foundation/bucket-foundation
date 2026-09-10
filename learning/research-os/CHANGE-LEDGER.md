@@ -218,3 +218,49 @@ partial work preserved after 429 spend-limit stop") against PR #10
 
 None (the superseded envelope-conversion code is preserved verbatim in
 `_intake/research-os-k12/DELETIONS.md`, per this repo's own no-deletions policy).
+
+## Iteration 5
+
+Date 2026-09-10. Branch `intake/ros-literature-2`. Literature batch two: 31 new papers plus one
+already-committed paper (Bastani and colleagues 2025) folded into the index, for a corpus total
+of 77.
+
+### Added
+
+- 31 new files under `_intake/research-os-k12-literature/`, one per paper, DOI-checked against
+  OpenAlex or Crossref at intake time: 12 in `hci-human-ai-collaboration/` (6 on LLM assistance
+  and learning outcomes, 6 on cognitive offloading and metacognition), 4 in `educational-methods/`
+  on motivation and payment, 5 in a new `prerequisite-knowledge-graphs/` branch on automatic
+  prerequisite-edge inference and learning-path routing, 7 in `scientific-discovery-metascience/`
+  on AI systems that generate or evaluate research hypotheses, and 3 in `ai-and-researchers/` on
+  scientific understanding as a goal distinct from predictive accuracy.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/`: new branch folder, five
+  files (Pan and colleagues 2017, Liang and colleagues 2018, Roy and colleagues 2019, Gasparetti
+  and colleagues 2017, Gligorea and colleagues 2023).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index table extended from 45 to 77 rows across
+  five areas (the fifth, prerequisite and knowledge-graph learning, new this pass); intro
+  paragraph and final per-area count line updated to match.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: each of the twelve open
+  questions gained an "Evidence added in batch two" paragraph naming the new papers relevant to
+  it and whether they support, complicate, or partially contradict the design bet the question
+  poses. No existing sentence in the twelve-question list was removed or reworded.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass appended, logged below in
+  this same iteration for cross-reference.
+
+### Verified Clean
+
+- Every new paper's DOI and OpenAlex work id were checked live via WebFetch against
+  `api.openalex.org` or `api.crossref.org` at intake time; none are placeholders.
+- No file reproduces a blockquote or extended verbatim passage from its source paper; every
+  file's `key_claims` and body are paraphrase, matching this corpus's existing convention.
+- A paper searched for but not found with a resolvable DOI (Talukdar and Cohen 2012's Wikipedia
+  prerequisite-structure paper; a distinct World Bank Nigeria follow-up beyond the de Simone 2025
+  paper already in the corpus; a Si, Yang, and Hashimoto 2025 ideation-execution-gap follow-up)
+  was omitted rather than included without a checkable citation.
+
+### Removed
+
+None.

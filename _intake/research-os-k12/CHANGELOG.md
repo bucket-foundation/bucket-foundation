@@ -237,3 +237,39 @@ were needed.
 - Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
   `npm run test:research-os` (8/8 pass), `next lint` on every touched file:
   all clean.
+
+## 2026-09-10, literature batch two
+
+Branch `intake/ros-literature-2`. Task: 31 new DOI-verified papers bearing on the twelve open
+questions in `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, emphasis on 2023-2026 empirical work,
+across six areas: LLM assistance and learning outcomes, cognitive offloading and metacognition,
+prerequisite and knowledge-graph learning, AI for research evaluation, understanding as a
+scientific goal, and motivation and payment. Full per-area breakdown and per-question evidence
+mapping recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 4.
+
+### Added
+
+- 31 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md` Iteration 4; corpus total rises from 45 to 77 papers.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/`: new fifth branch, five
+  files on automatic prerequisite-edge inference and learning-path routing.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 77 rows, five areas.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: each of the twelve open
+  questions gained an "Evidence added in batch two" paragraph.
+
+### Verified Clean
+
+- Every DOI and OpenAlex work id checked live via WebFetch at intake time.
+- Three candidate papers named in the task brief were searched for and omitted for lack of a
+  resolvable DOI or a findable published record: Talukdar and Cohen (2012, no DOI on OpenAlex or
+  Crossref), a distinct World Bank Nigeria follow-up beyond the de Simone (2025) paper already in
+  the corpus, and a Si, Yang, and Hashimoto (2025) ideation-execution-gap follow-up.
+- No blockquote or extended verbatim passage from any source paper; all `key_claims` and body
+  text are paraphrase.
+
+### Removed
+
+None.
