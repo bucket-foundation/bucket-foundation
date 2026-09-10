@@ -114,6 +114,10 @@ function fixtureStore(): FixtureStore {
     ],
     teacher_reviews: [{ learner_id: LEARNER_B, decision: "approved" }],
     edge_flags: [{ learner_id: LEARNER_A, edge_id: "e1" }],
+    class_members: [
+      { class_id: "c1", learner_id: LEARNER_A },
+      { class_id: "c1", learner_id: LEARNER_B },
+    ],
     learner_profile: [{ learner_id: LEARNER_A, role: "student" }],
     academy_progress: [
       { user_id: LEARNER_A, branch: "02-physics" },
@@ -164,6 +168,7 @@ test("simulateLearnerDelete: reported deleted counts match what was actually rem
   assert.equal(result.deleted.productions, 1);
   assert.equal(result.deleted.teacher_reviews, 0);
   assert.equal(result.deleted.edge_flags, 1);
+  assert.equal(result.deleted.class_members, 1);
   assert.equal(result.deleted.learner_profile, 1);
   assert.equal(result.deleted.academy_progress, 1);
   assert.equal(result.deleted.academy_profile, 1);

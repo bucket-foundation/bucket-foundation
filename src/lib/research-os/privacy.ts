@@ -88,12 +88,16 @@ export interface PrivacyTableConfig {
  *   all, by design (see 20260910010000_research_os_engine_bridge.sql's own
  *   header), and cascades from graph.productions via its `id` foreign key,
  *   so deleting the production row already removes its outbox mirror.
+ * - graph.classes: a reviewer's own roster object (name, reviewer_email),
+ *   not a learner-keyed row; a learner's membership in it lives in
+ *   graph.class_members below, which IS in scope.
  */
 export const PRIVACY_TABLES: PrivacyTableConfig[] = [
   { schema: "graph", table: "learner_node_state", learnerColumn: "learner_id", label: "learner_node_state" },
   { schema: "graph", table: "productions", learnerColumn: "learner_id", label: "productions" },
   { schema: "graph", table: "teacher_reviews", learnerColumn: "learner_id", label: "teacher_reviews" },
   { schema: "graph", table: "edge_flags", learnerColumn: "learner_id", label: "edge_flags" },
+  { schema: "graph", table: "class_members", learnerColumn: "learner_id", label: "class_members" },
   { schema: "graph", table: "learner_profiles", learnerColumn: "learner_id", label: "learner_profile" },
   { schema: "bucket", table: "academy_progress", learnerColumn: "user_id", label: "academy_progress" },
   { schema: "bucket", table: "academy_profiles", learnerColumn: "user_id", label: "academy_profile" },

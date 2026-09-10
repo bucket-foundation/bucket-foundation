@@ -33,8 +33,8 @@
 -- guarantee rather than a sequence of separate REST calls from the API
 -- route. Touches every learner-keyed table this repo has today: graph.*
 -- (learner_node_state, productions, teacher_reviews, edge_flags,
--- learner_profiles) and bucket.* (academy_progress, academy_profiles,
--- academy_credentials), see learning/research-os/compliance/
+-- class_members, learner_profiles) and bucket.* (academy_progress,
+-- academy_profiles, academy_credentials), see learning/research-os/compliance/
 -- DATA-INVENTORY.md for why each one is in scope. Deleting a graph.
 -- productions row cascades to its public.research_os_productions_outbox
 -- mirror automatically (that table's own `id` foreign key is `on delete
@@ -132,6 +132,7 @@ declare
   v_productions         int;
   v_teacher_reviews     int;
   v_edge_flags          int;
+  v_class_members       int;
   v_learner_profiles    int;
   v_academy_progress    int;
   v_academy_profiles    int;
@@ -154,6 +155,12 @@ begin
   delete from graph.edge_flags where learner_id = p_learner_id;
   get diagnostics v_edge_flags = row_count;
 
+  -- Only the learner's own membership row. The class object itself
+  -- (graph.classes: name, reviewer_email) belongs to the reviewer and
+  -- stays untouched (see 20260910030000_research_os_classes.sql).
+  delete from graph.class_members where learner_id = p_learner_id;
+  get diagnostics v_class_members = row_count;
+
   delete from graph.learner_profiles where learner_id = p_learner_id;
   get diagnostics v_learner_profiles = row_count;
 
@@ -174,6 +181,7 @@ begin
     'productions', v_productions,
     'teacher_reviews', v_teacher_reviews,
     'edge_flags', v_edge_flags,
+    'class_members', v_class_members,
     'learner_profiles', v_learner_profiles,
     'academy_progress', v_academy_progress,
     'academy_profiles', v_academy_profiles,

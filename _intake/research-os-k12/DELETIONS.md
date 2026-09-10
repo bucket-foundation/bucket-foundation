@@ -252,3 +252,150 @@ GitHub; nothing was removed to make room for it.
   outside this list stays a gap this backstop leaves open behind the
   explicit `run_dir` replacement above, worth widening the moment a real
   deployment names a root not yet on it."
+
+## 2026-09-10, `learning/research-os/ENGINE-BRIDGE.md`, ros-12 stub closures
+
+**Reason.** PR #14's own "Stubs, open items" section named three open
+items: the outbox reader, item 1's missing caller, and `GapNode`/
+`value_of_information` wiring. `feat/ros-12-engine-wiring` closes all
+three (`hte.corpus.research_os_outbox`, `tools/hypothesis-engine/scripts/
+campaign_research_os.py`, `hte.unknowns.unresolved_slot_gaps`, `engine-
+bridge.ts`'s `buildGapNode`/`buildGapEdges`, `db.ts`'s `upsertGapNode`),
+so the section describing them as open no longer matched the code; it was
+replaced with a "Stubs Closed: ros-12 and ros-13" section naming what
+shipped, and a narrower "Stubs, open items" section for what remains
+(the write-side production-accept hook, still unreached pending task item
+6's teacher-accept path; `engineFrontier`'s `derives_from`-not-
+`prerequisite` design note; `hte/api.py`'s own private duplicate of the
+new `unresolved_slot_gaps`, pending PR #20's review landing).
+
+**Original text, replaced in the "Stubs, open items" section:**
+
+> ## Stubs, open items
+>
+> - **The outbox has no reader yet.** `writeProductionOutbox` writes rows;
+>   nothing in `tools/hypothesis-engine` points `load_supabase` at
+>   `research_os_productions_outbox` today. That one-line wiring
+>   (`load_supabase(table="research_os_productions_outbox")` inside a
+>   registered `--corpus research-os` loader, the same one-line pattern
+>   `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` names for `production` and
+>   `literature`) is engine-side work, out of this PR's own scope.
+> - **Item 3's hook is unreached today.** `/api/research-os/production`'s
+>   POST handler only emits to the outbox when a write leaves a production
+>   at status `"accepted"`; Phase 0 has no teacher-accept path (task item 6),
+>   so no production ever reaches that status yet. The hook is wired and
+>   tested (`scripts/test-research-os-engine-bridge.ts`) against a fixture,
+>   not against a live accept.
+> - **Item 1 has no caller yet either.** Nothing in `tools/hypothesis-engine`
+>   calls `upsertEngineHypothesisNode`/`writeEngineEdges` after a real
+>   campaign run; a campaign's own accepted-hypothesis list would need a
+>   small script or `hte.runner` hook to walk it and call these. This PR
+>   ships the write path and its idempotency; the scheduler that would drive
+>   it is separate, unbuilt work.
+> - **`engineFrontier`'s "prerequisite" reading is `derives_from`, not
+>   `prerequisite`.** Item 1 writes only `cites` and `derives_from` edges for
+>   an engine hypothesis node, never `prerequisite`; `engine-frontier.ts`'s
+>   own header comment names this explicitly: `derives_from` targets stand
+>   in for the prerequisite set a K-12 path node's own frontier routing
+>   walks. A future engine hypothesis with a real prerequisite structure of
+>   its own may want its own edge kind rather than reusing `derives_from` for
+>   both "canon it builds on" and "concept it requires."
+> - **`GapNode`/`value_of_information` are still unwired**, unchanged from
+>   `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s own accounting
+>   (`hte/unknowns.py:273`, `:289`, `:323`, recorded there as built but never
+>   called from `hte.runner`): this PR's `engineFrontier` reads only
+>   accepted hypothesis nodes already in the graph, never a live gap-node
+>   queue.
+
+## 2026-09-10, ros-12 review pass, voice-lint heading swap
+
+**Reason.** `agf-lint-voice`'s pre-commit hook flagged an appended-clause
+heading in `learning/research-os/CHANGE-LEDGER.md`, pre-existing from an
+earlier iteration and caught only now because this branch's own edits
+touch the same file. Fixed locally as "## Iteration 6: Phase 1 Stub
+Closures"; merging `origin/main` afterward brought in the `ros-09`
+funding-wave-1 branch's own independent fix of the identical heading
+("## Iteration 6: Phase 1 stub closures"), landed there via that
+branch's own PR #26 review pass. The merge kept `origin/main`'s version
+rather than carrying two competing fixes of the same line forward.
+
+- `learning/research-os/CHANGE-LEDGER.md` (heading): "## Iteration 6,
+  Phase 1 stub closures: closure table, diagnostic probe, real quotes,
+  review hold" to "## Iteration 6: Phase 1 stub closures".
+
+## 2026-09-10, ros-12 merge pass, voice-lint construction swap
+
+**Reason.** Merging `origin/main` into `feat/ros-12-engine-wiring` pulled
+in `tools/hypothesis-engine/docs/LOOP-LOG.md`'s "tick 2" entry (the
+hourly optimization loop, a separate autonomous process), which carried
+an antithesis construction the pre-commit hook caught on the merge
+commit.
+
+- `tools/hypothesis-engine/docs/LOOP-LOG.md` ("tick 2" entry): "own
+  documented fake-mode short-circuit, a test-isolation quirk, not a code
+  defect; `make test` runs with it unset from here on." to "own
+  documented fake-mode short-circuit, a test-isolation quirk; `make test`
+  runs with it unset from here on."
+
+## 2026-09-10, `src/app/api/research-os/production/route.ts`, outbox emission extracted to a shared function
+
+**Reason.** Bead `ros-06` adds a second caller that can reach `graph.productions.status = "accepted"` (`/api/research-os/review`'s new accept path). Rather than copy the three-call outbox-emission sequence a second time, it moved into `src/lib/research-os/db.ts`'s `emitProductionOutboxIfAccepted`, with the same best-effort try/catch and the same reasoning, so both entry points share one function. Behavior is unchanged; the full replaced block, with its original comment, is in `learning/research-os/CHANGE-LEDGER.md`'s `ros-06` entry.
+
+**Original text, replaced in the POST handler:**
+
+> ```ts
+>   // Engine bridge task item 3: an accepted production is the engine's own
+>   // evidence item. Unreachable today (the status validation above never lets
+>   // a learner set "accepted"), wired for Phase 1's teacher-accept path. Best
+>   // effort: a failed emit never fails the production save itself, the same
+>   // way academy's own mirror jobs treat a sync step as best effort.
+>   if (data?.status === "accepted" && data?.target_node_id) {
+>     try {
+>       const targetNode = await findNodeById(data.target_node_id as string);
+>       const row = buildProductionOutboxRow(
+>         {
+>           id: data.id as string,
+>           target_node_id: data.target_node_id as string,
+>           claim: (data.claim as string | null) ?? null,
+>           evidence: (data.evidence as unknown[]) ?? [],
+>           sources: (data.sources as unknown[]) ?? [],
+>           status: data.status as string,
+>           created_at: data.created_at as string,
+>           updated_at: data.updated_at as string | undefined,
+>         },
+>         targetNode ? { slug: targetNode.slug, title: targetNode.title, tier: targetNode.tier, branch: targetNode.branch } : null,
+>       );
+>       await writeProductionOutbox(row);
+>     } catch {
+>       // best effort, see comment above
+>     }
+>   }
+> ```
+
+## 2026-09-10, `src/app/api/research-os/review/route.ts`, header comment corrected for the accept path fix
+
+**Reason.** The header comment originally documented an "approved production flips `graph.productions.status` to 'accepted' ('returned' otherwise)" contract. Bead `ros-06`'s own work changed that contract (a return sets `status` to `"draft"`, not `"returned"`, and appends a teacher note); a mid-review fix (`ros-02`'s evidence-schema pass) then added a `recordEvidence` call on both approve and return, closing a gap where a returned production's `learner_node_state.stage` stayed at `"production"` with no evidence event recording the correction. The comment was rewritten to match; see `learning/research-os/TEACHER-LAYER.md` for the full account.
+
+**Original text, replaced in the file header:**
+
+> An "approved" production flips graph.productions.status to 'accepted'
+> ('returned' otherwise); Production is already the graph's terminal
+> stage (src/lib/research-os/types.ts's STAGE_ORDER), so acceptance
+> lives on the production row's own status alone.
+
+**Original text, replaced in `stages.ts`'s `onProductionReview` docstring** (the paragraph below no longer describes the shipped behavior once `onProductionReturned` was added):
+
+> Only meaningful for "approved"; the caller (the review route) applies
+> this only on approval, matching onTeacherReview's own "only an approval
+> mirrors onto the learner's own progress log" split. A "returned"
+> decision touches `graph.productions.status` and `.notes` only, never
+> this function -- the production goes back to `draft` for the learner to
+> revise, with no learner_node_state change.
+
+## 2026-09-10, `learning/research-os/CHANGE-LEDGER.md`, a pre-existing heading fixed for the voice pre-commit hook
+
+**Reason.** The pre-commit hook runs `agf-lint-voice` over every file a commit touches, not only its own diff lines; `CHANGE-LEDGER.md`'s "Iteration 6" heading (from an earlier, already-merged pass, predating `ros-06`) carried an appended clause after a comma, rule 7's own banned construction. Fixing it was required to commit `ros-06`'s own addition to the same file. The clause is not dropped, it moves to the first line of that section's body, per rule 7's own instruction ("if the extra detail matters, put it in the first line of the body").
+
+**Original text, replaced in the "Iteration 6" heading:**
+
+> ## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
