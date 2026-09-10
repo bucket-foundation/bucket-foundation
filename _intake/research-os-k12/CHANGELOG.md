@@ -1,5 +1,35 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, canon and Academy corpus ingestion
+
+Branch `feat/ros-canon-ingest`. Two ingestion importers that grow the Research
+OS graph past the Phase 0 seed's 22 nodes, no model in the loop. Full account:
+`learning/research-os/INGESTION.md`.
+
+Shipped: `src/lib/research-os/ingest/academy.ts` (`buildAcademyImport`), which
+maps all 487 atoms across `learning/app/corpus/*.json`'s eight importable
+branch files to `graph.nodes` drafts (kind `concept` or `law` from the atom's
+own `type`; tier `13 + requires-depth`, monotonic by construction) and every
+`requires` edge to a `prerequisite` edge, idempotent on `(source file, atom
+id)`. `src/lib/research-os/ingest/canon.ts` (`buildCanonImport`), which maps
+`bucket-canon/02-physics/`'s six dossiers to a `law` or `primary_source` node
+(tier 90, the seed's own canon-bridge sentinel) with a `cites` edge to its own
+bibliographic source (law-kind dossiers only) and a `derives_from` edge to a
+matched Academy atom, by exact slug or `canon-atom-map.json` override; four of
+the six dossiers have no match and land on the review list rather than being
+guessed. `src/lib/research-os/ingest/validate.ts` (orphan-edge and
+tier-monotonicity checks, shared by both importers and their tests) and
+`.../review.ts` (the merge helper behind `scripts/research-os/ingest/out/
+review-list.json`). Two CLI scripts (`academy-import.ts`, `canon-import.ts`,
+dry-run default, `--apply` upserts through the graph-schema service-role
+client). 42 unit tests across three files, run via `npm run test:research-os`,
+including two run against the real corpus and the real bucket-canon dossiers
+on disk.
+
+Dry run against the current repo: 487 nodes / 820 edges from the Academy
+corpus, 8 nodes / 4 edges from the canon dossiers, 4 review items (all
+`unmatched_derives_from`), zero tier violations, zero orphan edges.
+
 ## 2026-09-10 (Phase 1 stub closures)
 
 Branch `feat/ros-phase0-stubs`. Closed four of the Phase 0 PR's (#6) listed stubs,

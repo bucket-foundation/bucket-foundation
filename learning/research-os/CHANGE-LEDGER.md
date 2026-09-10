@@ -470,3 +470,81 @@ Date 2026-09-10. PR #19 review pass, worktree `.ros-worktrees/r19`. Full account
 ### Removed
 
 None.
+
+## Iteration 10
+
+Date 2026-09-10. Branch `feat/ros-canon-ingest`, worktree `wt-ingest`. Numbered
+Iteration 10 rather than 5: origin/main used "Iteration 5" for a concurrent PR
+#10 review pass and ran through Iteration 9 (a PR #19 review pass) by the time
+this branch merged, per `git merge origin/main`'s own conflict here. A
+canon-to-graph ingestion slice: two importers that grow the graph beyond the
+22-node Phase 0 seed with no model in the loop, per `_intake/research-os-k12/
+RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 3 and `02-architecture.md` section
+10's own ingestion pipeline description.
+
+### Added
+
+- `src/lib/research-os/ingest/types.ts`: shared `IngestNodeDraft`,
+  `IngestEdgeDraft`, `ReviewItem`, `IngestResult` types both importers use.
+- `src/lib/research-os/ingest/academy.ts`: the Academy corpus importer
+  (`buildAcademyImport`, `buildAcademyFileImport`, `computeRequiresDepth`,
+  `academyNodeSlug`, `mapAtomKind`, `isAcademyCorpusFile`). Pure, no
+  filesystem access.
+- `src/lib/research-os/ingest/canon.ts`: the canon entry importer
+  (`buildCanonImport`, `buildCanonEntryNode`, `buildCanonSourceNode`,
+  `buildCanonCitesEdge`, `matchAcademyAtom`, `isLawFolder`,
+  `canonEntrySlug`/`canonSourceSlug`). Pure, no filesystem access.
+- `src/lib/research-os/ingest/validate.ts`: `checkOrphanEdges`,
+  `checkTierMonotonicity`, `tierViolationsToReviewItems`, shared by both
+  importers, their CLIs, and their tests.
+- `src/lib/research-os/ingest/review.ts`: `mergeReviewList`, the review-list
+  convergence helper both CLIs call.
+- `scripts/research-os/ingest/academy-import.ts`, `.../canon-import.ts`: the
+  two CLI scripts (dry-run default, `--apply` upserts through the
+  graph-schema service-role client, `scripts/seed-research-os.mjs`'s own
+  construction).
+- `scripts/research-os/ingest/lib/load-academy-corpus.ts`: the filesystem
+  loader both CLIs share, so a canon `derives_from` edge's target slug
+  always agrees with the node `academy-import.ts` itself writes.
+- `scripts/research-os/ingest/canon-atom-map.json`: the explicit
+  canon-to-Academy-atom override file, seeded with the sky-blue seed's own
+  three canon-bridge node pairs (`waves`, `em-waves`, `wave-optics`).
+- `scripts/research-os/ingest/test-ingest-validate.ts`,
+  `test-ingest-academy.ts`, `test-ingest-canon.ts`: 42 `node:test` cases
+  total, fixture-based plus two blocks run against the real corpus and the
+  real `bucket-canon/02-physics/` dossiers on disk. Wired into
+  `npm run test:research-os`.
+- `scripts/research-os/ingest/out/sample-academy-preview.json`,
+  `sample-canon-preview.json`, `sample-review-list.json`: small committed
+  samples of the gitignored dry-run output (`.gitignore` gains a
+  `scripts/research-os/ingest/out/*` rule with these three exceptions).
+- `learning/research-os/INGESTION.md`: the data flow, the tier and kind
+  heuristics, the canon-to-Academy matching order, and the review-list
+  contract.
+- `package.json`: two convenience scripts, `ingest:research-os:academy`,
+  `ingest:research-os:canon`; `test:research-os` now also runs the three new
+  test files.
+
+### Edited
+
+- `.gitignore`: added the `scripts/research-os/ingest/out/` ignore block.
+- `_intake/research-os-k12/CHANGELOG.md`, this file: this iteration's own
+  entries.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os`
+(42/42 pass, this slice's three new files plus the three pre-existing
+research-os test files), `next lint` on every touched file, and
+`agf-lint-voice-src check` / `agf-lint-voice check` on every touched
+file/doc: all clean. Dry run against the current repo: Academy importer, 487
+nodes, 820 `prerequisite` edges, 0 tier violations, 0 review items; canon
+importer, 8 nodes, 4 edges, 4 `unmatched_derives_from` review items (of the
+six `bucket-canon/02-physics/` dossiers, `special-relativity` and
+`standard-model` match an Academy atom id exactly, `bell-theorem`,
+`gauge-principle`, `quantum-field-theory`, and `quantum-mechanics` do not).
+Zero orphan edges in either run.
