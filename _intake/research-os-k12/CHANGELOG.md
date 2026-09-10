@@ -299,6 +299,42 @@ of that in-progress content is part of this review pass's commit; only the
 five files listed under "Fixed" above were staged and committed, isolated
 by hunk where a touched file also carried unrelated unstaged content.
 
+## 2026-09-10, literature batch two
+
+Branch `intake/ros-literature-2`. Task: 31 new DOI-verified papers bearing on the twelve open
+questions in `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, emphasis on 2023-2026 empirical work,
+across six areas: LLM assistance and learning outcomes, cognitive offloading and metacognition,
+prerequisite and knowledge-graph learning, AI for research evaluation, understanding as a
+scientific goal, and motivation and payment. Full per-area breakdown and per-question evidence
+mapping recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 6.
+
+### Added
+
+- 31 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md` Iteration 6; corpus total rises from 45 to 77 papers.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/`: new fifth branch, five
+  files on automatic prerequisite-edge inference and learning-path routing.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 77 rows, five areas.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: each of the twelve open
+  questions gained an "Evidence added in batch two" paragraph.
+
+### Verified Clean
+
+- Every DOI and OpenAlex work id checked live via WebFetch at intake time.
+- Three candidate papers named in the task brief were searched for and omitted for lack of a
+  resolvable DOI or a findable published record: Talukdar and Cohen (2012, no DOI on OpenAlex or
+  Crossref), a distinct World Bank Nigeria follow-up beyond the de Simone (2025) paper already in
+  the corpus, and a Si, Yang, and Hashimoto (2025) ideation-execution-gap follow-up.
+- No blockquote or extended verbatim passage from any source paper; all `key_claims` and body
+  text are paraphrase.
+
+### Removed
+
+None.
+
 ## 2026-09-10: literature corpus promoted into canon
 
 Branch `intake/ros-canon-promotion` (PR #9). Six records from
@@ -374,3 +410,7 @@ None.
   machine-emitted string, unchanged from the pre-existing convention).
 - No file under `src/` or `public/` is touched by this pass, so no
   `npm run build` gate applies to it.
+- `_intake/research-os-k12-literature/README.md` merged cleanly against
+  `intake/ros-literature-2`'s concurrent 45-to-77-row expansion: this
+  pass's tier/status changes carried onto the six affected rows, area
+  counts re-verified at 77 rows total (17/25/18/12/5).
