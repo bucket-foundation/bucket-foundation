@@ -38,10 +38,10 @@ merged (squash `391fe1bf9`).
 
 ### Added
 
-- `_intake/research-os-k12-literature/`: 46 canon-intake files, one per verified paper (DOI
+- `_intake/research-os-k12-literature/`: 45 canon-intake files, one per verified paper (DOI
   checked against OpenAlex, Crossref, Semantic Scholar, or DataCite), across four areas:
-  educational methods (12), HCI and human-AI collaboration (12), scientific discovery and
-  metascience (9), AI and researchers (13). Each carries frontmatter (title, authors, year,
+  educational methods (13), HCI and human-AI collaboration (12), scientific discovery and
+  metascience (11), AI and researchers (9). Each carries frontmatter (title, authors, year,
   venue, doi, url, openalex_id, branch, tier) plus why_it_matters, key_claims,
   research_questions_it_leaves_open, and how_it_bears_on_research_os.
 - `_intake/research-os-k12-literature/README.md`: the intake index and a note on this corpus's
@@ -56,6 +56,52 @@ merged (squash `391fe1bf9`).
 - A paper whose DOI already appears in `_intake/research-os-k12/raw/lit-educational-methods.md`,
   `lit-hci-human-ai.md`, or `lit-ai-for-science.md` carries a closing line in this pass naming
   which raw file it is cross-indexed against; no line in any raw file was changed.
+
+### Removed
+
+None.
+
+## Iteration 3
+
+Date 2026-09-10. Post-merge review-followup pass on PR #5 (`intake/research-os-k12-literature`,
+merged as `397066318` before this review completed; the fixes below land as a separate commit
+against `main` since the PR's head branch was already deleted).
+
+### Edited
+
+- `_intake/research-os-k12-literature/ai-and-researchers/auchincloss-et-al-2014-cure-assessment.md`:
+  appended a `# voice-ignore-line` comment to the `venue:` frontmatter line. Old line:
+  `venue: "CBE—Life Sciences Education"`. The em dash is part of the journal's own name, not
+  authored prose, and rewriting it would misstate the title.
+- `_intake/research-os-k12/CHANGELOG.md`: fixed the `## 2026-09-10 (literature corpus and overlap
+  map)` heading to `## 2026-09-10: literature corpus and overlap map` (a parenthetical heading
+  clause is a voice-rule violation).
+- `learning/research-os/CHANGE-LEDGER.md` (this file, Iteration 2 entry): corrected the per-area
+  breakdown from `educational methods (12), HCI and human-AI collaboration (12), scientific
+  discovery and metascience (9), AI and researchers (13)` (summing to 46) to `educational methods
+  (13), HCI and human-AI collaboration (12), scientific discovery and metascience (11), AI and
+  researchers (9)` (summing to 45), matching the corpus README's index and the actual file count
+  per directory.
+
+### Verified Clean
+
+- Leak scan across the full PR #5 diff: no API keys, `.env` contents, server IPs, non-public
+  hostnames, personal emails other than gianyrox@gmail.com, PII, local absolute paths, or Claude
+  session URLs found in any file content.
+- Citation integrity: 8 of the 45 intake files sampled at random (Deci and Ryan 2000,
+  Romera-Paredes and others 2024, Lu and others 2024, Kang and others 2009, Wu and others 2019,
+  Swanson 1986, Jumper and others 2021, Wang and others 2023) checked against Crossref (7) and
+  DataCite (1, the arXiv-DOI record for Lu and others 2024, which Crossref does not carry). DOI,
+  title, authors, and year matched frontmatter exactly in all 8.
+- Fair use: no file reproduces a blockquote or an extended verbatim passage from its source paper;
+  every file's `key_claims` and body are paraphrase. No trims required, so no
+  `_intake/research-os-k12-literature/DELETIONS.md` was created.
+- Structure: `_intake/research-os-k12-literature/README.md`'s index table lists all 45 files.
+  `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` cites `learning/research-os/RESEARCH-QUESTIONS.md`
+  and eleven other repo-relative file paths; all twelve resolve on `main`, including
+  `mcp-server/bucket-mcp.py:246`, which is the `TOOLS = [` line the map describes.
+- Gates: `npm ci` and `npm run build` both pass on `main` plus this pass's three-file diff; no
+  file under `src/` or `public/` is touched by it.
 
 ### Removed
 
