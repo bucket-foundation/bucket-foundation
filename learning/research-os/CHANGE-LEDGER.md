@@ -2,6 +2,46 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #44 review pass
+
+Date 2026-09-10. Review of `docs/ros-plan-revision-2` (PR #44), worktree `.ros-worktrees/r44`.
+Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, PR #44 review pass".
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-2.md`: corrected "Nineteen more PRs merged since, in
+  order" to name PR #36 (engine-only) as excluded rather than silently omitted; restored
+  three of the five "Exact question, unchanged" quotes to match `PLAN-REVISION-1.md`
+  verbatim (decision 2's audience/funding/cross-link parenthetical, decision 3's "what the
+  engine is ranking now" clause, decision 5's PR #11 branch-title parenthetical).
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-1.md`: their own
+  newly appended Revision 2 pointer paragraphs corrected to match, same PR #36 fix.
+- `_intake/research-os-k12/CHANGELOG.md`, this file: this review pass's own entry, and the
+  matching PR #36 fix in the plan-revision-2 entry above.
+
+### Removed
+
+None.
+
+### Verified
+
+Leak scan clean: no keys, `.env` values, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. `gh pr list
+--state merged --limit 50` confirms every PR number and title PLAN-REVISION-2.md cites as
+shipped, including the corrected PR #36 count (twenty merged in the #20-#40 range, not
+nineteen). All five literature card paths cited in section 2 exist on disk. The power
+figures in section 2d match `study/PREREGISTRATION-DRAFT.md`'s own tables exactly (119, 405,
+691 per arm; 17 classes per arm at ICC 0.10; d approx 1.0 minimum detectable effect). `npm
+ci && npm run test:research-os`: 213 passed, 0 failed, 17 files, exact match to the draft's
+claim. Engine `make test`, fresh, both `HTE_LLM_MODE` states, post-merge of `origin/main`:
+1046 passed, 18 deselected, 0 failed, no hang; higher than the draft's cited 1018 because the
+required main-merge (gate 4, branch was behind) pulled in PR #43's later test additions,
+merged after the draft's own cited commit `af5b7c9ea`; the draft's figure stays accurate as
+a claim about that commit, left unchanged. `PLAN.md` and `PLAN-REVISION-1.md` diffs are pure
+appends. Nothing under `src/` or `public/` touched. `agf-lint-voice check` clean on the four
+files it scans; a manual grep pass covered the fifth (`_intake/research-os-k12/CHANGELOG.md`,
+the corpus's own known ignore-list gap) for dashes, banned words, and antithesis, no live hit.
+
 ## PR #35 review pass
 
 Date 2026-09-10. Review of `feat/ros-07-compliance-part-a` (PR #35), worktree `review/pr35`.
@@ -1614,3 +1654,72 @@ banned-word, filler-adverb, AI-tell, antithesis, and em/en-dash rule lists found
 on any added line, including the two fixed cards. `origin/main` already merged into the
 branch. No file under `src/` or `public/` touched. `npm ci` and `npm run build` both
 clean.
+
+## Iteration 19: plan revision 2
+
+Date 2026-09-10. Branch `docs/ros-plan-revision-2`, worktree
+`.ros-worktrees/plan2`. Read `PLAN-REVISION-1.md` in full,
+`LEARNER-STATE-MODEL.md` (including section 5's batch-three evidence lines),
+`ROUTING.md`, `TEACHER-LAYER.md`, `WORKSPACE.md`, `ENGINE-BRIDGE.md`,
+`INGESTION.md`, `compliance/README.md`, `study/PREREGISTRATION-DRAFT.md`,
+`funding/WAVE-1-TARGETS.md`, `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s
+twelve questions with their batch-two and batch-three evidence, the
+batch-three intake cards for Vaccaro, Almaatouq, and Malone (2024), Bansal
+and colleagues (2021), Buçinca, Malaya, and Gajos (2021), and Alzetta and
+colleagues (2018), `BEADS-PENDING.jsonl`'s status lines for `ros-02` through
+`ros-13` and the batch-three bead, and `gh pr list --state merged --limit
+40` against `main` at `af5b7c9ea`. Ran `npm run test:research-os` (213
+passed, 0 failed, 17 files) and `tools/hypothesis-engine`'s `make test`
+under both `HTE_LLM_MODE` states (1018 passed, 18 deselected, 0 failed)
+live in this pass rather than relying on the counts named in prior bead
+entries, which predate later merges.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-2.md`: a PR-by-PR account of nineteen
+  of the twenty PRs shipped since revision 1 (#20 through #40, PR #36
+  excluded as engine-only) with live test counts; four evidence-driven revisions from batch three, each citing its
+  paper file and labeled STABLE or STRONG LEAN, human-AI complementarity
+  under Vaccaro, Bansal, and Buçinca (with a concrete Check-tool commit-step
+  design response and an H1 measurement addition), progression
+  unidimensionality under Alonzo and Steedle (a `placementMethod` evidence
+  field), prerequisite annotation agreement under Alzetta (a confidence-
+  ceiling and same-section-conflation-warning policy for `ros-13`), and the
+  `ros-08` power finding forcing a feasibility-pilot qualifier onto every
+  Phase 1 description; a seven-item dependency-ordered Phase 1 scope with
+  bead ids; the five founder decisions restated verbatim with new
+  information and a recommended default each; six named operational
+  blockers with an action and an owner each; and an updated twelve-question
+  Phase-1-versus-district table correcting question 7's own blocker from
+  engine wiring (closed by `ros-12`) to the live-Supabase-apply gap.
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "Revision 2" pointer paragraph
+  alongside the existing "Revision 1" section. No existing text changed or
+  removed.
+- `learning/research-os/PLAN-REVISION-1.md`: appended a pointer paragraph
+  naming `PLAN-REVISION-2.md`. No existing text changed or removed.
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+
+### Removed
+
+None.
+
+### Verified
+
+`agf-lint-voice check` on `PLAN-REVISION-2.md`: 0 violations after fixing
+five heading clauses, six antithesis constructions, two banned words
+(`actually`, `genuine`), and one meta-commentary phrase found on the first
+pass. Every PR number and merge state in section 1's table cross-checked
+against `gh pr list --state merged --limit 40`, run fresh against `main` at
+`af5b7c9ea`. The `ros-11` "no shipped status line" claim confirmed by `grep
+-n "ros-11" CHANGE-LEDGER.md _intake/research-os-k12/CHANGELOG.md`, zero
+hits in either file. The `OPENAI_API_KEY` claim in section 5 confirmed by a
+direct read of `src/lib/research-os/llm.ts`: the real provider seam is
+`LLM_BASE_URL`/`LLM_API_KEY` plus an Anthropic fallback, no
+`OPENAI_API_KEY` read anywhere in `src/lib/research-os/` or
+`src/app/api/research-os/`. No file under `src/` or `public/` touched, so
+no `npm run build` gate applies to this pass's own changes; the test counts
+above were run to report Section 1's own numbers, a verification step
+independent of any test change this pass makes.
