@@ -44,4 +44,4 @@ The founding statement of the skill-decay risk from automation, the specific haz
 
 ## How It Bears on Research OS
 
-Is the direct theoretical ancestor of the system review's own cognitive-offloading testbed (Section 9): the three-arm design, constrained AI, full chatbot, no AI, exists specifically to measure whether Research OS's find/quote/check/organize constraint avoids this irony or reproduces it in a new domain.
+Is the direct theoretical ancestor of the system review's own cognitive-offloading testbed (Section 9): the three-arm design, constrained AI, full chatbot, no AI, exists to measure whether Research OS's find/quote/check/organize constraint avoids this irony or reproduces it in a new domain.

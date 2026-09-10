@@ -27,7 +27,7 @@ research_questions_it_leaves_open:
   - "Whether an AI tutor with a pedagogical structure like this one differs, in outcome, from a fully open-ended chatbot doing the same task, the exact comparison the Research OS three-arm design is built to make."
 how_it_bears_on_research_os: >
   Is the nearest published precedent for the constrained-AI arm's own hypothesis: that a
-  scoped, pedagogically structured AI tool can beat not just no-AI instruction but a
+  scoped, pedagogically structured AI tool can beat no-AI instruction and also a
   strong active-learning comparison condition, raising the bar the Research OS pilot's own
   constrained-AI arm needs to clear, and sharpening why the pilot's third arm (full
   chatbot) matters as a comparison this study did not include.
@@ -50,4 +50,4 @@ A 2025 randomized classroom trial of AI tutoring against a live, research-based 
 
 ## How It Bears on Research OS
 
-Is the nearest published precedent for the constrained-AI arm's own hypothesis: that a scoped, pedagogically structured AI tool can beat not just no-AI instruction but a strong active-learning comparison condition, raising the bar the Research OS pilot's own constrained-AI arm needs to clear, and sharpening why the pilot's third arm (full chatbot) matters as a comparison this study did not include.
+Is the nearest published precedent for the constrained-AI arm's own hypothesis: that a scoped, pedagogically structured AI tool can beat no-AI instruction and also a strong active-learning comparison condition, raising the bar the Research OS pilot's own constrained-AI arm needs to clear, and sharpening why the pilot's third arm (full chatbot) matters as a comparison this study did not include.

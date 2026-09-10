@@ -18,7 +18,7 @@ why_it_matters: >
 key_claims:
   - "People are less likely to remember information they expect to be able to look up later, and more likely to remember where to find it instead, a shift the paper calls transactive memory extended to a search engine."
   - "Participants who typed trivia facts into a computer, expecting the file to be saved, recalled the facts themselves worse than participants who expected the file to be erased."
-  - "Recall for the file location was often better than recall for the fact's content itself, when saving was expected."
+  - "Recall for the file location beat recall for the fact's content itself when saving was expected."
 research_questions_it_leaves_open:
   - "Whether the effect is specific to expectation of future access or driven by the act of externalizing itself, a distinction with different implications for tool design."
   - "How the effect plays out in a system, like Research OS, that also gates advancement on demonstrated recall (the Awareness state), rather than a free-recall lab task with no such gate."
@@ -38,7 +38,7 @@ The empirical demonstration that easy external access to information changes wha
 
 - People are less likely to remember information they expect to be able to look up later, and more likely to remember where to find it instead, a shift the paper calls transactive memory extended to a search engine.
 - Participants who typed trivia facts into a computer, expecting the file to be saved, recalled the facts themselves worse than participants who expected the file to be erased.
-- Recall for the file location was often better than recall for the fact's content itself, when saving was expected.
+- Recall for the file location beat recall for the fact's content itself when saving was expected.
 
 ## Research Questions It Leaves Open
 

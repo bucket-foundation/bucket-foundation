@@ -11,7 +11,7 @@ openalex_id: "https://openalex.org/W4238998169"
 branch: "hci-human-ai-collaboration"
 tier: "canon"
 why_it_matters: >
-  A formal theory of how people navigate a mix of relevant and irrelevant information
+  A formal theory of how people move through a mix of relevant and irrelevant information
   under a cost-benefit tradeoff, the closest existing model for how a learner should be
   expected to move through the spatial canvas workspace's mix of mastered, gap, and target
   nodes.
@@ -32,7 +32,7 @@ how_it_bears_on_research_os: >
 
 # Information foraging.
 
-A formal theory of how people navigate a mix of relevant and irrelevant information under a cost-benefit tradeoff, the closest existing model for how a learner should be expected to move through the spatial canvas workspace's mix of mastered, gap, and target nodes.
+A formal theory of how people move through a mix of relevant and irrelevant information under a cost-benefit tradeoff, the closest existing model for how a learner should be expected to move through the spatial canvas workspace's mix of mastered, gap, and target nodes.
 
 ## Key Claims
 

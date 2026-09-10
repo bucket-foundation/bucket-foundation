@@ -42,6 +42,7 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [The Power of Testing Memory: Basic Research and Implications for Educational Practice](educational-methods/roediger-karpicke-2006-power-of-testing.md) | Educational methods | 2006 | canon | verified |
 | [Learning Trajectory Based Instruction](educational-methods/sztajn-et-al-2012-learning-trajectories.md) | Educational methods | 2012 | canon | verified |
 | [Ironies of automation](hci-human-ai-collaboration/bainbridge-1983-ironies-of-automation.md) | HCI and human-AI collaboration | 1983 | canon | verified |
+| [From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria](hci-human-ai-collaboration/de-simone-2025-chalkboards-to-chatbots-nigeria.md) | HCI and human-AI collaboration | 2025 | candidate | verified |
 | [Principles of mixed-initiative user interfaces](hci-human-ai-collaboration/horvitz-1999-mixed-initiative-interfaces.md) | HCI and human-AI collaboration | 1999 | canon | verified |
 | [AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting](hci-human-ai-collaboration/kestin-et-al-2025-ai-tutoring-outperforms-active-learning.md) | HCI and human-AI collaboration | 2025 | canon | verified |
 | [Explainable Artificial Intelligence in education](hci-human-ai-collaboration/khosravi-et-al-2022-explainable-ai-education.md) | HCI and human-AI collaboration | 2022 | canon | verified |
@@ -73,6 +74,6 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [ChatGPT listed as author on research papers: many scientists disapprove](ai-and-researchers/stokel-walker-2023-chatgpt-listed-as-author.md) | AI and researchers | 2023 | candidate | verified |
 | [Scientific discovery in the age of artificial intelligence](ai-and-researchers/wang-et-al-2023-scientific-discovery-age-of-ai.md) | AI and researchers | 2023 | canon | verified |
 
-44 papers: 13 educational methods, 11 HCI and human-AI collaboration, 11 scientific discovery and
+45 papers: 13 educational methods, 12 HCI and human-AI collaboration, 11 scientific discovery and
 metascience, 9 AI and researchers. Every DOI listed above was checked at intake time; none are
 placeholders.
