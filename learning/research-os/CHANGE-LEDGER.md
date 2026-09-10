@@ -600,6 +600,121 @@ unchanged (487 nodes, 820 edges, 0 review items); canon importer now 7 edges (2 
 scans 517 nodes across 8 branches and proposes 36 edges, confidence 0.3-0.65, none
 applied.
 
+## Iteration 15: ros-04 workspace hardening
+
+Date 2026-09-10. Build pass on `feat/ros-04-workspace-hardening`, worktree
+`.ros-worktrees/ros04`, branched from `origin/main` at `b6532313c` (PR #27 merged: routing,
+teacher view stub, engine wiring; none of that PR's own diff touched the workspace page or
+the four tool handlers). Numbered past Iteration 14, the highest number already in this
+file. Scope: `PLAN-REVISION-1.md` section 3 item 4 (`ros-04`), read against
+`src/lib/research-os/EVIDENCE-SCHEMA.md` and `LEARNER-STATE-MODEL.md` section 4.
+
+### Added
+
+- `src/lib/research-os/locate.ts`: `locateHits`, the Locate tool's matching logic extracted
+  to a pure, testable function (previously inline in the route).
+- `src/lib/research-os/organize.ts`: `groundOrganizeResult`/`isGroundedInNotes`, code-level
+  enforcement that an Organize output item is grounded in the learner's own matching input
+  field, dropping anything that is not (the tool's system prompt alone enforced this before,
+  with no code check).
+- `src/lib/research-os/rate-limit.ts`: the per-learner daily tool-call cap
+  (`RESEARCH_OS_DAILY_TOOL_CAP`, default 200, resets UTC midnight).
+- `learning/research-os/WORKSPACE.md`: the four tool contracts, the evidence emitted per
+  action, the daily cap, and what the Phase 1 canvas adds.
+- `scripts/test-research-os-evidence.ts` (21 tests): the evidence-emission contract
+  (`fromStage`/`toStage`, learner text, abstain persistence, session id, the new
+  `production_returned` event) and the daily cap.
+- `scripts/test-research-os-workspace-contracts.ts` (19 tests): adversarial contract tests
+  per tool, feeding each pure function a prompt that tries to get the tool to write on the
+  learner's behalf ("write my claim for me," "finish this sentence") or a simulated
+  malformed/adversarial model response, asserting the forbidden content never survives.
+
+### Edited
+
+- `src/lib/research-os/stages.ts`: `EvidenceEvent` gains `fromStage`, `toStage`,
+  `learnerText`, `itemId`, `abstained`, `modelFeedback`, `citations`, `sessionId`, and
+  (typed only, no writer yet, `ros-06`'s migration to add) `sampledForSecondRating`,
+  `secondRaterId`, `secondDecision`, `agrees`. Every transition function takes an optional
+  `EvidenceContext` and sets the before/after stage pair; `onCheckResult` and
+  `onProbeCheckResult` persist the model's abstain flag, feedback, and citations rather than
+  discarding them after deciding the transition; `onTransferItemAnswered` persists the
+  learner's own answer text and a fixed per-target item id (previously logged neither);
+  `onProductionSubmitted` now takes the caller's fetched `currentStage` instead of assuming
+  one; new `onProductionReturned` closes `EVIDENCE-SCHEMA.md`'s "corrective event on
+  `graph.productions`" gap.
+- `src/lib/research-os/grounding.ts`: new `sanitizeGradeResult`, the code-level contract
+  Check's citations and result/confidence enums are checked against, extracted so it is
+  callable with no network call for contract tests; `gradeExplanation` now returns
+  `GradeResultWithUsage` (adds `usage`) via `callGroundedModelWithUsage`.
+- `src/lib/research-os/llm.ts`: new `callGroundedModelWithUsage`, `LlmUsage`,
+  `estimateCostUsd`, `logToolCost` (a best-effort per-call USD estimate log, Anthropic
+  pricing per the system review's own cost model, `null` when the provider reports no
+  usage); `callGroundedModel` is now a thin wrapper over the new function, unchanged for
+  every caller that only wants text. Its import of `selectProvider` changed from the `@/`
+  alias to a relative path: the alias resolves fine under Next's bundler but not under plain
+  `ts-node` with no `tsconfig-paths` registration, discovered when
+  `test-research-os-workspace-contracts.ts` first imported anything from `grounding.ts`.
+- `src/lib/research-os/db.ts`: new `loadCurrentStage`, used by `production/route.ts` so
+  `onProductionSubmitted`'s `fromStage` reflects the learner's real prior stage.
+- `src/app/api/research-os/workspace/route.ts`: `sessionId` accepted on every action; a
+  structured `logToolCall` line per call (Locate/Organize's only evidence record, per this
+  file's own header rationale: neither has a single `graph.nodes` row to attach a DB event
+  to); the daily cap checked ahead of the existing per-minute burst limiter; Locate now calls
+  `locateHits`, Organize now calls `groundOrganizeResult`, Check's `onCheckResult` call now
+  carries the learner's explanation, the model's feedback/citations, and the session id.
+- `src/app/api/research-os/state/route.ts`: `action: "transfer_item"` now accepts and
+  requires `answer` (previously accepted, silently discarded if sent, and not required at
+  all), plus `itemId` and `sessionId`.
+- `src/app/api/research-os/probe/route.ts`: forwards the probe answer, the grader's
+  feedback/citations, and `sessionId` into the evidence event; logs a per-call cost
+  estimate.
+- `src/app/api/research-os/production/route.ts`: fetches `currentStage` via
+  `loadCurrentStage` before calling `onProductionSubmitted`; accepts `sessionId`.
+- `src/app/api/research-os/review/route.ts`: a `"returned"` production decision now also
+  calls `onProductionReturned` and `recordEvidence`, closing the gap this file's own header
+  named (`EVIDENCE-SCHEMA.md`'s "corrective event"); the production select query now reads
+  `target_node_id` (needed for that write).
+- `src/app/research-os/workspace/page.tsx`: two-column layout (chain left with a low-
+  confidence "needs review" badge from `route.lowConfidenceFlags`, the learner's own
+  workspace right: four tools, a scratch notes area persisted to `localStorage`, a "sources
+  I have quoted" list accumulated from Quote calls, the transfer item, the Production form);
+  a client-generated `sessionId` (`sessionStorage`, one per tab) on every request; the
+  transfer-item submit bug fixed (see below).
+- `package.json`: `test:research-os` chains the two new test files.
+
+### Removed
+
+None. No UI text was deleted; new conditional copy was added beside the existing "Copied
+into the Production form below." string, which still renders unchanged in its prior case.
+
+### A real bug found and fixed
+
+`saveTransferAnswer` in the workspace page sent `{nodeId, action: "transfer_item"}` to
+`POST /api/research-os/state`, never the learner's own `transferAnswer` state value.
+`EVIDENCE-SCHEMA.md`'s "no stored explanation, transfer-item answer, or transfer-item id"
+gap could not have closed by a server-side change alone: the answer text never left the
+browser. Confirmed by reading the pre-change client fetch call directly against the
+pre-change route body type, both of which lacked any `answer` field. Fixed on both sides in
+this pass; the route now returns 400 on a missing `answer` for that action rather than
+silently accepting a client that forgot to send one.
+
+### Verified
+
+Leak scan on this pass's added lines: no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs (the sole absolute path in the diff is inside a code comment naming
+`scripts/test-research-os-*.ts`, a repo-relative reference rather than a local filesystem
+path).
+`onProductionReturned`'s `fromStage`/`toStage` both `"production"` confirmed to never move
+`stage` backward against `stageAtLeast`'s high-water-mark contract (unchanged, untouched by
+this pass). `groundOrganizeResult` confirmed to check each field against only its own
+matching input (`claim` against only its own `claim` notes field), preventing a
+cross-field leak a combined-notes check would have allowed. `npm ci`, `npx tsc --noEmit`,
+`npm run build`, `npm run test:research-os` (157/157, up from 117), `next lint` on every
+touched file, `agf-lint-voice check` / `agf-lint-voice-src check` clean on every file this
+pass authored or edited. Not behind `origin/main` at branch time (`b6532313c`); re-merged
+and gates rerun before push per this bead's own instructions.
+
 ## Iteration 14: PR #27 review pass
 
 Date 2026-09-10. Review pass on PR #27 (`feat/ros-03-confidence-routing`), worktree

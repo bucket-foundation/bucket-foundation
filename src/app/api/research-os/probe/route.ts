@@ -29,7 +29,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ancestorsOf } from "@/lib/research-os/closure";
 import { buildProbe } from "@/lib/research-os/probe";
 import { gradeExplanation } from "@/lib/research-os/grounding";
-import { selectProvider } from "@/lib/research-os/llm";
+import { logToolCost, selectProvider } from "@/lib/research-os/llm";
 import { onProbeCheckResult } from "@/lib/research-os/stages";
 import { configured, graphService, loadSubgraph, loadLearnerStates, verifyLearner, recordEvidence } from "@/lib/research-os/db";
 
@@ -82,6 +82,7 @@ export async function GET(req: NextRequest) {
 interface ProbeBody {
   nodeId?: string;
   answer?: string;
+  sessionId?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -97,6 +98,7 @@ export async function POST(req: NextRequest) {
   }
   const nodeId = (body.nodeId || "").trim();
   const answer = (body.answer || "").trim();
+  const sessionId = (body.sessionId || "").trim() || undefined;
   if (!nodeId) return bad(400, "nodeId is required");
   if (!answer) return bad(400, "answer is required");
   if (answer.length > MAX_ANSWER_CHARS) return bad(400, "answer too long");
@@ -128,8 +130,12 @@ export async function POST(req: NextRequest) {
     if (err?.status === 429) return bad(429, "Rate limited, try again in a moment.");
     return bad(502, "probe_grade_failed");
   }
+  logToolCost("probe", learnerId, provider, graded.usage);
 
-  const transition = onProbeCheckResult({ result: graded.result, confidence: graded.confidence, abstained: graded.abstained });
+  const transition = onProbeCheckResult(
+    { result: graded.result, confidence: graded.confidence, abstained: graded.abstained },
+    { learnerText: answer, modelFeedback: graded.feedback, citations: graded.citations, sessionId },
+  );
   await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
 
   return NextResponse.json(

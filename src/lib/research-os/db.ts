@@ -11,7 +11,7 @@
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
-import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind } from "./types";
+import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind, Stage } from "./types";
 import type { EngineNodeDraft, ProductionOutboxRow } from "./engine-bridge";
 import type { PrereqAncestorRow } from "./closure";
 
@@ -182,6 +182,19 @@ export async function loadLearnerStates(learnerId: string, nodeIds: string[]): P
     confidence: r.confidence,
     updatedAt: r.updated_at,
   }));
+}
+
+/**
+ * The learner's current stage on one node, or "access" when no row exists
+ * yet (the same "no record as access" default every route already applies
+ * inline; centralized here, bkt-ros ros-04, so a transition that needs
+ * `fromStage` -- production/route.ts's onProductionSubmitted call -- reads
+ * it the same way state/route.ts and workspace/route.ts already do).
+ */
+export async function loadCurrentStage(learnerId: string, nodeId: string): Promise<Stage> {
+  const svc = graphService();
+  const { data } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  return ((data?.stage as Stage | undefined) ?? "access") as Stage;
 }
 
 interface AncestorRow {

@@ -30,7 +30,12 @@
  *   An "approved" production flips graph.productions.status to 'accepted'
  *   ('returned' otherwise); Production is already the graph's terminal
  *   stage (src/lib/research-os/types.ts's STAGE_ORDER), so acceptance
- *   lives on the production row's own status alone.
+ *   lives on the production row's own status alone. A "returned" production
+ *   ALSO appends a "production_returned" evidence event to the learner's
+ *   own graph.learner_node_state row (stages.ts's onProductionReturned,
+ *   EVIDENCE-SCHEMA.md's "corrective event"), so the rejection is visible
+ *   in the evidence log even though `stage` itself never moves off
+ *   "production".
  *
  * Auth: Authorization: Bearer <supabase access token>, verified against
  * src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS allowlist.
@@ -40,7 +45,7 @@
  * 400 bad input · 404 target row not found · 503 not configured.
  */
 import { NextRequest, NextResponse } from "next/server";
-import { onTeacherReview } from "@/lib/research-os/stages";
+import { onTeacherReview, onProductionReturned } from "@/lib/research-os/stages";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, recordEvidence } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
@@ -213,7 +218,7 @@ export async function POST(req: NextRequest) {
 
   const { data: production, error: prodErr } = await svc
     .from("productions")
-    .select("id,learner_id,status")
+    .select("id,learner_id,target_node_id,status")
     .eq("id", productionId)
     .maybeSingle();
   if (prodErr) return bad(500, "read_failed");
@@ -235,6 +240,18 @@ export async function POST(req: NextRequest) {
     evidence: reviewEvidence,
   });
   if (insErr) return bad(500, "review_write_failed");
+
+  // EVIDENCE-SCHEMA.md "The corrective event on graph.productions": a
+  // returned production otherwise leaves no trace in
+  // graph.learner_node_state.evidence (only graph.productions.status
+  // changes). onProductionReturned appends the corrective event without
+  // moving `stage` off "production" (see its own header). "accepted" needs
+  // no matching call here: graph.productions.status = "accepted" IS that
+  // record, per LEARNER-STATE-MODEL.md section 1.
+  if (body.decision === "returned" && production.target_node_id) {
+    const transition = onProductionReturned({ learnerText: reason });
+    await recordEvidence(production.learner_id, production.target_node_id, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+  }
 
   return NextResponse.json({ decision: body.decision, status: newStatus }, { headers: { "cache-control": "no-store" } });
 }

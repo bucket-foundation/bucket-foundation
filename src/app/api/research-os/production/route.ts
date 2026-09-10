@@ -5,7 +5,7 @@
  * Production)"). Backs graph.productions.
  *
  * GET  ?targetNodeId=<id>  -> { productions: [...] } (the learner's own, newest first)
- * POST { id?, targetNodeId, claim?, evidence?, sources?, transferProof?, status? }
+ * POST { id?, targetNodeId, claim?, evidence?, sources?, transferProof?, status?, sessionId? }
  *      -> upserts a draft (status defaults to "draft"); pass status:"submitted"
  *         to submit, which raises the target node's learner_node_state.stage
  *         to "production" (src/lib/research-os/stages.ts onProductionSubmitted).
@@ -33,6 +33,7 @@ import {
   recordEvidence,
   findNodeById,
   writeProductionOutbox,
+  loadCurrentStage,
 } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
@@ -66,6 +67,7 @@ interface ProductionBody {
   sources?: unknown[];
   transferProof?: Record<string, unknown>;
   status?: "draft" | "submitted";
+  sessionId?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -119,7 +121,11 @@ export async function POST(req: NextRequest) {
   if (error) return bad(500, "write_failed");
 
   if (body.status === "submitted" && data?.target_node_id) {
-    const transition = onProductionSubmitted();
+    // ros-04: fetch the real stage first so the evidence event's
+    // `fromStage` reflects the learner's real prior stage (see db.ts's
+    // loadCurrentStage), instead of an assumed one.
+    const currentStage = await loadCurrentStage(learnerId, data.target_node_id as string);
+    const transition = onProductionSubmitted(currentStage, { sessionId: (body.sessionId || "").trim() || undefined });
     await recordEvidence(learnerId, data.target_node_id as string, transition.nextStage, transition.event as unknown as Record<string, unknown>);
   }
 

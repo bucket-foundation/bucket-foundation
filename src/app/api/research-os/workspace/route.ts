@@ -13,12 +13,32 @@
  *   2. Locate and Quote never call a model at all (retrieval only, per
  *      RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3's workspace table). Check
  *      grades the learner's OWN explanation against grounding, it never
- *      emits a corrected version of it. Organize only relabels the
- *      learner's OWN input into named slots; its system prompt forbids
- *      adding any fact not already present in that input, and the client
- *      renders Organize's output as an editable draft, never auto-submitted.
+ *      emits a corrected version of it (enforced in code by
+ *      grounding.ts's sanitizeGradeResult and GradeResult's own type, which
+ *      has no field for a rewritten explanation). Organize only relabels
+ *      the learner's OWN input into named slots; organize.ts's
+ *      groundOrganizeResult drops any item that is not grounded in the
+ *      matching input field, enforced in code as a second, independent
+ *      check beside the system prompt's own instruction.
  *
- * Request: { action, ...action-specific fields }
+ * ros-04 UPDATE ("workspace hardening"): every action now
+ *   - carries an optional client-generated `sessionId`, forwarded onto
+ *     every evidence event this call produces (EVIDENCE-SCHEMA.md);
+ *   - is logged as one structured tool-call line (logToolCall below).
+ *     Locate scans a whole branch and Organize works freeform notes, so
+ *     neither has a single `graph.nodes` row of its own to attach a DB
+ *     evidence event to; this log line stands in for the
+ *     `learner_node_state.evidence` append the other two actions get;
+ *     Check (node-scoped, produces a stage transition) and Quote (node-
+ *     scoped) both also carry the log line, Check on top of its real DB
+ *     evidence event. Documented in learning/research-os/WORKSPACE.md.
+ *   - is metered against a per-learner daily cap (src/lib/research-os/
+ *     rate-limit.ts), separate from the existing per-minute burst limiter
+ *     below.
+ *   - (Check, Organize) logs a best-effort per-call cost estimate from the
+ *     provider's own token usage, when reported (llm.ts's logToolCost).
+ *
+ * Request: { action, sessionId?, ...action-specific fields }
  *   locate:   { query, branch? }
  *   quote:    { nodeId }
  *   check:    { nodeId, explanation }
@@ -29,9 +49,12 @@
  * simplicity and to keep the same rate-limit boundary as check/organize).
  */
 import { NextRequest, NextResponse } from "next/server";
-import { callGroundedModel, parseModelJson, selectProvider } from "@/lib/research-os/llm";
+import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
 import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
 import { onCheckResult } from "@/lib/research-os/stages";
+import { locateHits } from "@/lib/research-os/locate";
+import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
+import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
 import { getPassage } from "@/lib/research-os/passages";
@@ -46,6 +69,7 @@ function bad(status: number, error: string) {
 
 const MAX_ORGANIZE_TOKENS = 500;
 const MAX_EXPLANATION_CHARS = 2000;
+const MAX_SESSION_ID_CHARS = 200;
 
 // Crude in-memory per-user rate limit, mirroring /api/academy/tutor. Best
 // effort only (serverless instances are ephemeral); a durable limiter
@@ -61,8 +85,26 @@ function rateLimited(key: string): boolean {
   return hits.length > RL_MAX;
 }
 
+/** One structured log line per workspace tool call (see this file's header
+ * for why Locate/Organize have no other evidence record). Never throws:
+ * logging must not be able to fail the request it is describing. */
+function logToolCall(tool: string, learnerId: string, sessionId: string | undefined, extra: Record<string, unknown> = {}): void {
+  try {
+    console.log("[research-os/tool-call]", JSON.stringify({ tool, learnerId, sessionId: sessionId ?? null, at: new Date().toISOString(), ...extra }));
+  } catch {
+    /* logging is best-effort, never fails the request */
+  }
+}
+
+function sessionIdOf(body: { sessionId?: string }): string | undefined {
+  const s = (body.sessionId || "").trim();
+  if (!s) return undefined;
+  return s.slice(0, MAX_SESSION_ID_CHARS);
+}
+
 interface WorkspaceBody {
   action?: "locate" | "quote" | "check" | "organize";
+  sessionId?: string;
   query?: string;
   branch?: string;
   nodeId?: string;
@@ -79,18 +121,22 @@ export async function POST(req: NextRequest) {
   if (!learnerId) return bad(401, "unauthorized");
   if (rateLimited(learnerId)) return bad(429, "Too many workspace requests. Slow down a moment.");
 
+  const cap = dailyToolCap();
+  if (!recordAndCheck(learnerId, cap).allowed) return bad(429, dailyCapMessage(cap));
+
   let body: WorkspaceBody;
   try {
     body = (await req.json()) as WorkspaceBody;
   } catch {
     return bad(400, "bad_request");
   }
+  const sessionId = sessionIdOf(body);
 
   const svc = graphService();
 
   switch (body.action) {
     case "locate": {
-      const query = (body.query || "").trim().toLowerCase();
+      const query = (body.query || "").trim();
       if (!query) return bad(400, "query is required");
       const branch = body.branch || "02-physics";
       const { data, error } = await svc
@@ -98,21 +144,8 @@ export async function POST(req: NextRequest) {
         .select("id,slug,title,kind,tier,summary,provenance")
         .eq("branch", branch);
       if (error) return bad(500, "locate_failed");
-      const hits = (data || [])
-        .filter(
-          (n: { title: string; summary: string | null }) =>
-            n.title.toLowerCase().includes(query) || (n.summary || "").toLowerCase().includes(query),
-        )
-        .slice(0, 10)
-        .map((n: { id: string; slug: string; title: string; kind: string; tier: number; summary: string | null; provenance: Provenance }) => ({
-          nodeId: n.id,
-          slug: n.slug,
-          title: n.title,
-          kind: n.kind,
-          tier: n.tier,
-          summary: n.summary,
-          citation: citationLabel(n),
-        }));
+      const hits = locateHits((data || []) as Parameters<typeof locateHits>[0], query);
+      logToolCall("locate", learnerId, sessionId, { branch, resultCount: hits.length });
       return NextResponse.json({ results: hits }, { headers: { "cache-control": "no-store" } });
     }
 
@@ -139,6 +172,7 @@ export async function POST(req: NextRequest) {
       // "quote" so the client never presents a paraphrase as a verbatim
       // quotation.
       const passage = getPassage(node.slug);
+      logToolCall("quote", learnerId, sessionId, { nodeId, kind: passage ? "quote" : "summary" });
       return NextResponse.json(
         {
           nodeId: node.id,
@@ -186,6 +220,7 @@ export async function POST(req: NextRequest) {
         if (err?.status === 429) return bad(429, "Rate limited, try again in a moment.");
         return bad(502, "check_failed");
       }
+      logToolCost("check", learnerId, provider, safe.usage);
       const citations = safe.citations;
 
       const { data: existingState } = await svc
@@ -195,12 +230,13 @@ export async function POST(req: NextRequest) {
         .eq("node_id", nodeId)
         .maybeSingle();
       const currentStage = ((existingState?.stage as Stage | undefined) ?? "access") as Stage;
-      const transition = onCheckResult(currentStage, {
-        result: safe.result,
-        confidence: safe.confidence,
-        abstained: safe.abstained,
-      });
+      const transition = onCheckResult(
+        currentStage,
+        { result: safe.result, confidence: safe.confidence, abstained: safe.abstained },
+        { learnerText: explanation, modelFeedback: safe.feedback, citations, sessionId },
+      );
       await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+      logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage });
 
       return NextResponse.json(
         {
@@ -237,8 +273,9 @@ Respond with ONLY a JSON object, no markdown fences:
 {"claim": string, "evidence": string[], "sources": string[]}`;
 
       let text: string;
+      let usage: Awaited<ReturnType<typeof callGroundedModelWithUsage>>["usage"];
       try {
-        text = await callGroundedModel(
+        const result = await callGroundedModelWithUsage(
           provider,
           system,
           [
@@ -249,21 +286,26 @@ Respond with ONLY a JSON object, no markdown fences:
           ],
           MAX_ORGANIZE_TOKENS,
         );
+        text = result.text;
+        usage = result.usage;
       } catch {
         return bad(502, "organize_failed");
       }
+      logToolCost("organize", learnerId, provider, usage);
 
-      interface OrganizeOut {
-        claim: string;
-        evidence: string[];
-        sources: string[];
-      }
-      const parsed = parseModelJson<OrganizeOut>(text);
-      const safe: OrganizeOut = parsed ?? {
-        claim: claim,
-        evidence: evidenceNotes ? [evidenceNotes] : [],
-        sources: sourceNotes ? [sourceNotes] : [],
-      };
+      // Contract enforcement (task item 2, organize.ts's own header): a
+      // parseable-but-adversarial model response is run through
+      // groundOrganizeResult, which drops any item not grounded in the
+      // matching input field, in code. A totally unparseable response (the
+      // model ignored the "JSON only" instruction) falls back to echoing
+      // the learner's own raw notes verbatim, never to any model text --
+      // the same fail-safe posture parseModelJson documents for Check.
+      const parsed = parseModelJson<OrganizeModelOutput>(text);
+      const safe = parsed
+        ? groundOrganizeResult(parsed, { claim, evidenceNotes, sourceNotes })
+        : { claim, evidence: evidenceNotes ? [evidenceNotes] : [], sources: sourceNotes ? [sourceNotes] : [], abstained: false };
+
+      logToolCall("organize", learnerId, sessionId, { abstained: safe.abstained, claimKept: Boolean(safe.claim), evidenceKept: safe.evidence.length, sourcesKept: safe.sources.length });
 
       return NextResponse.json(safe, { headers: { "cache-control": "no-store" } });
     }

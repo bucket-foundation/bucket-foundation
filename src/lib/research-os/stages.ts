@@ -4,11 +4,60 @@
  * raising `stage`, matching graph.learner_node_state.evidence's role as an
  * append-only log. Pure functions, no I/O; the API routes under
  * /api/research-os/* call these and persist the result.
+ *
+ * ros-04 UPDATE (bkt-ros, workspace hardening item 1): every transition now
+ * writes the full field set src/lib/research-os/EVIDENCE-SCHEMA.md
+ * specifies, closing the gaps that file's own "Current schema against that
+ * plan" section lists (`fromStage`/`toStage`, the learner's own text, the
+ * model's abstain flag/feedback/citations, a session id, and the new
+ * `production_returned` corrective event). Every added field is optional at
+ * the call site: callers pass an `EvidenceContext` with only the fields
+ * they have, matching the existing pattern where `result`/`confidence`
+ * are already optional on `EvidenceEvent`. Inter-rater columns
+ * (`sampledForSecondRating`, `secondRaterId`, `secondDecision`, `agrees`)
+ * are typed here per the schema's contract but have no writer yet: the
+ * second-rating flow and its `graph.teacher_reviews` migration belong to
+ * ros-06, per EVIDENCE-SCHEMA.md's own scope note on that migration.
  */
 import type { Stage } from "./types";
 import { stageAtLeast } from "./types";
 
-export type EvidenceKind = "open" | "explanation" | "check" | "transfer_item" | "production_submitted" | "teacher_review";
+export type EvidenceKind =
+  | "open"
+  | "explanation"
+  | "check"
+  | "transfer_item"
+  | "production_submitted"
+  | "production_returned"
+  | "teacher_review";
+
+/**
+ * Fields a caller supplies per event, beyond what the transition function
+ * itself already knows (kind, result, confidence, held, fromStage/
+ * toStage). Every field is optional: a caller passes only what it has for
+ * this specific event, the same discipline EVIDENCE-SCHEMA.md's contract
+ * names ("a writer omits a field it has nothing for rather than writing a
+ * placeholder value").
+ */
+export interface EvidenceContext {
+  /** Groups every tool call and evidence event from one workspace sitting.
+   * Client-generated, stable across a reconnect (EVIDENCE-SCHEMA.md). */
+  sessionId?: string;
+  /** The learner-authored text this event judged: an explanation for a
+   * "check" event, an answer for a "transfer_item" event. */
+  learnerText?: string;
+  /** The stable id of the pooled item a "transfer_item" event answered.
+   * Phase 0 has no sealed held-out item pool (LEARNER-STATE-MODEL.md
+   * section 4's "Transfer-task construction rule"), so this is a fixed
+   * per-target constant today, forwarded verbatim rather than validated
+   * against a pool table that does not exist yet. */
+  itemId?: string;
+  /** The model's full feedback text on a "check" event, from
+   * grounding.ts's GradeResult.feedback. */
+  modelFeedback?: string;
+  /** The model's citations on a "check" event, from GradeResult.citations. */
+  citations?: string[];
+}
 
 export interface EvidenceEvent {
   at: string; // ISO timestamp
@@ -19,6 +68,30 @@ export interface EvidenceEvent {
   heldReason?: string;
   note?: string;
   reviewerId?: string; // set only on a "teacher_review" event
+
+  // Closes "no before-and-after stage pair on an event" (EVIDENCE-SCHEMA.md).
+  fromStage?: Stage;
+  toStage?: Stage;
+
+  // Closes "no stored explanation, transfer-item answer, or transfer-item id."
+  learnerText?: string;
+  itemId?: string;
+
+  // Closes "abstained is used to decide a transition and then discarded" and
+  // "no stored model verdict beyond result and confidence."
+  abstained?: boolean;
+  modelFeedback?: string;
+  citations?: string[];
+
+  // Closes "no session or attempt grouping."
+  sessionId?: string;
+
+  // Inter-rater fields (typed per the contract; no writer in ros-04, see
+  // this file's header).
+  sampledForSecondRating?: boolean;
+  secondRaterId?: string;
+  secondDecision?: "approved" | "returned";
+  agrees?: boolean;
 }
 
 export interface StageTransition {
@@ -27,9 +100,9 @@ export interface StageTransition {
 }
 
 /** access -> awareness: the learner opened the node. */
-export function onNodeOpened(currentStage: Stage, now: string = new Date().toISOString()): StageTransition {
-  const event: EvidenceEvent = { at: now, kind: "open" };
+export function onNodeOpened(currentStage: Stage, context: EvidenceContext = {}, now: string = new Date().toISOString()): StageTransition {
   const nextStage: Stage = currentStage === "access" ? "awareness" : currentStage;
+  const event: EvidenceEvent = { at: now, kind: "open", fromStage: currentStage, toStage: nextStage, sessionId: context.sessionId };
   return { nextStage, event };
 }
 
@@ -43,12 +116,25 @@ export function onNodeOpened(currentStage: Stage, now: string = new Date().toISO
 export function onCheckResult(
   currentStage: Stage,
   check: { result: "support" | "contradiction" | "unknown"; confidence: "high" | "medium" | "low"; abstained: boolean },
+  context: EvidenceContext = {},
   now: string = new Date().toISOString(),
 ): StageTransition {
-  const event: EvidenceEvent = { at: now, kind: "check", result: check.result, confidence: check.confidence };
   const grounded = !check.abstained && check.result === "support" && check.confidence !== "low";
   const eligible = stageAtLeast(currentStage, "awareness") && !stageAtLeast(currentStage, "understanding");
   const nextStage: Stage = grounded && eligible ? "understanding" : currentStage;
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "check",
+    result: check.result,
+    confidence: check.confidence,
+    abstained: check.abstained,
+    fromStage: currentStage,
+    toStage: nextStage,
+    learnerText: context.learnerText,
+    modelFeedback: context.modelFeedback,
+    citations: context.citations,
+    sessionId: context.sessionId,
+  };
   return { nextStage, event };
 }
 
@@ -65,6 +151,7 @@ export function onCheckResult(
  */
 export function onTransferItemAnswered(
   currentStage: Stage,
+  context: EvidenceContext = {},
   now: string = new Date().toISOString(),
 ): StageTransition {
   const event: EvidenceEvent = {
@@ -73,6 +160,11 @@ export function onTransferItemAnswered(
     held: true,
     heldReason: "teacher_judgment_stub",
     note: "Transfer item answered; held pending teacher review (no teacher layer in Phase 0).",
+    fromStage: currentStage,
+    toStage: currentStage,
+    learnerText: context.learnerText,
+    itemId: context.itemId,
+    sessionId: context.sessionId,
   };
   return { nextStage: currentStage, event }; // stage intentionally unchanged
 }
@@ -81,12 +173,14 @@ export function onTransferItemAnswered(
  * Diagnostic-probe grading (bkt-ros, Phase 1 item 2, review section 3 step
  * 5, "handle unknown prior knowledge"). src/lib/research-os/probe.ts's
  * probeDue only fires a probe for a learner with NO state record on any
- * ancestor of the target, so the starting stage here is always 'access'.
- * The grading call itself is the SAME one Check makes
- * (src/lib/research-os/grounding.ts's gradeExplanation, task item 2's
- * "graded by the existing grounded tutor Check action"); this function only
- * differs from onCheckResult in what a result is worth, because a cold-start
- * probe answer means something different from an in-path Check answer:
+ * ancestor of the target, so the starting stage here is always 'access'
+ * (`fromStage` below is hardcoded to that invariant rather than taking a
+ * parameter no caller could supply differently). The grading call itself is
+ * the SAME one Check makes (src/lib/research-os/grounding.ts's
+ * gradeExplanation, task item 2's "graded by the existing grounded tutor
+ * Check action"); this function only differs from onCheckResult in what a
+ * result is worth, because a cold-start probe answer means something
+ * different from an in-path Check answer:
  *
  *   - strongly grounded (support, no abstain, confidence >= medium):
  *     the learner can already explain this ancestor concept, so probing
@@ -102,22 +196,31 @@ export function onTransferItemAnswered(
  */
 export function onProbeCheckResult(
   check: { result: "support" | "contradiction" | "unknown"; confidence: "high" | "medium" | "low"; abstained: boolean },
+  context: EvidenceContext = {},
   now: string = new Date().toISOString(),
 ): StageTransition {
+  const fromStage: Stage = "access";
+  let nextStage: Stage = "access";
+  if (!check.abstained && check.result === "support" && check.confidence !== "low") {
+    nextStage = "understanding";
+  } else if (!check.abstained && (check.result === "support" || check.result === "unknown")) {
+    nextStage = "awareness";
+  }
   const event: EvidenceEvent = {
     at: now,
     kind: "check",
     result: check.result,
     confidence: check.confidence,
+    abstained: check.abstained,
     note: "diagnostic_probe",
+    fromStage,
+    toStage: nextStage,
+    learnerText: context.learnerText,
+    modelFeedback: context.modelFeedback,
+    citations: context.citations,
+    sessionId: context.sessionId,
   };
-  if (!check.abstained && check.result === "support" && check.confidence !== "low") {
-    return { nextStage: "understanding", event };
-  }
-  if (!check.abstained && (check.result === "support" || check.result === "unknown")) {
-    return { nextStage: "awareness", event };
-  }
-  return { nextStage: "access", event };
+  return { nextStage, event };
 }
 
 /**
@@ -129,9 +232,42 @@ export function onProbeCheckResult(
  * gated to 'draft'/'submitted' in Phase 0; only 'accepted' would represent a
  * teacher- or reviewer-approved production, and that path is Phase 1 work
  * (RESEARCH-OS-K12-SYSTEM-REVIEW.md gap analysis, "Teacher review queue").
+ *
+ * ros-04: now takes `currentStage` (the caller fetches it first, e.g.
+ * db.ts's loadCurrentStage) so the evidence event carries a real
+ * `fromStage` instead of an assumed one; `nextStage` is unconditionally
+ * "production" either way, unchanged from the original behavior.
  */
-export function onProductionSubmitted(now: string = new Date().toISOString()): StageTransition {
-  const event: EvidenceEvent = { at: now, kind: "production_submitted" };
+export function onProductionSubmitted(
+  currentStage: Stage,
+  context: EvidenceContext = {},
+  now: string = new Date().toISOString(),
+): StageTransition {
+  const event: EvidenceEvent = { at: now, kind: "production_submitted", fromStage: currentStage, toStage: "production", sessionId: context.sessionId };
+  return { nextStage: "production", event };
+}
+
+/**
+ * The corrective event EVIDENCE-SCHEMA.md's "The corrective event on
+ * graph.productions" section specifies: a returned production leaves
+ * `graph.learner_node_state.stage` at `production` (the append documents
+ * the correction without moving `stage` backward, keeping every existing
+ * `stageAtLeast` high-water-mark check correct), with the evidence log
+ * carrying the fact that this specific production was rejected. Any
+ * outcome query already filters on `graph.productions.status = "accepted"`
+ * (LEARNER-STATE-MODEL.md section 1), so `stage` itself needs no change,
+ * only this event needs to exist. Called from the review route's
+ * production branch on a "returned" decision.
+ */
+export function onProductionReturned(context: EvidenceContext = {}, now: string = new Date().toISOString()): StageTransition {
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "production_returned",
+    fromStage: "production",
+    toStage: "production",
+    note: context.learnerText,
+    sessionId: context.sessionId,
+  };
   return { nextStage: "production", event };
 }
 
@@ -159,6 +295,8 @@ export function onTeacherReview(
   reason: string | undefined,
   now: string = new Date().toISOString(),
 ): StageTransition {
+  const eligible = stageAtLeast(currentStage, "understanding") && !stageAtLeast(currentStage, "internalization");
+  const nextStage: Stage = decision === "approved" && eligible ? "internalization" : currentStage;
   const event: EvidenceEvent = {
     at: now,
     kind: "teacher_review",
@@ -166,8 +304,8 @@ export function onTeacherReview(
     heldReason: decision === "returned" ? reason : undefined,
     note: reason,
     reviewerId,
+    fromStage: currentStage,
+    toStage: nextStage,
   };
-  const eligible = stageAtLeast(currentStage, "understanding") && !stageAtLeast(currentStage, "internalization");
-  const nextStage: Stage = decision === "approved" && eligible ? "internalization" : currentStage;
   return { nextStage, event };
 }
