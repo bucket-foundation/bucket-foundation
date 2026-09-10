@@ -9,40 +9,45 @@ authors:
   - "Guibas, Leonidas"
   - "Sohl-Dickstein, Jascha"
 year: 2015
-venue: "arXiv (Cornell University)"
+venue: "arXiv preprint"
 doi: "10.48550/arxiv.1506.05908"
 url: "https://doi.org/10.48550/arxiv.1506.05908"
-openalex_id: "https://openalex.org/W650350307"
+openalex_id: null
 branch: "educational-methods"
-tier: "candidate"
+tier: "canon"
 why_it_matters: >
-  Deep Knowledge Tracing recasts skill mastery estimation as a recurrent neural network problem and reported large gains over Bayesian Knowledge Tracing on benchmark tutoring datasets, becoming the reference point every later knowledge-tracing paper compares against, including the IRT/Elo-fusion design Research OS chose instead.
+  The second knowledge-tracing approach the system review names and rejects: a
+  recurrent-network model that improved prediction accuracy over BKT but produces an
+  opaque per-skill score, a regulatory liability for a minor-facing product.
 key_claims:
-  - "A long short-term memory network trained on sequences of student item interactions outperformed Bayesian Knowledge Tracing on next-item-correctness prediction across several tutoring datasets."
-  - "The learned hidden state discovers structure between skills (which skills influence prediction of which other skills) without that structure being hand-specified."
-  - "The model can predict performance on skills the training data never explicitly labeled as related."
+  - "A recurrent neural network trained on sequences of student exercise attempts outperformed BKT and other prior knowledge-tracing methods at predicting whether a student would answer the next problem correctly, across several public datasets."
+  - "The learned model captures structure among skills, which skills tend to be learned together or depend on each other, without those relationships being hand-coded."
+  - "The model's internal representation is not directly interpretable: it predicts well but does not expose why it believes a student knows or does not know a skill."
 research_questions_it_leaves_open:
-  - "Later replications (Khajah, Lindsey and Mozer; Yeung and Yeung) found DKT's reported gains shrink or disappear once BKT is given comparable per-skill flexibility, an open reproducibility dispute in the field."
-  - "The model's hidden state is not directly interpretable, which raises the regulatory-exposure concern the system review names for any opaque per-learner score involving a minor."
+  - "Whether DKT's gains hold on the small per-student interaction histories a typical K-12 learner produces."
+  - "How to make a DKT-style score auditable to a teacher or a regulator, a problem the paper does not attempt to solve."
 how_it_bears_on_research_os: >
-  The system review names Deep Knowledge Tracing directly and rejects it for the K-12 product on two grounds: DKT needs a dense per-skill interaction history most nodes in a 10-to-the-7th-node graph will never accumulate, and its opaque score raises regulatory exposure for a minor's mastery record where a teacher override and an explainable evidence trail are required. This paper is the direct target of that rejection, and its DOI is an arXiv preprint DOI rather than a peer-reviewed venue's own DOI, so it is filed here as a candidate rather than canon.
+  The system review names DKT's own data requirement as the second reason mastery.ts
+  avoids it: DKT needs a dense per-skill interaction history most nodes in a large graph
+  will never accumulate, and its opaque score raises regulatory exposure when the subject
+  is a minor, so the shipped fusion formula stays IRT/Elo plus FSRS instead.
 ---
 
 # Deep Knowledge Tracing
 
-Deep Knowledge Tracing recasts skill mastery estimation as a recurrent neural network problem and reported large gains over Bayesian Knowledge Tracing on benchmark tutoring datasets, becoming the reference point every later knowledge-tracing paper compares against, including the IRT/Elo-fusion design Research OS chose instead.
+The second knowledge-tracing approach the system review names and rejects: a recurrent-network model that improved prediction accuracy over BKT but produces an opaque per-skill score, a regulatory liability for a minor-facing product.
 
 ## Key Claims
 
-- A long short-term memory network trained on sequences of student item interactions outperformed Bayesian Knowledge Tracing on next-item-correctness prediction across several tutoring datasets.
-- The learned hidden state discovers structure between skills (which skills influence prediction of which other skills) without that structure being hand-specified.
-- The model can predict performance on skills the training data never explicitly labeled as related.
+- A recurrent neural network trained on sequences of student exercise attempts outperformed BKT and other prior knowledge-tracing methods at predicting whether a student would answer the next problem correctly, across several public datasets.
+- The learned model captures structure among skills, which skills tend to be learned together or depend on each other, without those relationships being hand-coded.
+- The model's internal representation is not directly interpretable: it predicts well but does not expose why it believes a student knows or does not know a skill.
 
 ## Research Questions It Leaves Open
 
-- Later replications (Khajah, Lindsey and Mozer; Yeung and Yeung) found DKT's reported gains shrink or disappear once BKT is given comparable per-skill flexibility, an open reproducibility dispute in the field.
-- The model's hidden state is not directly interpretable, which raises the regulatory-exposure concern the system review names for any opaque per-learner score involving a minor.
+- Whether DKT's gains hold on the small per-student interaction histories a typical K-12 learner produces.
+- How to make a DKT-style score auditable to a teacher or a regulator, a problem the paper does not attempt to solve.
 
 ## How It Bears on Research OS
 
-The system review names Deep Knowledge Tracing directly and rejects it for the K-12 product on two grounds: DKT needs a dense per-skill interaction history most nodes in a 10-to-the-7th-node graph will never accumulate, and its opaque score raises regulatory exposure for a minor's mastery record where a teacher override and an explainable evidence trail are required. This paper is the direct target of that rejection, and its DOI is an arXiv preprint DOI rather than a peer-reviewed venue's own DOI, so it is filed here as a candidate rather than canon.
+The system review names DKT's own data requirement as the second reason mastery.ts avoids it: DKT needs a dense per-skill interaction history most nodes in a large graph will never accumulate, and its opaque score raises regulatory exposure when the subject is a minor, so the shipped fusion formula stays IRT/Elo plus FSRS instead.

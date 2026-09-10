@@ -6,37 +6,43 @@ year: 2008
 venue: "Cognition and Instruction"
 doi: "10.1080/07370000802212669"
 url: "https://doi.org/10.1080/07370000802212669"
-openalex_id: "https://openalex.org/W4245000930"
+openalex_id: null
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >
-  Kapur shows that letting students struggle with a complex problem before receiving direct instruction, generating flawed but generative solution attempts, produces deeper learning than receiving well-structured guidance first, a direct argument for what the Internalization-stage transfer item and the tutor's Socratic-question-only design are already built to preserve.
+  Motivates the design choice to let a learner struggle on the Internalization-stage
+  transfer item before any AI assistance intervenes, rather than routing to help at first
+  difficulty.
 key_claims:
-  - "Students who worked on complex, curriculum-relevant problems without prior instruction generated more numerous and more varied solution ideas than students who received direct instruction first."
-  - "Despite lower success rates on the initial problem itself, the unguided-first group outperformed the direct-instruction-first group on subsequent well-structured and complex problems."
-  - "The generative, exploratory activity during struggle predicted the later learning gain more strongly than correctness on the initial attempt did."
+  - "Students who attempted to solve complex problems before receiving instruction, and largely failed, outperformed students who received direct instruction first, on a later test of conceptual understanding and transfer, despite worse performance during the initial problem-solving phase."
+  - "The productive-failure group generated more, and more varied, solution attempts, which appeared to prepare them to notice and encode the eventual instruction's key ideas."
+  - "The effect reversed for procedural fluency measures, where direct instruction first performed better, marking a real trade-off rather than a universal advantage."
 research_questions_it_leaves_open:
-  - "The conditions under which productive failure helps versus harms (prior knowledge level, problem structure, scaffolding timing) are still contested across replications."
-  - "How to distinguish productive struggle from unproductive floundering in real time, so a system knows when to intervene."
+  - "How to identify, in real time, when unresolved struggle is productive versus only discouraging, a design problem for any system that decides when to intervene."
+  - "Whether the effect holds for younger learners with less tolerance for sustained failure, a population the original studies did not test."
 how_it_bears_on_research_os: >
-  The system review's rule that the AI tutor 'stops short of the answer' and that a stuck student reaches only a narrower Socratic dialogue surface is a direct design commitment to preserving productive failure: Kapur's finding is the evidentiary basis for never letting Check or the tutor solve the problem itself, since doing so would remove exactly the generative struggle his data shows produces the later transfer gain.
+  Argues for a specific sequencing rule in the constrained tutor: Check and Organize
+  should not fire on a first attempt at an Internalization-stage transfer item, and the
+  tutor dialogue's own turn budget should default toward later engagement rather than
+  immediate rescue, preserving the unresolved-struggle window this paper's design shows
+  matters.
 ---
 
 # Productive Failure
 
-Kapur shows that letting students struggle with a complex problem before receiving direct instruction, generating flawed but generative solution attempts, produces deeper learning than receiving well-structured guidance first, a direct argument for what the Internalization-stage transfer item and the tutor's Socratic-question-only design are already built to preserve.
+Motivates the design choice to let a learner struggle on the Internalization-stage transfer item before any AI assistance intervenes, rather than routing to help at first difficulty.
 
 ## Key Claims
 
-- Students who worked on complex, curriculum-relevant problems without prior instruction generated more numerous and more varied solution ideas than students who received direct instruction first.
-- Despite lower success rates on the initial problem itself, the unguided-first group outperformed the direct-instruction-first group on subsequent well-structured and complex problems.
-- The generative, exploratory activity during struggle predicted the later learning gain more strongly than correctness on the initial attempt did.
+- Students who attempted to solve complex problems before receiving instruction, and largely failed, outperformed students who received direct instruction first, on a later test of conceptual understanding and transfer, despite worse performance during the initial problem-solving phase.
+- The productive-failure group generated more, and more varied, solution attempts, which appeared to prepare them to notice and encode the eventual instruction's key ideas.
+- The effect reversed for procedural fluency measures, where direct instruction first performed better, marking a real trade-off rather than a universal advantage.
 
 ## Research Questions It Leaves Open
 
-- The conditions under which productive failure helps versus harms (prior knowledge level, problem structure, scaffolding timing) are still contested across replications.
-- How to distinguish productive struggle from unproductive floundering in real time, so a system knows when to intervene.
+- How to identify, in real time, when unresolved struggle is productive versus only discouraging, a design problem for any system that decides when to intervene.
+- Whether the effect holds for younger learners with less tolerance for sustained failure, a population the original studies did not test.
 
 ## How It Bears on Research OS
 
-The system review's rule that the AI tutor 'stops short of the answer' and that a stuck student reaches only a narrower Socratic dialogue surface is a direct design commitment to preserving productive failure: Kapur's finding is the evidentiary basis for never letting Check or the tutor solve the problem itself, since doing so would remove exactly the generative struggle his data shows produces the later transfer gain.
+Argues for a specific sequencing rule in the constrained tutor: Check and Organize should not fire on a first attempt at an Internalization-stage transfer item, and the tutor dialogue's own turn budget should default toward later engagement rather than immediate rescue, preserving the unresolved-struggle window this paper's design shows matters.

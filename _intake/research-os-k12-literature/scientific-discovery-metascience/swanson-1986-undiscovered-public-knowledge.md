@@ -6,50 +6,45 @@ year: 1986
 venue: "Perspectives in Biology and Medicine"
 doi: "10.1353/pbm.1986.0087"
 url: "https://doi.org/10.1353/pbm.1986.0087"
-openalex_id: "https://openalex.org/W2011726136"
+openalex_id: null
 branch: "scientific-discovery-metascience"
 tier: "canon"
 why_it_matters: >
-  Swanson showed that two disconnected biomedical literatures, one on fish oil's effect on blood
-  viscosity and platelet function, the other on Raynaud's syndrome, together implied a treatment
-  hypothesis that no single paper stated and that neither literature's authors likely read the
-  other to find. He named the phenomenon undiscovered public knowledge and gave literature-based
-  discovery its founding case.
+  The founding case study of literature-based discovery, finding a testable medical
+  hypothesis, fish oil for Raynaud's syndrome, purely by connecting two disconnected
+  literatures that shared no common citations, the direct conceptual ancestor of the
+  hypothesis engine's own gap-node queue.
 key_claims:
-  - "Two literatures that never cite each other can jointly imply a testable claim, A affects B and B affects C, therefore C may affect A, that is present in the combined literature but absent from any single publication in it."
-  - "The fish-oil and Raynaud's link was built by manual search across the two literatures, and Swanson proposed this A-B-C bridging structure as a general, repeatable search method."
-  - "Knowledge that exists in principle, distributed across publications no one has jointly read, stays functionally undiscovered until someone or something performs the cross-literature search."
+  - "Two bodies of published literature, one on fish oil's effects on blood viscosity and platelet function, the other on Raynaud's syndrome's underlying pathology, never cited each other, yet together implied a testable hypothesis: fish oil supplementation might relieve Raynaud's symptoms."
+  - "The hypothesis was later tested and found supported in a clinical trial, evidence the disconnection between literatures reflected a real gap in cross-reading rather than a reason the connection had already been tried and failed."
+  - "Swanson frames undiscovered public knowledge as knowledge that is, in principle, derivable from already-published literature but has not been derived because no single reader has read both bodies of work."
 research_questions_it_leaves_open:
-  - "Swanson's method finds candidate hypotheses but leaves the causal validity of the intermediate mechanism (B) for later experimental confirmation, outside the method itself."
-  - "The paper leaves open how to scale manual bridging search to the full literature, a problem later literature-based discovery work and automated knowledge graphs took up directly."
+  - "How to systematically search for this kind of disconnected-literature structure at scale, the problem Swanson's own later ARROWSMITH system attempts and later knowledge-graph methods revisit."
+  - "How to distinguish a real undiscovered connection from a spurious one, since most pairs of disconnected literatures share no meaningful link at all."
 how_it_bears_on_research_os: >
-  Swanson's A-B-C structure reads as a plain-language description of what Bucket's gap-node
-  detection is built to find by machine: a missing edge between two evidence-backed concept
-  clusters that, if connected, would produce a testable hypothesis neither source literature
-  states outright. It is also a precedent for treating undiscovered public knowledge as its own
-  evidence status in the belief-fusion model: a claim whose supporting evidence already exists but
-  has not been assembled into a single explicit connection, which matters for how the citation
-  graph weighs a hypothesis built by connecting two already-cited sources as its own evidentiary
-  path, separate from one resting on a single new evidence item.
+  Is the founding precedent for treating a structural gap, not just a stated open
+  question, as an addressable research target: the hypothesis engine's own GapNode, an
+  unread document, an unfilled evidence cell, an unresolved mechanism, each priced by
+  value_of_information, formalizes this paper's own move of treating an absence of
+  connection as itself a finding worth pursuing, rather than a topic not yet written
+  about.
 ---
 
 # Fish Oil, Raynaud's Syndrome, and Undiscovered Public Knowledge
 
-Swanson's paper matters to Bucket Foundation because it names the exact gap the hypothesis
-engine's gap-node detection is built to close. He found that the fish-oil literature and the
-Raynaud's syndrome literature each contained one half of a testable claim, connected through a
-shared intermediate mechanism, without either literature's authors reading across to the other.
-That A-B-C bridging structure, a affects b, b affects c, therefore c may affect a, is close to a
-manual version of what an automated gap-node detector should surface from a citation graph. It
-also gives the belief-fusion model a name for a distinct evidence status: knowledge that already
-exists in the literature but has never been assembled into one explicit claim, separate from
-knowledge that is missing outright.
+The founding case study of literature-based discovery, finding a testable medical hypothesis, fish oil for Raynaud's syndrome, purely by connecting two disconnected literatures that shared no common citations, the direct conceptual ancestor of the hypothesis engine's own gap-node queue.
 
-Key claims:
-- Two literatures with no shared citations can jointly imply a testable claim absent from either one alone.
-- Swanson built the fish-oil and Raynaud's link by manual A-B-C bridging search and proposed it as a repeatable method.
-- Distributed knowledge stays undiscovered until a cross-literature search assembles it.
+## Key Claims
 
-Open questions:
-- The method proposes a hypothesis; confirming the intermediate mechanism still requires separate experimental work.
-- How to scale manual bridging search across the full literature, the problem later automated approaches took up.
+- Two bodies of published literature, one on fish oil's effects on blood viscosity and platelet function, the other on Raynaud's syndrome's underlying pathology, never cited each other, yet together implied a testable hypothesis: fish oil supplementation might relieve Raynaud's symptoms.
+- The hypothesis was later tested and found supported in a clinical trial, evidence the disconnection between literatures reflected a real gap in cross-reading rather than a reason the connection had already been tried and failed.
+- Swanson frames undiscovered public knowledge as knowledge that is, in principle, derivable from already-published literature but has not been derived because no single reader has read both bodies of work.
+
+## Research Questions It Leaves Open
+
+- How to systematically search for this kind of disconnected-literature structure at scale, the problem Swanson's own later ARROWSMITH system attempts and later knowledge-graph methods revisit.
+- How to distinguish a real undiscovered connection from a spurious one, since most pairs of disconnected literatures share no meaningful link at all.
+
+## How It Bears on Research OS
+
+Is the founding precedent for treating a structural gap, not just a stated open question, as an addressable research target: the hypothesis engine's own GapNode, an unread document, an unfilled evidence cell, an unresolved mechanism, each priced by value_of_information, formalizes this paper's own move of treating an absence of connection as itself a finding worth pursuing, rather than a topic not yet written about.
