@@ -110,7 +110,7 @@ def test_render_card_carries_opinion_slots_and_candidate_tier(linking_run):
     run_dir, h_supported, _ = linking_run
     candidates, ctx = canon_writeback.reconstruct_candidates(run_dir)
     candidate = next(c for c in candidates if c.hypothesis.address == h_supported.address)
-    text = canon_writeback.render_card(candidate, ctx, branch="02-physics")
+    text = canon_writeback.render_card(candidate, ctx, branch="02-physics", signoff="jane-reviewer")
     assert "**canon_tier:** candidate" in text
     assert "canon_tier:** canon\n" not in text  # never promoted to canon
     assert candidate.short_id in text
@@ -121,7 +121,7 @@ def test_render_card_carries_opinion_slots_and_candidate_tier(linking_run):
 def test_write_back_dry_run_lists_paths_and_writes_nothing(tmp_path, linking_run):
     run_dir, _, _ = linking_run
     out_root = tmp_path / "canon-out"
-    paths = canon_writeback.write_back(run_dir, branch="02-physics", floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=True)
+    paths = canon_writeback.write_back(run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=True)
     assert paths
     assert not out_root.exists()
 
@@ -142,7 +142,7 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
     monkeypatch.setattr(canon_writeback, "_emit_feed_events", lambda events: 0)
 
-    paths = canon_writeback.write_back(run_dir, branch="02-physics", floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=False)
+    paths = canon_writeback.write_back(run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=False)
     for path in paths:
         assert path.is_file(), path
 
@@ -151,6 +151,7 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     supported_card = next(p for p in card_paths if p.stem == h_supported.short_id)
     text = supported_card.read_text()
     assert "**canon_tier:** candidate" in text
+    assert "**Signed off by:** jane-reviewer" in text
 
     index_text = (out_root / "02-physics" / "hypotheses" / "INDEX.md").read_text()
     assert h_supported.short_id in index_text
@@ -163,6 +164,7 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     envelope = json.loads(envelope_path.read_text())
     assert envelope["agent_action_required"] is False
     assert envelope["payment_required_from_you"] is False
+    assert envelope["signed_off_by"] == "jane-reviewer"
     assert len(envelope["hypotheses"]) == 2
     for item in envelope["hypotheses"]:
         assert item["canon_tier"] == "candidate"
@@ -180,7 +182,22 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
 def test_write_back_requires_branch(linking_run):
     run_dir, _, _ = linking_run
     with pytest.raises(ValueError):
-        canon_writeback.write_back(run_dir, branch="", dry_run=True)
+        canon_writeback.write_back(run_dir, branch="", signoff="jane-reviewer", dry_run=True)
+
+
+def test_write_back_requires_signoff(tmp_path, linking_run):
+    """No named human approver, no write: PLAN.md section 10 and
+    GOVERNANCE.md both require a recorded human sign-off before any
+    file lands under bucket-canon/, so a missing or blank signoff is a
+    hard refusal before reconstruct_candidates even runs, and touches
+    no file, dry_run or not."""
+    run_dir, _, _ = linking_run
+    out_root = tmp_path / "canon-out"
+    with pytest.raises(ValueError, match="signoff"):
+        canon_writeback.write_back(run_dir, branch="02-physics", signoff=None, out_root=out_root, dry_run=True)
+    with pytest.raises(ValueError, match="signoff"):
+        canon_writeback.write_back(run_dir, branch="02-physics", signoff="   ", out_root=out_root, dry_run=False)
+    assert not out_root.exists()
 
 
 def test_write_back_never_writes_canon_tier():
@@ -296,7 +313,7 @@ def test_write_back_cards_are_invisible_to_the_pr22_canon_importer(tmp_path, lin
 
     for branch in ("07-mind", "02-physics"):
         paths = canon_writeback.write_back(
-            run_dir, branch=branch, floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=False,
+            run_dir, branch=branch, signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=False,
         )
         card_paths = [p for p in paths if p.parent.name == "hypotheses" and p.suffix == ".md" and p.name != "INDEX.md"]
         assert card_paths

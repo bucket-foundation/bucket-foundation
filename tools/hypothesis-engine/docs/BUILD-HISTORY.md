@@ -81,12 +81,20 @@ HTE_LLM_WORKERS=4 python3 -m hte.cli campaign run --corpus sacred-history --seed
 
 # dry-run write-back: lists every card path it would write, touches nothing
 python3 -m hte.cli_pipeline run --corpus sacred-history \
-  --from-run runs/sacred-history/<timestamp> --writeback --branch 07-mind --dry-run
+  --from-run runs/sacred-history/<timestamp> --writeback --branch 07-mind \
+  --signoff gianyrox --dry-run
 
 # the real write-back plus the paper stage, publish (commit + gdrive) skipped
 python3 -m hte.cli_pipeline run --corpus sacred-history \
-  --from-run runs/sacred-history/<timestamp> --writeback --branch 07-mind --skip-publish
+  --from-run runs/sacred-history/<timestamp> --writeback --branch 07-mind \
+  --signoff gianyrox --skip-publish
 ```
+
+`--signoff` names a human approver and is required whenever `--writeback`
+is passed: `hte.canon_writeback.write_back` hard-refuses (`ValueError`)
+before touching any file if it is missing or blank, per `learning/
+research-os/PLAN.md` section 10 and `GOVERNANCE.md`, no unattended write
+into `bucket-canon/`.
 
 `--corpus` is still required alongside `--from-run` (`hte.pipeline.
 run_pipeline`'s own period-choice stage reads it even when the campaign
