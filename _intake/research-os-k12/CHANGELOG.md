@@ -1,5 +1,27 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #25 review pass
+
+Review of `docs/ros-02-learner-state-model` (PR #25) in worktree `review/pr25`. Leak scan
+against the full diff's added lines found no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs. Six code claims spot-checked against `origin/main` (`stages.ts`'s five
+transition functions, `probe.ts`'s cold-start-only firing, the review route's production
+branch never calling `recordEvidence`, `learner_node_state`/`teacher_reviews` schema shape,
+`academyNodeSlug`'s slug format, `mastery.ts`'s `inferDepth` thresholds and `fuseMastery`
+formula) all matched the paper's description, including the named bug: a returned production
+leaves `stage` at `production` uncorrected. README index row count (82) matched the corpus
+file count (82) exactly. Every framework mapping table states "No counterpart" with a reason
+where one applies, rather than forcing a match.
+
+Two real citation errors found and fixed: `anderson-krathwohl-2001-taxonomy-revision.md` and
+`wiske-1998-teaching-for-understanding.md` both carried the same wrong Open Library `url`
+(`OL3906603W`, which resolves to an unrelated book, "Russia's Road to Democracy"), corrected
+to the verified work ids (`OL16641840W` and `OL16467129W`) after cross-checking against
+Open Library's search API. The ISBNs themselves were correct in both files. Two banned-word
+("actually") instances fixed in `CHANGE-LEDGER.md` and the Perkins card; `agf-lint-voice
+check` was clean on every file it scanned.
+
 ## 2026-09-10, learner state model and mapping paper
 
 Branch `docs/ros-02-learner-state-model` (bead `ros-02`). Docs only, no code or migration

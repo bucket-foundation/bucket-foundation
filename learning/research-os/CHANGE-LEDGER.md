@@ -568,8 +568,8 @@ no code, no migration, no schema change.
   construction rule, an inter-rater procedure for teacher judgments, the minimal logging
   schema); and seven questions marked OPEN, each tied to the paper that poses it.
 - `src/lib/research-os/EVIDENCE-SCHEMA.md`: the evidence jsonb contract `ros-04` and `ros-06`
-  implement against. Docs only; no `EvidenceEvent` field, no migration column, actually added
-  in this pass.
+  implement against. Docs only; no `EvidenceEvent` field, no migration column, added in this
+  pass.
 - `_intake/research-os-k12-literature/educational-methods/chi-wylie-2014-icap-framework.md`,
   `biggs-collis-1982-solo-taxonomy.md`, `anderson-krathwohl-2001-taxonomy-revision.md`,
   `perkins-1993-teaching-for-understanding.md`, `wiske-1998-teaching-for-understanding.md`:
@@ -609,3 +609,32 @@ section 3's central finding that no code path joins Research OS state transition
 Academy's FSRS/IRT signals today. No file under `src/` outside the two new docs files is
 touched by this pass, so no `npm run build` gate applies to it; `agf-lint-voice check` run
 against every file this pass authored.
+
+## Iteration 12
+
+Date 2026-09-10. Review pass on PR #25 (`docs/ros-02-learner-state-model`), worktree
+`review/pr25`. Docs only.
+
+### Edited
+
+- `anderson-krathwohl-2001-taxonomy-revision.md`, `wiske-1998-teaching-for-understanding.md`:
+  fixed a wrong Open Library `url` shared by both cards (`OL3906603W`, "Russia's Road to
+  Democracy," unrelated to either book), replaced with the verified work ids `OL16641840W`
+  and `OL16467129W`; each confirmed against Open Library's own work record before writing.
+- `perkins-1993-teaching-for-understanding.md`, this file: removed two banned-word
+  ("actually") instances.
+
+### Verified
+
+Leak scan on the full diff's added lines: no keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs. Six code claims spot-checked against `origin/main`: `stages.ts`'s five
+transition functions, `probe.ts`'s cold-start-only firing, the review route's production
+branch never calling `recordEvidence` (confirmed, the named bug is real), the
+`learner_node_state`/`teacher_reviews` schema shape (single `confidence` column with no
+writer, single `reviewer_id` with no second-rater columns), `academyNodeSlug`'s slug format,
+and `mastery.ts`'s `inferDepth` thresholds plus `fuseMastery` formula. All matched. README
+index row count (82) matched the corpus file count (82) exactly, `find` counted per branch:
+22 educational methods, 25 HCI, 18 scientific discovery, 12 AI and researchers, 5
+prerequisite graphs. Every framework mapping table states "No counterpart" with a reason
+where one applies. `agf-lint-voice check` clean on every file it scanned.

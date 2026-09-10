@@ -26,7 +26,7 @@ how_it_bears_on_research_os: >
   `learning/research-os/LEARNER-STATE-MODEL.md` section 2 maps Bucket's Understanding state
   to the explanation performance and Internalization to the application-to-an-unfamiliar-case
   performance, the two performance types the shipped Check tool and transfer-item pipeline
-  actually test, and names OPEN-4: whether the other named performances, justification,
+  test, and names OPEN-4: whether the other named performances, justification,
   comparison and contrast, generalization, none of them tested today, would add predictive
   power if built.
 ---
@@ -48,7 +48,7 @@ The magazine-length statement of the understanding-performances framework `learn
 
 ## How It Bears on Research OS
 
-`learning/research-os/LEARNER-STATE-MODEL.md` section 2 maps Bucket's Understanding state to the explanation performance and Internalization to the application-to-an-unfamiliar-case performance, the two performance types the shipped Check tool and transfer-item pipeline actually test, and names OPEN-4: whether the other named performances, justification, comparison and contrast, generalization, none of them tested today, would add predictive power if built.
+`learning/research-os/LEARNER-STATE-MODEL.md` section 2 maps Bucket's Understanding state to the explanation performance and Internalization to the application-to-an-unfamiliar-case performance, the two performance types the shipped Check tool and transfer-item pipeline test, and names OPEN-4: whether the other named performances, justification, comparison and contrast, generalization, none of them tested today, would add predictive power if built.
 
 ## Verification note
 

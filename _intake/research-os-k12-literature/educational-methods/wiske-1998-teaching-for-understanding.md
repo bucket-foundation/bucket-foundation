@@ -5,7 +5,7 @@ authors:
 year: 1998
 venue: "Jossey-Bass"
 doi: null
-url: "https://openlibrary.org/works/OL3906603W"
+url: "https://openlibrary.org/works/OL16467129W"
 isbn: "978-0-7879-1002-0"
 branch: "educational-methods"
 tier: "canon"

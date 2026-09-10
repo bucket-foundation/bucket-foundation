@@ -12,7 +12,7 @@ authors:
 year: 2001
 venue: "Longman"
 doi: null
-url: "https://openlibrary.org/works/OL3906603W/A_taxonomy_for_learning_teaching_and_assessing"
+url: "https://openlibrary.org/works/OL16641840W/A_taxonomy_for_learning_teaching_and_assessing"
 isbn: "978-0-8013-1903-7"
 branch: "educational-methods"
 tier: "canon"
