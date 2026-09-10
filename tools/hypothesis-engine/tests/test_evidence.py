@@ -1,6 +1,7 @@
 import pytest
 
-from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Tier, TIER_WEIGHT
+from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier, TIER_WEIGHT
+from hte.timeline import Interval
 
 
 def _span() -> EvidenceSpan:
@@ -40,3 +41,25 @@ def test_evidence_item_roundtrip():
     )
     back = EvidenceItem.from_dict(item.to_dict())
     assert back == item
+
+
+def test_evidence_item_unnamed_slots_default_to_none_and_positive_stance():
+    item = EvidenceItem(id="ev-2", kind=EvidenceKind.TEXTUAL, tier=Tier.T3, source_id="src-1",
+                         span=_span(), provenance="manual")
+    assert item.actor is None
+    assert item.interval is None
+    assert item.stance == Stance.POSITIVE
+
+
+def test_evidence_item_slots_roundtrip():
+    item = EvidenceItem(
+        id="ev-3", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="src-1",
+        span=_span(), provenance="manual",
+        actor="planck-1900", action="proposed", object="blackbody-spectrum",
+        place="solvay-brussels", mechanism="quantization",
+        interval=Interval(start=1900, end=1900), stance=Stance.NEGATIVE,
+    )
+    back = EvidenceItem.from_dict(item.to_dict())
+    assert back == item
+    assert back.interval == Interval(start=1900, end=1900)
+    assert back.stance == Stance.NEGATIVE

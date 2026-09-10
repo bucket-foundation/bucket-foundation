@@ -6,15 +6,17 @@ main.tex` and its Lean counterparts under `Bucket.*`.
 
 This package builds the whole loop `main.tex` §8 diagrams: intervals and
 Allen relations, concept vocabulary, the Gödel address scheme, placement
-and sequence hypotheses, evidence items, and the belief scorer; the
-generator, the structural-unknowns layer, the ranking tournament, and
-timeline export; the headless-Claude wrapper and every LLM-backed engine-
-loop role (generator, critic, unknown-unknown, preservation critic, judge,
-meta-review, self-report, and the extraction ensemble); two corpora
-(`quantum/07-history` and a synthetic fixture set) and the retrieval-
-provenance shape their ingestion carries; the discovery-date holdout and
-Brier-score calibration; and `run_campaign`, the one call that wires all
-of it together, plus the `hte` console script over it. The evolver's own
+and sequence hypotheses, evidence items carrying their own best-effort
+extracted slots, the evidence-to-hypothesis linker, and the belief
+scorer; the generator, the structural-unknowns layer, the ranking
+tournament, and timeline export; the headless-Claude wrapper and every
+LLM-backed engine-loop role (generator, critic, unknown-unknown,
+preservation critic, judge, meta-review, self-report, and the extraction
+ensemble); two corpora (`quantum/07-history` and a synthetic fixture set)
+and the retrieval-provenance shape their ingestion carries; the
+event-targeted discovery-date holdout and Brier-score calibration; and
+`run_campaign`, the one call that wires all of it together, plus the
+`hte` console script over it. The evolver's own
 recombine/split/generalize moves (`neighbors`' one-slot mutation is built;
 the larger moves are not) and the gap-node active-learning queue's live
 wiring into a running campaign (`hte.unknowns.GapNode`/`value_of_information`/
@@ -25,19 +27,20 @@ are the two pieces still open.
 
 | Module | Mirrors | Holds |
 |---|---|---|
-| `hte/timeline.py` | `Bucket.Timeline` | `Interval`, `Uncertainty`, `AllenRelation`, `relate`/`converse`, the resolution ladder, calendar conversion (BCE/CE, BP, ka), century time bins, `Period`/`NodeLevel`/`DatePosterior` |
+| `hte/timeline.py` | `Bucket.Timeline` | `Interval`, `Uncertainty`, `AllenRelation`, `relate`/`converse`, the resolution ladder, `auto_resolution`/`bin_label` (a corpus-anchored rung and its "1900s"-style label, in place of a bare bin index), calendar conversion (BCE/CE, BP, ka), century time bins, `Period`/`NodeLevel`/`DatePosterior` |
 | `hte/concepts.py` | `Bucket.Concept` | `Slot`, `ConsensusStatus`, `Concept`, `Vocabulary` (always carries `OTHER` per slot, append-only vocab index, Dirichlet-process `new_concept_probability`), the shipped seed vocabulary |
 | `hte/address.py` | `Bucket.Address` | `SlotTuple`, `encode_indices`/`decode_indices` (placement), `encode_sequence_indices`/`decode_sequence_indices`, `short_id`, and the concept-id-facing `encode`/`decode` wrappers |
 | `hte/hypothesis.py` | `Bucket.Hypothesis` | `Placement`, `Sequence`, `Hypothesis` (address, `claims`, `depends_on`, `meta`), JSON round trip, `prior_logit` |
-| `hte/evidence.py` | (plain data, `def:evidence`) | `EvidenceKind`, `EvidenceFamily`, `Tier`, `EvidenceSpan`, `Source`, `EvidenceItem` |
+| `hte/evidence.py` | (plain data, `def:evidence`) | `EvidenceKind`, `EvidenceFamily`, `Tier`, `Stance`, `EvidenceSpan`, `Source`, `EvidenceItem` (carrying its own best-effort extracted `actor`/`action`/`object`/`place`/`mechanism`/`interval`/`stance`, `bkt-hte-evidence-slots`) |
 | `hte/belief.py` | `Bucket.Belief` | `Opinion`, `fuse`, `Constants`, `D`, `cross_kind_bonus`, `effective_count`, detectability (`load_detectability_table`, `detectability`, `detectability_scale`), `edge_strength`, `cluster_weight`, `weight`, `pooled_weight`, `score` |
+| `hte/link.py` | (none; a linking layer with no Lean counterpart) | `link_evidence` (fills `EvidenceItem.supports`/`refutes` by slot matching against a hypothesis population, `bkt-hte-evidence-slots`), `slot_match_score` (exact-id or fuzzy-label per-slot comparator, shared with `hte.calibrate`) |
 | `hte/llm.py` | none (own layer) | `complete`, the cached, schema-validated `claude -p` wrapper every role calls; `resolve_model`, `escalation_model`, `cache_stats`; `LLMError` and its three subclasses |
-| `hte/roles.py` | `main.tex` §8, `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §7 | One function per engine-loop role: `generate`, `critique`, `unknown_unknown`, `preservation_critique`, `judge`, `meta_review`, `self_report`, `extract` (the ensemble-of-3, agreement-scored, opus-escalated extractor, `bkt-hte-extraction-ensemble`) |
+| `hte/roles.py` | `main.tex` §8, `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §7 | One function per engine-loop role: `generate`, `critique`, `unknown_unknown`, `preservation_critique`, `judge`, `meta_review`, `self_report`, `extract` (the ensemble-of-3, agreement-scored, opus-escalated extractor, `bkt-hte-extraction-ensemble`; its schema additively carries the same slot fields `hte.evidence.EvidenceItem` does, `bkt-hte-evidence-slots`) |
 | `hte/corpus/` | `main.tex` §8's retrieval-envelope paragraph | `Corpus`, `GroundTruthEvent`, `RetrievalEnvelope` (`bkt-hte-retrieval-provenance`, fixture mode only); `quantum_history.ingest` (parses `quantum/07-history/*.md`) and `fixtures.build` (a tiny synthetic corpus of the same shape) |
-| `hte/calibrate.py` | `main.tex` §9 | `holdout_by_discovery_date`, `run_holdout`, `fit_constants`, `write_calibration`, `brier_score`, `calibration_curve` (`bkt-hte-holdout`) |
+| `hte/calibrate.py` | `main.tex` §9 | `holdout_by_discovery_date`, `run_holdout` (event-targeted: a held-out event's own matching placement at the right date scored against `1`, its top wrong-interval competitor against `0`), `fit_constants`, `write_calibration`, `brier_score`, `calibration_curve` (`bkt-hte-holdout`) |
 | `hte/runner.py` | `main.tex` §8's whole engine loop | `run_campaign`, `RunArtifacts`, `Logger` |
 | `hte/cli.py` | none (own layer) | The `hte` console script: `campaign run`, `calibrate`, `views` |
-| `hte/generate.py` | (none; generator is out of `Bucket.*`'s scope) | `enumerate_placements` (lazy product, `OTHER` included), `neighbors` (one-slot mutation, one-bin time shift, sequence relation change), `from_evidence` (the four evidence-driven generators: evidence-cluster, claim-gap, contradiction, cross-period-analogy), `sequences_from` (Allen-relation pairing) |
+| `hte/generate.py` | (none; generator is out of `Bucket.*`'s scope) | `enumerate_placements` (lazy product, `OTHER` included, its own `span_start`/`bin_width` override the module-default TIME_BIN axis), `neighbors` (one-slot mutation, one-bin time shift, sequence relation change), `from_evidence` (the four evidence-driven generators: evidence-cluster, claim-gap, contradiction, cross-period-analogy; same `span_start`/`bin_width` override), `sequences_from` (Allen-relation pairing) |
 | `hte/unknowns.py` | `Bucket.Unknowns` (Good-Turing/Chao1 only) | `good_turing_missing_mass`, `chao1`, `coverage_interval`, `prior_profiles`, `robustness`, `surprise`, `GapNode`, `value_of_information`, `active_priority` |
 | `hte/tournament.py` | (none; out of `Bucket.*`'s scope) | `Judge`, `Critic`, `run` (Elo-seeded Swiss-style tournament), `critic_filter` |
 | `hte/export.py` | (none; a display/export layer) | `timeline_views` (per-bin, per-event, per-pair JSON), `write_views` (`timeline.json` + `TIMELINE.md`) |
@@ -244,27 +247,46 @@ are the two pieces still open.
   popularizers) stands in for the ancient-history seed's extraterrestrials,
   so prior-profile robustness and the target-blind self-report have a
   non-consensus reading to test against in this domain too.
-- **A 126-year corpus collapses into about two century time bins under
-  the shared defaults.** `hte.address.DEFAULT_SPAN_START`/
-  `DEFAULT_BIN_WIDTH` size TIME_BIN for `main.tex`'s own 20,000-year
-  archaeological span; `hte.generate`'s internal calls read those same
-  module-level constants with no override parameter, so quantum history's
-  1900-2026 range (`hte.corpus.quantum_history`) buckets into bins 219 and
-  220 rather than any finer resolution. Finer bins would need a resolution
-  parameter threaded through `hte.generate`, out of scope for this pass;
-  the two-bin split (roughly, 20th-century foundations versus 21st-century
-  engineering) still reads as a coarse but real distinction rather than a
-  meaningless one.
-- **`hte.calibrate` scores a source's own subject in place of a hypothesis
-  address.** `main.tex` §9 assumes a prior generation pass has already
-  linked evidence to hypothesis addresses; no step in this package runs
-  one before calibration does. `run_holdout` instead pools each
-  split-worthy source's pre-cutoff evidence directly (`hte.belief`'s own
-  `D`/`cross_kind_bonus`/`cluster_weight`, read as unconditional support)
-  into one opinion per source, and reads the outcome off whether any
-  post-cutoff item for that source is marked `is_absence=True`. `mu` is
-  excluded from `fit_constants`'s grid on `main.tex` §9's own word that it
-  "takes no recalibration pass of its own."
+- **Fixed 2026-09-10: a 126-year corpus no longer collapses into two
+  century time bins.** `hte.address.DEFAULT_SPAN_START`/
+  `DEFAULT_BIN_WIDTH` still size TIME_BIN for `main.tex`'s own 20,000-year
+  archaeological span, and every module-level default still reads them,
+  but `hte.runner.run_campaign` no longer just accepts those defaults
+  unconditionally: `hte.timeline.auto_resolution` picks the finest rung
+  giving 8-40 bins over a corpus's own ground-truth span (quantum
+  history's 1900-2026 range lands on decade bins), `hte.runner.
+  _resolve_time_binning` anchors bin 0 at that span's own earliest year
+  (`hte.timeline.bin_bounds`) instead of the paper's own -20,000, and
+  `hte.generate.enumerate_placements`/`from_evidence` both take
+  `span_start`/`bin_width` overrides threaded from there, so every
+  hypothesis a run generates addresses under the same corpus-anchored
+  axis. `hte.timeline.bin_label` renders a bin as `"1900s"` rather than a
+  bare index. A config that pins `resolution` to a named rung instead
+  reuses the paper's own fixed span at that rung's width, for exact
+  backward compatibility (`tests/test_runner.py`'s frozen replay-only
+  cache pins `"century"` for exactly this reason).
+- **Fixed 2026-09-10: evidence is now linked to hypothesis addresses
+  before scoring.** `main.tex` §9 assumes a prior generation pass has
+  already done this; until `hte.link.link_evidence` was added, nothing in
+  this package did, so `EvidenceItem.supports`/`refutes` stayed empty for
+  the whole frontier and every survivor's opinion read `u=1.0`, `b=0`,
+  `d=0`, differentiated only by the prior base rate `a`, confirmed
+  empirically by the meta-review role's own read of the first unattended
+  quantum-history run ("all 35 opinions have u=1.0, b=0, d=0 -- no
+  evidence has differentiated any hypothesis yet"). `hte.corpus.
+  quantum_history` and `hte.roles.extract` now both populate
+  `EvidenceItem`'s own extracted slots (`actor`/`action`/`object`/
+  `place`/`mechanism`/`interval`/`stance`, best-effort word-overlap or
+  LLM-named, `bkt-hte-evidence-slots`), and `hte.runner.run_campaign`
+  calls `link_evidence` on the full frontier before the critic filter and
+  belief scoring both run. `hte.calibrate.run_holdout` was rewritten to
+  match: it now reads the same per-item slots directly (building one
+  placement candidate per pre-cutoff item, `hte.concepts.other_id` filling
+  any slot the item names nothing for) rather than pooling a source's own
+  subject, since a prior generation-and-linking pass is exactly what
+  `main.tex` §9 assumed and this package now runs. `mu` is still excluded
+  from `fit_constants`'s grid on `main.tex` §9's own word that it "takes
+  no recalibration pass of its own."
 - **`hte.runner.run_campaign`'s preservation critique reads the shipped
   ancient-history detectability table (`hte/data/detectability-seed.json`)
   against a modern-history hypothesis.** Neither shipped corpus assigns a

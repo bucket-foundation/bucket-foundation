@@ -1,0 +1,45 @@
+% main.tex: a minimal fixture paper for tests/test_referee.py, deliberately
+% carrying two fixable issues, a bare \ref and one antithesis construction,
+% so hte.referee's own fix passes have something real to fix.
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+
+\usepackage[backend=biber,style=numeric,sorting=none,maxnames=3,minnames=1]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{hyperref}
+
+\usepackage{bucket}
+
+\hypersetup{colorlinks = true, linkcolor = bucketblue, citecolor = bucketblue, urlcolor = bucketblue}
+
+\title{Referee Fixture}
+\author{Bucket Foundation}
+\date{2026-09-09}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+This claim is solid evidence, not speculation, about the topic
+\autocite{allen1983interval}.
+
+\section{Method}
+\label{sec:method}
+
+See \ref{sec:intro} for the claim this section builds on.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\linewidth]{figures/fig_example.png}
+  \caption{A figure, present only so this fixture matches the template's own build shape.}
+\end{figure}
+
+\printbibliography
+
+\end{document}

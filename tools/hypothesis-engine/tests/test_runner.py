@@ -12,7 +12,14 @@ FIXTURE_CACHE = str(Path(__file__).parent / "fixtures" / "llm-cache")
 # prompts this campaign builds (`generate_n`, `combinatorial_max_items`,
 # and the campaign name itself, embedded in the self-report's own prompt)
 # change the prompt text, and so the cache key, if changed here without
-# re-seeding the cache.
+# re-seeding the cache. `resolution` is pinned to `"century"` for the
+# same reason: left unset, `hte.runner.run_campaign` would auto-select a
+# rung from this corpus's own ground-truth span (`hte.timeline.
+# auto_resolution`), which would shift every combinatorial hypothesis's
+# own TIME_BIN axis away from `hte.address`'s original fixed 20,000-
+# year/century span this cache was seeded under. Pinning `"century"`
+# reuses that original span exactly (`hte.runner._resolve_time_binning`'s
+# own documented behavior for a pinned resolution).
 FIXTURE_CONFIG = {
     "campaign": "fixture-seed",
     "corpus": "fixtures",
@@ -23,6 +30,7 @@ FIXTURE_CONFIG = {
     "tournament_rounds": 1,
     "max_hypotheses": 8,
     "combinatorial_max_items": 5,
+    "resolution": "century",
 }
 
 

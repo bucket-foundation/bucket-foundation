@@ -22,6 +22,7 @@ def test_campaign_run_replay_only(tmp_path, capsys):
         "--combinatorial-max-items", "5",
         "--max-hypotheses", "8",
         "--tournament-rounds", "1",
+        "--resolution", "century",
     ])
     assert rc == 0
     out = capsys.readouterr().out
@@ -44,11 +45,20 @@ def test_calibrate_command_writes_report(tmp_path, capsys):
 
 
 def test_calibrate_command_fit_grid(tmp_path):
-    rc = cli.main(["calibrate", "--corpus", "fixtures", "--cutoff-years", "1960", "--fit", "--out", str(tmp_path)])
+    # `fixtures.build()`'s own evidence carries no extracted slots (see
+    # that module's own comment: it is also the frozen seed for `tests/
+    # test_runner.py`'s replay-only campaign, deliberately kept slot-
+    # less), so `run_holdout`'s new event-matching finds nothing to cover
+    # there and every grid point's Brier score reads `None`. `quantum-
+    # history` does carry slots (`bkt-hte-evidence-slots`); 1995 is one
+    # of its cutoffs with real holdout coverage (confirmed empirically
+    # against this corpus's own ingest, no LLM call needed).
+    rc = cli.main(["calibrate", "--corpus", "quantum-history", "--cutoff-years", "1995", "--fit", "--out", str(tmp_path)])
     assert rc == 0
     result = json.loads((tmp_path / "calibration.json").read_text())
     assert "fit" in result
     assert result["fit"]["best"] is not None
+    assert result["n_covered_events"] > 0
 
 
 def test_views_command_rewrites_timeline_md(tmp_path):

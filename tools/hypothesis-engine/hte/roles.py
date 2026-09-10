@@ -23,8 +23,9 @@ from typing import Any, Mapping, Sequence
 
 from . import llm
 from .concepts import Slot, Vocabulary
-from .evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
+from .evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Stance, Tier
 from .hypothesis import Hypothesis, Placement
+from .timeline import Interval
 
 # --------------------------------------------------------------------------
 # generate
@@ -411,6 +412,21 @@ EXTRACT_SCHEMA: dict[str, Any] = {
                     "tier": {"type": "string"},
                     "quote": {"type": "string"},
                     "claim": {"type": "string"},
+                    # Additive, optional slot fields (`bkt-hte-evidence-slots`): a
+                    # free-text label per concept-bearing slot the quote names
+                    # (empty when it names none), the astronomical year it dates
+                    # to if any, and whether the quote asserts or denies its own
+                    # slot values. None of these join `required` below, so a
+                    # cached response written before this schema grew still
+                    # parses; `hte.roles.extract` reads a missing key as "not
+                    # named" rather than raising.
+                    "actor": {"type": "string"},
+                    "action": {"type": "string"},
+                    "object": {"type": "string"},
+                    "place": {"type": "string"},
+                    "mechanism": {"type": "string"},
+                    "year": {"type": ["integer", "null"]},
+                    "stance": {"type": "string", "enum": ["positive", "negative"]},
                 },
                 "required": ["kind", "tier", "quote", "claim"],
             },
@@ -439,7 +455,11 @@ def _extract_prompt(document_text: str, vocab: Vocabulary, pass_index: int) -> s
         "Extract evidence items from the document below. For each item, quote the "
         "exact source text verbatim (so it can be located by string search), give a "
         "one-line paraphrase of the claim, and tag it with an evidence kind and a "
-        "source-reliability tier.\n\n"
+        "source-reliability tier. Also name, for each of actor/action/object/place/"
+        "mechanism, the short label the quote itself gives for that slot, leaving a "
+        "slot blank when the quote names nothing for it; the astronomical year the "
+        "quote dates to, or null if it names none; and whether the quote asserts its "
+        "own claim (\"positive\") or denies/downgrades one (\"negative\").\n\n"
         f"Evidence kinds: {kinds}\nTiers (T1 strongest to T6 weakest): {tiers}\n\n"
         f"Document:\n{document_text}"
     )
@@ -456,6 +476,18 @@ class ExtractionResult:
 
 def _normalize_quote(q: str) -> str:
     return " ".join(q.split()).strip().lower()
+
+
+def _slot_label(raw: dict[str, Any], key: str) -> str | None:
+    """`raw[key]` as a non-empty stripped label, or `None` when the model
+    left it blank or omitted it (a cached response written before this
+    schema grew a slot field, or a pass that named nothing for it):
+    `hte.evidence.EvidenceItem`'s own contract reads a `None` slot as
+    "not asserted," matching either case."""
+    value = raw.get(key)
+    if isinstance(value, str) and value.strip():
+        return value.strip()
+    return None
 
 
 def _locate_span(document_text: str, quote: str) -> tuple[int, int] | None:
@@ -549,6 +581,8 @@ def extract(
             tier = Tier(raw.get("tier"))
         except ValueError:
             tier = Tier.T5
+        year = raw.get("year")
+        interval = Interval(start=year, end=year) if isinstance(year, int) else None
         items.append(EvidenceItem(
             id=f"{doc_id}-ex-{n}",
             kind=kind,
@@ -556,6 +590,13 @@ def extract(
             source_id=doc_id,
             span=EvidenceSpan(doc_id=doc_id, locator=f"extract:{n}", quote=raw["quote"], char_start=start, char_end=end),
             provenance="llm-extraction-escalated" if escalated else "llm-extraction-ensemble",
+            actor=_slot_label(raw, "actor"),
+            action=_slot_label(raw, "action"),
+            object=_slot_label(raw, "object"),
+            place=_slot_label(raw, "place"),
+            mechanism=_slot_label(raw, "mechanism"),
+            interval=interval,
+            stance=Stance.NEGATIVE if raw.get("stance") == "negative" else Stance.POSITIVE,
         ))
 
     return ExtractionResult(items=items, agreement=agreement, escalated=escalated)

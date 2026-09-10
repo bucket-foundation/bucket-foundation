@@ -11,12 +11,13 @@ dependencies = []
 
 [project.scripts]
 hte = "hte.cli:main"
+hte-pipeline = "hte.cli_pipeline:main"
 
 [tool.setuptools.packages.find]
 include = ["hte", "hte.*"]
 
 [tool.setuptools.package-data]
-hte = ["data/*.json"]
+hte = ["data/*.json", "data/retrieval-fixtures/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -89,6 +89,8 @@ def enumerate_placements(
     *,
     include_other: bool = True,
     max_items: int | None = None,
+    span_start: int = DEFAULT_SPAN_START,
+    bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> Iterator[Hypothesis]:
     """The lazy product over `H = ACTOR x ACTION x OBJECT x PLACE x
     TIME_BIN x MECHANISM` (`Eq. placement-space`), never materializing the
@@ -106,7 +108,11 @@ def enumerate_placements(
     drops OTHER from every slot's axis before taking the product, for a
     caller that wants a tighter, closed-vocabulary-only sweep. `max_items`
     caps the total number of hypotheses yielded, cutting the lazy product
-    short rather than filtering it after the fact.
+    short rather than filtering it after the fact. `span_start`/`bin_width`
+    override this module's own fixed 20,000-year/century default
+    (`hte.runner.run_campaign` passes the run's own corpus-anchored span
+    and rung here, so every hypothesis this function yields addresses
+    under the same TIME_BIN axis as the rest of that run).
     """
     def axis(slot: Slot) -> list:
         concepts = vocab.concepts(slot)
@@ -129,9 +135,9 @@ def enumerate_placements(
             return
         placement = Placement(
             actor=actor.id, action=action.id, object=obj.id, place=place.id,
-            mechanism=mechanism.id, interval=_interval_for_bin(tbin),
+            mechanism=mechanism.id, interval=_interval_for_bin(tbin, span_start, bin_width),
         )
-        yield Hypothesis.from_placement(placement, vocab)
+        yield Hypothesis.from_placement(placement, vocab, span_start=span_start, bin_width=bin_width)
         count += 1
 
 
@@ -200,13 +206,23 @@ def _referenced_addresses(item: EvidenceItem) -> list[int]:
     return list(dict.fromkeys(list(item.supports) + list(item.refutes)))
 
 
-def _hypothesis_from_address(address: int, vocab: Vocabulary) -> Hypothesis | None:
+def _hypothesis_from_address(
+    address: int,
+    vocab: Vocabulary,
+    *,
+    span_start: int = DEFAULT_SPAN_START,
+    bin_width: int = DEFAULT_BIN_WIDTH,
+) -> Hypothesis | None:
     """Rebuild a `Hypothesis` from a bare address, trying a placement
     reading first and a sequence reading second. Returns `None` for an
     address this `vocab` cannot decode, leftover prime factors, or a
     vocabulary index past the end of a slot's list, instead of raising, so
     one malformed evidence pointer does not abort a whole generation pass
-    over the rest of the evidence set.
+    over the rest of the evidence set. `span_start`/`bin_width` must match
+    whatever the address was originally encoded under (`hte.runner.
+    run_campaign`'s own run-wide span and rung) for the rebuilt
+    hypothesis's interval, and so its re-encoded address, to round-trip
+    back to the same integer `address` names.
     """
     try:
         slots, tbin = decode(address, vocab, sequence=False)
@@ -215,9 +231,10 @@ def _hypothesis_from_address(address: int, vocab: Vocabulary) -> Hypothesis | No
     else:
         placement = Placement(
             actor=slots[Slot.ACTOR], action=slots[Slot.ACTION], object=slots[Slot.OBJECT],
-            place=slots[Slot.PLACE], mechanism=slots[Slot.MECHANISM], interval=_interval_for_bin(tbin),
+            place=slots[Slot.PLACE], mechanism=slots[Slot.MECHANISM],
+            interval=_interval_for_bin(tbin, span_start, bin_width),
         )
-        return Hypothesis.from_placement(placement, vocab)
+        return Hypothesis.from_placement(placement, vocab, span_start=span_start, bin_width=bin_width)
 
     try:
         first_slots, first_bin, relation, second_slots, second_bin = decode(address, vocab, sequence=True)
@@ -225,17 +242,23 @@ def _hypothesis_from_address(address: int, vocab: Vocabulary) -> Hypothesis | No
         return None
     first = Placement(
         actor=first_slots[Slot.ACTOR], action=first_slots[Slot.ACTION], object=first_slots[Slot.OBJECT],
-        place=first_slots[Slot.PLACE], mechanism=first_slots[Slot.MECHANISM], interval=_interval_for_bin(first_bin),
+        place=first_slots[Slot.PLACE], mechanism=first_slots[Slot.MECHANISM],
+        interval=_interval_for_bin(first_bin, span_start, bin_width),
     )
     second = Placement(
         actor=second_slots[Slot.ACTOR], action=second_slots[Slot.ACTION], object=second_slots[Slot.OBJECT],
-        place=second_slots[Slot.PLACE], mechanism=second_slots[Slot.MECHANISM], interval=_interval_for_bin(second_bin),
+        place=second_slots[Slot.PLACE], mechanism=second_slots[Slot.MECHANISM],
+        interval=_interval_for_bin(second_bin, span_start, bin_width),
     )
-    return Hypothesis.from_sequence(Sequence(first=first, relation=relation, second=second), vocab)
+    return Hypothesis.from_sequence(
+        Sequence(first=first, relation=relation, second=second), vocab,
+        span_start=span_start, bin_width=bin_width,
+    )
 
 
 def _evidence_cluster_hypotheses(
-    evidence_items: Iterable[EvidenceItem], vocab: Vocabulary, resolution: Resolution
+    evidence_items: Iterable[EvidenceItem], vocab: Vocabulary, resolution: Resolution,
+    *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> list[Hypothesis]:
     """Groups the placements evidence names by shared `EvidenceKind` and by
     overlapping interval, read here as sharing one `hte.timeline.bin` at
@@ -247,7 +270,7 @@ def _evidence_cluster_hypotheses(
     ids_by_key: dict[tuple, set[str]] = {}
     for item in evidence_items:
         for address in _referenced_addresses(item):
-            hyp = _hypothesis_from_address(address, vocab)
+            hyp = _hypothesis_from_address(address, vocab, span_start=span_start, bin_width=bin_width)
             if hyp is None or hyp.is_sequence:
                 continue
             bucket = timeline_bin(hyp.content.interval, resolution)
@@ -264,7 +287,10 @@ def _evidence_cluster_hypotheses(
     return out
 
 
-def _claim_gap_hypotheses(evidence_items: Iterable[EvidenceItem], vocab: Vocabulary) -> list[Hypothesis]:
+def _claim_gap_hypotheses(
+    evidence_items: Iterable[EvidenceItem], vocab: Vocabulary,
+    *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
+) -> list[Hypothesis]:
     """Reads every evidence-named placement as a claim with one slot
     treated, in turn, as the missing predicate `HISTORY-HYPOTHESIS-
     ENGINE-SPEC.md` §5 calls a claim gap: for each of the five
@@ -276,14 +302,14 @@ def _claim_gap_hypotheses(evidence_items: Iterable[EvidenceItem], vocab: Vocabul
     seen: set[tuple[int, str, str]] = set()
     for item in evidence_items:
         for address in _referenced_addresses(item):
-            base_hyp = _hypothesis_from_address(address, vocab)
+            base_hyp = _hypothesis_from_address(address, vocab, span_start=span_start, bin_width=bin_width)
             if base_hyp is None or base_hyp.is_sequence:
                 continue
             base = base_hyp.content
             for slot in PLACEMENT_CONCEPT_SLOTS:
                 for concept in vocab.concepts(slot):
                     mutated = _with_slot(base, slot, concept.id)
-                    mutated_hyp = Hypothesis.from_placement(mutated, vocab)
+                    mutated_hyp = Hypothesis.from_placement(mutated, vocab, span_start=span_start, bin_width=bin_width)
                     key = (mutated_hyp.address, item.id, slot.value)
                     if key in seen:
                         continue
@@ -293,7 +319,10 @@ def _claim_gap_hypotheses(evidence_items: Iterable[EvidenceItem], vocab: Vocabul
     return out
 
 
-def _contradiction_hypotheses(evidence_items: Iterable[EvidenceItem], vocab: Vocabulary) -> list[Hypothesis]:
+def _contradiction_hypotheses(
+    evidence_items: Iterable[EvidenceItem], vocab: Vocabulary,
+    *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
+) -> list[Hypothesis]:
     """An item whose `supports` and `refutes` disagree, both non-empty, is
     a single piece of evidence carrying two opposed claims at once. Both
     readings are materialized and tagged (`HISTORY-HYPOTHESIS-ENGINE-
@@ -308,7 +337,7 @@ def _contradiction_hypotheses(evidence_items: Iterable[EvidenceItem], vocab: Voc
             continue
         for reading, addresses in (("supported", item.supports), ("refuted", item.refutes)):
             for address in addresses:
-                hyp = _hypothesis_from_address(address, vocab)
+                hyp = _hypothesis_from_address(address, vocab, span_start=span_start, bin_width=bin_width)
                 if hyp is None:
                     continue
                 hyp.meta = {"generator": "contradiction", "evidence": [item.id], "reading": reading}
@@ -317,7 +346,8 @@ def _contradiction_hypotheses(evidence_items: Iterable[EvidenceItem], vocab: Voc
 
 
 def _cross_period_hypotheses(
-    evidence_items: Iterable[EvidenceItem], vocab: Vocabulary, seed: int
+    evidence_items: Iterable[EvidenceItem], vocab: Vocabulary, seed: int,
+    *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> list[Hypothesis]:
     """Copies each evidence-named placement into another time bin already
     attested elsewhere in this same evidence set (`HISTORY-HYPOTHESIS-
@@ -331,10 +361,10 @@ def _cross_period_hypotheses(
     bins: set[int] = set()
     for item in evidence_items:
         for address in _referenced_addresses(item):
-            hyp = _hypothesis_from_address(address, vocab)
+            hyp = _hypothesis_from_address(address, vocab, span_start=span_start, bin_width=bin_width)
             if hyp is None or hyp.is_sequence:
                 continue
-            tbin = time_bin_index(hyp.content.interval.start)
+            tbin = time_bin_index(hyp.content.interval.start, span_start, bin_width)
             named.append((item, tbin, hyp.content))
             bins.add(tbin)
 
@@ -348,9 +378,9 @@ def _cross_period_hypotheses(
         analog = Placement(
             actor=placement.actor, action=placement.action, object=placement.object,
             place=placement.place, mechanism=placement.mechanism,
-            interval=_interval_for_bin(target_bin),
+            interval=_interval_for_bin(target_bin, span_start, bin_width),
         )
-        hyp = Hypothesis.from_placement(analog, vocab)
+        hyp = Hypothesis.from_placement(analog, vocab, span_start=span_start, bin_width=bin_width)
         hyp.meta = {
             "generator": "cross-period-analogy", "evidence": [item.id],
             "source_bin": tbin, "target_bin": target_bin,
@@ -365,6 +395,8 @@ def from_evidence(
     resolution: Resolution,
     *,
     seed: int = 0,
+    span_start: int = DEFAULT_SPAN_START,
+    bin_width: int = DEFAULT_BIN_WIDTH,
 ) -> list[Hypothesis]:
     """The four evidence-driven generators of `HISTORY-HYPOTHESIS-ENGINE-
     SPEC.md` §5, run over `evidence_items` and pooled into one list:
@@ -373,12 +405,18 @@ def from_evidence(
     naming which of the four produced it and `hyp.meta["evidence"]`, the
     evidence item ids behind it, this package's own `meta` field standing
     in for the paper's `provenance.derived_by.generator` shape (`hte.
-    hypothesis.Hypothesis`)."""
+    hypothesis.Hypothesis`). `span_start`/`bin_width` must match the run's
+    own TIME_BIN axis (`enumerate_placements`'s own parameters of the
+    same name): every address this function decodes off `evidence_items`
+    was itself encoded under some span and rung, and rebuilding it under
+    a different one would silently read a different hypothesis off the
+    same integer.
+    """
     out: list[Hypothesis] = []
-    out.extend(_evidence_cluster_hypotheses(evidence_items, vocab, resolution))
-    out.extend(_claim_gap_hypotheses(evidence_items, vocab))
-    out.extend(_contradiction_hypotheses(evidence_items, vocab))
-    out.extend(_cross_period_hypotheses(evidence_items, vocab, seed))
+    out.extend(_evidence_cluster_hypotheses(evidence_items, vocab, resolution, span_start=span_start, bin_width=bin_width))
+    out.extend(_claim_gap_hypotheses(evidence_items, vocab, span_start=span_start, bin_width=bin_width))
+    out.extend(_contradiction_hypotheses(evidence_items, vocab, span_start=span_start, bin_width=bin_width))
+    out.extend(_cross_period_hypotheses(evidence_items, vocab, seed, span_start=span_start, bin_width=bin_width))
     return out
 
 

@@ -124,3 +124,49 @@ def test_write_views_creates_out_dir(tmp_path):
     write_views({"bins": [], "event_views": [], "pair_views": []}, nested)
     assert (nested / "timeline.json").exists()
     assert (nested / "TIMELINE.md").exists()
+
+
+def test_timeline_views_bin_label_defaults_to_str_index_with_no_bin_labels():
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
+    tbin = time_bin_index(_interval().start)
+    views = timeline_views([h_farmers, h_aliens, h_seq], opinions, elos, [tbin])
+    assert views["bins"][0]["time_bin"]["label"] == str(tbin)
+
+
+def test_timeline_views_bin_label_uses_the_given_map():
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
+    tbin = time_bin_index(_interval().start)
+    views = timeline_views(
+        [h_farmers, h_aliens, h_seq], opinions, elos, [tbin],
+        bin_labels={tbin: "1900s"},
+    )
+    assert views["bins"][0]["time_bin"]["label"] == "1900s"
+    assert views["bins"][0]["time_bin"]["index"] == tbin  # index stays alongside the label
+
+
+def test_write_views_renders_the_bin_label_when_given(tmp_path):
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
+    tbin = time_bin_index(_interval().start)
+    views = timeline_views(
+        [h_farmers, h_aliens, h_seq], opinions, elos, [tbin],
+        bin_labels={tbin: "1900s"},
+    )
+    write_views(views, tmp_path)
+    text = (tmp_path / "TIMELINE.md").read_text()
+    assert "## Time bin 1900s" in text
+
+
+def test_timeline_views_bin_membership_respects_custom_span_and_width():
+    vocab = _small_vocab()
+    # A placement dated 1905, addressed under a decade-wide, 1900-anchored
+    # axis instead of the module's own century/-20000 default.
+    placement = Placement(actor="farmers", action="built", object="shrine", place="site",
+                           mechanism="labor", interval=Interval(start=1905, end=1905))
+    h = Hypothesis.from_placement(placement, vocab, span_start=1900, bin_width=10)
+    tbin = time_bin_index(1905, 1900, 10)
+    views = timeline_views([h], {}, {}, [tbin], span_start=1900, bin_width=10)
+    assert len(views["bins"][0]["ranked_hypotheses"]) == 1
+    assert views["bins"][0]["ranked_hypotheses"][0]["hypothesis_id"] == h.short_id

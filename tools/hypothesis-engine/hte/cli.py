@@ -37,6 +37,7 @@ def _cmd_campaign_run(args: argparse.Namespace) -> int:
         ("combinatorial_max_items", args.combinatorial_max_items),
         ("max_hypotheses", args.max_hypotheses),
         ("tournament_rounds", args.tournament_rounds),
+        ("resolution", args.resolution),
     ):
         if value is not None:
             config[key] = value
@@ -63,7 +64,11 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
     out_dir = Path(args.out)
     calibrate.write_calibration(result, out_dir)
     print(f"calibration written to {out_dir / 'CALIBRATION.md'}")
-    print(f"brier_score={result['brier_score']} over {result['n_sources']} split-worthy sources at cutoff {cutoff}")
+    print(
+        f"brier_score={result['brier_score']} over {result['n_covered_events']} of "
+        f"{result['n_holdout_events']} held-out events (coverage_of_truth="
+        f"{result['coverage_of_truth']}) at cutoff {cutoff}"
+    )
     return 0
 
 
@@ -97,6 +102,11 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument("--combinatorial-max-items", type=int, default=None, help="cap on the combinatorial sweep per seed (default: runner.DEFAULT_CONFIG)")
     run_p.add_argument("--max-hypotheses", type=int, default=None, help="cap on hypotheses carried into critique/scoring/tournament (default: runner.DEFAULT_CONFIG)")
     run_p.add_argument("--tournament-rounds", type=int, default=None, help="Swiss-style debate rounds (default: runner.DEFAULT_CONFIG)")
+    run_p.add_argument(
+        "--resolution", default=None,
+        choices=["year", "decade", "century", "millennium", "era"],
+        help="pin the TIME_BIN rung instead of auto-selecting one from the corpus's own ground-truth span",
+    )
     run_p.set_defaults(func=_cmd_campaign_run)
 
     calibrate_p = sub.add_parser("calibrate", help="run the discovery-date holdout")

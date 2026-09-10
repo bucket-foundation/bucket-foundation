@@ -14,6 +14,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
 
+from .timeline import Interval
+
 
 class EvidenceKind(str, Enum):
     """The nine independent evidence modalities (`main.tex` §Belief model).
@@ -66,6 +68,17 @@ class Tier(str, Enum):
 TIER_WEIGHT: dict[Tier, float] = {
     Tier.T1: 2.0, Tier.T2: 1.5, Tier.T3: 1.0, Tier.T4: 0.5, Tier.T5: 0.25, Tier.T6: 0.1,
 }
+
+
+class Stance(str, Enum):
+    """Whether an evidence item asserts its own extracted slot values as
+    true (`POSITIVE`, the default) or denies/downgrades them (`NEGATIVE`,
+    a corrected claim, a downgraded confirmation, a "not X but Y" line).
+    `hte.link.link_evidence` reads this to decide between a support and a
+    refute reading when an item's slots match a hypothesis on all but
+    one, per `bkt-hte-evidence-slots`."""
+    POSITIVE = "positive"
+    NEGATIVE = "negative"
 
 
 @dataclass(frozen=True)
@@ -137,6 +150,22 @@ class EvidenceItem:
     its presence, so `hte.belief.cluster_weight` knows to scale it by
     detectability (`Eq. detectability`) instead of treating it as an
     ordinary find.
+
+    `actor`/`action`/`object`/`place`/`mechanism`/`interval` are this
+    item's own extracted slot values (`bkt-hte-evidence-slots`), the
+    field `hte.link.link_evidence` reads to decide which hypothesis
+    addresses belong in `supports`/`refutes`: `main.tex` §9 assumes a
+    prior generation pass has already linked evidence to hypothesis
+    addresses, and nothing upstream of this field did that before it was
+    added. Each concept slot is `None` when this item's own text names
+    nothing for that slot (`hte.corpus.quantum_history`'s milestone and
+    claim bullets rarely name all five), read as "not asserted" rather
+    than "asserted as OTHER"; a concept id when a vocabulary lookup or a
+    fuzzy label match resolved one, a raw label string otherwise, for
+    `link_evidence`'s own fuzzy fallback to resolve at match time.
+    `interval` is the dated span this item's own text names, `None` when
+    it names no date at all. `stance` marks whether this item asserts its
+    own slot values as true or denies/downgrades them.
     """
     id: str
     kind: EvidenceKind
@@ -148,6 +177,13 @@ class EvidenceItem:
     refutes: list[int] = field(default_factory=list)
     views: dict[str, float] = field(default_factory=dict)
     is_absence: bool = False
+    actor: str | None = None
+    action: str | None = None
+    object: str | None = None
+    place: str | None = None
+    mechanism: str | None = None
+    interval: Interval | None = None
+    stance: Stance = Stance.POSITIVE
 
     def to_dict(self) -> dict:
         return {
@@ -155,6 +191,10 @@ class EvidenceItem:
             "source_id": self.source_id, "span": self.span.to_dict(), "provenance": self.provenance,
             "supports": list(self.supports), "refutes": list(self.refutes),
             "views": dict(self.views), "is_absence": self.is_absence,
+            "actor": self.actor, "action": self.action, "object": self.object,
+            "place": self.place, "mechanism": self.mechanism,
+            "interval": self.interval.to_dict() if self.interval is not None else None,
+            "stance": self.stance.value,
         }
 
     @classmethod
@@ -164,4 +204,8 @@ class EvidenceItem:
             source_id=d["source_id"], span=EvidenceSpan.from_dict(d["span"]), provenance=d["provenance"],
             supports=list(d.get("supports", [])), refutes=list(d.get("refutes", [])),
             views=dict(d.get("views", {})), is_absence=bool(d.get("is_absence", False)),
+            actor=d.get("actor"), action=d.get("action"), object=d.get("object"),
+            place=d.get("place"), mechanism=d.get("mechanism"),
+            interval=Interval.from_dict(d["interval"]) if d.get("interval") is not None else None,
+            stance=Stance(d["stance"]) if d.get("stance") is not None else Stance.POSITIVE,
         )

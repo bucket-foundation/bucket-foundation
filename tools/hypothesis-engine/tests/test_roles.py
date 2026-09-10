@@ -1,6 +1,6 @@
 from hte import roles
 from hte.corpus import fixtures
-from hte.evidence import EvidenceKind, Tier
+from hte.evidence import EvidenceKind, Stance, Tier
 from hte.hypothesis import Hypothesis, Placement
 from hte.timeline import Interval
 
@@ -183,6 +183,46 @@ def test_extract_low_agreement_escalates(monkeypatch):
     assert result.agreement < roles.EXTRACT_AGREEMENT_THRESHOLD
     assert len(result.items) == 1
     assert result.items[0].provenance == "llm-extraction-escalated"
+
+
+def test_extract_carries_slot_fields_through_when_the_model_names_them(monkeypatch):
+    corpus = _corpus()
+    doc_id = "doc-alpha"
+    text = fixtures.FIXTURE_DOCS[doc_id]
+    quote = "the first confirmed sighting of comet Q, tracked by the Alpha team using the transit-timing method"
+
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+        return {"items": [{
+            "kind": "material", "tier": "T1", "quote": quote, "claim": "first sighting",
+            "actor": "Alpha Observatory team", "action": "sighted", "object": "Comet Q",
+            "place": "Alpha Observatory", "mechanism": "transit-timing method",
+            "year": 1950, "stance": "positive",
+        }]}
+
+    _patch(monkeypatch, fake)
+    result = roles.extract(text, corpus.vocab, doc_id=doc_id, cache_dir="/tmp/hte-test-cache")
+    [item] = result.items
+    assert item.actor == "Alpha Observatory team"
+    assert item.mechanism == "transit-timing method"
+    assert item.interval == Interval(start=1950, end=1950)
+    assert item.stance == Stance.POSITIVE
+
+
+def test_extract_leaves_slots_none_when_the_model_omits_them(monkeypatch):
+    corpus = _corpus()
+    doc_id = "doc-alpha"
+    text = fixtures.FIXTURE_DOCS[doc_id]
+    quote = "A 1962 follow-up confirmed the sighting independently"
+
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+        return {"items": [{"kind": "textual", "tier": "T2", "quote": quote, "claim": "confirmed"}]}
+
+    _patch(monkeypatch, fake)
+    result = roles.extract(text, corpus.vocab, doc_id=doc_id, cache_dir="/tmp/hte-test-cache")
+    [item] = result.items
+    assert item.actor is None
+    assert item.interval is None
+    assert item.stance == Stance.POSITIVE
 
 
 def test_extract_drops_items_whose_quote_is_not_found_verbatim(monkeypatch):

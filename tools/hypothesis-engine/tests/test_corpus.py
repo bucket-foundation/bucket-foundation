@@ -1,4 +1,7 @@
+from hte.concepts import Slot
 from hte.corpus import Corpus, GroundTruthEvent, RetrievalEnvelope, fixtures, quantum_history
+from hte.evidence import Stance
+from hte.timeline import Interval
 
 
 def test_quantum_history_ingest_meets_size_floor():
@@ -56,6 +59,75 @@ def test_quantum_history_missing_directory_raises():
     import pytest
     with pytest.raises(FileNotFoundError):
         quantum_history.ingest("/no/such/directory")
+
+
+# --------------------------------------------------------------------------
+# bkt-hte-evidence-slots: best-effort slot extraction off bullet text
+# --------------------------------------------------------------------------
+
+
+def test_quantum_history_evidence_carries_extracted_slots_and_intervals():
+    corpus = quantum_history.ingest()
+    with_actor = [e for e in corpus.evidence if e.actor is not None]
+    with_interval = [e for e in corpus.evidence if e.interval is not None]
+    # Best-effort recall: at least a third of this corpus's evidence
+    # should resolve an actor, and every dated milestone bullet (this
+    # corpus's own `_parse_year` already recovers a year for most of
+    # them) should carry a matching interval.
+    assert len(with_actor) > len(corpus.evidence) // 3
+    assert len(with_interval) > len(corpus.evidence) // 3
+    for e in with_interval:
+        assert e.interval.start <= e.interval.end
+
+
+def test_quantum_history_planck_milestone_resolves_actor_and_year():
+    corpus = quantum_history.ingest()
+    planck_items = [e for e in corpus.evidence if e.actor == "planck-1900"]
+    assert planck_items
+    assert any(e.interval is not None and e.interval.start <= 1900 <= e.interval.end for e in planck_items)
+
+
+def test_extract_slots_matches_actor_by_word_overlap():
+    vocab = quantum_history.load_vocab()
+    slots = quantum_history._extract_slots(
+        "1900 -- Max Planck proposes energy quantization to explain the blackbody spectrum.", vocab,
+    )
+    assert slots["actor"] == "planck-1900"
+    assert slots["interval"] == Interval(start=1900, end=1900)
+    assert slots["stance"] == Stance.POSITIVE
+
+
+def test_extract_slots_matches_joint_actor_on_one_name_alone():
+    vocab = quantum_history.load_vocab()
+    slots = quantum_history._extract_slots("Werner Heisenberg develops matrix mechanics in 1925.", vocab)
+    assert slots["actor"] == "heisenberg-schrodinger"
+
+
+def test_extract_slots_reads_a_year_range_as_a_spanning_interval():
+    vocab = quantum_history.load_vocab()
+    slots = quantum_history._extract_slots("The transition unfolded across 1980-1994.", vocab)
+    assert slots["interval"] == Interval(start=1980, end=1994)
+
+
+def test_extract_slots_leaves_a_slot_none_with_no_matching_concept():
+    vocab = quantum_history.load_vocab()
+    slots = quantum_history._extract_slots("Something happened somewhere for reasons.", vocab)
+    assert slots["actor"] is None
+    assert slots["interval"] is None
+
+
+def test_extract_slots_infers_negative_stance_from_downgrade_language():
+    vocab = quantum_history.load_vocab()
+    slots = quantum_history._extract_slots(
+        "A 1970 review found no independent confirmation and downgraded the claim to unconfirmed.", vocab,
+    )
+    assert slots["stance"] == Stance.NEGATIVE
+
+
+def test_best_concept_match_never_returns_other():
+    vocab = quantum_history.load_vocab()
+    result = quantum_history._best_concept_match({"nothing", "matches", "here"}, vocab, Slot.ACTOR)
+    assert result is None
 
 
 def test_fixtures_corpus_shape():

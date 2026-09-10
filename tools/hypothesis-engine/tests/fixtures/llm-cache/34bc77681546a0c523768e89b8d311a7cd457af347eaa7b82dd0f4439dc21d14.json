@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "57fd5e92f6e71fd3ad036de816c2b0bdfd6faccaa208e6bed3d39c51ca4cf386",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "In 1955, an unverified observer reported a rival sighting of comet Q using an unspecified method.",
+        "claim": "An unverified observer reported a sighting of comet Q in 1955.",
+        "actor": "unverified observer",
+        "action": "reported",
+        "object": "rival sighting of comet Q",
+        "mechanism": "unspecified method",
+        "year": 1955,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "A 1970 review found no independent confirmation and downgraded the claim to unconfirmed.",
+        "claim": "A 1970 review found no confirmation of the claim and downgraded it to unconfirmed.",
+        "actor": "1970 review",
+        "action": "found no confirmation and downgraded",
+        "object": "the claim",
+        "year": 1970,
+        "stance": "negative"
+      }
+    ]
+  }
+}

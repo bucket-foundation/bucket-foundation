@@ -10,7 +10,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any
+from typing import Any, Sequence
 
 # --------------------------------------------------------------------------
 # Calendar mapping
@@ -281,6 +281,68 @@ def bin(interval: Interval, resolution: Resolution) -> Interval:
 
 DEFAULT_SPAN_START = -20_000
 DEFAULT_BIN_WIDTH = 100
+
+
+def auto_resolution(
+    intervals: Sequence[Interval],
+    *,
+    min_bins: int = 8,
+    max_bins: int = 40,
+) -> Resolution:
+    """The finest resolution-ladder rung giving between `min_bins` and
+    `max_bins` bins over the span `intervals` covers (`bkt-hte-auto-
+    resolution`): `hte.runner.run_campaign`'s own default for a
+    campaign config that leaves `resolution` unset, so a 126-year corpus
+    (quantum-history) gets decade bins instead of the two century bins
+    its own span rounds down to under the paper's fixed 20,000-year/
+    century default.
+
+    Iterates the ladder finest-to-coarsest (`Resolution`'s own
+    declaration order) and returns the first rung whose bin count over
+    `[start, end]` (the min start and max end across every interval)
+    lands in `[min_bins, max_bins]`, preferring the finest rung that
+    fits. When no rung's bin count falls in that window at all (a span
+    far narrower or wider than the ladder's five widths can resolve into
+    that range), returns whichever rung's own bin count sits closest to
+    the window instead of raising: this function's own read of `main.
+    tex`'s combinatorics section leaves this case unaddressed, so the
+    closest rung is this package's own defensible fallback rather than an
+    arbitrary one. An empty `intervals` returns `Resolution.CENTURY`,
+    matching this module's own century default everywhere else a span
+    cannot be read off any data.
+    """
+    if not intervals:
+        return Resolution.CENTURY
+    start = min(iv.start for iv in intervals)
+    end = max(iv.end for iv in intervals)
+    span = max(1, end - start + 1)
+
+    def n_bins(resolution: Resolution) -> int:
+        return math.ceil(span / RESOLUTION_WIDTH_YEARS[resolution])
+
+    def distance(n: int) -> int:
+        if min_bins <= n <= max_bins:
+            return 0
+        return min(abs(n - min_bins), abs(n - max_bins))
+
+    best: tuple[Resolution, int] | None = None
+    for resolution in Resolution:
+        n = n_bins(resolution)
+        if min_bins <= n <= max_bins:
+            return resolution
+        if best is None or distance(n) < distance(best[1]):
+            best = (resolution, n)
+    return best[0]
+
+
+def bin_label(bin_start: int, resolution: Resolution) -> str:
+    """The bin label the runner exports (`1900s`, `1910s`, ...) in place
+    of a bare numeric bin index (`bkt-hte-auto-resolution`): the bin's
+    own start year, suffixed `s` at every rung except `YEAR` (a single
+    year reads as itself, "1925", not "1925s")."""
+    if RESOLUTION_WIDTH_YEARS[resolution] == 1:
+        return str(bin_start)
+    return f"{bin_start}s"
 
 
 def time_bin_index(year: int, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH) -> int:

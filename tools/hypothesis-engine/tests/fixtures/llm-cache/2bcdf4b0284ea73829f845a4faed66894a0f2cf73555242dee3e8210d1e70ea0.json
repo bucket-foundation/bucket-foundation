@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "unknown_unknown",
+  "prompt_sha256": "fad0709c1b4a5a2a716dafab10cc5e0685212e7d19e4155c980335f97468483a",
+  "response": {
+    "proposals": [
+      {
+        "slot": "action",
+        "label": "Confirmed the sighting of",
+        "rationale": "[gt-alpha-confirm] describes a 1962 follow-up that 'confirmed the sighting independently' \u2014 a distinct verification action not covered by 'Sighted' or 'Extended the tracked orbit of'."
+      },
+      {
+        "slot": "action",
+        "label": "Downgraded to unconfirmed",
+        "rationale": "[gt-gamma-downgrade]/[doc-gamma-ex-1] describe a 1970 review that 'downgraded the claim to unconfirmed' \u2014 a status-revision action distinct from sighting or extension actions already listed."
+      }
+    ]
+  }
+}

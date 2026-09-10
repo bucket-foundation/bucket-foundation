@@ -1,24 +1,29 @@
 """Discovery-date holdout, Brier scoring, and constant recalibration.
 
 Mirrors `main.tex` §9 (Calibration and pilot design), `bkt-hte-holdout`:
-split each source's ground-truth events at a cutoff on discovery date,
-recompute the opinion from pre-cutoff evidence only, then check whether
-the post-cutoff evidence's own outcome matches what the pre-cutoff
-opinion implied. `bkt-hte-holdout`'s own disposition is PULL, adding
-`scientific-discovery`'s frozen-work, sampling-strata, failures-before-
-repair campaign discipline to the period holdout test; this module builds
-the discovery-date half of that pair (`hte.runner.run_campaign` is where
-a frozen campaign id, sampling strata, and a run log wrap this module's
-own functions, per that discipline).
+split every ground-truth event at a cutoff on discovery date, and for
+each event after the cutoff, ask whether the engine, seeing only
+pre-cutoff evidence, would already have proposed a placement hypothesis
+naming that event's own slots at an interval containing its own date.
 
 `main.tex` §9 assumes a prior generation pass has already linked evidence
-to hypothesis addresses; this pass has not run one before calibration, so
-this module works one level down, at the pre-cutoff pooled-evidence
-opinion for a source's own subject rather than at a specific hypothesis
-address. `hte.corpus.quantum_history` and `hte.corpus.fixtures` both give
-every `GroundTruthEvent` the same id as the `EvidenceItem` it was read
-from, so `run_holdout` can pair them directly: this module's own decision
-where `main.tex` leaves room, stated here rather than left silent.
+to hypothesis addresses; `hte.link.link_evidence` is that pass, and this
+module reads the same per-item extracted slots
+(`hte.evidence.EvidenceItem.actor`/.../`interval`) it reads, rather than
+running a full `hte.runner.run_campaign` generation-and-critique pass
+just to calibrate: `run_holdout` builds one placement hypothesis
+directly from each pre-cutoff item's own claimed slots (`hte.concepts.
+other_id` fills any slot the item names nothing for), which is cheap
+enough to run with no LLM call and no network access, matching this
+module's own no-cache, no-`claude`-CLI contract (`tests/test_calibrate.
+py` needs neither).
+
+`bkt-hte-holdout`'s own disposition is PULL, adding `scientific-
+discovery`'s frozen-work, sampling-strata, failures-before-repair
+campaign discipline to the period holdout test; this module builds the
+discovery-date half of that pair (`hte.runner.run_campaign` is where a
+frozen campaign id, sampling strata, and a run log wrap this module's
+own functions, per that discipline).
 
 The constants this module recalibrates are `W` and `lam`
 (`Eq. opinion-sum`, `Eq. diminishing`) plus an optional global tier-weight
@@ -30,7 +35,6 @@ outright that `mu` "takes no recalibration pass of its own," since
 from __future__ import annotations
 
 import json
-from collections import defaultdict
 from dataclasses import dataclass
 from itertools import product
 from pathlib import Path
@@ -40,6 +44,12 @@ from . import belief
 from .belief import Constants
 from .corpus import Corpus, GroundTruthEvent
 from .evidence import EvidenceItem, Tier
+from .generate import PLACEMENT_CONCEPT_SLOTS
+from .hypothesis import Hypothesis, Placement
+from .link import slot_match_score
+from .concepts import Vocabulary, other_id
+
+DEFAULT_MATCH_THRESHOLD = 0.6
 
 
 def holdout_by_discovery_date(
@@ -53,63 +63,134 @@ def holdout_by_discovery_date(
     return pre, post
 
 
-def _source_splits(
-    corpus: Corpus, cutoff_years: int
-) -> dict[str, tuple[list[EvidenceItem], list[EvidenceItem]]]:
-    """Every source with at least one ground-truth event on each side of
-    `cutoff_years`, paired with its own pre- and post-cutoff evidence
-    items (matched to their ground-truth event by shared id). A source
-    with every event on one side of the cutoff is not split-worthy and is
-    left out, matching `main.tex` §9's own "every hypothesis with holdout
-    evidence" framing: nothing to hold out, nothing to score."""
-    by_source: dict[str, list[GroundTruthEvent]] = defaultdict(list)
-    for g in corpus.ground_truth:
-        by_source[g.doc_id].append(g)
-
-    ev_by_id = {e.id: e for e in corpus.evidence}
-    splits: dict[str, tuple[list[EvidenceItem], list[EvidenceItem]]] = {}
-    for doc_id, events in by_source.items():
-        pre_events, post_events = holdout_by_discovery_date(events, cutoff_years)
-        if not pre_events or not post_events:
-            continue
-        pre_items = [ev_by_id[g.id] for g in pre_events if g.id in ev_by_id]
-        post_items = [ev_by_id[g.id] for g in post_events if g.id in ev_by_id]
-        if not pre_items or not post_items:
-            continue
-        splits[doc_id] = (pre_items, post_items)
-    return splits
+def _placement_from_item(item: EvidenceItem, vocab: Vocabulary) -> Hypothesis | None:
+    """The placement hypothesis `item` itself implies (`bkt-hte-holdout`):
+    its own five extracted concept slots, each unnamed one read as `OTHER`
+    (`hte.concepts.other_id`) rather than left missing, since `hte.
+    hypothesis.Placement` carries no optional slot of its own, at its own
+    extracted interval. `None` when `item` names no interval at all (a
+    placement with no date can neither contain nor miss a held-out
+    event's own year, so it is not a candidate) or when a named slot
+    value resolves to no concept id and no fuzzy-matchable label in
+    `vocab` (an extractor's raw, unresolved text this function does not
+    itself try to place)."""
+    if item.interval is None:
+        return None
+    values: dict[str, str] = {}
+    for slot in PLACEMENT_CONCEPT_SLOTS:
+        value = getattr(item, slot.value)
+        values[slot.value] = value if value is not None else other_id(slot)
+    placement = Placement(interval=item.interval, **values)
+    try:
+        return Hypothesis.from_placement(placement, vocab)
+    except KeyError:
+        return None
 
 
-def _predicted_probability(pre_items: Sequence[EvidenceItem], constants: Constants) -> float:
-    """The pre-cutoff opinion's projected probability for a source's own
-    subject, pooling `pre_items` as unconditional support (this module's
-    own simplification, see the module docstring): grouped by kind,
-    discounted by `D(n, constants.lam)` within each kind, then the
-    cross-kind independence bonus applied once, exactly `hte.belief`'s
-    own pooling arithmetic with every item read as supporting and no
-    refuting side. The base rate is left uninformative (`a = 0.5`): this
-    module scores a source's own subject directly, with no slotted
-    `Hypothesis` and no `prior_logit` of its own to read a base rate from.
+def _matches_event(
+    target: EvidenceItem, placement: Placement, vocab: Vocabulary, *, threshold: float
+) -> bool:
+    """Whether `placement` matches every concept slot `target` (the
+    held-out event's own evidence item) names anything for
+    (`slot_match_score`, `hte.link`'s own per-slot fuzzy comparator,
+    shared here rather than reimplemented). An event naming no slot at
+    all matches nothing: there is nothing on file to test a placement
+    against."""
+    present = [slot for slot in PLACEMENT_CONCEPT_SLOTS if getattr(target, slot.value) is not None]
+    if not present:
+        return False
+    return all(
+        slot_match_score(getattr(target, slot.value), getattr(placement, slot.value), vocab, slot) >= threshold
+        for slot in present
+    )
+
+
+def run_holdout(
+    corpus: Corpus,
+    constants: Constants,
+    *,
+    cutoff_years: int,
+    n_bins: int = 10,
+    match_threshold: float = DEFAULT_MATCH_THRESHOLD,
+) -> dict[str, Any]:
+    """The discovery-date holdout (`main.tex` §9) over every ground-truth
+    event in `corpus`, at `cutoff_years`: every event's own dated fact is
+    the target, not (as before this module's `bkt-hte-holdout` rewrite) a
+    source's own pooled subject.
+
+    For each event after the cutoff, `_placement_from_item` builds one
+    placement candidate from every PRE-cutoff evidence item (`hte.link`'s
+    own per-item slot extraction), then keeps whichever candidates
+    `_matches_event` says name the same slots as the held-out event's own
+    item. Among those, the ones whose own interval contains the event's
+    `year` are its *true* readings; the rest are *wrong-interval*
+    competitors, a placement matching the event's slots but naming a
+    different time for it.
+
+    An event with no matching candidate at all contributes to
+    `n_holdout_events` (the denominator) but not to `n_covered_events`
+    (the numerator) or to any scored pair: `coverage_of_truth` is exactly
+    this fraction, read as "how much of the ground truth this run's own
+    pre-cutoff evidence could even place at all," independent of whether
+    the placement it found was well or badly calibrated. An event with at
+    least one true reading is *covered*: the best-projected true
+    candidate is scored against `1.0`, and, when at least one wrong-
+    interval competitor also exists, the best-projected one of those is
+    scored against `0.0` too, both pairs feeding the same Brier score and
+    calibration curve.
     """
-    by_kind: dict[Any, list[EvidenceItem]] = defaultdict(list)
-    for item in pre_items:
-        by_kind[item.kind].append(item)
-    total = 0.0
-    for kind, items in by_kind.items():
-        s_sum = sum(belief.cluster_weight(it) for it in items)
-        total += belief.D(len(items), constants.lam) * s_sum
-    r = belief.cross_kind_bonus(by_kind.keys()) * total
-    opinion = belief.Opinion.from_evidence(r, 0.0, constants.W, a=0.5)
-    return opinion.project()
+    pre_events, post_events = holdout_by_discovery_date(corpus.ground_truth, cutoff_years)
+    ev_by_id = {e.id: e for e in corpus.evidence}
+    pre_evidence = [ev_by_id[g.id] for g in pre_events if g.id in ev_by_id]
 
+    candidates: dict[int, Hypothesis] = {}
+    for item in pre_evidence:
+        hyp = _placement_from_item(item, corpus.vocab)
+        if hyp is not None:
+            candidates.setdefault(hyp.address, hyp)
+    candidate_list = list(candidates.values())
 
-def _observed_outcome(post_items: Sequence[EvidenceItem]) -> float:
-    """`1.0` if every post-cutoff item continues to corroborate the
-    source's subject, `0.0` if any of them is marked `is_absence=True`
-    (this corpus's stand-in for a post-cutoff downgrade or non-
-    replication, since neither corpus links post-cutoff evidence to a
-    scored hypothesis's `refutes` list directly)."""
-    return 0.0 if any(item.is_absence for item in post_items) else 1.0
+    def projected(h: Hypothesis) -> float:
+        return belief.score(h, pre_evidence, corpus.vocab, constants=constants).project()
+
+    n_covered = 0
+    predictions: list[dict[str, Any]] = []
+    for g in sorted(post_events, key=lambda g: (g.discovery_year, g.id)):
+        target = ev_by_id.get(g.id)
+        if target is None:
+            continue
+        matches = [h for h in candidate_list if _matches_event(target, h.content, corpus.vocab, threshold=match_threshold)]
+        true_matches = [h for h in matches if h.content.interval.start <= g.year <= h.content.interval.end]
+        if not true_matches:
+            continue
+        wrong_matches = [h for h in matches if not (h.content.interval.start <= g.year <= h.content.interval.end)]
+        n_covered += 1
+
+        true_hyp = max(true_matches, key=projected)
+        predictions.append({
+            "event_id": g.id, "event_label": g.label, "event_year": g.year, "reading": "true",
+            "hypothesis": true_hyp.short_id, "predicted": projected(true_hyp), "observed": 1.0,
+        })
+        if wrong_matches:
+            wrong_hyp = max(wrong_matches, key=projected)
+            predictions.append({
+                "event_id": g.id, "event_label": g.label, "event_year": g.year, "reading": "wrong-interval",
+                "hypothesis": wrong_hyp.short_id, "predicted": projected(wrong_hyp), "observed": 0.0,
+            })
+
+    brier = brier_score([p["predicted"] for p in predictions], [p["observed"] for p in predictions])
+    n_holdout = len(post_events)
+    return {
+        "cutoff_years": cutoff_years,
+        "match_threshold": match_threshold,
+        "n_holdout_events": n_holdout,
+        "n_covered_events": n_covered,
+        "coverage_of_truth": (n_covered / n_holdout) if n_holdout else None,
+        "brier_score": brier,
+        "calibration_curve": calibration_curve(predictions, n_bins=n_bins),
+        "predictions": predictions,
+        "constants": {"W": constants.W, "lam": constants.lam},
+    }
 
 
 def brier_score(predictions: Sequence[float], outcomes: Sequence[float]) -> float | None:
@@ -129,7 +210,7 @@ def calibration_curve(
 ) -> list[dict[str, Any]]:
     """A `n_bins`-bin reliability curve over `predictions` (each a
     `{"predicted": p, "observed": y}` mapping, `run_holdout`'s own
-    per-source entries): for each equal-width bin over `[0, 1]`, the mean
+    per-event entries): for each equal-width bin over `[0, 1]`, the mean
     predicted probability and the mean observed outcome among the
     predictions landing there. An empty bin reports `count=0` and `None`
     means rather than being dropped, so a caller plotting this curve sees
@@ -152,31 +233,6 @@ def calibration_curve(
             "mean_observed": sum(p["observed"] for p in bucket) / len(bucket),
         })
     return curve
-
-
-def run_holdout(corpus: Corpus, constants: Constants, *, cutoff_years: int, n_bins: int = 10) -> dict[str, Any]:
-    """The discovery-date holdout (`main.tex` §9) over every split-worthy
-    source in `corpus` at `cutoff_years`: a Brier score and a `n_bins`-bin
-    calibration curve across every source's pre-cutoff-predicted,
-    post-cutoff-observed pair."""
-    splits = _source_splits(corpus, cutoff_years)
-    predictions = []
-    for doc_id, (pre_items, post_items) in sorted(splits.items()):
-        predicted = _predicted_probability(pre_items, constants)
-        observed = _observed_outcome(post_items)
-        predictions.append({
-            "doc_id": doc_id, "predicted": predicted, "observed": observed,
-            "n_pre": len(pre_items), "n_post": len(post_items),
-        })
-    brier = brier_score([p["predicted"] for p in predictions], [p["observed"] for p in predictions])
-    return {
-        "cutoff_years": cutoff_years,
-        "n_sources": len(predictions),
-        "brier_score": brier,
-        "calibration_curve": calibration_curve(predictions, n_bins=n_bins),
-        "predictions": predictions,
-        "constants": {"W": constants.W, "lam": constants.lam},
-    }
 
 
 @dataclass(frozen=True)
@@ -204,7 +260,7 @@ def fit_constants(
     `cutoff_years`. `mu` is not part of the grid; see the module docstring.
     Returns `{"best", "results"}`, `results` sorted best-first, `best`
     `None` when the grid or the holdout itself produced no score to
-    compare (an empty grid, or a corpus with no split-worthy source at
+    compare (an empty grid, or a corpus with no covered event at
     `cutoff_years`).
     """
     w_values = list(grid.get("W", [Constants().W]))
@@ -240,7 +296,9 @@ def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
         "# Calibration",
         "",
         f"Cutoff year: {result.get('cutoff_years')}",
-        f"Split-worthy sources: {result.get('n_sources')}",
+        f"Held-out events: {result.get('n_holdout_events')}",
+        f"Covered by a matching pre-cutoff placement: {result.get('n_covered_events')} "
+        f"(coverage of truth: {result.get('coverage_of_truth')})",
         f"Brier score: {result.get('brier_score')}",
         "",
         "## Calibration curve",
@@ -255,14 +313,17 @@ def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
     if fit:
         lines += ["", "## Constant recalibration", "", f"Best: {fit.get('best')}", ""]
 
-    lines += ["", "## Per-source predictions", "", "| Source | Predicted | Observed | Pre items | Post items |", "|---|---|---|---|---|"]
+    lines += ["", "## Per-event predictions", "", "| Event | Year | Reading | Hypothesis | Predicted | Observed |", "|---|---|---|---|---|---|"]
     for p in result.get("predictions", []):
-        lines.append(f"| {p['doc_id']} | {p['predicted']:.3f} | {p['observed']} | {p['n_pre']} | {p['n_post']} |")
+        lines.append(
+            f"| {p['event_id']} | {p['event_year']} | {p['reading']} | {p['hypothesis']} | "
+            f"{p['predicted']:.3f} | {p['observed']} |"
+        )
 
     (out / "CALIBRATION.md").write_text("\n".join(lines) + "\n")
 
 
 __all__ = [
     "holdout_by_discovery_date", "run_holdout", "fit_constants", "write_calibration",
-    "brier_score", "calibration_curve",
+    "brier_score", "calibration_curve", "DEFAULT_MATCH_THRESHOLD",
 ]

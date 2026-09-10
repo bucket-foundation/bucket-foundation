@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 from typing import Mapping, Sequence
 
-from .address import time_bin_index
+from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
 from .belief import Opinion
 from .hypothesis import Hypothesis, Placement
 
@@ -56,11 +56,23 @@ def timeline_views(
     time_bins: Sequence[int],
     *,
     top_k: int = 10,
+    span_start: int = DEFAULT_SPAN_START,
+    bin_width: int = DEFAULT_BIN_WIDTH,
+    bin_labels: Mapping[int, str] | None = None,
 ) -> dict:
     """The three timeline views of `TIMELINE-AND-COMBINATORICS-SPEC.md` §5,
     over `hypotheses` scored by `opinions` (projected posterior) and
     `elos` (tournament rating, the tie-break and fallback sort key when a
-    posterior is missing):
+    posterior is missing). `span_start`/`bin_width` must match whatever
+    the run that produced `hypotheses` used for its own TIME_BIN axis
+    (`hte.generate.enumerate_placements`'s parameters of the same name),
+    since bin membership below is decided by re-deriving each placement's
+    own bin index from its interval under the same span and rung; the
+    module defaults reproduce this package's original fixed 20,000-year/
+    century behavior for a caller that passes none. `bin_labels`, when
+    given, names each bin in `time_bins` (`hte.timeline.bin_label`,
+    `"1900s"` in place of a bare index); a bin missing from it, or a
+    `None` map, falls back to `str(index)`.
 
     - `bins`: for each bin in `time_bins`, every placement hypothesis
       whose own interval falls in that century bin, ranked and capped at
@@ -80,10 +92,11 @@ def timeline_views(
 
     bins_out = []
     for tbin in time_bins:
-        in_bin = [h for h in placements if time_bin_index(h.content.interval.start) == tbin]
+        in_bin = [h for h in placements if time_bin_index(h.content.interval.start, span_start, bin_width) == tbin]
         ranked = sorted(in_bin, key=lambda h: _rank_key(h, opinions, elos), reverse=True)[:top_k]
+        label = (bin_labels or {}).get(tbin, str(tbin))
         bins_out.append({
-            "time_bin": {"index": tbin},
+            "time_bin": {"index": tbin, "label": label},
             "ranked_hypotheses": [_ranked_entry(h, opinions, elos) for h in ranked],
         })
 
@@ -132,7 +145,7 @@ def write_views(views: dict, out_dir: str | Path) -> None:
 
     lines = ["# Timeline", ""]
     for b in views.get("bins", []):
-        lines.append(f"## Time bin {b['time_bin']['index']}")
+        lines.append(f"## Time bin {b['time_bin'].get('label', b['time_bin']['index'])}")
         lines.append("")
         lines.append("| Hypothesis | Slots | Posterior | Elo |")
         lines.append("|---|---|---|---|")
