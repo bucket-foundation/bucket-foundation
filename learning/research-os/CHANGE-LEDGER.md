@@ -1666,3 +1666,42 @@ banned-word, filler-adverb, AI-tell, antithesis, and em/en-dash rule lists found
 on any added line, including the two fixed cards. `origin/main` already merged into the
 branch. No file under `src/` or `public/` touched. `npm ci` and `npm run build` both
 clean.
+
+## Iteration 19: PR #45 review pass
+
+Same review as `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10, PR #45
+review pass" entry; logged here per the ros ledger convention.
+
+### Added
+
+- `scripts/test-canon-primary-signoff.ts`: 6 tests covering
+  `isPendingSignoff()` and the `loadPrimaryPapers()` gate it drives.
+  Wired into `npm run test:research-os`.
+
+### Edited
+
+- `src/lib/canon-primary.ts`: `loadPrimaryPapers()` now excludes any
+  record whose `provenance_signoff` is a pending value before caching, so
+  neither the `/api/research` paid-cite envelope nor the Research OS
+  canon importer can serve a record no human has approved yet. Full
+  rationale in the CHANGELOG entry above.
+- `GOVERNANCE.md`: added a "Canon sign-off" subsection reading the
+  fail-closed `hte.canon_writeback` gate and the pending-placeholder
+  `tools/canon-pipeline/intake.py` path as one policy.
+
+### Removed
+
+None.
+
+### Verified
+
+Six new foundation-tier DOIs (Loewenstein 1994, Gruber/Gelman/Ranganath
+2014, Deci and Ryan 2000, Gneezy and Rustichini 2000, Bainbridge 1983,
+Pirolli and Card 1999) checked live against Crossref/OpenAlex: all
+resolve to the intended work. `intake.py --min-score 70` run twice
+against each of the four canon dossiers PR #45 touches: `added=0
+changed=False` on every one. `npm ci`, `npx tsc --noEmit`, `npm run
+build`, and `npm run test:research-os` all clean. Leak scan against the
+full diff found no keys, `.env` contents, IPs, non-public hostnames,
+personal emails other than `gianyrox@gmail.com`, PII, `/home/gian`
+paths, or Claude session URLs.

@@ -1254,3 +1254,76 @@ file content. No redactions were needed.
 - Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
   `npm run test:research-os` (191/191 pass), `next lint` on every touched
   file: all clean.
+
+## 2026-09-10, PR #45 review pass
+
+Strict review of PR #45 (`intake/ros-canon-promotion-2`, canon intake pass
+two) before merge, in an isolated worktree per the review protocol.
+
+Leak scan on the full diff against `origin/main`: no API keys, `.env`
+contents, IPs, non-public hostnames, personal emails other than
+`gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in
+file content. Grep hits on DOI substrings (`10.1037/0033-2909.116.1.75`
+read as an IP-shaped or phone-shaped string by a naive regex) were
+confirmed false positives against the surrounding context. No redactions
+were needed.
+
+### Fixed
+
+- `src/lib/canon-primary.ts`: `loadPrimaryPapers()` served every record
+  under `bucket-canon/<branch>/<concept>/primary-papers.yaml`, including
+  the 23 records this PR marks `provenance_signoff: "pending: gianyrox"`,
+  with no check of that field. The `/api/research` route builds its
+  paid-cite envelope (`citation`, `cite.price_usd`, `canon_tier: "canon"`,
+  a real DOI and CC-BY-4.0 license) straight from `rankPrimary()`'s output,
+  so a pending record was one matching query away from being served as
+  approved, citeable-for-pay canon before a human ever signed off on it.
+  Added `isPendingSignoff()` (true when `provenance_signoff` starts with
+  `pending`, false for a record with no such field, since the rule does
+  not reach backward past pre-ros-11 canon) and filtered on it inside
+  `loadPrimaryPapers()`, the one loader both the envelope builder
+  (`api/research/route.ts`) and the Research OS canon importer
+  (`research-os/ingest/canon.ts`) read from. A pending record now falls
+  out of ranking entirely; a matching query falls through to transcript
+  candidates or the "no canon match" path instead. New test:
+  `scripts/test-canon-primary-signoff.ts` (6 assertions: the predicate on
+  pending/approved/absent values, that `loadPrimaryPapers()` never leaks a
+  pending record from the real dossiers, and that a pre-ros-11 record with
+  no `provenance_signoff` field, `05-biophysics/mitochondria`, still
+  serves). Wired into `npm run test:research-os`.
+- `GOVERNANCE.md`: added a "Canon sign-off" subsection under Mission
+  documenting both write paths as one policy: `hte.canon_writeback`'s
+  fail-closed hard refusal on a missing or blank `signoff`, and
+  `tools/canon-pipeline/intake.py`'s pending-placeholder path, now backed
+  by the `isPendingSignoff` gate above so a pending record is excluded
+  from anywhere the site or Research OS reads approved canon from.
+
+### Verified, no change needed
+
+- The `/canon/[slug]` page's `BranchEntriesTable` reads only title, year,
+  and sub-folder from `CANON_INDEX.md` markdown tables via
+  `src/lib/canon-fs.ts`; it never reads `primary-papers.yaml` or
+  `provenance_signoff`, and its "mint as IP NFT" action is already
+  disabled. `/llms.txt` documents the protocol and the `/api/research`
+  endpoint, not individual DOI-backed entries, so it names no pending
+  record. Neither needed a code change.
+- Six foundation-tier records
+  (`07-mind/curiosity-and-motivation`,
+  `07-mind/cognition-and-automation`, `04-information/information-foraging`)
+  each state a principle with primary evidence and a DOI; all six DOIs
+  verified live against Crossref/OpenAlex, resolving to the intended
+  work. Seven outcome-tier records added to
+  `07-mind/sub-outcomes/education/` all carry `tier: OUTCOME` and name
+  their depended-on foundation. The two new dossier folders
+  (`CANON_INDEX.md`, `queries.txt`, `primary-papers.yaml`,
+  `primary-papers.bib`) follow the existing four-file convention.
+- `tools/canon-pipeline/intake.py --min-score 70`, run twice against each
+  of the four canon dossiers this pass touches
+  (`curiosity-and-motivation`, `cognition-and-automation`,
+  `information-foraging`, `memory-systems`): `added=0 changed=False` on
+  every one. (A stray run against `07-mind/sub-outcomes/education` with
+  the same foundation-tier flag rewrapped one comment line; reverted,
+  since that dossier is outcome-tier and out of this pass's own scope.)
+- `agf-lint-voice check` on every file this review touched: 0 violations.
+- Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (all files, 0 failures): all clean.
