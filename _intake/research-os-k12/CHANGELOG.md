@@ -1,5 +1,24 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10 (hypothesis engine bridge)
+
+Branch `feat/ros-engine-bridge`, worktree review of a WIP commit against PR #10
+(`feat/hte-k12-research-os`), which merged the `hte.api.hypothesize` HTTP surface,
+the literature corpus adapter, and a Research-OS-row auto-normalizer in
+`tools/hypothesis-engine` concurrently with this work. Full account:
+`learning/research-os/ENGINE-BRIDGE.md`.
+
+Shipped: an engine hypothesis to `graph.nodes`/`graph.edges` adapter (idempotent on
+engine/run id/hypothesis id); an engine node as a learner "frontier" target,
+surfaced on `/api/research-os/route` and the workspace page; `public.research_os_
+productions_outbox`, one row per accepted production, in the raw shape PR #10's own
+normalizer already reads with no engine-side code change.
+
+Dropped from the WIP: a hand-built copy of PR #10's own `PRODUCTION-SCHEMA.md`
+envelope conversion (`buildProductionEnvelope` and its supporting types in
+`src/lib/research-os/engine-bridge.ts`), superseded by PR #10's server-side
+normalizer. Preserved verbatim, with the full reasoning, in `DELETIONS.md`.
+
 ## 2026-09-10, site alignment pass
 
 Branch `feat/ros-site-alignment`. Aligned the public site with the Research OS
