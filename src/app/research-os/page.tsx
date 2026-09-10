@@ -117,8 +117,9 @@ export default function ResearchOsPage() {
         <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
           Each concept in the graph carries one of five states for each learner.
           The states reuse the Academy&apos;s mastery signals and add a reviewed
-          production at the top. A teacher can see, question, and override any
-          state, and the override is recorded.
+          production at the top. The design gives a teacher the ability to see,
+          question, and override any state, with the override recorded; no
+          teacher view has shipped yet (see status, below).
         </p>
         <div className="mt-6 grid grid-cols-1 gap-px bg-[color:var(--hairline)] grid-hairlines">
           {STATES.map((s, i) => (
