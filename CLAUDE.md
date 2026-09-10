@@ -394,3 +394,22 @@ the commit on any hit.
 
 Reach for an escape hatch when the word is load-bearing. Rewrite otherwise.
 <!-- AGF-VOICE-RULES:END -->
+
+## Hypothesis Engine Loop
+
+The history hypothesis engine lives in `tools/hypothesis-engine/` (`hte`), with its design paper in `papers/history-hypothesis-engine/` and specs in `_intake/hypothesis-engine/`. Two loops keep it optimal.
+
+- **Cloud routine `bkt-hte-optimize-loop`** (hourly at :07 UTC, Sonnet, fake-mode only): `make test`, synthetic and real-corpus sweeps, one test swarm per tick, a two-table review (Secrets, QA) on every open non-draft PR in the org, Research OS schema alignment when `src/lib/research-os/types.ts` or the `graph.productions` migration changes, and squash-merge of its own `fix/hte-` and `test/hte-` PRs under the conditions in its prompt. Log at `tools/hypothesis-engine/docs/LOOP-LOG.md`.
+- **Local session loop** (`bkt-nuc`): live Sonnet campaigns through `claude -p`, the paper pipeline with Drive publish, merges of larger engine PRs after review, Nucleus beads.
+
+### PR review standard
+
+Every PR gets a review before merge with two tables, Secrets and QA, each row severity, file, line, issue, fix. Secrets: keys, tokens, wallet keys, Supabase or Vercel values, internal hosts or IPs, private emails, real-person data in fixtures, absolute home paths. QA: the diff matches its own docstrings and docs, every behavior change has a test, the suite passes on the branch, silent failures (broad excepts, defaulted errors, swallowed exceptions, logging that reaches no artifact), and coverage gaps named as exact scenarios. Engine PRs also get the silent-failure hunter and the test-coverage analyzer. Findings above Medium are fixed on the branch before merge. Self-approval is blocked on the founder's account, so the verdict goes in the review body.
+
+### Working tree rules
+
+The main checkout is shared by several sessions and carries their untracked work; never switch its branch, reset it, or stash in it. Engine sessions work in git worktrees on the home disk (`~/agfarms/.wt-*`), one branch per worktree, removed when the PR merges. `/tmp` is a 31 GB tmpfs shared by every session; keep worktrees and clones off it. One branch and one PR per distinct change; claim a branch by opening a draft PR before writing to it.
+
+### Research OS seam
+
+The engine exposes `hte.api.hypothesize`, `hte-serve` (`POST /hypothesize`, `GET /health`, localhost), and the `hypothesize` MCP tool definition in `hte/mcp_tool.py`. The app side applies `tools/hypothesis-engine/docs/research-os-hypothesize-route.patch`. Field mapping lives in `tools/hypothesis-engine/docs/PRODUCTION-SCHEMA-ALIGNMENT.md`; contract tests fail when the production schema drifts.

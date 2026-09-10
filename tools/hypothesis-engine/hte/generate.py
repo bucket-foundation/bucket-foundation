@@ -359,19 +359,32 @@ def _hypothesis_from_evidence_slots(
 
     Returns `None` when `item` names no interval at all (nothing to
     place on the TIME_BIN axis, the same rule `hte.calibrate.
-    _placement_from_item` already applies); when a named slot value is a
-    raw, vocabulary-unresolved label (`Hypothesis.from_placement`'s own
-    `KeyError`, left by an extraction pass, `hte.roles.extract`'s
+    _placement_from_item` already applies), or when a named slot value
+    is a raw, vocabulary-unresolved label (`Hypothesis.from_placement`'s
+    own `KeyError`, left by an extraction pass, `hte.roles.extract`'s
     ensemble, whose free-text slot no fuzzy match has resolved to a
-    concept id yet) instead of a known concept id; or when the item's
-    own interval starts before this run's own TIME_BIN span (`hte.
-    timeline.time_bin_index`'s own `ValueError`, a bullet's incidental
-    mention of an earlier year, "since Newton's 1687 Principia," pulled
-    into `hte.corpus.quantum_history._extract_interval`'s min/max span
-    alongside the bullet's real, in-span date). Either failure drops
+    concept id yet) instead of a known concept id. Either failure drops
     just this one item's own direct placement and leaves the generation
     pass over the rest of the evidence set to continue, matching
     `_hypothesis_from_address`'s own decode-failure contract above.
+
+    An item's own interval starting before this run's own TIME_BIN span
+    (a bullet's incidental mention of an earlier year, "since Newton's
+    1687 Principia," pulled into `hte.corpus.quantum_history.
+    _extract_interval`'s min/max span alongside the bullet's real,
+    in-span date) no longer drops the item here: `hte.timeline.
+    time_bin_index` clamps such a year to bin 0 rather than raising
+    (`bkt-hte-binning-clamp`, 2026-09-10), so this function still
+    returns a `Hypothesis`, placed in the run's own earliest bin rather
+    than dropped. The `except (KeyError, ValueError)` below still guards
+    a placement whose own `hte.address.encode_indices` call hits a
+    negative slot index for an unrelated reason (not this one, since a
+    time-bin index can no longer go negative for this cause); a caller
+    reading this function's `None`/`Hypothesis` result cannot itself
+    tell a too-early-year clamp apart from a real placement, but
+    `hte.timeline.clamp_log()` records every clamp `hte.runner.
+    run_campaign` hits, surfaced in `MANIFEST.json['clamped_years']` and
+    `run.log`.
     """
     if item.interval is None:
         return None

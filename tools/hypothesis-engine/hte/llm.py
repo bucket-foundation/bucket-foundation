@@ -365,6 +365,33 @@ def _sanitize_envelope(envelope: dict[str, Any]) -> dict[str, Any]:
     return {k: v for k, v in envelope.items() if k not in _SESSION_ID_KEYS}
 
 
+# A UUID, a `session_id=...`/`uuid: ...` key-value pair (either quoting
+# style a CLI's own plain-text output might use), or a bare 32-plus-
+# character hex token (a session/account/API-key shape with no structured
+# key of its own to catch it by). `_sanitize_envelope` above handles a
+# parsed JSON envelope by dropping known keys outright; this handles the
+# one place this module still interpolates a CLI's raw, unparsed text
+# into an exception message (`_invoke_cli`'s own `claude -p exited ...`
+# branch), where there is no key to drop, only a token shape to redact.
+_ID_LIKE_RE = re.compile(
+    r"\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\b"
+    r"|\b(?:session[_-]?id|uuid|request[_-]?id|account[_-]?id)\s*[:=]\s*[\"']?[\w-]+[\"']?"
+    r"|\b[0-9a-fA-F]{32,}\b",
+    re.IGNORECASE,
+)
+
+
+def _strip_id_like_tokens(text: str) -> str:
+    """`text` with anything that looks like a session, account, or
+    request id redacted (`_ID_LIKE_RE` above). This module's own safety
+    contract is "no session or account identifier in a message that can
+    reach a log or a response"; a bounded plain-text excerpt of what the
+    `claude` CLI itself printed keeps its diagnostic value (a crash
+    trace's first line, an auth error) while still honoring that
+    contract."""
+    return _ID_LIKE_RE.sub("<redacted-id>", text)
+
+
 def _read_cache(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text())["response"]
 
@@ -442,11 +469,24 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float,
     usage fields included) into its own message via
     `proc.stdout.strip()`, the exact incident that motivated this
     rewrite. Neither `LLMInvocationError` branch below ever includes an
-    unsanitized envelope or `proc.stderr` in its own message for that
-    reason; a plain invocation failure (a non-JSON stdout, the CLI
-    missing from `PATH`, ...) still names a bounded snippet of whatever
-    plain-text error the CLI itself printed, since that text carries no
-    structured session/account fields to begin with.
+    unsanitized envelope in its own message for that reason. A plain
+    invocation failure with no parsed envelope at all (a non-JSON
+    stdout, a nonzero exit with no JSON on either stream) does still
+    name a bounded, `[:300]`/`[:500]`-sliced excerpt of whatever
+    plain-text `proc.stderr`/`proc.stdout` the CLI itself printed, run
+    through `_strip_id_like_tokens` first (a UUID, a `session_id=...`/
+    `uuid: ...` key-value pair, or a bare 32-plus-character hex token,
+    redacted): that text carries no *structured* session/account field
+    of its own for `_sanitize_envelope`'s key-based rule to drop, but it
+    can still carry an id-shaped token in free text (a crash trace
+    naming a session id, an auth error echoing one back), which
+    `_strip_id_like_tokens` is this branch's own matching safeguard for.
+    Every such failure also logs one `hte.llm` error line server-side
+    (`role`, the same excerpt), the one log line this module's own
+    corrective-retry and invocation-failure paths otherwise leave silent
+    (`hte.roles`'s `_with_refusal_default` passes everything but
+    `ModelRefusal`/`ModelTruncation` through unchanged, so this is the
+    only place in the call chain that ever saw the raw failure).
     """
     argv = [
         "claude", "-p", prompt,
@@ -462,8 +502,10 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float,
     try:
         proc = subprocess.run(argv, capture_output=True, text=True, timeout=timeout)
     except FileNotFoundError as exc:
+        logger.error("hte.llm: role=%r the `claude` CLI is not on PATH", role)
         raise LLMInvocationError("the `claude` CLI is not on PATH") from exc
     except subprocess.TimeoutExpired as exc:
+        logger.error("hte.llm: role=%r claude -p timed out after %ss", role, timeout)
         raise LLMInvocationError(f"claude -p timed out after {timeout}s") from exc
     _check_rate_limit(proc.stdout, proc.stderr)
 
@@ -484,14 +526,19 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float,
                 f"{envelope.get('stop_reason')!r} is_error={envelope.get('is_error')!r} "
                 "(no refusal/truncation match; the envelope's own session/account fields are omitted)"
             )
-        raise LLMInvocationError(
-            f"claude -p exited {proc.returncode} for role={role!r}: "
-            f"{(proc.stderr or proc.stdout).strip()[:300]!r}"
-        )
+        excerpt = _strip_id_like_tokens((proc.stderr or proc.stdout).strip()[:300])
+        logger.error("hte.llm: role=%r claude -p exited %d: %r", role, proc.returncode, excerpt)
+        raise LLMInvocationError(f"claude -p exited {proc.returncode} for role={role!r}: {excerpt!r}")
     if envelope is None:
-        raise LLMInvocationError(f"claude -p produced non-JSON stdout: {proc.stdout[:500]!r}")
+        excerpt = _strip_id_like_tokens(proc.stdout[:500])
+        logger.error("hte.llm: role=%r claude -p produced non-JSON stdout: %r", role, excerpt)
+        raise LLMInvocationError(f"claude -p produced non-JSON stdout: {excerpt!r}")
     if envelope.get("is_error"):
         _check_rate_limit(str(envelope.get("result", "")))
+        logger.error(
+            "hte.llm: role=%r claude -p reported is_error, stop_reason=%r",
+            role, envelope.get("stop_reason"),
+        )
         raise LLMInvocationError(
             f"claude -p reported is_error for role={role!r}: stop_reason={envelope.get('stop_reason')!r} "
             "(no refusal/truncation match; the envelope's own session/account fields are omitted)"
@@ -602,11 +649,18 @@ def complete(
             response = _parse_response(envelope, required)
         except LLMInvalidResponseError as exc:
             last_error = str(exc)
+            logger.warning(
+                "hte.llm: role=%r model=%r invalid response on attempt %d, retrying: %s",
+                role, resolved_model, attempt + 1, last_error,
+            )
             continue
         _write_cache(cache_path, model=resolved_model, role=role, prompt=prompt, response=response)
         _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
         return response
     _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
+    logger.error(
+        "hte.llm: role=%r model=%r invalid JSON after one retry: %s", role, resolved_model, last_error,
+    )
     raise LLMInvalidResponseError(
         f"role={role!r} model={resolved_model!r}: invalid JSON after one retry: {last_error}"
     )
@@ -642,15 +696,28 @@ def complete_many(
 
     `default`, when given, is wired through as `hte.parallel.pmap`'s own
     `on_error="default"`/`default=` pair (`bkt-hte-refusal-handling`):
-    a prompt whose `complete()` call keeps failing (`ModelRefusal`/
-    `ModelTruncation` chief among them, since `pmap`'s own retries give
-    a fresh `claude -p` call, and so a fresh chance to answer, before
-    giving up) resolves to `default` in its place in the returned list
-    rather than aborting every other prompt in `prompts` alongside it.
-    `hte.llm.stats()` still records the refusal/truncation itself
-    (`complete()`'s own bookkeeping, unaffected by how the caller
-    absorbs it); `default=None` (the default) preserves this function's
-    prior behavior, one failing prompt raises out of the whole call.
+    a prompt whose `complete()` call keeps failing with `ModelRefusal` or
+    `ModelTruncation` (since `pmap`'s own retries give a fresh `claude -p`
+    call, and so a fresh chance to answer, before giving up) resolves to
+    `default` in its place in the returned list rather than aborting
+    every other prompt in `prompts` alongside it. `hte.llm.stats()` still
+    records the refusal/truncation itself (`complete()`'s own
+    bookkeeping, unaffected by how the caller absorbs it); `default=None`
+    (the default) preserves this function's prior behavior, one failing
+    prompt raises out of the whole call.
+
+    `default` is scoped to `(ModelRefusal, ModelTruncation)` only, wired
+    through as `pmap`'s own `default_exceptions` (`FINDING-2026-09-10-
+    102`: a prompt failing for any other reason, a malformed-JSON parse
+    error on both attempts, a missing `claude` CLI, a rate limit past
+    `pmap`'s own abort budget, a plain bug, propagates out of this call
+    instead of resolving to `default` and being mistaken for an ordinary
+    refusal. Before this fix, `pmap`'s own broad `except Exception:`
+    could not tell a refusal from a real infrastructure failure, so an
+    outage (the CLI missing from `PATH`, say) silently degraded every
+    prompt in `prompts` to `default` and got logged and counted as a
+    routine "model refused" event, indistinguishable from the benign
+    case this function exists to absorb.
     """
     results: list[dict[str, Any] | None] = [None] * len(prompts)
     resolved_mode = mode if mode is not None else os.environ.get("HTE_LLM_MODE")
@@ -677,6 +744,7 @@ def complete_many(
         if default is not None:
             pmap_kwargs["on_error"] = "default"
             pmap_kwargs["default"] = default
+            pmap_kwargs["default_exceptions"] = (ModelRefusal, ModelTruncation)
 
         for idx, response in zip(pending, pmap(_call, pending, **pmap_kwargs)):
             results[idx] = response

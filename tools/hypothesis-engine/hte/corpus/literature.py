@@ -431,16 +431,34 @@ def _parse_frontmatter(raw: str, relative_path: str) -> Card:
     fm_lines = [(lineno + header_lines + 1, offset + header_len + 4, line) for lineno, offset, line in fm_lines]
     fields = dict(_split_frontmatter_fields(fm_lines))
 
-    title = _parse_scalar(fields["title"]) or ""
-    authors = tuple(_parse_list(fields["authors"]))
-    year_str = _parse_scalar(fields["year"]) or "0"
-    year = int(year_str)
-    venue = _parse_scalar(fields["venue"]) or ""
-    doi = _parse_scalar(fields["doi"]) or ""
-    why_it_matters = _parse_block_scalar(fields["why_it_matters"])
-    key_claims = tuple(_parse_claims(fields["key_claims"]))
-    research_questions = tuple(_parse_list(fields.get("research_questions_it_leaves_open", [("", 0, "")])))
-    how_it_bears = _parse_block_scalar(fields["how_it_bears_on_research_os"])
+    # Every required-field read below is a bare dict subscript (a missing
+    # `authors:`/`venue:`/... field) or a bare `int()` call (a non-numeric
+    # `year:`), neither of which names `relative_path` on its own; with a
+    # corpus already at 45 cards and growing, one malformed card's own
+    # bare `KeyError: 'authors'`/`ValueError: invalid literal for int()...`
+    # gives no indication of which file to fix. This `try/except` adds
+    # that context uniformly, the same convention the explicit `raise
+    # ValueError` checks around it already follow (`"has no frontmatter
+    # opening"`, `"carries no doi"`, ...).
+    try:
+        title = _parse_scalar(fields["title"]) or ""
+        authors = tuple(_parse_list(fields["authors"]))
+        year_str = _parse_scalar(fields["year"]) or "0"
+        year = int(year_str)
+        venue = _parse_scalar(fields["venue"]) or ""
+        doi = _parse_scalar(fields["doi"]) or ""
+        why_it_matters = _parse_block_scalar(fields["why_it_matters"])
+        key_claims = tuple(_parse_claims(fields["key_claims"]))
+        research_questions = tuple(_parse_list(fields.get("research_questions_it_leaves_open", [("", 0, "")])))
+        how_it_bears = _parse_block_scalar(fields["how_it_bears_on_research_os"])
+    except KeyError as exc:
+        raise ValueError(f"literature adapter: {relative_path} carries no {exc.args[0]!r} field") from exc
+    except ValueError as exc:
+        message = str(exc)
+        prefix = "literature adapter: "
+        if message.startswith(prefix):
+            message = message[len(prefix):]
+        raise ValueError(f"literature adapter: {relative_path}: {message}") from exc
 
     if not doi:
         raise ValueError(f"literature adapter: {relative_path} carries no doi")
@@ -802,10 +820,17 @@ def _fetch_card_paths(ref: str) -> list[str]:
 
 
 def _fetch_card_text(path: str, ref: str) -> str:
+    """One card's own raw text at `ref`, wrapped the same way
+    `_fetch_card_paths` wraps its own `urlopen` call: a network blip here
+    (card 30 of 45, say) raises a `RuntimeError` naming `path` and `ref`,
+    not a bare, low-level `urllib` exception naming neither."""
     url = f"{GITHUB_RAW_BASE}/{GITHUB_REPO}/{ref}/{path}"
     request = urllib.request.Request(url, headers=_github_headers())
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return response.read().decode("utf-8")
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return response.read().decode("utf-8")
+    except urllib.error.URLError as exc:
+        raise RuntimeError(f"literature adapter: could not fetch {path!r} at ref {ref!r}: {exc}") from exc
 
 
 def _ensure_cards_cached(ref: str) -> Path:
@@ -814,7 +839,15 @@ def _ensure_cards_cached(ref: str) -> Path:
     second `load()` call against the same `ref` and cache directory still
     re-lists the tree (cheap, and the only way to notice a card PR #5 adds
     later), but re-fetches no raw file content, the same idempotent-resume
-    convention `agf-figma pull` documents for its own frame exports."""
+    convention `agf-figma pull` documents for its own frame exports.
+
+    Each fetch writes through a temp path and an atomic `rename` before a
+    cache entry is considered complete, the same convention `hte.llm.
+    _write_cache` already uses for its own cache: a process killed mid-
+    write (disk full, SIGKILL, Ctrl-C) leaves at most a `.tmp` file next
+    to `dest`, never a truncated `dest` itself that `dest.is_file()`
+    would then treat as a permanent, valid cache hit on every later
+    `load()` call against this same cache directory."""
     cache_dir = _cache_dir_for_ref(ref)
     for path in _fetch_card_paths(ref):
         relative = path[len(GITHUB_INTAKE_PATH) + 1:]
@@ -822,7 +855,9 @@ def _ensure_cards_cached(ref: str) -> Path:
         if dest.is_file():
             continue
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(_fetch_card_text(path, ref))
+        tmp = dest.with_suffix(dest.suffix + ".tmp")
+        tmp.write_text(_fetch_card_text(path, ref))
+        tmp.replace(dest)
     return cache_dir
 
 
