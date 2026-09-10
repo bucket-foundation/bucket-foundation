@@ -144,6 +144,46 @@ def test_complete_nonzero_exit_raises_invocation_error(tmp_path, monkeypatch):
         llm.complete("hi", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path)
 
 
+def test_strip_id_like_tokens_redacts_uuid_key_value_and_bare_hex():
+    text = (
+        'uuid=11111111-2222-3333-4444-555555555555 and session_id: "deadbeefcafefeed" '
+        "plus a bare " + "a" * 40
+    )
+    redacted = llm._strip_id_like_tokens(text)
+    assert "11111111-2222-3333-4444-555555555555" not in redacted
+    assert "deadbeefcafefeed" not in redacted
+    assert "a" * 40 not in redacted
+    assert "<redacted-id>" in redacted
+
+
+def test_complete_nonzero_exit_stderr_excerpt_redacts_ids_and_logs_server_side(tmp_path, monkeypatch, caplog):
+    # `_invoke_cli`'s "no refusal/truncation match" branch (a nonzero
+    # exit with no parseable JSON envelope on either stream) still
+    # interpolates a bounded excerpt of whatever plain-text `claude -p`
+    # printed; that excerpt must have any id-shaped token redacted
+    # (`_strip_id_like_tokens`) before it reaches `LLMInvocationError`'s
+    # own message, and the raw failure must be logged server-side (`hte.
+    # llm`'s own logger), the one place in the call chain that ever saw
+    # it (`hte.roles`'s `_with_refusal_default` passes a non-refusal
+    # exception through unchanged, so nothing downstream logs it either).
+    session_id = "a1b2c3d4-e5f6-4789-a1b2-c3d4e5f6a7b8"
+    stderr_text = f"fatal: auth failed for session_id={session_id}"
+
+    def run(argv, capture_output, text, timeout):  # noqa: ARG001 - matches subprocess.run's call shape
+        return SimpleNamespace(returncode=1, stdout="", stderr=stderr_text)
+
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=run))
+    caplog.set_level("ERROR", logger="hte.llm")
+    with pytest.raises(llm.LLMInvocationError) as excinfo:
+        llm.complete("hi", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path)
+
+    message = str(excinfo.value)
+    assert session_id not in message
+    assert "<redacted-id>" in message
+    assert all(session_id not in record.getMessage() for record in caplog.records)
+    assert any("claude -p exited" in record.getMessage() for record in caplog.records)
+
+
 def test_complete_is_error_envelope_raises_invocation_error(tmp_path, monkeypatch):
     fake = _fake_run([(0, _envelope(result="refused", is_error=True))])
     monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
@@ -281,6 +321,46 @@ def test_complete_many_without_default_still_raises(tmp_path, monkeypatch):
     with pytest.raises(llm.ModelRefusal):
         llm.complete_many(
             ["ok-0", "REFUSE-1"], role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path,
+        )
+
+
+def _invocation_failure_run(fail_marker: str):
+    """A `subprocess.run` stand-in that fails every attempt at one
+    prompt with a plain nonzero exit and no JSON envelope at all (an
+    `LLMInvocationError`, a plain invocation bug, no refusal or
+    truncation stop reason anywhere in it), and otherwise echoes the
+    prompt back as a normal successful completion."""
+    calls = []
+
+    def run(argv, capture_output, text, timeout):  # noqa: ARG001
+        calls.append(argv)
+        prompt = argv[2]
+        if fail_marker in prompt:
+            return SimpleNamespace(returncode=1, stdout="", stderr="boom: not a refusal, a real failure")
+        return SimpleNamespace(
+            returncode=0, stdout=_envelope(structured_output={"greeting": prompt}), stderr="",
+        )
+
+    run.calls = calls
+    return run
+
+
+def test_complete_many_default_does_not_absorb_a_non_refusal_failure(tmp_path, monkeypatch):
+    # Silent-failures review finding 1 (`hte/parallel.py` `pmap`'s old
+    # broad `except Exception:` under `on_error="default"`): a prompt
+    # failing for a reason other than `ModelRefusal`/`ModelTruncation`
+    # (here, a plain nonzero exit with no refusal envelope, the shape a
+    # missing `claude` CLI or a malformed-JSON-on-both-attempts failure
+    # would also take) must propagate out of `complete_many(...,
+    # default=...)` as itself, an unabsorbed failure distinct from an
+    # ordinary, expected refusal.
+    monkeypatch.setattr(parallel_module.time, "sleep", lambda s: None)  # skip pmap's own retry backoff
+    fake = _invocation_failure_run("BOOM")
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    with pytest.raises(llm.LLMInvocationError, match="not a refusal"):
+        llm.complete_many(
+            ["ok-0", "BOOM-1"], role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path,
+            default={"greeting": "defaulted"},
         )
 
 

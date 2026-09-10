@@ -259,14 +259,21 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
       `GroundTruthEvent` regardless of status (see the alignment doc's own
       "What this normalizer does not attempt" section).
     - `review.history` is synthesized as a single entry at the row's own
-      `updated_at` (falling back to `created_at`): Research OS keeps no
-      per-transition review history on `graph.productions` the way
-      `PRODUCTION-SCHEMA.md`'s own `review.history` array does. It stays
-      exact for the one date `_build_corpus` reads,
-      `review.date_of("accepted")`.
+      `updated_at` (falling back to `created_at`; a row missing both
+      raises, below): Research OS keeps no per-transition review history
+      on `graph.productions` the way `PRODUCTION-SCHEMA.md`'s own
+      `review.history` array does. It stays exact for the one date
+      `_build_corpus` reads, `review.date_of("accepted")`.
 
-    Raises `ValueError` if the row carries no `id` or no `target_node_id`,
-    the two fields this function cannot default around.
+    Raises `ValueError` if the row carries no `id`, no `target_node_id`,
+    a `status` outside `RESEARCH_OS_STATUS_MAP`'s own four known values,
+    or neither `updated_at` nor `created_at`: every one of these is a
+    field this function cannot default around without silently
+    corrupting a downstream read (an unrecognized status folding into
+    `"draft"`, which the default `status_min="peer-reviewed"` then drops
+    from the corpus with no trace of why; a missing timestamp folding
+    into the Unix epoch, which `hte.calibrate.holdout_by_discovery_date`
+    would then read as maximally old).
     """
     if not raw.get("id"):
         raise ValueError("Research OS production row has no 'id'")
@@ -292,8 +299,15 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
         })
 
     raw_status = raw.get("status") or "draft"
-    mapped_status = RESEARCH_OS_STATUS_MAP.get(raw_status, "draft")
-    moved_at = raw.get("updated_at") or raw.get("created_at") or "1970-01-01T00:00:00Z"
+    if raw_status not in RESEARCH_OS_STATUS_MAP:
+        raise ValueError(
+            f"Research OS production row {raw['id']!r} has an unrecognized status {raw_status!r}, "
+            f"not one of {sorted(RESEARCH_OS_STATUS_MAP)}"
+        )
+    mapped_status = RESEARCH_OS_STATUS_MAP[raw_status]
+    moved_at = raw.get("updated_at") or raw.get("created_at")
+    if not moved_at:
+        raise ValueError(f"Research OS production row {raw['id']!r} has neither 'updated_at' nor 'created_at'")
 
     return {
         "id": raw["id"],
