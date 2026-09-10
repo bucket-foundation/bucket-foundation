@@ -45,11 +45,21 @@ interface ChainStep {
   hops: number;
   isFrontier: boolean;
 }
+interface EngineFrontierCandidate {
+  node: GraphNodeLite;
+  heldCount: number;
+  totalCount: number;
+  heldFraction: number;
+}
 interface RouteResponse {
   target: GraphNodeLite;
   frontier: GraphNodeLite[];
   chain: ChainStep[];
   gap: GraphNodeLite[];
+  /** Engine bridge task item 2: engine-generated candidate targets this
+   * learner is close to being ready for, empty until one has been ingested
+   * (src/lib/research-os/engine-bridge.ts) into this branch. */
+  engineFrontier: EngineFrontierCandidate[];
   learner: "self" | "anonymous";
   error?: string;
 }
