@@ -45,11 +45,21 @@ interface ChainStep {
   hops: number;
   isFrontier: boolean;
 }
+interface EngineFrontierCandidate {
+  node: GraphNodeLite;
+  heldCount: number;
+  totalCount: number;
+  heldFraction: number;
+}
 interface RouteResponse {
   target: GraphNodeLite;
   frontier: GraphNodeLite[];
   chain: ChainStep[];
   gap: GraphNodeLite[];
+  /** Engine bridge task item 2: engine-generated candidate targets this
+   * learner is close to being ready for, empty until one has been ingested
+   * (src/lib/research-os/engine-bridge.ts) into this branch. */
+  engineFrontier: EngineFrontierCandidate[];
   learner: "self" | "anonymous";
   error?: string;
 }
@@ -380,19 +390,45 @@ export default function ResearchOsWorkspacePage() {
 
         {route && (
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
-            {/* Vertical map */}
-            <div className="flex flex-col gap-px bg-[color:var(--hairline)]">
-              {route.chain.map((step) => (
-                <button
-                  key={step.node.id}
-                  onClick={() => openNode(step.node)}
-                  className="text-left bg-[color:var(--bone)] p-3 flex items-center justify-between gap-2"
-                  style={{ outline: selected?.id === step.node.id ? "2px solid var(--gold-deep)" : "none" }}
-                >
-                  <span className="text-[13px] text-[color:var(--basalt)]">{step.node.title}</span>
-                  <StageBadge stage={step.stage} />
-                </button>
-              ))}
+            {/* Vertical map + engine frontier */}
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-px bg-[color:var(--hairline)]">
+                {route.chain.map((step) => (
+                  <button
+                    key={step.node.id}
+                    onClick={() => openNode(step.node)}
+                    className="text-left bg-[color:var(--bone)] p-3 flex items-center justify-between gap-2"
+                    style={{ outline: selected?.id === step.node.id ? "2px solid var(--gold-deep)" : "none" }}
+                  >
+                    <span className="text-[13px] text-[color:var(--basalt)]">{step.node.title}</span>
+                    <StageBadge stage={step.stage} />
+                  </button>
+                ))}
+              </div>
+
+              {/* Engine bridge task item 2: engine-generated candidates this
+                  learner is close to being ready for. Empty and hidden until
+                  an engine hypothesis has been ingested into this branch. */}
+              {route.engineFrontier.length > 0 && (
+                <div className="flex flex-col gap-px bg-[color:var(--hairline)]">
+                  <div className="bg-[color:var(--bone)] p-3 text-[11px] small-caps tracking-[0.14em] text-[color:var(--aegean-deep)]">
+                    from the engine
+                  </div>
+                  {route.engineFrontier.map((candidate) => (
+                    <button
+                      key={candidate.node.id}
+                      onClick={() => openNode(candidate.node)}
+                      className="text-left bg-[color:var(--bone)] p-3 flex items-center justify-between gap-2"
+                      style={{ outline: selected?.id === candidate.node.id ? "2px solid var(--gold-deep)" : "none" }}
+                    >
+                      <span className="text-[13px] text-[color:var(--basalt)]">{candidate.node.title}</span>
+                      <span className="text-[11px] text-[color:var(--basalt-2)]">
+                        {candidate.heldCount}/{candidate.totalCount}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Selected node + tools */}
