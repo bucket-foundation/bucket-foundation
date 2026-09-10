@@ -191,12 +191,17 @@ def test_bad_review_status_raises_request_validation_error(monkeypatch):
         hypothesize({"productions": record})
 
 
-def test_unknown_slot_id_raises_request_validation_error(monkeypatch):
-    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+def test_unknown_slot_id_is_induced_rather_than_rejected(monkeypatch):
+    # `hte.vocab_induce.induce` (wired into `hte.corpus.production._build_
+    # corpus` as a merge step over its own seed) resolves a slot value the
+    # fixed K-12 production vocabulary does not already name, instead of
+    # `hypothesize()` rejecting it before a campaign ever runs
+    # (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s "the null-slot gap on
+    # physics productions").
     record = copy.deepcopy(_fixture_records()[0])
-    record["claims"][0]["slots"]["actor"] = "not-a-real-concept-id"
-    with pytest.raises(RequestValidationError, match="not-a-real-concept-id"):
-        hypothesize({"productions": record})
+    record["claims"][0]["slots"]["actor"] = "a-brand-new-actor-concept"
+    response = _call({"productions": record}, monkeypatch)
+    assert response["ok"] is True
 
 
 def test_bad_stance_raises_request_validation_error(monkeypatch):

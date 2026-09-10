@@ -121,7 +121,13 @@ def test_invalid_status_min_raises():
 
 
 def test_every_evidence_item_slot_resolves_in_the_vocabulary(corpus):
-    vocab = production.load_vocab()
+    # Checked against `corpus.vocab`, the merged result: `hte.vocab_induce.
+    # induce` (wired into `_build_corpus` as a merge step) extends the bare
+    # `production.load_vocab()` seed with every slot value the corpus's
+    # own evidence names beyond it (a Research OS graph-node id among
+    # them), so it is `corpus.vocab` every evidence item's own slot is
+    # guaranteed to resolve in.
+    vocab = corpus.vocab
     slot_by_field = {"actor": Slot.ACTOR, "action": Slot.ACTION, "object": Slot.OBJECT, "place": Slot.PLACE, "mechanism": Slot.MECHANISM}
     for item in corpus.evidence:
         for field_name, slot in slot_by_field.items():
@@ -320,12 +326,19 @@ def test_normalize_grade_band_is_unknown_without_a_target_node_join():
     assert normalized["grade_band"] == "unknown"
 
 
-def test_normalize_claim_gets_supports_stance_and_all_null_slots():
+def test_normalize_claim_gets_supports_stance_object_slot_and_created_at_interval():
+    # `object` reads `target_node_id` itself (a stable, always-available
+    # graph-node id `hte.vocab_induce.induce` resolves downstream);
+    # `actor`/`action`/`place`/`mechanism` stay unasserted, and `interval`
+    # reads the record's own `created_at` year (docs/PRODUCTION-SCHEMA-
+    # ALIGNMENT.md's "the null-slot gap on physics productions").
     normalized = production.normalize_research_os_record(_research_os_row())
     claim = normalized["claims"][0]
     assert claim["stance"] == "supports"
-    assert claim["slots"] == {"actor": None, "action": None, "object": None, "place": None, "mechanism": None}
-    assert claim["interval"] is None
+    assert claim["slots"] == {
+        "actor": None, "action": None, "object": "why-the-sky-is-blue", "place": None, "mechanism": None,
+    }
+    assert claim["interval"] == {"start": 2026, "end": 2026}  # created_at is 2026-09-01
 
 
 def test_normalize_evidence_entries_carry_the_full_source_citation_set():
@@ -375,7 +388,19 @@ def test_research_os_sky_blue_fixture_loads_and_contributes_a_source():
 
     corpus = production.load()  # default status_min="peer-reviewed"
     assert "ros-sky-blue-002" in {e.id.rsplit("-c", 1)[0] for e in corpus.evidence}
-    # a physics claim carries no dated interval, so it never contributes
-    # ground truth even once accepted (normalize_research_os_record's own
-    # documented gap)
-    assert not any(g.id.startswith("ros-sky-blue") for g in corpus.ground_truth)
+
+    # ros-sky-blue-002's own claim carries a non-null OBJECT slot
+    # (`target_node_id`, `normalize_research_os_record`'s own reading) and
+    # an interval read off its own `created_at` year, so, once accepted, it
+    # contributes a real GroundTruthEvent (docs/PRODUCTION-SCHEMA-
+    # ALIGNMENT.md's "the null-slot gap on physics productions," closed).
+    ros_002_evidence = next(e for e in corpus.evidence if e.id.startswith("ros-sky-blue-002"))
+    assert ros_002_evidence.object == "light-can-scatter-off-small-things"
+    assert corpus.vocab.get(Slot.OBJECT, "light-can-scatter-off-small-things") is not None
+    gt_ids = {g.id for g in corpus.ground_truth}
+    assert any(gid.startswith("ros-sky-blue-002") for gid in gt_ids)
+    # ros-sky-blue-001 stays "draft" (its Research OS "submitted" status
+    # maps down), excluded by the default status_min="peer-reviewed" and,
+    # even at a permissive status_min, never accepted, so it never
+    # contributes ground truth.
+    assert not any(gid.startswith("ros-sky-blue-001") for gid in gt_ids)

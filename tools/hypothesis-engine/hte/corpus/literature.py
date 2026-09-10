@@ -289,6 +289,19 @@ _QUOTED_SCALAR_RE = re.compile(r'^(\w+):\s*"(.*)"\s*(?:#.*)?$')
 _BARE_SCALAR_RE = re.compile(r'^(\w+):\s*(\S+)\s*(?:#.*)?$')
 _LIST_ITEM_RE = re.compile(r'^  - "(.*)"\s*(?:#.*)?$')
 
+# `CLAUDE.md`'s own `voice-ignore-file` escape hatch (a single-line HTML
+# comment naming a file's own prose as verbatim material, so the org voice
+# linter skips it) is the ONE thing this module tolerates before the
+# frontmatter's own opening `---`; blank lines alongside it are tolerated
+# too, since a human editor adding the marker is as likely to leave one
+# above or below it as not. `_skip_leading_preamble` below is where this
+# is read (FINDING-2026-09-10-301, `tests/swarm/FINDINGS-2026-09-10.md`:
+# every one of this module's own 6 fixture cards carries this exact marker
+# ahead of its frontmatter today, and `_parse_frontmatter`'s own
+# `raw.startswith("---\n")` check, written before any fixture carried one,
+# rejected every one of them).
+_LEADING_COMMENT_RE = re.compile(r"^<!--.*-->\s*$")
+
 
 def _unescape(text: str) -> str:
     """The one YAML escape this corpus's own cards use, `\\"` for an
@@ -307,6 +320,27 @@ def _iter_lines_with_offsets(raw: str) -> list[tuple[int, int, str]]:
         out.append((lineno, cursor, line))
         cursor += len(line)
     return out
+
+
+def _skip_leading_preamble(raw: str) -> tuple[int, int]:
+    """`(char_offset, n_lines)`: how far into `raw` the frontmatter's own
+    opening `---` line may legally start, past zero or more leading blank
+    lines and `_LEADING_COMMENT_RE` lines (this module's own top-docstring
+    "No general YAML parser" section's own scope: this is prose standing
+    ahead of the frontmatter proper, so it earns no YAML reading at all).
+    The first line matching neither blank nor comment
+    stops the skip immediately, whether or not it is `---`; `_parse_
+    frontmatter` is what turns "found something else" into its own
+    error."""
+    offset = 0
+    n_lines = 0
+    for line in raw.splitlines(keepends=True):
+        stripped = line.strip()
+        if stripped != "" and not _LEADING_COMMENT_RE.match(stripped):
+            break
+        offset += len(line)
+        n_lines += 1
+    return offset, n_lines
 
 
 def _split_frontmatter_fields(fm_lines: list[tuple[int, int, str]]) -> list[tuple[str, list[tuple[int, int, str]]]]:
@@ -387,20 +421,26 @@ def _parse_block_scalar(field_lines: list[tuple[int, int, str]]) -> str:
 
 
 def _parse_frontmatter(raw: str, relative_path: str) -> Card:
-    if not raw.startswith("---\n"):
+    preamble_offset, preamble_lines = _skip_leading_preamble(raw)
+    body = raw[preamble_offset:]
+    if not body.startswith("---\n"):
         raise ValueError(f"literature adapter: {relative_path} has no frontmatter opening `---`")
-    end = raw.find("\n---\n", 4)
+    fm_start = preamble_offset + 4
+    end = raw.find("\n---\n", fm_start)
     if end < 0:
         raise ValueError(f"literature adapter: {relative_path} has no frontmatter closing `---`")
-    fm_text = raw[4:end]
+    fm_text = raw[fm_start:end]
     fm_lines = _iter_lines_with_offsets(fm_text)
     # `_iter_lines_with_offsets` line numbers and char offsets are both
-    # relative to `fm_text`, sliced past the opening `"---\n"` line; shift
-    # the line number by 1 (that opening line is the file's own line 1) and
-    # the char offset by 4 (that line's own length), so `Claim.line_start`/
-    # `line_end`/`char_start`/`char_end` all land on `raw`, the file's own
-    # full text, its own local slice left behind.
-    fm_lines = [(lineno + 1, offset + 4, line) for lineno, offset, line in fm_lines]
+    # relative to `fm_text`, sliced past any leading preamble
+    # (`_skip_leading_preamble`, `preamble_lines` lines long) and the
+    # frontmatter's own opening `"---\n"` line; shift the line number by
+    # `preamble_lines + 1` (that opening line is the file's own line
+    # `preamble_lines + 1`) and the char offset by `fm_start` (`raw[
+    # :fm_start]`'s own length), so `Claim.line_start`/`line_end`/
+    # `char_start`/`char_end` all land on `raw`, the file's own full text,
+    # its own local slice left behind.
+    fm_lines = [(lineno + preamble_lines + 1, offset + fm_start, line) for lineno, offset, line in fm_lines]
     fields = dict(_split_frontmatter_fields(fm_lines))
 
     title = _parse_scalar(fields["title"]) or ""

@@ -97,6 +97,53 @@ def test_quoted_title_with_embedded_quotes_is_unescaped():
     assert card.title == 'The "What" and "Why" of Goal Pursuits'
 
 
+def test_leading_voice_ignore_file_comment_before_frontmatter_is_tolerated():
+    # FINDING-2026-09-10-301 (`tests/swarm/FINDINGS-2026-09-10.md`): every
+    # one of this module's own 6 fixture cards carries a `voice-ignore-
+    # file` HTML comment (`CLAUDE.md`'s own verbatim-material escape
+    # hatch) ahead of its frontmatter's own opening `---`, and
+    # `_parse_frontmatter`'s own `raw.startswith("---\n")` check, written
+    # before any fixture carried one, rejected every one of them with "has
+    # no frontmatter opening `---`". Regression-tested directly against
+    # the parser (a blank line between the comment and `---`, matching a
+    # human editor's own likely spacing) rather than only implicitly
+    # through the fixture files the `cards` fixture already loads.
+    raw = (
+        "<!-- voice-ignore-file: verbatim copy of a founder-authored card -->\n"
+        "\n"
+        '---\n'
+        'title: "A Leading-Comment Card"\n'
+        'authors:\n'
+        '  - "Author, A."\n'
+        'year: 2020\n'
+        'venue: "Test Venue"\n'
+        'doi: "10.1000/leading-comment-test"\n'
+        'url: "https://doi.org/10.1000/leading-comment-test"\n'
+        'openalex_id: null\n'
+        'branch: "educational-methods"\n'
+        'tier: "canon"\n'
+        'why_it_matters: >\n'
+        '  It matters.\n'
+        'key_claims:\n'
+        '  - "The claim text."\n'
+        'research_questions_it_leaves_open:\n'
+        '  - "An open question."\n'
+        'how_it_bears_on_research_os: >\n'
+        '  It bears directly.\n'
+        '---\n\n# Title\n'
+    )
+    card = literature._parse_frontmatter(raw, "educational-methods/leading-comment-test.md")
+    assert card.title == "A Leading-Comment Card"
+    assert card.doi == "10.1000/leading-comment-test"
+    claim = card.key_claims[0]
+    # the claim's own char offsets still locate its exact text inside the
+    # FULL file text (`raw`, preamble included), the same invariant
+    # `test_span_char_offsets_locate_the_exact_quote_in_the_real_file`
+    # checks against the real fixture files.
+    assert raw[claim.char_start:claim.char_end] == claim.text
+    assert claim.line_start == 17  # 1-based: 2 preamble lines + "---\n" + 14 field lines
+
+
 # --------------------------------------------------------------------------
 # tier
 # --------------------------------------------------------------------------
