@@ -2,6 +2,46 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #44 review pass
+
+Date 2026-09-10. Review of `docs/ros-plan-revision-2` (PR #44), worktree `.ros-worktrees/r44`.
+Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, PR #44 review pass".
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-2.md`: corrected "Nineteen more PRs merged since, in
+  order" to name PR #36 (engine-only) as excluded rather than silently omitted; restored
+  three of the five "Exact question, unchanged" quotes to match `PLAN-REVISION-1.md`
+  verbatim (decision 2's audience/funding/cross-link parenthetical, decision 3's "what the
+  engine is ranking now" clause, decision 5's PR #11 branch-title parenthetical).
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-1.md`: their own
+  newly appended Revision 2 pointer paragraphs corrected to match, same PR #36 fix.
+- `_intake/research-os-k12/CHANGELOG.md`, this file: this review pass's own entry, and the
+  matching PR #36 fix in the plan-revision-2 entry above.
+
+### Removed
+
+None.
+
+### Verified
+
+Leak scan clean: no keys, `.env` values, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. `gh pr list
+--state merged --limit 50` confirms every PR number and title PLAN-REVISION-2.md cites as
+shipped, including the corrected PR #36 count (twenty merged in the #20-#40 range, not
+nineteen). All five literature card paths cited in section 2 exist on disk. The power
+figures in section 2d match `study/PREREGISTRATION-DRAFT.md`'s own tables exactly (119, 405,
+691 per arm; 17 classes per arm at ICC 0.10; d approx 1.0 minimum detectable effect). `npm
+ci && npm run test:research-os`: 213 passed, 0 failed, 17 files, exact match to the draft's
+claim. Engine `make test`, fresh, both `HTE_LLM_MODE` states, post-merge of `origin/main`:
+1046 passed, 18 deselected, 0 failed, no hang; higher than the draft's cited 1018 because the
+required main-merge (gate 4, branch was behind) pulled in PR #43's later test additions,
+merged after the draft's own cited commit `af5b7c9ea`; the draft's figure stays accurate as
+a claim about that commit, left unchanged. `PLAN.md` and `PLAN-REVISION-1.md` diffs are pure
+appends. Nothing under `src/` or `public/` touched. `agf-lint-voice check` clean on the four
+files it scans; a manual grep pass covered the fifth (`_intake/research-os-k12/CHANGELOG.md`,
+the corpus's own known ignore-list gap) for dashes, banned words, and antithesis, no live hit.
+
 ## PR #35 review pass
 
 Date 2026-09-10. Review of `feat/ros-07-compliance-part-a` (PR #35), worktree `review/pr35`.
@@ -1636,9 +1676,9 @@ entries, which predate later merges.
 
 ### Added
 
-- `learning/research-os/PLAN-REVISION-2.md`: a PR-by-PR account of the
-  nineteen PRs shipped since revision 1 (#20 through #40) with live test
-  counts; four evidence-driven revisions from batch three, each citing its
+- `learning/research-os/PLAN-REVISION-2.md`: a PR-by-PR account of nineteen
+  of the twenty PRs shipped since revision 1 (#20 through #40, PR #36
+  excluded as engine-only) with live test counts; four evidence-driven revisions from batch three, each citing its
   paper file and labeled STABLE or STRONG LEAN, human-AI complementarity
   under Vaccaro, Bansal, and Buçinca (with a concrete Check-tool commit-step
   design response and an H1 measurement addition), progression

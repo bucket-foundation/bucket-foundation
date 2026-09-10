@@ -4,7 +4,7 @@
 
 ## 1. What shipped since revision 1
 
-Revision 1 read against PR #3 through #15 (PR #19 itself, `docs/ros-plan-revision-1`, merged 2026-09-10T17:42:23Z). Nineteen more PRs merged since, in order:
+Revision 1 read against PR #3 through #15 (PR #19 itself, `docs/ros-plan-revision-1`, merged 2026-09-10T17:42:23Z). Twenty more PRs merged since; PR #36 touches no Research OS file (engine-only sacred-history work) and sits outside this account's scope. The other nineteen, in order:
 
 | PR | What it proved |
 |---|---|
@@ -95,13 +95,13 @@ New information: every shipped Phase 1 artifact since revision 1, the learner-st
 
 Recommended default: keep the sky-blue path as Phase 1's live front door, since it is the only path with running code, a teacher class view, a transfer-item bank, and a funding narrative already built against it. Reopening the quantum-history path as a parallel grades 9-12 track can follow once Phase 1 recruitment starts, rather than gating recruitment on standing up a second corpus first.
 
-**Blocking decision 2, K-12 as second product vs on-ramp.** Exact question, unchanged: "is Research OS for K-12 a second product running beside the canon, or is it the on-ramp that is meant to bring K-12 users, teachers, and eventually districts into the canon and citation rail as the funnel's first stage?"
+**Blocking decision 2, K-12 as second product vs on-ramp.** Exact question, unchanged: "is Research OS for K-12 a second product running beside the canon (its own audience, its own funding path, cross-linked but not subordinate), or is it the on-ramp that is meant to bring K-12 users, teachers, and eventually districts into the canon and citation rail as the funnel's first stage?"
 
 New information: all four wave-1 funding pitches (`WAVE-1-TARGETS.md`) lead with Research OS on its own terms, its graph schema, its routing algorithm, its engine bridge, rather than framing it as a canon funnel; PR #12, merged and live, keeps the citation-canon framing as the homepage lead and adds Research OS as an additive section beneath it, the same product posture the funding pitches assume.
 
 Recommended default: run Research OS as a second product with its own funding path, cross-linked to the canon but not subordinate to it, matching what PR #12 already ships and what every wave-1 funder pitch already assumes.
 
-**Blocking decision 3, hypothesis engine public showcase vs infrastructure.** Exact question, unchanged: "does the engine's own output become a public-facing page on bucket.foundation, or does it stay backend infrastructure that only ever surfaces indirectly through routing targets inside the Research OS workspace?"
+**Blocking decision 3, hypothesis engine public showcase vs infrastructure.** Exact question, unchanged: "does the engine's own output become a public-facing page on bucket.foundation, a 'what the engine is ranking now' view for researchers and funders, or does it stay backend infrastructure that only ever surfaces indirectly through routing targets inside the Research OS workspace?"
 
 New information: none of batch three's added cards argues for a public showcase page; `ENGINE-BRIDGE.md`'s Integration Points table still marks a `hypothesize` MCP tool entry as a named slot in `mcp-server/bucket-mcp.py` with no code written yet, unchanged since revision 1.
 
@@ -113,7 +113,7 @@ New information: PR #12 (canon-lead, additive Research OS section) is merged and
 
 Recommended default: keep PR #12's shipped canon-lead homepage as-is. It is live and untested by any controversy; reopening this question before Phase 1 recruitment starts risks delaying `ros-10`'s already-blocked site page work further.
 
-**Blocking decision 5, draft PR #11 merge or hold.** Exact question, unchanged: "does PR #11 merge as written, merge with `/research-os/page.tsx` itself updated to match per its own 'not done here' note, or stay in draft while PR #12's additive framing stands as the shipped direction?"
+**Blocking decision 5, draft PR #11 merge or hold.** Exact question, unchanged: "does PR #11 (`feat/site: reposition around reform education, Research OS as its own tab`) merge as written, merge with `/research-os/page.tsx` itself updated to match per its own 'not done here' note, or stay in draft while PR #12's additive framing stands as the shipped direction?"
 
 New information: PR #11 is still open and marked draft as of this pass, unchanged in state since revision 1; `ros-10` (site page and intake index) has not shipped, blocked on this decision among others, with no movement on either side since revision 1.
 
