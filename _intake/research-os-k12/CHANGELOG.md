@@ -95,6 +95,116 @@ class pages (a separate agent's own concurrent scope).
 - `agf-lint-voice-src check` / `agf-lint-voice check` on every file this
   pass authored or edited: 0 violations.
 
+## 2026-09-10, teacher class view and the Production accept path
+
+Branch `feat/ros-06-teacher-class-view`, bead `ros-06`, `learning/research-os/PLAN-REVISION-1.md` section 3 item 5. Two pieces: a class view a reviewer can read over their own learners, and the accept path `learning/research-os/ENGINE-BRIDGE.md` names as the one thing standing between an accepted Production and the engine outbox write. Full account: `learning/research-os/TEACHER-LAYER.md`.
+
+Shipped: `supabase/migrations/20260910030000_research_os_classes.sql` (`graph.classes`, `graph.class_members`, RLS, plus a `notes` jsonb column on `graph.productions`). `src/lib/research-os/class-view.ts` (`seedPathOrder`, `buildClassGrid`, `findBlockedLearners`, `findReadyForHarderTarget`), pure functions over plain graph arrays. `src/app/api/research-os/class/route.ts` and `src/app/research-os/class/page.tsx`, the class view itself, server-side data loading and computation, reviewer-gated. `src/lib/research-os/reviewer.ts` gained `isReviewerEmail`, the allowlist check split out for unit testing. `src/lib/research-os/stages.ts` gained `onProductionReview` and `onProductionReturned`, the accept path's own stage-transition functions. `src/lib/research-os/db.ts` gained `loadClassesForReviewer`, `loadClassMembers`, `loadLearnerStatesForMany`, and `emitProductionOutboxIfAccepted` (extracted from `/api/research-os/production`'s own POST, now shared rather than duplicated with `/api/research-os/review`'s new accept path). `scripts/test-research-os-teacher-class.ts`, 20 `node:test` cases, wired into `npm run test:research-os`.
+
+A mid-review fix, found during `ros-02`'s evidence-schema pass (`docs/ros-02-learner-state-model`, `src/lib/research-os/EVIDENCE-SCHEMA.md`): a returned Production used to leave `graph.learner_node_state.stage` at `"production"` with no evidence event recording the correction, since only the approve branch called `recordEvidence`. Both branches call it now; `onProductionReturned` logs a `"production_returned"` evidence event with `stage` left unmoved (the high-water-mark rule every transition function already enforces), `fromStage`/`toStage` both `"production"`, matching `EVIDENCE-SCHEMA.md`'s own corrective-event section. `EvidenceEvent` gained `fromStage`, `toStage`, and `reviewId` (this bead's own addition beyond the documented contract) fields.
+
+### Edited
+
+- `src/app/api/research-os/review/route.ts`: the production decision branch now sets a return's status to `"draft"` (not `"returned"`), appends a teacher note to the production's own `notes` column, advances the learner's evidence log on both approve and return, and emits the outbox row on approve.
+- `src/app/api/research-os/production/route.ts`: its inline outbox-emission block replaced with a call to `db.ts`'s new shared `emitProductionOutboxIfAccepted`.
+- `src/app/research-os/review/page.tsx`: a breadcrumb link added to `/research-os/class`.
+- `package.json`: `test:research-os` now also runs `scripts/test-research-os-teacher-class.ts`.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (114/114 pass across every research-os test file, this slice's 20 plus every pre-existing one), `next lint` on every touched file, `agf-lint-voice-src check` on every touched source file, `agf-lint-voice check` on `learning/research-os/TEACHER-LAYER.md`: all clean.
+
+## 2026-09-10, PR #28 review pass
+
+Review of `feat/ros-06-teacher-class-view` (PR #28) in worktree `review/pr28`. Leak scan
+against the full diff's added lines found no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs; fixture emails end in `.example`. The `.voiceignore` addition
+(`tools/hypothesis-engine/docs/LOOP-LOG.md`) was the only engine-tree-adjacent change; no
+other file under `tools/hypothesis-engine/` or `src/lib/research-os/engine*` was touched.
+`RESEARCH_OS_REVIEWER_EMAILS` appears in client page text only as the allowlist's name;
+its value stays server-side.
+
+One coverage gap found and closed: the class API's server-side scoping (`db.ts`'s
+`loadClassesForReviewer`, "a reviewer for class A never reads class B's grid") had no test,
+only the RLS policy text did. Split the filter into an exported pure function,
+`filterClassesForReviewer(rows, reviewerEmail)`, and added three cases to
+`scripts/test-research-os-teacher-class.ts`: a reviewer sees only their own class, a
+reviewer owning no row gets an empty result rather than another reviewer's, and the
+comparison is case- and whitespace-insensitive. Suite total: 114/114 (was 111/111; this
+file's own count: 20, was 17). `npm ci`, `npx tsc --noEmit`, `npm run build`, `next lint`
+on every touched file, `agf-lint-voice`/`agf-lint-voice-src check` on every touched file:
+all clean. No other defect found; approve sets `accepted` and advances the evidence log
+exactly once per call (the route's own 409-on-non-`submitted` guard makes a double approve
+a no-op past the first, and `writeProductionOutbox` upserts on `id`), return sets `draft`
+without regressing `stage`, and non-reviewers get 403 on both the class and review routes.
+## 2026-09-10, PR #27 review pass
+
+Review of `feat/ros-03-confidence-routing` (PR #27) in worktree `.ros-worktrees/r27`. Leak
+scan against the full diff's added lines (2096 lines) found no API keys, `.env` contents,
+IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian`
+paths, or Claude session URLs.
+
+Correctness: `frontier.ts`'s Dijkstra variant confirmed non-regressive by running
+`scripts/test-research-os-routing.ts`, an unmodified pre-confidence test file with hardcoded
+seed-graph assertions written against the old plain-BFS walk, a real old-output
+equivalence check rather than `computeFrontier` compared against itself. Cost function
+`-log(confidence)` confirmed monotone (confidence clamped to `(0, 1]` by `edgeConfidence()`,
+so cost is non-negative and strictly decreasing in confidence), ties broken on hop count.
+Cycle and unreachable-target handling verified directly: a synthetic 4-node cycle (`a -> b ->
+c -> a`, `c -> target`) settles every node once with no hang; a target with zero incoming
+prerequisite edges routes to itself. `writeEdgeFlags` confirmed scoped to the signed-in
+learner only (`learnerId` comes from `verifyLearner`'s own token verification, never
+client-supplied), the service-role client bypasses RLS but the ownership boundary is enforced
+in application code; a write failure is caught and logged, never surfaced to the route
+response. `infer-edges.ts` has no `--apply` mode at all (stronger than a flag gate), and its
+output was confirmed deterministic by running it twice and diffing both `infer-preview.json`
+and `review-list.json` byte-for-byte (excluding the `generated_at` timestamp): zero diff.
+`canon-atom-map.json`'s three new resolutions (`bell-theorem` -> `quantum-entanglement`,
+`quantum-field-theory` -> `qft-idea`, `quantum-mechanics` -> `wavefunction`) checked against
+`learning/app/corpus/02-physics.json` directly: all three atom ids exist with titles matching
+the claimed concepts.
+
+One stale cross-reference found and fixed: this file's own ros-03 entry (below) pointed at
+`CHANGE-LEDGER.md`'s "Iteration 11" entry, but that entry landed as "Iteration 13, ros-03
+routing" (a numbering collision the ledger's own note explains); corrected in place.
+
+Gates: not behind `origin/main` (no merge needed); `npm ci`, `npx tsc --noEmit`, `npm run
+build` all clean; `npm run test:research-os` 117/117 passing; `next lint` clean on every
+touched file; `agf-lint-voice check` / `agf-lint-voice-src check` clean on every touched
+file (pre-existing violations found elsewhere in `.gitignore`, `BEADS-PENDING.jsonl`, and
+`sample-canon-preview.json`'s `_comment` are outside this PR's added lines, left as-is).
+Merged via `gh pr merge --squash --delete-branch`.
+
+## 2026-09-10, confidence-weighted routing, edge flags, offline edge inference (ros-03)
+
+Branch `feat/ros-03-confidence-routing`. Full account:
+`learning/research-os/CHANGE-LEDGER.md`'s "Iteration 13, ros-03 routing" entry and
+`learning/research-os/ROUTING.md`.
+
+Shipped: `graph.edges.confidence` / `confidence_source`, backfilled by every
+importer (`seed` and `academy_requires` at 1.0, `canon_map` at 0.9);
+`graph.prereq_ancestor.min_confidence`. `computeFrontier`'s backward walk
+(`src/lib/research-os/frontier.ts`) is now a confidence-weighted Dijkstra
+variant, preferring the highest-confidence chain to a target and returning
+`lowConfidenceFlags` for any edge on the chain below 0.6, exactly reproducing
+the prior shortest-hop result when every edge carries the default
+confidence. `GET /api/research-os/route` returns the flags and writes them
+to a new `graph.edge_flags` table for a signed-in learner. A new offline,
+no-model edge-inference pass (`scripts/research-os/ingest/infer-edges.ts`,
+`src/lib/research-os/ingest/infer.ts`) proposes 36 `prerequisite` edges from
+lexical overlap and tier ordering across the 517-node combined graph,
+confidence 0.3 to 0.65, all landing on the review list, none applied.
+`scripts/research-os/ingest/canon-atom-map.json` gained three explicit
+mappings, resolving `bell-theorem`, `quantum-field-theory`, and
+`quantum-mechanics` from the prior pass's four unmatched entries;
+`gauge-principle` stays unmatched, no Academy atom covers it. 23 new unit
+tests; 117/117 passing across the full `test:research-os` suite.
+
 ## 2026-09-10, PR #25 review pass
 
 Review of `docs/ros-02-learner-state-model` (PR #25) in worktree `review/pr25`. Leak scan

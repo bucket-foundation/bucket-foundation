@@ -75,10 +75,14 @@ test("ancestorsOf: the target's own direct prerequisites are hop 1, and it never
   assert.ok(!ancestors.has(target.id), "target must not be its own ancestor");
   const directPrereqs = edges.filter((e) => e.kind === "prerequisite" && e.toId === target.id).map((e) => e.fromId);
   for (const p of directPrereqs) {
-    assert.equal(ancestors.get(p), 1, `direct prerequisite ${p} should be at hop 1`);
+    assert.equal(ancestors.get(p)?.hops, 1, `direct prerequisite ${p} should be at hop 1`);
   }
-  // Every node reachable backward should have a strictly positive hop count.
-  ancestors.forEach((hops) => assert.ok(hops >= 1));
+  // Every node reachable backward should have a strictly positive hop count
+  // and a confidence in (0, 1] (every seed edge defaults to full confidence).
+  ancestors.forEach((info) => {
+    assert.ok(info.hops >= 1);
+    assert.ok(info.minConfidence > 0 && info.minConfidence <= 1);
+  });
 });
 
 test("ancestorsOf: a root node (no prerequisites) has an empty ancestor set", () => {
@@ -116,7 +120,8 @@ test("ancestorsOf: takes the MINIMUM hop count when a node is reachable by more 
     }
     frontier = next;
   }
-  assert.deepEqual(new Map(Array.from(ancestors.entries()).sort()), new Map(Array.from(expected.entries()).sort()));
+  const gotHops = new Map(Array.from(ancestors.entries(), ([id, info]) => [id, info.hops] as const).sort());
+  assert.deepEqual(gotHops, new Map(Array.from(expected.entries()).sort()));
 });
 
 test("computeAncestorClosure: produces a row for every (node, ancestor) pair ancestorsOf reports, for every node in the branch", () => {
@@ -135,7 +140,9 @@ test("computeAncestorClosure: produces a row for every (node, ancestor) pair anc
     const got = byNode.get(n.id) ?? [];
     assert.equal(got.length, expected.size, `row count mismatch for ${bySlugId.get(n.id)?.slug}`);
     for (const row of got) {
-      assert.equal(row.minHops, expected.get(row.ancestorId), `hop mismatch for ${n.id} -> ${row.ancestorId}`);
+      const info = expected.get(row.ancestorId);
+      assert.equal(row.minHops, info?.hops, `hop mismatch for ${n.id} -> ${row.ancestorId}`);
+      assert.equal(row.minConfidence, info?.minConfidence, `confidence mismatch for ${n.id} -> ${row.ancestorId}`);
     }
   }
 
@@ -156,8 +163,13 @@ test("computeAncestorClosure: produces a row for every (node, ancestor) pair anc
 
 /** Every closure row for one target, in the shape computeFrontier's `ancestorRows` param expects. */
 function ancestorRowsFor(targetId: string, edges: GraphEdge[]): PrereqAncestorRow[] {
-  const hops = ancestorsOf(targetId, edges);
-  return Array.from(hops.entries()).map(([ancestorId, minHops]) => ({ nodeId: targetId, ancestorId, minHops }));
+  const info = ancestorsOf(targetId, edges);
+  return Array.from(info.entries()).map(([ancestorId, { hops, minConfidence }]) => ({
+    nodeId: targetId,
+    ancestorId,
+    minHops: hops,
+    minConfidence,
+  }));
 }
 
 function assertEquivalent(

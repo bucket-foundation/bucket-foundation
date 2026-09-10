@@ -336,3 +336,66 @@ commit.
   defect; `make test` runs with it unset from here on." to "own
   documented fake-mode short-circuit, a test-isolation quirk; `make test`
   runs with it unset from here on."
+
+## 2026-09-10, `src/app/api/research-os/production/route.ts`, outbox emission extracted to a shared function
+
+**Reason.** Bead `ros-06` adds a second caller that can reach `graph.productions.status = "accepted"` (`/api/research-os/review`'s new accept path). Rather than copy the three-call outbox-emission sequence a second time, it moved into `src/lib/research-os/db.ts`'s `emitProductionOutboxIfAccepted`, with the same best-effort try/catch and the same reasoning, so both entry points share one function. Behavior is unchanged; the full replaced block, with its original comment, is in `learning/research-os/CHANGE-LEDGER.md`'s `ros-06` entry.
+
+**Original text, replaced in the POST handler:**
+
+> ```ts
+>   // Engine bridge task item 3: an accepted production is the engine's own
+>   // evidence item. Unreachable today (the status validation above never lets
+>   // a learner set "accepted"), wired for Phase 1's teacher-accept path. Best
+>   // effort: a failed emit never fails the production save itself, the same
+>   // way academy's own mirror jobs treat a sync step as best effort.
+>   if (data?.status === "accepted" && data?.target_node_id) {
+>     try {
+>       const targetNode = await findNodeById(data.target_node_id as string);
+>       const row = buildProductionOutboxRow(
+>         {
+>           id: data.id as string,
+>           target_node_id: data.target_node_id as string,
+>           claim: (data.claim as string | null) ?? null,
+>           evidence: (data.evidence as unknown[]) ?? [],
+>           sources: (data.sources as unknown[]) ?? [],
+>           status: data.status as string,
+>           created_at: data.created_at as string,
+>           updated_at: data.updated_at as string | undefined,
+>         },
+>         targetNode ? { slug: targetNode.slug, title: targetNode.title, tier: targetNode.tier, branch: targetNode.branch } : null,
+>       );
+>       await writeProductionOutbox(row);
+>     } catch {
+>       // best effort, see comment above
+>     }
+>   }
+> ```
+
+## 2026-09-10, `src/app/api/research-os/review/route.ts`, header comment corrected for the accept path fix
+
+**Reason.** The header comment originally documented an "approved production flips `graph.productions.status` to 'accepted' ('returned' otherwise)" contract. Bead `ros-06`'s own work changed that contract (a return sets `status` to `"draft"`, not `"returned"`, and appends a teacher note); a mid-review fix (`ros-02`'s evidence-schema pass) then added a `recordEvidence` call on both approve and return, closing a gap where a returned production's `learner_node_state.stage` stayed at `"production"` with no evidence event recording the correction. The comment was rewritten to match; see `learning/research-os/TEACHER-LAYER.md` for the full account.
+
+**Original text, replaced in the file header:**
+
+> An "approved" production flips graph.productions.status to 'accepted'
+> ('returned' otherwise); Production is already the graph's terminal
+> stage (src/lib/research-os/types.ts's STAGE_ORDER), so acceptance
+> lives on the production row's own status alone.
+
+**Original text, replaced in `stages.ts`'s `onProductionReview` docstring** (the paragraph below no longer describes the shipped behavior once `onProductionReturned` was added):
+
+> Only meaningful for "approved"; the caller (the review route) applies
+> this only on approval, matching onTeacherReview's own "only an approval
+> mirrors onto the learner's own progress log" split. A "returned"
+> decision touches `graph.productions.status` and `.notes` only, never
+> this function -- the production goes back to `draft` for the learner to
+> revise, with no learner_node_state change.
+
+## 2026-09-10, `learning/research-os/CHANGE-LEDGER.md`, a pre-existing heading fixed for the voice pre-commit hook
+
+**Reason.** The pre-commit hook runs `agf-lint-voice` over every file a commit touches, not only its own diff lines; `CHANGE-LEDGER.md`'s "Iteration 6" heading (from an earlier, already-merged pass, predating `ros-06`) carried an appended clause after a comma, rule 7's own banned construction. Fixing it was required to commit `ros-06`'s own addition to the same file. The clause is not dropped, it moves to the first line of that section's body, per rule 7's own instruction ("if the extra detail matters, put it in the first line of the body").
+
+**Original text, replaced in the "Iteration 6" heading:**
+
+> ## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold

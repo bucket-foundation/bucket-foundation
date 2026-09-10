@@ -56,10 +56,47 @@ export interface GraphNode {
 }
 
 export interface GraphEdge {
+  /** graph.edges.id. Optional: fixtures built in tests (slug-doubles-as-id,
+   * no database) never set it, and every consumer that needs it (currently
+   * frontier.ts's low-confidence flag write) treats a missing id as "not
+   * writable to graph.edge_flags," never as an error. */
+  id?: string;
   fromId: string;
   toId: string;
   kind: EdgeKind;
   weight?: number | null;
+  /** graph.edges.confidence (bkt-ros ros-03 item 1). Defaults to
+   * DEFAULT_EDGE_CONFIDENCE when absent; read it through edgeConfidence()
+   * below rather than this field directly, so every caller applies the
+   * same default and clamp. */
+  confidence?: number | null;
+  /** graph.edges.confidence_source: 'seed' | 'academy_requires' |
+   * 'canon_map' | 'inferred' | 'teacher'. Left as `string` rather than a
+   * union so a row this app has not yet learned a source name for still
+   * round-trips instead of failing to type-check. */
+  confidenceSource?: string | null;
+}
+
+/** graph.edges.confidence's own column default (bkt-ros ros-03 item 1):
+ * an edge with no recorded confidence is full confidence. */
+export const DEFAULT_EDGE_CONFIDENCE = 1.0;
+
+/** Below this, a router-selected edge is flagged for a teacher rather than
+ * routed through silently (learning/research-os/PLAN-REVISION-1.md section
+ * 2b, learning/research-os/ROUTING.md). */
+export const LOW_CONFIDENCE_THRESHOLD = 0.6;
+
+/**
+ * `edge.confidence`, defaulted and clamped: DEFAULT_EDGE_CONFIDENCE when
+ * absent or not a finite number, otherwise clamped to (0, 1] so a bad or
+ * zero value from a data-entry mistake never produces an infinite or NaN
+ * routing cost (frontier.ts's walk uses -log(confidence)). Every reader of
+ * edge confidence (frontier.ts, closure.ts) goes through this function
+ * rather than `edge.confidence` directly.
+ */
+export function edgeConfidence(edge: GraphEdge): number {
+  const raw = typeof edge.confidence === "number" && Number.isFinite(edge.confidence) ? edge.confidence : DEFAULT_EDGE_CONFIDENCE;
+  return Math.min(1, Math.max(1e-6, raw));
 }
 
 export interface LearnerNodeState {
