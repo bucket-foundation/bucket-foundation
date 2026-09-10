@@ -20,7 +20,7 @@ Every contract test in `scripts/test-research-os-workspace-contracts.ts` feeds t
 
 ## 2. Evidence emitted per action
 
-`src/lib/research-os/stages.ts`'s `EvidenceContext` and the extended `EvidenceEvent` shape (`src/lib/research-os/EVIDENCE-SCHEMA.md`'s own contract) close every gap that file's "Current schema against that plan" section lists, except the two it names as out of scope for `ros-04`: the inter-rater columns on `graph.teacher_reviews` (a future migration, `ros-06`'s scope) and the FSRS/IRT retention join (a separate bead).
+`src/lib/research-os/stages.ts`'s `EvidenceContext` and the extended `EvidenceEvent` shape (`src/lib/research-os/EVIDENCE-SCHEMA.md`'s own contract) close every gap that file's "Current schema against that plan" section lists, except the two it names as out of scope for `ros-04`: the inter-rater columns on `graph.teacher_reviews` (a future migration, `ros-06`'s scope) and the FSRS/IRT retention join (a separate bead). The two production-review functions, `onProductionReview` (approve) and `onProductionReturned` (return), shipped separately in `ros-06` (PR #28, merged ahead of this branch) and are listed here for completeness; `ros-04`'s own additions are `EvidenceContext` and its five fields (`sessionId`, `learnerText`, `itemId`, `modelFeedback`, `citations`) on every learner-authored transition.
 
 | Action | Evidence kind | `fromStage`/`toStage` | Learner's own text | Model verdict fields | Session id |
 |---|---|---|---|---|---|
@@ -29,7 +29,8 @@ Every contract test in `scripts/test-research-os-workspace-contracts.ts` feeds t
 | Diagnostic probe answer | `check`, `note: "diagnostic_probe"` | `fromStage` is always `"access"` (the cold-start invariant `onProbeCheckResult`'s own header documents) | `learnerText` = the probe answer | `abstained`, `modelFeedback`, `citations` | Yes |
 | Transfer item answer | `transfer_item` | Set, equal (held, never advances on its own) | `learnerText` = the answer, `itemId` = the fixed per-target item id | n/a | Yes |
 | Production submitted | `production_submitted` | `fromStage` = the row's real prior stage (fetched by `db.ts`'s `loadCurrentStage`), `toStage` always `"production"` | n/a | n/a | Yes |
-| Production returned by a teacher | `production_returned` (new) | Both `"production"` (the corrective event `EVIDENCE-SCHEMA.md` names; `stage` never moves backward) | `note` = the teacher's reason | n/a | No, this event is teacher-authored |
+| Production approved by a teacher | `teacher_review` (`onProductionReview`, `ros-06`) | Both `"production"` (re-affirms the terminal stage) | n/a | n/a | No, teacher-authored |
+| Production returned by a teacher | `production_returned` (`onProductionReturned`, `ros-06`) | Both `"production"` (the corrective event `EVIDENCE-SCHEMA.md` names; `stage` never moves backward) | `note` = the teacher's reason | n/a | No, teacher-authored |
 | Teacher review of a transfer hold | `teacher_review` | Set | n/a | n/a | No |
 | Locate / Organize | n/a (no `graph.nodes` row to attach a state event to) | n/a | n/a | n/a | Logged (see below) |
 

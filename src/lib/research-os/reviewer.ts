@@ -39,6 +39,19 @@ function reviewerAllowlist(): Set<string> {
 }
 
 /**
+ * The allowlist check alone, with no token verification -- split out from
+ * verifyReviewer (ros-06) so the gate's own logic is unit-testable with no
+ * network call (scripts/test-research-os-teacher-class.ts, "reviewer gate
+ * rejects a non-reviewer"). An unset or empty env var rejects every email,
+ * matching this file's own fail-closed posture.
+ */
+export function isReviewerEmail(email: string): boolean {
+  const allow = reviewerAllowlist();
+  if (allow.size === 0) return false;
+  return allow.has(email.trim().toLowerCase());
+}
+
+/**
  * Verifies the caller's Supabase token AND that their email is on the
  * RESEARCH_OS_REVIEWER_EMAILS allowlist. Returns null on either failure
  * (bad/missing token, or a real learner who is not on the allowlist) --
@@ -48,8 +61,6 @@ function reviewerAllowlist(): Set<string> {
 export async function verifyReviewer(req: NextRequest): Promise<Reviewer | null> {
   const identity = await verifyLearnerIdentity(req);
   if (!identity?.email) return null;
-  const allow = reviewerAllowlist();
-  if (allow.size === 0) return null;
-  if (!allow.has(identity.email.toLowerCase())) return null;
+  if (!isReviewerEmail(identity.email)) return null;
   return { id: identity.id, email: identity.email };
 }

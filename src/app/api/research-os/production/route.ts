@@ -14,27 +14,17 @@
  *
  * Engine bridge task item 3: whenever a write here leaves a production at
  * status "accepted", its row is emitted to `public.research_os_
- * productions_outbox` (src/lib/research-os/engine-bridge.ts's
- * buildProductionOutboxRow, db.ts's writeProductionOutbox). Nothing today
- * calls this route with status "accepted" (the validation above still
- * rejects it, Phase 0 has no teacher-accept path), so this hook is wired
- * but unreached until Phase 1 opens one. See learning/research-os/
- * ENGINE-BRIDGE.md.
+ * productions_outbox` (db.ts's emitProductionOutboxIfAccepted, shared with
+ * /api/research-os/review's own accept path, ros-06). This route's own
+ * status validation above never lets a learner set "accepted" directly;
+ * the accept path lives in the review route once a teacher approves. See
+ * learning/research-os/ENGINE-BRIDGE.md.
  *
  * Auth: Authorization: Bearer <supabase access token>, required.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
-import { buildProductionOutboxRow } from "@/lib/research-os/engine-bridge";
-import {
-  configured,
-  graphService,
-  verifyLearner,
-  recordEvidence,
-  findNodeById,
-  writeProductionOutbox,
-  loadCurrentStage,
-} from "@/lib/research-os/db";
+import { configured, graphService, verifyLearner, recordEvidence, emitProductionOutboxIfAccepted, loadCurrentStage } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -131,29 +121,21 @@ export async function POST(req: NextRequest) {
 
   // Engine bridge task item 3: an accepted production is the engine's own
   // evidence item. Unreachable today (the status validation above never lets
-  // a learner set "accepted"), wired for Phase 1's teacher-accept path. Best
-  // effort: a failed emit never fails the production save itself, the same
-  // way academy's own mirror jobs treat a sync step as best effort.
-  if (data?.status === "accepted" && data?.target_node_id) {
-    try {
-      const targetNode = await findNodeById(data.target_node_id as string);
-      const row = buildProductionOutboxRow(
-        {
-          id: data.id as string,
-          target_node_id: data.target_node_id as string,
-          claim: (data.claim as string | null) ?? null,
-          evidence: (data.evidence as unknown[]) ?? [],
-          sources: (data.sources as unknown[]) ?? [],
-          status: data.status as string,
-          created_at: data.created_at as string,
-          updated_at: data.updated_at as string | undefined,
-        },
-        targetNode ? { slug: targetNode.slug, title: targetNode.title, tier: targetNode.tier, branch: targetNode.branch } : null,
-      );
-      await writeProductionOutbox(row);
-    } catch {
-      // best effort, see comment above
-    }
+  // a learner set "accepted"), wired for Phase 1's teacher-accept path
+  // (bkt-ros ros-06, /api/research-os/review's POST), which shares this
+  // exact emit function rather than duplicating it. See db.ts's
+  // emitProductionOutboxIfAccepted for the best-effort posture.
+  if (data) {
+    await emitProductionOutboxIfAccepted({
+      id: data.id as string,
+      target_node_id: data.target_node_id as string,
+      claim: (data.claim as string | null) ?? null,
+      evidence: (data.evidence as unknown[]) ?? [],
+      sources: (data.sources as unknown[]) ?? [],
+      status: data.status as string,
+      created_at: data.created_at as string,
+      updated_at: data.updated_at as string | undefined,
+    });
   }
 
   return NextResponse.json({ production: data }, { headers: { "cache-control": "no-store" } });

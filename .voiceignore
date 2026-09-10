@@ -6,3 +6,9 @@ archive/
 blog/
 museum/
 pubmed/
+
+# Machine-written, append-only log from the hourly hypothesis-engine
+# optimization loop (CLAUDE.md, "Hypothesis Engine Loop"). Out of scope for
+# any bead editing tools/hypothesis-engine; exempted here (a root-level
+# config file, not a change inside that tree) rather than reworded in place.
+tools/hypothesis-engine/docs/LOOP-LOG.md

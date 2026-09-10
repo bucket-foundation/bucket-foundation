@@ -5,19 +5,27 @@
  * append-only log. Pure functions, no I/O; the API routes under
  * /api/research-os/* call these and persist the result.
  *
- * ros-04 UPDATE (bkt-ros, workspace hardening item 1): every transition now
- * writes the full field set src/lib/research-os/EVIDENCE-SCHEMA.md
- * specifies, closing the gaps that file's own "Current schema against that
- * plan" section lists (`fromStage`/`toStage`, the learner's own text, the
- * model's abstain flag/feedback/citations, a session id, and the new
- * `production_returned` corrective event). Every added field is optional at
- * the call site: callers pass an `EvidenceContext` with only the fields
- * they have, matching the existing pattern where `result`/`confidence`
- * are already optional on `EvidenceEvent`. Inter-rater columns
- * (`sampledForSecondRating`, `secondRaterId`, `secondDecision`, `agrees`)
- * are typed here per the schema's contract but have no writer yet: the
- * second-rating flow and its `graph.teacher_reviews` migration belong to
- * ros-06, per EVIDENCE-SCHEMA.md's own scope note on that migration.
+ * `fromStage`/`toStage` on EvidenceEvent (bkt-ros, ros-06/ros-02's own
+ * contract) follow src/lib/research-os/EVIDENCE-SCHEMA.md: every event
+ * records the stage immediately before and after it, so a reader
+ * reconstructs the transition timeline from the log alone. `reviewId`
+ * (ros-06) is the graph.teacher_reviews row id a "teacher_review" or
+ * "production_returned" event corresponds to, joining the audit table and
+ * the learner's own evidence log with no timestamp match needed.
+ *
+ * ros-04 UPDATE (bkt-ros, workspace hardening item 1): every transition
+ * beyond the two production-review functions below now also writes the
+ * rest of the field set EVIDENCE-SCHEMA.md specifies, closing the gaps
+ * that file's own "Current schema against that plan" section lists (the
+ * learner's own text, the model's abstain flag/feedback/citations, a
+ * session id). Every added field is optional at the call site: callers
+ * pass an `EvidenceContext` with only the fields they have, matching the
+ * existing pattern where `result`/`confidence` are already optional on
+ * `EvidenceEvent`. Inter-rater columns (`sampledForSecondRating`,
+ * `secondRaterId`, `secondDecision`, `agrees`) are typed here per the
+ * schema's contract but have no writer yet: the second-rating flow and its
+ * `graph.teacher_reviews` migration belong to ros-06, per
+ * EVIDENCE-SCHEMA.md's own scope note on that migration.
  */
 import type { Stage } from "./types";
 import { stageAtLeast } from "./types";
@@ -67,7 +75,8 @@ export interface EvidenceEvent {
   held?: boolean;
   heldReason?: string;
   note?: string;
-  reviewerId?: string; // set only on a "teacher_review" event
+  reviewerId?: string; // set only on a "teacher_review" / "production_returned" event
+  reviewId?: string; // graph.teacher_reviews.id, set only on a "teacher_review" / "production_returned" event
 
   // Closes "no before-and-after stage pair on an event" (EVIDENCE-SCHEMA.md).
   fromStage?: Stage;
@@ -248,30 +257,6 @@ export function onProductionSubmitted(
 }
 
 /**
- * The corrective event EVIDENCE-SCHEMA.md's "The corrective event on
- * graph.productions" section specifies: a returned production leaves
- * `graph.learner_node_state.stage` at `production` (the append documents
- * the correction without moving `stage` backward, keeping every existing
- * `stageAtLeast` high-water-mark check correct), with the evidence log
- * carrying the fact that this specific production was rejected. Any
- * outcome query already filters on `graph.productions.status = "accepted"`
- * (LEARNER-STATE-MODEL.md section 1), so `stage` itself needs no change,
- * only this event needs to exist. Called from the review route's
- * production branch on a "returned" decision.
- */
-export function onProductionReturned(context: EvidenceContext = {}, now: string = new Date().toISOString()): StageTransition {
-  const event: EvidenceEvent = {
-    at: now,
-    kind: "production_returned",
-    fromStage: "production",
-    toStage: "production",
-    note: context.learnerText,
-    sessionId: context.sessionId,
-  };
-  return { nextStage: "production", event };
-}
-
-/**
  * Teacher review decision on a held transfer-item answer (bkt-ros, Phase 1
  * item 4). Completes the transition onTransferItemAnswered above
  * deliberately left held: RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3,
@@ -308,4 +293,73 @@ export function onTeacherReview(
     toStage: nextStage,
   };
   return { nextStage, event };
+}
+
+/**
+ * Teacher review decision to APPROVE a submitted Production (bkt-ros,
+ * ros-06 item 3, closing the gap ENGINE-BRIDGE.md names: "Phase 0 has no
+ * teacher-accept path," the one thing standing between an accepted
+ * production and the engine outbox write). Unlike onTeacherReview above,
+ * Production is already the graph's terminal stage (STAGE_ORDER's last
+ * entry, set at submission by onProductionSubmitted): an approval does not
+ * raise `stage` further, it re-affirms `production` and logs the
+ * teacher's own sign-off as the evidence event RESEARCH-OS-K12-SYSTEM-
+ * REVIEW.md section 3 requires ("a teacher can advance or hold back a
+ * stage directly ... stored on the evidence record"), which is what gives
+ * the outbox write (`db.ts`'s `emitProductionOutboxIfAccepted`) a real,
+ * teacher-signed evidence trail underneath it. See onProductionReturned
+ * below for the "returned" counterpart.
+ */
+export function onProductionReview(
+  reviewerId: string,
+  reason: string | undefined,
+  reviewId?: string,
+  now: string = new Date().toISOString(),
+): StageTransition {
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "teacher_review",
+    note: reason,
+    reviewerId,
+    reviewId,
+    fromStage: "production",
+    toStage: "production",
+  };
+  return { nextStage: "production", event };
+}
+
+/**
+ * Teacher review decision to RETURN a submitted Production (bkt-ros,
+ * ros-06, closing the gap src/lib/research-os/EVIDENCE-SCHEMA.md's own
+ * "corrective event on graph.productions" section names: "a returned
+ * production leaves graph.learner_node_state.stage at 'production' with
+ * no evidence event recording the correction, because the review route's
+ * production branch never calls recordEvidence"). `stage` does NOT move
+ * backward here -- every transition in this file already enforces the
+ * high-water-mark rule (`stageAtLeast`), and a returned production is no
+ * exception: `graph.productions.status` (this decision sets it back to
+ * "draft") is what any outcome query already filters on for acceptance,
+ * so leaving `stage` at "production" overclaims nothing. `fromStage`/
+ * `toStage` both read "production" on this event for
+ * the same reason EVIDENCE-SCHEMA.md gives: "the append documents the
+ * correction without violating the high-water-mark rule."
+ */
+export function onProductionReturned(
+  reviewerId: string,
+  reason: string | undefined,
+  reviewId?: string,
+  now: string = new Date().toISOString(),
+): StageTransition {
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "production_returned",
+    held: true,
+    heldReason: reason,
+    note: reason,
+    reviewerId,
+    reviewId,
+    fromStage: "production",
+    toStage: "production",
+  };
+  return { nextStage: "production", event };
 }

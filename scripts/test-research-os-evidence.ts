@@ -124,14 +124,16 @@ test("onProbeCheckResult: abstained, learnerText, modelFeedback, and citations a
 // Session grouping (gap 5)
 // ---------------------------------------------------------------------------
 
-test("every transition function forwards sessionId onto its event when supplied", () => {
+test("every learner-authored transition function forwards sessionId onto its event when supplied", () => {
+  // onProductionReturned is teacher-authored (reviewerId/reason/reviewId,
+  // no EvidenceContext, no learner sitting to group), so it carries no
+  // sessionId at all; covered separately below.
   const sessionId = "session-abc";
   assert.equal(onNodeOpened("access", { sessionId }).event.sessionId, sessionId);
   assert.equal(onCheckResult("awareness", { result: "support", confidence: "high", abstained: false }, { sessionId }).event.sessionId, sessionId);
   assert.equal(onTransferItemAnswered("understanding", { learnerText: "x", sessionId }).event.sessionId, sessionId);
   assert.equal(onProbeCheckResult({ result: "support", confidence: "high", abstained: false }, { sessionId }).event.sessionId, sessionId);
   assert.equal(onProductionSubmitted("access", { sessionId }).event.sessionId, sessionId);
-  assert.equal(onProductionReturned({ sessionId }).event.sessionId, sessionId);
 });
 
 test("sessionId is undefined, not a placeholder string, when no context is supplied", () => {
@@ -144,18 +146,21 @@ test("sessionId is undefined, not a placeholder string, when no context is suppl
 // ---------------------------------------------------------------------------
 
 test("onProductionReturned: fromStage and toStage are both production, stage never moves backward", () => {
-  const t = onProductionReturned({ learnerText: "missing a source for the second claim" });
+  const t = onProductionReturned("reviewer-1", "missing a source for the second claim", "review-row-1");
   assert.equal(t.nextStage, "production");
   assert.equal(t.event.kind, "production_returned");
   assert.equal(t.event.fromStage, "production");
   assert.equal(t.event.toStage, "production");
   assert.equal(t.event.note, "missing a source for the second claim");
+  assert.equal(t.event.reviewerId, "reviewer-1");
+  assert.equal(t.event.reviewId, "review-row-1");
 });
 
-test("onProductionReturned: context is optional", () => {
-  const t = onProductionReturned();
+test("onProductionReturned: reviewId and reason are optional", () => {
+  const t = onProductionReturned("reviewer-1", undefined);
   assert.equal(t.event.kind, "production_returned");
   assert.equal(t.event.note, undefined);
+  assert.equal(t.event.reviewId, undefined);
 });
 
 // ---------------------------------------------------------------------------

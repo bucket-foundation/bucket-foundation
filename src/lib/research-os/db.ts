@@ -12,7 +12,8 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
 import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind, Stage } from "./types";
-import type { EngineNodeDraft, ProductionOutboxRow } from "./engine-bridge";
+import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow, GraphProductionRow } from "./engine-bridge";
+import { buildProductionOutboxRow } from "./engine-bridge";
 import type { PrereqAncestorRow } from "./closure";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
@@ -197,6 +198,96 @@ export async function loadCurrentStage(learnerId: string, nodeId: string): Promi
   return ((data?.stage as Stage | undefined) ?? "access") as Stage;
 }
 
+/**
+ * Same query as loadLearnerStates, batched over every learner in one class
+ * grid load (bkt-ros, ros-06 item 2) instead of one round trip per
+ * learner. Grouped by learner id; a learner with no rows at all gets no
+ * map entry (src/lib/research-os/class-view.ts's own functions already
+ * treat "no entry" the same as "no record" for a given node).
+ */
+export async function loadLearnerStatesForMany(learnerIds: string[], nodeIds: string[]): Promise<Map<string, LearnerNodeState[]>> {
+  const out = new Map<string, LearnerNodeState[]>();
+  if (learnerIds.length === 0 || nodeIds.length === 0) return out;
+  const svc = graphService();
+  const { data, error } = await svc
+    .from("learner_node_state")
+    .select("learner_id,node_id,stage,confidence,updated_at")
+    .in("learner_id", learnerIds)
+    .in("node_id", nodeIds);
+  if (error) throw new Error(`loadLearnerStatesForMany: query failed: ${error.message}`);
+  for (const r of (data as (StateRow & { learner_id: string })[]) || []) {
+    const state: LearnerNodeState = { nodeId: r.node_id, stage: r.stage as LearnerNodeState["stage"], confidence: r.confidence, updatedAt: r.updated_at };
+    if (!out.has(r.learner_id)) out.set(r.learner_id, []);
+    out.get(r.learner_id)!.push(state);
+  }
+  return out;
+}
+
+export interface ClassRow {
+  id: string;
+  name: string;
+  reviewerEmail: string;
+  createdAt: string;
+}
+
+/**
+ * Every graph.classes row a reviewer owns (bkt-ros, ros-06 item 2), scoped
+ * server-side to the verified reviewer identity (never a client-supplied
+ * value) -- the "server check" half of "RLS plus server check" the class
+ * route's own header names, matching the ownership check
+ * /api/research-os/production's POST already performs against
+ * `learner_id` the same way. Case-insensitive against reviewer_email,
+ * matching reviewer.ts's own allowlist comparison. Filtered in application
+ * code rather than a SQL `ILIKE`: a verified email can contain `_` or `%`,
+ * both ILIKE wildcards, so building a pattern from it risks matching more
+ * than the exact address. graph.classes is a small, Phase-1-scale table
+ * (a handful of rows per reviewer), so reading all rows and filtering in
+ * JS costs nothing today and stays correct regardless of what characters
+ * an email contains.
+ */
+interface RawClassRow {
+  id: string;
+  name: string;
+  reviewer_email: string;
+  created_at: string;
+}
+
+/**
+ * The scoping decision alone, no I/O -- split out from loadClassesForReviewer
+ * so the "a reviewer for class A never sees class B" guarantee is
+ * unit-testable with no network call (scripts/test-research-os-teacher-class.ts,
+ * "class scoping"), the same reason isReviewerEmail was split out of
+ * verifyReviewer. Case-insensitive, matching reviewer.ts's own allowlist
+ * comparison.
+ */
+export function filterClassesForReviewer(rows: RawClassRow[], reviewerEmail: string): ClassRow[] {
+  const wanted = reviewerEmail.trim().toLowerCase();
+  return rows
+    .filter((r) => r.reviewer_email.trim().toLowerCase() === wanted)
+    .map((r) => ({ id: r.id, name: r.name, reviewerEmail: r.reviewer_email, createdAt: r.created_at }));
+}
+
+export async function loadClassesForReviewer(reviewerEmail: string): Promise<ClassRow[]> {
+  const svc = graphService();
+  const { data, error } = await svc.from("classes").select("id,name,reviewer_email,created_at");
+  if (error) throw new Error(`loadClassesForReviewer: query failed: ${error.message}`);
+  return filterClassesForReviewer((data as RawClassRow[]) || [], reviewerEmail);
+}
+
+/** Every graph.class_members row for the given classes, as classId -> learnerIds. */
+export async function loadClassMembers(classIds: string[]): Promise<Map<string, string[]>> {
+  const out = new Map<string, string[]>();
+  if (classIds.length === 0) return out;
+  const svc = graphService();
+  const { data, error } = await svc.from("class_members").select("class_id,learner_id").in("class_id", classIds);
+  if (error) throw new Error(`loadClassMembers: query failed: ${error.message}`);
+  for (const r of (data as { class_id: string; learner_id: string }[]) || []) {
+    if (!out.has(r.class_id)) out.set(r.class_id, []);
+    out.get(r.class_id)!.push(r.learner_id);
+  }
+  return out;
+}
+
 interface AncestorRow {
   node_id: string;
   ancestor_id: string;
@@ -373,6 +464,47 @@ export async function upsertEngineHypothesisNode(draft: EngineNodeDraft): Promis
   };
 }
 
+/**
+ * A campaign's own gap node (ros-12 item 4, `engine-bridge.ts`'s
+ * `buildGapNode`) as a `graph.nodes` row. Same upsert shape as
+ * `upsertEngineHypothesisNode` above (kept as its own function rather than
+ * a shared generic one, so a future change to either write path never
+ * risks the other): idempotent on `slug`, `engine-bridge.ts`'s
+ * `gapNodeSlug` is deterministic on `(engine, runId, gapId)`.
+ */
+export async function upsertGapNode(draft: GapNodeDraft): Promise<GraphNode> {
+  const svc = graphService();
+  const { data, error } = await svc
+    .from("nodes")
+    .upsert(
+      {
+        slug: draft.slug,
+        title: draft.title,
+        kind: draft.kind,
+        tier: draft.tier,
+        branch: draft.branch,
+        summary: draft.summary,
+        provenance: draft.provenance,
+      },
+      { onConflict: "slug" },
+    )
+    .select("id,slug,title,kind,tier,branch,summary,labels,provenance")
+    .single();
+  if (error) throw new Error(`upsertGapNode: upsert failed: ${error.message}`);
+  const r = data as NodeRow;
+  return {
+    id: r.id,
+    slug: r.slug,
+    title: r.title,
+    kind: r.kind as GraphNode["kind"],
+    tier: r.tier,
+    branch: r.branch,
+    summary: r.summary,
+    labels: r.labels ?? undefined,
+    provenance: r.provenance ?? undefined,
+  };
+}
+
 /** Every `graph.nodes.id` for a given list of slugs, as a slug -> id map. A
  * slug absent from the graph is absent from the returned map. */
 export async function resolveNodeIdsBySlug(slugs: string[]): Promise<Map<string, string>> {
@@ -446,4 +578,33 @@ export async function writeProductionOutbox(row: ProductionOutboxRow): Promise<v
     { onConflict: "id" },
   );
   if (error) throw new Error(`writeProductionOutbox: upsert failed: ${error.message}`);
+}
+
+/**
+ * Best-effort: given a `graph.productions` row that was just written with
+ * `status: "accepted"`, resolve its target node and emit the outbox row
+ * (task item 3, buildProductionOutboxRow + writeProductionOutbox above --
+ * neither is reimplemented here, only composed). No-op for any other
+ * status. Shared by /api/research-os/production's own POST (a
+ * learner-context write; unreachable today, that route still rejects a
+ * client-supplied "accepted") and /api/research-os/review's POST (bkt-ros,
+ * ros-06's teacher-accept path, the first caller that reaches "accepted"
+ * on a real, live write), so both entry points emit through the exact same function
+ * rather than two copies of the same three calls. A failed emit never
+ * fails the caller's own write, matching academy's own mirror-job
+ * best-effort posture (the original inline comment this was extracted
+ * from, preserved in _intake/research-os-k12/DELETIONS.md).
+ */
+export async function emitProductionOutboxIfAccepted(production: GraphProductionRow): Promise<void> {
+  if (production.status !== "accepted") return;
+  try {
+    const targetNode = await findNodeById(production.target_node_id);
+    const row = buildProductionOutboxRow(
+      production,
+      targetNode ? { slug: targetNode.slug, title: targetNode.title, tier: targetNode.tier, branch: targetNode.branch } : null,
+    );
+    await writeProductionOutbox(row);
+  } catch {
+    // best effort, see comment above
+  }
 }
