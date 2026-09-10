@@ -47,26 +47,58 @@ mapping exists yet.
 | *(no Research OS field)* | `Production.grade_band : free text` | bucketed from an optional `_target_node.tier` join (`_tier_to_grade_band`: `3-5`/`6-8`/`9-10`/`11-12`/`canon` for the migration's own `tier>=90` sentinel); `"unknown"` without that join | `graph.nodes.tier` is a per-*node* grade-level proxy; `graph.productions` itself carries no field like it, so a bare row with no join cannot resolve a real band. A real integration should embed the joined node onto the row before calling `load`/`load_supabase`/`hypothesize` (a Supabase view, or an application-side fetch) |
 | *(no Research OS field)* | `Production.school_or_district_id : str` | fixed sentinel `"research-os-phase-0"` | Phase 0 has no roster or district concept (task item 6, no roster sync); there is nothing pseudonymous to carry yet |
 | *(no Research OS analog)* | `Claim.stance : supports\|refutes\|extends` | fixed `"supports"` | Research OS carries no stance vocabulary; a learner's production always stands behind its own claim, so `"supports"` is the only defensible default, never a read from data |
-| *(no Research OS analog)* | `Claim.slots : {actor,action,object,place,mechanism}` | all five `None` ("not asserted") | the shipped `vocab-production-seed.json` names concepts about **the engine's own calibration questions** (`tier-assignment`, `hypothesis-ranking`, `fusion-weight`, ...), a meta-vocabulary about the production system itself rather than K-12 physics content. Forcing a sky-is-blue claim into that vocabulary would misrepresent it. No domain-specific K-12 physics vocabulary exists yet; until one does, every normalized claim's slots stay null |
-| *(no Research OS analog)* | `Claim.interval : Interval \| None` | always `None` | a physics fact or law has no "the claim's own subject happened in year X" the way a historical claim does. **Consequence:** a normalized Research OS production never contributes a `GroundTruthEvent`, regardless of status, until productions carry a dated subject of their own |
+| *(no Research OS analog)* | `Claim.slots : {actor,action,object,place,mechanism}` | `object` reads `target_node_id` itself (`_target_node.slug` when a join is given, same value either way); `actor`/`action`/`place`/`mechanism` stay `None` ("not asserted") | **Closed 2026-09-10 (`hte/vocab_induce.py`, bead `feat/hte-calibration-vocab`) for `object`; open for the other four.** The shipped `vocab-production-seed.json` names concepts about **the engine's own calibration questions** (`tier-assignment`, `hypothesis-ranking`, `fusion-weight`, ...), a meta-vocabulary about the production system itself rather than K-12 physics content, so forcing a sky-is-blue claim's OBJECT into THAT vocabulary would still misrepresent it. `hte.vocab_induce.induce` (wired into `_build_corpus` as a merge step over `load_vocab()`) resolves it instead: a graph node's own id needs no domain vocabulary to already exist, it becomes one, with a stable id (the `target_node_id` itself, already slug-shaped) and a humanized label. `actor`/`action`/`place`/`mechanism` have no comparably safe, always-available field to read from without guessing at content, so they are unchanged; see the design-decisions section below |
+| *(no Research OS analog)* | `Claim.interval : Interval \| None` | the production's own `created_at` year, both `start` and `end` | **Closed 2026-09-10.** A physics fact or law still has no "the claim's own subject happened in year X" the way a historical claim does; this reads instead as "the year THIS RECORD entered Bucket's own reviewed corpus," the same discovery-date-distinct-from-subject-date shape `discovery_year` already gives every other corpus this module builds. **Consequence:** a normalized Research OS production accepted into the record now contributes a `GroundTruthEvent`, dated by when it entered the record rather than by the physics fact's own (nonexistent) date; see the design-decisions section below for the disclosed tradeoff |
+
+## Closing the null-slot gap
+
+The gap this section used to describe as fully open is now half-closed, as
+of 2026-09-10. Before `hte/vocab_induce.py` existed, `_build_corpus` read every claim's
+slots straight against `load_vocab()`'s own fixed K-12 meta-vocabulary and
+raised `ValueError` on anything it did not already name (`_validate_slots`,
+removed in this same change); a Research OS record's `object` reading (see
+the table above) would have failed to load at all under that regime, which
+is exactly why `normalize_research_os_record` set every slot to `None`
+instead: a null slot loads cleanly, a mismatched one does not.
+
+`hte.vocab_induce.induce`, wired into `_build_corpus` as a merge step over
+`load_vocab()`'s own seed (and available with no seed at all, for a future
+domain that never gets a hand-written one), removes that constraint: any
+slot value an `EvidenceItem` already carries becomes a real concept, an id
+this module's own seed already names, or a freshly induced one, either
+kept verbatim (an already id-shaped value, `target_node_id`) or slugified
+from a raw label. `normalize_research_os_record` now reads `object` off
+`target_node_id` accordingly; `hte.api._validate_production_record`'s own
+pre-flight slot-id check is dropped for the same reason, an unresolved
+slot value is no longer an error condition anywhere in this path.
+
+| | Before | After |
+|---|---|---|
+| `research-os-sky-blue.json`'s own `claims[0].slots` | `{actor: null, action: null, object: null, place: null, mechanism: null}` | `{actor: null, action: null, object: "why-the-sky-is-blue", place: null, mechanism: null}` (ros-sky-blue-001); `object: "light-can-scatter-off-small-things"` (ros-sky-blue-002) |
+| `claims[0].interval` | `null` | `{"start": 2026, "end": 2026}` (the record's own `created_at` year) |
+| `corpus.ground_truth` for the fixture | `[]` (0 events; both productions' own `interval` was `None`, so `_build_corpus`'s own ground-truth condition never fired) | `[GroundTruthEvent(id="ros-sky-blue-002-c0-e0", year=2026, discovery_year=2026, ...)]` (1 event: ros-sky-blue-002 is `"accepted"`; ros-sky-blue-001 stays `"draft"`, Research OS's own `"submitted"` mapped down, so it never reaches `accepted` regardless of status_min) |
+| `hte.api.hypothesize({"productions": raw, "status_min": "draft"})`'s own ranked hypotheses | every survivor's `slots.OBJECT` reads `null` or the meta-vocabulary's own `other-object` | a ranked survivor's own `slots.OBJECT` reads `"why-the-sky-is-blue"`, `slot_labels.OBJECT` reads `"Why The Sky Is Blue"`, `linked_evidence.supports` names the real evidence ids behind it |
+
+What stays open: `actor`/`action`/`place`/`mechanism` still read `None`
+for every Research OS record, and `interval` reads the record's OWN entry
+date rather than any date the physics fact itself carries. Both are
+disclosed, deliberate choices (design-decisions section below), not
+oversights the way the fully-null slots and the always-`None` interval
+were before this change.
 
 ## What this normalizer does not attempt
 
-- **Slot-vocabulary alignment.** The gap above (`Claim.slots` always null)
-  is the biggest one. `RESEARCH-OS-INTEGRATION.md`'s own finding stands:
-  the production record is a real bridge on *shape*; whether a specific
-  production's content means anything to this engine's address space is a
-  separate, harder question this normalizer leaves open. A K-12 physics
-  vocabulary (`actor`/`action`/`object`/`place`/`mechanism` concepts drawn
-  from `learning/app/corpus/02-physics.json`'s own atoms, or from
-  `graph.nodes` itself) stays real follow-on work.
-- **Ground truth from Research OS content.** Since `interval` is always
-  `None`, calibration campaigns (`hte.calibrate`) never see a Research OS
-  production as a dated event. Question 19's own holdout comparison
-  (`RESEARCH-OS-INTEGRATION.md`, "Engine overlap") still runs against the
-  existing `PRODUCTION-SCHEMA.md`-shaped fixtures; a Research OS production
-  contributes only as an evidence-bearing `Source`, never as ground truth,
-  until a K-12 production schema carries a dated claim.
+- **Slot-vocabulary alignment for `actor`/`action`/`place`/`mechanism`.**
+  `object` is closed (above); the other four still read `None`.
+  `RESEARCH-OS-INTEGRATION.md`'s own finding stands: the production record
+  is a real bridge on *shape*; whether a specific production's content
+  means anything to this engine's address space is a separate, harder
+  question this normalizer leaves open for these four. A K-12 physics
+  vocabulary (`actor`/`action`/`place`/`mechanism` concepts drawn from
+  `learning/app/corpus/02-physics.json`'s own atoms, or from `graph.nodes`
+  itself) stays real follow-on work; `hte.vocab_induce.induce` is ready to
+  absorb it the moment such values start appearing on a claim's own
+  `slots`, no further wiring needed.
 - **A live `graph.nodes` join.** `_target_node` is an optional enrichment
   key this normalizer reads if a caller supplies it; nothing in this
   change queries Supabase to fetch it. `load_supabase(table="productions")`
@@ -78,7 +110,7 @@ mapping exists yet.
 
 ## Design decisions a founder should confirm
 
-Three defaults above are judgment calls made by hand, worth a founder's
+Four defaults above are judgment calls made by hand, worth a founder's
 conscious yes rather than a silent default:
 
 1. **`submitted`/`returned` → `draft`, not `peer-reviewed`.** This is the
@@ -99,6 +131,21 @@ conscious yes rather than a silent default:
    (`RESEARCH-OS-INTEGRATION.md`) needs a real per-source track record
    eventually; a fixed sentinel cannot support it. Out of scope for this
    change, named here so it is not forgotten.
+4. **`claims[].interval` reads `created_at`'s own year, the date the
+   record entered the corpus, standing in for a subject date the physics
+   fact itself has no way to carry.** An `accepted` production now
+   contributes a `GroundTruthEvent` dated by when the record entered the
+   corpus, so `hte.calibrate`'s own discovery-date holdout mode
+   (`choose_holdout_mode`) would read every such event's `year` and
+   `discovery_year` as equal (this module's own `accepted_date` still sets
+   `discovery_year` independently, but the two happen to land in the same
+   year whenever a record is accepted the same year it was created, the
+   common case for a fast-moving pilot). A founder wanting a real subject
+   date instead (Rayleigh's law dates to 1871, a fact independent of
+   whatever year a student submitted a production about it) needs a K-12
+   physics vocabulary able to name a claim's own historical date rather
+   than only its topic; until then, this reading is the one line to
+   revisit (`normalize_research_os_record` in `hte/corpus/production.py`).
 
 ## Verified end to end
 
@@ -114,9 +161,36 @@ raw = json.load(open('hte/data/production-fixtures/research-os-sky-blue.json'))
 response = hypothesize({'productions': raw, 'status_min': 'draft'})
 assert response['ok'] is True
 assert 'learner_id' not in json.dumps(response)
+entries = [e for b in response['timeline']['bins'] for e in b['ranked_hypotheses']]
+non_null_object = [e for e in entries if e['slots']['OBJECT'] not in (None, 'other-object')]
+assert non_null_object, 'expected at least one ranked hypothesis with a non-null, non-OTHER OBJECT slot'
 print('n_productions', response['corpus']['n_productions'])
+print('n_survivors', response['corpus']['n_survivors'])
+print('n_ranked_with_real_object_slot', len(non_null_object))
+print('example OBJECT slot_label', non_null_object[0]['slot_labels']['OBJECT'])
 "
 # n_productions 2
+# n_survivors 54
+# n_ranked_with_real_object_slot 54
+# example OBJECT slot_label Why The Sky Is Blue
+```
+
+Ground truth, checked directly against `hte.corpus.production._build_corpus`
+(not through `hypothesize()`, which discards its own temp run directory and
+never returns `corpus.ground_truth` in its response shape):
+
+```bash
+HTE_LLM_MODE=fake python3 -c "
+import json
+from hte.corpus import production
+raw = json.load(open('hte/data/production-fixtures/research-os-sky-blue.json'))
+productions = [production.Production.from_dict(r) for r in raw]
+corpus = production._build_corpus(productions, status_min='draft', retrieval_run_id='t', source_path_for=lambda p: 'x')
+print('n_ground_truth', len(corpus.ground_truth))
+print([g.id for g in corpus.ground_truth])
+"
+# n_ground_truth 1
+# ['ros-sky-blue-002-c0-e0']
 ```
 
 `hte/data/production-fixtures/research-os-sky-blue.json` is two

@@ -72,3 +72,61 @@ def test_views_command_rewrites_timeline_md(tmp_path):
 def test_views_command_missing_run_dir_fails(tmp_path, capsys):
     rc = cli.main(["views", str(tmp_path / "nope")])
     assert rc == 1
+
+
+# --------------------------------------------------------------------------
+# --constants (docs/CALIBRATION-FIT-2026-09-10.md, hte.belief.load_constants)
+# --------------------------------------------------------------------------
+
+
+def test_campaign_run_accepts_constants_default(tmp_path, capsys):
+    rc = cli.main([
+        "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
+        "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
+        "--constants", "default",
+    ])
+    assert rc == 0
+    assert "run written to" in capsys.readouterr().out
+
+
+def test_campaign_run_accepts_constants_fitted(tmp_path, capsys):
+    rc = cli.main([
+        "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
+        "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
+        "--constants", "fitted",
+    ])
+    assert rc == 0
+    assert "run written to" in capsys.readouterr().out
+
+
+def test_campaign_run_rejects_an_unknown_constants_value(capsys):
+    try:
+        cli.main(["campaign", "run", "--constants", "not-a-real-choice"])
+    except SystemExit as exc:
+        assert exc.code == 2
+    else:
+        raise AssertionError("expected argparse to reject an unknown --constants choice")
+
+
+def test_campaign_run_omitting_constants_defaults_to_fitted(tmp_path, monkeypatch, capsys):
+    # No `--constants` flag at all: `runner.DEFAULT_CONFIG["constants"]`
+    # ("fitted") stands, matching `hte campaign run`'s own documented
+    # default with no CLI override needed.
+    captured: dict = {}
+    real_run_campaign = cli.runner.run_campaign
+
+    def spy(config):
+        captured["constants"] = config.get("constants")
+        return real_run_campaign(config)
+
+    monkeypatch.setattr(cli.runner, "run_campaign", spy)
+    rc = cli.main([
+        "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
+        "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
+    ])
+    assert rc == 0
+    assert captured["constants"] is None  # no explicit flag, so cli never sets the key
+    # run_campaign's own DEFAULT_CONFIG merge is what resolves the omitted key to "fitted".

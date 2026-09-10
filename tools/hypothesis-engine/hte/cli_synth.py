@@ -32,12 +32,14 @@ import contextlib
 import inspect
 import json
 import os
+import random
 import statistics
 import sys
 import time
+import traceback
 from pathlib import Path
 from types import ModuleType
-from typing import Any
+from typing import Any, Callable
 
 from . import synth
 
@@ -358,6 +360,270 @@ def _cmd_sweep(args: argparse.Namespace) -> int:
     return 0
 
 
+# --------------------------------------------------------------------------
+# realsweep: random sub-campaign sweeps over a REAL corpus (`hte.synth`'s
+# `run`/`sweep` above draw a synthetic world with planted truth instead;
+# this is the real-corpus counterpart, scoring against whatever `hte.
+# calibrate.run_calibration` finds in the sub-corpus's OWN ground truth).
+# --------------------------------------------------------------------------
+#
+# Each corpus's own "random sub-corpus" reading:
+#   - `education-atlas`: a random 5-12-country subset of the sample's own
+#     25 countries, and a random 8-15-year window inside the sample's own
+#     2010-2024 span.
+#   - `production`: a random `status_min` off `hte.corpus.production.
+#     _STATUS_ORDER`, and a random non-empty subset of the 14 shipped
+#     fixtures' own grade bands (`{"3-5", "6-8", "9-10", "11-12"}`).
+#     Neither knob has a `load()` parameter of its own, so this module
+#     filters `load_raw()`'s own productions by grade band itself and
+#     calls `production._build_corpus` directly, the same private-builder
+#     reuse `hte.api.hypothesize` already relies on for an in-memory
+#     corpus with no adapter-level filter to match.
+#   - `literature`: a random non-empty subset of the 6 shipped fixtures'
+#     own 3 top-level branch folders, filtered the same way and built via
+#     `literature._build_corpus` directly.
+
+
+def _education_atlas_country_codes() -> list[str]:
+    from .corpus import education_atlas
+    sample_dir = education_atlas._resolve_sample_dir(None)
+    rows = education_atlas._read_table(sample_dir, "country")
+    return sorted({str(r["country_code"]) for r in rows})
+
+
+def _build_education_atlas_subcorpus(rng: random.Random) -> tuple[Any, dict[str, Any]]:
+    from .corpus import education_atlas
+    codes = _education_atlas_country_codes()
+    countries = sorted(rng.sample(codes, rng.randint(5, 12)))
+    length = rng.randint(8, 15)
+    start = rng.randint(2010, 2024 - length + 1)
+    years = (start, start + length - 1)
+    corpus = education_atlas.load(countries=countries, years=years)
+    return corpus, {"countries": countries, "years": list(years)}
+
+
+def _build_production_subcorpus(rng: random.Random) -> tuple[Any, dict[str, Any]]:
+    from .corpus import production
+    productions = production.load_raw()
+    grade_bands = sorted({p.grade_band for p in productions})
+    chosen_bands = sorted(rng.sample(grade_bands, rng.randint(1, len(grade_bands))))
+    status_min = rng.choice(list(production._STATUS_ORDER))
+    filtered = [p for p in productions if p.grade_band in chosen_bands]
+    corpus = production._build_corpus(
+        filtered, status_min=status_min, retrieval_run_id="realsweep-production",
+        source_path_for=lambda p: f"realsweep:{p.id}",
+    )
+    return corpus, {"status_min": status_min, "grade_bands": chosen_bands}
+
+
+def _build_literature_subcorpus(rng: random.Random) -> tuple[Any, dict[str, Any]]:
+    from .corpus import literature
+    cards = literature.load_raw(literature.DEFAULT_FIXTURES_DIR)
+    branches = sorted({c.relative_path.split("/", 1)[0] for c in cards})
+    chosen = sorted(rng.sample(branches, rng.randint(1, len(branches))))
+    filtered = [c for c in cards if c.relative_path.split("/", 1)[0] in chosen]
+    corpus = literature._build_corpus(filtered)
+    return corpus, {"branches": chosen}
+
+
+REALSWEEP_BUILDERS: dict[str, Callable[[random.Random], tuple[Any, dict[str, Any]]]] = {
+    "education-atlas": _build_education_atlas_subcorpus,
+    "production": _build_production_subcorpus,
+    "literature": _build_literature_subcorpus,
+}
+
+
+def _realsweep_campaign_config(corpus_loader_key: str, seed: int, out_dir: Path) -> dict[str, Any]:
+    """Small and fast, matching `hte.api._API_DEFAULTS`'s own latency-
+    tuned reasoning rather than `_campaign_config`'s synth-sized defaults:
+    a real sub-corpus can run from a handful of items (`literature`, one
+    branch) to several thousand (`education-atlas`, 12 countries), and
+    `max_hypotheses`/`combinatorial_max_items` bound generation/critique/
+    tournament cost regardless of that size; `hte.link.link_evidence`'s
+    own per-fold cost inside the calibration step below does not scale
+    down with either cap, which is why `build_pooled_fit_corpora` (`hte.
+    calibrate`) pre-subsamples `education-atlas` for its OWN fit rather
+    than paying that cost at the full sample's size.
+
+    `"constants": "default"` pins `Constants()`'s own bare values rather
+    than `docs/CALIBRATION-FIT-2026-09-10.md`'s own fitted result: this
+    sweep is a robustness and coverage check on the ENGINE, over real
+    sub-corpora it has never run against before, and reading a fixed,
+    known constant set keeps its own numbers independent of whatever the
+    pooled fit concluded, run separately.
+    """
+    return {
+        "campaign": f"seed-{seed}",
+        "corpus": corpus_loader_key,
+        "out_dir": str(out_dir),
+        "cache_dir": str(out_dir / "_llm-cache"),
+        "replay_only": False,
+        "seeds": 1,
+        "generate_n": 5,
+        "generate_evidence_sample": 8,
+        "combinatorial_max_items": 40,
+        "max_hypotheses": 150,
+        "tournament_rounds": 1,
+        "run_extraction": False,
+        "run_calibration": True,
+        "resolution": None,
+        "holdout_k": 5,
+        "holdout_seed": 0,
+        "constants": "default",
+    }
+
+
+def run_one_realsweep_seed(runner_module: ModuleType, corpus_name: str, seed: int, out_dir: Path) -> dict[str, Any]:
+    """One realsweep seed: draw a random sub-corpus (`REALSWEEP_BUILDERS`),
+    run one campaign over it in fake mode, and read `hte.calibrate.
+    run_calibration`'s own k-fold (or discovery-date) coverage and Brier
+    score straight off `RunArtifacts.calibration` (`hte.runner.
+    run_campaign`'s own `run_calibration=True` default; this function
+    makes no second, separate calibration call of its own).
+
+    Any exception anywhere in this process (drawing the sub-corpus,
+    running the campaign, reading its own calibration) is caught and
+    turned into `row["crashed"] = True` plus `row["error"]`/`row[
+    "traceback"]`, rather than propagating: a crash on one seed's own
+    random draw is itself a finding this sweep exists to surface
+    (`tests/swarm/FINDINGS-2026-09-10.md`); every later seed in the same
+    `--seeds` range still runs.
+    """
+    row: dict[str, Any] = {
+        "seed": seed, "corpus": corpus_name, "params": None, "n_evidence": None, "n_ground_truth": None,
+        "n_survivors": None, "mode": None, "coverage_of_truth": None, "brier_score": None,
+        "crashed": False, "error": None, "traceback": None,
+    }
+    t0 = time.time()
+    try:
+        rng = random.Random(seed)
+        corpus, params = REALSWEEP_BUILDERS[corpus_name](rng)
+        row["params"] = params
+        row["n_evidence"] = len(corpus.evidence)
+        row["n_ground_truth"] = len(corpus.ground_truth)
+
+        loader_key = f"realsweep-{corpus_name}-{seed}-{id(corpus)}"
+        runner_module._CORPUS_LOADERS[loader_key] = (lambda c=corpus: c)
+        try:
+            with _fake_llm_mode():
+                artifacts = runner_module.run_campaign(_realsweep_campaign_config(loader_key, seed, out_dir))
+        finally:
+            runner_module._CORPUS_LOADERS.pop(loader_key, None)
+
+        row["n_survivors"] = len(artifacts.hypotheses)
+        calibration = artifacts.calibration
+        if calibration:
+            row["mode"] = calibration["mode"]
+            row["coverage_of_truth"] = calibration["coverage_of_truth"]
+            row["brier_score"] = calibration["brier_score"]
+    except Exception as exc:  # noqa: BLE001 - a crash here is this sweep's own finding to surface, never re-raised
+        row["crashed"] = True
+        row["error"] = f"{type(exc).__name__}: {exc}"
+        row["traceback"] = traceback.format_exc()
+    row["elapsed_s"] = time.time() - t0
+    return row
+
+
+def _realsweep_aggregate(rows: list[dict[str, Any]], key: str) -> dict[str, Any]:
+    values = [r[key] for r in rows if not r["crashed"] and r.get(key) is not None]
+    if not values:
+        return {"mean": None, "median": None, "min": None, "max": None, "n": 0}
+    return {
+        "mean": statistics.fmean(values), "median": statistics.median(values),
+        "min": min(values), "max": max(values), "n": len(values),
+    }
+
+
+def _realsweep_worst_seed(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """A crash outranks any scored seed, however low its own coverage:
+    `hte-synth run`'s own `_worst_seed` (this module, above) has no crash
+    case to rank against, since a synthetic world's own campaign never
+    raises past `run_one_seed`. The first crashing seed, in `rows`' own
+    order, is reported when one exists; otherwise the lowest-`coverage_
+    of_truth` scored seed (ties broken by highest `brier_score`), `hte-
+    synth run`'s own convention, ported to this module's row shape."""
+    crashed = [r for r in rows if r["crashed"]]
+    if crashed:
+        worst = crashed[0]
+        return {
+            "seed": worst["seed"], "crashed": True, "error": worst["error"],
+            "reason": "this seed's own random sub-corpus draw crashed the campaign; see 'error' above and "
+                      "this corpus's own runs/realsweep/<corpus>/seed-<seed>/ run directory for the full log.",
+        }
+    scored = [r for r in rows if r.get("coverage_of_truth") is not None]
+    if not scored:
+        return None
+    worst = min(scored, key=lambda r: (r["coverage_of_truth"], -(r["brier_score"] or 0.0)))
+    return {
+        "seed": worst["seed"], "crashed": False,
+        "coverage_of_truth": worst["coverage_of_truth"], "brier_score": worst["brier_score"],
+        "reason": "lowest coverage_of_truth among non-crashed seeds in this run (ties broken by highest brier_score).",
+    }
+
+
+def _write_realsweep_summary_md(path: Path, summary: dict[str, Any]) -> None:
+    lines = [f"# hte-synth realsweep summary: {summary['corpus']}", ""]
+    lines.append(
+        f"Seeds: {summary['seeds'][0]}-{summary['seeds'][-1]} ({len(summary['seeds'])} total)"
+        if summary["seeds"] else "Seeds: (none)"
+    )
+    lines += ["", "## Per-seed", "", "| Seed | Params | Evidence | Ground truth | Coverage of truth | Brier score | Crashed | Elapsed (s) |", "|---|---|---|---|---|---|---|---|"]
+    for r in summary["per_seed"]:
+        lines.append(
+            f"| {r['seed']} | `{json.dumps(r['params'])}` | {r['n_evidence']} | {r['n_ground_truth']} | "
+            f"{r['coverage_of_truth']} | {r['brier_score']} | {r['crashed']} | {r['elapsed_s']:.2f} |"
+        )
+    lines += ["", "## Aggregate", ""]
+    for key in ("coverage_of_truth", "brier_score"):
+        agg = summary["aggregate"][key]
+        lines.append(f"- **{key}**: mean={agg['mean']}, median={agg['median']}, min={agg['min']}, max={agg['max']}, n={agg['n']}")
+    lines.append(f"- **crashed seeds**: {summary['aggregate']['n_crashed']} of {len(summary['seeds'])}")
+    worst = summary["aggregate"]["worst_seed"]
+    lines += ["", "## Worst seed", ""]
+    if worst is None:
+        lines.append("(no scored seeds)")
+    elif worst["crashed"]:
+        lines.append(f"Seed {worst['seed']} crashed: {worst['error']}. {worst['reason']}")
+    else:
+        lines.append(
+            f"Seed {worst['seed']}: coverage_of_truth={worst['coverage_of_truth']}, "
+            f"brier_score={worst['brier_score']}. {worst['reason']}"
+        )
+    path.write_text("\n".join(lines) + "\n")
+
+
+def _cmd_realsweep(args: argparse.Namespace) -> int:
+    runner_module = _import_runner()
+    seeds = _parse_seeds_or_error(args.parser, args.seeds)
+    out_dir = Path(args.out) if args.out else Path("runs") / "realsweep" / args.corpus
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    rows: list[dict[str, Any]] = []
+    for seed in seeds:
+        row = run_one_realsweep_seed(runner_module, args.corpus, seed, out_dir)
+        rows.append(row)
+        status = f"CRASHED: {row['error']}" if row["crashed"] else f"coverage={row['coverage_of_truth']} brier={row['brier_score']}"
+        print(f"seed {seed}: {status} params={row['params']} ({row['elapsed_s']:.2f}s)")
+
+    n_crashed = sum(1 for r in rows if r["crashed"])
+    summary = {
+        "corpus": args.corpus,
+        "seeds": seeds,
+        "per_seed": rows,
+        "aggregate": {
+            "coverage_of_truth": _realsweep_aggregate(rows, "coverage_of_truth"),
+            "brier_score": _realsweep_aggregate(rows, "brier_score"),
+            "n_crashed": n_crashed,
+            "worst_seed": _realsweep_worst_seed(rows),
+        },
+    }
+    (out_dir / "SUMMARY.json").write_text(json.dumps(summary, indent=2, default=str))
+    _write_realsweep_summary_md(out_dir / "SUMMARY.md", summary)
+    print(f"\nwrote {out_dir / 'SUMMARY.json'} and {out_dir / 'SUMMARY.md'}")
+    print(f"crashed: {n_crashed} of {len(seeds)}")
+    return 1 if n_crashed else 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="hte-synth", description="Random synthetic campaigns with planted truth.")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -379,6 +645,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_sweep.add_argument("--seeds", required=True, help='seed range, e.g. "0-19"')
     p_sweep.add_argument("--out", default="runs/synth-sweep", help="output directory")
     p_sweep.set_defaults(func=_cmd_sweep, parser=p_sweep)
+
+    p_realsweep = sub.add_parser("realsweep", help="random sub-campaign sweeps over a real corpus")
+    p_realsweep.add_argument("--corpus", required=True, choices=sorted(REALSWEEP_BUILDERS))
+    p_realsweep.add_argument("--seeds", required=True, help='seed range, e.g. "0-29"')
+    p_realsweep.add_argument("--out", default=None, help="output directory (default: runs/realsweep/<corpus>)")
+    p_realsweep.set_defaults(func=_cmd_realsweep, parser=p_realsweep)
 
     return parser
 

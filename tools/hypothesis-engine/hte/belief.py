@@ -13,7 +13,7 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterable, Mapping, Sequence
+from typing import Any, Iterable, Mapping, Sequence
 
 from .evidence import EvidenceItem, EvidenceKind, KIND_FAMILY, Source, Tier, TIER_WEIGHT
 from .hypothesis import Hypothesis
@@ -40,24 +40,95 @@ def sigmoid(x: float) -> float:
 
 @dataclass(frozen=True)
 class Constants:
-    """Every tunable constant this module runs on, uncalibrated
-    (`main.tex` §Limitations): `W` and `lam` are the corpus's original
-    values, kept fixed through the move to the opinion model rather than
-    refit to it. `mu` is the superseded contradiction-penalty weight: `Eq.
-    opinion-sum` has no term that reads it, since the opinion model absorbs
-    what a separate contradiction penalty did; it is carried here only so a
-    caller diffing against the corpus's original truth-score formula has
-    it on file. `alpha` mirrors `hte.concepts.Vocabulary`'s
-    `default_alpha`, the Dirichlet-process concentration used when a
-    vocabulary sets no explicit per-slot value, kept here too so every
-    uncalibrated constant sits in one place. `theta_prune` is the stemma
-    edge-pruning threshold (`def:stemma`)."""
+    """Every tunable constant this module runs on. `W`, `lam`, and
+    `tier_weight` were the corpus's original values (`main.tex`
+    §Limitations), kept fixed through the move to the opinion model rather
+    than refit to it, until `docs/CALIBRATION-FIT-2026-09-10.md`'s own
+    pooled coordinate-descent fit (`hte.calibrate.fit_constants_pooled`,
+    `hte.belief.load_constants`) gave this package a real, on-file
+    alternative; see that report for whether the fit beat these bare
+    defaults on real-corpus Brier. `mu` is the superseded
+    contradiction-penalty weight: `Eq. opinion-sum` has no term that reads
+    it, since the opinion model absorbs what a separate contradiction
+    penalty did; it is carried here only so a caller diffing against the
+    corpus's original truth-score formula has it on file, and so a fit over
+    "every named constant" (`fit_constants_pooled`'s own scope) has
+    somewhere to write a value that never moves this module's own Brier
+    score. `alpha` mirrors `hte.concepts.Vocabulary`'s `default_alpha`, the
+    Dirichlet-process concentration used when a vocabulary sets no
+    explicit per-slot value, kept here too so every uncalibrated constant
+    sits in one place; like `mu`, this module reads no value from it, so a
+    fitted value is recorded rather than consumed. `theta_prune` is the
+    stemma edge-pruning threshold (`def:stemma`). `detectability_floor` is
+    a lower bound on the per-`(period, kind)` `delta` `pooled_weight` reads
+    out of a detectability table before scaling an absence-of-evidence
+    item's weight (`Eq. detectability`): `0.0` (the default) changes
+    nothing, since every table value already sits in `[0, 1]`; a positive
+    floor keeps an absence finding in a low-detectability
+    context (an early period's own textual record, say) from being scaled
+    down to near-zero, unlike `detectability`'s own `default=1.0` (the
+    HIGH-detectability limit an unlisted `(period, kind)` pair reads at),
+    which this floor does not touch at all."""
     W: float = 2.0
     lam: float = 0.5
     mu: float = 0.5
     alpha: float = 1.0
     theta_prune: float = 0.6
     tier_weight: dict[Tier, float] = field(default_factory=lambda: dict(TIER_WEIGHT))
+    detectability_floor: float = 0.0
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "W": self.W, "lam": self.lam, "mu": self.mu, "alpha": self.alpha,
+            "theta_prune": self.theta_prune,
+            "tier_weight": {t.value: w for t, w in self.tier_weight.items()},
+            "detectability_floor": self.detectability_floor,
+        }
+
+    @classmethod
+    def from_dict(cls, d: Mapping[str, Any]) -> "Constants":
+        default = cls()
+        tier_weight = (
+            {Tier(k): float(v) for k, v in d["tier_weight"].items()}
+            if "tier_weight" in d else dict(default.tier_weight)
+        )
+        return cls(
+            W=float(d.get("W", default.W)), lam=float(d.get("lam", default.lam)),
+            mu=float(d.get("mu", default.mu)), alpha=float(d.get("alpha", default.alpha)),
+            theta_prune=float(d.get("theta_prune", default.theta_prune)),
+            tier_weight=tier_weight,
+            detectability_floor=float(d.get("detectability_floor", default.detectability_floor)),
+        )
+
+
+FITTED_CONSTANTS_PATH = Path(__file__).parent / "data" / "constants-fitted.json"
+
+
+def load_constants(source: str = "fitted") -> Constants:
+    """The `Constants` a campaign should run on: `Constants()` (the bare,
+    uncalibrated defaults) when `source == "default"`; the pooled-fit
+    result at `FITTED_CONSTANTS_PATH` (`docs/CALIBRATION-FIT-2026-09-10.md`,
+    `hte.calibrate.fit_constants_pooled`) when `source == "fitted"`, this
+    function's own default, matching `hte.runner.DEFAULT_CONFIG["constants"]`
+    and `hte campaign run`'s own `--constants` flag default.
+
+    Falls back to `Constants()` when `source == "fitted"` but no fitted
+    file exists on disk: a package checked out before this file was
+    written, or a fit run that concluded the pooled search could not beat
+    the bare defaults by the report's own bar and so shipped no override
+    file at all (`docs/CALIBRATION-FIT-2026-09-10.md`'s own "if the fit
+    cannot beat the defaults... keep the defaults" clause), both read the
+    same way: nothing on file to prefer, so the defaults stand.
+
+    Raises `ValueError` for any `source` other than `"default"`/`"fitted"`,
+    the same two values `hte campaign run --constants` accepts."""
+    if source == "default":
+        return Constants()
+    if source != "fitted":
+        raise ValueError(f"constants source must be 'default' or 'fitted', got {source!r}")
+    if not FITTED_CONSTANTS_PATH.is_file():
+        return Constants()
+    return Constants.from_dict(json.loads(FITTED_CONSTANTS_PATH.read_text()))
 
 
 # --------------------------------------------------------------------------
@@ -356,11 +427,21 @@ def pooled_weight(
     fall back from a raw item count to the stemma's connected-component
     count (`effective_count`); with no `sources` given, `n_eff` is just the
     number of items in that kind.
+
+    `constants.detectability_floor` (`Constants`'s own docstring) is
+    applied once here, to every entry `detect_table` carries, before
+    either the sign pass below or `side()`'s own magnitude sum reads it:
+    a single floored table view for the whole call, rather than two
+    separately-floored reads that could in principle drift apart.
     """
+    floored_table: DetectabilityTable | None = (
+        {k: max(constants.detectability_floor, v) for k, v in detect_table.items()}
+        if detect_table is not None else None
+    )
     by_kind_support: dict[EvidenceKind, list[EvidenceItem]] = {}
     by_kind_refute: dict[EvidenceKind, list[EvidenceItem]] = {}
     for item in items:
-        w = weight(item, hypothesis_address, detect_table, period)
+        w = weight(item, hypothesis_address, floored_table, period)
         if w > 0:
             by_kind_support.setdefault(item.kind, []).append(item)
         elif w < 0:
@@ -376,7 +457,7 @@ def pooled_weight(
                 n_eff = effective_count(kind_sources, stemma_edge_weights, constants.theta_prune) if kind_sources else len(kind_items)
             else:
                 n_eff = len(kind_items)
-            s_sum = sum(cluster_weight(i, detect_table, period) for i in kind_items)
+            s_sum = sum(cluster_weight(i, floored_table, period) for i in kind_items)
             total += D(n_eff, constants.lam) * s_sum
         return cross_kind_bonus(groups.keys()) * total
 
