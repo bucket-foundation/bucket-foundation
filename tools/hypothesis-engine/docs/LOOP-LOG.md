@@ -2,6 +2,38 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, PR36 review
+
+- **PR #36 reviewed** (`feat/hte-build-history`, "sacred-history
+  build-history campaign, canon write-back, Research OS bridge
+  export"). Auto-merged (commit `06a97894`) before the governance fix
+  found in review could land on its own branch, so the fix shipped as
+  a superseding PR, #43 (`fix/hte-canon-signoff-gate`, squash-merged as
+  `a719c072`), directly on `main`.
+- **Governance (bead ros-11, `learning/research-os/PLAN.md` section 10,
+  `GOVERNANCE.md`)**: `hte.canon_writeback.write_back` wrote
+  candidate-tier cards into `bucket-canon/`, gated only on
+  `floor_P`/`floor_u_max`, no recorded human approver, unattended
+  through `hte.pipeline`'s own writeback stage. Fixed: `write_back`,
+  `render_card`, `build_envelope` now require a named `signoff`; a
+  missing or blank value is a hard `ValueError` before
+  `reconstruct_candidates` runs or any file writes, `dry_run` or not.
+  Recorded in card provenance, envelope `signed_off_by` and per-item
+  provenance, and the `CANON-INGESTION-INDEX.md` addendum. Also
+  labeled Elo `unvalidated_tournament_ranking` in the same three
+  surfaces (card, index, envelope), per the same PLAN.md section's
+  ranking-label requirement. No generator/judge independence claim
+  appears in PR #36's diff, so nothing to drop there.
+- **Secrets**: full diff of both PRs clean, no keys, IPs, internal
+  hostnames, personal emails beyond `gianyrox@gmail.com`, or absolute
+  `/home/gian` paths in file contents.
+- **Gates**: `env -u HTE_LLM_MODE make test`, 1046 passed (PR #36's own
+  branch: 989 before the `main` merge that pulled in 8 unrelated
+  commits). `ruff check` clean on every touched file (also cleared two
+  pre-existing unused imports in `hte/cli_pipeline.py` and
+  `hte/pipeline.py`). `agf-lint-voice check` / `agf-lint-voice-src
+  check`, 0 violations.
+
 ## 2026-09-10, PR review
 
 - **PR #29 reviewed and merged** (`feat/hte-calibration-vocab-rebased`,

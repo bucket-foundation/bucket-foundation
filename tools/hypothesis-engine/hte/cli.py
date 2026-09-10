@@ -12,7 +12,7 @@ from pathlib import Path
 
 from . import calibrate, export, runner
 from .belief import Constants
-from .corpus import education_atlas, fixtures as fixtures_corpus, production, research_os_outbox
+from .corpus import education_atlas, fixtures as fixtures_corpus, production, research_os_outbox, sacred_history
 from .corpus import quantum_history
 
 _CORPUS_LOADERS = {
@@ -27,6 +27,7 @@ _CORPUS_LOADERS = {
     # this same loader there at call time for a real campaign run, see that
     # script's own header comment.
     "research-os": research_os_outbox.load,
+    "sacred-history": sacred_history.ingest,
 }
 
 
