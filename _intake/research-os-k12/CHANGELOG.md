@@ -26,6 +26,72 @@ Gates run: `npm ci`; `npx tsc --noEmit` clean; `npm run test:research-os` (routi
 closure + probe + engine-bridge + engine-frontier, 52/52); `npm run build`; `eslint`
 and `agf-lint-voice-src check` clean on every file this pass touched.
 
+## 2026-09-10: PR #19 review pass
+
+Review of PR #19 (`docs/ros-plan-revision-1`) before merge. Leak scan on the full diff against
+`origin/main` found no API keys, no `.env` contents, no server IPs, no non-public hostnames, no
+personal emails other than `gianyrox@gmail.com`, no PII, no `/home/gian` paths, and no Claude
+session URLs in any line this PR adds. No redactions were needed.
+
+Two PRs this revision names as still open merged to main during the review itself, so the
+shipped-work table and its cross-references were fixed twice, once per PR, rather than once.
+
+### Fixed
+
+- `learning/research-os/PLAN-REVISION-1.md`: the PR #15 row in section 1's shipped-work table and
+  the batch-two references in sections 4 and 5 said PR #15 was still open; PR #15 merged to main
+  (`e51b1db6e`) partway through this review, so the entries now read it as shipped. The PR #9 row
+  said unmerged; PR #9 merged to main (`d0f2c1262`) partway through this same review, so that row
+  now reads it as shipped too. Rewrote two antithesis constructions ("real at the code level ...
+  not just an analogy"; "the process trail ... not only the final submitted claim").
+- `learning/research-os/PLAN.md`: the "Revision 1" pointer paragraph said PR #15 was open; updated
+  to reflect the merge.
+- `_intake/research-os-k12/CHANGELOG.md` (this file, the plan-revision-1 entry above): same PR #15
+  status fix.
+- `learning/research-os/CHANGE-LEDGER.md`: merging `origin/main` produced two conflicts in
+  sequence as main advanced during review, first against main's own Iteration 6 (PR #15), then
+  against main's own Iteration 7 (PR #9). Kept every entry: main's stay Iteration 6 and Iteration
+  7, this PR's own plan-revision entry lands as Iteration 8, and this review pass as Iteration 9.
+
+### Verified, no change needed
+
+- All five cited paper files (Gneezy and Rustichini 2000, Mekler and colleagues 2017, Gasparetti
+  and colleagues 2017, Doshi and Hauser 2024, Binz and Schulz 2023) exist under
+  `_intake/research-os-k12-literature/` with frontmatter matching the claims made about them.
+- Three ETH AI Center section claims spot-checked against code on `main`: `computeFrontier` in
+  `src/lib/research-os/frontier.ts`, `hypothesize()` in `tools/hypothesis-engine/hte/api.py`, and
+  `research_os_productions_outbox` in `supabase/migrations/20260910010000_research_os_engine_
+  bridge.sql` plus `src/lib/research-os/db.ts`. All three exist as described.
+- The four design revisions in section 2 each carry one of STABLE, STRONG LEAN, or OPEN.
+- The PR #9 shipped-work row's claims, checked against the merged content directly, not just its
+  merge status: the two promoted records and the two taxonomy questions it names match
+  `bucket-canon/07-mind/memory-systems/` and `bucket-canon/TAXONOMY_NOTES.md` on main.
+- `agf-lint-voice check` / `agf-lint-voice-src check` on every file this PR touches: 0 violations
+  after the fixes above.
+- Gates: nothing under `src/` or `public/` is touched by this PR; no build needed.
+
+## 2026-09-10 (plan revision 1)
+
+Branch `docs/ros-plan-revision-1`. Read PLAN.md, RESEARCH-QUESTIONS.md,
+`RESEARCH-OS-K12-SYSTEM-REVIEW.md` sections 4, 8, 9, 10, 11,
+`OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, `ENGINE-BRIDGE.md`, this file,
+`BEADS-PENDING.jsonl`, PR #15 (branch `intake/ros-literature-2-batch2`, open
+when this pass began and merged to main partway through it), and PR #11
+(draft). Wrote
+`learning/research-os/PLAN-REVISION-1.md`: a PR-by-PR account of what shipped
+since PLAN.md (#3, #5, #6, #7, #8, #9, #10, #12, #14, #15); four
+evidence-driven design revisions (payout under Gneezy and Rustichini 2000 and
+Mekler 2017, frontier routing under Gasparetti 2017, a class-level diversity
+outcome for the three-arm testbed under Doshi and Hauser 2024, Check-tool
+phrasing robustness under Binz and Schulz 2023), each labeled STABLE, STRONG
+LEAN, or OPEN; a dependency-ordered Phase 1 scope naming five blocking
+founder decisions; a table mapping the overlap map's twelve open questions
+onto Phase 1 pilot versus Phase 2 district-scale answerability; and the ETH
+AI Center fellowship fit (portal opens 2026-09-15). Appended a pointer
+paragraph to `PLAN.md` under a new "Revision 1" heading; no existing text in
+`PLAN.md` was changed or removed. No file in this folder was edited or
+removed.
+
 ## 2026-09-10 (hypothesis engine bridge)
 
 Branch `feat/ros-engine-bridge`, worktree review of a WIP commit against PR #10
