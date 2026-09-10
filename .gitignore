@@ -5,53 +5,41 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
-
 # testing
 /coverage
-
 # next.js
 /.next/
 /out/
-
 # production
 /build
-
 # misc
 .DS_Store
 *.pem
-
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
 # local env files
 .env*.local
 .env
 # vercel
 .vercel
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 .beads/
-
 # gtm video build artifacts (binaries, mirror to gdrive instead)
 gtm/video-v*/
-
 # local GPU LLM endpoint (auth-shim secret, runtime logs, tunnel URL) — never commit
 scripts/llm/.bearer-secret
 scripts/llm/logs/
 scripts/llm/.tunnel-url
-
 # Site mirrors (large binaries — mirror to gdrive instead)
 bucket-canon/**/site-mirror/
 __pycache__/
-
 # Dolt database files (added by bd init)
 .dolt/
 *.db
-
 # Concept art / source images live on gdrive, not git
 # (see manifesto-source/<topic>/<date>/INDEX.md for share links)
 manifesto-source/**/*.png
@@ -59,7 +47,6 @@ manifesto-source/**/*.jpg
 manifesto-source/**/*.jpeg
 manifesto-source/**/*.heic
 manifesto-source/**/*.webp
-
 # subproject node_modules — never commit
 grants-gateway/node_modules/
 /private/
@@ -71,7 +58,6 @@ checkpoints/
 figma-export/
 feed/2026-*
 *.png
-
 # …EXCEPT the vendored paper/research figures under public/, which are part of
 # the shipped site (the research-atlas paper pages + the education-atlas corpus
 # render them) and MUST reach Vercel. Without these negations the blanket
@@ -81,7 +67,6 @@ feed/2026-*
 !public/education/**/*.png
 # …and the UX research captures (evidence for the UX gap analysis).
 !learning/research/ux/captures/**/*.png
-
 # Trained ML artifacts.
 # Large weights go to HuggingFace Hub for collaborators (see REPRODUCE.md):
 _intake/training/canon-bge-small-v1/model.safetensors
@@ -95,10 +80,8 @@ _intake/training/canon-bge-small-v1/tokenizer.json
 #   _intake/training/tier-predictions.jsonl  per-claim tier predictions
 #   _intake/embeddings-v2/claims-vectors.npy (~920KB) canon-tuned 384-d vecs
 #   _intake/embeddings/claim-evidence.jsonl  (~5.5MB) top-K evidence per claim
-
 .venv-shorts/
 shorts-runs/
-
 # Photon index — sqlite + vector matrices are large; regenerate from
 # tools (see PHOTON-SPEC.md). The spec + tools + sample photons may be
 # committed, but the full vector matrices are not.
@@ -111,12 +94,10 @@ _intake/photons/bulk.log
 _intake/photons/kaikki-cache/
 _intake/photons/all.json.gz
 _intake/photons/smoke.csv
-
 # canon-intake convergent runner runtime state (logs, lock, status snapshot).
 # The runner WRITES bucket-canon/**/primary-papers.yaml (committed by the data
 # pillar); this dir is just its bookkeeping and must never dirty the tree.
 _intake/canon-intake/
-
 # bkt-su9: generated Academy Supabase config in the served mirror. Built from
 # public env by scripts/sync-academy.mjs on each build (incl. Vercel). The anon
 # key is public by design, but we keep the generated copy out of git so a real
@@ -124,14 +105,12 @@ _intake/canon-intake/
 # learning/app/js/auth-config.js IS committed (so ./serve.sh works standalone).
 public/academy-app/js/auth-config.js
 scripts/llm/shim.env
-
 # UX capture videos live in gdrive (AGFarms/Nucleus/bucket-foundation/academy-ux), not the repo
 learning/research/ux/captures/**/*.webm
 learning/research/ux/captures/**/*.mp4
 _intake/health-longevity-fitness/reports/viz/_struct/
 _intake/health-longevity-fitness/reports/viz/_audit_thumbs/
 _intake/health-longevity-fitness/reports/viz/_contact-sheets/
-
 # LaTeX and Lean build artifacts (papers/)
 papers/**/*.aux
 papers/**/*.bbl
@@ -145,7 +124,5 @@ papers/**/*.fls
 papers/**/*.fdb_latexmk
 papers/**/*.lof
 papers/**/*.lot
-papers/**/.lake/
-papers/**/*.aux
 papers/**/.lake/
 .lake/
