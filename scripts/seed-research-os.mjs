@@ -5,8 +5,8 @@
  * path, see _intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md section
  * 8) into graph.nodes / graph.edges. Mirrors the Academy corpus loading
  * pattern (a static JSON source of truth, a small script that pushes it to
- * where the app reads it) but the destination here is Postgres, not a static
- * file mirror, since the graph is server-queried, not shipped to the browser.
+ * where the app reads it), with Postgres as the destination: the graph is
+ * server-queried at request time.
  *
  * Idempotent: nodes upsert on `slug` (onConflict), edges are deleted and
  * re-inserted for exactly the (from,to,kind) triples this seed defines, so

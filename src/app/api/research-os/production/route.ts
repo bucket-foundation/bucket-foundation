@@ -69,6 +69,23 @@ export async function POST(req: NextRequest) {
 
   const svc = graphService();
 
+  // Ownership check: the service-role client bypasses RLS, so an update-by-id
+  // must verify the existing row belongs to this learner here, in application
+  // code, before the upsert -- otherwise a learner who knows or guesses
+  // another learner's production id could overwrite that row and reassign it
+  // to themselves (the RLS own_update policy would block this on a direct
+  // client, but this route never uses that path).
+  if (body.id) {
+    const { data: owned, error: ownErr } = await svc
+      .from("productions")
+      .select("learner_id")
+      .eq("id", body.id)
+      .maybeSingle();
+    if (ownErr) return bad(500, "read_failed");
+    if (!owned) return bad(404, "production_not_found");
+    if (owned.learner_id !== learnerId) return bad(403, "forbidden");
+  }
+
   const row: Record<string, unknown> = {
     learner_id: learnerId,
     claim: body.claim ?? null,

@@ -170,7 +170,7 @@ test("a stage below understanding (awareness) does not count as mastered", () =>
   const result = computeFrontier(nodes, edges, states, target.id);
 
   const step = result.chain.find((s) => s.node.slug === "light-can-scatter-off-small-things")!;
-  assert.equal(step.stage, "awareness", "the chain must report the learner's real stage, not silently upgrade it");
+  assert.equal(step.stage, "awareness", "the chain must report the learner's recorded stage as-is");
   assert.equal(step.isFrontier, false, "awareness must not be treated as mastered (frontier requires >= understanding)");
   // Its own prerequisites (roots) must still have been walked to, since
   // awareness didn't stop the backward walk.

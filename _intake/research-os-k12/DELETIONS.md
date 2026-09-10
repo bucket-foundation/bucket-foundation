@@ -2,7 +2,7 @@
 
 Every place Phase 0 build work replaced existing copy, with the original text
 kept verbatim below. No file is ever deleted outright; this log exists so a
-replaced sentence is never actually lost. See also
+replaced sentence is never lost. See also
 `learning/research-os/CHANGE-LEDGER.md`, PR #3's own ledger for the same
 convention.
 
@@ -39,3 +39,29 @@ demonstrates the product is a founder call, not one this PR makes for good.
 > `_intake/research-os-k12/`. Pilot classrooms, a pre-registered study of
 > the four-tool constraint, and a state-validation paper come before any
 > wider release.
+
+## 2026-09-10, PR #6 review pass, voice-lint word and construction swaps
+
+**Reason.** `agf-lint-voice` / `agf-lint-voice-src check` flagged a banned
+adverb in two files and an antithesis construction in three files. Each
+swap is a single word or short phrase; the original wording is kept here
+verbatim rather than only in the diff.
+
+- `_intake/research-os-k12/DELETIONS.md` (this file's own opening
+  paragraph): "this log exists so a replaced sentence is never **actually**
+  lost" to "never lost."
+- `src/app/api/research-os/workspace/route.ts` (Check tool system prompt):
+  "and only if you **actually** leaned on it" to "and only if you leaned on
+  it."
+- `scripts/seed-research-os.mjs` (header comment): "but the destination
+  here is Postgres, **not a static file mirror, since the graph is
+  server-queried, not shipped to the browser**." to "with Postgres as the
+  destination: the graph is server-queried at request time."
+- `scripts/test-research-os-routing.ts` (assertion message): "the chain must
+  report the learner's real stage, **not silently upgrade it**" to "the
+  chain must report the learner's recorded stage as-is."
+- `src/app/research-os/workspace/page.tsx` (transfer-item prompt): "A sunset
+  looks red, **not blue**. Using the lambda^-4 law, explain why the SAME
+  scattering that makes the daytime sky blue makes a sunset red." to "A
+  sunset looks red. Using the lambda^-4 law, explain why the SAME
+  scattering that makes the daytime sky blue makes a sunset red instead."

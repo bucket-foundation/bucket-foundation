@@ -422,7 +422,7 @@ export default function ResearchOsWorkspacePage() {
                   </button>
                   <ul className="mt-2 text-[12px] text-[color:var(--basalt-2)] flex flex-col gap-1">
                     {locateResults.map((r) => (
-                      <li key={r.nodeId}>{r.title} — {r.citation}</li>
+                      <li key={r.nodeId}>{r.title}: {r.citation}</li>
                     ))}
                   </ul>
                 </div>
@@ -434,7 +434,7 @@ export default function ResearchOsWorkspacePage() {
                   </button>
                   {quote && (
                     <p className="mt-2 text-[12px] text-[color:var(--basalt-2)]">
-                      &ldquo;{quote.quotable_span}&rdquo; — {quote.citation}
+                      &ldquo;{quote.quotable_span}&rdquo;, {quote.citation}
                     </p>
                   )}
                 </div>
@@ -474,8 +474,8 @@ export default function ResearchOsWorkspacePage() {
                 <div className="p-4 bg-[color:var(--bone)]">
                   <div className="font-display uppercase text-[14px] mb-2">transfer item</div>
                   <p className="text-[12px] text-[color:var(--basalt-2)] mb-2">
-                    A sunset looks red, not blue. Using the lambda^-4 law, explain why the SAME scattering that makes
-                    the daytime sky blue makes a sunset red.
+                    A sunset looks red. Using the lambda^-4 law, explain why the SAME scattering that makes
+                    the daytime sky blue makes a sunset red instead.
                   </p>
                   <textarea
                     value={transferAnswer}

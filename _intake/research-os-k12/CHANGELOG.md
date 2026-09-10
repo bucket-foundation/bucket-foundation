@@ -102,3 +102,67 @@ for the plan and site page).
 - Real full-text source ingestion for Quote; Phase 0's Quote tool returns the
   seeded node summary plus its real citation, not a passage pulled from a
   larger source document.
+
+## 2026-09-10, PR #6 review pass
+
+Strict review of PR #6 before merge. Leak scan on the full diff against
+`origin/main` found no API keys, no `.env` contents, no server IPs, no
+`/home/gian` paths, and no Claude session URLs in file content; the only
+email match was the existing placeholder `you@school.example`. No redactions
+were needed.
+
+### Fixed
+
+- `src/app/api/research-os/production/route.ts`: the POST handler upserted a
+  production row by client-supplied `id` with `onConflict: "id"` and always
+  set `learner_id` to the caller's own verified id, without first checking
+  that an existing row at that `id` belonged to the caller. A learner who
+  knew or guessed another learner's production id could overwrite that row
+  and reassign it to themselves, since the service-role client bypasses the
+  migration's RLS `own_update` policy by design (see `db.ts`'s header
+  comment). Added an ownership check before the upsert: fetch the existing
+  row's `learner_id` and return 403 on a mismatch, 404 if the id does not
+  exist.
+- `_intake/research-os-k12/DELETIONS.md`: removed a banned adverb
+  ("actually").
+- `src/app/api/research-os/workspace/route.ts`: removed a banned adverb
+  ("actually") from the Check tool's system prompt.
+- `src/app/research-os/workspace/page.tsx`: replaced two em dashes in JSX
+  citation strings with a colon and a comma; rewrote the sunset transfer-item
+  prompt to drop an antithesis construction ("looks red, not blue").
+- `scripts/seed-research-os.mjs`: rewrote a header-comment sentence to drop
+  an antithesis construction ("Postgres, not a static file mirror ...
+  server-queried, not shipped to the browser").
+- `scripts/test-research-os-routing.ts`: rewrote one assertion message to
+  drop an antithesis construction ("real stage, not silently upgrade it").
+
+### Verified, no change needed
+
+- RLS: `graph.nodes` / `graph.edges` are public-select only (no write
+  policy for any role but service-role); `graph.learner_node_state` and
+  `graph.productions` scope select/insert/update to `auth.uid() =
+  learner_id`. Every application-code query in `db.ts` and the route
+  handlers (aside from the bug above) filters by the token-verified learner
+  id, never a client-supplied one.
+- `frontier.ts`: `computeFrontier` guards against cycles with a `visited`
+  set (a prerequisite cycle cannot loop the BFS) and every non-mastered node
+  with no prerequisites is itself a frontier stop, so every reachable node
+  resolves to a frontier or chain member; an unreachable target throws
+  before the route ever calls it, and the route validates the target slug
+  first.
+- Workspace API: the four actions (locate, quote, check, organize) are a
+  closed switch with a 400 default; locate and quote never call a model;
+  Organize's system prompt forbids adding any fact not in the learner's own
+  notes and its output lands in an editable, unsubmitted textarea
+  (`production.claim`) on the client, never auto-submitted.
+- Citations: spot-checked 5 of the seed's sources with WebFetch (Tyndall
+  1869 `doi:10.1098/rspl.1868.0033`, Rayleigh 1871
+  `doi:10.1080/14786447108640452` and `...640507`, the NASA Space Place
+  page, and the pinned Wikipedia Rayleigh-scattering revision). All five
+  resolve live and match the seeded title/author/year. No fabricated
+  citation found.
+- Voice lint (`agf-lint-voice check`, `agf-lint-voice-src check`) on every
+  file this PR touches: 0 violations after the fixes above.
+- Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (8/8 pass), `next lint` on every touched file:
+  all clean.
