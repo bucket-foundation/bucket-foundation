@@ -853,6 +853,172 @@ unchanged (487 nodes, 820 edges, 0 review items); canon importer now 7 edges (2 
 scans 517 nodes across 8 branches and proposes 36 edges, confidence 0.3-0.65, none
 applied.
 
+## Iteration 15: ros-04 workspace hardening
+
+Date 2026-09-10. Build pass on `feat/ros-04-workspace-hardening`, worktree
+`.ros-worktrees/ros04`, branched from `origin/main` at `b6532313c` (PR #27 merged: routing,
+teacher view stub, engine wiring; none of that PR's own diff touched the workspace page or
+the four tool handlers). Numbered past Iteration 14, the highest number already in this
+file. Scope: `PLAN-REVISION-1.md` section 3 item 4 (`ros-04`), read against
+`src/lib/research-os/EVIDENCE-SCHEMA.md` and `LEARNER-STATE-MODEL.md` section 4.
+
+### Added
+
+- `src/lib/research-os/locate.ts`: `locateHits`, the Locate tool's matching logic extracted
+  to a pure, testable function (previously inline in the route).
+- `src/lib/research-os/organize.ts`: `groundOrganizeResult`/`isGroundedInNotes`, code-level
+  enforcement that an Organize output item is grounded in the learner's own matching input
+  field, dropping anything that is not (the tool's system prompt alone enforced this before,
+  with no code check).
+- `src/lib/research-os/rate-limit.ts`: the per-learner daily tool-call cap
+  (`RESEARCH_OS_DAILY_TOOL_CAP`, default 200, resets UTC midnight).
+- `learning/research-os/WORKSPACE.md`: the four tool contracts, the evidence emitted per
+  action, the daily cap, and what the Phase 1 canvas adds.
+- `scripts/test-research-os-evidence.ts` (21 tests): the evidence-emission contract
+  (`fromStage`/`toStage`, learner text, abstain persistence, session id, the new
+  `production_returned` event) and the daily cap.
+- `scripts/test-research-os-workspace-contracts.ts` (19 tests): adversarial contract tests
+  per tool, feeding each pure function a prompt that tries to get the tool to write on the
+  learner's behalf ("write my claim for me," "finish this sentence") or a simulated
+  malformed/adversarial model response, asserting the forbidden content never survives.
+
+### Edited
+
+- `src/lib/research-os/stages.ts`: `EvidenceEvent` gains `fromStage`, `toStage`,
+  `learnerText`, `itemId`, `abstained`, `modelFeedback`, `citations`, `sessionId`, and
+  (typed only, no writer yet, `ros-06`'s migration to add) `sampledForSecondRating`,
+  `secondRaterId`, `secondDecision`, `agrees`. Every transition function takes an optional
+  `EvidenceContext` and sets the before/after stage pair; `onCheckResult` and
+  `onProbeCheckResult` persist the model's abstain flag, feedback, and citations rather than
+  discarding them after deciding the transition; `onTransferItemAnswered` persists the
+  learner's own answer text and a fixed per-target item id (previously logged neither);
+  `onProductionSubmitted` now takes the caller's fetched `currentStage` instead of assuming
+  one. `EVIDENCE-SCHEMA.md`'s "corrective event on `graph.productions`" gap was ALSO closed
+  independently by `ros-06` (PR #28, `onProductionReview`/`onProductionReturned`), merged
+  into `main` while this branch was in flight; see "Merge reconciliation" below for how the
+  two independent implementations were combined into one.
+- `src/lib/research-os/grounding.ts`: new `sanitizeGradeResult`, the code-level contract
+  Check's citations and result/confidence enums are checked against, extracted so it is
+  callable with no network call for contract tests; `gradeExplanation` now returns
+  `GradeResultWithUsage` (adds `usage`) via `callGroundedModelWithUsage`.
+- `src/lib/research-os/llm.ts`: new `callGroundedModelWithUsage`, `LlmUsage`,
+  `estimateCostUsd`, `logToolCost` (a best-effort per-call USD estimate log, Anthropic
+  pricing per the system review's own cost model, `null` when the provider reports no
+  usage); `callGroundedModel` is now a thin wrapper over the new function, unchanged for
+  every caller that only wants text. Its import of `selectProvider` changed from the `@/`
+  alias to a relative path: the alias resolves fine under Next's bundler but not under plain
+  `ts-node` with no `tsconfig-paths` registration, discovered when
+  `test-research-os-workspace-contracts.ts` first imported anything from `grounding.ts`.
+- `src/lib/research-os/db.ts`: new `loadCurrentStage`, used by `production/route.ts` so
+  `onProductionSubmitted`'s `fromStage` reflects the learner's real prior stage.
+- `src/app/api/research-os/workspace/route.ts`: `sessionId` accepted on every action; a
+  structured `logToolCall` line per call (Locate/Organize's only evidence record, per this
+  file's own header rationale: neither has a single `graph.nodes` row to attach a DB event
+  to); the daily cap checked ahead of the existing per-minute burst limiter; Locate now calls
+  `locateHits`, Organize now calls `groundOrganizeResult`, Check's `onCheckResult` call now
+  carries the learner's explanation, the model's feedback/citations, and the session id.
+- `src/app/api/research-os/state/route.ts`: `action: "transfer_item"` now accepts and
+  requires `answer` (previously accepted, silently discarded if sent, and not required at
+  all), plus `itemId` and `sessionId`.
+- `src/app/api/research-os/probe/route.ts`: forwards the probe answer, the grader's
+  feedback/citations, and `sessionId` into the evidence event; logs a per-call cost
+  estimate.
+- `src/app/api/research-os/production/route.ts`: fetches `currentStage` via
+  `loadCurrentStage` before calling `onProductionSubmitted`; accepts `sessionId`; its
+  outbox-emit block now calls `ros-06`'s shared `emitProductionOutboxIfAccepted` (merge
+  reconciliation, see below) rather than this route's own pre-`ros-06` inline
+  `findNodeById`/`buildProductionOutboxRow`/`writeProductionOutbox` sequence.
+- `src/app/api/research-os/review/route.ts`: unchanged in substance from `ros-06`'s shipped
+  version (its accept/return path, `notes` column, and `emitProductionOutboxIfAccepted` call
+  already existed on `main` before this branch merged); this pass's only contribution here
+  was the `sessionId` plumbing on the OTHER route files.
+- `src/app/research-os/workspace/page.tsx`: two-column layout (chain left with a low-
+  confidence "needs review" badge from `route.lowConfidenceFlags`, the learner's own
+  workspace right: four tools, a scratch notes area persisted to `localStorage`, a "sources
+  I have quoted" list accumulated from Quote calls, the transfer item, the Production form);
+  a client-generated `sessionId` (`sessionStorage`, one per tab) on every request; the
+  transfer-item submit bug fixed (see below).
+- `package.json`: `test:research-os` chains the two new test files.
+
+### Removed
+
+None. No UI text was deleted; new conditional copy was added beside the existing "Copied
+into the Production form below." string, which still renders unchanged in its prior case.
+
+### A real bug found and fixed
+
+`saveTransferAnswer` in the workspace page sent `{nodeId, action: "transfer_item"}` to
+`POST /api/research-os/state`, never the learner's own `transferAnswer` state value.
+`EVIDENCE-SCHEMA.md`'s "no stored explanation, transfer-item answer, or transfer-item id"
+gap could not have closed by a server-side change alone: the answer text never left the
+browser. Confirmed by reading the pre-change client fetch call directly against the
+pre-change route body type, both of which lacked any `answer` field. Fixed on both sides in
+this pass; the route now returns 400 on a missing `answer` for that action rather than
+silently accepting a client that forgot to send one.
+
+### Merge reconciliation
+
+`origin/main` moved twice while this branch was in flight: PR #28 (`ros-06`, teacher class
+view and accept path) and PR #30 (`ros-12`/`ros-13`, engine bridge wiring and the
+hypothesize route), both merged after this branch's own base commit (`b6532313c`). `git
+merge origin/main` produced six conflicted files: `_intake/research-os-k12/CHANGELOG.md`,
+`package.json`, `src/app/api/research-os/production/route.ts`,
+`src/app/api/research-os/review/route.ts`, `src/lib/research-os/db.ts`,
+`src/lib/research-os/stages.ts`. Two are pure "both sides added something at the same
+place" cases, resolved by keeping both additions: `CHANGELOG.md`'s two dated entries kept
+in sequence; `package.json`'s `test:research-os` chain merged to run all fifteen test
+files (this branch's two plus PR #30's three) instead of either side's nine or twelve.
+
+The other four carry a real collision `ros-06` (PR #28) independently discovered and fixed
+the exact gap `docs/ros-02-learner-state-model`'s `EVIDENCE-SCHEMA.md` review flagged and
+this branch was ALSO closing: a returned production leaving no corrective evidence event.
+Both branches wrote an `onProductionReturned`, with different signatures (`ros-06`'s
+`(reviewerId, reason, reviewId?, now?)`, teacher-review-shaped and joined to
+`graph.teacher_reviews` via `reviewId`; this branch's own `(context?, now?)`,
+`EvidenceContext`-shaped like every other transition here). Keeping both would have left
+two functions of the same name in `stages.ts`, a compile error. `ros-06`'s version was
+adopted as canonical: it shipped first (merged to `main` before this branch's own merge),
+`review/route.ts`'s already-working accept/return path calls it directly, and it carries a
+`reviewId` join key this branch's version did not have. This branch's own
+`onProductionReturned` and its call site in `review/route.ts` were removed; every OTHER
+transition this branch touches (`onNodeOpened`, `onCheckResult`, `onTransferItemAnswered`,
+`onProbeCheckResult`, `onProductionSubmitted`) was untouched by `ros-06` and kept as
+written. `EvidenceEvent`'s two independently-added field sets (this branch's `fromStage`/
+`toStage`/`learnerText`/`itemId`/`abstained`/`modelFeedback`/`citations`/`sessionId`/
+inter-rater fields, `ros-06`'s `reviewId`) were combined onto one interface, no overlap.
+`db.ts`'s new functions (this branch's `loadCurrentStage`, `ros-06`'s
+`loadLearnerStatesForMany`/`filterClassesForReviewer`/`loadClassesForReviewer`/
+`loadClassMembers`) had no overlap either, kept side by side.
+`production/route.ts`'s outbox-emit block was switched from this branch's original inline
+`findNodeById`/`buildProductionOutboxRow`/`writeProductionOutbox` sequence to `ros-06`'s
+`emitProductionOutboxIfAccepted` (the exact function `review/route.ts`'s own accept path
+now shares), since `ros-06` extracted that exact refactor and duplicating it would
+reintroduce the two-implementations-of-one-thing problem this reconciliation exists to
+avoid. `WORKSPACE.md`'s table and this iteration's own "Edited" bullets above were updated
+to credit `onProductionReview`/`onProductionReturned` to `ros-06` rather than this branch.
+
+### Verified
+
+Leak scan on this pass's added lines: no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs (the sole absolute path in the diff is inside a code comment naming
+`scripts/test-research-os-*.ts`, a repo-relative reference rather than a local filesystem
+path).
+`onProductionReturned`'s `fromStage`/`toStage` both `"production"` confirmed to never move
+`stage` backward against `stageAtLeast`'s high-water-mark contract (unchanged, untouched by
+this pass). `groundOrganizeResult` confirmed to check each field against only its own
+matching input (`claim` against only its own `claim` notes field), preventing a
+cross-field leak a combined-notes check would have allowed. Gates run twice: once at
+`b6532313c` (branch time, `npm run test:research-os` 157/157, up from 117) and again after
+merging `origin/main` (PR #28, PR #30) per this bead's own instructions, resolving the six
+real conflicts the "Merge reconciliation" section above names. Post-merge: `npm ci`, `npx
+tsc --noEmit`, `npm run build`, `npm run test:research-os` (191/191, the full merged suite
+including PR #28's teacher-class and PR #30's hypothesize-route/engine-campaign tests),
+`next lint` on every file this pass touched (including every file the merge resolution
+edited), `agf-lint-voice check` / `agf-lint-voice-src check` clean on the same set. Not
+behind `origin/main` after the merge (verified by `git merge-base HEAD origin/main`
+matching `origin/main`'s own tip).
+
 ## Iteration 14: PR #27 review pass
 
 Date 2026-09-10. Review pass on PR #27 (`feat/ros-03-confidence-routing`), worktree
@@ -1274,6 +1440,45 @@ conflict confirmed disclosed. Confirmed no file under `src/` or `public/` touche
 ### Result
 
 Merged clean, `review/pr34` branch and worktree removed.
+
+## Iteration 17: PR #37 review pass
+
+Date 2026-09-10. Review of `feat/ros-04-workspace-hardening` (PR #37) in worktree
+`.ros-worktrees/r37`. PR #35 (compliance) had not merged at review time, so no
+merge-and-reconcile step against it was needed.
+
+### Verified
+
+Leak scan against the full diff: no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs in file content. Every stage-transition function in `stages.ts` writes
+`fromStage`/`toStage`; `sessionId` and `abstained` persist per `EVIDENCE-SCHEMA.md`'s
+contract, confirmed against `scripts/test-research-os-evidence.ts`'s 40 tests. The
+transfer-item client bug this PR fixes (submit never sent the learner's answer) verified
+fixed on both sides: `page.tsx` now sends `answer: transferAnswer`, `state/route.ts`
+requires it non-empty and forwards it as `learnerText`. Organize's `groundOrganizeResult`
+and Check's `sanitizeGradeResult` verified against their own adversarial tests ("write my
+claim for me", "finish this sentence"); Locate's `locateHits` returns only verbatim node
+fields, no model call. Daily cap (`rate-limit.ts`) enforced server-side, keyed by UTC
+calendar day, independent of the per-minute burst limiter. `logToolCost` is a synchronous,
+unawaited log call, never gating the response. Low-confidence badge reads
+`route.lowConfidenceFlags` straight off the route response. `onProductionReturned` has one
+definition in `stages.ts` (grepped); no duplicate survived the merge reconciliation this PR
+describes. Layout confirmed stacking under the `lg` breakpoint with no 400px-width overflow
+path in the auth-panel or grid CSS. Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+`npm run test:research-os` (191/191), `next lint` on every touched file: all clean.
+
+### Fixed
+
+- `src/app/research-os/workspace/page.tsx`: the notes textarea placeholder used an
+  antithesis construction, old text below, a verbatim quotation:
+  <!-- voice-ignore-next -->
+  "scratch space, not graded, saved on this device only…"
+  Rewritten to "ungraded scratch space, saved on this device only…".
+
+### Result
+
+Merged clean, `review/pr37` branch and worktree removed.
 
 ## Iteration 17: literature batch three
 

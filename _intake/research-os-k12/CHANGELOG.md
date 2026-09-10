@@ -1,5 +1,58 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, ros-04 workspace hardening (PR TBD)
+
+`feat/ros-04-workspace-hardening`, worktree `.ros-worktrees/ros04`, branched from
+`origin/main` at `b6532313c` (PR #27 merged). Scope: `PLAN-REVISION-1.md` section 3
+item 4, evidence emission closing `src/lib/research-os/EVIDENCE-SCHEMA.md`'s named
+gaps, server-side tool contract enforcement for the four workspace tools, a minimal
+two-column canvas layout, and a per-learner daily tool-call cap.
+
+**Evidence emission.** `stages.ts`'s `EvidenceEvent` gained `fromStage`, `toStage`,
+`learnerText`, `itemId`, `abstained`, `modelFeedback`, `citations`, and `sessionId`
+(plus unwritten-for-now `sampledForSecondRating`/`secondRaterId`/`secondDecision`/
+`agrees`, typed per the schema's own contract, ros-06's migration to populate). Every
+transition function now sets `fromStage`/`toStage`; `onCheckResult` and
+`onProbeCheckResult` persist `abstained`/`modelFeedback`/`citations`;
+`onTransferItemAnswered` persists the learner's own answer text and a fixed per-target
+item id. The "no corrective event on a returned production" gap was closed
+independently by PR #28 (`ros-06`, `onProductionReview`/`onProductionReturned`) while
+this branch was in flight; merging `origin/main` after PR #28 landed found and resolved
+the resulting duplicate, keeping `ros-06`'s version (see `learning/research-os/
+CHANGE-LEDGER.md`'s "Merge reconciliation" for the full account). A real client bug
+found in the process: the workspace page's transfer-item submit sent `{nodeId,
+action}` only, never the answer text, so the gap could not have closed from the server
+side alone regardless of what the route accepted; fixed on both sides, and the server
+now requires a non-empty `answer` for that action.
+
+**Tool contract enforcement.** Three new pure modules, each with adversarial contract
+tests in `scripts/test-research-os-workspace-contracts.ts` (19 tests): `locate.ts`
+(`locateHits`, extracted from the route's inline filter), `organize.ts`
+(`groundOrganizeResult`/`isGroundedInNotes`, a code-level "is this grounded in the
+learner's own matching input field" check the system prompt alone never enforced
+before), and `grounding.ts`'s new `sanitizeGradeResult` (strips a citation that is not
+the one exact allowed label, downgrades a malformed enum or missing-feedback response
+to the same abstain fallback an unparseable one gets). `scripts/test-research-os-
+evidence.ts` (21 tests) covers the evidence-emission contract and the daily cap.
+
+**Daily cap and cost log.** `rate-limit.ts` adds `RESEARCH_OS_DAILY_TOOL_CAP`
+(default 200, resets UTC midnight) enforced in the workspace route ahead of the
+existing per-minute burst limiter. `llm.ts` gained `callGroundedModelWithUsage` and
+`logToolCost`, a best-effort per-call USD estimate logged for Check, Organize, and the
+diagnostic probe from the provider's own reported token usage (Anthropic pricing per
+the system review's own cost model), `null` when the provider reports none.
+
+**Canvas.** `src/app/research-os/workspace/page.tsx`: the vertical chain list becomes
+a two-column layout (chain left, with a `needs review` badge on any step whose own
+edge carries a `ros-03` low-confidence flag; the learner's own tools/notes/quoted-
+sources/Production form right), stacking to one column under `lg`, verified against a
+400px viewport. A client-generated `sessionId` (one per tab, `sessionStorage`) now
+rides on every workspace/state/probe/production request.
+
+**Full doc:** `learning/research-os/WORKSPACE.md` (new). See also `learning/
+research-os/CHANGE-LEDGER.md`'s matching entry for the file-by-file diff and gate
+results.
+
 ## 2026-09-10, PR #35 review pass
 
 Review of `feat/ros-07-compliance-part-a` (PR #35) in worktree `review/pr35`. Full account:
@@ -1034,3 +1087,78 @@ None.
   `intake/ros-literature-2`'s concurrent 45-to-77-row expansion: this
   pass's tier/status changes carried onto the six affected rows, area
   counts re-verified at 77 rows total (17/25/18/12/5).
+
+## 2026-09-10, PR #37 review pass
+
+Strict review of PR #37 (`feat/ros-04-workspace-hardening`) before merge, in
+an isolated worktree per the review protocol. PR #35 (compliance) had not
+merged at review time, so no merge-and-reconcile step against it applied.
+
+Leak scan on the full diff against `origin/main`: no API keys, `.env`
+contents, IPs, non-public hostnames, personal emails other than
+`gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in
+file content. No redactions were needed.
+
+### Fixed
+
+- `src/app/research-os/workspace/page.tsx`: the notes textarea placeholder
+  used an antithesis construction ("scratch space, not graded, saved on
+  this device only…"). Rewritten to "ungraded scratch space, saved on this
+  device only…", stating the fact once, positively.
+
+### Verified, no change needed
+
+- Evidence emission: every stage-transition function in `stages.ts` writes
+  `fromStage`/`toStage`; `sessionId` round-trips on every learner-authored
+  transition; `abstained` is persisted on `onCheckResult` and
+  `onProbeCheckResult`, not just used to decide the transition. Confirmed
+  against both the functions and `scripts/test-research-os-evidence.ts`'s
+  40 tests.
+- Transfer-item submit: the client now sends `answer: transferAnswer` in
+  the `POST /api/research-os/state` body; the server
+  (`src/app/api/research-os/state/route.ts`) requires a non-empty `answer`
+  for `action: "transfer_item"` and forwards it onto the evidence event as
+  `learnerText`.
+- Organize cannot add prose: `organize.ts`'s `groundOrganizeResult` drops
+  any claim/evidence/source item not grounded in the learner's own matching
+  input field; the adversarial tests in
+  `scripts/test-research-os-workspace-contracts.ts` ("write my claim for
+  me", "finish this sentence") pass.
+- Check: `grounding.ts`'s `sanitizeGradeResult` strips any citation but the
+  one allowed source label and never returns a rewritten explanation
+  (`GradeResult` has no field for one).
+- Locate: `locate.ts`'s `locateHits` returns only fields copied verbatim
+  from matched node rows, no model call, capped at 10 results.
+- Daily cap: `rate-limit.ts`'s `recordAndCheck` is enforced server-side per
+  learner, keyed by UTC calendar day (`dailyKeyFor`), independent of the
+  existing per-minute burst limiter; covered by
+  `scripts/test-research-os-evidence.ts`'s cap tests including the
+  UTC-midnight reset.
+- Cost logging never blocks the response: `llm.ts`'s `logToolCost` is a
+  synchronous, unawaited `console.log` call after the response data is
+  already computed; it does not gate or delay `NextResponse.json`.
+- Low-confidence badge: `page.tsx` reads `route.lowConfidenceFlags`
+  directly off the `/api/research-os/route` response state, not a
+  client-recomputed value.
+- Merge reconciliation: `onProductionReturned` has a single definition in
+  `stages.ts` (grep confirmed); no duplicate `EvidenceContext`-shaped
+  version survives from this branch's pre-merge history.
+- Layout at 400px: the workspace grid is `grid-cols-1 lg:grid-cols-[320px_1fr]`
+  (stacks below the 1024px `lg` breakpoint); the auth-panel inputs sit in
+  `flex flex-wrap` rows with a 200px/160px min/fixed width well under a
+  368px content width at a 400px viewport (`px-4` gutters), so no row forces
+  horizontal scroll.
+- Voice lint: `agf-lint-voice-src check` (the source-file-scoped checker)
+  clean on all 14 changed TS/TSX files. `agf-lint-voice check` (the
+  general prose checker) additionally flagged antithesis phrasing and a
+  few banned words inside test-description string literals and a local
+  variable name (`honest`) in `scripts/test-research-os-evidence.ts` and
+  `scripts/test-research-os-workspace-contracts.ts`; left as-is since these
+  are internal test labels, not UI strings or comments, and `-src`'s own
+  AST-scoped rule set treats them the same way. The one genuine UI-text hit
+  (the notes placeholder above) was fixed. `BEADS-PENDING.jsonl`'s
+  pre-existing violations (lines 1-80) predate this PR; the one new line
+  this PR adds (the `ros-04` bead entry) is clean.
+- Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (191/191 pass), `next lint` on every touched
+  file: all clean.
