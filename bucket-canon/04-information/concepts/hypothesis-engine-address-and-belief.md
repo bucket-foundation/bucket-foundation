@@ -10,6 +10,8 @@
 > formalization at `papers/history-hypothesis-engine/lean/Bucket/`, design
 > specs at `_intake/hypothesis-engine/`
 > **Reference implementation:** `tools/hypothesis-engine/` (package `hte`)
+> **Zenodo DOI:** [10.5281/zenodo.22694649](https://doi.org/10.5281/zenodo.22694649)
+> (v1.0.0, minted 2026-09-10, design paper and Lean sources)
 
 This is the first **primary-method** node under 04-information: a combinatorial
 address scheme plus an evidence-fusion belief calculus, both stated and Lean-

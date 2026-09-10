@@ -42,14 +42,14 @@ These are repo-native contributions added by hand. They sit outside the
 FTS counts above until a future pass runs them through the same
 full-text index.
 
-| Title | Path | Type |
-|---|---|---|
-| A Hypothesis Engine over History (design paper) | `papers/history-hypothesis-engine/main.tex` | primary method |
-| AI Hypothesis Generation for Scientific Discovery, 2026 | `_intake/hypothesis-engine/SURVEY-AI-HYPOTHESIS-GENERATION.md` | review |
-| History Hypothesis Engine: Design Spec | `_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md` | design spec |
-| Hypothesis Engine: Ideal State and Unknowns | `_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md` | design spec |
-| Timeline and Combinatorics Spec | `_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md` | design spec |
-| Crosswalk: History Hypothesis Engine vs Quantum Algorithm Discovery | `_intake/hypothesis-engine/CROSSWALK-QUANTUM-ALGORITHM-DISCOVERY.md` | design spec |
-| Canon concept node, Hypothesis Address Space and Subjective-Logic Belief | `bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md` | canon card |
+| Title | Path | Type | DOI |
+|---|---|---|---|
+| A Hypothesis Engine over History (design paper) | `papers/history-hypothesis-engine/main.tex` | primary method | [10.5281/zenodo.22694649](https://doi.org/10.5281/zenodo.22694649) |
+| AI Hypothesis Generation for Scientific Discovery, 2026 | `_intake/hypothesis-engine/SURVEY-AI-HYPOTHESIS-GENERATION.md` | review | - |
+| History Hypothesis Engine: Design Spec | `_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md` | design spec | - |
+| Hypothesis Engine: Ideal State and Unknowns | `_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md` | design spec | - |
+| Timeline and Combinatorics Spec | `_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md` | design spec | - |
+| Crosswalk: History Hypothesis Engine vs Quantum Algorithm Discovery | `_intake/hypothesis-engine/CROSSWALK-QUANTUM-ALGORITHM-DISCOVERY.md` | design spec | - |
+| Canon concept node, Hypothesis Address Space and Subjective-Logic Belief | `bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md` | canon card | [10.5281/zenodo.22694649](https://doi.org/10.5281/zenodo.22694649) |
 
 Full context: `CANON-CONTRIBUTIONS-2026-09-10.md`.
