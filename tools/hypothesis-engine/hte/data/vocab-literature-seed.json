@@ -1,0 +1,92 @@
+{
+  "default_alpha": 1.0,
+  "alpha": {
+    "actor": 1.0,
+    "action": 1.0,
+    "object": 1.0,
+    "place": 1.0,
+    "time": 1.0,
+    "mechanism": 1.0,
+    "relation": 1.0
+  },
+  "by_slot": {
+    "actor": [
+      {"id": "tutor", "slot": "actor", "label": "Tutor, human or AI", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "teacher", "slot": "actor", "label": "Teacher", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "system", "slot": "actor", "label": "AI system or model", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "learner", "slot": "actor", "label": "Learner or student", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "novelty-rater-unfamiliarity", "slot": "actor", "label": "A novelty rating reflects the rater's own unfamiliarity, not the idea's originality", "prior_logit": -1.0, "consensus_status": "contested", "definition_url": null},
+      {"id": "open-access-sufficiency", "slot": "actor", "label": "Open-ended AI access alone, without structure, drives a learning gain", "prior_logit": -2.0, "consensus_status": "fringe", "definition_url": null},
+      {"id": "citation-count-as-validity", "slot": "actor", "label": "Citation count alone signals a paper's scientific validity", "prior_logit": -1.0, "consensus_status": "contested", "definition_url": null},
+      {"id": "full-automation-safe-substitute", "slot": "actor", "label": "Full automation alone, with no human skill kept active, safely substitutes expert judgment", "prior_logit": -2.0, "consensus_status": "fringe", "definition_url": null},
+      {"id": "prestige-explains-replication", "slot": "actor", "label": "A study's venue prestige alone predicts whether it replicates", "prior_logit": -1.0, "consensus_status": "contested", "definition_url": null}
+    ],
+    "action": [
+      {"id": "improved", "slot": "action", "label": "Improved", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "worsened", "slot": "action", "label": "Worsened", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "mixed", "slot": "action", "label": "Mixed, improved on one measure and worsened on another", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "no-effect", "slot": "action", "label": "No detected effect", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null}
+    ],
+    "object": [
+      {"id": "test-score", "slot": "object", "label": "Test or examination score", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "retention", "slot": "object", "label": "Long-term retention", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "transfer", "slot": "object", "label": "Transfer to a new problem or context", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "motivation", "slot": "object", "label": "Motivation", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "engagement", "slot": "object", "label": "Engagement or satisfaction", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "mastery", "slot": "object", "label": "Skill mastery", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "learning-gain", "slot": "object", "label": "Learning gain or proficiency", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "novelty", "slot": "object", "label": "Novelty of a generated idea or result", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "prediction-accuracy", "slot": "object", "label": "Prediction or classification accuracy", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "replication-rate", "slot": "object", "label": "Replication rate", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "citation-credit", "slot": "object", "label": "Citation credit or authorship standing", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "disruption-index", "slot": "object", "label": "Disruption versus development of prior work", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "structure-accuracy", "slot": "object", "label": "Structural or physical prediction accuracy", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null}
+    ],
+    "place": [
+      {"id": "k12-classroom", "slot": "place", "label": "K-12 classroom or school", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "undergraduate-classroom", "slot": "place", "label": "Undergraduate or college classroom", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "classroom-setting", "slot": "place", "label": "A classroom setting of unspecified age band", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "low-resource-school-system", "slot": "place", "label": "Low-resource or Sub-Saharan African school system", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "laboratory-study", "slot": "place", "label": "Controlled laboratory study", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "industrial-control-room", "slot": "place", "label": "Industrial or process-control setting", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "research-community", "slot": "place", "label": "A professional research community or field", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null}
+    ],
+    "mechanism": [
+      {"id": "retrieval-practice", "slot": "mechanism", "label": "Retrieval practice, the testing effect", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "mastery-learning", "slot": "mechanism", "label": "Mastery learning", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "self-explanation", "slot": "mechanism", "label": "Self-explanation", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "knowledge-tracing", "slot": "mechanism", "label": "Knowledge tracing", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "productive-failure", "slot": "mechanism", "label": "Productive failure", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "curiosity-driven-learning", "slot": "mechanism", "label": "Curiosity-driven learning", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "self-determination", "slot": "mechanism", "label": "Self-determination, autonomy and intrinsic motivation", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "gamification", "slot": "mechanism", "label": "Gamification", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "far-transfer", "slot": "mechanism", "label": "Far transfer", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "learning-trajectories", "slot": "mechanism", "label": "Learning trajectories", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "item-response-theory", "slot": "mechanism", "label": "Item response theory versus classical test theory", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "cognitive-offloading", "slot": "mechanism", "label": "Cognitive offloading, transactive memory", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "skill-decay-automation", "slot": "mechanism", "label": "Skill decay under automation", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "mixed-initiative-interaction", "slot": "mechanism", "label": "Mixed-initiative interaction", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "information-foraging", "slot": "mechanism", "label": "Information foraging, information scent", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "spatial-hypertext", "slot": "mechanism", "label": "Spatial hypertext", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "intelligent-tutoring", "slot": "mechanism", "label": "Intelligent or step-based tutoring", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "literature-based-discovery", "slot": "mechanism", "label": "Literature-based discovery, undiscovered public knowledge", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "citation-trend-prediction", "slot": "mechanism", "label": "Citation-graph trend prediction", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "division-of-cognitive-labor", "slot": "mechanism", "label": "Division of cognitive labor, burden of knowledge", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "replication", "slot": "mechanism", "label": "Replication and reproducibility", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "team-size-disruption", "slot": "mechanism", "label": "Team size and disruptive versus developmental work", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "credit-allocation", "slot": "mechanism", "label": "Credit allocation, the Matthew effect", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "program-search", "slot": "mechanism", "label": "LLM-guided program search", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "autonomous-experimentation", "slot": "mechanism", "label": "Autonomous experimentation", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "protein-structure-prediction", "slot": "mechanism", "label": "Protein structure prediction", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "automated-paper-generation", "slot": "mechanism", "label": "Automated end-to-end paper generation", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "systematic-review-automation", "slot": "mechanism", "label": "Systematic review automation", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "research-assessment", "slot": "mechanism", "label": "Research-experience assessment", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "scientific-understanding", "slot": "mechanism", "label": "Scientific understanding, distinct from prediction", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "authorship-attribution", "slot": "mechanism", "label": "Authorship attribution", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "research-idea-generation", "slot": "mechanism", "label": "AI-generated research ideas", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null},
+      {"id": "bibliometric-indexing", "slot": "mechanism", "label": "Bibliometric indexing infrastructure", "prior_logit": 0.0, "consensus_status": "consensus", "definition_url": null}
+    ],
+    "time": [],
+    "relation": []
+  }
+}

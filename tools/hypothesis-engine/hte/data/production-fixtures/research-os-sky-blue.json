@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ros-sky-blue-001",
+    "learner_id": "11111111-1111-4111-8111-111111111111",
+    "target_node_id": "why-the-sky-is-blue",
+    "claim": "The sky looks blue, not violet, because air molecules scatter short wavelengths far more than long ones (Rayleigh's lambda^-4 law), and the Sun emits less violet than blue for that scattering to work on.",
+    "evidence": [
+      {
+        "node_id": "tyndall-scattering-by-small-particles",
+        "locator": "graph.nodes.summary",
+        "quote": "John Tyndall showed experimentally that light scattered by small particles suspended in a clear medium comes out bluish and polarized, tying a scattered blue color to scattering by particles far smaller than the light's wavelength."
+      },
+      {
+        "node_id": "rayleigh-scattering-law",
+        "locator": "graph.nodes.summary",
+        "quote": "For particles much smaller than the wavelength of light, the intensity of scattered light depends on the particle's size and refractive index and, steeply, on the wavelength of the light."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tyndall (1869), On the blue colour of the sky...",
+        "doi": "10.1098/rspl.1868.0033"
+      },
+      {
+        "label": "Strutt / Lord Rayleigh (1871), On the scattering of light by small particles",
+        "doi": "10.1080/14786447108640507"
+      }
+    ],
+    "transfer_proof": {
+      "text": "A sunset looks red because the low sun's light crosses far more atmosphere, so nearly all the blue and violet scatters out of the direct beam before it reaches your eye, leaving mostly red and orange behind."
+    },
+    "status": "submitted",
+    "created_at": "2026-09-08T14:00:00Z",
+    "updated_at": "2026-09-09T09:30:00Z",
+    "_target_node": {
+      "slug": "why-the-sky-is-blue",
+      "title": "Why the sky is blue",
+      "tier": 10,
+      "branch": "02-physics"
+    }
+  },
+  {
+    "id": "ros-sky-blue-002",
+    "learner_id": "22222222-2222-4222-8222-222222222222",
+    "target_node_id": "light-can-scatter-off-small-things",
+    "claim": "Light bounces off in new directions when it meets something much smaller than itself, which is called scattering.",
+    "evidence": [],
+    "sources": [
+      {
+        "label": "NASA Space Place, Why Is the Sky Blue?",
+        "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+        "license": "public-domain (US government work)"
+      }
+    ],
+    "transfer_proof": {},
+    "status": "accepted",
+    "created_at": "2026-09-02T10:00:00Z",
+    "updated_at": "2026-09-03T11:15:00Z",
+    "_target_node": {
+      "slug": "light-can-scatter-off-small-things",
+      "title": "Light can scatter off small things",
+      "tier": 4,
+      "branch": "02-physics"
+    }
+  }
+]

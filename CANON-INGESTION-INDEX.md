@@ -34,3 +34,22 @@ Canon Ingestion Index.
 Started: 1,159 FTS docs.
 Now: **24,196 FTS docs (20.9x growth)**.
 Total source docs: 24,183.
+
+## Recent additions, 2026-09-10
+
+Seven Bucket-authored primary-method artifacts entered `04-information`.
+These are repo-native contributions added by hand. They sit outside the
+FTS counts above until a future pass runs them through the same
+full-text index.
+
+| Title | Path | Type |
+|---|---|---|
+| A Hypothesis Engine over History (design paper) | `papers/history-hypothesis-engine/main.tex` | primary method |
+| AI Hypothesis Generation for Scientific Discovery, 2026 | `_intake/hypothesis-engine/SURVEY-AI-HYPOTHESIS-GENERATION.md` | review |
+| History Hypothesis Engine: Design Spec | `_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md` | design spec |
+| Hypothesis Engine: Ideal State and Unknowns | `_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md` | design spec |
+| Timeline and Combinatorics Spec | `_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md` | design spec |
+| Crosswalk: History Hypothesis Engine vs Quantum Algorithm Discovery | `_intake/hypothesis-engine/CROSSWALK-QUANTUM-ALGORITHM-DISCOVERY.md` | design spec |
+| Canon concept node, Hypothesis Address Space and Subjective-Logic Belief | `bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md` | canon card |
+
+Full context: `CANON-CONTRIBUTIONS-2026-09-10.md`.
