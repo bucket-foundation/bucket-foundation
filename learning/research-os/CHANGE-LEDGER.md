@@ -2,6 +2,187 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #30 review pass
+
+Date 2026-09-10. Review of `feat/ros-12-engine-wiring` (PR #30), worktree `review/pr30`.
+Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, PR #30 review pass".
+
+### Edited
+
+- `BEADS-PENDING.jsonl`, `scripts/test-research-os-apply-engine-campaign.ts`,
+  `scripts/test-research-os-engine-bridge.ts`: four antithesis constructions rewritten,
+  no behavior change.
+- `learning/research-os/ENGINE-BRIDGE.md`: "Item 3's write-side hook is unreached today"
+  updated to record that ros-06's teacher-accept path (PR #28, merged) reaches it through a
+  real reviewer decision now, narrowed to the live-Supabase leg still untested.
+- Merged `origin/main` (PR #27, PR #28): six conflicts resolved keeping both sides'
+  additions (`BEADS-PENDING.jsonl`, `_intake/research-os-k12/CHANGELOG.md`,
+  `_intake/research-os-k12/DELETIONS.md`, `learning/research-os/CHANGE-LEDGER.md`,
+  `package.json`'s `test:research-os` script chain, `src/lib/research-os/db.ts`'s two
+  new type imports).
+
+### Removed
+
+None.
+
+### Verified
+
+Leak scan clean. Gates rerun post-merge: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+`npm run test:research-os` (151/151), `npx eslint`, engine `ruff check`, engine `make test`
+(951 passed, 14 deselected). End-to-end path run once (fixture-driven, no live Supabase):
+an approved production's outbox row (`buildProductionOutboxRow`) through the real outbox
+reader (exactly one row, idempotent consumption), the real stubbed campaign (3 accepted
+hypotheses, 11 gaps), and the real TS mapping, landing on an `engine_hypothesis` node draft
+and a `gap` node draft, both with full engine provenance.
+
+## Engine Bridge Wiring and Hypothesize Route: ros-12 and ros-13
+
+Date 2026-09-10. Branch `feat/ros-12-engine-wiring`, closing PR #14's own
+three engine bridge stubs and applying PR #10's own unapplied hypothesize
+route patch. Worked in a dedicated worktree alongside two other
+concurrent efforts on this repo: PR #20 (`fix(hte): PR #10 review
+findings...`, open, reviewing/merging `hte/api.py`, `hte/corpus/
+education_atlas.py`, `hte/corpus/literature.py`, `hte/corpus/
+production.py`, `hte/generate.py`, `hte/llm.py`, `hte/parallel.py`,
+`hte/runner.py`, `hte/timeline.py`, and their test files, none of which
+this branch edits) and a separate agent's own work on `src/lib/research-
+os/frontier.ts`, `closure.ts`, and the review and class pages (also not
+touched here). Full account: `learning/research-os/ENGINE-BRIDGE.md`.
+
+### Added
+
+- `src/app/api/research-os/hypothesize/route.ts`,
+  `src/lib/research-os/types.ts`'s `HypothesizeResult` (ros-13): `tools/
+  hypothesis-engine/docs/research-os-hypothesize-route.patch`, applied
+  cleanly against current `main` with no conflicts.
+- `src/lib/research-os/hypothesize-auth.ts` (`authorizeHypothesize`,
+  ros-13): the patch's own inline `.eq("learner_id", learnerId)` ownership
+  filter pulled into a named, pure, unit-tested function (the review item
+  that produced this branch's own ros-13 bead: "add a route test that a
+  learner can only hypothesize over their own productions").
+  `scripts/test-research-os-hypothesize-route.ts`.
+- `tools/hypothesis-engine/hte/corpus/research_os_outbox.py` (ros-12 item
+  2): `fetch_unconsumed_rows`, `mark_consumed`, `fetch_and_build`, `load`,
+  `load_and_consume`. Reads `public.research_os_productions_outbox`
+  filtered to `consumed_at is null`, through `hte.corpus.production`'s
+  existing normalizer (`Production.from_dict`). Registered as the
+  `"research-os"` corpus in `hte.cli`'s own `_CORPUS_LOADERS`.
+- `supabase/migrations/20260910030000_research_os_outbox_consumed_at.sql`
+  (ros-12 item 2): adds `consumed_at` to the outbox table, additive,
+  idempotent.
+- `tools/hypothesis-engine/tests/test_corpus_research_os_outbox.py`
+  (ros-12 item 2): 8 tests, monkeypatched `urllib.request.urlopen`, one
+  fixture row shaped like a real outbox row.
+- `hte.unknowns.unresolved_slot_gaps` (ros-12 item 4, `tools/
+  hypothesis-engine/hte/unknowns.py`): a public generalization of `hte.
+  api`'s own private `_rank_gap_nodes`, one `GapNode` per evidence item
+  missing a concept slot, ranked by `value_of_information`. 6 new tests
+  in `tools/hypothesis-engine/tests/test_unknowns.py`.
+- `tools/hypothesis-engine/scripts/campaign_research_os.py` (ros-12 item
+  3, the campaign-run caller): `run()`/`main()`, `_register_corpus`
+  (registers a corpus into `hte.runner._CORPUS_LOADERS` at call time, a
+  runtime dict assignment rather than a `hte/runner.py` edit),
+  `export_accepted_hypotheses`, `export_gap_nodes`. 7 tests in fake mode
+  against the 14 shipped production fixtures, `tools/hypothesis-engine/
+  tests/test_campaign_research_os.py`.
+- `src/lib/research-os/engine-bridge.ts`'s `gapNodeSlug`, `buildGapNode`,
+  `buildGapEdges`, `GapNodeInput`, `GapNodeDraft`, `GapNodeProvenance`
+  (ros-12 item 4, write side): a gap becomes a `graph.nodes` row of kind
+  `artifact`, provenance `type: "gap"`, with a `cites` edge (not
+  `prerequisite`, `frontier.ts`/`closure.ts` walk only that edge kind for
+  real routing) to every hypothesis node it concerns. 6 new tests in
+  `scripts/test-research-os-engine-bridge.ts`.
+- `src/lib/research-os/db.ts`'s `upsertGapNode` (ros-12 item 4): the same
+  upsert shape as `upsertEngineHypothesisNode`, kept as its own function.
+- `scripts/research-os/apply-engine-campaign.ts` (ros-12 item 3, write
+  side): `applyEngineCampaign`, `toEngineHypothesisInput`,
+  `toGapNodeInput`. Applies `campaign_research_os.py`'s own JSON export
+  through the PR #14 adapter into `graph.nodes`/`graph.edges`. 4 tests for
+  the mapping functions, `scripts/test-research-os-apply-engine-
+  campaign.ts`.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/cli.py`: `_CORPUS_LOADERS` gained the
+  `"research-os"` entry.
+- `package.json`'s `test:research-os` script: chained in
+  `scripts/test-research-os-hypothesize-route.ts` and
+  `scripts/test-research-os-apply-engine-campaign.ts`.
+- `learning/research-os/ENGINE-BRIDGE.md`: the "Stubs, open items"
+  section split into "Stubs Closed: ros-12 and ros-13" (what shipped) and
+  a narrower "Stubs, open items" (what remains); a "Running a campaign
+  end to end" section added. Original text preserved verbatim in
+  `_intake/research-os-k12/DELETIONS.md`.
+
+### Removed
+
+None.
+
+## ros-06: teacher class view and the Production accept path
+
+Date 2026-09-10. Branch `feat/ros-06-teacher-class-view`, `learning/research-os/PLAN-REVISION-1.md` section 3 item 5. Concurrent with a frontier/closure-edges pass and an engine-side pass; this work touched neither `src/lib/research-os/frontier.ts`, `closure.ts`, the graph-edges migration, `scripts/research-os/ingest/`, nor `src/lib/research-os/engine*`/`tools/hypothesis-engine`.
+
+### Added
+
+- `supabase/migrations/20260910030000_research_os_classes.sql`: `graph.classes`, `graph.class_members`, RLS on both, plus `graph.productions.notes` (jsonb, append-only).
+- `src/lib/research-os/class-view.ts`: `seedPathOrder`, `buildClassGrid`, `findBlockedLearners`, `findReadyForHarderTarget`, pure functions over plain graph arrays.
+- `src/app/api/research-os/class/route.ts` and `src/app/research-os/class/page.tsx`: the class view, `GET /api/research-os/class`, server-side data loading and computation, reviewer-gated, scoped to the caller's own classes.
+- `scripts/test-research-os-teacher-class.ts`: 20 `node:test` cases (fixture class on the real seed path, blocked/ready computations, the reviewer gate, the accept path's evidence shape against the real `buildProductionOutboxRow`, a static RLS-policy check on the new migration). Wired into `npm run test:research-os`.
+- `learning/research-os/TEACHER-LAYER.md`: the data model, the two-layer gate (RLS plus a server check), the accept path's approve/return semantics, and what Phase 1 roster sync (OneRoster/Clever/ClassLink) replaces.
+
+### Edited
+
+- `src/lib/research-os/reviewer.ts`: split `isReviewerEmail` out of `verifyReviewer` for unit testing with no network call.
+- `src/lib/research-os/stages.ts`: added `onProductionReview` (approve) and `onProductionReturned` (return); added `fromStage`, `toStage`, `reviewId` to `EvidenceEvent`; added `"production_returned"` to `EvidenceKind`.
+- `src/lib/research-os/db.ts`: added `loadClassesForReviewer`, `loadClassMembers`, `loadLearnerStatesForMany`, and `emitProductionOutboxIfAccepted` (extracted from `/api/research-os/production`'s own inline outbox block, now shared).
+- `src/app/api/research-os/production/route.ts`: its outbox-emission block replaced with a call to the new shared `emitProductionOutboxIfAccepted`; original text preserved in `_intake/research-os-k12/DELETIONS.md`.
+- `src/app/api/research-os/review/route.ts`: the production decision branch now sets a return's status to `"draft"` (was `"returned"`), appends a teacher note to the production's own `notes` column, and calls `recordEvidence` on both approve and return (a mid-review fix, see below); header comment updated to match, original text in `DELETIONS.md`.
+- `src/app/research-os/review/page.tsx`: a breadcrumb link to `/research-os/class`.
+- `package.json`: `test:research-os` now also runs `scripts/test-research-os-teacher-class.ts`.
+
+**Mid-review fix.** `ros-02`'s evidence-schema pass (`docs/ros-02-learner-state-model`, `src/lib/research-os/EVIDENCE-SCHEMA.md`) found that a returned Production left `graph.learner_node_state.stage` at `"production"` with no evidence event recording the correction, since only the approve branch called `recordEvidence`. `onProductionReturned` closes this per `EVIDENCE-SCHEMA.md`'s own "corrective event" section: `stage` stays at `"production"` (the high-water-mark rule every transition function already enforces never runs backward), and a `"production_returned"` evidence event, `fromStage`/`toStage` both `"production"`, records the correction instead.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (114/114 pass), `next lint` on every touched file, `agf-lint-voice-src check` on every touched source file, `agf-lint-voice check` on `learning/research-os/TEACHER-LAYER.md`: all clean.
+
+## Iteration 13
+
+PR #28 review pass. Date 2026-09-10. Review pass on PR #28 (`feat/ros-06-teacher-class-view`), worktree
+`review/pr28`. Full account in `_intake/research-os-k12/CHANGELOG.md`,
+"2026-09-10, PR #28 review pass".
+
+### Edited
+
+- `src/lib/research-os/db.ts`: `loadClassesForReviewer`'s scoping filter split into an
+  exported pure function, `filterClassesForReviewer(rows, reviewerEmail)`, so the "a
+  reviewer for class A never reads class B" guarantee is unit-testable with no network call.
+  `loadClassesForReviewer` now calls it; behavior unchanged.
+- `scripts/test-research-os-teacher-class.ts`: three cases added for
+  `filterClassesForReviewer` (own class only, no class owned yields an empty result,
+  case/whitespace insensitivity); header comment and the file's own test count
+  updated (17 to 20).
+- `learning/research-os/TEACHER-LAYER.md`, `_intake/research-os-k12/CHANGELOG.md`, this
+  file: test-count references updated to match (111/111 to 114/114 suite-wide, 17 to 20 for
+  this file).
+
+### Removed
+
+None.
+
+### Verified
+
+Leak scan on the full diff's added lines: no keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs; fixture emails end in `.example`. `.voiceignore`'s
+`tools/hypothesis-engine/docs/LOOP-LOG.md` line was the only engine-tree-adjacent change.
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (114/114 pass),
+`next lint` on every touched file, `agf-lint-voice`/`agf-lint-voice-src check`: all clean.
+
 ## Iteration 11: funding wave 1
 
 Date 2026-09-10. Bead `ros-09`, branch `docs/ros-09-funding-wave-1`, worktree `.ros-worktrees/ros09`. Four funder-facing documents under a new `learning/research-os/funding/` directory, each verified against a funder's own live site by direct WebFetch on 2026-09-10 rather than carried forward unchecked from the 2026-09-09 intake pass.
@@ -33,7 +214,7 @@ Date 2026-09-10, same iteration, review pass before merge. Three citation-accura
 
 ## Iteration 6: Phase 1 stub closures
 
-Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
+Closure table, diagnostic probe, real quotes, review hold. Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
 listed stubs, scoped to the review's own Phase 1 boundary (section 8). Rebased twice
 onto `main`: once after the site-alignment PR (#12) merged, once after the hypothesis
 engine bridge (#14) and the `hte` refusal-handling PR (#10) both merged; both rebases
@@ -808,7 +989,126 @@ index row count (82) matched the corpus file count (82) exactly, `find` counted 
 prerequisite graphs. Every framework mapping table states "No counterpart" with a reason
 where one applies. `agf-lint-voice check` clean on every file it scanned.
 
-## Iteration 15: literature batch three
+## Iteration 15: ros-08 preregistration packet
+
+Date 2026-09-10. Bead `ros-08`, branch `docs/ros-08-preregistration`, worktree
+`.ros-worktrees/ros08`. Four new files under a new `learning/research-os/study/`
+directory, plus eleven pointer-line appends to `RESEARCH-QUESTIONS.md`. Docs only.
+
+### Added
+
+- `learning/research-os/study/PREREGISTRATION-DRAFT.md`: an OSF-standard-template
+  preregistration draft (Study Information, Design Plan, Sampling Plan, Variables, Analysis
+  Plan, Other, plus a data availability statement), registering six directional, primary
+  hypotheses (H1 through H6) drawn from six of the twelve questions in
+  `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, each sourced to a named RCT or meta-analysis
+  in `_intake/research-os-k12-literature/`, with the six left-out questions named and reasoned
+  against `PLAN-REVISION-1.md` section 4's own Phase-1-versus-district-scale table. A power
+  analysis computes naive and cluster-corrected per-arm sample sizes at three assumed effect
+  sizes (d = 0.3, 0.4, 0.5, sourced to `RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 9 and
+  `04-compliance-distribution.md` section 10's own heuristic) and three illustrative ICC
+  values, finding Phase 1's realistic enrollment underpowered for a confirmatory H1 test and
+  registering Phase 1 explicitly as a feasibility and effect-size-estimation pilot, with the
+  fully powered target held for a Phase 2 extension of this same registration. The template
+  section order is sourced to van 't Veer and Giner-Sorolla (2016), the published source OSF's
+  own template traces to, after nine WebFetch attempts against `osf.io` and its registries
+  pages returned either a client-rendered shell with no template text, a 404, or a paywalled
+  publisher redirect; the file states this verification gap directly and instructs a live-form
+  cross-check before any real OSF submission.
+- `learning/research-os/study/TRANSFER-TASK-BANK.md`: forty-four transfer items, two per node,
+  for every node in the sky-blue seed path (`supabase/seed/research-os-sky-blue.json`, read in
+  full, 22 nodes and 28 edges), each built by an eight-step construction rule (multi-hop
+  requirement, Barnett-and-Ceci near/far transfer tagging, a documented per-node misconception
+  as the distractor source, Bloom-revised process tagging, a stable sealed-pool item id for
+  exposure control) so the rule scales to any future corpus. The three canon-bridge nodes'
+  items are grounded in `learning/app/corpus/02-physics.json`'s own `waves`/`em-waves`/
+  `wave-optics` atom lesson text, read directly rather than assumed from the bridge node's own
+  routing-only summary.
+- `learning/research-os/study/INSTRUMENTS.md`: three pilot instruments not built in the shipped
+  codebase today, each stating what exists to build on and the exact optional schema fields it
+  needs. A retention probe schedule (immediate, 1 week, 8 weeks) reusing `probe.ts`'s due-ness
+  and grading pattern against `TRANSFER-TASK-BANK.md`'s sealed pool rather than repurposing the
+  cold-start-only `probeDue` trigger itself. A metacognitive confidence item fired after every
+  Check result, plus an unrelated-topic confidence probe adapting Fisher, Goddu, and Keil
+  (2015)'s own design, both read against Lee and colleagues (2025)'s confidence-versus-critical-
+  thinking finding. A teacher time-on-review log operationalizing `04-compliance-distribution.md`
+  section 11's "net-save time" adoption bar as a measured outcome against a pre-collected
+  teacher baseline.
+- `learning/research-os/study/IRB-PACKET-OUTLINE.md`: the sections a university IRB submission
+  needs, with consent and assent language drafted for parents, students under 13, students 13
+  to 17, and teachers; a minimal-risk justification naming the two design choices (the active
+  full-chatbot comparison arm, the no-cash-to-minors scope of H3) most likely to draw reviewer
+  questions; a data-governance section separating the operational FERPA school-official basis
+  from the research consent track FERPA's studies exception does not cover; and a conflict-of-
+  interest disclosure naming the two-PI pairing from `PLAN-REVISION-1.md` section 5 as the
+  structural mitigation rather than disclosure alone. States plainly, at both the top and the
+  close, that no IRB approval, partner PI, or partner school exists yet.
+
+### Edited
+
+- `learning/research-os/RESEARCH-QUESTIONS.md`: appended one "Pre-registered as of
+  2026-09-10" pointer line under each of eleven existing numbered questions the
+  preregistration draft's six hypotheses cover (Q2, Q5, Q8, Q11, Q13, Q19, Q22, Q24, Q29,
+  Q30, Q33), each naming the hypothesis and whether it is confirmatory or a moderator/
+  exploratory sub-claim at Phase 1; no existing question line rewritten.
+- `_intake/research-os-k12/CHANGELOG.md`, this iteration's own entry.
+- `learning/research-os/CHANGE-LEDGER.md`, this file: this iteration's own entry.
+- `BEADS-PENDING.jsonl`: appended a `ros-08` status line recording this iteration's outcome.
+
+### Verified
+
+Every effect size and sample-size figure in `PREREGISTRATION-DRAFT.md` traces to a named
+source: the d = 0.4-to-0.5 heuristic and the 60-to-70-per-arm figure to
+`RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 9 and `04-compliance-distribution.md` section 10
+directly (both already in the corpus, quoted rather than re-derived); Bastani and colleagues
+(2025)'s percentage figures read from that paper's own intake card and cited as directional
+support only, since the card carries no standard deviation to convert into a comparable
+Cohen's d; the cluster-correction ICC range stated explicitly as unsourced within this corpus
+and flagged for replacement. `TRANSFER-TASK-BANK.md`'s 22-node, 28-edge count verified against
+a direct Python read of `supabase/seed/research-os-sky-blue.json` rather than assumed from its
+own header comment. `agf-lint-voice check` run to 0 violations on all five touched files
+(`banned`, `adverb`, `antithesis`, `heading`, `meta` all clear; `aitell` and `dash` already
+clear); the antithesis category needed roughly forty hand rewrites across the four new files,
+none auto-fixable. No file under `src/` or `public/` is touched by this pass, so no
+`npm run build` gate applies to it.
+
+## Iteration 16: PR #34 review pass
+
+Date 2026-09-10. Review of `docs/ros-08-preregistration` (PR #34) in worktree
+`.ros-worktrees/r34`, docs-only, methods review.
+
+### Verified
+
+Leak scan against the full diff's added lines: no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
+session URLs. Power analysis recomputed from the stated inputs (d = 0.4, alpha 0.025
+two-sided, power 0.80, two-sample t): naive n-per-arm table (76, 119, 211) confirmed exact
+against the draft's own stated rounded z-values (2.24, 0.84); cluster-correction formula
+(`1 + (m-1)*ICC`) confirmed correct, ICC range confirmed marked unsourced. Every effect size
+traced to a named, existing intake card. `TRANSFER-TASK-BANK.md`'s 22-node, 28-edge count and
+44-item, all-nodes-covered claim reverified by a direct Python read of
+`supabase/seed/research-os-sky-blue.json`. Every hypothesis's primary outcome variable
+confirmed mapped to an `EVIDENCE-SCHEMA.md` field, a named schema gap, or a transfer-bank
+item. `RESEARCH-QUESTIONS.md`'s eleven pointer lines confirmed append-only. No claim of an
+existing partner school, IRB approval, PI, or host institution found; the founder-as-researcher
+conflict confirmed disclosed. Confirmed no file under `src/` or `public/` touched.
+
+### Fixed
+
+- `learning/research-os/study/PREREGISTRATION-DRAFT.md`: the cluster-corrected sample-size
+  table's ICC = 0.20 row read 690 (119 x 5.8 = 690.2, truncated instead of rounded up to 691,
+  inconsistent with the ceiling convention the ICC = 0.05 and 0.10 rows both used);
+  corrected to 691.
+- `BEADS-PENDING.jsonl`: this PR's own new `ros-08` status line ended "PR opened against main,
+  not merged," an antithesis construction `agf-lint-voice check` flags; rewritten to "PR opened
+  against main, merge pending." The file's other 25 violations predate this PR (confirmed
+  against `origin/main`'s own copy) and are out of this review's scope.
+
+### Result
+
+Merged clean, `review/pr34` branch and worktree removed.
+
+## Iteration 17: literature batch three
 
 Date 2026-09-10. Branch `intake/ros-literature-3`, worktree `.ros-worktrees/lit3`.
 Literature batch three: 35 new DOI- or ISBN-verified papers targeted at the gaps

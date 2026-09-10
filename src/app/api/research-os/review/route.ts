@@ -27,10 +27,25 @@
  *   decision as an evidence event on the learner's own
  *   graph.learner_node_state row (task item 4, "evidence logged on
  *   approve") and, when eligible, raises their stage to Internalization.
- *   An "approved" production flips graph.productions.status to 'accepted'
- *   ('returned' otherwise); Production is already the graph's terminal
- *   stage (src/lib/research-os/types.ts's STAGE_ORDER), so acceptance
- *   lives on the production row's own status alone.
+ *
+ *   An "approved" production (bkt-ros, ros-06 item 3, the accept path)
+ *   flips graph.productions.status to 'accepted', appends a
+ *   'teacher_review' evidence event to the target node's own
+ *   graph.learner_node_state row (src/lib/research-os/stages.ts's
+ *   onProductionReview; Production is already the graph's terminal stage,
+ *   so this re-affirms it rather than raising it further), and emits the
+ *   row to the engine outbox (db.ts's emitProductionOutboxIfAccepted,
+ *   the exact function /api/research-os/production's own POST already
+ *   uses, shared rather than duplicated here). A "returned" production goes
+ *   back to graph.productions.status 'draft' -- not 'returned' -- so the
+ *   learner can revise and resubmit through the same submit path, with the
+ *   reason appended to the production's own `notes` column (ros-06 item
+ *   3's "a teacher note stored on the production row") AND a
+ *   'production_returned' evidence event (src/lib/research-os/stages.ts's
+ *   onProductionReturned, per src/lib/research-os/EVIDENCE-SCHEMA.md's
+ *   "corrective event" section): `stage` stays at 'production' (the
+ *   high-water-mark rule never runs backward), the event itself, plus
+ *   graph.productions.status, is what records the correction.
  *
  * Auth: Authorization: Bearer <supabase access token>, verified against
  * src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS allowlist.
@@ -40,9 +55,9 @@
  * 400 bad input · 404 target row not found · 503 not configured.
  */
 import { NextRequest, NextResponse } from "next/server";
-import { onTeacherReview } from "@/lib/research-os/stages";
+import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib/research-os/stages";
 import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, recordEvidence } from "@/lib/research-os/db";
+import { configured, graphService, recordEvidence, emitProductionOutboxIfAccepted } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
 
 export const runtime = "nodejs";
@@ -69,6 +84,7 @@ interface ProductionRow {
   transfer_proof: Record<string, unknown>;
   status: string;
   created_at: string;
+  notes: unknown[];
 }
 
 export async function GET(req: NextRequest) {
@@ -97,7 +113,7 @@ export async function GET(req: NextRequest) {
 
   const { data: productionRows, error: prodErr } = await svc
     .from("productions")
-    .select("id,learner_id,target_node_id,claim,evidence,sources,transfer_proof,status,created_at")
+    .select("id,learner_id,target_node_id,claim,evidence,sources,transfer_proof,status,created_at,notes")
     .eq("status", "submitted")
     .order("created_at", { ascending: true });
   if (prodErr) return bad(500, "read_failed");
@@ -134,6 +150,7 @@ export async function GET(req: NextRequest) {
         sources: p.sources,
         transferProof: p.transfer_proof,
         createdAt: p.created_at,
+        notes: p.notes ?? [],
       })),
     },
     { headers: { "cache-control": "no-store" } },
@@ -207,34 +224,92 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ decision: body.decision, stage: transition.nextStage }, { headers: { "cache-control": "no-store" } });
   }
 
-  // kind === "production"
+  // kind === "production" (bkt-ros, ros-06 item 3, the accept path)
   const productionId = (body.productionId || "").trim();
   if (!productionId) return bad(400, "productionId is required");
 
   const { data: production, error: prodErr } = await svc
     .from("productions")
-    .select("id,learner_id,status")
+    .select("id,learner_id,target_node_id,claim,evidence,sources,status,created_at,updated_at,notes")
     .eq("id", productionId)
     .maybeSingle();
   if (prodErr) return bad(500, "read_failed");
   if (!production) return bad(404, "production_not_found");
   if (production.status !== "submitted") return bad(409, `production is already "${production.status}", not pending`);
 
-  const newStatus = body.decision === "approved" ? "accepted" : "returned";
-  const { error: updErr } = await svc.from("productions").update({ status: newStatus, updated_at: new Date().toISOString() }).eq("id", productionId);
+  const now = new Date().toISOString();
+  // "returned" sends the production back to draft (not the "returned"
+  // status value) so the learner can revise and resubmit through the same
+  // submit path; "approved" is the accept path proper. Either way the
+  // teacher's note is appended to the production's own `notes` column
+  // (task item 3), independent of graph.teacher_reviews' separate audit
+  // row below.
+  const newStatus = body.decision === "approved" ? "accepted" : "draft";
+  const noteEntry = { at: now, reviewerId: reviewer.id, decision: body.decision, reason: reason ?? null };
+  const priorNotes = (production.notes as unknown[] | null) ?? [];
+  const notes = [...priorNotes, noteEntry];
+
+  const { data: updated, error: updErr } = await svc
+    .from("productions")
+    .update({ status: newStatus, notes, updated_at: now })
+    .eq("id", productionId)
+    .select("id,learner_id,target_node_id,claim,evidence,sources,status,created_at,updated_at")
+    .maybeSingle();
   if (updErr) return bad(500, "write_failed");
 
-  const reviewEvidence = { at: new Date().toISOString(), decision: body.decision, reason: reason ?? null, reviewerId: reviewer.id };
-  const { error: insErr } = await svc.from("teacher_reviews").insert({
-    reviewer_id: reviewer.id,
-    learner_id: production.learner_id,
-    kind: "production",
-    production_id: productionId,
-    decision: body.decision,
-    reason: reason ?? null,
-    evidence: reviewEvidence,
-  });
+  const { data: review, error: insErr } = await svc
+    .from("teacher_reviews")
+    .insert({
+      reviewer_id: reviewer.id,
+      learner_id: production.learner_id,
+      kind: "production",
+      production_id: productionId,
+      decision: body.decision,
+      reason: reason ?? null,
+      evidence: noteEntry,
+    })
+    .select("id")
+    .maybeSingle();
   if (insErr) return bad(500, "review_write_failed");
+  const reviewId = review?.id as string | undefined;
+
+  if (updated) {
+    // ros-02's evidence-schema review found this gap: a returned
+    // production used to leave graph.learner_node_state.stage at
+    // "production" with no evidence event recording the correction, since
+    // only the "approved" branch ever called recordEvidence. Both
+    // branches call it now; stage never moves backward (the high-water-
+    // mark rule every transition in stages.ts enforces), so a "returned"
+    // event's fromStage/toStage both read "production": the correction
+    // lives in the event itself, and in graph.productions.status going
+    // back to "draft", with the stage column left alone. See
+    // src/lib/research-os/EVIDENCE-SCHEMA.md, "The corrective event on
+    // graph.productions."
+    const transition =
+      body.decision === "approved" ? onProductionReview(reviewer.id, reason, reviewId) : onProductionReturned(reviewer.id, reason, reviewId);
+    await recordEvidence(
+      production.learner_id as string,
+      production.target_node_id as string,
+      transition.nextStage,
+      transition.event as unknown as Record<string, unknown>,
+    );
+  }
+
+  if (body.decision === "approved" && updated) {
+    // Task item 3: "thereby triggers the existing outbox write" -- the
+    // exact function /api/research-os/production's own POST uses, not
+    // reimplemented here.
+    await emitProductionOutboxIfAccepted({
+      id: updated.id as string,
+      target_node_id: updated.target_node_id as string,
+      claim: (updated.claim as string | null) ?? null,
+      evidence: (updated.evidence as unknown[]) ?? [],
+      sources: (updated.sources as unknown[]) ?? [],
+      status: updated.status as string,
+      created_at: updated.created_at as string,
+      updated_at: updated.updated_at as string | undefined,
+    });
+  }
 
   return NextResponse.json({ decision: body.decision, status: newStatus }, { headers: { "cache-control": "no-store" } });
 }
