@@ -251,11 +251,58 @@ None.
 
 ## Iteration 6
 
+Date 2026-09-10. Branch `intake/ros-literature-2`. Literature batch two: 31 new papers plus one
+already-committed paper (Bastani and colleagues 2025) folded into the index, for a corpus total
+of 77.
+
+### Added
+
+- 31 new files under `_intake/research-os-k12-literature/`, one per paper, DOI-checked against
+  OpenAlex or Crossref at intake time: 12 in `hci-human-ai-collaboration/` (6 on LLM assistance
+  and learning outcomes, 6 on cognitive offloading and metacognition), 4 in `educational-methods/`
+  on motivation and payment, 5 in a new `prerequisite-knowledge-graphs/` branch on automatic
+  prerequisite-edge inference and learning-path routing, 7 in `scientific-discovery-metascience/`
+  on AI systems that generate or evaluate research hypotheses, and 3 in `ai-and-researchers/` on
+  scientific understanding as a goal distinct from predictive accuracy.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/`: new branch folder, five
+  files (Pan and colleagues 2017, Liang and colleagues 2018, Roy and colleagues 2019, Gasparetti
+  and colleagues 2017, Gligorea and colleagues 2023).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index table extended from 45 to 77 rows across
+  five areas (the fifth, prerequisite and knowledge-graph learning, new this pass); intro
+  paragraph and final per-area count line updated to match.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: each of the twelve open
+  questions gained an "Evidence added in batch two" paragraph naming the new papers relevant to
+  it and whether they support, complicate, or partially contradict the design bet the question
+  poses. No existing sentence in the twelve-question list was removed or reworded.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass appended, logged below in
+  this same iteration for cross-reference.
+
+### Verified Clean
+
+- Every new paper's DOI and OpenAlex work id were checked live via WebFetch against
+  `api.openalex.org` or `api.crossref.org` at intake time; none are placeholders.
+- No file reproduces a blockquote or extended verbatim passage from its source paper; every
+  file's `key_claims` and body are paraphrase, matching this corpus's existing convention.
+- A paper searched for but not found with a resolvable DOI (Talukdar and Cohen 2012's Wikipedia
+  prerequisite-structure paper; a distinct World Bank Nigeria follow-up beyond the de Simone 2025
+  paper already in the corpus; a Si, Yang, and Hashimoto 2025 ideation-execution-gap follow-up)
+  was omitted rather than included without a checkable citation.
+
+### Removed
+
+None.
+
+## Iteration 7
+
 Date 2026-09-10. Branch `docs/ros-plan-revision-1`, worktree `.wt-plan-revision-1`.
-Reviewed shipped work (PRs #3, #5, #6, #7, #8, #10, #12, #14) and two open PRs
-(#9, canon promotion; #15, `intake/ros-literature-2-batch2`, literature batch
-two) against PLAN.md, plus PR #11 (draft, site repositioning) against the
-open founder decisions this iteration names.
+Reviewed shipped work (PRs #3, #5, #6, #7, #8, #10, #12, #14, #15) against
+PLAN.md, plus PR #11 (draft, site repositioning) against the open founder
+decisions this iteration names. PR #15 (literature batch two, Iteration 6
+above) merged to main partway through this review; this entry cites it as
+shipped rather than open.
 
 ### Added
 
@@ -275,6 +322,28 @@ open founder decisions this iteration names.
   `PLAN-REVISION-1.md`. No existing section was rewritten, reordered, or
   removed.
 - `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+- `tools/hypothesis-engine/tests/swarm-20260910/test_runner_props.py`,
+  `tools/hypothesis-engine/docs/LOOP-LOG.md`: rewrote one antithesis
+  construction in each, voice-lint fixes only, no logic changed.
+
+### Removed
+
+None.
+
+## Iteration 8
+
+Date 2026-09-10. PR #19 review pass, worktree `.ros-worktrees/r19`. Full account in
+`_intake/research-os-k12/CHANGELOG.md`, "2026-09-10: PR #19 review pass".
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-1.md`: PR #15 status corrected from open to merged in
+  section 1's table and the batch-two references in sections 4 and 5; two antithesis
+  constructions rewritten.
+- `learning/research-os/PLAN.md`: Revision 1 pointer paragraph's PR #15 status corrected.
+- `_intake/research-os-k12/CHANGELOG.md`: same PR #15 status fix in the plan-revision-1 entry.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): resolved the Iteration 6 merge conflict
+  with `origin/main` by keeping both entries, main's as Iteration 6, this PR's own as Iteration 7.
 
 ### Removed
 

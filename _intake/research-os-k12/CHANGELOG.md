@@ -1,12 +1,52 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10: PR #19 review pass
+
+Review of PR #19 (`docs/ros-plan-revision-1`) before merge. Leak scan on the full diff against
+`origin/main` found no API keys, no `.env` contents, no server IPs, no non-public hostnames, no
+personal emails other than `gianyrox@gmail.com`, no PII, no `/home/gian` paths, and no Claude
+session URLs in any line this PR adds. No redactions were needed.
+
+### Fixed
+
+- `learning/research-os/PLAN-REVISION-1.md`: the PR #15 row in section 1's shipped-work table and
+  the batch-two references in sections 4 and 5 said PR #15 was still open; PR #15 merged to main
+  (`e51b1db6e`) partway through this review, so the entries now read it as shipped. Rewrote two
+  antithesis constructions ("real at the code level ... not just an analogy"; "the process trail
+  ... not only the final submitted claim").
+- `learning/research-os/PLAN.md`: the "Revision 1" pointer paragraph said PR #15 was open; updated
+  to reflect the merge.
+- `_intake/research-os-k12/CHANGELOG.md` (this file, the plan-revision-1 entry above): same PR #15
+  status fix.
+- `learning/research-os/CHANGE-LEDGER.md`: merging `origin/main` produced a conflict between this
+  PR's own Iteration 6 entry and main's already-merged Iteration 6 (PR #15, literature batch two).
+  Kept both: main's entry stays Iteration 6, this PR's entry is renumbered Iteration 7 and notes
+  the PR #15 merge.
+
+### Verified, no change needed
+
+- Every "what shipped" line in section 1's table against `gh pr list --state merged`: PRs #3, #5,
+  #6, #7, #8, #10, #12, #14, #15 merged; #9 open; #11 draft, matching the table's own state column.
+- All five cited paper files (Gneezy and Rustichini 2000, Mekler and colleagues 2017, Gasparetti
+  and colleagues 2017, Doshi and Hauser 2024, Binz and Schulz 2023) exist under
+  `_intake/research-os-k12-literature/` with frontmatter matching the claims made about them.
+- Three ETH AI Center section claims spot-checked against code on `main`: `computeFrontier` in
+  `src/lib/research-os/frontier.ts`, `hypothesize()` in `tools/hypothesis-engine/hte/api.py`, and
+  `research_os_productions_outbox` in `supabase/migrations/20260910010000_research_os_engine_
+  bridge.sql` plus `src/lib/research-os/db.ts`. All three exist as described.
+- The four design revisions in section 2 each carry one of STABLE, STRONG LEAN, or OPEN.
+- `agf-lint-voice check` / `agf-lint-voice-src check` on every file this PR touches: 0 violations
+  after the fixes above.
+- Gates: nothing under `src/` or `public/` is touched by this PR; no build needed.
+
 ## 2026-09-10 (plan revision 1)
 
 Branch `docs/ros-plan-revision-1`. Read PLAN.md, RESEARCH-QUESTIONS.md,
 `RESEARCH-OS-K12-SYSTEM-REVIEW.md` sections 4, 8, 9, 10, 11,
 `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, `ENGINE-BRIDGE.md`, this file,
-`BEADS-PENDING.jsonl`, PR #15 (open, branch `intake/ros-literature-2-batch2`,
-read directly since unmerged), and PR #11 (draft). Wrote
+`BEADS-PENDING.jsonl`, PR #15 (branch `intake/ros-literature-2-batch2`, open
+when this pass began and merged to main partway through it), and PR #11
+(draft). Wrote
 `learning/research-os/PLAN-REVISION-1.md`: a PR-by-PR account of what shipped
 since PLAN.md (#3, #5, #6, #7, #8, #9, #10, #12, #14, #15); four
 evidence-driven design revisions (payout under Gneezy and Rustichini 2000 and
@@ -319,3 +359,39 @@ research-os): partial work preserved` commit already on this branch. None
 of that in-progress content is part of this review pass's commit; only the
 five files listed under "Fixed" above were staged and committed, isolated
 by hunk where a touched file also carried unrelated unstaged content.
+
+## 2026-09-10, literature batch two
+
+Branch `intake/ros-literature-2`. Task: 31 new DOI-verified papers bearing on the twelve open
+questions in `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`, emphasis on 2023-2026 empirical work,
+across six areas: LLM assistance and learning outcomes, cognitive offloading and metacognition,
+prerequisite and knowledge-graph learning, AI for research evaluation, understanding as a
+scientific goal, and motivation and payment. Full per-area breakdown and per-question evidence
+mapping recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 6.
+
+### Added
+
+- 31 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md` Iteration 6; corpus total rises from 45 to 77 papers.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/`: new fifth branch, five
+  files on automatic prerequisite-edge inference and learning-path routing.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 77 rows, five areas.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: each of the twelve open
+  questions gained an "Evidence added in batch two" paragraph.
+
+### Verified Clean
+
+- Every DOI and OpenAlex work id checked live via WebFetch at intake time.
+- Three candidate papers named in the task brief were searched for and omitted for lack of a
+  resolvable DOI or a findable published record: Talukdar and Cohen (2012, no DOI on OpenAlex or
+  Crossref), a distinct World Bank Nigeria follow-up beyond the de Simone (2025) paper already in
+  the corpus, and a Si, Yang, and Hashimoto (2025) ideation-execution-gap follow-up.
+- No blockquote or extended verbatim passage from any source paper; all `key_claims` and body
+  text are paraphrase.
+
+### Removed
+
+None.
