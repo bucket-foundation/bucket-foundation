@@ -7,7 +7,7 @@ year: 2000
 venue: "Psychological Inquiry"
 doi: "10.1207/s15327965pli1104_01"
 url: "https://doi.org/10.1207/s15327965pli1104_01"
-openalex_id: null
+openalex_id: "https://openalex.org/W2122517769"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

@@ -6,7 +6,7 @@ year: 1968
 venue: "Science"
 doi: "10.1126/science.159.3810.56"
 url: "https://doi.org/10.1126/science.159.3810.56"
-openalex_id: null
+openalex_id: "https://openalex.org/W4292887282"
 branch: "scientific-discovery-metascience"
 tier: "canon"
 why_it_matters: >

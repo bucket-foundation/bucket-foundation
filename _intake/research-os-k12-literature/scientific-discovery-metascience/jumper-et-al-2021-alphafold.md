@@ -39,7 +39,7 @@ year: 2021
 venue: "Nature"
 doi: "10.1038/s41586-021-03819-2"
 url: "https://doi.org/10.1038/s41586-021-03819-2"
-openalex_id: null
+openalex_id: "https://openalex.org/W3177828909"
 branch: "scientific-discovery-metascience"
 tier: "canon"
 why_it_matters: >

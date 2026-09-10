@@ -8,7 +8,7 @@ year: 2022
 venue: "arXiv preprint"
 doi: "10.48550/arxiv.2205.01833"
 url: "https://doi.org/10.48550/arxiv.2205.01833"
-openalex_id: null
+openalex_id: "https://openalex.org/W4229010617"
 branch: "scientific-discovery-metascience"
 tier: "candidate"
 why_it_matters: >

@@ -7,7 +7,7 @@ year: 2020
 venue: "Proceedings of the National Academy of Sciences"
 doi: "10.1073/pnas.1914370116"
 url: "https://doi.org/10.1073/pnas.1914370116"
-openalex_id: null
+openalex_id: "https://openalex.org/W2950657507"
 branch: "ai-and-researchers"
 tier: "canon"
 why_it_matters: >

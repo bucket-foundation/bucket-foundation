@@ -7,7 +7,7 @@ year: 1995
 venue: "User Modelling and User-Adapted Interaction"
 doi: "10.1007/bf01099821"
 url: "https://doi.org/10.1007/bf01099821"
-openalex_id: null
+openalex_id: "https://openalex.org/W2015040676"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

@@ -8,7 +8,7 @@ year: 1990
 venue: "Review of Educational Research"
 doi: "10.3102/00346543060002265"
 url: "https://doi.org/10.3102/00346543060002265"
-openalex_id: null
+openalex_id: "https://openalex.org/W2101705320"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

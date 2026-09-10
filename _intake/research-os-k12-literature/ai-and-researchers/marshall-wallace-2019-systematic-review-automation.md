@@ -7,7 +7,7 @@ year: 2019
 venue: "Systematic Reviews"
 doi: "10.1186/s13643-019-1074-9"
 url: "https://doi.org/10.1186/s13643-019-1074-9"
-openalex_id: null
+openalex_id: "https://openalex.org/W2961191798"
 branch: "ai-and-researchers"
 tier: "canon"
 why_it_matters: >

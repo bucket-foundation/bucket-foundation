@@ -7,7 +7,7 @@ year: 2006
 venue: "Perspectives on Psychological Science"
 doi: "10.1111/j.1745-6916.2006.00012.x"
 url: "https://doi.org/10.1111/j.1745-6916.2006.00012.x"
-openalex_id: null
+openalex_id: "https://openalex.org/W2133705455"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

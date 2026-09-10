@@ -7,7 +7,7 @@ year: 2002
 venue: "Psychological Bulletin"
 doi: "10.1037/0033-2909.128.4.612"
 url: "https://doi.org/10.1037/0033-2909.128.4.612"
-openalex_id: null
+openalex_id: "https://openalex.org/W2094192576"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

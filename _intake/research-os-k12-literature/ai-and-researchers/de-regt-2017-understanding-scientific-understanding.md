@@ -6,7 +6,7 @@ year: 2017
 venue: "Oxford Scholarship Online"
 doi: "10.1093/oso/9780190652913.001.0001"
 url: "https://doi.org/10.1093/oso/9780190652913.001.0001"
-openalex_id: null
+openalex_id: "https://openalex.org/W2886080749"
 branch: "ai-and-researchers"
 tier: "canon"
 why_it_matters: >

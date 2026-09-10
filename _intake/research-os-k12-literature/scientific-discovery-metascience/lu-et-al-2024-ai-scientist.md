@@ -11,7 +11,7 @@ year: 2024
 venue: "arXiv preprint"
 doi: "10.48550/arxiv.2408.06292"
 url: "https://doi.org/10.48550/arxiv.2408.06292"
-openalex_id: null
+openalex_id: "https://openalex.org/W4402952666"
 branch: "scientific-discovery-metascience"
 tier: "candidate"
 why_it_matters: >

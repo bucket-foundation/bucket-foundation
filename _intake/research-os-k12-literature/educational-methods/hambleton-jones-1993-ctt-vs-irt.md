@@ -7,7 +7,7 @@ year: 1993
 venue: "Educational Measurement: Issues and Practice"
 doi: "10.1111/j.1745-3992.1993.tb00543.x"
 url: "https://doi.org/10.1111/j.1745-3992.1993.tb00543.x"
-openalex_id: null
+openalex_id: "https://openalex.org/W2124479978"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

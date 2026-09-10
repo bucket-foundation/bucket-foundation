@@ -9,7 +9,7 @@ year: 1994
 venue: "Cognitive Science"
 doi: "10.1207/s15516709cog1803_3"
 url: "https://doi.org/10.1207/s15516709cog1803_3"
-openalex_id: null
+openalex_id: "https://openalex.org/W4243420394"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

@@ -6,7 +6,7 @@ year: 1984
 venue: "Educational Researcher"
 doi: "10.3102/0013189x013006004"
 url: "https://doi.org/10.3102/0013189x013006004"
-openalex_id: null
+openalex_id: "https://openalex.org/W2172010324"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

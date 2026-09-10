@@ -20,7 +20,7 @@ year: 2014
 venue: "CBE—Life Sciences Education"
 doi: "10.1187/cbe.14-01-0004"
 url: "https://doi.org/10.1187/cbe.14-01-0004"
-openalex_id: null
+openalex_id: "https://openalex.org/W2113142830"
 branch: "ai-and-researchers"
 tier: "canon"
 why_it_matters: >

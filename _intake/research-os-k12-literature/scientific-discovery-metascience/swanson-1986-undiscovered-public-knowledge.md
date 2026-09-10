@@ -6,7 +6,7 @@ year: 1986
 venue: "Perspectives in Biology and Medicine"
 doi: "10.1353/pbm.1986.0087"
 url: "https://doi.org/10.1353/pbm.1986.0087"
-openalex_id: null
+openalex_id: "https://openalex.org/W2011726136"
 branch: "scientific-discovery-metascience"
 tier: "canon"
 why_it_matters: >

@@ -6,7 +6,7 @@ year: 2009
 venue: "Review of Economic Studies"
 doi: "10.1111/j.1467-937x.2008.00531.x"
 url: "https://doi.org/10.1111/j.1467-937x.2008.00531.x"
-openalex_id: null
+openalex_id: "https://openalex.org/W3124253902"
 branch: "scientific-discovery-metascience"
 tier: "canon"
 why_it_matters: >

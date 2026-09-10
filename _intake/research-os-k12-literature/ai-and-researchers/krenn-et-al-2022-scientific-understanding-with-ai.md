@@ -17,7 +17,7 @@ year: 2022
 venue: "Nature Reviews Physics"
 doi: "10.1038/s42254-022-00518-3"
 url: "https://doi.org/10.1038/s42254-022-00518-3"
-openalex_id: null
+openalex_id: "https://openalex.org/W4304185479"
 branch: "ai-and-researchers"
 tier: "canon"
 why_it_matters: >

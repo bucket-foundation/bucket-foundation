@@ -12,7 +12,7 @@ year: 2009
 venue: "Psychological Science"
 doi: "10.1111/j.1467-9280.2009.02402.x"
 url: "https://doi.org/10.1111/j.1467-9280.2009.02402.x"
-openalex_id: null
+openalex_id: "https://openalex.org/W2104225738"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

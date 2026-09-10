@@ -17,7 +17,7 @@ year: 2024
 venue: "Nature"
 doi: "10.1038/s41586-023-06924-6"
 url: "https://doi.org/10.1038/s41586-023-06924-6"
-openalex_id: null
+openalex_id: "https://openalex.org/W4389727268"
 branch: "scientific-discovery-metascience"
 tier: "canon"
 why_it_matters: >

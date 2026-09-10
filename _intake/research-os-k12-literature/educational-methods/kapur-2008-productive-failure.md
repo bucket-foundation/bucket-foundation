@@ -6,7 +6,7 @@ year: 2008
 venue: "Cognition and Instruction"
 doi: "10.1080/07370000802212669"
 url: "https://doi.org/10.1080/07370000802212669"
-openalex_id: null
+openalex_id: "https://openalex.org/W4245000930"
 branch: "educational-methods"
 tier: "canon"
 why_it_matters: >

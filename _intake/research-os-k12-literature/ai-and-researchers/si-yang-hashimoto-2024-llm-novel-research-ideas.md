@@ -8,7 +8,7 @@ year: 2024
 venue: "arXiv preprint"
 doi: "10.48550/arxiv.2409.04109"
 url: "https://doi.org/10.48550/arxiv.2409.04109"
-openalex_id: null
+openalex_id: "https://openalex.org/W4403586302"
 branch: "ai-and-researchers"
 tier: "candidate"
 why_it_matters: >

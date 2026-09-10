@@ -35,7 +35,7 @@ year: 2023
 venue: "Nature"
 doi: "10.1038/s41586-023-06221-2"
 url: "https://doi.org/10.1038/s41586-023-06221-2"
-openalex_id: null
+openalex_id: "https://openalex.org/W4385490607"
 branch: "ai-and-researchers"
 tier: "canon"
 why_it_matters: >
