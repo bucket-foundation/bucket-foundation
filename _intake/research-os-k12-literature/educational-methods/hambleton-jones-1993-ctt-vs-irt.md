@@ -1,5 +1,5 @@
 ---
-title: "An NCME Instructional Module on"
+title: "An NCME Instructional Module on: Comparison of Classical Test Theory and Item Response Theory and Their Applications to Test Development"
 authors:
   - "Hambleton, Ronald K."
   - "Jones, Russell W."
@@ -30,7 +30,7 @@ how_it_bears_on_research_os: >
   reliably provide.
 ---
 
-# An NCME Instructional Module on
+# An NCME Instructional Module on: Comparison of Classical Test Theory and Item Response Theory and Their Applications to Test Development
 
 The IRT half of the mastery formula's own fusion (proficiency to the alpha power times retention to the beta power composes an IRT/Elo proficiency term with an FSRS retention term); this paper is the standard instructional bridge between classical test theory and IRT.
 
