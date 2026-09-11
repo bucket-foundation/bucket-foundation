@@ -2428,6 +2428,37 @@ commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
 
 - `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
 
+## Iteration 22: cognitive forcing on Check
+
+`PLAN-REVISION-2.md` section 2a's design response to Buçinca, Malaya and Gajos (2021), Bansal et al. (2021), and Vaccaro, Almaatouq and Malone (2024): Check's verdict now holds server-side until the learner commits to a confidence rating and a source prediction, matching Buçinca's own commit-before-reveal cognitive forcing structure.
+
+### Added
+
+- `src/lib/research-os/forcing.ts`: the 4-point `LearnerConfidence` scale and its grade-4-reading-level copy, `computePredictionCorrect` (code-level, never model-read), the arm switch (`envForcingDefault`/`resolveForcingEnabled`), the in-memory held-attempt store (`storePendingAttempt`/`getPendingAttempt`/`consumePendingAttempt`/`pruneExpiredAttempts`, matching `rate-limit.ts`'s own best-effort posture), and `revealPendingAttempt`, the single gate enforcing "the Check response omits feedback until the forcing record exists for that attempt."
+- `src/lib/research-os/calibration.ts`: `computeCalibrationSummary`, mean confidence against mean source-prediction correctness per learner, over forcing-gated `"check"` events only.
+- `supabase/migrations/20260910060000_research_os_forcing.sql`: `graph.classes.forcing_enabled`, a nullable per-class override for the arm switch.
+- `scripts/test-research-os-forcing.ts` (19 tests) and `scripts/test-research-os-calibration.ts` (9 tests), both pure, no network or database, wired into `npm run test:research-os`.
+
+### Edited
+
+- `src/lib/research-os/stages.ts`: `EvidenceContext`/`EvidenceEvent` gain `learnerConfidence`, `sourcePrediction`, `predictionCorrect`, `forcingEnabled`; `onCheckResult` is the one writer. `onProbeCheckResult` untouched: forcing gates Check alone, never the diagnostic probe.
+- `src/lib/research-os/db.ts`: `loadForcingEnabledForLearner`, fails open (`null`, deferring to the env default) on any lookup error, so the optional per-class override can never break a Check call.
+- `src/app/api/research-os/workspace/route.ts`: the "check" action becomes two-phase. Phase 1 (no `attemptId`) grades the explanation and, unless this learner's own arm has forcing off, returns only `{ attemptId, forcingRequired: true }`. Phase 2 (`attemptId` present) calls `revealPendingAttempt`; a request missing a valid confidence or a source prediction gets a 400 with the attempt left held for a retry, never a verdict.
+- `src/app/research-os/workspace/page.tsx`: the Check card gets a third render phase, the two forcing questions (native `<fieldset>`/`<legend>`/labeled `<input type="radio">` groups, the same accessible pattern `/research-os/profile` already uses), sourced from the learner's own "sources I have quoted" list; the reveal shows the learner's prediction beside the tutor's real citation and whether it matched.
+- `src/app/api/research-os/class/route.ts` and `src/app/research-os/class/page.tsx`: a `calibration` array per class, `git log -3 --since='2 hours ago' -- src/app/research-os/class` confirmed no other in-flight work on this page at the time this landed, so the summary was wired directly into the class view rather than left as an unexposed server function.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: a new "Cognitive forcing on Check: the calibration record" section for the four added fields.
+- `learning/research-os/WORKSPACE.md`: section 6, the full flow, server enforcement, the arm switch, and the calibration record.
+- `learning/research-os/study/INSTRUMENTS.md`: section 2 rewritten from an after-the-verdict design to the shipped before-the-verdict placement; original text preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/class` and `/research-os/workspace` both in the manifest), `npm run test:research-os` (293 passed, 0 failed, 22 files), `eslint` on all 11 touched TS/TSX files, `agf-lint-voice-src check` on the same files plus the new migration, `agf-lint-voice check` on the touched docs: all clean.
+- The headline case, "a test proves the feedback cannot be fetched early," runs against `revealPendingAttempt` directly, the exact function the route calls. An `attemptId`-only call, a confidence-only call, and a prediction-only call all return `{ ok: false, reason: "forcing_incomplete" }` with the attempt left retrievable; only both fields together reveal the grade, and a second reveal on the same `attemptId` after that is `not_found`.
+
+### Removed
+
+None.
+
 
 ## Iteration 22: canon human sign-off tool
 
@@ -2551,10 +2582,6 @@ touch `src/`, `public/`, or `learning/research-os/PLAN.md` itself.
 - `tools/hypothesis-engine/hte/cli.py`: `holdout-ledger report`/`verify`
   subcommands.
 
-### Removed
-
-None.
-
 ### Verified
 
 `make test`: 1084 passed before this iteration's changes, 1115 passed
@@ -2577,7 +2604,6 @@ item 7 (the address scheme preserves all thirteen Allen interval
 relations, Allen 1983), and item 8 (calibration on a fixed published
 cadence, CASP-style) stay open, filed in `BEADS-PENDING.jsonl` per this
 task's own four-item stop.
-
 
 ## Iteration 23: PR #60 review
 
@@ -2613,6 +2639,40 @@ home paths, or session URLs found. `learning/research-os/ENGINE-BRIDGE.md`
 confirmed by grep to carry no `understanding`/`elo_status`/envelope field
 from `hte.canon_writeback`'s own contract, so PR #60's write-back change
 touches nothing that file covers; left unchanged.
+
+## PR #63 review pass: the held Check verdict moved off an in-memory Map
+
+Review of PR #63 (cognitive forcing on Check, Iteration 22 above) found the
+production defect its own review task named: `forcing.ts`'s held-attempt store
+was a plain in-memory `Map`. On Vercel a phase-1 Check and its phase-2 reveal
+can land on two different route instances, losing the held verdict between
+them; the learner would see the Check form again with no explanation why.
+
+### Added
+
+- `supabase/migrations/20260910070000_research_os_check_attempts.sql`: `graph.check_attempts` (the persisted held-attempt table, RLS `own_select`), `graph.purge_expired_check_attempts()` (deletes every row past a 24-hour hard expiry, returns the count), and `graph.privacy_delete_learner` extended (`create or replace`) to also delete the requesting learner's own `check_attempts` rows and to call the purge sweep as a side effect of every delete request.
+- `src/lib/research-os/check-attempts-db.ts`: the persisted store `workspace/route.ts` calls (`dbStorePendingAttempt`/`dbGetPendingAttempt`/`dbConsumePendingAttempt`/`dbRevealPendingAttempt`/`dbPurgeExpiredAttempts`), plus its pure, tested pieces (`mapCheckAttemptRow`, `isPastHardExpiry`). Reuses `forcing.ts`'s `checkAttemptAccess`/`finalizeReveal` directly rather than re-implementing the ownership/TTL/reveal-completeness rules.
+- `scripts/test-research-os-check-attempts.ts` (15 tests): row mapping, the 24-hour hard-expiry check, and a full store-and-reveal walk built from the shared gate functions, no Supabase or network, matching this repo's DB-touching-module convention (see `privacy.ts`'s own header).
+
+### Edited
+
+- `src/lib/research-os/forcing.ts`: `getPendingAttempt` and `revealPendingAttempt` refactored (no external behavior change) to call two newly exported pure functions, `checkAttemptAccess` (ownership + TTL) and `finalizeReveal` (the commit-before-reveal check), so `check-attempts-db.ts` runs the exact same decision logic against the persisted table. Module header rewritten: the in-memory `Map` is now documented as the test double `scripts/test-research-os-forcing.ts` exercises, a role separate from the production store. All 19 of that file's existing tests pass unchanged.
+- `src/app/api/research-os/workspace/route.ts`: the "check" action's phase 1 and phase 2 now call `dbStorePendingAttempt`/`dbRevealPendingAttempt` (`check-attempts-db.ts`) instead of `forcing.ts`'s in-memory functions; the opportunistic `pruneExpiredAttempts()` call is dropped, the 24-hour sweep runs from the privacy delete path instead. Module header updated to describe the persisted store.
+- `src/lib/research-os/privacy.ts`: `graph.check_attempts` added to `PRIVACY_TABLES` (export and delete both cover it now).
+- `learning/research-os/compliance/DATA-INVENTORY.md`: a new `graph.check_attempts` row in the learner-keyed table, the source-migration list, and the free-text-fields section (item 4, `check_attempts.explanation`).
+- `learning/research-os/WORKSPACE.md` section 6: "Server enforcement" and "In-memory, best effort" rewritten to describe the persisted store, the 24-hour hard expiry, and the privacy-delete purge sweep; original text preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+- `scripts/test-research-os-privacy.ts`: `fixtureStore()` gains a `check_attempts` row for each of the two test learners; the "reported deleted counts" test gains an assertion for it; the migration drift-check test widened to scan every `supabase/migrations/*.sql` file rather than one hardcoded filename (`graph.check_attempts`'s delete statement lives in the new migration).
+- `package.json`: `test:research-os` gains `scripts/test-research-os-check-attempts.ts`.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/class` and `/research-os/workspace` both in the manifest), `npm run test:research-os` (339 passed, 0 failed, 26 files, up from the PR's own reported 330/330 across 25), `eslint` on every touched or added TS/TSX file, `agf-lint-voice-src check` on the same files plus the new migration, `agf-lint-voice check` on the touched docs: all clean after fixing three banned words (`actually`, twice) and three antithesis phrasings found on the first pass.
+- Leak scan (keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, Claude session URLs) against the PR's own diff (`gh pr diff 63`): clean, zero hits across all four categories checked (IP-shaped strings, key-shaped strings, non-`gianyrox` emails, `/home/gian` paths, session URLs). One pre-existing `/home/gian/agfarms/.wt-fix10` path found in `BEADS-PENDING.jsonl`, confirmed already on `main` before this PR and outside this PR's own one-line diff to that file; left untouched, named here rather than silently passed over.
+- Manual review of the four items PR #63's own task named beyond persistence, all already correct on the branch, no change needed: the arm switch reads `graph.classes.forcing_enabled` server-side (`db.ts`'s `loadForcingEnabledForLearner`) and every `check` evidence event carries `forcingEnabled` (`stages.ts`'s `onCheckResult`); the calibration summary is scoped to the reviewer's own classes (`class/route.ts`'s `loadClassesForReviewer(reviewer.email)` plus a `learnerIdSet` filter); the forcing question copy is short, one-clause, grade-4-level (`forcing.ts`'s `CONFIDENCE_QUESTION_COPY`/`LEARNER_CONFIDENCE_COPY`); the Check card's forcing fieldsets use `flex-wrap`/`flex-col` with no fixed widths, matching `/research-os/profile`'s own 400px-stacking pattern.
+
+### Removed
+
+None.
 
 ## Iteration 24: plan revision 3
 
