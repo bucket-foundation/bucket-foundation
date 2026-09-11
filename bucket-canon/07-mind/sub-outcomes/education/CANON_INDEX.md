@@ -52,10 +52,10 @@ here is an approved canon entry until a founder signs off.
 
 | Title | DOI | canon_score | tier | Depends on (canon foundation) | Finding |
 |---|---|---|---|---|---|
-| Generative AI without guardrails can harm learning: Evidence from high school mathematics | `10.1073/pnas.2422633122` | 75 | OUTCOME | Roediger and Karpicke 2006, `10.1111/j.1745-6916.2006.00012.x` (`07-mind/memory-systems/`) | Unrestricted GPT-4 access on math practice raised practice performance about 48 percent but lowered unassisted exam performance about 17 percent; a hint-only guardrail kept the practice gain and removed the exam harm, a field test of the retrieval-practice mechanism. |
-| When Combinations of Humans and AI Are Useful: A Systematic Review and Meta-Analysis | `10.1038/s41562-024-02024-1` | 75 | OUTCOME | Pirolli and Card 1999, `10.1037/0033-295x.106.4.643` (`04-information/information-foraging/`) | Across the reviewed studies, human-AI combinations beat the better of the two alone on decision tasks but fell short of the better of the two alone on content-creation tasks; task decomposability was the strongest moderator. |
+| Generative AI without guardrails can harm learning: Evidence from high school mathematics | `10.1073/pnas.2422633122` | 75 | OUTCOME | Roediger and Karpicke 2006, `10.1111/j.1745-6916.2006.00012.x` (`07-mind/memory-systems/`) | Unrestricted GPT-4 access on math practice raised practice performance about 48 percent but lowered unassisted exam performance about 17 percent; a hint-only guardrail kept the practice gain and removed the exam harm. |
+| When Combinations of Humans and AI Are Useful: A Systematic Review and Meta-Analysis | `10.1038/s41562-024-02024-1` | 75 | OUTCOME | Pirolli and Card 1999, `10.1037/0033-295x.106.4.643` (`07-mind/information-foraging/`) | Across the reviewed studies, human-AI combinations beat the better of the two alone on decision tasks but fell short of the better of the two alone on content-creation tasks; task decomposability was the strongest moderator. |
 | AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting | `10.1038/s41598-025-97652-6` | 60 | OUTCOME | Roediger and Karpicke 2006, `10.1111/j.1745-6916.2006.00012.x` (`07-mind/memory-systems/`) | In a randomized within-class crossover, students using a pedagogically structured AI tutor learned more, in less time, and reported higher engagement than students in a research-validated active-learning class session on the same content. |
-| Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance | `10.1145/3411764.3445717` | 60 | OUTCOME | Pirolli and Card 1999, `10.1037/0033-295x.106.4.643` (`04-information/information-foraging/`) | Team performance exceeding both the human alone and the AI alone was rare across the study's tasks even when AI explanations raised participants' stated trust; explanations that raised trust did not raise accuracy in step. |
+| Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance | `10.1145/3411764.3445717` | 60 | OUTCOME | Pirolli and Card 1999, `10.1037/0033-295x.106.4.643` (`07-mind/information-foraging/`) | Team performance exceeding both the human alone and the AI alone was rare across the study's tasks even when AI explanations raised participants' stated trust; explanations that raised trust did not raise accuracy in step. |
 | From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria | `10.1596/1813-9450-11125` | 50 | OUTCOME | Roediger and Karpicke 2006, `10.1111/j.1745-6916.2006.00012.x` (`07-mind/memory-systems/`) | Students given structured access to an AI tutor for six weeks gained close to two years of typical learning progress on an English-proficiency measure; effects concentrated among lower-performing students and girls. |
 | Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing Task | `10.48550/arxiv.2506.08872` | 30 | OUTCOME | Sparrow, Liu and Wegner 2011, `10.1126/science.1207745` (`07-mind/memory-systems/`) | An EEG study of essay writing under three conditions found progressively weaker neural connectivity and weaker later recall of one's own essay content in the LLM-assisted condition than in the search-engine-assisted or brain-only conditions. |
 | Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise | `10.48550/arxiv.2410.03017` | 10 | OUTCOME | Roediger and Karpicke 2006, `10.1111/j.1745-6916.2006.00012.x` (`07-mind/memory-systems/`) | In a large field deployment, students working with tutors who had real-time AI-generated suggestions showed higher topic mastery, with the largest gains for tutors with less certification or experience. |
@@ -84,5 +84,15 @@ here is an approved canon entry until a founder signs off.
   has happened yet.
 - Superseded entries move to `_archive/<YYYY-MM>/`, same convention as
   canon dossiers.
+- Two pass-two records fall below CONTRIBUTING.md's informational
+  `canon_score` floor: Kosmyna et al. 2025 (score 30) and Wang et al.
+  2024, Tutor CoPilot (score 10), both recent arXiv preprints the
+  mechanical citation-count and peer-review-type signals undercount. Each
+  carries a `+anchor:` override line in `canon_score_reasons`, per
+  RUBRIC.md's founder-override convention, naming the reviewer and the
+  reason for keeping the record instead of demoting it to `candidate`.
+  Both DOIs are DataCite-registered arXiv records; `sources_consulted`
+  reads `[datacite, openalex]` rather than `[crossref, openalex]`,
+  since Crossref returns no record for either.
 
-_last updated: 2026-09-10 by canon-intake (intake/ros-canon-promotion-2)_
+_last updated: 2026-09-11 by canon-intake (fix/canon-promotion-findings)_
