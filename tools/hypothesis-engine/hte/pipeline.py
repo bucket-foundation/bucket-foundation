@@ -59,6 +59,13 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "writeback_floor_P": 0.6,
     "writeback_floor_u_max": 0.5,
     "writeback_out_root": "bucket-canon",
+    # `None` passes straight through to `hte.canon_writeback.write_back`'s
+    # own default (`hte.holdout_ledger.DEFAULT_LEDGER_PATH`, the committed
+    # repo ledger); a test redirects this at a `tmp_path` file the same
+    # way `write_back`'s own tests already do, so a real (`dry_run=False`)
+    # writeback stage run from a test never appends to the committed
+    # ledger.
+    "writeback_ledger_path": None,
     # `skip_publish=True` renders the `publish` stage a `_skipped_stage`
     # rather than running it: a caller doing a real (non-dry-run)
     # write-back through a PR that already carries its own commit/gdrive
@@ -322,7 +329,7 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
                         run_dir, branch=cfg["writeback_branch"], signoff=cfg["writeback_signoff"],
                         floor_P=cfg["writeback_floor_P"], floor_u_max=cfg["writeback_floor_u_max"],
                         out_root=cfg["writeback_out_root"], dry_run=cfg["dry_run"],
-                        replay_only=cfg["replay_only"],
+                        replay_only=cfg["replay_only"], ledger_path=cfg["writeback_ledger_path"],
                     )
                     return [str(p) for p in paths]
 

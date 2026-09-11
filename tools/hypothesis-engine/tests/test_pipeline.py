@@ -386,13 +386,19 @@ def test_writeback_stage_writes_cards_under_out_root_and_bridge_export_lands_nex
     fake_repo_root.mkdir()
     monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
     out_root = fake_repo_root / "bucket-canon"
+    # A real (`dry_run=False`) writeback stage reaches the LLM-backed
+    # `hte.roles.understanding` call inside `write_back`; fake mode keeps
+    # it deterministic and network-free, the same convention every other
+    # real-write-back test in this package follows.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
 
     summary = pipeline.run_pipeline({
         "from_run": str(synth_run_dir_for_writeback), "out_dir": str(tmp_path / "runs"),
         "pipeline_out_dir": str(tmp_path / "pipeline-out"),
         "writeback": True, "writeback_branch": "07-mind", "writeback_signoff": "test-reviewer",
         "writeback_floor_P": 0.0, "writeback_floor_u_max": 1.0,
-        "writeback_out_root": str(out_root), "dry_run": False, "skip_publish": True,
+        "writeback_out_root": str(out_root), "writeback_ledger_path": str(tmp_path / "ledger.jsonl"),
+        "dry_run": False, "skip_publish": True,
     })
 
     assert summary["stages"]["writeback"]["ok"] is True
@@ -413,3 +419,82 @@ def test_writeback_stage_writes_cards_under_out_root_and_bridge_export_lands_nex
     assert bridge_path.is_file()
 
     assert summary["stages"]["publish"]["ran"] is False  # skip_publish=True
+
+
+# --------------------------------------------------------------------------
+# PR #62 review: the two `write_back`-own no-partial-state refusals
+# (`signoff`, PR #36's own review; `understanding`, `bkt-hte-
+# understanding-artifact`/PR #60's own review) already have a combined
+# test at the `write_back` layer (`tests/test_canon_writeback.py::
+# test_write_back_refuses_without_signoff_or_understanding`), but neither
+# had one that goes through `run_pipeline` (the layer `hte.cli_pipeline`
+# itself calls), where `_time_stage`'s own broad except is what stands
+# between a refusal and an unhandled exception. `pipeline.run_pipeline`'s
+# own `writeback_signoff` precondition only rejects a *falsy* value
+# (`cfg["writeback_signoff"]` unset or `""`), so a whitespace-only
+# signoff passes that check and reaches `write_back`'s own `.strip()`
+# refusal instead, real ground for exercising it at this layer rather
+# than only at `write_back`'s own.
+# --------------------------------------------------------------------------
+
+
+def test_writeback_stage_reports_write_backs_own_signoff_refusal_as_a_failed_stage(tmp_path, monkeypatch, synth_run_dir_for_writeback):
+    """A whitespace-only `writeback_signoff` is truthy, so `run_pipeline`'s
+    own precondition (`cfg["writeback_signoff"]` unset or `""`) lets it
+    through; `write_back`'s own `.strip()` refusal (PLAN.md section 10,
+    GOVERNANCE.md) is what catches it. The refusal must surface as a
+    failed `writeback` stage: `_time_stage`'s own broad except turns it
+    into a `StageResult`, and no card or envelope may exist afterward."""
+    _mock_paper_referee_publish(monkeypatch)
+    out_root = tmp_path / "canon-out"
+
+    summary = pipeline.run_pipeline({
+        "from_run": str(synth_run_dir_for_writeback), "out_dir": str(tmp_path / "runs"),
+        "pipeline_out_dir": str(tmp_path / "pipeline-out"),
+        "writeback": True, "writeback_branch": "07-mind", "writeback_signoff": "   ",
+        "writeback_floor_P": 0.0, "writeback_floor_u_max": 1.0,
+        "writeback_out_root": str(out_root), "writeback_ledger_path": str(tmp_path / "ledger.jsonl"),
+        "dry_run": False, "skip_publish": True,
+    })
+
+    assert summary["stages"]["writeback"]["ran"] is True
+    assert summary["stages"]["writeback"]["ok"] is False
+    assert summary["stages"]["writeback"]["outcome"] == "failed"
+    assert "signoff" in summary["stages"]["writeback"]["error"]
+    assert not out_root.exists()
+    assert summary["outcome"] == "failed"
+
+
+def test_writeback_stage_reports_write_backs_own_understanding_refusal_as_a_failed_stage(tmp_path, monkeypatch, synth_run_dir_for_writeback):
+    """`bkt-hte-understanding-artifact` (PR #60's own review): a blank
+    plain-language explanation for even one selected candidate is a hard
+    `write_back` refusal, reachable only by running the (here mocked)
+    `hte.roles.understanding` call for real, since `run_pipeline`'s own
+    precondition has no way to check this ahead of time. The refusal
+    must surface as a failed `writeback` stage: `_time_stage`'s own
+    broad except turns it into a `StageResult`, and no card or envelope
+    may exist afterward."""
+    from hte import canon_writeback
+
+    _mock_paper_referee_publish(monkeypatch)
+    monkeypatch.setattr(canon_writeback.roles, "understanding", lambda *a, **k: {"explanation": "   "})
+    fake_repo_root = tmp_path / "fake-repo"
+    fake_repo_root.mkdir()
+    monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
+    out_root = fake_repo_root / "bucket-canon"
+
+    summary = pipeline.run_pipeline({
+        "from_run": str(synth_run_dir_for_writeback), "out_dir": str(tmp_path / "runs"),
+        "pipeline_out_dir": str(tmp_path / "pipeline-out"),
+        "writeback": True, "writeback_branch": "07-mind", "writeback_signoff": "test-reviewer",
+        "writeback_floor_P": 0.0, "writeback_floor_u_max": 1.0,
+        "writeback_out_root": str(out_root), "writeback_ledger_path": str(tmp_path / "ledger.jsonl"),
+        "dry_run": False, "skip_publish": True,
+    })
+
+    assert summary["stages"]["writeback"]["ran"] is True
+    assert summary["stages"]["writeback"]["ok"] is False
+    assert summary["stages"]["writeback"]["outcome"] == "failed"
+    assert "understanding" in summary["stages"]["writeback"]["error"]
+    assert not out_root.exists()
+    assert summary["outcome"] == "failed"

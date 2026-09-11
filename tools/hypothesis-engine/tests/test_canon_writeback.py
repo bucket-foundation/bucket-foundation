@@ -181,8 +181,16 @@ def test_write_back_over_a_run_with_a_hidden_survivor_still_writes_the_reconstru
     out_root = fake_repo_root / "bucket-canon"
     monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
     monkeypatch.setattr(canon_writeback, "_emit_feed_events", lambda events: 0)
+    # This is a real (`dry_run=False`) write-back, so it reaches the
+    # LLM-backed `hte.roles.understanding` call; fake mode keeps it
+    # deterministic and network-free, the same convention every other
+    # real-write-back test in this file follows (see the fixture above).
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
 
-    paths = canon_writeback.write_back(run_dir, branch="07-mind", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=False)
+    paths = canon_writeback.write_back(
+        run_dir, branch="07-mind", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
+        out_root=out_root, dry_run=False, ledger_path=tmp_path / "ledger.jsonl",
+    )
     card_paths = [p for p in paths if p.parent == out_root / "07-mind" / "hypotheses" and p.name != "INDEX.md"]
     assert len(card_paths) == 1
     assert card_paths[0].stem == h_supported.short_id
