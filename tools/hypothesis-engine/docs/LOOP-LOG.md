@@ -21,7 +21,7 @@ Dated entries from the hourly optimization loop. Newest entry first.
   step 4 picks them up.
 - **Blocked**: nothing else.
 
-## 2026-09-11, tick
+## 2026-09-11, tick, serve.py swarm and PR50
 
 - **Engine health**: `make test` green on `main` first, 1057 passed. No
   defect.
@@ -50,6 +50,35 @@ Dated entries from the hourly optimization loop. Newest entry first.
   untouched and intact), "fix or note before merge". None of #42/#48/#49
   is a `fix/hte-`/`test/hte-` PR of this loop's own, so none merged
   regardless.
+- **Blocked**: nothing.
+
+## 2026-09-11, tick, mcp_tool swarm and live-call incident
+
+- **Engine health**: `make test` on `main` reached 52% with zero
+  failures before contention from concurrent PR-review worktrees forced
+  a kill; independently confirmed green by later reviews (1076, 1074,
+  995 passed on three other branches this same tick).
+- **Critical incident**: this tick's own `make test` spawned two real
+  `claude -p` subprocesses (`meta_review`/`self_report` over `fixtures`),
+  killed on sight. Root cause: `test_cli.py`'s three PR #29 tests, no
+  `HTE_LLM_MODE=fake` guard. Opened `fix/hte-cli-tests-leak-live-llm-calls`
+  (#46); founder closed it as a duplicate of #40 (already merged,
+  `61089924f`, same fix plus a suite-wide `_no_real_subprocess` autouse
+  guard). Filed as `FINDING-2026-09-10-501` in a docs-only follow-up (#51,
+  this PR).
+- **Random campaigns**: `hte-synth run --seeds 0-29` fake mode, 30/30,
+  gate PASS, repeat run identical. `realsweep --corpus
+  education-atlas/production/literature --seeds 0-9`: 0 crashes, every
+  metric matches the committed reference `SUMMARY.md` exactly.
+- **Test swarm**: `hte/mcp_tool.py` (indirectly covered only). New
+  `tests/swarm-20260910/test_mcp_tool_props.py` pins every enum/default
+  `TOOL_DEFINITION` transcribes by hand against its real source, and
+  found `FINDING-2026-09-10-401` (an unchecked citation `type`, fixed in
+  `hte/api.py`). PR #41, merged.
+- **PRs reviewed**: #36, #39 (already merged elsewhere by tick's end),
+  #48, #45, #42, each a two-table Secrets/QA review; #45 and #48 each
+  turned up a real finding (an undisclosed `src/lib/canon-primary.ts`
+  behavior change; two headline features documented but never shipped).
 - **Blocked**: nothing.
 
 ## 2026-09-10, PR39 review
