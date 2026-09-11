@@ -4,8 +4,10 @@ Mirrors `main.tex` §8 (Engine loop) and `IDEAL-STATE-AND-UNKNOWNS-SPEC.md`
 §7 (The model accounting for itself): the generator, critic, ranking
 judge, evolver's meta-reviewer, the two roles §7 adds over the base engine
 loop (`unknown_unknown`, `preservation_critique`), the per-run
-`self_report`, and the ensemble `extract` role
-(`bkt-hte-extraction-ensemble`). Every prompt here is plain, dry
+`self_report`, the ensemble `extract` role
+(`bkt-hte-extraction-ensemble`), and `understanding`
+(`bkt-hte-understanding-artifact`, `hte.canon_writeback.write_back`'s own
+plain-language explanation gate). Every prompt here is plain, dry
 instruction text; the shared low-tier-recall instruction lives once, in
 `hte.llm.SYSTEM_PROMPT`, rather than being repeated per role.
 
@@ -666,6 +668,72 @@ def self_report(run: Mapping[str, Any], *, cache_dir: str, replay_only: bool = F
     return _with_refusal_default(
         lambda: llm.complete(prompt, role="self_report", schema=SELF_REPORT_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
         role="self_report", default=_self_report_default,
+    )
+
+
+# --------------------------------------------------------------------------
+# understanding (`bkt-hte-understanding-artifact`, `PLAN.md` section 10's
+# understanding axis, Krenn and others 2022, doi:10.1038/s42254-022-00518-3;
+# Messeri and Crockett 2024, doi:10.1038/s41586-024-07146-0)
+# --------------------------------------------------------------------------
+
+UNDERSTANDING_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "properties": {
+        "explanation": {"type": "string"},
+    },
+    "required": ["explanation"],
+}
+
+
+def _understanding_default() -> dict[str, Any]:
+    """`understanding` refused/truncated default: a minimal valid response
+    that names the refusal rather than fabricating an explanation nobody
+    wrote. `hte.canon_writeback.write_back`'s own gate still treats this
+    string as present (non-blank), since the refusal itself is disclosed
+    text a reviewer can act on; only a blank response refuses the
+    write."""
+    n = _refusal_count()
+    return {
+        "explanation": (
+            f"plain-language explanation unavailable: the model refused or was "
+            f"truncated ({n} refusal/truncation event(s) recorded this run so far)."
+        ),
+    }
+
+
+def understanding(statement: str, evidence_summary: str, *, cache_dir: str, replay_only: bool = False) -> dict[str, Any]:
+    """A plain-language restatement of one hypothesis (`PLAN.md` section
+    10's understanding axis): two to four sentences a non-specialist
+    could restate in their own words, no jargon, no slot ids, naming
+    what the claim says and the one or two pieces of evidence it rests
+    on. This is the artifact `hte.canon_writeback.write_back` requires
+    before writing a card (`bkt-hte-understanding-artifact`), marked
+    `generated_by: model` everywhere it is stored: Messeri and Crockett
+    (2024)'s illusion of explanatory depth is the risk of a person
+    mistaking an AI explanation for their own understanding, and the
+    fix this function takes is disclosure: every explanation this
+    function returns is marked `generated_by: model` everywhere it is
+    stored. It never claims a human wrote or verified the explanation,
+    only that the engine produced one and a reviewer can read it before
+    signing off. Krenn and others (2022) treats compression and
+    generalization, beyond correctness alone, as what "understanding"
+    means for a model's own output; the prompt below asks for a
+    restatable summary, the same target, instead of a restatement of
+    the raw opinion numbers.
+    """
+    prompt = (
+        "Explain the following historical hypothesis in plain language a "
+        "non-specialist could restate in their own words. Two to four "
+        "sentences. No jargon, no probability numbers, no internal slot "
+        "or address ids. Name what the claim says and, in one clause, the "
+        "evidence it rests on.\n\n"
+        f"Hypothesis: {statement}\n\n"
+        f"Evidence summary: {evidence_summary}"
+    )
+    return _with_refusal_default(
+        lambda: llm.complete(prompt, role="understanding", schema=UNDERSTANDING_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="understanding", default=_understanding_default,
     )
 
 

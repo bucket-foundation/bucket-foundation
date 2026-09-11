@@ -2,7 +2,8 @@ import pytest
 
 from hte.concepts import ConsensusStatus, Slot
 from hte.corpus import sacred_history
-from hte.evidence import Stance
+from hte.evidence import Stance, Tier
+from hte.timeline import UncertaintyKind
 
 
 def test_sacred_history_ingest_meets_size_floor():
@@ -80,7 +81,7 @@ def test_sacred_history_provenance_is_one_fixture_envelope():
     corpus = sacred_history.ingest()
     assert len(corpus.provenance) == 1
     assert corpus.provenance[0].fixture is True
-    assert corpus.provenance[0].citation_count == 49
+    assert corpus.provenance[0].citation_count == 52
 
 
 def test_sacred_history_missing_file_raises():
@@ -111,3 +112,77 @@ def test_sacred_history_registered_in_cli_and_runner_loaders():
 
     assert cli_loaders["sacred-history"] is sacred_history.ingest
     assert runner_loaders["sacred-history"] is sacred_history.ingest
+
+
+def test_sacred_history_greek_and_mesopotamian_dated_from_external_anchors():
+    corpus = sacred_history.ingest()
+    assert corpus.sources["mesopotamian"].date == "-1200"
+    assert corpus.sources["greek"].date == "-700"
+
+
+def test_sacred_history_every_correlation_evidence_item_has_a_dated_interval():
+    corpus = sacred_history.ingest()
+    correlation_items = [e for e in corpus.evidence if e.provenance == "sacred-history-correlation"]
+    assert len(correlation_items) == 52
+    for e in correlation_items:
+        assert e.interval is not None
+
+
+def test_sacred_history_correlation_intervals_are_always_uniform_never_point():
+    corpus = sacred_history.ingest()
+    correlation_items = [e for e in corpus.evidence if e.provenance == "sacred-history-correlation"]
+    for e in correlation_items:
+        assert e.interval.uncertainty.kind == UncertaintyKind.UNIFORM
+
+
+def test_sacred_history_interval_derivation_recorded_in_views():
+    corpus = sacred_history.ingest()
+    correlation_items = [e for e in corpus.evidence if e.provenance == "sacred-history-correlation"]
+    flagged = [e for e in correlation_items if "interval_is_overlap" in e.views]
+    assert flagged
+    for e in flagged:
+        assert e.views["interval_is_overlap"] in (0.0, 1.0)
+
+
+def test_sacred_history_stemma_edges_are_mutual_undirected_pairs():
+    """Every correlation this bundle ships is undirected (`direction`
+    absent, see `hte.corpus.sacred_history`'s own top docstring): a
+    cross-tradition pair with a correlation between them lists each other
+    as `stemma_parents`, the mutual-pair flag for "undirected"."""
+    corpus = sacred_history.ingest()
+    assert "greek" in corpus.sources["hinduism"].stemma_parents
+    assert "hinduism" in corpus.sources["greek"].stemma_parents
+
+
+def test_sacred_history_three_non_contested_correlations_are_ground_truth_matching_evidence():
+    """The fix for the build-history campaign's own zero-coverage finding
+    (`docs/BUILD-HISTORY.md`, "Data fixes"): a correlation-sourced ground
+    truth event's own id matches an `EvidenceItem` id, so `hte.calibrate`'s
+    `ev_by_id.get(g.id)` lookup resolves to a real, figure-slotted item."""
+    corpus = sacred_history.ingest()
+    ev_by_id = {e.id: e for e in corpus.evidence}
+    correlation_ground_truth = [g for g in corpus.ground_truth if g.id in ev_by_id]
+    assert len(correlation_ground_truth) == 3
+    for g in correlation_ground_truth:
+        item = ev_by_id[g.id]
+        assert item.stance.value == "positive"
+        for slot, value in ((Slot.ACTOR, item.actor), (Slot.OBJECT, item.object)):
+            concept = corpus.vocab.get(slot, value)
+            assert concept is not None
+            assert concept.consensus_status != ConsensusStatus.OTHER
+
+
+def test_sacred_history_human_curated_correlations_get_tier_t3_ai_derived_get_t4():
+    corpus = sacred_history.ingest()
+    by_id = {e.id: e for e in corpus.evidence}
+    human_curated_ids = [
+        "clm-corr-motif-parallel-99eb113edd",
+        "clm-corr-figure-mapping-ad5075f70a",
+        "clm-corr-motif-parallel-411bd30b84",
+    ]
+    for cid in human_curated_ids:
+        assert by_id[cid].tier == Tier.T3
+    ai_derived = [e for e in corpus.evidence if e.provenance == "sacred-history-correlation" and e.id not in human_curated_ids]
+    assert ai_derived
+    for e in ai_derived:
+        assert e.tier == Tier.T4

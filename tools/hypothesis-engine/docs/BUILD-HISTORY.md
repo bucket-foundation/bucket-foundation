@@ -305,3 +305,83 @@ posted as a comment on PR #22.
   timeline export, so `hte.corpus.sacred_history.ingest`'s own stemma
   inference and interval reconstruction both read `None` for either
   side of a correlation touching them.
+
+## Data fixes
+
+Dated 2026-09-10.
+
+Four fixes to `hte.corpus.sacred_history` and `src/data/sacred-
+history.json`, each addressing one gap named above; full rationale in
+the module's own top docstring.
+
+- **Dating.** Every tradition now carries a span (`(earliest, latest)`
+  year across its own `timeline` events) in place of a single earliest
+  year; `greek` and `mesopotamian`, named nowhere in this bundle's `timeline`,
+  now read from `_EXTERNAL_TRADITION_ANCHORS`, a documented, cited
+  constant in the adapter (`mesopotamian`: the Standard Babylonian
+  Epic of Gilgamesh, c. 1200 BCE, George 2003; `greek`: the Hesiodic
+  *Catalogue of Women*, c. 700 BCE, West 1985). Every correlation's own
+  `interval` derives from its two sides' spans, the overlap when they
+  overlap, the union when they do not, always `uncertainty: uniform`
+  over its own bounds; `views["interval_is_overlap"]` records which
+  reading produced it.
+- **Transmission.** Every cross-tradition correlation now emits a
+  stemma edge on `Source.stemma_parents`, a directed edge for a
+  resolved `direction` field, an undirected `shared_source` relation
+  (a mutual pair, the edge present on both sides) for every correlation
+  this bundle ships today, since none carries a `direction` value. This
+  data is ready for `hte.belief.effective_count`'s discount; neither
+  `hte.runner.run_campaign` nor `hte.calibrate.holdout_kfold` threads
+  `Corpus.sources` into `hte.belief.score`'s `sources=` parameter yet,
+  so the discount itself is not live in either path as of this fix.
+- **Slot alignment and ground truth.** Three correlations added,
+  additive, the original 49 untouched, all human-curated and
+  non-contested: `utnapishtim`↔`noah` (flood and ark, `stance:
+  "majority-scholarly"`), `moses`↔`muhammad` (lawgiver and
+  mountain-revelation, `stance: "traditional"`), `confucius`↔`jesus`
+  (the reciprocity maxim, `stance: "majority-scholarly"`). Each carries
+  `evidence[]` naming two independent kinds and a real interval, so
+  `_correlation_items`'s existing ground-truth rule fires for the first
+  time this corpus has shipped; each `GroundTruthEvent.id` equals its
+  own correlation's `EvidenceItem.id`, the id `hte.calibrate`'s
+  `ev_by_id.get(g.id)` lookup reads, so the ground truth shares the
+  frontier's own figure-correlation slot shape by construction. Tier
+  moved off a flat `T4` too: `_TIER_BY_SOURCE` reads `T3` for these 3,
+  `T4` for the 49 AI-derived candidates.
+
+### Numbers before and after
+
+Both runs: `HTE_LLM_MODE=fake`, `--seeds 2`, `hte campaign run --corpus
+sacred-history` (fake mode swaps every LLM role for a deterministic
+stand-in, so these numbers are not comparable to this document's own
+3-seed real-LLM run above; they isolate this fix's own effect on
+calibration and linkage, holding the LLM path fixed at fake on both
+sides of the diff).
+
+| Metric | Before | After |
+|---|---|---|
+| Evidence linked (of total) | 36 of 64 (56%) | 36 of 70 (51%) |
+| Calibration mode | kfold | kfold |
+| Held-out events | 0 | 3 |
+| Covered by a matching placement | 0 | 3 |
+| Coverage of truth | `None` | 1.0 |
+| Brier score | `None` | 0.353 |
+| Reconstructable survivors (`hte.canon_writeback.reconstruct_candidates`) | 3 | 6 |
+| Survivors with `b > 0` | 1 | 4 |
+
+The mode-selection reason string is unchanged (`choose_holdout_mode`
+still reads every ground-truth event's `discovery_year == year` and
+picks `kfold`); what changed is `n_holdout_events` moving off zero,
+since 3 of the corpus's now-14 ground-truth events share an id with a
+real, figure-slotted `EvidenceItem` for the first time.
+
+`hte calibrate --corpus sacred-history` (the standalone CLI; `--diagnose`
+is absent from `hte.cli` on `main` as of this fix, so this is the
+fallback path) still reports `coverage_of_truth=0.0` on both sides of
+this diff: that command always runs `calibrate.run_holdout`, the
+discovery-date holdout, and every ground-truth event in this corpus
+carries `discovery_year == year`, so `holdout_by_discovery_date` puts
+every one of them on one side of any cutoff regardless of which events
+exist. This fix's own coverage gain shows up in the campaign's own embedded
+calibration step (`choose_holdout_mode` → `holdout_kfold`, the table
+above); this standalone command's own numbers stay flat.

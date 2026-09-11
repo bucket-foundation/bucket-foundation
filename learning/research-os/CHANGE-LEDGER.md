@@ -2,6 +2,213 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## Literature batch four
+
+Date 2026-09-10. Branch `intake/ros-literature-4`, worktree `.ros-worktrees/lit4`.
+Literature batch four: 30 new DOI- or ERIC-verified papers targeted at the gap named for
+this pass, evidence about students doing research in K-12 itself, across six sub-areas:
+course-based undergraduate and high-school research experiences, science-fair and
+competition equity, project-based and inquiry-learning outcomes, writing-to-learn and
+argumentation, epistemic cognition and nature of science, and citation and source
+evaluation.
+
+### Added
+
+- 10 files under `_intake/research-os-k12-literature/student-research-experiences/`: new
+  seventh branch. CURE outcome and instrument studies (Bangera and Brownell 2014; Corwin,
+  Graham, and Dolan 2015; Hanauer and Dolan 2014), a research-apprenticeship critical
+  review and a high-school apprenticeship outcome study (Sadler and colleagues 2010;
+  Burgin, Sadler, and Koroly 2012), a long-horizon high-school apprenticeship outcome study
+  (Tai and colleagues 2017), and science-fair and competition equity evidence (Grinnell and
+  colleagues 2018, 2020; Steegh and colleagues 2019; Lakin and colleagues 2021).
+- 7 files under `_intake/research-os-k12-literature/project-based-inquiry-learning/`: new
+  eighth branch. Project-based-learning evidence (Condliffe 2017; Chen and Yang 2019;
+  Kingston 2018), inquiry-teaching guidance meta-analyses (Furtak and colleagues 2012;
+  Lazonder and Harmsen 2016), and the minimal-guidance-versus-scaffolding debate (Kirschner,
+  Sweller, and Clark 2006; Hmelo-Silver, Duncan, and Chinn 2007).
+- 5 files under `_intake/research-os-k12-literature/writing-and-argumentation/`: new ninth
+  branch (Osborne 2010; Bangert-Drowns, Hurley, and Wilkinson 2004; Graham and Perin 2007;
+  Berland and Reiser 2009; Sampson and Clark 2008).
+- 4 files under `_intake/research-os-k12-literature/epistemic-cognition/`: new tenth branch
+  (Kuhn 1999; Sandoval 2005; Chinn, Buckland, and Samarapungavan 2011; Lederman and
+  colleagues 2002).
+- 4 files under `_intake/research-os-k12-literature/source-evaluation/`: new eleventh
+  branch (Wineburg and McGrew 2019; Breakstone and colleagues 2021; McGrew and colleagues
+  2018; Kuiper, Volman, and Terwel 2005).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended from 117 to 147 rows
+  across eleven areas (five new); intro paragraph, per-area counts, and a new "Literature
+  batch four" summary section.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: an "Evidence added
+  in batch four" paragraph appended under six of the twelve open questions (1, 4, 5, 6, 10,
+  12), each naming support, complication, or both. Questions 2, 3, 7, 8, 9, and 11 have no
+  batch-four paper bearing on them directly and were left unedited.
+- `learning/research-os/PLAN-REVISION-2.md`: an "Evidence added in batch four" paragraph
+  appended to section 2a (human-AI complementarity on productions), 2b (progression
+  unidimensionality), and 2d (the ros-08 power finding). Section 2c (prerequisite
+  annotation agreement) has no batch-four paper bearing on it directly and was left
+  unedited.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass, logged below in this
+  same iteration for cross-reference.
+
+### Removed
+
+None.
+
+### Verified
+
+Read in full before writing: `_intake/research-os-k12-literature/README.md` (for the
+frontmatter schema, copied from `auchincloss-et-al-2014-cure-assessment.md` and
+`cuban-2001-oversold-underused-computers-classroom.md`), `learning/research-os/
+PLAN-REVISION-2.md`, `learning/research-os/funding/WAVE-1-TARGETS.md` and
+`FAST-FORWARD-2026.md`, and `learning/research-os/study/PREREGISTRATION-DRAFT.md`. Every
+new paper's DOI and OpenAlex work id were checked live against `api.openalex.org` and
+`api.crossref.org` at intake time; none are placeholders. Two research-brief papers,
+Condliffe (2017) and Kingston (2018), carry no Crossref DOI; each verified against its own
+ERIC record (ED578933, ED590832), the same non-DOI handling this corpus already applies to
+Cuban (2001) and Perkins (1993). Three candidate papers named in the task brief were
+searched for and not found with a resolvable DOI matching the brief exactly: "Hanauer 2017
+project ownership" (the closest verified match, Hanauer and Dolan 2014's own Project
+Ownership Survey, used in its place), "Miller 2018" high-school research program evaluation
+(the closest verified match, Burgin, Sadler, and Koroly 2012, used in its place), and
+"Sahin 2015" science-fair and STEM-competition evidence (Steegh and colleagues 2019 and
+Lakin and colleagues 2021 used as the closest verified equity-of-participation matches). No
+blockquote or extended verbatim passage from any source paper past a 60-word threshold; all
+`key_claims` and body text are paraphrase. `_intake/research-os-k12-literature/README.md`'s
+row count (147) matched the corpus file count exactly, `find` counted per branch: 37
+educational methods, 32 HCI, 18 scientific discovery, 12 AI and researchers, 7 teacher
+workload and adoption, 11 prerequisite graphs, 10 student research experiences, 7
+project-based and inquiry learning, 5 writing and argumentation, 4 epistemic cognition, 4
+source evaluation. A grep-based self-audit against the full banned-word, filler-adverb,
+AI-tell, antithesis, and em/en-dash rule lists ran against every file this pass authored or
+edited, since `agf-lint-voice check` silently scans zero files under any path containing an
+`_intake` segment, the same org-level ignore-list bug literature batch three's own ledger
+entry already flagged (not fixed here, outside this task's scope). Every flagged instance
+was rewritten before commit; `PLAN-REVISION-2.md` and `learning/research-os/CHANGE-LEDGER.md`
+itself, outside the `_intake` tree, were scanned by the real linter directly during each
+commit and returned zero violations, corroborating the self-audit's own result.
+
+## PR #65 review pass
+
+Date 2026-09-10. Review of PR #65 (`intake/ros-literature-4`, literature batch four)
+before merge, worktree `.ros-worktrees/r65`. Full account: `_intake/research-os-k12/
+CHANGELOG.md`, "2026-09-10: literature batch four, PR #65 review pass".
+
+### Edited
+
+- `_intake/research-os-k12-literature/epistemic-cognition/
+  kuhn-1999-developmental-model-critical-thinking.md`: removed the banned filler word
+  `actually` from `why_it_matters`.
+- `_intake/research-os-k12-literature/student-research-experiences/
+  steegh-et-al-2019-gender-differences-competitions.md` and `lakin-et-al-2021-
+  broadening-participation-fairs.md`: `why_it_matters` on both edited to name the
+  unresolved "Sahin 2015" citation and cross-reference each other as the two closest
+  verified equity-of-participation matches, matching the substitute-labeling pattern
+  already used on the Hanauer and Burgin cards.
+- `_intake/research-os-k12-literature/README.md`: a documentation line added noting the
+  Kuiper, Volman, and Terwel (2005) title's en dash is the publisher's own typesetting,
+  reproduced verbatim from the card's own `voice-ignore-line`-marked frontmatter.
+
+### Verified
+
+Leak scan clean (keys, `.env` values, IPs, hostnames, personal emails, PII, absolute
+local paths, session URLs); a first-pass phone-number regex hit was confirmed to be DOI
+and OpenAlex work-id digit strings. Eight of thirty new cards sampled
+against Crossref, OpenAlex, and ERIC (both ERIC-only cards, all three substitute-source
+cards, and three more at random): all eight matched on title, authors, year, and venue.
+README's 147-row index, per-area counts, and file links matched the corpus on disk
+exactly. The overlap map's six batch-four paragraphs and `PLAN-REVISION-2.md`'s three
+both reference files that exist. `git merge origin/main` clean. `npm ci` and
+`npm run build` both passed. No file under `src/` or `public/` changed.
+
+## PR #61 review pass
+
+Date 2026-09-10. Review of PR #61 (`feat/canon-signoff-tool`) before merge,
+worktree `.ros-worktrees/r61`. Full account: `_intake/research-os-k12/
+CHANGELOG.md`, "2026-09-10, PR #61 review pass".
+
+### Edited
+
+- `tools/canon-pipeline/SIGNOFF.md`: one clarifying sentence on the
+  `findPrimaryFiles` walker gap, stating it matches `GOVERNANCE.md`'s
+  foundation-tier-only mission rather than being an open TODO.
+- `GOVERNANCE.md`: one sentence under "Canon sign-off" stating that
+  `/api/research` serves foundation-tier records only, so a `sub-outcomes/`
+  dossier stays out of the paid-cite envelope regardless of sign-off status.
+- `scripts/test-canon-signoff.ts`: three new cross-language tests. Two run
+  the real `signoff_core.py` as a subprocess through `approve`
+  and `reject`, then feed the written value into `isPendingSignoff`
+  (`src/lib/canon-primary.ts`) to confirm the CLI's output and the web
+  route's read gate agree. One reads `hte/canon_writeback.py`'s source and
+  asserts it never references `provenance_signoff`, locking in the "two
+  signoff vocabularies never share a field" claim `signoff_core.py`'s own
+  docstring already made.
+- `_intake/research-os-k12/CHANGELOG.md`: this pass's own entry.
+
+### Verified
+
+- `pytest tools/canon-pipeline/tests/` (41 passed), `npm ci` clean, `npx
+  tsc --noEmit` clean, `npm run build` clean (`/canon/signoff` and
+  `/api/canon/signoff` confirmed in `.next/app-path-routes-manifest.json`),
+  `npm run test:research-os` (326 passed, 0 failed, 24 files), `eslint`
+  clean on every touched TS/TSX file, `agf-lint-voice-src check` clean on
+  every touched TS/TSX/Python file, `agf-lint-voice check` clean on the
+  touched docs.
+- Build-output grep: `CANON_SIGNOFF_APPROVERS` and `RESEARCH_OS_REVIEWER_
+  EMAILS` appear in the `/canon/signoff` client chunk only as the page's own
+  help-text strings naming the env vars, never as allowlist membership or
+  `process.env` reads; both allowlist checks live in server-only chunks.
+- No record's `provenance_signoff` value changed by this PR; `bucket-canon/`
+  does not appear in the PR's file list. Leak scan clean (no keys, secrets,
+  IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`,
+  PII, `/home/gian` paths, or Claude session URLs).
+
+## PR #56 review pass
+
+Date 2026-09-10. Review of PR #56 (`feat/hte-question-map`) before merge,
+worktree `.ros-worktrees/r56`. Full account: `_intake/research-os-k12/
+CHANGELOG.md`, "2026-09-10, PR #56 review pass".
+
+### Edited
+
+- Nothing under `learning/research-os/` or `_intake/research-os-k12/`
+  (besides this ledger and its sibling changelog). The PR's own changes
+  are confined to `tools/hypothesis-engine/`; it reads
+  `RESEARCH-QUESTIONS.md` and cross-references `PLAN-REVISION-2.md` but
+  writes neither. No text replaced, so no entry belongs in `DELETIONS.md`.
+- `tools/hypothesis-engine/hte/question_map.py`: rewrote one antithesis-
+  pattern diagnostic string (agf-lint-voice-src finding) and, separately,
+  `tests/test_question_map.py`: dropped one unused `json` import (`ruff`
+  finding). Both are this reviewer's fixes on top of the PR, separate
+  from the `cli.py` merge-conflict resolution below.
+
+### Merged
+
+- `origin/main`, which carried #55 (canon feed-event backfill) and #59
+  (feed ledger total_events fix) since this branch was cut. One conflict
+  in `tools/hypothesis-engine/hte/cli.py`: this PR's `question-map`
+  subcommand and a concurrently merged `purge` subcommand both edited the
+  module docstring, the `from . import ...` line, and the subparser
+  registration block. Kept both sides in each hunk.
+
+### Verified
+
+- `hte question-map --check` / `--write`: committed
+  `docs/RESEARCH-OS-INTEGRATION.md` matches a live regeneration exactly,
+  no drift.
+- `tests/test_question_map.py`, 25/25. `make test` (engine, post-merge),
+  1146 passed, 18 deselected. `npm run test:research-os`, 298/298,
+  `isPendingSignoff` suite included and untouched. `npx tsc --noEmit`,
+  `npm run build`: clean. `agf-lint-voice check` / `agf-lint-voice-src
+  check`: 0 violations after this reviewer's antithesis fix. `ruff check`
+  on this PR's own touched files: clean after the unused-import fix (32
+  pre-existing findings elsewhere in the engine tree are out of scope).
+- Leak scan: no keys, IPs, non-public hostnames, `/home/gian` paths, or
+  PII; only expected emails; `Claude-Session` URLs are commit-message
+  metadata only.
+
 ## PR #42 review pass
 
 Date 2026-09-10. Review of PR #42 (`feat/hte-purge`) before merge, worktree
@@ -2220,3 +2427,190 @@ commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
 ### Edited
 
 - `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+
+
+## Iteration 22: canon human sign-off tool
+
+Built the human sign-off tool `GOVERNANCE.md`'s "Canon sign-off" section
+and PR #45's review require: a CLI, a gated web page, and a doc, against
+the 20 `bucket-canon/` records currently carrying `provenance_signoff:
+"pending: gianyrox"`.
+
+### Added
+
+- `tools/canon-pipeline/signoff_core.py`, `tools/canon-pipeline/signoff.py`:
+  `list` / `approve --by` / `reject --by --reason` / `audit`. `approve`
+  refuses unless the record's DOI resolves (HTTP HEAD), unless `--offline`.
+  Both verbs idempotent. Every decision appends to
+  `CANON-INGESTION-INDEX.md`.
+- `tools/canon-pipeline/tests/test_signoff.py`: 24 cases, fixture tree
+  under `tmp_path`, no network.
+- `src/lib/canon-signoff.ts`, `src/lib/canon-signoff-approvers.ts`: the
+  route's shared module and the second `CANON_SIGNOFF_APPROVERS`
+  allowlist, stacked on the existing `RESEARCH_OS_REVIEWER_EMAILS` gate
+  from `src/lib/research-os/reviewer.ts`.
+- `src/app/api/canon/signoff/route.ts`, `src/app/canon/signoff/page.tsx`:
+  the gated page and its route.
+- `scripts/test-canon-signoff.ts`: 24 cases, including the 403 gate logic
+  (`isCanonSignoffApprover`) for a reviewer who is not a canon approver, a
+  canon approver who is not a reviewer, and no identity at all. Added to
+  `test:research-os`.
+- `tools/canon-pipeline/SIGNOFF.md`: policy, the two signoff vocabularies
+  (this tool vs. `hte.canon_writeback`'s `signed_off_by`), the two
+  allowlists, the audit trail, and a founder runbook.
+
+### Fixed
+
+- `isPendingSignoff` (`src/lib/canon-primary.ts`) treated only a `pending`
+  value as unapproved; a `rejected` value would have leaked through as
+  servable canon. Now excludes both, covered by two new cases in
+  `scripts/test-canon-primary-signoff.ts`.
+
+### Found and flagged
+
+- `findPrimaryFiles`'s one-level directory walk misses
+  `07-mind/sub-outcomes/education/primary-papers.yaml` (two levels down,
+  11 of the 20 pending records). Not served by `/api/research` today
+  regardless of sign-off status; this tool's own recursive file discovery
+  still lists all 20. `SIGNOFF.md` documents this; fixing the depth limit
+  is a separate change, left for whoever picks it up.
+
+### Verified
+
+- `pytest tools/canon-pipeline/tests/` (41 passed), `npm ci`, `npx tsc
+  --noEmit`, `npm run build` (`/canon/signoff` + `/api/canon/signoff` in
+  the manifest), `npm run test:research-os` (267 passed, 0 failed, 20
+  files, up from 236/18), `eslint` on every touched TS/TSX file,
+  `agf-lint-voice-src check` on every touched TS/TSX/Python file,
+  `agf-lint-voice check` on the touched docs: all clean.
+- No record's `provenance_signoff` value changed on this branch; the CLI
+  and route were exercised only against fixture trees.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+- `GOVERNANCE.md`: one line, a pointer from the "Canon sign-off" section
+  to `SIGNOFF.md` and the tool. No policy text changed.
+
+
+## Iteration 22: ros-11 engine review items
+
+`PLAN.md` section 10 against `BEADS-PENDING.jsonl`'s own ros-11 status
+line: signoff enforced (PR #43), ranking label done (PR #54), cross-family
+independence carries no current claim, six other items open. Four of the
+six landed on `tools/hypothesis-engine/`, none of this iteration's changes
+touch `src/`, `public/`, or `learning/research-os/PLAN.md` itself.
+
+### Added
+
+- `tools/hypothesis-engine/hte/holdout_ledger.py`: a persisted,
+  append-only JSONL ledger of ranked hypotheses (`hte/data/ranking-
+  holdout-ledger.jsonl`, committed empty) with a later-verified outcome
+  field, `verify_entry`/`compute_hit_rate`/`ranking_status`, and a
+  documented `MIN_VERIFIED_FOR_LABEL = 20` below which every ranking
+  output stays labeled `unvalidated_tournament_ranking`. `hte holdout-
+  ledger report`/`verify` (`hte/cli.py`) is the hit-rate script section
+  10 asks for.
+- `tools/hypothesis-engine/hte/novelty.py`: a lexical (token-Jaccard)
+  novelty check of one candidate's own statement against every markdown
+  file under `bucket-canon/`, split into `"canon"` (foundation dossiers)
+  and `"engine"` (a `hypotheses/` subtree, prior write-back output)
+  buckets, reporting a score and the closest match. Not itself a
+  section 10 line; answers Si, Yang, and Hashimoto (2024)'s finding that
+  LLM idea generators repeat themselves across their own outputs more
+  than human researchers do, a direct risk for this engine's own
+  combinatorial generator over a fixed slot vocabulary.
+- `hte.roles.understanding` (`hte/roles.py`, `hte/fakellm.py`'s stand-in,
+  `hte/data/model-policy.json`'s new `"understanding"` role): a
+  plain-language, two-to-four-sentence explanation per candidate,
+  generated by the engine and marked `generated_by: model` everywhere it
+  is stored (Messeri and Crockett 2024's illusion of explanatory depth;
+  Krenn and others 2022's compression-and-generalization reading of
+  "understanding"). `hte.canon_writeback.write_back` refuses the whole
+  write, before any file touches disk, when even one candidate's own
+  explanation comes back blank.
+- `tests/test_holdout_ledger.py`, `tests/test_novelty.py`, and new cases
+  in `tests/test_canon_writeback.py`, `tests/test_roles.py`, `tests/
+  test_fakellm.py`, `tests/test_cli.py`.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/canon_writeback.py`: `_evidence_line`
+  (the rendered card) and a new `_evidence_detail` (the envelope) now
+  carry `doc_id`/`char_start`/`char_end` alongside the existing quote
+  and locator, section 10's full-document-over-snippet ask, additive in
+  the envelope (`evidence.supports_detail`/`refutes_detail`, next to the
+  existing id lists). `render_card`/`render_index`/`build_envelope` read
+  the Elo disclaimer from `hte.holdout_ledger.ranking_status` instead of
+  a fixed string, and carry the new `understanding`/`novelty` fields.
+  `write_back` gained `cache_dir`/`replay_only`/`ledger_path` parameters
+  and now runs the understanding, novelty, and ledger-recording steps
+  before writing any file (skipped under `dry_run`, which stays a free
+  path-listing preview).
+- `tools/hypothesis-engine/hte/pipeline.py`: the `writeback` stage now
+  passes `replay_only` through to `write_back`.
+- `tools/hypothesis-engine/hte/cli.py`: `holdout-ledger report`/`verify`
+  subcommands.
+
+### Removed
+
+None.
+
+### Verified
+
+`make test`: 1084 passed before this iteration's changes, 1115 passed
+after, 18 deselected both times, 0 failed. `ruff check .`: 32
+pre-existing errors elsewhere in the tree, 0 in any file this iteration
+touches. `agf-lint-voice-src check` on every `.py` file this iteration
+authored or edited: 0 violations after fixing (on the first pass) two
+banned words (`actually`, `genuinely`) and nine antithesis constructions.
+No file under `src/` or `public/` touched, so no `npm`/`tsc`/`next lint`
+gate applies. `learning/research-os/ENGINE-BRIDGE.md` reviewed and left
+unchanged: it documents the `graph.nodes`/outbox bridge between the
+Next.js app and the engine, not `hte.canon_writeback`'s own card and
+envelope contract, and carries no reference to `write_back`, `elo_
+status`, or the feed402 envelope this iteration's changes touch.
+
+### Remaining, section 10
+
+Item 5 (stress-test fusion on conflicting evidence sets, Yager 1987),
+item 7 (the address scheme preserves all thirteen Allen interval
+relations, Allen 1983), and item 8 (calibration on a fixed published
+cadence, CASP-style) stay open, filed in `BEADS-PENDING.jsonl` per this
+task's own four-item stop.
+
+
+## Iteration 23: PR #60 review
+
+Review pass over iteration 22 (PR #60) before merge.
+
+### Added
+
+- `tests/test_canon_writeback.py::test_write_back_refuses_without_
+  signoff_or_understanding`: both `write_back` no-partial-state gates
+  (signoff, understanding) in one test, confirming a blank signoff
+  refuses before the understanding step ever runs and a present signoff
+  with a blank understanding artifact still refuses, neither path
+  writing to `out_root`.
+- `BEADS-PENDING.jsonl`: `bkt-hte-evidence-span-doc-length` follow-up.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/evidence.py`: a TODO on `EvidenceSpan.
+  __post_init__` naming what it does not check, `char_start`/`char_end`
+  against `doc_id`'s own stored document length, and why (`hte.corpus.
+  Source` carries no document text or length field yet).
+
+### Verified
+
+`make test`: 1116 passed (1115 from PR #60 plus the one test added
+here), 18 deselected, 0 failed. `ruff check .` clean on every file this
+pass touched. `agf-lint-voice-src check` clean on every `.py` file this
+pass touched; `agf-lint-voice check` clean on `BEADS-PENDING.jsonl`'s own
+new line and both markdown files this pass edited (the file's 25
+pre-existing violations sit on lines already on `main`, untouched by PR
+#60 or this pass). Leak scan of the PR #60 diff: no keys, IPs, emails,
+home paths, or session URLs found. `learning/research-os/ENGINE-BRIDGE.md`
+confirmed by grep to carry no `understanding`/`elo_status`/envelope field
+from `hte.canon_writeback`'s own contract, so PR #60's write-back change
+touches nothing that file covers; left unchanged.

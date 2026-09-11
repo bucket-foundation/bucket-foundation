@@ -15,6 +15,7 @@ from hte.roles import (
     META_REVIEW_SCHEMA,
     PRESERVATION_CRITIQUE_SCHEMA,
     SELF_REPORT_SCHEMA,
+    UNDERSTANDING_SCHEMA,
     UNKNOWN_UNKNOWN_SCHEMA,
 )
 
@@ -78,6 +79,7 @@ def test_complete_mode_fake_ignored_when_not_set(monkeypatch, tmp_path):
         ("judge", JUDGE_SCHEMA),
         ("meta_review", META_REVIEW_SCHEMA),
         ("self_report", SELF_REPORT_SCHEMA),
+        ("understanding", UNDERSTANDING_SCHEMA),
         ("extractor", EXTRACT_SCHEMA),
         ("escalation", EXTRACT_SCHEMA),
     ],
@@ -152,6 +154,21 @@ def test_fakellm_judge_is_sigmoid_of_projection_difference():
     response = fakellm.complete(prompt, role="judge", schema=JUDGE_SCHEMA)
     expected = sigmoid(a.project() - b.project())
     assert response["p_a_wins"] == pytest.approx(expected)
+
+
+def test_fakellm_understanding_echoes_statement():
+    prompt = (
+        "Explain the following historical hypothesis in plain language...\n\n"
+        "Hypothesis: alpha-team sighted comet-q\n\n"
+        "Evidence summary: 1 supporting evidence item, P(h)=0.80"
+    )
+    response = fakellm.complete(prompt, role="understanding", schema=UNDERSTANDING_SCHEMA)
+    assert "alpha-team sighted comet-q" in response["explanation"]
+
+
+def test_fakellm_understanding_never_blank():
+    response = fakellm.complete("no hypothesis line at all", role="understanding", schema=UNDERSTANDING_SCHEMA)
+    assert response["explanation"].strip() != ""
 
 
 def test_fakellm_is_deterministic_across_calls():
