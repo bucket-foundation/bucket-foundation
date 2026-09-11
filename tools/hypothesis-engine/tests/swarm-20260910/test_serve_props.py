@@ -3,8 +3,8 @@ least-covered file (78.3%) with no test of its own in any `tests/swarm*/`
 round. `tests/test_serve.py` already exercises the HTTP-handler surface end
 to end over a real ephemeral-port server (health, hypothesize happy path,
 bad JSON, oversized body, Content-Length edge cases, unknown routes, and the
-unexpected-exception-to-500 branch); this file covers what that suite does
-not: the `CampaignError`/`HypothesizeError`-to-502 branch, `build_parser`'s
+unexpected-exception-to-500 branch); the tests below add the
+`CampaignError`/`HypothesizeError`-to-502 branch, `build_parser`'s
 own defaults and flag parsing, `main`'s `--fake` env-var wiring and its
 `server.serve_forever()`/`KeyboardInterrupt`/`server_close()` lifecycle
 (stubbed rather than run for real, so this file needs no real socket and no
