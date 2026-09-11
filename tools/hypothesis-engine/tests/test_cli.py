@@ -44,6 +44,38 @@ def test_calibrate_command_writes_report(tmp_path, capsys):
     assert (tmp_path / "calibration.json").is_file()
 
 
+def test_calibrate_command_with_no_cutoff_uses_auto_picked_mode(tmp_path):
+    """`bkt-hte-generation-coverage`: with no `--cutoff-years`, `hte
+    calibrate` must pick the mode `hte.calibrate.choose_holdout_mode`
+    would (`quantum-history` carries no real discovery lag, so this
+    reads `mode=kfold`), rather than the command's own prior
+    unconditional `run_holdout` call, which read `coverage_of_truth`
+    at or near `0.0` on every corpus shaped this way."""
+    rc = cli.main(["calibrate", "--corpus", "quantum-history", "--out", str(tmp_path)])
+    assert rc == 0
+    result = json.loads((tmp_path / "calibration.json").read_text())
+    assert result["mode"] == "kfold"
+
+
+def test_calibrate_command_diagnose_writes_diagnostics_md(tmp_path, capsys):
+    rc = cli.main(["calibrate", "--corpus", "quantum-history", "--diagnose", "--out", str(tmp_path)])
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "diagnostics written to" in out
+    assert "reasons for the uncovered remainder" in out
+    assert (tmp_path / "DIAGNOSTICS.md").is_file()
+    assert (tmp_path / "diagnostics.json").is_file()
+
+
+def test_calibrate_command_diagnose_with_explicit_cutoff_uses_discovery_date_mode(tmp_path):
+    rc = cli.main([
+        "calibrate", "--corpus", "quantum-history", "--cutoff-years", "1995", "--diagnose", "--out", str(tmp_path),
+    ])
+    assert rc == 0
+    diag = json.loads((tmp_path / "diagnostics.json").read_text())
+    assert diag["mode"] == "discovery_date"
+
+
 def test_calibrate_command_fit_grid(tmp_path):
     # `fixtures.build()`'s own evidence carries no extracted slots (see
     # that module's own comment: it is also the frozen seed for `tests/

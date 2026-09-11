@@ -1,5 +1,83 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #56 review pass
+
+Reviewed PR #56 (`feat/hte-question-map`, "generated Research OS question
+map with revision check") from the `review/pr56` worktree.
+
+Touched no Research OS surface: every file this PR adds or edits lives
+under `tools/hypothesis-engine/` (`hte/question_map.py`, `hte/cli.py`'s
+new `question-map` subcommand, `hte/data/question-map.json`, its own
+`docs/RESEARCH-OS-INTEGRATION.md`, `Makefile`, and its own test fixtures).
+`hte.question_map` reads `learning/research-os/RESEARCH-QUESTIONS.md` to
+cross-check the registry but never writes it; `PLAN-REVISION-2.md`,
+`RESEARCH-QUESTIONS.md`, and the Research OS / AI-for-research overlap
+map are all untouched. No sentence in a Research OS doc was replaced, so
+`DELETIONS.md` gets no entry. The registry's `_meta.seeded_from` field
+names `PLAN-REVISION-2.md (PR #44) as merged on main` as the revision the
+seed pass reconciled against, matching the plan revision currently on
+main.
+
+Merged `origin/main` (which had picked up #55's canon backfill and #59's
+feed ledger fix since this branch was cut): one conflict, `hte/cli.py`,
+where this PR's `question-map` subcommand and a concurrent `purge`
+subcommand (PR #42/#61-adjacent) both landed in the same docstring,
+import line, and subparser block; kept both, `python3 -c "import ast;
+ast.parse(...)"` confirms the file still parses and `make test` passes
+with the merge applied.
+
+### Fixed before merge
+
+- `agf-lint-voice-src` flagged an antithesis construction this PR
+  introduced in `hte/question_map.py`'s `compute_diff` (a diagnostic
+  string, "`, not present in the live corpus registry`"). Rewrote it to
+  state the point once ("missing from the live corpus registry"); no
+  test asserted on the old string.
+- `ruff check` flagged one unused import (`json`) in this PR's own
+  `tests/test_question_map.py`; removed via `ruff check --fix`. The 32
+  pre-existing `ruff` findings elsewhere in `tools/hypothesis-engine/`
+  (swarm2/swarm3 fixtures, `test_cli_pipeline.py`) predate this PR and
+  are out of scope.
+
+### Verified
+
+Leak scan over the full diff: no keys, tokens, secrets, IPs, non-public
+hostnames, `/home/gian` paths, or PII. The only emails are
+`gianyrox@gmail.com` (author) and `noreply@anthropic.com` (co-author
+trailer); the two `Claude-Session` URLs found are commit-message
+metadata, not file content. `hte question-map --check` and a fresh
+`--write` both confirm `docs/RESEARCH-OS-INTEGRATION.md`'s committed
+generated section is byte-identical to a live regeneration (no drift,
+idempotent). `tests/test_question_map.py`: 25/25 passing. `make test`
+(engine, post-merge): 1146 passed, 18 deselected. `npm run
+test:research-os`: 298/298 passing, including
+`scripts/test-canon-primary-signoff.ts`'s `isPendingSignoff` suite
+(untouched by this PR). `npx tsc --noEmit` and `npm run build` clean.
+`agf-lint-voice check` / `agf-lint-voice-src check`: 0 violations after
+the antithesis fix above.
+
+Non-blocking note: `Makefile`'s new `question-map` target comment
+describes `hte question-map --check` as "the CI-side gate," but no
+`.github/workflows/` file calls it yet (`tools/hypothesis-engine/` has
+no CI workflow at all on `main`). Flagged in the PR review comment;
+not fixed here since adding CI wiring for this engine is outside this
+PR's own scope and no workflow pattern exists yet to extend.
+
+## 2026-09-10, PR #42 review pass
+
+Review-and-merge pass on PR #42 (`feat/hte-purge`, "provenance index and
+purge for learner-derived artifacts") before merge, worktree
+`.ros-worktrees/r42`. Full account: `tools/hypothesis-engine/docs/
+LOOP-LOG.md`, "2026-09-10, PR42 review".
+
+Touched a Research OS surface only in `learning/research-os/compliance/
+DATA-INVENTORY.md`: amended the `public.research_os_productions_outbox`
+row to name `hte purge --production <id>` as the required manual call
+that reaches the engine-side artifacts a learner delete request cannot,
+closing the reachability gap the engine PR's own `docs/PRIVACY.md`
+already named. No other Research OS file (`src/lib/research-os/`,
+`src/app/research-os/`, migrations) changed.
+
 ## 2026-09-10, PR #54 review pass
 
 Reviewed PR #54 (LLM-assisted edge inference, the two-prompt agreement

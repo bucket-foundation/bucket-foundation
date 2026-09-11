@@ -159,6 +159,63 @@ def test_run_holdout_partial_target_slots_match_on_present_slots_only():
     assert any(p["event_id"] == "partial" and p["reading"] == "true" for p in result["predictions"])
 
 
+def test_candidate_key_dedupes_on_exact_interval_not_address_alone():
+    """`_candidate_key`'s own root-cause fix (`bkt-hte-generation-
+    coverage`): two pre-cutoff items sharing every concept slot, whose
+    intervals both START in 1900 (so `Hypothesis.address`, keyed off
+    `interval.start`'s own time bin, is identical for both), one narrow
+    (`[1900, 1900]`) and one wide (`[1900, 1990]`). Confirms the
+    collision precondition directly first (same address, distinct
+    `_candidate_key`), the way `_candidate_key`'s own docstring
+    describes the bug it closes."""
+    vocab = _calib_vocab()
+    narrow = EvidenceItem(id="narrow", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-narrow",
+                           span=_span("doc-narrow"), provenance="test",
+                           interval=Interval(1900, 1900), **_PLANCK_SLOTS)
+    wide = EvidenceItem(id="wide", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-wide",
+                         span=_span("doc-wide"), provenance="test",
+                         interval=Interval(1900, 1990), **_PLANCK_SLOTS)
+    hyp_narrow = calibrate._placement_from_item(narrow, vocab)
+    hyp_wide = calibrate._placement_from_item(wide, vocab)
+    assert hyp_narrow.address == hyp_wide.address, "same concept slots, same interval.start: must collide on address"
+    assert calibrate._candidate_key(hyp_narrow) != calibrate._candidate_key(hyp_wide), "different exact intervals: must not collide on the dedup key"
+
+
+def test_run_holdout_covers_an_event_only_the_wider_of_two_same_address_candidates_reaches():
+    """The outcome the `_candidate_key` fix protects, not just the key
+    itself: two pre-cutoff items share an address (see the isolated
+    test above) but one is narrow (`[1900, 1900]`) and the other wide
+    (`[1900, 1990]`). A held-out event dated 1985 sits inside the wide
+    interval's own reach and past the narrow interval's own end, so it
+    is covered if and only if the wide candidate survived the dedup.
+    `dict.setdefault` on address alone (this module's own shape before
+    the fix) keeps whichever candidate is built first from `corpus.
+    evidence`'s own list order, `narrow` here, and silently drops
+    `wide`; with `wide` gone, nothing pre-cutoff reaches 1985 and this
+    event reads uncovered. This is `run_holdout`'s own candidate-
+    building loop, the identical one `holdout_kfold` runs per fold."""
+    vocab = _calib_vocab()
+    narrow = EvidenceItem(id="narrow", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-narrow",
+                           span=_span("doc-narrow"), provenance="test",
+                           interval=Interval(1900, 1900), **_PLANCK_SLOTS)
+    wide = EvidenceItem(id="wide", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-wide",
+                         span=_span("doc-wide"), provenance="test",
+                         interval=Interval(1900, 1990), **_PLANCK_SLOTS)
+    target = EvidenceItem(id="target", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-target",
+                           span=_span("doc-target"), provenance="test", **_PLANCK_SLOTS)
+    ground_truth = [
+        GroundTruthEvent(id="narrow", label="narrow-interval source", year=1900, doc_id="doc-narrow", discovery_year=1900),
+        GroundTruthEvent(id="wide", label="wide-interval source", year=1900, doc_id="doc-wide", discovery_year=1900),
+        GroundTruthEvent(id="target", label="reachable only through the wide interval", year=1985, doc_id="doc-target", discovery_year=1985),
+    ]
+    corpus = Corpus(sources={}, evidence=[narrow, wide, target], ground_truth=ground_truth, provenance=[], vocab=vocab)
+
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1950)
+    assert result["n_holdout_events"] == 1
+    assert result["n_covered_events"] == 1, "the wide candidate must survive the dedup to cover 1985"
+    assert any(p["event_id"] == "target" and p["reading"] == "true" for p in result["predictions"])
+
+
 def test_run_holdout_no_ground_truth_events_at_all_is_well_formed():
     vocab = _calib_vocab()
     corpus = Corpus(sources={}, evidence=[], ground_truth=[], provenance=[], vocab=vocab)
