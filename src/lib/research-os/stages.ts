@@ -27,14 +27,41 @@
  * `graph.teacher_reviews` migration belong to ros-06, per
  * EVIDENCE-SCHEMA.md's own scope note on that migration.
  *
+ * ros-14 UPDATE (faded guidance for low-prior-knowledge learners):
+ * `EvidenceContext`/`EvidenceEvent` gain `guidanceLevel`
+ * (src/lib/research-os/guidance.ts's GuidanceLevel), the scaffolding level
+ * in effect when this event was produced, so a pilot can compare outcomes
+ * by arm (learning/research-os/GUIDANCE.md). Every transition function
+ * below that already takes an `EvidenceContext` threads the field through
+ * the same way it threads `sessionId`; only src/app/api/research-os/
+ * workspace/route.ts's "check" case computes and passes a value
+ * today (GUIDANCE.md's own scope note explains why Open/Transfer/
+ * Production stay unpopulated in Phase 0).
+ *
  * UPDATE (cognitive forcing on Check, PLAN-REVISION-2.md section 2a):
  * `learnerConfidence`, `sourcePrediction`, `predictionCorrect`, and
  * `forcingEnabled` close the calibration-record gap that design response
  * names. `onCheckResult` below is the one writer; `forcing.ts` computes
  * `predictionCorrect` in code and resolves `forcingEnabled` from the arm
  * switch, both before this file ever sees them.
+ *
+ * UPDATE (lateral reading, PLAN-REVISION-3.md section 2c):
+ * `secondSourceRequired` on a "check" event names whether the second-
+ * source gate (`lateral-reading.ts`'s checkSecondSourceGate) applied to
+ * this attempt at all, the same arm-visibility purpose `forcingEnabled`
+ * already serves; `onCheckResult` is the one writer, threaded through
+ * from context the same way. A new, standalone event kind, "corroboration"
+ * (`onCorroborationRecorded` below), records the two-source pair itself:
+ * which node was already quoted, which independent node the learner
+ * attached, why locate.ts judged them independent, and whether the
+ * learner marks the two passages as agreeing -- a learner-marked verdict,
+ * never model-judged, matching the "AI never writes the learner's text"
+ * floor this file's own header already states for onCheckResult. These
+ * fields, `guidanceLevel` above, and the forcing fields are independent
+ * additions on the same "check" event: a class can run any combination of
+ * the three arm switches.
  */
-import type { Stage } from "./types";
+import type { GuidanceLevel, Stage } from "./types";
 import { stageAtLeast } from "./types";
 import type { LearnerConfidence } from "./forcing";
 
@@ -45,7 +72,9 @@ export type EvidenceKind =
   | "transfer_item"
   | "production_submitted"
   | "production_returned"
-  | "teacher_review";
+  | "teacher_review"
+  | "quote"
+  | "corroboration";
 
 /**
  * Fields a caller supplies per event, beyond what the transition function
@@ -73,6 +102,17 @@ export interface EvidenceContext {
   modelFeedback?: string;
   /** The model's citations on a "check" event, from GradeResult.citations. */
   citations?: string[];
+  /** ros-14: the faded-guidance level in effect when this event was
+   * produced (src/lib/research-os/guidance.ts). Optional, same discipline
+   * as every other field here: a caller that has not computed a guidance
+   * level for this call omits it rather than guessing. */
+  guidanceLevel?: GuidanceLevel;
+  /** The Quote tool's own passage locator on a "quote" event
+   * (src/lib/research-os/passages.ts's QuotePassage.locator). Recorded so
+   * src/lib/research-os/production-guard.ts's quote-matching check can
+   * verify a Production's cited source against a real Quote call this
+   * learner made, per learning/research-os/PRODUCTION-GUARD.md. */
+  locator?: string;
   /** The learner's own 4-point self-rating of their explanation, collected
    * on a "check" event before the verdict above is revealed
    * (forcing.ts's LearnerConfidence, PLAN-REVISION-2.md section 2a). */
@@ -90,6 +130,38 @@ export interface EvidenceContext {
    * RESEARCH_OS_FORCING_ENABLED off, so analysis can tell the three-arm
    * pilot's arms apart from the evidence log alone. */
   forcingEnabled?: boolean;
+  /** Whether the lateral-reading second-source gate (lateral-reading.ts's
+   * checkSecondSourceGate) applied to this "check" event at all: true
+   * only when the class/env switch was on AND this attempt's own stage
+   * had reached Understanding (checkSecondSourceGate's own "at Awareness
+   * tier a single source suffices" rule). Present on every "check" event
+   * this pass's code writes, so analysis can group by arm from the
+   * evidence log alone, matching forcingEnabled's own purpose. */
+  secondSourceRequired?: boolean;
+  /** The node id of the independent second source the learner attached to
+   * reveal this attempt, set only when secondSourceRequired is true and
+   * the gate passed. */
+  secondSourceNodeId?: string;
+
+  /** The node id of the source already quoted, on a "corroboration" event
+   * (onCorroborationRecorded below): the node under Check, since that is
+   * what the learner's own explanation is already grounded against. */
+  firstSourceId?: string;
+  /** The node id of the independent second source Locate's "find another
+   * source" mode surfaced and the learner quoted, on a "corroboration"
+   * event. */
+  secondSourceId?: string;
+  /** locate.ts's own assessSourceIndependence.reason for this pair, on a
+   * "corroboration" event: why the two sources are independent (a
+   * different publisher, a different domain), stored so a reviewer or an
+   * analysis pass never has to re-derive it from the two nodes' own
+   * provenance later. */
+  independenceReason?: string;
+  /** Whether the learner marks the two passages as saying the same thing,
+   * on a "corroboration" event. Learner-marked, never model-judged: the
+   * AI never writes this verdict, the same floor onCheckResult's own
+   * learnerText already holds for the learner's explanation. */
+  passagesAgree?: boolean;
 }
 
 export interface EvidenceEvent {
@@ -128,12 +200,35 @@ export interface EvidenceEvent {
   predictionCorrect?: boolean;
   forcingEnabled?: boolean;
 
+  // Lateral reading (PLAN-REVISION-3.md section 2c): secondSourceRequired/
+  // secondSourceNodeId on a "check" event, see EvidenceContext above;
+  // firstSourceId/secondSourceId/independenceReason/passagesAgree on a
+  // standalone "corroboration" event (onCorroborationRecorded below).
+  secondSourceRequired?: boolean;
+  secondSourceNodeId?: string;
+  firstSourceId?: string;
+  secondSourceId?: string;
+  independenceReason?: string;
+  passagesAgree?: boolean;
+
   // Inter-rater fields (typed per the contract; no writer in ros-04, see
   // this file's header).
   sampledForSecondRating?: boolean;
   secondRaterId?: string;
   secondDecision?: "approved" | "returned";
   agrees?: boolean;
+
+  // ros-14: the faded-guidance level in effect when this event was
+  // produced, see EvidenceContext.guidanceLevel above.
+  guidanceLevel?: GuidanceLevel;
+
+  // Closes "no stored Quote locator for provenance-guard matching," set
+  // only on a "quote" event (onQuoteReturned below). production-guard.ts's
+  // checkSourceProvenance reads this across a learner's whole
+  // learner_node_state.evidence array to verify a Production's cited
+  // sources against a real Quote call, per
+  // learning/research-os/PRODUCTION-GUARD.md.
+  locator?: string;
 }
 
 export interface StageTransition {
@@ -144,8 +239,78 @@ export interface StageTransition {
 /** access -> awareness: the learner opened the node. */
 export function onNodeOpened(currentStage: Stage, context: EvidenceContext = {}, now: string = new Date().toISOString()): StageTransition {
   const nextStage: Stage = currentStage === "access" ? "awareness" : currentStage;
-  const event: EvidenceEvent = { at: now, kind: "open", fromStage: currentStage, toStage: nextStage, sessionId: context.sessionId };
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "open",
+    fromStage: currentStage,
+    toStage: nextStage,
+    sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
+  };
   return { nextStage, event };
+}
+
+/**
+ * The "grounded" predicate onCheckResult and onProbeCheckResult both need
+ * to decide whether a Check verdict counts as a pass (bkt-ros ros-14,
+ * extracted so the faded-guidance schedule, src/lib/research-os/
+ * guidance.ts's nextGuidanceLevel, classifies a past Check event the exact
+ * same way the transition rule below did when it was recorded, rather than
+ * a second, potentially drifting copy of "support, unabstained,
+ * medium-or-higher confidence"). Exported for reuse; behavior unchanged from the inline
+ * `grounded` constant this replaces.
+ */
+export function isGroundedCheck(check: { result: "support" | "contradiction" | "unknown"; confidence: "high" | "medium" | "low"; abstained: boolean }): boolean {
+  return !check.abstained && check.result === "support" && check.confidence !== "low";
+}
+
+/**
+ * No stage change: the Quote tool (workspace/route.ts's "quote" case)
+ * returned a real, curated verbatim passage (src/lib/research-os/
+ * passages.ts's getPassage returned non-null, "kind": "quote" rather than
+ * the "summary" fallback). Logged as evidence so production-guard.ts's
+ * quote-matching check has a real record of which locators this learner
+ * pulled, closing the gap production guard, task item 1 names:
+ * a source cited in a Production must correspond to a Quote record this
+ * learner produced. Never called for the "summary" fallback: a summary
+ * carries no locator, so there is nothing here worth recording toward
+ * that check.
+ */
+export function onQuoteReturned(currentStage: Stage, context: EvidenceContext = {}, now: string = new Date().toISOString()): StageTransition {
+  const event: EvidenceEvent = { at: now, kind: "quote", fromStage: currentStage, toStage: currentStage, sessionId: context.sessionId, locator: context.locator };
+  return { nextStage: currentStage, event };
+}
+
+/**
+ * No stage change: records a lateral-reading corroboration between two
+ * independent sources the learner has quoted (bkt-ros, PLAN-REVISION-3.md
+ * section 2c). `firstSourceId`/`secondSourceId` and `independenceReason`
+ * are required on the context this function is given, `firstSourceId`
+ * and `secondSourceId` are never blank strings and never the same id
+ * (lateral-reading.ts's checkSecondSourceGate is what enforces they
+ * differ, before this writer is ever called); `passagesAgree` is the
+ * learner's own agree/disagree verdict, never model-judged, the field
+ * this file's own header names as the one thing here that must NOT come
+ * from the AI, the same floor onCheckResult already keeps for the
+ * learner's explanation text.
+ */
+export function onCorroborationRecorded(
+  currentStage: Stage,
+  context: { sessionId?: string; firstSourceId: string; secondSourceId: string; independenceReason: string; passagesAgree: boolean },
+  now: string = new Date().toISOString(),
+): StageTransition {
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "corroboration",
+    fromStage: currentStage,
+    toStage: currentStage,
+    sessionId: context.sessionId,
+    firstSourceId: context.firstSourceId,
+    secondSourceId: context.secondSourceId,
+    independenceReason: context.independenceReason,
+    passagesAgree: context.passagesAgree,
+  };
+  return { nextStage: currentStage, event };
 }
 
 /**
@@ -161,7 +326,7 @@ export function onCheckResult(
   context: EvidenceContext = {},
   now: string = new Date().toISOString(),
 ): StageTransition {
-  const grounded = !check.abstained && check.result === "support" && check.confidence !== "low";
+  const grounded = isGroundedCheck(check);
   const eligible = stageAtLeast(currentStage, "awareness") && !stageAtLeast(currentStage, "understanding");
   const nextStage: Stage = grounded && eligible ? "understanding" : currentStage;
   const event: EvidenceEvent = {
@@ -176,10 +341,13 @@ export function onCheckResult(
     modelFeedback: context.modelFeedback,
     citations: context.citations,
     sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
     learnerConfidence: context.learnerConfidence,
     sourcePrediction: context.sourcePrediction,
     predictionCorrect: context.predictionCorrect,
     forcingEnabled: context.forcingEnabled,
+    secondSourceRequired: context.secondSourceRequired,
+    secondSourceNodeId: context.secondSourceNodeId,
   };
   return { nextStage, event };
 }
@@ -211,6 +379,7 @@ export function onTransferItemAnswered(
     learnerText: context.learnerText,
     itemId: context.itemId,
     sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
   };
   return { nextStage: currentStage, event }; // stage intentionally unchanged
 }
@@ -247,7 +416,7 @@ export function onProbeCheckResult(
 ): StageTransition {
   const fromStage: Stage = "access";
   let nextStage: Stage = "access";
-  if (!check.abstained && check.result === "support" && check.confidence !== "low") {
+  if (isGroundedCheck(check)) {
     nextStage = "understanding";
   } else if (!check.abstained && (check.result === "support" || check.result === "unknown")) {
     nextStage = "awareness";
@@ -265,6 +434,7 @@ export function onProbeCheckResult(
     modelFeedback: context.modelFeedback,
     citations: context.citations,
     sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
   };
   return { nextStage, event };
 }
@@ -289,7 +459,14 @@ export function onProductionSubmitted(
   context: EvidenceContext = {},
   now: string = new Date().toISOString(),
 ): StageTransition {
-  const event: EvidenceEvent = { at: now, kind: "production_submitted", fromStage: currentStage, toStage: "production", sessionId: context.sessionId };
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "production_submitted",
+    fromStage: currentStage,
+    toStage: "production",
+    sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
+  };
   return { nextStage: "production", event };
 }
 

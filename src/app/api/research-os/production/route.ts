@@ -5,12 +5,29 @@
  * Production)"). Backs graph.productions.
  *
  * GET  ?targetNodeId=<id>  -> { productions: [...] } (the learner's own, newest first)
- * POST { id?, targetNodeId, claim?, evidence?, sources?, transferProof?, status?, sessionId? }
+ * POST { id?, targetNodeId, claim?, evidence?, sources?, transferProof?, counterEvidence?, status?, sessionId? }
  *      -> upserts a draft (status defaults to "draft"); pass status:"submitted"
  *         to submit, which raises the target node's learner_node_state.stage
  *         to "production" (src/lib/research-os/stages.ts onProductionSubmitted).
  *         Phase 0 has no review queue, so "accepted"/"returned" are not
  *         settable here (task item 6, no teacher layer).
+ *
+ * Production guard (bkt-ros, production guard bead), computed only when
+ * `status: "submitted"` (a draft save skips every check below, so a
+ * learner can save partial, unverified work with no guard noise): the
+ * submission is refused with 400 when an internalization-tier claim (
+ * production-guard.ts's requiresCounterEvidence against the learner's own
+ * fromStage) carries no counter_evidence, per Osborne 2010's
+ * argumentation case (task item 3). Otherwise, `source_provenance` (task
+ * item 1, checkSourceProvenance against this learner's own "quote"-kind
+ * evidence events), `duplicate_flag` (task item 2, computeDuplicateFlag
+ * against this learner's own prior claims, class peers' accepted claims,
+ * and canon claim texts), and `lateral_reading_flag` (lateral reading,
+ * PLAN-REVISION-3.md section 2c, production-guard.ts's lateralReadingFlag
+ * against this learner's own "corroboration"-kind evidence events) are
+ * computed and stored on the row; none of the three ever blocks
+ * submission on its own. Full rule set:
+ * learning/research-os/PRODUCTION-GUARD.md.
  *
  * Engine bridge task item 3: whenever a write here leaves a production at
  * status "accepted", its row is emitted to `public.research_os_
@@ -34,7 +51,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
-import { configured, graphService, verifyLearner, recordEvidence, emitProductionOutboxIfAccepted, loadCurrentStage } from "@/lib/research-os/db";
+import {
+  configured,
+  graphService,
+  verifyLearner,
+  recordEvidence,
+  emitProductionOutboxIfAccepted,
+  loadCurrentStage,
+  loadLearnerQuoteEvidence,
+  loadOwnPriorClaims,
+  loadClassPeerAcceptedClaims,
+  loadLearnerCorroborationEvidence,
+} from "@/lib/research-os/db";
+import {
+  checkSourceProvenance,
+  computeDuplicateFlag,
+  requiresCounterEvidence,
+  hasCounterEvidence,
+  normalizeCounterEvidence,
+  lateralReadingFlag,
+  type DuplicateCandidate,
+} from "@/lib/research-os/production-guard";
+import { canonClaimsAsDuplicateCandidates } from "@/lib/research-os/canon-link";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -66,6 +104,7 @@ interface ProductionBody {
   evidence?: unknown[];
   sources?: unknown[];
   transferProof?: Record<string, unknown>;
+  counterEvidence?: unknown[];
   status?: "draft" | "submitted";
   sessionId?: string;
 }
@@ -96,16 +135,63 @@ export async function POST(req: NextRequest) {
   // code, before the upsert -- otherwise a learner who knows or guesses
   // another learner's production id could overwrite that row and reassign it
   // to themselves (the RLS own_update policy would block this on a direct
-  // client, but this route never uses that path).
+  // client, but this route never uses that path). Also carries target_node_id
+  // forward: a resubmit's own POST body may omit targetNodeId (it cannot
+  // change), but the production guard below needs it to look up this
+  // learner's current stage before the row is even written.
+  let existingTargetNodeId: string | undefined;
   if (body.id) {
     const { data: owned, error: ownErr } = await svc
       .from("productions")
-      .select("learner_id")
+      .select("learner_id,target_node_id")
       .eq("id", body.id)
       .maybeSingle();
     if (ownErr) return bad(500, "read_failed");
     if (!owned) return bad(404, "production_not_found");
     if (owned.learner_id !== learnerId) return bad(403, "forbidden");
+    existingTargetNodeId = owned.target_node_id as string;
+  }
+  const targetNodeId = body.targetNodeId || existingTargetNodeId;
+
+  // Production guard (bkt-ros, production guard bead): computed only on a
+  // real submission, never on a draft save (this file's own header, "a
+  // learner can save partial, unverified work with no guard noise").
+  // `submitFromStage` is fetched once here and reused below for
+  // onProductionSubmitted's own `fromStage` (ros-04's existing rule), so
+  // a submit only ever reads the learner's current stage once.
+  let sourceProvenance: ReturnType<typeof checkSourceProvenance> | undefined;
+  let duplicateFlag: ReturnType<typeof computeDuplicateFlag> | undefined;
+  let lateralFlag: ReturnType<typeof lateralReadingFlag> | undefined;
+  let counterEvidenceRequired = false;
+  let submitFromStage: Awaited<ReturnType<typeof loadCurrentStage>> | undefined;
+  if (body.status === "submitted") {
+    if (!targetNodeId) return bad(400, "targetNodeId is required to submit a production");
+    submitFromStage = await loadCurrentStage(learnerId, targetNodeId);
+    counterEvidenceRequired = requiresCounterEvidence(submitFromStage);
+    if (counterEvidenceRequired && !hasCounterEvidence(body.counterEvidence)) {
+      return bad(400, "counter_evidence is required to submit an internalization-tier production (Osborne 2010)");
+    }
+
+    const claimText = (body.claim || "").trim();
+    const sourceLines = ((body.sources ?? []) as unknown[]).map((s) => String(s));
+    const [quoteEvidence, ownPrior, classPeers, corroborationEvidence] = await Promise.all([
+      loadLearnerQuoteEvidence(learnerId),
+      loadOwnPriorClaims(learnerId, body.id),
+      loadClassPeerAcceptedClaims(learnerId),
+      loadLearnerCorroborationEvidence(learnerId),
+    ]);
+    sourceProvenance = checkSourceProvenance(sourceLines, quoteEvidence);
+    const candidates: DuplicateCandidate[] = [
+      ...ownPrior.map((r) => ({ id: r.id, text: r.claim, origin: "own_prior" as const })),
+      ...classPeers.map((r) => ({ id: r.id, text: r.claim, origin: "class_peer" as const })),
+      ...canonClaimsAsDuplicateCandidates(),
+    ];
+    duplicateFlag = computeDuplicateFlag(claimText, candidates);
+    // Lateral reading (PLAN-REVISION-3.md section 2c, task item 3):
+    // informational only, the same "never blocks submission" posture
+    // duplicate detection already carries; targetNodeId is confirmed set
+    // above (the same guard that gated submitFromStage's own lookup).
+    lateralFlag = lateralReadingFlag(targetNodeId, corroborationEvidence);
   }
 
   const row: Record<string, unknown> = {
@@ -114,21 +200,29 @@ export async function POST(req: NextRequest) {
     evidence: body.evidence ?? [],
     sources: body.sources ?? [],
     transfer_proof: body.transferProof ?? {},
+    counter_evidence: normalizeCounterEvidence(body.counterEvidence),
     status: body.status ?? "draft",
     updated_at: new Date().toISOString(),
   };
   if (body.id) row.id = body.id;
   if (body.targetNodeId) row.target_node_id = body.targetNodeId;
+  // source_provenance/duplicate_flag/counter_evidence_required are guard
+  // output, only ever recomputed on a real submission (see above); a draft
+  // save omits these keys so a prior submission's own guard results are
+  // left untouched in the row rather than blanked out by a later edit.
+  if (sourceProvenance !== undefined) row.source_provenance = sourceProvenance;
+  if (duplicateFlag !== undefined) row.duplicate_flag = duplicateFlag;
+  if (lateralFlag !== undefined) row.lateral_reading_flag = lateralFlag;
+  if (body.status === "submitted") row.counter_evidence_required = counterEvidenceRequired;
 
   const { data, error } = await svc.from("productions").upsert(row, { onConflict: "id" }).select("*").maybeSingle();
   if (error) return bad(500, "write_failed");
 
   if (body.status === "submitted" && data?.target_node_id) {
-    // ros-04: fetch the real stage first so the evidence event's
-    // `fromStage` reflects the learner's real prior stage (see db.ts's
-    // loadCurrentStage), instead of an assumed one.
-    const currentStage = await loadCurrentStage(learnerId, data.target_node_id as string);
-    const transition = onProductionSubmitted(currentStage, { sessionId: (body.sessionId || "").trim() || undefined });
+    // ros-04: `fromStage` reflects the learner's real prior stage, read
+    // once above (submitFromStage) rather than re-fetched here, since
+    // nothing between that read and this write can change it.
+    const transition = onProductionSubmitted(submitFromStage ?? "access", { sessionId: (body.sessionId || "").trim() || undefined });
     await recordEvidence(learnerId, data.target_node_id as string, transition.nextStage, transition.event as unknown as Record<string, unknown>);
   }
 

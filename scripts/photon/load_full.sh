@@ -3,7 +3,7 @@
 # (filled later by embed_full.py), and build the SQL-axis indexes so lookup /
 # spelling / FTS work immediately on the full corpus.
 set -euo pipefail
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 PG=(env PGPASSWORD=bucket psql -h 127.0.0.1 -p 5433 -U bucket -d polingual -v ON_ERROR_STOP=1)
 CSV=_intake/photons/polingual_full.csv.gz
 

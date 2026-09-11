@@ -6,7 +6,7 @@
 # Cadence: quarterly. Total size ~80GB (compressed parquet).
 #
 # Resume-safe: uses `wget -c -nc`. Re-running only fetches missing/partial files.
-# Output: /home/gian/agfarms/bucket-foundation/data/patents/uspto/parquet/patentsview/
+# Output: $HOME/agfarms/bucket-foundation/data/patents/uspto/parquet/patentsview/
 #
 # Usage:
 #   ./fetch_patentsview.sh           # fetch all canonical tables
@@ -14,7 +14,7 @@
 
 set -euo pipefail
 
-ROOT="${ROOT:-/home/gian/agfarms/bucket-foundation/data/patents/uspto}"
+ROOT="${ROOT:-$HOME/agfarms/bucket-foundation/data/patents/uspto}"
 OUT="$ROOT/parquet/patentsview"
 BASE_URL="${PATENTSVIEW_BASE_URL:-https://s3.amazonaws.com/data.patentsview.org/download}"
 

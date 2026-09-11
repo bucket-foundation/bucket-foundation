@@ -3,7 +3,7 @@
 # indexes, ANALYZE, and report. Waits for the embed PID, then finalizes — the
 # last step to "full final state" on the local 6.5M pgvector corpus.
 set -uo pipefail
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 EMB_PID="${1:-937779}"
 PG=(env PGPASSWORD=bucket psql -h 127.0.0.1 -p 5433 -U bucket -d polingual -v ON_ERROR_STOP=1)
 

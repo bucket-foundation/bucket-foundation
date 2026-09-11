@@ -110,6 +110,17 @@ interface NodeRow {
   summary: string | null;
   labels: Record<string, { title?: string; summary?: string }> | null;
   provenance: Record<string, unknown> | null;
+  worked_example: { text?: unknown; source?: unknown } | null;
+}
+
+/** graph.nodes.worked_example -> GraphNode.workedExample (bkt-ros ros-14).
+ * A malformed or partial row (missing `text` or `source`) is treated as
+ * absent rather than surfaced half-built: every reader of `workedExample`
+ * downstream (the workspace UI, grounding.ts's guidance pointer) can
+ * assume a present value is always both fields, never one alone. */
+function toWorkedExample(raw: NodeRow["worked_example"]): { text: string; source: string } | undefined {
+  if (!raw || typeof raw.text !== "string" || typeof raw.source !== "string" || !raw.text.trim() || !raw.source.trim()) return undefined;
+  return { text: raw.text, source: raw.source };
 }
 interface EdgeRow {
   id: string;
@@ -132,7 +143,7 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
   const svc = graphService();
   const { data: nodeRows, error: nodeErr } = await svc
     .from("nodes")
-    .select("id,slug,title,kind,tier,branch,summary,labels,provenance")
+    .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example")
     .eq("branch", branch);
   if (nodeErr) throw new Error(`loadSubgraph: node query failed: ${nodeErr.message}`);
   const nodes: GraphNode[] = ((nodeRows as NodeRow[]) || []).map((r) => ({
@@ -145,6 +156,7 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
     summary: r.summary,
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
+    workedExample: toWorkedExample(r.worked_example),
   }));
 
   const ids = nodes.map((n) => n.id);
@@ -274,6 +286,89 @@ export async function loadClassesForReviewer(reviewerEmail: string): Promise<Cla
   return filterClassesForReviewer((data as RawClassRow[]) || [], reviewerEmail);
 }
 
+/**
+ * Every "quote"-kind evidence entry across every node this learner holds a
+ * state row for (bkt-ros, production guard bead, task item 1). One
+ * learner_node_state row per node, so this is one query over the
+ * learner's whole graph rather than a per-node fetch; a Phase 0-scale
+ * learner holds at most a few dozen rows. src/lib/research-os/
+ * production-guard.ts's checkSourceProvenance is the pure function that
+ * reads this list; this function only assembles it.
+ */
+export interface QuoteEvidenceRecord {
+  nodeId: string;
+  locator: string;
+  at: string;
+}
+
+export async function loadLearnerQuoteEvidence(learnerId: string): Promise<QuoteEvidenceRecord[]> {
+  const svc = graphService();
+  const { data, error } = await svc.from("learner_node_state").select("node_id,evidence").eq("learner_id", learnerId);
+  if (error) throw new Error(`loadLearnerQuoteEvidence: query failed: ${error.message}`);
+  const out: QuoteEvidenceRecord[] = [];
+  for (const row of (data as { node_id: string; evidence: Array<Record<string, unknown>> | null }[]) || []) {
+    for (const ev of row.evidence || []) {
+      if (ev?.kind === "quote" && typeof ev.locator === "string" && ev.locator.trim()) {
+        out.push({ nodeId: row.node_id, locator: ev.locator, at: (ev.at as string | undefined) ?? "" });
+      }
+    }
+  }
+  return out;
+}
+
+export interface ClaimCandidateRow {
+  id: string;
+  claim: string;
+}
+
+/**
+ * This learner's own prior Production claims, every status, excluding
+ * `excludeId` (the production being submitted right now, on a resubmit)
+ * -- production guard, task item 2's first duplicate-detection
+ * population, "this learner's prior Productions." A row with a blank or
+ * null claim is dropped: there is nothing to compare tokens against.
+ */
+export async function loadOwnPriorClaims(learnerId: string, excludeId?: string): Promise<ClaimCandidateRow[]> {
+  const svc = graphService();
+  let q = svc.from("productions").select("id,claim").eq("learner_id", learnerId);
+  if (excludeId) q = q.neq("id", excludeId);
+  const { data, error } = await q;
+  if (error) throw new Error(`loadOwnPriorClaims: query failed: ${error.message}`);
+  return ((data as { id: string; claim: string | null }[]) || [])
+    .filter((r) => (r.claim || "").trim())
+    .map((r) => ({ id: r.id, claim: r.claim as string }));
+}
+
+/**
+ * Every OTHER learner's accepted Production claims, scoped to a class
+ * this learner shares with them -- production guard, task item 2's
+ * second duplicate-detection population, "other learners' accepted
+ * Productions in the same class." Reuses `class_members` the same way
+ * `loadClassMembers` above already does (own class ids, then every
+ * member of those classes); a learner in no class at all gets an empty
+ * list rather than a query error, matching this bead's "never blocks
+ * submission" posture -- a missing roster is not a reason to skip
+ * duplicate detection for the populations that ARE available.
+ */
+export async function loadClassPeerAcceptedClaims(learnerId: string): Promise<ClaimCandidateRow[]> {
+  const svc = graphService();
+  const { data: memberships, error: memErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
+  if (memErr) throw new Error(`loadClassPeerAcceptedClaims: membership query failed: ${memErr.message}`);
+  const classIds = Array.from(new Set(((memberships as { class_id: string }[]) || []).map((m) => m.class_id)));
+  if (classIds.length === 0) return [];
+
+  const { data: peerRows, error: peerErr } = await svc.from("class_members").select("learner_id").in("class_id", classIds);
+  if (peerErr) throw new Error(`loadClassPeerAcceptedClaims: peer query failed: ${peerErr.message}`);
+  const peerIds = Array.from(new Set(((peerRows as { learner_id: string }[]) || []).map((r) => r.learner_id))).filter((id) => id !== learnerId);
+  if (peerIds.length === 0) return [];
+
+  const { data: prodRows, error: prodErr } = await svc.from("productions").select("id,claim").in("learner_id", peerIds).eq("status", "accepted");
+  if (prodErr) throw new Error(`loadClassPeerAcceptedClaims: production query failed: ${prodErr.message}`);
+  return ((prodRows as { id: string; claim: string | null }[]) || [])
+    .filter((r) => (r.claim || "").trim())
+    .map((r) => ({ id: r.id, claim: r.claim as string }));
+}
+
 /** Every graph.class_members row for the given classes, as classId -> learnerIds. */
 export async function loadClassMembers(classIds: string[]): Promise<Map<string, string[]>> {
   const out = new Map<string, string[]>();
@@ -316,6 +411,71 @@ export async function loadForcingEnabledForLearner(learnerId: string): Promise<b
   } catch {
     return null;
   }
+}
+
+/**
+ * The per-class lateral-reading second-source override (bkt-ros,
+ * PLAN-REVISION-3.md section 2c; `graph.classes.second_source_required`,
+ * migration 20260910080000_research_os_lateral_reading.sql). Same shape
+ * and same fail-open posture as loadForcingEnabledForLearner right above:
+ * `null` on "no override on file", on a learner in no class, or on any
+ * query failure, all three of which `src/lib/research-os/lateral-
+ * reading.ts`'s resolveSecondSourceRequired reads as "defer to the
+ * RESEARCH_OS_SECOND_SOURCE_REQUIRED env default," so this optional
+ * lookup can never break a Check call, including in an environment where
+ * this migration has not run yet.
+ */
+export async function loadSecondSourceRequiredForLearner(learnerId: string): Promise<boolean | null> {
+  try {
+    const svc = graphService();
+    const { data: memberRows, error: memberErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
+    if (memberErr || !memberRows || memberRows.length === 0) return null;
+    const classIds = Array.from(new Set((memberRows as { class_id: string }[]).map((r) => r.class_id)));
+    const { data: classRows, error: classErr } = await svc.from("classes").select("id,second_source_required").in("id", classIds);
+    if (classErr || !classRows) return null;
+    const withOverride = (classRows as { id: string; second_source_required: boolean | null }[]).find((c) => typeof c.second_source_required === "boolean");
+    return withOverride ? withOverride.second_source_required : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Every "corroboration"-kind evidence entry across every node this
+ * learner holds a state row for (bkt-ros, PLAN-REVISION-3.md section 2c;
+ * production-guard.ts's lateralReadingFlag is the pure function that
+ * reads this list, the same "assemble here, decide in production-
+ * guard.ts" split loadLearnerQuoteEvidence right above already keeps for
+ * "quote"-kind events). One learner_node_state row per node, so this is
+ * one query over the learner's whole graph rather than a per-node fetch.
+ */
+export interface CorroborationEvidenceRecord {
+  firstSourceId: string;
+  secondSourceId: string;
+  independenceReason: string;
+  passagesAgree: boolean;
+  at: string;
+}
+
+export async function loadLearnerCorroborationEvidence(learnerId: string): Promise<CorroborationEvidenceRecord[]> {
+  const svc = graphService();
+  const { data, error } = await svc.from("learner_node_state").select("evidence").eq("learner_id", learnerId);
+  if (error) throw new Error(`loadLearnerCorroborationEvidence: query failed: ${error.message}`);
+  const out: CorroborationEvidenceRecord[] = [];
+  for (const row of (data as { evidence: Array<Record<string, unknown>> | null }[]) || []) {
+    for (const ev of row.evidence || []) {
+      if (ev?.kind === "corroboration" && typeof ev.firstSourceId === "string" && typeof ev.secondSourceId === "string") {
+        out.push({
+          firstSourceId: ev.firstSourceId,
+          secondSourceId: ev.secondSourceId,
+          independenceReason: typeof ev.independenceReason === "string" ? ev.independenceReason : "",
+          passagesAgree: Boolean(ev.passagesAgree),
+          at: (ev.at as string | undefined) ?? "",
+        });
+      }
+    }
+  }
+  return out;
 }
 
 interface AncestorRow {
@@ -381,7 +541,7 @@ export async function findNodeBySlug(slug: string): Promise<GraphNode | null> {
   const svc = graphService();
   const { data, error } = await svc
     .from("nodes")
-    .select("id,slug,title,kind,tier,branch,summary,labels,provenance")
+    .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example")
     .eq("slug", slug)
     .maybeSingle();
   if (error || !data) return null;
@@ -396,6 +556,7 @@ export async function findNodeBySlug(slug: string): Promise<GraphNode | null> {
     summary: r.summary,
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
+    workedExample: toWorkedExample(r.worked_example),
   };
 }
 
@@ -403,7 +564,7 @@ export async function findNodeById(id: string): Promise<GraphNode | null> {
   const svc = graphService();
   const { data, error } = await svc
     .from("nodes")
-    .select("id,slug,title,kind,tier,branch,summary,labels,provenance")
+    .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example")
     .eq("id", id)
     .maybeSingle();
   if (error || !data) return null;
@@ -418,6 +579,7 @@ export async function findNodeById(id: string): Promise<GraphNode | null> {
     summary: r.summary,
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
+    workedExample: toWorkedExample(r.worked_example),
   };
 }
 
@@ -450,6 +612,114 @@ export async function recordEvidence(
 }
 
 // ---------------------------------------------------------------------------
+// Faded guidance (bkt-ros ros-14). See src/lib/research-os/guidance.ts for
+// the pure rules these two reads feed; both fail open (empty/false) rather
+// than throwing, so a guidance-level read never fails the request it backs.
+// ---------------------------------------------------------------------------
+
+export interface RecentCheckEvent {
+  at: string;
+  nodeId: string;
+  result: "support" | "contradiction" | "unknown";
+  confidence: "high" | "medium" | "low";
+  abstained: boolean;
+}
+
+/**
+ * Every "check" evidence event across every node this learner has any
+ * state row for, diagnostic-probe checks excluded (their own evidence
+ * carries `note: "diagnostic_probe"`; probe.ts's header already
+ * establishes a cold-start probe answer measures something different from
+ * an in-path Check, so it should not feed the in-path fading schedule),
+ * sorted newest first, capped at `limit`.
+ *
+ * Phase 0 scale (a handful of learner_node_state rows per learner): reads
+ * every row for this learner and filters/sorts in JS rather than a
+ * per-event SQL query against a jsonb array column, matching this file's
+ * own loadClassesForReviewer precedent for a Phase-1-scale table. A read
+ * error (missing table, network blip) fails open to an empty array, the
+ * same posture loadAncestorRows already documents: guidance.ts's
+ * nextGuidanceLevel treats "fewer than two outcomes" as "leave the base
+ * level unchanged," so an empty result here degrades to no adjustment
+ * rather than a failed request.
+ */
+export async function loadRecentCheckEvents(learnerId: string, limit: number): Promise<RecentCheckEvent[]> {
+  const svc = graphService();
+  try {
+    const { data, error } = await svc.from("learner_node_state").select("node_id,evidence").eq("learner_id", learnerId);
+    if (error) return [];
+    const events: RecentCheckEvent[] = [];
+    for (const row of (data as { node_id: string; evidence: Array<Record<string, unknown>> | null }[]) || []) {
+      for (const ev of row.evidence || []) {
+        if (ev.kind !== "check" || ev.note === "diagnostic_probe") continue;
+        if (typeof ev.at !== "string" || typeof ev.result !== "string" || typeof ev.confidence !== "string") continue;
+        events.push({
+          at: ev.at,
+          nodeId: row.node_id,
+          result: ev.result as RecentCheckEvent["result"],
+          confidence: ev.confidence as RecentCheckEvent["confidence"],
+          abstained: Boolean(ev.abstained),
+        });
+      }
+    }
+    events.sort((a, b) => (a.at < b.at ? 1 : a.at > b.at ? -1 : 0));
+    return events.slice(0, limit);
+  } catch {
+    return [];
+  }
+}
+
+interface ClassGuidanceRow {
+  id: string;
+  research_os_guidance_enabled: boolean | null;
+}
+
+/**
+ * The class-switch OR rule alone, pure and dependency-free so it is
+ * unit-testable with plain fixture rows (scripts/test-research-os-guidance.ts,
+ * matching this file's own filterClassesForReviewer precedent for
+ * splitting a scoping/combination decision out of its DB-reading wrapper):
+ * true unless `rows` is non-empty AND every row's switch reads false.
+ * `null` (a class row from before this column existed on a fresh
+ * environment mid-migration) is treated as "on," the column's own SQL
+ * default. An empty `rows` array -- no membership, or every membership
+ * dangling -- reads as enabled, the base product behavior for a learner
+ * outside any pilot class.
+ */
+export function decideGuidanceEnabled(rows: ClassGuidanceRow[]): boolean {
+  if (rows.length === 0) return true;
+  return rows.some((r) => r.research_os_guidance_enabled !== false);
+}
+
+/**
+ * The per-class `research_os_guidance_enabled` arm switch (bkt-ros ros-14
+ * item 4, mirroring PR #63's cognitive-forcing switch): the DB-reading
+ * wrapper around decideGuidanceEnabled above. A learner enrolled in more
+ * than one class is enabled if ANY of them has the switch on, since a
+ * pilot's own control-arm assignment is a property of a specific class
+ * roster: one shared class should never be able to silently veto
+ * guidance for every other class this learner is also in. Fails open to `true` on
+ * a read error, matching every other best-effort read in this file: a
+ * broken class join should never silently strip a learner's own
+ * scaffolding.
+ */
+export async function isGuidanceEnabledForLearner(learnerId: string): Promise<boolean> {
+  const svc = graphService();
+  try {
+    const { data: memberRows, error: memberErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
+    if (memberErr) return true;
+    const classIds = ((memberRows as { class_id: string }[]) || []).map((r) => r.class_id);
+    if (classIds.length === 0) return true;
+
+    const { data: classRows, error: classErr } = await svc.from("classes").select("id,research_os_guidance_enabled").in("id", classIds);
+    if (classErr) return true;
+    return decideGuidanceEnabled((classRows as ClassGuidanceRow[]) || []);
+  } catch {
+    return true;
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Engine bridge (bkt-ros, engine bridge task). See src/lib/research-os/
 // engine-bridge.ts for the pure envelope-mapping functions these write.
 // ---------------------------------------------------------------------------
@@ -477,7 +747,7 @@ export async function upsertEngineHypothesisNode(draft: EngineNodeDraft): Promis
       },
       { onConflict: "slug" },
     )
-    .select("id,slug,title,kind,tier,branch,summary,labels,provenance")
+    .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example")
     .single();
   if (error) throw new Error(`upsertEngineHypothesisNode: upsert failed: ${error.message}`);
   const r = data as NodeRow;
@@ -491,6 +761,7 @@ export async function upsertEngineHypothesisNode(draft: EngineNodeDraft): Promis
     summary: r.summary,
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
+    workedExample: toWorkedExample(r.worked_example),
   };
 }
 
@@ -518,7 +789,7 @@ export async function upsertGapNode(draft: GapNodeDraft): Promise<GraphNode> {
       },
       { onConflict: "slug" },
     )
-    .select("id,slug,title,kind,tier,branch,summary,labels,provenance")
+    .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example")
     .single();
   if (error) throw new Error(`upsertGapNode: upsert failed: ${error.message}`);
   const r = data as NodeRow;
@@ -532,6 +803,7 @@ export async function upsertGapNode(draft: GapNodeDraft): Promise<GraphNode> {
     summary: r.summary,
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
+    workedExample: toWorkedExample(r.worked_example),
   };
 }
 

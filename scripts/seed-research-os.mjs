@@ -65,6 +65,21 @@ function validate(seed) {
     if (!EDGE_KIND_OK.has(e.kind)) throw new Error(`edge ${e.from}->${e.to}: bad kind "${e.kind}"`);
   }
 
+  // bkt-ros ros-14: worked_example is optional, but a node that HAS one
+  // must have both fields non-empty -- a half-built example (a text with
+  // no source, or vice versa) is worse than none, so this fails the whole
+  // seed rather than writing a malformed row (db.ts's toWorkedExample
+  // would silently drop it, hiding the authoring mistake).
+  let workedExampleCount = 0;
+  for (const n of seed.nodes) {
+    if (n.worked_example === undefined) continue;
+    const we = n.worked_example;
+    const text = typeof we?.text === "string" ? we.text.trim() : "";
+    const source = typeof we?.source === "string" ? we.source.trim() : "";
+    if (!text || !source) throw new Error(`node ${n.slug}: worked_example must have non-empty "text" and "source"`);
+    workedExampleCount++;
+  }
+
   // Cycle check on the prerequisite subgraph only (that's what routing walks).
   const prereq = seed.edges.filter((e) => e.kind === "prerequisite");
   const forward = new Map(); // slug -> [slug...]
@@ -113,7 +128,7 @@ function validate(seed) {
     throw new Error(`target "${seed.target_slug}" cannot reach any root node by walking prerequisite edges backward`);
   }
 
-  return { nodeCount: seed.nodes.length, edgeCount: seed.edges.length, roots, prereqCount: prereq.length };
+  return { nodeCount: seed.nodes.length, edgeCount: seed.edges.length, roots, prereqCount: prereq.length, workedExampleCount };
 }
 
 async function write(seed) {
@@ -134,6 +149,10 @@ async function write(seed) {
     summary: n.summary ?? null,
     labels: n.labels ?? { en: { title: n.title, summary: n.summary ?? "" } },
     provenance: n.provenance ?? {},
+    // bkt-ros ros-14: null (not omitted) when absent, so a re-run that
+    // removes a worked_example from the seed file clears the column on
+    // upsert rather than leaving a stale value from a prior seed version.
+    worked_example: n.worked_example ?? null,
   }));
   const { data: upserted, error: nodeErr } = await svc
     .from("nodes")
@@ -172,7 +191,7 @@ async function main() {
   const seed = loadSeed();
   const stats = validate(seed);
   console.log(
-    `[seed-research-os] valid: ${stats.nodeCount} nodes, ${stats.edgeCount} edges (${stats.prereqCount} prerequisite), roots: ${stats.roots.join(", ")}`,
+    `[seed-research-os] valid: ${stats.nodeCount} nodes, ${stats.edgeCount} edges (${stats.prereqCount} prerequisite), ${stats.workedExampleCount} worked examples, roots: ${stats.roots.join(", ")}`,
   );
   if (CHECK_ONLY) return;
   const result = await write(seed);

@@ -118,16 +118,59 @@ corpus.education_atlas` reads:
   own publication year (`discovery_year == year`, the same simplification
   `hte.corpus.quantum_history`, `hte.corpus.education_atlas`, and `hte.
   corpus.fixtures` all make, contrasted with `hte.corpus.production`'s own
-  real discovery lag), when `_classify_method` reads it as a
-  `meta-analysis` (a meta-analysis is, by construction, a synthesis of
-  many replicated findings into one pooled effect size) or when its own
-  scoped findings text names a replication directly (`"replicat"`, a
-  substring catching `"replication"`/`"replications"`/`"replicated"`,
-  scoped to `why_it_matters` and `key_claims` only, per the point above).
-  Three meta-analyses (Kulik, Kulik, and Bangert-Drowns 1990; Kulik and
-  Fletcher 2016; VanLehn 2011) and one direct replication report (Open
-  Science Collaboration 2015) become ground truth this way across the
-  full 45-card corpus.
+  real discovery lag), under any of three independent ways a finding gets
+  attested (`bkt-hte-ground-truth-enrichment`'s own widening of a rule
+  that, before this change, only read the first of the three; the
+  reason table lives in `docs/COVERAGE-2026-09-10.md`'s "Why coverage was
+  low" section, read from the `feat/hte-generation-coverage` branch):
+
+  1. **Meta-analysis.** `_classify_method` reads it as a `meta-analysis`:
+     a meta-analysis is, by construction, a synthesis of many replicated
+     findings into one pooled effect size, ground truth on its own with
+     no further check.
+  2. **Direct replication, with an effect size.** Its own scoped findings
+     text names a replication directly (`"replicat"`, a substring
+     catching `"replication"`/`"replications"`/`"replicated"`, scoped to
+     `why_it_matters` and `key_claims` only, per the point above) AND
+     that same text names a quantified effect size (`_has_effect_size`:
+     one of `_EFFECT_SIZE_MARKERS`'s own unit or statistic words,
+     alongside a digit somewhere in the text). The effect-size check is
+     this change's own tightening: a bare mention of the word
+     "replication" with no number attached (a card citing "the
+     replication crisis" in passing, never itself checked against this
+     corpus) no longer qualifies on that reading alone; every card this
+     rule already credited before this change (Kulik, Kulik, and
+     Bangert-Drowns 1990's own "0.5 standard deviations"; Open Science
+     Collaboration 2015's own "roughly 36 percent... about half the
+     size") keeps a real number behind its own replication language, so
+     the tightening drops nothing this rule already credited.
+  3. **Cross-card corroboration.** `_corroborated_dois` (checked once per
+     `_build_corpus` call, over every card in the batch together):
+     two or more cards naming the same `(mechanism, object)` reading,
+     from at least two distinct first authors, are every one of them
+     ground truth, `object` (a shared, named outcome) the operative
+     signal; see that function's own docstring for why a shared `OTHER`
+     placeholder on `object` never qualifies, even when `mechanism` also
+     matches, while a shared `OTHER` on `mechanism` alone still can.
+     This is the paper's own "two independent kinds" reading extended
+     to two independent studies: neither card cites the other (a stemma
+     edge, checked separately, above), yet both land on the same finding
+     from their own independent read of the evidence.
+
+  Across this package's own shipped fixture batches (`DEFAULT_CARDS_
+  DIRS`, `load_default`'s own corpus), method 1 alone credits Kulik,
+  Kulik, and Bangert-Drowns 1990 and Deci, Koestner, and Ryan 1999
+  (extrinsic-rewards meta-analysis); method 3 credits Deci and
+  Ryan 2000 and Oudeyer, Kaplan, and Hafner 2007 (both corroborating
+  Deci, Koestner, and Ryan 1999's own `self-determination`/`motivation`
+  reading) and Alonzo and Steedle 2009 alongside Corcoran, Mosher, and
+  Rogat 2009 (independently corroborating a `learning-gain` reading, a
+  different research question from the self-determination group, no
+  shared author between the two groups either), six ground-truth events
+  total, up from the pre-widening rule's own single event across both
+  fixture batches (this change's own "Ground truth" section in
+  `docs/COVERAGE-2026-09-10.md` carries the before/after numbers and
+  the `hte calibrate --corpus literature` coverage this widening buys).
 - **Stemma.** Unlike the four slot and method classifiers, stemma
   detection reads a wider span of a card's own prose than `_extraction_
   text` does, `why_it_matters`, `key_claims`, and `how_it_bears_on_
@@ -609,8 +652,74 @@ def _evidence_kind(method: str) -> EvidenceKind:
     return EvidenceKind.MODEL_PRIOR if method in _MODEL_INFERENCE_METHODS else EvidenceKind.TEXTUAL
 
 
+# A card's own scoped findings text names a real, quantified effect size
+# rather than a bare mention of the word "replication" with no number
+# behind it: at least one of these unit or statistic words, alongside at
+# least one digit somewhere in the same text. `_is_ground_truth` reads
+# this before crediting a bare "replicat" substring; a card mentioning
+# "the replication crisis" in passing, with no number attached, no
+# longer qualifies on that reading alone. Checked, by hand, against
+# every card `_is_ground_truth` credits below (Kulik, Kulik, and
+# Bangert-Drowns 1990's own "0.5 standard deviations"; Open Science
+# Collaboration 2015's own "roughly 36 percent... about half the size").
+_EFFECT_SIZE_MARKERS: tuple[str, ...] = (
+    "standard deviation", " sd ", "percentile", "percent", "%", "effect size",
+    "cohen's d", "hedges", "odds ratio", "correlation", "confidence interval",
+)
+
+
+def _has_effect_size(text: str) -> bool:
+    lowered = text.lower()
+    return any(marker in lowered for marker in _EFFECT_SIZE_MARKERS) and any(ch.isdigit() for ch in text)
+
+
 def _is_ground_truth(method: str, text: str) -> bool:
-    return method == "meta-analysis" or "replicat" in text.lower()
+    """Whether this card, read alone, is a ground-truth event under
+    either of the paper's own first two ways a finding gets attested: a
+    meta-analysis (a synthesis of many replicated findings into one
+    pooled effect size, ground truth by construction, `method ==
+    "meta-analysis"`), or the card's own scoped findings text naming a
+    direct replication alongside a quantified effect size (`_has_effect_
+    size`). The paper's own third way, cross-card corroboration (two
+    cards on the same mechanism and outcome from different first
+    authors), needs every other card in the same batch, not just this
+    one's own text; `_build_corpus`'s own `_corroborated_dois` checks
+    that separately and is OR'd in at the call site below."""
+    if method == "meta-analysis":
+        return True
+    return "replicat" in text.lower() and _has_effect_size(text)
+
+
+def _corroborated_dois(cards: list[Card]) -> set[str]:
+    """Every DOI whose card belongs to a `(mechanism, object)` group at
+    least two cards deep, contributed by at least two distinct first
+    authors: the paper's own third way a finding gets attested, cross-
+    card rather than single-card (see this module's own top docstring,
+    "Ground truth"). `object` is the operative shared signal ("the same
+    ... outcome"): a group is skipped only when `object` reads the
+    `OTHER` placeholder (`_detect_object` found no outcome this corpus's
+    own lexicon names), even when every card in it happens to share the
+    same `mechanism` value too, since two cards agreeing on no outcome
+    at all is not the corroboration this reading is built to catch.
+    A card whose own `mechanism` reads `OTHER` still groups normally: two
+    different first authors independently landing on the same *named*
+    outcome, with neither paper's own prose naming a mechanism this
+    corpus's lexicon resolves, is still two independent papers agreeing
+    on what happened, `docs/PRODUCTION-SCHEMA.md`'s own even-a-null-slot
+    reading extended to this corpus's placeholder convention."""
+    groups: dict[tuple[str, str], list[Card]] = {}
+    for card in cards:
+        text = _extraction_text(card)
+        obj = _detect_object(text)
+        mech = _detect_mechanism(text)
+        if obj == other_id(Slot.OBJECT):
+            continue
+        groups.setdefault((mech, obj), []).append(card)
+    corroborated: set[str] = set()
+    for group in groups.values():
+        if len({c.first_author_surname for c in group}) >= 2:
+            corroborated.update(c.doi for c in group)
+    return corroborated
 
 
 # Ordered `(concept_id, keywords)` lexicons: the first entry whose keyword
@@ -698,7 +807,7 @@ _PLACE_LEXICON: tuple[tuple[str, tuple[str, ...]], ...] = (
 # motivation" (Hanus and Fox 2015) is; the space excludes the hyphenated
 # compound without a general parser.
 _WORSENED_KEYWORDS = ("lower ", "undermine", "reversed", "worse", "decreased", "disapprove", "loses proficiency", "degrades", "less likely to remember", "fabricat")
-_IMPROVED_KEYWORDS = ("improved", "increase", "raised", "outperform", "higher", "gains", "more novel", "more durable", "successfully produced", "outperformed")
+_IMPROVED_KEYWORDS = ("improved", "increase", "raised", "outperform", "higher", "gains", "more novel", "more durable", "went on to produce", "outperformed")
 
 
 def _first_match(text: str, lexicon: tuple[tuple[str, tuple[str, ...]], ...]) -> str | None:
@@ -775,6 +884,19 @@ def _build_corpus(cards: list[Card]) -> Corpus:
     for card in cards:
         surnames_to_dois.setdefault(card.first_author_surname, []).append(card.doi)
 
+    # `_corroborated_dois` reads `first_author_surname` counts, so a DOI
+    # already seen under an earlier root (the same paper, deduped below)
+    # must contribute exactly one author to that count, regardless of how
+    # many roots it happens to appear under.
+    seen_dois: set[str] = set()
+    deduped_cards: list[Card] = []
+    for card in cards:
+        if card.doi in seen_dois:
+            continue
+        seen_dois.add(card.doi)
+        deduped_cards.append(card)
+    corroborated = _corroborated_dois(deduped_cards)
+
     sources: dict[str, Source] = {}
     evidence: list[EvidenceItem] = []
     ground_truth: list[GroundTruthEvent] = []
@@ -833,7 +955,7 @@ def _build_corpus(cards: list[Card]) -> Corpus:
             if first_item_id is None:
                 first_item_id = item_id
 
-        if _is_ground_truth(method, findings_text) and first_item_id is not None:
+        if (_is_ground_truth(method, findings_text) or card.doi in corroborated) and first_item_id is not None:
             ground_truth.append(GroundTruthEvent(
                 id=first_item_id, label=_truncate(card.title), year=card.year,
                 doc_id=card.doi, discovery_year=card.year,

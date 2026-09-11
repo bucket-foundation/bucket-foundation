@@ -20,6 +20,19 @@
  * has the plan to replace the allowlist with a roster-backed role; this
  * page's query (currently "every pending item, no class filter") is the
  * matching TODO on the UI side.
+ *
+ * Production guard (bkt-ros, production guard bead, task item 5): each
+ * queued Production now also shows its guard flags (unverified sources,
+ * a duplicate-claim match, missing counter-evidence at the
+ * internalization tier, a single-source lateral-reading flag), computed
+ * by /api/research-os/production's POST at submit time and read here
+ * as-is. Approve is disabled client-side
+ * while any source is unverified (the API's own 409 is the enforced
+ * gate; this is the same belt-and-suspenders posture the rest of this
+ * codebase already keeps between RLS and an application-code check); a
+ * "use template" button fills the reason field with
+ * production-guard.ts's own unverifiedSourceReturnNote text for a return
+ * decision.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -32,6 +45,16 @@ interface TransferHold {
   stage: string;
   heldAt: string;
 }
+interface SourceCheck {
+  text: string;
+  verified: boolean;
+}
+interface DuplicateFlag {
+  matchId: string;
+  matchOrigin: "own_prior" | "class_peer" | "canon";
+  score: number;
+}
+type LateralReadingFlag = "single-source" | null;
 interface PendingProduction {
   id: string;
   learnerId: string;
@@ -42,6 +65,13 @@ interface PendingProduction {
   sources: unknown[];
   transferProof: Record<string, unknown>;
   createdAt: string;
+  sourceProvenance: SourceCheck[];
+  duplicateFlag: DuplicateFlag | null;
+  lateralReadingFlag: LateralReadingFlag;
+  counterEvidence: Array<{ text: string }>;
+  counterEvidenceRequired: boolean;
+  guardFlags: { hasUnverifiedSource: boolean; unverifiedCount: number; missingCounterEvidence: boolean };
+  unverifiedSourceNoteTemplate: string;
 }
 interface ReviewQueue {
   transferHolds: TransferHold[];
@@ -153,7 +183,7 @@ export default function ResearchOsReviewPage() {
         body: JSON.stringify({ ...payload, decision, reason: reason || undefined }),
       });
       const data = await res.json();
-      setNotice(res.ok ? `${decision === "approved" ? "Approved" : "Returned"}.` : data.error || "decision_failed");
+      setNotice(res.ok ? `${decision === "approved" ? "Approved" : "Returned"}.` : data.message || data.error || "decision_failed");
       if (res.ok) loadQueue();
     } finally {
       setBusyKey(null);
@@ -286,6 +316,7 @@ export default function ResearchOsReviewPage() {
               <div className="flex flex-col gap-3">
                 {queue.productions.map((p) => {
                   const key = `p:${p.id}`;
+                  const approveBlocked = p.guardFlags.hasUnverifiedSource;
                   return (
                     <div key={key} className="p-4 bg-[color:var(--bone)]">
                       <div className="text-[13px] text-[color:var(--basalt)]">
@@ -293,16 +324,59 @@ export default function ResearchOsReviewPage() {
                         {new Date(p.createdAt).toLocaleString()}
                       </div>
                       {p.claim && <p className="mt-1 text-[12px] text-[color:var(--basalt-2)]">claim: {p.claim}</p>}
+
+                      {/* Production guard flags (task item 5): unverified
+                          sources, a duplicate-claim match, missing
+                          counter-evidence at the internalization tier. */}
+                      {(approveBlocked || p.duplicateFlag || p.lateralReadingFlag || p.guardFlags.missingCounterEvidence) && (
+                        <div className="mt-2 flex flex-col gap-1">
+                          {approveBlocked && (
+                            <p className="text-[12px] text-red-700">
+                              {p.guardFlags.unverifiedCount} unverified source{p.guardFlags.unverifiedCount === 1 ? "" : "s"}: no Quote call
+                              matched{" "}
+                              {p.sourceProvenance
+                                .filter((s) => !s.verified)
+                                .map((s) => `"${s.text}"`)
+                                .join(", ")}
+                              . Approve is blocked until this is returned and resubmitted.
+                            </p>
+                          )}
+                          {p.duplicateFlag && (
+                            <p className="text-[12px] text-[color:var(--aegean-deep)]">
+                              possible duplicate: {Math.round(p.duplicateFlag.score * 100)}% token overlap with a {p.duplicateFlag.matchOrigin.replace("_", " ")}{" "}
+                              claim ({p.duplicateFlag.matchId.slice(0, 8)}&hellip;)
+                            </p>
+                          )}
+                          {p.guardFlags.missingCounterEvidence && (
+                            <p className="text-[12px] text-red-700">missing counter-evidence, required at the internalization tier (Osborne 2010)</p>
+                          )}
+                          {p.lateralReadingFlag === "single-source" && (
+                            <p className="text-[12px] text-[color:var(--aegean-deep)]">
+                              single source: no independent second source on file for this claim (lateral reading)
+                            </p>
+                          )}
+                        </div>
+                      )}
+
                       <input
                         value={reasons[key] || ""}
                         onChange={(e) => setReasons((r) => ({ ...r, [key]: e.target.value }))}
                         placeholder="one-line reason (required to return)"
                         className="mt-2 border border-[color:var(--hairline)] px-2 py-1 text-[12px] w-full bg-white/60"
                       />
+                      {approveBlocked && p.unverifiedSourceNoteTemplate && (
+                        <button
+                          onClick={() => setReasons((r) => ({ ...r, [key]: p.unverifiedSourceNoteTemplate }))}
+                          className="mt-1 text-[11px] small-caps underline underline-offset-4"
+                        >
+                          use unverified-source template
+                        </button>
+                      )}
                       <div className="mt-2 flex gap-3">
                         <button
                           onClick={() => decide(key, "approved", { kind: "production", productionId: p.id })}
-                          disabled={busyKey === key}
+                          disabled={busyKey === key || approveBlocked}
+                          title={approveBlocked ? "Blocked: this production has an unverified source." : undefined}
                           className="px-3 py-1 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
                         >
                           approve

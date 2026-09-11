@@ -40,7 +40,7 @@ CONCEPTS = os.path.join(HERE, "concepts.json")
 OVERRIDES = os.path.join(HERE, "overrides.json")
 KAIKKI = os.environ.get(
     "KAIKKI_CACHE",
-    "/home/gian/agfarms/bucket-foundation/_intake/photons/kaikki-cache",
+    os.path.expanduser("~/agfarms/bucket-foundation/_intake/photons/kaikki-cache"),
 )
 ENGLISH = os.path.join(KAIKKI, "English.jsonl")
 

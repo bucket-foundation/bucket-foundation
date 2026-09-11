@@ -15,7 +15,7 @@ the reference-impl anchors as its worked example.
 
 DIRECTORY ACCESS
 The reference implementation lives in
-  /home/gian/agfarms/bucket-foundation/quantum/reference-impl/
+  ~/agfarms/bucket-foundation/quantum/reference-impl/
 (moved here 2026-07-08 from ~/agfarms/biophysics-phd-review/qc-embedding-similarity/).
 Layout:
 - PROJECT.md            name, description, status
@@ -32,13 +32,13 @@ Layout:
 - build_pdf.sh         rebuild the PDF (pandoc + xelatex)
 - MOVED.md             why this is here + how it anchors the manual
 The Python env is NOT committed (dropped in the move). Recreate it once:
-  cd /home/gian/agfarms/bucket-foundation/quantum/reference-impl
+  cd ~/agfarms/bucket-foundation/quantum/reference-impl
   python3 -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
 Then: run tests `python tests/test_estimators.py`; studies `python src/studies.py`;
 rebuild the PDF `bash build_pdf.sh`.
 
 The surrounding manual lives one level up in
-  /home/gian/agfarms/bucket-foundation/quantum/
+  ~/agfarms/bucket-foundation/quantum/
 with node cards in 01-foundations/ … 08-frontier-open/, the map in 00-map/, the
 evidence schema + conflict register in evidence/, and the build pipeline in reports/
 (render_math.py, build_manual.py, build_pdf.py, gen_figures.py). Job briefs and a

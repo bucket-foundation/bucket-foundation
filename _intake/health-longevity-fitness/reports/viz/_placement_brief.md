@@ -1,4 +1,4 @@
-You are placing figures INLINE into ONE chapter of a health manual, and trimming prose the figures now carry. Work dir: /home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
+You are placing figures INLINE into ONE chapter of a health manual, and trimming prose the figures now carry. Work dir: ~/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
 
 Read viz/_chfigs/<CID>.json — it has the chapter `file` path, its `headings`, and the `figures` ({slug,title,caption}) that belong in THIS chapter. Then read the markdown `file`.
 

@@ -1,10 +1,10 @@
-"""`hte.api.hypothesize`, in fake mode against the 14 shipped production
-fixtures (`hte/data/production-fixtures/`: 12 `PRODUCTION-SCHEMA.md`-shaped
+"""`hte.api.hypothesize`, in fake mode against the 36 shipped production
+fixtures (`hte/data/production-fixtures/`: 34 `PRODUCTION-SCHEMA.md`-shaped
 fixtures plus `research-os-sky-blue.json`'s two `graph.productions`-shaped
 rows, `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`). `production.load_raw()`
 normalizes the Research OS rows onto `PRODUCTION-SCHEMA.md`'s own shape
 before `to_dict()`, so `_fixture_records()` below already hands
-`hypothesize` fourteen ordinary-shaped records; `tests/test_api_research_
+`hypothesize` thirty-six ordinary-shaped records; `tests/test_api_research_
 os.py` exercises the Research-OS-shaped request path directly. No network:
 `HTE_LLM_MODE=fake` (monkeypatched per test) dispatches every role through
 `hte.fakellm` instead of `claude -p`.
@@ -65,8 +65,8 @@ def _fixture_records() -> list[dict]:
     return [p.to_dict() for p in production.load_raw()]
 
 
-# Small enough to run fast in fake mode over the 14-fixture corpus
-# (~26 sources, ~16 evidence items), well under `hte.runner.
+# Small enough to run fast in fake mode over the 36-fixture corpus
+# (~67 sources, ~38 evidence items), well under `hte.runner.
 # DEFAULT_CONFIG`'s own batch-campaign-sized defaults.
 _FAST_CONFIG = {
     "seeds": 1, "generate_n": 2, "combinatorial_max_items": 10, "max_hypotheses": 30,
@@ -85,10 +85,10 @@ def _call(request: dict, monkeypatch, **config_overrides) -> dict:
 # --------------------------------------------------------------------------
 
 
-def test_all_fourteen_production_fixtures_run_end_to_end_and_validate(monkeypatch):
+def test_all_thirty_six_production_fixtures_run_end_to_end_and_validate(monkeypatch):
     response = _call({"productions": _fixture_records(), "status_min": "draft"}, monkeypatch)
     assert response["ok"] is True
-    assert response["corpus"]["n_productions"] == 14
+    assert response["corpus"]["n_productions"] == 36
     errors = _schema_errors(response, mcp_tool.TOOL_DEFINITION["outputSchema"])
     assert errors == []
 
@@ -351,7 +351,7 @@ def test_campaign_failure_raises_campaign_error_and_cleans_up_temp_dir(monkeypat
 
     def _boom(config):
         captured_dirs.append(Path(config["out_dir"]))
-        raise RuntimeError("a campaign bug, not a refusal")
+        raise RuntimeError("a campaign bug unrelated to any refusal")
 
     monkeypatch.setattr("hte.api.runner.run_campaign", _boom)
     with pytest.raises(CampaignError, match="RuntimeError") as excinfo:
@@ -382,7 +382,7 @@ def test_response_assembly_failure_raises_campaign_error_and_cleans_up_temp_dir(
         return real_run_campaign(config)
 
     def _boom(*args, **kwargs):
-        raise TypeError("a bug in response assembly, not a campaign failure")
+        raise TypeError("a bug in response assembly, outside campaign execution")
 
     monkeypatch.setattr("hte.api.runner.run_campaign", _wrapped)
     monkeypatch.setattr("hte.api._build_response", _boom)
