@@ -9,6 +9,9 @@ url: "https://doi.org/10.1016/0005-1098(83)90046-8"
 openalex_id: "https://openalex.org/W2008653298"
 branch: "hci-human-ai-collaboration"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/cognition-and-automation/primary-papers.yaml (id bkt-68eb5f478fa1)"
+promoted_at: "2026-09-10"
 why_it_matters: >
   The founding statement of the skill-decay risk from automation, the specific hazard the
   planned three-arm cognitive-offloading study is designed to test for a constrained AI
@@ -28,6 +31,12 @@ how_it_bears_on_research_os: >
 ---
 
 # Ironies of automation
+
+> **Promoted to canon, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/cognition-and-automation/primary-papers.yaml` (id `bkt-68eb5f478fa1`, `canon_score` 70) and
+> `bucket-canon/07-mind/cognition-and-automation/CANON_INDEX.md`. This file stays
+> in place as the Research OS-specific reading of the paper; the canon entry is
+> the citeable record.
 
 The founding statement of the skill-decay risk from automation, the specific hazard the planned three-arm cognitive-offloading study is designed to test for a constrained AI workspace.
 

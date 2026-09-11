@@ -47,6 +47,16 @@
  * Auth: Authorization: Bearer <supabase access token>, required for all four
  * (locate/quote are retrieval-only but still identity-scoped for Phase 0
  * simplicity and to keep the same rate-limit boundary as check/organize).
+ *
+ * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): every
+ * action, including Locate and Quote, is gated by src/lib/research-os/
+ * consent.ts's requireConsent, checked right after verifyLearner and
+ * before the daily/burst rate limiters. A minor with no consent on file
+ * cannot search or quote either, not only Check/Organize: COPPA's floor is
+ * collecting personal information from a known minor, and a query or a
+ * node id already does that once the caller is a signed-in, identified
+ * user. A blocked call returns 403 with consentBlockedBody(gate) as its
+ * JSON body.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
@@ -55,6 +65,7 @@ import { onCheckResult } from "@/lib/research-os/stages";
 import { locateHits } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
+import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
 import { getPassage } from "@/lib/research-os/passages";
@@ -119,6 +130,10 @@ export async function POST(req: NextRequest) {
 
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
+
+  const gate = await requireConsent(learnerId, "workspace_tool");
+  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+
   if (rateLimited(learnerId)) return bad(429, "Too many workspace requests. Slow down a moment.");
 
   const cap = dailyToolCap();

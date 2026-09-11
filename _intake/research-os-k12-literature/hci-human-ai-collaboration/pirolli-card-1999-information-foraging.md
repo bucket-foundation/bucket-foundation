@@ -10,6 +10,9 @@ url: "https://doi.org/10.1037/0033-295x.106.4.643"
 openalex_id: "https://openalex.org/W4238998169"
 branch: "hci-human-ai-collaboration"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/04-information/information-foraging/primary-papers.yaml (id bkt-c033b128f77f)"
+promoted_at: "2026-09-10"
 why_it_matters: >
   A formal theory of how people move through a mix of relevant and irrelevant information
   under a cost-benefit tradeoff, the closest existing model for how a learner should be
@@ -31,6 +34,12 @@ how_it_bears_on_research_os: >
 ---
 
 # Information foraging.
+
+> **Promoted to canon, 2026-09-10.** This record lives in
+> `bucket-canon/04-information/information-foraging/primary-papers.yaml` (id `bkt-c033b128f77f`, `canon_score` 70) and
+> `bucket-canon/04-information/information-foraging/CANON_INDEX.md`. This file stays
+> in place as the Research OS-specific reading of the paper; the canon entry is
+> the citeable record.
 
 A formal theory of how people move through a mix of relevant and irrelevant information under a cost-benefit tradeoff, the closest existing model for how a learner should be expected to move through the spatial canvas workspace's mix of mastered, gap, and target nodes.
 

@@ -18,9 +18,19 @@
  * 2, "Auth surface") stays a Phase 0 open item, untouched by this page.
  *
  * Scope: no teacher layer, no roster, single locale (English), matching
- * task item 6. TODO(Phase 1, review section 4 gap analysis "Role system",
- * "Under-13 consent flow"): this page has no age gate and no guardian
- * consent flow, deliberately out of Phase 0 scope.
+ * task item 6. TODO(Phase 1, review section 4 gap analysis "Role system"):
+ * still no roster-backed role.
+ *
+ * ros-07 UPDATE ("consent gate wiring"): every gated write (a tool call, a
+ * probe answer, a transfer answer, a Production save) can return a 403
+ * consent block (src/lib/research-os/consent.ts's requireConsent); this
+ * page surfaces that as a banner via handleConsentResponse below, with a
+ * link to /research-os/profile when the block is "no_profile". The footer
+ * also adds self-service "export my data" / "delete my data" actions
+ * against POST /api/research-os/privacy (PR #35), with a typed confirm
+ * step before delete. Guardian-verified consent itself (COPPA's VPC
+ * requirement) is not built here: compliance/README.md part B item 2
+ * names the vendor choice that still blocks it.
  *
  * ros-04 UPDATE ("workspace hardening, Phase 1 canvas item 3"): a
  * two-column layout replaces the single vertical chain list -- the left
@@ -38,6 +48,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
+import { DELETE_CONFIRM_TOKEN } from "@/lib/research-os/types";
 
 const TARGET_SLUG = "why-the-sky-is-blue";
 
@@ -245,6 +256,15 @@ export default function ResearchOsWorkspacePage() {
   const [probeResults, setProbeResults] = useState<Record<string, ProbeAnswerResult>>({});
   const [probeBusy, setProbeBusy] = useState<string | null>(null);
 
+  // ros-07 ("consent gate wiring"): a banner shown whenever any gated
+  // write below comes back 403 consent-blocked, and the footer state for
+  // the self-service export/delete actions (PR #35's privacy route).
+  const [consentNotice, setConsentNotice] = useState<{ message: string; needsProfile: boolean } | null>(null);
+  const [privacyBusy, setPrivacyBusy] = useState<"export" | "delete" | null>(null);
+  const [privacyNotice, setPrivacyNotice] = useState<string | null>(null);
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState("");
+
   useEffect(() => {
     if (!supabase) return;
     supabase.auth.getSession().then(({ data }: { data: { session: { access_token: string } | null } }) => {
@@ -257,6 +277,22 @@ export default function ResearchOsWorkspacePage() {
   }, [supabase]);
 
   const authHeaders = useCallback((): Record<string, string> => (token ? { authorization: `Bearer ${token}` } : {}), [token]);
+
+  // ros-07: recognizes the consent gate's 403 body
+  // (src/lib/research-os/consent.ts's consentBlockedBody: {error:
+  // "no_profile"|"consent_required", message, needsProfile}) from any
+  // gated fetch below and surfaces it as a banner instead of a raw error
+  // string. Returns true when the response WAS a consent block, so the
+  // caller can stop treating it as an ordinary success/failure; every
+  // other error shape is untouched.
+  const handleConsentResponse = useCallback((res: Response, data: { error?: string; message?: string; needsProfile?: boolean }): boolean => {
+    if (res.status !== 403 || (data?.error !== "no_profile" && data?.error !== "consent_required")) return false;
+    setConsentNotice({
+      message: data.message || "This feature needs consent on file before it can be used.",
+      needsProfile: Boolean(data.needsProfile),
+    });
+    return true;
+  }, []);
 
   const loadRoute = useCallback(async () => {
     setRouteError(null);
@@ -310,6 +346,7 @@ export default function ResearchOsWorkspacePage() {
         body: JSON.stringify({ nodeId, answer, sessionId }),
       });
       const data = await res.json();
+      if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setProbeResults((r) => ({ ...r, [nodeId]: data }));
         // Answering even one question resolves the cold-start condition
@@ -383,6 +420,10 @@ export default function ResearchOsWorkspacePage() {
         body: JSON.stringify({ action: "locate", query: locateQuery, sessionId }),
       });
       const data = await res.json();
+      if (handleConsentResponse(res, data)) {
+        setLocateResults([]);
+        return;
+      }
       setLocateResults(res.ok ? data.results : []);
     } finally {
       setBusy(null);
@@ -399,6 +440,7 @@ export default function ResearchOsWorkspacePage() {
         body: JSON.stringify({ action: "quote", nodeId: selected.id, sessionId }),
       });
       const data = await res.json();
+      if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setQuote(data);
         // "sources I have quoted" (canvas item 3): keep the most recent
@@ -423,6 +465,7 @@ export default function ResearchOsWorkspacePage() {
         body: JSON.stringify({ action: "check", nodeId: selected.id, explanation, sessionId }),
       });
       const data = await res.json();
+      if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setCheckResult(data);
         loadRoute();
@@ -444,6 +487,7 @@ export default function ResearchOsWorkspacePage() {
         body: JSON.stringify({ action: "organize", claim: organizeClaim, evidenceNotes: organizeEvidence, sourceNotes: organizeSources, sessionId }),
       });
       const data = await res.json();
+      if (handleConsentResponse(res, data)) return;
       if (res.ok) {
         setOrganized(data);
         setProduction((p) => ({ ...p, claim: data.claim || p.claim, evidence: (data.evidence || []).join("\n"), sources: (data.sources || []).join("\n") }));
@@ -461,13 +505,21 @@ export default function ResearchOsWorkspacePage() {
       // learner's own answer text -- EVIDENCE-SCHEMA.md's "no stored ...
       // transfer-item answer" gap. `answer` and `itemId` now round-trip
       // onto the evidence event (stages.ts's onTransferItemAnswered).
-      await fetch("/api/research-os/state", {
+      const res = await fetch("/api/research-os/state", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
         body: JSON.stringify({ nodeId: selected.id, action: "transfer_item", answer: transferAnswer, itemId: TRANSFER_ITEM_ID, sessionId }),
       });
-      setTransferSaved(true);
-      loadRoute();
+      // ros-07: this call ignored its own response status before this pass
+      // (a consent block used to look identical to a successful save).
+      // Checking res.ok here closes a real gap without expanding scope: it
+      // is the only way to tell a blocked write from a saved one.
+      const data = await res.json().catch(() => ({}) as Record<string, unknown>);
+      if (handleConsentResponse(res, data as { error?: string; message?: string; needsProfile?: boolean })) return;
+      if (res.ok) {
+        setTransferSaved(true);
+        loadRoute();
+      }
     } finally {
       setBusy(null);
     }
@@ -491,10 +543,78 @@ export default function ResearchOsWorkspacePage() {
         }),
       });
       const data = await res.json();
+      if (handleConsentResponse(res, data)) {
+        setProductionStatus(null);
+        return;
+      }
       setProductionStatus(res.ok ? `${status} saved` : data.error || "save_failed");
       if (res.ok) loadRoute();
     } finally {
       setBusy(null);
+    }
+  }
+
+  async function exportMyData() {
+    if (!token) return;
+    setPrivacyBusy("export");
+    setPrivacyNotice(null);
+    try {
+      const res = await fetch("/api/research-os/privacy", {
+        method: "POST",
+        headers: { "content-type": "application/json", ...authHeaders() },
+        body: JSON.stringify({ action: "export" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPrivacyNotice(data.error || "export_failed");
+        return;
+      }
+      // Client-side download only; nothing here is a second copy on any
+      // server this app controls beyond the response itself.
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `research-os-export-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setPrivacyNotice("Export downloaded.");
+    } catch {
+      setPrivacyNotice("network_error");
+    } finally {
+      setPrivacyBusy(null);
+    }
+  }
+
+  async function deleteMyData() {
+    // Server-side enforced too (POST /api/research-os/privacy checks
+    // isDeleteConfirmed before anything else runs): this client-side check
+    // only keeps the button disabled until the typed text matches, it is
+    // not the real gate.
+    if (!token || deleteConfirmText.trim() !== DELETE_CONFIRM_TOKEN) return;
+    setPrivacyBusy("delete");
+    setPrivacyNotice(null);
+    try {
+      const res = await fetch("/api/research-os/privacy", {
+        method: "POST",
+        headers: { "content-type": "application/json", ...authHeaders() },
+        body: JSON.stringify({ action: "delete", confirm: DELETE_CONFIRM_TOKEN }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPrivacyNotice(data.error || "delete_failed");
+        return;
+      }
+      setPrivacyNotice("Your data has been deleted.");
+      setDeleteConfirmOpen(false);
+      setDeleteConfirmText("");
+      await signOut();
+    } catch {
+      setPrivacyNotice("network_error");
+    } finally {
+      setPrivacyBusy(null);
     }
   }
 
@@ -561,6 +681,21 @@ export default function ResearchOsWorkspacePage() {
           )}
           {authError && <p className="mt-2 text-[12px] text-red-700">{authError}</p>}
         </div>
+
+        {/* ros-07: any gated write's 403 consent block surfaces here. */}
+        {consentNotice && (
+          <div className="mt-6 p-4 bg-[color:var(--bone)] border border-[color:var(--gold-deep)]">
+            <p className="text-[13px] text-[color:var(--basalt)]">{consentNotice.message}</p>
+            {consentNotice.needsProfile && (
+              <Link
+                href="/research-os/profile"
+                className="mt-2 inline-block text-[12px] small-caps underline decoration-[color:var(--gold)] underline-offset-4"
+              >
+                complete your profile →
+              </Link>
+            )}
+          </div>
+        )}
 
         {routeError && (
           <p className="mt-6 text-[13px] text-red-700">
@@ -842,6 +977,65 @@ export default function ResearchOsWorkspacePage() {
               </div>
             </div>
           </div>
+        )}
+
+        {/* ros-07 ("consent gate wiring"): self-service export/delete
+            against POST /api/research-os/privacy (PR #35). Shown only
+            signed in, matching that route's own self-gated posture. */}
+        {token && (
+          <footer className="mt-14 pt-6 border-t border-[color:var(--hairline)] flex flex-col gap-3">
+            <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">§ your data</div>
+            <div className="flex flex-wrap gap-3 items-start">
+              <button
+                onClick={exportMyData}
+                disabled={privacyBusy === "export"}
+                className="px-4 py-2 text-[12px] small-caps border border-[color:var(--basalt)] text-[color:var(--basalt)] disabled:opacity-50"
+              >
+                {privacyBusy === "export" ? "exporting…" : "export my data"}
+              </button>
+
+              {!deleteConfirmOpen ? (
+                <button
+                  onClick={() => setDeleteConfirmOpen(true)}
+                  className="px-4 py-2 text-[12px] small-caps border border-red-700 text-red-700"
+                >
+                  delete my data
+                </button>
+              ) : (
+                <div className="flex flex-col gap-2 p-3 border border-red-700 bg-white/60 w-full max-w-sm">
+                  <p className="text-[12px] text-[color:var(--basalt-2)]">
+                    This permanently removes every record of your work. It cannot be undone. Type{" "}
+                    <strong>{DELETE_CONFIRM_TOKEN}</strong> to confirm.
+                  </p>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <input
+                      value={deleteConfirmText}
+                      onChange={(e) => setDeleteConfirmText(e.target.value)}
+                      placeholder={DELETE_CONFIRM_TOKEN}
+                      className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] bg-white/60 w-[120px]"
+                    />
+                    <button
+                      onClick={deleteMyData}
+                      disabled={deleteConfirmText.trim() !== DELETE_CONFIRM_TOKEN || privacyBusy === "delete"}
+                      className="px-3 py-2 text-[12px] small-caps bg-red-700 text-white disabled:opacity-50"
+                    >
+                      {privacyBusy === "delete" ? "deleting…" : "confirm delete"}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setDeleteConfirmOpen(false);
+                        setDeleteConfirmText("");
+                      }}
+                      className="text-[12px] small-caps underline underline-offset-4"
+                    >
+                      cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+            {privacyNotice && <p className="text-[12px] text-[color:var(--basalt-2)]">{privacyNotice}</p>}
+          </footer>
         )}
       </div>
     </main>

@@ -16,6 +16,10 @@ url: "https://doi.org/10.48550/arxiv.2506.08872"
 openalex_id: "https://openalex.org/W4417258000"
 branch: "hci-human-ai-collaboration"
 tier: "candidate"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-f3c246bffb55)"
+promoted_at: "2026-09-10"
+depends_on_foundation: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-2f40cfaacd63, Sparrow, Liu and Wegner 2011)"
 why_it_matters: >
   An EEG study of essay writing under three conditions, LLM-assisted, search-engine-
   assisted, and brain-only, finding progressively weaker neural connectivity and
@@ -42,6 +46,14 @@ how_it_bears_on_research_os: >
 ---
 
 # Your Brain on ChatGPT
+
+> **Promoted to outcome tier, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
+> `bkt-f3c246bffb55`, `canon_score` 30) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
+> Outcome tier, not canon: it reports an intervention or team-performance effect
+> size, RUBRIC E7, and depends on the foundation record named by
+> Sparrow, Liu and Wegner 2011. This file stays in place as the Research OS-specific reading;
+> the canon entry is the citeable record.
 
 An EEG study of essay writing under LLM-assisted, search-assisted, and brain-only
 conditions, finding the weakest neural connectivity and weakest later recall of one's

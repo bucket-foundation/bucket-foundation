@@ -24,6 +24,13 @@
  * Auth: Authorization: Bearer <supabase access token>, required for both.
  * 401 unauthorized · 400 bad input · 404 target/node not found ·
  * 429/502/503 provider errors · 503 not configured.
+ *
+ * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): POST
+ * (grading a probe answer) is gated by src/lib/research-os/consent.ts's
+ * requireConsent, action "probe_answer", checked right after verifyLearner
+ * and before any grading call. GET is not gated: it returns the due-ness
+ * check and the question prompts themselves, no learner-authored content.
+ * A blocked POST returns 403 with consentBlockedBody(gate) as its body.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { ancestorsOf } from "@/lib/research-os/closure";
@@ -31,6 +38,7 @@ import { buildProbe } from "@/lib/research-os/probe";
 import { gradeExplanation } from "@/lib/research-os/grounding";
 import { logToolCost, selectProvider } from "@/lib/research-os/llm";
 import { onProbeCheckResult } from "@/lib/research-os/stages";
+import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import { configured, graphService, loadSubgraph, loadLearnerStates, verifyLearner, recordEvidence } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
@@ -89,6 +97,9 @@ export async function POST(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
+
+  const gate = await requireConsent(learnerId, "probe_answer");
+  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
 
   let body: ProbeBody;
   try {
