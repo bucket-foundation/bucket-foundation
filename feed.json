@@ -1,63 +1,151 @@
 {
-  "schema_version": "1.0",
-  "generated": "2026-09-11T00:59:46.103994+00:00",
-  "total_events": 206,
+  "schema_version": "1.1",
+  "generated": "2026-09-11T01:32:08.011531+00:00",
+  "total_events": 1427,
+  "window": {
+    "size": 200,
+    "returned": 200
+  },
   "events": [
     {
-      "id": "7ae90aa7b7e4c03a",
-      "type": "retract",
+      "id": "32864c86b332c020",
+      "type": "update_dossier",
       "branch": "04-information",
-      "topic": "information-foraging",
-      "title": "CANON_INDEX.md",
-      "path": "bucket-canon/04-information/information-foraging/CANON_INDEX.md",
+      "topic": "README.md",
+      "title": "README.md",
+      "path": "bucket-canon/04-information/README.md",
       "doi": null,
       "author_github": "gianyrox",
-      "author_name": "Gianyrox",
-      "commit_sha": "b926eb6",
+      "author_name": "gianyrox",
+      "commit_sha": "1fcf87d",
       "pr_number": null,
-      "timestamp": "2026-09-10T20:58:06-04:00"
+      "timestamp": "2026-09-10T21:30:38-04:00"
     },
     {
-      "id": "3e1673ffa9b67fc5",
-      "type": "retract",
+      "id": "e1890c1a46176d4a",
+      "type": "update_dossier",
       "branch": "04-information",
       "topic": "information-foraging",
-      "title": "Information foraging.",
-      "path": "bucket-canon/04-information/information-foraging/primary-papers.bib",
-      "doi": "10.1037/0033-295x.106.4.643",
+      "title": "README.md",
+      "path": "bucket-canon/04-information/information-foraging/README.md",
+      "doi": null,
       "author_github": "gianyrox",
-      "author_name": "Gianyrox",
-      "commit_sha": "b926eb6",
+      "author_name": "gianyrox",
+      "commit_sha": "1fcf87d",
       "pr_number": null,
-      "timestamp": "2026-09-10T20:58:06-04:00"
+      "timestamp": "2026-09-10T21:30:38-04:00"
     },
     {
-      "id": "5a03b785e28686c9",
+      "id": "cc016a3dbf7b142b",
       "type": "update_dossier",
       "branch": "07-mind",
-      "topic": "information-foraging",
+      "topic": "README.md",
+      "title": "README.md",
+      "path": "bucket-canon/07-mind/README.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "gianyrox",
+      "commit_sha": "1fcf87d",
+      "pr_number": null,
+      "timestamp": "2026-09-10T21:30:38-04:00"
+    },
+    {
+      "id": "4674b1d9bb8dfae9",
+      "type": "update_dossier",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
       "title": "CANON_INDEX.md",
-      "path": "bucket-canon/07-mind/information-foraging/CANON_INDEX.md",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "gianyrox",
+      "commit_sha": "1fcf87d",
+      "pr_number": null,
+      "timestamp": "2026-09-10T21:30:38-04:00"
+    },
+    {
+      "id": "858681f76a84a183",
+      "type": "update_dossier",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
+      "title": "README.md",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/README.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "gianyrox",
+      "commit_sha": "1fcf87d",
+      "pr_number": null,
+      "timestamp": "2026-09-10T21:30:38-04:00"
+    },
+    {
+      "id": "44b314ee04211a70",
+      "type": "update_dossier",
+      "branch": "04-information",
+      "topic": "README.md",
+      "title": "README.md",
+      "path": "bucket-canon/04-information/README.md",
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "Gianyrox",
-      "commit_sha": "b926eb6",
+      "commit_sha": "9596035",
       "pr_number": null,
-      "timestamp": "2026-09-10T20:58:06-04:00"
+      "timestamp": "2026-09-10T21:25:38-04:00"
     },
     {
-      "id": "d99d4995938406fb",
-      "type": "add_paper",
-      "branch": "07-mind",
+      "id": "124ebbfea83c7daa",
+      "type": "update_dossier",
+      "branch": "04-information",
       "topic": "information-foraging",
-      "title": "Information foraging.",
-      "path": "bucket-canon/07-mind/information-foraging/primary-papers.bib",
-      "doi": "10.1037/0033-295x.106.4.643",
+      "title": "README.md",
+      "path": "bucket-canon/04-information/information-foraging/README.md",
+      "doi": null,
       "author_github": "gianyrox",
       "author_name": "Gianyrox",
-      "commit_sha": "b926eb6",
+      "commit_sha": "9596035",
       "pr_number": null,
-      "timestamp": "2026-09-10T20:58:06-04:00"
+      "timestamp": "2026-09-10T21:25:38-04:00"
+    },
+    {
+      "id": "7df22c8d25e844a1",
+      "type": "update_dossier",
+      "branch": "07-mind",
+      "topic": "README.md",
+      "title": "README.md",
+      "path": "bucket-canon/07-mind/README.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "9596035",
+      "pr_number": null,
+      "timestamp": "2026-09-10T21:25:38-04:00"
+    },
+    {
+      "id": "69368b9aaf59d4f1",
+      "type": "update_dossier",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
+      "title": "CANON_INDEX.md",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "9596035",
+      "pr_number": null,
+      "timestamp": "2026-09-10T21:25:38-04:00"
+    },
+    {
+      "id": "1baed5763e2b799e",
+      "type": "update_dossier",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
+      "title": "README.md",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/README.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "9596035",
+      "pr_number": null,
+      "timestamp": "2026-09-10T21:25:38-04:00"
     },
     {
       "id": "f8ce3edc6a0fe53a",
@@ -382,6 +470,48 @@
       "timestamp": "2026-09-10T17:32:16-04:00"
     },
     {
+      "id": "9fe0eb63b9b290b8",
+      "type": "update_dossier",
+      "branch": "05-biophysics",
+      "topic": "README.md",
+      "title": "README.md",
+      "path": "bucket-canon/05-biophysics/README.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
+      "id": "b7697176be18a32e",
+      "type": "update_dossier",
+      "branch": "07-mind",
+      "topic": "README.md",
+      "title": "README.md",
+      "path": "bucket-canon/07-mind/README.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
+      "id": "97f0ca2b4fc392cd",
+      "type": "update_dossier",
+      "branch": "07-mind",
+      "topic": "memory-systems",
+      "title": "CANON_INDEX.md",
+      "path": "bucket-canon/07-mind/memory-systems/CANON_INDEX.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
       "id": "ba56726e180a642f",
       "type": "add_paper",
       "branch": "07-mind",
@@ -410,6 +540,118 @@
       "timestamp": "2026-09-10T13:47:00-04:00"
     },
     {
+      "id": "835afe186b6225b1",
+      "type": "update_dossier",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
+      "title": "CANON_INDEX.md",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
+      "id": "bd97c324f41d4e7c",
+      "type": "update_dossier",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
+      "title": "README.md",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/README.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
+      "id": "916590254f30abd6",
+      "type": "add_paper",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
+      "title": "The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One Tutoring",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/primary-papers.bib",
+      "doi": "10.3102/0013189x013006004",
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
+      "id": "a899747ffb76a1ac",
+      "type": "add_paper",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
+      "title": "Effectiveness of Mastery Learning Programs: A Meta-Analysis",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/primary-papers.bib",
+      "doi": "10.3102/00346543060002265",
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
+      "id": "ffca7ce6fb1e4a78",
+      "type": "add_paper",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
+      "title": "The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring Systems",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/primary-papers.bib",
+      "doi": "10.1080/00461520.2011.611369",
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
+      "id": "a5e1565e235285f4",
+      "type": "add_paper",
+      "branch": "07-mind",
+      "topic": "sub-outcomes",
+      "title": "Effectiveness of Intelligent Tutoring Systems",
+      "path": "bucket-canon/07-mind/sub-outcomes/education/primary-papers.bib",
+      "doi": "10.3102/0034654315581420",
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
+      "id": "040495d9959bf9c7",
+      "type": "add_branch",
+      "branch": "TAXONOMY_NOTES.md",
+      "topic": null,
+      "title": "TAXONOMY_NOTES.md",
+      "path": "bucket-canon/TAXONOMY_NOTES.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
+      "id": "339bc83fbcb0b7fb",
+      "type": "add_canon_entry",
+      "branch": "TAXONOMY_NOTES.md",
+      "topic": "",
+      "title": "TAXONOMY_NOTES.md",
+      "path": "bucket-canon/TAXONOMY_NOTES.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "d0f2c12",
+      "pr_number": null,
+      "timestamp": "2026-09-10T13:47:00-04:00"
+    },
+    {
       "id": "f104c17937b3f6d1",
       "type": "add_canon_entry",
       "branch": "04-information",
@@ -422,104 +664,6 @@
       "commit_sha": "28914bd",
       "pr_number": null,
       "timestamp": "2026-09-10T13:19:34-04:00"
-    },
-    {
-      "id": "8f59724964bf6087",
-      "type": "add_canon_entry",
-      "branch": "04-information",
-      "topic": "concepts",
-      "title": "hypothesis-engine-address-and-belief.md",
-      "path": "bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bec8dba",
-      "pr_number": null,
-      "timestamp": "2026-09-10T08:19:47.812322-04:00"
-    },
-    {
-      "id": "409bfb0223fa07c8",
-      "type": "add_paper",
-      "branch": "04-information",
-      "topic": "papers/history-hypothesis-engine",
-      "title": "A Hypothesis Engine over History: Combinatorial Generation, Subjective-Logic Belief, and Structural Unknowns",
-      "path": "papers/history-hypothesis-engine/main.tex",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bec8dba",
-      "pr_number": null,
-      "timestamp": "2026-09-10T08:19:47.812322-04:00"
-    },
-    {
-      "id": "8b0cdbc0d787056a",
-      "type": "add_paper",
-      "branch": "04-information",
-      "topic": "_intake/hypothesis-engine",
-      "title": "AI Hypothesis Generation for Scientific Discovery, 2026",
-      "path": "_intake/hypothesis-engine/SURVEY-AI-HYPOTHESIS-GENERATION.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bec8dba",
-      "pr_number": null,
-      "timestamp": "2026-09-10T08:19:47.812322-04:00"
-    },
-    {
-      "id": "c324b0a281828e97",
-      "type": "add_paper",
-      "branch": "04-information",
-      "topic": "_intake/hypothesis-engine",
-      "title": "History Hypothesis Engine: Design Spec",
-      "path": "_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bec8dba",
-      "pr_number": null,
-      "timestamp": "2026-09-10T08:19:47.812322-04:00"
-    },
-    {
-      "id": "545a440a5fe2a83f",
-      "type": "add_paper",
-      "branch": "04-information",
-      "topic": "_intake/hypothesis-engine",
-      "title": "Hypothesis Engine: Ideal State and Unknowns",
-      "path": "_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bec8dba",
-      "pr_number": null,
-      "timestamp": "2026-09-10T08:19:47.812322-04:00"
-    },
-    {
-      "id": "1d1d74225e5cba42",
-      "type": "add_paper",
-      "branch": "04-information",
-      "topic": "_intake/hypothesis-engine",
-      "title": "Timeline and Combinatorics Spec",
-      "path": "_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bec8dba",
-      "pr_number": null,
-      "timestamp": "2026-09-10T08:19:47.812322-04:00"
-    },
-    {
-      "id": "e88e09cc07946950",
-      "type": "add_paper",
-      "branch": "04-information",
-      "topic": "_intake/hypothesis-engine",
-      "title": "Crosswalk: History Hypothesis Engine vs Quantum Algorithm Discovery",
-      "path": "_intake/hypothesis-engine/CROSSWALK-QUANTUM-ALGORITHM-DISCOVERY.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bec8dba",
-      "pr_number": null,
-      "timestamp": "2026-09-10T08:19:47.812322-04:00"
     },
     {
       "id": "cbdacdebc3fc9381",
@@ -536,7 +680,7 @@
       "timestamp": "2026-06-27T12:08:32-04:00"
     },
     {
-      "id": "05fd851f8dd378ca",
+      "id": "e286948548ef11f2",
       "type": "update_dossier",
       "branch": "03-chemistry",
       "topic": "chemical-bond",
@@ -545,12 +689,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "5553cfe01fbcdf01",
+      "id": "ef1fd09ccfa4d57a",
       "type": "add_paper",
       "branch": "03-chemistry",
       "topic": "chemical-bond",
@@ -559,12 +703,12 @@
       "doi": "10.1021/ja02261a002",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "cfa76b6af82c8c7a",
+      "id": "f7dd3722731a8dba",
       "type": "add_paper",
       "branch": "03-chemistry",
       "topic": "chemical-bond",
@@ -573,12 +717,12 @@
       "doi": "10.1021/ja01355a027",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "492d334517b2b70a",
+      "id": "c8318249d330c06c",
       "type": "update_dossier",
       "branch": "03-chemistry",
       "topic": "periodic-law",
@@ -587,12 +731,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "f2a8c80c9bcdacee",
+      "id": "e960e9d5addc8d13",
       "type": "add_paper",
       "branch": "03-chemistry",
       "topic": "periodic-law",
@@ -601,12 +745,12 @@
       "doi": "10.1080/14786441308635052",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "22d17d8a8a8c2195",
+      "id": "bf7d9f8c273c1031",
       "type": "update_dossier",
       "branch": "03-chemistry",
       "topic": "quantum-chemistry",
@@ -615,12 +759,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "122107e296740d25",
+      "id": "517bb7994c0d7227",
       "type": "add_paper",
       "branch": "03-chemistry",
       "topic": "quantum-chemistry",
@@ -629,12 +773,12 @@
       "doi": "10.1007/BF01397394",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "39af17919d3ae015",
+      "id": "b786e1df72e65509",
       "type": "update_dossier",
       "branch": "03-chemistry",
       "topic": "reaction-kinetics",
@@ -643,12 +787,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "a40d874affe12698",
+      "id": "15984001558271c9",
       "type": "add_paper",
       "branch": "03-chemistry",
       "topic": "reaction-kinetics",
@@ -657,12 +801,12 @@
       "doi": "10.1063/1.1742723",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "494bd5295c61c836",
+      "id": "9e9729de18be9543",
       "type": "add_paper",
       "branch": "03-chemistry",
       "topic": "reaction-kinetics",
@@ -671,12 +815,12 @@
       "doi": "10.1063/1.1749604",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "dc5dc5ba711f43c1",
+      "id": "2f83556388fbda47",
       "type": "update_dossier",
       "branch": "04-information",
       "topic": "coding-theory",
@@ -685,12 +829,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "c54ec3f83e2e9c9b",
+      "id": "a56d93e00595f497",
       "type": "add_paper",
       "branch": "04-information",
       "topic": "coding-theory",
@@ -699,12 +843,12 @@
       "doi": "10.1002/j.1538-7305.1950.tb00463.x",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "caa3a1f157accc58",
+      "id": "7e25ede7d4e1d038",
       "type": "update_dossier",
       "branch": "04-information",
       "topic": "complexity-theory",
@@ -713,12 +857,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "ba2d44af08ba51d5",
+      "id": "0dccffb8d5d5f811",
       "type": "add_paper",
       "branch": "04-information",
       "topic": "complexity-theory",
@@ -727,12 +871,12 @@
       "doi": "10.1145/800157.805047",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "518cae13c98693a7",
+      "id": "dde1e9258c5c0c04",
       "type": "add_paper",
       "branch": "04-information",
       "topic": "complexity-theory",
@@ -741,12 +885,12 @@
       "doi": "10.1080/00207166808803030",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "db389505c26b8e20",
+      "id": "737915e83a2611bc",
       "type": "update_dossier",
       "branch": "04-information",
       "topic": "shannon-information",
@@ -755,12 +899,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "2a79182222baa888",
+      "id": "b7cda9709817855c",
       "type": "add_paper",
       "branch": "04-information",
       "topic": "shannon-information",
@@ -769,12 +913,12 @@
       "doi": "10.1002/j.1538-7305.1948.tb01338.x",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "23435029196d8ecd",
+      "id": "cb0304e6a3228aa3",
       "type": "update_dossier",
       "branch": "04-information",
       "topic": "thermodynamics-of-computation",
@@ -783,12 +927,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "7411131b72b3ccd6",
+      "id": "be1cd07f47453c13",
       "type": "add_paper",
       "branch": "04-information",
       "topic": "thermodynamics-of-computation",
@@ -797,12 +941,12 @@
       "doi": "10.1147/rd.53.0183",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "0e8f1f484c736f31",
+      "id": "bd96428540c8500c",
       "type": "update_dossier",
       "branch": "06-cosmology",
       "topic": "cmb",
@@ -811,12 +955,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "557ef6a546e64f74",
+      "id": "eb636143ef208616",
       "type": "add_paper",
       "branch": "06-cosmology",
       "topic": "cmb",
@@ -825,12 +969,12 @@
       "doi": "10.1086/148307",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "4a46d891053a8baf",
+      "id": "25cca564771cfd77",
       "type": "update_dossier",
       "branch": "06-cosmology",
       "topic": "dark-energy",
@@ -839,12 +983,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "9bb972e72963ad23",
+      "id": "e37d1cb3ca9beeff",
       "type": "add_paper",
       "branch": "06-cosmology",
       "topic": "dark-energy",
@@ -853,12 +997,12 @@
       "doi": "10.1086/307221",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "a1369d57c2cc6db0",
+      "id": "97d59ffa05ee737d",
       "type": "add_paper",
       "branch": "06-cosmology",
       "topic": "dark-energy",
@@ -867,12 +1011,12 @@
       "doi": "10.1086/300499",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "3abe6bc8fe23c075",
+      "id": "3f4527bf658651a3",
       "type": "update_dossier",
       "branch": "06-cosmology",
       "topic": "friedmann-equations",
@@ -881,12 +1025,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "c195854c80d7834e",
+      "id": "7a0d64fc75a78288",
       "type": "add_paper",
       "branch": "06-cosmology",
       "topic": "friedmann-equations",
@@ -895,12 +1039,12 @@
       "doi": "10.1007/BF01332580",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "f610f22e89cef160",
+      "id": "805ce14b228f5e48",
       "type": "update_dossier",
       "branch": "06-cosmology",
       "topic": "hubble-law",
@@ -909,12 +1053,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "aab294ea641758b9",
+      "id": "dd7943481fed8bf1",
       "type": "add_paper",
       "branch": "06-cosmology",
       "topic": "hubble-law",
@@ -923,12 +1067,12 @@
       "doi": "10.1073/pnas.15.3.168",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "7f8984d8ee004b43",
+      "id": "e1d51b4312a32d07",
       "type": "update_dossier",
       "branch": "07-mind",
       "topic": "hebbian-plasticity",
@@ -937,12 +1081,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "efcf8070217f40d6",
+      "id": "a39afcf72503ffc3",
       "type": "add_paper",
       "branch": "07-mind",
       "topic": "hebbian-plasticity",
@@ -951,12 +1095,12 @@
       "doi": "10.1113/jphysiol.1973.sp010273",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "71eb683069dcc2e0",
+      "id": "8b07838678e293b1",
       "type": "add_paper",
       "branch": "07-mind",
       "topic": "hebbian-plasticity",
@@ -965,12 +1109,12 @@
       "doi": "10.4324/9781410612403",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "69eed13541d804bf",
+      "id": "4822db4fe449c99a",
       "type": "update_dossier",
       "branch": "07-mind",
       "topic": "memory-systems",
@@ -979,12 +1123,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "10285de6532f7e41",
+      "id": "9f2a15dee5aedf96",
       "type": "add_paper",
       "branch": "07-mind",
       "topic": "memory-systems",
@@ -993,12 +1137,12 @@
       "doi": "10.1136/jnnp.20.1.11",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "fc06177ea6904730",
+      "id": "14b503f99e9d50bc",
       "type": "update_dossier",
       "branch": "07-mind",
       "topic": "predictive-coding",
@@ -1007,12 +1151,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "510dc4d7b39173a9",
+      "id": "9fbba7f0d5207332",
       "type": "add_paper",
       "branch": "07-mind",
       "topic": "predictive-coding",
@@ -1021,12 +1165,12 @@
       "doi": "10.1038/4580",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "5f0a5f7942fdfec6",
+      "id": "52c84b8bed192cf9",
       "type": "update_dossier",
       "branch": "07-mind",
       "topic": "reinforcement-learning",
@@ -1035,12 +1179,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "8bb2100407b045be",
+      "id": "c70d6e2557ab640e",
       "type": "add_paper",
       "branch": "07-mind",
       "topic": "reinforcement-learning",
@@ -1049,12 +1193,12 @@
       "doi": "10.1126/science.275.5306.1593",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "2b5b781",
+      "commit_sha": "ab235b4",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:41:22-04:00"
+      "timestamp": "2026-05-19T14:40:23-04:00"
     },
     {
-      "id": "abe2a7fe66948b07",
+      "id": "b8a448a04554c5b3",
       "type": "update_dossier",
       "branch": "01-mathematics",
       "topic": "category-theory",
@@ -1063,12 +1207,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "49f6d9433f3180af",
+      "id": "056d6f280d92a464",
       "type": "add_paper",
       "branch": "01-mathematics",
       "topic": "category-theory",
@@ -1077,12 +1221,12 @@
       "doi": "10.1090/S0002-9947-1945-0013131-6",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "beffe8c7cc89a401",
+      "id": "8884db425a31df44",
       "type": "update_dossier",
       "branch": "01-mathematics",
       "topic": "computability",
@@ -1091,12 +1235,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "528edbe8ed32fff6",
+      "id": "28a46ff58d94cf01",
       "type": "add_paper",
       "branch": "01-mathematics",
       "topic": "computability",
@@ -1105,12 +1249,12 @@
       "doi": "10.1112/plms/s2-42.1.230",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "f6d11d53bc20dcc0",
+      "id": "e3d28af3a6c9faf7",
       "type": "update_dossier",
       "branch": "01-mathematics",
       "topic": "godel",
@@ -1119,12 +1263,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "eb53b2578ffc91d2",
+      "id": "ce92448118ba1aa0",
       "type": "add_paper",
       "branch": "01-mathematics",
       "topic": "godel",
@@ -1133,12 +1277,12 @@
       "doi": "10.1007/BF01700692",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "84971faef4b2f70e",
+      "id": "cc7b1e03f994d83b",
       "type": "update_dossier",
       "branch": "01-mathematics",
       "topic": "probability-foundations",
@@ -1147,12 +1291,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "7d64a4c780f0646a",
+      "id": "dff62a5d5fd69e2c",
       "type": "add_paper",
       "branch": "01-mathematics",
       "topic": "probability-foundations",
@@ -1161,12 +1305,12 @@
       "doi": "10.1007/978-3-642-49888-6",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "c801a888d42c219a",
+      "id": "57e5e2f6cfb4fa9b",
       "type": "update_dossier",
       "branch": "01-mathematics",
       "topic": "set-theory",
@@ -1175,12 +1319,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "fb89c3201a4b5268",
+      "id": "24b7ad381768e260",
       "type": "add_paper",
       "branch": "01-mathematics",
       "topic": "set-theory",
@@ -1189,12 +1333,12 @@
       "doi": "10.1073/pnas.50.6.1143",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "484add874b530d37",
+      "id": "23b4119744367096",
       "type": "update_dossier",
       "branch": "02-physics",
       "topic": "bell-theorem",
@@ -1203,12 +1347,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "8a2b9943ac333fcd",
+      "id": "01283050b952bde5",
       "type": "add_paper",
       "branch": "02-physics",
       "topic": "bell-theorem",
@@ -1217,12 +1361,12 @@
       "doi": "10.1103/PhysicsPhysiqueFizika.1.195",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "d059d48547644eab",
+      "id": "c672322fa06b30cb",
       "type": "update_dossier",
       "branch": "02-physics",
       "topic": "gauge-principle",
@@ -1231,12 +1375,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "f76e8b6188a818b9",
+      "id": "0c9c94c52d0fc11a",
       "type": "add_paper",
       "branch": "02-physics",
       "topic": "gauge-principle",
@@ -1245,12 +1389,12 @@
       "doi": "10.1103/PhysRev.96.191",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "bd17b69478c1e711",
+      "id": "d68ceb270257fff6",
       "type": "update_dossier",
       "branch": "02-physics",
       "topic": "quantum-field-theory",
@@ -1259,12 +1403,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "af5f48729bf7ebbf",
+      "id": "f024e365a37e16c3",
       "type": "add_paper",
       "branch": "02-physics",
       "topic": "quantum-field-theory",
@@ -1273,12 +1417,12 @@
       "doi": "10.1103/RevModPhys.20.367",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "d74db0a08987473f",
+      "id": "c442bd427a636364",
       "type": "update_dossier",
       "branch": "02-physics",
       "topic": "quantum-mechanics",
@@ -1287,12 +1431,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "47108f90d853f543",
+      "id": "8275bc3c5a767787",
       "type": "add_paper",
       "branch": "02-physics",
       "topic": "quantum-mechanics",
@@ -1301,12 +1445,12 @@
       "doi": "10.1103/PhysRev.115.485",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "5bed5a61cda9dafc",
+      "id": "fd59ec1a90011463",
       "type": "update_dossier",
       "branch": "02-physics",
       "topic": "special-relativity",
@@ -1315,12 +1459,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "1c04584f79a0e577",
+      "id": "dcf56b0ace426a82",
       "type": "add_paper",
       "branch": "02-physics",
       "topic": "special-relativity",
@@ -1329,12 +1473,12 @@
       "doi": "10.1002/andp.19053221004",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "cdc55083a29c4685",
+      "id": "30cad4bdac5a6a35",
       "type": "update_dossier",
       "branch": "02-physics",
       "topic": "standard-model",
@@ -1343,12 +1487,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "c9e96967d5004d61",
+      "id": "925e4d7c6c06fba8",
       "type": "add_paper",
       "branch": "02-physics",
       "topic": "standard-model",
@@ -1357,12 +1501,26 @@
       "doi": "10.1103/PhysRevLett.19.1264",
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "cea6045",
+      "commit_sha": "3f0c494",
       "pr_number": null,
-      "timestamp": "2026-05-19T14:27:19-04:00"
+      "timestamp": "2026-05-19T14:25:36-04:00"
     },
     {
-      "id": "4e1fc38d4f386ca8",
+      "id": "420fb8dd566cd574",
+      "type": "update_dossier",
+      "branch": "05-biophysics",
+      "topic": "becker",
+      "title": "CANON_INDEX.md",
+      "path": "bucket-canon/05-biophysics/becker/CANON_INDEX.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "gianyrox",
+      "commit_sha": "2ad4ce3",
+      "pr_number": null,
+      "timestamp": "2026-05-18T16:45:58-04:00"
+    },
+    {
+      "id": "e7b3a1cc5583d9eb",
       "type": "add_canon_entry",
       "branch": "_bridges",
       "topic": "DETECTED-INDEX.md",
@@ -1371,12 +1529,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "670d761",
+      "commit_sha": "c073bd7",
       "pr_number": null,
       "timestamp": "2026-05-11T23:11:37-04:00"
     },
     {
-      "id": "8e5b1a592620e7e7",
+      "id": "2bdebeef12e77757",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1385,12 +1543,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "b1d5b06963628002",
+      "id": "618d3d6f5fea02da",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1399,12 +1557,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "58a4d28911aad56b",
+      "id": "445f2569d4c7f447",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1413,12 +1571,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "5e4b1e078cc8a2c9",
+      "id": "7fa2ed42f34be160",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1427,12 +1585,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "1905011fe4341311",
+      "id": "4137442865e5c5d8",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1441,12 +1599,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "b13ecfac44da53ac",
+      "id": "7d262fd7524b301c",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1455,12 +1613,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "35c849b674328db1",
+      "id": "db8a2fb2f6461b31",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1469,12 +1627,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "c7df76130d393416",
+      "id": "5e28818da9e0f34b",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1483,12 +1641,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "b97a07293323e666",
+      "id": "3c6d2b62d6c11645",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1497,12 +1655,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "96e034c6d7519d79",
+      "id": "3657ebfce77e3aa0",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1511,12 +1669,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "d94f82cd75dd752f",
+      "id": "e484bf06846c5b28",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1525,12 +1683,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "225861b2f3b15208",
+      "id": "c96fc30c19094a81",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected-v2",
@@ -1539,12 +1697,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "f7bb09d",
+      "commit_sha": "6b2f40c",
       "pr_number": null,
       "timestamp": "2026-05-11T23:04:37-04:00"
     },
     {
-      "id": "e02d47e473e3f63e",
+      "id": "90afa264bfc975a9",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1553,12 +1711,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "ab479d6f18ca7072",
+      "id": "da3bbc7ff7e4b90e",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1567,12 +1725,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "9a798dcade0b948a",
+      "id": "f69834764df0f0b4",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1581,12 +1739,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "1a857fba0db5c792",
+      "id": "cbe2245a1433a817",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1595,12 +1753,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "5bc7a8f258864b1b",
+      "id": "eeeff7de87b422f4",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1609,12 +1767,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "eff71af5f51a2bc1",
+      "id": "1e000119a33e3769",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1623,12 +1781,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "dc19e8310976016d",
+      "id": "4fb77f6be6760600",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1637,12 +1795,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "b6dc55d04b38e462",
+      "id": "1de9b5224270fba1",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1651,12 +1809,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "efd926d76e4843ca",
+      "id": "30b9ca751d1be8e2",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1665,12 +1823,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "bcae8d70fb4ab1c6",
+      "id": "eafdd1179ca520f9",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1679,12 +1837,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "2e1f5b9dda0e9f82",
+      "id": "b4f882f0a965a865",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1693,12 +1851,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "d9e8dfb58dd3ba18",
+      "id": "9c6815487d6160f9",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1707,12 +1865,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "c16ed7bc1cb7658f",
+      "id": "32b04a11152e325c",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1721,12 +1879,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "7d9324fa1a042068",
+      "id": "2155c7ff04026d16",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1735,12 +1893,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "6f6908fce7beedc5",
+      "id": "248a7636f23f3345",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1749,12 +1907,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "74533dcdc8fe61d8",
+      "id": "4412bc532f14176a",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1763,12 +1921,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "1de255a851cc0f3d",
+      "id": "a5b61b278fa93f3f",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1777,12 +1935,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "7b1a8a1",
+      "commit_sha": "0e3e103",
       "pr_number": null,
-      "timestamp": "2026-05-11T21:22:55-04:00"
+      "timestamp": "2026-05-11T21:22:53-04:00"
     },
     {
-      "id": "927ca3e212b3cf6c",
+      "id": "d63758730ba2fb44",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1791,12 +1949,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "a74bc05",
+      "commit_sha": "159ac3a",
       "pr_number": null,
-      "timestamp": "2026-05-11T15:35:52-04:00"
+      "timestamp": "2026-05-11T15:35:51-04:00"
     },
     {
-      "id": "fe89934b505a8a8d",
+      "id": "4396f09eee88cfb4",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1805,12 +1963,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "a74bc05",
+      "commit_sha": "159ac3a",
       "pr_number": null,
-      "timestamp": "2026-05-11T15:35:52-04:00"
+      "timestamp": "2026-05-11T15:35:51-04:00"
     },
     {
-      "id": "d2f6851f8a016b0d",
+      "id": "44db96bb4ee1384d",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1819,12 +1977,26 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "a74bc05",
+      "commit_sha": "159ac3a",
       "pr_number": null,
-      "timestamp": "2026-05-11T15:35:52-04:00"
+      "timestamp": "2026-05-11T15:35:51-04:00"
     },
     {
-      "id": "88e0016ca9edd965",
+      "id": "4ea12556726fb472",
+      "type": "update_dossier",
+      "branch": "_bridges",
+      "topic": "detected",
+      "title": "README.md",
+      "path": "bucket-canon/_bridges/detected/08-second-law-of-thermodynamics/README.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "gianyrox",
+      "commit_sha": "c202cad",
+      "pr_number": null,
+      "timestamp": "2026-05-11T15:13:56-04:00"
+    },
+    {
+      "id": "2131e5d57e95a25e",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1833,12 +2005,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "302ed59",
+      "commit_sha": "4902717",
       "pr_number": null,
-      "timestamp": "2026-05-11T15:12:01-04:00"
+      "timestamp": "2026-05-11T15:12:00-04:00"
     },
     {
-      "id": "537137f5c8379f2d",
+      "id": "614bd81b3e88ced3",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1847,12 +2019,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "302ed59",
+      "commit_sha": "4902717",
       "pr_number": null,
-      "timestamp": "2026-05-11T15:12:01-04:00"
+      "timestamp": "2026-05-11T15:12:00-04:00"
     },
     {
-      "id": "260bd766987203da",
+      "id": "f6a6b83662265873",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1861,12 +2033,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "302ed59",
+      "commit_sha": "4902717",
       "pr_number": null,
-      "timestamp": "2026-05-11T15:12:01-04:00"
+      "timestamp": "2026-05-11T15:12:00-04:00"
     },
     {
-      "id": "497729cf6ecd6b8d",
+      "id": "814a6011701a81bc",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1875,12 +2047,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "302ed59",
+      "commit_sha": "4902717",
       "pr_number": null,
-      "timestamp": "2026-05-11T15:12:01-04:00"
+      "timestamp": "2026-05-11T15:12:00-04:00"
     },
     {
-      "id": "1b82aac2ff1957eb",
+      "id": "4f78255b6197df1a",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1889,12 +2061,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "302ed59",
+      "commit_sha": "4902717",
       "pr_number": null,
-      "timestamp": "2026-05-11T15:12:01-04:00"
+      "timestamp": "2026-05-11T15:12:00-04:00"
     },
     {
-      "id": "2130127aee0bf98e",
+      "id": "f6e7591a9eb65929",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1903,12 +2075,12 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "9d0f6cb",
+      "commit_sha": "77eb4dd",
       "pr_number": null,
-      "timestamp": "2026-05-11T14:27:59-04:00"
+      "timestamp": "2026-05-11T14:27:58-04:00"
     },
     {
-      "id": "edacb82e43ae393e",
+      "id": "20a823a1abf8792f",
       "type": "update_dossier",
       "branch": "_bridges",
       "topic": "detected",
@@ -1917,9 +2089,9 @@
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
-      "commit_sha": "9d0f6cb",
+      "commit_sha": "77eb4dd",
       "pr_number": null,
-      "timestamp": "2026-05-11T14:27:59-04:00"
+      "timestamp": "2026-05-11T14:27:58-04:00"
     },
     {
       "id": "d590679dbb4d03b3",
@@ -2628,174 +2800,6 @@
       "topic": "sub-claims",
       "title": "001-one-of-them-is-the-speed-of-light-which-is-the-so-the-thing-.md",
       "path": "bucket-canon/02-physics/sub-claims/speed-of-light/001-one-of-them-is-the-speed-of-light-which-is-the-so-the-thing-.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "4be711f79dfc39d2",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "002-suddenly-appeared-and-they-ve-never-changed-since-um-that-s-.md",
-      "path": "bucket-canon/02-physics/sub-claims/speed-of-light/002-suddenly-appeared-and-they-ve-never-changed-since-um-that-s-.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "0417bff68c6a72a4",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "003-don-t.md",
-      "path": "bucket-canon/02-physics/sub-claims/speed-of-light/003-don-t.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "ba74ad904013f136",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "004-gravitational-waves-travel-at-the-speed-of-light.md",
-      "path": "bucket-canon/02-physics/sub-claims/speed-of-light/004-gravitational-waves-travel-at-the-speed-of-light.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "6dfbcb693f6a135c",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "005-two-hours-ago-and-i-still-haven-t-heard-back-you-know-i-mean.md",
-      "path": "bucket-canon/02-physics/sub-claims/speed-of-light/005-two-hours-ago-and-i-still-haven-t-heard-back-you-know-i-mean.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "2c165ab70ba755d8",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "006-one-modification-there-needs-to-be-a-time-delay-because-as-w.md",
-      "path": "bucket-canon/02-physics/sub-claims/speed-of-light/006-one-modification-there-needs-to-be-a-time-delay-because-as-w.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "578863da48ee7641",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "007-understand-quantum-physics-i-can-tell-you-why-the-speed-of-l.md",
-      "path": "bucket-canon/02-physics/sub-claims/speed-of-light/007-understand-quantum-physics-i-can-tell-you-why-the-speed-of-l.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "1e0401283b70b35d",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "008-so-these-particles-are-massless.md",
-      "path": "bucket-canon/02-physics/sub-claims/speed-of-light/008-so-these-particles-are-massless.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "1bbcf5c3321b2fd4",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "001-as-you-are.md",
-      "path": "bucket-canon/02-physics/sub-claims/standard-model/001-as-you-are.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "819ad670304ffacc",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "002-because-the-mu-one-was-a-certain-ripple-and-that-ripple-deca.md",
-      "path": "bucket-canon/02-physics/sub-claims/standard-model/002-because-the-mu-one-was-a-certain-ripple-and-that-ripple-deca.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "c64d2f0a0bf38a23",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "003-you-just-snap-the-string-if-you-like-that-is-connecting-the-.md",
-      "path": "bucket-canon/02-physics/sub-claims/standard-model/003-you-just-snap-the-string-if-you-like-that-is-connecting-the-.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "f52f88d3af8b116b",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "004-opinion-an-explanation-of-why-the-physics-community-has-been.md",
-      "path": "bucket-canon/02-physics/sub-claims/standard-model/004-opinion-an-explanation-of-why-the-physics-community-has-been.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "673e70826a7d95d0",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "005-they-ve-shown-that-it-s-not-they-re-not-gonna-do-that-it-s-i.md",
-      "path": "bucket-canon/02-physics/sub-claims/standard-model/005-they-ve-shown-that-it-s-not-they-re-not-gonna-do-that-it-s-i.md",
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
