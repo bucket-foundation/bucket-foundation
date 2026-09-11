@@ -233,7 +233,6 @@ def test_independent_node_is_not_touched():
 
 def test_cascade_report_lists_a_b_c_with_correct_hops_and_shares():
     vocab, (r, a, b, c, d), evidence, sources = _planted_graph()
-    opinions_before = _opinions([r, a, b, c, d], evidence, vocab, sources)
     _retract_root(evidence, sources, r.address)
     opinions_after_root = _opinions([r, a, b, c, d], evidence, vocab, sources)
 
