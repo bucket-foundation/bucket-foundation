@@ -2259,3 +2259,46 @@ discrete leak; left unchanged as out of scope for a docs-only review. Leak scan 
 the PR's own diff: clean, no keys, IPs, non-public hostnames, personal
 emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
 session URLs. `agf-lint-voice check` clean on every file this pass touched.
+
+## 2026-09-10: preregistration revision 1
+
+Worktree `~/agfarms/.ros-worktrees/prereg2`, branch `docs/ros-08-prereg-revision-1`. Task:
+revise `learning/research-os/study/PREREGISTRATION-DRAFT.md` against `PLAN-REVISION-3.md`
+section 2's evidence-driven revisions and two newly shipped design docs, `GUIDANCE.md`
+(branch `feat/ros-faded-guidance`, no PR opened) and `PRODUCTION-GUARD.md` (PR #73, open).
+Full account in `learning/research-os/CHANGE-LEDGER.md`'s matching iteration.
+
+### Edited
+
+- `learning/research-os/study/PREREGISTRATION-DRAFT.md`: new "Revision history" section;
+  the Sampling Plan's d = 0.4 to 0.5 planning assumption re-anchored to three named
+  meta-analyses (Chen and Yang 2019, Furtak and colleagues 2012, Lazonder and Harmsen 2016)
+  with a population-and-moderator fit table, keeping d = 0.4 as the chosen planning value
+  and the naive/cluster-corrected n-per-arm tables numerically unchanged (76/119/211 naive;
+  262/405/691 cluster-corrected at d = 0.4); a new "Guidance and forcing factors" subsection
+  fixing both switches on for Phase 1 rather than crossing them factorially; a new "Required
+  participation and misconduct risk" subsection (Grinnell and colleagues 2020) stratifying,
+  not excluding, a class whose teacher requires Production submission; two new secondary,
+  exploratory outcomes (calibration under H1, production provenance-flags rate under H3) in
+  the Measured Variables table, plus a "considered and deferred" paragraph for a lateral-reading
+  outcome whose underlying field does not exist in shipped code; Covariates, Data exclusion,
+  and Exploratory analyses updated to carry `guidanceLevel` and `productionRequired`.
+- `learning/research-os/study/INSTRUMENTS.md`: two new sections (4, guidance level; 5,
+  production provenance flags) and a new per-class field (6, `productionRequired`); intro
+  count and closing section updated from three items to five, and a stale "none of the
+  three instruments is implemented" claim, already false against section 2's own "Status:
+  shipped" line, corrected.
+- `learning/research-os/RESEARCH-QUESTIONS.md`: five append-only pointer lines under
+  questions 7, 10, 11, 13, and 31.
+- `_intake/research-os-k12/DELETIONS.md`: two new entries, every sentence this revision
+  replaced preserved verbatim.
+
+### Verified
+
+- `agf-lint-voice check` on every file this pass touched (`PREREGISTRATION-DRAFT.md`,
+  `INSTRUMENTS.md`, `RESEARCH-QUESTIONS.md`): 9 violations across the first two files on
+  the first pass (4 antithesis, 1 banned word, 1 heading, 3 antithesis), all fixed by hand;
+  0 remaining on the second pass. `DELETIONS.md` and `CHANGELOG.md` fall under the org-level
+  `_intake` voiceignore entry (verbatim-replacement and changelog material), unscanned by
+  design, consistent with every other entry in both files.
+- No code, migration, or test file touched; this is a docs-only pass.

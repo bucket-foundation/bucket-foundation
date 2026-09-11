@@ -2806,3 +2806,99 @@ brought it in.
   discrete leak; left unchanged as out of scope for this review, flagged
   here for a dedicated cleanup pass rather than a mass edit inside a
   docs-only PR review.
+
+## Iteration 25: preregistration revision 1
+
+Worktree `~/agfarms/.ros-worktrees/prereg2`, branch `docs/ros-08-prereg-revision-1`, off
+`origin/main` at `650d813d7`. Task: revise `study/PREREGISTRATION-DRAFT.md` as revision 1
+against `PLAN-REVISION-3.md` section 2's five evidence-driven subsections (2a through 2e)
+and two design docs that shipped as real code after revision 3 was written but before this
+pass: `GUIDANCE.md` (branch `feat/ros-faded-guidance`, bead `ros-14`, confirmed via
+`git show feat/ros-faded-guidance:learning/research-os/GUIDANCE.md`, no PR opened against
+`main`) and `PRODUCTION-GUARD.md` (`git show origin/feat/ros-production-guard:...`, PR #73,
+open, confirmed via `gh pr view`). PR #63 (cognitive forcing) confirmed merged to `main`
+(`gh pr view 63`); `forcing.ts`, `calibration.ts`, and the "Cognitive forcing on Check"
+addendum to `EVIDENCE-SCHEMA.md` already live on `main` at this branch's own fork point,
+unlike guidance and the production guard.
+
+### Read in full
+
+`PLAN-REVISION-3.md` section 2a through 2e; `PREREGISTRATION-DRAFT.md`; `INSTRUMENTS.md`;
+`TRANSFER-TASK-BANK.md` (construction rule and scoring rubric sections); `EVIDENCE-SCHEMA.md`;
+`GUIDANCE.md` and `PRODUCTION-GUARD.md` (both via `git show`, neither checked into this
+worktree's working tree); the intake cards for Chen and Yang 2019, Furtak and colleagues
+2012, Lazonder and Harmsen 2016, Kirschner, Sweller, and Clark 2006, Grinnell and colleagues
+2020, Wineburg and McGrew 2019, Buçinca, Malaya, and Gajos 2021, and Doshi and Hauser 2024.
+`stages.ts` and the `graph.classes` migrations checked directly to confirm `guidanceLevel`
+and `usedSecondSource` are absent from `main` today (`grep` across `src/lib/research-os/`
+found zero hits for either), so the "guidance level" and "lateral reading" sections of this
+revision are scoped against unmerged code rather than shipped code, stated as such throughout.
+
+### Added
+
+- `PREREGISTRATION-DRAFT.md`: a "Revision history" section listing five numbered changes.
+  Effect-size anchoring: a three-anchor table (Furtak and colleagues 2012, mean d = 0.50
+  across 37 studies, teacher-led about 0.40 higher than student-led; Lazonder and Harmsen
+  2016, d = 0.66/0.71/0.50 across 72 studies, a guidance-present-versus-absent contrast
+  distinct from H1's own arm contrast; Chen and Yang 2019, direction and moderation only, no
+  pooled number in this corpus's own card) with a reasoning paragraph keeping d = 0.4 as the
+  chosen planning value, an illustrative (not paper-reported) Furtak subgroup decomposition
+  (about 0.30 student-led, about 0.70 teacher-led) as the argument against raising it. Naive
+  and cluster-corrected n-per-arm tables recomputed with the same formula and the same
+  numeric results (76/119/211 naive; 262/405/691 cluster-corrected at d = 0.4, ICC
+  0.05/0.10/0.20), re-sourced to the three anchors instead of an unsourced heuristic. A
+  "Guidance and forcing factors" subsection: both class-level switches (`forcing_enabled`,
+  merged; `research_os_guidance_enabled`, unmerged) fixed on for Phase 1 rather than crossed
+  factorially, reasoned from the already-underpowered base three-arm contrast and the
+  class-level-confound risk of splitting an already-thin allocation further; `guidanceLevel`
+  registered as a pre-specified H1/H2 covariate, `forcingEnabled` logged but not modeled
+  (fixed, no variance). A "Required participation and misconduct risk" subsection: Production
+  submission stays opt-in per `PLAN-REVISION-3.md` decision 6; a required-Production class is
+  stratified via a new `productionRequired` covariate rather than excluded outright, reasoned from
+  Grinnell and colleagues (2020)'s own 10 percent misconduct rate among required, disinterested
+  science-fair participants against Bangera and Brownell (2014)'s access argument. Two new
+  secondary, exploratory outcomes in the Variables table: calibration under H1
+  (`learnerConfidence`/`sourcePrediction`/`predictionCorrect`, real shipped fields) and
+  production provenance-flags rate under H3 (`source_provenance`/`duplicate_flag`/
+  `counter_evidence_required`, shipped on PR #73, unmerged). A "considered and deferred"
+  paragraph for a lateral-reading/`usedSecondSource` outcome, left unregistered since the field
+  does not exist in shipped code. The existing class-diversity outcome's own "method to be
+  fixed" gap partly closed: `production-guard.ts`'s `jaccardOverlap` named as a candidate,
+  not yet checked against Doshi and Hauser's own measure for fit.
+- `INSTRUMENTS.md`: section 4 (guidance level, shipped on the unmerged branch), section 5
+  (production provenance flags, shipped on the open PR), section 6 (`productionRequired`, a
+  proposed new per-class field with no table yet). Header, intro count, and closing section
+  updated from three items to five; a stale "none of the three instruments is implemented"
+  claim corrected against section 2's own "shipped" status.
+- `RESEARCH-QUESTIONS.md`: five append-only pointer lines (questions 7, 10, 11, 13, 31).
+- `_intake/research-os-k12/DELETIONS.md`: two dated entries, every replaced sentence
+  preserved verbatim (header status lines, the effect-size paragraph and naive-n table, the
+  diversity-outcome judge cell, the Exploratory analyses sentence, INSTRUMENTS.md's header,
+  intro, and closing section).
+
+### Verified
+
+- `agf-lint-voice check` on `PREREGISTRATION-DRAFT.md` and `INSTRUMENTS.md`: 5 violations on
+  `PREREGISTRATION-DRAFT.md`'s first pass (4 antithesis, 1 banned filler word), 4 on
+  `INSTRUMENTS.md`'s first pass (3 antithesis, 1 heading with an appended clause), all fixed
+  by hand; 0 remaining on the second pass on both. `RESEARCH-QUESTIONS.md` clean on the first
+  pass. `DELETIONS.md` and `CHANGELOG.md` sit under the org-level `~/agfarms/.voiceignore`
+  `_intake` entry, unscanned by design (`agf-lint-voice check` returns "0 scanned" for a path
+  under that entry), the same posture every other `_intake/research-os-k12/` file already has.
+- No code, migration, or test file touched. No `npm run test:research-os` or engine-suite run
+  needed for this docs-only pass; the preregistration's own numeric claims (n-per-arm formula
+  outputs) were hand-recomputed against the stated alpha/power/z values and matched the prior
+  draft's own figures exactly, confirming the re-anchoring changed the sourcing while leaving the underlying arithmetic untouched.
+
+### Found and flagged
+
+- Two design docs `PLAN-REVISION-3.md` section 3 (Phase 1 scope) still lists as unbuilt,
+  "probe-triggered scaffolding for low-prior-knowledge learners" (item 5) and "the provenance
+  guard on Production submission" (item 4), have since shipped as real code on branches
+  neither merged nor opened as a tracked bead in `BEADS-PENDING.jsonl` under those names. This
+  revision cites them as `GUIDANCE.md` and `PRODUCTION-GUARD.md` directly rather than waiting
+  for `PLAN-REVISION-3.md` itself to be updated, a reconciliation left to whoever next revises
+  that file.
+- `feat/ros-faded-guidance` has no open PR despite carrying shipped, tested code
+  (`scripts/test-research-os-guidance.ts`, per its own `GUIDANCE.md` section 5); flagged here
+  rather than opened by this pass, which is scoped to the preregistration document alone.
