@@ -376,3 +376,98 @@ every one of them on one side of any cutoff regardless of which events
 exist. This fix's own coverage gain shows up in the campaign's own embedded
 calibration step (`choose_holdout_mode` → `holdout_kfold`, the table
 above); this standalone command's own numbers stay flat.
+
+## Interval-rule fix
+
+Dated 2026-09-10, a follow-up to "Data fixes" above: PR #58's own merge
+review named a High finding against the "union when the spans don't
+overlap" half of `_correlation_interval`. Two traditions that never
+coexisted bounded a correlation's own interval from the earlier span's
+own start to the later span's own end, the full recorded span of each
+side rather than the window the parallel could have formed in;
+51 of the corpus's 52 correlations landed on the union branch, and
+`clm-corr-motif-parallel-99eb113edd` (Utnapishtim ↔ Noah) read
+`(-1200, 1947)`, a 3147-year `UNIFORM` interval driven by Judaism's own
+1947 Dead Sea Scrolls discovery event, a `timeline` entry with no
+connection to the flood narrative this correlation names.
+
+`_correlation_interval` now reads three rules instead of two,
+`views["interval_rule"]` naming which one produced each correlation's
+own interval:
+
+- **`overlap`**, unchanged: both tradition spans known and overlapping
+  in time gives their overlap.
+- **`transmission_window`**, the fix: both spans known and NOT
+  overlapping gives the span between the earlier tradition's own
+  earliest attestation and the later tradition's own earliest
+  attestation (`min(a_lo, b_lo)` to `max(a_lo, b_lo)`) instead of the
+  two full spans' union, the window in which the parallel could have
+  formed, never stretched out to either side's own latest recorded
+  event.
+- **`anchor`**, unchanged: only one side's tradition is dated at all
+  gives that one span verbatim.
+
+`views["anchor_used"]` is present (`1.0`) whenever either side's own
+tradition span rests on `_EXTERNAL_TRADITION_ANCHORS` (`mesopotamian` or
+`greek` as of 2026-09-10) rather than a `timeline`-dated span, so a
+future reader of a narrow `transmission_window` interval can still see
+when one of its two endpoints is a documented external convention
+rather than this corpus's own `timeline` data.
+
+### Interval width before and after
+
+Same 52 correlations, same `sacred-history.json`, `_correlation_interval`
+run against the pre-fix and post-fix module:
+
+| Metric | Before | After |
+|---|---|---|
+| Median interval width | 2144 years | 939.5 years |
+| Max interval width | 3447 years | 2434 years |
+| Correlations under a 1000-year interval | 19 of 52 (36.5%) | 30 of 52 (57.7%) |
+| Correlations on the union/transmission-window branch | 51 of 52 | 51 of 52 |
+| Utnapishtim ↔ Noah interval | `(-1200, 1947)`, 3147 years | `(-1200, -250)`, 950 years |
+
+The Utnapishtim ↔ Noah item now lands on `(-1200, -250)`: `-1200` is
+`_EXTERNAL_TRADITION_ANCHORS["mesopotamian"]` (the Standard Babylonian
+Gilgamesh recension, George 2003), `-250` is Judaism's own earliest
+dated `timeline` attestation (the Septuagint translation of the Hebrew
+scriptures, `anc-septuagint`), and `views["anchor_used"] = 1.0` flags
+the Mesopotamian side's own dependence on the external anchor. 51 of 52
+correlations stay on the non-overlap branch (only the corpus's one
+`"overlap"` correlation is unaffected by this fix); none move to
+`"anchor"`, since every one of this bundle's 13 traditions carries a
+span as of 2026-09-10.
+
+### Campaign and calibration numbers before and after
+
+Both runs: `HTE_LLM_MODE=fake hte campaign run --corpus sacred-history
+--seeds 2` and `HTE_LLM_MODE=fake hte calibrate --diagnose --corpus
+sacred-history`, run against the pre-fix and post-fix module, everything
+else held fixed.
+
+| Metric | Before | After |
+|---|---|---|
+| Campaign `calibration_brier` | 0.35266401971222877 | 0.35266401971222877 |
+| Calibration mode | kfold | kfold |
+| Held-out events | 3 | 3 |
+| Covered by a matching placement | 3 | 3 |
+| Coverage of truth | 1.0 | 1.0 |
+| Brier score (`hte calibrate --diagnose`) | 0.35266401971222877 | 0.35266401971222877 |
+| Diagnostics reasons for the uncovered remainder | all 0 | all 0 |
+
+Every number above is identical before and after, byte-for-byte across
+`calibration.json`, `CALIBRATION.md`, and `DIAGNOSTICS.md`. This is
+expected: `_correlation_items` sets `GroundTruthEvent.year =
+interval.start`, and `_correlation_interval`'s
+own fix only moves `interval.end` on the non-overlap branch (`min(a_lo,
+b_lo)`, the transmission-window's own lower bound, equals the old
+union's own lower bound in both rules); `holdout_kfold`'s coverage
+check, `interval.start <= g.year <= interval.end`, is satisfied by
+construction regardless of how wide `interval.end` runs. This is the
+PR #58 review's own point restated as a measurement: coverage and
+non-refutation here were never a function of interval width, so the fix
+could not and does not move them; what it moves is the interval itself,
+the one artifact any consumer that is not `holdout_kfold` (a future
+Allen-relation disjointness check, a human reading `EvidenceItem.
+interval` directly) would have read as 3147 years of uncertainty where
+950 stand.
