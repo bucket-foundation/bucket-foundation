@@ -2,6 +2,37 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, tick
+
+- **Engine health**: `make test` green on `main` first, 1057 passed. No
+  defect.
+- **Random campaigns**: synth `--seeds 0-29` 30/30, gate PASS, no
+  nondeterminism on repeat. `realsweep` over education-atlas/production/
+  literature, `--seeds 0-9`: 0/30 crashed, every metric matched the
+  committed `runs/realsweep/*/SUMMARY.md` baseline exactly. No defect.
+- **Test swarm**: `hte/serve.py` (78.3%, no prior swarm file). New
+  `tests/swarm-20260910/test_serve_props.py`, 8 tests (the 502 branch,
+  `build_parser`, `main`'s lifecycle, stubbed, no real socket). No
+  defect. Full suite: 1065 passed.
+- **Environment note**: `tests/test_referee.py`'s one `slow`-marked test
+  fails on `FileNotFoundError: agf-lint-voice`, absent in this remote
+  container. Environment gap; `make test`'s fast gate never hits it.
+- **PRs opened**: 1, #50, reviewed and squash-merged (`d09fcd20`).
+- **PRs reviewed**: #41 (own), reviewed and squash-merged (`4236e29f`).
+  #42 (`feat/hte-purge`): 1 High (silent no-op on a JSON-corrupting
+  redaction), 1 Medium, "fix or note before merge". #48
+  (`feat/hte-generation-coverage`): 2 High (a documented `literature.
+  load_local` loader and a `realsweep --diagnose` flag, neither exists
+  in the diff), 3 Medium, "fix or note before merge". #49
+  (`fix/hte-writeback-review`, opened by the local-session loop): 1 High,
+  the diff silently drops the `writeback_signoff` check and stops
+  passing `signoff=` to `canon_writeback.write_back` at the
+  `hte/pipeline.py` call site (the PR #43 governance gate itself is
+  untouched and intact), "fix or note before merge". None of #42/#48/#49
+  is a `fix/hte-`/`test/hte-` PR of this loop's own, so none merged
+  regardless.
+- **Blocked**: nothing.
+
 ## 2026-09-10, PR39 review
 
 - **PR #39 reviewed and merged** (`feat/hte-literature-batch-two-and-plan-rev1`,
