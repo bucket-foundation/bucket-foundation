@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from hte.concepts import ConsensusStatus, Slot
@@ -142,6 +144,91 @@ def test_sacred_history_interval_derivation_recorded_in_views():
     assert flagged
     for e in flagged:
         assert e.views["interval_is_overlap"] in (0.0, 1.0)
+
+
+def test_sacred_history_interval_rule_is_recorded_and_matches_overlap_flag():
+    """PR #58's own High finding: the old union rule left 51 of 52
+    correlations on a near-uninformative interval. `views["interval_
+    rule"]` names which of the three reads (`_correlation_interval`)
+    produced each correlation's own interval, and stays consistent with
+    the `views["interval_is_overlap"]` float it sits beside."""
+    corpus = sacred_history.ingest()
+    correlation_items = [e for e in corpus.evidence if e.provenance == "sacred-history-correlation"]
+    for e in correlation_items:
+        assert e.views["interval_rule"] in ("overlap", "transmission_window", "anchor")
+        if e.views["interval_rule"] == "overlap":
+            assert e.views["interval_is_overlap"] == 1.0
+        elif e.views["interval_rule"] == "transmission_window":
+            assert e.views["interval_is_overlap"] == 0.0
+        else:
+            assert "interval_is_overlap" not in e.views
+
+
+def test_sacred_history_transmission_window_intervals_carry_real_information():
+    """The root fix: a non-overlapping correlation's interval no longer
+    unions the two traditions' full spans (which could run to either
+    side's own latest, motif-unrelated event); it runs from the earlier
+    tradition's own earliest attestation to the later tradition's own
+    earliest attestation instead, a real majority of the corpus landing
+    under a 1000-year window as a result."""
+    corpus = sacred_history.ingest()
+    correlation_items = [e for e in corpus.evidence if e.provenance == "sacred-history-correlation"]
+    transmission_window_items = [e for e in correlation_items if e.views["interval_rule"] == "transmission_window"]
+    assert len(transmission_window_items) >= 50  # 51 of 52 as of 2026-09-10
+    widths = sorted(e.interval.end - e.interval.start for e in correlation_items)
+    under_1000 = sum(1 for w in widths if w < 1000)
+    assert under_1000 / len(widths) > 0.5  # 30 of 52 (57.7%) as of 2026-09-10, up from 19 of 52 (36.5%)
+    assert max(widths) < 3000  # was 3447 under the old union rule
+
+
+def test_sacred_history_utnapishtim_noah_window_bounded_by_gilgamesh_anchor_and_genesis_attestation():
+    """The correlation the PR #58 review named by id
+    (`clm-corr-motif-parallel-99eb113edd`): Mesopotamian dates from the
+    external Gilgamesh anchor only (`_EXTERNAL_TRADITION_ANCHORS`), so
+    its interval must land on `_EXTERNAL_TRADITION_ANCHORS["mesopotamian"]`
+    at one end and Judaism's own earliest `timeline` attestation
+    (the Septuagint, `-250`, this bundle's earliest dated Judaism event)
+    at the other, `views["anchor_used"]` flagging the anchor side. Was
+    `(-1200, 1947)` under the old union rule, a 3147-year span driven by
+    Judaism's own unrelated 1947 Dead Sea Scrolls discovery event."""
+    corpus = sacred_history.ingest()
+    ev_by_id = {e.id: e for e in corpus.evidence}
+    item = ev_by_id["clm-corr-motif-parallel-99eb113edd"]
+    assert item.interval.start == sacred_history._EXTERNAL_TRADITION_ANCHORS["mesopotamian"]
+    assert item.interval.end == -250
+    assert item.views["interval_rule"] == "transmission_window"
+    assert item.views["anchor_used"] == 1.0
+
+
+def test_sacred_history_anchor_used_flagged_only_when_a_side_rests_on_external_anchor():
+    """`views["anchor_used"]` must agree, correlation by correlation, with
+    whether either side's own `sideA`/`sideB` tradition is one of the two
+    this bundle dates purely from `_EXTERNAL_TRADITION_ANCHORS`
+    (`"mesopotamian"`/`"greek"`, neither named by any `timeline` event)."""
+    corpus = sacred_history.ingest()
+    data = json.loads(sacred_history.DEFAULT_CORPUS_PATH.read_text(encoding="utf-8"))
+    anchored_traditions = frozenset({"mesopotamian", "greek"})
+    ev_by_id = {e.id: e for e in corpus.evidence}
+    checked_a_flagged_item = False
+    for corr in data["correlations"]:
+        item = ev_by_id[corr["id"]]
+        a_trad = corr.get("sideA", {}).get("tradition")
+        b_trad = corr.get("sideB", {}).get("tradition")
+        expect_flagged = a_trad in anchored_traditions or b_trad in anchored_traditions
+        assert ("anchor_used" in item.views) == expect_flagged
+        if expect_flagged:
+            assert item.views["anchor_used"] == 1.0
+            checked_a_flagged_item = True
+    assert checked_a_flagged_item
+
+
+def test_sacred_history_tradition_spans_reports_which_traditions_are_anchor_derived():
+    data = json.loads(sacred_history.DEFAULT_CORPUS_PATH.read_text(encoding="utf-8"))
+    spans, anchored = sacred_history._tradition_spans(data["timeline"])
+    assert anchored == frozenset({"mesopotamian", "greek"})
+    for tradition in anchored:
+        anchor_year = sacred_history._EXTERNAL_TRADITION_ANCHORS[tradition]
+        assert spans[tradition] == (anchor_year, anchor_year)
 
 
 def test_sacred_history_stemma_edges_are_mutual_undirected_pairs():
