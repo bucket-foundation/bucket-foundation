@@ -1,0 +1,188 @@
+{
+  "campaign": "sacred-history",
+  "timestamp": "20260911T043521Z",
+  "corpus": "sacred-history",
+  "run_artifact_version": "1.0.0",
+  "constants": {
+    "W": 2.0,
+    "lam": 0.5,
+    "mu": 0.5,
+    "alpha": 1.0,
+    "theta_prune": 0.6
+  },
+  "time_binning": {
+    "resolution": "century",
+    "span_start": -1500,
+    "bin_width": 100,
+    "bin_labels": {
+      "3": "-1200s",
+      "9": "-600s",
+      "18": "300s",
+      "19": "400s",
+      "20": "500s",
+      "21": "600s",
+      "29": "1400s",
+      "31": "1600s",
+      "33": "1800s",
+      "34": "1900s"
+    }
+  },
+  "models": {
+    "_note": "Which Claude model backs each hte.roles function (bkt-hte-self-accounting). Values are CLI model aliases, passed straight through to `claude -p --model`. `escalation` is not a role; hte.roles.extract reaches for it when its three-member ensemble disagrees above the agreement threshold in hte/roles.py's EXTRACT_AGREEMENT_THRESHOLD.",
+    "roles": {
+      "generator": "sonnet",
+      "critic": "sonnet",
+      "unknown_unknown": "sonnet",
+      "preservation_critic": "sonnet",
+      "judge": "sonnet",
+      "meta_review": "sonnet",
+      "self_report": "sonnet",
+      "extractor": "haiku",
+      "referee": "sonnet",
+      "understanding": "sonnet"
+    },
+    "escalation": "opus"
+  },
+  "cache": {
+    "files": 2258,
+    "total_bytes": 6408532
+  },
+  "llm_stats": {
+    "unknown_unknown": {
+      "calls": 1,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 8.598323092970531,
+      "refusals": 0,
+      "truncations": 0
+    },
+    "generator": {
+      "calls": 1,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 51.33102244697511,
+      "refusals": 0,
+      "truncations": 0
+    },
+    "critic": {
+      "calls": 50,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 2822.924273563025,
+      "refusals": 0,
+      "truncations": 0
+    },
+    "preservation_critic": {
+      "calls": 271,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 11918.569277499046,
+      "refusals": 0,
+      "truncations": 0
+    },
+    "judge": {
+      "calls": 34,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 1622.1988044399768,
+      "refusals": 0,
+      "truncations": 0
+    },
+    "meta_review": {
+      "calls": 1,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 121.6168778060237,
+      "refusals": 0,
+      "truncations": 0
+    },
+    "self_report": {
+      "calls": 1,
+      "cache_hits": 0,
+      "rate_limit_pauses": 0,
+      "wall_time_s": 56.20094369602157,
+      "refusals": 0,
+      "truncations": 0
+    }
+  },
+  "refusals": {},
+  "clamped_years": [],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "git_sha": "410e702d8",
+  "config": {
+    "campaign": "sacred-history",
+    "corpus": "sacred-history",
+    "out_dir": "runs",
+    "cache_dir": null,
+    "replay_only": false,
+    "seeds": 3,
+    "generate_n": 20,
+    "generate_evidence_sample": 8,
+    "combinatorial_max_items": 150,
+    "max_hypotheses": 400,
+    "tournament_rounds": 2,
+    "top_k": 5,
+    "max_time_bins": 20,
+    "cutoff_years": null,
+    "run_calibration": true,
+    "run_extraction": true,
+    "resolution": null,
+    "link_threshold": 0.6,
+    "critic_batch_size": 8,
+    "judge_batch_size": 8,
+    "llm_workers": null,
+    "holdout_k": 5,
+    "holdout_seed": 0,
+    "constants": "fitted",
+    "verbose": false
+  },
+  "extraction": null,
+  "counts": {
+    "campaign": "sacred-history",
+    "n_sources": 13,
+    "n_evidence": 70,
+    "n_hypotheses_generated": 5070,
+    "n_survivors": 271,
+    "vocab_added": [],
+    "coverage": {
+      "observed": 5070,
+      "chao1_estimate": 33686.33333333333,
+      "missing_mass": 0.04176168757126568,
+      "coverage_low": 0.08886830042188472,
+      "coverage_high": 0.4911861363134721
+    },
+    "robustness_stable_fraction": 0.981549815498155,
+    "surprise_rate": 0.21428571428571427,
+    "calibration_brier": 0.35266401971222877,
+    "target_blind": {
+      "rate": 0.15,
+      "prior_rate": null,
+      "steady": true,
+      "first_run": true
+    },
+    "meta_review": {
+      "summary": "Across the 271-hypothesis frontier, real evaluative differentiation is concentrated in a narrow slice of the label space (mostly 'maps-to'/entity-graph-resolver and 'parallels'/other-mechanism for the axial-age -1500..-571 window), while large swaths of the population are combinatorial padding: actor/place permutations around a few hub objects (confucius, deucalion, bahaullah, gilgamesh) that never receive distinct opinions. Opinion values repeat as exact floating-point duplicates across unrelated actor/object pairs, strongly suggesting the critic scores by action\u00d7mechanism template rather than per-hypothesis content, and several slots (exotic actions/mechanisms, skeptical/debunking readings, post-axial-age periods) are generated nominally but never actually explored with evidence.",
+      "flags": [
+        "Templated/duplicated opinion floats (e.g. d=0.2518573002956571 appears on ~40+ 'parallels'+other-mechanism hypotheses; d=0.5594442696020775 on another ~15 unrelated actor/object pairs; d=0.6434580378246595 on all utnapishtim+parallels+other-mechanism cases) recur verbatim across unrelated content \u2014 evidence of scoring-by-bucket (action\u00d7mechanism) rather than per-hypothesis evaluation.",
+        "Action-slot stagnation: 'borrows-from', 'shares-etymology-with', 'structurally-echoes', 'precedes-chronologically', 'derives-from-common-source', 'common-source-reconstruction', 'other-action', and mechanism 'independent-invention'/'human-scholarly-comparison' are present in the label space but virtually every single instance sits at u=1.0 (b=0,d=0, i.e. completely unevaluated) \u2014 these relation types are being generated but never actually adjudicated anywhere in the 271-item population.",
+        "Mechanism-level belief bias: positive belief (b>0, ~17 hypotheses total) accrues almost exclusively to 'maps-to'+entity-graph-resolver claims in the -1500..-571/-1200..-1101 window; 'parallels'+other-mechanism hypotheses never once accrue belief, only fixed disbelief \u2014 the diffusion-vs-independent-parallel question looks pre-decided by mechanism label rather than by case-specific content.",
+        "'Confucius' hub artifact: dozens of hypotheses map unrelated actors (manu, abraham, david, krishna, rama, mahavira, zoroaster, guru-nanak, moses, muhammad, saoshyant, utnapishtim, joseph-smith, hyperdiffusionist-borrowing, euhemerist-deification) onto 'confucius' with place fixed to 'hinduism' regardless of Confucius's actual Chinese/Confucian context \u2014 looks like a place-field generation bug producing near-duplicate low-information hypotheses that inflate population count without adding distinct evidence.",
+        "Skeptical/debunking actor-hypotheses (mythicist-non-historicity, euhemerist-deification, channeled-modern-revelation) exist only as single, isolated instances with extremely low apriori weight 'a' (~0.018\u20130.047) and are frozen at u=1.0 \u2014 no genuinely dissenting/critical reading is ever explored or allowed to compete on comparable footing anywhere in the flood-myth/axial-age cluster.",
+        "Redundant place-only permutation clusters (manu\u00d7deucalion across hinduism/buddhism/greek/jainism/islam/lds/sikhism/judaism/other-place; david\u00d7gilgamesh across other-place/bahai/christianity/islam/judaism/jainism; buddha\u00d7bahaullah across buddhism/bahai/other-place/christianity) show identical or near-identical opinions regardless of place, indicating 'place' is varied combinatorially but not actually affecting evaluation \u2014 budget spent on non-informative permutations rather than genuine hypothesis diversity.",
+        "Temporal frontier gap: interval subdivision is fine-grained for -1500 to -500 (axial age) but the ~2300-year span from classical antiquity through medieval Islam/Christianity/LDS to the 19th-century Baha'i era collapses into one undifferentiated catch-all interval [-500,1863] used repeatedly for buddha/confucius/bahaullah/deucalion/jesus/laozi cross-era claims \u2014 no sub-periods (Hellenistic, Roman, Late Antique, Medieval, Early Modern) are ever tested separately in this later stretch."
+      ],
+      "recommended_actions": [
+        "Recombine/deduplicate: collapse the place-only permutation clusters (manu-deucalion, david-gilgamesh, buddha-bahaullah, actor-confucius/hinduism) into single representative hypotheses per distinct mechanism, since opinions don't currently vary with place \u2014 free up population budget for genuinely new content.",
+        "Split off a dedicated sub-population to force real evidence-gathering on the currently-frozen exotic actions/mechanisms (borrows-from, shares-etymology-with, structurally-echoes, precedes-chronologically, derives-from-common-source, common-source-reconstruction, independent-invention, human-scholarly-comparison) instead of letting them default to u=1.0 indefinitely.",
+        "Widen: generate finer sub-period hypotheses across the -500..1863 gap (Hellenistic, Roman/Late Antique, Medieval Islamic/Christian/LDS-precursor, Early Modern) rather than reusing one giant undifferentiated catch-all interval for every cross-era Buddha/Confucius/Bahaullah claim.",
+        "Generalize/rebalance priors: raise apriori weight 'a' and actively solicit counter-evidence for skeptical/debunking actor-hypotheses (mythicist-non-historicity, euhemerist-deification, channeled-modern-revelation) so dissenting readings compete on equal footing rather than being permanently marginalized at near-zero prior.",
+        "Flag to pipeline engineering: audit whether opinion assignment is keyed off (action, mechanism) tuples rather than full hypothesis content \u2014 the exact repeated disbelief floats across unrelated actor/object pairs suggest a templated-scoring shortcut that should be corrected before the next generation round.",
+        "Fix/verify the place-field generation logic for 'confucius'-as-object hypotheses, which defaults to 'hinduism' regardless of the actor's or object's actual tradition, before letting this cluster expand further."
+      ]
+    }
+  }
+}
