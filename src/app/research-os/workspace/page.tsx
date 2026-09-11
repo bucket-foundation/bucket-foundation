@@ -55,6 +55,18 @@
  * until they arrive (workspace/route.ts's own two-phase "check" contract)
  * and, once revealed, the learner's prediction renders beside the
  * tutor's own citation.
+ *
+ * Lateral reading on Check (PLAN-REVISION-3.md section 2c,
+ * learning/research-os/LATERAL-READING.md): the reveal step gains a third
+ * question, "Find a second place that says this." runFindSecondSource
+ * calls Locate's `mode: "secondSource"`; picking a candidate calls Quote
+ * on it (runQuoteSecondSource, the same Quote action every other source
+ * uses, so it leaves a real evidence record); an agree/disagree mark
+ * follows. runCheckReveal forwards `secondSourceNodeId`/`passagesAgree`
+ * on the same request. The server decides whether a second source is
+ * required for this learner's own stage; this page always shows the
+ * question and lets the server's own 400 (`checkForcingError`) name a
+ * missing requirement, it never guesses the requirement client-side.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -66,6 +78,7 @@ import {
   SOURCE_PREDICTION_QUESTION_COPY,
   type LearnerConfidence,
 } from "@/lib/research-os/forcing";
+import { SECOND_SOURCE_QUESTION_COPY, SECOND_SOURCE_AGREE_QUESTION_COPY } from "@/lib/research-os/lateral-reading";
 import { DELETE_CONFIRM_TOKEN } from "@/lib/research-os/types";
 
 const TARGET_SLUG = "why-the-sky-is-blue";
@@ -259,6 +272,17 @@ export default function ResearchOsWorkspacePage() {
   const [checkConfidence, setCheckConfidence] = useState<LearnerConfidence | "">("");
   const [checkSourcePrediction, setCheckSourcePrediction] = useState("");
   const [checkForcingError, setCheckForcingError] = useState<string | null>(null);
+  // Lateral reading (PLAN-REVISION-3.md section 2c): the reveal step's
+  // third question, a candidate search plus an agree/disagree mark. The
+  // server decides whether a second source is required for this
+  // learner's own stage (secondSourceRequired in the reveal response);
+  // this state only tracks what the learner has picked so far.
+  const [secondSourceQuery, setSecondSourceQuery] = useState("");
+  const [secondSourceCandidates, setSecondSourceCandidates] = useState<Array<{ nodeId: string; title: string; citation: string; independenceReason: string }>>([]);
+  const [secondSourceNodeId, setSecondSourceNodeId] = useState("");
+  const [secondSourceQuoted, setSecondSourceQuoted] = useState(false);
+  const [secondSourcePassagesAgree, setSecondSourcePassagesAgree] = useState<"agree" | "disagree" | "">("");
+  const [secondSourceBusy, setSecondSourceBusy] = useState(false);
   const [organizeClaim, setOrganizeClaim] = useState("");
   const [organizeEvidence, setOrganizeEvidence] = useState("");
   const [organizeSources, setOrganizeSources] = useState("");
@@ -506,6 +530,11 @@ export default function ResearchOsWorkspacePage() {
     setCheckConfidence("");
     setCheckSourcePrediction("");
     setCheckForcingError(null);
+    setSecondSourceQuery("");
+    setSecondSourceCandidates([]);
+    setSecondSourceNodeId("");
+    setSecondSourceQuoted(false);
+    setSecondSourcePassagesAgree("");
     try {
       const res = await fetch("/api/research-os/workspace", {
         method: "POST",
@@ -552,6 +581,8 @@ export default function ResearchOsWorkspacePage() {
           attemptId: checkAttemptId,
           learnerConfidence: checkConfidence,
           sourcePrediction: checkSourcePrediction,
+          secondSourceNodeId: secondSourceNodeId || undefined,
+          passagesAgree: secondSourcePassagesAgree === "agree",
           sessionId,
         }),
       });
@@ -566,6 +597,63 @@ export default function ResearchOsWorkspacePage() {
       }
     } finally {
       setBusy(null);
+    }
+  }
+
+  /** Lateral reading's Locate mode (PLAN-REVISION-3.md section 2c):
+   * surfaces up to three candidate independent sources for the node under
+   * Check. Retrieval only, no evidence write of its own. */
+  async function runFindSecondSource() {
+    if (!token || !selected) return;
+    setSecondSourceBusy(true);
+    try {
+      const res = await fetch("/api/research-os/workspace", {
+        method: "POST",
+        headers: { "content-type": "application/json", ...authHeaders() },
+        body: JSON.stringify({
+          action: "locate",
+          mode: "secondSource",
+          query: secondSourceQuery.trim() || selected.title,
+          quotedSourceNodeId: selected.id,
+          sessionId,
+        }),
+      });
+      const data = await res.json();
+      if (handleConsentResponse(res, data)) {
+        setSecondSourceCandidates([]);
+        return;
+      }
+      setSecondSourceCandidates(res.ok ? data.results : []);
+    } finally {
+      setSecondSourceBusy(false);
+    }
+  }
+
+  /** Picking a candidate calls Quote on it, the same action every other
+   * source uses, so it leaves a real "quote" evidence event the server's
+   * own second-source gate can check against (a node id alone, with no
+   * real Quote call behind it, never satisfies that gate). */
+  async function runQuoteSecondSource(nodeId: string, nodeTitle: string) {
+    if (!token) return;
+    setSecondSourceBusy(true);
+    try {
+      const res = await fetch("/api/research-os/workspace", {
+        method: "POST",
+        headers: { "content-type": "application/json", ...authHeaders() },
+        body: JSON.stringify({ action: "quote", nodeId, sessionId }),
+      });
+      const data = await res.json();
+      if (handleConsentResponse(res, data)) return;
+      if (res.ok) {
+        setQuotedSources((prev) => [
+          { nodeId, nodeTitle, kind: data.kind, quotable_span: data.quotable_span, locator: data.locator, citation: data.citation },
+          ...prev.filter((q) => q.nodeId !== nodeId),
+        ]);
+        setSecondSourceNodeId(nodeId);
+        setSecondSourceQuoted(true);
+      }
+    } finally {
+      setSecondSourceBusy(false);
     }
   }
 
@@ -1030,6 +1118,75 @@ export default function ResearchOsWorkspacePage() {
                         )}
                       </fieldset>
 
+                      {/* Lateral reading (PLAN-REVISION-3.md section 2c):
+                          "find another source" plus an agree/disagree
+                          mark. Shown for every reveal; the server decides
+                          whether this learner's own stage needs it and
+                          names a missing one in checkForcingError below
+                          rather than this page guessing the rule. */}
+                      <fieldset className="flex flex-col gap-2">
+                        <legend className="text-[11px] small-caps text-[color:var(--aegean-deep)] mb-1">{SECOND_SOURCE_QUESTION_COPY}</legend>
+                        <p className="text-[12px] text-[color:var(--basalt-2)]">A different place. A different author than the one you already used.</p>
+                        <div className="flex flex-wrap gap-2 items-center">
+                          <input
+                            value={secondSourceQuery}
+                            onChange={(e) => setSecondSourceQuery(e.target.value)}
+                            placeholder="search for another source…"
+                            className="border border-[color:var(--hairline)] px-2 py-1 text-[12px] flex-1 min-w-[140px] bg-white/60"
+                          />
+                          <button
+                            onClick={runFindSecondSource}
+                            disabled={!token || !selected || secondSourceBusy}
+                            className="text-[12px] small-caps underline disabled:opacity-50"
+                          >
+                            {secondSourceBusy ? "looking…" : "find another source"}
+                          </button>
+                        </div>
+                        {secondSourceCandidates.length > 0 && (
+                          <div className="flex flex-col gap-2">
+                            {secondSourceCandidates.map((c) => (
+                              <label key={c.nodeId} className="flex items-start gap-2 text-[12px] text-[color:var(--basalt)]">
+                                <input
+                                  type="radio"
+                                  name="second-source-pick"
+                                  checked={secondSourceNodeId === c.nodeId}
+                                  onChange={() => runQuoteSecondSource(c.nodeId, c.title)}
+                                  className="mt-1"
+                                />
+                                <span>
+                                  {c.citation} <span className="text-[11px] text-[color:var(--basalt-2)]">({c.independenceReason})</span>
+                                </span>
+                              </label>
+                            ))}
+                          </div>
+                        )}
+                        {secondSourceQuoted && (
+                          <fieldset className="flex flex-col gap-1">
+                            <legend className="text-[11px] small-caps text-[color:var(--aegean-deep)]">{SECOND_SOURCE_AGREE_QUESTION_COPY}</legend>
+                            <div className="flex flex-wrap gap-x-4 gap-y-1">
+                              <label className="flex items-center gap-2 text-[12px] text-[color:var(--basalt)]">
+                                <input
+                                  type="radio"
+                                  name="second-source-agree"
+                                  checked={secondSourcePassagesAgree === "agree"}
+                                  onChange={() => setSecondSourcePassagesAgree("agree")}
+                                />
+                                yes, they agree
+                              </label>
+                              <label className="flex items-center gap-2 text-[12px] text-[color:var(--basalt)]">
+                                <input
+                                  type="radio"
+                                  name="second-source-agree"
+                                  checked={secondSourcePassagesAgree === "disagree"}
+                                  onChange={() => setSecondSourcePassagesAgree("disagree")}
+                                />
+                                no, they do not agree
+                              </label>
+                            </div>
+                          </fieldset>
+                        )}
+                      </fieldset>
+
                       <button
                         onClick={runCheckReveal}
                         disabled={!checkConfidence || !checkSourcePrediction || busy === "check_reveal"}
@@ -1065,6 +1222,11 @@ export default function ResearchOsWorkspacePage() {
                           setCheckAttemptId(null);
                           setCheckConfidence("");
                           setCheckSourcePrediction("");
+                          setSecondSourceQuery("");
+                          setSecondSourceCandidates([]);
+                          setSecondSourceNodeId("");
+                          setSecondSourceQuoted(false);
+                          setSecondSourcePassagesAgree("");
                         }}
                         className="text-[12px] small-caps underline self-start"
                       >
