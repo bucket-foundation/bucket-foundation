@@ -1,5 +1,5 @@
 CYCLE 2 APPLY — line-edits from the prose-editor read. Apply your slice's findings to the
-chapter markdown. Work dir: /home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
+chapter markdown. Work dir: ~/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
 
 You get: your slice's findings file (_review/c2-N.md) listing located edits per chapter, and the
 chapter files themselves. Apply the findings, using judgment.

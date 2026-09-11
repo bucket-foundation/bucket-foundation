@@ -2,6 +2,134 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, PR #78 review and merge: retraction propagation and fragility
+
+- **Scope**: `hte/propagate.py` (derivation graph, per-hop damped
+  recompute, `CascadeReport`, `apply_retraction`, `fragility`/
+  `rank_fragility`), `hte/evidence.py` (`retracted_by`), `hte/runner.py`
+  (wires propagation into the campaign loop, writes `cascade.json`),
+  `hte/export.py` (`TIMELINE.md` fragility section), `hte/artifacts.py`
+  (`CascadeArtifact`, `fragility_top10`), `hte/canon_writeback.py`
+  (`canon_tier: contested` for a card whose support routed through a
+  retracted node, plus a `retract` feed event), `docs/PROPAGATION.md`.
+- **Deletion check**: `apply_retraction` adds a `refutes` item and stamps
+  `retracted_by`; no node, edge, or existing evidence item is removed.
+  Confirmed in `propagate.py`'s own docstring and in code.
+- **Canon gate**: `write_back` still never writes `canon_tier: "canon"`;
+  a cascaded candidate gets `"contested"` in place of `"candidate"`,
+  strictly more cautious, `signoff` still required. Fail-closed intact.
+- **Research OS bridge gap**: `fragility_top10` lands in `cascade.json`/
+  `self-report.json`/`MANIFEST.json` (engine-side artifacts) but this PR
+  does not touch `src/lib/research-os/engine-bridge.ts` or `db.ts`
+  (the PR #14 adapter, `EngineHypothesisInput`/`buildEngineNode`); no
+  fragility score reaches a `graph.nodes` row yet. Confirmed in scope:
+  PR body states it does not touch the corpus/bridge layer. Not a
+  blocker for this PR, flagged here as a follow-up (wire
+  `fragility_top10` through `campaign_research_os.py` and
+  `EngineHypothesisInput` in a later PR).
+- **Leak scan**: clean, no keys, IPs, `/home/gian` paths, Claude session
+  URLs, or personal emails in the PR's diff.
+- **Voice lint**: `agf-lint-voice-src check` and `agf-lint-voice check`
+  both 0 violations.
+- **Fix applied**: `ruff check` flagged one PR-introduced violation,
+  an unused `opinions_before` local in
+  `tests/test_propagate.py::test_cascade_report_lists_a_b_c_with_correct_hops_and_shares`.
+  Removed the dead assignment (the test never read it). `ruff check`
+  clean after.
+- **Gates**: merged `origin/main` (clean, no conflicts). `make test`:
+  1331 passed, 18 deselected, 0 failed.
+- **Blocked**: nothing. Merged.
+
+## 2026-09-11, PR #70 post-merge review and voice-lint fix
+
+- **Scope**: PR #70 (`feat/hte-ground-truth-enrichment`, richer
+  production fixtures prod-013..034, five new literature cards under
+  `educational-methods`, a widened `_IMPROVED_KEYWORDS`/`_WORSENED_KEYWORDS`
+  literature ground-truth rule) had already been merged by an earlier
+  session (`410e702d8`) by the time this pass started. Ran the review
+  gates against the merged content instead of gating the merge itself.
+- **Envelope check**: every new `production-fixtures/prod-0{13..34}.json`
+  matches `docs/PRODUCTION-SCHEMA.md`'s envelope (`id`, `created_at`,
+  `author_role`, `grade_band`, `school_or_district_id`,
+  `research_question`, `claims[].{text,stance,slots,interval,evidence}`,
+  `review`, `provenance`); spot-checked prod-013, prod-021, prod-034.
+  No `lateral`-reading PR merged into `main`, so the sources-independence
+  flag this schema doesn't carry yet does not apply.
+- **DOI spot-check**: 4 of the 5 new literature cards checked against
+  OpenAlex (Alonzo & Steedle 2009, Corcoran/Mosher/Rogat 2009, Deci/
+  Koestner/Ryan 1999, Deci/Ryan 2000); title, authors, and journal match
+  the card front matter on all four.
+- **Leak scan**: clean, no keys, IPs, `/home/gian` paths, Claude session
+  URLs, or personal emails in the PR's file set.
+- **Voice lint**: `agf-lint-voice check` on the touched files found 2
+  violations, both Low: `_IMPROVED_KEYWORDS`'s `"successfully produced"`
+  entry (banned adverb, no fixture text depends on the literal string)
+  and two antithesis-shaped exception messages in `test_api.py`
+  (`"a campaign bug, not a refusal"`, `"a bug in response assembly, not
+  a campaign failure"`, neither message content is asserted on, only
+  the exception's own class name). Fixed on a follow-up branch
+  (`fix/pr70-review-voice-and-log`) rather than reopening #70: renamed
+  the keyword to `"went on to produce"` and reworded both messages to
+  drop the antithesis. `agf-lint-voice check` and `ruff check` clean
+  after.
+- **Gates**: `make test` on `origin/main` with #70 merged: 1284 passed,
+  18 deselected, 0 failed. Targeted rerun of `test_api.py` +
+  `test_corpus_literature.py` after the voice fix: 99 passed.
+- **Blocked**: nothing.
+
+## 2026-09-11, PR #77 review, tick 6's own log entry
+
+- **Scope**: review of #77 (`docs/hte-loop-log-2026-09-11-tick5`), a
+  docs-only PR adding the tick-6 entry directly below. Leak scan clean
+  (no keys, IPs, home paths, session URLs, or personal emails).
+- **Claims spot-checked against merged code**, 4 of them: PR #72's
+  merge commit (`49a030149...`) and PR #75's merge commit
+  (`3426786c0...`) both match `gh pr view`'s own record exactly; PR
+  #74's migration (`20260910080000_research_os_guidance.sql`) adds
+  exactly the two columns the entry names, `graph.nodes.worked_example`
+  and `graph.classes.research_os_guidance_enabled`, nothing else;
+  `tests/swarm-20260911/test_bridge_export_props.py` collects exactly
+  15 tests (`pytest --collect-only`), matching the entry's count. No
+  contradiction found.
+- **Research OS docs**: the entry mentions PR #74 touches
+  `src/lib/research-os/` but this PR itself edits no Research OS doc,
+  so no `DELETIONS.md` entry applies.
+- **Voice lint**: `LOOP-LOG.md` is listed in `.voiceignore`; not
+  scanned, per that file's own scope note.
+- **Blocked**: nothing.
+
+## 2026-09-11, tick 6, bridge_export swarm and five PR reviews
+
+- **Environment**: no `pytest`/`hypothesis`/`jsonschema`/`matplotlib`/
+  `pandas`/`pyarrow` present; installed with `pip3 install --user`.
+- **Engine health**: `make test` on `main`, 1225 passed, 18 deselected,
+  0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` 30/30, gate PASS,
+  repeat run identical to full float precision, no nondeterminism.
+  `realsweep --corpus education-atlas --seeds 0-9` ran 5-6x slower than
+  the documented baseline on this sandbox's 4-core box; cut off after
+  7/10 seeds. Those 7: no crashes, no `run.log` errors, `coverage_of_
+  truth` 0.59-1.0 (above the stale committed baseline, consistent with
+  PR #48's fixes already on `main`). Sweep incomplete this tick
+  (seeds 8-9 and `production`/`literature` never started); no defect in
+  what ran.
+- **Test swarm**: `hte/bridge_export.py` had no dedicated test file.
+  New `tests/swarm-20260911/test_bridge_export_props.py`, 15 tests
+  (`write_bridge_export`'s file write, `_source_tier`'s empty/multi-tier
+  branches, `model` with/without a `models` key, `evidenceCitations`
+  mapping, contract-pinned fields). No defect. PR #75.
+- **PRs opened**: #75 (own).
+- **PRs reviewed/merged**: #72 (`fix/hte-`, clean, 1230 passed) merged
+  `49a030149`; #75 (own, clean, 1259 passed) merged `3426786c0`; #70
+  (`feat/hte-`, clean, 1250 passed, one nice-to-have) not merged, wrong
+  prefix; #69 (`docs/`) clean, merged by its author first; #68
+  (`chore/`) clean, out of scope (repo root); #74 (`feat/ros-`, touches
+  `src/lib/research-os/` + a migration) clean, only `graph.nodes`/
+  `graph.classes` columns added, no alignment-PR trigger, out of scope.
+  **#74 turned `dirty` (conflict with `main`) between review and
+  re-check**, needs a rebase before anyone merges it.
+- **Blocked**: nothing else. No secret or High/Critical finding.
+
 ## 2026-09-11, PR #62 and PR #67 review
 
 - **Scope**: review pass over #62 (`fix/hte-writeback-review-2`, pipeline

@@ -75,7 +75,7 @@ BASE = Path(
 ).resolve()
 # ScreenServer ships outside the review repo (matches tools_api/app.py).
 # TODO(deploy): vendor screenserver into the gateway image / a known path.
-SCREENSERVER = Path(os.environ.get("SCREENSERVER_DIR", "/home/gian/screenserver"))
+SCREENSERVER = Path(os.environ.get("SCREENSERVER_DIR", str(Path.home() / "screenserver")))
 PY = sys.executable
 AA = set("ACDEFGHIKLMNPQRSTVWY")
 # ROCm hang guard: tools embed/run on CPU by default (see labbrain/README.md).

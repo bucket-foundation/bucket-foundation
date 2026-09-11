@@ -3,7 +3,7 @@
 # finish, then runs the idempotent deploy and verifies the live endpoint.
 # Launched after the dictionary-coverage agent ended mid-embedding.
 set -uo pipefail
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 LOG=_intake/photons/complete-deploy.log
 exec > >(tee -a "$LOG") 2>&1
 echo "=========================================================="

@@ -1,5 +1,53 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10/11: faded guidance for low-prior-knowledge learners (ros-14)
+
+Branch `feat/ros-faded-guidance`, worktree `.ros-worktrees/scaffold`. Server-side and library work for the low-prior-knowledge scaffolding pass: a `guidanceLevel(learnerId, chain)` server function, six authored worked examples on the sky-blue seed path, Check prompt adaptation, a fading schedule, and a per-class arm switch. Full design account: `learning/research-os/GUIDANCE.md`. Concurrent with PR #63 (cognitive forcing, merged before this pass reached the workspace page).
+
+### Added
+
+- `src/lib/research-os/guidance.ts`: `computeGuidanceLevel` (the base level from the routed chain's first two nodes' Stage), `classifyCheckOutcome`, `nextGuidanceLevel` (the fading schedule, two-in-a-row Check passes drop one level, two-in-a-row abstains/fails raise one level), and `guidanceLevel(learnerId, chain)` (the server-side composition of both).
+- `src/lib/research-os/worked-examples.ts`: `firstHalfOfWorkedExample`, the medium-guidance sentence-rounding helper.
+- `supabase/migrations/20260910060000_research_os_guidance.sql`: `graph.nodes.worked_example` (jsonb, nullable) and `graph.classes.research_os_guidance_enabled` (boolean, default true, the arm switch).
+- `scripts/test-research-os-guidance.ts`: 27 tests over every pure rule in `guidance.ts`, `db.ts`'s `decideGuidanceEnabled`, and `worked-examples.ts`. Wired into `npm run test:research-os`.
+- `learning/research-os/GUIDANCE.md`: the full design account.
+
+### Edited
+
+- `src/lib/research-os/types.ts`: `GuidanceLevel` and `WorkedExample` types; `GraphNode.workedExample`.
+- `src/lib/research-os/stages.ts`: `isGroundedCheck` extracted (no behavior change) and exported for reuse by `guidance.ts`; `EvidenceContext`/`EvidenceEvent` gain `guidanceLevel`, threaded through every transition function that already takes a context.
+- `src/lib/research-os/grounding.ts`: `gradeExplanation`/`buildGrounding` (now exported) take an optional `guidanceLevel`/`passage` pair; at `high` guidance with a curated `passages.ts` passage, the grounding block and system prompt gain a `POINTER` instruction naming the exact passage sentence. Every other combination is byte-identical to before this pass.
+- `src/lib/research-os/db.ts`: node loaders (`loadSubgraph`, `findNodeBySlug`, `findNodeById`, the two engine-node upserts) select and map `worked_example`; new `loadRecentCheckEvents`, `isGuidanceEnabledForLearner`, and the pure `decideGuidanceEnabled` (extracted for unit testing, matching `filterClassesForReviewer`'s own precedent).
+- `src/app/api/research-os/workspace/route.ts`: the `check` action computes an authoritative guidance level server-side (scoped to the checked node's own prerequisite chain), forces it to `low` behind the class arm switch, passes it to `gradeExplanation`, logs it on the resulting evidence event, and returns it in the response.
+- `src/app/api/research-os/route/route.ts`: response gains `guidance` (`GuidanceLevel | null`), computed the same way for the page's own target chain.
+- `scripts/seed-research-os.mjs`: validates and writes an optional `worked_example` field per node.
+- `supabase/seed/research-os-sky-blue.json`: `worked_example` authored on the path's first six nodes (`light-travels-in-straight-lines` through `light-can-scatter-off-small-things`), from the existing summaries and NASA Space Place / Wikipedia sources already cited in each node's own `provenance`.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: a ros-14 addendum documenting the new `guidanceLevel` field, appended rather than edited into the original contract block.
+- `learning/research-os/WORKSPACE.md`: a new section 6, "Faded Guidance."
+- `package.json`: `test:research-os` gained `scripts/test-research-os-guidance.ts`.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build` (all clean), `npm run test:research-os` (every script in the chain passed, 0 failures), `agf-lint-voice-src check` and `agf-lint-voice check` on every touched file (clean after four antithesis/banned-word fixes in `db.ts`/`guidance.ts`/`stages.ts` and a heading-parenthesis fix in `WORKSPACE.md`, plus two filler-adverb instances found by a manual scan of the seed JSON's authored worked-example text, which `agf-lint-voice-src` does not scan `.json` files for).
+
+### Second round: PR #63 merge
+
+`git fetch origin && git merge origin/main` pulled in PR #63 (cognitive forcing, merged before this branch reached the workspace page as the task's own poll instruction required) plus several other merged PRs. Four real conflicts, all resolved by combining both sides rather than picking one: `package.json` (both `test:research-os` chain additions kept), `src/lib/research-os/stages.ts` (both header UPDATE notes and both `EvidenceContext`/`EvidenceEvent` field sets kept, `onCheckResult`'s event literal carries both `guidanceLevel` and the forcing fields), `learning/research-os/WORKSPACE.md` (both new sections kept, this pass's own renumbered to section 7), and `src/app/api/research-os/workspace/route.ts`'s `check` case (the real design work: guidance computation now lives in a shared `computeGuidanceForNode` helper called from both Check phase 1 and the phase-2 reveal branch, since a held attempt's own storage schema, `forcing.ts`'s `PendingCheckAttempt`, was left untouched rather than extended with a guidance field; both the forcing-off immediate-reveal path and the forcing-on held-attempt path now carry `guidance` in their evidence event and JSON response).
+
+Migration filename collision caught and fixed: this branch's own `20260910060000_research_os_guidance.sql` collided with PR #63's `20260910060000_research_os_forcing.sql` (identical timestamp prefix, different content, matching the exact class of bug `ros-13`'s own ledger entry names as prior art). Renamed to `20260910080000_research_os_guidance.sql`, after both `forcing`'s `060000` and `check_attempts`' `070000`; no column or content changed, only the filename and its own header comment.
+
+Reconciled the class arm-switch design against PR #63's real, now-visible implementation (previously only speculated about in this bead's own migration and `GUIDANCE.md`, since PR #63 had not merged when that text was first written): PR #63 shipped `graph.classes.forcing_enabled` (nullable, defers to an env var default, first-class-override-wins across memberships), distinct in name and shape from this bead's own not-null, default-true, OR-across-memberships `research_os_guidance_enabled`. Kept as two independent columns (a class can run either pilot arm, both, or neither) rather than unifying them; `GUIDANCE.md` section 4 rewritten with the confirmed facts and a sharper open-questions note.
+
+Shipped the workspace page addition the task deferred behind the PR #63 merge: `src/app/research-os/workspace/page.tsx` gains a `WorkedExampleBlock` component, shown above the Check explanation textarea only in the pre-submission phase (hidden once a held attempt or a revealed result exists), reading `route.guidance ?? "medium"` to pick full text, `firstHalfOfWorkedExample`'s partial text, or nothing. `GraphNodeLite` gains `workedExample`; `RouteResponse` gains `guidance`.
+
+### Verified, second round
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (all clean, 0 failures across the full merged chain), `agf-lint-voice-src check` / `agf-lint-voice check` on every file this round touched (clean after one banned-word fix in `page.tsx` and two antithesis fixes in `GUIDANCE.md`). No conflict resolution changed test-covered behavior from either branch: `scripts/test-research-os-forcing.ts`, `test-research-os-check-attempts.ts`, and `test-research-os-calibration.ts` (PR #63's own tests) and `test-research-os-guidance.ts` (this bead's own) all pass unmodified post-merge.
+
 ## 2026-09-10: literature batch four
 
 Branch `intake/ros-literature-4`. Task: 25 to 35 new DOI- or ERIC-verified papers targeted
@@ -2330,3 +2378,117 @@ Full account in `learning/research-os/CHANGE-LEDGER.md`'s matching iteration.
 Review of PR #76 (preregistration revision 1, docs-only) as methods reviewer. Recomputed the naive n-per-arm formula (n = 2(z_alpha/2 + z_beta)^2/d^2, alpha = 0.025 two-sided, power = 0.80) by hand: 76/119/211 at d = 0.5/0.4/0.3, and the cluster-corrected figures (DEFF = 1 + (m_bar-1) x ICC, m_bar = 25) at 262/405/691 for ICC 0.05/0.10/0.20, both matching the draft exactly, no drift from the prior review's own figures. Checked the three meta-analytic anchors (Furtak and colleagues 2012, Lazonder and Harmsen 2016, Chen and Yang 2019) against their own intake cards: pooled effects and moderators match on all three; Furtak's card states no explicit population descriptor; the table's "K-12 and undergraduate science students" phrase is this pass's own addition, noted as a minor finding, and the pooled d = 0.50 the n-table draws from stays accurate. Confirmed the calibration outcome's fields (`learnerConfidence`, `sourcePrediction`, `predictionCorrect`, `forcingEnabled`) and the provenance-flags fields (`source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`) are real, typed fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` and real columns in `supabase/migrations/20260910060000_research_os_production_guard.sql`, both merged to `main`. Confirmed the Required participation and misconduct risk subsection cites Grinnell and colleagues (2020) and keeps Production submission opt-in per `PLAN-REVISION-3.md` decision 6. Confirmed the Revision history section exists and every replaced sentence (both files' header status lines, the effect-size paragraph, the naive-n table, the diversity-outcome judge cell, the Exploratory analyses sentence, `INSTRUMENTS.md`'s intro and closing section) is preserved verbatim in `DELETIONS.md`. `RESEARCH-QUESTIONS.md`'s diff carries no removed lines, append-only confirmed. No partner school, IRB approval, PI, or host institution claimed anywhere in the touched files; both existing denials (`PREREGISTRATION-DRAFT.md`'s opening paragraph and its Registration timing section) stand unchanged.
 
 Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Gates: nothing under `src/` or `public/` changed; branch already carries `origin/main` (merged mid-pass by the PR's own author, confirmed fast-forward-clean here); no file deleted, `git diff --name-status` shows every touched file as `M`. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and `CHANGE-LEDGER.md`; `agf-lint-voice-src check` clean on the one touched source file. No fix needed; merged as-is.
+
+## 2026-09-11, repo hygiene pass: local paths and machine-specific data
+
+The dedicated cleanup pass the PR #69 review above named as needed.
+Worktree `~/agfarms/.ros-worktrees/scrub`, branch `chore/local-path-scrub`.
+Full inventory in `learning/research-os/compliance/REPO-HYGIENE-2026-09-11.md`:
+71 tracked files carried `/home/gian`, 53 rewritten to `~/...`, `$HOME/...`,
+a repo-relative path, or (in load-bearing code) `os.path.expanduser`,
+`Path.home()`, or `__file__`; 14 left as-is on a new allowlist (bead-backup
+jsonl, two runner logs, five systemd units, five narrative docs whose only
+hits quote this same leak-scan policy back, this file included). Two
+AWS-access-key-shaped presigned S3 URLs in `figma-export/` redacted
+(Figma's own expired CDN credential, not an AGFarms secret). A new guard,
+`tools/hygiene/check-local-paths.py` plus a CI workflow, blocks a future PR
+from reintroducing a `/home/<user>` path; its allowlist and fixture test
+are in `tools/hygiene/`. `.gitignore` gained a commented, inactive block
+proposing `git rm --cached` for the backup/log/systemd files; untracking
+them stays a founder decision. `agf-lint-voice check` on the new doc: clean
+after fixing 11 first-pass hits by hand. `agf-lint-voice check --staged`
+across the full 67-file change set surfaced 651 pre-existing violations in
+19 files (17 auto-generated bridge reports plus two quantum setup docs),
+confirmed identical against each file's `origin/main` version, so none of
+this pass's own edits; committed with the hook's documented
+`AGF_VOICE_SKIP=1` bypass rather than rewriting unrelated content. No
+`src/` or engine file changed, so the npm/tsc/build/test and `make test`
+gates did not trigger.
+
+## 2026-09-11, repo hygiene PR review pass
+
+Review of `chore/local-path-scrub` as finishing and review engineer, worktree
+`~/agfarms/.ros-worktrees/scrub`. The hygiene agent had merged an earlier
+`origin/main` and died before opening the PR; `origin/main` had since moved
+one commit further (#70, richer production fixtures), so `git diff origin/main`
+first showed 28 files as deleted. Fetched and merged current `origin/main`
+(clean, no conflicts) before reviewing; the deleted-file signal cleared.
+
+Verified against the refreshed `origin/main`: `git diff --diff-filter=D`
+empty, no file deleted or untracked, working tree clean. Programmatically
+diffed `_intake/embeddings/claim-evidence.jsonl` (599 lines) and
+`_intake/health-longevity-fitness/media/MANIFEST.jsonl` (294 lines) as JSON,
+field by field: only `source_path`/`path` changed on every line (5990 and
+294 rewrites), zero other field mismatches. Spot-checked 10 rewritten files
+by hand (`PRODUCTION_LOG.md`, the runbook, a `_bridges` README, two patents
+scripts, the postgres Dockerfile, `llm-server.sh`, `gateway.py`,
+`build_structures.py`, `ds.py`, `extract-kaikki-translations.py`,
+`generate_v2.py`): each hunk is a path rewrite, no content removed;
+confirmed `os` is imported in both viz files before relying on
+`os.path.expanduser`. `_epub_combined.md`'s 399 image links move from an
+absolute `/home/gian/...` prefix to a root-relative `/_intake/...` form
+uniformly across every reference, matching the hygiene doc's stated intent
+(a renderable path, not a leftover).
+
+Ran the new guard: `python3 tools/hygiene/check-local-paths.py --all`
+exits 0; `bash tools/hygiene/test-check-local-paths.sh` passes all 4
+fixture cases. `agf-lint-voice check` on the hygiene doc and on this
+changelog: 0 violations. `agf-lint-voice-src check` on the three new
+`tools/hygiene/` files: 0 violations.
+
+Leak scan of the full diff: `AKIA`-shaped strings (the two Figma presigned
+thumbnail URLs) confirmed redacted to `?REDACTED-presigned-aws-url` on the
+added side, no `sk-`/`figd_`/`ghp_`/`xox`-shaped tokens, no `PRIVATE KEY`
+block, no new RFC1918 or public IP introduced (the doc's own prose mentions
+`5.161.236.151` and `172.19.0.2`, both pre-existing elsewhere in the repo,
+cited for founder awareness, not new exposure), no Claude session URL.
+`jack@neurosurgical.net` appears in unchanged corpus quote lines (Jack
+Kruse's own public contact address from his blog, pre-existing on both
+sides of the diff); the only email introduced by this pass's own prose is
+`gianyrox@gmail.com`.
+
+No `src/` file and no `tools/hypothesis-engine/` file changed relative to
+`origin/main`, so `npm ci`/`tsc --noEmit`/`build`/`test:research-os` and the
+engine's `make test` did not trigger, per this pass's own gating.
+
+Founder-decision section confirmed: the hygiene doc's "Founder decision:
+untrack these" table lists 9 paths with the exact `git rm --cached`
+command and what each loses (backup jsonl pair, two runner logs, five
+systemd units), and the matching `.gitignore` block ships commented out
+and inert.
+
+No fix needed. Merged as-is; PR opened against `main`, squash-merged.
+
+## 2026-09-11, PR #74 finishing pass
+
+Reviewer-side finish of PR #74 (`feat/ros-faded-guidance`, ros-14) after review sat clean and a prior pass merged `origin/main` (PR #73) mid-gates and died on a wip commit. Worktree `.ros-worktrees/r74`, branch `review/pr74`. Resumed from `wip(review/pr74): partial work preserved after spend-limit stop`, a merge commit already carrying `origin/main` (PR #73) with no unresolved conflict markers in the working tree. `git fetch origin && git merge origin/main` pulled in three more merged PRs (#70 hte production fixtures, #76 preregistration revision 1, #68 chore); one real conflict in `tools/hypothesis-engine/tests/swarm-20260911/test_bridge_export_props.py`'s own docstring (a one-line wording difference between two independently-merged copies of the same test file's header), resolved by keeping the `review/pr74` wording.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (all clean; `/research-os/workspace` and `/research-os/review` both present in the build manifest).
+- `npm run test:research-os`: 423 tests across every chained file, 0 failures.
+- `next lint` on every TS/TSX file this PR touches: clean.
+- `agf-lint-voice-src check` on every touched source file (TS and the merge-resolved Python test file): clean.
+- `agf-lint-voice check` on every touched prose file (`GUIDANCE.md`, `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, `WORKSPACE.md`, `EVIDENCE-SCHEMA.md`, `COVERAGE-2026-09-10.md`, this file, `CHANGE-LEDGER.md`): clean.
+- `review/pr74`'s tip confirmed a fast-forward of `feat/ros-faded-guidance`'s remote head; pushed there rather than opening a superseding PR.
+
+No fix needed beyond the one docstring conflict. Pushed and merged.
+## 2026-09-11, lateral reading, independent second source before Check reveals
+
+Worktree `~/agfarms/.ros-worktrees/lateral`, branch `feat/ros-lateral-reading`. Picked up a wip commit (`f4c2c7fe2`, left by a prior run that stopped at a spend limit) carrying `lateral-reading.ts`, `locate.ts`'s `findIndependentSources`/`assessSourceIndependence`, `stages.ts`'s `"corroboration"` event, `production-guard.ts`'s Rule 5, the `db.ts` loaders, and the migration, with no route, page, test, or doc wired to any of it. `PLAN-REVISION-3.md` section 2c's design response to Wineburg and McGrew (2019) and Breakstone and colleagues (2021): at Understanding tier and above, revealing a held Check verdict now needs a real, independent second source, composed on top of the existing cognitive-forcing reveal so an incomplete confidence/prediction commit still reads as the pre-existing forcing error.
+
+`workspace/route.ts`'s "check" phase 2 restructured to a read-only pre-check (`dbGetPendingAttempt` + `finalizeReveal`) before `checkSecondSourceGate` runs, so a second-source gate failure leaves the attempt held for a retry rather than consumed; both `secondSourceWasQuoted` (`loadLearnerQuoteEvidence`) and `secondSourceIndependent` (`assessSourceIndependence` against stored provenance) are resolved server-side, never trusted from the client. "locate" gains `mode: "secondSource"`. `production/route.ts` now computes and stores `lateral_reading_flag`. `workspace/page.tsx` gains the reveal step's third question, "Find a second place that says this.", a search-and-quote flow plus an agree/disagree mark, stacking inside the existing 400px fieldset pattern. New doc: `learning/research-os/LATERAL-READING.md`. Updated: `WORKSPACE.md` (section 7), `PRODUCTION-GUARD.md` (new Rule 5, renumbered sections 6-7), `EVIDENCE-SCHEMA.md`, `DATA-INVENTORY.md`. 32 new tests in `scripts/test-research-os-lateral-reading.ts`, wired into `npm run test:research-os`.
+
+`origin/main` fetched and merged (no lateral-reading-related conflicts). Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (`/api/research-os/production`, `/api/research-os/workspace`, `/research-os/workspace` all in the manifest), `npm run test:research-os` (29 files, `fail 0`, 423 tests, up from 391/28), `next lint` clean on every touched TS/TSX file, `agf-lint-voice-src check` clean on all 10 touched-or-inherited source files, `agf-lint-voice check` fixed four violations across `WORKSPACE.md`, `PRODUCTION-GUARD.md`, `LATERAL-READING.md`, and `workspace/route.ts`'s own doc comment (banned words, one antithesis construction), clean on the second pass.
+
+## 2026-09-11, PR #84 review, lateral_reading_flag wired into the review queue
+
+Review worktree `~/agfarms/.ros-worktrees/r84`, branch `review/pr84`, reviewing `feat/ros-lateral-reading` against `main`. Correctness held on every checked item: Locate's second-source mode is retrieval only (`findIndependentSources`, no model call, the same substring filter `locateHits` already runs); the quoted source and every same-publisher/same-domain candidate are excluded (`assessSourceIndependence`, tests present); independence is computed server-side against DB-fetched `provenance` rows in `workspace/route.ts`, never taken from the client; the Check reveal at Understanding tier and above reads a real "quote"-kind evidence event (`loadLearnerQuoteEvidence`) rather than trusting `secondSourceNodeId` alone; Awareness stays single-source (`secondSourceRequiredAtStage`); the per-class switch (`loadSecondSourceRequiredForLearner`) is read server-side; the second-source gate composes on top of `finalizeReveal`'s own forcing gate, an incomplete confidence/prediction commit still reads as the forcing error; the `"corroboration"` event stores only the learner's own `passagesAgree` mark, no model judgment.
+
+One defect found and fixed: `production-guard.ts`'s `lateralReadingFlag` was computed and stored on `graph.productions.lateral_reading_flag` at submit time, but `/api/research-os/review`'s GET never selected the column, so it never reached the review queue, though `PRODUCTION-GUARD.md`'s own section 6 already documented it as shown "beside each queued Production." Fixed: added a named `LateralReadingFlag` export to `production-guard.ts`, added `lateral_reading_flag` to the review route's select list, `ProductionRow` interface, and response mapping as `lateralReadingFlag`, and rendered it on `/research-os/review`'s page beside the existing duplicate-match line, informational only, matching the "never blocks approve" posture every other guard flag on that page already keeps.
+
+Leak scan of the PR's own diff: clean, no keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, or `/home/gian` paths in file contents. Six Claude session URLs found, all inside commit-message trailers (the repo's own attribution convention), none in file content. Process note: the PR's own merge commit (`c7b3c095b`) used the org pre-commit hook's `AGF_VOICE_SKIP=1` bypass rather than `--no-verify`, per its own `BEADS-PENDING.jsonl` account; the commit will squash into one at merge so the artifact does not survive, flagged here for the record.
+
+`agf-lint-voice check` on the full changed-file set found three violations inside this PR's own new content (two antithesis constructions in `BEADS-PENDING.jsonl`'s new bead line, one in `scripts/test-research-os-lateral-reading.ts`'s own test name); fixed by hand, clean on the second pass. The remaining reported violations (`BEADS-PENDING.jsonl` lines 1-99, `workspace/page.tsx` line 1256) predate this PR and sit outside its own diff, left untouched. `agf-lint-voice-src check` clean on every touched source file, first pass.
+
+Gates after the fix: `npm ci` clean; `npx tsc --noEmit` clean; `npm run build` clean (`/api/research-os/production`, `/api/research-os/workspace`, `/api/research-os/review`, `/research-os/workspace`, `/research-os/review` all in the manifest); `npm run test:research-os` 30 files, `fail 0`, 455 tests, unchanged from the PR's own count (the fix touched no test file logic); `next lint` clean on every touched TS/TSX file. Pushed to `feat/ros-lateral-reading` and squash-merged.

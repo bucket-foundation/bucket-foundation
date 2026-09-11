@@ -113,7 +113,7 @@ than no map, so the thin and skipped topics are named out loud at the end (see "
 
 _Not medical advice._
 
-![Claims by Evidence Tier — computed from the corpus](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/01-claims-by-tier.png)
+![Claims by Evidence Tier — computed from the corpus](/_intake/health-longevity-fitness/media/figures/01-claims-by-tier.png)
 
 **How to use this map.** The layers run bottom-up — foundations at the bottom, the things you actually
 do near the top. Follow the `§` pointer to the full chapter; the explanations all live one click down.
@@ -237,7 +237,7 @@ Evidence tier here uses the book's ladder (`meta` > `rct` > `cohort` > … ); ea
 | Go-deeper curated library | §06 |
 | State of the field — the honest bottom line | State of the Field |
 
-![The Evidence Ladder — ten rungs](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/39-evidence-ladder.png)
+![The Evidence Ladder — ten rungs](/_intake/health-longevity-fitness/media/figures/39-evidence-ladder.png)
 
 ---
 
@@ -400,9 +400,9 @@ supplied the ancestral proton-motive force before cells existed — solving the 
 of where life's energy currency came from. The proton gradient is not just how *you* live; it may be
 why life started at all.
 
-![Chemiosmosis — the master variable](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/04-energy-stack.png)
+![Chemiosmosis — the master variable](/_intake/health-longevity-fitness/media/figures/04-energy-stack.png)
 
-![The Mitochondrion (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA03-mitochondrion.png)
+![The Mitochondrion (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA03-mitochondrion.png)
 
 ### 2.3 ATP synthase — the molecular turbine
 
@@ -415,7 +415,7 @@ universal energy currency the rest of the cell spends. A human at rest cycles th
 own body weight in ATP per day; it is not stored, it is made and spent continuously, which is why the
 machine never stops.
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/atp-synthase-turbine.png)
+![](/_intake/health-longevity-fitness/media/figures/atp-synthase-turbine.png)
 
 ### 2.4 The redox couples and the Krebs cycle — the supply line
 
@@ -440,7 +440,7 @@ and protein all meet before oxidative phosphorylation. Whatever fuel you eat, it
 
 ### 2.5 Substrate metabolism — glucose vs fat vs ketones
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BP07-metabolic-fuel-crossover.png)
+![](/_intake/health-longevity-fitness/media/figures/BP07-metabolic-fuel-crossover.png)
 
 The cell can load that hub from different fuels, and the ability to switch between them cleanly —
 **metabolic flexibility** — is itself a marker of bioenergetic health:
@@ -502,16 +502,16 @@ capacity — not any single biomarker — is the master variable of the manual.
 
 ## 3. STRUCTURE & MATTER — the physical body the energy runs through
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BP05-piezoelectricity-bone.png)
+![](/_intake/health-longevity-fitness/media/figures/BP05-piezoelectricity-bone.png)
 
 Energy needs a container and a chassis. The proton gradient of §2 is only possible because there is a
 **membrane** to hold it; the chemistry only happens because there are **proteins** to catalyze it;
 and all of it sits in a medium of **water** whose properties are still partly contested. This layer
 is the matter the energy organizes.
 
-![Inside the Cell — the unit of life](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/103-the-cell.png)
+![Inside the Cell — the unit of life](/_intake/health-longevity-fitness/media/figures/103-the-cell.png)
 
-![The Animal Cell (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA15-the-cell.png)
+![The Animal Cell (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA15-the-cell.png)
 
 ### 3.1 The lipid-bilayer membrane — the container of the gradient
 
@@ -532,7 +532,7 @@ becomes biology.
 
 ### 3.2 Proteins — the machines, and keeping them folded
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BP04-radical-pair-magnetoreception.png)
+![](/_intake/health-longevity-fitness/media/figures/BP04-radical-pair-magnetoreception.png)
 
 If membranes are the architecture, **proteins** are the machinery. Enzymes (catalysts), structural
 proteins, transporters, receptors, the ETC complexes, ATP synthase itself — all are proteins. A
@@ -562,7 +562,7 @@ by which heat and fasting earn their place in the manual.
 
 ### 3.3 Cell water and hydration — a contested frontier, graded honestly
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BP01-biophysics-framework.png)
+![](/_intake/health-longevity-fitness/media/figures/BP01-biophysics-framework.png)
 
 Cells are ~70% water by mass, and water is not a passive backdrop — it is the medium in which every
 reaction above happens, and a participant in many. **Bulk-water hydration** (drinking enough, sodium
@@ -630,11 +630,11 @@ with no route back from protein sequence to nucleic-acid sequence. Mendel's part
 is the upstream axiom. Your genome is the *static* blueprint — essentially the same in
 every cell of your body and across your whole life.
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/dna-double-helix.png)
+![](/_intake/health-longevity-fitness/media/figures/dna-double-helix.png)
 
-![The Central Dogma — DNA → RNA → protein](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/101-central-dogma.png)
+![The Central Dogma — DNA → RNA → protein](/_intake/health-longevity-fitness/media/figures/101-central-dogma.png)
 
-![DNA Replication (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA07-dna-replication.png)
+![DNA Replication (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA07-dna-replication.png)
 
 But the genome alone cannot explain aging or differentiation: a neuron and a liver cell carry
 *identical* DNA yet behave completely differently, and an old cell carries the *same* DNA it had when
@@ -688,7 +688,7 @@ to do:
 | **Sirtuins (need NAD⁺)** | Redox/energy state (NAD⁺ level) | **Stress resistance, repair**, deacetylation of targets | Fasting, exercise (raise NAD⁺) — *NAD-precursor supplements raise NAD⁺ but show no proven outcome* |
 | **Insulin / IGF-1 → FOXO** | Fed state, growth-factor signaling | Low insulin/IGF-1 *releases* **FOXO** → stress-resistance/longevity genes | Caloric restriction; the *daf-2/daf-16* axis doubled worm lifespan (Kenyon 1993) |
 
-![Nutrient Switchboard — growth vs repair](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/05-nutrient-switchboard.png)
+![Nutrient Switchboard — growth vs repair](/_intake/health-longevity-fitness/media/figures/05-nutrient-switchboard.png)
 
 Add a fifth, the cell's antioxidant master regulator: **NRF2**, which when activated turns on the
 cell's *endogenous* defense and detox genes. The key insight (from the redox thread) is that the
@@ -729,7 +729,7 @@ hangs on, but not by itself a proof of what *causes* aging. Mapped onto the foun
 | Cellular senescence | Integrative — damaged cells arrest and secrete inflammatory signals | §5.3 |
 | Stem-cell exhaustion · altered intercellular communication · inflammaging · dysbiosis | Integrative — tissue- and system-level failure | §5.3 |
 
-![Hallmarks of Aging — the 12 processes](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/30-hallmarks-aging.png)
+![Hallmarks of Aging — the 12 processes](/_intake/health-longevity-fitness/media/figures/30-hallmarks-aging.png)
 
 The 2023 grouping is itself instructive: **primary** hallmarks (damage), **antagonistic** hallmarks
 (protective responses that turn harmful when chronic — note the hormetic shape), and **integrative**
@@ -788,7 +788,7 @@ dose-response**: a *sub-damaging* dose of a stressor triggers an adaptive overco
 leaves the system net-stronger, while an *excess* of the same stressor harms. The dose-response curve
 is an inverted-U (or J).
 
-![The Hormesis Curve — the right dose of stress](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/87-hormesis-curve.png)
+![The Hormesis Curve — the right dose of stress](/_intake/health-longevity-fitness/media/figures/87-hormesis-curve.png)
 
 The astonishing thing is how many "good for you" practices share this exact shape, and — per the
 corpus's hormesis thread — share a common biophysical engine: **transient ROS
@@ -1082,7 +1082,7 @@ to, for anyone who wants to trace the underlying evidence and its tier.
 
 ## 12.2 — The convergence map: many practices, six layers
 
-![Mechanism Convergence — practices → fundamentals](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/18-mechanism-convergence.png)
+![Mechanism Convergence — practices → fundamentals](/_intake/health-longevity-fitness/media/figures/18-mechanism-convergence.png)
 
 Read the table column-wise and most of the manual collapses onto the **energy/redox** core:
 
@@ -1462,7 +1462,7 @@ level; making it at the organelle level buys three things the foundations summar
    the evidence." This chapter grades each one against the actual trial data so the prestige can't do
    the selling.
 
-![Mitochondrion + 3 Dials — quantity·quality·efficiency](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/16-mitochondria-section.png)
+![Mitochondrion + 3 Dials — quantity·quality·efficiency](/_intake/health-longevity-fitness/media/figures/16-mitochondria-section.png)
 
 ---
 
@@ -1522,13 +1522,13 @@ signals) biology and pharmacology:
 | **IV** | Cytochrome c oxidase | **Yes** | The terminal step: passes electrons to **\(\mathrm{O_{2}}\)**, reducing it to water. This is *why you breathe* — \(\mathrm{O_{2}}\) is the final electron acceptor. Inhibited by cyanide, carbon monoxide; **methylene blue and low-dose near-infrared light both interact here** (§37.7, §37.8). |
 | **V** | ATP synthase (F₁F₀) | Runs \(\mathrm{H^{+}}\) *back* | Not a pump but the turbine: protons flowing down the gradient spin the rotor and force ADP + Pᵢ → ATP. Structurally confirmed rotary motor (Boyer/Walker, Nobel 1997 — canon proof chain). |
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/complex-I-etc.png)
+![](/_intake/health-longevity-fitness/media/figures/complex-I-etc.png)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/complex-II-sdh.png)
+![](/_intake/health-longevity-fitness/media/figures/complex-II-sdh.png)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/complex-III-bc1.png)
+![](/_intake/health-longevity-fitness/media/figures/complex-III-bc1.png)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/complex-IV-cox.png)
+![](/_intake/health-longevity-fitness/media/figures/complex-IV-cox.png)
 
 Two carriers shuttle between the complexes and are worth naming because supplements target them:
 **coenzyme Q10 (ubiquinone)**, a lipid-soluble electron carrier in the membrane that ferries electrons
@@ -1682,7 +1682,7 @@ routes too — BNIP3, NIX, FUNDC1 — so the picture is broader than one pathway
 
 ### 37.4.3 — Biogenesis: building new mitochondria via PGC-1α
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/nad-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/nad-structure.png)
 
 The counterweight to destruction is **mitochondrial biogenesis** — building new mitochondrial mass —
 and it has a single master regulator: **PGC-1α** (peroxisome-proliferator-activated-receptor-γ
@@ -1719,7 +1719,7 @@ The foundations chapter introduced this (§2.6) and the mechanism bridge formali
 
 ### 37.5.1 — The free-radical theory, and its honest update
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BP02-ultraweak-photon-emission.png)
+![](/_intake/health-longevity-fitness/media/figures/BP02-ultraweak-photon-emission.png)
 
 Denham Harman's **free-radical theory of aging** (1956, figure `harman`): the ETC leaks
 electrons to \(\mathrm{O_{2}}\), forming **reactive oxygen species** (superoxide → \(\mathrm{H_{2}O_{2}}\) → hydroxyl radical); ROS
@@ -1741,7 +1741,7 @@ of evidence is specific:
 
 ### 37.5.2 — Mitohormesis: the resolved correct frame
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BP06-mitohormesis.png)
+![](/_intake/health-longevity-fitness/media/figures/BP06-mitohormesis.png)
 
 The correction is **mitohormesis** (Michael Ristow): a *transient, sub-damaging* burst of
 mitochondrial ROS is the **adaptive signal** that triggers the cell's own defenses — it activates
@@ -2347,7 +2347,7 @@ about any test.
   (DTC) report tells you your "power potential" or "endurance type," it is reading a few common SNPs
   that explain a rounding error of the trait and dressing the noise as a verdict.
 
-![Common vs Rare Variants — what gene chips miss](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B10-common-rare-variants.png)
+![Common vs Rare Variants — what gene chips miss](/_intake/health-longevity-fitness/media/figures/B10-common-rare-variants.png)
 
 > **The one-line filter for Part A.** A handful of *rare, large-effect* variants are worth knowing
 > because they are **actionable** (you can do something specific). The vast polygenic remainder — the
@@ -2373,7 +2373,7 @@ than one line — skip to whichever matters to you.
 | **BRCA1/2 & cancer genes** | High-penetrance hereditary cancer | **actionable** — screening, risk-reducing surgery, cascade testing | **Strong for true carriers** — chip testing is the wrong tool; §A.2.3 |
 | **Pharmacogenes (CYP2C19, CYP2D6, DPYD, TPMT, SLCO1B1, HLA-B)** | Drug-metabolism / hypersensitivity variants | **The most useful clinical genetics there is** — dose & drug choice | **Strong, guideline-backed** — CPIC; §A.2.4 |
 
-![Actionable Gene Variants — the 7 that change a decision](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BX1-actionable-variants.png)
+![Actionable Gene Variants — the 7 that change a decision](/_intake/health-longevity-fitness/media/figures/BX1-actionable-variants.png)
 
 ### A.2.1 APOE — the honest headline (full counseling treatment in §A.3)
 
@@ -2388,7 +2388,7 @@ risk and LDL. But ε4 is *neither necessary nor sufficient*: most Alzheimer's pa
 and many ε4/ε4 carriers never develop dementia. It is a **risk allele, not a diagnosis** — which is
 exactly why disclosing it is delicate (§A.3).
 
-![APOE Gene-Dose — risk ≠ destiny](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B03-apoe-gene-dose.png)
+![APOE Gene-Dose — risk ≠ destiny](/_intake/health-longevity-fitness/media/figures/B03-apoe-gene-dose.png)
 
 ### A.2.2 Hemochromatosis (HFE) — real gene, low penetrance
 
@@ -2596,7 +2596,7 @@ Domain C (§2) and section 01 (§4.2) cover the mechanism; the *practical* quest
 a methylation-age test, and what does the number mean?** The honest answer is **no, not yet, for
 personal decision-making** — for reasons that are about *measurement*, not mysticism:
 
-![The Epigenetic Clock — biological vs calendar age](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/98-epigenetic-clock.png)
+![The Epigenetic Clock — biological vs calendar age](/_intake/health-longevity-fitness/media/figures/98-epigenetic-clock.png)
 
 1. **Predictive ≠ validated surrogate.** Epigenetic age acceleration reliably predicts mortality at the
    *cohort* level (Chen 2016 meta, Domain C §2). But the field's own consensus (Moqri et al., *Cell*
@@ -2673,20 +2673,20 @@ acts through every level below it.**
 | **Organ systems** | Organs cooperating for a function (~11–12; §B.3) | the whole manual — see the navigation table |
 | **Organism** | You — all systems integrated by homeostasis | §01 §6.2; this section |
 
-![Levels of Organization — atoms → organism](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BS1-levels-of-organization.png)
+![Levels of Organization — atoms → organism](/_intake/health-longevity-fitness/media/figures/BS1-levels-of-organization.png)
 
 The **four basic tissue types** every organ is built from: **epithelial** (the barrier/exchange
 surfaces), **connective** (support and transport; the most diverse class), **muscle** (the only tissue
 that generates force), and **nervous** (fast signaling). Most of what aging and training *do* to you is
 a change in one of these four tissues.
 
-![The Four Basic Tissues — the body's building blocks](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z05-tissue-types.png)
+![The Four Basic Tissues — the body's building blocks](/_intake/health-longevity-fitness/media/figures/Z05-tissue-types.png)
 
-![Epithelial Tissue (histology) — open-license micrograph](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA11-tissue-epithelial.png)
+![Epithelial Tissue (histology) — open-license micrograph](/_intake/health-longevity-fitness/media/figures/RA11-tissue-epithelial.png)
 
-![Connective Tissue (histology) — open-license micrograph](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA12-tissue-connective.png)
+![Connective Tissue (histology) — open-license micrograph](/_intake/health-longevity-fitness/media/figures/RA12-tissue-connective.png)
 
-![Skeletal Muscle (histology) — open-license micrograph](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA13-tissue-muscle.png)
+![Skeletal Muscle (histology) — open-license micrograph](/_intake/health-longevity-fitness/media/figures/RA13-tissue-muscle.png)
 
 ## B.2 Homeostasis — the organizing principle that makes a "system" a system
 
@@ -2711,7 +2711,7 @@ Use this as the **index to the rest of the manual** — the section numbers in t
 §07, §11…) point to other chapters, and the words in parentheses tell you what's there (§07 =
 cardiovascular and metabolic, §11 = skin/bone/organ detail, §02 = training, and so on):
 
-![12 Organ Systems — the body, mapped](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/17-organ-systems-map.png)
+![12 Organ Systems — the body, mapped](/_intake/health-longevity-fitness/media/figures/17-organ-systems-map.png)
 
 | # | Organ system | Core job (the homeostatic variable) | Primary coverage in this manual |
 |---|---|---|---|
@@ -2739,13 +2739,13 @@ which is the whole point: **the levers in this manual act on these chains.**
 
 ### B.4.1 How oxygen gets to a working muscle (the VO₂max chain)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/hemoglobin.png)
+![](/_intake/health-longevity-fitness/media/figures/hemoglobin.png)
 
 This is the single most important integrated-physiology story in the manual, because **VO₂max is the
 strongest exercise-related mortality predictor (Domain E)** and it is *literally* the throughput of this
 chain:
 
-![The VO₂max Oxygen Chain — the trainable links](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BS2-vo2max-oxygen-chain.png)
+![The VO₂max Oxygen Chain — the trainable links](/_intake/health-longevity-fitness/media/figures/BS2-vo2max-oxygen-chain.png)
 
 1. **Lungs** — you ventilate; \(\mathrm{O_{2}}\) crosses the thin alveolar–capillary membrane into blood (respiratory
    system; diffusion down a partial-pressure gradient).
@@ -2765,7 +2765,7 @@ chain:
 
 Detailed in section 01 §2; the system-level summary:
 
-![How Food Becomes ATP — the fuel chain](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BS3-food-to-atp-chain.png)
+![How Food Becomes ATP — the fuel chain](/_intake/health-longevity-fitness/media/figures/BS3-food-to-atp-chain.png)
 
 **Digestive → cardiovascular → cells → mitochondria.** Food is broken to glucose, fatty acids, and amino
 acids and absorbed across the gut epithelium (microbiome fermenting fiber to SCFAs, Domain C §4); the blood
@@ -2898,9 +2898,9 @@ molecule (say, testosterone or thyroid hormone) can do a dozen unrelated things 
 *tissue's* receptors and machinery, not the hormone, decide the local effect. It is also why "raise the
 number" is a naive intervention model: the downstream meaning is set by receptors you aren't measuring.
 
-![Endocrine Gland Map — head to pelvis](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z06-gland-map.png)
+![Endocrine Gland Map — head to pelvis](/_intake/health-longevity-fitness/media/figures/Z06-gland-map.png)
 
-![Endocrine Glands (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA05-endocrine-glands.png)
+![Endocrine Glands (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA05-endocrine-glands.png)
 
 **Two signal classes, two speeds.** *Steroid/thyroid* hormones (cortisol, testosterone, estrogen,
 aldosterone, T3/T4, vitamin D) are lipid-soluble, ride carrier proteins, slip through the cell membrane,
@@ -2918,7 +2918,7 @@ upstream drive falls; when output falls, drive rises. This is the same control p
 (`bucket-canon/04-information`: feedback, control theory) — and it has three hard consequences for
 longevity practice:
 
-![The Three-Tier Axis — the shared control law](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BS4-endocrine-axis.png)
+![The Three-Tier Axis — the shared control law](/_intake/health-longevity-fitness/media/figures/BS4-endocrine-axis.png)
 
 - **It explains the lab pairs.** Take the thyroid. A **high TSH** (thyroid-stimulating hormone — the
   pituitary's "make more" shout) sitting next to a **low thyroid hormone** means the gland itself is
@@ -2937,7 +2937,7 @@ longevity practice:
   invites compensation, and the level you measured was often telling you about the *state of the system*
   (illness, stress, energy balance), not handing you a control knob.
 
-![Reading an Axis from the Lab Pair — primary vs central](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z04-lab-pair.png)
+![Reading an Axis from the Lab Pair — primary vs central](/_intake/health-longevity-fitness/media/figures/Z04-lab-pair.png)
 
 **Set-points drift with age — but "low for your age" is not automatically "deficient."** Aging shifts
 many axes (testosterone, estrogen, DHEA, GH/IGF-1, melatonin all decline; insulin resistance and evening
@@ -2947,7 +2947,7 @@ shifted set-point is a *defect to reverse* or an *adaptation to respect* is the 
 axis below answers differently — and for several of them (GH/IGF-1 most starkly) the youthful-high level
 is the one associated with **worse** longevity.
 
-![Hormones & Age — some fall, some rise](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B01-hormone-age.png)
+![Hormones & Age — some fall, some rise](/_intake/health-longevity-fitness/media/figures/B01-hormone-age.png)
 
 ### The three honesty rules, applied to hormones
 
@@ -2979,7 +2979,7 @@ verdict; detail and citations follow in §3–§10.**
 Evidence tiers, strongest to weakest: `rct` (randomized trial) > `meta` (pooled trials/reviews) >
 `cohort` (observational follow-up) > `mechanistic` (plausible biology) > `anecdotal`.
 
-![Endocrine Axes — the three master loops](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/61-endocrine-axes.png)
+![Endocrine Axes — the three master loops](/_intake/health-longevity-fitness/media/figures/61-endocrine-axes.png)
 
 | Axis / hormone | What it does | Change with age | The honest lever | Lever evidence tier |
 |---|---|---|---|---|
@@ -3004,7 +3004,7 @@ graded carefully in §10/Domain N.
 
 ## 3. The HPA axis & cortisol — and the "adrenal fatigue" myth
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/cortisol-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/cortisol-structure.png)
 
 **The axis.** Hypothalamus releases **CRH** (corticotropin-releasing hormone) → anterior pituitary
 releases **ACTH** → adrenal cortex releases **cortisol** → cortisol feeds back to suppress CRH and ACTH.
@@ -3012,7 +3012,7 @@ Cortisol is the body's master stress and arousal glucocorticoid: it raises blood
 (gluconeogenesis), mobilizes fat and protein, restrains and reshapes immunity, sharpens short-term
 cognition, and — critically — **sets the daily arousal rhythm.**
 
-![The HPA Stress Axis — cortisol + feedback](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/65-hpa-axis.png)
+![The HPA Stress Axis — cortisol + feedback](/_intake/health-longevity-fitness/media/figures/65-hpa-axis.png)
 
 **The rhythm is the point.** Cortisol surges in the last hours of sleep,
 peaks ~30–45 min after waking (the **cortisol awakening response**), then declines across the day to a
@@ -3022,7 +3022,7 @@ relevant pathology is **chronic** elevation and **loss of rhythm**: a flattened 
 nadir, and blunted reactivity — patterns that correlate with poor sleep, depression, visceral adiposity,
 and mortality.
 
-![Cortisol Rhythm — high AM, low PM](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/45-cortisol-rhythm.png)
+![Cortisol Rhythm — high AM, low PM](/_intake/health-longevity-fitness/media/figures/45-cortisol-rhythm.png)
 
 **Allostatic load — the honest frame for "stress damages you."** Bruce McEwen's framework (McEwen
 1998)[^mcewen-allostatic] is the rigorous version of the folk idea: the same mediators that
@@ -3075,7 +3075,7 @@ pair**: high LH/FSH + low steroid = the gonad is failing (primary); low LH/FSH +
 brain/pituitary is (central/secondary). This pairing is exactly how genuine hypogonadism is distinguished
 from the noise.
 
-![Male vs Female HPG Axis — set-point vs oscillator](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A09-hpg.png)
+![Male vs Female HPG Axis — set-point vs oscillator](/_intake/health-longevity-fitness/media/figures/A09-hpg.png)
 
 ### 4.1 Testosterone (men)
 
@@ -3086,7 +3086,7 @@ falling faster (sex-hormone-binding globulin, SHBG, the protein that mops up fre
 age). By the usual thresholds a substantial minority of older men fall into the biochemically "low" range
 — but **most are asymptomatic**.
 
-![Testosterone & Age — slow decline](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/83-testosterone-age.png)
+![Testosterone & Age — slow decline](/_intake/health-longevity-fitness/media/figures/83-testosterone-age.png)
 
 **Symptomatic hypogonadism vs normal aging.** The clinically meaningful entity is **organic
 hypogonadism**: consistently low morning testosterone on repeat testing **plus** a syndrome of symptoms
@@ -3258,7 +3258,7 @@ The growth/anabolism the GH/IGF-1 axis drives is exactly what nutrient-sensing a
   longevity-favorable region is **not "as high as a 25-year-old's,"** which is precisely where "boost your
   GH" pushes it.
 
-![IGF-1 & Mortality — the U-curve — more isn't better](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B02-igf1-u-curve.png)
+![IGF-1 & Mortality — the U-curve — more isn't better](/_intake/health-longevity-fitness/media/figures/B02-igf1-u-curve.png)
 
 **Deliberately raising GH/IGF-1 in a healthy adult runs *against* the best longevity genetics we
 have.** This reframes two heavily marketed practices as red flags:
@@ -3522,22 +3522,22 @@ recovery in animal spinal-cord-injury models, and first-in-man intrathecal anti-
 safety (Kucher 2018) — pharmacologically addressable, though robust human outcomes remain unproven. This single
 fact explains why a severed finger nerve can recover and a severed spinal cord generally does not — and why "neuroplasticity" (§4) is real but bounded.
 
-![CNS vs PNS — the regrowth asymmetry](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A05-cns-pns.png)
+![CNS vs PNS — the regrowth asymmetry](/_intake/health-longevity-fitness/media/figures/A05-cns-pns.png)
 
 ### 1.2 The neuron and the action potential — the foundation
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/na-k-atpase.png)
+![](/_intake/health-longevity-fitness/media/figures/na-k-atpase.png)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BP03-bioelectricity.png)
+![](/_intake/health-longevity-fitness/media/figures/BP03-bioelectricity.png)
 
 The functional unit is the **neuron** — dendrites in, soma, axon out to the synaptic terminals.
 Its defining trick is the **action potential**, and the mechanism is one of the most
 completely solved problems in all of biology — which is why it sits in canon as a *foundation*,
 not an outcome.
 
-![The Neuron — and how it fires](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A01-neuron.png)
+![The Neuron — and how it fires](/_intake/health-longevity-fitness/media/figures/A01-neuron.png)
 
-![The Neuron (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA01-neuron.png)
+![The Neuron (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA01-neuron.png)
 
 - A neuron at rest holds its inside ~−70 mV relative to outside. That voltage is built and
   maintained by the **\(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\)-ATPase ("the sodium–potassium pump")**, which burns ATP to push 3 \(\mathrm{Na^{+}}\)
@@ -3553,9 +3553,9 @@ not an outcome.
   still predicts membrane behaviour today (Hodgkin & Huxley, 1952; Nobel Prize 1963).[^hh]
   `mechanistic` (the mechanism is understood end to end) — and as solid as biology gets.
 
-![The Action Potential — how a nerve fires](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/46-action-potential.png)
+![The Action Potential — how a nerve fires](/_intake/health-longevity-fitness/media/figures/46-action-potential.png)
 
-![Action Potential (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA06-action-potential.png)
+![Action Potential (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA06-action-potential.png)
 
 > **UP-link to canon.** The \(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\) gradient and the Hodgkin–Huxley formalism are
 > `bucket-canon/05-biophysics/` foundations (bioelectricity, ion gradients, membrane excitability),
@@ -3570,9 +3570,9 @@ not an outcome.
   excites or inhibits it. The adult human brain has on the order of ~\(10^{14}\) synapses. Synaptic
   *strength* is adjustable, and that adjustability is the physical substrate of learning (§4).
 
-![The Synapse — how neurons talk](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/66-synapse.png)
+![The Synapse — how neurons talk](/_intake/health-longevity-fitness/media/figures/66-synapse.png)
 
-![The Synapse (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA02-synapse.png)
+![The Synapse (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA02-synapse.png)
 
 - **Glia — not "support cells."** Glia roughly match or outnumber neurons (the once-quoted "10:1"
   ratio is a myth; it's closer to ~1:1). Three families do real computational and immune work:
@@ -3614,7 +3614,7 @@ sweat, airway, vasculature. It has two arms, classically opposed:
 | Anatomy | Thoracolumbar outflow, paravertebral chain | Craniosacral; the **vagus nerve** carries most of it |
 | Adrenal link | Drives adrenal medulla → epinephrine into blood | — |
 
-![Autonomic Nervous System — sympathetic vs parasympathetic](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/92-autonomic-ns.png)
+![Autonomic Nervous System — sympathetic vs parasympathetic](/_intake/health-longevity-fitness/media/figures/92-autonomic-ns.png)
 
 The honest correction to the pop version: they are **not a simple seesaw**. Both arms are active at
 rest, they can co-activate, and "balance" is contextual, not a single dial you turn toward
@@ -3624,7 +3624,7 @@ both autonomic branches plus baroreflex activity, so its interpretation is dispu
 is adaptive and necessary. The useful idea is **autonomic flexibility** — the capacity to shift
 appropriately — not "maximise vagal tone."
 
-![Fight-or-Flight — the stress cascade](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/93-fight-or-flight.png)
+![Fight-or-Flight — the stress cascade](/_intake/health-longevity-fitness/media/figures/93-fight-or-flight.png)
 
 ### 2.2 The vagus nerve and HRV — the real readout, honestly graded
 
@@ -3657,7 +3657,7 @@ anxiety in humans" is mostly unmade — human RCTs of "psychobiotics" are small,
 inconsistent. The axis is one of the most exciting frontiers in neuroscience and one of the most
 oversold in the supplement aisle. `animal`/`mechanistic` strong; human `outcome` thin.
 
-![Gut–Brain Axis — both ways](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/54-gut-brain-axis.png)
+![Gut–Brain Axis — both ways](/_intake/health-longevity-fitness/media/figures/54-gut-brain-axis.png)
 
 ### 2.4 The "vagus hacks" honest take
 
@@ -3690,7 +3690,7 @@ pop-neuroscience: **a transmitter is not a feeling.** Dopamine is not "pleasure,
 "happiness," GABA is not "calm." Each is a signalling molecule that does *different* things in
 *different* circuits, and the same molecule can be excitatory in one place and modulatory in another.
 
-![Neurotransmitters — what they do vs the pop myth](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BX2-neurotransmitters.png)
+![Neurotransmitters — what they do vs the pop myth](/_intake/health-longevity-fitness/media/figures/BX2-neurotransmitters.png)
 
 | Transmitter | What it actually does (mechanistically) | The pop error |
 |---|---|---|
@@ -4112,7 +4112,7 @@ The immune system is best understood as **two cooperating arms** that produce **
 (inflammation). Map the arms first, then the process, because almost every aging failure mode below is a
 specific breakdown in one of these boxes.
 
-![Innate vs Adaptive Immunity — fast generalist, slow specialist](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/52-innate-adaptive.png)
+![Innate vs Adaptive Immunity — fast generalist, slow specialist](/_intake/health-longevity-fitness/media/figures/52-innate-adaptive.png)
 
 ### 1.1 Innate immunity — fast, fixed, non-specific
 
@@ -4128,7 +4128,7 @@ blocking NLRP3 is an interesting metabolic lever. Honest tier: BHB inhibits the 
 in rodent models (`mechanistic`/`animal`); human data that fasting or ketosis actually lowers inflammaging
 markers is sparse and mixed, so this is a promising mechanism, not a proven human lever (cross-ref fasting §36).
 
-![Innate Immunity — components and how they age](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BX8-innate-components.png)
+![Innate Immunity — components and how they age](/_intake/health-longevity-fitness/media/figures/BX8-innate-components.png)
 
 ### 1.2 Adaptive immunity — slow, specific, remembers
 
@@ -4165,14 +4165,14 @@ healthy — a clean **end**.
   proteins), not microbial. **Failed resolution**, as much as excess initiation, is the modern view of why
   inflammation becomes chronic.
 
-![Acute vs Chronic Inflammation — heals vs harms](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/79-inflammation-paths.png)
+![Acute vs Chronic Inflammation — heals vs harms](/_intake/health-longevity-fitness/media/figures/79-inflammation-paths.png)
 
 > **The load-bearing reframe:** *acute resolving* inflammation is health; *chronic non-resolving* inflammation
 > is disease. "Anti-inflammatory" as a blanket goal is naïve — you do **not** want to blunt the acute response
 > that fights infection and drives exercise adaptation. You want the system to **resolve** properly. Most
 > "anti-inflammatory" products are sold as if all inflammation were bad; the biology says otherwise.
 
-![Acute vs Chronic Inflammation — the OFF switch failing](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BS5-inflammation-acute-chronic.png)
+![Acute vs Chronic Inflammation — the OFF switch failing](/_intake/health-longevity-fitness/media/figures/BS5-inflammation-acute-chronic.png)
 
 ---
 
@@ -4182,7 +4182,7 @@ healthy — a clean **end**.
 weakening; it is a **reshaping** that simultaneously leaves older people **worse at fighting new infections and
 responding to vaccines** while **more inflamed at baseline** (the link to §3).
 
-![Immunosenescence — the aging immune system](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/73-immunosenescence.png)
+![Immunosenescence — the aging immune system](/_intake/health-longevity-fitness/media/figures/73-immunosenescence.png)
 
 ### 2.1 Thymic involution — the clock that runs out of new T cells
 
@@ -4255,7 +4255,7 @@ pleiotropy), not a design flaw.
   **DAMPs** (including mitochondrial DNA — ties to the biophysics/mitochondria canon), and impaired
   **resolution** (§1.3).
 
-![The Inflammaging Hub — many sources, one fire](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BS8-inflammaging-hub.png)
+![The Inflammaging Hub — many sources, one fire](/_intake/health-longevity-fitness/media/figures/BS8-inflammaging-hub.png)
 
 ### 3.2 The markers — hsCRP and IL-6 (predictor, not lever)
 
@@ -4302,7 +4302,7 @@ a "boosted" immune system. The evidence sorts them cleanly.
 The pattern (§1.3): every item that works maintains **regulation and resolution** — adequate inputs,
 movement, recovery, and *trained* (vaccinated) specificity. None "boost" a generic immune dial.
 
-![Immune Modulators — the goal is regulation](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BX3-immune-ladder.png)
+![Immune Modulators — the goal is regulation](/_intake/health-longevity-fitness/media/figures/BX3-immune-ladder.png)
 
 ### 4.2 The exercise J-curve — and the honest correction to it
 
@@ -4356,7 +4356,7 @@ replete).
 > with vaccines.** Everything beyond that, sold as "immune boosting," trades on a model of immunity the
 > biology does not support.
 
-![Boost vs Regulate — the right immune goal](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS9-boost-regulate.png)
+![Boost vs Regulate — the right immune goal](/_intake/health-longevity-fitness/media/figures/PS9-boost-regulate.png)
 
 ---
 
@@ -4522,9 +4522,9 @@ and found they protected its ends from degradation and fusion (Szostak & Blackbu
 cross-kingdom transplant is the experiment that proved telomeres are a **general** solution, not a ciliate
 curiosity.
 
-![The Telomere Cap — and telomerase](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A04-telomere-cap.png)
+![The Telomere Cap — and telomerase](/_intake/health-longevity-fitness/media/figures/A04-telomere-cap.png)
 
-![Chromosome & Telomeres (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA08-telomere.png)
+![Chromosome & Telomeres (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA08-telomere.png)
 
 The job of the cap is to let the cell tell a **natural chromosome end** apart from a **double-strand break**.
 A naked end looks like damage; the DNA-repair machinery would either chew it back or fuse it to another
@@ -4547,7 +4547,7 @@ lagging-strand template **cannot be copied**, and a sliver of DNA is lost every 
 1973, "A theory of marginotomy"). Olovnikov made the leap of explicitly connecting end-shortening to the
 finite division capacity of cells.
 
-![The End-Replication Problem — why telomeres shorten](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A03-end-replication.png)
+![The End-Replication Problem — why telomeres shorten](/_intake/health-longevity-fitness/media/figures/A03-end-replication.png)
 
 > **The honest framing:** telomere shortening is a **direct, unavoidable consequence of the geometry of
 > copying a linear molecule with a polymerase that can't initiate de novo.** It is real, it is fundamental,
@@ -4582,7 +4582,7 @@ senescence when it runs down (the "uncapped" end triggers a persistent DNA-damag
 **Hastie et al. (1990)** confirmed the same shortening happens in human tissue *in vivo* with age (Hastie et
 al., *Nature* 1990).
 
-![Telomere Clock → Hayflick — the division brake](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A12-telomere-clock.png)
+![Telomere Clock → Hayflick — the division brake](/_intake/health-longevity-fitness/media/figures/A12-telomere-clock.png)
 
 The capstone was causal: **Bodnar et al. (1998)** forced **TERT** expression into normal human cells, kept
 their telomeres long, and the cells **bypassed senescence and kept dividing** — apparently immortalised
@@ -4660,7 +4660,7 @@ This is the single most important thing in the chapter, and the consumer industr
 **Telomerase activation — the thing "telomere lengthening" supplements sell — is exactly what cancers do to
 become immortal.**
 
-![The Telomere Cancer Paradox — not a free lunch](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS10-cancer-paradox.png)
+![The Telomere Cancer Paradox — not a free lunch](/_intake/health-longevity-fitness/media/figures/PS10-cancer-paradox.png)
 
 A normal cell's silenced telomerase is a **brake on tumours.** When a pre-cancerous cell divides too many
 times, its telomeres run down, the ends uncap, and it either senesces or dies — the telomere clock `[mechanistic]` *acts to kill the
@@ -4716,7 +4716,7 @@ bidirectional**, not a free lunch.
 
 Grading the specific commercial and lifestyle claims against the ladder.
 
-![Telomere Lengthening — graded honestly](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BX4-telomere-grading.png)
+![Telomere Lengthening — graded honestly](/_intake/health-longevity-fitness/media/figures/BX4-telomere-grading.png)
 
 ### 16.4.1 — TA-65 / astragalus (the flagship product)
 
@@ -4806,7 +4806,7 @@ marks the senescent state), rather than telomere length,
 and why "fix your telomeres" is **not** the same as "clear senescent cells." Telomeres are one entrance to
 the senescent state; the room is much larger.
 
-![Senescence Triggers — many entrances](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A11-senescence-triggers.png)
+![Senescence Triggers — many entrances](/_intake/health-longevity-fitness/media/figures/A11-senescence-triggers.png)
 
 ### 16.5.3 — Senolytics, graded honestly (cross-ref B)
 
@@ -5004,7 +5004,7 @@ real but cosmetic and transient effect).
 
 ### 1.5 The honest skincare hierarchy
 
-![Skincare Hierarchy — two actives do the work](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BX5-skincare-hierarchy.png)
+![Skincare Hierarchy — two actives do the work](/_intake/health-longevity-fitness/media/figures/BX5-skincare-hierarchy.png)
 
 The full grading for each tier — sunscreen `rct`, retinoid `rct`, moisturizer `rct` (hydration/transient),
 oral collagen `meta`, serums weak/`mechanistic`, tanning beds `cohort` — is detailed with citations in §1.2–§1.4 above.
@@ -5019,7 +5019,7 @@ diabetes, and dementia — with mechanisms ranging from plausible to emerging-ca
 **associations are robust** and the **treatment-prevents-systemic-disease question is mostly unproven** — except
 for diabetes, where the RCT evidence is real.
 
-![Mouth–Body Links — diabetes is the proven lever](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A07-oral-systemic.png)
+![Mouth–Body Links — diabetes is the proven lever](/_intake/health-longevity-fitness/media/figures/A07-oral-systemic.png)
 
 ### 2.1 Periodontitis ↔ cardiovascular disease (strong association, causality open)
 
@@ -5088,7 +5088,7 @@ together with muscle.
 
 **Skim:** loading is the lever (§3.2); drugs only for high-FRAX (§3.4); vitamin D only in deficiency (§3.3).
 
-![Bone Density & Fracture — DXA T-score](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/72-bone-tscore.png)
+![Bone Density & Fracture — DXA T-score](/_intake/health-longevity-fitness/media/figures/72-bone-tscore.png)
 
 ### 3.1 Fracture is a mortality event, not just a broken bone
 
@@ -5100,7 +5100,7 @@ together with muscle.
   loss of independence. Preventing the fracture (and the fall — cross-ref §3.5 sarcopenia and Domain E balance)
   is a mortality intervention.
 
-![Hip Fracture Mortality — a mortality event](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B12-hip-fracture-mortality.png)
+![Hip Fracture Mortality — a mortality event](/_intake/health-longevity-fitness/media/figures/B12-hip-fracture-mortality.png)
 
 ### 3.2 Loading is the lever: resistance + impact training (cross-ref Domain N)
 
@@ -5116,7 +5116,7 @@ high-magnitude, high-rate loading by remodeling stronger. Walking and swimming d
   lift heavy." Loading is *disproportionately* load-bearing for women because of menopausal estrogen-withdrawal
   bone loss.
 
-![Bone Loads, Not Cardio — LIFTMOR](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B11-bone-load.png)
+![Bone Loads, Not Cardio — LIFTMOR](/_intake/health-longevity-fitness/media/figures/B11-bone-load.png)
 
 ### 3.3 Vitamin D & calcium — the honest "only in deficiency" story
 
@@ -5146,7 +5146,7 @@ high-magnitude, high-rate loading by remodeling stronger. Walking and swimming d
 
 ### 3.5 Osteosarcopenia — bone and muscle fail together
 
-![Osteosarcopenia — bone & muscle fail together](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A08-osteosarcopenia.png)
+![Osteosarcopenia — bone & muscle fail together](/_intake/health-longevity-fitness/media/figures/A08-osteosarcopenia.png)
 
 - **The unifying concept:** **Hirschfeld 2017** — bone loss (osteopenia/osteoporosis) and muscle loss
   (sarcopenia) **co-occur, share drivers** (inactivity, low protein, vitamin D status, inflammation, hormonal
@@ -5230,7 +5230,7 @@ practical ear-health actions.
   and earbuds-at-max all exceed it. **Earplugs/muffs for loud environments and the 60/60 rule for earbuds (≤60%
   volume, ≤60 min) are the high-leverage habits.** `mechanistic`/occupational `cohort`.
 
-![Noise Dose — +3 dB halves safe time](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B13-noise-dose.png)
+![Noise Dose — +3 dB halves safe time](/_intake/health-longevity-fitness/media/figures/B13-noise-dose.png)
 
 - **When to get aids:** don't wait for "bad enough." Given the ACHIEVE signal and the years-long adaptation period,
   the modern guidance is to **test hearing in midlife and adopt aids early** once loss is documented — and
@@ -5426,7 +5426,7 @@ history of chronic airflow obstruction"**[^fletcher-peto] — the diagram every 
 carries in their head: everyone declines, but **smoking dramatically steepens the slope**, and **quitting
 does not reverse the loss but resets the rate of decline to roughly that of a never-smoker.** `cohort`.
 
-![Lung Function (FEV₁) — quitting resets the slope](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B04-fev1-fletcher-peto.png)
+![Lung Function (FEV₁) — quitting resets the slope](/_intake/health-longevity-fitness/media/figures/B04-fev1-fletcher-peto.png)
 
 More recent cohorts (**Lange et al., NEJM 2015**)[^lange-2015] refined this into the
 **lung-function-trajectory** model: COPD can arise either from accelerated *decline* from a normal peak, or
@@ -5496,9 +5496,9 @@ filtration rate). The defining feature for a longevity manual: **the kidney is s
 nephrons and feel perfectly fine; symptoms appear only at advanced disease. This is why kidney protection is a
 **prevention game played on proxy numbers (eGFR, albuminuria, BP, glucose)**, never on symptoms.
 
-![The Nephron — the kidney's filter](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A02-nephron.png)
+![The Nephron — the kidney's filter](/_intake/health-longevity-fitness/media/figures/A02-nephron.png)
 
-![The Nephron (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA04-nephron.png)
+![The Nephron (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA04-nephron.png)
 
 ### 2.2 How it ages
 
@@ -5510,7 +5510,7 @@ aging. eGFR decline also **predicts** frailty and mortality independent of cause
 2019**; **Corsonello et al., Eur J Intern Med 2018**).[^egfr-frailty]
 `cohort` — again, predictor, not necessarily a modifiable lever in the elderly.
 
-![eGFR Decline — the silent organ](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B05-egfr-decline.png)
+![eGFR Decline — the silent organ](/_intake/health-longevity-fitness/media/figures/B05-egfr-decline.png)
 
 ### 2.3 The real levers: blood pressure and glucose
 
@@ -5684,7 +5684,7 @@ is a mistake.
 Iron is the cleanest example of "the dose makes the poison" in this whole atlas, and a place the wellness
 world gets dangerously one-sided (everyone thinks "low iron = take iron").
 
-![Iron — Two-Sided — too little / too much](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BS7-iron-two-sided.png)
+![Iron — Two-Sided — too little / too much](/_intake/health-longevity-fitness/media/figures/BS7-iron-two-sided.png)
 
 - **Deficiency:** the most common cause of anemia worldwide; in older men and postmenopausal women, new iron
   deficiency should trigger a hunt for **occult GI blood loss** (including colorectal cancer) before
@@ -5927,7 +5927,7 @@ HPG axis is the hormone loop from brain to gonad — the hypothalamus signals th
 ovary or testis to make sex hormones and gametes, with feedback closing the loop — and it is what starts
 puberty and runs the menstrual cycle (detailed as a control system in §13).
 
-![Reproductive Homology — one body plan](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z07-homology.png)
+![Reproductive Homology — one body plan](/_intake/health-longevity-fitness/media/figures/Z07-homology.png)
 
 **The female system** is built around a **finite, non-renewing egg supply** and a **monthly cycle**. The
 ovaries hold the lifetime stock of oocytes (peaking at ~6–7 million in fetal life, ~1–2 million at birth,
@@ -5936,7 +5936,7 @@ gestational and outflow tract; the fallopian tubes are where fertilization norma
 is **declining ovarian reserve with age** — both the *number* and the *chromosomal quality* of eggs fall,
 quality steeply after the mid-30s, which sets nearly the entire female-fertility timeline.
 
-![Ovarian Reserve — only ever falls](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B06-ovarian-reserve.png)
+![Ovarian Reserve — only ever falls](/_intake/health-longevity-fitness/media/figures/B06-ovarian-reserve.png)
 
 **The male system** is built around **continuous sperm production** (spermatogenesis, ~74 days per cycle,
 running from puberty into old age) in the testes, with the epididymis, vas deferens, seminal vesicles, and
@@ -5973,7 +5973,7 @@ not hitting "28."
   (menstruation). The luteal phase is the *fixed-length* (~14-day) half; cycle-length variation lives almost
   entirely in the follicular phase.
 
-![Menstrual Cycle — in four hormones](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B09-menstrual-cycle.png)
+![Menstrual Cycle — in four hormones](/_intake/health-longevity-fitness/media/figures/B09-menstrual-cycle.png)
 
 The cycle is increasingly framed as a **vital sign**: its presence, regularity, and character are a readout of
 HPG-axis and metabolic health (which is why energy deficiency, stress, thyroid disease, and PCOS all show up
@@ -5994,7 +5994,7 @@ pain gets normalized) and **PCOS** (a metabolic disorder as much as a reproducti
 | **Abnormal uterine bleeding (AUB)** | Bleeding abnormal in frequency, regularity, duration, or volume. Structured by the **FIGO PALM-COEIN** system (Polyp, Adenomyosis, Leiomyoma, Malignancy/hyperplasia / Coagulopathy, Ovulatory, Endometrial, Iatrogenic, Not-yet-classified). | The key **red flag**: **postmenopausal bleeding is endometrial cancer until proven otherwise** and warrants prompt evaluation. Heavy menstrual bleeding is a common, treatable cause of **iron-deficiency anemia** that is routinely under-recognized. The **levonorgestrel IUD** is a first-line treatment for heavy bleeding, not just contraception. |
 | **Adenomyosis** | Endometrial tissue within the uterine muscle wall → heavy, painful periods and a bulky uterus; underdiagnosed, increasingly seen on MRI/ultrasound. | Overlaps with fibroids/endometriosis clinically. Managed medically (LNG-IUD, hormonal) or definitively (hysterectomy). Flagged because it is frequently missed. |
 
-![Gynecologic Disorders — what they are, what to do](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BX7-gynecologic.png)
+![Gynecologic Disorders — what they are, what to do](/_intake/health-longevity-fitness/media/figures/BX7-gynecologic.png)
 
 ### 2.3 Menopause (brief — owned by §13/§19/Domain N)
 
@@ -6007,9 +6007,9 @@ onset in symptomatic women, unfavorable when started late) — is grounded in §
 (WHI reanalysis, KEEPS, ELITE/Hodis 2016) and is **not** restated here. **Vaginal estrogen** for genitourinary
 symptoms is low-risk and under-used; systemic HRT is the timing-stratified decision.
 
-![Menopause Transition — the estrogen drop](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/94-menopause-timeline.png)
+![Menopause Transition — the estrogen drop](/_intake/health-longevity-fitness/media/figures/94-menopause-timeline.png)
 
-![HRT — It's About Timing — the estrogen window](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/48-hrt-timing.png)
+![HRT — It's About Timing — the estrogen window](/_intake/health-longevity-fitness/media/figures/48-hrt-timing.png)
 
 ---
 
@@ -6041,7 +6041,7 @@ effective than the pill in typical use.*
 | **Fertility-awareness methods** | ~2–23% (method-dependent) | ~1–5% | Wide range; modern symptothermal/app-based methods at the better end *with rigorous use*. |
 | **Spermicide alone** | ~21% | ~16% | Weak alone. |
 
-![Contraception — LARC vs the pill](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B08-contraception.png)
+![Contraception — LARC vs the pill](/_intake/health-longevity-fitness/media/figures/B08-contraception.png)
 
 **The honest takeaways.** (1) **LARC (implants and IUDs) are 20–50× more effective than the pill in typical
 use** precisely because they remove the human from the loop — the CHOICE study (Winner 2012, NEJM) showed
@@ -6075,7 +6075,7 @@ in success is **maternal egg age**, and the decline is steep and biological — 
 Approximate **live birth per IVF cycle** using a patient's own eggs (CDC/SART-type data, varies by clinic and
 definition) falls steeply with maternal egg age:
 
-![IVF by Age — it's the egg's age](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B07-ivf-by-age.png)
+![IVF by Age — it's the egg's age](/_intake/health-longevity-fitness/media/figures/B07-ivf-by-age.png)
 
 **The fertility-industry honesty.** (1) Clinics quote **per-transfer** or **cumulative** rates, or rates from
 favorable subgroups, which look far better than **per-cycle-started** — always ask which denominator. (2)
@@ -6138,7 +6138,7 @@ practice**: what to screen for, what's curable, and the one vaccine that prevent
 | **Herpes (HSV)** | HSV-1/2 | Very common, lifelong, **manageable not curable**; antivirals reduce outbreaks/transmission. Stigma exceeds medical severity. |
 | **Trichomoniasis** | Protozoan | Common, curable, frequently asymptomatic. |
 
-![STIs at a Glance — curable / manageable / preventable](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BX6-sti-matrix.png)
+![STIs at a Glance — curable / manageable / preventable](/_intake/health-longevity-fitness/media/figures/BX6-sti-matrix.png)
 
 **HPV vaccination is one of the highest-value interventions in this entire manual.** It is the first vaccine
 **proven to prevent an invasive cancer in humans at the population level**: a Swedish national-registry study of
@@ -6164,7 +6164,7 @@ first-line, and work by potentiating the same nitric-oxide/vascular pathway — 
 **underlying vascular, metabolic, and lifestyle drivers** (diabetes, hypertension, smoking, inactivity, obesity)
 are the actual disease.
 
-![ED = Cardiac Warning Light — work up the heart](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A10-ed-cardiac.png)
+![ED = Cardiac Warning Light — work up the heart](/_intake/health-longevity-fitness/media/figures/A10-ed-cardiac.png)
 
 **Female sexual dysfunction** (low desire, arousal/orgasm difficulty, pain disorders like dyspareunia/vaginismus)
 is **common, multifactorial (biological + psychological + relational + contextual), and under-researched and under-treated.** The honest treatment landscape: **psychological/relational and contextual
@@ -6347,7 +6347,7 @@ that you fight these decades early with prevention rather than waiting for the d
 owns the cardiovascular and cancer horsemen; neurodegeneration and metabolic disease have their own
 sections. The four are interlinked — metabolic disease accelerates the other three.
 
-![The Four Horsemen — what to prevent](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/31-four-horsemen.png)
+![The Four Horsemen — what to prevent](/_intake/health-longevity-fitness/media/figures/31-four-horsemen.png)
 
 _Not medical advice. This chapter covers blood pressure, cardiovascular risk, and cancer screening and
 prevention; lipids and apoB are graded in the biomarkers section, metabolic depth in
@@ -6381,7 +6381,7 @@ high-cardiovascular-risk adults *without diabetes* were randomized to an intensi
   abnormalities, and acute kidney injury (but *not* injurious falls). The 2021 Final Report
   (NEJM 2021) confirmed the durable mortality and CV benefit.
 
-![Blood Pressure (SPRINT) — lower targets save lives](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/67-bp-sprint.png)
+![Blood Pressure (SPRINT) — lower targets save lives](/_intake/health-longevity-fitness/media/figures/67-bp-sprint.png)
 
 **Caveats that matter for applying SPRINT to yourself:**
 - SPRINT used a **specific, standardized measurement** (often unattended automated office BP), which
@@ -6430,7 +6430,7 @@ The DASH-Sodium result is worth internalizing: **the lowest-sodium DASH arm ran 
 systolic than the high-sodium control diet in hypertensive participants** — a bigger swing than many
 single drugs. Diet is not a soft alternative to medicine here; it is medicine.
 
-![Lifestyle BP-Lowering — rivals a drug](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D11-bp-lifestyle.png)
+![Lifestyle BP-Lowering — rivals a drug](/_intake/health-longevity-fitness/media/figures/D11-bp-lifestyle.png)
 
 ### 1.4 When to add drugs
 
@@ -6472,7 +6472,7 @@ risk when a person is in the murky middle of a risk calculator and unsure whethe
   cardiovascular risk falls; a rising CAC on a statin is not treatment failure. Its value is purely in **reclassifying** who
   should be on therapy. It also delivers a radiation dose (~1 mSv) and can surface incidental findings.
 
-![Coronary Calcium Score — zero = a strong all-clear](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/70-cac-risk.png)
+![Coronary Calcium Score — zero = a strong all-clear](/_intake/health-longevity-fitness/media/figures/70-cac-risk.png)
 
 **Use:** best for the **40–70-year-old at intermediate calculated risk** who is on the fence about a
 statin. Not needed if you are already clearly high-risk (just treat) or clearly low-risk and young.
@@ -6541,9 +6541,9 @@ I = insufficient evidence).
 | **Cervical** (HPV test ± Pap) | Women **21–65** | Large reductions in cervical-cancer incidence and death; among the most effective screens ever | RCT/cohort | **A** | (HPV-primary screening trials; USPSTF 2018) |
 | **Skin** (clinical exam) | — | No mortality-benefit evidence for whole-population screening; exam high-risk individuals | weak/observational | **I** (general pop.) | USPSTF 2023 |
 
-![Cancer Screening — what saves lives](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/53-cancer-screening.png)
+![Cancer Screening — what saves lives](/_intake/health-longevity-fitness/media/figures/53-cancer-screening.png)
 
-![Cancer Screening — who, when, the benefit](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DX4-cancer-screening.png)
+![Cancer Screening — who, when, the benefit](/_intake/health-longevity-fitness/media/figures/DX4-cancer-screening.png)
 
 ### 3.1 Colorectal — the screen with the broadest mandate
 
@@ -6599,7 +6599,7 @@ Mammography is beneficial *and* the textbook case for screening's double edge.
   cancers — often DCIS — that would never have become symptomatic in the woman's lifetime. The harm is
   real treatment of a "cancer" that was never going to hurt her.
 
-![Mammography — benefit and overdiagnosis](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y03-mammography.png)
+![Mammography — benefit and overdiagnosis](/_intake/health-longevity-fitness/media/figures/Y03-mammography.png)
 
 **Honest framing:** the benefit is real but **modest in absolute terms**, and it comes bundled with
 overdiagnosis. This is why guidelines differ on starting age (40 vs 50) and interval (annual vs
@@ -6702,9 +6702,9 @@ A pragmatic, guideline-anchored default. Individualize with a clinician; this is
 prescription. (Specifics are load-bearing elsewhere: CAC §2.1, AF detection/anticoagulation §2.2,
 no primary-prevention aspirin §2.3, LDCT pack-year threshold §3.2.)
 
-![Screening by Decade — what to check, when](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/74-screening-by-age.png)
+![Screening by Decade — what to check, when](/_intake/health-longevity-fitness/media/figures/74-screening-by-age.png)
 
-![Prevention by Decade — build → defend → maintain](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/80-prevention-by-decade.png)
+![Prevention by Decade — build → defend → maintain](/_intake/health-longevity-fitness/media/figures/80-prevention-by-decade.png)
 
 The throughline: **the big wins are blood pressure, lipids/apoB, not smoking, and the four
 RCT-backed screens (colorectal, lung-in-smokers, breast, cervical).** Everything else is refinement.
@@ -6840,11 +6840,11 @@ rich plaque with a fibrous cap grows over decades — silently (the retention-an
 (which can be compensated) but the **sudden rupture of a non-obstructive plaque**, which causes most
 MIs. This is why a "70% blockage" is not the only thing to fear, and why lowering apoB stabilizes plaque and can modestly regress it on serial imaging (`rct`/imaging evidence) — the central lever.
 
-![Cholesterol & apoB — the particle that matters](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/102-cholesterol-particles.png)
+![Cholesterol & apoB — the particle that matters](/_intake/health-longevity-fitness/media/figures/102-cholesterol-particles.png)
 
-![Atherosclerosis Cascade — apoB → heart attack](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/41-atherosclerosis-cascade.png)
+![Atherosclerosis Cascade — apoB → heart attack](/_intake/health-longevity-fitness/media/figures/41-atherosclerosis-cascade.png)
 
-![Atherosclerosis (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA10-atherosclerosis.png)
+![Atherosclerosis (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA10-atherosclerosis.png)
 
 **How it presents.** Classic angina is exertional chest pressure/tightness radiating to arm or jaw,
 relieved by rest. But presentation is treacherous: women, diabetics, and the elderly often have
@@ -6859,9 +6859,9 @@ honest takeaway: do not rely on textbook symptoms to rule it out. **High-sensiti
   best-evidenced drugs in medicine; the FOURIER trial showed adding evolocumab to a statin further cut
   events, confirming "**lower apoB is better**" down to very low levels.
 
-![apoB is Cumulative — lower, earlier, longer](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/32-apob-cumulative.png)
+![apoB is Cumulative — lower, earlier, longer](/_intake/health-longevity-fitness/media/figures/32-apob-cumulative.png)
 
-![Lp(a) — measure once, genetic](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/69-lpa-risk.png)
+![Lp(a) — measure once, genetic](/_intake/health-longevity-fitness/media/figures/69-lpa-risk.png)
 
 - **Acute MI (STEMI):** the dominant intervention is **immediate reperfusion** — primary percutaneous
   coronary intervention (PCI, "stent") to reopen the artery, time-critical ("time is muscle"). This is
@@ -6891,9 +6891,9 @@ behaved like different diseases:
   can't *relax and fill*. Driven by hypertension, obesity, diabetes, aging, and atrial fibrillation.
   HFpEF is now roughly half of all heart failure and rising with the obesity/aging epidemic.
 
-![Heart Failure by EF — HFrEF / HFmrEF / HFpEF](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS2-hf-ef-spectrum.png)
+![Heart Failure by EF — HFrEF / HFmrEF / HFpEF](/_intake/health-longevity-fitness/media/figures/DS2-hf-ef-spectrum.png)
 
-![The Heart (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA14-heart.png)
+![The Heart (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA14-heart.png)
 
 **Mechanism (→ neurohormonal toxicity).** The deep insight of modern HF therapy is that **the body's
 compensatory response is itself the disease.** When the pump fails, the renin-angiotensin-aldosterone
@@ -6917,7 +6917,7 @@ started together and titrated up:
 | **MRA** (spironolactone, eplerenone) | blocks aldosterone | RALES, EMPHASIS-HF | ~**30% mortality reduction** |
 | **SGLT2 inhibitor** (dapagliflozin, empagliflozin) | natriuresis + metabolic/cardiac effects | **DAPA-HF** (McMurray 2019, NEJM) | **26% lower** CV death/worsening HF (HR 0.74), *regardless of diabetes status* |
 
-![Heart-Failure Four Pillars — each cuts mortality](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D02-hf-four-pillars.png)
+![Heart-Failure Four Pillars — each cuts mortality](/_intake/health-longevity-fitness/media/figures/D02-hf-four-pillars.png)
 
 The SGLT2 story is remarkable: a drug developed to lower blood sugar turned out to be a **heart-failure
 drug that works in people without diabetes**. That is the single biggest cardiology development of the
@@ -7006,11 +7006,11 @@ is one of the clearest "the device changed the disease" stories in modern medici
 adds predictive value beyond measuring its individual components (BP, glucose, lipids, waist) is debated. It
 is the clinical face of the metabolic dysfunction built in `D-metabolic-nutrition.md`.
 
-![Metabolic Syndrome — any 3 of 5](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/42-metabolic-syndrome.png)
+![Metabolic Syndrome — any 3 of 5](/_intake/health-longevity-fitness/media/figures/42-metabolic-syndrome.png)
 
-![Visceral Fat — the fat that matters](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/56-visceral-fat.png)
+![Visceral Fat — the fat that matters](/_intake/health-longevity-fitness/media/figures/56-visceral-fat.png)
 
-![BMI & Mortality — a U — but BMI is crude](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/82-bmi-jcurve.png)
+![BMI & Mortality — a U — but BMI is crude](/_intake/health-longevity-fitness/media/figures/82-bmi-jcurve.png)
 
 **Type 2 diabetes (T2D)** is the disease that cluster progresses to. The mechanism is two-hit:
 1. **Insulin resistance** — muscle, liver, and fat stop responding to insulin (driven by ectopic fat,
@@ -7021,23 +7021,23 @@ is the clinical face of the metabolic dysfunction built in `D-metabolic-nutritio
    just resistance; it requires beta-cell decompensation.** That is also why it's progressive — and why
    relieving the metabolic load *early* can preserve beta-cell function.
 
-![Insulin Resistance — the central dysfunction](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/78-insulin-resistance.png)
+![Insulin Resistance — the central dysfunction](/_intake/health-longevity-fitness/media/figures/78-insulin-resistance.png)
 
-![Metabolic Flexibility — switching fuels cleanly](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/59-metabolic-flexibility.png)
+![Metabolic Flexibility — switching fuels cleanly](/_intake/health-longevity-fitness/media/figures/59-metabolic-flexibility.png)
 
 **How it presents.** Often **silent** — found on a routine HbA1c or fasting glucose. Classic symptoms
 (thirst, frequent urination, fatigue, blurred vision, slow healing) appear with higher glucose.
 Diagnosis: HbA1c ≥6.5%, fasting glucose ≥126 mg/dL, or OGTT (oral glucose tolerance test) ≥200.
 Prediabetes: HbA1c 5.7–6.4%.
 
-![HbA1c & CVD Risk — continuous, before diabetes](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/68-hba1c-risk.png)
+![HbA1c & CVD Risk — continuous, before diabetes](/_intake/health-longevity-fitness/media/figures/68-hba1c-risk.png)
 
 ### 2.2 The management hierarchy — honestly graded
 
 The modern approach has been transformed by two drug classes that protect organs *beyond* glucose
 control. The hierarchy:
 
-![T2D Management Ladder — escalate only as needed](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS1-t2d-ladder.png)
+![T2D Management Ladder — escalate only as needed](/_intake/health-longevity-fitness/media/figures/DS1-t2d-ladder.png)
 
 **Tier 0 — lifestyle (foundational, never skipped).** Weight loss is the master lever. The **Diabetes
 Prevention Program (DPP, 2002)** showed intensive lifestyle (7% weight loss + activity) cut progression
@@ -7087,7 +7087,7 @@ substantial weight loss can drive **remission** (normal glucose off all diabetes
   6 years, marking a narrow window before beta-cell reserve is lost. The mechanism fits the pathophysiology:
   losing visceral and **pancreatic** fat un-stresses the beta cells (the "twin cycle" hypothesis).
 
-![T2D Remission (DiRECT) — tracks weight lost](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D01-direct-remission.png)
+![T2D Remission (DiRECT) — tracks weight lost](/_intake/health-longevity-fitness/media/figures/D01-direct-remission.png)
 
 - **Honest caveats:** remission is most achievable **early** (short diabetes duration, before beta-cell
   exhaustion), it requires **sustained** weight loss (relapse with regain), and it's "remission," not
@@ -7282,7 +7282,7 @@ function over months to years. It's defined and staged by **two axes** (the KDIG
 A persistently reduced GFR (<60) **or** albuminuria for >3 months defines CKD. The combined grid (the
 KDIGO "heat map") stratifies risk far better than GFR alone.
 
-![KDIGO CKD Heat-Map — filtration × protein leak](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/50-ckd-heatmap.png)
+![KDIGO CKD Heat-Map — filtration × protein leak](/_intake/health-longevity-fitness/media/figures/50-ckd-heatmap.png)
 
 **Mechanism and the leading causes (→ the vascular fundamentals).** CKD is overwhelmingly a **disease of
 the vasculature feeding the nephrons.** The two dominant causes worldwide:
@@ -7426,7 +7426,7 @@ Step back, and the unifying claim is hard to miss: **cardiometabolic, endocrine,
 renal disease are largely one interconnected process** — the failure of the vascular and metabolic
 machinery — wearing different organ masks.
 
-![Cardiometabolic = One Machine — treat the system](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS12-one-machine.png)
+![Cardiometabolic = One Machine — treat the system](/_intake/health-longevity-fitness/media/figures/DS12-one-machine.png)
 
 - **Insulin resistance** is the hub. It links metabolic syndrome → type 2 diabetes → fatty liver →
   PCOS → and accelerates atherosclerosis, heart failure, and kidney disease. Move it upstream (weight,
@@ -7557,7 +7557,7 @@ underlying problem is *inflammatory* (only anti-inflammatory treatment changes t
 asthma is non-type-2 (neutrophilic, obesity-associated, paucigranulocytic) and responds less well to steroids
 — an honest caveat against treating "asthma" as one thing. `mechanistic`/established.
 
-![Asthma — an inflammatory disease](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS7-asthma.png)
+![Asthma — an inflammatory disease](/_intake/health-longevity-fitness/media/figures/DS7-asthma.png)
 
 **Management and the honest control story.** The single most important modern message, and the one most often
 gotten wrong:
@@ -7638,7 +7638,7 @@ hypoxia + sympathetic surges + sleep fragmentation** drive hypertension, insulin
 dysfunction, atrial fibrillation, and excessive daytime sleepiness (cross-ref `12-sleep.md` for the sleep
 fundamentals). `mechanistic`/`cohort`.
 
-![Sleep Apnea — mechanism → consequences](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS8-osa.png)
+![Sleep Apnea — mechanism → consequences](/_intake/health-longevity-fitness/media/figures/DS8-osa.png)
 
 **The cardiometabolic links — and the honest grading.** Observational **cohorts** strongly associate untreated
 OSA with hypertension (especially resistant/nocturnal), atrial fibrillation, heart failure, stroke, type-2
@@ -7805,7 +7805,7 @@ neuro-immune axis — cross-ref `17 §4.3` and `C2-microbiome-deepdive.md`), and
   term** (chronic restriction harms the microbiome and risks nutritional gaps), and roughly half to two-thirds
   of patients respond. `rct` (short-term symptom relief).
 
-![Low-FODMAP — a 3-phase protocol](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS6-low-fodmap.png)
+![Low-FODMAP — a 3-phase protocol](/_intake/health-longevity-fitness/media/figures/DS6-low-fodmap.png)
 - **Fiber.** **Soluble** fiber (e.g., psyllium) helps, especially constipation-predominant IBS; **insoluble**
   bran can worsen symptoms. A clean example of "fiber" not being one thing. `meta`.
 - **Gut-brain therapies.** Because the axis is bidirectional, **brain-directed treatments work on the gut**:
@@ -7930,7 +7930,7 @@ is **fat accumulation in the liver driven by metabolic dysfunction**, on a spect
 (MASH, with inflammation and hepatocyte injury) → fibrosis → cirrhosis → hepatocellular carcinoma. It now affects
 **~30%+ of adults globally** and is the fastest-rising cause of liver disease and transplant.
 
-![Fatty-Liver Progression — and the reversal point](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BS6-masld-progression.png)
+![Fatty-Liver Progression — and the reversal point](/_intake/health-longevity-fitness/media/figures/BS6-masld-progression.png)
 
 **Mechanism (→ insulin resistance, the metabolic core).** MASLD is **the hepatic manifestation of insulin
 resistance**: caloric excess and insulin resistance drive hepatic fat storage; in susceptible people the fat
@@ -7973,7 +7973,7 @@ The remaining problem is not the science but **diagnosis and access** (most infe
 hence universal-screening recommendations. `rct`/`meta`. This belongs in any honest manual as proof that "chronic
 and incurable" is not permanent.
 
-![Hepatitis C Cure — grim → curable in a decade](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D12-hepc-cure.png)
+![Hepatitis C Cure — grim → curable in a decade](/_intake/health-longevity-fitness/media/figures/D12-hepc-cure.png)
 
 **Hepatitis B — suppressible and vaccine-preventable.** HBV is also blood-/body-fluid-borne and can cause
 chronic infection (especially when acquired in infancy), cirrhosis, and liver cancer. The two anchors: **(1)
@@ -8236,7 +8236,7 @@ vessel stroke destroys on the order of **~1.9 million neurons per minute** — t
 spine of "time is brain." (This is a modeled estimate, `mechanistic`-tier, not a measured constant,
 but the direction is not in doubt.)
 
-![Stroke Reperfusion Clock — time is brain](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS9-stroke-windows.png)
+![Stroke Reperfusion Clock — time is brain](/_intake/health-longevity-fitness/media/figures/DS9-stroke-windows.png)
 
 **Management — one of medicine's genuine reperfusion revolutions:**
 
@@ -8259,7 +8259,7 @@ but the direction is not in doubt.)
   lowering**, reversal of anticoagulation, and neurosurgery for selected bleeds or aneurysm
   securing. Prognosis is, on average, worse than ischemic.
 
-![Stroke Reperfusion NNT — time is brain](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D04-stroke-nnt.png)
+![Stroke Reperfusion NNT — time is brain](/_intake/health-longevity-fitness/media/figures/D04-stroke-nnt.png)
 
 **Prevention is the larger lever — and it lives in other sections.** Most strokes are preventable,
 and the levers are not exotic: **treat blood pressure** (the single largest modifiable risk factor —
@@ -8343,7 +8343,7 @@ to preserve function closes early and damage already done cannot be recovered. (
 the earliest edge, e.g. radiologically isolated syndrome.) Ocrelizumab is also the first drug with a (modest)
 effect in **primary progressive** MS.
 
-![MS Disease-Modifying Drugs — hit hard early](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D15-ms-dmt.png)
+![MS Disease-Modifying Drugs — hit hard early](/_intake/health-longevity-fitness/media/figures/D15-ms-dmt.png)
 
 **Honest grade.** Relapsing MS is **one of the great modern treatment success stories** (`rct`/`meta`):
 many patients now have normal or near-normal life trajectories. The honest, persistent gaps:
@@ -8363,7 +8363,7 @@ the second-commonest neurodegenerative disease after Alzheimer's, and increasing
 **whole-body, multi-decade disease** — the non-motor features (constipation, REM-sleep behavior
 disorder, anosmia, depression) often **precede the motor diagnosis by years to decades**.
 
-![Parkinson's Prodrome — years before the tremor](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS10-parkinsons-prodrome.png)
+![Parkinson's Prodrome — years before the tremor](/_intake/health-longevity-fitness/media/figures/DS10-parkinsons-prodrome.png)
 
 **Mechanism** (Bloem, 2021).[^bloem] The motor signs come from
 loss of **dopaminergic neurons in the substantia nigra pars compacta**; by the time motor symptoms
@@ -8431,7 +8431,7 @@ release drives the pain pathway, and that mechanistic insight produced the break
   topiramate, amitriptyline, candesartan, and **Botox** for chronic migraine) still work and are
   far cheaper.
 
-![Migraine CGRP Blockers — a real advance](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D16-migraine-cgrp.png)
+![Migraine CGRP Blockers — a real advance](/_intake/health-longevity-fitness/media/figures/D16-migraine-cgrp.png)
 
 ### 7.2 Tension-type headache — the common one, the boring one
 
@@ -8475,7 +8475,7 @@ NeuPSIG, 2015).[^finnerup] That NNT is the honest headline:
 **most patients do not get major relief from any single drug**, and managing expectations is part of
 treatment. Foot care to prevent ulcers is unglamorous and high-value.
 
-![Neuropathic Pain NNT — modest, honest](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D17-neuropathy-nnt.png)
+![Neuropathic Pain NNT — modest, honest](/_intake/health-longevity-fitness/media/figures/D17-neuropathy-nnt.png)
 
 **Honest grade.** A `meta`-graded *hard* problem. The supplement market (alpha-lipoic acid, benfotiamine,
 high-dose B vitamins) has **weak, mixed evidence** — alpha-lipoic acid has the most, and it is modest;
@@ -8597,7 +8597,7 @@ Smoking and the gum bacterium *P. gingivalis* are environmental triggers in gene
   and treat **early** — the "window of opportunity" in the first months matters enormously for
   long-term joint preservation.
 
-![RA Treat-to-Target — hit hard, hit early](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS5-ra-target.png)
+![RA Treat-to-Target — hit hard, hit early](/_intake/health-longevity-fitness/media/figures/DS5-ra-target.png)
 
 **Honest grade.** RA is **one of the clearest biologic-revolution success stories** (`meta`/`rct`).
 Honest caveats: biologics and JAKi carry **infection risk** (TB reactivation screening is mandatory),
@@ -8623,7 +8623,7 @@ but its contribution to serum urate is **modest compared with
 genetics** — which is why "just change your diet" routinely fails and leaves patients blaming
 themselves.
 
-![Gout — urate → crystals → flare](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS4-gout.png)
+![Gout — urate → crystals → flare](/_intake/health-longevity-fitness/media/figures/DS4-gout.png)
 
 **Management** (ACR 2020 guideline, FitzGerald) — **gout is, in principle, curable:**[^acr-gout]
 - **Acute attack:** NSAIDs, colchicine, or steroids — quench the inflammation.
@@ -8954,7 +8954,7 @@ malignant. It is the closest thing oncology has to a periodic table — and, lik
 Aging* (which was explicitly modelled on it, see `B-aging-mechanisms.md`), it is a **`[mechanism:
 established]`** scaffold, not an outcome claim.
 
-![Hallmarks of Cancer — the 8 capabilities](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/10-hallmarks-cancer.png)
+![Hallmarks of Cancer — the 8 capabilities](/_intake/health-longevity-fitness/media/figures/10-hallmarks-cancer.png)
 
 **Skim guide: read the middle two columns** — the *capability* and *what it means* are the point. The
 right-hand column names the genes and molecules that most often cause each capability; skip them unless you
@@ -9036,7 +9036,7 @@ Two gene classes drive the process, and the metaphor is exact:
 targeted therapy, §25.5) far more easily than you can **restore a lost brake**. Re-installing functional
 p53 in a tumour remains one of oncology's great unsolved problems.
 
-![Driver Mutation Frequency — TP53, RAS recur](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D23-oncogene-frequency.png)
+![Driver Mutation Frequency — TP53, RAS recur](/_intake/health-longevity-fitness/media/figures/D23-oncogene-frequency.png)
 
 ### 25.2.2 — The multi-hit model and clonal evolution
 
@@ -9052,7 +9052,7 @@ cancers respond best to immunotherapy (§25.5.2). The colorectal paradigm is the
 → (KRAS activation) → (loss of 18q/SMAD4) → (TP53 loss) → carcinoma.** Each hit confers a selective
 growth advantage; the tissue evolves toward malignancy one Darwinian step at a time.
 
-![Adenoma → Carcinoma — the multi-hit sequence](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS3-crc-sequence.png)
+![Adenoma → Carcinoma — the multi-hit sequence](/_intake/health-longevity-fitness/media/figures/DS3-crc-sequence.png)
 
 That Darwinian framing is **clonal evolution** (Peter Nowell, 1976): a tumour is not a uniform clone but
 a **branching, heterogeneous population** of subclones under selection. This is why cancers **recur and
@@ -9069,7 +9069,7 @@ number of stem-cell divisions** that tissue undergoes — i.e., much inter-tissu
 is attributable to the **random ("bad luck") replication errors** that accumulate with cell division,
 on top of heredity and environment.
 
-![Cancer & Aging — a disease of age](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/84-cancer-incidence.png)
+![Cancer & Aging — a disease of age](/_intake/health-longevity-fitness/media/figures/84-cancer-incidence.png)
 
 > **Honest framing of the "bad luck" paper.** It was widely misread as "two-thirds of cancers are pure
 > chance, so prevention is futile" — **wrong**: it explains variation *between tissues*, not the
@@ -9097,7 +9097,7 @@ on top of heredity and environment.
   also matters for **therapy**: BRCA-deficient tumours can't repair double-strand breaks, making them
   exquisitely sensitive to **PARP inhibitors** (synthetic lethality — §25.5.3). Genetics depth: `18-genetics-anatomy.md`.
 
-![BRCA1 vs BRCA2 Risk — high, actionable](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D22-brca-risk.png)
+![BRCA1 vs BRCA2 Risk — high, actionable](/_intake/health-longevity-fitness/media/figures/D22-brca-risk.png)
 
 ---
 
@@ -9108,7 +9108,7 @@ Incidence/mortality figures below are US-centric (ACS *Cancer Statistics 2024*, 
 cancer caught early vs late can differ 5–10× in 5-year survival — which is the entire rationale for the
 screening section (`§07`).
 
-![Cancer 5-Year Survival — varies enormously](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D03-cancer-survival.png)
+![Cancer 5-Year Survival — varies enormously](/_intake/health-longevity-fitness/media/figures/D03-cancer-survival.png)
 
 | Cancer | US burden (approx.) | Key risk factors | 5-yr survival (all-stage) | Honest note |
 |---|---|---|---|---|
@@ -9132,7 +9132,7 @@ For most of the 20th century, oncology had **three weapons** — "cut, burn, poi
 backbone for the majority of patients and are responsible for the **majority of cures**, a fact the
 immunotherapy excitement (§25.5) can obscure.
 
-![Cancer Treatment — the modalities](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/76-cancer-treatment.png)
+![Cancer Treatment — the modalities](/_intake/health-longevity-fitness/media/figures/76-cancer-treatment.png)
 
 ### 25.4.1 — Surgery (`outcome`-tier, the oldest cure)
 
@@ -9221,7 +9221,7 @@ T-cells**. The two foundational discoveries — **James Allison** (CTLA-4 blocka
   earlier, almost uniformly fatal within months. Some of those patients appear **functionally cured** —
   durable, off-treatment remissions, the holy grail (`rct`, hard endpoint).
 
-![Melanoma Immunotherapy — ~50% at 5 years](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D24-checkmate-melanoma.png)
+![Melanoma Immunotherapy — ~50% at 5 years](/_intake/health-longevity-fitness/media/figures/D24-checkmate-melanoma.png)
 
 > **The honesty that immunotherapy demands — who it helps.** This is a true revolution **and** most
 > patients are not (yet) among the winners. The brutal facts: (1) across cancers, **only a *minority* of
@@ -9447,7 +9447,7 @@ our own inflammation — cross-ref `15 §1.3`). The five major classes differ en
 exactly why **a drug that kills one is useless against another** — the single most clinically important fact in
 this whole section.
 
-![Five Pathogen Classes — class dictates therapy](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DX3-pathogen-classes.png)
+![Five Pathogen Classes — class dictates therapy](/_intake/health-longevity-fitness/media/figures/DX3-pathogen-classes.png)
 
 *Representative pathogens by class (the figure maps class → therapy): **bacteria** — Strep, TB, *E. coli*, *Staph
 aureus*, *C. difficile*, cholera (toxins like tetanus/cholera/diphtheria drive much of the harm); **viruses** —
@@ -9572,7 +9572,7 @@ antimicrobials** — promising, early, and not yet a systemic fix. The named thr
 **carbapenem-resistant Enterobacteriaceae (CRE)**, **drug-resistant TB (MDR/XDR-TB)**, **C. difficile** (an antibiotic-*caused*
 infection), drug-resistant gonorrhea — are not edge cases; they are in hospitals now.
 
-![Antimicrobial Resistance — rivals the big killers](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D05-amr-burden.png)
+![Antimicrobial Resistance — rivals the big killers](/_intake/health-longevity-fitness/media/figures/D05-amr-burden.png)
 
 ### 3.4 Stewardship — and why you should not demand antibiotics for a virus
 
@@ -9619,13 +9619,13 @@ falling measles vaccination rates produce outbreaks first. Herd immunity reframe
 vaccination from a purely personal choice into a **public good**: the healthy adult who gets a flu shot is partly
 protecting the frail elderly relative who would die of the same flu.
 
-![Herd Immunity vs R₀ — measles needs ~95%](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D06-herd-immunity.png)
+![Herd Immunity vs R₀ — measles needs ~95%](/_intake/health-longevity-fitness/media/figures/D06-herd-immunity.png)
 
 ### 4.3 The eradication and near-eradication triumphs
 
 These are among the greatest achievements in human history, and they are concrete:
 
-![Childhood Vaccine-Preventable — what they hold back](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z09-vaccines-kids.png)
+![Childhood Vaccine-Preventable — what they hold back](/_intake/health-longevity-fitness/media/figures/Z09-vaccines-kids.png)
 
 | Disease | Status | Note |
 |---|---|---|
@@ -9635,7 +9635,7 @@ These are among the greatest achievements in human history, and they are concret
 | **HPV-driven cervical cancer** | On track for elimination in early-adopter countries | A **vaccine that prevents a cancer** (§5, cross-ref clinical-prevention). |
 | **Hepatitis B** | Sharp declines in childhood infection and liver cancer | The **first anti-cancer vaccine** (prevents HBV→hepatocellular carcinoma). |
 
-![Vaccines in History — a fragile win](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DS11-vaccine-timeline.png)
+![Vaccines in History — a fragile win](/_intake/health-longevity-fitness/media/figures/DS11-vaccine-timeline.png)
 
 ### 4.4 The honest safety record — and meeting hesitancy with evidence
 
@@ -9682,7 +9682,7 @@ The common thread: respiratory infection is **disproportionately lethal in immun
 "why" is in `15 §2`), which is exactly why age-appropriate flu/COVID/RSV/pneumococcal vaccination is one of the
 best-evidence longevity levers available (pharma §5).
 
-![Adult Vaccines — underrated longevity medicine](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/77-vaccine-schedule.png)
+![Adult Vaccines — underrated longevity medicine](/_intake/health-longevity-fitness/media/figures/77-vaccine-schedule.png)
 
 ### 5.2 The chronic viral infections — from death sentences to manageable
 
@@ -9697,7 +9697,7 @@ This is one of medicine's great recent success stories, and an honest map distin
 | **HPV** | **Preventable** | Ubiquitous; most clears on its own, but oncogenic strains cause **cervical, anal, oropharyngeal cancers**. The **vaccine sharply reduces the cancer** (cross-ref clinical-prevention; large Swedish cohort data show a real cervical-cancer reduction, `cohort`). |
 | **Herpesviruses (HSV, VZV, EBV, CMV)** | Lifelong latency | Most people carry several. Mostly benign but consequential: **VZV** reactivates as shingles (vaccine-preventable, with a dementia-incidence signal — pharma §5); **CMV** is implicated in immune aging (`15 §2.4`); **EBV** is now strongly tied to multiple sclerosis. |
 
-![Chronic Viral Infections — cure / manage / prevent](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DX5-chronic-viral.png)
+![Chronic Viral Infections — cure / manage / prevent](/_intake/health-longevity-fitness/media/figures/DX5-chronic-viral.png)
 
 ### 5.3 Tuberculosis — still a top global killer
 
@@ -9883,7 +9883,7 @@ pressure (SPRINT-MIND, §1.3), and bundled lifestyle (FINGER, §3); the numbered
 
 _Not medical advice. This chapter is about protecting cognition and mental health as you age; sleep is covered in Domain I and social connection in Domain M._
 
-![The Lobes of the Brain (real) — open-license illustration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/RA09-brain-lobes.png)
+![The Lobes of the Brain (real) — open-license illustration](/_intake/health-longevity-fitness/media/figures/RA09-brain-lobes.png)
 
 ---
 
@@ -9899,7 +9899,7 @@ headline to **~45% of dementia attributable to 14 modifiable
 risk factors, acting across the life course.** This is the spine of the section. Everything else is detail
 hanging off it.
 
-![Lancet-14 Dementia — ~45% preventable](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/09-lancet14-dementia.png)
+![Lancet-14 Dementia — ~45% preventable](/_intake/health-longevity-fitness/media/figures/09-lancet14-dementia.png)
 
 ### 1.1 The 14 factors and their population-attributable fractions (2024)
 
@@ -9970,7 +9970,7 @@ strong — **Lin et al., *Arch Neurol* 2011**[^lin-2011] found incident dementia
 hearing-loss severity (mild/moderate/severe → ~2×/3×/5× hazard) in the Baltimore Longitudinal Study of
 Aging — but observation can't separate cause from marker.
 
-![Hearing & Dementia — a real lever (ACHIEVE)](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/58-hearing-dementia.png)
+![Hearing & Dementia — a real lever (ACHIEVE)](/_intake/health-longevity-fitness/media/figures/58-hearing-dementia.png)
 
 **ACHIEVE** (Lin et al., *Lancet* 2023)[^achieve] is the randomized test. 977 adults aged 70–84 with
 untreated mild-to-moderate hearing loss were randomized to a **hearing intervention** (hearing aids +
@@ -9992,7 +9992,7 @@ to treat hearing loss to protect the brain (and it helps connection and quality 
 is an overstatement to say "hearing aids prevent dementia" full-stop. `rct`, primary endpoint null,
 positive in the at-risk subgroup.
 
-![Hearing Aids & Cognition — a treatable lever](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D25-achieve-hearing.png)
+![Hearing Aids & Cognition — a treatable lever](/_intake/health-longevity-fitness/media/figures/D25-achieve-hearing.png)
 
 ---
 
@@ -10032,7 +10032,7 @@ replicating across dozens of countries — the results of which (e.g. US-POINTER
 us whether the effect generalizes. This is the proof-of-concept that lifestyle, bundled, *can* move
 cognition in a randomized design. `rct`, surrogate (cognition) outcome, modest effect.
 
-![FINGER Multidomain — cognition improved](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D13-finger.png)
+![FINGER Multidomain — cognition improved](/_intake/health-longevity-fitness/media/figures/D13-finger.png)
 
 ---
 
@@ -10140,7 +10140,7 @@ stronger than ordinary observation.
 - **Replication:** Pomirchy, Geldsetzer et al., *Lancet Neurology* 2026[^pomirchy] reproduced the
   natural-experiment finding in Canada.
 
-![Shingles Vaccine → Dementia — a natural experiment](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D26-shingles-dementia.png)
+![Shingles Vaccine → Dementia — a natural experiment](/_intake/health-longevity-fitness/media/figures/D26-shingles-dementia.png)
 
 **The honest tier:** this is **quasi-experimental, not a randomized prevention trial.** The natural-
 experiment design makes it far stronger than typical observational data, and the replication is
@@ -10159,7 +10159,7 @@ Alzheimer's, lecanemab vs placebo over 18 months. On the **CDR-SB** — a dement
 Dementia Rating–Sum of Boxes) running 0–18, where higher = worse — decline was **1.21 with lecanemab vs
 1.66 with placebo — a difference of −0.45 points (~27% slower decline).**
 
-![Lecanemab — marginal benefit, real risk](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D14-lecanemab.png)
+![Lecanemab — marginal benefit, real risk](/_intake/health-longevity-fitness/media/figures/D14-lecanemab.png)
 
 Three caveats calibrate the result:
 - **The "27%" is a relative slowing of decline, not improvement.** Everyone still got worse; the drug
@@ -10224,7 +10224,7 @@ statistically significant, clinically marginal, real harms.
    lifestyle** (FINGER) — all RCT-supported, all pointing at the same unglamorous bundle below. What's
    good for the heart is good for the brain.
 
-![Dementia Prevention — the actionable list](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/88-dementia-checklist.png)
+![Dementia Prevention — the actionable list](/_intake/health-longevity-fitness/media/figures/88-dementia-checklist.png)
 3. **Mental health is longevity.** Depression raises mortality and dementia risk; exercise is RCT-supported
    treatment; the serotonin-deficiency story is a false simplification that doesn't negate antidepressants' modest real efficacy.
 4. **The hype is concentrated and gradeable:** nootropics and brain-training are mostly `mechanistic` with
@@ -10344,7 +10344,7 @@ _Not medical advice. Crisis resources are in §9.3._
 The figure below maps each condition's lifetime prevalence and first-line, best-evidenced treatment;
 the table that follows carries the part the figure can't — **the honest caveat** on each.
 
-![Psychiatric Conditions — prevalence & first-line](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DX1-psychiatric.png)
+![Psychiatric Conditions — prevalence & first-line](/_intake/health-longevity-fitness/media/figures/DX1-psychiatric.png)
 
 | Condition | The honest caveat |
 |---|---|
@@ -10419,7 +10419,7 @@ the crux of the entire antidepressant debate:
   and broadly consistent since. This is honesty rule #2 in action: the average effect is modest, but the
   average hides the people for whom it is decisive.
 
-![Antidepressants by Severity — clearest when severe](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D07-antidepressant-severity.png)
+![Antidepressants by Severity — clearest when severe](/_intake/health-longevity-fitness/media/figures/D07-antidepressant-severity.png)
 
 **The Kirsch placebo debate.** Irving Kirsch's "*The Emperor's New Drugs*" (Kirsch et al., *PLoS Medicine*
 2008)[^kirsch] used FDA trial data — including unpublished negative trials — to
@@ -10537,7 +10537,7 @@ despite weaker evidence. Two facts make lithium exceptional:
   psychiatry: a treatment with a **direct anti-suicide signal**, an effect that appears partly
   *independent* of its mood-stabilizing action. `meta` of RCTs.
 
-![Lithium's Anti-Suicide Signal — beyond mood](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D21-lithium-suicide.png)
+![Lithium's Anti-Suicide Signal — beyond mood](/_intake/health-longevity-fitness/media/figures/D21-lithium-suicide.png)
 
 The honest caveats keep lithium from being a free lunch: it has a **narrow therapeutic window** (needs
 blood-level monitoring), affects **thyroid and kidney** over years — long-term use raises hypothyroidism
@@ -10574,7 +10574,7 @@ meta-analysis of **15 antipsychotics across 212 trials, ~43,000 patients**:
   effects, tardive dyskinesia). There is no free antipsychotic; the choice is a trade between symptom
   control and a specific harm profile, and the metabolic harms demand active monitoring. `meta`/`cohort`.
 
-![Antipsychotics — efficacy vs metabolic harm](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D18-antipsychotics.png)
+![Antipsychotics — efficacy vs metabolic harm](/_intake/health-longevity-fitness/media/figures/D18-antipsychotics.png)
 
 **Clozapine** is the most effective antipsychotic for treatment-resistant schizophrenia (Leucht's data
 support this) and is **under-used** because it requires regular blood monitoring (risk of agranulocytosis)
@@ -10694,7 +10694,7 @@ needs grading with particular care.
   condition — and not an approved, available treatment, with a regulator explicitly saying the evidence is
   not yet sufficient.** `rct` — promising, **unblinding-confounded, not approved**.
 
-![MDMA for PTSD — promise, then a pause](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D20-mdma-ptsd.png)
+![MDMA for PTSD — promise, then a pause](/_intake/health-longevity-fitness/media/figures/D20-mdma-ptsd.png)
 
 - **Psilocybin for depression** (adjacent, cross-ref §1): **Carhart-Harris et al., *NEJM* 2021**[^carhart]
   compared psilocybin-assisted therapy with escitalopram for
@@ -10725,7 +10725,7 @@ word is **"promising and unproven,"** not "psychedelics cure trauma."
   "lifestyle/vanity" problems (the cultural misread) to the **serious, sometimes fatal medical illnesses**
   they are. `meta`/`cohort`.
 
-![Anorexia Mortality — among the deadliest](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D19-anorexia-smr.png)
+![Anorexia Mortality — among the deadliest](/_intake/health-longevity-fitness/media/figures/D19-anorexia-smr.png)
 
 - **Bulimia nervosa:** binge eating followed by compensatory purging (vomiting, laxatives, excessive
   exercise); often normal weight, which is why it hides. Carries serious medical risks (electrolyte
@@ -11021,7 +11021,7 @@ the necessary correction to "one hit and you're hooked," which is true for almos
 general model.
 
 
-![Addictiveness vs Lethality — different axes](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D09-addictiveness-lethality.png)
+![Addictiveness vs Lethality — different axes](/_intake/health-longevity-fitness/media/figures/D09-addictiveness-lethality.png)
 
 ---
 
@@ -11173,7 +11173,7 @@ aids:
   "can't quit." `rct`.
 
 
-![Smoking Cessation Aids — support multiplies them](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D10-smoking-cessation.png)
+![Smoking Cessation Aids — support multiplies them](/_intake/health-longevity-fitness/media/figures/D10-smoking-cessation.png)
 
 ### 2.3 Nicotine vs combustion, and the vaping question — honestly
 
@@ -11256,7 +11256,7 @@ The honest synthesis for opioids: **MOUD is the standard of care, it halves deat
 under-provided** (stigma, regulation, the moralized preference for abstinence), and **detox-alone can be
 worse than no treatment.** If this section changes one belief, it should be this one.
 
-![MOUD Halves Mortality — retention is the mechanism](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/D08-moud-mortality.png)
+![MOUD Halves Mortality — retention is the mechanism](/_intake/health-longevity-fitness/media/figures/D08-moud-mortality.png)
 
 ---
 
@@ -11431,7 +11431,7 @@ treatments are unglamorous and under-used, and the dramatic interventions are mo
 
 ### 7.1 Medication-assisted treatment (MAT/MOUD) — the strongest evidence
 
-![Medication for Addiction — by substance & evidence](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/DX2-mat-moud.png)
+![Medication for Addiction — by substance & evidence](/_intake/health-longevity-fitness/media/figures/DX2-mat-moud.png)
 
 Anchors, by substance (verdicts graded in the body): **opioids** — Sordo *BMJ* 2017[^sordo] (§3.4);
 **alcohol** — Jonas *JAMA* 2014[^jonas] (§5.1); **tobacco** — Cahill *Cochrane* 2013[^cahill] (§2.2);
@@ -11682,7 +11682,7 @@ mechanical, chemical — by peripheral nociceptors, travelling up the spinal cor
 *conscious experience the brain constructs* by weighing that input against context, expectation,
 attention, mood, past experience, and meaning. They usually track together. They do not have to.
 
-![Nociception ≠ Pain — the brain constructs it](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/A06-nociception.png)
+![Nociception ≠ Pain — the brain constructs it](/_intake/health-longevity-fitness/media/figures/A06-nociception.png)
 
 - You can have **nociception without pain**: soldiers and athletes routinely sustain major injuries with
   little or no pain in the moment — the brain, given a more urgent priority, simply doesn't generate it.
@@ -11738,7 +11738,7 @@ satisfaction, and social support. This is not a soft add-on — the psychosocial
 *strongest predictors* of who transitions from acute to chronic pain. The model is the reason the rest of
 this section keeps returning to the same un-flashy levers.
 
-![Pain is Biopsychosocial — not just damage](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/51-pain-biopsychosocial.png)
+![Pain is Biopsychosocial — not just damage](/_intake/health-longevity-fitness/media/figures/51-pain-biopsychosocial.png)
 
 > **Honest debunk — "bad posture causes pain."** The idea that a specific "good posture" prevents pain
 > and "bad posture" causes it is largely unsupported. Population studies find **weak-to-no consistent
@@ -11775,7 +11775,7 @@ Brinjikji et al.'s systematic review (*AJNR* 2015)[^brinjikji-mri] imaged **pain
 found these findings rising steeply with age — e.g. disc degeneration in ~52% of asymptomatic 30-year-olds
 and ~88% of 60-year-olds:
 
-![Spine MRI in Pain-Free People — wrinkles on the inside](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P07-spine-mri.png)
+![Spine MRI in Pain-Free People — wrinkles on the inside](/_intake/health-longevity-fitness/media/figures/P07-spine-mri.png)
 
 These are **incidental findings of normal aging — "wrinkles on the inside."** They are as common in people
 with *no* pain as in people who hurt, so on their own they **cannot explain symptoms or guide treatment.**
@@ -11861,7 +11861,7 @@ The current evidence-based framework is **PEACE & LOVE** — *protect, elevate, 
 (and ice), compress, educate*, then *load, optimism, vascularisation, exercise* (Dubois & Esculier,
 *Br J Sports Med* 2020):[^dubois-peace]
 
-![PEACE & LOVE — RICE is retired](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS5-peace-love.png)
+![PEACE & LOVE — RICE is retired](/_intake/health-longevity-fitness/media/figures/PS5-peace-love.png)
 
 The throughline is the tendon/back one (§3.1, §8): protect briefly, then load early and gradually. (Ice
 for short-term *pain relief* is fine; the claim it *speeds healing* is what fell.)
@@ -12019,7 +12019,7 @@ predicts and amplifies chronic pain (bidirectional), so sleep is a real pain lev
 05). The honest expectation-set: **meaningful improvement in function and quality of life**,
 not always zero pain.
 
-![Chronic Pain — what helps vs what doesn't](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PX6-pain-multimodal.png)
+![Chronic Pain — what helps vs what doesn't](/_intake/health-longevity-fitness/media/figures/PX6-pain-multimodal.png)
 
 ---
 
@@ -12434,14 +12434,14 @@ Three cancers dominate, in ascending lethality:
 | **Squamous cell carcinoma (SCC)** | 2nd most common | Can metastasize (low but real); precursor = actinic keratosis | Scaly/crusted/ulcerated; sun + immunosuppression; **sunscreen reduces it (RCT — Green 1999)** |
 | **Melanoma** | ~1% of skin cancers, **most skin-cancer deaths** | Aggressive, metastasizes early; survival is **stage-dependent** | Early = curable by excision; advanced = the disease that checkpoint inhibitors transformed (Section 25) |
 
-![The Three Skin Cancers — common vs deadly](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PX5-skin-cancer.png)
+![The Three Skin Cancers — common vs deadly](/_intake/health-longevity-fitness/media/figures/PX5-skin-cancer.png)
 
 - **ABCDE rule (melanoma screening):** **Abbasi 2004, JAMA** — the consensus
   early-detection criteria (figure), plus the "**ugly duckling**" sign. `consensus`/diagnostic.[^melanoma-abcde] Self-skin-checks
   and dermatologist exams (especially with a prior melanoma, many atypical nevi, family history, or fair skin/red
   hair) catch it early, when excision cures.
 
-![ABCDE Melanoma — E is most important](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS8-abcde.png)
+![ABCDE Melanoma — E is most important](/_intake/health-longevity-fitness/media/figures/PS8-abcde.png)
 
 - **Prevention = the Section 11 sunscreen + tanning-bed story:** Green 1999 (SCC↓, `rct`), Green 2011 (melanoma↓
   ~50% at 10 yr, `rct`-derived), Ghiasvand 2016 (tanning beds↑ melanoma, `cohort`). Sun protection is the only
@@ -12510,7 +12510,7 @@ antibacterial).
   concentrations (≥1000 ppm) prevent more caries; **the benefit is dose-dependent**, and 1000–1500 ppm is the
   standard adult range. `meta`.[^fluoride-walsh]
 
-![Fluoride Toothpaste — dose-dependent](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P12-fluoride.png)
+![Fluoride Toothpaste — dose-dependent](/_intake/health-longevity-fitness/media/figures/P12-fluoride.png)
 
 - **Water fluoridation & topical fluoride** (varnish, mouthrinse) add further, smaller, independently-evidenced
   benefits. Community water fluoridation is one of the CDC's "10 great public-health achievements of the 20th
@@ -12719,7 +12719,7 @@ LASIK/PRK refractive surgery), not "cured." The important *public-health* story 
   and meta-analysis.[^myopia-he] **This is the one primary-prevention
   lever for childhood myopia with randomized support.**
 
-![Outdoor Time & Myopia — light protects eyes](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P10-myopia-outdoor.png)
+![Outdoor Time & Myopia — light protects eyes](/_intake/health-longevity-fitness/media/figures/P10-myopia-outdoor.png)
 
 - **Slowing progression in already-myopic kids:** low-dose **atropine** eye drops, **orthokeratology**, and
   **myopia-control contact/spectacle lenses** have RCT support for slowing axial elongation. (Treating progression
@@ -12763,7 +12763,7 @@ too. It is the **"silent thief of sight"** — and the **leading** cause of irre
   mass *screening*" statement (Section 11 §4.3) does **not** mean "glaucoma can't be treated" — once detected,
   treatment works; the unproven link is the *population-screening-program → outcome* chain.
 
-![Glaucoma: Lower the Pressure — a proven lever](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P11-glaucoma.png)
+![Glaucoma: Lower the Pressure — a proven lever](/_intake/health-longevity-fitness/media/figures/P11-glaucoma.png)
 
 | Type | Mechanism | Note |
 |---|---|---|
@@ -12794,7 +12794,7 @@ adults. Two forms:
   (ranibizumab, aflibercept, bevacizumab off-label, faricimab) are now the standard of care — **one of the biggest
   treatment advances in modern ophthalmology**.
 
-![Anti-VEGF for Wet AMD — blindness made controllable](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P08-amd-antivegf.png)
+![Anti-VEGF for Wet AMD — blindness made controllable](/_intake/health-longevity-fitness/media/figures/P08-amd-antivegf.png)
 
 **Honest take:** **wet AMD is now treatable (anti-VEGF) — urgently** (sudden central distortion/scotoma = same-week
 ophthalmology). Dry AMD is slowed (not reversed) by AREDS2 *only in the right stage*; the new GA drugs are modest.
@@ -13007,7 +13007,7 @@ this fact, which frightened and guilty parents rarely believe on their own.
 | **Klinefelter syndrome (47,XXY)** | An extra X in males. ~1 in 600 boys — **markedly underdiagnosed** (many never identified). | Tall stature, small testes, low testosterone, infertility (most common genetic cause of male infertility), variable mild learning/language issues. | Often presents only as infertility in adulthood. Testosterone replacement helps secondary sex characteristics and bone/mood; **normal life expectancy**. |
 | **Edwards (trisomy 18) / Patau (trisomy 13)** | Three copies of chr 18 / chr 13. | Severe multi-organ malformations. | **Usually lethal in infancy** — most do not survive the first year. The honest counseling here is among the hardest in medicine, and is increasingly individualized rather than uniformly nihilistic. |
 
-![Chromosomal Disorders — at a glance](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PX4-trisomies.png)
+![Chromosomal Disorders — at a glance](/_intake/health-longevity-fitness/media/figures/PX4-trisomies.png)
 
 **Plain takeaway:** these are whole-chromosome dosage errors, nobody's fault, and the prognosis is driven far
 more by the *care* a child gets than by the chromosome count — Down syndrome life expectancy more than doubled
@@ -13218,7 +13218,7 @@ usually presenting before age 5 from adrenal or sympathetic-chain primaries. The
   incrementally optimized combination therapy and CNS (central-nervous-system) prophylaxis — the chemotherapy success story in its
   purest form. `rct`/cooperative-trial era — strong.
 
-![Childhood Leukemia Cure — ~0% → ~90%](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P09-all-cure.png)
+![Childhood Leukemia Cure — ~0% → ~90%](/_intake/health-longevity-fitness/media/figures/P09-all-cure.png)
 - The honest caveats: survival is not uniform (some subtypes, some regions, and relapse remain hard), and
   **survivorship has a cost** — late effects of treatment (cardiac, endocrine, neurocognitive, second cancers)
   are a major and growing focus. Cure is the goal; cure *with the fewest late effects* is the frontier.
@@ -13316,7 +13316,7 @@ leading cause of post-neonatal infant death and a parent's worst fear. It is als
 [^swaddle]: Pease AS et al., "Swaddling and the risk of sudden infant death syndrome: a meta-analysis."
     *Pediatrics* 2016. doi:10.1542/peds.2015-3275. Tier: cohort/meta.
 
-![Safe Sleep — the bundle that halved SIDS](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS6-sids.png)
+![Safe Sleep — the bundle that halved SIDS](/_intake/health-longevity-fitness/media/figures/PS6-sids.png)
 
 ---
 
@@ -13337,7 +13337,7 @@ spectrometry) now catch dozens of IEMs the same way. `cohort`/public-health — 
 in medicine. (Honest caveat: the diet is lifelong and demanding, and **maternal PKU** — a mother off-diet
 during pregnancy — can harm an otherwise-unaffected fetus, so the management never truly ends.)
 
-![PKU Newborn Screening — a heel-prick prevents disability](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z11-pku.png)
+![PKU Newborn Screening — a heel-prick prevents disability](/_intake/health-longevity-fitness/media/figures/Z11-pku.png)
 
 ---
 
@@ -13468,7 +13468,7 @@ fine. The signals that warrant a professional look are about **pattern**, not a 
   asymmetry of movement — motor red flags (consider CP, neuromuscular).
 - **Any parental gut sense that "something is different,"** combined with the above — parents are good detectors.
 
-![Developmental Red Flags — trajectory beats date](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS7-milestones.png)
+![Developmental Red Flags — trajectory beats date](/_intake/health-longevity-fitness/media/figures/PS7-milestones.png)
 
 **The honest, high-value action:** developmental concerns benefit from **early** evaluation, because the
 strongest evidence in neurodevelopment is that **early intervention works better than late** — the brain's early
@@ -13691,7 +13691,7 @@ the default** — and the evidence is unusually clean:
 > *Baby Shark* — both are ~100–110 bpm. Switch with another rescuer every ~2 minutes (it's exhausting; poor
 > compressions are the silent failure mode).
 
-![Hands-Only CPR — action card](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/11-cpr-card.png)
+![Hands-Only CPR — action card](/_intake/health-longevity-fitness/media/figures/11-cpr-card.png)
 
 For **children, infants, drowning, opioid overdose, and any asphyxial cause**, oxygen has run down, so
 **rescue breaths add real value** — if trained, use 30 compressions : 2 breaths. If not trained, **hands-only
@@ -13749,7 +13749,7 @@ A large-vessel stroke destroys on the order of **~1.9 million neurons per minute
 now** — that timestamp decides eligibility for clot-busting drugs (thrombolysis, ~4.5 h window) and
 thrombectomy (up to ~24 h in selected patients).
 
-![BE-FAST Stroke — recognition card](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/12-befast-card.png)
+![BE-FAST Stroke — recognition card](/_intake/health-longevity-fitness/media/figures/12-befast-card.png)
 
 **Do not give aspirin** for a suspected stroke — until a CT scan rules out a *bleed*, aspirin could be
 catastrophic. **Do not give food or drink** (the swallow may be unsafe). Get them to a stroke-capable hospital
@@ -13770,7 +13770,7 @@ parameter and the 2024 international consensus[^jtf-anaphylaxis] are unambiguous
 immediately.** It is extraordinarily safe in this setting; there is **no absolute contraindication** when
 anaphylaxis is suspected.
 
-![Anaphylaxis — epinephrine-first](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/13-anaphylaxis-card.png)
+![Anaphylaxis — epinephrine-first](/_intake/health-longevity-fitness/media/figures/13-anaphylaxis-card.png)
 
 > **The honest debunk:** **Antihistamines (Benadryl) and asthma inhalers are NOT substitutes for epinephrine and do not treat the life-threatening parts of anaphylaxis (airway swelling, shock).**
 > Antihistamines treat itch and hives — skin symptoms — and act too slowly to touch airway swelling or shock.
@@ -13797,7 +13797,7 @@ public messaging):
 - "**I** feel I might die" — a striking sense of impending doom
 - **S**kin **mottled, blue, or very pale**
 
-![Sepsis — say the word](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/E4-sepsis.png)
+![Sepsis — say the word](/_intake/health-longevity-fitness/media/figures/E4-sepsis.png)
 
 The **Surviving Sepsis Campaign 2021 guidelines (Evans et al., Crit Care Med 2021)**[^ssc] anchor management on **early recognition and time-to-antibiotics**; the lay job is
 to **escalate fast and say the word "sepsis"** to the dispatcher/triage nurse — it changes how quickly they're
@@ -13821,7 +13821,7 @@ life-threatening extremity bleeding.
   tourniquet. **A properly applied tourniquet saves lives; a loose one just hides the bleeding.** Do not
   remove it — that's the hospital's call.
 
-![Severe Bleeding — pressure → tourniquet](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/E2-stop-the-bleed.png)
+![Severe Bleeding — pressure → tourniquet](/_intake/health-longevity-fitness/media/figures/E2-stop-the-bleed.png)
 
 - Get a real **Stop the Bleed** course; the kit (tourniquet + hemostatic gauze) is cheap and belongs anywhere
   trauma is plausible (cars, worksites, schools).
@@ -13835,7 +13835,7 @@ life-threatening extremity bleeding.
   then **5 abdominal thrusts (Heimlich):** fist above the navel, sharp inward-and-upward thrusts. **Alternate
   5 and 5** until the object clears or they collapse.
 
-![Choking — 5 back blows + 5 thrusts](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/E1-choking.png)
+![Choking — 5 back blows + 5 thrusts](/_intake/health-longevity-fitness/media/figures/E1-choking.png)
 
 - **If they go unconscious:** lower them, **start CPR**, and check the mouth for a *visible* object before
   breaths (remove only what you can see — **no blind finger sweeps**, which push it deeper).
@@ -13861,7 +13861,7 @@ and fingertips, gurgling/snoring.** Death comes from **respiratory depression** 
   they can re-overdose. **Good Samaritan overdose laws** in most US states protect callers from drug-
   possession charges — *call anyway.*
 
-![Opioid Overdose — naloxone first](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/E3-naloxone.png)
+![Opioid Overdose — naloxone first](/_intake/health-longevity-fitness/media/figures/E3-naloxone.png)
 
 ---
 
@@ -13885,7 +13885,7 @@ until a real source says otherwise.
     a heat-burn). **Cool, not freezing.**
   - **Don't burst blisters** (the roof is a sterile dressing). **Don't peel away clothing stuck to the burn.**
 
-![Burns — 20 minutes of cool water](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/E5-burns.png)
+![Burns — 20 minutes of cool water](/_intake/health-longevity-fitness/media/figures/E5-burns.png)
 
 - **Go to the ER** for burns that are: large (> a palm-size area), deep/white/charred/painless (full-thickness
   kills the nerves), on the **face, hands, feet, genitals, or over a joint**, circumferential, **electrical or
@@ -13941,7 +13941,7 @@ a second impact before recovery can be catastrophic.
   emergency), it's a **first-ever** seizure, there's injury, it happens in **water**, the person is **pregnant
   or diabetic**, or they don't come round.
 
-![Seizure — protect, time, recover](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/E6-seizure.png)
+![Seizure — protect, time, recover](/_intake/health-longevity-fitness/media/figures/E6-seizure.png)
 
 ### 4.7 The recovery position
 
@@ -13980,7 +13980,7 @@ People die from under-triage (waiting out a stroke) and waste fortunes / clog th
 - **Signs of sepsis** (§3.4), **stiff neck + fever + rash** (meningitis), **suicidal intent** (cross-ref §20)
 - A **fever in a baby <3 months**, or a child who is **floppy, blue, hard to wake, or has a non-blanching rash**
 
-![Red-Flag Symptoms — when not to wait](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/105-red-flags.png)
+![Red-Flag Symptoms — when not to wait](/_intake/health-longevity-fitness/media/figures/105-red-flags.png)
 
 **Urgent care / same-day primary care (real but not life-threatening):**
 - Sprains and simple suspected fractures (able to bear some weight), minor cuts that may need stitches, mild
@@ -14023,7 +14023,7 @@ count.**
 > here — this isn't a fever, it's a
 > failure of heat dissipation.
 
-![Heat Stroke — cool first, transport second](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/E7-heat-stroke.png)
+![Heat Stroke — cool first, transport second](/_intake/health-longevity-fitness/media/figures/E7-heat-stroke.png)
 
 ### 6.3 Hypothermia & cold
 
@@ -14087,7 +14087,7 @@ You cannot improvise competence in the moment; you assemble it in advance.
 
 ## Recognize → Act, one more time (the wallet card)
 
-![Emergency Wallet — recognize → act](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/19-emergency-wallet.png)
+![Emergency Wallet — recognize → act](/_intake/health-longevity-fitness/media/figures/19-emergency-wallet.png)
 
 ---
 
@@ -14178,7 +14178,7 @@ The table is the whole section in miniature: **the same discipline contains the 
 interventions in medicine and several of its most durable over-uses.** The rest of this section is about
 how to tell which is which.
 
-![Operations, Graded — transformative → debunked](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R01-surgery-verdict.png)
+![Operations, Graded — transformative → debunked](/_intake/health-longevity-fitness/media/figures/R01-surgery-verdict.png)
 
 ---
 
@@ -14291,7 +14291,7 @@ OA (Moseley, 2002),[^moseley] arthroscopic partial meniscectomy for a degenerati
 2018)[^orbita] — each proved **no better than a sham operation** (a blinded, placebo-procedure
 trial) for the patient-important outcome.
 
-![Sham-Surgery Trials — the gap vanishes](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q02-sham-surgery.png)
+![Sham-Surgery Trials — the gap vanishes](/_intake/health-longevity-fitness/media/figures/Q02-sham-surgery.png)
 
 (The two knee operations are covered in detail in **Section 21 §6**; this section names them as the
 **discipline-level lesson** rather than re-deriving the orthopaedic specifics.)
@@ -14420,7 +14420,7 @@ Stated without hedging, because the corpus elsewhere is careful about over-claim
 **bariatric (metabolic) surgery is the single most effective intervention for severe obesity and for
 type-2 diabetes in people with obesity that exists.** The evidence is unusually strong for surgery:
 
-![Bariatric Surgery — most effective metabolic Rx](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q03-bariatric.png)
+![Bariatric Surgery — most effective metabolic Rx](/_intake/health-longevity-fitness/media/figures/Q03-bariatric.png)
 
 - **Durable weight loss** far exceeding any lifestyle or (pre-GLP-1-era) drug intervention, sustained over
   10+ years.
@@ -14558,7 +14558,7 @@ finally tested against a placebo or against conservative care, **fails to appear
 
 This is the practical core of the section — the lay translation of everything above:
 
-![Questions Before Surgery — ask before you consent](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z13-surgery-questions.png)
+![Questions Before Surgery — ask before you consent](/_intake/health-longevity-fitness/media/figures/Z13-surgery-questions.png)
 
 1. **"What happens if I *don't* have this — what's the natural history?"** Many conditions improve on
    their own (sciatica from a disc herniation; minimally symptomatic hernias). Know the no-surgery arm.
@@ -14695,7 +14695,7 @@ system is switched off and where**, chosen to match the surgery, the patient, an
 | **Local anesthesia** | A small patch of tissue | Injected/applied at the site | Skin lesions, dental work, stitches, minor procedures | Fully awake |
 | **Sedation ("MAC" — monitored anesthesia care — or "twilight")** | Anxiety and awareness dialed down on a spectrum | IV drugs (often propofol ± an opioid/benzodiazepine) | Colonoscopy, cataracts, minor procedures, ICU comfort | Drowsy to deeply sedated; a *continuum*, not an on/off |
 
-![Types of Anesthesia — local → general](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R02-anesthesia-types.png)
+![Types of Anesthesia — local → general](/_intake/health-longevity-fitness/media/figures/R02-anesthesia-types.png)
 
 Two honest points the table hides. First, **these combine**: a major chest operation is commonly an
 epidural *plus* general anesthesia, deliberately, because the epidural does the post-operative pain control
@@ -14706,7 +14706,7 @@ sedation" is given by people trained to rescue an airway. (Note: "MAC" here mean
 care*; the same three letters are also used for *minimum alveolar concentration*, a measure of inhaled-agent
 potency — a genuine source of confusion even among clinicians.)
 
-![The Sedation Continuum — one dial](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R10-sedation-continuum.png)
+![The Sedation Continuum — one dial](/_intake/health-longevity-fitness/media/figures/R10-sedation-continuum.png)
 
 ### 2.2 How general anesthesia works — and the honest "we don't fully know"
 
@@ -14774,7 +14774,7 @@ seconds."
 Anesthesia is one of medicine's great safety success stories, and it is worth being precise about the
 numbers rather than repeating a slogan.
 
-![Anesthesia Got ~300× Safer — a safety triumph](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q04-anesthesia-mortality.png)
+![Anesthesia Got ~300× Safer — a safety triumph](/_intake/health-longevity-fitness/media/figures/Q04-anesthesia-mortality.png)
 
 - **Anesthesia-attributable mortality has fallen by more than an order of magnitude** over the past
   half-century. Bainbridge and colleagues' systematic review and meta-analysis (**Bainbridge et al.,
@@ -14915,7 +14915,7 @@ substitute-for-a-failing-organ model, applied while the underlying problem is (h
 
 _Each of the organ-support rows is expanded in a subsection below (§5.1 lungs, §5.2 circulation, §5.3 kidneys), with ICU outcomes in §5.4._
 
-![The ICU Substitutes Organs — buying time](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R03-icu-support.png)
+![The ICU Substitutes Organs — buying time](/_intake/health-longevity-fitness/media/figures/R03-icu-support.png)
 
 The defining feature of modern critical care is that **almost all of these supports can be over-used as
 easily as under-used** — and the field's hardest, most honest questions (§6, §8) are not "can we support
@@ -14939,7 +14939,7 @@ second major advance, **prone positioning** — literally turning the sickest AR
 recruit collapsed lung — reduced mortality in the **PROSEVA trial** (Guérin et al., *N Engl J Med* 2013)[^ards-proseva],
 and became one of the defining bedside images of the COVID pandemic.
 
-![Less-Is-More in the ICU — gentler wins](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q05-less-is-more.png)
+![Less-Is-More in the ICU — gentler wins](/_intake/health-longevity-fitness/media/figures/Q05-less-is-more.png)
 
 **The honest lessons of COVID** are worth stating because they were learned in public: (1) the proven ARDS
 toolkit — **lung-protective low-tidal-volume ventilation and proning** — was the durable backbone, while
@@ -15008,7 +15008,7 @@ antibiotics and source control drive survival.** That much has held. What makes 
 this corpus* is that the **resuscitation protocol was built, celebrated, and then substantially deflated by
 better trials** — a model of how honest medicine corrects itself.
 
-![Sepsis Evidence Turned Over — signal vs ritual](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R09-sepsis-turnover.png)
+![Sepsis Evidence Turned Over — signal vs ritual](/_intake/health-longevity-fitness/media/figures/R09-sepsis-turnover.png)
 
 - **The rise (EGDT).** In 2001, Rivers et al.'s single-center trial of **Early Goal-Directed Therapy**
   (*N Engl J Med* 2001)[^sepsis-egdt] reported a dramatic mortality reduction (absolute mortality reduced from 46.5% to 30.5%, a 16-percentage-point absolute reduction) from an aggressive,
@@ -15300,7 +15300,7 @@ distinct physical principles cover the entire field:
 That four-way split — *ionising EM / mechanical wave / magnetic resonance / nuclear decay* — is the
 skeleton of everything below.
 
-![Four Imaging Physics — image = hazard](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS11-imaging-physics.png)
+![Four Imaging Physics — image = hazard](/_intake/health-longevity-fitness/media/figures/PS11-imaging-physics.png)
 
 ---
 
@@ -15311,7 +15311,7 @@ Effective doses are typical adult values in **millisieverts (mSv)**; the natural
 Costs are order-of-magnitude US list-price ranges (hugely variable); the point is the *ratio*, not the
 dollar.
 
-![Imaging Modalities — what each sees · radiation](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/49-imaging-matrix.png)
+![Imaging Modalities — what each sees · radiation](/_intake/health-longevity-fitness/media/figures/49-imaging-matrix.png)
 
 | Modality | Physics | What it sees best | Radiation (typical effective dose) | Rel. cost | Best for | Key limit |
 |---|---|---|---|---|---|---|
@@ -15359,7 +15359,7 @@ neither camp. Here is the honest version.
 
 ### 40.3.1 — The doses, in context
 
-![Radiation Dose in Context — X-ray vs PET](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P06-radiation-dose.png)
+![Radiation Dose in Context — X-ray vs PET](/_intake/health-longevity-fitness/media/figures/P06-radiation-dose.png)
 
 A single CT is **not** dangerous to an individual in any way they will feel — the per-scan excess
 lifetime cancer risk is small (order 1-in-1,000 to 1-in-10,000 depending on dose, age, and organ). The
@@ -15405,7 +15405,7 @@ the *low-dose* CT range where direct measurement is extraordinarily hard. **Its 
     point: **the danger of CT is a public-health problem of volume, not a personal-injury problem of the
     single scan.**
 
-![CT's Cancer Cost — real, modelled](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P13-ct-burden.png)
+![CT's Cancer Cost — real, modelled](/_intake/health-longevity-fitness/media/figures/P13-ct-burden.png)
 
 ### 40.3.3 — When imaging radiation is justified, and when it is not
 
@@ -15456,7 +15456,7 @@ real even when the finding is benign — it is the *cascade*, not the lesion, th
   finding of clinical significance** — in people with no symptoms — with the rate climbing with age and
   BMI. Scale that to a marketed consumer product and you have an **engine for manufacturing patients.**
 
-![Incidental Findings — the cost of looking](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z02-incidentaloma.png)
+![Incidental Findings — the cost of looking](/_intake/health-longevity-fitness/media/figures/Z02-incidentaloma.png)
 
 **Why this makes whole-body consumer MRI screening contested (cross-ref `07 §6`, `25 §6`):**
 products like **Prenuvo** (whole-body MRI) and **Galleri** (the MCED — multi-cancer early detection —
@@ -15622,7 +15622,7 @@ real-world imaging mistakes:
 
 ## 40.9 — What to actually do (the honest residue)
 
-![Image the Question — the decision flow](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z10-imaging-flow.png)
+![Image the Question — the decision flow](/_intake/health-longevity-fitness/media/figures/Z10-imaging-flow.png)
 
 - **Image a question, not a body.** The value of any scan is conditional on a specific pre-test question
   whose answer changes a decision. No question → no scan.
@@ -15723,7 +15723,7 @@ This is the rigorous core — the arithmetic everything else rests on.
 Every diagnostic test, no matter how fancy (a SNP chip, a CT scan, a PCR, a finger-prick glucose), reduces
 to a single 2×2 table once you compare its verdict against the truth — true positives and true negatives where it agrees, false positives and false negatives where it errs:
 
-![The 2×2 Table — read it two ways](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS2-confusion-2x2.png)
+![The 2×2 Table — read it two ways](/_intake/health-longevity-fitness/media/figures/PS2-confusion-2x2.png)
 
 Four numbers. Every metric below is a ratio of these four. The single most important habit this section
 can give you: **whenever you read a test statistic, ask which way the ratio runs — down a column (a
@@ -15786,9 +15786,9 @@ properties").
   *probably do not have the disease* — there are **ten false alarms for every true case** — purely because
   the disease was rare to begin with.
 
-![Bayes / PPV — 9% vs 92%](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/14-bayes-ppv.png)
+![Bayes / PPV — 9% vs 92%](/_intake/health-longevity-fitness/media/figures/14-bayes-ppv.png)
 
-![Bayes: Why a Great Test Misleads — PPV ≈ 9%](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS1-bayes-ppv.png)
+![Bayes: Why a Great Test Misleads — PPV ≈ 9%](/_intake/health-longevity-fitness/media/figures/PS1-bayes-ppv.png)
 
 Nothing about the test changed. Only the pre-test probability did. Now run the *same* test in a population
 where the disease is present in 1 in 10 (a symptomatic clinic): PPV jumps above 90%. **Same test, same
@@ -15803,7 +15803,7 @@ numbers down the columns, opposite meaning across the rows.** This single fact e
   anxiety: the find was a false positive that was *statistically inevitable* given a low pre-test
   probability and a wide net.
 
-![PPV vs Prevalence — same test, opposite meaning](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P01-ppv-prevalence.png)
+![PPV vs Prevalence — same test, opposite meaning](/_intake/health-longevity-fitness/media/figures/P01-ppv-prevalence.png)
 
 ## A.5 Likelihood ratios — the cleanest way to actually do the update
 
@@ -15824,7 +15824,7 @@ Rough field guide (Jaeschke/McMaster):
 | 2–5 | small ↑                     | 0.2–0.5 | small ↓                  |
 | 1–2 | negligible (the test barely moved anything) | 0.5–1 | negligible |
 
-![The Likelihood-Ratio Shortcut — LR moves probability](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS12-fagan.png)
+![The Likelihood-Ratio Shortcut — LR moves probability](/_intake/health-longevity-fitness/media/figures/PS12-fagan.png)
 
 The LR framing makes the punchline unavoidable: **a test with LR near 1 is useless no
 matter how "abnormal" the result looks**, and a great many ordered tests — especially screening add-ons
@@ -15845,7 +15845,7 @@ visible:
   so it's the fair way to compare two tests — but note it says nothing about *which* threshold to use; that
   is a value judgment about the relative cost of a miss versus a false alarm.
 
-![The ROC Curve — threshold is a policy choice](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P03-roc-curve.png)
+![The ROC Curve — threshold is a policy choice](/_intake/health-longevity-fitness/media/figures/P03-roc-curve.png)
 
 Where the threshold is set is a **policy decision smuggled inside a number.** "Pre-diabetes" at HbA1c
 5.7%, a "high" PSA at 4.0 ng/mL, a "low" TSH — each line was chosen by a committee weighing consequences,
@@ -15865,7 +15865,7 @@ deviations. Three consequences fall straight out of that definition, and almost 
    formalized this decades ago; it is why "the panel found something" is the expected, not the surprising,
    outcome.)
 
-![Reference-Range False Positives — 1 − 0.95ⁿ](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P02-reference-range.png)
+![Reference-Range False Positives — 1 − 0.95ⁿ](/_intake/health-longevity-fitness/media/figures/P02-reference-range.png)
 2. **Statistical-normal ≠ optimal ≠ healthy.** The reference range describes *who got sampled*, not what's
    *best*. If the reference population is a developed nation with widespread insulin resistance, a
    "normal" fasting glucose or LDL may sit well above the level associated with lowest risk. Conversely,
@@ -15933,7 +15933,7 @@ which changes how much a flag on it should worry you. For each category: what it
 tests, and the honest caveat. Effect sizes and outcome evidence for specific biomarkers live in
 `WHAT-TO-TRACK-SYNTHESIS.md` and the linked domain claims — this is the *test-science* layer over them.
 
-![The Blood Panel — high-signal markers](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/75-blood-panel.png)
+![The Blood Panel — high-signal markers](/_intake/health-longevity-fitness/media/figures/75-blood-panel.png)
 
 ## B.1 The lab-category table
 
@@ -15961,7 +15961,7 @@ worry you. Effect sizes live in `WHAT-TO-TRACK-SYNTHESIS.md`.*
 | **Urinalysis** | Dipstick (protein, glucose, blood, leukocyte esterase, nitrite), microscopy | Renal/urinary/metabolic screen | Cheap and useful *with* pre-test reasoning; asymptomatic dipstick "abnormalities" (microscopic hematuria, trace protein) are a leading cascade trigger. |
 | **Histopathology / cytology** | Biopsy, surgical specimen, Pap, FNA | **Tissue diagnosis — the gold standard** for cancer and many diseases | The reference standard, but *not infallible*: sampling error + inter-observer variability (B.3). |
 
-![Reading Your Bloodwork — by category](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PX3-lab-categories.png)
+![Reading Your Bloodwork — by category](/_intake/health-longevity-fitness/media/figures/PX3-lab-categories.png)
 
 ## B.2 Reading a CBC (what each line means)
 
@@ -16280,7 +16280,7 @@ antagonists.
   open the GABA-A channel themselves; they make GABA's own opening *more effective* (which is why
   they're safer alone than barbiturates, which force the channel open directly).
 
-![The Agonist Spectrum — inverse → full](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS4-agonist-spectrum.png)
+![The Agonist Spectrum — inverse → full](/_intake/health-longevity-fitness/media/figures/PS4-agonist-spectrum.png)
 
 ### A.1.3 Affinity, efficacy, potency — three things people conflate
 
@@ -16314,7 +16314,7 @@ This is the same dose-response logic section 01 §3 uses for hormesis (a *sub*-d
 excess harms): pharmacology is dose-response biology with a deliberately chosen molecule. **"The dose
 makes the poison"** (Paracelsus) is not a slogan — it is the curve.
 
-![Therapeutic Window — the dose makes the poison](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P04-dose-therapeutic-index.png)
+![Therapeutic Window — the dose makes the poison](/_intake/health-longevity-fitness/media/figures/P04-dose-therapeutic-index.png)
 
 ### A.1.5 Tolerance, dependence, and receptor adaptation
 
@@ -16332,7 +16332,7 @@ PK is four processes, abbreviated **ADME**: **A**bsorption, **D**istribution, **
 **E**xcretion. They jointly determine the concentration-time curve — how high the drug goes, how fast,
 and how long it stays.
 
-![ADME — a drug's journey](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PS3-adme.png)
+![ADME — a drug's journey](/_intake/health-longevity-fitness/media/figures/PS3-adme.png)
 
 ### A.2.1 Absorption and the first-pass effect
 
@@ -16393,7 +16393,7 @@ explains most interactions and most PGx:
 | **CYP2C19** | ~10% of drugs | clopidogrel, PPIs, some antidepressants, voriconazole | Activates clopidogrel; clears PPIs; **loss-of-function common in East-Asian ancestry** (§C) |
 | **CYP2C9** | ~10–15% of drugs | warfarin, phenytoin, many NSAIDs, sulfonylureas | Clears warfarin's active enantiomer; pairs with VKORC1 for warfarin dosing (§C) |
 
-![CYP450 Enzymes — where interactions happen](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PX1-cyp450.png)
+![CYP450 Enzymes — where interactions happen](/_intake/health-longevity-fitness/media/figures/PX1-cyp450.png)
 
 **Inducers vs inhibitors — the interaction engine:**
 - An **inhibitor** of a CYP slows metabolism of that CYP's substrates → substrate levels **rise** →
@@ -16418,7 +16418,7 @@ direct oral anticoagulants all need renal dose adjustment.
   stopping). It is why a drug started today may not show its full effect for days, and why a drug
   stopped today may linger.
 
-![Half-Life & Steady State — ~5 half-lives to plateau](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/P05-half-life.png)
+![Half-Life & Steady State — ~5 half-lives to plateau](/_intake/health-longevity-fitness/media/figures/P05-half-life.png)
 - **Loading dose vs maintenance dose:** when you can't wait 4–5 half-lives (a life-threatening
   arrhythmia, a serious infection), a large **loading dose** fills the distribution volume fast, then a
   smaller maintenance dose replaces what's cleared.
@@ -16605,7 +16605,7 @@ variant. These are large-effect variants with a defined clinical action — the 
 "wellness" noise. This part extends the practical-PGx primer in section 18 §A.2.4 with the mechanism and
 the actionable detail.
 
-![Pharmacogenomics — genes that change the Rx](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/PX2-pharmacogenomics.png)
+![Pharmacogenomics — genes that change the Rx](/_intake/health-longevity-fitness/media/figures/PX2-pharmacogenomics.png)
 
 ## C.1 The idea, and a one-paragraph history
 
@@ -16629,7 +16629,7 @@ for a prodrug, **UM = danger**. CYP2D6 is the most extreme case because its acti
 (gene deletion) to ultra-rapid (gene duplication/multiplication)** across a continuous spectrum, and its
 allele frequencies vary sharply by ancestry.
 
-![Metabolizer × Prodrug — why the same gene flips](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z03-metabolizer-prodrug.png)
+![Metabolizer × Prodrug — why the same gene flips](/_intake/health-longevity-fitness/media/figures/Z03-metabolizer-prodrug.png)
 
 ## C.3 The actionable gene-drug pairs (guideline-backed or high-consequence)
 
@@ -16734,7 +16734,7 @@ This is where pharmacology becomes a geriatric-medicine problem (cross-ref secti
   longevity act as adding a good one.** In geriatrics this is frequently the single highest-value
   intervention available.
 
-![Deprescribing — subtraction is medicine](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F09-deprescribing.png)
+![Deprescribing — subtraction is medicine](/_intake/health-longevity-fitness/media/figures/F09-deprescribing.png)
 
 ## D.4 The supplement-drug interaction reality (honest)
 
@@ -16760,7 +16760,7 @@ real and routinely ignored because people don't *tell their doctor* about supple
 The placebo response is not "nothing" — it is a **measurable neurobiological phenomenon** and belongs in
 a pharmacology chapter as a real, dose-able effect that every drug rides on top of.
 
-![Placebo & Nocebo — expectation as pharmacology](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F10-placebo-nocebo.png)
+![Placebo & Nocebo — expectation as pharmacology](/_intake/health-longevity-fitness/media/figures/F10-placebo-nocebo.png)
 
 - **Placebo is real physiology, not just reporting bias.** Placebo analgesia is partly **endogenous-
   opioid mediated** — it is **blocked by naloxone** (Levine et al., *Lancet* 1978), which is about as
@@ -17010,7 +17010,7 @@ marketing buries.
 
 ### 1.1 What they are and what they do
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/semaglutide-schematic.png)
+![](/_intake/health-longevity-fitness/media/figures/semaglutide-schematic.png)
 
 GLP-1 is an incretin hormone the gut releases after eating; it amplifies glucose-dependent insulin secretion,
 suppresses glucagon, **slows gastric emptying**, and acts in the hypothalamus to **reduce appetite**. The drugs
@@ -17040,9 +17040,9 @@ the kidney. The benefits appear to be **partly independent of the weight loss it
 separate earlier than weight fully explains), implicating direct anti-inflammatory/vascular effects — though
 that mechanism is still `mechanistic`, not settled.
 
-![GLP-1 Outcomes — the real data](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/35-glp1-outcomes.png)
+![GLP-1 Outcomes — the real data](/_intake/health-longevity-fitness/media/figures/35-glp1-outcomes.png)
 
-![GLP-1: Weight AND Outcomes — surrogate + hard endpoints](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y02-glp1-outcomes.png)
+![GLP-1: Weight AND Outcomes — surrogate + hard endpoints](/_intake/health-longevity-fitness/media/figures/Y02-glp1-outcomes.png)
 
 ### 1.3 The longevity / healthspan implication (graded honestly)
 
@@ -17090,11 +17090,11 @@ justifies it.* The honest tension is entirely about **who**, not whether.
 
 ### 2.1 The drugs
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/atorvastatin-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/atorvastatin-structure.png)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/rosuvastatin-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/rosuvastatin-structure.png)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/cholesterol-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/cholesterol-structure.png)
 
 | Drug class | Mechanism | LDL lowering | Hard-outcome evidence | Tier |
 |---|---|---|---|---|
@@ -17120,9 +17120,9 @@ produces wildly different number-needed-to-treat.
   relative-risk reduction is real), but the **honest framing is shared decision-making against a modest absolute
   benefit**, not "everyone over 50 should be on one."
 
-![Statin NNT by Risk — same drug, different value](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/36-statin-nnt.png)
+![Statin NNT by Risk — same drug, different value](/_intake/health-longevity-fitness/media/figures/36-statin-nnt.png)
 
-![Statins: Primary vs Secondary — baseline risk is the story](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/G04-statin-prevention.png)
+![Statins: Primary vs Secondary — baseline risk is the story](/_intake/health-longevity-fitness/media/figures/G04-statin-prevention.png)
 
 ### 2.3 Real side effects vs the nocebo effect
 
@@ -17168,13 +17168,13 @@ there is** — and the SPRINT-era answer is "lower than we used to, in the right
 
 ## 4. Aspirin — the clean "stop doing this" finding
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/aspirin-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/aspirin-structure.png)
 
 For decades a daily baby aspirin was reflexive primary prevention. The **ASPREE** trial dismantled that for
 healthy older adults — and it is one of the most useful *negative* results in this whole manual, because
 **subtracting** a low-value intervention is as much a longevity move as adding a good one.
 
-![ASPREE — a clean 'stop' for aspirin](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q01-aspree.png)
+![ASPREE — a clean 'stop' for aspirin](/_intake/health-longevity-fitness/media/figures/Q01-aspree.png)
 
 - **ASPREE** (McNeil et al., 2018, three *NEJM* papers): **19,114 community-dwelling adults ≥70** (≥65 for US
   minorities) with **no** established cardiovascular disease, randomized to **100 mg aspirin/day vs placebo**.
@@ -17194,7 +17194,7 @@ healthy older adults — and it is one of the most useful *negative* results in 
 
 ## 5. Vaccines as longevity medicine — the underrated intervention
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/igg-antibody.png)
+![](/_intake/health-longevity-fitness/media/figures/igg-antibody.png)
 
 Vaccination is rarely filed under "longevity," but for older adults it is one of the highest-leverage,
 best-evidence, lowest-cost interventions available — and a few vaccines now carry **signals beyond their target
@@ -17202,7 +17202,7 @@ infection** that make them interesting for healthspan. The honest line: the **in
 benefits are `rct`/strong; some of the **downstream** benefits (dementia, cardiovascular) are
 `cohort`/quasi-experimental and still firming up.
 
-![Vaccines as Longevity — beyond infection](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/47-vaccines-longevity.png)
+![Vaccines as Longevity — beyond infection](/_intake/health-longevity-fitness/media/figures/47-vaccines-longevity.png)
 
 - **Shingles → dementia (the exciting one).** Reactivated varicella-zoster causes neuro-inflammation, and a
   string of studies now links **zoster vaccination to lower dementia risk.** **Taquet 2024** (*Nat Med*)[^taquet]
@@ -17231,18 +17231,18 @@ manual.
 
 ## 6. The geroprotector drugs — honest status
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/metformin-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/metformin-structure.png)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/rapamycin-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/rapamycin-structure.png)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/empagliflozin-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/empagliflozin-structure.png)
 
 These are the drugs the longevity community actually argues about: repurposed/off-label agents with strong
 *aging-biology* rationale and, in most cases, **no completed human trial proving they slow human aging.** Grade
 them as experimental for that purpose. (Mechanisms and the mouse data are detailed in
 `B-aging-mechanisms.md`; this is the prescribing-reality view.)
 
-![Geroprotector Drugs — by evidence stage](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/64-geroprotector-matrix.png)
+![Geroprotector Drugs — by evidence stage](/_intake/health-longevity-fitness/media/figures/64-geroprotector-matrix.png)
 
 - **Metformin.** The famous Bannister 2014 cohort (diabetics on metformin appearing to outlive non-diabetics) is
   **observational and confounded** (immortal-time/prevalent-user bias — see Domain B). **TAME** (Barzilai) is a
@@ -17272,7 +17272,7 @@ honestly labeled as such, no matter how often they're sold otherwise.
 
 ## 7. Hormones — and the unregulated peptides
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/insulin.png)
+![](/_intake/health-longevity-fitness/media/figures/insulin.png)
 
 Hormone therapy is where evidence-based medicine and the "anti-aging" cash-clinic world collide hardest. The
 rule that organizes it: **replacing a hormone to treat a diagnosed deficiency is medicine; pushing hormones
@@ -17280,7 +17280,7 @@ above normal in a healthy person to chase youth is experimentation** — often s
 
 ### 7.1 Testosterone replacement (TRT)
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/testosterone-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/testosterone-structure.png)
 
 - **The honest indication:** **symptomatic hypogonadism** — low testosterone *confirmed on testing* **plus**
   symptoms (low libido, fatigue, loss of muscle/bone, erectile dysfunction). For these men, replacement to a
@@ -17442,7 +17442,7 @@ Read this before anything else, because it repeats in every section below.
    cells, "regenerative" injections, and exosome infusions to desperate patients *during* the
    years when the honest answer is still "we don't know yet."
 
-![The Four-Beat Frontier — biology → predatory clinic](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R06-four-beat.png)
+![The Four-Beat Frontier — biology → predatory clinic](/_intake/health-longevity-fitness/media/figures/R06-four-beat.png)
 
 The neutrality of this book is the grade itself. A human result confirmed across many trials
 and a result seen only in mice are both reported here — but never merged, and never laundered
@@ -17489,7 +17489,7 @@ lower, the more you're paying for a story.*
 The gene-therapy block at the top is the field's genuine triumph. The clinic block at the
 bottom is where the field's authority gets stolen.
 
-![Regenerative Medicine — proven → paying for a story](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R04-regen-ladder.png)
+![Regenerative Medicine — proven → paying for a story](/_intake/health-longevity-fitness/media/figures/R04-regen-ladder.png)
 
 ---
 
@@ -17578,7 +17578,7 @@ predatory tier, and the one to check first is ClinicalTrials.gov — a real cell
 registered trial. If a treatment fits the pattern, it is the predatory tier, full stop. The
 burden of proof is on the seller, and they have not met it.
 
-![Predatory Stem-Cell Red Flags — walk away](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z12-stemcell-flags.png)
+![Predatory Stem-Cell Red Flags — walk away](/_intake/health-longevity-fitness/media/figures/Z12-stemcell-flags.png)
 
 ---
 
@@ -17648,7 +17648,7 @@ limit *who* can receive them alongside what they cost.
   conditioning and a specialized center. A cure that the people who need it most cannot reach is a
   real, unsolved equity problem, not a footnote.
 
-![Gene-Therapy Prices — cures at record cost](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q06-gene-prices.png)
+![Gene-Therapy Prices — cures at record cost](/_intake/health-longevity-fitness/media/figures/Q06-gene-prices.png)
 
 So the honest grade on gene therapy: **the science and the human endpoints are real and, in the
 approved cases, sometimes curative — and the access reality means "cured in principle" is doing
@@ -17787,7 +17787,7 @@ epicondylitis** and some tendinopathies, but it is inconsistent and not the slam
 implies. PRP is also non-standardized — "PRP" means a dozen different preparations — which makes the
 literature hard to pool and easy to cherry-pick.
 
-![PRP Matches Placebo — sold as regeneration](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q07-prp.png)
+![PRP Matches Placebo — sold as regeneration](/_intake/health-longevity-fitness/media/figures/Q07-prp.png)
 
 **Grade:** `meta`/`rct` evidence that is **mostly modest-to-placebo**, sold as established
 regeneration. Low harm (it's your own blood), but the value proposition is largely unproven.
@@ -17821,7 +17821,7 @@ strongest evidence are load-management and progressive exercise (cross-ref §21)
 The "cure aging" industry is real, well-capitalized, and scientifically serious — and its honest
 clinical output so far is **thin**, precisely because the translation gap is real.
 
-![The Longevity Pipeline — proven → predatory](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/104-longevity-pipeline.png)
+![The Longevity Pipeline — proven → predatory](/_intake/health-longevity-fitness/media/figures/104-longevity-pipeline.png)
 
 - **The funded theses.** Reprogramming (Altos ~$3B, Retro, NewLimit), senolytics (Unity), basic
   aging biology (Calico, ~$2.5B from Alphabet/AbbVie), target discovery from human biobanks (BioAge),
@@ -17959,7 +17959,7 @@ peppermint oil for IBS, spinal manipulation for acute back pain, mind–body mov
 energy healing are pure placebo; heavy-metal-bearing traditional preparations are toxic; and using any
 of it *instead of* proven care is the one lethal move.
 
-![CAM, Graded — by indication](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/38-cam-matrix.png)
+![CAM, Graded — by indication](/_intake/health-longevity-fitness/media/figures/38-cam-matrix.png)
 
 Each modality's best-evidence indication, named trials, effect sizes, and grade are detailed by section in §2–§8 below.
 
@@ -17987,7 +17987,7 @@ shoulder). Its findings are the honest centre of gravity for the whole field:
 Together, those two numbers say it: **most of acupuncture's benefit is context — ritual, attention, touch,
 expectation — and only a sliver is the needle's placement.**
 
-![Acupuncture — mostly ritual](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q09-acupuncture.png)
+![Acupuncture — mostly ritual](/_intake/health-longevity-fitness/media/figures/Q09-acupuncture.png)
 
 Cochrane reviews land in the same place by condition:
 small benefits for **tension-type headache** and **migraine prophylaxis** and **chronic low-back/neck pain**;
@@ -18093,7 +18093,7 @@ toxin + urothelial carcinogen) and undeclared pharmaceuticals. Net: traditional 
 source of drug *leads*, an illegitimate theory of the *body*, and — for metal-bearing preparations — a genuine
 *toxicology* hazard.
 
-!['Natural' ≠ 'Safe' — heavy metals in supplements](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q10-ayurveda-metals.png)
+!['Natural' ≠ 'Safe' — heavy metals in supplements](/_intake/health-longevity-fitness/media/figures/Q10-ayurveda-metals.png)
 
 ---
 
@@ -18230,7 +18230,7 @@ heal fractures, or reopen arteries. **Placebo modulates the experience of illnes
 modality whose entire effect is placebo can be a humane comfort *alongside* real care and a lethal substitute
 *instead of* it.
 
-![Placebo Is Real But Bounded — feel vs pathology](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R08-placebo-bounded.png)
+![Placebo Is Real But Bounded — feel vs pathology](/_intake/health-longevity-fitness/media/figures/R08-placebo-bounded.png)
 
 **9.2 "Natural" ≠ safe.** Naturalness predicts nothing about safety, purity, dose, or interactions. Herbs are
 unstandardised drugs; "supplements" can be adulterated (§3); traditional metal-bearing preparations can poison
@@ -18250,7 +18250,7 @@ death rate — by causing people to skip or delay the cure.** (Cross-ref oncolog
 alternative medicine is overwhelmingly an **opportunity-cost harm**, and it is largest exactly where
 conventional medicine works best.
 
-!['Instead-Of' Kills — alternative-only cancer care](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Q08-alt-conventional.png)
+!['Instead-Of' Kills — alternative-only cancer care](/_intake/health-longevity-fitness/media/figures/Q08-alt-conventional.png)
 
 **9.4 The regulation gap.** In the US, the **Dietary Supplement Health and Education Act (DSHEA, 1994)** lets
 supplements, herbs, and homeopathic products reach the market **without pre-market proof of efficacy, purity,
@@ -18371,7 +18371,7 @@ _Not medical advice. Thermal levers (sauna/cold) live in §05; supplement verdic
 | **Methylene blue** | Nootropic, mitochondrial "energy," anti-aging | Real redox mechanism + one small human fMRI/memory study; outcome unproven; not benign | **PROMISING** (mechanism) / **NO-EVIDENCE** (anti-aging) |
 | **Grey-market "smart drugs"** (modafinil, racetams, etc.) | Cognitive enhancement | Modafinil real in sleep-dep; most racetams unproven; unregulated supply | mixed — see §9 |
 
-![Biohacks, Graded — what survives the evidence](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/37-biohacking-matrix.png)
+![Biohacks, Graded — what survives the evidence](/_intake/health-longevity-fitness/media/figures/37-biohacking-matrix.png)
 
 ---
 
@@ -18426,7 +18426,7 @@ body-composition signals (MK-677 raises lean mass and also fasting glucose and w
 healthspan or longevity human data**, and a coherent mechanistic reason to expect net harm if used for
 that purpose.
 
-![The GH/IGF-1 Own-Goal — boosters push the wrong way](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y10-gh-owngoal.png)
+![The GH/IGF-1 Own-Goal — boosters push the wrong way](/_intake/health-longevity-fitness/media/figures/Y10-gh-owngoal.png)
 
 **Dose↔evidence honesty:** these are sold as "natural because your body makes the GH" — but the *amount*,
 *timing*, and *chronicity* are pharmacological, and the relevant comparison isn't "vs synthetic HGH," it's
@@ -18641,7 +18641,7 @@ generally.
 
 ## 7. FRINGE BIOPHYSICS — grounding, structured/hydrogen water, EMF-protection
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BP08-fringe-biophysics-verdict.png)
+![](/_intake/health-longevity-fitness/media/figures/BP08-fringe-biophysics-verdict.png)
 
 This cluster claims to act on the body through *physics* that is either invented or grossly overstated. It is
 also where the contested claims associated with **Jack Kruse** (a neurosurgeon and longevity writer) around
@@ -18849,7 +18849,7 @@ usually unproven; the price is charged for the outcome. The hardest rule in the 
 mechanism claim may never be presented as an outcome claim* — is the single tool that dissolves most of the
 section.
 
-![The Laundering Gap — mechanism → false promise](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R05-laundering-gap.png)
+![The Laundering Gap — mechanism → false promise](/_intake/health-longevity-fitness/media/figures/R05-laundering-gap.png)
 
 **The survivorship + anecdote engine.** The testimonial base is structurally misleading. The people who
 post "this changed my life" are (a) **survivors** — those for whom it seemed to work, while the non-responders
@@ -18861,7 +18861,7 @@ demonstration). An n=1 can validly detect a *large* personal effect (L2 epistemi
 small effect, cannot rule out the four biases above, and **cannot** show a longevity outcome — which is
 exactly the claim being made.
 
-![The Anecdote Engine — why testimonials mislead](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/R07-anecdote-engine.png)
+![The Anecdote Engine — why testimonials mislead](/_intake/health-longevity-fitness/media/figures/R07-anecdote-engine.png)
 
 **The honest synthesis, in one breath:** a handful of these have real, narrow, correct-dose effects — **red
 light for skin and some pain; topical GHK-Cu; methylene blue's mechanism; nicotine's acute attention bump;
@@ -18961,7 +18961,7 @@ Everything below trains one of four physical capacities. Each is on the list bec
 predicts how long and how well you live — and, unlike most longevity biomarkers, each is something you
 can directly *change*.
 
-![The Four Capacities — build + test each](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/60-four-capacities.png)
+![The Four Capacities — build + test each](/_intake/health-longevity-fitness/media/figures/60-four-capacities.png)
 
 | Capacity | What it is | Why it's load-bearing |
 |---|---|---|
@@ -18976,7 +18976,7 @@ outcomes* — we train it because it preserves *function and the ability to keep
 not because a trial proved CARs (controlled articular rotations — slow, active circles at a joint's end
 range) extend life. Don't let a mobility influencer borrow strength's evidence.
 
-![VO₂max → Mortality — strongest predictor](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/03-vo2max-mortality.png)
+![VO₂max → Mortality — strongest predictor](/_intake/health-longevity-fitness/media/figures/03-vo2max-mortality.png)
 
 ---
 
@@ -18992,7 +18992,7 @@ easy, take the next rung.
 > → **Standard** (the daily-driver version most people should live in) → **Progression** (load/leverage
 > added once standard is owned). Cues and the most common faults follow.
 
-![Five Patterns, Three Rungs — regress → progress](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y07-strength-ladders.png)
+![Five Patterns, Three Rungs — regress → progress](/_intake/health-longevity-fitness/media/figures/Y07-strength-ladders.png)
 
 ### 2.1 SQUAT — knee-dominant lower body (quads, glutes, whole-body brace)
 
@@ -19010,11 +19010,11 @@ easy, take the next rung.
   or elevate heels) · butt-wink / lumbar rounding at the bottom (often a depth-beyond-current-mobility
   problem — regress depth) · chest collapsing forward.
 
-![Goblet Squat — front-loaded squat](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M18-goblet-squat.png)
+![Goblet Squat — front-loaded squat](/_intake/health-longevity-fitness/media/figures/M18-goblet-squat.png)
 
-![Wall Sit — isometric quad endurance](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M10-wall-sit.png)
+![Wall Sit — isometric quad endurance](/_intake/health-longevity-fitness/media/figures/M10-wall-sit.png)
 
-![Calf Raise — lower-leg + tendon health](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M09-calf-raise.png)
+![Calf Raise — lower-leg + tendon health](/_intake/health-longevity-fitness/media/figures/M09-calf-raise.png)
 
 ### 2.2 HINGE — hip-dominant posterior chain (hamstrings, glutes, spinal erectors)
 
@@ -19038,11 +19038,11 @@ the rest of your life. Learn it before you load it.
 - **Explosive variant:** the **kettlebell swing** is a hinge done ballistically[^kb-swing] —
   hike-pass, *snap* the hips, the arms just float; it is not a front raise.
 
-![Deadlift — the loaded hinge](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M17-deadlift.png)
+![Deadlift — the loaded hinge](/_intake/health-longevity-fitness/media/figures/M17-deadlift.png)
 
-![Kettlebell Swing — the ballistic hip hinge](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M06-kettlebell-swing.png)
+![Kettlebell Swing — the ballistic hip hinge](/_intake/health-longevity-fitness/media/figures/M06-kettlebell-swing.png)
 
-![Glute Bridge — hip extension, spares the back](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M04-glute-bridge.png)
+![Glute Bridge — hip extension, spares the back](/_intake/health-longevity-fitness/media/figures/M04-glute-bridge.png)
 
 ### 2.3 PUSH — horizontal and vertical pressing (chest, shoulders, triceps)
 
@@ -19060,13 +19060,13 @@ the rest of your life. Learn it before you load it.
 - **Common faults:** sagging or piking hips (lost the plank) · half-range reps · elbows flaring to 90°
   (shoulder strain) · overhead: ribs flaring and lower back arching to fake the range (brace the core).
 
-![Push-Up — the horizontal push](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M01-push-up.png)
+![Push-Up — the horizontal push](/_intake/health-longevity-fitness/media/figures/M01-push-up.png)
 
-![Overhead Press — the vertical push](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M02-overhead-press.png)
+![Overhead Press — the vertical push](/_intake/health-longevity-fitness/media/figures/M02-overhead-press.png)
 
-![Bench Press — loaded horizontal push](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M19-bench-press.png)
+![Bench Press — loaded horizontal push](/_intake/health-longevity-fitness/media/figures/M19-bench-press.png)
 
-![Dip — vertical push, chest + triceps](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M12-dip.png)
+![Dip — vertical push, chest + triceps](/_intake/health-longevity-fitness/media/figures/M12-dip.png)
 
 ### 2.4 PULL — horizontal and vertical pulling (lats, upper back, biceps, grip)
 
@@ -19085,28 +19085,28 @@ The most *neglected* pattern and the one that buys the most postural insurance a
 - **Common faults:** half-range / chin-craning instead of chest-to-bar · kipping/swinging to cheat reps
   · shrugging the shoulders up instead of pulling them down and back · neglecting the eccentric.
 
-![Pull-Up — the vertical pull](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M03-pull-up.png)
+![Pull-Up — the vertical pull](/_intake/health-longevity-fitness/media/figures/M03-pull-up.png)
 
-![Inverted Row — bodyweight horizontal pull](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M22-inverted-row.png)
+![Inverted Row — bodyweight horizontal pull](/_intake/health-longevity-fitness/media/figures/M22-inverted-row.png)
 
-![Bent-Over Row — the horizontal pull](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M07-bent-over-row.png)
+![Bent-Over Row — the horizontal pull](/_intake/health-longevity-fitness/media/figures/M07-bent-over-row.png)
 
-![Cable Row — horizontal pull](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M33-cable-row.png)
+![Cable Row — horizontal pull](/_intake/health-longevity-fitness/media/figures/M33-cable-row.png)
 
-![Face Pull — rear delt + posture](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M23-face-pull.png)
+![Face Pull — rear delt + posture](/_intake/health-longevity-fitness/media/figures/M23-face-pull.png)
 
-![Dead Hang — grip + spine decompression](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M13-dead-hang.png)
+![Dead Hang — grip + spine decompression](/_intake/health-longevity-fitness/media/figures/M13-dead-hang.png)
 
 ### 2.5 CARRY — loaded locomotion (grip, trunk stability, total-body work capacity)
 
 The most *functional* pattern and the most under-programmed. Carries train **grip** (the mortality
 biomarker), the trunk, and real-world "pick it up and move it" capacity — with almost no technical risk.
 
-![Grip Strength → Mortality — a cheap whole-body proxy](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/43-grip-mortality.png)
+![Grip Strength → Mortality — a cheap whole-body proxy](/_intake/health-longevity-fitness/media/figures/43-grip-mortality.png)
 
-![Suitcase Carry — loaded carry, anti-tilt](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M08-suitcase-carry.png)
+![Suitcase Carry — loaded carry, anti-tilt](/_intake/health-longevity-fitness/media/figures/M08-suitcase-carry.png)
 
-![Farmer Carry — bilateral loaded carry](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M20-farmer-carry.png)
+![Farmer Carry — bilateral loaded carry](/_intake/health-longevity-fitness/media/figures/M20-farmer-carry.png)
 
 | Rung | Movement | Use it when |
 |---|---|---|
@@ -19125,30 +19125,30 @@ biomarker), the trunk, and real-world "pick it up and move it" capacity — with
   strength, balance, and hip stability. Regression = supported (hold a rail); standard = bodyweight
   split squat; progression = load it. Directly trains the balance capacity (§5).
 
-![Bulgarian Split Squat — single-leg strength](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M28-bulgarian-split-squat.png)
+![Bulgarian Split Squat — single-leg strength](/_intake/health-longevity-fitness/media/figures/M28-bulgarian-split-squat.png)
 
-![Single-Leg RDL — unilateral hinge + balance](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M21-single-leg-rdl.png)
+![Single-Leg RDL — unilateral hinge + balance](/_intake/health-longevity-fitness/media/figures/M21-single-leg-rdl.png)
 
 - **Core / anti-movement** (dead bug → plank → side plank → Pallof press): the trunk's job in real life
   is **anti-extension and anti-rotation** — resisting force, not making crunches. McGill's "big-3"
   (curl-up, side plank, bird-dog) is the back-sparing standard. Pallof press = anti-rotation: resist
   the twist.
 
-![Side Plank — anti-lateral-flexion core](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M05-side-plank.png)
+![Side Plank — anti-lateral-flexion core](/_intake/health-longevity-fitness/media/figures/M05-side-plank.png)
 
-![Bird-Dog — anti-rotation, spine-sparing](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M11-bird-dog.png)
+![Bird-Dog — anti-rotation, spine-sparing](/_intake/health-longevity-fitness/media/figures/M11-bird-dog.png)
 
-![Pallof Press — anti-rotation core](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M29-pallof-press.png)
+![Pallof Press — anti-rotation core](/_intake/health-longevity-fitness/media/figures/M29-pallof-press.png)
 
-![Dead Bug — anti-extension core](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M32-dead-bug.png)
+![Dead Bug — anti-extension core](/_intake/health-longevity-fitness/media/figures/M32-dead-bug.png)
 
-![Hollow Hold — anterior core](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M31-hollow-hold.png)
+![Hollow Hold — anterior core](/_intake/health-longevity-fitness/media/figures/M31-hollow-hold.png)
 
 > **What "enough" looks like:** hit all five patterns across the week (squat + hinge + push + pull +
 > carry), add single-leg and anti-rotation core, and you have trained the entire body with maybe seven
 > movements. The *patterns* are the program; the *rung* is personalized.
 
-![No-Gym Training — train anywhere](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/91-minimal-equipment.png)
+![No-Gym Training — train anywhere](/_intake/health-longevity-fitness/media/figures/91-minimal-equipment.png)
 
 ---
 
@@ -19164,7 +19164,7 @@ You want both. The structure that delivers both is the **polarized model**: ~80%
 ~20% hard, and relatively little in the "grey zone" middle (moderately-hard tempo work that is
 too hard to recover from and too easy to maximally stimulate the ceiling).
 
-![Polarized Cardio — mostly easy, a little hard](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/G01-polarized.png)
+![Polarized Cardio — mostly easy, a little hard](/_intake/health-longevity-fitness/media/figures/G01-polarized.png)
 
 ### 3.1 Zone 2 — the easy base
 
@@ -19189,9 +19189,9 @@ nothing* — even 2 × 30 min meaningfully moves CRF off a low base.
 low interference — see §6), rower, easy jog, elliptical. Low-impact options let you accumulate volume
 without beating up the body.
 
-![Rowing Machine — legs-led full-body cardio](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M30-rowing-erg.png)
+![Rowing Machine — legs-led full-body cardio](/_intake/health-longevity-fitness/media/figures/M30-rowing-erg.png)
 
-![Running Form — gait / locomotion](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M26-running-form.png)
+![Running Form — gait / locomotion](/_intake/health-longevity-fitness/media/figures/M26-running-form.png)
 
 ### 3.2 VO₂max intervals — raising the ceiling
 
@@ -19208,9 +19208,9 @@ Two proven templates:
 **Dose:** **1–2 hard sessions/week is plenty** for almost everyone. Intervals carry a high RPE and
 recovery cost; this is where over-eager trainees blow up. Most of your cardio should still be easy.
 
-![Jump Rope — portable conditioning](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M14-jump-rope.png)
+![Jump Rope — portable conditioning](/_intake/health-longevity-fitness/media/figures/M14-jump-rope.png)
 
-![Box Jump — plyometric power](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M27-box-jump.png)
+![Box Jump — plyometric power](/_intake/health-longevity-fitness/media/figures/M27-box-jump.png)
 
 ### 3.3 The honest caveat — the "Zone 2 is uniquely optimal" overclaim
 
@@ -19221,7 +19221,7 @@ The reality:
 - HIIT also drives strong mitochondrial biogenesis (PGC-1α), sometimes faster per session.
 - Total **volume / energy expenditure** may matter more than the specific zone.
 
-![Zone 2 vs HIIT — both raise VO₂max](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/71-zone2-hiit.png)
+![Zone 2 vs HIIT — both raise VO₂max](/_intake/health-longevity-fitness/media/figures/71-zone2-hiit.png)
 - The honest answer is **polarized training** — *mostly easy plus some hard* — **not a single magic
   zone.** Zone 2 is *a* well-supported, sustainable, low-cost way to build aerobic base. It is not
   magic, and it is not the only thing that builds mitochondria.
@@ -19259,13 +19259,13 @@ The Ready State.)[^mobility-src]
 | **Thoracic rotation (open book)** | T-spine rotational mobility | Side-lying, top arm opens to floor; exhale into rotation; hips stacked | 5–8 reps/side |
 | **(optional) Ankle knee-to-wall** | Ankle ROM for squat/gait | Knee tracks over toes to the wall, heel down; find max distance | 8–10 reps/side |
 
-![Deep Squat Hold — hip + ankle mobility](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M16-deep-squat-hold.png)
+![Deep Squat Hold — hip + ankle mobility](/_intake/health-longevity-fitness/media/figures/M16-deep-squat-hold.png)
 
-![T-Spine Rotation — open-book reach](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M25-thoracic-rotation.png)
+![T-Spine Rotation — open-book reach](/_intake/health-longevity-fitness/media/figures/M25-thoracic-rotation.png)
 
-![Cat-Cow — segmental spine mobility](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M24-cat-cow.png)
+![Cat-Cow — segmental spine mobility](/_intake/health-longevity-fitness/media/figures/M24-cat-cow.png)
 
-![Hip-Flexor Stretch — counters sitting](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/M15-hip-flexor-stretch.png)
+![Hip-Flexor Stretch — counters sitting](/_intake/health-longevity-fitness/media/figures/M15-hip-flexor-stretch.png)
 
 For *flexibility* gains specifically (e.g. building a pancake or front split), the higher-yield tools are
 **PNF/contract-relax** and **loaded stretching (Jefferson curl, loaded end-range)** held over weeks.[^flex-inv]
@@ -19313,9 +19313,9 @@ You need far less than the industry implies. The evidence-backed minimums:
 | **Strength (1RM)** | As little as **a few hard sets/week per movement** can build and maintain strength; in trained lifters even **~1–3 heavy sets per lift, a couple times a week** preserves and slowly builds maximal strength | Androulakis-Korakakis 2021 (MED for 1RM); Iversen/Schoenfeld 2021 "No Time to Lift?" |
 | **Strength → mortality** | The cohort sweet spot is **~30–60 min/week** of resistance activity — and benefit is **J-shaped** (more is *not* better for the mortality endpoint) | Momma 2022[^momma] |
 
-![Strength J-curve — more is not better](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/20-strength-jcurve.png)
+![Strength J-curve — more is not better](/_intake/health-longevity-fitness/media/figures/20-strength-jcurve.png)
 
-![Steps → Mortality — plateaus ~7–8k](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/21-steps-plateau.png)
+![Steps → Mortality — plateaus ~7–8k](/_intake/health-longevity-fitness/media/figures/21-steps-plateau.png)
 | **Hypertrophy** | **~10 sets/week per muscle** is a solid target; clear dose-response up the curve, but ~4 hard sets/week already produces most of the strength benefit | Schoenfeld/Krieger volume meta; Robinson 2024 |
 | **VO₂max** | **1–2 interval sessions/week** + some easy volume measurably raises VO₂max off a low base | Helgerud 2007[^hiit-med] |
 | **General activity** | The steepest mortality drop is sedentary → *any* regular movement; break up sitting | Cohort dose-response[^pa-dose] |
@@ -19324,7 +19324,7 @@ You need far less than the industry implies. The evidence-backed minimums:
 hard) per week clears the bar for *most* of the available longevity benefit. Everything beyond is
 optimization, not survival.
 
-![Minimum-Effective Week — one week, everything](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/40-weekly-program.png)
+![Minimum-Effective Week — one week, everything](/_intake/health-longevity-fitness/media/figures/40-weekly-program.png)
 
 ### 6.2 The volume / frequency / proximity-to-failure levers
 
@@ -19358,7 +19358,7 @@ maintenance MED is so forgiving (§6.1). Ways to add load (in rough priority):
 
 **Autoregulate with RPE / RIR** so you push hard on good days and back off on bad ones.
 
-![RPE & RIR — autoregulate effort](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F02-rpe-rir.png)
+![RPE & RIR — autoregulate effort](/_intake/health-longevity-fitness/media/figures/F02-rpe-rir.png)
 
 The productive default for most working sets is **RPE 7–8 / 2–3 RIR**; save RPE 9–10 (0–1 RIR) for top
 sets or testing, and sit at RPE 5–6 (4+ RIR) for warm-ups, technique, and deload work. Beginners should
@@ -19369,7 +19369,7 @@ mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique — chasing RPE 10
 > All three obey the same skeleton: **all five patterns + cardio (mostly easy, some hard) + a little
 > mobility/balance.** They differ in volume, frequency, and load — not in philosophy.
 
-![The Minimum Effective Week — 3 templates](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F01-week-calendar.png)
+![The Minimum Effective Week — 3 templates](/_intake/health-longevity-fitness/media/figures/F01-week-calendar.png)
 
 **BEGINNER — 3 days, full-body (the highest-leverage starting point)**
 
@@ -19542,7 +19542,7 @@ _Not medical advice. Injury and rehab: §21; scaling to your body: §04._
 
 ## 1. How to read this chapter — modalities are delivery vehicles for capacities
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/BP09-modality-capacity-matrix.png)
+![](/_intake/health-longevity-fitness/media/figures/BP09-modality-capacity-matrix.png)
 
 A "modality" is not a goal. It is a **delivery vehicle** for one or more of the trainable capacities from
 Section 02 — a barbell back squat, a goblet squat, and a leg press all deliver the *squat pattern* and the
@@ -19658,7 +19658,7 @@ with a floor and a bar to hang from.
 This is one of the most over-tribalized debates in the gym, and the evidence is anticlimactic: **both build
 strength, and the difference is smaller than either camp claims.**
 
-![Machines vs Free Weights — both, for most](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N10-machines-free.png)
+![Machines vs Free Weights — both, for most](/_intake/health-longevity-fitness/media/figures/N10-machines-free.png)
 
 **The honest verdict:** for hypertrophy and for building the strength *number*, **machines and free weights
 produce broadly similar results** when load and effort are matched — the body responds to tension and
@@ -19710,7 +19710,7 @@ the *vehicles*.
 > are more likely better off, not worse.** (The exception: established OA or prior major knee injury — there,
 > individualize.) |
 
-!['Running Wrecks Knees' — the opposite is true](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L01-running-oa.png)
+!['Running Wrecks Knees' — the opposite is true](/_intake/health-longevity-fitness/media/figures/L01-running-oa.png)
 
 ### 5.2 Cycling
 
@@ -19871,7 +19871,7 @@ calm), not for inflated "detox/realignment" claims. Full lineage/evidence treatm
 | **Best for** | **Older adults and anyone at fall risk** — this is the clearest who-it's-for in the chapter. Also stress regulation and gentle movement for any age. |
 | **Honest evidence** | **The strongest evidence in this mobility/mind-body section by a clear margin.** Multiple systematic reviews and meta-analyses of RCTs show **tai chi reduces falls and improves balance in older adults** (e.g. Front Public Health 2023; and a landmark RCT, Li et al. 2018, *JAMA Intern Med*, found a therapeutic tai chi program *outperformed* conventional multimodal and stretching exercise for fall reduction in high-risk older adults).[^taichi-falls] This is meta/RCT-tier — well above the mechanism/anecdotal grade most "mobility" modalities carry. **If an older adult does one mind-body modality for fall prevention, the evidence points to tai chi.** |
 
-![Tai Chi & Falls — a standout RCT](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L03-taichi-falls.png)
+![Tai Chi & Falls — a standout RCT](/_intake/health-longevity-fitness/media/figures/L03-taichi-falls.png)
 
 ### 7.4 Animal flow / ground-based movement
 
@@ -19980,7 +19980,7 @@ power, and balance** and over-rely on one cardio mode), then run your eye across
 you'll actually use (the "Best for" column + your access, joints, and enjoyment). You're choosing among
 equivalents — you don't need many tools.
 
-![Modality → Capacity — what each tool trains](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/29-modality-matrix.png)
+![Modality → Capacity — what each tool trains](/_intake/health-longevity-fitness/media/figures/29-modality-matrix.png)
 
 | Modality | CRF | STR | PWR | MOB | COO/Bal | Impact/Bone | Skill | Risk | Best for | Modality-specific evidence |
 |---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---|---|
@@ -20183,7 +20183,7 @@ If you skim the catalog below, bank these first:
 
 The meta-rule under all three: **start from what you'll keep doing and who you'll do it with.** A mediocre sport you keep beats an optimal program you quit.
 
-![Match the Sport to the Person — goals, joints, adherence](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z01-sport-matcher.png)
+![Match the Sport to the Person — goals, joints, adherence](/_intake/health-longevity-fitness/media/figures/Z01-sport-matcher.png)
 
 ---
 
@@ -20209,7 +20209,7 @@ Proceedings* 2018)[^cchs-schnohr] was a surprise that has shaped the entire conv
 | **Calisthenics** | **+3.1 yr** | Strength-endurance, bodyweight | Low | Solid, solo. |
 | **Health-club / gym** | **+1.5 yr** | Whatever you program | **Lowest** (often headphones-in, solo) | The lowest gain of the lot — the data's quiet rebuke to "just go to the gym." |
 
-![Copenhagen Sports — tennis +9.7y](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/02-copenhagen-sports.png)
+![Copenhagen Sports — tennis +9.7y](/_intake/health-longevity-fitness/media/figures/02-copenhagen-sports.png)
 
 **The interpretation the authors themselves reached** — and the spine of this whole chapter — is in their own
 words: *"the leisure-time sports that inherently involve more social interaction were associated with the best
@@ -20217,7 +20217,7 @@ longevity."* As the opening gambit showed, calorie burn does not track the ranki
 are (a) **social interaction**, (b) **skill / cognitive engagement**, and (c) an **intermittent**
 (burst-and-recover) intensity pattern rather than a steady grind.
 
-![Calories Don't Explain It — the longevity puzzle](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y01-calories-le.png)
+![Calories Don't Explain It — the longevity puzzle](/_intake/health-longevity-fitness/media/figures/Y01-calories-le.png)
 
 **The mandatory caveat, stated plainly:** CCHS is observational. Tennis and gym memberships are not randomly
 assigned — they sort on income, baseline health, joint integrity, and personality. The 9.7-year figure is almost
@@ -20241,7 +20241,7 @@ activity."
 
 [^oja]: Oja P, Kelly P, Pedisic Z, et al. — *Br J Sports Med* 2017. doi:10.1136/bjsports-2016-096822. 80,306 British adults; racquet sports HR 0.53 all-cause, swimming HR 0.72. claim: racquet-mortality-oja (cohort).
 
-![Sport-Specific Mortality — racquet sports win](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L02-sport-hr.png)
+![Sport-Specific Mortality — racquet sports win](/_intake/health-longevity-fitness/media/figures/L02-sport-hr.png)
 
 > A useful dissonance to keep: in the *British* cohort (Oja) running and football showed **no** significant
 > all-cause mortality benefit, while in the *Danish* cohort (Copenhagen) soccer bought +4.7 years. Cohorts
@@ -20266,7 +20266,7 @@ For each sport below we score five things. This is the lens; the table in §1 is
 5. **Age-appropriateness & barrier-to-entry** — when you can start, how late you can play, and what it costs to
    begin (gear, partner, court, skill floor).
 
-![Five-Axis Sport Profile — no sport wins on all](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/G07-sport-radar.png)
+![Five-Axis Sport Profile — no sport wins on all](/_intake/health-longevity-fitness/media/figures/G07-sport-radar.png)
 
 ---
 
@@ -20441,7 +20441,7 @@ wrestling, judo) largely does not; striking (boxing, kickboxing, MMA) does. That
 risk grading, because of what we know about repetitive head impacts and CTE (chronic traumatic encephalopathy —
 the progressive brain degeneration that follows accumulated blows to the head).
 
-![Combat Sports & Head Dose — manage the impacts](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F08-head-trauma.png)
+![Combat Sports & Head Dose — manage the impacts](/_intake/health-longevity-fitness/media/figures/F08-head-trauma.png)
 
 ### 5.1 Brazilian jiu-jitsu (BJJ) — the grappler's case
 - **Fitness profile:** exceptional **full-body** stimulus — isometric and dynamic strength, grip, core,
@@ -20625,7 +20625,7 @@ on four axes the gym usually neglects:
 4. **Intermittent-HIIT physiology.** Burst-and-recover play (rally/recover, shift/bench, sprint/jog) delivers
    high-intensity intervals (HIIT — high-intensity interval training) without a stopwatch. The game *is* the interval timer.
 
-![Why Racquet Sports Win — four ingredients → adherence](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y08-racquet-bundle.png)
+![Why Racquet Sports Win — four ingredients → adherence](/_intake/health-longevity-fitness/media/figures/Y08-racquet-bundle.png)
 
 ### 7.2 The "play" reframe — humans are built to move playfully
 The deepest framing in this chapter is evolutionary: humans did not evolve to do isolated sets of biceps curls or
@@ -20757,13 +20757,13 @@ Grade key: **real** = consistent human RCT/meta evidence for a meaningful effect
 = works *only* in a specific state (deficiency, inadequate intake, a clinical subgroup) and is inert otherwise.
 **hype** = the marketed claim outruns the evidence; effect is mechanistic, animal, surrogate, or null in humans.
 
-![Supplement Traffic Light — real / context / hype](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N01-supplements.png)
+![Supplement Traffic Light — real / context / hype](/_intake/health-longevity-fitness/media/figures/N01-supplements.png)
 
 *(The traffic-light above is the at-a-glance grade for each supplement; the practical dose, honest mechanism, evidence tier, and the sources for every grade are spelled out per-supplement in §1.1–1.8 below.)*
 
 ### 1.1 Creatine monohydrate — the strongest supplement in the building
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/creatine-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/creatine-structure.png)
 
 If you take one supplement for fitness, this is it. Creatine is the most-studied ergogenic aid in sports science,
 with hundreds of RCTs and a decade-stable safety record.
@@ -20814,7 +20814,7 @@ positive only for high-dose prescription EPA in already-high-risk patients.
   is a *predictor*. That low levels track with risk is not proof that swallowing fish oil to raise the number
   changes your outcome.
 
-![Omega-3 Index — predictor, RCTs mixed](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/55-omega3-index.png)
+![Omega-3 Index — predictor, RCTs mixed](/_intake/health-longevity-fitness/media/figures/55-omega3-index.png)
 
 - **Triglycerides (real, `rct`/`meta`; `rct` — a randomized controlled trial — is the strongest evidence tier):**
   high-dose EPA/DHA reliably lowers triglycerides (TG) ~20–30% in a dose-dependent way — the **AHA Science Advisory
@@ -20834,7 +20834,7 @@ omega-3 index is a predictor, not a proven lever.**
 
 ### 1.3 Vitamin D — the deficiency-only honesty section
 
-![](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/vitamin-d3-structure.png)
+![](/_intake/health-longevity-fitness/media/figures/vitamin-d3-structure.png)
 
 This is the most over-supplemented "longevity" molecule, and the large RCTs are a case study in predictor≠lever.
 
@@ -20849,7 +20849,7 @@ This is the most over-supplemented "longevity" molecule, and the large RCTs are 
 - **Why (Manson 2020)**[^vitd-manson2020] the low blood level was largely a *marker* of poor health
   (obesity, inactivity, illness, low sun) — a predictor, not the lever.
 
-![Predictor ≠ Lever (VITAL) — D & omega-3 test null](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L04-vital-nulls.png)
+![Predictor ≠ Lever (VITAL) — D & omega-3 test null](/_intake/health-longevity-fitness/media/figures/L04-vital-nulls.png)
 
 - **Where it IS real (context-only):** correcting genuine **deficiency** (e.g. <20 ng/mL / <50 nmol/L), supporting
   bone health *with adequate calcium*, and in housebound/dark-climate/malabsorption populations. **Dose: 800–2000
@@ -20879,7 +20879,7 @@ Test, don't guess.
   stroke, type-2 diabetes, and colorectal cancer; RCT arms show lower LDL cholesterol, body weight, and blood
   pressure. The dose-response keeps improving up to and beyond **25–29 g/day**.
 
-![Fiber & Mortality — a clean dose-response](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/B14-fiber-mortality.png)
+![Fiber & Mortality — a clean dose-response](/_intake/health-longevity-fitness/media/figures/B14-fiber-mortality.png)
 
 - This blends a strong cohort mortality signal with RCT surrogate proof (LDL, glycemia) — a sturdier evidence base
   than almost any pill. It also feeds SCFA (short-chain fatty acid)-producing gut microbes (Domain C2), though the
@@ -20955,7 +20955,7 @@ prescription** that falls out of it.
 The functional-muscle optimum (~1.6 g/kg) sits **far above** the protein-restriction longevity prescription —
 which is exactly the tension Domain D logs. The resolution is age-stratified (below).
 
-![Protein Dose-Response — plateau ~1.6 g/kg](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/33-protein-dose.png)
+![Protein Dose-Response — plateau ~1.6 g/kg](/_intake/health-longevity-fitness/media/figures/33-protein-dose.png)
 
 ### 2.2 Leucine threshold, per-meal dose, and distribution
 
@@ -20963,7 +20963,7 @@ which is exactly the tension Domain D logs. The resolution is age-stratified (be
   ~2–3 g**, which corresponds to roughly **20–40 g of high-quality protein per meal** (the higher end for older or
   larger people, who have **anabolic resistance** — they need *more* per dose to hit the same MPS).
 
-![The Leucine Threshold — why you spread protein](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/G02-leucine.png)
+![The Leucine Threshold — why you spread protein](/_intake/health-longevity-fitness/media/figures/G02-leucine.png)
 
 - **Anabolic resistance with age is real but conditional:** **Shad 2016**[^protein-shad] finds the
   blunted MPS response in aging shows up mainly at *lower* protein/leucine doses and is partly overcome by **higher
@@ -20988,7 +20988,7 @@ which is exactly the tension Domain D logs. The resolution is age-stratified (be
 
 The conflict mostly dissolves on the **age axis** — do not apply one prescription across a lifespan:
 
-![Protein by Age & Goal — the mid-life→65+ flip](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L05-protein-age.png)
+![Protein by Age & Goal — the mid-life→65+ flip](/_intake/health-longevity-fitness/media/figures/L05-protein-age.png)
 
 - **Mid-life (≈45–65):** mTOR and IGF-1 are growth signals — helpful for building muscle, theoretically a
   double-edged sword for aging. Here the theoretical concern (protein → IGF-1/mTOR → growth/cancer signaling) is
@@ -21013,7 +21013,7 @@ Diet tribalism (keto vs vegan vs carnivore vs paleo) is mostly noise. What actua
 higher-tier evidence — PREDIMED (Domain D §8)[^pattern-predimed], the fiber meta-analyses (Reynolds 2019), the
 Adventist/cohort data, and the calorie-restriction (CR) / metabolic literature — is a *pattern*, not a brand:
 
-![The Whole-Food Plate — ½ plants · ¼ protein · ¼ carbs](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/62-longevity-plate.png)
+![The Whole-Food Plate — ½ plants · ¼ protein · ¼ carbs](/_intake/health-longevity-fitness/media/figures/62-longevity-plate.png)
 
 1. **Mostly whole, minimally-processed foods.** The most robust modern signal isn't macro ratios — it's the
    processing axis. Ultra-processed food tracks with worse outcomes across cohorts (and one tightly-controlled
@@ -21027,7 +21027,7 @@ Adventist/cohort data, and the calorie-restriction (CR) / metabolic literature �
    your diet around it.
 5. **Low in added sugar and refined starch**, calibrated to activity.
 
-![The Converging Pattern — five converging habits](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F03-dietary-pattern.png)
+![The Converging Pattern — five converging habits](/_intake/health-longevity-fitness/media/figures/F03-dietary-pattern.png)
 
 **What the evidence actually says vs the tribes:** the *strongest dietary-pattern RCT we have* (PREDIMED) tested a
 Mediterranean pattern — and even it carries an asterisk (originally published in 2013, then retracted and republished with a corrected analysis in 2018 over randomization
@@ -21036,7 +21036,7 @@ you can't randomize humans to decades of eating. So the honest stance is: pick a
 protein-adequate pattern you can *adhere to*; adherence and energy balance beat the brand. The macro wars are
 fighting over a precision the evidence doesn't support.
 
-![Mediterranean Diet — best-evidenced pattern](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/57-mediterranean.png)
+![Mediterranean Diet — best-evidenced pattern](/_intake/health-longevity-fitness/media/figures/57-mediterranean.png)
 
 ---
 
@@ -21076,7 +21076,7 @@ timing adds a small real circadian benefit. It is not required, and it is not ma
 | **"Anti-inflammatory" supplement stacks** (turmeric/curcumin megadoses, etc.) | "Lower inflammation, slow aging" | Mechanistic/surrogate at best; bioavailability problems; no healthspan outcome RCTs. CRP moving ≠ living longer. | `mechanistic` / small `rct` | **hype** |
 | **Greens powders** | "Replace vegetables, detox, energy" | No outcome evidence; expensive; a fiber-and-phytonutrient *gesture* that doesn't replicate whole food. Eat the vegetables. | `anecdotal` / none | **hype** |
 
-![Supplement Shelf — real vs hype](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/28-supplement-matrix.png)
+![Supplement Shelf — real vs hype](/_intake/health-longevity-fitness/media/figures/28-supplement-matrix.png)
 
 **The pattern in the hype column:** every one of these is built on a **mechanism or a biomarker** (NAD+ goes up,
 sirtuins activate, "antioxidant," CRP drops) that has **not** translated into a human outcome — and in a few cases
@@ -21200,7 +21200,7 @@ abuses more than any other:
    continuously (cross-ref `17-organ-systems-atlas.md` §3.5 — flat debunk). A cleanse has to beat *that baseline*, and
    none does. Cross-ref the detox cluster in `32-biohacking-fringe.md` §6.
 
-![Caloric Restriction (CALERIE) — modest & real](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/85-calerie.png)
+![Caloric Restriction (CALERIE) — modest & real](/_intake/health-longevity-fitness/media/figures/85-calerie.png)
 
 A practical note on terminology: in 2024 a large expert panel published an **international consensus on fasting
 terminology** (Koppold et al., 2024)[^koppold] precisely because the words are used so loosely. Where definitions
@@ -21216,7 +21216,7 @@ genuine **circadian** effect from eating earlier in the day. None of the IF vari
 RCT (randomized controlled trial — the strongest evidence tier); you cannot randomize humans to decades of a
 schedule.
 
-![Fasting Protocols — compared](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/89-fasting-protocols.png)
+![Fasting Protocols — compared](/_intake/health-longevity-fitness/media/figures/89-fasting-protocols.png)
 
 ### 1.1 Time-restricted eating (TRE) — 16:8, 14:10, 18:6
 
@@ -21231,7 +21231,7 @@ schedule.
   insulin sensitivity, blood pressure, and oxidative-stress markers. When calories are matched, TRE ≈ continuous
   restriction for weight.[^tre-cr]
 
-![Time-Restricted Eating — timing > window](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L06-tre-cr.png)
+![Time-Restricted Eating — timing > window](/_intake/health-longevity-fitness/media/figures/L06-tre-cr.png)
 
 - **Verdict:** **MODERATE — legitimate, mostly via adherence.** A defensible, low-risk eating *tool* for people who
   find a window easier than counting. **Early** windows have a small real circadian edge; **late** windows are the
@@ -21311,7 +21311,7 @@ state. A rough sequence as a fast extends (individual variation is large; these 
 - **Throughout:** counter-regulatory hormones, fat-free-mass loss accrues, and **micronutrient/electrolyte reserves
   draw down** — the part that becomes dangerous.
 
-![Fasting Timeline — autophagy honesty flag](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/15-fasting-timeline.png)
+![Fasting Timeline — autophagy honesty flag](/_intake/health-longevity-fitness/media/figures/15-fasting-timeline.png)
 
 The **endocrine adaptations to prolonged fasting** are real and increasingly characterized (review, 2025)[^endocrine-review],
 but "characterized physiology" is not the same as "demonstrated long-term benefit."
@@ -21357,7 +21357,7 @@ fasting. Mechanism: refeeding spikes insulin → cells rapidly pull **phosphate,
 blood → acute **hypophosphatemia**, hypokalemia, hypomagnesemia, plus thiamine depletion and fluid shifts. The result
 can be cardiac arrhythmia, respiratory failure, seizures, and death.
 
-![Refeeding Syndrome — the danger after a long fast](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F05-refeeding.png)
+![Refeeding Syndrome — the danger after a long fast](/_intake/health-longevity-fitness/media/figures/F05-refeeding.png)
 
 - It is well documented in critically ill and malnourished patients (refeeding hypophosphatemia incidence and mortality
   reviews, 2026)[^refeeding-reviews], and there are case reports of severe outcomes after prolonged self-directed
@@ -21454,7 +21454,7 @@ than read every one. The one detail worth stopping for is the mechanism of the "
   Sies & Brooker, showing the "stones" were saponified oil with no actual gallstone constituents.) The liver does not
   store passable "stones," and you cannot manually flush the biliary tree this way.
 
-!['Liver Flush Stones' Are Soap — not gallstones](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y09-liver-flush.png)
+!['Liver Flush Stones' Are Soap — not gallstones](/_intake/health-longevity-fitness/media/figures/Y09-liver-flush.png)
 - **Verdict:** **PSEUDOSCIENCE (debunked).** The dramatic "stones" are a cooking reaction, not pathology leaving the body.
 - **Safety:** the Epsom-salt purge causes fluid/electrolyte shifts and dehydration; can dislodge a *real* gallstone into
   the bile duct (obstruction/pancreatitis). Risky theater.
@@ -21580,7 +21580,7 @@ overeating, and (speculatively) spermidine-rich foods.
 
 ## 7. Who should NOT fast — the safety box
 
-![Who Should NOT Fast — the exclusion list](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F04-fasting-exclusions.png)
+![Who Should NOT Fast — the exclusion list](/_intake/health-longevity-fitness/media/figures/F04-fasting-exclusions.png)
 
 > **Hard exclusions / "medical supervision required."** Fasting (extended fasting especially, but also aggressive IF) is
 > contraindicated or requires medical management for:
@@ -21609,7 +21609,7 @@ overeating, and (speculatively) spermidine-rich foods.
 
 ## 8. The honest bottom line — tiered verdict table
 
-![Fasting & Cleanse Protocols — graded honestly](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N02-fasting-protocols.png)
+![Fasting & Cleanse Protocols — graded honestly](/_intake/health-longevity-fitness/media/figures/N02-fasting-protocols.png)
 
 **The one-paragraph synthesis.** The legitimate core of this entire field is small and honest: **eating in a defined
 window, or doing periodic structured restriction, is a reasonable way to eat less — and eating less, plus eating
@@ -21714,7 +21714,7 @@ biomarker / n=20, and the quantitative importance of the glymphatic system *in h
 actively debated. "Sleep prevents Alzheimer's" is a mechanism→outcome leap the evidence does not
 yet license. (Full treatment in the brain/cognitive section — cross-ref `08-brain-cognitive.md`.)
 
-![Sleep Hypnogram — deep early, REM late](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/44-sleep-hypnogram.png)
+![Sleep Hypnogram — deep early, REM late](/_intake/health-longevity-fitness/media/figures/44-sleep-hypnogram.png)
 
 ### 1.2 The dose: the ~7-hour U-shape (and why "more" is not "better")
 
@@ -21726,7 +21726,7 @@ All-cause mortality versus sleep duration is **U-shaped, not monotonic**:
 | Kripke 2002 (~1.1M adults) | Lowest mortality at **~7h**; both ≤6h and ≥8h elevated, with >15% excess below ~4.5h or above ~8.5h[^kripke] | `cohort` |
 | AASM/SRS consensus 2015 | Consensus **floor of ≥7h/night** for adults[^aasm] | `meta`/guideline |
 
-![Sleep U-shape — ~7-hour floor](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/22-sleep-ushape.png)
+![Sleep U-shape — ~7-hour floor](/_intake/health-longevity-fitness/media/figures/22-sleep-ushape.png)
 
 **The honest reading:** the data support a **floor (~7h) with a U-shape**, not "sleep as much as
 possible." The long-sleep arm is most plausibly **reverse causation** — illness, depression, and
@@ -21738,7 +21738,7 @@ the shorter your life" framing (see §1.6). Aim for the floor; do not chase the 
 The single biggest mistake in consumer sleep is optimizing the *measurement* (trackers, supplements,
 gadgets) before the *behavior*. Tiered by leverage:
 
-![Sleep Hygiene — what actually works](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/63-sleep-hygiene.png)
+![Sleep Hygiene — what actually works](/_intake/health-longevity-fitness/media/figures/63-sleep-hygiene.png)
 
 **Tier A — Regularity & timing (the highest-leverage, lowest-cost lever).**
 A *consistent* sleep/wake schedule outperforms chasing total hours. Irregular timing is its own
@@ -21765,7 +21765,7 @@ pharmacologically active at bedtime — **cut it ~8–10h before sleep.** Alcoho
 asleep faster and sleep worse. Time the last drink several hours out, or skip it on nights you need
 recovery.
 
-![Caffeine Has a Long Tail — time it for sleep](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y11-caffeine.png)
+![Caffeine Has a Long Tail — time it for sleep](/_intake/health-longevity-fitness/media/figures/Y11-caffeine.png)
 
 **Tier C — Everything else** (magnesium, fancy mattresses, supplements): real for some, individually
 small, and downstream of getting Tiers A–B right.
@@ -21826,7 +21826,7 @@ which entrains the **clock-gene transcription–translation feedback loop** (the
 synchronizes peripheral clocks throughout the body. This is the fundamental that the entire pillar rests
 on — UP-link to canon `05-biophysics/` (non-visual photoreception).
 
-![The Circadian Light Dial — light is the timekeeper](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N07-circadian-dial.png)
+![The Circadian Light Dial — light is the timekeeper](/_intake/health-longevity-fitness/media/figures/N07-circadian-dial.png)
 
 ### 2.2 Light, meal timing, and the two-zeitgeber model
 
@@ -21956,7 +21956,7 @@ RCT; cold has rich mechanism but thin outcomes.
 | Laukkanen 2017 (*Age and Ageing* 46:245–249, same cohort) | Dementia HR ~0.34, Alzheimer's HR ~0.35 (4–7×/wk vs 1×)[^sauna-dementia] | `cohort` |
 | Laukkanen & Kunutsor 2018 | Sauna raises HR/cardiac output, lowers BP, improves arterial compliance ("mimics moderate exercise")[^sauna-cv] | `mechanistic` |
 
-![Sauna → Mortality — dose-dependent](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/23-sauna-mortality.png)
+![Sauna → Mortality — dose-dependent](/_intake/health-longevity-fitness/media/figures/23-sauna-mortality.png)
 
 **The mechanism:** heat induces **heat-shock proteins (HSP70/90)** — molecular chaperones that support
 **proteostasis** — and drives cardiovascular load comparable to moderate exercise.[^hsp] UP-link to canon
@@ -21984,7 +21984,7 @@ plunge**.[^cold-insulin] The cold-shower RCT (n=3,018) showed ~29% less sickness
 sick-days-per-illness, self-reported and unblinded.[^cold-shower-rct] **The protocol with metabolic data
 (long mild cold) is not the protocol being sold (short intense plunge).**
 
-![Cold: Sold ≠ Studied — the plunge vs the data](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N11-cold-dose.png)
+![Cold: Sold ≠ Studied — the plunge vs the data](/_intake/health-longevity-fitness/media/figures/N11-cold-dose.png)
 
 **What cold plunges are actually good for:** the norepinephrine/dopamine surge is a real, reproducible
 *acute* effect — so the honest, evidence-consistent value of the cold plunge is **mood, alertness, and the
@@ -22052,7 +22052,7 @@ minutes is not the same as buying health (see §5.1).
   meditation on mood and arousal in a 28-day RCT (n=114).[^cyclic-sigh]
 - **Diaphragmatic breathing** reduced cortisol and negative affect and improved attention.[^diaphragm]
 
-![Two Breathing Tools — sigh + coherent](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Z08-breathwork.png)
+![Two Breathing Tools — sigh + coherent](/_intake/health-longevity-fitness/media/figures/Z08-breathwork.png)
 
 ### 4.3 Buteyko — the symptom-vs-disease distinction
 
@@ -22103,7 +22103,7 @@ associates with stress and higher CV/all-cause risk. **What's hype:**
 **Practical use:** treat HRV like a **personal trend line** — a multi-day *drop* relative to your own
 baseline is a reasonable nudge to back off training/stress and prioritize sleep. Nothing more.
 
-![HRV: Your Trend — not a leaderboard](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y05-hrv.png)
+![HRV: Your Trend — not a leaderboard](/_intake/health-longevity-fitness/media/figures/Y05-hrv.png)
 
 ### 5.2 Allostatic load — the bridge framework (and its hazard)
 
@@ -22134,9 +22134,9 @@ effect size, the largest, most-replicated all-cause-mortality associations in th
 | **Socioeconomic position** (Marmot gradient) | Stepwise inverse gradient — lowest grade ~3× the CHD mortality of the highest, even among the comfortable[^whitehall] | `cohort` |
 | **Community / religious participation** | Weekly attendance → HR ≈ 0.67 all-cause mortality (mediated by social support, optimism, less smoking)[^religious] | `cohort` |
 
-![Social Connection — rivals quitting smoking](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/95-social-connection.png)
+![Social Connection — rivals quitting smoking](/_intake/health-longevity-fitness/media/figures/95-social-connection.png)
 
-![Social Levers Beat Supplements — connection rivals quitting smoking](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L07-psychosocial.png)
+![Social Levers Beat Supplements — connection rivals quitting smoking](/_intake/health-longevity-fitness/media/figures/L07-psychosocial.png)
 
 **Read it honestly in both directions:**[^psychosocial-grade]
 - **Do not dismiss these as "confounded."** They survive heavy adjustment and replicate at meta scale —
@@ -22164,7 +22164,7 @@ wellness-industrial overclaim:
 | **Yoga / meditation** | Improve HRV, cortisol, BP (surrogate, bias-prone); **MBSR shows modest RCT support for anxiety, depression-relapse prevention, and chronic pain** (clinical outcomes) | `meta` (surrogates) / `rct` (psychiatric/pain outcomes, small-to-moderate but real)[^yoga-mind] |
 | **Supplements / "adaptogens" / gadgets** | Marketed as stress cures | Mostly `mechanistic`/`surrogate` or null; the overclaim lives here |
 
-![Recovery Toolkit — what actually helps](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/90-recovery-toolkit.png)
+![Recovery Toolkit — what actually helps](/_intake/health-longevity-fitness/media/figures/90-recovery-toolkit.png)
 
 **The synthesis:** the high-leverage stress levers are **boring, free, and unmonetizable** —
 sleep, connection, purpose, breath, daylight, movement. The wellness-industrial complex inverts this,
@@ -22185,7 +22185,7 @@ treat the stack as optional garnish.
 | **Breath** | Autonomic / vagal tone | ~6/min slow breathing; default nasal | Real acute effect; longevity unproven; **water-safety rule** |
 | **Stress / connection** | Allostatic load, HPA axis | **Social connection + purpose** | Biggest effect sizes, but observational |
 
-![Recovery Levers — sleep is the master](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N04-recovery-levers.png)
+![Recovery Levers — sleep is the master](/_intake/health-longevity-fitness/media/figures/N04-recovery-levers.png)
 
 **The one-sentence version:** sleep on a fixed schedule, get morning light and dim evenings, use heat
 and cold as honest hormetic stressors (not magic), breathe slowly through your nose and never hyperventilate
@@ -22316,7 +22316,7 @@ measured behavior, so this is causal rather than correlational — Webb & Sheera
 Sheeran & Webb later named and reviewed this directly as **"The Intention–Behavior Gap"** (2016): intentions
 are a necessary input and a poor predictor; the action is lost somewhere between deciding and doing.[^sheeran-webb]
 
-![The Intention–Behavior Gap — half who intend, fail](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L08-intention-behavior.png)
+![The Intention–Behavior Gap — half who intend, fail](/_intake/health-longevity-fitness/media/figures/L08-intention-behavior.png)
 
 The practical corollaries are devastating for the way most health advice is delivered:
 
@@ -22378,7 +22378,7 @@ best-evidenced *cognitive* technique** — and they are nearly free. The idea, f
 specific **if–then plan** that pre-decides the *when, where, and how* of an action and welds it to a concrete
 cue: *"**If** it is 7am and I've poured my coffee, **then** I will put on my running shoes."*
 
-![Implementation Intentions — weld habit to a cue](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F07-if-then.png)
+![Implementation Intentions — weld habit to a cue](/_intake/health-longevity-fitness/media/figures/F07-if-then.png)
 
 - The foundational meta-analysis — **Gollwitzer & Sheeran (2006), "Implementation intentions and goal
   achievement: A meta-analysis of effects and processes"** — pooled **94 studies** and found a
@@ -22400,7 +22400,7 @@ explicit if–then statements anchored to existing cues. `meta`-tier evidence, s
 Habits are the end-state we actually want: behavior that runs on context, not on decision or motivation.
 The science here is solid in outline and routinely *misquoted* in the popular telling.
 
-![How Long Habits Take — median 66 days](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L09-habit-formation.png)
+![How Long Habits Take — median 66 days](/_intake/health-longevity-fitness/media/figures/L09-habit-formation.png)
 
 - **The mechanism (well-supported):** a habit is a learned association between a **context cue** and a
   **response**, strengthened by **repetition in a stable context**, until the cue alone triggers the behavior
@@ -22551,7 +22551,7 @@ Michie and colleagues**: behavior (B) occurs when, and only when, a person has s
 norms), and **Motivation** (reflective and automatic — beliefs, habits, impulses) (Michie, van Stralen &
 West 2011).[^michie]
 
-![COM-B — diagnose the missing one](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N08-com-b.png)
+![COM-B — diagnose the missing one](/_intake/health-longevity-fitness/media/figures/N08-com-b.png)
 
 - Its power is **diagnostic.** Before choosing a technique, ask which component is actually missing. Most
   failed behavior change targets the wrong one — pouring *motivation* (pep talks) at a problem that is really
@@ -22615,7 +22615,7 @@ rewards" thinking. Grade: solid `meta`-tier on the autonomy/maintenance link.
 Behavior change isn't only about gyms and salads; it's the central unsolved problem in clinical medicine, and
 the medication-adherence literature is the most rigorously studied corner of the whole field.
 
-![Adherence Beats Optimality — do what you'll keep doing](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y06-adherence.png)
+![Adherence Beats Optimality — do what you'll keep doing](/_intake/health-longevity-fitness/media/figures/Y06-adherence.png)
 
 - **The headline number:** in chronic disease, roughly **50% of patients do not take their medications as
   prescribed** (WHO 2003 adherence report).[^who-adherence] This is not an edge case — it is
@@ -22723,7 +22723,7 @@ drop.** If you skim one column, skim the verdict.
 This field is unusually polluted, so the debunks get their own section. Three are covered in full above and
 need only a pointer here; two (§8.4–8.5) are new material.
 
-![Pop-Psych That Fails — 21 days, willpower, detox…](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/F06-debunks.png)
+![Pop-Psych That Fails — 21 days, willpower, detox…](/_intake/health-longevity-fitness/media/figures/F06-debunks.png)
 
 - **The 21-day habit** — a myth. The real figure is Lally (2010, §2.3): **median ~66 days, range 18–254,
   behavior-dependent.** Drop the 21.
@@ -22928,7 +22928,7 @@ about health:
   metabolic set-points, and stress-axis calibration are substantially fixed in fetal and early life — the
   **developmental origins** story below.
 
-![The Capacity Arc — build it, then spend it](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L10-capacity-arc.png)
+![The Capacity Arc — build it, then spend it](/_intake/health-longevity-fitness/media/figures/L10-capacity-arc.png)
 
 This is why an adult-only manual is incomplete: the two ends of life (developmental and geriatric/terminal)
 operate by **different rules** than the defend-the-peak middle, and the single highest-leverage health
@@ -23035,7 +23035,7 @@ beyond its scope, navigated case-by-case in obstetric ethics.
 load-bearing pieces), plus correcting documented deficiencies, captures essentially all the evidence-based
 supplement benefit. The rest of the prenatal-supplement aisle is mostly marketing.
 
-![Prenatal Supplements — load-bearing vs marketing](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/Y04-prenatal.png)
+![Prenatal Supplements — load-bearing vs marketing](/_intake/health-longevity-fitness/media/figures/Y04-prenatal.png)
 
 ### 3.2 Exercise in pregnancy — the myth is "rest"
 
@@ -23094,7 +23094,7 @@ Fertility is a market drenched in hope, and therefore in overclaiming. The hones
   conditions. The "men can father children at any age" story is **half-true** — possible, but with rising
   sperm-quality and offspring risks. `cohort` — moderate.
 
-![Fertility Decline — both sexes, different clocks](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L11-fertility-decline.png)
+![Fertility Decline — both sexes, different clocks](/_intake/health-longevity-fitness/media/figures/L11-fertility-decline.png)
 
 ### 4.2 IVF and egg freezing — what the numbers actually are
 
@@ -23200,7 +23200,7 @@ places it on the time axis. The one-line trajectory:
   the peak and start tracking functional biomarkers while they are still easy to move. (§04 §4.2; §13 §4;
   Domain N.)
 
-![VO₂max & Age — training buys a decade](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/86-vo2max-age.png)
+![VO₂max & Age — training buys a decade](/_intake/health-longevity-fitness/media/figures/86-vo2max-age.png)
 
 **Do not duplicate — read:** training prescriptions in `reports/sections/04-individual-variation.md §4`;
 menopause/andropause endocrinology in `reports/sections/13-endocrine-hormones.md §4`; the sarcopenia definition
@@ -23222,7 +23222,7 @@ stressor (an infection, a fall, a new drug). **Linda Fried** operationalized it 
 (2001):[^fried-frailty] a person is frail meeting **≥3 of 5** criteria — unintentional weight loss,
 self-reported exhaustion, weak grip strength, slow gait speed, and low physical activity:
 
-![The Frailty Phenotype — five criteria](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N06-frailty-pentagon.png)
+![The Frailty Phenotype — five criteria](/_intake/health-longevity-fitness/media/figures/N06-frailty-pentagon.png)
 
 1–2 criteria = "**pre-frail**" (an intervention window); 0 = robust. The phenotype **predicts** falls,
 hospitalization, disability, and death — and it is a **cohort**-validated readout (Rule 1: it is a powerful
@@ -23238,7 +23238,7 @@ E). The frailty-specific point: **sarcopenia is the modifiable core of the frail
 component with a strong, proven, non-pharmacologic lever (resistance + power + protein, detailed in §04 §4.3).
 Frailty is a multi-system readout; sarcopenia is the muscular engine you can still train.
 
-![Sarcopenia — fight for your muscle](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/99-sarcopenia.png)
+![Sarcopenia — fight for your muscle](/_intake/health-longevity-fitness/media/figures/99-sarcopenia.png)
 
 ### 7.3 Polypharmacy and deprescribing
 
@@ -23288,7 +23288,7 @@ The organizing aspiration of the whole geriatric stage, and arguably the whole m
 pushed *later* faster than the age of death moves, then the **period of sickness at the end of life is
 compressed** into a shorter window — more years of healthy function, fewer years of decline.
 
-![Compression of Morbidity — square the curve](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L12-compression-morbidity.png)
+![Compression of Morbidity — square the curve](/_intake/health-longevity-fitness/media/figures/L12-compression-morbidity.png)
 
 This is the precise, rigorous statement of the manual's recurring theme: **healthspan, not lifespan, is the
 target.** It reframes every geriatric lever above — strength to defend independence, balance to prevent the
@@ -23297,7 +23297,7 @@ disability — as instruments for **squaring the curve**: staying functional alm
 adding low-quality years. (Cross-ref the female "health-survival paradox," Domain N — which is the same point
 with a sex lens: the population that already has the *years* needs the *function*.)
 
-![Healthspan Beyond Lifespan — shrink the ~13-year gap](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/G08-healthspan-gap.png)
+![Healthspan Beyond Lifespan — shrink the ~13-year gap](/_intake/health-longevity-fitness/media/figures/G08-healthspan-gap.png)
 
 `theoretical`/`cohort` as a hypothesis; the *components* (exercise, etc.) are individually evidence-graded
 across the manual.
@@ -23352,7 +23352,7 @@ the rest of the manual demands.
 
 ## 10. The one-screen summary (skim this)
 
-![One Life, Stage by Stage — build → defend → preserve](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N12-lifespan-timeline.png)
+![One Life, Stage by Stage — build → defend → preserve](/_intake/health-longevity-fitness/media/figures/N12-lifespan-timeline.png)
 
 | Life stage | What matters most | The honest grade |
 |---|---|---|
@@ -23496,7 +23496,7 @@ real-ish — ethanol raises HDL and lowers fibrinogen — and so the protective 
 - **Occasional-drinker misclassification.** Lumping never-drinkers with very-occasional drinkers further
   distorts the reference.
 
-![Alcohol J-curve — mostly confounding](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/24-alcohol-jcurve.png)
+![Alcohol J-curve — mostly confounding](/_intake/health-longevity-fitness/media/figures/24-alcohol-jcurve.png)
 
 ### 1.2 The new story (MR + bias-corrected meta + GBD)
 
@@ -23579,7 +23579,7 @@ in all of epidemiology. It is the benchmark against which every other exposure s
   **Tier: cohort, but as close to causal as observational data gets** (massive effect size, dose-response,
   biological plausibility, reversibility on cessation — Bradford Hill criteria fully satisfied).
 
-![Smoking & Quitting — ~10 years, mostly recoverable](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/96-smoking-quit.png)
+![Smoking & Quitting — ~10 years, mostly recoverable](/_intake/health-longevity-fitness/media/figures/96-smoking-quit.png)
 
 ### 2.2 Vaping / e-cigarettes — the honest take
 
@@ -23629,7 +23629,7 @@ commercially neglected, and one of the largest environmental risk factors on Ear
 - **PM2.5 is the actor.** Fine particulate matter <2.5 µm penetrates deep into the lung and crosses into
   circulation, driving systemic inflammation, oxidative stress, endothelial dysfunction, and atherosclerosis.
 
-![Air Pollution — a top-10 global killer](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/100-air-pollution.png)
+![Air Pollution — a top-10 global killer](/_intake/health-longevity-fitness/media/figures/100-air-pollution.png)
 
 ### 3.2 What it causes
 
@@ -23670,7 +23670,7 @@ fears are regulatory-grade and which are hype; then act on the one filter that c
 "Toxins" is where wellness marketing and genuine regulatory science blur. The honest move is to **tier by
 evidence**, not to lump. Below, established → precautionary → emerging.
 
-![Environmental Toxins — by evidence weight](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N03-toxin-tiering.png)
+![Environmental Toxins — by evidence weight](/_intake/health-longevity-fitness/media/figures/N03-toxin-tiering.png)
 
 ### 4.1 Heavy metals — established (and historically huge): lead
 
@@ -23746,7 +23746,7 @@ awareness.) Know your local water report; if you're on a private well or old mun
 Sun exposure is the manual's clearest case of a genuine trade-off, and it's a place where dermatology and
 mortality epidemiology give honestly different advice. Resist dogma in either direction.
 
-![The Sun: Two-Sided Ledger — avoid burns, keep daylight](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N09-sun-ledger.png)
+![The Sun: Two-Sided Ledger — avoid burns, keep daylight](/_intake/health-longevity-fitness/media/figures/N09-sun-ledger.png)
 
 ### 5.1 The cost side (dermatology is right)
 
@@ -23819,7 +23819,7 @@ sauna/cold-plunge protocols in Domain H (thermal). This is about the temperature
   cold**, versus only **0.42% from heat.**[^gasparrini-temp] Moderate (not extreme) cold did most of the damage, through
   cardiovascular and respiratory pathways. **Tier: cohort (multi-country, time-series).**
 
-![Cold Kills More Than Heat — by ~17×](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L18-cold-heat.png)
+![Cold Kills More Than Heat — by ~17×](/_intake/health-longevity-fitness/media/figures/L18-cold-heat.png)
 
 - **The climate-change caveat.** This historical ledger is shifting: heat-attributable mortality is rising with
   warming and with aging populations, and extreme-heat events (which the time-series "moderate temperature"
@@ -23839,7 +23839,7 @@ A closing calibration, because the manual's supplement and protocol sections can
 quantified how much different risk factors shorten life — and **smoking and the socioeconomic/behavioral
 exposures dwarf most of what gets optimized in longevity culture.**[^stringhini-socioeconomic]
 
-![Exposures in Proportion — tobacco dwarfs the rest](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L13-exposures.png)
+![Exposures in Proportion — tobacco dwarfs the rest](/_intake/health-longevity-fitness/media/figures/L13-exposures.png)
 
 **Rough ordering of modifiable-exposure mortality impact (largest first):**
 
@@ -23980,9 +23980,9 @@ it **doubled**. Global life expectancy is now ≈**73 years**; high-income count
 single largest change in the human condition in recorded history, and the popular story — "modern medicine
 saved us" — is **mostly wrong**.
 
-![Lifespan Over Time — roughly doubled in 150 yrs](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/81-lifespan-over-time.png)
+![Lifespan Over Time — roughly doubled in 150 yrs](/_intake/health-longevity-fitness/media/figures/81-lifespan-over-time.png)
 
-![Lifespan Doubled in 200 Years — mostly public health](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/G06-le-doubling.png)
+![Lifespan Doubled in 200 Years — mostly public health](/_intake/health-longevity-fitness/media/figures/G06-le-doubling.png)
 
 ### 1.2 The McKeown thesis and what replaced it
 
@@ -24027,9 +24027,9 @@ Note the ordering: the first three are **not medicine at all** — they are civi
 food policy. Vaccination is preventive public health. **Antibiotics are the first item on the list that a
 doctor administers to a sick individual** — and they arrive in the 1940s, after most of the decline.
 
-![What Doubled Lifespan — led by public health](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/27-lifespan-ledger.png)
+![What Doubled Lifespan — led by public health](/_intake/health-longevity-fitness/media/figures/27-lifespan-ledger.png)
 
-![What Doubled Lifespan — led by clean water](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L15-lifespan-doubled.png)
+![What Doubled Lifespan — led by clean water](/_intake/health-longevity-fitness/media/figures/L15-lifespan-doubled.png)
 
 ### 1.4 The epidemiologic transition (Omran 1971)
 
@@ -24043,9 +24043,9 @@ already defeated the things that used to kill us first. Optimizing your VO₂max
 blood particle that ferries cholesterol into artery walls) is a luxury of a society that already solved
 cholera.
 
-![The Epidemiologic Transition — infectious → chronic](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L17-epi-transition.png)
+![The Epidemiologic Transition — infectious → chronic](/_intake/health-longevity-fitness/media/figures/L17-epi-transition.png)
 
-![What Kills People — the leading causes](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/97-leading-causes.png)
+![What Kills People — the leading causes](/_intake/health-longevity-fitness/media/figures/97-leading-causes.png)
 
 A blunt corollary: **the highest-leverage health work is largely finished in rich countries and largely
 *undone* in poor ones** (§7). The marginal life-year is cheapest where the transition hasn't completed.
@@ -24147,7 +24147,7 @@ is chronically *unpopular and under-funded* despite being *more effective and ch
 the individual level, exactly the level the longevity market operates at. **Tier: `theoretical`/foundational
 framework, validated repeatedly in CVD epidemiology.**
 
-![Rose's Paradox — small shifts, whole population](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/G05-rose.png)
+![Rose's Paradox — small shifts, whole population](/_intake/health-longevity-fitness/media/figures/G05-rose.png)
 
 ### 3.3 The Frieden Health Impact Pyramid — leverage, formalized
 
@@ -24162,7 +24162,7 @@ Thomas **Frieden** (then CDC director) formalized the same insight as a **5-tier
 | 2 | **Changing the context** (healthy default) | Low/none | Large | Trans-fat bans, fluoridation, clean air, iodized salt |
 | 1 (base) | **Socioeconomic factors** | None (structural) | **Largest** | Poverty reduction, education, housing |
 
-![The Health Impact Pyramid — base reaches everyone](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/N05-health-pyramid.png)
+![The Health Impact Pyramid — base reaches everyone](/_intake/health-longevity-fitness/media/figures/N05-health-pyramid.png)
 
 **One legend the rest of this section leans on.** Three different vocabularies all point the same way — cheap,
 broad, and invisible at the bottom; expensive, narrow, and effortful at the top:
@@ -24197,7 +24197,7 @@ trial, the strongest tier; `meta` = pooled analysis of many trials.)
 | **Seatbelts / road safety** (laws + design) | Injury primary prevention | Massive; among the cheapest life-years in transport | `cohort`/natural-experiment; ~45% fatal-injury reduction |
 | **Trans-fat elimination** | Removes a uniquely atherogenic fat from supply | High; whole-population CVD reduction at ~$0 individual effort | `cohort`/policy (Denmark, NYC, then national bans) |
 
-![Cost Per Life-Year — cheapest far from the clinic](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/G03-cost-per-ly.png)
+![Cost Per Life-Year — cheapest far from the clinic](/_intake/health-longevity-fitness/media/figures/G03-cost-per-ly.png)
 
 Every one of these is a **tier-1 or tier-2** Frieden lever, a **population** Rose strategy, and **primary**
 prevention. Every one is invisible to the person it protects. None has a Goop SKU. That is the entire thesis
@@ -24233,7 +24233,7 @@ This is the cleanest natural experiment in health-system performance, and the re
   for >20% by 2035) — while peers spent **8–12%**.
 - Americans have **the shortest lives and the most avoidable deaths** of the ten.
 
-![Spend More, Get Less — the US outlier](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L16-us-vs-peers.png)
+![Spend More, Get Less — the US outlier](/_intake/health-longevity-fitness/media/figures/L16-us-vs-peers.png)
 
 The U.S. is the definitive proof of this section's thesis: **it spends the most money on the most advanced
 clinical medicine on Earth and gets the worst outcomes among rich nations** — because clinical spending is
@@ -24267,7 +24267,7 @@ The most consequential number in this section. Multiple independent estimation m
 - The canonical **determinants-of-health allocation** (McGinnis/Williams-Russo/Schroeder, *Health Affairs*
   2002 / NEJM 2007), used by County Health Rankings — the five shares are in the figure below.
 
-![Determinants of Health — care is only ~10%](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/L14-determinants.png)
+![Determinants of Health — care is only ~10%](/_intake/health-longevity-fitness/media/figures/L14-determinants.png)
 
 So **medical care ≈ 10–20%** of what determines how long and well a population lives; **behavior +
 social + environment ≈ 60%+**, and genetics ~30%. *(Tier: `theoretical`/synthesis — these are
@@ -24646,7 +24646,7 @@ The result is one of the most quoted and most under-appreciated findings in exer
   al. 2012).[^bouchard-adverse] Though on hard outcomes the overall direction of exercise is still
   protective; this is heterogeneity, not "exercise is bad."
 
-![Responders — same program, different results](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/25-responder-distribution.png)
+![Responders — same program, different results](/_intake/health-longevity-fitness/media/figures/25-responder-distribution.png)
 
 **This is biology, not effort.** Two people can train identically and walk away with very different VO2max
 changes. If you have ever felt like the program "everyone swears by" did less for you than for your friend —
@@ -25031,7 +25031,7 @@ _Not medical advice; this is a synthesis of already-graded claims, not new evide
 
 ---
 
-![What To Track — do / measure / skip](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/08-what-to-track.png)
+![What To Track — do / measure / skip](/_intake/health-longevity-fitness/media/figures/08-what-to-track.png)
 
 ## PART 1 — WHAT TO DO (the levers, by confidence tier)
 
@@ -25102,7 +25102,7 @@ apoB,[^p2a-apob] Lp(a),[^p2a-lpa] glycemic panel,[^p2a-glycemic] and DEXA.[^p2a-
 | **Consumer sleep tracker** | Total sleep time + timing regularity | Sleep STAGING ("deep sleep %"), diagnosing disorders[^p2b-sleeptracker] |
 | **IGF-1** | Context dial (anabolism/cancer tradeoff) | A "minimize for longevity" target (U-shaped)[^p2b-igf1] |
 
-![Resting Heart Rate — the clean consumer win](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/34-resting-hr.png)
+![Resting Heart Rate — the clean consumer win](/_intake/health-longevity-fitness/media/figures/34-resting-hr.png)
 
 ### TIER C — Don't over-invest (low validity or unproven personal value)
 
@@ -25311,7 +25311,7 @@ chapter's headline: **what separates the field is calibration.** Almost nobody i
 sample says things the corpus flatly refutes on the *boring core* (fitness, strength, sleep, movement).
 They diverge on the *optimization margin* and the *commercial frontier* — and there, the spread is enormous.
 
-![Calibration Spectrum — Galpin → Sinclair](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/07-calibration-spectrum.png)
+![Calibration Spectrum — Galpin → Sinclair](/_intake/health-longevity-fitness/media/figures/07-calibration-spectrum.png)
 
 Counts below are per the six raw files (some claims carry split verdicts; counted by dominant verdict).
 
@@ -25334,7 +25334,7 @@ Counts below are per the six raw files (some claims carry split verdicts; counte
 **Consolidated tallies across all six waves (~139 claims):** AGREES ~52, OVERSTATED ~52,
 CONTRADICTS ~11, NOT-YET-IN-CORPUS ~21.
 
-![Claim Verdicts — 37/37/8/18](/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/media/figures/26-verdict-donut.png)
+![Claim Verdicts — 37/37/8/18](/_intake/health-longevity-fitness/media/figures/26-verdict-donut.png)
 
 The shape is the story. **Flat contradictions are rare (~8%)** — and they concentrate almost entirely in
 three clusters (metabolic/N=1, the Sinclair line, and the branded movement layer). **Overstatement is as common as agreement (~37% each)** — the
