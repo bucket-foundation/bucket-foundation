@@ -24,6 +24,8 @@ yarn-error.log*
 .env
 # vercel
 .vercel
+# claude code agent worktrees (isolation:"worktree" runs)
+.claude/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
