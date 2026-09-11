@@ -166,7 +166,7 @@ class DiffReport:
         for qid in self.reworded:
             out.append(f"question {qid}'s text changed in the plan; the registry's recorded question_text is stale.")
         for qid, corpus in self.unregistered_corpora:
-            out.append(f"registry question {qid} names corpus {corpus!r}, not present in the live corpus registry.")
+            out.append(f"registry question {qid} names corpus {corpus!r}, missing from the live corpus registry.")
         return out
 
 
