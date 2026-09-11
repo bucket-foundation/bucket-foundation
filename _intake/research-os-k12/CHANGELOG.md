@@ -1,5 +1,92 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10: literature batch four
+
+Branch `intake/ros-literature-4`. Task: 25 to 35 new DOI- or ERIC-verified papers targeted
+at the gap this corpus had after batch three: evidence about students doing research in
+K-12 itself, course-based and high-school research experiences, project-based and inquiry
+learning, writing-to-learn and argumentation, epistemic cognition and nature of science, and
+citation and source evaluation. Full per-area breakdown and per-question evidence mapping
+recorded in `learning/research-os/CHANGE-LEDGER.md`'s literature-batch-four iteration.
+
+### Added
+
+- 30 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md`'s literature-batch-four iteration; corpus total
+  rises from 117 to 147 papers.
+- Five new branches: `student-research-experiences/` (10 files), `project-based-inquiry-
+  learning/` (7 files), `writing-and-argumentation/` (5 files), `epistemic-cognition/`
+  (4 files), `source-evaluation/` (4 files).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 147 rows, eleven
+  areas.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: six of the twelve
+  open questions (1, 4, 5, 6, 10, 12) gained an "Evidence added in batch four" paragraph.
+- `learning/research-os/PLAN-REVISION-2.md`: section 2a, 2b, and 2d each gained an
+  "Evidence added in batch four" paragraph.
+
+### Verified Clean
+
+- Every DOI and OpenAlex work id checked live against `api.openalex.org` and
+  `api.crossref.org` at intake time; none are placeholders.
+- Two research-brief papers, Condliffe (2017) and Kingston (2018), carry no Crossref DOI;
+  each verified against its own ERIC record (ED578933, ED590832) and carries a `doi: null`
+  frontmatter field plus an `eric_id`, the same handling this corpus already applies to
+  Cuban (2001) and Perkins (1993).
+- Three candidate papers named in the task brief were searched for and omitted for lack of
+  a resolvable DOI matching the brief exactly: "Hanauer 2017 project ownership" (Hanauer
+  and Dolan 2014's Project Ownership Survey used in its place), "Miller 2018" (Burgin,
+  Sadler, and Koroly 2012 used in its place), and "Sahin 2015" (Steegh and colleagues 2019
+  and Lakin and colleagues 2021 used as the closest verified equity-of-participation
+  matches).
+- No blockquote or extended verbatim passage from any source paper; all `key_claims` and
+  body text are paraphrase.
+- A grep-based self-audit for the voice rules ran against every file this pass authored or
+  edited, since `agf-lint-voice check` scans zero files under any path containing an
+  `_intake` segment (the same org-level ignore-list gap literature batch three's own
+  changelog entry already flagged); every flagged instance was rewritten before commit.
+
+### Removed
+
+None.
+
+## 2026-09-10: literature batch four, PR #65 review pass
+
+Review of PR #65 against `main`. Leak scan (keys, `.env` values, IPs, non-public hostnames,
+personal emails, PII, absolute local paths, session URLs) found none; digit sequences that
+matched a phone-number pattern in a first grep pass were confirmed as DOI and OpenAlex
+work-id digit strings on inspection.
+
+Eight of the thirty new cards were sampled for citation verification against Crossref,
+OpenAlex, and ERIC: Condliffe (2017), Kingston (2018), Burgin, Sadler, and Koroly (2012),
+Hanauer and Dolan (2014), Steegh and colleagues (2019), Grinnell and colleagues (2020),
+Wineburg and McGrew (2019), and Breakstone and colleagues (2021). All eight matched on
+title, authors, year, and venue or publisher.
+
+Two of the three substitute cards named in the PR body, Hanauer and Dolan (2014) for
+"Hanauer 2017" and Burgin, Sadler, and Koroly (2012) for "Miller 2018", already labeled
+themselves as substitutes in `why_it_matters`. The third substitute pair, Steegh and
+colleagues (2019) and Lakin and colleagues (2021) for "Sahin 2015", did not; both
+`why_it_matters` fields were edited to name the unresolved "Sahin 2015" citation and
+cross-reference each other as the two closest verified matches.
+
+README.md's 147-row index, per-area counts, and file links were checked against the
+corpus on disk: exact match. The overlap map's six "Evidence added in batch four"
+paragraphs (questions 1, 4, 5, 6, 10, 12) and `PLAN-REVISION-2.md`'s three (sections 2a,
+2b, 2d) all reference files that exist.
+
+One voice-rule hit in newly authored prose: `actually` in the Kuhn (1999) card's
+`why_it_matters`, rewritten. One unmarked en dash in a verbatim paper title reproduced in
+the README index (Kuiper, Volman, and Terwel 2005); the frontmatter's own `voice-ignore-line`
+already covers the source, a documentation line was added to the README noting the
+reproduction is verbatim. No other banned-word, dash, or antithesis hits in lines this PR
+added.
+
+`git merge origin/main` was clean, no conflicts. `npm ci` and `npm run build` both passed.
+No file under `src/` or `public/` changed.
+
 ## 2026-09-10: canon human sign-off tool
 
 `feat/canon-signoff-tool`, built against `GOVERNANCE.md`'s "Canon sign-off"

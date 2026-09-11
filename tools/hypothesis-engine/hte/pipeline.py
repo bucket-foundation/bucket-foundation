@@ -262,6 +262,7 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
                             run_dir, branch=cfg["writeback_branch"], signoff=cfg["writeback_signoff"],
                             floor_P=cfg["writeback_floor_P"], floor_u_max=cfg["writeback_floor_u_max"],
                             out_root=cfg["writeback_out_root"], dry_run=cfg["dry_run"],
+                            replay_only=cfg["replay_only"],
                         )
                         return [str(p) for p in paths]
 
