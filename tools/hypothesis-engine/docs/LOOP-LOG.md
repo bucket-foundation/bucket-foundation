@@ -2,6 +2,72 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, PR58 review, and queue wrap-up (PR42/48/49/51/58)
+
+- **PR #58 reviewed and merged** (`feat/hte-sacred-history-data`,
+  "sacred-history dating, transmission edges, slot alignment for
+  build-history"), squash commit `138c227df`, worktree
+  `.ros-worktrees/r58` per the review protocol.
+- **Leak scan**: full diff against `origin/main` clean, no keys, IPs,
+  non-public hostnames, personal emails beyond `gianyrox@gmail.com`,
+  PII, absolute `/home/gian` paths, or Claude session URLs.
+- **Governance**: no canon write path, no sign-off surface, no
+  ranking/Elo output touched, not applicable to this PR.
+- **Correctness**: every non-timeline-dated tradition (`greek`,
+  `mesopotamian`) falls back to a documented, cited external anchor
+  (George 2003, West 1985) rather than a fabricated date; every
+  correlation interval is derived (overlap or union of the two sides'
+  own tradition spans) and carries `uncertainty: uniform`, never a
+  fabricated `POINT`. Stemma edges read a future `direction` field when
+  present and fall back to a mutual undirected pair, matching every
+  correlation this bundle currently ships. The new T3/T4 tier split and
+  the three new ground-truth-matching correlations close this file's
+  own zero-coverage finding (`docs/BUILD-HISTORY.md`, "Data fixes").
+- **Merge**: `origin/main` clean, no conflicts (this PR's own files,
+  `sacred_history.py`/its test/its data file/`BUILD-HISTORY.md`, had no
+  overlap with anything else on `main`).
+- **Gates**: `make test` 1172 passed, 18 deselected. `ruff check` clean.
+  `agf-lint-voice check` / `agf-lint-voice-src check`, 0 violations.
+
+**Queue wrap-up**, the five-PR review-and-merge pass this tick covered:
+- **#42** (`feat(hte): provenance index and purge`): reviewed and
+  merged, see "2026-09-10, PR42 review" below.
+- **#48** (`feat(hte): coverage diagnostics and generation coverage
+  fixes`): merged by a concurrent session (squash `582f96b0b`) before
+  this session's own push landed; this session's review found and fixed
+  one real issue (8 unused module-level imports plus 4 shadow-
+  redefinitions `hte/cli_synth.py` picked up, ruff F401/F811) that did
+  NOT make it into the merged squash, since the other session won the
+  race. Flagged here rather than silently dropped: `hte/cli_synth.py`
+  on `main` as of `582f96b0b` still carries the unused
+  `calibrate`/`diagnostics`/`Constants`/`Corpus`/`education_atlas`/
+  `literature`/`production`/`quantum_history` module-level imports,
+  each `_build_*_subcorpus` function already re-importing its own
+  module locally. Low severity (ruff-only, no behavior change), left
+  for a future tick or a drive-by fix.
+- **#49** (`fix(hte): pipeline stage cascade rules, writeback CLI
+  tests`): this session found the same High-severity gap a concurrent
+  session's own review found independently (this branch forked before
+  PR #43 added the fail-closed named sign-off to `canon_writeback.
+  write_back`/`pipeline.py`, so every writeback call/test/CLI path this
+  PR added carried no `signoff`), and had a fix in progress (merge
+  conflict resolved keeping both the cascade restructuring and the
+  signoff gate, three tests updated to pass a signoff, a new CLI-level
+  `--signoff` early-validation check plus its own refusal test, mirror
+  of the existing `--branch` check) when the other session's own fix
+  landed first as PR #62 and closed #49 as superseded. No merge
+  happened from this session's side; #62 is not in this tick's own
+  review scope.
+- **#51** (`docs(hte): record FINDING-2026-09-10-501`): already merged
+  before this session started (`mergedAt: 2026-09-11T01:32:48Z`, a
+  different tick of this same loop per `docs/PRODUCTION-SCHEMA-
+  ALIGNMENT.md`'s own history); skipped, nothing to review.
+- **#58**: reviewed and merged this tick, above.
+
+Final engine test count this tick's own last gate run (`make test` on
+`review/pr58` post-merge, `origin/main` through PR #58 inclusive):
+**1172 passed, 18 deselected.**
+
 ## 2026-09-10, PR42 review
 
 - **PR #42 reviewed and merged** (`feat/hte-purge`, "provenance index and
