@@ -1,4 +1,4 @@
-"""`hte` console script: `campaign run`, `calibrate`, `views`.
+"""`hte` console script: `campaign run`, `calibrate`, `views`, `purge`.
 
 stdlib `argparse` only, matching this package's own no-dependencies
 contract (`pyproject.toml`).
@@ -10,7 +10,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import calibrate, export, runner
+from . import calibrate, diagnostics, export, purge as purge_mod, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
 from .corpus import quantum_history
@@ -79,20 +79,41 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
     if not corpus.ground_truth:
         print("corpus has no ground-truth events to hold out against", file=sys.stderr)
         return 1
-    years = sorted(g.discovery_year for g in corpus.ground_truth)
-    cutoff = args.cutoff_years or years[len(years) // 2]
-    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=cutoff)
+
+    # An explicit `--cutoff-years` pins discovery-date holdout at that
+    # cutoff, this command's own original, unconditional behavior,
+    # unchanged (`hte.calibrate.fit_constants`'s own identical
+    # explicit-cutoff-bypasses-auto-mode contract). With no cutoff given,
+    # `run_calibration`'s own auto-picked mode (`choose_holdout_mode`)
+    # decides instead: k-fold for a corpus with no real discovery lag
+    # (quantum-history, education-atlas, fixtures, every `hte.synth`
+    # world), discovery-date for one that has it (`production`). Bare
+    # `run_holdout` used to run unconditionally here regardless of which
+    # mode a corpus's own ground truth calls for, reading as
+    # `coverage_of_truth: 0.0`-or-near-it on every corpus that never
+    # exercised discovery-date holdout in the first place (`bkt-hte-
+    # generation-coverage`).
+    if args.cutoff_years is not None:
+        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years)
+        result.setdefault("mode", "discovery_date")  # `--diagnose`'s own required field; bare run_holdout carries no "mode" key
+    else:
+        result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed)
     if args.fit:
         grid = {"W": [1.0, 2.0, 3.0], "lam": [0.25, 0.5, 0.75], "tier_scale": [0.75, 1.0, 1.25]}
-        result["fit"] = calibrate.fit_constants(corpus, grid, cutoff_years=cutoff)
+        result["fit"] = calibrate.fit_constants(corpus, grid, cutoff_years=args.cutoff_years, k=args.k, seed=args.kfold_seed)
     out_dir = Path(args.out)
     calibrate.write_calibration(result, out_dir)
     print(f"calibration written to {out_dir / 'CALIBRATION.md'}")
     print(
         f"brier_score={result['brier_score']} over {result['n_covered_events']} of "
         f"{result['n_holdout_events']} held-out events (coverage_of_truth="
-        f"{result['coverage_of_truth']}) at cutoff {cutoff}"
+        f"{result['coverage_of_truth']}), mode={result.get('mode', 'discovery_date')}"
     )
+    if args.diagnose:
+        report = diagnostics.coverage_report(corpus, result)
+        diagnostics.write_diagnostics(report, out_dir)
+        print(f"diagnostics written to {out_dir / 'DIAGNOSTICS.md'}")
+        print(f"reasons for the uncovered remainder: {report['reasons']}")
     return 0
 
 
@@ -105,6 +126,22 @@ def _cmd_views(args: argparse.Namespace) -> int:
     views = json.loads(views_path.read_text())
     export.write_views(views, run_dir)
     print((run_dir / "TIMELINE.md").read_text())
+    return 0
+
+
+def _cmd_purge(args: argparse.Namespace) -> int:
+    report = purge_mod.purge(
+        args.production,
+        learner_id=args.learner,
+        runs_root=args.runs_root,
+        cache_dir=args.cache_dir,
+        public_root=args.public_root,
+        dry_run=args.dry_run,
+    )
+    print(json.dumps(report, indent=2, default=str))
+    if not report.get("complete", True):
+        print(report.get("warning", "purge is incomplete: see report[\"unreadable\"]/[\"redaction_refused\"]"), file=sys.stderr)
+        return 1
     return 0
 
 
@@ -139,16 +176,28 @@ def build_parser() -> argparse.ArgumentParser:
     )
     run_p.set_defaults(func=_cmd_campaign_run)
 
-    calibrate_p = sub.add_parser("calibrate", help="run the discovery-date holdout")
+    calibrate_p = sub.add_parser("calibrate", help="run the discovery-date or k-fold holdout (mode auto-picked; see choose_holdout_mode)")
     calibrate_p.add_argument("--corpus", default="quantum-history", choices=sorted(_CORPUS_LOADERS))
-    calibrate_p.add_argument("--cutoff-years", type=int, default=None)
+    calibrate_p.add_argument("--cutoff-years", type=int, default=None, help="pin discovery-date holdout at this cutoff, bypassing auto-mode selection")
+    calibrate_p.add_argument("--k", type=int, default=calibrate.DEFAULT_KFOLD_K, help="k-fold count when auto-mode picks k-fold (default: %(default)s)")
+    calibrate_p.add_argument("--kfold-seed", type=int, default=0, help="k-fold stratification seed when auto-mode picks k-fold (default: %(default)s)")
     calibrate_p.add_argument("--fit", action="store_true", help="also grid-search W/lam/tier_scale")
+    calibrate_p.add_argument("--diagnose", action="store_true", help="also write DIAGNOSTICS.md: a per-reason breakdown of every uncovered event (hte.diagnostics.coverage_report)")
     calibrate_p.add_argument("--out", default="runs/_calibration")
     calibrate_p.set_defaults(func=_cmd_calibrate)
 
     views_p = sub.add_parser("views", help="re-render TIMELINE.md for a run directory")
     views_p.add_argument("run_dir")
     views_p.set_defaults(func=_cmd_views)
+
+    purge_p = sub.add_parser("purge", help="remove or redact artifacts derived from a production id (docs/PRIVACY.md)")
+    purge_p.add_argument("--production", required=True, help="production id to purge")
+    purge_p.add_argument("--learner", default=None, help="label only, see docs/PRIVACY.md: this engine never stores a raw learner id")
+    purge_p.add_argument("--runs-root", default=purge_mod.DEFAULT_RUNS_ROOT)
+    purge_p.add_argument("--cache-dir", default=None, help="default: <runs-root>/_llm-cache")
+    purge_p.add_argument("--public-root", default=purge_mod.DEFAULT_PUBLIC_ROOT)
+    purge_p.add_argument("--dry-run", action="store_true")
+    purge_p.set_defaults(func=_cmd_purge)
 
     return parser
 

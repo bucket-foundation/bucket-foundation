@@ -386,3 +386,121 @@ def test_cache_stats_counts_files(tmp_path):
     stats = llm.cache_stats(tmp_path)
     assert stats.files == 2
     assert stats.total_bytes == 4
+
+
+# --------------------------------------------------------------------------
+# provenance index (docs/PRIVACY.md): `<cache_dir>/index.jsonl`
+# --------------------------------------------------------------------------
+
+_SECRET_PROMPT = "Rayleigh scattering bends the light of the sky more steeply, PROMPT-SECRET-MARKER-9f3c"
+
+_PROVENANCE = {"source_ids": ["src-a"], "production_ids": ["prod-a"], "learner_ids": ["learner-a"]}
+
+
+def _index_lines(cache_dir) -> list[dict]:
+    path = Path(cache_dir) / "index.jsonl"
+    if not path.is_file():
+        return []
+    return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+
+
+def test_complete_with_provenance_appends_one_index_line_on_a_fresh_call(tmp_path, monkeypatch):
+    fake = _fake_run([(0, _envelope(structured_output={"greeting": "hi"}))])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete(_SECRET_PROMPT, role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, provenance=_PROVENANCE)
+
+    lines = _index_lines(tmp_path)
+    assert len(lines) == 1
+    assert lines[0]["role"] == "critic"
+    assert lines[0]["source_ids"] == ["src-a"]
+    assert lines[0]["production_ids"] == ["prod-a"]
+    assert lines[0]["learner_ids"] == ["learner-a"]
+    assert lines[0]["cache_key"] == llm._cache_key("sonnet", _SECRET_PROMPT)
+
+
+def test_complete_with_provenance_appends_again_on_a_cache_hit(tmp_path, monkeypatch):
+    fake = _fake_run([(0, _envelope(structured_output={"greeting": "hi"}))])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete(_SECRET_PROMPT, role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, provenance=_PROVENANCE)
+
+    # second call is a cache hit (no subprocess call left in the queue)
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=_fake_run([])))
+    llm.complete(_SECRET_PROMPT, role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, provenance=_PROVENANCE)
+
+    lines = _index_lines(tmp_path)
+    assert len(lines) == 2, "a repeat use of a cached answer is still one more attributable use"
+    assert {ln["cache_key"] for ln in lines} == {llm._cache_key("sonnet", _SECRET_PROMPT)}
+
+
+def test_complete_without_provenance_writes_no_index_at_all(tmp_path, monkeypatch):
+    fake = _fake_run([(0, _envelope(structured_output={"greeting": "hi"}))])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete("hello", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path)
+    assert not (Path(tmp_path) / "index.jsonl").is_file()
+
+
+def test_fake_mode_with_provenance_never_creates_cache_dir(tmp_path):
+    """Fake mode's own contract, `provenance` included: `cache_dir` is
+    accepted but unused, full stop (`tests/swarm3/test_cli_props.py::
+    test_campaign_run_replay_only_in_fake_mode_succeeds_and_never_
+    touches_cache_dir` guards the same invariant at the CLI layer)."""
+    never_created = tmp_path / "never-created"
+    result = llm.complete(
+        "hello", role="critic", schema=SCHEMA, cache_dir=never_created, mode="fake", provenance=_PROVENANCE,
+    )
+    assert result
+    assert not never_created.exists()
+
+
+def test_replay_only_cache_hit_with_provenance_never_writes_the_index(tmp_path):
+    """The regression this test guards: `hte.roles.generate`/`critique`/
+    `unknown_unknown` pass `provenance=` on every call now, including
+    every call this package's own test suite makes against the
+    committed `tests/fixtures/llm-cache/` directory under `replay_only=
+    True`. Writing an index line on that cache-hit path would leave a
+    checked-in fixture directory dirty on every test run; `replay_only`'s
+    own contract (`hte.llm.complete`'s own docstring) is read-only,
+    full stop, matching fake mode's own "never touches `cache_dir`"
+    contract one branch up."""
+    cache_dir = tmp_path / "cache"
+    cache_dir.mkdir()
+    key = llm._cache_key("sonnet", "hello")
+    (cache_dir / f"{key}.json").write_text(json.dumps({
+        "model": "sonnet", "role": "critic", "prompt_sha256": "x", "response": {"greeting": "cached"},
+    }))
+    result = llm.complete(
+        "hello", role="critic", schema=SCHEMA, model="sonnet", cache_dir=cache_dir,
+        replay_only=True, provenance=_PROVENANCE,
+    )
+    assert result == {"greeting": "cached"}
+    assert not (cache_dir / "index.jsonl").exists()
+
+
+def test_index_never_contains_the_prompt_text(tmp_path, monkeypatch):
+    fake = _fake_run([(0, _envelope(structured_output={"greeting": "hi"}))])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete(_SECRET_PROMPT, role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, provenance=_PROVENANCE)
+
+    raw = (Path(tmp_path) / "index.jsonl").read_text()
+    assert "PROMPT-SECRET-MARKER-9f3c" not in raw
+    assert "Rayleigh" not in raw
+    lines = _index_lines(tmp_path)
+    assert set(lines[0]) == {"cache_key", "role", "recorded_at", "source_ids", "production_ids", "learner_ids"}
+
+
+def test_complete_many_with_provenance_writes_one_index_line_per_prompt(tmp_path, monkeypatch):
+    monkeypatch.setattr(parallel_module.time, "sleep", lambda s: None)
+    fake = _fake_run([
+        (0, _envelope(structured_output={"greeting": "a"})),
+        (0, _envelope(structured_output={"greeting": "b"})),
+    ])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete_many(
+        ["prompt-one", "prompt-two"], role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path,
+        provenance=_PROVENANCE,
+    )
+    lines = _index_lines(tmp_path)
+    assert len(lines) == 2
+    assert {ln["cache_key"] for ln in lines} == {
+        llm._cache_key("sonnet", "prompt-one"), llm._cache_key("sonnet", "prompt-two"),
+    }

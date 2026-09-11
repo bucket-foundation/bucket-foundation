@@ -1,9 +1,10 @@
 # information-foraging: Canon Index
 
-**Branch**: `04-information/information-foraging/`
+**Branch**: `07-mind/information-foraging/`
 **Scope**: foundation-tier only. The primary formal theory of information-seeking as a cost-benefit optimization problem.
 **Seeded**: 2026-09-10 (canon intake pass two, `intake/ros-canon-promotion-2`), promoted from `_intake/research-os-k12-literature/`. One record, resolved live via `tools/canon-pipeline/canon.py resolve <doi>`, passed RUBRIC.md Stage-0 (E1-E9) and Stage-2 (`canon_score >= 70`), converged via `python3 tools/canon-pipeline/intake.py bucket-canon/04-information/information-foraging --min-score 70` (added=1, changed=True on first run; added=0, kept=1, changed=False on both re-runs, confirming idempotence).
-**Status**: pass-2 hand-verified seed.
+**Moved**: 2026-09-11 (`fix/canon-promotion-findings`), from `04-information/information-foraging/` to here. The pass-two seed placed this dossier in `04-information/` on the pass's own task brief; that placement sat on the wrong side of both branches' boundary rule: a model of what a searcher in fact does belongs in `07-mind/`, and a limit on what any searcher can do in principle belongs in `04-information/`. So this pass corrects it. See "Branch placement" below and `bucket-canon/TAXONOMY_NOTES.md`.
+**Status**: pass-2 hand-verified seed, relocated.
 
 ## Files in this dossier
 
@@ -22,7 +23,7 @@
 
 ## Branch placement
 
-Placed in `04-information/` rather than `07-mind/` on this pass's task brief. `04-information/README.md`'s own boundary rule against `07-mind` turns on whether a result is a limit on what any information-seeker can do in principle, or a model of what a biological searcher in fact does; this paper sits close to that line, since it is a model of actual human search behavior stated in the formal, optimization language the theory borrows from ecology. See `04-information/README.md`'s "vs `07-mind/`" section for the placement note this dossier adds.
+Filed in `07-mind/`. `04-information/README.md`'s own boundary rule against `07-mind` turns on whether a result is a limit on what any information-seeker can do in principle, or a model of what a biological searcher in fact does; Pirolli and Card 1999 is a model of actual human search behavior, stated in the formal, optimization language the theory borrows by analogy from ecology; the branch's own rule reserves that language for a principled limit, and this paper states a description of behavior instead. The pass-two seed placed this dossier in `04-information/` on that pass's own task brief rather than on the branches' own rule; this pass (`fix/canon-promotion-findings`) corrects the placement. See `04-information/README.md`'s "vs `07-mind/`" boundary call and `bucket-canon/TAXONOMY_NOTES.md` for the correction record. A one-line redirect stays at the old `04-information/information-foraging/` location for anything still linking there.
 
 ## Discipline
 

@@ -8,7 +8,11 @@ Documented entry point, both a CLI (`python3 scripts/campaign_research_os.py`)
 and an importable `run()` function, that:
 
 1. Reads `public.research_os_productions_outbox`'s unconsumed rows
-   (`hte.corpus.research_os_outbox.fetch_and_build`, ros-12 item 2).
+   (`hte.corpus.research_os_outbox.fetch_and_build`, ros-12 item 2). A
+   row that fails to normalize is skipped (logged, never marked
+   consumed) rather than aborting the whole batch (PR #37's own seam
+   finding, `_build`'s own per-row isolation); `main()` prints each
+   skip and folds the list into `MANIFEST.json["skipped_rows"]`.
 2. Runs one `hte.runner.run_campaign` over them, registering the
    `"research-os"` corpus into `hte.runner`'s own module-private
    `_CORPUS_LOADERS` at call time (`_register_corpus` below) rather than
@@ -57,7 +61,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from hte import runner, unknowns
+from hte import provenance, runner, unknowns
 from hte.concepts import Slot, Vocabulary
 from hte.corpus import Corpus, research_os_outbox
 from hte.hypothesis import Hypothesis
@@ -192,6 +196,7 @@ def run(
     branch: str = DEFAULT_BRANCH,
     config_overrides: dict[str, Any] | None = None,
     gap_limit: int = 25,
+    skipped_rows: list[dict[str, str]] | None = None,
 ) -> dict[str, Any]:
     """Runs one `hte.runner.run_campaign` over `corpus` and returns the
     export payload `apply-engine-campaign.ts` applies:
@@ -199,11 +204,26 @@ def run(
     [...]}`. No Supabase access happens here, only `main()` (the outbox
     read and the consumed-marking write) touches the network; a test calls
     `run()` directly with a small fixture `Corpus` and `HTE_LLM_MODE=fake`,
-    exactly `tests/test_campaign_research_os.py`'s own pattern."""
+    exactly `tests/test_campaign_research_os.py`'s own pattern.
+
+    Once `run_campaign` returns, patches `artifacts.run_dir/MANIFEST.json`
+    with `hte.provenance.stamp_manifest(artifacts.run_dir, corpus,
+    skipped_rows=skipped_rows)` (`docs/PRIVACY.md`): a `provenance` block
+    (which production/learner ids `corpus` carries, `hte.corpus.
+    research_os_outbox._stamp_corpus_provenance`'s own stamp read back)
+    and, when `skipped_rows` is given, the `{"production_id", "reason"}`
+    list for every outbox row `_build` could not normalize (PR #37's own
+    seam finding). `hte.runner.run_campaign` is not this change's file to
+    edit (see this module's own header comment on why), so this patches
+    the manifest after the fact rather than the runner writing either
+    block itself; every call to `run()` gets this patch, not only
+    `main()`'s own outbox path, so a test calling `run()` directly still
+    gets a stamped manifest to purge against."""
     _register_corpus(campaign, corpus)
     config = {"corpus": campaign, "campaign": campaign, **(config_overrides or {})}
     artifacts = runner.run_campaign(config)
     run_id = str(artifacts.run_dir)
+    provenance.stamp_manifest(artifacts.run_dir, corpus, skipped_rows=skipped_rows)
     return {
         "runId": run_id,
         "engine": engine,
@@ -227,12 +247,14 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    row_ids, corpus = research_os_outbox.fetch_and_build(table=args.table, status_min=args.status_min)
+    row_ids, corpus, skipped_rows = research_os_outbox.fetch_and_build(table=args.table, status_min=args.status_min)
+    for skipped in skipped_rows:
+        print(f"skipped outbox row production_id={skipped['production_id']!r}: {skipped['reason']}", file=sys.stderr)
     if not row_ids:
-        print("no unconsumed research-os outbox rows; nothing to run", file=sys.stderr)
+        print(f"no usable research-os outbox rows ({len(skipped_rows)} skipped); nothing to run", file=sys.stderr)
         return 0
 
-    payload = run(corpus, branch=args.branch, gap_limit=args.gap_limit)
+    payload = run(corpus, branch=args.branch, gap_limit=args.gap_limit, skipped_rows=skipped_rows)
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(payload, indent=2, default=str))

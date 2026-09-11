@@ -1,5 +1,7 @@
 """`hte-synth` console script: `run` and `sweep` over `hte.synth`'s
-random worlds.
+random worlds, plus `realsweep` over the shipped real corpora (`hte.
+calibrate.run_calibration`, no LLM call, no full campaign; see that
+subcommand's own section below, `bkt-hte-generation-coverage`).
 
 stdlib `argparse` only, matching this package's own no-dependencies
 contract (`pyproject.toml`).
@@ -41,7 +43,9 @@ from pathlib import Path
 from types import ModuleType
 from typing import Any, Callable
 
-from . import synth
+from . import calibrate, diagnostics, synth
+from .belief import Constants
+from .corpus import Corpus, education_atlas, literature, production, quantum_history
 
 _IMPORT_RETRIES = 5
 _IMPORT_RETRY_DELAY_S = 60.0

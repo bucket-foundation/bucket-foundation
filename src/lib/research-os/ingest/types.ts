@@ -71,7 +71,16 @@ export type ReviewItemKind =
    * and tier ordering, never applied by that script -- a reviewer decides
    * whether to add it to the seed, an importer's source data, or reject
    * it. */
-  | "inferred_prerequisite_proposal";
+  | "inferred_prerequisite_proposal"
+  /** scripts/research-os/ingest/infer-edges-llm.ts's own output (bkt-ros
+   * ros-13, src/lib/research-os/inference/propose.ts's `proposeLlmEdges`):
+   * a `prerequisite` edge an LLM judged "yes" against a strict prompt,
+   * confidence_source `inferred_llm`, never applied by that script -- the
+   * /research-os/edges review UI (src/app/api/research-os/edges/route.ts)
+   * is the human decision path, matching this ingestion slice's "never
+   * write a prerequisite edge without human review" rule (learning/
+   * research-os/INGESTION.md). */
+  | "llm_proposed_edge";
 
 export interface ReviewItem {
   /** Stable across re-runs: (kind + the item's own natural key), so

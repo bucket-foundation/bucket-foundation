@@ -1,5 +1,95 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #42 review pass
+
+Review-and-merge pass on PR #42 (`feat/hte-purge`, "provenance index and
+purge for learner-derived artifacts") before merge, worktree
+`.ros-worktrees/r42`. Full account: `tools/hypothesis-engine/docs/
+LOOP-LOG.md`, "2026-09-10, PR42 review".
+
+Touched a Research OS surface only in `learning/research-os/compliance/
+DATA-INVENTORY.md`: amended the `public.research_os_productions_outbox`
+row to name `hte purge --production <id>` as the required manual call
+that reaches the engine-side artifacts a learner delete request cannot,
+closing the reachability gap the engine PR's own `docs/PRIVACY.md`
+already named. No other Research OS file (`src/lib/research-os/`,
+`src/app/research-os/`, migrations) changed.
+
+## 2026-09-10, PR #54 review pass
+
+Reviewed PR #54 (LLM-assisted edge inference, the two-prompt agreement
+check, `/research-os/edges` human review, and the `ros-11` remainder
+labeling `hte/export.py`'s `TIMELINE.md` export unvalidated) from the
+`review/pr54` worktree.
+
+### Verified
+
+Leak scan over the full diff: no keys, tokens, secrets, IPs, non-public
+hostnames, `/home/gian` paths, or Claude session URLs. The only email
+addresses are the existing `reviewer@school.example` / `learner@school.example`
+/ `anyone@school.example` test fixtures.
+
+Correctness checked against the calibration and review-flow contract: the
+proposer (`src/lib/research-os/inference/propose.ts`) never writes to
+`graph.edges`, only `/api/research-os/edges`'s approve branch does;
+`llmSelfReportedToConfidence` clamps every input, including non-finite and
+out-of-range values, into the inferred band; a split verdict lands at the
+fixed `DISAGREEMENT_CONFIDENCE` (0.4), below `LOW_CONFIDENCE_THRESHOLD`
+(0.6); approve writes `confidence_source: "teacher"` at 0.95, records the
+reviewer, is idempotent on a second call (`decideEdgeProposal`'s
+`alreadyDecided` short-circuit), and rebuilds `graph.prereq_ancestor`
+best-effort; reject is idempotent with no edge write; the route 403s a
+non-reviewer via the existing `verifyReviewer` allowlist gate; the model
+call reuses the tutor's own `selectProvider` abstain path and
+`callGroundedModelWithUsage` / `logToolCost` cost-logging; `model` and
+`prompt_hash` are `not null` columns on every queued proposal.
+
+### Fixed
+
+- `scripts/research-os/ingest/test-ingest-infer-llm.ts`: the calibration
+  bound (0.3 to 0.65) had only point-sample coverage. Added a 400-point
+  numeric sweep of `llmSelfReportedToConfidence` (-2 to 2 in 0.01 steps)
+  plus adversarial values (`NaN`, `Infinity`, `-Infinity`, `-0`, extreme
+  magnitudes), and a full `sanitizeJudgment` -> `combineAgreement` grid
+  over malformed answer/justification/confidence shapes on both prompts,
+  asserting every proposed confidence lands in
+  `(0, INFERRED_CONFIDENCE_MAX]` and every disagreement stays below
+  `LOW_CONFIDENCE_THRESHOLD`. Suite grew from 277 to 279.
+- `supabase/migrations/20260910050000_research_os_edge_proposals.sql`
+  renamed to `20260910050001_research_os_edge_proposals.sql`:
+  `origin/main`'s concurrent PR #52 landed a roster migration with the
+  identical `20260910050000` timestamp prefix. Two migrations sharing one
+  version string risk a Supabase CLI tracking-table collision even though
+  the filenames differ; bumped this one a second later. Updated the two
+  code references (`scripts/test-research-os-edges-review.ts`'s
+  `EDGE_PROPOSALS_MIGRATION` path, `src/app/api/research-os/edges/route.ts`'s
+  header comment). No migration content changed.
+
+### Merged
+
+`origin/main` twice: first cleanly (one file, `LOOP-LOG.md`, added on
+`main` only), then a second time after PR #52 (`feat/ros-roster-sync`)
+merged concurrently, conflicting on `BEADS-PENDING.jsonl`,
+`_intake/research-os-k12/CHANGELOG.md`, `learning/research-os/CHANGE-LEDGER.md`
+(all three append-only, kept both sides' entries, reordered newest-first),
+`package.json` (both PRs appended to the `test:research-os` chain; merged
+into one chain carrying every new script from both, 23 total), and a
+one-sentence docstring rewording in
+`tools/hypothesis-engine/tests/swarm-20260910/test_serve_props.py` (kept
+`origin/main`'s phrasing, no content lost either way).
+
+### Gates
+
+`npm ci` clean, `npx tsc --noEmit` clean, `npm run build` clean
+(`/research-os/edges`, `/api/research-os/edges`, `/research-os/roster`,
+`/api/research-os/roster` all in the manifest), `npm run test:research-os`
+298/298 across 23 files (279 after this pass's own fix, plus 19 from PR
+#52's roster merge), `next lint` clean on every touched TS/TSX file,
+`ruff check` clean on `hte/export.py` and its two touched test files,
+`pytest` 27/27 on `test_export.py` and its two property-test siblings,
+`agf-lint-voice-src check` / `agf-lint-voice check` clean on every touched
+file. Squash-merged via `gh pr merge 54 --squash --delete-branch`.
+
 ## 2026-09-10, PR #52 review pass
 
 Privacy engineer review of PR #52 (`feat/ros-roster-sync`, "OneRoster CSV
@@ -68,6 +158,99 @@ review), all passing.
 No PII beyond a teacher's own contact information (already documented as
 staff data, out of scope for a learner's export/delete rights) is stored
 anywhere this bead touches. Merged via `gh pr merge --squash`.
+
+## 2026-09-10, LLM-assisted edge inference and ros-11's TIMELINE.md label
+
+Branch `feat/ros-llm-edge-inference`, worktree `.ros-worktrees/infer`.
+Closes `BEADS-PENDING.jsonl`'s `ros-13` LLM-assisted-edge-inference item
+and the `ros-11` TIMELINE.md remainder.
+
+### Added
+
+- `src/lib/research-os/inference/calibration.ts`: `llmSelfReportedToConfidence`
+  (self-reported model confidence shrunk onto `infer.ts`'s own
+  `INFERRED_CONFIDENCE_MIN`..`MAX` band, 0.3 to 0.65, per
+  `PLAN-REVISION-2.md` section 2c's policy) and `combineAgreement` (task
+  item 2's two-prompt agreement rule: both "no" drops the pair, both "yes"
+  keeps the lower shrunk confidence, a split verdict still proposes at a
+  fixed `DISAGREEMENT_CONFIDENCE` of 0.4, always below
+  `LOW_CONFIDENCE_THRESHOLD`).
+- `src/lib/research-os/inference/prompts.ts`: two independently-phrased
+  strict yes/no prerequisite prompts plus `promptHash` (sha256, 16 hex
+  chars).
+- `src/lib/research-os/inference/propose.ts`: `buildCandidatePairs`
+  (lexical proposals plus a deterministic, capped tier-adjacent sample),
+  `judgePair`/`proposeLlmEdges` (dependency-injected `ModelCaller`, no
+  direct `llm.ts` import, so tests stub it with no network and no key),
+  `sanitizeJudgment` (a malformed model response downgrades to a safe
+  "no," matching `grounding.ts`'s own fail-safe posture).
+- `src/lib/research-os/inference/decide.ts`: `decideEdgeProposal`, the
+  pure approve/reject transition (0.95 confidence, `confidence_source
+  "teacher"` on approve; idempotent on an already-decided proposal),
+  mirroring `stages.ts`'s `onTeacherReview` shape.
+- `scripts/research-os/ingest/infer-edges-llm.ts`: the CLI, dry run only
+  (never writes `graph.edges`), wires the real provider via `llm.ts`'s
+  `selectProvider`/`callGroundedModelWithUsage`, writes
+  `review-list.json` (`llm_proposed_edge` items) and, when Supabase is
+  configured, best-effort queues each proposal into a new
+  `graph.edge_proposals` table.
+- `scripts/research-os/ingest/lib/build-node-pool.ts`: the node-pool
+  assembly factored out of `infer-edges.ts` so both CLI proposers scan
+  the identical population.
+- `supabase/migrations/20260910050000_research_os_edge_proposals.sql`:
+  `graph.edge_proposals`, the review queue, RLS enabled with no
+  client-facing policy (service-role only, gated by `reviewer.ts`).
+- `src/app/api/research-os/edges/route.ts` and
+  `src/app/research-os/edges/page.tsx`: the `/research-os/edges` review
+  UI, gated to `RESEARCH_OS_REVIEWER_EMAILS`, mirroring
+  `/research-os/review`'s own auth and layout pattern.
+- `src/lib/research-os/rebuild-ancestor.ts`: `rebuildPrereqAncestorForBranch`,
+  factored out of `scripts/rebuild-prereq-ancestor.ts` so the edges
+  route's approve action rebuilds `graph.prereq_ancestor` in-process
+  (task item 4) instead of shelling out.
+- Test files: `scripts/research-os/ingest/test-ingest-infer-llm.ts` (23
+  tests, calibration/agreement/candidate-selection/proposal assembly, all
+  against a stubbed model), `scripts/test-research-os-edges-review.ts` (9
+  tests, the decision transition plus the reviewer-gate 403 case and the
+  migration's own shape), `scripts/test-research-os-rebuild-ancestor.ts`
+  (3 tests, a fake fluent Supabase client, no network).
+- `tools/hypothesis-engine/hte/export.py`: `write_views`'s `TIMELINE.md`
+  now carries the same "Elo is unvalidated" note
+  `canon_writeback.render_index` already gives its own hypothesis-card
+  index, plus an "Elo (unvalidated)" bin-table column header (`ros-11`'s
+  named remainder: "the base campaign export... carries no such label").
+  One new test, `test_write_views_labels_elo_as_unvalidated`.
+
+### Edited
+
+- `scripts/research-os/ingest/infer-edges.ts`: node-pool assembly moved to
+  `lib/build-node-pool.ts`, no behavior change (re-run against the live
+  517-node/8-branch corpus still proposes the same 36 edges).
+- `scripts/rebuild-prereq-ancestor.ts`: thinned to an env-var read plus a
+  call into `rebuild-ancestor.ts`'s new function.
+- `src/lib/research-os/ingest/types.ts`: `ReviewItemKind` gains
+  `llm_proposed_edge`.
+- `package.json`: new `ingest:research-os:infer-llm` script; three new
+  test files added to the `test:research-os` chain.
+- `learning/research-os/ROUTING.md`: new "LLM-assisted prerequisite-edge
+  inference" section (calibration, agreement, review flow), a new
+  `inferred_llm` confidence-source table row, and an updated `teacher`
+  row (0.95 on an edge-proposal approval, 1.0 on a resolved routing
+  flag).
+- `learning/research-os/INGESTION.md`: `llm_proposed_edge` added to the
+  review-list-contract table; the closing "what this slice does not do"
+  paragraph updated from "one shipped, one not" to both shipped.
+
+### Verified
+
+Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+`npm run test:research-os` (248/248 pass across all 20 chained test
+files), `next lint` on every touched TS/TSX file, `ruff check` on
+`export.py`/`test_export.py`, engine tests for the touched module
+(`pytest tools/hypothesis-engine/tests/test_export.py` 13/13,
+`tests/swarm/test_export_props.py` 6/6, full suite excluding `slow`
+green). `agf-lint-voice-src check` / `agf-lint-voice check` run on every
+touched file.
 
 ## 2026-09-10: literature corpus promotion pass two
 
