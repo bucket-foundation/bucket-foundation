@@ -53,6 +53,27 @@ export interface Provenance {
   [k: string]: unknown;
 }
 
+/** The three faded-guidance levels (bkt-ros ros-14, "faded guidance for
+ * low-prior-knowledge learners"): how much scaffolding the workspace shows
+ * a learner on a given node, high (most) to low (least). See
+ * src/lib/research-os/guidance.ts and learning/research-os/GUIDANCE.md. */
+export type GuidanceLevel = "high" | "medium" | "low";
+
+/** A short, grade-appropriate model explanation of a node's own idea,
+ * authored content grounded in the node's existing summary/passage rather
+ * than a verbatim quotation (contrast QuotePassage in passages.ts, which IS
+ * verbatim). Carried on GraphNode.workedExample; shown to a learner at
+ * high or medium guidance before their own explanation box (ros-14 item
+ * 2). See src/lib/research-os/worked-examples.ts. */
+export interface WorkedExample {
+  /** The model explanation itself, grade-4 level, 2-4 sentences. */
+  text: string;
+  /** The source this explanation rests on, a citation label matching
+   * grounding.ts's citationLabel format (e.g. "NASA Space Place (2024).
+   * Why Is the Sky Blue?."). */
+  source: string;
+}
+
 export interface GraphNode {
   id: string;
   slug: string;
@@ -63,6 +84,9 @@ export interface GraphNode {
   summary: string | null;
   labels?: Record<string, { title?: string; summary?: string }>;
   provenance?: Provenance;
+  /** ros-14: present only for a node the seed has authored one for (Phase
+   * 0: the sky-blue path's first six nodes). Absent everywhere else. */
+  workedExample?: WorkedExample;
 }
 
 export interface GraphEdge {

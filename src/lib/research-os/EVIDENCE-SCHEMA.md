@@ -110,6 +110,22 @@ kind: "open" | "explanation" | "check" | "transfer_item" | "production_submitted
 
 with `fromStage: "production"`, `toStage: "production"` (the append documents the correction without violating the high-water-mark rule `stageAtLeast` and every existing transition function already enforce; `stage` does not move backward, the evidence log instead carries the fact that this particular production was rejected, which any outcome query filtering on `graph.productions.status = "accepted"`, per `LEARNER-STATE-MODEL.md` section 1's own instruction, already handles without needing `stage` itself to reflect the rejection).
 
+## ros-14 addendum: guidanceLevel
+
+`src/lib/research-os/stages.ts`'s shipped `EvidenceEvent`/`EvidenceContext` (ros-04's own extended shape above, already live on `main`) gains one more optional field this contract did not originally name:
+
+```ts
+// Added by bkt-ros ros-14 ("faded guidance for low-prior-knowledge
+// learners"). The faded-guidance level (src/lib/research-os/guidance.ts's
+// GuidanceLevel, "high" | "medium" | "low") in effect when this event was
+// produced, so a pilot can compare outcomes by arm. Same optionality
+// discipline as every other field here: a caller with no guidance level
+// computed for this call omits it.
+guidanceLevel?: GuidanceLevel;
+```
+
+Every transition function in `stages.ts` that already takes an `EvidenceContext` threads the field the same way it threads `sessionId`; in Phase 0, only `POST /api/research-os/workspace`'s `check` action computes and passes a value. See `learning/research-os/GUIDANCE.md` for the full design account, what a learner's guidance level means, the fading schedule, the class arm switch, and why Open/Transfer/Production events stay unpopulated for now.
+
 ## The `"quote"` event
 
 Feeds `production-guard.ts`'s source verification. The production guard bead adds a second, standalone new event `kind` (beside `production_returned` above): `"quote"`, written by `stages.ts`'s `onQuoteReturned` whenever the Quote tool (`workspace/route.ts`'s `"quote"` case) returns a real curated passage from `src/lib/research-os/passages.ts`, rather than its own `"summary"` fallback:

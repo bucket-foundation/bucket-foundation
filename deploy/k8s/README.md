@@ -18,7 +18,7 @@ Bead: **bkt-pf0**. Downstream consumers: `bkt-5qg` (USPTO ingest), `bkt-zx6`
 
 ```bash
 docker build -t agfarms/postgres-bucket:pg16-postgis-pgvector \
-  /home/gian/agfarms/bucket-foundation/deploy/k8s/postgres-image
+  ~/agfarms/bucket-foundation/deploy/k8s/postgres-image
 docker push agfarms/postgres-bucket:pg16-postgis-pgvector
 ```
 
@@ -83,7 +83,7 @@ postgresql://bucket:${POSTGRES_PASSWORD}@localhost:5433/bucket
 USPTO schema lands in the `patents` schema (already created by init):
 ```bash
 kubectl -n bucket-foundation exec -i postgres-0 -- \
-  psql -U bucket -d bucket -f - < /home/gian/agfarms/bucket-foundation/data/patents/uspto/schema/uspto.sql
+  psql -U bucket -d bucket -f - < ~/agfarms/bucket-foundation/data/patents/uspto/schema/uspto.sql
 ```
 
 ## Cert renewal verification

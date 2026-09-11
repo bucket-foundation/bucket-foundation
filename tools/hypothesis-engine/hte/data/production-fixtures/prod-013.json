@@ -1,0 +1,62 @@
+{
+  "id": "prod-013",
+  "created_at": "2020-01-10T00:00:00Z",
+  "author_role": "student",
+  "grade_band": "6-8",
+  "school_or_district_id": "district-a",
+  "research_question": "RQ19: does a reviewed production's detectability and tier move the engine's ranked hypotheses in a calibrated direction?",
+  "claims": [
+    {
+      "text": "A classroom production's own reviewed corroboration should raise this address's ranking among the engine's proposed hypotheses.",
+      "stance": "supports",
+      "slots": {
+        "actor": "student-researcher",
+        "action": "raised",
+        "object": "hypothesis-ranking",
+        "place": "classroom-workspace",
+        "mechanism": null
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-hte-self-report-p1-pre",
+          "locator": "self-report.json:p1_pre_summary",
+          "quote": "A classroom production's own reviewed corroboration should raise this address's ranking among the engine's proposed hypotheses.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "url",
+              "value": "https://example.org/synth/src-hte-self-report-p1-pre"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "accepted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2020-01-15"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2020-02-15"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2020-03-15"
+      },
+      {
+        "status": "accepted",
+        "date": "2020-04-15"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}

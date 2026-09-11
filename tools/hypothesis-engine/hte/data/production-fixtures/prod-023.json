@@ -1,0 +1,62 @@
+{
+  "id": "prod-023",
+  "created_at": "2020-02-01T00:00:00Z",
+  "author_role": "researcher",
+  "grade_band": "11-12",
+  "school_or_district_id": "district-a",
+  "research_question": "RQ19: does a reviewed production's detectability and tier move the engine's ranked hypotheses in a calibrated direction?",
+  "claims": [
+    {
+      "text": "A Bucket Foundation reviewer raised this address's detectability score after cross-family judge agreement.",
+      "stance": "supports",
+      "slots": {
+        "actor": "bucket-foundation-reviewer",
+        "action": "raised",
+        "object": "detectability-score",
+        "place": "engine-pipeline",
+        "mechanism": "cross-family-judging"
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-hte-self-report-chainA",
+          "locator": "self-report.json:chainA_summary",
+          "quote": "A Bucket Foundation reviewer raised this address's detectability score after cross-family judge agreement.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "url",
+              "value": "https://example.org/synth/src-hte-self-report-chainA"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "accepted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2020-01-15"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2020-02-15"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2020-03-15"
+      },
+      {
+        "status": "accepted",
+        "date": "2020-04-15"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}

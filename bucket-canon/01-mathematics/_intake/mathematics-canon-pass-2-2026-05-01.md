@@ -931,7 +931,7 @@ formalized, 1 README revision required.
 
 ## Report-back to dispatcher
 
-**File**: `/home/gian/agfarms/bucket-foundation/bucket-canon/01-mathematics/_intake/mathematics-canon-pass-2-2026-05-01.md`
+**File**: `~/agfarms/bucket-foundation/bucket-canon/01-mathematics/_intake/mathematics-canon-pass-2-2026-05-01.md`
 **Line count**: ~720 lines (within the 600-800 target).
 
 **Final calls:**

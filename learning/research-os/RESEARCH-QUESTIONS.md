@@ -16,6 +16,7 @@ Seeded 2026-09-09 from the people and funding streams in `_intake/research-os-k1
 *Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H2, confirmatory.*
 6. Does routing from a live hypothesis-engine gap node produce productions the engine can use, and does that change learner engagement? Study: compare gap-node targets with static frontier atoms.
 7. How should supports fade as state rises, given expertise reversal (Kalyuga 2003)? Study: scaffolding schedule as a factor.
+*Pre-registered as of 2026-09-10, revision 1: `learning/research-os/study/PREREGISTRATION-DRAFT.md`'s Design Plan registers the guidance-level field (`GUIDANCE.md`, branch `feat/ros-faded-guidance`) as a pre-specified covariate in H1 and H2, fixed on rather than crossed as an experimental factor at Phase 1 scale (`learning/research-os/study/INSTRUMENTS.md` section 4).*
 
 ## The constrained AI
 
@@ -23,14 +24,17 @@ Seeded 2026-09-09 from the people and funding streams in `_intake/research-os-k1
 *Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H1a and H1b, confirmatory for Phase 1 feasibility, fully powered at the Phase 2 sample-size target the same draft computes.*
 9. At what rate does the quote tool fabricate or misattribute a span, and does the check tool's abstain path fire when retrieval is weak? Adversarial audit on a K-12 query set (the Bender test).
 10. Does the constraint change how learners judge source quality (lateral reading, McGrew and others 2019)? Study: civic online reasoning tasks before and after.
+*Considered for pre-registration 2026-09-10, revision 1, and deferred: a `usedSecondSource` outcome (Wineburg and McGrew 2019, `PLAN-REVISION-3.md` section 2c's Locate `secondSource` design response) is not yet registered in `learning/research-os/study/PREREGISTRATION-DRAFT.md`, since the field it would read does not exist in shipped code.*
 11. What is the cognitive-offloading effect of check on later unassisted claim evaluation (Bastani and others 2024; Lee and others 2025)?
 *Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H1, plus the Lee-2025-and-Fisher-2015 metacognitive confidence instrument in `learning/research-os/study/INSTRUMENTS.md` section 2.*
+*Pre-registered as of 2026-09-10, revision 1: a calibration outcome (stated confidence against source-prediction correctness, `src/lib/research-os/calibration.ts`) is registered as a secondary, exploratory outcome under H1; the class-level production-diversity outcome's own similarity method now has a concrete candidate, `production-guard.ts`'s `jaccardOverlap` (PR #73, merged).*
 
 ## Productions and payments
 
 12. Can student productions meet a research-grade evidence standard? Study: blind rating of accepted productions against the engine's evidence tiers; compare with citizen-science and course-based research precedents.
 13. Does the prospect of a citation payment change the quality or the quantity of productions, and does it crowd out intrinsic motivation? Study: classes with recognition only versus recognition plus custodial credit.
 *Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H3, confirmatory, recognition-only versus recognition-plus-ledger only, no live-cash arm.*
+*Pre-registered as of 2026-09-10, revision 1: a production provenance-flags-rate outcome (unverified sources, duplicate flags, missing counter-evidence, `PRODUCTION-GUARD.md`) is registered as a secondary, exploratory outcome under H3, and a required-participation clause (Grinnell and colleagues 2020) stratifies rather than excludes a class whose teacher requires Production submission.*
 14. Which payout structure do guardians and districts accept (guardian-as-payee, custodial account, deferred ledger), and what do state child-earnings laws require in each pilot state?
 
 ## Teacher view
@@ -73,6 +77,7 @@ Source: `_intake/research-os-k12/raw/lit-educational-methods.md` (49 sources, DO
 30. Does a citation payment change the self-explanation and struggle behaviors that predict transfer (Chi and others 1989, 1994; Kapur 2008, 2014)? Three conditions: no payment, credential only, payment.
 *Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H3, confirmatory, self-explanation-quality half of this question; the "payment" condition here is a non-liquid ledger entry only, per that draft's own scope note.*
 31. What share of accepted productions is net-new synthesis versus restated source material, by grade band? Blind expert coding against cited sources.
+*Pre-registered as of 2026-09-10, revision 1: `PRODUCTION-GUARD.md`'s duplicate-flag check (token overlap against the learner's own prior Productions, other accepted Productions in the class, and canon claim text) is a machine-scored proxy for this question's own restated-versus-net-new distinction, read alongside the blind expert coding this question specifies rather than instead of it.*
 32. Does teacher access to state-level data change grouping and intervention decisions, and do outcomes match Black and Wiliam's range? Classrooms randomized to the class view.
 33. Do FSRS intervals need to differ by state, given different forgetting curves for recall and production?
 *Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H6, confirmatory main sub-hypothesis (FSRS-scheduled versus fixed-interval retention), using the probe schedule in `learning/research-os/study/INSTRUMENTS.md` section 1.*
