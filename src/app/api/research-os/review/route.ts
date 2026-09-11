@@ -47,6 +47,24 @@
  *   high-water-mark rule never runs backward), the event itself, plus
  *   graph.productions.status, is what records the correction.
  *
+ * Production guard (bkt-ros, production guard bead): GET's own
+ * `productions` entries now also carry `sourceProvenance`,
+ * `duplicateFlag`, `counterEvidence`, and `counterEvidenceRequired`, the
+ * exact values `/api/research-os/production`'s POST computed and stored
+ * at submit time (production-guard.ts's own functions, never recomputed
+ * here, task item 5's own "show guard flags beside each queued
+ * Production"). POST refuses an "approved" decision on a production
+ * whose `source_provenance` carries any unverified source (production-
+ * guard.ts's hasUnverifiedSource), 409 `unverified_sources_block_accept`
+ * -- task item 1's own gate, "approve remains blocked while unverified
+ * sources exist" -- so a reviewer must choose "returned" instead; "kind":
+ * "production", "returned" always remains available regardless. A
+ * successful "approved" production decision also computes and stores
+ * `production_incentive_eligible` (production-guard.ts's
+ * computeIncentiveEligible against the target node's linked canon
+ * record, `canon-link.ts`'s lookupCanonSignoff): no payment code reads
+ * it, task item 4's own scope line.
+ *
  * Auth: Authorization: Bearer <supabase access token>, verified against
  * src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS allowlist.
  * TODO(Phase 1, review section 4 gap analysis "Role system"): reviewer.ts's
@@ -57,8 +75,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib/research-os/stages";
 import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, recordEvidence, emitProductionOutboxIfAccepted } from "@/lib/research-os/db";
+import { configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
+import { hasUnverifiedSource, unverifiedSourceReturnNote, computeIncentiveEligible, type SourceCheck, type DuplicateFlag } from "@/lib/research-os/production-guard";
+import { lookupCanonSignoff } from "@/lib/research-os/canon-link";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -85,6 +105,10 @@ interface ProductionRow {
   status: string;
   created_at: string;
   notes: unknown[];
+  source_provenance: SourceCheck[] | null;
+  duplicate_flag: DuplicateFlag | null;
+  counter_evidence: unknown[] | null;
+  counter_evidence_required: boolean | null;
 }
 
 export async function GET(req: NextRequest) {
@@ -113,7 +137,9 @@ export async function GET(req: NextRequest) {
 
   const { data: productionRows, error: prodErr } = await svc
     .from("productions")
-    .select("id,learner_id,target_node_id,claim,evidence,sources,transfer_proof,status,created_at,notes")
+    .select(
+      "id,learner_id,target_node_id,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required",
+    )
     .eq("status", "submitted")
     .order("created_at", { ascending: true });
   if (prodErr) return bad(500, "read_failed");
@@ -140,18 +166,45 @@ export async function GET(req: NextRequest) {
           heldAt: (last?.at as string | undefined) ?? r.updated_at,
         };
       }),
-      productions: ((productionRows as ProductionRow[]) || []).map((p) => ({
-        id: p.id,
-        learnerId: p.learner_id,
-        targetNodeId: p.target_node_id,
-        targetTitle: titleById.get(p.target_node_id) ?? p.target_node_id,
-        claim: p.claim,
-        evidence: p.evidence,
-        sources: p.sources,
-        transferProof: p.transfer_proof,
-        createdAt: p.created_at,
-        notes: p.notes ?? [],
-      })),
+      // Production guard (bkt-ros, production guard bead, task item 5):
+      // sourceProvenance/duplicateFlag/counterEvidence/
+      // counterEvidenceRequired are read straight from the row, computed
+      // once at submit time by /api/research-os/production's POST, never
+      // recomputed here. guardFlags is a small derived summary
+      // (production-guard.ts's own hasUnverifiedSource plus a "missing
+      // counter-evidence" check) so the review page does not need to
+      // re-derive it from the raw arrays.
+      productions: ((productionRows as ProductionRow[]) || []).map((p) => {
+        const sourceProvenance = p.source_provenance ?? [];
+        const counterEvidence = p.counter_evidence ?? [];
+        const counterEvidenceRequired = p.counter_evidence_required ?? false;
+        return {
+          id: p.id,
+          learnerId: p.learner_id,
+          targetNodeId: p.target_node_id,
+          targetTitle: titleById.get(p.target_node_id) ?? p.target_node_id,
+          claim: p.claim,
+          evidence: p.evidence,
+          sources: p.sources,
+          transferProof: p.transfer_proof,
+          createdAt: p.created_at,
+          notes: p.notes ?? [],
+          sourceProvenance,
+          duplicateFlag: p.duplicate_flag ?? null,
+          counterEvidence,
+          counterEvidenceRequired,
+          guardFlags: {
+            hasUnverifiedSource: hasUnverifiedSource(sourceProvenance),
+            unverifiedCount: sourceProvenance.filter((s) => !s.verified).length,
+            missingCounterEvidence: counterEvidenceRequired && counterEvidence.length === 0,
+          },
+          // The exact text a "returned" decision on this production could
+          // use (production-guard.ts's own template), so the review page
+          // never re-derives it client-side; "" when there is nothing to
+          // template (no unverified source).
+          unverifiedSourceNoteTemplate: unverifiedSourceReturnNote(sourceProvenance),
+        };
+      }),
     },
     { headers: { "cache-control": "no-store" } },
   );
@@ -230,12 +283,29 @@ export async function POST(req: NextRequest) {
 
   const { data: production, error: prodErr } = await svc
     .from("productions")
-    .select("id,learner_id,target_node_id,claim,evidence,sources,status,created_at,updated_at,notes")
+    .select("id,learner_id,target_node_id,claim,evidence,sources,status,created_at,updated_at,notes,source_provenance")
     .eq("id", productionId)
     .maybeSingle();
   if (prodErr) return bad(500, "read_failed");
   if (!production) return bad(404, "production_not_found");
   if (production.status !== "submitted") return bad(409, `production is already "${production.status}", not pending`);
+
+  // Production guard, task item 1's own gate: "a Production with any
+  // unverified_source cannot reach status accepted." An "approved"
+  // decision on such a production is refused outright, before any write;
+  // "returned" stays available regardless, and unverifiedSourceReturnNote
+  // gives the reviewer a template to send with it.
+  const sourceProvenance = (production.source_provenance as SourceCheck[] | null) ?? [];
+  if (body.decision === "approved" && hasUnverifiedSource(sourceProvenance)) {
+    return NextResponse.json(
+      {
+        error: "unverified_sources_block_accept",
+        message: "This production has a source that could not be matched to a Quote call. Return it instead of approving.",
+        noteTemplate: unverifiedSourceReturnNote(sourceProvenance),
+      },
+      { status: 409 },
+    );
+  }
 
   const now = new Date().toISOString();
   // "returned" sends the production back to draft (not the "returned"
@@ -249,11 +319,24 @@ export async function POST(req: NextRequest) {
   const priorNotes = (production.notes as unknown[] | null) ?? [];
   const notes = [...priorNotes, noteEntry];
 
+  // Production guard, task item 4: computed only on the "approved" path,
+  // against the target node's own linked canon record
+  // (graph.nodes.provenance.paper_id, canon-import.ts's own link), never
+  // against a claim the guard cannot trace to canon at all. No payment
+  // code reads this value; it is a stored eligibility signal only.
+  let incentiveEligible = false;
+  if (body.decision === "approved") {
+    const targetNode = await findNodeById(production.target_node_id as string);
+    const paperId = (targetNode?.provenance as { paper_id?: string } | undefined)?.paper_id;
+    const signoff = paperId ? lookupCanonSignoff(paperId) : null;
+    incentiveEligible = computeIncentiveEligible("accepted", signoff);
+  }
+
   const { data: updated, error: updErr } = await svc
     .from("productions")
-    .update({ status: newStatus, notes, updated_at: now })
+    .update({ status: newStatus, notes, updated_at: now, production_incentive_eligible: incentiveEligible })
     .eq("id", productionId)
-    .select("id,learner_id,target_node_id,claim,evidence,sources,status,created_at,updated_at")
+    .select("id,learner_id,target_node_id,claim,evidence,sources,status,created_at,updated_at,production_incentive_eligible")
     .maybeSingle();
   if (updErr) return bad(500, "write_failed");
 
@@ -311,5 +394,8 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  return NextResponse.json({ decision: body.decision, status: newStatus }, { headers: { "cache-control": "no-store" } });
+  return NextResponse.json(
+    { decision: body.decision, status: newStatus, productionIncentiveEligible: incentiveEligible },
+    { headers: { "cache-control": "no-store" } },
+  );
 }
