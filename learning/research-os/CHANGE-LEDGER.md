@@ -2062,3 +2062,54 @@ commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
 ### Edited
 
 - `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+
+## Iteration 22: PR #54 review pass
+
+Reviewed PR #54 (`feat/ros-llm-edge-inference`) from the `review/pr54`
+worktree: LLM-assisted prerequisite-edge inference, the two-prompt
+agreement check, `/research-os/edges` human review, and the `ros-11`
+remainder labeling `hte/export.py`'s `TIMELINE.md` export unvalidated.
+
+### Merged
+
+- `origin/main` into `review/pr54`: clean, no conflicts (one file,
+  `tools/hypothesis-engine/docs/LOOP-LOG.md`, added on `main` only).
+
+### Fixed
+
+- `scripts/research-os/ingest/test-ingest-infer-llm.ts`: the calibration
+  bound (`llmSelfReportedToConfidence` into `[0.3, 0.65]`) had only
+  point-sample coverage. Added a property-style sweep (400 points from -2
+  to 2 in 0.01 steps, plus `NaN`/`Infinity`/`-Infinity`/`-0`/extreme
+  magnitudes) and a `sanitizeJudgment` → `combineAgreement` grid over
+  malformed answer/justification/confidence shapes on both prompts,
+  asserting every proposed confidence lands in `(0, INFERRED_CONFIDENCE_MAX]`
+  and every disagreement stays below `LOW_CONFIDENCE_THRESHOLD`. Suite grew
+  277 to 279. Two `agf-lint-voice-src` hits on the new comments (an
+  antithesis construction and one banned filler word) fixed before commit.
+
+### Verified
+
+- Leak scan over the full diff: no keys, tokens, secrets, IPs, non-public
+  hostnames, `/home/gian` paths, or Claude session URLs; the only emails
+  are the existing `*@school.example` test fixtures.
+- The proposer never writes `graph.edges` (only the approve branch of
+  `/api/research-os/edges` does); a split verdict fixes at 0.4, below the
+  0.6 teacher-flag threshold; approve writes `confidence_source: "teacher"`
+  at 0.95, records the reviewer, is idempotent, and rebuilds
+  `graph.prereq_ancestor` best-effort; reject is idempotent with no edge
+  write; the route 403s a non-reviewer; the model call shares the tutor's
+  own abstain and cost-logging path; `model` and `prompt_hash` are stored
+  `not null` on every proposal; `hte/export.py`'s `TIMELINE.md` carries the
+  unvalidated-ranking note and column label, its own test passing.
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/edges` and
+  `/api/research-os/edges` both in the manifest), `npm run test:research-os`
+  (279 passed, 0 failed, 22 files), `next lint` on all 16 touched TS/TSX
+  files, `ruff check` on the three touched Python files, `pytest` (27
+  passed, 0 failed) on `test_export.py` and its two property-test
+  siblings, `agf-lint-voice-src check` / `agf-lint-voice check` on every
+  touched file: all clean.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.

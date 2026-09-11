@@ -1615,3 +1615,55 @@ files, `eslint` clean on all 16 touched TS/TSX files,
 clean on the touched docs. The Vercel status check on the PR fails with
 "Deployment rate limited, retry in 24 hours" (Vercel free-tier daily
 deployment cap), unrelated to this branch's code.
+
+## 2026-09-10, PR #54 review pass
+
+Reviewed PR #54 (LLM-assisted edge inference, agreement check, human review
+at `/research-os/edges`, plus the `ros-11` remainder labeling
+`hte/export.py`'s `TIMELINE.md` export unvalidated) from the `review/pr54`
+worktree.
+
+Leak scan over the full diff: no keys, tokens, secrets, IPs, non-public
+hostnames, `/home/gian` paths, or Claude session URLs. The only email
+addresses are the existing `reviewer@school.example` / `learner@school.example`
+/ `anyone@school.example` test fixtures.
+
+Correctness checked against the calibration and review-flow contract: the
+proposer (`src/lib/research-os/inference/propose.ts`) never writes to
+`graph.edges`, only `/api/research-os/edges`'s approve branch does;
+`llmSelfReportedToConfidence` clamps every input, including non-finite and
+out-of-range values, into the inferred band; a split verdict lands at the
+fixed `DISAGREEMENT_CONFIDENCE` (0.4), below `LOW_CONFIDENCE_THRESHOLD`
+(0.6); approve writes `confidence_source: "teacher"` at 0.95, records the
+reviewer, is idempotent on a second call (`decideEdgeProposal`'s
+`alreadyDecided` short-circuit), and rebuilds `graph.prereq_ancestor`
+best-effort; reject is idempotent with no edge write; the route 403s a
+non-reviewer via the existing `verifyReviewer` allowlist gate; the model
+call reuses the tutor's own `selectProvider` abstain path and
+`callGroundedModelWithUsage` / `logToolCost` cost-logging; `model` and
+`prompt_hash` are `not null` columns on every queued proposal.
+
+One gap found: the calibration bound (0.3 to 0.65) had only point-sample
+coverage (a handful of discrete inputs), not the property-style sweep this
+review's checklist calls for. Added two tests to
+`scripts/research-os/ingest/test-ingest-infer-llm.ts`: a 400-point sweep of
+`llmSelfReportedToConfidence` from -2 to 2 in 0.01 steps plus nine
+adversarial values (`NaN`, `Infinity`, `-Infinity`, `-0`, extreme
+magnitudes), and a full `sanitizeJudgment` → `combineAgreement` grid over
+malformed answer/justification/confidence shapes on both prompts, asserting
+every proposed confidence stays in `(0, INFERRED_CONFIDENCE_MAX]` and every
+disagreement stays below `LOW_CONFIDENCE_THRESHOLD`. Both pass; suite grew
+from 277 to 279.
+
+Gates: `npm ci` clean, `npx tsc --noEmit` clean, `npm run build` clean
+(`/research-os/edges` and `/api/research-os/edges` both in the manifest),
+`npm run test:research-os` 279/279 across 22 files (up from 277 after
+merging `origin/main`, plus the 2 tests this pass added), `next lint` clean
+on all 15 touched TS/TSX files (16 including this pass's own test edit),
+`ruff check` clean on `hte/export.py` and its two touched test files,
+`pytest` 27/27 on `test_export.py` plus the two property-test files,
+`agf-lint-voice-src check` / `agf-lint-voice check` clean on every touched
+file (two hits on this pass's own new comments, an antithesis construction
+and the banned word "actually," fixed before commit). Merged `origin/main`
+cleanly, no conflicts. Squash-merged via `gh pr merge 54 --squash
+--delete-branch`.

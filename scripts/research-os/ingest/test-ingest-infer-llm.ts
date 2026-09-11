@@ -62,6 +62,27 @@ test("llmSelfReportedToConfidence: clamps out-of-range or non-finite input rathe
   assert.equal(llmSelfReportedToConfidence(NaN), INFERRED_CONFIDENCE_MIN);
 });
 
+test("llmSelfReportedToConfidence: bounded in [0.3, 0.65] over a swept range of inputs, including adversarial and malformed values", () => {
+  // Property-style sweep over the full domain a real or adversarial model
+  // response could produce; every one must land in the inferred band.
+  // Covers the in-range interval densely, plus every
+  // out-of-range and non-finite shape sanitizeJudgment's own caller could
+  // pass through (a raw self-reported confidence never goes through
+  // sanitizeJudgment's type guard directly -- only combineAgreement does
+  // -- so this also stands in as the "malformed model output" case for
+  // the raw shrink function itself).
+  const swept: number[] = [];
+  for (let x = -2; x <= 2; x += 0.01) swept.push(x);
+  const adversarial = [NaN, Infinity, -Infinity, -0, 1e300, -1e300, Number.MAX_VALUE, Number.MIN_VALUE, Number.EPSILON];
+  for (const input of [...swept, ...adversarial]) {
+    const out = llmSelfReportedToConfidence(input);
+    assert.ok(
+      out >= INFERRED_CONFIDENCE_MIN && out <= INFERRED_CONFIDENCE_MAX,
+      `llmSelfReportedToConfidence(${input}) = ${out}, outside [${INFERRED_CONFIDENCE_MIN}, ${INFERRED_CONFIDENCE_MAX}]`,
+    );
+  }
+});
+
 // ---------------------------------------------------------------------------
 // calibration.ts: combineAgreement
 // ---------------------------------------------------------------------------
@@ -140,6 +161,37 @@ test("sanitizeJudgment: null, missing fields, wrong types, or an answer outside 
   assert.deepEqual(sanitizeJudgment({ answer: "maybe", justification: "x", confidence: 0.5 }), fallback);
   assert.deepEqual(sanitizeJudgment({ answer: "yes", justification: "", confidence: 0.5 }), fallback, "an empty justification is malformed");
   assert.deepEqual(sanitizeJudgment({ answer: "yes", justification: "x", confidence: "high" as unknown as number }), fallback);
+});
+
+test("sanitizeJudgment -> combineAgreement: bounded end to end over a wide sweep of malformed and adversarial raw model output, never throws", () => {
+  // Task item 2's bound is a property of the whole pipeline a malformed
+  // response travels through (parseModelJson's own shape, one step
+  // upstream of the shrink function alone): sweep a grid of confidence values
+  // and answer/justification shapes on BOTH prompts, confirm every
+  // combination either proposes nothing or a confidence in bounds, and
+  // never throws.
+  const confidences = [-1e6, -1, -0.001, 0, 0.001, 0.3, 0.65, 0.999, 1, 1.001, 5, 1e6, NaN, Infinity, -Infinity];
+  const shapes: Array<{ answer?: unknown; justification?: unknown; confidence?: unknown }> = [];
+  for (const answer of ["yes", "no", "maybe", undefined, 42]) {
+    for (const confidence of confidences) {
+      shapes.push({ answer, justification: "because", confidence });
+    }
+  }
+  shapes.push(null as unknown as { answer?: unknown }, {}, { answer: "yes", justification: "", confidence: 0.5 });
+
+  for (const a of shapes) {
+    for (const b of shapes) {
+      const judgmentA = sanitizeJudgment(a);
+      const judgmentB = sanitizeJudgment(b);
+      const result = combineAgreement(judgmentA, judgmentB);
+      if (!result.proposeEdge) continue;
+      assert.ok(
+        result.confidence > 0 && result.confidence <= INFERRED_CONFIDENCE_MAX,
+        `combineAgreement(${JSON.stringify(a)}, ${JSON.stringify(b)}) = ${result.confidence}, outside (0, ${INFERRED_CONFIDENCE_MAX}]`,
+      );
+      if (!result.agree) assert.ok(result.confidence < LOW_CONFIDENCE_THRESHOLD, "a disagreeing pair must always land below the teacher-flag threshold");
+    }
+  }
 });
 
 // ---------------------------------------------------------------------------
