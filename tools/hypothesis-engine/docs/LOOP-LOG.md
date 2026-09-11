@@ -2,6 +2,58 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, ros-11 review items
+
+- **Scope**: `bkt-hte-ros-11-review-items` (bead `ros-11`), `learning/
+  research-os/PLAN.md` section 10 against `BEADS-PENDING.jsonl`'s own
+  status line, "signoff enforced by PR #43, ranking label done by PR
+  #54, cross-family independence has no current claim; six other
+  section 10 items remain open." Of those six, four landed this branch:
+  a persisted, append-only ranking-holdout ledger and hit-rate report
+  (`hte.holdout_ledger`, `MIN_VERIFIED_FOR_LABEL = 20`, documented in
+  that module's own top docstring) backing the section-10 item 3
+  ranking label PR #54 wired the export surface for; full-document
+  evidence auditability (item 4), `hte.canon_writeback._evidence_line`/
+  `_evidence_detail` now carry `doc_id`/`char_start`/`char_end`
+  alongside the quote and locator, additive in the feed402 envelope
+  (`supports_detail`/`refutes_detail`, next to the existing id lists); a
+  lexical novelty check against `bucket-canon/` before write-back
+  (`hte.novelty`, not itself a section 10 line but a direct answer to Si,
+  Yang, and Hashimoto 2024's low-output-diversity finding); and the
+  understanding axis (item 6), `hte.roles.understanding`, a
+  plain-language explanation per candidate marked `generated_by: model`
+  everywhere it is stored, `hte.canon_writeback.write_back` refusing the
+  whole write when any candidate's own explanation comes back blank
+  (Messeri and Crockett 2024, Krenn and others 2022). Left open, per the
+  task's own four-item stop: item 5 (stress-test fusion on conflicting
+  evidence, Yager 1987), item 7 (the thirteen Allen interval relations
+  check on the address scheme, Allen 1983), item 8 (CASP-style
+  calibration cadence).
+- **Engine health**: `make test` green on `main` before any change,
+  1084 passed, 18 deselected. No defect.
+- **New tests**: `tests/test_holdout_ledger.py`, `tests/test_novelty.py`,
+  plus new cases in `tests/test_canon_writeback.py`, `tests/test_roles.py`,
+  `tests/test_fakellm.py`, `tests/test_cli.py` (`hte holdout-ledger
+  report`/`verify`). `make test` after: 1115 passed, 18 deselected, 0
+  failed.
+- **Gates**: `ruff check .` clean on every file this pass touches (32
+  pre-existing errors elsewhere in the tree, unchanged); `agf-lint-
+  voice-src check` clean on every file this pass authored or edited.
+  No `src/`/`public/` file touched, so no `npm`/`tsc`/`next lint` gate
+  applies.
+- **Write-back contract**: `build_envelope`'s `data` dict gained
+  `understanding`, `novelty`, `elo_status_detail`, `evidence.
+  supports_detail`/`refutes_detail`, additive next to every existing
+  field; `render_card`/`render_index`/`build_envelope` all now require
+  `understanding`/`novelty` arguments (`write_back`'s own callers,
+  `hte.pipeline`, updated; a direct caller of the lower-level renderers
+  needs updating too). `learning/research-os/ENGINE-BRIDGE.md` reviewed
+  and left unchanged: it documents the `graph.nodes`/outbox bridge
+  between the Next.js app and the engine, not `hte.canon_writeback`'s
+  own card/envelope contract, and this pass touches none of what it
+  covers.
+- **Blocked**: nothing.
+
 ## 2026-09-11, tick
 
 - **Engine health**: `make test` green on `main` first, 1057 passed. No

@@ -138,3 +138,51 @@ def test_campaign_run_omitting_constants_defaults_to_fitted(tmp_path, monkeypatc
     assert rc == 0
     assert captured["constants"] is None  # no explicit flag, so cli never sets the key
     # run_campaign's own DEFAULT_CONFIG merge is what resolves the omitted key to "fitted".
+
+
+# --------------------------------------------------------------------------
+# holdout-ledger (bkt-hte-holdout-ledger, PLAN.md section 10)
+# --------------------------------------------------------------------------
+
+
+def test_holdout_ledger_report_on_an_empty_ledger(tmp_path, capsys):
+    path = tmp_path / "ledger.jsonl"
+    rc = cli.main(["holdout-ledger", "report", "--path", str(path)])
+    assert rc == 0
+    status = json.loads(capsys.readouterr().out)
+    assert status["elo_status"] == "unvalidated_tournament_ranking"
+    assert status["n_verified"] == 0
+    assert status["hit_rate"] is None
+
+
+def test_holdout_ledger_verify_then_report_reflects_it(tmp_path, capsys):
+    from hte import holdout_ledger
+
+    path = tmp_path / "ledger.jsonl"
+    entries = holdout_ledger.build_entries(
+        [{"address": 1, "short_id": "h1", "statement": "a claim", "elo": 1500.0}],
+        run_id="run-1", corpus="fixtures",
+    )
+    holdout_ledger.append_entries(entries, path=path)
+
+    rc = cli.main([
+        "holdout-ledger", "verify", "run-1:1", "correct",
+        "--verified-by", "jane-reviewer", "--path", str(path),
+    ])
+    assert rc == 0
+    verified = json.loads(capsys.readouterr().out)
+    assert verified["outcome"] == "correct"
+    assert verified["verified_by"] == "jane-reviewer"
+
+    rc = cli.main(["holdout-ledger", "report", "--path", str(path), "--min-verified", "1"])
+    assert rc == 0
+    status = json.loads(capsys.readouterr().out)
+    assert status["elo_status"] == "validated_tournament_ranking"
+    assert status["hit_rate"] == 1.0
+
+
+def test_holdout_ledger_verify_unknown_entry_fails(tmp_path, capsys):
+    path = tmp_path / "ledger.jsonl"
+    rc = cli.main(["holdout-ledger", "verify", "no-such:1", "correct", "--verified-by", "jane", "--path", str(path)])
+    assert rc == 1
+    assert "no entry" in capsys.readouterr().err

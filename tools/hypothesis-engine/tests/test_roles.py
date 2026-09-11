@@ -196,6 +196,30 @@ def test_self_report_returns_required_fields(monkeypatch):
     assert result["target_blind_steady"] is True
 
 
+def test_understanding_returns_explanation(monkeypatch):
+    def fake(prompt, *, role, schema, cache_dir, replay_only=False, model=None):
+        assert role == "understanding"
+        assert "Hypothesis: alpha-team sighted comet-q" in prompt
+        return {"explanation": "Alpha team spotted a comet; the record backs it up."}
+
+    _patch(monkeypatch, fake)
+    result = roles.understanding(
+        "alpha-team sighted comet-q", "1 supporting evidence item, P(h)=0.80",
+        cache_dir="/tmp/hte-test-cache",
+    )
+    assert result["explanation"] == "Alpha team spotted a comet; the record backs it up."
+
+
+def test_understanding_refusal_names_refusal_count(monkeypatch):
+    roles.llm.reset_stats()
+    roles.reset_refusal_log()
+    roles.llm._STATS.record_refusal("critic", wall_time_s=0.0)
+    _patch(monkeypatch, _refuse_role("understanding"))
+    result = roles.understanding("a claim", "no evidence", cache_dir="/tmp/hte-test-cache")
+    assert "1 refusal/truncation event" in result["explanation"]
+    assert roles.refusal_log()["understanding"] == ["(unlabeled)"]
+
+
 def test_extract_high_agreement_no_escalation(monkeypatch):
     corpus = _corpus()
     doc_id = "doc-alpha"

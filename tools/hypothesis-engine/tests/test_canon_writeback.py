@@ -8,6 +8,7 @@ from hte.address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
 from hte.corpus import Corpus, fixtures
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from hte.hypothesis import Hypothesis, Placement
+from hte.novelty import NoveltyResult
 from hte.timeline import Interval
 
 TBIN = 219
@@ -106,16 +107,27 @@ def test_select_above_floor_filters_on_both_p_and_u(linking_run):
     assert strict == []
 
 
+def _fixture_novelty() -> NoveltyResult:
+    return NoveltyResult(score=1.0, closest_path=None, closest_similarity=0.0, closest_bucket=None, n_compared=0)
+
+
 def test_render_card_carries_opinion_slots_and_candidate_tier(linking_run):
     run_dir, h_supported, _ = linking_run
     candidates, ctx = canon_writeback.reconstruct_candidates(run_dir)
     candidate = next(c for c in candidates if c.hypothesis.address == h_supported.address)
-    text = canon_writeback.render_card(candidate, ctx, branch="02-physics", signoff="jane-reviewer")
+    text = canon_writeback.render_card(
+        candidate, ctx, branch="02-physics", signoff="jane-reviewer",
+        understanding="A plain-language test explanation of this claim.",
+        novelty=_fixture_novelty(),
+    )
     assert "**canon_tier:** candidate" in text
     assert "canon_tier:** canon\n" not in text  # never promoted to canon
     assert candidate.short_id in text
     assert "ev-1" in text
     assert "| b | d | u | a | P(h) | Elo |" in text
+    assert "A plain-language test explanation of this claim." in text
+    assert "model-written" in text.lower() or "Model-written" in text
+    assert "Novelty score:" in text
 
 
 def test_write_back_dry_run_lists_paths_and_writes_nothing(tmp_path, linking_run):
@@ -141,8 +153,17 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     out_root = fake_repo_root / "bucket-canon"
     monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
     monkeypatch.setattr(canon_writeback, "_emit_feed_events", lambda events: 0)
+    # `render_card` now generates a plain-language understanding artifact
+    # through `hte.roles.understanding` (`bkt-hte-understanding-artifact`):
+    # fake mode makes that call deterministic and network-free, the same
+    # convention every other role-calling test in this package follows.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    ledger_path = tmp_path / "ledger.jsonl"
 
-    paths = canon_writeback.write_back(run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=False)
+    paths = canon_writeback.write_back(
+        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
+        out_root=out_root, dry_run=False, ledger_path=ledger_path,
+    )
     for path in paths:
         assert path.is_file(), path
 
@@ -152,6 +173,8 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     text = supported_card.read_text()
     assert "**canon_tier:** candidate" in text
     assert "**Signed off by:** jane-reviewer" in text
+    assert "fake stand-in explanation" in text
+    assert "Novelty score:" in text
 
     index_text = (out_root / "02-physics" / "hypotheses" / "INDEX.md").read_text()
     assert h_supported.short_id in index_text
@@ -159,6 +182,17 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     ingestion_index = (fake_repo_root / "CANON-INGESTION-INDEX.md").read_text()
     assert "Recent additions" in ingestion_index
     assert "Build-history write-back" in ingestion_index
+
+    envelope_path = next(p for p in paths if p.parent == fake_repo_root / "public" / "research" / "hypotheses")
+    envelope = json.loads(envelope_path.read_text())
+    item = envelope["hypotheses"][0]
+    assert "understanding" in item["data"]
+    assert item["data"]["understanding"]["generated_by"] == "model"
+    assert item["data"]["novelty"] is not None
+    assert item["data"]["elo_status"] == "unvalidated_tournament_ranking"
+
+    ledger_entries = ledger_path.read_text().strip().splitlines()
+    assert len(ledger_entries) == 2  # one per written-back candidate
 
     envelope_path = fake_repo_root / "public" / "research" / "hypotheses" / "test-camp-20260101T000000Z.json"
     envelope = json.loads(envelope_path.read_text())
@@ -310,10 +344,13 @@ def test_write_back_cards_are_invisible_to_the_pr22_canon_importer(tmp_path, lin
     out_root = fake_repo_root / "bucket-canon"
     monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
     monkeypatch.setattr(canon_writeback, "_emit_feed_events", lambda events: 0)
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    ledger_path = tmp_path / "ledger.jsonl"
 
     for branch in ("07-mind", "02-physics"):
         paths = canon_writeback.write_back(
-            run_dir, branch=branch, signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=False,
+            run_dir, branch=branch, signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
+            out_root=out_root, dry_run=False, ledger_path=ledger_path,
         )
         card_paths = [p for p in paths if p.parent.name == "hypotheses" and p.suffix == ".md" and p.name != "INDEX.md"]
         assert card_paths
