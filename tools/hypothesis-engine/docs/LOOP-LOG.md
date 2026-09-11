@@ -2,6 +2,44 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, PR #62 and PR #67 review
+
+- **Scope**: review pass over #62 (`fix/hte-writeback-review-2`, pipeline
+  stage cascade rules, writeback CLI tests, full-population candidate
+  reconstruction) then #67 (`docs/hte-loop-log-2026-09-11-tick3`), in
+  that order, from another session. Leak scan clean on both (no keys,
+  IPs, emails, home paths, or session URLs in either diff).
+- **#62, fixed on the branch**: merged `origin/main` (brings in PR #60's
+  understanding-artifact refusal) and found no test at the
+  `run_pipeline`/CLI layer exercising both write-back refusals together
+  (only at `write_back` directly); added
+  `test_writeback_stage_reports_write_backs_own_signoff_refusal_as_a_failed_stage`
+  and `..._understanding_refusal_as_a_failed_stage` in `test_pipeline.py`.
+  Separately, two of this PR's own new real-write (`dry_run=False`)
+  tests wrote to the committed `hte/data/ranking-holdout-ledger.jsonl`
+  on every run (no `ledger_path` override), and one skipped
+  `HTE_LLM_MODE=fake`, passing only when an earlier test in the run
+  order left that env var set. Plumbed `writeback_ledger_path` through
+  `pipeline.run_pipeline`'s config, pointed every real-write test at a
+  `tmp_path` ledger, and set `HTE_LLM_MODE=fake` explicitly on the two
+  that needed it.
+- **#62, gates**: `make test`: 1239 passed, 18 deselected, 0 failed.
+  `ruff check .` clean on every file this PR touches (43 pre-existing
+  errors elsewhere in the tree, unchanged from main). Squash-merged
+  (`939bac711`).
+- **#67, governance**: docs-only change, no Research OS surface touched.
+  Spot-checked four claims in the new log entry against repo state:
+  squash-merge commit `4bd4e07dd` matches PR #66's own merge commit;
+  PRs #59, #58, #56, #55, #54, #51 all confirmed `MERGED`; the claimed
+  `tests/swarm-20260911/test_api_validation_props.py` exists with
+  exactly the claimed 21 tests, covering the three named functions. No
+  contradiction with merged code.
+- **#67, gates**: merged `origin/main` twice (before and after #62
+  landed in this same pass); both clean, no conflicts. No code file
+  touched, so `make test`/`ruff` don't apply. Squash-merged
+  (`5e2dfa521`).
+- **Blocked**: nothing.
+
 ## 2026-09-11, tick 3, api.py swarm and six PR reviews
 
 - **Environment gap**: this container carried none of `pytest`,
