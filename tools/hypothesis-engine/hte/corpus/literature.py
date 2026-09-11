@@ -807,7 +807,7 @@ _PLACE_LEXICON: tuple[tuple[str, tuple[str, ...]], ...] = (
 # motivation" (Hanus and Fox 2015) is; the space excludes the hyphenated
 # compound without a general parser.
 _WORSENED_KEYWORDS = ("lower ", "undermine", "reversed", "worse", "decreased", "disapprove", "loses proficiency", "degrades", "less likely to remember", "fabricat")
-_IMPROVED_KEYWORDS = ("improved", "increase", "raised", "outperform", "higher", "gains", "more novel", "more durable", "successfully produced", "outperformed")
+_IMPROVED_KEYWORDS = ("improved", "increase", "raised", "outperform", "higher", "gains", "more novel", "more durable", "went on to produce", "outperformed")
 
 
 def _first_match(text: str, lexicon: tuple[tuple[str, tuple[str, ...]], ...]) -> str | None:
