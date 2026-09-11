@@ -161,11 +161,23 @@ def write_views(views: dict, out_dir: str | Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
     (out / "timeline.json").write_text(json.dumps(views, indent=2))
 
-    lines = ["# Timeline", ""]
+    # ros-11 remainder (PLAN.md section 10 item 3): every other campaign
+    # surface carrying an Elo number already labels it unvalidated
+    # (canon_writeback.render_index's own header note, and the feed402
+    # envelope's `elo_status: "unvalidated_tournament_ranking"` field).
+    # This base export ran with no such label; the note and the column
+    # header below close that gap, matching render_index's own wording.
+    lines = [
+        "# Timeline",
+        "",
+        "Elo is unvalidated: a within-run tournament ranking, no discovery-date "
+        "holdout track record yet (`PLAN.md` section 10). Rank on Posterior.",
+        "",
+    ]
     for b in views.get("bins", []):
         lines.append(f"## Time bin {b['time_bin'].get('label', b['time_bin']['index'])}")
         lines.append("")
-        lines.append("| Hypothesis | Slots | Posterior | Elo |")
+        lines.append("| Hypothesis | Slots | Posterior | Elo (unvalidated) |")
         lines.append("|---|---|---|---|")
         for entry in b["ranked_hypotheses"]:
             lines.append(

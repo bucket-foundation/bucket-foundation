@@ -58,6 +58,11 @@ jobs:
           fi
           COUNT=$(wc -l </tmp/events.jsonl 2>/dev/null || echo 0)
           if [ "$COUNT" -eq 0 ]; then echo "no events, skipping commit"; echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          # feed/*.json monthly archives are the durable ledger (see
+          # tools/feed/README.md) and MUST stay tracked. This job runs on a
+          # fresh checkout each time and cannot regenerate an event it never
+          # saw, so a gitignore rule over feed/ loses the ledger the moment
+          # this runner is torn down.
           git add feed.json feed.xml feed/ 2>/dev/null || true
           git commit -m "feed: ${COUNT} events (bot) [skip ci]"
           git push

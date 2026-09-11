@@ -2,15 +2,25 @@
 """
 feed.py, canon activity feed writer (bkt-feed-02)
 
-Merges JSON-Lines events from stdin into feed.json, monthly archives at
-feed/YYYY-MM.json, and an Atom 1.0 file at feed.xml.
+Merges JSON-Lines events from stdin into the monthly ledger at
+feed/YYYY-MM.json, then rewrites feed.json and feed.xml from that ledger.
+
+The monthly files under feed/ are the durable record: every event ever
+emitted, forever, append-only. feed.json and feed.xml are a derived,
+rolling window over the latest MAX_EVENTS of that ledger, rebuilt fresh
+on every run. `total_events` in feed.json always counts the full ledger,
+not the window, so it can only grow. The `window` field on feed.json
+says how many of those events the `events` array carries. A
+retraction is its own ledger event (type `retract`, see parse.py); the
+original event is never deleted, and a later re-add is a new event with
+its own id. Nothing is ever removed from the ledger.
 
 Commands:
- update read JSON-lines events on stdin, merge into feed
+ update read JSON-lines events on stdin, merge into the ledger
  rebuild --from SHA replay history from SHA..HEAD through parse.py
- validate sanity-check feed.json
+ validate sanity-check feed.json against the ledger
 
-Idempotent: events with an id already in the feed are skipped.
+Idempotent: events with an id already in the ledger are skipped.
 """
 from __future__ import annotations
 
@@ -24,7 +34,7 @@ from pathlib import Path
 from typing import Iterable
 from xml.sax.saxutils import escape
 
-SCHEMA_VERSION = "1.0"
+SCHEMA_VERSION = "1.1"
 MAX_EVENTS = 200
 
 
@@ -56,6 +66,7 @@ def load_feed(path: Path) -> dict:
             "schema_version": SCHEMA_VERSION,
             "generated": datetime.now(timezone.utc).isoformat(),
             "total_events": 0,
+            "window": {"size": MAX_EVENTS, "returned": 0},
             "events": [],
         }
     with path.open("r", encoding="utf-8") as f:
@@ -162,33 +173,60 @@ def update_archives(new_events: list, archive_dir: Path) -> None:
         })
 
 
-def cmd_update(events_iter: Iterable[dict]) -> int:
-    root = repo_root()
-    paths = feed_paths(root)
-    feed = load_feed(paths["json"])
-    new_events = [e for e in events_iter if isinstance(e, dict) and e.get("id")]
+def load_full_ledger(archive_dir: Path) -> list:
+    """Load every monthly archive and return the deduped union, newest first.
 
-    all_existing = feed.get("events", [])
-    merged_all, added = merge_events(all_existing, new_events)
+    This is the source of truth for total_events. feed.json only ever
+    holds a rolling window, so its own on-disk state is never enough to
+    compute a correct total, before or after a restart that starts from
+    a fresh checkout with no prior feed.json.
+    """
+    if not archive_dir.exists():
+        return []
+    seen_ids: set = set()
+    ledger: list = []
+    for apath in sorted(archive_dir.glob("*.json")):
+        for ev in load_archive(apath):
+            eid = ev.get("id")
+            if not eid or eid in seen_ids:
+                continue
+            seen_ids.add(eid)
+            ledger.append(ev)
+    ledger.sort(key=event_sort_key, reverse=True)
+    return ledger
 
-    # Update archives using the superset of new events that were added
-    added_ids = {e["id"] for e in merged_all} - {
-        e.get("id") for e in all_existing
-    }
-    actually_added = [e for e in new_events if e.get("id") in added_ids]
-    update_archives(actually_added, paths["archive_dir"])
 
-    # Keep only most recent MAX_EVENTS in feed.json
-    feed_display = merged_all[:MAX_EVENTS]
-    feed_out = {
+def build_feed_output(archive_dir: Path) -> dict:
+    """Build the feed.json/feed.xml payload from the ledger.
+
+    total_events counts the whole ledger. events carries only the
+    latest window many of them; window says how many that is and how
+    many the array holds, so a reader never has to guess.
+    """
+    ledger = load_full_ledger(archive_dir)
+    window_events = ledger[:MAX_EVENTS]
+    return {
         "schema_version": SCHEMA_VERSION,
         "generated": datetime.now(timezone.utc).isoformat(),
-        "total_events": len(merged_all),
-        "events": feed_display,
+        "total_events": len(ledger),
+        "window": {"size": MAX_EVENTS, "returned": len(window_events)},
+        "events": window_events,
     }
+
+
+def cmd_update(events_iter: Iterable[dict], root: Path | None = None) -> int:
+    root = root or repo_root()
+    paths = feed_paths(root)
+    new_events = [e for e in events_iter if isinstance(e, dict) and e.get("id")]
+
+    before_total = len(load_full_ledger(paths["archive_dir"]))
+    update_archives(new_events, paths["archive_dir"])
+
+    feed_out = build_feed_output(paths["archive_dir"])
     write_json(paths["json"], feed_out)
     paths["xml"].write_text(render_atom(feed_out), encoding="utf-8")
-    sys.stderr.write(f"feed: +{added} events (total {len(merged_all)})\n")
+    added = feed_out["total_events"] - before_total
+    sys.stderr.write(f"feed: +{added} events (total {feed_out['total_events']})\n")
     return 0
 
 
@@ -247,30 +285,10 @@ def cmd_rebuild(sha_from: str) -> int:
             except Exception:
                 pass
         if events:
-            # Use cmd_update logic by temp-injecting
-            _apply_events(root, events)
+            cmd_update(events, root=root)
             total += len(events)
     sys.stderr.write(f"rebuild: processed {len(commits)} commits, {total} raw events\n")
     return 0
-
-
-def _apply_events(root: Path, events: list[dict]) -> None:
-    paths = feed_paths(root)
-    feed = load_feed(paths["json"])
-    merged, _ = merge_events(feed.get("events", []), events)
-    added_ids = {e["id"] for e in merged} - {
-        e.get("id") for e in feed.get("events", [])
-    }
-    actually_added = [e for e in events if e.get("id") in added_ids]
-    update_archives(actually_added, paths["archive_dir"])
-    feed_out = {
-        "schema_version": SCHEMA_VERSION,
-        "generated": datetime.now(timezone.utc).isoformat(),
-        "total_events": len(merged),
-        "events": merged[:MAX_EVENTS],
-    }
-    write_json(paths["json"], feed_out)
-    paths["xml"].write_text(render_atom(feed_out), encoding="utf-8")
 
 
 def cmd_validate() -> int:
@@ -280,7 +298,7 @@ def cmd_validate() -> int:
         sys.stderr.write("validate: feed.json missing\n")
         return 1
     feed = load_feed(paths["json"])
-    required_top = {"schema_version", "generated", "total_events", "events"}
+    required_top = {"schema_version", "generated", "total_events", "window", "events"}
     missing = required_top - set(feed.keys())
     if missing:
         sys.stderr.write(f"validate: missing keys {missing}\n")
@@ -299,7 +317,35 @@ def cmd_validate() -> int:
             sys.stderr.write(f"validate: duplicate event id {ev['id']}\n")
             return 1
         seen.add(ev["id"])
-    sys.stderr.write(f"validate: ok ({len(feed['events'])} events)\n")
+
+    window = feed["window"]
+    if window.get("size") != MAX_EVENTS:
+        sys.stderr.write(
+            f"validate: window.size {window.get('size')} != MAX_EVENTS {MAX_EVENTS}\n"
+        )
+        return 1
+    if window.get("returned") != len(feed["events"]):
+        sys.stderr.write(
+            f"validate: window.returned {window.get('returned')} != "
+            f"len(events) {len(feed['events'])}\n"
+        )
+        return 1
+    if feed["total_events"] < len(feed["events"]):
+        sys.stderr.write("validate: total_events is smaller than the returned window\n")
+        return 1
+
+    if paths["archive_dir"].exists():
+        ledger_count = len(load_full_ledger(paths["archive_dir"]))
+        if ledger_count != feed["total_events"]:
+            sys.stderr.write(
+                f"validate: total_events {feed['total_events']} != "
+                f"ledger count {ledger_count}\n"
+            )
+            return 1
+
+    sys.stderr.write(
+        f"validate: ok ({len(feed['events'])} of {feed['total_events']} events)\n"
+    )
     return 0
 
 

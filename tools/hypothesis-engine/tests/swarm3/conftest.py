@@ -159,9 +159,15 @@ def spy_on_role_completions(monkeypatch: pytest.MonkeyPatch) -> dict[str, list[s
     captured: dict[str, list[str]] = {}
     real_complete = roles.llm.complete
 
-    def wrapper(prompt: str, *, role: str, schema: dict, cache_dir: str, replay_only: bool = False, model: str | None = None):
+    def wrapper(
+        prompt: str, *, role: str, schema: dict, cache_dir: str, replay_only: bool = False,
+        model: str | None = None, provenance: dict | None = None,
+    ):
         captured.setdefault(role, []).append(prompt)
-        return real_complete(prompt, role=role, schema=schema, cache_dir=cache_dir, replay_only=replay_only, model=model)
+        return real_complete(
+            prompt, role=role, schema=schema, cache_dir=cache_dir, replay_only=replay_only,
+            model=model, provenance=provenance,
+        )
 
     monkeypatch.setattr(roles.llm, "complete", wrapper)
     return captured

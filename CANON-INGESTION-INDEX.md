@@ -84,7 +84,7 @@ on every promoted record, and no sign-off has happened yet.
 | The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior | `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` | canon |
 | Pay Enough or Don't Pay at All | `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` | canon |
 | Ironies of automation | `bucket-canon/07-mind/cognition-and-automation/primary-papers.yaml` | canon |
-| Information foraging. | `bucket-canon/04-information/information-foraging/primary-papers.yaml` | canon |
+| Information foraging. | `bucket-canon/07-mind/information-foraging/primary-papers.yaml` (moved 2026-09-11 from `04-information/`, see `bucket-canon/TAXONOMY_NOTES.md`) | canon |
 | AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
 | Generative AI without guardrails can harm learning: Evidence from high school mathematics | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
 | Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
