@@ -34,6 +34,20 @@ None.
 
 `npm ci`, `npx tsc --noEmit`, `npm run build` (all clean), `npm run test:research-os` (every script in the chain passed, 0 failures), `agf-lint-voice-src check` and `agf-lint-voice check` on every touched file (clean after four antithesis/banned-word fixes in `db.ts`/`guidance.ts`/`stages.ts` and a heading-parenthesis fix in `WORKSPACE.md`, plus two filler-adverb instances found by a manual scan of the seed JSON's authored worked-example text, which `agf-lint-voice-src` does not scan `.json` files for).
 
+### Second round: PR #63 merge
+
+`git fetch origin && git merge origin/main` pulled in PR #63 (cognitive forcing, merged before this branch reached the workspace page as the task's own poll instruction required) plus several other merged PRs. Four real conflicts, all resolved by combining both sides rather than picking one: `package.json` (both `test:research-os` chain additions kept), `src/lib/research-os/stages.ts` (both header UPDATE notes and both `EvidenceContext`/`EvidenceEvent` field sets kept, `onCheckResult`'s event literal carries both `guidanceLevel` and the forcing fields), `learning/research-os/WORKSPACE.md` (both new sections kept, this pass's own renumbered to section 7), and `src/app/api/research-os/workspace/route.ts`'s `check` case (the real design work: guidance computation now lives in a shared `computeGuidanceForNode` helper called from both Check phase 1 and the phase-2 reveal branch, since a held attempt's own storage schema, `forcing.ts`'s `PendingCheckAttempt`, was left untouched rather than extended with a guidance field; both the forcing-off immediate-reveal path and the forcing-on held-attempt path now carry `guidance` in their evidence event and JSON response).
+
+Migration filename collision caught and fixed: this branch's own `20260910060000_research_os_guidance.sql` collided with PR #63's `20260910060000_research_os_forcing.sql` (identical timestamp prefix, different content, matching the exact class of bug `ros-13`'s own ledger entry names as prior art). Renamed to `20260910080000_research_os_guidance.sql`, after both `forcing`'s `060000` and `check_attempts`' `070000`; no column or content changed, only the filename and its own header comment.
+
+Reconciled the class arm-switch design against PR #63's real, now-visible implementation (previously only speculated about in this bead's own migration and `GUIDANCE.md`, since PR #63 had not merged when that text was first written): PR #63 shipped `graph.classes.forcing_enabled` (nullable, defers to an env var default, first-class-override-wins across memberships), distinct in name and shape from this bead's own not-null, default-true, OR-across-memberships `research_os_guidance_enabled`. Kept as two independent columns (a class can run either pilot arm, both, or neither) rather than unifying them; `GUIDANCE.md` section 4 rewritten with the confirmed facts and a sharper open-questions note.
+
+Shipped the workspace page addition the task deferred behind the PR #63 merge: `src/app/research-os/workspace/page.tsx` gains a `WorkedExampleBlock` component, shown above the Check explanation textarea only in the pre-submission phase (hidden once a held attempt or a revealed result exists), reading `route.guidance ?? "medium"` to pick full text, `firstHalfOfWorkedExample`'s partial text, or nothing. `GraphNodeLite` gains `workedExample`; `RouteResponse` gains `guidance`.
+
+### Verified, second round
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (all clean, 0 failures across the full merged chain), `agf-lint-voice-src check` / `agf-lint-voice check` on every file this round touched (clean after one banned-word fix in `page.tsx` and two antithesis fixes in `GUIDANCE.md`). No conflict resolution changed test-covered behavior from either branch: `scripts/test-research-os-forcing.ts`, `test-research-os-check-attempts.ts`, and `test-research-os-calibration.ts` (PR #63's own tests) and `test-research-os-guidance.ts` (this bead's own) all pass unmodified post-merge.
+
 ## 2026-09-10: literature batch four
 
 Branch `intake/ros-literature-4`. Task: 25 to 35 new DOI- or ERIC-verified papers targeted

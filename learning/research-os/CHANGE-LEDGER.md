@@ -26,6 +26,14 @@ None.
 
 `npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` all clean; `agf-lint-voice-src check` / `agf-lint-voice check` clean on every touched source/doc file after fixing four antithesis constructions and two banned filler words (one in `stages.ts`, three across `guidance.ts`/`db.ts`, four across `GUIDANCE.md`) and one heading-parenthesis violation in `WORKSPACE.md`; a manual scan (agf-lint-voice-src does not read `.json`) found and fixed two more filler words in the seed file's own authored worked-example text.
 
+### Second round: PR #63 merge
+
+Full account: `_intake/research-os-k12/CHANGELOG.md`'s "Second round" entry. Merged `origin/main` (PR #63, cognitive forcing, plus others), resolved four conflicts by combining both sides (`package.json`, `stages.ts`, `WORKSPACE.md` renumbered to section 7, and `workspace/route.ts`'s `check` case via a new shared `computeGuidanceForNode` helper called from both Check phases). Renamed the migration `20260910060000_research_os_guidance.sql` to `20260910080000_research_os_guidance.sql` (collided with PR #63's own `20260910060000_research_os_forcing.sql`). Rewrote `GUIDANCE.md` section 4 with the confirmed facts about PR #63's real `forcing_enabled` switch (previously speculative, PR #63 had not merged when first written). Shipped `src/app/research-os/workspace/page.tsx`'s `WorkedExampleBlock`, the page work the original task deferred behind the PR #63 merge.
+
+### Verified, second round
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` all clean post-merge; `agf-lint-voice-src check` / `agf-lint-voice check` clean after one banned-word fix in `page.tsx` and two antithesis fixes in `GUIDANCE.md`. PR #63's own tests (`test-research-os-forcing.ts`, `test-research-os-check-attempts.ts`, `test-research-os-calibration.ts`) and this bead's own (`test-research-os-guidance.ts`) all pass unmodified.
+
 ## Literature batch four
 
 Date 2026-09-10. Branch `intake/ros-literature-4`, worktree `.ros-worktrees/lit4`.
