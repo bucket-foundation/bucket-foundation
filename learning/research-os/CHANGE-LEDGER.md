@@ -2523,7 +2523,6 @@ the 20 `bucket-canon/` records currently carrying `provenance_signoff:
 - `GOVERNANCE.md`: one line, a pointer from the "Canon sign-off" section
   to `SIGNOFF.md` and the tool. No policy text changed.
 
-
 ## Iteration 22: ros-11 engine review items
 
 `PLAN.md` section 10 against `BEADS-PENDING.jsonl`'s own ros-11 status
@@ -2641,7 +2640,6 @@ confirmed by grep to carry no `understanding`/`elo_status`/envelope field
 from `hte.canon_writeback`'s own contract, so PR #60's write-back change
 touches nothing that file covers; left unchanged.
 
-
 ## PR #63 review pass: the held Check verdict moved off an in-memory Map
 
 Review of PR #63 (cognitive forcing on Check, Iteration 22 above) found the
@@ -2675,3 +2673,136 @@ them; the learner would see the Check form again with no explanation why.
 ### Removed
 
 None.
+
+## Iteration 24: plan revision 3
+
+`learning/research-os/PLAN-REVISION-3.md` (new file), plus pointer
+paragraphs appended to `PLAN.md`'s and `PLAN-REVISION-2.md`'s own
+end-of-file "Revision" sections.
+
+### Read in full
+
+`PLAN-REVISION-2.md`; `WORKSPACE.md`; `ROUTING.md`; `TEACHER-LAYER.md`;
+`ROSTER.md`; `compliance/README.md`; `study/PREREGISTRATION-DRAFT.md`;
+`tools/canon-pipeline/SIGNOFF.md`; `ENGINE-BRIDGE.md`; `BEADS-PENDING.jsonl`;
+fourteen batch-four literature cards read from `origin/intake/ros-literature-4`
+(PR #65) via `git archive` into a scratch directory, never checked into this
+worktree or the main repo's own working tree.
+
+### Added
+
+- `PLAN-REVISION-3.md`: eighteen PRs merged since revision 2 (#45 through
+  #66) by PR number with one line each; live test counts re-run in this
+  pass (app 326/0 across 23 files, engine 1172/18/0 matching PR #64's own
+  recorded count, canon pipeline 41/0), verified against commit `5ee02432a`,
+  the commit this branch forked from. Five evidence-driven subsections from
+  batch four: (a) guidance for low-prior-knowledge learners, STRONG LEAN,
+  Kirschner-Sweller-Clark 2006 against Hmelo-Silver-Duncan-Chinn 2007 and
+  Lazonder-Harmsen 2016, a probe-triggered worked-example schedule as the
+  design response; (b) required participation and production misconduct,
+  OPEN, Grinnell 2020 against Bangera-Brownell 2014, Sadler 2010, and
+  Corwin 2015, a provenance guard on Production submission scoped but
+  blocked on a new founder decision; (c) lateral reading against a
+  single-source Check, STRONG LEAN, Wineburg-McGrew 2019 and Breakstone
+  2021, a Locate second-source mode as the design response; (d) epistemic
+  cognition and argumentation, OPEN, Osborne 2010, Sandoval 2005, and Kuhn
+  1999, a counter-evidence field on the Production envelope as a partial
+  design response; (e) effect-size anchoring, STABLE, Chen-Yang 2019,
+  Furtak 2012, and Lazonder-Harmsen 2016 as three new anchors for
+  `PREREGISTRATION-DRAFT.md`'s own d = 0.4 to 0.5 planning assumption.
+  Phase 1 scope renumbered to nine remaining items, four new. Founder
+  decisions 1 through 5 restated verbatim with revision 2's own recommended
+  defaults; a new decision 6 on required participation. Operational
+  blockers updated: `BEADS-PENDING.jsonl` grew from 57 lines at revision
+  2's own commit to 92 now; the 20 pending canon sign-offs are unchanged in
+  count but now have a working tool (PR #61) to action them; the Vercel
+  free-tier deploy cap PR #47 hit is named as a standing blocker rather
+  than a one-off note.
+
+### Verified
+
+- `npm run test:research-os`: 326 passed, 0 failed, 23 files (`node_modules`
+  symlinked from the main repo's own checkout into this worktree for the
+  run; no package install performed in either tree).
+- `make test` in `tools/hypothesis-engine`, `EDUCATION_ATLAS_DIR` pointed at
+  the sibling `~/agfarms/education-atlas` checkout: 1172 passed, 18
+  deselected, 0 failed, matching PR #64's own recorded final count exactly.
+- `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, 0 failed.
+- `agf-lint-voice check` on `PLAN-REVISION-3.md`, `PLAN.md`, and
+  `PLAN-REVISION-2.md`: 13 violations on the first pass, all fixed by hand;
+  0 remaining on the second pass.
+
+### Found and flagged
+
+- PR #65 (the literature batch four source for this revision) merged into
+  `main` partway through this pass, along with PR #60 and PR #66; this
+  branch's own base commit (`5ee02432a`, PR #64) predates all three, so the
+  test counts above do not carry their added tests. Reconciled by the merge
+  this revision's own PR runs at the end, per its own task instructions,
+  rather than by rerunning the suites against a moving `main` mid-pass.
+- An early step in this pass ran `git checkout origin/intake/ros-literature-4
+  -- _intake/research-os-k12-literature` inside the main repo's own working
+  tree while attempting to extract PR #65's files, staging 148 files into
+  the main repo's index before the mistake was caught. Reverted immediately
+  with `git reset --hard HEAD` in the main repo; confirmed clean (only
+  pre-existing untracked directories remained) before any further work. All
+  batch-four card content used in this revision was re-extracted afterward
+  via `git archive` into a scratch directory, touching neither the main
+  repo's working tree nor its index.
+
+## PR #69 review pass: the missing PR and the leaked path
+
+Review of PR #69 (plan revision 3, Iteration 24 above) found the revision
+merged one commit behind `origin/main`: PR #63 (cognitive forcing on Check,
+its own review pass logged above) had landed after this branch's own last
+merge from `main`. `git merge origin/main` (one conflict, this file, both
+sides kept, PR #63's review-pass section placed ahead of Iteration 24)
+brought it in.
+
+### Fixed
+
+- `PLAN-REVISION-3.md` section 1: PR #63 added as a table row between #61
+  and #64; "eighteen PRs" corrected to "nineteen" in the section-1 opening
+  line and in the Vercel-blocker paragraph's own pace reference. The
+  "Current test counts" paragraph gains a fresh post-merge reconciliation:
+  app 367 passed, 0 failed, 27 files (PR #63's three new test files);
+  engine 1225 passed, 18 deselected, 0 failed (PR #60's held-back items now
+  counted); canon pipeline stays 41 passed, 0 failed. The stale
+  pre-merge figures against commit `5ee02432a` stay in place alongside the
+  reconciliation, matching the document's own stated methodology of citing
+  the fork-point commit first.
+- `PLAN.md` and `PLAN-REVISION-2.md`'s own revision-3 pointer paragraphs:
+  same eighteen-to-nineteen correction; "one of them new" on operational
+  blockers corrected to "two of them new" once the hard-reset blocker below
+  was added.
+- A new operational blocker added to `PLAN-REVISION-3.md` section 5: on
+  2026-09-11 an agent ran a hard reset in the main working tree at
+  `~/agfarms/bucket-foundation`, discarding uncommitted archive-runner
+  outputs on about 20 entries plus two log files, regenerable by the
+  runner on its next scheduled pass.
+- `BEADS-PENDING.jsonl` line 72: a pre-existing leaked path,
+  `/home/gian/agfarms/.wt-fix10`, already flagged and left untouched by
+  the PR #63 review pass above, rewritten to `~/agfarms/.wt-fix10` (text
+  and meaning otherwise unchanged).
+
+### Verified
+
+- `npm run test:research-os` (fresh, post-merge, `node_modules` symlinked
+  from the main repo's own checkout): 367 passed, 0 failed, 27 files.
+- `make test` in `tools/hypothesis-engine`, `EDUCATION_ATLAS_DIR` pointed
+  at the sibling checkout (fresh, post-merge): 1225 passed, 18 deselected,
+  0 failed.
+- `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, 0 failed,
+  unchanged.
+- Leak scan of the PR #69 diff (keys, `.env` values, IPs, non-public
+  hostnames, personal emails other than `gianyrox@gmail.com`, PII,
+  `/home/gian` paths, Claude session URLs): clean, zero hits.
+- A repo-wide `git grep` for `/home/gian` outside `BEADS-PENDING.jsonl`
+  found thousands of hits across `.beads/backup/events.jsonl` (a bead
+  event-sourcing log), systemd unit files under `scripts/`/`services/`
+  that require absolute paths to function, and large runner logs
+  (`_intake/.archive-runner.log`, `learning/.buildloop/run.log`). These
+  are a pre-existing, repo-wide operational convention rather than a
+  discrete leak; left unchanged as out of scope for this review, flagged
+  here for a dedicated cleanup pass rather than a mass edit inside a
+  docs-only PR review.
