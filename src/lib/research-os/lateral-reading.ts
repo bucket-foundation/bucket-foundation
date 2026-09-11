@@ -90,7 +90,7 @@ export const SECOND_SOURCE_MISSING_MESSAGE =
 // ---------------------------------------------------------------------------
 // The gate: whether a held Check attempt's reveal may proceed, given
 // whether a second source is required at this stage and, if so, whether
-// a real, independent, actually-quoted second source has been attached.
+// a real, independent, quoted second source has been attached.
 // ---------------------------------------------------------------------------
 
 export interface SecondSourceGateInput {
@@ -125,10 +125,9 @@ export type SecondSourceGateResult =
  * as the only feedback, unless the requirement is off, the stage is below
  * Understanding, or a real, independently-assessed second Quote has been
  * attached to THIS attempt. Pure, no I/O: every fact this function needs
- * (whether a Quote call really happened, whether the two sources are
- * really independent) is resolved by its caller first, the same
- * separation forcing.ts's checkAttemptAccess keeps from the store that
- * calls it.
+ * (whether a Quote call happened, whether the two sources are
+ * independent) is resolved by its caller first, the same separation
+ * forcing.ts's checkAttemptAccess keeps from the store that calls it.
  */
 export function checkSecondSourceGate(input: SecondSourceGateInput): SecondSourceGateResult {
   const need = secondSourceRequiredAtStage(input.stage, input.required);

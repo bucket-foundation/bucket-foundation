@@ -20,10 +20,13 @@
  * fromStage) carries no counter_evidence, per Osborne 2010's
  * argumentation case (task item 3). Otherwise, `source_provenance` (task
  * item 1, checkSourceProvenance against this learner's own "quote"-kind
- * evidence events) and `duplicate_flag` (task item 2, computeDuplicateFlag
+ * evidence events), `duplicate_flag` (task item 2, computeDuplicateFlag
  * against this learner's own prior claims, class peers' accepted claims,
- * and canon claim texts) are computed and stored on the row; neither ever
- * blocks submission on its own. Full rule set:
+ * and canon claim texts), and `lateral_reading_flag` (lateral reading,
+ * PLAN-REVISION-3.md section 2c, production-guard.ts's lateralReadingFlag
+ * against this learner's own "corroboration"-kind evidence events) are
+ * computed and stored on the row; none of the three ever blocks
+ * submission on its own. Full rule set:
  * learning/research-os/PRODUCTION-GUARD.md.
  *
  * Engine bridge task item 3: whenever a write here leaves a production at
@@ -158,6 +161,7 @@ export async function POST(req: NextRequest) {
   // a submit only ever reads the learner's current stage once.
   let sourceProvenance: ReturnType<typeof checkSourceProvenance> | undefined;
   let duplicateFlag: ReturnType<typeof computeDuplicateFlag> | undefined;
+  let lateralFlag: ReturnType<typeof lateralReadingFlag> | undefined;
   let counterEvidenceRequired = false;
   let submitFromStage: Awaited<ReturnType<typeof loadCurrentStage>> | undefined;
   if (body.status === "submitted") {
@@ -170,10 +174,11 @@ export async function POST(req: NextRequest) {
 
     const claimText = (body.claim || "").trim();
     const sourceLines = ((body.sources ?? []) as unknown[]).map((s) => String(s));
-    const [quoteEvidence, ownPrior, classPeers] = await Promise.all([
+    const [quoteEvidence, ownPrior, classPeers, corroborationEvidence] = await Promise.all([
       loadLearnerQuoteEvidence(learnerId),
       loadOwnPriorClaims(learnerId, body.id),
       loadClassPeerAcceptedClaims(learnerId),
+      loadLearnerCorroborationEvidence(learnerId),
     ]);
     sourceProvenance = checkSourceProvenance(sourceLines, quoteEvidence);
     const candidates: DuplicateCandidate[] = [
@@ -182,6 +187,11 @@ export async function POST(req: NextRequest) {
       ...canonClaimsAsDuplicateCandidates(),
     ];
     duplicateFlag = computeDuplicateFlag(claimText, candidates);
+    // Lateral reading (PLAN-REVISION-3.md section 2c, task item 3):
+    // informational only, the same "never blocks submission" posture
+    // duplicate detection already carries; targetNodeId is confirmed set
+    // above (the same guard that gated submitFromStage's own lookup).
+    lateralFlag = lateralReadingFlag(targetNodeId, corroborationEvidence);
   }
 
   const row: Record<string, unknown> = {
@@ -202,6 +212,7 @@ export async function POST(req: NextRequest) {
   // left untouched in the row rather than blanked out by a later edit.
   if (sourceProvenance !== undefined) row.source_provenance = sourceProvenance;
   if (duplicateFlag !== undefined) row.duplicate_flag = duplicateFlag;
+  if (lateralFlag !== undefined) row.lateral_reading_flag = lateralFlag;
   if (body.status === "submitted") row.counter_evidence_required = counterEvidenceRequired;
 
   const { data, error } = await svc.from("productions").upsert(row, { onConflict: "id" }).select("*").maybeSingle();

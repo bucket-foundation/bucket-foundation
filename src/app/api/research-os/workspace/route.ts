@@ -81,21 +81,58 @@
  * node id already does that once the caller is a signed-in, identified
  * user. A blocked call returns 403 with consentBlockedBody(gate) as its
  * JSON body.
+ *
+ * Lateral reading (bkt-ros, learning/research-os/PLAN-REVISION-3.md
+ * section 2c; src/lib/research-os/lateral-reading.ts): "locate" gains a
+ * `mode: "secondSource"` request shape, `{ query, quotedSourceNodeId }`,
+ * that calls locate.ts's own findIndependentSources instead of
+ * locateHits, retrieval only, the same never-calls-a-model contract this
+ * file's header already states for Locate. On "check" phase 2 (the
+ * forcing reveal above), once the learner's own stage has reached
+ * Understanding and the arm switch (RESEARCH_OS_SECOND_SOURCE_REQUIRED /
+ * a per-class override) is on, revealing the held verdict ALSO needs
+ * `secondSourceNodeId` in the same request, naming a node this learner
+ * carries a real "quote"-kind evidence event for, whose own
+ * provenance locate.ts's assessSourceIndependence judges independent of
+ * the node under Check. Missing or unverifiable, the request is refused
+ * with lateral-reading.ts's own fixed SECOND_SOURCE_MISSING_MESSAGE and
+ * the attempt stays held for a retry, the same "there is no separate peek
+ * endpoint" floor the forcing gate above already keeps: this check runs
+ * on top of the forcing gate. An incomplete forcing commit still reads as
+ * the forcing error; the second-source error only fires once that gate
+ * has already passed. A real second source clears the gate, records a
+ * standalone "corroboration" evidence event (stages.ts's
+ * onCorroborationRecorded: the two source ids, why they are independent,
+ * and the learner's own agree/disagree
+ * mark, `passagesAgree`, never model-judged), and the "check" event
+ * itself carries `secondSourceRequired`/`secondSourceNodeId` so analysis
+ * can group by arm from the evidence log alone. See
+ * learning/research-os/LATERAL-READING.md.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
 import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
-import { onCheckResult, onQuoteReturned } from "@/lib/research-os/stages";
-import { locateHits } from "@/lib/research-os/locate";
+import { onCheckResult, onQuoteReturned, onCorroborationRecorded } from "@/lib/research-os/stages";
+import { locateHits, findIndependentSources, assessSourceIndependence } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, verifyLearner, recordEvidence, loadCurrentStage, loadForcingEnabledForLearner } from "@/lib/research-os/db";
+import {
+  configured,
+  graphService,
+  verifyLearner,
+  recordEvidence,
+  loadCurrentStage,
+  loadForcingEnabledForLearner,
+  loadSecondSourceRequiredForLearner,
+  loadLearnerQuoteEvidence,
+} from "@/lib/research-os/db";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
-import { resolveForcingEnabled } from "@/lib/research-os/forcing";
-import { dbStorePendingAttempt, dbRevealPendingAttempt } from "@/lib/research-os/check-attempts-db";
+import { resolveForcingEnabled, finalizeReveal } from "@/lib/research-os/forcing";
+import { dbStorePendingAttempt, dbRevealPendingAttempt, dbGetPendingAttempt } from "@/lib/research-os/check-attempts-db";
+import { checkSecondSourceGate, resolveSecondSourceRequired, secondSourceRequiredAtStage } from "@/lib/research-os/lateral-reading";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -156,6 +193,15 @@ interface WorkspaceBody {
   attemptId?: string;
   learnerConfidence?: string;
   sourcePrediction?: string;
+  // Lateral reading (PLAN-REVISION-3.md section 2c): "locate" with
+  // mode "secondSource" needs quotedSourceNodeId instead of branch; a
+  // "check" reveal (attemptId present) may carry secondSourceNodeId and
+  // the learner's own agree/disagree mark, passagesAgree. See this file's
+  // header.
+  mode?: "hits" | "secondSource";
+  quotedSourceNodeId?: string;
+  secondSourceNodeId?: string;
+  passagesAgree?: boolean;
 }
 
 export async function POST(req: NextRequest) {
@@ -186,6 +232,30 @@ export async function POST(req: NextRequest) {
     case "locate": {
       const query = (body.query || "").trim();
       if (!query) return bad(400, "query is required");
+
+      // Lateral reading, task item 1: Locate's "find another source" mode
+      // (PLAN-REVISION-3.md section 2c). Scans the whole seeded graph,
+      // not one branch, since an independent second source can sit
+      // anywhere; excludes the already-quoted node and every candidate
+      // whose own provenance shares a publisher or domain with it
+      // (locate.ts's assessSourceIndependence), retrieval only, the same
+      // never-calls-a-model contract this file's header states for
+      // Locate.
+      if (body.mode === "secondSource") {
+        const quotedSourceNodeId = (body.quotedSourceNodeId || "").trim();
+        if (!quotedSourceNodeId) return bad(400, "quotedSourceNodeId is required for secondSource mode");
+        const { data: quotedNode, error: quotedErr } = await svc.from("nodes").select("id,provenance").eq("id", quotedSourceNodeId).maybeSingle();
+        if (quotedErr || !quotedNode) return bad(404, "node_not_found");
+        const { data, error } = await svc.from("nodes").select("id,slug,title,kind,tier,summary,provenance");
+        if (error) return bad(500, "locate_failed");
+        const candidates = findIndependentSources((data || []) as Parameters<typeof findIndependentSources>[0], query, {
+          id: quotedNode.id as string,
+          provenance: (quotedNode.provenance || undefined) as Provenance | undefined,
+        });
+        logToolCall("locate", learnerId, sessionId, { mode: "secondSource", quotedSourceNodeId, resultCount: candidates.length });
+        return NextResponse.json({ results: candidates }, { headers: { "cache-control": "no-store" } });
+      }
+
       const branch = body.branch || "02-physics";
       const { data, error } = await svc
         .from("nodes")
@@ -263,6 +333,64 @@ export async function POST(req: NextRequest) {
       // can never come back with feedback (scripts/test-research-os-
       // forcing.ts's "cannot be fetched early" case).
       if (attemptId) {
+        // Read-only lookup first: no consume yet, so a lateral-reading
+        // gate failure below leaves the attempt held for a retry. The
+        // forcing gate runs first, pure, same finalizeReveal function
+        // dbRevealPendingAttempt itself calls below, so a missing
+        // confidence/prediction still reads as the pre-existing forcing
+        // error, never the second-source one (this file's header:
+        // lateral reading composes on top of forcing, never instead of
+        // it).
+        const pendingPrecheck = await dbGetPendingAttempt(attemptId, learnerId);
+        if (!pendingPrecheck) return bad(404, "check_attempt_not_found");
+
+        const forcingPrecheck = finalizeReveal(pendingPrecheck, body.learnerConfidence, body.sourcePrediction || "");
+        if (!forcingPrecheck.ok) {
+          return bad(400, "A confidence rating and a source prediction are required before feedback is shown.");
+        }
+
+        // Lateral reading (PLAN-REVISION-3.md section 2c, task item 2):
+        // at Understanding tier and above, a real, independently-assessed
+        // second Quote must be attached to THIS attempt before it can
+        // reveal. Awareness stays single-source, matching
+        // checkSecondSourceGate's own floor.
+        const classSecondSourceOverride = await loadSecondSourceRequiredForLearner(learnerId);
+        const secondSourceRequired = resolveSecondSourceRequired(classSecondSourceOverride);
+        const secondSourceNodeId = (body.secondSourceNodeId || "").trim();
+        let secondSourceWasQuoted = false;
+        let secondSourceIndependent = false;
+        let independenceReason = "";
+        if (secondSourceRequiredAtStage(pendingPrecheck.currentStage, secondSourceRequired) && secondSourceNodeId) {
+          const quoteEvidence = await loadLearnerQuoteEvidence(learnerId);
+          secondSourceWasQuoted = quoteEvidence.some((q) => q.nodeId === secondSourceNodeId);
+          if (secondSourceWasQuoted) {
+            const { data: sourceNodes } = await svc.from("nodes").select("id,provenance").in("id", [pendingPrecheck.nodeId, secondSourceNodeId]);
+            const byId = new Map(((sourceNodes || []) as { id: string; provenance: Provenance | null }[]).map((n) => [n.id, n.provenance || undefined]));
+            const assessment = assessSourceIndependence(byId.get(pendingPrecheck.nodeId), byId.get(secondSourceNodeId));
+            secondSourceIndependent = assessment.independent;
+            independenceReason = assessment.reason;
+          }
+        }
+
+        const secondSourceGate = checkSecondSourceGate({
+          required: secondSourceRequired,
+          stage: pendingPrecheck.currentStage,
+          secondSourceNodeId: secondSourceNodeId || undefined,
+          secondSourceWasQuoted,
+          secondSourceIndependent,
+        });
+        if (!secondSourceGate.ok) {
+          // The attempt stays held: neither gate above consumed it, so a
+          // retry on the same attemptId with a real second source
+          // attached can still succeed. The tutor NAMES the gap
+          // (secondSourceGate.message, a fixed code-level string); it
+          // never picks or supplies a source itself.
+          return bad(400, secondSourceGate.message);
+        }
+
+        // Both gates cleared: the real, consuming reveal. Re-runs the
+        // same forcing check (deterministic, same inputs), then deletes
+        // the row (single-use).
         const reveal = await dbRevealPendingAttempt(attemptId, learnerId, body.learnerConfidence, body.sourcePrediction || "");
         if (!reveal.ok) {
           if (reveal.reason === "not_found") return bad(404, "check_attempt_not_found");
@@ -282,9 +410,29 @@ export async function POST(req: NextRequest) {
             sourcePrediction,
             predictionCorrect,
             forcingEnabled: true,
+            secondSourceRequired: secondSourceGate.secondSourceRequired,
+            secondSourceNodeId: secondSourceGate.secondSourceRequired ? secondSourceNodeId : undefined,
           },
         );
         await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+
+        // Corroboration record (task item 3): only when a second source
+        // was required AND attached to this attempt, never for an
+        // Awareness-tier attempt or an arm with the switch off, so
+        // production-guard.ts's lateralReadingFlag stays an accurate
+        // "single-source" read for a learner who was never asked to
+        // corroborate.
+        if (secondSourceGate.secondSourceRequired && secondSourceNodeId) {
+          const corroboration = onCorroborationRecorded(transition.nextStage, {
+            sessionId: pending.sessionId,
+            firstSourceId: pending.nodeId,
+            secondSourceId: secondSourceNodeId,
+            independenceReason,
+            passagesAgree: Boolean(body.passagesAgree),
+          });
+          await recordEvidence(learnerId, pending.nodeId, corroboration.nextStage, corroboration.event as unknown as Record<string, unknown>);
+        }
+
         logToolCall("check", learnerId, pending.sessionId, {
           nodeId: pending.nodeId,
           result: pending.grade.result,
@@ -292,6 +440,7 @@ export async function POST(req: NextRequest) {
           stage: transition.nextStage,
           forcingEnabled: true,
           predictionCorrect,
+          secondSourceRequired: secondSourceGate.secondSourceRequired,
         });
 
         return NextResponse.json(
@@ -306,6 +455,7 @@ export async function POST(req: NextRequest) {
             sourcePrediction,
             predictionCorrect,
             forcingEnabled: true,
+            secondSourceRequired: secondSourceGate.secondSourceRequired,
           },
           { headers: { "cache-control": "no-store" } },
         );
