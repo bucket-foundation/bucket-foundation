@@ -2,6 +2,24 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #45 finishing pass
+
+Same pass as `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10, PR #45
+finishing pass" entry; logged here per the ros ledger convention.
+
+### Verified
+
+The pending-signoff filter from the review pass below was already on
+`intake/ros-canon-promotion-2`: `isPendingSignoff()` gates
+`loadPrimaryPapers()`, the one loader the `/api/research` feed402
+paid-cite envelope and the Research OS canon importer both read from.
+
+### Edited
+
+- `BEADS-PENDING.jsonl`: re-merged `origin/main` (three commits past the
+  branch's last merge). One append-only collision with main's new ros-11
+  entry, resolved by keeping both lines.
+
 ## Roster sync skeleton, ros-06 follow-on
 
 Date 2026-09-10. Branch `feat/ros-roster-sync`, worktree `.ros-worktrees/roster`. Standard-first
@@ -52,6 +70,69 @@ None.
 
 ### Verified
 
+No change needed. `tools/canon-pipeline/intake.py --min-score 70` run
+twice against the three foundation-tier dossiers in scope: `added=0
+changed=False` on every run. `sub-outcomes/education` left untouched,
+out of scope per the review pass below. `npm ci`, `npx tsc --noEmit`,
+`npm run build`, `npm run test:research-os` (18 files, 0 failures), and
+`agf-lint-voice check` on every touched file: all clean post-merge.
+
+### Edited, second round
+
+- `origin/main` moved past the first merge (PR #47, ros-07 follow-up:
+  consent gate wiring, profile page, privacy actions, status band).
+  Merged again. `BEADS-PENDING.jsonl` and
+  `_intake/research-os-k12/CHANGELOG.md`: append-only collisions, kept
+  both branches' entries in sequence. `package.json`: both branches
+  appended a test to `test:research-os`; merged to run all 19, dropping
+  neither `scripts/test-canon-primary-signoff.ts` nor
+  `scripts/test-research-os-profile.ts`.
+
+### Verified, second round
+
+No change needed beyond the merge above. Gates re-run: `npm ci`, `npx
+tsc --noEmit`, `npm run build`, `npm run test:research-os` (19 files, 0
+failures), `agf-lint-voice check` on every touched file: all clean.
+
+## PR #45 review pass
+
+Same review as `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10, PR #45
+review pass" entry; logged here per the ros ledger convention.
+
+### Added
+
+- `scripts/test-canon-primary-signoff.ts`: 6 tests covering
+  `isPendingSignoff()` and the `loadPrimaryPapers()` gate it drives.
+  Wired into `npm run test:research-os`.
+
+### Edited
+
+- `src/lib/canon-primary.ts`: `loadPrimaryPapers()` now excludes any
+  record whose `provenance_signoff` is a pending value before caching, so
+  neither the `/api/research` paid-cite envelope nor the Research OS
+  canon importer can serve a record no human has approved yet. Full
+  rationale in the CHANGELOG entry above.
+- `GOVERNANCE.md`: added a "Canon sign-off" subsection reading the
+  fail-closed `hte.canon_writeback` gate and the pending-placeholder
+  `tools/canon-pipeline/intake.py` path as one policy.
+
+### Removed
+
+None.
+
+### Verified
+
+Six new foundation-tier DOIs (Loewenstein 1994, Gruber/Gelman/Ranganath
+2014, Deci and Ryan 2000, Gneezy and Rustichini 2000, Bainbridge 1983,
+Pirolli and Card 1999) checked live against Crossref/OpenAlex: all
+resolve to the intended work. `intake.py --min-score 70` run twice
+against each of the four canon dossiers PR #45 touches: `added=0
+changed=False` on every one. `npm ci`, `npx tsc --noEmit`, `npm run
+build`, and `npm run test:research-os` all clean. Leak scan against the
+full diff found no keys, `.env` contents, IPs, non-public hostnames,
+personal emails other than `gianyrox@gmail.com`, PII, `/home/gian`
+paths, or Claude session URLs.
+
 `npm ci`, `npx tsc --noEmit`, `npm run build` (`/api/research-os/roster` and
 `/research-os/roster` both confirmed in the build manifest), `npm run test:research-os`
 (17 new tests, full chain green), `next lint` on every touched file: all clean.
@@ -99,6 +180,63 @@ a claim about that commit, left unchanged. `PLAN.md` and `PLAN-REVISION-1.md` di
 appends. Nothing under `src/` or `public/` touched. `agf-lint-voice check` clean on the four
 files it scans; a manual grep pass covered the fifth (`_intake/research-os-k12/CHANGELOG.md`,
 the corpus's own known ignore-list gap) for dashes, banned words, and antithesis, no live hit.
+
+## Iteration 20: canon-intake promotion pass two
+
+Renumbered from this branch's own "Iteration 19" on merge: `origin/main`
+independently used Iteration 19 for "plan revision 2" (below), so one side
+moves to keep numbers unique. Content otherwise unchanged from the
+original entry.
+
+Date 2026-09-10. Branch `intake/ros-canon-promotion-2`. Promotes thirteen
+more records from `_intake/research-os-k12-literature/` into
+`bucket-canon/`, screened against all 117 cards excluding the six pass-one
+promotions (Iteration 7, PR #9). Full detail in
+`_intake/research-os-k12/CHANGELOG.md`'s matching entry; this ledger
+carries the summary.
+
+### Added
+
+- Three new canon dossiers: `bucket-canon/07-mind/curiosity-and-motivation/`
+  (Loewenstein 1994; Gruber, Gelman, and Ranganath 2014; Deci and Ryan
+  2000; Gneezy and Rustichini 2000), `bucket-canon/07-mind/
+  cognition-and-automation/` (Bainbridge 1983), and `bucket-canon/
+  04-information/information-foraging/` (Pirolli and Card 1999).
+- Seven records added to the existing `bucket-canon/07-mind/
+  sub-outcomes/education/` dossier: five AI-tutoring and
+  generative-AI-in-learning RCTs and field evaluations (Kestin et al.
+  2025; Bastani et al. 2025; Wang et al. 2024, Tutor CoPilot; De Simone
+  et al. 2025, Nigeria; Kosmyna et al. 2025) and two human-AI
+  complementarity meta-analyses (Vaccaro, Almaatouq, and Malone 2024;
+  Bansal et al. 2021), each naming the canon-tier foundation it depends
+  on.
+- `provenance_signoff: "pending: gianyrox"` on all thirteen new records
+  and backfilled onto the ten pass-one records, per the ros-11
+  governance rule: a named human founder is the pending approver on
+  every canon or outcome record, and no sign-off has happened yet.
+- One `bucket-canon/TAXONOMY_NOTES.md` open question: whether the two
+  human-AI complementarity meta-analyses need a dedicated
+  `sub-outcomes/human-ai-collaboration/` home; not resolved, both stay in
+  `sub-outcomes/education/` with a pointer.
+
+### Edited
+
+- Thirteen intake cards marked `status: promoted` with pointers (seven
+  also gain `depends_on_foundation`); claim text unchanged in all
+  thirteen.
+- `bucket-canon/07-mind/README.md`, `bucket-canon/04-information/README.md`:
+  short additions naming the new subfolders.
+- `bucket-canon/07-mind/sub-outcomes/education/README.md`,
+  `CANON_INDEX.md`, and `bucket-canon/07-mind/memory-systems/
+  CANON_INDEX.md`: extended for the new records and the signoff
+  backfill.
+- `_intake/research-os-k12-literature/README.md`: index table updated for
+  the thirteen rows, plus a new section recording the pass.
+- `CANON-INGESTION-INDEX.md`: a dated table of the thirteen promotions.
+
+### Removed
+
+None.
 
 ## PR #35 review pass
 
@@ -1713,7 +1851,116 @@ on any added line, including the two fixed cards. `origin/main` already merged i
 branch. No file under `src/` or `public/` touched. `npm ci` and `npm run build` both
 clean.
 
-## Iteration 19: plan revision 2
+## Iteration 19: ros-07 follow-up
+
+Consent gate wiring. Date 2026-09-10. `feat/ros-07-consent-wiring`, worktree
+`.ros-worktrees/ros07b`, branched from `origin/main` at `af5b7c9ea`. Scope: wire
+`src/lib/research-os/consent.ts`'s `requireConsent` into every learner-facing write
+path, a minimal `/research-os/profile` page, self-service export/delete in the
+workspace footer, and a truthful status band on `/research-os`.
+
+### Added
+
+- `src/app/api/research-os/profile/route.ts`: GET/POST, the learner's own role and
+  birth-year bucket. POST upserts only those two columns; `consent_status` is never
+  read from the request body and is untyped in `ProfileBody`, so there is no code
+  path here that could write it.
+- `src/app/research-os/profile/page.tsx`: email-OTP auth (the same pattern as
+  `workspace/page.tsx` and `review/page.tsx`), two radio groups (role, birth-year
+  bucket), a save button, and a result message that links back to the workspace.
+- `src/lib/research-os/profile.ts`: `validateProfileInput`, `isValidRole`,
+  `isValidBirthYearBucket`, `BIRTH_YEAR_BUCKET_LABELS`, `ROLE_LABELS`. Pure, no I/O,
+  covered by `scripts/test-research-os-profile.ts` (new, 11 tests).
+- `src/lib/research-os/consent.ts`: `consentBlockedBody`, shaping a blocked
+  `ConsentCheckResult` into the `{error, message, needsProfile}` body every gated
+  route now returns on its 403. `ConsentAction` grew from `"workspace_tool" |
+  "production_submit"` to four values, adding `"probe_answer"` and
+  `"transfer_answer"`.
+- `src/lib/research-os/types.ts`: `DELETE_CONFIRM_TOKEN`, the exact string
+  `POST /api/research-os/privacy`'s delete action now requires in its `confirm`
+  field. Lives in the dependency-free `types.ts`, not `privacy.ts`, so the
+  client-side workspace page can import it without pulling in `privacy.ts`'s
+  service-role Supabase client into the browser bundle.
+- `src/lib/research-os/privacy.ts`: `isDeleteConfirmed`, a pure equality check
+  against `DELETE_CONFIRM_TOKEN`.
+- `scripts/test-research-os-profile.ts` (new, 11 tests).
+
+### Edited
+
+- `src/app/api/research-os/workspace/route.ts`: `requireConsent(learnerId,
+  "workspace_tool")` right after `verifyLearner()`, before the burst rate limiter,
+  in front of the whole handler (Locate and Quote included, not only Check/Organize:
+  COPPA's floor is collecting personal information from a known minor, and a search
+  query already does that).
+- `src/app/api/research-os/probe/route.ts`: same gate on POST only (action
+  `"probe_answer"`); GET (the due-ness check and question prompts) stays ungated.
+- `src/app/api/research-os/state/route.ts`: the gate applies only when
+  `action === "transfer_item"` (action `"transfer_answer"`); the sibling `"open"`
+  action (a navigation event) stays ungated on purpose, so a signed-in minor with no
+  profile yet can still reach `/research-os/profile`.
+- `src/app/api/research-os/production/route.ts`: the gate runs right after
+  `verifyLearner()`, before the body is parsed, in front of the whole handler
+  (action `"production_submit"`, covering a draft save and a submit).
+- `src/app/api/research-os/privacy/route.ts`: `PrivacyBody` gained `confirm`;
+  `action === "delete"` without `isDeleteConfirmed(body)` returns 400
+  `"confirm_required"` before `resolvePrivacyActor` runs.
+- `src/app/research-os/workspace/page.tsx`: `handleConsentResponse` recognizes the
+  gate's 403 shape from every gated fetch (Locate, Quote, Check, Organize, the probe
+  answer, the transfer answer, a Production save) and renders a banner with a link
+  to `/research-os/profile` when `needsProfile` is true. `saveTransferAnswer` now
+  checks `res.ok` for the first time (previously ignored its own response entirely,
+  a real pre-existing gap this pass closed as a side effect of detecting the
+  block). The footer gained "export my data" (a client-side JSON download of the
+  export envelope) and "delete my data" (a typed-confirm panel gating a disabled
+  button, sending `confirm: DELETE_CONFIRM_TOKEN`). The file header's stale
+  `TODO(... "Under-13 consent flow")` note was rewritten to describe what is now
+  built instead of what was still missing.
+- `src/app/research-os/page.tsx`: the "§ status" paragraph rewritten into three
+  paragraphs, on main today, not yet on main, and the unchanged subject-choice /
+  repository-path / pilot-classrooms content. Original text preserved verbatim in
+  `_intake/research-os-k12/DELETIONS.md`. No other section of the page touched.
+- `scripts/test-research-os-consent.ts`: a `ConsentAction`-parametrized block (one
+  test per action, including the no-profile case, over all four wired actions) plus
+  `consentBlockedBody` coverage. 8 new tests.
+- `scripts/test-research-os-privacy.ts`: `isDeleteConfirmed` coverage, 5 new tests
+  (exact match, missing field, empty string, boolean true, three near-miss strings).
+- `learning/research-os/compliance/README.md`: "What is built but not wired"
+  renamed "The consent gate, wired" and rewritten to list all four call sites; part B
+  item 6 (self-service privacy access) struck through and marked done, with what
+  remains (a parent-facing UI, as opposed to the existing reviewer-on-behalf-of path)
+  named explicitly; the `learner_profiles`/`requireConsent` and `POST /privacy`
+  bullets near the top updated to point at the new section.
+- `learning/research-os/WORKSPACE.md`: header's "Reads against" list extended; new
+  section 5, "The consent gate and self-service privacy actions."
+- `package.json`: `test:research-os` gained `scripts/test-research-os-profile.ts`.
+
+### Removed
+
+None. No file deleted; the replaced status-section text is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md` per this repo's own "never delete, log it"
+convention.
+
+### Verified
+
+`npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean, both new routes
+(`/research-os/profile`, `/api/research-os/profile`) present in the route manifest.
+`npm run test:research-os`: 236/236 pass (18 suites; the three touched/added suites,
+`test-research-os-consent.ts`, `test-research-os-privacy.ts`, and the new
+`test-research-os-profile.ts`, contribute 14 + 20 + 11 of that total). `eslint` over
+every touched/added file: clean. `agf-lint-voice-src check` over every touched/added
+TS/TSX file: clean (fixed six antithesis hits and one banned word, `honestly`, found
+on the first pass, all in header comments this PR itself added or touched).
+`agf-lint-voice check` over the two touched Markdown docs: clean (fixed two more
+antithesis hits and two meta-commentary hits, `"in this page"`, found on the first
+pass); `_intake/research-os-k12/DELETIONS.md` was not scanned by the general checker,
+the same pre-existing `_intake` ignore-list gap Iteration 17 already found, checked by
+hand instead, no hit. Manual review of the profile page's CSS at a 400px viewport: the
+`max-w-[560px]` wrapper uses `px-4` gutters (368px content width), the email input is
+`flex-1 min-w-0` inside a `flex flex-wrap` row, the OTP-code input is a fixed 140px,
+and the radio rows wrap on their own line each; no element forces horizontal scroll.
+No secret, absolute local path, or PII found in a diff review of every changed file.
+
+## Iteration 20: plan revision 2
 
 Date 2026-09-10. Branch `docs/ros-plan-revision-2`, worktree
 `.ros-worktrees/plan2`. Read `PLAN-REVISION-1.md` in full,
@@ -1781,3 +2028,28 @@ direct read of `src/lib/research-os/llm.ts`: the real provider seam is
 no `npm run build` gate applies to this pass's own changes; the test counts
 above were run to report Section 1's own numbers, a verification step
 independent of any test change this pass makes.
+
+## Iteration 21: PR #47 finishing pass
+
+Picked up PR #47 from `review/pr47` after the prior reviewer's verified fix
+commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
+
+### Merged
+
+- `origin/main` into `review/pr47`: one conflict, `BEADS-PENDING.jsonl`
+  (both sides appended a distinct entry at end-of-file, kept both). No
+  `src/` conflict; PR #45 (canon promotion pass two) remains open and
+  unmerged, so its files never entered this merge.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (both new routes in the
+  manifest), `npm run test:research-os` (236 passed, 0 failed, 18 files),
+  `eslint` on all 16 touched TS/TSX files, `agf-lint-voice-src check` on
+  the same 16, `agf-lint-voice check` on the touched docs: all clean.
+- PR #47's Vercel check failure ("Deployment rate limited, retry in 24
+  hours") is a Vercel free-tier daily deployment cap.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.

@@ -1,6 +1,134 @@
 records:
+- id: bkt-1b34ca6c5af4
+  title: 'Generative AI without guardrails can harm learning: Evidence from high school mathematics'
+  authors:
+  - family: Bastani
+    given: Hamsa
+    orcid: https://orcid.org/0000-0002-8793-4732
+  - family: Bastani
+    given: Osbert
+    orcid: https://orcid.org/0000-0001-9990-7566
+  - family: Sungu
+    given: Alp
+    orcid: https://orcid.org/0000-0002-0447-4807
+  - family: Ge
+    given: Haosen
+    orcid: https://orcid.org/0000-0002-2443-3949
+  - family: Kabakcı
+    given: Özge
+    orcid: null
+  - family: Mariman
+    given: Rei
+    orcid: null
+  year: 2025
+  venue:
+    name: Proceedings of the National Academy of Sciences
+    issn: 0027-8424
+    publisher: null
+  doi: 10.1073/pnas.2422633122
+  canonical_url: https://doi.org/10.1073/pnas.2422633122
+  oa_status:
+    is_oa: true
+    oa_url: https://doi.org/10.1073/pnas.2422633122
+    license: cc-by-nc-nd
+    repository: National Academy of Sciences
+  citation_count: 170
+  concepts:
+  - Generative grammar
+  - Harm
+  - Computer science
+  - Artificial intelligence
+  - TUTOR
+  - Productivity
+  - Machine learning
+  - Psychology
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T21:26:49Z'
+  canon_score: 75
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (170)
+  - +10 open access
+  - +15 foundational venue (proceedings of the national academy of s)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a field experiment reporting practice- and exam-performance effect sizes
+    across three arms instead of a primary mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1111/j.1745-6916.2006.00012.x
+    path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
+    title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
+    relation: Unrestricted AI access lets a student skip the retrieval step entirely, substituting the
+      answer for the practice the testing-effect mechanism requires; the guardrailed, hint-only arm keeps
+      that retrieval step and keeps the exam-performance gain, a natural experiment on the same mechanism
+      the foundation record establishes.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-49584ffdad25
+  title: 'When combinations of humans and AI are useful: A systematic review and meta-analysis'
+  authors:
+  - family: Vaccaro
+    given: Michelle
+    orcid: https://orcid.org/0000-0001-6254-9718
+  - family: Almaatouq
+    given: Abdullah
+    orcid: https://orcid.org/0000-0002-8467-9123
+  - family: Malone
+    given: Thomas W.
+    orcid: null
+  year: 2024
+  venue:
+    name: Nature Human Behaviour
+    issn: 2397-3374
+    publisher: null
+  doi: 10.1038/s41562-024-02024-1
+  canonical_url: https://doi.org/10.1038/s41562-024-02024-1
+  oa_status:
+    is_oa: true
+    oa_url: https://www.nature.com/articles/s41562-024-02024-1.pdf
+    license: cc-by
+    repository: Nature Portfolio
+  citation_count: 477
+  concepts:
+  - Meta-analysis
+  - Set (abstract data type)
+  - Artificial intelligence
+  - Computer science
+  - MEDLINE
+  - Association (psychology)
+  - Web of science
+  - Systematic review
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T21:26:49Z'
+  canon_score: 75
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (477)
+  - +10 open access
+  - +15 foundational venue (nature human behaviour)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a systematic review and meta-analysis reporting combination effect sizes
+    across task types instead of a primary mechanism claim); routed to sub-outcomes/education. Not education-specific;
+    see TAXONOMY_NOTES.md's open question on a dedicated human-AI-collaboration outcome home.
+  depends_on_foundation:
+    doi: 10.1037/0033-295x.106.4.643
+    path: bucket-canon/04-information/information-foraging/primary-papers.yaml
+    title: Information foraging.
+    relation: The meta-analysis's strongest moderator, whether a task decomposes into separable subcomponents
+      a human and an AI can each forage over independently, versus one unified output the two must jointly
+      produce, is an empirical test of the foundation record's cost-benefit account of information-seeking
+      extended to a two-agent team; decision tasks decompose the way the foundation record's model predicts
+      a forager benefits from a patchy information environment, content-creation tasks do not.
+  provenance_signoff: 'pending: gianyrox'
 - id: bkt-ce3245fc58e7
-  title: 'The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One Tutoring'
+  title: 'The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One
+    Tutoring'
   authors:
   - family: Bloom
     given: Benjamin S.
@@ -38,21 +166,112 @@ records:
   canon_branch_hints:
   - 07-mind
   tier: OUTCOME
-  outcome_reason: >-
-    RUBRIC E7 (intervention/outcome study reporting an effect size instead
-    of a primary mechanism claim); routed to sub-outcomes/education per the
-    05-biophysics/sub-outcomes/longevity precedent rather than into
-    07-mind/ proper.
+  outcome_reason: RUBRIC E7 (intervention/outcome study reporting an effect size instead of a primary
+    mechanism claim); routed to sub-outcomes/education per the 05-biophysics/sub-outcomes/longevity precedent
+    rather than into 07-mind/ proper.
   depends_on_foundation:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: >-
-      Mastery-based corrective feedback is a classroom-scale instance of the
-      retrieval-practice/testing-effect mechanism; this paper's tutoring
-      condition measures that mechanism's classroom-scale outcome, and the
-      foundation record above establishes the mechanism itself.
-
+    relation: Mastery-based corrective feedback is a classroom-scale instance of the retrieval-practice/testing-effect
+      mechanism; this paper's tutoring condition measures that mechanism's classroom-scale outcome, and
+      the foundation record above establishes the mechanism itself.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-1fa55749afd0
+  title: The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring
+    Systems
+  authors:
+  - family: VanLehn
+    given: Kurt
+    orcid: https://orcid.org/0000-0001-5635-2003
+  year: 2011
+  venue:
+    name: Educational Psychologist
+    issn: 0046-1520
+    publisher: null
+  doi: 10.1080/00461520.2011.611369
+  canonical_url: https://doi.org/10.1080/00461520.2011.611369
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: Routledge
+  citation_count: 2190
+  concepts:
+  - Intelligent tutoring system
+  - Computer science
+  - Educational psychology
+  - Human-computer interaction
+  - Mathematics education
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T14:24:19Z'
+  canon_score: 70
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +25 well-cited (2190)
+  - +15 survived >5y (year=2011)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (meta-analysis reporting tutoring-system effect sizes instead of a primary
+    mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1111/j.1745-6916.2006.00012.x
+    path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
+    title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
+    relation: Step-based tutoring feedback (intermediate-step correction) is a system-scale instance of
+      frequent retrieval-and-feedback checkpoints, the same mechanism the testing effect establishes at
+      the item scale.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-2cce3fc65496
+  title: Effectiveness of Intelligent Tutoring Systems
+  authors:
+  - family: Kulik
+    given: James A.
+    orcid: null
+  - family: Fletcher
+    given: J. D.
+    orcid: https://orcid.org/0000-0001-8415-5314
+  year: 2016
+  venue:
+    name: Review of Educational Research
+    issn: 0034-6543
+    publisher: null
+  doi: 10.3102/0034654315581420
+  canonical_url: https://doi.org/10.3102/0034654315581420
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: SAGE Publishing
+  citation_count: 875
+  concepts:
+  - Intelligent tutoring system
+  - Computer science
+  - Educational assessment
+  - Artificial intelligence
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T14:24:19Z'
+  canon_score: 65
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (875)
+  - +15 survived >5y (online-first year=2015; print year=2016)
+  canon_branch_hints: []
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (50-study meta-analysis reporting an intervention effect size instead of a
+    primary mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1111/j.1745-6916.2006.00012.x
+    path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
+    title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
+    relation: Updates VanLehn 2011's estimate with a larger, more recent sample of the same underlying
+      mechanism (frequent retrieval-and-feedback checkpoints at system scale).
+  provenance_signoff: 'pending: gianyrox'
 - id: bkt-46a9894f6dd8
   title: 'Effectiveness of Mastery Learning Programs: A Meta-Analysis'
   authors:
@@ -96,115 +315,344 @@ records:
   canon_branch_hints:
   - 07-mind
   tier: OUTCOME
-  outcome_reason: >-
-    RUBRIC E7 (108-study meta-analysis reporting an intervention effect
-    size instead of a primary mechanism claim); routed to
-    sub-outcomes/education.
+  outcome_reason: RUBRIC E7 (108-study meta-analysis reporting an intervention effect size instead of
+    a primary mechanism claim); routed to sub-outcomes/education.
   depends_on_foundation:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: >-
-      A large-sample replication check on Bloom 1984's tutoring-equivalent
-      claim; both interventions rest on the same retrieval-practice/testing-
-      effect mechanism, this record tempers Bloom's effect-size estimate.
-
-- id: bkt-1fa55749afd0
-  title: 'The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring Systems'
+    relation: A large-sample replication check on Bloom 1984's tutoring-equivalent claim; both interventions
+      rest on the same retrieval-practice/testing- effect mechanism, this record tempers Bloom's effect-size
+      estimate.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-c3ad89ff9a59
+  title: 'AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based
+    design in an authentic educational setting'
   authors:
-  - family: VanLehn
-    given: Kurt
-    orcid: https://orcid.org/0000-0001-5635-2003
-  year: 2011
+  - family: Kestin
+    given: Greg
+    orcid: null
+  - family: Miller
+    given: Kelly
+    orcid: https://orcid.org/0000-0003-2790-2592
+  - family: Klales
+    given: Anna
+    orcid: null
+  - family: Milbourne
+    given: Timothy
+    orcid: https://orcid.org/0000-0001-5446-7712
+  - family: Ponti
+    given: Gregorio
+    orcid: https://orcid.org/0000-0002-2338-214X
+  year: 2025
   venue:
-    name: Educational Psychologist
-    issn: 0046-1520
+    name: Scientific Reports
+    issn: 2045-2322
     publisher: null
-  doi: 10.1080/00461520.2011.611369
-  canonical_url: https://doi.org/10.1080/00461520.2011.611369
+  doi: 10.1038/s41598-025-97652-6
+  canonical_url: https://doi.org/10.1038/s41598-025-97652-6
   oa_status:
-    is_oa: false
-    oa_url: null
-    license: null
-    repository: Routledge
-  citation_count: 2190
+    is_oa: true
+    oa_url: https://www.nature.com/articles/s41598-025-97652-6.pdf
+    license: cc-by-nc-nd
+    repository: Nature Portfolio
+  citation_count: 130
   concepts:
-  - Intelligent tutoring system
+  - TUTOR
+  - Class (philosophy)
   - Computer science
-  - Educational psychology
-  - Human-computer interaction
+  - Active learning (machine learning)
+  - Generative grammar
+  - Randomized controlled trial
+  - Artificial intelligence
   - Mathematics education
   sources_consulted:
   - crossref
   - openalex
-  fetched_at: '2026-09-10T14:24:19Z'
-  canon_score: 70
+  fetched_at: '2026-09-10T21:26:48Z'
+  canon_score: 60
   canon_score_reasons:
   - +30 peer-reviewed type (journal-article)
-  - +25 well-cited (2190)
-  - +15 survived >5y (year=2011)
+  - +20 citation_count>50 (130)
+  - +10 open access
+  canon_branch_hints: []
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a randomized classroom trial reporting a learning-gain effect size instead
+    of a primary mechanism claim); routed to sub-outcomes/education per the intake-pass-one precedent.
+  depends_on_foundation:
+    doi: 10.1111/j.1745-6916.2006.00012.x
+    path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
+    title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
+    relation: The AI tutor's pedagogical structure runs students through repeated retrieval-and-feedback
+      checkpoints on the same content; the learning gain this trial measures is a classroom-scale instance
+      of the testing-effect mechanism the foundation record establishes.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-4d51ec39f102
+  title: Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance
+  authors:
+  - family: Bansal
+    given: Gagan
+    orcid: https://orcid.org/0000-0002-7741-3861
+  - family: Wu
+    given: Tongshuang
+    orcid: https://orcid.org/0000-0003-1630-0588
+  - family: Zhou
+    given: Joyce
+    orcid: https://orcid.org/0000-0003-1205-3970
+  - family: Fok
+    given: Raymond
+    orcid: https://orcid.org/0000-0002-0612-5782
+  - family: Nushi
+    given: Besmira
+    orcid: https://orcid.org/0000-0002-7554-8586
+  - family: Kamar
+    given: Ece
+    orcid: null
+  - family: Ribeiro
+    given: Marco Túlio
+    orcid: https://orcid.org/0000-0002-3301-1297
+  - family: Weld
+    given: Daniel S.
+    orcid: https://orcid.org/0000-0002-3255-0109
+  year: 2021
+  venue:
+    name: Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems
+    issn: null
+    publisher: ACM
+  doi: 10.1145/3411764.3445717
+  canonical_url: https://doi.org/10.1145/3411764.3445717
+  oa_status:
+    is_oa: true
+    oa_url: https://arxiv.org/pdf/2006.14779
+    license: null
+    repository: null
+  citation_count: 71
+  concepts:
+  - Computer science
+  - Artificial intelligence
+  - Task (project management)
+  - Machine learning
+  - Management
+  - Economics
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T21:26:49Z'
+  canon_score: 60
+  canon_score_reasons:
+  - +30 peer-reviewed type (proceedings-article)
+  - +20 citation_count>50 (71)
+  - +10 open access
+  canon_branch_hints: []
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a controlled study reporting team-accuracy effect sizes across AI-explanation
+    conditions instead of a primary mechanism claim); routed to sub-outcomes/education. Not education-specific;
+    see TAXONOMY_NOTES.md's open question on a dedicated human-AI-collaboration outcome home.
+  depends_on_foundation:
+    doi: 10.1037/0033-295x.106.4.643
+    path: bucket-canon/04-information/information-foraging/primary-papers.yaml
+    title: Information foraging.
+    relation: An AI explanation that raises a person's stated trust without raising team accuracy is a
+      failure of the foraging cue, the explanation carries no reliable information scent toward the correct
+      answer, so the human follows it anyway; the foundation record's account of scent-following over
+      objectively-shortest paths predicts exactly this kind of misdirected reliance.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-d6f23a78e535
+  title: 'From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in
+    Nigeria'
+  authors:
+  - family: Simone
+    given: Martin De
+    orcid: null
+  - family: Tiberti
+    given: Federico
+    orcid: null
+  - family: Rodriguez
+    given: Maria Barron
+    orcid: null
+  - family: Manolio
+    given: Federico
+    orcid: null
+  - family: Mosuro
+    given: Wuraola
+    orcid: null
+  - family: Dikoru
+    given: Eliot Jolomi
+    orcid: null
+  year: 2025
+  venue:
+    name: null
+    issn: null
+    publisher: 'Washington, DC: World Bank'
+  doi: 10.1596/1813-9450-11125
+  canonical_url: https://doi.org/10.1596/1813-9450-11125
+  oa_status:
+    is_oa: true
+    oa_url: http://documents.worldbank.org/curated/en/099548105192529324
+    license: null
+    repository: null
+  citation_count: 17
+  concepts:
+  - Generative grammar
+  - Artificial intelligence
+  - Psychology
+  - Computer science
+  - Mathematics education
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T21:26:49Z'
+  canon_score: 50
+  canon_score_reasons:
+  - +30 peer-reviewed type (book)
+  - +10 citation_count>10 (17)
+  - +10 open access
   canon_branch_hints:
   - 07-mind
   tier: OUTCOME
-  outcome_reason: >-
-    RUBRIC E7 (meta-analysis reporting tutoring-system effect sizes instead
+  outcome_reason: RUBRIC E7 (a randomized field evaluation reporting a learning-progress effect size instead
     of a primary mechanism claim); routed to sub-outcomes/education.
   depends_on_foundation:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: >-
-      Step-based tutoring feedback (intermediate-step correction) is a
-      system-scale instance of frequent retrieval-and-feedback checkpoints,
-      the same mechanism the testing effect establishes at the item scale.
-
-- id: bkt-2cce3fc65496
-  title: Effectiveness of Intelligent Tutoring Systems
+    relation: The report attributes part of the measured gain to the scripted activity structure students
+      worked through with a facilitator on site, a structured retrieval-and-practice routine rather than
+      open-ended chatbot access, the same mechanism class the foundation record establishes at a six-week,
+      national-program scale.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-f3c246bffb55
+  title: 'Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing
+    Task'
   authors:
-  - family: Kulik
-    given: James A.
+  - family: Kosmyna
+    given: Nataliya
+    orcid: https://orcid.org/0000-0003-1272-0470
+  - family: Hauptmann
+    given: Eugene
     orcid: null
-  - family: Fletcher
-    given: J. D.
-    orcid: https://orcid.org/0000-0001-8415-5314
-  year: 2016
+  - family: Yuan
+    given: Ye
+    orcid: https://orcid.org/0000-0001-5316-6002
+  - family: Situ
+    given: Jessica
+    orcid: null
+  - family: Liao
+    given: Xian-Hao
+    orcid: null
+  - family: Beresnitzky
+    given: Ashly Vivian
+    orcid: null
+  - family: Braunstein
+    given: Iris
+    orcid: null
+  - family: Maes
+    given: Pattie
+    orcid: https://orcid.org/0000-0002-7722-6038
+  year: 2025
   venue:
-    name: Review of Educational Research
-    issn: 0034-6543
+    name: arXiv (Cornell University)
+    issn: 2331-8422
     publisher: null
-  doi: 10.3102/0034654315581420
-  canonical_url: https://doi.org/10.3102/0034654315581420
+  doi: 10.48550/arxiv.2506.08872
+  canonical_url: https://doi.org/10.48550/arxiv.2506.08872
   oa_status:
-    is_oa: false
-    oa_url: null
+    is_oa: true
+    oa_url: https://arxiv.org/pdf/2506.08872
     license: null
-    repository: SAGE Publishing
-  citation_count: 875
+    repository: Cornell University
+  citation_count: 149
   concepts:
-  - Intelligent tutoring system
-  - Computer science
-  - Educational assessment
-  - Artificial intelligence
+  - Session (web analytics)
+  - Psychology
+  - Cognition
+  - Task (project management)
+  - Recall
+  - Electroencephalography
+  - Applied psychology
+  - Cognitive psychology
   sources_consulted:
   - crossref
   - openalex
-  fetched_at: '2026-09-10T14:24:19Z'
-  canon_score: 65
+  fetched_at: '2026-09-10T21:26:49Z'
+  canon_score: 30
   canon_score_reasons:
-  - +30 peer-reviewed type (journal-article)
-  - +20 citation_count>50 (875)
-  - +15 survived >5y (online-first year=2015; print year=2016)
-  canon_branch_hints: []
+  - +20 citation_count>50 (149)
+  - +10 open access
+  canon_branch_hints:
+  - 07-mind
   tier: OUTCOME
-  outcome_reason: >-
-    RUBRIC E7 (50-study meta-analysis reporting an intervention effect size
-    instead of a primary mechanism claim); routed to
-    sub-outcomes/education.
+  outcome_reason: RUBRIC E7 (an EEG and behavioral study reporting a neural-connectivity and recall effect
+    size instead of a primary mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1126/science.1207745
+    path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
+    title: 'Google Effects on Memory: Cognitive Consequences of Having Information at Our Fingertips'
+    relation: Weaker neural connectivity and weaker later recall of one's own essay content in the LLM-assisted
+      condition is a physiological and behavioral instance of the encode-the-location-not-the-content
+      pattern the foundation record establishes for external, searchable stores; here the external store
+      is the assistant's own output.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-3caacb8e2302
+  title: 'Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise'
+  authors:
+  - family: Wang
+    given: Rose E.
+    orcid: null
+  - family: Ribeiro
+    given: Ana T.
+    orcid: null
+  - family: Robinson
+    given: Carly D.
+    orcid: https://orcid.org/0000-0002-0663-1589
+  - family: Loeb
+    given: Susanna
+    orcid: https://orcid.org/0000-0003-1854-8843
+  - family: Demszky
+    given: Dora
+    orcid: null
+  year: 2024
+  venue:
+    name: arXiv (Cornell University)
+    issn: 2331-8422
+    publisher: null
+  doi: 10.48550/arxiv.2410.03017
+  canonical_url: https://doi.org/10.48550/arxiv.2410.03017
+  oa_status:
+    is_oa: true
+    oa_url: https://arxiv.org/pdf/2410.03017
+    license: cc-by
+    repository: Cornell University
+  citation_count: 6
+  concepts:
+  - TUTOR
+  - Scaling
+  - Computer science
+  - Artificial intelligence
+  - Psychology
+  - Mathematics
+  - Programming language
+  - Geometry
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-10T21:26:49Z'
+  canon_score: 10
+  canon_score_reasons:
+  - +10 open access
+  canon_branch_hints:
+  - 01-mathematics
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a field deployment reporting a tutoring-mastery effect size instead of a
+    primary mechanism claim); routed to sub-outcomes/education. canon_score is low (10) on the mechanical
+    citation-count heuristic for a recent preprint; included on the strength of the study design, a
+    large field deployment with a mastery outcome, per this pass's task brief.
   depends_on_foundation:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: >-
-      Updates VanLehn 2011's estimate with a larger, more recent sample of
-      the same underlying mechanism (frequent retrieval-and-feedback
-      checkpoints at system scale).
+    relation: Tutor CoPilot's real-time suggestions push a human tutor toward expert-pattern retrieval-and-feedback
+      prompts rather than direct answers; the reported mastery gain is that mechanism operating through
+      an upskilled tutor instead of a student-facing system.
+  provenance_signoff: 'pending: gianyrox'

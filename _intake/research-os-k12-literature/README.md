@@ -40,9 +40,9 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [Eliciting Self‐Explanations Improves Understanding](educational-methods/chi-et-al-1994-self-explanation.md) | Educational methods | 1994 | canon | verified |
 | [Knowledge tracing: Modeling the acquisition of procedural knowledge](educational-methods/corbett-anderson-1995-knowledge-tracing.md) | Educational methods | 1995 | canon | verified |
 | [A meta-analytic review of experiments examining the effects of extrinsic rewards on intrinsic motivation](educational-methods/deci-koestner-ryan-1999-extrinsic-rewards-meta-analysis.md) | Educational methods | 1999 | canon | verified |
-| [The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior](educational-methods/deci-ryan-2000-self-determination-theory.md) | Educational methods | 2000 | canon | verified |
+| [The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior](educational-methods/deci-ryan-2000-self-determination-theory.md) | Educational methods | 2000 | canon | promoted |
 | [Financial Incentives and Student Achievement: Evidence from Randomized Trials](educational-methods/fryer-2011-financial-incentives-student-achievement.md) | Educational methods | 2011 | canon | verified |
-| [Pay Enough or Don't Pay at All](educational-methods/gneezy-rustichini-2000-pay-enough-or-dont-pay.md) | Educational methods | 2000 | canon | verified |
+| [Pay Enough or Don't Pay at All](educational-methods/gneezy-rustichini-2000-pay-enough-or-dont-pay.md) | Educational methods | 2000 | canon | promoted |
 | [An NCME Instructional Module on: Comparison of Classical Test Theory and Item Response Theory and Their Applications to Test Development](educational-methods/hambleton-jones-1993-ctt-vs-irt.md) | Educational methods | 1993 | canon | verified |
 | [Assessing the effects of gamification in the classroom: A longitudinal study on intrinsic motivation, social comparison, satisfaction, effort, and academic performance](educational-methods/hanus-fox-2015-gamification-classroom.md) | Educational methods | 2015 | canon | verified |
 | [The Wick in the Candle of Learning](educational-methods/kang-et-al-2009-curiosity-memory.md) | Educational methods | 2009 | canon | verified |
@@ -66,28 +66,28 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [Developing and Assessing a Force and Motion Learning Progression](educational-methods/alonzo-steedle-2009-force-motion-learning-progression.md) | Educational methods | 2009 | canon | verified |
 | [Learning Progressions in Science: An Evidence-Based Approach to Reform](educational-methods/corcoran-mosher-rogat-2009-learning-progressions-science.md) | Educational methods | 2009 | canon | verified |
 | [The Use of Scoring Rubrics: Reliability, Validity and Educational Consequences](educational-methods/jonsson-svingby-2007-scoring-rubrics-reliability-validity.md) | Educational methods | 2007 | canon | verified |
-| [The Psychology of Curiosity: A Review and Reinterpretation](educational-methods/loewenstein-1994-psychology-of-curiosity.md) | Educational methods | 1994 | canon | verified |
-| [States of Curiosity Modulate Hippocampus-Dependent Learning via the Dopaminergic Circuit](educational-methods/gruber-gelman-ranganath-2014-curiosity-hippocampus-learning.md) | Educational methods | 2014 | canon | verified |
+| [The Psychology of Curiosity: A Review and Reinterpretation](educational-methods/loewenstein-1994-psychology-of-curiosity.md) | Educational methods | 1994 | canon | promoted |
+| [States of Curiosity Modulate Hippocampus-Dependent Learning via the Dopaminergic Circuit](educational-methods/gruber-gelman-ranganath-2014-curiosity-hippocampus-learning.md) | Educational methods | 2014 | canon | promoted |
 | [The Four-Phase Model of Interest Development](educational-methods/hidi-renninger-2006-four-phase-interest-model.md) | Educational methods | 2006 | canon | verified |
 | [Information-Seeking, Curiosity, and Attention: Computational and Neural Mechanisms](educational-methods/gottlieb-et-al-2013-information-seeking-curiosity-attention.md) | Educational methods | 2013 | canon | verified |
 | [Intrinsic Motivation Systems for Autonomous Mental Development](educational-methods/oudeyer-kaplan-hafner-2007-intrinsic-motivation-systems.md) | Educational methods | 2007 | canon | verified |
 | [The Psychology and Neuroscience of Curiosity](educational-methods/kidd-hayden-2015-psychology-neuroscience-curiosity.md) | Educational methods | 2015 | canon | verified |
-| [Ironies of automation](hci-human-ai-collaboration/bainbridge-1983-ironies-of-automation.md) | HCI and human-AI collaboration | 1983 | canon | verified |
-| [Generative AI without guardrails can harm learning: Evidence from high school mathematics](hci-human-ai-collaboration/bastani-et-al-2025-generative-ai-can-harm-learning.md) | HCI and human-AI collaboration | 2025 | canon | verified |
-| [From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria](hci-human-ai-collaboration/de-simone-2025-chalkboards-to-chatbots-nigeria.md) | HCI and human-AI collaboration | 2025 | candidate | verified |
+| [Ironies of automation](hci-human-ai-collaboration/bainbridge-1983-ironies-of-automation.md) | HCI and human-AI collaboration | 1983 | canon | promoted |
+| [Generative AI without guardrails can harm learning: Evidence from high school mathematics](hci-human-ai-collaboration/bastani-et-al-2025-generative-ai-can-harm-learning.md) | HCI and human-AI collaboration | 2025 | outcome | promoted |
+| [From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in Nigeria](hci-human-ai-collaboration/de-simone-2025-chalkboards-to-chatbots-nigeria.md) | HCI and human-AI collaboration | 2025 | outcome | promoted |
 | [Generative AI Enhances Individual Creativity but Reduces Collective Diversity of Novel Content](hci-human-ai-collaboration/doshi-hauser-2024-generative-ai-creativity-diversity.md) | HCI and human-AI collaboration | 2024 | canon | verified |
 | [Beware of metacognitive laziness: Effects of generative artificial intelligence on learning motivation, processes, and performance](hci-human-ai-collaboration/fan-et-al-2024-metacognitive-laziness-genai.md) | HCI and human-AI collaboration | 2024 | canon | verified |
 | [Searching for Explanations: How the Internet Inflates Estimates of Internal Knowledge](hci-human-ai-collaboration/fisher-goddu-keil-2015-searching-for-explanations.md) | HCI and human-AI collaboration | 2015 | canon | verified |
 | [AI Tools in Society: Impacts on Cognitive Offloading and the Future of Critical Thinking](hci-human-ai-collaboration/gerlich-2025-ai-tools-cognitive-offloading.md) | HCI and human-AI collaboration | 2025 | candidate | verified |
 | [Principles of mixed-initiative user interfaces](hci-human-ai-collaboration/horvitz-1999-mixed-initiative-interfaces.md) | HCI and human-AI collaboration | 1999 | canon | verified |
-| [AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting](hci-human-ai-collaboration/kestin-et-al-2025-ai-tutoring-outperforms-active-learning.md) | HCI and human-AI collaboration | 2025 | canon | verified |
+| [AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting](hci-human-ai-collaboration/kestin-et-al-2025-ai-tutoring-outperforms-active-learning.md) | HCI and human-AI collaboration | 2025 | outcome | promoted |
 | [Explainable Artificial Intelligence in education](hci-human-ai-collaboration/khosravi-et-al-2022-explainable-ai-education.md) | HCI and human-AI collaboration | 2022 | canon | verified |
-| [Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing Task](hci-human-ai-collaboration/kosmyna-et-al-2025-brain-on-chatgpt-cognitive-debt.md) | HCI and human-AI collaboration | 2025 | candidate | verified |
+| [Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing Task](hci-human-ai-collaboration/kosmyna-et-al-2025-brain-on-chatgpt-cognitive-debt.md) | HCI and human-AI collaboration | 2025 | outcome | promoted |
 | [Effectiveness of Intelligent Tutoring Systems](hci-human-ai-collaboration/kulik-fletcher-2016-intelligent-tutoring-meta-analysis.md) | HCI and human-AI collaboration | 2016 | outcome | promoted |
 | [The Impact of Generative AI on Critical Thinking: Self-Reported Reductions in Cognitive Effort and Confidence Effects From a Survey of Knowledge Workers](hci-human-ai-collaboration/lee-et-al-2025-generative-ai-critical-thinking-confidence.md) | HCI and human-AI collaboration | 2025 | canon | verified |
 | [Does using artificial intelligence assistance accelerate skill decay and hinder skill development without performers' awareness?](hci-human-ai-collaboration/macnamara-et-al-2024-ai-assistance-skill-decay.md) | HCI and human-AI collaboration | 2024 | canon | verified |
 | [Spatial hypertext](hci-human-ai-collaboration/marshall-shipman-1995-spatial-hypertext.md) | HCI and human-AI collaboration | 1995 | canon | verified |
-| [Information foraging.](hci-human-ai-collaboration/pirolli-card-1999-information-foraging.md) | HCI and human-AI collaboration | 1999 | canon | verified |
+| [Information foraging.](hci-human-ai-collaboration/pirolli-card-1999-information-foraging.md) | HCI and human-AI collaboration | 1999 | canon | promoted |
 | [Cognitive Offloading](hci-human-ai-collaboration/risko-gilbert-2016-cognitive-offloading.md) | HCI and human-AI collaboration | 2016 | canon | verified |
 | [Leveraging "Khanmigo" Generative AI-Powered Tool for Personalized Tutoring to Learn Scientific Concepts](hci-human-ai-collaboration/slijepcevic-yaylali-2025-khanmigo-tutoring.md) | HCI and human-AI collaboration | 2025 | candidate | verified |
 | [Google Effects on Memory: Cognitive Consequences of Having Information at Our Fingertips](hci-human-ai-collaboration/sparrow-liu-wegner-2011-google-effects-on-memory.md) | HCI and human-AI collaboration | 2011 | canon | promoted |
@@ -95,13 +95,13 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [Saving-Enhanced Memory: The Benefits of Saving on the Learning and Remembering of New Information](hci-human-ai-collaboration/storm-stone-2015-saving-enhanced-memory.md) | HCI and human-AI collaboration | 2015 | canon | verified |
 | [From promise to practice: harnessing generative AI to improve foundational learning in Sub-Saharan Africa](hci-human-ai-collaboration/unesco-2025-generative-ai-foundational-learning-sub-saharan-africa.md) | HCI and human-AI collaboration | 2025 | candidate | verified |
 | [The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring Systems](hci-human-ai-collaboration/vanlehn-2011-relative-effectiveness-tutoring.md) | HCI and human-AI collaboration | 2011 | outcome | promoted |
-| [Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise](hci-human-ai-collaboration/wang-et-al-2024-tutor-copilot.md) | HCI and human-AI collaboration | 2024 | candidate | verified |
+| [Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise](hci-human-ai-collaboration/wang-et-al-2024-tutor-copilot.md) | HCI and human-AI collaboration | 2024 | outcome | promoted |
 | [People Mistake the Internet's Knowledge for Their Own](hci-human-ai-collaboration/ward-2021-internet-knowledge-as-own.md) | HCI and human-AI collaboration | 2021 | canon | verified |
 | [Human-Centered Artificial Intelligence: Reliable, Safe & Trustworthy](hci-human-ai-collaboration/shneiderman-2020-human-centered-ai.md) | HCI and human-AI collaboration | 2020 | canon | verified |
 | [Guidelines for Human-AI Interaction](hci-human-ai-collaboration/amershi-et-al-2019-guidelines-human-ai-interaction.md) | HCI and human-AI collaboration | 2019 | canon | verified |
-| [Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance](hci-human-ai-collaboration/bansal-et-al-2021-ai-explanations-complementary-team-performance.md) | HCI and human-AI collaboration | 2021 | canon | verified |
+| [Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance](hci-human-ai-collaboration/bansal-et-al-2021-ai-explanations-complementary-team-performance.md) | HCI and human-AI collaboration | 2021 | outcome | promoted |
 | [To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-Assisted Decision-Making](hci-human-ai-collaboration/bucinca-malaya-gajos-2021-cognitive-forcing-functions.md) | HCI and human-AI collaboration | 2021 | canon | verified |
-| [When Combinations of Humans and AI Are Useful: A Systematic Review and Meta-Analysis](hci-human-ai-collaboration/vaccaro-almaatouq-malone-2024-combinations-humans-ai-useful.md) | HCI and human-AI collaboration | 2024 | candidate | verified |
+| [When Combinations of Humans and AI Are Useful: A Systematic Review and Meta-Analysis](hci-human-ai-collaboration/vaccaro-almaatouq-malone-2024-combinations-humans-ai-useful.md) | HCI and human-AI collaboration | 2024 | outcome | promoted |
 | [Navigating the Jagged Technological Frontier](hci-human-ai-collaboration/dellacqua-et-al-2023-navigating-jagged-technological-frontier.md) | HCI and human-AI collaboration | 2023 | candidate | verified |
 | [Experimental Evidence on the Productivity Effects of Generative Artificial Intelligence](hci-human-ai-collaboration/noy-zhang-2023-productivity-effects-generative-ai.md) | HCI and human-AI collaboration | 2023 | canon | verified |
 | [Autonomous chemical research with large language models](scientific-discovery-metascience/boiko-et-al-2023-coscientist.md) | Scientific discovery and metascience | 2023 | canon | verified |
@@ -211,3 +211,32 @@ not found with a resolvable DOI; the closest verified match, Alzetta and colleag
 its place. An Open Syllabus Project curriculum-mining paper was searched for and not
 found with a resolvable DOI; Valdez, Roldan, and Masuli 2025's course-prerequisite
 centrality analysis was used as the closest verified match for that theme.
+
+## Canon-intake promotion pass two, 2026-09-10
+
+Thirteen more papers promoted out of this corpus (`intake/ros-canon-promotion-2`),
+screened against all 117 cards excluding the six pass-one promotions. Six
+foundation-tier: `07-mind/curiosity-and-motivation/` gained four (Loewenstein
+1994; Gruber, Gelman and Ranganath 2014; Deci and Ryan 2000; Gneezy and
+Rustichini 2000), `07-mind/cognition-and-automation/` gained one (Bainbridge
+1983), and `04-information/information-foraging/` gained one (Pirolli and
+Card 1999). Seven outcome-tier, added to the existing
+`07-mind/sub-outcomes/education/`: five AI-tutoring and generative-AI-in-
+learning RCTs and field evaluations (Kestin et al. 2025; Bastani et al.
+2025; Wang et al. 2024, Tutor CoPilot; De Simone et al. 2025, Nigeria;
+Kosmyna et al. 2025) and two human-AI complementarity meta-analyses
+(Vaccaro, Almaatouq and Malone 2024; Bansal et al. 2021). Each promoted
+file carries a "Promoted to..." banner and `status: "promoted"`
+frontmatter pointing at its canon or outcome path, plus a
+`provenance_signoff: "pending: gianyrox"` field on the canon-side record
+itself (the ros-11 governance rule: a named human founder is the pending
+approver, no sign-off has happened yet). The same signoff field was
+backfilled onto the six pass-one canon and outcome records, which
+predate the rule. One open taxonomy question logged in
+`bucket-canon/TAXONOMY_NOTES.md` rather than resolved: whether the two
+human-AI complementarity meta-analyses need a dedicated
+`sub-outcomes/human-ai-collaboration/` home instead of sharing
+`sub-outcomes/education/`; this pass keeps them in the existing folder
+with a pointer. Of the 117 cards, 6 were already promoted in pass one and
+13 more are promoted by this pass; the remaining 98 files did not change
+tier or status.

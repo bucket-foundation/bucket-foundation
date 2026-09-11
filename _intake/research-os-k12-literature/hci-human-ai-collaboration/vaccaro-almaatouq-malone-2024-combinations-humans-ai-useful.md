@@ -11,6 +11,10 @@ url: "https://doi.org/10.1038/s41562-024-02024-1"
 openalex_id: "https://openalex.org/W4403839497"
 branch: "hci-human-ai-collaboration"
 tier: "candidate"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-49584ffdad25)"
+promoted_at: "2026-09-10"
+depends_on_foundation: "bucket-canon/04-information/information-foraging/primary-papers.yaml (id bkt-c033b128f77f, Pirolli and Card 1999)"
 why_it_matters: >
   A meta-analysis across many human-AI studies, rather than one lab experiment, and
   finds combined human-AI performance beat the better of the two alone on decision
@@ -34,6 +38,14 @@ how_it_bears_on_research_os: >
 ---
 
 # When Combinations of Humans and AI Are Useful: A Systematic Review and Meta-Analysis
+
+> **Promoted to outcome tier, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
+> `bkt-49584ffdad25`, `canon_score` 75) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
+> Outcome tier, not canon: it reports an intervention or team-performance effect
+> size, RUBRIC E7, and depends on the foundation record named by
+> Pirolli and Card 1999. This file stays in place as the Research OS-specific reading;
+> the canon entry is the citeable record.
 
 A meta-analysis across many studies finding human-AI combination outperforms the
 better of either alone on decision tasks but underperforms the better of either alone

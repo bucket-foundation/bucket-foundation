@@ -13,6 +13,10 @@ url: "https://doi.org/10.48550/arxiv.2410.03017"
 openalex_id: "https://openalex.org/W4403885569"
 branch: "hci-human-ai-collaboration"
 tier: "candidate"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-3caacb8e2302)"
+promoted_at: "2026-09-10"
+depends_on_foundation: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-0333f4a853f3, Roediger and Karpicke 2006)"
 why_it_matters: >
   A real-time-in-session AI support system for human tutors rather than a student-facing
   chatbot, an architecture pattern closer to Research OS's own AI finds, quotes, checks,
@@ -34,6 +38,14 @@ how_it_bears_on_research_os: >
 ---
 
 # Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise
+
+> **Promoted to outcome tier, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
+> `bkt-3caacb8e2302`, `canon_score` 10) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
+> Outcome tier, not canon: it reports an intervention or team-performance effect
+> size, RUBRIC E7, and depends on the foundation record named by
+> Roediger and Karpicke 2006. This file stays in place as the Research OS-specific reading;
+> the canon entry is the citeable record.
 
 A real-time-in-session AI support system for human tutors rather than a student-facing chatbot, an architecture pattern closer to Research OS's own AI finds, quotes, checks, organizes design than most classroom-AI literature.
 
