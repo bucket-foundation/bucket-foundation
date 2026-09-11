@@ -1,5 +1,92 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10: literature batch four
+
+Branch `intake/ros-literature-4`. Task: 25 to 35 new DOI- or ERIC-verified papers targeted
+at the gap this corpus had after batch three: evidence about students doing research in
+K-12 itself, course-based and high-school research experiences, project-based and inquiry
+learning, writing-to-learn and argumentation, epistemic cognition and nature of science, and
+citation and source evaluation. Full per-area breakdown and per-question evidence mapping
+recorded in `learning/research-os/CHANGE-LEDGER.md`'s literature-batch-four iteration.
+
+### Added
+
+- 30 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md`'s literature-batch-four iteration; corpus total
+  rises from 117 to 147 papers.
+- Five new branches: `student-research-experiences/` (10 files), `project-based-inquiry-
+  learning/` (7 files), `writing-and-argumentation/` (5 files), `epistemic-cognition/`
+  (4 files), `source-evaluation/` (4 files).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 147 rows, eleven
+  areas.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: six of the twelve
+  open questions (1, 4, 5, 6, 10, 12) gained an "Evidence added in batch four" paragraph.
+- `learning/research-os/PLAN-REVISION-2.md`: section 2a, 2b, and 2d each gained an
+  "Evidence added in batch four" paragraph.
+
+### Verified Clean
+
+- Every DOI and OpenAlex work id checked live against `api.openalex.org` and
+  `api.crossref.org` at intake time; none are placeholders.
+- Two research-brief papers, Condliffe (2017) and Kingston (2018), carry no Crossref DOI;
+  each verified against its own ERIC record (ED578933, ED590832) and carries a `doi: null`
+  frontmatter field plus an `eric_id`, the same handling this corpus already applies to
+  Cuban (2001) and Perkins (1993).
+- Three candidate papers named in the task brief were searched for and omitted for lack of
+  a resolvable DOI matching the brief exactly: "Hanauer 2017 project ownership" (Hanauer
+  and Dolan 2014's Project Ownership Survey used in its place), "Miller 2018" (Burgin,
+  Sadler, and Koroly 2012 used in its place), and "Sahin 2015" (Steegh and colleagues 2019
+  and Lakin and colleagues 2021 used as the closest verified equity-of-participation
+  matches).
+- No blockquote or extended verbatim passage from any source paper; all `key_claims` and
+  body text are paraphrase.
+- A grep-based self-audit for the voice rules ran against every file this pass authored or
+  edited, since `agf-lint-voice check` scans zero files under any path containing an
+  `_intake` segment (the same org-level ignore-list gap literature batch three's own
+  changelog entry already flagged); every flagged instance was rewritten before commit.
+
+### Removed
+
+None.
+
+## 2026-09-10: literature batch four, PR #65 review pass
+
+Review of PR #65 against `main`. Leak scan (keys, `.env` values, IPs, non-public hostnames,
+personal emails, PII, absolute local paths, session URLs) found none; digit sequences that
+matched a phone-number pattern in a first grep pass were confirmed as DOI and OpenAlex
+work-id digit strings on inspection.
+
+Eight of the thirty new cards were sampled for citation verification against Crossref,
+OpenAlex, and ERIC: Condliffe (2017), Kingston (2018), Burgin, Sadler, and Koroly (2012),
+Hanauer and Dolan (2014), Steegh and colleagues (2019), Grinnell and colleagues (2020),
+Wineburg and McGrew (2019), and Breakstone and colleagues (2021). All eight matched on
+title, authors, year, and venue or publisher.
+
+Two of the three substitute cards named in the PR body, Hanauer and Dolan (2014) for
+"Hanauer 2017" and Burgin, Sadler, and Koroly (2012) for "Miller 2018", already labeled
+themselves as substitutes in `why_it_matters`. The third substitute pair, Steegh and
+colleagues (2019) and Lakin and colleagues (2021) for "Sahin 2015", did not; both
+`why_it_matters` fields were edited to name the unresolved "Sahin 2015" citation and
+cross-reference each other as the two closest verified matches.
+
+README.md's 147-row index, per-area counts, and file links were checked against the
+corpus on disk: exact match. The overlap map's six "Evidence added in batch four"
+paragraphs (questions 1, 4, 5, 6, 10, 12) and `PLAN-REVISION-2.md`'s three (sections 2a,
+2b, 2d) all reference files that exist.
+
+One voice-rule hit in newly authored prose: `actually` in the Kuhn (1999) card's
+`why_it_matters`, rewritten. One unmarked en dash in a verbatim paper title reproduced in
+the README index (Kuiper, Volman, and Terwel 2005); the frontmatter's own `voice-ignore-line`
+already covers the source, a documentation line was added to the README noting the
+reproduction is verbatim. No other banned-word, dash, or antithesis hits in lines this PR
+added.
+
+`git merge origin/main` was clean, no conflicts. `npm ci` and `npm run build` both passed.
+No file under `src/` or `public/` changed.
+
 ## 2026-09-10: canon human sign-off tool
 
 `feat/canon-signoff-tool`, built against `GOVERNANCE.md`'s "Canon sign-off"
@@ -1957,6 +2044,113 @@ clean on the touched docs. The Vercel status check on the PR fails with
 "Deployment rate limited, retry in 24 hours" (Vercel free-tier daily
 deployment cap), unrelated to this branch's code.
 
+## 2026-09-10, cognitive forcing on Check, calibration record, arm switch
+
+`learning/research-os/PLAN-REVISION-2.md` section 2a's design response to Buçinca,
+Malaya and Gajos (2021), Bansal et al. (2021), and Vaccaro, Almaatouq and Malone
+(2024): before the tutor's grounded feedback is shown, a learner using the Check
+tool now writes an explanation, rates their confidence on a four-point scale, and
+predicts which of their own quoted sources their explanation rests on. The verdict
+holds server-side (`src/lib/research-os/forcing.ts`'s held-attempt store) until
+both answers arrive on the same attempt, then reveals with the learner's own
+prediction shown beside the tutor's real citation.
+
+The calibration record (mean confidence against mean source-prediction
+correctness) lands per class on `/research-os/class`
+(`src/lib/research-os/calibration.ts`), since that page carried no other in-flight
+work at the time this landed. A per-class `forcing_enabled` override
+(`supabase/migrations/20260910060000_research_os_forcing.sql`) plus the
+`RESEARCH_OS_FORCING_ENABLED` env flag (default on) let a future three-arm pilot
+turn forcing off on its comparison arm without a second deployment; every `check`
+evidence event now carries `forcingEnabled` regardless of arm, so analysis can
+tell arms apart from the evidence log alone.
+
+`learning/research-os/study/INSTRUMENTS.md` section 2's metacognitive confidence
+item, drafted as an after-the-verdict question, is rewritten to describe the
+shipped before-the-verdict placement; the original text is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`.
+
+28 new tests across `scripts/test-research-os-forcing.ts` (19) and
+`scripts/test-research-os-calibration.ts` (9), plus new cases in the existing
+`scripts/test-research-os-evidence.ts`; full suite 293/293 passing across 22
+files. Gates green: `npm ci`, `npx tsc --noEmit`, `npm run build` (both routes
+confirmed in the manifest), `npm run test:research-os`, `eslint` on every touched
+file, `agf-lint-voice-src check` and `agf-lint-voice check` clean on every touched
+file (fixed two banned words, one filler adverb, and six antithesis phrasings
+found on the first pass).
+
+**Full doc:** `learning/research-os/WORKSPACE.md` section 6 (new), `src/lib/research-os/EVIDENCE-SCHEMA.md`'s
+"Cognitive forcing on Check" section, `learning/research-os/study/INSTRUMENTS.md`
+section 2. See also `learning/research-os/CHANGE-LEDGER.md`'s matching entry,
+"Iteration 22," for the file-by-file diff and gate results.
+
+## 2026-09-10, PR #63 review pass: held Check verdict moved off an in-memory Map
+
+Review of PR #63 (cognitive forcing on Check) found the production defect the
+review's own task named: the held-attempt store behind Check's two-phase reveal
+(`src/lib/research-os/forcing.ts`) was a plain in-memory `Map` inside the
+route's module scope. On Vercel each route call can land on a different warm
+instance, so a phase-1 Check and its phase-2 reveal landing on two instances
+would silently lose the held verdict, and the learner would see the Check form
+again with no explanation.
+
+Fix: `graph.check_attempts` (migration
+`20260910070000_research_os_check_attempts.sql`) persists the held attempt in
+Postgres. `src/lib/research-os/check-attempts-db.ts` is the new store
+`workspace/route.ts`'s "check" action calls; it reuses `forcing.ts`'s own pure
+gate functions, `checkAttemptAccess` (ownership + TTL) and `finalizeReveal`
+(the commit-before-reveal check), extracted from `getPendingAttempt` and
+`revealPendingAttempt` without changing their external behavior, so the
+persisted store and the in-memory test double can never disagree on what
+"held" or "revealed" means. `forcing.ts`'s `Map` stays as the test double
+`scripts/test-research-os-forcing.ts` already exercised; nothing about that
+file's own 19 tests changed.
+
+On top of the existing 30-minute commit-window TTL, a second, outer 24-hour
+hard expiry (`check-attempts-db.ts`'s `HARD_EXPIRY_MS`) means a held attempt is
+never revealed past that point regardless of purge timing, and
+`graph.purge_expired_check_attempts()` sweeps every expired row, called from
+inside `graph.privacy_delete_learner`'s own transaction on every delete
+request (the migration adds `check_attempts` to that function's delete list
+too, so a learner's own delete request removes all of their held attempts
+immediately, any age). `graph.check_attempts` is added to
+`src/lib/research-os/privacy.ts`'s `PRIVACY_TABLES` (export and delete both
+cover it now) and to `learning/research-os/compliance/DATA-INVENTORY.md`.
+
+15 new tests in `scripts/test-research-os-check-attempts.ts` (the persisted
+store's pure pieces: row mapping, the 24-hour check, and a full store-and-reveal
+walk built from the shared gate functions), plus one added fixture row and one
+added assertion in `scripts/test-research-os-privacy.ts`, and its migration
+drift-check test widened to scan every migration file rather than one
+hardcoded name (`graph.privacy_delete_learner`'s check_attempts deletion lives
+in the new migration, not the original). Full suite 339/339 passing across 26
+files, up from the PR's own reported 330/330 across 25.
+
+`learning/research-os/WORKSPACE.md` section 6's "Server enforcement" and
+"In-memory, best effort" paragraphs, no longer accurate once the store moved,
+are rewritten; the original text is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`.
+
+Leak scan (keys, `.env` values, IPs, non-public hostnames, personal emails
+other than `gianyrox@gmail.com`, PII, `/home/gian` paths, Claude session URLs):
+clean across the PR's own diff. One PRE-EXISTING `/home/gian/agfarms/.wt-fix10`
+path was found in `BEADS-PENDING.jsonl`, on `main` before this PR and outside
+this PR's own diff (`git diff origin/main...HEAD -- BEADS-PENDING.jsonl` shows
+only one appended line, this PR's own summary, which does not contain it); left
+untouched as out of scope for this review, named here so it is not silently
+missed, worth its own cleanup bead.
+
+Gates green: `npm ci`, `npx tsc --noEmit`, `npm run build` (both
+`/research-os/class` and `/research-os/workspace` confirmed in the manifest),
+`npm run test:research-os` (339/339, 26 files), `eslint` on every file this
+pass touched, `agf-lint-voice-src check` and `agf-lint-voice check` clean on
+every touched file (fixed three banned words and three antithesis phrasings
+found on the first pass; `_intake/`'s own files, this one and DELETIONS.md,
+are exempt from voice rules at the org level, `~/agfarms/.voiceignore`).
+
+**Full doc:** `learning/research-os/CHANGE-LEDGER.md`'s matching entry for the
+file-by-file diff.
+
 ## 2026-09-10, PR #61 review pass
 
 Review-and-merge pass on PR #61 (`feat/canon-signoff-tool`, "human sign-off
@@ -2008,3 +2202,82 @@ paths, or Claude session URLs. `/canon/signoff` reviewed at 400px against
 its Tailwind classes: no fixed width exceeds 400px and every input row wraps
 (`flex-wrap`), so no horizontal scroll is expected; no headless browser was
 available in this environment to screenshot it directly.
+
+## 2026-09-10, production provenance guard
+
+`feat/ros-production-guard` against `main`, worktree `.ros-worktrees/guard`, not yet merged. Adds the Production provenance guard: quote-locator source verification, duplicate detection against prior work and canon, a counter-evidence field required at the internalization tier (Osborne 2010), and a citation-incentive-eligibility signal tied to canon sign-off (`GOVERNANCE.md`).
+
+`src/lib/research-os/production-guard.ts` holds the four pure rule functions, `checkSourceProvenance` (a source verifies when it carries the locator of a real `"quote"`-kind evidence event this learner produced, `stages.ts`'s new `onQuoteReturned`), `computeDuplicateFlag` (normalized token overlap, the lexical-Jaccard approach `tools/hypothesis-engine/hte/novelty.py` already uses, ported to TypeScript, against this learner's own prior claims, class peers' accepted claims, and canon claim texts), `requiresCounterEvidence` (true once the learner's own submit-time stage reached Internalization), and `computeIncentiveEligible` (no payment code, a stored signal only). `src/lib/research-os/canon-link.ts` supplies the two fs-backed reads that function needs, the canon-claims candidate list and an unfiltered `provenance_signoff` lookup by canon record id. Five new columns land on `graph.productions` (`supabase/migrations/20260910060000_research_os_production_guard.sql`).
+
+`/api/research-os/production`'s POST computes and stores the guard's output on a real submission (never a draft save) and refuses one that needs counter-evidence and has none. `/api/research-os/review`'s POST refuses to approve a production carrying an unverified source, and the review queue (both route and page) surfaces every guard flag beside its production, with a return-note template and a disabled approve button while a source is unverified.
+
+`scripts/research-os/ingest/canon-claims.ts` (new, `npm run ingest:research-os:canon-claims`) generates the full canon-claims JSON every branch, one claim text per `bucket-canon/**/primary-papers.yaml` record; a seven-entry hand-picked sample is committed at `scripts/research-os/ingest/out/sample-canon-claims.json`, one per branch, matching the existing generated/sample split every other importer's `out/` directory already uses.
+
+`learning/research-os/PRODUCTION-GUARD.md` (new) documents all four rules, what a teacher sees, and what is logged. `src/lib/research-os/EVIDENCE-SCHEMA.md` and `learning/research-os/WORKSPACE.md` document the new `"quote"` evidence event. `learning/research-os/compliance/DATA-INVENTORY.md` gained the five new columns.
+
+21 new tests, `scripts/test-research-os-production-guard.ts`, cover all four rules plus a near-duplicate fixture, wired into `npm run test:research-os`.
+
+Gates: `npm ci` clean, `npx tsc --noEmit` clean, `npm run build` clean (`/api/research-os/production` confirmed in the manifest), `npm run test:research-os` (26 chained files, every file `fail 0`), `eslint` clean on every touched TS/TSX file, `agf-lint-voice-src check` clean on every touched TS/TSX file, `agf-lint-voice check` clean on every touched doc/JSON/`.gitignore` (including seven pre-existing violations in `.gitignore` fixed to clear its own touched-file gate). No record's `provenance_signoff` value changed by this branch. PR open against `main`, merge pending.
+
+## 2026-09-10, plan revision 3
+
+Branch `docs/ros-plan-revision-3`, worktree `~/agfarms/.ros-worktrees/plan3`.
+`learning/research-os/PLAN-REVISION-3.md` reads eighteen PRs merged since
+revision 2 (#45 through #66) plus PR #65 (literature batch four, merged
+concurrently with this pass) against `PLAN.md`, `PLAN-REVISION-1.md`, and
+`PLAN-REVISION-2.md`: what shipped with live app, engine, and canon-pipeline
+test counts (326/0, 1172/18/0, 41/0, verified against commit `5ee02432a`);
+five evidence-driven revisions from fourteen batch-four cards, giving full
+treatment, a design response and a pilot measure each, to what revision 2's
+own batch-four pointers under sections 2a, 2b, and 2d only flagged, plus two
+questions those pointers did not touch, required participation and
+argumentation structure; a Phase 1 scope narrowed to nine remaining items,
+four of them new build items this evidence forces; the same five founder
+decisions restated verbatim with a sixth new decision on required
+participation; and the same operational blockers updated, one of them, the
+Vercel free-tier deploy cap PR #47 already hit, newly named as a standing
+blocker rather than a one-off note. Pointer paragraphs appended to `PLAN.md`
+and `PLAN-REVISION-2.md`.
+
+Fourteen batch-four card files read from `origin/intake/ros-literature-4`
+(PR #65, merged into `main` partway through this pass) via `git archive`
+into a scratch directory outside the worktree, never checked out into the
+worktree or the main repo's own working tree.
+
+`agf-lint-voice check` on all three touched files: 13 violations on first
+pass (six rather-than or comma-negation antithesis constructions, four
+filler adverbs, two hits on one banned intensifier, one heading carrying an
+appended comma clause), all fixed by hand; 0 remaining on the second pass.
+
+## 2026-09-10, PR #69 review pass
+
+Worktree `~/agfarms/.ros-worktrees/r69`. `git merge origin/main` picked up
+PR #63 (cognitive forcing on Check), one commit behind at review time; one
+conflict in `learning/research-os/CHANGE-LEDGER.md`, both sides kept. PR #63
+was missing from `PLAN-REVISION-3.md` section 1 despite falling inside its
+own stated #45-#66 range; added as a table row, "eighteen PRs" corrected to
+"nineteen" everywhere that count appears (`PLAN-REVISION-3.md`, `PLAN.md`,
+`PLAN-REVISION-2.md`). Test counts re-verified fresh post-merge: app 367
+passed/0 failed/27 files (was 326/0/23 against the pre-PR#63 fork point),
+engine 1225 passed/18 deselected/0 failed (was 1172/18/0), canon pipeline
+unchanged at 41/0; both the fork-point figures and the post-merge
+reconciliation now stand side by side in section 1. A new operational
+blocker recorded: on 2026-09-11 an agent ran a hard reset in the main
+working tree at `~/agfarms/bucket-foundation`, discarding uncommitted
+archive-runner outputs on about 20 entries plus two log files, regenerable
+by the runner. `BEADS-PENDING.jsonl` line 72's leaked
+`/home/gian/agfarms/.wt-fix10` path, already flagged and left untouched by
+PR #63's own review pass, rewritten to `~/agfarms/.wt-fix10`. A repo-wide
+`/home/gian` grep otherwise turned up thousands of hits in a bead
+event-sourcing log, systemd unit files that need absolute paths to run, and
+large runner logs, a pre-existing repo-wide convention rather than a
+discrete leak; left unchanged as out of scope for a docs-only review. Leak scan of
+the PR's own diff: clean, no keys, IPs, non-public hostnames, personal
+emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
+session URLs. `agf-lint-voice check` clean on every file this pass touched.
+
+## 2026-09-10, PR #73 review pass
+
+Review of PR #73 (production provenance guard) found `hasUnverifiedSource` reads `false` against an empty `source_provenance` array, the value the migration backfills onto every pre-existing `submitted` production. Fixed with `production-guard.ts`'s new `isSourceProvenanceStale`, wired into `/api/research-os/review`'s approve gate (POST) and its `guardFlags`/`unverifiedSourceNoteTemplate` (GET), so a production whose sources were never checked reads the same as one with a failed check rather than sailing through as "0 unverified." 3 new tests in `scripts/test-research-os-production-guard.ts`.
+
+Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Class-peer duplicate detection confirmed scoped to shared classes only, and its response never carries another learner's matched claim text (`matchId`/`matchOrigin`/`score` only). Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (both routes in the manifest), `npm run test:research-os` (28 files, `fail 0`, 391 tests), `next lint` clean, `agf-lint-voice-src check` clean; `agf-lint-voice check` fixed one banned word this pass's own test name introduced, left two pre-existing hits outside the diff untouched.

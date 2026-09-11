@@ -32,24 +32,24 @@ next-env.d.ts
 .beads/
 # gtm video build artifacts (binaries, mirror to gdrive instead)
 gtm/video-v*/
-# local GPU LLM endpoint (auth-shim secret, runtime logs, tunnel URL) — never commit
+# local GPU LLM endpoint (auth-shim secret, runtime logs, tunnel URL): never commit
 scripts/llm/.bearer-secret
 scripts/llm/logs/
 scripts/llm/.tunnel-url
-# Site mirrors (large binaries — mirror to gdrive instead)
+# Site mirrors (large binaries): mirror to gdrive instead
 bucket-canon/**/site-mirror/
 __pycache__/
 # Dolt database files (added by bd init)
 .dolt/
 *.db
-# Concept art / source images live on gdrive, not git
+# Concept art / source images live on gdrive, outside git
 # (see manifesto-source/<topic>/<date>/INDEX.md for share links)
 manifesto-source/**/*.png
 manifesto-source/**/*.jpg
 manifesto-source/**/*.jpeg
 manifesto-source/**/*.heic
 manifesto-source/**/*.webp
-# subproject node_modules — never commit
+# subproject node_modules: never commit
 grants-gateway/node_modules/
 /private/
 grants-targets/.longtail-submissions.jsonl
@@ -67,7 +67,7 @@ figma-export/
 # …EXCEPT the vendored paper/research figures under public/, which are part of
 # the shipped site (the research-atlas paper pages + the education-atlas corpus
 # render them) and MUST reach Vercel. Without these negations the blanket
-# `*.png` above silently strips every figure from git — which is exactly why the
+# `*.png` above silently strips every figure from git, the reason
 # paper-01 figures were missing in production. Keep these tracked.
 !public/papers/**/*.png
 !public/education/**/*.png
@@ -88,7 +88,7 @@ _intake/training/canon-bge-small-v1/tokenizer.json
 #   _intake/embeddings/claim-evidence.jsonl  (~5.5MB) top-K evidence per claim
 .venv-shorts/
 shorts-runs/
-# Photon index — sqlite + vector matrices are large; regenerate from
+# Photon index: sqlite + vector matrices are large; regenerate from
 # tools (see PHOTON-SPEC.md). The spec + tools + sample photons may be
 # committed, but the full vector matrices are not.
 _intake/photons/index.sqlite
@@ -111,7 +111,7 @@ _intake/canon-intake/
 # learning/app/js/auth-config.js IS committed (so ./serve.sh works standalone).
 public/academy-app/js/auth-config.js
 scripts/llm/shim.env
-# UX capture videos live in gdrive (AGFarms/Nucleus/bucket-foundation/academy-ux), not the repo
+# UX capture videos live in gdrive (AGFarms/Nucleus/bucket-foundation/academy-ux), outside the repo
 learning/research/ux/captures/**/*.webm
 learning/research/ux/captures/**/*.mp4
 _intake/health-longevity-fitness/reports/viz/_struct/
@@ -141,3 +141,4 @@ scripts/research-os/ingest/out/*
 !scripts/research-os/ingest/out/sample-canon-preview.json
 !scripts/research-os/ingest/out/sample-review-list.json
 !scripts/research-os/ingest/out/sample-infer-preview.json
+!scripts/research-os/ingest/out/sample-canon-claims.json

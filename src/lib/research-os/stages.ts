@@ -26,9 +26,17 @@
  * schema's contract but have no writer yet: the second-rating flow and its
  * `graph.teacher_reviews` migration belong to ros-06, per
  * EVIDENCE-SCHEMA.md's own scope note on that migration.
+ *
+ * UPDATE (cognitive forcing on Check, PLAN-REVISION-2.md section 2a):
+ * `learnerConfidence`, `sourcePrediction`, `predictionCorrect`, and
+ * `forcingEnabled` close the calibration-record gap that design response
+ * names. `onCheckResult` below is the one writer; `forcing.ts` computes
+ * `predictionCorrect` in code and resolves `forcingEnabled` from the arm
+ * switch, both before this file ever sees them.
  */
 import type { Stage } from "./types";
 import { stageAtLeast } from "./types";
+import type { LearnerConfidence } from "./forcing";
 
 export type EvidenceKind =
   | "open"
@@ -37,7 +45,8 @@ export type EvidenceKind =
   | "transfer_item"
   | "production_submitted"
   | "production_returned"
-  | "teacher_review";
+  | "teacher_review"
+  | "quote";
 
 /**
  * Fields a caller supplies per event, beyond what the transition function
@@ -65,6 +74,29 @@ export interface EvidenceContext {
   modelFeedback?: string;
   /** The model's citations on a "check" event, from GradeResult.citations. */
   citations?: string[];
+  /** The Quote tool's own passage locator on a "quote" event
+   * (src/lib/research-os/passages.ts's QuotePassage.locator). Recorded so
+   * src/lib/research-os/production-guard.ts's quote-matching check can
+   * verify a Production's cited source against a real Quote call this
+   * learner made, per learning/research-os/PRODUCTION-GUARD.md. */
+  locator?: string;
+  /** The learner's own 4-point self-rating of their explanation, collected
+   * on a "check" event before the verdict above is revealed
+   * (forcing.ts's LearnerConfidence, PLAN-REVISION-2.md section 2a). */
+  learnerConfidence?: LearnerConfidence;
+  /** The citation label the learner predicted their explanation rests on,
+   * chosen from their own "sources I have quoted" list, collected in the
+   * same pre-reveal commit step. */
+  sourcePrediction?: string;
+  /** Whether sourcePrediction exactly matched the node's own allowed
+   * citation label, computed in code (forcing.ts's computePredictionCorrect),
+   * never read from the model. */
+  predictionCorrect?: boolean;
+  /** Whether this "check" event went through the pre-reveal forcing commit
+   * step at all: false on a comparison-arm class or with
+   * RESEARCH_OS_FORCING_ENABLED off, so analysis can tell the three-arm
+   * pilot's arms apart from the evidence log alone. */
+  forcingEnabled?: boolean;
 }
 
 export interface EvidenceEvent {
@@ -95,12 +127,28 @@ export interface EvidenceEvent {
   // Closes "no session or attempt grouping."
   sessionId?: string;
 
+  // Cognitive forcing on Check (PLAN-REVISION-2.md section 2a): the
+  // calibration record. See EvidenceContext above for what each field
+  // means; onCheckResult is the only writer.
+  learnerConfidence?: LearnerConfidence;
+  sourcePrediction?: string;
+  predictionCorrect?: boolean;
+  forcingEnabled?: boolean;
+
   // Inter-rater fields (typed per the contract; no writer in ros-04, see
   // this file's header).
   sampledForSecondRating?: boolean;
   secondRaterId?: string;
   secondDecision?: "approved" | "returned";
   agrees?: boolean;
+
+  // Closes "no stored Quote locator for provenance-guard matching," set
+  // only on a "quote" event (onQuoteReturned below). production-guard.ts's
+  // checkSourceProvenance reads this across a learner's whole
+  // learner_node_state.evidence array to verify a Production's cited
+  // sources against a real Quote call, per
+  // learning/research-os/PRODUCTION-GUARD.md.
+  locator?: string;
 }
 
 export interface StageTransition {
@@ -113,6 +161,23 @@ export function onNodeOpened(currentStage: Stage, context: EvidenceContext = {},
   const nextStage: Stage = currentStage === "access" ? "awareness" : currentStage;
   const event: EvidenceEvent = { at: now, kind: "open", fromStage: currentStage, toStage: nextStage, sessionId: context.sessionId };
   return { nextStage, event };
+}
+
+/**
+ * No stage change: the Quote tool (workspace/route.ts's "quote" case)
+ * returned a real, curated verbatim passage (src/lib/research-os/
+ * passages.ts's getPassage returned non-null, "kind": "quote" rather than
+ * the "summary" fallback). Logged as evidence so production-guard.ts's
+ * quote-matching check has a real record of which locators this learner
+ * pulled, closing the gap production guard, task item 1 names:
+ * a source cited in a Production must correspond to a Quote record this
+ * learner produced. Never called for the "summary" fallback: a summary
+ * carries no locator, so there is nothing here worth recording toward
+ * that check.
+ */
+export function onQuoteReturned(currentStage: Stage, context: EvidenceContext = {}, now: string = new Date().toISOString()): StageTransition {
+  const event: EvidenceEvent = { at: now, kind: "quote", fromStage: currentStage, toStage: currentStage, sessionId: context.sessionId, locator: context.locator };
+  return { nextStage: currentStage, event };
 }
 
 /**
@@ -143,6 +208,10 @@ export function onCheckResult(
     modelFeedback: context.modelFeedback,
     citations: context.citations,
     sessionId: context.sessionId,
+    learnerConfidence: context.learnerConfidence,
+    sourcePrediction: context.sourcePrediction,
+    predictionCorrect: context.predictionCorrect,
+    forcingEnabled: context.forcingEnabled,
   };
   return { nextStage, event };
 }

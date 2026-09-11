@@ -10,7 +10,7 @@
  */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import {
   PRIVACY_TABLES,
@@ -121,6 +121,10 @@ function fixtureStore(): FixtureStore {
       { class_id: "c1", learner_id: LEARNER_B },
     ],
     learner_profile: [{ learner_id: LEARNER_A, role: "student" }],
+    check_attempts: [
+      { learner_id: LEARNER_A, node_id: "n1" },
+      { learner_id: LEARNER_B, node_id: "n1" },
+    ],
     academy_progress: [
       { user_id: LEARNER_A, branch: "02-physics" },
       { user_id: LEARNER_B, branch: "02-physics" },
@@ -194,6 +198,7 @@ test("simulateLearnerDelete: reported deleted counts match what was actually rem
   assert.equal(result.deleted.edge_flags, 1);
   assert.equal(result.deleted.class_members, 1);
   assert.equal(result.deleted.learner_profile, 1);
+  assert.equal(result.deleted.check_attempts, 1);
   assert.equal(result.deleted.academy_progress, 1);
   assert.equal(result.deleted.academy_profile, 1);
   assert.equal(result.deleted.academy_credentials, 0);
@@ -210,12 +215,20 @@ test("simulateLearnerDelete: deleting a learner with no rows anywhere is a no-op
 // Drift check: PRIVACY_TABLES stays in sync with the real SQL function.
 // ---------------------------------------------------------------------------
 
-test("PRIVACY_TABLES: every graph/bucket table appears as a delete statement in the migration this route's RPC lives in", () => {
-  const migrationPath = join(__dirname, "..", "supabase", "migrations", "20260910040000_research_os_privacy_consent.sql");
-  const sql = readFileSync(migrationPath, "utf8");
+test("PRIVACY_TABLES: every graph/bucket table appears as a delete statement across the migrations graph.privacy_delete_learner is defined and extended in", () => {
+  // graph.privacy_delete_learner is first defined in the privacy/consent
+  // migration and later extended with `create or replace function` (e.g.
+  // 20260910070000_research_os_check_attempts.sql adds check_attempts), so
+  // this reads every migration file rather than one hardcoded name, the
+  // same reason a single filename would have missed the extension.
+  const migrationsDir = join(__dirname, "..", "supabase", "migrations");
+  const sql = readdirSync(migrationsDir)
+    .filter((f) => f.endsWith(".sql"))
+    .map((f) => readFileSync(join(migrationsDir, f), "utf8"))
+    .join("\n");
   for (const cfg of PRIVACY_TABLES) {
     const needle = `delete from ${cfg.schema}.${cfg.table}`;
-    assert.ok(sql.includes(needle), `migration is missing "${needle}", PRIVACY_TABLES has drifted from graph.privacy_delete_learner`);
+    assert.ok(sql.includes(needle), `no migration has "${needle}", PRIVACY_TABLES has drifted from graph.privacy_delete_learner`);
   }
 });
 

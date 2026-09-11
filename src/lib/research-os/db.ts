@@ -274,6 +274,89 @@ export async function loadClassesForReviewer(reviewerEmail: string): Promise<Cla
   return filterClassesForReviewer((data as RawClassRow[]) || [], reviewerEmail);
 }
 
+/**
+ * Every "quote"-kind evidence entry across every node this learner holds a
+ * state row for (bkt-ros, production guard bead, task item 1). One
+ * learner_node_state row per node, so this is one query over the
+ * learner's whole graph rather than a per-node fetch; a Phase 0-scale
+ * learner holds at most a few dozen rows. src/lib/research-os/
+ * production-guard.ts's checkSourceProvenance is the pure function that
+ * reads this list; this function only assembles it.
+ */
+export interface QuoteEvidenceRecord {
+  nodeId: string;
+  locator: string;
+  at: string;
+}
+
+export async function loadLearnerQuoteEvidence(learnerId: string): Promise<QuoteEvidenceRecord[]> {
+  const svc = graphService();
+  const { data, error } = await svc.from("learner_node_state").select("node_id,evidence").eq("learner_id", learnerId);
+  if (error) throw new Error(`loadLearnerQuoteEvidence: query failed: ${error.message}`);
+  const out: QuoteEvidenceRecord[] = [];
+  for (const row of (data as { node_id: string; evidence: Array<Record<string, unknown>> | null }[]) || []) {
+    for (const ev of row.evidence || []) {
+      if (ev?.kind === "quote" && typeof ev.locator === "string" && ev.locator.trim()) {
+        out.push({ nodeId: row.node_id, locator: ev.locator, at: (ev.at as string | undefined) ?? "" });
+      }
+    }
+  }
+  return out;
+}
+
+export interface ClaimCandidateRow {
+  id: string;
+  claim: string;
+}
+
+/**
+ * This learner's own prior Production claims, every status, excluding
+ * `excludeId` (the production being submitted right now, on a resubmit)
+ * -- production guard, task item 2's first duplicate-detection
+ * population, "this learner's prior Productions." A row with a blank or
+ * null claim is dropped: there is nothing to compare tokens against.
+ */
+export async function loadOwnPriorClaims(learnerId: string, excludeId?: string): Promise<ClaimCandidateRow[]> {
+  const svc = graphService();
+  let q = svc.from("productions").select("id,claim").eq("learner_id", learnerId);
+  if (excludeId) q = q.neq("id", excludeId);
+  const { data, error } = await q;
+  if (error) throw new Error(`loadOwnPriorClaims: query failed: ${error.message}`);
+  return ((data as { id: string; claim: string | null }[]) || [])
+    .filter((r) => (r.claim || "").trim())
+    .map((r) => ({ id: r.id, claim: r.claim as string }));
+}
+
+/**
+ * Every OTHER learner's accepted Production claims, scoped to a class
+ * this learner shares with them -- production guard, task item 2's
+ * second duplicate-detection population, "other learners' accepted
+ * Productions in the same class." Reuses `class_members` the same way
+ * `loadClassMembers` above already does (own class ids, then every
+ * member of those classes); a learner in no class at all gets an empty
+ * list rather than a query error, matching this bead's "never blocks
+ * submission" posture -- a missing roster is not a reason to skip
+ * duplicate detection for the populations that ARE available.
+ */
+export async function loadClassPeerAcceptedClaims(learnerId: string): Promise<ClaimCandidateRow[]> {
+  const svc = graphService();
+  const { data: memberships, error: memErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
+  if (memErr) throw new Error(`loadClassPeerAcceptedClaims: membership query failed: ${memErr.message}`);
+  const classIds = Array.from(new Set(((memberships as { class_id: string }[]) || []).map((m) => m.class_id)));
+  if (classIds.length === 0) return [];
+
+  const { data: peerRows, error: peerErr } = await svc.from("class_members").select("learner_id").in("class_id", classIds);
+  if (peerErr) throw new Error(`loadClassPeerAcceptedClaims: peer query failed: ${peerErr.message}`);
+  const peerIds = Array.from(new Set(((peerRows as { learner_id: string }[]) || []).map((r) => r.learner_id))).filter((id) => id !== learnerId);
+  if (peerIds.length === 0) return [];
+
+  const { data: prodRows, error: prodErr } = await svc.from("productions").select("id,claim").in("learner_id", peerIds).eq("status", "accepted");
+  if (prodErr) throw new Error(`loadClassPeerAcceptedClaims: production query failed: ${prodErr.message}`);
+  return ((prodRows as { id: string; claim: string | null }[]) || [])
+    .filter((r) => (r.claim || "").trim())
+    .map((r) => ({ id: r.id, claim: r.claim as string }));
+}
+
 /** Every graph.class_members row for the given classes, as classId -> learnerIds. */
 export async function loadClassMembers(classIds: string[]): Promise<Map<string, string[]>> {
   const out = new Map<string, string[]>();
@@ -286,6 +369,36 @@ export async function loadClassMembers(classIds: string[]): Promise<Map<string, 
     out.get(r.class_id)!.push(r.learner_id);
   }
   return out;
+}
+
+/**
+ * The per-class Check cognitive-forcing override (bkt-ros, PLAN-REVISION-2.md
+ * section 2a; `graph.classes.forcing_enabled`, migration
+ * 20260910060000_research_os_forcing.sql). Returns `null` on "no override
+ * on file", which is also what a learner in no class, or any query
+ * failure, returns: `src/lib/research-os/forcing.ts`'s
+ * resolveForcingEnabled reads `null` as "defer to the
+ * RESEARCH_OS_FORCING_ENABLED env default," the same fail-open posture
+ * loadAncestorRows uses above, so this optional lookup can never break a
+ * Check call, including in an environment where this migration has not
+ * run yet. A learner in more than one class (not a shape the manual seed
+ * or the roster sync produces today) reads the first class row with a
+ * non-null override; Phase 1's pilot assigns one class per arm, so this is
+ * documented rather than enforced.
+ */
+export async function loadForcingEnabledForLearner(learnerId: string): Promise<boolean | null> {
+  try {
+    const svc = graphService();
+    const { data: memberRows, error: memberErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
+    if (memberErr || !memberRows || memberRows.length === 0) return null;
+    const classIds = Array.from(new Set((memberRows as { class_id: string }[]).map((r) => r.class_id)));
+    const { data: classRows, error: classErr } = await svc.from("classes").select("id,forcing_enabled").in("id", classIds);
+    if (classErr || !classRows) return null;
+    const withOverride = (classRows as { id: string; forcing_enabled: boolean | null }[]).find((c) => typeof c.forcing_enabled === "boolean");
+    return withOverride ? withOverride.forcing_enabled : null;
+  } catch {
+    return null;
+  }
 }
 
 interface AncestorRow {
