@@ -272,3 +272,75 @@ def test_purge_learner_mismatch_is_flagged_not_fatal(tmp_path):
     report = purge.purge("prod-aaa", learner_id="not-the-real-learner", runs_root=Path(payload["runId"]).parents[1], dry_run=True)
     assert report["learner_id_mismatch"] is True
     assert report["runs"], "a learner mismatch never blocks the purge itself"
+
+
+def test_purge_flags_an_unreadable_manifest_rather_than_treating_it_as_nothing_to_purge(tmp_path):
+    """A `MANIFEST.json` this module cannot parse is never indistinguishable
+    from "never named this production": `hte.purge.purge` cannot rule out
+    that the corrupt file names `production_id`, so it lands in
+    `report["unreadable"]` and the purge is not reported complete."""
+    runs_root = tmp_path / "runs"
+    run_dir = runs_root / "quantum-history" / "20260101T000000Z"
+    run_dir.mkdir(parents=True)
+    manifest_path = run_dir / "MANIFEST.json"
+    manifest_path.write_text("{not valid json")
+
+    report = purge.purge("prod-aaa", runs_root=runs_root, dry_run=True)
+
+    assert report["runs"] == []
+    assert report["complete"] is False
+    assert report["not_found"] == [], "an unreadable manifest must never be certified as confirmed-clean"
+    assert any(
+        entry["path"] == str(manifest_path) and entry["error"] == "JSONDecodeError"
+        for entry in report["unreadable"]
+    )
+    assert report["warning"]
+
+
+def test_purge_refuses_a_redaction_that_would_corrupt_json_and_flags_it(tmp_path):
+    """`_redact_file` refusing to write a redaction that would leave
+    `timeline.json` invalid JSON (`docs/PRIVACY.md`'s "refuse rather than
+    corrupt" rule) must land in `report["redaction_refused"]`, not just
+    silently drop the file out of `files_redacted` with no other trace.
+    Plants a run directory directly (rather than a fake-mode campaign,
+    whose own `FAST_CONFIG` produces no ranked hypotheses and so no quote
+    text in `timeline.json` to redact in the first place), so the
+    manifest's own `by_production` entry and the pre-corrupted
+    `timeline.json` are guaranteed to share the one quote this test cares
+    about."""
+    runs_root = tmp_path / "runs"
+    run_dir = runs_root / "campaign" / "20260101T000000Z"
+    run_dir.mkdir(parents=True)
+    quote = "Rayleigh scattering bends blue light more than red."
+    manifest = {
+        "provenance": {
+            "production_ids": ["prod-aaa", "prod-bbb"],
+            "learner_ids": ["learner-1", "learner-2"],
+            "source_ids": ["src-aaa", "src-bbb"],
+            "by_production": {
+                "prod-aaa": {"quotes": [quote], "labels": [], "source_ids": ["src-aaa"], "learner_id": "learner-1"},
+                "prod-bbb": {"quotes": ["unrelated quote"], "labels": [], "source_ids": ["src-bbb"], "learner_id": "learner-2"},
+            },
+        },
+    }
+    (run_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=2))
+    # Deliberately invalid JSON (a truncated object, missing its closing
+    # brace) that still carries prod-aaa's own quote: a redaction match
+    # happens, but the post-redaction text still cannot parse.
+    corrupted_timeline = '{"timeline": "%s"' % quote
+    (run_dir / "timeline.json").write_text(corrupted_timeline)
+    (run_dir / "self-report.json").write_text("{}")
+    (run_dir / "run.log").write_text(f"critic saw: {quote}\n")
+
+    report = purge.purge("prod-aaa", runs_root=runs_root, dry_run=False)
+
+    assert report["complete"] is False
+    assert any(
+        entry["run_dir"] == str(run_dir) and entry["file"] == "timeline.json"
+        for entry in report["redaction_refused"]
+    )
+    assert (run_dir / "timeline.json").read_text() == corrupted_timeline, "a refused redaction must leave the file exactly as it was"
+    # run.log has no JSON to protect, so the same quote there is redacted
+    # normally: the refusal is specific to the one file it would corrupt.
+    assert quote not in (run_dir / "run.log").read_text()
+    assert report["warning"]

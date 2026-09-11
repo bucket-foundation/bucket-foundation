@@ -41,6 +41,17 @@ envelope files carry no matching entry), so it reports empty everywhere.
 `dry_run=True` computes and reports the same four passes with no write,
 delete, or rename anywhere on disk.
 
+An unreadable or corrupted `MANIFEST.json`, bridge export, or envelope
+is never treated as "nothing to purge here": since this module cannot
+parse it, it cannot rule out that file carrying the purged production's
+own text, so the path and the exception's class land in the report's
+own `unreadable` list instead. A redaction `_redact_file` refuses
+because writing it would corrupt `timeline.json`/`self-report.json`
+lands the same way, in `redaction_refused`. Either list non-empty means
+the purge cannot be certified complete: `report["complete"]` is `False`
+and `hte purge`'s own CLI exits non-zero, since learner text this call
+was supposed to remove may remain on disk.
+
 Every artifact here is addressed by **production id**, never a raw
 learner id (`docs/PRIVACY.md`, matching `public.research_os_productions_
 outbox`'s own pseudonymity choice, "learner_id... deliberately left off
@@ -115,17 +126,20 @@ def _redaction_variants(targets: set[str]) -> list[str]:
     return sorted(variants, key=len, reverse=True)
 
 
-def _redact_file(path: Path, variants: list[str], marker: str, *, validate_json: bool, dry_run: bool) -> bool:
+def _redact_file(path: Path, variants: list[str], marker: str, *, validate_json: bool, dry_run: bool) -> str:
     """Replaces every occurrence of every string in `variants` inside
-    `path`'s own text with `marker`. Returns whether anything changed.
-    `validate_json=True` refuses the write (returns `False`, leaving the
-    file untouched) if the redacted text no longer parses as JSON: a
-    file this module cannot redact without corrupting stays exactly as
-    it was rather than becoming invalid, and the caller sees it as "not
-    redacted" rather than silently broken. A no-op, `dry_run=True`
-    included, when `path` does not exist."""
+    `path`'s own text with `marker`. Returns one of three states:
+    `"unchanged"` (`path` does not exist, or none of `variants` appear
+    in it), `"redacted"` (something changed and, when `dry_run=False`,
+    the write happened), or `"refused"`. `validate_json=True` refuses
+    the write when the redacted text no longer parses as JSON: a file
+    this module cannot redact without corrupting stays exactly as it
+    was rather than becoming invalid. The caller must not fold
+    `"refused"` into the same bucket as `"unchanged"`, since "nothing
+    matched" and "matched, but the write was refused" mean opposite
+    things for whether this production's text still sits in the file."""
     if not path.is_file():
-        return False
+        return "unchanged"
     text = path.read_text()
     changed = False
     for variant in variants:
@@ -133,15 +147,15 @@ def _redact_file(path: Path, variants: list[str], marker: str, *, validate_json:
             text = text.replace(variant, marker)
             changed = True
     if not changed:
-        return False
+        return "unchanged"
     if validate_json:
         try:
             json.loads(text)
         except json.JSONDecodeError:
-            return False
+            return "refused"
     if not dry_run:
         path.write_text(text)
-    return True
+    return "redacted"
 
 
 def _purge_run(manifest_path: Path, production_id: str, *, dry_run: bool) -> dict[str, Any] | None:
@@ -149,7 +163,13 @@ def _purge_run(manifest_path: Path, production_id: str, *, dry_run: bool) -> dic
     parent) for `production_id`. Returns `None` when this run's own
     `MANIFEST.json["provenance"]["production_ids"]` never named
     `production_id` at all (nothing to do here); otherwise a report dict
-    naming the action taken.
+    naming the action taken. An unreadable `manifest_path` (an
+    `OSError`, or `MANIFEST.json` that no longer parses as JSON) is
+    never folded into that same `None`, since this module cannot tell
+    from an unreadable file whether it names `production_id`: the
+    report instead carries `"action": "unreadable"` plus the path and
+    the exception's class name, for the caller to surface rather than
+    silently skip.
 
     Deletes the whole run when `production_id` is the only production
     named in this run's own provenance (a single-production run has
@@ -161,11 +181,17 @@ def _purge_run(manifest_path: Path, production_id: str, *, dry_run: bool) -> dic
     removing the id from the summary lists alone would leave the actual
     text sitting right next to it); `timeline.json`/`self-report.json`/
     `run.log` each get every occurrence of that production's own quotes
-    and slot labels blotted out (`_redact_file`)."""
+    and slot labels blotted out (`_redact_file`), and a file where
+    `_redact_file` refused the write (would corrupt otherwise-valid
+    JSON) lands in this report's own `redaction_refused` list rather
+    than being dropped from `files_redacted` with no other trace."""
     try:
         manifest = _load_json(manifest_path)
-    except (OSError, json.JSONDecodeError):
-        return None
+    except (OSError, json.JSONDecodeError) as exc:
+        return {
+            "run_dir": str(manifest_path.parent), "action": "unreadable",
+            "path": str(manifest_path), "error": type(exc).__name__,
+        }
     provenance = manifest.get("provenance") or {}
     production_ids = list(provenance.get("production_ids") or [])
     if production_id not in production_ids:
@@ -186,9 +212,13 @@ def _purge_run(manifest_path: Path, production_id: str, *, dry_run: bool) -> dic
     marker = f"[redacted:{production_id}]"
 
     files_redacted = []
+    redaction_refused = []
     for name, validate_json in (("timeline.json", True), ("self-report.json", True), ("run.log", False)):
-        if _redact_file(run_dir / name, variants, marker, validate_json=validate_json, dry_run=dry_run):
+        outcome = _redact_file(run_dir / name, variants, marker, validate_json=validate_json, dry_run=dry_run)
+        if outcome == "redacted":
             files_redacted.append(name)
+        elif outcome == "refused":
+            redaction_refused.append({"run_dir": str(run_dir), "file": name, "reason": "redaction would leave the file invalid JSON"})
 
     if not dry_run:
         by_production.pop(production_id, None)
@@ -206,7 +236,10 @@ def _purge_run(manifest_path: Path, production_id: str, *, dry_run: bool) -> dic
         _write_json(manifest_path, manifest)
     files_redacted.append("MANIFEST.json")
 
-    return {"run_dir": str(run_dir), "action": "redacted", "files_redacted": sorted(set(files_redacted)), "dry_run": dry_run}
+    return {
+        "run_dir": str(run_dir), "action": "redacted", "files_redacted": sorted(set(files_redacted)),
+        "redaction_refused": redaction_refused, "dry_run": dry_run,
+    }
 
 
 # --------------------------------------------------------------------------
@@ -348,13 +381,16 @@ def _purge_json_file(path: Path, source_ids: set[str], quotes: set[str], *, dry_
     top-level object itself is the one matching hypothesis/envelope (no
     wrapping list to drop just one entry from), rewritten with matching
     list entries dropped otherwise. Returns `None` when nothing in the
-    file matches, or when it does not parse as JSON at all (never
-    treated as a match; a file this module cannot read is left exactly
-    as it was)."""
+    file matches. An unreadable `path` (an `OSError`, or a file that no
+    longer parses as JSON) is left exactly as it was on disk, but is
+    never returned as `None`: this module cannot tell, from a file it
+    cannot parse, whether that file names the production being purged,
+    so it comes back as `{"action": "unreadable", ...}` for the caller
+    to surface instead of silently folding it into "no match here"."""
     try:
         data = _load_json(path)
-    except (OSError, json.JSONDecodeError):
-        return None
+    except (OSError, json.JSONDecodeError) as exc:
+        return {"path": str(path), "action": "unreadable", "error": type(exc).__name__}
 
     if isinstance(data, dict) and _shallow_matches(data, source_ids, quotes):
         if not dry_run:
@@ -397,6 +433,15 @@ def purge(
     section of the returned report comes back empty, since nothing on
     disk names that id any more.
 
+    `report["unreadable"]` names every `MANIFEST.json`, bridge export,
+    or feed402 envelope this call could not parse (`{"path", "error"}`
+    per entry); `report["redaction_refused"]` names every
+    `timeline.json`/`self-report.json` a redaction would have corrupted
+    (`{"run_dir", "file", "reason"}` per entry). Either non-empty means
+    `report["complete"]` is `False` and `report["warning"]` explains
+    that learner text for `production_id` may remain in one of those
+    files: this call never folds "could not check" into "nothing here."
+
     A real (non-`dry_run`) call also writes `<runs_root>/PURGE-
     <timestamp>.json` (the same report this function returns, plus its
     own `report_path`), the audit record `docs/PRIVACY.md` documents as
@@ -410,11 +455,17 @@ def purge(
     agg_quotes: set[str] = set()
     manifest_paths: list[Path] = []
     seen_learner_ids: set[str] = set()
+    unreadable: list[dict[str, Any]] = []
 
     for manifest_path in _iter_manifests(runs_root_path):
         try:
             manifest = _load_json(manifest_path)
-        except (OSError, json.JSONDecodeError):
+        except (OSError, json.JSONDecodeError) as exc:
+            # Cannot parse this manifest, so cannot rule out that it names
+            # production_id. Flagged, never silently treated as "this run
+            # is irrelevant" (the finding this whole function's own
+            # `unreadable`/`complete` contract exists to close).
+            unreadable.append({"path": str(manifest_path), "error": type(exc).__name__})
             continue
         provenance = manifest.get("provenance") or {}
         if production_id not in (provenance.get("production_ids") or []):
@@ -428,10 +479,17 @@ def purge(
 
     learner_id_mismatch = bool(learner_id and seen_learner_ids and learner_id not in seen_learner_ids)
 
-    runs_result = [
-        result for manifest_path in manifest_paths
-        if (result := _purge_run(manifest_path, production_id, dry_run=dry_run)) is not None
-    ]
+    runs_result = []
+    redaction_refused: list[dict[str, Any]] = []
+    for manifest_path in manifest_paths:
+        result = _purge_run(manifest_path, production_id, dry_run=dry_run)
+        if result is None:
+            continue
+        if result.get("action") == "unreadable":
+            unreadable.append({k: v for k, v in result.items() if k in ("path", "error")})
+            continue
+        redaction_refused.extend(result.pop("redaction_refused", []))
+        runs_result.append(result)
 
     cache_result = _purge_cache(resolved_cache_dir, production_id, dry_run=dry_run)
 
@@ -439,18 +497,28 @@ def purge(
     if runs_root_path.exists():
         for path in sorted(runs_root_path.rglob("*.bridge.json")):
             result = _purge_json_file(path, agg_source_ids, agg_quotes, dry_run=dry_run)
-            if result is not None:
+            if result is None:
+                continue
+            if result.get("action") == "unreadable":
+                unreadable.append({k: v for k, v in result.items() if k in ("path", "error")})
+            else:
                 bridge_result.append(result)
 
     envelope_result = []
     if public_root_path.exists():
         for path in sorted(public_root_path.rglob("*.json")):
             result = _purge_json_file(path, agg_source_ids, agg_quotes, dry_run=dry_run)
-            if result is not None:
+            if result is None:
+                continue
+            if result.get("action") == "unreadable":
+                unreadable.append({k: v for k, v in result.items() if k in ("path", "error")})
+            else:
                 envelope_result.append(result)
 
+    complete = not unreadable and not redaction_refused
+
     not_found = []
-    if not runs_result and not cache_result["index_lines_removed"] and not bridge_result and not envelope_result:
+    if complete and not runs_result and not cache_result["index_lines_removed"] and not bridge_result and not envelope_result:
         not_found.append(
             f"no run, cache entry, bridge export, or envelope under {runs_root_path}, "
             f"{resolved_cache_dir}, or {public_root_path} names production_id={production_id!r}"
@@ -465,9 +533,18 @@ def purge(
         "cache": cache_result,
         "bridge_exports": bridge_result,
         "envelopes": envelope_result,
+        "unreadable": unreadable,
+        "redaction_refused": redaction_refused,
+        "complete": complete,
         "not_found": not_found,
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
+    if not complete:
+        report["warning"] = (
+            "purge is incomplete: one or more artifacts under unreadable or "
+            "redaction_refused could not be verified clean; learner text for "
+            f"production_id={production_id!r} may still remain in them"
+        )
 
     if not dry_run:
         timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
