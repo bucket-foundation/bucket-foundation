@@ -1,0 +1,74 @@
+{
+  "id": "prod-022",
+  "created_at": "2030-01-10T00:00:00Z",
+  "author_role": "student",
+  "grade_band": "6-8",
+  "school_or_district_id": "district-c",
+  "research_question": "RQ27: does locking a production's evaluation criteria before check runs reduce bias, the way Registered Reports do?",
+  "claims": [
+    {
+      "text": "A different district's peer panel independently locked evaluation criteria before its own check step, was sent back once for a rubric clarification, and reached the same locked-criteria reading on reacceptance.",
+      "stance": "extends",
+      "slots": {
+        "actor": "peer-review-panel",
+        "action": "locked",
+        "object": "evaluation-criteria",
+        "place": "review-session",
+        "mechanism": "registered-reports-locking"
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-hte-self-report-p5-post",
+          "locator": "self-report.json:p5_post_summary",
+          "quote": "A different district's peer panel independently locked evaluation criteria before its own check step, was sent back once for a rubric clarification, and reached the same locked-criteria reading on reacceptance.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "url",
+              "value": "https://example.org/synth/src-hte-self-report-p5-post"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "accepted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2030-01-15"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2030-02-15"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2030-03-15"
+      },
+      {
+        "status": "accepted",
+        "date": "2030-04-15"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2030-06-01"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2030-07-01"
+      },
+      {
+        "status": "accepted",
+        "date": "2030-08-01"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}

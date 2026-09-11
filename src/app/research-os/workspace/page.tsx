@@ -55,6 +55,20 @@
  * until they arrive (workspace/route.ts's own two-phase "check" contract)
  * and, once revealed, the learner's prediction renders beside the
  * tutor's own citation.
+ *
+ * ros-14 UPDATE (faded guidance for low-prior-knowledge learners): the
+ * route response gains `guidance` (`GuidanceLevel | null`,
+ * src/lib/research-os/guidance.ts), read here as `route.guidance ??
+ * "medium"` wherever it is used, the same neutral default the server
+ * itself falls back to for a fresh/anonymous read. Above the Check textarea,
+ * the selected node's own worked example (`GraphNodeLite.workedExample`,
+ * seeded on the sky-blue path's first six nodes) shows in full at "high,"
+ * its first half at "medium" (worked-examples.ts's
+ * firstHalfOfWorkedExample), and not at all at "low." The level itself
+ * comes back from the server on every Check response too, so it stays
+ * consistent with whatever guidance level shaped the tutor's own
+ * feedback; loadRoute() (already called after every successful Check)
+ * refreshes it here. See learning/research-os/GUIDANCE.md.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -67,6 +81,7 @@ import {
   type LearnerConfidence,
 } from "@/lib/research-os/forcing";
 import { DELETE_CONFIRM_TOKEN } from "@/lib/research-os/types";
+import { firstHalfOfWorkedExample } from "@/lib/research-os/worked-examples";
 
 const TARGET_SLUG = "why-the-sky-is-blue";
 
@@ -103,6 +118,10 @@ function readOrCreateSessionId(): string {
 }
 
 type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
+/** ros-14: src/lib/research-os/types.ts's GuidanceLevel, mirrored here the
+ * same way this file already mirrors Stage rather than importing a
+ * server-facing module. */
+type GuidanceLevel = "high" | "medium" | "low";
 
 interface GraphNodeLite {
   id: string;
@@ -112,6 +131,8 @@ interface GraphNodeLite {
   tier: number;
   summary: string | null;
   provenance?: { author?: string; year?: number; title?: string; publisher?: string; url?: string; doi?: string };
+  /** ros-14: present only for a node the seed has authored one for. */
+  workedExample?: { text: string; source: string };
 }
 interface ChainStep {
   node: GraphNodeLite;
@@ -150,6 +171,9 @@ interface RouteResponse {
    * learner is close to being ready for, empty until one has been ingested
    * (src/lib/research-os/engine-bridge.ts) into this branch. */
   engineFrontier: EngineFrontierCandidate[];
+  /** ros-14: this learner's current faded-guidance level, null for an
+   * anonymous request (no learner state to compute one from). */
+  guidance: GuidanceLevel | null;
   learner: "self" | "anonymous";
   error?: string;
 }
@@ -197,6 +221,22 @@ function StageBadge({ stage }: { stage: Stage }) {
     >
       {STAGE_LABEL[stage]}
     </span>
+  );
+}
+
+/** ros-14, GUIDANCE.md section 2: the selected node's own worked example,
+ * shown before the Check explanation box -- full text at "high," the
+ * first half at "medium," nothing at "low." Renders nothing at all when
+ * the node has no authored worked example, regardless of guidance level. */
+function WorkedExampleBlock({ node, guidance }: { node: GraphNodeLite; guidance: GuidanceLevel }) {
+  if (!node.workedExample || guidance === "low") return null;
+  const text = guidance === "medium" ? firstHalfOfWorkedExample(node.workedExample.text) : node.workedExample.text;
+  return (
+    <div className="mb-3 p-3 bg-white/60 border border-[color:var(--hairline)]">
+      <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] mb-1">worked example</div>
+      <p className="text-[12px] leading-[1.6] text-[color:var(--basalt)]">{text}</p>
+      <p className="mt-1 text-[11px] text-[color:var(--basalt-2)]">{node.workedExample.source}</p>
+    </div>
   );
 }
 
@@ -962,6 +1002,7 @@ export default function ResearchOsWorkspacePage() {
                       attempt or a revealed result exists. */}
                   {!checkAttemptId && !checkResult && (
                     <>
+                      {selected && <WorkedExampleBlock node={selected} guidance={route.guidance ?? "medium"} />}
                       <textarea
                         value={explanation}
                         onChange={(e) => setExplanation(e.target.value)}

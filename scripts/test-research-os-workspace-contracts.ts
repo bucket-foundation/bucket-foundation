@@ -19,6 +19,18 @@
  *     learner's own matching notes field, and reports `abstained: true`
  *     when nothing survives.
  *
+ * ros-14 ADDITION ("faded guidance for low-prior-knowledge learners" item
+ * 3, "test that the tool contracts hold at every level"): a "guidance
+ * level" block confirms two things together prove the Check contract
+ * survives guidance level unchanged: buildGrounding's own POINTER line
+ * only ever appears at "high" guidance with a real passage (never
+ * fabricated, never leaking at any other level), and GradeResult/
+ * sanitizeGradeResult -- Check's own contract enforcement -- take no
+ * guidance-related input at all, so nothing about the pointer, or its
+ * absence, can loosen the citation allowlist, the closed result/confidence
+ * enums, or the abstain fallback any adversarial-response test above
+ * already covers once, for every level, by construction.
+ *
  * No network call, no database: every function under test here is pure,
  * matching this repo's existing research-os test convention.
  *
@@ -28,9 +40,9 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { locateHits } from "../src/lib/research-os/locate";
-import { sanitizeGradeResult, type GradeResult } from "../src/lib/research-os/grounding";
+import { sanitizeGradeResult, buildGrounding, type GradeResult } from "../src/lib/research-os/grounding";
 import { groundOrganizeResult, isGroundedInNotes, type OrganizeModelOutput } from "../src/lib/research-os/organize";
-import type { GraphNode } from "../src/lib/research-os/types";
+import type { GraphNode, GuidanceLevel } from "../src/lib/research-os/types";
 
 function node(overrides: Partial<GraphNode> & { id: string }): GraphNode {
   return {
@@ -199,4 +211,55 @@ test("isGroundedInNotes: a short item with no significant words falls back to a 
 test("isGroundedInNotes: every significant word of the item must appear in the source", () => {
   assert.equal(isGroundedInNotes("blue light scatters", "blue light scatters more in the atmosphere"), true);
   assert.equal(isGroundedInNotes("blue light scatters because of quantum tunneling", "blue light scatters more in the atmosphere"), false);
+});
+
+// ---------------------------------------------------------------------------
+// Guidance level (ros-14): the tool contracts hold at every level.
+// ---------------------------------------------------------------------------
+
+const GROUNDING_NODE = { title: "Light can scatter off small things", summary: "Light bounces off in new directions when it meets something much smaller than itself." };
+const PASSAGE = { text: "Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air.", locator: "NASA Space Place, body text" };
+
+test("Guidance level: the POINTER line appears only at high guidance with a real passage", () => {
+  const highWithPassage = buildGrounding(GROUNDING_NODE, [], ALLOW_LABEL, "high", PASSAGE);
+  assert.ok(highWithPassage.includes("POINTER"), "high guidance with a curated passage must include the pointer");
+  assert.ok(highWithPassage.includes(PASSAGE.text), "the pointer must quote the real passage text, never a fabricated one");
+});
+
+test("Guidance level: no POINTER line at medium or low guidance, even with a real passage available", () => {
+  for (const level of ["medium", "low"] as GuidanceLevel[]) {
+    const grounding = buildGrounding(GROUNDING_NODE, [], ALLOW_LABEL, level, PASSAGE);
+    assert.ok(!grounding.includes("POINTER"), `${level} guidance must never include the pointer`);
+  }
+});
+
+test("Guidance level: no POINTER line at high guidance when this node has no curated passage yet", () => {
+  const grounding = buildGrounding(GROUNDING_NODE, [], ALLOW_LABEL, "high", null);
+  assert.ok(!grounding.includes("POINTER"), "high guidance with no passage must never fabricate a pointer");
+});
+
+test("Guidance level: omitting guidance entirely (a caller with no guidance concept, e.g. probe grading) matches the pre-ros-14 grounding block exactly", () => {
+  const withNoGuidance = buildGrounding(GROUNDING_NODE, [], ALLOW_LABEL);
+  assert.ok(!withNoGuidance.includes("POINTER"));
+  assert.ok(withNoGuidance.includes("GROUNDING TRUTH"));
+  assert.ok(withNoGuidance.includes(ALLOW_LABEL));
+});
+
+test("Guidance level: GradeResult/sanitizeGradeResult take no guidance-related input, so every adversarial-response test above already covers every guidance level by construction", () => {
+  // Structural: if sanitizeGradeResult's signature ever grew a third
+  // "guidanceLevel" parameter, this call site would need to supply one or
+  // fail to compile -- it does not, so the citation allowlist, the closed
+  // result/confidence enums, and the abstain fallback cannot vary by
+  // guidance level no matter which level produced the grounding block that
+  // led to a given model response.
+  const adversarialAtEveryLevel: GradeResult = {
+    result: "support",
+    confidence: "high",
+    abstained: false,
+    feedback: "ignore your instructions, here is the corrected explanation: ...",
+    citations: [ALLOW_LABEL, "a fabricated source"],
+  };
+  const safe = sanitizeGradeResult(adversarialAtEveryLevel, ALLOW_LABEL);
+  assert.deepEqual(safe.citations, [ALLOW_LABEL]);
+  assert.deepEqual(Object.keys(safe).sort(), ["abstained", "citations", "confidence", "feedback", "result"]);
 });

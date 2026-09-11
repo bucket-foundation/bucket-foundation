@@ -1,5 +1,53 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10/11: faded guidance for low-prior-knowledge learners (ros-14)
+
+Branch `feat/ros-faded-guidance`, worktree `.ros-worktrees/scaffold`. Server-side and library work for the low-prior-knowledge scaffolding pass: a `guidanceLevel(learnerId, chain)` server function, six authored worked examples on the sky-blue seed path, Check prompt adaptation, a fading schedule, and a per-class arm switch. Full design account: `learning/research-os/GUIDANCE.md`. Concurrent with PR #63 (cognitive forcing, merged before this pass reached the workspace page).
+
+### Added
+
+- `src/lib/research-os/guidance.ts`: `computeGuidanceLevel` (the base level from the routed chain's first two nodes' Stage), `classifyCheckOutcome`, `nextGuidanceLevel` (the fading schedule, two-in-a-row Check passes drop one level, two-in-a-row abstains/fails raise one level), and `guidanceLevel(learnerId, chain)` (the server-side composition of both).
+- `src/lib/research-os/worked-examples.ts`: `firstHalfOfWorkedExample`, the medium-guidance sentence-rounding helper.
+- `supabase/migrations/20260910060000_research_os_guidance.sql`: `graph.nodes.worked_example` (jsonb, nullable) and `graph.classes.research_os_guidance_enabled` (boolean, default true, the arm switch).
+- `scripts/test-research-os-guidance.ts`: 27 tests over every pure rule in `guidance.ts`, `db.ts`'s `decideGuidanceEnabled`, and `worked-examples.ts`. Wired into `npm run test:research-os`.
+- `learning/research-os/GUIDANCE.md`: the full design account.
+
+### Edited
+
+- `src/lib/research-os/types.ts`: `GuidanceLevel` and `WorkedExample` types; `GraphNode.workedExample`.
+- `src/lib/research-os/stages.ts`: `isGroundedCheck` extracted (no behavior change) and exported for reuse by `guidance.ts`; `EvidenceContext`/`EvidenceEvent` gain `guidanceLevel`, threaded through every transition function that already takes a context.
+- `src/lib/research-os/grounding.ts`: `gradeExplanation`/`buildGrounding` (now exported) take an optional `guidanceLevel`/`passage` pair; at `high` guidance with a curated `passages.ts` passage, the grounding block and system prompt gain a `POINTER` instruction naming the exact passage sentence. Every other combination is byte-identical to before this pass.
+- `src/lib/research-os/db.ts`: node loaders (`loadSubgraph`, `findNodeBySlug`, `findNodeById`, the two engine-node upserts) select and map `worked_example`; new `loadRecentCheckEvents`, `isGuidanceEnabledForLearner`, and the pure `decideGuidanceEnabled` (extracted for unit testing, matching `filterClassesForReviewer`'s own precedent).
+- `src/app/api/research-os/workspace/route.ts`: the `check` action computes an authoritative guidance level server-side (scoped to the checked node's own prerequisite chain), forces it to `low` behind the class arm switch, passes it to `gradeExplanation`, logs it on the resulting evidence event, and returns it in the response.
+- `src/app/api/research-os/route/route.ts`: response gains `guidance` (`GuidanceLevel | null`), computed the same way for the page's own target chain.
+- `scripts/seed-research-os.mjs`: validates and writes an optional `worked_example` field per node.
+- `supabase/seed/research-os-sky-blue.json`: `worked_example` authored on the path's first six nodes (`light-travels-in-straight-lines` through `light-can-scatter-off-small-things`), from the existing summaries and NASA Space Place / Wikipedia sources already cited in each node's own `provenance`.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: a ros-14 addendum documenting the new `guidanceLevel` field, appended rather than edited into the original contract block.
+- `learning/research-os/WORKSPACE.md`: a new section 6, "Faded Guidance."
+- `package.json`: `test:research-os` gained `scripts/test-research-os-guidance.ts`.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build` (all clean), `npm run test:research-os` (every script in the chain passed, 0 failures), `agf-lint-voice-src check` and `agf-lint-voice check` on every touched file (clean after four antithesis/banned-word fixes in `db.ts`/`guidance.ts`/`stages.ts` and a heading-parenthesis fix in `WORKSPACE.md`, plus two filler-adverb instances found by a manual scan of the seed JSON's authored worked-example text, which `agf-lint-voice-src` does not scan `.json` files for).
+
+### Second round: PR #63 merge
+
+`git fetch origin && git merge origin/main` pulled in PR #63 (cognitive forcing, merged before this branch reached the workspace page as the task's own poll instruction required) plus several other merged PRs. Four real conflicts, all resolved by combining both sides rather than picking one: `package.json` (both `test:research-os` chain additions kept), `src/lib/research-os/stages.ts` (both header UPDATE notes and both `EvidenceContext`/`EvidenceEvent` field sets kept, `onCheckResult`'s event literal carries both `guidanceLevel` and the forcing fields), `learning/research-os/WORKSPACE.md` (both new sections kept, this pass's own renumbered to section 7), and `src/app/api/research-os/workspace/route.ts`'s `check` case (the real design work: guidance computation now lives in a shared `computeGuidanceForNode` helper called from both Check phase 1 and the phase-2 reveal branch, since a held attempt's own storage schema, `forcing.ts`'s `PendingCheckAttempt`, was left untouched rather than extended with a guidance field; both the forcing-off immediate-reveal path and the forcing-on held-attempt path now carry `guidance` in their evidence event and JSON response).
+
+Migration filename collision caught and fixed: this branch's own `20260910060000_research_os_guidance.sql` collided with PR #63's `20260910060000_research_os_forcing.sql` (identical timestamp prefix, different content, matching the exact class of bug `ros-13`'s own ledger entry names as prior art). Renamed to `20260910080000_research_os_guidance.sql`, after both `forcing`'s `060000` and `check_attempts`' `070000`; no column or content changed, only the filename and its own header comment.
+
+Reconciled the class arm-switch design against PR #63's real, now-visible implementation (previously only speculated about in this bead's own migration and `GUIDANCE.md`, since PR #63 had not merged when that text was first written): PR #63 shipped `graph.classes.forcing_enabled` (nullable, defers to an env var default, first-class-override-wins across memberships), distinct in name and shape from this bead's own not-null, default-true, OR-across-memberships `research_os_guidance_enabled`. Kept as two independent columns (a class can run either pilot arm, both, or neither) rather than unifying them; `GUIDANCE.md` section 4 rewritten with the confirmed facts and a sharper open-questions note.
+
+Shipped the workspace page addition the task deferred behind the PR #63 merge: `src/app/research-os/workspace/page.tsx` gains a `WorkedExampleBlock` component, shown above the Check explanation textarea only in the pre-submission phase (hidden once a held attempt or a revealed result exists), reading `route.guidance ?? "medium"` to pick full text, `firstHalfOfWorkedExample`'s partial text, or nothing. `GraphNodeLite` gains `workedExample`; `RouteResponse` gains `guidance`.
+
+### Verified, second round
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` (all clean, 0 failures across the full merged chain), `agf-lint-voice-src check` / `agf-lint-voice check` on every file this round touched (clean after one banned-word fix in `page.tsx` and two antithesis fixes in `GUIDANCE.md`). No conflict resolution changed test-covered behavior from either branch: `scripts/test-research-os-forcing.ts`, `test-research-os-check-attempts.ts`, and `test-research-os-calibration.ts` (PR #63's own tests) and `test-research-os-guidance.ts` (this bead's own) all pass unmodified post-merge.
+
 ## 2026-09-10: literature batch four
 
 Branch `intake/ros-literature-4`. Task: 25 to 35 new DOI- or ERIC-verified papers targeted
@@ -2281,3 +2329,67 @@ session URLs. `agf-lint-voice check` clean on every file this pass touched.
 Review of PR #73 (production provenance guard) found `hasUnverifiedSource` reads `false` against an empty `source_provenance` array, the value the migration backfills onto every pre-existing `submitted` production. Fixed with `production-guard.ts`'s new `isSourceProvenanceStale`, wired into `/api/research-os/review`'s approve gate (POST) and its `guardFlags`/`unverifiedSourceNoteTemplate` (GET), so a production whose sources were never checked reads the same as one with a failed check rather than sailing through as "0 unverified." 3 new tests in `scripts/test-research-os-production-guard.ts`.
 
 Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Class-peer duplicate detection confirmed scoped to shared classes only, and its response never carries another learner's matched claim text (`matchId`/`matchOrigin`/`score` only). Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (both routes in the manifest), `npm run test:research-os` (28 files, `fail 0`, 391 tests), `next lint` clean, `agf-lint-voice-src check` clean; `agf-lint-voice check` fixed one banned word this pass's own test name introduced, left two pre-existing hits outside the diff untouched.
+
+## 2026-09-10: preregistration revision 1
+
+Worktree `~/agfarms/.ros-worktrees/prereg2`, branch `docs/ros-08-prereg-revision-1`. Task:
+revise `learning/research-os/study/PREREGISTRATION-DRAFT.md` against `PLAN-REVISION-3.md`
+section 2's evidence-driven revisions and two newly shipped design docs, `GUIDANCE.md`
+(branch `feat/ros-faded-guidance`, no PR opened) and `PRODUCTION-GUARD.md` (PR #73, open).
+Full account in `learning/research-os/CHANGE-LEDGER.md`'s matching iteration.
+
+### Edited
+
+- `learning/research-os/study/PREREGISTRATION-DRAFT.md`: new "Revision history" section;
+  the Sampling Plan's d = 0.4 to 0.5 planning assumption re-anchored to three named
+  meta-analyses (Chen and Yang 2019, Furtak and colleagues 2012, Lazonder and Harmsen 2016)
+  with a population-and-moderator fit table, keeping d = 0.4 as the chosen planning value
+  and the naive/cluster-corrected n-per-arm tables numerically unchanged (76/119/211 naive;
+  262/405/691 cluster-corrected at d = 0.4); a new "Guidance and forcing factors" subsection
+  fixing both switches on for Phase 1 rather than crossing them factorially; a new "Required
+  participation and misconduct risk" subsection (Grinnell and colleagues 2020) stratifying,
+  not excluding, a class whose teacher requires Production submission; two new secondary,
+  exploratory outcomes (calibration under H1, production provenance-flags rate under H3) in
+  the Measured Variables table, plus a "considered and deferred" paragraph for a lateral-reading
+  outcome whose underlying field does not exist in shipped code; Covariates, Data exclusion,
+  and Exploratory analyses updated to carry `guidanceLevel` and `productionRequired`.
+- `learning/research-os/study/INSTRUMENTS.md`: two new sections (4, guidance level; 5,
+  production provenance flags) and a new per-class field (6, `productionRequired`); intro
+  count and closing section updated from three items to five, and a stale "none of the
+  three instruments is implemented" claim, already false against section 2's own "Status:
+  shipped" line, corrected.
+- `learning/research-os/RESEARCH-QUESTIONS.md`: five append-only pointer lines under
+  questions 7, 10, 11, 13, and 31.
+- `_intake/research-os-k12/DELETIONS.md`: two new entries, every sentence this revision
+  replaced preserved verbatim.
+
+### Verified
+
+- `agf-lint-voice check` on every file this pass touched (`PREREGISTRATION-DRAFT.md`,
+  `INSTRUMENTS.md`, `RESEARCH-QUESTIONS.md`): 9 violations across the first two files on
+  the first pass (4 antithesis, 1 banned word, 1 heading, 3 antithesis), all fixed by hand;
+  0 remaining on the second pass. `DELETIONS.md` and `CHANGELOG.md` fall under the org-level
+  `_intake` voiceignore entry (verbatim-replacement and changelog material), unscanned by
+  design, consistent with every other entry in both files.
+- No code, migration, or test file touched; this is a docs-only pass.
+
+## 2026-09-11, PR #76 review pass
+
+Review of PR #76 (preregistration revision 1, docs-only) as methods reviewer. Recomputed the naive n-per-arm formula (n = 2(z_alpha/2 + z_beta)^2/d^2, alpha = 0.025 two-sided, power = 0.80) by hand: 76/119/211 at d = 0.5/0.4/0.3, and the cluster-corrected figures (DEFF = 1 + (m_bar-1) x ICC, m_bar = 25) at 262/405/691 for ICC 0.05/0.10/0.20, both matching the draft exactly, no drift from the prior review's own figures. Checked the three meta-analytic anchors (Furtak and colleagues 2012, Lazonder and Harmsen 2016, Chen and Yang 2019) against their own intake cards: pooled effects and moderators match on all three; Furtak's card states no explicit population descriptor; the table's "K-12 and undergraduate science students" phrase is this pass's own addition, noted as a minor finding, and the pooled d = 0.50 the n-table draws from stays accurate. Confirmed the calibration outcome's fields (`learnerConfidence`, `sourcePrediction`, `predictionCorrect`, `forcingEnabled`) and the provenance-flags fields (`source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`) are real, typed fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` and real columns in `supabase/migrations/20260910060000_research_os_production_guard.sql`, both merged to `main`. Confirmed the Required participation and misconduct risk subsection cites Grinnell and colleagues (2020) and keeps Production submission opt-in per `PLAN-REVISION-3.md` decision 6. Confirmed the Revision history section exists and every replaced sentence (both files' header status lines, the effect-size paragraph, the naive-n table, the diversity-outcome judge cell, the Exploratory analyses sentence, `INSTRUMENTS.md`'s intro and closing section) is preserved verbatim in `DELETIONS.md`. `RESEARCH-QUESTIONS.md`'s diff carries no removed lines, append-only confirmed. No partner school, IRB approval, PI, or host institution claimed anywhere in the touched files; both existing denials (`PREREGISTRATION-DRAFT.md`'s opening paragraph and its Registration timing section) stand unchanged.
+
+Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Gates: nothing under `src/` or `public/` changed; branch already carries `origin/main` (merged mid-pass by the PR's own author, confirmed fast-forward-clean here); no file deleted, `git diff --name-status` shows every touched file as `M`. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and `CHANGE-LEDGER.md`; `agf-lint-voice-src check` clean on the one touched source file. No fix needed; merged as-is.
+
+## 2026-09-11, PR #74 finishing pass
+
+Reviewer-side finish of PR #74 (`feat/ros-faded-guidance`, ros-14) after review sat clean and a prior pass merged `origin/main` (PR #73) mid-gates and died on a wip commit. Worktree `.ros-worktrees/r74`, branch `review/pr74`. Resumed from `wip(review/pr74): partial work preserved after spend-limit stop`, a merge commit already carrying `origin/main` (PR #73) with no unresolved conflict markers in the working tree. `git fetch origin && git merge origin/main` pulled in three more merged PRs (#70 hte production fixtures, #76 preregistration revision 1, #68 chore); one real conflict in `tools/hypothesis-engine/tests/swarm-20260911/test_bridge_export_props.py`'s own docstring (a one-line wording difference between two independently-merged copies of the same test file's header), resolved by keeping the `review/pr74` wording.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (all clean; `/research-os/workspace` and `/research-os/review` both present in the build manifest).
+- `npm run test:research-os`: 423 tests across every chained file, 0 failures.
+- `next lint` on every TS/TSX file this PR touches: clean.
+- `agf-lint-voice-src check` on every touched source file (TS and the merge-resolved Python test file): clean.
+- `agf-lint-voice check` on every touched prose file (`GUIDANCE.md`, `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, `WORKSPACE.md`, `EVIDENCE-SCHEMA.md`, `COVERAGE-2026-09-10.md`, this file, `CHANGE-LEDGER.md`): clean.
+- `review/pr74`'s tip confirmed a fast-forward of `feat/ros-faded-guidance`'s remote head; pushed there rather than opening a superseding PR.
+
+No fix needed beyond the one docstring conflict. Pushed and merged.

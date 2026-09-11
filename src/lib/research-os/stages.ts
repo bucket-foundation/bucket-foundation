@@ -27,14 +27,27 @@
  * `graph.teacher_reviews` migration belong to ros-06, per
  * EVIDENCE-SCHEMA.md's own scope note on that migration.
  *
+ * ros-14 UPDATE (faded guidance for low-prior-knowledge learners):
+ * `EvidenceContext`/`EvidenceEvent` gain `guidanceLevel`
+ * (src/lib/research-os/guidance.ts's GuidanceLevel), the scaffolding level
+ * in effect when this event was produced, so a pilot can compare outcomes
+ * by arm (learning/research-os/GUIDANCE.md). Every transition function
+ * below that already takes an `EvidenceContext` threads the field through
+ * the same way it threads `sessionId`; only src/app/api/research-os/
+ * workspace/route.ts's "check" case computes and passes a value
+ * today (GUIDANCE.md's own scope note explains why Open/Transfer/
+ * Production stay unpopulated in Phase 0).
+ *
  * UPDATE (cognitive forcing on Check, PLAN-REVISION-2.md section 2a):
  * `learnerConfidence`, `sourcePrediction`, `predictionCorrect`, and
  * `forcingEnabled` close the calibration-record gap that design response
  * names. `onCheckResult` below is the one writer; `forcing.ts` computes
  * `predictionCorrect` in code and resolves `forcingEnabled` from the arm
- * switch, both before this file ever sees them.
+ * switch, both before this file ever sees them. These fields and
+ * `guidanceLevel` above are independent additions on the same "check"
+ * event: a class can run either arm switch, both, or neither.
  */
-import type { Stage } from "./types";
+import type { GuidanceLevel, Stage } from "./types";
 import { stageAtLeast } from "./types";
 import type { LearnerConfidence } from "./forcing";
 
@@ -74,6 +87,11 @@ export interface EvidenceContext {
   modelFeedback?: string;
   /** The model's citations on a "check" event, from GradeResult.citations. */
   citations?: string[];
+  /** ros-14: the faded-guidance level in effect when this event was
+   * produced (src/lib/research-os/guidance.ts). Optional, same discipline
+   * as every other field here: a caller that has not computed a guidance
+   * level for this call omits it rather than guessing. */
+  guidanceLevel?: GuidanceLevel;
   /** The Quote tool's own passage locator on a "quote" event
    * (src/lib/research-os/passages.ts's QuotePassage.locator). Recorded so
    * src/lib/research-os/production-guard.ts's quote-matching check can
@@ -142,6 +160,10 @@ export interface EvidenceEvent {
   secondDecision?: "approved" | "returned";
   agrees?: boolean;
 
+  // ros-14: the faded-guidance level in effect when this event was
+  // produced, see EvidenceContext.guidanceLevel above.
+  guidanceLevel?: GuidanceLevel;
+
   // Closes "no stored Quote locator for provenance-guard matching," set
   // only on a "quote" event (onQuoteReturned below). production-guard.ts's
   // checkSourceProvenance reads this across a learner's whole
@@ -159,8 +181,29 @@ export interface StageTransition {
 /** access -> awareness: the learner opened the node. */
 export function onNodeOpened(currentStage: Stage, context: EvidenceContext = {}, now: string = new Date().toISOString()): StageTransition {
   const nextStage: Stage = currentStage === "access" ? "awareness" : currentStage;
-  const event: EvidenceEvent = { at: now, kind: "open", fromStage: currentStage, toStage: nextStage, sessionId: context.sessionId };
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "open",
+    fromStage: currentStage,
+    toStage: nextStage,
+    sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
+  };
   return { nextStage, event };
+}
+
+/**
+ * The "grounded" predicate onCheckResult and onProbeCheckResult both need
+ * to decide whether a Check verdict counts as a pass (bkt-ros ros-14,
+ * extracted so the faded-guidance schedule, src/lib/research-os/
+ * guidance.ts's nextGuidanceLevel, classifies a past Check event the exact
+ * same way the transition rule below did when it was recorded, rather than
+ * a second, potentially drifting copy of "support, unabstained,
+ * medium-or-higher confidence"). Exported for reuse; behavior unchanged from the inline
+ * `grounded` constant this replaces.
+ */
+export function isGroundedCheck(check: { result: "support" | "contradiction" | "unknown"; confidence: "high" | "medium" | "low"; abstained: boolean }): boolean {
+  return !check.abstained && check.result === "support" && check.confidence !== "low";
 }
 
 /**
@@ -193,7 +236,7 @@ export function onCheckResult(
   context: EvidenceContext = {},
   now: string = new Date().toISOString(),
 ): StageTransition {
-  const grounded = !check.abstained && check.result === "support" && check.confidence !== "low";
+  const grounded = isGroundedCheck(check);
   const eligible = stageAtLeast(currentStage, "awareness") && !stageAtLeast(currentStage, "understanding");
   const nextStage: Stage = grounded && eligible ? "understanding" : currentStage;
   const event: EvidenceEvent = {
@@ -208,6 +251,7 @@ export function onCheckResult(
     modelFeedback: context.modelFeedback,
     citations: context.citations,
     sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
     learnerConfidence: context.learnerConfidence,
     sourcePrediction: context.sourcePrediction,
     predictionCorrect: context.predictionCorrect,
@@ -243,6 +287,7 @@ export function onTransferItemAnswered(
     learnerText: context.learnerText,
     itemId: context.itemId,
     sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
   };
   return { nextStage: currentStage, event }; // stage intentionally unchanged
 }
@@ -279,7 +324,7 @@ export function onProbeCheckResult(
 ): StageTransition {
   const fromStage: Stage = "access";
   let nextStage: Stage = "access";
-  if (!check.abstained && check.result === "support" && check.confidence !== "low") {
+  if (isGroundedCheck(check)) {
     nextStage = "understanding";
   } else if (!check.abstained && (check.result === "support" || check.result === "unknown")) {
     nextStage = "awareness";
@@ -297,6 +342,7 @@ export function onProbeCheckResult(
     modelFeedback: context.modelFeedback,
     citations: context.citations,
     sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
   };
   return { nextStage, event };
 }
@@ -321,7 +367,14 @@ export function onProductionSubmitted(
   context: EvidenceContext = {},
   now: string = new Date().toISOString(),
 ): StageTransition {
-  const event: EvidenceEvent = { at: now, kind: "production_submitted", fromStage: currentStage, toStage: "production", sessionId: context.sessionId };
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "production_submitted",
+    fromStage: currentStage,
+    toStage: "production",
+    sessionId: context.sessionId,
+    guidanceLevel: context.guidanceLevel,
+  };
   return { nextStage: "production", event };
 }
 
