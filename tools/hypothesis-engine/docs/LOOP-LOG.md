@@ -2,6 +2,46 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, PR39 review
+
+- **PR #39 reviewed and merged** (`feat/hte-literature-batch-two-and-plan-rev1`,
+  "literature batch two, Research OS plan revision 1 remap, zenodo
+  dry-run"), squash commit `f7dd86a6`.
+- **Governance**: `learning/research-os/PLAN-REVISION-1.md` is untouched
+  by this diff; the remap lives in this engine's own `docs/RESEARCH-OS-
+  INTEGRATION.md`, which reads `PLAN-REVISION-1.md` and reclassifies
+  engine-side question rows against it, citing blocking decision 1 as
+  still open rather than resolving it. `RESEARCH-OS-INTEGRATION.md`
+  sits under this engine's own `docs/`, tracked here; the `learning/
+  research-os/` and `_intake/research-os-k12/` surface tree
+  `DELETIONS.md`/`CHANGE-LEDGER.md` cover is a separate tree this PR
+  never touches, so no deletions-log entry applied. Literature: the 6 batch-two fixture cards are byte-identical
+  to the already-verified real cards in `_intake/research-os-k12-
+  literature/`; 5 DOIs spot-checked live against Crossref/arXiv
+  (Kitano 2021, Fryer 2011, Macnamara 2024, Pan 2017, Kosmyna 2025),
+  title/authors/year/venue all matched.
+- **Secrets**: full diff clean, no keys, IPs, internal hostnames,
+  personal emails beyond `gianyrox@gmail.com`, or absolute `/home/gian`
+  paths in file contents.
+- **Incident during review**: a `git stash pop` in the review worktree
+  popped a stash from the repo-wide stash list (stashes are not
+  worktree-scoped) and produced merge conflicts plus untracked-file
+  bleed from an unrelated `main`-branch WIP stash. Recovered with
+  `git reset --hard` and `git clean -fd`, scoped to the review worktree
+  only; the original stash was never dropped. A reminder of this file's
+  own "Working tree rules" section: `git stash` in any worktree touches
+  the whole repo's stash list, not just that worktree's own changes.
+- **Gates**: `env -u HTE_LLM_MODE make test`, 1057 passed, 18 deselected
+  after merging `origin/main` (13 commits behind, one real conflict in
+  `hte/cli.py`/`hte/runner.py`'s `_CORPUS_LOADERS` dict against PR
+  #36's `sacred-history` entry, resolved keeping both registrations).
+  `ruff check` clean on every touched file (also cleared two
+  pre-existing unused imports in `hte/corpus/literature.py`,
+  `dataclasses.field` and `typing.Any`). `agf-lint-voice check` /
+  `agf-lint-voice-src check`, 0 violations. `zenodo-mint.py --dry-run`:
+  7/7 new tests pass, no token read and no network call under
+  `--dry-run`.
+
 ## 2026-09-10, PR36 review
 
 - **PR #36 reviewed** (`feat/hte-build-history`, "sacred-history
