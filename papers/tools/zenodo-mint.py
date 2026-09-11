@@ -26,11 +26,21 @@ Subcommands:
            is published it is permanent, even if the deposition is later
            discarded. Requires --confirm.
 
+`--dry-run` (any subcommand): skips every Zenodo API call and every file
+read past `zenodo.json` itself; prints what the real run would send (the
+loaded metadata, the endpoint and method each skipped call would have
+hit, the files it would have uploaded) and exits 0. No `ZENODO_TOKEN` is
+read in this mode, since nothing carrying it ever leaves the process; a
+rehearsal of `create` or `update` needs no token at all, and a rehearsal
+of `publish` needs neither a token nor `--confirm`, since nothing
+irreversible runs either way.
+
 Usage:
   ZENODO_TOKEN=... zenodo-mint.py create --paper-dir papers/<slug> \\
       --file papers/<slug>/main.pdf --file /tmp/<slug>-sources.zip
   zenodo-mint.py show --deposition-id 12345678
   zenodo-mint.py publish --deposition-id 12345678 --confirm
+  zenodo-mint.py --dry-run create --paper-dir papers/<slug> --file papers/<slug>/main.pdf
 """
 from __future__ import annotations
 
@@ -100,10 +110,17 @@ def upload_file(bucket_url: str, file_path: str, token: str) -> None:
 
 
 def cmd_create(args: argparse.Namespace) -> None:
-    token = _token()
     base = _base(args.sandbox)
     metadata = load_metadata(args.paper_dir)
 
+    if args.dry_run:
+        print(f"[dry-run] would POST {base}/deposit/depositions to create a draft deposition.")
+        for file_path in args.file:
+            print(f"[dry-run] would upload {file_path}")
+        print("[dry-run] would PUT the metadata above onto the new draft. No API call made.")
+        return
+
+    token = _token()
     deposition = _request("POST", f"{base}/deposit/depositions", token,
                            data=b"{}", content_type="application/json")
     dep_id = deposition["id"]
@@ -123,10 +140,17 @@ def cmd_create(args: argparse.Namespace) -> None:
 
 
 def cmd_update(args: argparse.Namespace) -> None:
-    token = _token()
     base = _base(args.sandbox)
     metadata = load_metadata(args.paper_dir)
 
+    if args.dry_run:
+        print(f"[dry-run] would GET {base}/deposit/depositions/{args.deposition_id} for its upload bucket.")
+        for file_path in args.file:
+            print(f"[dry-run] would upload {file_path}")
+        print(f"[dry-run] would PUT the metadata above onto deposition {args.deposition_id}. No API call made.")
+        return
+
+    token = _token()
     dep = _request("GET", f"{base}/deposit/depositions/{args.deposition_id}", token)
     bucket_url = dep["links"]["bucket"]
 
@@ -142,13 +166,25 @@ def cmd_update(args: argparse.Namespace) -> None:
 
 
 def cmd_show(args: argparse.Namespace) -> None:
-    token = _token()
     base = _base(args.sandbox)
+    if args.dry_run:
+        print(f"[dry-run] would GET {base}/deposit/depositions/{args.deposition_id}. No API call made.")
+        return
+
+    token = _token()
     dep = _request("GET", f"{base}/deposit/depositions/{args.deposition_id}", token)
     print(json.dumps(dep, indent=2, ensure_ascii=False))
 
 
 def cmd_publish(args: argparse.Namespace) -> None:
+    base = _base(args.sandbox)
+    if args.dry_run:
+        print(
+            f"[dry-run] would POST {base}/deposit/depositions/{args.deposition_id}/actions/publish. "
+            "No API call made; --confirm is not required in dry-run mode, since nothing irreversible runs."
+        )
+        return
+
     if not args.confirm:
         print(
             "Refusing to publish without --confirm. A Zenodo DOI is "
@@ -157,7 +193,6 @@ def cmd_publish(args: argparse.Namespace) -> None:
         )
         sys.exit(2)
     token = _token()
-    base = _base(args.sandbox)
     result = _request(
         "POST", f"{base}/deposit/depositions/{args.deposition_id}/actions/publish",
         token,
@@ -172,6 +207,8 @@ def main() -> None:
                                       formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--sandbox", action="store_true",
                          help="Use sandbox.zenodo.org instead of the production API.")
+    parser.add_argument("--dry-run", action="store_true", dest="dry_run",
+                         help="Skip every Zenodo API call; print what would be sent and exit 0.")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_create = sub.add_parser("create")

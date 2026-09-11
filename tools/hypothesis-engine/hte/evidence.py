@@ -119,19 +119,32 @@ class Source:
     """One evidence source and its position in the stemma (`bkt-hte-stemma-
     dependence`, `def:stemma`): `stemma_parents` names the sources this one
     copies from or shares an archetype with, each edge's copy-confidence
-    weight carried separately (`hte.belief.effective_count`)."""
+    weight carried separately (`hte.belief.effective_count`).
+
+    `batches` is opt-in, multi-batch-corpus metadata: which named ingest
+    batch (or batches, for a source a later batch's own dedup pass finds
+    already present under an earlier batch's DOI) contributed this source.
+    Empty for every adapter that ingests its corpus in one pass; `hte.
+    corpus.literature` is the first populated case (`bkt-hte-literature-
+    batch-two`), reads a caller-supplied list of card roots and tags each
+    root's own cards with that root's position, `"batch-1"`/`"batch-2"`/....
+    """
     id: str
     kind: EvidenceKind
     date: str | None = None
     stemma_parents: list[str] = field(default_factory=list)
+    batches: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
-        return {"id": self.id, "kind": self.kind.value, "date": self.date, "stemma_parents": list(self.stemma_parents)}
+        return {
+            "id": self.id, "kind": self.kind.value, "date": self.date,
+            "stemma_parents": list(self.stemma_parents), "batches": list(self.batches),
+        }
 
     @classmethod
     def from_dict(cls, d: dict) -> "Source":
         return cls(id=d["id"], kind=EvidenceKind(d["kind"]), date=d.get("date"),
-                    stemma_parents=list(d.get("stemma_parents", [])))
+                    stemma_parents=list(d.get("stemma_parents", [])), batches=list(d.get("batches", [])))
 
 
 @dataclass
