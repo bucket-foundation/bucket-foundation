@@ -202,7 +202,9 @@ def test_purge_end_to_end_removes_one_production_keeps_the_other(tmp_path, monke
         json.loads(timeline_text)
 
     # LLM cache: prod-aaa's entry and index line gone, prod-bbb's intact
-    remaining_lines = [json.loads(l) for l in cache_dir.joinpath("index.jsonl").read_text().splitlines() if l.strip()]
+    remaining_lines = [
+        json.loads(line) for line in cache_dir.joinpath("index.jsonl").read_text().splitlines() if line.strip()
+    ]
     assert len(remaining_lines) == 1
     assert remaining_lines[0]["production_ids"] == ["prod-bbb"]
     remaining_cache_files = sorted(p.name for p in cache_dir.glob("*.json"))
