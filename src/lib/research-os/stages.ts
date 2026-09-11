@@ -45,7 +45,8 @@ export type EvidenceKind =
   | "transfer_item"
   | "production_submitted"
   | "production_returned"
-  | "teacher_review";
+  | "teacher_review"
+  | "quote";
 
 /**
  * Fields a caller supplies per event, beyond what the transition function
@@ -73,6 +74,12 @@ export interface EvidenceContext {
   modelFeedback?: string;
   /** The model's citations on a "check" event, from GradeResult.citations. */
   citations?: string[];
+  /** The Quote tool's own passage locator on a "quote" event
+   * (src/lib/research-os/passages.ts's QuotePassage.locator). Recorded so
+   * src/lib/research-os/production-guard.ts's quote-matching check can
+   * verify a Production's cited source against a real Quote call this
+   * learner made, per learning/research-os/PRODUCTION-GUARD.md. */
+  locator?: string;
   /** The learner's own 4-point self-rating of their explanation, collected
    * on a "check" event before the verdict above is revealed
    * (forcing.ts's LearnerConfidence, PLAN-REVISION-2.md section 2a). */
@@ -134,6 +141,14 @@ export interface EvidenceEvent {
   secondRaterId?: string;
   secondDecision?: "approved" | "returned";
   agrees?: boolean;
+
+  // Closes "no stored Quote locator for provenance-guard matching," set
+  // only on a "quote" event (onQuoteReturned below). production-guard.ts's
+  // checkSourceProvenance reads this across a learner's whole
+  // learner_node_state.evidence array to verify a Production's cited
+  // sources against a real Quote call, per
+  // learning/research-os/PRODUCTION-GUARD.md.
+  locator?: string;
 }
 
 export interface StageTransition {
@@ -146,6 +161,23 @@ export function onNodeOpened(currentStage: Stage, context: EvidenceContext = {},
   const nextStage: Stage = currentStage === "access" ? "awareness" : currentStage;
   const event: EvidenceEvent = { at: now, kind: "open", fromStage: currentStage, toStage: nextStage, sessionId: context.sessionId };
   return { nextStage, event };
+}
+
+/**
+ * No stage change: the Quote tool (workspace/route.ts's "quote" case)
+ * returned a real, curated verbatim passage (src/lib/research-os/
+ * passages.ts's getPassage returned non-null, "kind": "quote" rather than
+ * the "summary" fallback). Logged as evidence so production-guard.ts's
+ * quote-matching check has a real record of which locators this learner
+ * pulled, closing the gap production guard, task item 1 names:
+ * a source cited in a Production must correspond to a Quote record this
+ * learner produced. Never called for the "summary" fallback: a summary
+ * carries no locator, so there is nothing here worth recording toward
+ * that check.
+ */
+export function onQuoteReturned(currentStage: Stage, context: EvidenceContext = {}, now: string = new Date().toISOString()): StageTransition {
+  const event: EvidenceEvent = { at: now, kind: "quote", fromStage: currentStage, toStage: currentStage, sessionId: context.sessionId, locator: context.locator };
+  return { nextStage: currentStage, event };
 }
 
 /**
