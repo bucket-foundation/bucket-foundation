@@ -2,6 +2,25 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, tick 2
+
+- **PRs reviewed**: #51 (`docs/hte-findings-round-six-cli-llm-leak`, a
+  different tick of this same loop): content accurate, but `mergeable_state`
+  is now `dirty` against the LOOP-LOG entry #53 below already claimed;
+  branch prefix also excludes it from this loop's merge authority either
+  way, "fix or note before merge". #52 (`feat/ros-roster-sync`, OneRoster
+  CSV roster sync, opened by a different session): verified the 6
+  privacy/security claims (PII handling, RLS on `reviewer_candidates`,
+  server-side `verifyReviewer` gate, no auto-grant approval path,
+  idempotent apply-twice) against the code rather than the PR body; 5 of
+  6 held, 1 Medium finding (no CSV upload size/row cap on `POST /api/
+  research-os/roster`), "fix or note before merge". Neither is a
+  `fix/hte-`/`test/hte-` PR of this loop's own, so neither merged.
+- **Carried forward**: #54, #55, #56 opened by other sessions after this
+  tick's review pass finished; not reviewed this tick, next tick's own
+  step 4 picks them up.
+- **Blocked**: nothing else.
+
 ## 2026-09-11, tick, serve.py swarm and PR50
 
 - **Engine health**: `make test` green on `main` first, 1057 passed. No
