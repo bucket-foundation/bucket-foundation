@@ -441,7 +441,7 @@ the same way.
 | `fixtures` | `hte.corpus.fixtures.build` | 6 events, `discovery_year == year` | k-fold |
 | `education-atlas` | `hte.corpus.education_atlas.load` | 125 severity-flagged problem rows, `discovery_year == year` | k-fold |
 | `production` | `hte.corpus.production.load` | 8 accepted claims | k-fold (see note) |
-| `literature` | `hte.corpus.literature.load_local` | 6 canon/outcome-tier claims (this checkout's own local corpus) | k-fold |
+| `literature` | `hte.corpus.literature.load_default` | 1 ground-truth event (both fixture batches combined, 12 cards / 36 evidence items, no network) | k-fold |
 
 `production`'s own design carries a real discovery lag (`discovery_year`
 is a claim's review-acceptance date, distinct from the claim's subject

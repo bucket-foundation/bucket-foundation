@@ -715,6 +715,3 @@ def test_live_fetch_lists_cards_or_skips_when_offline():
     assert any("bloom-1984-two-sigma-problem.md" in p for p in paths)
     assert all(p.endswith(".md") for p in paths)
     assert not any(p.endswith("/README.md") for p in paths)
-
-
-# --------------------------------------------------------------------------
