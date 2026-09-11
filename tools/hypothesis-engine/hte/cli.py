@@ -111,6 +111,9 @@ def _cmd_purge(args: argparse.Namespace) -> int:
         dry_run=args.dry_run,
     )
     print(json.dumps(report, indent=2, default=str))
+    if not report.get("complete", True):
+        print(report.get("warning", "purge is incomplete: see report[\"unreadable\"]/[\"redaction_refused\"]"), file=sys.stderr)
+        return 1
     return 0
 
 

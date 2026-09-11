@@ -114,7 +114,14 @@ Four passes, one per reachable landing spot:
    marker inside `timeline.json`, `self-report.json`, and `run.log`.
    `timeline.json`/`self-report.json` are checked for valid JSON after
    redaction; a redaction that would corrupt either file is refused,
-   leaving that file exactly as it was.
+   leaving that file exactly as it was. A caller detects this: the
+   refused file's run directory, name, and reason land in the report's
+   own `redaction_refused` list, `report["complete"]` is `False`, and
+   `hte purge`'s CLI exits non-zero. An unreadable `MANIFEST.json`
+   under `runs_root` gets the same treatment (`report["unreadable"]`,
+   path plus the exception's class name): this module cannot tell
+   whether a file it cannot parse names the id being purged, so it is
+   never treated as "nothing to purge here."
 2. **The LLM cache.** Every `<cache_dir>/index.jsonl` line naming `id` is
    dropped, and the `<cache_key>.json` response file it names is deleted
    outright, even on the rare chance another, non-purged production's
@@ -138,8 +145,10 @@ report comes back empty, since nothing on disk names that id any more.
 `--dry-run` computes and returns the identical report with no write,
 delete, or rename anywhere. A real (non-dry-run) call also writes
 `<runs_root>/PURGE-<timestamp>.json`, the same report plus its own path:
-what was removed or redacted, and (`report["not_found"]`) whether nothing
-matched `id` anywhere at all.
+what was removed or redacted, (`report["not_found"]`) whether nothing
+matched `id` anywhere at all, and (`report["unreadable"]`/
+`report["redaction_refused"]`, `report["complete"]`) whether anything
+could not be checked or safely rewritten at all.
 
 ## What the app side must do
 
