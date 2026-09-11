@@ -22,7 +22,7 @@
 -- name and shape rather than reusing forcing_enabled: guidance and
 -- forcing are independent pilot arms (a class can run either, both, or
 -- neither), so one shared boolean would conflate two different
--- experimental conditions. Shape: a plain boolean, not null, default
+-- experimental conditions. Shape: a plain not-null boolean, default
 -- true -- the base product behavior is guidance ON, a pilot opts a
 -- specific class OUT for its control arm. See GUIDANCE.md section 4 for
 -- the full reconciliation note and the open naming-convention question.
