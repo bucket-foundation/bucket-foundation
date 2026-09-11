@@ -2259,3 +2259,29 @@ discrete leak; left unchanged as out of scope for a docs-only review. Leak scan 
 the PR's own diff: clean, no keys, IPs, non-public hostnames, personal
 emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
 session URLs. `agf-lint-voice check` clean on every file this pass touched.
+
+## 2026-09-11, repo hygiene pass: local paths and machine-specific data
+
+The dedicated cleanup pass the PR #69 review above named as needed.
+Worktree `~/agfarms/.ros-worktrees/scrub`, branch `chore/local-path-scrub`.
+Full inventory in `learning/research-os/compliance/REPO-HYGIENE-2026-09-11.md`:
+71 tracked files carried `/home/gian`, 53 rewritten to `~/...`, `$HOME/...`,
+a repo-relative path, or (in load-bearing code) `os.path.expanduser`,
+`Path.home()`, or `__file__`; 14 left as-is on a new allowlist (bead-backup
+jsonl, two runner logs, five systemd units, five narrative docs whose only
+hits quote this same leak-scan policy back, this file included). Two
+AWS-access-key-shaped presigned S3 URLs in `figma-export/` redacted
+(Figma's own expired CDN credential, not an AGFarms secret). A new guard,
+`tools/hygiene/check-local-paths.py` plus a CI workflow, blocks a future PR
+from reintroducing a `/home/<user>` path; its allowlist and fixture test
+are in `tools/hygiene/`. `.gitignore` gained a commented, inactive block
+proposing `git rm --cached` for the backup/log/systemd files; untracking
+them stays a founder decision. `agf-lint-voice check` on the new doc: clean
+after fixing 11 first-pass hits by hand. `agf-lint-voice check --staged`
+across the full 67-file change set surfaced 651 pre-existing violations in
+19 files (17 auto-generated bridge reports plus two quantum setup docs),
+confirmed identical against each file's `origin/main` version, so none of
+this pass's own edits; committed with the hook's documented
+`AGF_VOICE_SKIP=1` bypass rather than rewriting unrelated content. No
+`src/` or engine file changed, so the npm/tsc/build/test and `make test`
+gates did not trigger.

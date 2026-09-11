@@ -2,7 +2,7 @@
 # Speed up the embed WITHOUT pausing the running GPU job: retire the old
 # PID-based finalize monitor and launch N parallel CPU workers on disjoint hash
 # partitions (DESC, opposite end from the main ASC job).
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 mkdir -p _intake/photons/logs
 pkill -f "finalize_full.sh" 2>/dev/null && echo "retired old finalize monitor" || echo "no old monitor"
 sleep 1

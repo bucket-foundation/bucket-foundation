@@ -234,7 +234,7 @@ Phase A, **box, systemd --user** (matches Polingual, ship the first slice here):
 # unit: ~/.config/systemd/user/research-tools-gateway.service
 ExecStart=<venv>/bin/uvicorn app:app --host 127.0.0.1 --port 8732
 Restart=always
-WorkingDirectory=/home/gian/agfarms/biophysics-phd-review/tools_api
+WorkingDirectory=~/agfarms/biophysics-phd-review/tools_api
 # linger already on; auto-start at boot
 ```
 - Host nginx vhost `research-tools.agfarms.dev` → `127.0.0.1:8732`, Let's Encrypt via
