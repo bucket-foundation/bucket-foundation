@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import CanonGlobeMount from "@/app/canon/CanonGlobeMount";
+import ScrollReveal from "@/components/ScrollReveal";
 
 // /research-os, Research OS for K-12 (beads ros-01 to ros-10). The
 // production-reaching path for the L1 rung of the depth ladder: a student
@@ -79,7 +80,7 @@ const TOOLS: { name: string; body: string }[] = [
 export default function ResearchOsPage() {
   return (
     <main className="stone-bone relative grain">
-      <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
+      <div className="max-w-[1100px] mx-auto px-4 md:px-6 pt-14 md:pt-32 pb-6">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           § Research OS · K-12
         </div>
@@ -88,11 +89,10 @@ export default function ResearchOsPage() {
           <span className="inlay-gold">organize.</span>
         </h1>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          A research workspace for school-age learners over the same knowledge
-          graph the Academy teaches from. The AI has four tools and no pen: it
-          finds sources, quotes them with provenance, checks a claim against a
-          quote, and organizes the evidence. The learner writes every sentence.
-          Free to any learner, anywhere.
+          A research workspace over the same knowledge graph the Academy
+          teaches from, free to any learner, anywhere. Where students of all
+          levels access, become aware of, understand, internalize, and
+          produce knowledge.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
@@ -110,17 +110,28 @@ export default function ResearchOsPage() {
             Read the plan ↗
           </a>
         </div>
-        <div className="carved-rule max-w-xs mt-10" />
       </div>
 
-      <div className="mt-4 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] max-w-[1100px] mx-auto px-4 md:px-6">
-        § find sources, over the same canon this tool searches
-      </div>
-      <div id="globe-capture" className="w-full max-w-[1400px] mx-auto px-4 md:px-6 py-6">
-        <CanonGlobeMount branches={[]} />
-      </div>
+      {/* Hero visual: the real canon search globe, the same live component
+          (with real search) the homepage mounts, sized to match. Its own
+          error boundary degrades to the static SVG globe when WebGL is
+          unavailable, the same fallback /canon uses. */}
+      <ScrollReveal className="relative z-10">
+        <div className="w-full px-2 sm:px-4 md:px-6">
+          <div className="text-center small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-3">
+            § find sources, over the same canon this tool searches
+          </div>
+          <div id="globe-capture" className="max-w-[1800px] mx-auto">
+            <CanonGlobeMount
+              branches={[]}
+              containerClassName="relative w-full mx-0 md:h-[88vh] md:max-h-[1000px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
+            />
+          </div>
+        </div>
+      </ScrollReveal>
 
       <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
+        <div className="carved-rule max-w-xs mb-12" />
         <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
           § five states per concept
         </div>

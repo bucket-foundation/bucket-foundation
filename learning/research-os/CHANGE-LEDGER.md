@@ -2985,3 +2985,20 @@ Review of PR #76 (preregistration revision 1, Iteration 25 above), docs-only, as
 - Gates: nothing under `src/` or `public/` changed; the branch already carries `origin/main` (merged mid-pass by the PR's own author; confirmed fast-forward-clean from this worktree). `git diff --name-status` against `origin/main` shows every touched file as `M`, no deletions. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and this file; `agf-lint-voice-src check` clean on the one touched source file.
 
 No fix needed against any of the above. Merged as-is.
+
+## Research OS hero: the real canon globe
+
+Branch `feat/site-reform-education-reposition` (PR #11, worktree `.ros-worktrees/site-globe-demo`), after merging `origin/main` forward (a JSONL conflict in `BEADS-PENDING.jsonl` resolved by keeping both sides' pending-bead lines, `src/app/research-os/page.tsx` auto-merged clean). Founder direction, verbatim intent: the Research OS page mockup should use the real canon search globe component, and the hero subtext should be about access, awareness, understanding, internalization, and production, students of all levels reaching each in turn.
+
+### Edited
+
+- `src/app/research-os/page.tsx`: the hero's own visual is now `CanonGlobeMount`, the same live component (with real search) `/canon`, `/canon/search`, and the homepage mount, sized to match the homepage's `containerClassName` (`md:h-[88vh] md:max-h-[1000px] md:pr-[440px]`, full-bleed instead of the component's default `max-w-7xl` card) rather than the smaller default card the prior wip commit (`7383dcf33`) had used. Wrapped in `ScrollReveal`, matching the pattern `src/components/Presentation.tsx` uses for the same component. No hand-drawn canvas globe existed anywhere on this page, checked with `git log --follow -- src/app/research-os/page.tsx` across every commit that ever touched the file and a repo-wide `globe`/`canvas` grep, so `_intake/research-os-k12/DELETIONS.md` gets no new entry, nothing was removed.
+- Hero subtext rewritten from a sentence about the four AI tools (redundant with the hero's own "find. quote. check. organize." headline and the Tools section further down the page) to two sentences naming the workspace and the five learner states a student moves through, built on the founder's own phrasing. `STATES`, its five names and their meanings, is untouched and still reads consistent with this file's own `LEARNER-STATE-MODEL.md`.
+- `_intake/research-os-k12/CHANGELOG.md`: matching entry.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os` builds static, 598 B page / 126 kB First Load JS, no new route errors): all clean. `npx eslint src/app/research-os/page.tsx`: clean, no warnings. `agf-lint-voice-src check src/app/research-os/page.tsx`: 0 violations.
+- Degrade-on-no-WebGL behavior stays inside `CanonGlobeMount`'s own `GlobeErrorBoundary` and `StaticCanonGlobe` fallback, untouched by this pass, so `/research-os` degrades the same way `/canon` does.
+- Scope held to `src/app/research-os/page.tsx`; no nav, `Header.tsx`, or homepage hero (`Presentation.tsx`) change, per the founder's direction to leave the rest of PR #11's repositioning as is.
+- Leak scan of this pass's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs.

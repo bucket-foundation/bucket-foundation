@@ -2330,3 +2330,46 @@ Full account in `learning/research-os/CHANGE-LEDGER.md`'s matching iteration.
 Review of PR #76 (preregistration revision 1, docs-only) as methods reviewer. Recomputed the naive n-per-arm formula (n = 2(z_alpha/2 + z_beta)^2/d^2, alpha = 0.025 two-sided, power = 0.80) by hand: 76/119/211 at d = 0.5/0.4/0.3, and the cluster-corrected figures (DEFF = 1 + (m_bar-1) x ICC, m_bar = 25) at 262/405/691 for ICC 0.05/0.10/0.20, both matching the draft exactly, no drift from the prior review's own figures. Checked the three meta-analytic anchors (Furtak and colleagues 2012, Lazonder and Harmsen 2016, Chen and Yang 2019) against their own intake cards: pooled effects and moderators match on all three; Furtak's card states no explicit population descriptor; the table's "K-12 and undergraduate science students" phrase is this pass's own addition, noted as a minor finding, and the pooled d = 0.50 the n-table draws from stays accurate. Confirmed the calibration outcome's fields (`learnerConfidence`, `sourcePrediction`, `predictionCorrect`, `forcingEnabled`) and the provenance-flags fields (`source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`) are real, typed fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` and real columns in `supabase/migrations/20260910060000_research_os_production_guard.sql`, both merged to `main`. Confirmed the Required participation and misconduct risk subsection cites Grinnell and colleagues (2020) and keeps Production submission opt-in per `PLAN-REVISION-3.md` decision 6. Confirmed the Revision history section exists and every replaced sentence (both files' header status lines, the effect-size paragraph, the naive-n table, the diversity-outcome judge cell, the Exploratory analyses sentence, `INSTRUMENTS.md`'s intro and closing section) is preserved verbatim in `DELETIONS.md`. `RESEARCH-QUESTIONS.md`'s diff carries no removed lines, append-only confirmed. No partner school, IRB approval, PI, or host institution claimed anywhere in the touched files; both existing denials (`PREREGISTRATION-DRAFT.md`'s opening paragraph and its Registration timing section) stand unchanged.
 
 Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Gates: nothing under `src/` or `public/` changed; branch already carries `origin/main` (merged mid-pass by the PR's own author, confirmed fast-forward-clean here); no file deleted, `git diff --name-status` shows every touched file as `M`. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and `CHANGE-LEDGER.md`; `agf-lint-voice-src check` clean on the one touched source file. No fix needed; merged as-is.
+
+## 2026-09-11: Research OS hero, the real canon globe
+
+Branch `feat/site-reform-education-reposition` (PR #11, worktree
+`.ros-worktrees/site-globe-demo`). Founder direction: the Research OS page
+mockup should mount the real canon search globe, the same live component
+`/canon` and the homepage run, and the hero subtext should center on the
+five learner states, access, awareness, understanding, internalization, and
+production, as something every student can reach.
+
+### Edited
+
+- `src/app/research-os/page.tsx`: `CanonGlobeMount` (already imported by the
+  branch's prior wip commit) moved from its own section below the hero into
+  the hero block itself, wrapped in `ScrollReveal` and given the same
+  `containerClassName` sizing the homepage mount uses in
+  `src/components/Presentation.tsx` (`md:h-[88vh] md:max-h-[1000px]
+  md:pr-[440px]`, full-bleed width instead of the component's default
+  `max-w-7xl` card). No canvas or hand-drawn globe existed on this page to
+  remove, confirmed by `git log --follow` on the file and a repo-wide grep
+  for `globe`/`canvas`: the only prior mount was the same live
+  `CanonGlobeMount`, already in place below the hero, not a stand-in.
+  Degrade-on-no-WebGL behavior is unchanged, it lives inside
+  `CanonGlobeMount`'s own `GlobeErrorBoundary` and static-globe fallback,
+  the same code path `/canon` and `/canon/search` run.
+- Hero subtext replaced: from a sentence enumerating the four AI tools (find,
+  quote, check, organize, already covered by the hero's own headline and the
+  Tools section below) to two sentences built on the founder's words,
+  naming the workspace and the five states a learner moves through. The
+  `STATES` array's five names (`Access`, `Awareness`, `Understanding`,
+  `Internalization`, `Production`) and their definitions are untouched, and
+  match `learning/research-os/LEARNER-STATE-MODEL.md`'s section 1 table on
+  main.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os` builds
+  static, 598 B page / 126 kB First Load JS): all clean. `npx eslint
+  src/app/research-os/page.tsx`: clean. `agf-lint-voice-src check`: 0
+  violations.
+- No PR nav, homepage hero, or Header change; scope held to
+  `src/app/research-os/page.tsx` per the founder's direction to leave the
+  rest of PR #11's repositioning as is.
