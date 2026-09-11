@@ -1,5 +1,98 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, LLM-assisted edge inference and ros-11's TIMELINE.md label
+
+Branch `feat/ros-llm-edge-inference`, worktree `.ros-worktrees/infer`.
+Closes `BEADS-PENDING.jsonl`'s `ros-13` LLM-assisted-edge-inference item
+and the `ros-11` TIMELINE.md remainder.
+
+### Added
+
+- `src/lib/research-os/inference/calibration.ts`: `llmSelfReportedToConfidence`
+  (self-reported model confidence shrunk onto `infer.ts`'s own
+  `INFERRED_CONFIDENCE_MIN`..`MAX` band, 0.3 to 0.65, per
+  `PLAN-REVISION-2.md` section 2c's policy) and `combineAgreement` (task
+  item 2's two-prompt agreement rule: both "no" drops the pair, both "yes"
+  keeps the lower shrunk confidence, a split verdict still proposes at a
+  fixed `DISAGREEMENT_CONFIDENCE` of 0.4, always below
+  `LOW_CONFIDENCE_THRESHOLD`).
+- `src/lib/research-os/inference/prompts.ts`: two independently-phrased
+  strict yes/no prerequisite prompts plus `promptHash` (sha256, 16 hex
+  chars).
+- `src/lib/research-os/inference/propose.ts`: `buildCandidatePairs`
+  (lexical proposals plus a deterministic, capped tier-adjacent sample),
+  `judgePair`/`proposeLlmEdges` (dependency-injected `ModelCaller`, no
+  direct `llm.ts` import, so tests stub it with no network and no key),
+  `sanitizeJudgment` (a malformed model response downgrades to a safe
+  "no," matching `grounding.ts`'s own fail-safe posture).
+- `src/lib/research-os/inference/decide.ts`: `decideEdgeProposal`, the
+  pure approve/reject transition (0.95 confidence, `confidence_source
+  "teacher"` on approve; idempotent on an already-decided proposal),
+  mirroring `stages.ts`'s `onTeacherReview` shape.
+- `scripts/research-os/ingest/infer-edges-llm.ts`: the CLI, dry run only
+  (never writes `graph.edges`), wires the real provider via `llm.ts`'s
+  `selectProvider`/`callGroundedModelWithUsage`, writes
+  `review-list.json` (`llm_proposed_edge` items) and, when Supabase is
+  configured, best-effort queues each proposal into a new
+  `graph.edge_proposals` table.
+- `scripts/research-os/ingest/lib/build-node-pool.ts`: the node-pool
+  assembly factored out of `infer-edges.ts` so both CLI proposers scan
+  the identical population.
+- `supabase/migrations/20260910050000_research_os_edge_proposals.sql`:
+  `graph.edge_proposals`, the review queue, RLS enabled with no
+  client-facing policy (service-role only, gated by `reviewer.ts`).
+- `src/app/api/research-os/edges/route.ts` and
+  `src/app/research-os/edges/page.tsx`: the `/research-os/edges` review
+  UI, gated to `RESEARCH_OS_REVIEWER_EMAILS`, mirroring
+  `/research-os/review`'s own auth and layout pattern.
+- `src/lib/research-os/rebuild-ancestor.ts`: `rebuildPrereqAncestorForBranch`,
+  factored out of `scripts/rebuild-prereq-ancestor.ts` so the edges
+  route's approve action rebuilds `graph.prereq_ancestor` in-process
+  (task item 4) instead of shelling out.
+- Test files: `scripts/research-os/ingest/test-ingest-infer-llm.ts` (23
+  tests, calibration/agreement/candidate-selection/proposal assembly, all
+  against a stubbed model), `scripts/test-research-os-edges-review.ts` (9
+  tests, the decision transition plus the reviewer-gate 403 case and the
+  migration's own shape), `scripts/test-research-os-rebuild-ancestor.ts`
+  (3 tests, a fake fluent Supabase client, no network).
+- `tools/hypothesis-engine/hte/export.py`: `write_views`'s `TIMELINE.md`
+  now carries the same "Elo is unvalidated" note
+  `canon_writeback.render_index` already gives its own hypothesis-card
+  index, plus an "Elo (unvalidated)" bin-table column header (`ros-11`'s
+  named remainder: "the base campaign export... carries no such label").
+  One new test, `test_write_views_labels_elo_as_unvalidated`.
+
+### Edited
+
+- `scripts/research-os/ingest/infer-edges.ts`: node-pool assembly moved to
+  `lib/build-node-pool.ts`, no behavior change (re-run against the live
+  517-node/8-branch corpus still proposes the same 36 edges).
+- `scripts/rebuild-prereq-ancestor.ts`: thinned to an env-var read plus a
+  call into `rebuild-ancestor.ts`'s new function.
+- `src/lib/research-os/ingest/types.ts`: `ReviewItemKind` gains
+  `llm_proposed_edge`.
+- `package.json`: new `ingest:research-os:infer-llm` script; three new
+  test files added to the `test:research-os` chain.
+- `learning/research-os/ROUTING.md`: new "LLM-assisted prerequisite-edge
+  inference" section (calibration, agreement, review flow), a new
+  `inferred_llm` confidence-source table row, and an updated `teacher`
+  row (0.95 on an edge-proposal approval, 1.0 on a resolved routing
+  flag).
+- `learning/research-os/INGESTION.md`: `llm_proposed_edge` added to the
+  review-list-contract table; the closing "what this slice does not do"
+  paragraph updated from "one shipped, one not" to both shipped.
+
+### Verified
+
+Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+`npm run test:research-os` (248/248 pass across all 20 chained test
+files), `next lint` on every touched TS/TSX file, `ruff check` on
+`export.py`/`test_export.py`, engine tests for the touched module
+(`pytest tools/hypothesis-engine/tests/test_export.py` 13/13,
+`tests/swarm/test_export_props.py` 6/6, full suite excluding `slow`
+green). `agf-lint-voice-src check` / `agf-lint-voice check` run on every
+touched file.
+
 ## 2026-09-10, PR #44 review pass
 
 Review of `docs/ros-plan-revision-2` (PR #44) in worktree `.ros-worktrees/r44`, docs-only.

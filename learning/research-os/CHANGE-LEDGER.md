@@ -2,6 +2,67 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## LLM-assisted edge inference and ros-11's TIMELINE.md label
+
+Date 2026-09-10. Branch `feat/ros-llm-edge-inference`, worktree
+`.ros-worktrees/infer`. Full account: `_intake/research-os-k12/CHANGELOG.md`,
+"2026-09-10, LLM-assisted edge inference and ros-11's TIMELINE.md label".
+
+### Added
+
+- `src/lib/research-os/inference/{calibration,prompts,propose,decide}.ts`,
+  `src/lib/research-os/rebuild-ancestor.ts`,
+  `scripts/research-os/ingest/infer-edges-llm.ts`,
+  `scripts/research-os/ingest/lib/build-node-pool.ts`,
+  `supabase/migrations/20260910050000_research_os_edge_proposals.sql`,
+  `src/app/api/research-os/edges/route.ts`,
+  `src/app/research-os/edges/page.tsx`,
+  `scripts/research-os/ingest/test-ingest-infer-llm.ts`,
+  `scripts/test-research-os-edges-review.ts`,
+  `scripts/test-research-os-rebuild-ancestor.ts`. See the CHANGELOG entry
+  for what each one does.
+
+### Edited
+
+- `scripts/research-os/ingest/infer-edges.ts`: node-pool assembly moved
+  to the new `lib/build-node-pool.ts`, behavior unchanged (verified: the
+  live corpus still yields 517 nodes, 36 proposals, identical to
+  `ros-03`'s own recorded figures).
+- `scripts/rebuild-prereq-ancestor.ts`: thinned to a CLI wrapper around
+  `rebuild-ancestor.ts`'s new `rebuildPrereqAncestorForBranch`.
+- `src/lib/research-os/ingest/types.ts`: `ReviewItemKind` gains
+  `llm_proposed_edge` (additive, no existing member changed).
+- `package.json`: new `ingest:research-os:infer-llm` script; three new
+  test files appended to the `test:research-os` chain.
+- `learning/research-os/ROUTING.md`: new `inferred_llm` confidence-source
+  table row, an updated `teacher` row, and a new "LLM-assisted
+  prerequisite-edge inference" section. Old `teacher` row text ("1.0 (a
+  reviewer's own confirmation) | a class-view reviewer action on a
+  flagged edge (ros-06, not yet built)") replaced with the two live paths
+  a `teacher` confidence now comes from (an edge-proposal approval at
+  0.95, or a resolved routing flag at 1.0); ros-06's class view has since
+  shipped, so "not yet built" no longer held either.
+- `learning/research-os/INGESTION.md`: `llm_proposed_edge` row added to
+  the review-list-contract table; the "what this slice does not do"
+  closing paragraph's "one shipped, one not" replaced with both shipped,
+  and its "(unbuilt, `BEADS-PENDING.jsonl`'s `ros-13` entry)" parenthetical
+  removed since it is no longer accurate.
+- `tools/hypothesis-engine/hte/export.py`: `write_views` gains the
+  "Elo is unvalidated" TIMELINE.md note and an "Elo (unvalidated)" bin
+  table column header (`ros-11`'s named remainder).
+
+### Verified
+
+Full account and gate results: `_intake/research-os-k12/CHANGELOG.md`'s
+matching entry. `BEADS-PENDING.jsonl` gains one status line closing
+`ros-13`'s LLM-assisted-edge-inference item and one closing `ros-11`'s
+one still-open named remainder, the base `TIMELINE.md` export's missing
+unvalidated-ranking label. `ros-11`'s other six PLAN.md section 10 items
+(a cross-family generator/judge code guard, a full-document-context
+check, a conflicting-evidence stress test, an understanding axis, an
+Allen-relations check, fixed-cadence calibration) stay open; this pass
+scoped to the one item task item 5 named.
+
 ## PR #44 review pass
 
 Date 2026-09-10. Review of `docs/ros-plan-revision-2` (PR #44), worktree `.ros-worktrees/r44`.
