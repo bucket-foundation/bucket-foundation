@@ -2,6 +2,171 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, PR #60 review
+
+- **Scope**: review pass over PR #60 (`feat/ros-11-engine-review-items`,
+  the "2026-09-10, ros-11 review items" entry below) before merge.
+  Leak scan clean (no keys, IPs, emails, home paths, or session URLs in
+  the diff). `make test`: 1116 passed, 18 deselected, 0 failed (1115 from
+  the PR plus one added here). `ruff check .` and `agf-lint-voice-src
+  check` clean on every file this pass touched.
+- **Fixed on the branch**: `tests/test_canon_writeback.py` gained
+  `test_write_back_refuses_without_signoff_or_understanding`, exercising
+  both `write_back` no-partial-state gates (signoff, understanding)
+  together in one test, the coverage gap the PR's own signoff test and
+  understanding-artifact tests left between them (each gate had its own
+  test; nothing showed the two refuse independently in the same call
+  chain, or that a blank signoff never reaches the understanding step at
+  all).
+- **Filed, not fixed (exceeds a 30-minute review-fix budget)**: `hte.
+  evidence.EvidenceSpan.__post_init__` checks only internal consistency,
+  `char_start >= 0` and `char_end >= char_start`, never against `doc_id`'s
+  own stored document length; `hte.corpus.Source` carries no document
+  text or length field to check against, so a span pointing past its own
+  document's end passes today. `PLAN.md` section 10's full-document-
+  evidence-auditability ask (item 4, the one `hte.canon_writeback.
+  _evidence_line`/`_evidence_detail` expose `doc_id`/`char_start`/
+  `char_end` for) reads as validated only in the sense that the fields
+  are present and internally consistent, not that they are checked
+  against real document bounds. TODO left at `hte/evidence.py`'s own
+  `__post_init__`; follow-up bead filed in `BEADS-PENDING.jsonl`
+  (`bkt-hte-evidence-span-doc-length`), needs a document-length store
+  keyed by `doc_id` before real validation is possible.
+- **Verified, no change needed**: the ranking label (`hte.holdout_
+  ledger.ranking_status`) is driven by ledger state with `MIN_VERIFIED_
+  FOR_LABEL = 20` documented in that module's own top docstring and
+  tests for both the unvalidated and validated states; `hte/export.py`'s
+  hardcoded "Elo is unvalidated" string is a documented floor (`BEADS-
+  PENDING.jsonl`'s own follow-up entry), never overstates validation
+  either way; the holdout ledger stores hypothesis statements and engine-
+  internal ids only, no learner text; the novelty check runs before any
+  file write and records a score plus the closest match, not gating,
+  so it never blocks (silently or otherwise); `learning/research-os/
+  ENGINE-BRIDGE.md` documents the `graph.nodes`/outbox bridge
+  (`EngineHypothesisInput`, a different data flow, `campaign_research_
+  os.py`'s export), carries no `understanding`/`elo_status`/envelope
+  field from `hte.canon_writeback`'s own contract, so this PR's write-
+  back change touches nothing that file covers, confirmed by grep, not
+  left unchanged on the PR's own say-so alone.
+
+## 2026-09-10, ros-11 review items
+
+- **Scope**: `bkt-hte-ros-11-review-items` (bead `ros-11`), `learning/
+  research-os/PLAN.md` section 10 against `BEADS-PENDING.jsonl`'s own
+  status line, "signoff enforced by PR #43, ranking label done by PR
+  #54, cross-family independence has no current claim; six other
+  section 10 items remain open." Of those six, four landed this branch:
+  a persisted, append-only ranking-holdout ledger and hit-rate report
+  (`hte.holdout_ledger`, `MIN_VERIFIED_FOR_LABEL = 20`, documented in
+  that module's own top docstring) backing the section-10 item 3
+  ranking label PR #54 wired the export surface for; full-document
+  evidence auditability (item 4), `hte.canon_writeback._evidence_line`/
+  `_evidence_detail` now carry `doc_id`/`char_start`/`char_end`
+  alongside the quote and locator, additive in the feed402 envelope
+  (`supports_detail`/`refutes_detail`, next to the existing id lists); a
+  lexical novelty check against `bucket-canon/` before write-back
+  (`hte.novelty`, not itself a section 10 line but a direct answer to Si,
+  Yang, and Hashimoto 2024's low-output-diversity finding); and the
+  understanding axis (item 6), `hte.roles.understanding`, a
+  plain-language explanation per candidate marked `generated_by: model`
+  everywhere it is stored, `hte.canon_writeback.write_back` refusing the
+  whole write when any candidate's own explanation comes back blank
+  (Messeri and Crockett 2024, Krenn and others 2022). Left open, per the
+  task's own four-item stop: item 5 (stress-test fusion on conflicting
+  evidence, Yager 1987), item 7 (the thirteen Allen interval relations
+  check on the address scheme, Allen 1983), item 8 (CASP-style
+  calibration cadence).
+- **Engine health**: `make test` green on `main` before any change,
+  1084 passed, 18 deselected. No defect.
+- **New tests**: `tests/test_holdout_ledger.py`, `tests/test_novelty.py`,
+  plus new cases in `tests/test_canon_writeback.py`, `tests/test_roles.py`,
+  `tests/test_fakellm.py`, `tests/test_cli.py` (`hte holdout-ledger
+  report`/`verify`). `make test` after: 1115 passed, 18 deselected, 0
+  failed.
+- **Gates**: `ruff check .` clean on every file this pass touches (32
+  pre-existing errors elsewhere in the tree, unchanged); `agf-lint-
+  voice-src check` clean on every file this pass authored or edited.
+  No `src/`/`public/` file touched, so no `npm`/`tsc`/`next lint` gate
+  applies.
+- **Write-back contract**: `build_envelope`'s `data` dict gained
+  `understanding`, `novelty`, `elo_status_detail`, `evidence.
+  supports_detail`/`refutes_detail`, additive next to every existing
+  field; `render_card`/`render_index`/`build_envelope` all now require
+  `understanding`/`novelty` arguments (`write_back`'s own callers,
+  `hte.pipeline`, updated; a direct caller of the lower-level renderers
+  needs updating too). `learning/research-os/ENGINE-BRIDGE.md` reviewed
+  and left unchanged: it documents the `graph.nodes`/outbox bridge
+  between the Next.js app and the engine, not `hte.canon_writeback`'s
+  own card/envelope contract, and this pass touches none of what it
+  covers.
+- **Blocked**: nothing.
+
+## 2026-09-10, PR58 review, and queue wrap-up (PR42/48/49/51/58)
+
+- **PR #58 reviewed and merged** (`feat/hte-sacred-history-data`,
+  "sacred-history dating, transmission edges, slot alignment for
+  build-history"), squash commit `138c227df`, worktree
+  `.ros-worktrees/r58` per the review protocol.
+- **Leak scan**: full diff against `origin/main` clean, no keys, IPs,
+  non-public hostnames, personal emails beyond `gianyrox@gmail.com`,
+  PII, absolute `/home/gian` paths, or Claude session URLs.
+- **Governance**: no canon write path, no sign-off surface, no
+  ranking/Elo output touched, not applicable to this PR.
+- **Correctness**: every non-timeline-dated tradition (`greek`,
+  `mesopotamian`) falls back to a documented, cited external anchor
+  (George 2003, West 1985) rather than a fabricated date; every
+  correlation interval is derived (overlap or union of the two sides'
+  own tradition spans) and carries `uncertainty: uniform`, never a
+  fabricated `POINT`. Stemma edges read a future `direction` field when
+  present and fall back to a mutual undirected pair, matching every
+  correlation this bundle currently ships. The new T3/T4 tier split and
+  the three new ground-truth-matching correlations close this file's
+  own zero-coverage finding (`docs/BUILD-HISTORY.md`, "Data fixes").
+- **Merge**: `origin/main` clean, no conflicts (this PR's own files,
+  `sacred_history.py`/its test/its data file/`BUILD-HISTORY.md`, had no
+  overlap with anything else on `main`).
+- **Gates**: `make test` 1172 passed, 18 deselected. `ruff check` clean.
+  `agf-lint-voice check` / `agf-lint-voice-src check`, 0 violations.
+
+**Queue wrap-up**, the five-PR review-and-merge pass this tick covered:
+- **#42** (`feat(hte): provenance index and purge`): reviewed and
+  merged, see "2026-09-10, PR42 review" below.
+- **#48** (`feat(hte): coverage diagnostics and generation coverage
+  fixes`): merged by a concurrent session (squash `582f96b0b`) before
+  this session's own push landed; this session's review found and fixed
+  one real issue (8 unused module-level imports plus 4 shadow-
+  redefinitions `hte/cli_synth.py` picked up, ruff F401/F811) that did
+  NOT make it into the merged squash, since the other session won the
+  race. Flagged here rather than silently dropped: `hte/cli_synth.py`
+  on `main` as of `582f96b0b` still carries the unused
+  `calibrate`/`diagnostics`/`Constants`/`Corpus`/`education_atlas`/
+  `literature`/`production`/`quantum_history` module-level imports,
+  each `_build_*_subcorpus` function already re-importing its own
+  module locally. Low severity (ruff-only, no behavior change), left
+  for a future tick or a drive-by fix.
+- **#49** (`fix(hte): pipeline stage cascade rules, writeback CLI
+  tests`): this session found the same High-severity gap a concurrent
+  session's own review found independently (this branch forked before
+  PR #43 added the fail-closed named sign-off to `canon_writeback.
+  write_back`/`pipeline.py`, so every writeback call/test/CLI path this
+  PR added carried no `signoff`), and had a fix in progress (merge
+  conflict resolved keeping both the cascade restructuring and the
+  signoff gate, three tests updated to pass a signoff, a new CLI-level
+  `--signoff` early-validation check plus its own refusal test, mirror
+  of the existing `--branch` check) when the other session's own fix
+  landed first as PR #62 and closed #49 as superseded. No merge
+  happened from this session's side; #62 is not in this tick's own
+  review scope.
+- **#51** (`docs(hte): record FINDING-2026-09-10-501`): already merged
+  before this session started (`mergedAt: 2026-09-11T01:32:48Z`, a
+  different tick of this same loop per `docs/PRODUCTION-SCHEMA-
+  ALIGNMENT.md`'s own history); skipped, nothing to review.
+- **#58**: reviewed and merged this tick, above.
+
+Final engine test count this tick's own last gate run (`make test` on
+`review/pr58` post-merge, `origin/main` through PR #58 inclusive):
+**1172 passed, 18 deselected.**
+
 ## 2026-09-10, PR42 review
 
 - **PR #42 reviewed and merged** (`feat/hte-purge`, "provenance index and
