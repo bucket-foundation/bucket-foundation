@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "note": "Fixture registry for test_compute_diff_flags_an_unregistered_corpus: identical to registry-base.json except question 10 names a corpus no live loader registers."
+  },
+  "1": {
+    "question_text": "Does alpha cause beta? Study: alpha study.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An alpha-only study, no engine dependency.",
+    "aliases": []
+  },
+  "2": {
+    "question_text": "Does gamma predict delta? Study: gamma study.",
+    "status": "needs_adapter",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": "a gamma sensor this package does not ship.",
+    "note": "Needs a gamma sensor this package does not ship.",
+    "aliases": []
+  },
+  "10": {
+    "question_text": "Does the parser assign item 10 its own two-digit id? Study: index study.",
+    "status": "runnable",
+    "corpora": ["not-a-real-corpus"],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "Runs today against a corpus this fixture never registers.",
+    "aliases": []
+  },
+  "11": {
+    "question_text": "Does eleven follow ten by the file's own position? Study: eleven study.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An ordering study, no engine dependency.",
+    "aliases": []
+  }
+}

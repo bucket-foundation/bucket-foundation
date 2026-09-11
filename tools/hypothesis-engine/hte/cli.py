@@ -1,4 +1,4 @@
-"""`hte` console script: `campaign run`, `calibrate`, `views`.
+"""`hte` console script: `campaign run`, `calibrate`, `views`, `question-map`.
 
 stdlib `argparse` only, matching this package's own no-dependencies
 contract (`pyproject.toml`).
@@ -10,7 +10,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import calibrate, export, runner
+from . import calibrate, export, question_map, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
 from .corpus import quantum_history
@@ -96,6 +96,16 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_question_map(args: argparse.Namespace) -> int:
+    # `_CORPUS_LOADERS` here (not `runner`'s own copy) is the more complete
+    # registry: it carries `research-os` too, registered only at call time
+    # in `runner`'s own dict per that dict's own comment above.
+    corpus_names = set(_CORPUS_LOADERS)
+    if args.write:
+        return question_map.cmd_write(corpus_names=corpus_names)
+    return question_map.cmd_check(corpus_names=corpus_names)
+
+
 def _cmd_views(args: argparse.Namespace) -> int:
     run_dir = Path(args.run_dir)
     views_path = run_dir / "timeline.json"
@@ -149,6 +159,21 @@ def build_parser() -> argparse.ArgumentParser:
     views_p = sub.add_parser("views", help="re-render TIMELINE.md for a run directory")
     views_p.add_argument("run_dir")
     views_p.set_defaults(func=_cmd_views)
+
+    question_map_p = sub.add_parser(
+        "question-map",
+        help="sync docs/RESEARCH-OS-INTEGRATION.md's question map against learning/research-os/RESEARCH-QUESTIONS.md",
+    )
+    question_map_group = question_map_p.add_mutually_exclusive_group()
+    question_map_group.add_argument(
+        "--check", action="store_true",
+        help="exit non-zero if the plan and hte/data/question-map.json have drifted (default)",
+    )
+    question_map_group.add_argument(
+        "--write", action="store_true",
+        help="rewrite docs/RESEARCH-OS-INTEGRATION.md's generated question-map section",
+    )
+    question_map_p.set_defaults(func=_cmd_question_map)
 
     return parser
 
