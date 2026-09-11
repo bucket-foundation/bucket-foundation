@@ -1,5 +1,97 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10: literature corpus promotion pass two
+
+Branch `intake/ros-canon-promotion-2`. Thirteen more records from
+`_intake/research-os-k12-literature/` promoted, screened against all 117
+cards excluding the six pass-one promotions (PR #9,
+`intake/ros-canon-promotion`).
+
+### Added
+
+- `bucket-canon/07-mind/curiosity-and-motivation/` (new dossier): four
+  canon-tier records (Loewenstein 1994; Gruber, Gelman, and Ranganath
+  2014; Deci and Ryan 2000; Gneezy and Rustichini 2000), each run through
+  `tools/canon-pipeline/intake.py --min-score 70` and re-verified
+  idempotent across two re-runs (`added=0 kept=4 changed=False` both
+  times).
+- `bucket-canon/07-mind/cognition-and-automation/` (new dossier): one
+  canon-tier record (Bainbridge 1983), same convergence check
+  (`added=0 kept=1 changed=False` both re-runs).
+- `bucket-canon/04-information/information-foraging/` (new dossier): one
+  canon-tier record (Pirolli and Card 1999), same convergence check
+  (`added=0 kept=1 changed=False` both re-runs), placed in
+  `04-information/` rather than `07-mind/` per the task brief and a
+  boundary-call note added to `04-information/README.md`.
+- `bucket-canon/07-mind/sub-outcomes/education/`: seven more outcome-tier
+  records added to the existing dossier, five AI-tutoring and
+  generative-AI-in-learning RCTs and field evaluations depending on the
+  Roediger and Karpicke 2006 foundation (Kestin et al. 2025; Bastani et
+  al. 2025; Wang et al. 2024, Tutor CoPilot; De Simone et al. 2025,
+  Nigeria) or the Sparrow, Liu, and Wegner 2011 foundation (Kosmyna et
+  al. 2025), and two human-AI complementarity meta-analyses depending on
+  the newly promoted Pirolli and Card 1999 information-foraging
+  foundation (Vaccaro, Almaatouq, and Malone 2024; Bansal et al. 2021).
+- `bucket-canon/TAXONOMY_NOTES.md`: one new open question, whether the two
+  human-AI complementarity meta-analyses need a dedicated
+  `sub-outcomes/human-ai-collaboration/` home instead of sharing
+  `sub-outcomes/education/`; not resolved, both records placed in the
+  existing folder with a pointer.
+- `provenance_signoff: "pending: gianyrox"` on every record this pass
+  promotes, and backfilled onto the ten records pass one promoted
+  (`07-mind/memory-systems/`'s three canon records, one of which,
+  Scoville and Milner 1957, predates PR #9 entirely, seeded 2026-05-19,
+  and `sub-outcomes/education/`'s four pass-one outcome records), per the
+  ros-11 governance rule: a named human founder is the
+  pending approver on every canon or outcome record, and no sign-off has
+  happened yet.
+- `CANON-INGESTION-INDEX.md`: a dated table of the thirteen promotions.
+
+### Edited
+
+- Thirteen intake cards marked `status: promoted` with a `promoted_to`
+  pointer (and, for the seven outcome-tier cards, a
+  `depends_on_foundation` pointer) and a canon-or-outcome-record callout
+  in the body; claim text unchanged in all thirteen.
+- `_intake/research-os-k12-literature/README.md`: index table status and
+  tier columns updated for the thirteen rows, plus a new section
+  recording the pass.
+- `bucket-canon/07-mind/README.md`, `bucket-canon/04-information/README.md`:
+  one short addition each, naming the new subfolders outside the
+  originally proposed list.
+- `bucket-canon/07-mind/sub-outcomes/education/README.md` and
+  `CANON_INDEX.md`: extended scope line, dependency convention, and
+  outcome-entries table for the seven new records.
+- `bucket-canon/07-mind/memory-systems/CANON_INDEX.md`: one line noting
+  the signoff backfill.
+
+### Removed
+
+None.
+
+### Verified
+
+- `tools/canon-pipeline/intake.py` run twice on each of the three new
+  canon dossiers: `curiosity-and-motivation` (`added=4` then `added=0
+  kept=4 changed=False` twice), `cognition-and-automation` and
+  `information-foraging` (`added=1` then `added=0 kept=1 changed=False`
+  twice each). `07-mind/memory-systems` re-run after the signoff backfill
+  also stayed `added=0 kept=3 changed=False`.
+- No file under `src/` or `public/` is touched by this pass, so no
+  `npm run build` gate applies to it. `canon-primary.ts` walks
+  `bucket-canon/<branch>/<concept>/primary-papers.yaml` one level deep;
+  the three new canon dossiers sit at that depth and are picked up
+  without code changes, `sub-outcomes/education/` sits two levels deep
+  and stays off the served canon surface, unchanged from the pass-one
+  convention.
+- `.github/workflows/feed.yml` (`canon-feed`) runs on push to `main` and
+  regenerates `feed.json`/`feed.xml` from the git diff via
+  `tools/feed/parse.py`; this pass does not hand-edit either file, the
+  bot commits its own events after merge.
+- `public/llms.txt` enumerates canon branches, not individual entries,
+  and routes agents to the live `/api/research` endpoint; no edit needed
+  for new DOI-backed records.
+
 ## 2026-09-10, PR #44 review pass
 
 Review of `docs/ros-plan-revision-2` (PR #44) in worktree `.ros-worktrees/r44`, docs-only.
@@ -1232,6 +1324,130 @@ file content. No redactions were needed.
 - Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
   `npm run test:research-os` (191/191 pass), `next lint` on every touched
   file: all clean.
+
+## 2026-09-10, PR #45 review pass
+
+Strict review of PR #45 (`intake/ros-canon-promotion-2`, canon intake pass
+two) before merge, in an isolated worktree per the review protocol.
+
+Leak scan on the full diff against `origin/main`: no API keys, `.env`
+contents, IPs, non-public hostnames, personal emails other than
+`gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in
+file content. Grep hits on DOI substrings (`10.1037/0033-2909.116.1.75`
+read as an IP-shaped or phone-shaped string by a naive regex) were
+confirmed false positives against the surrounding context. No redactions
+were needed.
+
+### Fixed
+
+- `src/lib/canon-primary.ts`: `loadPrimaryPapers()` served every record
+  under `bucket-canon/<branch>/<concept>/primary-papers.yaml`, including
+  the 23 records this PR marks `provenance_signoff: "pending: gianyrox"`,
+  with no check of that field. The `/api/research` route builds its
+  paid-cite envelope (`citation`, `cite.price_usd`, `canon_tier: "canon"`,
+  a real DOI and CC-BY-4.0 license) straight from `rankPrimary()`'s output,
+  so a pending record was one matching query away from being served as
+  approved, citeable-for-pay canon before a human ever signed off on it.
+  Added `isPendingSignoff()` (true when `provenance_signoff` starts with
+  `pending`, false for a record with no such field, since the rule does
+  not reach backward past pre-ros-11 canon) and filtered on it inside
+  `loadPrimaryPapers()`, the one loader both the envelope builder
+  (`api/research/route.ts`) and the Research OS canon importer
+  (`research-os/ingest/canon.ts`) read from. A pending record now falls
+  out of ranking entirely; a matching query falls through to transcript
+  candidates or the "no canon match" path instead. New test:
+  `scripts/test-canon-primary-signoff.ts` (6 assertions: the predicate on
+  pending/approved/absent values, that `loadPrimaryPapers()` never leaks a
+  pending record from the real dossiers, and that a pre-ros-11 record with
+  no `provenance_signoff` field, `05-biophysics/mitochondria`, still
+  serves). Wired into `npm run test:research-os`.
+- `GOVERNANCE.md`: added a "Canon sign-off" subsection under Mission
+  documenting both write paths as one policy: `hte.canon_writeback`'s
+  fail-closed hard refusal on a missing or blank `signoff`, and
+  `tools/canon-pipeline/intake.py`'s pending-placeholder path, now backed
+  by the `isPendingSignoff` gate above so a pending record is excluded
+  from anywhere the site or Research OS reads approved canon from.
+
+### Verified, no change needed
+
+- The `/canon/[slug]` page's `BranchEntriesTable` reads only title, year,
+  and sub-folder from `CANON_INDEX.md` markdown tables via
+  `src/lib/canon-fs.ts`; it never reads `primary-papers.yaml` or
+  `provenance_signoff`, and its "mint as IP NFT" action is already
+  disabled. `/llms.txt` documents the protocol and the `/api/research`
+  endpoint, not individual DOI-backed entries, so it names no pending
+  record. Neither needed a code change.
+- Six foundation-tier records
+  (`07-mind/curiosity-and-motivation`,
+  `07-mind/cognition-and-automation`, `04-information/information-foraging`)
+  each state a principle with primary evidence and a DOI; all six DOIs
+  verified live against Crossref/OpenAlex, resolving to the intended
+  work. Seven outcome-tier records added to
+  `07-mind/sub-outcomes/education/` all carry `tier: OUTCOME` and name
+  their depended-on foundation. The two new dossier folders
+  (`CANON_INDEX.md`, `queries.txt`, `primary-papers.yaml`,
+  `primary-papers.bib`) follow the existing four-file convention.
+- `tools/canon-pipeline/intake.py --min-score 70`, run twice against each
+  of the four canon dossiers this pass touches
+  (`curiosity-and-motivation`, `cognition-and-automation`,
+  `information-foraging`, `memory-systems`): `added=0 changed=False` on
+  every one. (A stray run against `07-mind/sub-outcomes/education` with
+  the same foundation-tier flag rewrapped one comment line; reverted,
+  since that dossier is outcome-tier and out of this pass's own scope.)
+- `agf-lint-voice check` on every file this review touched: 0 violations.
+- Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (all files, 0 failures): all clean.
+
+## 2026-09-10, PR #45 finishing pass
+
+The prior review pass verified the pending-signoff filter, wrote the
+governance paragraph, pushed the fix commit, and stopped short of merging.
+This pass confirmed that work, brought the branch current, and merged.
+
+### Verified
+
+- `intake/ros-canon-promotion-2` already carried the reviewer's fix commit
+  (`fix(canon): gate pending-signoff records out of the paid-cite path`):
+  `isPendingSignoff()` filters inside `loadPrimaryPapers()`, the one loader
+  both `/api/research`'s feed402 paid-cite envelope and the Research OS
+  canon importer read from, so both consumers are gated at one call site.
+  No record renders without passing through this filter, so no separate
+  pending label is needed at either render surface.
+
+### Fixed
+
+- `origin/main` had moved three commits past the branch's last merge
+  (`e1efbda1b`, `5f26be63e`, `f7dd86a67`). Merged again; the only conflict
+  was an append-only collision in `BEADS-PENDING.jsonl` between this
+  branch's own ros-canon-promotion-2 entry and main's new ros-11 entry,
+  resolved by keeping both lines in sequence.
+
+### Verified, no change needed
+
+- `tools/canon-pipeline/intake.py --min-score 70`, run twice against the
+  three foundation-tier dossiers this pass's scope covers
+  (`curiosity-and-motivation`, `cognition-and-automation`,
+  `information-foraging`): `added=0 changed=False` on every run. Left
+  `sub-outcomes/education` alone per the prior pass's own note that it is
+  outcome-tier and out of scope.
+- Gates re-run post-merge: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (18 files, 0 failures), `agf-lint-voice check`
+  on every touched file: all clean.
+
+### Fixed, second round
+
+- `origin/main` moved two more commits while the first merge's gates were
+  running (PR #47, `ros-07 follow-up: consent gate wiring, profile page,
+  privacy actions, status band`). Merged again; three conflicts, all
+  resolved keeping both branches' work. `BEADS-PENDING.jsonl` and this
+  file: append-only collisions, kept both entries in sequence.
+  `package.json`'s `test:research-os` script: both branches added a test
+  to the chain (`scripts/test-canon-primary-signoff.ts` here,
+  `scripts/test-research-os-profile.ts` on main); merged to run all 19
+  scripts, both new ones included.
+- Gates re-run again post-second-merge: `npm ci`, `npx tsc --noEmit`,
+  `npm run build`, `npm run test:research-os` (19 files, 0 failures),
+  `agf-lint-voice check` on every touched file: all clean.
 
 ## 2026-09-10, ros-07 follow-up: consent gate wiring, profile page, privacy actions, status band
 

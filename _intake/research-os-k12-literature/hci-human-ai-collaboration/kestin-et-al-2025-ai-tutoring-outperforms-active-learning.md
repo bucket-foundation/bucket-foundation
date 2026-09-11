@@ -13,6 +13,10 @@ url: "https://doi.org/10.1038/s41598-025-97652-6"
 openalex_id: "https://openalex.org/W4411505840"
 branch: "hci-human-ai-collaboration"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-c3ad89ff9a59)"
+promoted_at: "2026-09-10"
+depends_on_foundation: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-0333f4a853f3, Roediger and Karpicke 2006)"
 why_it_matters: >
   A 2025 randomized classroom trial of AI tutoring against a live, research-based
   active-learning comparison, the closest existing evidence to what the planned three-arm
@@ -34,6 +38,14 @@ how_it_bears_on_research_os: >
 ---
 
 # AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting
+
+> **Promoted to outcome tier, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
+> `bkt-c3ad89ff9a59`, `canon_score` 60) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
+> Outcome tier, not canon: it reports an intervention or team-performance effect
+> size, RUBRIC E7, and depends on the foundation record named by
+> Roediger and Karpicke 2006. This file stays in place as the Research OS-specific reading;
+> the canon entry is the citeable record.
 
 A 2025 randomized classroom trial of AI tutoring against a live, research-based active-learning comparison, the closest existing evidence to what the planned three-arm study would need to beat or match with a constrained AI condition rather than an open-ended one.
 

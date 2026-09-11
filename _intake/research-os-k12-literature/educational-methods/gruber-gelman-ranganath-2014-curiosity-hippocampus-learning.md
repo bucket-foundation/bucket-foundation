@@ -11,6 +11,9 @@ url: "https://doi.org/10.1016/j.neuron.2014.08.060"
 openalex_id: "https://openalex.org/W2098036797"
 branch: "educational-methods"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml (id bkt-10b268b14f29)"
+promoted_at: "2026-09-10"
 why_it_matters: >
   Shows a state of high curiosity raises memory for the information that satisfied
   the curiosity and, alongside it, for unrelated material encountered during the same
@@ -35,6 +38,12 @@ how_it_bears_on_research_os: >
 ---
 
 # States of Curiosity Modulate Hippocampus-Dependent Learning via the Dopaminergic Circuit
+
+> **Promoted to canon, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` (id `bkt-10b268b14f29`, `canon_score` 75) and
+> `bucket-canon/07-mind/curiosity-and-motivation/CANON_INDEX.md`. This file stays
+> in place as the Research OS-specific reading of the paper; the canon entry is
+> the citeable record.
 
 Shows high-curiosity states raise memory for the curiosity-satisfying answer and, with
 it, for unrelated incidental material encountered nearby, linking the effect to
