@@ -1,5 +1,6 @@
 """`hte` console script: `campaign run`, `calibrate`, `views`,
-`holdout-ledger report`/`verify`, `question-map`, `purge`.
+`holdout-ledger report`/`verify`, `question-map`, `purge`,
+`predict register`/`resolve`/`report`.
 
 stdlib `argparse` only, matching this package's own no-dependencies
 contract (`pyproject.toml`).
@@ -11,7 +12,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import calibrate, diagnostics, export, holdout_ledger, purge as purge_mod, question_map, runner
+from . import calibrate, diagnostics, export, holdout_ledger, predict, purge as purge_mod, question_map, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
 from .corpus import quantum_history
@@ -177,6 +178,40 @@ def _cmd_purge(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_predict_register(args: argparse.Namespace) -> int:
+    kinds = tuple(k.strip() for k in args.kinds.split(",") if k.strip())
+    predictions = predict.register(args.run_dir, horizon=args.horizon_days, kinds=kinds, floor_u=args.floor_u, out=args.out)
+    by_kind: dict[str, int] = {}
+    for p in predictions:
+        by_kind[p.kind] = by_kind.get(p.kind, 0) + 1
+    print(f"{len(predictions)} prediction(s) registered to {Path(args.out) / 'ledger.jsonl'}: {by_kind}")
+    return 0
+
+
+def _cmd_predict_resolve(args: argparse.Namespace) -> int:
+    if args.corpus not in _CORPUS_LOADERS:
+        print(f"unknown corpus {args.corpus!r}, expected one of {list(_CORPUS_LOADERS)}", file=sys.stderr)
+        return 2
+    corpus = _CORPUS_LOADERS[args.corpus]()
+    report = predict.resolve(args.ledger, evidence_corpus=corpus, as_of=args.as_of)
+    print(json.dumps(
+        {k: v for k, v in report.to_dict().items() if k != "outcomes"},
+        indent=2, default=str,
+    ))
+    return 0
+
+
+def _cmd_predict_report(args: argparse.Namespace) -> int:
+    if args.corpus not in _CORPUS_LOADERS:
+        print(f"unknown corpus {args.corpus!r}, expected one of {list(_CORPUS_LOADERS)}", file=sys.stderr)
+        return 2
+    corpus = _CORPUS_LOADERS[args.corpus]()
+    predict.resolve(args.ledger, evidence_corpus=corpus, as_of=args.as_of)
+    resolutions_path = Path(args.ledger).parent / "RESOLUTIONS.md"
+    print(resolutions_path.read_text())
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="hte", description="History Hypothesis Engine")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -260,6 +295,29 @@ def build_parser() -> argparse.ArgumentParser:
     purge_p.add_argument("--public-root", default=purge_mod.DEFAULT_PUBLIC_ROOT)
     purge_p.add_argument("--dry-run", action="store_true")
     purge_p.set_defaults(func=_cmd_purge)
+
+    predict_p = sub.add_parser("predict", help="the prediction register: dated forward forecasts off a completed run, and their resolution")
+    predict_sub = predict_p.add_subparsers(dest="predict_command", required=True)
+
+    predict_register_p = predict_sub.add_parser("register", help="turn a completed run into dated forward predictions")
+    predict_register_p.add_argument("run_dir")
+    predict_register_p.add_argument("--horizon-days", type=int, default=predict.DEFAULT_HORIZON_DAYS)
+    predict_register_p.add_argument("--kinds", default="claim,discovery,sequence", help="comma-separated subset of claim,discovery,sequence")
+    predict_register_p.add_argument("--floor-u", type=float, default=predict.DEFAULT_FLOOR_U)
+    predict_register_p.add_argument("--out", default=predict.DEFAULT_OUT_DIR)
+    predict_register_p.set_defaults(func=_cmd_predict_register)
+
+    predict_resolve_p = predict_sub.add_parser("resolve", help="score every due prediction in a ledger against a corpus and write RESOLUTIONS.md")
+    predict_resolve_p.add_argument("--ledger", default=f"{predict.DEFAULT_OUT_DIR}/ledger.jsonl")
+    predict_resolve_p.add_argument("--corpus", default="quantum-history", choices=sorted(_CORPUS_LOADERS))
+    predict_resolve_p.add_argument("--as-of", required=True, help="ISO date/time to resolve as of")
+    predict_resolve_p.set_defaults(func=_cmd_predict_resolve)
+
+    predict_report_p = predict_sub.add_parser("report", help="resolve, then print RESOLUTIONS.md")
+    predict_report_p.add_argument("--ledger", default=f"{predict.DEFAULT_OUT_DIR}/ledger.jsonl")
+    predict_report_p.add_argument("--corpus", default="quantum-history", choices=sorted(_CORPUS_LOADERS))
+    predict_report_p.add_argument("--as-of", required=True, help="ISO date/time to resolve as of")
+    predict_report_p.set_defaults(func=_cmd_predict_report)
 
     return parser
 
