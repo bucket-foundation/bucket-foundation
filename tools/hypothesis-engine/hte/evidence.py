@@ -136,23 +136,33 @@ class Source:
     corpus.literature` is the first populated case (`bkt-hte-literature-
     batch-two`), reads a caller-supplied list of card roots and tags each
     root's own cards with that root's position, `"batch-1"`/`"batch-2"`/....
+
+    `retracted_by` (`bkt-hte-retraction-propagation`) names the id of
+    whatever retraction superseded this source, `None` while it stands.
+    A retraction is an event, never a deletion (`hte.propagate.apply_
+    retraction`'s own docstring): this field is an ADDITIONAL marker
+    alongside every other field here, never a rewrite of what this
+    source originally was.
     """
     id: str
     kind: EvidenceKind
     date: str | None = None
     stemma_parents: list[str] = field(default_factory=list)
     batches: list[str] = field(default_factory=list)
+    retracted_by: str | None = None
 
     def to_dict(self) -> dict:
         return {
             "id": self.id, "kind": self.kind.value, "date": self.date,
             "stemma_parents": list(self.stemma_parents), "batches": list(self.batches),
+            "retracted_by": self.retracted_by,
         }
 
     @classmethod
     def from_dict(cls, d: dict) -> "Source":
         return cls(id=d["id"], kind=EvidenceKind(d["kind"]), date=d.get("date"),
-                    stemma_parents=list(d.get("stemma_parents", [])), batches=list(d.get("batches", [])))
+                    stemma_parents=list(d.get("stemma_parents", [])), batches=list(d.get("batches", [])),
+                    retracted_by=d.get("retracted_by"))
 
 
 @dataclass
@@ -187,6 +197,14 @@ class EvidenceItem:
     `interval` is the dated span this item's own text names, `None` when
     it names no date at all. `stance` marks whether this item asserts its
     own slot values as true or denies/downgrades them.
+
+    `retracted_by` (`bkt-hte-retraction-propagation`) names the id of
+    whatever retraction superseded this item, `None` while it stands
+    (the ordinary case). `hte.propagate.apply_retraction` is the one
+    place that sets it, on every existing item naming the retracted
+    address; the item's own `supports`/`refutes`/`stance` never change,
+    since a retraction is an event layered on top of the record, never
+    an edit to what this item originally claimed.
     """
     id: str
     kind: EvidenceKind
@@ -205,6 +223,7 @@ class EvidenceItem:
     mechanism: str | None = None
     interval: Interval | None = None
     stance: Stance = Stance.POSITIVE
+    retracted_by: str | None = None
 
     def to_dict(self) -> dict:
         return {
@@ -215,7 +234,7 @@ class EvidenceItem:
             "actor": self.actor, "action": self.action, "object": self.object,
             "place": self.place, "mechanism": self.mechanism,
             "interval": self.interval.to_dict() if self.interval is not None else None,
-            "stance": self.stance.value,
+            "stance": self.stance.value, "retracted_by": self.retracted_by,
         }
 
     @classmethod
@@ -229,4 +248,5 @@ class EvidenceItem:
             place=d.get("place"), mechanism=d.get("mechanism"),
             interval=Interval.from_dict(d["interval"]) if d.get("interval") is not None else None,
             stance=Stance(d["stance"]) if d.get("stance") is not None else Stance.POSITIVE,
+            retracted_by=d.get("retracted_by"),
         )

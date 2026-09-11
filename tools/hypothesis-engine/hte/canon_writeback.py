@@ -80,6 +80,7 @@ from typing import Any
 from . import artifacts as artifacts_mod
 from . import holdout_ledger
 from . import novelty as novelty_mod
+from . import propagate as propagate_mod
 from . import roles
 from . import unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
@@ -107,6 +108,10 @@ _SLOT_BY_NAME: dict[str, Slot] = {
 }
 
 CANON_TIER = "candidate"  # write_back never writes "canon"; see GOVERNANCE.md
+# `bkt-hte-retraction-propagation`: the tier a card gets when its own
+# support routed through a node this run's own cascade retracted
+# (`hte.propagate.CascadeReport.addresses`), in place of `CANON_TIER`.
+CONTESTED_TIER = "contested"
 
 
 @dataclass
@@ -403,9 +408,19 @@ def _evidence_detail(item: EvidenceItem) -> dict[str, Any]:
     }
 
 
+def _fmt_opt(value: float | None, decimals: int = 3) -> str:
+    """`bkt-hte-retraction-propagation`: `render_card`'s own display
+    rounding for a `CascadeEntry.old_p` that can read `None` (a
+    candidate this run's cascade touched but that carried no opinion
+    before this run at all, `hte.propagate.propagate`'s own documented
+    case for a `changed` address absent from the given `opinions`)."""
+    return f"{value:.{decimals}f}" if value is not None else "(none)"
+
+
 def render_card(
     candidate: Candidate, ctx: RunContext, *, branch: str, signoff: str,
     understanding: str, novelty: novelty_mod.NoveltyResult, elo_label: str | None = None,
+    canon_tier: str = CANON_TIER, cascade_entry: "propagate_mod.CascadeEntry | None" = None,
 ) -> str:
     """`understanding` is the plain-language explanation `hte.canon_
     writeback.write_back` generates through `hte.roles.understanding`
@@ -416,7 +431,17 @@ def render_card(
     the same way. `elo_label` is the ranking-holdout disclaimer sentence
     `hte.holdout_ledger.ranking_status` produced for this write-back pass
     (`None` defaults to that module's own unvalidated-state text, so a
-    caller with no ledger state on hand still gets a correct card)."""
+    caller with no ledger state on hand still gets a correct card).
+
+    `canon_tier` defaults to the module constant (`CANON_TIER`,
+    `"candidate"`); `write_back` passes `"contested"` instead
+    (`bkt-hte-retraction-propagation`) for a candidate whose own address
+    appears in `cascade_entry` (`hte.propagate.CascadeReport.entries`,
+    meaning this candidate's own support routed through a node this
+    run's own cascade retracted). `cascade_entry` given (only under
+    `canon_tier == "contested"`) adds a "Retraction cascade" section
+    naming the old and new projected probability, hop count, and
+    routed share this candidate's own address carried in that cascade."""
     corpus = ctx.corpus
     manifest = ctx.manifest
     opinion = candidate.opinion
@@ -444,7 +469,7 @@ def render_card(
     lines = [
         f"# Hypothesis -- {_statement(corpus, candidate)}",
         "",
-        f"> **canon_tier:** {CANON_TIER}",
+        f"> **canon_tier:** {canon_tier}",
         f"> **Branch:** {branch} - **Corpus:** {manifest.corpus or '(unrecorded)'} - **Campaign:** {manifest.campaign}",
         f"> **Run:** `{ctx.run_dir}` - **Hypothesis id:** `{candidate.short_id}` - **Address:** `{candidate.hypothesis.address}`",
         f"> **Added:** {today}, build-history campaign write-back",
@@ -505,7 +530,23 @@ def render_card(
         f"near-duplicate exists). Compared against {novelty.n_compared} file(s) under "
         "`bucket-canon/`. Closest match: " + closest + ".",
         "",
-        "## 8. Provenance",
+    ]
+    if cascade_entry is not None:
+        lines += [
+            "## 8. Retraction cascade",
+            "",
+            f"`canon_tier: {canon_tier}`. This candidate's own support routed through a node "
+            "this run's own retraction cascade moved (`docs/PROPAGATION.md`); its own opinion "
+            "above already reflects the recompute below.",
+            "",
+            "| Old P(h) | New P(h) | Hops from root | Routed share |",
+            "|---|---|---|---|",
+            f"| {_fmt_opt(cascade_entry.old_p)} | {cascade_entry.new_p:.3f} | "
+            f"{cascade_entry.hops} | {cascade_entry.routed_share:.3f} |",
+            "",
+        ]
+    lines += [
+        "## 9. Provenance" if cascade_entry is not None else "## 8. Provenance",
         "",
         f"- Corpus: `{manifest.corpus}`",
         f"- Run directory: `{ctx.run_dir}`",
@@ -656,6 +697,7 @@ def build_envelope(
     signoff: str, understanding_by_id: dict[str, str] | None = None,
     novelty_by_id: dict[str, novelty_mod.NoveltyResult] | None = None,
     ranking: holdout_ledger.RankingStatus | None = None,
+    cascade_report: "propagate_mod.CascadeReport | None" = None,
 ) -> dict[str, Any]:
     """The static form of the proposed `/api/research/hypotheses` route
     (`CANON-CONTRIBUTIONS-2026-09-10.md` Part 3, priority 1): one
@@ -681,11 +723,14 @@ def build_envelope(
     novelty_by_id = novelty_by_id or {}
     if ranking is None:
         ranking = holdout_ledger.ranking_status()
+    cascade_by_address = {e.address: e for e in cascade_report.entries} if cascade_report is not None else {}
     now = datetime.now(timezone.utc).isoformat()
     items = []
     for candidate, path in cards:
         rel_path = str(path.relative_to(REPO_ROOT))
         novelty_result = novelty_by_id.get(candidate.short_id)
+        cascade_entry = cascade_by_address.get(candidate.hypothesis.address)
+        item_tier = CONTESTED_TIER if cascade_entry is not None else CANON_TIER
         items.append({
             "data": {
                 "statement": _statement(ctx.corpus, candidate),
@@ -708,6 +753,7 @@ def build_envelope(
                     "supports_detail": [_evidence_detail(item) for item in candidate.supports],
                     "refutes_detail": [_evidence_detail(item) for item in candidate.refutes],
                 },
+                "cascade": cascade_entry.to_dict() if cascade_entry is not None else None,
             },
             "citation": {
                 "type": "hypothesis",
@@ -727,7 +773,7 @@ def build_envelope(
             },
             "cite": _cite_block(),
             "tags": [branch, ctx.manifest.corpus or "unknown-corpus", "hypothesis-engine"],
-            "canon_tier": CANON_TIER,
+            "canon_tier": item_tier,
             "foundation_branches": [branch],
             "provenance": [{
                 "action": "generated", "at": now, "by": "hte.canon_writeback",
@@ -775,6 +821,7 @@ def write_back(
     cache_dir: str | Path | None = None,
     replay_only: bool = False,
     ledger_path: str | Path | None = None,
+    cascade_report: "propagate_mod.CascadeReport | None" = None,
 ) -> list[Path]:
     """Turn the completed run at `run_dir` into canon-facing material:
     one card per surviving hypothesis at or above the credence floor
@@ -784,6 +831,21 @@ def write_back(
     per card plus the index (`tools/feed/feed.py`'s own API), and a
     feed402-shaped envelope at `public/research/hypotheses/<run-id>.json`
     (`build_envelope`).
+
+    `cascade_report` (`bkt-hte-retraction-propagation`, `docs/
+    PROPAGATION.md`), when given, is `run_dir`'s own `cascade.json`
+    (`hte.propagate.CascadeReport`, read back through `hte.artifacts.
+    load_run` or passed straight through from the same `run_campaign`
+    call that produced it): every SELECTED candidate whose own address
+    appears in `cascade_report.entries` gets `canon_tier: "contested"`
+    (`CONTESTED_TIER`) instead of `CANON_TIER`, with that entry's own
+    old/new projected probability, hop count, and routed share attached
+    to its card (`render_card`'s own "Retraction cascade" section) and
+    to the envelope's per-item `data.cascade`. One additional feed event
+    (`type="retract"`, the same type `tools/feed/parse.py` already uses
+    for a canon file's own deletion, read here as "this claim's own
+    standing was retracted") is emitted per contested card, alongside
+    the ordinary `add_canon_entry` event every card gets regardless.
 
     `signoff` is a named human approver, an identity (e.g. `"gianyrox"`),
     and is required: a missing or blank `signoff` is a hard refusal
@@ -922,12 +984,27 @@ def write_back(
         len(added_entries), ctx.run_id,
     )
 
+    # `bkt-hte-retraction-propagation`: every SELECTED candidate whose
+    # own address this run's own cascade moved gets `canon_tier:
+    # "contested"` in place of `CANON_TIER`, its own `CascadeEntry`
+    # attached to its card and to the envelope. `cascade_report is None`
+    # (no retraction on file, or a caller that has not wired this
+    # parameter through yet) reads every candidate as ordinary
+    # `CANON_TIER` material, this function's own pre-existing behavior.
+    cascade_by_address = {e.address: e for e in cascade_report.entries} if cascade_report is not None else {}
+
     hypotheses_dir.mkdir(parents=True, exist_ok=True)
+    contested_cards: list[tuple[Candidate, Path]] = []
     for candidate, path in card_paths:
+        cascade_entry = cascade_by_address.get(candidate.hypothesis.address)
+        tier = CONTESTED_TIER if cascade_entry is not None else CANON_TIER
+        if cascade_entry is not None:
+            contested_cards.append((candidate, path))
         card_text = render_card(
             candidate, ctx, branch=branch, signoff=signoff,
             understanding=understanding_by_id[candidate.short_id],
             novelty=novelty_by_id[candidate.short_id], elo_label=ranking.label,
+            canon_tier=tier, cascade_entry=cascade_entry,
         )
         path.write_text(card_text, encoding="utf-8")
     index_path.write_text(render_index(card_paths, branch=branch, elo_label=ranking.label), encoding="utf-8")
@@ -935,13 +1012,38 @@ def write_back(
     _append_ingestion_index(_ingestion_index_addendum(card_paths, branch=branch, ctx=ctx, signoff=signoff))
 
     events = _feed_events_for_cards(card_paths, branch=branch, ctx=ctx)
+    if contested_cards:
+        # A retraction feed event alongside the ordinary `add_canon_entry`
+        # every card gets above: `type="retract"`, the same type `tools/
+        # feed/parse.py` already emits for a canon file's own deletion,
+        # read here as "this claim's own standing was retracted" rather
+        # than the file having been removed (it has not: `write_back`
+        # never deletes a card, per this module's own top docstring).
+        import sys
+        if str(FEED_TOOL_DIR) not in sys.path:
+            sys.path.insert(0, str(FEED_TOOL_DIR))
+        import parse as feed_parse  # tools/feed/parse.py
+        commit_sha = _current_commit_sha()
+        ts = datetime.now(timezone.utc).isoformat()
+        for candidate, path in contested_cards:
+            rel_path = str(path.relative_to(REPO_ROOT))
+            events.append(feed_parse.make_event(
+                type="retract", path=rel_path, commit_sha=commit_sha,
+                branch=branch, title=_statement(ctx.corpus, candidate), timestamp=ts,
+                _extra="cascade",
+            ))
     added = _emit_feed_events(events)
-    logger.info("hte.canon_writeback.write_back: fed %d new event(s) into tools/feed/feed.py", added)
+    logger.info(
+        "hte.canon_writeback.write_back: fed %d new event(s) into tools/feed/feed.py "
+        "(%d contested by this run's own retraction cascade)",
+        added, len(contested_cards),
+    )
 
     envelope_dir.mkdir(parents=True, exist_ok=True)
     envelope = build_envelope(
         card_paths, branch=branch, ctx=ctx, floor_P=floor_P, floor_u_max=floor_u_max, signoff=signoff,
         understanding_by_id=understanding_by_id, novelty_by_id=novelty_by_id, ranking=ranking,
+        cascade_report=cascade_report,
     )
     envelope_path.write_text(json.dumps(envelope, indent=2), encoding="utf-8")
 
@@ -952,7 +1054,7 @@ def write_back(
 
 
 __all__ = [
-    "Candidate", "RunContext", "CANON_TIER",
+    "Candidate", "RunContext", "CANON_TIER", "CONTESTED_TIER",
     "reconstruct_candidates", "select_above_floor",
     "render_card", "render_index", "build_envelope",
     "write_back",
