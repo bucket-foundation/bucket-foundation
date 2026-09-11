@@ -37,7 +37,7 @@ Open plan's free monthly allowance.
 ## Exact commands (run only on "go")
 
 ```bash
-cd /home/gian/agfarms/bucket-foundation/quantum/reference-impl
+cd ~/agfarms/bucket-foundation/quantum/reference-impl
 . .venv/bin/activate
 
 # 0) one-time: install the hardware provider (user does this; needs network)

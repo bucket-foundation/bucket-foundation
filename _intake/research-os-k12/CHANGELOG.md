@@ -2379,6 +2379,86 @@ Review of PR #76 (preregistration revision 1, docs-only) as methods reviewer. Re
 
 Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Gates: nothing under `src/` or `public/` changed; branch already carries `origin/main` (merged mid-pass by the PR's own author, confirmed fast-forward-clean here); no file deleted, `git diff --name-status` shows every touched file as `M`. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and `CHANGE-LEDGER.md`; `agf-lint-voice-src check` clean on the one touched source file. No fix needed; merged as-is.
 
+## 2026-09-11, repo hygiene pass: local paths and machine-specific data
+
+The dedicated cleanup pass the PR #69 review above named as needed.
+Worktree `~/agfarms/.ros-worktrees/scrub`, branch `chore/local-path-scrub`.
+Full inventory in `learning/research-os/compliance/REPO-HYGIENE-2026-09-11.md`:
+71 tracked files carried `/home/gian`, 53 rewritten to `~/...`, `$HOME/...`,
+a repo-relative path, or (in load-bearing code) `os.path.expanduser`,
+`Path.home()`, or `__file__`; 14 left as-is on a new allowlist (bead-backup
+jsonl, two runner logs, five systemd units, five narrative docs whose only
+hits quote this same leak-scan policy back, this file included). Two
+AWS-access-key-shaped presigned S3 URLs in `figma-export/` redacted
+(Figma's own expired CDN credential, not an AGFarms secret). A new guard,
+`tools/hygiene/check-local-paths.py` plus a CI workflow, blocks a future PR
+from reintroducing a `/home/<user>` path; its allowlist and fixture test
+are in `tools/hygiene/`. `.gitignore` gained a commented, inactive block
+proposing `git rm --cached` for the backup/log/systemd files; untracking
+them stays a founder decision. `agf-lint-voice check` on the new doc: clean
+after fixing 11 first-pass hits by hand. `agf-lint-voice check --staged`
+across the full 67-file change set surfaced 651 pre-existing violations in
+19 files (17 auto-generated bridge reports plus two quantum setup docs),
+confirmed identical against each file's `origin/main` version, so none of
+this pass's own edits; committed with the hook's documented
+`AGF_VOICE_SKIP=1` bypass rather than rewriting unrelated content. No
+`src/` or engine file changed, so the npm/tsc/build/test and `make test`
+gates did not trigger.
+
+## 2026-09-11, repo hygiene PR review pass
+
+Review of `chore/local-path-scrub` as finishing and review engineer, worktree
+`~/agfarms/.ros-worktrees/scrub`. The hygiene agent had merged an earlier
+`origin/main` and died before opening the PR; `origin/main` had since moved
+one commit further (#70, richer production fixtures), so `git diff origin/main`
+first showed 28 files as deleted. Fetched and merged current `origin/main`
+(clean, no conflicts) before reviewing; the deleted-file signal cleared.
+
+Verified against the refreshed `origin/main`: `git diff --diff-filter=D`
+empty, no file deleted or untracked, working tree clean. Programmatically
+diffed `_intake/embeddings/claim-evidence.jsonl` (599 lines) and
+`_intake/health-longevity-fitness/media/MANIFEST.jsonl` (294 lines) as JSON,
+field by field: only `source_path`/`path` changed on every line (5990 and
+294 rewrites), zero other field mismatches. Spot-checked 10 rewritten files
+by hand (`PRODUCTION_LOG.md`, the runbook, a `_bridges` README, two patents
+scripts, the postgres Dockerfile, `llm-server.sh`, `gateway.py`,
+`build_structures.py`, `ds.py`, `extract-kaikki-translations.py`,
+`generate_v2.py`): each hunk is a path rewrite, no content removed;
+confirmed `os` is imported in both viz files before relying on
+`os.path.expanduser`. `_epub_combined.md`'s 399 image links move from an
+absolute `/home/gian/...` prefix to a root-relative `/_intake/...` form
+uniformly across every reference, matching the hygiene doc's stated intent
+(a renderable path, not a leftover).
+
+Ran the new guard: `python3 tools/hygiene/check-local-paths.py --all`
+exits 0; `bash tools/hygiene/test-check-local-paths.sh` passes all 4
+fixture cases. `agf-lint-voice check` on the hygiene doc and on this
+changelog: 0 violations. `agf-lint-voice-src check` on the three new
+`tools/hygiene/` files: 0 violations.
+
+Leak scan of the full diff: `AKIA`-shaped strings (the two Figma presigned
+thumbnail URLs) confirmed redacted to `?REDACTED-presigned-aws-url` on the
+added side, no `sk-`/`figd_`/`ghp_`/`xox`-shaped tokens, no `PRIVATE KEY`
+block, no new RFC1918 or public IP introduced (the doc's own prose mentions
+`5.161.236.151` and `172.19.0.2`, both pre-existing elsewhere in the repo,
+cited for founder awareness, not new exposure), no Claude session URL.
+`jack@neurosurgical.net` appears in unchanged corpus quote lines (Jack
+Kruse's own public contact address from his blog, pre-existing on both
+sides of the diff); the only email introduced by this pass's own prose is
+`gianyrox@gmail.com`.
+
+No `src/` file and no `tools/hypothesis-engine/` file changed relative to
+`origin/main`, so `npm ci`/`tsc --noEmit`/`build`/`test:research-os` and the
+engine's `make test` did not trigger, per this pass's own gating.
+
+Founder-decision section confirmed: the hygiene doc's "Founder decision:
+untrack these" table lists 9 paths with the exact `git rm --cached`
+command and what each loses (backup jsonl pair, two runner logs, five
+systemd units), and the matching `.gitignore` block ships commented out
+and inert.
+
+No fix needed. Merged as-is; PR opened against `main`, squash-merged.
+
 ## 2026-09-11, PR #74 finishing pass
 
 Reviewer-side finish of PR #74 (`feat/ros-faded-guidance`, ros-14) after review sat clean and a prior pass merged `origin/main` (PR #73) mid-gates and died on a wip commit. Worktree `.ros-worktrees/r74`, branch `review/pr74`. Resumed from `wip(review/pr74): partial work preserved after spend-limit stop`, a merge commit already carrying `origin/main` (PR #73) with no unresolved conflict markers in the working tree. `git fetch origin && git merge origin/main` pulled in three more merged PRs (#70 hte production fixtures, #76 preregistration revision 1, #68 chore); one real conflict in `tools/hypothesis-engine/tests/swarm-20260911/test_bridge_export_props.py`'s own docstring (a one-line wording difference between two independently-merged copies of the same test file's header), resolved by keeping the `review/pr74` wording.

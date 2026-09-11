@@ -3018,6 +3018,114 @@ Review of PR #76 (preregistration revision 1, Iteration 25 above), docs-only, as
 
 No fix needed against any of the above. Merged as-is.
 
+## Repo hygiene pass: local paths and machine-specific data
+
+The dedicated cleanup pass the PR #69 review above named as needed.
+Worktree `~/agfarms/.ros-worktrees/scrub`, branch
+`chore/local-path-scrub`. Full audit and inventory table in
+`learning/research-os/compliance/REPO-HYGIENE-2026-09-11.md`.
+
+### Fixed
+
+- 71 tracked files carried `/home/gian`; 53 rewritten to `~/...`,
+  `$HOME/...`, a repo-relative path, or (in code with a load-bearing
+  path) `os.path.expanduser`/`Path.home()`/`__file__`. 14 left as-is and
+  added to a new allowlist: the bead-backup jsonl pair, the two runner
+  logs, five systemd units, and five narrative docs (this file and
+  `_intake/research-os-k12/CHANGELOG.md` included, since every hit in
+  both is this same leak-scan policy quoted back rather than a leaked
+  path).
+- Two AWS-access-key-shaped presigned S3 URLs in `figma-export/`
+  redacted (Figma's own CDN credential, already expired, unrelated to any
+  AGFarms secret; see the hygiene doc's ROTATE line for the full read).
+- New guard: `tools/hygiene/check-local-paths.py`, an allowlist at
+  `tools/hygiene/.local-path-allowlist`, a fixture test
+  (`tools/hygiene/test-check-local-paths.sh`), and a new CI workflow
+  (`.github/workflows/hygiene-local-paths.yml`) that blocks a future PR
+  from reintroducing a `/home/<user>` path.
+- `.gitignore` gained a commented, inactive block proposing
+  `git rm --cached` for the backup/log/systemd files; this PR untracks
+  nothing, that stays a founder decision (the hygiene doc's own "Founder
+  decision: untrack these" table has the exact commands).
+
+### Verified
+
+- `python3 tools/hygiene/check-local-paths.py --all`: 0 hits (every
+  remaining `/home/gian` instance is now allowlisted).
+- `bash tools/hygiene/test-check-local-paths.sh`: 4/4 fixture cases pass.
+- Both rewritten JSONL data files (`_intake/embeddings/claim-evidence.jsonl`,
+  `_intake/health-longevity-fitness/media/MANIFEST.jsonl`) and both
+  redacted Figma export JSON files parse clean with `json.load`.
+- `agf-lint-voice check` on the new hygiene doc: 0 violations (11 on
+  first pass, all antithesis/heading/banned-word, fixed by hand).
+  `agf-lint-voice-src check` on the five new/edited code files: 0
+  violations (7 on first pass in `check-local-paths.py`'s own comments,
+  fixed by hand).
+- `agf-lint-voice check --staged` across the full change set: 651
+  pre-existing violations surfaced in 19 files (the 17 auto-generated
+  `bucket-canon/_bridges/detected/*/README.md` reports plus
+  `quantum/reference-impl/CLAUDE-SCIENCE-SETUP.md` and
+  `HARDWARE_STAGING.md`), confirmed identical in count against each
+  file's own `origin/main` version before this pass touched it (a
+  one-line path-prefix edit changes no prose). Rewriting 651 pre-existing
+  violations across auto-generated reports and hardware/science setup
+  docs is outside a local-path-scrub PR's scope; committed with the
+  hook's own documented `AGF_VOICE_SKIP=1` bypass rather than fixing
+  unrelated content by hand.
+- No `src/` file and no `tools/hypothesis-engine/` file changed this
+  pass, so `npm ci`/`tsc`/`build`/`test:research-os` and the engine's
+  `make test` gate were not triggered.
+
+## Repo hygiene PR review pass
+
+Review of `chore/local-path-scrub` as finishing and review engineer, worktree
+`~/agfarms/.ros-worktrees/scrub`. The hygiene agent merged an earlier
+`origin/main` and died before opening the PR; `origin/main` had since
+advanced one commit (#70), so the first `git diff origin/main` showed 28
+files as deleted, a stale-base artifact from the moved base. Fetched and
+merged current `origin/main` (clean, no conflicts); the deleted-file signal
+cleared.
+
+### Verified
+
+- `git diff origin/main --diff-filter=D`: empty. `git status`: clean, no
+  untracked files.
+- `_intake/embeddings/claim-evidence.jsonl` and
+  `_intake/health-longevity-fitness/media/MANIFEST.jsonl` diffed as JSON,
+  field by field, against `origin/main`: only the path field changed on
+  every line (5990 and 294 rewrites), zero other field mismatches.
+- 10 rewritten files spot-checked by hand: every hunk is a path rewrite,
+  no content removed; `os` import confirmed present in both viz scripts
+  ahead of the new `os.path.expanduser` calls.
+- `_epub_combined.md`'s 399 image links move uniformly to a root-relative
+  `/_intake/...` form, matching the hygiene doc's stated design of a
+  renderable path.
+- `python3 tools/hygiene/check-local-paths.py --all`: exit 0.
+  `bash tools/hygiene/test-check-local-paths.sh`: 4/4 fixture cases pass.
+- `agf-lint-voice check` on the hygiene doc and both changelog files: 0
+  violations. `agf-lint-voice-src check` on the three new
+  `tools/hygiene/` files: 0 violations.
+- Leak scan of the full diff: both `AKIA`-shaped presigned Figma URLs
+  confirmed redacted on the added side; no `sk-`/`figd_`/`ghp_`/`xox`
+  token shapes, no `PRIVATE KEY` block, no new IP exposure (the doc's own
+  prose names `5.161.236.151` and `172.19.0.2` for founder awareness,
+  both already present elsewhere in the repo before this pass), no
+  Claude session URL. `jack@neurosurgical.net` is unchanged verbatim
+  corpus text (Jack Kruse's own public contact address, present on both
+  sides of the diff); the pass's own prose introduces no email besides
+  `gianyrox@gmail.com`.
+- Founder-decision table confirmed: 9 paths, each with an exact
+  `git rm --cached` command and a stated loss; the matching `.gitignore`
+  block ships commented out.
+
+### Not triggered
+
+No `src/` file and no `tools/hypothesis-engine/` file changed relative to
+`origin/main`: `npm ci`/`tsc --noEmit`/`build`/`test:research-os` and the
+engine's `make test` did not run, per this pass's own conditional gating.
+
+No fix needed. Merged as-is; PR opened against `main`, squash-merged.
+
 ## PR #74 finishing pass
 
 Reviewer-side finish of PR #74 (faded guidance, ros-14, Iteration above) after review sat clean and a prior finishing pass died mid-gates on a wip commit.

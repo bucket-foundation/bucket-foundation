@@ -127,7 +127,7 @@ def gen(name: str, prompt: str, out_dir: pathlib.Path, max_retries: int = 3) -> 
     print(f"      ✗ FAILED: {last_err}", flush=True)
 
 
-root = pathlib.Path("/home/gian/agfarms/bucket-foundation/manifesto-source/bobber-concept-art-v2/2026-05-03")
+root = pathlib.Path(__file__).resolve().parent
 chalk_dir = root / "chalkboard"
 stone_dir = root / "stone"
 

@@ -1,6 +1,6 @@
 CYCLE 1 FIXES — apply to ONE chapter's markdown. Founder-approved directions from the
 layperson review. Goal: make it a great READ without losing any depth. Work dir:
-/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
+~/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
 
 You get: the chapter file path, and the slice-findings file that contains this chapter's
 specific reader notes (search it for your chapter). Apply these fixes IN PRIORITY ORDER:
