@@ -107,6 +107,57 @@ test("onCheckResult: abstained is persisted on the event, not just used to decid
   assert.deepEqual(t.event.citations, []);
 });
 
+// ---------------------------------------------------------------------------
+// Cognitive forcing on Check: learnerConfidence, sourcePrediction,
+// predictionCorrect, forcingEnabled (PLAN-REVISION-2.md section 2a)
+// ---------------------------------------------------------------------------
+
+test("onCheckResult: learnerConfidence, sourcePrediction, predictionCorrect, forcingEnabled all persist on the event", () => {
+  const t = onCheckResult(
+    "awareness",
+    { result: "support", confidence: "high", abstained: false },
+    {
+      learnerText: "explanation text",
+      modelFeedback: "grounded",
+      citations: ["Rayleigh, Lord (1871)."],
+      learnerConfidence: "fairly",
+      sourcePrediction: "Rayleigh, Lord (1871).",
+      predictionCorrect: true,
+      forcingEnabled: true,
+    },
+  );
+  assert.equal(t.event.learnerConfidence, "fairly");
+  assert.equal(t.event.sourcePrediction, "Rayleigh, Lord (1871).");
+  assert.equal(t.event.predictionCorrect, true);
+  assert.equal(t.event.forcingEnabled, true);
+});
+
+test("onCheckResult: forcingEnabled:false persists with no learnerConfidence/sourcePrediction/predictionCorrect (the comparison arm's own shape)", () => {
+  const t = onCheckResult(
+    "awareness",
+    { result: "support", confidence: "high", abstained: false },
+    { learnerText: "explanation text", modelFeedback: "grounded", citations: [], forcingEnabled: false },
+  );
+  assert.equal(t.event.forcingEnabled, false);
+  assert.equal(t.event.learnerConfidence, undefined);
+  assert.equal(t.event.sourcePrediction, undefined);
+  assert.equal(t.event.predictionCorrect, undefined);
+});
+
+test("onCheckResult: with no forcing context at all, all four fields are undefined, not a placeholder value", () => {
+  const t = onCheckResult("awareness", { result: "support", confidence: "high", abstained: false });
+  assert.equal(t.event.learnerConfidence, undefined);
+  assert.equal(t.event.sourcePrediction, undefined);
+  assert.equal(t.event.predictionCorrect, undefined);
+  assert.equal(t.event.forcingEnabled, undefined);
+});
+
+test("onProbeCheckResult never carries the forcing fields: forcing gates Check, not the diagnostic probe", () => {
+  const t = onProbeCheckResult({ result: "support", confidence: "high", abstained: false }, { learnerText: "x" });
+  assert.equal(t.event.learnerConfidence, undefined);
+  assert.equal(t.event.forcingEnabled, undefined);
+});
+
 test("onProbeCheckResult: abstained, learnerText, modelFeedback, and citations all persist; fromStage is always access per the cold-start invariant", () => {
   const t = onProbeCheckResult(
     { result: "support", confidence: "high", abstained: false },
