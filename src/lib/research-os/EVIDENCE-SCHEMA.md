@@ -110,6 +110,19 @@ kind: "open" | "explanation" | "check" | "transfer_item" | "production_submitted
 
 with `fromStage: "production"`, `toStage: "production"` (the append documents the correction without violating the high-water-mark rule `stageAtLeast` and every existing transition function already enforce; `stage` does not move backward, the evidence log instead carries the fact that this particular production was rejected, which any outcome query filtering on `graph.productions.status = "accepted"`, per `LEARNER-STATE-MODEL.md` section 1's own instruction, already handles without needing `stage` itself to reflect the rejection).
 
+## The `"quote"` event
+
+Feeds `production-guard.ts`'s source verification. The production guard bead adds a second, standalone new event `kind` (beside `production_returned` above): `"quote"`, written by `stages.ts`'s `onQuoteReturned` whenever the Quote tool (`workspace/route.ts`'s `"quote"` case) returns a real curated passage from `src/lib/research-os/passages.ts`, rather than its own `"summary"` fallback:
+
+```ts
+// Add "quote" to EvidenceEvent's kind union.
+kind: "open" | "explanation" | "check" | "transfer_item" | "production_submitted" | "production_returned" | "teacher_review" | "quote";
+```
+
+with `fromStage`/`toStage` both set to the learner's current stage (Quote never advances a stage, the same "set, equal" pattern the `check` event already uses when grading is not grounded) and a new field, `locator?: string`, the passage's own `QuotePassage.locator`. No other field is populated: a `"quote"` event carries no `result`, `confidence`, or `learnerText`, since there is no verdict or learner-authored text to record, only the fact that this learner pulled this exact passage.
+
+This closes the gap `PRODUCTION-GUARD.md` section 1 names: a Production's cited source is only verifiable against a real Quote call when that call left a record with a `locator` a source line's own text can be checked against. `production-guard.ts`'s `checkSourceProvenance` reads every `"quote"`-kind event across a learner's whole `learner_node_state.evidence`, one node at a time is not enough, a learner quotes several nodes across one Production's own sources.
+
 ## What this file does not cover
 
 Retention and proficiency signals reaching a Research OS row from Academy's FSRS and IRT state (`LEARNER-STATE-MODEL.md` section 3's four-step slug-to-atom-id bridge) are out of scope here. Closing that gap needs a read path from `bucket.academy_progress` into a Research OS response, work for a separate bead rather than a change to what `graph.learner_node_state.evidence` itself stores. The `graph.learner_node_state.confidence` column's write path, the visible confidence `PLAN.md` section 2 promises, is also out of scope here: it is a value this evidence log makes computable, derived from the fields this contract adds, and the log itself needs no further field to support it.

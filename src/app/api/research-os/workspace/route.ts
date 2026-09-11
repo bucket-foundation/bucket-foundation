@@ -85,13 +85,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
 import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
-import { onCheckResult } from "@/lib/research-os/stages";
+import { onCheckResult, onQuoteReturned } from "@/lib/research-os/stages";
 import { locateHits } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, verifyLearner, recordEvidence, loadForcingEnabledForLearner } from "@/lib/research-os/db";
+import { configured, graphService, verifyLearner, recordEvidence, loadCurrentStage, loadForcingEnabledForLearner } from "@/lib/research-os/db";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
 import { resolveForcingEnabled } from "@/lib/research-os/forcing";
@@ -220,6 +220,25 @@ export async function POST(req: NextRequest) {
       // "quote" so the client never presents a paraphrase as a verbatim
       // quotation.
       const passage = getPassage(node.slug);
+
+      // Production guard, task item 1: a Production's own cited sources are
+      // only verifiable against a Quote call this learner made. Recorded
+      // only for a real, curated passage (a "quote" result), since the
+      // "summary" fallback carries no locator for production-guard.ts's
+      // checkSourceProvenance to match against.
+      // Best-effort: a write failure here degrades to "this source can't be
+      // verified later," never to a broken Quote response for the learner
+      // in front of it right now.
+      if (passage) {
+        try {
+          const currentStage = await loadCurrentStage(learnerId, nodeId);
+          const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
+          await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        } catch {
+          /* best-effort, see comment above */
+        }
+      }
+
       logToolCall("quote", learnerId, sessionId, { nodeId, kind: passage ? "quote" : "summary" });
       return NextResponse.json(
         {
