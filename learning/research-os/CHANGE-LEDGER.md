@@ -33,6 +33,23 @@ out of scope per the review pass below. `npm ci`, `npx tsc --noEmit`,
 `npm run build`, `npm run test:research-os` (18 files, 0 failures), and
 `agf-lint-voice check` on every touched file: all clean post-merge.
 
+### Edited, second round
+
+- `origin/main` moved past the first merge (PR #47, ros-07 follow-up:
+  consent gate wiring, profile page, privacy actions, status band).
+  Merged again. `BEADS-PENDING.jsonl` and
+  `_intake/research-os-k12/CHANGELOG.md`: append-only collisions, kept
+  both branches' entries in sequence. `package.json`: both branches
+  appended a test to `test:research-os`; merged to run all 19, dropping
+  neither `scripts/test-canon-primary-signoff.ts` nor
+  `scripts/test-research-os-profile.ts`.
+
+### Verified, second round
+
+No change needed beyond the merge above. Gates re-run: `npm ci`, `npx
+tsc --noEmit`, `npm run build`, `npm run test:research-os` (19 files, 0
+failures), `agf-lint-voice check` on every touched file: all clean.
+
 ## PR #45 review pass
 
 Same review as `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10, PR #45

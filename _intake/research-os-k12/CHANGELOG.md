@@ -1434,6 +1434,21 @@ This pass confirmed that work, brought the branch current, and merged.
   `npm run test:research-os` (18 files, 0 failures), `agf-lint-voice check`
   on every touched file: all clean.
 
+### Fixed, second round
+
+- `origin/main` moved two more commits while the first merge's gates were
+  running (PR #47, `ros-07 follow-up: consent gate wiring, profile page,
+  privacy actions, status band`). Merged again; three conflicts, all
+  resolved keeping both branches' work. `BEADS-PENDING.jsonl` and this
+  file: append-only collisions, kept both entries in sequence.
+  `package.json`'s `test:research-os` script: both branches added a test
+  to the chain (`scripts/test-canon-primary-signoff.ts` here,
+  `scripts/test-research-os-profile.ts` on main); merged to run all 19
+  scripts, both new ones included.
+- Gates re-run again post-second-merge: `npm ci`, `npx tsc --noEmit`,
+  `npm run build`, `npm run test:research-os` (19 files, 0 failures),
+  `agf-lint-voice check` on every touched file: all clean.
+
 ## 2026-09-10, ros-07 follow-up: consent gate wiring, profile page, privacy actions, status band
 
 `feat/ros-07-consent-wiring`, worktree `.ros-worktrees/ros07b`, branched from
