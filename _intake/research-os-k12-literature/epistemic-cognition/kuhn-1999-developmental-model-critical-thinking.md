@@ -19,7 +19,7 @@ why_it_matters: >
 key_claims:
   - "The critical-thinking movement is argued to have much to gain from a developmental framework, since most instructional programs designed to teach critical thinking do not draw on contemporary empirical research on cognitive development."
   - "Three forms of second-order cognition, metaknowing, are identified as constituting the essential part of what develops to make critical thinking possible: metacognitive (knowing about one's own cognition), metastrategic (knowing about strategies), and epistemological (knowing about the nature and sources of knowledge)."
-  - "This developmental model derives from empirical research on the directions and processes of intellectual development specifically in children and adolescents, the K-12 age range rather than adults."
+  - "This developmental model derives from empirical research on the directions and processes of intellectual development in children and adolescents, the K-12 age range rather than adults."
 research_questions_it_leaves_open:
   - "Which of the three named forms of meta-knowing, metacognitive, metastrategic, or epistemological, Check's own grounded-verdict step is best understood as developing, since a support-or-contradiction verdict targets a narrower slice of critical thinking than all three combined."
   - "Whether Research OS's five learner states map cleanly onto a progression through these three forms of meta-knowing, or represent an orthogonal dimension this developmental model does not address."
@@ -47,7 +47,7 @@ instruction should draw on empirical cognitive-development research.
 - Three forms of meta-knowing constitute the essential part of what develops to make
   critical thinking possible: metacognitive, metastrategic, and epistemological.
 - This developmental model derives from empirical research on intellectual development
-  specifically in children and adolescents.
+  in children and adolescents.
 
 ## Research Questions It Leaves Open
 

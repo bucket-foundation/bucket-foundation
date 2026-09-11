@@ -22,13 +22,13 @@ why_it_matters: >
   A research report rather than a peer-reviewed journal article, carrying no Crossref DOI;
   verified against its ERIC record (ED578933), the same non-DOI handling the existing corpus
   already applies to Cuban (2001) and Perkins (1993). Sets the base rate any Research OS
-  claim about "students doing research" pedagogy generally has to clear.
+  claim about "students doing research" pedagogy as a whole has to clear.
 key_claims:
   - "PBL design principles emphasize the project as the central vehicle of instruction and students as active participants in constructing knowledge, but no consensus exists among developers on how long a unit should last, how much student choice and collaboration to build in, or how learning should be assessed."
   - "The lack of a uniform PBL vision complicates determining whether a given implementation carries fidelity to the model at all, which in turn complicates evaluating PBL's effects."
   - "The evidence for PBL's effectiveness in improving student outcomes is characterized as promising but not proven: some studies find positive effects in science and social studies, evidence in math and literacy is more limited, and many studies use designs that leave open whether factors other than PBL produced the outcomes found."
 research_questions_it_leaves_open:
-  - "Whether Research OS's own four-tool workspace and Production schema constitute enough design specification to sidestep the fidelity problem this review names for PBL generally, since the workspace is far more constrained than the open PBL design space this review surveys."
+  - "Whether Research OS's own four-tool workspace and Production schema constitute enough design specification to sidestep the fidelity problem this review names for PBL as a category, since the workspace is far more constrained than the open PBL design space this review surveys."
   - "Whether the promising-but-not-proven verdict this review reaches for PBL broadly should be the working verdict for Research OS's own Phase 1 pilot, ahead of Phase 1 data, rather than a stronger claim of expected effectiveness."
 how_it_bears_on_research_os: >
   Sets a skeptical base rate parallel to Cuban (2001)'s already-cited caution in
@@ -37,7 +37,7 @@ how_it_bears_on_research_os: >
   shares, students doing authentic project or research work rather than receiving direct
   instruction, still carries a promising-but-not-proven verdict rather than a settled one.
   Directly supports `PLAN-REVISION-2.md` section 2d's own qualifier that Phase 1 is a
-  feasibility and effect-size-estimation pilot, not a confirmatory test, and argues the same
+  feasibility and effect-size-estimation pilot rather than a confirmatory test, and argues the same
   qualifier belongs on any funder-facing claim about Research OS's expected effectiveness
   ahead of pilot data.
 ---
@@ -63,7 +63,7 @@ against its ERIC record (ED578933).
 ## Research Questions It Leaves Open
 
 - Whether Research OS's four-tool workspace and Production schema specify enough to sidestep
-  the fidelity problem this review names for PBL generally.
+  the fidelity problem this review names for PBL as a category.
 - Whether the promising-but-not-proven verdict this review reaches should be the working
   verdict for Research OS's own Phase 1 pilot ahead of pilot data.
 
@@ -73,7 +73,7 @@ Sets a skeptical base rate parallel to Cuban (2001)'s already-cited caution: a
 decades-studied pedagogical approach sharing Research OS's own premise, students doing
 authentic work rather than receiving direct instruction, still carries a promising-but-not-
 proven verdict. Supports `PLAN-REVISION-2.md` section 2d's qualifier that Phase 1 is a
-feasibility pilot, not a confirmatory test, and argues the same qualifier belongs on any
+feasibility pilot rather than a confirmatory test, and argues the same qualifier belongs on any
 funder-facing effectiveness claim ahead of pilot data.
 
 Cross-indexed against: `teacher-workload-adoption/cuban-2001-oversold-underused-computers-classroom.md`.

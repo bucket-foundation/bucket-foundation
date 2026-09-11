@@ -12,14 +12,14 @@ branch: "writing-and-argumentation"
 tier: "canon"
 why_it_matters: >
   Identifies three distinct goals of scientific explanation and argumentation, sensemaking,
-  articulating, and persuading, and finds students consistently pursue the first two but not
+  articulating, and persuading, and finds students pursue the first two as a rule but not
   the third, since persuading requires social interaction traditional classroom structures
   often inhibit. Names a specific structural gap directly relevant to a Production submission
   built as an individual claim reviewed by one teacher rather than debated among peers.
 key_claims:
   - "Constructing scientific explanations and participating in argumentative discourse are treated as essential scientific-inquiry practices, analyzed through three goals: sensemaking, articulating an understanding, and persuading others of that understanding."
-  - "Students in the studied curriculum consistently used evidence to make sense of a phenomenon and to articulate their resulting understanding, meeting the first two of the three named goals."
-  - "Students did not consistently attend to the third goal, persuading others, and the paper attributes this gap to social interactions that traditional classroom structures often inhibit rather than to a missing individual skill."
+  - "Students in the studied curriculum routinely used evidence to make sense of a phenomenon and to articulate their resulting understanding, meeting the first two of the three named goals."
+  - "Students did not routinely attend to the third goal, persuading others, and the paper attributes this gap to social interactions that traditional classroom structures often inhibit rather than to a missing individual skill."
 research_questions_it_leaves_open:
   - "Whether a Production's teacher-review step, an evaluative rather than dialogic interaction, supplies any version of the persuading goal this paper finds students otherwise skip, or whether Production as currently designed only ever reaches the sensemaking and articulating goals."
   - "What a persuading-goal component would look like inside a constrained, four-tool workspace without reopening it to the open-ended peer debate the workspace's own design deliberately excludes."
@@ -36,16 +36,16 @@ how_it_bears_on_research_os: >
 # Making sense of argumentation and explanation
 
 Identifies three distinct goals of scientific explanation and argumentation, sensemaking,
-articulating, and persuading, finding students consistently pursue the first two but not the
+articulating, and persuading, finding students pursue the first two as a rule but not the
 third.
 
 ## Key Claims
 
 - Constructing scientific explanations and argumentative discourse are analyzed through
   three goals: sensemaking, articulating an understanding, and persuading others of it.
-- Students in the studied curriculum consistently used evidence to make sense of a
+- Students in the studied curriculum routinely used evidence to make sense of a
   phenomenon and to articulate their understanding, meeting the first two goals.
-- Students did not consistently attend to persuading others, a gap attributed to social
+- Students did not routinely attend to persuading others, a gap attributed to social
   interactions traditional classroom structures often inhibit rather than a missing
   individual skill.
 

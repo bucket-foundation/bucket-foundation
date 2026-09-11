@@ -21,7 +21,7 @@ why_it_matters: >
   above.
 key_claims:
   - "High school students placed in scientific research apprenticeships with practicing scientists show variation in their reported experiences, mentoring quality, degree of authentic task involvement, and outcomes across different apprenticeship placements."
-  - "Specific features of the apprenticeship experience, not apprenticeship participation as an undifferentiated category, relate to which outcomes a given student reports."
+  - "Specific features of the apprenticeship experience, more than apprenticeship participation as an undifferentiated category, relate to which outcomes a given student reports."
   - "The variation documented argues against treating research-apprenticeship placement itself as a uniform treatment when evaluating its effects on students."
 research_questions_it_leaves_open:
   - "Which specific apprenticeship features (mentoring style, task authenticity, autonomy) map onto which specific Research OS tool interaction, since the four-tool workspace standardizes the AI-facing side of the experience in a way a human mentor relationship does not."
@@ -40,14 +40,14 @@ how_it_bears_on_research_os: >
 # High School Student Participation in Scientific Research Apprenticeships
 
 A high-school-level study finding that student experiences and outcomes in research
-apprenticeships vary systematically with features of the apprenticeship itself, not with
-placement alone.
+apprenticeships vary with features of the apprenticeship itself, more than with placement
+alone.
 
 ## Key Claims
 
 - High school students in research apprenticeships show variation in reported experiences,
   mentoring quality, task authenticity, and outcomes across different placements.
-- Specific apprenticeship features, not participation as an undifferentiated category,
+- Specific apprenticeship features, more than participation as an undifferentiated category,
   relate to which outcomes a student reports.
 - The documented variation argues against treating apprenticeship placement as a uniform
   treatment when evaluating effects.
@@ -63,8 +63,8 @@ placement alone.
 ## How It Bears on Research OS
 
 Warns against treating workspace use as a uniform treatment at the arm level the way
-`PREREGISTRATION-DRAFT.md`'s three-arm design currently frames it: apprenticeship features,
-not participation alone, predict outcomes, a reason the Analysis Plan's teacher-identity
+`PREREGISTRATION-DRAFT.md`'s three-arm design currently frames it: apprenticeship features
+predict outcomes more than participation alone does, a reason the Analysis Plan's teacher-identity
 covariate and engagement-threshold exclusion matter as much as arm assignment. Extends
 overlap-map question 10 with a human-mentorship precedent for the variation a machine-
 consistent four-tool workspace is designed to reduce.

@@ -20,7 +20,7 @@ why_it_matters: >
   reference the need for without naming a concrete instrument.
 key_claims:
   - "Helping K-12 students develop informed views of the nature of science has been a central goal of science education since the early 1960s, but assessing learners' NOS views meaningfully remains an unresolved issue in the field."
-  - "The VNOS is an open-ended instrument, used in conjunction with individual interviews, developed specifically to provide meaningful assessment of learners' NOS views where forced-choice instruments fall short."
+  - "The VNOS is an open-ended instrument, used in conjunction with individual interviews, developed to provide meaningful assessment of learners' NOS views where forced-choice instruments fall short."
   - "The paper argues calls within the science education community to return to standardized, forced-choice NOS instruments for mass administration ignore much of what has been learned from three decades of research on NOS teaching and learning, and defends the richer, more resource-intensive open-ended-plus-interview design instead."
 research_questions_it_leaves_open:
   - "Whether a version of the VNOS could be adapted into a scalable Research OS transfer item, given its own open-ended-plus-interview design is explicitly built against the mass-administration, forced-choice format a Research OS assessment pipeline would otherwise favor."

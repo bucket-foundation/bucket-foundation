@@ -195,6 +195,20 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    Malone (2024)'s meta-analysis finds human-AI combination underperforms the better of either alone on
    content-creation tasks on average, a caution that scoping the tool surface does not by itself
    guarantee the complementary gain the testbed is built to measure.
+
+   *Evidence added in batch four, complicates the design bet:* Kirschner, Sweller, and Clark (2006)
+   read as minimally guided instruction with an AI-shaped veneer, the four-tool workspace risks the
+   effectiveness penalty that paper documents for learners without high prior knowledge, exactly the
+   learners a research-skill-building tool should serve best. *Resolves, conditionally:* Hmelo-Silver,
+   Duncan, and Chinn (2007)'s direct reply argues problem-based and inquiry learning are extensively
+   scaffolded rather than minimally guided, a description structurally closer to the four-tool
+   constraint's own no-tool-writes-the-answer design than to unguided discovery learning, conditional
+   on checking that paper's own scaffolding criteria against each tool rather than assuming they
+   transfer by category resemblance. *Complicates further:* Wineburg and McGrew (2019) find the expert
+   strategy for evaluating a source is lateral reading, leaving the page to cross-reference elsewhere,
+   a strategy no single-source, in-page Check verdict currently performs, and Breakstone and colleagues
+   (2021)'s national finding that most high school students fail exactly this task unassisted sets the
+   empirical floor the workspace's own offloading-avoidance claim is designed against.
 2. **Does a scoped find/quote/check/organize interface replicate a two-sigma-class tutoring effect at
    graph-routed scale.** Bloom (1984) sets the target effect size; VanLehn (2011) and Kulik and
    Fletcher (2016) measure how far intelligent tutoring systems close that gap without a human tutor.
@@ -244,6 +258,18 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    support than a wet-lab or workshop-review step. Ghafarollahi and Buehler (2024, SciAgents) and
    Mitchener and colleagues (2025, Kosmos) bear on the engine's own generation and traceability design
    rather than directly on the K-12 novelty bar.
+
+   *Evidence added in batch four, supports and complicates the design bet:* Corwin, Graham, and Dolan
+   (2015) supply a pathway-model discipline, connecting a specific learner action to a specific claimed
+   outcome, testable and revisable, the same discipline the K-12 novelty bar needs before it can be
+   applied to a Production record rather than only asserted. *Complicates:* Sadler and colleagues
+   (2010)'s 53-study review finds research-apprenticeship participation produces some outcomes
+   (career aspirations, confidence) with more consistency than others (nature-of-science understanding)
+   without design attention, and duration matters, a caution against assuming workspace use alone,
+   independent of Production frequency, produces a novelty-bar-clearing result. Burgin, Sadler, and
+   Koroly (2012) further complicate by finding apprenticeship features predict outcomes more than
+   participation alone does, an argument against treating "used the workspace" as a uniform treatment
+   at the arm level.
 5. **Does a citation-payment incentive change the quality of self-explanation and productive struggle,
    or crowd it out.** Deci and Ryan (2000) on self-determination theory and Kapur (2008) on productive
    failure both predict a payment framed the wrong way could shift a student from mastery to
@@ -265,6 +291,18 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    (2002) sharpens what the payout should reward, a brief rationale-focused hint raised self-explanation
    frequency while a hint restating a step's own content added no benefit, evidence a payout tied to
    process signals like these would reward the mechanism rather than a shortcut around it.
+
+   *Evidence added in batch four, complicates the design bet:* Grinnell and colleagues (2020) supply
+   the sharpest complicating data point in this corpus: among students required to participate in
+   science fair who were not interested in a science career, about 10 percent reported research
+   misconduct such as plagiarism, a documented failure mode neither Deci-Koestner-Ryan (1999) nor
+   Gneezy-Rustichini (2000) name directly in their own motivational-crowd-out terms. Grinnell and
+   colleagues (2018) further find little student support for requiring a competitive research
+   deliverable, an argument for keeping Production non-competitive. *Sharpens the payout
+   target:* Bangert-Drowns, Hurley, and Wilkinson (2004) find metacognitive prompting predicts a
+   stronger writing-to-learn effect while longer individual writing assignments predict a weaker one,
+   and Berland and Reiser (2009) name a third goal, persuading, that students pursue as a rule
+   less often than sensemaking and articulating, a goal the current Production rubric does not score for.
 6. **Does isolated-quote checking or full-document-context checking change a critic tool's accuracy.**
    `docs/RESEARCH-OS-INTEGRATION.md` question 22 names this directly as a Research OS question the
    engine's own held-out corpus can answer cheaply, no production required, before the same comparison
@@ -275,6 +313,19 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    tangential support for treating any single-pass model check as fragile, worth the isolated-versus-
    full-context comparison this question already proposes running before trusting Check at either
    setting.
+
+   *Evidence added in batch four, complicates the design bet:* Wineburg and McGrew (2019) find the
+   expert strategy for evaluating a source is lateral reading, leaving the page under evaluation to
+   check what other sources say about it, rather than reading deeper within the one source already
+   located; a single-source, in-page Check verdict is closer to the vertical reading their study finds
+   less skilled evaluators default to than to the expert strategy. Breakstone and colleagues (2021)'s
+   national portrait sharpens the stakes: 96 percent of a nationally representative sample of high
+   school students missed an advocacy site's own industry ties, evidence that isolated-quote checking
+   without a provenance-check step risks automating the same surface-cue trust most students already
+   default to rather than correcting it. Kuiper, Volman, and Terwel (2005)'s decade-earlier review
+   independently arrives at the same two-part need, support for searching and support for information
+   literacy, that this question's own isolated-versus-full-context contrast is one operational version
+   of.
 7. **Can literature-based discovery over a slot-filled hypothesis space close named gap nodes.**
    Swanson's ABC-model papers on undiscovered public knowledge are the founding case for treating an
    unmade connection as itself a discoverable object, exactly what `hte.unknowns.GapNode` formalizes.
@@ -342,6 +393,22 @@ Each item names the paper or papers that pose it and, where one exists, the numb
     diversity loss, the same AI assistance that narrows collective diversity across writers also narrows
     the gap between weaker and stronger writers, two distinct class-level effects a division-of-labor
     outcome measure should not collapse into one.
+
+    *Evidence added in batch four, complicates and resolves the design bet:* Furtak and colleagues
+    (2012)'s meta-analysis of inquiry-based science teaching finds teacher-led activities outperform
+    student-led ones by a mean effect size about 0.40 larger, the empirical stakes behind whether the
+    four-tool workspace's own guidance supplies teacher-equivalent scaffolding or falls closer to
+    unguided student-led inquiry. Kirschner, Sweller, and Clark (2006) sharpen the complication directly:
+    read as minimally guided instruction, the workspace risks underperforming for learners with the
+    least prior knowledge. *Resolves, conditionally:* Hmelo-Silver, Duncan, and Chinn (2007) reply that
+    problem-based and inquiry learning are extensively scaffolded rather than minimally guided, a
+    description this corpus's own Sandoval (2005) complicates from a different angle: even scaffolded
+    inquiry does not close the gap between a learner's formal epistemological belief and the practical
+    epistemology guiding their inquiry, so division-of-labor gains on a Check-verdict outcome measure
+    may leave the underlying epistemic stance untouched. Burgin, Sadler, and Koroly (2012) add that
+    apprenticeship-style research features predict which outcomes a learner reports more than
+    participation alone does, a human-mentorship precedent for the same variation a standardized
+    four-tool workspace is designed to reduce.
 11. **Does the burden of knowledge predict where an engine's gap nodes cluster, and does routing
     students at those gaps produce citable productions.** Jones's work on the burden of knowledge and
     the shrinking of an individual researcher's reachable frontier motivates reading `hte.unknowns.
@@ -379,3 +446,17 @@ Each item names the paper or papers that pose it and, where one exists, the numb
     are reconciled, offers a candidate operational form for the harder, understanding-specific bar this
     question names, one that Messeri and Crockett's illusion-of-explanatory-depth finding argues a
     surface-correctness Check verdict alone would not catch.
+
+    *Evidence added in batch four, supports and complicates the design bet:* Kuhn (1999)'s developmental
+    model names three forms of meta-knowing, metacognitive, metastrategic, and epistemological, and
+    argues the epistemological form, knowing about the nature and sources of knowledge, is closer to
+    what a harder, understanding-specific bar should target than factual correctness alone. Chinn,
+    Buckland, and Samarapungavan (2011) supply a more granular, five-component candidate operational
+    framework, of which the sources-and-justification component maps onto what Check's own citation
+    verification already checks while epistemic virtues, aims, and value name dimensions no current tool
+    or rubric touches. *Complicates:* Sandoval (2005) argues formal epistemological belief and the
+    practical epistemology guiding a learner's own inquiry are distinct and often disconnected,
+    so a learner could pass every Check verdict without an underlying epistemic-stance shift; Lederman
+    and colleagues (2002)'s VNOS instrument is the validated way to assess nature-of-science
+    understanding directly this gap calls for, but its own open-ended-plus-interview design argues
+    against folding it into Check's automated, closed-set grading.

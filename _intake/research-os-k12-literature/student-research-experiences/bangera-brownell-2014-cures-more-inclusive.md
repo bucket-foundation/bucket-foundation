@@ -4,7 +4,7 @@ authors:
   - "Bangera, Gita"
   - "Brownell, Sara E."
 year: 2014
-venue: "CBE—Life Sciences Education"
+venue: "CBE—Life Sciences Education"  # voice-ignore-line: verbatim journal title, the ASCB name carries the dash
 doi: "10.1187/cbe.14-06-0099"
 url: "https://doi.org/10.1187/cbe.14-06-0099"
 openalex_id: "https://openalex.org/W2126394636"
@@ -17,7 +17,7 @@ why_it_matters: >
   writing, or prior connections. The entry-point case a constrained, in-classroom research
   workspace has to make before its own access claims can be trusted.
 key_claims:
-  - "A course-based research experience run inside a required class reaches every enrolled student, not only the subset who apply for, are selected into, and can afford an independent research internship."
+  - "A course-based research experience run inside a required class reaches every enrolled student rather than only the subset who apply for, are selected into, and can afford an independent research internship."
   - "Independent research internships select for students who already have the confidence, information, and social connections to seek one out, a selection filter that a course-embedded experience does not carry."
   - "Moving course-based research experiences earlier, into introductory-level courses, is framed as a lever for reaching students before the internship-selection filter has already sorted them out of a research pathway."
 research_questions_it_leaves_open:
@@ -45,8 +45,8 @@ or prior connections.
 
 ## Key Claims
 
-- A course-embedded research experience reaches every enrolled student, not only the subset
-  who apply for, are selected into, and can afford an independent research internship.
+- A course-embedded research experience reaches every enrolled student rather than only the
+  subset who apply for, are selected into, and can afford an independent research internship.
 - Independent research internships select for students who already have the confidence,
   information, and social connections to seek one out.
 - Moving course-based research earlier, into introductory-level courses, is framed as a lever

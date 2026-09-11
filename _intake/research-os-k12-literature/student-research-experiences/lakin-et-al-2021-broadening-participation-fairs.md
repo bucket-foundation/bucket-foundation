@@ -18,8 +18,8 @@ tier: "canon"
 why_it_matters: >
   Reports a teacher-facing intervention aimed at broadening equitable student participation
   in science and engineering fairs, the equity-of-participation evidence named in the task
-  brief read at the intervention rather than the diagnostic level: not only that a
-  participation gap exists, but what supporting teachers to close it looks like in practice.
+  brief read at the intervention rather than the diagnostic level: what supporting teachers
+  to close a documented participation gap looks like in practice.
 key_claims:
   - "Broadening participation in science and engineering fairs is framed as a problem teachers can act on directly, through the design of teacher-facing support rather than only through student-facing recruitment."
   - "The intervention targets teacher capacity to run an inclusive fair process, implying that fair-participation gaps are, at least in part, a function of teacher preparation and support rather than only student interest or ability."
@@ -33,15 +33,15 @@ how_it_bears_on_research_os: >
   design should draw on, read alongside Steegh and colleagues (2019, `student-research-
   experiences/steegh-et-al-2019-gender-differences-competitions.md`)'s diagnostic finding that
   competition-shaped participation is not gender-neutral by default: this paper supplies the
-  intervention half of the same problem, treating teacher capacity, not only student
-  self-selection, as the lever broadening equitable access.
+  intervention half of the same problem, treating teacher capacity as a lever for
+  broadening equitable access, alongside student self-selection.
 ---
 
 # Getting Everyone to the Fair: Supporting Teachers in Broadening Participation in Science and Engineering Fairs
 
 Reports a teacher-facing intervention aimed at broadening equitable student participation in
-science and engineering fairs, treating teacher capacity, not only student interest, as the
-lever.
+science and engineering fairs, treating teacher capacity as a lever for broadening access,
+alongside student interest.
 
 ## Key Claims
 

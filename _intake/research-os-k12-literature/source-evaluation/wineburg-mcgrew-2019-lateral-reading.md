@@ -18,9 +18,9 @@ why_it_matters: >
   official-looking logos. A direct challenge to any Locate/Quote/Check design that treats a
   single located source as sufficient grounds for a verdict.
 key_claims:
-  - "Historians and undergraduate students often fell victim to easily manipulated features of a website, such as official-looking logos and domain names, and read vertically, staying within one site to evaluate its own reliability."
+  - "Historians and undergraduate students often fell victim to features of a website that are simple to fake, such as official-looking logos and domain names, and read vertically, staying within one site to evaluate its own reliability."
   - "Professional fact checkers, in contrast, left the site under evaluation to open other tabs and check what other sources said about the site itself before returning to judge it, the strategy the paper names lateral reading."
-  - "The study samples experienced users across three distinct populations, historians, fact checkers, and students, specifically to identify what skilled online evaluation looks like in practice, since prior research offered few concrete answers to that question."
+  - "The study samples experienced users across three distinct populations, historians, fact checkers, and students, to identify what skilled online evaluation looks like in practice, since prior research offered few concrete answers to that question."
 research_questions_it_leaves_open:
   - "Whether lateral reading, defined here as a human strategy of leaving one page to check others, has a workspace-native analog Locate or Check could perform automatically, or whether it is a skill the learner must be taught to do themselves even inside a scoped workspace."
   - "Whether a K-12 population, younger and less experienced than any of the three groups this study samples, would show the same vertical-reading vulnerability at a higher rate, a population this study did not include."
@@ -45,11 +45,11 @@ students stayed within a site and were more often misled by superficial cues.
 
 ## Key Claims
 
-- Historians and undergraduate students often fell victim to easily manipulated features
-  such as official-looking logos and domain names, reading vertically within one site.
+- Historians and undergraduate students often fell victim to features that are simple to
+  fake, such as official-looking logos and domain names, reading vertically within one site.
 - Professional fact checkers left the site under evaluation to check other sources first,
   the strategy the paper names lateral reading, before returning to judge the original site.
-- The study samples three distinct experienced-user populations specifically to identify
+- The study samples three distinct experienced-user populations to identify
   what skilled online evaluation looks like, since prior research offered few concrete
   answers.
 

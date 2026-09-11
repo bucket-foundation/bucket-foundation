@@ -22,7 +22,7 @@ key_claims:
   - "The brief is explicitly framed as an answer to the question practitioners, principals, and grant writers most often ask the publishing organization: what evidence exists that PBL affects student learning, rather than as an original research contribution."
   - "The brief positions itself as a starting evidence base practitioners can point to while research on PBL continues to build, rather than as a closed or final case for the approach."
 research_questions_it_leaves_open:
-  - "Whether the 20 studies this brief reviews overlap substantially with the studies Chen and Yang (2019, `chen-yang-2019-pbl-meta-analysis.md`) pool in their own meta-analysis, or supply an independent evidence set worth checking for convergence or disagreement."
+  - "Whether the 20 studies this brief reviews share much of the same ground as the studies Chen and Yang (2019, `chen-yang-2019-pbl-meta-analysis.md`) pool in their own meta-analysis, or supply an independent evidence set worth checking for convergence or disagreement."
   - "Whether a comparable practitioner-facing evidence brief, summarizing Research OS's own pilot findings in the same accessible format, is a deliverable worth producing once Phase 1 data exists, given this brief's own explicit function as a grant-writer and funder-facing tool."
 how_it_bears_on_research_os: >
   A direct model for the kind of accessible, citable evidence summary `WAVE-1-TARGETS.md` and
@@ -31,7 +31,7 @@ how_it_bears_on_research_os: >
   answer to exactly the question a funder or grant-writing coach asks. Supports citing PBL's
   established, if qualified, evidence base as context for Research OS's own untested design,
   while keeping the same qualifier Condliffe (2017) states more cautiously: promising, subject
-  and grade-band dependent, not proven across the board.
+  and grade-band dependent, short of proven across the board.
 ---
 
 # Project Based Learning & Student Achievement: What Does the Research Tell Us?
@@ -49,11 +49,11 @@ record (ED590832).
 - The brief answers the question practitioners, principals, and grant writers most often ask
   the publishing organization, rather than presenting an original research contribution.
 - The brief positions itself as a starting evidence base while research on PBL continues to
-  build, not a closed case for the approach.
+  build, distinct from a closed case for the approach.
 
 ## Research Questions It Leaves Open
 
-- Whether the 20 reviewed studies overlap substantially with those Chen and Yang (2019) pool
+- Whether the 20 reviewed studies share much of the same ground as those Chen and Yang (2019) pool
   in their meta-analysis, or supply an independent evidence set worth checking for
   convergence.
 - Whether a comparable practitioner-facing brief summarizing Research OS's own pilot
@@ -65,7 +65,7 @@ A direct model for the accessible, citable evidence summary the funding narrativ
 making the case that research-based, project-based pedagogy has real backing: this is the PBL
 field's own answer to the question a funder or grant-writing coach asks. Supports citing PBL's
 established evidence base as context for Research OS's own untested design, with the same
-qualifier Condliffe (2017) states: promising, subject and grade-band dependent, not proven
+qualifier Condliffe (2017) states: promising, subject and grade-band dependent, short of proven
 across the board.
 
 Cross-indexed against: `project-based-inquiry-learning/chen-yang-2019-pbl-meta-analysis.md`, `project-based-inquiry-learning/condliffe-2017-project-based-learning-literature-review.md`.

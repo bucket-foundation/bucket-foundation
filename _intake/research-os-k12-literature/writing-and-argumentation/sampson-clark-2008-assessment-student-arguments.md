@@ -29,7 +29,7 @@ how_it_bears_on_research_os: >
   grounded-verdict prompt currently encodes. Extends Sampson and Clark's own review alongside
   Berland and Reiser (2009, `berland-reiser-2009-argumentation-explanation.md`)'s
   three-goals framework: together they give Research OS two independent, externally validated
-  vocabularies for scoring what a Production actually accomplishes, beyond a binary support-
+  vocabularies for scoring what a Production accomplishes, beyond a binary support-
   or-contradiction Check verdict.
 ---
 

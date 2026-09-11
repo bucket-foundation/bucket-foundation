@@ -28,10 +28,10 @@ how_it_bears_on_research_os: >
   Supplies the sharpest complicating data point in this batch for overlap-map question 5 (does
   a citation-payment incentive change self-explanation quality or crowd it out): among
   disinterested students under a participation requirement, a measurable share turned to
-  research misconduct rather than genuine engagement, a documented failure mode this batch's
+  research misconduct rather than committed engagement, a documented failure mode this batch's
   entry on Deci, Koestner, and Ryan (1999) and Gneezy and Rustichini (2000) frame in
   motivational terms without naming misconduct itself as the observed behavior. Argues for
-  Check's own citation-validity verification as a misconduct-detection function, not only a
+  Check's own citation-validity verification as a misconduct-detection function alongside its
   claim-support function, whenever Production carries any mandatory or incentive-attached
   component.
 ---
@@ -64,7 +64,7 @@ participation.
 
 Supplies the sharpest complicating data point for overlap-map question 5: among disinterested
 students under a participation requirement, a measurable share turned to research misconduct
-rather than genuine engagement, a failure mode this batch's Deci-Koestner-Ryan and
+rather than committed engagement, a failure mode this batch's Deci-Koestner-Ryan and
 Gneezy-Rustichini entries frame in motivational terms without naming the misconduct behavior
 itself. Argues for Check's citation-validity verification as a misconduct-detection function
 wherever Production carries any mandatory or incentive-attached component.

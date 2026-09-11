@@ -1,5 +1,5 @@
 ---
-title: "The Web as an Information Resource in K–12 Education: Strategies for Supporting Students in Searching and Processing Information"
+title: "The Web as an Information Resource in K–12 Education: Strategies for Supporting Students in Searching and Processing Information"  # voice-ignore-line: verbatim journal-article title, the en dash is the publisher's own typesetting
 authors:
   - "Kuiper, Els"
   - "Volman, Monique"
@@ -15,11 +15,11 @@ why_it_matters: >
   A review, more than a decade before this batch's other source-evaluation cards, of what
   research says about the classroom support K-12 students need to search and process web
   information, concluding students need explicit support both in searching the web and in
-  developing "information literacy." An early, K-12-specific precedent for exactly the
+  developing "information literacy." An early, K-12-focused precedent for the
   Locate/Quote split Research OS's four-tool workspace already builds.
 key_claims:
-  - "Use of the web in K-12 education had increased substantially by the time of this review, but the web does not support students' learning processes as a matter of course; using it well requires deliberate instructional support."
-  - "Empirical research on the limitations of children's actual web search strategies, read alongside theoretical literature on the web's own characteristics, together imply students need support both in searching the web and in developing information literacy specifically."
+  - "Use of the web in K-12 education had grown a great deal by the time of this review, but the web does not support students' learning processes as a matter of course; using it well requires deliberate instructional support."
+  - "Empirical research on the limitations of children's actual web search strategies, read alongside theoretical literature on the web's own characteristics, together imply students need support both in searching the web and in developing information literacy as its own skill."
   - "The review calls for future research to focus on how web use in education can contribute to deep and meaningful knowledge, rather than treating web access itself as sufficient for learning."
 research_questions_it_leaves_open:
   - "Whether the search-support and information-literacy-support distinction this review draws maps cleanly onto Research OS's own Locate-versus-Check split, retrieval without a model call versus a Sonnet-tier verification, or whether the two support types this review names cut across that tool boundary."
@@ -46,12 +46,12 @@ information.
 
 ## Key Claims
 
-- Web use in K-12 education had increased substantially by the time of this review, but the
+- Web use in K-12 education had grown a great deal by the time of this review, but the
   web does not support learning processes as a matter of course; using it well requires
   deliberate instructional support.
 - Empirical research on children's actual web search limitations, read alongside theoretical
   literature on the web's own characteristics, implies students need support both in
-  searching and in developing information literacy specifically.
+  searching and in developing information literacy as its own skill.
 - The review calls for future research on how web use can contribute to deep and meaningful
   knowledge, rather than treating web access itself as sufficient.
 
@@ -70,6 +70,6 @@ the conclusion that students need explicit support in both searching and informa
 is close to a founding statement of the problem Locate and Quote's no-model-call retrieval is
 built to solve, two decades before the AI-specific evidence Wineburg and McGrew (2019) and
 Breakstone and colleagues (2021) supply. Extends overlap-map question 1's offloading concern
-to the search-and-source-evaluation subtask specifically.
+to the search-and-source-evaluation subtask.
 
 Cross-indexed against: `source-evaluation/wineburg-mcgrew-2019-lateral-reading.md`, `source-evaluation/breakstone-et-al-2021-civic-online-reasoning-national-portrait.md`.

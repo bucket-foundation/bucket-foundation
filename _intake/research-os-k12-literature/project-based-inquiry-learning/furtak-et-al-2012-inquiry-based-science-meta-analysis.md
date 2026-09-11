@@ -29,8 +29,8 @@ research_questions_it_leaves_open:
 how_it_bears_on_research_os: >
   Directly load-bearing for overlap-map question 1 (does scoped-tool AI support avoid the
   offloading harm a full chatbot risks) and question 10 (division of cognitive labor across
-  learner states): this meta-analysis's own finding, that teacher-led guidance substantially
-  outperforms student-led guidance within inquiry teaching generally, is the empirical stakes
+  learner states): this meta-analysis's own finding, that teacher-led guidance
+  outperforms student-led guidance within inquiry teaching as a whole, is the empirical stakes
   behind whether Research OS's four-tool workspace supplies guidance closer in kind to a
   teacher's own scaffolding or closer to unguided student-led inquiry. Read together with
   Kirschner, Sweller, and Clark (2006, `kirschner-sweller-clark-2006-minimal-guidance-does-
@@ -43,7 +43,7 @@ how_it_bears_on_research_os: >
 
 A meta-analysis of 37 experimental and quasi-experimental studies of inquiry-based science
 teaching, distinguishing cognitive activity type from degree of student guidance, and finding
-teacher-led activities substantially outperformed student-led ones.
+teacher-led activities outperformed student-led ones by a wide margin.
 
 ## Key Claims
 
@@ -65,8 +65,8 @@ teacher-led activities substantially outperformed student-led ones.
 
 ## How It Bears on Research OS
 
-Load-bearing for overlap-map questions 1 and 10: teacher-led guidance substantially
-outperforms student-led guidance within inquiry teaching generally, the empirical stakes
+Load-bearing for overlap-map questions 1 and 10: teacher-led guidance
+outperforms student-led guidance within inquiry teaching as a whole, the empirical stakes
 behind whether Research OS's four-tool workspace supplies guidance closer in kind to a
 teacher's own scaffolding or to unguided student-led inquiry. Read together with Kirschner,
 Sweller, and Clark (2006) and Hmelo-Silver, Duncan, and Chinn (2007), this paper's

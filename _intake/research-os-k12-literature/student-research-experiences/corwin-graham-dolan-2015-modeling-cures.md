@@ -5,7 +5,7 @@ authors:
   - "Graham, Mark"
   - "Dolan, Erin L."
 year: 2015
-venue: "CBE—Life Sciences Education"
+venue: "CBE—Life Sciences Education"  # voice-ignore-line: verbatim journal title, the ASCB name carries the dash
 doi: "10.1187/cbe.14-10-0167"
 url: "https://doi.org/10.1187/cbe.14-10-0167"
 openalex_id: "https://openalex.org/W2113593373"
@@ -49,7 +49,7 @@ support, and naming instruments already available for each.
 - Reviewing CURE and research-internship studies together found CURE students achieve many
   of the same outcomes documented for independent-internship students.
 - Which CURE design features are necessary and sufficient for the claimed outcomes has not
-  been identified; the pathway models are offered as testable hypotheses, not settled
+  been identified; the pathway models are offered as testable hypotheses rather than settled
   findings.
 
 ## Research Questions It Leaves Open

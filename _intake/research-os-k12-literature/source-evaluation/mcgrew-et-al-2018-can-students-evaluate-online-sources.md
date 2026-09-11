@@ -21,7 +21,7 @@ why_it_matters: >
   Research OS's own transfer-item bank could use to test source-evaluation skill directly.
 key_claims:
   - "A range of short assessment tasks, from paper-and-pencil to open internet search delivered via Google Forms, was developed to measure students' civic online reasoning, the ability to search for, evaluate, and verify social and political information online."
-  - "Middle school, high school, and college students across twelve states completed these tasks, and across tasks and grade levels students struggled to effectively evaluate online claims, sources, and evidence."
+  - "Middle school, high school, and college students across twelve states completed these tasks, and across tasks and grade levels students struggled to evaluate online claims, sources, and evidence well."
   - "The results are used to argue for a need for curriculum materials that support students' development of civic online reasoning competencies, framing the assessment development itself as a step toward that curricular need rather than an end in itself."
 research_questions_it_leaves_open:
   - "Whether any of this paper's own short, scalable tasks could be adapted directly into `TRANSFER-TASK-BANK.md`'s sealed-pool item format, given both share the same design goal of a brief, gradable measure of a specific reasoning skill."
@@ -48,7 +48,7 @@ across grade levels.
   Google Forms, was developed to measure civic online reasoning: searching for, evaluating,
   and verifying social and political information online.
 - Middle school, high school, and college students across twelve states completed these
-  tasks, struggling to effectively evaluate online claims, sources, and evidence across
+  tasks, struggling to evaluate online claims, sources, and evidence well across
   tasks and grade levels.
 - The results argue for a need for curriculum materials supporting civic online reasoning
   development, treating this assessment work as a step toward that curricular need.

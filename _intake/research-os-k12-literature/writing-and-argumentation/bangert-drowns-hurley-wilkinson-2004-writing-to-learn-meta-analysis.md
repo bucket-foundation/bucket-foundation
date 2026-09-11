@@ -21,7 +21,7 @@ why_it_matters: >
 key_claims:
   - "This meta-analysis of 48 school-based writing-to-learn programs found writing can have a small, positive impact on conventional measures of academic achievement, with the overall effect characterized as ambiguous prior to this synthesis."
   - "Two factors predicted enhanced effects: the use of metacognitive prompts within the writing task, and increased treatment length across the intervention."
-  - "Two factors predicted reduced effects: implementation in Grades 6 through 8 specifically, and longer individual writing assignments."
+  - "Two factors predicted reduced effects: implementation in Grades 6 through 8, and longer individual writing assignments."
 research_questions_it_leaves_open:
   - "Whether Check's own self-explanation and Organize's restructuring prompts already function as the metacognitive prompts this meta-analysis finds predict enhanced effects, or whether they need explicit redesign to carry that function."
   - "Whether the grade-band-specific weaker effect this meta-analysis finds for Grades 6 through 8 bears on Research OS's own choice of a grades 3-5 front door over the grades 9-12 quantum-history path `PLAN-REVISION-2.md` blocking decision 1 names."

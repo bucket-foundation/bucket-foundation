@@ -29,7 +29,7 @@ how_it_bears_on_research_os: >
   Check and Organize eventually scaffold in a Production's claim-writing step, extending
   Bangert-Drowns, Hurley, and Wilkinson (2004, `bangert-drowns-hurley-wilkinson-2004-writing-
   to-learn-meta-analysis.md`)'s own metacognitive-prompting finding with a broader evidence
-  base specific to adolescent writers rather than writing-to-learn programs generally. Bears
+  base specific to adolescent writers rather than writing-to-learn programs as a category. Bears
   on overlap-map question 5 (self-explanation quality under a citation-payment incentive) by
   naming what "process signals" a payout tied to writing quality, rather than final-answer
   correctness, should reward.

@@ -19,7 +19,7 @@ why_it_matters: >
   so far left out. A more granular candidate vocabulary than Kuhn (1999)'s three-form model
   for what "scientific understanding" beyond correctness should mean.
 key_claims:
-  - "Contemporary philosophers investigate many epistemological topics highly relevant to the psychological research program on epistemic cognition, but these topics have not yet featured in that research program."
+  - "Contemporary philosophers investigate many epistemological topics with a direct bearing on the psychological research program on epistemic cognition, but these topics have not yet featured in that research program."
   - "A five-component framework is proposed: epistemic aims and epistemic value; the structure of knowledge and other epistemic achievements; the sources and justification of knowledge, and the related epistemic stances; epistemic virtues and vices; and reliable versus unreliable processes for achieving epistemic aims."
   - "The paper argues for a fine-grained, context-specific analysis of cognitions within each of the five components, rather than a single global epistemic-cognition score or stage."
 research_questions_it_leaves_open:
@@ -45,7 +45,7 @@ far left out.
 
 ## Key Claims
 
-- Contemporary philosophy investigates many epistemological topics highly relevant to the
+- Contemporary philosophy investigates many epistemological topics with a direct bearing on the
   psychological epistemic-cognition research program, but these topics have not yet featured
   in it.
 - A five-component framework is proposed: epistemic aims and value; the structure of
