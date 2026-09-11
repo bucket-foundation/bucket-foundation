@@ -500,3 +500,51 @@ path every test in `tests/test_corpus_literature.py` takes; `load_
 default()` is the only caller that reaches for the fixture batches by
 default, since a zero-argument `_CORPUS_LOADERS` entry has no other way
 to name which cards it means.
+
+## Ranking validation evidence
+
+Literature batch five (`intake/ros-literature-5`, `_intake/research-os-k12-literature/`)
+adds ten cards under `scientific-discovery-metascience/` and `ai-and-researchers/` that
+bear directly on `hte.holdout_ledger` and the `ranking_status` label PR #60 shipped
+(`MIN_VERIFIED_FOR_LABEL = 20`, the "2026-09-10, ros-11 review items" entry in
+`LOOP-LOG.md`): whether a calibrated probability over an AI-generated hypothesis is a
+trustworthy, forecastable quantity before enough held-out cases clear the ledger's own
+floor.
+
+- `brier-1950-verification-of-forecasts-probability.md` and
+  `murphy-1973-vector-partition-probability-score.md` are the founding definitions
+  behind the Brier score the `literature` corpus's own fake campaign already reports
+  (0.0226, above), and the reliability-resolution-uncertainty decomposition that could
+  have diagnosed PR #48's real calibration gap (0.14 to 0.25 against 0.95 to 1.00 on
+  synthetic worlds) by score alone rather than by code inspection.
+- `mellers-et-al-2014-forecasting-tournament-strategies.md` supplies a human-side
+  precedent for the ledger's own `MIN_VERIFIED_FOR_LABEL` gate: a geopolitical
+  forecasting tournament found tracking and elevating a small number of
+  well-calibrated forecasters beat a larger undifferentiated pool, the same
+  selection-after-tracking logic a ranking label that waits for enough held-out cases
+  applies to a model run instead of a person.
+- `dreber-et-al-2015-prediction-markets-reproducibility.md`,
+  `camerer-et-al-2018-evaluating-replicability-nature-science.md`, and
+  `forsell-et-al-2019-predicting-replication-many-labs-2.md` are three independent
+  replication-forecasting studies, each finding a calibrated probability estimate,
+  elicited before a study was re-run, predicted whether it would replicate; together
+  they corroborate the shape of the engine's own ranking label, a probability over
+  "will this hold up" rather than a bare pass-or-fail verdict, as a well-studied,
+  forecastable quantity outside this engine's own design.
+- `chan-et-al-2024-mle-bench.md`, `jansen-et-al-2024-discoveryworld.md`, and
+  `majumder-et-al-2024-discoverybench.md` are three AI-for-science benchmarks scoring an
+  agent against a human-competitive execution bar or a decomposed process metric rather
+  than a single pass-or-fail judgment; `majumder-et-al-2024-discoverybench.md`'s own
+  roughly 25 percent best-system success rate on published-paper-derived discovery tasks
+  is a low-headroom external reference point for how much confidence an unvalidated
+  engine ranking should carry by default.
+- `ai-and-researchers/si-hashimoto-yang-2025-ideation-execution-gap.md` is the
+  execution-focused follow-up to this corpus's own `si-yang-hashimoto-2024-llm-novel-
+  research-ideas.md`: LLM-generated research ideas rated more novel at the ideation
+  stage lost most of that advantage, and on several metrics scored below human-written
+  ideas, once both were executed and blind-reviewed, direct evidence that a hypothesis's
+  apparent quality before it is checked overstates its quality after, the exact case the
+  holdout ledger's own validated-versus-unvalidated label is built to catch.
+
+No code in this pass changes as a result of these ten cards; they are read-side
+literature grounding for `hte.holdout_ledger`'s own already-shipped design.

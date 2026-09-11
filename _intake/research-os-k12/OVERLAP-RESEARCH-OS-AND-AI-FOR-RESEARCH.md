@@ -270,6 +270,23 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    Koroly (2012) further complicate by finding apprenticeship features predict outcomes more than
    participation alone does, an argument against treating "used the workspace" as a uniform treatment
    at the arm level.
+
+   *Evidence added in batch five, supports the design bet:* Si, Hashimoto, and Yang (2025)'s
+   execution-focused follow-up to the corpus's own Si, Yang, and Hashimoto (2024) card sharpens what
+   the novelty bar should test: LLM-generated research ideas rated more novel at the ideation stage
+   lost most of that advantage, and on several metrics scored below human-written ideas, once both
+   were actually executed and blind-reviewed, evidence a novelty judgment made before execution
+   overstates what a K-12 production's own AI-assisted hypothesis is worth. Chan and colleagues (2024,
+   MLE-bench), Jansen and colleagues (2024, DiscoveryWorld), and Majumder and colleagues (2024,
+   DiscoveryBench) each supply a benchmark-design precedent for scoring an agent's output against a
+   human-competitive execution bar or a decomposed process metric rather than a single pass-or-fail
+   judgment, the same execution-over-ideation standard Si, Hashimoto, and Yang's own finding argues
+   for. Brier (1950), Murphy (1973), Mellers and colleagues (2014), and the three independent
+   replication-forecasting studies (Dreber and colleagues 2015; Camerer and colleagues 2018; Forsell
+   and colleagues 2019) ground the calibrated-probability vocabulary, reliability, resolution, and
+   forecastable replication outcomes, behind the engine's own holdout ledger and ranking-status label,
+   the mechanism a K-12 production's own novelty judgment should eventually be checked against once
+   enough held-out cases accumulate.
 5. **Does a citation-payment incentive change the quality of self-explanation and productive struggle,
    or crowd it out.** Deci and Ryan (2000) on self-determination theory and Kapur (2008) on productive
    failure both predict a payment framed the wrong way could shift a student from mastery to
@@ -303,6 +320,27 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    stronger writing-to-learn effect while longer individual writing assignments predict a weaker one,
    and Berland and Reiser (2009) name a third goal, persuading, that students pursue as a rule
    less often than sensemaking and articulating, a goal the current Production rubric does not score for.
+
+   *Evidence added in batch five, complicates and sharpens the design bet:* Stukas, Snyder, and Clary
+   (1999) and Metz and Youniss (2003) report directly opposed findings on the same required-versus-
+   voluntary question a citation-payment incentive sits inside: in the first, laboratory-adjacent
+   study, a mandate to serve reduced future volunteering intentions specifically for students who
+   would not have chosen to volunteer freely; in the second, real-world, school-based study, a
+   required-service program did not depress, and appeared to raise, subsequent volunteering, leaving
+   whether requiring Production helps or harms engagement genuinely unresolved rather than settled
+   either way.
+   Patall, Cooper, and Robinson (2008)'s 41-study meta-analysis complicates a payout paired with a
+   participation requirement further: the choice effect on intrinsic motivation this batch's own
+   Deci-Koestner-Ryan (1999) and Kapur (2008) cards already invoke is itself weakened or erased once a
+   reward attaches to the choice, the same reward category a citation payment falls into. *Sharpens
+   a design response:* Cordova and Lepper (1996) show even an instructionally incidental choice, one
+   that does not touch whether the core task is required, produced a measured learning gain, and Reeve
+   (2006) names concrete, trainable autonomy-supportive teacher behaviors that predict engagement under
+   a structured requirement, together a candidate way to keep a mandatory Production requirement from
+   reading as controlling without touching whether Production itself is required. McCabe, Trevino, and
+   Butterfield (2001) and Bretag and colleagues (2019) both argue Grinnell and colleagues (2020)'s own
+   misconduct finding is addressed as much by classroom relationship quality and peer-perception norms
+   as by Check's own citation-validity detection alone.
 6. **Does isolated-quote checking or full-document-context checking change a critic tool's accuracy.**
    `docs/RESEARCH-OS-INTEGRATION.md` question 22 names this directly as a Research OS question the
    engine's own held-out corpus can answer cheaply, no production required, before the same comparison
@@ -460,3 +498,29 @@ Each item names the paper or papers that pose it and, where one exists, the numb
     and colleagues (2002)'s VNOS instrument is the validated way to assess nature-of-science
     understanding directly this gap calls for, but its own open-ended-plus-interview design argues
     against folding it into Check's automated, closed-set grading.
+
+    *Evidence added in batch five, supports and complicates the design bet:* Hofer and Pintrich
+    (1997)'s own field-founding review complicates the whole question's framing before any instrument
+    is chosen: the several independent research programs measuring epistemic cognition, Kuhn (1999)'s,
+    Sandoval (2005)'s, and Chinn, Buckland, and Samarapungavan (2011)'s own three-, formal-versus-
+    practical-, and five-component models among them, do not share a common definition, so a harder,
+    understanding-specific bar has to name which tradition it targets rather than epistemic cognition
+    undifferentiated. Schommer (1990) supplies the founding empirical link the question needs: a belief
+    that knowledge is simple and certain independently predicted worse comprehension of an ambiguous
+    text, direct evidence a learner's epistemic stance changes what they draw from a source before any
+    Check verdict runs. Kuhn, Cheney, and Weinstock (2000)'s four-level trajectory, realist, absolutist,
+    multiplist, evaluativist, gives the harder bar an age-graded target, evaluativist judgment among
+    evidence-weighed alternatives, closer to what a citation-and-evidence requirement should build than
+    a single certainty dimension. *Sharpens the explanation side:* Miller (2019), Lombrozo (2006), and
+    Keil (2006) supply the cognitive-science account of what makes a human explanation good, simplicity,
+    breadth, and generalization to new cases, that Krenn and colleagues (2022)'s own internalization bar
+    needs to be operational; Zemla and colleagues (2017) turn that account into a measurable rubric,
+    coherence and how completely an explanation accounts for its target; Hase and Bansal (2020)
+    complicates all of it directly: testing five algorithmic explanation methods, clear evidence of
+    improved simulatability, whether a person can predict system behavior on a new case after reading an
+    explanation, was rare, and subjective ratings of explanation quality did not predict actual
+    simulatability, a caution against trusting a learner's own felt confidence in an explanation as
+    evidence of real understanding. Binz and colleagues (2025) and Musslick and colleagues (2025), both
+    direct follow-ups to Messeri and Crockett (2024), corroborate this question's own OPEN status rather
+    than resolving it: four groups of working scientists staked out contrasting positions on how LLM
+    involvement should be governed in science, with no consensus reached.
