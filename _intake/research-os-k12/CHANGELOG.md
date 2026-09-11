@@ -1893,3 +1893,55 @@ files, `eslint` clean on all 16 touched TS/TSX files,
 clean on the touched docs. The Vercel status check on the PR fails with
 "Deployment rate limited, retry in 24 hours" (Vercel free-tier daily
 deployment cap), unrelated to this branch's code.
+
+## 2026-09-10, PR #61 review pass
+
+Review-and-merge pass on PR #61 (`feat/canon-signoff-tool`, "human sign-off
+tool, CLI and gated page, audit trail") before merge, worktree
+`.ros-worktrees/r61`.
+
+Correctness verified: `approve`/`reject` are idempotent in both the Python
+CLI (`signoff_core.py`) and the TypeScript route module
+(`src/lib/canon-signoff.ts`); the `/api/canon/signoff` route requires both
+`RESEARCH_OS_REVIEWER_EMAILS` and `CANON_SIGNOFF_APPROVERS` server-side and
+returns 403 otherwise; a build-output grep found no allowlist membership in
+any client bundle, only the two env var names as help text on the page
+itself. Added three cross-language tests to `scripts/test-canon-signoff.ts`:
+a record approved and one rejected by the real `signoff_core.py` (invoked
+via subprocess, not re-typed) both read correctly under `isPendingSignoff`
+(TS), and `hte.canon_writeback` never references `provenance_signoff`, so
+the hypothesis engine's own `signed_off_by` write gate cannot collide with
+this tool's field.
+
+Walker gap decided by design: the PR's own SIGNOFF.md flagged
+`findPrimaryFiles`'s one-level directory walk as missing the eleven
+`sub-outcomes/education/` records (two levels deep) without saying whether
+that gap should be fixed. Every `primary-papers.yaml` in the repo currently
+sits at exactly one level below its branch except that one dossier, and
+`GOVERNANCE.md`'s mission scopes the citeable canon envelope to
+foundation-tier research; `sub-outcomes/` is outcome tier by definition.
+The walker's exclusion matches policy, so it stays as is; one clarifying
+sentence added to `SIGNOFF.md` and `GOVERNANCE.md` so a future pass does not
+"fix" it into serving outcome-tier content as paid-cite canon.
+
+Merged `origin/main` (PRs #42, #51, #59, and a `whats-new` milestone commit
+that had landed since this branch's own merge commit); one append-only
+conflict, `_intake/research-os-k12/CHANGELOG.md` itself, resolved keeping
+both sides' entries. `learning/research-os/CHANGE-LEDGER.md` merged clean.
+
+Gates re-run post-merge: `pytest tools/canon-pipeline/tests/` (41 passed),
+`npm ci` clean, `npx tsc --noEmit` clean, `npm run build` clean
+(`/canon/signoff` and `/api/canon/signoff` both in the manifest, confirmed
+via the app-paths manifest rather than the truncated build log),
+`npm run test:research-os` (326 passed, 0 failed, 24 files), `eslint` clean
+on every touched TS/TSX file, `agf-lint-voice-src check` clean on every
+touched TS/TSX/Python file, `agf-lint-voice check` clean on the touched
+docs after one antithesis-phrasing fix in this pass's own `SIGNOFF.md` edit.
+No record's `provenance_signoff` value changed by this PR (confirmed
+against the PR's own file list; `bucket-canon/` never appears in it). Leak
+scan over every changed file found no keys, tokens, secrets, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian`
+paths, or Claude session URLs. `/canon/signoff` reviewed at 400px against
+its Tailwind classes: no fixed width exceeds 400px and every input row wraps
+(`flex-wrap`), so no horizontal scroll is expected; no headless browser was
+available in this environment to screenshot it directly.

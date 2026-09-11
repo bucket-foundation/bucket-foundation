@@ -2,6 +2,48 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #61 review pass
+
+Date 2026-09-10. Review of PR #61 (`feat/canon-signoff-tool`) before merge,
+worktree `.ros-worktrees/r61`. Full account: `_intake/research-os-k12/
+CHANGELOG.md`, "2026-09-10, PR #61 review pass".
+
+### Edited
+
+- `tools/canon-pipeline/SIGNOFF.md`: one clarifying sentence on the
+  `findPrimaryFiles` walker gap, stating it matches `GOVERNANCE.md`'s
+  foundation-tier-only mission rather than being an open TODO.
+- `GOVERNANCE.md`: one sentence under "Canon sign-off" stating that
+  `/api/research` serves foundation-tier records only, so a `sub-outcomes/`
+  dossier stays out of the paid-cite envelope regardless of sign-off status.
+- `scripts/test-canon-signoff.ts`: three new cross-language tests. Two run
+  the real `signoff_core.py` as a subprocess through `approve`
+  and `reject`, then feed the written value into `isPendingSignoff`
+  (`src/lib/canon-primary.ts`) to confirm the CLI's output and the web
+  route's read gate agree. One reads `hte/canon_writeback.py`'s source and
+  asserts it never references `provenance_signoff`, locking in the "two
+  signoff vocabularies never share a field" claim `signoff_core.py`'s own
+  docstring already made.
+- `_intake/research-os-k12/CHANGELOG.md`: this pass's own entry.
+
+### Verified
+
+- `pytest tools/canon-pipeline/tests/` (41 passed), `npm ci` clean, `npx
+  tsc --noEmit` clean, `npm run build` clean (`/canon/signoff` and
+  `/api/canon/signoff` confirmed in `.next/app-path-routes-manifest.json`),
+  `npm run test:research-os` (326 passed, 0 failed, 24 files), `eslint`
+  clean on every touched TS/TSX file, `agf-lint-voice-src check` clean on
+  every touched TS/TSX/Python file, `agf-lint-voice check` clean on the
+  touched docs.
+- Build-output grep: `CANON_SIGNOFF_APPROVERS` and `RESEARCH_OS_REVIEWER_
+  EMAILS` appear in the `/canon/signoff` client chunk only as the page's own
+  help-text strings naming the env vars, never as allowlist membership or
+  `process.env` reads; both allowlist checks live in server-only chunks.
+- No record's `provenance_signoff` value changed by this PR; `bucket-canon/`
+  does not appear in the PR's file list. Leak scan clean (no keys, secrets,
+  IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`,
+  PII, `/home/gian` paths, or Claude session URLs).
+
 ## PR #42 review pass
 
 Date 2026-09-10. Review of PR #42 (`feat/hte-purge`) before merge, worktree

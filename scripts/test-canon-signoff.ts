@@ -15,6 +15,7 @@ import { test } from "node:test";
 import { mkdtempSync, writeFileSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { execFileSync } from "node:child_process";
 import {
   listPending,
   listRecords,
@@ -26,6 +27,7 @@ import {
   type SignoffStatus,
 } from "../src/lib/canon-signoff";
 import { isCanonApprover, isCanonSignoffApprover } from "../src/lib/canon-signoff-approvers";
+import { isPendingSignoff } from "../src/lib/canon-primary";
 
 // ---------------------------------------------------------------------------
 // fixture tree
@@ -88,6 +90,70 @@ function makeTree() {
 function cleanup(base: string) {
   rmSync(base, { recursive: true, force: true });
 }
+
+// ---------------------------------------------------------------------------
+// Cross-language contract: signoff_core.py (the actual module the CLI
+// calls) writes a value; isPendingSignoff (src/lib/canon-primary.ts, the
+// web route's own read-side gate) reads it back. This runs the real Python
+// module via subprocess rather than re-typing its output format in TS, so
+// a future vocabulary change in one side shows up here instead of two
+// implementations quietly drifting apart.
+// ---------------------------------------------------------------------------
+
+const REPO_ROOT = join(__dirname, "..");
+const CANON_PIPELINE_DIR = join(REPO_ROOT, "tools", "canon-pipeline");
+const CANON_WRITEBACK_PATH = join(REPO_ROOT, "tools", "hypothesis-engine", "hte", "canon_writeback.py");
+
+function pythonSignoff(
+  action: "approve" | "reject",
+  root: string,
+  index: string,
+  ref: string,
+  by: string,
+  reason?: string,
+): string {
+  const call =
+    action === "approve"
+      ? `core.approve(${JSON.stringify(ref)}, ${JSON.stringify(by)}, offline=True, root=Path(${JSON.stringify(root)}), index_path=Path(${JSON.stringify(index)}))`
+      : `core.reject(${JSON.stringify(ref)}, ${JSON.stringify(by)}, ${JSON.stringify(reason ?? "")}, root=Path(${JSON.stringify(root)}), index_path=Path(${JSON.stringify(index)}))`;
+  const script = [
+    "import sys, json",
+    `sys.path.insert(0, ${JSON.stringify(CANON_PIPELINE_DIR)})`,
+    "import signoff_core as core",
+    "from pathlib import Path",
+    `result = ${call}`,
+    "print(json.dumps(result))",
+  ].join("\n");
+  const out = execFileSync("python3", ["-c", script], { encoding: "utf-8" });
+  return (JSON.parse(out).value as string) || "";
+}
+
+test("cross-language: a record approved by signoff_core.py (the CLI's own module) reads as NOT pending under isPendingSignoff (TS)", () => {
+  const { base, root, index } = makeTree();
+  try {
+    const value = pythonSignoff("approve", root, index, "bkt-aaa", "gianyrox");
+    assert.match(value, /^approved: gianyrox \d{4}-\d{2}-\d{2}$/);
+    assert.equal(isPendingSignoff(value), false);
+  } finally {
+    cleanup(base);
+  }
+});
+
+test("cross-language: a record rejected by signoff_core.py reads as pending (gated) under isPendingSignoff (TS)", () => {
+  const { base, root, index } = makeTree();
+  try {
+    const value = pythonSignoff("reject", root, index, "bkt-aaa", "gianyrox", "broken DOI");
+    assert.match(value, /^rejected: gianyrox \d{4}-\d{2}-\d{2}: broken DOI$/);
+    assert.equal(isPendingSignoff(value), true);
+  } finally {
+    cleanup(base);
+  }
+});
+
+test("engine gate separation: hte.canon_writeback never references provenance_signoff, so its signed_off_by gate cannot collide with the CLI's vocabulary on the same field", () => {
+  const src = readFileSync(CANON_WRITEBACK_PATH, "utf-8");
+  assert.equal(src.includes("provenance_signoff"), false);
+});
 
 // ---------------------------------------------------------------------------
 // listPending / listRecords

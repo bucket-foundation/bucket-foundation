@@ -157,10 +157,13 @@ levels below its branch directory. `src/lib/canon-primary.ts`'s own
 (`<branch>/<concept>/primary-papers.yaml`), so it does not currently reach
 that file at all: those eleven records are not served by `/api/research`
 today regardless of sign-off status. This tool's own file discovery walks
-the full tree at any depth, so `list` still surfaces all twenty. Fixing
-`findPrimaryFiles`'s depth limit would change what `/api/research` serves
-and is a separate, unrequested change, out of scope here; flagged for
-whoever picks it up next.
+the full tree at any depth, so `list` still surfaces all twenty. This depth
+limit matches policy: `GOVERNANCE.md`'s mission scopes the citeable
+canon envelope to foundation-tier research, `sub-outcomes/` dossiers are
+outcome tier by definition, and no `primary-papers.yaml` outside
+`sub-outcomes/` sits two levels below its branch today, so `findPrimaryFiles`
+excludes exactly the outcome-tier set and nothing else; widening it to serve
+`sub-outcomes/` as paid-cite canon would need a policy change first.
 
 ### Founder runbook
 
