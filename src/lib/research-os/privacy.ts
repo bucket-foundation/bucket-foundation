@@ -23,9 +23,11 @@
  * into the pure functions below instead, which ARE tested:
  * buildExportEnvelope, hashLearnerId, simulateLearnerDelete.
  * simulateLearnerDelete is a pure, in-memory mirror of graph.
- * privacy_delete_learner's table list and semantics
- * (supabase/migrations/20260910040000_research_os_privacy_consent.sql),
- * used to verify the table list stays in sync and to exercise the "zero
+ * privacy_delete_learner's table list and semantics, defined in
+ * supabase/migrations/20260910040000_research_os_privacy_consent.sql and
+ * extended (check_attempts, the 24-hour purge sweep) by
+ * 20260910070000_research_os_check_attempts.sql, used to verify the table
+ * list stays in sync and to exercise the "zero
  * rows left, one audit row, another learner untouched" behavior this
  * bead's task requires a test for, offline. The real delete always runs
  * through the RPC, which is the actual one-transaction guarantee (a
@@ -92,6 +94,14 @@ export interface PrivacyTableConfig {
  * - graph.classes: a reviewer's own roster object (name, reviewer_email),
  *   not a learner-keyed row; a learner's membership in it lives in
  *   graph.class_members below, which IS in scope.
+ *
+ * graph.check_attempts (migration 20260910070000_research_os_check_
+ * attempts.sql) IS in scope, below: a held Check verdict carries the
+ * learner's own explanation text, the same free-text-a-child-may-have-
+ * written category learner_node_state.evidence already covers, so a
+ * delete request must reach it too even though most rows are short-lived
+ * (consumed on reveal, or swept by the 24-hour hard expiry, see that
+ * migration's own header).
  */
 export const PRIVACY_TABLES: PrivacyTableConfig[] = [
   { schema: "graph", table: "learner_node_state", learnerColumn: "learner_id", label: "learner_node_state" },
@@ -100,6 +110,7 @@ export const PRIVACY_TABLES: PrivacyTableConfig[] = [
   { schema: "graph", table: "edge_flags", learnerColumn: "learner_id", label: "edge_flags" },
   { schema: "graph", table: "class_members", learnerColumn: "learner_id", label: "class_members" },
   { schema: "graph", table: "learner_profiles", learnerColumn: "learner_id", label: "learner_profile" },
+  { schema: "graph", table: "check_attempts", learnerColumn: "learner_id", label: "check_attempts" },
   { schema: "bucket", table: "academy_progress", learnerColumn: "user_id", label: "academy_progress" },
   { schema: "bucket", table: "academy_profiles", learnerColumn: "user_id", label: "academy_profile" },
   { schema: "bucket", table: "academy_credentials", learnerColumn: "user_id", label: "academy_credentials" },

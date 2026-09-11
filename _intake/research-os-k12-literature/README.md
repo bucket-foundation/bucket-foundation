@@ -4,17 +4,24 @@ This corpus grounds the Research OS for K-12 design and its overlap with Bucket'
 engine in verified primary literature. Each file covers one real, published paper: a DOI checked
 against OpenAlex, Crossref, Semantic Scholar, or DataCite at intake time, plain-language claims,
 the open questions it leaves, and a paragraph tying it to a named part of the Research OS design
-or the hypothesis engine. Six areas: educational methods (mastery, retrieval, knowledge tracing,
-transfer, transfer-assessment design, self-explanation scoring, learning-progression validation,
-curiosity and interest as routing signals, motivation and payment), HCI and human-AI collaboration
-(cognitive offloading, mixed-initiative interfaces, intelligent tutoring, LLM-assisted learning,
-human-AI complementarity and cognitive forcing), prerequisite and knowledge-graph learning
-(automatic prerequisite-edge inference, concept-map and prerequisite-label validity, learning-path
-routing), scientific discovery research and metascience (AI for discovery, literature-based
-discovery, the science of science, AI-generated hypothesis evaluation), AI and researchers
-(division of cognitive labor, hypothesis evaluation, scientific understanding), and teacher
-workload and adoption (first- and second-order adoption barriers, coaching, dashboards, trust in
-learning analytics). See `_intake/research-os-k12/
+or the hypothesis engine. Eleven areas: educational methods (mastery, retrieval, knowledge
+tracing, transfer, transfer-assessment design, self-explanation scoring, learning-progression
+validation, curiosity and interest as routing signals, motivation and payment), HCI and
+human-AI collaboration (cognitive offloading, mixed-initiative interfaces, intelligent
+tutoring, LLM-assisted learning, human-AI complementarity and cognitive forcing), prerequisite
+and knowledge-graph learning (automatic prerequisite-edge inference, concept-map and
+prerequisite-label validity, learning-path routing), scientific discovery research and
+metascience (AI for discovery, literature-based discovery, the science of science,
+AI-generated hypothesis evaluation), AI and researchers (division of cognitive labor,
+hypothesis evaluation, scientific understanding), teacher workload and adoption (first- and
+second-order adoption barriers, coaching, dashboards, trust in learning analytics), student
+research experiences (course-based undergraduate and high-school research apprenticeship
+outcomes, science-fair and competition equity), project-based and inquiry learning
+(project-based-learning and inquiry-based-teaching outcomes, the guidance-versus-scaffolding
+debate), writing and argumentation (writing-to-learn effects, argument-quality assessment
+frameworks), epistemic cognition (developmental and philosophical models of what counts as
+scientific understanding, nature-of-science assessment), and source evaluation (lateral
+reading, civic online reasoning, K-12 web-literacy support). See `_intake/research-os-k12/
 OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` for the map from this corpus onto the shared substrate
 between Research OS and the hypothesis engine, including the twelve open questions batch two of
 this corpus was written to supply evidence for.
@@ -152,19 +159,58 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [PRET: Prerequisite-Enriched Terminology. A Case Study on Educational Texts](prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md) | Prerequisite and knowledge-graph learning | 2018 | candidate | verified |
 | [Applying Centrality Measures to the Course Prerequisite Network Analysis of the Undergraduate Civil Engineering Curriculum](prerequisite-knowledge-graphs/valdez-roldan-masuli-2025-course-prerequisite-network-centrality.md) | Prerequisite and knowledge-graph learning | 2025 | candidate | verified |
 | [Extracting Prerequisite Relations Among Concepts in Wikipedia](prerequisite-knowledge-graphs/zhou-xiao-2019-prerequisite-relations-wikipedia.md) | Prerequisite and knowledge-graph learning | 2019 | candidate | verified |
+| [Course-Based Undergraduate Research Experiences Can Make Scientific Research More Inclusive](student-research-experiences/bangera-brownell-2014-cures-more-inclusive.md) | Student research experiences | 2014 | canon | verified |
+| [Modeling Course-Based Undergraduate Research Experiences: An Agenda for Future Research and Evaluation](student-research-experiences/corwin-graham-dolan-2015-modeling-cures.md) | Student research experiences | 2015 | canon | verified |
+| [The Project Ownership Survey: Measuring Differences in Scientific Inquiry Experiences](student-research-experiences/hanauer-dolan-2014-project-ownership-survey.md) | Student research experiences | 2014 | canon | verified |
+| [Learning science through research apprenticeships: A critical review of the literature](student-research-experiences/sadler-et-al-2010-research-apprenticeships-review.md) | Student research experiences | 2010 | canon | verified |
+| [High School Student Participation in Scientific Research Apprenticeships](student-research-experiences/burgin-sadler-koroly-2012-hs-research-apprenticeships.md) | Student research experiences | 2012 | canon | verified |
+| [Examining Summer Laboratory Research Apprenticeships for High School Students as a Factor in Entry to MD/PhD Programs at Matriculation](student-research-experiences/tai-et-al-2017-summer-research-apprenticeships-md-phd.md) | Student research experiences | 2017 | canon | verified |
+| [High school science fair: Student opinions regarding whether participation should be required or optional and why](student-research-experiences/grinnell-et-al-2018-science-fair-required-optional.md) | Student research experiences | 2018 | canon | verified |
+| [High school science fair: Positive and negative outcomes](student-research-experiences/grinnell-et-al-2020-science-fair-outcomes.md) | Student research experiences | 2020 | canon | verified |
+| [Gender differences in mathematics and science competitions: A systematic review](student-research-experiences/steegh-et-al-2019-gender-differences-competitions.md) | Student research experiences | 2019 | canon | verified |
+| [Getting Everyone to the Fair: Supporting Teachers in Broadening Participation in Science and Engineering Fairs](student-research-experiences/lakin-et-al-2021-broadening-participation-fairs.md) | Student research experiences | 2021 | canon | verified |
+| [Project-Based Learning: A Literature Review](project-based-inquiry-learning/condliffe-2017-project-based-learning-literature-review.md) | Project-based and inquiry learning | 2017 | candidate | verified |
+| [Revisiting the effects of project-based learning on students' academic achievement: A meta-analysis investigating moderators](project-based-inquiry-learning/chen-yang-2019-pbl-meta-analysis.md) | Project-based and inquiry learning | 2019 | outcome | verified |
+| [Project Based Learning & Student Achievement: What Does the Research Tell Us?](project-based-inquiry-learning/kingston-2018-pbl-student-achievement.md) | Project-based and inquiry learning | 2018 | candidate | verified |
+| [Experimental and Quasi-Experimental Studies of Inquiry-Based Science Teaching](project-based-inquiry-learning/furtak-et-al-2012-inquiry-based-science-meta-analysis.md) | Project-based and inquiry learning | 2012 | outcome | verified |
+| [Meta-Analysis of Inquiry-Based Learning](project-based-inquiry-learning/lazonder-harmsen-2016-inquiry-based-learning-meta-analysis.md) | Project-based and inquiry learning | 2016 | outcome | verified |
+| [Why Minimal Guidance During Instruction Does Not Work](project-based-inquiry-learning/kirschner-sweller-clark-2006-minimal-guidance-does-not-work.md) | Project-based and inquiry learning | 2006 | canon | verified |
+| [Scaffolding and Achievement in Problem-Based and Inquiry Learning: A Response to Kirschner, Sweller, and Clark (2006)](project-based-inquiry-learning/hmelo-silver-duncan-chinn-2007-scaffolding-response.md) | Project-based and inquiry learning | 2007 | canon | verified |
+| [Arguing to Learn in Science: The Role of Collaborative, Critical Discourse](writing-and-argumentation/osborne-2010-arguing-to-learn.md) | Writing and argumentation | 2010 | canon | verified |
+| [The Effects of School-Based Writing-to-Learn Interventions on Academic Achievement: A Meta-Analysis](writing-and-argumentation/bangert-drowns-hurley-wilkinson-2004-writing-to-learn-meta-analysis.md) | Writing and argumentation | 2004 | outcome | verified |
+| [What We Know, What We Still Need to Know: Teaching Adolescents to Write](writing-and-argumentation/graham-perin-2007-teaching-adolescents-to-write.md) | Writing and argumentation | 2007 | outcome | verified |
+| [Making sense of argumentation and explanation](writing-and-argumentation/berland-reiser-2009-argumentation-explanation.md) | Writing and argumentation | 2009 | canon | verified |
+| [Assessment of the ways students generate arguments in science education](writing-and-argumentation/sampson-clark-2008-assessment-student-arguments.md) | Writing and argumentation | 2008 | canon | verified |
+| [A Developmental Model of Critical Thinking](epistemic-cognition/kuhn-1999-developmental-model-critical-thinking.md) | Epistemic cognition | 1999 | canon | verified |
+| [Understanding students' practical epistemologies and their influence on learning through inquiry](epistemic-cognition/sandoval-2005-practical-epistemologies.md) | Epistemic cognition | 2005 | canon | verified |
+| [Expanding the Dimensions of Epistemic Cognition: Arguments From Philosophy and Psychology](epistemic-cognition/chinn-buckland-samarapungavan-2011-epistemic-cognition.md) | Epistemic cognition | 2011 | canon | verified |
+| [Views of nature of science questionnaire](epistemic-cognition/lederman-et-al-2002-vnos-questionnaire.md) | Epistemic cognition | 2002 | canon | verified |
+| [Lateral Reading and the Nature of Expertise](source-evaluation/wineburg-mcgrew-2019-lateral-reading.md) | Source evaluation | 2019 | canon | verified |
+| [Students' Civic Online Reasoning: A National Portrait](source-evaluation/breakstone-et-al-2021-civic-online-reasoning-national-portrait.md) | Source evaluation | 2021 | canon | verified |
+| [Can Students Evaluate Online Sources? Learning From Assessments of Civic Online Reasoning](source-evaluation/mcgrew-et-al-2018-can-students-evaluate-online-sources.md) | Source evaluation | 2018 | canon | verified |
+| [The Web as an Information Resource in K–12 Education](source-evaluation/kuiper-volman-terwel-2005-web-information-resource-k12.md) | Source evaluation | 2005 | canon | verified |
 
-117 papers: 37 educational methods, 32 HCI and human-AI collaboration, 18 scientific discovery and
+147 papers: 37 educational methods, 32 HCI and human-AI collaboration, 18 scientific discovery and
 metascience, 12 AI and researchers, 7 teacher workload and adoption, 11 prerequisite and
-knowledge-graph learning. Every DOI listed above was checked at intake time; none are
-placeholders, with one exception. Three of the 37 educational-methods records (Anderson and
-Krathwohl 2001, Perkins 1993, Wiske 1998) are a book and a magazine article with no Crossref DOI;
-each carries a `doi: null` frontmatter field and an `isbn` (or, for the 1993 magazine article, an
-ERIC id and ISSN) instead, verified against Open Library, OpenAlex, and ERIC, with each file's own
-"Verification note" section naming the exact records checked. A fourth, Biggs and Collis 1982,
-does carry a Crossref DOI (its SOLO taxonomy chapter) cross-checked against the same book's ISBN,
-confirming both resolve to the same 1982 Academic Press volume. One of the 7 teacher-workload-
-adoption records, Cuban 2001, is a book with no Crossref DOI; it carries a `doi: null` frontmatter
-field and an `isbn`, verified against Open Library's own work record.
+knowledge-graph learning, 10 student research experiences, 7 project-based and inquiry
+learning, 5 writing and argumentation, 4 epistemic cognition, 4 source evaluation. Every DOI
+listed above was checked at intake time; none are placeholders, with three exceptions. Three
+of the 37 educational-methods records (Anderson and Krathwohl 2001, Perkins 1993, Wiske 1998)
+are a book and a magazine article with no Crossref DOI; each carries a `doi: null` frontmatter
+field and an `isbn` (or, for the 1993 magazine article, an ERIC id and ISSN) instead, verified
+against Open Library, OpenAlex, and ERIC, with each file's own "Verification note" section
+naming the exact records checked. A fourth, Biggs and Collis 1982, does carry a Crossref DOI
+(its SOLO taxonomy chapter) cross-checked against the same book's ISBN, confirming both
+resolve to the same 1982 Academic Press volume. One of the 7 teacher-workload-adoption
+records, Cuban 2001, is a book with no Crossref DOI; it carries a `doi: null` frontmatter
+field and an `isbn`, verified against Open Library's own work record. Two of the 7
+project-based-and-inquiry-learning records, Condliffe (2017) and Kingston (2018), are
+non-peer-reviewed research briefs (MDRC and Buck Institute for Education respectively) with no
+Crossref DOI; each carries a `doi: null` frontmatter field and an `eric_id`, verified against
+their own ERIC records (ED578933 and ED590832). One title in the source-evaluation row above,
+Kuiper, Volman, and Terwel (2005), carries a publisher-typeset en dash (`voice-ignore-line` on
+its own frontmatter `title:` field marks this); the index row reproduces the title verbatim
+rather than rewording a citation.
 
 ## Framework mapping papers, added 2026-09-10
 
@@ -240,3 +286,36 @@ human-AI complementarity meta-analyses need a dedicated
 with a pointer. Of the 117 cards, 6 were already promoted in pass one and
 13 more are promoted by this pass; the remaining 98 files did not change
 tier or status.
+
+## Literature batch four, added 2026-09-10
+
+Branch `intake/ros-literature-4`. 30 new DOI- or ERIC-verified papers targeted at the gap
+named for this pass: evidence about students doing research in K-12 itself, rather than
+evidence about the Research OS or hypothesis-engine machinery around them. Corpus total rises
+from 117 to 147 papers, area count from six to eleven. Five new branches: `student-research-
+experiences/` (10 files, course-based undergraduate and high-school research-apprenticeship
+outcome studies plus science-fair and competition equity evidence), `project-based-inquiry-
+learning/` (7 files, project-based-learning and inquiry-teaching outcome meta-analyses and the
+Kirschner, Sweller, and Clark (2006) versus Hmelo-Silver, Duncan, and Chinn (2007) guidance
+debate), `writing-and-argumentation/` (5 files), `epistemic-cognition/` (4 files), and
+`source-evaluation/` (4 files). Full per-question evidence mapping recorded in `learning/
+research-os/CHANGE-LEDGER.md`'s literature-batch-four iteration and in the overlap map's own
+"Evidence added in batch four" paragraphs under questions 1, 4, 5, 6, 10, and 12.
+
+Two candidate papers named in the task brief could not be found with a resolvable DOI under
+the exact author and year given. "Hanauer 2017 project ownership" was not found; the closest
+verified match, Hanauer and Dolan (2014)'s own Project Ownership Survey instrument paper, was
+used in its place. "Miller 2018" (a high-school research program evaluation) was not found;
+the closest verified match, Burgin, Sadler, and Koroly (2012)'s own high-school research-
+apprenticeship outcome study, was used in its place. "Sahin 2015" (science-fair and STEM-
+competition evidence) was not found; Steegh and colleagues (2019)'s systematic review of
+gender differences in competitions and Lakin and colleagues (2021)'s teacher-facing
+broadening-participation study were used as the closest verified matches for the same
+equity-of-participation theme. None of these substitutions are placeholders; each is a real,
+DOI-verified paper on the same named topic as the unfound target.
+
+Two of the seven project-based-inquiry-learning records, Condliffe (2017) and Kingston
+(2018), are non-peer-reviewed research briefs (MDRC and the Buck Institute for Education
+respectively) rather than journal articles; each carries a `doi: null` frontmatter field and
+an `eric_id`, verified against its own ERIC record, the same non-DOI handling this corpus
+already applies to Cuban (2001) and Perkins (1993).

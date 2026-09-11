@@ -44,10 +44,28 @@
  * this page makes now also carries a client-generated `sessionId`
  * (EVIDENCE-SCHEMA.md's session grouping), created once per browser tab
  * and kept in sessionStorage so a reload mid-sitting keeps the same id.
+ *
+ * Cognitive forcing on Check (PLAN-REVISION-2.md section 2a): clicking
+ * "check my explanation" no longer shows feedback right away. runCheck
+ * grades the explanation and, unless the server says this learner's own
+ * arm has forcing off (`forcingEnabled: false` in its response), gets
+ * back only an `attemptId`: the Check card then shows the confidence and
+ * source-prediction questions instead of a verdict. runCheckReveal sends
+ * both answers on the same attemptId; the server holds the real verdict
+ * until they arrive (workspace/route.ts's own two-phase "check" contract)
+ * and, once revealed, the learner's prediction renders beside the
+ * tutor's own citation.
  */
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
+import {
+  LEARNER_CONFIDENCE_VALUES,
+  LEARNER_CONFIDENCE_COPY,
+  CONFIDENCE_QUESTION_COPY,
+  SOURCE_PREDICTION_QUESTION_COPY,
+  type LearnerConfidence,
+} from "@/lib/research-os/forcing";
 import { DELETE_CONFIRM_TOKEN } from "@/lib/research-os/types";
 
 const TARGET_SLUG = "why-the-sky-is-blue";
@@ -218,8 +236,29 @@ export default function ResearchOsWorkspacePage() {
   // (workspace/route.ts's logToolCall), this list is the learner's own
   // working view of what they have pulled so far.
   const [quotedSources, setQuotedSources] = useState<Array<{ nodeId: string; nodeTitle: string; kind?: "quote" | "summary"; quotable_span: string | null; locator?: string | null; citation: string }>>([]);
+  // Cognitive forcing's source-prediction picker (PLAN-REVISION-2.md
+  // section 2a): the distinct citations the learner has quoted this
+  // sitting, most recently quoted first, matching quotedSources' own order.
+  const quotedCitationOptions = useMemo(() => Array.from(new Set(quotedSources.map((q) => q.citation))), [quotedSources]);
   const [explanation, setExplanation] = useState("");
-  const [checkResult, setCheckResult] = useState<{ result: string; feedback: string; citations: string[] } | null>(null);
+  const [checkResult, setCheckResult] = useState<{
+    result: string;
+    feedback: string;
+    citations: string[];
+    learnerConfidence?: LearnerConfidence;
+    sourcePrediction?: string;
+    predictionCorrect?: boolean;
+  } | null>(null);
+  // Cognitive forcing on Check (PLAN-REVISION-2.md section 2a): a held
+  // attempt sits between "explanation submitted" and "verdict revealed".
+  // checkAttemptId set + checkResult null means the confidence/prediction
+  // questions are showing; both null means the Check form itself is
+  // showing; checkResult set means the verdict (with the forcing arm on,
+  // alongside the learner's own answers) is showing.
+  const [checkAttemptId, setCheckAttemptId] = useState<string | null>(null);
+  const [checkConfidence, setCheckConfidence] = useState<LearnerConfidence | "">("");
+  const [checkSourcePrediction, setCheckSourcePrediction] = useState("");
+  const [checkForcingError, setCheckForcingError] = useState<string | null>(null);
   const [organizeClaim, setOrganizeClaim] = useState("");
   const [organizeEvidence, setOrganizeEvidence] = useState("");
   const [organizeSources, setOrganizeSources] = useState("");
@@ -395,6 +434,10 @@ export default function ResearchOsWorkspacePage() {
     setSelected(node);
     setQuote(null);
     setCheckResult(null);
+    setCheckAttemptId(null);
+    setCheckConfidence("");
+    setCheckSourcePrediction("");
+    setCheckForcingError(null);
     setLocateResults([]);
     setOrganized(null);
     if (!token) return; // anonymous browsing is fine; only a signed-in learner logs progress
@@ -458,6 +501,11 @@ export default function ResearchOsWorkspacePage() {
   async function runCheck() {
     if (!token || !selected || !explanation.trim()) return;
     setBusy("check");
+    setCheckResult(null);
+    setCheckAttemptId(null);
+    setCheckConfidence("");
+    setCheckSourcePrediction("");
+    setCheckForcingError(null);
     try {
       const res = await fetch("/api/research-os/workspace", {
         method: "POST",
@@ -466,11 +514,55 @@ export default function ResearchOsWorkspacePage() {
       });
       const data = await res.json();
       if (handleConsentResponse(res, data)) return;
-      if (res.ok) {
+      if (!res.ok) {
+        setCheckResult({ result: "error", feedback: data.error || "Check failed.", citations: [] });
+        return;
+      }
+      if (data.forcingRequired) {
+        // Cognitive forcing on (default arm): the verdict is held until
+        // the questions below are answered. No feedback/result/citations
+        // key exists in `data` at all in this branch.
+        setCheckAttemptId(data.attemptId);
+      } else {
+        // This learner's own arm has forcing off: same immediate reveal
+        // as before this pass.
         setCheckResult(data);
         loadRoute();
+      }
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  /** Cognitive forcing's reveal step (PLAN-REVISION-2.md section 2a): sends
+   * the held-back confidence rating and source prediction on the same
+   * attemptId runCheck received; the server will not return the tutor's
+   * verdict without both (workspace/route.ts's "check" phase 2). */
+  async function runCheckReveal() {
+    if (!token || !selected || !checkAttemptId || !checkConfidence || !checkSourcePrediction) return;
+    setBusy("check_reveal");
+    setCheckForcingError(null);
+    try {
+      const res = await fetch("/api/research-os/workspace", {
+        method: "POST",
+        headers: { "content-type": "application/json", ...authHeaders() },
+        body: JSON.stringify({
+          action: "check",
+          nodeId: selected.id,
+          attemptId: checkAttemptId,
+          learnerConfidence: checkConfidence,
+          sourcePrediction: checkSourcePrediction,
+          sessionId,
+        }),
+      });
+      const data = await res.json();
+      if (handleConsentResponse(res, data)) return;
+      if (res.ok) {
+        setCheckResult(data);
+        setCheckAttemptId(null);
+        loadRoute();
       } else {
-        setCheckResult({ result: "error", feedback: data.error || "Check failed.", citations: [] });
+        setCheckForcingError(data.error || "Could not show your results yet.");
       }
     } finally {
       setBusy(null);
@@ -859,19 +951,120 @@ export default function ResearchOsWorkspacePage() {
 
                 <div className="bg-[color:var(--bone)] p-4">
                   <div className="font-display uppercase text-[14px] mb-2">check</div>
-                  <textarea
-                    value={explanation}
-                    onChange={(e) => setExplanation(e.target.value)}
-                    placeholder="explain this node in your own words…"
-                    className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] w-full bg-white/60 min-h-[70px]"
-                  />
-                  <button onClick={runCheck} disabled={!token || !selected || busy === "check"} className="mt-2 text-[12px] small-caps underline">
-                    {busy === "check" ? "checking…" : "check my explanation"}
-                  </button>
+
+                  {/* Phase 0: write the explanation. Hides once a held
+                      attempt or a revealed result exists. */}
+                  {!checkAttemptId && !checkResult && (
+                    <>
+                      <textarea
+                        value={explanation}
+                        onChange={(e) => setExplanation(e.target.value)}
+                        placeholder="explain this node in your own words…"
+                        className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] w-full bg-white/60 min-h-[70px]"
+                      />
+                      <button onClick={runCheck} disabled={!token || !selected || busy === "check"} className="mt-2 text-[12px] small-caps underline">
+                        {busy === "check" ? "checking…" : "check my explanation"}
+                      </button>
+                    </>
+                  )}
+
+                  {/* Phase 1, cognitive forcing (PLAN-REVISION-2.md section
+                      2a): a held attempt with no reveal yet. Both
+                      questions must be answered before the tutor's
+                      feedback shows, enforced server-side (workspace/
+                      route.ts's "check" phase 2, forcing.ts's held-attempt
+                      store). */}
+                  {checkAttemptId && !checkResult && (
+                    <div className="flex flex-col gap-4">
+                      <p className="text-[12px] text-[color:var(--basalt-2)]">
+                        Good. Answer these two questions to see your results.
+                      </p>
+
+                      <fieldset className="flex flex-col gap-2">
+                        <legend className="text-[11px] small-caps text-[color:var(--aegean-deep)] mb-1">{CONFIDENCE_QUESTION_COPY}</legend>
+                        <div className="flex flex-wrap gap-x-4 gap-y-2">
+                          {LEARNER_CONFIDENCE_VALUES.map((v) => (
+                            <label key={v} className="flex items-center gap-2 text-[13px] text-[color:var(--basalt)]">
+                              <input
+                                type="radio"
+                                name="check-confidence"
+                                value={v}
+                                checked={checkConfidence === v}
+                                onChange={() => setCheckConfidence(v)}
+                              />
+                              {LEARNER_CONFIDENCE_COPY[v]}
+                            </label>
+                          ))}
+                        </div>
+                      </fieldset>
+
+                      <fieldset className="flex flex-col gap-2">
+                        <legend className="text-[11px] small-caps text-[color:var(--aegean-deep)] mb-1">{SOURCE_PREDICTION_QUESTION_COPY}</legend>
+                        {quotedCitationOptions.length === 0 && (
+                          <p className="text-[12px] text-[color:var(--basalt-2)]">
+                            Quote a source first (above), then come back and pick it here.
+                          </p>
+                        )}
+                        {quotedCitationOptions.length > 0 && (
+                          <div className="flex flex-col gap-2">
+                            {quotedCitationOptions.map((c) => (
+                              <label key={c} className="flex items-start gap-2 text-[13px] text-[color:var(--basalt)]">
+                                <input
+                                  type="radio"
+                                  name="check-source-prediction"
+                                  value={c}
+                                  checked={checkSourcePrediction === c}
+                                  onChange={() => setCheckSourcePrediction(c)}
+                                  className="mt-1"
+                                />
+                                {c}
+                              </label>
+                            ))}
+                          </div>
+                        )}
+                      </fieldset>
+
+                      <button
+                        onClick={runCheckReveal}
+                        disabled={!checkConfidence || !checkSourcePrediction || busy === "check_reveal"}
+                        className="text-[12px] small-caps underline self-start disabled:opacity-50"
+                      >
+                        {busy === "check_reveal" ? "showing your results…" : "show my results"}
+                      </button>
+                      {checkForcingError && <p className="text-[12px] text-red-700">{checkForcingError}</p>}
+                    </div>
+                  )}
+
+                  {/* Phase 2: revealed. */}
                   {checkResult && (
-                    <p className="mt-2 text-[12px] text-[color:var(--basalt-2)]">
-                      <strong>{checkResult.result}</strong>: {checkResult.feedback}
-                    </p>
+                    <div className="flex flex-col gap-2">
+                      <p className="text-[12px] text-[color:var(--basalt-2)]">
+                        <strong>{checkResult.result}</strong>: {checkResult.feedback}
+                      </p>
+                      {checkResult.learnerConfidence && (
+                        <div className="text-[12px] text-[color:var(--basalt-2)] border-t border-[color:var(--hairline)] pt-2">
+                          <p>
+                            You guessed: {checkResult.sourcePrediction || "(nothing picked)"}
+                          </p>
+                          <p>
+                            The tutor used: {checkResult.citations[0] || "no source"}
+                          </p>
+                          <p>{checkResult.predictionCorrect ? "You picked the right source." : "Not quite the right source this time."}</p>
+                        </div>
+                      )}
+                      <button
+                        onClick={() => {
+                          setExplanation("");
+                          setCheckResult(null);
+                          setCheckAttemptId(null);
+                          setCheckConfidence("");
+                          setCheckSourcePrediction("");
+                        }}
+                        className="text-[12px] small-caps underline self-start"
+                      >
+                        check another explanation
+                      </button>
+                    </div>
                   )}
                 </div>
 

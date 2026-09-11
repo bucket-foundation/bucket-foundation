@@ -2,6 +2,127 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## Literature batch four
+
+Date 2026-09-10. Branch `intake/ros-literature-4`, worktree `.ros-worktrees/lit4`.
+Literature batch four: 30 new DOI- or ERIC-verified papers targeted at the gap named for
+this pass, evidence about students doing research in K-12 itself, across six sub-areas:
+course-based undergraduate and high-school research experiences, science-fair and
+competition equity, project-based and inquiry-learning outcomes, writing-to-learn and
+argumentation, epistemic cognition and nature of science, and citation and source
+evaluation.
+
+### Added
+
+- 10 files under `_intake/research-os-k12-literature/student-research-experiences/`: new
+  seventh branch. CURE outcome and instrument studies (Bangera and Brownell 2014; Corwin,
+  Graham, and Dolan 2015; Hanauer and Dolan 2014), a research-apprenticeship critical
+  review and a high-school apprenticeship outcome study (Sadler and colleagues 2010;
+  Burgin, Sadler, and Koroly 2012), a long-horizon high-school apprenticeship outcome study
+  (Tai and colleagues 2017), and science-fair and competition equity evidence (Grinnell and
+  colleagues 2018, 2020; Steegh and colleagues 2019; Lakin and colleagues 2021).
+- 7 files under `_intake/research-os-k12-literature/project-based-inquiry-learning/`: new
+  eighth branch. Project-based-learning evidence (Condliffe 2017; Chen and Yang 2019;
+  Kingston 2018), inquiry-teaching guidance meta-analyses (Furtak and colleagues 2012;
+  Lazonder and Harmsen 2016), and the minimal-guidance-versus-scaffolding debate (Kirschner,
+  Sweller, and Clark 2006; Hmelo-Silver, Duncan, and Chinn 2007).
+- 5 files under `_intake/research-os-k12-literature/writing-and-argumentation/`: new ninth
+  branch (Osborne 2010; Bangert-Drowns, Hurley, and Wilkinson 2004; Graham and Perin 2007;
+  Berland and Reiser 2009; Sampson and Clark 2008).
+- 4 files under `_intake/research-os-k12-literature/epistemic-cognition/`: new tenth branch
+  (Kuhn 1999; Sandoval 2005; Chinn, Buckland, and Samarapungavan 2011; Lederman and
+  colleagues 2002).
+- 4 files under `_intake/research-os-k12-literature/source-evaluation/`: new eleventh
+  branch (Wineburg and McGrew 2019; Breakstone and colleagues 2021; McGrew and colleagues
+  2018; Kuiper, Volman, and Terwel 2005).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended from 117 to 147 rows
+  across eleven areas (five new); intro paragraph, per-area counts, and a new "Literature
+  batch four" summary section.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: an "Evidence added
+  in batch four" paragraph appended under six of the twelve open questions (1, 4, 5, 6, 10,
+  12), each naming support, complication, or both. Questions 2, 3, 7, 8, 9, and 11 have no
+  batch-four paper bearing on them directly and were left unedited.
+- `learning/research-os/PLAN-REVISION-2.md`: an "Evidence added in batch four" paragraph
+  appended to section 2a (human-AI complementarity on productions), 2b (progression
+  unidimensionality), and 2d (the ros-08 power finding). Section 2c (prerequisite
+  annotation agreement) has no batch-four paper bearing on it directly and was left
+  unedited.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass, logged below in this
+  same iteration for cross-reference.
+
+### Removed
+
+None.
+
+### Verified
+
+Read in full before writing: `_intake/research-os-k12-literature/README.md` (for the
+frontmatter schema, copied from `auchincloss-et-al-2014-cure-assessment.md` and
+`cuban-2001-oversold-underused-computers-classroom.md`), `learning/research-os/
+PLAN-REVISION-2.md`, `learning/research-os/funding/WAVE-1-TARGETS.md` and
+`FAST-FORWARD-2026.md`, and `learning/research-os/study/PREREGISTRATION-DRAFT.md`. Every
+new paper's DOI and OpenAlex work id were checked live against `api.openalex.org` and
+`api.crossref.org` at intake time; none are placeholders. Two research-brief papers,
+Condliffe (2017) and Kingston (2018), carry no Crossref DOI; each verified against its own
+ERIC record (ED578933, ED590832), the same non-DOI handling this corpus already applies to
+Cuban (2001) and Perkins (1993). Three candidate papers named in the task brief were
+searched for and not found with a resolvable DOI matching the brief exactly: "Hanauer 2017
+project ownership" (the closest verified match, Hanauer and Dolan 2014's own Project
+Ownership Survey, used in its place), "Miller 2018" high-school research program evaluation
+(the closest verified match, Burgin, Sadler, and Koroly 2012, used in its place), and
+"Sahin 2015" science-fair and STEM-competition evidence (Steegh and colleagues 2019 and
+Lakin and colleagues 2021 used as the closest verified equity-of-participation matches). No
+blockquote or extended verbatim passage from any source paper past a 60-word threshold; all
+`key_claims` and body text are paraphrase. `_intake/research-os-k12-literature/README.md`'s
+row count (147) matched the corpus file count exactly, `find` counted per branch: 37
+educational methods, 32 HCI, 18 scientific discovery, 12 AI and researchers, 7 teacher
+workload and adoption, 11 prerequisite graphs, 10 student research experiences, 7
+project-based and inquiry learning, 5 writing and argumentation, 4 epistemic cognition, 4
+source evaluation. A grep-based self-audit against the full banned-word, filler-adverb,
+AI-tell, antithesis, and em/en-dash rule lists ran against every file this pass authored or
+edited, since `agf-lint-voice check` silently scans zero files under any path containing an
+`_intake` segment, the same org-level ignore-list bug literature batch three's own ledger
+entry already flagged (not fixed here, outside this task's scope). Every flagged instance
+was rewritten before commit; `PLAN-REVISION-2.md` and `learning/research-os/CHANGE-LEDGER.md`
+itself, outside the `_intake` tree, were scanned by the real linter directly during each
+commit and returned zero violations, corroborating the self-audit's own result.
+
+## PR #65 review pass
+
+Date 2026-09-10. Review of PR #65 (`intake/ros-literature-4`, literature batch four)
+before merge, worktree `.ros-worktrees/r65`. Full account: `_intake/research-os-k12/
+CHANGELOG.md`, "2026-09-10: literature batch four, PR #65 review pass".
+
+### Edited
+
+- `_intake/research-os-k12-literature/epistemic-cognition/
+  kuhn-1999-developmental-model-critical-thinking.md`: removed the banned filler word
+  `actually` from `why_it_matters`.
+- `_intake/research-os-k12-literature/student-research-experiences/
+  steegh-et-al-2019-gender-differences-competitions.md` and `lakin-et-al-2021-
+  broadening-participation-fairs.md`: `why_it_matters` on both edited to name the
+  unresolved "Sahin 2015" citation and cross-reference each other as the two closest
+  verified equity-of-participation matches, matching the substitute-labeling pattern
+  already used on the Hanauer and Burgin cards.
+- `_intake/research-os-k12-literature/README.md`: a documentation line added noting the
+  Kuiper, Volman, and Terwel (2005) title's en dash is the publisher's own typesetting,
+  reproduced verbatim from the card's own `voice-ignore-line`-marked frontmatter.
+
+### Verified
+
+Leak scan clean (keys, `.env` values, IPs, hostnames, personal emails, PII, absolute
+local paths, session URLs); a first-pass phone-number regex hit was confirmed to be DOI
+and OpenAlex work-id digit strings. Eight of thirty new cards sampled
+against Crossref, OpenAlex, and ERIC (both ERIC-only cards, all three substitute-source
+cards, and three more at random): all eight matched on title, authors, year, and venue.
+README's 147-row index, per-area counts, and file links matched the corpus on disk
+exactly. The overlap map's six batch-four paragraphs and `PLAN-REVISION-2.md`'s three
+both reference files that exist. `git merge origin/main` clean. `npm ci` and
+`npm run build` both passed. No file under `src/` or `public/` changed.
+
 ## PR #61 review pass
 
 Date 2026-09-10. Review of PR #61 (`feat/canon-signoff-tool`) before merge,
@@ -2307,6 +2428,38 @@ commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
 
 - `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
 
+## Iteration 22: cognitive forcing on Check
+
+`PLAN-REVISION-2.md` section 2a's design response to Buçinca, Malaya and Gajos (2021), Bansal et al. (2021), and Vaccaro, Almaatouq and Malone (2024): Check's verdict now holds server-side until the learner commits to a confidence rating and a source prediction, matching Buçinca's own commit-before-reveal cognitive forcing structure.
+
+### Added
+
+- `src/lib/research-os/forcing.ts`: the 4-point `LearnerConfidence` scale and its grade-4-reading-level copy, `computePredictionCorrect` (code-level, never model-read), the arm switch (`envForcingDefault`/`resolveForcingEnabled`), the in-memory held-attempt store (`storePendingAttempt`/`getPendingAttempt`/`consumePendingAttempt`/`pruneExpiredAttempts`, matching `rate-limit.ts`'s own best-effort posture), and `revealPendingAttempt`, the single gate enforcing "the Check response omits feedback until the forcing record exists for that attempt."
+- `src/lib/research-os/calibration.ts`: `computeCalibrationSummary`, mean confidence against mean source-prediction correctness per learner, over forcing-gated `"check"` events only.
+- `supabase/migrations/20260910060000_research_os_forcing.sql`: `graph.classes.forcing_enabled`, a nullable per-class override for the arm switch.
+- `scripts/test-research-os-forcing.ts` (19 tests) and `scripts/test-research-os-calibration.ts` (9 tests), both pure, no network or database, wired into `npm run test:research-os`.
+
+### Edited
+
+- `src/lib/research-os/stages.ts`: `EvidenceContext`/`EvidenceEvent` gain `learnerConfidence`, `sourcePrediction`, `predictionCorrect`, `forcingEnabled`; `onCheckResult` is the one writer. `onProbeCheckResult` untouched: forcing gates Check alone, never the diagnostic probe.
+- `src/lib/research-os/db.ts`: `loadForcingEnabledForLearner`, fails open (`null`, deferring to the env default) on any lookup error, so the optional per-class override can never break a Check call.
+- `src/app/api/research-os/workspace/route.ts`: the "check" action becomes two-phase. Phase 1 (no `attemptId`) grades the explanation and, unless this learner's own arm has forcing off, returns only `{ attemptId, forcingRequired: true }`. Phase 2 (`attemptId` present) calls `revealPendingAttempt`; a request missing a valid confidence or a source prediction gets a 400 with the attempt left held for a retry, never a verdict.
+- `src/app/research-os/workspace/page.tsx`: the Check card gets a third render phase, the two forcing questions (native `<fieldset>`/`<legend>`/labeled `<input type="radio">` groups, the same accessible pattern `/research-os/profile` already uses), sourced from the learner's own "sources I have quoted" list; the reveal shows the learner's prediction beside the tutor's real citation and whether it matched.
+- `src/app/api/research-os/class/route.ts` and `src/app/research-os/class/page.tsx`: a `calibration` array per class, `git log -3 --since='2 hours ago' -- src/app/research-os/class` confirmed no other in-flight work on this page at the time this landed, so the summary was wired directly into the class view rather than left as an unexposed server function.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: a new "Cognitive forcing on Check: the calibration record" section for the four added fields.
+- `learning/research-os/WORKSPACE.md`: section 6, the full flow, server enforcement, the arm switch, and the calibration record.
+- `learning/research-os/study/INSTRUMENTS.md`: section 2 rewritten from an after-the-verdict design to the shipped before-the-verdict placement; original text preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/class` and `/research-os/workspace` both in the manifest), `npm run test:research-os` (293 passed, 0 failed, 22 files), `eslint` on all 11 touched TS/TSX files, `agf-lint-voice-src check` on the same files plus the new migration, `agf-lint-voice check` on the touched docs: all clean.
+- The headline case, "a test proves the feedback cannot be fetched early," runs against `revealPendingAttempt` directly, the exact function the route calls. An `attemptId`-only call, a confidence-only call, and a prediction-only call all return `{ ok: false, reason: "forcing_incomplete" }` with the attempt left retrievable; only both fields together reveal the grade, and a second reveal on the same `attemptId` after that is `not_found`.
+
+### Removed
+
+None.
+
+
 ## Iteration 22: canon human sign-off tool
 
 Built the human sign-off tool `GOVERNANCE.md`'s "Canon sign-off" section
@@ -2369,3 +2522,156 @@ the 20 `bucket-canon/` records currently carrying `provenance_signoff:
 - `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
 - `GOVERNANCE.md`: one line, a pointer from the "Canon sign-off" section
   to `SIGNOFF.md` and the tool. No policy text changed.
+
+
+## Iteration 22: ros-11 engine review items
+
+`PLAN.md` section 10 against `BEADS-PENDING.jsonl`'s own ros-11 status
+line: signoff enforced (PR #43), ranking label done (PR #54), cross-family
+independence carries no current claim, six other items open. Four of the
+six landed on `tools/hypothesis-engine/`, none of this iteration's changes
+touch `src/`, `public/`, or `learning/research-os/PLAN.md` itself.
+
+### Added
+
+- `tools/hypothesis-engine/hte/holdout_ledger.py`: a persisted,
+  append-only JSONL ledger of ranked hypotheses (`hte/data/ranking-
+  holdout-ledger.jsonl`, committed empty) with a later-verified outcome
+  field, `verify_entry`/`compute_hit_rate`/`ranking_status`, and a
+  documented `MIN_VERIFIED_FOR_LABEL = 20` below which every ranking
+  output stays labeled `unvalidated_tournament_ranking`. `hte holdout-
+  ledger report`/`verify` (`hte/cli.py`) is the hit-rate script section
+  10 asks for.
+- `tools/hypothesis-engine/hte/novelty.py`: a lexical (token-Jaccard)
+  novelty check of one candidate's own statement against every markdown
+  file under `bucket-canon/`, split into `"canon"` (foundation dossiers)
+  and `"engine"` (a `hypotheses/` subtree, prior write-back output)
+  buckets, reporting a score and the closest match. Not itself a
+  section 10 line; answers Si, Yang, and Hashimoto (2024)'s finding that
+  LLM idea generators repeat themselves across their own outputs more
+  than human researchers do, a direct risk for this engine's own
+  combinatorial generator over a fixed slot vocabulary.
+- `hte.roles.understanding` (`hte/roles.py`, `hte/fakellm.py`'s stand-in,
+  `hte/data/model-policy.json`'s new `"understanding"` role): a
+  plain-language, two-to-four-sentence explanation per candidate,
+  generated by the engine and marked `generated_by: model` everywhere it
+  is stored (Messeri and Crockett 2024's illusion of explanatory depth;
+  Krenn and others 2022's compression-and-generalization reading of
+  "understanding"). `hte.canon_writeback.write_back` refuses the whole
+  write, before any file touches disk, when even one candidate's own
+  explanation comes back blank.
+- `tests/test_holdout_ledger.py`, `tests/test_novelty.py`, and new cases
+  in `tests/test_canon_writeback.py`, `tests/test_roles.py`, `tests/
+  test_fakellm.py`, `tests/test_cli.py`.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/canon_writeback.py`: `_evidence_line`
+  (the rendered card) and a new `_evidence_detail` (the envelope) now
+  carry `doc_id`/`char_start`/`char_end` alongside the existing quote
+  and locator, section 10's full-document-over-snippet ask, additive in
+  the envelope (`evidence.supports_detail`/`refutes_detail`, next to the
+  existing id lists). `render_card`/`render_index`/`build_envelope` read
+  the Elo disclaimer from `hte.holdout_ledger.ranking_status` instead of
+  a fixed string, and carry the new `understanding`/`novelty` fields.
+  `write_back` gained `cache_dir`/`replay_only`/`ledger_path` parameters
+  and now runs the understanding, novelty, and ledger-recording steps
+  before writing any file (skipped under `dry_run`, which stays a free
+  path-listing preview).
+- `tools/hypothesis-engine/hte/pipeline.py`: the `writeback` stage now
+  passes `replay_only` through to `write_back`.
+- `tools/hypothesis-engine/hte/cli.py`: `holdout-ledger report`/`verify`
+  subcommands.
+
+### Verified
+
+`make test`: 1084 passed before this iteration's changes, 1115 passed
+after, 18 deselected both times, 0 failed. `ruff check .`: 32
+pre-existing errors elsewhere in the tree, 0 in any file this iteration
+touches. `agf-lint-voice-src check` on every `.py` file this iteration
+authored or edited: 0 violations after fixing (on the first pass) two
+banned words (`actually`, `genuinely`) and nine antithesis constructions.
+No file under `src/` or `public/` touched, so no `npm`/`tsc`/`next lint`
+gate applies. `learning/research-os/ENGINE-BRIDGE.md` reviewed and left
+unchanged: it documents the `graph.nodes`/outbox bridge between the
+Next.js app and the engine, not `hte.canon_writeback`'s own card and
+envelope contract, and carries no reference to `write_back`, `elo_
+status`, or the feed402 envelope this iteration's changes touch.
+
+### Remaining, section 10
+
+Item 5 (stress-test fusion on conflicting evidence sets, Yager 1987),
+item 7 (the address scheme preserves all thirteen Allen interval
+relations, Allen 1983), and item 8 (calibration on a fixed published
+cadence, CASP-style) stay open, filed in `BEADS-PENDING.jsonl` per this
+task's own four-item stop.
+
+## Iteration 23: PR #60 review
+
+Review pass over iteration 22 (PR #60) before merge.
+
+### Added
+
+- `tests/test_canon_writeback.py::test_write_back_refuses_without_
+  signoff_or_understanding`: both `write_back` no-partial-state gates
+  (signoff, understanding) in one test, confirming a blank signoff
+  refuses before the understanding step ever runs and a present signoff
+  with a blank understanding artifact still refuses, neither path
+  writing to `out_root`.
+- `BEADS-PENDING.jsonl`: `bkt-hte-evidence-span-doc-length` follow-up.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/evidence.py`: a TODO on `EvidenceSpan.
+  __post_init__` naming what it does not check, `char_start`/`char_end`
+  against `doc_id`'s own stored document length, and why (`hte.corpus.
+  Source` carries no document text or length field yet).
+
+### Verified
+
+`make test`: 1116 passed (1115 from PR #60 plus the one test added
+here), 18 deselected, 0 failed. `ruff check .` clean on every file this
+pass touched. `agf-lint-voice-src check` clean on every `.py` file this
+pass touched; `agf-lint-voice check` clean on `BEADS-PENDING.jsonl`'s own
+new line and both markdown files this pass edited (the file's 25
+pre-existing violations sit on lines already on `main`, untouched by PR
+#60 or this pass). Leak scan of the PR #60 diff: no keys, IPs, emails,
+home paths, or session URLs found. `learning/research-os/ENGINE-BRIDGE.md`
+confirmed by grep to carry no `understanding`/`elo_status`/envelope field
+from `hte.canon_writeback`'s own contract, so PR #60's write-back change
+touches nothing that file covers; left unchanged.
+
+
+## PR #63 review pass: the held Check verdict moved off an in-memory Map
+
+Review of PR #63 (cognitive forcing on Check, Iteration 22 above) found the
+production defect its own review task named: `forcing.ts`'s held-attempt store
+was a plain in-memory `Map`. On Vercel a phase-1 Check and its phase-2 reveal
+can land on two different route instances, losing the held verdict between
+them; the learner would see the Check form again with no explanation why.
+
+### Added
+
+- `supabase/migrations/20260910070000_research_os_check_attempts.sql`: `graph.check_attempts` (the persisted held-attempt table, RLS `own_select`), `graph.purge_expired_check_attempts()` (deletes every row past a 24-hour hard expiry, returns the count), and `graph.privacy_delete_learner` extended (`create or replace`) to also delete the requesting learner's own `check_attempts` rows and to call the purge sweep as a side effect of every delete request.
+- `src/lib/research-os/check-attempts-db.ts`: the persisted store `workspace/route.ts` calls (`dbStorePendingAttempt`/`dbGetPendingAttempt`/`dbConsumePendingAttempt`/`dbRevealPendingAttempt`/`dbPurgeExpiredAttempts`), plus its pure, tested pieces (`mapCheckAttemptRow`, `isPastHardExpiry`). Reuses `forcing.ts`'s `checkAttemptAccess`/`finalizeReveal` directly rather than re-implementing the ownership/TTL/reveal-completeness rules.
+- `scripts/test-research-os-check-attempts.ts` (15 tests): row mapping, the 24-hour hard-expiry check, and a full store-and-reveal walk built from the shared gate functions, no Supabase or network, matching this repo's DB-touching-module convention (see `privacy.ts`'s own header).
+
+### Edited
+
+- `src/lib/research-os/forcing.ts`: `getPendingAttempt` and `revealPendingAttempt` refactored (no external behavior change) to call two newly exported pure functions, `checkAttemptAccess` (ownership + TTL) and `finalizeReveal` (the commit-before-reveal check), so `check-attempts-db.ts` runs the exact same decision logic against the persisted table. Module header rewritten: the in-memory `Map` is now documented as the test double `scripts/test-research-os-forcing.ts` exercises, a role separate from the production store. All 19 of that file's existing tests pass unchanged.
+- `src/app/api/research-os/workspace/route.ts`: the "check" action's phase 1 and phase 2 now call `dbStorePendingAttempt`/`dbRevealPendingAttempt` (`check-attempts-db.ts`) instead of `forcing.ts`'s in-memory functions; the opportunistic `pruneExpiredAttempts()` call is dropped, the 24-hour sweep runs from the privacy delete path instead. Module header updated to describe the persisted store.
+- `src/lib/research-os/privacy.ts`: `graph.check_attempts` added to `PRIVACY_TABLES` (export and delete both cover it now).
+- `learning/research-os/compliance/DATA-INVENTORY.md`: a new `graph.check_attempts` row in the learner-keyed table, the source-migration list, and the free-text-fields section (item 4, `check_attempts.explanation`).
+- `learning/research-os/WORKSPACE.md` section 6: "Server enforcement" and "In-memory, best effort" rewritten to describe the persisted store, the 24-hour hard expiry, and the privacy-delete purge sweep; original text preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+- `scripts/test-research-os-privacy.ts`: `fixtureStore()` gains a `check_attempts` row for each of the two test learners; the "reported deleted counts" test gains an assertion for it; the migration drift-check test widened to scan every `supabase/migrations/*.sql` file rather than one hardcoded filename (`graph.check_attempts`'s delete statement lives in the new migration).
+- `package.json`: `test:research-os` gains `scripts/test-research-os-check-attempts.ts`.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/class` and `/research-os/workspace` both in the manifest), `npm run test:research-os` (339 passed, 0 failed, 26 files, up from the PR's own reported 330/330 across 25), `eslint` on every touched or added TS/TSX file, `agf-lint-voice-src check` on the same files plus the new migration, `agf-lint-voice check` on the touched docs: all clean after fixing three banned words (`actually`, twice) and three antithesis phrasings found on the first pass.
+- Leak scan (keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, Claude session URLs) against the PR's own diff (`gh pr diff 63`): clean, zero hits across all four categories checked (IP-shaped strings, key-shaped strings, non-`gianyrox` emails, `/home/gian` paths, session URLs). One pre-existing `/home/gian/agfarms/.wt-fix10` path found in `BEADS-PENDING.jsonl`, confirmed already on `main` before this PR and outside this PR's own one-line diff to that file; left untouched, named here rather than silently passed over.
+- Manual review of the four items PR #63's own task named beyond persistence, all already correct on the branch, no change needed: the arm switch reads `graph.classes.forcing_enabled` server-side (`db.ts`'s `loadForcingEnabledForLearner`) and every `check` evidence event carries `forcingEnabled` (`stages.ts`'s `onCheckResult`); the calibration summary is scoped to the reviewer's own classes (`class/route.ts`'s `loadClassesForReviewer(reviewer.email)` plus a `learnerIdSet` filter); the forcing question copy is short, one-clause, grade-4-level (`forcing.ts`'s `CONFIDENCE_QUESTION_COPY`/`LEARNER_CONFIDENCE_COPY`); the Check card's forcing fieldsets use `flex-wrap`/`flex-col` with no fixed widths, matching `/research-os/profile`'s own 400px-stacking pattern.
+
+### Removed
+
+None.

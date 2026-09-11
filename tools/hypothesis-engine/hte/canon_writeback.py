@@ -56,6 +56,16 @@ approver string. A missing or blank `signoff` is a hard refusal
 recorded in every card's provenance section, the envelope's per-item
 provenance, and the `CANON-INGESTION-INDEX.md` addendum, so the approver
 is legible from the entry itself, not just from the PR that shipped it.
+
+`write_back` carries three more `PLAN.md` section 10 gates
+(`bkt-hte-ros-11-review-items`), each a module of its own this file
+imports: `hte.holdout_ledger` (a persisted, append-only ranking track
+record; every card's Elo carries `hte.holdout_ledger.ranking_status`'s
+own current label instead of a fixed "unvalidated" string), `hte.novelty`
+(a lexical novelty score against `bucket-canon/`, recorded but not
+gating), and `hte.roles.understanding` (a plain-language explanation per
+candidate, gating: a blank explanation for even one candidate refuses
+the whole write, the same no-partial-state guarantee `signoff` gets).
 """
 from __future__ import annotations
 
@@ -68,6 +78,9 @@ from pathlib import Path
 from typing import Any
 
 from . import artifacts as artifacts_mod
+from . import holdout_ledger
+from . import novelty as novelty_mod
+from . import roles
 from . import unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
 from .belief import Constants, Opinion, load_detectability_table, score as belief_score
@@ -309,13 +322,54 @@ def _statement(corpus: Corpus, candidate: Candidate) -> str:
 
 
 def _evidence_line(item: EvidenceItem) -> str:
+    """`bkt-hte-full-document-evidence`: carries the field-level grounding
+    `hte.evidence.EvidenceSpan` already stores (`doc_id`, `locator`,
+    `char_start`, `char_end`), not only the quote, so a claim's own
+    evidence is auditable from the card alone. `PLAN.md` section 10 asks
+    for full-document context over an isolated snippet; `doc_id` plus
+    `locator` is the full-text pointer a reader follows back to that
+    document, and `char_start`/`char_end` is the exact passage span this
+    item's own quote was drawn from within it, so a reviewer (or a later
+    audit) can re-locate the claim's own source material precisely,
+    never only trust the quoted string in isolation."""
     quote = item.span.quote.strip()
     if len(quote) > 220:
         quote = quote[:217].rstrip() + "..."
-    return f"- `{item.id}` (tier {item.tier.value}, source `{item.source_id}`, stance {item.stance.value}): \"{quote}\" -- {item.span.locator}"
+    span = item.span
+    return (
+        f"- `{item.id}` (tier {item.tier.value}, source `{item.source_id}`, stance {item.stance.value}): "
+        f"\"{quote}\" -- {span.locator} (doc `{span.doc_id}`, chars {span.char_start}-{span.char_end})"
+    )
 
 
-def render_card(candidate: Candidate, ctx: RunContext, *, branch: str, signoff: str) -> str:
+def _evidence_detail(item: EvidenceItem) -> dict[str, Any]:
+    """The envelope's own auditable form of `_evidence_line`: one dict
+    per linked evidence item, `doc_id`/`locator`/`char_start`/`char_end`
+    alongside the quote, tier, source, and stance. `build_envelope`
+    carries this in a new `supports_detail`/`refutes_detail` pair,
+    additive next to the existing `supports`/`refutes` id lists, so an
+    existing reader of those two id lists sees no shape change."""
+    return {
+        "id": item.id, "tier": item.tier.value, "source_id": item.source_id, "stance": item.stance.value,
+        "quote": item.span.quote, "doc_id": item.span.doc_id, "locator": item.span.locator,
+        "char_start": item.span.char_start, "char_end": item.span.char_end,
+    }
+
+
+def render_card(
+    candidate: Candidate, ctx: RunContext, *, branch: str, signoff: str,
+    understanding: str, novelty: novelty_mod.NoveltyResult, elo_label: str | None = None,
+) -> str:
+    """`understanding` is the plain-language explanation `hte.canon_
+    writeback.write_back` generates through `hte.roles.understanding`
+    before calling this function; `write_back` refuses to write any card
+    at all when that text comes back blank (`bkt-hte-understanding-
+    artifact`, `PLAN.md` section 10). `novelty` is this candidate's own
+    `hte.novelty.check_novelty` result against `bucket-canon/`, computed
+    the same way. `elo_label` is the ranking-holdout disclaimer sentence
+    `hte.holdout_ledger.ranking_status` produced for this write-back pass
+    (`None` defaults to that module's own unvalidated-state text, so a
+    caller with no ledger state on hand still gets a correct card)."""
     corpus = ctx.corpus
     manifest = ctx.manifest
     opinion = candidate.opinion
@@ -331,6 +385,14 @@ def render_card(candidate: Candidate, ctx: RunContext, *, branch: str, signoff: 
 
     projections = candidate.robustness.get("projections", {})
     projection_row = " | ".join(f"{name}={value:.3f}" for name, value in sorted(projections.items()))
+
+    if elo_label is None:
+        elo_label = holdout_ledger.ranking_status().label
+
+    closest = (
+        f"`{novelty.closest_path}` ({novelty.closest_bucket}, similarity {novelty.closest_similarity:.3f})"
+        if novelty.closest_path is not None else "(no bucket-canon/ material to compare against)"
+    )
 
     lines = [
         f"# Hypothesis -- {_statement(corpus, candidate)}",
@@ -357,10 +419,7 @@ def render_card(candidate: Candidate, ctx: RunContext, *, branch: str, signoff: 
         "|---|---|---|---|---|---|",
         f"| {opinion.b:.3f} | {opinion.d:.3f} | {opinion.u:.3f} | {opinion.a:.3f} | {candidate.posterior:.3f} | {candidate.elo if candidate.elo is not None else '(unrated)'} |",
         "",
-        "Elo is this run's own within-run tournament ranking. **Unvalidated:** no "
-        "discovery-date holdout track record exists yet for rankings, as distinct "
-        "from single claims (`PLAN.md` section 10); `P(h)` is the scored claim, "
-        "Elo is ordering only.",
+        elo_label,
         "",
         "## 3. Slots",
         "",
@@ -385,7 +444,21 @@ def render_card(candidate: Candidate, ctx: RunContext, *, branch: str, signoff: 
         "",
         f"Per-profile projected posterior: {projection_row}",
         "",
-        "## 6. Provenance",
+        "## 6. Plain-language understanding",
+        "",
+        "> Model-written, generated by `hte.roles.understanding`. Not a claim that any "
+        "human has reconstructed or verified this explanation independently "
+        "(Messeri and Crockett 2024).",
+        "",
+        understanding,
+        "",
+        "## 7. Novelty",
+        "",
+        f"Novelty score: {novelty.score:.3f} (1.0 = no lexical overlap found; 0.0 = a "
+        f"near-duplicate exists). Compared against {novelty.n_compared} file(s) under "
+        "`bucket-canon/`. Closest match: " + closest + ".",
+        "",
+        "## 8. Provenance",
         "",
         f"- Corpus: `{manifest.corpus}`",
         f"- Run directory: `{ctx.run_dir}`",
@@ -397,14 +470,15 @@ def render_card(candidate: Candidate, ctx: RunContext, *, branch: str, signoff: 
     return "\n".join(lines) + "\n"
 
 
-def render_index(cards: list[tuple[Candidate, Path]], *, branch: str) -> str:
+def render_index(cards: list[tuple[Candidate, Path]], *, branch: str, elo_label: str | None = None) -> str:
+    if elo_label is None:
+        elo_label = holdout_ledger.ranking_status().label
     lines = [
         f"# {branch} hypothesis cards",
         "",
         "Candidate tier throughout. Written by `hte.canon_writeback.write_back`. See `docs/BUILD-HISTORY.md`.",
         "",
-        "Elo is unvalidated: a within-run tournament ranking, no discovery-date "
-        "holdout track record yet (`PLAN.md` section 10). Rank on `P(h)`.",
+        elo_label,
         "",
     ]
     lines.append("| Hypothesis | P(h) | u | Elo | Card |")
@@ -530,7 +604,12 @@ def _cite_block() -> dict[str, Any]:
     }
 
 
-def build_envelope(cards: list[tuple[Candidate, Path]], *, branch: str, ctx: RunContext, floor_P: float, floor_u_max: float, signoff: str) -> dict[str, Any]:
+def build_envelope(
+    cards: list[tuple[Candidate, Path]], *, branch: str, ctx: RunContext, floor_P: float, floor_u_max: float,
+    signoff: str, understanding_by_id: dict[str, str] | None = None,
+    novelty_by_id: dict[str, novelty_mod.NoveltyResult] | None = None,
+    ranking: holdout_ledger.RankingStatus | None = None,
+) -> dict[str, Any]:
     """The static form of the proposed `/api/research/hypotheses` route
     (`CANON-CONTRIBUTIONS-2026-09-10.md` Part 3, priority 1): one
     feed402-shaped envelope per written card, matching `PROTOCOL.md`
@@ -542,11 +621,24 @@ def build_envelope(cards: list[tuple[Candidate, Path]], *, branch: str, ctx: Run
     is a placeholder: no x402 settlement has happened over this run's own
     output yet, `price_usd: 0` throughout, per this task's own "receipt
     placeholder" instruction.
+
+    `understanding_by_id`/`novelty_by_id` (keyed by `candidate.short_id`,
+    both default `{}` when not given, `write_back`'s own dry-run path has
+    neither yet computed) and `ranking` (defaults to `hte.holdout_ledger.
+    ranking_status()`'s current on-disk state) fill the `understanding`,
+    `novelty`, and `elo_status` fields below; see `render_card`'s own
+    docstring for what each one is and why `write_back` refuses to write
+    a card at all when `understanding_by_id` carries no text for it.
     """
+    understanding_by_id = understanding_by_id or {}
+    novelty_by_id = novelty_by_id or {}
+    if ranking is None:
+        ranking = holdout_ledger.ranking_status()
     now = datetime.now(timezone.utc).isoformat()
     items = []
     for candidate, path in cards:
         rel_path = str(path.relative_to(REPO_ROOT))
+        novelty_result = novelty_by_id.get(candidate.short_id)
         items.append({
             "data": {
                 "statement": _statement(ctx.corpus, candidate),
@@ -555,10 +647,19 @@ def build_envelope(cards: list[tuple[Candidate, Path]], *, branch: str, ctx: Run
                 "opinion": candidate.opinion.to_dict(),
                 "posterior": candidate.posterior,
                 "elo": candidate.elo,
-                "elo_status": "unvalidated_tournament_ranking",
+                "elo_status": ranking.elo_status,
+                "elo_status_detail": ranking.to_dict(),
+                "understanding": {
+                    "text": understanding_by_id.get(candidate.short_id),
+                    "generated_by": "model",
+                    "role": "understanding",
+                },
+                "novelty": novelty_result.to_dict() if novelty_result is not None else None,
                 "evidence": {
                     "supports": [item.id for item in candidate.supports],
                     "refutes": [item.id for item in candidate.refutes],
+                    "supports_detail": [_evidence_detail(item) for item in candidate.supports],
+                    "refutes_detail": [_evidence_detail(item) for item in candidate.refutes],
                 },
             },
             "citation": {
@@ -624,6 +725,9 @@ def write_back(
     floor_u_max: float = 0.5,
     out_root: str | Path = "bucket-canon",
     dry_run: bool = False,
+    cache_dir: str | Path | None = None,
+    replay_only: bool = False,
+    ledger_path: str | Path | None = None,
 ) -> list[Path]:
     """Turn the completed run at `run_dir` into canon-facing material:
     one card per surviving hypothesis at or above the credence floor
@@ -650,11 +754,40 @@ def write_back(
     run_pipeline`'s own dry-run convention for `hte.publish.publish`
     extended to this stage. `signoff` is still required under `dry_run`:
     a plan naming what would be written under whose approval is itself
-    part of the approval record. Returns the list of paths written (or,
-    under `dry_run`, the list of paths that would be written), in the
-    same order every time for one run and one set of floors: the cards
-    first, ranked by descending posterior, then the branch index, then
-    the ingestion-index file, then the envelope.
+    part of the approval record. `dry_run` does NOT run the understanding
+    or novelty checks below (no LLM call, no corpus scan): those cost
+    real work and belong to the commit path, a path-listing preview stays
+    free.
+    Returns the list of paths written (or, under `dry_run`, the list of
+    paths that would be written), in the same order every time for one
+    run and one set of floors: the cards first, ranked by descending
+    posterior, then the branch index, then the ingestion-index file, then
+    the envelope.
+
+    `cache_dir` (default: `<run_dir>/_writeback-llm-cache`, a dedicated
+    subdirectory of the run being written back rather than the run's own
+    campaign cache, so a re-entrant write-back call never contends with
+    a live campaign's own cache writes) and `replay_only` (default
+    `False`) are passed straight through to `hte.roles.understanding`,
+    the one LLM-backed call this function makes. Set `HTE_LLM_MODE=fake`
+    (or pass `cache_dir` pointing at a committed fixture cache) for a
+    deterministic, no-network write-back, the same convention every
+    other role-calling test in this package already follows.
+
+    `ledger_path` (default: `hte.holdout_ledger.DEFAULT_LEDGER_PATH`, the
+    committed repo ledger) overrides where this call reads the current
+    ranking-holdout state from and appends this run's own new entries
+    to; a test redirects it at a `tmp_path` file so running the suite
+    never mutates the real committed ledger.
+
+    `bkt-hte-understanding-artifact` (`PLAN.md` section 10's
+    understanding axis, Messeri and Crockett 2024, Krenn and others
+    2022): every selected candidate's own plain-language explanation is
+    generated before ANY file is written, and a blank explanation for
+    even one candidate is a hard refusal (`ValueError`), the same
+    no-partial-state guarantee `signoff` already gets, because a card
+    with no understanding artifact is exactly the write-back gate this
+    bead exists to close.
 
     Never writes `canon_tier: canon`: see this module's own top
     docstring and `GOVERNANCE.md`.
@@ -692,10 +825,61 @@ def write_back(
     if dry_run:
         return written
 
+    resolved_cache_dir = str(cache_dir) if cache_dir is not None else str(Path(run_dir) / "_writeback-llm-cache")
+
+    understanding_by_id: dict[str, str] = {}
+    blank_ids: list[str] = []
+    for candidate, _ in card_paths:
+        statement = _statement(ctx.corpus, candidate)
+        evidence_summary = (
+            f"{len(candidate.supports)} supporting and {len(candidate.refutes)} refuting "
+            f"evidence item(s), P(h)={candidate.posterior:.3f}"
+        )
+        response = roles.understanding(
+            statement, evidence_summary, cache_dir=resolved_cache_dir, replay_only=replay_only,
+        )
+        text = str(response.get("explanation") or "").strip()
+        understanding_by_id[candidate.short_id] = text
+        if not text:
+            blank_ids.append(candidate.short_id)
+    if blank_ids:
+        raise ValueError(
+            "hte.canon_writeback.write_back: understanding text is required for every "
+            f"candidate before any write into bucket-canon/ (PLAN.md section 10, "
+            f"Messeri and Crockett 2024); blank for {blank_ids}; refusing to write"
+        )
+
+    novelty_by_id: dict[str, novelty_mod.NoveltyResult] = {
+        candidate.short_id: novelty_mod.check_novelty(_statement(ctx.corpus, candidate), repo_root=REPO_ROOT)
+        for candidate, _ in card_paths
+    }
+
+    resolved_ledger_path = ledger_path if ledger_path is not None else holdout_ledger.DEFAULT_LEDGER_PATH
+    ranking = holdout_ledger.ranking_status(path=resolved_ledger_path)
+    ranked_for_ledger = sorted(
+        card_paths, key=lambda pair: pair[0].elo if pair[0].elo is not None else float("-inf"), reverse=True,
+    )
+    ledger_rows = [
+        {"address": candidate.hypothesis.address, "short_id": candidate.short_id,
+         "statement": _statement(ctx.corpus, candidate), "elo": candidate.elo}
+        for candidate, _ in ranked_for_ledger
+    ]
+    new_entries = holdout_ledger.build_entries(ledger_rows, run_id=ctx.run_id, corpus=ctx.manifest.corpus)
+    added_entries = holdout_ledger.append_entries(new_entries, path=resolved_ledger_path)
+    logger.info(
+        "hte.canon_writeback.write_back: recorded %d new ranking-holdout ledger entr(y/ies) for %s",
+        len(added_entries), ctx.run_id,
+    )
+
     hypotheses_dir.mkdir(parents=True, exist_ok=True)
     for candidate, path in card_paths:
-        path.write_text(render_card(candidate, ctx, branch=branch, signoff=signoff), encoding="utf-8")
-    index_path.write_text(render_index(card_paths, branch=branch), encoding="utf-8")
+        card_text = render_card(
+            candidate, ctx, branch=branch, signoff=signoff,
+            understanding=understanding_by_id[candidate.short_id],
+            novelty=novelty_by_id[candidate.short_id], elo_label=ranking.label,
+        )
+        path.write_text(card_text, encoding="utf-8")
+    index_path.write_text(render_index(card_paths, branch=branch, elo_label=ranking.label), encoding="utf-8")
 
     _append_ingestion_index(_ingestion_index_addendum(card_paths, branch=branch, ctx=ctx, signoff=signoff))
 
@@ -704,7 +888,10 @@ def write_back(
     logger.info("hte.canon_writeback.write_back: fed %d new event(s) into tools/feed/feed.py", added)
 
     envelope_dir.mkdir(parents=True, exist_ok=True)
-    envelope = build_envelope(card_paths, branch=branch, ctx=ctx, floor_P=floor_P, floor_u_max=floor_u_max, signoff=signoff)
+    envelope = build_envelope(
+        card_paths, branch=branch, ctx=ctx, floor_P=floor_P, floor_u_max=floor_u_max, signoff=signoff,
+        understanding_by_id=understanding_by_id, novelty_by_id=novelty_by_id, ranking=ranking,
+    )
     envelope_path.write_text(json.dumps(envelope, indent=2), encoding="utf-8")
 
     from . import bridge_export
