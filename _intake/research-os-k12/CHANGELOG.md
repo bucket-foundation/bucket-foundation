@@ -2356,3 +2356,57 @@ this pass's own edits; committed with the hook's documented
 `AGF_VOICE_SKIP=1` bypass rather than rewriting unrelated content. No
 `src/` or engine file changed, so the npm/tsc/build/test and `make test`
 gates did not trigger.
+
+## 2026-09-11, repo hygiene PR review pass
+
+Review of `chore/local-path-scrub` as finishing and review engineer, worktree
+`~/agfarms/.ros-worktrees/scrub`. The hygiene agent had merged an earlier
+`origin/main` and died before opening the PR; `origin/main` had since moved
+one commit further (#70, richer production fixtures), so `git diff origin/main`
+first showed 28 files as deleted. Fetched and merged current `origin/main`
+(clean, no conflicts) before reviewing; the deleted-file signal cleared.
+
+Verified against the refreshed `origin/main`: `git diff --diff-filter=D`
+empty, no file deleted or untracked, working tree clean. Programmatically
+diffed `_intake/embeddings/claim-evidence.jsonl` (599 lines) and
+`_intake/health-longevity-fitness/media/MANIFEST.jsonl` (294 lines) as JSON,
+field by field: only `source_path`/`path` changed on every line (5990 and
+294 rewrites), zero other field mismatches. Spot-checked 10 rewritten files
+by hand (`PRODUCTION_LOG.md`, the runbook, a `_bridges` README, two patents
+scripts, the postgres Dockerfile, `llm-server.sh`, `gateway.py`,
+`build_structures.py`, `ds.py`, `extract-kaikki-translations.py`,
+`generate_v2.py`): each hunk is a path rewrite, no content removed;
+confirmed `os` is imported in both viz files before relying on
+`os.path.expanduser`. `_epub_combined.md`'s 399 image links move from an
+absolute `/home/gian/...` prefix to a root-relative `/_intake/...` form
+uniformly across every reference, matching the hygiene doc's stated intent
+(a renderable path, not a leftover).
+
+Ran the new guard: `python3 tools/hygiene/check-local-paths.py --all`
+exits 0; `bash tools/hygiene/test-check-local-paths.sh` passes all 4
+fixture cases. `agf-lint-voice check` on the hygiene doc and on this
+changelog: 0 violations. `agf-lint-voice-src check` on the three new
+`tools/hygiene/` files: 0 violations.
+
+Leak scan of the full diff: `AKIA`-shaped strings (the two Figma presigned
+thumbnail URLs) confirmed redacted to `?REDACTED-presigned-aws-url` on the
+added side, no `sk-`/`figd_`/`ghp_`/`xox`-shaped tokens, no `PRIVATE KEY`
+block, no new RFC1918 or public IP introduced (the doc's own prose mentions
+`5.161.236.151` and `172.19.0.2`, both pre-existing elsewhere in the repo,
+cited for founder awareness, not new exposure), no Claude session URL.
+`jack@neurosurgical.net` appears in unchanged corpus quote lines (Jack
+Kruse's own public contact address from his blog, pre-existing on both
+sides of the diff); the only email introduced by this pass's own prose is
+`gianyrox@gmail.com`.
+
+No `src/` file and no `tools/hypothesis-engine/` file changed relative to
+`origin/main`, so `npm ci`/`tsc --noEmit`/`build`/`test:research-os` and the
+engine's `make test` did not trigger, per this pass's own gating.
+
+Founder-decision section confirmed: the hygiene doc's "Founder decision:
+untrack these" table lists 9 paths with the exact `git rm --cached`
+command and what each loses (backup jsonl pair, two runner logs, five
+systemd units), and the matching `.gitignore` block ships commented out
+and inert.
+
+No fix needed. Merged as-is; PR opened against `main`, squash-merged.
