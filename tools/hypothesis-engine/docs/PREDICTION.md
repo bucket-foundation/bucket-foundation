@@ -33,15 +33,26 @@ number itself.
 
 `P` and `u` are not free parameters. `u` close to `1` means the graph has
 seen little or no evidence naming this hypothesis; `a` alone carries the
-bet. `floor_u` (default `0.9`) keeps a `register` call from forecasting
-on hypotheses evidence has already mostly settled: a claim already
-`u = 0.1` is examined, and betting on it forward, having already read
-the evidence that settled it, tells nothing new. On a real run, most
-survivors clear a tournament and a critique pass before `timeline.json`
-ever names them, so most of them already carry some evidence and a
-moderate `u`; `floor_u = 0.9` can come back empty on claims and
-sequences for exactly that reason, a real finding about the run's own
-population.
+bet, no real call at all. A claim is worth registering only past that
+point: `u_max` (default `0.5`) keeps `register` from forecasting on
+hypotheses evidence has not yet reached, and a second gate,
+`_CLAIM_CONFIDENCE_MIN` (`0.15`), keeps it from registering an
+examined-but-undecided hypothesis whose supporting and refuting weight
+canceled out near its own prior, `P` sitting close to `a` regardless of
+how low `u` has dropped. A claim registers when `u <= u_max` AND
+`|P - a| >= 0.15`: examined, and moved.
+
+The earlier reading of this gate (`u >= floor_u`, `0.9`) selected the
+OPPOSITE population, the least-examined hypotheses a run carries. On a
+real run most survivors clear a tournament and a critique pass before
+`timeline.json` ever names them, so most of them already carry some
+linked evidence and a moderate `u`; that reading came back with zero
+claim predictions on `runs/quantum-history/20260910T085020Z`, a real
+finding about the run's own population, but also the wrong one to
+register: a bet on an unexamined hypothesis is not the engine's own
+confident call, only its bare prior. `floor_u` still gates `sequence`
+predictions below, where the earlier reading remains correct (see that
+kind's own paragraph).
 
 ## Three kinds
 
@@ -49,10 +60,10 @@ population.
 canon_writeback.reconstruct_candidates`'s own technique: re-ingest the
 named corpus, replay `MANIFEST.json`'s `vocab_added`, rebuild each
 survivor's `Placement` from its persisted slots and time bin, relink
-evidence, rescore with `hte.belief.score`), still carrying real
-uncertainty (`u >= floor_u`): "this actor performed this action, in
-this place, via this mechanism, dated to this interval, will be
-attested by new evidence by the horizon."
+evidence, rescore with `hte.belief.score`), examined and confident
+(`u <= u_max` and `|P - a| >= 0.15`): "this actor performed this
+action, in this place, via this mechanism, dated to this interval,
+will be attested by new evidence by the horizon."
 
 `hte.predict._reconstruct` links only evidence carrying at least one
 extracted slot. `hte.link.link_evidence` also links an item carrying a
@@ -61,7 +72,7 @@ date, real signal for the engine loop's own use of that function, but it
 collapses every survivor's own `u` toward the same low floor regardless
 of how much slot-specific evidence backs it, since one dateless-but-dated
 item then touches the whole population at once. Filtering it out here
-keeps `u` reading real per-hypothesis examination, the reading `floor_u`
+keeps `u` reading real per-hypothesis examination, the reading `u_max`
 needs to mean anything; `hte.belief.score` still scores every item in
 the corpus, a slotless item never entered any hypothesis's
 `supports`/`refutes` list, so it contributes zero pooled weight either
@@ -88,7 +99,10 @@ scope: it links placements only), so a sequence prediction's own `u`
 reads `1.0` every time, a real, structural property of this engine's
 belief model rather than a shortcut this module takes: a sequence
 hypothesis rides entirely on its own prior until a future pass links
-evidence to sequence addresses too.
+evidence to sequence addresses too. `floor_u` (default `0.9`, `u >=
+floor_u`) still gates this kind, and the gate is a no-op today for
+exactly that reason; it stays in place for the day a sequence carries
+real linked evidence and a real `u` to gate on.
 
 ## The ledger and its receipt
 
@@ -199,9 +213,10 @@ python3 -m hte.cli predict report --ledger predictions/ledger.jsonl \
 ```
 
 `register`'s Python entry point takes `kinds` (default `("claim",
-"discovery", "sequence")`), `floor_u` (default `0.9`), and `made_at`
-(default: now, UTC; pin it to get the identical predictions back from a
-repeated call over the identical run). `resolve` takes any `Corpus`
-already in memory, or a path to a ledger it loads itself; a caller
-scripting a resolution pass builds `evidence_corpus` however it likes,
-`hte.predict` reads only its `.evidence` and `.vocab`.
+"discovery", "sequence")`), `u_max` (default `0.5`, gates claims),
+`floor_u` (default `0.9`, gates sequences), and `made_at` (default: now,
+UTC; pin it to get the identical predictions back from a repeated call
+over the identical run). `resolve` takes any `Corpus` already in memory,
+or a path to a ledger it loads itself; a caller scripting a resolution
+pass builds `evidence_corpus` however it likes, `hte.predict` reads only
+its `.evidence` and `.vocab`.

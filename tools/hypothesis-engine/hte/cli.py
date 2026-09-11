@@ -180,7 +180,7 @@ def _cmd_purge(args: argparse.Namespace) -> int:
 
 def _cmd_predict_register(args: argparse.Namespace) -> int:
     kinds = tuple(k.strip() for k in args.kinds.split(",") if k.strip())
-    predictions = predict.register(args.run_dir, horizon=args.horizon_days, kinds=kinds, floor_u=args.floor_u, out=args.out)
+    predictions = predict.register(args.run_dir, horizon=args.horizon_days, kinds=kinds, floor_u=args.floor_u, u_max=args.u_max, out=args.out)
     by_kind: dict[str, int] = {}
     for p in predictions:
         by_kind[p.kind] = by_kind.get(p.kind, 0) + 1
@@ -303,7 +303,8 @@ def build_parser() -> argparse.ArgumentParser:
     predict_register_p.add_argument("run_dir")
     predict_register_p.add_argument("--horizon-days", type=int, default=predict.DEFAULT_HORIZON_DAYS)
     predict_register_p.add_argument("--kinds", default="claim,discovery,sequence", help="comma-separated subset of claim,discovery,sequence")
-    predict_register_p.add_argument("--floor-u", type=float, default=predict.DEFAULT_FLOOR_U)
+    predict_register_p.add_argument("--floor-u", type=float, default=predict.DEFAULT_FLOOR_U, help="sequence gate: sequence u never drops below 1.0 today, kept for a future evidence-linked sequence pass")
+    predict_register_p.add_argument("--u-max", type=float, default=predict.DEFAULT_U_MAX, help="claim gate: only hypotheses examined at least this far (u <= u-max) and confident (|P-a| >= 0.15) register")
     predict_register_p.add_argument("--out", default=predict.DEFAULT_OUT_DIR)
     predict_register_p.set_defaults(func=_cmd_predict_register)
 

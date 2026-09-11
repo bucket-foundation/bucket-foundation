@@ -32,18 +32,50 @@ MADE_AT = "2026-01-01T00:00:00+00:00"
 
 
 def _predict_corpus() -> Corpus:
-    """`hte.corpus.fixtures`'s own vocabulary, with one fully-slotted
-    evidence item (examines `h_examined` below, keeping its own `u`
-    under `floor_u`) and one item naming only `ACTOR` (a real value,
-    `alpha-team`, so it links to `h_examined` too rather than sitting
-    inert), leaving `ACTION`/`OBJECT`/`PLACE`/`MECHANISM` unresolved for
-    `hte.unknowns.unresolved_slot_gaps` to find."""
+    """`hte.corpus.fixtures`'s own vocabulary, with:
+
+    - `ev-examined`, one full-slot item examining `h_examined` (its own
+      `u` drops to ~0.37, `|P - a|` ~0.18, a confident call with room to
+      spare over `_CLAIM_CONFIDENCE_MIN`);
+    - `ev-sup2`/`ev-sup3`/`ev-sup4`, three independent full-slot items
+      (three different `EvidenceKind`s, so `hte.belief.cross_kind_bonus`
+      applies) examining `h_confident`, driving its own `u` to ~0.12 and
+      `P` to ~0.98, a second, even more confident call;
+    - `ev-gap`, naming only `ACTOR`, leaving `ACTION`/`OBJECT`/`PLACE`/
+      `MECHANISM` unresolved for `hte.unknowns.unresolved_slot_gaps` to
+      find, and linking (weakly) only to `h_examined`, never to either
+      vacuous placement or `h_confident`.
+
+    `h_vacuous_1`/`h_vacuous_2` (built in `synth_run` below) match none
+    of these items at all, so they stay at `u = 1.0`, `hte.predict`'s own
+    unexamined reading."""
     base = fixtures.build()
     examined = EvidenceItem(
         id="ev-examined", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="src-1",
         span=EvidenceSpan(doc_id="doc-1", locator="l1", quote="alpha team sighted comet q", char_start=0, char_end=10),
         provenance="test-fixture",
         actor="alpha-team", action="sighted", object="comet-q", place="alpha-observatory", mechanism="transit-timing-method",
+        interval=INTERVAL_A, stance=Stance.POSITIVE,
+    )
+    sup2 = EvidenceItem(
+        id="ev-sup2", kind=EvidenceKind.TEXTUAL, tier=Tier.T1, source_id="src-1",
+        span=EvidenceSpan(doc_id="doc-1", locator="l3", quote="beta team extended comet q orbit", char_start=20, char_end=30),
+        provenance="test-fixture",
+        actor="beta-team", action="extended", object="comet-q", place="beta-observatory", mechanism="photometric-method",
+        interval=INTERVAL_A, stance=Stance.POSITIVE,
+    )
+    sup3 = EvidenceItem(
+        id="ev-sup3", kind=EvidenceKind.MATERIAL, tier=Tier.T1, source_id="src-1",
+        span=EvidenceSpan(doc_id="doc-1", locator="l4", quote="beta team extended comet q orbit again", char_start=30, char_end=45),
+        provenance="test-fixture",
+        actor="beta-team", action="extended", object="comet-q", place="beta-observatory", mechanism="photometric-method",
+        interval=INTERVAL_A, stance=Stance.POSITIVE,
+    )
+    sup4 = EvidenceItem(
+        id="ev-sup4", kind=EvidenceKind.ASTRONOMICAL, tier=Tier.T1, source_id="src-1",
+        span=EvidenceSpan(doc_id="doc-1", locator="l5", quote="beta team extended comet q orbit once more", char_start=45, char_end=60),
+        provenance="test-fixture",
+        actor="beta-team", action="extended", object="comet-q", place="beta-observatory", mechanism="photometric-method",
         interval=INTERVAL_A, stance=Stance.POSITIVE,
     )
     gap = EvidenceItem(
@@ -53,7 +85,7 @@ def _predict_corpus() -> Corpus:
     )
     return Corpus(
         sources={"src-1": Source(id="src-1", kind=EvidenceKind.TEXTUAL)},
-        evidence=[examined, gap], ground_truth=[], provenance=[], vocab=base.vocab,
+        evidence=[examined, sup2, sup3, sup4, gap], ground_truth=[], provenance=[], vocab=base.vocab,
     )
 
 
@@ -65,23 +97,20 @@ def _hyp(placement: Placement, vocab) -> Hypothesis:
     return Hypothesis.from_placement(placement, vocab)
 
 
-# One (Hypothesis, slots, time_bin_index, bin_label, elo) row per
-# survivor `_write_run` persists. `h_unexamined_1`/`h_unexamined_3` both
-# carry a real positive prior (high `P`, fully unexamined, `u = 1.0`);
-# `test_resolve_scores_attested_low_and_refuted_high_brier` attests one
-# and refutes the other, so a confident claim scores low Brier when
-# right and high Brier when wrong, rather than both landing low because
-# the underlying prior itself was already skeptical.
-def _rows(h_examined, h_unexamined_1, h_unexamined_2, h_unexamined_3):
+# One (Hypothesis, slots, time_bin_index, elo) row per survivor
+# `_write_run` persists. `h_examined` and `h_confident` are both
+# examined and confident (`_predict_corpus`'s own docstring); `h_vacuous_1`/
+# `h_vacuous_2` match no evidence at all and stay at `u = 1.0`.
+def _rows(h_examined, h_confident, h_vacuous_1, h_vacuous_2):
     return [
         (h_examined, {"ACTOR": "alpha-team", "ACTION": "sighted", "OBJECT": "comet-q", "PLACE": "alpha-observatory", "MECHANISM": "transit-timing-method"}, TBIN_A, 1550.0),
-        (h_unexamined_1, {"ACTOR": "beta-team", "ACTION": "extended", "OBJECT": "comet-q", "PLACE": "beta-observatory", "MECHANISM": "photometric-method"}, TBIN_A, 1500.0),
-        (h_unexamined_3, {"ACTOR": "beta-team", "ACTION": "extended", "OBJECT": "comet-q", "PLACE": "alpha-observatory", "MECHANISM": "transit-timing-method"}, TBIN_A, 1490.0),
-        (h_unexamined_2, {"ACTOR": "unverified-observer", "ACTION": "sighted", "OBJECT": "comet-q", "PLACE": "alpha-observatory", "MECHANISM": "photometric-method"}, TBIN_B, 1480.0),
+        (h_confident, {"ACTOR": "beta-team", "ACTION": "extended", "OBJECT": "comet-q", "PLACE": "beta-observatory", "MECHANISM": "photometric-method"}, TBIN_A, 1500.0),
+        (h_vacuous_1, {"ACTOR": "beta-team", "ACTION": "extended", "OBJECT": "comet-q", "PLACE": "alpha-observatory", "MECHANISM": "transit-timing-method"}, TBIN_A, 1490.0),
+        (h_vacuous_2, {"ACTOR": "unverified-observer", "ACTION": "sighted", "OBJECT": "comet-q", "PLACE": "alpha-observatory", "MECHANISM": "photometric-method"}, TBIN_B, 1480.0),
     ]
 
 
-def _write_run(run_dir: Path, h_examined: Hypothesis, h_unexamined_1: Hypothesis, h_unexamined_2: Hypothesis, h_unexamined_3: Hypothesis, *, timestamp: str = "20260101T000000Z") -> None:
+def _write_run(run_dir: Path, h_examined: Hypothesis, h_confident: Hypothesis, h_vacuous_1: Hypothesis, h_vacuous_2: Hypothesis, *, timestamp: str = "20260101T000000Z") -> None:
     run_dir.mkdir(parents=True)
     manifest = {
         "campaign": "test-predict", "timestamp": timestamp, "corpus": "test-predict-corpus",
@@ -92,7 +121,7 @@ def _write_run(run_dir: Path, h_examined: Hypothesis, h_unexamined_1: Hypothesis
     }
     (run_dir / "MANIFEST.json").write_text(json.dumps(manifest))
     bins: dict[int, list[dict]] = {}
-    for h, slots, tbin, elo in _rows(h_examined, h_unexamined_1, h_unexamined_2, h_unexamined_3):
+    for h, slots, tbin, elo in _rows(h_examined, h_confident, h_vacuous_1, h_vacuous_2):
         bins.setdefault(tbin, []).append({"hypothesis_id": h.short_id, "address": h.address, "slots": slots, "posterior": None, "elo": elo})
     timeline = {
         "bins": [{"time_bin": {"index": tbin, "label": f"bin-{tbin}"}, "ranked_hypotheses": rows} for tbin, rows in sorted(bins.items())],
@@ -101,22 +130,26 @@ def _write_run(run_dir: Path, h_examined: Hypothesis, h_unexamined_1: Hypothesis
     (run_dir / "timeline.json").write_text(json.dumps(timeline))
 
 
+def _build_placements(corpus: Corpus) -> dict[str, Hypothesis]:
+    return {
+        "h_examined": _hyp(_placement("alpha-team", "sighted", "comet-q", "alpha-observatory", "transit-timing-method", INTERVAL_A), corpus.vocab),
+        "h_confident": _hyp(_placement("beta-team", "extended", "comet-q", "beta-observatory", "photometric-method", INTERVAL_A), corpus.vocab),
+        "h_vacuous_1": _hyp(_placement("beta-team", "extended", "comet-q", "alpha-observatory", "transit-timing-method", INTERVAL_A), corpus.vocab),
+        "h_vacuous_2": _hyp(_placement("unverified-observer", "sighted", "comet-q", "alpha-observatory", "photometric-method", INTERVAL_B), corpus.vocab),
+    }
+
+
 @pytest.fixture()
 def synth_run(tmp_path, monkeypatch):
     corpus = _predict_corpus()
     monkeypatch.setitem(predict._CORPUS_LOADERS, "test-predict-corpus", lambda: _predict_corpus())
 
-    h_examined = _hyp(_placement("alpha-team", "sighted", "comet-q", "alpha-observatory", "transit-timing-method", INTERVAL_A), corpus.vocab)
-    h_unexamined_1 = _hyp(_placement("beta-team", "extended", "comet-q", "beta-observatory", "photometric-method", INTERVAL_A), corpus.vocab)
-    h_unexamined_2 = _hyp(_placement("unverified-observer", "sighted", "comet-q", "alpha-observatory", "photometric-method", INTERVAL_B), corpus.vocab)
-    h_unexamined_3 = _hyp(_placement("beta-team", "extended", "comet-q", "alpha-observatory", "transit-timing-method", INTERVAL_A), corpus.vocab)
-
+    h = _build_placements(corpus)
     run_dir = tmp_path / "runs" / "test-predict" / "20260101T000000Z"
-    _write_run(run_dir, h_examined, h_unexamined_1, h_unexamined_2, h_unexamined_3)
+    _write_run(run_dir, h["h_examined"], h["h_confident"], h["h_vacuous_1"], h["h_vacuous_2"])
     return {
         "run_dir": run_dir, "out": tmp_path / "predictions", "feed_root": tmp_path / "feed-root",
-        "h_examined": h_examined, "h_unexamined_1": h_unexamined_1,
-        "h_unexamined_2": h_unexamined_2, "h_unexamined_3": h_unexamined_3,
+        **h,
     }
 
 
@@ -154,15 +187,24 @@ def test_register_yields_all_three_kinds_with_well_formed_envelopes(synth_run):
         assert env["receipt"]["status"] == "forecast_registered_not_yet_resolved"
 
 
-def test_claim_predictions_only_keep_hypotheses_above_the_uncertainty_floor(synth_run):
+def test_claim_predictions_keep_only_confident_examined_hypotheses(synth_run):
+    """A claim registers when it is examined enough to make a real call
+    (`u <= u_max`) and confident enough to be worth one (`|P - a| >=
+    0.15`): `h_examined` and `h_confident` both clear that bar, while
+    `h_vacuous_1`/`h_vacuous_2` (no linked evidence at all, `u = 1.0`)
+    do not, the flip of this task's own first pass, which selected the
+    vacuous placements (`u >= floor_u`) and registered none on a real
+    run."""
     predictions = _register(synth_run)
     claims = [p for p in predictions if p.kind == "claim"]
     claim_addresses = {p.meta["address"] for p in claims}
-    assert synth_run["h_unexamined_1"].address in claim_addresses
-    assert synth_run["h_unexamined_2"].address in claim_addresses
-    assert synth_run["h_examined"].address not in claim_addresses
+    assert synth_run["h_examined"].address in claim_addresses
+    assert synth_run["h_confident"].address in claim_addresses
+    assert synth_run["h_vacuous_1"].address not in claim_addresses
+    assert synth_run["h_vacuous_2"].address not in claim_addresses
     for p in claims:
-        assert p.u >= predict.DEFAULT_FLOOR_U
+        assert p.u <= predict.DEFAULT_U_MAX
+        assert abs(p.P - p.a) >= 0.15
 
 
 def test_discovery_prediction_names_the_gaps_own_evidence_item(synth_run):
@@ -193,12 +235,8 @@ def test_ledger_is_append_only_across_two_register_calls(synth_run):
     # A second run directory (a distinct campaign timestamp) registered
     # into the SAME ledger must never alter the first call's own lines.
     run_dir_2 = synth_run["run_dir"].parent / "20260102T000000Z"
-    corpus = _predict_corpus()
-    h_examined = _hyp(_placement("alpha-team", "sighted", "comet-q", "alpha-observatory", "transit-timing-method", INTERVAL_A), corpus.vocab)
-    h1 = _hyp(_placement("beta-team", "extended", "comet-q", "beta-observatory", "photometric-method", INTERVAL_A), corpus.vocab)
-    h2 = _hyp(_placement("unverified-observer", "sighted", "comet-q", "alpha-observatory", "photometric-method", INTERVAL_B), corpus.vocab)
-    h3 = _hyp(_placement("beta-team", "extended", "comet-q", "alpha-observatory", "transit-timing-method", INTERVAL_A), corpus.vocab)
-    _write_run(run_dir_2, h_examined, h1, h2, h3, timestamp="20260102T000000Z")
+    h = _build_placements(_predict_corpus())
+    _write_run(run_dir_2, h["h_examined"], h["h_confident"], h["h_vacuous_1"], h["h_vacuous_2"], timestamp="20260102T000000Z")
 
     second = predict.register(
         run_dir_2, horizon=365, out=synth_run["out"], feed_root=synth_run["feed_root"], made_at=MADE_AT,
@@ -257,29 +295,30 @@ def test_unresolved_stays_unresolved_before_the_resolution_date(synth_run):
 
 def test_resolve_scores_attested_low_and_refuted_high_brier(synth_run):
     predictions = _register(synth_run)
-    # Both `h_unexamined_1` and `h_unexamined_3` carry a real positive
-    # prior (`_rows`'s own comment): a confident claim scores low Brier
-    # when the planted future evidence attests it, and high Brier when
-    # the SAME kind of confident claim is instead refuted.
-    claim = _resolves_at(predictions, "claim", address=synth_run["h_unexamined_1"].address)
-    other_claim = _resolves_at(predictions, "claim", address=synth_run["h_unexamined_3"].address)
+    # `h_examined` (P ~0.70) and `h_confident` (P ~0.98) are the two
+    # claims this fixture registers (`test_claim_predictions_keep_only_
+    # confident_examined_hypotheses`): attesting the one confirms a
+    # moderate call (low Brier), refuting the other contradicts a
+    # near-certain one (high Brier).
+    claim = _resolves_at(predictions, "claim", address=synth_run["h_examined"].address)
+    other_claim = _resolves_at(predictions, "claim", address=synth_run["h_confident"].address)
     assert claim.P > 0.6 and other_claim.P > 0.6
 
     # The planted "future" world: attesting evidence for `claim` (exact
-    # slot-and-date match), refuting evidence for `other_claim` (same
-    # slots, a disjoint later date).
+    # slot-and-date match to `h_examined`), refuting evidence for
+    # `other_claim` (`h_confident`'s own slots, a disjoint later date).
     attesting = EvidenceItem(
         id="future-attest", kind=EvidenceKind.TEXTUAL, tier=Tier.T1, source_id="src-1",
-        span=EvidenceSpan(doc_id="doc-2", locator="l1", quote="beta team extended comet q", char_start=0, char_end=5),
-        provenance="future", actor="beta-team", action="extended", object="comet-q",
-        place="beta-observatory", mechanism="photometric-method", interval=INTERVAL_A, stance=Stance.POSITIVE,
+        span=EvidenceSpan(doc_id="doc-2", locator="l1", quote="alpha team sighted comet q again", char_start=0, char_end=5),
+        provenance="future", actor="alpha-team", action="sighted", object="comet-q",
+        place="alpha-observatory", mechanism="transit-timing-method", interval=INTERVAL_A, stance=Stance.POSITIVE,
     )
     later_start = INTERVAL_B.end + DEFAULT_BIN_WIDTH * 5
     refuting = EvidenceItem(
         id="future-refute", kind=EvidenceKind.TEXTUAL, tier=Tier.T1, source_id="src-1",
-        span=EvidenceSpan(doc_id="doc-2", locator="l2", quote="beta team extended comet q again", char_start=6, char_end=12),
+        span=EvidenceSpan(doc_id="doc-2", locator="l2", quote="beta team extended comet q much later", char_start=6, char_end=12),
         provenance="future", actor="beta-team", action="extended", object="comet-q",
-        place="alpha-observatory", mechanism="transit-timing-method",
+        place="beta-observatory", mechanism="photometric-method",
         interval=Interval(start=later_start, end=later_start + 1), stance=Stance.POSITIVE,
     )
     future_corpus = Corpus(

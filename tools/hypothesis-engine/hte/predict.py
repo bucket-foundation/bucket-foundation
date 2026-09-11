@@ -26,9 +26,11 @@ Three kinds of prediction:
 - **claim**: a placement hypothesis reconstructed from the run
   (`hte.canon_writeback.reconstruct_candidates`'s own technique,
   reimplemented here as `_reconstruct`, since that module is under
-  concurrent edit on another branch), still carrying real uncertainty mass
-  (`u >= floor_u`): "this actor performed this action, dated to this
-  interval, will be attested by new evidence by the horizon."
+  concurrent edit on another branch), examined enough to make a real
+  call (`u <= u_max`) and confident enough to be worth registering
+  (`|P - a| >= 0.15`, `_CLAIM_CONFIDENCE_MIN`): "this actor performed
+  this action, dated to this interval, will be attested by new
+  evidence by the horizon."
 - **discovery**: the highest value-of-information gap nodes (`hte.
   unknowns.unresolved_slot_gaps`, imported directly): "evidence of this
   kind, naming this evidence item's own missing slots, will be found by
@@ -109,15 +111,26 @@ FEED_TOOL_DIR = REPO_ROOT / "tools" / "feed"
 
 DEFAULT_HORIZON_DAYS = 365
 DEFAULT_FLOOR_U = 0.9
+DEFAULT_U_MAX = 0.5
 DEFAULT_OUT_DIR = "predictions"
 
+# A claim's own P and its base rate a must sit at least this far apart
+# to count as a real call (`_claim_predictions`): `u <= u_max` alone
+# admits a hypothesis whose evidence pulled b and d to near-equal
+# values around the same a, examined but undecided, the same kind of
+# open bet an unexamined one is. `0.15` is a chosen floor, this
+# module's own pick rather than a number the source material states;
+# `hte.belief.Opinion`'s own worked examples (`tests/test_belief.py`)
+# clear it with room to spare, and it excludes a near-coin-flip reading.
+_CLAIM_CONFIDENCE_MIN = 0.15
+
 # How many of each kind one `register` call writes at most, ranked by
-# uncertainty (claim, sequence) or value of information (discovery) so
-# a capped run still keeps its most interesting bets. Not caller-tunable
-# in this pass: `register`'s own signature (this task's contract) takes
-# only `kinds`/`floor_u`, and these three numbers are small enough that
-# raising them is a one-line change here, ahead of a real need for a
-# fourth parameter.
+# confidence (claim), uncertainty (sequence), or value of information
+# (discovery) so a capped run still keeps its most interesting bets.
+# Not caller-tunable in this pass: `register`'s own signature (this
+# task's contract) takes `kinds`/`floor_u`/`u_max`, and these three
+# numbers are small enough that raising them is a one-line change here,
+# ahead of a real need for a fourth parameter.
 _MAX_CLAIM_PREDICTIONS = 25
 _MAX_DISCOVERY_PREDICTIONS = 15
 _MAX_SEQUENCE_PREDICTIONS = 10
@@ -423,6 +436,7 @@ def register(
     horizon: int = DEFAULT_HORIZON_DAYS,
     kinds: Sequence[str] = ("claim", "discovery", "sequence"),
     floor_u: float = DEFAULT_FLOOR_U,
+    u_max: float = DEFAULT_U_MAX,
     out: str | Path = DEFAULT_OUT_DIR,
     made_at: str | datetime | None = None,
     feed_root: str | Path | None = None,
@@ -434,14 +448,22 @@ def register(
     appended.
 
     `horizon` is a whole number of days: `resolves_at = made_at +
-    horizon` days. `floor_u` is a floor (contrast `hte.
-    canon_writeback.select_above_floor`'s own `floor_u_max`, a ceiling
-    admitting only LOW-uncertainty candidates into canon): a claim or
-    sequence prediction is worth registering only when its own
-    uncertainty mass has not yet collapsed (`u >= floor_u`), since a
-    hypothesis evidence has already mostly settled makes no interesting
-    forward bet. Discovery predictions carry no single hypothesis-level
-    `u` to gate on and are limited by count alone (`hte.unknowns.
+    horizon` days. A claim prediction registers a hypothesis examined
+    enough to make a real call, `u <= u_max` (default `0.5`), and
+    confident enough to be worth a ledger line, `|P - a| >= 0.15`
+    (`_claim_predictions`, `_CLAIM_CONFIDENCE_MIN`): `u` alone, read the
+    other way (`u >= floor_u`, a first pass this task revised), instead
+    selects the LEAST-examined hypotheses, mostly the ones a tournament
+    and critique pass already pruned to zero survivors before
+    `timeline.json` ever names them, an empty ledger on a typical real
+    run rather than the engine's own confident calls. `floor_u` (default
+    `0.9`) keeps that earlier, opposite reading for `sequence`
+    predictions, whose own `u` reads `1.0` unconditionally (`hte.link.
+    link_evidence` never links a sequence address, `_sequence_
+    predictions`'s own docstring), so `floor_u`'s check there is a no-op
+    today, kept for the day a future pass links evidence to sequence
+    addresses too. Discovery predictions carry no single hypothesis-
+    level `u` to gate on and are limited by count alone (`hte.unknowns.
     unresolved_slot_gaps`'s own value-of-information ranking).
 
     `made_at` pins the forecast timestamp (default: now, UTC); a caller
@@ -465,7 +487,7 @@ def register(
     predictions: list[Prediction] = []
 
     if "claim" in kinds:
-        predictions.extend(_claim_predictions(rec, made_at_iso, resolves_at_iso, floor_u))
+        predictions.extend(_claim_predictions(rec, made_at_iso, resolves_at_iso, u_max))
     if "discovery" in kinds:
         predictions.extend(_discovery_predictions(rec, made_at_iso, resolves_at_iso))
     if "sequence" in kinds:
@@ -477,9 +499,30 @@ def register(
     return predictions
 
 
-def _claim_predictions(rec: _Reconstruction, made_at: str, resolves_at: str, floor_u: float) -> list[Prediction]:
-    ranked = sorted(rec.placements, key=lambda h: (-rec.opinions[h.address].u, h.address))
-    selected = [h for h in ranked if rec.opinions[h.address].u >= floor_u][:_MAX_CLAIM_PREDICTIONS]
+def _confidence(opinion: Opinion) -> float:
+    """How far a hypothesis's own projected `P` sits from its bare prior
+    `a`: `0` for a hypothesis evidence has not moved at all (`u = 1`,
+    `P = a` exactly), rising as evidence pulls `P` away from where the
+    prior alone would put it. The second half of `_claim_predictions`'s
+    own two-part admission test, alongside `u <= u_max`."""
+    return abs(opinion.project() - opinion.a)
+
+
+def _claim_predictions(rec: _Reconstruction, made_at: str, resolves_at: str, u_max: float) -> list[Prediction]:
+    """Claim predictions register the engine's own confident calls: a
+    hypothesis examined enough that its own uncertainty mass has
+    dropped to `u <= u_max` (real evidence has weighed in, past a bare,
+    unexamined prior sitting at `u = 1`), AND confident
+    enough that `P` has moved a real distance from `a`
+    (`_confidence(opinion) >= _CLAIM_CONFIDENCE_MIN`), catching an
+    examined-but-undecided hypothesis whose supporting and refuting
+    weight canceled out near its own prior. Ranked by confidence,
+    highest first, so a capped run keeps its strongest calls."""
+    candidates = [
+        h for h in rec.placements
+        if rec.opinions[h.address].u <= u_max and _confidence(rec.opinions[h.address]) >= _CLAIM_CONFIDENCE_MIN
+    ]
+    selected = sorted(candidates, key=lambda h: (-_confidence(rec.opinions[h.address]), h.address))[:_MAX_CLAIM_PREDICTIONS]
 
     out = []
     for h in selected:
@@ -906,5 +949,5 @@ def _write_resolutions_md(report: ResolutionReport, path: Path) -> None:
 __all__ = [
     "Prediction", "ResolutionOutcome", "ResolutionReport",
     "register", "resolve", "load_ledger",
-    "DEFAULT_HORIZON_DAYS", "DEFAULT_FLOOR_U", "DEFAULT_OUT_DIR",
+    "DEFAULT_HORIZON_DAYS", "DEFAULT_FLOOR_U", "DEFAULT_U_MAX", "DEFAULT_OUT_DIR",
 ]
