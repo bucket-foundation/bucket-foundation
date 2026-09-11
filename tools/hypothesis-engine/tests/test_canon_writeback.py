@@ -97,6 +97,96 @@ def test_reconstruct_candidates_rebuilds_real_opinions(linking_run):
     assert any(item.id == "ev-2" for item in refuted.refutes)
 
 
+# --------------------------------------------------------------------------
+# bkt-hte-writeback-review (PR #36's own review, Low finding): a survivor
+# named in `event_views` but absent from every `bins[].ranked_hypotheses`
+# entry (real on the sacred-history run, `docs/BUILD-HISTORY.md`'s own
+# "262 of 299" finding, `hte.runner._time_bins_for`'s own declared bin set
+# not covering that survivor's real time bin) carries no persisted slots
+# to rebuild a `Candidate` from. This fixture is the minimal synthetic
+# shape of that same gap: one reconstructable survivor, one named only in
+# `event_views`.
+# --------------------------------------------------------------------------
+
+
+@pytest.fixture()
+def run_with_a_hidden_survivor(tmp_path, monkeypatch):
+    from hte import runner as runner_mod
+
+    corpus = _linking_corpus()
+    monkeypatch.setitem(runner_mod._CORPUS_LOADERS, "test-linking-corpus", lambda: _linking_corpus())
+
+    h_supported = _hypothesis("alpha-team", "sighted", "comet-q", "alpha-observatory", "transit-timing-method", corpus.vocab)
+    # A different (OBJECT, PLACE) pair than `h_supported`'s own, so it
+    # lands in its own, separate `event_views` group rather than sharing
+    # `h_supported`'s.
+    h_hidden = _hypothesis("unverified-observer", "sighted", "comet-q", "beta-observatory", "photometric-method", corpus.vocab)
+
+    run_dir = tmp_path / "runs" / "test-camp" / "20260101T000000Z"
+    run_dir.mkdir(parents=True)
+    manifest = {
+        "campaign": "test-camp", "timestamp": "20260101T000000Z", "corpus": "test-linking-corpus",
+        "run_artifact_version": "1.0.0",
+        "models": {"roles": {"generator": "sonnet"}},
+        "config": {"link_threshold": 0.6},
+        "counts": {"vocab_added": [], "n_survivors": 2},
+    }
+    (run_dir / "MANIFEST.json").write_text(json.dumps(manifest))
+    timeline = {
+        # Only `h_supported` carries a `bins[]` entry (a real slot
+        # record); `h_hidden` is named nowhere but `event_views` below,
+        # matching a survivor whose own declared-bin membership `hte.
+        # export.timeline_views` never produced a `bins[]` entry for.
+        "bins": [{"time_bin": {"index": TBIN, "label": f"{BIN_START}s"}, "ranked_hypotheses": [
+            {"hypothesis_id": h_supported.short_id, "address": h_supported.address, "slots": {"ACTOR": "alpha-team", "ACTION": "sighted", "OBJECT": "comet-q", "PLACE": "alpha-observatory", "MECHANISM": "transit-timing-method"}, "posterior": None, "elo": 1550.0},
+        ]}],
+        "event_views": [
+            {"event": {"object": "comet-q", "place": "alpha-observatory"}, "competing_placements": [h_supported.short_id]},
+            {"event": {"object": "comet-q", "place": "beta-observatory"}, "competing_placements": [h_hidden.short_id]},
+        ],
+        "pair_views": [],
+    }
+    (run_dir / "timeline.json").write_text(json.dumps(timeline))
+    return run_dir, h_supported, h_hidden
+
+
+def test_reconstruct_candidates_tracks_a_survivor_outside_every_bin_view(run_with_a_hidden_survivor):
+    """`h_hidden` cannot be scored (no persisted slots/address for it
+    anywhere in `timeline.json`), so it is absent from
+    `list[Candidate]`; the fix under test is that it is no longer
+    silently absent -- it is named on `RunContext.
+    unrecoverable_survivor_ids`, so the full survivor population
+    `timeline.json` names (`len(candidates) +
+    len(unrecoverable_survivor_ids)`) is still recoverable by a caller,
+    and `select_above_floor` never fabricates an entry for it either."""
+    run_dir, h_supported, h_hidden = run_with_a_hidden_survivor
+    candidates, ctx = canon_writeback.reconstruct_candidates(run_dir)
+
+    assert len(candidates) == 1
+    assert candidates[0].hypothesis.address == h_supported.address
+
+    assert ctx.unrecoverable_survivor_ids == (h_hidden.short_id,)
+    assert len(candidates) + len(ctx.unrecoverable_survivor_ids) == 2
+
+    selected = canon_writeback.select_above_floor(candidates, floor_P=0.0, floor_u_max=1.0)
+    assert len(selected) == 1
+    assert h_hidden.short_id not in {c.short_id for c in selected}
+
+
+def test_write_back_over_a_run_with_a_hidden_survivor_still_writes_the_reconstructable_card(tmp_path, run_with_a_hidden_survivor, monkeypatch):
+    run_dir, h_supported, h_hidden = run_with_a_hidden_survivor
+    fake_repo_root = tmp_path / "fake-repo"
+    fake_repo_root.mkdir()
+    out_root = fake_repo_root / "bucket-canon"
+    monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
+    monkeypatch.setattr(canon_writeback, "_emit_feed_events", lambda events: 0)
+
+    paths = canon_writeback.write_back(run_dir, branch="07-mind", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, out_root=out_root, dry_run=False)
+    card_paths = [p for p in paths if p.parent == out_root / "07-mind" / "hypotheses" and p.name != "INDEX.md"]
+    assert len(card_paths) == 1
+    assert card_paths[0].stem == h_supported.short_id
+
+
 def test_select_above_floor_filters_on_both_p_and_u(linking_run):
     run_dir, h_supported, _ = linking_run
     candidates, _ = canon_writeback.reconstruct_candidates(run_dir)
@@ -205,7 +295,7 @@ def test_write_back_never_writes_canon_tier():
 
 
 def test_bridge_export_marks_accepted_by_the_given_floors(linking_run):
-    run_dir, h_supported, h_refuted = linking_run
+    run_dir, _, _ = linking_run
     items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, branch="02-physics")
     assert len(items) == 2
     assert all(item["accepted"] for item in items)
@@ -304,7 +394,7 @@ def test_write_back_cards_are_invisible_to_the_pr22_canon_importer(tmp_path, lin
     omission rather than by an explicit exclusion rule, since the
     importer's own scan surface never reaches a `hypotheses/` folder at
     all."""
-    run_dir, h_supported, _ = linking_run
+    run_dir, _, _ = linking_run
     fake_repo_root = tmp_path / "fake-repo"
     fake_repo_root.mkdir()
     out_root = fake_repo_root / "bucket-canon"

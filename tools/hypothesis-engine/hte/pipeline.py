@@ -80,10 +80,28 @@ class StageResult:
     output: Any = None
     error: str | None = None
 
+    @property
+    def outcome(self) -> str:
+        """One of `"ok"`/`"failed"`/`"skipped"`, the same three-way
+        vocabulary `run_pipeline`'s own `PIPELINE.json["outcome"]` uses,
+        now on every individual `STAGE.json` too (`bkt-hte-writeback-
+        review`, PR #36's own review): `"skipped"` is `_skipped_stage`'s
+        own deliberate, non-failing skip (`ran=False, ok=True`);
+        `"failed"` covers both a stage that ran and raised (`ran=True,
+        ok=False`) and `_failed_stage`'s own precondition failure
+        (`ran=False, ok=False`, this dataclass's own docstring); `"ok"`
+        is the only `ran=True, ok=True` case. A caller reading one
+        `STAGE.json` in isolation no longer has to cross-reference
+        `ran`/`ok` by hand to tell a deliberate skip from a real
+        failure."""
+        if not self.ran:
+            return "skipped" if self.ok else "failed"
+        return "ok" if self.ok else "failed"
+
     def to_dict(self) -> dict[str, Any]:
         return {
-            "name": self.name, "ran": self.ran, "ok": self.ok, "seconds": round(self.seconds, 3),
-            "output": self.output, "error": self.error,
+            "name": self.name, "ran": self.ran, "ok": self.ok, "outcome": self.outcome,
+            "seconds": round(self.seconds, 3), "output": self.output, "error": self.error,
         }
 
 
@@ -131,12 +149,45 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
     `corpus` names a period `hte.periods.load_periods` does not carry, in
     which case the given `corpus` is used directly and unranked) ->
     `run_campaign` (skipped when `from_run` is set) -> `emit_paper` ->
-    `referee` -> `publish`. A stage that raises does not stop the ones
-    after it that do not depend on its own output; `emit_paper` needs a
-    run directory to read, so it is the one stage a `run_campaign`
-    failure (or a missing `from_run`) blocks, and every stage
-    after that reports itself skipped for the same reason rather than
-    running against nothing.
+    `referee` -> `writeback` -> `publish`.
+
+    **Cascade rule** (`bkt-hte-writeback-review`, PR #36's own review):
+    a stage that raises, or whose own precondition is unmet, never stops
+    a later stage that does not depend on its own output; it stops only
+    the stages that DO.
+    - No usable run directory (`run_campaign` failed, or a `from_run`
+      that fails `hte.artifacts.load_run`): every downstream stage,
+      `emit_paper` included, reports itself skipped/failed for that one
+      reason, since none of them have anything to read.
+    - `emit_paper` failing (a real run directory in hand, but the paper
+      itself would not write) skips `referee` and `publish`, both of
+      which read `emit_paper`'s own output; it never skips `writeback`,
+      which reads only `run_dir` (`hte.canon_writeback.write_back`'s own
+      re-ingest of the campaign's corpus), a real, complete artifact
+      whether or not the paper on top of it ever gets written.
+    - `writeback` failing (its own precondition unmet, e.g. `writeback=
+      True` with no `writeback_branch`, or `write_back` itself raising)
+      never skips `publish` in turn: `publish` commits and mirrors the
+      run and its paper, neither of which `writeback`'s own outcome
+      changes. (The CLI's own `--writeback` requires `--branch`
+      validation, `hte.cli_pipeline`, catches the mistyped-branch case
+      this rule alone would not: before `run_pipeline` ever starts,
+      rather than papering over it with a cascade skip after the fact.)
+    - `writeback` not being requested at all (`writeback=False`, the
+      default) is a `_skipped_stage`, the same deliberate, non-failing
+      skip every other stage gets; it never affects `publish` either
+      way.
+
+    Every stage's own `STAGE.json` under the pipeline's own output
+    directory carries an explicit `outcome` (`"ok"`/`"failed"`/
+    `"skipped"`, `StageResult.outcome`) alongside `ran`/`ok`, and a
+    skipped or failed stage's own `output`/`error` names the reason,
+    quoting whichever upstream stage's own failure caused it when that
+    is why. `PIPELINE.json["outcome"]` reads `"ok"` when every stage
+    that ran (or was required to) came back `ok`, `"failed"` when at
+    least one did not, and `"error"` for the one from-run-precondition
+    case above (a configuration mistake caught before any stage ran,
+    distinct from a stage that ran and raised).
     """
     cfg = {**DEFAULT_CONFIG, **(config or {})}
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -232,9 +283,14 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
             lambda: paper_mod.emit_paper(run_dir, paper_dir),
         )
         if not stages["emit_paper"].ok:
+            # `referee` and `publish` both read `emit_paper`'s own paper
+            # output, so a failed emit_paper cascades to both; `writeback`
+            # reads only `run_dir` (real regardless of emit_paper's own
+            # outcome), so it is evaluated below on its own precondition
+            # rather than cascade-skipped here (`bkt-hte-writeback-
+            # review`, this function's own docstring).
             reason = f"emit_paper failed: {stages['emit_paper'].error}"
             stages["referee"] = _skipped_stage("referee", pipeline_dir / "referee", reason)
-            stages["writeback"] = _skipped_stage("writeback", pipeline_dir / "writeback", reason)
             stages["publish"] = _skipped_stage("publish", pipeline_dir / "publish", reason)
         else:
             stages["referee"] = _time_stage(
@@ -242,36 +298,47 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
                 lambda: referee_mod.referee(paper_dir, replay_only=cfg["replay_only"]),
             )
 
-            if cfg["writeback"]:
-                if not cfg["writeback_branch"]:
-                    stages["writeback"] = _failed_stage(
-                        "writeback", pipeline_dir / "writeback",
-                        "writeback=True but writeback_branch was not given",
-                    )
-                elif not cfg["writeback_signoff"]:
-                    stages["writeback"] = _failed_stage(
-                        "writeback", pipeline_dir / "writeback",
-                        "writeback=True but writeback_signoff was not given: a named human "
-                        "approver is required before any write into bucket-canon/ (PLAN.md "
-                        "section 10, GOVERNANCE.md)",
-                    )
-                else:
-                    def _writeback() -> list[str]:
-                        from . import canon_writeback
-                        paths = canon_writeback.write_back(
-                            run_dir, branch=cfg["writeback_branch"], signoff=cfg["writeback_signoff"],
-                            floor_P=cfg["writeback_floor_P"], floor_u_max=cfg["writeback_floor_u_max"],
-                            out_root=cfg["writeback_out_root"], dry_run=cfg["dry_run"],
-                        )
-                        return [str(p) for p in paths]
-
-                    stages["writeback"] = _time_stage("writeback", pipeline_dir / "writeback", _writeback)
-            else:
-                stages["writeback"] = _skipped_stage(
+        # `writeback` depends only on `run_dir`, never on `emit_paper`/
+        # `referee`'s own paper-writing outcome (this function's own
+        # docstring, "Cascade rule"): it runs on its own precondition
+        # here regardless of whether emit_paper above just failed.
+        if cfg["writeback"]:
+            if not cfg["writeback_branch"]:
+                stages["writeback"] = _failed_stage(
                     "writeback", pipeline_dir / "writeback",
-                    "writeback not requested (pass writeback=True / hte-pipeline run --writeback)",
+                    "writeback=True but writeback_branch was not given",
                 )
+            elif not cfg["writeback_signoff"]:
+                stages["writeback"] = _failed_stage(
+                    "writeback", pipeline_dir / "writeback",
+                    "writeback=True but writeback_signoff was not given: a named human "
+                    "approver is required before any write into bucket-canon/ (PLAN.md "
+                    "section 10, GOVERNANCE.md)",
+                )
+            else:
+                def _writeback() -> list[str]:
+                    from . import canon_writeback
+                    paths = canon_writeback.write_back(
+                        run_dir, branch=cfg["writeback_branch"], signoff=cfg["writeback_signoff"],
+                        floor_P=cfg["writeback_floor_P"], floor_u_max=cfg["writeback_floor_u_max"],
+                        out_root=cfg["writeback_out_root"], dry_run=cfg["dry_run"],
+                    )
+                    return [str(p) for p in paths]
 
+                stages["writeback"] = _time_stage("writeback", pipeline_dir / "writeback", _writeback)
+        else:
+            stages["writeback"] = _skipped_stage(
+                "writeback", pipeline_dir / "writeback",
+                "writeback not requested (pass writeback=True / hte-pipeline run --writeback)",
+            )
+
+        # `publish` depends only on `emit_paper`'s own paper, never on
+        # `writeback`'s own outcome (this function's own docstring,
+        # "Cascade rule"): a failed writeback (a missing --branch, a
+        # missing --signoff, or `write_back` itself raising) never blocks
+        # committing/mirroring the run and paper; writeback leaves the
+        # run and paper untouched either way.
+        if stages["emit_paper"].ok:
             if cfg["skip_publish"]:
                 stages["publish"] = _skipped_stage(
                     "publish", pipeline_dir / "publish",
