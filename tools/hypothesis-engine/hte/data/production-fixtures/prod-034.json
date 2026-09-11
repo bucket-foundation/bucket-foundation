@@ -1,0 +1,66 @@
+{
+  "id": "prod-034",
+  "created_at": "2020-05-01T00:00:00Z",
+  "author_role": "student",
+  "grade_band": "9-10",
+  "school_or_district_id": "district-a",
+  "research_question": "RQ19: does a reviewed production's detectability and tier move the engine's ranked hypotheses in a calibrated direction?",
+  "claims": [
+    {
+      "text": "An early draft treated one reviewer's own reputation alone as sufficient to raise this address's tier, before a second reviewer's blind re-check found no corroborating evidence and the claim was withdrawn.",
+      "stance": "supports",
+      "slots": {
+        "actor": "reviewer-halo-effect",
+        "action": "raised",
+        "object": "tier-assignment",
+        "place": "review-session",
+        "mechanism": null
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-hte-self-report-retracted-034",
+          "locator": "self-report.json:retracted_034_summary",
+          "quote": "An early draft treated one reviewer's own reputation alone as sufficient to raise this address's tier, before a second reviewer's blind re-check found no corroborating evidence and the claim was withdrawn.",
+          "kind": "model_prior",
+          "tier": "T4",
+          "citations": [
+            {
+              "type": "feed402_envelope",
+              "value": "env-hte-fixture-retracted-034"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "retracted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2020-01-15"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2020-02-15"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2020-03-15"
+      },
+      {
+        "status": "accepted",
+        "date": "2020-04-15"
+      },
+      {
+        "status": "retracted",
+        "date": "2020-09-01"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}

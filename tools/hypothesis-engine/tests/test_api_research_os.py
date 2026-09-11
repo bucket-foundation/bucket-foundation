@@ -2,7 +2,7 @@
 (Research OS's own row shape, `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`),
 exercised directly rather than through `production.load_raw()`'s own
 normalize-at-parse-time path (`tests/test_api.py` covers that one, since
-`load_raw()` already hands `hypothesize` fourteen ordinary-shaped records).
+`load_raw()` already hands `hypothesize` thirty-six ordinary-shaped records).
 This file's own job is the request path itself: `hypothesize()` accepts a
 raw `graph.productions` row (or a batch mixing that shape with the older
 `PRODUCTION-SCHEMA.md` shape) with no caller-side conversion, and a

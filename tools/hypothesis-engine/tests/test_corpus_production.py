@@ -1,19 +1,31 @@
 """`hte.corpus.production`: the K-12 research-production adapter, exercised
-against the 14 shipped fixtures under `hte/data/production-fixtures/`
-(the 12 original `PRODUCTION-SCHEMA.md`-shaped fixtures, `prod-001.json`
-through `prod-012.json`, plus `research-os-sky-blue.json`, two `graph.
-productions`-shaped rows converted from the founder's own Research OS seed,
-`bucket-foundation` PR #6's `supabase/seed/research-os-sky-blue.json`) and,
-for `load_supabase`, against a monkeypatched `urllib.request.urlopen`
+against the 36 shipped fixtures under `hte/data/production-fixtures/`
+(the original 12 `PRODUCTION-SCHEMA.md`-shaped fixtures, `prod-001.json`
+through `prod-012.json`, plus `research-os-sky-blue.json`'s two `graph.
+productions`-shaped rows converted from the founder's own Research OS seed
+(`bucket-foundation` PR #6's `supabase/seed/research-os-sky-blue.json`),
+plus 22 more `PRODUCTION-SCHEMA.md`-shaped fixtures `bkt-hte-ground-truth-
+enrichment` added, `prod-013.json` through `prod-034.json`
+(`docs/COVERAGE-2026-09-10.md`'s own reason table): 4 cross-district
+replication pairs, 1 revised-then-reaccepted pair (also a replication
+pair), a depth-3 citation chain (4 productions, itself two overlapping
+replication pairs on its own two addresses), 6 twins of pre-existing
+ground-truth events, and 2 more retracted productions) and, for
+`load_supabase`, against a monkeypatched `urllib.request.urlopen`
 returning those same fixtures as REST rows. No network.
 
 The Research OS shape gets its own test class below
 (`TestResearchOSNativeShape`); every test above it exercises the original
-12-fixture set's own invariants, now against a 14-fixture directory, so
+12-fixture set's own invariants, now against a 36-fixture directory, so
 several counts below were widened from exact equality to containment where
-the Research OS conversion's own values (a `research_question` with no
-`RQ##:` prefix, a `school_or_district_id` outside the two original pilot
-districts) legitimately extend rather than replace the original set.
+a later addition's own values (a `research_question` with no `RQ##:`
+prefix, a `school_or_district_id` or `grade_band` outside the original
+pilot's own two districts and three bands) legitimately extend rather than
+replace the original set. `tests/test_corpus_production_ground_truth_
+enrichment.py` exercises the 22 new fixtures' own invariants directly:
+district and grade-band diversity, replication-pair coverage, the
+citation chain's own depth, and the revised-then-reaccepted review
+history.
 """
 from __future__ import annotations
 
@@ -36,10 +48,15 @@ def corpus():
 # --------------------------------------------------------------------------
 
 
-def test_load_raw_reads_all_fourteen_fixtures():
+def test_load_raw_reads_all_thirty_six_fixtures():
+    # 14 original productions plus 22 added by `bkt-hte-ground-truth-
+    # enrichment` (`docs/COVERAGE-2026-09-10.md`): 4 cross-district
+    # replication pairs, 1 revised-then-reaccepted pair, a depth-3
+    # citation chain, 6 twins of pre-existing ground-truth events, and 2
+    # more retracted productions.
     productions = production.load_raw()
-    assert len(productions) == 14
-    assert len({p.id for p in productions}) == 14
+    assert len(productions) == 36
+    assert len({p.id for p in productions}) == 36
 
 
 def test_fixtures_cover_at_least_four_of_the_seven_runnable_questions():
@@ -76,14 +93,14 @@ def test_fixtures_cover_every_author_role_and_review_status():
 
 
 def test_load_default_status_min_counts(corpus):
-    # 14 productions minus the two mapped to "draft" (prod-008, and
+    # 36 productions minus the two mapped to "draft" (prod-008, and
     # ros-sky-blue-001 whose Research OS status "submitted" maps to
     # "draft", RESEARCH_OS_STATUS_MAP) excluded by the default
-    # status_min="peer-reviewed" leaves 12 contributing evidence.
+    # status_min="peer-reviewed" leaves 34 contributing evidence.
     contributing_ids = {e.id.rsplit("-c", 1)[0] for e in corpus.evidence}
     assert "prod-008" not in contributing_ids
     assert "ros-sky-blue-001" not in contributing_ids
-    assert len(contributing_ids) == 12
+    assert len(contributing_ids) == 34
     # every production still gets a Source, including the filtered-out drafts
     assert "prod-008" in corpus.sources
     assert "ros-sky-blue-001" in corpus.sources
