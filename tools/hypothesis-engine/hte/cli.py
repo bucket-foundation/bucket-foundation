@@ -1,4 +1,5 @@
-"""`hte` console script: `campaign run`, `calibrate`, `views`, `question-map`, `purge`.
+"""`hte` console script: `campaign run`, `calibrate`, `views`,
+`holdout-ledger report`/`verify`, `question-map`, `purge`.
 
 stdlib `argparse` only, matching this package's own no-dependencies
 contract (`pyproject.toml`).
@@ -10,7 +11,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import calibrate, diagnostics, export, purge as purge_mod, question_map, runner
+from . import calibrate, diagnostics, export, holdout_ledger, purge as purge_mod, question_map, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
 from .corpus import quantum_history
@@ -117,6 +118,27 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_holdout_ledger_report(args: argparse.Namespace) -> int:
+    """The hit-rate script `PLAN.md` section 10 asks for: the current
+    ranking-holdout status (`hte.holdout_ledger.ranking_status`) over the
+    ledger at `args.path`, printed as one JSON object to stdout."""
+    status = holdout_ledger.ranking_status(path=args.path, min_verified=args.min_verified)
+    print(json.dumps(status.to_dict(), indent=2))
+    return 0
+
+
+def _cmd_holdout_ledger_verify(args: argparse.Namespace) -> int:
+    try:
+        entry = holdout_ledger.verify_entry(
+            args.entry_id, args.outcome, verified_by=args.verified_by, path=args.path,
+        )
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    print(json.dumps(entry.to_dict(), indent=2))
+    return 0
+
+
 def _cmd_question_map(args: argparse.Namespace) -> int:
     # `_CORPUS_LOADERS` here (not `runner`'s own copy) is the more complete
     # registry: it carries `research-os` too, registered only at call time
@@ -199,6 +221,21 @@ def build_parser() -> argparse.ArgumentParser:
     views_p = sub.add_parser("views", help="re-render TIMELINE.md for a run directory")
     views_p.add_argument("run_dir")
     views_p.set_defaults(func=_cmd_views)
+
+    ledger = sub.add_parser("holdout-ledger", help="the ranking-holdout track record (PLAN.md section 10)")
+    ledger_sub = ledger.add_subparsers(dest="holdout_ledger_command", required=True)
+
+    report_p = ledger_sub.add_parser("report", help="print the current ranking hit rate and elo_status")
+    report_p.add_argument("--path", default=holdout_ledger.DEFAULT_LEDGER_PATH)
+    report_p.add_argument("--min-verified", type=int, default=holdout_ledger.MIN_VERIFIED_FOR_LABEL)
+    report_p.set_defaults(func=_cmd_holdout_ledger_report)
+
+    verify_p = ledger_sub.add_parser("verify", help="record a later-verified outcome for one entry")
+    verify_p.add_argument("entry_id")
+    verify_p.add_argument("outcome", choices=["correct", "incorrect"])
+    verify_p.add_argument("--verified-by", required=True, help="a named human or automated check")
+    verify_p.add_argument("--path", default=holdout_ledger.DEFAULT_LEDGER_PATH)
+    verify_p.set_defaults(func=_cmd_holdout_ledger_verify)
 
     question_map_p = sub.add_parser(
         "question-map",

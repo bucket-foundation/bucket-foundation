@@ -324,6 +324,26 @@ def _self_report(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
 
 
 # --------------------------------------------------------------------------
+# understanding
+# --------------------------------------------------------------------------
+
+_UNDERSTANDING_STATEMENT_RE = re.compile(r"Hypothesis:\s*(.*?)\n\n", re.DOTALL)
+
+
+def _understanding(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
+    """Echoes `hte.roles.understanding`'s own `statement` argument, read
+    back off its `"Hypothesis: {statement}\\n\\n"` prompt line, wrapped in
+    a fixed plain-language frame. Deterministic and non-empty for every
+    prompt this role ever builds, so a fake-mode run always clears
+    `hte.canon_writeback.write_back`'s own non-blank gate."""
+    m = _UNDERSTANDING_STATEMENT_RE.search(prompt)
+    statement = m.group(1).strip() if m else "this hypothesis"
+    return {
+        "explanation": f"fake stand-in explanation: in plain terms, {statement}",
+    }
+
+
+# --------------------------------------------------------------------------
 # extract / escalation
 # --------------------------------------------------------------------------
 
@@ -375,6 +395,7 @@ _DISPATCH = {
     "judge": _judge,
     "meta_review": _meta_review,
     "self_report": _self_report,
+    "understanding": _understanding,
     "extractor": _extract,
     "escalation": _extract,
 }

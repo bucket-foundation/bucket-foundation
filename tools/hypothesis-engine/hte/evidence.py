@@ -99,6 +99,14 @@ class EvidenceSpan:
             raise ValueError("char_start must be >= 0")
         if self.char_end < self.char_start:
             raise ValueError("char_end must be >= char_start")
+        # TODO(bkt-hte-evidence-span-doc-length, filed BEADS-PENDING.jsonl,
+        # PR #60 review): this checks only internal consistency between
+        # char_start and char_end, never against doc_id's own stored
+        # document length. hte.corpus.Source carries no document text or
+        # length field yet, so there is nothing on hand here to check
+        # against; a span pointing past the end of its own document would
+        # pass today. Needs a document-length store keyed by doc_id before
+        # this can validate for real.
 
     def to_dict(self) -> dict:
         return {
