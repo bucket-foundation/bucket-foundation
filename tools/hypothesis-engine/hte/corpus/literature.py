@@ -280,6 +280,17 @@ once, from the first cards list entry naming that DOI, and appends every
 later root's own batch label onto that same `Source.batches` list rather
 than re-adding its evidence a second time, so `corpus.evidence`'s own
 count never double-counts a paper two roots both happen to carry.
+
+**Root auto-discovery** (bkt-hte-outbox-seam item 3). `discover_card_roots`
+globs `_intake/research-os-k12-literature*` under a repo root (default this
+repo's own, `_REPO_ROOT`) for every literature-corpus root on disk, plus any
+batch subfolder a matched root's own `README.md` declares as a distinct
+root of its own (`_declared_batch_subfolders`, a forward-compat hook: every
+real batch so far grew the existing tree in place instead). `load(cards_dir
+=None)` now calls this first and uses whatever it finds, falling back to
+the original network fetch only when it finds nothing; `load_raw` and
+`load_default` are unchanged (see `load_default`'s own docstring for why
+the real, on-disk tree still needs `cards_dir` passed explicitly today).
 """
 from __future__ import annotations
 
@@ -1080,6 +1091,82 @@ def _normalize_roots(cards_dir: str | Path | Sequence[str | Path] | None, ref: s
     return [Path(root) for root in cards_dir]
 
 
+# --------------------------------------------------------------------------
+# local root auto-discovery (bkt-hte-outbox-seam item 3): `load()`'s own
+# `cards_dir=None` default currently means "fetch over the network"
+# (`_normalize_roots` above), even when this package is running inside a
+# real `bucket-foundation` checkout that already carries the corpus on
+# disk. `discover_card_roots` finds that real tree without a network call;
+# `load()` (below) prefers it when it finds anything, falling back to the
+# network fetch otherwise, so a caller inside a real checkout gets the
+# real, current corpus (147 cards past literature batch four, `_intake/
+# research-os-k12-literature/README.md`'s own batch log) with no argument
+# to pass and no ref to keep in sync. `load_default()` is unaffected: it
+# stays pinned to the 12-card fixture pair (`DEFAULT_CARDS_DIRS`), the
+# deterministic, no-network corpus `_CORPUS_LOADERS` registers.
+# --------------------------------------------------------------------------
+
+_BATCH_ROOT_RE = re.compile(r"^\s*Batch root:\s*`([^`]+)`\s*$", re.MULTILINE)
+
+
+def _declared_batch_subfolders(card_root: Path) -> list[Path]:
+    """A card root's own `README.md` may declare a later batch that shipped
+    as a nested subfolder of its own, a distinct root from `card_root`
+    itself, rather than growing the existing tree in place (the shape
+    every batch this corpus has taken so far; see this module's own top
+    docstring, "Batches"). The declaration convention is one line of its
+    own, `` Batch root: `<relative path>` ``; every real batch so far
+    (`_intake/research-os-k12-literature/README.md`'s own "Literature
+    batch three"/"batch four" sections) grew the existing tree instead, so
+    this returns `[]` against that README today, this is a forward-compat
+    hook for the day a batch lands as its own subfolder rather than in
+    place. A declared path that does not resolve to a real, existing
+    directory (a stale note, a typo) is silently skipped rather than
+    raised: this function's own contract is best-effort discovery, never
+    `load`'s own hard failure on a caller-supplied, definite path."""
+    readme = card_root / "README.md"
+    if not readme.is_file():
+        return []
+    text = readme.read_text(encoding="utf-8")
+    found: list[Path] = []
+    for rel in _BATCH_ROOT_RE.findall(text):
+        candidate = (card_root / rel).resolve()
+        if candidate.is_dir():
+            found.append(candidate)
+    return found
+
+
+def discover_card_roots(base: str | Path | None = None) -> list[Path]:
+    """Every literature-corpus root under `base` (default this repo's own
+    root, `_REPO_ROOT`, the same real, on-disk path `LOCAL_INTAKE_DIR`
+    reads off of): every directory directly under `base/_intake/` whose
+    name matches the glob `research-os-k12-literature*` (sorted, so two
+    runs against the same tree always agree on order), plus any batch
+    subfolder each matched root's own `README.md` declares as a distinct
+    root of its own (`_declared_batch_subfolders`).
+
+    Returns `[]`, never raises, when `base/_intake/` does not exist at all
+    (a checkout of this package with no `_intake/` tree, a package install
+    with no repo around it): the empty list is this function's own signal
+    for "nothing to discover here," which `load` (below) reads as "fall
+    back to the network fetch," not as an error.
+
+    `base` is a parameter, not only `_REPO_ROOT`'s own fixed value, so a
+    test can point this function at a temporary tree with no change to
+    this module's own module-level constants (`tests/test_corpus_
+    literature.py`'s own "root auto-discovery" section builds a three-root
+    temp tree this way)."""
+    root = Path(base) if base is not None else _REPO_ROOT
+    intake = root / "_intake"
+    if not intake.is_dir():
+        return []
+    discovered: list[Path] = []
+    for candidate in sorted(p for p in intake.glob("research-os-k12-literature*") if p.is_dir()):
+        discovered.append(candidate)
+        discovered.extend(_declared_batch_subfolders(candidate))
+    return discovered
+
+
 def load_raw(
     cards_dir: str | Path | Sequence[str | Path] | None = None,
     *, ref: str = DEFAULT_REF,
@@ -1095,7 +1182,20 @@ def load_raw(
     filtering and no cross-root dedup; that is `load`'s own job on the way
     to a `Corpus`, and this corpus, unlike `hte.corpus.production`'s
     review ladder, has no maturity gate of its own to filter on: every
-    card PR #5 or PR #15 ships already carries a checked DOI."""
+    card PR #5 or PR #15 ships already carries a checked DOI.
+
+    A root nested inside another root in this same `roots` list
+    (`discover_card_roots`'s own README-declared-subfolder case, this
+    module's own top docstring "Root auto-discovery") has its own files
+    excluded from the OUTER (ancestor) root's `.rglob`, which would
+    otherwise sweep them up twice, once under the outer root's own batch
+    label, once under the nested root's own, more specific one. Each card
+    lands in exactly one batch, the most specific (deepest) root that
+    contains it; a root with no OTHER root nested inside it keeps its full
+    `.rglob` unchanged. This check is unconditional (not gated on whether
+    `cards_dir` came from discovery), so any caller who happens to pass
+    one root nested inside another gets the same no-double-count
+    guarantee."""
     roots = _normalize_roots(cards_dir, ref)
     cards: list[Card] = []
     for batch_index, directory in enumerate(roots, start=1):
@@ -1104,6 +1204,9 @@ def load_raw(
         paths = _iter_card_paths(directory)
         if not paths:
             raise FileNotFoundError(f"literature adapter: no card files found under {directory}")
+        nested_roots = [r for r in roots if r != directory and r.is_relative_to(directory)]
+        if nested_roots:
+            paths = [p for p in paths if not any(p.is_relative_to(nested) for nested in nested_roots)]
         batch = f"batch-{batch_index}"
         cards.extend(_parse_card_file(path, directory, batch) for path in paths)
     return cards
@@ -1118,7 +1221,23 @@ def load(
     DOI shared by more than one root down to its first root's own card
     (folding every later root's own batch label onto that same `Source`
     instead). See this module's own top docstring for the full `Source`/
-    `EvidenceItem`/`GroundTruthEvent`/stemma mapping."""
+    `EvidenceItem`/`GroundTruthEvent`/stemma mapping.
+
+    `cards_dir=None` (the default) now prefers `discover_card_roots()`
+    over the network fetch: when this package is running inside a real
+    checkout that carries `_intake/research-os-k12-literature*` on disk,
+    those real, current roots are read directly, cross-root DOI dedup and
+    per-batch `Source.batches` provenance applying exactly the same way
+    they do for an explicit `cards_dir` list. `ref` is only ever read when
+    discovery finds nothing (no `_intake/` tree at all), the original
+    network-fetch behavior, unchanged: a caller wanting to force the
+    network path regardless of what is on disk passes an explicit
+    `cards_dir` (a nonexistent path raises `FileNotFoundError`, matching
+    `load_raw`'s own contract) rather than relying on this default."""
+    if cards_dir is None:
+        discovered = discover_card_roots()
+        if discovered:
+            cards_dir = discovered
     return _build_corpus(load_raw(cards_dir, ref=ref))
 
 
@@ -1126,28 +1245,41 @@ def load_default() -> Corpus:
     """`_CORPUS_LOADERS`'s own zero-arg registration (`hte/cli.py`,
     `hte/runner.py`), the shape every other corpus loader there already
     has: `load(DEFAULT_CARDS_DIRS)`, both fixture batches combined (12
-    cards, no network, deterministic).
+    cards, no network, deterministic). Passing `DEFAULT_CARDS_DIRS`
+    explicitly is what keeps this deterministic even after `load(cards_dir
+    =None)` gained root auto-discovery (`discover_card_roots`, this
+    module's own top docstring, "Root auto-discovery"): `load_default`
+    never reads `cards_dir=None`'s own discovered-or-network default at
+    all, so a campaign registered against `"literature"` in
+    `_CORPUS_LOADERS` keeps running against the same 12 cards regardless
+    of what a later batch adds to the real, on-disk tree.
 
-    This does *not* read the real, on-disk `LOCAL_INTAKE_DIR` tree (82
-    cards past PR #15): that tree carries a gap this module does not yet
-    handle, three educational-methods cards a later, separate pass (bead
-    `ros-02`, "Framework mapping papers") added with `doi: null` plus an
-    `isbn`/ERIC-id field instead of a DOI (Anderson and Krathwohl 2001,
-    Perkins 1993, Wiske 1998; `_intake/research-os-k12-literature/README.
-    md`'s own "canon-intake promotions" section names the same three
-    non-DOI records). `_parse_frontmatter` requires a real `doi:` and
-    raises on a `null` one, so `load(LOCAL_INTAKE_DIR)` fails on those
-    three cards today; giving every non-DOI source a stable fallback id
-    (an `isbn:`-prefixed slug, say) is real, separate follow-up work this
-    pass does not take on, since it touches `Source.id`/`EvidenceItem.
-    source_id`/`GroundTruthEvent.doc_id`'s own DOI-shaped id convention
-    everywhere in this module, not just batch two's own cards."""
+    This does *not* read the real, on-disk `LOCAL_INTAKE_DIR` tree (147
+    cards past literature batch four, `_intake/research-os-k12-literature/
+    README.md`'s own batch log): that tree carries a gap this module does
+    not yet handle, six cards across four areas that carry `doi: null`
+    plus an `isbn`/ERIC-id field instead of a DOI (Anderson and Krathwohl
+    2001, Wiske 1998, Perkins 1993 from the original 82-card tree;
+    Kingston 2018, Condliffe 2017, Cuban 2001 added by later batches;
+    `_intake/research-os-k12-literature/README.md`'s own "canon-intake
+    promotions" section names the first three). `_parse_frontmatter`
+    requires a real `doi:` and raises on a `null` one, so both
+    `load(LOCAL_INTAKE_DIR)` and `load(cards_dir=None)`'s own newly
+    discovered root fail on the first such card alphabetically today
+    (`load_raw` has no per-card isolation of its own, unlike `hte.corpus.
+    research_os_outbox._build`'s per-row isolation); giving every non-DOI
+    source a stable fallback id (an `isbn:`-prefixed slug, say) is real,
+    separate follow-up work this pass does not take on, since it touches
+    `Source.id`/`EvidenceItem.source_id`/`GroundTruthEvent.doc_id`'s own
+    DOI-shaped id convention everywhere in this module, not just these six
+    cards. Root discovery itself is unaffected by this gap: it finds the
+    real directory whether or not every card inside it parses."""
     return load(DEFAULT_CARDS_DIRS)
 
 
 __all__ = [
     "Card", "Claim",
-    "load_vocab", "load_raw", "load", "load_default",
+    "load_vocab", "load_raw", "load", "load_default", "discover_card_roots",
     "LITERATURE_VOCAB_PATH", "DEFAULT_FIXTURES_DIR", "DEFAULT_FIXTURES_DIR_BATCH_TWO",
     "DEFAULT_CARDS_DIRS", "LOCAL_INTAKE_DIR", "EVIDENCE_PROVENANCE_TAG",
     "GITHUB_REPO", "GITHUB_INTAKE_PATH", "DEFAULT_REF",
