@@ -19,7 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Sequence
 
-from . import artifacts, batching, calibrate, export, link, llm, roles, tournament, unknowns
+from . import artifacts, batching, calibrate, export, link, llm, propagate, roles, tournament, unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
 from .belief import Opinion, load_constants, load_detectability_table, score as belief_score
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
@@ -453,6 +453,40 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     constants = load_constants(cfg["constants"])
     opinions = {h.address: belief_score(h, corpus.evidence, corpus.vocab, table, constants=constants) for h in survivors}
 
+    # Retraction propagation (`bkt-hte-retraction-propagation`, `docs/
+    # PROPAGATION.md`): every address this run's own corpus flags as
+    # retracted (`hte.propagate.changed_from_retractions`, reading
+    # `EvidenceItem.retracted_by`/`Source.retracted_by`) roots a cascade
+    # through the derivation graph over `survivors`, recomputing every
+    # dependent hypothesis's own opinion in place. An ordinary campaign
+    # with no retraction on file (every corpus this package ships, as of
+    # this bead) reads an empty `retracted_now`, so `propagate` is a
+    # documented no-op rather than a special-cased skip: `cascade.json`
+    # is always written, with an empty `entries` list when nothing
+    # retracted this run, so a caller never has to guess whether the
+    # stage ran.
+    retracted_now = propagate.changed_from_retractions(corpus.evidence, corpus.sources) & set(opinions)
+    cascade_report = propagate.propagate(
+        survivors, opinions, retracted_now, evidence=corpus.evidence, vocab=corpus.vocab,
+        sources=corpus.sources, detect_table=table, constants=constants,
+    )
+    opinions.update(cascade_report.updated_opinions)
+    (run_dir / "cascade.json").write_text(json.dumps(cascade_report.to_dict(), indent=2))
+    if cascade_report.entries:
+        logger.log(
+            f"cascade: root(s)={list(cascade_report.roots)} moved {len(cascade_report.entries)} "
+            f"dependent hypothesis(es) beyond threshold={cascade_report.threshold}"
+        )
+        for entry in cascade_report.entries:
+            logger.log(
+                f"cascade: {entry.short_id} old_P={entry.old_p} new_P={entry.new_p} "
+                f"hops={entry.hops} routed_share={entry.routed_share:.3f}"
+            )
+    else:
+        logger.log("cascade: no retraction on file this run, nothing to propagate")
+
+    fragility_top10 = propagate.rank_fragility(survivors, corpus.evidence, corpus.sources)
+
     judge = _judge_adapter(cache_dir, replay_only)
     judge_batch = _judge_batch_adapter(
         cache_dir, replay_only, batch_size=cfg["judge_batch_size"], workers=cfg["llm_workers"],
@@ -518,6 +552,21 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "meta_review": meta_review_result,
     }
     self_report = roles.self_report(run_summary, cache_dir=cache_dir, replay_only=replay_only)
+    # `bkt-hte-retraction-propagation`, `docs/PROPAGATION.md`: the ten
+    # most fragile survivors (`hte.propagate.rank_fragility`), folded
+    # into `self_report` AFTER the role call returns, the same
+    # after-the-fact treatment `assumptions` gets below for a refusal or
+    # a clamp note. Folded in here rather than into `run_summary` itself:
+    # `run_summary` feeds straight into `roles.self_report`'s own prompt
+    # text (`f"Run data: {dict(run)}"`), and that prompt is exactly what
+    # `tests/fixtures/llm-cache/`'s committed replay fixtures are keyed
+    # by (`tests/test_runner.py`'s own `FIXTURE_CONFIG` docstring); adding
+    # a key to `run_summary` directly would change that prompt's own
+    # cache key and break every committed fixture response for this run's
+    # own `self_report` role, for every existing test replaying against
+    # it, not only this bead's own new ones.
+    self_report = dict(self_report)
+    self_report["fragility_top10"] = fragility_top10
 
     # `bkt-hte-refusal-handling`: every default `hte.roles` substituted
     # for a refused or truncated model call this run, one `run.log` line
@@ -586,7 +635,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         survivors, opinions, elos, time_bins, top_k=max(cfg["top_k"], len(survivors)),
         span_start=span_start, bin_width=bin_width, bin_labels=bin_labels,
     )
-    export.write_views(views, run_dir)
+    export.write_views(views, run_dir, fragility_ranked=fragility_top10)
     logger.log(f"exported {len(views.get('bins', []))} bin views, {len(views.get('event_views', []))} event views")
 
     cache_stats = llm.cache_stats(cache_dir)
@@ -615,7 +664,13 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "git_sha": _git_sha(),
         "config": cfg,
         "extraction": extraction_note,
-        "counts": run_summary,
+        # `bkt-hte-retraction-propagation`: `run_summary` plus
+        # `fragility_top10`, added here rather than into `run_summary`
+        # itself, for the same cache-key-stability reason the
+        # `self_report` fold-in above documents: `run_summary` feeds
+        # `roles.self_report`'s own prompt text, and `MANIFEST.json`
+        # carries `fragility_top10` too without perturbing that prompt.
+        "counts": {**run_summary, "fragility_top10": fragility_top10},
     }
     # `hte.artifacts.validate_manifest` builds a `ManifestArtifact` from
     # this exact dict before it is ever written: a required field this
