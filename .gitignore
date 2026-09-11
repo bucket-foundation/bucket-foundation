@@ -56,7 +56,11 @@ brand/workshop/
 bucket.foundation.pdf
 checkpoints/
 figma-export/
-feed/2026-*
+# feed/YYYY-MM.json monthly archives are NOT ignored: they are the durable
+# ledger for tools/feed/ (see tools/feed/README.md). feed.json only holds a
+# rolling window, and the CI bot cannot regenerate events it never saw, so an
+# ignore rule here silently drops history on the next checkout. Do not add
+# one back.
 *.png
 # …EXCEPT the vendored paper/research figures under public/, which are part of
 # the shipped site (the research-atlas paper pages + the education-atlas corpus
