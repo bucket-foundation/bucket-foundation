@@ -272,11 +272,17 @@ export function hasCorroboration(targetNodeId: string, corroborationEvidence: Co
   return corroborationEvidence.some((c) => c.firstSourceId === targetNodeId || c.secondSourceId === targetNodeId);
 }
 
+/** The row value lateralReadingFlag below returns, named the same way
+ * DuplicateFlag names computeDuplicateFlag's own return type, so a
+ * reviewer-facing caller (the review route, the review page) can import
+ * one type rather than re-typing the literal union. */
+export type LateralReadingFlag = "single-source" | null;
+
 /** The guard flag this rule adds: `"single-source"` when no corroboration
  * record backs this Production's target node, `null` otherwise.
  * Informational only, matching duplicate detection's own "never blocks"
  * rule: a reviewer reads it, nothing here refuses an accept decision the
  * way hasUnverifiedSource does. */
-export function lateralReadingFlag(targetNodeId: string, corroborationEvidence: CorroborationRecord[]): "single-source" | null {
+export function lateralReadingFlag(targetNodeId: string, corroborationEvidence: CorroborationRecord[]): LateralReadingFlag {
   return hasCorroboration(targetNodeId, corroborationEvidence) ? null : "single-source";
 }

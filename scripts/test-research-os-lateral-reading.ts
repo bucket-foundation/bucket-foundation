@@ -339,7 +339,7 @@ test("onCheckResult: secondSourceRequired/secondSourceNodeId persist on the even
   assert.equal(t.event.secondSourceNodeId, "n-2");
 });
 
-test("onCheckResult: with no lateral-reading context at all, both fields are undefined, not a placeholder value", () => {
+test("onCheckResult: with no lateral-reading context at all, both fields read undefined", () => {
   const t = onCheckResult("awareness", { result: "support", confidence: "high", abstained: false });
   assert.equal(t.event.secondSourceRequired, undefined);
   assert.equal(t.event.secondSourceNodeId, undefined);
