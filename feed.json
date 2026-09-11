@@ -1,12 +1,26 @@
 {
   "schema_version": "1.1",
-  "generated": "2026-09-11T03:22:47.247783+00:00",
-  "total_events": 1428,
+  "generated": "2026-09-11T04:43:21.977990+00:00",
+  "total_events": 1429,
   "window": {
     "size": 200,
     "returned": 200
   },
   "events": [
+    {
+      "id": "1ea486b0a1658659",
+      "type": "predict_register",
+      "branch": null,
+      "topic": "quantum-history-20260910T085020Z",
+      "title": "50 prediction(s) registered for quantum-history-20260910T085020Z ({'claim': 25, 'discovery': 15, 'sequence': 10})",
+      "path": "tools/hypothesis-engine/predictions/ledger.jsonl",
+      "doi": null,
+      "author_github": null,
+      "author_name": null,
+      "commit_sha": "889df2007",
+      "pr_number": null,
+      "timestamp": "2026-09-11T04:43:21.582050+00:00"
+    },
     {
       "id": "97353c623ee80c1b",
       "type": "predict_register",
@@ -2786,20 +2800,6 @@
       "topic": "sub-claims",
       "title": "003-the-picture-up-to-you-before-about-entanglement-we-are-but-i.md",
       "path": "bucket-canon/02-physics/sub-claims/schrodinger/003-the-picture-up-to-you-before-about-entanglement-we-are-but-i.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "bc2bec6",
-      "pr_number": null,
-      "timestamp": "2026-05-11T09:16:08-04:00"
-    },
-    {
-      "id": "78c0d865b177c9b8",
-      "type": "add_canon_entry",
-      "branch": "02-physics",
-      "topic": "sub-claims",
-      "title": "004-states-and-the-schrodinger-equation-all-we-need-to-know-is-w.md",
-      "path": "bucket-canon/02-physics/sub-claims/schrodinger/004-states-and-the-schrodinger-equation-all-we-need-to-know-is-w.md",
       "doi": null,
       "author_github": "gianyrox",
       "author_name": "gianyrox",
