@@ -3017,3 +3017,16 @@ Review of PR #76 (preregistration revision 1, Iteration 25 above), docs-only, as
 - Gates: nothing under `src/` or `public/` changed; the branch already carries `origin/main` (merged mid-pass by the PR's own author; confirmed fast-forward-clean from this worktree). `git diff --name-status` against `origin/main` shows every touched file as `M`, no deletions. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and this file; `agf-lint-voice-src check` clean on the one touched source file.
 
 No fix needed against any of the above. Merged as-is.
+
+## PR #74 finishing pass
+
+Reviewer-side finish of PR #74 (faded guidance, ros-14, Iteration above) after review sat clean and a prior finishing pass died mid-gates on a wip commit.
+
+### Verified
+
+- Resumed from `wip(review/pr74): partial work preserved after spend-limit stop` in worktree `.ros-worktrees/r74`: already a merge commit carrying `origin/main` (PR #73), no unresolved conflict markers anywhere in the working tree.
+- `git fetch origin && git merge origin/main`: three more merged PRs pulled in (#70, #76, #68). One conflict, in `tools/hypothesis-engine/tests/swarm-20260911/test_bridge_export_props.py`'s own docstring wording, resolved keeping this branch's phrasing; both PRs' actual test bodies were identical.
+- `npm ci`, `npx tsc --noEmit`, `npm run build` clean; `npm run test:research-os` 423/423 passing; `next lint` clean on every touched TS/TSX file; `agf-lint-voice-src check` and `agf-lint-voice check` clean on every touched source and prose file.
+- `review/pr74` confirmed a fast-forward of `feat/ros-faded-guidance`'s remote head: pushed directly to the PR's own head branch rather than opening a superseding PR.
+
+No fix needed beyond the one docstring conflict. Pushed and merged.
