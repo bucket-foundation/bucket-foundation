@@ -1282,3 +1282,27 @@ without a human sign-off). Original text preserved verbatim in
 from "What is built but not wired") and part B item 6 (closed). See also
 `learning/research-os/CHANGE-LEDGER.md`'s matching entry, "Iteration 19," for the
 file-by-file diff and gate results.
+
+## 2026-09-10, PR #47 finishing pass
+
+Prior reviewer verified PR #47 (consent gate wiring, profile page, privacy
+actions, status band) and pushed fix commits to
+`feat/ros-07-consent-wiring`, then stopped short of merge. This pass picked
+up from the `review/pr47` worktree to close it out.
+
+`origin/feat/ros-07-consent-wiring` and `review/pr47` carried identical
+commit histories already, so no fast-forward push was needed for the fix
+commits. `origin/main` had advanced past the branch's last merge (three new
+commits, including the `ros-11` canon write-back signoff-gate status line);
+`git merge origin/main` hit one conflict, `BEADS-PENDING.jsonl`, both sides
+appending a distinct bead entry at end-of-file. Resolved by keeping both
+entries; no other file conflicted.
+
+Gates re-run post-merge: `npm ci` clean, `npx tsc --noEmit` clean,
+`npm run build` clean (`/research-os/profile` and `/api/research-os/profile`
+both in the manifest), `npm run test:research-os` 236/236 across 18 test
+files, `eslint` clean on all 16 touched TS/TSX files,
+`agf-lint-voice-src check` clean on the same 16, `agf-lint-voice check`
+clean on the touched docs. The Vercel status check on the PR fails with
+"Deployment rate limited, retry in 24 hours" (Vercel free-tier daily
+deployment cap), unrelated to this branch's code.

@@ -1832,3 +1832,28 @@ direct read of `src/lib/research-os/llm.ts`: the real provider seam is
 no `npm run build` gate applies to this pass's own changes; the test counts
 above were run to report Section 1's own numbers, a verification step
 independent of any test change this pass makes.
+
+## Iteration 21: PR #47 finishing pass
+
+Picked up PR #47 from `review/pr47` after the prior reviewer's verified fix
+commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
+
+### Merged
+
+- `origin/main` into `review/pr47`: one conflict, `BEADS-PENDING.jsonl`
+  (both sides appended a distinct entry at end-of-file, kept both). No
+  `src/` conflict; PR #45 (canon promotion pass two) remains open and
+  unmerged, so its files never entered this merge.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (both new routes in the
+  manifest), `npm run test:research-os` (236 passed, 0 failed, 18 files),
+  `eslint` on all 16 touched TS/TSX files, `agf-lint-voice-src check` on
+  the same 16, `agf-lint-voice check` on the touched docs: all clean.
+- PR #47's Vercel check failure ("Deployment rate limited, retry in 24
+  hours") is a Vercel free-tier daily deployment cap.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
