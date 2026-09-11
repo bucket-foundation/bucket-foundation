@@ -1,5 +1,5 @@
 {
-  "_comment": "Research OS for K-12, Phase 0 seed path: why is the sky blue. See _intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md section 8 (Phase 0 prototype slice: one canon branch, 02-physics; grades 3-5 up to Rayleigh scattering; 15-25 nodes). Loaded by scripts/seed-research-os.mjs. Every provenance entry is a verified real source: NASA Space Place and Wikipedia for the grade-level facts, the Tyndall 1869 and Rayleigh 1871 papers (DOIs confirmed by resolving doi.org to the publisher record) for the primary-source and law tiers.",
+  "_comment": "Research OS for K-12, Phase 0 seed path: why is the sky blue. See _intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md section 8 (Phase 0 prototype slice: one canon branch, 02-physics; grades 3-5 up to Rayleigh scattering; 15-25 nodes). Loaded by scripts/seed-research-os.mjs. Every provenance entry is a verified real source: NASA Space Place and Wikipedia for the grade-level facts, the Tyndall 1869 and Rayleigh 1871 papers (DOIs confirmed by resolving doi.org to the publisher record) for the primary-source and law tiers. bkt-ros ros-14: a node may also carry an optional worked_example ({text, source}), an authored (not verbatim) grade-4-level model explanation of the node's own idea plus the source it rests on, shown to a low-prior-knowledge learner before their own explanation box (learning/research-os/GUIDANCE.md). Seeded on this path's first six nodes only.",
   "target_slug": "why-the-sky-is-blue",
   "nodes": [
     {
@@ -9,7 +9,8 @@
       "tier": 3,
       "branch": "02-physics",
       "summary": "Light moves in a straight path until it hits something that reflects it, bends it, or scatters it.",
-      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" },
+      "worked_example": { "text": "Light travels in a straight line, like a laser pointer beam. It keeps going straight until it hits something. When it hits something, it can bounce off (reflect), bend, or scatter in a new direction.", "source": "NASA Space Place (2024). Why Is the Sky Blue?." }
     },
     {
       "slug": "sunlight-looks-white",
@@ -18,7 +19,8 @@
       "tier": 3,
       "branch": "02-physics",
       "summary": "Sunlight looks white to our eyes, even though, as later nodes show, it is a mix of every visible color.",
-      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" },
+      "worked_example": { "text": "Sunlight looks plain white to our eyes, like one simple color. That is only how it looks. White sunlight is a mix of every color of light put together.", "source": "NASA Space Place (2024). Why Is the Sky Blue?." }
     },
     {
       "slug": "air-is-made-of-tiny-particles",
@@ -27,7 +29,8 @@
       "tier": 3,
       "branch": "02-physics",
       "summary": "Air is made of countless tiny particles, mostly nitrogen and oxygen molecules, far too small to see.",
-      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" },
+      "worked_example": { "text": "The air around us looks empty, but it is not. Air is packed with tiny particles, mostly nitrogen and oxygen molecules. These particles are so small that no one can see just one with their own eyes.", "source": "NASA Space Place (2024). Why Is the Sky Blue?." }
     },
     {
       "slug": "white-light-splits-into-colors",
@@ -36,7 +39,8 @@
       "tier": 4,
       "branch": "02-physics",
       "summary": "White light can split into the colors of the rainbow: red, orange, yellow, green, blue, and violet, the way a prism or raindrop shows.",
-      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" },
+      "worked_example": { "text": "White light looks like one color, but it is a mix. A prism or a raindrop can split white light apart. Once split, you see red, orange, yellow, green, blue, and violet, the colors of a rainbow.", "source": "NASA Space Place (2024). Why Is the Sky Blue?." }
     },
     {
       "slug": "each-color-is-a-wavelength",
@@ -45,7 +49,8 @@
       "tier": 4,
       "branch": "02-physics",
       "summary": "Each color of light has its own wavelength. Red light has a longer wavelength; blue and violet light have shorter wavelengths.",
-      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Electromagnetic spectrum", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Electromagnetic_spectrum", "license": "CC-BY-SA-4.0" }
+      "provenance": { "type": "reference", "author": "Wikipedia contributors", "year": 2026, "title": "Electromagnetic spectrum", "publisher": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Electromagnetic_spectrum", "license": "CC-BY-SA-4.0" },
+      "worked_example": { "text": "Every color of light travels as a wave, and each wave has a length, called a wavelength. Red light has a longer wavelength than blue light. Blue and violet light have the shortest wavelengths of the colors we can see.", "source": "Wikipedia contributors (2026). Electromagnetic spectrum." }
     },
     {
       "slug": "light-can-scatter-off-small-things",
@@ -54,7 +59,8 @@
       "tier": 4,
       "branch": "02-physics",
       "summary": "When light meets something much smaller than itself, some of the light bounces off in new directions instead of continuing straight. This is called scattering.",
-      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" }
+      "provenance": { "type": "textbook", "author": "NASA Space Place", "year": 2024, "title": "Why Is the Sky Blue?", "publisher": "NASA", "url": "https://spaceplace.nasa.gov/blue-sky/en/", "license": "public-domain (US government work)" },
+      "worked_example": { "text": "Light usually travels straight, without stopping. But when light hits something much smaller than itself, part of the light bounces off in a new direction instead of going straight. Scientists call this bouncing-off scattering.", "source": "NASA Space Place (2024). Why Is the Sky Blue?." }
     },
     {
       "slug": "waves-have-wavelength-and-frequency",

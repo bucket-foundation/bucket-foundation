@@ -38,6 +38,24 @@
  *   - (Check, Organize) logs a best-effort per-call cost estimate from the
  *     provider's own token usage, when reported (llm.ts's logToolCost).
  *
+ * ros-14 UPDATE (faded guidance for low-prior-knowledge learners): the
+ * "check" case computes an authoritative guidance level server-side --
+ * never trusts a client-supplied value, matching every other verdict-
+ * relevant input in this route -- via guidance.ts's guidanceLevel, scoped
+ * to the CURRENT node's own prerequisite chain (computeFrontier with the
+ * checked node itself as target, since this route is node-agnostic by
+ * design and has no reliable way to know which page-level target a given
+ * nodeId session belongs to; see learning/research-os/GUIDANCE.md section
+ * 2 for why this scoping choice is equivalent to the page target's own
+ * chain on Phase 0's single connected seed path). A class's own
+ * research_os_guidance_enabled switch (db.ts's isGuidanceEnabledForLearner)
+ * can force the level to "low" regardless of the computed level, the
+ * pilot's control-arm gate. The resulting level adapts grounding.ts's
+ * Check prompt (guidance.ts's own header, item 3) and is logged on the
+ * resulting evidence event (stages.ts's EvidenceEvent.guidanceLevel) and
+ * returned in the response so the workspace page's worked-example display
+ * stays consistent with what the tutor's own feedback just used.
+ *
  * Request: { action, sessionId?, ...action-specific fields }
  *   locate:   { query, branch? }
  *   quote:    { nodeId }
@@ -90,8 +108,20 @@ import { locateHits } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
-import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, verifyLearner, recordEvidence, loadCurrentStage, loadForcingEnabledForLearner } from "@/lib/research-os/db";
+import { computeFrontier } from "@/lib/research-os/frontier";
+import { guidanceLevel as computeGuidanceLevelForLearner } from "@/lib/research-os/guidance";
+import type { GuidanceLevel, Stage } from "@/lib/research-os/types";
+import {
+  configured,
+  graphService,
+  verifyLearner,
+  recordEvidence,
+  loadSubgraph,
+  loadLearnerStates,
+  isGuidanceEnabledForLearner,
+  loadForcingEnabledForLearner,
+  loadCurrentStage,
+} from "@/lib/research-os/db";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
 import { resolveForcingEnabled } from "@/lib/research-os/forcing";
@@ -137,6 +167,35 @@ function sessionIdOf(body: { sessionId?: string }): string | undefined {
   const s = (body.sessionId || "").trim();
   if (!s) return undefined;
   return s.slice(0, MAX_SESSION_ID_CHARS);
+}
+
+/**
+ * ros-14: the authoritative guidance level for one Check call, scoped to
+ * `nodeId`'s own prerequisite chain (computeFrontier with the checked node
+ * itself as target; see this file's header for why). Shared by both Check
+ * phases: phase 1 (grading) calls it with the node just graded; phase 2
+ * (`dbRevealPendingAttempt`'s reveal branch) calls it again with
+ * `pending.nodeId`'s own branch, since a held attempt's own stored shape
+ * (`forcing.ts`'s `PendingCheckAttempt`) carries no guidance field --
+ * recomputing here at reveal time, rather than extending that store's
+ * schema, keeps this bead's own surface self-contained and reflects the
+ * learner's guidance level as of the moment the verdict is shown,
+ * not as of whenever phase 1 happened to run. Every failure (a fresh
+ * environment with no branch subgraph yet, a read error) falls back to
+ * "medium," the neutral default, rather than blocking the Check call.
+ */
+async function computeGuidanceForNode(learnerId: string, nodeId: string, branch: string): Promise<GuidanceLevel> {
+  let guidance: GuidanceLevel = "medium";
+  try {
+    const { nodes: branchNodes, edges: branchEdges } = await loadSubgraph(branch);
+    const branchStates = await loadLearnerStates(learnerId, branchNodes.map((n) => n.id));
+    const { chain } = computeFrontier(branchNodes, branchEdges, branchStates, nodeId);
+    guidance = await computeGuidanceLevelForLearner(learnerId, chain);
+  } catch {
+    guidance = "medium";
+  }
+  if (!(await isGuidanceEnabledForLearner(learnerId))) guidance = "low";
+  return guidance;
 }
 
 interface WorkspaceBody {
@@ -270,6 +329,12 @@ export async function POST(req: NextRequest) {
         }
         const { attempt: pending, learnerConfidence: learnerConfidenceRaw, sourcePrediction, predictionCorrect } = reveal;
 
+        // ros-14: recomputed at reveal time (this file's computeGuidanceForNode
+        // header explains why). A pending attempt's own node.branch is not
+        // stored on it, so this one extra lookup resolves it first.
+        const { data: pendingNode } = await svc.from("nodes").select("branch").eq("id", pending.nodeId).maybeSingle();
+        const revealGuidance = pendingNode ? await computeGuidanceForNode(learnerId, pending.nodeId, pendingNode.branch as string) : "medium";
+
         const transition = onCheckResult(
           pending.currentStage,
           { result: pending.grade.result, confidence: pending.grade.confidence, abstained: pending.grade.abstained },
@@ -282,6 +347,7 @@ export async function POST(req: NextRequest) {
             sourcePrediction,
             predictionCorrect,
             forcingEnabled: true,
+            guidanceLevel: revealGuidance,
           },
         );
         await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
@@ -292,6 +358,7 @@ export async function POST(req: NextRequest) {
           stage: transition.nextStage,
           forcingEnabled: true,
           predictionCorrect,
+          guidance: revealGuidance,
         });
 
         return NextResponse.json(
@@ -306,6 +373,7 @@ export async function POST(req: NextRequest) {
             sourcePrediction,
             predictionCorrect,
             forcingEnabled: true,
+            guidance: revealGuidance,
           },
           { headers: { "cache-control": "no-store" } },
         );
@@ -323,7 +391,7 @@ export async function POST(req: NextRequest) {
 
       const { data: node, error: nodeErr } = await svc
         .from("nodes")
-        .select("id,title,summary,provenance")
+        .select("id,slug,branch,title,summary,provenance")
         .eq("id", nodeId)
         .maybeSingle();
       if (nodeErr || !node) return bad(404, "node_not_found");
@@ -336,12 +404,18 @@ export async function POST(req: NextRequest) {
         prereqSummaries = prereqNodes || [];
       }
 
+      // ros-14: an authoritative guidance level (computeGuidanceForNode
+      // above), reused unchanged for the "check" evidence event and the
+      // response whichever path below is taken (forcing off, or the phase-2
+      // reveal once forcing commits).
+      const guidance = await computeGuidanceForNode(learnerId, nodeId, node.branch);
+
       const provider = selectProvider();
       if (!provider) return bad(503, "Check isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY).");
 
       let safe: Awaited<ReturnType<typeof gradeExplanation>>;
       try {
-        safe = await gradeExplanation(provider, node, prereqSummaries, explanation);
+        safe = await gradeExplanation(provider, node, prereqSummaries, explanation, guidance, getPassage(node.slug));
       } catch (e: unknown) {
         const err = e as { status?: number };
         if (err?.status === 401) return bad(503, "Check credentials are invalid on the server.");
@@ -365,14 +439,15 @@ export async function POST(req: NextRequest) {
         // Comparison arm (or RESEARCH_OS_FORCING_ENABLED=false): the
         // pre-forcing behavior, verdict revealed immediately, logged with
         // forcingEnabled:false so analysis can tell this arm apart from
-        // the default-on arm using the evidence log alone.
+        // the default-on arm using the evidence log alone. guidanceLevel
+        // (ros-14) is independent of forcing and is logged either way.
         const transition = onCheckResult(
           currentStage,
           { result: safe.result, confidence: safe.confidence, abstained: safe.abstained },
-          { learnerText: explanation, modelFeedback: safe.feedback, citations: safe.citations, sessionId, forcingEnabled: false },
+          { learnerText: explanation, modelFeedback: safe.feedback, citations: safe.citations, sessionId, forcingEnabled: false, guidanceLevel: guidance },
         );
         await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
-        logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage, forcingEnabled: false });
+        logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage, forcingEnabled: false, guidance });
 
         return NextResponse.json(
           {
@@ -383,6 +458,7 @@ export async function POST(req: NextRequest) {
             citations: safe.citations,
             stage: transition.nextStage,
             forcingEnabled: false,
+            guidance,
           },
           { headers: { "cache-control": "no-store" } },
         );
@@ -399,12 +475,15 @@ export async function POST(req: NextRequest) {
         forcingEnabled: true,
         createdAt: Date.now(),
       });
-      logToolCall("check", learnerId, sessionId, { nodeId, forcingEnabled: true, forcingRequired: true });
+      logToolCall("check", learnerId, sessionId, { nodeId, forcingEnabled: true, forcingRequired: true, guidance });
 
       // No result/confidence/feedback/citations key anywhere in this body:
       // the whole point of the held attempt is that nothing in this
-      // response can be read as the verdict.
-      return NextResponse.json({ attemptId: newAttemptId, forcingRequired: true, forcingEnabled: true }, { headers: { "cache-control": "no-store" } });
+      // response can be read as the verdict. `guidance` (ros-14) is safe to
+      // include, it is a display-only scaffolding level, never the graded
+      // result; the reveal call above recomputes its own authoritative
+      // value rather than trusting whatever this response said.
+      return NextResponse.json({ attemptId: newAttemptId, forcingRequired: true, forcingEnabled: true, guidance }, { headers: { "cache-control": "no-store" } });
     }
 
     case "organize": {

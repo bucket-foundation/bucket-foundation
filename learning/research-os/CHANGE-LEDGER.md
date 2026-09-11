@@ -2,6 +2,38 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-14: faded guidance for low-prior-knowledge learners
+
+Date 2026-09-10/11. Branch `feat/ros-faded-guidance`, worktree `.ros-worktrees/scaffold`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry. Concurrent with PR #63 (cognitive forcing, edits `src/app/research-os/workspace/page.tsx` and the workspace Check route); server-side and library work landed first, page work landed after PR #63 merged (confirmed via `gh pr view 63`).
+
+### Added
+
+- `src/lib/research-os/guidance.ts`: `computeGuidanceLevel`, `classifyCheckOutcome`, `nextGuidanceLevel`, `guidanceLevel(learnerId, chain)`.
+- `src/lib/research-os/worked-examples.ts`: `firstHalfOfWorkedExample`.
+- `supabase/migrations/20260910060000_research_os_guidance.sql`: `graph.nodes.worked_example`, `graph.classes.research_os_guidance_enabled`.
+- `scripts/test-research-os-guidance.ts`: 27 tests, wired into `npm run test:research-os`.
+- `learning/research-os/GUIDANCE.md`.
+
+### Edited
+
+- `src/lib/research-os/types.ts`, `stages.ts`, `grounding.ts`, `db.ts`, `src/app/api/research-os/workspace/route.ts`, `src/app/api/research-os/route/route.ts`, `scripts/seed-research-os.mjs`, `supabase/seed/research-os-sky-blue.json`, `src/lib/research-os/EVIDENCE-SCHEMA.md` (an appended addendum), `learning/research-os/WORKSPACE.md` (new section 6), `package.json`. Per-file detail in the CHANGELOG entry above.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` all clean; `agf-lint-voice-src check` / `agf-lint-voice check` clean on every touched source/doc file after fixing four antithesis constructions and two banned filler words (one in `stages.ts`, three across `guidance.ts`/`db.ts`, four across `GUIDANCE.md`) and one heading-parenthesis violation in `WORKSPACE.md`; a manual scan (agf-lint-voice-src does not read `.json`) found and fixed two more filler words in the seed file's own authored worked-example text.
+
+### Second round: PR #63 merge
+
+Full account: `_intake/research-os-k12/CHANGELOG.md`'s "Second round" entry. Merged `origin/main` (PR #63, cognitive forcing, plus others), resolved four conflicts by combining both sides (`package.json`, `stages.ts`, `WORKSPACE.md` renumbered to section 7, and `workspace/route.ts`'s `check` case via a new shared `computeGuidanceForNode` helper called from both Check phases). Renamed the migration `20260910060000_research_os_guidance.sql` to `20260910080000_research_os_guidance.sql` (collided with PR #63's own `20260910060000_research_os_forcing.sql`). Rewrote `GUIDANCE.md` section 4 with the confirmed facts about PR #63's real `forcing_enabled` switch (previously speculative, PR #63 had not merged when first written). Shipped `src/app/research-os/workspace/page.tsx`'s `WorkedExampleBlock`, the page work the original task deferred behind the PR #63 merge.
+
+### Verified, second round
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` all clean post-merge; `agf-lint-voice-src check` / `agf-lint-voice check` clean after one banned-word fix in `page.tsx` and two antithesis fixes in `GUIDANCE.md`. PR #63's own tests (`test-research-os-forcing.ts`, `test-research-os-check-attempts.ts`, `test-research-os-calibration.ts`) and this bead's own (`test-research-os-guidance.ts`) all pass unmodified.
+
 ## Literature batch four
 
 Date 2026-09-10. Branch `intake/ros-literature-4`, worktree `.ros-worktrees/lit4`.
@@ -2985,3 +3017,16 @@ Review of PR #76 (preregistration revision 1, Iteration 25 above), docs-only, as
 - Gates: nothing under `src/` or `public/` changed; the branch already carries `origin/main` (merged mid-pass by the PR's own author; confirmed fast-forward-clean from this worktree). `git diff --name-status` against `origin/main` shows every touched file as `M`, no deletions. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and this file; `agf-lint-voice-src check` clean on the one touched source file.
 
 No fix needed against any of the above. Merged as-is.
+
+## PR #74 finishing pass
+
+Reviewer-side finish of PR #74 (faded guidance, ros-14, Iteration above) after review sat clean and a prior finishing pass died mid-gates on a wip commit.
+
+### Verified
+
+- Resumed from `wip(review/pr74): partial work preserved after spend-limit stop` in worktree `.ros-worktrees/r74`: already a merge commit carrying `origin/main` (PR #73), no unresolved conflict markers anywhere in the working tree.
+- `git fetch origin && git merge origin/main`: three more merged PRs pulled in (#70, #76, #68). One conflict, in `tools/hypothesis-engine/tests/swarm-20260911/test_bridge_export_props.py`'s own docstring wording, resolved keeping this branch's phrasing; both PRs' actual test bodies were identical.
+- `npm ci`, `npx tsc --noEmit`, `npm run build` clean; `npm run test:research-os` 423/423 passing; `next lint` clean on every touched TS/TSX file; `agf-lint-voice-src check` and `agf-lint-voice check` clean on every touched source and prose file.
+- `review/pr74` confirmed a fast-forward of `feat/ros-faded-guidance`'s remote head: pushed directly to the PR's own head branch rather than opening a superseding PR.
+
+No fix needed beyond the one docstring conflict. Pushed and merged.
