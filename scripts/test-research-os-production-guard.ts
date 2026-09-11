@@ -15,6 +15,7 @@ import {
   checkSourceProvenance,
   unverifiedSources,
   hasUnverifiedSource,
+  isSourceProvenanceStale,
   unverifiedSourceReturnNote,
   tokenize,
   jaccardOverlap,
@@ -83,6 +84,24 @@ test("unverifiedSourceReturnNote: empty string when nothing is unverified, a rea
   const note = unverifiedSourceReturnNote(bad);
   assert.ok(note.includes("made up source"));
   assert.ok(note.toLowerCase().includes("quote"));
+});
+
+test("isSourceProvenanceStale: a migration-default '[]' against real sources is stale", () => {
+  // The exact shape a production submitted before this guard existed
+  // reads as, once its source_provenance column backfills to the
+  // migration's own default: sources non-empty, source_provenance empty.
+  // The review route's approve gate treats this the same as unverified
+  // (a source that was never checked cannot reach accepted either).
+  assert.equal(isSourceProvenanceStale(["a real cited source"], []), true);
+});
+
+test("isSourceProvenanceStale: false once every source line has a matching check", () => {
+  const checks = checkSourceProvenance(["a (loc-a)", "b (unknown)"], [quoteEv("loc-a")]);
+  assert.equal(isSourceProvenanceStale(["a (loc-a)", "b (unknown)"], checks), false);
+});
+
+test("isSourceProvenanceStale: false with no sources cited at all (nothing to have checked)", () => {
+  assert.equal(isSourceProvenanceStale([], []), false);
 });
 
 // ---------------------------------------------------------------------------
@@ -192,7 +211,7 @@ test("computeIncentiveEligible: false for any non-accepted status regardless of 
 // canon-link.ts: fs-backed loaders against the committed sample
 // ---------------------------------------------------------------------------
 
-test("loadCanonClaims: every committed sample id is present (whichever file, sample or a real generated run, is actually loaded)", () => {
+test("loadCanonClaims: every committed sample id is present (whichever file, sample or a real generated run, is the one loaded)", () => {
   const claims = loadCanonClaims();
   assert.ok(claims.length > 0, "expected at least the committed sample");
   const ids = new Set(claims.map((c) => c.id));

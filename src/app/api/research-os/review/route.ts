@@ -77,7 +77,14 @@ import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
-import { hasUnverifiedSource, unverifiedSourceReturnNote, computeIncentiveEligible, type SourceCheck, type DuplicateFlag } from "@/lib/research-os/production-guard";
+import {
+  hasUnverifiedSource,
+  isSourceProvenanceStale,
+  unverifiedSourceReturnNote,
+  computeIncentiveEligible,
+  type SourceCheck,
+  type DuplicateFlag,
+} from "@/lib/research-os/production-guard";
 import { lookupCanonSignoff } from "@/lib/research-os/canon-link";
 
 export const runtime = "nodejs";
@@ -86,6 +93,13 @@ export const dynamic = "force-dynamic";
 function bad(status: number, error: string) {
   return NextResponse.json({ error }, { status });
 }
+
+/** Shown for a production whose source_provenance is stale
+ * (isSourceProvenanceStale): there is no per-source check to name, since
+ * the guard never ran against this row's current sources at all. */
+const STALE_SOURCE_NOTE =
+  "Returned: this production's sources were never checked against a Quote call (submitted before the provenance guard shipped). " +
+  "Resubmit through the workspace so each source can be verified, then it can be reviewed again.";
 
 interface StateRow {
   learner_id: string;
@@ -109,6 +123,14 @@ interface ProductionRow {
   duplicate_flag: DuplicateFlag | null;
   counter_evidence: unknown[] | null;
   counter_evidence_required: boolean | null;
+}
+
+/** sourceLines as checkSourceProvenance's own caller builds them
+ * (production-guard.ts's own String() coercion, `/api/research-os/
+ * production`'s POST), so a staleness comparison here counts the same
+ * way a real submit would have. */
+function sourceLinesOf(sources: unknown[] | null | undefined): string[] {
+  return ((sources ?? []) as unknown[]).map((s) => String(s));
 }
 
 export async function GET(req: NextRequest) {
@@ -178,6 +200,12 @@ export async function GET(req: NextRequest) {
         const sourceProvenance = p.source_provenance ?? [];
         const counterEvidence = p.counter_evidence ?? [];
         const counterEvidenceRequired = p.counter_evidence_required ?? false;
+        // A stale row (migration-default '[]' on a production that
+        // reached "submitted" before this guard existed) reads the same
+        // as unverified here, matching the approve gate below: the
+        // review page must never show "0 unverified" for a production
+        // whose sources were never checked at all.
+        const stale = isSourceProvenanceStale(sourceLinesOf(p.sources), sourceProvenance);
         return {
           id: p.id,
           learnerId: p.learner_id,
@@ -194,15 +222,18 @@ export async function GET(req: NextRequest) {
           counterEvidence,
           counterEvidenceRequired,
           guardFlags: {
-            hasUnverifiedSource: hasUnverifiedSource(sourceProvenance),
-            unverifiedCount: sourceProvenance.filter((s) => !s.verified).length,
+            hasUnverifiedSource: stale || hasUnverifiedSource(sourceProvenance),
+            unverifiedCount: stale ? sourceLinesOf(p.sources).length : sourceProvenance.filter((s) => !s.verified).length,
+            sourceProvenanceStale: stale,
             missingCounterEvidence: counterEvidenceRequired && counterEvidence.length === 0,
           },
           // The exact text a "returned" decision on this production could
           // use (production-guard.ts's own template), so the review page
           // never re-derives it client-side; "" when there is nothing to
-          // template (no unverified source).
-          unverifiedSourceNoteTemplate: unverifiedSourceReturnNote(sourceProvenance),
+          // template (no unverified source). A stale row has no per-source
+          // checks to template individually, so it gets the same fixed
+          // "never checked" note the POST approve gate returns.
+          unverifiedSourceNoteTemplate: stale ? STALE_SOURCE_NOTE : unverifiedSourceReturnNote(sourceProvenance),
         };
       }),
     },
@@ -294,14 +325,20 @@ export async function POST(req: NextRequest) {
   // unverified_source cannot reach status accepted." An "approved"
   // decision on such a production is refused outright, before any write;
   // "returned" stays available regardless, and unverifiedSourceReturnNote
-  // gives the reviewer a template to send with it.
+  // gives the reviewer a template to send with it. A stale row (this
+  // production's source_provenance was never computed against its
+  // current sources, migration default '[]' on a pre-guard submission)
+  // reads the same as unverified: "cannot reach accepted through any
+  // route" covers a source that was never checked at all, not only one a
+  // check explicitly failed.
   const sourceProvenance = (production.source_provenance as SourceCheck[] | null) ?? [];
-  if (body.decision === "approved" && hasUnverifiedSource(sourceProvenance)) {
+  const stale = isSourceProvenanceStale(sourceLinesOf(production.sources as unknown[] | null), sourceProvenance);
+  if (body.decision === "approved" && (stale || hasUnverifiedSource(sourceProvenance))) {
     return NextResponse.json(
       {
         error: "unverified_sources_block_accept",
         message: "This production has a source that could not be matched to a Quote call. Return it instead of approving.",
-        noteTemplate: unverifiedSourceReturnNote(sourceProvenance),
+        noteTemplate: stale ? STALE_SOURCE_NOTE : unverifiedSourceReturnNote(sourceProvenance),
       },
       { status: 409 },
     );

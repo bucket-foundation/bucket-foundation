@@ -2275,3 +2275,9 @@ discrete leak; left unchanged as out of scope for a docs-only review. Leak scan 
 the PR's own diff: clean, no keys, IPs, non-public hostnames, personal
 emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
 session URLs. `agf-lint-voice check` clean on every file this pass touched.
+
+## 2026-09-10, PR #73 review pass
+
+Review of PR #73 (production provenance guard) found `hasUnverifiedSource` reads `false` against an empty `source_provenance` array, the value the migration backfills onto every pre-existing `submitted` production. Fixed with `production-guard.ts`'s new `isSourceProvenanceStale`, wired into `/api/research-os/review`'s approve gate (POST) and its `guardFlags`/`unverifiedSourceNoteTemplate` (GET), so a production whose sources were never checked reads the same as one with a failed check rather than sailing through as "0 unverified." 3 new tests in `scripts/test-research-os-production-guard.ts`.
+
+Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Class-peer duplicate detection confirmed scoped to shared classes only, and its response never carries another learner's matched claim text (`matchId`/`matchOrigin`/`score` only). Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (both routes in the manifest), `npm run test:research-os` (28 files, `fail 0`, 391 tests), `next lint` clean, `agf-lint-voice-src check` clean; `agf-lint-voice check` fixed one banned word this pass's own test name introduced, left two pre-existing hits outside the diff untouched.

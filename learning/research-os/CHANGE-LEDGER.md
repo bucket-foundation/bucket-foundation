@@ -2836,3 +2836,21 @@ brought it in.
   discrete leak; left unchanged as out of scope for this review, flagged
   here for a dedicated cleanup pass rather than a mass edit inside a
   docs-only PR review.
+
+## PR #73 review pass: source_provenance staleness closed the approve gate's own escape hatch
+
+Review of PR #73 (production provenance guard, Iteration 24 above) found `hasUnverifiedSource` reads `false` on an empty `source_provenance` array, the exact value this PR's own migration backfills onto every `graph.productions` row that reached status `"submitted"` before the guard shipped (`source_provenance jsonb not null default '[]'::jsonb`). A pre-existing submitted production with real, never-checked sources could reach `"accepted"` through `/api/research-os/review`'s own approve path, against the task's own rule, "a Production with any unverified_source cannot reach status accepted," for every row caught in that one migration window.
+
+### Added
+
+- `src/lib/research-os/production-guard.ts`'s `isSourceProvenanceStale(sourceLines, checks)`: true when a stored `source_provenance` array's length does not match the current `sources` array's length, the signature a migration-default `'[]'` row (or any other never-recomputed row) carries. 3 new tests in `scripts/test-research-os-production-guard.ts`.
+
+### Edited
+
+- `src/app/api/research-os/review/route.ts`: POST's approve gate now refuses `"approved"` when `isSourceProvenanceStale` is true, the same 409 `unverified_sources_block_accept` path, with a fixed `STALE_SOURCE_NOTE` return-note template (no per-source list to name, since none was ever checked). GET's `guardFlags.hasUnverifiedSource` and `unverifiedSourceNoteTemplate` read the same staleness check, so the review queue never shows "0 unverified" for a production whose sources were never checked at all; a new `guardFlags.sourceProvenanceStale` field surfaces the distinction.
+
+### Verified
+
+- Leak scan of the PR's own diff (keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, Claude session URLs): clean, zero hits.
+- Class-peer duplicate-detection query (`db.ts`'s `loadClassPeerAcceptedClaims`) scopes to `class_members` rows sharing a class with the learner before ever reading a peer's `productions` row; the response shape (`DuplicateFlag`: `matchId`, `matchOrigin`, `score`) carries no matched learner's claim text at any call site, `/api/research-os/production` and `/api/research-os/review` both included.
+- `npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean (`/api/research-os/production` and `/api/research-os/review` both confirmed in the app-paths manifest). `npm run test:research-os`: 28 chained files, every file `fail 0`, 391 tests total (24 in `test-research-os-production-guard.ts` alone, up from 21). `next lint` clean on every touched file. `agf-lint-voice-src check` clean on every touched TS/TSX file. `agf-lint-voice check` flagged one banned word this pass introduced, in a `loadCanonClaims` test's own name, fixed to "is the one loaded"; the two other hits it reported (`BEADS-PENDING.jsonl`, `workspace/page.tsx`) predate this PR and sit outside its own diff, left unchanged.

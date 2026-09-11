@@ -66,6 +66,23 @@ export function hasUnverifiedSource(checks: SourceCheck[]): boolean {
 }
 
 /**
+ * True when a Production's stored `source_provenance` was never computed
+ * against its current `sources` (a mismatched count between the two
+ * arrays): checkSourceProvenance maps sourceLines 1:1, so any real submit
+ * through /api/research-os/production leaves the two arrays the same
+ * length. A stale row can only happen when `source_provenance` came from
+ * this migration's own column default (`'[]'::jsonb`) on a production
+ * that reached status "submitted" before this guard existed. Task item
+ * 1's own rule, "cannot reach accepted through any route," covers a
+ * source that was never checked at all the same way it covers one a
+ * check explicitly failed; the review route treats stale the same as
+ * unverified.
+ */
+export function isSourceProvenanceStale(sourceLines: string[], checks: SourceCheck[]): boolean {
+  return sourceLines.length > 0 && checks.length !== sourceLines.length;
+}
+
+/**
  * The starting text for a "returned" decision on a Production carrying an
  * unverified source (task item 1: "only returned with a teacher note
  * template"). A reviewer's own decision still requires a one-line reason
