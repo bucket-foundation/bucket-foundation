@@ -491,3 +491,73 @@ def test_write_back_cards_are_invisible_to_the_pr22_canon_importer(tmp_path, lin
             # the same invariant: even a future importer that DID learn
             # to read this shape must not read one of these as `canon`.
             assert "**canon_tier:** candidate" in card_path.read_text()
+
+
+# --------------------------------------------------------------------------
+# Retraction propagation write-back (`bkt-hte-retraction-propagation`)
+# --------------------------------------------------------------------------
+
+
+def test_write_back_marks_a_cascaded_candidate_contested(tmp_path, linking_run, monkeypatch):
+    """A candidate whose own address appears in a `CascadeReport`'s
+    `entries` (`hte.propagate`) gets `canon_tier: "contested"` instead
+    of `CANON_TIER`, its own card carries a "Retraction cascade"
+    section, the envelope's matching item carries `canon_tier:
+    "contested"` and a populated `data.cascade`, and one extra
+    `type="retract"` feed event is emitted alongside the ordinary
+    `add_canon_entry` event every card gets."""
+    from hte import propagate
+
+    run_dir, h_supported, h_refuted = linking_run
+
+    fake_repo_root = tmp_path / "fake-repo"
+    fake_repo_root.mkdir()
+    out_root = fake_repo_root / "bucket-canon"
+    monkeypatch.setattr(canon_writeback, "REPO_ROOT", fake_repo_root)
+    captured_events = []
+    monkeypatch.setattr(canon_writeback, "_emit_feed_events", lambda events: captured_events.extend(events) or len(events))
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    ledger_path = tmp_path / "ledger.jsonl"
+
+    cascade_entry = propagate.CascadeEntry(
+        address=h_supported.address, short_id=h_supported.short_id,
+        old_p=0.9, new_p=0.55, hops=1, routed_share=1.0,
+    )
+    cascade_report = propagate.CascadeReport(
+        roots=(h_refuted.address,), threshold=0.05, entries=(cascade_entry,),
+    )
+
+    paths = canon_writeback.write_back(
+        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
+        out_root=out_root, dry_run=False, ledger_path=ledger_path, cascade_report=cascade_report,
+    )
+
+    card_paths = [p for p in paths if p.parent == out_root / "02-physics" / "hypotheses" and p.name != "INDEX.md"]
+    supported_card = next(p for p in card_paths if p.stem == h_supported.short_id)
+    refuted_card = next(p for p in card_paths if p.stem != h_supported.short_id)
+
+    supported_text = supported_card.read_text()
+    assert "**canon_tier:** contested" in supported_text
+    assert "Retraction cascade" in supported_text
+    assert "0.900" in supported_text and "0.550" in supported_text
+
+    # The OTHER card, never named in the cascade, stays ordinary.
+    refuted_text = refuted_card.read_text()
+    assert "**canon_tier:** candidate" in refuted_text
+    assert "Retraction cascade" not in refuted_text
+
+    envelope_path = next(p for p in paths if p.suffix == ".json")
+    envelope = json.loads(envelope_path.read_text())
+    contested_item = next(
+        item for item in envelope["hypotheses"]
+        if item["card_path"] == str(supported_card.relative_to(fake_repo_root))
+    )
+    assert contested_item["canon_tier"] == "contested"
+    assert contested_item["data"]["cascade"] == cascade_entry.to_dict()
+
+    retract_events = [e for e in captured_events if e["type"] == "retract"]
+    assert len(retract_events) == 1
+    assert retract_events[0]["path"] == str(supported_card.relative_to(fake_repo_root))
+    add_canon_events = [e for e in captured_events if e["type"] == "add_canon_entry"]
+    # Every card (2) plus the branch index still get their ordinary event.
+    assert len(add_canon_events) == 3

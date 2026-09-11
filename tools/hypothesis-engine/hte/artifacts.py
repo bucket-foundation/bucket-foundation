@@ -193,6 +193,9 @@ class RunCounts:
     calibration_brier: float | None = None
     target_blind: TargetBlindStats = field(default_factory=TargetBlindStats)
     meta_review: dict[str, Any] = field(default_factory=dict)
+    # `bkt-hte-retraction-propagation`: `hte.propagate.rank_fragility`'s
+    # own return shape, the ten most fragile survivors this run scored.
+    fragility_top10: list[dict[str, Any]] = field(default_factory=list)
 
 
 _NESTED[(RunCounts, "coverage")] = CoverageStats
@@ -301,6 +304,11 @@ class SelfReportArtifact:
     calibration_summary: str | None = None
     target_blind_steady: bool | None = None
     target_blind_note: str | None = None
+    # `bkt-hte-retraction-propagation`: the same `fragility_top10` shape
+    # `RunCounts` carries, folded into `self-report.json` by `hte.
+    # runner.run_campaign` the same way a refusal or clamp note is,
+    # after the role's own response comes back.
+    fragility_top10: list[dict[str, Any]] = field(default_factory=list)
 
 
 def validate_self_report(data: dict[str, Any], *, path: str = "<self-report>") -> SelfReportArtifact:
@@ -352,6 +360,24 @@ class CalibrationArtifact:
 
 
 # --------------------------------------------------------------------------
+# cascade.json (`bkt-hte-retraction-propagation`)
+# --------------------------------------------------------------------------
+
+
+@dataclass
+class CascadeArtifact:
+    """`cascade.json`: `hte.propagate.CascadeReport.to_dict`'s own shape,
+    written by `hte.runner.run_campaign` on every run, whether or not
+    any retraction happened this run: an empty `entries` list is the
+    documented no-retraction case. `load_run` still reads `None` for a
+    run written before this bead, since that older run wrote no
+    `cascade.json` at all."""
+    roots: list[int] = field(default_factory=list)
+    threshold: float | None = None
+    entries: list[dict[str, Any]] = field(default_factory=list)
+
+
+# --------------------------------------------------------------------------
 # timeline.json
 # --------------------------------------------------------------------------
 
@@ -380,6 +406,12 @@ class RunData:
     timeline: TimelineArtifact
     calibration: CalibrationArtifact | None
     self_report: SelfReportArtifact
+    # `bkt-hte-retraction-propagation`: `None` for a run predating
+    # `cascade.json` (the same `CalibrationArtifact`-style "no file, no
+    # defaulting" reading, module docstring), never defaulted to an
+    # empty `CascadeArtifact` a reader could confuse with "ran, found
+    # nothing to retract."
+    cascade: CascadeArtifact | None = None
 
     @property
     def campaign(self) -> str:
@@ -436,12 +468,19 @@ def load_run(run_dir: str | Path) -> RunData:
     self_report_path = run_dir / "self-report.json"
     self_report = _build(SelfReportArtifact, _read_json(self_report_path), path=str(self_report_path))
 
-    return RunData(run_dir=run_dir, manifest=manifest, timeline=timeline, calibration=calibration, self_report=self_report)
+    cascade_path = run_dir / "cascade.json"
+    cascade_data = _read_json(cascade_path)
+    cascade = _build(CascadeArtifact, cascade_data, path=str(cascade_path)) if cascade_data is not None else None
+
+    return RunData(
+        run_dir=run_dir, manifest=manifest, timeline=timeline, calibration=calibration,
+        self_report=self_report, cascade=cascade,
+    )
 
 
 __all__ = [
     "RUN_ARTIFACT_VERSION",
     "CoverageStats", "TargetBlindStats", "RunCounts", "ManifestArtifact",
-    "SelfReportArtifact", "CalibrationArtifact", "TimelineArtifact",
+    "SelfReportArtifact", "CalibrationArtifact", "TimelineArtifact", "CascadeArtifact",
     "RunData", "load_run", "load_manifest", "validate_manifest", "validate_self_report",
 ]

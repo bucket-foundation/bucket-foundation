@@ -239,6 +239,7 @@ def run_holdout(
     cutoff_years: int,
     n_bins: int = 10,
     match_threshold: float = DEFAULT_MATCH_THRESHOLD,
+    corpus_name: str = "this corpus",
 ) -> dict[str, Any]:
     """The discovery-date holdout (`main.tex` §9) over every ground-truth
     event in `corpus`, at `cutoff_years`: every event's own dated fact is
@@ -268,6 +269,13 @@ def run_holdout(
     interval competitor also exists, the best-projected one of those is
     scored against `0.0` too, both pairs feeding the same Brier score and
     calibration curve.
+
+    `corpus_name` is carried straight into the returned `"corpus_name"`
+    key and into `_low_coverage_note`'s own prose; it names no default
+    corpus of its own (`"this corpus"`, read by a caller that passes
+    nothing as "the caller did not say"), so `write_calibration`'s
+    output never claims a specific corpus this function was not told
+    about.
     """
     pre_events, post_events = holdout_by_discovery_date(corpus.ground_truth, cutoff_years)
     ev_by_id = {e.id: e for e in corpus.evidence}
@@ -313,12 +321,13 @@ def run_holdout(
     n_holdout = len(post_events)
     coverage_of_truth = (n_covered / n_holdout) if n_holdout else None
     return {
+        "corpus_name": corpus_name,
         "cutoff_years": cutoff_years,
         "match_threshold": match_threshold,
         "n_holdout_events": n_holdout,
         "n_covered_events": n_covered,
         "coverage_of_truth": coverage_of_truth,
-        "coverage_note": _low_coverage_note(corpus, n_covered, n_holdout, coverage_of_truth),
+        "coverage_note": _low_coverage_note(corpus, n_covered, n_holdout, coverage_of_truth, corpus_name=corpus_name),
         "brier_score": brier,
         "calibration_curve": calibration_curve(predictions, n_bins=n_bins),
         "predictions": predictions,
@@ -330,7 +339,12 @@ _LOW_COVERAGE_THRESHOLD = 0.5
 
 
 def _low_coverage_note(
-    corpus: Corpus, n_covered: int, n_holdout: int, coverage_of_truth: float | None,
+    corpus: Corpus,
+    n_covered: int,
+    n_holdout: int,
+    coverage_of_truth: float | None,
+    *,
+    corpus_name: str = "this corpus",
 ) -> str | None:
     """A one-paragraph explanation for a low or zero `coverage_of_truth`,
     written into `CALIBRATION.md` rather than left for a reader to guess
@@ -339,41 +353,85 @@ def _low_coverage_note(
     `_LOW_COVERAGE_THRESHOLD`, since nothing needs explaining at that
     point.
 
+    Every fact this note states is read off `corpus` and `corpus_name`
+    at call time: the held-out and covered counts, the count of
+    `corpus.ground_truth` events with no discovery lag against the
+    corpus's own total, and the count of distinct actor values
+    `corpus.evidence` carries. An earlier version
+    of this function instead wrote a worked example (event and card
+    counts, three named actors) measured once against one shipped
+    corpus, and printed that same example into every OTHER corpus's own
+    `CALIBRATION.md` unchanged, since nothing here read from `corpus` at
+    all. `write_calibration`'s own `diagnostics_report` parameter is
+    where a `--diagnose` run's own reason breakdown gets appended
+    alongside this note, kept as a separate helper
+    (`_diagnostics_reason_prose`) rather than folded into this function,
+    since diagnostics is optional and this note must stand on its own
+    without it.
+
     The stated cause is structural. `main.tex` §9's holdout design
     assumes a discovery date can lag an event's own date, so pre-cutoff
     evidence about an event that *happened* early but was only
     *discovered* late can already cover a held-out event dated after it.
-    Every ground-truth event this package ships instead sets
-    `discovery_year == year` (`README.md`'s own documented
-    simplification, true of both shipped corpora); with discovery and
-    occurrence collapsed to the same instant, a candidate built from
-    pre-cutoff evidence can never contain a post-cutoff event's own year,
-    so a corpus of one-off historical milestones (this one: 105 distinct
-    actor/action/object combinations across 16 cards) has little to be
-    covered by, independent of how many hypotheses generation produces.
+    A ground-truth event with `discovery_year == year` instead collapses
+    discovery and occurrence to the same instant, so no pre-cutoff
+    candidate built from it can ever reach a later, post-cutoff event's
+    own year on a discovery lag alone; coverage then needs some OTHER
+    pre-cutoff item that already names the held-out event's own actor,
+    action, object, place, and mechanism, at an interval reaching its
+    own date, independent of how many hypotheses generation produces
+    (`run_holdout`'s own candidates come straight off `corpus.evidence`,
+    not off `hte.generate`'s population).
     """
     if n_holdout == 0 or coverage_of_truth is None or coverage_of_truth >= _LOW_COVERAGE_THRESHOLD:
         return None
+    total_events = len(corpus.ground_truth)
     same_year = sum(1 for g in corpus.ground_truth if g.discovery_year == g.year)
+    distinct_actors = len({e.actor for e in corpus.evidence if e.actor is not None})
+    plural = "s" if distinct_actors != 1 else ""
     return (
-        f"{n_covered} of {n_holdout} held-out events matched a pre-cutoff placement "
-        f"(coverage of truth {coverage_of_truth:.3f}). This is a structural property of "
-        "the corpus: main.tex's own holdout design assumes a discovery date can lag "
-        "an event's own date, so pre-cutoff evidence about an "
-        "early-occurring, late-discovered event can already cover a later-dated held-out "
-        f"event. {same_year} of this corpus's {len(corpus.ground_truth)} ground-truth events "
-        "instead carry discovery_year == year (README.md's own documented simplification), "
-        "so a pre-cutoff candidate's own interval can never reach a post-cutoff event's own "
-        "year. Coverage rises only when an earlier item already names the same actor, "
-        "action, object, place, and mechanism a later event does, at an interval that "
-        "reaches the later event's own date; a handful of actors do recur across this "
-        "corpus's own cards (IBM Quantum, Feynman and Deutsch, Peter Shor among them), but "
-        "each recurrence differs on object or mechanism too (a different result by the same "
-        "team), so the exact five-slot match this holdout requires stays rare. Raising "
-        "generation coverage (more hypotheses on the frontier) does not move this number: "
-        "`run_holdout` builds its own candidates directly from `corpus.evidence`, "
-        "independent of `hte.generate`'s own population."
+        f"{n_covered} of {n_holdout} held-out events in {corpus_name} matched a pre-cutoff "
+        f"placement (coverage of truth {coverage_of_truth:.3f}). This is a structural property "
+        "of the corpus at hand: main.tex's own holdout design assumes a discovery date can lag "
+        "an event's own date, so pre-cutoff evidence about an early-occurring, late-discovered "
+        f"event can already cover a later-dated held-out event. {same_year} of {corpus_name}'s "
+        f"{total_events} ground-truth events carry discovery_year == year, collapsing discovery "
+        "and occurrence to the same instant, so a pre-cutoff candidate built from one of them "
+        "can never reach a post-cutoff event's own year on a discovery lag alone; coverage then "
+        "needs another pre-cutoff item that already names the held-out event's own actor, "
+        f"action, object, place, and mechanism, at an interval reaching its own date. {corpus_name}'s "
+        f"own evidence names {distinct_actors} distinct actor value{plural} across "
+        f"{len(corpus.evidence)} evidence items, so how often that exact five-slot match recurs "
+        "is a property of this corpus's own actor reuse: run_holdout and holdout_kfold build "
+        "their own candidates directly from corpus.evidence, independent of hte.generate's own "
+        "population, so raising generation coverage cannot move this number."
     )
+
+
+def _diagnostics_reason_prose(report: Mapping[str, Any] | None) -> str | None:
+    """One paragraph rendering `hte.diagnostics.coverage_report`'s own
+    per-reason counts and per-event classification into prose
+    `write_calibration` can append next to `_low_coverage_note`'s own
+    note, generic over whatever names `report["reasons"]` carries
+    rather than this module knowing that set's own members: `hte.
+    diagnostics` owns `REASONS`, and `hte.diagnostics` itself imports
+    `from . import calibrate`, so an import the other way here would be
+    a cycle. `None` when `report` is `None` or carries neither a
+    nonzero reason count nor an uncovered event to list."""
+    if report is None:
+        return None
+    reasons = {name: count for name, count in (report.get("reasons") or {}).items() if count}
+    uncovered = report.get("uncovered_events") or []
+    if not reasons and not uncovered:
+        return None
+    bits = []
+    if reasons:
+        counts = ", ".join(f"{name} ({count})" for name, count in reasons.items())
+        bits.append(f"`--diagnose` classifies the uncovered remainder as: {counts}.")
+    if uncovered:
+        events = "; ".join(f"{e['event_id']} ({e['reason']})" for e in uncovered)
+        bits.append(f"Uncovered events and their reason: {events}.")
+    return " ".join(bits)
 
 
 def brier_score(predictions: Sequence[float], outcomes: Sequence[float]) -> float | None:
@@ -473,6 +531,7 @@ def holdout_kfold(
     match_threshold: float = DEFAULT_MATCH_THRESHOLD,
     n_bins: int = 10,
     resolution: Resolution | None = None,
+    corpus_name: str = "this corpus",
 ) -> dict[str, Any]:
     """The k-fold evidence holdout (module-docstring section above): hide
     `1/k` of `corpus.evidence` at a time, stratified by kind
@@ -523,7 +582,16 @@ def holdout_kfold(
     and `"aggregate"` (the three pooled numbers again, for a caller that
     wants them without re-deriving from `"folds"`). `"mode"` reads
     `"kfold"` here directly; `run_calibration` is where a caller gets
-    that name alongside its own reason for having picked it.
+    that name alongside its own reason for having picked it. `"coverage_
+    note"` reads `None` unconditionally in this mode: `_low_coverage_
+    note`'s own stated cause (a discovery-date holdout design meeting a
+    corpus with no discovery lag) does not apply to a k-fold run, which
+    hides evidence directly and needs no discovery date at all; a
+    k-fold-shaped explanation of low coverage belongs to `hte.
+    diagnostics.coverage_report` instead. `corpus_name` threads into
+    `"corpus_name"` the same way `run_holdout` threads it,
+    for `write_calibration` to print regardless of which mode a caller
+    ran.
     """
     span_start, bin_width, resolved_resolution = _corpus_time_binning(corpus, resolution)
     ev_by_id = {e.id: e for e in corpus.evidence}
@@ -597,6 +665,7 @@ def holdout_kfold(
     }
     return {
         "mode": "kfold",
+        "corpus_name": corpus_name,
         "k": k,
         "seed": seed,
         "cutoff_years": None,
@@ -653,6 +722,7 @@ def run_calibration(
     match_threshold: float = DEFAULT_MATCH_THRESHOLD,
     n_bins: int = 10,
     resolution: Resolution | None = None,
+    corpus_name: str = "this corpus",
 ) -> dict[str, Any]:
     """`choose_holdout_mode(corpus)`, then the matching holdout
     (`run_holdout` for `"discovery_date"`, `holdout_kfold` for
@@ -665,16 +735,20 @@ def run_calibration(
     chosen, and is unused when k-fold is chosen instead, since
     k-fold reads no date at all. `hte.runner.run_campaign` is this
     function's own caller; a caller wanting one mode unconditionally
-    calls `run_holdout` or `holdout_kfold` directly instead.
+    calls `run_holdout` or `holdout_kfold` directly instead. `corpus_name`
+    passes straight through to whichever one is picked.
     """
     mode, reason = choose_holdout_mode(corpus)
     if mode == "discovery_date":
         cutoff = cutoff_years if cutoff_years is not None else _default_discovery_cutoff(corpus)
-        result = run_holdout(corpus, constants, cutoff_years=cutoff, match_threshold=match_threshold, n_bins=n_bins)
+        result = run_holdout(
+            corpus, constants, cutoff_years=cutoff, match_threshold=match_threshold,
+            n_bins=n_bins, corpus_name=corpus_name,
+        )
     else:
         result = holdout_kfold(
             corpus, constants, k=k, seed=seed, match_threshold=match_threshold,
-            n_bins=n_bins, resolution=resolution,
+            n_bins=n_bins, resolution=resolution, corpus_name=corpus_name,
         )
     result["mode"] = mode
     result["mode_reason"] = reason
@@ -970,11 +1044,20 @@ def build_pooled_fit_corpora(
     return corpora, coverage_targets
 
 
-def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
+def write_calibration(
+    result: Mapping[str, Any],
+    out_dir: str | Path,
+    *,
+    diagnostics_report: Mapping[str, Any] | None = None,
+) -> None:
     """Writes `result` (`run_holdout`'s or `holdout_kfold`'s own return
     shape, either optionally carrying a `"fit"` key with `fit_constants`'s
     own output) to `out_dir/calibration.json` and a human-readable
-    `out_dir/CALIBRATION.md`. When `result["coverage_note"]` is set
+    `out_dir/CALIBRATION.md`. `CALIBRATION.md` always names the corpus it
+    ran against (`result["corpus_name"]`, `"this corpus"` when a caller
+    passed none), independent of coverage or mode, so a reader comparing
+    two runs' own `CALIBRATION.md` files can never confuse which corpus
+    either one is about. When `result["coverage_note"]` is set
     (`_low_coverage_note`, low or zero `coverage_of_truth`),
     `CALIBRATION.md` carries it under its own "Why coverage is low"
     heading rather than reporting the bare number with no explanation.
@@ -985,12 +1068,22 @@ def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
     Brier score get their own table row. Both are additive: a plain
     `run_holdout`/`holdout_kfold` result with neither key renders exactly
     as before.
+
+    `diagnostics_report`, when given (`hte.diagnostics.coverage_report`'s
+    own return shape, this module's own caller passing it only after a
+    `--diagnose` run against the same `result`), adds its own per-reason
+    counts and per-event classification under the same "Why coverage is
+    low" heading, alongside (not instead of) `_low_coverage_note`'s own
+    structural explanation; the heading appears whenever either one has
+    something to say, so a `--diagnose` run against an otherwise-covered
+    corpus still reports what it found even with no low-coverage note of
+    its own.
     """
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     (out / "calibration.json").write_text(json.dumps(result, indent=2))
 
-    lines = ["# Calibration", ""]
+    lines = ["# Calibration", "", f"Corpus: {result.get('corpus_name', 'this corpus')}", ""]
     mode = result.get("mode")
     if mode:
         lines.append(f"Mode: {mode}")
@@ -1007,8 +1100,13 @@ def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
         "",
     ]
     note = result.get("coverage_note")
-    if note:
-        lines += ["## Why coverage is low", "", note, ""]
+    diagnostics_note = _diagnostics_reason_prose(diagnostics_report)
+    if note or diagnostics_note:
+        lines += ["## Why coverage is low", ""]
+        if note:
+            lines += [note, ""]
+        if diagnostics_note:
+            lines += [diagnostics_note, ""]
     lines += [
         "## Calibration curve",
         "",

@@ -14,7 +14,7 @@ from pathlib import Path
 from . import calibrate, diagnostics, export, holdout_ledger, purge as purge_mod, question_map, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
-from .corpus import quantum_history
+from .corpus import quantum_history, younger_dryas
 
 _CORPUS_LOADERS = {
     "quantum-history": quantum_history.ingest,
@@ -34,6 +34,11 @@ _CORPUS_LOADERS = {
     # 82-card `LOCAL_INTAKE_DIR` tree yet.
     "literature": literature.load_default,
     "sacred-history": sacred_history.ingest,
+    # 47 open-metadata, DOI-verified cards on the Younger Dryas boundary
+    # (12.9-11.7 ka BP) impact-hypothesis debate; see `hte.runner.
+    # _CORPUS_LOADERS`'s own identical entry and `hte.corpus.
+    # younger_dryas`'s own module docstring.
+    "younger-dryas": younger_dryas.load,
 }
 
 

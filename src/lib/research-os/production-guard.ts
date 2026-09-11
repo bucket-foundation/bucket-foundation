@@ -246,3 +246,43 @@ export function computeIncentiveEligible(status: string, canonProvenanceSignoff:
   if (status !== "accepted") return false;
   return typeof canonProvenanceSignoff === "string" && /^\s*approved\b/i.test(canonProvenanceSignoff);
 }
+
+// ---------------------------------------------------------------------------
+// Rule 5: lateral-reading corroboration flag (bkt-ros, PLAN-REVISION-3.md
+// section 2c; learning/research-os/LATERAL-READING.md). Informational
+// only, the same "never blocks submission" posture duplicate detection
+// already carries: a Production whose target node carries no
+// corroboration record (stages.ts's onCorroborationRecorded, a learner
+// who attached a real, independent second Quote before Check revealed)
+// reads "single-source" for a reviewer to see, the same read
+// checkSourceProvenance already gives for an unverified quote.
+// ---------------------------------------------------------------------------
+
+export interface CorroborationRecord {
+  firstSourceId: string;
+  secondSourceId: string;
+}
+
+/** True once at least one corroboration record names `targetNodeId` as
+ * either its first or second source: a learner may have run the
+ * lateral-reading step from either side (the node under Check, or the
+ * independent source Locate's "find another source" mode surfaced), and
+ * this flag reads either direction as "corroborated." */
+export function hasCorroboration(targetNodeId: string, corroborationEvidence: CorroborationRecord[]): boolean {
+  return corroborationEvidence.some((c) => c.firstSourceId === targetNodeId || c.secondSourceId === targetNodeId);
+}
+
+/** The row value lateralReadingFlag below returns, named the same way
+ * DuplicateFlag names computeDuplicateFlag's own return type, so a
+ * reviewer-facing caller (the review route, the review page) can import
+ * one type rather than re-typing the literal union. */
+export type LateralReadingFlag = "single-source" | null;
+
+/** The guard flag this rule adds: `"single-source"` when no corroboration
+ * record backs this Production's target node, `null` otherwise.
+ * Informational only, matching duplicate detection's own "never blocks"
+ * rule: a reviewer reads it, nothing here refuses an accept decision the
+ * way hasUnverifiedSource does. */
+export function lateralReadingFlag(targetNodeId: string, corroborationEvidence: CorroborationRecord[]): LateralReadingFlag {
+  return hasCorroboration(targetNodeId, corroborationEvidence) ? null : "single-source";
+}

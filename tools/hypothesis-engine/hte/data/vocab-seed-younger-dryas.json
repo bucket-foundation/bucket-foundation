@@ -1,0 +1,416 @@
+{
+  "default_alpha": 1.0,
+  "alpha": {
+    "actor": 1.0,
+    "action": 1.0,
+    "object": 1.0,
+    "place": 1.0,
+    "time": 1.0,
+    "mechanism": 1.0,
+    "relation": 1.0
+  },
+  "by_slot": {
+    "actor": [
+      {
+        "id": "meltwater-pulse",
+        "slot": "actor",
+        "label": "Laurentide meltwater pulse into the North Atlantic/Arctic, weakening AMOC",
+        "prior_logit": 2.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "cosmic-impact",
+        "slot": "actor",
+        "label": "Cosmic bolide impact or low-altitude airburst at 12.9 ka (the Younger Dryas Impact Hypothesis)",
+        "prior_logit": -1.0,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "volcanic-eruption",
+        "slot": "actor",
+        "label": "Explosive volcanism as the Younger Dryas cooling trigger",
+        "prior_logit": -1.5,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "taurid-complex-swarm",
+        "slot": "actor",
+        "label": "Repeated airbursts from the fragmenting Taurid-complex comet swarm",
+        "prior_logit": -3.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "solar-proton-event",
+        "slot": "actor",
+        "label": "An extreme solar proton event as the Younger Dryas trigger",
+        "prior_logit": -3.5,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "supernova-event",
+        "slot": "actor",
+        "label": "A nearby core-collapse supernova as the Younger Dryas/extinction trigger",
+        "prior_logit": -4.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      }
+    ],
+    "action": [
+      {
+        "id": "triggered",
+        "slot": "action",
+        "label": "Asserted as the direct cause of the dated outcome",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "corroborated",
+        "slot": "action",
+        "label": "An earlier finding is independently confirmed or extended",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "refuted",
+        "slot": "action",
+        "label": "An earlier finding or hypothesis is disputed or fails replication",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "inconclusive",
+        "slot": "action",
+        "label": "Evidence bears on the question without settling it either way",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "object": [
+      {
+        "id": "younger-dryas-onset-cooling",
+        "slot": "object",
+        "label": "The abrupt Younger Dryas cooling onset itself",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "younger-dryas-termination",
+        "slot": "object",
+        "label": "The abrupt Younger Dryas termination/warming",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "megafaunal-extinction",
+        "slot": "object",
+        "label": "Late Pleistocene megafaunal extinction/population turnover",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "population-demography",
+        "slot": "object",
+        "label": "Human (Paleoindian/Clovis) population size or continuity",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "platinum-anomaly",
+        "slot": "object",
+        "label": "Anomalous platinum concentration in ice or sediment",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "iridium-anomaly",
+        "slot": "object",
+        "label": "Anomalous iridium concentration in sediment",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "nanodiamond-concentration",
+        "slot": "object",
+        "label": "Nanodiamond (incl. lonsdaleite) abundance in boundary sediment",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "microspherule-concentration",
+        "slot": "object",
+        "label": "Magnetic or glassy microspherule abundance",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "carbon-spherule-concentration",
+        "slot": "object",
+        "label": "Carbonaceous/carbon-spherule abundance",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "meltglass-melt-products",
+        "slot": "object",
+        "label": "High-temperature meltglass and melt-product evidence",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "black-mat-layer",
+        "slot": "object",
+        "label": "The organic-rich Younger Dryas boundary 'black mat'",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "amoc-slowdown",
+        "slot": "object",
+        "label": "Atlantic meridional overturning circulation slowdown",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "ice-core-chronology",
+        "slot": "object",
+        "label": "Ice-core or boundary-layer dating/chronology",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "radiocarbon-calibration",
+        "slot": "object",
+        "label": "Radiocarbon calibration uncertainty across the boundary",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "place": [
+      {
+        "id": "north-america",
+        "slot": "place",
+        "label": "North America",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "greenland-ice-sheet",
+        "slot": "place",
+        "label": "Greenland ice sheet (GISP2/GRIP/NGRIP)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "europe",
+        "slot": "place",
+        "label": "Europe",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "middle-east",
+        "slot": "place",
+        "label": "Middle East / Levant (incl. Abu Hureyra, Syria)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "mexico",
+        "slot": "place",
+        "label": "Mexico (incl. Lake Cuitzeo)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "multiple-continents",
+        "slot": "place",
+        "label": "Multiple continents / hemispheric",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "arctic-ocean",
+        "slot": "place",
+        "label": "Arctic Ocean / Mackenzie River corridor",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "north-atlantic",
+        "slot": "place",
+        "label": "North Atlantic",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ],
+    "mechanism": [
+      {
+        "id": "cosmic-airburst",
+        "slot": "mechanism",
+        "label": "Low-altitude cosmic airburst(s)",
+        "prior_logit": -1.0,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "impact-ejecta-fallout",
+        "slot": "mechanism",
+        "label": "Impact/airburst ejecta fallout depositing markers",
+        "prior_logit": -1.0,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "biomass-burning-impact-winter",
+        "slot": "mechanism",
+        "label": "Continent-to-hemispheric biomass burning and impact winter",
+        "prior_logit": -1.0,
+        "consensus_status": "contested",
+        "definition_url": null
+      },
+      {
+        "id": "taurid-stream-encounter",
+        "slot": "mechanism",
+        "label": "Recurring encounter with Taurid-complex debris",
+        "prior_logit": -3.0,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "gamma-ray-ionization",
+        "slot": "mechanism",
+        "label": "Ionizing radiation from a nearby astrophysical event",
+        "prior_logit": -3.5,
+        "consensus_status": "fringe",
+        "definition_url": null
+      },
+      {
+        "id": "independent-replication-failure",
+        "slot": "mechanism",
+        "label": "An independent group's attempt to replicate a finding fails",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "dating-uncertainty",
+        "slot": "mechanism",
+        "label": "Chronological/dating uncertainty across sites or proxies",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "methodological-artifact",
+        "slot": "mechanism",
+        "label": "A reported signal traces to a sampling or methodological artifact",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "bayesian-age-modeling",
+        "slot": "mechanism",
+        "label": "Bayesian re-analysis of age-model uncertainty",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "fungal-sclerotia-formation",
+        "slot": "mechanism",
+        "label": "Ordinary fungal sclerotia formation (non-impact origin of spherules)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "st-lawrence-routing",
+        "slot": "mechanism",
+        "label": "Meltwater routed via the St. Lawrence Valley",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "arctic-mackenzie-routing",
+        "slot": "mechanism",
+        "label": "Meltwater routed via the Arctic/Mackenzie corridor",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "amoc-shutdown",
+        "slot": "mechanism",
+        "label": "AMOC weakening/shutdown from freshwater forcing",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "demographic-decline-evidence",
+        "slot": "mechanism",
+        "label": "Archaeological/demographic evidence of population decline (or its absence)",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "climate-driven-extinction",
+        "slot": "mechanism",
+        "label": "Climate-driven (not catastrophe-driven) extinction dynamics",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "species-specific-vulnerability",
+        "slot": "mechanism",
+        "label": "Species-specific, staggered vulnerability to climate/habitat change",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      },
+      {
+        "id": "radiocarbon-plateau",
+        "slot": "mechanism",
+        "label": "A radiocarbon calibration-curve plateau distorting apparent synchroneity",
+        "prior_logit": 0.0,
+        "consensus_status": "consensus",
+        "definition_url": null
+      }
+    ]
+  }
+}
