@@ -56,11 +56,17 @@
  * anywhere in it. Revealing the held verdict needs a phase-2 call on the
  * same attemptId carrying BOTH a valid learnerConfidence (forcing.ts's
  * four-point scale) and a non-empty sourcePrediction; a phase-2 call
- * missing either is 400 and the attempt stays held for a retry. This is
- * enforced in forcing.ts's held-attempt store, not only by the client
- * withholding a "reveal" button: scripts/test-research-os-forcing.ts feeds
- * the store an attempt and asserts no code path returns its grade without
- * both fields present.
+ * missing either is 400 and the attempt stays held for a retry. The held
+ * verdict itself lives in `graph.check_attempts`
+ * (src/lib/research-os/check-attempts-db.ts, migration
+ * 20260910070000_research_os_check_attempts.sql): a Vercel deploy can run
+ * phase 1 and phase 2 on two different instances, so a bare in-memory
+ * store would lose the verdict between them. The gate is enforced in
+ * code: the client withholding a "reveal" button is a UI convenience, the
+ * server-side check is the real one. scripts/test-research-os-forcing.ts feeds
+ * forcing.ts's shared decision functions (checkAttemptAccess,
+ * finalizeReveal, the same ones check-attempts-db.ts calls) an attempt and
+ * asserts no code path returns its grade without both fields present.
  *
  * Auth: Authorization: Bearer <supabase access token>, required for all four
  * (locate/quote are retrieval-only but still identity-scoped for Phase 0
@@ -88,7 +94,8 @@ import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, verifyLearner, recordEvidence, loadForcingEnabledForLearner } from "@/lib/research-os/db";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
-import { resolveForcingEnabled, storePendingAttempt, revealPendingAttempt, pruneExpiredAttempts } from "@/lib/research-os/forcing";
+import { resolveForcingEnabled } from "@/lib/research-os/forcing";
+import { dbStorePendingAttempt, dbRevealPendingAttempt } from "@/lib/research-os/check-attempts-db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -237,7 +244,7 @@ export async function POST(req: NextRequest) {
       // can never come back with feedback (scripts/test-research-os-
       // forcing.ts's "cannot be fetched early" case).
       if (attemptId) {
-        const reveal = revealPendingAttempt(attemptId, learnerId, body.learnerConfidence, body.sourcePrediction || "");
+        const reveal = await dbRevealPendingAttempt(attemptId, learnerId, body.learnerConfidence, body.sourcePrediction || "");
         if (!reveal.ok) {
           if (reveal.reason === "not_found") return bad(404, "check_attempt_not_found");
           return bad(400, "A confidence rating and a source prediction are required before feedback is shown.");
@@ -362,8 +369,7 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      pruneExpiredAttempts();
-      const newAttemptId = storePendingAttempt({
+      const newAttemptId = await dbStorePendingAttempt({
         learnerId,
         nodeId,
         sessionId,

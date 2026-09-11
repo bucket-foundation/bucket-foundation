@@ -2251,3 +2251,37 @@ commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
 ### Removed
 
 None.
+
+## PR #63 review pass: the held Check verdict moved off an in-memory Map
+
+Review of PR #63 (cognitive forcing on Check, Iteration 22 above) found the
+production defect its own review task named: `forcing.ts`'s held-attempt store
+was a plain in-memory `Map`. On Vercel a phase-1 Check and its phase-2 reveal
+can land on two different route instances, losing the held verdict between
+them; the learner would see the Check form again with no explanation why.
+
+### Added
+
+- `supabase/migrations/20260910070000_research_os_check_attempts.sql`: `graph.check_attempts` (the persisted held-attempt table, RLS `own_select`), `graph.purge_expired_check_attempts()` (deletes every row past a 24-hour hard expiry, returns the count), and `graph.privacy_delete_learner` extended (`create or replace`) to also delete the requesting learner's own `check_attempts` rows and to call the purge sweep as a side effect of every delete request.
+- `src/lib/research-os/check-attempts-db.ts`: the persisted store `workspace/route.ts` calls (`dbStorePendingAttempt`/`dbGetPendingAttempt`/`dbConsumePendingAttempt`/`dbRevealPendingAttempt`/`dbPurgeExpiredAttempts`), plus its pure, tested pieces (`mapCheckAttemptRow`, `isPastHardExpiry`). Reuses `forcing.ts`'s `checkAttemptAccess`/`finalizeReveal` directly rather than re-implementing the ownership/TTL/reveal-completeness rules.
+- `scripts/test-research-os-check-attempts.ts` (15 tests): row mapping, the 24-hour hard-expiry check, and a full store-and-reveal walk built from the shared gate functions, no Supabase or network, matching this repo's DB-touching-module convention (see `privacy.ts`'s own header).
+
+### Edited
+
+- `src/lib/research-os/forcing.ts`: `getPendingAttempt` and `revealPendingAttempt` refactored (no external behavior change) to call two newly exported pure functions, `checkAttemptAccess` (ownership + TTL) and `finalizeReveal` (the commit-before-reveal check), so `check-attempts-db.ts` runs the exact same decision logic against the persisted table. Module header rewritten: the in-memory `Map` is now documented as the test double `scripts/test-research-os-forcing.ts` exercises, a role separate from the production store. All 19 of that file's existing tests pass unchanged.
+- `src/app/api/research-os/workspace/route.ts`: the "check" action's phase 1 and phase 2 now call `dbStorePendingAttempt`/`dbRevealPendingAttempt` (`check-attempts-db.ts`) instead of `forcing.ts`'s in-memory functions; the opportunistic `pruneExpiredAttempts()` call is dropped, the 24-hour sweep runs from the privacy delete path instead. Module header updated to describe the persisted store.
+- `src/lib/research-os/privacy.ts`: `graph.check_attempts` added to `PRIVACY_TABLES` (export and delete both cover it now).
+- `learning/research-os/compliance/DATA-INVENTORY.md`: a new `graph.check_attempts` row in the learner-keyed table, the source-migration list, and the free-text-fields section (item 4, `check_attempts.explanation`).
+- `learning/research-os/WORKSPACE.md` section 6: "Server enforcement" and "In-memory, best effort" rewritten to describe the persisted store, the 24-hour hard expiry, and the privacy-delete purge sweep; original text preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+- `scripts/test-research-os-privacy.ts`: `fixtureStore()` gains a `check_attempts` row for each of the two test learners; the "reported deleted counts" test gains an assertion for it; the migration drift-check test widened to scan every `supabase/migrations/*.sql` file rather than one hardcoded filename (`graph.check_attempts`'s delete statement lives in the new migration).
+- `package.json`: `test:research-os` gains `scripts/test-research-os-check-attempts.ts`.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/class` and `/research-os/workspace` both in the manifest), `npm run test:research-os` (339 passed, 0 failed, 26 files, up from the PR's own reported 330/330 across 25), `eslint` on every touched or added TS/TSX file, `agf-lint-voice-src check` on the same files plus the new migration, `agf-lint-voice check` on the touched docs: all clean after fixing three banned words (`actually`, twice) and three antithesis phrasings found on the first pass.
+- Leak scan (keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, Claude session URLs) against the PR's own diff (`gh pr diff 63`): clean, zero hits across all four categories checked (IP-shaped strings, key-shaped strings, non-`gianyrox` emails, `/home/gian` paths, session URLs). One pre-existing `/home/gian/agfarms/.wt-fix10` path found in `BEADS-PENDING.jsonl`, confirmed already on `main` before this PR and outside this PR's own one-line diff to that file; left untouched, named here rather than silently passed over.
+- Manual review of the four items PR #63's own task named beyond persistence, all already correct on the branch, no change needed: the arm switch reads `graph.classes.forcing_enabled` server-side (`db.ts`'s `loadForcingEnabledForLearner`) and every `check` evidence event carries `forcingEnabled` (`stages.ts`'s `onCheckResult`); the calibration summary is scoped to the reviewer's own classes (`class/route.ts`'s `loadClassesForReviewer(reviewer.email)` plus a `learnerIdSet` filter); the forcing question copy is short, one-clause, grade-4-level (`forcing.ts`'s `CONFIDENCE_QUESTION_COPY`/`LEARNER_CONFIDENCE_COPY`); the Check card's forcing fieldsets use `flex-wrap`/`flex-col` with no fixed widths, matching `/research-os/profile`'s own 400px-stacking pattern.
+
+### Removed
+
+None.

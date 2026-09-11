@@ -31,17 +31,27 @@
  *     override), so the three-arm pilot can run its comparison arm with
  *     forcing off;
  *   - a held-attempt store, one entry per ungraded-to-the-learner Check
- *     call, keyed by a server-generated attempt id. In-memory only, the
- *     same best-effort posture `src/lib/research-os/rate-limit.ts`
- *     documents for its own daily cap: a serverless cold start or a
- *     multi-instance deploy loses a pending attempt, and the learner sees
- *     the Check form again rather than a stuck page. A durable store (a
- *     `graph.pending_check_attempts` table, or the Viatika metering layer
- *     once that lands, CLAUDE.md priority 6) is Phase 2 work; this is the
- *     Phase 1 floor. Pure counting/store logic is exported with an
- *     injectable `Map` (rate-limit.ts's own pattern) so
- *     `scripts/test-research-os-forcing.ts` exercises it with no timers,
- *     network, or environment variables.
+ *     call, keyed by a server-generated attempt id. The store below is an
+ *     in-memory `Map`, kept for exactly one reason: it is the test double
+ *     `scripts/test-research-os-forcing.ts` exercises with no timers,
+ *     network, or environment variables, injectable the same way
+ *     `rate-limit.ts`'s buckets are. It is NOT what production runs on: a
+ *     Vercel deploy invokes each route call on whichever instance is warm,
+ *     so a phase-1 Check landing on instance A and its phase-2 reveal
+ *     landing on instance B would lose the held verdict against a bare
+ *     `Map`, and the learner would see the Check form again with no
+ *     explanation why. The persisted store, `graph.check_attempts`
+ *     (migration 20260910070000_research_os_check_attempts.sql,
+ *     `src/lib/research-os/check-attempts-db.ts`), is what
+ *     `workspace/route.ts`'s "check" action calls; it shares the
+ *     ownership/TTL/reveal-completeness rules below by calling
+ *     `checkAttemptAccess` and `finalizeReveal` directly rather than
+ *     re-implementing them, so the two stores can never drift on what
+ *     "held" and "revealed" mean. A held attempt also carries a 24-hour
+ *     hard expiry in the persisted store (past the 30-minute commit
+ *     window below), enforced there and swept by
+ *     `graph.purge_expired_check_attempts()`, called from the privacy
+ *     delete path; see check-attempts-db.ts's own header.
  */
 import type { GradeResult } from "./grounding";
 import type { Stage } from "./types";
@@ -160,6 +170,35 @@ export function storePendingAttempt(
   return id;
 }
 
+export interface AttemptAccessResult {
+  ok: boolean;
+  reason?: "not_found" | "expired";
+}
+
+/**
+ * The ownership + TTL decision alone, no store I/O: an attempt is
+ * accessible only when it exists, belongs to `learnerId` (never another
+ * learner's held verdict), and is within `ttlMs` of its `createdAt`. Pure
+ * so both stores, the in-memory `Map` below (via getPendingAttempt) and
+ * the persisted `graph.check_attempts` table
+ * (check-attempts-db.ts's dbGetPendingAttempt), make this call the exact
+ * same way; a wrong-learner lookup reads as "not_found" rather than a
+ * distinct reason, matching getPendingAttempt's pre-existing external
+ * behavior (never confirm to a caller that a given attemptId belongs to
+ * someone else).
+ */
+export function checkAttemptAccess(
+  found: PendingCheckAttempt | null | undefined,
+  learnerId: string,
+  now: number,
+  ttlMs: number = ATTEMPT_TTL_MS,
+): AttemptAccessResult {
+  if (!found) return { ok: false, reason: "not_found" };
+  if (found.learnerId !== learnerId) return { ok: false, reason: "not_found" };
+  if (now - found.createdAt > ttlMs) return { ok: false, reason: "expired" };
+  return { ok: true };
+}
+
 /**
  * Read-only lookup: returns the attempt only when it exists, belongs to
  * `learnerId` (never another learner's held verdict), and has not expired.
@@ -178,13 +217,12 @@ export function getPendingAttempt(
   now: number = Date.now(),
 ): PendingCheckAttempt | null {
   const found = store.get(attemptId);
-  if (!found) return null;
-  if (found.learnerId !== learnerId) return null;
-  if (now - found.createdAt > ATTEMPT_TTL_MS) {
-    store.delete(attemptId);
+  const access = checkAttemptAccess(found, learnerId, now);
+  if (!access.ok) {
+    if (access.reason === "expired" && found) store.delete(attemptId);
     return null;
   }
-  return found;
+  return found as PendingCheckAttempt;
 }
 
 /** Single-use: called only once the forcing fields have been validated and
@@ -243,12 +281,25 @@ export function revealPendingAttempt(
   const pending = getPendingAttempt(attemptId, learnerId, store, now);
   if (!pending) return { ok: false, reason: "not_found" };
 
+  const result = finalizeReveal(pending, learnerConfidenceRaw, sourcePredictionRaw);
+  if (result.ok) consumePendingAttempt(attemptId, store);
+  return result;
+}
+
+/**
+ * The "is the commit step complete" decision alone, given an attempt
+ * already confirmed accessible (checkAttemptAccess passed): never touches
+ * a store, never consumes anything, so a caller (the in-memory
+ * revealPendingAttempt above, or check-attempts-db.ts's
+ * dbRevealPendingAttempt) decides for itself how and when to delete the
+ * attempt on an `ok: true` result. This is the shared "feedback cannot be
+ * fetched early" gate both stores run through.
+ */
+export function finalizeReveal(pending: PendingCheckAttempt, learnerConfidenceRaw: unknown, sourcePredictionRaw: string): RevealResult {
   const sourcePrediction = sourcePredictionRaw.trim();
   if (!isValidLearnerConfidence(learnerConfidenceRaw) || !sourcePrediction) {
     return { ok: false, reason: "forcing_incomplete" };
   }
-
-  consumePendingAttempt(attemptId, store);
   return {
     ok: true,
     attempt: pending,
