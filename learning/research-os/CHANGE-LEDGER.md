@@ -2001,3 +2001,66 @@ commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
 ### Edited
 
 - `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+
+## Iteration 22: canon human sign-off tool
+
+Built the human sign-off tool `GOVERNANCE.md`'s "Canon sign-off" section
+and PR #45's review require: a CLI, a gated web page, and a doc, against
+the 20 `bucket-canon/` records currently carrying `provenance_signoff:
+"pending: gianyrox"`.
+
+### Added
+
+- `tools/canon-pipeline/signoff_core.py`, `tools/canon-pipeline/signoff.py`:
+  `list` / `approve --by` / `reject --by --reason` / `audit`. `approve`
+  refuses unless the record's DOI resolves (HTTP HEAD), unless `--offline`.
+  Both verbs idempotent. Every decision appends to
+  `CANON-INGESTION-INDEX.md`.
+- `tools/canon-pipeline/tests/test_signoff.py`: 24 cases, fixture tree
+  under `tmp_path`, no network.
+- `src/lib/canon-signoff.ts`, `src/lib/canon-signoff-approvers.ts`: the
+  route's shared module and the second `CANON_SIGNOFF_APPROVERS`
+  allowlist, stacked on the existing `RESEARCH_OS_REVIEWER_EMAILS` gate
+  from `src/lib/research-os/reviewer.ts`.
+- `src/app/api/canon/signoff/route.ts`, `src/app/canon/signoff/page.tsx`:
+  the gated page and its route.
+- `scripts/test-canon-signoff.ts`: 24 cases, including the 403 gate logic
+  (`isCanonSignoffApprover`) for a reviewer who is not a canon approver, a
+  canon approver who is not a reviewer, and no identity at all. Added to
+  `test:research-os`.
+- `tools/canon-pipeline/SIGNOFF.md`: policy, the two signoff vocabularies
+  (this tool vs. `hte.canon_writeback`'s `signed_off_by`), the two
+  allowlists, the audit trail, and a founder runbook.
+
+### Fixed
+
+- `isPendingSignoff` (`src/lib/canon-primary.ts`) treated only a `pending`
+  value as unapproved; a `rejected` value would have leaked through as
+  servable canon. Now excludes both, covered by two new cases in
+  `scripts/test-canon-primary-signoff.ts`.
+
+### Found and flagged
+
+- `findPrimaryFiles`'s one-level directory walk misses
+  `07-mind/sub-outcomes/education/primary-papers.yaml` (two levels down,
+  11 of the 20 pending records). Not served by `/api/research` today
+  regardless of sign-off status; this tool's own recursive file discovery
+  still lists all 20. `SIGNOFF.md` documents this; fixing the depth limit
+  is a separate change, left for whoever picks it up.
+
+### Verified
+
+- `pytest tools/canon-pipeline/tests/` (41 passed), `npm ci`, `npx tsc
+  --noEmit`, `npm run build` (`/canon/signoff` + `/api/canon/signoff` in
+  the manifest), `npm run test:research-os` (267 passed, 0 failed, 20
+  files, up from 236/18), `eslint` on every touched TS/TSX file,
+  `agf-lint-voice-src check` on every touched TS/TSX/Python file,
+  `agf-lint-voice check` on the touched docs: all clean.
+- No record's `provenance_signoff` value changed on this branch; the CLI
+  and route were exercised only against fixture trees.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+- `GOVERNANCE.md`: one line, a pointer from the "Canon sign-off" section
+  to `SIGNOFF.md` and the tool. No policy text changed.

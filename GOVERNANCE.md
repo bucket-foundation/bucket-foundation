@@ -29,6 +29,8 @@ No record in `bucket-canon/` counts as approved until a named human signs off. T
 
 Approval is the named approver replacing a `pending: <name>` value with their own confirmation. Until then the record sits on disk and in the repo's history, but nothing citeable-for-pay is served from it.
 
+The tool that performs this: `tools/canon-pipeline/signoff.py` (CLI) and `/canon/signoff` (a reviewer- and founder-gated page). See `tools/canon-pipeline/SIGNOFF.md`.
+
 ---
 
 ## 2. What the Foundation owns

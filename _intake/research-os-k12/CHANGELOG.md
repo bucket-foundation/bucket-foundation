@@ -1,5 +1,68 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10: canon human sign-off tool
+
+`feat/canon-signoff-tool`, built against `GOVERNANCE.md`'s "Canon sign-off"
+section and PR #45's review paragraph.
+
+### Added
+
+- `tools/canon-pipeline/signoff_core.py` + `tools/canon-pipeline/signoff.py`:
+  the CLI (`list`, `approve --by`, `reject --by --reason`, `audit`), reading
+  and writing `provenance_signoff` on `bucket-canon/**/primary-papers.yaml`
+  records. `approve` refuses unless the record's DOI resolves via a HEAD
+  request (`--offline` bypasses). Both `approve` and `reject` are
+  idempotent. Every decision appends one entry to
+  `CANON-INGESTION-INDEX.md`.
+- `tools/canon-pipeline/tests/test_signoff.py`: 24 pytest cases against a
+  fixture tree under `tmp_path`, no network, `--offline` throughout except
+  the two cases that monkeypatch the DOI check itself.
+- `src/lib/canon-signoff.ts` + `src/lib/canon-signoff-approvers.ts`: the
+  TypeScript re-implementation of the same contract for the web route,
+  plus the second `CANON_SIGNOFF_APPROVERS` allowlist gate.
+- `src/app/api/canon/signoff/route.ts` + `src/app/canon/signoff/page.tsx`:
+  a reviewer- and founder-gated page listing pending records with
+  approve/reject actions, gated on `RESEARCH_OS_REVIEWER_EMAILS` AND
+  `CANON_SIGNOFF_APPROVERS`.
+- `scripts/test-canon-signoff.ts`: 24 node:test cases (listPending,
+  findRecord resolution, approve/reject including idempotency and the
+  reject-then-approve transition, and the 403 gate logic in
+  `isCanonSignoffApprover`), added to the `test:research-os` chain.
+- `tools/canon-pipeline/SIGNOFF.md`: policy, the two signoff vocabularies
+  (this tool's `provenance_signoff` vs. the hypothesis engine's
+  `signed_off_by`), the two allowlists, the audit trail, and a founder
+  runbook for the 20 records currently pending.
+
+### Fixed
+
+- `src/lib/canon-primary.ts`'s `isPendingSignoff` excluded only a `pending`
+  value; a `rejected` value fell through and would have been served as
+  approved canon once this tool existed to write one. Now excludes both.
+  Covered by two new cases in `scripts/test-canon-primary-signoff.ts`.
+
+### Found, not fixed (flagged in SIGNOFF.md, out of scope here)
+
+- `findPrimaryFiles` (`src/lib/canon-primary.ts`) walks only one level
+  below each branch directory, so `bucket-canon/07-mind/sub-outcomes/
+  education/primary-papers.yaml` (two levels down, 11 of the 20 pending
+  records) is never reached by `loadPrimaryPapers()`. Those 11 records are
+  not served by `/api/research` today regardless of sign-off status. This
+  tool's own file discovery walks the full tree, so `signoff.py list` and
+  the `/canon/signoff` page still see all 20.
+
+### Verified
+
+- `pytest tools/canon-pipeline/tests/` (41 passed, 0 failed), `npm ci`,
+  `npx tsc --noEmit`, `npm run build` (`/canon/signoff` and
+  `/api/canon/signoff` both in the manifest), `npm run test:research-os`
+  (267 passed, 0 failed, 20 files), `eslint` on all touched TS/TSX files,
+  `agf-lint-voice-src check` on the touched TS/TSX/Python files,
+  `agf-lint-voice check` on the touched docs (`GOVERNANCE.md`,
+  `tools/canon-pipeline/SIGNOFF.md`): all clean.
+- No record's `provenance_signoff` value changed by this branch; `approve`/
+  `reject` were exercised only against fixture trees in the two test
+  suites, never against a real `bucket-canon/` file.
+
 ## 2026-09-10: literature corpus promotion pass two
 
 Branch `intake/ros-canon-promotion-2`. Thirteen more records from
