@@ -1,6 +1,7 @@
 /**
- * Research OS for K-12, the age and consent gate skeleton (bkt-ros ros-07,
- * minors compliance pack part A, task item 3). Backs graph.learner_profiles
+ * Research OS for K-12, the age and consent gate (bkt-ros ros-07, minors
+ * compliance pack part A, task item 3; wired to its call sites by the
+ * ros-07 follow-up, "consent gate wiring"). Backs graph.learner_profiles
  * (supabase/migrations/20260910040000_research_os_privacy_consent.sql).
  *
  * WHY THIS EXISTS: _intake/research-os-k12/04-compliance-distribution.md
@@ -25,22 +26,36 @@
  * transitions from 'none' to 'parent'; this file's decision rule stays the
  * same either way.
  *
- * NOT WIRED (see this bead's own instructions): src/app/api/research-os/
- * workspace/route.ts and src/app/api/research-os/production/route.ts, the
- * two call sites this gate belongs in front of, both landed commits in the
- * hour before this file was written (`git log -3 --since='3 hours ago' --
- * src/app/api/research-os/` showed two, the most recent 2 minutes old),
- * concurrent work this bead's own instructions say to leave alone rather
- * than risk a merge collision on. requireConsent below is complete and
- * tested (scripts/test-research-os-consent.ts); wiring it in is a two-line
- * change at the top of each route's handler:
+ * WIRED, four call sites, each right after its route's existing
+ * verifyLearner() check and before the write it guards:
+ *   - src/app/api/research-os/workspace/route.ts POST (action "workspace_tool"),
+ *     in front of the whole handler, so an unconsented minor gets the same
+ *     block on Locate/Quote as on Check/Organize: COPPA's floor is
+ *     collecting personal information from a known minor, not only
+ *     persisting it, and a search query or a quote request already does
+ *     that once the caller is a known, signed-in user.
+ *   - src/app/api/research-os/probe/route.ts POST (action "probe_answer").
+ *   - src/app/api/research-os/state/route.ts POST, only when
+ *     action === "transfer_item" (action "transfer_answer"); the sibling
+ *     "open" action records a navigation event rather than a
+ *     learner-authored answer, and stays ungated so a signed-in minor with
+ *     no profile yet can still browse the map and reach the profile page
+ *     this gate points them to.
+ *   - src/app/api/research-os/production/route.ts POST (action
+ *     "production_submit"), in front of the whole handler (draft saves
+ *     and submits both carry learner-authored content).
+ * Every gated route returns consentBlockedBody(gate) as its JSON body on a
+ * blocked call, status 403. Review and class routes (teacher-facing) are
+ * deliberately untouched: verifyReviewer already gates them, and a
+ * teacher's own age/consent status is not the thing being asked about.
  *
- *   const gate = await requireConsent(learnerId, "workspace_tool");
- *   if (!gate.allowed) return bad(403, gate.message ?? "consent_required");
- *
- * TODO(next bead touching workspace/route.ts or production/route.ts): add
- * that call to both POST handlers, right after the existing
- * verifyLearner() check, before any tool call or production write.
+ * The "no profile row" case (a learner who has never answered the age
+ * question) routes to src/app/research-os/profile/page.tsx, a minimal
+ * role + birth_year_bucket form (no birthdate, no name); see
+ * src/lib/research-os/profile.ts and src/app/api/research-os/profile/
+ * route.ts. That route writes role and birth_year_bucket only, never
+ * consent_status: the school/parent consent path (compliance/README.md
+ * part B item 2) is the only writer of that column, and stays a TODO.
  */
 import { graphService } from "./db";
 
@@ -57,10 +72,13 @@ export interface LearnerProfile {
   updatedAt: string;
 }
 
-/** The two call sites named in this bead's task. Kept as a closed union
- * rather than a free string so a future call site is a type-level decision,
- * not a typo away from silently gating nothing. */
-export type ConsentAction = "workspace_tool" | "production_submit";
+/** The four wired call sites (see this file's header). Kept as a closed
+ * union rather than a free string, so adding a future call site is a
+ * type-level decision that catches a typo before it silently gates
+ * nothing. decideConsent's rule does not vary by action today; the label
+ * exists for logging and for the day a rule DOES need to differ by call
+ * site. */
+export type ConsentAction = "workspace_tool" | "probe_answer" | "transfer_answer" | "production_submit";
 
 export interface ConsentCheckResult {
   allowed: boolean;
@@ -149,4 +167,31 @@ export async function requireConsent(learnerId: string, action: ConsentAction): 
   const { data, error } = await svc.from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
   if (error || !data) return decideConsent(null, action);
   return decideConsent(toLearnerProfile(data as LearnerProfileRow), action);
+}
+
+export interface ConsentBlockedBody {
+  /** Mirrors ConsentCheckResult.reason; named "error" to match every other
+   * gated route's {error} response shape in this codebase. */
+  error: "no_profile" | "consent_required";
+  message: string;
+  /** True only for "no_profile": the client's cue to link to
+   * /research-os/profile rather than to a generic "ask a parent" message
+   * with nowhere to click. */
+  needsProfile: boolean;
+}
+
+/**
+ * Shapes a blocked ConsentCheckResult into the JSON body every gated route
+ * returns on its 403, so the four call sites format the same response
+ * rather than each inventing its own. Pure, so the shape itself is
+ * unit-testable without a route or a live Supabase call (matching this
+ * file's own decideConsent). Throws on an allowed result: a caller
+ * rendering a blocked body for an allowed check is a bug in the caller,
+ * not a shape this function should paper over.
+ */
+export function consentBlockedBody(result: ConsentCheckResult): ConsentBlockedBody {
+  if (result.allowed || !result.reason) {
+    throw new Error("consentBlockedBody: called with an allowed ConsentCheckResult");
+  }
+  return { error: result.reason, message: result.message ?? "", needsProfile: result.reason === "no_profile" };
 }

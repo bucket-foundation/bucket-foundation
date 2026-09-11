@@ -16,9 +16,11 @@ import {
   PRIVACY_TABLES,
   buildExportEnvelope,
   hashLearnerId,
+  isDeleteConfirmed,
   simulateLearnerDelete,
   type FixtureStore,
 } from "../src/lib/research-os/privacy";
+import { DELETE_CONFIRM_TOKEN } from "../src/lib/research-os/types";
 
 // ---------------------------------------------------------------------------
 // hashLearnerId
@@ -220,4 +222,33 @@ test("PRIVACY_TABLES: every graph/bucket table appears as a delete statement in 
 test("PRIVACY_TABLES: every label is unique", () => {
   const labels = PRIVACY_TABLES.map((c) => c.label);
   assert.equal(new Set(labels).size, labels.length);
+});
+
+// ---------------------------------------------------------------------------
+// isDeleteConfirmed: the delete route's "confirm cannot be skipped
+// server-side" gate (ros-07 follow-up, task item 2). Pure, so this is the
+// real coverage for that requirement; the route itself is a thin wrapper
+// that calls this before doing anything else (see route.ts).
+// ---------------------------------------------------------------------------
+
+test("isDeleteConfirmed: exact token match is confirmed", () => {
+  assert.equal(isDeleteConfirmed({ confirm: DELETE_CONFIRM_TOKEN }), true);
+});
+
+test("isDeleteConfirmed: a missing confirm field is not confirmed", () => {
+  assert.equal(isDeleteConfirmed({}), false);
+});
+
+test("isDeleteConfirmed: an empty string is not confirmed", () => {
+  assert.equal(isDeleteConfirmed({ confirm: "" }), false);
+});
+
+test("isDeleteConfirmed: a boolean true is not confirmed (only the exact string counts)", () => {
+  assert.equal(isDeleteConfirmed({ confirm: true as unknown as string }), false);
+});
+
+test("isDeleteConfirmed: a near-miss string (wrong case, trailing space, substring) is not confirmed", () => {
+  assert.equal(isDeleteConfirmed({ confirm: DELETE_CONFIRM_TOKEN.toLowerCase() }), false);
+  assert.equal(isDeleteConfirmed({ confirm: `${DELETE_CONFIRM_TOKEN} ` }), false);
+  assert.equal(isDeleteConfirmed({ confirm: `x${DELETE_CONFIRM_TOKEN}` }), false);
 });

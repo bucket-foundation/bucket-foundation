@@ -21,9 +21,19 @@
  * learning/research-os/ENGINE-BRIDGE.md.
  *
  * Auth: Authorization: Bearer <supabase access token>, required.
+ *
+ * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): POST is
+ * gated by src/lib/research-os/consent.ts's requireConsent, action
+ * "production_submit", checked right after verifyLearner and before the
+ * body is even parsed. This covers a draft save as well as a submit: both
+ * carry the learner's own claim/evidence/sources/transfer-proof text. GET
+ * (reading back the learner's own already-saved productions) is not
+ * gated. A blocked POST returns 403 with consentBlockedBody(gate) as its
+ * body.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
+import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import { configured, graphService, verifyLearner, recordEvidence, emitProductionOutboxIfAccepted, loadCurrentStage } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
@@ -64,6 +74,9 @@ export async function POST(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
+
+  const gate = await requireConsent(learnerId, "production_submit");
+  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
 
   let body: ProductionBody;
   try {

@@ -7,13 +7,21 @@
  * (Illinois SOPPA, Texas Student Privacy Act, Colorado HB 16-1423, all
  * section 2).
  *
- * Request: { action: "export" | "delete", learnerId?: string }
+ * Request: { action: "export" | "delete", learnerId?: string, confirm?: string }
  *   learnerId is optional and self-defaulting: omit it to act on the
  *   caller's own data (self-gated). A different learnerId is honored only
  *   when the caller is on the reviewer allowlist (src/lib/research-os/
  *   reviewer.ts), the "reviewer- or self-gated" rule this route
  *   implements, e.g. a teacher or admin processing a parent's or
  *   district's request on a specific learner's behalf.
+ *
+ *   confirm is required for action "delete" and ignored for "export": it
+ *   must equal src/lib/research-os/types.ts's DELETE_CONFIRM_TOKEN exactly
+ *   (src/lib/research-os/privacy.ts's isDeleteConfirmed), checked in code
+ *   before resolvePrivacyActor even runs, so no client path (a stale UI
+ *   build, a hand-crafted request, a future caller of this route) can
+ *   trigger an irreversible delete without the confirm step. Missing or
+ *   mismatched -> 400 "confirm_required", nothing deleted.
  *
  * export -> 200 { learnerId, exportedAt, tables: { <table label>: [...] } }
  *   Every row across every table in learning/research-os/compliance/
@@ -37,7 +45,7 @@
  * reviewer cannot act on a learner's behalf without that fact being logged.
  */
 import { NextRequest, NextResponse } from "next/server";
-import { deleteLearnerData, exportLearnerData, privacyConfigured, resolvePrivacyActor } from "@/lib/research-os/privacy";
+import { deleteLearnerData, exportLearnerData, isDeleteConfirmed, privacyConfigured, resolvePrivacyActor } from "@/lib/research-os/privacy";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -49,6 +57,7 @@ function bad(status: number, error: string) {
 interface PrivacyBody {
   action?: "export" | "delete";
   learnerId?: string;
+  confirm?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -62,6 +71,15 @@ export async function POST(req: NextRequest) {
   }
   if (body.action !== "export" && body.action !== "delete") {
     return bad(400, 'action must be "export" or "delete"');
+  }
+
+  // Checked before any auth resolution or DB call: an irreversible delete
+  // requires the exact confirm token, in code, not only in whatever UI
+  // happens to call this route (task item 2, "the confirm cannot be
+  // skipped server-side"). See src/lib/research-os/privacy.ts's
+  // isDeleteConfirmed.
+  if (body.action === "delete" && !isDeleteConfirmed(body)) {
+    return bad(400, "confirm_required");
   }
 
   // Resolved BEFORE dispatch: a caller may always act on their own id, and
