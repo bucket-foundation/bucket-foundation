@@ -1,5 +1,61 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, roster sync skeleton (ros-06 follow-on)
+
+Branch `feat/ros-roster-sync` in worktree `.ros-worktrees/roster`, standard-first per
+`PLAN-REVISION-2.md` section 3 item 4. `src/lib/research-os/roster/` ships a OneRoster 1.2
+CSV importer against the 1EdTech OneRoster 1.2 CSV Binding
+(`https://www.imsglobal.org/spec/oneroster/v1p2/bind/csv/`): `csv.ts` (a dependency-free
+RFC 4180 reader, no CSV library added to `package.json`), `grade.ts` (`gradeToBirthYearBucket`,
+mapping a OneRoster grade code to `graph.learner_profiles.birth_year_bucket`, never a birth
+date), `oneroster.ts` (parses `orgs.csv`/`users.csv`/`classes.csv`/`enrollments.csv`, ignores
+every other file a bundle may carry, resolves a user's student/teacher role from
+`enrollments.csv` since OneRoster 1.2 removed `role` from `users.csv`), `diff.ts`
+(`computeRosterDiff`, pure, plus `applyRosterDiffToState`, an offline mirror of the live
+write path for idempotency testing, the same pattern `src/lib/research-os/privacy.ts`'s
+`simulateLearnerDelete` already uses), `sources.ts` (`RosterSource` interface;
+`OneRosterCsvSource` implemented, `CleverSource`/`ClassLinkSource` stubs that throw "not
+configured" with a documented env contract, per `03-data-services.md` section E), and
+`apply.ts` (the live Supabase adapter, untested by unit test the same way every other
+DB-touching function in this repo is).
+
+Migration `supabase/migrations/20260910050000_research_os_roster.sql` adds
+`source_system`/`sourced_id` to `graph.classes` and `graph.learner_profiles` (plain unique
+indexes; standard SQL null semantics keep every manually created row collision-free) and a
+new `graph.reviewer_candidates` table (RLS enabled, no anon/authenticated policy, matching
+`graph.privacy_events`'s posture), staging teachers a sync has seen with `status = 'pending'`
+until a human adds their email to `RESEARCH_OS_REVIEWER_EMAILS`; syncing a roster never
+grants review access on its own.
+
+`POST /api/research-os/roster` (multipart, four required CSV fields, dry-run default, an
+`apply` flag) and `/research-os/roster` (upload page, the same email-OTP flow as
+`/research-os/class`) are gated by the same `verifyReviewer` check `/api/research-os/class`
+uses. Neither the review, class, workspace, nor consent route handlers were touched, per
+this bead's own instructions (two other PRs, canon filter and consent wiring, were merging
+into `main` concurrently).
+
+`scripts/test-research-os-roster.ts` (17 tests, wired into `npm run test:research-os`): the
+CSV parser, the grade-to-bucket boundary, a fixture bundle (2 classes, 1 teacher, 5
+students, 8 enrollments including one malformed row) dry-run diff counts, a class with no
+teacher enrollment left unresolved, idempotency (apply-twice yields zero creates/updates,
+an already-approved reviewer candidate's status survives a re-sync), extra PII columns
+(`address`, `phone`) dropped at parse time and absent from every write payload, the
+malformed enrollment reported and skipped rather than inserted, both vendor stubs' "not
+configured" behavior, a static read of the new migration's RLS and column text, and a
+privacy-delete regression confirming `graph.privacy_delete_learner`'s existing SQL still
+deletes `graph.learner_profiles` rows now that this bead has added columns to that table.
+`learning/research-os/compliance/DATA-INVENTORY.md` gained the new table and columns;
+`learning/research-os/ROSTER.md` (new) carries the full field-mapping table, what gets
+discarded, the idempotency keys, what Clever and ClassLink add, and the reviewer-candidate
+approval flow. `learning/research-os/TEACHER-LAYER.md`'s own "TODO(Phase 1, roster sync)"
+note now points at this work.
+
+Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (`/api/research-os/roster` and
+`/research-os/roster` both confirmed in the build manifest), `npm run test:research-os`,
+`next lint` on every touched file, `agf-lint-voice-src check` and `agf-lint-voice check`:
+all clean after fixing four antithesis constructions, one meta-commentary phrase, one
+AI-tell word (`bespoke`), and one appended-clause heading found on the first pass.
+
 ## 2026-09-10, PR #44 review pass
 
 Review of `docs/ros-plan-revision-2` (PR #44) in worktree `.ros-worktrees/r44`, docs-only.
