@@ -219,6 +219,26 @@ test("extra PII columns (address, phone) are dropped at parse time, never persis
   assert.ok(!serializedCandidates.includes("Main St") && !serializedCandidates.includes("555-0100"));
 });
 
+test("adversarial: a birthdate column is dropped at parse time and never reaches a write payload or warning", () => {
+  const bundle = buildBundle(usersCsv(",birthdate", ",2015-04-12"));
+  assert.equal(bundle.users.length, 6);
+  for (const u of bundle.users) {
+    assert.ok(!Object.keys(u).includes("birthdate"), "parsed user must not carry a birthdate field");
+  }
+  const diff = computeRosterDiff(bundle, stateWithAuthUsers());
+  const serializedProfiles = JSON.stringify(diff.learnerProfiles.create);
+  const serializedCandidates = JSON.stringify(diff.reviewerCandidates.create);
+  const serializedMembers = JSON.stringify(diff.classMembers.create);
+  const serializedWarnings = JSON.stringify(diff.warnings);
+  for (const serialized of [serializedProfiles, serializedCandidates, serializedMembers, serializedWarnings]) {
+    assert.ok(!serialized.includes("2015-04-12"), "a birthdate value must never reach a write payload or a warning line");
+  }
+  // The grade-derived bucket still resolves normally; a birthdate column
+  // present alongside grades never overrides or blocks that mapping.
+  const student1Profile = diff.learnerProfiles.create.find((p) => p.sourcedId === "student-1");
+  assert.equal(student1Profile?.birthYearBucket, "under13");
+});
+
 // ---------------------------------------------------------------------------
 // Malformed enrollment: unknown class reported and skipped
 // ---------------------------------------------------------------------------
@@ -283,4 +303,28 @@ const PRIVACY_MIGRATION = join(__dirname, "..", "supabase", "migrations", "20260
 test("privacy delete regression: graph.privacy_delete_learner still deletes graph.learner_profiles rows", () => {
   const sql = readFileSync(PRIVACY_MIGRATION, "utf8");
   assert.match(sql, /delete from graph\.learner_profiles where learner_id = p_learner_id/);
+});
+
+// ---------------------------------------------------------------------------
+// Reviewer gate: the roster route checks verifyReviewer before it ever
+// parses the request body. "@/lib/research-os/db" imports its Supabase
+// client at module load, so importing route.ts directly under plain
+// ts-node (no path-alias loader wired into this suite) is not the reach a
+// unit test can take; a static read of the route's own source, the same
+// technique the migration checks above use, is what confirms the ordering
+// this bead's own docstring claims: an unauthenticated POST is refused
+// with 403 before its multipart body (which could carry a birthdate
+// column) is ever read.
+// ---------------------------------------------------------------------------
+
+const ROSTER_ROUTE = join(__dirname, "..", "src", "app", "api", "research-os", "roster", "route.ts");
+
+test("roster route: reviewer gate runs before the request body is ever parsed, and rejects with 403", () => {
+  const src = readFileSync(ROSTER_ROUTE, "utf8");
+  assert.match(src, /const reviewer = await verifyReviewer\(req\);/);
+  assert.match(src, /if \(!reviewer\) return bad\(403, "forbidden"\);/);
+  const reviewerCheckIndex = src.indexOf("verifyReviewer(req)");
+  const formDataIndex = src.indexOf("req.formData()");
+  assert.ok(reviewerCheckIndex > -1 && formDataIndex > -1);
+  assert.ok(reviewerCheckIndex < formDataIndex, "the reviewer gate must run before the multipart body is parsed");
 });

@@ -2,6 +2,37 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #52 review pass
+
+Date 2026-09-10. Review of PR #52 (`feat/ros-roster-sync`) before merge, worktree
+`.ros-worktrees/r52`. Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, PR
+#52 review pass".
+
+### Edited
+
+- `scripts/test-research-os-roster.ts`: added `"adversarial: a birthdate column is dropped
+  at parse time and never reaches a write payload or warning"` (a `usersCsv` row carrying a
+  `birthdate` column, asserting the value never appears on a parsed `RosterUser` or in any
+  diff write payload or warning) and `"roster route: reviewer gate runs before the request
+  body is ever parsed, and rejects with 403"` (a static read of `route.ts`'s own source,
+  confirming the `verifyReviewer`/403 lines are present and precede `req.formData()`). 19
+  tests total, up from 17.
+
+### Verified
+
+Leak scan clean (no keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs). Birthdate never
+parsed, never persisted; only `birth_year_bucket` derived from a grade code. Dry run default;
+apply requires the literal `"true"` flag plus a server-verified reviewer token. Idempotent on
+`sourcedId`. `reviewer_candidates` never auto-promotes into the reviewer allowlist and its
+status is never reset by a re-sync. RLS enabled on `graph.reviewer_candidates`, no
+anon/authenticated policy. `CleverSource`/`ClassLinkSource` cannot be invoked under any
+config. `DATA-INVENTORY.md` already covered the new columns and table.
+
+Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (both new routes in the manifest),
+`npm run test:research-os` (0 failures), `next lint` on every touched file, `agf-lint-voice
+check` / `agf-lint-voice-src check` on every touched file: all clean.
+
 ## PR #45 finishing pass
 
 Same pass as `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10, PR #45

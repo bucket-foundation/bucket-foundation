@@ -1,5 +1,74 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #52 review pass
+
+Privacy engineer review of PR #52 (`feat/ros-roster-sync`, "OneRoster CSV
+roster sync, reviewer candidates, vendor source interfaces") before merge,
+in worktree `.ros-worktrees/r52` per the review protocol. `git merge
+origin/main` first (clean, no conflicts to resolve; `origin/main` had
+advanced by one hypothesis-engine log commit since the branch's last
+merge).
+
+Leak scan on the full diff against `origin/main`: no API keys, `.env`
+contents, IPs, non-public hostnames, personal emails other than
+`gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in
+file content. Every fixture user in `scripts/test-research-os-roster.ts`
+uses a `.example` email and an invented name. No redactions needed.
+
+Correctness checks against the review's own checklist: `oneroster.ts`
+reads users.csv through an explicit field allowlist (`sourcedId`, `email`,
+`givenName`, `familyName`, `grades`), so a `birthdate` column never
+reaches a `RosterUser`; `grade.ts`'s `gradeToBirthYearBucket` is the only
+path that ever sets `learner_profiles.birth_year_bucket`, from a grade
+code, never a date. `POST /api/research-os/roster` defaults to a dry run;
+`apply` requires the literal string `"true"` and `verifyReviewer(req)`
+verifies a real Supabase access token server-side before either path
+runs. `apply.ts` never resets an existing `reviewer_candidates.status` on
+re-sync (insert-only sets `"pending"`; update touches only email/name).
+Idempotency confirmed by test: applying the same bundle's diff twice
+yields zero further creates or updates. Migration
+`20260910050000_research_os_roster.sql` enables RLS on
+`graph.reviewer_candidates` with no anon/authenticated policy. Both
+`CleverSource` and `ClassLinkSource` throw unconditionally; neither can
+be invoked regardless of env config. `DATA-INVENTORY.md` already listed
+the new columns and table.
+
+Two gaps found and fixed on the branch:
+
+- No adversarial fixture exercised a `birthdate` column specifically (only
+  `address`/`phone` were covered). Added
+  `"adversarial: a birthdate column is dropped at parse time and never
+  reaches a write payload or warning"` to
+  `scripts/test-research-os-roster.ts`: a `usersCsv` row carrying
+  `birthdate,2015-04-12` parses with no `birthdate` key on the resulting
+  `RosterUser`, and the literal value never appears in
+  `learnerProfiles.create`, `reviewerCandidates.create`,
+  `classMembers.create`, or `diff.warnings`.
+- The roster route's reviewer gate had no test of its own (the shared
+  `isReviewerEmail` allowlist logic is tested elsewhere, but nothing
+  confirmed the route checks it, or checks it before parsing the request
+  body). Importing `route.ts` directly under this repo's plain
+  `ts-node`/CommonJS test runner is not reachable, its `"@/lib/..."`
+  imports need a path-alias loader this suite does not wire in, so this
+  is a static read of the route's own source, the same technique the
+  migration checks already in this file use. New test: `"roster route:
+  reviewer gate runs before the request body is ever parsed, and rejects
+  with 403"`, asserting both the `verifyReviewer`/403 lines are present
+  and that the reviewer check's source position precedes
+  `req.formData()`'s.
+
+Gates: `npm ci`, `npx tsc --noEmit` (clean), `npm run build` (both
+`/api/research-os/roster` and `/research-os/roster` confirmed in the
+build manifest), `npm run test:research-os` (full chain, 0 failures),
+`next lint` on every touched file (clean), `agf-lint-voice check` /
+`agf-lint-voice-src check` on every touched file (0 violations). 19 tests
+in `scripts/test-research-os-roster.ts` (17 original, 2 added by this
+review), all passing.
+
+No PII beyond a teacher's own contact information (already documented as
+staff data, out of scope for a learner's export/delete rights) is stored
+anywhere this bead touches. Merged via `gh pr merge --squash`.
+
 ## 2026-09-10: literature corpus promotion pass two
 
 Branch `intake/ros-canon-promotion-2`. Thirteen more records from
