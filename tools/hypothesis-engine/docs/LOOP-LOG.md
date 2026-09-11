@@ -2,6 +2,44 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, tick 3, api.py swarm and six PR reviews
+
+- **Environment gap**: this container carried none of `pytest`,
+  `hypothesis`, `jsonschema`, `matplotlib`, `pandas`/`pyarrow`, or
+  `coverage`; installed all with `pip3 install --user`, no sudo. Once
+  installed, `make test` (fast) on `main`: 1084 passed, 18 deselected, 0
+  failed. No engine defect.
+- **Random campaigns**: synth `--seeds 0-29` fake mode, 30/30, coverage
+  1.0, gate PASS; repeated seeds 0-2, identical to full float precision,
+  no nondeterminism. `realsweep` over education-atlas/production/
+  literature `--seeds 0-9` each, 0/30 crashed; education-atlas's
+  0.15-0.5 spread matches the pre-fix baseline PR #48 (merged this tick)
+  already documents, not a new defect.
+- **Test swarm**: `hte/api.py`'s `_validate_production_record`
+  (86.7%, no dedicated swarm file; `tests/test_api.py` covers its
+  enum-value branches only). New `tests/swarm-20260911/
+  test_api_validation_props.py`, 21 tests over every shape-validation
+  branch plus `_llm_mode_override`/`_calibration_summary`; isolated
+  `hte/api.py` coverage 86% to 99%. Full suite 1105 passed. Skipped
+  regenerating `tests/COVERAGE.md`: `make test-cov`'s full profile hit
+  two `slow` tests failing on missing `agf-lint-voice`/`pdflatex`
+  binaries (the second newly confirmed), which would have written a
+  snapshot skewed by environment gaps rather than real numbers.
+- **PRs opened**: #66 (the swarm work above), reviewed clean and
+  squash-merged (`4bd4e07dd`).
+- **PRs reviewed**: #59, #58, #56, #55, #54 (new since tick 2), #51
+  (re-review after a new commit). All six merged by the concurrent
+  local-session loop shortly after, none matching this loop's own merge
+  authority regardless. Findings: #59 clean, two Medium notes; #58 one
+  High (union-interval rule yields multi-millennium spans on 51 of 52
+  correlations, so the reported coverage gain reads as an interval-width
+  artifact); #56 clean; #55 two Medium (a real silent-failure gap in
+  `parse.py`'s rename handling, a stale doc line), two Low; #54 RLS
+  confirmed deny-all/service-role-only, schema-alignment trigger did not
+  fire, one Medium (missing field length cap); #51 the tick-2 conflict
+  is fixed but `main` moved again, fresh Medium re-rebase finding.
+- **Blocked**: nothing.
+
 ## 2026-09-10, PR58 review, and queue wrap-up (PR42/48/49/51/58)
 
 - **PR #58 reviewed and merged** (`feat/hte-sacred-history-data`,
