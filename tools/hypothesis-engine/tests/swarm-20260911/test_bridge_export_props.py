@@ -7,7 +7,7 @@ given_floors`, `..._carries_full_opinion_and_never_tier_assigned`,
 `linking_run` fixture and `_linking_corpus`/`_hypothesis` helpers rather
 than rebuilt from scratch (the same qualified-import pattern `tests/
 swarm-20260910/test_runner_props.py` already uses against `tests.swarm.
-conftest`). This file covers what those three do not: `write_bridge_
+conftest`). New here, beyond those three: `write_bridge_
 export`'s own file-write side effect, `_source_tier`'s empty-evidence
 and multi-tier-picks-the-best branches, `model` reading `MANIFEST.
 json["models"]["roles"]["generator"]` when that path is present versus

@@ -2281,3 +2281,52 @@ session URLs. `agf-lint-voice check` clean on every file this pass touched.
 Review of PR #73 (production provenance guard) found `hasUnverifiedSource` reads `false` against an empty `source_provenance` array, the value the migration backfills onto every pre-existing `submitted` production. Fixed with `production-guard.ts`'s new `isSourceProvenanceStale`, wired into `/api/research-os/review`'s approve gate (POST) and its `guardFlags`/`unverifiedSourceNoteTemplate` (GET), so a production whose sources were never checked reads the same as one with a failed check rather than sailing through as "0 unverified." 3 new tests in `scripts/test-research-os-production-guard.ts`.
 
 Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Class-peer duplicate detection confirmed scoped to shared classes only, and its response never carries another learner's matched claim text (`matchId`/`matchOrigin`/`score` only). Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (both routes in the manifest), `npm run test:research-os` (28 files, `fail 0`, 391 tests), `next lint` clean, `agf-lint-voice-src check` clean; `agf-lint-voice check` fixed one banned word this pass's own test name introduced, left two pre-existing hits outside the diff untouched.
+
+## 2026-09-10: preregistration revision 1
+
+Worktree `~/agfarms/.ros-worktrees/prereg2`, branch `docs/ros-08-prereg-revision-1`. Task:
+revise `learning/research-os/study/PREREGISTRATION-DRAFT.md` against `PLAN-REVISION-3.md`
+section 2's evidence-driven revisions and two newly shipped design docs, `GUIDANCE.md`
+(branch `feat/ros-faded-guidance`, no PR opened) and `PRODUCTION-GUARD.md` (PR #73, open).
+Full account in `learning/research-os/CHANGE-LEDGER.md`'s matching iteration.
+
+### Edited
+
+- `learning/research-os/study/PREREGISTRATION-DRAFT.md`: new "Revision history" section;
+  the Sampling Plan's d = 0.4 to 0.5 planning assumption re-anchored to three named
+  meta-analyses (Chen and Yang 2019, Furtak and colleagues 2012, Lazonder and Harmsen 2016)
+  with a population-and-moderator fit table, keeping d = 0.4 as the chosen planning value
+  and the naive/cluster-corrected n-per-arm tables numerically unchanged (76/119/211 naive;
+  262/405/691 cluster-corrected at d = 0.4); a new "Guidance and forcing factors" subsection
+  fixing both switches on for Phase 1 rather than crossing them factorially; a new "Required
+  participation and misconduct risk" subsection (Grinnell and colleagues 2020) stratifying,
+  not excluding, a class whose teacher requires Production submission; two new secondary,
+  exploratory outcomes (calibration under H1, production provenance-flags rate under H3) in
+  the Measured Variables table, plus a "considered and deferred" paragraph for a lateral-reading
+  outcome whose underlying field does not exist in shipped code; Covariates, Data exclusion,
+  and Exploratory analyses updated to carry `guidanceLevel` and `productionRequired`.
+- `learning/research-os/study/INSTRUMENTS.md`: two new sections (4, guidance level; 5,
+  production provenance flags) and a new per-class field (6, `productionRequired`); intro
+  count and closing section updated from three items to five, and a stale "none of the
+  three instruments is implemented" claim, already false against section 2's own "Status:
+  shipped" line, corrected.
+- `learning/research-os/RESEARCH-QUESTIONS.md`: five append-only pointer lines under
+  questions 7, 10, 11, 13, and 31.
+- `_intake/research-os-k12/DELETIONS.md`: two new entries, every sentence this revision
+  replaced preserved verbatim.
+
+### Verified
+
+- `agf-lint-voice check` on every file this pass touched (`PREREGISTRATION-DRAFT.md`,
+  `INSTRUMENTS.md`, `RESEARCH-QUESTIONS.md`): 9 violations across the first two files on
+  the first pass (4 antithesis, 1 banned word, 1 heading, 3 antithesis), all fixed by hand;
+  0 remaining on the second pass. `DELETIONS.md` and `CHANGELOG.md` fall under the org-level
+  `_intake` voiceignore entry (verbatim-replacement and changelog material), unscanned by
+  design, consistent with every other entry in both files.
+- No code, migration, or test file touched; this is a docs-only pass.
+
+## 2026-09-11, PR #76 review pass
+
+Review of PR #76 (preregistration revision 1, docs-only) as methods reviewer. Recomputed the naive n-per-arm formula (n = 2(z_alpha/2 + z_beta)^2/d^2, alpha = 0.025 two-sided, power = 0.80) by hand: 76/119/211 at d = 0.5/0.4/0.3, and the cluster-corrected figures (DEFF = 1 + (m_bar-1) x ICC, m_bar = 25) at 262/405/691 for ICC 0.05/0.10/0.20, both matching the draft exactly, no drift from the prior review's own figures. Checked the three meta-analytic anchors (Furtak and colleagues 2012, Lazonder and Harmsen 2016, Chen and Yang 2019) against their own intake cards: pooled effects and moderators match on all three; Furtak's card states no explicit population descriptor; the table's "K-12 and undergraduate science students" phrase is this pass's own addition, noted as a minor finding, and the pooled d = 0.50 the n-table draws from stays accurate. Confirmed the calibration outcome's fields (`learnerConfidence`, `sourcePrediction`, `predictionCorrect`, `forcingEnabled`) and the provenance-flags fields (`source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`) are real, typed fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` and real columns in `supabase/migrations/20260910060000_research_os_production_guard.sql`, both merged to `main`. Confirmed the Required participation and misconduct risk subsection cites Grinnell and colleagues (2020) and keeps Production submission opt-in per `PLAN-REVISION-3.md` decision 6. Confirmed the Revision history section exists and every replaced sentence (both files' header status lines, the effect-size paragraph, the naive-n table, the diversity-outcome judge cell, the Exploratory analyses sentence, `INSTRUMENTS.md`'s intro and closing section) is preserved verbatim in `DELETIONS.md`. `RESEARCH-QUESTIONS.md`'s diff carries no removed lines, append-only confirmed. No partner school, IRB approval, PI, or host institution claimed anywhere in the touched files; both existing denials (`PREREGISTRATION-DRAFT.md`'s opening paragraph and its Registration timing section) stand unchanged.
+
+Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Gates: nothing under `src/` or `public/` changed; branch already carries `origin/main` (merged mid-pass by the PR's own author, confirmed fast-forward-clean here); no file deleted, `git diff --name-status` shows every touched file as `M`. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and `CHANGE-LEDGER.md`; `agf-lint-voice-src check` clean on the one touched source file. No fix needed; merged as-is.

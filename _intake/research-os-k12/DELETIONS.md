@@ -447,3 +447,49 @@ commit.
 > **Server enforcement.** `src/lib/research-os/forcing.ts`'s held-attempt store is the only place a graded-but-unrevealed verdict lives. `getPendingAttempt` never returns a verdict on its own; `workspace/route.ts`'s "check" phase 2 is the only caller, and it only reaches the reveal code path once `isValidLearnerConfidence` and a non-empty `sourcePrediction` both hold, on the SAME request. A request carrying only `attemptId`, no confidence, no prediction, gets a 400 and the attempt stays held for a retry: there is no separate "peek" endpoint, so no code path returns a verdict without both fields present. `scripts/test-research-os-forcing.ts` proves this against the store directly, with no network or database.
 >
 > **In-memory, best effort.** The held-attempt store, like `src/lib/research-os/rate-limit.ts`'s daily cap, is an in-memory `Map`: a serverless cold start or a multi-instance deploy can lose a pending attempt, and the learner sees the Check form again rather than an error. A 30-minute TTL (`forcing.ts`'s `ATTEMPT_TTL_MS`) bounds how long an abandoned attempt lingers. A durable store is Phase 2 work, the same posture the daily cap already documents.
+
+## 2026-09-10, `learning/research-os/study/PREREGISTRATION-DRAFT.md`, revision 1: effect-size anchoring, arms and factors, new outcomes, required participation
+
+**Reason.** `PLAN-REVISION-3.md` section 2's evidence-driven revisions (effect-size anchoring, guidance for low-prior-knowledge learners, required participation and production misconduct) and two newly shipped design docs (`GUIDANCE.md` on branch `feat/ros-faded-guidance`, `PRODUCTION-GUARD.md` on PR #73) drove five changes to the preregistration draft, logged in full in `learning/research-os/study/PREREGISTRATION-DRAFT.md`'s own new "Revision history" section. The passages below are the exact original sentences each change replaced.
+
+**Original header status line, replaced** (the "Reads against" citation list gained `PLAN-REVISION-3.md`, `GUIDANCE.md`, `PRODUCTION-GUARD.md`, and six literature cards; "draft, bead `ros-08`" became "draft, revision 1, bead `ros-08`"):
+
+> **Status:** draft, bead `ros-08` · **Date:** 2026-09-10 · Reads against `learning/research-os/PLAN-REVISION-1.md` sections 2c, 3 item 9, and 4; `learning/research-os/LEARNER-STATE-MODEL.md` sections 4 and 5; `src/lib/research-os/EVIDENCE-SCHEMA.md`; `_intake/research-os-k12/04-compliance-distribution.md` section 10; `_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 9; `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`.
+
+**Original "The compiled effect-size and power-analysis sources already in this repo" paragraph, replaced** (the closing clause naming d = 0.4 as "a conservative assumption rather than an inflated one" is cut; the three-anchor table and the "planning effect size this draft chooses" paragraph now carry that reasoning instead):
+
+> **The compiled effect-size and power-analysis sources already in this repo.** `_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 9 and `04-compliance-distribution.md` section 10 both state, as a "back-of-envelope heuristic," that a three-arm between-subjects design targeting a medium effect (Cohen's d roughly 0.4 to 0.5) at standard power (0.80) and alpha (0.05) needs on the order of 60 to 70 students per arm, and that a smaller expected effect (d roughly 0.3) roughly doubles that; both sources explicitly ask for a commissioned formal power analysis once effect size and clustering are set, rather than treating this heuristic as final. Bastani and colleagues (2025)'s guardrailed-versus-unrestricted contrast (a 127 percent practice-performance gain with no significant exam-performance drop, against a 48 percent practice gain paired with a 17 percent exam drop for the unrestricted condition) is directional support that a scoped-tool effect on unassisted post-test performance could exceed a medium effect size, but the paper reports percentage changes on a different task, population, and country than this pilot, with no standard deviation reported in the intake card this draft can convert into a comparable Cohen's d; it is cited here as reason to treat d = 0.4 as a conservative assumption rather than an inflated one; it stands in for direction, never for a formal power analysis.
+
+**Original naive n-per-arm table, replaced** (same d values and n values; the "Source of the assumption" column moves from an unsourced heuristic label to the three named meta-analytic anchors):
+
+> | Assumed d | Source of the assumption | n per arm, naive (no clustering) |
+> |---|---|---|
+> | 0.5 | Upper end of the system-review and compliance-report heuristic | 76 |
+> | 0.4 | Lower end of the same heuristic; this draft's main assumption | 119 |
+> | 0.3 | The same sources' own "smaller effect" sensitivity case | 211 |
+
+**Original diversity-outcome Judge-and-scoring cell, replaced** (the open "method to be fixed" question now names a concrete candidate method):
+
+> Automated text-similarity scoring, method to be fixed before Phase 1 data collection, following Doshi and Hauser (2024)'s own similarity measure as the closest precedent
+
+**Original Exploratory analyses sentence, replaced** (the calibration outcome, the provenance-flags-rate outcome, and the required-participation sensitivity check are spliced into the existing list; every original item is preserved):
+
+> Named explicitly here so they are not later reported as if pre-specified: the class-level production-diversity secondary outcome under H1; the Production-tier scientific-understanding probing pass named for overlap-map question 12 in the Study Information section above; the prior-Academy-proficiency covariate; the per-protocol sensitivity analysis under Data exclusion; and any subgroup analysis by grade band, gifted-versus-Title I channel, or route condition not already named as a primary contrast.
+
+## 2026-09-10, `learning/research-os/study/INSTRUMENTS.md`, revision 1: guidance level and production provenance flags added
+
+**Reason.** Same revision 1 pass as the `PREREGISTRATION-DRAFT.md` entry above. `INSTRUMENTS.md` gained two new sections (4, guidance level; 5, production provenance flags) and a new per-class field (6, `productionRequired`), each reading against a design doc that did not exist when the file's own header and closing section were last written.
+
+**Original header status line, replaced:**
+
+> **Status:** draft, bead `ros-08`; section 2's metacognitive confidence item shipped as real code this pass · **Date:** 2026-09-10 · Reads against `src/lib/research-os/probe.ts`, `src/lib/research-os/stages.ts`, `src/lib/research-os/grounding.ts`, `src/lib/research-os/forcing.ts`, `src/lib/research-os/calibration.ts`, `src/lib/research-os/EVIDENCE-SCHEMA.md`, `learning/research-os/PLAN-REVISION-2.md` section 2a, `learning/research-os/LEARNER-STATE-MODEL.md` section 4, `_intake/research-os-k12/04-compliance-distribution.md` section 11 (teacher adoption playbook), `_intake/research-os-k12-literature/hci-human-ai-collaboration/bucinca-malaya-gajos-2021-cognitive-forcing-functions.md`, `_intake/research-os-k12-literature/hci-human-ai-collaboration/bansal-et-al-2021-ai-explanations-complementary-team-performance.md`, `_intake/research-os-k12-literature/hci-human-ai-collaboration/vaccaro-almaatouq-malone-2024-combinations-humans-ai-useful.md`, `_intake/research-os-k12-literature/hci-human-ai-collaboration/lee-et-al-2025-generative-ai-critical-thinking-confidence.md`, `_intake/research-os-k12-literature/hci-human-ai-collaboration/fisher-goddu-keil-2015-searching-for-explanations.md`.
+
+**Original intro paragraph, replaced** (item count moved from three to five; the metacognitive confidence item's own "shipped this pass" phrasing, now stale, was corrected to "shipped"):
+
+> Three instruments the three-arm pilot (`PREREGISTRATION-DRAFT.md`) needs beyond the transfer items themselves (`TRANSFER-TASK-BANK.md`): a retention probe schedule, a metacognitive confidence item, and a teacher time-on-review log. The retention probe schedule and the teacher time-on-review log stay unbuilt; each section below states what exists to build on and what schema addition it needs, following the same gap-naming discipline `src/lib/research-os/EVIDENCE-SCHEMA.md` already uses. The metacognitive confidence item shipped this pass as part of cognitive forcing on Check (`learning/research-os/PLAN-REVISION-2.md` section 2a, `src/lib/research-os/forcing.ts`): section 2 below describes the item as built, moved from a question fired after the verdict to a commit collected before it.
+
+**Original closing section, replaced** (the section's own count and its stale "none of the three instruments is implemented" claim, already false against section 2's own "Status: shipped" line above it, are corrected):
+
+> ## What these three instruments share
+>
+> Every field named above as a schema gap is additive and optional, following the same discipline `EVIDENCE-SCHEMA.md`'s own contract states directly: a writer omits a field it has nothing for, and no existing transition function, review route, or evidence-event reader needs to change to tolerate the addition. None of the three instruments is implemented; this file specifies what `ros-04` and `ros-06` build against, the same relationship `EVIDENCE-SCHEMA.md` holds to `LEARNER-STATE-MODEL.md` section 4.
