@@ -32,6 +32,42 @@ holdout_by_discovery_date` already works for the two shipped corpora; and a
 stemma edge whenever a production's own evidence cites another
 production's claim directly, so a citation chain of depth two or more
 survives into `Source.stemma_parents`.
+
+Two more mappings close the seam `bucket-foundation` PR #73's own production-
+guard columns opened (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own "PR #73"
+section carries the full field table):
+
+- **Counter-evidence.** `graph.productions.counter_evidence` (`[{text}]`,
+  or a bare newline-string array, mirroring `evidence`'s own dict-or-string
+  duality) becomes its own `ClaimEvidence` entries, appended onto the same
+  claim the row's own `evidence`/`sources` already built (same address,
+  same slots), each one carrying a `stance` override of `"refutes"`
+  (`_stance_to_hte`'s own vocabulary) rather than the claim's default
+  `"supports"`, and an explicit `{"type": "none", "value": "uncited"}`
+  citation: Research OS's own `CounterEvidenceEntry` carries no citation
+  field of its own, so every counter-evidence entry is uncited by
+  construction, and this module says so on the record rather than leaving
+  `citations` silently empty the way an ordinary uncited evidence line
+  does. `_build_corpus` reads each `ClaimEvidence`'s own `stance` override
+  when building its `EvidenceItem`, falling back to the claim's stance
+  when the entry carries none, so a production's own supporting evidence
+  and a learner's own rebuttal notes can now coexist as one claim's mixed-
+  stance evidence, `hte.link.link_evidence` linking the refuting entries
+  into that claim's `refutes` set the same way any other stance-negative
+  item would.
+- **Duplicates.** `graph.productions.duplicate_flag` (`{matchId,
+  matchOrigin, score}` or `null`) or a bare `duplicate_of` id on the row
+  reads onto `Production.duplicate_of`. `_build_corpus` emits a stemma
+  edge from the duplicate's own `Source` to the matched production's
+  (`sources[production.id].stemma_parents.append(duplicate_of)`, the same
+  citer-lists-cited direction the citation-chain stemma edge above
+  already uses) whenever that matched id names another production in the
+  same ingest batch, so `hte.belief.effective_count` folds a near-
+  duplicate submission into its original's connected component instead of
+  counting it as independent corroboration. A `matchOrigin` this batch has
+  no `Source` for yet (`"canon"`, or an original outside this batch) adds
+  no edge; the duplicate row itself is never dropped either way, only its
+  own stemma edge is skipped.
 """
 from __future__ import annotations
 
@@ -272,6 +308,60 @@ def _string_source_entries(sources_raw: list[str]) -> list[dict[str, Any]]:
     return out
 
 
+def _research_os_counter_evidence(
+    counter_evidence_raw: list[Any], *, author_role: str = "student", production_id: str = "",
+) -> list[dict[str, Any]]:
+    """`graph.productions.counter_evidence` (`src/lib/research-os/
+    production-guard.ts`'s `CounterEvidenceEntry`, `[{text}]`), folded into
+    evidence entries carrying a `"stance": "refutes"` override (`_build_
+    corpus` reads it in place of the claim's own default `"supports"`, see
+    `_stance_to_hte`). Accepts the same dict-or-string duality
+    `_research_os_evidence` already handles for `evidence`/`sources`, since
+    `normalizeCounterEvidence` (the app-side writer) tolerates a bare
+    string array the same way the real production form's own `evidence`
+    field does:
+
+    - a dict entry (`{"text": "..."}`, `CounterEvidenceEntry`'s own shape)
+      reads `text` directly;
+    - a string entry is the text itself, matching `_string_evidence_
+      entries`'s own newline-split-line reading.
+
+    Every entry is uncited by construction (`CounterEvidenceEntry` carries
+    no citation field of its own, unlike the Quote tool's evidence dicts),
+    so `citations` is always the one-element `[{"type": "none", "value":
+    "uncited"}]` list rather than the empty list an ordinary uncited
+    evidence line gets: a caller reading `citations` downstream can tell
+    "this entry is deliberately uncited rebuttal text" apart from "this
+    entry's citation was never recorded at all." `source_id` is scoped by
+    `production_id` (`f"research-os-counter-line-{production_id}-{i}"`),
+    the same per-production scoping `_string_evidence_entries` uses, so two
+    productions in one ingest batch each writing their own counter-
+    evidence line 0 do not collide onto one `_build_corpus`-created
+    `Source`. `tier` reads `_tier_for_author_role(author_role)`, the same
+    reliability default an ordinary evidence line gets; a rebuttal is not
+    inherently less reliable than the claim it rebuts."""
+    out: list[dict[str, Any]] = []
+    for i, entry in enumerate(counter_evidence_raw or []):
+        if isinstance(entry, str):
+            text = entry.strip()
+        elif isinstance(entry, dict):
+            text = (entry.get("text") or "").strip()
+        else:
+            continue
+        if not text:
+            continue
+        out.append({
+            "source_id": f"research-os-counter-line-{production_id}-{i}",
+            "locator": "(uncited)",
+            "quote": text,
+            "kind": "textual",
+            "tier": _tier_for_author_role(author_role),
+            "citations": [{"type": "none", "value": "uncited"}],
+            "stance": "refutes",
+        })
+    return out
+
+
 def _research_os_evidence(
     evidence_raw: list[Any], sources_raw: list[Any], *, author_role: str = "student", production_id: str = "",
 ) -> list[dict[str, Any]]:
@@ -416,6 +506,19 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
       on `graph.productions` the way `PRODUCTION-SCHEMA.md`'s own
       `review.history` array does. It stays exact for the one date
       `_build_corpus` reads, `review.date_of("accepted")`.
+    - `counter_evidence` (PR #73's own column, `[{text}]` or a bare
+      newline-string array) folds into the same claim's `evidence` list
+      via `_research_os_counter_evidence`, each entry carrying its own
+      `"stance": "refutes"` override rather than the claim's default
+      `"supports"`; a row carrying `counter_evidence` but no `claim`/
+      `evidence`/`sources` at all still gets a claim built for it, so the
+      rebuttal is never dropped for lack of a claim to attach to.
+    - `duplicate_of` reads a bare `duplicate_of` id on the row when
+      present, else `duplicate_flag.matchId` (PR #73's own `{matchId,
+      matchOrigin, score}` shape); `None` when neither is present, or when
+      `duplicate_flag` is `null`. `_build_corpus` is what decides whether
+      the matched id resolves to a real `Source` in the same batch; this
+      function only carries the id forward.
 
     Raises `ValueError` if the row carries no `id`, no `target_node_id`,
     a `status` outside `RESEARCH_OS_STATUS_MAP`'s own four known values,
@@ -453,15 +556,23 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
     claim_text = (raw.get("claim") or "").strip()
     evidence_raw = raw.get("evidence") or []
     sources_raw = raw.get("sources") or []
+    counter_evidence_raw = raw.get("counter_evidence") or []
     claims: list[dict[str, Any]] = []
-    if claim_text or evidence_raw or sources_raw:
+    if claim_text or evidence_raw or sources_raw or counter_evidence_raw:
+        evidence_entries = _research_os_evidence(evidence_raw, sources_raw, author_role="student", production_id=raw["id"])
+        evidence_entries.extend(
+            _research_os_counter_evidence(counter_evidence_raw, author_role="student", production_id=raw["id"])
+        )
         claims.append({
             "text": claim_text,
             "stance": "supports",
             "slots": {"actor": None, "action": None, "object": target_node_id, "place": None, "mechanism": None},
             "interval": {"start": record_year, "end": record_year},
-            "evidence": _research_os_evidence(evidence_raw, sources_raw, author_role="student", production_id=raw["id"]),
+            "evidence": evidence_entries,
         })
+
+    duplicate_flag = raw.get("duplicate_flag") or {}
+    duplicate_of = raw.get("duplicate_of") or (duplicate_flag.get("matchId") if isinstance(duplicate_flag, dict) else None)
 
     return {
         "id": raw["id"],
@@ -473,6 +584,7 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
         "claims": claims,
         "review": {"status": mapped_status, "history": [{"status": mapped_status, "date": moved_at}]},
         "provenance": f"research-os-{node.get('branch', 'phase-0')}",
+        "duplicate_of": duplicate_of,
     }
 
 
@@ -518,20 +630,33 @@ class ClaimEvidence:
     quote itself, that source's own `hte.evidence` kind and tier, and its
     citations. `source_id` is either an external cited source's own id, or
     another production's id in this same corpus, the second case being
-    what `_build_corpus` reads as a stemma edge."""
+    what `_build_corpus` reads as a stemma edge.
+
+    `stance` is `None` on every ordinary entry (this claim's own `Claim.
+    stance` is what `_build_corpus` reads instead); a counter-evidence
+    entry (`_research_os_counter_evidence`) sets it to `"refutes"`
+    (`_STANCE_MAP`'s own vocabulary) as a per-entry override, so one
+    claim's evidence list can carry both a supporting stance (the claim's
+    own default) and a refuting one (a learner's own rebuttal notes) side
+    by side, `_build_corpus` reading each entry's own override when
+    present and falling back to the claim's stance otherwise."""
     source_id: str
     locator: str
     quote: str
     kind: EvidenceKind
     tier: Tier
     citations: tuple[Citation, ...] = ()
+    stance: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        d = {
             "source_id": self.source_id, "locator": self.locator, "quote": self.quote,
             "kind": self.kind.value, "tier": self.tier.value,
             "citations": [c.to_dict() for c in self.citations],
         }
+        if self.stance is not None:
+            d["stance"] = self.stance
+        return d
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "ClaimEvidence":
@@ -539,6 +664,7 @@ class ClaimEvidence:
             source_id=d["source_id"], locator=d["locator"], quote=d["quote"],
             kind=EvidenceKind(d["kind"]), tier=Tier(d["tier"]),
             citations=tuple(Citation.from_dict(c) for c in d.get("citations", [])),
+            stance=d.get("stance"),
         )
 
 
@@ -618,7 +744,15 @@ class Production:
     parsed losslessly: `load_raw`/`load_supabase` hand these back before
     `_build_corpus` projects them onto the coarser `Corpus` shape (folding
     each evidence entry's citations into its `EvidenceSpan.locator`, for
-    one; see that function's own docstring for the rest)."""
+    one; see that function's own docstring for the rest).
+
+    `duplicate_of` is `None` on every production `PRODUCTION-SCHEMA.md`'s
+    own fixture shape ever carries (that shape has no duplicate-detection
+    concept); a Research OS row's own `duplicate_flag.matchId` (or a bare
+    `duplicate_of`) normalizes onto it (`normalize_research_os_record`).
+    `_build_corpus` reads it to decide whether to emit a stemma edge from
+    this production's own `Source` to the matched one's, see this
+    module's own top docstring, "Duplicates.\""""
     id: str
     created_at: str
     author_role: str
@@ -628,15 +762,19 @@ class Production:
     claims: tuple[Claim, ...]
     review: Review
     provenance: str
+    duplicate_of: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        d = {
             "id": self.id, "created_at": self.created_at, "author_role": self.author_role,
             "grade_band": self.grade_band, "school_or_district_id": self.school_or_district_id,
             "research_question": self.research_question,
             "claims": [c.to_dict() for c in self.claims],
             "review": self.review.to_dict(), "provenance": self.provenance,
         }
+        if self.duplicate_of is not None:
+            d["duplicate_of"] = self.duplicate_of
+        return d
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "Production":
@@ -654,6 +792,7 @@ class Production:
             research_question=d["research_question"],
             claims=tuple(Claim.from_dict(c) for c in d.get("claims", [])),
             review=Review.from_dict(d["review"]), provenance=d.get("provenance", ""),
+            duplicate_of=d.get("duplicate_of"),
         )
 
 
@@ -771,6 +910,21 @@ def _build_corpus(
       depth two (`X` cites `Y`, `Y` cites `Z`) is two such edges, `X ->
       Y` and `Y -> Z`, discovered independently as each production's own
       claims are read.
+    - **Duplicates.** A production naming another one, already in this
+      same batch, as its own `duplicate_of` gains that production's id as
+      a `stemma_parents` entry too, the same citer-lists-cited direction
+      the citation-chain edge above uses: `sources[duplicate.id].
+      stemma_parents.append(duplicate_of)`. This runs in the first pass
+      below, alongside every production's own unconditional `Source`
+      creation, so it applies regardless of `status_min` the same way that
+      `Source` creation does. A `duplicate_of` naming an id outside this
+      batch (a canon-origin match, or an original a different ingest run
+      already consumed) adds no edge, since there is no `Source` in this
+      batch to point at; the duplicate production itself is never dropped
+      either way, only its own stemma edge is skipped. See this module's
+      own top docstring, "Duplicates," and `hte.belief.effective_count`,
+      the function that discounts the duplicate once this edge is on
+      file.
     - **EvidenceItems.** One per claim's evidence entry, `id = f"
       {production.id}-c{claim_index}-e{evidence_index}"`, its slots and
       interval read off the *claim* (an evidence entry carries no slots of
@@ -782,11 +936,21 @@ def _build_corpus(
       passes) contribute any `EvidenceItem`s at all.
     - **Retraction.** A retracted production's own `EvidenceItem`s carry
       `is_absence=True` and `stance=Stance.NEGATIVE`, overriding whatever
-      the claim's own `stance` field says. A claim's own `stance` field
-      describes its relation to whatever it argued about; retraction is a
-      separate axis, whether the research record still stands behind the
-      claim at all, so it overrides at ingestion rather than blending with
-      the claim's own declared stance.
+      the claim's own `stance` field, or any per-entry override below,
+      says. A claim's own `stance` field describes its relation to
+      whatever it argued about; retraction is a separate axis, whether the
+      research record still stands behind the claim at all, so it
+      overrides at ingestion rather than blending with either.
+    - **Per-entry stance override.** A non-retracted claim's own evidence
+      entries default to the claim's own `stance`, but an entry carrying
+      its own `ClaimEvidence.stance` (counter-evidence,
+      `_research_os_counter_evidence`'s `"refutes"`) uses that instead:
+      one claim's evidence list can carry a mix, its own supporting
+      entries at the claim's default stance alongside a learner's own
+      rebuttal entries at `"refutes"`, `hte.link.link_evidence` then
+      linking the refuting entries into that claim's own `refutes` set
+      rather than its `supports` set for whatever hypothesis address they
+      share.
     - **Ground truth.** One `GroundTruthEvent` per claim whose production
       is `accepted` and non-retracted, passing `status_min` on its own
       being insufficient: `teacher-reviewed` evidence still lacks the
@@ -828,6 +992,9 @@ def _build_corpus(
             retrieval_run_id=retrieval_run_id, doc_id=production.id, source_path=source_path_for(production),
             fetched_at=fetched_at, fixture=True, citation_count=len(production.claims), lineage_count=0,
         ))
+        duplicate_of = production.duplicate_of
+        if duplicate_of and duplicate_of != production.id and duplicate_of in production_ids:
+            sources[production.id].stemma_parents.append(duplicate_of)
 
     evidence: list[EvidenceItem] = []
     ground_truth: list[GroundTruthEvent] = []
@@ -854,6 +1021,7 @@ def _build_corpus(
                 cite_suffix = "; ".join(f"{c.kind}:{c.value}" for c in ev.citations)
                 locator = f"{ev.locator} (cite: {cite_suffix})" if cite_suffix else ev.locator
                 item_id = f"{production.id}-c{ci}-e{ei}"
+                entry_stance = stance if retracted else (_stance_to_hte(ev.stance) if ev.stance else stance)
                 evidence.append(EvidenceItem(
                     id=item_id, kind=ev.kind, tier=ev.tier, source_id=ev.source_id,
                     span=EvidenceSpan(doc_id=ev.source_id, locator=locator, quote=ev.quote, char_start=0, char_end=len(ev.quote)),
@@ -861,7 +1029,7 @@ def _build_corpus(
                     actor=claim.slots.get("actor"), action=claim.slots.get("action"),
                     object=claim.slots.get("object"), place=claim.slots.get("place"),
                     mechanism=claim.slots.get("mechanism"), interval=claim.interval,
-                    is_absence=retracted, stance=stance,
+                    is_absence=retracted, stance=entry_stance,
                 ))
                 if first_evidence_id is None:
                     first_evidence_id = item_id
