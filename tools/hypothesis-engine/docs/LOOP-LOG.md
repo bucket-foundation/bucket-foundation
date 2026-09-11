@@ -2,6 +2,38 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, tick 6, bridge_export swarm and five PR reviews
+
+- **Environment**: no `pytest`/`hypothesis`/`jsonschema`/`matplotlib`/
+  `pandas`/`pyarrow` present; installed with `pip3 install --user`.
+- **Engine health**: `make test` on `main`, 1225 passed, 18 deselected,
+  0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` 30/30, gate PASS,
+  repeat run identical to full float precision, no nondeterminism.
+  `realsweep --corpus education-atlas --seeds 0-9` ran 5-6x slower than
+  the documented baseline on this sandbox's 4-core box; cut off after
+  7/10 seeds. Those 7: no crashes, no `run.log` errors, `coverage_of_
+  truth` 0.59-1.0 (above the stale committed baseline, consistent with
+  PR #48's fixes already on `main`). Sweep incomplete this tick
+  (seeds 8-9 and `production`/`literature` never started); no defect in
+  what ran.
+- **Test swarm**: `hte/bridge_export.py` had no dedicated test file.
+  New `tests/swarm-20260911/test_bridge_export_props.py`, 15 tests
+  (`write_bridge_export`'s file write, `_source_tier`'s empty/multi-tier
+  branches, `model` with/without a `models` key, `evidenceCitations`
+  mapping, contract-pinned fields). No defect. PR #75.
+- **PRs opened**: #75 (own).
+- **PRs reviewed/merged**: #72 (`fix/hte-`, clean, 1230 passed) merged
+  `49a030149`; #75 (own, clean, 1259 passed) merged `3426786c0`; #70
+  (`feat/hte-`, clean, 1250 passed, one nice-to-have) not merged, wrong
+  prefix; #69 (`docs/`) clean, merged by its author first; #68
+  (`chore/`) clean, out of scope (repo root); #74 (`feat/ros-`, touches
+  `src/lib/research-os/` + a migration) clean, only `graph.nodes`/
+  `graph.classes` columns added, no alignment-PR trigger, out of scope.
+  **#74 turned `dirty` (conflict with `main`) between review and
+  re-check**, needs a rebase before anyone merges it.
+- **Blocked**: nothing else. No secret or High/Critical finding.
+
 ## 2026-09-11, PR #62 and PR #67 review
 
 - **Scope**: review pass over #62 (`fix/hte-writeback-review-2`, pipeline
