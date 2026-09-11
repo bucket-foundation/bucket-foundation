@@ -115,10 +115,32 @@ class Candidate:
 class RunContext:
     """The manifest, corpus, and vocabulary a run's own candidates were
     reconstructed against, carried alongside `list[Candidate]` so a
-    caller needs no second `load_run`/re-ingest to render a card."""
+    caller needs no second `load_run`/re-ingest to render a card.
+
+    `unrecoverable_survivor_ids` (`bkt-hte-writeback-review`, PR #36's
+    own review): every short id `run_dir`'s own `timeline.json` names as
+    a real survivor (`event_views`, which partitions every placement-
+    type survivor by its own (OBJECT, PLACE) pair, `hte.export.
+    timeline_views`'s own construction, exhaustively) but that carries
+    no entry in any `bins[].ranked_hypotheses` (`hte.runner.
+    _time_bins_for`'s own declared bin set not covering that survivor's
+    real time bin, `docs/BUILD-HISTORY.md`'s own "262 of 299" finding on
+    the sacred-history run) -- `reconstruct_candidates` has no persisted
+    slots or address to rebuild an id like that from `timeline.json`
+    alone, so it is left out of `list[Candidate]` rather than fabricated.
+    This tuple is where that gap goes instead of only a `logger.warning`
+    line: `len(candidates) + len(unrecoverable_survivor_ids)` is the
+    full survivor population `timeline.json` names, so a caller (or a
+    test) can assert real reconstruction coverage rather than read a
+    `select_above_floor` result assuming it saw every survivor when it
+    structurally could not have. Closing this gap for real (recovering
+    an unrecoverable id's own slots) needs a fix inside `hte.export`/
+    `hte.runner` (carrying an address into every `event_views` entry
+    too), out of this module's own file scope on this branch."""
     run_dir: Path
     manifest: artifacts_mod.ManifestArtifact
     corpus: Corpus
+    unrecoverable_survivor_ids: tuple[str, ...] = ()
 
     @property
     def run_id(self) -> str:
@@ -171,9 +193,22 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
     A short id named in `timeline.json`'s own `event_views` but absent
     from every `bins[].ranked_hypotheses` entry (a hypothesis generated
     at a time bin `hte.runner._time_bins_for` did not include in the
-    run's own declared `time_bins`, an edge case no shipped corpus this
-    package shows as of 2026-09-10) carries no persisted slots to
-    reconstruct from; it is logged and skipped rather than guessed at.
+    run's own declared `time_bins`; real on the sacred-history run,
+    `docs/BUILD-HISTORY.md`'s own "262 of 299" finding) carries no
+    persisted slots to reconstruct from; it is logged AND carried by
+    name on the returned `RunContext.unrecoverable_survivor_ids`
+    (`bkt-hte-writeback-review`), rather than only logged and silently
+    absent from the returned `list[Candidate]` the way it read before.
+    `event_views` partitions every placement-type survivor by its own
+    (OBJECT, PLACE) pair exhaustively (`hte.export.timeline_views`'s own
+    construction: every placement lands in exactly one event), so the
+    union of every `event_views[].competing_placements` entry is the
+    full survivor population this run's own artifacts name, `bins[]`
+    entries alone are not; using that union (rather than `bins[]`'s own
+    narrower coverage) as the population this function checks completeness
+    against is what lets a caller (or `select_above_floor`'s own caller)
+    tell "every survivor accounted for" from "quietly missing some" by
+    reading `RunContext` alone.
     """
     run_dir = Path(run_dir)
     run = artifacts_mod.load_run(run_dir)
@@ -200,12 +235,20 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
             if hid and hid not in by_short_id:
                 by_short_id[hid] = {"entry": entry, "time_bin": tbin, "bin_label": bin_label}
 
+    # `named_elsewhere`: the union of every `event_views[].
+    # competing_placements` entry, the full placement-type survivor
+    # population `timeline.json` names (`event_views` partitions every
+    # placement exhaustively by its own (OBJECT, PLACE) pair, `hte.
+    # export.timeline_views`'s own construction; see this function's own
+    # docstring). `by_short_id` alone, sourced only from `bins[]`, is
+    # `hte.runner._time_bins_for`'s own declared-bin subset of that same
+    # population, real ground the "262 of 299" finding measured.
     named_elsewhere = {sid for ev in run.timeline.event_views for sid in ev.get("competing_placements", [])}
-    missing = sorted(named_elsewhere - set(by_short_id))
-    if missing:
+    unrecoverable: list[str] = sorted(named_elsewhere - set(by_short_id))
+    if unrecoverable:
         logger.warning(
             "hte.canon_writeback: %d hypothesis id(s) named in event_views but not in any "
-            "timeline bin, skipped for lack of a persisted slot record: %s", len(missing), missing,
+            "timeline bin, skipped for lack of a persisted slot record: %s", len(unrecoverable), unrecoverable,
         )
 
     placements: list[Hypothesis] = []
@@ -216,6 +259,7 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
         tbin = rec["time_bin"]
         if tbin is None or entry.get("address") is None:
             logger.warning("hte.canon_writeback: %s carries no time bin or address in timeline.json, skipped", hid)
+            unrecoverable.append(hid)
             continue
         start = span_start + tbin * bin_width
         interval = Interval(start=start, end=start + bin_width - 1)
@@ -261,7 +305,10 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
             supports=supports, refutes=refutes, robustness=robustness_result,
         ))
 
-    return candidates, RunContext(run_dir=run_dir, manifest=manifest, corpus=corpus)
+    return candidates, RunContext(
+        run_dir=run_dir, manifest=manifest, corpus=corpus,
+        unrecoverable_survivor_ids=tuple(sorted(set(unrecoverable))),
+    )
 
 
 def select_above_floor(candidates: list[Candidate], *, floor_P: float, floor_u_max: float) -> list[Candidate]:
@@ -638,9 +685,13 @@ def write_back(
 
     written = [path for _, path in card_paths] + [index_path, ingestion_index_path, envelope_path]
 
+    total_named = len(candidates) + len(ctx.unrecoverable_survivor_ids)
     logger.info(
-        "hte.canon_writeback.write_back: %s%d of %d survivor(s) clear P>=%.2f, u<=%.2f over %s",
+        "hte.canon_writeback.write_back: %s%d of %d survivor(s) clear P>=%.2f, u<=%.2f over %s "
+        "(%d of %d survivor(s) this run's own timeline.json names were reconstructable; "
+        "see RunContext.unrecoverable_survivor_ids for the rest)",
         "(dry run) " if dry_run else "", len(selected), len(candidates), floor_P, floor_u_max, run_dir,
+        len(candidates), total_named,
     )
 
     if dry_run:

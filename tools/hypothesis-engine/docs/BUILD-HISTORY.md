@@ -165,6 +165,15 @@ today, so that stage reads `"skipped"` either way.
   bin's index, into every `event_views` entry too) rather than something
   this task's own scope reaches into `hte/export.py` to fix, per this
   package's own "under active parallel edit elsewhere" caution.
+  **Update, `bkt-hte-writeback-review`:** the 262 are no longer only a
+  `logger.warning` line: `reconstruct_candidates` now names them on the
+  returned `RunContext.unrecoverable_survivor_ids`, so
+  `len(candidates) + len(unrecoverable_survivor_ids)` recovers the full
+  299-survivor population this run's own `timeline.json` names, and a
+  caller can tell "saw every survivor" from "quietly missing some"
+  without grepping a log. Recovering those 262 hypotheses' own slots for
+  real still needs the `hte.export`/`hte.runner` fix described above,
+  unchanged.
 - **Top hypotheses by `P(h)`, among the 37 reconstructable survivors**
   (all from the one populated bin, `-600s`): the top 7 by `P(h)` are all
   variants of *Buddha [ACTION] Confucius, in the context of Buddhism*
