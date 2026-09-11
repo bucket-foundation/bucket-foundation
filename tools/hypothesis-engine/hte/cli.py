@@ -1,4 +1,4 @@
-"""`hte` console script: `campaign run`, `calibrate`, `views`.
+"""`hte` console script: `campaign run`, `calibrate`, `views`, `purge`.
 
 stdlib `argparse` only, matching this package's own no-dependencies
 contract (`pyproject.toml`).
@@ -10,7 +10,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import calibrate, export, runner
+from . import calibrate, export, purge as purge_mod, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
 from .corpus import quantum_history
@@ -108,6 +108,22 @@ def _cmd_views(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_purge(args: argparse.Namespace) -> int:
+    report = purge_mod.purge(
+        args.production,
+        learner_id=args.learner,
+        runs_root=args.runs_root,
+        cache_dir=args.cache_dir,
+        public_root=args.public_root,
+        dry_run=args.dry_run,
+    )
+    print(json.dumps(report, indent=2, default=str))
+    if not report.get("complete", True):
+        print(report.get("warning", "purge is incomplete: see report[\"unreadable\"]/[\"redaction_refused\"]"), file=sys.stderr)
+        return 1
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="hte", description="History Hypothesis Engine")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -149,6 +165,15 @@ def build_parser() -> argparse.ArgumentParser:
     views_p = sub.add_parser("views", help="re-render TIMELINE.md for a run directory")
     views_p.add_argument("run_dir")
     views_p.set_defaults(func=_cmd_views)
+
+    purge_p = sub.add_parser("purge", help="remove or redact artifacts derived from a production id (docs/PRIVACY.md)")
+    purge_p.add_argument("--production", required=True, help="production id to purge")
+    purge_p.add_argument("--learner", default=None, help="label only, see docs/PRIVACY.md: this engine never stores a raw learner id")
+    purge_p.add_argument("--runs-root", default=purge_mod.DEFAULT_RUNS_ROOT)
+    purge_p.add_argument("--cache-dir", default=None, help="default: <runs-root>/_llm-cache")
+    purge_p.add_argument("--public-root", default=purge_mod.DEFAULT_PUBLIC_ROOT)
+    purge_p.add_argument("--dry-run", action="store_true")
+    purge_p.set_defaults(func=_cmd_purge)
 
     return parser
 

@@ -63,6 +63,21 @@ section and PR #45's review paragraph.
   `reject` were exercised only against fixture trees in the two test
   suites, never against a real `bucket-canon/` file.
 
+## 2026-09-10, PR #42 review pass
+
+Review-and-merge pass on PR #42 (`feat/hte-purge`, "provenance index and
+purge for learner-derived artifacts") before merge, worktree
+`.ros-worktrees/r42`. Full account: `tools/hypothesis-engine/docs/
+LOOP-LOG.md`, "2026-09-10, PR42 review".
+
+Touched a Research OS surface only in `learning/research-os/compliance/
+DATA-INVENTORY.md`: amended the `public.research_os_productions_outbox`
+row to name `hte purge --production <id>` as the required manual call
+that reaches the engine-side artifacts a learner delete request cannot,
+closing the reachability gap the engine PR's own `docs/PRIVACY.md`
+already named. No other Research OS file (`src/lib/research-os/`,
+`src/app/research-os/`, migrations) changed.
+
 ## 2026-09-10, PR #54 review pass
 
 Reviewed PR #54 (LLM-assisted edge inference, the two-prompt agreement
