@@ -13,9 +13,21 @@
  *
  * Auth: Authorization: Bearer <supabase access token>, required for both.
  * 401 unauthorized · 400 bad input · 503 not configured.
+ *
+ * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): only
+ * action "transfer_item" is gated by src/lib/research-os/consent.ts's
+ * requireConsent (action "transfer_answer"), checked before the answer is
+ * validated or written. action "open" stays ungated on purpose: it
+ * records a navigation event (a learner viewed a node) rather than
+ * learner-authored content, and a signed-in minor with no profile yet
+ * still needs to be able to browse the map and reach /research-os/profile,
+ * the page this gate's "no_profile" case points them to. A blocked
+ * transfer_item POST returns 403 with consentBlockedBody(gate) as its
+ * body.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onNodeOpened, onTransferItemAnswered } from "@/lib/research-os/stages";
+import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
 
@@ -88,6 +100,8 @@ export async function POST(req: NextRequest) {
   const sessionId = (body.sessionId || "").trim() || undefined;
   const answer = (body.answer || "").trim();
   if (body.action === "transfer_item") {
+    const gate = await requireConsent(learnerId, "transfer_answer");
+    if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
     if (!answer) return bad(400, "answer is required");
     if (answer.length > MAX_TRANSFER_ANSWER_CHARS) return bad(400, "answer too long");
   }

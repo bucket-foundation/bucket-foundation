@@ -1433,3 +1433,77 @@ This pass confirmed that work, brought the branch current, and merged.
 - Gates re-run post-merge: `npm ci`, `npx tsc --noEmit`, `npm run build`,
   `npm run test:research-os` (18 files, 0 failures), `agf-lint-voice check`
   on every touched file: all clean.
+
+## 2026-09-10, ros-07 follow-up: consent gate wiring, profile page, privacy actions, status band
+
+`feat/ros-07-consent-wiring`, worktree `.ros-worktrees/ros07b`, branched from
+`origin/main` at `af5b7c9ea`. Scope: wire `src/lib/research-os/consent.ts`'s
+`requireConsent` into every learner-facing write path, add a minimal
+`/research-os/profile` page, add self-service export/delete to the workspace
+footer, and rewrite the `/research-os` status section against what is actually on
+main.
+
+**Consent gate wiring.** `requireConsent` now runs right after `verifyLearner()` in
+four POST handlers: `workspace/route.ts` (action `workspace_tool`, in front of all
+four tools, Locate and Quote included), `probe/route.ts` (action `probe_answer`),
+`state/route.ts` only when `action === "transfer_item"` (action `transfer_answer`;
+the sibling `open` action stays ungated), and `production/route.ts` (action
+`production_submit`, draft and submit alike). `ConsentAction` grew from two values
+to four. A new `consentBlockedBody(gate)` shapes the shared 403 JSON body
+(`{error, message, needsProfile}`) every gated route now returns; the workspace
+page's `handleConsentResponse` recognizes it from any gated fetch and renders a
+banner, linking to `/research-os/profile` when `needsProfile` is true.
+
+**Profile page.** `src/app/research-os/profile/page.tsx` (new) and
+`POST`/`GET /api/research-os/profile` (new, `src/lib/research-os/profile.ts`'s
+`validateProfileInput`): role and birth-year bucket only, no birthdate, no name.
+The route upserts only those two columns, never `consent_status`, so an existing
+consent decision survives a later profile edit untouched (a Supabase upsert only
+updates the columns present in its payload).
+
+**Privacy actions.** The workspace page's footer gained "export my data" (downloads
+the export envelope as a JSON file) and "delete my data" (a typed confirm step
+gating a disabled button, sending `confirm: DELETE_CONFIRM_TOKEN`). The privacy
+route now rejects a delete request whose `confirm` field does not match exactly
+(`isDeleteConfirmed`, checked before any auth resolution or database call), closing
+task item 2's "the confirm cannot be skipped server-side."
+
+**Status band.** `/research-os`'s "§ status" paragraph, previously describing only
+the Phase 0 seed path and the open grades-9-to-12 question, now lists what is on
+main (routing with confidence flags, the diagnostic probe, the four-tool workspace
+with contracts enforced in code, teacher review and class view with an accept path,
+the engine bridge covered by tests, privacy export and delete, the consent gate) and
+what is not (applying an accepted production to the live database, roster sync,
+verified parental consent, a payment to a minor contributor, canon write-back
+without a human sign-off). Original text preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`; no other section of the page changed.
+
+**Full doc:** `learning/research-os/WORKSPACE.md` section 5 (new),
+`learning/research-os/compliance/README.md`'s "The consent gate, wired" (renamed
+from "What is built but not wired") and part B item 6 (closed). See also
+`learning/research-os/CHANGE-LEDGER.md`'s matching entry, "Iteration 19," for the
+file-by-file diff and gate results.
+
+## 2026-09-10, PR #47 finishing pass
+
+Prior reviewer verified PR #47 (consent gate wiring, profile page, privacy
+actions, status band) and pushed fix commits to
+`feat/ros-07-consent-wiring`, then stopped short of merge. This pass picked
+up from the `review/pr47` worktree to close it out.
+
+`origin/feat/ros-07-consent-wiring` and `review/pr47` carried identical
+commit histories already, so no fast-forward push was needed for the fix
+commits. `origin/main` had advanced past the branch's last merge (three new
+commits, including the `ros-11` canon write-back signoff-gate status line);
+`git merge origin/main` hit one conflict, `BEADS-PENDING.jsonl`, both sides
+appending a distinct bead entry at end-of-file. Resolved by keeping both
+entries; no other file conflicted.
+
+Gates re-run post-merge: `npm ci` clean, `npx tsc --noEmit` clean,
+`npm run build` clean (`/research-os/profile` and `/api/research-os/profile`
+both in the manifest), `npm run test:research-os` 236/236 across 18 test
+files, `eslint` clean on all 16 touched TS/TSX files,
+`agf-lint-voice-src check` clean on the same 16, `agf-lint-voice check`
+clean on the touched docs. The Vercel status check on the PR fails with
+"Deployment rate limited, retry in 24 hours" (Vercel free-tier daily
+deployment cap), unrelated to this branch's code.

@@ -31,6 +31,16 @@ export function stageAtLeast(stage: Stage, min: Stage): boolean {
   return STAGE_ORDER.indexOf(stage) >= STAGE_ORDER.indexOf(min);
 }
 
+/** The exact string POST /api/research-os/privacy requires in a delete
+ * request's `confirm` field (bkt-ros ros-07 follow-up, task item 2: "the
+ * confirm cannot be skipped server-side"). Lives here rather than in
+ * privacy.ts, so the client-side workspace page (src/app/research-os/workspace/
+ * page.tsx, a "use client" component) can import it without pulling in
+ * privacy.ts's service-role Supabase client. The value doubles as the
+ * literal text the delete confirmation UI asks a learner to type, so what
+ * a learner types is exactly what the server checks. */
+export const DELETE_CONFIRM_TOKEN = "DELETE";
+
 export interface Provenance {
   type?: "primary_source" | "textbook" | "reference" | "mirror" | string;
   author?: string;

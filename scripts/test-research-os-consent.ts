@@ -1,6 +1,7 @@
 /**
- * Unit tests: the age and consent gate skeleton (bkt-ros ros-07 task item
- * 3), src/lib/research-os/consent.ts's decideConsent. Pure, no I/O, no
+ * Unit tests: the age and consent gate (bkt-ros ros-07 task item 3, wired
+ * to its call sites by the ros-07 follow-up), src/lib/research-os/
+ * consent.ts's decideConsent and consentBlockedBody. Pure, no I/O, no
  * live Supabase, matching scripts/test-research-os-engine-bridge.ts's own
  * convention: node:test + node:assert, plain fixture objects.
  *
@@ -9,14 +10,18 @@
  * touching a live Supabase client is not directly unit tested (see
  * src/lib/research-os/db.ts, none of its exports have a test file either);
  * every decision requireConsent makes is factored into decideConsent,
- * which is fully covered below.
+ * which is fully covered below. The "per route" block further down runs
+ * decideConsent's rule over all four ConsentAction values, one per wired
+ * call site (src/app/api/research-os/workspace/route.ts, probe/route.ts,
+ * state/route.ts's transfer_item action, production/route.ts), including
+ * the no-profile case for each.
  *
  * Run:
  *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/test-research-os-consent.ts
  */
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
-import { decideConsent, type LearnerProfile } from "../src/lib/research-os/consent";
+import { consentBlockedBody, decideConsent, type ConsentAction, type LearnerProfile } from "../src/lib/research-os/consent";
 
 function profile(overrides: Partial<LearnerProfile> = {}): LearnerProfile {
   return {
@@ -89,4 +94,74 @@ test("decideConsent: the gate applies the same rule to both named actions", () =
   const allowed = profile({ birthYearBucket: "18plus" });
   assert.equal(decideConsent(allowed, "workspace_tool").allowed, true);
   assert.equal(decideConsent(allowed, "production_submit").allowed, true);
+});
+
+// ---------------------------------------------------------------------------
+// ros-07 follow-up ("consent gate wiring"): one test per wired call site,
+// including the no-profile case, over all four ConsentAction values now
+// that requireConsent backs src/app/api/research-os/workspace/route.ts,
+// probe/route.ts, state/route.ts (action "transfer_item"), and
+// production/route.ts. decideConsent's own rule does not vary by action
+// (see its header), so these tests pin that every route's action label
+// gets the exact same blocked/allowed outcome today, guarding the shared
+// rule against a silent per-call-site drift later.
+// ---------------------------------------------------------------------------
+
+const ALL_ACTIONS: ConsentAction[] = ["workspace_tool", "probe_answer", "transfer_answer", "production_submit"];
+
+test("decideConsent: no profile at all is blocked with reason no_profile, per route", () => {
+  for (const action of ALL_ACTIONS) {
+    const result = decideConsent(null, action);
+    assert.equal(result.allowed, false, `${action} should block a missing profile`);
+    assert.equal(result.reason, "no_profile");
+    assert.ok(result.message && result.message.length > 0);
+  }
+});
+
+test("decideConsent: a minor with consent none is blocked with reason consent_required, per route", () => {
+  const minor = profile({ birthYearBucket: "13to17", consentStatus: "none" });
+  for (const action of ALL_ACTIONS) {
+    const result = decideConsent(minor, action);
+    assert.equal(result.allowed, false, `${action} should block an unconsented minor`);
+    assert.equal(result.reason, "consent_required");
+  }
+});
+
+test("decideConsent: 18plus is allowed on every route's own action", () => {
+  const adult = profile({ birthYearBucket: "18plus" });
+  for (const action of ALL_ACTIONS) {
+    assert.equal(decideConsent(adult, action).allowed, true, `${action} should allow an 18plus profile`);
+  }
+});
+
+test("decideConsent: a minor with consent on file is allowed on every route's own action", () => {
+  const consented = profile({ birthYearBucket: "under13", consentStatus: "parent" });
+  for (const action of ALL_ACTIONS) {
+    assert.equal(decideConsent(consented, action).allowed, true, `${action} should allow a consented minor`);
+  }
+});
+
+// ---------------------------------------------------------------------------
+// consentBlockedBody: the JSON shape every gated route returns on its 403.
+// ---------------------------------------------------------------------------
+
+test("consentBlockedBody: no_profile carries needsProfile true", () => {
+  const gate = decideConsent(null, "workspace_tool");
+  const body = consentBlockedBody(gate);
+  assert.equal(body.error, "no_profile");
+  assert.equal(body.needsProfile, true);
+  assert.equal(body.message, gate.message);
+});
+
+test("consentBlockedBody: consent_required carries needsProfile false", () => {
+  const gate = decideConsent(profile({ birthYearBucket: "under13", consentStatus: "none" }), "production_submit");
+  const body = consentBlockedBody(gate);
+  assert.equal(body.error, "consent_required");
+  assert.equal(body.needsProfile, false);
+  assert.equal(body.message, gate.message);
+});
+
+test("consentBlockedBody: throws on an allowed result rather than returning a fake blocked body", () => {
+  const gate = decideConsent(profile({ birthYearBucket: "18plus" }), "workspace_tool");
+  assert.throws(() => consentBlockedBody(gate));
 });
