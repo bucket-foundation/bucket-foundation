@@ -1,0 +1,706 @@
+2026-09-11T04:35:21.482044+00:00 campaign 'sacred-history' starting, corpus='sacred-history', replay_only=False
+2026-09-11T04:35:21.484627+00:00 loaded corpus: 13 sources, 70 evidence items, 14 ground-truth events
+2026-09-11T04:35:30.083314+00:00 time binning: resolution='century' span_start=-1500 bin_width=100
+2026-09-11T04:36:21.414715+00:00 generator role proposed 8306c0cd465a3a82 from evidence ['clm-corr-figure-mapping-8d76c0b84f']
+2026-09-11T04:36:21.414785+00:00 generator role proposed 37322417864e66ff from evidence ['clm-corr-figure-mapping-8d76c0b84f']
+2026-09-11T04:36:21.414835+00:00 generator role proposed d0cbaaf564e8d06d from evidence ['clm-corr-figure-mapping-8d76c0b84f']
+2026-09-11T04:36:21.414879+00:00 generator role proposed e845f73d8a0e6f69 from evidence ['clm-corr-figure-mapping-7567bdaebf']
+2026-09-11T04:36:21.414919+00:00 generator role proposed a9d89d7cd88c8260 from evidence ['clm-corr-figure-mapping-7567bdaebf']
+2026-09-11T04:36:21.414960+00:00 generator role proposed a65f47fe2d88f02f from evidence ['clm-corr-figure-mapping-79cd0f2833']
+2026-09-11T04:36:21.414998+00:00 generator role proposed 99991557e2961af7 from evidence ['clm-corr-figure-mapping-79cd0f2833']
+2026-09-11T04:36:21.415036+00:00 generator role proposed 30e6af80cb9b8222 from evidence ['clm-corr-figure-mapping-0fa5896921']
+2026-09-11T04:36:21.415074+00:00 generator role proposed 8a1184e08b10491b from evidence ['clm-corr-figure-mapping-0fa5896921']
+2026-09-11T04:36:21.415114+00:00 generator role proposed f977c2d67f313b21 from evidence ['clm-corr-figure-mapping-0fa5896921']
+2026-09-11T04:36:21.415150+00:00 generator role proposed 6fd8b5af7767cd55 from evidence ['clm-corr-figure-mapping-890850c4cd']
+2026-09-11T04:36:21.415187+00:00 generator role proposed 93b9ae6e44ab8c6d from evidence ['clm-corr-figure-mapping-890850c4cd']
+2026-09-11T04:36:21.415224+00:00 generator role proposed 43ea089d3b0b80db from evidence ['clm-corr-figure-mapping-1a41cc99b5']
+2026-09-11T04:36:21.415261+00:00 generator role proposed 52b7899368dc198e from evidence ['clm-corr-figure-mapping-1a41cc99b5']
+2026-09-11T04:36:21.415296+00:00 generator role proposed 541a71f3cd71ed76 from evidence ['clm-corr-figure-mapping-fb832469eb']
+2026-09-11T04:36:21.415346+00:00 generator role proposed 801a43abf649dc24 from evidence ['clm-corr-figure-mapping-fb832469eb']
+2026-09-11T04:36:21.415389+00:00 generator role proposed c0e9a6073a4e78c2 from evidence ['clm-corr-figure-mapping-fb832469eb']
+2026-09-11T04:36:21.415426+00:00 generator role proposed fc88448f78209afc from evidence ['clm-corr-figure-mapping-0fa5896921']
+2026-09-11T04:36:21.415462+00:00 generator role proposed edc78bd10cd6017d from evidence ['clm-corr-figure-mapping-25942df7a6']
+2026-09-11T04:36:21.415497+00:00 generator role proposed 5bc47546baa94fd8 from evidence ['clm-corr-figure-mapping-25942df7a6']
+2026-09-11T04:36:21.481352+00:00 generation seed 0: 150 combinatorial + 7192 evidence-driven = 7342
+2026-09-11T04:36:21.551596+00:00 generation seed 1: 150 combinatorial + 7192 evidence-driven = 7342
+2026-09-11T04:36:21.652001+00:00 generation seed 2: 150 combinatorial + 7192 evidence-driven = 7342
+2026-09-11T04:36:21.652889+00:00 generation total: 5070 distinct addresses, 400 kept after max_hypotheses cap
+2026-09-11T04:36:22.644486+00:00 evidence linking: 42 of 70 items linked to a hypothesis (threshold=0.6)
+2026-09-11T04:48:50.406234+00:00 critic on b5d8643cb5aa8f81: keep=True issues=[]
+2026-09-11T04:48:50.406306+00:00 critic on 81a4d4753995bf35: keep=True issues=[]
+2026-09-11T04:48:50.406343+00:00 critic on 77ac89efd59767f1: keep=True issues=[]
+2026-09-11T04:48:50.406366+00:00 critic on 834b301d2161e031: keep=True issues=[]
+2026-09-11T04:48:50.406388+00:00 critic on 8af633425bc40554: keep=True issues=[]
+2026-09-11T04:48:50.406406+00:00 critic on 8ef01949176d01a9: keep=True issues=[]
+2026-09-11T04:48:50.406430+00:00 critic on 317e8dadf8178412: keep=False issues=["Refuting evidence explicitly states 'Lack of direct textual connection between Abraham and Manu,' which directly contradicts the asserted parallels relation (object='other-object' corresponding to Manu) for this claim pairing."]
+2026-09-11T04:48:50.406456+00:00 critic on 8fa63db6952993bb: keep=True issues=[]
+2026-09-11T04:48:50.406479+00:00 critic on f1acf6c1ecf8e967: keep=False issues=["actor='bahaullah' is a 19th-century CE Baha'i Faith founder; interval=[-1500,-571] BCE falls millennia before his attested lifetime", "place='hinduism' is outside every tradition bahaullah belongs to (he belongs to the Baha'i tradition)"]
+2026-09-11T04:48:50.406498+00:00 critic on cab17a8b8156601a: keep=True issues=[]
+2026-09-11T04:48:50.406515+00:00 critic on 46cdcdc470929fba: keep=True issues=[]
+2026-09-11T04:48:50.406533+00:00 critic on 19f5b1fa8d0c5e38: keep=True issues=[]
+2026-09-11T04:48:50.406552+00:00 critic on eb3cd299cb8bd58f: keep=True issues=[]
+2026-09-11T04:48:50.406579+00:00 critic on 7403486dc0701735: keep=False issues=["place='bahai' is outside every tradition actor='manu' belongs to (Manu belongs to Hindu tradition, not the 19th-century Baha'i Faith)"]
+2026-09-11T04:48:50.406600+00:00 critic on edf70436514125d2: keep=False issues=["place='hinduism' is outside every tradition actor='confucius' belongs to (Confucius belongs to the Confucian/Chinese tradition)", "interval=[-1500,-571] ends before Confucius's attested lifetime (c. 551-479 BCE), which falls entirely after -571"]
+2026-09-11T04:48:50.406619+00:00 critic on 56c1b1aca8d735b8: keep=False issues=["interval=[-1200,-1101] predates the actor's ('buddha') widely attested historical lifetime (traditionally c. 563/480 BCE to c. 483/400 BCE) by several centuries"]
+2026-09-11T04:48:50.406638+00:00 critic on 88f8af0c3aa1dc56: keep=True issues=[]
+2026-09-11T04:48:50.406655+00:00 critic on 3d664a74f86e8cfb: keep=True issues=[]
+2026-09-11T04:48:50.406673+00:00 critic on d1ca9bbaaa2ecab2: keep=True issues=[]
+2026-09-11T04:48:50.406690+00:00 critic on b4062a5eb3dcf7f6: keep=True issues=[]
+2026-09-11T04:48:50.406708+00:00 critic on f2271a79784b07f9: keep=True issues=[]
+2026-09-11T04:48:50.406725+00:00 critic on 8e4409fbab07f8bb: keep=True issues=[]
+2026-09-11T04:48:50.406742+00:00 critic on 5101d681fc1103be: keep=True issues=[]
+2026-09-11T04:48:50.406761+00:00 critic on 1bf805e42da986c6: keep=True issues=["Refuting evidence cites a lack of direct textual connection between Abraham and Manu, not between Abraham and Baha'u'llah, so it does not directly address the actor-object pair claimed by this hypothesis (Abraham/Baha'u'llah)."]
+2026-09-11T04:48:50.406783+00:00 critic on 443be0f312071697: keep=False issues=["Neither Deucalion (Greek flood myth) nor Confucius (Chinese Confucian tradition) belongs to Hinduism, so place='hinduism' sits outside every tradition either actor/object belongs to (model-prior, unverified).", "Confucius's traditionally attested floruit (c. 551–479 BCE per model-prior) falls after the interval's end bound of -571, so the object is not attested inside the stated time bin."]
+2026-09-11T04:48:50.406808+00:00 critic on 8e05ca2d3ddeb9dd: keep=False issues=["Neither Manu (Hindu tradition) nor Deucalion (Greek myth) belongs to the Bahá'í tradition (founded 19th century CE), so place='bahai' sits outside every tradition either actor belongs to (model-prior, unverified).", "The only refuting evidence cited ('counter-intuitive overlap with unrelated mythological themes') is generic and not itself a concrete contradiction, but the place mismatch stands independently."]
+2026-09-11T04:48:50.406837+00:00 critic on 1c98e7d93b2f1c5c: keep=False issues=["Neither Confucius (Confucian/Chinese tradition) nor Deucalion (Greek myth) belongs to Hinduism, so place='hinduism' is outside every tradition either actor belongs to (model-prior, unverified).", "Confucius's traditionally attested dates (c. 551–479 BCE) fall after the interval's end bound of -700, so the actor is not attested inside the stated time bin (model-prior)."]
+2026-09-11T04:48:50.406862+00:00 critic on 56683d418ccff60c: keep=False issues=["Neither Manu (Hindu tradition) nor Confucius (Confucian/Chinese tradition) belongs to Buddhism, so place='buddhism' sits outside every tradition either actor/object belongs to (model-prior, unverified).", "Confucius's traditionally attested dates (c. 551–479 BCE) fall after the interval's end bound of -571, so the object is not attested inside the stated time bin (model-prior)."]
+2026-09-11T04:48:50.406889+00:00 critic on a436eb756a18382f: keep=False issues=["Gautama Buddha's traditionally attested dates (c. 563–483 BCE per model-prior) fall entirely outside the stated interval [-1200,-1101], so the actor is not attested inside the stated time bin.", "The refuting evidence only documents that Buddha is proposed as a cross-tradition correlate of Bahá'u'lláh via shared 'founder' motif, which does not itself address chronology, but the interval mismatch is a separate concrete contradiction."]
+2026-09-11T04:48:50.406915+00:00 critic on d88b698bc658957e: keep=False issues=["Neither Abraham (Judaic/Abrahamic tradition) nor Deucalion (Greek myth) belongs to Hinduism, so place='hinduism' sits outside every tradition either actor belongs to (model-prior, unverified).", "Abraham's traditionally cited dates (roughly c. 2000–1800 BCE per model-prior/biblical chronology) predate the interval's start bound of -1500, so the actor is not attested inside the stated time bin."]
+2026-09-11T04:48:50.406936+00:00 critic on 338147dc3f4f0e10: keep=False issues=["Neither Buddha (Buddhist tradition) nor Confucius (Confucian/Chinese tradition) is properly classified within Hinduism, so place='hinduism' sits outside every tradition either actor/object belongs to (model-prior, unverified).", "Buddha's (c. 563–483 BCE) and Confucius's (c. 551–479 BCE) traditionally attested dates both fall after the interval's end bound of -571, so neither actor nor object is attested inside the stated time bin (model-prior)."]
+2026-09-11T04:48:50.406957+00:00 critic on b8a8644c4d3b1c3d: keep=False issues=["Neither David (Judaic tradition) nor Deucalion (Greek myth) belongs to Hinduism, so place='hinduism' sits outside every tradition either actor belongs to (model-prior, unverified)."]
+2026-09-11T04:48:50.406978+00:00 critic on 786a0a45bf674bdc: keep=False issues=["Actor 'bahaullah' (founder of the Bahá'í Faith, 1817–1892 CE) is not attested in Hinduism; place='hinduism' sits outside every tradition this actor belongs to.", "Interval [-1500,-700] does not contain Bahá'u'lláh's actual historical lifetime (19th century CE), so the actor is not attested inside the stated time bin."]
+2026-09-11T04:48:50.407000+00:00 critic on 62f7376af56a32e5: keep=False issues=["Actor 'gilgamesh' is a Mesopotamian/Sumerian legendary figure, not attested within the Hindu tradition; place='hinduism' sits outside every tradition this actor belongs to."]
+2026-09-11T04:48:50.407020+00:00 critic on 75c1bfa4fa4b5552: keep=False issues=["Interval [-1500,-1401] predates Bahá'u'lláh's actual lifetime (1817–1892 CE) by over three millennia, so the actor is not attested inside the stated time bin."]
+2026-09-11T04:48:50.407039+00:00 critic on 57c63bdcb6df1dc9: keep=True issues=[]
+2026-09-11T04:48:50.407058+00:00 critic on 54f92dde97e1ee8b: keep=True issues=[]
+2026-09-11T04:48:50.407076+00:00 critic on 936211ca48fadcb4: keep=True issues=[]
+2026-09-11T04:48:50.407093+00:00 critic on 6183218fad2adcd9: keep=True issues=[]
+2026-09-11T04:48:50.407112+00:00 critic on 7f42ca6062b85bf0: keep=False issues=["Actor 'manu' is a figure within Hinduism, not the Bahá'í tradition; place='bahai' sits outside every tradition this actor belongs to."]
+2026-09-11T04:48:50.407133+00:00 critic on 403d1dc498035b3e: keep=True issues=["Actor and object are both 'deucalion' (self-referential 'parallels' claim), which is unusual but not something the cited evidence contradicts.", "The refuting evidence text is a generic statement about 'counter-intuitive overlap with unrelated mythological themes' and does not specifically identify a time-bin, place, or actor-tradition mismatch for this hypothesis."]
+2026-09-11T04:48:50.407151+00:00 critic on 5a03552c82757f64: keep=True issues=[]
+2026-09-11T04:48:50.407171+00:00 critic on adb12655343757ac: keep=True issues=["The cited 'refuting' evidence text actually states the same correlation as the hypothesis (Buddha as cross-tradition correlate of Confucius via shared 'lawgiver' motif), so it does not function as a genuine contradiction of the hypothesis's core claim.", 'The interval [-1200,-1101] predates the commonly cited lifetime of Gautama Buddha (model-prior, unverified against provided evidence), but no evidence text here attests or contradicts a specific time bin for the actor.']
+2026-09-11T04:48:50.407194+00:00 critic on 859e0ab080d5b107: keep=True issues=[]
+2026-09-11T04:48:50.407216+00:00 critic on dfbb097068d27a49: keep=True issues=["The refuting evidence is a generic 'counter-intuitive overlap with unrelated mythological themes' statement, not a specific claim that Manu's parallel-to-Deucalion placement in 'buddhism' is factually wrong or unattested."]
+2026-09-11T04:48:50.407235+00:00 critic on 46a94f65d90a55b0: keep=True issues=[]
+2026-09-11T04:48:50.407254+00:00 critic on 79cfc3050491856e: keep=True issues=["The refuting evidence is the same generic 'counter-intuitive overlap with unrelated mythological themes' statement used elsewhere and does not specifically contest Buddha's parallel to Deucalion in Hinduism, the time interval, or actor-tradition fit."]
+2026-09-11T04:48:50.407272+00:00 critic on 2aaa04f65c4cdb6c: keep=True issues=[]
+2026-09-11T04:48:50.407292+00:00 critic on 71cc2e30442683b1: keep=False issues=["actor and object are identical ('bahaullah' precedes-chronologically 'bahaullah') — a thing cannot chronologically precede itself, a logical contradiction", "interval=[-1200,-1101] falls ~2900 years before Bahá'u'lláh's actual attested lifetime (19th century CE, per model-prior, not in the evidence text); the actor is not attested inside the stated time bin"]
+2026-09-11T04:48:50.407312+00:00 critic on dd219661082e4cde: keep=False issues=["place='hinduism' is asserted for actor='jesus', but Jesus belongs to the Christian (and Second Temple Jewish) tradition, not Hinduism — the place sits outside every tradition the actor belongs to (model-prior)"]
+2026-09-11T04:48:50.407346+00:00 critic on 2308746573d1b5c1: keep=False issues=["interval=[-1500,-1401] does not contain Gautama Buddha's attested lifetime (~6th–5th century BCE, per model-prior), so the actor is not attested inside the stated time bin"]
+2026-09-11T04:48:50.407366+00:00 critic on 036f10e16735db4f: keep=True issues=[]
+2026-09-11T04:48:50.407386+00:00 critic on 8a892946514c91fd: keep=True issues=[]
+2026-09-11T04:48:50.407405+00:00 critic on d2b1ab377fbb730d: keep=False issues=["place='hinduism' is asserted for actor='gilgamesh', but Gilgamesh is a Mesopotamian (Sumerian/Akkadian) figure, not part of the Hindu tradition — the place sits outside every tradition the actor belongs to (model-prior)"]
+2026-09-11T04:48:50.407424+00:00 critic on ba62db7a96ac4059: keep=True issues=[]
+2026-09-11T04:48:50.407443+00:00 critic on a844815330bca8d3: keep=True issues=["The refuting evidence cites 'lack of direct textual connection between Abraham and Manu,' which references a different figure (Manu) than the object named in this hypothesis (David); it does not appear to address the Abraham–David pairing and so is not a valid contradiction of this specific hypothesis"]
+2026-09-11T04:48:50.407462+00:00 critic on 97ed81c4543a3bd8: keep=True issues=[]
+2026-09-11T04:48:50.407479+00:00 critic on dad70628497e8fd7: keep=True issues=[]
+2026-09-11T04:48:50.407497+00:00 critic on 36e4a191c4323a81: keep=True issues=[]
+2026-09-11T04:48:50.407514+00:00 critic on 03f27d3f27c80423: keep=True issues=[]
+2026-09-11T04:48:50.407532+00:00 critic on 07d620075ddc9482: keep=True issues=[]
+2026-09-11T04:48:50.407551+00:00 critic on f729334d2cf8e831: keep=False issues=["Refuting evidence (T4) explicitly states a 'Lack of direct textual connection between Abraham and Manu', directly undermining the claimed 'parallels' relationship."]
+2026-09-11T04:48:50.407570+00:00 critic on 7116ba6d9c82882a: keep=False issues=["Refuting evidence (T4) flags a 'Counter-intuitive overlap with unrelated mythological themes in other traditions', indicating the proposed Guru Nanak–Deucalion parallel is attributable to generic cross-tradition motif overlap rather than a genuine connection."]
+2026-09-11T04:48:50.407593+00:00 critic on 85c5de532b43c1a6: keep=True issues=[]
+2026-09-11T04:48:50.407614+00:00 critic on 2da13e826d8ebb6c: keep=False issues=["Actor 'manu' is a figure of Hindu tradition; place='christianity' sits outside every tradition manu belongs to (model-prior, unverified)."]
+2026-09-11T04:48:50.407632+00:00 critic on d176c750a12717fb: keep=True issues=[]
+2026-09-11T04:48:50.407651+00:00 critic on 530d22a25561e880: keep=False issues=["Actor 'manu' belongs to Hindu tradition; place='greek' sits outside every tradition manu belongs to (model-prior, unverified)."]
+2026-09-11T04:48:50.407670+00:00 critic on 54014a3cd92b634a: keep=False issues=["Actor 'jesus' belongs to Christianity (and is referenced in Islam); place='hinduism' sits outside every tradition jesus belongs to (model-prior, unverified).", 'Refuting evidence T4 notes counter-intuitive/unrelated mythological overlap, reinforcing the mismatch.']
+2026-09-11T04:48:50.407689+00:00 critic on 18b95ea87026b334: keep=False issues=["Actor 'gilgamesh' belongs to Mesopotamian tradition, not Hinduism; place='hinduism' sits outside every tradition gilgamesh belongs to (model-prior, unverified)."]
+2026-09-11T04:48:50.407708+00:00 critic on f67328e0bfd16f1c: keep=False issues=["Object 'bahaullah' (founder of the Baha'i Faith, traditionally dated to the 19th century CE) is not attested within the stated interval [-1500,-700] (model-prior, unverified)."]
+2026-09-11T04:48:50.407728+00:00 critic on bc57121b095d95ee: keep=False issues=["Actor 'buddha' is traditionally dated to roughly the 6th-5th century BCE, not attested within the stated interval [-1500,-1401] (model-prior, unverified).", "Refuting evidence explicitly states 'Lack of direct textual connection between Buddha and Joseph Smith'."]
+2026-09-11T04:48:50.407746+00:00 critic on 1a7f721c8bd3d155: keep=True issues=[]
+2026-09-11T04:48:50.407764+00:00 critic on 0a0ed63a0d266dfd: keep=True issues=[]
+2026-09-11T04:48:50.407782+00:00 critic on 321e7b2f57730464: keep=True issues=['Refuting evidence only raises interpretive/counter-considerations (possible cultural borrowing, coincidental motif overlap) rather than a structural contradiction of actor/place/time']
+2026-09-11T04:48:50.407800+00:00 critic on 77b4ae08276befb8: keep=True issues=["The refuting evidence text references Abraham and Manu, not Abraham and Deucalion, so it does not directly address this hypothesis's actual actor-object pairing"]
+2026-09-11T04:48:50.407819+00:00 critic on 95166a3f018e9e3f: keep=False issues=["place='hinduism' is outside every tradition associated with Laozi and Confucius, who belong to Taoism/Confucianism (Chinese traditions), not Hinduism"]
+2026-09-11T04:48:50.407837+00:00 critic on 5b0160daa4e4204a: keep=False issues=["Jesus's attested lifetime (~4 BCE-30 CE) falls entirely outside the stated interval [-1200,-1101]"]
+2026-09-11T04:48:50.407855+00:00 critic on de82dc85576e13c4: keep=True issues=[]
+2026-09-11T04:48:50.407874+00:00 critic on 5f3cdf5422fdedef: keep=True issues=["David is not traditionally counted among the Bahai Manifestations of God, so place='bahai' is a debatable but not clearly evidenced contradiction"]
+2026-09-11T04:48:50.407892+00:00 critic on 48f3c52abcc08971: keep=True issues=["No refuting evidence provided; place='other-place' is a generic label that does not conflict with Abraham's usual traditions"]
+2026-09-11T04:48:50.407911+00:00 critic on d1ecbfada18f2686: keep=False issues=["Actor 'joseph-smith' (19th century CE founder of Mormonism) is not attested within the stated interval [-1500,-700]", "Place 'hinduism' sits outside every tradition joseph-smith belongs to (Mormonism/Christianity)"]
+2026-09-11T04:48:50.407930+00:00 critic on d2695cf08618e040: keep=False issues=["Actor 'guru-nanak' (founder of Sikhism, c. 1469-1539 CE) is not attested within the stated interval [-1500,-700]"]
+2026-09-11T04:48:50.407951+00:00 critic on d491a24d95bea0b5: keep=True issues=[]
+2026-09-11T04:48:50.407972+00:00 critic on f2b67fa6d195c04f: keep=False issues=["Place 'christianity' sits outside every tradition the actor 'manu' belongs to (manu is a Hindu/Puranic figure with no attested role in Christian tradition)"]
+2026-09-11T04:48:50.407989+00:00 critic on 686c26edc4aed151: keep=True issues=[]
+2026-09-11T04:48:50.408007+00:00 critic on c263928da6658311: keep=True issues=[]
+2026-09-11T04:48:50.408024+00:00 critic on b66a857b20bc8675: keep=True issues=[]
+2026-09-11T04:48:50.408042+00:00 critic on d06179ef5334053a: keep=False issues=["Actor 'jesus' (c. 4 BCE - 30 CE) is not attested within the stated interval [-1500,-700]", "Place 'hinduism' sits outside every tradition jesus belongs to (Christianity)"]
+2026-09-11T04:48:50.408062+00:00 critic on 07d181f91bc4a44d: keep=False issues=["place='greek' is outside every tradition the actor 'manu' belongs to (Manu is a Hindu/Vedic figure, not part of Greek tradition) — model-prior, unverified", "The only refuting evidence cited is a generic, non-specific counter-consideration about 'unrelated mythological themes' that does not itself name manu or deucalion or the greek placement"]
+2026-09-11T04:48:50.408084+00:00 critic on d006363f7eb3b616: keep=False issues=['The interval [-1500,-1401] does not overlap the traditionally accepted lifetime of Gautama Buddha (commonly dated c. 563-483 BCE, i.e., roughly a millennium after this interval) — model-prior, unverified', "The cited 'refuting' evidence text actually just states the figure-mapping claim itself (buddha correlate of joseph-smith) and provides no date or place information that would independently confirm or refute the interval"]
+2026-09-11T04:48:50.408102+00:00 critic on 51476f36b8f14d62: keep=True issues=[]
+2026-09-11T04:48:50.408120+00:00 critic on c26d6233b67d23d1: keep=True issues=[]
+2026-09-11T04:48:50.408139+00:00 critic on 5cdf8f172a4ebe96: keep=True issues=['No supporting or refuting evidence is attached at all, so nothing in the evidence contradicts the hypothesis', "The interval [-1500,570] only touches Muhammad's birth year (traditionally c. 570 CE) and excludes most of his attested prophetic life (c. 610-632 CE) — model-prior, unverified, noted as a possible concern but not a concrete evidenced contradiction"]
+2026-09-11T04:48:50.408159+00:00 critic on dbd5b4b8dad93e5b: keep=True issues=["The refuting evidence entries are generic counter-considerations (cultural borrowing/independent development/unrelated mythological themes) that do not specifically contradict the manu-david parallel's place or interval"]
+2026-09-11T04:48:50.408178+00:00 critic on e063a5839df9d098: keep=True issues=["The refuting evidence cited ('Lack of direct textual connection between Abraham and Manu') pertains to a different pairing (Abraham-Manu) and does not address the actual actor/object pair in this hypothesis (Abraham-Buddha)"]
+2026-09-11T04:48:50.408197+00:00 critic on 3ad2fcec1c3d502c: keep=False issues=["place='hinduism' is outside every tradition the actor 'laozi' belongs to (Laozi is a foundational figure of Chinese Taoism, not Hinduism) — model-prior, unverified", 'The refuting evidence cited is a generic, non-specific counter-consideration that does not itself name laozi, deucalion, or the hinduism placement']
+2026-09-11T04:48:50.408217+00:00 critic on 0e2d71ec1ef540aa: keep=False issues=['Actor not attested inside stated time bin: Joseph Smith is a 19th-century (1805-1844 CE) historical figure, incompatible with the interval [-1500,-700] BCE (model-prior).', 'Place mismatch: Joseph Smith is the founder of the Latter Day Saint movement, not a figure associated with the Hindu tradition (model-prior).']
+2026-09-11T04:48:50.408234+00:00 critic on 0dd57f75d30051aa: keep=True issues=[]
+2026-09-11T04:48:50.408252+00:00 critic on 56253173e4b3a191: keep=False issues=['Place mismatch: Moses is exclusively associated with Judaism (and derivative Abrahamic traditions), with no attested connection to Hinduism (model-prior).']
+2026-09-11T04:48:50.408274+00:00 critic on 77d0afe7ecf67634: keep=False issues=['Place mismatch: David is a figure of the Israelite/Judaic tradition with no attested connection to Buddhism, which arose centuries later in a separate cultural context (model-prior).']
+2026-09-11T04:48:50.408294+00:00 critic on 09f5c98bacf7ba49: keep=True issues=[]
+2026-09-11T04:48:50.408313+00:00 critic on c13495a727dc4e9e: keep=False issues=["Actor not attested inside stated time bin: Mahavira's traditional dates (~6th century BCE, roughly 599-527 BCE) fall entirely after the interval's upper bound of -700, i.e., outside [-1500,-700] (model-prior).", 'Place mismatch: Mahavira is the founding/reforming figure of Jainism, a distinct tradition from Hinduism, not typically classified within it (model-prior).']
+2026-09-11T04:48:50.408339+00:00 critic on 44fa2e7f813ed619: keep=True issues=[]
+2026-09-11T04:48:50.408357+00:00 critic on 61fd0159197eaa87: keep=True issues=[]
+2026-09-11T04:48:50.408375+00:00 critic on e450dbb8e2de12ba: keep=True issues=[]
+2026-09-11T04:48:50.408392+00:00 critic on cf8990c9347237b6: keep=True issues=[]
+2026-09-11T04:48:50.408412+00:00 critic on e2c16921fcd5c492: keep=False issues=["Muhammad's attested lifetime (c. 570-632 CE) falls entirely outside the stated interval [-1500,-571], which only spans BCE years up to 571 BCE and includes none of Muhammad's actual historical existence.", "Muhammad is a foundational figure of Islam, not of Hinduism; the place='hinduism' tag places him outside every tradition he is actually attested in."]
+2026-09-11T04:48:50.408433+00:00 critic on 3ab0347ab4df41a1: keep=False issues=["Refuting evidence explicitly states there is a 'Lack of direct textual connection between Abraham and Manu,' directly contradicting the claimed parallel.", "Abraham (Judaism) and Manu (Hinduism) are not figures of the Buddhist tradition, so place='buddhism' sits outside every tradition either actor belongs to."]
+2026-09-11T04:48:50.408452+00:00 critic on f6ce7824feef1287: keep=True issues=[]
+2026-09-11T04:48:50.408469+00:00 critic on e1ea571b42388066: keep=True issues=[]
+2026-09-11T04:48:50.408486+00:00 critic on 3793a1e501c18a26: keep=True issues=[]
+2026-09-11T04:48:50.408504+00:00 critic on a19c4645adf04514: keep=True issues=[]
+2026-09-11T04:48:50.408524+00:00 critic on f26e5d3f3bb72930: keep=False issues=["model-prior: Bahá'u'lláh (founder of the Bahá'í Faith) is traditionally dated c. 1817-1892 CE, which falls far outside the stated interval [-1500,570]; the object of the mapping is not attested inside the stated time bin. No evidence text was supplied to independently verify this, so the rejection relies on unverified model-prior knowledge, not on the (empty) evidence set."]
+2026-09-11T04:48:50.408545+00:00 critic on 9f6269cd444589c7: keep=True issues=["Refuting items reference 'counter-intuitive overlap with unrelated mythological themes' and cultural-borrowing/independent-development hedges, which are interpretive cautions rather than concrete contradictions of the manu-deucalion-hinduism placement.", 'Two of the three refuting claims (clm-corr-motif-parallel-9cb448fdc6-counter-0, clm-corr-motif-parallel-68fe95566d-counter-0) appear to reference different underlying claim IDs than the supporting claim and may pertain to other actor/object pairs (e.g. lawgiver motifs), so their applicability to this specific manu-deucalion pairing is uncertain.']
+2026-09-11T04:48:50.408564+00:00 critic on 46cbf8b4318293a2: keep=True issues=["The single refuting item ('Lack of direct textual connection between Abraham and Manu') concerns a different pairing (Abraham-Manu), not Abraham-Gilgamesh, so it does not directly contradict this hypothesis's specific object."]
+2026-09-11T04:48:50.408584+00:00 critic on fddc347a3366abaa: keep=False issues=["model-prior: Laozi is traditionally associated with Chinese Taoist tradition, not Hinduism; place='hinduism' places the actor outside every tradition he is conventionally associated with.", "model-prior: Laozi's traditional floruit (~6th century BCE, roughly -571) sits outside/at the edge of the stated interval [-1500,-700], another possible temporal inconsistency.", 'No evidence text was supplied to verify these points, so this relies on unverified model-prior knowledge rather than the (empty) evidence set.']
+2026-09-11T04:48:50.408608+00:00 critic on b1505bc7392cc3bc: keep=False issues=["model-prior: Manu is a figure of Hindu tradition; place='islam' sits outside every tradition Manu is conventionally associated with."]
+2026-09-11T04:48:50.408635+00:00 critic on b737175dbc585684: keep=False issues=["model-prior: Noah is a figure of Abrahamic traditions (Judaism/Christianity/Islam); place='hinduism' sits outside every tradition Noah is conventionally associated with."]
+2026-09-11T04:48:50.408657+00:00 critic on e69587f71d169bd1: keep=True issues=[]
+2026-09-11T04:48:50.408675+00:00 critic on e726bb96470f9183: keep=True issues=[]
+2026-09-11T04:48:50.408696+00:00 critic on b93b4db3419dbb06: keep=False issues=["Time-bin contradiction (model-prior, unverified): Bahá'u'lláh is a 19th-century CE historical figure (traditionally dated c. 1817–1892 CE), so the stated interval [-1200,-1101] BCE cannot contain any attested activity of this actor.", "The cited 'refuting' evidence (T4) actually supports the actor-object mapping content (Bahá'u'lláh as cross-tradition correlate of Joseph Smith) rather than contradicting it; it does not itself address the time interval."]
+2026-09-11T04:48:50.408718+00:00 critic on 4137cee64352d749: keep=False issues=["Place mismatch: Moses is a foundational figure of Judaism (and by extension Christianity/Islam), not of Hinduism; 'hinduism' sits outside every tradition Moses belongs to (model-prior, unverified, but consistent with the 'place outside every tradition the actor belongs to' contradiction type).", "Refuting evidence T4 flags this as a 'counter-intuitive overlap with unrelated mythological themes' — an explicit red flag against the cross-tradition parallel."]
+2026-09-11T04:48:50.408744+00:00 critic on 4fc77ca4982794f1: keep=False issues=["Place mismatch: Mahavira is the founding figure of Jainism, not Hinduism; 'hinduism' sits outside the tradition Mahavira belongs to (model-prior, unverified).", "Time-bin tension (model-prior, unverified): Mahavira's traditionally attested lifetime (~6th–5th century BCE, c. 599–527 BCE) falls after the stated interval's upper bound of -700, i.e., outside [-1500,-700]."]
+2026-09-11T04:48:50.408765+00:00 critic on 2ece282667964353: keep=True issues=[]
+2026-09-11T04:48:50.408783+00:00 critic on 572f28ee13ddc694: keep=True issues=[]
+2026-09-11T04:48:50.408800+00:00 critic on 5047f09812fc4b64: keep=True issues=[]
+2026-09-11T04:48:50.408818+00:00 critic on d2825c8dd84c2514: keep=True issues=["Refuting evidence T4 only flags a generic 'counter-intuitive overlap with unrelated mythological themes,' which is a plausibility caveat rather than a concrete contradiction of the actor, place, or interval."]
+2026-09-11T04:48:50.408837+00:00 critic on b0b7829f520cb555: keep=False issues=["Place mismatch: Abraham is the patriarchal figure of Judaism, Christianity, and Islam; he is not a figure of the Buddhist tradition, so 'buddhism' sits outside every tradition Abraham belongs to (model-prior, unverified)."]
+2026-09-11T04:48:50.408854+00:00 critic on 688ab1b94e7cb9e7: keep=True issues=[]
+2026-09-11T04:48:50.408872+00:00 critic on 959c14f5b454975d: keep=True issues=[]
+2026-09-11T04:48:50.408890+00:00 critic on 01da6c249d02892a: keep=False issues=['Interval mismatch: per model-prior (unverified, not from the supplied evidence), Gautama Buddha is traditionally dated to roughly the 6th-5th century BCE (~-563 to -483), which falls entirely outside the stated interval [-1500,-1401].']
+2026-09-11T04:48:50.408909+00:00 critic on 4e7e441248c3218d: keep=False issues=['Interval mismatch: per model-prior (unverified), Muhammad is traditionally dated to ~570-632 CE, entirely outside the stated BCE interval [-1500,-700].', "Place mismatch: per model-prior (unverified), Muhammad is the founder figure associated with Islam, not Hinduism, so 'place=hinduism' does not fit the actor."]
+2026-09-11T04:48:50.408931+00:00 critic on fad22c657d7de3bd: keep=True issues=[]
+2026-09-11T04:48:50.408950+00:00 critic on 2fdb472b0c7c7944: keep=True issues=[]
+2026-09-11T04:48:50.408968+00:00 critic on a5181c271acb69d2: keep=True issues=[]
+2026-09-11T04:48:50.408986+00:00 critic on a85cc2eb53cea61d: keep=False issues=["Place mismatch: per model-prior (unverified), Confucius is the founder figure of Confucianism, not Buddhism, so 'place=buddhism' does not fit the actor's own tradition."]
+2026-09-11T04:48:50.409003+00:00 critic on d52e79e8cd04ff87: keep=True issues=[]
+2026-09-11T04:48:50.409020+00:00 critic on 1ed9b3cc0c6d252f: keep=True issues=[]
+2026-09-11T04:48:50.409037+00:00 critic on cdf0f6eba151e974: keep=True issues=[]
+2026-09-11T04:48:50.409056+00:00 critic on 8b251105b6c4037b: keep=False issues=["Refuting evidence (clm-corr-motif-parallel-9b864abea6-counter-0) states there is a 'lack of direct textual connection between Abraham and Manu,' which directly contradicts the claimed 'parallels' relationship between these two actors."]
+2026-09-11T04:48:50.409075+00:00 critic on f7e3ec289f3d6de6: keep=True issues=["Refuting evidence raises general caveats (possible cultural borrowing/independent development, counter-intuitive overlaps with 'unrelated mythological themes in other traditions') but does not explicitly state that Manu and Buddha lack a connection or that the parallel is false; these are hedges about mechanism/origin, not a direct contradiction of the actor-object pairing."]
+2026-09-11T04:48:50.409095+00:00 critic on 0a6bdd4500985d01: keep=False issues=["Refuting evidence (clm-corr-motif-parallel-827d0fee6e-counter-0) directly states that Utnapishtim's immortality-granted theme 'may not be directly comparable' to Deucalion's founding-patriarch role, which concretely undermines the specific 'parallels' claim between these two named actors."]
+2026-09-11T04:48:50.409113+00:00 critic on 2c69781b76e0d96b: keep=True issues=["The only refuting evidence cited references a lack of connection between 'Abraham and Manu,' not between Abraham and the actual object named in this hypothesis, Guru Nanak; the evidence is mismatched to the claimed actor/object pair and does not address it."]
+2026-09-11T04:48:50.409132+00:00 critic on 35a07aaac727e90b: keep=True issues=["No supporting or refuting evidence is attached. Model-prior knowledge suggests Saoshyant is a Zoroastrian rather than Hindu figure, which would make place='hinduism' questionable, but this is an unverified model-prior observation, not evidence text, so it cannot ground rejection here."]
+2026-09-11T04:48:50.409149+00:00 critic on 24daf1105f7529ac: keep=True issues=[]
+2026-09-11T04:48:50.409168+00:00 critic on daa108b54618ea05: keep=False issues=["Place='islam' is outside every tradition actor 'manu' belongs to; Manu is a Hindu/Vedic figure, not an Islamic one (model-prior).", 'Interval [-1500,-700] predates the existence of Islam (founded c. 7th century CE), so the actor cannot be placed in that tradition within this time bin (model-prior).']
+2026-09-11T04:48:50.409187+00:00 critic on f740edfb9449c68e: keep=False issues=["Place='hinduism' is outside every tradition actor 'noah' belongs to; Noah is a figure from Abrahamic traditions (Judaism/Christianity/Islam), not Hinduism (model-prior)."]
+2026-09-11T04:48:50.409206+00:00 critic on 5bcca306dea6399d: keep=False issues=["Interval [-1200,-1101] does not overlap with Buddha's attested lifetime (~563-483 BCE) or Guru Nanak's attested lifetime (1469-1539 CE) (model-prior)."]
+2026-09-11T04:48:50.409224+00:00 critic on 65f7cc659096017b: keep=False issues=["Place='jainism' is outside every tradition actor 'manu' belongs to; Manu is a Hindu/Vedic figure, not a Jain one (model-prior)."]
+2026-09-11T04:48:50.409242+00:00 critic on 53d815b9e480ef0a: keep=True issues=[]
+2026-09-11T04:48:50.409261+00:00 critic on 859db55f17c6db75: keep=False issues=["Place='hinduism' is outside every tradition actor 'moses' belongs to; Moses is a figure from the Judaic/Abrahamic tradition, not Hinduism (model-prior)."]
+2026-09-11T04:48:50.409282+00:00 critic on ecb29e7d6c557891: keep=True issues=[]
+2026-09-11T04:48:50.409302+00:00 critic on 6e0db7346947f4ce: keep=True issues=[]
+2026-09-11T04:48:50.409327+00:00 critic on 2d902f6c3208fc64: keep=True issues=[]
+2026-09-11T04:48:50.409347+00:00 critic on 0f66c2870712a732: keep=True issues=[]
+2026-09-11T04:48:50.409365+00:00 critic on 50c18e3496e9767a: keep=True issues=[]
+2026-09-11T04:48:50.409383+00:00 critic on 31bbf9706858a8ea: keep=True issues=[]
+2026-09-11T04:48:50.409400+00:00 critic on 61c024d32148ce9d: keep=True issues=[]
+2026-09-11T04:48:50.409417+00:00 critic on e33d908af52ccc0f: keep=True issues=[]
+2026-09-11T04:48:50.409434+00:00 critic on ee382298e1458bfc: keep=True issues=[]
+2026-09-11T04:48:50.409455+00:00 critic on b9f40095d2c484c9: keep=False issues=["place='greek' sits outside every tradition David is attested in (Judaism/Christianity/Islam, Israelite kingship); no evidence connects David to Greek tradition"]
+2026-09-11T04:48:50.409472+00:00 critic on 2a9282f18fb9b8b5: keep=True issues=[]
+2026-09-11T04:48:50.409490+00:00 critic on eba224a31e4f0fea: keep=False issues=["object='buddha' is not attested within interval [-1500,-700]; Buddha's traditionally cited lifetime (~6th-5th century BCE) falls after -700"]
+2026-09-11T04:48:50.409509+00:00 critic on 1313224c8b7a31ea: keep=False issues=["object='bahaullah' is not attested within interval [-1500,-250]; Baha'u'llah's life (19th century CE) falls entirely outside this BCE interval"]
+2026-09-11T04:48:50.409527+00:00 critic on 49cc48f5c4a63ede: keep=True issues=[]
+2026-09-11T04:48:50.409545+00:00 critic on 0d9c1e20e32dec50: keep=False issues=["place='hinduism' sits outside every tradition Yu the Great and Confucius belong to (both are figures of Chinese mythology/Confucian tradition, not Hindu tradition)"]
+2026-09-11T04:48:50.409563+00:00 critic on eb57410c2951affe: keep=False issues=["object='guru-nanak' is not attested within interval [-1500,-250]; Guru Nanak's life (15th-16th century CE) falls entirely outside this BCE interval"]
+2026-09-11T04:48:50.409581+00:00 critic on e5a32b1ffb26ad64: keep=False issues=["object='bahaullah' is not attested within interval [-1500,-250]; Baha'u'llah's life (19th century CE) falls entirely outside this BCE interval"]
+2026-09-11T04:48:50.409598+00:00 critic on f3c9446262f65ed3: keep=True issues=[]
+2026-09-11T04:48:50.409616+00:00 critic on 0426edf487a5ecb0: keep=True issues=[]
+2026-09-11T04:48:50.409633+00:00 critic on 7aee0fcb497b7ca1: keep=True issues=['Attached refuting evidence references Abraham and Manu, not Abraham and Jesus, so it does not address the actor/object pair named in this hypothesis (possible evidence misattribution).']
+2026-09-11T04:48:50.409651+00:00 critic on f10d508110e84ed9: keep=True issues=[]
+2026-09-11T04:48:50.409668+00:00 critic on 1bd7a3e7ed8710fa: keep=True issues=[]
+2026-09-11T04:48:50.409688+00:00 critic on 1b77b65861d15a6b: keep=True issues=[]
+2026-09-11T04:48:50.409714+00:00 critic on 3d86c686d4685844: keep=True issues=[]
+2026-09-11T04:48:50.409742+00:00 critic on 9912f18490d8e0cf: keep=False issues=["Refuting evidence explicitly states 'Lack of direct textual connection between Abraham and Manu,' directly naming both actors in this hypothesis and contradicting the claimed 'parallels' relationship between them."]
+2026-09-11T04:48:50.409767+00:00 critic on 47b24c500bf8b676: keep=False issues=["No evidence was supplied for this pairing, but the stated place='hinduism' is inconsistent with both actor 'noah' (a Judaic/Abrahamic flood-hero figure) and object 'deucalion' (a Greek-mythological flood-hero figure) — neither belongs to the Hindu tradition. This assessment relies on model-prior (unverified) background knowledge rather than the evidence text, since no evidence text was attached."]
+2026-09-11T04:48:50.409796+00:00 critic on 091b43ca9591a888: keep=False issues=["Refuting evidence (T4, clm-corr-motif-parallel-827d0fee6e-counter-0) explicitly states the immortality-granted theme in Utnapishtim 'may not be directly comparable' to Deucalion's founding-patriarch role, directly undercutting the claimed parallel between the two figures that the hypothesis asserts."]
+2026-09-11T04:48:50.409830+00:00 critic on 64eac33ad4d6fbe4: keep=False issues=["The stated interval [-1500,-1401] does not overlap with David's widely-attested traditional reign (~1010-970 BCE), making the actor's placement anachronistic relative to the claimed time bin. This is a model-prior (unverified) chronological judgment, not drawn directly from the supplied evidence quote.", "The listed 'refuting evidence' text itself only restates the proposed correlate ('David is proposed as a cross-tradition correlate of Gilgamesh') without providing an actual counter-argument, so it does not independently establish a contradiction; the time-bin mismatch is the operative issue."]
+2026-09-11T04:48:50.409853+00:00 critic on 5a1385992d705293: keep=True issues=[]
+2026-09-11T04:48:50.409876+00:00 critic on b1f3ff1e087c1564: keep=True issues=[]
+2026-09-11T04:48:50.409895+00:00 critic on 4a6c37397b160a7d: keep=True issues=[]
+2026-09-11T04:48:50.409913+00:00 critic on 42dcb140ab00627c: keep=True issues=[]
+2026-09-11T04:48:50.409931+00:00 critic on 99efbb284ad8dea3: keep=True issues=["One of the three refuting-evidence entries ('Lack of direct textual connection between Buddha and Joseph Smith', clm-corr-motif-parallel-c1f7ca06c8-counter-0) concerns a different object (Joseph Smith), not Abraham, so it does not actually address this specific actor-object pairing and appears misattached."]
+2026-09-11T04:48:50.409949+00:00 critic on 4657977741690d12: keep=True issues=[]
+2026-09-11T04:48:50.409966+00:00 critic on 346462b016164323: keep=True issues=[]
+2026-09-11T04:48:50.409985+00:00 critic on 9307876e1e45b5ad: keep=False issues=["Refuting evidence explicitly states 'Lack of direct textual connection between Buddha and Joseph Smith' (clm-corr-motif-parallel-c1f7ca06c8-counter-0), which directly contradicts the asserted 'parallels' relationship between the two actors."]
+2026-09-11T04:48:50.410002+00:00 critic on bce15c425b402f62: keep=True issues=[]
+2026-09-11T04:48:50.410019+00:00 critic on be50c7eed5b8a7c1: keep=True issues=[]
+2026-09-11T04:48:50.410038+00:00 critic on ad697cab936d572a: keep=True issues=[]
+2026-09-11T04:48:50.410056+00:00 critic on 605b74d57b19db4d: keep=True issues=[]
+2026-09-11T04:48:50.410073+00:00 critic on 55dd4b16c5aa14b6: keep=True issues=[]
+2026-09-11T04:48:50.410092+00:00 critic on 8f1f9fb995751213: keep=False issues=["place='hinduism' sits outside the traditions either actor belongs to: refuting evidence T4 identifies Utnapishtim as Mesopotamian and Deucalion as Greek ('founding-patriarch role'); neither figure is a Hindu tradition figure, so the place placement is contradicted by the evidence's own tradition attribution."]
+2026-09-11T04:48:50.410110+00:00 critic on 6dd5f2123a958019: keep=True issues=[]
+2026-09-11T04:48:50.410127+00:00 critic on bf41694c02ddd2e2: keep=True issues=[]
+2026-09-11T04:48:50.410147+00:00 critic on 05b070e532bb4ea3: keep=False issues=["place='buddhism' does not match either actor's attested tradition — Abraham is a patriarchal figure of Judaism/Christianity/Islam and Bahá'u'lláh founded the Bahá'í Faith; neither is a Buddhist-tradition figure.", "(model-prior, unverified) Abraham's traditional/legendary dating is generally placed well before -500 (often cited around the early-to-mid second millennium BCE), so the interval [-500, 1863] would exclude Abraham's attested period; this is a training-recall claim, not confirmed by the evidence text itself."]
+2026-09-11T04:48:50.410167+00:00 critic on 32fe4bba18229206: keep=True issues=[]
+2026-09-11T04:48:50.410184+00:00 critic on 1dcb4dbe2aef51b8: keep=True issues=[]
+2026-09-11T04:48:50.410201+00:00 critic on dadb4f184f91607f: keep=True issues=[]
+2026-09-11T04:48:50.410220+00:00 critic on 17bfdf9193d8e016: keep=False issues=["(model-prior, unverified) The stated interval [-700,-601] appears to predate Buddha's commonly cited traditional lifetime (roughly 563–483 BCE or later short-chronology estimates), meaning the actor is not attested inside the stated time bin; this is a training-recall claim rather than something drawn from the provided evidence text."]
+2026-09-11T04:48:50.410244+00:00 critic on 798f4bce2f52616e: keep=False issues=["Object 'confucius' is placed within interval [-1500,-571], but Confucius's traditionally attested lifespan (~-551 to -479, per model-prior/unverified recollection) falls entirely after -571, outside the stated time bin."]
+2026-09-11T04:48:50.410265+00:00 critic on 7e1a73d40ba46b86: keep=True issues=['Refuting evidence suggests the parallel may stem from cultural exchange/linguistic borrowing rather than independent origin (clm-corr-motif-parallel-86b6e200bf-counter-0, clm-corr-motif-parallel-fab8ab2488-counter-0).', 'Refuting evidence notes a lack of direct textual connection between Buddha and Joseph Smith (clm-corr-motif-parallel-c1f7ca06c8-counter-0), which weakens confidence in the specific parallel but does not contradict the actor/place/interval framing.']
+2026-09-11T04:48:50.410283+00:00 critic on e7e1691179079a77: keep=True issues=[]
+2026-09-11T04:48:50.410302+00:00 critic on e248448b0571fb94: keep=False issues=["Object 'bahaullah' is mapped within interval [-1500,-250], but Bahá'u'lláh's attested lifespan (1817-1892 CE, per model-prior/unverified recollection) falls entirely outside and long after this interval."]
+2026-09-11T04:48:50.410329+00:00 critic on efeb531841e13ef2: keep=True issues=[]
+2026-09-11T04:48:50.410391+00:00 critic on 24a1465294bdbc27: keep=True issues=['Refuting evidence notes that each tradition contains other distinct motifs suggesting unique cultural influences (clm-corr-motif-parallel-85849e2b03-counter-0), which tempers but does not disprove the parallel.']
+2026-09-11T04:48:50.410445+00:00 critic on cada76afd3e6e128: keep=False issues=["Object 'jesus' is mapped within interval [-1500,-250], but Jesus's attested lifetime (~4 BCE-30 CE, per model-prior/unverified recollection) falls after -250, outside the stated interval."]
+2026-09-11T04:48:50.410471+00:00 critic on a2050d307ec96021: keep=True issues=[]
+2026-09-11T04:48:50.410491+00:00 critic on d6b3d0c5ffed1e21: keep=True issues=[]
+2026-09-11T04:48:50.410510+00:00 critic on 668a08bad0acb5a7: keep=True issues=[]
+2026-09-11T04:48:50.410529+00:00 critic on 0b28e52cf4c848ac: keep=False issues=['Object (Guru Nanak) is not attested within the stated interval [-1500,-700] BCE']
+2026-09-11T04:48:50.410559+00:00 critic on 348d0ef6a992e84e: keep=True issues=["Minor model-prior caveat: Confucius's traditional birth year (c. 551 BCE) falls roughly 20 years after the interval's upper bound (-571 BCE)"]
+2026-09-11T04:48:50.410605+00:00 critic on 11c69920ec18b56f: keep=False issues=["Place ('hinduism') sits outside the tradition the actor (Yu the Great) belongs to"]
+2026-09-11T04:48:50.410649+00:00 critic on c77f2427b51e6c7c: keep=False issues=['Object (Joseph Smith) is not attested within the stated interval [-1500,-250]']
+2026-09-11T04:48:50.410694+00:00 critic on 7d21a70a924fdc4a: keep=False issues=["Place ('hinduism') sits outside the traditions the actor (Saoshyant) and object (Deucalion) belong to"]
+2026-09-11T04:48:50.410737+00:00 critic on e56eaca6c3970d4a: keep=False issues=['Actor (Muhammad) is not attested within the stated interval [-1500,-1401]']
+2026-09-11T04:48:50.410783+00:00 critic on 28460867d2adb260: keep=False issues=["Actor 'david' is a figure of the Judaic/Abrahamic tradition; 'hinduism' sits outside every tradition David belongs to."]
+2026-09-11T04:48:50.410830+00:00 critic on 3625a574cc942d9b: keep=False issues=["Actor 'abraham' belongs to the Abrahamic traditions, not Buddhism; place mismatch.", "Traditional dating of Abraham predates the interval [-571,-500], which instead corresponds to Confucius's lifetime, so the actor is not attested inside the stated time bin."]
+2026-09-11T04:48:50.410875+00:00 critic on 5f1b245ad5577054: keep=False issues=["Actor 'abraham' is an Abrahamic-tradition figure; 'greek' sits outside every tradition he belongs to."]
+2026-09-11T04:48:50.410920+00:00 critic on 33d90960cbef2a75: keep=False issues=["Actor/object 'bahaullah' is the founder of the Baha'i Faith, not a Buddhist figure; place='buddhism' sits outside his tradition."]
+2026-09-11T04:48:50.410980+00:00 critic on 937ab9d9c8afde68: keep=False issues=["Actor 'utnapishtim' is a Mesopotamian mythological figure from an era over two millennia before the founding of the Baha'i Faith; place='bahai' sits outside his tradition and era."]
+2026-09-11T04:48:50.411035+00:00 critic on fadf4b6ab59e3ea4: keep=True issues=[]
+2026-09-11T04:48:50.411079+00:00 critic on ce581c8ea7853a5e: keep=True issues=[]
+2026-09-11T04:48:50.411125+00:00 critic on 4cbd72d48a5dfe54: keep=False issues=["Actor 'rama' is a figure of the Hindu tradition (protagonist of the Ramayana), not Buddhism; place='buddhism' sits outside his tradition."]
+2026-09-11T04:48:50.411179+00:00 critic on 7a1eac5625cd20d4: keep=False issues=["Confucius's traditionally attested lifespan (c. 551–479 BCE, model-prior, unverified) falls entirely outside the stated interval [-1500,-571], which ends before his birth.", "Place='hinduism' is inconsistent with Confucius, who belongs to the Confucian/Chinese philosophical tradition, not Hinduism (model-prior).", "Actor 'mythicist-non-historicity' denotes a modern historiographical framework and is anachronistic for an interval ending in -571 (model-prior, low confidence)."]
+2026-09-11T04:48:50.411230+00:00 critic on fdc0510fc4688e48: keep=True issues=[]
+2026-09-11T04:48:50.411283+00:00 critic on d9c5f3666ca593df: keep=False issues=["Interval [-1200,-1101] is roughly 600 years earlier than Buddha's traditionally attested lifespan (model-prior, c. 563–483 BCE, also used as [-571,-500] elsewhere in this same dataset), a concrete date mismatch for the actor.", "The listed 'refuting evidence' text merely restates the correlation claim (Buddha ~ Joseph Smith) rather than genuinely refuting it, so the rejection rests on the interval mismatch, not that text."]
+2026-09-11T04:48:50.411348+00:00 critic on ee5dc6238bc16b68: keep=True issues=[]
+2026-09-11T04:48:50.411398+00:00 critic on 74576fbcaa3b89ab: keep=False issues=["Place='jainism' is inconsistent with Manu, who is a foundational figure of Hindu tradition (the Manusmriti, flood myth), not Jain tradition; no evidence or general knowledge ties Manu to Jainism (model-prior)."]
+2026-09-11T04:48:50.411448+00:00 critic on 3df2a796d03dae1e: keep=True issues=["One of the refuting evidence items ('Lack of direct textual connection between Buddha and Joseph Smith') pertains to a different actor/object pair (Buddha–Joseph Smith), not Buddha–Baha'u'llah, so it does not bear on this hypothesis."]
+2026-09-11T04:48:50.411495+00:00 critic on f9eee46ab885c5d9: keep=True issues=[]
+2026-09-11T04:48:50.411544+00:00 critic on 3910e73ce814eee7: keep=False issues=["Refuting evidence explicitly states a 'Lack of direct textual connection between Abraham and Manu,' directly undermining the claimed parallel.", "Place='hinduism' is inconsistent with Abraham, who belongs to Judaic/Christian/Islamic traditions, not Hinduism; it instead matches Manu's (the object's) tradition, breaking the pattern elsewhere in this dataset where place reflects the actor's own tradition (model-prior)."]
+2026-09-11T04:48:50.411589+00:00 critic on 153c2f256c33df7f: keep=True issues=[]
+2026-09-11T04:48:50.411631+00:00 critic on c2570a5e7953c175: keep=True issues=[]
+2026-09-11T04:48:50.411679+00:00 critic on 6b1b3ca18bcf76c2: keep=False issues=["Refuting evidence explicitly identifies Utnapishtim as 'mesopotamian', which contradicts the hypothesis placing him in place='buddhism' — the evidence itself puts the actor outside the stated tradition."]
+2026-09-11T04:48:50.411724+00:00 critic on babb3fa489ff23e8: keep=True issues=[]
+2026-09-11T04:48:50.411767+00:00 critic on 483d591e9c340543: keep=True issues=[]
+2026-09-11T04:48:50.411785+00:00 critic on 8eff217ce2265db7: keep=True issues=[]
+2026-09-11T04:48:50.411802+00:00 critic on a951b76bdaace101: keep=True issues=[]
+2026-09-11T04:48:50.411819+00:00 critic on efc08b2ea7e6bca1: keep=True issues=[]
+2026-09-11T04:48:50.411841+00:00 critic on ae1f433b47da5fae: keep=False issues=["place='buddhism' does not match actor='abraham', who belongs to Judaism/Christianity/Islam, not Buddhism", "place='buddhism' also does not match object='bahaullah', founder of the Baha'i faith, not Buddhism"]
+2026-09-11T04:48:50.411863+00:00 critic on c16d7e6a75996483: keep=False issues=["place='buddhism' does not match actor='abraham' (Abrahamic patriarch) or object='deucalion' (Greek mythology), neither of which belongs to Buddhism"]
+2026-09-11T04:48:50.411880+00:00 critic on b23292ec3ee51408: keep=True issues=[]
+2026-09-11T04:48:50.411898+00:00 critic on 6fbecf79f40189ed: keep=False issues=["place='judaism' does not match actor='manu', who belongs solely to the Hindu tradition, nor object='deucalion', who belongs to Greek mythology"]
+2026-09-11T04:48:50.411915+00:00 critic on db2dcc1a47f13976: keep=True issues=[]
+2026-09-11T04:48:50.411932+00:00 critic on 471912a6b11d6edf: keep=True issues=[]
+2026-09-11T04:48:50.411951+00:00 critic on 41ec5b913aebb2b2: keep=False issues=["actor='channeled-modern-revelation' denotes a modern (post-19th-century, e.g. Baha'i-style) revelatory phenomenon, which is incompatible with the ancient interval [-1500,-571] specified", "place='hinduism' does not match object='confucius', who belongs to Confucianism/Chinese thought, not Hinduism"]
+2026-09-11T04:48:50.411969+00:00 critic on ffdbd98f044eeee2: keep=True issues=[]
+2026-09-11T04:48:50.411986+00:00 critic on 9e8d0033d7a97402: keep=True issues=[]
+2026-09-11T04:48:50.412003+00:00 critic on 3f2a79c6839dbb0b: keep=True issues=[]
+2026-09-11T04:48:50.412021+00:00 critic on 00349699d6f4f842: keep=True issues=[]
+2026-09-11T04:48:50.412038+00:00 critic on 3afde9f3ba1b2745: keep=True issues=[]
+2026-09-11T04:48:50.412057+00:00 critic on 0e82ec69e3a5daa1: keep=False issues=["place='lds' does not match any tradition Manu is attested in; per model-prior (unverified, not from cited evidence), Manu is a Hindu figure with no LDS association, unlike the sibling hypothesis (9e8d0033d7a97402) which correctly places the same actor/object pair in 'hinduism'."]
+2026-09-11T04:48:50.412075+00:00 critic on 75f6ebd8df2eb004: keep=False issues=["Refuting evidence T4 characterizes the Buddha-Confucius correlation as based on 'shared motifs' (a motif-parallel style linkage), which contradicts the hypothesis's stated mechanism='entity-graph-resolver'."]
+2026-09-11T04:48:50.412092+00:00 critic on a36607dc77db3bd8: keep=True issues=[]
+2026-09-11T04:48:50.412109+00:00 critic on 6a591467ccb5ad34: keep=True issues=[]
+2026-09-11T04:48:50.412126+00:00 critic on 6b60e8a2775686c3: keep=True issues=[]
+2026-09-11T04:48:50.412144+00:00 critic on cdd1f6e585151a19: keep=False issues=["Object 'guru-nanak' (founder of Sikhism) is historically attested c. 1469-1539 CE, which falls entirely outside the stated interval [-1500,-700] (a mismatch of roughly two millennia)."]
+2026-09-11T04:48:50.412161+00:00 critic on f0b48e5d5557e848: keep=True issues=[]
+2026-09-11T04:48:50.412180+00:00 critic on 10fd6a11db909557: keep=False issues=["Actor 'yu-the-great' is a figure of Chinese mythology/tradition, not Hinduism, so place='hinduism' sits outside every tradition the actor belongs to.", "Object 'deucalion' is a figure of Greek mythology, also unrelated to Hinduism, reinforcing the place mismatch."]
+2026-09-11T04:48:50.412198+00:00 critic on d22411f71e001a7f: keep=False issues=["Object 'joseph-smith' (founder of the Latter Day Saint movement) is historically attested 1805-1844 CE, far outside the stated interval [-1500,-250]."]
+2026-09-11T04:48:50.412216+00:00 critic on 35dc414638599dce: keep=False issues=["Actor/object 'confucius' belongs to the Confucian tradition, not Buddhism, so place='buddhism' sits outside the tradition the actor is associated with."]
+2026-09-11T04:48:50.412235+00:00 critic on 89e5e1d191478492: keep=False issues=["Actor 'david' (a Judaism/Hebrew Bible figure) is not attested within Buddhism, so place='buddhism' sits outside every tradition the actor belongs to.", "David's traditional dating (c. 1000 BCE, model-prior) precedes the interval's lower bound of -500, so the actor is not attested inside the stated time bin."]
+2026-09-11T04:48:50.412256+00:00 critic on 8031b8238d071d3d: keep=True issues=[]
+2026-09-11T04:48:50.412275+00:00 critic on 6e5ef61b72ca4124: keep=True issues=[]
+2026-09-11T04:48:50.412294+00:00 critic on f54841f391cdc0c3: keep=True issues=["Refuting evidence is generic ('unrelated mythological themes', 'lawgiver motif ... cultural borrowing', 'cultural exchange or independent development') and does not specifically address the Manu-Jesus pairing named by this hypothesis."]
+2026-09-11T04:48:50.412314+00:00 critic on f5e10bf01ce67ba4: keep=False issues=["place='buddhism' sits outside every tradition Bahá'u'lláh is associated with; he is the founder of the Bahá'í Faith, not a Buddhist figure (model-prior, not drawn from the cited evidence since no evidence is attached to this hypothesis)."]
+2026-09-11T04:48:50.412345+00:00 critic on 7bc7645b2f8a9637: keep=True issues=['The sole refuting claim concerns a lack of textual connection between Abraham and Manu, not Abraham and Krishna, so it does not address the actor-object pairing this hypothesis actually makes.']
+2026-09-11T04:48:50.412366+00:00 critic on e552b1c34d73fde4: keep=False issues=["place='bahai' sits outside every tradition either Buddha or Confucius belongs to, and the Bahá'í Faith did not exist during the stated interval [-571,-500] (model-prior, since no cited evidence supports or contradicts this hypothesis)."]
+2026-09-11T04:48:50.412384+00:00 critic on fc7559cccfa0d8a6: keep=True issues=['No evidence (supporting or refuting) is attached to substantiate or contradict this hypothesis.']
+2026-09-11T04:48:50.412402+00:00 critic on f7c1186004c9b098: keep=True issues=[]
+2026-09-11T04:48:50.412421+00:00 critic on 17f2d27abc073b0e: keep=True issues=["The refuting claim ('may be due to cultural exchange or borrowing') is a generic counter-consideration about motif diffusion, not a specific contradiction of the Buddha-Bahaullah pairing, place, or interval."]
+2026-09-11T04:48:50.412440+00:00 critic on 781c53396c7c7cb6: keep=True issues=['Refuting evidence is a generic caveat about distinct motifs/cultural influences; it does not concretely deny a noah-manu parallel, nor does it address the stated time bin or place.']
+2026-09-11T04:48:50.412458+00:00 critic on dba4b0d6b9263cae: keep=True issues=[]
+2026-09-11T04:48:50.412476+00:00 critic on e388f99cc43d74a7: keep=True issues=["No supporting or refuting evidence is attached; place='islam' is plausible on model-prior grounds since David is also recognized in the Quran, but this is unverified model-prior, not evidence-backed."]
+2026-09-11T04:48:50.412494+00:00 critic on 0b0186f043bc8e62: keep=True issues=["No evidence attached; place='other-place' is a generic placeholder rather than a specific tradition claim, so no place-tradition mismatch can be assessed."]
+2026-09-11T04:48:50.412513+00:00 critic on d34073dd1b803776: keep=True issues=['No evidence is attached for this hypothesis. Model-prior (unverified, from training rather than the evidence text): Joseph Smith is conventionally dated to the 19th century CE, which appears inconsistent with the stated BCE interval [-1200,-1101]; however, since no evidence in the provided record establishes or contradicts this, it cannot be used as grounds for rejection.']
+2026-09-11T04:48:50.412532+00:00 critic on a243719d4ccfa9b7: keep=True issues=["Refuting evidence is a vague generic note about 'counter-intuitive overlap with unrelated mythological themes,' which does not concretely name or contradict the deucalion/mythicist-non-historicity pairing.", "The actor 'mythicist-non-historicity' is an unusual, non-figure actor paired with place='hinduism', but no evidence establishes a concrete tradition mismatch."]
+2026-09-11T04:48:50.412550+00:00 critic on eafc235279cb9c84: keep=True issues=['No evidence attached. Model-prior (unverified): Abraham is traditionally associated with Judaism/Christianity/Islam rather than Hinduism, which could suggest a place/tradition mismatch with the actor, but this is not established by any cited evidence.']
+2026-09-11T04:48:50.412585+00:00 critic on 61d5543767042ddc: keep=True issues=['No evidence attached.']
+2026-09-11T04:48:50.412607+00:00 critic on 58b473122b760430: keep=True issues=["Refuting evidence discusses cultural-exchange caveats for a general parallel motif; one counter-claim references 'Buddha and Joseph Smith' rather than Buddha and Confucius, so it does not directly address this actor-object pairing and provides no concrete contradiction of actor, place, or interval."]
+2026-09-11T04:48:50.412625+00:00 critic on 4b808ba38cd65a98: keep=True issues=[]
+2026-09-11T04:48:50.412642+00:00 critic on 7b200f8e99c014b1: keep=True issues=[]
+2026-09-11T04:48:50.412659+00:00 critic on a45da1352184b93a: keep=True issues=[]
+2026-09-11T04:48:50.412677+00:00 critic on ef72195e2bda8707: keep=True issues=["Refuting evidence is a generic 'cultural exchange or borrowing' caveat and does not name specific fields (place, interval, actor attestation) to contradict."]
+2026-09-11T04:48:50.412694+00:00 critic on 81d6512936c11ba6: keep=True issues=[]
+2026-09-11T04:48:50.412711+00:00 critic on add8dc4dca083810: keep=True issues=[]
+2026-09-11T04:48:50.412729+00:00 critic on 509b7250b74a8ab3: keep=True issues=["Refuting notes are vague ('counter-intuitive overlap', 'may be cultural borrowing') and do not specifically state Manu or Deucalion falls outside the given interval or that Hinduism is not one of Manu's traditions."]
+2026-09-11T04:48:50.412748+00:00 critic on 4bbaf93f7739455c: keep=True issues=['Refuting evidence (T4) is hedged ("may not be directly comparable") rather than a concrete factual contradiction; it questions comparability of themes rather than showing the actor is unattested in the stated interval/place.']
+2026-09-11T04:48:50.412765+00:00 critic on 9a06250c518601e8: keep=True issues=[]
+2026-09-11T04:48:50.412782+00:00 critic on 5671e4eeefb64154: keep=True issues=[]
+2026-09-11T04:48:50.412799+00:00 critic on ee04184cf3fc34e7: keep=True issues=[]
+2026-09-11T04:48:50.412817+00:00 critic on d8fb4f3e90601020: keep=True issues=[]
+2026-09-11T04:48:50.412834+00:00 critic on 211ac4288a73779e: keep=True issues=[]
+2026-09-11T04:48:50.412852+00:00 critic on 112faf7dac9261da: keep=False issues=["Refuting evidence (T4) directly states 'Lack of direct textual connection between Abraham and Manu', which is a concrete contradiction of the hypothesis's core claim that these two actors 'parallels' each other."]
+2026-09-11T04:48:50.412871+00:00 critic on 18e7a1d47ca839a7: keep=True issues=["Multiple refuting items (T4) are hedged with 'may indicate', 'may suggest', 'may not be', 'may have' language, describing possible independent cultural development rather than proving no connection exists; these are plausibility-style cautions, not concrete contradictions of the actor, place, or interval."]
+2026-09-11T04:48:50.412890+00:00 critic on d406005f54d6731e: keep=False issues=["place='christianity' does not correspond to either actor's tradition: Utnapishtim belongs to Mesopotamian/Babylonian mythology and Deucalion to Greek mythology; Christianity did not exist during the stated interval [-1200,-700] (model-prior, unverified).", "Refuting evidence (T4) explicitly questions direct comparability between Utnapishtim's immortality theme and Deucalion's founding-patriarch role, undercutting the 'parallels' claim."]
+2026-09-11T04:48:50.412908+00:00 critic on bb8a7edc96281663: keep=True issues=[]
+2026-09-11T04:48:50.412925+00:00 critic on 3322d0ca8ab66804: keep=True issues=[]
+2026-09-11T04:48:50.412944+00:00 critic on 4ee33636a45dc773: keep=False issues=["Mahavira's traditionally recalled dates (c. 6th century BCE, model-prior/unverified) fall well outside the stated interval [-1200,-1101], suggesting the actor is not attested inside the stated time bin."]
+2026-09-11T04:48:50.412963+00:00 critic on 8e8479c328697a89: keep=False issues=["actor='channeled-modern-revelation' denotes a modern-era phenomenon (e.g., 19th-20th century channeling/New Age movements per model-prior knowledge), which is incompatible with the stated interval [-1500,-700] BCE.", "place='hinduism' does not match Deucalion's Greek mythological tradition."]
+2026-09-11T04:48:50.412984+00:00 critic on 2781b3cc543efe93: keep=True issues=[]
+2026-09-11T04:48:50.413003+00:00 critic on 38c411b8ecd6a924: keep=True issues=[]
+2026-09-11T04:48:50.413020+00:00 critic on f0b46a80874544da: keep=True issues=[]
+2026-09-11T04:48:50.413037+00:00 critic on 2e5e693ee5f3d23f: keep=True issues=[]
+2026-09-11T04:48:50.413055+00:00 critic on 37001178464cb2bb: keep=False issues=["Actor 'bahaullah' is not attested within the stated interval [-600,-501] BCE."]
+2026-09-11T04:48:50.413073+00:00 critic on 656dd1feeb99ad70: keep=True issues=[]
+2026-09-11T04:48:50.413090+00:00 critic on 6cabb9c3c5835d95: keep=True issues=[]
+2026-09-11T04:48:50.413107+00:00 critic on c88364973e02d4e8: keep=True issues=[]
+2026-09-11T04:48:50.413124+00:00 critic on 525541c177514dcc: keep=True issues=[]
+2026-09-11T04:48:50.413141+00:00 critic on 0271d15178c99ef3: keep=True issues=[]
+2026-09-11T04:48:50.413160+00:00 critic on 358d4d2b0b59dfae: keep=False issues=["Actor 'david' is not attested within the stated interval [-500,1863]."]
+2026-09-11T04:48:50.413179+00:00 critic on ca55ba0847a2fd3d: keep=True issues=[]
+2026-09-11T04:48:50.413196+00:00 critic on 27ac9b8208a9501a: keep=True issues=[]
+2026-09-11T04:48:50.413213+00:00 critic on 53db6c3471f28685: keep=True issues=[]
+2026-09-11T04:48:50.413231+00:00 critic on bb0dea15e121b684: keep=True issues=[]
+2026-09-11T04:48:50.413248+00:00 critic on 5abfb37ed02072f1: keep=True issues=[]
+2026-09-11T04:48:50.413267+00:00 critic on 345bb549fefda05f: keep=False issues=["place='mesopotamian' sits outside every tradition the actor 'manu' belongs to (manu is attested as a Hindu/Vedic figure, not a Mesopotamian one) — this is a model-prior-based structural mismatch, unverified against the provided evidence set but flagged per the place-consistency check."]
+2026-09-11T04:48:50.413286+00:00 critic on a468b377fc42fabb: keep=True issues=[]
+2026-09-11T04:48:50.413304+00:00 critic on 86b5b53f15ba5d8d: keep=True issues=[]
+2026-09-11T04:48:50.413329+00:00 critic on fb64f61351cda88c: keep=True issues=[]
+2026-09-11T04:48:50.413351+00:00 critic on 7e75d48aded66829: keep=True issues=[]
+2026-09-11T04:48:50.413369+00:00 critic on 896ccf93d27f0a5c: keep=True issues=[]
+2026-09-11T04:48:50.413387+00:00 critic on 34ea7b5f9023e40d: keep=True issues=[]
+2026-09-11T04:48:50.413405+00:00 critic on 8da2020da8b0af67: keep=True issues=['The single refuting evidence item references a lack of textual connection between Abraham and Manu, not between Abraham and Laozi, so it does not actually address the actor-object pair in this hypothesis.']
+2026-09-11T04:48:50.413423+00:00 critic on 0f4eb7534433a280: keep=True issues=[]
+2026-09-11T04:48:50.413440+00:00 critic on 108a12b8d6b90ac9: keep=True issues=[]
+2026-09-11T04:48:50.413458+00:00 critic on 7f375907fff8c87c: keep=True issues=[]
+2026-09-11T04:48:50.413476+00:00 critic on d570d0b560b27ba9: keep=True issues=[]
+2026-09-11T04:48:50.413495+00:00 critic on 7253b639eef89e6d: keep=True issues=["Refuting evidence 'Counter-intuitive overlap with unrelated mythological themes in other traditions' is vague general skepticism rather than a concrete contradiction (e.g., it does not show the actor is unattested in the stated interval or that the place lies outside any tradition tied to the actor)."]
+2026-09-11T04:48:50.413513+00:00 critic on 120e9a46e1b29310: keep=True issues=[]
+2026-09-11T04:48:50.413530+00:00 critic on 3d5d342b3cf93b33: keep=True issues=[]
+2026-09-11T04:48:50.413551+00:00 critic on a38b6fbf5720774c: keep=True issues=["The refuting evidence only notes a possible 'cultural exchange or borrowing' explanation, which does not contradict the parallel itself.", "Model-prior (unverified): Baháʼu'lláh is generally associated with the Baháʼí Faith rather than Buddhism, which could make place='buddhism' questionable, but this is not established by the evidence text itself and thus is not grounds for rejection under the stated rules."]
+2026-09-11T04:48:50.413575+00:00 critic on 2cb3cb81081cd056: keep=True issues=[]
+2026-09-11T04:48:50.413595+00:00 critic on 710082a085ff002e: keep=True issues=[]
+2026-09-11T04:48:50.413615+00:00 critic on e14be8a6c3c5e725: keep=True issues=["Model-prior (unverified): Deucalion is a Greek mythological figure and Baháʼu'lláh is tied to the Baháʼí Faith, not Buddhism, so place='buddhism' is not obviously supported — but this is not confirmed by the provided evidence text, so it does not meet the bar for rejection."]
+2026-09-11T04:48:50.413635+00:00 critic on 4528716d7af69b37: keep=True issues=["Evidence listed as 'refuting' actually states Buddha is a proposed cross-tradition correlate of Laozi based on shared motifs, which is supportive of a maps-to relation rather than contradicting it; it does not address or contradict the stated interval or place."]
+2026-09-11T04:48:50.413654+00:00 critic on e3455cd8251c0bc7: keep=True issues=["The three 'refuting' claims reference unrelated pairings (generic cultural-exchange caveats and a Buddha/Joseph Smith textual-connection note) rather than anything specific to a Buddha-David parallel, so they do not constitute a concrete contradiction of this hypothesis."]
+2026-09-11T04:48:50.413674+00:00 critic on 5660a667a5925d16: keep=True issues=["The refuting evidence discusses Mesopotamian Utnapishtim vs. Greek Deucalion, not Baha'u'llah vs. Deucalion, so it does not directly contradict this specific actor-object pairing.", "(model-prior, unverified) Baha'u'llah is a 19th-century Baha'i figure, which sits uneasily with an ancient Mesopotamian interval/place, but this is not established by the cited evidence text itself."]
+2026-09-11T04:48:50.413691+00:00 critic on 72c12b356410bb1f: keep=True issues=[]
+2026-09-11T04:48:50.413709+00:00 critic on e63026268c192d9b: keep=True issues=['No supporting or refuting evidence is attached to this hypothesis.']
+2026-09-11T04:48:50.413729+00:00 critic on 67b0a6932a02dd94: keep=True issues=['The refuting evidence is a generic caveat about cultural exchange/independent development, which does not specifically negate an Abraham-Muhammad parallel or the Hinduism placement.', "(model-prior, unverified) Abraham and Muhammad are traditionally figures of Judaism/Christianity/Islam rather than Hinduism, which raises a plausibility concern about the 'hinduism' place tag, but this is not stated in the cited evidence."]
+2026-09-11T04:48:50.413747+00:00 critic on 3018bb1022ad321f: keep=True issues=['No supporting or refuting evidence is attached.']
+2026-09-11T04:48:50.413766+00:00 critic on b7b0324bd46e1716: keep=True issues=["Evidence listed as 'refuting' actually states Muhammad is proposed as a cross-tradition correlate of Confucius (shared motif: lawgiver), which supports rather than contradicts the maps-to relation; it does not address the interval or place."]
+2026-09-11T04:48:50.413784+00:00 critic on 6f39b322d156a5cd: keep=True issues=[]
+2026-09-11T04:48:50.413801+00:00 critic on 8db9bea32242aaa5: keep=True issues=[]
+2026-09-11T04:48:50.413819+00:00 critic on c4004d772d912062: keep=True issues=[]
+2026-09-11T04:48:50.413836+00:00 critic on ccbf327f5f3fe797: keep=True issues=[]
+2026-09-11T04:48:50.413854+00:00 critic on 40db61f44baa7c1a: keep=True issues=[]
+2026-09-11T04:48:50.413872+00:00 critic on 75e51a215cf98f97: keep=True issues=[]
+2026-09-11T04:48:50.413889+00:00 critic on 06320c7b4c10fb03: keep=True issues=[]
+2026-09-11T04:48:50.413907+00:00 critic on a7790b7e16283ba9: keep=True issues=[]
+2026-09-11T04:48:50.413925+00:00 critic on 3d4e5cd809618e5f: keep=True issues=[]
+2026-09-11T04:48:50.413945+00:00 critic on eb408fbba0c9d8ce: keep=True issues=[]
+2026-09-11T04:48:50.413964+00:00 critic on 79f4f2aa06d44c75: keep=True issues=['Refuting evidence is a generic, hedged remark about counter-intuitive overlaps in unrelated traditions and does not specifically state that a hyperdiffusionist link between Deucalion and Hinduism is false or the timeframe is wrong.']
+2026-09-11T04:48:50.413983+00:00 critic on 700a7a5e865442f3: keep=True issues=[]
+2026-09-11T04:48:50.414009+00:00 critic on 689cce76bc4c8931: keep=True issues=["All four refuting items are hedged ('may indicate', 'may suggest', 'may not be directly comparable', 'may have influenced ... independently') and discuss motif differences among mesopotamian, hinduism, and greek traditions generally; none of them directly addresses or negates a Utnapishtim–Baha'u'llah parallel specifically."]
+2026-09-11T04:48:50.414032+00:00 critic on b1f805e372adc0c2: keep=True issues=[]
+2026-09-11T04:48:50.414052+00:00 critic on 8874a2ab64870318: keep=False issues=["Refuting evidence explicitly states 'Lack of direct textual connection between Abraham and Manu,' directly contradicting the claimed actor-object relationship named in this hypothesis."]
+2026-09-11T04:48:50.414072+00:00 critic on 99ad22d3caa1a82d: keep=False issues=["The stated interval [-1500,-1401] predates Guru Nanak's and Sikhism's historically attested existence (traditionally c. 1469-1539 CE) by roughly three millennia, meaning the actor is not attested inside the stated time bin. Note: this specific dating check relies on model-prior background knowledge rather than the cited textual evidence, since no claim in the provided set states Guru Nanak's dates explicitly."]
+2026-09-11T04:48:50.414093+00:00 critic on 4f48f58db2e1012b: keep=False issues=["Place='buddhism' does not match any tradition associated with either actor (gilgamesh, Mesopotamian/Sumero-Babylonian myth) or object (confucius, Confucianism/Chinese tradition) — this is a model-prior judgment, not drawn from cited evidence, since no evidence text was supplied."]
+2026-09-11T04:48:50.414116+00:00 critic on b31237b80e0b31bb: keep=False issues=["Place='buddhism' does not match either actor's tradition: guru-nanak founded Sikhism and bahaullah founded the Baha'i faith, not Buddhism (model-prior judgment).", "The lone refuting evidence ('May be due to cultural exchange or borrowing') is a hedge on mechanism, not itself a contradiction of the parallel claim."]
+2026-09-11T04:48:50.414134+00:00 critic on b8c7d6c18005f17e: keep=True issues=[]
+2026-09-11T04:48:50.414154+00:00 critic on 358298c37c980407: keep=True issues=[]
+2026-09-11T04:48:50.414173+00:00 critic on 7d8822bca8df92b0: keep=True issues=[]
+2026-09-11T04:48:50.414194+00:00 critic on c349bc432ba91123: keep=False issues=["Confucius's traditionally accepted lifespan (c. 551–479 BCE) falls entirely outside the stated interval [-700,-571], since -551 is later than the interval's upper bound of -571 (model-prior recollection of conventional Confucius dating, not from supplied evidence text)."]
+2026-09-11T04:48:50.414217+00:00 critic on 72ce5aec41738f63: keep=False issues=["Place='lds' (Latter Day Saint movement, founded 19th century CE) does not match the tradition of either actor: manu (Hindu) or deucalion (Greek) — this is a model-prior judgment about these figures' traditional affiliations, not drawn from supplied evidence."]
+2026-09-11T04:48:50.414240+00:00 critic on 9cb7b5a8c5d29b0e: keep=False issues=["Place='mesopotamian' does not match either actor's tradition: confucius (Confucianism/Chinese tradition) or deucalion (Greek mythology) — model-prior judgment.", "Confucius's traditionally accepted lifespan (c. 551–479 BCE) falls entirely outside the stated interval [-1200,-700] (model-prior, not from supplied evidence).", "Refuting evidence found for this claim id notes that Mesopotamian Utnapishtim's immortality-granted theme 'may not be directly comparable' to Deucalion's founding-patriarch role, undercutting the cross-tradition parallel implied by the mesopotamian place tag."]
+2026-09-11T04:48:50.414262+00:00 critic on 9fd03d81d76f2de1: keep=False issues=["place='jainism' has no established connection to Abraham (associated with Judaism/Christianity/Islam) nor to the object 'manu' (a Hindu, not Jain, figure); this mismatch is not explained by geography or attested tradition (model-prior)", 'Refuting evidence explicitly states a lack of direct textual connection between Abraham and Manu, undermining the claimed parallel']
+2026-09-11T04:48:50.414288+00:00 critic on 9d27c3a54060ccfc: keep=True issues=["One refuting evidence entry ('lack of direct textual connection') concerns Buddha and Joseph Smith, not Confucius, and so is not actually evidence against this specific Buddha-Confucius pairing", "The remaining refuting evidence entries are hedged ('may be due to...') and propose alternate mechanisms rather than denying the parallel outright"]
+2026-09-11T04:48:50.414309+00:00 critic on 943b722809e04351: keep=True issues=['No supporting or refuting evidence is listed for this specific claim', 'Interval [-1200,-700] is later than the commonly cited (though historically disputed) biblical chronology for Abraham (~2000-1500 BCE); flagged only as an uncertain model-prior observation, not an evidence-based contradiction']
+2026-09-11T04:48:50.414339+00:00 critic on 19082b4c21b0544f: keep=True issues=[]
+2026-09-11T04:48:50.414359+00:00 critic on c7cbb75e6d8efb3c: keep=False issues=["Interval [-1500,570] ends well over a millennium before Baha'u'llah's actual lifetime (1817-1892 CE); the actor is not attested within the stated time bin (model-prior)", "place='hinduism' does not correspond to any tradition associated with Baha'u'llah, who founded the Baha'i Faith (model-prior)"]
+2026-09-11T04:48:50.414378+00:00 critic on 83712ccc00e280f0: keep=False issues=["Interval [-1200,-250] entirely predates Baha'u'llah's actual lifetime (1817-1892 CE); the actor is not attested within the stated time bin (model-prior)", "place='judaism' does not correspond to any tradition associated with Baha'u'llah, founder of the Baha'i Faith (model-prior)"]
+2026-09-11T04:48:50.414398+00:00 critic on 973822812e417898: keep=True issues=["Refuting evidence is hedged ('may not be directly comparable'), raising a thematic concern (immortality vs. founding-patriarch role) without concretely denying the parallel", "place='greek' reflects the object's (Deucalion's) tradition rather than the actor's (Utnapishtim, Mesopotamian) own tradition, inconsistent with the convention used elsewhere (e.g., Noah/Judaism), but this is ambiguous rather than a clear contradiction"]
+2026-09-11T04:48:50.414416+00:00 critic on 600bbd68388b89e3: keep=True issues=[]
+2026-09-11T04:48:50.414433+00:00 critic on eb1a9de18850b051: keep=True issues=[]
+2026-09-11T04:48:50.414450+00:00 critic on c216722596a187b5: keep=True issues=[]
+2026-09-11T04:48:50.414468+00:00 critic on bf187d2d135bb898: keep=True issues=[]
+2026-09-11T04:48:50.414487+00:00 critic on 6ebb118671adad89: keep=False issues=["place='bahai' does not match the actor's own tradition: Muhammad is the founding figure of Islam, not the Baha'i faith (model-prior). The Baha'i faith itself did not exist until the 19th century, well after Muhammad's era, so placing him within 'bahai' as the tradition context is a concrete tradition mismatch rather than mere implausibility.", "The stated interval [-1500,570] ends essentially at Muhammad's birth year (model-prior: b. c.570 CE); his attested activity (founding Islam, c.610-632 CE) falls outside the stated bin."]
+2026-09-11T04:48:50.414505+00:00 critic on d2c5141c9a858d1c: keep=True issues=[]
+2026-09-11T04:48:50.414524+00:00 critic on 91864b846a76566d: keep=False issues=["place='islam' does not match the actor's own tradition: Baha'u'llah is the founder of the Baha'i faith, not Islam (model-prior), making the place a concrete mismatch with the actor's tradition.", "The stated interval [-1500,570] does not include Baha'u'llah's attested lifetime (model-prior: 1817-1892 CE), a direct contradiction of the actor's known historical period versus the claimed time bin."]
+2026-09-11T04:48:50.414542+00:00 critic on 6da83bd102cbbee5: keep=True issues=[]
+2026-09-11T04:48:50.414559+00:00 critic on b30764b379706352: keep=True issues=[]
+2026-09-11T04:48:50.414576+00:00 critic on 3e24b29cabfd7659: keep=True issues=[]
+2026-09-11T04:48:50.414594+00:00 critic on 612d043f5c1e2fce: keep=True issues=[]
+2026-09-11T04:48:50.414611+00:00 critic on b51eb0867b1f75cc: keep=True issues=[]
+2026-09-11T04:48:50.414628+00:00 critic on e5fab0af3ebc1457: keep=True issues=[]
+2026-09-11T04:48:50.414651+00:00 critic on bf57e95391044c0a: keep=True issues=["model-prior (unverified): Baha'u'llah (b. 1817) founded the Baha'i Faith, not Christianity, which raises a plausibility concern about the 'christianity' place tag, but this is not established by the cited evidence."]
+2026-09-11T04:48:50.414674+00:00 critic on d9a31b828989a3d6: keep=False issues=["Place mismatch: actor 'manu' is a figure of the Hindu tradition, but the hypothesis assigns place='mesopotamian', which sits outside every tradition Manu belongs to.", "Refuting evidence explicitly argues that the immortality-granted theme of the Mesopotamian flood-hero (Utnapishtim) is not directly comparable to Deucalion's founding-patriarch role, undercutting the mesopotamian-framed parallel structure being asserted."]
+2026-09-11T04:48:50.414692+00:00 critic on c58688290642c126: keep=True issues=[]
+2026-09-11T04:48:50.414710+00:00 critic on afb359b85c3878e5: keep=True issues=['model-prior (unverified): Guru Nanak is conventionally dated to 1469-1539 CE, which would fall far outside the stated interval [-571,-500]; however, no cited evidence establishes or contradicts this dating, so it is not used as grounds for rejection.']
+2026-09-11T04:48:50.414728+00:00 critic on 876fcb809dab4aa0: keep=True issues=[]
+2026-09-11T04:48:50.414745+00:00 critic on bbe077a23b985cad: keep=True issues=[]
+2026-09-11T04:48:50.414762+00:00 critic on bd529181bea316aa: keep=True issues=[]
+2026-09-11T04:48:50.414779+00:00 critic on 49bb00e35388dab0: keep=True issues=[]
+2026-09-11T04:48:50.414797+00:00 critic on 408ea0e536de2527: keep=True issues=[]
+2026-09-11T04:48:50.414817+00:00 critic on 2f808f71eb83d635: keep=False issues=["The refuting evidence discusses the mesopotamian immortality-granted figure as 'utnapishtim', not 'david' — indicating the mesopotamian/founding-patriarch comparison to deucalion belongs to utnapishtim, not david.", "This directly undercuts placing 'david' as the mesopotamian actor in this parallel, since the evidence attributes the mesopotamian role in this specific motif comparison to a different figure."]
+2026-09-11T04:48:50.414836+00:00 critic on 7242397f62eeb3b8: keep=True issues=[]
+2026-09-11T04:48:50.414854+00:00 critic on 9e01e8b7b67567ad: keep=True issues=[]
+2026-09-11T04:48:50.414935+00:00 critic filter: 271 of 400 survived
+2026-09-11T05:38:40.868599+00:00 preservation critique on b5d8643cb5aa8f81: could_have_survived=False
+2026-09-11T05:38:40.868669+00:00 preservation critique on 81a4d4753995bf35: could_have_survived=False
+2026-09-11T05:38:40.868696+00:00 preservation critique on 77ac89efd59767f1: could_have_survived=False
+2026-09-11T05:38:40.868717+00:00 preservation critique on 834b301d2161e031: could_have_survived=False
+2026-09-11T05:38:40.868736+00:00 preservation critique on 8af633425bc40554: could_have_survived=True
+2026-09-11T05:38:40.868753+00:00 preservation critique on 8ef01949176d01a9: could_have_survived=False
+2026-09-11T05:38:40.868771+00:00 preservation critique on 8fa63db6952993bb: could_have_survived=False
+2026-09-11T05:38:40.868788+00:00 preservation critique on cab17a8b8156601a: could_have_survived=True
+2026-09-11T05:38:40.868806+00:00 preservation critique on 46cdcdc470929fba: could_have_survived=True
+2026-09-11T05:38:40.868823+00:00 preservation critique on 19f5b1fa8d0c5e38: could_have_survived=True
+2026-09-11T05:38:40.868841+00:00 preservation critique on eb3cd299cb8bd58f: could_have_survived=True
+2026-09-11T05:38:40.868858+00:00 preservation critique on 88f8af0c3aa1dc56: could_have_survived=False
+2026-09-11T05:38:40.868876+00:00 preservation critique on 3d664a74f86e8cfb: could_have_survived=True
+2026-09-11T05:38:40.868893+00:00 preservation critique on d1ca9bbaaa2ecab2: could_have_survived=False
+2026-09-11T05:38:40.868910+00:00 preservation critique on b4062a5eb3dcf7f6: could_have_survived=True
+2026-09-11T05:38:40.868928+00:00 preservation critique on f2271a79784b07f9: could_have_survived=True
+2026-09-11T05:38:40.868945+00:00 preservation critique on 8e4409fbab07f8bb: could_have_survived=True
+2026-09-11T05:38:40.868968+00:00 preservation critique on 5101d681fc1103be: could_have_survived=True
+2026-09-11T05:38:40.868990+00:00 preservation critique on 1bf805e42da986c6: could_have_survived=True
+2026-09-11T05:38:40.869007+00:00 preservation critique on 57c63bdcb6df1dc9: could_have_survived=True
+2026-09-11T05:38:40.869025+00:00 preservation critique on 54f92dde97e1ee8b: could_have_survived=False
+2026-09-11T05:38:40.869042+00:00 preservation critique on 936211ca48fadcb4: could_have_survived=True
+2026-09-11T05:38:40.869059+00:00 preservation critique on 6183218fad2adcd9: could_have_survived=True
+2026-09-11T05:38:40.869077+00:00 preservation critique on 403d1dc498035b3e: could_have_survived=True
+2026-09-11T05:38:40.869094+00:00 preservation critique on 5a03552c82757f64: could_have_survived=False
+2026-09-11T05:38:40.869112+00:00 preservation critique on adb12655343757ac: could_have_survived=False
+2026-09-11T05:38:40.869129+00:00 preservation critique on 859e0ab080d5b107: could_have_survived=False
+2026-09-11T05:38:40.869147+00:00 preservation critique on dfbb097068d27a49: could_have_survived=True
+2026-09-11T05:38:40.869165+00:00 preservation critique on 46a94f65d90a55b0: could_have_survived=False
+2026-09-11T05:38:40.869182+00:00 preservation critique on 79cfc3050491856e: could_have_survived=False
+2026-09-11T05:38:40.869199+00:00 preservation critique on 2aaa04f65c4cdb6c: could_have_survived=True
+2026-09-11T05:38:40.869217+00:00 preservation critique on 036f10e16735db4f: could_have_survived=True
+2026-09-11T05:38:40.869234+00:00 preservation critique on 8a892946514c91fd: could_have_survived=True
+2026-09-11T05:38:40.869251+00:00 preservation critique on ba62db7a96ac4059: could_have_survived=True
+2026-09-11T05:38:40.869267+00:00 preservation critique on a844815330bca8d3: could_have_survived=True
+2026-09-11T05:38:40.869284+00:00 preservation critique on 97ed81c4543a3bd8: could_have_survived=True
+2026-09-11T05:38:40.869302+00:00 preservation critique on dad70628497e8fd7: could_have_survived=False
+2026-09-11T05:38:40.869326+00:00 preservation critique on 36e4a191c4323a81: could_have_survived=False
+2026-09-11T05:38:40.869347+00:00 preservation critique on 03f27d3f27c80423: could_have_survived=False
+2026-09-11T05:38:40.869365+00:00 preservation critique on 07d620075ddc9482: could_have_survived=False
+2026-09-11T05:38:40.869382+00:00 preservation critique on 85c5de532b43c1a6: could_have_survived=False
+2026-09-11T05:38:40.869399+00:00 preservation critique on d176c750a12717fb: could_have_survived=False
+2026-09-11T05:38:40.869416+00:00 preservation critique on 1a7f721c8bd3d155: could_have_survived=True
+2026-09-11T05:38:40.869434+00:00 preservation critique on 0a0ed63a0d266dfd: could_have_survived=True
+2026-09-11T05:38:40.869452+00:00 preservation critique on 321e7b2f57730464: could_have_survived=False
+2026-09-11T05:38:40.869468+00:00 preservation critique on 77b4ae08276befb8: could_have_survived=True
+2026-09-11T05:38:40.869485+00:00 preservation critique on de82dc85576e13c4: could_have_survived=False
+2026-09-11T05:38:40.869502+00:00 preservation critique on 5f3cdf5422fdedef: could_have_survived=True
+2026-09-11T05:38:40.869519+00:00 preservation critique on 48f3c52abcc08971: could_have_survived=False
+2026-09-11T05:38:40.869536+00:00 preservation critique on d491a24d95bea0b5: could_have_survived=True
+2026-09-11T05:38:40.869553+00:00 preservation critique on 686c26edc4aed151: could_have_survived=True
+2026-09-11T05:38:40.869570+00:00 preservation critique on c263928da6658311: could_have_survived=False
+2026-09-11T05:38:40.869586+00:00 preservation critique on b66a857b20bc8675: could_have_survived=False
+2026-09-11T05:38:40.869603+00:00 preservation critique on 51476f36b8f14d62: could_have_survived=True
+2026-09-11T05:38:40.869620+00:00 preservation critique on c26d6233b67d23d1: could_have_survived=True
+2026-09-11T05:38:40.869637+00:00 preservation critique on 5cdf8f172a4ebe96: could_have_survived=True
+2026-09-11T05:38:40.869654+00:00 preservation critique on dbd5b4b8dad93e5b: could_have_survived=False
+2026-09-11T05:38:40.869671+00:00 preservation critique on e063a5839df9d098: could_have_survived=True
+2026-09-11T05:38:40.869692+00:00 preservation critique on 0dd57f75d30051aa: could_have_survived=True
+2026-09-11T05:38:40.869712+00:00 preservation critique on 09f5c98bacf7ba49: could_have_survived=True
+2026-09-11T05:38:40.869730+00:00 preservation critique on 44fa2e7f813ed619: could_have_survived=False
+2026-09-11T05:38:40.869747+00:00 preservation critique on 61fd0159197eaa87: could_have_survived=False
+2026-09-11T05:38:40.869764+00:00 preservation critique on e450dbb8e2de12ba: could_have_survived=True
+2026-09-11T05:38:40.869781+00:00 preservation critique on cf8990c9347237b6: could_have_survived=True
+2026-09-11T05:38:40.869798+00:00 preservation critique on f6ce7824feef1287: could_have_survived=True
+2026-09-11T05:38:40.869815+00:00 preservation critique on e1ea571b42388066: could_have_survived=True
+2026-09-11T05:38:40.869832+00:00 preservation critique on 3793a1e501c18a26: could_have_survived=False
+2026-09-11T05:38:40.869849+00:00 preservation critique on a19c4645adf04514: could_have_survived=True
+2026-09-11T05:38:40.869866+00:00 preservation critique on 9f6269cd444589c7: could_have_survived=True
+2026-09-11T05:38:40.869883+00:00 preservation critique on 46cbf8b4318293a2: could_have_survived=True
+2026-09-11T05:38:40.869900+00:00 preservation critique on e69587f71d169bd1: could_have_survived=True
+2026-09-11T05:38:40.869917+00:00 preservation critique on e726bb96470f9183: could_have_survived=True
+2026-09-11T05:38:40.869933+00:00 preservation critique on 2ece282667964353: could_have_survived=False
+2026-09-11T05:38:40.869951+00:00 preservation critique on 572f28ee13ddc694: could_have_survived=True
+2026-09-11T05:38:40.869968+00:00 preservation critique on 5047f09812fc4b64: could_have_survived=True
+2026-09-11T05:38:40.869985+00:00 preservation critique on d2825c8dd84c2514: could_have_survived=True
+2026-09-11T05:38:40.870002+00:00 preservation critique on 688ab1b94e7cb9e7: could_have_survived=True
+2026-09-11T05:38:40.870019+00:00 preservation critique on 959c14f5b454975d: could_have_survived=True
+2026-09-11T05:38:40.870037+00:00 preservation critique on fad22c657d7de3bd: could_have_survived=True
+2026-09-11T05:38:40.870064+00:00 preservation critique on 2fdb472b0c7c7944: could_have_survived=True
+2026-09-11T05:38:40.870086+00:00 preservation critique on a5181c271acb69d2: could_have_survived=True
+2026-09-11T05:38:40.870104+00:00 preservation critique on d52e79e8cd04ff87: could_have_survived=False
+2026-09-11T05:38:40.870121+00:00 preservation critique on 1ed9b3cc0c6d252f: could_have_survived=True
+2026-09-11T05:38:40.870138+00:00 preservation critique on cdf0f6eba151e974: could_have_survived=False
+2026-09-11T05:38:40.870155+00:00 preservation critique on f7e3ec289f3d6de6: could_have_survived=False
+2026-09-11T05:38:40.870172+00:00 preservation critique on 2c69781b76e0d96b: could_have_survived=False
+2026-09-11T05:38:40.870189+00:00 preservation critique on 35a07aaac727e90b: could_have_survived=False
+2026-09-11T05:38:40.870206+00:00 preservation critique on 24daf1105f7529ac: could_have_survived=True
+2026-09-11T05:38:40.870223+00:00 preservation critique on 53d815b9e480ef0a: could_have_survived=True
+2026-09-11T05:38:40.870240+00:00 preservation critique on ecb29e7d6c557891: could_have_survived=True
+2026-09-11T05:38:40.870257+00:00 preservation critique on 6e0db7346947f4ce: could_have_survived=False
+2026-09-11T05:38:40.870274+00:00 preservation critique on 2d902f6c3208fc64: could_have_survived=True
+2026-09-11T05:38:40.870291+00:00 preservation critique on 0f66c2870712a732: could_have_survived=True
+2026-09-11T05:38:40.870308+00:00 preservation critique on 50c18e3496e9767a: could_have_survived=False
+2026-09-11T05:38:40.870338+00:00 preservation critique on 31bbf9706858a8ea: could_have_survived=True
+2026-09-11T05:38:40.870356+00:00 preservation critique on 61c024d32148ce9d: could_have_survived=False
+2026-09-11T05:38:40.870373+00:00 preservation critique on e33d908af52ccc0f: could_have_survived=True
+2026-09-11T05:38:40.870390+00:00 preservation critique on ee382298e1458bfc: could_have_survived=True
+2026-09-11T05:38:40.870412+00:00 preservation critique on 2a9282f18fb9b8b5: could_have_survived=True
+2026-09-11T05:38:40.870432+00:00 preservation critique on 49cc48f5c4a63ede: could_have_survived=True
+2026-09-11T05:38:40.870449+00:00 preservation critique on f3c9446262f65ed3: could_have_survived=True
+2026-09-11T05:38:40.870466+00:00 preservation critique on 0426edf487a5ecb0: could_have_survived=True
+2026-09-11T05:38:40.870483+00:00 preservation critique on 7aee0fcb497b7ca1: could_have_survived=False
+2026-09-11T05:38:40.870500+00:00 preservation critique on f10d508110e84ed9: could_have_survived=True
+2026-09-11T05:38:40.870517+00:00 preservation critique on 1bd7a3e7ed8710fa: could_have_survived=False
+2026-09-11T05:38:40.870534+00:00 preservation critique on 1b77b65861d15a6b: could_have_survived=False
+2026-09-11T05:38:40.870551+00:00 preservation critique on 3d86c686d4685844: could_have_survived=True
+2026-09-11T05:38:40.870568+00:00 preservation critique on 5a1385992d705293: could_have_survived=True
+2026-09-11T05:38:40.870586+00:00 preservation critique on b1f3ff1e087c1564: could_have_survived=True
+2026-09-11T05:38:40.870602+00:00 preservation critique on 4a6c37397b160a7d: could_have_survived=True
+2026-09-11T05:38:40.870619+00:00 preservation critique on 42dcb140ab00627c: could_have_survived=False
+2026-09-11T05:38:40.870636+00:00 preservation critique on 99efbb284ad8dea3: could_have_survived=True
+2026-09-11T05:38:40.870653+00:00 preservation critique on 4657977741690d12: could_have_survived=False
+2026-09-11T05:38:40.870670+00:00 preservation critique on 346462b016164323: could_have_survived=True
+2026-09-11T05:38:40.870688+00:00 preservation critique on bce15c425b402f62: could_have_survived=True
+2026-09-11T05:38:40.870705+00:00 preservation critique on be50c7eed5b8a7c1: could_have_survived=False
+2026-09-11T05:38:40.870722+00:00 preservation critique on ad697cab936d572a: could_have_survived=True
+2026-09-11T05:38:40.870739+00:00 preservation critique on 605b74d57b19db4d: could_have_survived=False
+2026-09-11T05:38:40.870756+00:00 preservation critique on 55dd4b16c5aa14b6: could_have_survived=False
+2026-09-11T05:38:40.870773+00:00 preservation critique on 6dd5f2123a958019: could_have_survived=True
+2026-09-11T05:38:40.870791+00:00 preservation critique on bf41694c02ddd2e2: could_have_survived=True
+2026-09-11T05:38:40.870808+00:00 preservation critique on 32fe4bba18229206: could_have_survived=True
+2026-09-11T05:38:40.870825+00:00 preservation critique on 1dcb4dbe2aef51b8: could_have_survived=True
+2026-09-11T05:38:40.870841+00:00 preservation critique on dadb4f184f91607f: could_have_survived=True
+2026-09-11T05:38:40.870858+00:00 preservation critique on 7e1a73d40ba46b86: could_have_survived=True
+2026-09-11T05:38:40.870875+00:00 preservation critique on e7e1691179079a77: could_have_survived=True
+2026-09-11T05:38:40.870892+00:00 preservation critique on efeb531841e13ef2: could_have_survived=True
+2026-09-11T05:38:40.870909+00:00 preservation critique on 24a1465294bdbc27: could_have_survived=False
+2026-09-11T05:38:40.870926+00:00 preservation critique on a2050d307ec96021: could_have_survived=True
+2026-09-11T05:38:40.870943+00:00 preservation critique on d6b3d0c5ffed1e21: could_have_survived=True
+2026-09-11T05:38:40.870960+00:00 preservation critique on 668a08bad0acb5a7: could_have_survived=True
+2026-09-11T05:38:40.870977+00:00 preservation critique on 348d0ef6a992e84e: could_have_survived=False
+2026-09-11T05:38:40.870994+00:00 preservation critique on fadf4b6ab59e3ea4: could_have_survived=True
+2026-09-11T05:38:40.871010+00:00 preservation critique on ce581c8ea7853a5e: could_have_survived=False
+2026-09-11T05:38:40.871027+00:00 preservation critique on fdc0510fc4688e48: could_have_survived=True
+2026-09-11T05:38:40.871044+00:00 preservation critique on ee5dc6238bc16b68: could_have_survived=True
+2026-09-11T05:38:40.871061+00:00 preservation critique on 3df2a796d03dae1e: could_have_survived=True
+2026-09-11T05:38:40.871078+00:00 preservation critique on f9eee46ab885c5d9: could_have_survived=False
+2026-09-11T05:38:40.871095+00:00 preservation critique on 153c2f256c33df7f: could_have_survived=False
+2026-09-11T05:38:40.871116+00:00 preservation critique on c2570a5e7953c175: could_have_survived=False
+2026-09-11T05:38:40.871135+00:00 preservation critique on babb3fa489ff23e8: could_have_survived=True
+2026-09-11T05:38:40.871152+00:00 preservation critique on 483d591e9c340543: could_have_survived=True
+2026-09-11T05:38:40.871169+00:00 preservation critique on 8eff217ce2265db7: could_have_survived=True
+2026-09-11T05:38:40.871186+00:00 preservation critique on a951b76bdaace101: could_have_survived=False
+2026-09-11T05:38:40.871203+00:00 preservation critique on efc08b2ea7e6bca1: could_have_survived=True
+2026-09-11T05:38:40.871220+00:00 preservation critique on b23292ec3ee51408: could_have_survived=True
+2026-09-11T05:38:40.871237+00:00 preservation critique on db2dcc1a47f13976: could_have_survived=True
+2026-09-11T05:38:40.871254+00:00 preservation critique on 471912a6b11d6edf: could_have_survived=True
+2026-09-11T05:38:40.871271+00:00 preservation critique on ffdbd98f044eeee2: could_have_survived=True
+2026-09-11T05:38:40.871288+00:00 preservation critique on 9e8d0033d7a97402: could_have_survived=True
+2026-09-11T05:38:40.871305+00:00 preservation critique on 3f2a79c6839dbb0b: could_have_survived=True
+2026-09-11T05:38:40.871327+00:00 preservation critique on 00349699d6f4f842: could_have_survived=True
+2026-09-11T05:38:40.871345+00:00 preservation critique on 3afde9f3ba1b2745: could_have_survived=True
+2026-09-11T05:38:40.871362+00:00 preservation critique on a36607dc77db3bd8: could_have_survived=True
+2026-09-11T05:38:40.871379+00:00 preservation critique on 6a591467ccb5ad34: could_have_survived=True
+2026-09-11T05:38:40.871396+00:00 preservation critique on 6b60e8a2775686c3: could_have_survived=True
+2026-09-11T05:38:40.871414+00:00 preservation critique on f0b48e5d5557e848: could_have_survived=True
+2026-09-11T05:38:40.871431+00:00 preservation critique on 8031b8238d071d3d: could_have_survived=True
+2026-09-11T05:38:40.871448+00:00 preservation critique on 6e5ef61b72ca4124: could_have_survived=True
+2026-09-11T05:38:40.871465+00:00 preservation critique on f54841f391cdc0c3: could_have_survived=True
+2026-09-11T05:38:40.871482+00:00 preservation critique on 7bc7645b2f8a9637: could_have_survived=True
+2026-09-11T05:38:40.871499+00:00 preservation critique on fc7559cccfa0d8a6: could_have_survived=False
+2026-09-11T05:38:40.871516+00:00 preservation critique on f7c1186004c9b098: could_have_survived=True
+2026-09-11T05:38:40.871533+00:00 preservation critique on 17f2d27abc073b0e: could_have_survived=True
+2026-09-11T05:38:40.871550+00:00 preservation critique on 781c53396c7c7cb6: could_have_survived=True
+2026-09-11T05:38:40.871567+00:00 preservation critique on dba4b0d6b9263cae: could_have_survived=False
+2026-09-11T05:38:40.871584+00:00 preservation critique on e388f99cc43d74a7: could_have_survived=True
+2026-09-11T05:38:40.871601+00:00 preservation critique on 0b0186f043bc8e62: could_have_survived=True
+2026-09-11T05:38:40.871618+00:00 preservation critique on d34073dd1b803776: could_have_survived=False
+2026-09-11T05:38:40.871635+00:00 preservation critique on a243719d4ccfa9b7: could_have_survived=True
+2026-09-11T05:38:40.871652+00:00 preservation critique on eafc235279cb9c84: could_have_survived=False
+2026-09-11T05:38:40.871668+00:00 preservation critique on 61d5543767042ddc: could_have_survived=True
+2026-09-11T05:38:40.871685+00:00 preservation critique on 58b473122b760430: could_have_survived=True
+2026-09-11T05:38:40.871702+00:00 preservation critique on 4b808ba38cd65a98: could_have_survived=False
+2026-09-11T05:38:40.871719+00:00 preservation critique on 7b200f8e99c014b1: could_have_survived=True
+2026-09-11T05:38:40.871736+00:00 preservation critique on a45da1352184b93a: could_have_survived=True
+2026-09-11T05:38:40.871753+00:00 preservation critique on ef72195e2bda8707: could_have_survived=False
+2026-09-11T05:38:40.871770+00:00 preservation critique on 81d6512936c11ba6: could_have_survived=True
+2026-09-11T05:38:40.871787+00:00 preservation critique on add8dc4dca083810: could_have_survived=True
+2026-09-11T05:38:40.871818+00:00 preservation critique on 509b7250b74a8ab3: could_have_survived=True
+2026-09-11T05:38:40.871838+00:00 preservation critique on 4bbaf93f7739455c: could_have_survived=True
+2026-09-11T05:38:40.871855+00:00 preservation critique on 9a06250c518601e8: could_have_survived=False
+2026-09-11T05:38:40.871872+00:00 preservation critique on 5671e4eeefb64154: could_have_survived=True
+2026-09-11T05:38:40.871889+00:00 preservation critique on ee04184cf3fc34e7: could_have_survived=True
+2026-09-11T05:38:40.871906+00:00 preservation critique on d8fb4f3e90601020: could_have_survived=True
+2026-09-11T05:38:40.871923+00:00 preservation critique on 211ac4288a73779e: could_have_survived=False
+2026-09-11T05:38:40.871940+00:00 preservation critique on 18e7a1d47ca839a7: could_have_survived=True
+2026-09-11T05:38:40.871957+00:00 preservation critique on bb8a7edc96281663: could_have_survived=True
+2026-09-11T05:38:40.871974+00:00 preservation critique on 3322d0ca8ab66804: could_have_survived=True
+2026-09-11T05:38:40.871991+00:00 preservation critique on 2781b3cc543efe93: could_have_survived=True
+2026-09-11T05:38:40.872008+00:00 preservation critique on 38c411b8ecd6a924: could_have_survived=False
+2026-09-11T05:38:40.872025+00:00 preservation critique on f0b46a80874544da: could_have_survived=True
+2026-09-11T05:38:40.872041+00:00 preservation critique on 2e5e693ee5f3d23f: could_have_survived=False
+2026-09-11T05:38:40.872058+00:00 preservation critique on 656dd1feeb99ad70: could_have_survived=True
+2026-09-11T05:38:40.872075+00:00 preservation critique on 6cabb9c3c5835d95: could_have_survived=True
+2026-09-11T05:38:40.872092+00:00 preservation critique on c88364973e02d4e8: could_have_survived=True
+2026-09-11T05:38:40.872109+00:00 preservation critique on 525541c177514dcc: could_have_survived=True
+2026-09-11T05:38:40.872126+00:00 preservation critique on 0271d15178c99ef3: could_have_survived=True
+2026-09-11T05:38:40.872143+00:00 preservation critique on ca55ba0847a2fd3d: could_have_survived=True
+2026-09-11T05:38:40.872160+00:00 preservation critique on 27ac9b8208a9501a: could_have_survived=False
+2026-09-11T05:38:40.872177+00:00 preservation critique on 53db6c3471f28685: could_have_survived=True
+2026-09-11T05:38:40.872194+00:00 preservation critique on bb0dea15e121b684: could_have_survived=True
+2026-09-11T05:38:40.872211+00:00 preservation critique on 5abfb37ed02072f1: could_have_survived=True
+2026-09-11T05:38:40.872228+00:00 preservation critique on a468b377fc42fabb: could_have_survived=True
+2026-09-11T05:38:40.872245+00:00 preservation critique on 86b5b53f15ba5d8d: could_have_survived=True
+2026-09-11T05:38:40.872262+00:00 preservation critique on fb64f61351cda88c: could_have_survived=True
+2026-09-11T05:38:40.872279+00:00 preservation critique on 7e75d48aded66829: could_have_survived=True
+2026-09-11T05:38:40.872295+00:00 preservation critique on 896ccf93d27f0a5c: could_have_survived=False
+2026-09-11T05:38:40.872312+00:00 preservation critique on 34ea7b5f9023e40d: could_have_survived=True
+2026-09-11T05:38:40.872338+00:00 preservation critique on 8da2020da8b0af67: could_have_survived=True
+2026-09-11T05:38:40.872356+00:00 preservation critique on 0f4eb7534433a280: could_have_survived=True
+2026-09-11T05:38:40.872373+00:00 preservation critique on 108a12b8d6b90ac9: could_have_survived=False
+2026-09-11T05:38:40.872390+00:00 preservation critique on 7f375907fff8c87c: could_have_survived=True
+2026-09-11T05:38:40.872407+00:00 preservation critique on d570d0b560b27ba9: could_have_survived=True
+2026-09-11T05:38:40.872424+00:00 preservation critique on 7253b639eef89e6d: could_have_survived=True
+2026-09-11T05:38:40.872441+00:00 preservation critique on 120e9a46e1b29310: could_have_survived=False
+2026-09-11T05:38:40.872458+00:00 preservation critique on 3d5d342b3cf93b33: could_have_survived=False
+2026-09-11T05:38:40.872475+00:00 preservation critique on a38b6fbf5720774c: could_have_survived=True
+2026-09-11T05:38:40.872492+00:00 preservation critique on 2cb3cb81081cd056: could_have_survived=True
+2026-09-11T05:38:40.872513+00:00 preservation critique on 710082a085ff002e: could_have_survived=True
+2026-09-11T05:38:40.872532+00:00 preservation critique on e14be8a6c3c5e725: could_have_survived=True
+2026-09-11T05:38:40.872549+00:00 preservation critique on 4528716d7af69b37: could_have_survived=False
+2026-09-11T05:38:40.872566+00:00 preservation critique on e3455cd8251c0bc7: could_have_survived=True
+2026-09-11T05:38:40.872582+00:00 preservation critique on 5660a667a5925d16: could_have_survived=False
+2026-09-11T05:38:40.872600+00:00 preservation critique on 72c12b356410bb1f: could_have_survived=False
+2026-09-11T05:38:40.872617+00:00 preservation critique on e63026268c192d9b: could_have_survived=True
+2026-09-11T05:38:40.872634+00:00 preservation critique on 67b0a6932a02dd94: could_have_survived=False
+2026-09-11T05:38:40.872651+00:00 preservation critique on 3018bb1022ad321f: could_have_survived=True
+2026-09-11T05:38:40.872668+00:00 preservation critique on b7b0324bd46e1716: could_have_survived=False
+2026-09-11T05:38:40.872685+00:00 preservation critique on 6f39b322d156a5cd: could_have_survived=True
+2026-09-11T05:38:40.872702+00:00 preservation critique on 8db9bea32242aaa5: could_have_survived=False
+2026-09-11T05:38:40.872718+00:00 preservation critique on c4004d772d912062: could_have_survived=True
+2026-09-11T05:38:40.872735+00:00 preservation critique on ccbf327f5f3fe797: could_have_survived=False
+2026-09-11T05:38:40.872752+00:00 preservation critique on 40db61f44baa7c1a: could_have_survived=True
+2026-09-11T05:38:40.872769+00:00 preservation critique on 75e51a215cf98f97: could_have_survived=False
+2026-09-11T05:38:40.872786+00:00 preservation critique on 06320c7b4c10fb03: could_have_survived=False
+2026-09-11T05:38:40.872803+00:00 preservation critique on a7790b7e16283ba9: could_have_survived=True
+2026-09-11T05:38:40.872820+00:00 preservation critique on 3d4e5cd809618e5f: could_have_survived=True
+2026-09-11T05:38:40.872837+00:00 preservation critique on eb408fbba0c9d8ce: could_have_survived=True
+2026-09-11T05:38:40.872854+00:00 preservation critique on 79f4f2aa06d44c75: could_have_survived=False
+2026-09-11T05:38:40.872871+00:00 preservation critique on 700a7a5e865442f3: could_have_survived=True
+2026-09-11T05:38:40.872888+00:00 preservation critique on 689cce76bc4c8931: could_have_survived=True
+2026-09-11T05:38:40.872905+00:00 preservation critique on b1f805e372adc0c2: could_have_survived=False
+2026-09-11T05:38:40.872922+00:00 preservation critique on b8c7d6c18005f17e: could_have_survived=True
+2026-09-11T05:38:40.872938+00:00 preservation critique on 358298c37c980407: could_have_survived=True
+2026-09-11T05:38:40.872955+00:00 preservation critique on 7d8822bca8df92b0: could_have_survived=True
+2026-09-11T05:38:40.872972+00:00 preservation critique on 9d27c3a54060ccfc: could_have_survived=True
+2026-09-11T05:38:40.872989+00:00 preservation critique on 943b722809e04351: could_have_survived=True
+2026-09-11T05:38:40.873006+00:00 preservation critique on 19082b4c21b0544f: could_have_survived=True
+2026-09-11T05:38:40.873023+00:00 preservation critique on 973822812e417898: could_have_survived=True
+2026-09-11T05:38:40.873040+00:00 preservation critique on 600bbd68388b89e3: could_have_survived=True
+2026-09-11T05:38:40.873057+00:00 preservation critique on eb1a9de18850b051: could_have_survived=False
+2026-09-11T05:38:40.873074+00:00 preservation critique on c216722596a187b5: could_have_survived=True
+2026-09-11T05:38:40.873091+00:00 preservation critique on bf187d2d135bb898: could_have_survived=True
+2026-09-11T05:38:40.873108+00:00 preservation critique on d2c5141c9a858d1c: could_have_survived=False
+2026-09-11T05:38:40.873124+00:00 preservation critique on 6da83bd102cbbee5: could_have_survived=True
+2026-09-11T05:38:40.873141+00:00 preservation critique on b30764b379706352: could_have_survived=False
+2026-09-11T05:38:40.873158+00:00 preservation critique on 3e24b29cabfd7659: could_have_survived=True
+2026-09-11T05:38:40.873175+00:00 preservation critique on 612d043f5c1e2fce: could_have_survived=True
+2026-09-11T05:38:40.873192+00:00 preservation critique on b51eb0867b1f75cc: could_have_survived=True
+2026-09-11T05:38:40.873213+00:00 preservation critique on e5fab0af3ebc1457: could_have_survived=False
+2026-09-11T05:38:40.873232+00:00 preservation critique on bf57e95391044c0a: could_have_survived=True
+2026-09-11T05:38:40.873249+00:00 preservation critique on c58688290642c126: could_have_survived=True
+2026-09-11T05:38:40.873266+00:00 preservation critique on afb359b85c3878e5: could_have_survived=False
+2026-09-11T05:38:40.873283+00:00 preservation critique on 876fcb809dab4aa0: could_have_survived=True
+2026-09-11T05:38:40.873300+00:00 preservation critique on bbe077a23b985cad: could_have_survived=True
+2026-09-11T05:38:40.873317+00:00 preservation critique on bd529181bea316aa: could_have_survived=False
+2026-09-11T05:38:40.873341+00:00 preservation critique on 49bb00e35388dab0: could_have_survived=False
+2026-09-11T05:38:40.873362+00:00 preservation critique on 408ea0e536de2527: could_have_survived=False
+2026-09-11T05:38:40.873382+00:00 preservation critique on 7242397f62eeb3b8: could_have_survived=True
+2026-09-11T05:38:40.873400+00:00 preservation critique on 9e01e8b7b67567ad: could_have_survived=False
+2026-09-11T05:45:57.549115+00:00 tournament: 271 hypotheses rated over 2 rounds
+2026-09-11T05:45:57.585469+00:00 coverage: observed=5070 chao1_estimate=33686.3 missing_mass=0.0418
+2026-09-11T05:45:58.023220+00:00 calibration (kfold): brier=0.35266401971222877 coverage_of_truth=1.0
+2026-09-11T05:48:55.842502+00:00 self-report: missing_mass_estimate=0.0418 target_blind_steady=False
+2026-09-11T05:48:55.844021+00:00 exported 10 bin views, 73 event views
+2026-09-11T05:48:55.908696+00:00 run complete
