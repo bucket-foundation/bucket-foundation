@@ -2251,6 +2251,22 @@ its Tailwind classes: no fixed width exceeds 400px and every input row wraps
 (`flex-wrap`), so no horizontal scroll is expected; no headless browser was
 available in this environment to screenshot it directly.
 
+## 2026-09-10, production provenance guard
+
+`feat/ros-production-guard` against `main`, worktree `.ros-worktrees/guard`, not yet merged. Adds the Production provenance guard: quote-locator source verification, duplicate detection against prior work and canon, a counter-evidence field required at the internalization tier (Osborne 2010), and a citation-incentive-eligibility signal tied to canon sign-off (`GOVERNANCE.md`).
+
+`src/lib/research-os/production-guard.ts` holds the four pure rule functions, `checkSourceProvenance` (a source verifies when it carries the locator of a real `"quote"`-kind evidence event this learner produced, `stages.ts`'s new `onQuoteReturned`), `computeDuplicateFlag` (normalized token overlap, the lexical-Jaccard approach `tools/hypothesis-engine/hte/novelty.py` already uses, ported to TypeScript, against this learner's own prior claims, class peers' accepted claims, and canon claim texts), `requiresCounterEvidence` (true once the learner's own submit-time stage reached Internalization), and `computeIncentiveEligible` (no payment code, a stored signal only). `src/lib/research-os/canon-link.ts` supplies the two fs-backed reads that function needs, the canon-claims candidate list and an unfiltered `provenance_signoff` lookup by canon record id. Five new columns land on `graph.productions` (`supabase/migrations/20260910060000_research_os_production_guard.sql`).
+
+`/api/research-os/production`'s POST computes and stores the guard's output on a real submission (never a draft save) and refuses one that needs counter-evidence and has none. `/api/research-os/review`'s POST refuses to approve a production carrying an unverified source, and the review queue (both route and page) surfaces every guard flag beside its production, with a return-note template and a disabled approve button while a source is unverified.
+
+`scripts/research-os/ingest/canon-claims.ts` (new, `npm run ingest:research-os:canon-claims`) generates the full canon-claims JSON every branch, one claim text per `bucket-canon/**/primary-papers.yaml` record; a seven-entry hand-picked sample is committed at `scripts/research-os/ingest/out/sample-canon-claims.json`, one per branch, matching the existing generated/sample split every other importer's `out/` directory already uses.
+
+`learning/research-os/PRODUCTION-GUARD.md` (new) documents all four rules, what a teacher sees, and what is logged. `src/lib/research-os/EVIDENCE-SCHEMA.md` and `learning/research-os/WORKSPACE.md` document the new `"quote"` evidence event. `learning/research-os/compliance/DATA-INVENTORY.md` gained the five new columns.
+
+21 new tests, `scripts/test-research-os-production-guard.ts`, cover all four rules plus a near-duplicate fixture, wired into `npm run test:research-os`.
+
+Gates: `npm ci` clean, `npx tsc --noEmit` clean, `npm run build` clean (`/api/research-os/production` confirmed in the manifest), `npm run test:research-os` (26 chained files, every file `fail 0`), `eslint` clean on every touched TS/TSX file, `agf-lint-voice-src check` clean on every touched TS/TSX file, `agf-lint-voice check` clean on every touched doc/JSON/`.gitignore` (including seven pre-existing violations in `.gitignore` fixed to clear its own touched-file gate). No record's `provenance_signoff` value changed by this branch. PR open against `main`, merge pending.
+
 ## 2026-09-10, plan revision 3
 
 Branch `docs/ros-plan-revision-3`, worktree `~/agfarms/.ros-worktrees/plan3`.
@@ -2307,3 +2323,9 @@ discrete leak; left unchanged as out of scope for a docs-only review. Leak scan 
 the PR's own diff: clean, no keys, IPs, non-public hostnames, personal
 emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
 session URLs. `agf-lint-voice check` clean on every file this pass touched.
+
+## 2026-09-10, PR #73 review pass
+
+Review of PR #73 (production provenance guard) found `hasUnverifiedSource` reads `false` against an empty `source_provenance` array, the value the migration backfills onto every pre-existing `submitted` production. Fixed with `production-guard.ts`'s new `isSourceProvenanceStale`, wired into `/api/research-os/review`'s approve gate (POST) and its `guardFlags`/`unverifiedSourceNoteTemplate` (GET), so a production whose sources were never checked reads the same as one with a failed check rather than sailing through as "0 unverified." 3 new tests in `scripts/test-research-os-production-guard.ts`.
+
+Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Class-peer duplicate detection confirmed scoped to shared classes only, and its response never carries another learner's matched claim text (`matchId`/`matchOrigin`/`score` only). Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (both routes in the manifest), `npm run test:research-os` (28 files, `fail 0`, 391 tests), `next lint` clean, `agf-lint-voice-src check` clean; `agf-lint-voice check` fixed one banned word this pass's own test name introduced, left two pre-existing hits outside the diff untouched.

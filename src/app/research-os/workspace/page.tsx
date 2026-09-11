@@ -305,7 +305,7 @@ export default function ResearchOsWorkspacePage() {
   const [organized, setOrganized] = useState<{ claim: string; evidence: string[]; sources: string[]; abstained?: boolean } | null>(null);
   const [transferAnswer, setTransferAnswer] = useState("");
   const [transferSaved, setTransferSaved] = useState(false);
-  const [production, setProduction] = useState({ claim: "", evidence: "", sources: "", transferProof: "" });
+  const [production, setProduction] = useState({ claim: "", evidence: "", sources: "", transferProof: "", counterEvidence: "" });
   const [productionStatus, setProductionStatus] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
 
@@ -670,6 +670,12 @@ export default function ResearchOsWorkspacePage() {
           evidence: production.evidence.split("\n").filter(Boolean),
           sources: production.sources.split("\n").filter(Boolean),
           transferProof: { text: production.transferProof },
+          // Production guard, task item 3: optional in Phase 0, required
+          // at submission for an internalization-tier claim
+          // (production-guard.ts's requiresCounterEvidence); the route
+          // itself enforces that, this just always forwards what is
+          // here, same discipline claim/evidence/sources already keep.
+          counterEvidence: production.counterEvidence.split("\n").filter(Boolean),
           status,
           sessionId,
         }),
@@ -1157,6 +1163,21 @@ export default function ResearchOsWorkspacePage() {
                           &ldquo;{q.quotable_span}&rdquo;, {q.citation}
                           {q.locator ? ` (${q.locator})` : ""}
                         </p>
+                        {/* Production guard, task item 1: a source only
+                            verifies against a real Quote call when its own
+                            text carries that call's locator. Adding this
+                            exact line to the sources field below is what
+                            makes the source verifiable; typing it from
+                            memory is not. */}
+                        <button
+                          onClick={() => {
+                            const line = `${q.citation}${q.locator ? ` (${q.locator})` : ""}`;
+                            setProduction((p) => ({ ...p, sources: p.sources ? `${p.sources}\n${line}` : line }));
+                          }}
+                          className="mt-1 text-[11px] small-caps underline underline-offset-4"
+                        >
+                          add to sources
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -1199,6 +1220,15 @@ export default function ResearchOsWorkspacePage() {
                 <textarea value={production.sources} onChange={(e) => setProduction((p) => ({ ...p, sources: e.target.value }))} className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] w-full bg-white/60 mb-2 min-h-[60px]" />
                 <label className="text-[11px] small-caps text-[color:var(--aegean-deep)]">transfer proof</label>
                 <textarea value={production.transferProof} onChange={(e) => setProduction((p) => ({ ...p, transferProof: e.target.value }))} className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] w-full bg-white/60 mb-2 min-h-[60px]" />
+                <label className="text-[11px] small-caps text-[color:var(--aegean-deep)]">
+                  counter-evidence, one per line (required once you have reached internalization)
+                </label>
+                <textarea
+                  value={production.counterEvidence}
+                  onChange={(e) => setProduction((p) => ({ ...p, counterEvidence: e.target.value }))}
+                  placeholder="what would someone argue against this claim, and why doesn't it hold up?"
+                  className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] w-full bg-white/60 mb-2 min-h-[60px]"
+                />
                 <div className="flex gap-3">
                   <button onClick={() => saveProduction("draft")} disabled={!token || busy === "production"} className="px-3 py-2 text-[12px] small-caps border border-[color:var(--hairline)]">
                     save draft

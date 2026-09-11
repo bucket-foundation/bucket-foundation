@@ -2672,6 +2672,36 @@ confirmed by grep to carry no `understanding`/`elo_status`/envelope field
 from `hte.canon_writeback`'s own contract, so PR #60's write-back change
 touches nothing that file covers; left unchanged.
 
+## Iteration 24: production provenance guard
+
+`feat/ros-production-guard` against `main`, worktree `.ros-worktrees/guard`. Closes the Production provenance guard task: quote-locator source verification, duplicate detection, a counter-evidence field, and an incentive-eligibility signal, on `graph.productions`.
+
+### Added
+
+- `src/lib/research-os/production-guard.ts`: pure functions for all four rules, `checkSourceProvenance`/`hasUnverifiedSource`/`unverifiedSourceReturnNote` (quote matching), `tokenize`/`jaccardOverlap`/`computeDuplicateFlag` (duplicate detection, the lexical-Jaccard approach `tools/hypothesis-engine/hte/novelty.py` already uses, ported to TypeScript), `requiresCounterEvidence`/`normalizeCounterEvidence`/`hasCounterEvidence` (counter-evidence), `computeIncentiveEligible` (no payment code).
+- `src/lib/research-os/canon-link.ts`: fs-backed `loadCanonClaims`/`canonClaimsAsDuplicateCandidates` (reading `scripts/research-os/ingest/out/canon-claims.json`, falling back to the committed `sample-canon-claims.json`) and `lookupCanonSignoff` (the unfiltered `provenance_signoff` lookup `canon-primary.ts`'s own cached loader cannot answer).
+- `scripts/research-os/ingest/canon-claims.ts`: the canon-claims generator, every branch, reusing `ingest/canon.ts`'s own law-vs-title summary rule; wired as `npm run ingest:research-os:canon-claims`.
+- `scripts/research-os/ingest/out/sample-canon-claims.json`: seven hand-picked entries, one per canon branch, drawn from a real generator run.
+- `supabase/migrations/20260910060000_research_os_production_guard.sql`: five columns on `graph.productions`, `source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`, `production_incentive_eligible`.
+- `scripts/test-research-os-production-guard.ts`: 21 tests over `production-guard.ts` and `canon-link.ts`, including a near-duplicate fixture; wired into `npm run test:research-os`.
+- `learning/research-os/PRODUCTION-GUARD.md`: the full rule set, what a teacher sees, what is logged.
+- `stages.ts`'s `onQuoteReturned`: a new `"quote"`-kind evidence event, `EvidenceEvent.locator`, written by the Quote tool whenever it returns a real curated passage (never for the `"summary"` fallback), the record `checkSourceProvenance` matches a Production's own sources against.
+
+### Edited
+
+- `src/app/api/research-os/workspace/route.ts`: the `"quote"` case now calls `onQuoteReturned` + `recordEvidence` (best-effort) alongside its existing log line.
+- `src/app/api/research-os/production/route.ts`: POST computes and stores `source_provenance`/`duplicate_flag`/`counter_evidence_required` on a real submission only, and refuses submission with 400 when an internalization-tier claim carries no `counter_evidence`.
+- `src/app/api/research-os/review/route.ts`: GET now returns each production's guard fields plus a derived `guardFlags` summary and `unverifiedSourceNoteTemplate`; POST refuses an `"approved"` decision on a production with an unverified source (409 `unverified_sources_block_accept`) and computes/stores `production_incentive_eligible` on a successful approve.
+- `src/app/research-os/review/page.tsx`: shows unverified sources, the duplicate-match line, and a missing-counter-evidence warning beside each queued production; approve disabled while any source is unverified, with a "use unverified-source template" button.
+- `src/app/research-os/workspace/page.tsx`: a counter-evidence field on the Production form, and an "add to sources" button on each "sources I have quoted" entry that inserts the exact `citation (locator)` line a source needs to verify.
+- `learning/research-os/WORKSPACE.md`, `src/lib/research-os/EVIDENCE-SCHEMA.md`: documented the `"quote"` event and its `locator` field.
+- `learning/research-os/compliance/DATA-INVENTORY.md`: the five new `graph.productions` columns, and `counter_evidence` added to the free-text-fields list.
+- `.gitignore`: `sample-canon-claims.json` added to the ingestion-preview sample allowlist; seven pre-existing voice-lint violations elsewhere in the file (touched by this same edit) fixed so the pre-commit hook would pass.
+
+### Verified
+
+`npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean (`/api/research-os/production` confirmed in the app-paths manifest). `npm run test:research-os`: every one of 26 chained test files reports `fail 0`, including the 21 new production-guard tests. `eslint` (`next lint`) clean on every touched TS/TSX file. `agf-lint-voice-src check` clean on every touched TS/TSX file (fixed six banned-word and antithesis hits along the way). `agf-lint-voice check` clean on every touched doc, JSON, and `.gitignore` (fixed one heading violation in `EVIDENCE-SCHEMA.md`, two antithesis and one banned-word hit in `PRODUCTION-GUARD.md`, and seven pre-existing dash/antithesis hits in `.gitignore` blocking its own touched-file gate).
+
 ## PR #63 review pass: the held Check verdict moved off an in-memory Map
 
 Review of PR #63 (cognitive forcing on Check, Iteration 22 above) found the
@@ -2838,3 +2868,21 @@ brought it in.
   discrete leak; left unchanged as out of scope for this review, flagged
   here for a dedicated cleanup pass rather than a mass edit inside a
   docs-only PR review.
+
+## PR #73 review pass: source_provenance staleness closed the approve gate's own escape hatch
+
+Review of PR #73 (production provenance guard, Iteration 24 above) found `hasUnverifiedSource` reads `false` on an empty `source_provenance` array, the exact value this PR's own migration backfills onto every `graph.productions` row that reached status `"submitted"` before the guard shipped (`source_provenance jsonb not null default '[]'::jsonb`). A pre-existing submitted production with real, never-checked sources could reach `"accepted"` through `/api/research-os/review`'s own approve path, against the task's own rule, "a Production with any unverified_source cannot reach status accepted," for every row caught in that one migration window.
+
+### Added
+
+- `src/lib/research-os/production-guard.ts`'s `isSourceProvenanceStale(sourceLines, checks)`: true when a stored `source_provenance` array's length does not match the current `sources` array's length, the signature a migration-default `'[]'` row (or any other never-recomputed row) carries. 3 new tests in `scripts/test-research-os-production-guard.ts`.
+
+### Edited
+
+- `src/app/api/research-os/review/route.ts`: POST's approve gate now refuses `"approved"` when `isSourceProvenanceStale` is true, the same 409 `unverified_sources_block_accept` path, with a fixed `STALE_SOURCE_NOTE` return-note template (no per-source list to name, since none was ever checked). GET's `guardFlags.hasUnverifiedSource` and `unverifiedSourceNoteTemplate` read the same staleness check, so the review queue never shows "0 unverified" for a production whose sources were never checked at all; a new `guardFlags.sourceProvenanceStale` field surfaces the distinction.
+
+### Verified
+
+- Leak scan of the PR's own diff (keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, Claude session URLs): clean, zero hits.
+- Class-peer duplicate-detection query (`db.ts`'s `loadClassPeerAcceptedClaims`) scopes to `class_members` rows sharing a class with the learner before ever reading a peer's `productions` row; the response shape (`DuplicateFlag`: `matchId`, `matchOrigin`, `score`) carries no matched learner's claim text at any call site, `/api/research-os/production` and `/api/research-os/review` both included.
+- `npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean (`/api/research-os/production` and `/api/research-os/review` both confirmed in the app-paths manifest). `npm run test:research-os`: 28 chained files, every file `fail 0`, 391 tests total (24 in `test-research-os-production-guard.ts` alone, up from 21). `next lint` clean on every touched file. `agf-lint-voice-src check` clean on every touched TS/TSX file. `agf-lint-voice check` flagged one banned word this pass introduced, in a `loadCanonClaims` test's own name, fixed to "is the one loaded"; the two other hits it reported (`BEADS-PENDING.jsonl`, `workspace/page.tsx`) predate this PR and sit outside its own diff, left unchanged.
