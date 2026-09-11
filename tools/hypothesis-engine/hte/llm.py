@@ -56,6 +56,7 @@ import subprocess
 import threading
 import time
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Sequence
@@ -392,6 +393,51 @@ def _strip_id_like_tokens(text: str) -> str:
     return _ID_LIKE_RE.sub("<redacted-id>", text)
 
 
+_INDEX_LOCK = threading.Lock()
+
+
+def _provenance_index_path(cache_dir: str | Path) -> Path:
+    return Path(cache_dir) / "index.jsonl"
+
+
+def _append_provenance_index(cache_dir: str | Path, *, cache_key: str, role: str, provenance: dict[str, Any]) -> None:
+    """Appends one line to `<cache_dir>/index.jsonl` mapping `cache_key`
+    (the same sha256 `_cache_key`/`_cache_path` use for the response file
+    itself) to `provenance`'s own source/production/learner ids
+    (`docs/PRIVACY.md`). Never writes the prompt or response text, or
+    anything else that could reconstruct either: `hte.purge` reads this
+    file back to find which cache entries trace to a production or
+    learner id, with no need to re-hash or re-read a prompt to find out.
+    A no-op when `provenance` is empty or `None` (most `complete()`/
+    `complete_many()` calls carry none). A line is appended on every
+    non-fake, non-`replay_only` call that does carry one, cache hit or
+    miss alike: a repeat call against the same prompt is still one more
+    attributable use of that cached answer. `complete()`'s own fake-mode
+    branch, and its `replay_only` cache-hit branch, never call this at
+    all (see each branch's own comment): fake mode's contract is that it
+    never touches `cache_dir`, `replay_only`'s is that it only ever reads
+    a committed cache, never writes to it, and `tests/test_purge.py`
+    builds its cache/index fixtures through neither path.
+    Guarded by a lock: `complete_many` calls this from several `hte.
+    parallel.pmap` worker threads at once, and a bare append can
+    interleave two writers' lines into one corrupt line without it."""
+    if not provenance:
+        return
+    line = {
+        "cache_key": cache_key,
+        "role": role,
+        "recorded_at": datetime.now(timezone.utc).isoformat(),
+        "source_ids": sorted(set(provenance.get("source_ids") or [])),
+        "production_ids": sorted(set(provenance.get("production_ids") or [])),
+        "learner_ids": sorted(set(provenance.get("learner_ids") or [])),
+    }
+    path = _provenance_index_path(cache_dir)
+    with _INDEX_LOCK:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(line) + "\n")
+
+
 def _read_cache(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text())["response"]
 
@@ -572,6 +618,7 @@ def complete(
     replay_only: bool = False,
     timeout: float = DEFAULT_TIMEOUT_S,
     mode: str | None = None,
+    provenance: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """A JSON completion matching `schema`, cached by sha256 of `(model,
     prompt)` under `cache_dir`.
@@ -605,6 +652,25 @@ def complete(
     per-role fallback does that at the caller, so every existing direct
     `complete()` call site that has not opted into a default still sees
     the raise.
+
+    `provenance` (`docs/PRIVACY.md`), when given, is a dict of opaque
+    source/production/learner id lists (`hte.provenance.collect`'s own
+    shape); on a cache hit or a fresh call that gets cached, this
+    function appends one line mapping that call's own cache key to those
+    ids to `<cache_dir>/index.jsonl` (`_append_provenance_index`), never
+    the prompt or response text. `hte.roles` passes this for every role
+    call that carries evidence; `hte.purge` reads the index back to find
+    which cached answers trace to a production or learner id. No-op when
+    `provenance` is `None` or empty, when the call raises (a refusal, a
+    truncation, an invalid-JSON exhaustion: there is no cached artifact
+    yet for the index to point at), when `replay_only=True` (this
+    package's own "read committed fixtures, write nothing" contract,
+    `tests/fixtures/llm-cache/`'s own role: a replay against a checked-in
+    cache directory must never leave it dirty), and, `provenance`
+    included, in fake mode: fake mode's own contract is that `cache_dir`
+    is accepted but unused, full stop, so a fake-mode run's `provenance`
+    argument is accepted for call-site symmetry with the non-fake path
+    and otherwise ignored.
     """
     start = time.monotonic()
     resolved_mode = mode if mode is not None else os.environ.get("HTE_LLM_MODE")
@@ -612,6 +678,16 @@ def complete(
         from . import fakellm
         response = fakellm.complete(prompt, role=role, schema=schema)
         _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
+        # No index write here, `provenance` included: fake mode's own
+        # contract (`tests/swarm3/test_cli_props.py::test_campaign_run_
+        # replay_only_in_fake_mode_succeeds_and_never_touches_cache_dir`)
+        # is that `cache_dir` is accepted but unused, full stop, so a
+        # `--cache-dir` pointed at a path that is never even created
+        # still works. A fake-mode run has no real answer to attribute
+        # in the first place; `hte.purge`'s own tests build a real
+        # `index.jsonl` through the non-fake path instead (a
+        # monkeypatched `subprocess.run`, `tests/test_llm.py`'s own
+        # pattern), never through fake mode.
         return response
 
     resolved_model = model or resolve_model(role)
@@ -619,6 +695,16 @@ def complete(
     if cache_path.exists():
         response = _read_cache(cache_path)
         _STATS.record_call(role, cache_hit=True, wall_time_s=time.monotonic() - start)
+        # `replay_only` is this package's own "read committed fixtures,
+        # write nothing" contract (`tests/fixtures/llm-cache/`'s own
+        # role): every test in this package that replays against it
+        # would otherwise leave that checked-in directory dirty on every
+        # run, an index line appended for a role call the test never
+        # asked to be attributed at all. A caller with a real, mutable
+        # `cache_dir` (`replay_only=False`) still gets the write on a
+        # cache hit, same as any other call.
+        if provenance and not replay_only:
+            _append_provenance_index(cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance)
         return response
     if replay_only:
         raise LLMCacheMissError(
@@ -656,6 +742,8 @@ def complete(
             continue
         _write_cache(cache_path, model=resolved_model, role=role, prompt=prompt, response=response)
         _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
+        if provenance:
+            _append_provenance_index(cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance)
         return response
     _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
     logger.error(
@@ -678,6 +766,7 @@ def complete_many(
     mode: str | None = None,
     workers: int | None = None,
     default: dict[str, Any] | None = None,
+    provenance: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     """`complete()` mapped over `prompts`, in the same order, through
     `hte.parallel.pmap` (`workers` at a time, `hte.parallel.configure`'s
@@ -718,6 +807,14 @@ def complete_many(
     prompt in `prompts` to `default` and got logged and counted as a
     routine "model refused" event, indistinguishable from the benign
     case this function exists to absorb.
+
+    `provenance`, when given, is the same shared context (`hte.
+    provenance.collect`'s own shape) for every prompt in `prompts`; see
+    `complete()`'s own docstring for what it does. No current `hte.roles`
+    call site batches evidence-carrying prompts through this function,
+    but the parameter is accepted here for the same reason `hte.llm.
+    complete` accepts it: symmetry with `complete()`, and so a future
+    batched role needs no signature change to opt in.
     """
     results: list[dict[str, Any] | None] = [None] * len(prompts)
     resolved_mode = mode if mode is not None else os.environ.get("HTE_LLM_MODE")
@@ -730,6 +827,8 @@ def complete_many(
                 start = time.monotonic()
                 results[i] = _read_cache(cache_path)
                 _STATS.record_call(role, cache_hit=True, wall_time_s=time.monotonic() - start)
+                if provenance and not replay_only:  # see complete()'s own comment on this branch
+                    _append_provenance_index(cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance)
                 continue
         pending.append(i)
 
@@ -737,7 +836,7 @@ def complete_many(
         def _call(i: int) -> dict[str, Any]:
             return complete(
                 prompts[i], role=role, schema=schema, model=model, cache_dir=cache_dir,
-                replay_only=replay_only, timeout=timeout, mode=mode,
+                replay_only=replay_only, timeout=timeout, mode=mode, provenance=provenance,
             )
 
         pmap_kwargs: dict[str, Any] = {"workers": workers}
