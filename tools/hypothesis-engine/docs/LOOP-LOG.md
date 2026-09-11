@@ -2,6 +2,53 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, PR #60 review
+
+- **Scope**: review pass over PR #60 (`feat/ros-11-engine-review-items`,
+  the "2026-09-10, ros-11 review items" entry below) before merge.
+  Leak scan clean (no keys, IPs, emails, home paths, or session URLs in
+  the diff). `make test`: 1116 passed, 18 deselected, 0 failed (1115 from
+  the PR plus one added here). `ruff check .` and `agf-lint-voice-src
+  check` clean on every file this pass touched.
+- **Fixed on the branch**: `tests/test_canon_writeback.py` gained
+  `test_write_back_refuses_without_signoff_or_understanding`, exercising
+  both `write_back` no-partial-state gates (signoff, understanding)
+  together in one test, the coverage gap the PR's own signoff test and
+  understanding-artifact tests left between them (each gate had its own
+  test; nothing showed the two refuse independently in the same call
+  chain, or that a blank signoff never reaches the understanding step at
+  all).
+- **Filed, not fixed (exceeds a 30-minute review-fix budget)**: `hte.
+  evidence.EvidenceSpan.__post_init__` checks only internal consistency,
+  `char_start >= 0` and `char_end >= char_start`, never against `doc_id`'s
+  own stored document length; `hte.corpus.Source` carries no document
+  text or length field to check against, so a span pointing past its own
+  document's end passes today. `PLAN.md` section 10's full-document-
+  evidence-auditability ask (item 4, the one `hte.canon_writeback.
+  _evidence_line`/`_evidence_detail` expose `doc_id`/`char_start`/
+  `char_end` for) reads as validated only in the sense that the fields
+  are present and internally consistent, not that they are checked
+  against real document bounds. TODO left at `hte/evidence.py`'s own
+  `__post_init__`; follow-up bead filed in `BEADS-PENDING.jsonl`
+  (`bkt-hte-evidence-span-doc-length`), needs a document-length store
+  keyed by `doc_id` before real validation is possible.
+- **Verified, no change needed**: the ranking label (`hte.holdout_
+  ledger.ranking_status`) is driven by ledger state with `MIN_VERIFIED_
+  FOR_LABEL = 20` documented in that module's own top docstring and
+  tests for both the unvalidated and validated states; `hte/export.py`'s
+  hardcoded "Elo is unvalidated" string is a documented floor (`BEADS-
+  PENDING.jsonl`'s own follow-up entry), never overstates validation
+  either way; the holdout ledger stores hypothesis statements and engine-
+  internal ids only, no learner text; the novelty check runs before any
+  file write and records a score plus the closest match, not gating,
+  so it never blocks (silently or otherwise); `learning/research-os/
+  ENGINE-BRIDGE.md` documents the `graph.nodes`/outbox bridge
+  (`EngineHypothesisInput`, a different data flow, `campaign_research_
+  os.py`'s export), carries no `understanding`/`elo_status`/envelope
+  field from `hte.canon_writeback`'s own contract, so this PR's write-
+  back change touches nothing that file covers, confirmed by grep, not
+  left unchanged on the PR's own say-so alone.
+
 ## 2026-09-10, ros-11 review items
 
 - **Scope**: `bkt-hte-ros-11-review-items` (bead `ros-11`), `learning/

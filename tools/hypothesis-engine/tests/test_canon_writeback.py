@@ -234,6 +234,39 @@ def test_write_back_requires_signoff(tmp_path, linking_run):
     assert not out_root.exists()
 
 
+def test_write_back_refuses_without_signoff_or_understanding(tmp_path, linking_run, monkeypatch):
+    """The two `write_back` gates `bkt-hte-understanding-artifact` names
+    as carrying the same no-partial-state guarantee, exercised together:
+    a blank `signoff` refuses before `reconstruct_candidates` even runs
+    (`hte.roles.understanding` never called), and a present `signoff`
+    with a blank understanding artifact still refuses, after selection
+    but before any file write. Neither path leaves `out_root` on disk."""
+    run_dir, _, _ = linking_run
+    out_root = tmp_path / "canon-out"
+
+    calls = {"understanding": 0}
+    real_understanding = canon_writeback.roles.understanding
+
+    def counting_understanding(*args, **kwargs):
+        calls["understanding"] += 1
+        return real_understanding(*args, **kwargs)
+
+    monkeypatch.setattr(canon_writeback.roles, "understanding", counting_understanding)
+
+    with pytest.raises(ValueError, match="signoff"):
+        canon_writeback.write_back(run_dir, branch="02-physics", signoff="   ", out_root=out_root, dry_run=False)
+    assert calls["understanding"] == 0  # refused before reaching the understanding step at all
+    assert not out_root.exists()
+
+    monkeypatch.setattr(canon_writeback.roles, "understanding", lambda *a, **k: {"explanation": "   "})
+    with pytest.raises(ValueError, match="understanding"):
+        canon_writeback.write_back(
+            run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
+            out_root=out_root, dry_run=False, ledger_path=tmp_path / "ledger.jsonl",
+        )
+    assert not out_root.exists()  # signoff alone never clears the second gate
+
+
 def test_write_back_never_writes_canon_tier():
     assert canon_writeback.CANON_TIER == "candidate"
 

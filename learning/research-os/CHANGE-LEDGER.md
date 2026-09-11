@@ -2286,3 +2286,39 @@ item 7 (the address scheme preserves all thirteen Allen interval
 relations, Allen 1983), and item 8 (calibration on a fixed published
 cadence, CASP-style) stay open, filed in `BEADS-PENDING.jsonl` per this
 task's own four-item stop.
+
+
+## Iteration 23: PR #60 review
+
+Review pass over iteration 22 (PR #60) before merge.
+
+### Added
+
+- `tests/test_canon_writeback.py::test_write_back_refuses_without_
+  signoff_or_understanding`: both `write_back` no-partial-state gates
+  (signoff, understanding) in one test, confirming a blank signoff
+  refuses before the understanding step ever runs and a present signoff
+  with a blank understanding artifact still refuses, neither path
+  writing to `out_root`.
+- `BEADS-PENDING.jsonl`: `bkt-hte-evidence-span-doc-length` follow-up.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/evidence.py`: a TODO on `EvidenceSpan.
+  __post_init__` naming what it does not check, `char_start`/`char_end`
+  against `doc_id`'s own stored document length, and why (`hte.corpus.
+  Source` carries no document text or length field yet).
+
+### Verified
+
+`make test`: 1116 passed (1115 from PR #60 plus the one test added
+here), 18 deselected, 0 failed. `ruff check .` clean on every file this
+pass touched. `agf-lint-voice-src check` clean on every `.py` file this
+pass touched; `agf-lint-voice check` clean on `BEADS-PENDING.jsonl`'s own
+new line and both markdown files this pass edited (the file's 25
+pre-existing violations sit on lines already on `main`, untouched by PR
+#60 or this pass). Leak scan of the PR #60 diff: no keys, IPs, emails,
+home paths, or session URLs found. `learning/research-os/ENGINE-BRIDGE.md`
+confirmed by grep to carry no `understanding`/`elo_status`/envelope field
+from `hte.canon_writeback`'s own contract, so PR #60's write-back change
+touches nothing that file covers; left unchanged.
