@@ -14,10 +14,12 @@ branch: "student-research-experiences"
 tier: "canon"
 why_it_matters: >
   A systematic review of gender differences in participation and achievement across
-  mathematics and science competitions and Olympiads, the equity-of-participation evidence
-  the task brief names directly. Documents that a competition-shaped research or STEM
-  activity is not gender-neutral by default, a base rate any future Research OS feature with
-  a competitive or ranked framing needs to clear.
+  mathematics and science competitions and Olympiads. The task brief's target "Sahin 2015"
+  equity-of-participation citation could not be resolved to a verified DOI under that author
+  and year; this review is one of two closest verified matches (with Lakin and colleagues
+  2021) for the same equity-of-participation ground the brief names. Documents that a
+  competition-shaped research or STEM activity is not gender-neutral by default, a base rate
+  any future Research OS feature with a competitive or ranked framing needs to clear.
 key_claims:
   - "Across Olympiad-format competitions internationally, large gender differences in participation were found in every subject reviewed except the biology Olympiad."
   - "In science and engineering fairs and in national Olympiads, overall participation was not strongly gendered, but female students preferred biology topics and male students preferred physics-related topics, and male participants outperformed female participants at Olympiads with the smallest gap in biology."

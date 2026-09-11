@@ -52,6 +52,41 @@ recorded in `learning/research-os/CHANGE-LEDGER.md`'s literature-batch-four iter
 
 None.
 
+## 2026-09-10: literature batch four, PR #65 review pass
+
+Review of PR #65 against `main`. Leak scan (keys, `.env` values, IPs, non-public hostnames,
+personal emails, PII, absolute local paths, session URLs) found none; digit sequences that
+matched a phone-number pattern in a first grep pass were confirmed as DOI and OpenAlex
+work-id digit strings on inspection.
+
+Eight of the thirty new cards were sampled for citation verification against Crossref,
+OpenAlex, and ERIC: Condliffe (2017), Kingston (2018), Burgin, Sadler, and Koroly (2012),
+Hanauer and Dolan (2014), Steegh and colleagues (2019), Grinnell and colleagues (2020),
+Wineburg and McGrew (2019), and Breakstone and colleagues (2021). All eight matched on
+title, authors, year, and venue or publisher.
+
+Two of the three substitute cards named in the PR body, Hanauer and Dolan (2014) for
+"Hanauer 2017" and Burgin, Sadler, and Koroly (2012) for "Miller 2018", already labeled
+themselves as substitutes in `why_it_matters`. The third substitute pair, Steegh and
+colleagues (2019) and Lakin and colleagues (2021) for "Sahin 2015", did not; both
+`why_it_matters` fields were edited to name the unresolved "Sahin 2015" citation and
+cross-reference each other as the two closest verified matches.
+
+README.md's 147-row index, per-area counts, and file links were checked against the
+corpus on disk: exact match. The overlap map's six "Evidence added in batch four"
+paragraphs (questions 1, 4, 5, 6, 10, 12) and `PLAN-REVISION-2.md`'s three (sections 2a,
+2b, 2d) all reference files that exist.
+
+One voice-rule hit in newly authored prose: `actually` in the Kuhn (1999) card's
+`why_it_matters`, rewritten. One unmarked en dash in a verbatim paper title reproduced in
+the README index (Kuiper, Volman, and Terwel 2005); the frontmatter's own `voice-ignore-line`
+already covers the source, a documentation line was added to the README noting the
+reproduction is verbatim. No other banned-word, dash, or antithesis hits in lines this PR
+added.
+
+`git merge origin/main` was clean, no conflicts. `npm ci` and `npm run build` both passed.
+No file under `src/` or `public/` changed.
+
 ## 2026-09-10: canon human sign-off tool
 
 `feat/canon-signoff-tool`, built against `GOVERNANCE.md`'s "Canon sign-off"

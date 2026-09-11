@@ -17,9 +17,12 @@ branch: "student-research-experiences"
 tier: "canon"
 why_it_matters: >
   Reports a teacher-facing intervention aimed at broadening equitable student participation
-  in science and engineering fairs, the equity-of-participation evidence named in the task
-  brief read at the intervention rather than the diagnostic level: what supporting teachers
-  to close a documented participation gap looks like in practice.
+  in science and engineering fairs. The task brief's target "Sahin 2015" equity-of-
+  participation citation could not be resolved to a verified DOI under that author and year;
+  this paper is one of two closest verified matches (with Steegh and colleagues 2019) for
+  the same equity-of-participation ground the brief names, read at the intervention rather
+  than the diagnostic level: what supporting teachers to close a documented participation
+  gap looks like in practice.
 key_claims:
   - "Broadening participation in science and engineering fairs is framed as a problem teachers can act on directly, through the design of teacher-facing support rather than only through student-facing recruitment."
   - "The intervention targets teacher capacity to run an inclusive fair process, implying that fair-participation gaps are, at least in part, a function of teacher preparation and support rather than only student interest or ability."

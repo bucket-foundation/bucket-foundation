@@ -207,7 +207,10 @@ field and an `isbn`, verified against Open Library's own work record. Two of the
 project-based-and-inquiry-learning records, Condliffe (2017) and Kingston (2018), are
 non-peer-reviewed research briefs (MDRC and Buck Institute for Education respectively) with no
 Crossref DOI; each carries a `doi: null` frontmatter field and an `eric_id`, verified against
-their own ERIC records (ED578933 and ED590832).
+their own ERIC records (ED578933 and ED590832). One title in the source-evaluation row above,
+Kuiper, Volman, and Terwel (2005), carries a publisher-typeset en dash (`voice-ignore-line` on
+its own frontmatter `title:` field marks this); the index row reproduces the title verbatim
+rather than rewording a citation.
 
 ## Framework mapping papers, added 2026-09-10
 

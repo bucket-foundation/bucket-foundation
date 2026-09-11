@@ -14,7 +14,7 @@ why_it_matters: >
   second-order cognition, metacognitive, metastrategic, and epistemological, arguing critical-
   thinking instruction should draw on empirical cognitive-development research rather than
   treat critical thinking as a fixed skill teachable at any age the same way. Frames what the
-  Check tool's grounded-verdict step and the Understanding-state rubric are actually trying to
+  Check tool's grounded-verdict step and the Understanding-state rubric aim to
   develop, past surface correctness.
 key_claims:
   - "The critical-thinking movement is argued to have much to gain from a developmental framework, since most instructional programs designed to teach critical thinking do not draw on contemporary empirical research on cognitive development."

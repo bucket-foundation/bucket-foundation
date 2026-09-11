@@ -90,6 +90,39 @@ was rewritten before commit; `PLAN-REVISION-2.md` and `learning/research-os/CHAN
 itself, outside the `_intake` tree, were scanned by the real linter directly during each
 commit and returned zero violations, corroborating the self-audit's own result.
 
+## PR #65 review pass
+
+Date 2026-09-10. Review of PR #65 (`intake/ros-literature-4`, literature batch four)
+before merge, worktree `.ros-worktrees/r65`. Full account: `_intake/research-os-k12/
+CHANGELOG.md`, "2026-09-10: literature batch four, PR #65 review pass".
+
+### Edited
+
+- `_intake/research-os-k12-literature/epistemic-cognition/
+  kuhn-1999-developmental-model-critical-thinking.md`: removed the banned filler word
+  `actually` from `why_it_matters`.
+- `_intake/research-os-k12-literature/student-research-experiences/
+  steegh-et-al-2019-gender-differences-competitions.md` and `lakin-et-al-2021-
+  broadening-participation-fairs.md`: `why_it_matters` on both edited to name the
+  unresolved "Sahin 2015" citation and cross-reference each other as the two closest
+  verified equity-of-participation matches, matching the substitute-labeling pattern
+  already used on the Hanauer and Burgin cards.
+- `_intake/research-os-k12-literature/README.md`: a documentation line added noting the
+  Kuiper, Volman, and Terwel (2005) title's en dash is the publisher's own typesetting,
+  reproduced verbatim from the card's own `voice-ignore-line`-marked frontmatter.
+
+### Verified
+
+Leak scan clean (keys, `.env` values, IPs, hostnames, personal emails, PII, absolute
+local paths, session URLs); a first-pass phone-number regex hit was confirmed to be DOI
+and OpenAlex work-id digit strings. Eight of thirty new cards sampled
+against Crossref, OpenAlex, and ERIC (both ERIC-only cards, all three substitute-source
+cards, and three more at random): all eight matched on title, authors, year, and venue.
+README's 147-row index, per-area counts, and file links matched the corpus on disk
+exactly. The overlap map's six batch-four paragraphs and `PLAN-REVISION-2.md`'s three
+both reference files that exist. `git merge origin/main` clean. `npm ci` and
+`npm run build` both passed. No file under `src/` or `public/` changed.
+
 ## PR #61 review pass
 
 Date 2026-09-10. Review of PR #61 (`feat/canon-signoff-tool`) before merge,
