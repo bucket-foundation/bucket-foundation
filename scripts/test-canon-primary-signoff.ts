@@ -35,6 +35,20 @@ test("isPendingSignoff: false for an approved value", () => {
   assert.equal(isPendingSignoff("approved: gianyrox"), false);
 });
 
+test("isPendingSignoff: true for a 'rejected: <name> <date>: <reason>' value", () => {
+  // Filter consistency (SIGNOFF.md "the pending filter also excludes a
+  // rejected record"): a rejection is a decision that came back negative,
+  // not an approval, so it must gate out of loadPrimaryPapers() exactly
+  // like "pending" does. Before this fix, only a "pending" prefix matched,
+  // which would have let a rejected record leak through as servable canon.
+  assert.equal(isPendingSignoff("rejected: gianyrox 2026-09-10: broken DOI"), true);
+});
+
+test("isPendingSignoff: case-insensitive and tolerant of leading space for rejected too", () => {
+  assert.equal(isPendingSignoff("Rejected: gianyrox 2026-09-10: bad"), true);
+  assert.equal(isPendingSignoff("  rejected: gianyrox 2026-09-10: bad"), true);
+});
+
 test("isPendingSignoff: false for null/undefined (pre-ros-11 records stay ungated)", () => {
   assert.equal(isPendingSignoff(null), false);
   assert.equal(isPendingSignoff(undefined), false);
