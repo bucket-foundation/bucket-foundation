@@ -10,6 +10,9 @@ url: "https://doi.org/10.1207/s15327965pli1104_01"
 openalex_id: "https://openalex.org/W2122517769"
 branch: "educational-methods"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml (id bkt-25a39cdf1218)"
+promoted_at: "2026-09-10"
 why_it_matters: >
   The theoretical basis the gamification design rules explicitly draw on when ruling out
   leaderboards, streak-loss shaming, and variable-ratio rewards in favor of stage
@@ -30,6 +33,12 @@ how_it_bears_on_research_os: >
 ---
 
 # The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior
+
+> **Promoted to canon, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml` (id `bkt-25a39cdf1218`, `canon_score` 70) and
+> `bucket-canon/07-mind/curiosity-and-motivation/CANON_INDEX.md`. This file stays
+> in place as the Research OS-specific reading of the paper; the canon entry is
+> the citeable record.
 
 The theoretical basis the gamification design rules explicitly draw on when ruling out leaderboards, streak-loss shaming, and variable-ratio rewards in favor of stage transitions as the intrinsic reward.
 

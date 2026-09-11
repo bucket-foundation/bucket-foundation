@@ -150,6 +150,15 @@ it with explicit cross-link.
 - `language-and-thought/` — Frege 1892, Russell 1905, Chomsky 1957/1965
 - `reference/` — Stanford Encyclopedia of Philosophy pointer; no mirrors
 
+Two folders promoted outside this list, under **Decision theory and
+cognition**: `memory-systems/` (Scoville and Milner 1957; Roediger and
+Karpicke 2006; Sparrow, Liu and Wegner 2011) and, added 2026-09-10,
+`curiosity-and-motivation/` (Loewenstein 1994; Gruber, Gelman and
+Ranganath 2014; Deci and Ryan 2000; Gneezy and Rustichini 2000) and
+`cognition-and-automation/` (Bainbridge 1983). See each folder's own
+`CANON_INDEX.md` for the promotion record; this README's own promoted-set
+count below is not yet reconciled against them.
+
 ## Status
 
 Branch opened 2026-05-01 by the mind sweep at

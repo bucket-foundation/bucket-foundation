@@ -115,6 +115,47 @@ statement of a model of mind, or whether therapy traditions sit entirely
 in `research-landscape/` as clinical/practitioner material regardless of
 originator status. Needs its own pass; not resolved here.
 
+### Home for human-AI complementarity outcome meta-analyses
+
+**Raised**: 2026-09-10, canon intake pass two
+(`intake/ros-canon-promotion-2`), triggered by two source cards promoted
+this pass as outcome-tier into `07-mind/sub-outcomes/education/`: Vaccaro,
+Almaatouq and Malone 2024 ("When Combinations of Humans and AI Are Useful:
+A Systematic Review and Meta-Analysis," DOI `10.1038/s41562-024-02024-1`)
+and Bansal et al. 2021 ("Does the Whole Exceed its Parts? The Effect of AI
+Explanations on Complementary Team Performance," DOI
+`10.1145/3411764.3445717`). Neither is education-specific: both measure
+general human-AI team performance across task types, a broader scope
+than a classroom outcome. This question names the placement tradeoff; it
+does not move either record out of `sub-outcomes/education/`.
+
+**No new branch.** The question is whether `07-mind/sub-outcomes/`
+needs a second topic folder alongside `education/`; a new top-level canon
+branch is out of scope for this question entirely.
+
+**Option A: a new `sub-outcomes/human-ai-collaboration/` folder.**
+Groups general human-AI team-performance meta-analyses separately from
+classroom-specific tutoring outcomes, the way `education/` groups
+tutoring-specific ones. Tradeoff: two records is a thin seed for a new
+folder, and a future card on the same theme (decision-support, not
+tutoring) would need to be screened against a scope this pass has not
+written yet.
+
+**Option B: stay in `sub-outcomes/education/` with a pointer.** Keeps one
+outcome folder under `07-mind/` until the theme grows past a couple of
+records. Tradeoff: a reader looking for human-AI-collaboration outcome
+material has to find it inside an education-scoped folder, and the
+folder's own scope line has to carry both statements at once, tutoring
+and general team performance, rather than one.
+
+This pass takes Option B: both records are added to
+`sub-outcomes/education/primary-papers.yaml` with a `depends_on_foundation`
+pointer to `04-information/information-foraging/` (Pirolli and Card 1999),
+not to the memory-systems foundation the tutoring records depend on, and
+each carries a `TAXONOMY_NOTES.md` cross-reference in its
+`outcome_reason` field. A future pass with more human-AI-collaboration
+outcome cards should reconsider Option A.
+
 ## Rename Log
 
 None yet. Entries here record a branch, sub-domain, or folder rename with
