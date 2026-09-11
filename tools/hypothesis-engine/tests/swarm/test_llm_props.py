@@ -36,14 +36,30 @@ def test_replay_only_never_spawns_a_subprocess_on_cache_miss(model, prompt):
         raise AssertionError("replay_only=True must never call subprocess.run")
 
     try:
-        with mock.patch.object(subprocess, "run", fail_run):
-            with pytest.raises(llm.LLMCacheMissError):
-                llm.complete(prompt, role="critic", schema=SCHEMA, model=model, cache_dir=tmp, replay_only=True)
+        # This test exercises `complete()`'s real (non-fake) branch on
+        # purpose, so it pins its own precondition (`HTE_LLM_MODE` unset)
+        # rather than trusting the ambient shell: an `HTE_LLM_MODE=fake`
+        # left set around the whole suite would otherwise dispatch
+        # straight to `hte.fakellm` before either the cache check or
+        # `replay_only` is ever reached, and this test would silently
+        # stop testing the real path it names (a `pytest.MonkeyPatch()`
+        # context rather than the `monkeypatch` fixture, since Hypothesis
+        # calls this function once per generated example and a
+        # function-scoped fixture is set up only once for all of them).
+        with pytest.MonkeyPatch().context() as mp:
+            mp.delenv("HTE_LLM_MODE", raising=False)
+            with mock.patch.object(subprocess, "run", fail_run):
+                with pytest.raises(llm.LLMCacheMissError):
+                    llm.complete(prompt, role="critic", schema=SCHEMA, model=model, cache_dir=tmp, replay_only=True)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
 
-def test_replay_only_true_cache_hit_still_short_circuits_before_any_subprocess_check():
+def test_replay_only_true_cache_hit_still_short_circuits_before_any_subprocess_check(monkeypatch):
+    # Pins `HTE_LLM_MODE` unset for the same reason as this file's other
+    # test above: this asserts the real (non-fake) cache-hit branch,
+    # which an ambiently-set `HTE_LLM_MODE=fake` would bypass entirely.
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
     tmp = tempfile.mkdtemp()
     try:
         key = llm._cache_key("sonnet", "hello")

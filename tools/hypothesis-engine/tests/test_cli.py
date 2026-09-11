@@ -44,6 +44,38 @@ def test_calibrate_command_writes_report(tmp_path, capsys):
     assert (tmp_path / "calibration.json").is_file()
 
 
+def test_calibrate_command_with_no_cutoff_uses_auto_picked_mode(tmp_path):
+    """`bkt-hte-generation-coverage`: with no `--cutoff-years`, `hte
+    calibrate` must pick the mode `hte.calibrate.choose_holdout_mode`
+    would (`quantum-history` carries no real discovery lag, so this
+    reads `mode=kfold`), rather than the command's own prior
+    unconditional `run_holdout` call, which read `coverage_of_truth`
+    at or near `0.0` on every corpus shaped this way."""
+    rc = cli.main(["calibrate", "--corpus", "quantum-history", "--out", str(tmp_path)])
+    assert rc == 0
+    result = json.loads((tmp_path / "calibration.json").read_text())
+    assert result["mode"] == "kfold"
+
+
+def test_calibrate_command_diagnose_writes_diagnostics_md(tmp_path, capsys):
+    rc = cli.main(["calibrate", "--corpus", "quantum-history", "--diagnose", "--out", str(tmp_path)])
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "diagnostics written to" in out
+    assert "reasons for the uncovered remainder" in out
+    assert (tmp_path / "DIAGNOSTICS.md").is_file()
+    assert (tmp_path / "diagnostics.json").is_file()
+
+
+def test_calibrate_command_diagnose_with_explicit_cutoff_uses_discovery_date_mode(tmp_path):
+    rc = cli.main([
+        "calibrate", "--corpus", "quantum-history", "--cutoff-years", "1995", "--diagnose", "--out", str(tmp_path),
+    ])
+    assert rc == 0
+    diag = json.loads((tmp_path / "diagnostics.json").read_text())
+    assert diag["mode"] == "discovery_date"
+
+
 def test_calibrate_command_fit_grid(tmp_path):
     # `fixtures.build()`'s own evidence carries no extracted slots (see
     # that module's own comment: it is also the frozen seed for `tests/
@@ -72,3 +104,117 @@ def test_views_command_rewrites_timeline_md(tmp_path):
 def test_views_command_missing_run_dir_fails(tmp_path, capsys):
     rc = cli.main(["views", str(tmp_path / "nope")])
     assert rc == 1
+
+
+# --------------------------------------------------------------------------
+# --constants (docs/CALIBRATION-FIT-2026-09-10.md, hte.belief.load_constants)
+# --------------------------------------------------------------------------
+
+
+def test_campaign_run_accepts_constants_default(tmp_path, monkeypatch, capsys):
+    # `HTE_LLM_MODE=fake` keeps this off the real `claude` subprocess path
+    # (see `tests/test_api.py`'s own convention); the CLI has no
+    # `--llm-mode` flag, so the env var is the seam.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    rc = cli.main([
+        "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
+        "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
+        "--constants", "default",
+    ])
+    assert rc == 0
+    assert "run written to" in capsys.readouterr().out
+
+
+def test_campaign_run_accepts_constants_fitted(tmp_path, monkeypatch, capsys):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    rc = cli.main([
+        "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
+        "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
+        "--constants", "fitted",
+    ])
+    assert rc == 0
+    assert "run written to" in capsys.readouterr().out
+
+
+def test_campaign_run_rejects_an_unknown_constants_value(capsys):
+    try:
+        cli.main(["campaign", "run", "--constants", "not-a-real-choice"])
+    except SystemExit as exc:
+        assert exc.code == 2
+    else:
+        raise AssertionError("expected argparse to reject an unknown --constants choice")
+
+
+def test_campaign_run_omitting_constants_defaults_to_fitted(tmp_path, monkeypatch, capsys):
+    # No `--constants` flag at all: `runner.DEFAULT_CONFIG["constants"]`
+    # ("fitted") stands, matching `hte campaign run`'s own documented
+    # default with no CLI override needed. `HTE_LLM_MODE=fake` keeps this
+    # off the real `claude` subprocess path (see `tests/test_api.py`'s
+    # own convention).
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    captured: dict = {}
+    real_run_campaign = cli.runner.run_campaign
+
+    def spy(config):
+        captured["constants"] = config.get("constants")
+        return real_run_campaign(config)
+
+    monkeypatch.setattr(cli.runner, "run_campaign", spy)
+    rc = cli.main([
+        "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
+        "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
+    ])
+    assert rc == 0
+    assert captured["constants"] is None  # no explicit flag, so cli never sets the key
+    # run_campaign's own DEFAULT_CONFIG merge is what resolves the omitted key to "fitted".
+
+
+# --------------------------------------------------------------------------
+# holdout-ledger (bkt-hte-holdout-ledger, PLAN.md section 10)
+# --------------------------------------------------------------------------
+
+
+def test_holdout_ledger_report_on_an_empty_ledger(tmp_path, capsys):
+    path = tmp_path / "ledger.jsonl"
+    rc = cli.main(["holdout-ledger", "report", "--path", str(path)])
+    assert rc == 0
+    status = json.loads(capsys.readouterr().out)
+    assert status["elo_status"] == "unvalidated_tournament_ranking"
+    assert status["n_verified"] == 0
+    assert status["hit_rate"] is None
+
+
+def test_holdout_ledger_verify_then_report_reflects_it(tmp_path, capsys):
+    from hte import holdout_ledger
+
+    path = tmp_path / "ledger.jsonl"
+    entries = holdout_ledger.build_entries(
+        [{"address": 1, "short_id": "h1", "statement": "a claim", "elo": 1500.0}],
+        run_id="run-1", corpus="fixtures",
+    )
+    holdout_ledger.append_entries(entries, path=path)
+
+    rc = cli.main([
+        "holdout-ledger", "verify", "run-1:1", "correct",
+        "--verified-by", "jane-reviewer", "--path", str(path),
+    ])
+    assert rc == 0
+    verified = json.loads(capsys.readouterr().out)
+    assert verified["outcome"] == "correct"
+    assert verified["verified_by"] == "jane-reviewer"
+
+    rc = cli.main(["holdout-ledger", "report", "--path", str(path), "--min-verified", "1"])
+    assert rc == 0
+    status = json.loads(capsys.readouterr().out)
+    assert status["elo_status"] == "validated_tournament_ranking"
+    assert status["hit_rate"] == 1.0
+
+
+def test_holdout_ledger_verify_unknown_entry_fails(tmp_path, capsys):
+    path = tmp_path / "ledger.jsonl"
+    rc = cli.main(["holdout-ledger", "verify", "no-such:1", "correct", "--verified-by", "jane", "--path", str(path)])
+    assert rc == 1
+    assert "no entry" in capsys.readouterr().err

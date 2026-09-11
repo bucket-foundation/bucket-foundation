@@ -1,19 +1,31 @@
 """`hte.corpus.production`: the K-12 research-production adapter, exercised
-against the 14 shipped fixtures under `hte/data/production-fixtures/`
-(the 12 original `PRODUCTION-SCHEMA.md`-shaped fixtures, `prod-001.json`
-through `prod-012.json`, plus `research-os-sky-blue.json`, two `graph.
-productions`-shaped rows converted from the founder's own Research OS seed,
-`bucket-foundation` PR #6's `supabase/seed/research-os-sky-blue.json`) and,
-for `load_supabase`, against a monkeypatched `urllib.request.urlopen`
+against the 36 shipped fixtures under `hte/data/production-fixtures/`
+(the original 12 `PRODUCTION-SCHEMA.md`-shaped fixtures, `prod-001.json`
+through `prod-012.json`, plus `research-os-sky-blue.json`'s two `graph.
+productions`-shaped rows converted from the founder's own Research OS seed
+(`bucket-foundation` PR #6's `supabase/seed/research-os-sky-blue.json`),
+plus 22 more `PRODUCTION-SCHEMA.md`-shaped fixtures `bkt-hte-ground-truth-
+enrichment` added, `prod-013.json` through `prod-034.json`
+(`docs/COVERAGE-2026-09-10.md`'s own reason table): 4 cross-district
+replication pairs, 1 revised-then-reaccepted pair (also a replication
+pair), a depth-3 citation chain (4 productions, itself two overlapping
+replication pairs on its own two addresses), 6 twins of pre-existing
+ground-truth events, and 2 more retracted productions) and, for
+`load_supabase`, against a monkeypatched `urllib.request.urlopen`
 returning those same fixtures as REST rows. No network.
 
 The Research OS shape gets its own test class below
 (`TestResearchOSNativeShape`); every test above it exercises the original
-12-fixture set's own invariants, now against a 14-fixture directory, so
+12-fixture set's own invariants, now against a 36-fixture directory, so
 several counts below were widened from exact equality to containment where
-the Research OS conversion's own values (a `research_question` with no
-`RQ##:` prefix, a `school_or_district_id` outside the two original pilot
-districts) legitimately extend rather than replace the original set.
+a later addition's own values (a `research_question` with no `RQ##:`
+prefix, a `school_or_district_id` or `grade_band` outside the original
+pilot's own two districts and three bands) legitimately extend rather than
+replace the original set. `tests/test_corpus_production_ground_truth_
+enrichment.py` exercises the 22 new fixtures' own invariants directly:
+district and grade-band diversity, replication-pair coverage, the
+citation chain's own depth, and the revised-then-reaccepted review
+history.
 """
 from __future__ import annotations
 
@@ -36,10 +48,15 @@ def corpus():
 # --------------------------------------------------------------------------
 
 
-def test_load_raw_reads_all_fourteen_fixtures():
+def test_load_raw_reads_all_thirty_six_fixtures():
+    # 14 original productions plus 22 added by `bkt-hte-ground-truth-
+    # enrichment` (`docs/COVERAGE-2026-09-10.md`): 4 cross-district
+    # replication pairs, 1 revised-then-reaccepted pair, a depth-3
+    # citation chain, 6 twins of pre-existing ground-truth events, and 2
+    # more retracted productions.
     productions = production.load_raw()
-    assert len(productions) == 14
-    assert len({p.id for p in productions}) == 14
+    assert len(productions) == 36
+    assert len({p.id for p in productions}) == 36
 
 
 def test_fixtures_cover_at_least_four_of_the_seven_runnable_questions():
@@ -76,14 +93,14 @@ def test_fixtures_cover_every_author_role_and_review_status():
 
 
 def test_load_default_status_min_counts(corpus):
-    # 14 productions minus the two mapped to "draft" (prod-008, and
+    # 36 productions minus the two mapped to "draft" (prod-008, and
     # ros-sky-blue-001 whose Research OS status "submitted" maps to
     # "draft", RESEARCH_OS_STATUS_MAP) excluded by the default
-    # status_min="peer-reviewed" leaves 12 contributing evidence.
+    # status_min="peer-reviewed" leaves 34 contributing evidence.
     contributing_ids = {e.id.rsplit("-c", 1)[0] for e in corpus.evidence}
     assert "prod-008" not in contributing_ids
     assert "ros-sky-blue-001" not in contributing_ids
-    assert len(contributing_ids) == 12
+    assert len(contributing_ids) == 34
     # every production still gets a Source, including the filtered-out drafts
     assert "prod-008" in corpus.sources
     assert "ros-sky-blue-001" in corpus.sources
@@ -121,7 +138,13 @@ def test_invalid_status_min_raises():
 
 
 def test_every_evidence_item_slot_resolves_in_the_vocabulary(corpus):
-    vocab = production.load_vocab()
+    # Checked against `corpus.vocab`, the merged result: `hte.vocab_induce.
+    # induce` (wired into `_build_corpus` as a merge step) extends the bare
+    # `production.load_vocab()` seed with every slot value the corpus's
+    # own evidence names beyond it (a Research OS graph-node id among
+    # them), so it is `corpus.vocab` every evidence item's own slot is
+    # guaranteed to resolve in.
+    vocab = corpus.vocab
     slot_by_field = {"actor": Slot.ACTOR, "action": Slot.ACTION, "object": Slot.OBJECT, "place": Slot.PLACE, "mechanism": Slot.MECHANISM}
     for item in corpus.evidence:
         for field_name, slot in slot_by_field.items():
@@ -320,12 +343,19 @@ def test_normalize_grade_band_is_unknown_without_a_target_node_join():
     assert normalized["grade_band"] == "unknown"
 
 
-def test_normalize_claim_gets_supports_stance_and_all_null_slots():
+def test_normalize_claim_gets_supports_stance_object_slot_and_created_at_interval():
+    # `object` reads `target_node_id` itself (a stable, always-available
+    # graph-node id `hte.vocab_induce.induce` resolves downstream);
+    # `actor`/`action`/`place`/`mechanism` stay unasserted, and `interval`
+    # reads the record's own `created_at` year (docs/PRODUCTION-SCHEMA-
+    # ALIGNMENT.md's "the null-slot gap on physics productions").
     normalized = production.normalize_research_os_record(_research_os_row())
     claim = normalized["claims"][0]
     assert claim["stance"] == "supports"
-    assert claim["slots"] == {"actor": None, "action": None, "object": None, "place": None, "mechanism": None}
-    assert claim["interval"] is None
+    assert claim["slots"] == {
+        "actor": None, "action": None, "object": "why-the-sky-is-blue", "place": None, "mechanism": None,
+    }
+    assert claim["interval"] == {"start": 2026, "end": 2026}  # created_at is 2026-09-01
 
 
 def test_normalize_evidence_entries_carry_the_full_source_citation_set():
@@ -375,7 +405,118 @@ def test_research_os_sky_blue_fixture_loads_and_contributes_a_source():
 
     corpus = production.load()  # default status_min="peer-reviewed"
     assert "ros-sky-blue-002" in {e.id.rsplit("-c", 1)[0] for e in corpus.evidence}
-    # a physics claim carries no dated interval, so it never contributes
-    # ground truth even once accepted (normalize_research_os_record's own
-    # documented gap)
-    assert not any(g.id.startswith("ros-sky-blue") for g in corpus.ground_truth)
+    # ros-sky-blue-002's own claim carries a non-null OBJECT slot
+    # (`target_node_id`, `normalize_research_os_record`'s own reading) and
+    # an interval read off its own `created_at` year, so, once accepted, it
+    # contributes a real GroundTruthEvent (docs/PRODUCTION-SCHEMA-
+    # ALIGNMENT.md's "the null-slot gap on physics productions," closed).
+    ros_002_evidence = next(e for e in corpus.evidence if e.id.startswith("ros-sky-blue-002"))
+    assert ros_002_evidence.object == "light-can-scatter-off-small-things"
+    assert corpus.vocab.get(Slot.OBJECT, "light-can-scatter-off-small-things") is not None
+    gt_ids = {g.id for g in corpus.ground_truth}
+    assert any(gid.startswith("ros-sky-blue-002") for gid in gt_ids)
+    # ros-sky-blue-001 stays "draft" (its Research OS "submitted" status
+    # maps down), excluded by the default status_min="peer-reviewed" and,
+    # even at a permissive status_min, never accepted, so it never
+    # contributes ground truth.
+    assert not any(gid.startswith("ros-sky-blue-001") for gid in gt_ids)
+
+
+# --------------------------------------------------------------------------
+# Real production-form shape (PR #37's own seam finding): `evidence`/
+# `sources` as plain newline-split string arrays, exactly what
+# `src/app/research-os/workspace/page.tsx`'s own
+# `production.evidence.split("\n").filter(Boolean)` sends, and what
+# `src/app/api/research-os/production/route.ts`'s `POST` stores verbatim
+# (`evidence: body.evidence ?? []`, no shape validation of its own,
+# confirmed against `git show origin/main:src/app/api/research-os/
+# production/route.ts`). This is the shape a real, accepted production
+# carries; the older dict-shaped tests above cover the Quote tool's own
+# shape, which `_research_os_evidence` still accepts too.
+# --------------------------------------------------------------------------
+
+
+def test_normalize_accepts_the_real_production_form_string_shape():
+    row = _research_os_row(
+        evidence=["Rayleigh scattering bends blue light more than red.", "  ", ""],
+        sources=["10.1080/14786447108640507"],
+    )
+    normalized = production.normalize_research_os_record(row)
+    entries = normalized["claims"][0]["evidence"]
+    # the two blank/whitespace-only lines contribute nothing
+    evidence_entries = [e for e in entries if e["locator"] == "(uncited)"]
+    assert len(evidence_entries) == 1
+    assert evidence_entries[0]["quote"] == "Rayleigh scattering bends blue light more than red."
+    assert evidence_entries[0]["tier"] == "T4"
+    assert evidence_entries[0]["citations"] == [], "an evidence line and a sources line are unpaired, never fused"
+
+
+@pytest.mark.parametrize(
+    "source_line,expected_type,expected_tier",
+    [
+        ("10.1080/14786447108640507", "doi", "T2"),
+        ("doi:10.1080/14786447108640507", "doi", "T2"),
+        ("https://spaceplace.nasa.gov/blue-sky/en/", "url", "T4"),
+        ("NASA Space Place", "url", "T4"),
+    ],
+)
+def test_normalize_string_source_lines_parse_by_shape(source_line, expected_type, expected_tier):
+    row = _research_os_row(evidence=[], sources=[source_line])
+    normalized = production.normalize_research_os_record(row)
+    entries = normalized["claims"][0]["evidence"]
+    assert len(entries) == 1
+    assert entries[0]["tier"] == expected_tier
+    assert entries[0]["citations"][0]["type"] == expected_type
+    assert "citation only" in entries[0]["quote"]
+
+
+def test_normalize_string_evidence_lines_get_per_production_scoped_source_ids():
+    """Two productions in the same ingest batch each writing their own
+    unpaired evidence line 0 must not collide onto one `_build_corpus`-
+    created `Source` node (`_string_evidence_entries`'s own docstring)."""
+    row_a = _research_os_row(id="ros-scope-a", evidence=["line a"], sources=[])
+    row_b = _research_os_row(id="ros-scope-b", evidence=["line b"], sources=[])
+    a = production.Production.from_dict(row_a)
+    b = production.Production.from_dict(row_b)
+    id_a = a.claims[0].evidence[0].source_id
+    id_b = b.claims[0].evidence[0].source_id
+    assert id_a != id_b
+    assert "ros-scope-a" in id_a
+    assert "ros-scope-b" in id_b
+
+
+def test_normalize_mixed_dict_and_string_evidence_both_land():
+    """A row may mix the Quote tool's dict shape with the real form's
+    string shape (a caller-supplied fixture alongside a form-shaped
+    entry): `_research_os_evidence` reads each item by its own type."""
+    row = _research_os_row(
+        evidence=[
+            {"node_id": "rayleigh-scattering-law", "quote": "steeply on the wavelength", "locator": "graph.nodes.summary"},
+            "a plain evidence line",
+        ],
+        sources=[{"label": "Rayleigh 1871", "doi": "10.1080/14786447108640507"}],
+    )
+    normalized = production.normalize_research_os_record(row)
+    entries = normalized["claims"][0]["evidence"]
+    quotes = {e["quote"] for e in entries}
+    assert "steeply on the wavelength" in quotes
+    assert "a plain evidence line" in quotes
+    dict_entry = next(e for e in entries if e["quote"] == "steeply on the wavelength")
+    string_entry = next(e for e in entries if e["quote"] == "a plain evidence line")
+    assert dict_entry["citations"], "the dict-shaped branch still attaches its own closed citation set"
+    assert string_entry["citations"] == [], "the string-shaped branch never fuses in the dict-shaped sources"
+
+
+def test_production_from_dict_with_string_shape_builds_a_corpus_with_no_attribute_error():
+    """The bug PR #37's seam check found: a real production's plain
+    string `evidence`/`sources` used to raise `AttributeError` inside
+    `Production.from_dict` (`.get()` on a `str`), which `hte.corpus.
+    research_os_outbox._build`'s own per-row isolation now also survives
+    even if a future shape change reintroduces it."""
+    row = _research_os_row(evidence=["a line of evidence"], sources=["https://example.edu/x"])
+    p = production.Production.from_dict(row)
+    corpus = production._build_corpus(
+        [p], status_min="draft", retrieval_run_id="test", source_path_for=lambda prod: f"test:{prod.id}",
+    )
+    assert len(corpus.evidence) == 2
+    assert len(corpus.sources) == 3  # the production itself, plus one per evidence/source line

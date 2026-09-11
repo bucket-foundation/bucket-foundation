@@ -40,6 +40,22 @@ FIXTURE_CONFIG = {
 }
 
 
+@pytest.fixture(autouse=True)
+def _real_llm_mode(monkeypatch):
+    """`FIXTURE_CONFIG` above pins `replay_only=True` against a real,
+    committed cache (`FIXTURE_CACHE`) with no `HTE_LLM_MODE` of its own:
+    every test below that builds a config from it is asserting the real
+    cache-replay contract (a hit returns the seeded response, a miss
+    raises `LLMCacheMissError`), which an ambient `HTE_LLM_MODE=fake`
+    would silently swap for `hte.fakellm`'s generic stand-ins instead,
+    breaking that contract without ever raising. Pinning it unset here
+    (harmless for this file's own explicitly fake-mode tests, which each
+    call their own `monkeypatch.setenv("HTE_LLM_MODE", "fake")` on top of
+    this) keeps this file correct under `env -u HTE_LLM_MODE make test`
+    and `HTE_LLM_MODE=fake make test` alike."""
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
+
+
 def test_run_campaign_end_to_end_replay_only(tmp_path):
     cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path)}
     artifacts = runner.run_campaign(cfg)
@@ -157,6 +173,51 @@ def test_production_campaign_run_completes_end_to_end_in_fake_mode(tmp_path, mon
     assert manifest["corpus"] == "production"
 
 
+def test_generator_proposed_year_before_the_run_span_is_clamped_and_recorded(tmp_path, monkeypatch):
+    """Silent-failures review finding 2, reproduced end to end: a
+    generator-role proposal names a year that predates this run's own
+    TIME_BIN span (a hallucination, the exact case `hte.timeline.
+    time_bin_index`'s own clamp-to-bin-0 docstring names as its target;
+    the `production` corpus's own real span is 2025-2026). The campaign
+    must complete, and the clamp must be visible in `MANIFEST.
+    json['clamped_years']`, `run.log`, and `self_report['assumptions']`,
+    not only a stdlib `logging.warning` line no CLI entry point in this
+    package ever attaches a handler for."""
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+
+    def _fake_generate(context, *, cache_dir, replay_only=False):
+        return {
+            "proposals": [{
+                "actor": "hallucinated-actor", "action": "hallucinated-action",
+                "object": "hallucinated-object", "place": "hallucinated-place",
+                "mechanism": "hallucinated-mechanism",
+                "time_hint": "1900",  # well before the production corpus's own 2025-2026 span
+                "supporting_evidence_ids": [],
+            }]
+        }
+
+    monkeypatch.setattr(roles, "generate", _fake_generate)
+    cfg = {
+        "campaign": "production", "corpus": "production", "out_dir": str(tmp_path),
+        "cache_dir": str(tmp_path / "cache"), "replay_only": False, "seeds": 1,
+        "generate_n": 1, "combinatorial_max_items": 1, "max_hypotheses": 5,
+        "tournament_rounds": 1, "max_time_bins": 2, "run_extraction": False,
+    }
+    artifacts = runner.run_campaign(cfg)
+
+    manifest = json.loads((artifacts.run_dir / "MANIFEST.json").read_text())
+    span_start = manifest["time_binning"]["span_start"]
+    assert manifest["clamped_years"] == [{"year": 1900, "span_start": span_start}]
+    log_text = (artifacts.run_dir / "run.log").read_text()
+    assert f"time-bin clamp: year=1900 span_start={span_start}" in log_text
+    assert "clamped_years: 1 year(s) clamped to bin 0 this run" in log_text
+    assert any("clamped to bin 0" in a for a in artifacts.self_report.get("assumptions", []))
+
+
+@pytest.mark.skipif(
+    education_atlas.DEFAULT_SAMPLE_DIR is None,
+    reason="education-atlas checkout not found; set EDUCATION_ATLAS_DIR",
+)
 def test_education_atlas_campaign_run_completes_end_to_end_in_fake_mode(tmp_path, monkeypatch):
     # `education_atlas.load()`'s own shipped sample is real-corpus-sized
     # (84 sources, 4655 evidence items): `hte.generate.from_evidence`'s
@@ -308,6 +369,10 @@ def test_production_campaign_survives_one_truncated_judge_call(tmp_path, monkeyp
 # --------------------------------------------------------------------------
 
 
+@pytest.mark.skipif(
+    education_atlas.DEFAULT_SAMPLE_DIR is None,
+    reason="education-atlas checkout not found; set EDUCATION_ATLAS_DIR",
+)
 def test_education_atlas_binning_covers_an_evidence_interval_before_ground_truth(tmp_path, monkeypatch):
     """Reproduces the incident directly: a trimmed `education-atlas`
     corpus with one evidence item's interval spliced to predate its own
@@ -380,3 +445,41 @@ def test_resolve_time_binning_span_covers_every_known_year(gt_years, evidence_ye
     _resolution, span_start, _bin_width = runner._resolve_time_binning({"resolution": None}, corpus)
     for year in gt_years + evidence_years:
         assert year >= span_start, f"year {year} falls outside computed span_start {span_start}"
+
+
+# --------------------------------------------------------------------------
+# constants loading (docs/CALIBRATION-FIT-2026-09-10.md, hte.belief.load_constants)
+# --------------------------------------------------------------------------
+
+
+def test_default_config_defaults_constants_to_fitted():
+    assert runner.DEFAULT_CONFIG["constants"] == "fitted"
+
+
+def test_run_campaign_honors_an_explicit_constants_default(tmp_path, monkeypatch):
+    captured: dict = {}
+    real_load_constants = runner.load_constants
+
+    def spy(source):
+        captured["source"] = source
+        return real_load_constants(source)
+
+    monkeypatch.setattr(runner, "load_constants", spy)
+    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path), "constants": "default"}
+    runner.run_campaign(cfg)
+    assert captured["source"] == "default"
+
+
+def test_run_campaign_with_no_constants_key_falls_back_to_the_default_config(tmp_path, monkeypatch):
+    captured: dict = {}
+    real_load_constants = runner.load_constants
+
+    def spy(source):
+        captured["source"] = source
+        return real_load_constants(source)
+
+    monkeypatch.setattr(runner, "load_constants", spy)
+    cfg = {k: v for k, v in FIXTURE_CONFIG.items() if k != "constants"}
+    cfg["out_dir"] = str(tmp_path)
+    runner.run_campaign(cfg)
+    assert captured["source"] == "fitted"  # DEFAULT_CONFIG's own default, no override given

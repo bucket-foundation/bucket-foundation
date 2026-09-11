@@ -158,7 +158,7 @@ the `05-biophysics/concepts/` precedent for internally derived law or method
 nodes that have no single external figure card to attach to.
 
 - **Canon card**: [`bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md`](bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md), a combinatorial address scheme (Gödel-style encoding, proved injective for bounded vocabulary size) and a subjective-logic belief calculus (proved normalized and unit-bounded), both Lean-verified.
-- **Source paper**: `papers/history-hypothesis-engine/main.tex`, "A Hypothesis Engine over History" (Dichio, 2026-09-09), Lean sources at `papers/history-hypothesis-engine/lean/Bucket/`.
+- **Source paper**: `papers/history-hypothesis-engine/main.tex`, "A Hypothesis Engine over History" (Dichio, 2026-09-09), Lean sources at `papers/history-hypothesis-engine/lean/Bucket/`. Zenodo DOI: [10.5281/zenodo.22694649](https://doi.org/10.5281/zenodo.22694649) (v1.0.0, minted 2026-09-10).
 - **Design specs and survey**, catalogued but not yet promoted to their own canon cards: the four `_intake/hypothesis-engine/*-SPEC.md` files and `SURVEY-AI-HYPOTHESIS-GENERATION.md`.
 
 Full context, prioritized next steps, and the site-side proposal: `CANON-CONTRIBUTIONS-2026-09-10.md`.

@@ -6,7 +6,7 @@
   "summary": {
     "figures": 22,
     "traditions": 13,
-    "correlations": 49,
+    "correlations": 52,
     "timelineEvents": 21,
     "earliestEvent": "1500 BCE",
     "latestEvent": "1947 CE"
@@ -3052,6 +3052,168 @@
         "addedOn": "2026-05-20"
       },
       "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-99eb113edd",
+      "kind": "motif-parallel",
+      "label": "Flood-narrative parallel: Utnapishtim ↔ Noah",
+      "statement": "Utnapishtim's flood narrative (Epic of Gilgamesh, Tablet XI) and Noah's flood narrative (Genesis 6:9-9:17) share a documented literary relationship: a divinely warned flood hero builds a vessel, preserves life of every kind, and releases birds to find dry land.",
+      "sideA": {
+        "tradition": "mesopotamian",
+        "node": "utnapishtim",
+        "wikidata": "Q317481"
+      },
+      "sideB": {
+        "tradition": "judaism",
+        "node": "noah",
+        "wikidata": "Q80350"
+      },
+      "stance": "majority-scholarly",
+      "disputed": false,
+      "confidence": 0.9,
+      "scope": "majority-scholarly comparative-literature reading; textual relationship between the Mesopotamian and biblical flood accounts",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Epic of Gilgamesh, Tablet XI (Standard Babylonian version)",
+          "sourceNode": "utnapishtim",
+          "rightsTier": "A",
+          "summary": "Utnapishtim recounts surviving a world-flood in a boat built at divine instruction, preserving life of every kind, then releasing a dove, a swallow, and a raven to find dry land."
+        },
+        {
+          "kind": "primary",
+          "locator": "Genesis 6:9-9:17",
+          "sourceNode": "noah",
+          "rightsTier": "A",
+          "summary": "Noah is instructed to build an ark to preserve his family and animal life from a divine flood, then releases a raven and a dove to find dry land (Genesis 8:6-12)."
+        },
+        {
+          "kind": "scholarly",
+          "locator": "shared-motifs:ark,flood",
+          "sourceNode": "human-scholarly-comparison",
+          "rightsTier": "A",
+          "summary": "George, A.R., The Babylonian Gilgamesh Epic (Oxford University Press, 2003), pp. 500-504, and Tigay, J.H., The Evolution of the Gilgamesh Epic (University of Pennsylvania Press, 1982), ch. 8, both treat the bird-release, mountain-landing, and sacrifice sequence common to Utnapishtim (Tablet XI) and Noah (Genesis 8) as a documented literary parallel."
+        }
+      ],
+      "counterConsiderations": [
+        "The precise route and direction of transmission between Mesopotamian and Israelite scribal circles, plausibly via the Babylonian exile (6th century BCE) or earlier contact, remains debated; the literary parallel itself is not."
+      ],
+      "provenance": {
+        "assertedBy": "human-scholarly-comparison",
+        "method": "human-scholarly-comparison",
+        "model": null,
+        "runId": null,
+        "addedOn": "2026-09-10"
+      },
+      "source": "human-curated"
+    },
+    {
+      "id": "clm-corr-figure-mapping-ad5075f70a",
+      "kind": "figure-mapping",
+      "label": "Prophetic-succession mapping: Moses ↔ Muhammad",
+      "statement": "Islamic tradition places Muhammad within an explicit prophetic succession that names Moses (Musa) as a prior messenger, each receiving revelation on a mountain and delivering a law to his people.",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "moses",
+        "wikidata": "Q9077"
+      },
+      "sideB": {
+        "tradition": "islam",
+        "node": "muhammad",
+        "wikidata": "Q9458"
+      },
+      "stance": "traditional",
+      "disputed": false,
+      "confidence": 0.85,
+      "scope": "traditional Islamic attribution of prophetic succession, asserted by the tradition itself rather than an external historical hypothesis",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Qur'an 2:87, 7:103-156, 20:9-98",
+          "sourceNode": "muhammad",
+          "rightsTier": "A",
+          "summary": "The Qur'an names Musa (Moses) as a prior messenger and recounts his confrontation with Pharaoh, the parting of the sea, and the giving of the Tawrat, framing Muhammad's own prophetic mission as continuous with Moses's."
+        },
+        {
+          "kind": "primary",
+          "locator": "Exodus 19-20",
+          "sourceNode": "moses",
+          "rightsTier": "A",
+          "summary": "Moses receives the law on Mount Sinai, the mountain-revelation and lawgiver motifs this correlation's shared-motif reading names."
+        },
+        {
+          "kind": "traditional",
+          "locator": "shared-motifs:lawgiver,mountain-revelation",
+          "sourceNode": "human-scholarly-comparison",
+          "rightsTier": "A",
+          "summary": "Islamic tradition places Muhammad within an unbroken chain of prophets that explicitly includes Moses, each receiving revelation on a mountain (Sinai; Hira) and each delivering a law to his people; this succession is asserted by the tradition itself, not an external hypothesis."
+        }
+      ],
+      "counterConsiderations": [
+        "The claim of prophetic succession is internal to Islamic tradition; it is read here as a traditional attribution, not as an external historical-transmission finding, and traditions outside the Abrahamic lineage make no equivalent claim about either figure."
+      ],
+      "provenance": {
+        "assertedBy": "human-scholarly-comparison",
+        "method": "human-scholarly-comparison",
+        "model": null,
+        "runId": null,
+        "addedOn": "2026-09-10"
+      },
+      "source": "human-curated"
+    },
+    {
+      "id": "clm-corr-motif-parallel-411bd30b84",
+      "kind": "motif-parallel",
+      "label": "Reciprocity-ethic parallel: Confucius ↔ Jesus",
+      "statement": "Confucius's negative-form reciprocity maxim (Analects 15.24) and Jesus's positive-form reciprocity maxim (Matthew 7:12) are read in comparative religious ethics as independent instances of the same 'Golden Rule' ethical convergence associated with the Axial Age.",
+      "sideA": {
+        "tradition": "tao-confucian",
+        "node": "confucius",
+        "wikidata": "Q4604"
+      },
+      "sideB": {
+        "tradition": "christianity",
+        "node": "jesus",
+        "wikidata": "Q302"
+      },
+      "stance": "majority-scholarly",
+      "disputed": false,
+      "confidence": 0.85,
+      "scope": "majority-scholarly comparative-ethics reading; independent convergence, not a transmission claim",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Analects 15.24",
+          "sourceNode": "confucius",
+          "rightsTier": "A",
+          "summary": "Confucius states the reciprocity principle in its negative form: 'What you do not wish for yourself, do not do to others.'"
+        },
+        {
+          "kind": "primary",
+          "locator": "Matthew 7:12",
+          "sourceNode": "jesus",
+          "rightsTier": "A",
+          "summary": "Jesus states the reciprocity principle in its positive form in the Sermon on the Mount: 'Do to others what you would have them do to you.'"
+        },
+        {
+          "kind": "scholarly",
+          "locator": "shared-motifs:golden-rule-ethic",
+          "sourceNode": "human-scholarly-comparison",
+          "rightsTier": "A",
+          "summary": "Jaspers, Karl, The Origin and Goal of History (Yale University Press, 1953 [1949]), groups Confucius among the independently-arising Axial Age ethical teachers; the reciprocity maxim's cross-cultural recurrence, including in Jesus's teaching centuries later, is standard material in comparative religious ethics (e.g. Küng, Hans, Global Responsibility, 1991)."
+        }
+      ],
+      "counterConsiderations": [
+        "Mainstream scholarship reads the maxim's recurrence as independent ethical convergence (the Axial Age thesis) rather than transmission; no direct textual or historical contact between Confucian and early Christian circles is proposed."
+      ],
+      "provenance": {
+        "assertedBy": "human-scholarly-comparison",
+        "method": "human-scholarly-comparison",
+        "model": null,
+        "runId": null,
+        "addedOn": "2026-09-10"
+      },
+      "source": "human-curated"
     }
   ],
   "timeline": [

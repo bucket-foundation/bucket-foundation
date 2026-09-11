@@ -85,6 +85,34 @@ Full [`canon-figures/SCHEMA.md`](./canon-figures/SCHEMA.md) compliance:
 
 ---
 
+## Promotion checklist
+
+For a canon-intake pass promoting one or more records from `_intake/`
+into `bucket-canon/`, in addition to the acceptance criteria above:
+
+- [ ] **Feed event.** Every promoted record gets one event through
+      `tools/feed/feed.py update` (via `parse.py` on the real commit, or a
+      hand-built NDJSON stream using `parse.py`'s own `event_id()`).
+      Never hand-edit `feed.json`, `feed.xml`, or `feed/*.json`.
+- [ ] **Inference labeled.** A `relation` field or dossier prose states
+      the source paper's own finding as one sentence and any mechanism
+      link the promoting pass draws as a separate sentence, naming the
+      pass (e.g. "Promotion pass two reads this as..."). Never state the
+      pass's own reading as the source paper's finding.
+- [ ] **Queries parity.** Every DOI in `primary-papers.yaml`/`.bib` also
+      appears in that dossier's `queries.txt`, with the one-line
+      rationale the file already uses.
+- [ ] **Score floor.** A `canon_score` at or below the informational
+      floor (CONTRIBUTING.md's `> 50` for canon PRs) gets a `+anchor:
+      <reason>` line appended to `canon_score_reasons`, per RUBRIC.md's
+      founder-override convention, naming the reviewer; otherwise the
+      record is demoted to `candidate` instead of promoted.
+- [ ] **Placement rule.** Before filing under a branch, re-read that
+      branch's own `README.md` boundary-call sections against its
+      neighbors. When a record sits on the line, the boundary rule as
+      written is the deciding authority; a promoting pass's task brief
+      carries no weight against it.
+
 ## What rejection looks like
 
 PRs are rejected, immediately, without debate, for:

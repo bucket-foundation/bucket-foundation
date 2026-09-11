@@ -50,7 +50,8 @@ from .generate import PLACEMENT_CONCEPT_SLOTS
 from .hypothesis import Hypothesis, Placement
 from .link import link_evidence, slot_match_score
 from .concepts import Vocabulary, other_id
-from .timeline import Interval, Resolution, auto_resolution
+from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
+from .timeline import Interval, RESOLUTION_WIDTH_YEARS, Resolution, auto_resolution, bin_bounds
 
 DEFAULT_MATCH_THRESHOLD = 0.6
 DEFAULT_KFOLD_K = 5
@@ -67,7 +68,74 @@ def holdout_by_discovery_date(
     return pre, post
 
 
-def _placement_from_item(item: EvidenceItem, vocab: Vocabulary) -> Hypothesis | None:
+def _corpus_time_binning(corpus: Corpus, resolution: Resolution | None = None) -> tuple[int, int, Resolution]:
+    """`(span_start, bin_width, resolution)` for `corpus`'s own span, the
+    same corpus-anchored rung `hte.runner.run_campaign`'s `_resolve_time_
+    binning` picks for a real campaign (`README.md`'s own "Fixed
+    2026-09-10" entry, mirrored here rather than imported: `hte.runner`
+    is off limits to edit on this branch and `_resolve_time_binning`
+    itself is a `cfg`-shaped function this module has no `cfg` to hand
+    it). `_placement_from_item` and `_matches_event` below both take this
+    triple, so a candidate this module builds addresses under the same
+    axis a campaign over the same corpus would use, instead of `hte.
+    address`'s bare 20,000-year/century-bin module defaults, whatever
+    the corpus's real span (`bkt-hte-calibration-time-binning`): those
+    defaults collapse a corpus no wider than a couple of centuries into
+    one or two bins regardless of how many decades or years separate two
+    of its own events, confirmed empirically against
+    quantum-history (105 ground-truth events across 1900-2026 collapse
+    onto exactly 2 default century bins).
+
+    The span is anchored at the union of every ground-truth event's own
+    year AND every `corpus.evidence` item's own extracted interval,
+    floor-snapped to the chosen resolution's own bucket boundary (`hte.
+    timeline.bin_bounds`), matching `_resolve_time_binning`'s identical
+    union and snap: ground truth alone undercounts a corpus whose
+    evidence references a year outside its own accepted-claims' span (a
+    `production` claim's own supporting citation dated a year before any
+    claim was itself accepted, confirmed to raise a spurious clamp
+    (`hte.timeline.clamp_log`) against every such citation once this
+    function anchored on ground truth alone, polluting `hte.runner.
+    run_campaign`'s own `MANIFEST.json['clamped_years']`, shared process-
+    wide for the whole run, with entries this module's own candidate-
+    building caused rather than the run's own generation step). `resolution`,
+    when given, pins the rung instead of auto-selecting one (`holdout_
+    kfold`'s own caller-facing contract, unchanged);
+    `DEFAULT_SPAN_START`/`DEFAULT_BIN_WIDTH` when `corpus` carries neither
+    a ground-truth event nor a dated evidence item (nothing to anchor
+    on)."""
+    intervals = [Interval(start=g.year, end=g.year) for g in corpus.ground_truth]
+    intervals += [e.interval for e in corpus.evidence if e.interval is not None]
+    if not intervals:
+        return DEFAULT_SPAN_START, DEFAULT_BIN_WIDTH, (resolution or Resolution.CENTURY)
+    resolved = resolution or auto_resolution(intervals)
+    span_start = bin_bounds(min(iv.start for iv in intervals), resolved)[0]
+    return span_start, RESOLUTION_WIDTH_YEARS[resolved], resolved
+
+
+def _interval_overlaps_year(interval: Interval, year: int, resolution: Resolution) -> bool:
+    """Whether `interval` (a candidate placement's own, exact, free-text-
+    extracted interval) overlaps the resolution-ladder bucket containing
+    `year` (`hte.timeline.bin_bounds`, anchored at absolute year 0, the
+    same fixed grid `hte.generate._evidence_cluster_hypotheses` buckets
+    against): a looser reading of "this candidate covers this event's
+    date" than exact point containment, at the corpus's own natural
+    resolution: `main.tex` §9's own holdout design tests recall against
+    a real corpus's own granularity, an easier bar for a discovery pass
+    to clear than transcribing the identical year. `hte.timeline.bin`
+    is deliberately not reused here: it buckets an interval by its own
+    START alone (its own docstring), which would silently narrow a wide
+    candidate interval like `[1980, 1994]` down to just its 1980s bucket;
+    this function instead tests the candidate's FULL interval against the
+    target year's bucket, so a wide interval keeps every bucket it
+    spans."""
+    bucket_start, bucket_end = bin_bounds(year, resolution)
+    return not (interval.end < bucket_start or interval.start > bucket_end)
+
+
+def _placement_from_item(
+    item: EvidenceItem, vocab: Vocabulary, *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
+) -> Hypothesis | None:
     """The placement hypothesis `item` itself implies (`bkt-hte-holdout`):
     its own five extracted concept slots, each unnamed one read as `OTHER`
     (`hte.concepts.other_id`) rather than left missing, since `hte.
@@ -77,7 +145,10 @@ def _placement_from_item(item: EvidenceItem, vocab: Vocabulary) -> Hypothesis | 
     event's own year, so it is not a candidate) or when a named slot
     value resolves to no concept id and no fuzzy-matchable label in
     `vocab` (an extractor's raw, unresolved text this function does not
-    itself try to place)."""
+    itself try to place). `span_start`/`bin_width` (`_corpus_time_
+    binning`'s own return, threaded from `run_holdout`/`holdout_kfold`)
+    address the built placement under the corpus's own span rather than
+    `hte.address`'s bare module defaults; see `_corpus_time_binning`."""
     if item.interval is None:
         return None
     values: dict[str, str] = {}
@@ -86,27 +157,79 @@ def _placement_from_item(item: EvidenceItem, vocab: Vocabulary) -> Hypothesis | 
         values[slot.value] = value if value is not None else other_id(slot)
     placement = Placement(interval=item.interval, **values)
     try:
-        return Hypothesis.from_placement(placement, vocab)
+        return Hypothesis.from_placement(placement, vocab, span_start=span_start, bin_width=bin_width)
     except KeyError:
         return None
+
+
+def _candidate_key(hyp: Hypothesis) -> tuple[int, int, int]:
+    """The dict key `run_holdout`/`holdout_kfold` dedupe a fold's own
+    candidate population by: `hyp.address` (its five concept ids plus
+    its interval's OWN time-bin index, `bkt-hte-calibration-time-
+    binning`'s own corpus-anchored rung) alongside the placement's exact
+    `interval.start`/`.end`. Address alone is NOT enough: two evidence
+    items sharing every concept slot but naming two different exact
+    years close enough to fall in the SAME time bin encode to the
+    identical address, and a plain `{address: hypothesis}` dict
+    (`dict.setdefault`, this module's own shape before this fix) silently
+    keeps whichever one was built first and drops the other's own
+    interval entirely, one confirmed, measured cause of quantum-history's
+    own low k-fold coverage: a later-dated item's own candidate placement
+    was ON FILE but unreachable, clobbered by an earlier item's, at the
+    exact same address, whose interval did not reach the held-out
+    event's year. Keying on the exact interval too keeps every distinct
+    dated claim its own candidate, collapsing only TRUE duplicates
+    (identical slots, identical exact interval)."""
+    interval = hyp.content.interval
+    return (hyp.address, interval.start, interval.end)
 
 
 def _matches_event(
     target: EvidenceItem, placement: Placement, vocab: Vocabulary, *, threshold: float
 ) -> bool:
     """Whether `placement` matches every concept slot `target` (the
-    held-out event's own evidence item) names anything for
-    (`slot_match_score`, `hte.link`'s own per-slot fuzzy comparator,
-    shared here rather than reimplemented). An event naming no slot at
-    all matches nothing: there is nothing on file to test a placement
-    against."""
+    held-out event's own evidence item) names anything for, at least one
+    of them a real, resolved concept match, and none of them a placement
+    slot the candidate's own source item never named at all.
+
+    For each slot `target` names, a placement's `OTHER`-filled value
+    (`_placement_from_item`'s own fallback for a slot its source item
+    left unspecified, `hte.concepts.other_id`) is read as "this
+    candidate's source is silent on this slot," not as an assertion the
+    two disagree, and is skipped rather than compared: this module's own
+    `_placement_from_item` always fills a missing slot with `OTHER`, so
+    a candidate built from a source that only ever names, say, an actor
+    would otherwise be scored a MISMATCH against any target that also
+    names a place or mechanism, purely because the candidate's source
+    stayed silent there, one confirmed, measured cause of quantum-
+    history's own low k-fold coverage: a claim bullet naming the same
+    actor, action, object, and mechanism as a held-out milestone, silent
+    only on place, used to fail the match outright over that one silent
+    slot.
+
+    Skipping every `OTHER`-filled slot this way needs its own floor
+    against a different failure: a candidate whose EVERY present-in-
+    target slot is `OTHER`-filled would otherwise match vacuously (every
+    comparison skipped, no comparison ever returns `False`), regardless
+    of how unrelated its own real slots are to the target's. At least
+    one slot `target` names must therefore compare two real, resolved
+    values that agree (`slot_match_score`, `hte.link`'s own per-slot
+    fuzzy comparator, shared here rather than reimplemented);
+    an event naming no slot at all, or a candidate naming none of the
+    slots the event does, matches nothing.
+    """
     present = [slot for slot in PLACEMENT_CONCEPT_SLOTS if getattr(target, slot.value) is not None]
     if not present:
         return False
-    return all(
-        slot_match_score(getattr(target, slot.value), getattr(placement, slot.value), vocab, slot) >= threshold
-        for slot in present
-    )
+    any_real_match = False
+    for slot in present:
+        candidate_value = getattr(placement, slot.value)
+        if candidate_value == other_id(slot):
+            continue
+        if slot_match_score(getattr(target, slot.value), candidate_value, vocab, slot) < threshold:
+            return False
+        any_real_match = True
+    return any_real_match
 
 
 def run_holdout(
@@ -124,12 +247,15 @@ def run_holdout(
 
     For each event after the cutoff, `_placement_from_item` builds one
     placement candidate from every PRE-cutoff evidence item (`hte.link`'s
-    own per-item slot extraction), then keeps whichever candidates
+    own per-item slot extraction), addressed under the corpus's own span
+    and rung (`_corpus_time_binning`), then keeps whichever candidates
     `_matches_event` says name the same slots as the held-out event's own
-    item. Among those, the ones whose own interval contains the event's
-    `year` are its *true* readings; the rest are *wrong-interval*
-    competitors, a placement matching the event's slots but naming a
-    different time for it.
+    item. Among those, the ones whose own interval overlaps the
+    resolution-ladder bucket containing the event's `year`
+    (`_interval_overlaps_year`, at the same corpus-anchored rung) are its
+    *true* readings; the rest are *wrong-interval* competitors, a
+    placement matching the event's slots but naming a different time for
+    it.
 
     An event with no matching candidate at all contributes to
     `n_holdout_events` (the denominator) but not to `n_covered_events`
@@ -146,12 +272,13 @@ def run_holdout(
     pre_events, post_events = holdout_by_discovery_date(corpus.ground_truth, cutoff_years)
     ev_by_id = {e.id: e for e in corpus.evidence}
     pre_evidence = [ev_by_id[g.id] for g in pre_events if g.id in ev_by_id]
+    span_start, bin_width, resolution = _corpus_time_binning(corpus)
 
-    candidates: dict[int, Hypothesis] = {}
+    candidates: dict[tuple[int, int, int], Hypothesis] = {}
     for item in pre_evidence:
-        hyp = _placement_from_item(item, corpus.vocab)
+        hyp = _placement_from_item(item, corpus.vocab, span_start=span_start, bin_width=bin_width)
         if hyp is not None:
-            candidates.setdefault(hyp.address, hyp)
+            candidates.setdefault(_candidate_key(hyp), hyp)
     candidate_list = list(candidates.values())
 
     def projected(h: Hypothesis) -> float:
@@ -164,10 +291,10 @@ def run_holdout(
         if target is None:
             continue
         matches = [h for h in candidate_list if _matches_event(target, h.content, corpus.vocab, threshold=match_threshold)]
-        true_matches = [h for h in matches if h.content.interval.start <= g.year <= h.content.interval.end]
+        true_matches = [h for h in matches if _interval_overlaps_year(h.content.interval, g.year, resolution)]
         if not true_matches:
             continue
-        wrong_matches = [h for h in matches if not (h.content.interval.start <= g.year <= h.content.interval.end)]
+        wrong_matches = [h for h in matches if not _interval_overlaps_year(h.content.interval, g.year, resolution)]
         n_covered += 1
 
         true_hyp = max(true_matches, key=projected)
@@ -317,24 +444,6 @@ def calibration_curve(
 # instead.
 
 
-def _resolve_kfold_resolution(corpus: Corpus, resolution: Resolution | None) -> Resolution:
-    """The `Resolution` rung `holdout_kfold` reports in its own result
-    (`"resolution"`, informational only: `_placement_from_item`'s own
-    candidate-building reads no span or bin width, matching `run_holdout`'s
-    identical no-binning-parameter contract). A pinned `resolution` is
-    returned as-is; `None` (the default) reads `hte.timeline.
-    auto_resolution` over the corpus's own ground-truth span, the same
-    rung a real `hte.runner.run_campaign` run over this corpus would pick,
-    for a caller inspecting the result who wants to know what span this
-    corpus's own events fall across."""
-    if resolution is not None:
-        return resolution
-    intervals = [Interval(start=g.year, end=g.year) for g in corpus.ground_truth]
-    if not intervals:
-        return Resolution.CENTURY
-    return auto_resolution(intervals)
-
-
 def _stratified_folds(items: Sequence[EvidenceItem], *, k: int, seed: int) -> dict[str, int]:
     """`{item.id: fold_index}` for every item in `items`, `fold_index` in
     `[0, k)`: items are grouped by `EvidenceKind` first, each group's own
@@ -416,7 +525,7 @@ def holdout_kfold(
     `"kfold"` here directly; `run_calibration` is where a caller gets
     that name alongside its own reason for having picked it.
     """
-    resolved_resolution = _resolve_kfold_resolution(corpus, resolution)
+    span_start, bin_width, resolved_resolution = _corpus_time_binning(corpus, resolution)
     ev_by_id = {e.id: e for e in corpus.evidence}
     fold_of = _stratified_folds(corpus.evidence, k=k, seed=seed)
 
@@ -425,11 +534,11 @@ def holdout_kfold(
     for fold in range(k):
         kept_items = [copy.deepcopy(e) for e in corpus.evidence if fold_of.get(e.id) != fold]
 
-        candidates: dict[int, Hypothesis] = {}
+        candidates: dict[tuple[int, int, int], Hypothesis] = {}
         for item in kept_items:
-            hyp = _placement_from_item(item, corpus.vocab)
+            hyp = _placement_from_item(item, corpus.vocab, span_start=span_start, bin_width=bin_width)
             if hyp is not None:
-                candidates.setdefault(hyp.address, hyp)
+                candidates.setdefault(_candidate_key(hyp), hyp)
         candidate_list = list(candidates.values())
         link_evidence(kept_items, candidate_list, corpus.vocab, threshold=match_threshold)
 
@@ -447,11 +556,11 @@ def holdout_kfold(
                 continue
             n_targets += 1
             matches = [h for h in candidate_list if _matches_event(target, h.content, corpus.vocab, threshold=match_threshold)]
-            true_matches = [h for h in matches if h.content.interval.start <= g.year <= h.content.interval.end]
+            true_matches = [h for h in matches if _interval_overlaps_year(h.content.interval, g.year, resolved_resolution)]
             if not true_matches:
                 continue
             n_covered += 1
-            wrong_matches = [h for h in matches if not (h.content.interval.start <= g.year <= h.content.interval.end)]
+            wrong_matches = [h for h in matches if not _interval_overlaps_year(h.content.interval, g.year, resolved_resolution)]
 
             true_hyp = max(true_matches, key=projected)
             fold_predictions.append({
@@ -641,6 +750,226 @@ def fit_constants(
     }
 
 
+# --------------------------------------------------------------------------
+# pooled coordinate-descent fit (`docs/CALIBRATION-FIT-2026-09-10.md`)
+# --------------------------------------------------------------------------
+#
+# `fit_constants`'s own grid search (above) fits `W`/`lam`/`tier_scale`
+# against ONE corpus's own holdout. Real-corpus k-fold Brier runs 0.36 to
+# 0.42 while a synthetic `hte.synth` world's own runs near 0.008
+# (`docs/CALIBRATION-FIT-2026-09-10.md`'s own before-table): the constants
+# this package ships were tuned to synth alone, never checked against a
+# real corpus's own holdout at all. `fit_constants_pooled` is the wider
+# fit that check calls for: every named constant (`W`, `lam`, `mu`,
+# `alpha`, a single global `tier_scale` standing in for the six-value
+# `tier_weight` table, `fit_constants`'s own documented simplification
+# reused here rather than a six-dimensional sweep, and `hte.belief.
+# Constants.detectability_floor`) fit jointly against a POOLED objective:
+# the mean k-fold Brier score across every corpus a caller hands it, with
+# a penalty when a named subset (synth worlds, by convention) reads a
+# `coverage_of_truth` below its own target. `mu` and `alpha` are included
+# in the search per this fit's own stated scope even though neither
+# affects `hte.belief.score`'s own output (`Constants`'s own docstring):
+# their own fitted value is recorded, never observed to move the loss.
+
+
+_FIT_PARAM_NAMES: tuple[str, ...] = ("W", "lam", "mu", "alpha", "tier_scale", "detectability_floor")
+
+_FIT_PARAM_BOUNDS: dict[str, tuple[float, float]] = {
+    "W": (0.5, 8.0), "lam": (0.05, 2.0), "mu": (0.0, 2.0), "alpha": (0.1, 5.0),
+    "tier_scale": (0.25, 3.0), "detectability_floor": (0.0, 0.6),
+}
+
+# Additive step offsets tried around the running-best value for each
+# parameter, per coordinate-descent sweep (`_coordinate_descent`).
+# `detectability_floor` starts at `0.0` (`Constants`'s own default), where
+# a MULTIPLICATIVE step could never move it at all; every parameter here
+# uses the same additive convention for that reason, rather than mixing
+# additive and multiplicative steps across the six.
+_FIT_PARAM_STEPS: dict[str, tuple[float, ...]] = {
+    "W": (-1.0, -0.5, 0.5, 1.0, 2.0),
+    "lam": (-0.3, -0.15, 0.15, 0.3),
+    "mu": (-0.3, 0.3),
+    "alpha": (-0.5, 0.5, 1.0),
+    "tier_scale": (-0.5, -0.25, 0.25, 0.5),
+    "detectability_floor": (0.1, 0.2, 0.3),
+}
+
+DEFAULT_MIN_SYNTH_COVERAGE = 0.9
+DEFAULT_COVERAGE_PENALTY_WEIGHT = 2.0
+
+
+def _vector_to_constants(vector: Mapping[str, float]) -> Constants:
+    tier_weight = {t: belief.TIER_WEIGHT[t] * vector["tier_scale"] for t in Tier}
+    return Constants(
+        W=vector["W"], lam=vector["lam"], mu=vector["mu"], alpha=vector["alpha"],
+        tier_weight=tier_weight, detectability_floor=vector["detectability_floor"],
+    )
+
+
+def _default_fit_vector() -> dict[str, float]:
+    d = Constants()
+    return {"W": d.W, "lam": d.lam, "mu": d.mu, "alpha": d.alpha, "tier_scale": 1.0, "detectability_floor": d.detectability_floor}
+
+
+def evaluate_pooled(
+    corpora: Mapping[str, Corpus],
+    vector: Mapping[str, float],
+    *,
+    coverage_targets: Mapping[str, float] | None = None,
+    coverage_penalty_weight: float = DEFAULT_COVERAGE_PENALTY_WEIGHT,
+    k: int = DEFAULT_KFOLD_K,
+    seed: int = 0,
+) -> dict[str, Any]:
+    """One point in the pooled search space, scored: `hte.calibrate.
+    run_calibration` (its own auto-picked discovery-date/k-fold mode,
+    `choose_holdout_mode`) over every corpus in `corpora`, at the
+    `Constants` `vector` builds (`_vector_to_constants`).
+
+    `loss = mean_brier + penalty`: `mean_brier` is the plain mean of
+    every corpus's own `brier_score` that is not `None` (a corpus with no
+    covered event contributes nothing to the mean rather than a
+    fabricated zero); `penalty` sums, over every `(name, target)` pair in
+    `coverage_targets`, `coverage_penalty_weight * max(0, target -
+    coverage_of_truth)` when that corpus's own `coverage_of_truth` is
+    known and below `target` (missing coverage, or a corpus `coverage_
+    targets` does not name, contributes nothing). A caller wanting the
+    penalty enforced only on synth worlds (`docs/CALIBRATION-FIT-2026-09-
+    10.md`'s own "a penalty on synth coverage dropping below 0.9") passes
+    `coverage_targets` naming only those.
+    """
+    constants = _vector_to_constants(vector)
+    per_corpus: list[dict[str, Any]] = []
+    briers: list[float] = []
+    penalty = 0.0
+    for name, corpus in corpora.items():
+        result = run_calibration(corpus, constants, k=k, seed=seed)
+        coverage = result["coverage_of_truth"]
+        per_corpus.append({
+            "name": name, "mode": result["mode"], "brier_score": result["brier_score"],
+            "coverage_of_truth": coverage, "n_holdout_events": result["n_holdout_events"],
+        })
+        if result["brier_score"] is not None:
+            briers.append(result["brier_score"])
+        target = (coverage_targets or {}).get(name)
+        if target is not None and coverage is not None and coverage < target:
+            penalty += coverage_penalty_weight * (target - coverage)
+    mean_brier = (sum(briers) / len(briers)) if briers else None
+    loss = (mean_brier if mean_brier is not None else 1.0) + penalty
+    return {
+        "vector": dict(vector), "loss": loss, "mean_brier": mean_brier,
+        "penalty": penalty, "per_corpus": per_corpus,
+    }
+
+
+def fit_constants_pooled(
+    corpora: Mapping[str, Corpus],
+    *,
+    coverage_targets: Mapping[str, float] | None = None,
+    coverage_penalty_weight: float = DEFAULT_COVERAGE_PENALTY_WEIGHT,
+    k: int = DEFAULT_KFOLD_K,
+    seed: int = 0,
+    passes: int = 1,
+    start: Mapping[str, float] | None = None,
+) -> dict[str, Any]:
+    """Coordinate descent over `_FIT_PARAM_NAMES` against `evaluate_
+    pooled`'s own loss, starting from `Constants()`'s own values
+    (`_default_fit_vector`) unless `start` overrides them. One sweep
+    (`passes=1`, the default) tries every `_FIT_PARAM_STEPS` offset for
+    each parameter in `_FIT_PARAM_NAMES` order, keeping whichever step
+    (if any) lowers the running-best loss before moving to the next
+    parameter; a second or later pass repeats the same sweep from
+    wherever the previous one left off, and the search stops early,
+    before `passes` is reached, the first time a whole sweep finds no
+    improving step at all.
+
+    Returns `{"best", "history", "passes_run"}`: `best` is `evaluate_
+    pooled`'s own result dict at the winning vector; `history` is every
+    evaluated point, baseline first, in evaluation order (an audit trail;
+    reproducing `best` needs only its own `vector`); `passes_run` is how
+    many full sweeps ran, `<= passes`.
+    """
+    vector = dict(start) if start is not None else _default_fit_vector()
+    best = evaluate_pooled(corpora, vector, coverage_targets=coverage_targets, coverage_penalty_weight=coverage_penalty_weight, k=k, seed=seed)
+    history = [best]
+    passes_run = 0
+    for _pass in range(passes):
+        passes_run += 1
+        improved_this_pass = False
+        for name in _FIT_PARAM_NAMES:
+            lo, hi = _FIT_PARAM_BOUNDS[name]
+            for step in _FIT_PARAM_STEPS[name]:
+                candidate = dict(best["vector"])
+                candidate[name] = min(hi, max(lo, candidate[name] + step))
+                if candidate[name] == best["vector"][name]:
+                    continue
+                result = evaluate_pooled(corpora, candidate, coverage_targets=coverage_targets, coverage_penalty_weight=coverage_penalty_weight, k=k, seed=seed)
+                history.append(result)
+                if result["loss"] < best["loss"]:
+                    best = result
+                    improved_this_pass = True
+        if not improved_this_pass:
+            break
+    return {"best": best, "history": history, "passes_run": passes_run}
+
+
+def build_pooled_fit_corpora(
+    synth_seeds: Sequence[int] = tuple(range(10)),
+    *,
+    education_atlas_countries: Sequence[str] = ("USA", "GBR", "KEN", "BRA", "IND", "NGA", "FIN", "JPN"),
+    education_atlas_years: tuple[int, int] = (2010, 2024),
+) -> tuple[dict[str, Corpus], dict[str, float]]:
+    """`(corpora, coverage_targets)` for `fit_constants_pooled`'s own
+    pooled objective: one `hte.synth.make_small_world(seed).corpus` per
+    `synth_seeds` entry (key `f"synth-{seed}"`), plus `quantum-history`,
+    `production` (`status_min="draft"`, so a draft-only campaign still
+    contributes evidence to fit against), `education-atlas`, and
+    `literature` (`hte.corpus.literature.DEFAULT_FIXTURES_DIR`, the local
+    6-card fixture set, never a live GitHub fetch). `coverage_targets`
+    names `DEFAULT_MIN_SYNTH_COVERAGE` for every synth entry only, per
+    `docs/CALIBRATION-FIT-2026-09-10.md`'s own "a penalty on synth
+    coverage" scope; none of the four real corpora carries one.
+
+    `education_atlas_countries`/`education_atlas_years` restrict `hte.
+    corpus.education_atlas.load`'s own sample to a fixed 8-country,
+    full-span-year subset rather than all 25 sample countries: `hte.link.
+    link_evidence`'s own per-fold cost (`hte.calibrate.holdout_kfold`'s
+    own module-docstring section) scales with candidate population size,
+    and the full 25-country sample's own ~4,700 evidence items measured
+    well past two minutes for one `run_calibration` call alone, a cost
+    this fit pays dozens of times per coordinate-descent sweep. The
+    8-country subset (~1,500 evidence items, chosen for income- and
+    region-spread rather than at random: two high-income Western
+    economies, two East/South Asian economies, one Latin American, two
+    Sub-Saharan African, one Nordic) measured close to 20 seconds a call,
+    the one real-corpus term in the pooled objective's own dominant cost
+    but tractable across a bounded coordinate-descent budget.
+
+    This function is a thin, lazy-import orchestration layer over `hte.
+    synth` and every `hte.corpus.*` loader (imported inside this function
+    body, never at this module's own top level: `hte.synth` itself
+    imports FROM `hte.calibrate`, `calibration_curve`, so a top-level
+    `from . import synth` here would be a real import cycle); `hte.
+    calibrate`'s own lower-level `fit_constants_pooled`/`evaluate_pooled`
+    take a plain `Mapping[str, Corpus]` and know nothing about where any
+    of them came from.
+    """
+    from . import synth as synth_module
+    from .corpus import education_atlas, literature, production, quantum_history
+
+    corpora: dict[str, Corpus] = {}
+    coverage_targets: dict[str, float] = {}
+    for s in synth_seeds:
+        name = f"synth-{s}"
+        corpora[name] = synth_module.make_small_world(s).corpus
+        coverage_targets[name] = DEFAULT_MIN_SYNTH_COVERAGE
+    corpora["quantum-history"] = quantum_history.ingest()
+    corpora["production"] = production.load(status_min="draft")
+    corpora["education-atlas"] = education_atlas.load(countries=education_atlas_countries, years=education_atlas_years)
+    corpora["literature"] = literature.load(cards_dir=literature.DEFAULT_FIXTURES_DIR)
+    return corpora, coverage_targets
+
+
 def write_calibration(result: Mapping[str, Any], out_dir: str | Path) -> None:
     """Writes `result` (`run_holdout`'s or `holdout_kfold`'s own return
     shape, either optionally carrying a `"fit"` key with `fit_constants`'s
@@ -716,4 +1045,6 @@ __all__ = [
     "holdout_by_discovery_date", "run_holdout", "holdout_kfold", "choose_holdout_mode",
     "run_calibration", "fit_constants", "write_calibration",
     "brier_score", "calibration_curve", "DEFAULT_MATCH_THRESHOLD", "DEFAULT_KFOLD_K",
+    "evaluate_pooled", "fit_constants_pooled", "build_pooled_fit_corpora",
+    "DEFAULT_MIN_SYNTH_COVERAGE", "DEFAULT_COVERAGE_PENALTY_WEIGHT",
 ]

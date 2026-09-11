@@ -1,7 +1,9 @@
+import json
 import random
 
 import pytest
 
+from hte import belief as belief_module
 from hte.belief import (
     Constants,
     D,
@@ -13,6 +15,7 @@ from hte.belief import (
     edge_strength,
     effective_count,
     fuse,
+    load_constants,
     load_detectability_table,
     pooled_weight,
     score,
@@ -20,7 +23,7 @@ from hte.belief import (
     weight,
 )
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
-from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Tier
+from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Tier, TIER_WEIGHT
 from hte.hypothesis import Hypothesis, Placement
 from hte.timeline import Interval
 
@@ -309,3 +312,107 @@ def test_constants_defaults_match_paper():
     assert c.lam == 0.5
     assert c.mu == 0.5
     assert c.theta_prune == 0.6
+    assert c.detectability_floor == 0.0
+
+
+# --------------------------------------------------------------------------
+# Constants serialization and load_constants (docs/CALIBRATION-FIT-2026-09-10.md)
+# --------------------------------------------------------------------------
+
+
+def test_constants_to_dict_from_dict_round_trips():
+    c = Constants(W=3.1, lam=0.4, mu=0.7, alpha=1.2, theta_prune=0.5, detectability_floor=0.15)
+    d = c.to_dict()
+    assert d["tier_weight"] == {t.value: w for t, w in TIER_WEIGHT.items()}
+    round_tripped = Constants.from_dict(d)
+    assert round_tripped == c
+
+
+def test_constants_from_dict_fills_missing_keys_from_defaults():
+    round_tripped = Constants.from_dict({"W": 5.0})
+    default = Constants()
+    assert round_tripped.W == 5.0
+    assert round_tripped.lam == default.lam
+    assert round_tripped.detectability_floor == default.detectability_floor
+    assert round_tripped.tier_weight == default.tier_weight
+
+
+def test_load_constants_default_source_is_bare_constants():
+    assert load_constants("default") == Constants()
+
+
+def test_load_constants_bad_source_raises():
+    with pytest.raises(ValueError, match="default.*fitted|fitted.*default"):
+        load_constants("not-a-real-source")
+
+
+def test_load_constants_fitted_reads_the_shipped_file_when_present():
+    # `hte/data/constants-fitted.json` (docs/CALIBRATION-FIT-2026-09-10.md's
+    # own fitted-or-defaults output) always exists after this package's own
+    # fit ran (whether it carries fitted values that moved the Brier score
+    # or a defaults copy annotated with why the fit did not clear its own
+    # bar); either way, `load_constants("fitted")` should read it without
+    # raising and
+    # return a real `Constants` instance.
+    result = load_constants("fitted")
+    assert isinstance(result, Constants)
+
+
+def test_load_constants_fitted_falls_back_to_defaults_with_no_file(tmp_path, monkeypatch):
+    monkeypatch.setattr(belief_module, "FITTED_CONSTANTS_PATH", tmp_path / "does-not-exist.json")
+    assert load_constants("fitted") == Constants()
+
+
+def test_load_constants_fitted_reads_a_custom_file(tmp_path, monkeypatch):
+    path = tmp_path / "constants-fitted.json"
+    path.write_text(json.dumps(Constants(W=9.0).to_dict()))
+    monkeypatch.setattr(belief_module, "FITTED_CONSTANTS_PATH", path)
+    assert load_constants("fitted").W == 9.0
+
+
+# --------------------------------------------------------------------------
+# detectability_floor (docs/CALIBRATION-FIT-2026-09-10.md)
+# --------------------------------------------------------------------------
+
+
+def test_detectability_floor_raises_a_low_table_value_in_pooled_weight():
+    span = EvidenceSpan(doc_id="d", locator="l", quote="q", char_start=0, char_end=1)
+    item = EvidenceItem(
+        id="ev-absence", kind=EvidenceKind.TEXTUAL, tier=Tier.T3, source_id="src",
+        span=span, provenance="manual", supports=[1], refutes=[], views={"blended_a": 0.9},
+        is_absence=True,
+    )
+    table = {("upper-paleolithic", "textual"): 0.02}
+    s_plus_no_floor, _ = pooled_weight(
+        [item], 1, detect_table=table, period="upper-paleolithic", constants=Constants(detectability_floor=0.0),
+    )
+    s_plus_floored, _ = pooled_weight(
+        [item], 1, detect_table=table, period="upper-paleolithic", constants=Constants(detectability_floor=0.5),
+    )
+    assert s_plus_floored > s_plus_no_floor
+
+
+def test_detectability_floor_zero_is_a_no_op():
+    span = EvidenceSpan(doc_id="d", locator="l", quote="q", char_start=0, char_end=1)
+    item = EvidenceItem(
+        id="ev-absence", kind=EvidenceKind.TEXTUAL, tier=Tier.T3, source_id="src",
+        span=span, provenance="manual", supports=[1], refutes=[], is_absence=True,
+    )
+    table = {("classical", "textual"): 0.85}
+    default_result = pooled_weight([item], 1, detect_table=table, period="classical", constants=Constants())
+    explicit_zero = pooled_weight(
+        [item], 1, detect_table=table, period="classical", constants=Constants(detectability_floor=0.0),
+    )
+    assert default_result == explicit_zero
+
+
+def test_detectability_floor_never_lowers_a_value_already_above_it():
+    span = EvidenceSpan(doc_id="d", locator="l", quote="q", char_start=0, char_end=1)
+    item = EvidenceItem(
+        id="ev-absence", kind=EvidenceKind.TEXTUAL, tier=Tier.T3, source_id="src",
+        span=span, provenance="manual", supports=[1], refutes=[], is_absence=True,
+    )
+    table = {("classical", "textual"): 0.85}
+    low_floor = pooled_weight([item], 1, detect_table=table, period="classical", constants=Constants(detectability_floor=0.1))
+    default_result = pooled_weight([item], 1, detect_table=table, period="classical", constants=Constants())
+    assert low_floor == default_result

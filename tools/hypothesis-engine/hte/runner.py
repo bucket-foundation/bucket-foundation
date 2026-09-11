@@ -21,14 +21,17 @@ from typing import Any, Callable, Sequence
 
 from . import artifacts, batching, calibrate, export, link, llm, roles, tournament, unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
-from .belief import Constants, Opinion, load_detectability_table, score as belief_score
+from .belief import Opinion, load_constants, load_detectability_table, score as belief_score
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
-from .corpus import education_atlas, fixtures as fixtures_corpus, production
+from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history
 from .evidence import EvidenceItem
 from .generate import combinatorial_sample, from_evidence
 from .hypothesis import Hypothesis
-from .timeline import Interval, Resolution, RESOLUTION_WIDTH_YEARS, auto_resolution, bin_bounds, bin_label
+from .timeline import (
+    Interval, Resolution, RESOLUTION_WIDTH_YEARS, auto_resolution, bin_bounds, bin_label,
+    clamp_log, reset_clamp_log,
+)
 
 DEFAULT_CONFIG: dict[str, Any] = {
     "campaign": "default",
@@ -86,6 +89,13 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # k-fold over discovery-date for this corpus's own ground truth.
     "holdout_k": 5,
     "holdout_seed": 0,
+    # `"fitted"` (the default) reads `hte.belief.load_constants`'s own
+    # pooled-fit result (`docs/CALIBRATION-FIT-2026-09-10.md`,
+    # `hte/data/constants-fitted.json`), falling back to `Constants()`'s
+    # bare defaults with no such file on disk; `"default"` opts out
+    # explicitly (`hte campaign run --constants default`), matching
+    # `load_constants`'s own two-value contract.
+    "constants": "fitted",
 }
 
 _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
@@ -93,6 +103,8 @@ _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
     "fixtures": fixtures_corpus.build,
     "education-atlas": education_atlas.load,
     "production": production.load,
+    "literature": literature.load_default,
+    "sacred-history": sacred_history.ingest,
 }
 
 
@@ -348,8 +360,11 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     # `roles.reset_refusal_log()` resets alongside it (`bkt-hte-refusal-
     # handling`), so this run's own MANIFEST.json/self-report/run.log
     # report only the refusals/truncations this run's own roles hit.
+    # `reset_clamp_log()` (`FINDING-2026-09-10-103`) gets the same
+    # treatment for `hte.timeline.time_bin_index`'s own clamp events.
     llm.reset_stats()
     roles.reset_refusal_log()
+    reset_clamp_log()
     out_root = Path(cfg["out_dir"]) / cfg["campaign"]
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     run_dir = out_root / timestamp
@@ -431,7 +446,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     for h, note in zip(survivors, preservation_results):
         logger.log(f"preservation critique on {h.short_id}: could_have_survived={note.get('could_have_survived')}")
 
-    constants = Constants()
+    constants = load_constants(cfg["constants"])
     opinions = {h.address: belief_score(h, corpus.evidence, corpus.vocab, table, constants=constants) for h in survivors}
 
     judge = _judge_adapter(cache_dir, replay_only)
@@ -521,6 +536,31 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
             "see MANIFEST.json['refusals'] for the affected hypothesis/document ids."
         ]
 
+    # `FINDING-2026-09-10-103` (silent-failures review #2): the same
+    # `run.log`/`self_report`-assumption treatment refusals got above,
+    # for every `hte.timeline.time_bin_index` clamp this run hit (a
+    # generator-role hallucinated year, or any other year naming no
+    # evidence item this run's own span union already covers, force-
+    # placed into bin 0 rather than dropped). `MANIFEST.json`'s own
+    # `clamped_years` list, assembled below alongside `manifest`, is
+    # this event's persisted record; the `logger.warning` line `time_bin_
+    # index` itself still emits reaches only stderr's bare handler of
+    # last resort in a real run, no CLI entry point in this package ever
+    # configures one.
+    clamped_years = clamp_log()
+    for clamp in clamped_years:
+        logger.log(
+            f"time-bin clamp: year={clamp['year']} span_start={clamp['span_start']} "
+            "(clamped to bin 0 rather than raising; see MANIFEST.json['clamped_years'])"
+        )
+    if clamped_years:
+        logger.log(f"clamped_years: {len(clamped_years)} year(s) clamped to bin 0 this run")
+        self_report = dict(self_report)
+        self_report["assumptions"] = list(self_report.get("assumptions", [])) + [
+            f"{len(clamped_years)} year(s) clamped to bin 0 this run (before this run's own TIME_BIN "
+            "span); see MANIFEST.json['clamped_years'] for the affected years."
+        ]
+
     # `hte.artifacts.validate_self_report` reads `self_report` through
     # the same contract `hte.paper`/`hte.referee`/`hte.publish`/`hte.
     # pipeline` load it back with, before it ever touches disk: this
@@ -562,6 +602,11 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         # "truncations"]` above carries the per-role counts; this carries
         # which ids, never prompt text or an unsanitized envelope).
         "refusals": refusals,
+        # `FINDING-2026-09-10-103`: `[{"year": ..., "span_start": ...},
+        # ...]` for every `hte.timeline.time_bin_index` clamp this run
+        # hit, the same "absorbed rather than raised" treatment
+        # `refusals` above gets for a defaulted model call.
+        "clamped_years": clamped_years,
         "seeds": list(range(cfg["seeds"])),
         "git_sha": _git_sha(),
         "config": cfg,

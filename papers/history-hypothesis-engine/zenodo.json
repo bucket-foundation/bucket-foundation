@@ -1,0 +1,38 @@
+{
+  "title": "A Hypothesis Engine over History: Combinatorial Generation, Subjective-Logic Belief, and Structural Unknowns",
+  "upload_type": "publication",
+  "publication_type": "report",
+  "version": "1.0.0",
+  "description": "<p>History accumulates claims faster than any framework scores them: a correlation, a dated fragment, a contested attribution each carry their own confidence number, with no credence a reader can compare across hypotheses. We present a design for a hypothesis engine that treats every placement of an actor, action, and mechanism into a dated interval, and every ordered pair of placements, as one point in a combinatorial address space, generated whether or not the literature supports it. Each hypothesis carries a subjective-logic opinion, belief, disbelief, and uncertainty mass, rather than one point estimate, so a hypothesis nobody has examined reads apart from one refuted. A structural-unknowns layer puts the engine's blind spots, an unnamed concept, an unexcavated gap, undiscovered evidence, inside the model instead of a footnote added later. We derive the address scheme's size and injectivity, the opinion model's normalization and probability bound, and lay out an engine loop of generation, critique, ranking, and evolution, checked against a sibling engine for a different corpus. We close with a calibration design, two holdout tests and two candidate pilot periods, naming what in the model stays uncalibrated. No results are claimed here; this is a design and the proofs that check it.</p>",
+  "creators": [
+    { "name": "Dichio, Gianangelo", "affiliation": "Bucket Foundation" }
+  ],
+  "keywords": [
+    "hypothesis generation", "subjective logic", "belief calculus",
+    "combinatorics", "Gödel encoding", "digital historiography",
+    "formal verification", "Lean theorem prover", "Allen interval algebra",
+    "Dempster-Shafer theory", "structural unknowns", "Good-Turing estimator",
+    "species richness estimation", "AI for science", "calibration"
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "language": "eng",
+  "communities": [
+    { "identifier": "open-science" }
+  ],
+  "doi": "10.5281/zenodo.22694649",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/bucket-foundation/bucket-foundation",
+      "relation": "isPartOf",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/bucket-foundation/bucket-foundation/blob/ce3c81b66da5bd61bfaf0c50a3c7959e6df07e18/papers/history-hypothesis-engine/main.tex",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-preprint",
+      "scheme": "url"
+    }
+  ]
+}

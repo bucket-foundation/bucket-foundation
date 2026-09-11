@@ -2,7 +2,7 @@
 (Research OS's own row shape, `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`),
 exercised directly rather than through `production.load_raw()`'s own
 normalize-at-parse-time path (`tests/test_api.py` covers that one, since
-`load_raw()` already hands `hypothesize` fourteen ordinary-shaped records).
+`load_raw()` already hands `hypothesize` thirty-six ordinary-shaped records).
 This file's own job is the request path itself: `hypothesize()` accepts a
 raw `graph.productions` row (or a batch mixing that shape with the older
 `PRODUCTION-SCHEMA.md` shape) with no caller-side conversion, and a
@@ -95,11 +95,28 @@ def test_research_os_row_missing_id_raises_request_validation_error(monkeypatch)
         hypothesize({"productions": row})
 
 
-def test_research_os_row_with_unmapped_status_falls_back_to_draft(monkeypatch):
+def test_research_os_row_with_unrecognized_status_raises_request_validation_error(monkeypatch):
     # `graph.productions.status` carries its own SQL check constraint
     # (draft/submitted/accepted/returned), so a live row is always one of
-    # those four values. The `RESEARCH_OS_STATUS_MAP.get(..., "draft")`
-    # fallback this exercises guards a defensive path only, kept for a
-    # caller that builds a row by hand outside that constraint.
-    response = _call({"productions": [_research_os_row(status="not-a-real-status")], "status_min": "draft"}, monkeypatch)
-    assert response["ok"] is True
+    # those four values; a hand-built row outside that constraint used to
+    # silently fold into `"draft"` (`RESEARCH_OS_STATUS_MAP.get(...,
+    # "draft")`), which the default `status_min="peer-reviewed"` then
+    # drops from the corpus with no trace of why (silent-failures review
+    # finding 5). It must now fail the request loudly instead.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="not-a-real-status"):
+        hypothesize({"productions": [_research_os_row(status="not-a-real-status")], "status_min": "draft"})
+
+
+def test_research_os_row_missing_both_timestamps_raises_request_validation_error(monkeypatch):
+    # Silent-failures review finding 6: a row with neither `updated_at`
+    # nor `created_at` used to silently synthesize the Unix epoch as its
+    # own review date, which `hte.calibrate.holdout_by_discovery_date`
+    # would then read as maximally old. It must now fail the request
+    # loudly instead.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    row = _research_os_row()
+    row.pop("updated_at", None)
+    row.pop("created_at", None)
+    with pytest.raises(RequestValidationError, match="updated_at.*created_at"):
+        hypothesize({"productions": [row], "status_min": "draft"})

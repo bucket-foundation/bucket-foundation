@@ -1,0 +1,73 @@
+# sub-outcomes/education: operator-curated seed, outcome-tier.
+# Separate from the RUBRIC Stage-2 canon allow-list: these are
+# intervention/meta-analysis studies, routed here per RUBRIC E7 instead
+# of into 07-mind/ proper.
+#
+# Promoted 2026-09-10 from _intake/research-os-k12-literature/ (Research OS
+# for K-12 literature corpus, canon-intake conversion, verified DOIs).
+
+# Bloom 1984, The 2 Sigma Problem: one-to-one tutoring plus mastery
+# feedback moves the average tutored student two standard deviations above
+# a conventionally taught control; names the ceiling group instruction
+# chases. Depends on the retrieval-practice/testing-effect mechanism.
+10.3102/0013189x013006004
+
+# Kulik, Kulik & Bangert-Drowns 1990, 108-study meta-analysis tempering
+# Bloom's two-sigma figure to about 0.5 SD for group-based mastery
+# learning; the large-sample replication check on Bloom's claim.
+10.3102/00346543060002265
+
+# VanLehn 2011, meta-analysis finding step-based intelligent tutoring
+# systems approach human-tutoring effect size (~0.75-1 SD), versus
+# answer-only systems (~0.3 SD); step-based feedback is frequent
+# retrieval-and-correction, the same mechanism at system scale.
+10.1080/00461520.2011.611369
+
+# Kulik & Fletcher 2016, larger, more recent intelligent-tutoring-systems
+# meta-analysis (50 evaluations, ~0.66 SD average), flags that weaker
+# study designs inflate the pooled estimate.
+10.3102/0034654315581420
+
+# Promoted 2026-09-10, canon intake pass two (intake/ros-canon-promotion-2),
+# from the same corpus.
+
+# Bastani et al. 2025, unrestricted GPT-4 access on math practice raised
+# practice scores but lowered unassisted exam performance; a hint-only
+# guardrail kept the practice gain and removed the exam harm.
+10.1073/pnas.2422633122
+
+# Vaccaro, Almaatouq & Malone 2024, systematic review and meta-analysis
+# finding human-AI combination beats the better of the two alone on
+# decision tasks but not on content-creation tasks; depends on the
+# information-foraging foundation rather than the testing effect.
+10.1038/s41562-024-02024-1
+
+# Kestin et al. 2025, randomized within-class crossover RCT finding
+# students using a pedagogically structured AI tutor learned more, in
+# less time, than students in a research-validated active-learning
+# session.
+10.1038/s41598-025-97652-6
+
+# Bansal et al. 2021, controlled study finding AI explanations that
+# raised participants' stated trust did not raise team accuracy in step;
+# depends on the information-foraging foundation instead of the testing effect.
+10.1145/3411764.3445717
+
+# De Simone et al. 2025 (World Bank, Nigeria), six-week structured
+# AI-tutor access producing close to two years of typical learning
+# progress on an English-proficiency measure, concentrated among
+# lower-performing students and girls.
+10.1596/1813-9450-11125
+
+# Kosmyna et al. 2025, EEG study finding progressively weaker neural
+# connectivity and essay-content recall in the LLM-assisted condition;
+# depends on the cognitive-offloading foundation (Sparrow et al. 2011),
+# not the testing effect. canon_score 30, below the informational floor;
+# see CANON_INDEX.md's override note.
+10.48550/arxiv.2506.08872
+
+# Wang et al. 2024, Tutor CoPilot: large field deployment finding tutors
+# with real-time AI suggestions produced higher student mastery, largest
+# gains for less-certified or less-experienced tutors. canon_score 10,
+# below the informational floor; see CANON_INDEX.md's override note.
+10.48550/arxiv.2410.03017

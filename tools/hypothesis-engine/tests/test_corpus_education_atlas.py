@@ -1,12 +1,14 @@
 """`hte.corpus.education_atlas`: the education-atlas sample tables plus its
 docs and this repo's own local education content mirror, as a `Corpus`.
 
-Every test here needs a live clone of the sibling `bucket-foundation/
-education-atlas` repo (its `data/processed/sample/` ships Parquet, not
-committed into this repo); `sample_dir` below clones it into a per-module
-temp directory via `gh repo clone` and skips the whole module, with the
-reason, when `gh` is missing, the clone fails, or the cloned repo carries
-no sample directory, rather than failing the suite when the clone is
+Every test here needs a live `education-atlas` sample directory (its
+`data/processed/sample/` ships Parquet, outside this repo's own git
+tree); `sample_dir` below tries the same local-checkout resolution `hte.corpus.
+education_atlas.DEFAULT_SAMPLE_DIR` itself uses first (`$EDUCATION_ATLAS_
+DIR`, then the sibling-clone convention), no network, before falling
+back to `gh repo clone` into a per-module temp directory. It skips the
+whole module, with the reason, when neither a local checkout nor `gh`
+can produce one, rather than failing the suite when both are
 unavailable.
 """
 from __future__ import annotations
@@ -19,11 +21,17 @@ import pytest
 from hte.concepts import Slot
 from hte.corpus import education_atlas
 
+# `sample_dir` below falls back to a real `gh repo clone`; opts every test
+# in this module out of `tests/conftest.py`'s autouse subprocess guard.
+pytestmark = pytest.mark.allow_subprocess
+
 
 @pytest.fixture(scope="module")
 def sample_dir(tmp_path_factory):
+    if education_atlas.DEFAULT_SAMPLE_DIR is not None and education_atlas.DEFAULT_SAMPLE_DIR.is_dir():
+        return education_atlas.DEFAULT_SAMPLE_DIR
     if shutil.which("gh") is None:
-        pytest.skip("gh CLI not available to clone bucket-foundation/education-atlas")
+        pytest.skip("education-atlas checkout not found; set EDUCATION_ATLAS_DIR")
     dest = tmp_path_factory.mktemp("education-atlas")
     try:
         result = subprocess.run(

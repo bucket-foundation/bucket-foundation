@@ -17,7 +17,8 @@
  * letting the prototype page render a route before sign-in. A PRESENT but
  * invalid token is rejected (401) rather than silently treated as anonymous.
  *
- * 200: { target, frontier: [...], chain: [{ node, stage, hops, isFrontier }], gap: [...],
+ * 200: { target, frontier: [...], chain: [{ node, stage, hops, isFrontier, edgeConfidence, pathConfidence }],
+ *        gap: [...], lowConfidenceFlags: [...],
  *        engineFrontier: [{ node, prerequisiteNodeIds, heldCount, totalCount, heldFraction }] }
  * 400: bad target · 401: bad token · 404: target not found · 503: not configured
  *
@@ -27,11 +28,29 @@
  * nearest first (src/lib/research-os/engine-frontier.ts). Empty until an
  * engine hypothesis has been ingested into this branch; the workspace page
  * renders it only when non-empty.
+ *
+ * Phase 1 (bkt-ros, closing stub list item 1): also reads
+ * graph.prereq_ancestor for the target (db.ts's loadAncestorRows) and
+ * passes the rows to computeFrontier, which prunes the walk to the target's
+ * closure when rows exist. An empty result (table not yet rebuilt for this
+ * branch, or a read error) is a normal input: computeFrontier treats it as
+ * no closure table yet and falls back to its original full-graph walk
+ * unchanged.
+ *
+ * Phase 1 (bkt-ros ros-03 item 2/3): computeFrontier now prefers the
+ * highest-confidence chain to the target and returns `lowConfidenceFlags`,
+ * every edge on the returned chain below LOW_CONFIDENCE_THRESHOLD. For a
+ * signed-in learner, those flags are also written to graph.edge_flags
+ * (db.ts's writeEdgeFlags) so ros-06's class view can surface them; an
+ * anonymous request has no learner to attach a flag to, so the write is
+ * skipped (the flags still come back in the response either way). The
+ * write is best-effort: a failure there never fails the route response
+ * itself, matching loadAncestorRows' own fail-open posture.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { computeFrontier } from "@/lib/research-os/frontier";
 import { findFrontierEngineTargets } from "@/lib/research-os/engine-frontier";
-import { configured, loadSubgraph, loadLearnerStates, verifyLearner } from "@/lib/research-os/db";
+import { configured, loadSubgraph, loadLearnerStates, loadAncestorRows, writeEdgeFlags, verifyLearner } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -67,8 +86,23 @@ export async function GET(req: NextRequest) {
 
   const states = learnerId ? await loadLearnerStates(learnerId, nodes.map((n) => n.id)) : [];
 
-  const result = computeFrontier(nodes, edges, states, target.id);
+  // Phase 1 item 1: prune to the target's precomputed closure when
+  // graph.prereq_ancestor has rows for it. loadAncestorRows fails open to
+  // [], which computeFrontier treats as "no closure table yet" and falls
+  // back to its original full-graph walk -- never a hard failure here.
+  const ancestorRows = await loadAncestorRows(target.id);
+  const result = computeFrontier(nodes, edges, states, target.id, ancestorRows);
   const engineFrontier = findFrontierEngineTargets(nodes, edges, states);
+
+  if (learnerId && result.lowConfidenceFlags.length > 0) {
+    try {
+      await writeEdgeFlags(learnerId, target.id, result.lowConfidenceFlags);
+    } catch (err) {
+      // Best-effort side channel: a flag-write failure must never fail the
+      // route response the learner is waiting on.
+      console.error("[research-os/route] writeEdgeFlags failed:", err instanceof Error ? err.message : err);
+    }
+  }
 
   return NextResponse.json(
     {
@@ -76,6 +110,7 @@ export async function GET(req: NextRequest) {
       frontier: result.frontier,
       chain: result.chain,
       gap: result.gap,
+      lowConfidenceFlags: result.lowConfidenceFlags,
       engineFrontier,
       learner: learnerId ? "self" : "anonymous",
     },

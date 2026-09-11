@@ -4,8 +4,10 @@ Mirrors `main.tex` §8 (Engine loop) and `IDEAL-STATE-AND-UNKNOWNS-SPEC.md`
 §7 (The model accounting for itself): the generator, critic, ranking
 judge, evolver's meta-reviewer, the two roles §7 adds over the base engine
 loop (`unknown_unknown`, `preservation_critique`), the per-run
-`self_report`, and the ensemble `extract` role
-(`bkt-hte-extraction-ensemble`). Every prompt here is plain, dry
+`self_report`, the ensemble `extract` role
+(`bkt-hte-extraction-ensemble`), and `understanding`
+(`bkt-hte-understanding-artifact`, `hte.canon_writeback.write_back`'s own
+plain-language explanation gate). Every prompt here is plain, dry
 instruction text; the shared low-tier-recall instruction lives once, in
 `hte.llm.SYSTEM_PROMPT`, rather than being repeated per role.
 
@@ -24,6 +26,7 @@ from dataclasses import dataclass
 from typing import Any, Callable, Mapping, Sequence
 
 from . import llm
+from . import provenance as prov
 from .concepts import Slot, Vocabulary
 from .evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Stance, Tier
 from .hypothesis import Hypothesis, Placement
@@ -185,6 +188,12 @@ def generate(context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = 
     outside the vocabulary for a slot by writing `other-<slot>` as that
     slot's value and adding a one-line reason to `other_labels[slot]`,
     per `hte.concepts.other_id`'s open-world placeholder.
+
+    Passes `hte.provenance.collect(evidence)` as `hte.llm.complete`'s own
+    `provenance=` (`docs/PRIVACY.md`): whatever production/learner ids
+    the evidence in play carries, so `hte.purge` can find this call's own
+    cached response later, keyed off `<cache_dir>/index.jsonl` rather
+    than the prompt text.
     """
     vocab: Vocabulary = context["vocab"]
     evidence: Sequence[EvidenceItem] = context.get("evidence", [])
@@ -210,7 +219,10 @@ def generate(context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = 
         "rationale."
     )
     return _with_refusal_default(
-        lambda: llm.complete(prompt, role="generator", schema=GENERATE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        lambda: llm.complete(
+            prompt, role="generator", schema=GENERATE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only,
+            provenance=prov.collect(evidence),
+        ),
         role="generator", default=GENERATE_DEFAULT,
     )
 
@@ -260,7 +272,12 @@ def critique(h: Hypothesis, evidence: Sequence[EvidenceItem], *, cache_dir: str,
     scoring. `evidence` should be the items naming `h.address` in
     `supports` or `refutes`; the critic reads only what it is handed, per
     target-blind generation's rule that the same evidence produces the
-    same critique regardless of which reading it favors."""
+    same critique regardless of which reading it favors.
+
+    Passes `hte.provenance.collect(support + refute)` as `hte.llm.
+    complete`'s own `provenance=` (`docs/PRIVACY.md`): only the evidence
+    this one call quotes in its own prompt; the full `evidence` sequence
+    handed in may itself name items unrelated to `h`."""
     support = [e for e in evidence if h.address in e.supports]
     refute = [e for e in evidence if h.address in e.refutes]
     prompt = (
@@ -278,7 +295,10 @@ def critique(h: Hypothesis, evidence: Sequence[EvidenceItem], *, cache_dir: str,
         "set is not itself a contradiction."
     )
     return _with_refusal_default(
-        lambda: llm.complete(prompt, role="critic", schema=CRITIQUE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        lambda: llm.complete(
+            prompt, role="critic", schema=CRITIQUE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only,
+            provenance=prov.collect(support + refute),
+        ),
         role="critic", default=CRITIQUE_DEFAULT, log_id=h.short_id,
     )
 
@@ -316,7 +336,10 @@ def unknown_unknown(vocab: Vocabulary, evidence: Sequence[EvidenceItem], *, cach
     §7): proposes slot values outside the current vocabulary, feeding
     `hte.concepts.Vocabulary`'s open-world `OTHER` mass directly. It never
     scores a hypothesis, only names candidates a later `Vocabulary.add`
-    call may or may not accept."""
+    call may or may not accept.
+
+    Passes `hte.provenance.collect(evidence)` as `hte.llm.complete`'s own
+    `provenance=` (`docs/PRIVACY.md`), same as `generate`."""
     existing = "\n".join(
         f"{slot.value}: {[c.label for c in vocab.concepts(slot)]}" for slot in
         (Slot.ACTOR, Slot.ACTION, Slot.OBJECT, Slot.PLACE, Slot.MECHANISM)
@@ -334,7 +357,10 @@ def unknown_unknown(vocab: Vocabulary, evidence: Sequence[EvidenceItem], *, cach
         "Return an empty proposals list if the evidence names nothing new."
     )
     return _with_refusal_default(
-        lambda: llm.complete(prompt, role="unknown_unknown", schema=UNKNOWN_UNKNOWN_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        lambda: llm.complete(
+            prompt, role="unknown_unknown", schema=UNKNOWN_UNKNOWN_SCHEMA, cache_dir=cache_dir, replay_only=replay_only,
+            provenance=prov.collect(evidence),
+        ),
         role="unknown_unknown", default=UNKNOWN_UNKNOWN_DEFAULT,
     )
 
@@ -642,6 +668,72 @@ def self_report(run: Mapping[str, Any], *, cache_dir: str, replay_only: bool = F
     return _with_refusal_default(
         lambda: llm.complete(prompt, role="self_report", schema=SELF_REPORT_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
         role="self_report", default=_self_report_default,
+    )
+
+
+# --------------------------------------------------------------------------
+# understanding (`bkt-hte-understanding-artifact`, `PLAN.md` section 10's
+# understanding axis, Krenn and others 2022, doi:10.1038/s42254-022-00518-3;
+# Messeri and Crockett 2024, doi:10.1038/s41586-024-07146-0)
+# --------------------------------------------------------------------------
+
+UNDERSTANDING_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "properties": {
+        "explanation": {"type": "string"},
+    },
+    "required": ["explanation"],
+}
+
+
+def _understanding_default() -> dict[str, Any]:
+    """`understanding` refused/truncated default: a minimal valid response
+    that names the refusal rather than fabricating an explanation nobody
+    wrote. `hte.canon_writeback.write_back`'s own gate still treats this
+    string as present (non-blank), since the refusal itself is disclosed
+    text a reviewer can act on; only a blank response refuses the
+    write."""
+    n = _refusal_count()
+    return {
+        "explanation": (
+            f"plain-language explanation unavailable: the model refused or was "
+            f"truncated ({n} refusal/truncation event(s) recorded this run so far)."
+        ),
+    }
+
+
+def understanding(statement: str, evidence_summary: str, *, cache_dir: str, replay_only: bool = False) -> dict[str, Any]:
+    """A plain-language restatement of one hypothesis (`PLAN.md` section
+    10's understanding axis): two to four sentences a non-specialist
+    could restate in their own words, no jargon, no slot ids, naming
+    what the claim says and the one or two pieces of evidence it rests
+    on. This is the artifact `hte.canon_writeback.write_back` requires
+    before writing a card (`bkt-hte-understanding-artifact`), marked
+    `generated_by: model` everywhere it is stored: Messeri and Crockett
+    (2024)'s illusion of explanatory depth is the risk of a person
+    mistaking an AI explanation for their own understanding, and the
+    fix this function takes is disclosure: every explanation this
+    function returns is marked `generated_by: model` everywhere it is
+    stored. It never claims a human wrote or verified the explanation,
+    only that the engine produced one and a reviewer can read it before
+    signing off. Krenn and others (2022) treats compression and
+    generalization, beyond correctness alone, as what "understanding"
+    means for a model's own output; the prompt below asks for a
+    restatable summary, the same target, instead of a restatement of
+    the raw opinion numbers.
+    """
+    prompt = (
+        "Explain the following historical hypothesis in plain language a "
+        "non-specialist could restate in their own words. Two to four "
+        "sentences. No jargon, no probability numbers, no internal slot "
+        "or address ids. Name what the claim says and, in one clause, the "
+        "evidence it rests on.\n\n"
+        f"Hypothesis: {statement}\n\n"
+        f"Evidence summary: {evidence_summary}"
+    )
+    return _with_refusal_default(
+        lambda: llm.complete(prompt, role="understanding", schema=UNDERSTANDING_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="understanding", default=_understanding_default,
     )
 
 

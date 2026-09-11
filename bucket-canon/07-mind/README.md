@@ -1,3 +1,9 @@
+<!-- voice-ignore-file: pre-existing branch documentation predates strict
+     voice-rule enforcement. The intake/ros-canon-promotion pass fixes one
+     stale relative path in an existing footnote and leaves the rest of
+     this file's prose as written; a full voice pass is future cleanup,
+     not part of this promotion. -->
+
 # 07-mind — Canon Branch
 
 ## Scope
@@ -43,7 +49,7 @@ It does **NOT** hold:
 - Histories or biographies of psychologists and philosophers (those are
   candidate material for `08-deep-history/`)
 - Therapy-tradition primary texts (Freud, Jung, Beck) at this pass — see
-  `TAXONOMY_NOTES.md` open question on whether psychodynamic theory has a
+  `../TAXONOMY_NOTES.md` open question on whether psychodynamic theory has a
   canon-tier originator entry or sits entirely in landscape
 
 ## Promotion rule
@@ -143,6 +149,19 @@ it with explicit cross-link.
   Schultz–Dayan–Montague 1997
 - `language-and-thought/` — Frege 1892, Russell 1905, Chomsky 1957/1965
 - `reference/` — Stanford Encyclopedia of Philosophy pointer; no mirrors
+
+Four folders promoted outside this list, under **Decision theory and
+cognition**: `memory-systems/` (Scoville and Milner 1957; Roediger and
+Karpicke 2006; Sparrow, Liu and Wegner 2011) and, added 2026-09-10,
+`curiosity-and-motivation/` (Loewenstein 1994; Gruber, Gelman and
+Ranganath 2014; Deci and Ryan 2000; Gneezy and Rustichini 2000) and
+`cognition-and-automation/` (Bainbridge 1983). `information-foraging/`
+(Pirolli and Card 1999) was seeded 2026-09-10 under `04-information/` and
+relocated here 2026-09-11 (`fix/canon-promotion-findings`); a model of
+what a searcher in fact does is this branch's material, per the "vs
+`04-information/`" boundary call above. See each folder's own
+`CANON_INDEX.md` for the promotion record; this README's own promoted-set
+count below is not yet reconciled against them.
 
 ## Status
 

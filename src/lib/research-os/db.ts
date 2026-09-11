@@ -11,8 +11,10 @@
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
-import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind } from "./types";
-import type { EngineNodeDraft, ProductionOutboxRow } from "./engine-bridge";
+import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind, Stage } from "./types";
+import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow, GraphProductionRow } from "./engine-bridge";
+import { buildProductionOutboxRow } from "./engine-bridge";
+import type { PrereqAncestorRow } from "./closure";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -57,12 +59,19 @@ export function publicService(): SupabaseClient {
   return _pub;
 }
 
+export interface VerifiedIdentity {
+  id: string;
+  email: string | null;
+}
+
 /**
- * Verify the caller's Supabase access token and return their user id, or
+ * Verify the caller's Supabase access token and return their id + email, or
  * null. We never trust a client-supplied user id, only the token, verified
  * by gotrue, decides identity (matches /api/academy/progress verifyUser).
+ * Shared by verifyLearner below and reviewer.ts's verifyReviewer, which
+ * additionally checks the email against its allowlist.
  */
-export async function verifyLearner(req: NextRequest): Promise<string | null> {
+async function verifyToken(req: NextRequest): Promise<VerifiedIdentity | null> {
   const auth = req.headers.get("authorization") || "";
   const m = auth.match(/^Bearer\s+(.+)$/i);
   if (!m) return null;
@@ -74,10 +83,21 @@ export async function verifyLearner(req: NextRequest): Promise<string | null> {
     });
     const { data, error } = await verifier.auth.getUser(token);
     if (error || !data?.user?.id) return null;
-    return data.user.id;
+    return { id: data.user.id, email: data.user.email ?? null };
   } catch {
     return null;
   }
+}
+
+/** Verify the caller's token and return their user id, or null. */
+export async function verifyLearner(req: NextRequest): Promise<string | null> {
+  const identity = await verifyToken(req);
+  return identity?.id ?? null;
+}
+
+/** Verify the caller's token and return their full identity (id + email), or null. */
+export async function verifyLearnerIdentity(req: NextRequest): Promise<VerifiedIdentity | null> {
+  return verifyToken(req);
 }
 
 interface NodeRow {
@@ -92,10 +112,13 @@ interface NodeRow {
   provenance: Record<string, unknown> | null;
 }
 interface EdgeRow {
+  id: string;
   from_id: string;
   to_id: string;
   kind: string;
   weight: number | null;
+  confidence: number | null;
+  confidence_source: string | null;
 }
 interface StateRow {
   node_id: string;
@@ -129,14 +152,17 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
 
   const { data: edgeRows, error: edgeErr } = await svc
     .from("edges")
-    .select("from_id,to_id,kind,weight")
+    .select("id,from_id,to_id,kind,weight,confidence,confidence_source")
     .in("from_id", ids);
   if (edgeErr) throw new Error(`loadSubgraph: edge query failed: ${edgeErr.message}`);
   const edges: GraphEdge[] = ((edgeRows as EdgeRow[]) || []).map((r) => ({
+    id: r.id,
     fromId: r.from_id,
     toId: r.to_id,
     kind: r.kind as GraphEdge["kind"],
     weight: r.weight,
+    confidence: r.confidence,
+    confidenceSource: r.confidence_source,
   }));
 
   return { nodes, edges };
@@ -157,6 +183,281 @@ export async function loadLearnerStates(learnerId: string, nodeIds: string[]): P
     confidence: r.confidence,
     updatedAt: r.updated_at,
   }));
+}
+
+/**
+ * The learner's current stage on one node, or "access" when no row exists
+ * yet (the same "no record as access" default every route already applies
+ * inline; centralized here, bkt-ros ros-04, so a transition that needs
+ * `fromStage` -- production/route.ts's onProductionSubmitted call -- reads
+ * it the same way state/route.ts and workspace/route.ts already do).
+ */
+export async function loadCurrentStage(learnerId: string, nodeId: string): Promise<Stage> {
+  const svc = graphService();
+  const { data } = await svc.from("learner_node_state").select("stage").eq("learner_id", learnerId).eq("node_id", nodeId).maybeSingle();
+  return ((data?.stage as Stage | undefined) ?? "access") as Stage;
+}
+
+/**
+ * Same query as loadLearnerStates, batched over every learner in one class
+ * grid load (bkt-ros, ros-06 item 2) instead of one round trip per
+ * learner. Grouped by learner id; a learner with no rows at all gets no
+ * map entry (src/lib/research-os/class-view.ts's own functions already
+ * treat "no entry" the same as "no record" for a given node).
+ */
+export async function loadLearnerStatesForMany(learnerIds: string[], nodeIds: string[]): Promise<Map<string, LearnerNodeState[]>> {
+  const out = new Map<string, LearnerNodeState[]>();
+  if (learnerIds.length === 0 || nodeIds.length === 0) return out;
+  const svc = graphService();
+  const { data, error } = await svc
+    .from("learner_node_state")
+    .select("learner_id,node_id,stage,confidence,updated_at")
+    .in("learner_id", learnerIds)
+    .in("node_id", nodeIds);
+  if (error) throw new Error(`loadLearnerStatesForMany: query failed: ${error.message}`);
+  for (const r of (data as (StateRow & { learner_id: string })[]) || []) {
+    const state: LearnerNodeState = { nodeId: r.node_id, stage: r.stage as LearnerNodeState["stage"], confidence: r.confidence, updatedAt: r.updated_at };
+    if (!out.has(r.learner_id)) out.set(r.learner_id, []);
+    out.get(r.learner_id)!.push(state);
+  }
+  return out;
+}
+
+export interface ClassRow {
+  id: string;
+  name: string;
+  reviewerEmail: string;
+  createdAt: string;
+}
+
+/**
+ * Every graph.classes row a reviewer owns (bkt-ros, ros-06 item 2), scoped
+ * server-side to the verified reviewer identity (never a client-supplied
+ * value) -- the "server check" half of "RLS plus server check" the class
+ * route's own header names, matching the ownership check
+ * /api/research-os/production's POST already performs against
+ * `learner_id` the same way. Case-insensitive against reviewer_email,
+ * matching reviewer.ts's own allowlist comparison. Filtered in application
+ * code rather than a SQL `ILIKE`: a verified email can contain `_` or `%`,
+ * both ILIKE wildcards, so building a pattern from it risks matching more
+ * than the exact address. graph.classes is a small, Phase-1-scale table
+ * (a handful of rows per reviewer), so reading all rows and filtering in
+ * JS costs nothing today and stays correct regardless of what characters
+ * an email contains.
+ */
+interface RawClassRow {
+  id: string;
+  name: string;
+  reviewer_email: string;
+  created_at: string;
+}
+
+/**
+ * The scoping decision alone, no I/O -- split out from loadClassesForReviewer
+ * so the "a reviewer for class A never sees class B" guarantee is
+ * unit-testable with no network call (scripts/test-research-os-teacher-class.ts,
+ * "class scoping"), the same reason isReviewerEmail was split out of
+ * verifyReviewer. Case-insensitive, matching reviewer.ts's own allowlist
+ * comparison.
+ */
+export function filterClassesForReviewer(rows: RawClassRow[], reviewerEmail: string): ClassRow[] {
+  const wanted = reviewerEmail.trim().toLowerCase();
+  return rows
+    .filter((r) => r.reviewer_email.trim().toLowerCase() === wanted)
+    .map((r) => ({ id: r.id, name: r.name, reviewerEmail: r.reviewer_email, createdAt: r.created_at }));
+}
+
+export async function loadClassesForReviewer(reviewerEmail: string): Promise<ClassRow[]> {
+  const svc = graphService();
+  const { data, error } = await svc.from("classes").select("id,name,reviewer_email,created_at");
+  if (error) throw new Error(`loadClassesForReviewer: query failed: ${error.message}`);
+  return filterClassesForReviewer((data as RawClassRow[]) || [], reviewerEmail);
+}
+
+/**
+ * Every "quote"-kind evidence entry across every node this learner holds a
+ * state row for (bkt-ros, production guard bead, task item 1). One
+ * learner_node_state row per node, so this is one query over the
+ * learner's whole graph rather than a per-node fetch; a Phase 0-scale
+ * learner holds at most a few dozen rows. src/lib/research-os/
+ * production-guard.ts's checkSourceProvenance is the pure function that
+ * reads this list; this function only assembles it.
+ */
+export interface QuoteEvidenceRecord {
+  nodeId: string;
+  locator: string;
+  at: string;
+}
+
+export async function loadLearnerQuoteEvidence(learnerId: string): Promise<QuoteEvidenceRecord[]> {
+  const svc = graphService();
+  const { data, error } = await svc.from("learner_node_state").select("node_id,evidence").eq("learner_id", learnerId);
+  if (error) throw new Error(`loadLearnerQuoteEvidence: query failed: ${error.message}`);
+  const out: QuoteEvidenceRecord[] = [];
+  for (const row of (data as { node_id: string; evidence: Array<Record<string, unknown>> | null }[]) || []) {
+    for (const ev of row.evidence || []) {
+      if (ev?.kind === "quote" && typeof ev.locator === "string" && ev.locator.trim()) {
+        out.push({ nodeId: row.node_id, locator: ev.locator, at: (ev.at as string | undefined) ?? "" });
+      }
+    }
+  }
+  return out;
+}
+
+export interface ClaimCandidateRow {
+  id: string;
+  claim: string;
+}
+
+/**
+ * This learner's own prior Production claims, every status, excluding
+ * `excludeId` (the production being submitted right now, on a resubmit)
+ * -- production guard, task item 2's first duplicate-detection
+ * population, "this learner's prior Productions." A row with a blank or
+ * null claim is dropped: there is nothing to compare tokens against.
+ */
+export async function loadOwnPriorClaims(learnerId: string, excludeId?: string): Promise<ClaimCandidateRow[]> {
+  const svc = graphService();
+  let q = svc.from("productions").select("id,claim").eq("learner_id", learnerId);
+  if (excludeId) q = q.neq("id", excludeId);
+  const { data, error } = await q;
+  if (error) throw new Error(`loadOwnPriorClaims: query failed: ${error.message}`);
+  return ((data as { id: string; claim: string | null }[]) || [])
+    .filter((r) => (r.claim || "").trim())
+    .map((r) => ({ id: r.id, claim: r.claim as string }));
+}
+
+/**
+ * Every OTHER learner's accepted Production claims, scoped to a class
+ * this learner shares with them -- production guard, task item 2's
+ * second duplicate-detection population, "other learners' accepted
+ * Productions in the same class." Reuses `class_members` the same way
+ * `loadClassMembers` above already does (own class ids, then every
+ * member of those classes); a learner in no class at all gets an empty
+ * list rather than a query error, matching this bead's "never blocks
+ * submission" posture -- a missing roster is not a reason to skip
+ * duplicate detection for the populations that ARE available.
+ */
+export async function loadClassPeerAcceptedClaims(learnerId: string): Promise<ClaimCandidateRow[]> {
+  const svc = graphService();
+  const { data: memberships, error: memErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
+  if (memErr) throw new Error(`loadClassPeerAcceptedClaims: membership query failed: ${memErr.message}`);
+  const classIds = Array.from(new Set(((memberships as { class_id: string }[]) || []).map((m) => m.class_id)));
+  if (classIds.length === 0) return [];
+
+  const { data: peerRows, error: peerErr } = await svc.from("class_members").select("learner_id").in("class_id", classIds);
+  if (peerErr) throw new Error(`loadClassPeerAcceptedClaims: peer query failed: ${peerErr.message}`);
+  const peerIds = Array.from(new Set(((peerRows as { learner_id: string }[]) || []).map((r) => r.learner_id))).filter((id) => id !== learnerId);
+  if (peerIds.length === 0) return [];
+
+  const { data: prodRows, error: prodErr } = await svc.from("productions").select("id,claim").in("learner_id", peerIds).eq("status", "accepted");
+  if (prodErr) throw new Error(`loadClassPeerAcceptedClaims: production query failed: ${prodErr.message}`);
+  return ((prodRows as { id: string; claim: string | null }[]) || [])
+    .filter((r) => (r.claim || "").trim())
+    .map((r) => ({ id: r.id, claim: r.claim as string }));
+}
+
+/** Every graph.class_members row for the given classes, as classId -> learnerIds. */
+export async function loadClassMembers(classIds: string[]): Promise<Map<string, string[]>> {
+  const out = new Map<string, string[]>();
+  if (classIds.length === 0) return out;
+  const svc = graphService();
+  const { data, error } = await svc.from("class_members").select("class_id,learner_id").in("class_id", classIds);
+  if (error) throw new Error(`loadClassMembers: query failed: ${error.message}`);
+  for (const r of (data as { class_id: string; learner_id: string }[]) || []) {
+    if (!out.has(r.class_id)) out.set(r.class_id, []);
+    out.get(r.class_id)!.push(r.learner_id);
+  }
+  return out;
+}
+
+/**
+ * The per-class Check cognitive-forcing override (bkt-ros, PLAN-REVISION-2.md
+ * section 2a; `graph.classes.forcing_enabled`, migration
+ * 20260910060000_research_os_forcing.sql). Returns `null` on "no override
+ * on file", which is also what a learner in no class, or any query
+ * failure, returns: `src/lib/research-os/forcing.ts`'s
+ * resolveForcingEnabled reads `null` as "defer to the
+ * RESEARCH_OS_FORCING_ENABLED env default," the same fail-open posture
+ * loadAncestorRows uses above, so this optional lookup can never break a
+ * Check call, including in an environment where this migration has not
+ * run yet. A learner in more than one class (not a shape the manual seed
+ * or the roster sync produces today) reads the first class row with a
+ * non-null override; Phase 1's pilot assigns one class per arm, so this is
+ * documented rather than enforced.
+ */
+export async function loadForcingEnabledForLearner(learnerId: string): Promise<boolean | null> {
+  try {
+    const svc = graphService();
+    const { data: memberRows, error: memberErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
+    if (memberErr || !memberRows || memberRows.length === 0) return null;
+    const classIds = Array.from(new Set((memberRows as { class_id: string }[]).map((r) => r.class_id)));
+    const { data: classRows, error: classErr } = await svc.from("classes").select("id,forcing_enabled").in("id", classIds);
+    if (classErr || !classRows) return null;
+    const withOverride = (classRows as { id: string; forcing_enabled: boolean | null }[]).find((c) => typeof c.forcing_enabled === "boolean");
+    return withOverride ? withOverride.forcing_enabled : null;
+  } catch {
+    return null;
+  }
+}
+
+interface AncestorRow {
+  node_id: string;
+  ancestor_id: string;
+  min_hops: number;
+  min_confidence: number;
+}
+
+/**
+ * Every graph.prereq_ancestor row for `targetId` (bkt-ros, Phase 1 item 1).
+ * Fails open to an empty array on any read error (missing table on a
+ * fresh environment that has not run scripts/rebuild-prereq-ancestor.ts
+ * yet, a network blip, etc.) instead of throwing, matching the
+ * migration's documented fallback: an empty result makes
+ * frontier.ts's computeFrontier fall back to its original full-graph walk.
+ */
+export async function loadAncestorRows(targetId: string): Promise<PrereqAncestorRow[]> {
+  const svc = graphService();
+  try {
+    const { data, error } = await svc
+      .from("prereq_ancestor")
+      .select("node_id,ancestor_id,min_hops,min_confidence")
+      .eq("node_id", targetId);
+    if (error) return [];
+    return ((data as AncestorRow[]) || []).map((r) => ({
+      nodeId: r.node_id,
+      ancestorId: r.ancestor_id,
+      minHops: r.min_hops,
+      minConfidence: r.min_confidence,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Upsert a low-confidence-edge flag for one (edge, learner) pair (bkt-ros
+ * ros-03 item 3: "low-confidence edges on a returned chain are written to a
+ * graph.edge_flags table ... so ros-06's class view can surface them").
+ * `onConflict: "edge_id,learner_id"` plus `ignoreDuplicates` makes a repeat
+ * route call for the same learner over the same weak edge a no-op rather
+ * than a growing row-per-request log: `created_at` records when the flag
+ * was FIRST raised. Flags with no `edgeId` (a fixture edge, never a live
+ * database row) are silently skipped rather than erroring: there is
+ * nothing in graph.edges for them to reference.
+ */
+export async function writeEdgeFlags(
+  learnerId: string,
+  targetNodeId: string,
+  flags: { edgeId?: string }[],
+): Promise<void> {
+  const rows = flags
+    .filter((f): f is { edgeId: string } => Boolean(f.edgeId))
+    .map((f) => ({ edge_id: f.edgeId, learner_id: learnerId, target_node_id: targetNodeId }));
+  if (rows.length === 0) return;
+  const svc = graphService();
+  const { error } = await svc.from("edge_flags").upsert(rows, { onConflict: "edge_id,learner_id", ignoreDuplicates: true });
+  if (error) throw new Error(`writeEdgeFlags: upsert failed: ${error.message}`);
 }
 
 export async function findNodeBySlug(slug: string): Promise<GraphNode | null> {
@@ -276,6 +577,47 @@ export async function upsertEngineHypothesisNode(draft: EngineNodeDraft): Promis
   };
 }
 
+/**
+ * A campaign's own gap node (ros-12 item 4, `engine-bridge.ts`'s
+ * `buildGapNode`) as a `graph.nodes` row. Same upsert shape as
+ * `upsertEngineHypothesisNode` above (kept as its own function rather than
+ * a shared generic one, so a future change to either write path never
+ * risks the other): idempotent on `slug`, `engine-bridge.ts`'s
+ * `gapNodeSlug` is deterministic on `(engine, runId, gapId)`.
+ */
+export async function upsertGapNode(draft: GapNodeDraft): Promise<GraphNode> {
+  const svc = graphService();
+  const { data, error } = await svc
+    .from("nodes")
+    .upsert(
+      {
+        slug: draft.slug,
+        title: draft.title,
+        kind: draft.kind,
+        tier: draft.tier,
+        branch: draft.branch,
+        summary: draft.summary,
+        provenance: draft.provenance,
+      },
+      { onConflict: "slug" },
+    )
+    .select("id,slug,title,kind,tier,branch,summary,labels,provenance")
+    .single();
+  if (error) throw new Error(`upsertGapNode: upsert failed: ${error.message}`);
+  const r = data as NodeRow;
+  return {
+    id: r.id,
+    slug: r.slug,
+    title: r.title,
+    kind: r.kind as GraphNode["kind"],
+    tier: r.tier,
+    branch: r.branch,
+    summary: r.summary,
+    labels: r.labels ?? undefined,
+    provenance: r.provenance ?? undefined,
+  };
+}
+
 /** Every `graph.nodes.id` for a given list of slugs, as a slug -> id map. A
  * slug absent from the graph is absent from the returned map. */
 export async function resolveNodeIdsBySlug(slugs: string[]): Promise<Map<string, string>> {
@@ -349,4 +691,33 @@ export async function writeProductionOutbox(row: ProductionOutboxRow): Promise<v
     { onConflict: "id" },
   );
   if (error) throw new Error(`writeProductionOutbox: upsert failed: ${error.message}`);
+}
+
+/**
+ * Best-effort: given a `graph.productions` row that was just written with
+ * `status: "accepted"`, resolve its target node and emit the outbox row
+ * (task item 3, buildProductionOutboxRow + writeProductionOutbox above --
+ * neither is reimplemented here, only composed). No-op for any other
+ * status. Shared by /api/research-os/production's own POST (a
+ * learner-context write; unreachable today, that route still rejects a
+ * client-supplied "accepted") and /api/research-os/review's POST (bkt-ros,
+ * ros-06's teacher-accept path, the first caller that reaches "accepted"
+ * on a real, live write), so both entry points emit through the exact same function
+ * rather than two copies of the same three calls. A failed emit never
+ * fails the caller's own write, matching academy's own mirror-job
+ * best-effort posture (the original inline comment this was extracted
+ * from, preserved in _intake/research-os-k12/DELETIONS.md).
+ */
+export async function emitProductionOutboxIfAccepted(production: GraphProductionRow): Promise<void> {
+  if (production.status !== "accepted") return;
+  try {
+    const targetNode = await findNodeById(production.target_node_id);
+    const row = buildProductionOutboxRow(
+      production,
+      targetNode ? { slug: targetNode.slug, title: targetNode.title, tier: targetNode.tier, branch: targetNode.branch } : null,
+    );
+    await writeProductionOutbox(row);
+  } catch {
+    // best effort, see comment above
+  }
 }

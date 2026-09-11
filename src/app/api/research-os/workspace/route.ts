@@ -13,27 +13,89 @@
  *   2. Locate and Quote never call a model at all (retrieval only, per
  *      RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3's workspace table). Check
  *      grades the learner's OWN explanation against grounding, it never
- *      emits a corrected version of it. Organize only relabels the
- *      learner's OWN input into named slots; its system prompt forbids
- *      adding any fact not already present in that input, and the client
- *      renders Organize's output as an editable draft, never auto-submitted.
+ *      emits a corrected version of it (enforced in code by
+ *      grounding.ts's sanitizeGradeResult and GradeResult's own type, which
+ *      has no field for a rewritten explanation). Organize only relabels
+ *      the learner's OWN input into named slots; organize.ts's
+ *      groundOrganizeResult drops any item that is not grounded in the
+ *      matching input field, enforced in code as a second, independent
+ *      check beside the system prompt's own instruction.
  *
- * Request: { action, ...action-specific fields }
+ * ros-04 UPDATE ("workspace hardening"): every action now
+ *   - carries an optional client-generated `sessionId`, forwarded onto
+ *     every evidence event this call produces (EVIDENCE-SCHEMA.md);
+ *   - is logged as one structured tool-call line (logToolCall below).
+ *     Locate scans a whole branch and Organize works freeform notes, so
+ *     neither has a single `graph.nodes` row of its own to attach a DB
+ *     evidence event to; this log line stands in for the
+ *     `learner_node_state.evidence` append the other two actions get;
+ *     Check (node-scoped, produces a stage transition) and Quote (node-
+ *     scoped) both also carry the log line, Check on top of its real DB
+ *     evidence event. Documented in learning/research-os/WORKSPACE.md.
+ *   - is metered against a per-learner daily cap (src/lib/research-os/
+ *     rate-limit.ts), separate from the existing per-minute burst limiter
+ *     below.
+ *   - (Check, Organize) logs a best-effort per-call cost estimate from the
+ *     provider's own token usage, when reported (llm.ts's logToolCost).
+ *
+ * Request: { action, sessionId?, ...action-specific fields }
  *   locate:   { query, branch? }
  *   quote:    { nodeId }
- *   check:    { nodeId, explanation }
+ *   check:    phase 1 { nodeId, explanation }
+ *             phase 2 { nodeId, attemptId, learnerConfidence, sourcePrediction }
  *   organize: { claim, evidenceNotes, sourceNotes }
+ *
+ * Cognitive forcing on Check (bkt-ros, learning/research-os/
+ * PLAN-REVISION-2.md section 2a, the design response to Buçinca, Malaya
+ * and Gajos 2021, Bansal et al. 2021, and Vaccaro, Almaatouq and Malone
+ * 2024): a phase-1 "check" call grades the explanation right away but,
+ * unless this learner's own arm has forcing off (src/lib/research-os/
+ * forcing.ts's resolveForcingEnabled, the RESEARCH_OS_FORCING_ENABLED /
+ * per-class arm switch), the response carries only { attemptId,
+ * forcingRequired: true }, no result/confidence/feedback/citations
+ * anywhere in it. Revealing the held verdict needs a phase-2 call on the
+ * same attemptId carrying BOTH a valid learnerConfidence (forcing.ts's
+ * four-point scale) and a non-empty sourcePrediction; a phase-2 call
+ * missing either is 400 and the attempt stays held for a retry. The held
+ * verdict itself lives in `graph.check_attempts`
+ * (src/lib/research-os/check-attempts-db.ts, migration
+ * 20260910070000_research_os_check_attempts.sql): a Vercel deploy can run
+ * phase 1 and phase 2 on two different instances, so a bare in-memory
+ * store would lose the verdict between them. The gate is enforced in
+ * code: the client withholding a "reveal" button is a UI convenience, the
+ * server-side check is the real one. scripts/test-research-os-forcing.ts feeds
+ * forcing.ts's shared decision functions (checkAttemptAccess,
+ * finalizeReveal, the same ones check-attempts-db.ts calls) an attempt and
+ * asserts no code path returns its grade without both fields present.
  *
  * Auth: Authorization: Bearer <supabase access token>, required for all four
  * (locate/quote are retrieval-only but still identity-scoped for Phase 0
  * simplicity and to keep the same rate-limit boundary as check/organize).
+ *
+ * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): every
+ * action, including Locate and Quote, is gated by src/lib/research-os/
+ * consent.ts's requireConsent, checked right after verifyLearner and
+ * before the daily/burst rate limiters. A minor with no consent on file
+ * cannot search or quote either, not only Check/Organize: COPPA's floor is
+ * collecting personal information from a known minor, and a query or a
+ * node id already does that once the caller is a signed-in, identified
+ * user. A blocked call returns 403 with consentBlockedBody(gate) as its
+ * JSON body.
  */
 import { NextRequest, NextResponse } from "next/server";
-import { callGroundedModel, parseModelJson, selectProvider } from "@/lib/research-os/llm";
-import { onCheckResult } from "@/lib/research-os/stages";
+import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
+import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
+import { onCheckResult, onQuoteReturned } from "@/lib/research-os/stages";
+import { locateHits } from "@/lib/research-os/locate";
+import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
+import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
+import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { configured, graphService, verifyLearner, recordEvidence, loadCurrentStage, loadForcingEnabledForLearner } from "@/lib/research-os/db";
+import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
+import { resolveForcingEnabled } from "@/lib/research-os/forcing";
+import { dbStorePendingAttempt, dbRevealPendingAttempt } from "@/lib/research-os/check-attempts-db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,9 +104,9 @@ function bad(status: number, error: string) {
   return NextResponse.json({ error }, { status });
 }
 
-const MAX_CHECK_TOKENS = 500;
 const MAX_ORGANIZE_TOKENS = 500;
 const MAX_EXPLANATION_CHARS = 2000;
+const MAX_SESSION_ID_CHARS = 200;
 
 // Crude in-memory per-user rate limit, mirroring /api/academy/tutor. Best
 // effort only (serverless instances are ephemeral); a durable limiter
@@ -60,17 +122,26 @@ function rateLimited(key: string): boolean {
   return hits.length > RL_MAX;
 }
 
-function citationLabel(node: { title: string; provenance?: Provenance }): string {
-  const p = node.provenance;
-  if (!p) return node.title;
-  const who = p.author ? `${p.author}` : p.publisher || "";
-  const when = p.year ? ` (${p.year})` : "";
-  const what = p.title ? `. ${p.title}.` : "";
-  return `${who}${when}${what}`.trim() || node.title;
+/** One structured log line per workspace tool call (see this file's header
+ * for why Locate/Organize have no other evidence record). Never throws:
+ * logging must not be able to fail the request it is describing. */
+function logToolCall(tool: string, learnerId: string, sessionId: string | undefined, extra: Record<string, unknown> = {}): void {
+  try {
+    console.log("[research-os/tool-call]", JSON.stringify({ tool, learnerId, sessionId: sessionId ?? null, at: new Date().toISOString(), ...extra }));
+  } catch {
+    /* logging is best-effort, never fails the request */
+  }
+}
+
+function sessionIdOf(body: { sessionId?: string }): string | undefined {
+  const s = (body.sessionId || "").trim();
+  if (!s) return undefined;
+  return s.slice(0, MAX_SESSION_ID_CHARS);
 }
 
 interface WorkspaceBody {
   action?: "locate" | "quote" | "check" | "organize";
+  sessionId?: string;
   query?: string;
   branch?: string;
   nodeId?: string;
@@ -78,6 +149,13 @@ interface WorkspaceBody {
   claim?: string;
   evidenceNotes?: string;
   sourceNotes?: string;
+  // Cognitive forcing on Check (PLAN-REVISION-2.md section 2a): a first
+  // "check" call (no attemptId) submits `explanation`; a second call
+  // carries `attemptId` plus the two forcing fields to reveal the held
+  // verdict. See this file's "check" case for the full two-phase contract.
+  attemptId?: string;
+  learnerConfidence?: string;
+  sourcePrediction?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -85,7 +163,14 @@ export async function POST(req: NextRequest) {
 
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
+
+  const gate = await requireConsent(learnerId, "workspace_tool");
+  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+
   if (rateLimited(learnerId)) return bad(429, "Too many workspace requests. Slow down a moment.");
+
+  const cap = dailyToolCap();
+  if (!recordAndCheck(learnerId, cap).allowed) return bad(429, dailyCapMessage(cap));
 
   let body: WorkspaceBody;
   try {
@@ -93,12 +178,13 @@ export async function POST(req: NextRequest) {
   } catch {
     return bad(400, "bad_request");
   }
+  const sessionId = sessionIdOf(body);
 
   const svc = graphService();
 
   switch (body.action) {
     case "locate": {
-      const query = (body.query || "").trim().toLowerCase();
+      const query = (body.query || "").trim();
       if (!query) return bad(400, "query is required");
       const branch = body.branch || "02-physics";
       const { data, error } = await svc
@@ -106,21 +192,8 @@ export async function POST(req: NextRequest) {
         .select("id,slug,title,kind,tier,summary,provenance")
         .eq("branch", branch);
       if (error) return bad(500, "locate_failed");
-      const hits = (data || [])
-        .filter(
-          (n: { title: string; summary: string | null }) =>
-            n.title.toLowerCase().includes(query) || (n.summary || "").toLowerCase().includes(query),
-        )
-        .slice(0, 10)
-        .map((n: { id: string; slug: string; title: string; kind: string; tier: number; summary: string | null; provenance: Provenance }) => ({
-          nodeId: n.id,
-          slug: n.slug,
-          title: n.title,
-          kind: n.kind,
-          tier: n.tier,
-          summary: n.summary,
-          citation: citationLabel(n),
-        }));
+      const hits = locateHits((data || []) as Parameters<typeof locateHits>[0], query);
+      logToolCall("locate", learnerId, sessionId, { branch, resultCount: hits.length });
       return NextResponse.json({ results: hits }, { headers: { "cache-control": "no-store" } });
     }
 
@@ -134,18 +207,47 @@ export async function POST(req: NextRequest) {
         .maybeSingle();
       if (error || !node) return bad(404, "node_not_found");
       const p = (node.provenance || {}) as Provenance;
+
+      // Phase 1 (bkt-ros, closing stub list item "full passage-level source
+      // extraction"): a small curated table (src/lib/research-os/passages.ts)
+      // carries a real, under-90-word, verbatim passage with a locator for
+      // every node whose source text we have independently verified --
+      // Tyndall 1869, Rayleigh 1871, NASA Space Place, and the cited
+      // Wikipedia revisions. A node not in that table (no verified full-text
+      // access to its primary source yet, e.g. Rayleigh's third 1871 paper,
+      // or a canon-bridge node with no provenance of its own) falls back to
+      // the node's own seeded summary, labeled "summary" rather than
+      // "quote" so the client never presents a paraphrase as a verbatim
+      // quotation.
+      const passage = getPassage(node.slug);
+
+      // Production guard, task item 1: a Production's own cited sources are
+      // only verifiable against a Quote call this learner made. Recorded
+      // only for a real, curated passage (a "quote" result), since the
+      // "summary" fallback carries no locator for production-guard.ts's
+      // checkSourceProvenance to match against.
+      // Best-effort: a write failure here degrades to "this source can't be
+      // verified later," never to a broken Quote response for the learner
+      // in front of it right now.
+      if (passage) {
+        try {
+          const currentStage = await loadCurrentStage(learnerId, nodeId);
+          const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
+          await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        } catch {
+          /* best-effort, see comment above */
+        }
+      }
+
+      logToolCall("quote", learnerId, sessionId, { nodeId, kind: passage ? "quote" : "summary" });
       return NextResponse.json(
         {
           nodeId: node.id,
-          // Phase 0 has no full source-text corpus ingested, so the
-          // "exact span" Quote returns is the seeded, human-authored
-          // summary the node itself carries, paired with its real
-          // citation. Full passage-level source extraction is Phase 1
-          // ingestion work (review gap analysis, "Standards and textbook
-          // ingestion parser").
-          quotable_span: node.summary,
+          kind: passage ? "quote" : "summary",
+          quotable_span: passage ? passage.text : node.summary,
+          locator: passage ? passage.locator : null,
           citation: citationLabel({ title: node.title, provenance: p }),
-          source: { author: p.author, year: p.year, title: p.title, publisher: p.publisher, doi: p.doi, url: p.url, license: p.license },
+          source: { author: p.author, year: p.year, title: p.title, publisher: p.publisher, doi: p.doi, url: passage?.url ?? p.url, license: p.license },
         },
         { headers: { "cache-control": "no-store" } },
       );
@@ -153,6 +255,67 @@ export async function POST(req: NextRequest) {
 
     case "check": {
       const nodeId = (body.nodeId || "").trim();
+      const attemptId = (body.attemptId || "").trim();
+
+      // Phase 2: reveal a held verdict. Requires the forcing commit
+      // (confidence + a source prediction) in THIS same request -- there
+      // is no separate "peek" call, so a request carrying only attemptId
+      // can never come back with feedback (scripts/test-research-os-
+      // forcing.ts's "cannot be fetched early" case).
+      if (attemptId) {
+        const reveal = await dbRevealPendingAttempt(attemptId, learnerId, body.learnerConfidence, body.sourcePrediction || "");
+        if (!reveal.ok) {
+          if (reveal.reason === "not_found") return bad(404, "check_attempt_not_found");
+          return bad(400, "A confidence rating and a source prediction are required before feedback is shown.");
+        }
+        const { attempt: pending, learnerConfidence: learnerConfidenceRaw, sourcePrediction, predictionCorrect } = reveal;
+
+        const transition = onCheckResult(
+          pending.currentStage,
+          { result: pending.grade.result, confidence: pending.grade.confidence, abstained: pending.grade.abstained },
+          {
+            learnerText: pending.explanation,
+            modelFeedback: pending.grade.feedback,
+            citations: pending.grade.citations,
+            sessionId: pending.sessionId,
+            learnerConfidence: learnerConfidenceRaw,
+            sourcePrediction,
+            predictionCorrect,
+            forcingEnabled: true,
+          },
+        );
+        await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        logToolCall("check", learnerId, pending.sessionId, {
+          nodeId: pending.nodeId,
+          result: pending.grade.result,
+          abstained: pending.grade.abstained,
+          stage: transition.nextStage,
+          forcingEnabled: true,
+          predictionCorrect,
+        });
+
+        return NextResponse.json(
+          {
+            result: pending.grade.result,
+            confidence: pending.grade.confidence,
+            abstained: pending.grade.abstained,
+            feedback: pending.grade.feedback,
+            citations: pending.grade.citations,
+            stage: transition.nextStage,
+            learnerConfidence: learnerConfidenceRaw,
+            sourcePrediction,
+            predictionCorrect,
+            forcingEnabled: true,
+          },
+          { headers: { "cache-control": "no-store" } },
+        );
+      }
+
+      // Phase 1: submit the explanation and grade it. The verdict is
+      // computed here but is only ever returned immediately when this
+      // learner's own arm has forcing off; otherwise it is held (see
+      // src/lib/research-os/forcing.ts's module header) until phase 2
+      // above supplies the commit step.
       const explanation = (body.explanation || "").trim();
       if (!nodeId) return bad(400, "nodeId is required");
       if (!explanation) return bad(400, "explanation is required");
@@ -173,61 +336,19 @@ export async function POST(req: NextRequest) {
         prereqSummaries = prereqNodes || [];
       }
 
-      const allowLabel = citationLabel(node);
-      const grounding = [
-        `CONCEPT: ${node.title}`,
-        `GROUNDING TRUTH: ${node.summary}`,
-        ...prereqSummaries.map((p) => `PREREQUISITE (already covered): ${p.title} -- ${p.summary}`),
-        `ALLOWED CITATION (copy verbatim if you cite anything, cite nothing else): "${allowLabel}"`,
-      ].join("\n\n");
-
       const provider = selectProvider();
       if (!provider) return bad(503, "Check isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY).");
 
-      const system = `You are the Check tool in Bucket's Research OS workspace. You NEVER write or correct the learner's explanation, you only judge it against the GROUNDING.
-
-HARD RULES:
-1. Judge ONLY against the GROUNDING TRUTH and its listed PREREQUISITEs. Never use outside knowledge to decide the verdict.
-2. If the explanation is unrelated to the grounding or you cannot judge it from the grounding, set "abstained": true and "result": "unknown".
-3. "result" is "support" (the explanation is consistent with and grounded in the material), "contradiction" (it conflicts with the material), or "unknown" (not enough to tell).
-4. NEVER rewrite the learner's explanation. Return a short "feedback" string: if support, name what makes it grounded; if contradiction or unknown, ask ONE guiding question or name what part of the grounding to revisit -- never supply the corrected sentence.
-5. Cite only the exact ALLOWED CITATION string if you reference the source, and only if you leaned on it. Empty citations array if not.
-6. "confidence" is "high" only when the grounding directly and fully settles the verdict; "medium" partial; "low" when stretching (consider abstaining instead).
-
-Respond with ONLY a JSON object, no markdown fences:
-{"result": "support"|"contradiction"|"unknown", "confidence": "high"|"medium"|"low", "abstained": boolean, "feedback": string, "citations": string[]}`;
-
-      let text: string;
+      let safe: Awaited<ReturnType<typeof gradeExplanation>>;
       try {
-        text = await callGroundedModel(
-          provider,
-          system,
-          [{ role: "user", content: `${grounding}\n\n---\nLEARNER'S EXPLANATION: ${explanation}` }],
-          MAX_CHECK_TOKENS,
-        );
+        safe = await gradeExplanation(provider, node, prereqSummaries, explanation);
       } catch (e: unknown) {
         const err = e as { status?: number };
         if (err?.status === 401) return bad(503, "Check credentials are invalid on the server.");
         if (err?.status === 429) return bad(429, "Rate limited, try again in a moment.");
         return bad(502, "check_failed");
       }
-
-      interface CheckOut {
-        result: "support" | "contradiction" | "unknown";
-        confidence: "high" | "medium" | "low";
-        abstained: boolean;
-        feedback: string;
-        citations: string[];
-      }
-      const parsed = parseModelJson<CheckOut>(text);
-      const safe: CheckOut = parsed ?? {
-        result: "unknown",
-        confidence: "low",
-        abstained: true,
-        feedback: "I had trouble grounding a verdict. Try rephrasing your explanation.",
-        citations: [],
-      };
-      const citations = (safe.citations || []).filter((c) => c.trim() === allowLabel);
+      logToolCost("check", learnerId, provider, safe.usage);
 
       const { data: existingState } = await svc
         .from("learner_node_state")
@@ -236,24 +357,54 @@ Respond with ONLY a JSON object, no markdown fences:
         .eq("node_id", nodeId)
         .maybeSingle();
       const currentStage = ((existingState?.stage as Stage | undefined) ?? "access") as Stage;
-      const transition = onCheckResult(currentStage, {
-        result: safe.result,
-        confidence: safe.confidence,
-        abstained: safe.abstained,
-      });
-      await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
 
-      return NextResponse.json(
-        {
-          result: safe.result,
-          confidence: safe.confidence,
-          abstained: safe.abstained,
-          feedback: safe.feedback,
-          citations,
-          stage: transition.nextStage,
-        },
-        { headers: { "cache-control": "no-store" } },
-      );
+      const classForcingOverride = await loadForcingEnabledForLearner(learnerId);
+      const forcingEnabled = resolveForcingEnabled(classForcingOverride);
+
+      if (!forcingEnabled) {
+        // Comparison arm (or RESEARCH_OS_FORCING_ENABLED=false): the
+        // pre-forcing behavior, verdict revealed immediately, logged with
+        // forcingEnabled:false so analysis can tell this arm apart from
+        // the default-on arm using the evidence log alone.
+        const transition = onCheckResult(
+          currentStage,
+          { result: safe.result, confidence: safe.confidence, abstained: safe.abstained },
+          { learnerText: explanation, modelFeedback: safe.feedback, citations: safe.citations, sessionId, forcingEnabled: false },
+        );
+        await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage, forcingEnabled: false });
+
+        return NextResponse.json(
+          {
+            result: safe.result,
+            confidence: safe.confidence,
+            abstained: safe.abstained,
+            feedback: safe.feedback,
+            citations: safe.citations,
+            stage: transition.nextStage,
+            forcingEnabled: false,
+          },
+          { headers: { "cache-control": "no-store" } },
+        );
+      }
+
+      const newAttemptId = await dbStorePendingAttempt({
+        learnerId,
+        nodeId,
+        sessionId,
+        explanation,
+        allowLabel: citationLabel({ title: node.title, provenance: (node.provenance || undefined) as Provenance | undefined }),
+        grade: safe,
+        currentStage,
+        forcingEnabled: true,
+        createdAt: Date.now(),
+      });
+      logToolCall("check", learnerId, sessionId, { nodeId, forcingEnabled: true, forcingRequired: true });
+
+      // No result/confidence/feedback/citations key anywhere in this body:
+      // the whole point of the held attempt is that nothing in this
+      // response can be read as the verdict.
+      return NextResponse.json({ attemptId: newAttemptId, forcingRequired: true, forcingEnabled: true }, { headers: { "cache-control": "no-store" } });
     }
 
     case "organize": {
@@ -278,8 +429,9 @@ Respond with ONLY a JSON object, no markdown fences:
 {"claim": string, "evidence": string[], "sources": string[]}`;
 
       let text: string;
+      let usage: Awaited<ReturnType<typeof callGroundedModelWithUsage>>["usage"];
       try {
-        text = await callGroundedModel(
+        const result = await callGroundedModelWithUsage(
           provider,
           system,
           [
@@ -290,21 +442,26 @@ Respond with ONLY a JSON object, no markdown fences:
           ],
           MAX_ORGANIZE_TOKENS,
         );
+        text = result.text;
+        usage = result.usage;
       } catch {
         return bad(502, "organize_failed");
       }
+      logToolCost("organize", learnerId, provider, usage);
 
-      interface OrganizeOut {
-        claim: string;
-        evidence: string[];
-        sources: string[];
-      }
-      const parsed = parseModelJson<OrganizeOut>(text);
-      const safe: OrganizeOut = parsed ?? {
-        claim: claim,
-        evidence: evidenceNotes ? [evidenceNotes] : [],
-        sources: sourceNotes ? [sourceNotes] : [],
-      };
+      // Contract enforcement (task item 2, organize.ts's own header): a
+      // parseable-but-adversarial model response is run through
+      // groundOrganizeResult, which drops any item not grounded in the
+      // matching input field, in code. A totally unparseable response (the
+      // model ignored the "JSON only" instruction) falls back to echoing
+      // the learner's own raw notes verbatim, never to any model text --
+      // the same fail-safe posture parseModelJson documents for Check.
+      const parsed = parseModelJson<OrganizeModelOutput>(text);
+      const safe = parsed
+        ? groundOrganizeResult(parsed, { claim, evidenceNotes, sourceNotes })
+        : { claim, evidence: evidenceNotes ? [evidenceNotes] : [], sources: sourceNotes ? [sourceNotes] : [], abstained: false };
+
+      logToolCall("organize", learnerId, sessionId, { abstained: safe.abstained, claimKept: Boolean(safe.claim), evidenceKept: safe.evidence.length, sourcesKept: safe.sources.length });
 
       return NextResponse.json(safe, { headers: { "cache-control": "no-store" } });
     }

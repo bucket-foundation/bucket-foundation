@@ -54,6 +54,21 @@ def _refusal_envelope(*, session_id="ff3c243b-secret", cost=0.0145, stop_reason=
     return json.dumps(payload)
 
 
+@pytest.fixture(autouse=True)
+def _real_llm_mode(monkeypatch):
+    """Every test below exercises `llm.complete`'s real (non-fake)
+    dispatch machinery through its own `SimpleNamespace(run=...)` stand-
+    in for `llm.subprocess`; `complete()` checks `HTE_LLM_MODE` before it
+    ever looks at that stand-in (`resolved_mode = mode if mode is not
+    None else os.environ.get("HTE_LLM_MODE")`), so an `HTE_LLM_MODE=fake`
+    left set in the ambient shell would silently reroute every one of
+    them to `hte.fakellm` instead. Pinning it unset here, rather than
+    trusting the shell, is what keeps this file's own tests correct
+    under `env -u HTE_LLM_MODE make test` and `HTE_LLM_MODE=fake make
+    test` alike."""
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
+
+
 def test_resolve_model_reads_policy():
     assert llm.resolve_model("critic") == "sonnet"
     assert llm.resolve_model("extractor") == "haiku"
@@ -142,6 +157,46 @@ def test_complete_nonzero_exit_raises_invocation_error(tmp_path, monkeypatch):
     monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
     with pytest.raises(llm.LLMInvocationError):
         llm.complete("hi", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path)
+
+
+def test_strip_id_like_tokens_redacts_uuid_key_value_and_bare_hex():
+    text = (
+        'uuid=11111111-2222-3333-4444-555555555555 and session_id: "deadbeefcafefeed" '
+        "plus a bare " + "a" * 40
+    )
+    redacted = llm._strip_id_like_tokens(text)
+    assert "11111111-2222-3333-4444-555555555555" not in redacted
+    assert "deadbeefcafefeed" not in redacted
+    assert "a" * 40 not in redacted
+    assert "<redacted-id>" in redacted
+
+
+def test_complete_nonzero_exit_stderr_excerpt_redacts_ids_and_logs_server_side(tmp_path, monkeypatch, caplog):
+    # `_invoke_cli`'s "no refusal/truncation match" branch (a nonzero
+    # exit with no parseable JSON envelope on either stream) still
+    # interpolates a bounded excerpt of whatever plain-text `claude -p`
+    # printed; that excerpt must have any id-shaped token redacted
+    # (`_strip_id_like_tokens`) before it reaches `LLMInvocationError`'s
+    # own message, and the raw failure must be logged server-side (`hte.
+    # llm`'s own logger), the one place in the call chain that ever saw
+    # it (`hte.roles`'s `_with_refusal_default` passes a non-refusal
+    # exception through unchanged, so nothing downstream logs it either).
+    session_id = "a1b2c3d4-e5f6-4789-a1b2-c3d4e5f6a7b8"
+    stderr_text = f"fatal: auth failed for session_id={session_id}"
+
+    def run(argv, capture_output, text, timeout):  # noqa: ARG001 - matches subprocess.run's call shape
+        return SimpleNamespace(returncode=1, stdout="", stderr=stderr_text)
+
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=run))
+    caplog.set_level("ERROR", logger="hte.llm")
+    with pytest.raises(llm.LLMInvocationError) as excinfo:
+        llm.complete("hi", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path)
+
+    message = str(excinfo.value)
+    assert session_id not in message
+    assert "<redacted-id>" in message
+    assert all(session_id not in record.getMessage() for record in caplog.records)
+    assert any("claude -p exited" in record.getMessage() for record in caplog.records)
 
 
 def test_complete_is_error_envelope_raises_invocation_error(tmp_path, monkeypatch):
@@ -284,6 +339,46 @@ def test_complete_many_without_default_still_raises(tmp_path, monkeypatch):
         )
 
 
+def _invocation_failure_run(fail_marker: str):
+    """A `subprocess.run` stand-in that fails every attempt at one
+    prompt with a plain nonzero exit and no JSON envelope at all (an
+    `LLMInvocationError`, a plain invocation bug, no refusal or
+    truncation stop reason anywhere in it), and otherwise echoes the
+    prompt back as a normal successful completion."""
+    calls = []
+
+    def run(argv, capture_output, text, timeout):  # noqa: ARG001
+        calls.append(argv)
+        prompt = argv[2]
+        if fail_marker in prompt:
+            return SimpleNamespace(returncode=1, stdout="", stderr="boom: not a refusal, a real failure")
+        return SimpleNamespace(
+            returncode=0, stdout=_envelope(structured_output={"greeting": prompt}), stderr="",
+        )
+
+    run.calls = calls
+    return run
+
+
+def test_complete_many_default_does_not_absorb_a_non_refusal_failure(tmp_path, monkeypatch):
+    # Silent-failures review finding 1 (`hte/parallel.py` `pmap`'s old
+    # broad `except Exception:` under `on_error="default"`): a prompt
+    # failing for a reason other than `ModelRefusal`/`ModelTruncation`
+    # (here, a plain nonzero exit with no refusal envelope, the shape a
+    # missing `claude` CLI or a malformed-JSON-on-both-attempts failure
+    # would also take) must propagate out of `complete_many(...,
+    # default=...)` as itself, an unabsorbed failure distinct from an
+    # ordinary, expected refusal.
+    monkeypatch.setattr(parallel_module.time, "sleep", lambda s: None)  # skip pmap's own retry backoff
+    fake = _invocation_failure_run("BOOM")
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    with pytest.raises(llm.LLMInvocationError, match="not a refusal"):
+        llm.complete_many(
+            ["ok-0", "BOOM-1"], role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path,
+            default={"greeting": "defaulted"},
+        )
+
+
 def test_cache_stats_counts_files(tmp_path):
     assert llm.cache_stats(tmp_path / "missing").files == 0
     (tmp_path / "a.json").write_text("{}")
@@ -291,3 +386,121 @@ def test_cache_stats_counts_files(tmp_path):
     stats = llm.cache_stats(tmp_path)
     assert stats.files == 2
     assert stats.total_bytes == 4
+
+
+# --------------------------------------------------------------------------
+# provenance index (docs/PRIVACY.md): `<cache_dir>/index.jsonl`
+# --------------------------------------------------------------------------
+
+_SECRET_PROMPT = "Rayleigh scattering bends the light of the sky more steeply, PROMPT-SECRET-MARKER-9f3c"
+
+_PROVENANCE = {"source_ids": ["src-a"], "production_ids": ["prod-a"], "learner_ids": ["learner-a"]}
+
+
+def _index_lines(cache_dir) -> list[dict]:
+    path = Path(cache_dir) / "index.jsonl"
+    if not path.is_file():
+        return []
+    return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+
+
+def test_complete_with_provenance_appends_one_index_line_on_a_fresh_call(tmp_path, monkeypatch):
+    fake = _fake_run([(0, _envelope(structured_output={"greeting": "hi"}))])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete(_SECRET_PROMPT, role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, provenance=_PROVENANCE)
+
+    lines = _index_lines(tmp_path)
+    assert len(lines) == 1
+    assert lines[0]["role"] == "critic"
+    assert lines[0]["source_ids"] == ["src-a"]
+    assert lines[0]["production_ids"] == ["prod-a"]
+    assert lines[0]["learner_ids"] == ["learner-a"]
+    assert lines[0]["cache_key"] == llm._cache_key("sonnet", _SECRET_PROMPT)
+
+
+def test_complete_with_provenance_appends_again_on_a_cache_hit(tmp_path, monkeypatch):
+    fake = _fake_run([(0, _envelope(structured_output={"greeting": "hi"}))])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete(_SECRET_PROMPT, role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, provenance=_PROVENANCE)
+
+    # second call is a cache hit (no subprocess call left in the queue)
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=_fake_run([])))
+    llm.complete(_SECRET_PROMPT, role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, provenance=_PROVENANCE)
+
+    lines = _index_lines(tmp_path)
+    assert len(lines) == 2, "a repeat use of a cached answer is still one more attributable use"
+    assert {ln["cache_key"] for ln in lines} == {llm._cache_key("sonnet", _SECRET_PROMPT)}
+
+
+def test_complete_without_provenance_writes_no_index_at_all(tmp_path, monkeypatch):
+    fake = _fake_run([(0, _envelope(structured_output={"greeting": "hi"}))])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete("hello", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path)
+    assert not (Path(tmp_path) / "index.jsonl").is_file()
+
+
+def test_fake_mode_with_provenance_never_creates_cache_dir(tmp_path):
+    """Fake mode's own contract, `provenance` included: `cache_dir` is
+    accepted but unused, full stop (`tests/swarm3/test_cli_props.py::
+    test_campaign_run_replay_only_in_fake_mode_succeeds_and_never_
+    touches_cache_dir` guards the same invariant at the CLI layer)."""
+    never_created = tmp_path / "never-created"
+    result = llm.complete(
+        "hello", role="critic", schema=SCHEMA, cache_dir=never_created, mode="fake", provenance=_PROVENANCE,
+    )
+    assert result
+    assert not never_created.exists()
+
+
+def test_replay_only_cache_hit_with_provenance_never_writes_the_index(tmp_path):
+    """The regression this test guards: `hte.roles.generate`/`critique`/
+    `unknown_unknown` pass `provenance=` on every call now, including
+    every call this package's own test suite makes against the
+    committed `tests/fixtures/llm-cache/` directory under `replay_only=
+    True`. Writing an index line on that cache-hit path would leave a
+    checked-in fixture directory dirty on every test run; `replay_only`'s
+    own contract (`hte.llm.complete`'s own docstring) is read-only,
+    full stop, matching fake mode's own "never touches `cache_dir`"
+    contract one branch up."""
+    cache_dir = tmp_path / "cache"
+    cache_dir.mkdir()
+    key = llm._cache_key("sonnet", "hello")
+    (cache_dir / f"{key}.json").write_text(json.dumps({
+        "model": "sonnet", "role": "critic", "prompt_sha256": "x", "response": {"greeting": "cached"},
+    }))
+    result = llm.complete(
+        "hello", role="critic", schema=SCHEMA, model="sonnet", cache_dir=cache_dir,
+        replay_only=True, provenance=_PROVENANCE,
+    )
+    assert result == {"greeting": "cached"}
+    assert not (cache_dir / "index.jsonl").exists()
+
+
+def test_index_never_contains_the_prompt_text(tmp_path, monkeypatch):
+    fake = _fake_run([(0, _envelope(structured_output={"greeting": "hi"}))])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete(_SECRET_PROMPT, role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, provenance=_PROVENANCE)
+
+    raw = (Path(tmp_path) / "index.jsonl").read_text()
+    assert "PROMPT-SECRET-MARKER-9f3c" not in raw
+    assert "Rayleigh" not in raw
+    lines = _index_lines(tmp_path)
+    assert set(lines[0]) == {"cache_key", "role", "recorded_at", "source_ids", "production_ids", "learner_ids"}
+
+
+def test_complete_many_with_provenance_writes_one_index_line_per_prompt(tmp_path, monkeypatch):
+    monkeypatch.setattr(parallel_module.time, "sleep", lambda s: None)
+    fake = _fake_run([
+        (0, _envelope(structured_output={"greeting": "a"})),
+        (0, _envelope(structured_output={"greeting": "b"})),
+    ])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    llm.complete_many(
+        ["prompt-one", "prompt-two"], role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path,
+        provenance=_PROVENANCE,
+    )
+    lines = _index_lines(tmp_path)
+    assert len(lines) == 2
+    assert {ln["cache_key"] for ln in lines} == {
+        llm._cache_key("sonnet", "prompt-one"), llm._cache_key("sonnet", "prompt-two"),
+    }

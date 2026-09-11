@@ -6,26 +6,35 @@ Seeded 2026-09-09 from the people and funding streams in `_intake/research-os-k1
 
 1. Do the five states (Access, Awareness, Understanding, Internalization, Production) map onto ICAP's four engagement modes, or do they form a distinct construct? Study: classify activity logs by ICAP mode and by state; test whether state predicts delayed transfer beyond ICAP mode. Comparators: Chi and Wylie 2014; Bloom's revised taxonomy; SOLO; Perkins's understanding performances.
 2. Does a state classification predict forward learning rate on the next atom in the route? Study: knowledge-tracing baseline versus state-augmented model on held-out learners.
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H6's moderator sub-hypothesis, exploratory, machine-graded checkpoint versus a human-graded one.*
 3. What is the misclassification rate of each state signal, and at what rate do teachers contest a state? Study: log contest events; sample audits by a second reviewer.
 4. Does the Production state, as gated by review, show transfer to unfamiliar formats (Perkins) or format-matched performance only?
 
 ## Routing
 
 5. Does frontier-backward routing from a chosen target improve time-to-Understanding on the target compared with Academy's forward route, and at what cost in prerequisite gaps? Study: randomized route assignment within a class.
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H2, confirmatory.*
 6. Does routing from a live hypothesis-engine gap node produce productions the engine can use, and does that change learner engagement? Study: compare gap-node targets with static frontier atoms.
 7. How should supports fade as state rises, given expertise reversal (Kalyuga 2003)? Study: scaffolding schedule as a factor.
+*Pre-registered as of 2026-09-10, revision 1: `learning/research-os/study/PREREGISTRATION-DRAFT.md`'s Design Plan registers the guidance-level field (`GUIDANCE.md`, branch `feat/ros-faded-guidance`) as a pre-specified covariate in H1 and H2, fixed on rather than crossed as an experimental factor at Phase 1 scale (`learning/research-os/study/INSTRUMENTS.md` section 4).*
 
 ## The constrained AI
 
 8. Does a find, quote, check, organize workspace outperform a permissive explain-and-answer tutor and a no-AI control on delayed unassisted post-tests? Pre-registered three-arm RCT scored on transfer, with process measures (quotes gathered, checks run).
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H1a and H1b, confirmatory for Phase 1 feasibility, fully powered at the Phase 2 sample-size target the same draft computes.*
 9. At what rate does the quote tool fabricate or misattribute a span, and does the check tool's abstain path fire when retrieval is weak? Adversarial audit on a K-12 query set (the Bender test).
 10. Does the constraint change how learners judge source quality (lateral reading, McGrew and others 2019)? Study: civic online reasoning tasks before and after.
+*Considered for pre-registration 2026-09-10, revision 1, and deferred: a `usedSecondSource` outcome (Wineburg and McGrew 2019, `PLAN-REVISION-3.md` section 2c's Locate `secondSource` design response) is not yet registered in `learning/research-os/study/PREREGISTRATION-DRAFT.md`, since the field it would read does not exist in shipped code.*
 11. What is the cognitive-offloading effect of check on later unassisted claim evaluation (Bastani and others 2024; Lee and others 2025)?
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H1, plus the Lee-2025-and-Fisher-2015 metacognitive confidence instrument in `learning/research-os/study/INSTRUMENTS.md` section 2.*
+*Pre-registered as of 2026-09-10, revision 1: a calibration outcome (stated confidence against source-prediction correctness, `src/lib/research-os/calibration.ts`) is registered as a secondary, exploratory outcome under H1; the class-level production-diversity outcome's own similarity method now has a concrete candidate, `production-guard.ts`'s `jaccardOverlap` (PR #73, merged).*
 
 ## Productions and payments
 
 12. Can student productions meet a research-grade evidence standard? Study: blind rating of accepted productions against the engine's evidence tiers; compare with citizen-science and course-based research precedents.
 13. Does the prospect of a citation payment change the quality or the quantity of productions, and does it crowd out intrinsic motivation? Study: classes with recognition only versus recognition plus custodial credit.
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H3, confirmatory, recognition-only versus recognition-plus-ledger only, no live-cash arm.*
+*Pre-registered as of 2026-09-10, revision 1: a production provenance-flags-rate outcome (unverified sources, duplicate flags, missing counter-evidence, `PRODUCTION-GUARD.md`) is registered as a secondary, exploratory outcome under H3, and a required-participation clause (Grinnell and colleagues 2020) stratifies rather than excludes a class whose teacher requires Production submission.*
 14. Which payout structure do guardians and districts accept (guardian-as-payee, custodial account, deferred ledger), and what do state child-earnings laws require in each pilot state?
 
 ## Teacher view
@@ -41,6 +50,7 @@ Seeded 2026-09-09 from the people and funding streams in `_intake/research-os-k1
 ## Engine overlap
 
 19. What detectability and tier should a reviewed student production carry inside the engine's belief fusion, and does adding productions change hypothesis rankings in a calibrated direction? Study: holdout calibration with and without productions.
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H5, confirmatory, contingent on `ros-12`'s engine wiring and at least one accepted Phase 1 production.*
 20. Can the engine's gap-node queue serve as a curriculum: does assigning gap nodes to classes fill them faster than the engine's own active-learning loop?
 
 ## From the AI-for-science literature
@@ -49,8 +59,10 @@ Source: `_intake/research-os-k12/raw/lit-ai-for-science.md` (42 papers, all iden
 
 21. Does an artifact-validity instrument for student productions, separate from a learning-outcome instrument, predict whether a production earns belief mass in the engine? Auchincloss and others 2014 (doi:10.1187/cbe.14-01-0004) report that the course-based research literature has not built this instrument. Study: blind dual rating of accepted productions on validity, compared with the production's later fusion weight.
 22. Does isolated-quote checking overcredit cherry-picked spans compared with full-document context checking? Wadden and others 2022 (arXiv:2112.01640) found context changes verification judgments. Study: run check in both modes on the same productions and compare against human labels.
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H4, confirmatory, plus an exploratory Binz-and-Schulz-2023 paraphrase-fragility sub-hypothesis, run offline against the engine's held-out corpus before any pilot learner is involved.*
 23. When a generator, critic, and judge share a base model, do they share blind spots by construction? Qi and others 2023 (arXiv:2311.05965) found proposer quality degrades on facts excluded from pretraining. Study: cross-family judge versus same-family judge on held-out placements.
 24. Does re-scoring cadence and reviewer training move calibration more than the fusion rule? Mellers and others 2014 (doi:10.1177/0956797614524255). Study: vary update cadence and reviewer calibration feedback; hold the fusion operator fixed.
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H5, confirmatory, named-human-sign-off half of this question only; re-scoring cadence and reviewer training remain open beyond this draft's scope.*
 25. Does reliability-weighted aggregation of many student judgments converge on expert-grade output for slot extraction, as Galaxy Zoo did for morphology (Lintott and others 2008, doi:10.1111/j.1365-2966.2008.13689.x)? Study: weight students by track record; compare with expert labels.
 26. Which frontier nodes attract student routing over time, and does the engine's generator narrow or widen the question set relative to that traffic? Messeri and Crockett 2024 (doi:10.1038/s41586-024-07146-0). Study: longitudinal comparison of routed targets and generated hypotheses.
 27. Does locking a production's evaluation criteria before check runs reduce bias, the way Registered Reports do for human research (Chambers 2013, doi:10.1016/j.cortex.2012.12.016)?
@@ -61,10 +73,14 @@ Source: `_intake/research-os-k12/raw/lit-educational-methods.md` (49 sources, DO
 
 28. Do the five states form one ordered latent trait, as SOLO and ICAP do, or several dimensions? Rasch or IRT fit on state items across many atoms.
 29. Does frontier-backward routing beat forward sequencing on delayed retention and motivation at matched time on task? RCT on the same atoms.
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H2, confirmatory, time-to-Understanding half of this question; motivation is not a separately scored H2 outcome in this draft.*
 30. Does a citation payment change the self-explanation and struggle behaviors that predict transfer (Chi and others 1989, 1994; Kapur 2008, 2014)? Three conditions: no payment, credential only, payment.
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H3, confirmatory, self-explanation-quality half of this question; the "payment" condition here is a non-liquid ledger entry only, per that draft's own scope note.*
 31. What share of accepted productions is net-new synthesis versus restated source material, by grade band? Blind expert coding against cited sources.
+*Pre-registered as of 2026-09-10, revision 1: `PRODUCTION-GUARD.md`'s duplicate-flag check (token overlap against the learner's own prior Productions, other accepted Productions in the class, and canon claim text) is a machine-scored proxy for this question's own restated-versus-net-new distinction, read alongside the blind expert coding this question specifies rather than instead of it.*
 32. Does teacher access to state-level data change grouping and intervention decisions, and do outcomes match Black and Wiliam's range? Classrooms randomized to the class view.
 33. Do FSRS intervals need to differ by state, given different forgetting curves for recall and production?
+*Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H6, confirmatory main sub-hypothesis (FSRS-scheduled versus fixed-interval retention), using the probe schedule in `learning/research-os/study/INSTRUMENTS.md` section 1.*
 34. Does population-average prerequisite mastery misroute learners that individualized estimates would catch (Pardos and Heffernan 2010, doi:10.1007/978-3-642-13470-8_24)? Simulation plus field comparison.
 35. Does the expertise reversal effect cross the five states, so that scaffolds that help at Access slow learners at Internalization? Scaffold intensity crossed with state.
 36. At what rate do learners turn repeated check queries into indirect answer requests? Transcript coding after Wang and others 2024.

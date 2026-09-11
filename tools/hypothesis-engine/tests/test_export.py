@@ -106,6 +106,24 @@ def test_write_views_round_trips_through_json(tmp_path):
     assert loaded == views
 
 
+def test_write_views_labels_elo_as_unvalidated(tmp_path):
+    # ros-11 remainder: TIMELINE.md is the one campaign surface that
+    # carried no unvalidated-ranking label (canon_writeback.py's
+    # render_index and its feed402 envelope's elo_status both already
+    # do). Both the top-of-file note and the bin table's own Elo column
+    # header must name it.
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
+    tbin = time_bin_index(_interval().start)
+    views = timeline_views([h_farmers, h_aliens, h_seq], opinions, elos, [tbin])
+
+    write_views(views, tmp_path)
+    text = (tmp_path / "TIMELINE.md").read_text()
+    assert "Elo is unvalidated" in text
+    assert "PLAN.md` section 10" in text
+    assert "Elo (unvalidated)" in text
+
+
 def test_write_views_writes_a_markdown_table(tmp_path):
     vocab = _small_vocab()
     h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)

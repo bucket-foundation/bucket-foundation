@@ -93,6 +93,85 @@ def test_pmap_rejects_unknown_on_error():
 
 
 # --------------------------------------------------------------------------
+# pmap: on_error="default" narrowed by default_exceptions
+# (FINDING-2026-09-10, silent-failures review #1: `preservation_critique_
+# many`'s `pmap` call must not mislabel a non-refusal failure, e.g. a
+# missing `claude` CLI or malformed JSON, as a model refusal by defaulting
+# it silently the same way. `default_exceptions` is `hte.parallel`'s own
+# exception-type-agnostic mechanism for a caller to draw that line without
+# this module importing the caller's own exception types.)
+# --------------------------------------------------------------------------
+
+
+class _Expected(Exception):
+    """Stands in for a caller's own 'this is fine to default' exception
+    (`hte.llm.ModelRefusal`/`ModelTruncation` in the real caller)."""
+
+
+class _Unexpected(Exception):
+    """Stands in for a real failure a caller never wants silently
+    defaulted (`hte.llm.LLMInvalidResponseError`/`LLMInvocationError`, a
+    missing CLI, a plain bug, in the real caller)."""
+
+
+def test_pmap_default_exceptions_none_defaults_every_exception_type():
+    # Backward-compatible default: `default_exceptions` unset behaves
+    # exactly like before this parameter existed.
+    def fn(x: int) -> int:
+        if x == 1:
+            raise _Unexpected("an infra failure")
+        return x
+
+    result = parallel.pmap(
+        fn, [0, 1, 2], workers=1, retries=0, on_error="default", default=-1, backoff=_FAST_BACKOFF,
+    )
+    assert result == [0, -1, 2]
+
+
+def test_pmap_default_exceptions_defaults_an_allowed_type():
+    def fn(x: int) -> int:
+        if x == 1:
+            raise _Expected("a benign, expected case")
+        return x
+
+    result = parallel.pmap(
+        fn, [0, 1, 2], workers=1, retries=0, on_error="default", default=-1,
+        default_exceptions=(_Expected,), backoff=_FAST_BACKOFF,
+    )
+    assert result == [0, -1, 2]
+
+
+def test_pmap_default_exceptions_propagates_a_disallowed_type_instead_of_defaulting():
+    def fn(x: int) -> int:
+        if x == 1:
+            raise _Unexpected("a real infra failure, not a benign case")
+        return x
+
+    with pytest.raises(_Unexpected, match="a real infra failure"):
+        parallel.pmap(
+            fn, [0, 1, 2], workers=1, retries=0, on_error="default", default=-1,
+            default_exceptions=(_Expected,), backoff=_FAST_BACKOFF,
+        )
+
+
+def test_pmap_default_exceptions_still_retries_a_disallowed_type_before_propagating():
+    calls = {"n": 0}
+
+    def fn(x: int) -> int:
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise _Unexpected("transient")
+        return 99
+
+    result = parallel.pmap(
+        fn, [1], workers=1, retries=2, on_error="default", default=-1,
+        default_exceptions=(_Expected,), backoff=_FAST_BACKOFF,
+    )
+    assert result == [99]
+    assert calls["n"] == 3
+
+
+# --------------------------------------------------------------------------
 # pmap: RateLimit is a global pause across every worker
 # --------------------------------------------------------------------------
 

@@ -40,21 +40,50 @@ export type PrimaryPaper = {
  canonScore: number;
  canonScoreReasons: string[];
  concepts: string[];
+ // Raw `provenance_signoff` value, e.g. `pending: gianyrox`, or null when the
+ // record predates the ros-11 named-human-signoff rule. See isPendingSignoff.
+ provenanceSignoff: string | null;
  // "title + venue + concepts", the text tokens we rank queries against.
  text: string;
 };
+
+/**
+ * ros-11 governance gate: a record whose `provenance_signoff` starts with
+ * "pending" or "rejected" has not been approved by a named human. Neither
+ * counts as approved canon: "pending" is awaiting a decision, "rejected" is
+ * a decision that came back negative. Both must never be served as an
+ * approved, citeable-for-pay canon entry. A record with no
+ * `provenance_signoff` field at all predates the ros-11 rule and is treated
+ * as already-vetted (the rule is not retroactive); only an explicit
+ * "pending: ..." or "rejected: ..." value gates a record out. See
+ * `tools/canon-pipeline/SIGNOFF.md` for the tool that writes "approved: "
+ * and "rejected: " values.
+ *
+ * Single source of truth: loadPrimaryPapers() below applies this before
+ * caching, so every consumer (the /api/research paid-cite envelope and the
+ * Research OS canon importer) is gated the same way with no extra call site.
+ */
+export function isPendingSignoff(signoff: string | null | undefined): boolean {
+ return typeof signoff === "string" && /^\s*(pending|rejected)\b/i.test(signoff);
+}
 
 const REPO_ROOT = path.resolve(process.cwd());
 const CANON_ROOT = path.join(REPO_ROOT, "bucket-canon");
 
 let cache: PrimaryPaper[] | null = null;
 
-function findPrimaryFiles(): { branch: string; concept: string; file: string }[] {
+// Exported for tools/canon-pipeline's TS-side counterpart
+// (src/lib/canon-signoff.ts): the sign-off tool needs the UNFILTERED
+// records (including pending/rejected ones) plus the raw file path, which
+// loadPrimaryPapers()'s cached, gate-applied output does not carry.
+export function findPrimaryFiles(
+ root: string = CANON_ROOT,
+): { branch: string; concept: string; file: string }[] {
  const out: { branch: string; concept: string; file: string }[] = [];
- if (!fs.existsSync(CANON_ROOT)) return out;
- for (const branch of fs.readdirSync(CANON_ROOT).sort()) {
+ if (!fs.existsSync(root)) return out;
+ for (const branch of fs.readdirSync(root).sort()) {
  if (!/^\d{2}-/.test(branch)) continue;
- const branchDir = path.join(CANON_ROOT, branch);
+ const branchDir = path.join(root, branch);
  let stat: fs.Stats;
  try {
  stat = fs.statSync(branchDir);
@@ -74,7 +103,10 @@ function findPrimaryFiles(): { branch: string; concept: string; file: string }[]
 // top-level "- id:" line. Scalars we care about are at 2-space indent
 // (" key: value"); authors live under a " authors:" block as " - family:"
 // / " given:" pairs; canon_score_reasons / concepts are " - " list items.
-function parseYamlRecords(
+// Exported for src/lib/canon-signoff.ts, which needs the unfiltered records
+// (a pending or rejected provenanceSignoff included) that loadPrimaryPapers()
+// below deliberately excludes.
+export function parseYamlRecords(
  raw: string,
  branch: string,
  concept: string,
@@ -107,6 +139,7 @@ function parseYamlRecords(
  let canonicalUrl = "";
  let citationCount = 0;
  let canonScore = 0;
+ let provenanceSignoff: string | null = null;
  const authors: { family: string; given: string }[] = [];
  const canonScoreReasons: string[] = [];
  const concepts: string[] = [];
@@ -153,6 +186,9 @@ function parseYamlRecords(
             canonScore = Number.isNaN(n) ? 0 : n;
             break;
           }
+          case "provenance_signoff":
+            provenanceSignoff = unquote(val) || null;
+            break;
           case "authors":
             section = "authors";
             break;
@@ -231,6 +267,7 @@ function parseYamlRecords(
       canonScore,
       canonScoreReasons,
       concepts,
+      provenanceSignoff,
       text,
     });
   }
@@ -249,7 +286,9 @@ export function loadPrimaryPapers(): PrimaryPaper[] {
     }
     out.push(...parseYamlRecords(raw, branch, concept));
   }
-  cache = out;
+  // ros-11 gate: never serve a record pending named-human signoff as an
+  // approved canon entry. See isPendingSignoff above.
+  cache = out.filter((p) => !isPendingSignoff(p.provenanceSignoff));
   return cache;
 }
 

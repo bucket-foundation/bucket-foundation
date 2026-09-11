@@ -1,8 +1,10 @@
 """`hte.corpus.literature`: the Research OS for K-12 literature-corpus
-adapter (PR #5, `_intake/research-os-k12-literature/`), exercised against
-the 6 real cards checked in under `hte/data/literature-fixtures/` (copied
-verbatim from the PR branch, the founder's own repo content). Every test
-below passes `cards_dir` explicitly and never touches the network.
+adapter (PR #5, `_intake/research-os-k12-literature/`, grown by PR #15's
+own "literature batch two"), exercised against the 6 real batch-one cards
+checked in under `hte/data/literature-fixtures/` plus the 6 real
+batch-two cards checked in under `hte/data/literature-fixtures-batch-
+two/` (both copied verbatim from the two PRs' own real content). Every
+test below passes `cards_dir` explicitly and never touches the network.
 
 The two tests under "network fetch" are the exception: one monkeypatches
 `urllib.request.urlopen` so the fetch-and-cache path is exercised
@@ -19,11 +21,12 @@ import urllib.error
 
 import pytest
 
-from hte.concepts import ConsensusStatus, Slot
+from hte.concepts import ConsensusStatus, Slot, other_id
 from hte.corpus import literature
 from hte.evidence import EvidenceKind, Tier
 
 FIXTURES_DIR = literature.DEFAULT_FIXTURES_DIR
+FIXTURES_DIR_BATCH_TWO = literature.DEFAULT_FIXTURES_DIR_BATCH_TWO
 
 
 @pytest.fixture(scope="module")
@@ -34,6 +37,21 @@ def cards():
 @pytest.fixture(scope="module")
 def corpus():
     return literature.load(FIXTURES_DIR)
+
+
+@pytest.fixture(scope="module")
+def cards_batch_two():
+    return literature.load_raw(FIXTURES_DIR_BATCH_TWO)
+
+
+@pytest.fixture(scope="module")
+def cards_both():
+    return literature.load_raw([FIXTURES_DIR, FIXTURES_DIR_BATCH_TWO])
+
+
+@pytest.fixture(scope="module")
+def corpus_both():
+    return literature.load(literature.DEFAULT_CARDS_DIRS)
 
 
 def _card(cards_, needle: str):
@@ -133,7 +151,7 @@ def test_parse_frontmatter_skips_a_leading_voice_ignore_file_comment_and_keeps_s
     assert len(card.key_claims) == 1
     claim = card.key_claims[0]
     # the span locates the exact quote inside the real, full file text,
-    # header line included, not a header-stripped slice of it
+    # the header line's own length folded into the offset math
     assert raw[claim.char_start:claim.char_end] == claim.text == "The header does not corrupt the span."
     lines = raw.splitlines()
     located = "\n".join(lines[claim.line_start - 1:claim.line_end])
@@ -146,10 +164,69 @@ def test_parse_frontmatter_skips_a_leading_voice_ignore_file_comment_and_keeps_s
 
 
 def test_parse_frontmatter_still_raises_on_a_real_missing_opener():
-    # A card with neither a comment header nor a `---` opener is still a
-    # real error, not silently swallowed by the header-skip.
+    # A card with neither a comment header nor a `---` opener still
+    # raises a real error; the header-skip logic never swallows it.
     with pytest.raises(ValueError, match="has no frontmatter opening"):
         literature._parse_frontmatter("title: not frontmatter at all\n", "bad.md")
+
+
+def test_parse_frontmatter_missing_required_field_names_the_file():
+    # Silent-failures review finding 7a: a card missing a required field
+    # (here, `authors:`) used to raise a bare `KeyError: 'authors'` with
+    # no indication of which of a 45-card-and-growing corpus's own files
+    # to fix.
+    raw = (
+        '---\n'
+        'title: "A Card Missing Authors"\n'
+        'year: 2021\n'
+        'venue: "Some Journal"\n'
+        'doi: "10.1000/missing-authors"\n'
+        'url: "https://doi.org/10.1000/missing-authors"\n'
+        'openalex_id: null\n'
+        'branch: "educational-methods"\n'
+        'tier: "canon"\n'
+        'why_it_matters: >\n'
+        '  It has no authors field.\n'
+        'key_claims:\n'
+        '  - "A claim."\n'
+        'research_questions_it_leaves_open:\n'
+        '  - "An open question."\n'
+        'how_it_bears_on_research_os: >\n'
+        '  It bears directly.\n'
+        '---\n\n# Title\n'
+    )
+    with pytest.raises(ValueError, match=r"missing-authors\.md carries no 'authors' field"):
+        literature._parse_frontmatter(raw, "educational-methods/missing-authors.md")
+
+
+def test_parse_frontmatter_non_numeric_year_names_the_file():
+    # Silent-failures review finding 7a: a card with a non-numeric
+    # `year:` used to raise a bare `ValueError: invalid literal for
+    # int()...` with no file name either.
+    raw = (
+        '---\n'
+        'title: "A Card With A Bad Year"\n'
+        'authors:\n'
+        '  - "Author, A."\n'
+        'year: not-a-number\n'
+        'venue: "Some Journal"\n'
+        'doi: "10.1000/bad-year"\n'
+        'url: "https://doi.org/10.1000/bad-year"\n'
+        'openalex_id: null\n'
+        'branch: "educational-methods"\n'
+        'tier: "canon"\n'
+        'why_it_matters: >\n'
+        '  It has a bad year.\n'
+        'key_claims:\n'
+        '  - "A claim."\n'
+        'research_questions_it_leaves_open:\n'
+        '  - "An open question."\n'
+        'how_it_bears_on_research_os: >\n'
+        '  It bears directly.\n'
+        '---\n\n# Title\n'
+    )
+    with pytest.raises(ValueError, match=r"bad-year\.md: invalid literal for int\(\)"):
+        literature._parse_frontmatter(raw, "educational-methods/bad-year.md")
 
 
 # --------------------------------------------------------------------------
@@ -214,6 +291,13 @@ def test_method_and_kind_classification(cards, needle, expected_method, expected
 
 
 def test_only_the_meta_analysis_becomes_ground_truth(corpus):
+    # `corpus` (batch one alone) carries no cross-card corroboration
+    # group and no bare "replicat" mention paired with an effect size
+    # beyond Kulik, Kulik, and Bangert-Drowns 1990's own meta-analysis,
+    # so the widened, three-way rule (`bkt-hte-ground-truth-enrichment`,
+    # `docs/COVERAGE-2026-09-10.md`) still finds exactly one event
+    # here; `test_widened_rule_finds_six_ground_truth_events_across_
+    # both_batches` below exercises the widening itself.
     assert len(corpus.ground_truth) == 1
     event = corpus.ground_truth[0]
     assert event.doc_id == "10.3102/00346543060002265"  # Kulik, Kulik, and Bangert-Drowns 1990
@@ -229,6 +313,98 @@ def test_bloom_itself_is_not_ground_truth_despite_mentioning_replication(corpus)
     # self-report as a replicated finding.
     bloom_doi = "10.3102/0013189x013006004"
     assert not any(g.doc_id == bloom_doi for g in corpus.ground_truth)
+
+
+# --------------------------------------------------------------------------
+# ground truth widening (`bkt-hte-ground-truth-enrichment`): an effect
+# size gates a bare "replicat" mention, and cross-card corroboration on
+# `(mechanism, object)` is a third, independent way in
+# --------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("a replication effect size of 0.5 standard deviations", True),
+        ("roughly 36 percent of direct replications succeeded", True),
+        ("a large-sample replication check with a 95% confidence interval", True),
+        ("the replication crisis in psychology, no number given here", False),
+        ("no digit anywhere, but this names an effect size by name", False),
+    ],
+)
+def test_has_effect_size(text, expected):
+    assert literature._has_effect_size(text) is expected
+
+
+def test_bare_replication_mention_with_no_effect_size_is_not_ground_truth():
+    # The pre-widening rule credited any card whose scoped text named a
+    # replication, no number required; this rule now also asks for a
+    # quantified effect size (`_has_effect_size`), so a card that only
+    # gestures at "the replication crisis" earns nothing on this reading
+    # alone.
+    method = "theory"
+    text = "This finding sits inside the replication crisis literature, unquantified here."
+    assert not literature._is_ground_truth(method, text)
+
+
+def _synthetic_card(doi, first_author_surname, why_it_matters, key_claim_text="c"):
+    return literature.Card(
+        doi=doi, title="t", authors=(f"{first_author_surname}, A.",), year=2020,
+        venue="v", relative_path=f"{doi}.md", why_it_matters=why_it_matters,
+        key_claims=(literature.Claim(text=key_claim_text, line_start=1, line_end=1, char_start=0, char_end=1),),
+        research_questions=(), how_it_bears_on_research_os="h",
+    )
+
+
+def test_corroborated_dois_needs_two_distinct_first_authors_sharing_mechanism_and_object():
+    # Both cards name the same intervention (a card mentioning nothing
+    # this corpus's own lexicon resolves for actor/place is irrelevant
+    # here; only mechanism and object drive this check), from different
+    # first authors.
+    a = _synthetic_card("doi-a", "Alpha", "Retrieval practice raised test scores in this cohort.")
+    b = _synthetic_card("doi-b", "Beta", "Retrieval practice raised test scores in a second, independent cohort.")
+    assert literature._corroborated_dois([a, b]) == {"doi-a", "doi-b"}
+
+
+def test_corroborated_dois_excludes_a_single_author_repeating_itself():
+    a = _synthetic_card("doi-a", "Alpha", "Retrieval practice raised test scores in this cohort.")
+    b = _synthetic_card("doi-b", "Alpha", "Retrieval practice raised test scores in a follow-up by the same team.")
+    assert literature._corroborated_dois([a, b]) == set()
+
+
+def test_corroborated_dois_excludes_a_shared_other_object_even_with_two_authors():
+    # Neither card names an outcome this corpus's own lexicon resolves
+    # (`_detect_object` reads `OTHER`); two different authors both
+    # landing on "unclassified" is not the corroboration this reading is
+    # built to catch, `object` being the operative shared signal (see
+    # `_corroborated_dois`'s own docstring).
+    a = _synthetic_card("doi-a", "Alpha", "Something happens here that names no outcome this lexicon resolves.")
+    b = _synthetic_card("doi-b", "Beta", "Something else happens here that also names no outcome this lexicon resolves.")
+    assert literature._detect_object(literature._extraction_text(a)) == other_id(Slot.OBJECT)
+    assert literature._corroborated_dois([a, b]) == set()
+
+
+def test_widened_rule_finds_six_ground_truth_events_across_both_batches(corpus_both):
+    # Up from the pre-widening rule's own single event across both
+    # fixture batches (`docs/COVERAGE-2026-09-10.md`'s own "Ground
+    # truth" section carries the before/after numbers): Kulik, Kulik,
+    # and Bangert-Drowns 1990 and Deci, Koestner, and Ryan 1999 each
+    # qualify alone (meta-analysis); Deci and Ryan 2000 and Oudeyer,
+    # Kaplan, and Hafner 2007 corroborate Deci, Koestner, and Ryan
+    # 1999's own `self-determination`/`motivation` reading; Alonzo and
+    # Steedle 2009 and Corcoran, Mosher, and Rogat 2009 independently
+    # corroborate a `learning-gain` reading, a disjoint pair with no
+    # shared author.
+    expected_dois = {
+        "10.3102/00346543060002265",  # Kulik, Kulik, and Bangert-Drowns 1990
+        "10.1037/0033-2909.125.6.627",  # Deci, Koestner, and Ryan 1999
+        "10.1207/s15327965pli1104_01",  # Deci and Ryan 2000
+        "10.1109/TEVC.2006.890271",  # Oudeyer, Kaplan, and Hafner 2007
+        "10.1002/sce.20303",  # Alonzo and Steedle 2009
+        "10.12698/cpre.2009.rr63",  # Corcoran, Mosher, and Rogat 2009
+    }
+    assert {g.doc_id for g in corpus_both.ground_truth} == expected_dois
+    assert len(corpus_both.ground_truth) == 6
 
 
 # --------------------------------------------------------------------------
@@ -376,6 +552,101 @@ def test_corpus_json_round_trips(corpus):
 
 
 # --------------------------------------------------------------------------
+# batch two: a second 6-card fixture root (PR #15), and multi-root loading
+# --------------------------------------------------------------------------
+
+
+def test_load_raw_reads_all_eleven_batch_two_fixtures(cards_batch_two):
+    # 6 original PR #15 cards plus 5 added by `bkt-hte-ground-truth-
+    # enrichment` (`docs/COVERAGE-2026-09-10.md`) to widen the
+    # ground-truth rule's cross-card-corroboration reach.
+    assert len(cards_batch_two) == 11
+    assert len({c.doi for c in cards_batch_two}) == 11
+
+
+def test_batch_two_fixtures_span_five_branches(cards_batch_two):
+    branches = {c.relative_path.split("/", 1)[0] for c in cards_batch_two}
+    assert branches == {
+        "educational-methods", "hci-human-ai-collaboration",
+        "prerequisite-knowledge-graphs", "scientific-discovery-metascience", "ai-and-researchers",
+    }
+
+
+def test_batch_two_fixture_carries_a_new_area_not_in_batch_one(cards_batch_two):
+    # prerequisite-knowledge-graphs is PR #15's own new area, absent from
+    # batch one entirely (this module's own top docstring, "Batches").
+    pan = _card(cards_batch_two, "pan-et-al-2017")
+    assert pan.relative_path.startswith("prerequisite-knowledge-graphs/")
+
+
+def test_batch_two_fixture_header_is_skipped_the_same_way_batch_one_s_is(cards_batch_two):
+    # Confirms the parser skips the `voice-ignore-file` header on a
+    # batch-two card exactly as it does on batch one's own fixtures
+    # (`test_parse_frontmatter_skips_a_leading_voice_ignore_file_comment_
+    # and_keeps_spans_correct` above already regression-tests the parser
+    # itself directly; this checks a real batch-two fixture file on disk
+    # carries that header and still parses).
+    kitano_path = literature.DEFAULT_FIXTURES_DIR_BATCH_TWO / "ai-and-researchers" / "kitano-2021-nobel-turing-challenge.md"
+    raw = kitano_path.read_text()
+    assert raw.startswith("<!-- voice-ignore-file:")
+    kitano = _card(cards_batch_two, "kitano-2021")
+    assert kitano.title == "Nobel Turing Challenge: Creating the Engine for Scientific Discovery"
+    for claim in kitano.key_claims:
+        assert raw[claim.char_start:claim.char_end] == claim.text
+
+
+def test_cards_from_a_single_root_are_tagged_batch_one(cards):
+    assert all(c.batch == "batch-1" for c in cards)
+
+
+def test_cards_from_a_sequence_of_roots_are_tagged_by_position(cards_both):
+    by_root = {c.relative_path: c.batch for c in cards_both}
+    bloom = next(path for path in by_root if "bloom-1984" in path)
+    kitano = next(path for path in by_root if "kitano-2021" in path)
+    assert by_root[bloom] == "batch-1"
+    assert by_root[kitano] == "batch-2"
+
+
+def test_load_default_cards_dirs_constant_is_both_fixture_batches():
+    assert literature.DEFAULT_CARDS_DIRS == (literature.DEFAULT_FIXTURES_DIR, literature.DEFAULT_FIXTURES_DIR_BATCH_TWO)
+
+
+def test_both_batches_combine_to_seventeen_disjoint_sources(corpus_both):
+    assert len(corpus_both.sources) == 17
+    assert len(corpus_both.evidence) == 51  # 3 key_claims per card, 17 cards
+
+
+def test_both_batches_source_batches_field_names_its_own_root(corpus_both):
+    bloom_doi = "10.3102/0013189x013006004"  # batch one
+    kitano_doi = "10.1038/s41540-021-00189-3"  # batch two
+    assert corpus_both.sources[bloom_doi].batches == ["batch-1"]
+    assert corpus_both.sources[kitano_doi].batches == ["batch-2"]
+
+
+def test_a_doi_shared_by_two_roots_dedupes_to_the_first_and_merges_batches(tmp_path):
+    # A synthetic second root repeating one of batch one's own DOIs (the
+    # real fixture batches never collide; this exercises the dedup path
+    # `_build_corpus` takes when they would) must not double-count that
+    # source's evidence, and must fold the second root's own batch label
+    # onto the first root's `Source.batches` rather than replacing it.
+    dupe_root = tmp_path / "dupe-batch"
+    (dupe_root / "educational-methods").mkdir(parents=True)
+    bloom_path = literature.DEFAULT_FIXTURES_DIR / "educational-methods" / "bloom-1984-two-sigma-problem.md"
+    (dupe_root / "educational-methods" / "bloom-1984-two-sigma-problem.md").write_text(bloom_path.read_text())
+
+    corpus = literature.load([literature.DEFAULT_FIXTURES_DIR, dupe_root])
+    bloom_doi = "10.3102/0013189x013006004"
+    assert corpus.sources[bloom_doi].batches == ["batch-1", "batch-2"]
+    assert len([e for e in corpus.evidence if e.source_id == bloom_doi]) == 3  # not 6
+
+
+def test_load_default_matches_both_batches_combined():
+    default_corpus = literature.load_default()
+    both = literature.load(literature.DEFAULT_CARDS_DIRS)
+    assert len(default_corpus.sources) == len(both.sources) == 17
+
+
+# --------------------------------------------------------------------------
 # errors
 # --------------------------------------------------------------------------
 
@@ -454,6 +725,80 @@ def test_ensure_cards_cached_over_monkeypatched_urllib(tmp_path, monkeypatch):
     captured_urls.clear()
     literature.load(ref="fake-ref")
     assert not any(literature.GITHUB_RAW_BASE in u for u in captured_urls)
+
+
+def test_fetch_card_text_wraps_url_error_naming_path_and_ref(monkeypatch):
+    """Silent-failures review finding 4: `_fetch_card_text` used to have
+    no `try/except` at all, unlike its sibling `_fetch_card_paths`, so a
+    network blip fetching one card raised a bare, low-level `urllib`
+    exception naming neither the path nor the ref. It must now wrap the
+    same way."""
+    def fake_urlopen(request, timeout=30):  # noqa: ANN001 - matches urllib's own signature
+        raise literature.urllib.error.URLError("connection reset")
+
+    monkeypatch.setattr(literature.urllib.request, "urlopen", fake_urlopen)
+    with pytest.raises(RuntimeError, match="ai-and-researchers/some-card.md.*fake-ref"):
+        literature._fetch_card_text(f"{literature.GITHUB_INTAKE_PATH}/ai-and-researchers/some-card.md", "fake-ref")
+
+
+def test_ensure_cards_cached_leaves_no_partial_final_file_on_a_write_failure(tmp_path, monkeypatch):
+    """Silent-failures review finding 4: a crash mid-write (disk full,
+    SIGKILL, Ctrl-C) must never leave a `dest`-named file on disk that a
+    later `load()` call's `dest.is_file()` cache-hit check would treat
+    as permanently valid; `_ensure_cards_cached` writes through a
+    `.tmp` path and an atomic `rename` for exactly this reason (`hte.
+    llm._write_cache`'s own convention). This test forces the write
+    itself to fail and checks the real, final-named file was never
+    created."""
+    monkeypatch.setenv("LITERATURE_CARDS_DIR", str(tmp_path / "cache"))
+    real_cards = literature.load_raw(FIXTURES_DIR)
+    one_card = real_cards[0]
+    tree_payload = {"tree": [{"path": f"{literature.GITHUB_INTAKE_PATH}/{one_card.relative_path}", "type": "blob"}]}
+    raw_text = (FIXTURES_DIR / one_card.relative_path).read_text()
+
+    class FakeResponse:
+        def __init__(self, payload: bytes) -> None:
+            self._payload = payload
+
+        def read(self) -> bytes:
+            return self._payload
+
+        def __enter__(self) -> "FakeResponse":
+            return self
+
+        def __exit__(self, *exc_info: object) -> bool:
+            return False
+
+    def fake_urlopen(request, timeout=30):  # noqa: ANN001 - matches urllib's own signature
+        url = request.full_url
+        if "api.github.com" in url:
+            return FakeResponse(json.dumps(tree_payload).encode("utf-8"))
+        return FakeResponse(raw_text.encode("utf-8"))
+
+    monkeypatch.setattr(literature.urllib.request, "urlopen", fake_urlopen)
+
+    real_write_text = literature.Path.write_text
+
+    def flaky_write_text(self, *args, **kwargs):
+        if self.name.endswith(".tmp"):
+            raise OSError("simulated disk full mid-write")
+        return real_write_text(self, *args, **kwargs)
+
+    monkeypatch.setattr(literature.Path, "write_text", flaky_write_text)
+
+    with pytest.raises(OSError, match="simulated disk full"):
+        literature._ensure_cards_cached("fake-ref")
+
+    dest = (tmp_path / "cache") / one_card.relative_path
+    assert not dest.exists()
+
+    # the write failure is not permanent: a later, successful attempt
+    # (the flaky patch removed) fetches this card fresh rather than
+    # treating anything left behind as an already-valid cache entry
+    monkeypatch.setattr(literature.Path, "write_text", real_write_text)
+    literature._ensure_cards_cached("fake-ref")
+    assert dest.is_file()
+    assert dest.read_text() == raw_text
 
 
 def test_live_fetch_lists_cards_or_skips_when_offline():

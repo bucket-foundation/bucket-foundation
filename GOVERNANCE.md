@@ -19,6 +19,20 @@ The concrete expression of this mission is:
 
 That's it. Everything else is implementation detail.
 
+### Canon sign-off
+
+No record in `bucket-canon/` counts as approved until a named human signs off. Two pipelines write into `bucket-canon/`, and both enforce this, at different points in the write.
+
+`tools/hypothesis-engine/hte/canon_writeback.py`, the automated hypothesis engine's write path, refuses outright: a missing or blank `signoff` argument raises before any file touches disk, and `write_back` never promotes a card past `canon_tier: candidate` in any case. Promotion to `canon` stays a human step.
+
+`tools/canon-pipeline/intake.py`, the human-curated canon-intake path, lets a record land with the gap recorded rather than refusing the write: a new or backfilled record carries a `provenance_signoff` field, and a value of `pending: <name>` marks it not yet approved. `src/lib/canon-primary.ts`'s `isPendingSignoff` gate reads that field: a record with a pending signoff is excluded from `loadPrimaryPapers()`, so it is never ranked, served in the `/api/research` paid-cite envelope, or presented as approved canon anywhere the site or the Research OS importer reads from that loader. A record carrying no `provenance_signoff` field predates this rule (ros-11) and stays ungated; the rule does not reach backward.
+
+Approval is the named approver replacing a `pending: <name>` value with their own confirmation. Until then the record sits on disk and in the repo's history, but nothing citeable-for-pay is served from it.
+
+The tool that performs this: `tools/canon-pipeline/signoff.py` (CLI) and `/canon/signoff` (a reviewer- and founder-gated page). See `tools/canon-pipeline/SIGNOFF.md`.
+
+`/api/research` serves foundation-tier records only; a `sub-outcomes/` dossier is outcome tier by mission item 3 above, so it stays out of the paid-cite envelope regardless of sign-off status.
+
 ---
 
 ## 2. What the Foundation owns

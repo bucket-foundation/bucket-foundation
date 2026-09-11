@@ -56,6 +56,7 @@ import subprocess
 import threading
 import time
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Sequence
@@ -365,6 +366,78 @@ def _sanitize_envelope(envelope: dict[str, Any]) -> dict[str, Any]:
     return {k: v for k, v in envelope.items() if k not in _SESSION_ID_KEYS}
 
 
+# A UUID, a `session_id=...`/`uuid: ...` key-value pair (either quoting
+# style a CLI's own plain-text output might use), or a bare 32-plus-
+# character hex token (a session/account/API-key shape with no structured
+# key of its own to catch it by). `_sanitize_envelope` above handles a
+# parsed JSON envelope by dropping known keys outright; this handles the
+# one place this module still interpolates a CLI's raw, unparsed text
+# into an exception message (`_invoke_cli`'s own `claude -p exited ...`
+# branch), where there is no key to drop, only a token shape to redact.
+_ID_LIKE_RE = re.compile(
+    r"\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\b"
+    r"|\b(?:session[_-]?id|uuid|request[_-]?id|account[_-]?id)\s*[:=]\s*[\"']?[\w-]+[\"']?"
+    r"|\b[0-9a-fA-F]{32,}\b",
+    re.IGNORECASE,
+)
+
+
+def _strip_id_like_tokens(text: str) -> str:
+    """`text` with anything that looks like a session, account, or
+    request id redacted (`_ID_LIKE_RE` above). This module's own safety
+    contract is "no session or account identifier in a message that can
+    reach a log or a response"; a bounded plain-text excerpt of what the
+    `claude` CLI itself printed keeps its diagnostic value (a crash
+    trace's first line, an auth error) while still honoring that
+    contract."""
+    return _ID_LIKE_RE.sub("<redacted-id>", text)
+
+
+_INDEX_LOCK = threading.Lock()
+
+
+def _provenance_index_path(cache_dir: str | Path) -> Path:
+    return Path(cache_dir) / "index.jsonl"
+
+
+def _append_provenance_index(cache_dir: str | Path, *, cache_key: str, role: str, provenance: dict[str, Any]) -> None:
+    """Appends one line to `<cache_dir>/index.jsonl` mapping `cache_key`
+    (the same sha256 `_cache_key`/`_cache_path` use for the response file
+    itself) to `provenance`'s own source/production/learner ids
+    (`docs/PRIVACY.md`). Never writes the prompt or response text, or
+    anything else that could reconstruct either: `hte.purge` reads this
+    file back to find which cache entries trace to a production or
+    learner id, with no need to re-hash or re-read a prompt to find out.
+    A no-op when `provenance` is empty or `None` (most `complete()`/
+    `complete_many()` calls carry none). A line is appended on every
+    non-fake, non-`replay_only` call that does carry one, cache hit or
+    miss alike: a repeat call against the same prompt is still one more
+    attributable use of that cached answer. `complete()`'s own fake-mode
+    branch, and its `replay_only` cache-hit branch, never call this at
+    all (see each branch's own comment): fake mode's contract is that it
+    never touches `cache_dir`, `replay_only`'s is that it only ever reads
+    a committed cache, never writes to it, and `tests/test_purge.py`
+    builds its cache/index fixtures through neither path.
+    Guarded by a lock: `complete_many` calls this from several `hte.
+    parallel.pmap` worker threads at once, and a bare append can
+    interleave two writers' lines into one corrupt line without it."""
+    if not provenance:
+        return
+    line = {
+        "cache_key": cache_key,
+        "role": role,
+        "recorded_at": datetime.now(timezone.utc).isoformat(),
+        "source_ids": sorted(set(provenance.get("source_ids") or [])),
+        "production_ids": sorted(set(provenance.get("production_ids") or [])),
+        "learner_ids": sorted(set(provenance.get("learner_ids") or [])),
+    }
+    path = _provenance_index_path(cache_dir)
+    with _INDEX_LOCK:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(line) + "\n")
+
+
 def _read_cache(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text())["response"]
 
@@ -442,11 +515,24 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float,
     usage fields included) into its own message via
     `proc.stdout.strip()`, the exact incident that motivated this
     rewrite. Neither `LLMInvocationError` branch below ever includes an
-    unsanitized envelope or `proc.stderr` in its own message for that
-    reason; a plain invocation failure (a non-JSON stdout, the CLI
-    missing from `PATH`, ...) still names a bounded snippet of whatever
-    plain-text error the CLI itself printed, since that text carries no
-    structured session/account fields to begin with.
+    unsanitized envelope in its own message for that reason. A plain
+    invocation failure with no parsed envelope at all (a non-JSON
+    stdout, a nonzero exit with no JSON on either stream) does still
+    name a bounded, `[:300]`/`[:500]`-sliced excerpt of whatever
+    plain-text `proc.stderr`/`proc.stdout` the CLI itself printed, run
+    through `_strip_id_like_tokens` first (a UUID, a `session_id=...`/
+    `uuid: ...` key-value pair, or a bare 32-plus-character hex token,
+    redacted): that text carries no *structured* session/account field
+    of its own for `_sanitize_envelope`'s key-based rule to drop, but it
+    can still carry an id-shaped token in free text (a crash trace
+    naming a session id, an auth error echoing one back), which
+    `_strip_id_like_tokens` is this branch's own matching safeguard for.
+    Every such failure also logs one `hte.llm` error line server-side
+    (`role`, the same excerpt), the one log line this module's own
+    corrective-retry and invocation-failure paths otherwise leave silent
+    (`hte.roles`'s `_with_refusal_default` passes everything but
+    `ModelRefusal`/`ModelTruncation` through unchanged, so this is the
+    only place in the call chain that ever saw the raw failure).
     """
     argv = [
         "claude", "-p", prompt,
@@ -462,8 +548,10 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float,
     try:
         proc = subprocess.run(argv, capture_output=True, text=True, timeout=timeout)
     except FileNotFoundError as exc:
+        logger.error("hte.llm: role=%r the `claude` CLI is not on PATH", role)
         raise LLMInvocationError("the `claude` CLI is not on PATH") from exc
     except subprocess.TimeoutExpired as exc:
+        logger.error("hte.llm: role=%r claude -p timed out after %ss", role, timeout)
         raise LLMInvocationError(f"claude -p timed out after {timeout}s") from exc
     _check_rate_limit(proc.stdout, proc.stderr)
 
@@ -484,14 +572,19 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float,
                 f"{envelope.get('stop_reason')!r} is_error={envelope.get('is_error')!r} "
                 "(no refusal/truncation match; the envelope's own session/account fields are omitted)"
             )
-        raise LLMInvocationError(
-            f"claude -p exited {proc.returncode} for role={role!r}: "
-            f"{(proc.stderr or proc.stdout).strip()[:300]!r}"
-        )
+        excerpt = _strip_id_like_tokens((proc.stderr or proc.stdout).strip()[:300])
+        logger.error("hte.llm: role=%r claude -p exited %d: %r", role, proc.returncode, excerpt)
+        raise LLMInvocationError(f"claude -p exited {proc.returncode} for role={role!r}: {excerpt!r}")
     if envelope is None:
-        raise LLMInvocationError(f"claude -p produced non-JSON stdout: {proc.stdout[:500]!r}")
+        excerpt = _strip_id_like_tokens(proc.stdout[:500])
+        logger.error("hte.llm: role=%r claude -p produced non-JSON stdout: %r", role, excerpt)
+        raise LLMInvocationError(f"claude -p produced non-JSON stdout: {excerpt!r}")
     if envelope.get("is_error"):
         _check_rate_limit(str(envelope.get("result", "")))
+        logger.error(
+            "hte.llm: role=%r claude -p reported is_error, stop_reason=%r",
+            role, envelope.get("stop_reason"),
+        )
         raise LLMInvocationError(
             f"claude -p reported is_error for role={role!r}: stop_reason={envelope.get('stop_reason')!r} "
             "(no refusal/truncation match; the envelope's own session/account fields are omitted)"
@@ -525,6 +618,7 @@ def complete(
     replay_only: bool = False,
     timeout: float = DEFAULT_TIMEOUT_S,
     mode: str | None = None,
+    provenance: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """A JSON completion matching `schema`, cached by sha256 of `(model,
     prompt)` under `cache_dir`.
@@ -558,6 +652,25 @@ def complete(
     per-role fallback does that at the caller, so every existing direct
     `complete()` call site that has not opted into a default still sees
     the raise.
+
+    `provenance` (`docs/PRIVACY.md`), when given, is a dict of opaque
+    source/production/learner id lists (`hte.provenance.collect`'s own
+    shape); on a cache hit or a fresh call that gets cached, this
+    function appends one line mapping that call's own cache key to those
+    ids to `<cache_dir>/index.jsonl` (`_append_provenance_index`), never
+    the prompt or response text. `hte.roles` passes this for every role
+    call that carries evidence; `hte.purge` reads the index back to find
+    which cached answers trace to a production or learner id. No-op when
+    `provenance` is `None` or empty, when the call raises (a refusal, a
+    truncation, an invalid-JSON exhaustion: there is no cached artifact
+    yet for the index to point at), when `replay_only=True` (this
+    package's own "read committed fixtures, write nothing" contract,
+    `tests/fixtures/llm-cache/`'s own role: a replay against a checked-in
+    cache directory must never leave it dirty), and, `provenance`
+    included, in fake mode: fake mode's own contract is that `cache_dir`
+    is accepted but unused, full stop, so a fake-mode run's `provenance`
+    argument is accepted for call-site symmetry with the non-fake path
+    and otherwise ignored.
     """
     start = time.monotonic()
     resolved_mode = mode if mode is not None else os.environ.get("HTE_LLM_MODE")
@@ -565,6 +678,16 @@ def complete(
         from . import fakellm
         response = fakellm.complete(prompt, role=role, schema=schema)
         _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
+        # No index write here, `provenance` included: fake mode's own
+        # contract (`tests/swarm3/test_cli_props.py::test_campaign_run_
+        # replay_only_in_fake_mode_succeeds_and_never_touches_cache_dir`)
+        # is that `cache_dir` is accepted but unused, full stop, so a
+        # `--cache-dir` pointed at a path that is never even created
+        # still works. A fake-mode run has no real answer to attribute
+        # in the first place; `hte.purge`'s own tests build a real
+        # `index.jsonl` through the non-fake path instead (a
+        # monkeypatched `subprocess.run`, `tests/test_llm.py`'s own
+        # pattern), never through fake mode.
         return response
 
     resolved_model = model or resolve_model(role)
@@ -572,6 +695,16 @@ def complete(
     if cache_path.exists():
         response = _read_cache(cache_path)
         _STATS.record_call(role, cache_hit=True, wall_time_s=time.monotonic() - start)
+        # `replay_only` is this package's own "read committed fixtures,
+        # write nothing" contract (`tests/fixtures/llm-cache/`'s own
+        # role): every test in this package that replays against it
+        # would otherwise leave that checked-in directory dirty on every
+        # run, an index line appended for a role call the test never
+        # asked to be attributed at all. A caller with a real, mutable
+        # `cache_dir` (`replay_only=False`) still gets the write on a
+        # cache hit, same as any other call.
+        if provenance and not replay_only:
+            _append_provenance_index(cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance)
         return response
     if replay_only:
         raise LLMCacheMissError(
@@ -602,11 +735,20 @@ def complete(
             response = _parse_response(envelope, required)
         except LLMInvalidResponseError as exc:
             last_error = str(exc)
+            logger.warning(
+                "hte.llm: role=%r model=%r invalid response on attempt %d, retrying: %s",
+                role, resolved_model, attempt + 1, last_error,
+            )
             continue
         _write_cache(cache_path, model=resolved_model, role=role, prompt=prompt, response=response)
         _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
+        if provenance:
+            _append_provenance_index(cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance)
         return response
     _STATS.record_call(role, cache_hit=False, wall_time_s=time.monotonic() - start)
+    logger.error(
+        "hte.llm: role=%r model=%r invalid JSON after one retry: %s", role, resolved_model, last_error,
+    )
     raise LLMInvalidResponseError(
         f"role={role!r} model={resolved_model!r}: invalid JSON after one retry: {last_error}"
     )
@@ -624,6 +766,7 @@ def complete_many(
     mode: str | None = None,
     workers: int | None = None,
     default: dict[str, Any] | None = None,
+    provenance: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     """`complete()` mapped over `prompts`, in the same order, through
     `hte.parallel.pmap` (`workers` at a time, `hte.parallel.configure`'s
@@ -642,15 +785,36 @@ def complete_many(
 
     `default`, when given, is wired through as `hte.parallel.pmap`'s own
     `on_error="default"`/`default=` pair (`bkt-hte-refusal-handling`):
-    a prompt whose `complete()` call keeps failing (`ModelRefusal`/
-    `ModelTruncation` chief among them, since `pmap`'s own retries give
-    a fresh `claude -p` call, and so a fresh chance to answer, before
-    giving up) resolves to `default` in its place in the returned list
-    rather than aborting every other prompt in `prompts` alongside it.
-    `hte.llm.stats()` still records the refusal/truncation itself
-    (`complete()`'s own bookkeeping, unaffected by how the caller
-    absorbs it); `default=None` (the default) preserves this function's
-    prior behavior, one failing prompt raises out of the whole call.
+    a prompt whose `complete()` call keeps failing with `ModelRefusal` or
+    `ModelTruncation` (since `pmap`'s own retries give a fresh `claude -p`
+    call, and so a fresh chance to answer, before giving up) resolves to
+    `default` in its place in the returned list rather than aborting
+    every other prompt in `prompts` alongside it. `hte.llm.stats()` still
+    records the refusal/truncation itself (`complete()`'s own
+    bookkeeping, unaffected by how the caller absorbs it); `default=None`
+    (the default) preserves this function's prior behavior, one failing
+    prompt raises out of the whole call.
+
+    `default` is scoped to `(ModelRefusal, ModelTruncation)` only, wired
+    through as `pmap`'s own `default_exceptions` (`FINDING-2026-09-10-
+    102`: a prompt failing for any other reason, a malformed-JSON parse
+    error on both attempts, a missing `claude` CLI, a rate limit past
+    `pmap`'s own abort budget, a plain bug, propagates out of this call
+    instead of resolving to `default` and being mistaken for an ordinary
+    refusal. Before this fix, `pmap`'s own broad `except Exception:`
+    could not tell a refusal from a real infrastructure failure, so an
+    outage (the CLI missing from `PATH`, say) silently degraded every
+    prompt in `prompts` to `default` and got logged and counted as a
+    routine "model refused" event, indistinguishable from the benign
+    case this function exists to absorb.
+
+    `provenance`, when given, is the same shared context (`hte.
+    provenance.collect`'s own shape) for every prompt in `prompts`; see
+    `complete()`'s own docstring for what it does. No current `hte.roles`
+    call site batches evidence-carrying prompts through this function,
+    but the parameter is accepted here for the same reason `hte.llm.
+    complete` accepts it: symmetry with `complete()`, and so a future
+    batched role needs no signature change to opt in.
     """
     results: list[dict[str, Any] | None] = [None] * len(prompts)
     resolved_mode = mode if mode is not None else os.environ.get("HTE_LLM_MODE")
@@ -663,6 +827,8 @@ def complete_many(
                 start = time.monotonic()
                 results[i] = _read_cache(cache_path)
                 _STATS.record_call(role, cache_hit=True, wall_time_s=time.monotonic() - start)
+                if provenance and not replay_only:  # see complete()'s own comment on this branch
+                    _append_provenance_index(cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance)
                 continue
         pending.append(i)
 
@@ -670,13 +836,14 @@ def complete_many(
         def _call(i: int) -> dict[str, Any]:
             return complete(
                 prompts[i], role=role, schema=schema, model=model, cache_dir=cache_dir,
-                replay_only=replay_only, timeout=timeout, mode=mode,
+                replay_only=replay_only, timeout=timeout, mode=mode, provenance=provenance,
             )
 
         pmap_kwargs: dict[str, Any] = {"workers": workers}
         if default is not None:
             pmap_kwargs["on_error"] = "default"
             pmap_kwargs["default"] = default
+            pmap_kwargs["default_exceptions"] = (ModelRefusal, ModelTruncation)
 
         for idx, response in zip(pending, pmap(_call, pending, **pmap_kwargs)):
             results[idx] = response

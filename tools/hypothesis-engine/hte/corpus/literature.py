@@ -118,16 +118,59 @@ corpus.education_atlas` reads:
   own publication year (`discovery_year == year`, the same simplification
   `hte.corpus.quantum_history`, `hte.corpus.education_atlas`, and `hte.
   corpus.fixtures` all make, contrasted with `hte.corpus.production`'s own
-  real discovery lag), when `_classify_method` reads it as a
-  `meta-analysis` (a meta-analysis is, by construction, a synthesis of
-  many replicated findings into one pooled effect size) or when its own
-  scoped findings text names a replication directly (`"replicat"`, a
-  substring catching `"replication"`/`"replications"`/`"replicated"`,
-  scoped to `why_it_matters` and `key_claims` only, per the point above).
-  Three meta-analyses (Kulik, Kulik, and Bangert-Drowns 1990; Kulik and
-  Fletcher 2016; VanLehn 2011) and one direct replication report (Open
-  Science Collaboration 2015) become ground truth this way across the
-  full 45-card corpus.
+  real discovery lag), under any of three independent ways a finding gets
+  attested (`bkt-hte-ground-truth-enrichment`'s own widening of a rule
+  that, before this change, only read the first of the three; the
+  reason table lives in `docs/COVERAGE-2026-09-10.md`'s "Why coverage was
+  low" section, read from the `feat/hte-generation-coverage` branch):
+
+  1. **Meta-analysis.** `_classify_method` reads it as a `meta-analysis`:
+     a meta-analysis is, by construction, a synthesis of many replicated
+     findings into one pooled effect size, ground truth on its own with
+     no further check.
+  2. **Direct replication, with an effect size.** Its own scoped findings
+     text names a replication directly (`"replicat"`, a substring
+     catching `"replication"`/`"replications"`/`"replicated"`, scoped to
+     `why_it_matters` and `key_claims` only, per the point above) AND
+     that same text names a quantified effect size (`_has_effect_size`:
+     one of `_EFFECT_SIZE_MARKERS`'s own unit or statistic words,
+     alongside a digit somewhere in the text). The effect-size check is
+     this change's own tightening: a bare mention of the word
+     "replication" with no number attached (a card citing "the
+     replication crisis" in passing, never itself checked against this
+     corpus) no longer qualifies on that reading alone; every card this
+     rule already credited before this change (Kulik, Kulik, and
+     Bangert-Drowns 1990's own "0.5 standard deviations"; Open Science
+     Collaboration 2015's own "roughly 36 percent... about half the
+     size") keeps a real number behind its own replication language, so
+     the tightening drops nothing this rule already credited.
+  3. **Cross-card corroboration.** `_corroborated_dois` (checked once per
+     `_build_corpus` call, over every card in the batch together):
+     two or more cards naming the same `(mechanism, object)` reading,
+     from at least two distinct first authors, are every one of them
+     ground truth, `object` (a shared, named outcome) the operative
+     signal; see that function's own docstring for why a shared `OTHER`
+     placeholder on `object` never qualifies, even when `mechanism` also
+     matches, while a shared `OTHER` on `mechanism` alone still can.
+     This is the paper's own "two independent kinds" reading extended
+     to two independent studies: neither card cites the other (a stemma
+     edge, checked separately, above), yet both land on the same finding
+     from their own independent read of the evidence.
+
+  Across this package's own shipped fixture batches (`DEFAULT_CARDS_
+  DIRS`, `load_default`'s own corpus), method 1 alone credits Kulik,
+  Kulik, and Bangert-Drowns 1990 and Deci, Koestner, and Ryan 1999
+  (extrinsic-rewards meta-analysis); method 3 credits Deci and
+  Ryan 2000 and Oudeyer, Kaplan, and Hafner 2007 (both corroborating
+  Deci, Koestner, and Ryan 1999's own `self-determination`/`motivation`
+  reading) and Alonzo and Steedle 2009 alongside Corcoran, Mosher, and
+  Rogat 2009 (independently corroborating a `learning-gain` reading, a
+  different research question from the self-determination group, no
+  shared author between the two groups either), six ground-truth events
+  total, up from the pre-widening rule's own single event across both
+  fixture batches (this change's own "Ground truth" section in
+  `docs/COVERAGE-2026-09-10.md` carries the before/after numbers and
+  the `hte calibrate --corpus literature` coverage this widening buys).
 - **Stemma.** Unlike the four slot and method classifiers, stemma
   detection reads a wider span of a card's own prose than `_extraction_
   text` does, `why_it_matters`, `key_claims`, and `how_it_bears_on_
@@ -189,6 +232,54 @@ corpus.education_atlas` reads:
   and shifts every `Claim` span's line number and char offset by its own
   length, so a span still locates the exact quote inside the file's real,
   full text.
+
+Batches (`bkt-hte-literature-batch-two`, PR #15, "evidence on the twelve
+open questions" in `_intake/research-os-k12-literature/README.md` and
+`_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`).
+Batch two shipped 31 new cards plus one already-drafted card folded into
+the index (Bastani and others 2025), landing inside the exact same
+`_intake/research-os-k12-literature/` tree PR #5's batch one already
+occupies, area by area, rather than a sibling directory: PR #15 added a
+fifth area, `prerequisite-knowledge-graphs`, and grew the other four.
+Every batch-two card carries the identical frontmatter shape batch one's
+own cards do (this module's own docstring above needed no new field, no
+new scalar/list/block-scalar grammar, and no new slot-lexicon entry to
+read a batch-two card: `_extraction_text`, `_classify_method`,
+and the four slot lexicons already read whatever a card's title,
+`why_it_matters`, and `key_claims` name, batch one's cards or batch
+two's), so on GitHub, at any ref past PR #15's merge, the two batches are
+already one indistinguishable tree; nothing downstream of `load_raw`
+needs a "which batch" reading to score, fuse, or tournament a batch-two
+card's evidence any differently from a batch-one card's.
+
+What *does* need a "which batch" reading is provenance: `Source.batches`
+(`hte.evidence.Source`) names which named card root(s) contributed a
+source, so a caller building a corpus from more than one root, e.g. the
+6-card batch-one fixture set (`DEFAULT_FIXTURES_DIR`) plus the 6-card
+batch-two fixture set (`DEFAULT_FIXTURES_DIR_BATCH_TWO`), can tell which
+root each source came from without re-reading the file tree. `cards_dir`
+on `load_raw`/`load` accepts a single directory (batch one's own
+call shape, kept working unchanged) or a sequence of directories, one per
+named root, read and concatenated in order and tagged `"batch-1"`,
+`"batch-2"`, ... by that order's own position; `DEFAULT_CARDS_DIRS`
+names the canonical "both fixture batches" pair callers who want the
+combined 12-card fixture corpus pass explicitly. `cards_dir=None` keeps
+meaning "fetch over the network at `ref`" regardless: a caller who wants
+"the real, on-disk, already-merged 82-card tree this repo's own `main`
+carries past PR #15" calls `load_default()` instead, which reads that one
+real local root (no batch split; the real tree has none) when this
+package is running inside a checkout that has it, falling back to
+`load()`'s own network fetch otherwise. `load_default` is `_CORPUS_LOADERS`'s
+own zero-arg registration (`hte/cli.py`, `hte/runner.py`), the shape every
+other corpus loader there already has.
+
+A DOI appearing under more than one root (two fixture batches drawing on
+the same real 82-card tree could pick the same paper twice by accident)
+dedupes to the first root's own card: `_build_corpus` builds each `Source`
+once, from the first cards list entry naming that DOI, and appends every
+later root's own batch label onto that same `Source.batches` list rather
+than re-adding its evidence a second time, so `corpus.evidence`'s own
+count never double-counts a paper two roots both happen to carry.
 """
 from __future__ import annotations
 
@@ -198,10 +289,10 @@ import re
 import tempfile
 import urllib.error
 import urllib.request
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Sequence
 
 from ..concepts import Slot, Vocabulary, other_id
 from ..evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
@@ -213,9 +304,25 @@ from . import Corpus, GroundTruthEvent, RetrievalEnvelope
 # `*_VOCAB_PATH` uses.
 LITERATURE_VOCAB_PATH = Path(__file__).resolve().parents[1] / "data" / "vocab-literature-seed.json"
 DEFAULT_FIXTURES_DIR = Path(__file__).resolve().parents[1] / "data" / "literature-fixtures"
+# Batch two's own 6-card fixture subset (`bkt-hte-literature-batch-two`,
+# PR #15), the same "verbatim copy, `voice-ignore-file` header prepended"
+# convention `DEFAULT_FIXTURES_DIR` already carries for batch one.
+DEFAULT_FIXTURES_DIR_BATCH_TWO = Path(__file__).resolve().parents[1] / "data" / "literature-fixtures-batch-two"
+# The canonical "both batches" pair a caller wanting the combined,
+# 12-card fixture corpus passes to `load`/`load_raw` as `cards_dir`; see
+# this module's own top docstring, "Batches," for why this is not
+# `cards_dir`'s own default (that default stays the network fetch).
+DEFAULT_CARDS_DIRS: tuple[Path, ...] = (DEFAULT_FIXTURES_DIR, DEFAULT_FIXTURES_DIR_BATCH_TWO)
 
 GITHUB_REPO = "bucket-foundation/bucket-foundation"
 GITHUB_INTAKE_PATH = "_intake/research-os-k12-literature"
+# `tools/hypothesis-engine/hte/corpus/literature.py` -> parents[4] is this
+# repo's own root (`bucket-foundation/`): `hte/corpus` -> `hte` -> `hypothesis-
+# engine` -> `tools` -> repo root. `load_default` reads this real, on-disk
+# path directly, no network, when it exists (true on `main` past PR #5 and
+# PR #15 both merging); see this module's own top docstring, "Batches."
+_REPO_ROOT = Path(__file__).resolve().parents[4]
+LOCAL_INTAKE_DIR = _REPO_ROOT / GITHUB_INTAKE_PATH
 # PR #5's own branch, the ref this module was built against; GitHub deletes
 # a merged PR's own source branch by this repo's default settings, so this
 # exact ref 404s once PR #5 merges (it merged mid-review, in fact, while
@@ -258,7 +365,10 @@ class Claim:
 class Card:
     """One literature card, parsed losslessly from its own frontmatter and
     file location; `_build_corpus` below is the lossy projection onto
-    `hte.corpus.Corpus`."""
+    `hte.corpus.Corpus`. `batch` names which card root (position in a
+    `load_raw(cards_dir=[...])` call's own list, `"batch-1"` for a single
+    directory) this card was read from; see this module's own top
+    docstring, "Batches.\""""
     doi: str
     title: str
     authors: tuple[str, ...]
@@ -269,6 +379,7 @@ class Card:
     key_claims: tuple[Claim, ...]
     research_questions: tuple[str, ...]
     how_it_bears_on_research_os: str
+    batch: str = "batch-1"
 
     @property
     def first_author_surname(self) -> str:
@@ -400,7 +511,7 @@ def _parse_block_scalar(field_lines: list[tuple[int, int, str]]) -> str:
     return " ".join(parts)
 
 
-def _parse_frontmatter(raw: str, relative_path: str) -> Card:
+def _parse_frontmatter(raw: str, relative_path: str, batch: str = "batch-1") -> Card:
     # A card is free to open with one or more `<!-- ... -->` HTML-comment
     # lines before its own frontmatter, the `CLAUDE.md` `voice-ignore-file`
     # escape hatch every one of this corpus's shipped fixtures carries
@@ -431,16 +542,34 @@ def _parse_frontmatter(raw: str, relative_path: str) -> Card:
     fm_lines = [(lineno + header_lines + 1, offset + header_len + 4, line) for lineno, offset, line in fm_lines]
     fields = dict(_split_frontmatter_fields(fm_lines))
 
-    title = _parse_scalar(fields["title"]) or ""
-    authors = tuple(_parse_list(fields["authors"]))
-    year_str = _parse_scalar(fields["year"]) or "0"
-    year = int(year_str)
-    venue = _parse_scalar(fields["venue"]) or ""
-    doi = _parse_scalar(fields["doi"]) or ""
-    why_it_matters = _parse_block_scalar(fields["why_it_matters"])
-    key_claims = tuple(_parse_claims(fields["key_claims"]))
-    research_questions = tuple(_parse_list(fields.get("research_questions_it_leaves_open", [("", 0, "")])))
-    how_it_bears = _parse_block_scalar(fields["how_it_bears_on_research_os"])
+    # Every required-field read below is a bare dict subscript (a missing
+    # `authors:`/`venue:`/... field) or a bare `int()` call (a non-numeric
+    # `year:`), neither of which names `relative_path` on its own; with a
+    # corpus already at 45 cards and growing, one malformed card's own
+    # bare `KeyError: 'authors'`/`ValueError: invalid literal for int()...`
+    # gives no indication of which file to fix. This `try/except` adds
+    # that context uniformly, the same convention the explicit `raise
+    # ValueError` checks around it already follow (`"has no frontmatter
+    # opening"`, `"carries no doi"`, ...).
+    try:
+        title = _parse_scalar(fields["title"]) or ""
+        authors = tuple(_parse_list(fields["authors"]))
+        year_str = _parse_scalar(fields["year"]) or "0"
+        year = int(year_str)
+        venue = _parse_scalar(fields["venue"]) or ""
+        doi = _parse_scalar(fields["doi"]) or ""
+        why_it_matters = _parse_block_scalar(fields["why_it_matters"])
+        key_claims = tuple(_parse_claims(fields["key_claims"]))
+        research_questions = tuple(_parse_list(fields.get("research_questions_it_leaves_open", [("", 0, "")])))
+        how_it_bears = _parse_block_scalar(fields["how_it_bears_on_research_os"])
+    except KeyError as exc:
+        raise ValueError(f"literature adapter: {relative_path} carries no {exc.args[0]!r} field") from exc
+    except ValueError as exc:
+        message = str(exc)
+        prefix = "literature adapter: "
+        if message.startswith(prefix):
+            message = message[len(prefix):]
+        raise ValueError(f"literature adapter: {relative_path}: {message}") from exc
 
     if not doi:
         raise ValueError(f"literature adapter: {relative_path} carries no doi")
@@ -451,13 +580,14 @@ def _parse_frontmatter(raw: str, relative_path: str) -> Card:
         doi=doi, title=title, authors=authors, year=year, venue=venue,
         relative_path=relative_path, why_it_matters=why_it_matters, key_claims=key_claims,
         research_questions=research_questions, how_it_bears_on_research_os=how_it_bears,
+        batch=batch,
     )
 
 
-def _parse_card_file(path: Path, root: Path) -> Card:
+def _parse_card_file(path: Path, root: Path, batch: str = "batch-1") -> Card:
     raw = path.read_text()
     relative_path = str(path.relative_to(root)).replace(os.sep, "/")
-    return _parse_frontmatter(raw, relative_path)
+    return _parse_frontmatter(raw, relative_path, batch)
 
 
 # --------------------------------------------------------------------------
@@ -522,8 +652,74 @@ def _evidence_kind(method: str) -> EvidenceKind:
     return EvidenceKind.MODEL_PRIOR if method in _MODEL_INFERENCE_METHODS else EvidenceKind.TEXTUAL
 
 
+# A card's own scoped findings text names a real, quantified effect size
+# rather than a bare mention of the word "replication" with no number
+# behind it: at least one of these unit or statistic words, alongside at
+# least one digit somewhere in the same text. `_is_ground_truth` reads
+# this before crediting a bare "replicat" substring; a card mentioning
+# "the replication crisis" in passing, with no number attached, no
+# longer qualifies on that reading alone. Checked, by hand, against
+# every card `_is_ground_truth` credits below (Kulik, Kulik, and
+# Bangert-Drowns 1990's own "0.5 standard deviations"; Open Science
+# Collaboration 2015's own "roughly 36 percent... about half the size").
+_EFFECT_SIZE_MARKERS: tuple[str, ...] = (
+    "standard deviation", " sd ", "percentile", "percent", "%", "effect size",
+    "cohen's d", "hedges", "odds ratio", "correlation", "confidence interval",
+)
+
+
+def _has_effect_size(text: str) -> bool:
+    lowered = text.lower()
+    return any(marker in lowered for marker in _EFFECT_SIZE_MARKERS) and any(ch.isdigit() for ch in text)
+
+
 def _is_ground_truth(method: str, text: str) -> bool:
-    return method == "meta-analysis" or "replicat" in text.lower()
+    """Whether this card, read alone, is a ground-truth event under
+    either of the paper's own first two ways a finding gets attested: a
+    meta-analysis (a synthesis of many replicated findings into one
+    pooled effect size, ground truth by construction, `method ==
+    "meta-analysis"`), or the card's own scoped findings text naming a
+    direct replication alongside a quantified effect size (`_has_effect_
+    size`). The paper's own third way, cross-card corroboration (two
+    cards on the same mechanism and outcome from different first
+    authors), needs every other card in the same batch, not just this
+    one's own text; `_build_corpus`'s own `_corroborated_dois` checks
+    that separately and is OR'd in at the call site below."""
+    if method == "meta-analysis":
+        return True
+    return "replicat" in text.lower() and _has_effect_size(text)
+
+
+def _corroborated_dois(cards: list[Card]) -> set[str]:
+    """Every DOI whose card belongs to a `(mechanism, object)` group at
+    least two cards deep, contributed by at least two distinct first
+    authors: the paper's own third way a finding gets attested, cross-
+    card rather than single-card (see this module's own top docstring,
+    "Ground truth"). `object` is the operative shared signal ("the same
+    ... outcome"): a group is skipped only when `object` reads the
+    `OTHER` placeholder (`_detect_object` found no outcome this corpus's
+    own lexicon names), even when every card in it happens to share the
+    same `mechanism` value too, since two cards agreeing on no outcome
+    at all is not the corroboration this reading is built to catch.
+    A card whose own `mechanism` reads `OTHER` still groups normally: two
+    different first authors independently landing on the same *named*
+    outcome, with neither paper's own prose naming a mechanism this
+    corpus's lexicon resolves, is still two independent papers agreeing
+    on what happened, `docs/PRODUCTION-SCHEMA.md`'s own even-a-null-slot
+    reading extended to this corpus's placeholder convention."""
+    groups: dict[tuple[str, str], list[Card]] = {}
+    for card in cards:
+        text = _extraction_text(card)
+        obj = _detect_object(text)
+        mech = _detect_mechanism(text)
+        if obj == other_id(Slot.OBJECT):
+            continue
+        groups.setdefault((mech, obj), []).append(card)
+    corroborated: set[str] = set()
+    for group in groups.values():
+        if len({c.first_author_surname for c in group}) >= 2:
+            corroborated.update(c.doi for c in group)
+    return corroborated
 
 
 # Ordered `(concept_id, keywords)` lexicons: the first entry whose keyword
@@ -688,6 +884,19 @@ def _build_corpus(cards: list[Card]) -> Corpus:
     for card in cards:
         surnames_to_dois.setdefault(card.first_author_surname, []).append(card.doi)
 
+    # `_corroborated_dois` reads `first_author_surname` counts, so a DOI
+    # already seen under an earlier root (the same paper, deduped below)
+    # must contribute exactly one author to that count, regardless of how
+    # many roots it happens to appear under.
+    seen_dois: set[str] = set()
+    deduped_cards: list[Card] = []
+    for card in cards:
+        if card.doi in seen_dois:
+            continue
+        seen_dois.add(card.doi)
+        deduped_cards.append(card)
+    corroborated = _corroborated_dois(deduped_cards)
+
     sources: dict[str, Source] = {}
     evidence: list[EvidenceItem] = []
     ground_truth: list[GroundTruthEvent] = []
@@ -695,15 +904,29 @@ def _build_corpus(cards: list[Card]) -> Corpus:
     fetched_at = datetime.now(timezone.utc).isoformat()
 
     for card in cards:
+        if card.doi in sources:
+            # A DOI already seen under an earlier root's own card: dedupe to
+            # that first card's Source/evidence/ground-truth/provenance, and
+            # fold only this root's own batch label onto the existing
+            # Source.batches list. See this module's own top docstring,
+            # "Batches," for why a later root's own duplicate never adds a
+            # second copy of the same paper's evidence.
+            if card.batch not in sources[card.doi].batches:
+                sources[card.doi].batches.append(card.batch)
+            continue
+
         tier = _evidence_tier(card)
         findings_text = _extraction_text(card)
         method = _classify_method(findings_text)
         kind = _evidence_kind(method)
         stemma_parents = _detect_stemma_parents(card, surnames_to_dois)
 
-        sources[card.doi] = Source(id=card.doi, kind=kind, date=str(card.year), stemma_parents=stemma_parents)
+        sources[card.doi] = Source(
+            id=card.doi, kind=kind, date=str(card.year),
+            stemma_parents=stemma_parents, batches=[card.batch],
+        )
         provenance.append(RetrievalEnvelope(
-            retrieval_run_id="literature-adapter-file-ingest", doc_id=card.doi,
+            retrieval_run_id=f"literature-adapter-file-ingest-{card.batch}", doc_id=card.doi,
             source_path=card.relative_path, fetched_at=fetched_at, fixture=True,
             citation_count=len(card.key_claims), lineage_count=len(stemma_parents),
         ))
@@ -732,7 +955,7 @@ def _build_corpus(cards: list[Card]) -> Corpus:
             if first_item_id is None:
                 first_item_id = item_id
 
-        if _is_ground_truth(method, findings_text) and first_item_id is not None:
+        if (_is_ground_truth(method, findings_text) or card.doi in corroborated) and first_item_id is not None:
             ground_truth.append(GroundTruthEvent(
                 id=first_item_id, label=_truncate(card.title), year=card.year,
                 doc_id=card.doi, discovery_year=card.year,
@@ -802,10 +1025,17 @@ def _fetch_card_paths(ref: str) -> list[str]:
 
 
 def _fetch_card_text(path: str, ref: str) -> str:
+    """One card's own raw text at `ref`, wrapped the same way
+    `_fetch_card_paths` wraps its own `urlopen` call: a network blip here
+    (card 30 of 45, say) raises a `RuntimeError` naming `path` and `ref`,
+    not a bare, low-level `urllib` exception naming neither."""
     url = f"{GITHUB_RAW_BASE}/{GITHUB_REPO}/{ref}/{path}"
     request = urllib.request.Request(url, headers=_github_headers())
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return response.read().decode("utf-8")
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return response.read().decode("utf-8")
+    except urllib.error.URLError as exc:
+        raise RuntimeError(f"literature adapter: could not fetch {path!r} at ref {ref!r}: {exc}") from exc
 
 
 def _ensure_cards_cached(ref: str) -> Path:
@@ -814,7 +1044,15 @@ def _ensure_cards_cached(ref: str) -> Path:
     second `load()` call against the same `ref` and cache directory still
     re-lists the tree (cheap, and the only way to notice a card PR #5 adds
     later), but re-fetches no raw file content, the same idempotent-resume
-    convention `agf-figma pull` documents for its own frame exports."""
+    convention `agf-figma pull` documents for its own frame exports.
+
+    Each fetch writes through a temp path and an atomic `rename` before a
+    cache entry is considered complete, the same convention `hte.llm.
+    _write_cache` already uses for its own cache: a process killed mid-
+    write (disk full, SIGKILL, Ctrl-C) leaves at most a `.tmp` file next
+    to `dest`, never a truncated `dest` itself that `dest.is_file()`
+    would then treat as a permanent, valid cache hit on every later
+    `load()` call against this same cache directory."""
     cache_dir = _cache_dir_for_ref(ref)
     for path in _fetch_card_paths(ref):
         relative = path[len(GITHUB_INTAKE_PATH) + 1:]
@@ -822,39 +1060,95 @@ def _ensure_cards_cached(ref: str) -> Path:
         if dest.is_file():
             continue
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(_fetch_card_text(path, ref))
+        tmp = dest.with_suffix(dest.suffix + ".tmp")
+        tmp.write_text(_fetch_card_text(path, ref))
+        tmp.replace(dest)
     return cache_dir
 
 
-def load_raw(cards_dir: str | Path | None = None, *, ref: str = DEFAULT_REF) -> list[Card]:
-    """Every `Card` at `cards_dir` (a directory of `<branch>/<slug>.md`
-    files, PR #5's own tree shape) or, when `cards_dir` is `None`, at
-    `ref` on GitHub (fetched and cached first by `_ensure_cards_cached`),
-    parsed losslessly and returned in path order. No filtering; that is
-    `load`'s own job on the way to a `Corpus`, and this corpus, unlike
-    `hte.corpus.production`'s review ladder, has no maturity gate of its
-    own to filter on: every card PR #5 ships already carries a checked
-    DOI."""
-    directory = Path(cards_dir) if cards_dir is not None else _ensure_cards_cached(ref)
-    if not directory.is_dir():
-        raise FileNotFoundError(f"literature adapter: cards directory not found: {directory}")
-    paths = _iter_card_paths(directory)
-    if not paths:
-        raise FileNotFoundError(f"literature adapter: no card files found under {directory}")
-    return [_parse_card_file(path, directory) for path in paths]
+def _normalize_roots(cards_dir: str | Path | Sequence[str | Path] | None, ref: str) -> list[Path]:
+    """`cards_dir` read as a list of card roots: `None` fetches (and
+    caches) the single network root at `ref`; a bare path or string is one
+    root (batch one's own call shape, kept working unchanged); anything
+    else is read as an already-iterable sequence of roots, one per named
+    batch, in that sequence's own order. See this module's own top
+    docstring, "Batches.\""""
+    if cards_dir is None:
+        return [_ensure_cards_cached(ref)]
+    if isinstance(cards_dir, (str, Path)):
+        return [Path(cards_dir)]
+    return [Path(root) for root in cards_dir]
 
 
-def load(cards_dir: str | Path | None = None, *, ref: str = DEFAULT_REF) -> Corpus:
+def load_raw(
+    cards_dir: str | Path | Sequence[str | Path] | None = None,
+    *, ref: str = DEFAULT_REF,
+) -> list[Card]:
+    """Every `Card` across every root in `cards_dir`, parsed losslessly and
+    returned in root order then path order within each root. `cards_dir`
+    is a single directory of `<branch>/<slug>.md` files (PR #5's own tree
+    shape, one root, tagged `"batch-1"`), a sequence of such directories
+    (one root per named batch, tagged `"batch-1"`/`"batch-2"`/... by
+    position; `DEFAULT_CARDS_DIRS` is the canonical "both fixture batches"
+    pair), or `None` (fetch the single network root at `ref` on GitHub,
+    cached first by `_ensure_cards_cached`, tagged `"batch-1"`). No
+    filtering and no cross-root dedup; that is `load`'s own job on the way
+    to a `Corpus`, and this corpus, unlike `hte.corpus.production`'s
+    review ladder, has no maturity gate of its own to filter on: every
+    card PR #5 or PR #15 ships already carries a checked DOI."""
+    roots = _normalize_roots(cards_dir, ref)
+    cards: list[Card] = []
+    for batch_index, directory in enumerate(roots, start=1):
+        if not directory.is_dir():
+            raise FileNotFoundError(f"literature adapter: cards directory not found: {directory}")
+        paths = _iter_card_paths(directory)
+        if not paths:
+            raise FileNotFoundError(f"literature adapter: no card files found under {directory}")
+        batch = f"batch-{batch_index}"
+        cards.extend(_parse_card_file(path, directory, batch) for path in paths)
+    return cards
+
+
+def load(
+    cards_dir: str | Path | Sequence[str | Path] | None = None,
+    *, ref: str = DEFAULT_REF,
+) -> Corpus:
     """The literature corpus as a `Corpus`: `load_raw(cards_dir, ref=ref)`
-    projected onto `hte.corpus.Corpus` by `_build_corpus`. See this
-    module's own top docstring for the full `Source`/`EvidenceItem`/
-    `GroundTruthEvent`/stemma mapping."""
+    projected onto `hte.corpus.Corpus` by `_build_corpus`, which dedupes a
+    DOI shared by more than one root down to its first root's own card
+    (folding every later root's own batch label onto that same `Source`
+    instead). See this module's own top docstring for the full `Source`/
+    `EvidenceItem`/`GroundTruthEvent`/stemma mapping."""
     return _build_corpus(load_raw(cards_dir, ref=ref))
+
+
+def load_default() -> Corpus:
+    """`_CORPUS_LOADERS`'s own zero-arg registration (`hte/cli.py`,
+    `hte/runner.py`), the shape every other corpus loader there already
+    has: `load(DEFAULT_CARDS_DIRS)`, both fixture batches combined (12
+    cards, no network, deterministic).
+
+    This does *not* read the real, on-disk `LOCAL_INTAKE_DIR` tree (82
+    cards past PR #15): that tree carries a gap this module does not yet
+    handle, three educational-methods cards a later, separate pass (bead
+    `ros-02`, "Framework mapping papers") added with `doi: null` plus an
+    `isbn`/ERIC-id field instead of a DOI (Anderson and Krathwohl 2001,
+    Perkins 1993, Wiske 1998; `_intake/research-os-k12-literature/README.
+    md`'s own "canon-intake promotions" section names the same three
+    non-DOI records). `_parse_frontmatter` requires a real `doi:` and
+    raises on a `null` one, so `load(LOCAL_INTAKE_DIR)` fails on those
+    three cards today; giving every non-DOI source a stable fallback id
+    (an `isbn:`-prefixed slug, say) is real, separate follow-up work this
+    pass does not take on, since it touches `Source.id`/`EvidenceItem.
+    source_id`/`GroundTruthEvent.doc_id`'s own DOI-shaped id convention
+    everywhere in this module, not just batch two's own cards."""
+    return load(DEFAULT_CARDS_DIRS)
 
 
 __all__ = [
     "Card", "Claim",
-    "load_vocab", "load_raw", "load",
-    "LITERATURE_VOCAB_PATH", "DEFAULT_FIXTURES_DIR", "EVIDENCE_PROVENANCE_TAG",
+    "load_vocab", "load_raw", "load", "load_default",
+    "LITERATURE_VOCAB_PATH", "DEFAULT_FIXTURES_DIR", "DEFAULT_FIXTURES_DIR_BATCH_TWO",
+    "DEFAULT_CARDS_DIRS", "LOCAL_INTAKE_DIR", "EVIDENCE_PROVENANCE_TAG",
     "GITHUB_REPO", "GITHUB_INTAKE_PATH", "DEFAULT_REF",
 ]

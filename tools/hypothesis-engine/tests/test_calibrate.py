@@ -1,3 +1,5 @@
+import pytest
+
 from hte import calibrate, synth
 from hte.belief import Constants
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
@@ -155,6 +157,63 @@ def test_run_holdout_partial_target_slots_match_on_present_slots_only():
     ))
     result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910)
     assert any(p["event_id"] == "partial" and p["reading"] == "true" for p in result["predictions"])
+
+
+def test_candidate_key_dedupes_on_exact_interval_not_address_alone():
+    """`_candidate_key`'s own root-cause fix (`bkt-hte-generation-
+    coverage`): two pre-cutoff items sharing every concept slot, whose
+    intervals both START in 1900 (so `Hypothesis.address`, keyed off
+    `interval.start`'s own time bin, is identical for both), one narrow
+    (`[1900, 1900]`) and one wide (`[1900, 1990]`). Confirms the
+    collision precondition directly first (same address, distinct
+    `_candidate_key`), the way `_candidate_key`'s own docstring
+    describes the bug it closes."""
+    vocab = _calib_vocab()
+    narrow = EvidenceItem(id="narrow", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-narrow",
+                           span=_span("doc-narrow"), provenance="test",
+                           interval=Interval(1900, 1900), **_PLANCK_SLOTS)
+    wide = EvidenceItem(id="wide", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-wide",
+                         span=_span("doc-wide"), provenance="test",
+                         interval=Interval(1900, 1990), **_PLANCK_SLOTS)
+    hyp_narrow = calibrate._placement_from_item(narrow, vocab)
+    hyp_wide = calibrate._placement_from_item(wide, vocab)
+    assert hyp_narrow.address == hyp_wide.address, "same concept slots, same interval.start: must collide on address"
+    assert calibrate._candidate_key(hyp_narrow) != calibrate._candidate_key(hyp_wide), "different exact intervals: must not collide on the dedup key"
+
+
+def test_run_holdout_covers_an_event_only_the_wider_of_two_same_address_candidates_reaches():
+    """The outcome the `_candidate_key` fix protects, not just the key
+    itself: two pre-cutoff items share an address (see the isolated
+    test above) but one is narrow (`[1900, 1900]`) and the other wide
+    (`[1900, 1990]`). A held-out event dated 1985 sits inside the wide
+    interval's own reach and past the narrow interval's own end, so it
+    is covered if and only if the wide candidate survived the dedup.
+    `dict.setdefault` on address alone (this module's own shape before
+    the fix) keeps whichever candidate is built first from `corpus.
+    evidence`'s own list order, `narrow` here, and silently drops
+    `wide`; with `wide` gone, nothing pre-cutoff reaches 1985 and this
+    event reads uncovered. This is `run_holdout`'s own candidate-
+    building loop, the identical one `holdout_kfold` runs per fold."""
+    vocab = _calib_vocab()
+    narrow = EvidenceItem(id="narrow", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-narrow",
+                           span=_span("doc-narrow"), provenance="test",
+                           interval=Interval(1900, 1900), **_PLANCK_SLOTS)
+    wide = EvidenceItem(id="wide", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-wide",
+                         span=_span("doc-wide"), provenance="test",
+                         interval=Interval(1900, 1990), **_PLANCK_SLOTS)
+    target = EvidenceItem(id="target", kind=EvidenceKind.TEXTUAL, tier=Tier.T2, source_id="doc-target",
+                           span=_span("doc-target"), provenance="test", **_PLANCK_SLOTS)
+    ground_truth = [
+        GroundTruthEvent(id="narrow", label="narrow-interval source", year=1900, doc_id="doc-narrow", discovery_year=1900),
+        GroundTruthEvent(id="wide", label="wide-interval source", year=1900, doc_id="doc-wide", discovery_year=1900),
+        GroundTruthEvent(id="target", label="reachable only through the wide interval", year=1985, doc_id="doc-target", discovery_year=1985),
+    ]
+    corpus = Corpus(sources={}, evidence=[narrow, wide, target], ground_truth=ground_truth, provenance=[], vocab=vocab)
+
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1950)
+    assert result["n_holdout_events"] == 1
+    assert result["n_covered_events"] == 1, "the wide candidate must survive the dedup to cover 1985"
+    assert any(p["event_id"] == "target" and p["reading"] == "true" for p in result["predictions"])
 
 
 def test_run_holdout_no_ground_truth_events_at_all_is_well_formed():
@@ -398,3 +457,112 @@ def test_holdout_kfold_coverage_on_synthetic_worlds_is_at_least_0_8():
         coverages.append(result["coverage_of_truth"])
     mean_coverage = sum(coverages) / len(coverages)
     assert mean_coverage >= 0.8, f"mean k-fold coverage_of_truth {mean_coverage} over seeds 0-9 fell below 0.8: {coverages}"
+
+
+# --------------------------------------------------------------------------
+# pooled coordinate-descent fit (docs/CALIBRATION-FIT-2026-09-10.md)
+# --------------------------------------------------------------------------
+
+
+def _pooled_corpora():
+    """A cheap stand-in for `build_pooled_fit_corpora`'s own real-corpus
+    pool: three `hte.synth` small worlds plus `_calib_corpus()`, small
+    enough to run several `fit_constants_pooled` sweeps in well under a
+    second, unlike a real `hte.corpus.education_atlas.load()` pull (see
+    `build_pooled_fit_corpora`'s own docstring for why that corpus is
+    itself pre-subsampled for exactly this reason)."""
+    corpora = {f"synth-{s}": synth.make_small_world(s).corpus for s in range(3)}
+    corpora["hand-built"] = _calib_corpus()
+    return corpora
+
+
+def test_evaluate_pooled_reports_one_row_per_corpus():
+    corpora = _pooled_corpora()
+    result = calibrate.evaluate_pooled(corpora, calibrate._default_fit_vector())
+    assert {row["name"] for row in result["per_corpus"]} == set(corpora)
+    assert result["mean_brier"] is not None
+    assert result["penalty"] == 0.0  # no coverage_targets passed
+
+
+def test_evaluate_pooled_penalizes_coverage_below_target():
+    corpora = _pooled_corpora()
+    vector = calibrate._default_fit_vector()
+    no_targets = calibrate.evaluate_pooled(corpora, vector)
+    # an unreachable target (1.1, above any possible coverage_of_truth)
+    # on every corpus guarantees the penalty fires for every one of them.
+    targets = {name: 1.1 for name in corpora}
+    with_targets = calibrate.evaluate_pooled(corpora, vector, coverage_targets=targets)
+    assert with_targets["penalty"] > no_targets["penalty"]
+    assert with_targets["loss"] > no_targets["loss"]
+    assert with_targets["mean_brier"] == no_targets["mean_brier"]  # penalty adds on top, leaving mean_brier untouched
+
+
+def test_evaluate_pooled_zero_penalty_when_targets_already_met():
+    corpora = _pooled_corpora()
+    vector = calibrate._default_fit_vector()
+    targets = {name: 0.0 for name in corpora}  # trivially met by any coverage >= 0
+    result = calibrate.evaluate_pooled(corpora, vector, coverage_targets=targets)
+    assert result["penalty"] == 0.0
+
+
+def test_fit_constants_pooled_never_returns_a_worse_loss_than_the_baseline():
+    corpora = _pooled_corpora()
+    result = calibrate.fit_constants_pooled(corpora, passes=1)
+    baseline = result["history"][0]
+    assert baseline["vector"] == calibrate._default_fit_vector()
+    assert result["best"]["loss"] <= baseline["loss"]
+
+
+def test_fit_constants_pooled_history_includes_the_baseline_first():
+    corpora = _pooled_corpora()
+    result = calibrate.fit_constants_pooled(corpora, passes=1)
+    assert result["history"][0]["vector"] == calibrate._default_fit_vector()
+
+
+def test_fit_constants_pooled_stops_early_with_no_improving_step():
+    # A corpus set with no evidence at all: `evaluate_pooled`'s own
+    # `mean_brier` is always `None` (no fold ever covers anything), so
+    # `loss` reads the same `1.0` fallback for every candidate vector and
+    # no step ever improves on the baseline; the search should stop after
+    # its first pass rather than a caller having to notice `history`'s own
+    # length stopped growing.
+    empty_corpus = Corpus(sources={}, evidence=[], ground_truth=[], provenance=[], vocab=_calib_vocab())
+    result = calibrate.fit_constants_pooled({"empty": empty_corpus}, passes=5)
+    assert result["passes_run"] == 1
+    assert result["best"]["vector"] == calibrate._default_fit_vector()
+
+
+def test_fit_constants_pooled_respects_a_custom_start_vector():
+    corpora = _pooled_corpora()
+    start = {"W": 5.0, "lam": 1.0, "mu": 0.5, "alpha": 1.0, "tier_scale": 1.0, "detectability_floor": 0.0}
+    result = calibrate.fit_constants_pooled(corpora, passes=1, start=start)
+    assert result["history"][0]["vector"] == start
+
+
+def test_fit_constants_pooled_respects_parameter_bounds():
+    corpora = _pooled_corpora()
+    result = calibrate.fit_constants_pooled(corpora, passes=2)
+    for row in result["history"]:
+        for name, value in row["vector"].items():
+            lo, hi = calibrate._FIT_PARAM_BOUNDS[name]
+            assert lo <= value <= hi
+
+
+def test_vector_to_constants_scales_every_tier_weight_by_tier_scale():
+    from hte.belief import TIER_WEIGHT
+    from hte.evidence import Tier
+
+    vector = calibrate._default_fit_vector()
+    vector["tier_scale"] = 2.0
+    constants = calibrate._vector_to_constants(vector)
+    for tier in Tier:
+        assert constants.tier_weight[tier] == pytest.approx(TIER_WEIGHT[tier] * 2.0)
+
+
+def test_build_pooled_fit_corpora_returns_synth_and_four_real_corpora():
+    corpora, coverage_targets = calibrate.build_pooled_fit_corpora(synth_seeds=range(2))
+    assert set(corpora) == {"synth-0", "synth-1", "quantum-history", "production", "education-atlas", "literature"}
+    assert set(coverage_targets) == {"synth-0", "synth-1"}
+    assert all(v == calibrate.DEFAULT_MIN_SYNTH_COVERAGE for v in coverage_targets.values())
+    for corpus in corpora.values():
+        assert corpus.evidence  # every one of the six carries evidence to fit against

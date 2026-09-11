@@ -199,17 +199,28 @@ export default function ResearchOsPage() {
           § status
         </div>
         <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Design, iteration 2, September 2026. The built Phase 0 prototype
-          covers one path in grades 3 to 5, why the sky is blue, walking from
-          light and air facts forward to Rayleigh scattering and the
-          lambda-to-the-minus-4 law, per the system review&apos;s Phase 0 slice
+          Design, iteration 2, September 2026. On main today: frontier-backward
+          routing with confidence flags on a weak edge, a diagnostic probe for
+          a cold-start learner, the four-tool workspace (find, quote, check,
+          organize) with every contract enforced in code, a teacher review
+          queue and class view with an accept path, an engine bridge covered
+          by tests, self-service export and delete of a learner&apos;s own
+          data, and a consent gate in front of every learner-authored write.
+        </p>
+        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+          Not yet on main: applying an accepted production to the live
+          database, roster sync from a school system, verified parental
+          consent, a payment to a minor contributor, and canon write-back
+          without a human sign-off.
+        </p>
+        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+          Grades 3 to 5 (why the sky is blue) and the history of quantum
+          physics for grades 9 to 12 remain the two candidate subjects for the
+          next demonstration; which one leads is still an open choice
           (<code className="text-[13px]">_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md</code>{" "}
-          section 8). A companion path over the history of quantum physics,
-          grades 9 to 12, was this plan&apos;s original iteration-1 slice and
-          stays an open choice for which subject demonstrates the product
-          next (section 11, question 1). The plan, the learner-state model,
-          the production schema, the vendor and data-source map, and the
-          funding and people map are public in the repository under{" "}
+          section 11). The plan, the learner-state model, the production
+          schema, the vendor and data-source map, and the funding and people
+          map are public in the repository under{" "}
           <code className="text-[13px]">learning/research-os/</code> and{" "}
           <code className="text-[13px]">_intake/research-os-k12/</code>.
           Pilot classrooms, a pre-registered study of the four-tool constraint,

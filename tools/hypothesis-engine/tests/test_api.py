@@ -1,10 +1,10 @@
-"""`hte.api.hypothesize`, in fake mode against the 14 shipped production
-fixtures (`hte/data/production-fixtures/`: 12 `PRODUCTION-SCHEMA.md`-shaped
+"""`hte.api.hypothesize`, in fake mode against the 36 shipped production
+fixtures (`hte/data/production-fixtures/`: 34 `PRODUCTION-SCHEMA.md`-shaped
 fixtures plus `research-os-sky-blue.json`'s two `graph.productions`-shaped
 rows, `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`). `production.load_raw()`
 normalizes the Research OS rows onto `PRODUCTION-SCHEMA.md`'s own shape
 before `to_dict()`, so `_fixture_records()` below already hands
-`hypothesize` fourteen ordinary-shaped records; `tests/test_api_research_
+`hypothesize` thirty-six ordinary-shaped records; `tests/test_api_research_
 os.py` exercises the Research-OS-shaped request path directly. No network:
 `HTE_LLM_MODE=fake` (monkeypatched per test) dispatches every role through
 `hte.fakellm` instead of `claude -p`.
@@ -13,11 +13,12 @@ from __future__ import annotations
 
 import copy
 import json
+from pathlib import Path
 
 import pytest
 
-from hte import mcp_tool
-from hte.api import RequestValidationError, hypothesize
+from hte import api, mcp_tool
+from hte.api import CampaignError, RequestValidationError, hypothesize
 from hte.corpus import production
 
 # --------------------------------------------------------------------------
@@ -64,8 +65,8 @@ def _fixture_records() -> list[dict]:
     return [p.to_dict() for p in production.load_raw()]
 
 
-# Small enough to run fast in fake mode over the 14-fixture corpus
-# (~26 sources, ~16 evidence items), well under `hte.runner.
+# Small enough to run fast in fake mode over the 36-fixture corpus
+# (~67 sources, ~38 evidence items), well under `hte.runner.
 # DEFAULT_CONFIG`'s own batch-campaign-sized defaults.
 _FAST_CONFIG = {
     "seeds": 1, "generate_n": 2, "combinatorial_max_items": 10, "max_hypotheses": 30,
@@ -84,10 +85,10 @@ def _call(request: dict, monkeypatch, **config_overrides) -> dict:
 # --------------------------------------------------------------------------
 
 
-def test_all_fourteen_production_fixtures_run_end_to_end_and_validate(monkeypatch):
+def test_all_thirty_six_production_fixtures_run_end_to_end_and_validate(monkeypatch):
     response = _call({"productions": _fixture_records(), "status_min": "draft"}, monkeypatch)
     assert response["ok"] is True
-    assert response["corpus"]["n_productions"] == 14
+    assert response["corpus"]["n_productions"] == 36
     errors = _schema_errors(response, mcp_tool.TOOL_DEFINITION["outputSchema"])
     assert errors == []
 
@@ -202,12 +203,17 @@ def test_bad_review_status_raises_request_validation_error(monkeypatch):
         hypothesize({"productions": record})
 
 
-def test_unknown_slot_id_raises_request_validation_error(monkeypatch):
-    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+def test_unknown_slot_id_is_induced_rather_than_rejected(monkeypatch):
+    # `hte.vocab_induce.induce` (wired into `hte.corpus.production._build_
+    # corpus` as a merge step over its own seed) resolves a slot value the
+    # fixed K-12 production vocabulary does not already name, instead of
+    # `hypothesize()` rejecting it before a campaign ever runs
+    # (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s "the null-slot gap on
+    # physics productions").
     record = copy.deepcopy(_fixture_records()[0])
-    record["claims"][0]["slots"]["actor"] = "not-a-real-concept-id"
-    with pytest.raises(RequestValidationError, match="not-a-real-concept-id"):
-        hypothesize({"productions": record})
+    record["claims"][0]["slots"]["actor"] = "a-brand-new-actor-concept"
+    response = _call({"productions": record}, monkeypatch)
+    assert response["ok"] is True
 
 
 def test_bad_stance_raises_request_validation_error(monkeypatch):
@@ -223,6 +229,18 @@ def test_bad_evidence_kind_raises_request_validation_error(monkeypatch):
     record = copy.deepcopy(_fixture_records()[0])
     record["claims"][0]["evidence"][0]["kind"] = "not-a-real-kind"
     with pytest.raises(RequestValidationError, match="not-a-real-kind"):
+        hypothesize({"productions": record})
+
+
+def test_bad_citation_type_raises_request_validation_error(monkeypatch):
+    # `FINDING-2026-09-10-401`: `mcp_tool.TOOL_DEFINITION`'s own schema fixes
+    # a citation's `type` to `doi`/`url`/`feed402_envelope`; this record
+    # names a fourth value no citation in this package's own shape ever
+    # produces.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    record = copy.deepcopy(_fixture_records()[0])
+    record["claims"][0]["evidence"][0]["citations"][0]["type"] = "not-a-real-citation-type"
+    with pytest.raises(RequestValidationError, match="not-a-real-citation-type"):
         hypothesize({"productions": record})
 
 
@@ -250,3 +268,126 @@ def test_multiple_problems_are_all_reported_together(monkeypatch):
         message = str(exc)
         assert "'id'" in message
         assert "bogus" in message
+
+
+def test_bad_llm_mode_raises_request_validation_error(monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="llm_mode"):
+        hypothesize({"productions": _fixture_records()[0], "llm_mode": "not-a-real-mode"})
+
+
+def test_non_positive_seeds_raises_request_validation_error(monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="seeds"):
+        hypothesize({"productions": _fixture_records()[0], "seeds": 0})
+
+
+def test_non_integer_seeds_raises_request_validation_error(monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="seeds"):
+        hypothesize({"productions": _fixture_records()[0], "seeds": "one"})
+
+
+def test_boolean_seeds_is_rejected_despite_being_an_int_subclass(monkeypatch):
+    # `isinstance(True, int)` is `True` in Python; `hypothesize()`'s own
+    # validation explicitly excludes `bool`, so `seeds=True` still gets
+    # rejected as not a real seed count.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="seeds"):
+        hypothesize({"productions": _fixture_records()[0], "seeds": True})
+
+
+def test_non_positive_max_hypotheses_raises_request_validation_error(monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="max_hypotheses"):
+        hypothesize({"productions": _fixture_records()[0], "max_hypotheses": 0})
+
+
+def test_non_integer_max_hypotheses_raises_request_validation_error(monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="max_hypotheses"):
+        hypothesize({"productions": _fixture_records()[0], "max_hypotheses": "lots"})
+
+
+def test_non_boolean_replay_only_raises_request_validation_error(monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="replay_only"):
+        hypothesize({"productions": _fixture_records()[0], "replay_only": "yes"})
+
+
+def test_string_productions_field_raises_request_validation_error(monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="productions"):
+        hypothesize({"productions": "not-an-object-or-list"})
+
+
+def test_integer_productions_field_raises_request_validation_error(monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    with pytest.raises(RequestValidationError, match="productions"):
+        hypothesize({"productions": 1})
+
+
+# --------------------------------------------------------------------------
+# campaign failure: CampaignError, temp-dir cleanup, path sanitization
+# --------------------------------------------------------------------------
+
+
+def test_sanitize_redacts_every_allowlisted_path_root():
+    # Silent-failures review finding 8: the original regex covered only
+    # `/home`, `/tmp`, `/Users`, `/var`; a message naming `/srv`, `/opt`,
+    # `/root`, `/app`, `/mnt`, `/data`, or `/etc` passed through
+    # unredacted into a `CampaignError`, which does reach the HTTP
+    # client. Each root below must now redact.
+    run_dir = Path("/some/unrelated/run/dir")
+    for root in ("/home/x", "/tmp/x", "/Users/x", "/var/x", "/srv/x", "/opt/x", "/root/x", "/app/x", "/mnt/x", "/data/x", "/etc/x"):
+        redacted = api._sanitize(f"error at {root}/file.txt", run_dir)
+        assert root not in redacted, f"{root!r} was not redacted"
+        assert "<path>" in redacted
+
+
+def test_campaign_failure_raises_campaign_error_and_cleans_up_temp_dir(monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    captured_dirs: list[Path] = []
+
+    def _boom(config):
+        captured_dirs.append(Path(config["out_dir"]))
+        raise RuntimeError("a campaign bug, not a refusal")
+
+    monkeypatch.setattr("hte.api.runner.run_campaign", _boom)
+    with pytest.raises(CampaignError, match="RuntimeError") as excinfo:
+        hypothesize({"productions": _fixture_records()}, config=_FAST_CONFIG)
+
+    assert len(captured_dirs) == 1
+    # the temp run directory `hypothesize()` created is gone once the
+    # call has raised, the same cleanup a normal return gets
+    assert not captured_dirs[0].exists()
+    # `_sanitize()`'s own "never an absolute path in the response"
+    # contract holds for a raised `CampaignError` too, the same as for
+    # a successful response body
+    assert str(captured_dirs[0]) not in str(excinfo.value)
+
+
+def test_response_assembly_failure_raises_campaign_error_and_cleans_up_temp_dir(monkeypatch):
+    # A bug in `_build_response` (outside `run_campaign` itself) must
+    # still surface as the documented `CampaignError` contract, with the
+    # temp run directory still cleaned up, rather than escaping as a
+    # bare `TypeError` (the bug this test pins: `_build_response` used
+    # to run outside the try/except that reclassifies exceptions).
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    real_run_campaign = api.runner.run_campaign
+    captured_dirs: list[Path] = []
+
+    def _wrapped(config):
+        captured_dirs.append(Path(config["out_dir"]))
+        return real_run_campaign(config)
+
+    def _boom(*args, **kwargs):
+        raise TypeError("a bug in response assembly, not a campaign failure")
+
+    monkeypatch.setattr("hte.api.runner.run_campaign", _wrapped)
+    monkeypatch.setattr("hte.api._build_response", _boom)
+    with pytest.raises(CampaignError, match="TypeError"):
+        hypothesize({"productions": _fixture_records()}, config=_FAST_CONFIG)
+
+    assert len(captured_dirs) == 1
+    assert not captured_dirs[0].exists()

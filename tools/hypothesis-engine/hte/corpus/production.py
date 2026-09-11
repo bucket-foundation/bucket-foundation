@@ -37,6 +37,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
@@ -44,6 +45,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from .. import vocab_induce
 from ..concepts import Slot, Vocabulary
 from ..evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from ..timeline import Interval
@@ -166,55 +168,181 @@ def _citation_from_research_os_source(source: dict[str, Any], idx: int) -> dict[
     return {"type": "url", "value": source.get("label") or f"research-os-source-{idx}"}
 
 
-def _research_os_evidence(evidence_raw: list[Any], sources_raw: list[Any]) -> list[dict[str, Any]]:
-    """Fold `graph.productions.evidence` (the Quote tool's own quoted spans,
-    `[{source_id|node_id, quote, locator?}]`) and `.sources` (the closed
-    citation set, `[{label, url?, license?, doi?}]`) into
-    `PRODUCTION-SCHEMA.md` evidence entries.
+# The production-form's own author role, `normalize_research_os_record`'s
+# fixed `"student"` (PR #6 has no other author yet). Keyed by role rather
+# than a bare constant so a later, non-student author (a teacher-authored
+# production, Phase 1) has a place to plug in its own default tier without
+# another shape change to `_string_evidence_entries` below.
+_AUTHOR_ROLE_TIER: dict[str, str] = {"student": "T4"}
+_DEFAULT_AUTHOR_ROLE_TIER = "T4"
 
-    Research OS attaches `sources` to the whole production as one closed
-    citation set (the migration's own column comment), rather than pairing
-    one source to one quote. Every entry this function builds therefore
-    carries the *same*, full converted citation list.
-    `tier` is `"T2"` when any cited source carries a `doi` (a
-    primary/peer-reviewed source, matching `PRODUCTION-SCHEMA.md`'s own "a
-    peer-reviewed paper reads T2" example), else `"T4"` (an
-    education-reference-tier source, NASA Space Place or Wikipedia in the
-    shipped `research-os-sky-blue` seed)."""
-    citations = [_citation_from_research_os_source(s, i) for i, s in enumerate(sources_raw or [])]
-    tier = "T2" if any(c["type"] == "doi" for c in citations) else "T4"
+_DOI_RE = re.compile(r"^(?:doi:\s*)?10\.\d{4,9}/\S+$", re.IGNORECASE)
+_URL_RE = re.compile(r"^https?://\S+$", re.IGNORECASE)
 
-    if evidence_raw:
-        out = []
-        for i, ev in enumerate(evidence_raw):
-            source_id = ev.get("source_id") or ev.get("node_id") or f"research-os-quote-{i}"
-            out.append({
-                "source_id": source_id,
-                "locator": ev.get("locator") or source_id,
-                "quote": ev.get("quote") or "(no quote recorded)",
-                "kind": "textual",
-                "tier": tier,
-                "citations": citations,
-            })
-        return out
 
-    if citations:
-        # No quoted span captured yet (a citation-only draft): one evidence
-        # entry per source, since `ClaimEvidence.quote` is a required field
-        # with no meaningful blank value (`PRODUCTION-SCHEMA.md`, "An
-        # evidence entry").
-        return [
-            {
-                "source_id": s.get("label") or f"research-os-source-{i}",
-                "locator": s.get("url") or s.get("label") or "",
-                "quote": f"(citation only, no quoted span captured: {s.get('label') or 'untitled source'})",
-                "kind": "textual",
-                "tier": tier,
-                "citations": [cite],
-            }
-            for i, (s, cite) in enumerate(zip(sources_raw, citations))
-        ]
-    return []
+def _tier_for_author_role(author_role: str) -> str:
+    return _AUTHOR_ROLE_TIER.get(author_role, _DEFAULT_AUTHOR_ROLE_TIER)
+
+
+def _citation_from_source_string(line: str, idx: int) -> tuple[str, dict[str, str]]:
+    """One plain `sources[]` text line (`src/app/research-os/workspace/
+    page.tsx`'s own `sources.split("\\n")`), parsed into `(source_id,
+    citation)`: a DOI-shaped line (`doi:10.x/...` or bare `10.x/...`)
+    becomes `{"type": "doi", ...}`, an `http(s)://` line becomes
+    `{"type": "url", ...}`, anything else is read as a plain label,
+    `{"type": "url", "value": <label>}` (`_citation_from_research_os_source`'s
+    own no-doi-no-url fallback, applied to a bare string instead of a
+    `{label, url?, doi?}` dict). `source_id` is the parsed value itself
+    (the DOI, the URL, or the label), the id `_build_corpus` (`hte.corpus.
+    production`) turns into a real `Source` the first time any evidence
+    entry names it, exactly the mechanism a `sources` line needs to land
+    in the corpus at all: `_build_corpus` never learns of a `sources`
+    entry that no `ClaimEvidence.source_id` ever points at."""
+    stripped = line.strip() or f"research-os-source-{idx}"
+    if stripped.lower().startswith("doi:"):
+        value = stripped[len("doi:"):].strip() or f"research-os-source-{idx}"
+        return value, {"type": "doi", "value": value}
+    if _DOI_RE.match(stripped):
+        return stripped, {"type": "doi", "value": stripped}
+    if _URL_RE.match(stripped):
+        return stripped, {"type": "url", "value": stripped}
+    return stripped, {"type": "url", "value": stripped}
+
+
+def _string_evidence_entries(evidence_raw: list[str], author_role: str, production_id: str) -> list[dict[str, Any]]:
+    """The real production-form shape (`src/app/research-os/workspace/
+    page.tsx`'s `evidence.split("\\n").filter(Boolean)`): a plain array of
+    newline-split strings with no `source_id`/`quote`/`locator` structure
+    of its own, unlike the Quote tool's `[{source_id|node_id, quote,
+    locator?}]` dicts `_research_os_evidence` below already handled.
+
+    Each line becomes its own evidence entry, `quote` the line verbatim,
+    `locator` the fixed marker `"(uncited)"`, `tier` by `author_role`
+    (`_tier_for_author_role`, `T4` default), and no `citations`: an
+    evidence line and a `sources` line are two separate, unpaired arrays
+    on the production form (neither names which source, if any, backs a
+    given evidence line), so attaching every source to every evidence
+    line, the way the dict-shaped branch's own closed-citation-set
+    convention does, would fabricate a citation link the learner never
+    made. Tagging the line `"(uncited)"` instead keeps that absence
+    visible rather than silently fusing unpaired evidence and citation
+    text together (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`, "Real
+    production-form shape"). `source_id` is a per-line synthetic id
+    scoped by `production_id` (`f"research-os-evidence-line-{production_
+    id}-{i}"`): two productions in the same batch each writing their own
+    line 0 must not collide onto the same `_build_corpus`-created
+    `Source` node, which a bare `f"...-line-{i}"` id would (`_build_corpus`
+    creates a `Source` the first time any evidence entry names an id, and
+    silently reuses it for a second production's entry naming the same
+    id)."""
+    return [
+        {
+            "source_id": f"research-os-evidence-line-{production_id}-{i}",
+            "locator": "(uncited)",
+            "quote": line.strip(),
+            "kind": "textual",
+            "tier": _tier_for_author_role(author_role),
+            "citations": [],
+        }
+        for i, line in enumerate(evidence_raw)
+        if isinstance(line, str) and line.strip()
+    ]
+
+
+def _string_source_entries(sources_raw: list[str]) -> list[dict[str, Any]]:
+    """The real production-form shape for `sources[]`: plain newline-split
+    strings, parsed by `_citation_from_source_string`. One citation-only
+    evidence entry per line (no quoted span, matching the dict-shaped
+    branch's own "citation only" fallback below), so every line still
+    resolves to a real `Source` in the corpus even though no evidence
+    line names it."""
+    out = []
+    for i, line in enumerate(sources_raw):
+        if not isinstance(line, str) or not line.strip():
+            continue
+        source_id, citation = _citation_from_source_string(line, i)
+        out.append({
+            "source_id": source_id,
+            "locator": citation["value"],
+            "quote": f"(citation only, no quoted span captured: {citation['value']})",
+            "kind": "textual",
+            "tier": "T2" if citation["type"] == "doi" else "T4",
+            "citations": [citation],
+        })
+    return out
+
+
+def _research_os_evidence(
+    evidence_raw: list[Any], sources_raw: list[Any], *, author_role: str = "student", production_id: str = "",
+) -> list[dict[str, Any]]:
+    """Fold `graph.productions.evidence` and `.sources` into
+    `PRODUCTION-SCHEMA.md` evidence entries, over the two shapes either
+    field can carry:
+
+    - **The Quote tool's shape** (dicts): `evidence` is `[{source_id|
+      node_id, quote, locator?}]`, `sources` is the closed citation set
+      `[{label, url?, license?, doi?}]`. Research OS attaches `sources`
+      to the whole production as one closed set (the migration's own
+      column comment) rather than pairing one source to one quote, so
+      every entry this branch builds carries the *same*, full converted
+      citation list. `tier` is `"T2"` when any cited source carries a
+      `doi` (`PRODUCTION-SCHEMA.md`'s own "a peer-reviewed paper reads
+      T2" example), else `"T4"`.
+    - **The real production form's shape** (plain strings,
+      `src/app/research-os/workspace/page.tsx`'s own `.split("\\n")`,
+      confirmed against `src/app/api/research-os/production/route.ts`'s
+      `evidence?: unknown[]`/`sources?: unknown[]`, which validates
+      neither field's own item shape): handled by
+      `_string_evidence_entries`/`_string_source_entries` above, kept
+      deliberately unpaired rather than fused together.
+
+    A row may mix the two (a caller-supplied dict-shaped fixture
+    alongside a form-shaped one, say): each item in `evidence_raw`/
+    `sources_raw` is dispatched by its own type, dict or string, and
+    either branch's entries can appear in the same output list.
+    """
+    dict_evidence = [e for e in (evidence_raw or []) if isinstance(e, dict)]
+    dict_sources = [s for s in (sources_raw or []) if isinstance(s, dict)]
+    string_evidence = [e for e in (evidence_raw or []) if isinstance(e, str)]
+    string_sources = [s for s in (sources_raw or []) if isinstance(s, str)]
+
+    out: list[dict[str, Any]] = []
+
+    if dict_evidence or dict_sources:
+        citations = [_citation_from_research_os_source(s, i) for i, s in enumerate(dict_sources)]
+        tier = "T2" if any(c["type"] == "doi" for c in citations) else "T4"
+
+        if dict_evidence:
+            for i, ev in enumerate(dict_evidence):
+                source_id = ev.get("source_id") or ev.get("node_id") or f"research-os-quote-{i}"
+                out.append({
+                    "source_id": source_id,
+                    "locator": ev.get("locator") or source_id,
+                    "quote": ev.get("quote") or "(no quote recorded)",
+                    "kind": "textual",
+                    "tier": tier,
+                    "citations": citations,
+                })
+        elif citations:
+            # No quoted span captured yet (a citation-only draft): one
+            # evidence entry per source, since `ClaimEvidence.quote` is a
+            # required field with no meaningful blank value
+            # (`PRODUCTION-SCHEMA.md`, "An evidence entry").
+            out.extend(
+                {
+                    "source_id": s.get("label") or f"research-os-source-{i}",
+                    "locator": s.get("url") or s.get("label") or "",
+                    "quote": f"(citation only, no quoted span captured: {s.get('label') or 'untitled source'})",
+                    "kind": "textual",
+                    "tier": tier,
+                    "citations": [cite],
+                }
+                for i, (s, cite) in enumerate(zip(dict_sources, citations))
+            )
+
+    out.extend(_string_evidence_entries(string_evidence, author_role, production_id))
+    out.extend(_string_source_entries(string_sources))
+    return out
 
 
 def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
@@ -246,27 +374,58 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
       explicitly allows an empty `claims` list. Otherwise one claim, with
       `stance` always `"supports"` (Research OS carries no stance
       vocabulary; a learner's own production always stands behind its own
-      claim) and every one of the five engine slots `None` ("not
-      asserted"): the shipped `vocab-production-seed.json` names concepts
-      about the engine's own calibration questions (`tier-assignment`,
-      `hypothesis-ranking`, ...). Forcing a sky-is-blue claim into that
-      vocabulary would misrepresent it, so a normalized claim's slots
-      stay unresolved until a domain-specific K-12 physics vocabulary
-      exists.
-    - `claims[].interval` is always `None`: a physics fact has no "the
-      claim's own subject happened in year X" the way a historical claim
-      does, so a normalized Research OS production never contributes a
-      `GroundTruthEvent` regardless of status (see the alignment doc's own
-      "What this normalizer does not attempt" section).
+      claim). `evidence`/`sources` are read through `_research_os_evidence`,
+      which accepts either the Quote tool's `[{source_id|node_id, quote,
+      locator?}]`/`[{label, url?, doi?}]` dict shape or the real
+      production form's plain `evidence.split("\n")`/`sources.split("\n")`
+      string-array shape (`src/app/research-os/workspace/page.tsx`; the
+      route itself, `production/route.ts`, types both fields as bare
+      `unknown[]` and validates neither), or a mix of the two. A string
+      evidence line and a string source line are read as two separate,
+      unpaired lists (see `_string_evidence_entries`'s own docstring),
+      never fused into one fabricated citation. `object` reads `target_node_id` itself (`_target_node.slug`
+      when a join is given, the same value either way): the shipped
+      `vocab-production-seed.json` names concepts about the engine's own
+      calibration questions (`tier-assignment`, `hypothesis-ranking`,
+      ...), a meta-vocabulary about the production system rather than a
+      K-12 physics one, so forcing a sky-is-blue claim's OBJECT into THAT
+      vocabulary would misrepresent it; a graph node's own
+      id is a stable, always-available value with no such vocabulary to
+      misrepresent, and `hte.vocab_induce.induce` (wired into
+      `_build_corpus` below) turns it into a real concept rather than
+      requiring one to already exist. `actor`/`action`/`place`/`mechanism`
+      stay `None` ("not asserted"): Research OS carries nothing to read any
+      of the four from without guessing at content this module has no
+      warrant to guess at (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own
+      design-decisions section names this as a founder-confirmable choice).
+    - `claims[].interval` reads the production's own `created_at` year (a
+      real, always-available date) rather than staying `None`: a physics
+      fact has no "the claim's own subject happened in year X" the way a
+      historical claim does, so this is deliberately NOT that, it is the
+      date THIS RECORD entered Bucket's own reviewed corpus, the same
+      "discovery date distinct from subject date" reading `hte.corpus.
+      production`'s own `discovery_year` already gives every other corpus
+      this module builds. Consequence: an `accepted` Research OS production
+      now contributes a `GroundTruthEvent`, dated by when it entered the
+      record rather than by the physics fact's own (nonexistent) date; see
+      `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s design-decisions section for
+      the disclosed tradeoff.
     - `review.history` is synthesized as a single entry at the row's own
-      `updated_at` (falling back to `created_at`): Research OS keeps no
-      per-transition review history on `graph.productions` the way
-      `PRODUCTION-SCHEMA.md`'s own `review.history` array does. It stays
-      exact for the one date `_build_corpus` reads,
-      `review.date_of("accepted")`.
+      `updated_at` (falling back to `created_at`; a row missing both
+      raises, below): Research OS keeps no per-transition review history
+      on `graph.productions` the way `PRODUCTION-SCHEMA.md`'s own
+      `review.history` array does. It stays exact for the one date
+      `_build_corpus` reads, `review.date_of("accepted")`.
 
-    Raises `ValueError` if the row carries no `id` or no `target_node_id`,
-    the two fields this function cannot default around.
+    Raises `ValueError` if the row carries no `id`, no `target_node_id`,
+    a `status` outside `RESEARCH_OS_STATUS_MAP`'s own four known values,
+    or neither `updated_at` nor `created_at`: every one of these is a
+    field this function cannot default around without silently
+    corrupting a downstream read (an unrecognized status folding into
+    `"draft"`, which the default `status_min="peer-reviewed"` then drops
+    from the corpus with no trace of why; a missing timestamp folding
+    into the Unix epoch, which `hte.calibrate.holdout_by_discovery_date`
+    would then read as maximally old).
     """
     if not raw.get("id"):
         raise ValueError("Research OS production row has no 'id'")
@@ -278,6 +437,19 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
     tier = node.get("tier")
     node_title = node.get("title") or node.get("slug") or target_node_id
 
+    raw_status = raw.get("status") or "draft"
+    if raw_status not in RESEARCH_OS_STATUS_MAP:
+        raise ValueError(
+            f"Research OS production row {raw['id']!r} has an unrecognized status {raw_status!r}, "
+            f"not one of {sorted(RESEARCH_OS_STATUS_MAP)}"
+        )
+    mapped_status = RESEARCH_OS_STATUS_MAP[raw_status]
+    moved_at = raw.get("updated_at") or raw.get("created_at")
+    if not moved_at:
+        raise ValueError(f"Research OS production row {raw['id']!r} has neither 'updated_at' nor 'created_at'")
+    created_at = raw.get("created_at") or moved_at
+    record_year = _year_of(created_at)
+
     claim_text = (raw.get("claim") or "").strip()
     evidence_raw = raw.get("evidence") or []
     sources_raw = raw.get("sources") or []
@@ -286,18 +458,14 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
         claims.append({
             "text": claim_text,
             "stance": "supports",
-            "slots": {"actor": None, "action": None, "object": None, "place": None, "mechanism": None},
-            "interval": None,
-            "evidence": _research_os_evidence(evidence_raw, sources_raw),
+            "slots": {"actor": None, "action": None, "object": target_node_id, "place": None, "mechanism": None},
+            "interval": {"start": record_year, "end": record_year},
+            "evidence": _research_os_evidence(evidence_raw, sources_raw, author_role="student", production_id=raw["id"]),
         })
-
-    raw_status = raw.get("status") or "draft"
-    mapped_status = RESEARCH_OS_STATUS_MAP.get(raw_status, "draft")
-    moved_at = raw.get("updated_at") or raw.get("created_at") or "1970-01-01T00:00:00Z"
 
     return {
         "id": raw["id"],
-        "created_at": raw.get("created_at") or moved_at,
+        "created_at": created_at,
         "author_role": "student",
         "grade_band": _tier_to_grade_band(tier) if isinstance(tier, (int, float)) else "unknown",
         "school_or_district_id": "research-os-phase-0",
@@ -572,13 +740,6 @@ def _stance_to_hte(stance: str) -> Stance:
         raise ValueError(f"unknown claim stance {stance!r}, expected one of {sorted(_STANCE_MAP)!r}") from exc
 
 
-def _validate_slots(vocab: Vocabulary, slots: dict[str, str | None]) -> None:
-    for slot in _SLOT_KEYS:
-        value = slots.get(slot.value)
-        if value is not None and vocab.get(slot, value) is None:
-            raise ValueError(f"slot {slot.value!r} value {value!r} is not in the production vocabulary")
-
-
 def _truncate(text: str, limit: int = 140) -> str:
     return text if len(text) <= limit else text[: limit - 3].rstrip() + "..."
 
@@ -639,9 +800,23 @@ def _build_corpus(
       building `hte.calibrate.holdout_by_discovery_date` against this
       corpus gets a holdout keyed to the record's own review date rather
       than to the claim's own subject date.
+
+    **Vocabulary.** Every `EvidenceItem` this function builds carries its
+    claim's own slot values verbatim, whatever they are: an id this
+    module's own `load_vocab()` seed already names, or a fresh one (a
+    Research OS graph-node id, `normalize_research_os_record`'s own
+    `object` reading; `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s "the
+    null-slot gap on physics productions"). Once every `EvidenceItem` and
+    `GroundTruthEvent` is built, `hte.vocab_induce.induce` runs as a merge
+    step over the seed (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own "wire
+    it... as a merge step when it has one"): every value already on file
+    resolves to a real concept in the returned `Corpus.vocab`, whether the
+    seed already named it or this call is the first to see it, so no slot
+    value this function has already accepted into an `EvidenceItem` can
+    fail to resolve downstream.
     """
     _check_status_min(status_min)
-    vocab = load_vocab()
+    seed_vocab = load_vocab()
     production_ids = {p.id for p in productions}
     sources: dict[str, Source] = {}
     provenance: list[RetrievalEnvelope] = []
@@ -665,7 +840,6 @@ def _build_corpus(
         accepted_date = production.review.date_of(_ACCEPTED)
 
         for ci, claim in enumerate(production.claims):
-            _validate_slots(vocab, claim.slots)
             stance = Stance.NEGATIVE if retracted else _stance_to_hte(claim.stance)
             first_evidence_id: str | None = None
 
@@ -698,7 +872,9 @@ def _build_corpus(
                     doc_id=claim.evidence[0].source_id, discovery_year=_year_of(accepted_date),
                 ))
 
-    return Corpus(sources=sources, evidence=evidence, ground_truth=ground_truth, provenance=provenance, vocab=vocab)
+    corpus = Corpus(sources=sources, evidence=evidence, ground_truth=ground_truth, provenance=provenance, vocab=seed_vocab)
+    corpus.vocab = vocab_induce.induce(corpus, seed_vocab=seed_vocab)
+    return corpus
 
 
 # --------------------------------------------------------------------------

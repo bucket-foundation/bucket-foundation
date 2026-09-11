@@ -1,0 +1,62 @@
+{
+  "id": "prod-032",
+  "created_at": "2020-03-01T00:00:00Z",
+  "author_role": "student",
+  "grade_band": "6-8",
+  "school_or_district_id": "district-b",
+  "research_question": "RQ24: does re-scoring cadence and reviewer training move calibration more than the fusion rule?",
+  "claims": [
+    {
+      "text": "An independent district's own cohort raised the same reviewer-training calibration-cadence reading an earlier district's own cohort reported.",
+      "stance": "extends",
+      "slots": {
+        "actor": "student-researcher",
+        "action": "raised",
+        "object": "calibration-cadence",
+        "place": "classroom-workspace",
+        "mechanism": "reviewer-training"
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-hte-self-report-twin-032",
+          "locator": "self-report.json:twin_032_summary",
+          "quote": "An independent district's own cohort raised the same reviewer-training calibration-cadence reading an earlier district's own cohort reported.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "url",
+              "value": "https://example.org/synth/src-hte-self-report-twin-032"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "accepted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2020-01-15"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2020-02-15"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2020-03-15"
+      },
+      {
+        "status": "accepted",
+        "date": "2020-04-15"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}
