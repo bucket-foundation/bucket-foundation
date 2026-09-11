@@ -61,10 +61,12 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: Unrestricted AI access lets a student skip the retrieval step entirely, substituting the
-      answer for the practice the testing-effect mechanism requires; the guardrailed, hint-only arm keeps
-      that retrieval step and keeps the exam-performance gain, a natural experiment on the same mechanism
-      the foundation record establishes.
+    relation: The trial found that unrestricted GPT-4 access raised practice-problem scores but lowered
+      unassisted exam performance relative to a guardrailed, hint-only AI-tutor arm, which preserved the
+      exam gain. Promotion pass two reads the guardrailed arm's preserved gain as an instance of the
+      retrieval-practice mechanism the foundation record establishes, since keeping the retrieval step
+      intact keeps the exam-performance benefit, while unrestricted access lets a student substitute the answer
+      for the practice that step requires.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-49584ffdad25
   title: 'When combinations of humans and AI are useful: A systematic review and meta-analysis'
@@ -118,13 +120,16 @@ records:
     see TAXONOMY_NOTES.md's open question on a dedicated human-AI-collaboration outcome home.
   depends_on_foundation:
     doi: 10.1037/0033-295x.106.4.643
-    path: bucket-canon/04-information/information-foraging/primary-papers.yaml
+    path: bucket-canon/07-mind/information-foraging/primary-papers.yaml
     title: Information foraging.
-    relation: The meta-analysis's strongest moderator, whether a task decomposes into separable subcomponents
-      a human and an AI can each forage over independently, versus one unified output the two must jointly
-      produce, is an empirical test of the foundation record's cost-benefit account of information-seeking
-      extended to a two-agent team; decision tasks decompose the way the foundation record's model predicts
-      a forager benefits from a patchy information environment, content-creation tasks do not.
+    relation: The meta-analysis found that human-AI combination beats the better of the two alone on
+      decision tasks but underperforms on content-creation tasks, with task decomposability, separable
+      subcomponents each party can forage independently versus one unified output they must jointly
+      produce, as the strongest moderator. Promotion pass two reads that moderator as an empirical test
+      of the foundation record's cost-benefit account of information-seeking, extended from one forager
+      to a two-agent team; a task that decomposes gives each party its own patch to forage, the condition
+      under which the foundation record's model predicts a foraging benefit, and a task that does not
+      decompose removes that benefit.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-ce3245fc58e7
   title: 'The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One
@@ -173,9 +178,11 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: Mastery-based corrective feedback is a classroom-scale instance of the retrieval-practice/testing-effect
-      mechanism; this paper's tutoring condition measures that mechanism's classroom-scale outcome, and
-      the foundation record above establishes the mechanism itself.
+    relation: Bloom's review reports that one-to-one tutoring combined with mastery learning raised student
+      achievement about two standard deviations above conventional classroom instruction. Promotion pass
+      one reads the tutoring condition's mastery-based corrective feedback as a classroom-scale instance
+      of the retrieval-practice/testing-effect mechanism the foundation record establishes; Bloom's own
+      paper does not name that mechanism.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-1fa55749afd0
   title: The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring
@@ -221,9 +228,12 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: Step-based tutoring feedback (intermediate-step correction) is a system-scale instance of
-      frequent retrieval-and-feedback checkpoints, the same mechanism the testing effect establishes at
-      the item scale.
+    relation: VanLehn's meta-analysis found that step-based tutoring systems, which give feedback on
+      intermediate steps, produce learning gains comparable to human one-to-one tutoring and larger than
+      answer-based systems that check only a final result. Promotion pass one reads step-based
+      intermediate-step correction as a system-scale instance of the frequent retrieval-and-feedback
+      checkpoints the foundation record's testing effect establishes at the item scale; VanLehn's own
+      paper frames the result as a tutoring-system design comparison; it does not test that mechanism directly.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-2cce3fc65496
   title: Effectiveness of Intelligent Tutoring Systems
@@ -269,8 +279,11 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: Updates VanLehn 2011's estimate with a larger, more recent sample of the same underlying
-      mechanism (frequent retrieval-and-feedback checkpoints at system scale).
+    relation: Kulik and Fletcher's 50-study meta-analysis found intelligent tutoring systems produce
+      learning gains over conventional instruction comparable to VanLehn 2011's estimate, on a larger and
+      more recent sample of systems. Promotion pass one reads both estimates as measuring the same
+      underlying mechanism, frequent retrieval-and-feedback checkpoints at system scale; neither paper's
+      own analysis frames its result in those mechanism terms.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-46a9894f6dd8
   title: 'Effectiveness of Mastery Learning Programs: A Meta-Analysis'
@@ -321,9 +334,10 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: A large-sample replication check on Bloom 1984's tutoring-equivalent claim; both interventions
-      rest on the same retrieval-practice/testing- effect mechanism, this record tempers Bloom's effect-size
-      estimate.
+    relation: This 108-study meta-analysis found mastery learning produces a smaller effect size than
+      Bloom 1984's original tutoring-equivalent estimate, tempering that claim with a larger sample.
+      Promotion pass one reads both Bloom's and this record's interventions as resting on the same
+      retrieval-practice/testing-effect mechanism; neither paper states that mechanism itself.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-c3ad89ff9a59
   title: 'AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based
@@ -383,9 +397,12 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: The AI tutor's pedagogical structure runs students through repeated retrieval-and-feedback
-      checkpoints on the same content; the learning gain this trial measures is a classroom-scale instance
-      of the testing-effect mechanism the foundation record establishes.
+    relation: The RCT found that students using the AI tutor scored higher on a topic-matched exam than
+      students in active-learning class sessions, using a tutor built to a specific research-based
+      pedagogical design. Promotion pass two reads that pedagogical design, which runs students through
+      repeated retrieval-and-feedback checkpoints on the same content, as a classroom-scale instance of
+      the testing-effect mechanism the foundation record establishes; the paper's own account credits the
+      tutor's design in general terms and does not name that specific mechanism.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-4d51ec39f102
   title: Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance
@@ -450,12 +467,15 @@ records:
     see TAXONOMY_NOTES.md's open question on a dedicated human-AI-collaboration outcome home.
   depends_on_foundation:
     doi: 10.1037/0033-295x.106.4.643
-    path: bucket-canon/04-information/information-foraging/primary-papers.yaml
+    path: bucket-canon/07-mind/information-foraging/primary-papers.yaml
     title: Information foraging.
-    relation: An AI explanation that raises a person's stated trust without raising team accuracy is a
-      failure of the foraging cue, the explanation carries no reliable information scent toward the correct
-      answer, so the human follows it anyway; the foundation record's account of scent-following over
-      objectively-shortest paths predicts exactly this kind of misdirected reliance.
+    relation: The study found that some AI explanations raised participants' stated trust in and reliance
+      on the AI's recommendation without raising team accuracy, a dissociation between trust and
+      performance. Promotion pass two reads that dissociation as an instance of the foundation record's
+      information-scent account, since an explanation that carries no reliable cue toward the correct answer
+      produces reliance anyway. The source paper does not use foraging or information-scent language;
+      this reading is the promoting pass's own extension, and the paper's own framing stops at the
+      trust-accuracy dissociation it reports.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-d6f23a78e535
   title: 'From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in
@@ -516,10 +536,12 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: The report attributes part of the measured gain to the scripted activity structure students
-      worked through with a facilitator on site, a structured retrieval-and-practice routine rather than
-      open-ended chatbot access, the same mechanism class the foundation record establishes at a six-week,
-      national-program scale.
+    relation: The World Bank field evaluation attributes part of the measured learning-progress gain to
+      the scripted activity structure students worked through with a facilitator on site, rather than to
+      open-ended chatbot access. Promotion pass two reads that scripted, facilitator-guided routine as a
+      structured retrieval-and-practice routine, the same mechanism class the foundation record
+      establishes, at a six-week, national-program scale; the report itself does not name a
+      retrieval-practice mechanism.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-f3c246bffb55
   title: 'Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing
@@ -572,26 +594,34 @@ records:
   - Applied psychology
   - Cognitive psychology
   sources_consulted:
-  - crossref
+  - datacite
   - openalex
   fetched_at: '2026-09-10T21:26:49Z'
   canon_score: 30
   canon_score_reasons:
   - +20 citation_count>50 (149)
   - +10 open access
+  - "+anchor: below CONTRIBUTING.md's informational canon_score floor; a 2025 arXiv preprint, so
+    canon_score's peer-reviewed-type and foundational-venue signals do not apply even though the work
+    already carries real citation traction (149) and direct topical fit to the memory-systems foundation
+    it depends on. Included on citation count and topical fit; the mechanical score alone would have
+    excluded it. Reviewer gianyrox, 2026-09-11."
   canon_branch_hints:
   - 07-mind
   tier: OUTCOME
   outcome_reason: RUBRIC E7 (an EEG and behavioral study reporting a neural-connectivity and recall effect
-    size instead of a primary mechanism claim); routed to sub-outcomes/education.
+    size instead of a primary mechanism claim); routed to sub-outcomes/education. This is a DataCite-registered
+    arXiv DOI; Crossref returns no record for it, OpenAlex resolved the metadata.
   depends_on_foundation:
     doi: 10.1126/science.1207745
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'Google Effects on Memory: Cognitive Consequences of Having Information at Our Fingertips'
-    relation: Weaker neural connectivity and weaker later recall of one's own essay content in the LLM-assisted
-      condition is a physiological and behavioral instance of the encode-the-location-not-the-content
-      pattern the foundation record establishes for external, searchable stores; here the external store
-      is the assistant's own output.
+    relation: The study found that the LLM-assisted writing group showed weaker EEG-measured neural
+      connectivity and worse recall of their own essay content than groups who wrote unaided or with
+      search-engine assistance. Promotion pass two reads that pattern as a physiological and behavioral
+      instance of the foundation record's encode-the-location-not-the-content account of cognitive
+      offloading, with the assistant's own output standing in for the external, searchable store; the
+      study's own analysis does not invoke that account.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-3caacb8e2302
   title: 'Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise'
@@ -634,25 +664,30 @@ records:
   - Programming language
   - Geometry
   sources_consulted:
-  - crossref
+  - datacite
   - openalex
   fetched_at: '2026-09-10T21:26:49Z'
   canon_score: 10
   canon_score_reasons:
   - +10 open access
+  - "+anchor: below CONTRIBUTING.md's informational canon_score floor; a 2024 arXiv preprint with only 6
+    citations so far, so the mechanical citation-count signal undercounts a large field deployment
+    (largest mastery gains for less-certified or less-experienced tutors). Included on study design and
+    sample size; the mechanical score alone would have excluded it. Reviewer gianyrox, 2026-09-11."
   canon_branch_hints:
   - 01-mathematics
   - 07-mind
   tier: OUTCOME
   outcome_reason: RUBRIC E7 (a field deployment reporting a tutoring-mastery effect size instead of a
-    primary mechanism claim); routed to sub-outcomes/education. canon_score is low (10) on the mechanical
-    citation-count heuristic for a recent preprint; included on the strength of the study design, a
-    large field deployment with a mastery outcome, per this pass's task brief.
+    primary mechanism claim); routed to sub-outcomes/education. This is a DataCite-registered arXiv DOI;
+    Crossref returns no record for it, OpenAlex resolved the metadata.
   depends_on_foundation:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: Tutor CoPilot's real-time suggestions push a human tutor toward expert-pattern retrieval-and-feedback
-      prompts rather than direct answers; the reported mastery gain is that mechanism operating through
-      an upskilled tutor instead of a student-facing system.
+    relation: The field deployment found that tutors using Tutor CoPilot's real-time AI suggestions
+      produced higher student mastery rates than tutors without it. Promotion pass two reads the
+      suggestions' effect as the foundation record's retrieval-and-feedback mechanism operating through an
+      upskilled tutor, since the AI pushes the tutor toward expert-pattern retrieval-and-feedback prompts rather
+      than direct answers, and the reported mastery gain is that mechanism at one remove from the student.
   provenance_signoff: 'pending: gianyrox'

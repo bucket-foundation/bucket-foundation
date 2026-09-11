@@ -1,0 +1,457 @@
+{
+  "_meta": {
+    "note": "Hand-maintained registry behind hte.question_map (bkt-hte-question-map): one entry per learning/research-os/RESEARCH-QUESTIONS.md question id. `hte question-map --check` diffs this registry against the live plan text and the live hte.cli._CORPUS_LOADERS registry; `--write` renders it into docs/RESEARCH-OS-INTEGRATION.md's generated section. Editing a question's classification, corpora, slot_frame, adapter_needed, or note happens here; the id keys and question_text fields track the plan and should only change when `--check` reports drift.",
+    "seeded_from": "docs/RESEARCH-OS-INTEGRATION.md's hand-written revision-1 question map (PR #39), reconciled against RESEARCH-QUESTIONS.md and PLAN-REVISION-2.md (PR #44) as merged on main",
+    "corrections_from_revision_1": [
+      "sacred-history (hte.corpus.sacred_history, PR #36) is added to questions 22 and 23's corpora: it was already registered in hte.cli._CORPUS_LOADERS and hte.runner._CORPUS_LOADERS before PR #39's own hand-written pass, which still read it as not yet true on main. A generic held-out corpus for the same isolated-quote and same-family-judge comparisons quantum-history already runs, no production or research-os-specific content."
+    ]
+  },
+  "1": {
+    "question_text": "Do the five states (Access, Awareness, Understanding, Internalization, Production) map onto ICAP's four engagement modes, or do they form a distinct construct? Study: classify activity logs by ICAP mode and by state; test whether state predicts delayed transfer beyond ICAP mode. Comparators: Chi and Wylie 2014; Bloom's revised taxonomy; SOLO; Perkins's understanding performances.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An IRT or Rasch fit on Research OS's own activity logs; no country, indicator, or mechanism slot to fill.",
+    "aliases": []
+  },
+  "2": {
+    "question_text": "Does a state classification predict forward learning rate on the next atom in the route? Study: knowledge-tracing baseline versus state-augmented model on held-out learners.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A knowledge-tracing comparison over per-learner logs.",
+    "aliases": []
+  },
+  "3": {
+    "question_text": "What is the misclassification rate of each state signal, and at what rate do teachers contest a state? Study: log contest events; sample audits by a second reviewer.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An audit of Research OS's own classifier output.",
+    "aliases": []
+  },
+  "4": {
+    "question_text": "Does the Production state, as gated by review, show transfer to unfamiliar formats (Perkins) or format-matched performance only?",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A transfer study on individual learners.",
+    "aliases": []
+  },
+  "5": {
+    "question_text": "Does frontier-backward routing from a chosen target improve time-to-Understanding on the target compared with Academy's forward route, and at what cost in prerequisite gaps? Study: randomized route assignment within a class.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A within-class randomized route assignment; the engine supplies only the routing target, and the outcome measure belongs to Research OS's own study.",
+    "aliases": []
+  },
+  "6": {
+    "question_text": "Does routing from a live hypothesis-engine gap node produce productions the engine can use, and does that change learner engagement? Study: compare gap-node targets with static frontier atoms.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "The engagement half is a Research OS outcome. The \"does routing from a gap node produce usable productions\" half depends on the gap-node queue reaching `hte.runner` at all; see question 20.",
+    "aliases": []
+  },
+  "7": {
+    "question_text": "How should supports fade as state rises, given expertise reversal (Kalyuga 2003)? Study: scaffolding schedule as a factor.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An instructional-design factor on individual learners.",
+    "aliases": []
+  },
+  "8": {
+    "question_text": "Does a find, quote, check, organize workspace outperform a permissive explain-and-answer tutor and a no-AI control on delayed unassisted post-tests? Pre-registered three-arm RCT scored on transfer, with process measures (quotes gathered, checks run).",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A learner-level RCT.",
+    "aliases": []
+  },
+  "9": {
+    "question_text": "At what rate does the quote tool fabricate or misattribute a span, and does the check tool's abstain path fire when retrieval is weak? Adversarial audit on a K-12 query set (the Bender test).",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An adversarial audit of Research OS's own find and quote tools, built in a different codebase from the engine's `extract` role. `hte.roles.extract`'s span-anchoring, never trusting a model's own character offsets, dropping an unlocatable quote rather than fabricating its span, is the pattern worth carrying into those tools.",
+    "aliases": []
+  },
+  "10": {
+    "question_text": "Does the constraint change how learners judge source quality (lateral reading, McGrew and others 2019)? Study: civic online reasoning tasks before and after.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A civic-online-reasoning study on learners.",
+    "aliases": []
+  },
+  "11": {
+    "question_text": "What is the cognitive-offloading effect of check on later unassisted claim evaluation (Bastani and others 2024; Lee and others 2025)?",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A learner cognition study.",
+    "aliases": []
+  },
+  "12": {
+    "question_text": "Can student productions meet a research-grade evidence standard? Study: blind rating of accepted productions against the engine's evidence tiers; compare with citizen-science and course-based research precedents.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A blind human rating exercise against the engine's tiers, the precursor question 19 needs before it can run.",
+    "aliases": []
+  },
+  "13": {
+    "question_text": "Does the prospect of a citation payment change the quality or the quantity of productions, and does it crowd out intrinsic motivation? Study: classes with recognition only versus recognition plus custodial credit.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A payment-condition RCT on learners.",
+    "aliases": []
+  },
+  "14": {
+    "question_text": "Which payout structure do guardians and districts accept (guardian-as-payee, custodial account, deferred ledger), and what do state child-earnings laws require in each pilot state?",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A legal and policy survey with no engine dependency.",
+    "aliases": []
+  },
+  "15": {
+    "question_text": "Which process signals in the class view change teacher decisions, and which are ignored? Study: think-aloud sessions and dashboard telemetry (Holstein and others).",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A think-aloud and telemetry study on Research OS's own dashboard.",
+    "aliases": []
+  },
+  "16": {
+    "question_text": "Does exposing state confidence and a contest path change teacher trust in the classifier?",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A teacher-trust HCI study.",
+    "aliases": []
+  },
+  "17": {
+    "question_text": "Is the school-library research-skills channel a faster adoption path than a subject-teacher channel? Study: parallel pilots with a librarian lead and a teacher lead.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An adoption-speed comparison across pilot sites.",
+    "aliases": []
+  },
+  "18": {
+    "question_text": "Does a Common Sense rating or a Digital Promise certification change district willingness to pilot, against the 2026 moratorium backdrop?",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An adoption study with no engine dependency.",
+    "aliases": []
+  },
+  "19": {
+    "question_text": "What detectability and tier should a reviewed student production carry inside the engine's belief fusion, and does adding productions change hypothesis rankings in a calibrated direction? Study: holdout calibration with and without productions.",
+    "status": "runnable",
+    "corpora": ["production", "research-os"],
+    "slot_frame": {
+      "actor": "the production's `slots.actor` or `OTHER`",
+      "action": "the production's `slots.action` or `OTHER`",
+      "object": "the atom's own concept",
+      "place": "the production's `slots.place` or `OTHER`",
+      "mechanism": "the production's `slots.mechanism` or `OTHER`",
+      "time": "the atom's own period; the submission date plays no role"
+    },
+    "adapter_needed": null,
+    "note": "The campaign itself is `hte.calibrate.run_holdout` with and without production evidence, which the engine already runs for its shipped corpora. `hte.corpus.production` reads a local fixture directory or a live Supabase table; `hte.corpus.research_os_outbox` (registered as `research-os`) reads the same shape off the real accepted-production pipeline once a teacher has accepted at least one production through `ros-06`'s accept path. The live Supabase read and write leg stays untested end to end (PLAN-REVISION-2.md section 5's operational blocker, no live Supabase project reachable from a review sandbox), separate from the engine-side wiring itself, which is done.",
+    "aliases": []
+  },
+  "20": {
+    "question_text": "Can the engine's gap-node queue serve as a curriculum: does assigning gap nodes to classes fill them faster than the engine's own active-learning loop?",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "`hte.unknowns.GapNode`, `value_of_information`, and its public generalization `unresolved_slot_gaps` are wired: `scripts/campaign_research_os.py`'s `export_gap_nodes` calls it after every campaign, and the app-side bridge writes each gap as a `graph.nodes` row a class can be assigned as a routing target. PLAN-REVISION-2.md section 6 restates the same finding: the remaining blocker is operational, no live Supabase project to write a campaign's gap-node export into, rather than an unwired engine function. What is left either way is a Research-OS pilot measurement, does assigning gap nodes to classes fill them faster than the engine's own active-learning loop, the same class of classroom-outcome question every other out-of-scope row in this registry already sits in; no adapter changes that.",
+    "aliases": []
+  },
+  "21": {
+    "question_text": "Does an artifact-validity instrument for student productions, separate from a learning-outcome instrument, predict whether a production earns belief mass in the engine? Auchincloss and others 2014 (doi:10.1187/cbe.14-01-0004) report that the course-based research literature has not built this instrument. Study: blind dual rating of accepted productions on validity, compared with the production's later fusion weight.",
+    "status": "needs_adapter",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": "a production-side validity-rating field: the production-record dependency is resolved (`production`, `research-os`), but no production carries a validity rating to correlate against fusion weight until Research OS's own review flow adds one.",
+    "note": "The production-record dependency question 19 named is resolved (`production`, `research-os`); what is still missing is the validity-rating instrument itself. `RESEARCH-QUESTIONS.md`'s own citation (Auchincloss and others 2014) names the course-based-research field as not having built one yet, so no production carries a validity-rating field to correlate against fusion weight until Research OS's own review flow adds one.",
+    "aliases": []
+  },
+  "22": {
+    "question_text": "Does isolated-quote checking overcredit cherry-picked spans compared with full-document context checking? Wadden and others 2022 (arXiv:2112.01640) found context changes verification judgments. Study: run check in both modes on the same productions and compare against human labels.",
+    "status": "runnable",
+    "corpora": ["literature", "quantum-history", "sacred-history"],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "The overlap map's own question 6 names this as a comparison the engine's held-out corpus can already answer, no production required, before the same comparison ever runs on production data. `literature`'s own evidence spans are the real, DOI-verified academic quotes this question is asking about, a closer fit than `quantum-history`'s chapter prose; `sacred-history` (PR #36) is a third generic corpus the same comparison can run against, cross-tradition prose rather than a research-methods subject. No hypothesis-level slot frame applies: the comparison runs at the evidence-item level, one corpus's own scoped-span quote against its full-card text, and the unit of comparison is agreement across the whole held-out population rather than one placement.",
+    "aliases": []
+  },
+  "23": {
+    "question_text": "When a generator, critic, and judge share a base model, do they share blind spots by construction? Qi and others 2023 (arXiv:2311.05965) found proposer quality degrades on facts excluded from pretraining. Study: cross-family judge versus same-family judge on held-out placements.",
+    "status": "runnable",
+    "corpora": ["literature", "quantum-history", "sacred-history"],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "`hte.llm.complete` shells out to the `claude` CLI only; `hte/data/model-policy.json` picks a model per role but every choice is a Claude tier (sonnet, haiku, opus), never a second provider. A same-family comparison (sonnet judge versus opus judge) is a one-line policy edit, runnable today against `literature`, `quantum-history`, or `sacred-history`'s own held-out placements; the cross-family half needs `hte.llm` extended to call a non-Anthropic model first. No single-hypothesis slot frame applies either way; the unit of comparison is the whole held-out population's calibration across every placement.",
+    "aliases": []
+  },
+  "24": {
+    "question_text": "Does re-scoring cadence and reviewer training move calibration more than the fusion rule? Mellers and others 2014 (doi:10.1177/0956797614524255). Study: vary update cadence and reviewer calibration feedback; hold the fusion operator fixed.",
+    "status": "needs_adapter",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": "a logged reviewer-training manipulation with more than one reviewer condition recorded against the same productions; no pilot has run one yet.",
+    "note": "The schema dependency is resolved, `review.teacher`/`review.bucket_reviewer` already reach the engine through `production`/`research-os`; what is still missing is a logged reviewer-training manipulation, more than one reviewer condition recorded against the same productions, which no pilot has run yet.",
+    "aliases": []
+  },
+  "25": {
+    "question_text": "Does reliability-weighted aggregation of many student judgments converge on expert-grade output for slot extraction, as Galaxy Zoo did for morphology (Lintott and others 2008, doi:10.1111/j.1365-2966.2008.13689.x)? Study: weight students by track record; compare with expert labels.",
+    "status": "needs_adapter",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": "volume: many students' filled slots on the same shared evidence, a Galaxy-Zoo-scale sample, not yet in hand at fixture or single-pilot scale.",
+    "note": "A production's own `slots` block already carries the same five fields the engine fills, and the ingestion path is registered on both corpora; this question needs volume, many students' filled slots on the same shared evidence, not yet in hand at fixture or single-pilot scale.",
+    "aliases": []
+  },
+  "26": {
+    "question_text": "Which frontier nodes attract student routing over time, and does the engine's generator narrow or widen the question set relative to that traffic? Messeri and Crockett 2024 (doi:10.1038/s41586-024-07146-0). Study: longitudinal comparison of routed targets and generated hypotheses.",
+    "status": "needs_adapter",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": "Research OS's own routing-event telemetry log as a second time series; no adapter in this package reads product telemetry.",
+    "note": "Needs Research OS's own routing-event log as a second time series beside the engine's regular corpus; no adapter this package ships reads product telemetry.",
+    "aliases": []
+  },
+  "27": {
+    "question_text": "Does locking a production's evaluation criteria before check runs reduce bias, the way Registered Reports do for human research (Chambers 2013, doi:10.1016/j.cortex.2012.12.016)?",
+    "status": "needs_adapter",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": "a lock-before-check workflow step in the production pipeline itself, a Research-OS-side feature no corpus adapter substitutes for.",
+    "note": "Named as a property of a production's evaluation criteria in the question text; needs a lock-before-check workflow step in the production pipeline itself before it is testable as stated, a Research-OS-side feature no corpus adapter substitutes for.",
+    "aliases": []
+  },
+  "28": {
+    "question_text": "Do the five states form one ordered latent trait, as SOLO and ICAP do, or several dimensions? Rasch or IRT fit on state items across many atoms.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An IRT or Rasch fit on Research OS's own state items.",
+    "aliases": []
+  },
+  "29": {
+    "question_text": "Does frontier-backward routing beat forward sequencing on delayed retention and motivation at matched time on task? RCT on the same atoms.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A learner RCT.",
+    "aliases": []
+  },
+  "30": {
+    "question_text": "Does a citation payment change the self-explanation and struggle behaviors that predict transfer (Chi and others 1989, 1994; Kapur 2008, 2014)? Three conditions: no payment, credential only, payment.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A three-condition learner RCT.",
+    "aliases": []
+  },
+  "31": {
+    "question_text": "What share of accepted productions is net-new synthesis versus restated source material, by grade band? Blind expert coding against cited sources.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A blind expert coding pass on production content, the same kind of exercise question 12 needs.",
+    "aliases": []
+  },
+  "32": {
+    "question_text": "Does teacher access to state-level data change grouping and intervention decisions, and do outcomes match Black and Wiliam's range? Classrooms randomized to the class view.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A classroom RCT on teacher behavior.",
+    "aliases": []
+  },
+  "33": {
+    "question_text": "Do FSRS intervals need to differ by state, given different forgetting curves for recall and production?",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An Academy spaced-repetition tuning question with no engine dependency.",
+    "aliases": []
+  },
+  "34": {
+    "question_text": "Does population-average prerequisite mastery misroute learners that individualized estimates would catch (Pardos and Heffernan 2010, doi:10.1007/978-3-642-13470-8_24)? Simulation plus field comparison.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A knowledge-tracing simulation, a different statistical object from a slot-filled hypothesis.",
+    "aliases": []
+  },
+  "35": {
+    "question_text": "Does the expertise reversal effect cross the five states, so that scaffolds that help at Access slow learners at Internalization? Scaffold intensity crossed with state.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A scaffold-intensity RCT on learners.",
+    "aliases": []
+  },
+  "36": {
+    "question_text": "At what rate do learners turn repeated check queries into indirect answer requests? Transcript coding after Wang and others 2024.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "Transcript coding of Research OS's own product usage.",
+    "aliases": []
+  },
+  "37": {
+    "question_text": "Does sourcing skill built inside the workspace transfer to open-web evaluation, benchmarked against McGrew 2020 (doi:10.1016/j.compedu.2019.103711)?",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A learner transfer study.",
+    "aliases": []
+  },
+  "38": {
+    "question_text": "What minimum engagement rate precedes a detectable gain, given Oreopoulos and Low 2026? Dose-response field study.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A dose-response field study on learners.",
+    "aliases": []
+  },
+  "39": {
+    "question_text": "Does payment eligibility change who participates by prior achievement or socioeconomic status? Submission and acceptance rates by baseline quartile.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An equity and participation study.",
+    "aliases": []
+  },
+  "40": {
+    "question_text": "Does a mandatory check step before a claim enters the graph change critical-thinking transfer compared with unchecked note-taking? Between-group comparison with a validated transfer battery at a delay of weeks.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A learner RCT.",
+    "aliases": []
+  },
+  "41": {
+    "question_text": "Does disagreement surfacing raise engagement with primary sources compared with silent conflict resolution? Log-based comparison with click-through and claim quality as outcomes.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A product-usage RCT.",
+    "aliases": []
+  },
+  "42": {
+    "question_text": "Does the AI ghostwriter effect (Draxler and others 2023) appear when organize drafts a claim sentence from a quote? Authorship-perception survey on auto-drafted versus self-drafted sentences.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "An authorship-perception survey.",
+    "aliases": []
+  },
+  "43": {
+    "question_text": "What level of system initiative in find suits each age band? Developmental comparison with search efficacy and frustration as outcomes.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A developmental HCI comparison.",
+    "aliases": []
+  },
+  "44": {
+    "question_text": "Does a check-only critic change error-correction speed and retention compared with a critic that also supplies the fix? Two-by-two design after CodeAid.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A learner RCT on error correction.",
+    "aliases": []
+  },
+  "45": {
+    "question_text": "Do children over-trust a provenance card's verified badge the way they over-trust a warm chat reply (Kurian 2023, doi:10.1177/14639491231206004)? Think-aloud with true and fabricated cards.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A child-HCI trust study.",
+    "aliases": []
+  },
+  "46": {
+    "question_text": "Does exposing belief-score components and critic disagreement to teachers, instead of a single score, produce better-calibrated trust? Dashboard detail manipulated; trust measured against accuracy.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A teacher-trust HCI study; the components themselves, `Opinion`'s `(b, d, u, a)` and its projection `P(h) = b + a*u`, already exist in `hte.belief.score` and need only a UI to surface them.",
+    "aliases": []
+  },
+  "47": {
+    "question_text": "Do eight-year-olds and sixteen-year-olds generate different requirements for the shared workspace? Cooperative-inquiry sessions across age bands (Druin 1999).",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A cooperative-inquiry requirements study.",
+    "aliases": []
+  },
+  "48": {
+    "question_text": "Does a paid, citable production model shift a learner's identity from consumer to contributor over a school year, and does that predict later voluntary source use? Longitudinal survey with log-based tracking.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A longitudinal survey.",
+    "aliases": []
+  },
+  "49": {
+    "question_text": "Does the process-exposing class view raise teacher load past a usable threshold (Verbert and others 2013, doi:10.1177/0002764213479363)? Load and usefulness measured together in the pilot.",
+    "status": "out_of_scope",
+    "corpora": [],
+    "slot_frame": null,
+    "adapter_needed": null,
+    "note": "A teacher-load HCI study.",
+    "aliases": []
+  }
+}

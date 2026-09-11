@@ -86,6 +86,62 @@ disclosed, deliberate choices (design-decisions section below), not
 oversights the way the fully-null slots and the always-`None` interval
 were before this change.
 
+## Real production-form shape
+
+The `evidence`/`sources` rows in the table (`jsonb [{source_id|node_id,
+quote, locator?}]` / `jsonb [{label, url?, license?, doi?}]`) describe
+the shape a future Quote tool would write. The real production form
+shipped on `main` (`src/app/research-os/workspace/page.tsx`) writes
+neither shape: `evidence: production.evidence.split("\n").filter
+(Boolean)` and `sources: production.sources.split("\n").filter
+(Boolean)`, plain arrays of newline-split strings, and `src/app/api/
+research-os/production/route.ts`'s `POST` stores whatever it is handed
+verbatim (`evidence: body.evidence ?? []`, typed `unknown[]`, validated
+by neither field). `_research_os_evidence` used `.get()` on each entry
+unconditionally, so a real, accepted production raised `AttributeError`
+the moment it reached `Production.from_dict`, and because `hte.corpus.
+research_os_outbox._build` called that function over every row in a
+batch with no isolation, one such row aborted the whole batch, including
+every other production a campaign was about to ingest with it (PR #35's
+own seam check on PR #37, `gh pr view 35 --comments`).
+
+Two fixes, both landed together:
+
+1. **`hte/corpus/production.py`'s `_research_os_evidence` now accepts
+   either shape**, or a mix of the two within one row: a dict entry
+   (matching the table above) reads exactly as it did before; a string
+   entry (`_string_evidence_entries`/`_string_source_entries`) becomes
+   its own evidence entry, `quote` the line verbatim, `tier` by the
+   row's own `author_role` (`_tier_for_author_role`, `T4` for the
+   `"student"` this normalizer always writes today), `locator` the
+   fixed marker `"(uncited)"`, and no `citations`: an evidence line and
+   a `sources` line are two separate, unpaired arrays on the real form
+   (neither names which source, if any, backs a given evidence line), so
+   attaching every source to every evidence line, the dict shape's own
+   closed-citation-set convention, would fabricate a citation link the
+   learner never made. A `sources` line still becomes a real `Source` in
+   the corpus (a citation-only evidence entry per line, the same pattern
+   the dict shape's own "no quoted span" branch already used), parsed by
+   shape: a DOI-looking line (`doi:10.x/...` or bare `10.x/...`) tags
+   `T2`, an `http(s)://` line or a bare label tags `T4`. Each synthetic
+   evidence-line id is scoped by the row's own production id
+   (`f"research-os-evidence-line-{production_id}-{i}"`): two productions
+   in the same ingest batch each writing their own line 0 must not
+   collide onto one `Source` node the way a bare `f"...-line-{i}"` id
+   would.
+2. **`hte/corpus/research_os_outbox.py`'s `_build` isolates per row**:
+   any row that still fails to normalize, this fix or a future one,
+   is skipped (never marked consumed, so it stays visible for a retry
+   once the row is fixed), reported as `{"production_id", "reason"}`,
+   and never aborts the rest of the batch. `scripts/campaign_research_
+   os.py`'s `main()` prints each skip and folds the list into
+   `MANIFEST.json["skipped_rows"]` (`hte.provenance.stamp_manifest`).
+
+`tests/test_corpus_production.py`'s "Real production-form shape" section
+covers the string shape (including the mixed-shape and id-scoping cases);
+`tests/test_corpus_research_os_outbox.py`'s per-row-isolation tests cover
+`_build`'s own skip-and-report behavior.
+
 ## What this normalizer does not attempt
 
 - **Slot-vocabulary alignment for `actor`/`action`/`place`/`mechanism`.**

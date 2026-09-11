@@ -2,6 +2,217 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #56 review pass
+
+Date 2026-09-10. Review of PR #56 (`feat/hte-question-map`) before merge,
+worktree `.ros-worktrees/r56`. Full account: `_intake/research-os-k12/
+CHANGELOG.md`, "2026-09-10, PR #56 review pass".
+
+### Edited
+
+- Nothing under `learning/research-os/` or `_intake/research-os-k12/`
+  (besides this ledger and its sibling changelog). The PR's own changes
+  are confined to `tools/hypothesis-engine/`; it reads
+  `RESEARCH-QUESTIONS.md` and cross-references `PLAN-REVISION-2.md` but
+  writes neither. No text replaced, so no entry belongs in `DELETIONS.md`.
+- `tools/hypothesis-engine/hte/question_map.py`: rewrote one antithesis-
+  pattern diagnostic string (agf-lint-voice-src finding) and, separately,
+  `tests/test_question_map.py`: dropped one unused `json` import (`ruff`
+  finding). Both are this reviewer's fixes on top of the PR, separate
+  from the `cli.py` merge-conflict resolution below.
+
+### Merged
+
+- `origin/main`, which carried #55 (canon feed-event backfill) and #59
+  (feed ledger total_events fix) since this branch was cut. One conflict
+  in `tools/hypothesis-engine/hte/cli.py`: this PR's `question-map`
+  subcommand and a concurrently merged `purge` subcommand both edited the
+  module docstring, the `from . import ...` line, and the subparser
+  registration block. Kept both sides in each hunk.
+
+### Verified
+
+- `hte question-map --check` / `--write`: committed
+  `docs/RESEARCH-OS-INTEGRATION.md` matches a live regeneration exactly,
+  no drift.
+- `tests/test_question_map.py`, 25/25. `make test` (engine, post-merge),
+  1146 passed, 18 deselected. `npm run test:research-os`, 298/298,
+  `isPendingSignoff` suite included and untouched. `npx tsc --noEmit`,
+  `npm run build`: clean. `agf-lint-voice check` / `agf-lint-voice-src
+  check`: 0 violations after this reviewer's antithesis fix. `ruff check`
+  on this PR's own touched files: clean after the unused-import fix (32
+  pre-existing findings elsewhere in the engine tree are out of scope).
+- Leak scan: no keys, IPs, non-public hostnames, `/home/gian` paths, or
+  PII; only expected emails; `Claude-Session` URLs are commit-message
+  metadata only.
+
+## PR #42 review pass
+
+Date 2026-09-10. Review of PR #42 (`feat/hte-purge`) before merge, worktree
+`.ros-worktrees/r42`. Full account: `_intake/research-os-k12/CHANGELOG.md`,
+"2026-09-10, PR #42 review pass".
+
+### Edited
+
+- `learning/research-os/compliance/DATA-INVENTORY.md`: the
+  `public.research_os_productions_outbox` row's caveat sentence now names
+  `hte purge --production <id>` as the required manual call reaching the
+  engine-side artifacts a Supabase delete request cannot, and states that
+  purge is not yet wired into `POST /api/research-os/privacy`. Prior text
+  named the gap only; no sentence was removed, this adds the remediation.
+
+### Verified
+
+- `make test` (engine), 1118 passed, 18 deselected. `ruff check` clean on
+  every file this PR touches. `agf-lint-voice check` / `agf-lint-voice-src
+  check`, 0 violations.
+
+## Iteration 23: PR #54 review pass
+
+Reviewed PR #54 (`feat/ros-llm-edge-inference`) from the `review/pr54`
+worktree. Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10,
+PR #54 review pass".
+
+### Merged
+
+- `origin/main` twice: first cleanly (`LOOP-LOG.md` only), then again
+  after PR #52 (roster sync) merged concurrently. Five conflicts, all
+  append-only or additive: `BEADS-PENDING.jsonl`, this file, `_intake/
+  research-os-k12/CHANGELOG.md` (kept both entries, reordered
+  newest-first), `package.json` (merged both PRs' `test:research-os`
+  additions into one 23-script chain), and a one-sentence docstring
+  reword in `tools/hypothesis-engine/tests/swarm-20260910/
+  test_serve_props.py` (kept `origin/main`'s wording).
+
+### Fixed
+
+- `scripts/research-os/ingest/test-ingest-infer-llm.ts`: added a
+  property-style sweep for the calibration bound (0.3 to 0.65), point
+  samples only before this pass. 400-point numeric sweep plus adversarial
+  values, and a `sanitizeJudgment` -> `combineAgreement` grid over
+  malformed shapes on both prompts. Suite 277 to 279.
+- `supabase/migrations/20260910050000_research_os_edge_proposals.sql`
+  renamed to `...050001_...`: collided with PR #52's roster migration,
+  which landed the identical `20260910050000` version prefix. Updated its
+  two code references; no migration content changed.
+
+### Verified
+
+- Leak scan clean (no keys, secrets, IPs, non-public hostnames,
+  `/home/gian` paths, Claude session URLs; only the existing
+  `*@school.example` test emails).
+- The proposer never writes `graph.edges`; a split verdict fixes at 0.4,
+  below the 0.6 teacher-flag threshold; approve writes
+  `confidence_source: "teacher"` at 0.95, records the reviewer, is
+  idempotent, rebuilds `graph.prereq_ancestor` best-effort; reject is
+  idempotent with no edge write; the route 403s a non-reviewer; the model
+  call shares the tutor's own abstain and cost-logging path; `model` and
+  `prompt_hash` stored `not null` on every proposal; `TIMELINE.md` carries
+  the unvalidated-ranking label, its own test passing.
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/edges`,
+  `/api/research-os/edges`, `/research-os/roster`,
+  `/api/research-os/roster` all in the manifest), `npm run
+  test:research-os` (298 passed, 0 failed, 23 files), `next lint` on
+  every touched TS/TSX file, `ruff check` on the three touched Python
+  files, `pytest` (27 passed, 0 failed), `agf-lint-voice-src check` /
+  `agf-lint-voice check` on every touched file: all clean.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+
+## PR #52 review pass
+
+Date 2026-09-10. Review of PR #52 (`feat/ros-roster-sync`) before merge, worktree
+`.ros-worktrees/r52`. Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, PR
+#52 review pass".
+
+### Edited
+
+- `scripts/test-research-os-roster.ts`: added `"adversarial: a birthdate column is dropped
+  at parse time and never reaches a write payload or warning"` (a `usersCsv` row carrying a
+  `birthdate` column, asserting the value never appears on a parsed `RosterUser` or in any
+  diff write payload or warning) and `"roster route: reviewer gate runs before the request
+  body is ever parsed, and rejects with 403"` (a static read of `route.ts`'s own source,
+  confirming the `verifyReviewer`/403 lines are present and precede `req.formData()`). 19
+  tests total, up from 17.
+
+### Verified
+
+Leak scan clean (no keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs). Birthdate never
+parsed, never persisted; only `birth_year_bucket` derived from a grade code. Dry run default;
+apply requires the literal `"true"` flag plus a server-verified reviewer token. Idempotent on
+`sourcedId`. `reviewer_candidates` never auto-promotes into the reviewer allowlist and its
+status is never reset by a re-sync. RLS enabled on `graph.reviewer_candidates`, no
+anon/authenticated policy. `CleverSource`/`ClassLinkSource` cannot be invoked under any
+config. `DATA-INVENTORY.md` already covered the new columns and table.
+
+Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (both new routes in the manifest),
+`npm run test:research-os` (0 failures), `next lint` on every touched file, `agf-lint-voice
+check` / `agf-lint-voice-src check` on every touched file: all clean.
+
+## LLM-assisted edge inference and ros-11's TIMELINE.md label
+
+Date 2026-09-10. Branch `feat/ros-llm-edge-inference`, worktree
+`.ros-worktrees/infer`. Full account: `_intake/research-os-k12/CHANGELOG.md`,
+"2026-09-10, LLM-assisted edge inference and ros-11's TIMELINE.md label".
+
+### Added
+
+- `src/lib/research-os/inference/{calibration,prompts,propose,decide}.ts`,
+  `src/lib/research-os/rebuild-ancestor.ts`,
+  `scripts/research-os/ingest/infer-edges-llm.ts`,
+  `scripts/research-os/ingest/lib/build-node-pool.ts`,
+  `supabase/migrations/20260910050000_research_os_edge_proposals.sql`,
+  `src/app/api/research-os/edges/route.ts`,
+  `src/app/research-os/edges/page.tsx`,
+  `scripts/research-os/ingest/test-ingest-infer-llm.ts`,
+  `scripts/test-research-os-edges-review.ts`,
+  `scripts/test-research-os-rebuild-ancestor.ts`. See the CHANGELOG entry
+  for what each one does.
+
+### Edited
+
+- `scripts/research-os/ingest/infer-edges.ts`: node-pool assembly moved
+  to the new `lib/build-node-pool.ts`, behavior unchanged (verified: the
+  live corpus still yields 517 nodes, 36 proposals, identical to
+  `ros-03`'s own recorded figures).
+- `scripts/rebuild-prereq-ancestor.ts`: thinned to a CLI wrapper around
+  `rebuild-ancestor.ts`'s new `rebuildPrereqAncestorForBranch`.
+- `src/lib/research-os/ingest/types.ts`: `ReviewItemKind` gains
+  `llm_proposed_edge` (additive, no existing member changed).
+- `package.json`: new `ingest:research-os:infer-llm` script; three new
+  test files appended to the `test:research-os` chain.
+- `learning/research-os/ROUTING.md`: new `inferred_llm` confidence-source
+  table row, an updated `teacher` row, and a new "LLM-assisted
+  prerequisite-edge inference" section. Old `teacher` row text ("1.0 (a
+  reviewer's own confirmation) | a class-view reviewer action on a
+  flagged edge (ros-06, not yet built)") replaced with the two live paths
+  a `teacher` confidence now comes from (an edge-proposal approval at
+  0.95, or a resolved routing flag at 1.0); ros-06's class view has since
+  shipped, so "not yet built" no longer held either.
+- `learning/research-os/INGESTION.md`: `llm_proposed_edge` row added to
+  the review-list-contract table; the "what this slice does not do"
+  closing paragraph's "one shipped, one not" replaced with both shipped,
+  and its "(unbuilt, `BEADS-PENDING.jsonl`'s `ros-13` entry)" parenthetical
+  removed since it is no longer accurate.
+- `tools/hypothesis-engine/hte/export.py`: `write_views` gains the
+  "Elo is unvalidated" TIMELINE.md note and an "Elo (unvalidated)" bin
+  table column header (`ros-11`'s named remainder).
+
+### Verified
+
+Full account and gate results: `_intake/research-os-k12/CHANGELOG.md`'s
+matching entry. `BEADS-PENDING.jsonl` gains one status line closing
+`ros-13`'s LLM-assisted-edge-inference item and one closing `ros-11`'s
+one still-open named remainder, the base `TIMELINE.md` export's missing
+unvalidated-ranking label. `ros-11`'s other six PLAN.md section 10 items
+(a cross-family generator/judge code guard, a full-document-context
+check, a conflicting-evidence stress test, an understanding axis, an
+Allen-relations check, fixed-cadence calibration) stay open; this pass
+scoped to the one item task item 5 named.
+
 ## PR #45 finishing pass
 
 Same pass as `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10, PR #45
@@ -19,6 +230,50 @@ paid-cite envelope and the Research OS canon importer both read from.
 - `BEADS-PENDING.jsonl`: re-merged `origin/main` (three commits past the
   branch's last merge). One append-only collision with main's new ros-11
   entry, resolved by keeping both lines.
+
+## Roster sync skeleton, ros-06 follow-on
+
+Date 2026-09-10. Branch `feat/ros-roster-sync`, worktree `.ros-worktrees/roster`. Standard-first
+OneRoster 1.2 CSV roster sync, `PLAN-REVISION-2.md` section 3 item 4. Full account:
+`_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, roster sync skeleton (ros-06 follow-on)".
+
+### Added
+
+- `supabase/migrations/20260910050000_research_os_roster.sql`: `source_system`/`sourced_id`
+  columns on `graph.classes` and `graph.learner_profiles`, plain unique indexes on each, and
+  a new `graph.reviewer_candidates` table (RLS enabled, no anon/authenticated policy).
+- `src/lib/research-os/roster/csv.ts`: a dependency-free RFC 4180 CSV reader.
+- `src/lib/research-os/roster/grade.ts`: `gradeToBirthYearBucket`, mapping a OneRoster grade
+  code to `graph.learner_profiles.birth_year_bucket`.
+- `src/lib/research-os/roster/types.ts`: `RosterBundle`, `RosterSource`, and the row types
+  shared by every source.
+- `src/lib/research-os/roster/oneroster.ts`: parses `orgs.csv`/`users.csv`/`classes.csv`/
+  `enrollments.csv`, resolving a user's role from `enrollments.csv` (OneRoster 1.2 dropped
+  `role` from `users.csv`).
+- `src/lib/research-os/roster/diff.ts`: `computeRosterDiff` (pure) and
+  `applyRosterDiffToState` (an offline mirror of the live write path, the same pattern
+  `src/lib/research-os/privacy.ts`'s `simulateLearnerDelete` already uses).
+- `src/lib/research-os/roster/sources.ts`: `OneRosterCsvSource` implemented; `CleverSource`
+  and `ClassLinkSource` stubs that throw "not configured" with a documented env contract.
+- `src/lib/research-os/roster/apply.ts`: the live Supabase adapter (classes, class_members,
+  reviewer_candidates, learner_profiles, and a Supabase Auth email index).
+- `src/app/api/research-os/roster/route.ts`: `POST /api/research-os/roster`, multipart, four
+  required CSV fields, dry-run default, gated by `verifyReviewer`.
+- `src/app/research-os/roster/page.tsx`: the upload page, the same email-OTP flow as
+  `/research-os/class`.
+- `scripts/test-research-os-roster.ts`: 17 tests, wired into `npm run test:research-os`.
+- `learning/research-os/ROSTER.md`: the field-mapping table, what is discarded, the
+  idempotency keys, what Clever and ClassLink add, and the reviewer-candidate approval flow.
+
+### Edited
+
+- `package.json`: `test:research-os` gained the new test script at the end of its chain.
+- `learning/research-os/compliance/DATA-INVENTORY.md`: the new migration filename in the
+  source list; `graph.classes` and `graph.learner_profiles` rows note their new columns;
+  a new `graph.reviewer_candidates` row in "Not learner data"; a data-minimization note on
+  the roster sync's own grade-to-bucket path and the candidates table's minimal columns.
+- `learning/research-os/TEACHER-LAYER.md`: its own "TODO(Phase 1, roster sync)" note gained
+  a pointer to this work. No existing text changed or removed.
 
 ### Removed
 
@@ -88,6 +343,14 @@ build`, and `npm run test:research-os` all clean. Leak scan against the
 full diff found no keys, `.env` contents, IPs, non-public hostnames,
 personal emails other than `gianyrox@gmail.com`, PII, `/home/gian`
 paths, or Claude session URLs.
+
+`npm ci`, `npx tsc --noEmit`, `npm run build` (`/api/research-os/roster` and
+`/research-os/roster` both confirmed in the build manifest), `npm run test:research-os`
+(17 new tests, full chain green), `next lint` on every touched file: all clean.
+`agf-lint-voice-src check` and `agf-lint-voice check` clean on every touched file after
+fixing four antithesis constructions, one meta-commentary phrase, one AI-tell word
+(`bespoke`), and one appended-clause heading found on the first pass. Neither the review,
+class, workspace, nor consent route handlers were touched, per this bead's own instructions.
 
 ## PR #44 review pass
 

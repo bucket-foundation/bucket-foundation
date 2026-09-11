@@ -168,3 +168,88 @@ def test_load_and_consume_marks_nothing_when_no_rows_are_unconsumed(monkeypatch)
 
     assert len(corpus.sources) == 0
     assert calls == ["GET"], "no PATCH should fire when there is nothing to consume"
+
+
+# --------------------------------------------------------------------------
+# per-row isolation (PR #37's own seam finding: one bad row must never
+# poison the whole batch) and provenance stamping (docs/PRIVACY.md)
+# --------------------------------------------------------------------------
+
+
+def test_build_isolates_a_bad_row_and_still_builds_the_good_ones():
+    good = _outbox_row(id="ros-good-1")
+    bad = _outbox_row(id="ros-bad-1", status="not-a-real-status")
+    corpus, good_ids, skipped = research_os_outbox._build([good, bad], research_os_outbox.DEFAULT_TABLE, "draft")
+
+    assert good_ids == ["ros-good-1"]
+    assert len(skipped) == 1
+    assert skipped[0]["production_id"] == "ros-bad-1"
+    assert "not-a-real-status" in skipped[0]["reason"]
+    assert "ros-good-1" in corpus.sources
+
+
+def test_build_skips_a_row_with_no_id_without_raising():
+    bad = _outbox_row()
+    del bad["id"]
+    corpus, good_ids, skipped = research_os_outbox._build([bad], research_os_outbox.DEFAULT_TABLE, "draft")
+    assert good_ids == []
+    assert len(skipped) == 1
+    assert skipped[0]["production_id"] == "(unknown)"
+
+
+def test_fetch_and_build_returns_only_good_ids_for_mark_consumed(monkeypatch):
+    good = _outbox_row(id="ros-good-2")
+    bad = _outbox_row(id="ros-bad-2", status="not-a-real-status")
+    monkeypatch.setattr(
+        research_os_outbox.urllib.request, "urlopen",
+        lambda request, timeout=30: _FakeResponse([good, bad]),
+    )
+    good_ids, corpus, skipped = research_os_outbox.fetch_and_build(url="https://example.supabase.co", key="k")
+    assert good_ids == ["ros-good-2"]
+    assert [s["production_id"] for s in skipped] == ["ros-bad-2"]
+    assert "ros-good-2" in corpus.sources
+
+
+def test_load_and_consume_never_marks_a_skipped_row(monkeypatch):
+    good = _outbox_row(id="ros-good-3")
+    bad = _outbox_row(id="ros-bad-3", status="not-a-real-status")
+    requests: list[tuple[str, str | None]] = []
+
+    def fake_urlopen(request, timeout=30):
+        method = request.get_method()
+        requests.append((request.full_url, method))
+        if method == "GET":
+            return _FakeResponse([good, bad])
+        return _FakeResponse(b"")
+
+    monkeypatch.setattr(research_os_outbox.urllib.request, "urlopen", fake_urlopen)
+    research_os_outbox.load_and_consume(url="https://example.supabase.co", key="k")
+
+    patch_url = next(u for u, m in requests if m == "PATCH")
+    assert "ros-good-3" in patch_url
+    assert "ros-bad-3" not in patch_url
+
+
+def test_build_stamps_production_id_and_learner_id_on_sources_and_evidence():
+    row = _outbox_row(id="ros-prov-1", learner_id="learner-prov-1")
+    corpus, _good_ids, _skipped = research_os_outbox._build([row], research_os_outbox.DEFAULT_TABLE, "draft")
+
+    source = corpus.sources["ros-prov-1"]
+    assert source.production_id == "ros-prov-1"
+    assert source.learner_id == "learner-prov-1"
+    for item in corpus.evidence:
+        if item.id.startswith("ros-prov-1-c"):
+            assert item.production_id == "ros-prov-1"
+            assert item.learner_id == "learner-prov-1"
+
+
+def test_build_stamps_no_learner_id_when_the_row_carries_none():
+    """`public.research_os_productions_outbox` never carries `learner_id`
+    today (`docs/PRIVACY.md`): a row shaped exactly like the real table
+    (no `learner_id` key at all) stamps `None`, never a fabricated id."""
+    row = _outbox_row(id="ros-prov-2")
+    row.pop("learner_id", None)
+    corpus, _good_ids, _skipped = research_os_outbox._build([row], research_os_outbox.DEFAULT_TABLE, "draft")
+    source = corpus.sources["ros-prov-2"]
+    assert source.production_id == "ros-prov-2"
+    assert source.learner_id is None
