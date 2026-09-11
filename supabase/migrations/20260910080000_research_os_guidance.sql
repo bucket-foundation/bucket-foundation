@@ -14,15 +14,18 @@
 -- worked_example key, written by scripts/seed-research-os.mjs.
 --
 -- graph.classes.research_os_guidance_enabled: the per-class arm switch
--- (item 4, "mirrors the forcing switch from PR #63"). PR #63 (cognitive
--- forcing) had not merged into main as of this migration; no existing
--- forcing-switch column was found on graph.classes to mirror the name and
--- default of, so this adds its own, following graph.classes' own existing
--- convention (a plain boolean, default true -- the base product behavior
--- is guidance ON, a pilot opts a specific class OUT for its control arm,
--- matching PR #63's review pass, once merged, to confirm whether the two
--- switches should be renamed onto one shared naming convention; see
--- GUIDANCE.md's own "Open questions" note).
+-- (item 4, "mirrors the forcing switch from PR #63"). This migration was
+-- authored before PR #63 (cognitive forcing) merged; that PR shipped its
+-- own switch as graph.classes.forcing_enabled (nullable, defers to the
+-- RESEARCH_OS_FORCING_ENABLED env var when unset,
+-- 20260910060000_research_os_forcing.sql). This column keeps its own
+-- name and shape rather than reusing forcing_enabled: guidance and
+-- forcing are independent pilot arms (a class can run either, both, or
+-- neither), so one shared boolean would conflate two different
+-- experimental conditions. Shape: a plain boolean, not null, default
+-- true -- the base product behavior is guidance ON, a pilot opts a
+-- specific class OUT for its control arm. See GUIDANCE.md section 4 for
+-- the full reconciliation note and the open naming-convention question.
 alter table graph.nodes add column if not exists worked_example jsonb;
 
 alter table graph.classes add column if not exists research_os_guidance_enabled boolean not null default true;

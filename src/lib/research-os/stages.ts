@@ -37,9 +37,19 @@
  * workspace/route.ts's "check" case computes and passes a value
  * today (GUIDANCE.md's own scope note explains why Open/Transfer/
  * Production stay unpopulated in Phase 0).
+ *
+ * UPDATE (cognitive forcing on Check, PLAN-REVISION-2.md section 2a):
+ * `learnerConfidence`, `sourcePrediction`, `predictionCorrect`, and
+ * `forcingEnabled` close the calibration-record gap that design response
+ * names. `onCheckResult` below is the one writer; `forcing.ts` computes
+ * `predictionCorrect` in code and resolves `forcingEnabled` from the arm
+ * switch, both before this file ever sees them. These fields and
+ * `guidanceLevel` above are independent additions on the same "check"
+ * event: a class can run either arm switch, both, or neither.
  */
 import type { GuidanceLevel, Stage } from "./types";
 import { stageAtLeast } from "./types";
+import type { LearnerConfidence } from "./forcing";
 
 export type EvidenceKind =
   | "open"
@@ -81,6 +91,23 @@ export interface EvidenceContext {
    * as every other field here: a caller that has not computed a guidance
    * level for this call omits it rather than guessing. */
   guidanceLevel?: GuidanceLevel;
+  /** The learner's own 4-point self-rating of their explanation, collected
+   * on a "check" event before the verdict above is revealed
+   * (forcing.ts's LearnerConfidence, PLAN-REVISION-2.md section 2a). */
+  learnerConfidence?: LearnerConfidence;
+  /** The citation label the learner predicted their explanation rests on,
+   * chosen from their own "sources I have quoted" list, collected in the
+   * same pre-reveal commit step. */
+  sourcePrediction?: string;
+  /** Whether sourcePrediction exactly matched the node's own allowed
+   * citation label, computed in code (forcing.ts's computePredictionCorrect),
+   * never read from the model. */
+  predictionCorrect?: boolean;
+  /** Whether this "check" event went through the pre-reveal forcing commit
+   * step at all: false on a comparison-arm class or with
+   * RESEARCH_OS_FORCING_ENABLED off, so analysis can tell the three-arm
+   * pilot's arms apart from the evidence log alone. */
+  forcingEnabled?: boolean;
 }
 
 export interface EvidenceEvent {
@@ -110,6 +137,14 @@ export interface EvidenceEvent {
 
   // Closes "no session or attempt grouping."
   sessionId?: string;
+
+  // Cognitive forcing on Check (PLAN-REVISION-2.md section 2a): the
+  // calibration record. See EvidenceContext above for what each field
+  // means; onCheckResult is the only writer.
+  learnerConfidence?: LearnerConfidence;
+  sourcePrediction?: string;
+  predictionCorrect?: boolean;
+  forcingEnabled?: boolean;
 
   // Inter-rater fields (typed per the contract; no writer in ros-04, see
   // this file's header).
@@ -185,6 +220,10 @@ export function onCheckResult(
     citations: context.citations,
     sessionId: context.sessionId,
     guidanceLevel: context.guidanceLevel,
+    learnerConfidence: context.learnerConfidence,
+    sourcePrediction: context.sourcePrediction,
+    predictionCorrect: context.predictionCorrect,
+    forcingEnabled: context.forcingEnabled,
   };
   return { nextStage, event };
 }

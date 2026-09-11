@@ -1,6 +1,6 @@
 # Research OS Evidence Schema
 
-**Status:** contract, docs only, no code, bead `ros-02` · **Date:** 2026-09-10 · Reads against `learning/research-os/LEARNER-STATE-MODEL.md` section 4, `src/lib/research-os/types.ts`, `src/lib/research-os/stages.ts`, `src/lib/research-os/probe.ts`, `src/lib/research-os/grounding.ts`, `src/lib/research-os/db.ts`'s `recordEvidence`, and the `graph.learner_node_state`, `graph.productions`, and `graph.teacher_reviews` tables in `supabase/migrations/20260910000000_research_os_graph.sql` and `supabase/migrations/20260910020000_research_os_teacher_reviews.sql`.
+**Status:** contract, docs only, no code, bead `ros-02`; the cognitive-forcing calibration-record addendum below ships as real code this pass · **Date:** 2026-09-10 · Reads against `learning/research-os/LEARNER-STATE-MODEL.md` section 4, `src/lib/research-os/types.ts`, `src/lib/research-os/stages.ts`, `src/lib/research-os/probe.ts`, `src/lib/research-os/grounding.ts`, `src/lib/research-os/forcing.ts`, `src/lib/research-os/calibration.ts`, `src/lib/research-os/db.ts`'s `recordEvidence`, and the `graph.learner_node_state`, `graph.productions`, `graph.teacher_reviews`, and `graph.classes` tables in `supabase/migrations/20260910000000_research_os_graph.sql`, `supabase/migrations/20260910020000_research_os_teacher_reviews.sql`, `supabase/migrations/20260910030000_research_os_classes.sql`, and `supabase/migrations/20260910060000_research_os_forcing.sql`.
 
 This file states the evidence jsonb contract the learner state model needs, so `ros-04` and `ros-06` can implement it without re-deriving the reasoning from `LEARNER-STATE-MODEL.md` section 4. It changes no code, no type, and no migration; it is the specification those beads implement against.
 
@@ -129,3 +129,43 @@ Every transition function in `stages.ts` that already takes an `EvidenceContext`
 ## What this file does not cover
 
 Retention and proficiency signals reaching a Research OS row from Academy's FSRS and IRT state (`LEARNER-STATE-MODEL.md` section 3's four-step slug-to-atom-id bridge) are out of scope here. Closing that gap needs a read path from `bucket.academy_progress` into a Research OS response, work for a separate bead rather than a change to what `graph.learner_node_state.evidence` itself stores. The `graph.learner_node_state.confidence` column's write path, the visible confidence `PLAN.md` section 2 promises, is also out of scope here: it is a value this evidence log makes computable, derived from the fields this contract adds, and the log itself needs no further field to support it.
+
+## Cognitive forcing on Check: the calibration record
+
+`learning/research-os/PLAN-REVISION-2.md` section 2a names a gap this file's own contract left open: no field records the learner's own pre-reveal confidence or source prediction on a `"check"` event. Shipped alongside `src/lib/research-os/forcing.ts` and the workspace route's two-phase Check contract (`src/app/api/research-os/workspace/route.ts`'s "check" case), four more fields close it:
+
+```ts
+interface EvidenceEvent {
+  // ...every field above, unchanged.
+
+  // The learner's own 4-point self-rating of their explanation, collected
+  // BEFORE Check's verdict is shown (PLAN-REVISION-2.md section 2a's
+  // commit-before-reveal design). forcing.ts's LearnerConfidence:
+  // "not_sure" | "a_little" | "fairly" | "certain".
+  learnerConfidence?: "not_sure" | "a_little" | "fairly" | "certain";
+
+  // The citation label the learner predicted their explanation rests on,
+  // chosen from their own "sources I have quoted" list, collected in the
+  // same pre-reveal commit step.
+  sourcePrediction?: string;
+
+  // Whether sourcePrediction exactly matched the node's own single
+  // allowed citation label (grounding.ts's citationLabel). Computed in
+  // code by forcing.ts's computePredictionCorrect, never read from the
+  // model: a source prediction has exactly one right answer regardless of
+  // what the model actually cited this time.
+  predictionCorrect?: boolean;
+
+  // Whether this "check" event went through the forcing commit step at
+  // all. false on a class whose graph.classes.forcing_enabled override is
+  // false, or with RESEARCH_OS_FORCING_ENABLED=false; true otherwise
+  // (default on). Present on every "check" event this pass's code writes,
+  // regardless of arm, so analysis can group the three-arm pilot's data
+  // by arm using the evidence log alone.
+  forcingEnabled?: boolean;
+}
+```
+
+`learnerConfidence` and `sourcePrediction` are populated together or not at all: `workspace/route.ts`'s reveal branch (phase 2 of the "check" action) is the only place `onCheckResult` is called with either field set, and it is only reachable once both are present and valid, per `forcing.ts`'s held-attempt store. `forcingEnabled` is populated on every `"check"` event this pass's code writes, forcing on or off, so a comparison-arm event is distinguishable from a pre-this-pass event (neither field present) versus a comparison-arm event (`forcingEnabled: false`, no `learnerConfidence`).
+
+`src/lib/research-os/calibration.ts`'s `computeCalibrationSummary` reads these fields back out: mean `learnerConfidence` (as a 1-4 ordinal score, `forcing.ts`'s `learnerConfidenceScore`) against mean `predictionCorrect`, per learner, over every `"check"` event carrying a `learnerConfidence`. See `learning/research-os/WORKSPACE.md` section 6 for the full flow and `learning/research-os/study/INSTRUMENTS.md` section 2 for the confidence item's own rationale, updated this pass to describe the shipped pre-reveal placement.

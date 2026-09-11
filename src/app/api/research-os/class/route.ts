@@ -6,7 +6,7 @@
  * general /research-os/review queue reads.
  *
  * GET ?branch=<slug>&target=<node slug>&staleDays=<n>
- *   -> { classes: [{ id, name, learnerIds, grid, blocked, readyForHarderTarget }],
+ *   -> { classes: [{ id, name, learnerIds, grid, blocked, readyForHarderTarget, calibration }],
  *        queue: { transferHolds: [...], productions: [...] } }
  *   `branch` defaults to "02-physics", `target` to "why-the-sky-is-blue"
  *   (the same defaults GET /api/research-os/route uses), `staleDays`
@@ -14,7 +14,13 @@
  *   src/lib/research-os/class-view.ts's pure functions over the branch's
  *   full subgraph; `queue` is scoped to the union of every learner across
  *   every class this reviewer owns (teacher_reviews carries no class_id,
- *   so a class-by-class queue split is not meaningful yet).
+ *   so a class-by-class queue split is not meaningful yet). `calibration`
+ *   (bkt-ros, PLAN-REVISION-2.md section 2a) is per learner, mean
+ *   confidence against mean source-prediction correctness over every
+ *   forcing-gated "check" event on any node, computed by
+ *   src/lib/research-os/calibration.ts's computeCalibrationSummary; a
+ *   learner with no forcing-gated Check attempts yet is absent from the
+ *   array; a zeroed row never appears.
  *
  * Data loading happens entirely here, server-side: the client page never
  * queries graph.* directly, only this route's already-computed,
@@ -35,6 +41,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { seedPathOrder, buildClassGrid, findBlockedLearners, findReadyForHarderTarget } from "@/lib/research-os/class-view";
 import { configured, graphService, loadSubgraph, loadClassesForReviewer, loadClassMembers, loadLearnerStatesForMany } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
+import { computeCalibrationSummary, type CalibrationEvidenceEntry } from "@/lib/research-os/calibration";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -91,8 +98,36 @@ export async function GET(req: NextRequest) {
   const statesByLearner = await loadLearnerStatesForMany(allLearnerIds, nodes.map((n) => n.id));
   const now = new Date();
 
+  // Queue and calibration both read graph.learner_node_state directly
+  // (loadLearnerStatesForMany's own LearnerNodeState type carries no
+  // evidence array, class-view.ts's grid/blocked/ready computations never
+  // needed one), so the service client is created here rather than below.
+  const svc = graphService();
+
+  // Calibration summary (bkt-ros, PLAN-REVISION-2.md section 2a's
+  // calibration record): every learner_node_state row across every node,
+  // for every learner across every class this reviewer owns, evidence
+  // arrays merged per learner and handed to calibration.ts's pure
+  // computeCalibrationSummary. Read failure fails open to an empty
+  // summary (a class view with no calibration section is a smaller
+  // regression than a broken class view).
+  let calibrationRows: ReturnType<typeof computeCalibrationSummary> = [];
+  if (allLearnerIds.length > 0) {
+    const { data: evidenceRows } = await svc
+      .from("learner_node_state")
+      .select("learner_id,evidence")
+      .in("learner_id", allLearnerIds);
+    const evidenceByLearner = new Map<string, CalibrationEvidenceEntry[]>();
+    for (const r of (evidenceRows as { learner_id: string; evidence: CalibrationEvidenceEntry[] | null }[]) || []) {
+      const existing = evidenceByLearner.get(r.learner_id) ?? [];
+      evidenceByLearner.set(r.learner_id, existing.concat(r.evidence || []));
+    }
+    calibrationRows = computeCalibrationSummary(evidenceByLearner);
+  }
+
   const classViews = classes.map((c) => {
     const learnerIds = membersByClass.get(c.id) ?? [];
+    const learnerIdSet = new Set(learnerIds);
     return {
       id: c.id,
       name: c.name,
@@ -100,12 +135,12 @@ export async function GET(req: NextRequest) {
       grid: buildClassGrid(path, learnerIds, statesByLearner),
       blocked: findBlockedLearners(nodes, edges, target.id, learnerIds, statesByLearner, now, staleDaysThreshold),
       readyForHarderTarget: findReadyForHarderTarget(nodes, edges, learnerIds, statesByLearner),
+      calibration: calibrationRows.filter((r) => learnerIdSet.has(r.learnerId)),
     };
   });
 
   // Queue: the same two "pending" reads /api/research-os/review's own GET
   // performs, scoped to the union of this reviewer's own classes' learners.
-  const svc = graphService();
   let transferHolds: ReturnType<typeof buildTransferHolds> = [];
   let productions: Array<Record<string, unknown>> = [];
   if (allLearnerIds.length > 0) {

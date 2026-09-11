@@ -2078,6 +2078,113 @@ clean on the touched docs. The Vercel status check on the PR fails with
 "Deployment rate limited, retry in 24 hours" (Vercel free-tier daily
 deployment cap), unrelated to this branch's code.
 
+## 2026-09-10, cognitive forcing on Check, calibration record, arm switch
+
+`learning/research-os/PLAN-REVISION-2.md` section 2a's design response to Buçinca,
+Malaya and Gajos (2021), Bansal et al. (2021), and Vaccaro, Almaatouq and Malone
+(2024): before the tutor's grounded feedback is shown, a learner using the Check
+tool now writes an explanation, rates their confidence on a four-point scale, and
+predicts which of their own quoted sources their explanation rests on. The verdict
+holds server-side (`src/lib/research-os/forcing.ts`'s held-attempt store) until
+both answers arrive on the same attempt, then reveals with the learner's own
+prediction shown beside the tutor's real citation.
+
+The calibration record (mean confidence against mean source-prediction
+correctness) lands per class on `/research-os/class`
+(`src/lib/research-os/calibration.ts`), since that page carried no other in-flight
+work at the time this landed. A per-class `forcing_enabled` override
+(`supabase/migrations/20260910060000_research_os_forcing.sql`) plus the
+`RESEARCH_OS_FORCING_ENABLED` env flag (default on) let a future three-arm pilot
+turn forcing off on its comparison arm without a second deployment; every `check`
+evidence event now carries `forcingEnabled` regardless of arm, so analysis can
+tell arms apart from the evidence log alone.
+
+`learning/research-os/study/INSTRUMENTS.md` section 2's metacognitive confidence
+item, drafted as an after-the-verdict question, is rewritten to describe the
+shipped before-the-verdict placement; the original text is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`.
+
+28 new tests across `scripts/test-research-os-forcing.ts` (19) and
+`scripts/test-research-os-calibration.ts` (9), plus new cases in the existing
+`scripts/test-research-os-evidence.ts`; full suite 293/293 passing across 22
+files. Gates green: `npm ci`, `npx tsc --noEmit`, `npm run build` (both routes
+confirmed in the manifest), `npm run test:research-os`, `eslint` on every touched
+file, `agf-lint-voice-src check` and `agf-lint-voice check` clean on every touched
+file (fixed two banned words, one filler adverb, and six antithesis phrasings
+found on the first pass).
+
+**Full doc:** `learning/research-os/WORKSPACE.md` section 6 (new), `src/lib/research-os/EVIDENCE-SCHEMA.md`'s
+"Cognitive forcing on Check" section, `learning/research-os/study/INSTRUMENTS.md`
+section 2. See also `learning/research-os/CHANGE-LEDGER.md`'s matching entry,
+"Iteration 22," for the file-by-file diff and gate results.
+
+## 2026-09-10, PR #63 review pass: held Check verdict moved off an in-memory Map
+
+Review of PR #63 (cognitive forcing on Check) found the production defect the
+review's own task named: the held-attempt store behind Check's two-phase reveal
+(`src/lib/research-os/forcing.ts`) was a plain in-memory `Map` inside the
+route's module scope. On Vercel each route call can land on a different warm
+instance, so a phase-1 Check and its phase-2 reveal landing on two instances
+would silently lose the held verdict, and the learner would see the Check form
+again with no explanation.
+
+Fix: `graph.check_attempts` (migration
+`20260910070000_research_os_check_attempts.sql`) persists the held attempt in
+Postgres. `src/lib/research-os/check-attempts-db.ts` is the new store
+`workspace/route.ts`'s "check" action calls; it reuses `forcing.ts`'s own pure
+gate functions, `checkAttemptAccess` (ownership + TTL) and `finalizeReveal`
+(the commit-before-reveal check), extracted from `getPendingAttempt` and
+`revealPendingAttempt` without changing their external behavior, so the
+persisted store and the in-memory test double can never disagree on what
+"held" or "revealed" means. `forcing.ts`'s `Map` stays as the test double
+`scripts/test-research-os-forcing.ts` already exercised; nothing about that
+file's own 19 tests changed.
+
+On top of the existing 30-minute commit-window TTL, a second, outer 24-hour
+hard expiry (`check-attempts-db.ts`'s `HARD_EXPIRY_MS`) means a held attempt is
+never revealed past that point regardless of purge timing, and
+`graph.purge_expired_check_attempts()` sweeps every expired row, called from
+inside `graph.privacy_delete_learner`'s own transaction on every delete
+request (the migration adds `check_attempts` to that function's delete list
+too, so a learner's own delete request removes all of their held attempts
+immediately, any age). `graph.check_attempts` is added to
+`src/lib/research-os/privacy.ts`'s `PRIVACY_TABLES` (export and delete both
+cover it now) and to `learning/research-os/compliance/DATA-INVENTORY.md`.
+
+15 new tests in `scripts/test-research-os-check-attempts.ts` (the persisted
+store's pure pieces: row mapping, the 24-hour check, and a full store-and-reveal
+walk built from the shared gate functions), plus one added fixture row and one
+added assertion in `scripts/test-research-os-privacy.ts`, and its migration
+drift-check test widened to scan every migration file rather than one
+hardcoded name (`graph.privacy_delete_learner`'s check_attempts deletion lives
+in the new migration, not the original). Full suite 339/339 passing across 26
+files, up from the PR's own reported 330/330 across 25.
+
+`learning/research-os/WORKSPACE.md` section 6's "Server enforcement" and
+"In-memory, best effort" paragraphs, no longer accurate once the store moved,
+are rewritten; the original text is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`.
+
+Leak scan (keys, `.env` values, IPs, non-public hostnames, personal emails
+other than `gianyrox@gmail.com`, PII, `/home/gian` paths, Claude session URLs):
+clean across the PR's own diff. One PRE-EXISTING `/home/gian/agfarms/.wt-fix10`
+path was found in `BEADS-PENDING.jsonl`, on `main` before this PR and outside
+this PR's own diff (`git diff origin/main...HEAD -- BEADS-PENDING.jsonl` shows
+only one appended line, this PR's own summary, which does not contain it); left
+untouched as out of scope for this review, named here so it is not silently
+missed, worth its own cleanup bead.
+
+Gates green: `npm ci`, `npx tsc --noEmit`, `npm run build` (both
+`/research-os/class` and `/research-os/workspace` confirmed in the manifest),
+`npm run test:research-os` (339/339, 26 files), `eslint` on every file this
+pass touched, `agf-lint-voice-src check` and `agf-lint-voice check` clean on
+every touched file (fixed three banned words and three antithesis phrasings
+found on the first pass; `_intake/`'s own files, this one and DELETIONS.md,
+are exempt from voice rules at the org level, `~/agfarms/.voiceignore`).
+
+**Full doc:** `learning/research-os/CHANGE-LEDGER.md`'s matching entry for the
+file-by-file diff.
+
 ## 2026-09-10, PR #61 review pass
 
 Review-and-merge pass on PR #61 (`feat/canon-signoff-tool`, "human sign-off
