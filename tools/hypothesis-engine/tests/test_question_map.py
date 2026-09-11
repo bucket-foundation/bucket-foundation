@@ -8,7 +8,6 @@ for the marker-insertion and idempotency tests.
 """
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
 from hte import cli, question_map
