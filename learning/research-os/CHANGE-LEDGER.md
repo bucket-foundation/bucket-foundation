@@ -3138,3 +3138,93 @@ Reviewer-side finish of PR #74 (faded guidance, ros-14, Iteration above) after r
 - `review/pr74` confirmed a fast-forward of `feat/ros-faded-guidance`'s remote head: pushed directly to the PR's own head branch rather than opening a superseding PR.
 
 No fix needed beyond the one docstring conflict. Pushed and merged.
+
+## Iteration 26: literature batch five
+
+Date 2026-09-11. Branch `intake/ros-literature-5`, worktree `.ros-worktrees/lit5`.
+Literature batch five: 30 new DOI-verified papers across four areas the task brief named:
+validating AI-generated hypothesis rankings, required-versus-voluntary participation and
+incentives in student research, epistemic-cognition instruments, and human understanding
+of AI-produced science.
+
+### Added
+
+- 10 files across `_intake/research-os-k12-literature/scientific-discovery-metascience/`
+  (9) and `ai-and-researchers/` (1): the founding calibration-scoring papers (Brier 1950;
+  Murphy 1973), a forecasting-tournament study (Mellers and others 2014), three
+  independent replication-forecasting studies (Dreber and others 2015; Camerer and
+  others 2018; Forsell and others 2019), three AI-for-science benchmarks (Chan and
+  others 2024, MLE-bench; Jansen and others 2024, DiscoveryWorld; Majumder and others
+  2024, DiscoveryBench), and the execution-focused follow-up to this corpus's own Si,
+  Yang, and Hashimoto (2024) card (Si, Hashimoto, and Yang 2025).
+- 7 files across `_intake/research-os-k12-literature/educational-methods/` (3) and
+  `student-research-experiences/` (4): choice and autonomy-support evidence (Patall,
+  Cooper, and Robinson 2008; Cordova and Lepper 1996; Reeve 2006) and academic-integrity
+  and mandatory-service evidence (McCabe, Trevino, and Butterfield 2001; Bretag and
+  others 2019; Stukas, Snyder, and Clary 1999; Metz and Youniss 2003).
+- 6 files under `_intake/research-os-k12-literature/epistemic-cognition/`: the
+  field-founding review (Hofer and Pintrich 1997), the founding multidimensional beliefs
+  instrument (Schommer 1990), an integrated four-position model (Greene, Azevedo, and
+  Torney-Purta 2008), a metacognition-facet reframing of this corpus's own Kuhn (1999)
+  card (Barzilai and Zohar 2014), a four-level developmental trajectory (Kuhn, Cheney,
+  and Weinstock 2000), and a belief-emotion-learning model tested in a classroom-relevant
+  domain (Muis, Pekrun, Sinatra, and others 2015).
+- 7 files across `_intake/research-os-k12-literature/hci-human-ai-collaboration/` (5)
+  and `ai-and-researchers/` (2): general explanation-science and XAI-evaluation evidence
+  (Miller 2019; Lombrozo 2006; Keil 2006; Zemla and others 2017; Hase and Bansal 2020)
+  and two direct follow-ups to this corpus's own Messeri and Crockett (2024) card (Binz
+  and others 2025; Musslick and others 2025).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended from 147 to 177 rows,
+  per-area counts updated, a new "Literature batch five" summary section appended.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: three of the
+  twelve open questions (4, 5, 12) gained an "Evidence added in batch five" paragraph.
+- `learning/research-os/PLAN-REVISION-3.md`: section 2b (required participation and
+  production misconduct) and section 2d (epistemic cognition and argumentation) each
+  gained an "Evidence added in batch five" paragraph stating support, complication, or
+  contradiction, plus a paragraph sharpening each section's own design response; neither
+  section's own OPEN status changed.
+- `tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md`: a new "Ranking validation
+  evidence" section appended, pointing at the ten batch-five cards bearing on
+  `hte.holdout_ledger` and the `ranking_status` label PR #60 shipped; no code changed.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass, logged below in
+  this same iteration for cross-reference.
+
+### Removed
+
+None.
+
+### Verified
+
+Read in full before writing: `_intake/research-os-k12-literature/README.md` (for the
+frontmatter schema, copied from `kuhn-1999-developmental-model-critical-thinking.md` and
+`krenn-et-al-2022-scientific-understanding-with-ai.md`), `PLAN-REVISION-3.md` section 2
+(items b and d), `tools/hypothesis-engine/docs/LOOP-LOG.md`'s "2026-09-10, PR #60
+review" and "2026-09-10, ros-11 review items" entries and `RESEARCH-OS-INTEGRATION.md`'s
+own question 19 and holdout-campaign sections, and `learning/research-os/ENGINE-
+BRIDGE.md`. Every new paper's DOI and OpenAlex work id was checked live against
+`api.openalex.org` at intake time (Crossref cross-checked for two records where an
+online-first year diverged from a print-issue year); none are placeholders. `hase-
+bansal-2020-evaluating-explainable-ai.md`'s own arXiv abstract initially returned a
+mismatched record from OpenAlex's `abstract_inverted_index` for a different DOI in the
+same family of works; re-fetched directly from arXiv's own API before the card was
+written, confirming the correct abstract for the intended paper. Two cards, `metz-
+youniss-2003-required-service-heightens-volunteerism.md` and `kuhn-cheney-weinstock-
+2000-development-epistemological-understanding.md`, carry no indexed abstract in
+OpenAlex, Crossref, or Semantic Scholar; each card's own "Verification note" names the
+source used to ground its claims instead. The task brief's own "Muis 2015" target did
+not resolve to an exact classroom-intervention match; the closest verified 2015 Muis
+paper was used in its place and documented as a substitution. No file under `src/` or
+`public/` is touched by this pass, and no file under `tools/hypothesis-engine/hte/` or
+`tools/hypothesis-engine/tests/` changed, so `npm run build`/`test:research-os` and the
+engine's `make test` gate do not apply; `RESEARCH-OS-INTEGRATION.md`'s own new section
+is documentation only. A grep-based self-audit against the full banned-word,
+filler-adverb, AI-tell, antithesis, and em/en-dash rule lists ran against every file
+this pass authored or edited; the pre-commit `agf-lint-voice` hook itself returned 0
+violations on every commit in this pass. Corpus row count (177) matched the corpus file
+count exactly, `find` counted per branch after this pass: 40 educational methods, 37
+HCI, 27 scientific discovery, 15 AI and researchers, 7 teacher workload and adoption, 11
+prerequisite graphs, 14 student research experiences, 7 project-based and inquiry
+learning, 5 writing and argumentation, 10 epistemic cognition, 4 source evaluation.
