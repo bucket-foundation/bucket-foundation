@@ -33,24 +33,31 @@ claim.
 
 Each record names the canon-tier foundation it depends on, in
 `primary-papers.yaml` (`depends_on_foundation`) and in the index tables.
-The pass-one four, plus five of the pass-two seven, depend on the same
-foundation: the retrieval-practice / testing-effect mechanism in
-`bucket-canon/07-mind/memory-systems/` (Roediger and Karpicke 2006, DOI
-`10.1111/j.1745-6916.2006.00012.x`). Mastery learning, step-based
-tutoring, and AI-tutoring RCTs all work by inserting, or in Kosmyna et
-al. 2025's case removing, frequent low-stakes retrieval-and-feedback
-checkpoints; the outcome studies here measure the effect size of that
-mechanism at the classroom, field-deployment, or national-program scale.
-Kosmyna et al. 2025 depends instead on the external-memory-offloading
-foundation, Sparrow, Liu and Wegner 2011 (DOI `10.1126/science.1207745`,
-same `memory-systems/` folder). The two human-AI complementarity
+Each source paper reports its own effect size on its own terms; none of
+the eleven states a shared retrieval-practice mechanism. This dossier's
+promoting passes (one and two) draw that connection themselves; the
+source papers state their own findings only. The pass-one four, plus
+five of the
+pass-two seven, depend on the same foundation: the retrieval-practice /
+testing-effect mechanism in `bucket-canon/07-mind/memory-systems/`
+(Roediger and Karpicke 2006, DOI `10.1111/j.1745-6916.2006.00012.x`). The
+promoting passes read mastery learning, step-based tutoring, and
+AI-tutoring RCTs as working by inserting, or in Kosmyna et al. 2025's case
+removing, frequent low-stakes retrieval-and-feedback checkpoints, and
+treat the outcome studies here as measuring that mechanism's effect size
+at the classroom, field-deployment, or national-program scale. Kosmyna et
+al. 2025 depends instead on the external-memory-offloading foundation,
+Sparrow, Liu and Wegner 2011 (DOI `10.1126/science.1207745`, same
+`memory-systems/` folder). The two human-AI complementarity
 meta-analyses, Vaccaro, Almaatouq and Malone 2024 and Bansal et al. 2021,
 depend on the information-foraging foundation, Pirolli and Card 1999
-(DOI `10.1037/0033-295x.106.4.643`, `bucket-canon/04-information/
-information-foraging/`): both measure when a human-AI pair forages a
-task's information space better together than either does alone.
+(DOI `10.1037/0033-295x.106.4.643`, `bucket-canon/07-mind/
+information-foraging/`): the promoting pass reads both as measuring when
+a human-AI pair forages a task's information space better together than
+either does alone, a reading neither source paper states in those terms.
 Establishing each mechanism itself is the job of the foundation record it
-depends on.
+depends on; each `relation` field in `primary-papers.yaml` separates the
+source's own finding from the promoting pass's mechanism reading.
 
 ## Files in this dossier
 

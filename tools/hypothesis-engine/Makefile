@@ -30,10 +30,19 @@ endif
 COVERAGE_HTML := .coverage-html
 COVERAGE_JSON := .coverage.json
 
-.PHONY: test test-full test-durations test-cov
+.PHONY: test test-full test-durations test-cov question-map
 
 test:
 	HTE_TEST_PROFILE=fast $(PYTEST) -m "not slow" -x -q -p no:cacheprovider $(PARALLEL)
+
+# Regenerate docs/RESEARCH-OS-INTEGRATION.md's "## Question map" section
+# from learning/research-os/RESEARCH-QUESTIONS.md and hte/data/question-
+# map.json (hte.question_map). Run this after a Research OS plan revision
+# lands; `hte question-map --check` (no Makefile target of its own, run
+# directly) is the CI-side gate that catches a revision this target has
+# not yet been run against.
+question-map:
+	$(PYTHON) -m hte.cli question-map --write
 
 test-full:
 	HTE_TEST_PROFILE=full $(PYTEST) -q -p no:cacheprovider $(PARALLEL)

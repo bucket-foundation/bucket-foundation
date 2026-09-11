@@ -52,6 +52,222 @@ recorded in `learning/research-os/CHANGE-LEDGER.md`'s literature-batch-four iter
 
 None.
 
+## 2026-09-10: canon human sign-off tool
+
+`feat/canon-signoff-tool`, built against `GOVERNANCE.md`'s "Canon sign-off"
+section and PR #45's review paragraph.
+
+### Added
+
+- `tools/canon-pipeline/signoff_core.py` + `tools/canon-pipeline/signoff.py`:
+  the CLI (`list`, `approve --by`, `reject --by --reason`, `audit`), reading
+  and writing `provenance_signoff` on `bucket-canon/**/primary-papers.yaml`
+  records. `approve` refuses unless the record's DOI resolves via a HEAD
+  request (`--offline` bypasses). Both `approve` and `reject` are
+  idempotent. Every decision appends one entry to
+  `CANON-INGESTION-INDEX.md`.
+- `tools/canon-pipeline/tests/test_signoff.py`: 24 pytest cases against a
+  fixture tree under `tmp_path`, no network, `--offline` throughout except
+  the two cases that monkeypatch the DOI check itself.
+- `src/lib/canon-signoff.ts` + `src/lib/canon-signoff-approvers.ts`: the
+  TypeScript re-implementation of the same contract for the web route,
+  plus the second `CANON_SIGNOFF_APPROVERS` allowlist gate.
+- `src/app/api/canon/signoff/route.ts` + `src/app/canon/signoff/page.tsx`:
+  a reviewer- and founder-gated page listing pending records with
+  approve/reject actions, gated on `RESEARCH_OS_REVIEWER_EMAILS` AND
+  `CANON_SIGNOFF_APPROVERS`.
+- `scripts/test-canon-signoff.ts`: 24 node:test cases (listPending,
+  findRecord resolution, approve/reject including idempotency and the
+  reject-then-approve transition, and the 403 gate logic in
+  `isCanonSignoffApprover`), added to the `test:research-os` chain.
+- `tools/canon-pipeline/SIGNOFF.md`: policy, the two signoff vocabularies
+  (this tool's `provenance_signoff` vs. the hypothesis engine's
+  `signed_off_by`), the two allowlists, the audit trail, and a founder
+  runbook for the 20 records currently pending.
+
+### Fixed
+
+- `src/lib/canon-primary.ts`'s `isPendingSignoff` excluded only a `pending`
+  value; a `rejected` value fell through and would have been served as
+  approved canon once this tool existed to write one. Now excludes both.
+  Covered by two new cases in `scripts/test-canon-primary-signoff.ts`.
+
+### Found, not fixed (flagged in SIGNOFF.md, out of scope here)
+
+- `findPrimaryFiles` (`src/lib/canon-primary.ts`) walks only one level
+  below each branch directory, so `bucket-canon/07-mind/sub-outcomes/
+  education/primary-papers.yaml` (two levels down, 11 of the 20 pending
+  records) is never reached by `loadPrimaryPapers()`. Those 11 records are
+  not served by `/api/research` today regardless of sign-off status. This
+  tool's own file discovery walks the full tree, so `signoff.py list` and
+  the `/canon/signoff` page still see all 20.
+
+### Verified
+
+- `pytest tools/canon-pipeline/tests/` (41 passed, 0 failed), `npm ci`,
+  `npx tsc --noEmit`, `npm run build` (`/canon/signoff` and
+  `/api/canon/signoff` both in the manifest), `npm run test:research-os`
+  (267 passed, 0 failed, 20 files), `eslint` on all touched TS/TSX files,
+  `agf-lint-voice-src check` on the touched TS/TSX/Python files,
+  `agf-lint-voice check` on the touched docs (`GOVERNANCE.md`,
+  `tools/canon-pipeline/SIGNOFF.md`): all clean.
+- No record's `provenance_signoff` value changed by this branch; `approve`/
+  `reject` were exercised only against fixture trees in the two test
+  suites, never against a real `bucket-canon/` file.
+
+## 2026-09-10, PR #56 review pass
+
+Reviewed PR #56 (`feat/hte-question-map`, "generated Research OS question
+map with revision check") from the `review/pr56` worktree.
+
+Touched no Research OS surface: every file this PR adds or edits lives
+under `tools/hypothesis-engine/` (`hte/question_map.py`, `hte/cli.py`'s
+new `question-map` subcommand, `hte/data/question-map.json`, its own
+`docs/RESEARCH-OS-INTEGRATION.md`, `Makefile`, and its own test fixtures).
+`hte.question_map` reads `learning/research-os/RESEARCH-QUESTIONS.md` to
+cross-check the registry but never writes it; `PLAN-REVISION-2.md`,
+`RESEARCH-QUESTIONS.md`, and the Research OS / AI-for-research overlap
+map are all untouched. No sentence in a Research OS doc was replaced, so
+`DELETIONS.md` gets no entry. The registry's `_meta.seeded_from` field
+names `PLAN-REVISION-2.md (PR #44) as merged on main` as the revision the
+seed pass reconciled against, matching the plan revision currently on
+main.
+
+Merged `origin/main` (which had picked up #55's canon backfill and #59's
+feed ledger fix since this branch was cut): one conflict, `hte/cli.py`,
+where this PR's `question-map` subcommand and a concurrent `purge`
+subcommand (PR #42/#61-adjacent) both landed in the same docstring,
+import line, and subparser block; kept both, `python3 -c "import ast;
+ast.parse(...)"` confirms the file still parses and `make test` passes
+with the merge applied.
+
+### Fixed before merge
+
+- `agf-lint-voice-src` flagged an antithesis construction this PR
+  introduced in `hte/question_map.py`'s `compute_diff` (a diagnostic
+  string, "`, not present in the live corpus registry`"). Rewrote it to
+  state the point once ("missing from the live corpus registry"); no
+  test asserted on the old string.
+- `ruff check` flagged one unused import (`json`) in this PR's own
+  `tests/test_question_map.py`; removed via `ruff check --fix`. The 32
+  pre-existing `ruff` findings elsewhere in `tools/hypothesis-engine/`
+  (swarm2/swarm3 fixtures, `test_cli_pipeline.py`) predate this PR and
+  are out of scope.
+
+### Verified
+
+Leak scan over the full diff: no keys, tokens, secrets, IPs, non-public
+hostnames, `/home/gian` paths, or PII. The only emails are
+`gianyrox@gmail.com` (author) and `noreply@anthropic.com` (co-author
+trailer); the two `Claude-Session` URLs found are commit-message
+metadata, not file content. `hte question-map --check` and a fresh
+`--write` both confirm `docs/RESEARCH-OS-INTEGRATION.md`'s committed
+generated section is byte-identical to a live regeneration (no drift,
+idempotent). `tests/test_question_map.py`: 25/25 passing. `make test`
+(engine, post-merge): 1146 passed, 18 deselected. `npm run
+test:research-os`: 298/298 passing, including
+`scripts/test-canon-primary-signoff.ts`'s `isPendingSignoff` suite
+(untouched by this PR). `npx tsc --noEmit` and `npm run build` clean.
+`agf-lint-voice check` / `agf-lint-voice-src check`: 0 violations after
+the antithesis fix above.
+
+Non-blocking note: `Makefile`'s new `question-map` target comment
+describes `hte question-map --check` as "the CI-side gate," but no
+`.github/workflows/` file calls it yet (`tools/hypothesis-engine/` has
+no CI workflow at all on `main`). Flagged in the PR review comment;
+not fixed here since adding CI wiring for this engine is outside this
+PR's own scope and no workflow pattern exists yet to extend.
+
+## 2026-09-10, PR #42 review pass
+
+Review-and-merge pass on PR #42 (`feat/hte-purge`, "provenance index and
+purge for learner-derived artifacts") before merge, worktree
+`.ros-worktrees/r42`. Full account: `tools/hypothesis-engine/docs/
+LOOP-LOG.md`, "2026-09-10, PR42 review".
+
+Touched a Research OS surface only in `learning/research-os/compliance/
+DATA-INVENTORY.md`: amended the `public.research_os_productions_outbox`
+row to name `hte purge --production <id>` as the required manual call
+that reaches the engine-side artifacts a learner delete request cannot,
+closing the reachability gap the engine PR's own `docs/PRIVACY.md`
+already named. No other Research OS file (`src/lib/research-os/`,
+`src/app/research-os/`, migrations) changed.
+
+## 2026-09-10, PR #54 review pass
+
+Reviewed PR #54 (LLM-assisted edge inference, the two-prompt agreement
+check, `/research-os/edges` human review, and the `ros-11` remainder
+labeling `hte/export.py`'s `TIMELINE.md` export unvalidated) from the
+`review/pr54` worktree.
+
+### Verified
+
+Leak scan over the full diff: no keys, tokens, secrets, IPs, non-public
+hostnames, `/home/gian` paths, or Claude session URLs. The only email
+addresses are the existing `reviewer@school.example` / `learner@school.example`
+/ `anyone@school.example` test fixtures.
+
+Correctness checked against the calibration and review-flow contract: the
+proposer (`src/lib/research-os/inference/propose.ts`) never writes to
+`graph.edges`, only `/api/research-os/edges`'s approve branch does;
+`llmSelfReportedToConfidence` clamps every input, including non-finite and
+out-of-range values, into the inferred band; a split verdict lands at the
+fixed `DISAGREEMENT_CONFIDENCE` (0.4), below `LOW_CONFIDENCE_THRESHOLD`
+(0.6); approve writes `confidence_source: "teacher"` at 0.95, records the
+reviewer, is idempotent on a second call (`decideEdgeProposal`'s
+`alreadyDecided` short-circuit), and rebuilds `graph.prereq_ancestor`
+best-effort; reject is idempotent with no edge write; the route 403s a
+non-reviewer via the existing `verifyReviewer` allowlist gate; the model
+call reuses the tutor's own `selectProvider` abstain path and
+`callGroundedModelWithUsage` / `logToolCost` cost-logging; `model` and
+`prompt_hash` are `not null` columns on every queued proposal.
+
+### Fixed
+
+- `scripts/research-os/ingest/test-ingest-infer-llm.ts`: the calibration
+  bound (0.3 to 0.65) had only point-sample coverage. Added a 400-point
+  numeric sweep of `llmSelfReportedToConfidence` (-2 to 2 in 0.01 steps)
+  plus adversarial values (`NaN`, `Infinity`, `-Infinity`, `-0`, extreme
+  magnitudes), and a full `sanitizeJudgment` -> `combineAgreement` grid
+  over malformed answer/justification/confidence shapes on both prompts,
+  asserting every proposed confidence lands in
+  `(0, INFERRED_CONFIDENCE_MAX]` and every disagreement stays below
+  `LOW_CONFIDENCE_THRESHOLD`. Suite grew from 277 to 279.
+- `supabase/migrations/20260910050000_research_os_edge_proposals.sql`
+  renamed to `20260910050001_research_os_edge_proposals.sql`:
+  `origin/main`'s concurrent PR #52 landed a roster migration with the
+  identical `20260910050000` timestamp prefix. Two migrations sharing one
+  version string risk a Supabase CLI tracking-table collision even though
+  the filenames differ; bumped this one a second later. Updated the two
+  code references (`scripts/test-research-os-edges-review.ts`'s
+  `EDGE_PROPOSALS_MIGRATION` path, `src/app/api/research-os/edges/route.ts`'s
+  header comment). No migration content changed.
+
+### Merged
+
+`origin/main` twice: first cleanly (one file, `LOOP-LOG.md`, added on
+`main` only), then a second time after PR #52 (`feat/ros-roster-sync`)
+merged concurrently, conflicting on `BEADS-PENDING.jsonl`,
+`_intake/research-os-k12/CHANGELOG.md`, `learning/research-os/CHANGE-LEDGER.md`
+(all three append-only, kept both sides' entries, reordered newest-first),
+`package.json` (both PRs appended to the `test:research-os` chain; merged
+into one chain carrying every new script from both, 23 total), and a
+one-sentence docstring rewording in
+`tools/hypothesis-engine/tests/swarm-20260910/test_serve_props.py` (kept
+`origin/main`'s phrasing, no content lost either way).
+
+### Gates
+
+`npm ci` clean, `npx tsc --noEmit` clean, `npm run build` clean
+(`/research-os/edges`, `/api/research-os/edges`, `/research-os/roster`,
+`/api/research-os/roster` all in the manifest), `npm run test:research-os`
+298/298 across 23 files (279 after this pass's own fix, plus 19 from PR
+#52's roster merge), `next lint` clean on every touched TS/TSX file,
+`ruff check` clean on `hte/export.py` and its two touched test files,
+`pytest` 27/27 on `test_export.py` and its two property-test siblings,
+`agf-lint-voice-src check` / `agf-lint-voice check` clean on every touched
+file. Squash-merged via `gh pr merge 54 --squash --delete-branch`.
+
 ## 2026-09-10, PR #52 review pass
 
 Privacy engineer review of PR #52 (`feat/ros-roster-sync`, "OneRoster CSV
@@ -120,6 +336,99 @@ review), all passing.
 No PII beyond a teacher's own contact information (already documented as
 staff data, out of scope for a learner's export/delete rights) is stored
 anywhere this bead touches. Merged via `gh pr merge --squash`.
+
+## 2026-09-10, LLM-assisted edge inference and ros-11's TIMELINE.md label
+
+Branch `feat/ros-llm-edge-inference`, worktree `.ros-worktrees/infer`.
+Closes `BEADS-PENDING.jsonl`'s `ros-13` LLM-assisted-edge-inference item
+and the `ros-11` TIMELINE.md remainder.
+
+### Added
+
+- `src/lib/research-os/inference/calibration.ts`: `llmSelfReportedToConfidence`
+  (self-reported model confidence shrunk onto `infer.ts`'s own
+  `INFERRED_CONFIDENCE_MIN`..`MAX` band, 0.3 to 0.65, per
+  `PLAN-REVISION-2.md` section 2c's policy) and `combineAgreement` (task
+  item 2's two-prompt agreement rule: both "no" drops the pair, both "yes"
+  keeps the lower shrunk confidence, a split verdict still proposes at a
+  fixed `DISAGREEMENT_CONFIDENCE` of 0.4, always below
+  `LOW_CONFIDENCE_THRESHOLD`).
+- `src/lib/research-os/inference/prompts.ts`: two independently-phrased
+  strict yes/no prerequisite prompts plus `promptHash` (sha256, 16 hex
+  chars).
+- `src/lib/research-os/inference/propose.ts`: `buildCandidatePairs`
+  (lexical proposals plus a deterministic, capped tier-adjacent sample),
+  `judgePair`/`proposeLlmEdges` (dependency-injected `ModelCaller`, no
+  direct `llm.ts` import, so tests stub it with no network and no key),
+  `sanitizeJudgment` (a malformed model response downgrades to a safe
+  "no," matching `grounding.ts`'s own fail-safe posture).
+- `src/lib/research-os/inference/decide.ts`: `decideEdgeProposal`, the
+  pure approve/reject transition (0.95 confidence, `confidence_source
+  "teacher"` on approve; idempotent on an already-decided proposal),
+  mirroring `stages.ts`'s `onTeacherReview` shape.
+- `scripts/research-os/ingest/infer-edges-llm.ts`: the CLI, dry run only
+  (never writes `graph.edges`), wires the real provider via `llm.ts`'s
+  `selectProvider`/`callGroundedModelWithUsage`, writes
+  `review-list.json` (`llm_proposed_edge` items) and, when Supabase is
+  configured, best-effort queues each proposal into a new
+  `graph.edge_proposals` table.
+- `scripts/research-os/ingest/lib/build-node-pool.ts`: the node-pool
+  assembly factored out of `infer-edges.ts` so both CLI proposers scan
+  the identical population.
+- `supabase/migrations/20260910050000_research_os_edge_proposals.sql`:
+  `graph.edge_proposals`, the review queue, RLS enabled with no
+  client-facing policy (service-role only, gated by `reviewer.ts`).
+- `src/app/api/research-os/edges/route.ts` and
+  `src/app/research-os/edges/page.tsx`: the `/research-os/edges` review
+  UI, gated to `RESEARCH_OS_REVIEWER_EMAILS`, mirroring
+  `/research-os/review`'s own auth and layout pattern.
+- `src/lib/research-os/rebuild-ancestor.ts`: `rebuildPrereqAncestorForBranch`,
+  factored out of `scripts/rebuild-prereq-ancestor.ts` so the edges
+  route's approve action rebuilds `graph.prereq_ancestor` in-process
+  (task item 4) instead of shelling out.
+- Test files: `scripts/research-os/ingest/test-ingest-infer-llm.ts` (23
+  tests, calibration/agreement/candidate-selection/proposal assembly, all
+  against a stubbed model), `scripts/test-research-os-edges-review.ts` (9
+  tests, the decision transition plus the reviewer-gate 403 case and the
+  migration's own shape), `scripts/test-research-os-rebuild-ancestor.ts`
+  (3 tests, a fake fluent Supabase client, no network).
+- `tools/hypothesis-engine/hte/export.py`: `write_views`'s `TIMELINE.md`
+  now carries the same "Elo is unvalidated" note
+  `canon_writeback.render_index` already gives its own hypothesis-card
+  index, plus an "Elo (unvalidated)" bin-table column header (`ros-11`'s
+  named remainder: "the base campaign export... carries no such label").
+  One new test, `test_write_views_labels_elo_as_unvalidated`.
+
+### Edited
+
+- `scripts/research-os/ingest/infer-edges.ts`: node-pool assembly moved to
+  `lib/build-node-pool.ts`, no behavior change (re-run against the live
+  517-node/8-branch corpus still proposes the same 36 edges).
+- `scripts/rebuild-prereq-ancestor.ts`: thinned to an env-var read plus a
+  call into `rebuild-ancestor.ts`'s new function.
+- `src/lib/research-os/ingest/types.ts`: `ReviewItemKind` gains
+  `llm_proposed_edge`.
+- `package.json`: new `ingest:research-os:infer-llm` script; three new
+  test files added to the `test:research-os` chain.
+- `learning/research-os/ROUTING.md`: new "LLM-assisted prerequisite-edge
+  inference" section (calibration, agreement, review flow), a new
+  `inferred_llm` confidence-source table row, and an updated `teacher`
+  row (0.95 on an edge-proposal approval, 1.0 on a resolved routing
+  flag).
+- `learning/research-os/INGESTION.md`: `llm_proposed_edge` added to the
+  review-list-contract table; the closing "what this slice does not do"
+  paragraph updated from "one shipped, one not" to both shipped.
+
+### Verified
+
+Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+`npm run test:research-os` (248/248 pass across all 20 chained test
+files), `next lint` on every touched TS/TSX file, `ruff check` on
+`export.py`/`test_export.py`, engine tests for the touched module
+(`pytest tools/hypothesis-engine/tests/test_export.py` 13/13,
+`tests/swarm/test_export_props.py` 6/6, full suite excluding `slow`
+green). `agf-lint-voice-src check` / `agf-lint-voice check` run on every
+touched file.
 
 ## 2026-09-10: literature corpus promotion pass two
 
@@ -1699,3 +2008,55 @@ files, `eslint` clean on all 16 touched TS/TSX files,
 clean on the touched docs. The Vercel status check on the PR fails with
 "Deployment rate limited, retry in 24 hours" (Vercel free-tier daily
 deployment cap), unrelated to this branch's code.
+
+## 2026-09-10, PR #61 review pass
+
+Review-and-merge pass on PR #61 (`feat/canon-signoff-tool`, "human sign-off
+tool, CLI and gated page, audit trail") before merge, worktree
+`.ros-worktrees/r61`.
+
+Correctness verified: `approve`/`reject` are idempotent in both the Python
+CLI (`signoff_core.py`) and the TypeScript route module
+(`src/lib/canon-signoff.ts`); the `/api/canon/signoff` route requires both
+`RESEARCH_OS_REVIEWER_EMAILS` and `CANON_SIGNOFF_APPROVERS` server-side and
+returns 403 otherwise; a build-output grep found no allowlist membership in
+any client bundle, only the two env var names as help text on the page
+itself. Added three cross-language tests to `scripts/test-canon-signoff.ts`:
+a record approved and one rejected by the real `signoff_core.py` (invoked
+via subprocess, not re-typed) both read correctly under `isPendingSignoff`
+(TS), and `hte.canon_writeback` never references `provenance_signoff`, so
+the hypothesis engine's own `signed_off_by` write gate cannot collide with
+this tool's field.
+
+Walker gap decided by design: the PR's own SIGNOFF.md flagged
+`findPrimaryFiles`'s one-level directory walk as missing the eleven
+`sub-outcomes/education/` records (two levels deep) without saying whether
+that gap should be fixed. Every `primary-papers.yaml` in the repo currently
+sits at exactly one level below its branch except that one dossier, and
+`GOVERNANCE.md`'s mission scopes the citeable canon envelope to
+foundation-tier research; `sub-outcomes/` is outcome tier by definition.
+The walker's exclusion matches policy, so it stays as is; one clarifying
+sentence added to `SIGNOFF.md` and `GOVERNANCE.md` so a future pass does not
+"fix" it into serving outcome-tier content as paid-cite canon.
+
+Merged `origin/main` (PRs #42, #51, #59, and a `whats-new` milestone commit
+that had landed since this branch's own merge commit); one append-only
+conflict, `_intake/research-os-k12/CHANGELOG.md` itself, resolved keeping
+both sides' entries. `learning/research-os/CHANGE-LEDGER.md` merged clean.
+
+Gates re-run post-merge: `pytest tools/canon-pipeline/tests/` (41 passed),
+`npm ci` clean, `npx tsc --noEmit` clean, `npm run build` clean
+(`/canon/signoff` and `/api/canon/signoff` both in the manifest, confirmed
+via the app-paths manifest rather than the truncated build log),
+`npm run test:research-os` (326 passed, 0 failed, 24 files), `eslint` clean
+on every touched TS/TSX file, `agf-lint-voice-src check` clean on every
+touched TS/TSX/Python file, `agf-lint-voice check` clean on the touched
+docs after one antithesis-phrasing fix in this pass's own `SIGNOFF.md` edit.
+No record's `provenance_signoff` value changed by this PR (confirmed
+against the PR's own file list; `bucket-canon/` never appears in it). Leak
+scan over every changed file found no keys, tokens, secrets, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian`
+paths, or Claude session URLs. `/canon/signoff` reviewed at 400px against
+its Tailwind classes: no fixed width exceeds 400px and every input row wraps
+(`flex-wrap`), so no horizontal scroll is expected; no headless browser was
+available in this environment to screenshot it directly.
