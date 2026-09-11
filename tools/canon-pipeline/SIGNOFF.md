@@ -144,9 +144,12 @@ no longer starts with the word "pending." Covered by
 
 As of 2026-09-10, `python3 tools/canon-pipeline/signoff.py list` found **20** records carrying
 `provenance_signoff: "pending: gianyrox"` across five dossiers:
-`04-information/information-foraging` (1), `07-mind/cognition-and-automation`
+`07-mind/information-foraging` (1), `07-mind/cognition-and-automation`
 (1), `07-mind/curiosity-and-motivation` (4), `07-mind/memory-systems` (3),
 and `07-mind/sub-outcomes/education` (11, outcome tier). All 20 carry a DOI.
+(`information-foraging` moved from `04-information/` to `07-mind/` in the
+concurrent PR #55 this branch merged; the tool's own file discovery walks
+the tree fresh on every run, so the path move needed no change here.)
 
 Eleven of those twenty live under `07-mind/sub-outcomes/education/`, two
 levels below its branch directory. `src/lib/canon-primary.ts`'s own

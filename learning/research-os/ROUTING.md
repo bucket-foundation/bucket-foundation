@@ -34,7 +34,8 @@ confidence:
 | `academy_requires` | 1.0 | `src/lib/research-os/ingest/academy.ts`, a Bucket Academy atom's own `requires` list |
 | `canon_map` | 0.9 | `src/lib/research-os/ingest/canon.ts`, a canon dossier matched to an Academy atom by `canon-atom-map.json` or an exact slug |
 | `inferred` | 0.3 to 0.65, scaled by lexical overlap (`src/lib/research-os/ingest/infer.ts`'s `inferredConfidence`); 0.5 is the systemwide fallback for the source name alone (`CONFIDENCE_DEFAULTS.inferred`) | `scripts/research-os/ingest/infer-edges.ts`, an offline proposal never applied by that script |
-| `teacher` | 1.0 (a reviewer's own confirmation) | a class-view reviewer action on a flagged edge (ros-06, not yet built) |
+| `inferred_llm` | 0.3 to 0.65, scaled by the model's own self-reported confidence through the same shrink `inferred` uses (`src/lib/research-os/inference/calibration.ts`'s `llmSelfReportedToConfidence`); a disagreeing pair (below) is forced to a fixed 0.4 | `scripts/research-os/ingest/infer-edges-llm.ts`, queued to `graph.edge_proposals` for human review, never applied by that script |
+| `teacher` | 0.95 on an approved edge-proposal decision, 1.0 on a resolved routing flag (below) | `/research-os/edges`'s approve action (`src/lib/research-os/inference/decide.ts`) or a class-view reviewer editing `graph.edges` directly |
 
 `seed` and `academy_requires` are curator-authored and full confidence.
 `canon_map` is a curated match one notch below: a real reviewer connected
@@ -46,7 +47,17 @@ gasparetti-et-al-2017-prerequisites-between-learning-objects.md`) found
 that instructor disagreement over automatically extracted prerequisite
 edges concentrates on weak or optional pairs, the direct warning behind
 keeping every `inferred` edge on the review list rather than the graph
-until a reviewer confirms it.
+until a reviewer confirms it. `inferred_llm` shares that same tier and the
+same ceiling (never above 0.65, one full notch below `canon_map`'s 0.9),
+for the identical reason applied to a model's own self-reported
+confidence rather than a lexical overlap ratio: PLAN-REVISION-2.md section
+2c reads Alzetta et al. 2018 (`_intake/research-os-k12-literature/
+prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-
+enriched-terminology.md`)'s gold-standard annotation study, moderate
+human-to-human agreement on prerequisite pairs, disagreement concentrated
+on same-section, co-occurrence-versus-prerequisite conflation, as the
+direct precedent for never trusting a single model call's own confidence
+number at face value.
 
 An edge with no `confidence_source` (a non-prerequisite edge kind: `cites`,
 `derives_from` outside the canon importer, `generalizes`, `example_of`,
@@ -99,10 +110,66 @@ This script has no `--apply` mode. Every proposal lands on
 `scripts/research-os/ingest/out/review-list.json` as an
 `inferred_prerequisite_proposal` item; a reviewer adds it to the seed, an
 Academy corpus `requires` list, or a `canon-atom-map.json` row by hand, or
-rejects it. An LLM-assisted inference pass (`scripts/research-os/ingest/
-infer-edges.ts`'s own future sibling) is separate, scoped work, named in
-`BEADS-PENDING.jsonl`'s `ros-13` entry and `learning/research-os/
-INGESTION.md`; this offline pass never calls a model.
+rejects it. This offline pass never calls a model; its LLM-assisted
+sibling, for the harder case with no lexical or structural signal at all,
+is `scripts/research-os/ingest/infer-edges-llm.ts` (below).
+
+## LLM-assisted prerequisite-edge inference
+
+`scripts/research-os/ingest/infer-edges-llm.ts` (bkt-ros ros-13) judges
+the pairs `infer-edges.ts`'s lexical proposer already found, plus up to
+`DEFAULT_TIER_ADJACENT_SAMPLE` (20) same-branch, tier-adjacent pairs it did
+not, `src/lib/research-os/inference/propose.ts`'s `buildCandidatePairs`.
+Each candidate pair gets a strict yes-or-no prerequisite judgment with a
+one-sentence justification and a self-reported confidence, from TWO
+independently-phrased prompts (`prompts.ts`'s `buildPromptA`/`buildPromptB`),
+using the same grounded call pattern `src/lib/research-os/llm.ts` already
+gives the workspace tutor: local OpenAI-compatible LLM default, hosted
+Anthropic fallback, dark (no proposals, clean exit) when neither is
+configured.
+
+**Calibration.** `calibration.ts`'s `llmSelfReportedToConfidence` maps a
+model's own self-reported confidence onto `infer.ts`'s own
+`INFERRED_CONFIDENCE_MIN`..`INFERRED_CONFIDENCE_MAX` band (0.3 to 0.65),
+the identical shape `inferredConfidence` already uses for lexical overlap:
+an LLM-inferred edge is never more trusted than the lexical proposer's own
+ceiling, and never within reach of `canon_map`'s 0.9.
+
+**Agreement.** `combineAgreement` reads the two phrasings' verdicts: both
+"no" proposes nothing; both "yes" keeps the LOWER of the two shrunk
+confidences, the weaker phrasing wins over an average; a split verdict
+still proposes the edge (never silently dropped) but forces its confidence
+to a fixed `DISAGREEMENT_CONFIDENCE` (0.4), always below
+`LOW_CONFIDENCE_THRESHOLD` (0.6), so a disagreeing pair always lands
+flagged for a reviewer rather than routed through quietly. This is the
+same same-section-conflation risk Alzetta et al. 2018 documents for human
+annotators, read onto two independent model calls instead of two human
+raters.
+
+**Never apply.** This script writes no row to `graph.edges`. Every
+proposal lands on `scripts/research-os/ingest/out/review-list.json` as an
+`llm_proposed_edge` item (merged with whatever `infer-edges.ts` already
+wrote there), carrying `confidence_source: "inferred_llm"`, the
+justification, model id, and prompt hash. When Supabase is configured,
+the same proposal is also queued (upsert, `ignoreDuplicates` on
+`(from_slug, to_slug)`) into `graph.edge_proposals`, `status: "pending"`,
+so it has something to serve to a live reviewer; a proposal a reviewer has
+already decided is never reset by a later run.
+
+**Review.** `/research-os/edges` (`src/app/research-os/edges/page.tsx`,
+`src/app/api/research-os/edges/route.ts`), gated to the same
+`RESEARCH_OS_REVIEWER_EMAILS` allowlist `/research-os/review` uses, lists
+every pending proposal with its justification, confidence, and whether the
+two prompts agreed. Approve writes the `prerequisite` edge at confidence
+0.95, `confidence_source: "teacher"` (`decide.ts`'s
+`decideEdgeProposal`), then best-effort rebuilds
+`graph.prereq_ancestor` for the edge's own branch
+(`src/lib/research-os/rebuild-ancestor.ts`'s
+`rebuildPrereqAncestorForBranch`, the same function
+`npm run rebuild:research-os-ancestors` calls). Reject records the
+decision with no edge write. Both actions are idempotent: a
+proposal already decided is returned as-is, never re-applied or flipped by
+a later call.
 
 ## Deferred: the workspace chain badge
 

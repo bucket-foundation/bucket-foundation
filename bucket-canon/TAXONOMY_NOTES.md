@@ -150,14 +150,27 @@ and general team performance, rather than one.
 
 This pass takes Option B: both records are added to
 `sub-outcomes/education/primary-papers.yaml` with a `depends_on_foundation`
-pointer to `04-information/information-foraging/` (Pirolli and Card 1999),
-not to the memory-systems foundation the tutoring records depend on, and
-each carries a `TAXONOMY_NOTES.md` cross-reference in its
+pointer to `07-mind/information-foraging/` (Pirolli and Card 1999,
+relocated 2026-09-11 from `04-information/`, see the Rename Log entry
+below); the tutoring records instead depend on the memory-systems
+foundation, and each carries a `TAXONOMY_NOTES.md` cross-reference in its
 `outcome_reason` field. A future pass with more human-AI-collaboration
 outcome cards should reconsider Option A.
 
 ## Rename Log
 
-None yet. Entries here record a branch, sub-domain, or folder rename with
-the date, the prior name, and the reason, once an Open Question above (or
+Entries here record a branch, sub-domain, or folder rename with the
+date, the prior name, and the reason, once an Open Question above (or
 elsewhere) resolves into one.
+
+### 2026-09-11: `information-foraging/` moved from `04-information/` to `07-mind/`
+
+Pirolli and Card 1999 ("Information foraging") was seeded 2026-09-10
+under `04-information/` on canon intake pass two's own task brief.
+`fix/canon-promotion-findings` (2026-09-11) moved it to
+`07-mind/information-foraging/`: the paper is a model of what a
+biological searcher in fact does, the material both branches' own
+boundary-call sections assign to `07-mind/`; neither branch's rule
+treats it as a limit on what any searcher can do in principle. A one-line redirect stays at the old
+`04-information/information-foraging/` path; the `sub-outcomes/education/`
+`depends_on_foundation` pointers above were updated to match.
