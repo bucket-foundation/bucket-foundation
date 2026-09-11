@@ -49,7 +49,8 @@
  *
  * Production guard (bkt-ros, production guard bead): GET's own
  * `productions` entries now also carry `sourceProvenance`,
- * `duplicateFlag`, `counterEvidence`, and `counterEvidenceRequired`, the
+ * `duplicateFlag`, `lateralReadingFlag`, `counterEvidence`, and
+ * `counterEvidenceRequired`, the
  * exact values `/api/research-os/production`'s POST computed and stored
  * at submit time (production-guard.ts's own functions, never recomputed
  * here, task item 5's own "show guard flags beside each queued
@@ -84,6 +85,7 @@ import {
   computeIncentiveEligible,
   type SourceCheck,
   type DuplicateFlag,
+  type LateralReadingFlag,
 } from "@/lib/research-os/production-guard";
 import { lookupCanonSignoff } from "@/lib/research-os/canon-link";
 
@@ -123,6 +125,7 @@ interface ProductionRow {
   duplicate_flag: DuplicateFlag | null;
   counter_evidence: unknown[] | null;
   counter_evidence_required: boolean | null;
+  lateral_reading_flag: LateralReadingFlag;
 }
 
 /** sourceLines as checkSourceProvenance's own caller builds them
@@ -160,7 +163,7 @@ export async function GET(req: NextRequest) {
   const { data: productionRows, error: prodErr } = await svc
     .from("productions")
     .select(
-      "id,learner_id,target_node_id,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required",
+      "id,learner_id,target_node_id,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required,lateral_reading_flag",
     )
     .eq("status", "submitted")
     .order("created_at", { ascending: true });
@@ -219,6 +222,7 @@ export async function GET(req: NextRequest) {
           notes: p.notes ?? [],
           sourceProvenance,
           duplicateFlag: p.duplicate_flag ?? null,
+          lateralReadingFlag: p.lateral_reading_flag ?? null,
           counterEvidence,
           counterEvidenceRequired,
           guardFlags: {

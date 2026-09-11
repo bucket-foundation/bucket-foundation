@@ -2,6 +2,80 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
+
+- **Scope**: `hte/corpus/production.py` (`_research_os_counter_evidence`,
+  `ClaimEvidence.stance` per-entry override, `Production.duplicate_of`,
+  a stemma edge from a duplicate's own `Source` to the matched
+  production's), `hte/corpus/literature.py` (`discover_card_roots`, real
+  on-disk corpus root auto-discovery in place of the network-fetch-only
+  path), `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`.
+- **Outbox contract check**: this PR reads the guard's own
+  `counter_evidence`/`duplicate_flag` columns verbatim (no independent
+  duplicate-detection or counter-evidence-requirement recompute of its
+  own); it has no write path back to `graph.productions` at all, so it
+  cannot overwrite a guard flag. Neither field reaches the outbox row on
+  the app side yet (`ProductionOutboxRow` in `engine-bridge.ts` still
+  nine fields, confirmed by grep) so this is the read-side half of the
+  seam, tested against a simulated row per the PR's own test plan.
+  `lateral_reading_flag` (`PRODUCTION-GUARD.md` Rule 5) is untouched by
+  this PR too, and by every merged PR to date: it is documented as
+  informational/review-queue-only (`PRODUCTION-GUARD.md`, "every other
+  flag ... is informational, visible but never blocking"), not an
+  evidentiary signal the engine has a slot for; no gap to log there.
+  `learning/research-os/ENGINE-BRIDGE.md`'s own table/data-flow
+  description is unchanged by this PR and needed no update: the raw-row
+  passthrough contract it documents is exactly what this PR extends.
+- **Learner text**: counter-evidence text lands in `EvidenceItem.span.
+  quote`, the same normalized-envelope slot ordinary evidence text
+  already occupies; no new field carries raw learner text further than
+  that existing path.
+- **Leak scan**: clean, no keys, IPs, `/home/gian` paths, Claude session
+  URLs, or personal emails in the PR's diff.
+- **Voice lint**: `agf-lint-voice-src check` and `agf-lint-voice check`
+  both 0 violations. No fix needed.
+- **Gates**: merged `origin/main` (clean, no conflicts, brought in #78).
+  `ruff check` clean. `make test`: 1352 passed, 18 deselected, 0 failed.
+- **Blocked**: nothing. Merged.
+
+## 2026-09-11, PR #78 review and merge: retraction propagation and fragility
+
+- **Scope**: `hte/propagate.py` (derivation graph, per-hop damped
+  recompute, `CascadeReport`, `apply_retraction`, `fragility`/
+  `rank_fragility`), `hte/evidence.py` (`retracted_by`), `hte/runner.py`
+  (wires propagation into the campaign loop, writes `cascade.json`),
+  `hte/export.py` (`TIMELINE.md` fragility section), `hte/artifacts.py`
+  (`CascadeArtifact`, `fragility_top10`), `hte/canon_writeback.py`
+  (`canon_tier: contested` for a card whose support routed through a
+  retracted node, plus a `retract` feed event), `docs/PROPAGATION.md`.
+- **Deletion check**: `apply_retraction` adds a `refutes` item and stamps
+  `retracted_by`; no node, edge, or existing evidence item is removed.
+  Confirmed in `propagate.py`'s own docstring and in code.
+- **Canon gate**: `write_back` still never writes `canon_tier: "canon"`;
+  a cascaded candidate gets `"contested"` in place of `"candidate"`,
+  strictly more cautious, `signoff` still required. Fail-closed intact.
+- **Research OS bridge gap**: `fragility_top10` lands in `cascade.json`/
+  `self-report.json`/`MANIFEST.json` (engine-side artifacts) but this PR
+  does not touch `src/lib/research-os/engine-bridge.ts` or `db.ts`
+  (the PR #14 adapter, `EngineHypothesisInput`/`buildEngineNode`); no
+  fragility score reaches a `graph.nodes` row yet. Confirmed in scope:
+  PR body states it does not touch the corpus/bridge layer. Not a
+  blocker for this PR, flagged here as a follow-up (wire
+  `fragility_top10` through `campaign_research_os.py` and
+  `EngineHypothesisInput` in a later PR).
+- **Leak scan**: clean, no keys, IPs, `/home/gian` paths, Claude session
+  URLs, or personal emails in the PR's diff.
+- **Voice lint**: `agf-lint-voice-src check` and `agf-lint-voice check`
+  both 0 violations.
+- **Fix applied**: `ruff check` flagged one PR-introduced violation,
+  an unused `opinions_before` local in
+  `tests/test_propagate.py::test_cascade_report_lists_a_b_c_with_correct_hops_and_shares`.
+  Removed the dead assignment (the test never read it). `ruff check`
+  clean after.
+- **Gates**: merged `origin/main` (clean, no conflicts). `make test`:
+  1331 passed, 18 deselected, 0 failed.
+- **Blocked**: nothing. Merged.
+
 ## 2026-09-11, PR #70 post-merge review and voice-lint fix
 
 - **Scope**: PR #70 (`feat/hte-ground-truth-enrichment`, richer

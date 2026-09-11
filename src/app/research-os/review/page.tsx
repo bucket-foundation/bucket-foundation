@@ -24,8 +24,9 @@
  * Production guard (bkt-ros, production guard bead, task item 5): each
  * queued Production now also shows its guard flags (unverified sources,
  * a duplicate-claim match, missing counter-evidence at the
- * internalization tier), computed by /api/research-os/production's POST
- * at submit time and read here as-is. Approve is disabled client-side
+ * internalization tier, a single-source lateral-reading flag), computed
+ * by /api/research-os/production's POST at submit time and read here
+ * as-is. Approve is disabled client-side
  * while any source is unverified (the API's own 409 is the enforced
  * gate; this is the same belt-and-suspenders posture the rest of this
  * codebase already keeps between RLS and an application-code check); a
@@ -53,6 +54,7 @@ interface DuplicateFlag {
   matchOrigin: "own_prior" | "class_peer" | "canon";
   score: number;
 }
+type LateralReadingFlag = "single-source" | null;
 interface PendingProduction {
   id: string;
   learnerId: string;
@@ -65,6 +67,7 @@ interface PendingProduction {
   createdAt: string;
   sourceProvenance: SourceCheck[];
   duplicateFlag: DuplicateFlag | null;
+  lateralReadingFlag: LateralReadingFlag;
   counterEvidence: Array<{ text: string }>;
   counterEvidenceRequired: boolean;
   guardFlags: { hasUnverifiedSource: boolean; unverifiedCount: number; missingCounterEvidence: boolean };
@@ -325,7 +328,7 @@ export default function ResearchOsReviewPage() {
                       {/* Production guard flags (task item 5): unverified
                           sources, a duplicate-claim match, missing
                           counter-evidence at the internalization tier. */}
-                      {(approveBlocked || p.duplicateFlag || p.guardFlags.missingCounterEvidence) && (
+                      {(approveBlocked || p.duplicateFlag || p.lateralReadingFlag || p.guardFlags.missingCounterEvidence) && (
                         <div className="mt-2 flex flex-col gap-1">
                           {approveBlocked && (
                             <p className="text-[12px] text-red-700">
@@ -346,6 +349,11 @@ export default function ResearchOsReviewPage() {
                           )}
                           {p.guardFlags.missingCounterEvidence && (
                             <p className="text-[12px] text-red-700">missing counter-evidence, required at the internalization tier (Osborne 2010)</p>
+                          )}
+                          {p.lateralReadingFlag === "single-source" && (
+                            <p className="text-[12px] text-[color:var(--aegean-deep)]">
+                              single source: no independent second source on file for this claim (lateral reading)
+                            </p>
                           )}
                         </div>
                       )}
