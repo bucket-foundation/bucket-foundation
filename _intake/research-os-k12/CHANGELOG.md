@@ -1647,3 +1647,43 @@ files, `eslint` clean on all 16 touched TS/TSX files,
 clean on the touched docs. The Vercel status check on the PR fails with
 "Deployment rate limited, retry in 24 hours" (Vercel free-tier daily
 deployment cap), unrelated to this branch's code.
+
+## 2026-09-10, cognitive forcing on Check, calibration record, arm switch
+
+`learning/research-os/PLAN-REVISION-2.md` section 2a's design response to Buçinca,
+Malaya and Gajos (2021), Bansal et al. (2021), and Vaccaro, Almaatouq and Malone
+(2024): before the tutor's grounded feedback is shown, a learner using the Check
+tool now writes an explanation, rates their confidence on a four-point scale, and
+predicts which of their own quoted sources their explanation rests on. The verdict
+holds server-side (`src/lib/research-os/forcing.ts`'s held-attempt store) until
+both answers arrive on the same attempt, then reveals with the learner's own
+prediction shown beside the tutor's real citation.
+
+The calibration record (mean confidence against mean source-prediction
+correctness) lands per class on `/research-os/class`
+(`src/lib/research-os/calibration.ts`), since that page carried no other in-flight
+work at the time this landed. A per-class `forcing_enabled` override
+(`supabase/migrations/20260910060000_research_os_forcing.sql`) plus the
+`RESEARCH_OS_FORCING_ENABLED` env flag (default on) let a future three-arm pilot
+turn forcing off on its comparison arm without a second deployment; every `check`
+evidence event now carries `forcingEnabled` regardless of arm, so analysis can
+tell arms apart from the evidence log alone.
+
+`learning/research-os/study/INSTRUMENTS.md` section 2's metacognitive confidence
+item, drafted as an after-the-verdict question, is rewritten to describe the
+shipped before-the-verdict placement; the original text is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`.
+
+28 new tests across `scripts/test-research-os-forcing.ts` (19) and
+`scripts/test-research-os-calibration.ts` (9), plus new cases in the existing
+`scripts/test-research-os-evidence.ts`; full suite 293/293 passing across 22
+files. Gates green: `npm ci`, `npx tsc --noEmit`, `npm run build` (both routes
+confirmed in the manifest), `npm run test:research-os`, `eslint` on every touched
+file, `agf-lint-voice-src check` and `agf-lint-voice check` clean on every touched
+file (fixed two banned words, one filler adverb, and six antithesis phrasings
+found on the first pass).
+
+**Full doc:** `learning/research-os/WORKSPACE.md` section 6 (new), `src/lib/research-os/EVIDENCE-SCHEMA.md`'s
+"Cognitive forcing on Check" section, `learning/research-os/study/INSTRUMENTS.md`
+section 2. See also `learning/research-os/CHANGE-LEDGER.md`'s matching entry,
+"Iteration 22," for the file-by-file diff and gate results.

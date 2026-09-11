@@ -2084,3 +2084,34 @@ commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
 ### Edited
 
 - `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+
+## Iteration 22: cognitive forcing on Check
+
+`PLAN-REVISION-2.md` section 2a's design response to Buçinca, Malaya and Gajos (2021), Bansal et al. (2021), and Vaccaro, Almaatouq and Malone (2024): Check's verdict now holds server-side until the learner commits to a confidence rating and a source prediction, matching Buçinca's own commit-before-reveal cognitive forcing structure.
+
+### Added
+
+- `src/lib/research-os/forcing.ts`: the 4-point `LearnerConfidence` scale and its grade-4-reading-level copy, `computePredictionCorrect` (code-level, never model-read), the arm switch (`envForcingDefault`/`resolveForcingEnabled`), the in-memory held-attempt store (`storePendingAttempt`/`getPendingAttempt`/`consumePendingAttempt`/`pruneExpiredAttempts`, matching `rate-limit.ts`'s own best-effort posture), and `revealPendingAttempt`, the single gate enforcing "the Check response omits feedback until the forcing record exists for that attempt."
+- `src/lib/research-os/calibration.ts`: `computeCalibrationSummary`, mean confidence against mean source-prediction correctness per learner, over forcing-gated `"check"` events only.
+- `supabase/migrations/20260910060000_research_os_forcing.sql`: `graph.classes.forcing_enabled`, a nullable per-class override for the arm switch.
+- `scripts/test-research-os-forcing.ts` (19 tests) and `scripts/test-research-os-calibration.ts` (9 tests), both pure, no network or database, wired into `npm run test:research-os`.
+
+### Edited
+
+- `src/lib/research-os/stages.ts`: `EvidenceContext`/`EvidenceEvent` gain `learnerConfidence`, `sourcePrediction`, `predictionCorrect`, `forcingEnabled`; `onCheckResult` is the one writer. `onProbeCheckResult` untouched: forcing gates Check alone, never the diagnostic probe.
+- `src/lib/research-os/db.ts`: `loadForcingEnabledForLearner`, fails open (`null`, deferring to the env default) on any lookup error, so the optional per-class override can never break a Check call.
+- `src/app/api/research-os/workspace/route.ts`: the "check" action becomes two-phase. Phase 1 (no `attemptId`) grades the explanation and, unless this learner's own arm has forcing off, returns only `{ attemptId, forcingRequired: true }`. Phase 2 (`attemptId` present) calls `revealPendingAttempt`; a request missing a valid confidence or a source prediction gets a 400 with the attempt left held for a retry, never a verdict.
+- `src/app/research-os/workspace/page.tsx`: the Check card gets a third render phase, the two forcing questions (native `<fieldset>`/`<legend>`/labeled `<input type="radio">` groups, the same accessible pattern `/research-os/profile` already uses), sourced from the learner's own "sources I have quoted" list; the reveal shows the learner's prediction beside the tutor's real citation and whether it matched.
+- `src/app/api/research-os/class/route.ts` and `src/app/research-os/class/page.tsx`: a `calibration` array per class, `git log -3 --since='2 hours ago' -- src/app/research-os/class` confirmed no other in-flight work on this page at the time this landed, so the summary was wired directly into the class view rather than left as an unexposed server function.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: a new "Cognitive forcing on Check: the calibration record" section for the four added fields.
+- `learning/research-os/WORKSPACE.md`: section 6, the full flow, server enforcement, the arm switch, and the calibration record.
+- `learning/research-os/study/INSTRUMENTS.md`: section 2 rewritten from an after-the-verdict design to the shipped before-the-verdict placement; original text preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/class` and `/research-os/workspace` both in the manifest), `npm run test:research-os` (293 passed, 0 failed, 22 files), `eslint` on all 11 touched TS/TSX files, `agf-lint-voice-src check` on the same files plus the new migration, `agf-lint-voice check` on the touched docs: all clean.
+- The headline case, "a test proves the feedback cannot be fetched early," runs against `revealPendingAttempt` directly, the exact function the route calls. An `attemptId`-only call, a confidence-only call, and a prediction-only call all return `{ ok: false, reason: "forcing_incomplete" }` with the attempt left retrievable; only both fields together reveal the grade, and a second reveal on the same `attemptId` after that is `not_found`.
+
+### Removed
+
+None.

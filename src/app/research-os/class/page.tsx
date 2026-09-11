@@ -59,6 +59,12 @@ interface ReadyLearner {
   nodeId: string;
   nodeTitle: string;
 }
+interface CalibrationRow {
+  learnerId: string;
+  n: number;
+  meanConfidence: number;
+  meanCorrectness: number;
+}
 interface ClassView {
   id: string;
   name: string;
@@ -66,6 +72,7 @@ interface ClassView {
   grid: ClassGrid;
   blocked: BlockedLearner[];
   readyForHarderTarget: ReadyLearner[];
+  calibration: CalibrationRow[];
 }
 interface TransferHold {
   learnerId: string;
@@ -345,6 +352,29 @@ export default function ResearchOsClassPage() {
                     ))}
                   </ul>
                 </div>
+              </div>
+
+              {/* Calibration (bkt-ros, PLAN-REVISION-2.md section 2a):
+                  mean confidence against mean source-prediction
+                  correctness, per learner, over forcing-gated Check
+                  attempts only. A learner with none yet has no row here. */}
+              <div className="mt-4">
+                <h3 className="text-[12px] small-caps tracking-[0.1em] text-[color:var(--basalt)] mb-2">
+                  calibration ({c.calibration.length})
+                </h3>
+                {c.calibration.length === 0 && (
+                  <p className="text-[12px] text-[color:var(--basalt-2)]">No forcing-gated Check attempts yet.</p>
+                )}
+                {c.calibration.length > 0 && (
+                  <ul className="flex flex-col gap-2">
+                    {c.calibration.map((cal) => (
+                      <li key={cal.learnerId} className="text-[12px] text-[color:var(--basalt-2)] bg-[color:var(--bone)] p-2">
+                        {shortId(cal.learnerId)} &middot; {cal.n} attempt(s) &middot; mean confidence {cal.meanConfidence.toFixed(2)}/4 &middot; mean
+                        correctness {Math.round(cal.meanCorrectness * 100)}%
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </section>
           ))}

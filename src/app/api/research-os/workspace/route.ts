@@ -41,8 +41,26 @@
  * Request: { action, sessionId?, ...action-specific fields }
  *   locate:   { query, branch? }
  *   quote:    { nodeId }
- *   check:    { nodeId, explanation }
+ *   check:    phase 1 { nodeId, explanation }
+ *             phase 2 { nodeId, attemptId, learnerConfidence, sourcePrediction }
  *   organize: { claim, evidenceNotes, sourceNotes }
+ *
+ * Cognitive forcing on Check (bkt-ros, learning/research-os/
+ * PLAN-REVISION-2.md section 2a, the design response to Buçinca, Malaya
+ * and Gajos 2021, Bansal et al. 2021, and Vaccaro, Almaatouq and Malone
+ * 2024): a phase-1 "check" call grades the explanation right away but,
+ * unless this learner's own arm has forcing off (src/lib/research-os/
+ * forcing.ts's resolveForcingEnabled, the RESEARCH_OS_FORCING_ENABLED /
+ * per-class arm switch), the response carries only { attemptId,
+ * forcingRequired: true }, no result/confidence/feedback/citations
+ * anywhere in it. Revealing the held verdict needs a phase-2 call on the
+ * same attemptId carrying BOTH a valid learnerConfidence (forcing.ts's
+ * four-point scale) and a non-empty sourcePrediction; a phase-2 call
+ * missing either is 400 and the attempt stays held for a retry. This is
+ * enforced in forcing.ts's held-attempt store, not only by the client
+ * withholding a "reveal" button: scripts/test-research-os-forcing.ts feeds
+ * the store an attempt and asserts no code path returns its grade without
+ * both fields present.
  *
  * Auth: Authorization: Bearer <supabase access token>, required for all four
  * (locate/quote are retrieval-only but still identity-scoped for Phase 0
@@ -67,9 +85,10 @@ import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-o
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { configured, graphService, verifyLearner, recordEvidence, loadForcingEnabledForLearner } from "@/lib/research-os/db";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
+import { resolveForcingEnabled, storePendingAttempt, revealPendingAttempt, pruneExpiredAttempts } from "@/lib/research-os/forcing";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -123,6 +142,13 @@ interface WorkspaceBody {
   claim?: string;
   evidenceNotes?: string;
   sourceNotes?: string;
+  // Cognitive forcing on Check (PLAN-REVISION-2.md section 2a): a first
+  // "check" call (no attemptId) submits `explanation`; a second call
+  // carries `attemptId` plus the two forcing fields to reveal the held
+  // verdict. See this file's "check" case for the full two-phase contract.
+  attemptId?: string;
+  learnerConfidence?: string;
+  sourcePrediction?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -203,6 +229,67 @@ export async function POST(req: NextRequest) {
 
     case "check": {
       const nodeId = (body.nodeId || "").trim();
+      const attemptId = (body.attemptId || "").trim();
+
+      // Phase 2: reveal a held verdict. Requires the forcing commit
+      // (confidence + a source prediction) in THIS same request -- there
+      // is no separate "peek" call, so a request carrying only attemptId
+      // can never come back with feedback (scripts/test-research-os-
+      // forcing.ts's "cannot be fetched early" case).
+      if (attemptId) {
+        const reveal = revealPendingAttempt(attemptId, learnerId, body.learnerConfidence, body.sourcePrediction || "");
+        if (!reveal.ok) {
+          if (reveal.reason === "not_found") return bad(404, "check_attempt_not_found");
+          return bad(400, "A confidence rating and a source prediction are required before feedback is shown.");
+        }
+        const { attempt: pending, learnerConfidence: learnerConfidenceRaw, sourcePrediction, predictionCorrect } = reveal;
+
+        const transition = onCheckResult(
+          pending.currentStage,
+          { result: pending.grade.result, confidence: pending.grade.confidence, abstained: pending.grade.abstained },
+          {
+            learnerText: pending.explanation,
+            modelFeedback: pending.grade.feedback,
+            citations: pending.grade.citations,
+            sessionId: pending.sessionId,
+            learnerConfidence: learnerConfidenceRaw,
+            sourcePrediction,
+            predictionCorrect,
+            forcingEnabled: true,
+          },
+        );
+        await recordEvidence(learnerId, pending.nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        logToolCall("check", learnerId, pending.sessionId, {
+          nodeId: pending.nodeId,
+          result: pending.grade.result,
+          abstained: pending.grade.abstained,
+          stage: transition.nextStage,
+          forcingEnabled: true,
+          predictionCorrect,
+        });
+
+        return NextResponse.json(
+          {
+            result: pending.grade.result,
+            confidence: pending.grade.confidence,
+            abstained: pending.grade.abstained,
+            feedback: pending.grade.feedback,
+            citations: pending.grade.citations,
+            stage: transition.nextStage,
+            learnerConfidence: learnerConfidenceRaw,
+            sourcePrediction,
+            predictionCorrect,
+            forcingEnabled: true,
+          },
+          { headers: { "cache-control": "no-store" } },
+        );
+      }
+
+      // Phase 1: submit the explanation and grade it. The verdict is
+      // computed here but is only ever returned immediately when this
+      // learner's own arm has forcing off; otherwise it is held (see
+      // src/lib/research-os/forcing.ts's module header) until phase 2
+      // above supplies the commit step.
       const explanation = (body.explanation || "").trim();
       if (!nodeId) return bad(400, "nodeId is required");
       if (!explanation) return bad(400, "explanation is required");
@@ -236,7 +323,6 @@ export async function POST(req: NextRequest) {
         return bad(502, "check_failed");
       }
       logToolCost("check", learnerId, provider, safe.usage);
-      const citations = safe.citations;
 
       const { data: existingState } = await svc
         .from("learner_node_state")
@@ -245,25 +331,55 @@ export async function POST(req: NextRequest) {
         .eq("node_id", nodeId)
         .maybeSingle();
       const currentStage = ((existingState?.stage as Stage | undefined) ?? "access") as Stage;
-      const transition = onCheckResult(
-        currentStage,
-        { result: safe.result, confidence: safe.confidence, abstained: safe.abstained },
-        { learnerText: explanation, modelFeedback: safe.feedback, citations, sessionId },
-      );
-      await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
-      logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage });
 
-      return NextResponse.json(
-        {
-          result: safe.result,
-          confidence: safe.confidence,
-          abstained: safe.abstained,
-          feedback: safe.feedback,
-          citations,
-          stage: transition.nextStage,
-        },
-        { headers: { "cache-control": "no-store" } },
-      );
+      const classForcingOverride = await loadForcingEnabledForLearner(learnerId);
+      const forcingEnabled = resolveForcingEnabled(classForcingOverride);
+
+      if (!forcingEnabled) {
+        // Comparison arm (or RESEARCH_OS_FORCING_ENABLED=false): the
+        // pre-forcing behavior, verdict revealed immediately, logged with
+        // forcingEnabled:false so analysis can tell this arm apart from
+        // the default-on arm using the evidence log alone.
+        const transition = onCheckResult(
+          currentStage,
+          { result: safe.result, confidence: safe.confidence, abstained: safe.abstained },
+          { learnerText: explanation, modelFeedback: safe.feedback, citations: safe.citations, sessionId, forcingEnabled: false },
+        );
+        await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+        logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage, forcingEnabled: false });
+
+        return NextResponse.json(
+          {
+            result: safe.result,
+            confidence: safe.confidence,
+            abstained: safe.abstained,
+            feedback: safe.feedback,
+            citations: safe.citations,
+            stage: transition.nextStage,
+            forcingEnabled: false,
+          },
+          { headers: { "cache-control": "no-store" } },
+        );
+      }
+
+      pruneExpiredAttempts();
+      const newAttemptId = storePendingAttempt({
+        learnerId,
+        nodeId,
+        sessionId,
+        explanation,
+        allowLabel: citationLabel({ title: node.title, provenance: (node.provenance || undefined) as Provenance | undefined }),
+        grade: safe,
+        currentStage,
+        forcingEnabled: true,
+        createdAt: Date.now(),
+      });
+      logToolCall("check", learnerId, sessionId, { nodeId, forcingEnabled: true, forcingRequired: true });
+
+      // No result/confidence/feedback/citations key anywhere in this body:
+      // the whole point of the held attempt is that nothing in this
+      // response can be read as the verdict.
+      return NextResponse.json({ attemptId: newAttemptId, forcingRequired: true, forcingEnabled: true }, { headers: { "cache-control": "no-store" } });
     }
 
     case "organize": {
