@@ -2250,3 +2250,60 @@ paths, or Claude session URLs. `/canon/signoff` reviewed at 400px against
 its Tailwind classes: no fixed width exceeds 400px and every input row wraps
 (`flex-wrap`), so no horizontal scroll is expected; no headless browser was
 available in this environment to screenshot it directly.
+
+## 2026-09-10, plan revision 3
+
+Branch `docs/ros-plan-revision-3`, worktree `~/agfarms/.ros-worktrees/plan3`.
+`learning/research-os/PLAN-REVISION-3.md` reads eighteen PRs merged since
+revision 2 (#45 through #66) plus PR #65 (literature batch four, merged
+concurrently with this pass) against `PLAN.md`, `PLAN-REVISION-1.md`, and
+`PLAN-REVISION-2.md`: what shipped with live app, engine, and canon-pipeline
+test counts (326/0, 1172/18/0, 41/0, verified against commit `5ee02432a`);
+five evidence-driven revisions from fourteen batch-four cards, giving full
+treatment, a design response and a pilot measure each, to what revision 2's
+own batch-four pointers under sections 2a, 2b, and 2d only flagged, plus two
+questions those pointers did not touch, required participation and
+argumentation structure; a Phase 1 scope narrowed to nine remaining items,
+four of them new build items this evidence forces; the same five founder
+decisions restated verbatim with a sixth new decision on required
+participation; and the same operational blockers updated, one of them, the
+Vercel free-tier deploy cap PR #47 already hit, newly named as a standing
+blocker rather than a one-off note. Pointer paragraphs appended to `PLAN.md`
+and `PLAN-REVISION-2.md`.
+
+Fourteen batch-four card files read from `origin/intake/ros-literature-4`
+(PR #65, merged into `main` partway through this pass) via `git archive`
+into a scratch directory outside the worktree, never checked out into the
+worktree or the main repo's own working tree.
+
+`agf-lint-voice check` on all three touched files: 13 violations on first
+pass (six rather-than or comma-negation antithesis constructions, four
+filler adverbs, two hits on one banned intensifier, one heading carrying an
+appended comma clause), all fixed by hand; 0 remaining on the second pass.
+
+## 2026-09-10, PR #69 review pass
+
+Worktree `~/agfarms/.ros-worktrees/r69`. `git merge origin/main` picked up
+PR #63 (cognitive forcing on Check), one commit behind at review time; one
+conflict in `learning/research-os/CHANGE-LEDGER.md`, both sides kept. PR #63
+was missing from `PLAN-REVISION-3.md` section 1 despite falling inside its
+own stated #45-#66 range; added as a table row, "eighteen PRs" corrected to
+"nineteen" everywhere that count appears (`PLAN-REVISION-3.md`, `PLAN.md`,
+`PLAN-REVISION-2.md`). Test counts re-verified fresh post-merge: app 367
+passed/0 failed/27 files (was 326/0/23 against the pre-PR#63 fork point),
+engine 1225 passed/18 deselected/0 failed (was 1172/18/0), canon pipeline
+unchanged at 41/0; both the fork-point figures and the post-merge
+reconciliation now stand side by side in section 1. A new operational
+blocker recorded: on 2026-09-11 an agent ran a hard reset in the main
+working tree at `~/agfarms/bucket-foundation`, discarding uncommitted
+archive-runner outputs on about 20 entries plus two log files, regenerable
+by the runner. `BEADS-PENDING.jsonl` line 72's leaked
+`/home/gian/agfarms/.wt-fix10` path, already flagged and left untouched by
+PR #63's own review pass, rewritten to `~/agfarms/.wt-fix10`. A repo-wide
+`/home/gian` grep otherwise turned up thousands of hits in a bead
+event-sourcing log, systemd unit files that need absolute paths to run, and
+large runner logs, a pre-existing repo-wide convention rather than a
+discrete leak; left unchanged as out of scope for a docs-only review. Leak scan of
+the PR's own diff: clean, no keys, IPs, non-public hostnames, personal
+emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
+session URLs. `agf-lint-voice check` clean on every file this pass touched.

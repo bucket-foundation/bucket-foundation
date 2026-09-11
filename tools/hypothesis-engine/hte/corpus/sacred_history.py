@@ -43,13 +43,23 @@ source itself claims, never a fabricated day- or decade-level date.
 
 Every correlation's own `interval` (see "Evidence items" below) is
 derived from its two sides' own tradition spans, never invented: both
-known gives the spans' overlap when they overlap in time, or their union
-when they do not (two traditions that never coexisted still bound a
-correlation's own interval, from the earlier span's own start to the
-later span's own end); exactly one known gives that one tradition's own
-full span; neither known leaves `interval=None`. Every non-`None`
-correlation interval carries `uncertainty: uniform` over its own
-`(start, end)`, per this module's own "no invented precision" rule: a
+known and overlapping in time gives the spans' overlap
+(`views["interval_rule"] = "overlap"`); both known and NOT overlapping
+gives the transmission window instead of the two spans' union, from the
+earlier tradition's own earliest attestation to the later tradition's
+own earliest attestation (`min(a_lo, b_lo)` to `max(a_lo, b_lo)`,
+`views["interval_rule"] = "transmission_window"`), the span in which the
+parallel could have formed, never stretched out to either side's own
+LATEST recorded event the way a union of full spans reads: the old union
+rule put 51 of 52 correlations in this bundle on a near-uninformative
+interval (PR #58's own High finding, fixed here); exactly one known
+gives that one tradition's own full span (`views["interval_rule"] =
+"anchor"`); neither known leaves `interval=None`. A side whose own span
+came from `_EXTERNAL_TRADITION_ANCHORS` rather than a `timeline` event
+still reads as that side's own earliest attestation for this purpose;
+`views["anchor_used"]` flags when either side's own span did. Every
+non-`None` correlation interval carries `uncertainty: uniform` over its
+own `(start, end)`, per this module's own "no invented precision" rule: a
 single-year anchor still reads as a degenerate uniform interval
 (`Uncertainty.uniform(y, y)`, valid since `max_year >= min_year` allows
 equality) rather than a `POINT` reading that would imply more confidence
@@ -146,15 +156,25 @@ Slots, read from the entity model (`ENTITY-MODEL.md` §5-6):
   vocabulary already carried for exactly this case.
 - **interval**, from the correlation's own two tradition spans ("Sources
   and dating" above): the spans' overlap when both are known and
-  overlap, their union when both are known and do not, or the one known
-  span when only one side is dated; `interval=None` when neither side's
-  tradition is dated at all (not possible as of 2026-09-10, since every
-  one of this bundle's 13 traditions now carries a span, timeline-derived
-  or external-anchored). Every non-`None` interval carries `uncertainty:
-  uniform`; `views["interval_is_overlap"]` records which reading
-  produced it, `1.0` for the overlap case, `0.0` for the union case,
-  omitted when only one side was dated (there is no overlap-or-union
-  choice to record then).
+  overlap, the transmission window (earlier tradition's own earliest
+  attestation to later tradition's own earliest attestation) when both
+  are known and do not overlap, or the one known span when only one side
+  is dated; `interval=None` when neither side's tradition is dated at all
+  (not possible as of 2026-09-10, since every one of this bundle's 13
+  traditions now carries a span, timeline-derived or external-anchored).
+  Every non-`None` interval carries `uncertainty: uniform`.
+  `views["interval_rule"]` names which of the three reads produced it,
+  `"overlap"`, `"transmission_window"`, or `"anchor"`, a categorical
+  exception to this field's own documented `str -> float` shape
+  (`hte.evidence.EvidenceItem.views`): the rule name reads plainly on its
+  own, and nothing downstream treats `views` values as floats
+  unconditionally. `views["interval_is_overlap"]` still carries the
+  overlap/no-overlap half of that read as a float, `1.0` for the overlap
+  case, `0.0` for the transmission-window case, omitted when only one
+  side was dated (there is no overlap-or-no-overlap choice to record
+  then). `views["anchor_used"]` is present, `1.0`, when either side's own
+  span came from `_EXTERNAL_TRADITION_ANCHORS` rather than a `timeline`
+  event, omitted otherwise.
 
 Every correlation's own non-empty `counterConsiderations` (a caveat
 against the correlation, `ENTITY-MODEL.md`'s free-text field, distinct
@@ -330,14 +350,19 @@ def _locate(raw_text: str, needle: str) -> tuple[int, int]:
     return idx, idx + len(needle)
 
 
-def _tradition_spans(timeline: list[dict[str, Any]]) -> dict[str, tuple[int, int]]:
+def _tradition_spans(timeline: list[dict[str, Any]]) -> tuple[dict[str, tuple[int, int]], frozenset[str]]:
     """`(earliest, latest)` year across every `timeline` event naming a
     tradition (a timeline event can name more than one tradition,
     `judaism`/`christianity`/`islam` all sharing `anc-hijra`-adjacent
     entries where that happens), falling back to `_EXTERNAL_TRADITION_
     ANCHORS` (as a degenerate one-year span) for a tradition the
-    timeline names nothing for at all. See this module's own top
-    docstring, "Sources and dating"."""
+    timeline names nothing for at all. Returns that span map alongside
+    the `frozenset` of tradition ids the anchor fallback fired for
+    (`"mesopotamian"`/`"greek"` as of 2026-09-10, never a tradition
+    the `timeline` dates itself): `_correlation_items` reads it to flag
+    `views["anchor_used"]` on a correlation whose own interval rests on
+    an external anchor rather than a `timeline`-dated span. See this
+    module's own top docstring, "Sources and dating"."""
     spans: dict[str, tuple[int, int]] = {}
     for event in timeline:
         year = event.get("year")
@@ -346,37 +371,50 @@ def _tradition_spans(timeline: list[dict[str, Any]]) -> dict[str, tuple[int, int
         for tradition in event.get("traditions", []):
             lo, hi = spans.get(tradition, (year, year))
             spans[tradition] = (min(lo, year), max(hi, year))
+    anchored = frozenset(tradition for tradition in _EXTERNAL_TRADITION_ANCHORS if tradition not in spans)
     for tradition, anchor_year in _EXTERNAL_TRADITION_ANCHORS.items():
         spans.setdefault(tradition, (anchor_year, anchor_year))
-    return spans
+    return spans, anchored
 
 
 def _correlation_interval(
     a_span: tuple[int, int] | None, b_span: tuple[int, int] | None,
-) -> tuple[Interval | None, bool | None]:
+) -> tuple[Interval | None, bool | None, str | None]:
     """See this module's own top docstring, "Sources and dating": both
-    spans known gives their overlap when the spans overlap, their union
-    when they do not; one known span gives that span; neither known gives
-    `(None, None)`. Every non-`None` interval carries `uncertainty:
-    uniform`, never `POINT`, even when `start == end` (`Uncertainty.
-    uniform` allows equal bounds). The second return value is this
-    correlation's own `views["interval_is_overlap"]` reading: `True` for
-    the overlap case, `False` for the union case, `None` when only one
-    side was dated (no overlap-or-union choice was made)."""
+    spans known and overlapping in time gives their overlap
+    (`interval_rule` `"overlap"`); both known and NOT overlapping gives
+    the transmission window instead of their union, from the earlier
+    tradition's own earliest attestation (`min(a_lo, b_lo)`) to the later
+    tradition's own earliest attestation (`max(a_lo, b_lo)`, `interval_
+    rule` `"transmission_window"`): the span in which the parallel could
+    have formed, never stretched out to either side's own LATEST
+    recorded event the way a union of the two full spans would (the old
+    rule this replaces, PR #58's own High finding: 51 of 52 correlations
+    in this bundle landed on a near-uninformative interval because one
+    side's own tradition span ran to a late, motif-unrelated event); one
+    known span gives that span verbatim (`interval_rule` `"anchor"`);
+    neither known gives `(None, None, None)`. Every non-`None` interval
+    carries `uncertainty: uniform`, never `POINT`, even when `start ==
+    end` (`Uncertainty.uniform` allows equal bounds). The second return
+    value is this correlation's own `views["interval_is_overlap"]`
+    reading: `True` for the overlap case, `False` for the transmission-
+    window case, `None` when only one side was dated (no overlap-or-not
+    choice was made). The third return value is `views["interval_rule"]`
+    verbatim, `None` only when both spans are unknown."""
     if a_span is not None and b_span is not None:
         a_lo, a_hi = a_span
         b_lo, b_hi = b_span
         overlap_lo, overlap_hi = max(a_lo, b_lo), min(a_hi, b_hi)
         if overlap_lo <= overlap_hi:
-            lo, hi, is_overlap = overlap_lo, overlap_hi, True
+            lo, hi, is_overlap, rule = overlap_lo, overlap_hi, True, "overlap"
         else:
-            lo, hi, is_overlap = min(a_lo, b_lo), max(a_hi, b_hi), False
-        return Interval(start=lo, end=hi, uncertainty=Uncertainty.uniform(lo, hi)), is_overlap
+            lo, hi, is_overlap, rule = min(a_lo, b_lo), max(a_lo, b_lo), False, "transmission_window"
+        return Interval(start=lo, end=hi, uncertainty=Uncertainty.uniform(lo, hi)), is_overlap, rule
     span = a_span if a_span is not None else b_span
     if span is None:
-        return None, None
+        return None, None, None
     lo, hi = span
-    return Interval(start=lo, end=hi, uncertainty=Uncertainty.uniform(lo, hi)), None
+    return Interval(start=lo, end=hi, uncertainty=Uncertainty.uniform(lo, hi)), None, "anchor"
 
 
 def _resolved_or_other(vocab: Vocabulary, slot: Slot, value: str | None) -> str:
@@ -438,7 +476,8 @@ def _counter_consideration_items(
 
 
 def _correlation_items(
-    correlations: list[dict[str, Any]], raw: str, vocab: Vocabulary, spans: dict[str, tuple[int, int]],
+    correlations: list[dict[str, Any]], raw: str, vocab: Vocabulary,
+    spans: dict[str, tuple[int, int]], anchored_traditions: frozenset[str],
 ) -> tuple[list[EvidenceItem], list[GroundTruthEvent]]:
     evidence: list[EvidenceItem] = []
     ground_truth: list[GroundTruthEvent] = []
@@ -453,7 +492,7 @@ def _correlation_items(
         action = _resolved_or_other(vocab, Slot.ACTION, action_id)
         method = (corr.get("provenance") or {}).get("method")
         mechanism = _resolved_or_other(vocab, Slot.MECHANISM, method)
-        interval, interval_is_overlap = _correlation_interval(spans.get(a_trad), spans.get(b_trad))
+        interval, interval_is_overlap, interval_rule = _correlation_interval(spans.get(a_trad), spans.get(b_trad))
         tier = _TIER_BY_SOURCE.get(corr.get("source", ""), _DEFAULT_CORRELATION_TIER)
 
         statement = corr.get("statement", "")
@@ -463,6 +502,13 @@ def _correlation_items(
         views: dict[str, float] = {"blended_a": min(0.99, confidence)}
         if interval_is_overlap is not None:
             views["interval_is_overlap"] = 1.0 if interval_is_overlap else 0.0
+        if interval_rule is not None:
+            # A documented, deliberate exception to this field's own
+            # `str -> float` shape (`hte.evidence.EvidenceItem.views`):
+            # see this module's own top docstring, "Evidence items."
+            views["interval_rule"] = interval_rule  # type: ignore[assignment]
+        if a_trad in anchored_traditions or b_trad in anchored_traditions:
+            views["anchor_used"] = 1.0
 
         evidence.append(EvidenceItem(
             id=corr["id"], kind=EvidenceKind.TEXTUAL, tier=tier, source_id=place,
@@ -524,9 +570,9 @@ def ingest(corpus_path: str | Path | None = None, *, retrieval_run_id: str = "fi
     correlations: list[dict[str, Any]] = data.get("correlations", [])
     timeline: list[dict[str, Any]] = data.get("timeline", [])
 
-    spans = _tradition_spans(timeline)
+    spans, anchored_traditions = _tradition_spans(timeline)
     sources = _build_sources(traditions, spans, correlations)
-    correlation_evidence, correlation_ground_truth = _correlation_items(correlations, raw, vocab, spans)
+    correlation_evidence, correlation_ground_truth = _correlation_items(correlations, raw, vocab, spans, anchored_traditions)
     timeline_ground_truth = _timeline_ground_truth(timeline)
 
     fetched_at = datetime.now(timezone.utc).isoformat()
