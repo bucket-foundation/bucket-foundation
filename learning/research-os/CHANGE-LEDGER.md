@@ -2,6 +2,37 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #52 review pass
+
+Date 2026-09-10. Review of PR #52 (`feat/ros-roster-sync`) before merge, worktree
+`.ros-worktrees/r52`. Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, PR
+#52 review pass".
+
+### Edited
+
+- `scripts/test-research-os-roster.ts`: added `"adversarial: a birthdate column is dropped
+  at parse time and never reaches a write payload or warning"` (a `usersCsv` row carrying a
+  `birthdate` column, asserting the value never appears on a parsed `RosterUser` or in any
+  diff write payload or warning) and `"roster route: reviewer gate runs before the request
+  body is ever parsed, and rejects with 403"` (a static read of `route.ts`'s own source,
+  confirming the `verifyReviewer`/403 lines are present and precede `req.formData()`). 19
+  tests total, up from 17.
+
+### Verified
+
+Leak scan clean (no keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs). Birthdate never
+parsed, never persisted; only `birth_year_bucket` derived from a grade code. Dry run default;
+apply requires the literal `"true"` flag plus a server-verified reviewer token. Idempotent on
+`sourcedId`. `reviewer_candidates` never auto-promotes into the reviewer allowlist and its
+status is never reset by a re-sync. RLS enabled on `graph.reviewer_candidates`, no
+anon/authenticated policy. `CleverSource`/`ClassLinkSource` cannot be invoked under any
+config. `DATA-INVENTORY.md` already covered the new columns and table.
+
+Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (both new routes in the manifest),
+`npm run test:research-os` (0 failures), `next lint` on every touched file, `agf-lint-voice
+check` / `agf-lint-voice-src check` on every touched file: all clean.
+
 ## PR #45 finishing pass
 
 Same pass as `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10, PR #45
@@ -19,6 +50,50 @@ paid-cite envelope and the Research OS canon importer both read from.
 - `BEADS-PENDING.jsonl`: re-merged `origin/main` (three commits past the
   branch's last merge). One append-only collision with main's new ros-11
   entry, resolved by keeping both lines.
+
+## Roster sync skeleton, ros-06 follow-on
+
+Date 2026-09-10. Branch `feat/ros-roster-sync`, worktree `.ros-worktrees/roster`. Standard-first
+OneRoster 1.2 CSV roster sync, `PLAN-REVISION-2.md` section 3 item 4. Full account:
+`_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, roster sync skeleton (ros-06 follow-on)".
+
+### Added
+
+- `supabase/migrations/20260910050000_research_os_roster.sql`: `source_system`/`sourced_id`
+  columns on `graph.classes` and `graph.learner_profiles`, plain unique indexes on each, and
+  a new `graph.reviewer_candidates` table (RLS enabled, no anon/authenticated policy).
+- `src/lib/research-os/roster/csv.ts`: a dependency-free RFC 4180 CSV reader.
+- `src/lib/research-os/roster/grade.ts`: `gradeToBirthYearBucket`, mapping a OneRoster grade
+  code to `graph.learner_profiles.birth_year_bucket`.
+- `src/lib/research-os/roster/types.ts`: `RosterBundle`, `RosterSource`, and the row types
+  shared by every source.
+- `src/lib/research-os/roster/oneroster.ts`: parses `orgs.csv`/`users.csv`/`classes.csv`/
+  `enrollments.csv`, resolving a user's role from `enrollments.csv` (OneRoster 1.2 dropped
+  `role` from `users.csv`).
+- `src/lib/research-os/roster/diff.ts`: `computeRosterDiff` (pure) and
+  `applyRosterDiffToState` (an offline mirror of the live write path, the same pattern
+  `src/lib/research-os/privacy.ts`'s `simulateLearnerDelete` already uses).
+- `src/lib/research-os/roster/sources.ts`: `OneRosterCsvSource` implemented; `CleverSource`
+  and `ClassLinkSource` stubs that throw "not configured" with a documented env contract.
+- `src/lib/research-os/roster/apply.ts`: the live Supabase adapter (classes, class_members,
+  reviewer_candidates, learner_profiles, and a Supabase Auth email index).
+- `src/app/api/research-os/roster/route.ts`: `POST /api/research-os/roster`, multipart, four
+  required CSV fields, dry-run default, gated by `verifyReviewer`.
+- `src/app/research-os/roster/page.tsx`: the upload page, the same email-OTP flow as
+  `/research-os/class`.
+- `scripts/test-research-os-roster.ts`: 17 tests, wired into `npm run test:research-os`.
+- `learning/research-os/ROSTER.md`: the field-mapping table, what is discarded, the
+  idempotency keys, what Clever and ClassLink add, and the reviewer-candidate approval flow.
+
+### Edited
+
+- `package.json`: `test:research-os` gained the new test script at the end of its chain.
+- `learning/research-os/compliance/DATA-INVENTORY.md`: the new migration filename in the
+  source list; `graph.classes` and `graph.learner_profiles` rows note their new columns;
+  a new `graph.reviewer_candidates` row in "Not learner data"; a data-minimization note on
+  the roster sync's own grade-to-bucket path and the candidates table's minimal columns.
+- `learning/research-os/TEACHER-LAYER.md`: its own "TODO(Phase 1, roster sync)" note gained
+  a pointer to this work. No existing text changed or removed.
 
 ### Removed
 
@@ -88,6 +163,14 @@ build`, and `npm run test:research-os` all clean. Leak scan against the
 full diff found no keys, `.env` contents, IPs, non-public hostnames,
 personal emails other than `gianyrox@gmail.com`, PII, `/home/gian`
 paths, or Claude session URLs.
+
+`npm ci`, `npx tsc --noEmit`, `npm run build` (`/api/research-os/roster` and
+`/research-os/roster` both confirmed in the build manifest), `npm run test:research-os`
+(17 new tests, full chain green), `next lint` on every touched file: all clean.
+`agf-lint-voice-src check` and `agf-lint-voice check` clean on every touched file after
+fixing four antithesis constructions, one meta-commentary phrase, one AI-tell word
+(`bespoke`), and one appended-clause heading found on the first pass. Neither the review,
+class, workspace, nor consent route handlers were touched, per this bead's own instructions.
 
 ## PR #44 review pass
 
