@@ -2,6 +2,37 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #45 finishing pass
+
+Same pass as `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10, PR #45
+finishing pass" entry; logged here per the ros ledger convention.
+
+### Verified
+
+The pending-signoff filter from the review pass below was already on
+`intake/ros-canon-promotion-2`: `isPendingSignoff()` gates
+`loadPrimaryPapers()`, the one loader the `/api/research` feed402
+paid-cite envelope and the Research OS canon importer both read from.
+
+### Edited
+
+- `BEADS-PENDING.jsonl`: re-merged `origin/main` (three commits past the
+  branch's last merge). One append-only collision with main's new ros-11
+  entry, resolved by keeping both lines.
+
+### Removed
+
+None.
+
+### Verified
+
+No change needed. `tools/canon-pipeline/intake.py --min-score 70` run
+twice against the three foundation-tier dossiers in scope: `added=0
+changed=False` on every run. `sub-outcomes/education` left untouched,
+out of scope per the review pass below. `npm ci`, `npx tsc --noEmit`,
+`npm run build`, `npm run test:research-os` (18 files, 0 failures), and
+`agf-lint-voice check` on every touched file: all clean post-merge.
+
 ## PR #45 review pass
 
 Same review as `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10, PR #45

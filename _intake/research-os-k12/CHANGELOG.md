@@ -1397,3 +1397,39 @@ were needed.
 - `agf-lint-voice check` on every file this review touched: 0 violations.
 - Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
   `npm run test:research-os` (all files, 0 failures): all clean.
+
+## 2026-09-10, PR #45 finishing pass
+
+The prior review pass verified the pending-signoff filter, wrote the
+governance paragraph, pushed the fix commit, and stopped short of merging.
+This pass confirmed that work, brought the branch current, and merged.
+
+### Verified
+
+- `intake/ros-canon-promotion-2` already carried the reviewer's fix commit
+  (`fix(canon): gate pending-signoff records out of the paid-cite path`):
+  `isPendingSignoff()` filters inside `loadPrimaryPapers()`, the one loader
+  both `/api/research`'s feed402 paid-cite envelope and the Research OS
+  canon importer read from, so both consumers are gated at one call site.
+  No record renders without passing through this filter, so no separate
+  pending label is needed at either render surface.
+
+### Fixed
+
+- `origin/main` had moved three commits past the branch's last merge
+  (`e1efbda1b`, `5f26be63e`, `f7dd86a67`). Merged again; the only conflict
+  was an append-only collision in `BEADS-PENDING.jsonl` between this
+  branch's own ros-canon-promotion-2 entry and main's new ros-11 entry,
+  resolved by keeping both lines in sequence.
+
+### Verified, no change needed
+
+- `tools/canon-pipeline/intake.py --min-score 70`, run twice against the
+  three foundation-tier dossiers this pass's scope covers
+  (`curiosity-and-motivation`, `cognition-and-automation`,
+  `information-foraging`): `added=0 changed=False` on every run. Left
+  `sub-outcomes/education` alone per the prior pass's own note that it is
+  outcome-tier and out of scope.
+- Gates re-run post-merge: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (18 files, 0 failures), `agf-lint-voice check`
+  on every touched file: all clean.
