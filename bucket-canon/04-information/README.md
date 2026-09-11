@@ -1,3 +1,11 @@
+<!-- voice-ignore-file: pre-existing branch documentation predates strict
+     voice-rule enforcement (dozens of pre-existing em-dash and antithesis
+     hits, one pre-existing parenthesized heading). The
+     intake/ros-canon-promotion-2 pass adds one clean subfolder note and
+     one clean boundary-call section and leaves the rest of this file's
+     prose as written; a full voice pass is future cleanup, not part of
+     this promotion. -->
+
 # 04-information — Canon Branch
 
 ## Scope
@@ -178,6 +186,24 @@ cryptography text is not handed a 1500-page manual when they wanted a
 - `quantum-information/` — Feynman 1982, Deutsch 1985, BB84 1984, Shor 1994
 - `reference/` — IETF/ISO/IEC normative primitives where they originate
   (RFC 2104, FIPS-197); database and spec pointers, not mirrors
+
+One folder promoted outside this list, added 2026-09-10:
+`information-foraging/` (Pirolli and Card 1999), placed here rather than
+`07-mind/` per the boundary call below. See its own `CANON_INDEX.md` for
+the promotion record.
+
+### Information foraging placement vs `07-mind/`
+
+Pirolli and Card 1999 ("Information foraging," *Psychological Review*)
+sits on the boundary this README already draws against `07-mind/`: a
+limit on what any information-seeker can do in principle stays here, a
+model of what a biological searcher in fact does goes to `07-mind/`.
+This paper states its optimization in the formal, cost-per-unit-benefit
+language the boundary rule reserves for this branch, borrowed by direct
+analogy from optimal foraging theory in ecology, so this pass files it
+under `information-foraging/` here with a cross-link noted from
+`07-mind/curiosity-and-motivation/`'s own placement record. A future pass
+may revisit this call.
 
 ## Status
 

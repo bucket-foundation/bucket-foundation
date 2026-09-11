@@ -40,9 +40,28 @@ export type PrimaryPaper = {
  canonScore: number;
  canonScoreReasons: string[];
  concepts: string[];
+ // Raw `provenance_signoff` value, e.g. `pending: gianyrox`, or null when the
+ // record predates the ros-11 named-human-signoff rule. See isPendingSignoff.
+ provenanceSignoff: string | null;
  // "title + venue + concepts", the text tokens we rank queries against.
  text: string;
 };
+
+/**
+ * ros-11 governance gate: a record whose `provenance_signoff` starts with
+ * "pending" has not been approved by a named human yet. It must never be
+ * served as an approved, citeable-for-pay canon entry. A record with no
+ * `provenance_signoff` field at all predates the ros-11 rule and is treated
+ * as already-vetted (the rule is not retroactive); only an explicit
+ * "pending: ..." value gates a record out.
+ *
+ * Single source of truth: loadPrimaryPapers() below applies this before
+ * caching, so every consumer (the /api/research paid-cite envelope and the
+ * Research OS canon importer) is gated the same way with no extra call site.
+ */
+export function isPendingSignoff(signoff: string | null | undefined): boolean {
+ return typeof signoff === "string" && /^\s*pending\b/i.test(signoff);
+}
 
 const REPO_ROOT = path.resolve(process.cwd());
 const CANON_ROOT = path.join(REPO_ROOT, "bucket-canon");
@@ -107,6 +126,7 @@ function parseYamlRecords(
  let canonicalUrl = "";
  let citationCount = 0;
  let canonScore = 0;
+ let provenanceSignoff: string | null = null;
  const authors: { family: string; given: string }[] = [];
  const canonScoreReasons: string[] = [];
  const concepts: string[] = [];
@@ -153,6 +173,9 @@ function parseYamlRecords(
             canonScore = Number.isNaN(n) ? 0 : n;
             break;
           }
+          case "provenance_signoff":
+            provenanceSignoff = unquote(val) || null;
+            break;
           case "authors":
             section = "authors";
             break;
@@ -231,6 +254,7 @@ function parseYamlRecords(
       canonScore,
       canonScoreReasons,
       concepts,
+      provenanceSignoff,
       text,
     });
   }
@@ -249,7 +273,9 @@ export function loadPrimaryPapers(): PrimaryPaper[] {
     }
     out.push(...parseYamlRecords(raw, branch, concept));
   }
-  cache = out;
+  // ros-11 gate: never serve a record pending named-human signoff as an
+  // approved canon entry. See isPendingSignoff above.
+  cache = out.filter((p) => !isPendingSignoff(p.provenanceSignoff));
   return cache;
 }
 

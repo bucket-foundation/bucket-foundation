@@ -20,6 +20,22 @@ from hte.generate import combinatorial_sample
 _BATCH_SIZES = (1, 7, 8, 9, 64)
 
 
+@pytest.fixture(autouse=True)
+def _real_llm_mode(monkeypatch):
+    """`test_batch_critique_duplicated_id_falls_back_for_only_that_id`
+    and `test_batch_judge_duplicated_id_falls_back_for_only_that_id`
+    below exercise the real (non-fake) batch path through their own
+    `SimpleNamespace(run=...)` stand-in for `llm.subprocess`; `llm.
+    complete` checks `HTE_LLM_MODE` before ever consulting that stand-in,
+    so an ambient `HTE_LLM_MODE=fake` would silently reroute both to
+    `hte.fakellm` instead, ignoring their own queued responses. Pinning
+    it unset here (harmless for this file's other, explicitly fake-mode
+    tests, which each call their own `mp.setenv("HTE_LLM_MODE", "fake")`
+    on top of this) keeps this file correct under `env -u HTE_LLM_MODE
+    make test` and `HTE_LLM_MODE=fake make test` alike."""
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
+
+
 def _hypotheses(n: int, seed: int = 0):
     corpus = fixtures.build()
     hyps = combinatorial_sample(corpus.vocab, list(range(6)), max_items=max(n, 64), seed=seed)

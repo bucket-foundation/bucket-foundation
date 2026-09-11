@@ -54,6 +54,21 @@ def _refusal_envelope(*, session_id="ff3c243b-secret", cost=0.0145, stop_reason=
     return json.dumps(payload)
 
 
+@pytest.fixture(autouse=True)
+def _real_llm_mode(monkeypatch):
+    """Every test below exercises `llm.complete`'s real (non-fake)
+    dispatch machinery through its own `SimpleNamespace(run=...)` stand-
+    in for `llm.subprocess`; `complete()` checks `HTE_LLM_MODE` before it
+    ever looks at that stand-in (`resolved_mode = mode if mode is not
+    None else os.environ.get("HTE_LLM_MODE")`), so an `HTE_LLM_MODE=fake`
+    left set in the ambient shell would silently reroute every one of
+    them to `hte.fakellm` instead. Pinning it unset here, rather than
+    trusting the shell, is what keeps this file's own tests correct
+    under `env -u HTE_LLM_MODE make test` and `HTE_LLM_MODE=fake make
+    test` alike."""
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
+
+
 def test_resolve_model_reads_policy():
     assert llm.resolve_model("critic") == "sonnet"
     assert llm.resolve_model("extractor") == "haiku"

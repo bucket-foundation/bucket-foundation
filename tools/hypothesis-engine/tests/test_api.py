@@ -203,12 +203,17 @@ def test_bad_review_status_raises_request_validation_error(monkeypatch):
         hypothesize({"productions": record})
 
 
-def test_unknown_slot_id_raises_request_validation_error(monkeypatch):
-    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+def test_unknown_slot_id_is_induced_rather_than_rejected(monkeypatch):
+    # `hte.vocab_induce.induce` (wired into `hte.corpus.production._build_
+    # corpus` as a merge step over its own seed) resolves a slot value the
+    # fixed K-12 production vocabulary does not already name, instead of
+    # `hypothesize()` rejecting it before a campaign ever runs
+    # (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s "the null-slot gap on
+    # physics productions").
     record = copy.deepcopy(_fixture_records()[0])
-    record["claims"][0]["slots"]["actor"] = "not-a-real-concept-id"
-    with pytest.raises(RequestValidationError, match="not-a-real-concept-id"):
-        hypothesize({"productions": record})
+    record["claims"][0]["slots"]["actor"] = "a-brand-new-actor-concept"
+    response = _call({"productions": record}, monkeypatch)
+    assert response["ok"] is True
 
 
 def test_bad_stance_raises_request_validation_error(monkeypatch):
@@ -224,6 +229,18 @@ def test_bad_evidence_kind_raises_request_validation_error(monkeypatch):
     record = copy.deepcopy(_fixture_records()[0])
     record["claims"][0]["evidence"][0]["kind"] = "not-a-real-kind"
     with pytest.raises(RequestValidationError, match="not-a-real-kind"):
+        hypothesize({"productions": record})
+
+
+def test_bad_citation_type_raises_request_validation_error(monkeypatch):
+    # `FINDING-2026-09-10-401`: `mcp_tool.TOOL_DEFINITION`'s own schema fixes
+    # a citation's `type` to `doi`/`url`/`feed402_envelope`; this record
+    # names a fourth value no citation in this package's own shape ever
+    # produces.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    record = copy.deepcopy(_fixture_records()[0])
+    record["claims"][0]["evidence"][0]["citations"][0]["type"] = "not-a-real-citation-type"
+    with pytest.raises(RequestValidationError, match="not-a-real-citation-type"):
         hypothesize({"productions": record})
 
 

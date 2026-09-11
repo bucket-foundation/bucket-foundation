@@ -399,3 +399,33 @@ commit.
 **Original text, replaced in the "Iteration 6" heading:**
 
 > ## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
+
+## 2026-09-10, `src/app/research-os/workspace/page.tsx`, notes-field placeholder rewritten for voice review (PR #37 review pass)
+
+**Reason.** PR review for `ros-04` ran `agf-lint-voice check` on every changed file. The notes textarea placeholder used the banned antithesis construction (rule 4, "X, not Y"). Rewritten to state the fact once, positively.
+
+**Original text, replaced in the notes textarea placeholder:**
+
+> scratch space, not graded, saved on this device only…
+
+## 2026-09-10, `src/app/research-os/page.tsx`, status section rewritten for the consent gate wiring pass (ros-07 follow-up)
+
+**Reason.** Bead `ros-07`'s follow-up task item 3: "update the existing Phase 0 status section to list, truthfully, what is on main... and what is not." The paragraph below described only the Phase 0 seed path (grades 3 to 5, why the sky is blue) and the open grades-9-to-12 question; it named none of the routing, probe, workspace, teacher-layer, engine-bridge, privacy, or consent-gate work that landed on main since (`ros-03` through this pass). Replaced with a status paragraph that names what is on main and what is not, keeping the same heading, the same repository-path sentence, and the same "pilot classrooms" closing sentence in substance. Nothing else on the page changed.
+
+**Original text, replaced in the "§ status" paragraph** (everything after the lead sentence "Design, iteration 2, September 2026."):
+
+> The built Phase 0 prototype
+> covers one path in grades 3 to 5, why the sky is blue, walking from
+> light and air facts forward to Rayleigh scattering and the
+> lambda-to-the-minus-4 law, per the system review&apos;s Phase 0 slice
+> (<code className="text-[13px]">_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md</code>{" "}
+> section 8). A companion path over the history of quantum physics,
+> grades 9 to 12, was this plan&apos;s original iteration-1 slice and
+> stays an open choice for which subject demonstrates the product
+> next (section 11, question 1). The plan, the learner-state model,
+> the production schema, the vendor and data-source map, and the
+> funding and people map are public in the repository under{" "}
+> <code className="text-[13px]">learning/research-os/</code> and{" "}
+> <code className="text-[13px]">_intake/research-os-k12/</code>.
+> Pilot classrooms, a pre-registered study of the four-tool constraint,
+> and a state-validation paper come before any wider release.

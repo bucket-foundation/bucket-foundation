@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import json
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
@@ -41,6 +41,30 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "replay_only": False,
     "seeds": 3,
     "runner_overrides": {},    # additional hte.runner.DEFAULT_CONFIG overrides, applied only for a fresh run
+    # `hte.canon_writeback.write_back`'s own optional stage, after
+    # `referee` and before `publish` (`bkt-hte-build-history`):
+    # `writeback=False` (the default) skips it outright; `writeback=True`
+    # needs `writeback_branch` set. `dry_run` (the pipeline's own existing
+    # flag, above) doubles as this stage's own dry-run switch, the same
+    # "plan the write, touch nothing" contract `publish` already gives
+    # `dry_run`: `write_back(..., dry_run=cfg["dry_run"])` lists every
+    # card path it would write rather than writing any of them.
+    "writeback": False,
+    "writeback_branch": None,
+    # A named human approver, required whenever `writeback=True` (PLAN.md
+    # section 10, GOVERNANCE.md): `hte.canon_writeback.write_back` itself
+    # hard-refuses a missing signoff, and this stage checks it up front
+    # too so the failure reads as a labeled precondition failure.
+    "writeback_signoff": None,
+    "writeback_floor_P": 0.6,
+    "writeback_floor_u_max": 0.5,
+    "writeback_out_root": "bucket-canon",
+    # `skip_publish=True` renders the `publish` stage a `_skipped_stage`
+    # rather than running it: a caller doing a real (non-dry-run)
+    # write-back through a PR that already carries its own commit/gdrive
+    # step (`publish`'s own job) wants writeback's own file writes without
+    # `publish` committing or mirroring anything a second time.
+    "skip_publish": False,
 }
 
 
@@ -194,11 +218,13 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
         stages["emit_paper"] = _failed_stage("emit_paper", pipeline_dir / "emit_paper", from_run_error)
         reason = f"emit_paper failed: {from_run_error}"
         stages["referee"] = _skipped_stage("referee", pipeline_dir / "referee", reason)
+        stages["writeback"] = _skipped_stage("writeback", pipeline_dir / "writeback", reason)
         stages["publish"] = _skipped_stage("publish", pipeline_dir / "publish", reason)
     elif run_dir is None or not (Path(run_dir) / "MANIFEST.json").is_file():
         reason = "no usable run directory: from_run was not given and run_campaign did not produce one"
         stages["emit_paper"] = _skipped_stage("emit_paper", pipeline_dir / "emit_paper", reason)
         stages["referee"] = _skipped_stage("referee", pipeline_dir / "referee", reason)
+        stages["writeback"] = _skipped_stage("writeback", pipeline_dir / "writeback", reason)
         stages["publish"] = _skipped_stage("publish", pipeline_dir / "publish", reason)
     else:
         stages["emit_paper"] = _time_stage(
@@ -208,16 +234,54 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
         if not stages["emit_paper"].ok:
             reason = f"emit_paper failed: {stages['emit_paper'].error}"
             stages["referee"] = _skipped_stage("referee", pipeline_dir / "referee", reason)
+            stages["writeback"] = _skipped_stage("writeback", pipeline_dir / "writeback", reason)
             stages["publish"] = _skipped_stage("publish", pipeline_dir / "publish", reason)
         else:
             stages["referee"] = _time_stage(
                 "referee", pipeline_dir / "referee",
                 lambda: referee_mod.referee(paper_dir, replay_only=cfg["replay_only"]),
             )
-            stages["publish"] = _time_stage(
-                "publish", pipeline_dir / "publish",
-                lambda: publish_mod.publish(run_dir, paper_dir, dry_run=cfg["dry_run"]),
-            )
+
+            if cfg["writeback"]:
+                if not cfg["writeback_branch"]:
+                    stages["writeback"] = _failed_stage(
+                        "writeback", pipeline_dir / "writeback",
+                        "writeback=True but writeback_branch was not given",
+                    )
+                elif not cfg["writeback_signoff"]:
+                    stages["writeback"] = _failed_stage(
+                        "writeback", pipeline_dir / "writeback",
+                        "writeback=True but writeback_signoff was not given: a named human "
+                        "approver is required before any write into bucket-canon/ (PLAN.md "
+                        "section 10, GOVERNANCE.md)",
+                    )
+                else:
+                    def _writeback() -> list[str]:
+                        from . import canon_writeback
+                        paths = canon_writeback.write_back(
+                            run_dir, branch=cfg["writeback_branch"], signoff=cfg["writeback_signoff"],
+                            floor_P=cfg["writeback_floor_P"], floor_u_max=cfg["writeback_floor_u_max"],
+                            out_root=cfg["writeback_out_root"], dry_run=cfg["dry_run"],
+                        )
+                        return [str(p) for p in paths]
+
+                    stages["writeback"] = _time_stage("writeback", pipeline_dir / "writeback", _writeback)
+            else:
+                stages["writeback"] = _skipped_stage(
+                    "writeback", pipeline_dir / "writeback",
+                    "writeback not requested (pass writeback=True / hte-pipeline run --writeback)",
+                )
+
+            if cfg["skip_publish"]:
+                stages["publish"] = _skipped_stage(
+                    "publish", pipeline_dir / "publish",
+                    "skip_publish=True (--skip-publish); the caller's own PR carries commit/gdrive",
+                )
+            else:
+                stages["publish"] = _time_stage(
+                    "publish", pipeline_dir / "publish",
+                    lambda: publish_mod.publish(run_dir, paper_dir, dry_run=cfg["dry_run"]),
+                )
 
     if all(s.ok for s in stages.values()):
         outcome = "ok"

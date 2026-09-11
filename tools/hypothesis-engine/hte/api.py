@@ -80,6 +80,14 @@ _ALLOWED_AUTHOR_ROLES = frozenset({"student", "teacher", "researcher", "agent"})
 _ALLOWED_EVIDENCE_KINDS = frozenset(k.value for k in EvidenceKind)
 _ALLOWED_TIERS = frozenset(t.value for t in Tier)
 _ALLOWED_STATUSES = frozenset(production._ALL_STATUSES)
+# `mcp_tool.TOOL_DEFINITION`'s own `inputSchema` fixes this same three-value
+# enum for a claim evidence entry's citation `type` (`hte/mcp_tool.py`'s
+# `_PRODUCTION_RECORD_SCHEMA`); `production.Citation.from_dict` reads that
+# field straight off a caller's raw dict with no check of its own, so this
+# is the one enum-shaped field `_validate_production_record` used to accept
+# unchecked, found by `tests/swarm-20260910/test_mcp_tool_props.py`'s own
+# contract sweep over `TOOL_DEFINITION`'s enums (`FINDING-2026-09-10-401`).
+_ALLOWED_CITATION_TYPES = frozenset({"doi", "url", "feed402_envelope"})
 _SLOT_NAME_TO_ENUM: dict[str, Slot] = {slot.name: slot for slot in production._SLOT_KEYS}
 
 _GAP_NODE_LIMIT = 25
@@ -133,6 +141,17 @@ class CampaignError(HypothesizeError):
 
 
 def _validate_production_record(idx: int, raw: Any, vocab: Vocabulary, errors: list[str]) -> None:
+    """`vocab` (`production.load_vocab()`, the fixed K-12 production seed)
+    is used below for enum-shaped fields only (`author_role`, `review.
+    status`, evidence `kind`/`tier`, claim `stance`): every one of those
+    has a fixed, closed set of legal values no corpus content ever
+    extends. A claim's own `slots` values are NOT checked against `vocab`
+    here: `hte.corpus.production._build_corpus` resolves every slot value
+    for real, via `hte.vocab_induce.induce`, once the full corpus is
+    built, so a value this fixed seed does not yet name (a Research OS
+    graph-node id, `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own physics
+    case) is not a validation error, it is a concept this request's own
+    campaign is about to induce."""
     prefix = f"productions[{idx}]"
     if not isinstance(raw, dict):
         errors.append(f"{prefix}: expected an object, got {type(raw).__name__}")
@@ -179,11 +198,6 @@ def _validate_production_record(idx: int, raw: Any, vocab: Vocabulary, errors: l
         slots = claim.get("slots") or {}
         if not isinstance(slots, dict):
             errors.append(f"{cprefix}.slots: expected an object, got {type(slots).__name__}")
-        else:
-            for slot in production._SLOT_KEYS:
-                value = slots.get(slot.value)
-                if value is not None and vocab.get(slot, value) is None:
-                    errors.append(f"{cprefix}.slots.{slot.value}: unknown concept id {value!r}")
 
         interval = claim.get("interval")
         if interval is not None and (not isinstance(interval, dict) or "start" not in interval or "end" not in interval):
@@ -210,6 +224,13 @@ def _validate_production_record(idx: int, raw: Any, vocab: Vocabulary, errors: l
             for cti, cite in enumerate(ev.get("citations", []) or []):
                 if not isinstance(cite, dict) or "type" not in cite or "value" not in cite:
                     errors.append(f"{eprefix}.citations[{cti}]: must be an object with 'type' and 'value'")
+                    continue
+                cite_type = cite["type"]
+                if cite_type not in _ALLOWED_CITATION_TYPES:
+                    errors.append(
+                        f"{eprefix}.citations[{cti}].type: {cite_type!r} is not one of "
+                        f"{sorted(_ALLOWED_CITATION_TYPES)}"
+                    )
 
 
 def _normalize_productions_field(request: dict[str, Any], errors: list[str]) -> list[Any]:

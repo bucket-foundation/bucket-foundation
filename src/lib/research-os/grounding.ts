@@ -15,7 +15,7 @@
  * just the prompt" floor, matching /api/academy/tutor): gradeExplanation
  * only ever returns a verdict plus feedback, never a rewritten sentence.
  */
-import { callGroundedModel, parseModelJson, type Provider } from "./llm";
+import { callGroundedModelWithUsage, parseModelJson, type Provider, type LlmUsage } from "./llm";
 import type { Provenance } from "./types";
 
 export interface GradeResult {
@@ -24,6 +24,14 @@ export interface GradeResult {
   abstained: boolean;
   feedback: string;
   citations: string[];
+}
+
+/** gradeExplanation's return, plus the call's token usage (bkt-ros ros-04,
+ * "a cost estimate logged per call"): each caller (workspace/route.ts's
+ * check action, probe/route.ts) logs its own cost line with its own tool
+ * name, rather than this shared module guessing which surface called it. */
+export interface GradeResultWithUsage extends GradeResult {
+  usage: LlmUsage | null;
 }
 
 export interface GroundingNode {
@@ -65,6 +73,55 @@ HARD RULES:
 Respond with ONLY a JSON object, no markdown fences:
 {"result": "support"|"contradiction"|"unknown", "confidence": "high"|"medium"|"low", "abstained": boolean, "feedback": string, "citations": string[]}`;
 
+const VALID_RESULTS = new Set(["support", "contradiction", "unknown"]);
+const VALID_CONFIDENCE = new Set(["high", "medium", "low"]);
+
+const ABSTAIN_FALLBACK: GradeResult = {
+  result: "unknown",
+  confidence: "low",
+  abstained: true,
+  feedback: "I had trouble grounding a verdict. Try rephrasing your explanation.",
+  citations: [],
+};
+
+/**
+ * Contract enforcement for the Check tool's model output (bkt-ros ros-04,
+ * "tool contract enforcement server-side"), exported so
+ * scripts/test-research-os-workspace-contracts.ts can feed it adversarial
+ * model output directly (a jailbroken or malformed response) with no
+ * network call. Two invariants this function is the sole enforcer of,
+ * regardless of what the system prompt asked for:
+ *
+ *   1. `citations` never contains anything but the one exact ALLOWED
+ *      CITATION string the grounding block gave the model -- a model
+ *      that invents a source, or copies a snippet of the grounding text
+ *      as a fake citation, has it stripped here, every time.
+ *   2. `result`/`confidence` outside their closed enums, or a missing/
+ *      non-string `feedback`, is treated as a malformed response and
+ *      downgraded to the same abstain verdict an unparseable response
+ *      gets (parseModelJson returning null) -- a model cannot escape the
+ *      abstain path by returning a well-formed-JSON, wrong-shaped object.
+ *
+ * Neither this function nor its caller ever reads a "corrected
+ * explanation" or "answer" field from the model: GradeResult's type has no
+ * such field, so there is nothing for a prompt-injected model response to
+ * populate that this code would then surface as the learner's own text.
+ * The learner's own text is `explanation`, the caller's own input, never
+ * anything this function returns.
+ */
+export function sanitizeGradeResult(parsed: GradeResult | null, allowLabel: string): GradeResult {
+  if (!parsed || !VALID_RESULTS.has(parsed.result) || !VALID_CONFIDENCE.has(parsed.confidence) || typeof parsed.feedback !== "string") {
+    return { ...ABSTAIN_FALLBACK };
+  }
+  return {
+    result: parsed.result,
+    confidence: parsed.confidence,
+    abstained: Boolean(parsed.abstained),
+    feedback: parsed.feedback,
+    citations: (parsed.citations || []).filter((c) => typeof c === "string" && c.trim() === allowLabel),
+  };
+}
+
 /**
  * Grade `explanation` against `node`'s own grounding truth (plus its
  * prerequisites' summaries). This is the exact Check tool logic; callers
@@ -79,24 +136,17 @@ export async function gradeExplanation(
   node: GroundingNode,
   prereqSummaries: Array<{ title: string; summary: string | null }>,
   explanation: string,
-): Promise<GradeResult> {
+): Promise<GradeResultWithUsage> {
   const allowLabel = citationLabel(node);
   const grounding = buildGrounding(node, prereqSummaries, allowLabel);
 
-  const text = await callGroundedModel(
+  const { text, usage } = await callGroundedModelWithUsage(
     provider,
     CHECK_SYSTEM_PROMPT,
     [{ role: "user", content: `${grounding}\n\n---\nLEARNER'S EXPLANATION: ${explanation}` }],
     MAX_CHECK_TOKENS,
   );
 
-  const parsed = parseModelJson<GradeResult>(text);
-  const safe: GradeResult = parsed ?? {
-    result: "unknown",
-    confidence: "low",
-    abstained: true,
-    feedback: "I had trouble grounding a verdict. Try rephrasing your explanation.",
-    citations: [],
-  };
-  return { ...safe, citations: (safe.citations || []).filter((c) => c.trim() === allowLabel) };
+  const safe = sanitizeGradeResult(parseModelJson<GradeResult>(text), allowLabel);
+  return { ...safe, usage };
 }

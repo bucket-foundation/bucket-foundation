@@ -1,5 +1,463 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #52 review pass
+
+Privacy engineer review of PR #52 (`feat/ros-roster-sync`, "OneRoster CSV
+roster sync, reviewer candidates, vendor source interfaces") before merge,
+in worktree `.ros-worktrees/r52` per the review protocol. `git merge
+origin/main` first (clean, no conflicts to resolve; `origin/main` had
+advanced by one hypothesis-engine log commit since the branch's last
+merge).
+
+Leak scan on the full diff against `origin/main`: no API keys, `.env`
+contents, IPs, non-public hostnames, personal emails other than
+`gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in
+file content. Every fixture user in `scripts/test-research-os-roster.ts`
+uses a `.example` email and an invented name. No redactions needed.
+
+Correctness checks against the review's own checklist: `oneroster.ts`
+reads users.csv through an explicit field allowlist (`sourcedId`, `email`,
+`givenName`, `familyName`, `grades`), so a `birthdate` column never
+reaches a `RosterUser`; `grade.ts`'s `gradeToBirthYearBucket` is the only
+path that ever sets `learner_profiles.birth_year_bucket`, from a grade
+code, never a date. `POST /api/research-os/roster` defaults to a dry run;
+`apply` requires the literal string `"true"` and `verifyReviewer(req)`
+verifies a real Supabase access token server-side before either path
+runs. `apply.ts` never resets an existing `reviewer_candidates.status` on
+re-sync (insert-only sets `"pending"`; update touches only email/name).
+Idempotency confirmed by test: applying the same bundle's diff twice
+yields zero further creates or updates. Migration
+`20260910050000_research_os_roster.sql` enables RLS on
+`graph.reviewer_candidates` with no anon/authenticated policy. Both
+`CleverSource` and `ClassLinkSource` throw unconditionally; neither can
+be invoked regardless of env config. `DATA-INVENTORY.md` already listed
+the new columns and table.
+
+Two gaps found and fixed on the branch:
+
+- No adversarial fixture exercised a `birthdate` column specifically (only
+  `address`/`phone` were covered). Added
+  `"adversarial: a birthdate column is dropped at parse time and never
+  reaches a write payload or warning"` to
+  `scripts/test-research-os-roster.ts`: a `usersCsv` row carrying
+  `birthdate,2015-04-12` parses with no `birthdate` key on the resulting
+  `RosterUser`, and the literal value never appears in
+  `learnerProfiles.create`, `reviewerCandidates.create`,
+  `classMembers.create`, or `diff.warnings`.
+- The roster route's reviewer gate had no test of its own (the shared
+  `isReviewerEmail` allowlist logic is tested elsewhere, but nothing
+  confirmed the route checks it, or checks it before parsing the request
+  body). Importing `route.ts` directly under this repo's plain
+  `ts-node`/CommonJS test runner is not reachable, its `"@/lib/..."`
+  imports need a path-alias loader this suite does not wire in, so this
+  is a static read of the route's own source, the same technique the
+  migration checks already in this file use. New test: `"roster route:
+  reviewer gate runs before the request body is ever parsed, and rejects
+  with 403"`, asserting both the `verifyReviewer`/403 lines are present
+  and that the reviewer check's source position precedes
+  `req.formData()`'s.
+
+Gates: `npm ci`, `npx tsc --noEmit` (clean), `npm run build` (both
+`/api/research-os/roster` and `/research-os/roster` confirmed in the
+build manifest), `npm run test:research-os` (full chain, 0 failures),
+`next lint` on every touched file (clean), `agf-lint-voice check` /
+`agf-lint-voice-src check` on every touched file (0 violations). 19 tests
+in `scripts/test-research-os-roster.ts` (17 original, 2 added by this
+review), all passing.
+
+No PII beyond a teacher's own contact information (already documented as
+staff data, out of scope for a learner's export/delete rights) is stored
+anywhere this bead touches. Merged via `gh pr merge --squash`.
+
+## 2026-09-10: literature corpus promotion pass two
+
+Branch `intake/ros-canon-promotion-2`. Thirteen more records from
+`_intake/research-os-k12-literature/` promoted, screened against all 117
+cards excluding the six pass-one promotions (PR #9,
+`intake/ros-canon-promotion`).
+
+### Added
+
+- `bucket-canon/07-mind/curiosity-and-motivation/` (new dossier): four
+  canon-tier records (Loewenstein 1994; Gruber, Gelman, and Ranganath
+  2014; Deci and Ryan 2000; Gneezy and Rustichini 2000), each run through
+  `tools/canon-pipeline/intake.py --min-score 70` and re-verified
+  idempotent across two re-runs (`added=0 kept=4 changed=False` both
+  times).
+- `bucket-canon/07-mind/cognition-and-automation/` (new dossier): one
+  canon-tier record (Bainbridge 1983), same convergence check
+  (`added=0 kept=1 changed=False` both re-runs).
+- `bucket-canon/04-information/information-foraging/` (new dossier): one
+  canon-tier record (Pirolli and Card 1999), same convergence check
+  (`added=0 kept=1 changed=False` both re-runs), placed in
+  `04-information/` rather than `07-mind/` per the task brief and a
+  boundary-call note added to `04-information/README.md`.
+- `bucket-canon/07-mind/sub-outcomes/education/`: seven more outcome-tier
+  records added to the existing dossier, five AI-tutoring and
+  generative-AI-in-learning RCTs and field evaluations depending on the
+  Roediger and Karpicke 2006 foundation (Kestin et al. 2025; Bastani et
+  al. 2025; Wang et al. 2024, Tutor CoPilot; De Simone et al. 2025,
+  Nigeria) or the Sparrow, Liu, and Wegner 2011 foundation (Kosmyna et
+  al. 2025), and two human-AI complementarity meta-analyses depending on
+  the newly promoted Pirolli and Card 1999 information-foraging
+  foundation (Vaccaro, Almaatouq, and Malone 2024; Bansal et al. 2021).
+- `bucket-canon/TAXONOMY_NOTES.md`: one new open question, whether the two
+  human-AI complementarity meta-analyses need a dedicated
+  `sub-outcomes/human-ai-collaboration/` home instead of sharing
+  `sub-outcomes/education/`; not resolved, both records placed in the
+  existing folder with a pointer.
+- `provenance_signoff: "pending: gianyrox"` on every record this pass
+  promotes, and backfilled onto the ten records pass one promoted
+  (`07-mind/memory-systems/`'s three canon records, one of which,
+  Scoville and Milner 1957, predates PR #9 entirely, seeded 2026-05-19,
+  and `sub-outcomes/education/`'s four pass-one outcome records), per the
+  ros-11 governance rule: a named human founder is the
+  pending approver on every canon or outcome record, and no sign-off has
+  happened yet.
+- `CANON-INGESTION-INDEX.md`: a dated table of the thirteen promotions.
+
+### Edited
+
+- Thirteen intake cards marked `status: promoted` with a `promoted_to`
+  pointer (and, for the seven outcome-tier cards, a
+  `depends_on_foundation` pointer) and a canon-or-outcome-record callout
+  in the body; claim text unchanged in all thirteen.
+- `_intake/research-os-k12-literature/README.md`: index table status and
+  tier columns updated for the thirteen rows, plus a new section
+  recording the pass.
+- `bucket-canon/07-mind/README.md`, `bucket-canon/04-information/README.md`:
+  one short addition each, naming the new subfolders outside the
+  originally proposed list.
+- `bucket-canon/07-mind/sub-outcomes/education/README.md` and
+  `CANON_INDEX.md`: extended scope line, dependency convention, and
+  outcome-entries table for the seven new records.
+- `bucket-canon/07-mind/memory-systems/CANON_INDEX.md`: one line noting
+  the signoff backfill.
+
+### Removed
+
+None.
+
+### Verified
+
+- `tools/canon-pipeline/intake.py` run twice on each of the three new
+  canon dossiers: `curiosity-and-motivation` (`added=4` then `added=0
+  kept=4 changed=False` twice), `cognition-and-automation` and
+  `information-foraging` (`added=1` then `added=0 kept=1 changed=False`
+  twice each). `07-mind/memory-systems` re-run after the signoff backfill
+  also stayed `added=0 kept=3 changed=False`.
+- No file under `src/` or `public/` is touched by this pass, so no
+  `npm run build` gate applies to it. `canon-primary.ts` walks
+  `bucket-canon/<branch>/<concept>/primary-papers.yaml` one level deep;
+  the three new canon dossiers sit at that depth and are picked up
+  without code changes, `sub-outcomes/education/` sits two levels deep
+  and stays off the served canon surface, unchanged from the pass-one
+  convention.
+- `.github/workflows/feed.yml` (`canon-feed`) runs on push to `main` and
+  regenerates `feed.json`/`feed.xml` from the git diff via
+  `tools/feed/parse.py`; this pass does not hand-edit either file, the
+  bot commits its own events after merge.
+- `public/llms.txt` enumerates canon branches, not individual entries,
+  and routes agents to the live `/api/research` endpoint; no edit needed
+  for new DOI-backed records.
+
+## 2026-09-10, roster sync skeleton (ros-06 follow-on)
+
+Branch `feat/ros-roster-sync` in worktree `.ros-worktrees/roster`, standard-first per
+`PLAN-REVISION-2.md` section 3 item 4. `src/lib/research-os/roster/` ships a OneRoster 1.2
+CSV importer against the 1EdTech OneRoster 1.2 CSV Binding
+(`https://www.imsglobal.org/spec/oneroster/v1p2/bind/csv/`): `csv.ts` (a dependency-free
+RFC 4180 reader, no CSV library added to `package.json`), `grade.ts` (`gradeToBirthYearBucket`,
+mapping a OneRoster grade code to `graph.learner_profiles.birth_year_bucket`, never a birth
+date), `oneroster.ts` (parses `orgs.csv`/`users.csv`/`classes.csv`/`enrollments.csv`, ignores
+every other file a bundle may carry, resolves a user's student/teacher role from
+`enrollments.csv` since OneRoster 1.2 removed `role` from `users.csv`), `diff.ts`
+(`computeRosterDiff`, pure, plus `applyRosterDiffToState`, an offline mirror of the live
+write path for idempotency testing, the same pattern `src/lib/research-os/privacy.ts`'s
+`simulateLearnerDelete` already uses), `sources.ts` (`RosterSource` interface;
+`OneRosterCsvSource` implemented, `CleverSource`/`ClassLinkSource` stubs that throw "not
+configured" with a documented env contract, per `03-data-services.md` section E), and
+`apply.ts` (the live Supabase adapter, untested by unit test the same way every other
+DB-touching function in this repo is).
+
+Migration `supabase/migrations/20260910050000_research_os_roster.sql` adds
+`source_system`/`sourced_id` to `graph.classes` and `graph.learner_profiles` (plain unique
+indexes; standard SQL null semantics keep every manually created row collision-free) and a
+new `graph.reviewer_candidates` table (RLS enabled, no anon/authenticated policy, matching
+`graph.privacy_events`'s posture), staging teachers a sync has seen with `status = 'pending'`
+until a human adds their email to `RESEARCH_OS_REVIEWER_EMAILS`; syncing a roster never
+grants review access on its own.
+
+`POST /api/research-os/roster` (multipart, four required CSV fields, dry-run default, an
+`apply` flag) and `/research-os/roster` (upload page, the same email-OTP flow as
+`/research-os/class`) are gated by the same `verifyReviewer` check `/api/research-os/class`
+uses. Neither the review, class, workspace, nor consent route handlers were touched, per
+this bead's own instructions (two other PRs, canon filter and consent wiring, were merging
+into `main` concurrently).
+
+`scripts/test-research-os-roster.ts` (17 tests, wired into `npm run test:research-os`): the
+CSV parser, the grade-to-bucket boundary, a fixture bundle (2 classes, 1 teacher, 5
+students, 8 enrollments including one malformed row) dry-run diff counts, a class with no
+teacher enrollment left unresolved, idempotency (apply-twice yields zero creates/updates,
+an already-approved reviewer candidate's status survives a re-sync), extra PII columns
+(`address`, `phone`) dropped at parse time and absent from every write payload, the
+malformed enrollment reported and skipped rather than inserted, both vendor stubs' "not
+configured" behavior, a static read of the new migration's RLS and column text, and a
+privacy-delete regression confirming `graph.privacy_delete_learner`'s existing SQL still
+deletes `graph.learner_profiles` rows now that this bead has added columns to that table.
+`learning/research-os/compliance/DATA-INVENTORY.md` gained the new table and columns;
+`learning/research-os/ROSTER.md` (new) carries the full field-mapping table, what gets
+discarded, the idempotency keys, what Clever and ClassLink add, and the reviewer-candidate
+approval flow. `learning/research-os/TEACHER-LAYER.md`'s own "TODO(Phase 1, roster sync)"
+note now points at this work.
+
+Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (`/api/research-os/roster` and
+`/research-os/roster` both confirmed in the build manifest), `npm run test:research-os`,
+`next lint` on every touched file, `agf-lint-voice-src check` and `agf-lint-voice check`:
+all clean after fixing four antithesis constructions, one meta-commentary phrase, one
+AI-tell word (`bespoke`), and one appended-clause heading found on the first pass.
+
+## 2026-09-10, PR #44 review pass
+
+Review of `docs/ros-plan-revision-2` (PR #44) in worktree `.ros-worktrees/r44`, docs-only.
+Leak scan against the full diff found no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or
+Claude session URLs. `gh pr list --state merged --limit 50` against the twenty PRs merged
+in the #20-#40 range found one miscount: `PLAN-REVISION-2.md` and its four pointer/ledger
+mentions said "nineteen PRs merged since" revision 1; twenty merged in that range, PR #36
+(engine-only, no Research OS file touched) omitted from the table without being named as
+out of scope. Fixed in all five places (`PLAN-REVISION-2.md`, `PLAN.md`'s and
+`PLAN-REVISION-1.md`'s Revision 2 pointers, this file, `CHANGE-LEDGER.md`) to name PR #36's
+exclusion explicitly. Three of the five founder decisions' "Exact question, unchanged"
+quotes were not in fact verbatim against `PLAN-REVISION-1.md`: decision 2 dropped the
+parenthetical "(its own audience, its own funding path, cross-linked but not subordinate)",
+decision 3 dropped the clause "a 'what the engine is ranking now' view for researchers and
+funders", and decision 5 dropped the parenthetical PR #11 branch title
+`` `feat/site: reposition around reform education, Research OS as its own tab` ``; all three
+restored to match `PLAN-REVISION-1.md` exactly. `npm ci && npm run test:research-os`: 213
+passed, 0 failed across 17 files, matching the draft's own claim exactly. Engine `make test`
+run fresh under both `HTE_LLM_MODE` states (`fake` and unset) after merging `origin/main`
+(the branch was behind, gate 4): 1046 passed, 18 deselected, 0 failed both times, no hang.
+This is higher than the draft's cited 1018, because merging `origin/main` pulled in PR #43
+(merged after this pass's own cited `main` commit `af5b7c9ea`), which added tests to
+`test_canon_writeback.py`; the draft's 1018 figure stays accurate as a claim about that
+specific commit, so the text was not changed. All five cited literature card paths under
+`_intake/research-os-k12-literature/` confirmed to exist on disk. The power-analysis figures
+in section 2d (119, 405, 691 learners per arm; 17 classes per arm at ICC 0.10; d approx 1.0
+minimum detectable effect at Phase 1's feasible enrollment) checked exact against
+`study/PREREGISTRATION-DRAFT.md`'s own tables. `PLAN.md` and `PLAN-REVISION-1.md`'s own
+diffs are pure appends, a "Revision 2" pointer paragraph each, no prior line touched.
+Nothing under `src/` or `public/` changed. `agf-lint-voice check` clean on the four files it
+scans (`PLAN.md`, `PLAN-REVISION-1.md`, `PLAN-REVISION-2.md`, `CHANGE-LEDGER.md`); this file
+sits under the corpus's own known `_intake` ignore-list gap, so a manual grep pass for
+em/en dashes, the banned-word list, and "not X but Y" antithesis across every added line in
+all five files found no hit beyond two banned-word instances, both quoted examples inside a change-ledger entry
+describing a prior fix. Merged.
+
+## 2026-09-10, plan revision 2
+
+Branch `docs/ros-plan-revision-2`, worktree `.ros-worktrees/plan2`. Read
+`PLAN-REVISION-1.md`, `LEARNER-STATE-MODEL.md` (section 5's batch-three
+evidence lines), `ROUTING.md`, `TEACHER-LAYER.md`, `WORKSPACE.md`,
+`ENGINE-BRIDGE.md`, `INGESTION.md`, `compliance/README.md`,
+`study/PREREGISTRATION-DRAFT.md`'s feasibility-pilot finding,
+`funding/WAVE-1-TARGETS.md`, `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s
+twelve questions with batch-two and batch-three evidence, the four
+batch-three cards named in the founder's own brief (Vaccaro, Almaatouq, and
+Malone 2024; Bansal and colleagues 2021; Buçinca, Malaya, and Gajos 2021;
+Alzetta and colleagues 2018), `BEADS-PENDING.jsonl`'s status lines for
+`ros-02` through `ros-13` plus the batch-three bead, and `gh pr list
+--state merged --limit 40` against `main` at `af5b7c9ea`. Wrote
+`learning/research-os/PLAN-REVISION-2.md`: a PR-by-PR account of nineteen
+of the twenty PRs shipped since revision 1 (#20 through #40, PR #36
+excluded as engine-only), with app and
+engine test counts run live in this pass (`npm run test:research-os`, 213
+passed, 0 failed; `make test` in `tools/hypothesis-engine`, 1018 passed, 18
+deselected, 0 failed under both `HTE_LLM_MODE` states); four evidence-driven
+revisions from batch three, each labeled STABLE or STRONG LEAN; a seven-item
+Phase 1 scope, ordered by dependency, with a bead id on each remaining item;
+the five founder decisions restated verbatim from revision 1 with new
+information and a recommended default on each; six operational blockers
+with an action and an owner each, including a search for an "OpenAI key
+rotation note" that turned up no such artifact anywhere in this repository,
+recorded as a confirmed gap rather than assumed; and an updated
+Phase-1-versus-district table, correcting question 7's own blocker:
+`ros-12`'s engine wiring already shipped, so the live-Supabase-apply gap is
+what remains. Appended a pointer paragraph to `PLAN.md` under a new
+"Revision 2" heading and to `PLAN-REVISION-1.md`; no existing text in either
+file was changed or removed.
+
+## 2026-09-10, ros-04 workspace hardening (PR TBD)
+
+`feat/ros-04-workspace-hardening`, worktree `.ros-worktrees/ros04`, branched from
+`origin/main` at `b6532313c` (PR #27 merged). Scope: `PLAN-REVISION-1.md` section 3
+item 4, evidence emission closing `src/lib/research-os/EVIDENCE-SCHEMA.md`'s named
+gaps, server-side tool contract enforcement for the four workspace tools, a minimal
+two-column canvas layout, and a per-learner daily tool-call cap.
+
+**Evidence emission.** `stages.ts`'s `EvidenceEvent` gained `fromStage`, `toStage`,
+`learnerText`, `itemId`, `abstained`, `modelFeedback`, `citations`, and `sessionId`
+(plus unwritten-for-now `sampledForSecondRating`/`secondRaterId`/`secondDecision`/
+`agrees`, typed per the schema's own contract, ros-06's migration to populate). Every
+transition function now sets `fromStage`/`toStage`; `onCheckResult` and
+`onProbeCheckResult` persist `abstained`/`modelFeedback`/`citations`;
+`onTransferItemAnswered` persists the learner's own answer text and a fixed per-target
+item id. The "no corrective event on a returned production" gap was closed
+independently by PR #28 (`ros-06`, `onProductionReview`/`onProductionReturned`) while
+this branch was in flight; merging `origin/main` after PR #28 landed found and resolved
+the resulting duplicate, keeping `ros-06`'s version (see `learning/research-os/
+CHANGE-LEDGER.md`'s "Merge reconciliation" for the full account). A real client bug
+found in the process: the workspace page's transfer-item submit sent `{nodeId,
+action}` only, never the answer text, so the gap could not have closed from the server
+side alone regardless of what the route accepted; fixed on both sides, and the server
+now requires a non-empty `answer` for that action.
+
+**Tool contract enforcement.** Three new pure modules, each with adversarial contract
+tests in `scripts/test-research-os-workspace-contracts.ts` (19 tests): `locate.ts`
+(`locateHits`, extracted from the route's inline filter), `organize.ts`
+(`groundOrganizeResult`/`isGroundedInNotes`, a code-level "is this grounded in the
+learner's own matching input field" check the system prompt alone never enforced
+before), and `grounding.ts`'s new `sanitizeGradeResult` (strips a citation that is not
+the one exact allowed label, downgrades a malformed enum or missing-feedback response
+to the same abstain fallback an unparseable one gets). `scripts/test-research-os-
+evidence.ts` (21 tests) covers the evidence-emission contract and the daily cap.
+
+**Daily cap and cost log.** `rate-limit.ts` adds `RESEARCH_OS_DAILY_TOOL_CAP`
+(default 200, resets UTC midnight) enforced in the workspace route ahead of the
+existing per-minute burst limiter. `llm.ts` gained `callGroundedModelWithUsage` and
+`logToolCost`, a best-effort per-call USD estimate logged for Check, Organize, and the
+diagnostic probe from the provider's own reported token usage (Anthropic pricing per
+the system review's own cost model), `null` when the provider reports none.
+
+**Canvas.** `src/app/research-os/workspace/page.tsx`: the vertical chain list becomes
+a two-column layout (chain left, with a `needs review` badge on any step whose own
+edge carries a `ros-03` low-confidence flag; the learner's own tools/notes/quoted-
+sources/Production form right), stacking to one column under `lg`, verified against a
+400px viewport. A client-generated `sessionId` (one per tab, `sessionStorage`) now
+rides on every workspace/state/probe/production request.
+
+**Full doc:** `learning/research-os/WORKSPACE.md` (new). See also `learning/
+research-os/CHANGE-LEDGER.md`'s matching entry for the file-by-file diff and gate
+results.
+
+## 2026-09-10, PR #35 review pass
+
+Review of `feat/ros-07-compliance-part-a` (PR #35) in worktree `review/pr35`. Full account:
+`learning/research-os/CHANGE-LEDGER.md`, "PR #35 review pass." Leak scan against the full
+diff found no API keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Delete-table
+cross-check: `graph.privacy_delete_learner`'s nine `delete from` statements match
+`DATA-INVENTORY.md`'s nine learner-keyed tables one for one, no gap. One defect found and
+fixed: `resolvePrivacyActor` resolved `actingAsReviewer` but the route discarded it, so a
+reviewer-invoked export or delete wrote the same `graph.privacy_events` audit row as a
+learner's own self-request, no record of who acted. Fixed by adding `actor_id_hash` and
+`acting_as_reviewer` columns to `privacy_events`, threading the resolved actor through
+`privacy_delete_learner`'s two new RPC params and through `exportLearnerData`/
+`deleteLearnerData`, and two new tests in `scripts/test-research-os-privacy.ts` asserting a
+reviewer-invoked delete's audit row is distinguishable from a self-request's (173 tests
+total, up from 171, 0 failures). Every other correctness item held on first read: export
+returns only the caller's rows (test passes), delete is one transaction with one audit row
+holding a hash only, `learner_profiles` RLS scopes to `auth.uid()`, `requireConsent` blocks
+under13/13to17 with `consent_status: none` and allows 18plus, the consent gate is exported
+with a TODO, and `workspace/route.ts`/`production/route.ts` are untouched by this PR's own
+diff against `origin/main` (verified). `agf-lint-voice check` on the five compliance docs
+and `agf-lint-voice-src check` on all touched source files and the migration: 0 violations.
+Gates rerun clean post-fix: `npm ci`, `npx tsc --noEmit`, `npm run build` (route present in
+the manifest), `npm run test:research-os` (173/173), `next lint` on every touched file.
+Branch was already even with `origin/main`, no merge needed. Merged via `gh pr merge --squash`.
+
+## 2026-09-10, ros-07 minors compliance pack part A
+
+Bead `ros-07`, branch `feat/ros-07-compliance-part-a`. Built the decision-independent slice
+of the minors compliance pack named in `learning/research-os/PLAN-REVISION-1.md` section 3
+item 8: a full data inventory, a self- or reviewer-gated export/delete API route backed by
+a one-transaction Postgres function, the age-and-consent gate's decision rule, and three
+policy drafts (privacy policy, student data privacy addendum, AI disclosure), all under
+`learning/research-os/compliance/`. Full entry in `learning/research-os/CHANGE-LEDGER.md`,
+"Iteration 15: ros-07 minors compliance pack part A." This document
+(`04-compliance-distribution.md`) was read in full as the source of every legal-basis claim
+in the new data inventory and policy drafts; no line of it was edited by this pass. One
+fact checked beyond what this document already states: the SDPC NDPA's current version,
+verified live by `WebFetch` against `privacy.a4l.org/national-dpa/` on 2026-09-10 at
+version 2.2 (published November 19, 2025), recorded in the new addendum draft. Merged
+`origin/main` after PR #28 (`ros-06`) and PR #30 (`ros-12`/`ros-13`) both landed; `ros-06`'s
+new `graph.classes`/`graph.class_members` roster tables and `graph.productions.notes`
+column folded into the data inventory and the privacy delete function, see the change
+ledger's own "Iteration 15 addendum" for the full account.
+
+## 2026-09-10, PR #38 review pass
+
+Review of `intake(research-os): literature batch three` (PR #38) in worktree
+`.ros-worktrees/r38`, content-only. Leak scan against the full diff's added lines
+found no API keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Eight of
+the 35 new cards picked at random (Novak 1990, Hestenes/Wells/Swackhamer 1992,
+Shneiderman 2020, Bucinca/Malaya/Gajos 2021, Chi and colleagues 1989, Molenaar 2022,
+Bansal and colleagues 2021, Schwartz/Chase/Bransford 2012) and their DOI checked live
+against Crossref: title, authors, and year matched frontmatter exactly on all eight,
+no mismatch found. The two "closest verified match" replacement cards (Alzetta and
+colleagues 2018, Valdez, Roldan, and Masuli 2025) did not label themselves as
+replacements in their own `why_it_matters` field, unlike the precedent this corpus
+already set on `unesco-2025-generative-ai-foundational-learning-sub-saharan-africa.md`;
+fixed by appending a sentence to each naming the unresolved task-brief paper it
+stands in for. README index row count (117) confirmed exact against the corpus file
+count; both docs' "Evidence added in batch three" paragraphs confirmed present under
+the claimed open questions, and every card path either doc names confirmed to exist
+on disk. No blockquote or long verbatim excerpt found in any new card; `key_claims`
+entries are quoted YAML strings holding the card author's own paraphrase, not source
+text. `agf-lint-voice check` scanned zero of the 40 changed files (the pass's own
+`_intake` ignore-list gap, already logged in Iteration 17); a grep-based self-audit
+for banned words, filler adverbs, AI-tell vocabulary, antithesis, and em/en dashes
+against every added line found no hit, including on the two fixed cards. Confirmed
+`origin/main` already merged into the branch (no further merge needed) and no file
+under `src/` or `public/` touched; `npm ci` and `npm run build` both clean. Merged.
+
+## 2026-09-10: literature batch three
+
+Branch `intake/ros-literature-3`. Task: 25 to 35 new DOI- or ISBN-verified papers
+targeted at the gaps `LEARNER-STATE-MODEL.md` section 5 and the overlap map's twelve
+questions leave open: understanding and internalization measurement, curiosity and
+interest as routing signals, teacher workload and adoption of edtech, division of
+cognitive labor and mixed-initiative research tools, and prerequisite-graph and
+concept-map validity. Full per-area breakdown and per-question evidence mapping
+recorded in `learning/research-os/CHANGE-LEDGER.md` Iteration 17.
+
+### Added
+
+- 35 files under `_intake/research-os-k12-literature/`, listed in
+  `learning/research-os/CHANGE-LEDGER.md` Iteration 17; corpus total rises from 82 to
+  117 papers.
+- `_intake/research-os-k12-literature/teacher-workload-adoption/`: new sixth branch,
+  seven files on adoption barriers, coaching, dashboards, and teacher trust.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 117 rows, six
+  areas.
+- `learning/research-os/LEARNER-STATE-MODEL.md`: six of the seven OPEN questions in
+  section 5 gained an "Evidence added in batch three" paragraph.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: eight of the
+  twelve open questions gained an "Evidence added in batch three" paragraph.
+
+### Verified Clean
+
+- Every DOI or ISBN and OpenAlex work id checked live via WebFetch at intake time.
+- Two candidate papers named in the task brief were searched for and omitted for lack
+  of a resolvable DOI matching the brief exactly: a 2019 Adorni-authored
+  prerequisite-graph paper (a verified 2018 Adorni paper, Alzetta and colleagues, was
+  used in its place) and an Open Syllabus Project curriculum-mining paper (Valdez,
+  Roldan, and Masuli 2025 was used as the closest verified match).
+- No blockquote or extended verbatim passage from any source paper; all `key_claims`
+  and body text are paraphrase.
+- A grep-based self-audit for the voice rules ran against every file this pass
+  authored or edited, since `agf-lint-voice check` scans zero files under any path
+  containing an `_intake` segment (an org-level ignore-list gap affecting the whole
+  corpus, predating this pass); every flagged instance was rewritten before commit.
+
+### Removed
+
+None.
+
 ## 2026-09-10, PR #34 review pass
 
 Review of `docs/ros-08-preregistration` (PR #34) in worktree `.ros-worktrees/r34`, docs-only,
@@ -234,6 +692,7 @@ all clean. No other defect found; approve sets `accepted` and advances the evide
 exactly once per call (the route's own 409-on-non-`submitted` guard makes a double approve
 a no-op past the first, and `writeProductionOutbox` upserts on `id`), return sets `draft`
 without regressing `stage`, and non-reviewers get 403 on both the class and review routes.
+
 ## 2026-09-10, PR #27 review pass
 
 Review of `feat/ros-03-confidence-routing` (PR #27) in worktree `.ros-worktrees/r27`. Leak
@@ -915,3 +1374,276 @@ None.
   `intake/ros-literature-2`'s concurrent 45-to-77-row expansion: this
   pass's tier/status changes carried onto the six affected rows, area
   counts re-verified at 77 rows total (17/25/18/12/5).
+
+## 2026-09-10, PR #37 review pass
+
+Strict review of PR #37 (`feat/ros-04-workspace-hardening`) before merge, in
+an isolated worktree per the review protocol. PR #35 (compliance) had not
+merged at review time, so no merge-and-reconcile step against it applied.
+
+Leak scan on the full diff against `origin/main`: no API keys, `.env`
+contents, IPs, non-public hostnames, personal emails other than
+`gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in
+file content. No redactions were needed.
+
+### Fixed
+
+- `src/app/research-os/workspace/page.tsx`: the notes textarea placeholder
+  used an antithesis construction ("scratch space, not graded, saved on
+  this device only…"). Rewritten to "ungraded scratch space, saved on this
+  device only…", stating the fact once, positively.
+
+### Verified, no change needed
+
+- Evidence emission: every stage-transition function in `stages.ts` writes
+  `fromStage`/`toStage`; `sessionId` round-trips on every learner-authored
+  transition; `abstained` is persisted on `onCheckResult` and
+  `onProbeCheckResult`, not just used to decide the transition. Confirmed
+  against both the functions and `scripts/test-research-os-evidence.ts`'s
+  40 tests.
+- Transfer-item submit: the client now sends `answer: transferAnswer` in
+  the `POST /api/research-os/state` body; the server
+  (`src/app/api/research-os/state/route.ts`) requires a non-empty `answer`
+  for `action: "transfer_item"` and forwards it onto the evidence event as
+  `learnerText`.
+- Organize cannot add prose: `organize.ts`'s `groundOrganizeResult` drops
+  any claim/evidence/source item not grounded in the learner's own matching
+  input field; the adversarial tests in
+  `scripts/test-research-os-workspace-contracts.ts` ("write my claim for
+  me", "finish this sentence") pass.
+- Check: `grounding.ts`'s `sanitizeGradeResult` strips any citation but the
+  one allowed source label and never returns a rewritten explanation
+  (`GradeResult` has no field for one).
+- Locate: `locate.ts`'s `locateHits` returns only fields copied verbatim
+  from matched node rows, no model call, capped at 10 results.
+- Daily cap: `rate-limit.ts`'s `recordAndCheck` is enforced server-side per
+  learner, keyed by UTC calendar day (`dailyKeyFor`), independent of the
+  existing per-minute burst limiter; covered by
+  `scripts/test-research-os-evidence.ts`'s cap tests including the
+  UTC-midnight reset.
+- Cost logging never blocks the response: `llm.ts`'s `logToolCost` is a
+  synchronous, unawaited `console.log` call after the response data is
+  already computed; it does not gate or delay `NextResponse.json`.
+- Low-confidence badge: `page.tsx` reads `route.lowConfidenceFlags`
+  directly off the `/api/research-os/route` response state, not a
+  client-recomputed value.
+- Merge reconciliation: `onProductionReturned` has a single definition in
+  `stages.ts` (grep confirmed); no duplicate `EvidenceContext`-shaped
+  version survives from this branch's pre-merge history.
+- Layout at 400px: the workspace grid is `grid-cols-1 lg:grid-cols-[320px_1fr]`
+  (stacks below the 1024px `lg` breakpoint); the auth-panel inputs sit in
+  `flex flex-wrap` rows with a 200px/160px min/fixed width well under a
+  368px content width at a 400px viewport (`px-4` gutters), so no row forces
+  horizontal scroll.
+- Voice lint: `agf-lint-voice-src check` (the source-file-scoped checker)
+  clean on all 14 changed TS/TSX files. `agf-lint-voice check` (the
+  general prose checker) additionally flagged antithesis phrasing and a
+  few banned words inside test-description string literals and a local
+  variable name (`honest`) in `scripts/test-research-os-evidence.ts` and
+  `scripts/test-research-os-workspace-contracts.ts`; left as-is since these
+  are internal test labels, not UI strings or comments, and `-src`'s own
+  AST-scoped rule set treats them the same way. The one genuine UI-text hit
+  (the notes placeholder above) was fixed. `BEADS-PENDING.jsonl`'s
+  pre-existing violations (lines 1-80) predate this PR; the one new line
+  this PR adds (the `ros-04` bead entry) is clean.
+- Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (191/191 pass), `next lint` on every touched
+  file: all clean.
+
+## 2026-09-10, PR #45 review pass
+
+Strict review of PR #45 (`intake/ros-canon-promotion-2`, canon intake pass
+two) before merge, in an isolated worktree per the review protocol.
+
+Leak scan on the full diff against `origin/main`: no API keys, `.env`
+contents, IPs, non-public hostnames, personal emails other than
+`gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in
+file content. Grep hits on DOI substrings (`10.1037/0033-2909.116.1.75`
+read as an IP-shaped or phone-shaped string by a naive regex) were
+confirmed false positives against the surrounding context. No redactions
+were needed.
+
+### Fixed
+
+- `src/lib/canon-primary.ts`: `loadPrimaryPapers()` served every record
+  under `bucket-canon/<branch>/<concept>/primary-papers.yaml`, including
+  the 23 records this PR marks `provenance_signoff: "pending: gianyrox"`,
+  with no check of that field. The `/api/research` route builds its
+  paid-cite envelope (`citation`, `cite.price_usd`, `canon_tier: "canon"`,
+  a real DOI and CC-BY-4.0 license) straight from `rankPrimary()`'s output,
+  so a pending record was one matching query away from being served as
+  approved, citeable-for-pay canon before a human ever signed off on it.
+  Added `isPendingSignoff()` (true when `provenance_signoff` starts with
+  `pending`, false for a record with no such field, since the rule does
+  not reach backward past pre-ros-11 canon) and filtered on it inside
+  `loadPrimaryPapers()`, the one loader both the envelope builder
+  (`api/research/route.ts`) and the Research OS canon importer
+  (`research-os/ingest/canon.ts`) read from. A pending record now falls
+  out of ranking entirely; a matching query falls through to transcript
+  candidates or the "no canon match" path instead. New test:
+  `scripts/test-canon-primary-signoff.ts` (6 assertions: the predicate on
+  pending/approved/absent values, that `loadPrimaryPapers()` never leaks a
+  pending record from the real dossiers, and that a pre-ros-11 record with
+  no `provenance_signoff` field, `05-biophysics/mitochondria`, still
+  serves). Wired into `npm run test:research-os`.
+- `GOVERNANCE.md`: added a "Canon sign-off" subsection under Mission
+  documenting both write paths as one policy: `hte.canon_writeback`'s
+  fail-closed hard refusal on a missing or blank `signoff`, and
+  `tools/canon-pipeline/intake.py`'s pending-placeholder path, now backed
+  by the `isPendingSignoff` gate above so a pending record is excluded
+  from anywhere the site or Research OS reads approved canon from.
+
+### Verified, no change needed
+
+- The `/canon/[slug]` page's `BranchEntriesTable` reads only title, year,
+  and sub-folder from `CANON_INDEX.md` markdown tables via
+  `src/lib/canon-fs.ts`; it never reads `primary-papers.yaml` or
+  `provenance_signoff`, and its "mint as IP NFT" action is already
+  disabled. `/llms.txt` documents the protocol and the `/api/research`
+  endpoint, not individual DOI-backed entries, so it names no pending
+  record. Neither needed a code change.
+- Six foundation-tier records
+  (`07-mind/curiosity-and-motivation`,
+  `07-mind/cognition-and-automation`, `04-information/information-foraging`)
+  each state a principle with primary evidence and a DOI; all six DOIs
+  verified live against Crossref/OpenAlex, resolving to the intended
+  work. Seven outcome-tier records added to
+  `07-mind/sub-outcomes/education/` all carry `tier: OUTCOME` and name
+  their depended-on foundation. The two new dossier folders
+  (`CANON_INDEX.md`, `queries.txt`, `primary-papers.yaml`,
+  `primary-papers.bib`) follow the existing four-file convention.
+- `tools/canon-pipeline/intake.py --min-score 70`, run twice against each
+  of the four canon dossiers this pass touches
+  (`curiosity-and-motivation`, `cognition-and-automation`,
+  `information-foraging`, `memory-systems`): `added=0 changed=False` on
+  every one. (A stray run against `07-mind/sub-outcomes/education` with
+  the same foundation-tier flag rewrapped one comment line; reverted,
+  since that dossier is outcome-tier and out of this pass's own scope.)
+- `agf-lint-voice check` on every file this review touched: 0 violations.
+- Gates: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (all files, 0 failures): all clean.
+
+## 2026-09-10, PR #45 finishing pass
+
+The prior review pass verified the pending-signoff filter, wrote the
+governance paragraph, pushed the fix commit, and stopped short of merging.
+This pass confirmed that work, brought the branch current, and merged.
+
+### Verified
+
+- `intake/ros-canon-promotion-2` already carried the reviewer's fix commit
+  (`fix(canon): gate pending-signoff records out of the paid-cite path`):
+  `isPendingSignoff()` filters inside `loadPrimaryPapers()`, the one loader
+  both `/api/research`'s feed402 paid-cite envelope and the Research OS
+  canon importer read from, so both consumers are gated at one call site.
+  No record renders without passing through this filter, so no separate
+  pending label is needed at either render surface.
+
+### Fixed
+
+- `origin/main` had moved three commits past the branch's last merge
+  (`e1efbda1b`, `5f26be63e`, `f7dd86a67`). Merged again; the only conflict
+  was an append-only collision in `BEADS-PENDING.jsonl` between this
+  branch's own ros-canon-promotion-2 entry and main's new ros-11 entry,
+  resolved by keeping both lines in sequence.
+
+### Verified, no change needed
+
+- `tools/canon-pipeline/intake.py --min-score 70`, run twice against the
+  three foundation-tier dossiers this pass's scope covers
+  (`curiosity-and-motivation`, `cognition-and-automation`,
+  `information-foraging`): `added=0 changed=False` on every run. Left
+  `sub-outcomes/education` alone per the prior pass's own note that it is
+  outcome-tier and out of scope.
+- Gates re-run post-merge: `npm ci`, `npx tsc --noEmit`, `npm run build`,
+  `npm run test:research-os` (18 files, 0 failures), `agf-lint-voice check`
+  on every touched file: all clean.
+
+### Fixed, second round
+
+- `origin/main` moved two more commits while the first merge's gates were
+  running (PR #47, `ros-07 follow-up: consent gate wiring, profile page,
+  privacy actions, status band`). Merged again; three conflicts, all
+  resolved keeping both branches' work. `BEADS-PENDING.jsonl` and this
+  file: append-only collisions, kept both entries in sequence.
+  `package.json`'s `test:research-os` script: both branches added a test
+  to the chain (`scripts/test-canon-primary-signoff.ts` here,
+  `scripts/test-research-os-profile.ts` on main); merged to run all 19
+  scripts, both new ones included.
+- Gates re-run again post-second-merge: `npm ci`, `npx tsc --noEmit`,
+  `npm run build`, `npm run test:research-os` (19 files, 0 failures),
+  `agf-lint-voice check` on every touched file: all clean.
+
+## 2026-09-10, ros-07 follow-up: consent gate wiring, profile page, privacy actions, status band
+
+`feat/ros-07-consent-wiring`, worktree `.ros-worktrees/ros07b`, branched from
+`origin/main` at `af5b7c9ea`. Scope: wire `src/lib/research-os/consent.ts`'s
+`requireConsent` into every learner-facing write path, add a minimal
+`/research-os/profile` page, add self-service export/delete to the workspace
+footer, and rewrite the `/research-os` status section against what is actually on
+main.
+
+**Consent gate wiring.** `requireConsent` now runs right after `verifyLearner()` in
+four POST handlers: `workspace/route.ts` (action `workspace_tool`, in front of all
+four tools, Locate and Quote included), `probe/route.ts` (action `probe_answer`),
+`state/route.ts` only when `action === "transfer_item"` (action `transfer_answer`;
+the sibling `open` action stays ungated), and `production/route.ts` (action
+`production_submit`, draft and submit alike). `ConsentAction` grew from two values
+to four. A new `consentBlockedBody(gate)` shapes the shared 403 JSON body
+(`{error, message, needsProfile}`) every gated route now returns; the workspace
+page's `handleConsentResponse` recognizes it from any gated fetch and renders a
+banner, linking to `/research-os/profile` when `needsProfile` is true.
+
+**Profile page.** `src/app/research-os/profile/page.tsx` (new) and
+`POST`/`GET /api/research-os/profile` (new, `src/lib/research-os/profile.ts`'s
+`validateProfileInput`): role and birth-year bucket only, no birthdate, no name.
+The route upserts only those two columns, never `consent_status`, so an existing
+consent decision survives a later profile edit untouched (a Supabase upsert only
+updates the columns present in its payload).
+
+**Privacy actions.** The workspace page's footer gained "export my data" (downloads
+the export envelope as a JSON file) and "delete my data" (a typed confirm step
+gating a disabled button, sending `confirm: DELETE_CONFIRM_TOKEN`). The privacy
+route now rejects a delete request whose `confirm` field does not match exactly
+(`isDeleteConfirmed`, checked before any auth resolution or database call), closing
+task item 2's "the confirm cannot be skipped server-side."
+
+**Status band.** `/research-os`'s "§ status" paragraph, previously describing only
+the Phase 0 seed path and the open grades-9-to-12 question, now lists what is on
+main (routing with confidence flags, the diagnostic probe, the four-tool workspace
+with contracts enforced in code, teacher review and class view with an accept path,
+the engine bridge covered by tests, privacy export and delete, the consent gate) and
+what is not (applying an accepted production to the live database, roster sync,
+verified parental consent, a payment to a minor contributor, canon write-back
+without a human sign-off). Original text preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`; no other section of the page changed.
+
+**Full doc:** `learning/research-os/WORKSPACE.md` section 5 (new),
+`learning/research-os/compliance/README.md`'s "The consent gate, wired" (renamed
+from "What is built but not wired") and part B item 6 (closed). See also
+`learning/research-os/CHANGE-LEDGER.md`'s matching entry, "Iteration 19," for the
+file-by-file diff and gate results.
+
+## 2026-09-10, PR #47 finishing pass
+
+Prior reviewer verified PR #47 (consent gate wiring, profile page, privacy
+actions, status band) and pushed fix commits to
+`feat/ros-07-consent-wiring`, then stopped short of merge. This pass picked
+up from the `review/pr47` worktree to close it out.
+
+`origin/feat/ros-07-consent-wiring` and `review/pr47` carried identical
+commit histories already, so no fast-forward push was needed for the fix
+commits. `origin/main` had advanced past the branch's last merge (three new
+commits, including the `ros-11` canon write-back signoff-gate status line);
+`git merge origin/main` hit one conflict, `BEADS-PENDING.jsonl`, both sides
+appending a distinct bead entry at end-of-file. Resolved by keeping both
+entries; no other file conflicted.
+
+Gates re-run post-merge: `npm ci` clean, `npx tsc --noEmit` clean,
+`npm run build` clean (`/research-os/profile` and `/api/research-os/profile`
+both in the manifest), `npm run test:research-os` 236/236 across 18 test
+files, `eslint` clean on all 16 touched TS/TSX files,
+`agf-lint-voice-src check` clean on the same 16, `agf-lint-voice check`
+clean on the touched docs. The Vercel status check on the PR fails with
+"Deployment rate limited, retry in 24 hours" (Vercel free-tier daily
+deployment cap), unrelated to this branch's code.

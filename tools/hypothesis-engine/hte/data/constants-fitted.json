@@ -1,0 +1,17 @@
+{
+  "W": 2.0,
+  "lam": 0.5,
+  "mu": 0.5,
+  "alpha": 1.0,
+  "theta_prune": 0.6,
+  "tier_weight": {
+    "T1": 2.0,
+    "T2": 1.5,
+    "T3": 1.0,
+    "T4": 0.5,
+    "T5": 0.25,
+    "T6": 0.1
+  },
+  "detectability_floor": 0.0,
+  "_fit_note": "hte.calibrate.fit_constants_pooled ran (docs/CALIBRATION-FIT-2026-09-10.md) but improvement (0.03325255073389202) did not clear the 0.05 real-corpus mean Brier bar (baseline 0.186537747705684, fitted 0.15328519697179196); bare Constants() defaults kept instead."
+}

@@ -13,9 +13,21 @@
  *
  * Auth: Authorization: Bearer <supabase access token>, required for both.
  * 401 unauthorized · 400 bad input · 503 not configured.
+ *
+ * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): only
+ * action "transfer_item" is gated by src/lib/research-os/consent.ts's
+ * requireConsent (action "transfer_answer"), checked before the answer is
+ * validated or written. action "open" stays ungated on purpose: it
+ * records a navigation event (a learner viewed a node) rather than
+ * learner-authored content, and a signed-in minor with no profile yet
+ * still needs to be able to browse the map and reach /research-os/profile,
+ * the page this gate's "no_profile" case points them to. A blocked
+ * transfer_item POST returns 403 with consentBlockedBody(gate) as its
+ * body.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onNodeOpened, onTransferItemAnswered } from "@/lib/research-os/stages";
+import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
 
@@ -56,9 +68,19 @@ export async function GET(req: NextRequest) {
   });
 }
 
+const MAX_TRANSFER_ANSWER_CHARS = 2000;
+
 interface StateBody {
   nodeId?: string;
   action?: "open" | "transfer_item";
+  /** The learner's own transfer-item answer text (EVIDENCE-SCHEMA.md's
+   * "no stored ... transfer-item answer" gap); required only for
+   * action "transfer_item". */
+  answer?: string;
+  /** The fixed per-target transfer-item id (state route header + this
+   * file's POST handler); required only for action "transfer_item". */
+  itemId?: string;
+  sessionId?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -75,6 +97,14 @@ export async function POST(req: NextRequest) {
   const nodeId = (body.nodeId || "").trim();
   if (!nodeId) return bad(400, "nodeId is required");
   if (body.action !== "open" && body.action !== "transfer_item") return bad(400, "unknown action");
+  const sessionId = (body.sessionId || "").trim() || undefined;
+  const answer = (body.answer || "").trim();
+  if (body.action === "transfer_item") {
+    const gate = await requireConsent(learnerId, "transfer_answer");
+    if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
+    if (!answer) return bad(400, "answer is required");
+    if (answer.length > MAX_TRANSFER_ANSWER_CHARS) return bad(400, "answer too long");
+  }
 
   const svc = graphService();
   const { data: existing } = await svc
@@ -85,7 +115,10 @@ export async function POST(req: NextRequest) {
     .maybeSingle();
   const currentStage = ((existing?.stage as Stage | undefined) ?? "access") as Stage;
 
-  const transition = body.action === "open" ? onNodeOpened(currentStage) : onTransferItemAnswered(currentStage);
+  const transition =
+    body.action === "open"
+      ? onNodeOpened(currentStage, { sessionId })
+      : onTransferItemAnswered(currentStage, { learnerText: answer, itemId: (body.itemId || "").trim() || undefined, sessionId });
 
   await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
 

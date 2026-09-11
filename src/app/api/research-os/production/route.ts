@@ -5,7 +5,7 @@
  * Production)"). Backs graph.productions.
  *
  * GET  ?targetNodeId=<id>  -> { productions: [...] } (the learner's own, newest first)
- * POST { id?, targetNodeId, claim?, evidence?, sources?, transferProof?, status? }
+ * POST { id?, targetNodeId, claim?, evidence?, sources?, transferProof?, status?, sessionId? }
  *      -> upserts a draft (status defaults to "draft"); pass status:"submitted"
  *         to submit, which raises the target node's learner_node_state.stage
  *         to "production" (src/lib/research-os/stages.ts onProductionSubmitted).
@@ -14,18 +14,27 @@
  *
  * Engine bridge task item 3: whenever a write here leaves a production at
  * status "accepted", its row is emitted to `public.research_os_
- * productions_outbox` (src/lib/research-os/engine-bridge.ts's
- * buildProductionOutboxRow, db.ts's writeProductionOutbox). Nothing today
- * calls this route with status "accepted" (the validation above still
- * rejects it, Phase 0 has no teacher-accept path), so this hook is wired
- * but unreached until Phase 1 opens one. See learning/research-os/
- * ENGINE-BRIDGE.md.
+ * productions_outbox` (db.ts's emitProductionOutboxIfAccepted, shared with
+ * /api/research-os/review's own accept path, ros-06). This route's own
+ * status validation above never lets a learner set "accepted" directly;
+ * the accept path lives in the review route once a teacher approves. See
+ * learning/research-os/ENGINE-BRIDGE.md.
  *
  * Auth: Authorization: Bearer <supabase access token>, required.
+ *
+ * Consent gate (bkt-ros ros-07 follow-up, "consent gate wiring"): POST is
+ * gated by src/lib/research-os/consent.ts's requireConsent, action
+ * "production_submit", checked right after verifyLearner and before the
+ * body is even parsed. This covers a draft save as well as a submit: both
+ * carry the learner's own claim/evidence/sources/transfer-proof text. GET
+ * (reading back the learner's own already-saved productions) is not
+ * gated. A blocked POST returns 403 with consentBlockedBody(gate) as its
+ * body.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
-import { configured, graphService, verifyLearner, recordEvidence, emitProductionOutboxIfAccepted } from "@/lib/research-os/db";
+import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { configured, graphService, verifyLearner, recordEvidence, emitProductionOutboxIfAccepted, loadCurrentStage } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -58,12 +67,16 @@ interface ProductionBody {
   sources?: unknown[];
   transferProof?: Record<string, unknown>;
   status?: "draft" | "submitted";
+  sessionId?: string;
 }
 
 export async function POST(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
+
+  const gate = await requireConsent(learnerId, "production_submit");
+  if (!gate.allowed) return NextResponse.json(consentBlockedBody(gate), { status: 403 });
 
   let body: ProductionBody;
   try {
@@ -111,7 +124,11 @@ export async function POST(req: NextRequest) {
   if (error) return bad(500, "write_failed");
 
   if (body.status === "submitted" && data?.target_node_id) {
-    const transition = onProductionSubmitted();
+    // ros-04: fetch the real stage first so the evidence event's
+    // `fromStage` reflects the learner's real prior stage (see db.ts's
+    // loadCurrentStage), instead of an assumed one.
+    const currentStage = await loadCurrentStage(learnerId, data.target_node_id as string);
+    const transition = onProductionSubmitted(currentStage, { sessionId: (body.sessionId || "").trim() || undefined });
     await recordEvidence(learnerId, data.target_node_id as string, transition.nextStage, transition.event as unknown as Record<string, unknown>);
   }
 

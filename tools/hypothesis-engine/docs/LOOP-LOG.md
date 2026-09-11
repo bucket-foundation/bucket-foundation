@@ -2,6 +2,174 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, tick 2
+
+- **PRs reviewed**: #51 (`docs/hte-findings-round-six-cli-llm-leak`, a
+  different tick of this same loop): content accurate, but `mergeable_state`
+  is now `dirty` against the LOOP-LOG entry #53 below already claimed;
+  branch prefix also excludes it from this loop's merge authority either
+  way, "fix or note before merge". #52 (`feat/ros-roster-sync`, OneRoster
+  CSV roster sync, opened by a different session): verified the 6
+  privacy/security claims (PII handling, RLS on `reviewer_candidates`,
+  server-side `verifyReviewer` gate, no auto-grant approval path,
+  idempotent apply-twice) against the code rather than the PR body; 5 of
+  6 held, 1 Medium finding (no CSV upload size/row cap on `POST /api/
+  research-os/roster`), "fix or note before merge". Neither is a
+  `fix/hte-`/`test/hte-` PR of this loop's own, so neither merged.
+- **Carried forward**: #54, #55, #56 opened by other sessions after this
+  tick's review pass finished; not reviewed this tick, next tick's own
+  step 4 picks them up.
+- **Blocked**: nothing else.
+
+## 2026-09-11, tick
+
+- **Engine health**: `make test` green on `main` first, 1057 passed. No
+  defect.
+- **Random campaigns**: synth `--seeds 0-29` 30/30, gate PASS, no
+  nondeterminism on repeat. `realsweep` over education-atlas/production/
+  literature, `--seeds 0-9`: 0/30 crashed, every metric matched the
+  committed `runs/realsweep/*/SUMMARY.md` baseline exactly. No defect.
+- **Test swarm**: `hte/serve.py` (78.3%, no prior swarm file). New
+  `tests/swarm-20260910/test_serve_props.py`, 8 tests (the 502 branch,
+  `build_parser`, `main`'s lifecycle, stubbed, no real socket). No
+  defect. Full suite: 1065 passed.
+- **Environment note**: `tests/test_referee.py`'s one `slow`-marked test
+  fails on `FileNotFoundError: agf-lint-voice`, absent in this remote
+  container. Environment gap; `make test`'s fast gate never hits it.
+- **PRs opened**: 1, #50, reviewed and squash-merged (`d09fcd20`).
+- **PRs reviewed**: #41 (own), reviewed and squash-merged (`4236e29f`).
+  #42 (`feat/hte-purge`): 1 High (silent no-op on a JSON-corrupting
+  redaction), 1 Medium, "fix or note before merge". #48
+  (`feat/hte-generation-coverage`): 2 High (a documented `literature.
+  load_local` loader and a `realsweep --diagnose` flag, neither exists
+  in the diff), 3 Medium, "fix or note before merge". #49
+  (`fix/hte-writeback-review`, opened by the local-session loop): 1 High,
+  the diff silently drops the `writeback_signoff` check and stops
+  passing `signoff=` to `canon_writeback.write_back` at the
+  `hte/pipeline.py` call site (the PR #43 governance gate itself is
+  untouched and intact), "fix or note before merge". None of #42/#48/#49
+  is a `fix/hte-`/`test/hte-` PR of this loop's own, so none merged
+  regardless.
+- **Blocked**: nothing.
+
+## 2026-09-10, PR39 review
+
+- **PR #39 reviewed and merged** (`feat/hte-literature-batch-two-and-plan-rev1`,
+  "literature batch two, Research OS plan revision 1 remap, zenodo
+  dry-run"), squash commit `f7dd86a6`.
+- **Governance**: `learning/research-os/PLAN-REVISION-1.md` is untouched
+  by this diff; the remap lives in this engine's own `docs/RESEARCH-OS-
+  INTEGRATION.md`, which reads `PLAN-REVISION-1.md` and reclassifies
+  engine-side question rows against it, citing blocking decision 1 as
+  still open rather than resolving it. `RESEARCH-OS-INTEGRATION.md`
+  sits under this engine's own `docs/`, tracked here; the `learning/
+  research-os/` and `_intake/research-os-k12/` surface tree
+  `DELETIONS.md`/`CHANGE-LEDGER.md` cover is a separate tree this PR
+  never touches, so no deletions-log entry applied. Literature: the 6 batch-two fixture cards are byte-identical
+  to the already-verified real cards in `_intake/research-os-k12-
+  literature/`; 5 DOIs spot-checked live against Crossref/arXiv
+  (Kitano 2021, Fryer 2011, Macnamara 2024, Pan 2017, Kosmyna 2025),
+  title/authors/year/venue all matched.
+- **Secrets**: full diff clean, no keys, IPs, internal hostnames,
+  personal emails beyond `gianyrox@gmail.com`, or absolute `/home/gian`
+  paths in file contents.
+- **Incident during review**: a `git stash pop` in the review worktree
+  popped a stash from the repo-wide stash list (stashes are not
+  worktree-scoped) and produced merge conflicts plus untracked-file
+  bleed from an unrelated `main`-branch WIP stash. Recovered with
+  `git reset --hard` and `git clean -fd`, scoped to the review worktree
+  only; the original stash was never dropped. A reminder of this file's
+  own "Working tree rules" section: `git stash` in any worktree touches
+  the whole repo's stash list, not just that worktree's own changes.
+- **Gates**: `env -u HTE_LLM_MODE make test`, 1057 passed, 18 deselected
+  after merging `origin/main` (13 commits behind, one real conflict in
+  `hte/cli.py`/`hte/runner.py`'s `_CORPUS_LOADERS` dict against PR
+  #36's `sacred-history` entry, resolved keeping both registrations).
+  `ruff check` clean on every touched file (also cleared two
+  pre-existing unused imports in `hte/corpus/literature.py`,
+  `dataclasses.field` and `typing.Any`). `agf-lint-voice check` /
+  `agf-lint-voice-src check`, 0 violations. `zenodo-mint.py --dry-run`:
+  7/7 new tests pass, no token read and no network call under
+  `--dry-run`.
+
+## 2026-09-10, PR36 review
+
+- **PR #36 reviewed** (`feat/hte-build-history`, "sacred-history
+  build-history campaign, canon write-back, Research OS bridge
+  export"). Auto-merged (commit `06a97894`) before the governance fix
+  found in review could land on its own branch, so the fix shipped as
+  a superseding PR, #43 (`fix/hte-canon-signoff-gate`, squash-merged as
+  `a719c072`), directly on `main`.
+- **Governance (bead ros-11, `learning/research-os/PLAN.md` section 10,
+  `GOVERNANCE.md`)**: `hte.canon_writeback.write_back` wrote
+  candidate-tier cards into `bucket-canon/`, gated only on
+  `floor_P`/`floor_u_max`, no recorded human approver, unattended
+  through `hte.pipeline`'s own writeback stage. Fixed: `write_back`,
+  `render_card`, `build_envelope` now require a named `signoff`; a
+  missing or blank value is a hard `ValueError` before
+  `reconstruct_candidates` runs or any file writes, `dry_run` or not.
+  Recorded in card provenance, envelope `signed_off_by` and per-item
+  provenance, and the `CANON-INGESTION-INDEX.md` addendum. Also
+  labeled Elo `unvalidated_tournament_ranking` in the same three
+  surfaces (card, index, envelope), per the same PLAN.md section's
+  ranking-label requirement. No generator/judge independence claim
+  appears in PR #36's diff, so nothing to drop there.
+- **Secrets**: full diff of both PRs clean, no keys, IPs, internal
+  hostnames, personal emails beyond `gianyrox@gmail.com`, or absolute
+  `/home/gian` paths in file contents.
+- **Gates**: `env -u HTE_LLM_MODE make test`, 1046 passed (PR #36's own
+  branch: 989 before the `main` merge that pulled in 8 unrelated
+  commits). `ruff check` clean on every touched file (also cleared two
+  pre-existing unused imports in `hte/cli_pipeline.py` and
+  `hte/pipeline.py`). `agf-lint-voice check` / `agf-lint-voice-src
+  check`, 0 violations.
+
+## 2026-09-10, PR review
+
+- **PR #29 reviewed and merged** (`feat/hte-calibration-vocab-rebased`,
+  "corpus-induced vocabulary, calibration fit report, real-corpus
+  sweeps"). Engine-only diff (`tools/hypothesis-engine/`), no Research OS
+  app surfaces touched.
+- **Secrets**: keys, tokens, IPs, non-public hostnames, personal emails,
+  PII, absolute `/home/gian` paths, Claude session URLs: none found in
+  the diff.
+- **QA**: `hte.vocab_induce.induce` reads only `Corpus.evidence`, built
+  by `hte.corpus.production._build_corpus` from `Production` objects
+  `normalize_research_os_record` already normalized; no path reads
+  `graph.productions` or learner data directly. `hte.api.hypothesize`'s
+  signature and `hte.corpus.production.load_supabase` are unchanged, so
+  PR #30's callers still compile once main merges. `learner_id`/
+  `transfer_proof` stay excluded from every code path this PR touches;
+  `docs/CALIBRATION-FIT-2026-09-10.md` and the three `runs/realsweep/*/
+  SUMMARY.md` files carry only params and aggregate metrics, no raw
+  learner text. Fixed one Low defect on the branch before merge: an
+  unused `Constants` import in `tests/test_runner.py`
+  (`ruff` F401), introduced by this PR's own diff; the sole other
+  `ruff` hit in this PR's files (`hte/cli_synth.py`'s pre-existing F541)
+  predates this PR and was left alone.
+- **Gates**: merged `origin/main` (pulling in PR #28) into the review
+  branch first, clean, no conflicts. `make test`: 988 passed, 18
+  deselected, 0 failed. `ruff check .`: 36 pre-existing errors outside
+  this PR's own files, 0 in files this PR touches after the fix above.
+- **Voice**: `agf-lint-voice check` and `agf-lint-voice-src check` on
+  every file this PR touches: 0 violations.
+- **On tick 3's Critical finding below** (two new tests omit
+  `HTE_LLM_MODE=fake`, hanging `make test` when the var is unset): does
+  not reproduce. The four new `hte.calibrate.fit_constants_pooled` tests
+  are already in `tests/conftest.py`'s own `_SLOW_NODEIDS` (this PR's own
+  addition), so `make test`'s `-m "not slow"` deselects them; ran them
+  directly with `HTE_LLM_MODE` unset (`test_fit_constants_pooled_*`,
+  `tests/test_cli_synth.py`'s full file, `test_api.py::test_unknown_
+  slot_id_is_induced_rather_than_rejected`), 27 passed in under 30s each
+  batch, no hang. `hte.calibrate` imports no `hte.llm` path at all;
+  `run_one_realsweep_seed` wraps its own `run_campaign` call in
+  `_fake_llm_mode()` regardless of the ambient environment
+  (`tests/test_cli_synth.py`'s own module docstring); the renamed
+  `test_unknown_slot_id_is_induced_rather_than_rejected` goes through
+  `_call`, which sets `HTE_LLM_MODE=fake` itself. `make test` on the
+  merged tree: 988 passed, 18 deselected, 0 failed, no hang.
+- Squash-merged via `gh pr merge 29 --squash --delete-branch`.
+
 ## 2026-09-10, tick 3
 
 - **Engine health**: `make test` green on `main` before any change this

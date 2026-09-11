@@ -45,6 +45,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from .. import vocab_induce
 from ..concepts import Slot, Vocabulary
 from ..evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from ..timeline import Interval
@@ -373,13 +374,7 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
       explicitly allows an empty `claims` list. Otherwise one claim, with
       `stance` always `"supports"` (Research OS carries no stance
       vocabulary; a learner's own production always stands behind its own
-      claim) and every one of the five engine slots `None` ("not
-      asserted"): the shipped `vocab-production-seed.json` names concepts
-      about the engine's own calibration questions (`tier-assignment`,
-      `hypothesis-ranking`, ...). Forcing a sky-is-blue claim into that
-      vocabulary would misrepresent it, so a normalized claim's slots
-      stay unresolved until a domain-specific K-12 physics vocabulary
-      exists. `evidence`/`sources` are read through `_research_os_evidence`,
+      claim). `evidence`/`sources` are read through `_research_os_evidence`,
       which accepts either the Quote tool's `[{source_id|node_id, quote,
       locator?}]`/`[{label, url?, doi?}]` dict shape or the real
       production form's plain `evidence.split("\n")`/`sources.split("\n")`
@@ -388,12 +383,33 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
       `unknown[]` and validates neither), or a mix of the two. A string
       evidence line and a string source line are read as two separate,
       unpaired lists (see `_string_evidence_entries`'s own docstring),
-      never fused into one fabricated citation.
-    - `claims[].interval` is always `None`: a physics fact has no "the
-      claim's own subject happened in year X" the way a historical claim
-      does, so a normalized Research OS production never contributes a
-      `GroundTruthEvent` regardless of status (see the alignment doc's own
-      "What this normalizer does not attempt" section).
+      never fused into one fabricated citation. `object` reads `target_node_id` itself (`_target_node.slug`
+      when a join is given, the same value either way): the shipped
+      `vocab-production-seed.json` names concepts about the engine's own
+      calibration questions (`tier-assignment`, `hypothesis-ranking`,
+      ...), a meta-vocabulary about the production system rather than a
+      K-12 physics one, so forcing a sky-is-blue claim's OBJECT into THAT
+      vocabulary would misrepresent it; a graph node's own
+      id is a stable, always-available value with no such vocabulary to
+      misrepresent, and `hte.vocab_induce.induce` (wired into
+      `_build_corpus` below) turns it into a real concept rather than
+      requiring one to already exist. `actor`/`action`/`place`/`mechanism`
+      stay `None` ("not asserted"): Research OS carries nothing to read any
+      of the four from without guessing at content this module has no
+      warrant to guess at (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own
+      design-decisions section names this as a founder-confirmable choice).
+    - `claims[].interval` reads the production's own `created_at` year (a
+      real, always-available date) rather than staying `None`: a physics
+      fact has no "the claim's own subject happened in year X" the way a
+      historical claim does, so this is deliberately NOT that, it is the
+      date THIS RECORD entered Bucket's own reviewed corpus, the same
+      "discovery date distinct from subject date" reading `hte.corpus.
+      production`'s own `discovery_year` already gives every other corpus
+      this module builds. Consequence: an `accepted` Research OS production
+      now contributes a `GroundTruthEvent`, dated by when it entered the
+      record rather than by the physics fact's own (nonexistent) date; see
+      `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s design-decisions section for
+      the disclosed tradeoff.
     - `review.history` is synthesized as a single entry at the row's own
       `updated_at` (falling back to `created_at`; a row missing both
       raises, below): Research OS keeps no per-transition review history
@@ -421,19 +437,6 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
     tier = node.get("tier")
     node_title = node.get("title") or node.get("slug") or target_node_id
 
-    claim_text = (raw.get("claim") or "").strip()
-    evidence_raw = raw.get("evidence") or []
-    sources_raw = raw.get("sources") or []
-    claims: list[dict[str, Any]] = []
-    if claim_text or evidence_raw or sources_raw:
-        claims.append({
-            "text": claim_text,
-            "stance": "supports",
-            "slots": {"actor": None, "action": None, "object": None, "place": None, "mechanism": None},
-            "interval": None,
-            "evidence": _research_os_evidence(evidence_raw, sources_raw, author_role="student", production_id=raw["id"]),
-        })
-
     raw_status = raw.get("status") or "draft"
     if raw_status not in RESEARCH_OS_STATUS_MAP:
         raise ValueError(
@@ -444,10 +447,25 @@ def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
     moved_at = raw.get("updated_at") or raw.get("created_at")
     if not moved_at:
         raise ValueError(f"Research OS production row {raw['id']!r} has neither 'updated_at' nor 'created_at'")
+    created_at = raw.get("created_at") or moved_at
+    record_year = _year_of(created_at)
+
+    claim_text = (raw.get("claim") or "").strip()
+    evidence_raw = raw.get("evidence") or []
+    sources_raw = raw.get("sources") or []
+    claims: list[dict[str, Any]] = []
+    if claim_text or evidence_raw or sources_raw:
+        claims.append({
+            "text": claim_text,
+            "stance": "supports",
+            "slots": {"actor": None, "action": None, "object": target_node_id, "place": None, "mechanism": None},
+            "interval": {"start": record_year, "end": record_year},
+            "evidence": _research_os_evidence(evidence_raw, sources_raw, author_role="student", production_id=raw["id"]),
+        })
 
     return {
         "id": raw["id"],
-        "created_at": raw.get("created_at") or moved_at,
+        "created_at": created_at,
         "author_role": "student",
         "grade_band": _tier_to_grade_band(tier) if isinstance(tier, (int, float)) else "unknown",
         "school_or_district_id": "research-os-phase-0",
@@ -722,13 +740,6 @@ def _stance_to_hte(stance: str) -> Stance:
         raise ValueError(f"unknown claim stance {stance!r}, expected one of {sorted(_STANCE_MAP)!r}") from exc
 
 
-def _validate_slots(vocab: Vocabulary, slots: dict[str, str | None]) -> None:
-    for slot in _SLOT_KEYS:
-        value = slots.get(slot.value)
-        if value is not None and vocab.get(slot, value) is None:
-            raise ValueError(f"slot {slot.value!r} value {value!r} is not in the production vocabulary")
-
-
 def _truncate(text: str, limit: int = 140) -> str:
     return text if len(text) <= limit else text[: limit - 3].rstrip() + "..."
 
@@ -789,9 +800,23 @@ def _build_corpus(
       building `hte.calibrate.holdout_by_discovery_date` against this
       corpus gets a holdout keyed to the record's own review date rather
       than to the claim's own subject date.
+
+    **Vocabulary.** Every `EvidenceItem` this function builds carries its
+    claim's own slot values verbatim, whatever they are: an id this
+    module's own `load_vocab()` seed already names, or a fresh one (a
+    Research OS graph-node id, `normalize_research_os_record`'s own
+    `object` reading; `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s "the
+    null-slot gap on physics productions"). Once every `EvidenceItem` and
+    `GroundTruthEvent` is built, `hte.vocab_induce.induce` runs as a merge
+    step over the seed (`docs/PRODUCTION-SCHEMA-ALIGNMENT.md`'s own "wire
+    it... as a merge step when it has one"): every value already on file
+    resolves to a real concept in the returned `Corpus.vocab`, whether the
+    seed already named it or this call is the first to see it, so no slot
+    value this function has already accepted into an `EvidenceItem` can
+    fail to resolve downstream.
     """
     _check_status_min(status_min)
-    vocab = load_vocab()
+    seed_vocab = load_vocab()
     production_ids = {p.id for p in productions}
     sources: dict[str, Source] = {}
     provenance: list[RetrievalEnvelope] = []
@@ -815,7 +840,6 @@ def _build_corpus(
         accepted_date = production.review.date_of(_ACCEPTED)
 
         for ci, claim in enumerate(production.claims):
-            _validate_slots(vocab, claim.slots)
             stance = Stance.NEGATIVE if retracted else _stance_to_hte(claim.stance)
             first_evidence_id: str | None = None
 
@@ -848,7 +872,9 @@ def _build_corpus(
                     doc_id=claim.evidence[0].source_id, discovery_year=_year_of(accepted_date),
                 ))
 
-    return Corpus(sources=sources, evidence=evidence, ground_truth=ground_truth, provenance=provenance, vocab=vocab)
+    corpus = Corpus(sources=sources, evidence=evidence, ground_truth=ground_truth, provenance=provenance, vocab=seed_vocab)
+    corpus.vocab = vocab_induce.induce(corpus, seed_vocab=seed_vocab)
+    return corpus
 
 
 # --------------------------------------------------------------------------
