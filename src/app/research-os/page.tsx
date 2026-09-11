@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import CanonGlobeMount from "@/app/canon/CanonGlobeMount";
 
 // /research-os, Research OS for K-12 (beads ros-01 to ros-10). The
 // production-reaching path for the L1 rung of the depth ladder: a student
@@ -110,7 +111,16 @@ export default function ResearchOsPage() {
           </a>
         </div>
         <div className="carved-rule max-w-xs mt-10" />
+      </div>
 
+      <div className="mt-4 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] max-w-[1100px] mx-auto px-4 md:px-6">
+        § find sources, over the same canon this tool searches
+      </div>
+      <div id="globe-capture" className="w-full max-w-[1400px] mx-auto px-4 md:px-6 py-6">
+        <CanonGlobeMount branches={[]} />
+      </div>
+
+      <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
         <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
           § five states per concept
         </div>
