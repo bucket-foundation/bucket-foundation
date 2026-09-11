@@ -187,23 +187,20 @@ cryptography text is not handed a 1500-page manual when they wanted a
 - `reference/` — IETF/ISO/IEC normative primitives where they originate
   (RFC 2104, FIPS-197); database and spec pointers, not mirrors
 
-One folder promoted outside this list, added 2026-09-10:
-`information-foraging/` (Pirolli and Card 1999), placed here rather than
-`07-mind/` per the boundary call below. See its own `CANON_INDEX.md` for
-the promotion record.
-
-### Information foraging placement vs `07-mind/`
+### Information foraging: relocated to `07-mind/`
 
 Pirolli and Card 1999 ("Information foraging," *Psychological Review*)
-sits on the boundary this README already draws against `07-mind/`: a
-limit on what any information-seeker can do in principle stays here, a
-model of what a biological searcher in fact does goes to `07-mind/`.
-This paper states its optimization in the formal, cost-per-unit-benefit
-language the boundary rule reserves for this branch, borrowed by direct
-analogy from optimal foraging theory in ecology, so this pass files it
-under `information-foraging/` here with a cross-link noted from
-`07-mind/curiosity-and-motivation/`'s own placement record. A future pass
-may revisit this call.
+was seeded here on 2026-09-10 as `information-foraging/`, on that pass's
+own task brief rather than on this README's boundary rule. The paper is
+a model of what a biological searcher in fact does, information scent,
+patch-leaving, stated in the formal, cost-per-unit-benefit language this
+branch reserves for a limit on what any searcher can do in principle,
+but the paper's own claim is about actual human search behavior, not a
+principled bound. `fix/canon-promotion-findings` (2026-09-11) moved the
+dossier to `07-mind/information-foraging/` on that basis; a one-line
+redirect stays at the old path. See `07-mind/information-foraging/
+CANON_INDEX.md`'s "Branch placement" and `bucket-canon/TAXONOMY_NOTES.md`
+for the correction record.
 
 ## Status
 
