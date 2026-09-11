@@ -21,7 +21,7 @@ import urllib.error
 
 import pytest
 
-from hte.concepts import ConsensusStatus, Slot
+from hte.concepts import ConsensusStatus, Slot, other_id
 from hte.corpus import literature
 from hte.evidence import EvidenceKind, Tier
 
@@ -291,6 +291,13 @@ def test_method_and_kind_classification(cards, needle, expected_method, expected
 
 
 def test_only_the_meta_analysis_becomes_ground_truth(corpus):
+    # `corpus` (batch one alone) carries no cross-card corroboration
+    # group and no bare "replicat" mention paired with an effect size
+    # beyond Kulik, Kulik, and Bangert-Drowns 1990's own meta-analysis,
+    # so the widened, three-way rule (`bkt-hte-ground-truth-enrichment`,
+    # `docs/COVERAGE-2026-09-10.md`) still finds exactly one event
+    # here; `test_widened_rule_finds_six_ground_truth_events_across_
+    # both_batches` below exercises the widening itself.
     assert len(corpus.ground_truth) == 1
     event = corpus.ground_truth[0]
     assert event.doc_id == "10.3102/00346543060002265"  # Kulik, Kulik, and Bangert-Drowns 1990
@@ -306,6 +313,98 @@ def test_bloom_itself_is_not_ground_truth_despite_mentioning_replication(corpus)
     # self-report as a replicated finding.
     bloom_doi = "10.3102/0013189x013006004"
     assert not any(g.doc_id == bloom_doi for g in corpus.ground_truth)
+
+
+# --------------------------------------------------------------------------
+# ground truth widening (`bkt-hte-ground-truth-enrichment`): an effect
+# size gates a bare "replicat" mention, and cross-card corroboration on
+# `(mechanism, object)` is a third, independent way in
+# --------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("a replication effect size of 0.5 standard deviations", True),
+        ("roughly 36 percent of direct replications succeeded", True),
+        ("a large-sample replication check with a 95% confidence interval", True),
+        ("the replication crisis in psychology, no number given here", False),
+        ("no digit anywhere, but this names an effect size by name", False),
+    ],
+)
+def test_has_effect_size(text, expected):
+    assert literature._has_effect_size(text) is expected
+
+
+def test_bare_replication_mention_with_no_effect_size_is_not_ground_truth():
+    # The pre-widening rule credited any card whose scoped text named a
+    # replication, no number required; this rule now also asks for a
+    # quantified effect size (`_has_effect_size`), so a card that only
+    # gestures at "the replication crisis" earns nothing on this reading
+    # alone.
+    method = "theory"
+    text = "This finding sits inside the replication crisis literature, unquantified here."
+    assert not literature._is_ground_truth(method, text)
+
+
+def _synthetic_card(doi, first_author_surname, why_it_matters, key_claim_text="c"):
+    return literature.Card(
+        doi=doi, title="t", authors=(f"{first_author_surname}, A.",), year=2020,
+        venue="v", relative_path=f"{doi}.md", why_it_matters=why_it_matters,
+        key_claims=(literature.Claim(text=key_claim_text, line_start=1, line_end=1, char_start=0, char_end=1),),
+        research_questions=(), how_it_bears_on_research_os="h",
+    )
+
+
+def test_corroborated_dois_needs_two_distinct_first_authors_sharing_mechanism_and_object():
+    # Both cards name the same intervention (a card mentioning nothing
+    # this corpus's own lexicon resolves for actor/place is irrelevant
+    # here; only mechanism and object drive this check), from different
+    # first authors.
+    a = _synthetic_card("doi-a", "Alpha", "Retrieval practice raised test scores in this cohort.")
+    b = _synthetic_card("doi-b", "Beta", "Retrieval practice raised test scores in a second, independent cohort.")
+    assert literature._corroborated_dois([a, b]) == {"doi-a", "doi-b"}
+
+
+def test_corroborated_dois_excludes_a_single_author_repeating_itself():
+    a = _synthetic_card("doi-a", "Alpha", "Retrieval practice raised test scores in this cohort.")
+    b = _synthetic_card("doi-b", "Alpha", "Retrieval practice raised test scores in a follow-up by the same team.")
+    assert literature._corroborated_dois([a, b]) == set()
+
+
+def test_corroborated_dois_excludes_a_shared_other_object_even_with_two_authors():
+    # Neither card names an outcome this corpus's own lexicon resolves
+    # (`_detect_object` reads `OTHER`); two different authors both
+    # landing on "unclassified" is not the corroboration this reading is
+    # built to catch, `object` being the operative shared signal (see
+    # `_corroborated_dois`'s own docstring).
+    a = _synthetic_card("doi-a", "Alpha", "Something happens here that names no outcome this lexicon resolves.")
+    b = _synthetic_card("doi-b", "Beta", "Something else happens here that also names no outcome this lexicon resolves.")
+    assert literature._detect_object(literature._extraction_text(a)) == other_id(Slot.OBJECT)
+    assert literature._corroborated_dois([a, b]) == set()
+
+
+def test_widened_rule_finds_six_ground_truth_events_across_both_batches(corpus_both):
+    # Up from the pre-widening rule's own single event across both
+    # fixture batches (`docs/COVERAGE-2026-09-10.md`'s own "Ground
+    # truth" section carries the before/after numbers): Kulik, Kulik,
+    # and Bangert-Drowns 1990 and Deci, Koestner, and Ryan 1999 each
+    # qualify alone (meta-analysis); Deci and Ryan 2000 and Oudeyer,
+    # Kaplan, and Hafner 2007 corroborate Deci, Koestner, and Ryan
+    # 1999's own `self-determination`/`motivation` reading; Alonzo and
+    # Steedle 2009 and Corcoran, Mosher, and Rogat 2009 independently
+    # corroborate a `learning-gain` reading, a disjoint pair with no
+    # shared author.
+    expected_dois = {
+        "10.3102/00346543060002265",  # Kulik, Kulik, and Bangert-Drowns 1990
+        "10.1037/0033-2909.125.6.627",  # Deci, Koestner, and Ryan 1999
+        "10.1207/s15327965pli1104_01",  # Deci and Ryan 2000
+        "10.1109/TEVC.2006.890271",  # Oudeyer, Kaplan, and Hafner 2007
+        "10.1002/sce.20303",  # Alonzo and Steedle 2009
+        "10.12698/cpre.2009.rr63",  # Corcoran, Mosher, and Rogat 2009
+    }
+    assert {g.doc_id for g in corpus_both.ground_truth} == expected_dois
+    assert len(corpus_both.ground_truth) == 6
 
 
 # --------------------------------------------------------------------------
@@ -457,9 +556,12 @@ def test_corpus_json_round_trips(corpus):
 # --------------------------------------------------------------------------
 
 
-def test_load_raw_reads_all_six_batch_two_fixtures(cards_batch_two):
-    assert len(cards_batch_two) == 6
-    assert len({c.doi for c in cards_batch_two}) == 6
+def test_load_raw_reads_all_eleven_batch_two_fixtures(cards_batch_two):
+    # 6 original PR #15 cards plus 5 added by `bkt-hte-ground-truth-
+    # enrichment` (`docs/COVERAGE-2026-09-10.md`) to widen the
+    # ground-truth rule's cross-card-corroboration reach.
+    assert len(cards_batch_two) == 11
+    assert len({c.doi for c in cards_batch_two}) == 11
 
 
 def test_batch_two_fixtures_span_five_branches(cards_batch_two):
@@ -509,9 +611,9 @@ def test_load_default_cards_dirs_constant_is_both_fixture_batches():
     assert literature.DEFAULT_CARDS_DIRS == (literature.DEFAULT_FIXTURES_DIR, literature.DEFAULT_FIXTURES_DIR_BATCH_TWO)
 
 
-def test_both_batches_combine_to_twelve_disjoint_sources(corpus_both):
-    assert len(corpus_both.sources) == 12
-    assert len(corpus_both.evidence) == 36  # 3 key_claims per card, 12 cards
+def test_both_batches_combine_to_seventeen_disjoint_sources(corpus_both):
+    assert len(corpus_both.sources) == 17
+    assert len(corpus_both.evidence) == 51  # 3 key_claims per card, 17 cards
 
 
 def test_both_batches_source_batches_field_names_its_own_root(corpus_both):
@@ -541,7 +643,7 @@ def test_a_doi_shared_by_two_roots_dedupes_to_the_first_and_merges_batches(tmp_p
 def test_load_default_matches_both_batches_combined():
     default_corpus = literature.load_default()
     both = literature.load(literature.DEFAULT_CARDS_DIRS)
-    assert len(default_corpus.sources) == len(both.sources) == 12
+    assert len(default_corpus.sources) == len(both.sources) == 17
 
 
 # --------------------------------------------------------------------------
