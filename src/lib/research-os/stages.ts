@@ -33,6 +33,19 @@
  * names. `onCheckResult` below is the one writer; `forcing.ts` computes
  * `predictionCorrect` in code and resolves `forcingEnabled` from the arm
  * switch, both before this file ever sees them.
+ *
+ * UPDATE (lateral reading, PLAN-REVISION-3.md section 2c):
+ * `secondSourceRequired` on a "check" event names whether the second-
+ * source gate (`lateral-reading.ts`'s checkSecondSourceGate) applied to
+ * this attempt at all, the same arm-visibility purpose `forcingEnabled`
+ * already serves; `onCheckResult` is the one writer, threaded through
+ * from context the same way. A new, standalone event kind, "corroboration"
+ * (`onCorroborationRecorded` below), records the two-source pair itself:
+ * which node was already quoted, which independent node the learner
+ * attached, why locate.ts judged them independent, and whether the
+ * learner marks the two passages as agreeing -- a learner-marked verdict,
+ * never model-judged, matching the "AI never writes the learner's text"
+ * floor this file's own header already states for onCheckResult.
  */
 import type { Stage } from "./types";
 import { stageAtLeast } from "./types";
@@ -46,7 +59,8 @@ export type EvidenceKind =
   | "production_submitted"
   | "production_returned"
   | "teacher_review"
-  | "quote";
+  | "quote"
+  | "corroboration";
 
 /**
  * Fields a caller supplies per event, beyond what the transition function
@@ -97,6 +111,38 @@ export interface EvidenceContext {
    * RESEARCH_OS_FORCING_ENABLED off, so analysis can tell the three-arm
    * pilot's arms apart from the evidence log alone. */
   forcingEnabled?: boolean;
+  /** Whether the lateral-reading second-source gate (lateral-reading.ts's
+   * checkSecondSourceGate) applied to this "check" event at all: true
+   * only when the class/env switch was on AND this attempt's own stage
+   * had reached Understanding (checkSecondSourceGate's own "at Awareness
+   * tier a single source suffices" rule). Present on every "check" event
+   * this pass's code writes, so analysis can group by arm from the
+   * evidence log alone, matching forcingEnabled's own purpose. */
+  secondSourceRequired?: boolean;
+  /** The node id of the independent second source the learner attached to
+   * reveal this attempt, set only when secondSourceRequired is true and
+   * the gate passed. */
+  secondSourceNodeId?: string;
+
+  /** The node id of the source already quoted, on a "corroboration" event
+   * (onCorroborationRecorded below): the node under Check, since that is
+   * what the learner's own explanation is already grounded against. */
+  firstSourceId?: string;
+  /** The node id of the independent second source Locate's "find another
+   * source" mode surfaced and the learner quoted, on a "corroboration"
+   * event. */
+  secondSourceId?: string;
+  /** locate.ts's own assessSourceIndependence.reason for this pair, on a
+   * "corroboration" event: why the two sources are independent (a
+   * different publisher, a different domain), stored so a reviewer or an
+   * analysis pass never has to re-derive it from the two nodes' own
+   * provenance later. */
+  independenceReason?: string;
+  /** Whether the learner marks the two passages as saying the same thing,
+   * on a "corroboration" event. Learner-marked, never model-judged: the
+   * AI never writes this verdict, the same floor onCheckResult's own
+   * learnerText already holds for the learner's explanation. */
+  passagesAgree?: boolean;
 }
 
 export interface EvidenceEvent {
@@ -134,6 +180,17 @@ export interface EvidenceEvent {
   sourcePrediction?: string;
   predictionCorrect?: boolean;
   forcingEnabled?: boolean;
+
+  // Lateral reading (PLAN-REVISION-3.md section 2c): secondSourceRequired/
+  // secondSourceNodeId on a "check" event, see EvidenceContext above;
+  // firstSourceId/secondSourceId/independenceReason/passagesAgree on a
+  // standalone "corroboration" event (onCorroborationRecorded below).
+  secondSourceRequired?: boolean;
+  secondSourceNodeId?: string;
+  firstSourceId?: string;
+  secondSourceId?: string;
+  independenceReason?: string;
+  passagesAgree?: boolean;
 
   // Inter-rater fields (typed per the contract; no writer in ros-04, see
   // this file's header).
@@ -181,6 +238,38 @@ export function onQuoteReturned(currentStage: Stage, context: EvidenceContext = 
 }
 
 /**
+ * No stage change: records a lateral-reading corroboration between two
+ * independent sources the learner has quoted (bkt-ros, PLAN-REVISION-3.md
+ * section 2c). `firstSourceId`/`secondSourceId` and `independenceReason`
+ * are required on the context this function is given, `firstSourceId`
+ * and `secondSourceId` are never blank strings and never the same id
+ * (lateral-reading.ts's checkSecondSourceGate is what enforces they
+ * differ, before this writer is ever called); `passagesAgree` is the
+ * learner's own agree/disagree verdict, never model-judged, the field
+ * this file's own header names as the one thing here that must NOT come
+ * from the AI, the same floor onCheckResult already keeps for the
+ * learner's explanation text.
+ */
+export function onCorroborationRecorded(
+  currentStage: Stage,
+  context: { sessionId?: string; firstSourceId: string; secondSourceId: string; independenceReason: string; passagesAgree: boolean },
+  now: string = new Date().toISOString(),
+): StageTransition {
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "corroboration",
+    fromStage: currentStage,
+    toStage: currentStage,
+    sessionId: context.sessionId,
+    firstSourceId: context.firstSourceId,
+    secondSourceId: context.secondSourceId,
+    independenceReason: context.independenceReason,
+    passagesAgree: context.passagesAgree,
+  };
+  return { nextStage: currentStage, event };
+}
+
+/**
  * awareness -> understanding: the learner wrote an explanation and the Check
  * tool (task item 4) confirmed it is grounded. "Grounded" here means the tool
  * did not abstain, judged the explanation as supported by the node's own
@@ -212,6 +301,8 @@ export function onCheckResult(
     sourcePrediction: context.sourcePrediction,
     predictionCorrect: context.predictionCorrect,
     forcingEnabled: context.forcingEnabled,
+    secondSourceRequired: context.secondSourceRequired,
+    secondSourceNodeId: context.secondSourceNodeId,
   };
   return { nextStage, event };
 }

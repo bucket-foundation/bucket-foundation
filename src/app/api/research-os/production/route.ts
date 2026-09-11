@@ -58,6 +58,7 @@ import {
   loadLearnerQuoteEvidence,
   loadOwnPriorClaims,
   loadClassPeerAcceptedClaims,
+  loadLearnerCorroborationEvidence,
 } from "@/lib/research-os/db";
 import {
   checkSourceProvenance,
@@ -65,6 +66,7 @@ import {
   requiresCounterEvidence,
   hasCounterEvidence,
   normalizeCounterEvidence,
+  lateralReadingFlag,
   type DuplicateCandidate,
 } from "@/lib/research-os/production-guard";
 import { canonClaimsAsDuplicateCandidates } from "@/lib/research-os/canon-link";
