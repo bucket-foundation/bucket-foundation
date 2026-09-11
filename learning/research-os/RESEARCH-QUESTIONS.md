@@ -27,7 +27,7 @@ Seeded 2026-09-09 from the people and funding streams in `_intake/research-os-k1
 *Considered for pre-registration 2026-09-10, revision 1, and deferred: a `usedSecondSource` outcome (Wineburg and McGrew 2019, `PLAN-REVISION-3.md` section 2c's Locate `secondSource` design response) is not yet registered in `learning/research-os/study/PREREGISTRATION-DRAFT.md`, since the field it would read does not exist in shipped code.*
 11. What is the cognitive-offloading effect of check on later unassisted claim evaluation (Bastani and others 2024; Lee and others 2025)?
 *Pre-registered as of 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md` H1, plus the Lee-2025-and-Fisher-2015 metacognitive confidence instrument in `learning/research-os/study/INSTRUMENTS.md` section 2.*
-*Pre-registered as of 2026-09-10, revision 1: a calibration outcome (stated confidence against source-prediction correctness, `src/lib/research-os/calibration.ts`) is registered as a secondary, exploratory outcome under H1; the class-level production-diversity outcome's own similarity method now has a concrete candidate, `production-guard.ts`'s `jaccardOverlap` (branch `feat/ros-production-guard`, PR #73, open).*
+*Pre-registered as of 2026-09-10, revision 1: a calibration outcome (stated confidence against source-prediction correctness, `src/lib/research-os/calibration.ts`) is registered as a secondary, exploratory outcome under H1; the class-level production-diversity outcome's own similarity method now has a concrete candidate, `production-guard.ts`'s `jaccardOverlap` (PR #73, merged).*
 
 ## Productions and payments
 
