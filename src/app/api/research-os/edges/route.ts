@@ -1,7 +1,7 @@
 /**
  * /api/research-os/edges, the LLM-proposed edge review queue (bkt-ros
  * ros-13, task item 3). Backs graph.edge_proposals
- * (supabase/migrations/20260910050000_research_os_edge_proposals.sql),
+ * (supabase/migrations/20260910050001_research_os_edge_proposals.sql),
  * queued by scripts/research-os/ingest/infer-edges-llm.ts (task item 1)
  * and decided here by a signed-in reviewer.
  *

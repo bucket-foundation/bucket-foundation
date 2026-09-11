@@ -2,6 +2,91 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## Iteration 23: PR #54 review pass
+
+Reviewed PR #54 (`feat/ros-llm-edge-inference`) from the `review/pr54`
+worktree. Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10,
+PR #54 review pass".
+
+### Merged
+
+- `origin/main` twice: first cleanly (`LOOP-LOG.md` only), then again
+  after PR #52 (roster sync) merged concurrently. Five conflicts, all
+  append-only or additive: `BEADS-PENDING.jsonl`, this file, `_intake/
+  research-os-k12/CHANGELOG.md` (kept both entries, reordered
+  newest-first), `package.json` (merged both PRs' `test:research-os`
+  additions into one 23-script chain), and a one-sentence docstring
+  reword in `tools/hypothesis-engine/tests/swarm-20260910/
+  test_serve_props.py` (kept `origin/main`'s wording).
+
+### Fixed
+
+- `scripts/research-os/ingest/test-ingest-infer-llm.ts`: added a
+  property-style sweep for the calibration bound (0.3 to 0.65), point
+  samples only before this pass. 400-point numeric sweep plus adversarial
+  values, and a `sanitizeJudgment` -> `combineAgreement` grid over
+  malformed shapes on both prompts. Suite 277 to 279.
+- `supabase/migrations/20260910050000_research_os_edge_proposals.sql`
+  renamed to `...050001_...`: collided with PR #52's roster migration,
+  which landed the identical `20260910050000` version prefix. Updated its
+  two code references; no migration content changed.
+
+### Verified
+
+- Leak scan clean (no keys, secrets, IPs, non-public hostnames,
+  `/home/gian` paths, Claude session URLs; only the existing
+  `*@school.example` test emails).
+- The proposer never writes `graph.edges`; a split verdict fixes at 0.4,
+  below the 0.6 teacher-flag threshold; approve writes
+  `confidence_source: "teacher"` at 0.95, records the reviewer, is
+  idempotent, rebuilds `graph.prereq_ancestor` best-effort; reject is
+  idempotent with no edge write; the route 403s a non-reviewer; the model
+  call shares the tutor's own abstain and cost-logging path; `model` and
+  `prompt_hash` stored `not null` on every proposal; `TIMELINE.md` carries
+  the unvalidated-ranking label, its own test passing.
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/edges`,
+  `/api/research-os/edges`, `/research-os/roster`,
+  `/api/research-os/roster` all in the manifest), `npm run
+  test:research-os` (298 passed, 0 failed, 23 files), `next lint` on
+  every touched TS/TSX file, `ruff check` on the three touched Python
+  files, `pytest` (27 passed, 0 failed), `agf-lint-voice-src check` /
+  `agf-lint-voice check` on every touched file: all clean.
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+
+## PR #52 review pass
+
+Date 2026-09-10. Review of PR #52 (`feat/ros-roster-sync`) before merge, worktree
+`.ros-worktrees/r52`. Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, PR
+#52 review pass".
+
+### Edited
+
+- `scripts/test-research-os-roster.ts`: added `"adversarial: a birthdate column is dropped
+  at parse time and never reaches a write payload or warning"` (a `usersCsv` row carrying a
+  `birthdate` column, asserting the value never appears on a parsed `RosterUser` or in any
+  diff write payload or warning) and `"roster route: reviewer gate runs before the request
+  body is ever parsed, and rejects with 403"` (a static read of `route.ts`'s own source,
+  confirming the `verifyReviewer`/403 lines are present and precede `req.formData()`). 19
+  tests total, up from 17.
+
+### Verified
+
+Leak scan clean (no keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs). Birthdate never
+parsed, never persisted; only `birth_year_bucket` derived from a grade code. Dry run default;
+apply requires the literal `"true"` flag plus a server-verified reviewer token. Idempotent on
+`sourcedId`. `reviewer_candidates` never auto-promotes into the reviewer allowlist and its
+status is never reset by a re-sync. RLS enabled on `graph.reviewer_candidates`, no
+anon/authenticated policy. `CleverSource`/`ClassLinkSource` cannot be invoked under any
+config. `DATA-INVENTORY.md` already covered the new columns and table.
+
+Gates: `npm ci`, `npx tsc --noEmit`, `npm run build` (both new routes in the manifest),
+`npm run test:research-os` (0 failures), `next lint` on every touched file, `agf-lint-voice
+check` / `agf-lint-voice-src check` on every touched file: all clean.
+
 ## LLM-assisted edge inference and ros-11's TIMELINE.md label
 
 Date 2026-09-10. Branch `feat/ros-llm-edge-inference`, worktree
@@ -81,6 +166,50 @@ paid-cite envelope and the Research OS canon importer both read from.
   branch's last merge). One append-only collision with main's new ros-11
   entry, resolved by keeping both lines.
 
+## Roster sync skeleton, ros-06 follow-on
+
+Date 2026-09-10. Branch `feat/ros-roster-sync`, worktree `.ros-worktrees/roster`. Standard-first
+OneRoster 1.2 CSV roster sync, `PLAN-REVISION-2.md` section 3 item 4. Full account:
+`_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, roster sync skeleton (ros-06 follow-on)".
+
+### Added
+
+- `supabase/migrations/20260910050000_research_os_roster.sql`: `source_system`/`sourced_id`
+  columns on `graph.classes` and `graph.learner_profiles`, plain unique indexes on each, and
+  a new `graph.reviewer_candidates` table (RLS enabled, no anon/authenticated policy).
+- `src/lib/research-os/roster/csv.ts`: a dependency-free RFC 4180 CSV reader.
+- `src/lib/research-os/roster/grade.ts`: `gradeToBirthYearBucket`, mapping a OneRoster grade
+  code to `graph.learner_profiles.birth_year_bucket`.
+- `src/lib/research-os/roster/types.ts`: `RosterBundle`, `RosterSource`, and the row types
+  shared by every source.
+- `src/lib/research-os/roster/oneroster.ts`: parses `orgs.csv`/`users.csv`/`classes.csv`/
+  `enrollments.csv`, resolving a user's role from `enrollments.csv` (OneRoster 1.2 dropped
+  `role` from `users.csv`).
+- `src/lib/research-os/roster/diff.ts`: `computeRosterDiff` (pure) and
+  `applyRosterDiffToState` (an offline mirror of the live write path, the same pattern
+  `src/lib/research-os/privacy.ts`'s `simulateLearnerDelete` already uses).
+- `src/lib/research-os/roster/sources.ts`: `OneRosterCsvSource` implemented; `CleverSource`
+  and `ClassLinkSource` stubs that throw "not configured" with a documented env contract.
+- `src/lib/research-os/roster/apply.ts`: the live Supabase adapter (classes, class_members,
+  reviewer_candidates, learner_profiles, and a Supabase Auth email index).
+- `src/app/api/research-os/roster/route.ts`: `POST /api/research-os/roster`, multipart, four
+  required CSV fields, dry-run default, gated by `verifyReviewer`.
+- `src/app/research-os/roster/page.tsx`: the upload page, the same email-OTP flow as
+  `/research-os/class`.
+- `scripts/test-research-os-roster.ts`: 17 tests, wired into `npm run test:research-os`.
+- `learning/research-os/ROSTER.md`: the field-mapping table, what is discarded, the
+  idempotency keys, what Clever and ClassLink add, and the reviewer-candidate approval flow.
+
+### Edited
+
+- `package.json`: `test:research-os` gained the new test script at the end of its chain.
+- `learning/research-os/compliance/DATA-INVENTORY.md`: the new migration filename in the
+  source list; `graph.classes` and `graph.learner_profiles` rows note their new columns;
+  a new `graph.reviewer_candidates` row in "Not learner data"; a data-minimization note on
+  the roster sync's own grade-to-bucket path and the candidates table's minimal columns.
+- `learning/research-os/TEACHER-LAYER.md`: its own "TODO(Phase 1, roster sync)" note gained
+  a pointer to this work. No existing text changed or removed.
+
 ### Removed
 
 None.
@@ -149,6 +278,14 @@ build`, and `npm run test:research-os` all clean. Leak scan against the
 full diff found no keys, `.env` contents, IPs, non-public hostnames,
 personal emails other than `gianyrox@gmail.com`, PII, `/home/gian`
 paths, or Claude session URLs.
+
+`npm ci`, `npx tsc --noEmit`, `npm run build` (`/api/research-os/roster` and
+`/research-os/roster` both confirmed in the build manifest), `npm run test:research-os`
+(17 new tests, full chain green), `next lint` on every touched file: all clean.
+`agf-lint-voice-src check` and `agf-lint-voice check` clean on every touched file after
+fixing four antithesis constructions, one meta-commentary phrase, one AI-tell word
+(`bespoke`), and one appended-clause heading found on the first pass. Neither the review,
+class, workspace, nor consent route handlers were touched, per this bead's own instructions.
 
 ## PR #44 review pass
 
@@ -2058,57 +2195,6 @@ commits landed on `feat/ros-07-consent-wiring` but merge did not happen.
   the same 16, `agf-lint-voice check` on the touched docs: all clean.
 - PR #47's Vercel check failure ("Deployment rate limited, retry in 24
   hours") is a Vercel free-tier daily deployment cap.
-
-### Edited
-
-- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
-
-## Iteration 22: PR #54 review pass
-
-Reviewed PR #54 (`feat/ros-llm-edge-inference`) from the `review/pr54`
-worktree: LLM-assisted prerequisite-edge inference, the two-prompt
-agreement check, `/research-os/edges` human review, and the `ros-11`
-remainder labeling `hte/export.py`'s `TIMELINE.md` export unvalidated.
-
-### Merged
-
-- `origin/main` into `review/pr54`: clean, no conflicts (one file,
-  `tools/hypothesis-engine/docs/LOOP-LOG.md`, added on `main` only).
-
-### Fixed
-
-- `scripts/research-os/ingest/test-ingest-infer-llm.ts`: the calibration
-  bound (`llmSelfReportedToConfidence` into `[0.3, 0.65]`) had only
-  point-sample coverage. Added a property-style sweep (400 points from -2
-  to 2 in 0.01 steps, plus `NaN`/`Infinity`/`-Infinity`/`-0`/extreme
-  magnitudes) and a `sanitizeJudgment` → `combineAgreement` grid over
-  malformed answer/justification/confidence shapes on both prompts,
-  asserting every proposed confidence lands in `(0, INFERRED_CONFIDENCE_MAX]`
-  and every disagreement stays below `LOW_CONFIDENCE_THRESHOLD`. Suite grew
-  277 to 279. Two `agf-lint-voice-src` hits on the new comments (an
-  antithesis construction and one banned filler word) fixed before commit.
-
-### Verified
-
-- Leak scan over the full diff: no keys, tokens, secrets, IPs, non-public
-  hostnames, `/home/gian` paths, or Claude session URLs; the only emails
-  are the existing `*@school.example` test fixtures.
-- The proposer never writes `graph.edges` (only the approve branch of
-  `/api/research-os/edges` does); a split verdict fixes at 0.4, below the
-  0.6 teacher-flag threshold; approve writes `confidence_source: "teacher"`
-  at 0.95, records the reviewer, is idempotent, and rebuilds
-  `graph.prereq_ancestor` best-effort; reject is idempotent with no edge
-  write; the route 403s a non-reviewer; the model call shares the tutor's
-  own abstain and cost-logging path; `model` and `prompt_hash` are stored
-  `not null` on every proposal; `hte/export.py`'s `TIMELINE.md` carries the
-  unvalidated-ranking note and column label, its own test passing.
-- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os/edges` and
-  `/api/research-os/edges` both in the manifest), `npm run test:research-os`
-  (279 passed, 0 failed, 22 files), `next lint` on all 16 touched TS/TSX
-  files, `ruff check` on the three touched Python files, `pytest` (27
-  passed, 0 failed) on `test_export.py` and its two property-test
-  siblings, `agf-lint-voice-src check` / `agf-lint-voice check` on every
-  touched file: all clean.
 
 ### Edited
 

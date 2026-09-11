@@ -112,7 +112,7 @@ test("isReviewerEmail: an unset allowlist fails closed for the edges route too",
 // one of them.
 // ---------------------------------------------------------------------------
 
-const EDGE_PROPOSALS_MIGRATION = join(__dirname, "..", "supabase", "migrations", "20260910050000_research_os_edge_proposals.sql");
+const EDGE_PROPOSALS_MIGRATION = join(__dirname, "..", "supabase", "migrations", "20260910050001_research_os_edge_proposals.sql");
 
 test("graph.edge_proposals migration: RLS enabled, pair uniqueness, and a closed status enum", () => {
   const sql = readFileSync(EDGE_PROPOSALS_MIGRATION, "utf8");

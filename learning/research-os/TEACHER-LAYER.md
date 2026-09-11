@@ -18,6 +18,8 @@ This covers the two pieces PLAN-REVISION-1.md's item 5 named as blocking every d
 
 **TODO(Phase 1, roster sync).** `_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 3's integrations list names the real target: OneRoster 1.2 via Clever/ClassLink, plus Google Classroom import. `graph.class_members` rows are entered by hand today; a sync job keyed the same way (`class_id`, `learner_id`) replaces the manual step without changing any downstream reader (`src/lib/research-os/class-view.ts`, `src/app/api/research-os/class/route.ts`). No code in this bead assumes rows arrive by hand; only the current absence of a sync job does.
 
+A OneRoster 1.2 CSV skeleton for this now exists: `learning/research-os/ROSTER.md`, `src/lib/research-os/roster/`, `POST /api/research-os/roster`. Clever and ClassLink are interface stubs, not yet implemented, behind the same `RosterSource`; Google Classroom import remains unbuilt.
+
 ## Gates
 
 Two layers, matching every other `graph.*` table in this repo:
