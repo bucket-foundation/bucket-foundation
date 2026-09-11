@@ -2,6 +2,82 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, PR #62 and PR #67 review
+
+- **Scope**: review pass over #62 (`fix/hte-writeback-review-2`, pipeline
+  stage cascade rules, writeback CLI tests, full-population candidate
+  reconstruction) then #67 (`docs/hte-loop-log-2026-09-11-tick3`), in
+  that order, from another session. Leak scan clean on both (no keys,
+  IPs, emails, home paths, or session URLs in either diff).
+- **#62, fixed on the branch**: merged `origin/main` (brings in PR #60's
+  understanding-artifact refusal) and found no test at the
+  `run_pipeline`/CLI layer exercising both write-back refusals together
+  (only at `write_back` directly); added
+  `test_writeback_stage_reports_write_backs_own_signoff_refusal_as_a_failed_stage`
+  and `..._understanding_refusal_as_a_failed_stage` in `test_pipeline.py`.
+  Separately, two of this PR's own new real-write (`dry_run=False`)
+  tests wrote to the committed `hte/data/ranking-holdout-ledger.jsonl`
+  on every run (no `ledger_path` override), and one skipped
+  `HTE_LLM_MODE=fake`, passing only when an earlier test in the run
+  order left that env var set. Plumbed `writeback_ledger_path` through
+  `pipeline.run_pipeline`'s config, pointed every real-write test at a
+  `tmp_path` ledger, and set `HTE_LLM_MODE=fake` explicitly on the two
+  that needed it.
+- **#62, gates**: `make test`: 1239 passed, 18 deselected, 0 failed.
+  `ruff check .` clean on every file this PR touches (43 pre-existing
+  errors elsewhere in the tree, unchanged from main). Squash-merged
+  (`939bac711`).
+- **#67, governance**: docs-only change, no Research OS surface touched.
+  Spot-checked four claims in the new log entry against repo state:
+  squash-merge commit `4bd4e07dd` matches PR #66's own merge commit;
+  PRs #59, #58, #56, #55, #54, #51 all confirmed `MERGED`; the claimed
+  `tests/swarm-20260911/test_api_validation_props.py` exists with
+  exactly the claimed 21 tests, covering the three named functions. No
+  contradiction with merged code.
+- **#67, gates**: merged `origin/main` twice (before and after #62
+  landed in this same pass); both clean, no conflicts. No code file
+  touched, so `make test`/`ruff` don't apply. Squash-merged
+  (`5e2dfa521`).
+- **Blocked**: nothing.
+
+## 2026-09-11, tick 3, api.py swarm and six PR reviews
+
+- **Environment gap**: this container carried none of `pytest`,
+  `hypothesis`, `jsonschema`, `matplotlib`, `pandas`/`pyarrow`, or
+  `coverage`; installed all with `pip3 install --user`, no sudo. Once
+  installed, `make test` (fast) on `main`: 1084 passed, 18 deselected, 0
+  failed. No engine defect.
+- **Random campaigns**: synth `--seeds 0-29` fake mode, 30/30, coverage
+  1.0, gate PASS; repeated seeds 0-2, identical to full float precision,
+  no nondeterminism. `realsweep` over education-atlas/production/
+  literature `--seeds 0-9` each, 0/30 crashed; education-atlas's
+  0.15-0.5 spread matches the pre-fix baseline PR #48 (merged this tick)
+  already documents, not a new defect.
+- **Test swarm**: `hte/api.py`'s `_validate_production_record`
+  (86.7%, no dedicated swarm file; `tests/test_api.py` covers its
+  enum-value branches only). New `tests/swarm-20260911/
+  test_api_validation_props.py`, 21 tests over every shape-validation
+  branch plus `_llm_mode_override`/`_calibration_summary`; isolated
+  `hte/api.py` coverage 86% to 99%. Full suite 1105 passed. Skipped
+  regenerating `tests/COVERAGE.md`: `make test-cov`'s full profile hit
+  two `slow` tests failing on missing `agf-lint-voice`/`pdflatex`
+  binaries (the second newly confirmed), which would have written a
+  snapshot skewed by environment gaps rather than real numbers.
+- **PRs opened**: #66 (the swarm work above), reviewed clean and
+  squash-merged (`4bd4e07dd`).
+- **PRs reviewed**: #59, #58, #56, #55, #54 (new since tick 2), #51
+  (re-review after a new commit). All six merged by the concurrent
+  local-session loop shortly after, none matching this loop's own merge
+  authority regardless. Findings: #59 clean, two Medium notes; #58 one
+  High (union-interval rule yields multi-millennium spans on 51 of 52
+  correlations, so the reported coverage gain reads as an interval-width
+  artifact); #56 clean; #55 two Medium (a real silent-failure gap in
+  `parse.py`'s rename handling, a stale doc line), two Low; #54 RLS
+  confirmed deny-all/service-role-only, schema-alignment trigger did not
+  fire, one Medium (missing field length cap); #51 the tick-2 conflict
+  is fixed but `main` moved again, fresh Medium re-rebase finding.
+- **Blocked**: nothing.
+
 ## 2026-09-10, PR #60 review
 
 - **Scope**: review pass over PR #60 (`feat/ros-11-engine-review-items`,

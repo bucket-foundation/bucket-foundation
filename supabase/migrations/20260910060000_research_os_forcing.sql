@@ -1,0 +1,15 @@
+-- Research OS for K-12, Check cognitive-forcing arm switch (bkt-ros,
+-- learning/research-os/PLAN-REVISION-2.md section 2a; the three-arm pilot
+-- names a constrained arm, a permissive-tutor arm, and a no-AI arm, and
+-- forcing applies only inside the constrained arm, so the comparison arm's
+-- classes need a way to turn it off).
+--
+-- Nullable: null means "no class-level override, read the
+-- RESEARCH_OS_FORCING_ENABLED env var instead"
+-- (src/lib/research-os/forcing.ts's resolveForcingEnabled). A real
+-- true/false pins a class to one arm regardless of the env default, so a
+-- pilot can run the comparison arm's classes on the same deployment as the
+-- default-on arm's classes.
+--
+-- Idempotent: safe to re-run, matching every other migration in this repo.
+alter table graph.classes add column if not exists forcing_enabled boolean;

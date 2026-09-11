@@ -14,6 +14,23 @@ from . import pipeline
 
 
 def _cmd_run(args: argparse.Namespace) -> int:
+    if args.writeback and not args.branch:
+        # Caught here, at parse time, rather than left to `hte.pipeline.
+        # run_pipeline`'s own `writeback`-stage precondition check: that
+        # check still exists (a defense for a caller of `run_pipeline`
+        # directly, bypassing this CLI), but a caller who mistypes
+        # `--branch` on the command line gets a loud, immediate usage
+        # error instead of a real `publish` running over a writeback
+        # that never had a branch to write to (PR #36's own review).
+        args._parser.error("--branch is required when --writeback is set")
+    if args.writeback and not args.signoff:
+        # The same loud, immediate usage error, alongside --branch: a
+        # named human approver is required before any write into
+        # bucket-canon/ (PLAN.md section 10, GOVERNANCE.md).
+        # `hte.pipeline.run_pipeline`'s own writeback-stage precondition
+        # check stays too, as a defense for a direct `run_pipeline`
+        # caller that bypasses this CLI.
+        args._parser.error("--signoff is required when --writeback is set")
     config = {
         "corpus": args.corpus,
         "out_dir": args.out,
@@ -62,7 +79,11 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument("--writeback-floor-p", type=float, default=0.6, help="write_back's own floor_P")
     run_p.add_argument("--writeback-floor-u-max", type=float, default=0.5, help="write_back's own floor_u_max")
     run_p.add_argument("--skip-publish", action="store_true", help="skip the publish stage (commit + gdrive); use when a PR already carries that step")
-    run_p.set_defaults(func=_cmd_run)
+    # `_parser` is the `run` subparser itself, what `_cmd_run`'s own
+    # --branch/--writeback cross-argument check calls `.error()` on, so
+    # the usage line a caller sees on that error names `run`'s own
+    # flags, distinct from the top-level `hte-pipeline` parser's own.
+    run_p.set_defaults(func=_cmd_run, _parser=run_p)
 
     return parser
 

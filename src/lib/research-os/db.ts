@@ -371,6 +371,36 @@ export async function loadClassMembers(classIds: string[]): Promise<Map<string, 
   return out;
 }
 
+/**
+ * The per-class Check cognitive-forcing override (bkt-ros, PLAN-REVISION-2.md
+ * section 2a; `graph.classes.forcing_enabled`, migration
+ * 20260910060000_research_os_forcing.sql). Returns `null` on "no override
+ * on file", which is also what a learner in no class, or any query
+ * failure, returns: `src/lib/research-os/forcing.ts`'s
+ * resolveForcingEnabled reads `null` as "defer to the
+ * RESEARCH_OS_FORCING_ENABLED env default," the same fail-open posture
+ * loadAncestorRows uses above, so this optional lookup can never break a
+ * Check call, including in an environment where this migration has not
+ * run yet. A learner in more than one class (not a shape the manual seed
+ * or the roster sync produces today) reads the first class row with a
+ * non-null override; Phase 1's pilot assigns one class per arm, so this is
+ * documented rather than enforced.
+ */
+export async function loadForcingEnabledForLearner(learnerId: string): Promise<boolean | null> {
+  try {
+    const svc = graphService();
+    const { data: memberRows, error: memberErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
+    if (memberErr || !memberRows || memberRows.length === 0) return null;
+    const classIds = Array.from(new Set((memberRows as { class_id: string }[]).map((r) => r.class_id)));
+    const { data: classRows, error: classErr } = await svc.from("classes").select("id,forcing_enabled").in("id", classIds);
+    if (classErr || !classRows) return null;
+    const withOverride = (classRows as { id: string; forcing_enabled: boolean | null }[]).find((c) => typeof c.forcing_enabled === "boolean");
+    return withOverride ? withOverride.forcing_enabled : null;
+  } catch {
+    return null;
+  }
+}
+
 interface AncestorRow {
   node_id: string;
   ancestor_id: string;
