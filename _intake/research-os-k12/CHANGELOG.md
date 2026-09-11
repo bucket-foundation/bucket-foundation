@@ -2232,3 +2232,30 @@ worktree or the main repo's own working tree.
 pass (six rather-than or comma-negation antithesis constructions, four
 filler adverbs, two hits on one banned intensifier, one heading carrying an
 appended comma clause), all fixed by hand; 0 remaining on the second pass.
+
+## 2026-09-10, PR #69 review pass
+
+Worktree `~/agfarms/.ros-worktrees/r69`. `git merge origin/main` picked up
+PR #63 (cognitive forcing on Check), one commit behind at review time; one
+conflict in `learning/research-os/CHANGE-LEDGER.md`, both sides kept. PR #63
+was missing from `PLAN-REVISION-3.md` section 1 despite falling inside its
+own stated #45-#66 range; added as a table row, "eighteen PRs" corrected to
+"nineteen" everywhere that count appears (`PLAN-REVISION-3.md`, `PLAN.md`,
+`PLAN-REVISION-2.md`). Test counts re-verified fresh post-merge: app 367
+passed/0 failed/27 files (was 326/0/23 against the pre-PR#63 fork point),
+engine 1225 passed/18 deselected/0 failed (was 1172/18/0), canon pipeline
+unchanged at 41/0; both the fork-point figures and the post-merge
+reconciliation now stand side by side in section 1. A new operational
+blocker recorded: on 2026-09-11 an agent ran a hard reset in the main
+working tree at `~/agfarms/bucket-foundation`, discarding uncommitted
+archive-runner outputs on about 20 entries plus two log files, regenerable
+by the runner. `BEADS-PENDING.jsonl` line 72's leaked
+`/home/gian/agfarms/.wt-fix10` path, already flagged and left untouched by
+PR #63's own review pass, rewritten to `~/agfarms/.wt-fix10`. A repo-wide
+`/home/gian` grep otherwise turned up thousands of hits in a bead
+event-sourcing log, systemd unit files that need absolute paths to run, and
+large runner logs, a pre-existing repo-wide convention rather than a
+discrete leak; left unchanged as out of scope for a docs-only review. Leak scan of
+the PR's own diff: clean, no keys, IPs, non-public hostnames, personal
+emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
+session URLs. `agf-lint-voice check` clean on every file this pass touched.

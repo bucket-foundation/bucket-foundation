@@ -2749,3 +2749,60 @@ worktree or the main repo's own working tree.
   batch-four card content used in this revision was re-extracted afterward
   via `git archive` into a scratch directory, touching neither the main
   repo's working tree nor its index.
+
+## PR #69 review pass: the missing PR and the leaked path
+
+Review of PR #69 (plan revision 3, Iteration 24 above) found the revision
+merged one commit behind `origin/main`: PR #63 (cognitive forcing on Check,
+its own review pass logged above) had landed after this branch's own last
+merge from `main`. `git merge origin/main` (one conflict, this file, both
+sides kept, PR #63's review-pass section placed ahead of Iteration 24)
+brought it in.
+
+### Fixed
+
+- `PLAN-REVISION-3.md` section 1: PR #63 added as a table row between #61
+  and #64; "eighteen PRs" corrected to "nineteen" in the section-1 opening
+  line and in the Vercel-blocker paragraph's own pace reference. The
+  "Current test counts" paragraph gains a fresh post-merge reconciliation:
+  app 367 passed, 0 failed, 27 files (PR #63's three new test files);
+  engine 1225 passed, 18 deselected, 0 failed (PR #60's held-back items now
+  counted); canon pipeline stays 41 passed, 0 failed. The stale
+  pre-merge figures against commit `5ee02432a` stay in place alongside the
+  reconciliation, matching the document's own stated methodology of citing
+  the fork-point commit first.
+- `PLAN.md` and `PLAN-REVISION-2.md`'s own revision-3 pointer paragraphs:
+  same eighteen-to-nineteen correction; "one of them new" on operational
+  blockers corrected to "two of them new" once the hard-reset blocker below
+  was added.
+- A new operational blocker added to `PLAN-REVISION-3.md` section 5: on
+  2026-09-11 an agent ran a hard reset in the main working tree at
+  `~/agfarms/bucket-foundation`, discarding uncommitted archive-runner
+  outputs on about 20 entries plus two log files, regenerable by the
+  runner on its next scheduled pass.
+- `BEADS-PENDING.jsonl` line 72: a pre-existing leaked path,
+  `/home/gian/agfarms/.wt-fix10`, already flagged and left untouched by
+  the PR #63 review pass above, rewritten to `~/agfarms/.wt-fix10` (text
+  and meaning otherwise unchanged).
+
+### Verified
+
+- `npm run test:research-os` (fresh, post-merge, `node_modules` symlinked
+  from the main repo's own checkout): 367 passed, 0 failed, 27 files.
+- `make test` in `tools/hypothesis-engine`, `EDUCATION_ATLAS_DIR` pointed
+  at the sibling checkout (fresh, post-merge): 1225 passed, 18 deselected,
+  0 failed.
+- `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, 0 failed,
+  unchanged.
+- Leak scan of the PR #69 diff (keys, `.env` values, IPs, non-public
+  hostnames, personal emails other than `gianyrox@gmail.com`, PII,
+  `/home/gian` paths, Claude session URLs): clean, zero hits.
+- A repo-wide `git grep` for `/home/gian` outside `BEADS-PENDING.jsonl`
+  found thousands of hits across `.beads/backup/events.jsonl` (a bead
+  event-sourcing log), systemd unit files under `scripts/`/`services/`
+  that require absolute paths to function, and large runner logs
+  (`_intake/.archive-runner.log`, `learning/.buildloop/run.log`). These
+  are a pre-existing, repo-wide operational convention rather than a
+  discrete leak; left unchanged as out of scope for this review, flagged
+  here for a dedicated cleanup pass rather than a mass edit inside a
+  docs-only PR review.
