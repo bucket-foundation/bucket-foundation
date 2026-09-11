@@ -2,6 +2,127 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## Literature batch four
+
+Date 2026-09-10. Branch `intake/ros-literature-4`, worktree `.ros-worktrees/lit4`.
+Literature batch four: 30 new DOI- or ERIC-verified papers targeted at the gap named for
+this pass, evidence about students doing research in K-12 itself, across six sub-areas:
+course-based undergraduate and high-school research experiences, science-fair and
+competition equity, project-based and inquiry-learning outcomes, writing-to-learn and
+argumentation, epistemic cognition and nature of science, and citation and source
+evaluation.
+
+### Added
+
+- 10 files under `_intake/research-os-k12-literature/student-research-experiences/`: new
+  seventh branch. CURE outcome and instrument studies (Bangera and Brownell 2014; Corwin,
+  Graham, and Dolan 2015; Hanauer and Dolan 2014), a research-apprenticeship critical
+  review and a high-school apprenticeship outcome study (Sadler and colleagues 2010;
+  Burgin, Sadler, and Koroly 2012), a long-horizon high-school apprenticeship outcome study
+  (Tai and colleagues 2017), and science-fair and competition equity evidence (Grinnell and
+  colleagues 2018, 2020; Steegh and colleagues 2019; Lakin and colleagues 2021).
+- 7 files under `_intake/research-os-k12-literature/project-based-inquiry-learning/`: new
+  eighth branch. Project-based-learning evidence (Condliffe 2017; Chen and Yang 2019;
+  Kingston 2018), inquiry-teaching guidance meta-analyses (Furtak and colleagues 2012;
+  Lazonder and Harmsen 2016), and the minimal-guidance-versus-scaffolding debate (Kirschner,
+  Sweller, and Clark 2006; Hmelo-Silver, Duncan, and Chinn 2007).
+- 5 files under `_intake/research-os-k12-literature/writing-and-argumentation/`: new ninth
+  branch (Osborne 2010; Bangert-Drowns, Hurley, and Wilkinson 2004; Graham and Perin 2007;
+  Berland and Reiser 2009; Sampson and Clark 2008).
+- 4 files under `_intake/research-os-k12-literature/epistemic-cognition/`: new tenth branch
+  (Kuhn 1999; Sandoval 2005; Chinn, Buckland, and Samarapungavan 2011; Lederman and
+  colleagues 2002).
+- 4 files under `_intake/research-os-k12-literature/source-evaluation/`: new eleventh
+  branch (Wineburg and McGrew 2019; Breakstone and colleagues 2021; McGrew and colleagues
+  2018; Kuiper, Volman, and Terwel 2005).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended from 117 to 147 rows
+  across eleven areas (five new); intro paragraph, per-area counts, and a new "Literature
+  batch four" summary section.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: an "Evidence added
+  in batch four" paragraph appended under six of the twelve open questions (1, 4, 5, 6, 10,
+  12), each naming support, complication, or both. Questions 2, 3, 7, 8, 9, and 11 have no
+  batch-four paper bearing on them directly and were left unedited.
+- `learning/research-os/PLAN-REVISION-2.md`: an "Evidence added in batch four" paragraph
+  appended to section 2a (human-AI complementarity on productions), 2b (progression
+  unidimensionality), and 2d (the ros-08 power finding). Section 2c (prerequisite
+  annotation agreement) has no batch-four paper bearing on it directly and was left
+  unedited.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass, logged below in this
+  same iteration for cross-reference.
+
+### Removed
+
+None.
+
+### Verified
+
+Read in full before writing: `_intake/research-os-k12-literature/README.md` (for the
+frontmatter schema, copied from `auchincloss-et-al-2014-cure-assessment.md` and
+`cuban-2001-oversold-underused-computers-classroom.md`), `learning/research-os/
+PLAN-REVISION-2.md`, `learning/research-os/funding/WAVE-1-TARGETS.md` and
+`FAST-FORWARD-2026.md`, and `learning/research-os/study/PREREGISTRATION-DRAFT.md`. Every
+new paper's DOI and OpenAlex work id were checked live against `api.openalex.org` and
+`api.crossref.org` at intake time; none are placeholders. Two research-brief papers,
+Condliffe (2017) and Kingston (2018), carry no Crossref DOI; each verified against its own
+ERIC record (ED578933, ED590832), the same non-DOI handling this corpus already applies to
+Cuban (2001) and Perkins (1993). Three candidate papers named in the task brief were
+searched for and not found with a resolvable DOI matching the brief exactly: "Hanauer 2017
+project ownership" (the closest verified match, Hanauer and Dolan 2014's own Project
+Ownership Survey, used in its place), "Miller 2018" high-school research program evaluation
+(the closest verified match, Burgin, Sadler, and Koroly 2012, used in its place), and
+"Sahin 2015" science-fair and STEM-competition evidence (Steegh and colleagues 2019 and
+Lakin and colleagues 2021 used as the closest verified equity-of-participation matches). No
+blockquote or extended verbatim passage from any source paper past a 60-word threshold; all
+`key_claims` and body text are paraphrase. `_intake/research-os-k12-literature/README.md`'s
+row count (147) matched the corpus file count exactly, `find` counted per branch: 37
+educational methods, 32 HCI, 18 scientific discovery, 12 AI and researchers, 7 teacher
+workload and adoption, 11 prerequisite graphs, 10 student research experiences, 7
+project-based and inquiry learning, 5 writing and argumentation, 4 epistemic cognition, 4
+source evaluation. A grep-based self-audit against the full banned-word, filler-adverb,
+AI-tell, antithesis, and em/en-dash rule lists ran against every file this pass authored or
+edited, since `agf-lint-voice check` silently scans zero files under any path containing an
+`_intake` segment, the same org-level ignore-list bug literature batch three's own ledger
+entry already flagged (not fixed here, outside this task's scope). Every flagged instance
+was rewritten before commit; `PLAN-REVISION-2.md` and `learning/research-os/CHANGE-LEDGER.md`
+itself, outside the `_intake` tree, were scanned by the real linter directly during each
+commit and returned zero violations, corroborating the self-audit's own result.
+
+## PR #65 review pass
+
+Date 2026-09-10. Review of PR #65 (`intake/ros-literature-4`, literature batch four)
+before merge, worktree `.ros-worktrees/r65`. Full account: `_intake/research-os-k12/
+CHANGELOG.md`, "2026-09-10: literature batch four, PR #65 review pass".
+
+### Edited
+
+- `_intake/research-os-k12-literature/epistemic-cognition/
+  kuhn-1999-developmental-model-critical-thinking.md`: removed the banned filler word
+  `actually` from `why_it_matters`.
+- `_intake/research-os-k12-literature/student-research-experiences/
+  steegh-et-al-2019-gender-differences-competitions.md` and `lakin-et-al-2021-
+  broadening-participation-fairs.md`: `why_it_matters` on both edited to name the
+  unresolved "Sahin 2015" citation and cross-reference each other as the two closest
+  verified equity-of-participation matches, matching the substitute-labeling pattern
+  already used on the Hanauer and Burgin cards.
+- `_intake/research-os-k12-literature/README.md`: a documentation line added noting the
+  Kuiper, Volman, and Terwel (2005) title's en dash is the publisher's own typesetting,
+  reproduced verbatim from the card's own `voice-ignore-line`-marked frontmatter.
+
+### Verified
+
+Leak scan clean (keys, `.env` values, IPs, hostnames, personal emails, PII, absolute
+local paths, session URLs); a first-pass phone-number regex hit was confirmed to be DOI
+and OpenAlex work-id digit strings. Eight of thirty new cards sampled
+against Crossref, OpenAlex, and ERIC (both ERIC-only cards, all three substitute-source
+cards, and three more at random): all eight matched on title, authors, year, and venue.
+README's 147-row index, per-area counts, and file links matched the corpus on disk
+exactly. The overlap map's six batch-four paragraphs and `PLAN-REVISION-2.md`'s three
+both reference files that exist. `git merge origin/main` clean. `npm ci` and
+`npm run build` both passed. No file under `src/` or `public/` changed.
+
 ## PR #61 review pass
 
 Date 2026-09-10. Review of PR #61 (`feat/canon-signoff-tool`) before merge,
