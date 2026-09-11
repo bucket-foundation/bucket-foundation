@@ -1,0 +1,62 @@
+{
+  "id": "prod-030",
+  "created_at": "2020-03-01T00:00:00Z",
+  "author_role": "student",
+  "grade_band": "11-12",
+  "school_or_district_id": "district-a",
+  "research_question": "RQ22: does isolated-quote checking overcredit cherry-picked spans compared with full-document-context checking?",
+  "claims": [
+    {
+      "text": "An independent district's own full-document check contradicted an isolated-quote verdict the same way an earlier district's own check-verdict reading did.",
+      "stance": "extends",
+      "slots": {
+        "actor": "teacher-reviewer",
+        "action": "contradicted",
+        "object": "check-verdict",
+        "place": "review-session",
+        "mechanism": "context-window-scope"
+      },
+      "interval": {
+        "start": 2026,
+        "end": 2026
+      },
+      "evidence": [
+        {
+          "source_id": "src-hte-self-report-twin-030",
+          "locator": "self-report.json:twin_030_summary",
+          "quote": "An independent district's own full-document check contradicted an isolated-quote verdict the same way an earlier district's own check-verdict reading did.",
+          "kind": "textual",
+          "tier": "T2",
+          "citations": [
+            {
+              "type": "url",
+              "value": "https://example.org/synth/src-hte-self-report-twin-030"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "review": {
+    "status": "accepted",
+    "history": [
+      {
+        "status": "draft",
+        "date": "2020-01-15"
+      },
+      {
+        "status": "peer-reviewed",
+        "date": "2020-02-15"
+      },
+      {
+        "status": "teacher-reviewed",
+        "date": "2020-03-15"
+      },
+      {
+        "status": "accepted",
+        "date": "2020-04-15"
+      }
+    ]
+  },
+  "provenance": "phase-0-quantum-history-pilot"
+}
