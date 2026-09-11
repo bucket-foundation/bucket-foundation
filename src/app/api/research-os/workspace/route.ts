@@ -38,6 +38,24 @@
  *   - (Check, Organize) logs a best-effort per-call cost estimate from the
  *     provider's own token usage, when reported (llm.ts's logToolCost).
  *
+ * ros-14 UPDATE (faded guidance for low-prior-knowledge learners): the
+ * "check" case computes an authoritative guidance level server-side --
+ * never trusts a client-supplied value, matching every other verdict-
+ * relevant input in this route -- via guidance.ts's guidanceLevel, scoped
+ * to the CURRENT node's own prerequisite chain (computeFrontier with the
+ * checked node itself as target, since this route is node-agnostic by
+ * design and has no reliable way to know which page-level target a given
+ * nodeId session belongs to; see learning/research-os/GUIDANCE.md section
+ * 2 for why this scoping choice is equivalent to the page target's own
+ * chain on Phase 0's single connected seed path). A class's own
+ * research_os_guidance_enabled switch (db.ts's isGuidanceEnabledForLearner)
+ * can force the level to "low" regardless of the computed level, the
+ * pilot's control-arm gate. The resulting level adapts grounding.ts's
+ * Check prompt (guidance.ts's own header, item 3) and is logged on the
+ * resulting evidence event (stages.ts's EvidenceEvent.guidanceLevel) and
+ * returned in the response so the workspace page's worked-example display
+ * stays consistent with what the tutor's own feedback just used.
+ *
  * Request: { action, sessionId?, ...action-specific fields }
  *   locate:   { query, branch? }
  *   quote:    { nodeId }
@@ -66,8 +84,10 @@ import { locateHits } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
 import { dailyToolCap, recordAndCheck, dailyCapMessage } from "@/lib/research-os/rate-limit";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
-import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { computeFrontier } from "@/lib/research-os/frontier";
+import { guidanceLevel as computeGuidanceLevelForLearner } from "@/lib/research-os/guidance";
+import type { GuidanceLevel, Stage } from "@/lib/research-os/types";
+import { configured, graphService, verifyLearner, recordEvidence, loadSubgraph, loadLearnerStates, isGuidanceEnabledForLearner } from "@/lib/research-os/db";
 import { getPassage } from "@/lib/research-os/passages";
 import type { Provenance } from "@/lib/research-os/types";
 
@@ -210,7 +230,7 @@ export async function POST(req: NextRequest) {
 
       const { data: node, error: nodeErr } = await svc
         .from("nodes")
-        .select("id,title,summary,provenance")
+        .select("id,slug,branch,title,summary,provenance")
         .eq("id", nodeId)
         .maybeSingle();
       if (nodeErr || !node) return bad(404, "node_not_found");
@@ -223,12 +243,31 @@ export async function POST(req: NextRequest) {
         prereqSummaries = prereqNodes || [];
       }
 
+      // ros-14: an authoritative guidance level, computed server-side from
+      // this node's own prerequisite chain and the learner's recent Check
+      // history (see this file's header for why the chain is scoped to
+      // the checked node rather than a page-level target), then forced to
+      // "low" if the learner's own class has turned the arm switch off.
+      // Every failure here (a fresh environment with no branch subgraph
+      // yet, a read error) falls back to "medium," the neutral default,
+      // rather than blocking the Check call itself.
+      let guidance: GuidanceLevel = "medium";
+      try {
+        const { nodes: branchNodes, edges: branchEdges } = await loadSubgraph(node.branch);
+        const branchStates = await loadLearnerStates(learnerId, branchNodes.map((n) => n.id));
+        const { chain } = computeFrontier(branchNodes, branchEdges, branchStates, nodeId);
+        guidance = await computeGuidanceLevelForLearner(learnerId, chain);
+      } catch {
+        guidance = "medium";
+      }
+      if (!(await isGuidanceEnabledForLearner(learnerId))) guidance = "low";
+
       const provider = selectProvider();
       if (!provider) return bad(503, "Check isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY).");
 
       let safe: Awaited<ReturnType<typeof gradeExplanation>>;
       try {
-        safe = await gradeExplanation(provider, node, prereqSummaries, explanation);
+        safe = await gradeExplanation(provider, node, prereqSummaries, explanation, guidance, getPassage(node.slug));
       } catch (e: unknown) {
         const err = e as { status?: number };
         if (err?.status === 401) return bad(503, "Check credentials are invalid on the server.");
@@ -248,10 +287,10 @@ export async function POST(req: NextRequest) {
       const transition = onCheckResult(
         currentStage,
         { result: safe.result, confidence: safe.confidence, abstained: safe.abstained },
-        { learnerText: explanation, modelFeedback: safe.feedback, citations, sessionId },
+        { learnerText: explanation, modelFeedback: safe.feedback, citations, sessionId, guidanceLevel: guidance },
       );
       await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
-      logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage });
+      logToolCall("check", learnerId, sessionId, { nodeId, result: safe.result, abstained: safe.abstained, stage: transition.nextStage, guidance });
 
       return NextResponse.json(
         {
@@ -261,6 +300,7 @@ export async function POST(req: NextRequest) {
           feedback: safe.feedback,
           citations,
           stage: transition.nextStage,
+          guidance,
         },
         { headers: { "cache-control": "no-store" } },
       );

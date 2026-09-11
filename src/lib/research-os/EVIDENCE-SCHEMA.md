@@ -110,6 +110,22 @@ kind: "open" | "explanation" | "check" | "transfer_item" | "production_submitted
 
 with `fromStage: "production"`, `toStage: "production"` (the append documents the correction without violating the high-water-mark rule `stageAtLeast` and every existing transition function already enforce; `stage` does not move backward, the evidence log instead carries the fact that this particular production was rejected, which any outcome query filtering on `graph.productions.status = "accepted"`, per `LEARNER-STATE-MODEL.md` section 1's own instruction, already handles without needing `stage` itself to reflect the rejection).
 
+## ros-14 addendum: guidanceLevel
+
+`src/lib/research-os/stages.ts`'s shipped `EvidenceEvent`/`EvidenceContext` (ros-04's own extended shape above, already live on `main`) gains one more optional field this contract did not originally name:
+
+```ts
+// Added by bkt-ros ros-14 ("faded guidance for low-prior-knowledge
+// learners"). The faded-guidance level (src/lib/research-os/guidance.ts's
+// GuidanceLevel, "high" | "medium" | "low") in effect when this event was
+// produced, so a pilot can compare outcomes by arm. Same optionality
+// discipline as every other field here: a caller with no guidance level
+// computed for this call omits it.
+guidanceLevel?: GuidanceLevel;
+```
+
+Every transition function in `stages.ts` that already takes an `EvidenceContext` threads the field the same way it threads `sessionId`; in Phase 0, only `POST /api/research-os/workspace`'s `check` action computes and passes a value. See `learning/research-os/GUIDANCE.md` for the full design account, what a learner's guidance level means, the fading schedule, the class arm switch, and why Open/Transfer/Production events stay unpopulated for now.
+
 ## What this file does not cover
 
 Retention and proficiency signals reaching a Research OS row from Academy's FSRS and IRT state (`LEARNER-STATE-MODEL.md` section 3's four-step slug-to-atom-id bridge) are out of scope here. Closing that gap needs a read path from `bucket.academy_progress` into a Research OS response, work for a separate bead rather than a change to what `graph.learner_node_state.evidence` itself stores. The `graph.learner_node_state.confidence` column's write path, the visible confidence `PLAN.md` section 2 promises, is also out of scope here: it is a value this evidence log makes computable, derived from the fields this contract adds, and the log itself needs no further field to support it.

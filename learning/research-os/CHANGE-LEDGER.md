@@ -2,6 +2,30 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-14: faded guidance for low-prior-knowledge learners
+
+Date 2026-09-10/11. Branch `feat/ros-faded-guidance`, worktree `.ros-worktrees/scaffold`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry. Concurrent with PR #63 (cognitive forcing, edits `src/app/research-os/workspace/page.tsx` and the workspace Check route); server-side and library work landed first, page work landed after PR #63 merged (confirmed via `gh pr view 63`).
+
+### Added
+
+- `src/lib/research-os/guidance.ts`: `computeGuidanceLevel`, `classifyCheckOutcome`, `nextGuidanceLevel`, `guidanceLevel(learnerId, chain)`.
+- `src/lib/research-os/worked-examples.ts`: `firstHalfOfWorkedExample`.
+- `supabase/migrations/20260910060000_research_os_guidance.sql`: `graph.nodes.worked_example`, `graph.classes.research_os_guidance_enabled`.
+- `scripts/test-research-os-guidance.ts`: 27 tests, wired into `npm run test:research-os`.
+- `learning/research-os/GUIDANCE.md`.
+
+### Edited
+
+- `src/lib/research-os/types.ts`, `stages.ts`, `grounding.ts`, `db.ts`, `src/app/api/research-os/workspace/route.ts`, `src/app/api/research-os/route/route.ts`, `scripts/seed-research-os.mjs`, `supabase/seed/research-os-sky-blue.json`, `src/lib/research-os/EVIDENCE-SCHEMA.md` (an appended addendum), `learning/research-os/WORKSPACE.md` (new section 6), `package.json`. Per-file detail in the CHANGELOG entry above.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os` all clean; `agf-lint-voice-src check` / `agf-lint-voice check` clean on every touched source/doc file after fixing four antithesis constructions and two banned filler words (one in `stages.ts`, three across `guidance.ts`/`db.ts`, four across `GUIDANCE.md`) and one heading-parenthesis violation in `WORKSPACE.md`; a manual scan (agf-lint-voice-src does not read `.json`) found and fixed two more filler words in the seed file's own authored worked-example text.
+
 ## Literature batch four
 
 Date 2026-09-10. Branch `intake/ros-literature-4`, worktree `.ros-worktrees/lit4`.

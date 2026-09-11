@@ -1,5 +1,39 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10/11: faded guidance for low-prior-knowledge learners (ros-14)
+
+Branch `feat/ros-faded-guidance`, worktree `.ros-worktrees/scaffold`. Server-side and library work for the low-prior-knowledge scaffolding pass: a `guidanceLevel(learnerId, chain)` server function, six authored worked examples on the sky-blue seed path, Check prompt adaptation, a fading schedule, and a per-class arm switch. Full design account: `learning/research-os/GUIDANCE.md`. Concurrent with PR #63 (cognitive forcing, merged before this pass reached the workspace page).
+
+### Added
+
+- `src/lib/research-os/guidance.ts`: `computeGuidanceLevel` (the base level from the routed chain's first two nodes' Stage), `classifyCheckOutcome`, `nextGuidanceLevel` (the fading schedule, two-in-a-row Check passes drop one level, two-in-a-row abstains/fails raise one level), and `guidanceLevel(learnerId, chain)` (the server-side composition of both).
+- `src/lib/research-os/worked-examples.ts`: `firstHalfOfWorkedExample`, the medium-guidance sentence-rounding helper.
+- `supabase/migrations/20260910060000_research_os_guidance.sql`: `graph.nodes.worked_example` (jsonb, nullable) and `graph.classes.research_os_guidance_enabled` (boolean, default true, the arm switch).
+- `scripts/test-research-os-guidance.ts`: 27 tests over every pure rule in `guidance.ts`, `db.ts`'s `decideGuidanceEnabled`, and `worked-examples.ts`. Wired into `npm run test:research-os`.
+- `learning/research-os/GUIDANCE.md`: the full design account.
+
+### Edited
+
+- `src/lib/research-os/types.ts`: `GuidanceLevel` and `WorkedExample` types; `GraphNode.workedExample`.
+- `src/lib/research-os/stages.ts`: `isGroundedCheck` extracted (no behavior change) and exported for reuse by `guidance.ts`; `EvidenceContext`/`EvidenceEvent` gain `guidanceLevel`, threaded through every transition function that already takes a context.
+- `src/lib/research-os/grounding.ts`: `gradeExplanation`/`buildGrounding` (now exported) take an optional `guidanceLevel`/`passage` pair; at `high` guidance with a curated `passages.ts` passage, the grounding block and system prompt gain a `POINTER` instruction naming the exact passage sentence. Every other combination is byte-identical to before this pass.
+- `src/lib/research-os/db.ts`: node loaders (`loadSubgraph`, `findNodeBySlug`, `findNodeById`, the two engine-node upserts) select and map `worked_example`; new `loadRecentCheckEvents`, `isGuidanceEnabledForLearner`, and the pure `decideGuidanceEnabled` (extracted for unit testing, matching `filterClassesForReviewer`'s own precedent).
+- `src/app/api/research-os/workspace/route.ts`: the `check` action computes an authoritative guidance level server-side (scoped to the checked node's own prerequisite chain), forces it to `low` behind the class arm switch, passes it to `gradeExplanation`, logs it on the resulting evidence event, and returns it in the response.
+- `src/app/api/research-os/route/route.ts`: response gains `guidance` (`GuidanceLevel | null`), computed the same way for the page's own target chain.
+- `scripts/seed-research-os.mjs`: validates and writes an optional `worked_example` field per node.
+- `supabase/seed/research-os-sky-blue.json`: `worked_example` authored on the path's first six nodes (`light-travels-in-straight-lines` through `light-can-scatter-off-small-things`), from the existing summaries and NASA Space Place / Wikipedia sources already cited in each node's own `provenance`.
+- `src/lib/research-os/EVIDENCE-SCHEMA.md`: a ros-14 addendum documenting the new `guidanceLevel` field, appended rather than edited into the original contract block.
+- `learning/research-os/WORKSPACE.md`: a new section 6, "Faded Guidance."
+- `package.json`: `test:research-os` gained `scripts/test-research-os-guidance.ts`.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build` (all clean), `npm run test:research-os` (every script in the chain passed, 0 failures), `agf-lint-voice-src check` and `agf-lint-voice check` on every touched file (clean after four antithesis/banned-word fixes in `db.ts`/`guidance.ts`/`stages.ts` and a heading-parenthesis fix in `WORKSPACE.md`, plus two filler-adverb instances found by a manual scan of the seed JSON's authored worked-example text, which `agf-lint-voice-src` does not scan `.json` files for).
+
 ## 2026-09-10: literature batch four
 
 Branch `intake/ros-literature-4`. Task: 25 to 35 new DOI- or ERIC-verified papers targeted
