@@ -2,6 +2,50 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #56 review pass
+
+Date 2026-09-10. Review of PR #56 (`feat/hte-question-map`) before merge,
+worktree `.ros-worktrees/r56`. Full account: `_intake/research-os-k12/
+CHANGELOG.md`, "2026-09-10, PR #56 review pass".
+
+### Edited
+
+- Nothing under `learning/research-os/` or `_intake/research-os-k12/`
+  (besides this ledger and its sibling changelog). The PR's own changes
+  are confined to `tools/hypothesis-engine/`; it reads
+  `RESEARCH-QUESTIONS.md` and cross-references `PLAN-REVISION-2.md` but
+  writes neither. No text replaced, so no entry belongs in `DELETIONS.md`.
+- `tools/hypothesis-engine/hte/question_map.py`: rewrote one antithesis-
+  pattern diagnostic string (agf-lint-voice-src finding) and, separately,
+  `tests/test_question_map.py`: dropped one unused `json` import (`ruff`
+  finding). Both are this reviewer's fixes on top of the PR, separate
+  from the `cli.py` merge-conflict resolution below.
+
+### Merged
+
+- `origin/main`, which carried #55 (canon feed-event backfill) and #59
+  (feed ledger total_events fix) since this branch was cut. One conflict
+  in `tools/hypothesis-engine/hte/cli.py`: this PR's `question-map`
+  subcommand and a concurrently merged `purge` subcommand both edited the
+  module docstring, the `from . import ...` line, and the subparser
+  registration block. Kept both sides in each hunk.
+
+### Verified
+
+- `hte question-map --check` / `--write`: committed
+  `docs/RESEARCH-OS-INTEGRATION.md` matches a live regeneration exactly,
+  no drift.
+- `tests/test_question_map.py`, 25/25. `make test` (engine, post-merge),
+  1146 passed, 18 deselected. `npm run test:research-os`, 298/298,
+  `isPendingSignoff` suite included and untouched. `npx tsc --noEmit`,
+  `npm run build`: clean. `agf-lint-voice check` / `agf-lint-voice-src
+  check`: 0 violations after this reviewer's antithesis fix. `ruff check`
+  on this PR's own touched files: clean after the unused-import fix (32
+  pre-existing findings elsewhere in the engine tree are out of scope).
+- Leak scan: no keys, IPs, non-public hostnames, `/home/gian` paths, or
+  PII; only expected emails; `Claude-Session` URLs are commit-message
+  metadata only.
+
 ## PR #42 review pass
 
 Date 2026-09-10. Review of PR #42 (`feat/hte-purge`) before merge, worktree
