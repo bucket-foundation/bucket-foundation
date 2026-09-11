@@ -2,6 +2,43 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, PR #70 post-merge review and voice-lint fix
+
+- **Scope**: PR #70 (`feat/hte-ground-truth-enrichment`, richer
+  production fixtures prod-013..034, five new literature cards under
+  `educational-methods`, a widened `_IMPROVED_KEYWORDS`/`_WORSENED_KEYWORDS`
+  literature ground-truth rule) had already been merged by an earlier
+  session (`410e702d8`) by the time this pass started. Ran the review
+  gates against the merged content instead of gating the merge itself.
+- **Envelope check**: every new `production-fixtures/prod-0{13..34}.json`
+  matches `docs/PRODUCTION-SCHEMA.md`'s envelope (`id`, `created_at`,
+  `author_role`, `grade_band`, `school_or_district_id`,
+  `research_question`, `claims[].{text,stance,slots,interval,evidence}`,
+  `review`, `provenance`); spot-checked prod-013, prod-021, prod-034.
+  No `lateral`-reading PR merged into `main`, so the sources-independence
+  flag this schema doesn't carry yet does not apply.
+- **DOI spot-check**: 4 of the 5 new literature cards checked against
+  OpenAlex (Alonzo & Steedle 2009, Corcoran/Mosher/Rogat 2009, Deci/
+  Koestner/Ryan 1999, Deci/Ryan 2000); title, authors, and journal match
+  the card front matter on all four.
+- **Leak scan**: clean, no keys, IPs, `/home/gian` paths, Claude session
+  URLs, or personal emails in the PR's file set.
+- **Voice lint**: `agf-lint-voice check` on the touched files found 2
+  violations, both Low: `_IMPROVED_KEYWORDS`'s `"successfully produced"`
+  entry (banned adverb, no fixture text depends on the literal string)
+  and two antithesis-shaped exception messages in `test_api.py`
+  (`"a campaign bug, not a refusal"`, `"a bug in response assembly, not
+  a campaign failure"`, neither message content is asserted on, only
+  the exception's own class name). Fixed on a follow-up branch
+  (`fix/pr70-review-voice-and-log`) rather than reopening #70: renamed
+  the keyword to `"went on to produce"` and reworded both messages to
+  drop the antithesis. `agf-lint-voice check` and `ruff check` clean
+  after.
+- **Gates**: `make test` on `origin/main` with #70 merged: 1284 passed,
+  18 deselected, 0 failed. Targeted rerun of `test_api.py` +
+  `test_corpus_literature.py` after the voice fix: 99 passed.
+- **Blocked**: nothing.
+
 ## 2026-09-11, PR #62 and PR #67 review
 
 - **Scope**: review pass over #62 (`fix/hte-writeback-review-2`, pipeline
