@@ -2,6 +2,27 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #42 review pass
+
+Date 2026-09-10. Review of PR #42 (`feat/hte-purge`) before merge, worktree
+`.ros-worktrees/r42`. Full account: `_intake/research-os-k12/CHANGELOG.md`,
+"2026-09-10, PR #42 review pass".
+
+### Edited
+
+- `learning/research-os/compliance/DATA-INVENTORY.md`: the
+  `public.research_os_productions_outbox` row's caveat sentence now names
+  `hte purge --production <id>` as the required manual call reaching the
+  engine-side artifacts a Supabase delete request cannot, and states that
+  purge is not yet wired into `POST /api/research-os/privacy`. Prior text
+  named the gap only; no sentence was removed, this adds the remediation.
+
+### Verified
+
+- `make test` (engine), 1118 passed, 18 deselected. `ruff check` clean on
+  every file this PR touches. `agf-lint-voice check` / `agf-lint-voice-src
+  check`, 0 violations.
+
 ## PR #52 review pass
 
 Date 2026-09-10. Review of PR #52 (`feat/ros-roster-sync`) before merge, worktree

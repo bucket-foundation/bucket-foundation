@@ -2,6 +2,38 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-10, PR42 review
+
+- **PR #42 reviewed and merged** (`feat/hte-purge`, "provenance index and
+  purge for learner-derived artifacts"), worktree `.ros-worktrees/r42`
+  per the review protocol.
+- **Leak scan**: full diff against `origin/main` clean, no keys, `.env`
+  values, IPs, non-public hostnames, personal emails beyond
+  `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude
+  session URLs in file content.
+- **Governance**: `hte/purge.py`'s feed402-envelope pass only reaches
+  `public/research/hypotheses/*.json` (the same `envelope_dir`
+  `hte.canon_writeback.write_back`, merged on `main` since this branch
+  diverged, writes to); it never touches `bucket-canon/`, so a signed-off
+  canon card and its ingestion-index entry stand after a purge. Closed
+  the reachability gap the docstring names: added `hte purge --production
+  <id>` as the required manual call on `learning/research-os/compliance/
+  DATA-INVENTORY.md`'s `research_os_productions_outbox` row (not yet
+  wired into `POST /api/research-os/privacy`).
+- **Merge conflict**: `origin/main` had moved on `hte/corpus/production.py`
+  since this branch's base (PR #29's vocab-induced OBJECT slot and
+  `created_at`-year interval on `normalize_research_os_record`, landed
+  after this branch cut). Resolved keeping both: PR #29's slot/interval
+  reads plus PR #42's per-production evidence source-id scoping
+  (`author_role`/`production_id` on `_research_os_evidence`), and updated
+  `test_corpus_production.py`'s sky-blue fixture assertion to expect the
+  now-real `GroundTruthEvent` instead of the pre-#29 null-slot behavior.
+- **Gates**: `make test`, 1118 passed, 18 deselected. `ruff check` clean
+  on every file this PR touches (fixed one E741 ambiguous-name in the
+  new `tests/test_purge.py`; the other 32 ruff hits on the branch are
+  pre-existing debt in files this PR does not touch). `agf-lint-voice
+  check` / `agf-lint-voice-src check`, 0 violations.
+
 ## 2026-09-11, tick 2
 
 - **PRs reviewed**: #51 (`docs/hte-findings-round-six-cli-llm-leak`, a
