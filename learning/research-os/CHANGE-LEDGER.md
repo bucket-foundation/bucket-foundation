@@ -2967,3 +2967,21 @@ revision are scoped against unmerged code rather than shipped code, stated as su
   entries above already name. Fixed by hand, rewritten to name the added coverage directly
   with no self-reference, so the pre-commit hook would pass; `agf-lint-voice-src check`
   clean on the file after.
+
+## PR #76 review pass
+
+Review of PR #76 (preregistration revision 1, Iteration 25 above), docs-only, as methods reviewer.
+
+### Verified
+
+- Naive n-per-arm formula (n = 2(z_alpha/2 + z_beta)^2/d^2, alpha = 0.025 two-sided, power = 0.80) hand-recomputed: 76/119/211 at d = 0.5/0.4/0.3. Cluster-corrected formula (DEFF = 1 + (m_bar-1) x ICC, m_bar = 25) hand-recomputed: 262/405/691 at ICC 0.05/0.10/0.20. Both match the draft's own tables exactly, no drift from the prior review's own expected figures.
+- Furtak and colleagues (2012), Lazonder and Harmsen (2016), and Chen and Yang (2019) checked against their own intake cards. Pooled effects match on all three (Furtak's mean d = 0.50 across 37 studies with the teacher-led/student-led 0.40 gap; Lazonder and Harmsen's d = 0.66/0.71/0.50 across 72 studies; Chen and Yang's positive, moderator-tested effect with no pooled number in its own card). Furtak's card states no explicit population line; the draft's table cell "K-12 and undergraduate science students" is this pass's own addition rather than a phrase traceable to the card, flagged as a minor citation-precision finding; the pooled effect the n-table depends on stays accurate.
+- Factor decision (forcing and guidance both fixed on for Phase 1) is stated with its own reasoning (the already-underpowered base three-arm contrast, the five-consented-learner integrity floor, the class-level confound risk of a factorial split, and both switches defaulting on in shipped code); `guidanceLevel` is registered as a pre-specified H1/H2 covariate in the Covariates section.
+- The two new outcomes map to real fields: `learnerConfidence`/`sourcePrediction`/`predictionCorrect`/`forcingEnabled` are typed `EvidenceEvent` fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` (PR #63, merged); `source_provenance`/`duplicate_flag`/`counter_evidence`/`counter_evidence_required` are real columns in `supabase/migrations/20260910060000_research_os_production_guard.sql` (PR #73, merged).
+- Required participation and misconduct risk subsection cites Grinnell and colleagues (2020) and keeps Production submission opt-in per `PLAN-REVISION-3.md` decision 6, stratifying a required-Production class via the new `productionRequired` covariate rather than excluding it.
+- Revision history section exists in `PREREGISTRATION-DRAFT.md`; every sentence it replaces (both files' header status lines, the effect-size paragraph, the naive-n table, the diversity-outcome judge cell, the Exploratory analyses sentence, `INSTRUMENTS.md`'s intro paragraph and closing section) is preserved verbatim in `DELETIONS.md`. `RESEARCH-QUESTIONS.md`'s diff carries no removed lines against `origin/main`, append-only confirmed.
+- No partner school, IRB approval, PI, or host institution claimed: `PREREGISTRATION-DRAFT.md`'s opening paragraph and its Registration timing section both deny partner and IRB status directly, unchanged by this revision.
+- Leak scan of the PR's own diff (keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, Claude session URLs): clean, zero hits.
+- Gates: nothing under `src/` or `public/` changed; the branch already carries `origin/main` (merged mid-pass by the PR's own author; confirmed fast-forward-clean from this worktree). `git diff --name-status` against `origin/main` shows every touched file as `M`, no deletions. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and this file; `agf-lint-voice-src check` clean on the one touched source file.
+
+No fix needed against any of the above. Merged as-is.
