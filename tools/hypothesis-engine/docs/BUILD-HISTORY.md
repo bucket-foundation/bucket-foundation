@@ -480,3 +480,206 @@ the one artifact any consumer that is not `holdout_kfold` (a future
 Allen-relation disjointness check, a human reading `EvidenceItem.
 interval` directly) would have read as 3147 years of uncertainty where
 950 stand.
+
+## Campaign two
+
+Dated 2026-09-11. A second full `sacred-history` campaign, run against
+`origin/main` (`git_sha` `410e702d8`, "richer production fixtures and a
+wider literature ground-truth rule", #70) rather than the corpus state
+the first campaign (above) ran against: every one of the "Data fixes"
+and "Interval-rule fix" changes above landed as PRs #36, #58, and #72
+before this campaign started, so this run measures the corpus with
+dating, stemma, transmission-window intervals, and the three
+non-contested correlations already in place. Command line (run from
+`tools/hypothesis-engine`):
+
+```bash
+HTE_LLM_WORKERS=4 python3 -m hte.cli campaign run --corpus sacred-history --seeds 3
+```
+
+Run directory: `runs/sacred-history/20260911T043521Z`. Real `claude -p`
+calls throughout (`HTE_LLM_MODE` unset), against a cache seeded from a
+prior `quantum-history`/`education-atlas` run (1899 files carried over,
+zero hits against this corpus's own prompts, all new content).
+
+### Numbers
+
+- **Wall time**: 1h 13m 35s end to end (`04:35:21Z` to `05:48:55Z`,
+  2026-09-11), `HTE_LLM_WORKERS=4`. No rate-limit pause and no spend or
+  usage limit at any point (`llm_stats[*].rate_limit_pauses == 0` for
+  every role; nothing matching a 429/rate/spend/usage marker in
+  `run.log` or the campaign's own stdout log).
+- **Refusals**: zero, across every role, this whole run
+  (`MANIFEST.json["refusals"] == {}`; every `llm_stats[*].refusals` and
+  `[*].truncations` reads 0).
+- **Corpus**: 13 sources, 70 evidence items (up from 64: the three
+  "Data fixes" correlations), 14 ground-truth events (up from 11).
+  **Evidence linked**: 42 of 70 (60%) linked to at least one hypothesis
+  address (`link_threshold=0.6`), logged by `hte.runner.run_campaign`
+  directly (`run.log`'s own "evidence linking" line).
+- **Generation**: 5,070 distinct addresses produced across 3 seeds, 400
+  kept after the `max_hypotheses` cap (unchanged cap from campaign one).
+- **Critic filter**: 271 of 400 survived (129 rejected; per-hypothesis
+  rejection reasons follow the same pattern as campaign one, a named
+  actor/place tradition mismatch or an attested lifetime outside the
+  stated interval, never plausibility alone).
+- **Preservation critique**: 271 calls (matching the new survivor
+  count), zero refusals, zero truncations.
+- **Tournament**: 271 hypotheses over 2 Swiss-style rounds (34 judge
+  calls, down from 38 in campaign one; fewer close pairs this frontier's
+  own action/mechanism distribution produced).
+- **Coverage** (Good-Turing/Chao1 over the 5,070-address frontier):
+  observed 5,070, Chao1 estimate 33,686.3, missing mass 0.0418,
+  coverage interval `[0.089, 0.491]`.
+- **Robustness**: 98.15% of survivors read `stable` (spread `< 0.5`
+  across the four prior profiles).
+- **Survivors**: 271. **Survivors with `b > 0`**: the run-level
+  `meta_review` counts roughly 17 of 271 with any positive belief
+  anywhere in the full frontier; of the 57 survivors this write-back
+  path can reconstruct from `timeline.json` (see "Timeline export"
+  below), **4 of 57 carry `b > 0`**, the reconstructable slice of that
+  same 17.
+
+### Calibration and diagnostics
+
+`python3 -m hte.cli calibrate --diagnose --corpus sacred-history --out
+runs/sacred-history/20260911T043521Z`:
+
+- **Mode**: `kfold` (unchanged reason: all 14 ground-truth events carry
+  `discovery_year == year`, so `choose_holdout_mode` still picks k-fold
+  over discovery-date holdout).
+- **Held-out events**: 3 of 14 (one per fold that drew a covered
+  correlation: the three "Data fixes" additions,
+  Confucius↔Jesus/-571, Utnapishtim↔Noah/-1200, Moses↔Muhammad/570).
+- **Covered**: 3 of 3. **Coverage of truth**: 1.0 (unchanged from the
+  fake-mode "Data fixes" measurement above, since k-fold coverage here
+  never touches an LLM call).
+- **Brier score**: `0.35266401971222877`, byte-identical to the
+  fake-mode number reported in "Data fixes" and "Interval-rule fix"
+  above, for the same reason those sections give: `holdout_kfold`
+  builds its candidates straight from evidence-item slots, calling no
+  part of `hte.generate` or any LLM role, so this number is invariant
+  to which real-LLM campaign it is measured alongside.
+- **Diagnostics reasons for the uncovered remainder** (`DIAGNOSTICS.md`):
+  `no_evidence_after_holdout` 0, `no_placement_generated` 0,
+  `dropped_by_cap` 0, `slot_mismatch` 0, `interval_mismatch` 0, i.e. no
+  remainder: every held-out event was covered.
+
+### Timeline export
+
+10 bins declared (`span_start=-1500`, `bin_width=100`, century
+resolution), 73 event views. **Two of the 10 bins carry
+`ranked_hypotheses`** this time (`-1200s` and `-600s`, 36 and 21 rows),
+against campaign one's one populated bin: the three added correlations'
+own dated intervals (`-1200` for Utnapishtim↔Noah, among them) pull a
+second century bin into the declared set. `hte.canon_writeback.
+reconstruct_candidates` recovers 57 of the 271 survivors from these two
+bins (36 + 21); the other **214 are named in `event_views` but absent
+from every `bins[]` entry**, the same `hte.runner._time_bins_for`
+ceiling campaign one's "Timeline export" section names, worse in
+absolute count here only because this run has more total survivors, not
+because the ceiling widened.
+
+### Top hypotheses per bin, by `P(h)`
+
+**Bin `-1200s`** (36 reconstructable):
+
+| Hypothesis | Slots (ACTOR/ACTION/OBJECT/PLACE/MECHANISM) | P | u |
+|---|---|---|---|
+| `d34073dd1b803776` | joseph-smith / other-action / buddha / other-place / hyperdiffusion | 0.924 | 1.000 |
+| `358298c37c980407` | david / maps-to / buddha / judaism / entity-graph-resolver | 0.881 | 1.000 |
+| `32fe4bba18229206` | david / maps-to / confucius / judaism / entity-graph-resolver | 0.881 | 1.000 |
+| `50c18e3496e9767a` | david / maps-to / bahaullah / judaism / entity-graph-resolver | 0.881 | 1.000 |
+| `b7b0324bd46e1716` | muhammad / maps-to / confucius / islam / entity-graph-resolver | 0.841 | 0.883 |
+
+**Bin `-600s`** (21 reconstructable):
+
+| Hypothesis | Slots (ACTOR/ACTION/OBJECT/PLACE/MECHANISM) | P | u |
+|---|---|---|---|
+| `3d5d342b3cf93b33` | buddha / maps-to / confucius / buddhism / entity-graph-resolver | 0.959 | 0.876 |
+| `211ac4288a73779e` | buddha / other-action / confucius / buddhism / entity-graph-resolver | 0.953 | 1.000 |
+| `bf187d2d135bb898` | buddha / parallels / confucius / buddhism / entity-graph-resolver | 0.953 | 1.000 |
+| `e7e1691179079a77` | buddha / maps-to / confucius / other-place / entity-graph-resolver | 0.953 | 1.000 |
+| `ffdbd98f044eeee2` | buddha / maps-to / confucius / buddhism / other-mechanism | 0.953 | 1.000 |
+
+Every row above but two (`b7b0324bd46e1716`, `3d5d342b3cf93b33`) carries
+`u = 1.0`: `P(h)` here is the prior `a` alone, no linked evidence,
+exactly the "Credence floors" case this document names for campaign
+one. `3d5d342b3cf93b33` is the highest-`P` survivor with `b > 0`
+anywhere in this run's reconstructable population.
+
+### Prior-profile spread
+
+The top five hypotheses overall by `P(h)` (the same five heading the
+`-600s` bin table above, also this run's global top five), scored by
+`hte.unknowns.robustness` over the four prior profiles
+(`consensus`/`skeptic`/`fringe`/`uniform`):
+
+| Hypothesis | P | u | spread (max-min) | stable | consensus/skeptic/fringe | uniform |
+|---|---|---|---|---|---|---|
+| `3d5d342b3cf93b33` | 0.959 | 0.876 | 0.396 | yes | 0.9585 | 0.5622 |
+| `211ac4288a73779e` | 0.953 | 1.000 | 0.453 | yes | 0.9526 | 0.5000 |
+| `bf187d2d135bb898` | 0.953 | 1.000 | 0.453 | yes | 0.9526 | 0.5000 |
+| `e7e1691179079a77` | 0.953 | 1.000 | 0.453 | yes | 0.9526 | 0.5000 |
+| `ffdbd98f044eeee2` | 0.953 | 1.000 | 0.453 | yes | 0.9526 | 0.5000 |
+
+`consensus`, `skeptic`, and `fringe` project identically for every one
+of these five: none of their slots carry a contested or fringe concept
+sensitive to those two profiles' own shifts. `uniform` (`L_prior = 0`
+everywhere) is the whole spread: with no linked evidence to override
+the prior, a flattened prior alone moves `3d5d342b3cf93b33` by 0.396
+and the other four by 0.453, and every one of the five still reads
+`stable` (spread `< 0.5`) under this module's own threshold: these five
+stay sensitive to which prior profile scores them, the spread from
+that sensitivity (0.453 and 0.396) just lands under the threshold.
+
+### Cards that would clear the credence floor
+
+`python3 -m hte.cli_pipeline run --corpus sacred-history --from-run
+runs/sacred-history/20260911T043521Z --writeback --branch 07-mind
+--signoff "dry-run" --dry-run` (dry run, no founder sign-off; a real
+write-back needs a named human approver per `GOVERNANCE.md` and is not
+performed here):
+
+**Zero cards clear `select_above_floor`'s `P >= 0.6` and `u <= 0.5`**,
+the same outcome as campaign one, now measured against a corpus with
+14 ground-truth events and real transmission-window intervals instead
+of 11 and the old union rule. The would-be write-back's own dry-run
+plan lists exactly three outputs, none of them a hypothesis card: a
+zero-row `bucket-canon/07-mind/hypotheses/INDEX.md`, a
+`CANON-INGESTION-INDEX.md` addendum stating the same, and a feed402
+envelope (`public/research/hypotheses/sacred-history-20260911T043521Z.json`)
+with an empty `hypotheses` array. The 4 reconstructable `b > 0`
+survivors and why each misses:
+
+| Hypothesis | Slots | P | u | Miss |
+|---|---|---|---|---|
+| `3d5d342b3cf93b33` | buddha/maps-to/confucius/buddhism/entity-graph-resolver | 0.959 | 0.876 | `u` (0.876 > 0.5) |
+| `f9eee46ab885c5d9` | manu/maps-to/confucius/hinduism/entity-graph-resolver | 0.668 | 0.879 | `u` (0.879 > 0.5) |
+| `72c12b356410bb1f` | manu/maps-to/deucalion/hinduism/entity-graph-resolver | 0.291 | 0.805 | both |
+| `509b7250b74a8ab3` | manu/parallels/deucalion/hinduism/other-mechanism | 0.138 | 0.401 | `P` (0.138 < 0.6) |
+
+Three of the four fail on `u` alone or on both floors; the fourth,
+`509b7250b74a8ab3`, is the one survivor in this run's
+reconstructable population that clears the `u` floor on its own
+(0.401 <= 0.5, some real evidence pooled), and still misses by a wide
+margin on `P` (0.138, a disbelief-leaning `d = 0.509` outweighs its
+`b = 0.090`). No survivor clears both at once, the floor doing exactly
+the job "Credence floors" above describes: distinguishing a believed-
+and-examined hypothesis from a high-prior-alone one, and here, from an
+examined-but-disbelieved one too.
+
+### Reading this alongside campaign one
+
+The dating, stemma, and transmission-window fixes moved real numbers
+(evidence linked 56%→60% of a larger 70-item pool, ground truth 11→14
+events, two populated timeline bins instead of one, a real `b > 0`
+survivor inside the top five instead of zero) without moving the
+write-back outcome: zero candidate cards either time. `meta_review`'s
+own read of this run's frontier names the same mechanism campaign one's
+flagged (templated action×mechanism scoring, a `confucius`-as-object
+place-field bug, skeptical readings frozen at near-zero prior) as the
+reason belief stays this concentrated: the corpus-side fixes changed
+what ground truth this run can check itself against, while the critic
+and preservation-critic roles kept scoring the frontier they are
+handed exactly as before.
