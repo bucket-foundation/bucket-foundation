@@ -2,6 +2,36 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick: younger_dryas.py swarm and six PR reviews
+
+- **Concurrent session note**: a second `bkt-hte-optimize-loop` session
+  (tick 7, PR #91) pushed a docs-only entry mid-tick, independently
+  reproducing this tick's own PR #90 finding below.
+- **Engine health**: `make test` 1352 passed, 0 failed. No defect.
+- **Random campaigns**: synth `--seeds 0-29` 30/30, gate PASS, repeat
+  run exact-matched. `realsweep --corpus literature/production/
+  education-atlas --seeds 0-9` each: 0/30 crashed, determinism spot-
+  checked. `younger-dryas` still absent from `REALSWEEP_BUILDERS`
+  (registered elsewhere; needs its own sub-corpus reading), named as a
+  gap, not built.
+- **Test swarm**: `hte/corpus/younger_dryas.py` (no swarm yet, thin
+  test-to-module ratio). 17 new tests, frontmatter-parser error
+  branches plus four pure-helper edge cases. No defect. PR #92, merged.
+  `make test-cov` hit the same `agf-lint-voice`/`pdflatex`
+  environment-gap failures tick 3 already named; discarded the skewed
+  `COVERAGE.md` write.
+- **PRs opened**: #92, reviewed and squash-merged.
+- **PRs reviewed**: #90 High (30 cards' wrapped `key_claims` break
+  `literature.load` entirely, changes requested); #89 High/process
+  (merge conflict, duplicates merged #80; its doi-null fix commit
+  cherry-picks and tests clean alone, verified); #87 approve (two Low
+  ruff nits, one stale PR-body note); #86 approved, then corrected with
+  a follow-up Medium (a place-slot bug PR #91 surfaced, self-report-
+  confirmed, missed on first pass); #91 approve, not mergeable here
+  (branch prefix isn't `fix/hte-`/`test/hte-`).
+- **Merged**: #88 (prior tick's swarm PR, finished this tick), #92.
+- **Blocked**: nothing.
+
 ## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
 
 - **Scope**: `hte/corpus/production.py` (`_research_os_counter_evidence`,
