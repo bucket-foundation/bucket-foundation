@@ -1,9 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import CanonGlobeMount from "@/app/canon/CanonGlobeMount";
-import ScrollReveal from "@/components/ScrollReveal";
-import { getBranches } from "@/lib/canon-fs";
-import type { GlobeBranch } from "@/components/CanonGlobe";
+import FixedCanonGlobeBackground from "@/components/FixedCanonGlobeBackground";
 
 // /research-os, Research OS for K-12 (beads ros-01 to ros-10). The
 // production-reaching path for the L1 rung of the depth ladder: a student
@@ -60,6 +58,44 @@ const STATES: { name: string; meaning: string; signal: string }[] = [
   },
 ];
 
+// One screenshot per state, same order as STATES, captured live from this
+// dev server. The Supabase-gated routes (class, review) render their own
+// unavailable message with no Supabase keys configured locally; that is
+// a real screenshot of the shipped fallback, labeled as such in the alt
+// text below.
+const STATE_SCREENSHOTS: { src: string; alt: string; route: string; label: string }[] = [
+  {
+    src: "/research-os/state-access.png",
+    alt: "The Research OS for K-12 overview page, reachable to any visitor.",
+    route: "/research-os",
+    label: "the overview",
+  },
+  {
+    src: "/research-os/state-awareness.png",
+    alt: "The canon search page, where a learner opens a node for the first time.",
+    route: "/canon/search",
+    label: "canon search",
+  },
+  {
+    src: "/research-os/state-understanding.png",
+    alt: "The Research OS workspace, where a learner writes and checks an explanation.",
+    route: "/research-os/workspace",
+    label: "the workspace",
+  },
+  {
+    src: "/research-os/state-internalization.png",
+    alt: "The Research OS class view, showing its unavailable message with no Supabase configured locally.",
+    route: "/research-os/class",
+    label: "the class view",
+  },
+  {
+    src: "/research-os/state-production.png",
+    alt: "The Research OS teacher review queue, showing its unavailable message with no Supabase configured locally.",
+    route: "/research-os/review",
+    label: "the review queue",
+  },
+];
+
 const TOOLS: { name: string; body: string }[] = [
   {
     name: "find",
@@ -80,67 +116,79 @@ const TOOLS: { name: string; body: string }[] = [
 ];
 
 export default function ResearchOsPage() {
-  const branches = getBranches();
-  const globeBranches: GlobeBranch[] = branches.map((b) => ({
-    slug: b.slug,
-    numeral: b.numeral,
-    name: b.name,
-    status: b.status,
-    entryCount: b.entryCount,
-  }));
-
   return (
-    <main className="stone-bone relative grain">
+    <>
+      <FixedCanonGlobeBackground />
+      <main className="stone-bone relative z-10 grain">
       <div className="max-w-[1100px] mx-auto px-4 md:px-6 pt-14 md:pt-32 pb-6">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           § Research OS · K-12
         </div>
         <h1 className="font-display uppercase text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] chisel tracking-[0.005em] text-[color:var(--basalt)]">
-          find. quote. check.{" "}
-          <span className="inlay-gold">organize.</span>
+          Research OS <span className="inlay-gold">for K-12</span>
         </h1>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          A research workspace over the same knowledge graph the Academy
-          teaches from, free to any learner, anywhere. Where students of all
-          levels access, become aware of, understand, internalize, and
-          produce knowledge.
+          Where students of all levels access, become aware of, understand,
+          internalize, and produce knowledge.
         </p>
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-6">
           <Link
             href="/research-os/workspace"
             className="inline-block px-5 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)]"
           >
             Try the prototype →
           </Link>
-          <a
-            href="https://github.com/bucket-foundation/bucket-foundation/blob/main/learning/research-os/PLAN.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-5 py-3 text-[12px] small-caps tracking-[0.14em] border-2 border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition"
-          >
-            Read the plan ↗
-          </a>
         </div>
       </div>
 
-      {/* Hero visual: the real canon search globe, the same live component,
-          real branch data, and real search (against /api/canon/search)
-          /canon and /canon/search mount. Its own error boundary degrades
-          to the static SVG globe when WebGL is unavailable, the same
-          fallback /canon uses. */}
-      <ScrollReveal className="relative z-10">
-        <div className="w-full px-2 sm:px-4 md:px-6">
-          <div className="text-center small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-3">
-            § find sources, over the same canon this tool searches
-          </div>
-          <div id="globe-capture" className="max-w-[1800px] mx-auto">
-            <CanonGlobeMount
-              branches={globeBranches}
-              containerClassName="relative w-full mx-0 md:h-[88vh] md:max-h-[1000px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
-            />
-          </div>
+      {/* ════════════════════════════════════════════════════════════ */}
+      {/* FIVE STATES · alternating rows, Access through Production      */}
+      {/* ════════════════════════════════════════════════════════════ */}
+      <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-10 md:py-16">
+        <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-10">
+          § five states
         </div>
-      </ScrollReveal>
+        <div className="flex flex-col gap-16 md:gap-24">
+          {STATES.map((s, i) => {
+            const shot = STATE_SCREENSHOTS[i];
+            const imageRight = i % 2 === 0;
+            return (
+              <div
+                key={s.name}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center"
+              >
+                <div className={imageRight ? "md:order-1" : "md:order-2"}>
+                  <div className="font-display text-[color:var(--gold-deep)] text-[15px] mb-3">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="font-display uppercase text-[26px] md:text-[32px] tracking-[0.02em] text-[color:var(--basalt)] mb-4">
+                    {s.name}
+                  </h3>
+                  <p className="text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-md">
+                    {s.meaning}
+                  </p>
+                  <Link
+                    href={shot.route}
+                    className="mt-5 inline-block small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+                  >
+                    view {shot.label} →
+                  </Link>
+                </div>
+                <div className={imageRight ? "md:order-2" : "md:order-1"}>
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    width={960}
+                    height={600}
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="w-full h-auto rounded-md border border-[color:var(--hairline)] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
 
       <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
         <div className="carved-rule max-w-xs mb-12" />
@@ -250,7 +298,8 @@ export default function ResearchOsPage() {
           and a state-validation paper come before any wider release.
         </p>
       </div>
-    </main>
+      </main>
+    </>
   );
 }
 

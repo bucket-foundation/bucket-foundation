@@ -73,6 +73,8 @@ figma-export/
 !public/education/**/*.png
 # …and the UX research captures (evidence for the UX gap analysis).
 !learning/research/ux/captures/**/*.png
+# …and the research-os Five States screenshots, rendered on /research-os.
+!public/research-os/**/*.png
 # Trained ML artifacts.
 # Large weights go to HuggingFace Hub for collaborators (see REPRODUCE.md):
 _intake/training/canon-bge-small-v1/model.safetensors
