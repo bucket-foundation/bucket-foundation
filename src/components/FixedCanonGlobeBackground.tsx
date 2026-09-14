@@ -59,8 +59,8 @@ export default function FixedCanonGlobeBackground() {
   return (
     <div
       aria-hidden
-      className="fixed z-[1] pointer-events-none left-[68vw] top-[62vh] -translate-x-1/2 -translate-y-1/2 w-[85vh] h-[85vh]"
-      style={{ opacity: 0.55 }}
+      className="fixed z-[1] pointer-events-none left-[72vw] top-[50vh] -translate-x-1/2 -translate-y-1/2 w-[96vh] h-[96vh]"
+      style={{ opacity: 1 }}
     >
       {/* `branches` is required by CanonGlobeMount's type but read only by
           its interactive mount; decorative mode ignores it, so `[]` here

@@ -160,7 +160,7 @@ function DecorativeCanonGlobeMount({
     <div className={containerClassName} style={{ width: "100%", height: "100%" }}>
       <GlobeErrorBoundary>
         <R3FCanonGlobe
-          markers={DECORATIVE_MARKERS}
+          markers={[]}
           decorative
           scrollSpeedRef={scrollSpeedRef}
           className="relative z-0"
