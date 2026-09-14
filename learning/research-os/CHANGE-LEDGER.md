@@ -3180,3 +3180,17 @@ Reviewed `feat/ros-lateral-reading` (PR #84) against `main` in worktree `~/agfar
 - `npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean (`/api/research-os/production`, `/api/research-os/workspace`, `/api/research-os/review`, `/research-os/workspace`, `/research-os/review` all confirmed in the manifest). `npm run test:research-os`: 30 chained files, every file `fail 0`, 455 tests, unchanged from the PR's own count (the fix touched no test logic). `next lint` clean on every touched TS/TSX file.
 - `agf-lint-voice check` on the full changed-file set found two antithesis constructions in `BEADS-PENDING.jsonl`'s own new bead line and one in `scripts/test-research-os-lateral-reading.ts`'s own test name, all introduced by this PR; fixed by hand, clean on the second pass. The remaining reported violations (`BEADS-PENDING.jsonl` lines outside the new entry, `workspace/page.tsx` line 1256) predate this PR and sit outside its own diff, left untouched. `agf-lint-voice-src check` clean on every touched source file, first pass.
 - Process note: the PR's own merge commit (`c7b3c095b`) used the org pre-commit hook's `AGF_VOICE_SKIP=1` bypass rather than `--no-verify`, per its own `BEADS-PENDING.jsonl` account; the commit squashes at merge so the artifact does not survive, flagged here for the record.
+
+## PR #87 review: prediction register
+
+Reviewed `feat/hte-prediction-register` (PR #87) against `main` in worktree `~/agfarms/.ros-worktrees/r87`, branch `review/pr87`. Engine-only change: `tools/hypothesis-engine/hte/predict.py` (new), `hte/cli.py` (new `predict register`/`resolve`/`report` subcommands), `docs/PREDICTION.md` (new), `predictions/ledger.jsonl` (new), `tests/test_predict.py` (new), plus regenerated `feed.json`/`feed.xml`/`feed/2026-09.json`. No file under `src/`, `scripts/research-os/`, or `learning/research-os/` in the diff, so `ENGINE-BRIDGE.md`'s contract is unaffected and no `npm ci`/`tsc`/`build`/`test:research-os` gate applies. Full account: `tools/hypothesis-engine/docs/LOOP-LOG.md`'s matching "2026-09-14, PR87 review" entry (leak scan, governance reconciliation against `hte.holdout_ledger`, ruff/pytest gates).
+
+### Fixed
+
+- `tools/hypothesis-engine/tests/test_predict.py`: removed an unused `timezone` import and rewrote a lambda assignment (`to_dict_sorted`) as a `def`, the only two `ruff check` hits inside this PR's own files.
+
+### Verified
+
+- Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
+- `hte.predict`'s forecast ledger and `hte.holdout_ledger`'s ranking ledger stay two distinct sources of truth for two distinct claims (a hypothesis's own `P(h)` versus Elo's relative order); `elo_status` stays sourced from `holdout_ledger.ranking_status` alone, unmodified by this PR.
+- `make test`: 1562 passed, 3 skipped, 1 deselected (a pre-existing flaky live-network test outside this PR's diff).
