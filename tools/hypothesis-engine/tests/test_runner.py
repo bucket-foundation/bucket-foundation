@@ -483,3 +483,53 @@ def test_run_campaign_with_no_constants_key_falls_back_to_the_default_config(tmp
     cfg["out_dir"] = str(tmp_path)
     runner.run_campaign(cfg)
     assert captured["source"] == "fitted"  # DEFAULT_CONFIG's own default, no override given
+
+
+# --------------------------------------------------------------------------
+# survivors.json (`bkt-hte-survivors-artifact`): every survivor's own full
+# opinion, Elo, preservation critique, and robustness dict, persisted next
+# to `timeline.json`'s pruned `posterior`/`elo` pair and `MANIFEST.json`'s
+# aggregate `robustness_stable_fraction`.
+# --------------------------------------------------------------------------
+
+
+def test_survivors_artifact_has_one_entry_per_survivor_with_full_opinion_and_robustness(tmp_path, monkeypatch):
+    # `production` over `fixtures`: this exact config's own critic pass
+    # (`hte.fakellm._critic`'s "at least one linked evidence item"
+    # rule) keeps 4 of `production`'s hypotheses and zero of `fixtures`'
+    # own, confirmed empirically and deterministically against both
+    # corpora (`hte.link.link_evidence`'s own threshold match runs
+    # independent of fakellm's own hash, a real property of each
+    # corpus's own evidence). A survivors count of zero would let
+    # every assertion in the loop below pass vacuously.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    cfg = {
+        "campaign": "production", "corpus": "production", "out_dir": str(tmp_path),
+        "cache_dir": str(tmp_path / "cache"), "replay_only": False, "seeds": 1,
+        "generate_n": 1, "combinatorial_max_items": 1, "max_hypotheses": 5,
+        "tournament_rounds": 1, "max_time_bins": 2, "run_extraction": False,
+    }
+    artifacts = runner.run_campaign(cfg)
+    assert artifacts.hypotheses  # see the config comment above: must be non-empty for this test to mean anything
+
+    survivors_path = artifacts.run_dir / "survivors.json"
+    assert survivors_path.is_file()
+    data = json.loads(survivors_path.read_text())
+    assert data["campaign"] == "production"
+    assert data["corpus"] == "production"
+    assert data["artifact_version"]
+
+    entries = data["survivors"]
+    assert len(entries) == len(artifacts.hypotheses)
+    assert {e["hypothesis_id"] for e in entries} == {h.short_id for h in artifacts.hypotheses}
+
+    elos_in_order = [e["elo"] for e in entries]
+    assert elos_in_order == sorted(elos_in_order, reverse=True)
+
+    for entry in entries:
+        opinion = entry["opinion"]
+        assert opinion["P"] == pytest.approx(opinion["b"] + opinion["a"] * opinion["u"], abs=1e-9)
+        assert set(entry["robustness"]["projections"]) == {"consensus", "skeptic", "fringe", "uniform"}
+        assert entry["preservation"] is not None
+        assert isinstance(entry["slots"], dict)
+        assert "ACTOR" in entry["slots"] or "RELATION" in entry["slots"]  # placement vs. sequence shape
