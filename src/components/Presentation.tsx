@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Globe from "./Globe";
 import InverseOmega from "./InverseOmega";
@@ -73,7 +72,7 @@ export default function Presentation() {
       {/* ════════════════════════════════════════════════════════════ */}
       {/* HERO · the inscription                                        */}
       {/* ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden grain min-h-[88vh] flex flex-col justify-center">
+      <section className="relative overflow-hidden grain min-h-[84vh] flex flex-col justify-center">
         {/* Ambient patina */}
         <div
           aria-hidden
@@ -90,18 +89,7 @@ export default function Presentation() {
             bucket foundation · nonprofit
           </div>
 
-          <div className="carve-in-1 flex justify-center mb-8">
-            <Image
-              src="/brand/omega-stonepunk.png"
-              alt="The bucket.foundation mark, a carved inverse omega"
-              width={72}
-              height={72}
-              priority
-              className="rounded-sm border-2 border-[color:var(--basalt)] shadow-[0_20px_30px_-18px_rgba(13,13,13,0.45)]"
-            />
-          </div>
-
-          <h1 className="carve-in-2 font-display uppercase text-[clamp(1.9rem,10vw,5rem)] leading-[0.95] chisel tracking-[0.01em] whitespace-nowrap">
+          <h1 className="carve-in-2 font-display uppercase text-[clamp(1.9rem,8vw,3.25rem)] leading-[1.1] chisel tracking-[0.01em]">
             reform <span className="inlay-gold">education.</span>
           </h1>
 
