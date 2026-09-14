@@ -2,9 +2,10 @@
 import nextDynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { MutableRefObject } from "react";
+import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
 import StaticCanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
 import type { CanonMarker } from "@/components/canon-globe";
-import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
 import timelineData from "@/data/canon-timeline.json";
 import sitesData from "@/data/canon-sites.json";
 import figuresData from "../../../canon-figures/figures.json";
@@ -104,12 +105,79 @@ interface Props {
    * card both /canon and /canon/search use). The fullscreen/expanded state
    * always stays a true fixed-inset overlay regardless of this prop. */
   containerClassName?: string;
+  /** Extra classes merged onto the globe canvas's own flex-fill wrapper,
+   * e.g. a negative translate so the globe rises above the panel's top
+   * edge. Ignored in `decorative` mode. */
+  globeWrapperClassName?: string;
+  /** Bare-globe mode: renders only the R3F canvas, no search bar, branch
+   * filter chips, layer toggles, time scrubber, expand button, corner
+   * legend, or detail drawer. For a fixed decorative background mount. */
+  decorative?: boolean;
+  /** Read every frame by the R3F globe when `decorative` is set: an
+   * external scroll-velocity value that eases auto-rotate speed up and
+   * back down to its base rate. */
+  scrollSpeedRef?: MutableRefObject<number>;
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
   "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
 
-export default function CanonGlobeMount({ branches: _branches, containerClassName }: Props) {
+/**
+ * Bare-globe mode: only the R3F canvas, no search bar, branch filter
+ * chips, layer toggles, time scrubber, expand button, corner legend, or
+ * detail drawer. Kept as its own component (rather than an early return
+ * inside CanonGlobeMount) so neither branch calls hooks conditionally.
+ */
+function DecorativeCanonGlobeMount({
+  containerClassName,
+  scrollSpeedRef,
+}: {
+  containerClassName?: string;
+  scrollSpeedRef?: MutableRefObject<number>;
+}) {
+  return (
+    <div className={containerClassName} style={{ width: "100%", height: "100%" }}>
+      <GlobeErrorBoundary>
+        <R3FCanonGlobe
+          markers={[]}
+          decorative
+          scrollSpeedRef={scrollSpeedRef}
+          className="relative z-0"
+        />
+      </GlobeErrorBoundary>
+    </div>
+  );
+}
+
+export default function CanonGlobeMount({
+  branches,
+  containerClassName,
+  globeWrapperClassName,
+  decorative = false,
+  scrollSpeedRef,
+}: Props) {
+  if (decorative) {
+    return (
+      <DecorativeCanonGlobeMount
+        containerClassName={containerClassName}
+        scrollSpeedRef={scrollSpeedRef}
+      />
+    );
+  }
+  return (
+    <InteractiveCanonGlobeMount
+      branches={branches}
+      containerClassName={containerClassName}
+      globeWrapperClassName={globeWrapperClassName}
+    />
+  );
+}
+
+function InteractiveCanonGlobeMount({
+  branches: _branches,
+  containerClassName,
+  globeWrapperClassName = "",
+}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName">) {
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
   const [expanded, setExpanded] = useState(false);
@@ -546,9 +614,9 @@ export default function CanonGlobeMount({ branches: _branches, containerClassNam
         </div>
       </div>
 
-      {/* GLOBE, fills remaining viewport height on desktop */}
+      {/* GLOBE, fills remaining viewport height on desktop. */}
       <div
-        className="relative w-full mx-auto flex-1"
+        className={`relative w-full mx-auto flex-1 overflow-visible ${globeWrapperClassName}`}
         style={{
           minHeight: "440px",
         }}

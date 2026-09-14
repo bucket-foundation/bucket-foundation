@@ -1,6 +1,7 @@
 "use client";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
+import type { MutableRefObject } from "react";
 import { OrbitControls } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { Earth, EARTH_RADIUS } from "./Earth";
@@ -9,6 +10,47 @@ import { CanonMarkers, type CanonMarker } from "./CanonMarkers";
 import { useReducedMotion } from "./useReducedMotion";
 import { useMemo } from "react";
 import * as THREE from "three";
+
+function damp(current: number, target: number, lambda: number, dt: number) {
+  return current + (target - current) * (1 - Math.exp(-lambda * dt));
+}
+
+// Base auto-rotate rate for decorative mounts (three.js units, roughly one
+// full turn every ~5 minutes at this speed). Kept slow, so this globe
+// reads as ambient background motion the eye can ignore while scrolling.
+const DECORATIVE_BASE_AUTOROTATE_SPEED = 0.35;
+// Decay rate (per second) applied to the scroll-speed ref, and the lerp
+// rate the actual OrbitControls speed eases toward its target at.
+const SCROLL_EXTRA_DECAY = 2.2;
+const AUTOROTATE_EASE = 3;
+
+/**
+ * Reads an external scroll-velocity speed ref every frame, decays it back
+ * toward zero, and eases the mounted OrbitControls' autoRotateSpeed toward
+ * base rate plus that extra. Only mounted for a decorative globe with
+ * autoRotate on, keeps the interactive globe's frame loop untouched.
+ */
+function AutoRotateDriver({
+  controlsRef,
+  scrollSpeedRef,
+  base,
+}: {
+  controlsRef: MutableRefObject<OrbitControlsImpl | null>;
+  scrollSpeedRef?: MutableRefObject<number>;
+  base: number;
+}) {
+  useFrame((_state, delta) => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+    const extra = scrollSpeedRef?.current ?? 0;
+    if (scrollSpeedRef) {
+      scrollSpeedRef.current = extra * Math.exp(-SCROLL_EXTRA_DECAY * delta);
+    }
+    const target = base + extra;
+    controls.autoRotateSpeed = damp(controls.autoRotateSpeed, target, AUTOROTATE_EASE, delta);
+  });
+  return null;
+}
 
 /**
  * Drives camera distance + position into React state via OrbitControls'
@@ -140,6 +182,13 @@ interface CanonGlobeProps {
   className?: string;
   onHoverChange?: (m: CanonMarker | null) => void;
   onSelectChange?: (m: CanonMarker | null) => void;
+  /** Chromeless background mode: user drag/zoom disabled, a slow base
+   * auto-rotate is enabled instead (skipped under prefers-reduced-motion,
+   * which renders a static globe). */
+  decorative?: boolean;
+  /** Read every frame when `decorative` is on: an external scroll-velocity
+   * value that eases the auto-rotate speed up and back down to base rate. */
+  scrollSpeedRef?: MutableRefObject<number>;
 }
 
 const LANDMASK_URL = "/textures/earth/2k_earth_daymap.jpg";
@@ -150,8 +199,11 @@ export default function CanonGlobe({
   className,
   onHoverChange,
   onSelectChange,
+  decorative = false,
+  scrollSpeedRef,
 }: CanonGlobeProps) {
   const reducedMotion = useReducedMotion();
+  const autoRotate = decorative && !reducedMotion;
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
   // Camera distance from origin, in scene units (Earth radius = 1).
   // Seeded to match the camera's starting position (z=3.4 below).
@@ -241,8 +293,9 @@ export default function CanonGlobe({
         <OrbitControls
           ref={controlsRef}
           enableDamping={false}
-          enableZoom
+          enableZoom={!decorative}
           enablePan={false}
+          enableRotate={!decorative}
           // 1.0 is the Earth surface. 1.04 keeps us a hair above it so the
           // camera never clips through the dot pattern.
           minDistance={1.04}
@@ -256,13 +309,21 @@ export default function CanonGlobe({
           // Zoom logarithmically, wider steps at far view, finer at
           // close zoom so the last "click" doesn't overshoot the surface.
           zoomSpeed={Math.max(0.25, 0.7 * Math.min(1, (cameraDistance - 1) / 2.4))}
-          autoRotate={false}
+          autoRotate={autoRotate}
+          autoRotateSpeed={DECORATIVE_BASE_AUTOROTATE_SPEED}
         />
         <CameraTracker
           controlsRef={controlsRef}
           onDistance={setCameraDistance}
           onPosition={setCameraPosition}
         />
+        {autoRotate && (
+          <AutoRotateDriver
+            controlsRef={controlsRef}
+            scrollSpeedRef={scrollSpeedRef}
+            base={DECORATIVE_BASE_AUTOROTATE_SPEED}
+          />
+        )}
       </Canvas>
     </div>
   );
