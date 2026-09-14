@@ -2,6 +2,34 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 16, temporal_consistency swarm
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-cov`/`pytest-xdist`
+  first. `make test` on `hte/integration` (`839e5d25a`): 1687 passed, 0
+  failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS; a seeds-0-2 repeat reproduced identical per-seed metrics, no
+  nondeterminism. `realsweep --corpus production`/`literature --seeds
+  0-9`, 0/10 crashed each; `education-atlas` seed 0 (430.9s): coverage
+  0.778, matching every prior tick's baseline. The BCE clamp warning on
+  `production`/`literature` is the same reviewed, deliberate behavior
+  `hte/timeline.py`'s own comment documents (review #2), not a new
+  finding. `younger-dryas` still unregistered in `REALSWEEP_BUILDERS`.
+- **Test swarm**: `casp_cadence.py`, `fusion_stress.py`, and
+  `temporal_consistency.py` were the three modules left with a unit-test
+  file but no swarm/property file. `temporal_consistency.py` (112 lines,
+  smallest) gets one: 8 new Hypothesis tests over `check_sequence`/
+  `flag_hypothesis`/`check_hypotheses` against `relate`'s own ground
+  truth for every `AllenRelation`, in `tests/swarm-20260914/
+  test_temporal_consistency_props.py`, both `fast` and `full` profiles,
+  no defect found. `test/hte-temporal-consistency-coverage-20260914`
+  (#137). `make test` after: 1695 passed.
+- **PRs**: opened 1 (#137, this entry's own commit). **Reviewed**: none
+  newly unreviewed; #132/#127 at the same head shas tick 14 already
+  reviewed. **Batch PR**: #134 refreshed to 6 commits ahead of `dev`
+  once #137 merges. **Blocked**: nothing.
+
 ## 2026-09-14, tick 15, research_os_outbox error-path swarm
 
 - **Engine health**: fresh sandbox install. `make test` on `hte/
