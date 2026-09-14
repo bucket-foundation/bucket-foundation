@@ -3321,3 +3321,17 @@ None.
 ### Verified
 
 `git fetch origin && git merge origin/main` merged 21 commits (through PR #87) with no conflicts; the diff against `origin/main` afterward held to the same four files this branch already carried. `npm run build` then failed: `generateStaticParams` for `/contributors/[handle]` received an object where a string was required, because PR #87's `predict_register` feed events carry `author_github: null`, and `typeof null === "object"` in JavaScript, so the un-guarded `getAllHandles()` put `null` in its `Set<string>` and `.map((handle) => ({ handle }))` produced one static param with a `null` handle. This predates this branch and touches no Research OS file; fixed with the one-line guard above, the correct read of a system-generated feed event with no human author. `npm ci`, `npx tsc --noEmit`, and `npm run build` all clean after the fix; `/research-os` unchanged in the manifest at 244 B. `next lint --file src/app/research-os/page.tsx --file src/app/contributors/lib.ts`: clean. `agf-lint-voice-src check` on both files: 0 violations.
+
+## PR #117 review: status band refresh and merge
+
+Reviewed `feat/ros-status-band-2` (PR #117) against `main` in worktree `~/agfarms/.ros-worktrees/r117`, branch `review/pr117`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (leak scan, per-claim doc and merged-PR verification, diff-scope check, the `contributors/lib.ts` fix review, voice re-check, the `origin/main` merge and its `CHANGE-LEDGER.md` conflict resolution, and the gate results including the sandboxed `npm run build`'s pre-existing, PR-unrelated Google Fonts network block).
+
+### Verified
+
+- Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
+- Every shipped and not-shipped claim in the status band traced to a merged PR (101 checked) and a supporting line in its named doc; `PLAN-REVISION-3.md` confirmed current (`PLAN-REVISION-4.md` does not exist on `main`).
+- `git diff origin/main...HEAD --stat`: exactly the five files the PR claims, all inside the "§ status" section.
+- `npm ci`, `npx tsc --noEmit`, `next lint` on both touched files, `npm run test:research-os` (30 files, 455 tests, 0 fail): clean.
+- `agf-lint-voice-src check` and `agf-lint-voice check`: 0 violations.
+
+Squash-merged after this pass.
