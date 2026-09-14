@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import CanonGlobeMount from "@/app/canon/CanonGlobeMount";
 import ScrollReveal from "@/components/ScrollReveal";
+import { getBranches } from "@/lib/canon-fs";
+import type { GlobeBranch } from "@/components/CanonGlobe";
 
 // /research-os, Research OS for K-12 (beads ros-01 to ros-10). The
 // production-reaching path for the L1 rung of the depth ladder: a student
@@ -78,6 +80,15 @@ const TOOLS: { name: string; body: string }[] = [
 ];
 
 export default function ResearchOsPage() {
+  const branches = getBranches();
+  const globeBranches: GlobeBranch[] = branches.map((b) => ({
+    slug: b.slug,
+    numeral: b.numeral,
+    name: b.name,
+    status: b.status,
+    entryCount: b.entryCount,
+  }));
+
   return (
     <main className="stone-bone relative grain">
       <div className="max-w-[1100px] mx-auto px-4 md:px-6 pt-14 md:pt-32 pb-6">
@@ -112,10 +123,11 @@ export default function ResearchOsPage() {
         </div>
       </div>
 
-      {/* Hero visual: the real canon search globe, the same live component
-          (with real search) the homepage mounts, sized to match. Its own
-          error boundary degrades to the static SVG globe when WebGL is
-          unavailable, the same fallback /canon uses. */}
+      {/* Hero visual: the real canon search globe, the same live component,
+          real branch data, and real search (against /api/canon/search)
+          /canon and /canon/search mount. Its own error boundary degrades
+          to the static SVG globe when WebGL is unavailable, the same
+          fallback /canon uses. */}
       <ScrollReveal className="relative z-10">
         <div className="w-full px-2 sm:px-4 md:px-6">
           <div className="text-center small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-3">
@@ -123,7 +135,7 @@ export default function ResearchOsPage() {
           </div>
           <div id="globe-capture" className="max-w-[1800px] mx-auto">
             <CanonGlobeMount
-              branches={[]}
+              branches={globeBranches}
               containerClassName="relative w-full mx-0 md:h-[88vh] md:max-h-[1000px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
             />
           </div>
