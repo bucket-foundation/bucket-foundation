@@ -2,6 +2,33 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, cli.py purge/predict dispatch swarm, COVERAGE.md regenerated
+
+- **Engine health**: fresh sandbox install. `make test` on `main`
+  (`4dc113499`): 1586 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on a seeds-0-2 repeat. `realsweep --corpus
+  production`/`literature`, 0/10 crashed each, coverage/None spread
+  matches prior ticks. `--corpus education-atlas` seed 0 only (487.8s):
+  coverage 0.778, matching tick 5/6/7/12's own baseline. `younger-dryas`
+  still unregistered in `REALSWEEP_BUILDERS`.
+- **Test swarm**: `tests/COVERAGE.md` stale again; regenerated
+  (`make test-cov`, 1598 passed post-addition). Real least-covered
+  module: `hte/cli.py` at 83.6%, its `_cmd_purge`/`_cmd_predict_*`
+  dispatch functions untested despite `hte.purge`/`hte.predict`
+  carrying full suites of their own. 16 tests in `tests/swarm-20260914/
+  test_cli_purge_predict_dispatch_props.py` (report pass-through,
+  incomplete-report warnings, every CLI flag reaching `purge()`,
+  kind-list parsing, the unknown-corpus guard, `outcomes` stripped from
+  the printed resolve report). Coverage 83.6% to 97%. No defect found.
+- **PRs opened**: 1 (this entry's own branch). **Reviewed**: 3 open
+  non-draft (#101/#115/#117), already reviewed at current head, no
+  duplicate. **Merged**: this tick's own PR, self-reviewed (zero
+  secrets, zero High/Critical QA). **Blocked**: #101
+  (`docs/hte-loop-log-20260914-tick5`) now conflicts against `main`,
+  superseded by later entries; left open rather than spending this
+  tick's merge on the conflict.
+
 ## 2026-09-14, tests/COVERAGE.md found stale, a real boilerplate-collision defect fixed
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
