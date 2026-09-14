@@ -368,7 +368,12 @@ class Card:
     `hte.corpus.Corpus`. `batch` names which card root (position in a
     `load_raw(cards_dir=[...])` call's own list, `"batch-1"` for a single
     directory) this card was read from; see this module's own top
-    docstring, "Batches.\""""
+    docstring, "Batches." `doc_length` is the full length of this card's
+    own raw file text (`bkt-hte-evidence-span-doc-length`), the same
+    string `key_claims[].char_start`/`char_end` are located against
+    (`_parse_frontmatter`'s own comment, "all land on `raw`"); `None` only
+    for a `Card` built by hand outside `_parse_frontmatter`, never for one
+    this module's own parse path produces."""
     doi: str
     title: str
     authors: tuple[str, ...]
@@ -380,6 +385,7 @@ class Card:
     research_questions: tuple[str, ...]
     how_it_bears_on_research_os: str
     batch: str = "batch-1"
+    doc_length: int | None = None
 
     @property
     def first_author_surname(self) -> str:
@@ -580,7 +586,7 @@ def _parse_frontmatter(raw: str, relative_path: str, batch: str = "batch-1") -> 
         doi=doi, title=title, authors=authors, year=year, venue=venue,
         relative_path=relative_path, why_it_matters=why_it_matters, key_claims=key_claims,
         research_questions=research_questions, how_it_bears_on_research_os=how_it_bears,
-        batch=batch,
+        batch=batch, doc_length=len(raw),
     )
 
 
@@ -947,6 +953,7 @@ def _build_corpus(cards: list[Card]) -> Corpus:
                     doc_id=card.doi,
                     locator=f"{card.relative_path}:key_claims[{i}] (lines {claim.line_start}-{claim.line_end})",
                     quote=claim.text, char_start=claim.char_start, char_end=claim.char_end,
+                    doc_length=card.doc_length,
                 ),
                 provenance=EVIDENCE_PROVENANCE_TAG,
                 actor=actor, action=action, object=obj, place=place, mechanism=mechanism,

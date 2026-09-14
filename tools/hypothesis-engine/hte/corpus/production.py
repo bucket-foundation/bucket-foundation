@@ -856,7 +856,7 @@ def _build_corpus(
                 item_id = f"{production.id}-c{ci}-e{ei}"
                 evidence.append(EvidenceItem(
                     id=item_id, kind=ev.kind, tier=ev.tier, source_id=ev.source_id,
-                    span=EvidenceSpan(doc_id=ev.source_id, locator=locator, quote=ev.quote, char_start=0, char_end=len(ev.quote)),
+                    span=EvidenceSpan(doc_id=ev.source_id, locator=locator, quote=ev.quote, char_start=0, char_end=len(ev.quote), doc_length=len(ev.quote)),
                     provenance=EVIDENCE_PROVENANCE_TAG,
                     actor=claim.slots.get("actor"), action=claim.slots.get("action"),
                     object=claim.slots.get("object"), place=claim.slots.get("place"),

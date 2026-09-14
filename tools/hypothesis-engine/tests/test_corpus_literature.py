@@ -84,6 +84,21 @@ def test_frontmatter_fields_parsed(cards):
     assert len(bloom.research_questions) == 2
 
 
+def test_card_doc_length_matches_its_own_raw_file(cards):
+    # bkt-hte-evidence-span-doc-length: every Card this module's own parse
+    # path produces carries the length of its own raw file text, the same
+    # string its key_claims' char_start/char_end are located against.
+    bloom = _card(cards, "bloom-1984")
+    raw = (FIXTURES_DIR / bloom.relative_path).read_text()
+    assert bloom.doc_length == len(raw)
+
+
+def test_evidence_item_spans_carry_the_card_doc_length(corpus):
+    for item in corpus.evidence:
+        assert item.span.doc_length is not None
+        assert item.span.char_end <= item.span.doc_length
+
+
 def test_quoted_title_with_embedded_quotes_is_unescaped():
     # not in the 6-card fixture subset, but the escape case this module's
     # own docstring names (Deci and Ryan 2000); regression-tested directly
