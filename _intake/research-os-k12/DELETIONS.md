@@ -493,3 +493,32 @@ commit.
 > ## What these three instruments share
 >
 > Every field named above as a schema gap is additive and optional, following the same discipline `EVIDENCE-SCHEMA.md`'s own contract states directly: a writer omits a field it has nothing for, and no existing transition function, review route, or evidence-event reader needs to change to tolerate the addition. None of the three instruments is implemented; this file specifies what `ros-04` and `ros-06` build against, the same relationship `EVIDENCE-SCHEMA.md` holds to `LEARNER-STATE-MODEL.md` section 4.
+
+## 2026-09-14, `src/app/research-os/page.tsx`, hero-mounted interactive globe removed
+
+**Reason.** Founder spec for the site-local homepage/research-os pass: the interactive `CanonGlobeMount` search tool comes out of the `/research-os` hero, replaced by a fixed, decorative, non-interactive globe rendered once at the page level (`FixedCanonGlobeBackground`, position fixed, anchored bottom right, behind all content, blurred, `pointer-events: none`). The interactive search tool stays live on `/canon`, `/canon/search`, and the new homepage `CanonSearchPanel`; `/research-os` no longer needs its own copy.
+
+**Original JSX, removed verbatim** (sat directly below the hero's CTA row in `ResearchOsPage`, importing `CanonGlobeMount` from `@/app/canon/CanonGlobeMount` and `ScrollReveal` from `@/components/ScrollReveal`, both imports also removed since this was their only use on this page):
+
+```tsx
+      {/* Hero visual: the real canon search globe, the same live component,
+          real branch data, and real search (against /api/canon/search)
+          /canon and /canon/search mount. Its own error boundary degrades
+          to the static SVG globe when WebGL is unavailable, the same
+          fallback /canon uses. */}
+      <ScrollReveal className="relative z-10">
+        <div className="w-full px-2 sm:px-4 md:px-6">
+          <div className="text-center small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-3">
+            § find sources, over the same canon this tool searches
+          </div>
+          <div id="globe-capture" className="max-w-[1800px] mx-auto">
+            <CanonGlobeMount
+              branches={globeBranches}
+              containerClassName="relative w-full mx-0 md:h-[88vh] md:max-h-[1000px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
+            />
+          </div>
+        </div>
+      </ScrollReveal>
+```
+
+Also removed from the same component: the `getBranches()`/`globeBranches` computation at the top of `ResearchOsPage` (its only consumer was the JSX above) and the `"Read the plan ↗"` external link beside the "Try the prototype →" CTA, trimming the hero to the one CTA the founder spec asked for.

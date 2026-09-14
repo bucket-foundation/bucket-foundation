@@ -3216,3 +3216,23 @@ Founder direction, verbatim intent: stop reviewing PR #11 through an artifact co
 - Dev server started detached on port 3100 (3000 was in use): `/research-os`, `/`, `/canon/search` all returned 200; `/research-os`'s HTML carries the `globe-capture` mount root and the same search placeholder `/canon/search` uses; `GET /api/canon/search?q=light` returned 10 real results with real claim ids, branches, titles, excerpts, and `bucket.foundation/canon/claims/...` URLs from the live index.
 - Leak scan of this pass's own diff: clean, no keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. The merge commit carried 18 pre-existing files' worth of voice-lint hits from `origin/main` (17 auto-generated `bucket-canon/_bridges/detected/*/README.md` reports plus two `quantum/reference-impl/` setup docs), none touched by this pass's own diff and already logged as a founder-decision `AGF_VOICE_SKIP=1` bypass case in the repo hygiene entries above; committed the merge the same way.
 - No UI text was replaced, only a JSX comment and the `branches` prop's value, so `_intake/research-os-k12/DELETIONS.md` gets no new entry.
+
+## Homepage canon search panel and a research-os fixed background globe
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Added
+
+- `src/components/CanonSearchPanel.tsx`, `src/components/FixedCanonGlobeBackground.tsx`.
+- `public/research-os/state-{access,awareness,understanding,internalization,production}.png`.
+
+### Edited
+
+- `src/components/canon-globe/CanonGlobe.tsx`: `decorative`/`scrollSpeedRef` props on the R3F globe, plus the `AutoRotateDriver` inner component.
+- `src/app/canon/CanonGlobeMount.tsx`: split into `CanonGlobeMount` (dispatcher), `InteractiveCanonGlobeMount`, and `DecorativeCanonGlobeMount`; new `decorative`, `scrollSpeedRef`, `globeWrapperClassName` props.
+- `src/components/Presentation.tsx`: hero down to one CTA at `min-h-[88vh]`; `CanonSearchPanel` replaces the old branch-nav-plus-globe grid; the stat strip moved to its own section.
+- `src/app/research-os/page.tsx`: new h1/subtext/one CTA; `FixedCanonGlobeBackground` mounted at the page level; a new alternating-row "Five States" section added directly after the hero. The removed hero globe JSX is recorded in `_intake/research-os-k12/DELETIONS.md`'s matching entry.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on every touched file. `curl` confirmed `/` and `/research-os` return 200 on the running dev server (port 3100) with no restart, HTML carries the new headline and all five state headings.
