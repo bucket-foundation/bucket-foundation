@@ -20,6 +20,27 @@ def _posterior(h: Hypothesis, opinions: Mapping[int, Opinion]) -> float | None:
     return opinion.project() if opinion is not None else None
 
 
+def _opinion_dict(opinion: Opinion | None, posterior: float | None) -> dict[str, float] | None:
+    """The full subjective-logic opinion, `{"b", "d", "u", "a", "P"}`,
+    `None` when `opinion` itself is missing (the same missing-safe
+    reading `_posterior`/`elos.get` already give the rest of a ranked
+    entry). Matches `hte.bridge_export.export_for_bridge`'s and `hte.
+    api._enrich_entry`'s own opinion-dict convention, so a caller reading
+    any of the three sees the same shape.
+
+    `bkt-hte-timeline-opinion-export`: before this, `timeline.json` (and
+    `TIMELINE.md`) carried only the projected posterior `P`, `u`
+    (uncertainty mass) had no home there at all, so a reader could not
+    tell an unexamined hypothesis (`u` near 1, `P` set entirely by its
+    prior `a`) from an examined, moderately-believed one at the same
+    `P`, the exact distinction `hte.canon_writeback.select_above_floor`'s
+    own `u`-floor gate exists to draw, and had to reconstruct the whole
+    run just to see it (`hte.canon_writeback`'s own top docstring)."""
+    if opinion is None:
+        return None
+    return {"b": opinion.b, "d": opinion.d, "u": opinion.u, "a": opinion.a, "P": posterior}
+
+
 def _rank_key(h: Hypothesis, opinions: Mapping[int, Opinion], elos: Mapping[int, float]):
     """Ranks by projected posterior first, current Elo second, both
     missing-safe: an unscored hypothesis sorts after every scored one at
@@ -40,12 +61,14 @@ def _slots_of(placement: Placement) -> dict:
 
 
 def _ranked_entry(h: Hypothesis, opinions: Mapping[int, Opinion], elos: Mapping[int, float]) -> dict:
+    posterior = _posterior(h, opinions)
     return {
         "hypothesis_id": h.short_id,
         "address": h.address,
         "slots": _slots_of(h.content),
-        "posterior": _posterior(h, opinions),
+        "posterior": posterior,
         "elo": elos.get(h.address),
+        "opinion": _opinion_dict(opinions.get(h.address), posterior),
     }
 
 
@@ -84,8 +107,21 @@ def timeline_views(
       of (OBJECT, PLACE) events, one entry per Allen relation the
       evidence has touched.
 
+    Every ranked hypothesis, in a bin's own `ranked_hypotheses`, an
+    event's own `ranked_placements`, or a pair's own `competing_sequences`,
+    carries its full opinion (`opinion`, `_opinion_dict`'s own `{"b", "d",
+    "u", "a", "P"}` shape) alongside `posterior` (`P` again, kept for a
+    caller that only wants the bare projection) and `elo`
+    (`bkt-hte-timeline-opinion-export`). `event_views`'s own `competing_
+    placements` stays the bare `short_id` list it always was, `hte.canon_
+    writeback.reconstruct_candidates`'s own read of it; `ranked_placements`
+    carries the same hypotheses in the same order with their full entries
+    alongside it, additive rather than a replacement.
+
     Display pruning, `top_k`, lives only here; nothing upstream of this
-    function is pruned by it.
+    function is pruned by it. `event_views` and `pair_views` are never
+    capped by `top_k`: every placement or sequence hypothesis they
+    partition is carried, in ranked order.
     """
     placements = [h for h in hypotheses if not h.is_sequence]
     sequences = [h for h in hypotheses if h.is_sequence]
@@ -109,6 +145,7 @@ def timeline_views(
         event_views.append({
             "event": {"object": obj, "place": place},
             "competing_placements": [h.short_id for h in ranked],
+            "ranked_placements": [_ranked_entry(h, opinions, elos) for h in ranked],
         })
 
     pairs: dict[tuple, list[Hypothesis]] = {}
@@ -125,7 +162,13 @@ def timeline_views(
                 "second": {"object": second_key[0], "place": second_key[1]},
             },
             "competing_sequences": [
-                {"relation": h.content.relation.value, "posterior": _posterior(h, opinions)}
+                {
+                    "hypothesis_id": h.short_id,
+                    "relation": h.content.relation.value,
+                    "posterior": _posterior(h, opinions),
+                    "elo": elos.get(h.address),
+                    "opinion": _opinion_dict(opinions.get(h.address), _posterior(h, opinions)),
+                }
                 for h in ranked
             ],
         })
@@ -143,6 +186,16 @@ def _fmt(value: float | None, decimals: int) -> str:
     return f"{value:.{decimals}f}" if value is not None else "None"
 
 
+def _u_of(entry: dict) -> float | None:
+    """`entry["opinion"]["u"]`, `None`-safe both when `entry` carries no
+    `opinion` at all (an older `timeline.json`, predating
+    `bkt-hte-timeline-opinion-export`) and when `opinion` itself is
+    `None` (`_opinion_dict`'s own reading for a hypothesis with no
+    opinion at all)."""
+    opinion = entry.get("opinion")
+    return opinion.get("u") if opinion else None
+
+
 def write_views(
     views: dict, out_dir: str | Path, *,
     fragility_ranked: list[dict] | None = None, fragility_threshold: float | None = None,
@@ -156,9 +209,10 @@ def write_views(
     `TIMELINE.md`'s own table lists every one of a bin's own `ranked_
     hypotheses` (`timeline_views`'s `top_k` is where display pruning, if
     any, already happened; this function prunes nothing further), each
-    row's posterior rounded to 3 decimals and its Elo to 1, both purely
-    a display rounding: `timeline.json` alongside it keeps every value
-    at the full precision `timeline_views` computed.
+    row's posterior and uncertainty mass (`u`, beside `P`,
+    `bkt-hte-timeline-opinion-export`) rounded to 3 decimals and its Elo
+    to 1, all purely a display rounding: `timeline.json` alongside it
+    keeps every value at the full precision `timeline_views` computed.
 
     `fragility_ranked` (`bkt-hte-retraction-propagation`, `docs/
     PROPAGATION.md`), when given, is `hte.propagate.rank_fragility`'s
@@ -190,12 +244,12 @@ def write_views(
     for b in views.get("bins", []):
         lines.append(f"## Time bin {b['time_bin'].get('label', b['time_bin']['index'])}")
         lines.append("")
-        lines.append("| Hypothesis | Slots | Posterior | Elo (unvalidated) |")
-        lines.append("|---|---|---|---|")
+        lines.append("| Hypothesis | Slots | Posterior | u | Elo (unvalidated) |")
+        lines.append("|---|---|---|---|---|")
         for entry in b["ranked_hypotheses"]:
             lines.append(
                 f"| {entry['hypothesis_id']} | {entry['slots']} | "
-                f"{_fmt(entry['posterior'], 3)} | {_fmt(entry['elo'], 1)} |"
+                f"{_fmt(entry['posterior'], 3)} | {_fmt(_u_of(entry), 3)} | {_fmt(entry['elo'], 1)} |"
             )
         lines.append("")
 
