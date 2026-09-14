@@ -2,6 +2,36 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 11, holdout_ledger.py swarm and fix, fourteen PRs re-confirmed
+
+- **Engine health**: `make test` on `main`: 1516 passed, 0 failed.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on repeat. `realsweep` over `production`/
+  `literature`/`education-atlas`, 0 crashed; zero-coverage seeds trace to
+  restrictive filters naming no ground truth, matching tick 7's pattern.
+- **Test swarm**: `hte/holdout_ledger.py`, the sole module with no
+  property-swarm file. 8 new tests in `tests/swarm-20260914/
+  test_holdout_ledger_props.py` found a real defect: `append_entries`
+  deduped a new entry's `entry_id` only against disk, never against the
+  other rows in the same call, so two `ranked` rows sharing one
+  `address` wrote duplicate on-disk lines, leaving one permanently
+  unverifiable. Filed `FINDING-2026-09-14-601` (round seven), fixed at
+  the root. `make test`: 1524 passed.
+- **Full-profile spot check**: a partial `make test-cov` run (killed for
+  time) surfaced 2 failures, reproduced directly: `pdflatex`/
+  `agf-lint-voice` missing in this sandbox, both `slow`+
+  `allow_subprocess`, an environment gap, not a defect.
+- **PRs opened**: 1, `fix/hte-holdout-ledger-batch-dedup` (#110).
+  Reviewed (zero findings) and squash-merged (`27855ae8b`).
+- **PRs reviewed**: 14 open non-draft PRs, all already carried a review
+  at current head sha; no duplicate needed.
+- **Process note**: 8 of those (#93-#109) are prior ticks' own
+  `docs/hte-loop-log-*` branches, reviewed but ineligible under this
+  loop's `fix/hte-`/`test/hte-` merge-branch rule. This entry lands on
+  `test/hte-loop-log-20260914-tick11` instead, so it merges rather than
+  adding a ninth backlog entry; the existing 8 still need a human merge.
+- **Blocked**: nothing.
+
 ## 2026-09-14, tick 7, novelty.py swarm, ten PRs re-confirmed, education-atlas seed 0 rerun
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
