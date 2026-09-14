@@ -413,3 +413,13 @@ The main checkout is shared by several sessions and carries their untracked work
 ### Research OS seam
 
 The engine exposes `hte.api.hypothesize`, `hte-serve` (`POST /hypothesize`, `GET /health`, localhost), and the `hypothesize` MCP tool definition in `hte/mcp_tool.py`. The app side applies `tools/hypothesis-engine/docs/research-os-hypothesize-route.patch`. Field mapping lives in `tools/hypothesis-engine/docs/PRODUCTION-SCHEMA-ALIGNMENT.md`; contract tests fail when the production schema drifts.
+
+## Branch Policy
+
+Three long-lived branches, set on 2026-09-14 to stop Vercel building on every push.
+
+- `main`: production. Vercel builds it. Receives merges from `dev` only, on the founder's cadence.
+- `dev`: integration and the default PR target. Vercel builds it only when a site path changes (`vercel.json` `ignoreCommand`). Site work (`feat/site-*`, `feat/ros-*`, `intake/*` that the site renders) opens PRs into `dev`.
+- `hte/integration`: engine work. Vercel never builds it (`git.deploymentEnabled` blocks `*/hte-*`). Every engine PR (`feat/hte-*`, `fix/hte-*`, `test/hte-*`, `run/*`, `docs/hte-*`) targets `hte/integration`; the cloud loop merges its own there. One batch PR carries `hte/integration` into `dev` when the batch is reviewed.
+
+Rules: never push to `main`; a PR into `main` comes from `dev` alone; engine PRs never target `dev` or `main` directly; a branch that needs a preview build must avoid the blocked prefixes. Same rule applies to every Claude session working this repo.
