@@ -208,3 +208,28 @@ def test_calibration_artifact_reads_the_post_redesign_shape_not_the_retired_n_so
     assert new_shape.calibration.n_holdout_events == 105
     assert new_shape.calibration.n_covered_events == 17
     assert new_shape.calibration.brier_score == 0.42
+
+
+# --------------------------------------------------------------------------
+# survivors.json (`bkt-hte-survivors-artifact`): `RunData.survivors`, the
+# same "no file, no defaulting" reading `calibration` gets above.
+# --------------------------------------------------------------------------
+
+
+def test_load_run_reads_survivors_artifact_when_present(fresh_synth_run):
+    data = artifacts.load_run(fresh_synth_run)
+    assert isinstance(data.survivors, artifacts.SurvivorsArtifact)
+    assert data.survivors.campaign
+    assert data.survivors.survivors
+    entry = data.survivors.survivors[0]
+    assert "hypothesis_id" in entry
+    assert "opinion" in entry
+    assert "robustness" in entry
+
+
+def test_load_run_survivors_is_none_when_the_file_is_absent(tmp_path):
+    run_dir = tmp_path / "runs" / "camp" / "20260101T000000Z"
+    run_dir.mkdir(parents=True)
+    (run_dir / "MANIFEST.json").write_text(json.dumps({"campaign": "camp"}))
+    data = artifacts.load_run(run_dir)
+    assert data.survivors is None
