@@ -344,3 +344,49 @@ def test_purge_refuses_a_redaction_that_would_corrupt_json_and_flags_it(tmp_path
     # normally: the refusal is specific to the one file it would corrupt.
     assert quote not in (run_dir / "run.log").read_text()
     assert report["warning"]
+
+
+def test_purge_redacts_survivors_json_the_same_quote_it_redacts_from_timeline_json(tmp_path):
+    """`survivors.json` (`bkt-hte-survivors-artifact`) carries the same
+    per-hypothesis slot labels and preservation-critique text
+    `timeline.json` does, so a production purge must reach it too, not
+    stop at the three files `docs/PRIVACY.md` named before this artifact
+    existed. Plants a run directory directly, the same pattern
+    `test_purge_refuses_a_redaction_that_would_corrupt_json_and_flags_it`
+    uses, with two productions so the run is redacted in place rather
+    than deleted whole."""
+    runs_root = tmp_path / "runs"
+    run_dir = runs_root / "campaign" / "20260101T000000Z"
+    run_dir.mkdir(parents=True)
+    quote = "Rayleigh scattering bends blue light more than red."
+    manifest = {
+        "provenance": {
+            "production_ids": ["prod-aaa", "prod-bbb"],
+            "learner_ids": ["learner-1", "learner-2"],
+            "source_ids": ["src-aaa", "src-bbb"],
+            "by_production": {
+                "prod-aaa": {"quotes": [quote], "labels": [], "source_ids": ["src-aaa"], "learner_id": "learner-1"},
+                "prod-bbb": {"quotes": ["unrelated quote"], "labels": [], "source_ids": ["src-bbb"], "learner_id": "learner-2"},
+            },
+        },
+    }
+    (run_dir / "MANIFEST.json").write_text(json.dumps(manifest, indent=2))
+    (run_dir / "timeline.json").write_text(json.dumps({"bins": [{"quote": quote}]}))
+    (run_dir / "survivors.json").write_text(json.dumps({
+        "artifact_version": "1.0.0", "campaign": "campaign", "corpus": "fixtures",
+        "survivors": [{
+            "hypothesis_id": "h1", "address": 1, "slots": {"ACTOR": "actor-0"},
+            "opinion": {"b": 0.5, "d": 0.1, "u": 0.4, "a": 0.3, "P": 0.62}, "elo": 1500.0,
+            "preservation": {"could_have_survived": True, "rationale": quote},
+            "robustness": {"projections": {}, "stable": True},
+        }],
+    }))
+
+    report = purge.purge("prod-aaa", runs_root=runs_root, dry_run=False)
+
+    assert report["complete"] is True
+    for name in ("timeline.json", "survivors.json"):
+        text = (run_dir / name).read_text()
+        assert quote not in text
+        assert "[redacted:prod-aaa]" in text
+        json.loads(text)  # still valid JSON

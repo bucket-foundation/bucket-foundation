@@ -13,9 +13,9 @@ app side's job.
 
 1. **Run directories**, `runs/<campaign>/<timestamp>/` (`hte.runner.
    run_campaign`'s own `MANIFEST.json`, `timeline.json`, `self-
-   report.json`, `run.log`). A research-os campaign run over one or more
-   accepted productions writes one of these per run; nothing deleted
-   them until `hte purge` (below).
+   report.json`, `survivors.json`, `run.log`). A research-os campaign
+   run over one or more accepted productions writes one of these per
+   run; nothing deleted them until `hte purge` (below).
 2. **The LLM response cache**, `<cache_dir>/*.json` (`hte.llm.complete`'s
    own `_write_cache`), keyed by a sha256 of `(model, prompt)`. A
    generate/critic/unknown-unknown prompt built from a production's own
@@ -111,10 +111,11 @@ Four passes, one per reachable landing spot:
    `provenance.by_production[id]` entry (and `id` itself, from every
    summary list) is removed, and every occurrence of that production's
    own quotes and slot labels is blotted out with a `[redacted:<id>]`
-   marker inside `timeline.json`, `self-report.json`, and `run.log`.
-   `timeline.json`/`self-report.json` are checked for valid JSON after
-   redaction; a redaction that would corrupt either file is refused,
-   leaving that file exactly as it was. A caller detects this: the
+   marker inside `timeline.json`, `self-report.json`, `survivors.json`,
+   and `run.log`. `timeline.json`/`self-report.json`/`survivors.json`
+   are checked for valid JSON after redaction; a redaction that would
+   corrupt any of the three is refused, leaving that file exactly as
+   it was. A caller detects this: the
    refused file's run directory, name, and reason land in the report's
    own `redaction_refused` list, `report["complete"]` is `False`, and
    `hte purge`'s CLI exits non-zero. An unreadable `MANIFEST.json`
