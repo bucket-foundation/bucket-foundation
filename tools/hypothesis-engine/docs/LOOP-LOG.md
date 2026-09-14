@@ -2,6 +2,47 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 14, sacred_history_texts swarm, two PRs reviewed, batch PR refreshed
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-cov`/`pytest-xdist`
+  first. `make test` on `hte/integration` (`279204442`): 1611 passed, 0
+  failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on a seeds-0-2 repeat. `realsweep --corpus
+  production`/`literature`, 0/10 crashed each, coverage/None spread
+  matches prior ticks' own documented precedent. `--corpus
+  education-atlas` seed 0 only (569.6s): coverage 0.778, matching tick
+  5/6/7/12/13's own seed-0 baseline exactly. `younger-dryas` still
+  unregistered in `REALSWEEP_BUILDERS` (registered in both
+  `_CORPUS_LOADERS` dicts, just not this sweep tool's own separate
+  registry).
+- **Test swarm**: `hte/corpus/sacred_history_texts.py` was the one
+  module left on the priority list (`propagate.py`, `predict.py`,
+  `purge.py`, `question_map.py`, `corpus/younger_dryas.py`) with no
+  property-test file. 8 new Hypothesis tests over `split_passages`/
+  `_strip_gutenberg_boilerplate` in `tests/swarm-20260914/
+  test_corpus_sacred_history_texts_props.py`, both `fast` and `full`
+  profiles, no defect found. `test/hte-sacred-history-texts-
+  coverage-20260914` (#133).
+- **PRs opened**: 1 (#133). **Reviewed**: #132 (`feat/hte-sacred-
+  history-text-acquisition`, eleven new public-domain editions filling
+  the seven previously-uncovered `sacred-history` traditions), fresh,
+  approved after a temp-worktree `make test` (1622 passed) and an
+  independent hand-sum of the doc's own word/passage totals against the
+  PR body's claims (both exact); #127 (`docs/ros-plan-revision-4`, base
+  `dev`, outside this loop's own merge scope), fresh, no blocking
+  finding, one disclosure gap flagged (a `git merge origin/dev` picked
+  up three incidental voice-lint fixes inside `tools/hypothesis-engine/`
+  not mentioned in the PR body, though the branch's own `CHANGE-LEDGER.md`
+  does disclose them). #123 already reviewed at its then-current head,
+  no duplicate (merged by the local session before this tick's own
+  review pass reached it). **Merged**: #133 (this tick's own, self-
+  reviewed clean, `tools/hypothesis-engine/` only). **Batch PR**:
+  `hte/integration` was 3 commits ahead of `dev` (#130, #123, #133);
+  opened #134 (`batch(hte): engine work into dev`, no prior one open),
+  left for the founder to merge. **Blocked**: nothing.
+
 ## 2026-09-14, PR #123 reviewed and merged into hte/integration
 
 - **Scope**: review-and-merge pass on PR #123 (`fix/hte-propagation-
