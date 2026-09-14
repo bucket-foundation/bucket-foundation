@@ -3396,3 +3396,53 @@ Reviewed `feat/hte-prediction-register` (PR #87) against `main` in worktree `~/a
 - Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
 - `hte.predict`'s forecast ledger and `hte.holdout_ledger`'s ranking ledger stay two distinct sources of truth for two distinct claims (a hypothesis's own `P(h)` versus Elo's relative order); `elo_status` stays sourced from `holdout_ledger.ranking_status` alone, unmodified by this PR.
 - `make test`: 1562 passed, 3 skipped, 1 deselected (a pre-existing flaky live-network test outside this PR's diff).
+
+## Iteration 27: status band refresh to current main
+
+`/research-os`'s "§ status" section rewritten so it states truthfully what is on main today. Scope held to that one section: nothing else on the page touched, since the hero and globe changes live on the open PR #11 branch. Every shipped claim checked against `gh pr list --state merged --limit 60` and the linked doc under `learning/research-os/` before it was listed.
+
+### Edited
+
+- `src/app/research-os/page.tsx`: the "§ status" section's first paragraph split into two (the shipped list grew from six items to thirteen: routing with confidence flags, the diagnostic probe, the four-tool workspace with enforced contracts, cognitive forcing with a calibration record, faded guidance with worked examples, lateral reading with an independent second source, the production provenance guard, the teacher review queue and class view, the OneRoster CSV importer, the consent gate and profile with privacy export/delete, the engine bridge with its outbox and campaign caller, the canon sign-off tool, and the pre-registration draft), each naming its doc file inline (`ROUTING.md`, `WORKSPACE.md`, `GUIDANCE.md`, `LATERAL-READING.md`, `PRODUCTION-GUARD.md`, `TEACHER-LAYER.md`, `ROSTER.md`, `ENGINE-BRIDGE.md`, `tools/canon-pipeline/SIGNOFF.md`, `study/`). The "not yet on main" paragraph rewritten to name a Clever/ClassLink roster connector, verified parental consent, a payment to a minor contributor, an LLM-inferred edge applied to the graph without review, applying an accepted production to the live database, and a partner school, replacing the stale "roster sync from a school system" and "canon write-back without a human sign-off" lines both closed by shipped work since. The third paragraph (candidate subjects, repository pointers, pilot/study framing) kept its existing sentences and gained one closing sentence with an inline link, "Read the plan," to `learning/research-os/PLAN-REVISION-3.md` on GitHub.
+- `_intake/research-os-k12/DELETIONS.md`: the two replaced paragraphs' original text preserved verbatim, per this repo's own convention.
+- `_intake/research-os-k12/CHANGELOG.md`: this pass logged.
+
+### Removed
+
+None. No file deleted; the replaced status-section text is preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+
+### Verified
+
+`npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean, `/research-os` present in the route manifest at 245 B, the same page-weight class as before this pass (the added text carries no new import, no new client component). `next lint --file src/app/research-os/page.tsx`: clean. `agf-lint-voice-src check src/app/research-os/page.tsx`: 0 violations. Every new `(<code>...</code>)` fragment checked directly against the rendered `.next/server/app/research-os.html` output: no stray space around any parenthesis, confirming the multi-line JSX-text-adjacent-to-tag pattern used here collapses the same way the file's pre-existing status paragraph already does. Manual 400px review: the two new paragraphs share the existing `max-w-2xl`/`text-[15px]`/`leading-[1.75]` classes the other three already use; no new element, no horizontal scroll.
+
+Every shipped item traced to one merged PR: `ROUTING.md`/confidence flags (#27), the diagnostic probe (#21), `WORKSPACE.md`'s enforced contracts (#37), cognitive forcing and the calibration record (#63), `GUIDANCE.md` (#74), `LATERAL-READING.md` (#84, Iteration 26 above), `PRODUCTION-GUARD.md` (#73), `TEACHER-LAYER.md` (#28), `ROSTER.md` (#52), the consent gate and compliance work (#35, #47), the engine bridge's outbox and campaign caller (#14, #30), the canon sign-off tool (#61), and the pre-registration draft (#34, #76). Every not-shipped item traced to its own doc: `ROSTER.md` and `PLAN-REVISION-3.md` item 3 for the Clever/ClassLink stubs, `compliance/README.md` part B item 2 for verified parental consent, `PRODUCTION-GUARD.md`'s own "no payment code" line for the minor-payment gap, `ROUTING.md`'s "never applied by that script" line for both inference scripts, and `PLAN-REVISION-3.md`'s own "No partner school" line, unchanged since that revision.
+
+## Iteration 28: finishing pass and merge to current main
+
+Resumed the same worktree and branch after a spend-limit stop. The preserved wip commit's changelog text carried no meta-commentary hit on a fresh `agf-lint-voice-src`/`agf-lint-voice` pass; nothing to rewrite there. Re-ran the shipped/not-shipped verification against `gh pr list --state merged --limit 200` (97 merged PRs, up from the 60 the prior pass checked): every item still traces to the same PR, and every PR merged since (#85 through #87, all `hte` engineering) is `tools/hypothesis-engine` internal work, none of it a Research OS user-facing feature the status band should name.
+
+### Edited
+
+- `src/app/contributors/lib.ts`: `getAllHandles()` now skips a falsy `author_github` before adding it to the handle set, instead of adding every event's value unconditionally.
+
+### Removed
+
+None.
+
+### Verified
+
+`git fetch origin && git merge origin/main` merged 21 commits (through PR #87) with no conflicts; the diff against `origin/main` afterward held to the same four files this branch already carried. `npm run build` then failed: `generateStaticParams` for `/contributors/[handle]` received an object where a string was required, because PR #87's `predict_register` feed events carry `author_github: null`, and `typeof null === "object"` in JavaScript, so the un-guarded `getAllHandles()` put `null` in its `Set<string>` and `.map((handle) => ({ handle }))` produced one static param with a `null` handle. This predates this branch and touches no Research OS file; fixed with the one-line guard above, the correct read of a system-generated feed event with no human author. `npm ci`, `npx tsc --noEmit`, and `npm run build` all clean after the fix; `/research-os` unchanged in the manifest at 244 B. `next lint --file src/app/research-os/page.tsx --file src/app/contributors/lib.ts`: clean. `agf-lint-voice-src check` on both files: 0 violations.
+
+## PR #117 review: status band refresh and merge
+
+Reviewed `feat/ros-status-band-2` (PR #117) against `main` in worktree `~/agfarms/.ros-worktrees/r117`, branch `review/pr117`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (leak scan, per-claim doc and merged-PR verification, diff-scope check, the `contributors/lib.ts` fix review, voice re-check, the `origin/main` merge and its `CHANGE-LEDGER.md` conflict resolution, and the gate results including the sandboxed `npm run build`'s pre-existing, PR-unrelated Google Fonts network block).
+
+### Verified
+
+- Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
+- Every shipped and not-shipped claim in the status band traced to a merged PR (101 checked) and a supporting line in its named doc; `PLAN-REVISION-3.md` confirmed current (`PLAN-REVISION-4.md` does not exist on `main`).
+- `git diff origin/main...HEAD --stat`: exactly the five files the PR claims, all inside the "§ status" section.
+- `npm ci`, `npx tsc --noEmit`, `next lint` on both touched files, `npm run test:research-os` (30 files, 455 tests, 0 fail): clean.
+- `agf-lint-voice-src check` and `agf-lint-voice check`: 0 violations.
+
+Squash-merged after this pass.
