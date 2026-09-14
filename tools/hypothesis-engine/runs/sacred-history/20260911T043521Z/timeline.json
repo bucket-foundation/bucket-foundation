@@ -1,0 +1,1675 @@
+{
+  "bins": [
+    {
+      "time_bin": {
+        "index": 3,
+        "label": "-1200s"
+      },
+      "ranked_hypotheses": [
+        {
+          "hypothesis_id": "d34073dd1b803776",
+          "address": 237448883511840000000,
+          "slots": {
+            "ACTOR": "joseph-smith",
+            "ACTION": "other-action",
+            "OBJECT": "buddha",
+            "PLACE": "other-place",
+            "MECHANISM": "hyperdiffusion"
+          },
+          "posterior": 0.9241418199787566,
+          "elo": 2514.4510525481605
+        },
+        {
+          "hypothesis_id": "358298c37c980407",
+          "address": 2246582251230817500000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "buddha",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8807970779778823,
+          "elo": 2309.3053024397464
+        },
+        {
+          "hypothesis_id": "32fe4bba18229206",
+          "address": 17972658009846540000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8807970779778823,
+          "elo": 2299.9999999999995
+        },
+        {
+          "hypothesis_id": "50c18e3496e9767a",
+          "address": 3594531601969308000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "bahaullah",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8807970779778823,
+          "elo": 2289.311269816285
+        },
+        {
+          "hypothesis_id": "b7b0324bd46e1716",
+          "address": 1502367494047580160000,
+          "slots": {
+            "ACTOR": "muhammad",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "islam",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8415231832000872,
+          "elo": 2169.93944188954
+        },
+        {
+          "hypothesis_id": "adb12655343757ac",
+          "address": 611060289840000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8340815684358582,
+          "elo": 2147.3866027145596
+        },
+        {
+          "hypothesis_id": "834b301d2161e031",
+          "address": 895326432000,
+          "slots": {
+            "ACTOR": "gilgamesh",
+            "ACTION": "other-action",
+            "OBJECT": "bahaullah",
+            "PLACE": "bahai",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.8175744761936437,
+          "elo": 2084.0
+        },
+        {
+          "hypothesis_id": "4528716d7af69b37",
+          "address": 1193477128593750000000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "maps-to",
+            "OBJECT": "laozi",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.7682889394586425,
+          "elo": 1984.163533969775
+        },
+        {
+          "hypothesis_id": "3f2a79c6839dbb0b",
+          "address": 89863290049232700000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "david",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.7310585786300049,
+          "elo": 1913.4842095212764
+        },
+        {
+          "hypothesis_id": "688ab1b94e7cb9e7",
+          "address": 718906320393861600,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "abraham",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.7310585786300049,
+          "elo": 1903.2
+        },
+        {
+          "hypothesis_id": "f9eee46ab885c5d9",
+          "address": 53655981930270720000,
+          "slots": {
+            "ACTOR": "manu",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "hinduism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6681507135517424,
+          "elo": 1787.0926545268567
+        },
+        {
+          "hypothesis_id": "612d043f5c1e2fce",
+          "address": 3744303752051362500000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "other-action",
+            "OBJECT": "gilgamesh",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1712.8
+        },
+        {
+          "hypothesis_id": "3018bb1022ad321f",
+          "address": 1404113907019260937500,
+          "slots": {
+            "ACTOR": "abraham",
+            "ACTION": "maps-to",
+            "OBJECT": "gilgamesh",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1709.6000000000001
+        },
+        {
+          "hypothesis_id": "e388f99cc43d74a7",
+          "address": 229243086860287500000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "gilgamesh",
+            "PLACE": "islam",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1708.2757904787238
+        },
+        {
+          "hypothesis_id": "5047f09812fc4b64",
+          "address": 668347192012500000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "gilgamesh",
+            "PLACE": "christianity",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1703.2294730558542
+        },
+        {
+          "hypothesis_id": "7f375907fff8c87c",
+          "address": 864070096627237500000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "gilgamesh",
+            "PLACE": "judaism",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1702.2842095212764
+        },
+        {
+          "hypothesis_id": "97ed81c4543a3bd8",
+          "address": 1948534087500000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "gilgamesh",
+            "PLACE": "other-place",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1702.2842095212761
+        },
+        {
+          "hypothesis_id": "e450dbb8e2de12ba",
+          "address": 143781264078772320,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "other-object",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1701.6000000000001
+        },
+        {
+          "hypothesis_id": "5f3cdf5422fdedef",
+          "address": 13639738612500000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "gilgamesh",
+            "PLACE": "bahai",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1692.0
+        },
+        {
+          "hypothesis_id": "c4004d772d912062",
+          "address": 1604701608022012500000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "gilgamesh",
+            "PLACE": "jainism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1691.0842095212763
+        },
+        {
+          "hypothesis_id": "9e01e8b7b67567ad",
+          "address": 5504126515515502875000,
+          "slots": {
+            "ACTOR": "bahaullah",
+            "ACTION": "maps-to",
+            "OBJECT": "deucalion",
+            "PLACE": "mesopotamian",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1686.5894730558543
+        },
+        {
+          "hypothesis_id": "fb64f61351cda88c",
+          "address": 702056953509630468750,
+          "slots": {
+            "ACTOR": "other-actor",
+            "ACTION": "maps-to",
+            "OBJECT": "gilgamesh",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.5,
+          "elo": 1503.5453024397468
+        },
+        {
+          "hypothesis_id": "710082a085ff002e",
+          "address": 1177856115333302845440,
+          "slots": {
+            "ACTOR": "noah",
+            "ACTION": "maps-to",
+            "OBJECT": "other-object",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.5,
+          "elo": 1499.7053024397467
+        },
+        {
+          "hypothesis_id": "5660a667a5925d16",
+          "address": 1270183042042039125000,
+          "slots": {
+            "ACTOR": "bahaullah",
+            "ACTION": "parallels",
+            "OBJECT": "deucalion",
+            "PLACE": "mesopotamian",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.4656884045015152,
+          "elo": 1446.6805132032412
+        },
+        {
+          "hypothesis_id": "943b722809e04351",
+          "address": 2752063257757751437500,
+          "slots": {
+            "ACTOR": "abraham",
+            "ACTION": "maps-to",
+            "OBJECT": "deucalion",
+            "PLACE": "mesopotamian",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.37754066879814546,
+          "elo": 1305.4842095212764
+        },
+        {
+          "hypothesis_id": "bb8a7edc96281663",
+          "address": 449316450246163500000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "deucalion",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.37754066879814546,
+          "elo": 1298.3263177978974
+        },
+        {
+          "hypothesis_id": "153c2f256c33df7f",
+          "address": 56164556280770437500,
+          "slots": {
+            "ACTOR": "abraham",
+            "ACTION": "maps-to",
+            "OBJECT": "deucalion",
+            "PLACE": "judaism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.3307726488926388,
+          "elo": 1216.5146713710449
+        },
+        {
+          "hypothesis_id": "72c12b356410bb1f",
+          "address": 1341399548256768000000,
+          "slots": {
+            "ACTOR": "manu",
+            "ACTION": "maps-to",
+            "OBJECT": "deucalion",
+            "PLACE": "hinduism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.2906579581883253,
+          "elo": 1144.7320382783134
+        },
+        {
+          "hypothesis_id": "27ac9b8208a9501a",
+          "address": 635091521021019562500,
+          "slots": {
+            "ACTOR": "abraham",
+            "ACTION": "parallels",
+            "OBJECT": "deucalion",
+            "PLACE": "mesopotamian",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.2824542952028277,
+          "elo": 1126.3003366478256
+        },
+        {
+          "hypothesis_id": "e63026268c192d9b",
+          "address": 1376031628878875718750,
+          "slots": {
+            "ACTOR": "other-actor",
+            "ACTION": "maps-to",
+            "OBJECT": "deucalion",
+            "PLACE": "mesopotamian",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.2689414213699951,
+          "elo": 1095.1999999999998
+        },
+        {
+          "hypothesis_id": "4bbaf93f7739455c",
+          "address": 317545760510509781250,
+          "slots": {
+            "ACTOR": "other-actor",
+            "ACTION": "parallels",
+            "OBJECT": "deucalion",
+            "PLACE": "mesopotamian",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.2012065610460714,
+          "elo": 948.1971661945173
+        },
+        {
+          "hypothesis_id": "509b7250b74a8ab3",
+          "address": 309553741905408000000,
+          "slots": {
+            "ACTOR": "manu",
+            "ACTION": "parallels",
+            "OBJECT": "deucalion",
+            "PLACE": "hinduism",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.137573443345719,
+          "elo": 763.1730158136733
+        },
+        {
+          "hypothesis_id": "49cc48f5c4a63ede",
+          "address": 5107965198336000000,
+          "slots": {
+            "ACTOR": "utnapishtim",
+            "ACTION": "maps-to",
+            "OBJECT": "deucalion",
+            "PLACE": "other-place",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.11920292202211755,
+          "elo": 709.6
+        },
+        {
+          "hypothesis_id": "4b808ba38cd65a98",
+          "address": 250290294718464000000,
+          "slots": {
+            "ACTOR": "utnapishtim",
+            "ACTION": "maps-to",
+            "OBJECT": "deucalion",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.11920292202211755,
+          "elo": 701.7473612790712
+        },
+        {
+          "hypothesis_id": "eb408fbba0c9d8ce",
+          "address": 1752032063029248000000,
+          "slots": {
+            "ACTOR": "utnapishtim",
+            "ACTION": "maps-to",
+            "OBJECT": "deucalion",
+            "PLACE": "christianity",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.11920292202211755,
+          "elo": 698.2526387209288
+        },
+        {
+          "hypothesis_id": "973822812e417898",
+          "address": 2830205640278016000000,
+          "slots": {
+            "ACTOR": "utnapishtim",
+            "ACTION": "parallels",
+            "OBJECT": "deucalion",
+            "PLACE": "greek",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.08918079589427329,
+          "elo": 577.9916763421177
+        }
+      ]
+    },
+    {
+      "time_bin": {
+        "index": 9,
+        "label": "-600s"
+      },
+      "ranked_hypotheses": [
+        {
+          "hypothesis_id": "dba4b0d6b9263cae",
+          "address": 216506115625848048000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "maps-to",
+            "OBJECT": "bahaullah",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.9590290616913908,
+          "elo": 2763.488233211835
+        },
+        {
+          "hypothesis_id": "3d5d342b3cf93b33",
+          "address": 1082530578129240240000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.9584735239279087,
+          "elo": 2752.0093146375625
+        },
+        {
+          "hypothesis_id": "211ac4288a73779e",
+          "address": 360843526043080080000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "other-action",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.9525741268224334,
+          "elo": 2703.840000000001
+        },
+        {
+          "hypothesis_id": "bf187d2d135bb898",
+          "address": 3247591734387720720000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "parallels",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.9525741268224334,
+          "elo": 2702.560000000001
+        },
+        {
+          "hypothesis_id": "e7e1691179079a77",
+          "address": 22092460778147760000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "other-place",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.9525741268224334,
+          "elo": 2702.410430494819
+        },
+        {
+          "hypothesis_id": "ffdbd98f044eeee2",
+          "address": 83271582933018480000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.9525741268224334,
+          "elo": 2697.440000000001
+        },
+        {
+          "hypothesis_id": "afb359b85c3878e5",
+          "address": 4330122312516960960000,
+          "slots": {
+            "ACTOR": "guru-nanak",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.9525741268224334,
+          "elo": 2696.1600000000008
+        },
+        {
+          "hypothesis_id": "a951b76bdaace101",
+          "address": 67658161133077515000,
+          "slots": {
+            "ACTOR": "bahaullah",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.9525741268224334,
+          "elo": 2685.548947451841
+        },
+        {
+          "hypothesis_id": "81d6512936c11ba6",
+          "address": 282783497960291328000,
+          "slots": {
+            "ACTOR": "laozi",
+            "ACTION": "maps-to",
+            "OBJECT": "bahaullah",
+            "PLACE": "other-place",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8807970779778823,
+          "elo": 2307.9999999999995
+        },
+        {
+          "hypothesis_id": "7242397f62eeb3b8",
+          "address": 5412652890646201200000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "maps-to",
+            "OBJECT": "david",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8807970779778823,
+          "elo": 2306.6946975602527
+        },
+        {
+          "hypothesis_id": "fdc0510fc4688e48",
+          "address": 43301223125169609600,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "maps-to",
+            "OBJECT": "abraham",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8807970779778823,
+          "elo": 2304.7999999999997
+        },
+        {
+          "hypothesis_id": "a45da1352184b93a",
+          "address": 270632644532310060000,
+          "slots": {
+            "ACTOR": "david",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8807970779778823,
+          "elo": 2297.5115157976834
+        },
+        {
+          "hypothesis_id": "700a7a5e865442f3",
+          "address": 1979484485722039296000,
+          "slots": {
+            "ACTOR": "laozi",
+            "ACTION": "maps-to",
+            "OBJECT": "bahaullah",
+            "PLACE": "bahai",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8807970779778823,
+          "elo": 2295.1999999999994
+        },
+        {
+          "hypothesis_id": "bf41694c02ddd2e2",
+          "address": 16914540283269378750,
+          "slots": {
+            "ACTOR": "other-actor",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8175744761936437,
+          "elo": 2104.8
+        },
+        {
+          "hypothesis_id": "b1f3ff1e087c1564",
+          "address": 8660244625033921920,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "maps-to",
+            "OBJECT": "other-object",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.8175744761936437,
+          "elo": 2103.126317797897
+        },
+        {
+          "hypothesis_id": "6cabb9c3c5835d95",
+          "address": 541265289064620120000,
+          "slots": {
+            "ACTOR": "deucalion",
+            "ACTION": "maps-to",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "entity-graph-resolver"
+          },
+          "posterior": 0.6224593312018546,
+          "elo": 1692.0
+        },
+        {
+          "hypothesis_id": "3df2a796d03dae1e",
+          "address": 49962949759811088000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "parallels",
+            "OBJECT": "bahaullah",
+            "PLACE": "buddhism",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.4717603005290345,
+          "elo": 1451.6349665438497
+        },
+        {
+          "hypothesis_id": "58b473122b760430",
+          "address": 249814748799055440000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "parallels",
+            "OBJECT": "confucius",
+            "PLACE": "buddhism",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.4196619902004204,
+          "elo": 1383.7675038553848
+        },
+        {
+          "hypothesis_id": "e3455cd8251c0bc7",
+          "address": 1249073743995277200000,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "parallels",
+            "OBJECT": "david",
+            "PLACE": "buddhism",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.38804020002090184,
+          "elo": 1321.7011717576656
+        },
+        {
+          "hypothesis_id": "99efbb284ad8dea3",
+          "address": 9992589951962217600,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "parallels",
+            "OBJECT": "abraham",
+            "PLACE": "buddhism",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.38804020002090184,
+          "elo": 1305.3138932086447
+        },
+        {
+          "hypothesis_id": "53d815b9e480ef0a",
+          "address": 1998517990392443520,
+          "slots": {
+            "ACTOR": "buddha",
+            "ACTION": "parallels",
+            "OBJECT": "other-object",
+            "PLACE": "buddhism",
+            "MECHANISM": "other-mechanism"
+          },
+          "posterior": 0.3601871205141896,
+          "elo": 1281.379167127064
+        }
+      ]
+    },
+    {
+      "time_bin": {
+        "index": 18,
+        "label": "300s"
+      },
+      "ranked_hypotheses": []
+    },
+    {
+      "time_bin": {
+        "index": 19,
+        "label": "400s"
+      },
+      "ranked_hypotheses": []
+    },
+    {
+      "time_bin": {
+        "index": 20,
+        "label": "500s"
+      },
+      "ranked_hypotheses": []
+    },
+    {
+      "time_bin": {
+        "index": 21,
+        "label": "600s"
+      },
+      "ranked_hypotheses": []
+    },
+    {
+      "time_bin": {
+        "index": 29,
+        "label": "1400s"
+      },
+      "ranked_hypotheses": []
+    },
+    {
+      "time_bin": {
+        "index": 31,
+        "label": "1600s"
+      },
+      "ranked_hypotheses": []
+    },
+    {
+      "time_bin": {
+        "index": 33,
+        "label": "1800s"
+      },
+      "ranked_hypotheses": []
+    },
+    {
+      "time_bin": {
+        "index": 34,
+        "label": "1900s"
+      },
+      "ranked_hypotheses": []
+    }
+  ],
+  "event_views": [
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "buddhism"
+      },
+      "competing_placements": [
+        "dba4b0d6b9263cae",
+        "7d8822bca8df92b0",
+        "0f4eb7534433a280",
+        "add8dc4dca083810",
+        "81a4d4753995bf35",
+        "49bb00e35388dab0",
+        "fadf4b6ab59e3ea4",
+        "17f2d27abc073b0e",
+        "483d591e9c340543",
+        "876fcb809dab4aa0",
+        "efc08b2ea7e6bca1",
+        "408ea0e536de2527",
+        "40db61f44baa7c1a",
+        "e14be8a6c3c5e725",
+        "5a1385992d705293",
+        "a38b6fbf5720774c",
+        "ee382298e1458bfc",
+        "b5d8643cb5aa8f81",
+        "c88364973e02d4e8",
+        "3df2a796d03dae1e",
+        "ef72195e2bda8707"
+      ]
+    },
+    {
+      "event": {
+        "object": "confucius",
+        "place": "buddhism"
+      },
+      "competing_placements": [
+        "3d5d342b3cf93b33",
+        "211ac4288a73779e",
+        "bf187d2d135bb898",
+        "ffdbd98f044eeee2",
+        "afb359b85c3878e5",
+        "a951b76bdaace101",
+        "a45da1352184b93a",
+        "adb12655343757ac",
+        "77ac89efd59767f1",
+        "bf41694c02ddd2e2",
+        "6cabb9c3c5835d95",
+        "58b473122b760430",
+        "9d27c3a54060ccfc"
+      ]
+    },
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "bahai"
+      },
+      "competing_placements": [
+        "5671e4eeefb64154",
+        "700a7a5e865442f3",
+        "834b301d2161e031",
+        "b23292ec3ee51408"
+      ]
+    },
+    {
+      "event": {
+        "object": "confucius",
+        "place": "other-place"
+      },
+      "competing_placements": [
+        "e7e1691179079a77",
+        "8af633425bc40554"
+      ]
+    },
+    {
+      "event": {
+        "object": "confucius",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "36e4a191c4323a81",
+        "859e0ab080d5b107",
+        "d491a24d95bea0b5",
+        "4657977741690d12",
+        "8fa63db6952993bb",
+        "3d664a74f86e8cfb",
+        "8ef01949176d01a9",
+        "2ece282667964353",
+        "51476f36b8f14d62",
+        "f9eee46ab885c5d9",
+        "572f28ee13ddc694",
+        "44fa2e7f813ed619",
+        "0f66c2870712a732",
+        "1bd7a3e7ed8710fa",
+        "07d620075ddc9482",
+        "d52e79e8cd04ff87",
+        "d176c750a12717fb",
+        "42dcb140ab00627c",
+        "e726bb96470f9183",
+        "9e8d0033d7a97402",
+        "6e0db7346947f4ce",
+        "348d0ef6a992e84e",
+        "de82dc85576e13c4",
+        "9a06250c518601e8",
+        "35a07aaac727e90b",
+        "fc7559cccfa0d8a6",
+        "2cb3cb81081cd056",
+        "321e7b2f57730464"
+      ]
+    },
+    {
+      "event": {
+        "object": "other-object",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "a19c4645adf04514",
+        "cab17a8b8156601a",
+        "e450dbb8e2de12ba",
+        "600bbd68388b89e3",
+        "959c14f5b454975d",
+        "710082a085ff002e",
+        "e1ea571b42388066"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "other-place"
+      },
+      "competing_placements": [
+        "24daf1105f7529ac",
+        "49cc48f5c4a63ede",
+        "b4062a5eb3dcf7f6",
+        "46cdcdc470929fba"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "85c5de532b43c1a6",
+        "5a03552c82757f64",
+        "61c024d32148ce9d",
+        "79cfc3050491856e",
+        "d1ca9bbaaa2ecab2",
+        "2aaa04f65c4cdb6c",
+        "7b200f8e99c014b1",
+        "72c12b356410bb1f",
+        "fad22c657d7de3bd",
+        "88f8af0c3aa1dc56",
+        "babb3fa489ff23e8",
+        "f2271a79784b07f9",
+        "19f5b1fa8d0c5e38",
+        "ad697cab936d572a",
+        "9f6269cd444589c7",
+        "509b7250b74a8ab3",
+        "ce581c8ea7853a5e",
+        "b8c7d6c18005f17e",
+        "f7c1186004c9b098",
+        "61d5543767042ddc",
+        "8db9bea32242aaa5",
+        "4a6c37397b160a7d",
+        "471912a6b11d6edf",
+        "e69587f71d169bd1",
+        "6dd5f2123a958019",
+        "a2050d307ec96021",
+        "34ea7b5f9023e40d",
+        "dad70628497e8fd7",
+        "8eff217ce2265db7",
+        "61fd0159197eaa87",
+        "c58688290642c126",
+        "f0b46a80874544da",
+        "2d902f6c3208fc64",
+        "31bbf9706858a8ea",
+        "d2825c8dd84c2514",
+        "c263928da6658311",
+        "3d86c686d4685844",
+        "1dcb4dbe2aef51b8",
+        "c2570a5e7953c175",
+        "0dd57f75d30051aa",
+        "7253b639eef89e6d",
+        "79f4f2aa06d44c75",
+        "b66a857b20bc8675",
+        "f10d508110e84ed9",
+        "ecb29e7d6c557891",
+        "403d1dc498035b3e",
+        "120e9a46e1b29310",
+        "a243719d4ccfa9b7",
+        "2e5e693ee5f3d23f",
+        "6b60e8a2775686c3",
+        "b1f805e372adc0c2"
+      ]
+    },
+    {
+      "event": {
+        "object": "abraham",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "8e4409fbab07f8bb",
+        "688ab1b94e7cb9e7",
+        "1ed9b3cc0c6d252f",
+        "e33d908af52ccc0f",
+        "eb3cd299cb8bd58f",
+        "2fdb472b0c7c7944"
+      ]
+    },
+    {
+      "event": {
+        "object": "other-object",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "57c63bdcb6df1dc9",
+        "5101d681fc1103be"
+      ]
+    },
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "54f92dde97e1ee8b",
+        "50c18e3496e9767a",
+        "1bf805e42da986c6"
+      ]
+    },
+    {
+      "event": {
+        "object": "abraham",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "036f10e16735db4f",
+        "936211ca48fadcb4"
+      ]
+    },
+    {
+      "event": {
+        "object": "confucius",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "d6b3d0c5ffed1e21",
+        "8a892946514c91fd",
+        "32fe4bba18229206",
+        "6a591467ccb5ad34",
+        "6183218fad2adcd9",
+        "605b74d57b19db4d",
+        "24a1465294bdbc27"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "buddhism"
+      },
+      "competing_placements": [
+        "4b808ba38cd65a98",
+        "03f27d3f27c80423",
+        "dfbb097068d27a49"
+      ]
+    },
+    {
+      "event": {
+        "object": "confucius",
+        "place": "christianity"
+      },
+      "competing_placements": [
+        "46a94f65d90a55b0"
+      ]
+    },
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "ba62db7a96ac4059"
+      ]
+    },
+    {
+      "event": {
+        "object": "david",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "3f2a79c6839dbb0b",
+        "8031b8238d071d3d",
+        "1a7f721c8bd3d155",
+        "525541c177514dcc",
+        "a844815330bca8d3",
+        "f0b48e5d5557e848"
+      ]
+    },
+    {
+      "event": {
+        "object": "gilgamesh",
+        "place": "other-place"
+      },
+      "competing_placements": [
+        "97ed81c4543a3bd8"
+      ]
+    },
+    {
+      "event": {
+        "object": "other-object",
+        "place": "islam"
+      },
+      "competing_placements": [
+        "0a0ed63a0d266dfd"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "c26d6233b67d23d1",
+        "19082b4c21b0544f",
+        "a468b377fc42fabb",
+        "bb8a7edc96281663",
+        "153c2f256c33df7f",
+        "77b4ae08276befb8",
+        "53db6c3471f28685",
+        "ee04184cf3fc34e7"
+      ]
+    },
+    {
+      "event": {
+        "object": "gilgamesh",
+        "place": "bahai"
+      },
+      "competing_placements": [
+        "5f3cdf5422fdedef"
+      ]
+    },
+    {
+      "event": {
+        "object": "manu",
+        "place": "other-place"
+      },
+      "competing_placements": [
+        "3322d0ca8ab66804",
+        "0b0186f043bc8e62",
+        "48f3c52abcc08971",
+        "d570d0b560b27ba9",
+        "781c53396c7c7cb6",
+        "a7790b7e16283ba9"
+      ]
+    },
+    {
+      "event": {
+        "object": "manu",
+        "place": "bahai"
+      },
+      "competing_placements": [
+        "09f5c98bacf7ba49",
+        "ccbf327f5f3fe797",
+        "686c26edc4aed151",
+        "6f39b322d156a5cd"
+      ]
+    },
+    {
+      "event": {
+        "object": "abraham",
+        "place": "islam"
+      },
+      "competing_placements": [
+        "5cdf8f172a4ebe96"
+      ]
+    },
+    {
+      "event": {
+        "object": "david",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "f6ce7824feef1287",
+        "dbd5b4b8dad93e5b"
+      ]
+    },
+    {
+      "event": {
+        "object": "buddha",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "6da83bd102cbbee5",
+        "358298c37c980407",
+        "3793a1e501c18a26",
+        "e063a5839df9d098",
+        "c216722596a187b5"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "greek"
+      },
+      "competing_placements": [
+        "b51eb0867b1f75cc",
+        "cf8990c9347237b6",
+        "973822812e417898"
+      ]
+    },
+    {
+      "event": {
+        "object": "gilgamesh",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "612d043f5c1e2fce",
+        "3018bb1022ad321f",
+        "a5181c271acb69d2",
+        "7f375907fff8c87c",
+        "fb64f61351cda88c",
+        "46cbf8b4318293a2"
+      ]
+    },
+    {
+      "event": {
+        "object": "gilgamesh",
+        "place": "christianity"
+      },
+      "competing_placements": [
+        "5047f09812fc4b64"
+      ]
+    },
+    {
+      "event": {
+        "object": "confucius",
+        "place": "islam"
+      },
+      "competing_placements": [
+        "cdf0f6eba151e974",
+        "b7b0324bd46e1716"
+      ]
+    },
+    {
+      "event": {
+        "object": "buddha",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "f7e3ec289f3d6de6"
+      ]
+    },
+    {
+      "event": {
+        "object": "guru-nanak",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "2c69781b76e0d96b"
+      ]
+    },
+    {
+      "event": {
+        "object": "other-object",
+        "place": "buddhism"
+      },
+      "competing_placements": [
+        "00349699d6f4f842",
+        "b1f3ff1e087c1564",
+        "53d815b9e480ef0a",
+        "7e1a73d40ba46b86"
+      ]
+    },
+    {
+      "event": {
+        "object": "manu",
+        "place": "christianity"
+      },
+      "competing_placements": [
+        "2a9282f18fb9b8b5"
+      ]
+    },
+    {
+      "event": {
+        "object": "david",
+        "place": "islam"
+      },
+      "competing_placements": [
+        "f3c9446262f65ed3"
+      ]
+    },
+    {
+      "event": {
+        "object": "gilgamesh",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "efeb531841e13ef2",
+        "0426edf487a5ecb0"
+      ]
+    },
+    {
+      "event": {
+        "object": "jesus",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "7aee0fcb497b7ca1"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "islam"
+      },
+      "competing_placements": [
+        "668a08bad0acb5a7",
+        "1b77b65861d15a6b"
+      ]
+    },
+    {
+      "event": {
+        "object": "abraham",
+        "place": "buddhism"
+      },
+      "competing_placements": [
+        "fdc0510fc4688e48",
+        "2781b3cc543efe93",
+        "a36607dc77db3bd8",
+        "99efbb284ad8dea3"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "bahai"
+      },
+      "competing_placements": [
+        "346462b016164323"
+      ]
+    },
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "other-place"
+      },
+      "competing_placements": [
+        "ee5dc6238bc16b68",
+        "81d6512936c11ba6",
+        "bce15c425b402f62"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "jainism"
+      },
+      "competing_placements": [
+        "be50c7eed5b8a7c1"
+      ]
+    },
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "sikhism"
+      },
+      "competing_placements": [
+        "55dd4b16c5aa14b6"
+      ]
+    },
+    {
+      "event": {
+        "object": "other-object",
+        "place": "greek"
+      },
+      "competing_placements": [
+        "dadb4f184f91607f"
+      ]
+    },
+    {
+      "event": {
+        "object": "other-object",
+        "place": "mesopotamian"
+      },
+      "competing_placements": [
+        "d8fb4f3e90601020",
+        "db2dcc1a47f13976"
+      ]
+    },
+    {
+      "event": {
+        "object": "abraham",
+        "place": "greek"
+      },
+      "competing_placements": [
+        "3afde9f3ba1b2745"
+      ]
+    },
+    {
+      "event": {
+        "object": "buddha",
+        "place": "islam"
+      },
+      "competing_placements": [
+        "6e5ef61b72ca4124"
+      ]
+    },
+    {
+      "event": {
+        "object": "jesus",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "ca55ba0847a2fd3d",
+        "f54841f391cdc0c3"
+      ]
+    },
+    {
+      "event": {
+        "object": "krishna",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "bb0dea15e121b684",
+        "7bc7645b2f8a9637"
+      ]
+    },
+    {
+      "event": {
+        "object": "gilgamesh",
+        "place": "islam"
+      },
+      "competing_placements": [
+        "7e75d48aded66829",
+        "e388f99cc43d74a7"
+      ]
+    },
+    {
+      "event": {
+        "object": "buddha",
+        "place": "other-place"
+      },
+      "competing_placements": [
+        "d34073dd1b803776"
+      ]
+    },
+    {
+      "event": {
+        "object": "manu",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "eafc235279cb9c84"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "mesopotamian"
+      },
+      "competing_placements": [
+        "9e01e8b7b67567ad",
+        "5660a667a5925d16",
+        "943b722809e04351",
+        "27ac9b8208a9501a",
+        "e63026268c192d9b",
+        "4bbaf93f7739455c"
+      ]
+    },
+    {
+      "event": {
+        "object": "abraham",
+        "place": "mesopotamian"
+      },
+      "competing_placements": [
+        "3d4e5cd809618e5f",
+        "18e7a1d47ca839a7"
+      ]
+    },
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "greek"
+      },
+      "competing_placements": [
+        "38c411b8ecd6a924"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "christianity"
+      },
+      "competing_placements": [
+        "656dd1feeb99ad70",
+        "eb408fbba0c9d8ce"
+      ]
+    },
+    {
+      "event": {
+        "object": "deucalion",
+        "place": "lds"
+      },
+      "competing_placements": [
+        "0271d15178c99ef3"
+      ]
+    },
+    {
+      "event": {
+        "object": "muhammad",
+        "place": "other-place"
+      },
+      "competing_placements": [
+        "5abfb37ed02072f1"
+      ]
+    },
+    {
+      "event": {
+        "object": "muhammad",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "67b0a6932a02dd94",
+        "86b5b53f15ba5d8d"
+      ]
+    },
+    {
+      "event": {
+        "object": "joseph-smith",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "eb1a9de18850b051",
+        "896ccf93d27f0a5c"
+      ]
+    },
+    {
+      "event": {
+        "object": "laozi",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "d2c5141c9a858d1c",
+        "8da2020da8b0af67"
+      ]
+    },
+    {
+      "event": {
+        "object": "manu",
+        "place": "islam"
+      },
+      "competing_placements": [
+        "06320c7b4c10fb03",
+        "108a12b8d6b90ac9"
+      ]
+    },
+    {
+      "event": {
+        "object": "laozi",
+        "place": "buddhism"
+      },
+      "competing_placements": [
+        "4528716d7af69b37"
+      ]
+    },
+    {
+      "event": {
+        "object": "david",
+        "place": "buddhism"
+      },
+      "competing_placements": [
+        "7242397f62eeb3b8",
+        "e3455cd8251c0bc7"
+      ]
+    },
+    {
+      "event": {
+        "object": "gilgamesh",
+        "place": "jainism"
+      },
+      "competing_placements": [
+        "c4004d772d912062"
+      ]
+    },
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "tao-confucian"
+      },
+      "competing_placements": [
+        "75e51a215cf98f97"
+      ]
+    },
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "mesopotamian"
+      },
+      "competing_placements": [
+        "689cce76bc4c8931"
+      ]
+    },
+    {
+      "event": {
+        "object": "guru-nanak",
+        "place": "islam"
+      },
+      "competing_placements": [
+        "b30764b379706352"
+      ]
+    },
+    {
+      "event": {
+        "object": "krishna",
+        "place": "hinduism"
+      },
+      "competing_placements": [
+        "3e24b29cabfd7659"
+      ]
+    },
+    {
+      "event": {
+        "object": "mahavira",
+        "place": "judaism"
+      },
+      "competing_placements": [
+        "e5fab0af3ebc1457"
+      ]
+    },
+    {
+      "event": {
+        "object": "bahaullah",
+        "place": "christianity"
+      },
+      "competing_placements": [
+        "bf57e95391044c0a"
+      ]
+    },
+    {
+      "event": {
+        "object": "muhammad",
+        "place": "bahai"
+      },
+      "competing_placements": [
+        "bbe077a23b985cad"
+      ]
+    },
+    {
+      "event": {
+        "object": "confucius",
+        "place": "sikhism"
+      },
+      "competing_placements": [
+        "bd529181bea316aa"
+      ]
+    }
+  ],
+  "pair_views": []
+}

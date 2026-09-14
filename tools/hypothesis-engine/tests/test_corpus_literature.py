@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import json
 import urllib.error
+from pathlib import Path
 
 import pytest
 
@@ -647,6 +648,112 @@ def test_load_default_matches_both_batches_combined():
 
 
 # --------------------------------------------------------------------------
+# root auto-discovery (bkt-hte-outbox-seam item 3): `discover_card_roots`
+# globs `_intake/research-os-k12-literature*` under a base directory, plus
+# any batch subfolder a matched root's own README declares as a distinct
+# root of its own. A temp tree of three roots exercises both mechanisms at
+# once: the primary glob match, a sibling glob match, and a subfolder the
+# primary root's own README declares.
+# --------------------------------------------------------------------------
+
+
+def _copy_card(src: Path, dest_dir: Path) -> None:
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    (dest_dir / src.name).write_text(src.read_text())
+
+
+BLOOM_CARD = FIXTURES_DIR / "educational-methods" / "bloom-1984-two-sigma-problem.md"
+BLOOM_DOI = "10.3102/0013189x013006004"
+KULIK_CARD = FIXTURES_DIR / "educational-methods" / "kulik-kulik-bangert-drowns-1990-mastery-learning-meta-analysis.md"
+
+
+@pytest.fixture
+def three_root_tree(tmp_path):
+    """A temp `_intake/` carrying three literature-corpus roots:
+
+    1. `research-os-k12-literature/` (the primary glob match), one card
+       (Bloom 1984), plus a `README.md` declaring a nested batch root.
+    2. `research-os-k12-literature/declared-batch/` (the README-declared
+       root, nested inside the primary root but a distinct root of its
+       own), one different card (Kulik, Kulik, and Bangert-Drowns 1990).
+    3. `research-os-k12-literature-extra/` (a second, sibling glob match),
+       repeating Bloom's own card, so cross-root DOI dedup has something
+       real to collapse.
+    """
+    intake = tmp_path / "_intake"
+    primary = intake / "research-os-k12-literature"
+    declared = primary / "declared-batch"
+    sibling = intake / "research-os-k12-literature-extra"
+
+    _copy_card(BLOOM_CARD, primary / "educational-methods")
+    (primary / "README.md").write_text("Some corpus notes.\n\nBatch root: `declared-batch`\n")
+    _copy_card(KULIK_CARD, declared / "educational-methods")
+    _copy_card(BLOOM_CARD, sibling / "educational-methods")
+
+    return tmp_path, primary, declared, sibling
+
+
+def test_discover_card_roots_globs_plus_readme_declared_subfolder(three_root_tree):
+    base, primary, declared, sibling = three_root_tree
+    discovered = literature.discover_card_roots(base=base)
+    assert set(discovered) == {primary, declared, sibling}
+    assert len(discovered) == 3
+
+
+def test_discover_card_roots_returns_empty_list_with_no_intake_dir(tmp_path):
+    assert literature.discover_card_roots(base=tmp_path) == []
+
+
+def test_discover_card_roots_skips_a_declared_path_that_does_not_exist(tmp_path):
+    intake = tmp_path / "_intake"
+    primary = intake / "research-os-k12-literature"
+    _copy_card(BLOOM_CARD, primary / "educational-methods")
+    (primary / "README.md").write_text("Batch root: `does-not-exist`\n")
+    assert literature.discover_card_roots(base=tmp_path) == [primary]
+
+
+def test_load_over_discovered_roots_dedupes_doi_and_tags_three_batches(three_root_tree):
+    base, primary, declared, sibling = three_root_tree
+    discovered = literature.discover_card_roots(base=base)
+    corpus = literature.load(discovered)
+
+    # two distinct DOIs: Bloom (primary + sibling, deduped) and Kulik
+    # (declared subfolder only)
+    assert len(corpus.sources) == 2
+    assert corpus.sources[BLOOM_DOI].batches == ["batch-1", "batch-3"]
+    kulik_doi = next(doi for doi in corpus.sources if doi != BLOOM_DOI)
+    assert corpus.sources[kulik_doi].batches == ["batch-2"]
+    # Bloom's own evidence lands exactly once, from batch-1's own card (3
+    # key_claims), the dedup collapsing the sibling root's repeated DOI
+    # onto that same first occurrence rather than adding a second copy
+    assert len([e for e in corpus.evidence if e.source_id == BLOOM_DOI]) == 3
+
+
+def test_load_cards_dir_none_prefers_discovered_roots_over_network(three_root_tree, monkeypatch):
+    base, primary, declared, sibling = three_root_tree
+    monkeypatch.setattr(literature, "_REPO_ROOT", base)
+
+    def fail_urlopen(request, timeout=30):
+        raise AssertionError("load() must not hit the network once discover_card_roots finds real roots")
+
+    monkeypatch.setattr(literature.urllib.request, "urlopen", fail_urlopen)
+    corpus = literature.load()
+    assert len(corpus.sources) == 2
+
+
+def test_discover_card_roots_against_the_real_repo_checkout():
+    """No `base` argument: this repo's own `_intake/research-os-k12-
+    literature/` root, the same real, on-disk tree `LOCAL_INTAKE_DIR`
+    names, must be among the discovered roots whenever this package is
+    running inside a checkout that carries it (true for this repo's own
+    test suite; a sparse or packaged checkout with no `_intake/` at all
+    would discover `[]` instead, which this test does not require)."""
+    discovered = literature.discover_card_roots()
+    if literature.LOCAL_INTAKE_DIR.is_dir():
+        assert literature.LOCAL_INTAKE_DIR in discovered
+
+
+# --------------------------------------------------------------------------
 # errors
 # --------------------------------------------------------------------------
 
@@ -671,8 +778,16 @@ def test_ensure_cards_cached_over_monkeypatched_urllib(tmp_path, monkeypatch):
     urlopen`: one tree-listing response, one raw-content response per card,
     written into a temp cache directory, no real network call. Mirrors
     `hte.corpus.production`'s own `test_load_supabase_reads_rows_over_
-    monkeypatched_urllib`."""
+    monkeypatched_urllib`.
+
+    `discover_card_roots` is monkeypatched to return `[]` so this test
+    keeps exercising the network-fetch fallback even though it runs inside
+    a real `bucket-foundation` checkout, where `load(cards_dir=None)`
+    would otherwise prefer the real, on-disk `_intake/research-os-k12-
+    literature/` root over the network path this test means to cover (see
+    `load`'s own "Root auto-discovery" docstring note)."""
     monkeypatch.setenv("LITERATURE_CARDS_DIR", str(tmp_path / "cache"))
+    monkeypatch.setattr(literature, "discover_card_roots", lambda *a, **k: [])
 
     real_cards = literature.load_raw(FIXTURES_DIR)
     tree_payload = {
