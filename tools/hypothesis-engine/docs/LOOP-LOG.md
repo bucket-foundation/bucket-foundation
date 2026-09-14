@@ -2,6 +2,45 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tests/COVERAGE.md found stale, a real boilerplate-collision defect fixed
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-cov` first.
+  `make test` on `main` (`f1eb897df`): 1585 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS, coverage_of_truth mean 1.0. `realsweep --corpus
+  literature`/`production`, 10/10 each, 0 crashed (the coverage/None
+  spread on both matches prior ticks' own documented precedent, a
+  data-growth or no-ground-truth explanation, not a regression).
+  `realsweep --corpus education-atlas`, seed 0 only for time: coverage
+  0.778, matching tick 5/6/7's own seed-0 baseline exactly.
+- **Test swarm**: `tests/COVERAGE.md` turned out stale, it lists
+  `hte/referee.py` at 63.4% but every module on its top-15 list already
+  carries a swarm file from earlier ticks, and a direct coverage read of
+  `hte/referee.py` alone showed 96%. Regenerated the real report via
+  `make test-cov` (full profile, 1597 passed, 3 failed): two failures are
+  environment gaps (`pdflatex`/`agf-lint-voice` absent in this sandbox,
+  both already documented by earlier ticks); the third is a real defect.
+- **Defect found and fixed**: FINDING-2026-09-14-701,
+  `test_resolve_credentials_error_never_echoes_a_supplied_key`
+  (`tests/swarm-20260914/test_corpus_research_os_outbox_props.py`)
+  asserted a Hypothesis-generated secret never appears in
+  `_resolve_credentials`'s missing-credential error, but that error is a
+  fixed string naming the module itself, `research_os_outbox`; the
+  full profile's 300-example budget drew `secret_key="research"`, a
+  substring of the module's own name, and failed on a boilerplate
+  collision rather than a real leak. Fixed at the root: `assume()`
+  excludes a generated secret that collides with the fixed message
+  before the real assertion runs, plus a direct regression test
+  reproducing the exact case. `fix/hte-research-os-outbox-credential-
+  test-collision`.
+- **PRs opened**: 1 (this entry's own branch).
+- **PRs reviewed**: 3 open non-draft (#101/#115/#117), all already
+  carried a review at their current head sha, re-confirmed via
+  `get_reviews`, no duplicate. This tick's own PR reviewed fresh.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged. **Blocked**: nothing.
+
 ## 2026-09-14, predict.py swarm, five PRs reviewed, a real key_claims regression found and fixed
 
 - **Engine health**: `make test` on `main` (`100369ee9`): 1548 passed, 0
