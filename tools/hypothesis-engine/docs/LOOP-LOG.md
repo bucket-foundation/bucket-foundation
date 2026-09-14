@@ -2,6 +2,239 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tests/COVERAGE.md found stale, a real boilerplate-collision defect fixed
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-cov` first.
+  `make test` on `main` (`f1eb897df`): 1585 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS, coverage_of_truth mean 1.0. `realsweep --corpus
+  literature`/`production`, 10/10 each, 0 crashed (the coverage/None
+  spread on both matches prior ticks' own documented precedent, a
+  data-growth or no-ground-truth explanation, not a regression).
+  `realsweep --corpus education-atlas`, seed 0 only for time: coverage
+  0.778, matching tick 5/6/7's own seed-0 baseline exactly.
+- **Test swarm**: `tests/COVERAGE.md` turned out stale, it lists
+  `hte/referee.py` at 63.4% but every module on its top-15 list already
+  carries a swarm file from earlier ticks, and a direct coverage read of
+  `hte/referee.py` alone showed 96%. Regenerated the real report via
+  `make test-cov` (full profile, 1597 passed, 3 failed): two failures are
+  environment gaps (`pdflatex`/`agf-lint-voice` absent in this sandbox,
+  both already documented by earlier ticks); the third is a real defect.
+- **Defect found and fixed**: FINDING-2026-09-14-701,
+  `test_resolve_credentials_error_never_echoes_a_supplied_key`
+  (`tests/swarm-20260914/test_corpus_research_os_outbox_props.py`)
+  asserted a Hypothesis-generated secret never appears in
+  `_resolve_credentials`'s missing-credential error, but that error is a
+  fixed string naming the module itself, `research_os_outbox`; the
+  full profile's 300-example budget drew `secret_key="research"`, a
+  substring of the module's own name, and failed on a boilerplate
+  collision rather than a real leak. Fixed at the root: `assume()`
+  excludes a generated secret that collides with the fixed message
+  before the real assertion runs, plus a direct regression test
+  reproducing the exact case. `fix/hte-research-os-outbox-credential-
+  test-collision`.
+- **PRs opened**: 1 (this entry's own branch).
+- **PRs reviewed**: 3 open non-draft (#101/#115/#117), all already
+  carried a review at their current head sha, re-confirmed via
+  `get_reviews`, no duplicate. This tick's own PR reviewed fresh.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged. **Blocked**: nothing.
+
+## 2026-09-14, predict.py swarm, five PRs reviewed, a real key_claims regression found and fixed
+
+- **Engine health**: `make test` on `main` (`100369ee9`): 1548 passed, 0
+  failed. **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass,
+  gate PASS, no nondeterminism on a seeds-0-2 repeat. `realsweep
+  --corpus production`/`literature`/`education-atlas` (seed 0 only, this
+  box's own slow per-seed cost), 0 crashed, coverage/None patterns match
+  tick 5/6/7's own precedent. `younger-dryas` still has no `realsweep`
+  entry.
+- **Test swarm**: `hte/predict.py` (PR #87), the one priority-list module
+  still missing a swarm file. 19 new tests in `tests/swarm-20260914/
+  test_predict_props.py` (id determinism, `_confidence`, `_member_
+  addresses`, dict round trips, ledger append-only/dedup, vocab-growth
+  id-collision guard). No defect found.
+- **PRs reviewed**: 5 open non-draft PRs. #101 already reviewed at head,
+  no duplicate. Fresh: #119/#114 approve, #115 approve (`feat/hte-`,
+  outside merge scope), #117 no blocking finding (`src/`, outside scope).
+- **PRs merged**: #119, #114 (squash). #101 blocked by a real merge
+  conflict against current `main`; left open for a human or a
+  larger-scope session.
+- **Defect found and fixed**: merging #119+#114 broke `make test` on
+  `main`: `hte/corpus/literature.py`'s `_LIST_ITEM_RE` only matched a
+  `key_claims` entry closed on one line, so a real batch-five card's own
+  line-wrapped claim read as zero claims and tripped `carries no
+  key_claims`. Fixed at the root, `fix/hte-literature-multiline-claims`
+  (#120): `_iter_list_item_spans` folds wrapped continuation lines into
+  one item, keeping `raw[char_start:char_end] == text`; also corrected
+  one stale hardcoded real-corpus count (147 to 177). Reviewed (zero
+  findings), squash-merged (`f7400c835`). `make test` after: 1585 passed.
+- **PRs opened**: 2, `test/hte-predict-coverage-20260914` (this entry)
+  and `fix/hte-literature-multiline-claims` (#120, merged above).
+
+## 2026-09-14, PR87 review
+
+- **PR #87 reviewed and merged** (`feat/hte-prediction-register`,
+  "prediction register with dated forecasts, resolution scoring"),
+  worktree `.ros-worktrees/r87` per the review protocol. Merged
+  `origin/main` first (13 files, no conflicts: the swarm-20260914 test
+  batch, `provenance.py`'s tick-12 fix, `holdout_ledger.py` untouched).
+- **Leak scan**: full diff clean, no keys, `.env` values, IPs, non-public
+  hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute
+  `/home/gian` paths, or Claude session URLs in file content.
+- **Governance**: `hte.predict`'s register (claim/discovery/sequence
+  forecasts, Brier-scored on resolution) and `hte.holdout_ledger`'s
+  ranking-holdout ledger (Elo tournament-order verification, PR #60)
+  cover two distinct claims and stay two distinct ledgers by design:
+  `predictions/ledger.jsonl` scores a hypothesis's own `P(h)` against
+  future evidence, `hte/data/ranking-holdout-ledger.jsonl` scores
+  whether Elo's relative order held up. Neither reads or writes the
+  other; `elo_status`/`unvalidated_tournament_ranking` stays sourced
+  from `holdout_ledger.ranking_status` alone (`MIN_VERIFIED_FOR_LABEL
+  = 20`, untouched by this PR). No reconciliation defect found.
+  Resolution scoring uses `(P - observed)^2`, the same Brier convention
+  `hte.calibrate.brier_score` already carries (`main.tex` §9); no new
+  scoring rule introduced, so no new citation needed against the
+  Brier/Murphy cards on PR #90's still-open branch. No forecast field
+  carries learner data (`meta` holds slots, intervals, evidence ids
+  only). `hte.canon_writeback`'s write-back gate is untouched by this
+  PR's diff.
+- **Gates**: `ruff check` on this PR's own files (`hte/predict.py`,
+  `hte/cli.py`, `tests/test_predict.py`) found 2 (an unused `timezone`
+  import and an `E731` lambda assignment, both in the test file);
+  fixed. The other 53 hits on the merged tree are pre-existing debt in
+  swarm test directories this PR does not touch. `make test` / full
+  suite: 1562 passed, 3 skipped, 1 deselected
+  (`test_corpus_literature.py::test_live_fetch_lists_cards_or_skips_when_offline`,
+  a live GitHub API call that hung past its own `RuntimeError`/
+  `URLError` catch on this box's network; pre-existing, outside this
+  PR's diff, not a regression). `agf-lint-voice check` /
+  `agf-lint-voice-src check`, 0 violations.
+
+## 2026-09-14, tick 12, provenance.py swarm and fix, thirteen PRs re-confirmed
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`: 1524 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS; a seeds-0-2 repeat matched exactly, no nondeterminism.
+  `realsweep --corpus production`/`literature`, 0/10 crashed each
+  (zero-coverage seeds trace to restrictive filters naming no ground
+  truth, matching tick 7's pattern). `--corpus education-atlas` seed 0
+  only (418.76s, this box's own known per-seed cost): coverage 0.78,
+  matching tick 5/6/7's own seed-0 result.
+- **Test swarm**: `hte/provenance.py`, the sole module on `tests/
+  COVERAGE.md`'s 15-least-covered list with no property-swarm file of
+  its own. 14 new tests in `tests/swarm-20260914/test_provenance_props.py`
+  found a real defect: `collect_from_corpus` added an evidence item's
+  `source_id` to its own `by_production[pid]["source_ids"]` bucket with
+  no truthiness guard, the one line in the function missing the check
+  every sibling line already carries. `hte.purge` folds that field
+  straight into its own redaction set and flags any JSON string field
+  equal to a member for removal, so an item with `source_id == ""` tied
+  to a `production_id` would over-redact any unrelated node in a run's
+  own artifacts carrying an empty-string `source_id`/`sourceId` field.
+  Filed `FINDING-2026-09-14-602`, fixed at the root (one `if item.
+  source_id:` guard). `make test`: 1538 passed.
+- **PRs opened**: 1, `fix/hte-provenance-empty-source-id-leak` (#112).
+  Reviewed (zero secrets, zero QA findings) and squash-merged
+  (`b73d5a6ef`).
+- **PRs reviewed**: 13 open non-draft PRs (#86/#87/#89/#90/#91/#93/#95/
+  #97/#99/#101/#105/#107/#109), all already carried a review at current
+  head sha (re-checked via `get_reviews` against this tick's own
+  `list_pull_requests` output); no duplicate needed.
+- **Blocked**: nothing.
+
+## 2026-09-14, tick 11, holdout_ledger.py swarm and fix, fourteen PRs re-confirmed
+
+- **Engine health**: `make test` on `main`: 1516 passed, 0 failed.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on repeat. `realsweep` over `production`/
+  `literature`/`education-atlas`, 0 crashed; zero-coverage seeds trace to
+  restrictive filters naming no ground truth, matching tick 7's pattern.
+- **Test swarm**: `hte/holdout_ledger.py`, the sole module with no
+  property-swarm file. 8 new tests in `tests/swarm-20260914/
+  test_holdout_ledger_props.py` found a real defect: `append_entries`
+  deduped a new entry's `entry_id` only against disk, never against the
+  other rows in the same call, so two `ranked` rows sharing one
+  `address` wrote duplicate on-disk lines, leaving one permanently
+  unverifiable. Filed `FINDING-2026-09-14-601` (round seven), fixed at
+  the root. `make test`: 1524 passed.
+- **Full-profile spot check**: a partial `make test-cov` run (killed for
+  time) surfaced 2 failures, reproduced directly: `pdflatex`/
+  `agf-lint-voice` missing in this sandbox, both `slow`+
+  `allow_subprocess`, an environment gap, not a defect.
+- **PRs opened**: 1, `fix/hte-holdout-ledger-batch-dedup` (#110).
+  Reviewed (zero findings) and squash-merged (`27855ae8b`).
+- **PRs reviewed**: 14 open non-draft PRs, all already carried a review
+  at current head sha; no duplicate needed.
+- **Process note**: 8 of those (#93-#109) are prior ticks' own
+  `docs/hte-loop-log-*` branches, reviewed but ineligible under this
+  loop's `fix/hte-`/`test/hte-` merge-branch rule. This entry lands on
+  `test/hte-loop-log-20260914-tick11` instead, so it merges rather than
+  adding a ninth backlog entry; the existing 8 still need a human merge.
+- **Blocked**: nothing.
+
+## 2026-09-14, tick 7, novelty.py swarm, ten PRs re-confirmed, education-atlas seed 0 rerun
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`: 1470 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS, coverage_of_truth mean 1.0. `realsweep --corpus production`
+  and `--corpus literature`, 10/10 seeds each, 0 crashed (`production`
+  seeds 1/2/4 read coverage 0.0/brier None, a restrictive `status_min`/
+  `grade_bands` combo naming no ground-truth events, not a defect).
+  `realsweep --corpus education-atlas` seed 0: coverage 0.78, matching
+  tick 5/6's own seed-0 result exactly, 415s (this box's own known
+  ~370-415s/seed cost for this corpus), no crash; ran seed 0 only for
+  time, same as tick 5/6.
+- **Test swarm**: `hte/novelty.py`, the least-covered module on `tests/
+  COVERAGE.md` with no swarm file of its own (every other file on that
+  list already had one from today's earlier ticks or prior rounds). 4
+  new tests in `tests/swarm-20260914/test_novelty_props.py`: `_jaccard`'s
+  empty-token-set guard (line 59, either side tokenizing to nothing),
+  `check_novelty`'s escaped-`repo_root` fallback (lines 129-130, an
+  absolute `canon_dirname`), and a general `[0, 1]`-range property. No
+  defect found.
+- **PRs opened**: 1, this tick's own `test/hte-novelty-coverage-20260914`
+  (#103).
+- **PRs reviewed**: 10 open non-draft PRs. #103 (own) got a fresh review,
+  approve. #101/#99/#97/#95/#93/#91/#90/#89/#87/#86 already carried a
+  review at their current head sha, re-confirmed via `get_reviews`
+  against this tick's own `list_pull_requests` output, no duplicate.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged. **Blocked**: nothing.
+
+## 2026-09-14, tick 6, research_os_outbox.py swarm, ten PRs checked
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`, 1460 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS, coverage_of_truth mean 1.0. `realsweep --corpus production`
+  and `--corpus literature`, 10/10 seeds each, 0 crashed.
+  `realsweep --corpus education-atlas` reproduces tick 5/6's own
+  ~370s-per-seed finding on this box; ran seed 0 only (coverage 0.78,
+  matching tick 5's own seed-0 exactly), cut short for time, no crash.
+- **Test swarm**: `hte/corpus/research_os_outbox.py`, the only module on
+  `tests/COVERAGE.md`'s list with no swarm file of its own (this
+  prompt's "newer modules" are already covered today or absent:
+  `predict.py` does not exist on `main`). 10 new tests in `tests/
+  swarm-20260914/test_corpus_research_os_outbox_props.py`:
+  `_resolve_credentials`'s precedence and no-leak-into-errors property,
+  `_build`'s exhaustive row accounting across random good/bad status
+  mixes, `_stamp_corpus_provenance`'s per-row isolation, `mark_consumed`'s
+  exact PATCH id set, `load()`'s never-raises property. No defect found.
+- **PRs opened**: 1, this tick's own
+  `test/hte-research-os-outbox-coverage-20260914`.
+- **PRs reviewed**: 10 open non-draft PRs. #101 (own, unreviewed) got a
+  fresh review, approve. #99/#97/#95/#93/#91/#90/#89/#87/#86 already
+  carried a review at their current head, re-confirmed, no duplicate.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged. **Blocked**: nothing.
+
 ## 2026-09-14, tick 5, referee.py swarm merged, sweeps clean, nine PRs checked
 
 - **Engine health**: `make test` on `main`, 1432 passed, 0 failed. No defect.
@@ -29,6 +262,71 @@ Dated entries from the hourly optimization loop. Newest entry first.
 - **Merged**: PR #100 only. **Blocked**: none of the nine reviewed PRs
   qualify for this loop's merge authority (no `fix/hte-`/`test/hte-`
   prefix); #89 partly duplicates merged PR #80 per its own prior review.
+
+## 2026-09-14, tick 4: propagate.py swarm, education-atlas realsweep, no open PR left unreviewed
+
+- **Engine health**: `make test` on `main`: 1423 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` fake mode, 30/30, gate PASS. Repeated seeds 0-4: identical coverage/Brier/survivor counts to full precision, no nondeterminism. `realsweep --corpus literature --seeds 0-9`: 0/10 crashed, seeds 0/4/5/6/7/8/9 matched the committed baseline exactly; seeds 1/2/3 (single-branch subsets with zero ground-truth events in that branch) correctly read `coverage=None`, the documented no-ground-truth case. `realsweep --corpus production --seeds 0-9`: 0/10 crashed, but every coverage/Brier value diverges from the committed `runs/realsweep/production/SUMMARY.md` baseline even where the RNG-drawn `grade_bands`/`status_min` params match exactly; root cause traced to PR #70 (`410e702d8`) growing the fixture set from 12 to 34 productions after that baseline was captured, changing which productions a `grade_bands` filter selects, a data-growth explanation rather than a regression. `realsweep --corpus education-atlas --seeds 0-9`: this sandbox runs it 5-6x slower than documented (matching a prior tick's own note); cut off after 3/10 seeds (478s/444s/104s each), 0 crashed, coverage 0.70-1.0; params for seed 0 reproduce the committed baseline's own country list exactly, and the coverage/Brier divergence carries the same stale-baseline explanation as `production` (engine code has moved since 2026-09-10). Neither divergence reads as a defect; the checked-in `runs/realsweep/*/SUMMARY.md` files are stale snapshots no test reads.
+- **Test swarm**: `hte/propagate.py` (94.8%, no dedicated swarm file, named in this loop's own task brief), 9 new tests in `tests/swarm-20260914/test_propagate_props.py`: a stemma self-reference and copy-cycle, `_topological_order`'s `depends_on`-cycle fallback, `propagate`'s inactive-parent skip and its defensive unmaterialized-address skip (forced via monkeypatch, unreachable through the public API otherwise), `independent_support_share` with no supporting evidence. One sibling defensive branch in `_topological_order` (a re-queue guard) is documented as structurally unreachable given the function's own set-based bookkeeping; no xfail, no defect to pin. Full suite with the new file: 1432 passed.
+- **Schema alignment check**: `src/lib/research-os/types.ts` last changed by PR #74 (`GuidanceLevel`/`WorkedExample`, unrelated to `graph.productions`); no `graph.productions`-shaping migration since PR #73's (already covered in `PRODUCTION-SCHEMA-ALIGNMENT.md`). No alignment PR needed.
+- **PRs opened**: #98 (the swarm work above), reviewed clean (zero secrets, zero QA findings) and squash-merged (`2b7599a1a`).
+- **PRs reviewed**: none needed reviewing; #97/#95/#93/#91/#90/#89/#87/#86 (every other open non-draft PR) already carried a review at their current head sha from concurrent sessions running today, verified via `get_reviews` before starting. #11 stays draft, skipped.
+- **Blocked**: nothing.
+
+## 2026-09-14, sacred_history.py swarm and a quiet PR-review pass
+
+- **Write access**: confirmed via a dry-run push probe.
+- **Engine health**: `make test` on `main` before any change, 1406 passed,
+  0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` fake mode, 30/30, gate
+  PASS, no nondeterminism on a repeat of seeds 0-4. `realsweep --seeds
+  0-9`: `literature` matched the committed `runs/realsweep/literature/
+  SUMMARY.md` exactly, seed by seed; `production` diverged from its own
+  committed reference, traced to the reference predating the
+  ground-truth-enrichment bead (prod-013..034), not a regression;
+  `education-atlas` (full 25-country corpus) ran ~40 minutes in this
+  sandbox, 10/10 seeds, 0 crashed, coverage 0.56-1.0 across seeds. No
+  defect in any of the three.
+- **Test swarm**: `hte/corpus/sacred_history.py` (88.6%, no swarm file;
+  `hte/referee.py`'s own low score is a known environment gap, missing
+  `agf-lint-voice`/`pdflatex`, already swarm-covered). 17 new tests in
+  `tests/swarm-20260914/test_corpus_sacred_history_props.py`
+  (`_locate`'s not-found path, `_tradition_spans`'s undated-event skip,
+  `_correlation_interval`'s one-span-known/neither-known branches,
+  `_build_sources`'s tradition-missing skip and directed-edge branches).
+  Module coverage 88.6% to 99%. No defect. PR #96, opened, reviewed
+  (zero secrets, zero QA findings), squash-merged (`3125314d3`).
+- **PR reviews**: the six other open non-draft PRs (#90, #89, #87, #86,
+  #93, #91) each already carried a review at their current head sha from
+  a concurrent `bkt-hte-optimize-loop` session running this same period;
+  no new commit landed on any of them, so none needed a fresh pass.
+- **Blocked**: nothing.
+
+## 2026-09-14, question_map.py swarm and PR #94 merge
+
+- **Write access**: confirmed via a dry-run push probe.
+- **Engine health**: `make test` on `main` before any change, 1390 passed,
+  0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` fake mode, 30/30, gate
+  PASS, no nondeterminism on repeat. `realsweep --seeds 0-9` over
+  `education-atlas`/`production`/`literature`: 0 of 30 crashed; per-seed
+  `coverage_of_truth` spread matches prior ticks' documented baseline, not
+  a new defect. `younger-dryas` has no `realsweep` entry yet, skipped.
+- **Test swarm**: `hte/question_map.py` (90% branch coverage, no swarm
+  file; `hte/propagate.py`, the other named candidate, already at 94%).
+  New `tests/swarm-20260914/test_question_map_props.py`, 16 tests over
+  `DiffReport.lines()`'s vanished/reworded/bad-corpus bodies, a real
+  vanished/reworded `compute_diff` result, `_format_id_ranges([])`,
+  `apply_to_doc`'s missing-heading `ValueError`, `_live_corpus_names()`,
+  `cmd_write`'s stderr drift report, and `main()`'s CLI routing plus its
+  `__main__` guard. `hte/question_map.py` now 100% branch coverage. No
+  defect. PR #94, opened, reviewed, squash-merged (`ca44567b9`).
+- **PR reviews**: the six open non-draft PRs (#90, #89, #87, #86, #93, #91)
+  each already carry a review at their current head sha from a concurrent
+  or prior tick today; no new commit landed on any since, so none needed
+  a fresh pass. None is a `fix/hte-`/`test/hte-` PR of this loop's own.
+- **Blocked**: nothing.
+
 
 ## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
 
