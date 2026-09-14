@@ -58,7 +58,42 @@ python3 tools/feed/feed.py rebuild --from <sha>
 # Check feed.json's shape and its total_events/window fields against
 # the ledger.
 python3 tools/feed/feed.py validate
+
+# List every canon card (new primary-papers.yaml record, or a
+# canon_tier change) between two refs, and flag any with no matching
+# feed event. Exits non-zero on a gap. --head defaults to HEAD.
+python3 tools/feed/feed.py check-cards --base <ref> [--head <ref>]
+
+# Emit the events check-cards found missing, base..HEAD. Idempotent:
+# a card that already has an event is skipped.
+python3 tools/feed/feed.py emit-for-cards --base <ref>
 ```
+
+## Canon cards without a feed event
+
+`parse.py` walks a commit-by-commit diff and only recognizes a
+promotion via a rename out of `research-landscape/`. A promotion out of
+`_intake/` (the normal shape, see any `bucket-canon/**/CANON_INDEX.md`)
+lands as new files. Git records that as an add, so parse.py never
+recognizes it as a promotion, and it never gets an event unless
+someone runs the pipeline by hand. Three promotion passes in a row (PRs
+`#9`, `#45`, `#129`) shipped cards this way: reviewed, checklist ticked,
+no event.
+
+`check-cards` closes that gap by reading the served layer directly
+instead of the commit history: a card is a new `primary-papers.yaml`
+record (matched by its `id`) or a `canon_tier` change for an existing
+record (matched by `doi` against the dossier's `CANON_INDEX.md` table).
+Its event id comes from the card's own identity, so the same card
+resolves to the same event no matter which commit or squash carried
+it. That makes the match stable across a rebase, and makes a second
+`emit-for-cards` run, after the ledger already has the event, a no-op.
+
+`.github/workflows/canon-feed-check.yml` runs `check-cards` on every PR
+touching `bucket-canon/**` and fails the check on any gap, printing the
+`emit-for-cards` command that closes it. `feed.yml`'s push job also runs
+it, as a warning (`continue-on-error`), over the same range it just fed
+through `parse.py`.
 
 ## Tests
 
@@ -73,4 +108,7 @@ python3 -m pytest tools/feed/tests/ -q
 covers merge idempotency, monthly archives, and Atom output; its
 `LedgerTests` class covers the counting rule (`total_events` tracks the
 ledger and never drops as the window slides), the `window` field, and
-retract-then-re-add.
+retract-then-re-add. `test_check_cards.py` covers `check-cards` /
+`emit-for-cards`: a promoted card with no event fails the check, passes
+after `emit-for-cards`, stays idempotent on a second run, and a
+`canon_tier` change is caught on its own.
