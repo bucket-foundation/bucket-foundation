@@ -153,7 +153,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from ..concepts import Vocabulary, other_id
+from ..concepts import Vocabulary
 from ..evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from ..timeline import Interval, Uncertainty, ka_to_astronomical
 from . import Corpus, GroundTruthEvent, RetrievalEnvelope

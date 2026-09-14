@@ -310,6 +310,7 @@ end: 147 cards, six of them degraded and named in that log line.
 from __future__ import annotations
 
 import hashlib
+import http.client
 import json
 import logging
 import os
@@ -1200,7 +1201,18 @@ def _fetch_card_paths(ref: str) -> list[str]:
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
             tree = json.loads(response.read().decode("utf-8"))
-    except urllib.error.URLError as exc:
+    except (OSError, http.client.HTTPException, json.JSONDecodeError) as exc:
+        # `OSError` covers `urllib.error.URLError` (its own base class)
+        # plus a raw socket/SSL `TimeoutError` a read-phase timeout can
+        # raise unwrapped past `urlopen`'s own connect-phase handling;
+        # `http.client.HTTPException` (its `IncompleteRead` subclass, a
+        # proxied or rate-limited connection dropping mid-body) and
+        # `json.JSONDecodeError` (a body that arrived truncated but
+        # readable) name the other two real network failures this
+        # function already promises to surface as one `RuntimeError`
+        # shape, the one a caller that skips a live-fetch check (`tests/
+        # test_corpus_literature.py::
+        # test_live_fetch_lists_cards_or_skips_when_offline`) catches.
         raise RuntimeError(
             f"literature adapter: could not list {GITHUB_INTAKE_PATH!r} at ref {ref!r}: {exc}"
         ) from exc

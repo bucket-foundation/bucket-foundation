@@ -3285,3 +3285,28 @@ Reviewed `feat/hte-prediction-register` (PR #87) against `main` in worktree `~/a
 - Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
 - `hte.predict`'s forecast ledger and `hte.holdout_ledger`'s ranking ledger stay two distinct sources of truth for two distinct claims (a hypothesis's own `P(h)` versus Elo's relative order); `elo_status` stays sourced from `holdout_ledger.ranking_status` alone, unmodified by this PR.
 - `make test`: 1562 passed, 3 skipped, 1 deselected (a pre-existing flaky live-network test outside this PR's diff).
+
+## ros-11 remaining items
+
+Branch `feat/ros-11-engine-review-items-2` (worktree `~/agfarms/.ros-worktrees/ros11b`), against `main`. Four items land: the fusion stress-test, the Allen-relations check, the CASP-style calibration cadence, and span doc-length validation. Closes the three items the 2026-09-10 "ros-11 review items" entry above left open (item 5, item 7, item 8), plus the `bkt-hte-evidence-span-doc-length` follow-up filed in `BEADS-PENDING.jsonl` after the PR #60 review (item 4's own char_end-against-document-length gap). Engine-only change, no `src/`/`public/` file touched.
+
+- **Fusion stress-test** (Yager 1987, PLAN.md item 5): `hte/fusion_stress.py`, `tests/test_fusion_stress.py` (12 tests), `docs/FUSION-STRESS-2026-09-11.md`. Landed earlier in this branch's history; carried forward through this resume unchanged.
+- **Allen-relations check** (Allen 1983, PLAN.md item 7): `hte/temporal_consistency.py`, `tests/test_temporal_consistency.py` (11 tests), `docs/TEMPORAL-CONSISTENCY.md`. `check_sequence` validates a sequence hypothesis's RELATION slot against its two placements' own intervals.
+- **CASP-style calibration cadence** (PLAN.md item 8): `hte/casp_cadence.py`, `tests/test_casp_cadence.py` (21 tests), `docs/CASP-CADENCE.md`. Imports `hte.holdout_ledger` only (`from . import holdout_ledger`); does not import `hte.predict` and duplicates none of PR #87's own prediction-register logic. `hte.holdout_ledger` stays the single source of truth for ranking-holdout outcomes; `hte.predict`'s `predictions/ledger.jsonl` is a separate, unrelated ledger for a hypothesis's own forecast resolution.
+- **Span doc-length validation** (`bkt-hte-evidence-span-doc-length`): `hte.evidence.EvidenceSpan.doc_length` (`tests/test_evidence.py`) refuses a span whose `char_end` exceeds the stored document length. Wired through both corpus adapters that carry real document text: `hte.corpus.literature.Card.doc_length`/`_build_corpus` (`tests/test_corpus_literature.py`, already covered) and `hte.corpus.younger_dryas.Card.doc_length`/`_build_corpus` (`tests/test_corpus_younger_dryas.py`, two new tests added this pass, `test_younger_dryas_card_doc_length_matches_its_own_raw_file`/`test_younger_dryas_evidence_spans_carry_the_card_doc_length`; the wiring existed on this branch with no dedicated test until this pass closed the gap). Documented in `docs/EVIDENCE-SPAN-DOC-LENGTH.md`.
+
+### Resume note
+
+This branch's own prior run merged `origin/main` and stopped mid-merge, uncommitted, twice: once leaving a clean five-file diff (the CASP-cadence docstring clarification and the `younger_dryas.py` doc-length wiring, plus three new doc files), and a second time with a real conflict in `hte/corpus/literature.py` between this branch's `doc_length` field and `origin/main`'s concurrently-landed `doi_missing` field (PR #114/#119/#120/#122 merged upstream in between). Both sides kept: `Card` on `literature.py` now carries `doc_length` and `doi_missing` together, `_parse_frontmatter` sets both. The merge picked up `data/whats-new.json` (a machine-generated changelog copying commit subjects verbatim, now added to `.voiceignore` for the same reason `LOOP-LOG.md` already is there) and a handful of pre-existing voice-lint hits in merged-in test/docs prose, rewritten by hand.
+
+### Fixed
+
+- `tools/hypothesis-engine/hte/corpus/younger_dryas.py`: removed an unused `other_id` import (pre-existing since PR #81, `ruff check --fix`), the only `ruff` hit in a file this pass touches.
+- `tools/hypothesis-engine/hte/corpus/literature.py`'s `_fetch_card_paths`: its `except urllib.error.URLError` caught neither a raw socket/SSL `TimeoutError` nor `http.client.HTTPException` (`IncompleteRead`'s own base, a proxied or rate-limited connection dropping mid-body) nor `json.JSONDecodeError` (a body arriving truncated but readable), so `test_live_fetch_lists_cards_or_skips_when_offline`'s own documented "skips itself... rather than failing the suite when offline, rate-limited" contract broke under this sandbox's real network conditions (`IncompleteRead` propagated uncaught, `make test` red). Widened to `except (OSError, http.client.HTTPException, json.JSONDecodeError)`, `OSError` being `URLError`'s own base class; the test now skips cleanly.
+
+### Verified
+
+- `make test` (fast profile): 1672+ passed, 0 failed, including `test_live_fetch_lists_cards_or_skips_when_offline` skipping cleanly under this sandbox's live network (a `504 Gateway Timeout` against the GitHub API), no deselect needed.
+- `ruff check .`: 53 pre-existing errors elsewhere in the tree (test-file unused imports, none in this pass's four modules or their tests), unchanged by this pass beyond the one fix above.
+- `agf-lint-voice-src check` / `agf-lint-voice check` clean on every file this pass authored, edited, or merged in.
+- `ENGINE-BRIDGE.md` reviewed and left unchanged: none of the four items touch `graph.nodes`/`graph.edges`/`graph.productions`/the outbox table, or any field the bridge's Next.js side reads.
