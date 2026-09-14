@@ -19,7 +19,7 @@ skips too, since the diff check runs for every environment.
 
 Vercel's Ignored Build Step contract: the script exits `1` to build, `0`
 to skip. See `scripts/vercel-ignore-build.sh` for the implementation and
-`scripts/test-vercel-ignore-build.sh` for nine scenarios covering each
+`scripts/test-vercel-ignore-build.sh` for ten scenarios covering each
 branch of the decision above (run it with `bash scripts/test-vercel-ignore-build.sh`).
 
 ## Branch prefixes skipped at step 3
@@ -31,6 +31,7 @@ Built from `git branch -r` on 2026-09-14 (~75 remote branches):
 | `run/*` | whole prefix | `run/quantum-history-001`, `run/sacred-history-002`: ephemeral engine-run checkpoints |
 | `intake/*` | whole prefix | `intake/ros-canon-promotion-3`, `intake/ros-literature-2`: data-ingestion branches |
 | `data/*` | whole prefix | `data/sacred-history-ai-analysis`: data-analysis branch |
+| `hte/*` | whole prefix | `hte/integration`: the engine's integration branch. Every engine PR merges here first and one batch PR carries it into `dev`. Merging `dev` into it brings `src/` changes along, so the diff check alone would build it; added 2026-09-14 after exactly that happened. |
 | `*/hte-*` | topic, any type | `feat/hte-*`, `fix/hte-*`, `test/hte-*`, `docs/hte-*` accounted for 60+ of the ~75 remote branches. HTE (Historical Truth Engine) is a research pipeline; none of its branches touch `src/`, `public/`, or any other allowlisted path. |
 | `*/feed-*` | topic, any type | `fix/feed-bot-noise`: bot feed maintenance |
 | `*/canon-*` | topic, any type | reserved; no standalone example on 2026-09-14 (canon-topic work so far lives under `intake/ros-canon-*` or `*/hte-*-canon-*`, both already covered), kept for the same reason `feed` is |
@@ -85,8 +86,8 @@ Vercel's docs (`vercel.com/docs/project-configuration/git-configuration`,
 2026-08-25 revision): it accepts [minimatch](https://github.com/isaacs/minimatch)
 glob patterns as keys, not just exact branch names, e.g. `"internal-*": false`.
 
-This repo sets it to the four prefixes with zero legitimate-exception
-history: `run/*`, `intake/*`, `data/*`, `*/hte-*`. `*/feed-*`, `*/canon-*`,
+This repo sets it to the five prefixes with zero legitimate-exception
+history: `run/*`, `intake/*`, `data/*`, `hte/*`, `*/hte-*`. `*/feed-*`, `*/canon-*`,
 and `*/paper-*` are deliberately left off this hard gate; a real fix on
 one of those branches occasionally needs to touch canon or feed-adjacent
 site code, and this lever has no per-push override, unlike `ignoreCommand`.
@@ -96,7 +97,7 @@ This is a **harder cut than `ignoreCommand`**: no deployment record is
 created at all (no PR check, no dashboard entry, no `[vercel build]`
 escape hatch), versus `ignoreCommand`, which still creates a deployment
 that shows as "Ignored Build Step" with the reason this script printed.
-Reserve it for prefixes with no exceptions, the way the four above are.
+Reserve it for prefixes with no exceptions, the way the five above are.
 
 ## The third lever: branch-restricted previews in the dashboard
 
@@ -191,7 +192,7 @@ cleanest fix upstream is naming discipline over allowlist entries:
 
 - Any branch whose only possible effect on the site is "none" (an engine
   run, an intake pull, a data analysis pass) keeps its current
-  `run/`, `intake/`, `data/`, or `*/hte-*` prefix.
+  `run/`, `intake/`, `data/`, `hte/`, or `*/hte-*` prefix.
 - Any branch that touches `src/`, `public/`, or another allowlisted path
   keeps a plain `feat/`, `fix/`, `test/`, or `docs/` prefix with **no**
   `hte-`, `feed-`, `canon-`, or `paper-` topic segment, the way

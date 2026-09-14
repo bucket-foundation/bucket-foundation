@@ -420,6 +420,6 @@ Three long-lived branches, set on 2026-09-14 to stop Vercel building on every pu
 
 - `main`: production. Vercel builds it. Receives merges from `dev` only, on the founder's cadence.
 - `dev`: integration and the default PR target. Vercel builds it only when a site path changes (`vercel.json` `ignoreCommand`). Site work (`feat/site-*`, `feat/ros-*`, `intake/*` that the site renders) opens PRs into `dev`.
-- `hte/integration`: engine work. Vercel never builds it (`git.deploymentEnabled` blocks `*/hte-*`). Every engine PR (`feat/hte-*`, `fix/hte-*`, `test/hte-*`, `run/*`, `docs/hte-*`) targets `hte/integration`; the cloud loop merges its own there. One batch PR carries `hte/integration` into `dev` when the batch is reviewed.
+- `hte/integration`: engine work. Vercel never builds it (`git.deploymentEnabled` blocks `hte/*`, and `scripts/vercel-ignore-build.sh` skips the same prefix). Every engine PR (`feat/hte-*`, `fix/hte-*`, `test/hte-*`, `run/*`, `docs/hte-*`) targets `hte/integration`; the cloud loop merges its own there. One batch PR carries `hte/integration` into `dev` when the batch is reviewed.
 
 Rules: never push to `main`; a PR into `main` comes from `dev` alone; engine PRs never target `dev` or `main` directly; a branch that needs a preview build must avoid the blocked prefixes. Same rule applies to every Claude session working this repo.
