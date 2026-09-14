@@ -2,6 +2,35 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, sacred_history.py swarm and a quiet PR-review pass
+
+- **Write access**: confirmed via a dry-run push probe.
+- **Engine health**: `make test` on `main` before any change, 1406 passed,
+  0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` fake mode, 30/30, gate
+  PASS, no nondeterminism on a repeat of seeds 0-4. `realsweep --seeds
+  0-9`: `literature` matched the committed `runs/realsweep/literature/
+  SUMMARY.md` exactly, seed by seed; `production` diverged from its own
+  committed reference, traced to the reference predating the
+  ground-truth-enrichment bead (prod-013..034), not a regression;
+  `education-atlas` (full 25-country corpus) ran ~40 minutes in this
+  sandbox, 10/10 seeds, 0 crashed, coverage 0.56-1.0 across seeds. No
+  defect in any of the three.
+- **Test swarm**: `hte/corpus/sacred_history.py` (88.6%, no swarm file;
+  `hte/referee.py`'s own low score is a known environment gap, missing
+  `agf-lint-voice`/`pdflatex`, already swarm-covered). 17 new tests in
+  `tests/swarm-20260914/test_corpus_sacred_history_props.py`
+  (`_locate`'s not-found path, `_tradition_spans`'s undated-event skip,
+  `_correlation_interval`'s one-span-known/neither-known branches,
+  `_build_sources`'s tradition-missing skip and directed-edge branches).
+  Module coverage 88.6% to 99%. No defect. PR #96, opened, reviewed
+  (zero secrets, zero QA findings), squash-merged (`3125314d3`).
+- **PR reviews**: the six other open non-draft PRs (#90, #89, #87, #86,
+  #93, #91) each already carried a review at their current head sha from
+  a concurrent `bkt-hte-optimize-loop` session running this same period;
+  no new commit landed on any of them, so none needed a fresh pass.
+- **Blocked**: nothing.
+
 ## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
 
 - **Scope**: `hte/corpus/production.py` (`_research_os_counter_evidence`,
