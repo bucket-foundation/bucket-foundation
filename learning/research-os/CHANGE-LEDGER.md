@@ -3180,3 +3180,23 @@ Reviewed `feat/ros-lateral-reading` (PR #84) against `main` in worktree `~/agfar
 - `npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean (`/api/research-os/production`, `/api/research-os/workspace`, `/api/research-os/review`, `/research-os/workspace`, `/research-os/review` all confirmed in the manifest). `npm run test:research-os`: 30 chained files, every file `fail 0`, 455 tests, unchanged from the PR's own count (the fix touched no test logic). `next lint` clean on every touched TS/TSX file.
 - `agf-lint-voice check` on the full changed-file set found two antithesis constructions in `BEADS-PENDING.jsonl`'s own new bead line and one in `scripts/test-research-os-lateral-reading.ts`'s own test name, all introduced by this PR; fixed by hand, clean on the second pass. The remaining reported violations (`BEADS-PENDING.jsonl` lines outside the new entry, `workspace/page.tsx` line 1256) predate this PR and sit outside its own diff, left untouched. `agf-lint-voice-src check` clean on every touched source file, first pass.
 - Process note: the PR's own merge commit (`c7b3c095b`) used the org pre-commit hook's `AGF_VOICE_SKIP=1` bypass rather than `--no-verify`, per its own `BEADS-PENDING.jsonl` account; the commit squashes at merge so the artifact does not survive, flagged here for the record.
+
+## Plan revision 4: docs from batch-five evidence and shipped Phase 1 work
+
+Date 2026-09-14. Branch `docs/ros-plan-revision-4`, worktree `~/agfarms/.ros-worktrees/plan4`, forked from `origin/main` at `d4deda529` (PR #87's own merge). Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-4.md`: the shipped-since-revision-3 PR table (#70 through #113), four evidence-driven revisions from the batch-five literature corpus read off `intake/ros-literature-5` (PR #90, unmerged), a Phase 1 scope narrowed to nine remaining items, the six founder decisions restated verbatim plus the hygiene untracking decision and the canon sign-off backlog, and updated operational blockers including a new spend-limit-pauses entry.
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "## Revision 4" section after the existing "## Revision 3" section, matching the per-revision pointer convention every prior revision already established. No other line changed.
+- `learning/research-os/PLAN-REVISION-3.md`: appended a "## Revision 4" pointer paragraph after its own tmpfs-constraint paragraph, the last line of the file before this edit. No other line changed.
+
+### Verified
+
+- `npm run test:research-os`: 30 chained files, every file `fail 0`, 455 tests, unchanged (this pass touched no test file). `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, unchanged.
+- `python3 tools/canon-pipeline/signoff.py list`: 20 pending records, same five-dossier breakdown as revision 3's own count (`07-mind/memory-systems` 3, `07-mind/sub-outcomes/education` 11, `07-mind/curiosity-and-motivation` 4, `07-mind/information-foraging` 1, `07-mind/cognition-and-automation` 1).
+- `agf-lint-voice check` on all three touched files: sixteen violations on the first pass (banned words `genuinely`/`genuine`/`actually`/`honest`, filler adverbs `specifically`/`correctly`, six antithesis constructions, one heading carrying an appended clause), all rewritten by hand; clean on the second pass.
+- `git log --all --grep="spend.limit" -i --format="%ad %h %s" --date=format:"%Y-%m-%d %H:%M"`: confirms the three spend-limit-stop windows named in the new operational-blockers entry (2026-09-10 ~09:37, 2026-09-11 ~01:17, and the 2026-09-11-to-2026-09-13 commit gap).
