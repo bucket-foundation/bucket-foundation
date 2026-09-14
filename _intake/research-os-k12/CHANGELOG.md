@@ -2508,3 +2508,16 @@ Original text of the two rewritten paragraphs preserved verbatim in `DELETIONS.m
 - `agf-lint-voice-src check src/app/research-os/page.tsx`: 0 violations.
 - Rendered HTML inspected directly from `.next/server/app/research-os.html`: every `(<code>...</code>)` fragment renders with no stray space around the parentheses.
 - Manual 400px check: the status section adds no element outside the existing `max-w-2xl` paragraph flow; the two new paragraphs wrap the same as the three they extend, no horizontal scroll.
+
+## 2026-09-14, finishing pass on the status band refresh
+
+Same worktree and branch as above, resumed after a spend-limit stop. Re-checked both prior claims before touching anything further: `agf-lint-voice-src check` and `agf-lint-voice check` found no meta-commentary hit in the preserved commit's content, so no rewrite was needed there. Re-verified the full shipped and not-shipped list against `gh pr list --state merged --limit 200` (97 merged PRs) and the same `learning/research-os/` docs; nothing shipped since the prior pass changes the list, the PRs merged in the interim are all `tools/hypothesis-engine` engineering (property-test coverage, provenance and holdout fixes, the prediction register), none of it user-facing Research OS surface.
+
+`git fetch origin && git merge origin/main` brought in 21 commits (through PR #87) with no conflicts. The merge surfaced a pre-existing bug unrelated to this branch: `src/app/contributors/lib.ts`'s `getAllHandles()` added every event's `author_github` to its handle set, including the two `predict_register` feed events PR #87 introduced with `author_github: null`; `typeof null === "object"` in JavaScript, so `generateStaticParams` for `/contributors/[handle]` failed the build with "received object" for one param. Fixed with a one-line guard (`if (e.author_github) s.add(e.author_github)`), the only correct behavior for a system-generated feed event with no human author. `npm run build` is clean after the fix, `/research-os` unchanged in the manifest (244 B, same weight class).
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build`: clean post-merge and post-fix.
+- `next lint --file src/app/research-os/page.tsx --file src/app/contributors/lib.ts`: clean.
+- `agf-lint-voice-src check` on both touched files: 0 violations.
+- `agf-lint-voice check`: clean (this file and `DELETIONS.md` sit under the org `.voiceignore`'s blanket `_intake` exclusion, so the checked scope was `learning/research-os/CHANGE-LEDGER.md` and the two TS/TSX files).
