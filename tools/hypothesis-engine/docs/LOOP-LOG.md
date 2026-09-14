@@ -2,6 +2,32 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 15, research_os_outbox error-path swarm
+
+- **Engine health**: fresh sandbox install. `make test` on `hte/
+  integration` (`c004c5614`): 1684 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on a seeds-0-2 repeat. `realsweep --corpus
+  production`/`literature`, 0/10 crashed each. `education-atlas` seed 0
+  (374.9s): coverage 0.778, matching every prior tick's baseline.
+  `younger-dryas` still unregistered in `REALSWEEP_BUILDERS`.
+- **Test swarm**: every priority-list module already has a swarm file as
+  of tick 14. Regenerated `tests/COVERAGE.md` to find the real
+  lowest-coverage target: `hte/corpus/research_os_outbox.py` at 92.7%,
+  three lines dead on every real call path (`fetch_unconsumed_rows`'s and
+  `mark_consumed`'s own `URLError` wrapping, `_stamp_corpus_provenance`'s
+  defensive no-id branch, only reachable calling it directly). Three
+  tests added to the existing `tests/swarm-20260914/
+  test_corpus_research_os_outbox_props.py`, no defect found; `make test`
+  after: 1687 passed. `test/hte-research-os-outbox-error-coverage-
+  20260914` (#136).
+- **PRs**: opened 1 (#136), merged 1 (#136, self-reviewed clean,
+  `tools/hypothesis-engine/` only). No newly unreviewed PR (#132/#127 at
+  the same head shas tick 14 already reviewed). **Batch PR**: #134 body
+  refreshed to 5 commits ahead of `dev`; its `dirty` state (two non-engine
+  log files) stays root-caused and explained there from a prior pass,
+  outside this loop's scope. **Blocked**: nothing.
+
 ## 2026-09-14, tick 14, sacred_history_texts swarm, two PRs reviewed, batch PR refreshed
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
