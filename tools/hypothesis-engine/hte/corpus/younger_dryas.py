@@ -224,7 +224,10 @@ class Claim:
 class Card:
     """One Younger Dryas card, parsed losslessly from its own frontmatter
     and file location; `_build_corpus` below is the lossy projection onto
-    `hte.corpus.Corpus`."""
+    `hte.corpus.Corpus`. `doc_length` is the full length of this card's
+    own raw file text (`bkt-hte-evidence-span-doc-length`), the same
+    string `claims[].char_start`/`char_end` are located against
+    (`_parse_frontmatter`'s own comment, "all land on `raw`")."""
     doi: str
     slug: str
     title: str
@@ -241,6 +244,7 @@ class Card:
     abstract: str
     claims: tuple[Claim, ...]
     relative_path: str
+    doc_length: int | None = None
 
     @property
     def first_author_surname(self) -> str:
@@ -432,6 +436,7 @@ def _parse_frontmatter(raw: str, relative_path: str, slug: str) -> Card:
         doi=doi, slug=slug, title=title, authors=authors, year=year, venue=venue, venue_type=venue_type,
         side=side, kind=kind, cited_by_count=cited_by_count, doi_check=doi_check, rebuts=rebuts,
         replicates=replicates, abstract=abstract, claims=tuple(claims), relative_path=relative_path,
+        doc_length=len(raw),
     )
 
 
@@ -522,6 +527,7 @@ def _build_corpus(cards: list[Card]) -> Corpus:
                 span=EvidenceSpan(
                     doc_id=card.doi, locator=f"{card.slug}.md:claims[{i}] (line {claim.line_start})",
                     quote=claim.text, char_start=claim.char_start, char_end=claim.char_end,
+                    doc_length=card.doc_length,
                 ),
                 provenance=EVIDENCE_PROVENANCE_TAG,
                 actor=claim.actor, action=claim.action, object=claim.object, place=claim.place,

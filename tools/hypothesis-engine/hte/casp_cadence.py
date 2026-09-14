@@ -24,17 +24,21 @@ quarter (`round_id_for`), fixed here rather than left as a per-call
 argument, so "the round schedule" reads the same everywhere this module
 is used, the CASP property this module exists to add.
 
-Distinct from `hte.predict` (PR #87, `predictions/ledger.jsonl`): that
-module registers dated forward forecasts about specific future claims,
-discoveries, and sequence relations off one completed run, resolved
-against a corpus as evidence arrives. This module validates the
+Distinct from `hte.predict` (PR #87, merged, `predictions/ledger.jsonl`):
+that module registers dated forward forecasts about specific future
+claims, discoveries, and sequence relations off one completed run,
+resolved against a corpus as evidence arrives. This module validates the
 TOURNAMENT'S OWN RANKING (Elo ordering across a population, `PLAN.md`
 section 10's own distinct-from-single-claim-calibration axis, `hte.
 holdout_ledger`'s reason for existing) on a fixed public schedule. Both
 read a completed run and defer scoring to later evidence; neither reads
 or writes the other's own ledger file, and this module does not import
-`hte.predict` (not merged into `main` as of this module's own authoring;
-see this branch's own PR body for the dependency note).
+`hte.predict`: a round's outcome is a ranking-holdout fact, scored
+through `hte.holdout_ledger.verify_entry`, a separate concern from
+`hte.predict.resolve`'s own forecast resolution, so the two stay on
+separate ledgers by design. `hte.holdout_ledger` remains the single
+source of truth for ranking-holdout outcomes; `predictions/ledger.jsonl`
+is `hte.predict`'s own, unrelated to a round's `ledger_entry_ids` above.
 """
 from __future__ import annotations
 

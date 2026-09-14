@@ -525,7 +525,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         # the cutoff when the chosen mode is discovery-date.
         calibration = calibrate.run_calibration(
             corpus, constants, cutoff_years=cfg["cutoff_years"],
-            k=cfg["holdout_k"], seed=cfg["holdout_seed"],
+            k=cfg["holdout_k"], seed=cfg["holdout_seed"], corpus_name=cfg["corpus"],
         )
         calibrate.write_calibration(calibration, run_dir)
         logger.log(

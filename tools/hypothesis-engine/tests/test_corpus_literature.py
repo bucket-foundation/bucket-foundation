@@ -17,6 +17,7 @@ for its own `gh repo clone` dependency.
 from __future__ import annotations
 
 import json
+import logging
 import urllib.error
 from pathlib import Path
 
@@ -243,6 +244,213 @@ def test_parse_frontmatter_non_numeric_year_names_the_file():
     )
     with pytest.raises(ValueError, match=r"bad-year\.md: invalid literal for int\(\)"):
         literature._parse_frontmatter(raw, "educational-methods/bad-year.md")
+
+
+# --------------------------------------------------------------------------
+# Multi-line key_claims / list entries (bkt-hte-literature-multiline-
+# claims: `literature.load(cards_dir=None)` raised "carries no
+# key_claims" on the real corpus's own batch-five cards, whose longer
+# claims wrap across indented continuation lines; the old `_LIST_ITEM_RE`
+# only matched a claim opened and closed on the same line, so every
+# wrapped claim silently vanished instead of being read)
+# --------------------------------------------------------------------------
+
+_MULTILINE_CLAIMS_CARD = (
+    '---\n'
+    'title: "A Card With Wrapped Claims"\n'
+    'authors:\n'
+    '  - "Author, A."\n'
+    'year: 2025\n'
+    'venue: "Some Press"\n'
+    'doi: "10.1000/wrapped"\n'
+    'branch: "educational-methods"\n'
+    'tier: "canon"\n'
+    'why_it_matters: >\n'
+    '  It wraps.\n'
+    'key_claims:\n'
+    '  - "The first claim wraps across two\n'
+    '    physical lines before its own closing quote."\n'
+    '  - "The second claim fits on one line."\n'
+    'research_questions_it_leaves_open:\n'
+    '  - "An open question."\n'
+    'how_it_bears_on_research_os: >\n'
+    '  It bears directly.\n'
+    '---\n\n# Title\n'
+)
+
+
+def test_a_wrapped_key_claim_is_read_not_silently_dropped():
+    card = literature._parse_frontmatter(_MULTILINE_CLAIMS_CARD, "educational-methods/wrapped.md")
+    assert len(card.key_claims) == 2
+    assert card.key_claims[0].text == (
+        "The first claim wraps across two\n    physical lines before its own closing quote."
+    )
+    assert card.key_claims[1].text == "The second claim fits on one line."
+
+
+def test_a_wrapped_key_claims_char_offsets_still_locate_the_exact_quote():
+    card = literature._parse_frontmatter(_MULTILINE_CLAIMS_CARD, "educational-methods/wrapped.md")
+    wrapped = card.key_claims[0]
+    assert _MULTILINE_CLAIMS_CARD[wrapped.char_start:wrapped.char_end] == wrapped.text
+    assert wrapped.line_start != wrapped.line_end
+
+
+def test_a_wrapped_key_claims_line_range_spans_every_physical_line_it_covers():
+    card = literature._parse_frontmatter(_MULTILINE_CLAIMS_CARD, "educational-methods/wrapped.md")
+    wrapped = card.key_claims[0]
+    lines = _MULTILINE_CLAIMS_CARD.splitlines()
+    located = "\n".join(lines[wrapped.line_start - 1:wrapped.line_end])
+    assert wrapped.text in located
+
+
+def test_card_whose_only_claim_wraps_is_not_read_as_having_no_key_claims():
+    # The exact real-corpus defect: a card whose every `key_claims` entry
+    # wraps used to read `key_claims == []` (every entry silently
+    # dropped) and so raised "carries no key_claims" on a card that in
+    # fact names two.
+    only_wrapped = _MULTILINE_CLAIMS_CARD.replace('  - "The second claim fits on one line."\n', '')
+    card = literature._parse_frontmatter(only_wrapped, "educational-methods/wrapped-only.md")
+    assert len(card.key_claims) == 1
+
+
+def test_load_reads_a_real_card_whose_key_claims_wrap(tmp_path):
+    root = tmp_path / "wrapped-root" / "educational-methods"
+    root.mkdir(parents=True)
+    (root / "wrapped.md").write_text(_MULTILINE_CLAIMS_CARD)
+
+    corpus = literature.load(tmp_path / "wrapped-root")
+
+    assert len(corpus.sources) == 1
+    items = [item for item in corpus.evidence if item.source_id == "10.1000/wrapped"]
+    assert len(items) == 2  # one key_claims entry each, per _build_corpus's own convention
+
+
+def test_wrapped_authors_entry_is_also_folded_correctly():
+    # `_parse_list` shares `_iter_list_item_spans` with `_parse_claims`;
+    # a wrapped `authors:` entry must read as one joined name. A wrapped
+    # claim vanished the same way before that fix.
+    raw = _MULTILINE_CLAIMS_CARD.replace(
+        '  - "Author, A."\n', '  - "Author, A. and an Additional\n    Long Coauthor Name, B."\n',
+    )
+    card = literature._parse_frontmatter(raw, "educational-methods/wrapped-author.md")
+    assert card.authors == ("Author, A. and an Additional\n    Long Coauthor Name, B.",)
+
+
+def test_unterminated_quoted_claim_is_skipped_not_crashed():
+    # A missing closing quote anywhere in the field is a real authoring
+    # error; repairing it is outside this module's own concern. Parsing
+    # must not raise or hang: the malformed entry reads as zero further
+    # items, the source of the ValueError raised below.
+    raw = _MULTILINE_CLAIMS_CARD.replace(
+        '  - "The first claim wraps across two\n'
+        '    physical lines before its own closing quote."\n'
+        '  - "The second claim fits on one line."\n',
+        '  - "This claim never closes\n'
+        '    even across several lines\n',
+    )
+    with pytest.raises(ValueError, match="carries no key_claims"):
+        literature._parse_frontmatter(raw, "educational-methods/unterminated.md")
+
+
+# --------------------------------------------------------------------------
+# DOI-less cards (bkt-hte-outbox-seam review, "High": `literature.load(
+# cards_dir=None)` raised on the real corpus because six cards carry
+# `doi: null`; see this module's own top docstring, "DOI-less cards")
+# --------------------------------------------------------------------------
+
+_DOI_NULL_CARD = (
+    '---\n'
+    'title: "A Card With No DOI"\n'
+    'authors:\n'
+    '  - "Author, A."\n'
+    'year: 2001\n'
+    'venue: "Some Press"\n'
+    'doi: null\n'
+    'isbn: "978-0-0000-0000-0"\n'
+    'branch: "educational-methods"\n'
+    'tier: "canon"\n'
+    'why_it_matters: >\n'
+    '  It has no doi.\n'
+    'key_claims:\n'
+    '  - "A claim."\n'
+    'research_questions_it_leaves_open:\n'
+    '  - "An open question."\n'
+    'how_it_bears_on_research_os: >\n'
+    '  It bears directly.\n'
+    '---\n\n# Title\n'
+)
+
+
+def test_doi_null_card_gets_a_stable_nodoi_fallback_id_instead_of_raising():
+    card = literature._parse_frontmatter(_DOI_NULL_CARD, "educational-methods/no-doi.md")
+    assert card.doi_missing is True
+    assert card.doi.startswith("nodoi:")
+
+
+def test_fallback_doi_is_stable_across_repeat_parses_of_the_same_card():
+    first = literature._parse_frontmatter(_DOI_NULL_CARD, "educational-methods/no-doi.md")
+    second = literature._parse_frontmatter(_DOI_NULL_CARD, "educational-methods/no-doi.md")
+    assert first.doi == second.doi
+
+
+def test_a_totally_absent_doi_field_degrades_the_same_way_as_an_explicit_null():
+    raw = _DOI_NULL_CARD.replace('doi: null\n', '')
+    card = literature._parse_frontmatter(raw, "educational-methods/no-doi-field.md")
+    assert card.doi_missing is True
+    assert card.doi.startswith("nodoi:")
+
+
+def test_doi_missing_card_still_raises_on_no_key_claims():
+    # `key_claims:` present but empty (no `  - "..."` item under it), not
+    # the field missing outright: that hits the explicit `not key_claims`
+    # check below the try block rather than the generic "carries no
+    # 'key_claims' field" `KeyError` message.
+    raw = _DOI_NULL_CARD.replace('  - "A claim."\n', '')
+    with pytest.raises(ValueError, match="carries no key_claims"):
+        literature._parse_frontmatter(raw, "educational-methods/no-doi-no-claims.md")
+
+
+def test_doi_missing_card_tier_is_capped_at_t4_regardless_of_venue():
+    # `venue: "Some Press"` names none of `_REPORT_OR_BOOK_VENUE_KEYWORDS`,
+    # so a real-DOI card at this venue would read T2; `doi_missing` must
+    # still cap it at T4.
+    card = literature._parse_frontmatter(_DOI_NULL_CARD, "educational-methods/no-doi.md")
+    assert literature._evidence_tier(card) == Tier.T4
+
+
+def test_doi_missing_card_is_loaded_not_dropped_and_its_evidence_carries_the_view(tmp_path):
+    root = tmp_path / "no-doi-root" / "educational-methods"
+    root.mkdir(parents=True)
+    (root / "no-doi.md").write_text(_DOI_NULL_CARD)
+
+    corpus = literature.load(tmp_path / "no-doi-root")
+
+    assert len(corpus.sources) == 1
+    source_id = next(iter(corpus.sources))
+    assert source_id.startswith("nodoi:")
+    items = [item for item in corpus.evidence if item.source_id == source_id]
+    assert len(items) == 1  # one key_claims entry
+    assert all(item.tier == Tier.T4 for item in items)
+    assert all(item.views.get("doi_missing") is True for item in items)
+
+
+def test_load_raw_logs_a_skipped_or_degraded_summary_naming_the_doi_missing_card(tmp_path, caplog):
+    root = tmp_path / "no-doi-root" / "educational-methods"
+    root.mkdir(parents=True)
+    (root / "no-doi.md").write_text(_DOI_NULL_CARD)
+
+    with caplog.at_level(logging.WARNING, logger="hte.corpus.literature"):
+        literature.load_raw(tmp_path / "no-doi-root")
+
+    assert "skipped_or_degraded" in caplog.text
+    assert "1 of 1" in caplog.text
+    assert "educational-methods/no-doi.md" in caplog.text
+
+
+def test_load_raw_logs_nothing_when_every_card_carries_a_real_doi(caplog):
+    with caplog.at_level(logging.WARNING, logger="hte.corpus.literature"):
+        literature.load_raw(FIXTURES_DIR)
+    assert "skipped_or_degraded" not in caplog.text
 
 
 # --------------------------------------------------------------------------
@@ -766,6 +974,41 @@ def test_discover_card_roots_against_the_real_repo_checkout():
     discovered = literature.discover_card_roots()
     if literature.LOCAL_INTAKE_DIR.is_dir():
         assert literature.LOCAL_INTAKE_DIR in discovered
+
+
+def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_six_degraded_named_in_the_log(caplog):
+    """bkt-hte-outbox-seam review, "High": `literature.load(cards_dir=
+    None)` used to raise against this repo's own on-disk corpus, because
+    six real cards carry `doi: null`. It must now succeed, report the
+    real 177-card corpus (grown from 147 by batch five, `bkt-hte-
+    literature-multiline-claims`), degrade (never drop) all six, and
+    name every one of them in `load_raw`'s own `skipped_or_degraded` log
+    line."""
+    if not literature.LOCAL_INTAKE_DIR.is_dir():
+        pytest.skip("literature adapter: no _intake/research-os-k12-literature/ tree in this checkout")
+
+    with caplog.at_level(logging.WARNING, logger="hte.corpus.literature"):
+        corpus = literature.load(cards_dir=None)
+
+    assert len(corpus.sources) == 177
+    degraded_ids = [source_id for source_id in corpus.sources if source_id.startswith("nodoi:")]
+    assert len(degraded_ids) == 6
+    degraded_items = [item for item in corpus.evidence if item.source_id in degraded_ids]
+    assert degraded_items
+    assert all(item.tier == Tier.T4 for item in degraded_items)
+    assert all(item.views.get("doi_missing") is True for item in degraded_items)
+
+    assert "skipped_or_degraded" in caplog.text
+    assert "6 of 177" in caplog.text
+    for relative_path in (
+        "educational-methods/anderson-krathwohl-2001-taxonomy-revision.md",
+        "educational-methods/wiske-1998-teaching-for-understanding.md",
+        "educational-methods/perkins-1993-teaching-for-understanding.md",
+        "project-based-inquiry-learning/condliffe-2017-project-based-learning-literature-review.md",
+        "project-based-inquiry-learning/kingston-2018-pbl-student-achievement.md",
+        "teacher-workload-adoption/cuban-2001-oversold-underused-computers-classroom.md",
+    ):
+        assert relative_path in caplog.text
 
 
 # --------------------------------------------------------------------------

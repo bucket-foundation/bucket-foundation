@@ -93,6 +93,48 @@ def test_calibrate_command_fit_grid(tmp_path):
     assert result["n_covered_events"] > 0
 
 
+def _assert_no_artifact_says_generic_corpus(root: Path) -> None:
+    # The exact defect: `write_calibration`'s own placeholder default
+    # (`result.get("corpus_name", "this corpus")`) leaking into a real
+    # report's `Corpus:` line. This matches the full line rather than a
+    # bare "this corpus" substring, because that phrase also shows up in
+    # legitimate prose elsewhere (`choose_holdout_mode`'s k-fold reason:
+    # "...(this corpus's own documented simplification)..."), a usage
+    # this fix leaves alone.
+    for path in root.rglob("*"):
+        if path.is_file():
+            assert "Corpus: this corpus" not in path.read_text(errors="ignore"), path
+
+
+def test_calibrate_command_names_the_real_corpus_not_the_generic_placeholder(tmp_path):
+    """PR #85 follow-up: `_cmd_calibrate` threaded no `corpus_name` into
+    `calibrate.run_holdout`/`run_calibration`, so a real `CALIBRATION.md`
+    read `Corpus: this corpus` regardless of `--corpus`. `--corpus
+    production` (`hte.corpus.production.load`, no network) must name
+    itself in the report instead."""
+    rc = cli.main(["calibrate", "--corpus", "production", "--out", str(tmp_path)])
+    assert rc == 0
+    assert "Corpus: production" in (tmp_path / "CALIBRATION.md").read_text()
+    _assert_no_artifact_says_generic_corpus(tmp_path)
+
+
+def test_campaign_run_calibration_names_the_real_corpus(tmp_path, monkeypatch):
+    """Same follow-up, `hte.runner.run_campaign`'s own post-run calibration
+    call site: it also threaded no `corpus_name`, so a real campaign's
+    `CALIBRATION.md` read the generic placeholder too."""
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    rc = cli.main([
+        "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
+        "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
+    ])
+    assert rc == 0
+    run_dirs = [p for p in (tmp_path / "fixtures").iterdir() if p.is_dir()]
+    assert len(run_dirs) == 1
+    assert "Corpus: fixtures" in (run_dirs[0] / "CALIBRATION.md").read_text()
+    _assert_no_artifact_says_generic_corpus(run_dirs[0])
+
+
 def test_views_command_rewrites_timeline_md(tmp_path):
     views = {"bins": [], "event_views": [], "pair_views": []}
     (tmp_path / "timeline.json").write_text(json.dumps(views))
