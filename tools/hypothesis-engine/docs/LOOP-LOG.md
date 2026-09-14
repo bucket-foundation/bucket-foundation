@@ -2,6 +2,40 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 12, provenance.py swarm and fix, thirteen PRs re-confirmed
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`: 1524 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS; a seeds-0-2 repeat matched exactly, no nondeterminism.
+  `realsweep --corpus production`/`literature`, 0/10 crashed each
+  (zero-coverage seeds trace to restrictive filters naming no ground
+  truth, matching tick 7's pattern). `--corpus education-atlas` seed 0
+  only (418.76s, this box's own known per-seed cost): coverage 0.78,
+  matching tick 5/6/7's own seed-0 result.
+- **Test swarm**: `hte/provenance.py`, the sole module on `tests/
+  COVERAGE.md`'s 15-least-covered list with no property-swarm file of
+  its own. 14 new tests in `tests/swarm-20260914/test_provenance_props.py`
+  found a real defect: `collect_from_corpus` added an evidence item's
+  `source_id` to its own `by_production[pid]["source_ids"]` bucket with
+  no truthiness guard, the one line in the function missing the check
+  every sibling line already carries. `hte.purge` folds that field
+  straight into its own redaction set and flags any JSON string field
+  equal to a member for removal, so an item with `source_id == ""` tied
+  to a `production_id` would over-redact any unrelated node in a run's
+  own artifacts carrying an empty-string `source_id`/`sourceId` field.
+  Filed `FINDING-2026-09-14-602`, fixed at the root (one `if item.
+  source_id:` guard). `make test`: 1538 passed.
+- **PRs opened**: 1, `fix/hte-provenance-empty-source-id-leak` (#112).
+  Reviewed (zero secrets, zero QA findings) and squash-merged
+  (`b73d5a6ef`).
+- **PRs reviewed**: 13 open non-draft PRs (#86/#87/#89/#90/#91/#93/#95/
+  #97/#99/#101/#105/#107/#109), all already carried a review at current
+  head sha (re-checked via `get_reviews` against this tick's own
+  `list_pull_requests` output); no duplicate needed.
+- **Blocked**: nothing.
+
 ## 2026-09-14, tick 11, holdout_ledger.py swarm and fix, fourteen PRs re-confirmed
 
 - **Engine health**: `make test` on `main`: 1516 passed, 0 failed.
