@@ -3306,3 +3306,19 @@ Date 2026-09-14. Branch `docs/ros-plan-revision-4`, worktree `~/agfarms/.ros-wor
 - `python3 tools/canon-pipeline/signoff.py list`: 20 pending records, same five-dossier breakdown as revision 3's own count (`07-mind/memory-systems` 3, `07-mind/sub-outcomes/education` 11, `07-mind/curiosity-and-motivation` 4, `07-mind/information-foraging` 1, `07-mind/cognition-and-automation` 1).
 - `agf-lint-voice check` on all three touched files: sixteen violations on the first pass (banned words `genuinely`/`genuine`/`actually`/`honest`, filler adverbs `specifically`/`correctly`, six antithesis constructions, one heading carrying an appended clause), all rewritten by hand; clean on the second pass.
 - `git log --all --grep="spend.limit" -i --format="%ad %h %s" --date=format:"%Y-%m-%d %H:%M"`: confirms the three spend-limit-stop windows named in the new operational-blockers entry (2026-09-10 ~09:37, 2026-09-11 ~01:17, and the 2026-09-11-to-2026-09-13 commit gap).
+
+## Plan revision 4: post-merge reconciliation
+
+Date 2026-09-14, same pass, after `git fetch origin && git merge origin/main` at the end of the revision-4 pass. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: PR #90 (this revision's own evidence source) merged to `main` mid-pass, so its cards' paths and the section-2 sourcing note updated to cite `main` directly; a new table added naming thirteen more PRs that merged in the same window (#95, #97, #99, #101, #114 through #116, #118 through #122); test-count paragraph updated with fresh post-merge numbers and the engine's newest recorded count (1585 passed, 0 failed, `f1eb897df`).
+- `tools/hypothesis-engine/tests/swarm/FINDINGS-2026-09-10.md`, `tools/hypothesis-engine/tests/test_corpus_literature.py`, `tools/hypothesis-engine/tests/swarm-20260914/test_predict_props.py`: three pre-existing voice-lint violations in content merged in from `origin/main` (none authored by this pass), fixed by hand so the merge commit's own diff stayed clean where it touched these files directly.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): one merge conflict in its own tail section, resolved by keeping both sides, this pass's own "Plan revision 4" section ahead of `main`'s own "Iteration 27" (literature batch five) and "PR #87 review" sections.
+
+### Verified
+
+- `npm run test:research-os`: 455 passed, 0 failed across 30 files, re-run fresh post-merge, unchanged from the pre-merge count. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, unchanged. `python3 tools/canon-pipeline/signoff.py list`: 20 pending, unchanged.
+- `agf-lint-voice check learning/research-os/PLAN-REVISION-4.md`: clean after the sourcing-note and test-count edits above.
+- The merge commit itself used `AGF_VOICE_SKIP=1`: `python3 "$HOME/agfarms/tools/voice/voice.py" check --staged` (the pre-commit hook's own invocation, which rescans a staged file's full content rather than only its diff) found 162 violations across 28 files pulled in by the merge, none in content this pass authored; the same bypass PR #84's own merge commit used for the same situation, per its own logged process note.

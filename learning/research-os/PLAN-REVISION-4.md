@@ -41,13 +41,30 @@ Revision 3 read against PR #45 through #66 (PR #69, merged 2026-09-11T02:43:19Z)
 | #112 | Property-test coverage for `provenance.py` finds a real defect: `collect_from_corpus` added an evidence item's `source_id` to its own per-production bucket with no truthiness guard, so an empty-string `source_id` could over-redact an unrelated node under `hte.purge`; fixed at the root. |
 | #113 | Docs-only loop-log entry for the `provenance.py` swarm and fix, and re-confirmation of thirteen open PRs. |
 
-Ten PRs opened by the engine loop since revision 3 stay unmerged as this pass writes (#89, #91, #93, #95, #97, #99, #101, #105, #107, #109): eight are prior ticks' own `docs/hte-loop-log-*` branches, reviewed but ineligible under the loop's own `fix/hte-`/`test/hte-` merge-branch rule (`tools/hypothesis-engine/docs/LOOP-LOG.md`'s 2026-09-14 tick 11 entry names this directly); the remaining two are PR #90 (literature batch five, this revision's own evidence source, read from its branch rather than `main`) and PR #91. None of the ten touches a Research OS app surface.
+**Merged during this pass's own review-and-merge window.** The engine loop kept running while this document was drafted. PR #90 (literature batch five, this revision's own evidence source) merged partway through, so section 2 below cites its cards at their real, final paths rather than off the `intake/ros-literature-5` branch this pass started against; thirteen more PRs landed alongside it, all engine-side, before this branch's own merge with `origin/main`:
 
-**Current test counts**, verified live in this pass against `origin/main` at `d4deda529` (PR #87's own merge, the branch point for this worktree): app, `npm run test:research-os`, 455 passed, 0 failed across 30 test files; canon pipeline, `python3 -m pytest tools/canon-pipeline/tests/`, 41 passed, 0 failed, unchanged from revision 3. Engine: `make test` was not re-run fresh in this pass, since a clean-sandbox install-plus-run costs on the order of an hour per the loop's own recorded ticks; the latest recorded count is 1538 passed, 0 failed, `tools/hypothesis-engine/docs/LOOP-LOG.md`'s 2026-09-14 tick 12 entry, taken after PR #112's own fix merged, the newest engine-side commit in the table above.
+| PR | What it shipped |
+|---|---|
+| #90 | Literature batch five lands: 30 new DOI-verified papers across four areas, ranking-validation and calibration-scoring foundations, choice and required-participation evidence, epistemic-cognition instruments, and human-understanding-of-AI-science evidence, corpus total 147 to 177. |
+| #95, #97, #99, #101 | Docs-only loop-log entries for the `question_map.py`, `sacred_history.py`, `propagate.py`, and `referee.py` swarm ticks and their own PR-review checks. |
+| #114 | Fixes a real defect: a literature card with a null DOI crashed the corpus load instead of degrading gracefully. |
+| #115 | Ships passage-level primary-text ingest for the sacred-history corpus. |
+| #116 | Ruff cleanup on PR #87's own predict-module tests, plus a logged review pass. |
+| #118 | CI change: Vercel preview builds now skip for engine-, docs-, and feed-only pushes. |
+| #119 | Fixes `corpus_name` propagation from the CLI and runner into calibration, extending PR #85's own fix to every entry point rather than only the one it originally touched. |
+| #120 | Fixes a real defect: a `key_claims` entry that wraps across continuation lines was read incorrectly by the literature parser. |
+| #121 | Property-swarm coverage for `hte/predict.py`, plus a logged review tick. |
+| #122 | Fixes a real defect: the credential-leak property test could fail on a generated secret that happens to collide with the module's own name in its fixed error string, a boilerplate collision rather than a real leak; excluded at the root with a direct regression test. |
+
+Engine health at the latest of these merges (`make test` on `main` at `f1eb897df`, PR #121's own merge, `tools/hypothesis-engine/docs/LOOP-LOG.md`'s newest entry): 1585 passed, 0 failed; PR #122 merged one fix and one regression test after that count was taken, carried forward here rather than re-verified fresh.
+
+Six PRs opened by the engine loop since revision 3 stay unmerged as this document is filed (#89, #91, #93, #105, #107, #109): each is a prior tick's own `docs/hte-loop-log-*` branch, reviewed but ineligible under the loop's own `fix/hte-`/`test/hte-` merge-branch rule (`tools/hypothesis-engine/docs/LOOP-LOG.md`'s 2026-09-14 tick 11 entry names this directly). Two more opened during this pass's own window and stay open too: PR #117 (`feat(site): Research OS status band refresh to current main`) and PR #123 (`fix(hte): correct the propagation disbelief claim, add s>0 and golden-diff tests`). None of these touches a Research OS app surface in a way this revision's own scope depends on.
+
+**Current test counts.** App and canon-pipeline counts are verified live in this pass, re-run fresh after this branch's own merge with `origin/main` at the end (section below): `npm run test:research-os`, 455 passed, 0 failed across 30 test files, unchanged across both the pre-merge and post-merge run, since none of the PRs in either table above touches `src/` or `scripts/`; `python3 -m pytest tools/canon-pipeline/tests/`, 41 passed, 0 failed, unchanged from revision 3. Engine: `make test` was not re-run fresh in this pass, since a clean-sandbox install-plus-run costs on the order of an hour per the loop's own recorded ticks; the latest recorded count is 1585 passed, 0 failed, `tools/hypothesis-engine/docs/LOOP-LOG.md`'s newest entry as this document is filed, taken at `f1eb897df` (PR #121's own merge), one commit and one regression test behind the actual tip.
 
 ## 2. Evidence-driven revisions from batch five
 
-Fourteen cards named in this pass's own brief carry the load-bearing evidence for this section, all from `_intake/research-os-k12-literature/` on PR #90's branch (`intake/ros-literature-5`, open, not yet merged to `main`; read via `git show origin/intake/ros-literature-5:<path>` per this pass's own instructions rather than assuming the corpus already landed).
+Fourteen cards named in this pass's own brief carry the load-bearing evidence for this section, all from `_intake/research-os-k12-literature/`. PR #90 (`intake/ros-literature-5`) was still open when this pass began, so every card below was first read via `git show origin/intake/ros-literature-5:<path>` per this pass's own instructions rather than assuming the corpus had landed; PR #90 merged to `main` partway through this pass (2026-09-14T13:54:25Z), and the paths cited below now resolve directly on `main` as well.
 
 ### a. Mandatory participation
 
