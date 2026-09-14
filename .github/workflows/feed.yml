@@ -46,6 +46,11 @@ jobs:
       - name: Validate feed
         run: python3 tools/feed/feed.py validate
 
+      - name: Warn on canon cards with no feed event
+        if: steps.shas.outputs.from != ''
+        continue-on-error: true
+        run: python3 tools/feed/feed.py check-cards --base "${{ steps.shas.outputs.from }}"
+
       - name: Commit feed changes
         id: commit
         run: |

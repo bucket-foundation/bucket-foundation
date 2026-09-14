@@ -3272,6 +3272,117 @@ HCI, 27 scientific discovery, 15 AI and researchers, 7 teacher workload and adop
 prerequisite graphs, 14 student research experiences, 7 project-based and inquiry
 learning, 5 writing and argumentation, 10 epistemic cognition, 4 source evaluation.
 
+## Iteration 28: canon-intake promotion pass three
+
+Date 2026-09-14. Branch `intake/ros-canon-promotion-3`, worktree
+`.ros-worktrees/canon3`. Finishing pass over a wip commit
+(`e8edd4d1e`, "partial work preserved after spend-limit stop") that had
+already landed the `07-mind/cognitive-load/` dossier, its `TAXONOMY_NOTES.md`
+rename-log entry, and four new `_intake/research-os-k12-literature/` cards
+(Sweller 1988, Kuhn 1991, Toulmin 1958, Osborne 2010's own cross-reference
+addendum), and died before the outcome-record batch. Landed on top of
+Iteration 27 (literature batch five) above, merged from `origin/main` into
+this branch before this iteration's own work. Full detail in
+`_intake/research-os-k12/CHANGELOG.md`'s matching entry; this ledger
+carries the summary.
+
+### Added
+
+- One new canon dossier, `bucket-canon/07-mind/cognitive-load/` (Sweller
+  1988), converged via `tools/canon-pipeline/intake.py --min-score 70`
+  (`added=0 kept=1 changed=False` on both re-runs), inherited from the
+  wip commit and re-verified.
+- Ten records added to the existing `bucket-canon/07-mind/
+  sub-outcomes/education/` dossier, converged via `tools/canon-pipeline/
+  intake.py --min-score 30`: five guidance-and-inquiry studies depending
+  on the new cognitive-load foundation (Chen and Yang 2019; Furtak,
+  Seidel, Iverson, and Briggs 2012; Lazonder and Harmsen 2016; Kirschner,
+  Sweller, and Clark 2006; Hmelo-Silver, Duncan, and Chinn 2007), two
+  source-evaluation studies depending on the pass-two information-foraging
+  foundation (Wineburg and McGrew 2019; Breakstone et al. 2021), and three
+  student-research-experience studies depending on the pass-two
+  curiosity-and-motivation foundation (Grinnell, Dalley, and Reisch 2020;
+  Bangera and Brownell 2014; Sadler, Burgin, McKinney, and Ponjuán 2010),
+  each naming the canon-tier foundation it depends on.
+- `provenance_signoff: "pending: gianyrox"` on all eleven new records,
+  per the ros-11 governance rule.
+- `bucket-canon/TAXONOMY_NOTES.md`: the cognitive-load rename-log entry
+  (inherited from the wip commit).
+
+### Edited
+
+- Ten intake cards marked `status: promoted` with `promoted_to` and
+  `depends_on_foundation` pointers; claim text unchanged in all ten.
+- `bucket-canon/07-mind/sub-outcomes/education/README.md` and
+  `CANON_INDEX.md`: extended dependency convention and a pass-three
+  outcome-entries table.
+- `_intake/research-os-k12-literature/README.md`: index table updated
+  for thirteen rows (ten status changes, three new rows for Sweller,
+  Kuhn, and Toulmin), corpus total 177 to 180 (after Iteration 27's own
+  147-to-177 growth), plus a new section recording the pass.
+- `CANON-INGESTION-INDEX.md`: a dated table of the eleven promotions.
+
+### Removed
+
+None.
+
+### Verified
+
+- `tools/canon-pipeline/intake.py` run twice on both touched dossiers
+  this iteration: `07-mind/cognitive-load/` (`changed=False` on both
+  runs) and `07-mind/sub-outcomes/education/` (first run `changed=True`,
+  a line-wrap reflow of hand-edited `relation` fields to the emitter's
+  own canonical width, no content change; second run `changed=False`,
+  confirming convergence). The one below-floor pre-existing record
+  (Wang et al. 2024, Tutor CoPilot, score 10) stayed rejected and
+  preserved both runs, per the fail-safe convention.
+- Sweller 1988's DOI (`10.1207/s15516709cog1202_4`) independently
+  verified against the live Crossref API (title, author, journal, and
+  year match the intake card and `primary-papers.yaml` exactly).
+- `agf-lint-voice check` on every file this pass touched found six
+  in-scope violations (two banned words in `toulmin-1958-uses-of-
+  argument.md`, one filler adverb in `kuhn-1991-skills-of-argument.md`,
+  two antithesis constructions across `osborne-2010-arguing-to-learn.md`,
+  `bucket-canon/07-mind/cognitive-load/CANON_INDEX.md`, and
+  `bucket-canon/TAXONOMY_NOTES.md`); fixed by hand, clean on the second
+  pass. Remaining reported hits sit outside this pass's own diff
+  (`_intake/research-os-k12/CHANGELOG.md` history predating line 2496,
+  an unchanged context row in `_intake/research-os-k12-literature/
+  README.md`) or are machine-fetched bibliographic data and the canon
+  pipeline's own scoring-reason strings (`CBE—Life Sciences Education`'s
+  own em dash, `+25 highly cited` in `canon_score_reasons`), the same
+  pattern already present in every merged dossier on `main`.
+  `agf-lint-voice-src check` clean.
+- No file under `src/` or `public/` is touched by this pass, so no
+  `npm run build` gate applies to it, the same pass-one/pass-two
+  convention.
+- `git fetch origin && git merge origin/main` merged 38 commits from
+  `origin/main`, Iteration 27 (literature batch five) and PR #87
+  (prediction register) among them, plus unrelated hypothesis-engine
+  work, into this branch. Two files conflicted
+  (`_intake/research-os-k12-literature/README.md`,
+  `learning/research-os/CHANGE-LEDGER.md`), both narrative-only (a
+  corpus-count summary paragraph and this ledger's own entry
+  numbering); both sides' content kept, `README.md`'s combined count
+  recomputed to 180 and this ledger's own new entry renumbered
+  Iteration 27 to Iteration 28 to stay chronological. The merge commit
+  (`f79e6c0ef`) used the org pre-commit hook's `AGF_VOICE_SKIP=1`
+  bypass, the same precedent this ledger's own PR #84 review entry
+  records: the merge's staged-file set includes 174 pre-existing voice
+  violations from `origin/main`'s own history (`CHANGE-LEDGER.md`
+  entries before this pass's own iteration, `tools/hypothesis-engine`
+  test files, `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`), none of
+  them touched by this pass's own diff.
+- A branch-policy change landed on `origin/dev` after this iteration's
+  own `origin/main` merge (`CLAUDE.md`'s new "Branch Policy" section,
+  PR #126: `main` takes merges from `dev` only, `dev` is the default
+  PR target for `intake/*` branches like this one). `git fetch origin
+  && git merge origin/dev` merged the two additional commits cleanly,
+  no conflict. `tools/canon-pipeline/intake.py` re-run twice on both
+  dossiers after this merge, `changed=False` on every run, confirming
+  the branch-policy merge changed no canon content. This pass's PR
+  targets `dev`, not `main`, per the new policy.
+
 ## PR #87 review: prediction register
 
 Reviewed `feat/hte-prediction-register` (PR #87) against `main` in worktree `~/agfarms/.ros-worktrees/r87`, branch `review/pr87`. Engine-only change: `tools/hypothesis-engine/hte/predict.py` (new), `hte/cli.py` (new `predict register`/`resolve`/`report` subcommands), `docs/PREDICTION.md` (new), `predictions/ledger.jsonl` (new), `tests/test_predict.py` (new), plus regenerated `feed.json`/`feed.xml`/`feed/2026-09.json`. No file under `src/`, `scripts/research-os/`, or `learning/research-os/` in the diff, so `ENGINE-BRIDGE.md`'s contract is unaffected and no `npm ci`/`tsc`/`build`/`test:research-os` gate applies. Full account: `tools/hypothesis-engine/docs/LOOP-LOG.md`'s matching "2026-09-14, PR87 review" entry (leak scan, governance reconciliation against `hte.holdout_ledger`, ruff/pytest gates).
@@ -3404,3 +3515,20 @@ Date 2026-09-14, resuming a session that found this branch's worktree removed ou
 - `gh pr view` on each of #89, #91, #93, #105, #107, #109: all six read `CLOSED`, `mergedAt: null`, confirming "closed unmerged" over the prior "stay unmerged" wording.
 - `git log -1 --format=%ad` on the three 2026-09-14 wip commits (`6a20186da`, `6e88d3ef0`, `e8edd4d1e`): 09:32:52 to 09:33:04, twelve seconds apart. Resume times: `feat/ros-11-engine-review-items-2` merged `origin/main` at 09:41:16; `feat/ros-status-band-2` at 09:46:37; `intake/ros-canon-promotion-3`'s next commit on that branch, `wip(intake/ros-canon-promotion-3): resume canon pass three`, landed at 12:20:21.
 - `agf-lint-voice check` on all three edited files: clean, first pass.
+
+## PR #127 review, second pass
+
+Continued after `origin/docs/ros-plan-revision-4` advanced further (the second reconciliation pass above, a concurrent session). Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (the PR-count recount, the added PR #68 table row, the gap-timestamp fix, and the two further `origin/dev` merges).
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: added a table row for PR #68 (was cited in the pointer count but absent from the document's own tables); intro line and both pointer paragraphs corrected from "forty-six" to the verified "forty-eight"; the spend-limit-gap start time corrected from `02:08` to `06:24`.
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-3.md`: same forty-six to forty-eight correction in each "## Revision 4" pointer.
+- `_intake/research-os-k12/CHANGELOG.md`, `learning/research-os/CHANGE-LEDGER.md` (this file): two further merge conflicts with `origin/dev`, resolved keeping both sides.
+
+### Verified
+
+- Independent recount of every `#NNN` cell across `PLAN-REVISION-4.md`'s two shipped-PR tables: 48 distinct numbers, matching the corrected claim.
+- PR #68 confirmed real and in scope: `gh pr view 68` shows merged 2026-09-11T03:18:55Z, after PR #69 (revision 3's own filing, 02:43:19Z).
+- `git log --all` across every branch for 2026-09-11 through 2026-09-13: the claimed gap runs 06:24 to 22:23 (real commits land at 02:13 and after, ruling out the claimed 02:08 start); every other cited timestamp in the same paragraph checked out exact.
+- `npm run test:research-os`: 455 passed, 0 failed. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed. Both re-run after each of the two further `origin/dev` merges.
