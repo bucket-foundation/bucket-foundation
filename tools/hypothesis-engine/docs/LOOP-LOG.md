@@ -2,6 +2,31 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, question_map.py swarm and PR #94 merge
+
+- **Write access**: confirmed via a dry-run push probe.
+- **Engine health**: `make test` on `main` before any change, 1390 passed,
+  0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` fake mode, 30/30, gate
+  PASS, no nondeterminism on repeat. `realsweep --seeds 0-9` over
+  `education-atlas`/`production`/`literature`: 0 of 30 crashed; per-seed
+  `coverage_of_truth` spread matches prior ticks' documented baseline, not
+  a new defect. `younger-dryas` has no `realsweep` entry yet, skipped.
+- **Test swarm**: `hte/question_map.py` (90% branch coverage, no swarm
+  file; `hte/propagate.py`, the other named candidate, already at 94%).
+  New `tests/swarm-20260914/test_question_map_props.py`, 16 tests over
+  `DiffReport.lines()`'s vanished/reworded/bad-corpus bodies, a real
+  vanished/reworded `compute_diff` result, `_format_id_ranges([])`,
+  `apply_to_doc`'s missing-heading `ValueError`, `_live_corpus_names()`,
+  `cmd_write`'s stderr drift report, and `main()`'s CLI routing plus its
+  `__main__` guard. `hte/question_map.py` now 100% branch coverage. No
+  defect. PR #94, opened, reviewed, squash-merged (`ca44567b9`).
+- **PR reviews**: the six open non-draft PRs (#90, #89, #87, #86, #93, #91)
+  each already carry a review at their current head sha from a concurrent
+  or prior tick today; no new commit landed on any since, so none needed
+  a fresh pass. None is a `fix/hte-`/`test/hte-` PR of this loop's own.
+- **Blocked**: nothing.
+
 ## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
 
 - **Scope**: `hte/corpus/production.py` (`_research_os_counter_evidence`,
