@@ -186,3 +186,89 @@ def test_views_command_rewrites_timeline_from_a_fresh_fake_run(tmp_path, capsys)
     out = capsys.readouterr().out
     assert (run_dir / "TIMELINE.md").is_file()
     assert (run_dir / "TIMELINE.md").read_text() in out
+
+
+# ---------------------------------------------------------------------------
+# `purge`, `predict register`/`resolve`/`report`: no dedicated test anywhere
+# in this package before this pass (`tests/COVERAGE.md`'s own least-covered
+# file, once `hte/referee.py`'s stale 63.4% figure is set aside: its real
+# gap is these four handlers, entirely unexercised). `predict register`
+# always passes `feed_root=None` through from the CLI (no `--feed-root`
+# flag exists), so a real end-to-end call would write to this
+# repository's own `tools/feed/` ledger; `_emit_feed_event`'s own early
+# `if not predictions: return 0` makes `--kinds ""` (an empty kinds tuple,
+# guaranteed zero predictions regardless of the run) the one CLI-level
+# invocation safe to make without touching that shared file.
+# ---------------------------------------------------------------------------
+
+
+def test_purge_command_with_no_matching_runs_reports_complete(tmp_path, capsys):
+    rc = cli.main([
+        "purge", "--production", "no-such-production-id", "--runs-root", str(tmp_path / "runs"),
+        "--cache-dir", str(tmp_path / "cache"), "--public-root", str(tmp_path / "public"), "--dry-run",
+    ])
+    assert rc == 0
+    report = json.loads(capsys.readouterr().out)
+    assert report["complete"] is True
+    assert report["unreadable"] == []
+    assert report["redaction_refused"] == []
+
+
+def test_predict_register_command_with_empty_kinds_registers_nothing(tmp_path, capsys):
+    rc = cli.main(["campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path), "--seeds", "1"])
+    assert rc == 0
+    run_dir = next(p for p in (tmp_path / "fixtures").iterdir() if p.is_dir())
+    capsys.readouterr()
+
+    out_dir = tmp_path / "predictions"
+    rc2 = cli.main(["predict", "register", str(run_dir), "--kinds", "", "--out", str(out_dir)])
+    assert rc2 == 0
+    out = capsys.readouterr().out
+    assert "0 prediction(s) registered" in out
+    assert not (out_dir / "ledger.jsonl").is_file()
+
+
+def test_predict_resolve_command_with_an_absent_ledger_writes_an_empty_report(tmp_path, capsys):
+    ledger_path = tmp_path / "predictions" / "ledger.jsonl"
+    rc = cli.main([
+        "predict", "resolve", "--ledger", str(ledger_path), "--corpus", "fixtures",
+        "--as-of", "2026-01-01T00:00:00+00:00",
+    ])
+    assert rc == 0
+    report = json.loads(capsys.readouterr().out)
+    assert "outcomes" not in report
+    assert (ledger_path.parent / "RESOLUTIONS.md").is_file()
+
+
+def test_predict_report_command_with_an_absent_ledger_prints_resolutions_md(tmp_path, capsys):
+    ledger_path = tmp_path / "predictions" / "ledger.jsonl"
+    rc = cli.main([
+        "predict", "report", "--ledger", str(ledger_path), "--corpus", "fixtures",
+        "--as-of", "2026-01-01T00:00:00+00:00",
+    ])
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert (ledger_path.parent / "RESOLUTIONS.md").read_text() in out
+
+
+# `--corpus`'s own `choices=sorted(_CORPUS_LOADERS)` already rejects an
+# unregistered name before either handler is reached through `main()`,
+# the same dead-through-argparse situation `test_cmd_calibrate_direct_
+# call_unknown_corpus_returns_two` documents above; only a direct call
+# with a hand-built `Namespace` reaches the manual guard.
+
+
+def test_cmd_predict_resolve_direct_call_unknown_corpus_returns_two(tmp_path, capsys):
+    ns = argparse.Namespace(ledger=str(tmp_path / "ledger.jsonl"), corpus="not-a-real-corpus", as_of="2026-01-01T00:00:00+00:00")
+    rc = cli._cmd_predict_resolve(ns)
+    assert rc == 2
+    err = capsys.readouterr().err
+    assert "unknown corpus" in err and "not-a-real-corpus" in err
+
+
+def test_cmd_predict_report_direct_call_unknown_corpus_returns_two(tmp_path, capsys):
+    ns = argparse.Namespace(ledger=str(tmp_path / "ledger.jsonl"), corpus="not-a-real-corpus", as_of="2026-01-01T00:00:00+00:00")
+    rc = cli._cmd_predict_report(ns)
+    assert rc == 2
+    err = capsys.readouterr().err
+    assert "unknown corpus" in err and "not-a-real-corpus" in err
