@@ -90,10 +90,20 @@ Full [`canon-figures/SCHEMA.md`](./canon-figures/SCHEMA.md) compliance:
 For a canon-intake pass promoting one or more records from `_intake/`
 into `bucket-canon/`, in addition to the acceptance criteria above:
 
-- [ ] **Feed event.** Every promoted record gets one event through
-      `tools/feed/feed.py update` (via `parse.py` on the real commit, or a
-      hand-built NDJSON stream using `parse.py`'s own `event_id()`).
-      Never hand-edit `feed.json`, `feed.xml`, or `feed/*.json`.
+- [ ] **Feed event.** Run both, from the PR branch, before requesting
+      review:
+
+      ```bash
+      python3 tools/feed/feed.py check-cards --base origin/dev
+      python3 tools/feed/feed.py emit-for-cards --base origin/dev
+      ```
+
+      `check-cards` lists every card the PR adds or promotes and flags
+      any with no matching feed event; `emit-for-cards` fixes the gap
+      in one idempotent step. `.github/workflows/canon-feed-check.yml`
+      runs `check-cards` on the PR and fails the build if a card is
+      still missing its event. Never hand-edit `feed.json`, `feed.xml`,
+      or `feed/*.json`.
 - [ ] **Inference labeled.** A `relation` field or dossier prose states
       the source paper's own finding as one sentence and any mechanism
       link the promoting pass draws as a separate sentence, naming the
