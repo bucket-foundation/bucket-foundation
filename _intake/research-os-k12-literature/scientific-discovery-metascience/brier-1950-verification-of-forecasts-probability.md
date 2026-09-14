@@ -20,7 +20,7 @@ key_claims:
     observed categorical outcome, rewarding a forecaster whose stated probabilities track
     the true frequency of events."
   - "The rule is a proper scoring rule: a forecaster who wants to minimize their expected
-    score has no incentive to report anything other than their honest probability
+    score has no incentive to report anything other than their truthful probability
     estimate, unlike scoring rules that reward overconfidence or hedging."
   - "Originally built to verify categorical weather forecasts, the scoring rule generalizes
     to any system that outputs a probability over a small set of possible outcomes."
@@ -38,7 +38,7 @@ how_it_bears_on_research_os: >
   75-year-old, still-standard scoring rule rather than a novel metric invented for this
   system. Motivates why the ledger's own `MIN_VERIFIED_FOR_LABEL = 20` gate withholds a
   validated label until enough held-out cases accumulate: a proper scoring rule rewards
-  honest reporting in expectation, not on any single held-out case, so a ranking label
+  truthful reporting in expectation, not on any single held-out case, so a ranking label
   earned from too few cases is exactly the overconfidence this rule's own properness
   guards against once enough cases exist to check it.
 ---
@@ -55,7 +55,7 @@ or overstates confidence.
   observed categorical outcome, rewarding a forecaster whose stated probabilities track
   the true frequency of events.
 - The rule is a proper scoring rule: a forecaster who wants to minimize their expected
-  score has no incentive to report anything other than their honest probability estimate,
+  score has no incentive to report anything other than their truthful probability estimate,
   unlike scoring rules that reward overconfidence or hedging.
 - Originally built to verify categorical weather forecasts, the scoring rule generalizes
   to any system that outputs a probability over a small set of possible outcomes.
@@ -77,6 +77,6 @@ RESEARCH-OS-INTEGRATION.md`), so `hte.holdout_ledger`'s own hit-rate report rest
 75-year-old, still-standard scoring rule rather than a novel metric invented for this
 system. Motivates why the ledger's own `MIN_VERIFIED_FOR_LABEL = 20` gate withholds a
 validated label until enough held-out cases accumulate: a proper scoring rule rewards
-honest reporting in expectation, not on any single held-out case, so a ranking label
+truthful reporting in expectation, not on any single held-out case, so a ranking label
 earned from too few cases is exactly the overconfidence this rule's own properness guards
 against once enough cases exist to check it.

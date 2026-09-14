@@ -15,7 +15,7 @@ why_it_matters: >
   model's behavior on a new input after seeing its explanation, as the target metric for
   algorithmic explanation quality, and finds clear evidence of improvement is rare across
   five common explanation methods, a caution against assuming any explanation format the
-  engine or a Production tool offers actually helps a person predict or trust the system's
+  engine or a Production tool offers helps a person predict or trust the system's
   behavior.
 key_claims:
   - "Carries out human-subject tests isolating the effect of algorithmic explanations on
@@ -24,10 +24,10 @@ key_claims:
     of explanation quality did not."
   - "Testing five explanation methods (LIME, Anchor, a decision-boundary method, a
     prototype method, and a composite combining several) across text and tabular data,
-    clear evidence that an explanation method improved simulatability was found in very
+    clear evidence that an explanation method improved simulatability was found in
     few of the tested conditions."
   - "Subjective ratings of how helpful an explanation felt were collected alongside the
-    simulatability tests and were not found to predict how much the explanation actually
+    simulatability tests and were not found to predict how much the explanation
     helped a person predict model behavior, evidence a felt sense of a good explanation
     and a measurably useful one can diverge."
 research_questions_it_leaves_open:
@@ -37,7 +37,7 @@ research_questions_it_leaves_open:
     applies to algorithmic explanations generally."
   - "Whether the subjective-rating-does-not-predict-helpfulness finding means a
     learner's own stated confidence after reading a Check verdict's rationale is an
-    unreliable signal of whether that rationale actually improved their understanding, a
+    unreliable signal of whether that rationale improved their understanding, a
     caution for any pilot measure that relies on self-reported explanation quality."
 how_it_bears_on_research_os: >
   Sharpens Miller (2019)'s own general argument with a concrete negative result: even
@@ -64,10 +64,10 @@ improvement is rare across five common explanation methods.
   of explanation quality did not.
 - Testing five explanation methods (LIME, Anchor, a decision-boundary method, a
   prototype method, and a composite combining several) across text and tabular data, clear
-  evidence that an explanation method improved simulatability was found in very few of the
+  evidence that an explanation method improved simulatability was found in few of the
   tested conditions.
 - Subjective ratings of how helpful an explanation felt were collected alongside the
-  simulatability tests and were not found to predict how much the explanation actually
+  simulatability tests and were not found to predict how much the explanation
   helped a person predict model behavior, evidence a felt sense of a good explanation and
   a measurably useful one can diverge.
 
@@ -79,7 +79,7 @@ improvement is rare across five common explanation methods.
   to algorithmic explanations generally.
 - Whether the subjective-rating-does-not-predict-helpfulness finding means a learner's
   own stated confidence after reading a Check verdict's rationale is an unreliable signal
-  of whether that rationale actually improved their understanding, a caution for any
+  of whether that rationale improved their understanding, a caution for any
   pilot measure that relies on self-reported explanation quality.
 
 ## How It Bears on Research OS

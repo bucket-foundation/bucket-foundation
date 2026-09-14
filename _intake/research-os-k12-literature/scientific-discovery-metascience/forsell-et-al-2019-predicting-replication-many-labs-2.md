@@ -41,7 +41,7 @@ research_questions_it_leaves_open:
     surveys, but the reverse on continuous outcomes, has an analog in how the engine's own
     ranking label should be elicited: a discrete validated-or-unvalidated status, or a
     continuous calibration score."
-  - "Whether the weak market performance on relative effect size reflects a genuine
+  - "Whether the weak market performance on relative effect size reflects a real
     difficulty in forecasting continuous outcomes or an artifact of the low trading volume
     this specific market design attracted."
 how_it_bears_on_research_os: >
@@ -49,7 +49,7 @@ how_it_bears_on_research_os: >
   own finding that a binary outcome (did it replicate) is easier to forecast well than a
   continuous one (by how much) is a point in favor of `hte.holdout_ledger`'s own discrete
   unvalidated-or-validated status over a bare continuous score as the label a downstream
-  consumer, a teacher or a K-12 learner routed to a ranked hypothesis, actually sees. Read
+  consumer, a teacher or a K-12 learner routed to a ranked hypothesis, sees. Read
   alongside Dreber and colleagues (2015) and Camerer and colleagues (2018), this is the
   third of three independent replication-forecasting studies this batch adds, converging
   evidence that a calibrated probability over "will this hold up" is a well-studied,
@@ -82,7 +82,7 @@ markets on a continuous outcome did not.
   surveys, but the reverse on continuous outcomes, has an analog in how the engine's own
   ranking label should be elicited: a discrete validated-or-unvalidated status, or a
   continuous calibration score.
-- Whether the weak market performance on relative effect size reflects a genuine
+- Whether the weak market performance on relative effect size reflects a real
   difficulty in forecasting continuous outcomes or an artifact of the low trading volume
   this specific market design attracted.
 
@@ -92,7 +92,7 @@ Sharpens the design choice behind the engine's own ranking-status label: this pa
 finding that a binary outcome (did it replicate) is easier to forecast well than a
 continuous one (by how much) is a point in favor of `hte.holdout_ledger`'s own discrete
 unvalidated-or-validated status over a bare continuous score as the label a downstream
-consumer, a teacher or a K-12 learner routed to a ranked hypothesis, actually sees. Read
+consumer, a teacher or a K-12 learner routed to a ranked hypothesis, sees. Read
 alongside Dreber and colleagues (2015) and Camerer and colleagues (2018), this is the third
 of three independent replication-forecasting studies this batch adds, converging evidence
 that a calibrated probability over "will this hold up" is a well-studied, forecastable

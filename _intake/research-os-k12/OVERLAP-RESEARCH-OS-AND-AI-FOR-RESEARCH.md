@@ -275,7 +275,7 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    execution-focused follow-up to the corpus's own Si, Yang, and Hashimoto (2024) card sharpens what
    the novelty bar should test: LLM-generated research ideas rated more novel at the ideation stage
    lost most of that advantage, and on several metrics scored below human-written ideas, once both
-   were actually executed and blind-reviewed, evidence a novelty judgment made before execution
+   were executed and blind-reviewed, evidence a novelty judgment made before execution
    overstates what a K-12 production's own AI-assisted hypothesis is worth. Chan and colleagues (2024,
    MLE-bench), Jansen and colleagues (2024, DiscoveryWorld), and Majumder and colleagues (2024,
    DiscoveryBench) each supply a benchmark-design precedent for scoring an agent's output against a
@@ -327,7 +327,7 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    study, a mandate to serve reduced future volunteering intentions specifically for students who
    would not have chosen to volunteer freely; in the second, real-world, school-based study, a
    required-service program did not depress, and appeared to raise, subsequent volunteering, leaving
-   whether requiring Production helps or harms engagement genuinely unresolved rather than settled
+   whether requiring Production helps or harms engagement unresolved rather than settled
    either way.
    Patall, Cooper, and Robinson (2008)'s 41-study meta-analysis complicates a payout paired with a
    participation requirement further: the choice effect on intrinsic motivation this batch's own

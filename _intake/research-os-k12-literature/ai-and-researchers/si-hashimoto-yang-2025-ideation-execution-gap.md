@@ -15,7 +15,7 @@ why_it_matters: >
   The direct execution-focused follow-up to Si, Yang, and Hashimoto (2024), already in
   this corpus, sharing two of the same three authors: where the 2024 study found LLM-
   generated research ideas rated more novel than expert-written ones at the ideation stage
-  alone, this study has both kinds of idea actually executed and finds the novelty
+  alone, this study carries both kinds of idea through to execution and finds the novelty
   advantage shrinks sharply, and can flip, once the idea is carried through to a written
   result.
 key_claims:
@@ -54,7 +54,7 @@ how_it_bears_on_research_os: >
 
 The direct execution-focused follow-up to Si, Yang, and Hashimoto (2024): the novelty
 advantage LLM-generated ideas showed at the ideation stage shrinks, and can flip, once the
-idea is actually executed.
+idea is carried through to execution.
 
 ## Key Claims
 

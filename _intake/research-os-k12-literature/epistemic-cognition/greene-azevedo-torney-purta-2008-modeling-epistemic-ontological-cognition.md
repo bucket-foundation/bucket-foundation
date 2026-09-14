@@ -41,7 +41,7 @@ how_it_bears_on_research_os: >
   Gives `PLAN-REVISION-3.md` section 2d's own harder, understanding-specific bar a richer
   candidate structure than a single certainty dimension: if a Production's own
   justification field were scored against this model's own multiple-means-of-justification
-  criterion, rather than against whether a citation merely exists, the rubric would be
+  criterion, rather than against whether a citation exists at all, the rubric would be
   targeting a specific philosophical position, rationalism, the model names as one of
   four, rather than assuming justification is a single undifferentiated behavior every
   learner either does or does not perform.
@@ -82,7 +82,7 @@ construct.
 Gives `PLAN-REVISION-3.md` section 2d's own harder, understanding-specific bar a richer
 candidate structure than a single certainty dimension: if a Production's own
 justification field were scored against this model's own multiple-means-of-justification
-criterion, rather than against whether a citation merely exists, the rubric would be
+criterion, rather than against whether a citation exists at all, the rubric would be
 targeting a specific philosophical position, rationalism, the model names as one of four,
 rather than assuming justification is a single undifferentiated behavior every learner
 either does or does not perform.

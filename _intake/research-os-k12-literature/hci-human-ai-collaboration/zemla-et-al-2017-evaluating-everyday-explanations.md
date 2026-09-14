@@ -13,7 +13,7 @@ openalex_id: "https://openalex.org/W2593050976"
 branch: "hci-human-ai-collaboration"
 tier: "canon"
 why_it_matters: >
-  An empirical study of what features actually predict whether a layperson judges an
+  An empirical study of what features predict whether a layperson judges an
   explanation as good, the concrete evaluation counterpart to Lombrozo (2006)'s own
   theoretical simplicity-and-breadth account, directly usable as a rubric for scoring a
   Production's own explanation or the engine's own disclosed understanding artifact.
@@ -53,7 +53,7 @@ how_it_bears_on_research_os: >
 
 # Evaluating everyday explanations
 
-An empirical study of what features actually predict whether a layperson judges an
+An empirical study of what features predict whether a layperson judges an
 explanation as good, and finds people are better at recognizing a good explanation than
 generating one.
 

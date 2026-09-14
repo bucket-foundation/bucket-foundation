@@ -25,7 +25,7 @@ key_claims:
     than a chosen standard."
   - "The function of explanation is tied to generalization: a good explanation does not
     only account for the case at hand but supports inference to new, related cases, the
-    property that separates genuine understanding from a merely correct one-off answer."
+    property that separates understanding able to generalize from a correct one-off answer."
 research_questions_it_leaves_open:
   - "Whether the disclosed, model-generated understanding artifact PR #60 shipped is
     scored, or could be scored, against this paper's own simplicity-and-breadth
@@ -60,7 +60,7 @@ and that the function of explanation is generalization beyond the single observe
   than a chosen standard.
 - The function of explanation is tied to generalization: a good explanation does not
   only account for the case at hand but supports inference to new, related cases, the
-  property that separates genuine understanding from a merely correct one-off answer.
+  property that separates understanding able to generalize from a correct one-off answer.
 
 ## Research Questions It Leaves Open
 

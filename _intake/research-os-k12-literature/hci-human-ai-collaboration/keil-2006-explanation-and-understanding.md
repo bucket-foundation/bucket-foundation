@@ -40,7 +40,7 @@ how_it_bears_on_research_os: >
   of explanatory depth, already the sharpest complicating card in this corpus's
   ai-and-researchers branch: this paper's own finding, that explanatory gaps are
   difficult to notice from the inside, argues Production's own self-report or confidence
-  rating cannot be trusted as a proxy for whether a learner actually holds the explanation
+  rating cannot be trusted as a proxy for whether a learner holds the explanation
   their citation trail implies, since gap-blindness is not a failure of honesty but a
   structural feature of how explanatory understanding works.
 ---
@@ -81,6 +81,6 @@ Supplies the cognitive-science foundation for Messeri and Crockett (2024)'s own 
 of explanatory depth, already the sharpest complicating card in this corpus's
 ai-and-researchers branch: this paper's own finding, that explanatory gaps are difficult
 to notice from the inside, argues Production's own self-report or confidence rating
-cannot be trusted as a proxy for whether a learner actually holds the explanation their
+cannot be trusted as a proxy for whether a learner holds the explanation their
 citation trail implies, since gap-blindness is not a failure of honesty but a structural
 feature of how explanatory understanding works.

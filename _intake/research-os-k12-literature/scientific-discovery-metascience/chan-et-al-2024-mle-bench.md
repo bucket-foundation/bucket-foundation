@@ -50,7 +50,7 @@ how_it_bears_on_research_os: >
   Sharpens what "the engine's ranking passed a check" should mean, alongside the
   forecasting-calibration cards in this batch: MLE-bench's own design measures whether an
   agent's output clears a human-competitive execution bar, not whether the agent's plan
-  merely looks plausible, the same distinction Si, Yang, and Hashimoto (2024)'s idea-only
+  only looks plausible, the same distinction Si, Yang, and Hashimoto (2024)'s idea-only
   evaluation and Si, Hashimoto, and Yang (2025)'s execution-focused follow-up draw for
   research ideas. A future benchmark for the engine's own hypothesis-ranking quality could
   borrow MLE-bench's own human-baseline-comparison design rather than inventing a bespoke
@@ -91,7 +91,7 @@ execute a full applied machine-learning task end to end against a human baseline
 Sharpens what "the engine's ranking passed a check" should mean, alongside the
 forecasting-calibration cards in this batch: MLE-bench's own design measures whether an
 agent's output clears a human-competitive execution bar, not whether the agent's plan
-merely looks plausible, the same distinction Si, Yang, and Hashimoto (2024)'s idea-only
+only looks plausible, the same distinction Si, Yang, and Hashimoto (2024)'s idea-only
 evaluation and Si, Hashimoto, and Yang (2025)'s execution-focused follow-up draw for
 research ideas. A future benchmark for the engine's own hypothesis-ranking quality could
 borrow MLE-bench's own human-baseline-comparison design rather than inventing a bespoke

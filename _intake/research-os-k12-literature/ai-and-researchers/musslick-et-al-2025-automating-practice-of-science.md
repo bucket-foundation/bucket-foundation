@@ -57,7 +57,7 @@ how_it_bears_on_research_os: >
   bottleneck is calibration accuracy on real data rather than an ethical limit, a
   distinction relevant to which of this paper's own named consequences, practical or
   ethical, the engine's own remaining open items (a conflicting-evidence stress test, an
-  Allen-relations check) actually address.
+  Allen-relations check) address.
 ---
 
 # Automating the practice of science: Opportunities, challenges, and implications
@@ -98,4 +98,4 @@ the engine's own real-corpora calibration gap PR #48 closed, argues the engine's
 bottleneck is calibration accuracy on real data rather than an ethical limit, a
 distinction relevant to which of this paper's own named consequences, practical or
 ethical, the engine's own remaining open items (a conflicting-evidence stress test, an
-Allen-relations check) actually address.
+Allen-relations check) address.

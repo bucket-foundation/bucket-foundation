@@ -11,7 +11,7 @@ branch: "hci-human-ai-collaboration"
 tier: "canon"
 why_it_matters: >
   Argues explainable-AI research should build on decades of philosophy, cognitive
-  science, and social-psychology work on how humans actually explain to each other,
+  science, and social-psychology work on how humans explain to each other,
   rather than on researcher intuition about what a good explanation looks like, directly
   relevant to whether the engine's own disclosed, model-generated understanding artifact
   (PR #60) follows any established account of explanation quality.

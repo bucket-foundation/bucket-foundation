@@ -39,7 +39,7 @@ research_questions_it_leaves_open:
     kind to this paper's own heightening result or to Stukas, Snyder, and Clary (1999)'s
     reactance result."
 how_it_bears_on_research_os: >
-  Leaves the founder decision `PLAN-REVISION-3.md` section 2b names genuinely unresolved
+  Leaves the founder decision `PLAN-REVISION-3.md` section 2b names unresolved
   rather than settling it: read against Stukas, Snyder, and Clary (1999) in this same
   batch, the required-participation literature contains a direct, real-world
   counter-finding to the reactance account Grinnell and colleagues (2020)'s own misconduct
@@ -82,7 +82,7 @@ account of required participation.
 
 ## How It Bears on Research OS
 
-Leaves the founder decision `PLAN-REVISION-3.md` section 2b names genuinely unresolved
+Leaves the founder decision `PLAN-REVISION-3.md` section 2b names unresolved
 rather than settling it: read against Stukas, Snyder, and Clary (1999) in this same batch,
 the required-participation literature contains a direct, real-world counter-finding to
 the reactance account Grinnell and colleagues (2020)'s own misconduct data might
