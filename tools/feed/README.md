@@ -71,23 +71,30 @@ python3 tools/feed/feed.py emit-for-cards --base <ref>
 
 ## Canon cards without a feed event
 
-`parse.py` walks a commit-by-commit diff and only recognizes a
-promotion via a rename out of `research-landscape/`. A promotion out of
-`_intake/` (the normal shape, see any `bucket-canon/**/CANON_INDEX.md`)
-lands as new files. Git records that as an add, so parse.py never
-recognizes it as a promotion, and it never gets an event unless
-someone runs the pipeline by hand. Three promotion passes in a row (PRs
-`#9`, `#45`, `#129`) shipped cards this way: reviewed, checklist ticked,
-no event.
+A promotion out of `_intake/` (the normal shape, see any
+`bucket-canon/**/CANON_INDEX.md`) lands as a new or extended
+`primary-papers.yaml`, never a rename out of `research-landscape/`.
+`parse.py` recognizes both shapes now: a brand-new dossier file and a
+new record appended to an existing one each yield an `add_paper`
+event, keyed by the record's own `id` rather than the commit sha, the
+same identity `check-cards`/`emit-for-cards` derive for the same card.
+Before this, `parse.py` only recognized a promotion via the
+`research-landscape/` rename, so the real shape (a plain add) never
+got an event unless someone ran the pipeline by hand. Three promotion
+passes in a row (PRs `#9`, `#45`, `#129`) shipped cards this way:
+reviewed, checklist ticked, no event.
 
-`check-cards` closes that gap by reading the served layer directly
-instead of the commit history: a card is a new `primary-papers.yaml`
-record (matched by its `id`) or a `canon_tier` change for an existing
-record (matched by `doi` against the dossier's `CANON_INDEX.md` table).
-Its event id comes from the card's own identity, so the same card
-resolves to the same event no matter which commit or squash carried
-it. That makes the match stable across a rebase, and makes a second
-`emit-for-cards` run, after the ledger already has the event, a no-op.
+`check-cards` stays the guard for anything the automatic path still
+misses, a `canon_tier` change on an existing record (matched by `doi`
+against the dossier's `CANON_INDEX.md` table) is not something
+`parse.py` tracks. It reads the served layer directly instead of the
+commit history, so a card is a new `primary-papers.yaml` record
+(matched by its `id`) or that tier change, and its event id comes from
+the card's own identity, so the same card resolves to the same event
+no matter which commit or squash carried it, or whether `parse.py`
+already emitted it on push. That makes the match stable across a
+rebase, and makes a second `emit-for-cards` run, after the ledger
+already has the event, a no-op.
 
 `.github/workflows/canon-feed-check.yml` runs `check-cards` on every PR
 touching `bucket-canon/**` and fails the check on any gap, printing the
@@ -104,7 +111,12 @@ in `tests/helpers.py`, no network). Run from the repo root:
 python3 -m pytest tools/feed/tests/ -q
 ```
 
-`test_parse.py` covers event emission per commit type. `test_feed.py`
+`test_parse.py` covers event emission per commit type, including its
+`YamlPromotionTests` class: a new-file promotion and an appended
+record each yield exactly one `add_paper` event, that event's id
+matches `feed.py`'s `card_event_id` for the same card, and feeding the
+same range through `feed.py update` twice adds nothing on the second
+run. `test_feed.py`
 covers merge idempotency, monthly archives, and Atom output; its
 `LedgerTests` class covers the counting rule (`total_events` tracks the
 ledger and never drops as the window slides), the `window` field, and
