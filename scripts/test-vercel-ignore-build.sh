@@ -74,6 +74,12 @@ run_case "engine branch skips (diff touches src/)" skip \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 
+run_case "hte/integration skips (diff touches src/)" skip \
+  "VERCEL_GIT_COMMIT_REF=hte/integration" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat(hte): outbox seam" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
 run_case "site change on feature branch builds" build \
   "VERCEL_GIT_COMMIT_REF=feat/site-reform-education-reposition" \
   "VERCEL_GIT_COMMIT_MESSAGE=feat(site): reposition education" \
