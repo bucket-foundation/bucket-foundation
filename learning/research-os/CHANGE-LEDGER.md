@@ -3237,7 +3237,7 @@ Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-l
 
 `npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on every touched file. `curl` confirmed `/` and `/research-os` return 200 on the running dev server (port 3100) with no restart, HTML carries the new headline and all five state headings.
 
-## 2026-09-14: Research OS landing trimmed; home hero/panel and fixed globe fixed
+## 2026-09-14: Research OS and home page fixes
 
 `src/app/research-os/page.tsx`: removed six sections below the Five States rows (numbered-table restatement, "four tools, no pen", "frontier first, then backward", "productions that enter the graph", "where it sits", "status") on founder direction; the page keeps only the hero, the fixed globe, and the Five States alternating rows. Removed text is in `_intake/research-os-k12/DELETIONS.md`.
 

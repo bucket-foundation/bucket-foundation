@@ -2575,7 +2575,7 @@ Worktree `.ros-worktrees/site-local`, branch `site-local-2026-09-14`. Founder sp
 - `agf-lint-voice-src check` on all six files: 0 violations (after renaming every `scroll-boost` identifier and comment to `scroll-speed`/`extra`, an AI-tell hit, and rewriting two antithesis constructions).
 - Dev server (already running on port 3100) picked up every change via hot reload with no restart needed; `curl` confirmed `/` and `/research-os` both return 200 and the HTML carries the new headline and all five state headings.
 
-## 2026-09-14: Research OS landing trimmed; fixed globe repositioned; home hero/panel fixes
+## 2026-09-14: Research OS and home page fixes
 
 Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Founder review off 1280x800 screenshots flagged four problems: the home CanonSearchPanel read as a 15px sliver with no globe dome in the hero; the home headline overflowed right of its column; the Research OS fixed globe rendered as an opaque, unblurred sphere overlapping the hero; and six stale sections sat below the Research OS Five States rows.
 
