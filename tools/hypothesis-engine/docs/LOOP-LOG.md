@@ -2,6 +2,34 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 13, a concurrent session duplicated this tick's own swarm target, PR #123 reviewed
+
+- **Engine health**: fresh sandbox install. `make test` on `main`
+  (`4dc113499`): 1586 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on a seeds-0-2 repeat. `realsweep --corpus
+  production`/`literature`, 0/10 crashed each, coverage/None spread
+  matches prior ticks. `--corpus education-atlas` seed 0 only (487.8s):
+  coverage 0.778, matching tick 5/6/7/12's own baseline. `younger-dryas`
+  still unregistered in `REALSWEEP_BUILDERS`.
+- **Test swarm**: picked `hte/cli.py`'s untested `_cmd_purge`/
+  `_cmd_predict_*` dispatch functions (83.6%, the real least-covered
+  module once the stale `tests/COVERAGE.md` was regenerated), wrote 16
+  tests, opened `test/hte-cli-purge-predict-dispatch-coverage-20260914`
+  (#125). A concurrent session had opened and merged the identical fix
+  (#124) minutes earlier against the same read of `tests/COVERAGE.md`;
+  #125 conflicted against the now-current `main` and was closed unmerged
+  rather than force-landed as a duplicate. No new defect found either
+  way; `hte/cli.py` sits at 97% on `main` via #124.
+- **PRs opened**: 1 (#125, closed unmerged as a duplicate of #124, see
+  above). **Reviewed**: #123 (`fix/hte-propagation-review`, a PR #78
+  review-comment fix, correcting a disbelief-propagation docstring claim
+  and adding an `s>0` regression test plus a golden-diff test), fresh,
+  approved after an independent worktree run (`make test`: 1541 passed)
+  and a hand-check of the corrected formula's worked example. #117
+  already reviewed at current head, no duplicate. **Merged**: none of
+  this tick's own (nothing survived to merge). **Blocked**: nothing.
+
 ## 2026-09-14, tests/COVERAGE.md found stale, a real boilerplate-collision defect fixed, cli.py swarm
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
