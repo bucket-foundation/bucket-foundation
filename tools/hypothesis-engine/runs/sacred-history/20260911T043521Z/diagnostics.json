@@ -1,0 +1,17 @@
+{
+  "mode": "kfold",
+  "n_holdout_events": 3,
+  "n_covered_events": 3,
+  "coverage_of_truth": 1.0,
+  "reasons": {
+    "no_evidence_after_holdout": 0,
+    "no_placement_generated": 0,
+    "dropped_by_cap": 0,
+    "slot_mismatch": 0,
+    "interval_mismatch": 0
+  },
+  "uncovered_events": [],
+  "notes": [
+    "\"dropped_by_cap\" reads zero here by construction: hte.calibrate's own candidate-building (_placement_from_item, one candidate per kept evidence item) applies no max_hypotheses cap and never calls hte.generate at all (holdout_kfold's own module docstring states this cost tradeoff explicitly). A generation-pass diagnostic over hte.runner.run_campaign's own hypothesis population, where the cap does apply, is a distinct check this function does not perform; see docs/COVERAGE-2026-09-10.md."
+  ]
+}
