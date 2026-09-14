@@ -2,6 +2,38 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, predict.py swarm, five PRs reviewed, a real key_claims regression found and fixed
+
+- **Engine health**: `make test` on `main` (`100369ee9`): 1548 passed, 0
+  failed. **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass,
+  gate PASS, no nondeterminism on a seeds-0-2 repeat. `realsweep
+  --corpus production`/`literature`/`education-atlas` (seed 0 only, this
+  box's own slow per-seed cost), 0 crashed, coverage/None patterns match
+  tick 5/6/7's own precedent. `younger-dryas` still has no `realsweep`
+  entry.
+- **Test swarm**: `hte/predict.py` (PR #87), the one priority-list module
+  still missing a swarm file. 19 new tests in `tests/swarm-20260914/
+  test_predict_props.py` (id determinism, `_confidence`, `_member_
+  addresses`, dict round trips, ledger append-only/dedup, vocab-growth
+  id-collision guard). No defect found.
+- **PRs reviewed**: 5 open non-draft PRs. #101 already reviewed at head,
+  no duplicate. Fresh: #119/#114 approve, #115 approve (`feat/hte-`,
+  outside merge scope), #117 no blocking finding (`src/`, outside scope).
+- **PRs merged**: #119, #114 (squash). #101 blocked by a real merge
+  conflict against current `main`; left open for a human or a
+  larger-scope session.
+- **Defect found and fixed**: merging #119+#114 broke `make test` on
+  `main`: `hte/corpus/literature.py`'s `_LIST_ITEM_RE` only matched a
+  `key_claims` entry closed on one line, so a real batch-five card's own
+  line-wrapped claim read as zero claims and tripped `carries no
+  key_claims`. Fixed at the root, `fix/hte-literature-multiline-claims`
+  (#120): `_iter_list_item_spans` folds wrapped continuation lines into
+  one item, keeping `raw[char_start:char_end] == text`; also corrected
+  one stale hardcoded real-corpus count (147 to 177). Reviewed (zero
+  findings), squash-merged (`f7400c835`). `make test` after: 1585 passed.
+- **PRs opened**: 2, `test/hte-predict-coverage-20260914` (this entry)
+  and `fix/hte-literature-multiline-claims` (#120, merged above).
+
 ## 2026-09-14, PR87 review
 
 - **PR #87 reviewed and merged** (`feat/hte-prediction-register`,
