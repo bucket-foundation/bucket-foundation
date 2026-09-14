@@ -235,6 +235,34 @@ Dated entries from the hourly optimization loop. Newest entry first.
 - **Merged**: this tick's own PR, after self-review (zero secrets, zero
   High/Critical QA), squash-merged. **Blocked**: nothing.
 
+## 2026-09-14, tick 5, referee.py swarm merged, sweeps clean, nine PRs checked
+
+- **Engine health**: `make test` on `main`, 1432 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` 30/30, gate PASS, mean
+  coverage_of_truth 1.0, no nondeterminism (two full repeat runs identical
+  except `run_dir`/`elapsed_s`). `realsweep --corpus education-atlas`
+  runs 5-6x under baseline on this box (tick 6's own finding); cut off
+  after 2/10 seeds, both clean, coverage_of_truth 0.78/0.70, no crash.
+  `production`/`literature` realsweeps skipped for the same reason.
+- **Test swarm**: `hte/referee.py`, `tests/COVERAGE.md`'s least-covered
+  module (63.4%), no gap left in the "newer modules" list (all four
+  already swarm-tested today; `hte/predict.py` does not exist). 28 tests
+  in `tests/swarm-20260914/test_referee_orchestration_props.py` cover
+  `check_run_provenance`, `_parse_lint_output`, `_write_review`, and every
+  `referee()` finding branch, monkeypatched so no real subprocess/LaTeX/
+  LLM call runs. Coverage 63.4% to 94%. No defect. PR #100, self-reviewed
+  (zero secrets, zero High/Critical QA), squash-merged.
+- **PR reviews**: nine open non-draft PRs (#99, #97, #95, #93, #91, #90,
+  #89, #87, #86) all already carried a review from this loop at their
+  current head, no duplicate posted. Follow-up surfaced re-checking #86:
+  its own self-report flags likely bucket-keyed critic/judge scoring and
+  a `place` slot defaulting to `"hinduism"` for every `confucius`-object
+  hypothesis; a bead against `hte.tournament`/`hte.roles`/`hte.generate`,
+  not reproduced or fixed this tick.
+- **Merged**: PR #100 only. **Blocked**: none of the nine reviewed PRs
+  qualify for this loop's merge authority (no `fix/hte-`/`test/hte-`
+  prefix); #89 partly duplicates merged PR #80 per its own prior review.
+
 ## 2026-09-14, tick 4: propagate.py swarm, education-atlas realsweep, no open PR left unreviewed
 
 - **Engine health**: `make test` on `main`: 1423 passed, 0 failed. No defect.
