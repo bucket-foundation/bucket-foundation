@@ -2,6 +2,45 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, PR #123 reviewed and merged into hte/integration
+
+- **Scope**: review-and-merge pass on PR #123 (`fix/hte-propagation-
+  review`, base `hte/integration`), the PR #78 lineage's own review
+  follow-up correcting the module docstring, `docs/PROPAGATION.md`, and
+  adding an `s>0` regression test plus a golden-diff test. Run in an
+  isolated worktree at `.ros-worktrees/r123`; the shared main tree at
+  `bucket-foundation/` was never touched.
+- **Leak scan**: diff and full changed-file contents checked for keys,
+  `.env` values, IPs, non-public hostnames, personal emails other than
+  the account of record, PII, absolute `/home/gian` paths, and Claude
+  session URLs. None found; the only emails present are the commit's own
+  author line and the standard `noreply@anthropic.com` co-author line.
+- **Correctness**: `propagate.py`'s diff is docstring-only, no logic
+  changed. Hand-verified the corrected math against `Opinion.
+  from_evidence` (`d = s / (r + s + W)`) and `derived_weight` (`base *
+  damp`): the worked example (`r=12, s=4, W=2, damp=0.5` giving `d: 0.222
+  -> 0.2`, ratio `b:d` held at `3:1`) checks out exactly. Confirmed no
+  node or edge deletion in `propagate.py` (the two `pop()` calls are a
+  local topo-walk worklist and frontier, not the graph), `hte/
+  canon_writeback`, rankings/ledger, and the Research OS bridge are all
+  untouched by this PR's file list, so their existing invariants
+  (fail-closed sign-off, ledger-driven unvalidated label) carry over
+  unchanged.
+- **Voice**: `agf-lint-voice check` and `agf-lint-voice-src check` on
+  the three changed files, both clean, 0 violations.
+- **Gates**: merged `origin/hte/integration` (post PR #130) into the
+  review branch, clean, no conflicts. `ruff check` on the touched files:
+  clean. `make test` equivalent (`HTE_TEST_PROFILE=fast`, `HTE_LLM_MODE`
+  unset, `-m "not slow"`), deselecting the one pre-existing
+  network-dependent flake (`test_corpus_literature.py::
+  test_live_fetch_lists_cards_or_skips_when_offline`, unrelated to this
+  PR and untouched by it): 1675 passed, 19 deselected, 0 failed, run
+  twice (once pre-merge at 1540 passed, once post-merge at 1675 passed
+  once PR #130's own tests were in the tree). `tests/test_propagate.py`
+  alone: 18 passed, including the new `s>0` and golden-diff tests.
+- **Merged**: #123, squash, into `hte/integration`, branch deleted.
+- **Blocked**: nothing.
+
 ## 2026-09-14, ros-11 remaining items resumed and closed
 
 - **Scope**: `feat/ros-11-engine-review-items-2`, the three items the
