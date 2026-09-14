@@ -99,6 +99,17 @@ function sitesAsMarkers(sites: SiteEntry[]): CanonMarker[] {
   }));
 }
 
+// Every figure/canon-entry + archaeological-site marker, unfiltered, the
+// same set `InteractiveCanonGlobeMount` shows at its default state (year
+// scrubber at 2020, both layers on, no branch or search filter). Computed
+// once at module load from the same static JSON `InteractiveCanonGlobeMount`
+// reads, so the decorative background globe carries the identical point
+// layer without a data fetch of its own.
+const DECORATIVE_MARKERS: CanonMarker[] = [
+  ...eventsAsMarkers(ALL_EVENTS),
+  ...sitesAsMarkers(ALL_SITES),
+];
+
 interface Props {
   branches: GlobeBranch[];
   /** Overrides the collapsed-state root className (default: the max-w-7xl
@@ -127,6 +138,16 @@ const DEFAULT_CONTAINER_CLASSNAME =
  * chips, layer toggles, time scrubber, expand button, corner legend, or
  * detail drawer. Kept as its own component (rather than an early return
  * inside CanonGlobeMount) so neither branch calls hooks conditionally.
+ *
+ * Renders through the exact same `R3FCanonGlobe` the interactive mount
+ * uses (same Earth mesh, same landmask texture, same lighting), with
+ * `decorative` only chosen to hide chrome, disable drag/zoom, and turn on
+ * autorotate. It carries `DECORATIVE_MARKERS`, the same figure/site point
+ * layer the interactive globe shows by default, so the two are not two
+ * renderers that happen to look similar, they are one renderer fed the
+ * same data. `branches` plays no part in either mount: `R3FCanonGlobe`
+ * has no such prop, `InteractiveCanonGlobeMount` receives and ignores it
+ * (see `_branches` below), so there is nothing for this mount to forward.
  */
 function DecorativeCanonGlobeMount({
   containerClassName,
@@ -139,7 +160,7 @@ function DecorativeCanonGlobeMount({
     <div className={containerClassName} style={{ width: "100%", height: "100%" }}>
       <GlobeErrorBoundary>
         <R3FCanonGlobe
-          markers={[]}
+          markers={DECORATIVE_MARKERS}
           decorative
           scrollSpeedRef={scrollSpeedRef}
           className="relative z-0"

@@ -2609,3 +2609,23 @@ Playwright, Chromium 1243, 1950x1160, both flag sets the founder asked for (`--d
 ### Verified
 
 `npx tsc --noEmit`, `npx eslint` on the three touched files, and `agf-lint-voice-src check` on the three touched files: all clean.
+
+## Research OS decorative globe: missing point layer
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Founder report: the `/research-os` background globe rendered as a bare sphere with no landmasses or points, while `/canon/search` rendered the full textured globe with claim markers.
+
+### Investigated
+
+- `src/app/canon/CanonGlobeMount.tsx`'s `DecorativeCanonGlobeMount` passed `markers={[]}` into `R3FCanonGlobe` unconditionally, the actual regression: the decorative mount and the interactive mount both render through the same `R3FCanonGlobe` (`src/components/canon-globe/CanonGlobe.tsx`), same `<Earth>` mesh, same `/textures/earth/2k_earth_daymap.jpg` landmask, same materials and lighting, so the texture itself was never the gap. Confirmed with a Playwright pass before any edit: the research-os globe already showed the textured landmass dot-cloud, dimmed, just with no colored claim/site markers layered on top.
+- Traced where `InteractiveCanonGlobeMount` gets its default marker set: `eventsAsMarkers(ALL_EVENTS)` + `sitesAsMarkers(ALL_SITES)`, both built from the module-level `timelineData`/`sitesData` static JSON imports already at the top of this file, no fetch, no server data. The `branches` prop (from `getBranches()` on the two `/canon` pages) is destructured as `_branches` in `InteractiveCanonGlobeMount` and never read, `R3FCanonGlobe` has no `branches` prop at all, so it carries no part of the textured/populated look in either mount.
+- `src/components/canon-globe/CanonGlobe.tsx` also carried a dead `_FallbackGlobe` function (an SVG armillary with gold graticule lines on a bone sphere), unreferenced anywhere in the repo despite its own comment claiming otherwise. Not the active bug (the error boundary renders empty space on a WebGL failure, not this SVG), but exactly the kind of leftover fallback path the founder asked to remove.
+
+### Edited
+
+- `src/app/canon/CanonGlobeMount.tsx`: added `DECORATIVE_MARKERS`, computed once at module load from the same `ALL_EVENTS`/`ALL_SITES` the interactive mount's default (unfiltered) state uses, and passed it into `DecorativeCanonGlobeMount`'s `R3FCanonGlobe` in place of `markers={[]}`. Updated the mount's doc comment to record that `branches` is inert for both mounts.
+- `src/components/canon-globe/CanonGlobe.tsx`: removed the dead `_FallbackGlobe` function (91 lines), unreferenced and unexported.
+- `src/components/FixedCanonGlobeBackground.tsx`: added a comment on the `branches={[]}` line explaining why it costs nothing to leave empty, so the next reader does not chase the same false lead.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright at 1600x1000, scroll 0, 8s wait: `/canon/search` and `/research-os` both show the same brown landmass dot texture and the same colored figure/site markers along the coastlines, research-os at lower opacity, lower right, behind page content, autorotating, with drag/zoom disabled.

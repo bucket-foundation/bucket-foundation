@@ -3256,3 +3256,13 @@ Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-l
 ### Verified
 
 `npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright reproduction (Chromium 1243, 1950x1160, `--disable-gpu --use-angle=swiftshader` and `--disable-gpu --use-gl=swiftshader`) rendered a live-context `<canvas>` with zero `pageerror`s on both `/canon/search` and `/research-os`, before and after; the founder's exact Brave failure did not reproduce locally.
+
+## Research OS decorative globe: missing point layer
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+The decorative and interactive mounts already shared one `R3FCanonGlobe` (same Earth mesh, same landmask texture, same materials and lighting), so the texture was never the gap. `src/app/canon/CanonGlobeMount.tsx`'s `DecorativeCanonGlobeMount` passed `markers={[]}` unconditionally; added `DECORATIVE_MARKERS`, built at module load from the same `ALL_EVENTS`/`ALL_SITES` static JSON the interactive mount's default state reads, and wired it in. `branches`/`getBranches()` turned out unused by either mount (`R3FCanonGlobe` has no such prop), so nothing to plumb there. `src/components/canon-globe/CanonGlobe.tsx`: removed the dead, unreferenced `_FallbackGlobe` SVG fallback.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright at 1600x1000, scroll 0, 8s wait: `/canon/search` and `/research-os` show matching landmass texture and colored point layer, research-os dimmed, lower right, behind content, autorotating, non-interactive.
