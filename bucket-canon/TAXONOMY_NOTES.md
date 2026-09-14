@@ -182,8 +182,8 @@ Canon intake pass three (`intake/ros-canon-promotion-3`) added
 During Problem Solving: Effects on Learning," DOI
 `10.1207/s15516709cog1202_4`). No existing subfolder named the working-
 memory-capacity mechanism this paper states: `memory-systems/` holds the
-retrieval-practice and hippocampal-lesion primaries, not a working-memory-
-load theory; `cognition-and-automation/` holds the automation-skill-decay
+retrieval-practice and hippocampal-lesion primaries, a retrieval
+mechanism; `cognition-and-automation/` holds the automation-skill-decay
 primary, a different mechanism entirely. A new, narrowly named subfolder
 follows the precedent `memory-systems/`, `curiosity-and-motivation/`, and
 `cognition-and-automation/` already set: one mechanism per folder rather

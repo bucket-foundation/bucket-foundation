@@ -38,7 +38,7 @@ why_it_matters: >
 key_claims:
   - "Everyday and field-specific arguments are analyzed as sharing a common layout distinct from the syllogism: a claim is supported by grounds, connected to the claim by a warrant, the warrant itself supported by backing, with a qualifier marking the claim's force and a rebuttal naming the conditions under which it would not hold."
   - "The soundness of an argument is argued to depend on the field it is made in, a court of law, a scientific paper, a piece of art criticism, rather than on a single field-independent standard of formal validity, a position the book calls field-dependency."
-  - "Formal logic's syllogistic model is argued to describe only a narrow class of arguments well and to misdescribe how arguments are actually built and evaluated across most fields of practice, including science."
+  - "Formal logic's syllogistic model is argued to describe only a narrow class of arguments well and to misdescribe how arguments are built and evaluated across most fields of practice, including science."
 research_questions_it_leaves_open:
   - "Whether the Toulmin layout, developed for arguments in law, science, and everyday reasoning generally, needs adaptation to describe the specific claim-evidence-reasoning structure a K-12 science Production submission is meant to produce."
   - "Whether a scoped Check tool could verify the presence of the layout's own components, claim, grounds, warrant, in a student's argument, or whether recognizing a warrant requires field-specific judgment the tool does not carry."
@@ -55,7 +55,7 @@ how_it_bears_on_research_os: >
 # The Uses of Argument
 
 The founding statement of the Toulmin model of argument: claim, grounds, warrant, backing,
-qualifier, rebuttal, a layout the book argues describes how arguments are actually built and
+qualifier, rebuttal, a layout the book argues describes how arguments are built and
 evaluated across fields of practice, distinct from and better fitted than the syllogism.
 
 ## Key Claims
@@ -68,7 +68,7 @@ evaluated across fields of practice, distinct from and better fitted than the sy
   scientific paper, a piece of art criticism, rather than on one field-independent standard
   of formal validity, a position the book calls field-dependency.
 - Formal logic's syllogistic model describes only a narrow class of arguments well and
-  misdescribes how arguments are actually built and evaluated across most fields of
+  misdescribes how arguments are built and evaluated across most fields of
   practice, including science.
 
 ## Research Questions It Leaves Open

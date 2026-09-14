@@ -37,7 +37,7 @@ why_it_matters: >
   scientific argumentation comes from rather than from exposure to content alone. Added to
   this corpus as a foundation Osborne (2010) rests on.
 key_claims:
-  - "Across interview-based studies of adolescents and adults reasoning about everyday causal claims (school failure, unemployment, disease), most participants could state a claim and evidence they took to support it, but a majority could not reliably distinguish evidence from an unsupported theory, or generate a counterargument to their own claim, or a rebuttal to it."
+  - "Across interview-based studies of adolescents and adults reasoning about everyday causal claims (school failure, unemployment, disease), most participants could state a claim and evidence they took to support it, but a majority could not distinguish evidence from an unsupported theory, or generate a counterargument to their own claim, or a rebuttal to it."
   - "Argumentative skill is framed as a specific, identifiable competence, reasoning dialogically by anticipating and answering an opposing case, distinct from and not guaranteed by general reasoning ability or by holding a correct opinion on the topic."
   - "The skill deficits observed are read as evidence that argument competence is not a byproduct of general cognitive development or domain knowledge and needs a discourse context, engaging with a real or represented opposing view, to develop."
 research_questions_it_leaves_open:
@@ -62,7 +62,7 @@ most adults and adolescents in the study performed poorly at by default.
 
 - Across interview-based studies of adolescents and adults reasoning about everyday causal
   claims (school failure, unemployment, disease), most participants could state a claim and
-  evidence they took to support it, but a majority could not reliably distinguish evidence
+  evidence they took to support it, but a majority could not distinguish evidence
   from an unsupported theory, or generate a counterargument to their own claim, or a rebuttal
   to it.
 - Argumentative skill is a specific, identifiable competence, reasoning dialogically by

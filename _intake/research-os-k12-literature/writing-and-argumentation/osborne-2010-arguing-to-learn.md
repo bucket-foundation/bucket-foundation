@@ -30,7 +30,7 @@ how_it_bears_on_research_os: >
   discourse, defending a claim against challenge, more than from claim construction alone. Names a
   structural gap in the current design worth flagging alongside Berland and Reiser (2009,
   `berland-reiser-2009-argumentation-explanation.md`)'s own persuading-goal finding: Research
-  OS's teacher-review step is evaluative rather than dialogic, and carries none of the peer
+  OS's teacher-review step is a single evaluative response, carrying none of the peer
   debate this piece treats as the mechanism of the benefit.
 ---
 
@@ -62,7 +62,7 @@ Frames overlap-map question 5 and the Production tier in argumentation terms: a 
 claim, evidence, and stance are the raw materials of scientific argument, and this piece's own
 case is that the reasoning benefit comes from discourse, defending a claim against challenge,
 more than from claim construction alone. Names a structural gap alongside Berland and Reiser (2009):
-Research OS's teacher-review step is evaluative rather than dialogic, carrying none of the
+Research OS's teacher-review step is a single evaluative response, carrying none of the
 peer debate this piece treats as the mechanism of the benefit.
 
 Cross-indexed against: `writing-and-argumentation/berland-reiser-2009-argumentation-explanation.md`.

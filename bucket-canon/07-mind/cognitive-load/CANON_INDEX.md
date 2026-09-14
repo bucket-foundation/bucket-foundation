@@ -36,7 +36,7 @@ Inherited from `bucket-canon/README.md` and `_intake/2026-05-19-canon-intake/RUB
 |---|---|---|---|---|---|---|
 | `10.1207/s15516709cog1202_4` | Sweller J. 1988, "Cognitive Load During Problem Solving: Effects on Learning" (*Cognitive Science*) | the founding text of cognitive load theory that Kirschner, Sweller, and Clark 2006 (`_intake/research-os-k12-literature/project-based-inquiry-learning/`) argues from, rather than states itself | yes (the originator's own primary statement of the theory, journal-article, non-retracted, on-topic against `04-information`/`07-mind` branch hints) | pass | 85 | **Y** |
 
-The record states a mechanism of human cognitive architecture (working-memory capacity and its allocation between task-intrinsic and extraneous load) and its primary experimental evidence, not an intervention outcome, so it clears E7 as foundation-tier rather than routing to `sub-outcomes/`.
+The record states a mechanism of human cognitive architecture (working-memory capacity and its allocation between task-intrinsic and extraneous load) and its primary experimental evidence, clearing E7 as foundation-tier and staying out of `sub-outcomes/`.
 
 **PROTOCOL.md §4.1 envelope field mapping.** Same citation-only mapping as `07-mind/memory-systems/CANON_INDEX.md`, `07-mind/curiosity-and-motivation/CANON_INDEX.md`, and `07-mind/cognition-and-automation/CANON_INDEX.md` document; `foundation_branches` = `["07-mind"]`, `provenance_signoff` carried alongside as the pending-approval marker this pass adds.
 

@@ -149,11 +149,21 @@ def _write_all(entries: Sequence[LedgerEntry], path: str | Path) -> None:
 def append_entries(new_entries: Sequence[LedgerEntry], path: str | Path = DEFAULT_LEDGER_PATH) -> list[LedgerEntry]:
     """Appends `new_entries` to the ledger at `path`, skipping any whose
     `entry_id` a prior call already recorded (idempotent under a re-run
-    write-back over the same run directory). Returns the entries this
-    call appended, `[]` when every one was already present."""
+    write-back over the same run directory), and skipping any later row
+    in this same call whose `entry_id` an earlier row in it already
+    claimed (first occurrence wins, matching `verify_entry`'s own
+    first-match semantics), so two `ranked` rows sharing one `address`
+    can never produce two on-disk lines with the identical `entry_id`.
+    Returns the entries this call appended, `[]` when every one was
+    already present."""
     existing = load_ledger(path)
     known_ids = {e.entry_id for e in existing}
-    to_add = [e for e in new_entries if e.entry_id not in known_ids]
+    to_add = []
+    for e in new_entries:
+        if e.entry_id in known_ids:
+            continue
+        to_add.append(e)
+        known_ids.add(e.entry_id)
     if to_add:
         _write_all(list(existing) + to_add, path)
     return to_add

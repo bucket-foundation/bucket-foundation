@@ -143,7 +143,10 @@ def _fmt(value: float | None, decimals: int) -> str:
     return f"{value:.{decimals}f}" if value is not None else "None"
 
 
-def write_views(views: dict, out_dir: str | Path) -> None:
+def write_views(
+    views: dict, out_dir: str | Path, *,
+    fragility_ranked: list[dict] | None = None, fragility_threshold: float | None = None,
+) -> None:
     """Writes `views` to `out_dir/timeline.json` verbatim, and a human-
     readable `out_dir/TIMELINE.md` table alongside it, creating `out_dir`
     if it does not exist. `timeline.json` round trips: `json.loads` over
@@ -156,6 +159,16 @@ def write_views(views: dict, out_dir: str | Path) -> None:
     row's posterior rounded to 3 decimals and its Elo to 1, both purely
     a display rounding: `timeline.json` alongside it keeps every value
     at the full precision `timeline_views` computed.
+
+    `fragility_ranked` (`bkt-hte-retraction-propagation`, `docs/
+    PROPAGATION.md`), when given, is `hte.propagate.rank_fragility`'s
+    own return shape: a "## Fragility" section lists every row, most
+    fragile first, and any row whose own `fragility` clears `fragility_
+    threshold` (default `hte.propagate.FRAGILITY_FLAG_THRESHOLD`) is
+    marked `flagged` in its own column. `timeline.json` is untouched by
+    this parameter: fragility is a `TIMELINE.md`-only display, per this
+    task's own instruction to flag it there. `timeline.json`'s own
+    round-tripping shape stays exactly whatever `timeline_views` computed.
     """
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -206,6 +219,27 @@ def write_views(views: dict, out_dir: str | Path) -> None:
             lines.append(
                 f"| {pair['pair']['first']} | {pair['pair']['second']} | "
                 f"{seq['relation']} | {seq['posterior']} |"
+            )
+
+    if fragility_ranked is not None:
+        from .propagate import FRAGILITY_FLAG_THRESHOLD
+        flag_at = fragility_threshold if fragility_threshold is not None else FRAGILITY_FLAG_THRESHOLD
+        lines.append("")
+        lines.append("## Fragility")
+        lines.append("")
+        lines.append(
+            f"`fragility = fan_out * (1 - independent_support_share)`. Flagged at > {flag_at}: "
+            "a node whose own collapse would drag several dependents toward their base rate, "
+            "and whose own support leans on thin, non-independent corroboration."
+        )
+        lines.append("")
+        lines.append("| Hypothesis | Fragility | Fan-out | Independent support share | Flagged |")
+        lines.append("|---|---|---|---|---|")
+        for row in fragility_ranked:
+            flagged = "yes" if row["fragility"] > flag_at else "no"
+            lines.append(
+                f"| {row['short_id']} | {_fmt(row['fragility'], 3)} | {row['fan_out']} | "
+                f"{_fmt(row['independent_support_share'], 3)} | {flagged} |"
             )
 
     (out / "TIMELINE.md").write_text("\n".join(lines) + "\n")

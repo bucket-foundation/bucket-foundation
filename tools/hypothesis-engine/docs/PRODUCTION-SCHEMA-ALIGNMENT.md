@@ -142,6 +142,53 @@ covers the string shape (including the mixed-shape and id-scoping cases);
 `tests/test_corpus_research_os_outbox.py`'s per-row-isolation tests cover
 `_build`'s own skip-and-report behavior.
 
+## PR #73: counter-evidence and duplicate detection
+
+`bucket-foundation` PR #73 (`feat/ros-production-guard`, merged into `main`
+2026-09-11) added five columns to `graph.productions`: `source_provenance`,
+`duplicate_flag`, `counter_evidence`, `counter_evidence_required`,
+`production_incentive_eligible`. The PR's own seam-check comment (`gh pr
+view 73 --comments`) found that `counter_evidence` and `duplicate_flag`
+stop at the app boundary: neither column reaches `public.research_os_
+productions_outbox` yet (`src/lib/research-os/engine-bridge.ts`'s
+`ProductionOutboxRow`/`buildProductionOutboxRow` and `db.ts`'s
+`writeProductionOutbox` still write only the outbox row's original nine
+fields), so `hte.corpus.production`'s own normalizer had no field to
+read even once the write side catches up. This bead closes the read side
+ahead of that write: once the outbox migration and `buildProductionOutbox
+Row` add `counter_evidence`/`duplicate_flag` to the row `writeProduction
+Outbox` upserts, `hte.corpus.research_os_outbox.load`/`load_and_consume`
+pick both up with no engine-side change, since `_build` calls `Production.
+from_dict` straight through, which auto-detects and normalizes any
+`graph.productions`-shaped row.
+
+| Research OS name : type | Engine name : type | Mapping rule | Gap |
+|---|---|---|---|
+| `counter_evidence : jsonb [{text}]` (or a bare newline-string array) | `ClaimEvidence[]`, appended onto the same claim `evidence`/`sources` already built | `_research_os_counter_evidence`: one entry per non-blank line/dict, `stance` set to `"refutes"` (a per-entry override on `ClaimEvidence`, read by `_build_corpus` in place of the claim's own default `"supports"`), `citations` fixed at `[{"type": "none", "value": "uncited"}]` (`CounterEvidenceEntry` carries no citation field of its own), `tier` by `_tier_for_author_role` (same default an ordinary evidence line gets) | none: every shape `normalizeCounterEvidence` (the app-side writer) can produce, a bare string array or `[{text}]`, is accepted |
+| `duplicate_flag : jsonb {matchId, matchOrigin, score} \| null` | `Production.duplicate_of : str \| None` | `raw.get("duplicate_of") or duplicate_flag.get("matchId")`; `_build_corpus` emits a stemma edge from the duplicate's own `Source` to the matched id's, `sources[duplicate.id].stemma_parents.append(matched_id)`, only when the matched id names another production already in the same ingest batch (`production_ids`) | a `matchOrigin` of `"canon"` (or an original a different ingest run already consumed) has no `Source` in this batch to point at, so no edge is added; the row itself is kept either way. PR #73's own review comment named the failure mode this closes as over-counted corroboration (a duplicate reads as a full extra connected component); this table's `own_prior`/`class_peer` cases, the ones sharing a batch with their match, are now closed on the read side |
+
+Design decision #2 above (`"stance" fixed to "supports"`) is now **half-
+closed**: a claim's own `stance` field still reads `"supports"` uncondi
+tionally (Research OS carries no per-claim stance vocabulary of its own),
+but an individual evidence *entry* can now carry `"refutes"` as a per-entry
+override, `counter_evidence`'s own read path. The gap design decision #2
+named, "a production explicitly built to rebut another node or claim,"
+stays fully open: `graph.productions` still has no way to mark a whole
+*claim* (as opposed to one rebuttal entry within it) as refuting rather
+than supporting its own target node.
+
+Verified against a fixture row carrying both `evidence` and `counter_
+evidence`: the normalized claim's own address (same `object`/slots) car
+ries one `EvidenceItem` at `Stance.POSITIVE` and one at `Stance.NEGATIVE`,
+and `hte.belief.pooled_weight`/`Opinion.from_evidence` over that pair
+produces an opinion with `d > 0`, real disbelief mass rather than only
+uncertainty (`tests/test_corpus_production.py::
+test_counter_evidence_and_evidence_together_yield_an_opinion_with_positive_disbelief`).
+A `duplicate_flag`-carrying fixture with two duplicates of one production
+confirms `hte.belief.effective_count` over the three-source cluster reads
+`n_eff == 1` (`tests/test_corpus_production.py::
+test_two_duplicates_of_one_production_discount_effective_count_below_two`).
+
 ## What this normalizer does not attempt
 
 - **Slot-vocabulary alignment for `actor`/`action`/`place`/`mechanism`.**
@@ -208,7 +255,7 @@ conscious yes rather than a silent default:
 ```bash
 cd tools/hypothesis-engine
 python3 -m pytest tests/test_corpus_production.py tests/test_api.py tests/test_api_research_os.py -q
-# 68 passed
+# 104 passed
 
 HTE_LLM_MODE=fake python3 -c "
 import json
