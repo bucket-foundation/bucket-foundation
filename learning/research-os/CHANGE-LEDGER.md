@@ -3018,6 +3018,22 @@ Review of PR #76 (preregistration revision 1, Iteration 25 above), docs-only, as
 
 No fix needed against any of the above. Merged as-is.
 
+## Research OS hero: the real canon globe
+
+Branch `feat/site-reform-education-reposition` (PR #11, worktree `.ros-worktrees/site-globe-demo`), after merging `origin/main` forward (a JSONL conflict in `BEADS-PENDING.jsonl` resolved by keeping both sides' pending-bead lines, `src/app/research-os/page.tsx` auto-merged clean). Founder direction, verbatim intent: the Research OS page mockup should use the real canon search globe component, and the hero subtext should be about access, awareness, understanding, internalization, and production, students of all levels reaching each in turn.
+
+### Edited
+
+- `src/app/research-os/page.tsx`: the hero's own visual is now `CanonGlobeMount`, the same live component (with real search) `/canon`, `/canon/search`, and the homepage mount, sized to match the homepage's `containerClassName` (`md:h-[88vh] md:max-h-[1000px] md:pr-[440px]`, full-bleed instead of the component's default `max-w-7xl` card) rather than the smaller default card the prior wip commit (`7383dcf33`) had used. Wrapped in `ScrollReveal`, matching the pattern `src/components/Presentation.tsx` uses for the same component. No hand-drawn canvas globe existed anywhere on this page, checked with `git log --follow -- src/app/research-os/page.tsx` across every commit that ever touched the file and a repo-wide `globe`/`canvas` grep, so `_intake/research-os-k12/DELETIONS.md` gets no new entry, nothing was removed.
+- Hero subtext rewritten from a sentence about the four AI tools (redundant with the hero's own "find. quote. check. organize." headline and the Tools section further down the page) to two sentences naming the workspace and the five learner states a student moves through, built on the founder's own phrasing. `STATES`, its five names and their meanings, is untouched and still reads consistent with this file's own `LEARNER-STATE-MODEL.md`.
+- `_intake/research-os-k12/CHANGELOG.md`: matching entry.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os` builds static, 598 B page / 126 kB First Load JS, no new route errors): all clean. `npx eslint src/app/research-os/page.tsx`: clean, no warnings. `agf-lint-voice-src check src/app/research-os/page.tsx`: 0 violations.
+- Degrade-on-no-WebGL behavior stays inside `CanonGlobeMount`'s own `GlobeErrorBoundary` and `StaticCanonGlobe` fallback, untouched by this pass, so `/research-os` degrades the same way `/canon` does.
+- Scope held to `src/app/research-os/page.tsx`; no nav, `Header.tsx`, or homepage hero (`Presentation.tsx`) change, per the founder's direction to leave the rest of PR #11's repositioning as is.
+- Leak scan of this pass's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs.
 ## Repo hygiene pass: local paths and machine-specific data
 
 The dedicated cleanup pass the PR #69 review above named as needed.
@@ -3180,3 +3196,23 @@ Reviewed `feat/ros-lateral-reading` (PR #84) against `main` in worktree `~/agfar
 - `npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean (`/api/research-os/production`, `/api/research-os/workspace`, `/api/research-os/review`, `/research-os/workspace`, `/research-os/review` all confirmed in the manifest). `npm run test:research-os`: 30 chained files, every file `fail 0`, 455 tests, unchanged from the PR's own count (the fix touched no test logic). `next lint` clean on every touched TS/TSX file.
 - `agf-lint-voice check` on the full changed-file set found two antithesis constructions in `BEADS-PENDING.jsonl`'s own new bead line and one in `scripts/test-research-os-lateral-reading.ts`'s own test name, all introduced by this PR; fixed by hand, clean on the second pass. The remaining reported violations (`BEADS-PENDING.jsonl` lines outside the new entry, `workspace/page.tsx` line 1256) predate this PR and sit outside its own diff, left untouched. `agf-lint-voice-src check` clean on every touched source file, first pass.
 - Process note: the PR's own merge commit (`c7b3c095b`) used the org pre-commit hook's `AGF_VOICE_SKIP=1` bypass rather than `--no-verify`, per its own `BEADS-PENDING.jsonl` account; the commit squashes at merge so the artifact does not survive, flagged here for the record.
+
+## Research OS on a real localhost server
+
+Founder direction, verbatim intent: stop reviewing PR #11 through an artifact copy; run an actual localhost Bucket Foundation site and confirm `/research-os` uses the real canon search. Persistent worktree `~/agfarms/.ros-worktrees/site-local`, branch `site-local-2026-09-14`, tracking `feat/site-reform-education-reposition` (PR #11's head, `d520089ea`). Merged `origin/main` forward (29 commits ahead) to bring PR #12's nav and home section in alongside PR #11's repositioning; two changelog-only conflicts (this file and `_intake/research-os-k12/CHANGELOG.md`) resolved by keeping both sides' entries.
+
+### Verified
+
+- `CanonGlobeMount` is the same live component `/canon` and `/canon/search` mount, its full search included: its search box `fetch`es `/api/canon/search`, which builds its index from a real filesystem scan of `bucket-canon/` (`buildIndex()` in `src/lib/canon-search-index.ts`), the same 599 claim cards `/canon/search`'s own doc comment names, no fixture or demo data.
+- Which routes need Supabase: grepped every `src/app` file for a `supabase` import. `/api/canon/search` and the canon pages carry none, canon search works with no Supabase configured. `/research-os/workspace`, `/research-os/class`, `/research-os/edges`, `/research-os/profile`, `/research-os/review`, `/research-os/roster` and their API routes, plus `/academy/*`, `/api/auth/[...nextauth]`, `/canon/signoff`, `/contributors/[handle]`, `/knowledge`, and `/m/[handle]`, all import Supabase.
+
+### Fixed
+
+- `src/app/research-os/page.tsx`: passed `CanonGlobeMount` an empty `branches={[]}` where `/canon` and `/canon/search` both pass `getBranches()`'s real per-branch scan. The prop turned out to be dead code inside `CanonGlobeMount` (destructured as `_branches`, never read), so this changed no rendered behavior, but it was a stub value the founder's direction says should not exist. Now computes `globeBranches` via `getBranches()` (`src/lib/canon-fs.ts`) and passes it, matching `/canon/search/page.tsx`'s own pattern. Hero subtext and the five `STATES` names (Access, Awareness, Understanding, Internalization, Production) were already correct on PR #11's head and untouched.
+
+### Verified: gates and the running server
+
+- `npm ci` (1465 packages), `npx tsc --noEmit`, `npx eslint src/app/research-os/page.tsx`: all clean. `agf-lint-voice-src check src/app/research-os/page.tsx`: 0 violations.
+- Dev server started detached on port 3100 (3000 was in use): `/research-os`, `/`, `/canon/search` all returned 200; `/research-os`'s HTML carries the `globe-capture` mount root and the same search placeholder `/canon/search` uses; `GET /api/canon/search?q=light` returned 10 real results with real claim ids, branches, titles, excerpts, and `bucket.foundation/canon/claims/...` URLs from the live index.
+- Leak scan of this pass's own diff: clean, no keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. The merge commit carried 18 pre-existing files' worth of voice-lint hits from `origin/main` (17 auto-generated `bucket-canon/_bridges/detected/*/README.md` reports plus two `quantum/reference-impl/` setup docs), none touched by this pass's own diff and already logged as a founder-decision `AGF_VOICE_SKIP=1` bypass case in the repo hygiene entries above; committed the merge the same way.
+- No UI text was replaced, only a JSX comment and the `branches` prop's value, so `_intake/research-os-k12/DELETIONS.md` gets no new entry.

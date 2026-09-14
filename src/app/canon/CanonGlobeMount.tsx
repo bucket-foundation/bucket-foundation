@@ -100,9 +100,16 @@ function sitesAsMarkers(sites: SiteEntry[]): CanonMarker[] {
 
 interface Props {
   branches: GlobeBranch[];
+  /** Overrides the collapsed-state root className (default: the max-w-7xl
+   * card both /canon and /canon/search use). The fullscreen/expanded state
+   * always stays a true fixed-inset overlay regardless of this prop. */
+  containerClassName?: string;
 }
 
-export default function CanonGlobeMount({ branches: _branches }: Props) {
+const DEFAULT_CONTAINER_CLASSNAME =
+  "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
+
+export default function CanonGlobeMount({ branches: _branches, containerClassName }: Props) {
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
   const [expanded, setExpanded] = useState(false);
@@ -297,7 +304,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
       className={
         expanded
           ? "fixed inset-0 z-[60] px-4 md:px-6 md:pr-[440px] md:flex md:flex-col overflow-hidden bg-[color:var(--bone)]"
-          : "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
+          : (containerClassName ?? DEFAULT_CONTAINER_CLASSNAME)
       }
     >
       {/* Expand / minimize button, top right of the tool card */}

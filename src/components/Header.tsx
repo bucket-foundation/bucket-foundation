@@ -12,6 +12,17 @@ type NavItem = {
 };
 
 const NAV: NavItem[] = [
+  // Research OS leads: it is the product. Canon, protocol, and the API
+  // are the substrate underneath it, reachable from Canon's own dropdown
+  // and the footer rather than their own top-level tabs.
+  {
+    href: "/research-os",
+    label: "Research OS",
+    sub: [
+      { href: "/research-os",           label: "Overview",         meta: "reform education" },
+      { href: "/research-os/workspace", label: "Try the workspace", meta: "find · quote · check · organize" },
+    ],
+  },
   {
     href: "/canon",
     label: "Canon",
@@ -22,10 +33,6 @@ const NAV: NavItem[] = [
       { href: "/canon/graph",    label: "Knowledge graph", meta: "1,133 nodes · PageRank" },
     ],
   },
-  // Build → /protocol, /learn, /research (hub row on /build).
-  // About → /governance, /manifesto, /contributors, /join.
-  { href: "/whats-new",      label: "What's new" },
-  { href: "/build",          label: "Build" },
   {
     href: "/academy",
     label: "Academy",
@@ -34,9 +41,9 @@ const NAV: NavItem[] = [
       { href: "/ladder",  label: "The depth ladder", meta: "mastery → frontier → produce" },
     ],
   },
-  { href: "/research-os",    label: "Research OS" },
+  // About → /governance, /manifesto, /contributors, /join.
+  { href: "/whats-new",      label: "What's new" },
   { href: "/access",         label: "Access" },
-  { href: "/chat",           label: "Chat" },
   { href: "/about",          label: "About" },
 ];
 
