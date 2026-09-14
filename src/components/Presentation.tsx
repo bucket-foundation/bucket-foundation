@@ -3,8 +3,7 @@ import Link from "next/link";
 import Globe from "./Globe";
 import InverseOmega from "./InverseOmega";
 import AiPasteCTA from "./AiPasteCTA";
-import ScrollReveal from "./ScrollReveal";
-import CanonGlobeMount from "@/app/canon/CanonGlobeMount";
+import CanonSearchPanel from "./CanonSearchPanel";
 import { getBranches } from "@/lib/canon-fs";
 import type { GlobeBranch } from "./CanonGlobe";
 
@@ -74,7 +73,7 @@ export default function Presentation() {
       {/* ════════════════════════════════════════════════════════════ */}
       {/* HERO · the inscription                                        */}
       {/* ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden grain">
+      <section className="relative overflow-hidden grain min-h-[88vh] flex flex-col justify-center">
         {/* Ambient patina */}
         <div
           aria-hidden
@@ -85,7 +84,7 @@ export default function Presentation() {
           }}
         />
 
-        <div className="relative max-w-2xl mx-auto px-4 md:px-6 pt-16 md:pt-24 pb-4 md:pb-8 text-center">
+        <div className="relative max-w-2xl mx-auto px-4 md:px-6 py-16 md:py-24 text-center">
           <div className="carve-in font-mono-mark uppercase text-[10px] tracking-[0.4em] text-[color:var(--basalt-2)] mb-10 flex items-center justify-center gap-2">
             <span className="text-[color:var(--crimson)]">◆</span>
             bucket foundation · nonprofit
@@ -113,7 +112,7 @@ export default function Presentation() {
             year of school to the research frontier.
           </p>
 
-          <div className="mt-10 carve-in-5 flex flex-wrap justify-center gap-3">
+          <div className="mt-10 carve-in-5 flex justify-center">
             <Link
               href="/research-os"
               className="group relative px-8 py-4 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[11px] shadow-[inset_0_-2px_0_rgba(0,0,0,0.4),inset_0_1px_0_rgba(247,244,236,0.12)]"
@@ -125,88 +124,24 @@ export default function Presentation() {
                 </span>
               </span>
             </Link>
-            <Link
-              href="/mission"
-              className="px-8 py-4 border-2 border-[color:var(--aegean)] text-[color:var(--aegean-deep)] hover:bg-[color:var(--aegean)] hover:text-[color:var(--bone)] transition small-caps text-[11px]"
-            >
-              The founding research
-            </Link>
-            <Link
-              href="/manifesto"
-              className="px-8 py-4 text-[color:var(--basalt)] hover:text-[color:var(--aegean)] transition small-caps text-[11px] border-b-2 border-[color:var(--basalt)] hover:border-[color:var(--aegean)]"
-            >
-              Manifesto ↗
-            </Link>
           </div>
         </div>
+      </section>
 
-        {/* Canon search, the real tool (same component /canon/search runs), creeps
-            in from the bottom on scroll rather than leading the hero, protrudes
-            above this section's own top edge, and carries a left branch nav
-            beside the tool's own built-in right sidebar. Full page width; the
-            snap-gravity-target class gives it a soft scroll-snap pull once it
-            is close to centered (see globals.css, reduced-motion respected). */}
-        <ScrollReveal className="relative -mt-10 md:-mt-20 lg:-mt-28 z-10">
-          <div className="snap-gravity-target w-full px-2 sm:px-4 md:px-6">
-            <div className="text-center small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-3">
-              search the canon underneath it
-            </div>
+      {/* ════════════════════════════════════════════════════════════ */}
+      {/* CANON SEARCH PANEL · full viewport, globe rises above the hero */}
+      {/* above it; the real search bar and branch filter chips ship     */}
+      {/* inside CanonGlobeMount itself, no separate outer nav here.     */}
+      {/* ════════════════════════════════════════════════════════════ */}
+      <CanonSearchPanel branches={globeBranches} />
 
-            {/* Mobile and tablet: branch chips above the globe, horizontally scrollable */}
-            <nav
-              aria-label="Canon branches"
-              className="lg:hidden flex gap-2 overflow-x-auto pb-3 px-1 -mx-1"
-            >
-              {branches.map((b) => (
-                <Link
-                  key={b.slug}
-                  href={`/canon/${b.slug}`}
-                  className="flex-shrink-0 px-3 py-1.5 text-[11px] font-mono-mark rounded-full border border-[color:var(--hairline)] whitespace-nowrap text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)] hover:border-[color:var(--basalt)] transition"
-                >
-                  {b.numeral} · {b.name}
-                </Link>
-              ))}
-            </nav>
-
-            <div className="grid grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)] gap-0 lg:gap-6 items-start max-w-[1800px] mx-auto">
-              {/* Desktop left nav, beside the tool's own right sidebar */}
-              <nav
-                aria-label="Canon branches"
-                className="hidden lg:flex flex-col gap-1 sticky top-24 pt-4"
-              >
-                <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--aegean-deep)] mb-2 px-3">
-                  branches
-                </div>
-                {branches.map((b) => (
-                  <Link
-                    key={b.slug}
-                    href={`/canon/${b.slug}`}
-                    className="px-3 py-2 text-[13px] font-mono-mark rounded-sm hover:bg-[color:var(--bone-2)] transition flex items-baseline justify-between gap-2 text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)]"
-                  >
-                    <span>{b.numeral}. {b.name}</span>
-                    <span className="text-[10px] text-[color:var(--aegean-deep)]">{b.entryCount}</span>
-                  </Link>
-                ))}
-              </nav>
-
-              <div className="min-w-0">
-                <CanonGlobeMount
-                  branches={globeBranches}
-                  containerClassName="relative w-full mx-0 md:h-[88vh] md:max-h-[1000px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
-                />
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Bottom hero stat strip, Roman inscription ledger */}
-        <div className="relative border-t-2 border-[color:var(--basalt)]">
-          <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            <Stat roman={toRoman(branches.length)} label="canon branches" sub={`mathematics → ${lastBranchName}`} />
-            <Stat roman="LXXVI"  label="seed figures"            sub="pass-1 · canon-tier" />
-            <Stat roman={toRoman(totalClaimCards)} label="canon claim cards" sub="live count, bucket-canon/" />
-            <Stat roman="CDLX"   label="Kruse corpus posts"      sub="05 · biophysics" />
-          </div>
+      {/* Canon stat strip, Roman inscription ledger */}
+      <section className="relative border-t-2 border-[color:var(--basalt)] stone-bone">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <Stat roman={toRoman(branches.length)} label="canon branches" sub={`mathematics → ${lastBranchName}`} />
+          <Stat roman="LXXVI"  label="seed figures"            sub="pass-1 · canon-tier" />
+          <Stat roman={toRoman(totalClaimCards)} label="canon claim cards" sub="live count, bucket-canon/" />
+          <Stat roman="CDLX"   label="Kruse corpus posts"      sub="05 · biophysics" />
         </div>
       </section>
 
