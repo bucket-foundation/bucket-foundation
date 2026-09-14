@@ -383,7 +383,11 @@ def load_vocab() -> Vocabulary:
 class Claim:
     """One `key_claims` bullet, located inside its own card file: the
     claim's own text, its 1-based line range, and its exact character
-    offset range, both into that card's own raw file text."""
+    offset range into that card's own raw file text, `raw[char_start:
+    char_end] == text` always (a value wrapped across several
+    continuation lines carries its own embedded newline and indent
+    whitespace straight into `text` rather than folding it, so this
+    invariant holds unconditionally; `_iter_list_item_spans`)."""
     text: str
     line_start: int
     line_end: int
@@ -443,7 +447,7 @@ class Card:
 # it shipped; the 6-card fixture subset alone never would have.
 _QUOTED_SCALAR_RE = re.compile(r'^(\w+):\s*"(.*)"\s*(?:#.*)?$')
 _BARE_SCALAR_RE = re.compile(r'^(\w+):\s*(\S+)\s*(?:#.*)?$')
-_LIST_ITEM_RE = re.compile(r'^  - "(.*)"\s*(?:#.*)?$')
+_LIST_ITEM_OPEN_RE = re.compile(r'^  - "')
 
 # One or more leading `<!-- ... -->` HTML-comment lines, the `CLAUDE.md`
 # `voice-ignore-file` escape hatch every shipped fixture in this corpus
@@ -514,31 +518,106 @@ def _parse_scalar(field_lines: list[tuple[int, int, str]]) -> str | None:
     raise ValueError(f"literature adapter: unparseable scalar field: {first_line!r}")
 
 
+def _find_unescaped_quote(s: str, start: int = 0) -> int:
+    """The index of the first `"` in `s` at or after `start` not preceded
+    by an odd number of backslashes (`_unescape`'s own `\\"` convention);
+    `-1` if none. A quote count of trailing backslashes decides escaping,
+    the same rule any single-line `_QUOTED_SCALAR_RE`/`_LIST_ITEM_OPEN_RE`
+    match already relies on implicitly by requiring the LAST `"` on the
+    line; this function is what lets a multi-line value make that same
+    call one line at a time."""
+    i = start
+    while True:
+        idx = s.find('"', i)
+        if idx == -1:
+            return -1
+        backslashes = 0
+        j = idx - 1
+        while j >= 0 and s[j] == "\\":
+            backslashes += 1
+            j -= 1
+        if backslashes % 2 == 0:
+            return idx
+        i = idx + 1
+
+
+def _iter_list_item_spans(field_lines: list[tuple[int, int, str]]):
+    """`(raw_text, char_start, char_end, line_start, line_end)` for every
+    `  - "..."` entry in `field_lines[1:]`, in file order. `raw_text` is
+    the exact, unfolded slice `char_start:char_end` bounds (embedded
+    newline and continuation-line indent intact when a value wraps),
+    matching every corpus adapter's own `raw[span.char_start:span.
+    char_end] == span.quote` convention (`tests/test_corpus.py`,
+    `tests/test_corpus_sacred_history.py`, `tests/test_corpus_younger_
+    dryas.py`, `tests/test_corpus_education_atlas.py`): a caller wanting
+    folded, single-line-friendly text collapses `raw_text`'s own
+    whitespace itself rather than this function silently drifting the
+    span out of step with the text it names.
+
+    A value wrapping across one or more further-indented continuation
+    lines (real corpus shape: batch five's own longer `key_claims`
+    entries, `bkt-hte-literature-multiline-claims`) is read as one item,
+    the opening line's own quote through the first later line carrying
+    an unescaped closing quote; `_LIST_ITEM_OPEN_RE` alone (a single
+    line, open-and-close) used to be this function's entire contract, so
+    every such wrapped entry silently vanished instead of raising,
+    starving `_parse_claims` down to zero claims on any card using it
+    (the real defect this function closes)."""
+    lines = field_lines[1:]
+    i, n = 0, len(lines)
+    while i < n:
+        lineno, offset, line = lines[i]
+        content = line.rstrip("\n")
+        m = _LIST_ITEM_OPEN_RE.match(content)
+        if m is None:
+            i += 1
+            continue
+        open_col = m.end()
+        close_idx = _find_unescaped_quote(content, open_col)
+        if close_idx != -1:
+            char_start, char_end = offset + open_col, offset + close_idx
+            yield content[open_col:close_idx], char_start, char_end, lineno, lineno
+            i += 1
+            continue
+        # No closing quote on the opening line: fold in further lines
+        # (verbatim, trailing "\n" and all) until one carries an
+        # unescaped closing quote, or the field runs out.
+        char_start = offset + open_col
+        parts = [line[open_col:]]
+        end_lineno = lineno
+        j = i + 1
+        closed = False
+        while j < n:
+            j_lineno, j_offset, j_line = lines[j]
+            j_close_idx = _find_unescaped_quote(j_line.rstrip("\n"))
+            if j_close_idx != -1:
+                parts.append(j_line[:j_close_idx])
+                char_end, end_lineno, closed = j_offset + j_close_idx, j_lineno, True
+                j += 1
+                break
+            parts.append(j_line)
+            end_lineno = j_lineno
+            j += 1
+        if not closed:
+            return  # unterminated quoted value: nothing further to read as an item
+        yield "".join(parts), char_start, char_end, lineno, end_lineno
+        i = j
+
+
 def _parse_list(field_lines: list[tuple[int, int, str]]) -> list[str]:
     """A `key:` field's own `  - "item"` entries, in file order."""
-    items: list[str] = []
-    for _, _, line in field_lines[1:]:
-        m = _LIST_ITEM_RE.match(line.rstrip("\n"))
-        if m is not None:
-            items.append(_unescape(m.group(1)))
-    return items
+    return [_unescape(text) for text, *_ in _iter_list_item_spans(field_lines)]
 
 
 def _parse_claims(field_lines: list[tuple[int, int, str]]) -> list[Claim]:
     """A `key_claims:` field's own `  - "claim text"` entries, each
-    located by its own 1-based line number and exact character offset
+    located by its own 1-based line range and exact character offset
     range for the quoted text alone (not the surrounding `  - "`/`"`
     markup)."""
-    claims: list[Claim] = []
-    for lineno, offset, line in field_lines[1:]:
-        m = _LIST_ITEM_RE.match(line.rstrip("\n"))
-        if m is None:
-            continue
-        text = _unescape(m.group(1))
-        char_start = offset + m.start(1)
-        char_end = offset + m.end(1)
-        claims.append(Claim(text=text, line_start=lineno, line_end=lineno, char_start=char_start, char_end=char_end))
-    return claims
+    return [
+        Claim(text=_unescape(text), line_start=line_start, line_end=line_end, char_start=char_start, char_end=char_end)
+        for text, char_start, char_end, line_start, line_end in _iter_list_item_spans(field_lines)
+    ]
 
 
 def _parse_block_scalar(field_lines: list[tuple[int, int, str]]) -> str:
