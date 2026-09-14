@@ -232,6 +232,112 @@ def test_parse_frontmatter_non_numeric_year_names_the_file():
 
 
 # --------------------------------------------------------------------------
+# Multi-line key_claims / list entries (bkt-hte-literature-multiline-
+# claims: `literature.load(cards_dir=None)` raised "carries no
+# key_claims" on the real corpus's own batch-five cards, whose longer
+# claims wrap across indented continuation lines; the old `_LIST_ITEM_RE`
+# only matched a claim opened and closed on the same line, so every
+# wrapped claim silently vanished instead of being read)
+# --------------------------------------------------------------------------
+
+_MULTILINE_CLAIMS_CARD = (
+    '---\n'
+    'title: "A Card With Wrapped Claims"\n'
+    'authors:\n'
+    '  - "Author, A."\n'
+    'year: 2025\n'
+    'venue: "Some Press"\n'
+    'doi: "10.1000/wrapped"\n'
+    'branch: "educational-methods"\n'
+    'tier: "canon"\n'
+    'why_it_matters: >\n'
+    '  It wraps.\n'
+    'key_claims:\n'
+    '  - "The first claim wraps across two\n'
+    '    physical lines before its own closing quote."\n'
+    '  - "The second claim fits on one line."\n'
+    'research_questions_it_leaves_open:\n'
+    '  - "An open question."\n'
+    'how_it_bears_on_research_os: >\n'
+    '  It bears directly.\n'
+    '---\n\n# Title\n'
+)
+
+
+def test_a_wrapped_key_claim_is_read_not_silently_dropped():
+    card = literature._parse_frontmatter(_MULTILINE_CLAIMS_CARD, "educational-methods/wrapped.md")
+    assert len(card.key_claims) == 2
+    assert card.key_claims[0].text == (
+        "The first claim wraps across two\n    physical lines before its own closing quote."
+    )
+    assert card.key_claims[1].text == "The second claim fits on one line."
+
+
+def test_a_wrapped_key_claims_char_offsets_still_locate_the_exact_quote():
+    card = literature._parse_frontmatter(_MULTILINE_CLAIMS_CARD, "educational-methods/wrapped.md")
+    wrapped = card.key_claims[0]
+    assert _MULTILINE_CLAIMS_CARD[wrapped.char_start:wrapped.char_end] == wrapped.text
+    assert wrapped.line_start != wrapped.line_end
+
+
+def test_a_wrapped_key_claims_line_range_spans_every_physical_line_it_covers():
+    card = literature._parse_frontmatter(_MULTILINE_CLAIMS_CARD, "educational-methods/wrapped.md")
+    wrapped = card.key_claims[0]
+    lines = _MULTILINE_CLAIMS_CARD.splitlines()
+    located = "\n".join(lines[wrapped.line_start - 1:wrapped.line_end])
+    assert wrapped.text in located
+
+
+def test_card_whose_only_claim_wraps_is_not_read_as_having_no_key_claims():
+    # The exact real-corpus defect: a card whose every `key_claims` entry
+    # wraps used to read `key_claims == []` (every entry silently
+    # dropped) and so raised "carries no key_claims" on a card that in
+    # fact names two.
+    only_wrapped = _MULTILINE_CLAIMS_CARD.replace('  - "The second claim fits on one line."\n', '')
+    card = literature._parse_frontmatter(only_wrapped, "educational-methods/wrapped-only.md")
+    assert len(card.key_claims) == 1
+
+
+def test_load_reads_a_real_card_whose_key_claims_wrap(tmp_path):
+    root = tmp_path / "wrapped-root" / "educational-methods"
+    root.mkdir(parents=True)
+    (root / "wrapped.md").write_text(_MULTILINE_CLAIMS_CARD)
+
+    corpus = literature.load(tmp_path / "wrapped-root")
+
+    assert len(corpus.sources) == 1
+    items = [item for item in corpus.evidence if item.source_id == "10.1000/wrapped"]
+    assert len(items) == 2  # one key_claims entry each, per _build_corpus's own convention
+
+
+def test_wrapped_authors_entry_is_also_folded_correctly():
+    # `_parse_list` shares `_iter_list_item_spans` with `_parse_claims`;
+    # a wrapped `authors:` entry must read as one joined name, not vanish
+    # the same way a wrapped claim used to.
+    raw = _MULTILINE_CLAIMS_CARD.replace(
+        '  - "Author, A."\n', '  - "Author, A. and an Additional\n    Long Coauthor Name, B."\n',
+    )
+    card = literature._parse_frontmatter(raw, "educational-methods/wrapped-author.md")
+    assert card.authors == ("Author, A. and an Additional\n    Long Coauthor Name, B.",)
+
+
+def test_unterminated_quoted_claim_is_skipped_not_crashed():
+    # A missing closing quote anywhere in the field (a real authoring
+    # error, not this module's own concern to repair) must not raise or
+    # hang; it is read as zero further items rather than a partial,
+    # truncated one.
+    raw = _MULTILINE_CLAIMS_CARD.replace(
+        '  - "The first claim wraps across two\n'
+        '    physical lines before its own closing quote."\n'
+        '  - "The second claim fits on one line."\n',
+        '  - "This claim never closes\n'
+        '    even across several lines\n',
+    )
+    with pytest.raises(ValueError, match="carries no key_claims"):
+        literature._parse_frontmatter(raw, "educational-methods/unterminated.md")
+
+
+# --------------------------------------------------------------------------
 # DOI-less cards (bkt-hte-outbox-seam review, "High": `literature.load(
 # cards_dir=None)` raised on the real corpus because six cards carry
 # `doi: null`; see this module's own top docstring, "DOI-less cards")
@@ -859,15 +965,17 @@ def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_six_de
     """bkt-hte-outbox-seam review, "High": `literature.load(cards_dir=
     None)` used to raise against this repo's own on-disk corpus, because
     six real cards carry `doi: null`. It must now succeed, report the
-    real 147-card corpus, degrade (never drop) all six, and name every
-    one of them in `load_raw`'s own `skipped_or_degraded` log line."""
+    real 177-card corpus (grown from 147 by batch five, `bkt-hte-
+    literature-multiline-claims`), degrade (never drop) all six, and
+    name every one of them in `load_raw`'s own `skipped_or_degraded` log
+    line."""
     if not literature.LOCAL_INTAKE_DIR.is_dir():
         pytest.skip("literature adapter: no _intake/research-os-k12-literature/ tree in this checkout")
 
     with caplog.at_level(logging.WARNING, logger="hte.corpus.literature"):
         corpus = literature.load(cards_dir=None)
 
-    assert len(corpus.sources) == 147
+    assert len(corpus.sources) == 177
     degraded_ids = [source_id for source_id in corpus.sources if source_id.startswith("nodoi:")]
     assert len(degraded_ids) == 6
     degraded_items = [item for item in corpus.evidence if item.source_id in degraded_ids]
@@ -876,7 +984,7 @@ def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_six_de
     assert all(item.views.get("doi_missing") is True for item in degraded_items)
 
     assert "skipped_or_degraded" in caplog.text
-    assert "6 of 147" in caplog.text
+    assert "6 of 177" in caplog.text
     for relative_path in (
         "educational-methods/anderson-krathwohl-2001-taxonomy-revision.md",
         "educational-methods/wiske-1998-teaching-for-understanding.md",
