@@ -3306,7 +3306,7 @@ This branch's own prior run merged `origin/main` and stopped mid-merge, uncommit
 
 ### Verified
 
-- `make test` (fast profile): 1672+ passed, 0 failed, including `test_live_fetch_lists_cards_or_skips_when_offline` skipping cleanly under this sandbox's live network (a `504 Gateway Timeout` against the GitHub API), no deselect needed.
+- `make test` (fast profile): 1672 passed, 1 skipped, 18 deselected (`slow`, unchanged from `main`), 0 failed; the skip is `test_live_fetch_lists_cards_or_skips_when_offline` clearing cleanly under this sandbox's live network (a `504 Gateway Timeout` against the GitHub API).
 - `ruff check .`: 53 pre-existing errors elsewhere in the tree (test-file unused imports, none in this pass's four modules or their tests), unchanged by this pass beyond the one fix above.
 - `agf-lint-voice-src check` / `agf-lint-voice check` clean on every file this pass authored, edited, or merged in.
 - `ENGINE-BRIDGE.md` reviewed and left unchanged: none of the four items touch `graph.nodes`/`graph.edges`/`graph.productions`/the outbox table, or any field the bridge's Next.js side reads.
