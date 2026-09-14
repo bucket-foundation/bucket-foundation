@@ -12,6 +12,10 @@ url: "https://doi.org/10.1002/tea.20326"
 openalex_id: "https://openalex.org/W2011119787"
 branch: "student-research-experiences"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-7d44a89c59b7)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml (id bkt-25a39cdf1218, Deci and Ryan 2000)"
 why_it_matters: >
   Synthesizes 53 empirical studies of research apprenticeships, secondary students,
   undergraduates, and teachers working alongside practicing scientists on authentic research,

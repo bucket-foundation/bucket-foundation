@@ -179,14 +179,14 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [PRET: Prerequisite-Enriched Terminology. A Case Study on Educational Texts](prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md) | Prerequisite and knowledge-graph learning | 2018 | candidate | verified |
 | [Applying Centrality Measures to the Course Prerequisite Network Analysis of the Undergraduate Civil Engineering Curriculum](prerequisite-knowledge-graphs/valdez-roldan-masuli-2025-course-prerequisite-network-centrality.md) | Prerequisite and knowledge-graph learning | 2025 | candidate | verified |
 | [Extracting Prerequisite Relations Among Concepts in Wikipedia](prerequisite-knowledge-graphs/zhou-xiao-2019-prerequisite-relations-wikipedia.md) | Prerequisite and knowledge-graph learning | 2019 | candidate | verified |
-| [Course-Based Undergraduate Research Experiences Can Make Scientific Research More Inclusive](student-research-experiences/bangera-brownell-2014-cures-more-inclusive.md) | Student research experiences | 2014 | canon | verified |
+| [Course-Based Undergraduate Research Experiences Can Make Scientific Research More Inclusive](student-research-experiences/bangera-brownell-2014-cures-more-inclusive.md) | Student research experiences | 2014 | canon | promoted |
 | [Modeling Course-Based Undergraduate Research Experiences: An Agenda for Future Research and Evaluation](student-research-experiences/corwin-graham-dolan-2015-modeling-cures.md) | Student research experiences | 2015 | canon | verified |
 | [The Project Ownership Survey: Measuring Differences in Scientific Inquiry Experiences](student-research-experiences/hanauer-dolan-2014-project-ownership-survey.md) | Student research experiences | 2014 | canon | verified |
-| [Learning science through research apprenticeships: A critical review of the literature](student-research-experiences/sadler-et-al-2010-research-apprenticeships-review.md) | Student research experiences | 2010 | canon | verified |
+| [Learning science through research apprenticeships: A critical review of the literature](student-research-experiences/sadler-et-al-2010-research-apprenticeships-review.md) | Student research experiences | 2010 | canon | promoted |
 | [High School Student Participation in Scientific Research Apprenticeships](student-research-experiences/burgin-sadler-koroly-2012-hs-research-apprenticeships.md) | Student research experiences | 2012 | canon | verified |
 | [Examining Summer Laboratory Research Apprenticeships for High School Students as a Factor in Entry to MD/PhD Programs at Matriculation](student-research-experiences/tai-et-al-2017-summer-research-apprenticeships-md-phd.md) | Student research experiences | 2017 | canon | verified |
 | [High school science fair: Student opinions regarding whether participation should be required or optional and why](student-research-experiences/grinnell-et-al-2018-science-fair-required-optional.md) | Student research experiences | 2018 | canon | verified |
-| [High school science fair: Positive and negative outcomes](student-research-experiences/grinnell-et-al-2020-science-fair-outcomes.md) | Student research experiences | 2020 | canon | verified |
+| [High school science fair: Positive and negative outcomes](student-research-experiences/grinnell-et-al-2020-science-fair-outcomes.md) | Student research experiences | 2020 | canon | promoted |
 | [Gender differences in mathematics and science competitions: A systematic review](student-research-experiences/steegh-et-al-2019-gender-differences-competitions.md) | Student research experiences | 2019 | canon | verified |
 | [Getting Everyone to the Fair: Supporting Teachers in Broadening Participation in Science and Engineering Fairs](student-research-experiences/lakin-et-al-2021-broadening-participation-fairs.md) | Student research experiences | 2021 | canon | verified |
 | [Cheating in Academic Institutions: A Decade of Research](student-research-experiences/mccabe-trevino-butterfield-2001-cheating-academic-institutions.md) | Student research experiences | 2001 | canon | verified |
@@ -194,12 +194,15 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [The Effects of "Mandatory Volunteerism" on Intentions to Volunteer](student-research-experiences/stukas-snyder-clary-1999-mandatory-volunteerism.md) | Student research experiences | 1999 | canon | verified |
 | [A Demonstration That School-Based Required Service Does Not Deter-But Heightens-Volunteerism](student-research-experiences/metz-youniss-2003-required-service-heightens-volunteerism.md) | Student research experiences | 2003 | canon | verified |
 | [Project-Based Learning: A Literature Review](project-based-inquiry-learning/condliffe-2017-project-based-learning-literature-review.md) | Project-based and inquiry learning | 2017 | candidate | verified |
-| [Revisiting the effects of project-based learning on students' academic achievement: A meta-analysis investigating moderators](project-based-inquiry-learning/chen-yang-2019-pbl-meta-analysis.md) | Project-based and inquiry learning | 2019 | outcome | verified |
+| [Revisiting the effects of project-based learning on students' academic achievement: A meta-analysis investigating moderators](project-based-inquiry-learning/chen-yang-2019-pbl-meta-analysis.md) | Project-based and inquiry learning | 2019 | outcome | promoted |
 | [Project Based Learning & Student Achievement: What Does the Research Tell Us?](project-based-inquiry-learning/kingston-2018-pbl-student-achievement.md) | Project-based and inquiry learning | 2018 | candidate | verified |
-| [Experimental and Quasi-Experimental Studies of Inquiry-Based Science Teaching](project-based-inquiry-learning/furtak-et-al-2012-inquiry-based-science-meta-analysis.md) | Project-based and inquiry learning | 2012 | outcome | verified |
-| [Meta-Analysis of Inquiry-Based Learning](project-based-inquiry-learning/lazonder-harmsen-2016-inquiry-based-learning-meta-analysis.md) | Project-based and inquiry learning | 2016 | outcome | verified |
-| [Why Minimal Guidance During Instruction Does Not Work](project-based-inquiry-learning/kirschner-sweller-clark-2006-minimal-guidance-does-not-work.md) | Project-based and inquiry learning | 2006 | canon | verified |
-| [Scaffolding and Achievement in Problem-Based and Inquiry Learning: A Response to Kirschner, Sweller, and Clark (2006)](project-based-inquiry-learning/hmelo-silver-duncan-chinn-2007-scaffolding-response.md) | Project-based and inquiry learning | 2007 | canon | verified |
+| [Experimental and Quasi-Experimental Studies of Inquiry-Based Science Teaching](project-based-inquiry-learning/furtak-et-al-2012-inquiry-based-science-meta-analysis.md) | Project-based and inquiry learning | 2012 | outcome | promoted |
+| [Meta-Analysis of Inquiry-Based Learning](project-based-inquiry-learning/lazonder-harmsen-2016-inquiry-based-learning-meta-analysis.md) | Project-based and inquiry learning | 2016 | outcome | promoted |
+| [Why Minimal Guidance During Instruction Does Not Work](project-based-inquiry-learning/kirschner-sweller-clark-2006-minimal-guidance-does-not-work.md) | Project-based and inquiry learning | 2006 | canon | promoted |
+| [Cognitive Load During Problem Solving: Effects on Learning](project-based-inquiry-learning/sweller-1988-cognitive-load-problem-solving.md) | Project-based and inquiry learning | 1988 | canon | promoted |
+| [Scaffolding and Achievement in Problem-Based and Inquiry Learning: A Response to Kirschner, Sweller, and Clark (2006)](project-based-inquiry-learning/hmelo-silver-duncan-chinn-2007-scaffolding-response.md) | Project-based and inquiry learning | 2007 | canon | promoted |
+| [The Uses of Argument](writing-and-argumentation/toulmin-1958-uses-of-argument.md) | Writing and argumentation | 1958 | candidate | verified |
+| [The Skills of Argument](writing-and-argumentation/kuhn-1991-skills-of-argument.md) | Writing and argumentation | 1991 | candidate | verified |
 | [Arguing to Learn in Science: The Role of Collaborative, Critical Discourse](writing-and-argumentation/osborne-2010-arguing-to-learn.md) | Writing and argumentation | 2010 | canon | verified |
 | [The Effects of School-Based Writing-to-Learn Interventions on Academic Achievement: A Meta-Analysis](writing-and-argumentation/bangert-drowns-hurley-wilkinson-2004-writing-to-learn-meta-analysis.md) | Writing and argumentation | 2004 | outcome | verified |
 | [What We Know, What We Still Need to Know: Teaching Adolescents to Write](writing-and-argumentation/graham-perin-2007-teaching-adolescents-to-write.md) | Writing and argumentation | 2007 | outcome | verified |
@@ -215,15 +218,15 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [Reconsidering Personal Epistemology as Metacognition: A Multifaceted Approach to the Analysis of Epistemic Thinking](epistemic-cognition/barzilai-zohar-2014-personal-epistemology-as-metacognition.md) | Epistemic cognition | 2014 | canon | verified |
 | [The development of epistemological understanding](epistemic-cognition/kuhn-cheney-weinstock-2000-development-epistemological-understanding.md) | Epistemic cognition | 2000 | canon | verified |
 | [The curious case of climate change: Testing a theoretical model of epistemic beliefs, epistemic emotions, and complex learning](epistemic-cognition/muis-pekrun-sinatra-2015-epistemic-beliefs-climate-change-complex-learning.md) | Epistemic cognition | 2015 | canon | verified |
-| [Lateral Reading and the Nature of Expertise](source-evaluation/wineburg-mcgrew-2019-lateral-reading.md) | Source evaluation | 2019 | canon | verified |
-| [Students' Civic Online Reasoning: A National Portrait](source-evaluation/breakstone-et-al-2021-civic-online-reasoning-national-portrait.md) | Source evaluation | 2021 | canon | verified |
+| [Lateral Reading and the Nature of Expertise](source-evaluation/wineburg-mcgrew-2019-lateral-reading.md) | Source evaluation | 2019 | canon | promoted |
+| [Students' Civic Online Reasoning: A National Portrait](source-evaluation/breakstone-et-al-2021-civic-online-reasoning-national-portrait.md) | Source evaluation | 2021 | canon | promoted |
 | [Can Students Evaluate Online Sources? Learning From Assessments of Civic Online Reasoning](source-evaluation/mcgrew-et-al-2018-can-students-evaluate-online-sources.md) | Source evaluation | 2018 | canon | verified |
 | [The Web as an Information Resource in K–12 Education](source-evaluation/kuiper-volman-terwel-2005-web-information-resource-k12.md) | Source evaluation | 2005 | canon | verified |
 
-177 papers: 40 educational methods, 37 HCI and human-AI collaboration, 27 scientific discovery
+180 papers: 40 educational methods, 37 HCI and human-AI collaboration, 27 scientific discovery
 and metascience, 15 AI and researchers, 7 teacher workload and adoption, 11 prerequisite and
-knowledge-graph learning, 14 student research experiences, 7 project-based and inquiry
-learning, 5 writing and argumentation, 10 epistemic cognition, 4 source evaluation. Every DOI
+knowledge-graph learning, 14 student research experiences, 8 project-based and inquiry
+learning, 7 writing and argumentation, 10 epistemic cognition, 4 source evaluation. Every DOI
 listed above was checked at intake time; none are placeholders, with three exceptions. Three
 of the 37 educational-methods records (Anderson and Krathwohl 2001, Perkins 1993, Wiske 1998)
 are a book and a magazine article with no Crossref DOI; each carries a `doi: null` frontmatter
@@ -408,3 +411,47 @@ verified 2015 Muis paper, testing how epistemic beliefs relate to learning outco
 authentic classroom-relevant complex-learning unit rather than manipulating beliefs
 experimentally, was used in its place and is documented as a substitution in its own
 "Verification note" section.
+
+## Canon-intake promotion pass three, 2026-09-14
+
+Eleven more papers touched by this pass (`intake/ros-canon-promotion-3`), landing on top
+of literature batch five above: three new cards added to the corpus (raising the total
+from 177 to 180) and ten existing cards promoted. One new foundation-tier dossier,
+`07-mind/cognitive-load/`, seeded with Sweller 1988 ("Cognitive Load
+During Problem Solving: Effects on Learning"), the working-memory-capacity
+mechanism this pass's own Kirschner, Sweller, and Clark (2006) card
+argues from without stating itself. Ten outcome-tier records added to the
+existing `07-mind/sub-outcomes/education/`: five guidance-and-inquiry
+studies depending on the new cognitive-load foundation (Chen and Yang
+2019; Furtak, Seidel, Iverson and Briggs 2012; Lazonder and Harmsen 2016;
+Kirschner, Sweller and Clark 2006; Hmelo-Silver, Duncan and Chinn 2007),
+two source-evaluation studies depending on the pass-two information-
+foraging foundation (Wineburg and McGrew 2019; Breakstone et al. 2021),
+and three student-research-experience studies depending on the pass-two
+curiosity-and-motivation foundation (Grinnell, Dalley and Reisch 2020;
+Bangera and Brownell 2014; Sadler, Burgin, McKinney and Ponjuán 2010).
+Every promoted file carries a "Promoted to..." banner and `status:
+"promoted"` frontmatter pointing at its canon or outcome path, plus a
+`depends_on_foundation` pointer, matching the pass-two convention.
+
+Two new cards, Kuhn 1991 ("The Skills of Argument") and Toulmin 1958
+("The Uses of Argument"), were screened against RUBRIC.md Stage-0 and
+Stage-2 (each clears `canon_score` 70) as the foundations Osborne 2010's
+existing "how it bears on Research OS" argument rests on, but this pass's
+own promotion track is Sweller 1988 into `cognitive-load/`; naming
+Osborne's own foundations is these two cards' job, so both stay
+`status: "verified"`, `tier: "candidate"`, left for a future pass to
+promote alongside each other under a shared argumentation-theory home,
+an open question `bucket-canon/TAXONOMY_NOTES.md` does not yet carry (the
+two cards' own "Canon Screening" sections record the score and the
+deferral). Osborne 2010's own card is unchanged in tier and status; it
+gained a "Foundations this card rests on" section pointing at both.
+
+Every promoted or newly screened record carries `provenance_signoff:
+"pending: gianyrox"` on its canon or outcome-side record, per the ros-11
+governance rule. Of the 180 cards, 19 are now promoted across three
+passes (6 pass one, 13 pass two, 10 more by this pass, note Kirschner,
+Sweller and Clark 2006 and Hmelo-Silver, Duncan and Chinn 2007 promote
+for the first time this pass despite being pass-four literature-batch
+additions); 2 are screened candidates (Kuhn 1991, Toulmin 1958); the
+remaining files did not change tier or status.
