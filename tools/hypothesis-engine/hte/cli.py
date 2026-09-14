@@ -15,7 +15,7 @@ from pathlib import Path
 from . import calibrate, diagnostics, export, holdout_ledger, predict, purge as purge_mod, question_map, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
-from .corpus import quantum_history, younger_dryas
+from .corpus import quantum_history, sacred_history_texts, younger_dryas
 
 _CORPUS_LOADERS = {
     "quantum-history": quantum_history.ingest,
@@ -35,6 +35,12 @@ _CORPUS_LOADERS = {
     # 82-card `LOCAL_INTAKE_DIR` tree yet.
     "literature": literature.load_default,
     "sacred-history": sacred_history.ingest,
+    # Passage-level extraction over the primary texts this repo mirrors
+    # for 6 of `sacred-history`'s 13 traditions (`hte.corpus.
+    # sacred_history_texts`'s own module docstring, `docs/SACRED-HISTORY-
+    # TEXTS.md`); `sacred_history.ingest(with_texts=True)` is the merged
+    # reading, this entry is the bare texts-only corpus on its own.
+    "sacred-history-texts": sacred_history_texts.load,
     # 47 open-metadata, DOI-verified cards on the Younger Dryas boundary
     # (12.9-11.7 ka BP) impact-hypothesis debate; see `hte.runner.
     # _CORPUS_LOADERS`'s own identical entry and `hte.corpus.
