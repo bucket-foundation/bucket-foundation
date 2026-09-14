@@ -1,9 +1,9 @@
 import pytest
 
-from hte import calibrate, synth
+from hte import calibrate, diagnostics, synth
 from hte.belief import Constants
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
-from hte.corpus import Corpus, GroundTruthEvent, fixtures
+from hte.corpus import Corpus, GroundTruthEvent, fixtures, literature, production
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
 from hte.timeline import Interval
 
@@ -309,6 +309,134 @@ def test_write_calibration_omits_the_heading_when_coverage_is_high(tmp_path):
     calibrate.write_calibration(result, tmp_path)
     md = (tmp_path / "CALIBRATION.md").read_text()
     assert "## Why coverage is low" not in md
+
+
+# --------------------------------------------------------------------------
+# corpus_name: the note (and CALIBRATION.md itself) name the corpus at
+# hand instead of printing a hardcoded worked example measured against
+# one shipped corpus and reused unchanged for every other one
+# (bkt-hte-calibration-note regression).
+# --------------------------------------------------------------------------
+
+# The exact example content the earlier `_low_coverage_note` hardcoded,
+# regardless of which corpus a caller ran: three named actors and two
+# counts measured once against `quantum-history` alone. None of these
+# strings should ever appear in a generated note again, no matter which
+# corpus produced it.
+_HARDCODED_EXAMPLE_STRINGS = ("IBM Quantum", "Feynman and Deutsch", "Peter Shor", "16 cards")
+
+
+def test_low_coverage_note_names_the_given_corpus():
+    corpus = _zero_coverage_corpus()
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910, corpus_name="my-corpus")
+    assert "my-corpus" in result["coverage_note"]
+
+
+def test_low_coverage_note_defaults_to_a_generic_name_with_no_corpus_name_given():
+    corpus = _zero_coverage_corpus()
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910)
+    assert "this corpus" in result["coverage_note"]
+
+
+def test_low_coverage_note_carries_none_of_the_old_hardcoded_worked_example():
+    corpus = _zero_coverage_corpus()
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910, corpus_name="my-corpus")
+    for bad in _HARDCODED_EXAMPLE_STRINGS:
+        assert bad not in result["coverage_note"]
+
+
+def test_low_coverage_note_counts_scale_with_the_corpus_passed_in():
+    # A second, differently-shaped zero-coverage corpus (three held-out
+    # events instead of one) prints its own counts here, proving the
+    # note reads `corpus`/`n_holdout` at call time rather than a number
+    # baked in at write time.
+    vocab = _calib_vocab()
+    evidence = [
+        EvidenceItem(id="a", kind=EvidenceKind.TEXTUAL, tier=Tier.T1, source_id="doc-a",
+                     span=_span("doc-a"), provenance="test", interval=Interval(1900, 1900), **_PLANCK_SLOTS),
+    ]
+    ground_truth = [
+        GroundTruthEvent(id="a", label="a", year=1900, doc_id="doc-a", discovery_year=1900),
+        GroundTruthEvent(id="b", label="b", year=1980, doc_id="doc-b", discovery_year=1980),
+        GroundTruthEvent(id="c", label="c", year=1981, doc_id="doc-c", discovery_year=1981),
+        GroundTruthEvent(id="d", label="d", year=1982, doc_id="doc-d", discovery_year=1982),
+    ]
+    corpus = Corpus(sources={}, evidence=evidence, ground_truth=ground_truth, provenance=[], vocab=vocab)
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910, corpus_name="wide-corpus")
+    assert result["n_holdout_events"] == 3
+    assert "0 of 3" in result["coverage_note"]
+    assert "wide-corpus" in result["coverage_note"]
+
+
+def test_write_calibration_always_names_the_corpus_regardless_of_coverage(tmp_path):
+    for corpus, cov_dir in ((_zero_coverage_corpus(), "low"), (_calib_corpus(), "high")):
+        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910, corpus_name="named-corpus")
+        out = tmp_path / cov_dir
+        calibrate.write_calibration(result, out)
+        md = (out / "CALIBRATION.md").read_text()
+        assert "Corpus: named-corpus" in md
+
+
+def test_write_calibration_names_a_generic_corpus_when_the_caller_named_none(tmp_path):
+    result = calibrate.run_holdout(_zero_coverage_corpus(), Constants(), cutoff_years=1910)
+    calibrate.write_calibration(result, tmp_path)
+    md = (tmp_path / "CALIBRATION.md").read_text()
+    assert "Corpus: this corpus" in md
+
+
+def test_write_calibration_with_a_diagnostics_report_appends_the_reason_breakdown(tmp_path):
+    corpus = _zero_coverage_corpus()
+    result = calibrate.run_holdout(corpus, Constants(), cutoff_years=1910, corpus_name="diag-corpus")
+    result.setdefault("mode", "discovery_date")
+    report = diagnostics.coverage_report(corpus, result)
+    calibrate.write_calibration(result, tmp_path, diagnostics_report=report)
+    md = (tmp_path / "CALIBRATION.md").read_text()
+    assert "--diagnose" in md
+    # The corpus's own held-out event ("uncovered") is named with its
+    # classified reason (`slot_mismatch`: the closest candidate shares
+    # the event's own time window but disagrees on a concept slot).
+    assert "uncovered (slot_mismatch)" in md
+
+
+def test_write_calibration_diagnostics_report_shows_even_with_no_coverage_note(tmp_path):
+    # `holdout_kfold` hardcodes `coverage_note` to `None` (it needs no
+    # discovery date at all, so `_low_coverage_note`'s own stated cause
+    # does not apply); a `diagnostics_report` must still surface under
+    # "## Why coverage is low" in that case, since there is still
+    # something to report about the uncovered remainder.
+    corpus = _zero_coverage_corpus()
+    result = calibrate.holdout_kfold(corpus, Constants(), k=2, seed=0, corpus_name="kfold-corpus")
+    assert result["coverage_note"] is None
+    report = diagnostics.coverage_report(corpus, result)
+    calibrate.write_calibration(result, tmp_path, diagnostics_report=report)
+    md = (tmp_path / "CALIBRATION.md").read_text()
+    assert "## Why coverage is low" in md
+    assert "--diagnose" in md
+
+
+# --------------------------------------------------------------------------
+# Regression: a low-coverage note (and CALIBRATION.md as a whole) must
+# never leak `quantum-history`'s own facts into another corpus's own run
+# (the reported defect, found while building the Younger Dryas corpus).
+# Fixtures, production, and literature are the three corpora `hte.cli`
+# registers that need no network and no live LLM call to load.
+# --------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "corpus_name, corpus",
+    [
+        ("fixtures", fixtures.build()),
+        ("production", production.load()),
+        ("literature", literature.load_default()),
+    ],
+)
+def test_calibration_md_names_its_own_corpus_and_never_mentions_quantum(corpus_name, corpus, tmp_path):
+    result = calibrate.run_calibration(corpus, Constants(), corpus_name=corpus_name)
+    calibrate.write_calibration(result, tmp_path / corpus_name)
+    md = (tmp_path / corpus_name / "CALIBRATION.md").read_text()
+    assert f"Corpus: {corpus_name}" in md
+    assert "quantum" not in md.lower()
 
 
 # --------------------------------------------------------------------------

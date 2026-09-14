@@ -1,6 +1,6 @@
 # Research OS Evidence Schema
 
-**Status:** contract, docs only, no code, bead `ros-02`; the cognitive-forcing calibration-record addendum below ships as real code this pass · **Date:** 2026-09-10 · Reads against `learning/research-os/LEARNER-STATE-MODEL.md` section 4, `src/lib/research-os/types.ts`, `src/lib/research-os/stages.ts`, `src/lib/research-os/probe.ts`, `src/lib/research-os/grounding.ts`, `src/lib/research-os/forcing.ts`, `src/lib/research-os/calibration.ts`, `src/lib/research-os/db.ts`'s `recordEvidence`, and the `graph.learner_node_state`, `graph.productions`, `graph.teacher_reviews`, and `graph.classes` tables in `supabase/migrations/20260910000000_research_os_graph.sql`, `supabase/migrations/20260910020000_research_os_teacher_reviews.sql`, `supabase/migrations/20260910030000_research_os_classes.sql`, and `supabase/migrations/20260910060000_research_os_forcing.sql`.
+**Status:** contract, docs only, no code, bead `ros-02`; the cognitive-forcing calibration-record addendum and the lateral-reading addendum below both ship as real code · **Date:** 2026-09-11 · Reads against `learning/research-os/LEARNER-STATE-MODEL.md` section 4, `learning/research-os/LATERAL-READING.md`, `src/lib/research-os/types.ts`, `src/lib/research-os/stages.ts`, `src/lib/research-os/probe.ts`, `src/lib/research-os/grounding.ts`, `src/lib/research-os/forcing.ts`, `src/lib/research-os/lateral-reading.ts`, `src/lib/research-os/locate.ts`, `src/lib/research-os/calibration.ts`, `src/lib/research-os/db.ts`'s `recordEvidence`, and the `graph.learner_node_state`, `graph.productions`, `graph.teacher_reviews`, and `graph.classes` tables in `supabase/migrations/20260910000000_research_os_graph.sql`, `supabase/migrations/20260910020000_research_os_teacher_reviews.sql`, `supabase/migrations/20260910030000_research_os_classes.sql`, `supabase/migrations/20260910060000_research_os_forcing.sql`, and `supabase/migrations/20260910080000_research_os_lateral_reading.sql`.
 
 This file states the evidence jsonb contract the learner state model needs, so `ros-04` and `ros-06` can implement it without re-deriving the reasoning from `LEARNER-STATE-MODEL.md` section 4. It changes no code, no type, and no migration; it is the specification those beads implement against.
 
@@ -182,3 +182,56 @@ interface EvidenceEvent {
 `learnerConfidence` and `sourcePrediction` are populated together or not at all: `workspace/route.ts`'s reveal branch (phase 2 of the "check" action) is the only place `onCheckResult` is called with either field set, and it is only reachable once both are present and valid, per `forcing.ts`'s held-attempt store. `forcingEnabled` is populated on every `"check"` event this pass's code writes, forcing on or off, so a comparison-arm event is distinguishable from a pre-this-pass event (neither field present) versus a comparison-arm event (`forcingEnabled: false`, no `learnerConfidence`).
 
 `src/lib/research-os/calibration.ts`'s `computeCalibrationSummary` reads these fields back out: mean `learnerConfidence` (as a 1-4 ordinal score, `forcing.ts`'s `learnerConfidenceScore`) against mean `predictionCorrect`, per learner, over every `"check"` event carrying a `learnerConfidence`. See `learning/research-os/WORKSPACE.md` section 6 for the full flow and `learning/research-os/study/INSTRUMENTS.md` section 2 for the confidence item's own rationale, updated this pass to describe the shipped pre-reveal placement.
+
+## Lateral reading on Check: the second-source gate and the `"corroboration"` event
+
+`learning/research-os/PLAN-REVISION-3.md` section 2c names the gap the fields above still left open: nothing recorded whether a Check reveal was ever asked to corroborate against an independent source, or what that corroboration found. Shipped alongside `src/lib/research-os/lateral-reading.ts` and `workspace/route.ts`'s extended "check" phase 2, two more fields close the first half of the gap on the existing `"check"` event:
+
+```ts
+interface EvidenceEvent {
+  // ...every field above, unchanged.
+
+  // Whether the lateral-reading second-source gate (lateral-reading.ts's
+  // checkSecondSourceGate) applied to this reveal at all: true only once
+  // the arm switch is on AND this attempt's own stage had reached
+  // Understanding. Present on every "check" reveal this pass's code
+  // writes, so analysis can group by arm from the evidence log alone,
+  // the same purpose forcingEnabled already serves.
+  secondSourceRequired?: boolean;
+
+  // The node id of the independent second source attached to this
+  // reveal, set only when secondSourceRequired is true and the gate
+  // passed.
+  secondSourceNodeId?: string;
+}
+```
+
+The second half is a new, standalone event `kind`, `"corroboration"` (`stages.ts`'s `onCorroborationRecorded`), written only when the gate above passes:
+
+```ts
+// Add "corroboration" to EvidenceEvent's kind union.
+kind: "open" | "explanation" | "check" | "transfer_item" | "production_submitted" | "production_returned" | "teacher_review" | "quote" | "corroboration";
+
+interface EvidenceEvent {
+  // ...every field above, unchanged.
+
+  // The node under Check, on a "corroboration" event.
+  firstSourceId?: string;
+  // The independent second source the learner quoted and attached, on a
+  // "corroboration" event.
+  secondSourceId?: string;
+  // locate.ts's own assessSourceIndependence.reason for this pair: why
+  // the two sources are independent (a different publisher, a different
+  // domain), computed server-side, never learner- or model-authored.
+  independenceReason?: string;
+  // Whether the learner marks the two passages as saying the same thing.
+  // Learner-marked, never model-judged: the AI never writes this
+  // verdict, the same floor onCheckResult's own learnerText already
+  // holds for the learner's explanation.
+  passagesAgree?: boolean;
+}
+```
+
+A `"corroboration"` event carries `fromStage`/`toStage` both set to the reveal's own resulting stage (no stage change of its own, the same "set, equal" pattern the `"quote"` event above already uses); no `result`, `confidence`, or `learnerText`, since there is no verdict or freeform explanation to record here, only the two source ids, why they are independent, and the learner's own agree/disagree mark.
+
+`production-guard.ts`'s `lateralReadingFlag` (Rule 5, `PRODUCTION-GUARD.md`) reads every `"corroboration"`-kind event across a learner's whole `learner_node_state.evidence` at Production submit time, the same "one query over the learner's whole graph" pattern `checkSourceProvenance` already uses for `"quote"`-kind events, and flags a target node with none on file `"single-source"`. See `learning/research-os/LATERAL-READING.md` for the full flow.

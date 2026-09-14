@@ -413,6 +413,71 @@ export async function loadForcingEnabledForLearner(learnerId: string): Promise<b
   }
 }
 
+/**
+ * The per-class lateral-reading second-source override (bkt-ros,
+ * PLAN-REVISION-3.md section 2c; `graph.classes.second_source_required`,
+ * migration 20260910080000_research_os_lateral_reading.sql). Same shape
+ * and same fail-open posture as loadForcingEnabledForLearner right above:
+ * `null` on "no override on file", on a learner in no class, or on any
+ * query failure, all three of which `src/lib/research-os/lateral-
+ * reading.ts`'s resolveSecondSourceRequired reads as "defer to the
+ * RESEARCH_OS_SECOND_SOURCE_REQUIRED env default," so this optional
+ * lookup can never break a Check call, including in an environment where
+ * this migration has not run yet.
+ */
+export async function loadSecondSourceRequiredForLearner(learnerId: string): Promise<boolean | null> {
+  try {
+    const svc = graphService();
+    const { data: memberRows, error: memberErr } = await svc.from("class_members").select("class_id").eq("learner_id", learnerId);
+    if (memberErr || !memberRows || memberRows.length === 0) return null;
+    const classIds = Array.from(new Set((memberRows as { class_id: string }[]).map((r) => r.class_id)));
+    const { data: classRows, error: classErr } = await svc.from("classes").select("id,second_source_required").in("id", classIds);
+    if (classErr || !classRows) return null;
+    const withOverride = (classRows as { id: string; second_source_required: boolean | null }[]).find((c) => typeof c.second_source_required === "boolean");
+    return withOverride ? withOverride.second_source_required : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Every "corroboration"-kind evidence entry across every node this
+ * learner holds a state row for (bkt-ros, PLAN-REVISION-3.md section 2c;
+ * production-guard.ts's lateralReadingFlag is the pure function that
+ * reads this list, the same "assemble here, decide in production-
+ * guard.ts" split loadLearnerQuoteEvidence right above already keeps for
+ * "quote"-kind events). One learner_node_state row per node, so this is
+ * one query over the learner's whole graph rather than a per-node fetch.
+ */
+export interface CorroborationEvidenceRecord {
+  firstSourceId: string;
+  secondSourceId: string;
+  independenceReason: string;
+  passagesAgree: boolean;
+  at: string;
+}
+
+export async function loadLearnerCorroborationEvidence(learnerId: string): Promise<CorroborationEvidenceRecord[]> {
+  const svc = graphService();
+  const { data, error } = await svc.from("learner_node_state").select("evidence").eq("learner_id", learnerId);
+  if (error) throw new Error(`loadLearnerCorroborationEvidence: query failed: ${error.message}`);
+  const out: CorroborationEvidenceRecord[] = [];
+  for (const row of (data as { evidence: Array<Record<string, unknown>> | null }[]) || []) {
+    for (const ev of row.evidence || []) {
+      if (ev?.kind === "corroboration" && typeof ev.firstSourceId === "string" && typeof ev.secondSourceId === "string") {
+        out.push({
+          firstSourceId: ev.firstSourceId,
+          secondSourceId: ev.secondSourceId,
+          independenceReason: typeof ev.independenceReason === "string" ? ev.independenceReason : "",
+          passagesAgree: Boolean(ev.passagesAgree),
+          at: (ev.at as string | undefined) ?? "",
+        });
+      }
+    }
+  }
+  return out;
+}
+
 interface AncestorRow {
   node_id: string;
   ancestor_id: string;

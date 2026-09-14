@@ -33,6 +33,7 @@ import json
 
 import pytest
 
+from hte import belief
 from hte.concepts import Slot
 from hte.corpus import production
 from hte.evidence import Stance
@@ -520,3 +521,167 @@ def test_production_from_dict_with_string_shape_builds_a_corpus_with_no_attribut
     )
     assert len(corpus.evidence) == 2
     assert len(corpus.sources) == 3  # the production itself, plus one per evidence/source line
+
+
+# --------------------------------------------------------------------------
+# Counter-evidence (bucket-foundation PR #73's own `counter_evidence`
+# column, `[{text}]` on `graph.productions`): `_research_os_counter_
+# evidence` folds it into the same claim `evidence`/`sources` already
+# built, each entry carrying its own `"refutes"` stance override rather
+# than the claim's default `"supports"`.
+# --------------------------------------------------------------------------
+
+
+def test_normalize_counter_evidence_dict_shape_gets_refutes_stance_and_none_citation():
+    row = _research_os_row(counter_evidence=[{"text": "The scattering angle reverses at UV wavelengths."}])
+    normalized = production.normalize_research_os_record(row)
+    entries = normalized["claims"][0]["evidence"]
+    counter = next(e for e in entries if e["quote"] == "The scattering angle reverses at UV wavelengths.")
+    assert counter["stance"] == "refutes"
+    assert counter["citations"] == [{"type": "none", "value": "uncited"}]
+    assert counter["locator"] == "(uncited)"
+
+
+def test_normalize_counter_evidence_string_shape_gets_refutes_stance():
+    row = _research_os_row(counter_evidence=["A competing paper reports the opposite direction."])
+    normalized = production.normalize_research_os_record(row)
+    entries = normalized["claims"][0]["evidence"]
+    counter = next(e for e in entries if e["quote"] == "A competing paper reports the opposite direction.")
+    assert counter["stance"] == "refutes"
+    assert counter["citations"] == [{"type": "none", "value": "uncited"}]
+
+
+def test_normalize_counter_evidence_blank_entries_dropped():
+    row = _research_os_row(evidence=[], sources=[], counter_evidence=["", "   ", {"text": ""}, {"text": "  "}, {}, 5])
+    normalized = production.normalize_research_os_record(row)
+    assert normalized["claims"][0]["evidence"] == []
+
+
+def test_normalize_ordinary_evidence_entries_carry_no_stance_override():
+    # An ordinary evidence entry is left with no `stance` key at all
+    # (`ClaimEvidence.stance` defaults to `None`, read by `_build_corpus`
+    # as "use the claim's own stance"), distinct from a counter-evidence
+    # entry's explicit `"refutes"`.
+    normalized = production.normalize_research_os_record(_research_os_row())
+    entries = normalized["claims"][0]["evidence"]
+    assert all("stance" not in e for e in entries)
+
+
+def test_build_corpus_counter_evidence_item_gets_negative_stance_same_address_as_evidence():
+    row = _research_os_row(
+        evidence=[{"node_id": "rayleigh-scattering-law", "quote": "steeply on the wavelength", "locator": "graph.nodes.summary"}],
+        counter_evidence=["A competing paper reports the opposite direction."],
+        status="accepted",
+    )
+    p = production.Production.from_dict(row)
+    corpus = production._build_corpus([p], status_min="draft", retrieval_run_id="t", source_path_for=lambda prod: f"t:{prod.id}")
+    items = [e for e in corpus.evidence if e.id.startswith(f"{p.id}-c0-")]
+    assert len(items) == 2
+    positive = next(e for e in items if e.stance == Stance.POSITIVE)
+    negative = next(e for e in items if e.stance == Stance.NEGATIVE)
+    assert positive.object == negative.object == "why-the-sky-is-blue"
+    assert negative.span.quote == "A competing paper reports the opposite direction."
+
+
+def test_counter_evidence_and_evidence_together_yield_an_opinion_with_positive_disbelief():
+    """Osborne 2010's own argumentation case, end to end: a claim's own
+    supporting evidence and a learner's own rebuttal notes both land on
+    the same address (`_build_corpus`'s "Per-entry stance override"), so
+    `hte.belief.pooled_weight`'s refuting side is no longer forced to zero
+    just because this claim came from a production adapter that used to
+    hardcode every entry's stance to `"supports"`. `link_evidence` itself
+    is not exercised here (it needs a real `Hypothesis`/vocabulary match,
+    out of `hte.corpus.production`'s own scope); `supports`/`refutes` are
+    set directly, the same "one shared address" shape `link_evidence`
+    would have produced for two slot-identical items with opposite
+    stances."""
+    row = _research_os_row(
+        evidence=[{"node_id": "rayleigh-scattering-law", "quote": "steeply on the wavelength", "locator": "graph.nodes.summary"}],
+        counter_evidence=["A competing paper reports the opposite direction."],
+        status="accepted",
+    )
+    p = production.Production.from_dict(row)
+    corpus = production._build_corpus([p], status_min="draft", retrieval_run_id="t", source_path_for=lambda prod: f"t:{prod.id}")
+    items = [e for e in corpus.evidence if e.id.startswith(f"{p.id}-c0-")]
+    address = 1
+    for item in items:
+        (item.supports if item.stance == Stance.POSITIVE else item.refutes).append(address)
+
+    r, s = belief.pooled_weight(items, address)
+    assert r > 0
+    assert s > 0
+
+    opinion = belief.Opinion.from_evidence(r, s, belief.Constants().W, a=0.5)
+    assert opinion.d > 0
+
+
+# --------------------------------------------------------------------------
+# Duplicates (bucket-foundation PR #73's own `duplicate_flag` column,
+# `{matchId, matchOrigin, score}` or `null`, on `graph.productions`): a
+# production naming another one, already in this same ingest batch, as its
+# own `duplicate_of` gains a stemma edge from its own `Source` to the
+# matched one's, so `hte.belief.effective_count` discounts the copy rather
+# than counting it as independent corroboration.
+# --------------------------------------------------------------------------
+
+
+def test_normalize_duplicate_of_reads_bare_field():
+    row = _research_os_row(duplicate_of="ros-original-1")
+    normalized = production.normalize_research_os_record(row)
+    assert normalized["duplicate_of"] == "ros-original-1"
+
+
+def test_normalize_duplicate_of_reads_duplicate_flag_match_id():
+    row = _research_os_row(duplicate_flag={"matchId": "ros-original-1", "matchOrigin": "own_prior", "score": 0.82})
+    normalized = production.normalize_research_os_record(row)
+    assert normalized["duplicate_of"] == "ros-original-1"
+
+
+def test_normalize_no_duplicate_flag_or_field_is_none():
+    normalized = production.normalize_research_os_record(_research_os_row())
+    assert normalized["duplicate_of"] is None
+
+
+def test_normalize_null_duplicate_flag_is_none():
+    normalized = production.normalize_research_os_record(_research_os_row(duplicate_flag=None))
+    assert normalized["duplicate_of"] is None
+
+
+def test_build_corpus_duplicate_gets_a_stemma_edge_to_the_original():
+    original = _research_os_row(id="dup-original", target_node_id="why-the-sky-is-blue")
+    dup = _research_os_row(
+        id="dup-copy", target_node_id="why-the-sky-is-blue",
+        duplicate_flag={"matchId": "dup-original", "matchOrigin": "own_prior", "score": 0.9},
+    )
+    productions = [production.Production.from_dict(original), production.Production.from_dict(dup)]
+    corpus = production._build_corpus(productions, status_min="draft", retrieval_run_id="t", source_path_for=lambda p: f"t:{p.id}")
+    assert corpus.sources["dup-copy"].stemma_parents == ["dup-original"]
+    assert corpus.sources["dup-original"].stemma_parents == []
+
+
+def test_duplicate_of_outside_batch_adds_no_edge_but_row_is_kept():
+    row = _research_os_row(
+        id="dup-orphan",
+        duplicate_flag={"matchId": "some-canon-claim-not-in-batch", "matchOrigin": "canon", "score": 0.75},
+    )
+    p = production.Production.from_dict(row)
+    corpus = production._build_corpus([p], status_min="draft", retrieval_run_id="t", source_path_for=lambda prod: f"t:{prod.id}")
+    assert corpus.sources["dup-orphan"].stemma_parents == []
+    assert any(e.id.startswith("dup-orphan-c") for e in corpus.evidence)  # the row is never dropped
+
+
+def test_two_duplicates_of_one_production_discount_effective_count_below_two():
+    original = _research_os_row(id="trio-original", target_node_id="why-the-sky-is-blue")
+    dup1 = _research_os_row(
+        id="trio-dup-1", target_node_id="why-the-sky-is-blue",
+        duplicate_flag={"matchId": "trio-original", "matchOrigin": "class_peer", "score": 0.88},
+    )
+    dup2 = _research_os_row(
+        id="trio-dup-2", target_node_id="why-the-sky-is-blue",
+        duplicate_flag={"matchId": "trio-original", "matchOrigin": "class_peer", "score": 0.91},
+    )
+    productions = [production.Production.from_dict(r) for r in (original, dup1, dup2)]
+    corpus = production._build_corpus(productions, status_min="draft", retrieval_run_id="t", source_path_for=lambda p: f"t:{p.id}")
+    cluster = [corpus.sources["trio-original"], corpus.sources["trio-dup-1"], corpus.sources["trio-dup-2"]]
+    n_eff = belief.effective_count(cluster)
+    assert n_eff < 2

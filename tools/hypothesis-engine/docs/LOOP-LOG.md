@@ -2,6 +2,203 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 12, provenance.py swarm and fix, thirteen PRs re-confirmed
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`: 1524 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS; a seeds-0-2 repeat matched exactly, no nondeterminism.
+  `realsweep --corpus production`/`literature`, 0/10 crashed each
+  (zero-coverage seeds trace to restrictive filters naming no ground
+  truth, matching tick 7's pattern). `--corpus education-atlas` seed 0
+  only (418.76s, this box's own known per-seed cost): coverage 0.78,
+  matching tick 5/6/7's own seed-0 result.
+- **Test swarm**: `hte/provenance.py`, the sole module on `tests/
+  COVERAGE.md`'s 15-least-covered list with no property-swarm file of
+  its own. 14 new tests in `tests/swarm-20260914/test_provenance_props.py`
+  found a real defect: `collect_from_corpus` added an evidence item's
+  `source_id` to its own `by_production[pid]["source_ids"]` bucket with
+  no truthiness guard, the one line in the function missing the check
+  every sibling line already carries. `hte.purge` folds that field
+  straight into its own redaction set and flags any JSON string field
+  equal to a member for removal, so an item with `source_id == ""` tied
+  to a `production_id` would over-redact any unrelated node in a run's
+  own artifacts carrying an empty-string `source_id`/`sourceId` field.
+  Filed `FINDING-2026-09-14-602`, fixed at the root (one `if item.
+  source_id:` guard). `make test`: 1538 passed.
+- **PRs opened**: 1, `fix/hte-provenance-empty-source-id-leak` (#112).
+  Reviewed (zero secrets, zero QA findings) and squash-merged
+  (`b73d5a6ef`).
+- **PRs reviewed**: 13 open non-draft PRs (#86/#87/#89/#90/#91/#93/#95/
+  #97/#99/#101/#105/#107/#109), all already carried a review at current
+  head sha (re-checked via `get_reviews` against this tick's own
+  `list_pull_requests` output); no duplicate needed.
+- **Blocked**: nothing.
+
+## 2026-09-14, tick 11, holdout_ledger.py swarm and fix, fourteen PRs re-confirmed
+
+- **Engine health**: `make test` on `main`: 1516 passed, 0 failed.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on repeat. `realsweep` over `production`/
+  `literature`/`education-atlas`, 0 crashed; zero-coverage seeds trace to
+  restrictive filters naming no ground truth, matching tick 7's pattern.
+- **Test swarm**: `hte/holdout_ledger.py`, the sole module with no
+  property-swarm file. 8 new tests in `tests/swarm-20260914/
+  test_holdout_ledger_props.py` found a real defect: `append_entries`
+  deduped a new entry's `entry_id` only against disk, never against the
+  other rows in the same call, so two `ranked` rows sharing one
+  `address` wrote duplicate on-disk lines, leaving one permanently
+  unverifiable. Filed `FINDING-2026-09-14-601` (round seven), fixed at
+  the root. `make test`: 1524 passed.
+- **Full-profile spot check**: a partial `make test-cov` run (killed for
+  time) surfaced 2 failures, reproduced directly: `pdflatex`/
+  `agf-lint-voice` missing in this sandbox, both `slow`+
+  `allow_subprocess`, an environment gap, not a defect.
+- **PRs opened**: 1, `fix/hte-holdout-ledger-batch-dedup` (#110).
+  Reviewed (zero findings) and squash-merged (`27855ae8b`).
+- **PRs reviewed**: 14 open non-draft PRs, all already carried a review
+  at current head sha; no duplicate needed.
+- **Process note**: 8 of those (#93-#109) are prior ticks' own
+  `docs/hte-loop-log-*` branches, reviewed but ineligible under this
+  loop's `fix/hte-`/`test/hte-` merge-branch rule. This entry lands on
+  `test/hte-loop-log-20260914-tick11` instead, so it merges rather than
+  adding a ninth backlog entry; the existing 8 still need a human merge.
+- **Blocked**: nothing.
+
+## 2026-09-14, tick 7, novelty.py swarm, ten PRs re-confirmed, education-atlas seed 0 rerun
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`: 1470 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS, coverage_of_truth mean 1.0. `realsweep --corpus production`
+  and `--corpus literature`, 10/10 seeds each, 0 crashed (`production`
+  seeds 1/2/4 read coverage 0.0/brier None, a restrictive `status_min`/
+  `grade_bands` combo naming no ground-truth events, not a defect).
+  `realsweep --corpus education-atlas` seed 0: coverage 0.78, matching
+  tick 5/6's own seed-0 result exactly, 415s (this box's own known
+  ~370-415s/seed cost for this corpus), no crash; ran seed 0 only for
+  time, same as tick 5/6.
+- **Test swarm**: `hte/novelty.py`, the least-covered module on `tests/
+  COVERAGE.md` with no swarm file of its own (every other file on that
+  list already had one from today's earlier ticks or prior rounds). 4
+  new tests in `tests/swarm-20260914/test_novelty_props.py`: `_jaccard`'s
+  empty-token-set guard (line 59, either side tokenizing to nothing),
+  `check_novelty`'s escaped-`repo_root` fallback (lines 129-130, an
+  absolute `canon_dirname`), and a general `[0, 1]`-range property. No
+  defect found.
+- **PRs opened**: 1, this tick's own `test/hte-novelty-coverage-20260914`
+  (#103).
+- **PRs reviewed**: 10 open non-draft PRs. #103 (own) got a fresh review,
+  approve. #101/#99/#97/#95/#93/#91/#90/#89/#87/#86 already carried a
+  review at their current head sha, re-confirmed via `get_reviews`
+  against this tick's own `list_pull_requests` output, no duplicate.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged. **Blocked**: nothing.
+
+## 2026-09-14, tick 6, research_os_outbox.py swarm, ten PRs checked
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`, 1460 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS, coverage_of_truth mean 1.0. `realsweep --corpus production`
+  and `--corpus literature`, 10/10 seeds each, 0 crashed.
+  `realsweep --corpus education-atlas` reproduces tick 5/6's own
+  ~370s-per-seed finding on this box; ran seed 0 only (coverage 0.78,
+  matching tick 5's own seed-0 exactly), cut short for time, no crash.
+- **Test swarm**: `hte/corpus/research_os_outbox.py`, the only module on
+  `tests/COVERAGE.md`'s list with no swarm file of its own (this
+  prompt's "newer modules" are already covered today or absent:
+  `predict.py` does not exist on `main`). 10 new tests in `tests/
+  swarm-20260914/test_corpus_research_os_outbox_props.py`:
+  `_resolve_credentials`'s precedence and no-leak-into-errors property,
+  `_build`'s exhaustive row accounting across random good/bad status
+  mixes, `_stamp_corpus_provenance`'s per-row isolation, `mark_consumed`'s
+  exact PATCH id set, `load()`'s never-raises property. No defect found.
+- **PRs opened**: 1, this tick's own
+  `test/hte-research-os-outbox-coverage-20260914`.
+- **PRs reviewed**: 10 open non-draft PRs. #101 (own, unreviewed) got a
+  fresh review, approve. #99/#97/#95/#93/#91/#90/#89/#87/#86 already
+  carried a review at their current head, re-confirmed, no duplicate.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged. **Blocked**: nothing.
+
+## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
+
+- **Scope**: `hte/corpus/production.py` (`_research_os_counter_evidence`,
+  `ClaimEvidence.stance` per-entry override, `Production.duplicate_of`,
+  a stemma edge from a duplicate's own `Source` to the matched
+  production's), `hte/corpus/literature.py` (`discover_card_roots`, real
+  on-disk corpus root auto-discovery in place of the network-fetch-only
+  path), `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`.
+- **Outbox contract check**: this PR reads the guard's own
+  `counter_evidence`/`duplicate_flag` columns verbatim (no independent
+  duplicate-detection or counter-evidence-requirement recompute of its
+  own); it has no write path back to `graph.productions` at all, so it
+  cannot overwrite a guard flag. Neither field reaches the outbox row on
+  the app side yet (`ProductionOutboxRow` in `engine-bridge.ts` still
+  nine fields, confirmed by grep) so this is the read-side half of the
+  seam, tested against a simulated row per the PR's own test plan.
+  `lateral_reading_flag` (`PRODUCTION-GUARD.md` Rule 5) is untouched by
+  this PR too, and by every merged PR to date: it is documented as
+  informational/review-queue-only (`PRODUCTION-GUARD.md`, "every other
+  flag ... is informational, visible but never blocking"), not an
+  evidentiary signal the engine has a slot for; no gap to log there.
+  `learning/research-os/ENGINE-BRIDGE.md`'s own table/data-flow
+  description is unchanged by this PR and needed no update: the raw-row
+  passthrough contract it documents is exactly what this PR extends.
+- **Learner text**: counter-evidence text lands in `EvidenceItem.span.
+  quote`, the same normalized-envelope slot ordinary evidence text
+  already occupies; no new field carries raw learner text further than
+  that existing path.
+- **Leak scan**: clean, no keys, IPs, `/home/gian` paths, Claude session
+  URLs, or personal emails in the PR's diff.
+- **Voice lint**: `agf-lint-voice-src check` and `agf-lint-voice check`
+  both 0 violations. No fix needed.
+- **Gates**: merged `origin/main` (clean, no conflicts, brought in #78).
+  `ruff check` clean. `make test`: 1352 passed, 18 deselected, 0 failed.
+- **Blocked**: nothing. Merged.
+
+## 2026-09-11, PR #78 review and merge: retraction propagation and fragility
+
+- **Scope**: `hte/propagate.py` (derivation graph, per-hop damped
+  recompute, `CascadeReport`, `apply_retraction`, `fragility`/
+  `rank_fragility`), `hte/evidence.py` (`retracted_by`), `hte/runner.py`
+  (wires propagation into the campaign loop, writes `cascade.json`),
+  `hte/export.py` (`TIMELINE.md` fragility section), `hte/artifacts.py`
+  (`CascadeArtifact`, `fragility_top10`), `hte/canon_writeback.py`
+  (`canon_tier: contested` for a card whose support routed through a
+  retracted node, plus a `retract` feed event), `docs/PROPAGATION.md`.
+- **Deletion check**: `apply_retraction` adds a `refutes` item and stamps
+  `retracted_by`; no node, edge, or existing evidence item is removed.
+  Confirmed in `propagate.py`'s own docstring and in code.
+- **Canon gate**: `write_back` still never writes `canon_tier: "canon"`;
+  a cascaded candidate gets `"contested"` in place of `"candidate"`,
+  strictly more cautious, `signoff` still required. Fail-closed intact.
+- **Research OS bridge gap**: `fragility_top10` lands in `cascade.json`/
+  `self-report.json`/`MANIFEST.json` (engine-side artifacts) but this PR
+  does not touch `src/lib/research-os/engine-bridge.ts` or `db.ts`
+  (the PR #14 adapter, `EngineHypothesisInput`/`buildEngineNode`); no
+  fragility score reaches a `graph.nodes` row yet. Confirmed in scope:
+  PR body states it does not touch the corpus/bridge layer. Not a
+  blocker for this PR, flagged here as a follow-up (wire
+  `fragility_top10` through `campaign_research_os.py` and
+  `EngineHypothesisInput` in a later PR).
+- **Leak scan**: clean, no keys, IPs, `/home/gian` paths, Claude session
+  URLs, or personal emails in the PR's diff.
+- **Voice lint**: `agf-lint-voice-src check` and `agf-lint-voice check`
+  both 0 violations.
+- **Fix applied**: `ruff check` flagged one PR-introduced violation,
+  an unused `opinions_before` local in
+  `tests/test_propagate.py::test_cascade_report_lists_a_b_c_with_correct_hops_and_shares`.
+  Removed the dead assignment (the test never read it). `ruff check`
+  clean after.
+- **Gates**: merged `origin/main` (clean, no conflicts). `make test`:
+  1331 passed, 18 deselected, 0 failed.
+- **Blocked**: nothing. Merged.
+
 ## 2026-09-11, PR #70 post-merge review and voice-lint fix
 
 - **Scope**: PR #70 (`feat/hte-ground-truth-enrichment`, richer

@@ -253,3 +253,38 @@ def test_build_stamps_no_learner_id_when_the_row_carries_none():
     source = corpus.sources["ros-prov-2"]
     assert source.production_id == "ros-prov-2"
     assert source.learner_id is None
+
+
+# --------------------------------------------------------------------------
+# counter_evidence / duplicate_flag (bucket-foundation PR #73's own
+# production-guard columns): the outbox adapter reads them off the row the
+# same way it reads `evidence`/`sources`, since `_build` calls `Production.
+# from_dict` straight through, which auto-detects and normalizes a
+# `graph.productions`-shaped row (`is_research_os_record`). No change is
+# needed in this module for either field, only in `hte.corpus.production`'s
+# own normalizer; these tests pin that the outbox seam carries both through
+# once the app side writes them onto the outbox row.
+# --------------------------------------------------------------------------
+
+
+def test_build_carries_counter_evidence_through_to_a_refuting_evidence_item():
+    from hte.evidence import Stance
+
+    row = _outbox_row(id="ros-counter-1", counter_evidence=[{"text": "A competing paper reports the opposite direction."}])
+    corpus, good_ids, skipped = research_os_outbox._build([row], research_os_outbox.DEFAULT_TABLE, "draft")
+
+    assert good_ids == ["ros-counter-1"]
+    assert skipped == []
+    items = [e for e in corpus.evidence if e.id.startswith("ros-counter-1-c")]
+    assert any(e.stance == Stance.NEGATIVE for e in items)
+    assert any(e.stance == Stance.POSITIVE for e in items), "the row's own evidence still supports"
+
+
+def test_build_carries_duplicate_flag_through_to_a_stemma_edge():
+    original = _outbox_row(id="ros-dup-original")
+    dup = _outbox_row(id="ros-dup-copy", duplicate_flag={"matchId": "ros-dup-original", "matchOrigin": "own_prior", "score": 0.9})
+    corpus, good_ids, skipped = research_os_outbox._build([original, dup], research_os_outbox.DEFAULT_TABLE, "draft")
+
+    assert set(good_ids) == {"ros-dup-original", "ros-dup-copy"}
+    assert skipped == []
+    assert corpus.sources["ros-dup-copy"].stemma_parents == ["ros-dup-original"]
