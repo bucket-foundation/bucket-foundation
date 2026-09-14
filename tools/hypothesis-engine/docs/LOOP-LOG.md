@@ -2,6 +2,43 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 10, vocab_induce.py swarm, twelve PR checks
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`: 1505 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS, coverage_of_truth mean 1.0. `realsweep --corpus production`
+  and `--corpus literature`, 10/10 seeds each, 0 crashed (both corpora's
+  own restrictive `status_min`/`grade_bands`/`branches` combos naming no
+  ground-truth events read `coverage=None`/`0.0`, matching tick 7's own
+  documented not-a-defect pattern). `realsweep --corpus education-atlas`
+  seed 0: coverage 0.78, matching tick 5/6/7's own seed-0 result; ran
+  seed 0 only for time (this box's own ~370-560s/seed cost for this
+  corpus), no crash.
+- **Test swarm**: `hte.vocab_induce`, one of three modules (with `hte.
+  diagnostics`, `hte.tournament`) carrying no `tests/swarm*/` file of its
+  own; the other two already thorough on examples with little pure
+  surface left untested, so this pass targeted `vocab_induce.py`'s own
+  string-slugging helpers and `induce()`'s id-uniqueness contract
+  instead. 11 new tests in `tests/swarm-20260914/
+  test_vocab_induce_props.py`: `stable_id`'s shape/totality/idempotence,
+  `_truncate`'s length and unchanged-when-short contract, `induce()`'s
+  unique concept ids under adversarial slug collisions. No defect found.
+  A `make test-cov` refresh of the stale `tests/COVERAGE.md` was
+  attempted and timed out past this tick's own budget (full hypothesis
+  profile over 1500+ tests); abandoned, no change to `tests/COVERAGE.md`.
+- **PRs opened**: 1, this tick's own `test/hte-vocab-induce-coverage-
+  20260914` (#108).
+- **PRs reviewed**: 12 open non-draft PRs at tick start. #108 (own) got a
+  fresh review, approve. #107/#105/#101/#99/#97/#95/#93/#91/#90/#89/#87/
+  #86 already carried a review at their current head sha, re-confirmed
+  via `get_reviews` against this tick's own `list_pull_requests` output,
+  no duplicate.
+- **Merged**: this tick's own PR (#108), after self-review (zero
+  secrets, zero High/Critical QA), squash-merged (`3bba94d30`).
+  **Blocked**: nothing.
+
 ## 2026-09-14, tick 7, novelty.py swarm, ten PRs re-confirmed, education-atlas seed 0 rerun
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
