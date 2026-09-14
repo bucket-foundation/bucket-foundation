@@ -3356,14 +3356,32 @@ None.
 - No file under `src/` or `public/` is touched by this pass, so no
   `npm run build` gate applies to it, the same pass-one/pass-two
   convention.
-- `git fetch origin && git merge origin/main` merged Iteration 27
-  (literature batch five, `origin/main`) into this branch; two files
-  conflicted (`_intake/research-os-k12-literature/README.md`,
-  `learning/research-os/CHANGE-LEDGER.md`), both narrative-only
-  (a corpus-count summary paragraph and this ledger's own entry
+- `git fetch origin && git merge origin/main` merged 38 commits from
+  `origin/main`, Iteration 27 (literature batch five) and PR #87
+  (prediction register) among them, plus unrelated hypothesis-engine
+  work, into this branch. Two files conflicted
+  (`_intake/research-os-k12-literature/README.md`,
+  `learning/research-os/CHANGE-LEDGER.md`), both narrative-only (a
+  corpus-count summary paragraph and this ledger's own entry
   numbering); both sides' content kept, `README.md`'s combined count
   recomputed to 180 and this ledger's own new entry renumbered
-  Iteration 27 to Iteration 28 to stay chronological.
+  Iteration 27 to Iteration 28 to stay chronological. The merge commit
+  (`f79e6c0ef`) used the org pre-commit hook's `AGF_VOICE_SKIP=1`
+  bypass, the same precedent this ledger's own PR #84 review entry
+  records: the merge's staged-file set includes 174 pre-existing voice
+  violations from `origin/main`'s own history (`CHANGE-LEDGER.md`
+  entries before this pass's own iteration, `tools/hypothesis-engine`
+  test files, `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`), none of
+  them touched by this pass's own diff.
+- A branch-policy change landed on `origin/dev` after this iteration's
+  own `origin/main` merge (`CLAUDE.md`'s new "Branch Policy" section,
+  PR #126: `main` takes merges from `dev` only, `dev` is the default
+  PR target for `intake/*` branches like this one). `git fetch origin
+  && git merge origin/dev` merged the two additional commits cleanly,
+  no conflict. `tools/canon-pipeline/intake.py` re-run twice on both
+  dossiers after this merge, `changed=False` on every run, confirming
+  the branch-policy merge changed no canon content. This pass's PR
+  targets `dev`, not `main`, per the new policy.
 
 ## PR #87 review: prediction register
 
