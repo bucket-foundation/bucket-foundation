@@ -90,7 +90,8 @@ def collect_from_corpus(corpus: Corpus) -> dict[str, Any]:
         if production_id:
             production_ids.add(production_id)
             bucket = _bucket(production_id)
-            bucket["source_ids"].add(item.source_id)
+            if item.source_id:
+                bucket["source_ids"].add(item.source_id)
             if item.span is not None and item.span.quote:
                 bucket["quotes"].add(item.span.quote)
             bucket["labels"].update(_labels_of(item))
