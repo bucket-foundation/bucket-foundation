@@ -2,6 +2,16 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 4: propagate.py swarm, education-atlas realsweep, no open PR left unreviewed
+
+- **Engine health**: `make test` on `main`: 1423 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` fake mode, 30/30, gate PASS. Repeated seeds 0-4: identical coverage/Brier/survivor counts to full precision, no nondeterminism. `realsweep --corpus literature --seeds 0-9`: 0/10 crashed, seeds 0/4/5/6/7/8/9 matched the committed baseline exactly; seeds 1/2/3 (single-branch subsets with zero ground-truth events in that branch) correctly read `coverage=None`, the documented no-ground-truth case. `realsweep --corpus production --seeds 0-9`: 0/10 crashed, but every coverage/Brier value diverges from the committed `runs/realsweep/production/SUMMARY.md` baseline even where the RNG-drawn `grade_bands`/`status_min` params match exactly; root cause traced to PR #70 (`410e702d8`) growing the fixture set from 12 to 34 productions after that baseline was captured, changing which productions a `grade_bands` filter selects, a data-growth explanation rather than a regression. `realsweep --corpus education-atlas --seeds 0-9`: this sandbox runs it 5-6x slower than documented (matching a prior tick's own note); cut off after 3/10 seeds (478s/444s/104s each), 0 crashed, coverage 0.70-1.0; params for seed 0 reproduce the committed baseline's own country list exactly, and the coverage/Brier divergence carries the same stale-baseline explanation as `production` (engine code has moved since 2026-09-10). Neither divergence reads as a defect; the checked-in `runs/realsweep/*/SUMMARY.md` files are stale snapshots no test reads.
+- **Test swarm**: `hte/propagate.py` (94.8%, no dedicated swarm file, named in this loop's own task brief), 9 new tests in `tests/swarm-20260914/test_propagate_props.py`: a stemma self-reference and copy-cycle, `_topological_order`'s `depends_on`-cycle fallback, `propagate`'s inactive-parent skip and its defensive unmaterialized-address skip (forced via monkeypatch, unreachable through the public API otherwise), `independent_support_share` with no supporting evidence. One sibling defensive branch in `_topological_order` (a re-queue guard) is documented as structurally unreachable given the function's own set-based bookkeeping; no xfail, no defect to pin. Full suite with the new file: 1432 passed.
+- **Schema alignment check**: `src/lib/research-os/types.ts` last changed by PR #74 (`GuidanceLevel`/`WorkedExample`, unrelated to `graph.productions`); no `graph.productions`-shaping migration since PR #73's (already covered in `PRODUCTION-SCHEMA-ALIGNMENT.md`). No alignment PR needed.
+- **PRs opened**: #98 (the swarm work above), reviewed clean (zero secrets, zero QA findings) and squash-merged (`2b7599a1a`).
+- **PRs reviewed**: none needed reviewing; #97/#95/#93/#91/#90/#89/#87/#86 (every other open non-draft PR) already carried a review at their current head sha from concurrent sessions running today, verified via `get_reviews` before starting. #11 stays draft, skipped.
+- **Blocked**: nothing.
+
 ## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
 
 - **Scope**: `hte/corpus/production.py` (`_research_os_counter_evidence`,
