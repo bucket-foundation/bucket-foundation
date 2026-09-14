@@ -3322,3 +3322,18 @@ Date 2026-09-14, same pass, after `git fetch origin && git merge origin/main` at
 - `npm run test:research-os`: 455 passed, 0 failed across 30 files, re-run fresh post-merge, unchanged from the pre-merge count. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, unchanged. `python3 tools/canon-pipeline/signoff.py list`: 20 pending, unchanged.
 - `agf-lint-voice check learning/research-os/PLAN-REVISION-4.md`: clean after the sourcing-note and test-count edits above.
 - The merge commit itself used `AGF_VOICE_SKIP=1`: `python3 "$HOME/agfarms/tools/voice/voice.py" check --staged` (the pre-commit hook's own invocation, which rescans a staged file's full content rather than only its diff) found 162 violations across 28 files pulled in by the merge, none in content this pass authored; the same bypass PR #84's own merge commit used for the same situation, per its own logged process note.
+
+## Plan revision 4: second reconciliation pass
+
+Date 2026-09-14, resuming a session that found this branch's worktree removed out from under it (a concurrent session's own cleanup) mid-task and PR #127 already open from the reconciliation pass above. Recreated the worktree from `origin/docs/ros-plan-revision-4` and continued rather than re-authoring.
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: added the fourth spend-limit-pause window this pass found (2026-09-14, 09:32:52-09:33:04, three worktrees), noted the task brief's own "TLS pauses" mention has no repository-visible evidence beyond the four spend-limit windows; corrected "stay unmerged" to "closed unmerged" for the six superseded `docs/hte-loop-log-*` branches (#89/#91/#93/#105/#107/#109, verified live via `gh pr view`); added PR #124 (real `hte/cli.py` coverage) and PR #128 (docs-only, names PR #125 closed unmerged after #124 landed the same coverage first) to the shipped table and the open/closed-PR accounting; added PR #127 (this document's own PR) to the still-open list.
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-3.md`: both "## Revision 4" pointer paragraphs corrected from "thirty-two PRs" / "#70 through #113" to the true count, forty-six PR numbers merged since revision 3 (`git log --oneline 7f49f271b..HEAD --format=%s | grep -oE '\(#[0-9]+\)'`, deduplicated and sorted), #70 through #124 plus #68 and #115 landing out of numeric order; "three spend-limit pauses" corrected to four in both.
+
+### Verified
+
+- `gh pr view` on each of #89, #91, #93, #105, #107, #109: all six read `CLOSED`, `mergedAt: null`, confirming "closed unmerged" over the prior "stay unmerged" wording.
+- `git log -1 --format=%ad` on the three 2026-09-14 wip commits (`6a20186da`, `6e88d3ef0`, `e8edd4d1e`): 09:32:52 to 09:33:04, twelve seconds apart. Resume times: `feat/ros-11-engine-review-items-2` merged `origin/main` at 09:41:16; `feat/ros-status-band-2` at 09:46:37; `intake/ros-canon-promotion-3`'s next commit on that branch, `wip(intake/ros-canon-promotion-3): resume canon pass three`, landed at 12:20:21.
+- `agf-lint-voice check` on all three edited files: clean, first pass.
