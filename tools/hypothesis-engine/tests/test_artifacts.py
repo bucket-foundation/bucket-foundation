@@ -101,6 +101,35 @@ def test_load_run_succeeds_on_a_fresh_hte_synth_run(fresh_synth_run):
     assert data.counts.n_sources is not None
 
 
+def test_fresh_hte_synth_run_timeline_carries_u_on_every_ranked_entry(fresh_synth_run):
+    """`bkt-hte-timeline-opinion-export`: a real fake-mode campaign run's
+    own `timeline.json` (`hte.export.write_views`'s own output over a
+    real run, this file's own motivating contract) carries the full
+    opinion, `u` included, on every ranked hypothesis in every one of
+    the three views `hte.export.timeline_views` returns. The write-back
+    credence-floor filter's own read of `u` off a reconstructed opinion
+    is covered separately, `tests/test_canon_writeback.py::
+    test_select_above_floor_filters_on_both_p_and_u`: `hte.canon_
+    writeback.reconstruct_candidates` only knows the corpora registered
+    in `hte.runner._CORPUS_LOADERS`, a set that excludes a synth run's
+    own generated `synthetic-*` corpus name."""
+    data = artifacts.load_run(fresh_synth_run)
+    assert data.timeline.bins, "fresh_synth_run's own small-world preset should place at least one bin"
+
+    seen_ranked_entries = 0
+    for b in data.timeline.bins:
+        for entry in b["ranked_hypotheses"]:
+            assert "opinion" in entry
+            if entry["opinion"] is not None:
+                assert "u" in entry["opinion"]
+                seen_ranked_entries += 1
+    assert seen_ranked_entries > 0, "expected at least one opined ranked hypothesis in this fake-mode run"
+
+    for ev in data.timeline.event_views:
+        for placement_entry in ev.get("ranked_placements", []):
+            assert "opinion" in placement_entry
+
+
 # --------------------------------------------------------------------------
 # emit_paper over every one of those same run directories
 # --------------------------------------------------------------------------
