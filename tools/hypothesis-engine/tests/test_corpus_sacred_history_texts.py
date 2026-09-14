@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import dataclasses
 import json
+import re
 from pathlib import Path
 
 import pytest
@@ -229,9 +230,119 @@ def test_text_records_traditions_are_real_sacred_history_traditions():
         assert record.tradition in real_traditions
 
 
-def test_text_records_cover_six_of_thirteen_traditions():
+def test_text_records_cover_all_thirteen_traditions():
+    data = json.loads(sacred_history.DEFAULT_CORPUS_PATH.read_text(encoding="utf-8"))
     traditions = {r.tradition for r in sht.TEXT_RECORDS}
-    assert traditions == {"christianity", "judaism", "tao-confucian", "buddhism", "hinduism", "lds"}
+    assert traditions == set(data["traditions"])
+    assert len(traditions) == 13
+
+
+# --------------------------------------------------------------------------
+# text-acquisition pass: the eleven editions that filled the seven
+# traditions this module's first pass carried no primary text for at
+# all (`docs/SACRED-HISTORY-TEXTS.md`'s own "Text-acquisition pass"
+# section). Each test below reads one real edition off disk, asserts
+# `split_passages()`'s own passage count is the exact, deterministic
+# figure this doc's own density table already reports (a regression
+# guard: a byte-identical file re-splits to the same count every run,
+# `split_passages`'s own contract), and asserts at least one of those
+# passages names a corpus figure unique to that edition's tradition
+# under a plain-text, case-insensitive regex, the same cheap-proxy
+# check the density table's own methodology note describes. Several of
+# these editions spell a figure differently from `sacred-history.json`'s
+# own `label`: a 19th/20th-century transliteration rather than the
+# corpus's own normalized form. The regex for each test matches that
+# edition's own attested spelling instead, named in a comment.
+# --------------------------------------------------------------------------
+
+def _passages_of(text_id: str) -> tuple[tuple[str, str], ...]:
+    record = sht._TEXT_RECORDS_BY_ID[text_id]
+    raw = record.path.read_text(encoding="utf-8", errors="replace")
+    return tuple(sht.split_passages(raw))
+
+
+def _assert_figure_attested(passages: tuple[tuple[str, str], ...], pattern: str) -> None:
+    rx = re.compile(r"\b(?:" + pattern + r")\b", re.IGNORECASE)
+    assert any(rx.search(text) for _, text in passages)
+
+
+def test_quran_rodwell_passage_count_and_muhammad_attested():
+    passages = _passages_of("quran-rodwell")
+    assert len(passages) == 6741
+    _assert_figure_attested(passages, r"Muhammad")
+
+
+def test_hesiod_homeric_hymns_passage_count_and_deucalion_attested():
+    passages = _passages_of("hesiod-homeric-hymns-evelyn-white")
+    assert len(passages) == 1357
+    _assert_figure_attested(passages, r"Deucalion")
+
+
+def test_avesta_vendidad_darmesteter_passage_count_and_zoroaster_attested():
+    passages = _passages_of("avesta-vendidad-darmesteter")
+    assert len(passages) == 2763
+    _assert_figure_attested(passages, r"Zoroaster|Zarathustra")
+
+
+def test_avesta_part2_darmesteter_passage_count_and_zoroaster_attested():
+    passages = _passages_of("avesta-part2-darmesteter")
+    assert len(passages) == 4591
+    _assert_figure_attested(passages, r"Zoroaster|Zarathustra")
+
+
+def test_avesta_part3_mills_passage_count_and_zoroaster_attested():
+    passages = _passages_of("avesta-part3-mills")
+    assert len(passages) == 3769
+    _assert_figure_attested(passages, r"Zoroaster|Zarathustra")
+
+
+def test_gilgamesh_thompson_passage_count_and_gilgamesh_and_utnapishtim_attested():
+    passages = _passages_of("gilgamesh-thompson")
+    assert len(passages) == 680
+    # This edition's own spelling ("Gilgamish", "Uta-Napishtim"), not
+    # `sacred-history.json`'s own labels ("Gilgamesh", "Utnapishtim");
+    # see this doc's own density-table note on 1928 transliteration.
+    _assert_figure_attested(passages, r"Gilgamish")
+    _assert_figure_attested(passages, r"Uta-Napishtim")
+
+
+def test_enuma_elish_king_passage_count_and_gilgamesh_attested():
+    passages = _passages_of("enuma-elish-king")
+    assert len(passages) == 3198
+    # A different Mesopotamian myth cycle from the Gilgamesh epic
+    # (Marduk's own creation epic); attestation is thin (4 passages) but
+    # nonzero even under the wider "Gilgamish or Gilgamesh" pattern.
+    _assert_figure_attested(passages, r"Gilgamish|Gilgamesh")
+
+
+def test_jaina_sutras_part1_jacobi_passage_count_and_mahavira_attested():
+    passages = _passages_of("jaina-sutras-part1-jacobi")
+    assert len(passages) == 2323
+    _assert_figure_attested(passages, r"Mahavira")
+
+
+def test_jaina_sutras_part2_jacobi_passage_count_and_mahavira_attested():
+    passages = _passages_of("jaina-sutras-part2-jacobi")
+    assert len(passages) == 4301
+    _assert_figure_attested(passages, r"Mahavira")
+
+
+def test_sikh_religion_vol1_macauliffe_passage_count_and_guru_nanak_attested():
+    passages = _passages_of("sikh-religion-vol1-macauliffe")
+    assert len(passages) == 6456
+    # This edition's own spelling ("Nanak") is the bare given name,
+    # narrower than the figure's full label ("Guru Nanak"): "Guru" is a
+    # title Macauliffe also gives to the other Sikh Gurus this same
+    # volume names, so the bare given name is the more specific signal.
+    _assert_figure_attested(passages, r"Nanak")
+
+
+def test_kitab_i_iqan_ali_kuli_khan_passage_count_and_bahaullah_attested():
+    passages = _passages_of("kitab-i-iqan-ali-kuli-khan")
+    assert len(passages) == 532
+    # OCR renders the curly apostrophes in "Bahá'u'lláh" inconsistently;
+    # `.?` tolerates zero or one apostrophe-like character per gap.
+    _assert_figure_attested(passages, r"Baha.?u.?llah|Bahaullah")
 
 
 # --------------------------------------------------------------------------
