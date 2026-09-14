@@ -2,6 +2,37 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 7, novelty.py swarm, ten PRs re-confirmed, education-atlas seed 0 rerun
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`: 1470 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS, coverage_of_truth mean 1.0. `realsweep --corpus production`
+  and `--corpus literature`, 10/10 seeds each, 0 crashed (`production`
+  seeds 1/2/4 read coverage 0.0/brier None, a restrictive `status_min`/
+  `grade_bands` combo naming no ground-truth events, not a defect).
+  `realsweep --corpus education-atlas` seed 0: coverage 0.78, matching
+  tick 5/6's own seed-0 result exactly, 415s (this box's own known
+  ~370-415s/seed cost for this corpus), no crash; ran seed 0 only for
+  time, same as tick 5/6.
+- **Test swarm**: `hte/novelty.py`, the least-covered module on `tests/
+  COVERAGE.md` with no swarm file of its own (every other file on that
+  list already had one from today's earlier ticks or prior rounds). 4
+  new tests in `tests/swarm-20260914/test_novelty_props.py`: `_jaccard`'s
+  empty-token-set guard (line 59, either side tokenizing to nothing),
+  `check_novelty`'s escaped-`repo_root` fallback (lines 129-130, an
+  absolute `canon_dirname`), and a general `[0, 1]`-range property. No
+  defect found.
+- **PRs opened**: 1, this tick's own `test/hte-novelty-coverage-20260914`
+  (#103).
+- **PRs reviewed**: 10 open non-draft PRs. #103 (own) got a fresh review,
+  approve. #101/#99/#97/#95/#93/#91/#90/#89/#87/#86 already carried a
+  review at their current head sha, re-confirmed via `get_reviews`
+  against this tick's own `list_pull_requests` output, no duplicate.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged. **Blocked**: nothing.
+
 ## 2026-09-14, tick 6, research_os_outbox.py swarm, ten PRs checked
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
