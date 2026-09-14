@@ -1,0 +1,629 @@
+{
+  "mode": "kfold",
+  "k": 5,
+  "seed": 0,
+  "cutoff_years": null,
+  "match_threshold": 0.6,
+  "resolution": "century",
+  "n_holdout_events": 3,
+  "n_covered_events": 3,
+  "coverage_of_truth": 1.0,
+  "coverage_note": null,
+  "brier_score": 0.35266401971222877,
+  "calibration_curve": [
+    {
+      "bin_low": 0.0,
+      "bin_high": 0.1,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.1,
+      "bin_high": 0.2,
+      "count": 1,
+      "mean_predicted": 0.17462730330914117,
+      "mean_observed": 1.0
+    },
+    {
+      "bin_low": 0.2,
+      "bin_high": 0.3,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.3,
+      "bin_high": 0.4,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.4,
+      "bin_high": 0.5,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.5,
+      "bin_high": 0.6,
+      "count": 2,
+      "mean_predicted": 0.5661998871714278,
+      "mean_observed": 1.0
+    },
+    {
+      "bin_low": 0.6,
+      "bin_high": 0.7,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.7,
+      "bin_high": 0.8,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.8,
+      "bin_high": 0.9,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin_low": 0.9,
+      "bin_high": 1.0,
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    }
+  ],
+  "predictions": [
+    {
+      "event_id": "clm-corr-motif-parallel-411bd30b84",
+      "event_label": "Reciprocity-ethic parallel: Confucius \u2194 Jesus",
+      "event_year": -571,
+      "reading": "true",
+      "hypothesis": "405307d49d0e764c",
+      "predicted": 0.5801084261633921,
+      "observed": 1.0
+    },
+    {
+      "event_id": "clm-corr-motif-parallel-99eb113edd",
+      "event_label": "Flood-narrative parallel: Utnapishtim \u2194 Noah",
+      "event_year": -1200,
+      "reading": "true",
+      "hypothesis": "bfb09bc7e383624a",
+      "predicted": 0.17462730330914117,
+      "observed": 1.0
+    },
+    {
+      "event_id": "clm-corr-figure-mapping-ad5075f70a",
+      "event_label": "Prophetic-succession mapping: Moses \u2194 Muhammad",
+      "event_year": 570,
+      "reading": "true",
+      "hypothesis": "0999a5915c2e3d89",
+      "predicted": 0.5522913481794633,
+      "observed": 1.0
+    }
+  ],
+  "constants": {
+    "W": 2.0,
+    "lam": 0.5
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "n_holdout_events": 1,
+      "n_covered_events": 1,
+      "coverage_of_truth": 1.0,
+      "brier_score": 0.17630893377898355,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 1,
+          "mean_predicted": 0.5801084261633921,
+          "mean_observed": 1.0
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": [
+        {
+          "event_id": "clm-corr-motif-parallel-411bd30b84",
+          "event_label": "Reciprocity-ethic parallel: Confucius \u2194 Jesus",
+          "event_year": -571,
+          "reading": "true",
+          "hypothesis": "405307d49d0e764c",
+          "predicted": 0.5801084261633921,
+          "observed": 1.0
+        }
+      ]
+    },
+    {
+      "fold": 1,
+      "n_holdout_events": 0,
+      "n_covered_events": 0,
+      "coverage_of_truth": null,
+      "brier_score": null,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": []
+    },
+    {
+      "fold": 2,
+      "n_holdout_events": 0,
+      "n_covered_events": 0,
+      "coverage_of_truth": null,
+      "brier_score": null,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": []
+    },
+    {
+      "fold": 3,
+      "n_holdout_events": 1,
+      "n_covered_events": 1,
+      "coverage_of_truth": 1.0,
+      "brier_score": 0.6812400884427403,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 1,
+          "mean_predicted": 0.17462730330914117,
+          "mean_observed": 1.0
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": [
+        {
+          "event_id": "clm-corr-motif-parallel-99eb113edd",
+          "event_label": "Flood-narrative parallel: Utnapishtim \u2194 Noah",
+          "event_year": -1200,
+          "reading": "true",
+          "hypothesis": "bfb09bc7e383624a",
+          "predicted": 0.17462730330914117,
+          "observed": 1.0
+        }
+      ]
+    },
+    {
+      "fold": 4,
+      "n_holdout_events": 1,
+      "n_covered_events": 1,
+      "coverage_of_truth": 1.0,
+      "brier_score": 0.2004430369149625,
+      "calibration_curve": [
+        {
+          "bin_low": 0.0,
+          "bin_high": 0.1,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.1,
+          "bin_high": 0.2,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.2,
+          "bin_high": 0.3,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.3,
+          "bin_high": 0.4,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.4,
+          "bin_high": 0.5,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.5,
+          "bin_high": 0.6,
+          "count": 1,
+          "mean_predicted": 0.5522913481794633,
+          "mean_observed": 1.0
+        },
+        {
+          "bin_low": 0.6,
+          "bin_high": 0.7,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.7,
+          "bin_high": 0.8,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.8,
+          "bin_high": 0.9,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        },
+        {
+          "bin_low": 0.9,
+          "bin_high": 1.0,
+          "count": 0,
+          "mean_predicted": null,
+          "mean_observed": null
+        }
+      ],
+      "predictions": [
+        {
+          "event_id": "clm-corr-figure-mapping-ad5075f70a",
+          "event_label": "Prophetic-succession mapping: Moses \u2194 Muhammad",
+          "event_year": 570,
+          "reading": "true",
+          "hypothesis": "0999a5915c2e3d89",
+          "predicted": 0.5522913481794633,
+          "observed": 1.0
+        }
+      ]
+    }
+  ],
+  "aggregate": {
+    "n_holdout_events": 3,
+    "n_covered_events": 3,
+    "coverage_of_truth": 1.0,
+    "brier_score": 0.35266401971222877,
+    "calibration_curve": [
+      {
+        "bin_low": 0.0,
+        "bin_high": 0.1,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.1,
+        "bin_high": 0.2,
+        "count": 1,
+        "mean_predicted": 0.17462730330914117,
+        "mean_observed": 1.0
+      },
+      {
+        "bin_low": 0.2,
+        "bin_high": 0.3,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.3,
+        "bin_high": 0.4,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.4,
+        "bin_high": 0.5,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.5,
+        "bin_high": 0.6,
+        "count": 2,
+        "mean_predicted": 0.5661998871714278,
+        "mean_observed": 1.0
+      },
+      {
+        "bin_low": 0.6,
+        "bin_high": 0.7,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.7,
+        "bin_high": 0.8,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.8,
+        "bin_high": 0.9,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      },
+      {
+        "bin_low": 0.9,
+        "bin_high": 1.0,
+        "count": 0,
+        "mean_predicted": null,
+        "mean_observed": null
+      }
+    ]
+  },
+  "mode_reason": "all 14 ground-truth events carry discovery_year == year (this corpus's own documented simplification), so holdout_by_discovery_date splits every one of them onto one side of any cutoff and run_holdout scores nothing; k-fold hides evidence directly instead, needing no discovery date at all."
+}

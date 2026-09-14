@@ -943,7 +943,7 @@ def extract(
             kind=kind,
             tier=tier,
             source_id=doc_id,
-            span=EvidenceSpan(doc_id=doc_id, locator=f"extract:{n}", quote=raw["quote"], char_start=start, char_end=end),
+            span=EvidenceSpan(doc_id=doc_id, locator=f"extract:{n}", quote=raw["quote"], char_start=start, char_end=end, doc_length=len(document_text)),
             provenance="llm-extraction-escalated" if escalated else "llm-extraction-ensemble",
             actor=_slot_label(raw, "actor"),
             action=_slot_label(raw, "action"),

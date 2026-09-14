@@ -18,7 +18,7 @@ from __future__ import annotations
 import json
 
 import pytest
-from hypothesis import HealthCheck, given, settings
+from hypothesis import HealthCheck, assume, given, settings
 from hypothesis import strategies as st
 
 from hte.corpus import research_os_outbox
@@ -87,9 +87,40 @@ def test_resolve_credentials_prefers_explicit_args_over_env(monkeypatch, url, ke
 @_MONKEYPATCH_GIVEN
 def test_resolve_credentials_error_never_echoes_a_supplied_key(monkeypatch, secret_key):
     monkeypatch.delenv("SUPABASE_URL", raising=False)
+    # FINDING-2026-09-14-701: `_resolve_credentials`'s missing-credential
+    # message is a fixed string naming this module, `hte.corpus.
+    # research_os_outbox`, with no interpolation of `key` anywhere in its
+    # source. A Hypothesis-generated `secret_key` that happens to match a
+    # substring of that fixed text (`"research"`, `"environment"`, ...)
+    # fails this assertion without the module ever having echoed anything;
+    # the boilerplate collision is unrelated to the real property under
+    # test, so it is excluded here rather than asserted away.
+    with pytest.raises(RuntimeError) as baseline_info:
+        research_os_outbox._resolve_credentials(None, "")
+    assume(secret_key not in str(baseline_info.value))
+
     with pytest.raises(RuntimeError) as exc_info:
         research_os_outbox._resolve_credentials(None, secret_key)
     assert secret_key not in str(exc_info.value)
+
+
+def test_resolve_credentials_boilerplate_collision_is_not_a_real_leak(monkeypatch):
+    """FINDING-2026-09-14-701's own reproduction: `secret_key="research"`
+    made the property above fail, because the module's own name (`hte.
+    corpus.research_os_outbox`) shares that substring with the fixed
+    missing-credential message. Confirmed here directly, outside
+    Hypothesis, so the collision stays documented as a fixed-message
+    artifact rather than the credential being echoed: the same message
+    fires whatever `key` is, and a key that shares no substring with it
+    never appears in the raised text."""
+    monkeypatch.delenv("SUPABASE_URL", raising=False)
+    with pytest.raises(RuntimeError) as exc_info:
+        research_os_outbox._resolve_credentials(None, "research")
+    assert "research" in str(exc_info.value)  # present via the module's own name
+
+    with pytest.raises(RuntimeError) as exc_info2:
+        research_os_outbox._resolve_credentials(None, "xyzzy-not-a-boilerplate-word")
+    assert "xyzzy-not-a-boilerplate-word" not in str(exc_info2.value)
 
 
 def test_resolve_credentials_raises_when_either_is_missing(monkeypatch):

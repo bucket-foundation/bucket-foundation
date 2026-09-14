@@ -24,7 +24,7 @@ from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
 from .belief import Opinion, load_constants, load_detectability_table, score as belief_score
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
-from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history, younger_dryas
+from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history, sacred_history_texts, younger_dryas
 from .evidence import EvidenceItem
 from .generate import combinatorial_sample, from_evidence
 from .hypothesis import Hypothesis
@@ -105,6 +105,11 @@ _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
     "production": production.load,
     "literature": literature.load_default,
     "sacred-history": sacred_history.ingest,
+    # Passage-level extraction over the primary texts this repo mirrors
+    # for 6 of `sacred-history`'s 13 traditions; see `hte.cli.
+    # _CORPUS_LOADERS`'s own identical entry and `hte.corpus.
+    # sacred_history_texts`'s own module docstring.
+    "sacred-history-texts": sacred_history_texts.load,
     # 47 open-metadata, DOI-verified cards on the Younger Dryas boundary
     # (12.9-11.7 ka BP) impact-hypothesis debate, no network fetch (see
     # `hte.corpus.younger_dryas`'s own module docstring).
@@ -525,7 +530,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         # the cutoff when the chosen mode is discovery-date.
         calibration = calibrate.run_calibration(
             corpus, constants, cutoff_years=cfg["cutoff_years"],
-            k=cfg["holdout_k"], seed=cfg["holdout_seed"],
+            k=cfg["holdout_k"], seed=cfg["holdout_seed"], corpus_name=cfg["corpus"],
         )
         calibrate.write_calibration(calibration, run_dir)
         logger.log(

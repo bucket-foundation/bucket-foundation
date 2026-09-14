@@ -3138,6 +3138,7 @@ Reviewer-side finish of PR #74 (faded guidance, ros-14, Iteration above) after r
 - `review/pr74` confirmed a fast-forward of `feat/ros-faded-guidance`'s remote head: pushed directly to the PR's own head branch rather than opening a superseding PR.
 
 No fix needed beyond the one docstring conflict. Pushed and merged.
+
 ## Iteration 26: lateral reading on Check
 
 `PLAN-REVISION-3.md` section 2c's design response to Wineburg and McGrew (2019) and Breakstone and colleagues (2021): at Understanding tier and above, revealing a held Check verdict now needs a real, independent second source, composed on top of the existing cognitive-forcing reveal (Iteration 22). Picks up a wip commit (`f4c2c7fe2`, "partial work preserved after spend-limit stop") that had already landed `lateral-reading.ts`, the `findIndependentSources`/`assessSourceIndependence` pair in `locate.ts`, the `"corroboration"` evidence kind and `onCorroborationRecorded` in `stages.ts`, Rule 5 (`lateralReadingFlag`) in `production-guard.ts`, the `db.ts` loaders, and the migration, but had not yet wired any route, page, test, or doc.
@@ -3180,3 +3181,132 @@ Reviewed `feat/ros-lateral-reading` (PR #84) against `main` in worktree `~/agfar
 - `npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean (`/api/research-os/production`, `/api/research-os/workspace`, `/api/research-os/review`, `/research-os/workspace`, `/research-os/review` all confirmed in the manifest). `npm run test:research-os`: 30 chained files, every file `fail 0`, 455 tests, unchanged from the PR's own count (the fix touched no test logic). `next lint` clean on every touched TS/TSX file.
 - `agf-lint-voice check` on the full changed-file set found two antithesis constructions in `BEADS-PENDING.jsonl`'s own new bead line and one in `scripts/test-research-os-lateral-reading.ts`'s own test name, all introduced by this PR; fixed by hand, clean on the second pass. The remaining reported violations (`BEADS-PENDING.jsonl` lines outside the new entry, `workspace/page.tsx` line 1256) predate this PR and sit outside its own diff, left untouched. `agf-lint-voice-src check` clean on every touched source file, first pass.
 - Process note: the PR's own merge commit (`c7b3c095b`) used the org pre-commit hook's `AGF_VOICE_SKIP=1` bypass rather than `--no-verify`, per its own `BEADS-PENDING.jsonl` account; the commit squashes at merge so the artifact does not survive, flagged here for the record.
+
+## Iteration 27: literature batch five
+
+Date 2026-09-11. Branch `intake/ros-literature-5`, worktree `.ros-worktrees/lit5`.
+Literature batch five: 30 new DOI-verified papers across four areas the task brief named:
+validating AI-generated hypothesis rankings, required-versus-voluntary participation and
+incentives in student research, epistemic-cognition instruments, and human understanding
+of AI-produced science.
+
+### Added
+
+- 10 files across `_intake/research-os-k12-literature/scientific-discovery-metascience/`
+  (9) and `ai-and-researchers/` (1): the founding calibration-scoring papers (Brier 1950;
+  Murphy 1973), a forecasting-tournament study (Mellers and others 2014), three
+  independent replication-forecasting studies (Dreber and others 2015; Camerer and
+  others 2018; Forsell and others 2019), three AI-for-science benchmarks (Chan and
+  others 2024, MLE-bench; Jansen and others 2024, DiscoveryWorld; Majumder and others
+  2024, DiscoveryBench), and the execution-focused follow-up to this corpus's own Si,
+  Yang, and Hashimoto (2024) card (Si, Hashimoto, and Yang 2025).
+- 7 files across `_intake/research-os-k12-literature/educational-methods/` (3) and
+  `student-research-experiences/` (4): choice and autonomy-support evidence (Patall,
+  Cooper, and Robinson 2008; Cordova and Lepper 1996; Reeve 2006) and academic-integrity
+  and mandatory-service evidence (McCabe, Trevino, and Butterfield 2001; Bretag and
+  others 2019; Stukas, Snyder, and Clary 1999; Metz and Youniss 2003).
+- 6 files under `_intake/research-os-k12-literature/epistemic-cognition/`: the
+  field-founding review (Hofer and Pintrich 1997), the founding multidimensional beliefs
+  instrument (Schommer 1990), an integrated four-position model (Greene, Azevedo, and
+  Torney-Purta 2008), a metacognition-facet reframing of this corpus's own Kuhn (1999)
+  card (Barzilai and Zohar 2014), a four-level developmental trajectory (Kuhn, Cheney,
+  and Weinstock 2000), and a belief-emotion-learning model tested in a classroom-relevant
+  domain (Muis, Pekrun, Sinatra, and others 2015).
+- 7 files across `_intake/research-os-k12-literature/hci-human-ai-collaboration/` (5)
+  and `ai-and-researchers/` (2): general explanation-science and XAI-evaluation evidence
+  (Miller 2019; Lombrozo 2006; Keil 2006; Zemla and others 2017; Hase and Bansal 2020)
+  and two direct follow-ups to this corpus's own Messeri and Crockett (2024) card (Binz
+  and others 2025; Musslick and others 2025).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended from 147 to 177 rows,
+  per-area counts updated, a new "Literature batch five" summary section appended.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: three of the
+  twelve open questions (4, 5, 12) gained an "Evidence added in batch five" paragraph.
+- `learning/research-os/PLAN-REVISION-3.md`: section 2b (required participation and
+  production misconduct) and section 2d (epistemic cognition and argumentation) each
+  gained an "Evidence added in batch five" paragraph stating support, complication, or
+  contradiction, plus a paragraph sharpening each section's own design response; neither
+  section's own OPEN status changed.
+- `tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md`: a new "Ranking validation
+  evidence" section appended, pointing at the ten batch-five cards bearing on
+  `hte.holdout_ledger` and the `ranking_status` label PR #60 shipped; no code changed.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass, logged below in
+  this same iteration for cross-reference.
+
+### Removed
+
+None.
+
+### Verified
+
+Read in full before writing: `_intake/research-os-k12-literature/README.md` (for the
+frontmatter schema, copied from `kuhn-1999-developmental-model-critical-thinking.md` and
+`krenn-et-al-2022-scientific-understanding-with-ai.md`), `PLAN-REVISION-3.md` section 2
+(items b and d), `tools/hypothesis-engine/docs/LOOP-LOG.md`'s "2026-09-10, PR #60
+review" and "2026-09-10, ros-11 review items" entries and `RESEARCH-OS-INTEGRATION.md`'s
+own question 19 and holdout-campaign sections, and `learning/research-os/ENGINE-
+BRIDGE.md`. Every new paper's DOI and OpenAlex work id was checked live against
+`api.openalex.org` at intake time (Crossref cross-checked for two records where an
+online-first year diverged from a print-issue year); none are placeholders. `hase-
+bansal-2020-evaluating-explainable-ai.md`'s own arXiv abstract initially returned a
+mismatched record from OpenAlex's `abstract_inverted_index` for a different DOI in the
+same family of works; re-fetched directly from arXiv's own API before the card was
+written, confirming the correct abstract for the intended paper. Two cards, `metz-
+youniss-2003-required-service-heightens-volunteerism.md` and `kuhn-cheney-weinstock-
+2000-development-epistemological-understanding.md`, carry no indexed abstract in
+OpenAlex, Crossref, or Semantic Scholar; each card's own "Verification note" names the
+source used to ground its claims instead. The task brief's own "Muis 2015" target did
+not resolve to an exact classroom-intervention match; the closest verified 2015 Muis
+paper was used in its place and documented as a substitution. No file under `src/` or
+`public/` is touched by this pass, and no file under `tools/hypothesis-engine/hte/` or
+`tools/hypothesis-engine/tests/` changed, so `npm run build`/`test:research-os` and the
+engine's `make test` gate do not apply; `RESEARCH-OS-INTEGRATION.md`'s own new section
+is documentation only. A grep-based self-audit against the full banned-word,
+filler-adverb, AI-tell, antithesis, and em/en-dash rule lists ran against every file
+this pass authored or edited; the pre-commit `agf-lint-voice` hook itself returned 0
+violations on every commit in this pass. Corpus row count (177) matched the corpus file
+count exactly, `find` counted per branch after this pass: 40 educational methods, 37
+HCI, 27 scientific discovery, 15 AI and researchers, 7 teacher workload and adoption, 11
+prerequisite graphs, 14 student research experiences, 7 project-based and inquiry
+learning, 5 writing and argumentation, 10 epistemic cognition, 4 source evaluation.
+
+## PR #87 review: prediction register
+
+Reviewed `feat/hte-prediction-register` (PR #87) against `main` in worktree `~/agfarms/.ros-worktrees/r87`, branch `review/pr87`. Engine-only change: `tools/hypothesis-engine/hte/predict.py` (new), `hte/cli.py` (new `predict register`/`resolve`/`report` subcommands), `docs/PREDICTION.md` (new), `predictions/ledger.jsonl` (new), `tests/test_predict.py` (new), plus regenerated `feed.json`/`feed.xml`/`feed/2026-09.json`. No file under `src/`, `scripts/research-os/`, or `learning/research-os/` in the diff, so `ENGINE-BRIDGE.md`'s contract is unaffected and no `npm ci`/`tsc`/`build`/`test:research-os` gate applies. Full account: `tools/hypothesis-engine/docs/LOOP-LOG.md`'s matching "2026-09-14, PR87 review" entry (leak scan, governance reconciliation against `hte.holdout_ledger`, ruff/pytest gates).
+
+### Fixed
+
+- `tools/hypothesis-engine/tests/test_predict.py`: removed an unused `timezone` import and rewrote a lambda assignment (`to_dict_sorted`) as a `def`, the only two `ruff check` hits inside this PR's own files.
+
+### Verified
+
+- Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
+- `hte.predict`'s forecast ledger and `hte.holdout_ledger`'s ranking ledger stay two distinct sources of truth for two distinct claims (a hypothesis's own `P(h)` versus Elo's relative order); `elo_status` stays sourced from `holdout_ledger.ranking_status` alone, unmodified by this PR.
+- `make test`: 1562 passed, 3 skipped, 1 deselected (a pre-existing flaky live-network test outside this PR's diff).
+
+## ros-11 remaining items
+
+Branch `feat/ros-11-engine-review-items-2` (worktree `~/agfarms/.ros-worktrees/ros11b`), against `main`. Four items land: the fusion stress-test, the Allen-relations check, the CASP-style calibration cadence, and span doc-length validation. Closes the three items the 2026-09-10 "ros-11 review items" entry above left open (item 5, item 7, item 8), plus the `bkt-hte-evidence-span-doc-length` follow-up filed in `BEADS-PENDING.jsonl` after the PR #60 review (item 4's own char_end-against-document-length gap). Engine-only change, no `src/`/`public/` file touched.
+
+- **Fusion stress-test** (Yager 1987, PLAN.md item 5): `hte/fusion_stress.py`, `tests/test_fusion_stress.py` (12 tests), `docs/FUSION-STRESS-2026-09-11.md`. Landed earlier in this branch's history; carried forward through this resume unchanged.
+- **Allen-relations check** (Allen 1983, PLAN.md item 7): `hte/temporal_consistency.py`, `tests/test_temporal_consistency.py` (11 tests), `docs/TEMPORAL-CONSISTENCY.md`. `check_sequence` validates a sequence hypothesis's RELATION slot against its two placements' own intervals.
+- **CASP-style calibration cadence** (PLAN.md item 8): `hte/casp_cadence.py`, `tests/test_casp_cadence.py` (21 tests), `docs/CASP-CADENCE.md`. Imports `hte.holdout_ledger` only (`from . import holdout_ledger`); does not import `hte.predict` and duplicates none of PR #87's own prediction-register logic. `hte.holdout_ledger` stays the single source of truth for ranking-holdout outcomes; `hte.predict`'s `predictions/ledger.jsonl` is a separate, unrelated ledger for a hypothesis's own forecast resolution.
+- **Span doc-length validation** (`bkt-hte-evidence-span-doc-length`): `hte.evidence.EvidenceSpan.doc_length` (`tests/test_evidence.py`) refuses a span whose `char_end` exceeds the stored document length. Wired through both corpus adapters that carry real document text: `hte.corpus.literature.Card.doc_length`/`_build_corpus` (`tests/test_corpus_literature.py`, already covered) and `hte.corpus.younger_dryas.Card.doc_length`/`_build_corpus` (`tests/test_corpus_younger_dryas.py`, two new tests added this pass, `test_younger_dryas_card_doc_length_matches_its_own_raw_file`/`test_younger_dryas_evidence_spans_carry_the_card_doc_length`; the wiring existed on this branch with no dedicated test until this pass closed the gap). Documented in `docs/EVIDENCE-SPAN-DOC-LENGTH.md`.
+
+### Resume note
+
+This branch's own prior run merged `origin/main` and stopped mid-merge, uncommitted, twice: once leaving a clean five-file diff (the CASP-cadence docstring clarification and the `younger_dryas.py` doc-length wiring, plus three new doc files), and a second time with a real conflict in `hte/corpus/literature.py` between this branch's `doc_length` field and `origin/main`'s concurrently-landed `doi_missing` field (PR #114/#119/#120/#122 merged upstream in between). Both sides kept: `Card` on `literature.py` now carries `doc_length` and `doi_missing` together, `_parse_frontmatter` sets both. The merge picked up `data/whats-new.json` (a machine-generated changelog copying commit subjects verbatim, now added to `.voiceignore` for the same reason `LOOP-LOG.md` already is there) and a handful of pre-existing voice-lint hits in merged-in test/docs prose, rewritten by hand.
+
+### Fixed
+
+- `tools/hypothesis-engine/hte/corpus/younger_dryas.py`: removed an unused `other_id` import (pre-existing since PR #81, `ruff check --fix`), the only `ruff` hit in a file this pass touches.
+- `tools/hypothesis-engine/hte/corpus/literature.py`'s `_fetch_card_paths`: its `except urllib.error.URLError` caught neither a raw socket/SSL `TimeoutError` nor `http.client.HTTPException` (`IncompleteRead`'s own base, a proxied or rate-limited connection dropping mid-body) nor `json.JSONDecodeError` (a body arriving truncated but readable), so `test_live_fetch_lists_cards_or_skips_when_offline`'s own documented "skips itself... rather than failing the suite when offline, rate-limited" contract broke under this sandbox's real network conditions (`IncompleteRead` propagated uncaught, `make test` red). Widened to `except (OSError, http.client.HTTPException, json.JSONDecodeError)`, `OSError` being `URLError`'s own base class; the test now skips cleanly.
+
+### Verified
+
+- `make test` (fast profile): 1672 passed, 1 skipped, 18 deselected (`slow`, unchanged from `main`), 0 failed; the skip is `test_live_fetch_lists_cards_or_skips_when_offline` clearing cleanly under this sandbox's live network (a `504 Gateway Timeout` against the GitHub API).
+- `ruff check .`: 53 pre-existing errors elsewhere in the tree (test-file unused imports, none in this pass's four modules or their tests), unchanged by this pass beyond the one fix above.
+- `agf-lint-voice-src check` / `agf-lint-voice check` clean on every file this pass authored, edited, or merged in.
+- `ENGINE-BRIDGE.md` reviewed and left unchanged: none of the four items touch `graph.nodes`/`graph.edges`/`graph.productions`/the outbox table, or any field the bridge's Next.js side reads.

@@ -33,6 +33,7 @@ from .address import (
 from .concepts import ConsensusStatus, Slot, Vocabulary, other_id
 from .evidence import EvidenceItem
 from .hypothesis import Hypothesis, Placement, Sequence
+from .temporal_consistency import flag_hypothesis
 from .timeline import Interval, Resolution, relate
 from .timeline import bin as timeline_bin
 
@@ -269,7 +270,15 @@ def neighbors(h: Hypothesis, vocab: Vocabulary) -> Iterator[Hypothesis]:
     for relation in ALLEN_RELATION_ORDER:
         if relation == seq.relation:
             continue
-        yield Hypothesis.from_sequence(Sequence(first=seq.first, relation=relation, second=seq.second), vocab)
+        # `hte.temporal_consistency.flag_hypothesis`: holding both
+        # placements' own intervals fixed while varying only the claimed
+        # relation means every alternate here but the one `hte.timeline.
+        # relate` would itself derive is inconsistent with those
+        # intervals by construction (PLAN.md section 10 item 7); flagged
+        # on the hypothesis, so the tournament can still weigh an
+        # alternate-ordering claim on its evidence merit while a
+        # downstream reader can see it disagrees with the dates.
+        yield flag_hypothesis(Hypothesis.from_sequence(Sequence(first=seq.first, relation=relation, second=seq.second), vocab))
 
 
 # --------------------------------------------------------------------------

@@ -87,31 +87,46 @@ class EvidenceSpan:
     span`, `HISTORY-HYPOTHESIS-ENGINE-SPEC.md` §3's per-field addition): the
     document it comes from, a human-readable locator inside that document,
     the quoted text, and the exact character range the quote occupies at
-    that locator."""
+    that locator.
+
+    `doc_length` (`bkt-hte-evidence-span-doc-length`, filed as a PR #60
+    review follow-up in `BEADS-PENDING.jsonl`) is the full length of
+    `doc_id`'s own document text, set by the caller whenever that text is
+    on hand at construction time: every corpus adapter under `hte.corpus`
+    and the `hte.roles` LLM-extraction path pass it, each from the same
+    string `char_start`/`char_end` were located against. `None` when the
+    caller has no document text to measure, an ingestion path this module
+    does not control. A span whose `char_end` reads past its own
+    `doc_length` is refused at construction, catching a hallucinated or
+    mis-tracked offset (the LLM-extraction path is the case most exposed
+    to this) before it reaches `hte.belief.score`."""
     doc_id: str
     locator: str
     quote: str
     char_start: int
     char_end: int
+    doc_length: int | None = None
 
     def __post_init__(self) -> None:
         if self.char_start < 0:
             raise ValueError("char_start must be >= 0")
         if self.char_end < self.char_start:
             raise ValueError("char_end must be >= char_start")
-        # TODO(bkt-hte-evidence-span-doc-length, filed BEADS-PENDING.jsonl,
-        # PR #60 review): this checks only internal consistency between
-        # char_start and char_end, never against doc_id's own stored
-        # document length. hte.corpus.Source carries no document text or
-        # length field yet, so there is nothing on hand here to check
-        # against; a span pointing past the end of its own document would
-        # pass today. Needs a document-length store keyed by doc_id before
-        # this can validate for real.
+        if self.doc_length is not None:
+            if self.doc_length < 0:
+                raise ValueError("doc_length must be >= 0")
+            if self.char_end > self.doc_length:
+                raise ValueError(
+                    f"span char_end ({self.char_end}) exceeds doc_id {self.doc_id!r}'s own "
+                    f"stored document length ({self.doc_length}); refusing a span that reads "
+                    "past the end of its own document"
+                )
 
     def to_dict(self) -> dict:
         return {
             "doc_id": self.doc_id, "locator": self.locator, "quote": self.quote,
             "char_start": self.char_start, "char_end": self.char_end,
+            "doc_length": self.doc_length,
         }
 
     @classmethod
@@ -119,6 +134,7 @@ class EvidenceSpan:
         return cls(
             doc_id=d["doc_id"], locator=d["locator"], quote=d["quote"],
             char_start=d["char_start"], char_end=d["char_end"],
+            doc_length=d.get("doc_length"),
         )
 
 

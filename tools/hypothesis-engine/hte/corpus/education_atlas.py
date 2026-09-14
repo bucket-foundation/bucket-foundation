@@ -520,7 +520,7 @@ def _ingest_docs(
             object_id = _detect_indicator(quote, indicator_by_code)
             evidence.append(EvidenceItem(
                 id=f"{slug}-p{i}", kind=EvidenceKind.TEXTUAL, tier=DOC_TIER, source_id=slug,
-                span=EvidenceSpan(doc_id=slug, locator=f"paragraph:{i}", quote=quote, char_start=start, char_end=end),
+                span=EvidenceSpan(doc_id=slug, locator=f"paragraph:{i}", quote=quote, char_start=start, char_end=end, doc_length=len(raw)),
                 provenance="education-atlas-doc-paragraph",
                 actor=other_id(Slot.ACTOR),
                 action=other_id(Slot.ACTION),
@@ -633,7 +633,7 @@ def load(
         evidence.append(EvidenceItem(
             id=f"obs-{row['obs_id']}", kind=EvidenceKind.MODEL_PRIOR,
             tier=TIER_BY_DATASET.get(dataset, Tier.T4), source_id=source_id,
-            span=EvidenceSpan(doc_id=source_id, locator=f"row:{i}", quote=quote, char_start=0, char_end=len(quote)),
+            span=EvidenceSpan(doc_id=source_id, locator=f"row:{i}", quote=quote, char_start=0, char_end=len(quote), doc_length=len(quote)),
             provenance="education-atlas-observation",
             actor=_country_polity_id(code),
             action=action_by_group.get((code, indicator_code), "stagnant"),
@@ -678,7 +678,7 @@ def load(
         ))
         evidence.append(EvidenceItem(
             id=event_id, kind=EvidenceKind.MODEL_PRIOR, tier=PROBLEM_TIER, source_id=problem_source_id,
-            span=EvidenceSpan(doc_id=problem_source_id, locator=f"problem:{row['problem_id']}", quote=quote, char_start=0, char_end=len(quote)),
+            span=EvidenceSpan(doc_id=problem_source_id, locator=f"problem:{row['problem_id']}", quote=quote, char_start=0, char_end=len(quote), doc_length=len(quote)),
             provenance="education-atlas-problem-ground-truth",
             actor=_country_polity_id(code),
             action=action,
