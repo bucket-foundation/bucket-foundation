@@ -2,7 +2,7 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
-## 2026-09-14, tests/COVERAGE.md found stale, a real boilerplate-collision defect fixed
+## 2026-09-14, tests/COVERAGE.md found stale, a real boilerplate-collision defect fixed, cli.py swarm
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
   `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-cov` first.
@@ -14,13 +14,14 @@ Dated entries from the hourly optimization loop. Newest entry first.
   data-growth or no-ground-truth explanation, not a regression).
   `realsweep --corpus education-atlas`, seed 0 only for time: coverage
   0.778, matching tick 5/6/7's own seed-0 baseline exactly.
-- **Test swarm**: `tests/COVERAGE.md` turned out stale, it lists
-  `hte/referee.py` at 63.4% but every module on its top-15 list already
-  carries a swarm file from earlier ticks, and a direct coverage read of
-  `hte/referee.py` alone showed 96%. Regenerated the real report via
-  `make test-cov` (full profile, 1597 passed, 3 failed): two failures are
-  environment gaps (`pdflatex`/`agf-lint-voice` absent in this sandbox,
-  both already documented by earlier ticks); the third is a real defect.
+- **Test swarm, round one**: `tests/COVERAGE.md` turned out stale, it
+  lists `hte/referee.py` at 63.4% but every module on its top-15 list
+  already carries a swarm file from earlier ticks, and a direct coverage
+  read of `hte/referee.py` alone showed 96%. Regenerated the real report
+  via `make test-cov` (full profile, 1597 passed, 3 failed): two
+  failures are environment gaps (`pdflatex`/`agf-lint-voice` absent in
+  this sandbox, both already documented by earlier ticks); the third is
+  a real defect.
 - **Defect found and fixed**: FINDING-2026-09-14-701,
   `test_resolve_credentials_error_never_echoes_a_supplied_key`
   (`tests/swarm-20260914/test_corpus_research_os_outbox_props.py`)
@@ -33,13 +34,30 @@ Dated entries from the hourly optimization loop. Newest entry first.
   excludes a generated secret that collides with the fixed message
   before the real assertion runs, plus a direct regression test
   reproducing the exact case. `fix/hte-research-os-outbox-credential-
-  test-collision`.
-- **PRs opened**: 1 (this entry's own branch).
+  test-collision` (#122, merged).
+- **Test swarm, round two**: with the stale doc corrected, `hte/cli.py`
+  (83.6%, `tests/COVERAGE.md`'s real least-covered module) carried a
+  swarm file (`tests/swarm3/test_cli_props.py`) already but no test at
+  all for four handlers: `_cmd_purge`, `_cmd_predict_register`,
+  `_cmd_predict_resolve`, `_cmd_predict_report`. 7 new tests added.
+  `predict register` always passes `feed_root=None` from the CLI (no
+  `--feed-root` flag exists), so `--kinds ""` (an empty kinds tuple,
+  guaranteed zero predictions) is the one CLI-level invocation safe to
+  make without a real call touching this repository's own `tools/feed/`
+  ledger; confirmed no write there after the run. `hte/cli.py` moves to
+  95%, out of the bottom 15 entirely; regenerated `tests/COVERAGE.md`
+  again after (full profile, 1605 passed, same two environment gaps, no
+  new defect): total 95.3% to 96.7%. `test/hte-cli-purge-predict-
+  coverage-20260914`.
+- **PRs opened**: 2, `fix/hte-research-os-outbox-credential-test-
+  collision` (#122, merged) and `test/hte-cli-purge-predict-coverage-
+  20260914` (this entry's own branch).
 - **PRs reviewed**: 3 open non-draft (#101/#115/#117), all already
   carried a review at their current head sha, re-confirmed via
-  `get_reviews`, no duplicate. This tick's own PR reviewed fresh.
-- **Merged**: this tick's own PR, after self-review (zero secrets, zero
-  High/Critical QA), squash-merged. **Blocked**: nothing.
+  `get_reviews`, no duplicate. Both of this tick's own PRs reviewed
+  fresh.
+- **Merged**: both of this tick's own PRs, after self-review each (zero
+  secrets, zero High/Critical QA), squash-merged. **Blocked**: nothing.
 
 ## 2026-09-14, predict.py swarm, five PRs reviewed, a real key_claims regression found and fixed
 
