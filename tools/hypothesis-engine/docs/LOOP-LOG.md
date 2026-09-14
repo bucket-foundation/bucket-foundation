@@ -2,6 +2,36 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 8, canon_writeback.py swarm, ten PRs re-confirmed
+
+- **Engine health**: fresh sandbox, deps installed. `make test` on
+  `main`: 1474 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30,
+  gate PASS. `realsweep --corpus literature`, 10/10 seeds, 0 crashed,
+  matches the committed reference exactly. `realsweep --corpus
+  production`, 10/10 seeds, 0 crashed, diverges from the committed
+  reference (PR #70 expanded `production-fixtures/` from 12 to 34
+  files after that baseline's own last update, so the same seed draws
+  a bigger subset now); a repeat run matched byte-for-byte apart from
+  timing, no nondeterminism, and no test reads that file, so the stale
+  baseline is not a defect. `realsweep --corpus education-atlas` seed
+  0: coverage 0.78, matching tick 5-7's own result, no crash.
+- **Test swarm**: `hte/canon_writeback.py`, the least-covered module
+  with no swarm file of its own. 8 new tests in `tests/
+  swarm-20260914/test_canon_writeback_props.py`: the `_corpus_loader`/
+  `reconstruct_candidates` raise paths, the tbin-or-address-missing skip
+  and the address-mismatch warn-and-keep branch, `_label_of`'s
+  unset-concept case, `_current_commit_sha`'s subprocess-failure
+  fallback, `render_index`'s default `elo_label` lookup, and
+  `write_back`'s relative-`out_root` resolution. No defect found.
+- **PRs opened**: 1, this tick's own
+  `test/hte-canon-writeback-coverage-20260914` (#104).
+- **PRs reviewed**: 10 open non-draft. #104 (own) fresh review,
+  approve. #101/#99/#97/#95/#93/#91/#90/#89/#87/#86 already carried a
+  review at their current head sha, re-confirmed, no duplicate.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged (`f6f3a98d7`). **Blocked**: nothing.
+
 ## 2026-09-14, tick 7, novelty.py swarm, ten PRs re-confirmed, education-atlas seed 0 rerun
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
