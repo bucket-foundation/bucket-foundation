@@ -2,6 +2,45 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, PR87 review
+
+- **PR #87 reviewed and merged** (`feat/hte-prediction-register`,
+  "prediction register with dated forecasts, resolution scoring"),
+  worktree `.ros-worktrees/r87` per the review protocol. Merged
+  `origin/main` first (13 files, no conflicts: the swarm-20260914 test
+  batch, `provenance.py`'s tick-12 fix, `holdout_ledger.py` untouched).
+- **Leak scan**: full diff clean, no keys, `.env` values, IPs, non-public
+  hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute
+  `/home/gian` paths, or Claude session URLs in file content.
+- **Governance**: `hte.predict`'s register (claim/discovery/sequence
+  forecasts, Brier-scored on resolution) and `hte.holdout_ledger`'s
+  ranking-holdout ledger (Elo tournament-order verification, PR #60)
+  cover two distinct claims and stay two distinct ledgers by design:
+  `predictions/ledger.jsonl` scores a hypothesis's own `P(h)` against
+  future evidence, `hte/data/ranking-holdout-ledger.jsonl` scores
+  whether Elo's relative order held up. Neither reads or writes the
+  other; `elo_status`/`unvalidated_tournament_ranking` stays sourced
+  from `holdout_ledger.ranking_status` alone (`MIN_VERIFIED_FOR_LABEL
+  = 20`, untouched by this PR). No reconciliation defect found.
+  Resolution scoring uses `(P - observed)^2`, the same Brier convention
+  `hte.calibrate.brier_score` already carries (`main.tex` §9); no new
+  scoring rule introduced, so no new citation needed against the
+  Brier/Murphy cards on PR #90's still-open branch. No forecast field
+  carries learner data (`meta` holds slots, intervals, evidence ids
+  only). `hte.canon_writeback`'s write-back gate is untouched by this
+  PR's diff.
+- **Gates**: `ruff check` on this PR's own files (`hte/predict.py`,
+  `hte/cli.py`, `tests/test_predict.py`) found 2 (an unused `timezone`
+  import and an `E731` lambda assignment, both in the test file);
+  fixed. The other 53 hits on the merged tree are pre-existing debt in
+  swarm test directories this PR does not touch. `make test` / full
+  suite: 1562 passed, 3 skipped, 1 deselected
+  (`test_corpus_literature.py::test_live_fetch_lists_cards_or_skips_when_offline`,
+  a live GitHub API call that hung past its own `RuntimeError`/
+  `URLError` catch on this box's network; pre-existing, outside this
+  PR's diff, not a regression). `agf-lint-voice check` /
+  `agf-lint-voice-src check`, 0 violations.
+
 ## 2026-09-14, tick 12, provenance.py swarm and fix, thirteen PRs re-confirmed
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
@@ -124,6 +163,61 @@ Dated entries from the hourly optimization loop. Newest entry first.
   carried a review at their current head, re-confirmed, no duplicate.
 - **Merged**: this tick's own PR, after self-review (zero secrets, zero
   High/Critical QA), squash-merged. **Blocked**: nothing.
+
+## 2026-09-14, sacred_history.py swarm and a quiet PR-review pass
+
+- **Write access**: confirmed via a dry-run push probe.
+- **Engine health**: `make test` on `main` before any change, 1406 passed,
+  0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` fake mode, 30/30, gate
+  PASS, no nondeterminism on a repeat of seeds 0-4. `realsweep --seeds
+  0-9`: `literature` matched the committed `runs/realsweep/literature/
+  SUMMARY.md` exactly, seed by seed; `production` diverged from its own
+  committed reference, traced to the reference predating the
+  ground-truth-enrichment bead (prod-013..034), not a regression;
+  `education-atlas` (full 25-country corpus) ran ~40 minutes in this
+  sandbox, 10/10 seeds, 0 crashed, coverage 0.56-1.0 across seeds. No
+  defect in any of the three.
+- **Test swarm**: `hte/corpus/sacred_history.py` (88.6%, no swarm file;
+  `hte/referee.py`'s own low score is a known environment gap, missing
+  `agf-lint-voice`/`pdflatex`, already swarm-covered). 17 new tests in
+  `tests/swarm-20260914/test_corpus_sacred_history_props.py`
+  (`_locate`'s not-found path, `_tradition_spans`'s undated-event skip,
+  `_correlation_interval`'s one-span-known/neither-known branches,
+  `_build_sources`'s tradition-missing skip and directed-edge branches).
+  Module coverage 88.6% to 99%. No defect. PR #96, opened, reviewed
+  (zero secrets, zero QA findings), squash-merged (`3125314d3`).
+- **PR reviews**: the six other open non-draft PRs (#90, #89, #87, #86,
+  #93, #91) each already carried a review at their current head sha from
+  a concurrent `bkt-hte-optimize-loop` session running this same period;
+  no new commit landed on any of them, so none needed a fresh pass.
+- **Blocked**: nothing.
+
+## 2026-09-14, question_map.py swarm and PR #94 merge
+
+- **Write access**: confirmed via a dry-run push probe.
+- **Engine health**: `make test` on `main` before any change, 1390 passed,
+  0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` fake mode, 30/30, gate
+  PASS, no nondeterminism on repeat. `realsweep --seeds 0-9` over
+  `education-atlas`/`production`/`literature`: 0 of 30 crashed; per-seed
+  `coverage_of_truth` spread matches prior ticks' documented baseline, not
+  a new defect. `younger-dryas` has no `realsweep` entry yet, skipped.
+- **Test swarm**: `hte/question_map.py` (90% branch coverage, no swarm
+  file; `hte/propagate.py`, the other named candidate, already at 94%).
+  New `tests/swarm-20260914/test_question_map_props.py`, 16 tests over
+  `DiffReport.lines()`'s vanished/reworded/bad-corpus bodies, a real
+  vanished/reworded `compute_diff` result, `_format_id_ranges([])`,
+  `apply_to_doc`'s missing-heading `ValueError`, `_live_corpus_names()`,
+  `cmd_write`'s stderr drift report, and `main()`'s CLI routing plus its
+  `__main__` guard. `hte/question_map.py` now 100% branch coverage. No
+  defect. PR #94, opened, reviewed, squash-merged (`ca44567b9`).
+- **PR reviews**: the six open non-draft PRs (#90, #89, #87, #86, #93, #91)
+  each already carry a review at their current head sha from a concurrent
+  or prior tick today; no new commit landed on any since, so none needed
+  a fresh pass. None is a `fix/hte-`/`test/hte-` PR of this loop's own.
+- **Blocked**: nothing.
+
 
 ## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
 
