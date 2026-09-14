@@ -2,6 +2,33 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 18, tournament.py swarm
+
+- **Engine health**: fresh sandbox install. `make test` on `hte/
+  integration` (`444fa3525`): 1701 passed, 0 failed, matching tick 17's
+  baseline. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on a seeds-0-2 repeat. `realsweep --corpus
+  production`/`literature`, 0/10 crashed each. `education-atlas` seed 0
+  (479.8s): coverage 0.778, matching every prior tick's baseline.
+  `younger-dryas` still unregistered in `REALSWEEP_BUILDERS`.
+- **Test swarm**: `hte/tournament.py` (170 lines) was the smallest module
+  with no swarm file at all (`artifacts.py`, `calibrate.py`,
+  `casp_cadence.py`, `diagnostics.py`, `fusion_stress.py` are the other
+  five; `tests/COVERAGE.md` is stale and names none of the six). 13 new
+  Hypothesis tests in `tests/swarm-20260914/test_tournament_props.py`:
+  seed-formula fidelity, a zero-sum invariant (total Elo conserved across
+  every round regardless of judge output, unstated by any existing
+  test), `judge_batch` equivalence, `critic_filter` order/report
+  preservation, over a generated population. No defect found.
+  `test/hte-tournament-coverage-20260914`; `make test` after: 1714
+  passed. `agf-lint-voice{,-src}` not installed; hand-checked the new
+  file against every voice rule, clean.
+- **PRs**: opened 1 (this entry's own commit). **Reviewed**: none newly
+  unreviewed (#132/#127 unchanged at tick 14's own reviewed head shas;
+  #134 is batch bookkeeping). **Batch PR**: #134 at 7 commits ahead of
+  `dev`, refreshes to 8 once this tick's PR merges. **Blocked**: nothing.
+
 ## 2026-09-14, tick 17, paper.py digest-helper swarm
 
 - **Engine health**: fresh sandbox install. `make test` on `hte/
