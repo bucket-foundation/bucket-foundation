@@ -2,6 +2,35 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 17, paper.py digest-helper swarm
+
+- **Engine health**: fresh sandbox install. `make test` on `hte/
+  integration` (`c66161f6a`): 1695 passed, 0 failed, matching tick 16's
+  baseline. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on a seeds-0-2 repeat. `realsweep --corpus
+  production`/`literature`, 0/10 crashed each. `education-atlas` seed 0
+  (480.9s): coverage 0.778, matching every prior tick's baseline.
+  `younger-dryas` still unregistered in `REALSWEEP_BUILDERS`.
+- **Test swarm**: every priority-list module already has a swarm file.
+  Regenerated real coverage (full hypothesis profile, 1108s):
+  `hte/corpus/fixtures.py` and `hte/paper.py` tied lowest at 91%;
+  `fixtures.py`'s one gap is a low-value defensive raise, so picked
+  `hte/paper.py`'s `_deduped_posteriors` (untested loop body) and
+  `_robustness_rows` (untested null-fraction branch). Six new tests in
+  `tests/swarm-20260914/test_paper_digest_props.py`, no defect found.
+  Same run surfaced two pre-existing failures unrelated to this change,
+  both `FileNotFoundError: agf-lint-voice`, an environment gap (binary
+  not installed here), neither in `make test`'s own fast profile.
+  `test/hte-paper-digest-coverage-20260914`; `make test` after: 1701
+  passed. Hand-checked the new file against `CLAUDE.md` voice rules
+  (`agf-lint-voice{,-src}` not installed): clean.
+- **PRs**: opened 1 (this entry's own commit). **Reviewed**: none newly
+  unreviewed (#132/#127 unchanged since tick 14; #134 is this loop's own
+  batch bookkeeping, not a review target). **Batch PR**: #134 unchanged,
+  6 commits ahead of `dev`, same root-caused `dirty` state. **Blocked**:
+  nothing.
+
 ## 2026-09-14, tick 16, temporal_consistency swarm
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
