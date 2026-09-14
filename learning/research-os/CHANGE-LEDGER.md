@@ -3246,3 +3246,13 @@ Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-l
 ### Verified
 
 `npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on every touched file. `curl` confirmed `/` and `/research-os` return 200 on the running dev server (port 3100) with no restart. Playwright screenshots verified the headline, panel peek, and globe visibility (top/mid/footer) match the founder's spec.
+
+## Research OS decorative globe: WebGL context survival
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+`src/components/canon-globe/CanonGlobe.tsx` is the repo's only `<Canvas>`/`gl={{...}}` config, shared by the decorative `/research-os` background and the interactive `/canon/search` tool; their gl attributes were already identical. The real gap was `src/components/FixedCanonGlobeBackground.tsx`'s `filter: blur(1.6px)` on the Canvas's ancestor, a known WebGL-context-creation risk on constrained renderers; removed it, kept the dimming `opacity`. `src/components/canon-globe/GlobeErrorBoundary.tsx` now `console.warn`s on catch, still renders nothing visual. `src/app/research-os/page.tsx`: added `priority` to the first Five States row's image (LCP fix).
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright reproduction (Chromium 1243, 1950x1160, `--disable-gpu --use-angle=swiftshader` and `--disable-gpu --use-gl=swiftshader`) rendered a live-context `<canvas>` with zero `pageerror`s on both `/canon/search` and `/research-os`, before and after; the founder's exact Brave failure did not reproduce locally.

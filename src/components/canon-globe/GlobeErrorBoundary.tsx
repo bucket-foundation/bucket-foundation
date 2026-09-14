@@ -3,11 +3,13 @@
 import { Component, type ReactNode } from "react";
 
 /**
- * Silent error boundary around the WebGL Canvas. If Three.js fails to
- * acquire a context (browser blocks WebGL via fingerprint shields,
- * hardware acceleration off, sandboxed renderer, etc.), the boundary
- * renders empty space where the globe would have been, no message,
- * no fallback graphic. Rest of the page keeps working.
+ * Error boundary around the WebGL Canvas. If Three.js fails to acquire
+ * a context (browser blocks WebGL via fingerprint shields, hardware
+ * acceleration off, sandboxed renderer, etc.), the boundary renders
+ * empty space where the globe would have been, no visual fallback.
+ * The rest of the page keeps working. A console.warn is the only
+ * trace, so a failed context shows up in devtools without ever
+ * changing what the page looks like.
  */
 export class GlobeErrorBoundary extends Component<
   { children: ReactNode },
@@ -19,8 +21,8 @@ export class GlobeErrorBoundary extends Component<
     return { hasError: true };
   }
 
-  componentDidCatch() {
-    // Silent. Don't log to console. Don't render anything.
+  componentDidCatch(error: Error) {
+    console.warn("[canon-globe] render error, falling back to empty space:", error);
   }
 
   render() {

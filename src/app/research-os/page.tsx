@@ -162,6 +162,10 @@ export default function ResearchOsPage() {
                     width={960}
                     height={600}
                     sizes="(min-width: 768px) 50vw, 100vw"
+                    // The first row's image is the page's LCP element;
+                    // mark it priority so Next preloads it instead of
+                    // lazy-loading a hero-sized image below the fold check.
+                    priority={i === 0}
                     className="w-full h-auto rounded-md border border-[color:var(--hairline)] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
                   />
                 </div>

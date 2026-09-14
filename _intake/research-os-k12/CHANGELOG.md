@@ -2587,3 +2587,25 @@ Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Founder re
 ### Verified
 
 `npx tsc --noEmit`, `npx eslint` on all four touched files, and `agf-lint-voice-src check` on all four files: all clean. `curl` confirmed `/` and `/research-os` return 200 on the running dev server (port 3100, hot-reloaded, no restart). Playwright screenshots at 1280x800 and 1440x900 confirm the headline holds one line and the globe dome plus panel top band are visible in the first screen; 400x800 confirms a clean two-line wrap with `document.documentElement.scrollWidth === 400` (no horizontal scroll). Research OS scroll screenshots at scrollY 0, half, and bottom confirm the globe is visible, blurred, and dimmed at the top, mid-scroll, and over the footer.
+
+## Research OS decorative globe: WebGL context survival
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Founder report: Brave threw `Error: Error creating WebGL context` from `new WebGLRenderer` on `/research-os`, while the same R3F globe component rendered fine on `/canon/search`.
+
+### Investigated
+
+- `src/components/canon-globe/CanonGlobe.tsx` is the only `<Canvas>` in the codebase and the only `gl={{...}}` config; both the decorative `/research-os` background and the interactive `/canon/search` tool render through this one component. Their Canvas gl attributes (`antialias`, `alpha`, `powerPreference`, `dpr`, `frameloop`, camera) are identical by construction; there is no `failIfMajorPerformanceCaveat`, `preserveDrawingBuffer`, or custom gl factory anywhere in the repo, and each page mounts exactly one `<canvas>` (confirmed via a live DOM query), not two.
+- The one real difference between the two mounts: `src/components/FixedCanonGlobeBackground.tsx`'s wrapper applied `filter: blur(1.6px)` to the Canvas's ancestor div; the interactive card has no such filter. A CSS `filter` on a WebGL canvas's ancestor forces the browser to promote it into its own compositing layer, a path where a sandboxed or hardware-blocklisted renderer can refuse to hand WebGL a context. Removed the filter; `opacity: 0.55` alone carries the dimming, with no compositing-layer promotion of that kind.
+- `src/components/canon-globe/GlobeErrorBoundary.tsx`: added a `console.warn` in `componentDidCatch` so a failed context leaves a devtools trace. Still renders nothing visual on error, per the founder's direction against any visual fallback.
+
+### Reproduced
+
+Playwright, Chromium 1243, 1950x1160, both flag sets the founder asked for (`--disable-gpu --use-angle=swiftshader` and `--disable-gpu --use-gl=swiftshader`), plus two harder-forced-software variants. Before and after the fix, both `/canon/search` and `/research-os` rendered a `<canvas>` with a live `webgl`/`webgl2` context and zero `pageerror` events in every config tried; the exact Brave failure did not reproduce locally, Brave's own fingerprinting protections are not fully replicable via Chromium launch flags. The filter removal is the one concrete, verifiable difference closed between the two mounts.
+
+### Edited
+
+- `src/app/research-os/page.tsx`: added `priority` to the first Five States row's image (the page's LCP element, flagged by the console).
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint` on the three touched files, and `agf-lint-voice-src check` on the three touched files: all clean.
