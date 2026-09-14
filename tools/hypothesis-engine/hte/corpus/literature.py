@@ -310,6 +310,7 @@ end: 147 cards, six of them degraded and named in that log line.
 from __future__ import annotations
 
 import hashlib
+import http.client
 import json
 import logging
 import os
@@ -402,10 +403,15 @@ class Card:
     `hte.corpus.Corpus`. `batch` names which card root (position in a
     `load_raw(cards_dir=[...])` call's own list, `"batch-1"` for a single
     directory) this card was read from; see this module's own top
-    docstring, "Batches.\" `doi_missing` is `True` when the card's own
-    frontmatter carried no real `doi:` (an absent field or an explicit
-    `doi: null`, the six-card real-corpus gap this module's own top
-    docstring, "DOI-less cards," describes): `doi` then holds
+    docstring, "Batches." `doc_length` is the full length of this card's
+    own raw file text (`bkt-hte-evidence-span-doc-length`), the same
+    string `key_claims[].char_start`/`char_end` are located against
+    (`_parse_frontmatter`'s own comment, "all land on `raw`"); `None` only
+    for a `Card` built by hand outside `_parse_frontmatter`, never for one
+    this module's own parse path produces. `doi_missing` is `True` when
+    the card's own frontmatter carried no real `doi:` (an absent field or
+    an explicit `doi: null`, the six-card real-corpus gap this module's
+    own top docstring, "DOI-less cards," describes): `doi` then holds
     `_fallback_doi`'s own stable `nodoi:`-prefixed id instead of a real
     DOI, and every downstream reader that caps or flags on this field
     (`_evidence_tier`, `_build_corpus`'s own `EvidenceItem.views`) treats
@@ -421,6 +427,7 @@ class Card:
     research_questions: tuple[str, ...]
     how_it_bears_on_research_os: str
     batch: str = "batch-1"
+    doc_length: int | None = None
     doi_missing: bool = False
 
     @property
@@ -739,7 +746,7 @@ def _parse_frontmatter(raw: str, relative_path: str, batch: str = "batch-1") -> 
         doi=doi, title=title, authors=authors, year=year, venue=venue,
         relative_path=relative_path, why_it_matters=why_it_matters, key_claims=key_claims,
         research_questions=research_questions, how_it_bears_on_research_os=how_it_bears,
-        batch=batch, doi_missing=doi_missing,
+        batch=batch, doc_length=len(raw), doi_missing=doi_missing,
     )
 
 
@@ -1129,6 +1136,7 @@ def _build_corpus(cards: list[Card]) -> Corpus:
                     doc_id=card.doi,
                     locator=f"{card.relative_path}:key_claims[{i}] (lines {claim.line_start}-{claim.line_end})",
                     quote=claim.text, char_start=claim.char_start, char_end=claim.char_end,
+                    doc_length=card.doc_length,
                 ),
                 provenance=EVIDENCE_PROVENANCE_TAG,
                 actor=actor, action=action, object=obj, place=place, mechanism=mechanism,
@@ -1193,7 +1201,18 @@ def _fetch_card_paths(ref: str) -> list[str]:
     try:
         with urllib.request.urlopen(request, timeout=30) as response:
             tree = json.loads(response.read().decode("utf-8"))
-    except urllib.error.URLError as exc:
+    except (OSError, http.client.HTTPException, json.JSONDecodeError) as exc:
+        # `OSError` covers `urllib.error.URLError` (its own base class)
+        # plus a raw socket/SSL `TimeoutError` a read-phase timeout can
+        # raise unwrapped past `urlopen`'s own connect-phase handling;
+        # `http.client.HTTPException` (its `IncompleteRead` subclass, a
+        # proxied or rate-limited connection dropping mid-body) and
+        # `json.JSONDecodeError` (a body that arrived truncated but
+        # readable) name the other two real network failures this
+        # function already promises to surface as one `RuntimeError`
+        # shape, the one a caller that skips a live-fetch check (`tests/
+        # test_corpus_literature.py::
+        # test_live_fetch_lists_cards_or_skips_when_offline`) catches.
         raise RuntimeError(
             f"literature adapter: could not list {GITHUB_INTAKE_PATH!r} at ref {ref!r}: {exc}"
         ) from exc

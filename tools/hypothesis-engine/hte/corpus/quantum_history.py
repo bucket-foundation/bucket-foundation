@@ -233,7 +233,7 @@ def _parse_card(path: Path, vocab: Vocabulary) -> tuple[Source, list[EvidenceIte
         year = _parse_year(bullet)
         evidence.append(EvidenceItem(
             id=f"{doc_id}-ms-{i}", kind=EvidenceKind.TEXTUAL, tier=tier, source_id=doc_id,
-            span=EvidenceSpan(doc_id=doc_id, locator=f"milestone-timeline:{i}", quote=bullet, char_start=start, char_end=end),
+            span=EvidenceSpan(doc_id=doc_id, locator=f"milestone-timeline:{i}", quote=bullet, char_start=start, char_end=end, doc_length=len(raw)),
             provenance="quantum-history-card-milestone",
             **_extract_slots(bullet, vocab),
         ))
@@ -247,7 +247,7 @@ def _parse_card(path: Path, vocab: Vocabulary) -> tuple[Source, list[EvidenceIte
         tier = _parse_tier(bullet)
         evidence.append(EvidenceItem(
             id=f"{doc_id}-claim-{i}", kind=EvidenceKind.TEXTUAL, tier=tier, source_id=doc_id,
-            span=EvidenceSpan(doc_id=doc_id, locator=f"key-graded-claims:{i}", quote=bullet, char_start=start, char_end=end),
+            span=EvidenceSpan(doc_id=doc_id, locator=f"key-graded-claims:{i}", quote=bullet, char_start=start, char_end=end, doc_length=len(raw)),
             provenance="quantum-history-card-claim",
             **_extract_slots(bullet, vocab),
         ))
@@ -272,7 +272,7 @@ def _parse_chapter(path: Path, vocab: Vocabulary) -> tuple[Source, list[Evidence
         start, end = _locate(raw, bullet)
         evidence.append(EvidenceItem(
             id=f"{doc_id}-takeaway-{i}", kind=EvidenceKind.TEXTUAL, tier=Tier.T3, source_id=doc_id,
-            span=EvidenceSpan(doc_id=doc_id, locator=f"key-takeaways:{i}", quote=bullet, char_start=start, char_end=end),
+            span=EvidenceSpan(doc_id=doc_id, locator=f"key-takeaways:{i}", quote=bullet, char_start=start, char_end=end, doc_length=len(raw)),
             provenance="quantum-history-chapter-takeaway",
             **_extract_slots(bullet, vocab),
         ))

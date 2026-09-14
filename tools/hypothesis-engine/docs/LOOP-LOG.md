@@ -2,6 +2,48 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, ros-11 remaining items resumed and closed
+
+- **Scope**: `feat/ros-11-engine-review-items-2`, the three items the
+  2026-09-10 "ros-11 review items" entry below left open (fusion
+  stress-test, Allen-relations check, CASP-style calibration cadence),
+  plus the `bkt-hte-evidence-span-doc-length` follow-up filed after the
+  PR #60 review. Resumed from a prior run that stopped uncommitted twice
+  after merging `origin/main`, the second time on a real conflict in
+  `hte/corpus/literature.py` between this branch's `Card.doc_length` and
+  `origin/main`'s concurrently-landed `Card.doi_missing` (PR #114/#119/
+  #120/#122). Resolved keeping both fields; `_parse_frontmatter` sets
+  both on every real parse.
+- **Test-coverage gap found and closed**: `hte.corpus.younger_dryas`
+  carried the same `doc_length` wiring as `hte.corpus.literature` (`Card.
+  doc_length`, `_build_corpus`'s `EvidenceSpan(doc_length=card.
+  doc_length)`) with no dedicated test. Two new tests in `tests/
+  test_corpus_younger_dryas.py` close it, mirroring `test_corpus_
+  literature.py`'s own pair.
+- **Merge-borne voice-lint hits**: the merge picked up `data/
+  whats-new.json` (a machine-generated changelog copying commit subjects
+  verbatim; added to `.voiceignore`, the same rationale `LOOP-LOG.md`
+  already carries there) and a handful of pre-existing antithesis/adverb
+  hits in merged-in test and findings prose, rewritten by hand.
+- **Live-fetch flake fixed**: `hte/corpus/literature.py`'s
+  `_fetch_card_paths` caught only `urllib.error.URLError`, so a real
+  `http.client.IncompleteRead` (a dropped connection mid-body) propagated
+  uncaught past `test_live_fetch_lists_cards_or_skips_when_offline`'s own
+  offline-skip contract and turned `make test` red under this sandbox's
+  network. Widened to `except (OSError, http.client.HTTPException, json.
+  JSONDecodeError)`; the test now skips cleanly on a live `504` too.
+- **Gates**: `make test` (fast profile): 1672 passed, 1 skipped (the
+  live-fetch test above), 18 deselected (`slow`, unchanged from
+  `main`), 0 failed. `ruff check .`: 53 pre-existing errors elsewhere in
+  the tree (unchanged by this pass beyond one unused-import fix in
+  `hte/corpus/younger_dryas.py`, pre-existing since PR #81). `agf-lint-
+  voice-src check` / `agf-lint-voice check` clean on every file this
+  pass authored, edited, or merged in. `ENGINE-BRIDGE.md` reviewed and
+  left unchanged, no field it covers is touched.
+- **PR opened**: `feat/ros-11-engine-review-items-2` against `main`, not
+  merged, per task instructions.
+- **Blocked**: nothing.
+
 ## 2026-09-14, tick 13, a concurrent session duplicated this tick's own swarm target, PR #123 reviewed
 
 - **Engine health**: fresh sandbox install. `make test` on `main`

@@ -31,6 +31,16 @@ def test_sacred_history_evidence_spans_are_valid_and_anchored():
         assert raw[e.span.char_start:e.span.char_end] == e.span.quote
 
 
+def test_sacred_history_evidence_spans_carry_doc_length():
+    # bkt-hte-evidence-span-doc-length: every span this adapter builds
+    # knows its own document's full length (the raw sacred-history.json
+    # text every span is located against), not just its own char range.
+    corpus = sacred_history.ingest()
+    raw = sacred_history.DEFAULT_CORPUS_PATH.read_text(encoding="utf-8")
+    for e in corpus.evidence:
+        assert e.span.doc_length == len(raw)
+
+
 def test_sacred_history_stemma_parents_reference_real_sources_and_no_self_loop():
     corpus = sacred_history.ingest()
     for source in corpus.sources.values():

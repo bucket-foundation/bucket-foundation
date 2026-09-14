@@ -14,6 +14,8 @@ hte = "hte.cli:main"
 hte-pipeline = "hte.cli_pipeline:main"
 hte-synth = "hte.cli_synth:main"
 hte-serve = "hte.serve:main"
+hte-fusion-stress = "hte.fusion_stress:main"
+hte-casp-cadence = "hte.casp_cadence:main"
 
 [tool.setuptools.packages.find]
 include = ["hte", "hte.*"]

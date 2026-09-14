@@ -86,6 +86,21 @@ def test_frontmatter_fields_parsed(cards):
     assert len(bloom.research_questions) == 2
 
 
+def test_card_doc_length_matches_its_own_raw_file(cards):
+    # bkt-hte-evidence-span-doc-length: every Card this module's own parse
+    # path produces carries the length of its own raw file text, the same
+    # string its key_claims' char_start/char_end are located against.
+    bloom = _card(cards, "bloom-1984")
+    raw = (FIXTURES_DIR / bloom.relative_path).read_text()
+    assert bloom.doc_length == len(raw)
+
+
+def test_evidence_item_spans_carry_the_card_doc_length(corpus):
+    for item in corpus.evidence:
+        assert item.span.doc_length is not None
+        assert item.span.char_end <= item.span.doc_length
+
+
 def test_quoted_title_with_embedded_quotes_is_unescaped():
     # not in the 6-card fixture subset, but the escape case this module's
     # own docstring names (Deci and Ryan 2000); regression-tested directly
@@ -312,8 +327,8 @@ def test_load_reads_a_real_card_whose_key_claims_wrap(tmp_path):
 
 def test_wrapped_authors_entry_is_also_folded_correctly():
     # `_parse_list` shares `_iter_list_item_spans` with `_parse_claims`;
-    # a wrapped `authors:` entry must read as one joined name, not vanish
-    # the same way a wrapped claim used to.
+    # a wrapped `authors:` entry must read as one joined name. A wrapped
+    # claim vanished the same way before that fix.
     raw = _MULTILINE_CLAIMS_CARD.replace(
         '  - "Author, A."\n', '  - "Author, A. and an Additional\n    Long Coauthor Name, B."\n',
     )
@@ -322,10 +337,10 @@ def test_wrapped_authors_entry_is_also_folded_correctly():
 
 
 def test_unterminated_quoted_claim_is_skipped_not_crashed():
-    # A missing closing quote anywhere in the field (a real authoring
-    # error, not this module's own concern to repair) must not raise or
-    # hang; it is read as zero further items rather than a partial,
-    # truncated one.
+    # A missing closing quote anywhere in the field is a real authoring
+    # error; repairing it is outside this module's own concern. Parsing
+    # must not raise or hang: the malformed entry reads as zero further
+    # items, the source of the ValueError raised below.
     raw = _MULTILINE_CLAIMS_CARD.replace(
         '  - "The first claim wraps across two\n'
         '    physical lines before its own closing quote."\n'
