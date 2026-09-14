@@ -188,19 +188,41 @@ export default function ResearchOsPage() {
           § status
         </div>
         <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Design, iteration 2, September 2026. On main today: frontier-backward
-          routing with confidence flags on a weak edge, a diagnostic probe for
-          a cold-start learner, the four-tool workspace (find, quote, check,
-          organize) with every contract enforced in code, a teacher review
-          queue and class view with an accept path, an engine bridge covered
-          by tests, self-service export and delete of a learner&apos;s own
-          data, and a consent gate in front of every learner-authored write.
+          Design, iteration 3, September 2026. On main today: frontier-backward
+          routing with confidence flags on every edge (
+          <code className="text-[13px]">ROUTING.md</code>), a diagnostic probe
+          for a cold-start learner, the four-tool workspace with every
+          contract enforced in code (
+          <code className="text-[13px]">WORKSPACE.md</code>), cognitive
+          forcing before a Check verdict reveals with a calibration record,
+          and faded guidance with worked examples for a low-prior-knowledge
+          learner (<code className="text-[13px]">GUIDANCE.md</code>).
+        </p>
+        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+          Also on main: lateral reading with an independent second source
+          before a verdict reveals (
+          <code className="text-[13px]">LATERAL-READING.md</code>), a
+          production provenance guard with duplicate detection and a
+          counter-evidence field (
+          <code className="text-[13px]">PRODUCTION-GUARD.md</code>), a
+          teacher review queue and class view with an accept path (
+          <code className="text-[13px]">TEACHER-LAYER.md</code>), a OneRoster
+          CSV roster importer (<code className="text-[13px]">ROSTER.md</code>
+          ), a consent gate and profile with self-service privacy export and
+          delete, an engine bridge with a production outbox and a campaign
+          caller (<code className="text-[13px]">ENGINE-BRIDGE.md</code>), a
+          canon sign-off tool (
+          <code className="text-[13px]">tools/canon-pipeline/SIGNOFF.md</code>
+          ), and a pre-registration draft (
+          <code className="text-[13px]">study/</code>).
         </p>
         <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
           Not yet on main: applying an accepted production to the live
-          database, roster sync from a school system, verified parental
-          consent, a payment to a minor contributor, and canon write-back
-          without a human sign-off.
+          database, a Clever or ClassLink roster connector, verified parental
+          consent, a payment to a minor contributor, an LLM-inferred
+          prerequisite edge applied to the graph without review (the
+          inference script writes a proposal only, for a human to approve),
+          and a partner school.
         </p>
         <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
           Grades 3 to 5 (why the sky is blue) and the history of quantum
@@ -213,7 +235,17 @@ export default function ResearchOsPage() {
           <code className="text-[13px]">learning/research-os/</code> and{" "}
           <code className="text-[13px]">_intake/research-os-k12/</code>.
           Pilot classrooms, a pre-registered study of the four-tool constraint,
-          and a state-validation paper come before any wider release.
+          and a state-validation paper come before any wider release.{" "}
+          <a
+            href="https://github.com/bucket-foundation/bucket-foundation/blob/main/learning/research-os/PLAN-REVISION-3.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+          >
+            Read the plan
+          </a>{" "}
+          for the fuller account of what shipped this pass and what stays
+          open.
         </p>
       </div>
     </main>

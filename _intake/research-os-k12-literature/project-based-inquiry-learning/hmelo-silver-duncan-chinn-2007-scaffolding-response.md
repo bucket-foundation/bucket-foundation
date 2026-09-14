@@ -11,6 +11,10 @@ url: "https://doi.org/10.1080/00461520701263368"
 openalex_id: "https://openalex.org/W1965299423"
 branch: "project-based-inquiry-learning"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-18fa77f1996a)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/cognitive-load/primary-papers.yaml (id bkt-c5fafa2790f1, Sweller 1988)"
 why_it_matters: >
   The direct reply to Kirschner, Sweller, and Clark (2006), arguing that paper conflates
   problem-based learning (PBL) and inquiry learning (IL) with unguided discovery learning,

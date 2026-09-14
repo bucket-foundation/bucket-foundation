@@ -10,6 +10,10 @@ url: "https://doi.org/10.1187/cbe.14-06-0099"
 openalex_id: "https://openalex.org/W2126394636"
 branch: "student-research-experiences"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-3c594b989472)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml (id bkt-25a39cdf1218, Deci and Ryan 2000)"
 why_it_matters: >
   Argues a course-based undergraduate research experience (CURE) reaches a wider and more
   representative slice of students than an independent research internship does, because a

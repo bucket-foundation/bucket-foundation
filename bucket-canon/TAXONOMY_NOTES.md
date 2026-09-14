@@ -174,3 +174,19 @@ boundary-call sections assign to `07-mind/`; neither branch's rule
 treats it as a limit on what any searcher can do in principle. A one-line redirect stays at the old
 `04-information/information-foraging/` path; the `sub-outcomes/education/`
 `depends_on_foundation` pointers above were updated to match.
+
+### 2026-09-11: new `07-mind/cognitive-load/` subfolder
+
+Canon intake pass three (`intake/ros-canon-promotion-3`) added
+`07-mind/cognitive-load/`, seeded with Sweller 1988 ("Cognitive Load
+During Problem Solving: Effects on Learning," DOI
+`10.1207/s15516709cog1202_4`). No existing subfolder named the working-
+memory-capacity mechanism this paper states: `memory-systems/` holds the
+retrieval-practice and hippocampal-lesion primaries, a retrieval
+mechanism; `cognition-and-automation/` holds the automation-skill-decay
+primary, a different mechanism entirely. A new, narrowly named subfolder
+follows the precedent `memory-systems/`, `curiosity-and-motivation/`, and
+`cognition-and-automation/` already set: one mechanism per folder rather
+than a shared catch-all. Filed under **Decision theory and cognition**
+alongside those three, the same sub-domain `07-mind/README.md` already
+uses for this class of promoted folder.
