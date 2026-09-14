@@ -66,3 +66,13 @@ Research OS's teacher-review step is evaluative rather than dialogic, carrying n
 peer debate this piece treats as the mechanism of the benefit.
 
 Cross-indexed against: `writing-and-argumentation/berland-reiser-2009-argumentation-explanation.md`.
+
+**Foundations this card rests on** (added 2026-09-11, canon intake pass three,
+`intake/ros-canon-promotion-3`): this piece's own argument-structure vocabulary and
+argument-as-skill claim are not stated here first. Toulmin (1958,
+`writing-and-argumentation/toulmin-1958-uses-of-argument.md`) states the claim-grounds-
+warrant structure; Kuhn (1991,
+`writing-and-argumentation/kuhn-1991-skills-of-argument.md`) states the empirical case that
+argumentative skill is a learnable, discourse-dependent competence. Both cards were screened
+and verified this pass (canon_score 70 each) but not promoted; see each card's own Canon
+Screening section.
