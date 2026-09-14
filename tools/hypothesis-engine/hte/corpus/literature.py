@@ -291,10 +291,27 @@ real batch so far grew the existing tree in place instead). `load(cards_dir
 the original network fetch only when it finds nothing; `load_raw` and
 `load_default` are unchanged (see `load_default`'s own docstring for why
 the real, on-disk tree still needs `cards_dir` passed explicitly today).
+
+**DOI-less cards** (bkt-hte-outbox-seam review, "High"). The real, on-disk
+corpus (147 cards past literature batch four) carries six cards whose
+frontmatter names no real `doi:` (an `isbn:`/ERIC-id field instead, `doi:
+null`): `_parse_frontmatter` no longer raises on one of these, it gives the
+card a stable fallback id instead (`_fallback_doi`, `sha256` of the card's
+own normalized title, first author, and year, prefixed `nodoi:` so it reads
+at a glance as not a real DOI everywhere this module keys a `Source`/
+`EvidenceItem`/`GroundTruthEvent` by `Card.doi`), tags it `doi_missing=True`,
+caps its `_evidence_tier` at `T4` regardless of venue, and flags every one
+of its `EvidenceItem`s with `views["doi_missing"] = True`. `load_raw` logs
+every degraded card it returns in one `skipped_or_degraded` summary,
+naming the total card count and each degraded card's own `relative_path`.
+`load(cards_dir=None)` against this repo's own checkout succeeds end to
+end: 147 cards, six of them degraded and named in that log line.
 """
 from __future__ import annotations
 
+import hashlib
 import json
+import logging
 import os
 import re
 import tempfile
@@ -309,6 +326,8 @@ from ..concepts import Slot, Vocabulary, other_id
 from ..evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from ..timeline import Interval
 from . import Corpus, GroundTruthEvent, RetrievalEnvelope
+
+logger = logging.getLogger("hte.corpus.literature")
 
 # `tools/hypothesis-engine/hte/corpus/literature.py` -> parents[1] is `hte/`,
 # the same one-level-up-from-`corpus/` convention every other adapter's own
@@ -379,7 +398,14 @@ class Card:
     `hte.corpus.Corpus`. `batch` names which card root (position in a
     `load_raw(cards_dir=[...])` call's own list, `"batch-1"` for a single
     directory) this card was read from; see this module's own top
-    docstring, "Batches.\""""
+    docstring, "Batches.\" `doi_missing` is `True` when the card's own
+    frontmatter carried no real `doi:` (an absent field or an explicit
+    `doi: null`, the six-card real-corpus gap this module's own top
+    docstring, "DOI-less cards," describes): `doi` then holds
+    `_fallback_doi`'s own stable `nodoi:`-prefixed id instead of a real
+    DOI, and every downstream reader that caps or flags on this field
+    (`_evidence_tier`, `_build_corpus`'s own `EvidenceItem.views`) treats
+    the card as real but degraded, never as unparseable."""
     doi: str
     title: str
     authors: tuple[str, ...]
@@ -391,6 +417,7 @@ class Card:
     research_questions: tuple[str, ...]
     how_it_bears_on_research_os: str
     batch: str = "batch-1"
+    doi_missing: bool = False
 
     @property
     def first_author_surname(self) -> str:
@@ -522,6 +549,35 @@ def _parse_block_scalar(field_lines: list[tuple[int, int, str]]) -> str:
     return " ".join(parts)
 
 
+def _normalize_for_fallback_id(text: str) -> str:
+    """Lowercased, whitespace-collapsed `text`: two frontmatter reads of
+    the same card (or a harmless re-wrap of its own `title:` line) hash
+    to the same `_fallback_doi` id."""
+    return " ".join(text.lower().split())
+
+
+def _fallback_doi(title: str, authors: tuple[str, ...], year: int) -> str:
+    """A stable id for a card whose frontmatter carries no real `doi:`
+    (an absent field, or `doi: null`, the six real-corpus cards this
+    module's own top docstring, "DOI-less cards," names): `sha256` of
+    the card's own normalized title, first author, and year, joined by
+    `|` and prefixed `nodoi:`, distinguishable at a glance from a real
+    DOI's own `10.` prefix everywhere this module treats `Card.doi`/
+    `Source.id`/`EvidenceItem.source_id` as an opaque source key. Pure
+    function of the card's own bibliographic fields (no file path, no
+    run timestamp), so a card's fallback id is the same across every
+    repeat load, the same stability `_build_corpus`'s own cross-root
+    DOI dedup and downstream consumers already assume for a real DOI."""
+    first_author = authors[0] if authors else ""
+    normalized = "|".join((
+        _normalize_for_fallback_id(title),
+        _normalize_for_fallback_id(first_author),
+        str(year),
+    ))
+    digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+    return f"nodoi:{digest}"
+
+
 def _parse_frontmatter(raw: str, relative_path: str, batch: str = "batch-1") -> Card:
     # A card is free to open with one or more `<!-- ... -->` HTML-comment
     # lines before its own frontmatter, the `CLAUDE.md` `voice-ignore-file`
@@ -561,14 +617,19 @@ def _parse_frontmatter(raw: str, relative_path: str, batch: str = "batch-1") -> 
     # gives no indication of which file to fix. This `try/except` adds
     # that context uniformly, the same convention the explicit `raise
     # ValueError` checks around it already follow (`"has no frontmatter
-    # opening"`, `"carries no doi"`, ...).
+    # opening"`, `"carries no key_claims"`, ...). `doi` is read via
+    # `.get`: an absent `doi:` field and an explicit `doi: null`
+    # (`_parse_scalar` reads a `null` scalar as `None`) both degrade to
+    # a fallback id below, so this dict read must stay `KeyError`-free
+    # on either shape.
     try:
         title = _parse_scalar(fields["title"]) or ""
         authors = tuple(_parse_list(fields["authors"]))
         year_str = _parse_scalar(fields["year"]) or "0"
         year = int(year_str)
         venue = _parse_scalar(fields["venue"]) or ""
-        doi = _parse_scalar(fields["doi"]) or ""
+        doi_field = fields.get("doi")
+        doi = (_parse_scalar(doi_field) or "") if doi_field is not None else ""
         why_it_matters = _parse_block_scalar(fields["why_it_matters"])
         key_claims = tuple(_parse_claims(fields["key_claims"]))
         research_questions = tuple(_parse_list(fields.get("research_questions_it_leaves_open", [("", 0, "")])))
@@ -582,8 +643,16 @@ def _parse_frontmatter(raw: str, relative_path: str, batch: str = "batch-1") -> 
             message = message[len(prefix):]
         raise ValueError(f"literature adapter: {relative_path}: {message}") from exc
 
-    if not doi:
-        raise ValueError(f"literature adapter: {relative_path} carries no doi")
+    # A card with no real doi (bkt-hte-outbox-seam review, "High: literature.
+    # load(cards_dir=None) raises... on the real corpus because six cards
+    # have doi: null") gets a stable fallback id instead of an aborted load:
+    # `_evidence_tier` (below) caps its tier at T4 on `doi_missing`, and
+    # `_build_corpus` flags every one of its `EvidenceItem`s with
+    # `views["doi_missing"] = True`, until a real doi replaces the card's
+    # own `doi: null`.
+    doi_missing = not doi
+    if doi_missing:
+        doi = _fallback_doi(title, authors, year)
     if not key_claims:
         raise ValueError(f"literature adapter: {relative_path} carries no key_claims")
 
@@ -591,7 +660,7 @@ def _parse_frontmatter(raw: str, relative_path: str, batch: str = "batch-1") -> 
         doi=doi, title=title, authors=authors, year=year, venue=venue,
         relative_path=relative_path, why_it_matters=why_it_matters, key_claims=key_claims,
         research_questions=research_questions, how_it_bears_on_research_os=how_it_bears,
-        batch=batch,
+        batch=batch, doi_missing=doi_missing,
     )
 
 
@@ -612,6 +681,17 @@ _REPORT_OR_BOOK_VENUE_KEYWORDS = ("working paper", "unesco", "world bank", "scho
 
 
 def _evidence_tier(card: Card) -> Tier:
+    # A `doi_missing` card (the six real-corpus `doi: null` cards this
+    # module's own top docstring, "DOI-less cards," names) is capped at
+    # `Tier.T4` regardless of venue: it carries no checked DOI to key
+    # `_evidence_tier`'s own prefix reads off of, so its tier reflects
+    # that missing verification rather than whatever a venue-keyword
+    # match would otherwise assign it. The cap lifts the moment a real
+    # doi replaces the card's own `doi: null`, at which point this
+    # function reads that doi's shape the same way it does for every
+    # other card.
+    if card.doi_missing:
+        return Tier.T4
     doi_lower = card.doi.lower()
     venue_lower = card.venue.lower()
     if doi_lower.startswith(_PREPRINT_DOI_PREFIX):
@@ -949,6 +1029,18 @@ def _build_corpus(cards: list[Card]) -> Corpus:
         mechanism = _detect_mechanism(findings_text)
         interval = Interval(start=card.year, end=card.year)
 
+        # A documented, deliberate exception to this field's own `str ->
+        # float` shape (`hte.evidence.EvidenceItem.views`), the same
+        # convention `hte.corpus.sacred_history` already uses for its own
+        # `views["interval_rule"]`: every item drawn from a `doi_missing`
+        # card (this module's own top docstring, "DOI-less cards") carries
+        # `views["doi_missing"] = True`, so a belief-fusion or reporting
+        # pass can single these out without re-deriving the fact from
+        # `card.doi`'s own `nodoi:` prefix.
+        views: dict[str, float] = {}
+        if card.doi_missing:
+            views["doi_missing"] = True  # type: ignore[assignment]
+
         first_item_id: str | None = None
         for i, claim in enumerate(card.key_claims):
             item_id = f"{card.doi}-c{i}"
@@ -962,6 +1054,7 @@ def _build_corpus(cards: list[Card]) -> Corpus:
                 provenance=EVIDENCE_PROVENANCE_TAG,
                 actor=actor, action=action, object=obj, place=place, mechanism=mechanism,
                 interval=interval, stance=Stance.POSITIVE,
+                views=dict(views),
             ))
             if first_item_id is None:
                 first_item_id = item_id
@@ -1181,8 +1274,11 @@ def load_raw(
     cached first by `_ensure_cards_cached`, tagged `"batch-1"`). No
     filtering and no cross-root dedup; that is `load`'s own job on the way
     to a `Corpus`, and this corpus, unlike `hte.corpus.production`'s
-    review ladder, has no maturity gate of its own to filter on: every
-    card PR #5 or PR #15 ships already carries a checked DOI.
+    review ladder, has no maturity gate of its own to filter on: almost
+    every card PR #5 or PR #15 ships already carries a checked DOI, and
+    the rare one that does not (`doi: null`, this module's own top
+    docstring, "DOI-less cards") is loaded anyway, under a stable
+    fallback id, rather than aborting the whole call.
 
     A root nested inside another root in this same `roots` list
     (`discover_card_roots`'s own README-declared-subfolder case, this
@@ -1195,7 +1291,15 @@ def load_raw(
     `.rglob` unchanged. This check is unconditional (not gated on whether
     `cards_dir` came from discovery), so any caller who happens to pass
     one root nested inside another gets the same no-double-count
-    guarantee."""
+    guarantee.
+
+    Every `doi_missing` card among the ones returned (this module's own
+    top docstring, "DOI-less cards") is named in one `logger.warning`
+    call, a `skipped_or_degraded` summary naming the total card count and
+    every degraded card's own `relative_path`, so a caller (or its own
+    log aggregation) can see at a glance which cards in a 147-card real
+    load are running under a fallback id and a capped tier rather than a
+    checked DOI, without re-deriving that from `Card.doi_missing` itself."""
     roots = _normalize_roots(cards_dir, ref)
     cards: list[Card] = []
     for batch_index, directory in enumerate(roots, start=1):
@@ -1209,6 +1313,14 @@ def load_raw(
             paths = [p for p in paths if not any(p.is_relative_to(nested) for nested in nested_roots)]
         batch = f"batch-{batch_index}"
         cards.extend(_parse_card_file(path, directory, batch) for path in paths)
+
+    degraded = [card for card in cards if card.doi_missing]
+    if degraded:
+        logger.warning(
+            "hte.corpus.literature: load_raw: skipped_or_degraded: %d of %d card(s) carry no doi "
+            "and loaded under a nodoi: fallback id, tier capped at T4 until a real doi is added: %s",
+            len(degraded), len(cards), ", ".join(sorted(card.relative_path for card in degraded)),
+        )
     return cards
 
 
@@ -1256,24 +1368,16 @@ def load_default() -> Corpus:
 
     This does *not* read the real, on-disk `LOCAL_INTAKE_DIR` tree (147
     cards past literature batch four, `_intake/research-os-k12-literature/
-    README.md`'s own batch log): that tree carries a gap this module does
-    not yet handle, six cards across four areas that carry `doi: null`
-    plus an `isbn`/ERIC-id field instead of a DOI (Anderson and Krathwohl
-    2001, Wiske 1998, Perkins 1993 from the original 82-card tree;
-    Kingston 2018, Condliffe 2017, Cuban 2001 added by later batches;
-    `_intake/research-os-k12-literature/README.md`'s own "canon-intake
-    promotions" section names the first three). `_parse_frontmatter`
-    requires a real `doi:` and raises on a `null` one, so both
-    `load(LOCAL_INTAKE_DIR)` and `load(cards_dir=None)`'s own newly
-    discovered root fail on the first such card alphabetically today
-    (`load_raw` has no per-card isolation of its own, unlike `hte.corpus.
-    research_os_outbox._build`'s per-row isolation); giving every non-DOI
-    source a stable fallback id (an `isbn:`-prefixed slug, say) is real,
-    separate follow-up work this pass does not take on, since it touches
-    `Source.id`/`EvidenceItem.source_id`/`GroundTruthEvent.doc_id`'s own
-    DOI-shaped id convention everywhere in this module, not just these six
-    cards. Root discovery itself is unaffected by this gap: it finds the
-    real directory whether or not every card inside it parses."""
+    README.md`'s own batch log): `load(cards_dir=None)` and
+    `load(LOCAL_INTAKE_DIR)` do (this module's own top docstring,
+    "DOI-less cards"), and both succeed against that tree's own six
+    `doi: null` cards (Anderson and Krathwohl 2001, Wiske 1998, Perkins
+    1993 from the original 82-card tree; Kingston 2018, Condliffe 2017,
+    Cuban 2001 added by later batches; `_intake/research-os-k12-
+    literature/README.md`'s own "canon-intake promotions" section names
+    the first three), each loaded under a stable `nodoi:` fallback id
+    and a tier capped at `T4` (`_fallback_doi`, `_evidence_tier`) rather
+    than aborting the whole load."""
     return load(DEFAULT_CARDS_DIRS)
 
 
