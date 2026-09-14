@@ -2,6 +2,45 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, PR87 review
+
+- **PR #87 reviewed and merged** (`feat/hte-prediction-register`,
+  "prediction register with dated forecasts, resolution scoring"),
+  worktree `.ros-worktrees/r87` per the review protocol. Merged
+  `origin/main` first (13 files, no conflicts: the swarm-20260914 test
+  batch, `provenance.py`'s tick-12 fix, `holdout_ledger.py` untouched).
+- **Leak scan**: full diff clean, no keys, `.env` values, IPs, non-public
+  hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute
+  `/home/gian` paths, or Claude session URLs in file content.
+- **Governance**: `hte.predict`'s register (claim/discovery/sequence
+  forecasts, Brier-scored on resolution) and `hte.holdout_ledger`'s
+  ranking-holdout ledger (Elo tournament-order verification, PR #60)
+  cover two distinct claims and stay two distinct ledgers by design:
+  `predictions/ledger.jsonl` scores a hypothesis's own `P(h)` against
+  future evidence, `hte/data/ranking-holdout-ledger.jsonl` scores
+  whether Elo's relative order held up. Neither reads or writes the
+  other; `elo_status`/`unvalidated_tournament_ranking` stays sourced
+  from `holdout_ledger.ranking_status` alone (`MIN_VERIFIED_FOR_LABEL
+  = 20`, untouched by this PR). No reconciliation defect found.
+  Resolution scoring uses `(P - observed)^2`, the same Brier convention
+  `hte.calibrate.brier_score` already carries (`main.tex` §9); no new
+  scoring rule introduced, so no new citation needed against the
+  Brier/Murphy cards on PR #90's still-open branch. No forecast field
+  carries learner data (`meta` holds slots, intervals, evidence ids
+  only). `hte.canon_writeback`'s write-back gate is untouched by this
+  PR's diff.
+- **Gates**: `ruff check` on this PR's own files (`hte/predict.py`,
+  `hte/cli.py`, `tests/test_predict.py`) found 2 (an unused `timezone`
+  import and an `E731` lambda assignment, both in the test file);
+  fixed. The other 53 hits on the merged tree are pre-existing debt in
+  swarm test directories this PR does not touch. `make test` / full
+  suite: 1562 passed, 3 skipped, 1 deselected
+  (`test_corpus_literature.py::test_live_fetch_lists_cards_or_skips_when_offline`,
+  a live GitHub API call that hung past its own `RuntimeError`/
+  `URLError` catch on this box's network; pre-existing, outside this
+  PR's diff, not a regression). `agf-lint-voice check` /
+  `agf-lint-voice-src check`, 0 violations.
+
 ## 2026-09-14, tick 12, provenance.py swarm and fix, thirteen PRs re-confirmed
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
