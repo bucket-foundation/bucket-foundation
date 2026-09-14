@@ -2,6 +2,41 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-11, tick 7, purge.py swarm, four PR reviews, one High finding
+
+- **Sandbox note**: this tick's session sat idle roughly three days
+  mid-run (environment clock jumped 2026-09-11 to 2026-09-14 between two
+  tool calls); queued GitHub events delivered on resume, including
+  another tick's own review-and-merge of this tick's first PR. Treated as
+  one continuous tick, nothing needed redoing.
+- **Engine health**: `make test` on `main` before any change: 1315
+  passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` 30/30, gate PASS, a
+  repeat of seeds 0-4 matched to full float precision, no nondeterminism.
+  `realsweep --corpus production/literature --seeds 0-9`: 0/20 crashed.
+  `realsweep --corpus education-atlas --seeds 0-9`: the multi-day pause
+  killed the background run after 2/10 seeds, both clean, coverage
+  0.70-0.78 (matches the PR #48 baseline). Incomplete; no defect in what
+  ran.
+- **Test swarm**: `hte/purge.py`, 89% branch coverage, the least-covered
+  newer unswarmed module (`propagate.py`/`predict.py` not on `main` yet).
+  New `tests/swarm-20260911/test_purge_props.py`, 21 tests (unreadable
+  manifest/bridge/envelope, corrupted cache index lines, escaped
+  redaction variants); 97% after. PR #88, reviewed clean, squash-merged
+  (`c862cc340`).
+- **PRs reviewed**: #89 (outbox seam + doi-null literature fix), #87
+  (prediction register): both clean, approve, own claims verified against
+  shipped code. #86 (sacred-history run): one Medium, the run's own
+  meta-review flags likely bucket-keyed critic/judge scoring and a
+  place-field bug defaulting "confucius"-mapped actors to "hinduism";
+  non-blocking, follow-up bead recommended. **#90** (30 new literature
+  cards): **High**, none of the 30 parse through the real
+  `hte.corpus.literature` adapter (`key_claims` wrapped across lines,
+  `_LIST_ITEM_RE` needs one physical line per item), contradicting the
+  PR's own "validated to parse" claim; changes requested. None of the
+  four is a `fix/hte-`/`test/hte-` PR of this loop's own, so none merged.
+- **Blocked**: nothing else.
+
 ## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
 
 - **Scope**: `hte/corpus/production.py` (`_research_os_counter_evidence`,
