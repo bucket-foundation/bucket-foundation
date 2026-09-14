@@ -2,6 +2,38 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 19, diagnostics.py swarm
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-cov`/`pytest-xdist`
+  first. `make test` on `hte/integration` (`dbfff3fbfc2`): 1714 passed, 0
+  failed, matching tick 18's baseline. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29`, 30/30 pass, gate
+  PASS, no nondeterminism on a seeds-0-2 repeat (only `elapsed_s`/
+  `run_dir` differ). `realsweep --corpus production`/`literature`, 0/10
+  crashed each; the `literature` BCE clamp warning is the same reviewed,
+  deliberate behavior prior ticks already documented. `education-atlas`
+  seed 0 (472.6s): coverage 0.778, matching every prior tick's baseline.
+  `younger-dryas` still unregistered in `REALSWEEP_BUILDERS`.
+- **Test swarm**: every module on the priority list already has a swarm
+  file since tick 18's `tournament.py` pass. Of the five modules tick 18
+  named as still having no swarm file at all (`artifacts.py`,
+  `calibrate.py`, `casp_cadence.py`, `diagnostics.py`, `fusion_stress.py`),
+  `diagnostics.py` is the smallest (351 lines). 8 new Hypothesis tests in
+  `tests/swarm-20260914/test_diagnostics_props.py` over `coverage_report`
+  against randomized corpora: reason-count reconciliation, the fixed
+  `REASONS` key set, `coverage_of_truth`'s own formula, `dropped_by_cap`
+  staying zero along the `hte.calibrate` path, and a `write_diagnostics`
+  JSON round-trip. No defect found; ran at both `fast` and `full`
+  profiles. `test/hte-diagnostics-coverage-20260914`; `make test` after:
+  1722 passed. `agf-lint-voice{,-src}` not installed; hand-checked the
+  new file against every voice rule and for banned em/en dashes, clean.
+- **PRs**: opened 1 (this entry's own commit). **Reviewed**: none newly
+  unreviewed (#132/#127 unchanged at their already-reviewed head shas;
+  #134 is batch bookkeeping, not a review target; #11 is a draft).
+  **Batch PR**: #134 to refresh to 9 commits ahead of `dev` once this
+  tick's PR merges. **Blocked**: nothing.
+
 ## 2026-09-14, tick 18, tournament.py swarm
 
 - **Engine health**: fresh sandbox install. `make test` on `hte/
