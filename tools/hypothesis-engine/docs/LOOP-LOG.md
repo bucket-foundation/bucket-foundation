@@ -2,6 +2,34 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 6, research_os_outbox.py swarm, ten PRs checked
+
+- **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
+  `jsonschema`/`matplotlib`/`pandas`/`pyarrow`/`pytest-xdist` first.
+  `make test` on `main`, 1460 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30 pass,
+  gate PASS, coverage_of_truth mean 1.0. `realsweep --corpus production`
+  and `--corpus literature`, 10/10 seeds each, 0 crashed.
+  `realsweep --corpus education-atlas` reproduces tick 5/6's own
+  ~370s-per-seed finding on this box; ran seed 0 only (coverage 0.78,
+  matching tick 5's own seed-0 exactly), cut short for time, no crash.
+- **Test swarm**: `hte/corpus/research_os_outbox.py`, the only module on
+  `tests/COVERAGE.md`'s list with no swarm file of its own (this
+  prompt's "newer modules" are already covered today or absent:
+  `predict.py` does not exist on `main`). 10 new tests in `tests/
+  swarm-20260914/test_corpus_research_os_outbox_props.py`:
+  `_resolve_credentials`'s precedence and no-leak-into-errors property,
+  `_build`'s exhaustive row accounting across random good/bad status
+  mixes, `_stamp_corpus_provenance`'s per-row isolation, `mark_consumed`'s
+  exact PATCH id set, `load()`'s never-raises property. No defect found.
+- **PRs opened**: 1, this tick's own
+  `test/hte-research-os-outbox-coverage-20260914`.
+- **PRs reviewed**: 10 open non-draft PRs. #101 (own, unreviewed) got a
+  fresh review, approve. #99/#97/#95/#93/#91/#90/#89/#87/#86 already
+  carried a review at their current head, re-confirmed, no duplicate.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged. **Blocked**: nothing.
+
 ## 2026-09-11, PR #80 review and merge: counter-evidence and duplicate stemma on the outbox seam
 
 - **Scope**: `hte/corpus/production.py` (`_research_os_counter_evidence`,
