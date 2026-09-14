@@ -3180,3 +3180,68 @@ Reviewed `feat/ros-lateral-reading` (PR #84) against `main` in worktree `~/agfar
 - `npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean (`/api/research-os/production`, `/api/research-os/workspace`, `/api/research-os/review`, `/research-os/workspace`, `/research-os/review` all confirmed in the manifest). `npm run test:research-os`: 30 chained files, every file `fail 0`, 455 tests, unchanged from the PR's own count (the fix touched no test logic). `next lint` clean on every touched TS/TSX file.
 - `agf-lint-voice check` on the full changed-file set found two antithesis constructions in `BEADS-PENDING.jsonl`'s own new bead line and one in `scripts/test-research-os-lateral-reading.ts`'s own test name, all introduced by this PR; fixed by hand, clean on the second pass. The remaining reported violations (`BEADS-PENDING.jsonl` lines outside the new entry, `workspace/page.tsx` line 1256) predate this PR and sit outside its own diff, left untouched. `agf-lint-voice-src check` clean on every touched source file, first pass.
 - Process note: the PR's own merge commit (`c7b3c095b`) used the org pre-commit hook's `AGF_VOICE_SKIP=1` bypass rather than `--no-verify`, per its own `BEADS-PENDING.jsonl` account; the commit squashes at merge so the artifact does not survive, flagged here for the record.
+
+## Iteration 27: canon-intake promotion pass three
+
+Date 2026-09-14. Branch `intake/ros-canon-promotion-3`, worktree
+`.ros-worktrees/canon3`. Finishing pass over a wip commit
+(`e8edd4d1e`, "partial work preserved after spend-limit stop") that had
+already landed the `07-mind/cognitive-load/` dossier, its `TAXONOMY_NOTES.md`
+rename-log entry, and four new `_intake/research-os-k12-literature/` cards
+(Sweller 1988, Kuhn 1991, Toulmin 1958, Osborne 2010's own cross-reference
+addendum), and died before the outcome-record batch. Full detail in
+`_intake/research-os-k12/CHANGELOG.md`'s matching entry; this ledger
+carries the summary.
+
+### Added
+
+- One new canon dossier, `bucket-canon/07-mind/cognitive-load/` (Sweller
+  1988), converged via `tools/canon-pipeline/intake.py --min-score 70`
+  (`added=0 kept=1 changed=False` on both re-runs), inherited from the
+  wip commit and re-verified.
+- Ten records added to the existing `bucket-canon/07-mind/
+  sub-outcomes/education/` dossier, converged via `tools/canon-pipeline/
+  intake.py --min-score 30` (`added=0 kept=20 changed=False` on the
+  re-run): five guidance-and-inquiry studies depending on the new
+  cognitive-load foundation (Chen and Yang 2019; Furtak, Seidel, Iverson,
+  and Briggs 2012; Lazonder and Harmsen 2016; Kirschner, Sweller, and
+  Clark 2006; Hmelo-Silver, Duncan, and Chinn 2007), two source-evaluation
+  studies depending on the pass-two information-foraging foundation
+  (Wineburg and McGrew 2019; Breakstone et al. 2021), and three
+  student-research-experience studies depending on the pass-two
+  curiosity-and-motivation foundation (Grinnell, Dalley, and Reisch 2020;
+  Bangera and Brownell 2014; Sadler, Burgin, McKinney, and Ponjuán 2010),
+  each naming the canon-tier foundation it depends on.
+- `provenance_signoff: "pending: gianyrox"` on all eleven new records,
+  per the ros-11 governance rule.
+- `bucket-canon/TAXONOMY_NOTES.md`: the cognitive-load rename-log entry
+  (inherited from the wip commit).
+
+### Edited
+
+- Ten intake cards marked `status: promoted` with `promoted_to` and
+  `depends_on_foundation` pointers; claim text unchanged in all ten.
+- `bucket-canon/07-mind/sub-outcomes/education/README.md` and
+  `CANON_INDEX.md`: extended dependency convention and a pass-three
+  outcome-entries table.
+- `_intake/research-os-k12-literature/README.md`: index table updated
+  for thirteen rows (ten status changes, three new rows for Sweller,
+  Kuhn, and Toulmin), corpus total 147 to 150, plus a new section
+  recording the pass.
+- `CANON-INGESTION-INDEX.md`: a dated table of the eleven promotions.
+
+### Removed
+
+None.
+
+### Verified
+
+- `tools/canon-pipeline/intake.py` run twice on both touched dossiers,
+  `07-mind/cognitive-load/` and `07-mind/sub-outcomes/education/`,
+  `changed=False` confirmed on the final run of each.
+- Sweller 1988's DOI (`10.1207/s15516709cog1202_4`) independently
+  verified against the live Crossref API (title, author, journal, and
+  year match the intake card and `primary-papers.yaml` exactly).
+- No file under `src/` or `public/` is touched by this pass, so no
+  `npm run build` gate applies to it, the same pass-one/pass-two
+  convention.

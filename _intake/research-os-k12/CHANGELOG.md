@@ -2492,3 +2492,31 @@ Leak scan of the PR's own diff: clean, no keys, `.env` values, IPs, non-public h
 `agf-lint-voice check` on the full changed-file set found three violations inside this PR's own new content (two antithesis constructions in `BEADS-PENDING.jsonl`'s new bead line, one in `scripts/test-research-os-lateral-reading.ts`'s own test name); fixed by hand, clean on the second pass. The remaining reported violations (`BEADS-PENDING.jsonl` lines 1-99, `workspace/page.tsx` line 1256) predate this PR and sit outside its own diff, left untouched. `agf-lint-voice-src check` clean on every touched source file, first pass.
 
 Gates after the fix: `npm ci` clean; `npx tsc --noEmit` clean; `npm run build` clean (`/api/research-os/production`, `/api/research-os/workspace`, `/api/research-os/review`, `/research-os/workspace`, `/research-os/review` all in the manifest); `npm run test:research-os` 30 files, `fail 0`, 455 tests, unchanged from the PR's own count (the fix touched no test file logic); `next lint` clean on every touched TS/TSX file. Pushed to `feat/ros-lateral-reading` and squash-merged.
+
+## 2026-09-14: literature corpus promotion pass three, finishing pass
+
+Branch `intake/ros-canon-promotion-3`, worktree `.ros-worktrees/canon3`. Finishing pass over a wip commit (`e8edd4d1e`, "partial work preserved after spend-limit stop") that had already landed `bucket-canon/07-mind/cognitive-load/` (Sweller 1988, converged and idempotent), the matching `TAXONOMY_NOTES.md` rename-log entry, and four new `_intake/research-os-k12-literature/` cards (Sweller 1988, Kuhn 1991, Toulmin 1958, and an addendum to the existing Osborne 2010 card naming both as foundations it rests on), and died before the outcome-record batch and index bookkeeping. Eleven records promoted from `_intake/research-os-k12-literature/`, screened against the batch-four corpus.
+
+### Added
+
+- `bucket-canon/07-mind/cognitive-load/` (new dossier, inherited from the wip commit): one canon-tier record, Sweller 1988 ("Cognitive Load During Problem Solving: Effects on Learning"), the working-memory-capacity mechanism a batch of guidance-and-inquiry outcome studies (Kirschner, Sweller, and Clark 2006 among them) argue from without stating themselves. Converged via `tools/canon-pipeline/intake.py --min-score 70`, re-verified idempotent across two re-runs (`added=0 kept=1 changed=False` both times). DOI (`10.1207/s15516709cog1202_4`) independently re-verified against the live Crossref API this pass: title, author, journal, and year match exactly.
+- `bucket-canon/07-mind/sub-outcomes/education/`: ten more outcome-tier records added to the existing dossier, converged via `tools/canon-pipeline/intake.py --min-score 30`, re-verified idempotent across two re-runs (`added=0 kept=20 changed=False` both times, the one below-floor pre-existing record, Wang et al. 2024, still rejected and preserved from its prior run per the fail-safe convention). Five guidance-and-inquiry outcome studies depend on the new cognitive-load foundation (Chen and Yang 2019; Furtak, Seidel, Iverson, and Briggs 2012; Lazonder and Harmsen 2016; Kirschner, Sweller, and Clark 2006; Hmelo-Silver, Duncan, and Chinn 2007, the direct reply to Kirschner, Sweller, and Clark). Two source-evaluation studies depend on the pass-two information-foraging foundation (Wineburg and McGrew 2019; Breakstone et al. 2021). Three student-research-experience studies depend on the pass-two curiosity-and-motivation foundation (Grinnell, Dalley, and Reisch 2020; Bangera and Brownell 2014; Sadler, Burgin, McKinney, and Ponjuán 2010).
+- `provenance_signoff: "pending: gianyrox"` on all eleven new records, per the ros-11 governance rule: a named human founder is the pending approver, and no sign-off has happened yet.
+- `bucket-canon/TAXONOMY_NOTES.md`: the cognitive-load rename-log entry (inherited from the wip commit, reviewed and confirmed complete this pass, not truncated as the task brief's own state note suspected).
+- `CANON-INGESTION-INDEX.md`: a dated table of the eleven promotions.
+
+### Edited
+
+- Ten intake cards marked `status: promoted` with `promoted_to` pointers (all ten also gain `depends_on_foundation`); claim text unchanged in all ten. The four cards inherited from the wip commit (Sweller 1988, Kuhn 1991, Toulmin 1958, Osborne 2010) were reviewed and confirmed already complete: Sweller 1988 already carried `status: "promoted"`; Kuhn 1991 and Toulmin 1958 are deliberate `status: "verified"` / `tier: "candidate"` cards, screened as the foundations Osborne 2010 rests on but not promoted this pass, per each card's own Canon Screening section; Osborne 2010 already carried its "Foundations this card rests on" addendum.
+- `bucket-canon/07-mind/sub-outcomes/education/README.md` and `CANON_INDEX.md`: extended dependency convention (three foundations now, not one default) and a pass-three outcome-entries table.
+- `_intake/research-os-k12-literature/README.md`: index table status column updated for the ten promoted rows, three new rows added (Sweller 1988, Kuhn 1991, Toulmin 1958), corpus total 147 to 150, project-based-and-inquiry-learning 7 to 8, writing-and-argumentation 5 to 7, plus a new section recording the pass.
+
+### Removed
+
+None.
+
+### Verified
+
+- `tools/canon-pipeline/intake.py` run twice on each touched dossier: `07-mind/cognitive-load` (`added=0 kept=1 changed=False` both runs) and `07-mind/sub-outcomes/education` (`added=0 kept=20 changed=False` both runs, one pre-existing below-floor record rejected and preserved both times).
+- Sweller 1988's DOI independently re-verified via a live Crossref API fetch (WebFetch), matching the intake card and `primary-papers.yaml` on title, author, journal, and year.
+- No file under `src/` or `public/` is touched by this pass, so no `npm run build`/`npm run test:research-os`/`next lint` gate applies to it, the same pass-one/pass-two convention. `agf-lint-voice check` run on every touched prose file.

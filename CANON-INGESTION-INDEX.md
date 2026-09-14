@@ -100,6 +100,41 @@ human-AI complementarity meta-analyses need a dedicated
 These sit outside the FTS counts above until a future pass runs them
 through the same full-text index.
 
+### 07-mind promotions, pass three, `intake/ros-canon-promotion-3`
+
+Eleven more papers promoted from `_intake/research-os-k12-literature/`
+(pass three of the same corpus), all resolved live via
+`tools/canon-pipeline/canon.py resolve <doi>` (Crossref + OpenAlex). One
+canon-tier record seeds a new dossier, `07-mind/cognitive-load/`,
+converged idempotently through `tools/canon-pipeline/intake.py
+--min-score 70` (`added=0` on the second run); ten outcome-tier, added
+to the existing `07-mind/sub-outcomes/education/` per RUBRIC.md Stage-0
+rule E7, converged through `tools/canon-pipeline/intake.py --min-score
+30` (`added=0` on the second run). Every new record carries
+`provenance_signoff: "pending: gianyrox"` per the ros-11 named-human-
+sign-off governance rule.
+
+| Title | Path | Tier |
+|---|---|---|
+| Cognitive Load During Problem Solving: Effects on Learning | `bucket-canon/07-mind/cognitive-load/primary-papers.yaml` | canon |
+| Revisiting the effects of project-based learning on students' academic achievement: A meta-analysis investigating moderators | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Experimental and Quasi-Experimental Studies of Inquiry-Based Science Teaching | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Meta-Analysis of Inquiry-Based Learning: Effects of Guidance | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Why Minimal Guidance During Instruction Does Not Work: An Analysis of the Failure of Constructivist, Discovery, Problem-Based, Experiential, and Inquiry-Based Teaching | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Scaffolding and Achievement in Problem-Based and Inquiry Learning: A Response to Kirschner, Sweller, and Clark (2006) | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| High school science fair: Positive and negative outcomes | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Lateral Reading and the Nature of Expertise: Reading Less and Learning More When Evaluating Digital Information | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Students' Civic Online Reasoning: A National Portrait | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Course-Based Undergraduate Research Experiences Can Make Scientific Research More Inclusive | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+| Learning science through research apprenticeships: A critical review of the literature | `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` | outcome |
+
+One taxonomy entry added: `07-mind/cognitive-load/` as a new subfolder,
+the working-memory-capacity mechanism a batch of guidance-and-inquiry
+outcome studies (Kirschner, Sweller and Clark 2006 among them) argue
+from without stating themselves. Full context:
+`bucket-canon/TAXONOMY_NOTES.md`. These sit outside the FTS counts above
+until a future pass runs them through the same full-text index.
+
 ### 04-information hypothesis-engine artifacts, PR #10
 
 Seven Bucket-authored primary-method artifacts entered `04-information`.

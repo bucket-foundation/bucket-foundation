@@ -1,4 +1,191 @@
 records:
+- id: bkt-3c594b989472
+  title: Course-Based Undergraduate Research Experiences Can Make Scientific Research More Inclusive
+  authors:
+  - family: Bangera
+    given: Gita
+    orcid: null
+  - family: Brownell
+    given: Sara E.
+    orcid: https://orcid.org/0000-0002-7441-8958
+  year: 2014
+  venue:
+    name: CBE—Life Sciences Education
+    issn: 1931-7913
+    publisher: null
+  doi: 10.1187/cbe.14-06-0099
+  canonical_url: https://doi.org/10.1187/cbe.14-06-0099
+  oa_status:
+    is_oa: true
+    oa_url: https://www.lifescied.org/doi/epdf/10.1187/cbe.14-06-0099
+    license: cc-by-nc-sa
+    repository: American Society for Cell Biology
+  citation_count: 722
+  concepts:
+  - Undergraduate research
+  - Engineering ethics
+  - Course (navigation)
+  - Mathematics education
+  - Psychology
+  - Medical education
+  - Engineering
+  - Medicine
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 90
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (722)
+  - +15 survived >5y (year=2014)
+  - +10 open access
+  - +15 foundational venue (cbe—life sciences education)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (an access-and-selection argument reporting who a research experience reaches
+    rather than a primary mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1207/s15327965pli1104_01
+    path: bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml
+    title: 'The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior'
+    relation: Argues a course-based undergraduate research experience reaches every enrolled student rather
+      than only the self-selected subset who apply for, are chosen for, and can afford an independent
+      research internship. Promotion pass three reads that access argument through self-determination
+      theory, a required, course-embedded design supplies the experience whether or not a student already
+      has the confidence or connections an internship's own application process selects for, extending
+      the foundation record's autonomy, competence, and relatedness account from a need already present
+      in a self-selected applicant to one a required structure supplies directly. The paper's own analysis
+      argues from access and selection; it does not use self-determination theory's own need language.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-7d44a89c59b7
+  title: 'Learning science through research apprenticeships: A critical review of the literature'
+  authors:
+  - family: Sadler
+    given: Troy D.
+    orcid: https://orcid.org/0000-0002-9401-0300
+  - family: Burgin
+    given: Stephen R.
+    orcid: https://orcid.org/0000-0002-1064-2141
+  - family: McKinney
+    given: Lyle
+    orcid: https://orcid.org/0000-0003-4693-2367
+  - family: Ponjuán
+    given: Luis
+    orcid: https://orcid.org/0000-0002-6200-2154
+  year: 2009
+  venue:
+    name: Journal of Research in Science Teaching
+    issn: 0022-4308
+    publisher: null
+  doi: 10.1002/tea.20326
+  canonical_url: https://doi.org/10.1002/tea.20326
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: Wiley
+  citation_count: 400
+  concepts:
+  - Apprenticeship
+  - Extant taxon
+  - Psychology
+  - Nature of Science
+  - Science education
+  - Pedagogy
+  - Empirical research
+  - Mathematics education
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 80
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (400)
+  - +15 survived >5y (year=2009)
+  - +15 foundational venue (journal of research in science teaching)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a review scoring which claimed intervention outcomes the literature supports
+    rather than stating a primary mechanism); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1207/s15327965pli1104_01
+    path: bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml
+    title: 'The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior'
+    relation: Synthesizes 53 studies scoring which claimed research-apprenticeship outcomes, career aspirations,
+      content understanding, confidence for doing science, the literature supports, finding duration and
+      an explicit outcome focus shape which outcomes appear. Promotion pass
+      three reads the confidence and career-aspiration gains this review supports as competence and autonomy
+      outcomes in the foundation record's own terms, and the review's own duration-dependence finding
+      as evidence that a need-satisfying experience takes sustained engagement to register. The review's
+      own analysis scores outcomes empirically; it does not use self-determination theory's own need language.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-621583c6b56f
+  title: 'Why Minimal Guidance During Instruction Does Not Work: An Analysis of the Failure of Constructivist,
+    Discovery, Problem-Based, Experiential, and Inquiry-Based Teaching'
+  authors:
+  - family: Kirschner
+    given: Paul A.
+    orcid: https://orcid.org/0000-0002-8743-0462
+  - family: Sweller
+    given: John
+    orcid: https://orcid.org/0000-0001-7855-9160
+  - family: Clark
+    given: Richard E.
+    orcid: https://orcid.org/0000-0002-1261-3299
+  year: 2006
+  venue:
+    name: Educational Psychologist
+    issn: 0046-1520
+    publisher: null
+  doi: 10.1207/s15326985ep4102_1
+  canonical_url: https://doi.org/10.1207/s15326985ep4102_1
+  oa_status:
+    is_oa: true
+    oa_url: https://www.tandfonline.com/doi/pdf/10.1207/s15326985ep4102_1?needAccess=true&role=button
+    license: null
+    repository: Routledge
+  citation_count: 6843
+  concepts:
+  - Experiential learning
+  - Cognitive load
+  - Context (archaeology)
+  - Cognition
+  - Cognitive architecture
+  - Instructional design
+  - Psychology
+  - Process (computing)
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 80
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +25 highly cited (6843)
+  - +15 survived >5y (year=2006)
+  - +10 open access
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (an instructional-guidance argument reporting a comparative effectiveness
+    claim rather than stating a primary mechanism); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1207/s15516709cog1202_4
+    path: bucket-canon/07-mind/cognitive-load/primary-papers.yaml
+    title: 'Cognitive Load During Problem Solving: Effects on Learning'
+    relation: Argues minimally guided instruction underperforms guided instruction for learners without
+      high prior knowledge, grounding the claim in cognitive-load theory and expert-novice differences.
+      Promotion pass three routes this outcome-tier argument to the cognitive-load foundation it argues
+      from directly, this paper does not derive the working-memory mechanism itself, Sweller 1988 does,
+      and this record's own guidance-versus-discovery claim is the outcome-tier application of that foundation's
+      working-memory-capacity account. The intake card for Sweller 1988 (_intake/research-os-k12-literature/project-based-inquiry-learning/
+      sweller-1988-cognitive-load-problem-solving.md) names this paper as the reason the cognitive-load
+      subfolder was promoted this pass.
+  provenance_signoff: 'pending: gianyrox'
 - id: bkt-1b34ca6c5af4
   title: 'Generative AI without guardrails can harm learning: Evidence from high school mathematics'
   authors:
@@ -63,10 +250,68 @@ records:
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
     relation: The trial found that unrestricted GPT-4 access raised practice-problem scores but lowered
       unassisted exam performance relative to a guardrailed, hint-only AI-tutor arm, which preserved the
-      exam gain. Promotion pass two reads the guardrailed arm's preserved gain as an instance of the
-      retrieval-practice mechanism the foundation record establishes, since keeping the retrieval step
-      intact keeps the exam-performance benefit, while unrestricted access lets a student substitute the answer
-      for the practice that step requires.
+      exam gain. Promotion pass two reads the guardrailed arm's preserved gain as an instance of the retrieval-practice
+      mechanism the foundation record establishes, since keeping the retrieval step intact keeps the exam-performance
+      benefit, while unrestricted access lets a student substitute the answer for the practice that step
+      requires.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-0841454744a9
+  title: Meta-Analysis of Inquiry-Based Learning
+  authors:
+  - family: Lazonder
+    given: Ard W.
+    orcid: https://orcid.org/0000-0002-5572-3375
+  - family: Harmsen
+    given: Ruth
+    orcid: https://orcid.org/0000-0001-6567-6341
+  year: 2016
+  venue:
+    name: Review of Educational Research
+    issn: 0034-6543
+    publisher: null
+  doi: 10.3102/0034654315627366
+  canonical_url: https://doi.org/10.3102/0034654315627366
+  oa_status:
+    is_oa: true
+    oa_url: https://research.rug.nl/en/publications/5ad15b95-a864-41eb-8188-ca4d63542e25
+    license: null
+    repository: SAGE Publishing
+  citation_count: 889
+  concepts:
+  - Meta-analysis
+  - Psychology
+  - Variation (astronomy)
+  - Mathematics education
+  - Medicine
+  - Internal medicine
+  - Astrophysics
+  - Physics
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 75
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (889)
+  - +15 survived >5y (year=2016)
+  - +10 open access
+  canon_branch_hints:
+  - 05-biophysics
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a meta-analysis reporting guidance-type effect sizes instead of a primary
+    mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1207/s15516709cog1202_4
+    path: bucket-canon/07-mind/cognitive-load/primary-papers.yaml
+    title: 'Cognitive Load During Problem Solving: Effects on Learning'
+    relation: 72-study meta-analysis finding guidance during inquiry-based learning produced facilitative
+      effects on learning activities, performance success, and learning outcomes, with guidance type moderating
+      performance success. Promotion pass three depends this record on the cognitive-load
+      foundation, guidance is read as working by reducing the extraneous working-memory load an unguided
+      inquiry search would otherwise impose, the mechanism Sweller 1988 states and this meta-analysis's
+      own guidance-type contrasts measure the effect of without naming the mechanism itself.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-49584ffdad25
   title: 'When combinations of humans and AI are useful: A systematic review and meta-analysis'
@@ -122,14 +367,136 @@ records:
     doi: 10.1037/0033-295x.106.4.643
     path: bucket-canon/07-mind/information-foraging/primary-papers.yaml
     title: Information foraging.
-    relation: The meta-analysis found that human-AI combination beats the better of the two alone on
-      decision tasks but underperforms on content-creation tasks, with task decomposability, separable
-      subcomponents each party can forage independently versus one unified output they must jointly
-      produce, as the strongest moderator. Promotion pass two reads that moderator as an empirical test
-      of the foundation record's cost-benefit account of information-seeking, extended from one forager
-      to a two-agent team; a task that decomposes gives each party its own patch to forage, the condition
-      under which the foundation record's model predicts a foraging benefit, and a task that does not
-      decompose removes that benefit.
+    relation: The meta-analysis found that human-AI combination beats the better of the two alone on decision
+      tasks but underperforms on content-creation tasks, with task decomposability, separable subcomponents
+      each party can forage independently versus one unified output they must jointly produce, as the
+      strongest moderator. Promotion pass two reads that moderator as an empirical test of the foundation
+      record's cost-benefit account of information-seeking, extended from one forager to a two-agent team;
+      a task that decomposes gives each party its own patch to forage, the condition under which the foundation
+      record's model predicts a foraging benefit, and a task that does not decompose removes that benefit.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-cb0247570780
+  title: Experimental and Quasi-Experimental Studies of Inquiry-Based Science Teaching
+  authors:
+  - family: Furtak
+    given: Erin Marie
+    orcid: https://orcid.org/0000-0002-7675-8366
+  - family: Seidel
+    given: Tina
+    orcid: https://orcid.org/0000-0002-2578-1208
+  - family: Iverson
+    given: Heidi L.
+    orcid: null
+  - family: Briggs
+    given: Derek C.
+    orcid: https://orcid.org/0000-0003-1628-4661
+  year: 2012
+  venue:
+    name: Review of Educational Research
+    issn: 0034-6543
+    publisher: null
+  doi: 10.3102/0034654312457206
+  canonical_url: https://doi.org/10.3102/0034654312457206
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: SAGE Publishing
+  citation_count: 1007
+  concepts:
+  - Construct (python library)
+  - Mathematics education
+  - Psychology
+  - Teaching method
+  - Meta-analysis
+  - Science education
+  - Cognition
+  - Focus (optics)
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 70
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +25 highly cited (1007)
+  - +15 survived >5y (year=2012)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a meta-analysis reporting inquiry-teaching effect sizes instead of a primary
+    mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1207/s15516709cog1202_4
+    path: bucket-canon/07-mind/cognitive-load/primary-papers.yaml
+    title: 'Cognitive Load During Problem Solving: Effects on Learning'
+    relation: 37-study meta-analysis finding teacher-led inquiry activities outperformed student-led ones
+      by about 0.40 SD, a guidance-level finding read together with Kirschner, Sweller and Clark 2006
+      and Hmelo-Silver, Duncan and Chinn 2007 as the quantitative anchor for their qualitative guidance
+      debate. Promotion pass three depends this record on the cognitive-load foundation both papers in
+      that debate argue from, teacher-led guidance is read as reducing the extraneous working-memory load
+      an unguided search would impose, the mechanism this meta-analysis's own effect-size contrast does
+      not name directly.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-18fa77f1996a
+  title: 'Scaffolding and Achievement in Problem-Based and Inquiry Learning: A Response to Kirschner,
+    Sweller, and Clark (2006)'
+  authors:
+  - family: Hmelo‐Silver
+    given: Cindy E.
+    orcid: https://orcid.org/0000-0003-2275-5212
+  - family: Duncan
+    given: Ravit Golan
+    orcid: https://orcid.org/0000-0001-8655-8651
+  - family: Chinn
+    given: Clark A.
+    orcid: https://orcid.org/0000-0002-5663-7794
+  year: 2007
+  venue:
+    name: Educational Psychologist
+    issn: 0046-1520
+    publisher: null
+  doi: 10.1080/00461520701263368
+  canonical_url: https://doi.org/10.1080/00461520701263368
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: Routledge
+  citation_count: 2594
+  concepts:
+  - Psychology
+  - Experiential learning
+  - Discovery learning
+  - Argument (complex analysis)
+  - Learning theory
+  - Cognitive science
+  - Mathematics education
+  - Pedagogy
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 70
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +25 highly cited (2594)
+  - +15 survived >5y (year=2007)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a reply arguing a comparative pedagogy claim rather than stating a primary
+    mechanism); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1207/s15516709cog1202_4
+    path: bucket-canon/07-mind/cognitive-load/primary-papers.yaml
+    title: 'Cognitive Load During Problem Solving: Effects on Learning'
+    relation: The direct reply to Kirschner, Sweller and Clark 2006, arguing problem-based and inquiry
+      learning are extensively scaffolded approaches that reduce cognitive load rather than the unguided
+      discovery learning that paper conflates them with. Promotion pass three routes this outcome-tier
+      reply to the same cognitive-load foundation the paper it replies to argues from, both sides of the
+      debate invoke working-memory capacity and its allocation between task-intrinsic and extraneous load,
+      the mechanism Sweller 1988 states and neither outcome-tier paper restates from first principles.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-ce3245fc58e7
   title: 'The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One
@@ -228,12 +595,12 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: VanLehn's meta-analysis found that step-based tutoring systems, which give feedback on
-      intermediate steps, produce learning gains comparable to human one-to-one tutoring and larger than
-      answer-based systems that check only a final result. Promotion pass one reads step-based
-      intermediate-step correction as a system-scale instance of the frequent retrieval-and-feedback
-      checkpoints the foundation record's testing effect establishes at the item scale; VanLehn's own
-      paper frames the result as a tutoring-system design comparison; it does not test that mechanism directly.
+    relation: VanLehn's meta-analysis found that step-based tutoring systems, which give feedback on intermediate
+      steps, produce learning gains comparable to human one-to-one tutoring and larger than answer-based
+      systems that check only a final result. Promotion pass one reads step-based intermediate-step correction
+      as a system-scale instance of the frequent retrieval-and-feedback checkpoints the foundation record's
+      testing effect establishes at the item scale; VanLehn's own paper frames the result as a tutoring-system
+      design comparison; it does not test that mechanism directly.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-2cce3fc65496
   title: Effectiveness of Intelligent Tutoring Systems
@@ -279,11 +646,11 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: Kulik and Fletcher's 50-study meta-analysis found intelligent tutoring systems produce
-      learning gains over conventional instruction comparable to VanLehn 2011's estimate, on a larger and
-      more recent sample of systems. Promotion pass one reads both estimates as measuring the same
-      underlying mechanism, frequent retrieval-and-feedback checkpoints at system scale; neither paper's
-      own analysis frames its result in those mechanism terms.
+    relation: Kulik and Fletcher's 50-study meta-analysis found intelligent tutoring systems produce learning
+      gains over conventional instruction comparable to VanLehn 2011's estimate, on a larger and more
+      recent sample of systems. Promotion pass one reads both estimates as measuring the same underlying
+      mechanism, frequent retrieval-and-feedback checkpoints at system scale; neither paper's own analysis
+      frames its result in those mechanism terms.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-46a9894f6dd8
   title: 'Effectiveness of Mastery Learning Programs: A Meta-Analysis'
@@ -335,9 +702,191 @@ records:
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
     relation: This 108-study meta-analysis found mastery learning produces a smaller effect size than
-      Bloom 1984's original tutoring-equivalent estimate, tempering that claim with a larger sample.
-      Promotion pass one reads both Bloom's and this record's interventions as resting on the same
-      retrieval-practice/testing-effect mechanism; neither paper states that mechanism itself.
+      Bloom 1984's original tutoring-equivalent estimate, tempering that claim with a larger sample. Promotion
+      pass one reads both Bloom's and this record's interventions as resting on the same retrieval-practice/testing-effect
+      mechanism; neither paper states that mechanism itself.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-78897115331b
+  title: 'High school science fair: Positive and negative outcomes'
+  authors:
+  - family: Grinnell
+    given: Frederick
+    orcid: https://orcid.org/0000-0001-5337-3087
+  - family: Dalley
+    given: S.
+    orcid: https://orcid.org/0000-0001-9719-390X
+  - family: Reisch
+    given: Joan
+    orcid: https://orcid.org/0000-0002-0758-3566
+  year: 2020
+  venue:
+    name: PLoS ONE
+    issn: 1932-6203
+    publisher: null
+  doi: 10.1371/journal.pone.0229237
+  canonical_url: https://doi.org/10.1371/journal.pone.0229237
+  oa_status:
+    is_oa: true
+    oa_url: https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0229237&type=printable
+    license: cc-by
+    repository: Public Library of Science
+  citation_count: 31
+  concepts:
+  - Science education
+  - Science and engineering
+  - Psychology
+  - Medical education
+  - Mathematics education
+  - Medicine
+  - Engineering ethics
+  - Engineering
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 65
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +10 citation_count>10 (31)
+  - +15 survived >5y (year=2020)
+  - +10 open access
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a national survey reporting interest and misconduct rates instead of a primary
+    mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1207/s15327965pli1104_01
+    path: bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml
+    title: 'The "What" and "Why" of Goal Pursuits: Human Needs and the Self-Determination of Behavior'
+    relation: National survey finding that among students uninterested in a science or engineering career
+      who were required to participate in science fair, about 10 percent reported research misconduct
+      such as plagiarism, and that a participation requirement reduced the share of students reporting
+      increased interest relative to voluntary participants. Promotion pass three reads the interest/requirement
+      contrast, and the misconduct rate among disinterested required participants, as an
+      instance of the foundation record's own account of what happens when an activity is imposed without
+      an autonomy-supporting or competence-building structure behind it, engagement drops and, at the
+      margin, some participants substitute compliance-by-misconduct for the engagement a self-determined
+      activity would produce. The survey's own analysis reports interest and misconduct rates; it does
+      not use self-determination theory's own need language.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-2c2b01cd8a19
+  title: 'Lateral Reading and the Nature of Expertise: Reading Less and Learning More When Evaluating
+    Digital Information'
+  authors:
+  - family: Wineburg
+    given: Sam
+    orcid: https://orcid.org/0000-0002-4838-1522
+  - family: McGrew
+    given: Sarah
+    orcid: https://orcid.org/0000-0002-8925-1468
+  year: 2019
+  venue:
+    name: Teachers College Record The Voice of Scholarship in Education
+    issn: 0040-0475
+    publisher: null
+  doi: 10.1177/016146811912101102
+  canonical_url: https://doi.org/10.1177/016146811912101102
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: SAGE Publishing
+  citation_count: 369
+  concepts:
+  - Misinformation
+  - Credibility
+  - Context (archaeology)
+  - Reading (process)
+  - The Internet
+  - Psychology
+  - Internet privacy
+  - Computer science
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 65
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (369)
+  - +15 survived >5y (year=2019)
+  canon_branch_hints:
+  - 04-information
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (an expert/novice study reporting a comparative evaluation-strategy claim
+    rather than stating a primary mechanism); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1037/0033-295x.106.4.643
+    path: bucket-canon/07-mind/information-foraging/primary-papers.yaml
+    title: Information foraging.
+    relation: Expert/novice study finding professional fact checkers evaluate a website by leaving it
+      to check other sources first, lateral reading, while historians and students stayed within the site
+      and were misled by superficial cues. Promotion pass three reads lateral reading as a
+      patch-leaving decision in the foundation record's own information-foraging terms, the fact checker
+      abandons a low-information-scent patch, the page under evaluation taken on its own word, for a higher-scent
+      one, an independent source that corroborates or contradicts it, the same information-scent-driven
+      patch choice the foundation record's model of a searcher predicts. The paper's own analysis names
+      lateral reading as an expert strategy; it does not use foraging or information-scent language.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-d586a01c4c6a
+  title: 'Revisiting the effects of project-based learning on students’ academic achievement: A meta-analysis
+    investigating moderators'
+  authors:
+  - family: Chen
+    given: Cheng-Huan
+    orcid: https://orcid.org/0000-0001-8495-9312
+  - family: Yang
+    given: Yong-Cih
+    orcid: https://orcid.org/0000-0001-7643-7071
+  year: 2019
+  venue:
+    name: Educational Research Review
+    issn: 1747-938X
+    publisher: null
+  doi: 10.1016/j.edurev.2018.11.001
+  canonical_url: https://doi.org/10.1016/j.edurev.2018.11.001
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: Elsevier BV
+  citation_count: 743
+  concepts:
+  - Academic achievement
+  - Meta-analysis
+  - Mathematics education
+  - Psychology
+  - Project-based learning
+  - Academic year
+  - Internal medicine
+  - Medicine
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 65
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (743)
+  - +15 survived >5y (year=2019)
+  canon_branch_hints:
+  - 05-biophysics
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a meta-analysis reporting a project-based-learning effect size and its moderators
+    instead of a primary mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1207/s15516709cog1202_4
+    path: bucket-canon/07-mind/cognitive-load/primary-papers.yaml
+    title: 'Cognitive Load During Problem Solving: Effects on Learning'
+    relation: Meta-analysis finding project-based learning produced a positive effect on student academic
+      achievement pooled across studies, and testing moderators of that effect, finding it varies by implementation
+      feature rather than holding as one fixed quantity. Promotion pass three depends this record on the
+      cognitive-load foundation, implementation features that moderate PBL's effect are read as features
+      that change how much extraneous working-memory load an unguided project imposes, the mechanism Sweller
+      1988 states and this meta-analysis's own moderator analysis does not name directly.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-c3ad89ff9a59
   title: 'AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based
@@ -398,11 +947,11 @@ records:
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
     relation: The RCT found that students using the AI tutor scored higher on a topic-matched exam than
-      students in active-learning class sessions, using a tutor built to a specific research-based
-      pedagogical design. Promotion pass two reads that pedagogical design, which runs students through
-      repeated retrieval-and-feedback checkpoints on the same content, as a classroom-scale instance of
-      the testing-effect mechanism the foundation record establishes; the paper's own account credits the
-      tutor's design in general terms and does not name that specific mechanism.
+      students in active-learning class sessions, using a tutor built to a specific research-based pedagogical
+      design. Promotion pass two reads that pedagogical design, which runs students through repeated retrieval-and-feedback
+      checkpoints on the same content, as a classroom-scale instance of the testing-effect mechanism the
+      foundation record establishes; the paper's own account credits the tutor's design in general terms
+      and does not name that specific mechanism.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-4d51ec39f102
   title: Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance
@@ -470,12 +1019,12 @@ records:
     path: bucket-canon/07-mind/information-foraging/primary-papers.yaml
     title: Information foraging.
     relation: The study found that some AI explanations raised participants' stated trust in and reliance
-      on the AI's recommendation without raising team accuracy, a dissociation between trust and
-      performance. Promotion pass two reads that dissociation as an instance of the foundation record's
-      information-scent account, since an explanation that carries no reliable cue toward the correct answer
-      produces reliance anyway. The source paper does not use foraging or information-scent language;
-      this reading is the promoting pass's own extension, and the paper's own framing stops at the
-      trust-accuracy dissociation it reports.
+      on the AI's recommendation without raising team accuracy, a dissociation between trust and performance.
+      Promotion pass two reads that dissociation as an instance of the foundation record's information-scent
+      account, since an explanation that carries no reliable cue toward the correct answer produces reliance
+      anyway. The source paper does not use foraging or information-scent language; this reading is the
+      promoting pass's own extension, and the paper's own framing stops at the trust-accuracy dissociation
+      it reports.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-d6f23a78e535
   title: 'From Chalkboards to Chatbots: Evaluating the Impact of Generative AI on Learning Outcomes in
@@ -537,11 +1086,83 @@ records:
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
     relation: The World Bank field evaluation attributes part of the measured learning-progress gain to
-      the scripted activity structure students worked through with a facilitator on site, rather than to
-      open-ended chatbot access. Promotion pass two reads that scripted, facilitator-guided routine as a
-      structured retrieval-and-practice routine, the same mechanism class the foundation record
-      establishes, at a six-week, national-program scale; the report itself does not name a
-      retrieval-practice mechanism.
+      the scripted activity structure students worked through with a facilitator on site, rather than
+      to open-ended chatbot access. Promotion pass two reads that scripted, facilitator-guided routine
+      as a structured retrieval-and-practice routine, the same mechanism class the foundation record establishes,
+      at a six-week, national-program scale; the report itself does not name a retrieval-practice mechanism.
+  provenance_signoff: 'pending: gianyrox'
+- id: bkt-d1b4d20be98f
+  title: 'Students’ Civic Online Reasoning: A National Portrait'
+  authors:
+  - family: Breakstone
+    given: Joel
+    orcid: https://orcid.org/0000-0003-0468-6399
+  - family: Smith
+    given: Mark D.
+    orcid: https://orcid.org/0000-0002-1048-7786
+  - family: Wineburg
+    given: Sam
+    orcid: https://orcid.org/0000-0002-4838-1522
+  - family: Rapaport
+    given: Amie
+    orcid: null
+  - family: Carle
+    given: Jill
+    orcid: null
+  - family: Garland
+    given: Marshall
+    orcid: null
+  - family: Saavedra
+    given: Anna Rosefsky
+    orcid: null
+  year: 2021
+  venue:
+    name: Educational Researcher
+    issn: 0013-189X
+    publisher: null
+  doi: 10.3102/0013189x211017495
+  canonical_url: https://doi.org/10.3102/0013189x211017495
+  oa_status:
+    is_oa: false
+    oa_url: null
+    license: null
+    repository: SAGE Publishing
+  citation_count: 198
+  concepts:
+  - Credibility
+  - Socioeconomic status
+  - Psychology
+  - Page view
+  - Sample (material)
+  - Portrait
+  - The Internet
+  - Social psychology
+  sources_consulted:
+  - crossref
+  - openalex
+  fetched_at: '2026-09-14T13:45:30Z'
+  canon_score: 50
+  canon_score_reasons:
+  - +30 peer-reviewed type (journal-article)
+  - +20 citation_count>50 (198)
+  canon_branch_hints:
+  - 07-mind
+  tier: OUTCOME
+  outcome_reason: RUBRIC E7 (a national assessment reporting source-evaluation task performance instead
+    of a primary mechanism claim); routed to sub-outcomes/education.
+  depends_on_foundation:
+    doi: 10.1037/0033-295x.106.4.643
+    path: bucket-canon/07-mind/information-foraging/primary-papers.yaml
+    title: Information foraging.
+    relation: National assessment of 3,446 US high school students finding broad, consistent struggle
+      across six live-internet source-evaluation tasks, most missed an advocacy site's industry ties,
+      most could not distinguish news from ads, and over half judged an anonymously posted video as strong
+      evidence. Promotion pass three reads this national failure rate as the base rate against which the
+      foundation record's expert foraging strategy, leaving a low-scent patch to check an independent
+      source rather than trusting surface cues within it, is absent, without the corroboration step Wineburg
+      and McGrew 2019 documents experts performing, students default to evaluating a single patch on its
+      own surface cues. The assessment's own analysis reports task performance and demographic covariates;
+      it does not use information-foraging language.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-f3c246bffb55
   title: 'Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing
@@ -601,11 +1222,11 @@ records:
   canon_score_reasons:
   - +20 citation_count>50 (149)
   - +10 open access
-  - "+anchor: below CONTRIBUTING.md's informational canon_score floor; a 2025 arXiv preprint, so
-    canon_score's peer-reviewed-type and foundational-venue signals do not apply even though the work
-    already carries real citation traction (149) and direct topical fit to the memory-systems foundation
-    it depends on. Included on citation count and topical fit; the mechanical score alone would have
-    excluded it. Reviewer gianyrox, 2026-09-11."
+  - '+anchor: below CONTRIBUTING.md''s informational canon_score floor; a 2025 arXiv preprint, so canon_score''s
+    peer-reviewed-type and foundational-venue signals do not apply even though the work already carries
+    real citation traction (149) and direct topical fit to the memory-systems foundation it depends on.
+    Included on citation count and topical fit; the mechanical score alone would have excluded it. Reviewer
+    gianyrox, 2026-09-11.'
   canon_branch_hints:
   - 07-mind
   tier: OUTCOME
@@ -616,12 +1237,12 @@ records:
     doi: 10.1126/science.1207745
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'Google Effects on Memory: Cognitive Consequences of Having Information at Our Fingertips'
-    relation: The study found that the LLM-assisted writing group showed weaker EEG-measured neural
-      connectivity and worse recall of their own essay content than groups who wrote unaided or with
-      search-engine assistance. Promotion pass two reads that pattern as a physiological and behavioral
-      instance of the foundation record's encode-the-location-not-the-content account of cognitive
-      offloading, with the assistant's own output standing in for the external, searchable store; the
-      study's own analysis does not invoke that account.
+    relation: The study found that the LLM-assisted writing group showed weaker EEG-measured neural connectivity
+      and worse recall of their own essay content than groups who wrote unaided or with search-engine
+      assistance. Promotion pass two reads that pattern as a physiological and behavioral instance of
+      the foundation record's encode-the-location-not-the-content account of cognitive offloading, with
+      the assistant's own output standing in for the external, searchable store; the study's own analysis
+      does not invoke that account.
   provenance_signoff: 'pending: gianyrox'
 - id: bkt-3caacb8e2302
   title: 'Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise'
@@ -670,10 +1291,10 @@ records:
   canon_score: 10
   canon_score_reasons:
   - +10 open access
-  - "+anchor: below CONTRIBUTING.md's informational canon_score floor; a 2024 arXiv preprint with only 6
-    citations so far, so the mechanical citation-count signal undercounts a large field deployment
-    (largest mastery gains for less-certified or less-experienced tutors). Included on study design and
-    sample size; the mechanical score alone would have excluded it. Reviewer gianyrox, 2026-09-11."
+  - '+anchor: below CONTRIBUTING.md''s informational canon_score floor; a 2024 arXiv preprint with only
+    6 citations so far, so the mechanical citation-count signal undercounts a large field deployment (largest
+    mastery gains for less-certified or less-experienced tutors). Included on study design and sample
+    size; the mechanical score alone would have excluded it. Reviewer gianyrox, 2026-09-11.'
   canon_branch_hints:
   - 01-mathematics
   - 07-mind
@@ -685,9 +1306,9 @@ records:
     doi: 10.1111/j.1745-6916.2006.00012.x
     path: bucket-canon/07-mind/memory-systems/primary-papers.yaml
     title: 'The Power of Testing Memory: Basic Research and Implications for Educational Practice'
-    relation: The field deployment found that tutors using Tutor CoPilot's real-time AI suggestions
-      produced higher student mastery rates than tutors without it. Promotion pass two reads the
-      suggestions' effect as the foundation record's retrieval-and-feedback mechanism operating through an
-      upskilled tutor, since the AI pushes the tutor toward expert-pattern retrieval-and-feedback prompts rather
-      than direct answers, and the reported mastery gain is that mechanism at one remove from the student.
+    relation: The field deployment found that tutors using Tutor CoPilot's real-time AI suggestions produced
+      higher student mastery rates than tutors without it. Promotion pass two reads the suggestions' effect
+      as the foundation record's retrieval-and-feedback mechanism operating through an upskilled tutor,
+      since the AI pushes the tutor toward expert-pattern retrieval-and-feedback prompts rather than direct
+      answers, and the reported mastery gain is that mechanism at one remove from the student.
   provenance_signoff: 'pending: gianyrox'

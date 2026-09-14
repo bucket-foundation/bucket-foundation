@@ -10,6 +10,10 @@ url: "https://doi.org/10.1177/016146811912101102"
 openalex_id: "https://openalex.org/W3093401944"
 branch: "source-evaluation"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-2c2b01cd8a19)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/information-foraging/primary-papers.yaml (id bkt-c033b128f77f, Pirolli and Card 1999)"
 why_it_matters: >
   An expert/novice study of 45 experienced internet users (10 Ph.D. historians, 10
   professional fact checkers, 25 Stanford undergraduates), finding fact checkers evaluate
