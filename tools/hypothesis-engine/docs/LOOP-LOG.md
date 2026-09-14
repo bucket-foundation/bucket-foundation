@@ -2,6 +2,41 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, tick 9, literature.py corpus swarm, eleven PRs re-confirmed
+
+- **Write access**: confirmed via a dry-run push before any other step;
+  the probe branch stayed local. `main`'s own `LOOP-LOG.md` still tops
+  out at tick 7 (PR #105, tick 8's own log entry, is open but
+  unmerged), so this entry starts from there.
+- **Engine health**: fresh sandbox, deps installed. `make test` on
+  `main`: 1482 passed, 0 failed. No defect.
+- **Random campaigns**: `hte-synth run --seeds 0-29` (fake), 30/30
+  pass, gate PASS. `realsweep --corpus production`/`literature`, 10/10
+  seeds each, 0 crashed (production seeds 1/2/4 and literature seeds
+  2/3 read coverage 0.0/`None`, the same restrictive-params-name-no-
+  ground-truth case prior ticks already documented; literature matches
+  the committed 30-seed reference exactly on every shared seed).
+  `realsweep --corpus education-atlas` seed 0: coverage 0.78, matching
+  ticks 5-8's own result, no crash; ran seed 0 only for time.
+- **Test swarm**: `hte/corpus/literature.py`, the only module on
+  `tests/COVERAGE.md`'s list with no swarm file across every prior
+  round. 23 new tests in `tests/swarm-20260914/
+  test_corpus_literature_props.py`: frontmatter line/offset bookkeeping,
+  scalar/list/claim/block-scalar parsing, `_evidence_tier`'s priority
+  order, `_has_effect_size`/`_is_ground_truth`, `_classify_action`'s
+  mixed branch, the `_detect_*` slot helpers' `OTHER` fallback,
+  `_truncate`'s length invariant, and `discover_card_roots`/
+  `_declared_batch_subfolders`. No defect found. Full suite: 1505 passed.
+- **PRs opened**: 1, this tick's own
+  `test/hte-literature-corpus-coverage-20260914` (#106).
+- **PRs reviewed**: 11 open non-draft PRs at tick start. #106 (own)
+  fresh review, approve. #105/#101/#99/#97/#95/#93/#91/#90/#89/#87/#86
+  already carried a review at their current head sha, re-confirmed via
+  `get_reviews` against this tick's own `list_pull_requests` output, no
+  duplicate.
+- **Merged**: this tick's own PR, after self-review (zero secrets, zero
+  High/Critical QA), squash-merged (`b57a860d3`). **Blocked**: nothing.
+
 ## 2026-09-14, tick 7, novelty.py swarm, ten PRs re-confirmed, education-atlas seed 0 rerun
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/
