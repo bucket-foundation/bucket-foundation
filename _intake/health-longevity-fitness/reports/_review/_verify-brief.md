@@ -1,6 +1,6 @@
 DEEP CITATION VERIFICATION. Your job: check that the manual's highest-stakes quantitative claims
 are actually supported by the papers they cite — using web lookups of the real literature.
-Work dir: /home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
+Work dir: ~/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
 
 For your assigned chapters (markdown files), do this:
 

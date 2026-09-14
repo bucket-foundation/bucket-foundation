@@ -7,7 +7,7 @@ Then EXIT. Do not loop internally. Goal: when Gian wakes up, the biophysics lear
 system is richer, correct, and still working, and the other fields have been started.
 
 ## 1. Read state first
-Project: `/home/gian/agfarms/bucket-foundation/learning`
+Project: `~/agfarms/bucket-foundation/learning`
 - `.buildloop/LOG.md`, what prior runs did (CONTINUE from there, do NOT repeat).
 - `app/corpus/biophysics.json`, the current atom corpus (count + coverage).
 - `syllabus/05-biophysics.md`, the full target scope (drive coverage toward this).

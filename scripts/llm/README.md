@@ -53,7 +53,7 @@ The installed `ollama 0.18.2` ships **only** the `cuda_v12` backend in
 `/usr/local/lib/ollama`, **no Vulkan, no ROCm** `.so`. So `OLLAMA_VULKAN=1` (set
 In the root systemd unit) is a silent no-op and every chat model runs **100% CPU**
 (`ollama ps` => "100% CPU", `rocm-smi` GPU use 0%). `llama.cpp` built with the
-Vulkan backend (`/home/gian/llama.cpp/build/bin/llama-server`,
+Vulkan backend (`~/llama.cpp/build/bin/llama-server`,
 `libggml-vulkan.so`) offloads to the discrete GPU.
 
 Vulkan enumerates `0 = Radeon 780M (iGPU, gfx1103)`, `1 = RX 7700S (dGPU, gfx1102)`.

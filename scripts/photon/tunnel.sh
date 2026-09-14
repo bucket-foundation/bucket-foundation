@@ -7,7 +7,7 @@
 # NOTE: the quick-tunnel URL is EPHEMERAL (changes each restart). For a stable
 # hostname run a NAMED tunnel: `cloudflared tunnel login` (one browser auth) then
 # `cloudflared tunnel create polingual-local` + route DNS to polingual-local.agfarms.dev.
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 mkdir -p _intake/photons/logs
 pkill -f "cloudflared tunnel --url http://127.0.0.1:8090" 2>/dev/null || true
 sleep 1

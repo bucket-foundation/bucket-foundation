@@ -8,11 +8,11 @@ MCP server, wire the docs together.
 
 | # | Deliverable | Status | Path / URL |
 |---|-------------|--------|------------|
-| 1 | x402-research-gateway hosted at `x402-research.agfarms.dev` | **BLOCKED** (SSH) | `/home/gian/agfarms/x402-research-gateway/DEPLOY.md` |
+| 1 | x402-research-gateway hosted at `x402-research.agfarms.dev` | **BLOCKED** (SSH) | `~/agfarms/x402-research-gateway/DEPLOY.md` |
 | 2 | Real Base Sepolia wallet | **PARTIAL** (generated, UNFUNDED) | `~/.bucket-wallet.env` (chmod 600), addr `0x4daF1378F862A58fe2C4C534d4d105A29D2B29Ff` |
-| 3 | bucket MCP server (stdio, 3 tools) | ✅ SHIPPED + registered | `/home/gian/agfarms/bucket-mcp/` |
+| 3 | bucket MCP server (stdio, 3 tools) | ✅ SHIPPED + registered | `~/agfarms/bucket-mcp/` |
 | 4 | `public/.well-known/mcp.json` updated | ✅ SHIPPED | `bucket-foundation/public/.well-known/mcp.json` |
-| 5 | `feed402/README.md` updated | ✅ SHIPPED | `/home/gian/agfarms/feed402/README.md` |
+| 5 | `feed402/README.md` updated | ✅ SHIPPED | `~/agfarms/feed402/README.md` |
 | 6 | This log | ✅ SHIPPED | `bucket-foundation/PRODUCTION_LOG.md` |
 
 ## 1. Gateway hosting, BLOCKED
@@ -47,7 +47,7 @@ change needed. TLS and Caddy ACME kick in on first container boot.
 **Address:** `0x4daF1378F862A58fe2C4C534d4d105A29D2B29Ff`
 **Chain:** Base Sepolia (testnet)
 **Generated:** 2026-04-23 via `eth_keys` (secp256k1, local randomness)
-**Private key location:** `/home/gian/.bucket-wallet.env`, chmod 600, NOT
+**Private key location:** `~/.bucket-wallet.env`, chmod 600, NOT
 in git. K8s secret placement deferred until cluster SSH access restored.
 
 **NOT committed anywhere.** `grep -r 0x4daF1378 ~/agfarms/` returns only the
@@ -70,7 +70,7 @@ And a real settlement is captured.
 
 ## 3. Bucket-mcp server, SHIPPED ✅
 
-**Path:** `/home/gian/agfarms/bucket-mcp/`
+**Path:** `~/agfarms/bucket-mcp/`
 **Files:** `bucket-mcp.py` (340 LOC, stdlib-only), `bin/bucket-mcp` (npx
 launcher), `package.json`, `README.md`, `LICENSE` (MIT).
 
@@ -81,7 +81,7 @@ $ printf '%s\n' \
   '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}' \
   '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
   '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"bucket_cite","arguments":{"doi_or_url":"https://example.com/foo"}}}' \
-  | python3 /home/gian/agfarms/bucket-mcp/bucket-mcp.py
+  | python3 ~/agfarms/bucket-mcp/bucket-mcp.py
 
 → initialize returned protocolVersion 2024-11-05
 → tools/list returned 3 tools (bucket_research, bucket_cite, bucket_canon_list)
@@ -91,7 +91,7 @@ $ printf '%s\n' \
 **Registered at user scope:**
 ```
 $ claude mcp add --scope user --transport stdio bucket -- \
-    bash -lc "exec python3 /home/gian/agfarms/bucket-mcp/bucket-mcp.py"
+    bash -lc "exec python3 ~/agfarms/bucket-mcp/bucket-mcp.py"
 Added stdio MCP server bucket to user config
 
 $ claude mcp list | grep bucket
@@ -149,7 +149,7 @@ cited envelope`.
 ## Forbidden-URL check
 
 No `.nucleus/config.json` with `forbidden_urls` array found at
-`/home/gian/agfarms/bucket-foundation/.nucleus/config.json` (file exists
+`~/agfarms/bucket-foundation/.nucleus/config.json` (file exists
 but contains only the `infrastructure` block). Treated all external URLs
 Conservatively:
 - Only outbound calls made: `dig` to Cloudflare (OK), `curl -sI` to
@@ -406,5 +406,5 @@ Note the new failure mode: **"upstream returned non-JSON"** (= 404 text from the
 
 - `bkt-`: bucket.foundation /api/research, fix path prefix (`/${tier}` → `/research/${tier}` for insight / map other tiers).
 - `bkt-`: Track B, inject `BUCKET_WALLET_PRIVATE_KEY`, sign x402 handshake, pass real envelope through.
-- `eai-` or infra: re-enable Kruse corpus tier (requires local `/home/gian/jackkruse/` container on the box or alternate host).
+- `eai-` or infra: re-enable Kruse corpus tier (requires local `~/jackkruse/` container on the box or alternate host).
 

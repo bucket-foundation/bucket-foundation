@@ -31,3 +31,12 @@ Provenance on every claim. Conflicts are first-class objects. Random-walk expans
 ## Idempotency
 Re-runs converge, not duplicate. Every source hit logged in `_intake-raw/<source>/MANIFEST.jsonl`.
 Superseded material → `_archive/<YYYY-MM>/`.
+
+## Runner paths
+`reports/viz/build_structures.py` and `reports/viz/ds.py` load display fonts
+(Archivo, Inter, IBM Plex Mono) from `~/.fonts/cadence/` and
+`~/.local/share/fonts/kala-deck/` by default. Override with
+`BUCKET_FONT_CADENCE_ARCHIVO`, `BUCKET_FONT_CADENCE_INTER`,
+`BUCKET_FONT_MONO_REGULAR`, `BUCKET_FONT_MONO_BOLD` (`build_structures.py`)
+or `BUCKET_FONT_CADENCE_DIR`, `BUCKET_FONT_MONO_DIR` (`ds.py`) if the fonts
+live elsewhere on your machine.

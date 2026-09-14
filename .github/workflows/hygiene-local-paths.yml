@@ -1,0 +1,26 @@
+name: hygiene-local-paths
+
+# Blocks new /home/<user> absolute paths in tracked text files (leaked local
+# usernames, machine-specific directory layout). See
+# learning/research-os/compliance/REPO-HYGIENE-2026-09-11.md for the audit
+# this check was built from, and tools/hygiene/check-local-paths.py for the
+# checker + its allowlist contract.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check for local paths
+        run: python3 tools/hygiene/check-local-paths.py --all

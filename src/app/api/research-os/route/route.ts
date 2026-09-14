@@ -46,11 +46,30 @@
  * skipped (the flags still come back in the response either way). The
  * write is best-effort: a failure there never fails the route response
  * itself, matching loadAncestorRows' own fail-open posture.
+ *
+ * ros-14 UPDATE (faded guidance for low-prior-knowledge learners): the
+ * response gains `guidance`, this learner's current GuidanceLevel
+ * (guidance.ts's own server function, from this response's own `chain`)
+ * forced to "low" when the learner's class has the research_os_
+ * guidance_enabled arm switch off, or `null` for an anonymous request (no
+ * learner state to compute a level from). The workspace page reads this to
+ * decide how much of the selected node's worked example to show before
+ * the learner's own explanation box (GUIDANCE.md section 2).
  */
 import { NextRequest, NextResponse } from "next/server";
 import { computeFrontier } from "@/lib/research-os/frontier";
 import { findFrontierEngineTargets } from "@/lib/research-os/engine-frontier";
-import { configured, loadSubgraph, loadLearnerStates, loadAncestorRows, writeEdgeFlags, verifyLearner } from "@/lib/research-os/db";
+import { guidanceLevel } from "@/lib/research-os/guidance";
+import type { GuidanceLevel } from "@/lib/research-os/types";
+import {
+  configured,
+  loadSubgraph,
+  loadLearnerStates,
+  loadAncestorRows,
+  writeEdgeFlags,
+  verifyLearner,
+  isGuidanceEnabledForLearner,
+} from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -104,6 +123,20 @@ export async function GET(req: NextRequest) {
     }
   }
 
+  // ros-14: a signed-in learner's guidance level, forced to "low" behind
+  // the class arm switch; both reads fail open (guidanceLevel to "medium"
+  // by construction, isGuidanceEnabledForLearner to true) rather than
+  // failing the whole route response.
+  let guidance: GuidanceLevel | null = null;
+  if (learnerId) {
+    try {
+      guidance = await guidanceLevel(learnerId, result.chain);
+      if (!(await isGuidanceEnabledForLearner(learnerId))) guidance = "low";
+    } catch {
+      guidance = "medium";
+    }
+  }
+
   return NextResponse.json(
     {
       target: result.target,
@@ -112,6 +145,7 @@ export async function GET(req: NextRequest) {
       gap: result.gap,
       lowConfidenceFlags: result.lowConfidenceFlags,
       engineFrontier,
+      guidance,
       learner: learnerId ? "self" : "anonymous",
     },
     { headers: { "cache-control": "no-store" } },

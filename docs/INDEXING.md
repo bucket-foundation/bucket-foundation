@@ -114,7 +114,7 @@ done
 Owner-verification token is a 64-char hex string generated 2026-04-24 via
 `python3 -c "import secrets; print(secrets.token_hex(32))"`.
 
-- **Key location**: `/home/gian/agfarms/bucket-foundation/public/b254d06bf09a600cccd29a489b7a0bb90097fd22c976105b9edcbb77b6fc56f2.txt`
+- **Key location**: `~/agfarms/bucket-foundation/public/b254d06bf09a600cccd29a489b7a0bb90097fd22c976105b9edcbb77b6fc56f2.txt`
 - **Served at**: `https://www.bucket.foundation/b254d06bf09a600cccd29a489b7a0bb90097fd22c976105b9edcbb77b6fc56f2.txt`
 - **Source of truth**: `src/lib/indexnow.ts`
 

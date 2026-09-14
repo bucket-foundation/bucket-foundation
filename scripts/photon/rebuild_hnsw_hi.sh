@@ -3,7 +3,7 @@
 # ~19GB (vector data) to stay resident; 16GB spilled to disk (pathologically
 # slow). Give it 30GB (host has ~39GB free) so it never spills.
 set -uo pipefail
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 PG=(env PGPASSWORD=bucket psql -h 127.0.0.1 -p 5433 -U bucket -d polingual -v ON_ERROR_STOP=1)
 
 echo "[rebuild] cancelling the running spilled build…"

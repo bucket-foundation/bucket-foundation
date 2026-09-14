@@ -1,0 +1,31 @@
+-- Research OS for K-12, faded guidance for low-prior-knowledge learners
+-- (bkt-ros ros-14). See learning/research-os/GUIDANCE.md for the full
+-- design account.
+--
+-- Two additive columns, both idempotent (`add column if not exists`),
+-- matching every other migration in this repo:
+--
+-- graph.nodes.worked_example: an authored (not verbatim) grade-appropriate
+-- model explanation of the node's own idea plus the source it rests on,
+-- {"text": string, "source": string}. Nullable, no default: most nodes
+-- carry none (db.ts's toWorkedExample treats a missing or malformed value
+-- as absent, never a half-built example). Seeded on the sky-blue path's
+-- first six nodes by supabase/seed/research-os-sky-blue.json's own
+-- worked_example key, written by scripts/seed-research-os.mjs.
+--
+-- graph.classes.research_os_guidance_enabled: the per-class arm switch
+-- (item 4, "mirrors the forcing switch from PR #63"). This migration was
+-- authored before PR #63 (cognitive forcing) merged; that PR shipped its
+-- own switch as graph.classes.forcing_enabled (nullable, defers to the
+-- RESEARCH_OS_FORCING_ENABLED env var when unset,
+-- 20260910060000_research_os_forcing.sql). This column keeps its own
+-- name and shape rather than reusing forcing_enabled: guidance and
+-- forcing are independent pilot arms (a class can run either, both, or
+-- neither), so one shared boolean would conflate two different
+-- experimental conditions. Shape: a plain not-null boolean, default
+-- true -- the base product behavior is guidance ON, a pilot opts a
+-- specific class OUT for its control arm. See GUIDANCE.md section 4 for
+-- the full reconciliation note and the open naming-convention question.
+alter table graph.nodes add column if not exists worked_example jsonb;
+
+alter table graph.classes add column if not exists research_os_guidance_enabled boolean not null default true;

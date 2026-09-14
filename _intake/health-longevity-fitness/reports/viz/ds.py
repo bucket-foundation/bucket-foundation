@@ -27,7 +27,11 @@ WARN="#b5471f"; OK="#1d6b2e"
 DISPLAY="Archivo"; BODY="Inter"; MONO="IBM Plex Mono"
 
 def _register_fonts():
-    for fp in glob.glob("/home/gian/.fonts/cadence/*.ttf")+glob.glob("/home/gian/.local/share/fonts/kala-deck/*.ttf"):
+    # Local font cache. Override via env if your fonts live elsewhere (see
+    # the "Runner paths" note in _intake/health-longevity-fitness/README.md).
+    cadence_dir = os.path.expanduser(os.environ.get("BUCKET_FONT_CADENCE_DIR", "~/.fonts/cadence"))
+    kala_dir = os.path.expanduser(os.environ.get("BUCKET_FONT_MONO_DIR", "~/.local/share/fonts/kala-deck"))
+    for fp in glob.glob(f"{cadence_dir}/*.ttf") + glob.glob(f"{kala_dir}/*.ttf"):
         try: _fm.fontManager.addfont(fp)
         except Exception: pass
 _register_fonts()

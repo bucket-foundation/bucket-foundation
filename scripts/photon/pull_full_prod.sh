@@ -4,7 +4,7 @@
 # compressed bytes cross the wire. Columns needed for all 5 axes; skips the big
 # provenance/payload jsonb and the generated tsvectors (rebuilt locally).
 set -uo pipefail
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 OUT=_intake/photons/polingual_full.csv.gz
 HOST="${AGFARMS_HOST:-giany@5.161.236.151}"
 echo "[pull] start $(date -u)"

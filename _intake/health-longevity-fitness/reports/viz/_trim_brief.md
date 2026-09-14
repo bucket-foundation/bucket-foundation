@@ -1,4 +1,4 @@
-You are doing a SHOW-NOT-TELL REDUCTION pass on ONE chapter of a health manual. The figures are already placed inline (literal `@@FIG:slug@@` markers). Your job now is to CUT redundant text the figures already carry. Work dir: /home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
+You are doing a SHOW-NOT-TELL REDUCTION pass on ONE chapter of a health manual. The figures are already placed inline (literal `@@FIG:slug@@` markers). Your job now is to CUT redundant text the figures already carry. Work dir: ~/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
 
 Read viz/_chfigs/<CID>.json (chapter `file` path + the `figures` with their {slug,title,caption}), then read the markdown `file`. For each `@@FIG:...@@` marker, look at the prose, table, or bullet list immediately around it.
 

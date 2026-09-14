@@ -17,7 +17,7 @@
 
 set -euo pipefail
 
-ROOT="${ROOT:-/home/gian/agfarms/bucket-foundation/data/patents/uspto}"
+ROOT="${ROOT:-$HOME/agfarms/bucket-foundation/data/patents/uspto}"
 OUT="$ROOT/raw/bulk"
 BASE="${USPTO_BULK_BASE:-https://bulkdata.uspto.gov/data/patent}"
 

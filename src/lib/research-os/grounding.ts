@@ -14,9 +14,27 @@
  * The AI never writes the learner's explanation (S7 "verified in code, not
  * just the prompt" floor, matching /api/academy/tutor): gradeExplanation
  * only ever returns a verdict plus feedback, never a rewritten sentence.
+ *
+ * ros-14 UPDATE (faded guidance for low-prior-knowledge learners, item 3,
+ * "Check prompts adapt"): gradeExplanation takes an optional `guidance`
+ * argument. At "high" guidance, with a curated passages.ts entry for this
+ * node, the grounding block gains one POINTER line naming the exact
+ * passage sentence, and the system prompt gains one matching instruction
+ * to reference it in support feedback; every other level (medium, low, or
+ * high with no curated passage) omits the pointer entirely, and the
+ * grounding block and prompt are byte-identical to the pre-ros-14 shape.
+ * This changes ONLY how much the tutor's own feedback text points at --
+ * every code-level contract this file already enforces (sanitizeGradeResult's
+ * closed result/confidence enums, the single-allowed-citation filter, no
+ * field anywhere for a rewritten explanation) is unchanged by guidance
+ * level, and holds identically at every level: guidance never widens what
+ * a model response is allowed to return, only what one HARD RULE asks the
+ * model to reference inside the feedback string it was already allowed to
+ * write. See learning/research-os/GUIDANCE.md section 3 and
+ * scripts/test-research-os-workspace-contracts.ts's "guidance level" block.
  */
 import { callGroundedModelWithUsage, parseModelJson, type Provider, type LlmUsage } from "./llm";
-import type { Provenance } from "./types";
+import type { GuidanceLevel, Provenance } from "./types";
 
 export interface GradeResult {
   result: "support" | "contradiction" | "unknown";
@@ -51,13 +69,39 @@ export function citationLabel(node: { title: string; provenance?: Provenance }):
   return `${who}${when}${what}`.trim() || node.title;
 }
 
-function buildGrounding(node: GroundingNode, prereqSummaries: Array<{ title: string; summary: string | null }>, allowLabel: string): string {
-  return [
+/** The exact passage this Check call may point to at high guidance: a
+ * curated verbatim passage (passages.ts's QuotePassage) with its own
+ * locator. Optional; omitted (or `null`, a node with no curated passage
+ * yet) means no POINTER block is built regardless of guidance level. */
+export interface HighGuidancePassage {
+  text: string;
+  locator: string;
+}
+
+/** Exported for scripts/test-research-os-workspace-contracts.ts's own
+ * "guidance level" block: the POINTER line's presence is a pure function
+ * of (guidanceLevel, passage), so this is unit-testable with no model call. */
+export function buildGrounding(
+  node: GroundingNode,
+  prereqSummaries: Array<{ title: string; summary: string | null }>,
+  allowLabel: string,
+  guidanceLevel?: GuidanceLevel,
+  passage?: HighGuidancePassage | null,
+): string {
+  const lines = [
     `CONCEPT: ${node.title}`,
     `GROUNDING TRUTH: ${node.summary}`,
     ...prereqSummaries.map((p) => `PREREQUISITE (already covered): ${p.title} -- ${p.summary}`),
     `ALLOWED CITATION (copy verbatim if you cite anything, cite nothing else): "${allowLabel}"`,
-  ].join("\n\n");
+  ];
+  // ros-14 item 3: the pointer only at "high" guidance, and only when a
+  // curated passage exists for this node -- a node with no verified
+  // passage yet (passages.ts falls back to "summary" for it) gets no
+  // POINTER at any guidance level rather than inventing one.
+  if (guidanceLevel === "high" && passage) {
+    lines.push(`POINTER (high guidance only): the exact passage sentence to name in your feedback is "${passage.text}" (${passage.locator}).`);
+  }
+  return lines.join("\n\n");
 }
 
 const CHECK_SYSTEM_PROMPT = `You are the Check tool in Bucket's Research OS workspace. You NEVER write or correct the learner's explanation, you only judge it against the GROUNDING.
@@ -69,6 +113,7 @@ HARD RULES:
 4. NEVER rewrite the learner's explanation. Return a short "feedback" string: if support, name what makes it grounded; if contradiction or unknown, ask ONE guiding question or name what part of the grounding to revisit -- never supply the corrected sentence.
 5. Cite only the exact ALLOWED CITATION string if you reference the source, and only if you leaned on it. Empty citations array if not.
 6. "confidence" is "high" only when the grounding directly and fully settles the verdict; "medium" partial; "low" when stretching (consider abstaining instead).
+7. When a POINTER line is present in the grounding below, and your verdict is "support," name the exact sentence it quotes inside your "feedback" string, so the learner can go check it themselves. When no POINTER line is present, give feedback with no reference to any specific passage sentence.
 
 Respond with ONLY a JSON object, no markdown fences:
 {"result": "support"|"contradiction"|"unknown", "confidence": "high"|"medium"|"low", "abstained": boolean, "feedback": string, "citations": string[]}`;
@@ -127,6 +172,13 @@ export function sanitizeGradeResult(parsed: GradeResult | null, allowLabel: stri
  * prerequisites' summaries). This is the exact Check tool logic; callers
  * decide what a given result means for stage advancement.
  *
+ * `guidanceLevel`/`passage` (ros-14 item 3, optional, both default to
+ * omitted/null): at "high" guidance with a curated passage for this node,
+ * the grounding block and system prompt gain the POINTER instruction this
+ * file's header describes; every other combination leaves the prompt
+ * byte-identical to before ros-14. A caller with no guidance concept
+ * (probe/route.ts's cold-start grading) can omit both and nothing changes.
+ *
  * Throws on a provider call failure (network, auth, rate limit); callers
  * translate that into the appropriate HTTP status, matching the original
  * workspace route's error handling.
@@ -136,9 +188,11 @@ export async function gradeExplanation(
   node: GroundingNode,
   prereqSummaries: Array<{ title: string; summary: string | null }>,
   explanation: string,
+  guidanceLevel?: GuidanceLevel,
+  passage?: HighGuidancePassage | null,
 ): Promise<GradeResultWithUsage> {
   const allowLabel = citationLabel(node);
-  const grounding = buildGrounding(node, prereqSummaries, allowLabel);
+  const grounding = buildGrounding(node, prereqSummaries, allowLabel, guidanceLevel, passage);
 
   const { text, usage } = await callGroundedModelWithUsage(
     provider,

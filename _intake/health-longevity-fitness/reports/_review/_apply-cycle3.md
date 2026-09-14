@@ -1,5 +1,5 @@
 CYCLE 3 APPLY — findability + LENGTH REDUCTION from the practitioner read. Apply your slice's
-findings to the chapter markdown. Work dir: /home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
+findings to the chapter markdown. Work dir: ~/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
 
 You get your slice's findings file (_review/c3-N.md) with located items, and the chapter files.
 

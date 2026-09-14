@@ -23,8 +23,8 @@ root SSH and is escalated as an `eai-` bead (Section 3).
 | All `/api/*` on org **and** `bucket-foundation.nucleus.agfarms.dev` → **nginx 401** | The nginx `auth_basic` realm guarding `/api/*` no longer matches the shell `NUCLEUS_ADMIN_*` creds (htpasswd drift or realm rename on the host). |
 | `sudo` over the non-interactive `agfarms` SSH helper fails silently | Helper has no TTY; `sudo` cannot prompt. Host nginx/htpasswd **cannot** be repaired non-interactively. Founder action required. |
 | 3× `dolt sql-server ... --port=3307` running as **root** (pids 22483, 22997, 23067) | These are container/host Dolt servers bound to `0.0.0.0:3307`. |
-| `127.0.0.1:3307` LISTEN socket is owned by **pid 1098652** (`gian`) | `cwd = /home/gian/DerbyFish/derbyfish-native/.beads/dolt` — **this is DerbyFish's Dolt server squatting the port bucket-foundation's bd config expects.** |
-| A second `gian` Dolt server (pid 1107539) is on **:3308** | `cwd = /home/gian/DerbyFish/.beads/dolt` (DerbyFish parent). Not relevant to bucket-foundation. |
+| `127.0.0.1:3307` LISTEN socket is owned by **pid 1098652** (`gian`) | `cwd = ~/DerbyFish/derbyfish-native/.beads/dolt` — **this is DerbyFish's Dolt server squatting the port bucket-foundation's bd config expects.** |
+| A second `gian` Dolt server (pid 1107539) is on **:3308** | `cwd = ~/DerbyFish/.beads/dolt` (DerbyFish parent). Not relevant to bucket-foundation. |
 | bucket-foundation's own Dolt server is **stopped** | `.beads/dolt-server.log` last lines: `"Server closing listener. No longer accepting connections."` at `2026-05-15T14:53:48`. It exited cleanly; it was not killed mid-write. |
 | bucket-foundation bd config | `.beads/metadata.json` = `{"backend":"dolt","dolt_mode":"server","dolt_database":"bkt"}`; `.beads/dolt/config.yaml` binds `127.0.0.1:3307`. So bd tries :3307, reaches **DerbyFish's** server, which does not serve the `bkt` database → every `bd`/`bd-remote` call fails. |
 | JSONL backup | `.beads/backup/issues.jsonl` (16 issues) + `events.jsonl` (62 events) parse cleanly. `backup_state.json` timestamp `2026-05-03T11:22:21Z`. |
@@ -53,7 +53,7 @@ network. We do this by switching this venture's bd to **JSONL-as-source-of-truth
 ### 1a. Prove the backup is intact (already verified — re-runnable)
 
 ```bash
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 python3 - <<'PY'
 import json
 issues=[json.loads(l) for l in open('.beads/backup/issues.jsonl') if l.strip()]
@@ -71,7 +71,7 @@ Expected: `issues: 16`, `status: {'closed': 15, 'open': 1}`, all ids `bkt-*`.
 is safe. We **copy** the backup — never move, never delete.
 
 ```bash
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 # Only create it if it does not already exist (do not clobber newer local state)
 [ -f .beads/issues.jsonl ] || cp -p .beads/backup/issues.jsonl .beads/issues.jsonl
 # Optional: bring the audit trail along too
@@ -133,7 +133,7 @@ Until the platform `eai-` bead lands a bd/Dolt fix, **`BEADS-PENDING.jsonl`
 directly:
 
 ```bash
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 python3 -c "import json;[print(j['priority'],j['title']) for j in (json.loads(l) for l in open('BEADS-PENDING.jsonl') if l.strip())]" | sort -n
 python3 -c "import json;rows=[json.loads(l) for l in open('.beads/backup/issues.jsonl') if l.strip()];print(len(rows),'historical issues; open:',sum(1 for r in rows if (r.get('status') or '').lower()=='open'))"
 ```
@@ -147,7 +147,7 @@ is the create operation, editing the matching line is the update/close
 operation. Helper to list ready work by priority:
 
 ```bash
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 python3 - <<'PY'
 import json
 for j in sorted((json.loads(l) for l in open('BEADS-PENDING.jsonl') if l.strip()),
@@ -186,7 +186,7 @@ into the running server's data dir. When a fixed bd ships:
 
 1. Confirm the dedicated port: `bd dolt show` → port 3309 (already set).
 2. `bd dolt status` → server running on 3309 from
-   `/home/gian/agfarms/bucket-foundation/.beads/dolt` (already true).
+   `~/agfarms/bucket-foundation/.beads/dolt` (already true).
 3. `bd init --force --from-jsonl --prefix bkt` against the coerced
    `.beads/issues.jsonl` — with a fixed bd this materializes `bkt` and
    `bd ready` works.
@@ -303,7 +303,7 @@ Three coupled platform failures took out bead tracking across ventures on
 3. **Local venture Dolt port collision on 127.0.0.1:3307 (systemic).** Multiple
    ventures' bd configs assume `127.0.0.1:3307`. bucket-foundation's own Dolt
    server was stopped 2026-05-15; DerbyFish's Dolt server
-   (`/home/gian/DerbyFish/derbyfish-native/.beads/dolt`, pid 1098652) is now
+   (`~/DerbyFish/derbyfish-native/.beads/dolt`, pid 1098652) is now
    bound to :3307, so bucket-foundation's bd connects to the wrong database and
    every `bd`/`bd-remote` call fails. `bd doctor --fix` is `rm -rf .beads/dolt`
    (data-destructive) and must never be the remediation. Permanent fix:

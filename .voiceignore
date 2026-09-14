@@ -12,3 +12,9 @@ pubmed/
 # any bead editing tools/hypothesis-engine; exempted here (a root-level
 # config file, not a change inside that tree) rather than reworded in place.
 tools/hypothesis-engine/docs/LOOP-LOG.md
+
+# 47 Younger Dryas literature cards (hte.corpus.younger_dryas): each
+# card's title/authors/abstract fields are verbatim Crossref metadata for
+# a real, DOI-checked paper. Rewording a paper's own published title or
+# abstract to satisfy the linter would misquote the citation.
+tools/hypothesis-engine/hte/data/younger-dryas/

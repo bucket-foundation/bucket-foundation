@@ -22,7 +22,7 @@ Transport: stdio JSON-RPC 2.0.
 
 Register in Claude Code:
  claude mcp add --scope user --transport stdio bucket \\
- -- python3 /home/gian/agfarms/bucket-foundation/mcp-server/bucket-mcp.py
+ -- python3 ~/agfarms/bucket-foundation/mcp-server/bucket-mcp.py
 
 Register in Claude Desktop (config.json):
  "bucket": {

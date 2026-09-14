@@ -26,7 +26,7 @@ publishable when you decide to ship.
 | Sparse | **DuckDB FTS extension** | Same engine as the rest of the stack; mirrors Kruse Index FTS5 layer |
 | Dense | **bge-small-en-v1.5 (384-dim)** via **llama.cpp Vulkan** | 384d fits 8 GB VRAM at batch 64 + 4096 token ctx; Vulkan backend skips ROCm-on-Fedora packaging pain |
 | Fusion | **RRF (Reciprocal Rank Fusion), k=60** | Same fusion params as `~/jackkruse/`; battle-tested |
-| Server | **Hono on Bun**, mounts `/home/gian/agfarms/feed402/routes/patents.ts` | Identical envelope contract as public deployment; `BUCKET_LOCAL_MODE=true` skips x402 auth |
+| Server | **Hono on Bun**, mounts `~/agfarms/feed402/routes/patents.ts` | Identical envelope contract as public deployment; `BUCKET_LOCAL_MODE=true` skips x402 auth |
 
 ## Why not ROCm + PyTorch + sentence-transformers
 
@@ -58,12 +58,12 @@ local/patents/
 ## One-time bootstrap
 
 ```bash
-cd /home/gian/agfarms/bucket-foundation/local/patents
+cd ~/agfarms/bucket-foundation/local/patents
 ./scripts/00-bootstrap.sh
 ```
 
 Installs:
-- `llama.cpp` built with `GGML_VULKAN=1` to `/home/gian/agfarms/bucket-foundation/local/patents/.bin/`
+- `llama.cpp` built with `GGML_VULKAN=1` to `~/agfarms/bucket-foundation/local/patents/.bin/`
 - `bge-small-en-v1.5-q8_0.gguf` to `models/` (~150 MB)
 - `duckdb` CLI to `.bin/`
 - Python deps via `uv pip install` to a local `.venv/`: `duckdb`, `pyarrow`, `requests`

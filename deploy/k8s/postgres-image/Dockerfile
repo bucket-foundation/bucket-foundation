@@ -3,7 +3,7 @@
 #
 # Build + push (founder runs once, then on extension upgrades):
 #   docker build -t agfarms/postgres-bucket:pg16-postgis-pgvector \
-#     /home/gian/agfarms/bucket-foundation/deploy/k8s/postgres-image
+#     ~/agfarms/bucket-foundation/deploy/k8s/postgres-image
 #   docker push agfarms/postgres-bucket:pg16-postgis-pgvector
 #
 # Why we bake instead of apt-install at initdb:

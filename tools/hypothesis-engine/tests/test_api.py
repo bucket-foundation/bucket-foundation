@@ -351,7 +351,7 @@ def test_campaign_failure_raises_campaign_error_and_cleans_up_temp_dir(monkeypat
 
     def _boom(config):
         captured_dirs.append(Path(config["out_dir"]))
-        raise RuntimeError("a campaign bug, not a refusal")
+        raise RuntimeError("a campaign bug unrelated to any refusal")
 
     monkeypatch.setattr("hte.api.runner.run_campaign", _boom)
     with pytest.raises(CampaignError, match="RuntimeError") as excinfo:
@@ -382,7 +382,7 @@ def test_response_assembly_failure_raises_campaign_error_and_cleans_up_temp_dir(
         return real_run_campaign(config)
 
     def _boom(*args, **kwargs):
-        raise TypeError("a bug in response assembly, not a campaign failure")
+        raise TypeError("a bug in response assembly, outside campaign execution")
 
     monkeypatch.setattr("hte.api.runner.run_campaign", _wrapped)
     monkeypatch.setattr("hte.api._build_response", _boom)

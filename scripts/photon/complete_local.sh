@@ -4,7 +4,7 @@
 # the encoders (data is done; this is finishing, not pausing), build phonetic
 # vectors + both HNSW indexes, and report FULL FINAL STATE.
 set -uo pipefail
-cd /home/gian/agfarms/bucket-foundation
+cd ~/agfarms/bucket-foundation
 PG=(env PGPASSWORD=bucket psql -h 127.0.0.1 -p 5433 -U bucket -d polingual -v ON_ERROR_STOP=1)
 
 echo "[complete] waiting for 0 NULL embeddings $(date -u)"

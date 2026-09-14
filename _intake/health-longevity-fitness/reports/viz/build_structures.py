@@ -42,11 +42,15 @@ PX_GOLD="0xC9A24A"; PX_RED="0xB5471F"; PX_BLUE="0x3A6EA5"; PX_GREEN="0x1D6B2E"
 PX_AMBER="0xC98A2E"; PX_PURPLE="0x6b4a86"; PX_TEAL="0x2f7d78"
 PX_HEME="0x8a2f1a"; PX_CU="0xc07a3a"; PX_FAD="0xE0A21A"
 
+# Local font cache. Override via env if your fonts live elsewhere (see
+# the "Runner paths" note in _intake/health-longevity-fitness/README.md).
 _FONT_PATHS = [
-    "/home/gian/.fonts/cadence/Archivo.ttf",
-    "/home/gian/.fonts/cadence/Inter.ttf",
-    "/home/gian/.local/share/fonts/kala-deck/IBMPlexMono-Regular.ttf",
-    "/home/gian/.local/share/fonts/kala-deck/IBMPlexMono-Bold.ttf",
+    os.path.expanduser(p) for p in [
+        os.environ.get("BUCKET_FONT_CADENCE_ARCHIVO", "~/.fonts/cadence/Archivo.ttf"),
+        os.environ.get("BUCKET_FONT_CADENCE_INTER", "~/.fonts/cadence/Inter.ttf"),
+        os.environ.get("BUCKET_FONT_MONO_REGULAR", "~/.local/share/fonts/kala-deck/IBMPlexMono-Regular.ttf"),
+        os.environ.get("BUCKET_FONT_MONO_BOLD", "~/.local/share/fonts/kala-deck/IBMPlexMono-Bold.ttf"),
+    ]
 ]
 
 def _setup_mpl():

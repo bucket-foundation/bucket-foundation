@@ -1,5 +1,5 @@
 CYCLE 4 APPLY — expert-guard fixes. Apply your slice's findings to the chapter markdown. Work dir:
-/home/gian/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
+~/agfarms/bucket-foundation/_intake/health-longevity-fitness/reports
 
 You get your slice's findings file (_review/c4-N.md) and the chapter files. Apply in this order:
 
