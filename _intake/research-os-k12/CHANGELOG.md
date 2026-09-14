@@ -1,5 +1,62 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-11: literature batch five
+
+Branch `intake/ros-literature-5`. Task: 25 to 35 new DOI-verified papers across four
+areas: validating AI-generated hypothesis rankings (forecasting and calibration,
+prediction-market replication forecasting, AI-for-science benchmark design), required
+versus voluntary participation and incentives in student research, epistemic-cognition
+instruments, and human understanding of AI-produced science. Full per-area breakdown and
+per-question evidence mapping recorded in `learning/research-os/CHANGE-LEDGER.md`'s
+literature-batch-five iteration.
+
+### Added
+
+- 30 files under `_intake/research-os-k12-literature/`, listed in `learning/
+  research-os/CHANGE-LEDGER.md`'s literature-batch-five iteration; corpus total rises
+  from 147 to 177 papers. No new branch; every card lands in one of the eleven existing
+  areas.
+- `tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md`: a new "Ranking validation
+  evidence" section pointing at the ten batch-a cards bearing on `hte.holdout_ledger` and
+  the `ranking_status` label; documentation only, no code changed.
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended to 177 rows, per-area
+  counts updated, a new "Literature batch five" summary section.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: three of the
+  twelve open questions (4, 5, 12) gained an "Evidence added in batch five" paragraph.
+- `learning/research-os/PLAN-REVISION-3.md`: section 2b and section 2d each gained an
+  "Evidence added in batch five" paragraph and a design-sharpening paragraph; neither
+  section's own OPEN status changed.
+
+### Verified Clean
+
+- Every DOI and OpenAlex work id checked live against `api.openalex.org` at intake time
+  (Crossref cross-checked where an online-first year diverged from a print-issue year);
+  none are placeholders.
+- Two cards, Metz and Youniss (2003) and Kuhn, Cheney, and Weinstock (2000), carry no
+  indexed abstract in OpenAlex, Crossref, or Semantic Scholar; each carries its own
+  "Verification note" naming the source used to ground its claims instead.
+- One task-brief target, "Muis 2015... classroom interventions that move epistemic
+  beliefs," did not resolve to an exact match; the closest verified 2015 Muis paper
+  (Muis, Pekrun, Sinatra, and others, testing an epistemic-belief-to-emotion-to-learning
+  model in a classroom-relevant domain rather than manipulating beliefs experimentally)
+  was used in its place and documented as a substitution in its own "Verification note."
+- One record's OpenAlex-indexed abstract was mismatched to a different paper in the
+  same DOI family (`hase-bansal-2020-evaluating-explainable-ai.md`); re-fetched directly
+  from arXiv's own API and confirmed against the correct paper before the card was
+  written.
+- No blockquote or extended verbatim passage from any source paper; all `key_claims` and
+  body text are paraphrase.
+- A grep-based self-audit for the voice rules ran against every file this pass authored
+  or edited; the pre-commit `agf-lint-voice` hook itself returned 0 violations on every
+  commit in this pass.
+
+### Removed
+
+None.
+
 ## 2026-09-10/11: faded guidance for low-prior-knowledge learners (ros-14)
 
 Branch `feat/ros-faded-guidance`, worktree `.ros-worktrees/scaffold`. Server-side and library work for the low-prior-knowledge scaffolding pass: a `guidanceLevel(learnerId, chain)` server function, six authored worked examples on the sky-blue seed path, Check prompt adaptation, a fading schedule, and a per-class arm switch. Full design account: `learning/research-os/GUIDANCE.md`. Concurrent with PR #63 (cognitive forcing, merged before this pass reached the workspace page).

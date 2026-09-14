@@ -9,7 +9,7 @@ never read.
 from __future__ import annotations
 
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pytest
@@ -254,7 +254,9 @@ def test_register_is_deterministic_under_a_fixed_made_at(synth_run):
     preds_a = predict.register(synth_run["run_dir"], horizon=365, out=out_a, feed_root=synth_run["feed_root"], made_at=MADE_AT)
     preds_b = predict.register(synth_run["run_dir"], horizon=365, out=out_b, feed_root=synth_run["feed_root"].parent / "feed-b", made_at=MADE_AT)
 
-    to_dict_sorted = lambda preds: sorted((p.to_dict() for p in preds), key=lambda d: d["id"])
+    def to_dict_sorted(preds):
+        return sorted((p.to_dict() for p in preds), key=lambda d: d["id"])
+
     assert to_dict_sorted(preds_a) == to_dict_sorted(preds_b)
 
 
