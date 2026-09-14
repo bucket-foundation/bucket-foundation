@@ -541,7 +541,32 @@ def _timeline_ground_truth(timeline: list[dict[str, Any]]) -> list[GroundTruthEv
     ]
 
 
-def ingest(corpus_path: str | Path | None = None, *, retrieval_run_id: str = "fixture-sacred-history-ingest") -> Corpus:
+def _merge_with_texts(corpus: Corpus, text_corpus: Corpus) -> Corpus:
+    """`corpus` (this module's own correlation-derived `Corpus`) with
+    `text_corpus` (`hte.corpus.sacred_history_texts.load()`'s own
+    passage-level `Corpus`) folded in: every `Source` from both
+    (`text_corpus`'s own edition ids never collide with `corpus`'s own
+    tradition ids, `hte.corpus.sacred_history_texts`'s own top docstring,
+    "Editions, passages, and stemma"), every `EvidenceItem` from both,
+    concatenated, `corpus`'s own `GroundTruthEvent`s carried through
+    unchanged (`text_corpus` contributes none, see that module's own top
+    docstring, "Merging into `sacred-history`"), and `corpus`'s own
+    `provenance`/`vocab` extended/reused the same way."""
+    merged_sources = dict(corpus.sources)
+    merged_sources.update(text_corpus.sources)
+    return Corpus(
+        sources=merged_sources,
+        evidence=list(corpus.evidence) + list(text_corpus.evidence),
+        ground_truth=list(corpus.ground_truth),
+        provenance=list(corpus.provenance) + list(text_corpus.provenance),
+        vocab=corpus.vocab,
+    )
+
+
+def ingest(
+    corpus_path: str | Path | None = None, *, retrieval_run_id: str = "fixture-sacred-history-ingest",
+    with_texts: bool = False,
+) -> Corpus:
     """Parse `src/data/sacred-history.json` (default `DEFAULT_CORPUS_PATH`)
     into a `Corpus`: one `Source` per tradition, one `EvidenceItem` per
     correlation plus one per `counterConsiderations` caveat, one
@@ -557,7 +582,18 @@ def ingest(corpus_path: str | Path | None = None, *, retrieval_run_id: str = "fi
     `src/data/sacred-history.json` is a compiled JSON bundle whose fields
     (`figures[].historicity`, `correlations[].confidence`, `timeline[].
     disputed`) already carry exactly the graded signal this module reads.
-    """
+
+    `with_texts=True` (default `False`) additionally calls `hte.corpus.
+    sacred_history_texts.load()` (the primary-text, passage-level
+    ingest, `docs/SACRED-HISTORY-TEXTS.md`) and folds its own `Corpus`
+    into this one (`_merge_with_texts`): every edition `Source` it built,
+    every `EvidenceItem` its own extractor-ensemble pass over a real
+    passage produced, added to this function's own correlation-derived
+    `Corpus`, with no change to this function's own ground truth or
+    vocabulary. The import is local to this branch, never at module
+    level: `hte.corpus.sacred_history_texts` itself imports `load_vocab`
+    from this module, and a module-level import the other way would be
+    circular."""
     path = Path(corpus_path) if corpus_path is not None else DEFAULT_CORPUS_PATH
     if not path.is_file():
         raise FileNotFoundError(f"sacred-history corpus file not found: {path}")
@@ -582,11 +618,16 @@ def ingest(corpus_path: str | Path | None = None, *, retrieval_run_id: str = "fi
         fetched_at=fetched_at, fixture=True, citation_count=len(correlations), lineage_count=total_stemma_edges,
     )]
 
-    return Corpus(
+    corpus = Corpus(
         sources=sources, evidence=correlation_evidence,
         ground_truth=timeline_ground_truth + correlation_ground_truth,
         provenance=provenance, vocab=vocab,
     )
+    if not with_texts:
+        return corpus
+
+    from . import sacred_history_texts
+    return _merge_with_texts(corpus, sacred_history_texts.load())
 
 
 __all__ = ["ingest", "load_vocab", "DEFAULT_CORPUS_PATH", "SACRED_HISTORY_VOCAB_PATH"]
