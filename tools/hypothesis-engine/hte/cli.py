@@ -101,10 +101,10 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
     # exercised discovery-date holdout in the first place (`bkt-hte-
     # generation-coverage`).
     if args.cutoff_years is not None:
-        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years)
+        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years, corpus_name=args.corpus)
         result.setdefault("mode", "discovery_date")  # `--diagnose`'s own required field; bare run_holdout carries no "mode" key
     else:
-        result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed)
+        result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed, corpus_name=args.corpus)
     if args.fit:
         grid = {"W": [1.0, 2.0, 3.0], "lam": [0.25, 0.5, 0.75], "tier_scale": [0.75, 1.0, 1.25]}
         result["fit"] = calibrate.fit_constants(corpus, grid, cutoff_years=args.cutoff_years, k=args.k, seed=args.kfold_seed)
