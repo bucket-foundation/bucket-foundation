@@ -30,11 +30,14 @@ the root's own raw number. Scaling `r` and `s` by one shared factor
 `k < 1` moves the opinion toward `u = 1` (`Opinion.from_evidence`'s own
 denominator `r + s + W` shrinks toward `W` alone as `k -> 0`), which is
 why a collapsed root drags its dependents toward their own base rate
-`a` with rising uncertainty `u`, and leaves disbelief `d` where it
-stood: `d` rises only when NEW refuting weight joins the pool, the
-retraction event itself, landing on the retracted root; scaling an
-EXISTING pool down changes its magnitude, never its own `r`-to-`s`
-ratio.
+`a` with rising uncertainty `u`. Disbelief `d` never RISES for a
+dependent this way, since nothing new refutes it; but `d` is not held
+fixed either, for a dependent that already carries refuting weight of
+its own (`s > 0`): `b` and `d` shrink TOGETHER toward 0 as `k -> 0`,
+the same shared factor scaling both, so their ratio (not their value)
+is what survives the cascade. `d` rises only when NEW refuting weight
+joins the pool, the retraction event itself, landing on the retracted
+root.
 
 **Fragility.** `fragility(address) = fan_out(address) * (1 -
 independent_support_share(address))`: how many other hypotheses this

@@ -29,9 +29,13 @@ derivation graph in topological order from the retracted root outward,
 and at each hop scales the dependent's own pooled support and refute
 weight `(r, s)` by its parent's CURRENT projected probability before
 recomputing its opinion. A collapsed root drags its dependents toward
-their own base rate `a`, with rising uncertainty `u`, never toward
-disbelief `d`, because disbelief only rises when something NEW refutes
-a claim, and nothing new refutes a dependent. The walk stops down any
+their own base rate `a`, with rising uncertainty `u`; disbelief `d`
+never RISES for a dependent, because nothing new refutes it. That does
+not mean `d` holds still: for a dependent that already carries
+refuting weight of its own (`s > 0`), `d` shrinks together with `b`,
+the same damping factor scaling both, so their ratio survives even as
+their value falls. `d` only rises for the node an actual new refuting
+item was added to, the retracted root itself. The walk stops down any
 branch the moment a node's own move sits at or below the convergence
 threshold (0.05 by default): a node barely touched has nothing worth
 passing further downstream.
@@ -62,10 +66,20 @@ omega'(h) = Opinion.from_evidence(r', s', W, a(h))
 
 `Opinion.from_evidence`'s own denominator is `r + s + W`. As `damp`
 shrinks toward 0, that denominator shrinks toward `W` alone, so `u`
-rises toward 1 and `P(h) = b + a*u` slides toward `a`. `d` never moves
-under this recompute, since scaling an existing `s` of 0 by any factor
-is still 0; `d` only rises for the node an actual new refuting item was
-added to.
+rises toward 1 and `P(h) = b + a*u` slides toward `a`. `b` and `d`
+shrink together at the same rate, since the identical `damp` scales
+both `r'` and `s'`: a dependent's own `b:d` ratio (equal to its
+unscaled `r:s`) is exactly preserved even as both fall toward 0.
+
+For a dependent that starts with `r = 12`, `s = 4`, `W = 2` and one
+active parent whose current `P = 0.5` (so `damp = 0.5`): `r' = 6`,
+`s' = 2`, so `d` moves from `4 / 18 = 0.222` to `2 / 10 = 0.2`. `d`
+fell, it did not rise, and the ratio `b : d` (`12 : 4`, then `6 : 2`,
+both `3 : 1`) held exact. In the worked example below, every dependent
+starts at `s = 0`, so `d` stays at exactly `0` throughout, the
+degenerate case of this same rule (`0 * damp = 0`) rather than a
+separate one. `d` only rises for the node an actual new refuting item
+was added to, the retracted root itself.
 
 Fragility:
 
