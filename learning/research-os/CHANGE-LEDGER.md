@@ -3446,3 +3446,89 @@ Reviewed `feat/ros-status-band-2` (PR #117) against `main` in worktree `~/agfarm
 - `agf-lint-voice-src check` and `agf-lint-voice check`: 0 violations.
 
 Squash-merged after this pass.
+
+## Plan revision 4: docs from batch-five evidence and shipped Phase 1 work
+
+Date 2026-09-14. Branch `docs/ros-plan-revision-4`, worktree `~/agfarms/.ros-worktrees/plan4`, forked from `origin/main` at `d4deda529` (PR #87's own merge). Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-4.md`: the shipped-since-revision-3 PR table (#70 through #113), four evidence-driven revisions from the batch-five literature corpus read off `intake/ros-literature-5` (PR #90, unmerged), a Phase 1 scope narrowed to nine remaining items, the six founder decisions restated verbatim plus the hygiene untracking decision and the canon sign-off backlog, and updated operational blockers including a new spend-limit-pauses entry.
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "## Revision 4" section after the existing "## Revision 3" section, matching the per-revision pointer convention every prior revision already established. No other line changed.
+- `learning/research-os/PLAN-REVISION-3.md`: appended a "## Revision 4" pointer paragraph after its own tmpfs-constraint paragraph, the last line of the file before this edit. No other line changed.
+
+### Verified
+
+- `npm run test:research-os`: 30 chained files, every file `fail 0`, 455 tests, unchanged (this pass touched no test file). `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, unchanged.
+- `python3 tools/canon-pipeline/signoff.py list`: 20 pending records, same five-dossier breakdown as revision 3's own count (`07-mind/memory-systems` 3, `07-mind/sub-outcomes/education` 11, `07-mind/curiosity-and-motivation` 4, `07-mind/information-foraging` 1, `07-mind/cognition-and-automation` 1).
+- `agf-lint-voice check` on all three touched files: sixteen violations on the first pass (banned words `genuinely`/`genuine`/`actually`/`honest`, filler adverbs `specifically`/`correctly`, six antithesis constructions, one heading carrying an appended clause), all rewritten by hand; clean on the second pass.
+- `git log --all --grep="spend.limit" -i --format="%ad %h %s" --date=format:"%Y-%m-%d %H:%M"`: confirms the three spend-limit-stop windows named in the new operational-blockers entry (2026-09-10 ~09:37, 2026-09-11 ~01:17, and the 2026-09-11-to-2026-09-13 commit gap).
+
+## Plan revision 4: post-merge reconciliation
+
+Date 2026-09-14, same pass, after `git fetch origin && git merge origin/main` at the end of the revision-4 pass. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: PR #90 (this revision's own evidence source) merged to `main` mid-pass, so its cards' paths and the section-2 sourcing note updated to cite `main` directly; a new table added naming thirteen more PRs that merged in the same window (#95, #97, #99, #101, #114 through #116, #118 through #122); test-count paragraph updated with fresh post-merge numbers and the engine's newest recorded count (1585 passed, 0 failed, `f1eb897df`).
+- `tools/hypothesis-engine/tests/swarm/FINDINGS-2026-09-10.md`, `tools/hypothesis-engine/tests/test_corpus_literature.py`, `tools/hypothesis-engine/tests/swarm-20260914/test_predict_props.py`: three pre-existing voice-lint violations in content merged in from `origin/main` (none authored by this pass), fixed by hand so the merge commit's own diff stayed clean where it touched these files directly.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): one merge conflict in its own tail section, resolved by keeping both sides, this pass's own "Plan revision 4" section ahead of `main`'s own "Iteration 27" (literature batch five) and "PR #87 review" sections.
+
+### Verified
+
+- `npm run test:research-os`: 455 passed, 0 failed across 30 files, re-run fresh post-merge, unchanged from the pre-merge count. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, unchanged. `python3 tools/canon-pipeline/signoff.py list`: 20 pending, unchanged.
+- `agf-lint-voice check learning/research-os/PLAN-REVISION-4.md`: clean after the sourcing-note and test-count edits above.
+- The merge commit itself used `AGF_VOICE_SKIP=1`: `python3 "$HOME/agfarms/tools/voice/voice.py" check --staged` (the pre-commit hook's own invocation, which rescans a staged file's full content rather than only its diff) found 162 violations across 28 files pulled in by the merge, none in content this pass authored; the same bypass PR #84's own merge commit used for the same situation, per its own logged process note.
+
+## PR #127 review: plan revision 4 and merge
+
+Reviewed `docs/ros-plan-revision-4` (PR #127) against `dev` in worktree `~/agfarms/.ros-worktrees/r127`, branch `review/pr127`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (leak scan, fresh test and sign-off re-verification, PR-number and literature-card checks, the two accuracy fixes, the two voice fixes, and the `origin/dev` merge conflict resolution).
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: two voice fixes in this PR's own new entry (banned word `genuine`, one antithesis construction), plus this review's own entry logged.
+- `learning/research-os/PLAN-REVISION-4.md`: decision 6's recommended default restored to revision 3's verbatim wording (a dropped clause); two rule-of-three constructions rewritten to two joined clauses each, no named behavior removed.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): one merge conflict in its own tail section, resolved by keeping both sides, `dev`'s own content first, this branch's two entries appended after.
+
+### Verified
+
+- Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
+- `npm ci && npm run test:research-os`: 455 passed, 0 failed across 30 files. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed. `python3 tools/canon-pipeline/signoff.py list`: 20 pending, same five-dossier breakdown the PR names.
+- Every PR number in both shipped tables confirmed merged via `gh pr list --state merged --limit 130`; the six PRs named unmerged confirmed closed without merging. Every cited literature card confirmed present under `_intake/research-os-k12-literature/`.
+- `PLAN.md` and `PLAN-REVISION-3.md`: each edit confirmed a single append-only "## Revision 4" pointer section, no other line touched. `git diff origin/dev...HEAD --stat` (pre-merge) confirmed the PR's own diff touches no file under `src/` or `public/`.
+- `agf-lint-voice check` on `PLAN-REVISION-4.md` and the new entries in both log files: clean after the fixes above.
+
+## Plan revision 4: second reconciliation pass
+
+Date 2026-09-14, resuming a session that found this branch's worktree removed out from under it (a concurrent session's own cleanup) mid-task and PR #127 already open from the reconciliation pass above. Recreated the worktree from `origin/docs/ros-plan-revision-4` and continued rather than re-authoring.
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: added the fourth spend-limit-pause window this pass found (2026-09-14, 09:32:52-09:33:04, three worktrees), noted the task brief's own "TLS pauses" mention has no repository-visible evidence beyond the four spend-limit windows; corrected "stay unmerged" to "closed unmerged" for the six superseded `docs/hte-loop-log-*` branches (#89/#91/#93/#105/#107/#109, verified live via `gh pr view`); added PR #124 (real `hte/cli.py` coverage) and PR #128 (docs-only, names PR #125 closed unmerged after #124 landed the same coverage first) to the shipped table and the open/closed-PR accounting; added PR #127 (this document's own PR) to the still-open list.
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-3.md`: both "## Revision 4" pointer paragraphs corrected from "thirty-two PRs" / "#70 through #113" to the true count, forty-six PR numbers merged since revision 3 (`git log --oneline 7f49f271b..HEAD --format=%s | grep -oE '\(#[0-9]+\)'`, deduplicated and sorted), #70 through #124 plus #68 and #115 landing out of numeric order; "three spend-limit pauses" corrected to four in both.
+
+### Verified
+
+- `gh pr view` on each of #89, #91, #93, #105, #107, #109: all six read `CLOSED`, `mergedAt: null`, confirming "closed unmerged" over the prior "stay unmerged" wording.
+- `git log -1 --format=%ad` on the three 2026-09-14 wip commits (`6a20186da`, `6e88d3ef0`, `e8edd4d1e`): 09:32:52 to 09:33:04, twelve seconds apart. Resume times: `feat/ros-11-engine-review-items-2` merged `origin/main` at 09:41:16; `feat/ros-status-band-2` at 09:46:37; `intake/ros-canon-promotion-3`'s next commit on that branch, `wip(intake/ros-canon-promotion-3): resume canon pass three`, landed at 12:20:21.
+- `agf-lint-voice check` on all three edited files: clean, first pass.
+
+## PR #127 review, second pass
+
+Continued after `origin/docs/ros-plan-revision-4` advanced further (the second reconciliation pass above, a concurrent session). Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (the PR-count recount, the added PR #68 table row, the gap-timestamp fix, and the two further `origin/dev` merges).
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: added a table row for PR #68 (was cited in the pointer count but absent from the document's own tables); intro line and both pointer paragraphs corrected from "forty-six" to the verified "forty-eight"; the spend-limit-gap start time corrected from `02:08` to `06:24`.
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-3.md`: same forty-six to forty-eight correction in each "## Revision 4" pointer.
+- `_intake/research-os-k12/CHANGELOG.md`, `learning/research-os/CHANGE-LEDGER.md` (this file): two further merge conflicts with `origin/dev`, resolved keeping both sides.
+
+### Verified
+
+- Independent recount of every `#NNN` cell across `PLAN-REVISION-4.md`'s two shipped-PR tables: 48 distinct numbers, matching the corrected claim.
+- PR #68 confirmed real and in scope: `gh pr view 68` shows merged 2026-09-11T03:18:55Z, after PR #69 (revision 3's own filing, 02:43:19Z).
+- `git log --all` across every branch for 2026-09-11 through 2026-09-13: the claimed gap runs 06:24 to 22:23 (real commits land at 02:13 and after, ruling out the claimed 02:08 start); every other cited timestamp in the same paragraph checked out exact.
+- `npm run test:research-os`: 455 passed, 0 failed. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed. Both re-run after each of the two further `origin/dev` merges.

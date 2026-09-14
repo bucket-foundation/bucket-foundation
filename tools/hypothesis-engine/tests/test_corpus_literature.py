@@ -312,8 +312,8 @@ def test_load_reads_a_real_card_whose_key_claims_wrap(tmp_path):
 
 def test_wrapped_authors_entry_is_also_folded_correctly():
     # `_parse_list` shares `_iter_list_item_spans` with `_parse_claims`;
-    # a wrapped `authors:` entry must read as one joined name, not vanish
-    # the same way a wrapped claim used to.
+    # a wrapped `authors:` entry must read as one joined name, the same
+    # fix a wrapped claim already needed.
     raw = _MULTILINE_CLAIMS_CARD.replace(
         '  - "Author, A."\n', '  - "Author, A. and an Additional\n    Long Coauthor Name, B."\n',
     )
@@ -323,8 +323,8 @@ def test_wrapped_authors_entry_is_also_folded_correctly():
 
 def test_unterminated_quoted_claim_is_skipped_not_crashed():
     # A missing closing quote anywhere in the field (a real authoring
-    # error, not this module's own concern to repair) must not raise or
-    # hang; it is read as zero further items rather than a partial,
+    # error, outside this module's own concern to repair) must not raise
+    # or hang; it reads as zero further items instead of a partial,
     # truncated one.
     raw = _MULTILINE_CLAIMS_CARD.replace(
         '  - "The first claim wraps across two\n'

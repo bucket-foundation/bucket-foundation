@@ -113,7 +113,7 @@ def test_confidence_is_never_negative(opinion):
 def test_confidence_is_zero_for_an_unexamined_hypothesis(a):
     """`u=1, b=0, d=0` is `hte.belief.Opinion`'s own no-evidence reading
     (`Opinion.from_evidence`'s docstring): projection lands exactly on the
-    prior, so the confidence gate correctly reads zero and never admits an
+    prior, so the confidence gate reads zero and never admits an
     untouched hypothesis into the claim register."""
     opinion = Opinion(b=0.0, d=0.0, u=1.0, a=a)
     assert predict._confidence(opinion) == 0.0
