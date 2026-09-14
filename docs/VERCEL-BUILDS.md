@@ -19,7 +19,7 @@ skips too, since the diff check runs for every environment.
 
 Vercel's Ignored Build Step contract: the script exits `1` to build, `0`
 to skip. See `scripts/vercel-ignore-build.sh` for the implementation and
-`scripts/test-vercel-ignore-build.sh` for nine scenarios covering each
+`scripts/test-vercel-ignore-build.sh` for ten scenarios covering each
 branch of the decision above (run it with `bash scripts/test-vercel-ignore-build.sh`).
 
 ## Branch prefixes skipped at step 3
