@@ -522,3 +522,198 @@ commit.
 ```
 
 Also removed from the same component: the `getBranches()`/`globeBranches` computation at the top of `ResearchOsPage` (its only consumer was the JSX above) and the `"Read the plan ↗"` external link beside the "Try the prototype →" CTA, trimming the hero to the one CTA the founder spec asked for.
+
+## 2026-09-14: Research OS landing trimmed to hero, fixed globe, Five States
+
+File: `src/app/research-os/page.tsx`. Reason: founder direction 2026-09-14: Research OS landing is hero, fixed globe, Five States only. Six sections removed, the alternating-row "Five States" block stays. The `TOOLS` array, the `Card` helper, and their only call sites went with the sections that used them.
+
+Removed section 1, the numbered-table restatement of the five states (the alternating-row version above it stays):
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § five states per concept
+</div>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  Each concept in the graph carries one of five states for each learner.
+  The states reuse the Academy&apos;s mastery signals and add a reviewed
+  production at the top. The design gives a teacher the ability to see,
+  question, and override any state, with the override recorded; no
+  teacher view has shipped yet (see status, below).
+</p>
+<div className="mt-6 grid grid-cols-1 gap-px bg-[color:var(--hairline)] grid-hairlines">
+  {STATES.map((s, i) => (
+    <div
+      key={s.name}
+      className="bg-[color:var(--bone)] p-6 md:p-7 grid grid-cols-1 md:grid-cols-[140px_1fr_1fr] gap-3 md:gap-6"
+    >
+      <div className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">
+        <span className="text-[color:var(--gold-deep)] mr-2">{i + 1}</span>
+        {s.name}
+      </div>
+      <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{s.meaning}</p>
+      <p className="text-[13px] leading-[1.7] text-[color:var(--basalt-3)]">{s.signal}</p>
+    </div>
+  ))}
+</div>
+```
+
+Removed section 2, "your tools, no pen" (find, quote, check, organize), plus the `TOOLS` array that fed it:
+
+```tsx
+const TOOLS: { name: string; body: string }[] = [
+  {
+    name: "find",
+    body: "Retrieval over the canon, mirrored OpenAlex and Crossref metadata, and open-licensed public sources. Every hit carries a license.",
+  },
+  {
+    name: "quote",
+    body: "Exact spans with source id, canonical URL, license, and locator. The tool refuses to paraphrase.",
+  },
+  {
+    name: "check",
+    body: "Does a quoted span support, contradict, or fail to settle the learner's claim. The tool abstains when retrieval is weak.",
+  },
+  {
+    name: "organize",
+    body: "Claim, evidence, and warrant scaffolds; outlines; citation formatting. Labels only, no generated prose.",
+  },
+];
+```
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § four tools, no pen
+</div>
+<div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
+  {TOOLS.map((t) => (
+    <div key={t.name} className="bg-[color:var(--bone)] p-7 md:p-8 flex flex-col gap-3">
+      <div className="font-display uppercase text-[20px] tracking-[0.04em] text-[color:var(--basalt)]">
+        {t.name}
+      </div>
+      <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
+      <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{t.body}</p>
+    </div>
+  ))}
+</div>
+```
+
+Removed section 3, "frontier first, then backward":
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § frontier first, then backward
+</div>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  A learner or a teacher picks a frontier: a concept at the edge of a
+  branch, or a live hypothesis from Bucket&apos;s hypothesis engine. The
+  router walks the prerequisite graph backward to what the learner
+  already understands, then forward again to the target. Supports fade
+  as the learner&apos;s state rises.
+</p>
+```
+
+Removed section 4, "productions that enter the graph":
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § productions that enter the graph
+</div>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  A production is a claim, the quoted evidence behind it, the checks it
+  passed, and its citations. When a teacher and a Bucket reviewer accept
+  it, the production becomes a node with a citable id, registered on the
+  same rail as every paper on this site, and the hypothesis engine can
+  read it as evidence. Citation fees for a contributor under eighteen go
+  to a guardian or a custodial account, never to the minor directly, and
+  recognition ships before any payout does.
+</p>
+```
+
+Removed section 5, "where it sits" (Academy, Ladder, Research cards), plus the `Card` helper that rendered each tile:
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § where it sits
+</div>
+<div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines">
+  <Card href="/academy" title="Academy" body="The consume side: spaced-repetition mastery over the foundations of each branch. Research OS reads the same states." />
+  <Card href="/ladder" title="Ladder" body="The L0 to L5 climb from literacy to producing knowledge. Research OS is the production path for the K-12 rung." />
+  <Card href="/research" title="Research" body="The tools, datasets, atlas, and papers. Accepted student productions land here as citable nodes." />
+</div>
+```
+
+```tsx
+function Card({ href, title, body }: { href: string; title: string; body: string }) {
+  return (
+    <Link href={href} className="block h-full">
+      <div className="bg-[color:var(--bone)] p-7 md:p-8 flex flex-col gap-3 min-h-[150px] h-full shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]">
+        <div className="font-display uppercase text-[20px] tracking-[0.04em] text-[color:var(--basalt)]">
+          {title}
+        </div>
+        <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
+        <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{body}</p>
+        <div className="mt-auto pt-3 text-[11px] small-caps tracking-[0.14em]">
+          <span className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
+            open {title.toLowerCase()} →
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+```
+
+Removed section 6, "status":
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § status
+</div>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  Design, iteration 2, September 2026. On main today: frontier-backward
+  routing with confidence flags on a weak edge, a diagnostic probe for
+  a cold-start learner, the four-tool workspace (find, quote, check,
+  organize) with every contract enforced in code, a teacher review
+  queue and class view with an accept path, an engine bridge covered
+  by tests, self-service export and delete of a learner&apos;s own
+  data, and a consent gate in front of every learner-authored write.
+</p>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  Not yet on main: applying an accepted production to the live
+  database, roster sync from a school system, verified parental
+  consent, a payment to a minor contributor, and canon write-back
+  without a human sign-off.
+</p>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  Grades 3 to 5 (why the sky is blue) and the history of quantum
+  physics for grades 9 to 12 remain the two candidate subjects for the
+  next demonstration; which one leads is still an open choice
+  (<code className="text-[13px]">_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md</code>{" "}
+  section 11). The plan, the learner-state model, the production
+  schema, the vendor and data-source map, and the funding and people
+  map are public in the repository under{" "}
+  <code className="text-[13px]">learning/research-os/</code> and{" "}
+  <code className="text-[13px]">_intake/research-os-k12/</code>.
+  Pilot classrooms, a pre-registered study of the four-tool constraint,
+  and a state-validation paper come before any wider release.
+</p>
+```
+
+The wrapping `<div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">` and its leading `carved-rule` divider were removed along with the six sections, since nothing remained under them.
+
+## 2026-09-14: Home page logo mark removed above the headline
+
+File: `src/components/Presentation.tsx`. Reason: founder direction 2026-09-14, the square stone glyph sat above the headline and read as noise ahead of the panel-peek fix; the `Image` import went with its only call site.
+
+```tsx
+<div className="carve-in-1 flex justify-center mb-8">
+  <Image
+    src="/brand/omega-stonepunk.png"
+    alt="The bucket.foundation mark, a carved inverse omega"
+    width={72}
+    height={72}
+    priority
+    className="rounded-sm border-2 border-[color:var(--basalt)] shadow-[0_20px_30px_-18px_rgba(13,13,13,0.45)]"
+  />
+</div>
+```

@@ -3236,3 +3236,13 @@ Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-l
 ### Verified
 
 `npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on every touched file. `curl` confirmed `/` and `/research-os` return 200 on the running dev server (port 3100) with no restart, HTML carries the new headline and all five state headings.
+
+## 2026-09-14: Research OS landing trimmed; home hero/panel and fixed globe fixed
+
+`src/app/research-os/page.tsx`: removed six sections below the Five States rows (numbered-table restatement, "four tools, no pen", "frontier first, then backward", "productions that enter the graph", "where it sits", "status") on founder direction; the page keeps only the hero, the fixed globe, and the Five States alternating rows. Removed text is in `_intake/research-os-k12/DELETIONS.md`.
+
+`src/components/FixedCanonGlobeBackground.tsx`, `src/components/Presentation.tsx`, `src/components/CanonSearchPanel.tsx`: fixed the globe's position/blur/z-index on Research OS, removed the home logo mark, fixed the home headline's clamp/wrap, and made the home panel's top band and globe dome visible in the first screen. Full account in `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on every touched file. `curl` confirmed `/` and `/research-os` return 200 on the running dev server (port 3100) with no restart. Playwright screenshots verified the headline, panel peek, and globe visibility (top/mid/footer) match the founder's spec.
