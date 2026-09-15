@@ -36,6 +36,17 @@ def _fake_mode_cfg(tmp_path, monkeypatch, **overrides):
             "out_dir": str(tmp_path), **overrides}
 
 
+@pytest.fixture(autouse=True)
+def _no_ambient_llm_mode(monkeypatch):
+    """`HTE_LLM_MODE` unset for every test here unless the test sets it:
+    a `fake` value leaking from another test file turns a
+    `replay_only=True` cache-miss test into a full fake-mode campaign,
+    which on `education-atlas` runs a k-fold calibration for minutes
+    (the 2026-09-15 hang at `test_campaign_run_replay_only_fails_only_on_
+    cache_miss[education-atlas]`)."""
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
+
+
 def test_run_campaign_end_to_end_in_fake_mode(tmp_path, monkeypatch):
     # `corpus="production"` overrides `FIXTURE_CONFIG`'s own "fixtures"
     # here: `hte.fakellm`'s critic stand-in rejects every unlinked
