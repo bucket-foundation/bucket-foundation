@@ -236,6 +236,17 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
         diagnostics.write_diagnostics(report, out_dir)
         print(f"diagnostics written to {out_dir / 'DIAGNOSTICS.md'}")
         print(f"reasons for the uncovered remainder: {report['reasons']}")
+    if args.shuffle:
+        shuffle_result = diagnostics.shuffle_report(corpus, Constants(), seed=args.kfold_seed)
+        diagnostics_path = out_dir / "diagnostics.json"
+        merged = json.loads(diagnostics_path.read_text()) if diagnostics_path.is_file() else {}
+        merged["link_shuffle"] = shuffle_result
+        diagnostics_path.write_text(json.dumps(merged, indent=2))
+        print(
+            f"link-shuffle diagnostic written to {diagnostics_path} "
+            f"(mean_correlation={shuffle_result['mean_correlation']:.3f}, "
+            f"prior_only_fraction={shuffle_result['prior_only_fraction']:.3f})"
+        )
     return 0
 
 
@@ -379,6 +390,7 @@ def build_parser() -> argparse.ArgumentParser:
     calibrate_p.add_argument("--kfold-seed", type=int, default=0, help="k-fold stratification seed when auto-mode picks k-fold (default: %(default)s)")
     calibrate_p.add_argument("--fit", action="store_true", help="also grid-search W/lam/tier_scale")
     calibrate_p.add_argument("--diagnose", action="store_true", help="also write DIAGNOSTICS.md: a per-reason breakdown of every uncovered event (hte.diagnostics.coverage_report)")
+    calibrate_p.add_argument("--shuffle", action="store_true", help="also run the link-permutation shuffle diagnostic (hte.diagnostics.link_shuffle_test) and merge it into diagnostics.json")
     calibrate_p.add_argument("--out", default="runs/_calibration")
     calibrate_p.set_defaults(func=_cmd_calibrate)
 
