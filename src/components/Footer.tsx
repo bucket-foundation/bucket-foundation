@@ -3,7 +3,7 @@ import InverseOmega from "./InverseOmega";
 
 export default function Footer() {
   return (
-    <footer className="mt-0 stone-basalt border-t-4 border-[color:var(--gold)]">
+    <footer className="relative z-[2] mt-0 stone-basalt border-t-4 border-[color:var(--gold)]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-10 text-[color:var(--bone-3)]">
         <div className="flex flex-col gap-4">
           <InverseOmega size={48} variant="inlay" />
@@ -47,6 +47,9 @@ export default function Footer() {
             <li><Link href="/canon/claims" className="hover:text-[color:var(--bone)] transition">All claims</Link></li>
             <li><Link href="/sacred-history" className="hover:text-[color:var(--bone)] transition">Sacred history</Link></li>
             <li><Link href="/access" className="hover:text-[color:var(--bone)] transition">How to access</Link></li>
+            <li><Link href="/protocol" className="hover:text-[color:var(--bone)] transition">Protocol, feed402/x402</Link></li>
+            <li><Link href="/build" className="hover:text-[color:var(--bone)] transition">Build on the API</Link></li>
+            <li><Link href="/learn" className="hover:text-[color:var(--bone)] transition">Learn with Claude</Link></li>
           </ul>
         </div>
 

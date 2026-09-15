@@ -2436,6 +2436,48 @@ Review of PR #76 (preregistration revision 1, docs-only) as methods reviewer. Re
 
 Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Gates: nothing under `src/` or `public/` changed; branch already carries `origin/main` (merged mid-pass by the PR's own author, confirmed fast-forward-clean here); no file deleted, `git diff --name-status` shows every touched file as `M`. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and `CHANGE-LEDGER.md`; `agf-lint-voice-src check` clean on the one touched source file. No fix needed; merged as-is.
 
+## 2026-09-11: Research OS hero, the real canon globe
+
+Branch `feat/site-reform-education-reposition` (PR #11, worktree
+`.ros-worktrees/site-globe-demo`). Founder direction: the Research OS page
+mockup should mount the real canon search globe, the same live component
+`/canon` and the homepage run, and the hero subtext should center on the
+five learner states, access, awareness, understanding, internalization, and
+production, as something every student can reach.
+
+### Edited
+
+- `src/app/research-os/page.tsx`: `CanonGlobeMount` (already imported by the
+  branch's prior wip commit) moved from its own section below the hero into
+  the hero block itself, wrapped in `ScrollReveal` and given the same
+  `containerClassName` sizing the homepage mount uses in
+  `src/components/Presentation.tsx` (`md:h-[88vh] md:max-h-[1000px]
+  md:pr-[440px]`, full-bleed width instead of the component's default
+  `max-w-7xl` card). No canvas or hand-drawn globe existed on this page to
+  remove, confirmed by `git log --follow` on the file and a repo-wide grep
+  for `globe`/`canvas`: the only prior mount was the same live
+  `CanonGlobeMount`, already in place below the hero, not a stand-in.
+  Degrade-on-no-WebGL behavior is unchanged, it lives inside
+  `CanonGlobeMount`'s own `GlobeErrorBoundary` and static-globe fallback,
+  the same code path `/canon` and `/canon/search` run.
+- Hero subtext replaced: from a sentence enumerating the four AI tools (find,
+  quote, check, organize, already covered by the hero's own headline and the
+  Tools section below) to two sentences built on the founder's words,
+  naming the workspace and the five states a learner moves through. The
+  `STATES` array's five names (`Access`, `Awareness`, `Understanding`,
+  `Internalization`, `Production`) and their definitions are untouched, and
+  match `learning/research-os/LEARNER-STATE-MODEL.md`'s section 1 table on
+  main.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os` builds
+  static, 598 B page / 126 kB First Load JS): all clean. `npx eslint
+  src/app/research-os/page.tsx`: clean. `agf-lint-voice-src check`: 0
+  violations.
+- No PR nav, homepage hero, or Header change; scope held to
+  `src/app/research-os/page.tsx` per the founder's direction to leave the
+  rest of PR #11's repositioning as is.
 ## 2026-09-11, repo hygiene pass: local paths and machine-specific data
 
 The dedicated cleanup pass the PR #69 review above named as needed.
@@ -2550,6 +2592,123 @@ Leak scan of the PR's own diff: clean, no keys, `.env` values, IPs, non-public h
 
 Gates after the fix: `npm ci` clean; `npx tsc --noEmit` clean; `npm run build` clean (`/api/research-os/production`, `/api/research-os/workspace`, `/api/research-os/review`, `/research-os/workspace`, `/research-os/review` all in the manifest); `npm run test:research-os` 30 files, `fail 0`, 455 tests, unchanged from the PR's own count (the fix touched no test file logic); `next lint` clean on every touched TS/TSX file. Pushed to `feat/ros-lateral-reading` and squash-merged.
 
+## 2026-09-14, Research OS on a real localhost server, real branch data wired into the hero globe
+
+Founder direction, verbatim intent: stop reviewing PR #11 through an artifact copy; run an actual localhost Bucket Foundation site and confirm `/research-os` uses the real canon search. Persistent worktree `~/agfarms/.ros-worktrees/site-local`, branch `site-local-2026-09-14`, tracking `feat/site-reform-education-reposition` (PR #11's head, `d520089ea`, which already mounted `CanonGlobeMount` in the hero per the prior entry above). Merged `origin/main` forward (29 commits ahead) to bring PR #12's nav and home section in alongside PR #11's repositioning; two changelog-only conflicts (this file and `learning/research-os/CHANGE-LEDGER.md`) resolved by keeping both sides' entries, no other file conflicted.
+
+Verified `CanonGlobeMount` is the same live component `/canon` and `/canon/search` mount, not a reduced or decorative variant: its search box calls `fetch` against `/api/canon/search` (the AI-agent-facing canon route, `src/app/api/canon/search/route.ts`), which builds its index from a real filesystem scan of `bucket-canon/` (`buildIndex()` in `src/lib/canon-search-index.ts`, no fixture or demo data), the same 599 claim cards `/canon/search`'s own doc comment names. One gap found: `/research-os/page.tsx` passed the component an empty `branches={[]}` array where `/canon` and `/canon/search` both pass `getBranches()`'s real per-branch scan (`src/lib/canon-fs.ts`). The `branches` prop turned out to be unused dead code inside `CanonGlobeMount` itself (destructured as `_branches`, never referenced), so this made no functional difference to search, but it was still a stub value where the founder's direction says none should be. Fixed: `page.tsx` now computes `globeBranches` via `getBranches()` and passes it, matching `/canon/search/page.tsx`'s pattern exactly.
+
+Hero subtext and the five learner-state names were already correct on PR #11's head and untouched by this pass: "Where students of all levels access, become aware of, understand, internalize, and produce knowledge.", and `STATES` names Access, Awareness, Understanding, Internalization, Production, matching `learning/research-os/LEARNER-STATE-MODEL.md`'s section 1 table on `main`. The page already carried its own five-states section (`§ five states per concept`), so no new section was added.
+
+Copied `.env.local` from the main checkout (a read of the main tree only, the main tree itself untouched) into the worktree: one variable, `POLINGUAL_API_URL`, no Supabase keys. Confirmed which routes need Supabase by grepping every `src/app` file for a `supabase` import: `/api/canon/search` and the canon pages carry none, so canon search works with no Supabase configured; `/research-os/workspace`, `/research-os/class`, `/research-os/edges`, `/research-os/profile`, `/research-os/review`, `/research-os/roster` and their API routes, plus `/academy/*`, `/api/auth/[...nextauth]`, `/canon/signoff`, `/contributors/[handle]`, `/knowledge`, and `/m/[handle]`, all import Supabase and fall back to their own unavailable message with these keys absent.
+
+`npm ci` (1465 packages), `npx tsc --noEmit`, and `npx eslint src/app/research-os/page.tsx` all clean. `agf-lint-voice-src check src/app/research-os/page.tsx`: 0 violations. Started the dev server detached (`nohup npm run dev -- -p 3100`, port 3000 was taken); `/research-os`, `/`, and `/canon/search` all returned 200, `/research-os`'s HTML carries the `globe-capture` mount root and the same search placeholder `/canon/search` uses, and `GET /api/canon/search?q=light` returned 10 real results (claim ids, branches, titles, excerpts, `bucket.foundation/canon/claims/...` URLs) from the live index.
+
+Leak scan of this pass's own diff: clean, no keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs in file content. The merge commit itself carried 18 pre-existing files' worth of `dash`/`banned`/`antithesis`/`heading` voice-lint hits from `origin/main` (17 auto-generated `bucket-canon/_bridges/detected/*/README.md` reports plus two `quantum/reference-impl/` setup docs), none of them touched by this pass's own diff and all previously logged as a founder-decision `AGF_VOICE_SKIP=1` bypass in the repo hygiene entries above; committed the merge the same way rather than rewriting unrelated auto-generated content.
+
+No UI text was replaced, only a JSX comment and the `branches` prop's value, so `_intake/research-os-k12/DELETIONS.md` gets no new entry this pass.
+
+## 2026-09-14: homepage canon search panel and a research-os fixed background globe
+
+Worktree `.ros-worktrees/site-local`, branch `site-local-2026-09-14`. Founder spec for the home page (`/`) and `/research-os`: one CTA in each hero, a full-viewport canon search panel under the home hero with the globe rising above its own top edge, and a fixed, decorative, auto-rotating globe behind `/research-os`'s content instead of an interactive tool in its hero.
+
+### Added
+
+- `src/components/CanonSearchPanel.tsx`: a thin wrapper around `CanonGlobeMount`, sized to `100vw`/`100vh`, passed the new `globeWrapperClassName` prop so the globe's own flex-fill wrapper carries a negative translate and rises above the panel's top edge. Mounted on the home page directly under the hero.
+- `src/components/FixedCanonGlobeBackground.tsx`: one page-level mount of the real `CanonGlobeMount` in its new `decorative` mode, `position: fixed`, anchored bottom right, `pointer-events: none`, `filter: blur(1.6px)`, `z-index` below the page content. Owns a scroll listener that turns scroll velocity into an extra auto-rotate speed value fed into the globe's own frame loop as a ref; skips the listener entirely under `prefers-reduced-motion`. Mounted once on `/research-os`.
+- `public/research-os/state-{access,awareness,understanding,internalization,production}.png`: real screenshots captured from this dev server (playwright CLI, 1280x800, then resized to 960x600 and palette-reduced with ImageMagick to land under 400 KB each) of `/research-os`, `/canon/search`, `/research-os/workspace`, `/research-os/class`, and `/research-os/review` respectively. The last two show their Supabase-unavailable message with no Supabase keys configured locally, labeled as such in their alt text.
+
+### Edited
+
+- `src/components/canon-globe/CanonGlobe.tsx` (the R3F globe): new `decorative`/`scrollSpeedRef` props. Decorative mode disables `enableRotate`/`enableZoom` on `OrbitControls` (drag/zoom off) and turns `autoRotate` on unless `prefers-reduced-motion` is set (checked via the existing `useReducedMotion` hook), at a slow base rate (`DECORATIVE_BASE_AUTOROTATE_SPEED`). A new `AutoRotateDriver` inner component, mounted only when decorative, reads `scrollSpeedRef` every frame, decays it back to zero, and eases `controls.autoRotateSpeed` toward base-rate-plus-that-value with a per-frame lerp (`damp`), only when decorative is on.
+- `src/app/canon/CanonGlobeMount.tsx`: split into a zero-hook dispatcher (`CanonGlobeMount`) and two components it renders, `InteractiveCanonGlobeMount` (the full existing search/filter/drawer tool, unchanged behavior) and the new `DecorativeCanonGlobeMount` (bare R3F canvas only). Kept as two components rather than an early return inside one function so neither branch calls hooks conditionally. New props: `decorative`, `scrollSpeedRef` (forwarded to the R3F globe), `globeWrapperClassName` (merged onto the globe's flex-fill wrapper, used by `CanonSearchPanel` for its upward offset).
+- `src/components/Presentation.tsx` (home page): hero trimmed to the headline, existing subline, and one CTA (`Research OS →`); `min-h-[88vh]` added so `CanonSearchPanel` peeks up from the bottom of the first screen. The old grid of a static branch nav beside `CanonGlobeMount` is replaced by `<CanonSearchPanel branches={globeBranches} />`, a full-viewport section. The Roman-inscription stat strip, previously the tail of the hero section, is now its own section directly after the panel.
+- `src/app/research-os/page.tsx`: h1 changed to "Research OS for K-12"; subtext trimmed to the one sentence the founder spec named; the hero's two CTAs collapsed to the one workspace CTA; `FixedCanonGlobeBackground` mounted once at the top of the page (outside `<main>`, `<main>` given `relative z-10` so it stacks above the fixed globe); a new "Five States" section added directly after the hero, one alternating row per state (image right, left, right, left, right for Access through Production) with the state's existing `meaning` text and a linked screenshot. The pre-existing "five states per concept" table section and everything below it stay in place, per the founder's own instruction to leave existing sections below the new one. The removed hero globe JSX is preserved verbatim in `DELETIONS.md`.
+
+### Verified
+
+- `npx tsc --noEmit`: clean.
+- `npx eslint` on all six touched/added files: clean.
+- `agf-lint-voice-src check` on all six files: 0 violations (after renaming every `scroll-boost` identifier and comment to `scroll-speed`/`extra`, an AI-tell hit, and rewriting two antithesis constructions).
+- Dev server (already running on port 3100) picked up every change via hot reload with no restart needed; `curl` confirmed `/` and `/research-os` both return 200 and the HTML carries the new headline and all five state headings.
+
+## 2026-09-14: Research OS and home page fixes
+
+Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Founder review off 1280x800 screenshots flagged four problems: the home CanonSearchPanel read as a 15px sliver with no globe dome in the hero; the home headline overflowed right of its column; the Research OS fixed globe rendered as an opaque, unblurred sphere overlapping the hero; and six stale sections sat below the Research OS Five States rows.
+
+- `src/app/research-os/page.tsx`: removed six sections, the numbered-table restatement of the five states, "four tools, no pen", "frontier first, then backward", "productions that enter the graph", "where it sits", and "status", plus the `TOOLS` array and `Card` helper that only fed them. The page is now hero, fixed globe, Five States alternating rows. Every removed block is preserved verbatim in `DELETIONS.md`.
+- `src/components/FixedCanonGlobeBackground.tsx`: recentered the globe at 68vw/62vh with an 85vh diameter (was bottom-right anchored at a smaller clamp size), added `opacity: 0.55` alongside the existing `blur(1.6px)`, and raised its z-index from `z-0` to `z-[1]`, the shared `<Footer>` carries `position: relative` with an implicit `z-index: auto` (stack level 0) and sits later in `<body>`, so at `z-0` it painted over the globe for the entire time the footer was on screen; `z-[1]` stays below the page's own `z-10` content wrapper while beating the footer.
+- `src/components/Presentation.tsx`: removed the omega-stonepunk logo mark above the headline (preserved in `DELETIONS.md`), dropped `whitespace-nowrap` and lowered the headline clamp from `10vw/5rem` to `8vw/3.25rem` so "reform education." holds one line at 1280 and 1440 and wraps cleanly at 400, and reduced hero `min-height` from `88vh` to `84vh` so the panel's top band reaches the first screen.
+- `src/components/CanonSearchPanel.tsx`: gave the panel its own surface (`bg-[color:var(--bone-2)]` + `border-t` hairline against the hero) and swapped the globe's translate-based lift for a `-mt-[28vh]` on the globe wrapper so its dome rises into the hero by roughly the top 10-14% of the viewport.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint` on all four touched files, and `agf-lint-voice-src check` on all four files: all clean. `curl` confirmed `/` and `/research-os` return 200 on the running dev server (port 3100, hot-reloaded, no restart). Playwright screenshots at 1280x800 and 1440x900 confirm the headline holds one line and the globe dome plus panel top band are visible in the first screen; 400x800 confirms a clean two-line wrap with `document.documentElement.scrollWidth === 400` (no horizontal scroll). Research OS scroll screenshots at scrollY 0, half, and bottom confirm the globe is visible, blurred, and dimmed at the top, mid-scroll, and over the footer.
+
+## Research OS decorative globe: WebGL context survival
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Founder report: Brave threw `Error: Error creating WebGL context` from `new WebGLRenderer` on `/research-os`, while the same R3F globe component rendered fine on `/canon/search`.
+
+### Investigated
+
+- `src/components/canon-globe/CanonGlobe.tsx` is the only `<Canvas>` in the codebase and the only `gl={{...}}` config; both the decorative `/research-os` background and the interactive `/canon/search` tool render through this one component. Their Canvas gl attributes (`antialias`, `alpha`, `powerPreference`, `dpr`, `frameloop`, camera) are identical by construction; there is no `failIfMajorPerformanceCaveat`, `preserveDrawingBuffer`, or custom gl factory anywhere in the repo, and each page mounts exactly one `<canvas>` (confirmed via a live DOM query), not two.
+- The one real difference between the two mounts: `src/components/FixedCanonGlobeBackground.tsx`'s wrapper applied `filter: blur(1.6px)` to the Canvas's ancestor div; the interactive card has no such filter. A CSS `filter` on a WebGL canvas's ancestor forces the browser to promote it into its own compositing layer, a path where a sandboxed or hardware-blocklisted renderer can refuse to hand WebGL a context. Removed the filter; `opacity: 0.55` alone carries the dimming, with no compositing-layer promotion of that kind.
+- `src/components/canon-globe/GlobeErrorBoundary.tsx`: added a `console.warn` in `componentDidCatch` so a failed context leaves a devtools trace. Still renders nothing visual on error, per the founder's direction against any visual fallback.
+
+### Reproduced
+
+Playwright, Chromium 1243, 1950x1160, both flag sets the founder asked for (`--disable-gpu --use-angle=swiftshader` and `--disable-gpu --use-gl=swiftshader`), plus two harder-forced-software variants. Before and after the fix, both `/canon/search` and `/research-os` rendered a `<canvas>` with a live `webgl`/`webgl2` context and zero `pageerror` events in every config tried; the exact Brave failure did not reproduce locally, Brave's own fingerprinting protections are not fully replicable via Chromium launch flags. The filter removal is the one concrete, verifiable difference closed between the two mounts.
+
+### Edited
+
+- `src/app/research-os/page.tsx`: added `priority` to the first Five States row's image (the page's LCP element, flagged by the console).
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint` on the three touched files, and `agf-lint-voice-src check` on the three touched files: all clean.
+
+## Research OS decorative globe: missing point layer
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Founder report: the `/research-os` background globe rendered as a bare sphere with no landmasses or points, while `/canon/search` rendered the full textured globe with claim markers.
+
+### Investigated
+
+- `src/app/canon/CanonGlobeMount.tsx`'s `DecorativeCanonGlobeMount` passed `markers={[]}` into `R3FCanonGlobe` unconditionally, the actual regression: the decorative mount and the interactive mount both render through the same `R3FCanonGlobe` (`src/components/canon-globe/CanonGlobe.tsx`), same `<Earth>` mesh, same `/textures/earth/2k_earth_daymap.jpg` landmask, same materials and lighting, so the texture itself was never the gap. Confirmed with a Playwright pass before any edit: the research-os globe already showed the textured landmass dot-cloud, dimmed, just with no colored claim/site markers layered on top.
+- Traced where `InteractiveCanonGlobeMount` gets its default marker set: `eventsAsMarkers(ALL_EVENTS)` + `sitesAsMarkers(ALL_SITES)`, both built from the module-level `timelineData`/`sitesData` static JSON imports already at the top of this file, no fetch, no server data. The `branches` prop (from `getBranches()` on the two `/canon` pages) is destructured as `_branches` in `InteractiveCanonGlobeMount` and never read, `R3FCanonGlobe` has no `branches` prop at all, so it carries no part of the textured/populated look in either mount.
+- `src/components/canon-globe/CanonGlobe.tsx` also carried a dead `_FallbackGlobe` function (an SVG armillary with gold graticule lines on a bone sphere), unreferenced anywhere in the repo despite its own comment claiming otherwise. Not the active bug (the error boundary renders empty space on a WebGL failure, not this SVG), but exactly the kind of leftover fallback path the founder asked to remove.
+
+### Edited
+
+- `src/app/canon/CanonGlobeMount.tsx`: added `DECORATIVE_MARKERS`, computed once at module load from the same `ALL_EVENTS`/`ALL_SITES` the interactive mount's default (unfiltered) state uses, and passed it into `DecorativeCanonGlobeMount`'s `R3FCanonGlobe` in place of `markers={[]}`. Updated the mount's doc comment to record that `branches` is inert for both mounts.
+- `src/components/canon-globe/CanonGlobe.tsx`: removed the dead `_FallbackGlobe` function (91 lines), unreferenced and unexported.
+- `src/components/FixedCanonGlobeBackground.tsx`: added a comment on the `branches={[]}` line explaining why it costs nothing to leave empty, so the next reader does not chase the same false lead.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright at 1600x1000, scroll 0, 8s wait: `/canon/search` and `/research-os` both show the same brown landmass dot texture and the same colored figure/site markers along the coastlines, research-os at lower opacity, lower right, behind page content, autorotating, with drag/zoom disabled.
+
+## Canon globe: precomputed land mask
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. No canvas readback remains anywhere in the globe path. Founder report: in Brave with fingerprint protection on, the 2D canvas context or the `getImageData` readback in `landmaskFromImage.ts` is refused, `loadLandmask` rejects, and the globe renders with no land dots (the ghost sphere alone, near-invisible at 0.04 opacity). Headless Chromium never hit this since it allows the readback.
+
+### Added
+
+- `scripts/globe/build-landmask.mjs`: offline build script. `magick` decodes `public/textures/earth/2k_earth_daymap.jpg` to a raw interleaved RGB byte stream at its native 2048x1024; the script applies the same per-pixel rule the canvas sampler used (Rec. 601 luma, ocean ruled out when blue dominates red and green, threshold 90) and packs the result to 1 bit per pixel. Writes `public/textures/earth/landmask-2k.bin` (262,144 bytes, 1-bit packed, well under the 400 KB budget) and `public/textures/earth/landmask-2k.json` (width, height, threshold, and the packing convention). `npm run globe:landmask` runs it.
+- `public/textures/earth/landmask-2k.bin`, `public/textures/earth/landmask-2k.json`: the committed generated asset.
+
+### Edited
+
+- `src/components/canon-globe/landmaskFromImage.ts`: `loadLandmask` no longer touches a canvas. It fetches the `.bin` and its `.json` header, unpacks the bit for a given lat/lng into the same `Landmask` shape (`width`, `height`, `isLand`, `sample`) the R3F `Earth` mesh already consumed, so `Earth.tsx` needed no changes. `sample()` is kept for type compatibility (no caller reads it) and now reports a flat land/ocean value rather than the original RGB, since the packed asset carries one bit per pixel, not color. The old function body is preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+- `src/components/canon-globe/CanonGlobe.tsx`: `LANDMASK_URL` points at `/textures/earth/landmask-2k.bin` instead of the JPEG.
+- `package.json`: `globe:landmask` script.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched TypeScript/JS files. `/canon/search` and `/research-os` both render through the one shared `Earth` mesh (`CanonGlobeMount` to `R3FCanonGlobe` to `Earth`), so both pick up the new loader automatically; confirmed by tracing the import graph, no second landmask consumer exists.
+
+Reproduced the founder's failure with a Playwright script (`page.addInitScript` patching `HTMLCanvasElement.prototype.getContext` to return `null` for `'2d'`, leaving `'webgl'` untouched) against the pre-fix code at `/research-os`: console carried `[CanonGlobe] landmask load failed: Error: landmask: 2d context unavailable` and the globe rendered as a bare tan disc, no dots, zero `pageerror`s (the failure is swallowed inside `Earth.tsx`'s existing `.catch`, not thrown to `GlobeErrorBoundary`; the visible symptom is the same either way, an empty globe). Same script against the fixed code: no landmask warning, zero `pageerror`s, and the full dot globe rendered with the 2D context still disabled. Screenshot saved to `/tmp/claude-1000/-home-gian-agfarms/f2685240-3c83-4339-9fe3-36fe227e03cd/scratchpad/critic/globe-no2d.png`.
+
+Dot-placement parity: screenshotted `/research-os` at 1950x1160 with a normal (unpatched) browser before and after the change. `magick compare -metric AE` showed differences only as thin anti-aliasing edges traced around each dot, no shifted or missing clusters; continent outlines and dot density match pixel-for-pixel between the canvas-based and precomputed-asset renders, as expected since both apply the same threshold rule to the same JPEG decode.
 ## 2026-09-11, status band refresh to current main
 
 Worktree `~/agfarms/.ros-worktrees/status`, branch `feat/ros-status-band-2`. Task: refresh `/research-os`'s "§ status" section so it states truthfully what is on main, without touching any other part of the page (the hero and globe changes live on the open PR #11 branch). Verified every shipped claim against `gh pr list --state merged --limit 60` and the linked doc under `learning/research-os/` before listing it: routing with confidence flags (`ROUTING.md`, PR #27), the diagnostic probe (PR #21), the four-tool workspace with contracts enforced in code (`WORKSPACE.md`, PR #37), cognitive forcing before Check with a calibration record (PR #63), faded guidance with worked examples (`GUIDANCE.md`, PR #74), lateral reading with an independent second source (`LATERAL-READING.md`, PR #84), the production provenance guard with duplicate detection and counter-evidence (`PRODUCTION-GUARD.md`, PR #73), the teacher review queue and class view with an accept path (`TEACHER-LAYER.md`, PR #28), the OneRoster CSV roster importer (`ROSTER.md`, PR #52), the consent gate, profile, and self-service privacy export/delete (`compliance/`, PR #35 and #47), the engine bridge with its production outbox and campaign caller (`ENGINE-BRIDGE.md`, PR #14 and #30), the canon sign-off tool (`tools/canon-pipeline/SIGNOFF.md`, PR #61), and the pre-registration draft (`study/`, PR #34 and #76).
@@ -2622,3 +2781,67 @@ None.
 - `tools/canon-pipeline/intake.py` run twice on each touched dossier: `07-mind/cognitive-load` (`added=0 kept=1 changed=False` both runs) and `07-mind/sub-outcomes/education` (`added=0 kept=20 changed=False` both runs, one pre-existing below-floor record rejected and preserved both times).
 - Sweller 1988's DOI independently re-verified via a live Crossref API fetch (WebFetch), matching the intake card and `primary-papers.yaml` on title, author, journal, and year.
 - No file under `src/` or `public/` is touched by this pass, so no `npm run build`/`npm run test:research-os`/`next lint` gate applies to it, the same pass-one/pass-two convention. `agf-lint-voice check` run on every touched prose file.
+
+## 2026-09-14 canon globe dots on production
+
+- Production `/canon/search` showed a bare disc with markers and no continent dots. Cause: the canvas runs `frameloop="demand"` and `Earth.tsx` places the land dots inside a promise callback after the land mask loads, so no frame is requested after the update. The first frames draw all 36,000 instances at the origin; the continents appear only after a drag. Probe on www.bucket.foundation hooking `drawElementsInstanced`: `{36000: 2}` before a drag, `{7797: 9}` after.
+- Fix: `invalidate()` after the mesh update in `Earth.tsx`. Same one-file change on `fix/globe-demand-invalidate` (PR #147 against `dev`) and on this branch. Local dev server after the fix: `{36000: 2, 7797: 1}` with no drag.
+- Review of `main` for the past two weeks: no globe file changed since 2026-08-24 (comment-only voice sweep); no dependency versions changed. `main` is 10 commits past the deployed production build `e614da874`; `feed.json` on `main` carries two `predict_register` events (#87) with no `author_github`, which breaks `generateStaticParams` for `/contributors/[handle]`, so a fresh build of `main` fails. `dev` carries the guard (#117).
+- Merged `origin/dev` into this branch to pick up that guard; kept the landing Research OS page over the #117 re-add of the removed sections (DELETIONS.md).
+
+## 2026-09-15 WebGL refusal diagnostic
+
+- `GlobeErrorBoundary` listens for `webglcontextcreationerror` and logs Chromium's status message (vendor, device, driver `ErrorMessage`) beside the render-error warning. Verified with headless Chromium under `--disable-gpu --disable-software-rasterizer`: the console names the refusal reason.
+- Founder's desktop Brave throws `Error creating WebGL context` inside `new WebGLRenderer` on every page with a globe, including production; the same pages render on his phone, on Vercel, and in headless Chromium. The 2026-08-24 `main` (`48c1c02b7`) runs on port 3300 for an A/B in the same browser.
+
+## 2026-09-15 Research OS globe redesign
+
+- Fixed decorative globe: 192vh square (2x), centered at 70vw by 50vh, radial mask so the edge dissolves into the bone ground, backing store at 0.4 device pixels per CSS pixel so the browser upsamples it soft. No CSS `filter`: a 3px compositor blur over that layer hung the AMD Phoenix iGPU under amdgpu in Chrome within seconds (kernel `ring gfx_0.0.0 timeout`, `Process chrome`), the same failure Brave's Flatpak build hits on its own; without the filter the page renders on the real GPU with zero hangs through a scroll.
+- Spin: 35 degree tilt, rotation follows scroll position (0.0022 rad per px, eased at 4 per second), no base auto-rotation. `ScrollSpinDriver` requests frames on scroll and keeps requesting until the ease settles, so `frameloop="demand"` stays.
+- Particle shell: 3,200 gold and basalt points between 1.25 and 2.6 radii, scale eases toward 1 + scroll speed (cap 0.4) and settles back; counter-rotates at 0.55 of the globe.
+- `ContextRecovery`: requests a frame on `webglcontextrestored` so a GPU reset no longer leaves a blank canvas (the white square seen 2026-09-15 08:54 after Brave's reset).
+- Removed: `AutoRotateDriver`, `DECORATIVE_BASE_AUTOROTATE_SPEED`, `SCROLL_EXTRA_DECAY`, `AUTOROTATE_EASE`, the `scrollSpeedRef` prop (now `scrollRef: {y, velocity}`), and the wrapper's `filter` comment. Prior text at `git show 4f95f109b:src/components/canon-globe/CanonGlobe.tsx` and `git show 4f95f109b:src/components/FixedCanonGlobeBackground.tsx`.
+
+## 2026-09-15 Research OS page to the artifact layout
+
+- Page structure follows the reviewed artifact (196275f8): full-viewport hero with the h1 at clamp(2.8rem, 8vw, 6rem), subtext, gold mono button "See the Five States" and a mono trust line; centered "Five States" title and sub; five alternating rows (16:10 screenshot with hairline border and shadow, mono "01 / 05" counter that turns gold on reveal, 22px Cinzel h3, one-line meaning, route link); hairline divider; final centered CTA "Start with one concept." with "Open the Workspace"; the site Header and Footer stay. Rows slide and fade in through an IntersectionObserver (`RevealRow.tsx`, 22% threshold), static under prefers-reduced-motion. Styles in `src/app/research-os/landing.css`.
+- State copy replaced with the artifact's one-liners; the earlier meaning and signal text is at `git show 19a7bc1c6:src/app/research-os/page.tsx`.
+- Globe: axis rolled a quarter turn clockwise on top of the 35 degree tilt (-55 degrees on screen), center moved to 78vw by 64vh, wrapper opacity 0.55, backing store 0.22 dpr for a softer image.
+- Verified in Chrome 150 on the founder's Phoenix iGPU: hardware context, no console errors, reveal and scroll spin working. One amdgpu ring timeout attributed to `Process chrome` during the scroll-to-bottom pass (the 13th this boot; the first was Sep 5 before any of this work); the context recovered.
+
+## 2026-09-15 decorative globe made safe on the Phoenix iGPU
+
+- Bisected on the founder's AMD Radeon 780M (Phoenix) under amdgpu with Chrome 150, counting only `ring gfx_0.0.0 timeout` events attributed to the test browser's GPU process id. The page without the globe: 0 hangs in 5 loads. The decorative globe on a bare page: hangs within 1 to 2 loads. Spin off: 0. Opaque dots: 0. So the trigger was scroll-driven frames over 36,000 transparent 128-triangle dot instances.
+- Decorative mount now draws 18,000 opaque four-segment dots in a lighter basalt (`0x5a4f3d`) instead of 55% transparent ones, keeps the Halo at 0.55 alpha and the particle shell, and caps scroll-driven frames at one per 50 ms. Wrapper has no CSS filter, opacity, or mask; the edge dissolves under a painted bone radial gradient, and the Footer sits above the globe layer (`z-[2]`).
+- Result: 0 hangs over 4 loads on the bare route, 4 and then 8 loads on /research-os, each load scrolling to the bottom and back, WebGL alive throughout.
+- Diagnostics kept: `/research-os/globe-test` (globe on a bare page) and query switches on the decorative mount (`noglobe`, `small`, `noshell`, `fulldpr`, `nofade`, `nospin`, `notilt`, `absolute`, `opaque`) for the next GPU check.
+
+## 2026-09-15 decorative globe edge
+
+- The straight edge at the globe wrapper's boundary came from inside the canvas: the Halo's back-face disc (95% of the canvas) ended in a rim, the particle shell (radius 2.6 against a visible half-height of 1.3) filled the canvas and was clipped square, and the far-field star flecks speckled the whole canvas. The earlier CSS mask had hidden all three.
+- Halo gains a `fade` uniform (alpha falls from 0.45 to 0.9 of the canvas radius, in device units); the shell is now its own points shader with the same fade and the sprite map; the decorative mount skips the far-field stars. The painted bone overlay and its `nofade` switch are removed. Pixel check on the founder's GPU: colors just inside and outside the wrapper edge identical at three heights; 3 scrolled loads, 0 hangs.
+
+## 2026-09-15 decorative globe blur in WebGL
+
+- The 0.22 dpr stand-in read as low resolution. The decorative mount now renders at 0.5 dpr into an RGBA target and runs one horizontal plus one vertical 9-tap blur pass (three-stdlib `EffectComposer`, `HorizontalBlurShader`, `VerticalBlurShader`, step 0.55 buffer pixels, about 4 CSS pixels of spread) before the last pass draws to the transparent canvas. Dot detail back to 6 segments. 0 hangs over 7 scrolled loads on the founder's GPU; wrapper edge pixels still identical inside and out.
+
+## 2026-09-15 decorative dot field and live tuning
+
+- Decorative field: 80,000 candidates (about 23,000 land dots), radius 0.0046, color `0x5f5240`, limb dots shrunk to 0.3 through an `onBeforeCompile` vertex patch so stacked edge dots no longer form a dark crescent; blur step 0.7; shell points larger and fainter (size 0.11, opacity 0.32 of the decorative alpha).
+- Query tuning on the decorative mount, read by `FixedCanonGlobeBackground` into `DecorativeVariant`: `dots`, `dotr`, `dotcolor` (hex), `limb`, `blur`, `passes`, `dpr`, beside the boolean switches. Example: `/research-os?dots=100000&blur=0.9&dotcolor=4a4436`.
+
+## 2026-09-15 home canon search panel
+
+- `CanonGlobeMount` gains `layout="home"`: the search pill, layer toggles, and branch chips sit in a left column (380px, top-left of the panel) over the globe; the detail drawer and its sticky header carry no background (`Drawer` `transparent` prop); fullscreen mode keeps the default layout.
+- `CanonSearchPanel`: no surface, hairline, or `backdrop-blur` of its own (the page ground shows through); globe lifted 38vh above the panel's top edge. Hero (`Presentation`) at 78vh and `z-20` so the dome slides behind the headline, copy, and CTA instead of over them.
+- Two scrolled loads on the founder's GPU, 0 hangs.
+
+## 2026-09-15 Research OS globe intro
+
+- Decorative globe on /research-os: on mount it arrives from 1.1 rad to the left and eases into place over 3.6 s (cubic ease-out) while the particle shell grows from 65% to full; scroll drives it afterward. Frames stay under the 20 per second cap. Skipped under prefers-reduced-motion. The interactive globes (home panel, /canon/search) keep no intro, per the founder.
+- Home panel globe lift 38vh to 32vh.
+- Two scrolled loads of each page on the founder's GPU, 0 hangs.
+
+## 2026-09-15 home globe scroll placement
+
+- The home globe rises 18vh above the panel's top at page top (its halo clears the Research OS button) and slides back to the panel's center as the panel scrolls into view, reaching center once the panel fills the viewport. `CanonSearchPanel` computes progress = scrollY / panel top on a rAF-throttled scroll listener and passes a `translateY` through the new `globeWrapperStyle` prop on `CanonGlobeMount`; the fixed `-mt` lift is gone.

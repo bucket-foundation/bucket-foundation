@@ -2,9 +2,12 @@
 import nextDynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { CSSProperties } from "react";
+import type { MutableRefObject } from "react";
+import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
+import type { ScrollState, DecorativeVariant } from "@/components/canon-globe/CanonGlobe";
 import StaticCanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
 import type { CanonMarker } from "@/components/canon-globe";
-import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
 import timelineData from "@/data/canon-timeline.json";
 import sitesData from "@/data/canon-sites.json";
 import figuresData from "../../../canon-figures/figures.json";
@@ -98,11 +101,126 @@ function sitesAsMarkers(sites: SiteEntry[]): CanonMarker[] {
   }));
 }
 
+// Every figure/canon-entry + archaeological-site marker, unfiltered, the
+// same set `InteractiveCanonGlobeMount` shows at its default state (year
+// scrubber at 2020, both layers on, no branch or search filter). Computed
+// once at module load from the same static JSON `InteractiveCanonGlobeMount`
+// reads, so the decorative background globe carries the identical point
+// layer without a data fetch of its own.
+const DECORATIVE_MARKERS: CanonMarker[] = [
+  ...eventsAsMarkers(ALL_EVENTS),
+  ...sitesAsMarkers(ALL_SITES),
+];
+
 interface Props {
   branches: GlobeBranch[];
+  /** Overrides the collapsed-state root className (default: the max-w-7xl
+   * card both /canon and /canon/search use). The fullscreen/expanded state
+   * always stays a true fixed-inset overlay regardless of this prop. */
+  containerClassName?: string;
+  /** Extra classes merged onto the globe canvas's own flex-fill wrapper,
+   * e.g. a negative translate so the globe rises above the panel's top
+   * edge. Ignored in `decorative` mode. */
+  globeWrapperClassName?: string;
+  /** Inline style merged onto the same wrapper, e.g. a scroll-driven
+   * translate. Ignored in `decorative` mode. */
+  globeWrapperStyle?: CSSProperties;
+  /** Bare-globe mode: renders only the R3F canvas, no search bar, branch
+   * filter chips, layer toggles, time scrubber, expand button, corner
+   * legend, or detail drawer. For a fixed decorative background mount. */
+  decorative?: boolean;
+  /** Read every frame by the R3F globe when `decorative` is set: an
+   * external scroll-velocity value that eases auto-rotate speed up and
+   * back down to its base rate. */
+  scrollRef?: MutableRefObject<ScrollState>;
+  /** Diagnostic variants for the decorative mount. */
+  variant?: DecorativeVariant;
+  /** "home": search bar, layer toggles, and branch chips sit in a left
+   * column over the globe, and the container and detail drawer carry no
+   * background of their own. Interactive mount only. */
+  layout?: "default" | "home";
 }
 
-export default function CanonGlobeMount({ branches: _branches }: Props) {
+const DEFAULT_CONTAINER_CLASSNAME =
+  "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
+
+/**
+ * Bare-globe mode: only the R3F canvas, no search bar, branch filter
+ * chips, layer toggles, time scrubber, expand button, corner legend, or
+ * detail drawer. Kept as its own component (rather than an early return
+ * inside CanonGlobeMount) so neither branch calls hooks conditionally.
+ *
+ * Renders through the exact same `R3FCanonGlobe` the interactive mount
+ * uses (same Earth mesh, same landmask texture, same lighting), with
+ * `decorative` only chosen to hide chrome, disable drag/zoom, and turn on
+ * autorotate. It carries `DECORATIVE_MARKERS`, the same figure/site point
+ * layer the interactive globe shows by default, so the two are not two
+ * renderers that happen to look similar, they are one renderer fed the
+ * same data. `branches` plays no part in either mount: `R3FCanonGlobe`
+ * has no such prop, `InteractiveCanonGlobeMount` receives and ignores it
+ * (see `_branches` below), so there is nothing for this mount to forward.
+ */
+function DecorativeCanonGlobeMount({
+  containerClassName,
+  scrollRef,
+  variant,
+}: {
+  variant?: DecorativeVariant;
+  containerClassName?: string;
+  scrollRef?: MutableRefObject<ScrollState>;
+}) {
+  return (
+    <div className={containerClassName} style={{ width: "100%", height: "100%" }}>
+      <GlobeErrorBoundary>
+        <R3FCanonGlobe
+          markers={[]}
+          decorative
+          scrollRef={scrollRef}
+          variant={variant}
+          className="relative z-0"
+        />
+      </GlobeErrorBoundary>
+    </div>
+  );
+}
+
+export default function CanonGlobeMount({
+  branches,
+  containerClassName,
+  globeWrapperClassName,
+  globeWrapperStyle,
+  decorative = false,
+  scrollRef,
+  variant,
+  layout,
+}: Props) {
+  if (decorative) {
+    return (
+      <DecorativeCanonGlobeMount
+        containerClassName={containerClassName}
+        scrollRef={scrollRef} variant={variant}
+      />
+    );
+  }
+  return (
+    <InteractiveCanonGlobeMount
+      branches={branches}
+      containerClassName={containerClassName}
+      globeWrapperClassName={globeWrapperClassName}
+      globeWrapperStyle={globeWrapperStyle}
+      layout={layout}
+    />
+  );
+}
+
+function InteractiveCanonGlobeMount({
+  branches: _branches,
+  containerClassName,
+  globeWrapperClassName = "",
+  globeWrapperStyle,
+  layout = "default",
+}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout">) {
+  const home = layout === "home";
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
   const [expanded, setExpanded] = useState(false);
@@ -297,7 +415,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
       className={
         expanded
           ? "fixed inset-0 z-[60] px-4 md:px-6 md:pr-[440px] md:flex md:flex-col overflow-hidden bg-[color:var(--bone)]"
-          : "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
+          : (containerClassName ?? DEFAULT_CONTAINER_CLASSNAME)
       }
     >
       {/* Expand / minimize button, top right of the tool card */}
@@ -329,7 +447,13 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
       </button>
 
       {/* SEARCH BAR, rounded pill at the top of the tool container */}
-      <div className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
+      <div
+        className={
+          home && !expanded
+            ? "absolute left-4 md:left-8 top-6 z-30 w-[min(380px,calc(100vw-2rem))] flex flex-col items-start gap-3"
+            : "z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0"
+        }
+      >
         <div className="w-full max-w-2xl pointer-events-auto">
           <div
             className="rounded-full shadow-sm flex items-center px-2"
@@ -539,11 +663,12 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </div>
       </div>
 
-      {/* GLOBE, fills remaining viewport height on desktop */}
+      {/* GLOBE, fills remaining viewport height on desktop. */}
       <div
-        className="relative w-full mx-auto flex-1"
+        className={`relative w-full mx-auto flex-1 overflow-visible ${globeWrapperClassName}`}
         style={{
           minHeight: "440px",
+          ...globeWrapperStyle,
         }}
       >
         <div
@@ -670,6 +795,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
       {/* RIGHT-SIDE INFO DRAWER */}
       <Drawer
         selected={selected}
+        transparent={home && !expanded}
         onClose={() => setSelected(null)}
         onSelectMarker={(id) => {
           // Same-era / nearby click, find the marker by id in the
@@ -705,10 +831,13 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
 
 function Drawer({
   selected,
+  transparent = false,
   onClose,
   onSelectMarker,
 }: {
   selected: CanonMarker | null;
+  /** No surface of its own: the page ground shows through. */
+  transparent?: boolean;
   onClose: () => void;
   /** Called when the user clicks a same-era or nearby cross-reference. */
   onSelectMarker?: (id: string) => void;
@@ -880,8 +1009,8 @@ function Drawer({
         }`}
         style={{
           width: "min(440px, 100vw)",
-          background: "var(--bone)",
-          borderLeft: "1px solid var(--hairline)",
+          background: transparent ? "transparent" : "var(--bone)",
+          borderLeft: transparent ? "none" : "1px solid var(--hairline)",
         }}
       >
         {selected && (
@@ -890,7 +1019,7 @@ function Drawer({
  scrolls the cross-reference sections below. */}
             <div
               className="sticky top-0 z-10 px-6 md:px-8 pt-6 md:pt-8 pb-4"
-              style={{ background: "var(--bone)", borderBottom: "1px solid var(--hairline)" }}
+              style={{ background: transparent ? "transparent" : "var(--bone)", borderBottom: "1px solid var(--hairline)" }}
             >
               <div className="flex items-baseline justify-between mb-3">
                 <span

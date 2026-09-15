@@ -461,3 +461,21 @@ p.chisel, li.chisel, small.chisel, .chisel p, .chisel li {
     0 1px 0 rgba(239,232,212,0.75),
     0 -1px 0 rgba(31,28,22,0.35);
 }
+
+/* Scroll gravity: a "proximity" snap, a soft pull only near a target,
+   never a hard scroll-jack. scroll-snap-type has to live on the actual
+   scrolling box, the document itself for a normal page, so this sets it
+   on html rather than a wrapper div; it is inert on every page in this
+   repo except one that also opts a section in with .snap-gravity-target,
+   and today only the homepage's canon-search section does. Wrapped in
+   prefers-reduced-motion: no-preference since CSS scroll-snap has no
+   built-in reduced-motion behavior of its own. */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.snap-gravity-target) {
+    scroll-snap-type: y proximity;
+  }
+}
+.snap-gravity-target {
+  scroll-snap-align: center;
+  scroll-margin-block: 2rem;
+}

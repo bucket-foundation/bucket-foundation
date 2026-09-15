@@ -1,5 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import FixedCanonGlobeBackground from "@/components/FixedCanonGlobeBackground";
+import RevealRow from "./RevealRow";
+import "./landing.css";
 
 // /research-os, Research OS for K-12 (beads ros-01 to ros-10). The
 // production-reaching path for the L1 rung of the depth ladder: a student
@@ -28,245 +32,130 @@ export const metadata: Metadata = {
   },
 };
 
-const STATES: { name: string; meaning: string; signal: string }[] = [
-  {
-    name: "Access",
-    meaning: "The concept is reachable. Its prerequisites are understood and the learner has opened it.",
-    signal: "Route exposure and an open event.",
-  },
-  {
-    name: "Awareness",
-    meaning: "The learner can recall the concept's claim and place it in the graph.",
-    signal: "Spaced-repetition retrievability above the Academy recall threshold.",
-  },
-  {
-    name: "Understanding",
-    meaning: "The learner can apply or explain the concept in a fresh context.",
-    signal: "A constructive task passed: self-explanation, a worked example, or a quote-and-check task.",
-  },
+const STATES: { name: string; line: string }[] = [
+  { name: "Access", line: "The concept is reachable. Its prerequisites are already understood." },
+  { name: "Awareness", line: "The learner recalls the concept and places it in the graph." },
+  { name: "Understanding", line: "The learner restates the concept and applies it within the topic." },
   {
     name: "Internalization",
-    meaning: "The concept holds over time and transfers.",
-    signal: "Memory stability above threshold and a delayed transfer item passed.",
+    line: "The learner connects the concept to other topics and applies it outside where it was taught.",
+  },
+  { name: "Production", line: "The learner creates a new method, application, or finding with the concept." },
+];
+
+// One screenshot per state, same order as STATES, captured live from this
+// dev server. The Supabase-gated routes (class, review) render their own
+// unavailable message with no Supabase keys configured locally; that is
+// a real screenshot of the shipped fallback, labeled as such in the alt
+// text below.
+const STATE_SCREENSHOTS: { src: string; alt: string; route: string; label: string }[] = [
+  {
+    src: "/research-os/state-access.png",
+    alt: "The Research OS for K-12 overview page, reachable to any visitor.",
+    route: "/research-os",
+    label: "the overview",
   },
   {
-    name: "Production",
-    meaning: "The learner produced a claim with evidence and citations that reviewers accepted into the graph.",
-    signal: "A reviewed production record with a citable id.",
+    src: "/research-os/state-awareness.png",
+    alt: "The canon search page, where a learner opens a node for the first time.",
+    route: "/canon/search",
+    label: "canon search",
+  },
+  {
+    src: "/research-os/state-understanding.png",
+    alt: "The Research OS workspace, where a learner writes and checks an explanation.",
+    route: "/research-os/workspace",
+    label: "the workspace",
+  },
+  {
+    src: "/research-os/state-internalization.png",
+    alt: "The Research OS class view, showing its unavailable message with no Supabase configured locally.",
+    route: "/research-os/class",
+    label: "the class view",
+  },
+  {
+    src: "/research-os/state-production.png",
+    alt: "The Research OS teacher review queue, showing its unavailable message with no Supabase configured locally.",
+    route: "/research-os/review",
+    label: "the review queue",
   },
 ];
 
-const TOOLS: { name: string; body: string }[] = [
-  {
-    name: "find",
-    body: "Retrieval over the canon, mirrored OpenAlex and Crossref metadata, and open-licensed public sources. Every hit carries a license.",
-  },
-  {
-    name: "quote",
-    body: "Exact spans with source id, canonical URL, license, and locator. The tool refuses to paraphrase.",
-  },
-  {
-    name: "check",
-    body: "Does a quoted span support, contradict, or fail to settle the learner's claim. The tool abstains when retrieval is weak.",
-  },
-  {
-    name: "organize",
-    body: "Claim, evidence, and warrant scaffolds; outlines; citation formatting. Labels only, no generated prose.",
-  },
-];
+const TRUST = "Free · no login for the demo · every quote traces to a real source";
 
 export default function ResearchOsPage() {
   return (
-    <main className="stone-bone relative grain">
-      <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
-        <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
-          § Research OS · K-12
-        </div>
-        <h1 className="font-display uppercase text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] chisel tracking-[0.005em] text-[color:var(--basalt)]">
-          find. quote. check.{" "}
-          <span className="inlay-gold">organize.</span>
-        </h1>
-        <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          A research workspace for school-age learners over the same knowledge
-          graph the Academy teaches from. The AI has four tools and no pen: it
-          finds sources, quotes them with provenance, checks a claim against a
-          quote, and organizes the evidence. The learner writes every sentence.
-          Free to any learner, anywhere.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link
-            href="/research-os/workspace"
-            className="inline-block px-5 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)]"
-          >
-            Try the prototype →
-          </Link>
-          <a
-            href="https://github.com/bucket-foundation/bucket-foundation/blob/main/learning/research-os/PLAN.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-5 py-3 text-[12px] small-caps tracking-[0.14em] border-2 border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition"
-          >
-            Read the plan ↗
-          </a>
-        </div>
-        <div className="carved-rule max-w-xs mt-10" />
-
-        <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
-          § five states per concept
-        </div>
-        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Each concept in the graph carries one of five states for each learner.
-          The states reuse the Academy&apos;s mastery signals and add a reviewed
-          production at the top. A teacher can see, question, and override any
-          state, and the override is recorded.
-        </p>
-        <div className="mt-6 grid grid-cols-1 gap-px bg-[color:var(--hairline)] grid-hairlines">
-          {STATES.map((s, i) => (
-            <div
-              key={s.name}
-              className="bg-[color:var(--bone)] p-6 md:p-7 grid grid-cols-1 md:grid-cols-[140px_1fr_1fr] gap-3 md:gap-6"
-            >
-              <div className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">
-                <span className="text-[color:var(--gold-deep)] mr-2">{i + 1}</span>
-                {s.name}
-              </div>
-              <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{s.meaning}</p>
-              <p className="text-[13px] leading-[1.7] text-[color:var(--basalt-3)]">{s.signal}</p>
+    <>
+      <FixedCanonGlobeBackground />
+      <main className="stone-bone relative z-10 grain">
+        <section className="ros-hero">
+          <div className="ros-wrap">
+            <h1 className="font-display uppercase chisel text-[color:var(--basalt)]">
+              Research OS for <span className="inlay-gold">K-12</span>
+            </h1>
+            <p className="ros-sub">
+              Where students of all levels access, become aware of, understand,
+              internalize, and produce knowledge.
+            </p>
+            <div className="ros-cta-row">
+              <a className="ros-btn" href="#states">
+                See the Five States →
+              </a>
+              <span className="ros-trust">{TRUST}</span>
             </div>
-          ))}
+          </div>
+        </section>
+
+        <section id="states" className="ros-section">
+          <div className="ros-wrap">
+            <h2 className="ros-section-title font-display text-[color:var(--basalt)]">Five States</h2>
+            <p className="ros-section-sub">Five states. Reached in order.</p>
+            {STATES.map((s, i) => {
+              const shot = STATE_SCREENSHOTS[i];
+              return (
+                <RevealRow key={s.name} reverse={i % 2 === 1}>
+                  <div className="ros-image">
+                    <Image
+                      src={shot.src}
+                      alt={shot.alt}
+                      width={960}
+                      height={600}
+                      sizes="(min-width: 768px) 55vw, 100vw"
+                      priority={i === 0}
+                    />
+                  </div>
+                  <div className="ros-text">
+                    <div className="ros-num">
+                      {String(i + 1).padStart(2, "0")} / {String(STATES.length).padStart(2, "0")}
+                    </div>
+                    <h3 className="font-display text-[color:var(--basalt)]">{s.name}</h3>
+                    <p>{s.line}</p>
+                    <Link href={shot.route}>view {shot.label} →</Link>
+                  </div>
+                </RevealRow>
+              );
+            })}
+          </div>
+        </section>
+
+        <div className="ros-wrap">
+          <hr className="ros-divider" />
         </div>
 
-        <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
-          § four tools, no pen
-        </div>
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
-          {TOOLS.map((t) => (
-            <div key={t.name} className="bg-[color:var(--bone)] p-7 md:p-8 flex flex-col gap-3">
-              <div className="font-display uppercase text-[20px] tracking-[0.04em] text-[color:var(--basalt)]">
-                {t.name}
-              </div>
-              <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
-              <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{t.body}</p>
+        <section id="cta" className="ros-section ros-final">
+          <div className="ros-wrap">
+            <h2 className="ros-section-title font-display text-[color:var(--basalt)]" style={{ marginBottom: 0 }}>
+              Start with one concept.
+            </h2>
+            <div className="ros-cta-row">
+              <Link className="ros-btn" href="/research-os/workspace">
+                Open the Workspace →
+              </Link>
+              <span className="ros-trust">{TRUST}</span>
             </div>
-          ))}
-        </div>
-
-        <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
-          § frontier first, then backward
-        </div>
-        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          A learner or a teacher picks a frontier: a concept at the edge of a
-          branch, or a live hypothesis from Bucket&apos;s hypothesis engine. The
-          router walks the prerequisite graph backward to what the learner
-          already understands, then forward again to the target. Supports fade
-          as the learner&apos;s state rises.
-        </p>
-
-        <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
-          § productions that enter the graph
-        </div>
-        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          A production is a claim, the quoted evidence behind it, the checks it
-          passed, and its citations. When a teacher and a Bucket reviewer accept
-          it, the production becomes a node with a citable id, registered on the
-          same rail as every paper on this site, and the hypothesis engine can
-          read it as evidence. Citation fees for a contributor under eighteen go
-          to a guardian or a custodial account, never to the minor directly, and
-          recognition ships before any payout does.
-        </p>
-
-        <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
-          § where it sits
-        </div>
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines">
-          <Card href="/academy" title="Academy" body="The consume side: spaced-repetition mastery over the foundations of each branch. Research OS reads the same states." />
-          <Card href="/ladder" title="Ladder" body="The L0 to L5 climb from literacy to producing knowledge. Research OS is the production path for the K-12 rung." />
-          <Card href="/research" title="Research" body="The tools, datasets, atlas, and papers. Accepted student productions land here as citable nodes." />
-        </div>
-
-        <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
-          § status
-        </div>
-        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Design, iteration 3, September 2026. On main today: frontier-backward
-          routing with confidence flags on every edge (
-          <code className="text-[13px]">ROUTING.md</code>), a diagnostic probe
-          for a cold-start learner, the four-tool workspace with every
-          contract enforced in code (
-          <code className="text-[13px]">WORKSPACE.md</code>), cognitive
-          forcing before a Check verdict reveals with a calibration record,
-          and faded guidance with worked examples for a low-prior-knowledge
-          learner (<code className="text-[13px]">GUIDANCE.md</code>).
-        </p>
-        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Also on main: lateral reading with an independent second source
-          before a verdict reveals (
-          <code className="text-[13px]">LATERAL-READING.md</code>), a
-          production provenance guard with duplicate detection and a
-          counter-evidence field (
-          <code className="text-[13px]">PRODUCTION-GUARD.md</code>), a
-          teacher review queue and class view with an accept path (
-          <code className="text-[13px]">TEACHER-LAYER.md</code>), a OneRoster
-          CSV roster importer (<code className="text-[13px]">ROSTER.md</code>
-          ), a consent gate and profile with self-service privacy export and
-          delete, an engine bridge with a production outbox and a campaign
-          caller (<code className="text-[13px]">ENGINE-BRIDGE.md</code>), a
-          canon sign-off tool (
-          <code className="text-[13px]">tools/canon-pipeline/SIGNOFF.md</code>
-          ), and a pre-registration draft (
-          <code className="text-[13px]">study/</code>).
-        </p>
-        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Not yet on main: applying an accepted production to the live
-          database, a Clever or ClassLink roster connector, verified parental
-          consent, a payment to a minor contributor, an LLM-inferred
-          prerequisite edge applied to the graph without review (the
-          inference script writes a proposal only, for a human to approve),
-          and a partner school.
-        </p>
-        <p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Grades 3 to 5 (why the sky is blue) and the history of quantum
-          physics for grades 9 to 12 remain the two candidate subjects for the
-          next demonstration; which one leads is still an open choice
-          (<code className="text-[13px]">_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md</code>{" "}
-          section 11). The plan, the learner-state model, the production
-          schema, the vendor and data-source map, and the funding and people
-          map are public in the repository under{" "}
-          <code className="text-[13px]">learning/research-os/</code> and{" "}
-          <code className="text-[13px]">_intake/research-os-k12/</code>.
-          Pilot classrooms, a pre-registered study of the four-tool constraint,
-          and a state-validation paper come before any wider release.{" "}
-          <a
-            href="https://github.com/bucket-foundation/bucket-foundation/blob/main/learning/research-os/PLAN-REVISION-3.md"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
-          >
-            Read the plan
-          </a>{" "}
-          for the fuller account of what shipped this pass and what stays
-          open.
-        </p>
-      </div>
-    </main>
-  );
-}
-
-function Card({ href, title, body }: { href: string; title: string; body: string }) {
-  return (
-    <Link href={href} className="block h-full">
-      <div className="bg-[color:var(--bone)] p-7 md:p-8 flex flex-col gap-3 min-h-[150px] h-full shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]">
-        <div className="font-display uppercase text-[20px] tracking-[0.04em] text-[color:var(--basalt)]">
-          {title}
-        </div>
-        <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
-        <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{body}</p>
-        <div className="mt-auto pt-3 text-[11px] small-caps tracking-[0.14em]">
-          <span className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
-            open {title.toLowerCase()} →
-          </span>
-        </div>
-      </div>
-    </Link>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
