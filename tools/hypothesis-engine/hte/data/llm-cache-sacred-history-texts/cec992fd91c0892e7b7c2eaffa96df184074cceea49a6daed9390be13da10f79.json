@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7a1b53c26dea1f61d53e2b772bc6914bd2bfd20292202b374667a935d804c238",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he did as the LORD commanded Moses",
+        "claim": "The person (contextually Aaron) executed the actions the LORD had commanded Moses to perform",
+        "actor": "he",
+        "action": "did",
+        "object": "the LORD's commands",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And this shall be an everlasting statute unto you, to make an atonement for the children of Israel for all their sins once a year",
+        "claim": "An everlasting statute is established prescribing annual atonement for all Israel's sins",
+        "actor": "the statute",
+        "action": "to make an atonement",
+        "object": "the children of Israel",
+        "place": "",
+        "mechanism": "once a year",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

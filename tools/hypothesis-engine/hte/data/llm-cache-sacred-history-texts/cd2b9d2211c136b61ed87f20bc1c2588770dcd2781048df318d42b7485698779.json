@@ -1,0 +1,45 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "730d2c850ca60b7cef60c2762926e33befc2549cd47d1a2e38355487b97dc28b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And they met Moses and Aaron, who stood in the way, as they came forth from Pharaoh",
+        "claim": "People met Moses and Aaron who stood in the way as they came from Pharaoh",
+        "actor": "they",
+        "action": "met",
+        "object": "Moses and Aaron",
+        "place": "in the way; from Pharaoh",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "ye have made our savour to be abhorred in the eyes of Pharaoh, and in the eyes of his servants",
+        "claim": "Moses and Aaron made the people's reputation be abhorred in the eyes of Pharaoh and his servants",
+        "actor": "ye",
+        "action": "made be abhorred",
+        "object": "our savour",
+        "place": "in the eyes of Pharaoh, and in the eyes of his servants",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "to put a sword in their hand to slay us",
+        "claim": "A sword would be put into their hand to slay the people",
+        "action": "put",
+        "object": "us",
+        "place": "in their hand",
+        "mechanism": "sword",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

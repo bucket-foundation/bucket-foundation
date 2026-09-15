@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8f51aca37887e6293ef8888d56a33a6281b35217bc00323c7c33b0ea1815c221",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he gave unto Moses, when he had made an end of communing with him upon mount Sinai, two tables of testimony, tables of stone, written with the finger of God.",
+        "claim": "God gave Moses two stone tables written by God's finger on Mount Sinai after speaking with him.",
+        "actor": "God",
+        "action": "gave",
+        "object": "two tables of testimony, tables of stone",
+        "place": "mount Sinai",
+        "mechanism": "written with the finger of God",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "be11d503d91ea0adab304a1712f2078e50583bd99eb8baf40d6582a2f293c59b",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "And the angel of the LORD called unto Abraham out of heaven the second time",
+        "claim": "The text says the angel of the LORD called to Abraham from heaven a second time.",
+        "actor": "angel of the LORD",
+        "action": "called unto",
+        "object": "Abraham",
+        "place": "out of heaven",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "oath-condition",
+        "tier": "primary-text",
+        "quote": "By myself have I sworn, saith the LORD, for because thou hast done this thing, and hast not withheld thy son, thine only son",
+        "claim": "The LORD swears an oath by himself, and the stated reason is that Abraham did not withhold his only son.",
+        "actor": "the LORD",
+        "action": "swore by himself",
+        "object": "Abraham",
+        "mechanism": "oath given because Abraham did not withhold his only son",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "promise",
+        "tier": "primary-text",
+        "quote": "in multiplying I will multiply thy seed as the stars of the heaven, and as the sand which is upon the sea shore",
+        "claim": "God promises to bless Abraham and give him as many descendants as the stars in the sky and the sand on the seashore.",
+        "actor": "the LORD",
+        "action": "promised to bless and multiply",
+        "object": "Abraham's seed",
+        "mechanism": "divine blessing as a reward for obedience",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "promise",
+        "tier": "primary-text",
+        "quote": "thy seed shall possess the gate of his enemies",
+        "claim": "God promises that Abraham's descendants will take possession of their enemies' gates.",
+        "actor": "Abraham's seed",
+        "action": "shall possess",
+        "object": "the gate of his enemies",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "promise",
+        "tier": "primary-text",
+        "quote": "And in thy seed shall all the nations of the earth be blessed; because thou hast obeyed my voice.",
+        "claim": "God promises that all nations of the earth will be blessed through Abraham's descendants, and the stated reason is Abraham's obedience.",
+        "actor": "the LORD",
+        "action": "promised blessing through Abraham's seed",
+        "object": "all the nations of the earth",
+        "mechanism": "Abraham obeyed God's voice",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

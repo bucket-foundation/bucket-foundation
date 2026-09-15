@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5d40c52591dddecafbda074b9bb8bb058024d47898a7f0b501b4c3fb19c8bfde",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses returned unto the LORD, and said, LORD, wherefore hast thou so evil entreated this people?",
+        "claim": "Moses reports that the LORD has treated the people evil",
+        "actor": "the LORD",
+        "action": "evil entreated",
+        "object": "this people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "For since I came to Pharaoh to speak in thy name, he hath done evil to this people",
+        "claim": "Pharaoh did evil to the people after Moses came to speak in the LORD's name",
+        "actor": "Pharaoh",
+        "action": "done evil",
+        "object": "this people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "neither hast thou delivered thy people at all",
+        "claim": "The LORD has not delivered the people",
+        "actor": "the LORD",
+        "action": "delivered",
+        "object": "thy people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

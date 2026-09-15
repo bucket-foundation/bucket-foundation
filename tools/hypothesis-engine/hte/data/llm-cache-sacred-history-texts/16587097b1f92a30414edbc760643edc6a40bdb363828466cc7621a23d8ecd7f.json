@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a98657dfbb6cbed0a05509066631b862df90b2236569584597987a0d015f1c85",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses took them from off their hands, and burnt them on the altar upon the burnt offering: they were consecrations for a sweet savour: it is an offering made by fire unto the LORD.",
+        "claim": "Moses took offerings from people's hands and burnt them on the altar as consecrations for a sweet savour to the LORD",
+        "actor": "Moses",
+        "action": "took, burnt",
+        "object": "them (offerings)",
+        "place": "altar",
+        "mechanism": "burning/fire",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

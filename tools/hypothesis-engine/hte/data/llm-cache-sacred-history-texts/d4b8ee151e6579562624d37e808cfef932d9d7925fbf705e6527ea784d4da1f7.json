@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b48e65739df27bcca4c1b7c1a077c6ee20e2c1be87ec011eaac2b23a2e317f3e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And when Joshua heard the noise of the people as they shouted, he said unto Moses, There is a noise of war in the camp.",
+        "claim": "Joshua heard a noise of people shouting and reported to Moses that there is war noise in the camp.",
+        "actor": "Joshua",
+        "action": "heard and said unto",
+        "object": "noise of war",
+        "place": "the camp",
+        "mechanism": "auditory perception",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

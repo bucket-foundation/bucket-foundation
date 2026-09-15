@@ -1,0 +1,76 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "399711db12b6c71aff727558c7f260cb09bf5ab21378b586f1acaa0a0b6d0b6c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "26:2 And the LORD appeared unto him, and said, Go not down into Egypt; dwell in the land which I shall tell thee of",
+        "claim": "God appeared and commanded the addressee not to go to Egypt but to dwell in a specified land",
+        "actor": "the LORD",
+        "action": "appeared, said",
+        "place": "Egypt; the land",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "26:3 Sojourn in this land, and I will be with thee, and will bless thee",
+        "claim": "God promised to be with the addressee and bless them",
+        "actor": "I",
+        "action": "will be with, will bless",
+        "object": "thee",
+        "place": "this land",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for unto thee, and unto thy seed, I will give all these countries, and I will perform the oath which I sware unto Abraham thy father",
+        "claim": "God promised to give the addressee and their seed countries and to perform the oath sworn to Abraham",
+        "actor": "I",
+        "action": "will give, will perform",
+        "object": "all these countries, the oath",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "26:4 And I will make thy seed to multiply as the stars of heaven, and will give unto thy seed all these countries",
+        "claim": "God will multiply the addressee's seed abundantly and give them countries",
+        "actor": "I",
+        "action": "will make multiply, will give",
+        "object": "thy seed, all these countries",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and in thy seed shall all the nations of the earth be blessed",
+        "claim": "All nations of the earth will be blessed through the addressee's seed",
+        "action": "shall be blessed",
+        "place": "the earth",
+        "mechanism": "in thy seed",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "26:5 Because that Abraham obeyed my voice, and kept my charge, my commandments, my statutes, and my laws",
+        "claim": "Abraham obeyed God's voice and kept His laws, statutes, and commandments",
+        "actor": "Abraham",
+        "action": "obeyed, kept",
+        "object": "my voice, my charge, my commandments, my statutes, my laws",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

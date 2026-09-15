@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "5b2e5666bd97902db0dbb0eccc6211ef6839777ec24ecf3c056120625c48c406",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "40:26 And he put the golden altar in the tent of the congregation before the vail:",
+        "claim": "The golden altar was placed in the tent of the congregation, in front of the veil.",
+        "actor": "he (Moses, inferred from the phrase 'as the LORD commanded Moses' in the next verse; not named in this verse)",
+        "action": "put / placed",
+        "object": "the golden altar",
+        "place": "tent of the congregation, before the vail",
+        "mechanism": "physical placement of a cult furnishing",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "40:27 And he burnt sweet incense thereon; as the LORD commanded Moses.",
+        "claim": "Sweet incense was burned on the golden altar, as the LORD had commanded Moses.",
+        "actor": "he (Moses, inferred; not named as the subject)",
+        "action": "burnt sweet incense",
+        "object": "sweet incense on the golden altar",
+        "place": "tent of the congregation",
+        "mechanism": "ritual act done because of a divine command ('as the LORD commanded Moses')",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

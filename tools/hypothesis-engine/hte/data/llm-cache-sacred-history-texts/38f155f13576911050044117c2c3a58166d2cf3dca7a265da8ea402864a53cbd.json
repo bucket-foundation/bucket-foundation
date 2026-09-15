@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f7b4edb72ee04c036206015180e0ff0403dfe569dda2061d0e15db782d6c24df",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "God communicated to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "",
+        "place": "",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Ye shall be holy: for I the LORD your God am holy",
+        "claim": "The congregation of Israel is commanded to be holy because God is holy",
+        "actor": "the congregation of the children of Israel",
+        "action": "shall be",
+        "object": "holy",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

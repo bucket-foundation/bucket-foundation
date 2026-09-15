@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8cc023eec6d3d6ad64f077d67e6c2bdeaa4e045814d3d8a669de32b15f18ba2d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And he cut the ram into pieces",
+        "claim": "An unnamed actor cut a ram into pieces",
+        "actor": "he (unnamed)",
+        "action": "cut",
+        "object": "ram",
+        "place": "",
+        "mechanism": "into pieces",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and Moses burnt the head, and the pieces, and the fat",
+        "claim": "Moses burnt the head, pieces, and fat of the ram",
+        "actor": "Moses",
+        "action": "burnt",
+        "object": "the head, and the pieces, and the fat",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

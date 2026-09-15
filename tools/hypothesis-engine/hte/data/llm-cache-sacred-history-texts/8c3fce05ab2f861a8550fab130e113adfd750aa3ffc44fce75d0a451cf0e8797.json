@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ad3da422f9c079115a8d78e0301dd44c1064b9c1dfac69c61d947990c20c102a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses and Aaron in the land of Egypt saying",
+        "claim": "The LORD spoke to Moses and Aaron in the land of Egypt",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses and Aaron",
+        "place": "the land of Egypt",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "This month shall be unto you the beginning of months: it shall be the first month of the year to you",
+        "claim": "The month is designated by the LORD as the beginning of months and the first month of the year",
+        "actor": "the LORD",
+        "action": "shall be",
+        "object": "This month",
+        "place": "",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

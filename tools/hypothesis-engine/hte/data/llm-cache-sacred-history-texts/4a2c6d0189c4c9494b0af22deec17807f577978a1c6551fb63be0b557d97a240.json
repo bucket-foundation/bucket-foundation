@@ -1,0 +1,41 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "86fc1f8a3810011cfe08b10a024e5b648513fd9e42fe60bf91b086f6a079d475",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses answered and said",
+        "claim": "Moses answered and spoke",
+        "actor": "Moses",
+        "action": "answered and said",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "they will not believe me, nor hearken unto my voice",
+        "claim": "People will not believe or listen to Moses",
+        "actor": "they",
+        "action": "will not believe, nor hearken",
+        "object": "me, my voice",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "they will say, The LORD hath not appeared unto thee",
+        "claim": "People will claim that God has not appeared to Moses",
+        "actor": "they",
+        "action": "will say",
+        "object": "The LORD hath not appeared unto thee",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

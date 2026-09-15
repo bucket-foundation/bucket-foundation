@@ -1,0 +1,66 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "acc133698c4b899e50089a6e730f115d6afe44d24133e11883074237509b8280",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the land of Egypt for the locusts, that they may come up upon the land of Egypt, and eat every herb of the land, even all that the hail hath left.",
+        "claim": "The LORD commanded Moses to stretch out his hand over Egypt",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the land of Egypt for the locusts, that they may come up upon the land of Egypt, and eat every herb of the land, even all that the hail hath left.",
+        "claim": "Moses commanded to stretch out his hand over the land of Egypt for the locusts",
+        "actor": "Moses",
+        "action": "Stretch out",
+        "object": "thine hand",
+        "place": "over the land of Egypt",
+        "mechanism": "for the locusts",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the land of Egypt for the locusts, that they may come up upon the land of Egypt, and eat every herb of the land, even all that the hail hath left.",
+        "claim": "The locusts will come up upon the land of Egypt",
+        "actor": "locusts",
+        "action": "may come up",
+        "place": "the land of Egypt",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the land of Egypt for the locusts, that they may come up upon the land of Egypt, and eat every herb of the land, even all that the hail hath left.",
+        "claim": "The locusts will eat every herb of the land",
+        "actor": "locusts",
+        "action": "eat",
+        "object": "every herb of the land",
+        "place": "the land of Egypt",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the land of Egypt for the locusts, that they may come up upon the land of Egypt, and eat every herb of the land, even all that the hail hath left.",
+        "claim": "The hail had left some herbs undestroyed",
+        "actor": "hail",
+        "action": "hath left",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

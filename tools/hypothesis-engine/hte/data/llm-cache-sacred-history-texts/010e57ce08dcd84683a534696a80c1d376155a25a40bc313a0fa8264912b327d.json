@@ -1,0 +1,52 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3b5a0d6bf4f0d7ddd6db2017a0ef8a102fe881acb7b394a2a4bd2f1ba07c33d0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And he said, Cast it on the ground",
+        "claim": "An unnamed person commands to cast something on the ground",
+        "actor": "he",
+        "action": "said",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And he cast it on the ground",
+        "claim": "An unnamed person casts an object on the ground",
+        "actor": "he",
+        "action": "cast",
+        "object": "it",
+        "place": "the ground",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and it became a serpent",
+        "claim": "An object transforms into a serpent",
+        "actor": "it",
+        "action": "became",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and Moses fled from before it",
+        "claim": "Moses flees from a serpent",
+        "actor": "Moses",
+        "action": "fled",
+        "place": "before it",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

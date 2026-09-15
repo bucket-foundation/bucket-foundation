@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cda6fad0dbfccdc628f254ed9389cda465a41d038ab78d3e1e7595d5c66c1e8f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And he left off talking with him",
+        "claim": "Abraham ceased talking with God",
+        "actor": "he",
+        "action": "left off talking",
+        "object": "him",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and God went up from Abraham",
+        "claim": "God departed from Abraham",
+        "actor": "God",
+        "action": "went up from",
+        "object": "Abraham",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

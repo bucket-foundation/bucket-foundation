@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "370a70a147a0560d15ada659af6be3422769c4c85011b99e04e6704f0bcf1167",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Noah was six hundred years old when the flood of waters was upon the earth.",
+        "claim": "The biblical flood occurred when Noah was 600 years old.",
+        "actor": "Noah",
+        "action": "was six hundred years old",
+        "object": "the flood of waters",
+        "place": "the earth",
+        "mechanism": "aging",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

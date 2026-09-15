@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "496e174625d8f5cf7925464ac008fccedce638b8f27e94d71d421ce1585354e7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "12:31 And he called for Moses and Aaron by night, and said, Rise up, and get you forth from among my people, both ye and the children of Israel; and go, serve the LORD, as ye have said.",
+        "claim": "Pharaoh commanded Moses and Aaron and the children of Israel to depart and serve the LORD",
+        "actor": "he",
+        "action": "called for",
+        "object": "Moses and Aaron; children of Israel",
+        "place": "",
+        "mechanism": "called for and said",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

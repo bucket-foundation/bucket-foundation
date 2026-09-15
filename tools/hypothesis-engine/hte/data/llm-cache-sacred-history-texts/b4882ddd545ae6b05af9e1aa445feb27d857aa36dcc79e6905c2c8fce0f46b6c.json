@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "aea2ed3c76a61e81603d2fbecf1ddbe102a47de76a115fd53befb9278380138a",
+  "response": {
+    "items": [
+      {
+        "kind": "claim",
+        "tier": "primary",
+        "quote": "And Ephron dwelt among the children of Heth",
+        "claim": "Ephron lived among the children of Heth.",
+        "actor": "Ephron",
+        "action": "dwelt among",
+        "object": "the children of Heth",
+        "place": "among the children of Heth",
+        "stance": "positive",
+        "year": null,
+        "mechanism": "residence"
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "and Ephron the Hittite answered Abraham in the audience of the children of Heth, even of all that went in at the gate of his city, saying,",
+        "claim": "Ephron the Hittite answered Abraham publicly, in front of the children of Heth and everyone who went in at his city's gate.",
+        "actor": "Ephron the Hittite",
+        "action": "answered",
+        "object": "Abraham",
+        "place": "the gate of his city",
+        "stance": "positive",
+        "year": null,
+        "mechanism": "public speech before witnesses at the city gate"
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "the field give I thee, and the cave that is therein, I give it thee; in the presence of the sons of my people give I it thee: bury thy dead.",
+        "claim": "Ephron offered to give Abraham the field and the cave in it, in front of his own people, so Abraham could bury his dead.",
+        "actor": "Ephron the Hittite",
+        "action": "offered to give",
+        "object": "the field and the cave therein",
+        "place": "the gate of his city",
+        "stance": "positive",
+        "year": null,
+        "mechanism": "a gift offered in front of the people as witnesses"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7dbcefad7fc9ba3b04475aa22a4ce9b7db6ad68a5d90448910671857b1799570",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "If a woman have conceived seed, and born a man child: then she shall be unclean seven days; according to the days of the separation for her infirmity shall she be unclean",
+        "claim": "A woman who conceives and bears a male child shall be unclean for seven days",
+        "actor": "a woman",
+        "action": "shall be unclean",
+        "object": "",
+        "place": "",
+        "mechanism": "separation for her infirmity",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

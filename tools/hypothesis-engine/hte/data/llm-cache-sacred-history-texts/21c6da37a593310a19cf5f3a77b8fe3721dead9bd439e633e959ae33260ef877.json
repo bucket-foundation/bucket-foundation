@@ -1,0 +1,32 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "14ff082db6208e060c69951598ac66d777ea2223fdc7ba8469319d72f965b4b7",
+  "response": {
+    "items": [
+      {
+        "kind": "speech-act",
+        "tier": "primary-text",
+        "quote": "And Abimelech said unto Abraham, What sawest thou, that thou hast done this thing?",
+        "claim": "Abimelech asks Abraham what made him do 'this thing'. The passage itself doesn't say what the act was.",
+        "actor": "Abimelech",
+        "action": "questioned",
+        "object": "Abraham",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "speech-act",
+        "tier": "primary-text",
+        "quote": "And Abraham said, Because I thought, Surely the fear of God is not in this place; and they will slay me for my wife's sake.",
+        "claim": "Abraham says he acted because he believed there was no fear of God in that place and that people there would kill him to get his wife.",
+        "actor": "Abraham",
+        "action": "justified his conduct",
+        "object": "fear of being slain for his wife's sake",
+        "mechanism": "perceived absence of fear of God in the place, leading to expected lethal threat over his wife",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

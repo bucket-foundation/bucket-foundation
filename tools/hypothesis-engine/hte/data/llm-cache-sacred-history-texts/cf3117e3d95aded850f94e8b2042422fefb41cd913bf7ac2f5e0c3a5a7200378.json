@@ -1,0 +1,20 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "62e48b617f83b51859548ad6251fd73509c05d910847198eb97222612f917b52",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses spake unto Aaron, Say unto all the congregation of the children of Israel, Come near before the LORD: for he hath heard your murmurings.",
+        "claim": "The text (verse 16:9) says Moses told Aaron to call the whole congregation of the children of Israel to come near before the LORD, because the LORD had heard their murmurings. This is a claim made inside the text, not a verified historical event. Matching the verse to Exodus 16:9 (KJV) comes from model-prior only and is not stated in the document.",
+        "actor": "Moses",
+        "action": "instructed Aaron to summon the congregation before the LORD",
+        "object": "the congregation of the children of Israel",
+        "mechanism": "the LORD's response to the people's murmurings",
+        "year": null
+      }
+    ]
+  }
+}

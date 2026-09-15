@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "59809ce14865154836e3990160d48994a5bd2827f50579e70123f187c2aeb225",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses took half of the blood, and put it in basons; and half of the blood he sprinkled on the altar.",
+        "claim": "Moses divided blood in half, placing one portion in basons and sprinkling the other portion on the altar",
+        "actor": "Moses",
+        "action": "took, put, sprinkled",
+        "object": "blood",
+        "place": "basons, altar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

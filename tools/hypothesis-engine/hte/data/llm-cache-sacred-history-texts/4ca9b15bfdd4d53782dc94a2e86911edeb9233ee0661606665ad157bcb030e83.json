@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4de8bc365a147a95348ca3aba98bffc000ff81c2efd8c4d2953572d504cba3e7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "when Aaron and all the children of Israel saw Moses",
+        "claim": "Aaron and all the children of Israel saw Moses",
+        "actor": "Aaron and all the children of Israel",
+        "action": "saw",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the skin of his face shone",
+        "claim": "The skin of Moses's face shone",
+        "actor": "the skin of his face",
+        "action": "shone",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "they were afraid to come nigh him",
+        "claim": "Aaron and all the children of Israel were afraid to approach Moses",
+        "actor": "they",
+        "action": "were afraid to come nigh",
+        "object": "him",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

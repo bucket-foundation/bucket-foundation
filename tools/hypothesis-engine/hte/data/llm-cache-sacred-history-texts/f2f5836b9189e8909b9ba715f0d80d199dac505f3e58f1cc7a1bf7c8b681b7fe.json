@@ -1,0 +1,91 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "555f70e8bbfeec85e7e0575af6602c83e173729e65553f91773d8ceca0a0ea51",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the people murmured against Moses, saying, What shall we drink?",
+        "claim": "The people complained to Moses questioning what they would drink",
+        "actor": "the people",
+        "action": "murmured against",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he cried unto the LORD",
+        "claim": "Moses cried out to God",
+        "actor": "he (Moses)",
+        "action": "cried unto",
+        "object": "the LORD",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and the LORD shewed him a tree",
+        "claim": "God revealed a tree to Moses",
+        "actor": "the LORD",
+        "action": "shewed",
+        "object": "a tree",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "which when he had cast into the waters, the waters were made sweet",
+        "claim": "When Moses threw the tree into the water, the water became sweet",
+        "actor": "he (Moses)",
+        "action": "cast into",
+        "object": "the waters",
+        "mechanism": "tree cast into waters",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "there he made for them a statute and an ordinance",
+        "claim": "At that place, God established a statute and ordinance for the people",
+        "actor": "he (the LORD)",
+        "action": "made",
+        "object": "a statute and an ordinance",
+        "place": "there",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and there he proved them",
+        "claim": "God tested the people at that location",
+        "actor": "he (the LORD)",
+        "action": "proved",
+        "object": "them",
+        "place": "there",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "I will put none of these diseases upon thee, which I have brought upon the Egyptians",
+        "claim": "God conditionally promises not to inflict upon the people the diseases God sent to Egypt",
+        "actor": "the LORD",
+        "action": "will put",
+        "object": "diseases",
+        "place": "upon thee (negated)",
+        "mechanism": "conditional upon obedience",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

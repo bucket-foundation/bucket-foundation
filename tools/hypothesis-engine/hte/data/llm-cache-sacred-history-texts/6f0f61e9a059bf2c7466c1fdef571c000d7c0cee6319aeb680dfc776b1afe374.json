@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "fee4b1e638182e354d657c18f1a3ee7505c8e9862c4ded2ce89f6086d9b9bb56",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "There shall no stranger eat thereof",
+        "claim": "Strangers were excluded from participating in the Passover meal",
+        "actor": "stranger",
+        "action": "eat",
+        "object": "thereof",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "But every man's servant that is bought for money, when thou hast circumcised him, then shall he eat thereof.",
+        "claim": "Circumcision was established as a physical mechanism enabling male servants to participate in the Passover meal",
+        "actor": "servant",
+        "action": "eat",
+        "object": "thereof",
+        "mechanism": "circumcised",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

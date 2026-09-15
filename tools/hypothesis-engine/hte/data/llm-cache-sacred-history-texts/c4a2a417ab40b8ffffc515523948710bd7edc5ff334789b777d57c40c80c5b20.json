@@ -1,0 +1,45 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "c3d4fc6f7e1ff86538fb13f97f3a17596bc6f335c52306e04075ed92bfcdcb8b",
+  "response": {
+    "items": [
+      {
+        "kind": "speech-act / reported command",
+        "tier": "primary-text (scriptural narrative; not independently verified historical record)",
+        "quote": "And Moses said unto the LORD, See, thou sayest unto me, Bring up this people:",
+        "claim": "In the text, Moses tells the LORD that the LORD has ordered him to lead ('bring up') the people.",
+        "actor": "Moses",
+        "action": "reports a command received from the LORD",
+        "object": "this people",
+        "mechanism": "divine command reported in dialogue",
+        "place": "",
+        "year": null
+      },
+      {
+        "kind": "speech-act / complaint about missing information",
+        "tier": "primary-text (scriptural narrative; not independently verified historical record)",
+        "quote": "and thou hast not let me know whom thou wilt send with me.",
+        "claim": "In the text, Moses objects that the LORD has not told him who will be sent with him.",
+        "actor": "Moses",
+        "action": "objects that he has not been told who will accompany him",
+        "object": "the companion or guide to be sent with Moses",
+        "mechanism": "a gap in divine disclosure raised in dialogue",
+        "place": "",
+        "year": null
+      },
+      {
+        "kind": "speech-act / reported divine assurance",
+        "tier": "primary-text (scriptural narrative; not independently verified historical record)",
+        "quote": "Yet thou hast said, I know thee by name, and thou hast also found grace in my sight.",
+        "claim": "In the text, Moses reminds the LORD that the LORD has said he knows Moses by name and that Moses has found favor ('grace') with him.",
+        "actor": "Moses (quoting the LORD)",
+        "action": "cites earlier assurances of personal knowledge and favor",
+        "object": "Moses's standing with the LORD",
+        "mechanism": "appeal to an earlier promise to support his request",
+        "place": "",
+        "year": null
+      }
+    ]
+  }
+}

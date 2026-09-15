@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "221e54aa539be56c6cd3e69a92f41f192d8462691b26df09398b2ce4ed49cb88",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "document-text",
+        "quote": "And Abraham said of Sarah his wife, She is my sister",
+        "claim": "Abraham said that Sarah, his wife, was his sister.",
+        "actor": "Abraham",
+        "action": "said of Sarah his wife, she is my sister",
+        "object": "Sarah",
+        "place": "Gerar",
+        "mechanism": "deception about marital relationship",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "document-text",
+        "quote": "and Abimelech king of Gerar sent, and took Sarah.",
+        "claim": "Abimelech, king of Gerar, sent for Sarah and took her.",
+        "actor": "Abimelech king of Gerar",
+        "action": "sent, and took",
+        "object": "Sarah",
+        "place": "Gerar",
+        "mechanism": "royal seizure following Abraham's claim that Sarah was his sister",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

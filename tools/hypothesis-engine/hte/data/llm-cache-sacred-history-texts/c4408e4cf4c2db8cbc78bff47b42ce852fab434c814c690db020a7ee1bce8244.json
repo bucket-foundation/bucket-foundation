@@ -1,0 +1,68 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2cc84829e7f15441e8b2916a6bc352fae81e03e22ed854cede89419c0bbe6417",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And Moses called Bezaleel and Aholiab, and every wise hearted man, in whose heart the LORD had put wisdom, even every one whose heart stirred him up to come unto the work to do it",
+        "claim": "Moses called Bezaleel, Aholiab, and every wise-hearted man to the work",
+        "actor": "Moses",
+        "action": "called",
+        "object": "Bezaleel, Aholiab, wise-hearted men",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "in whose heart the LORD had put wisdom",
+        "claim": "The LORD put wisdom in the hearts of the wise-hearted men",
+        "actor": "LORD",
+        "action": "put",
+        "object": "wisdom",
+        "place": "in their hearts",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "which the children of Israel had brought for the work of the service of the sanctuary",
+        "claim": "The children of Israel brought the offering for the sanctuary work",
+        "actor": "children of Israel",
+        "action": "brought",
+        "object": "offering",
+        "place": "for the work of the service of the sanctuary",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And they received of Moses all the offering",
+        "claim": "They (wise-hearted men) received all the offering from Moses",
+        "actor": "they (Bezaleel, Aholiab, wise-hearted men)",
+        "action": "received",
+        "object": "offering",
+        "mechanism": "from Moses",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And they brought yet unto him free offerings every morning",
+        "claim": "They brought free offerings to Moses every morning",
+        "actor": "they",
+        "action": "brought",
+        "object": "free offerings",
+        "place": "every morning",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

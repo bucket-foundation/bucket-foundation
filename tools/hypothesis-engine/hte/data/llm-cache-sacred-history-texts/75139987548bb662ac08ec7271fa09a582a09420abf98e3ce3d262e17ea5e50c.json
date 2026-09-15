@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ffbeb907d7add74b561de418d59edc4f989a514fdee9c6425c933d6481bb0a53",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses with instructions",
+        "actor": "the LORD, Moses",
+        "action": "spake",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "He that offereth the sacrifice of his peace offerings unto the LORD shall bring his oblation unto the LORD of the sacrifice of his peace offerings.",
+        "claim": "Those offering peace offerings to the LORD must bring their oblation to the LORD",
+        "actor": "He that offereth",
+        "action": "offereth, bring",
+        "object": "the sacrifice of his peace offerings, oblation",
+        "place": "unto the LORD",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

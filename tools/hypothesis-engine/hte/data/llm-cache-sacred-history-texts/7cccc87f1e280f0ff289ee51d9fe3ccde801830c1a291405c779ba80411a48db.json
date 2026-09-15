@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ebf84ba6dd94ca1dbdba8e233bfff9b8104a0bebda6e0e62bc85f652f4ccf3ae",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Moreover the LORD spake unto Moses, saying, 30:23 Take thou also unto thee principal spices, of pure myrrh five hundred shekels, and of sweet cinnamon half so much, even two hundred and fifty shekels, and of sweet calamus two hundred and fifty shekels, 30:24 And of cassia five hundred shekels, after the shekel of the sanctuary, and of oil olive an hin",
+        "claim": "The LORD instructed Moses to gather specific spices and oil in precise quantities: myrrh (500 shekels), sweet cinnamon (250 shekels), sweet calamus (250 shekels), cassia (500 shekels), and olive oil (one hin)",
+        "actor": "the LORD, Moses",
+        "action": "spake, Take",
+        "object": "principal spices (myrrh, sweet cinnamon, sweet calamus, cassia), oil olive",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And thou shalt make it an oil of holy ointment, an ointment compound after the art of the apothecary: it shall be an holy anointing oil",
+        "claim": "Moses was commanded to compound the gathered ingredients into a holy anointing oil using apothecary methods",
+        "actor": "thou (Moses)",
+        "action": "make, compound",
+        "object": "oil of holy ointment, holy anointing oil",
+        "place": "",
+        "mechanism": "after the art of the apothecary",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

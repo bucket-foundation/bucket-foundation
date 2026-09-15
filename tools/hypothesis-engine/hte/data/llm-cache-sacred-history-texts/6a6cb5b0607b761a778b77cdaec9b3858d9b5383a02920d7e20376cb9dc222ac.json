@@ -1,0 +1,34 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f9538763e3af235ede48174a626d04286e3d0951697a4a6337f31568e5f0aa24",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the child grew, and she brought him unto Pharaoh's daughter, and he became her son.",
+        "claim": "A woman brought a child to Pharaoh's daughter, who then raised him as her own son.",
+        "actor": "she",
+        "action": "brought",
+        "object": "him",
+        "place": "Pharaoh's daughter",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And she called his name Moses: and she said, Because I drew him out of the water.",
+        "claim": "Pharaoh's daughter named the child Moses because she drew him out of the water.",
+        "actor": "she",
+        "action": "called; drew",
+        "object": "his name Moses; him",
+        "place": "the water",
+        "mechanism": "drew out of",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

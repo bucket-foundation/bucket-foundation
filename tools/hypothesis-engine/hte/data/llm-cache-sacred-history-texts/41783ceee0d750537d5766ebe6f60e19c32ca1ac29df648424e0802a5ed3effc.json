@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "10ee1d18a49901f11ebf922a91c6437409d1b4a52d055f1e246faffd03250235",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "The God of Abraham, and the God of Nahor, the God of their father, judge betwixt us",
+        "claim": "The God of Abraham and the God of Nahor (their father's god) is invoked to judge between the speaker and another party",
+        "actor": "The God of Abraham, and the God of Nahor, the God of their father",
+        "action": "judge",
+        "object": "us",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Jacob sware by the fear of his father Isaac",
+        "claim": "Jacob took an oath by invoking the fear of his father Isaac",
+        "actor": "Jacob",
+        "action": "sware",
+        "object": "the fear of his father Isaac",
+        "mechanism": "the fear of his father Isaac",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

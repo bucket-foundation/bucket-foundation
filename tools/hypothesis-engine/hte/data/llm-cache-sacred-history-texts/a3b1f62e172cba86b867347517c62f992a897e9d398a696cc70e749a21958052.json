@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cbcbfa7d6a5933118855e181b6962c1505f91585c7efd8f5f9f3ad3583292d0b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they made coats of fine linen of woven work for Aaron, and for his sons",
+        "claim": "Priestly coats were produced using woven work with fine linen",
+        "actor": "they",
+        "action": "made",
+        "object": "coats",
+        "mechanism": "woven work",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And a girdle of fine twined linen, and blue, and purple, and scarlet, of needlework",
+        "claim": "A priestly girdle was constructed using needlework with colored threads on twined linen",
+        "object": "girdle",
+        "mechanism": "needlework",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

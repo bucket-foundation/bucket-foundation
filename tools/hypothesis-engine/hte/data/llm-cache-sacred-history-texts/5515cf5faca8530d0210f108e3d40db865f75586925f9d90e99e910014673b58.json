@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "92af5a193dfc6fd60404871e339bfe8929bc8c65fe1aa885f1b536c406633ae3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Bethuel begat Rebekah",
+        "claim": "Bethuel fathered Rebekah",
+        "actor": "Bethuel",
+        "action": "begat",
+        "object": "Rebekah",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "these eight Milcah did bear to Nahor, Abraham's brother",
+        "claim": "Milcah bore eight children to Nahor, who was Abraham's brother",
+        "actor": "Milcah",
+        "action": "bear",
+        "object": "eight",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

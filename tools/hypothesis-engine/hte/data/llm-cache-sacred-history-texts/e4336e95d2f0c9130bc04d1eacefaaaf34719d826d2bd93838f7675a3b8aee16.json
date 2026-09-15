@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2c88dc899a51af7dc3bfbee9a7e8ed4fa67b8af6e1b5ee536380243f0efab4d1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses said unto Aaron, Take a pot, and put an omer full of manna therein, and lay it up before the LORD, to be kept for your generations.",
+        "claim": "Moses commanded Aaron to preserve a pot of manna before the LORD for future generations",
+        "actor": "Moses, Aaron",
+        "action": "said, commanded to take, put, lay up, keep",
+        "object": "pot, omer full of manna",
+        "place": "before the LORD",
+        "mechanism": "putting manna in a pot for preservation",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

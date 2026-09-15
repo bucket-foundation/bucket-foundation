@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "70a274ea353e623c2ecc99ef9f2042c69695778c486ef46834688e787e2e40ec",
+  "response": {
+    "items": [
+      {
+        "kind": "genealogical-claim",
+        "tier": "primary-text",
+        "quote": "Behold, Milcah, she hath also born children unto thy brother Nahor;",
+        "claim": "Abraham was told that Milcah had borne children to Nahor, Abraham's brother.",
+        "actor": "Milcah",
+        "action": "bore children to",
+        "object": "Nahor (brother of Abraham)",
+        "mechanism": "report delivered to Abraham ('it was told Abraham')",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "genealogical-claim",
+        "tier": "primary-text",
+        "quote": "Huz his firstborn, and Buz his brother, and Kemuel the father of Aram, 22:22 And Chesed, and Hazo, and Pildash, and Jidlaph, and Bethuel.",
+        "claim": "The text names eight sons of Nahor and Milcah: Huz (the firstborn), Buz, Kemuel, Chesed, Hazo, Pildash, Jidlaph and Bethuel.",
+        "actor": "Nahor and Milcah",
+        "action": "had sons",
+        "object": "Huz, Buz, Kemuel, Chesed, Hazo, Pildash, Jidlaph, Bethuel",
+        "mechanism": "genealogical list",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "genealogical-claim",
+        "tier": "primary-text",
+        "quote": "Kemuel the father of Aram",
+        "claim": "Kemuel, a son of Nahor, is called the father of Aram.",
+        "actor": "Kemuel",
+        "action": "fathered",
+        "object": "Aram",
+        "mechanism": "genealogical attribution",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

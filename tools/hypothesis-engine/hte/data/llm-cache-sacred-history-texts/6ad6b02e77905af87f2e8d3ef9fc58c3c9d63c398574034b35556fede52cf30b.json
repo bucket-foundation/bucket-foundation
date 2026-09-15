@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "50baa1b5523c6d259070178921210ca3e1e271e91dc4705b3755a811320a0599",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And after this, Abraham buried Sarah his wife in the cave of the field of Machpelah before Mamre: the same is Hebron in the land of Canaan.",
+        "claim": "Abraham buried his wife Sarah in a cave at Machpelah before Mamre, identified as Hebron in Canaan.",
+        "actor": "Abraham",
+        "action": "buried",
+        "object": "Sarah",
+        "place": "cave of the field of Machpelah before Mamre / Hebron in the land of Canaan",
+        "mechanism": "cave burial",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

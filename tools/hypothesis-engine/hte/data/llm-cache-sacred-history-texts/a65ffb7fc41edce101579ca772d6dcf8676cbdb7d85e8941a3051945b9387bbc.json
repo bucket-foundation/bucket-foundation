@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4dc2acbefb1261d5807fa3f40ee877da46a4a3e1861d909162b9ca2f26d0e8b4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the LORD which saidst unto me, Return unto thy country, and to thy kindred, and I will deal well with thee",
+        "claim": "The LORD commanded Jacob to return to his country and kindred and promised to deal well with him",
+        "actor": "the LORD",
+        "action": "saidst",
+        "object": "me",
+        "place": "thy country, thy kindred",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "I am not worthy of the least of all the mercies, and of all the truth, which thou hast shewed unto thy servant",
+        "claim": "God showed mercies and truth to Jacob",
+        "actor": "thou",
+        "action": "hath shewed",
+        "object": "mercies, truth",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "with my staff I passed over this Jordan",
+        "claim": "Jacob crossed the Jordan with his staff",
+        "actor": "I",
+        "action": "passed over",
+        "object": "Jordan",
+        "place": "Jordan",
+        "mechanism": "with my staff",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and now I am become two bands",
+        "claim": "Jacob became two bands",
+        "actor": "I",
+        "action": "am become",
+        "object": "two bands",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9578586230189cd091e85240d57a989118dc26dc667e64da64044ac8e3e10bcc",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And, behold, the LORD stood above it, and said, I am the LORD God of Abraham thy father, and the God of Isaac",
+        "claim": "The LORD appeared above the location and identified himself as the God of Abraham and Isaac",
+        "actor": "the LORD",
+        "action": "stood above; said",
+        "object": "it; his identity",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the land whereon thou liest, to thee will I give it, and to thy seed",
+        "claim": "The LORD promises to give the land Jacob is lying on to him and his descendants",
+        "actor": "the LORD",
+        "action": "give",
+        "object": "the land",
+        "place": "whereon thou liest",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "thy seed shall be as the dust of the earth",
+        "claim": "Jacob's seed shall become as numerous as the dust of the earth",
+        "actor": "thy seed",
+        "action": "",
+        "object": "dust of the earth",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "thou shalt spread abroad to the west, and to the east, and to the north, and to the south",
+        "claim": "Jacob's seed shall spread in all four cardinal directions",
+        "actor": "thou",
+        "action": "spread abroad",
+        "object": "",
+        "place": "west, east, north, south",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "in thee and in thy seed shall all the families of the earth be blessed",
+        "claim": "All families of the earth shall be blessed through Jacob and his seed",
+        "actor": "thee and thy seed",
+        "action": "shall be blessed",
+        "object": "all the families of the earth",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

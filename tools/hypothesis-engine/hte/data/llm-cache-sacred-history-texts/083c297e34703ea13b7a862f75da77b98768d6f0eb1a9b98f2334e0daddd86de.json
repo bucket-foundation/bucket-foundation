@@ -1,0 +1,55 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c0fb6c2d87f1f95e31ff21ede552178752fca6c150ccbbe826598cbb76c72b57",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "this day have they offered their sin offering and their burnt offering before the LORD",
+        "claim": "Burnt and sin offerings were made before the LORD on this day",
+        "actor": "they",
+        "action": "offered",
+        "object": "sin offering and burnt offering",
+        "place": "before the LORD",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "oral_tradition",
+        "tier": "T3",
+        "quote": "such things have befallen me",
+        "claim": "Aaron has been afflicted",
+        "actor": "such things",
+        "action": "befallen",
+        "object": "me",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "linguistic",
+        "tier": "T3",
+        "quote": "if I had eaten the sin offering to day, should it have been accepted in the sight of the LORD?",
+        "claim": "Eating the sin offering in a state of affliction would not be acceptable to the LORD",
+        "actor": "I",
+        "action": "eaten",
+        "object": "sin offering",
+        "place": "in the sight of the LORD",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And when Moses heard that, he was content",
+        "claim": "Moses was satisfied with Aaron's explanation",
+        "actor": "Moses",
+        "action": "was content",
+        "object": "that",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -45,6 +45,7 @@ _CORPUS_LOADERS = {
     # TEXTS.md`); `sacred_history.ingest(with_texts=True)` is the merged
     # reading, this entry is the bare texts-only corpus on its own.
     "sacred-history-texts": sacred_history_texts.load,
+    "sacred-history-texts-slice-1": sacred_history_texts.load_slice_one,
     # 47 open-metadata, DOI-verified cards on the Younger Dryas boundary
     # (12.9-11.7 ka BP) impact-hypothesis debate; see `hte.runner.
     # _CORPUS_LOADERS`'s own identical entry and `hte.corpus.

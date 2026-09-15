@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c5b1965f3fa89130026ed5d6cb1c699fd4e5d65ed9fe3a4c4bb6780c237f1f90",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses told it unto Aaron, and to his sons, and unto all the children of Israel.",
+        "claim": "Moses communicated information to Aaron, Aaron's sons, and the children of Israel.",
+        "actor": "Moses",
+        "action": "told",
+        "object": "it",
+        "place": "",
+        "mechanism": "told",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

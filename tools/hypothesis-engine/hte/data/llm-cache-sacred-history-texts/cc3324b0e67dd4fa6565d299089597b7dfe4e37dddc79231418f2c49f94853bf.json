@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cba033d61a90d0a5f4eb489f02ab56dac530cc91b06eebf4eec8c81b04dc9332",
+  "response": {
+    "items": [
+      {
+        "quote": "And Abraham answered and said, Behold now, I have taken upon me to speak unto the LORD, which am but dust and ashes",
+        "claim": "Abraham addresses the LORD, describing himself as dust and ashes",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "Abraham",
+        "action": "answered and said",
+        "object": "the LORD",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "Peradventure there shall lack five of the fifty righteous: wilt thou destroy all the city for lack of five?",
+        "claim": "Abraham questions whether God will destroy the city if five righteous people are lacking from fifty",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "Abraham",
+        "action": "questioned",
+        "object": "the city",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "And he said, If I find there forty and five, I will not destroy it.",
+        "claim": "God states he will not destroy the city if he finds forty-five righteous people",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "God",
+        "action": "will not destroy",
+        "object": "it",
+        "place": "",
+        "mechanism": "said",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

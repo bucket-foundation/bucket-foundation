@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e4c26d7aac890fa38eb7f6261e0faf387d2c627544b7302943a71a5e69fe3f29",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD communicated with Moses through speech",
+        "actor": "the LORD, Moses",
+        "action": "spake",
+        "object": "",
+        "place": "",
+        "mechanism": "direct speech",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Speak unto the children of Israel, saying, If a soul shall sin through ignorance against any of the commandments of the LORD concerning things which ought not to be done, and shall do against any of them:",
+        "claim": "Israelites are commanded regarding unintentional violations of the LORD's commandments",
+        "actor": "the children of Israel, a soul",
+        "action": "speak, sin, do",
+        "object": "commandments of the LORD, things which ought not to be done",
+        "place": "",
+        "mechanism": "divine instruction",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "If the priest that is anointed do sin according to the sin of the people; then let him bring for his sin, which he hath sinned, a young bullock without blemish unto the LORD for a sin offering.",
+        "claim": "An anointed priest who sins must bring an unblemished bullock to the LORD as a sin offering",
+        "actor": "the priest, the people",
+        "action": "sin, bring",
+        "object": "young bullock without blemish",
+        "place": "unto the LORD",
+        "mechanism": "sin offering",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

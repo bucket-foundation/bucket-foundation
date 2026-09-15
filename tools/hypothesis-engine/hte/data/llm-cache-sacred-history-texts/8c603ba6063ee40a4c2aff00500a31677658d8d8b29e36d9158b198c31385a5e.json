@@ -1,0 +1,110 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "885b86d405bcf7fba745987b0bd77d15a84a998f32cc014b20941221296c867e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses with instructions about leper cleansing",
+        "actor": "the LORD",
+        "action": "spake",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the priest shall go forth out of the camp",
+        "claim": "The priest goes forth out of the camp",
+        "actor": "the priest",
+        "action": "go forth",
+        "place": "out of the camp",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the priest shall look, and, behold, if the plague of leprosy be healed in the leper",
+        "claim": "The priest examines whether the plague of leprosy has been healed",
+        "actor": "the priest",
+        "action": "look",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Then shall the priest command to take for him that is to be cleansed two birds alive and clean, and cedar wood, and scarlet, and hyssop",
+        "claim": "The priest commands taking of birds and materials for the person to be cleansed",
+        "actor": "the priest",
+        "action": "command",
+        "object": "two birds alive and clean, and cedar wood, and scarlet, and hyssop",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the priest shall command that one of the birds be killed in an earthen vessel over running water",
+        "claim": "The priest commands one of the birds to be killed in an earthen vessel over running water",
+        "actor": "the priest",
+        "action": "command",
+        "object": "one of the birds",
+        "place": "in an earthen vessel over running water",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "As for the living bird, he shall take it, and the cedar wood, and the scarlet, and the hyssop, and shall dip them and the living bird in the blood of the bird that was killed over the running water",
+        "claim": "The priest takes and dips the living bird, cedar wood, scarlet, and hyssop in the blood of the killed bird",
+        "actor": "he",
+        "action": "take and dip",
+        "object": "the living bird, the cedar wood, the scarlet, and the hyssop",
+        "mechanism": "in the blood",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he shall sprinkle upon him that is to be cleansed from the leprosy seven times",
+        "claim": "The priest sprinkles seven times upon the person to be cleansed from leprosy",
+        "actor": "he",
+        "action": "sprinkle",
+        "object": "him that is to be cleansed from the leprosy",
+        "mechanism": "seven times",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and shall pronounce him clean",
+        "claim": "The priest pronounces the person clean",
+        "actor": "he",
+        "action": "pronounce",
+        "object": "him",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and shall let the living bird loose into the open field",
+        "claim": "The priest releases the living bird into the open field",
+        "actor": "he",
+        "action": "let loose",
+        "object": "the living bird",
+        "place": "into the open field",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

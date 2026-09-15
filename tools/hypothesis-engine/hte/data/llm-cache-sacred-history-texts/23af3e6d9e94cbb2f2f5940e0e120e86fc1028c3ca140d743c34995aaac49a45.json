@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b891595f9dce9b8eca333a86c81f695083ab5540a97f5cb26a44a9dc67624aea",
+  "response": {
+    "items": [
+      {
+        "kind": "genetic",
+        "tier": "T4",
+        "quote": "And Lamech lived an hundred eighty and two years, and begat a son",
+        "claim": "Lamech lived 182 years and fathered a son",
+        "actor": "Lamech",
+        "action": "lived; begat",
+        "object": "a son",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he called his name Noah",
+        "claim": "The son was named Noah",
+        "actor": "he",
+        "action": "called",
+        "object": "his name Noah",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "oral_tradition",
+        "tier": "T5",
+        "quote": "This same shall comfort us concerning our work and toil of our hands, because of the ground which the LORD hath cursed",
+        "claim": "Noah will provide comfort regarding work and toil because of the cursed ground",
+        "actor": "This same",
+        "action": "shall comfort",
+        "object": "us",
+        "place": "the ground",
+        "mechanism": "because of the ground which the LORD hath cursed",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

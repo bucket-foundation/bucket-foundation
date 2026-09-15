@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7be72d034e62feeaf783072edb6db5f6d8c9369914a580f95dcc1a252866730e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses spake unto Aaron, and unto Eleazar and unto Ithamar, his sons that were left",
+        "claim": "Moses spoke to Aaron, Eleazar, and Ithamar (his surviving sons)",
+        "actor": "Moses",
+        "action": "spake",
+        "object": "Aaron, Eleazar, Ithamar",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Take the meat offering that remaineth of the offerings of the LORD made by fire, and eat it without leaven beside the altar",
+        "claim": "Aaron and his sons were commanded to take and eat the remaining meat offering without leaven beside the altar",
+        "actor": "Aaron, Eleazar, Ithamar",
+        "action": "Take, eat",
+        "object": "meat offering",
+        "place": "beside the altar",
+        "mechanism": "ritual command",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And ye shall eat it in the holy place, because it is thy due, and thy sons' due, of the sacrifices of the LORD made by fire",
+        "claim": "Aaron and his sons were commanded to eat the meat offering in the holy place as their due portion",
+        "actor": "ye (Aaron and his sons)",
+        "action": "eat",
+        "object": "meat offering",
+        "place": "holy place",
+        "mechanism": "ritual entitlement",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for so I am commanded",
+        "claim": "Moses affirms that he has been divinely commanded to give these instructions",
+        "actor": "Moses",
+        "action": "commanded",
+        "object": "",
+        "place": "",
+        "mechanism": "divine command",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

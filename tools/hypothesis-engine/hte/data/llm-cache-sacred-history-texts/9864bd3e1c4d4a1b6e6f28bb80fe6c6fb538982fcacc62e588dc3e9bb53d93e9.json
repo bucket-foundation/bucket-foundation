@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b442126744b21a41237592ca6a0a8cd51f0575c0b68a21acf565cba413329607",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses and Aaron did all these wonders before Pharaoh: and the LORD hardened Pharaoh's heart, so that he would not let the children of Israel go out of his land.",
+        "claim": "Moses and Aaron performed wonders before Pharaoh; the LORD hardened Pharaoh's heart to prevent the Israelites from leaving his land",
+        "actor": "Moses, Aaron, the LORD, Pharaoh",
+        "action": "did wonders, hardened heart, would not let go",
+        "object": "wonders, Pharaoh's heart, children of Israel, land",
+        "place": "before Pharaoh, his land",
+        "mechanism": "hardened",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

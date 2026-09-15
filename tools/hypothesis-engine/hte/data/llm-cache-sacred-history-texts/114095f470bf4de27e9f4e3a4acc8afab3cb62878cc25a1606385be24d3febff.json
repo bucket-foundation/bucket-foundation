@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ae2464864308477f8cddce5b2601c870f6f0ded557d033e796b3d4632fe0861d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying, Thou shalt also make a laver of brass, and his foot also of brass, to wash withal",
+        "claim": "The LORD commanded Moses to make a laver (basin) of brass with a brass foot for washing purposes",
+        "actor": "the LORD",
+        "action": "spake unto / make",
+        "object": "laver of brass",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou shalt put it between the tabernacle of the congregation and the altar",
+        "claim": "The laver shall be placed between the tabernacle of the congregation and the altar",
+        "actor": "Moses (implied)",
+        "action": "put",
+        "object": "laver",
+        "place": "between the tabernacle of the congregation and the altar",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou shalt put water therein",
+        "claim": "Water shall be placed in the laver",
+        "actor": "Moses (implied)",
+        "action": "put",
+        "object": "water",
+        "place": "therein",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

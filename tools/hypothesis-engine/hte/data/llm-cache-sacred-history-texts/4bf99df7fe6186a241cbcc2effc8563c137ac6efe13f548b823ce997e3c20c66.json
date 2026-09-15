@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "af76573620aa960766844e21ae0a0b8efd51593da5cae5093b900bd8262f3239",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Abraham lifted up his eyes, and looked, and behold behind him a ram caught in a thicket by his horns",
+        "claim": "Abraham looked up and saw a ram caught in a thicket behind him",
+        "actor": "Abraham",
+        "action": "lifted up his eyes and looked",
+        "object": "ram",
+        "place": "thicket",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Abraham went and took the ram",
+        "claim": "Abraham went and took the ram",
+        "actor": "Abraham",
+        "action": "went and took",
+        "object": "ram",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Abraham went and took the ram, and offered him up for a burnt offering in the stead of his son",
+        "claim": "Abraham offered the ram as a burnt offering in place of his son",
+        "actor": "Abraham",
+        "action": "offered",
+        "object": "ram",
+        "mechanism": "burnt offering in the stead of his son",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

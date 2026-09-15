@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4de41d7380e2ecb999835c4b478b46e70dad66734a09df1848ab3ebe2b3931fe",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he brought Aaron's sons, and Moses put of the blood upon the tip of their right ear, and upon the thumbs of their right hands, and upon the great toes of their right feet",
+        "claim": "Moses placed blood on Aaron's sons' right ears, thumbs, and great toes during a consecration ritual",
+        "actor": "Moses",
+        "action": "put",
+        "object": "the blood",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and Moses sprinkled the blood upon the altar round about",
+        "claim": "Moses sprinkled blood around the altar",
+        "actor": "Moses",
+        "action": "sprinkled",
+        "object": "the blood",
+        "place": "the altar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

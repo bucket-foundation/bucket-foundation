@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "17827b242603a0cf36190c56bfe659d365a86e1250753ecedce362e6035f4c39",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "The LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and ye shall afflict your souls",
+        "claim": "The people shall afflict their souls",
+        "actor": "ye",
+        "action": "afflict",
+        "object": "your souls",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and offer an offering made by fire unto the LORD",
+        "claim": "The people shall offer a fire offering to the LORD",
+        "actor": "",
+        "action": "offer",
+        "object": "an offering made by fire",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

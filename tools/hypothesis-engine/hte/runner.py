@@ -160,6 +160,7 @@ _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
     # _CORPUS_LOADERS`'s own identical entry and `hte.corpus.
     # sacred_history_texts`'s own module docstring.
     "sacred-history-texts": sacred_history_texts.load,
+    "sacred-history-texts-slice-1": sacred_history_texts.load_slice_one,
     # 47 open-metadata, DOI-verified cards on the Younger Dryas boundary
     # (12.9-11.7 ka BP) impact-hypothesis debate, no network fetch (see
     # `hte.corpus.younger_dryas`'s own module docstring).

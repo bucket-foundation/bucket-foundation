@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "769d3d1b9d2b8c13922c1dabf35118a92f5282c20bd8cffe4662c48b033ffb50",
+  "response": {
+    "items": [
+      {
+        "kind": "textual-claim",
+        "tier": "primary-text",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the sea, that the waters may come again upon the Egyptians, upon their chariots, and upon their horsemen.",
+        "claim": "The text (verse 14:26) says the LORD told Moses to stretch his hand over the sea so the waters would come back over the Egyptians, their chariots and their horsemen. This only records what the text says. It does not confirm that the event happened. Naming the book as Exodus is a model-prior guess: the document gives only the number 14:26.",
+        "actor": "the LORD (commanding); Moses (told to act)",
+        "action": "commands Moses to stretch out his hand over the sea",
+        "object": "the sea; the Egyptians, their chariots, and their horsemen",
+        "mechanism": "divine command carried out through Moses' outstretched hand, making the waters return",
+        "place": "the sea (not named in the verse)",
+        "year": null
+      }
+    ]
+  }
+}

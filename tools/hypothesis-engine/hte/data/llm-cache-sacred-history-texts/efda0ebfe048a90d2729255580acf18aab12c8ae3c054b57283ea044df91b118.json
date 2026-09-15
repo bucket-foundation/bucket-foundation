@@ -1,0 +1,20 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "17e04dc4feb7a60a23dc7f84fdcb5acd3629f5cd291c97276bb8e6a44c4833d5",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-claim",
+        "tier": "primary-text",
+        "quote": "And the LORD hardened the heart of Pharaoh, and he hearkened not unto them; as the LORD had spoken unto Moses.",
+        "claim": "The text says the LORD hardened Pharaoh's heart, so Pharaoh did not listen to them. It presents this as the fulfilment of what the LORD had told Moses. All three passes support this item. Passes 1 and 3 match word for word, and pass 2 is a shortened version of the same sentence. (The document labels the verse only as '9:12'. Reading it as Exodus 9:12 in the King James Version comes from model-prior and has not been checked.)",
+        "actor": "the LORD",
+        "action": "hardened the heart of",
+        "object": "Pharaoh",
+        "mechanism": "divine hardening of Pharaoh's heart, which led Pharaoh to refuse to listen (\"hearkened not unto them\"), as foretold to Moses",
+        "year": null
+      }
+    ]
+  }
+}

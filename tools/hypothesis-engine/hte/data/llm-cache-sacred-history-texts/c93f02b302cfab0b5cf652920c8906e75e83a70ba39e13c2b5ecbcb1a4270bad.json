@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d8c2f0d72399fee8ac56d77d697e381a513d9d9c0a27c37d70609c4c67a37fc1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "therefore he giveth you on the sixth day the bread of two days",
+        "claim": "On the sixth day, the LORD provides bread sufficient for two days",
+        "actor": "he",
+        "action": "giveth",
+        "object": "the bread of two days",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "let no man go out of his place on the seventh day",
+        "claim": "On the seventh day, no one shall leave their place",
+        "actor": "man",
+        "action": "go out",
+        "object": "",
+        "place": "his place",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d0e0e87b1163a0feb343becacd9405be503d47d8df9097bcfe60370a300d58b5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham stood up, and bowed himself to the people of the land, even to the children of Heth.",
+        "claim": "Abraham stood up and bowed to the people of the land, identified as the children of Heth",
+        "actor": "Abraham",
+        "action": "stood up and bowed himself",
+        "object": "people of the land / children of Heth",
+        "place": "the land",
+        "mechanism": "bowing",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

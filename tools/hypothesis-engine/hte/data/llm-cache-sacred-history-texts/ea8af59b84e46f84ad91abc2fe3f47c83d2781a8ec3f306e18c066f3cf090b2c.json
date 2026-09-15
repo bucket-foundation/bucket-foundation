@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ccacfb926df2d3fa68cf666174adaee304c4376d937aa1c698b22f8cc06eb23c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And God remembered Noah, and every living thing, and all the cattle that was with him in the ark",
+        "claim": "God recalled Noah and the animals preserved in the ark",
+        "actor": "God",
+        "action": "remembered",
+        "object": "Noah, and every living thing, and all the cattle",
+        "place": "ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and God made a wind to pass over the earth, and the waters asswaged",
+        "claim": "God caused wind to blow over the earth, causing floodwaters to subside",
+        "actor": "God",
+        "action": "made",
+        "object": "wind",
+        "place": "earth",
+        "mechanism": "wind to pass",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "The fountains also of the deep and the windows of heaven were stopped, and the rain from heaven was restrained",
+        "claim": "Sources of floodwaters\u2014subterranean fountains and rain\u2014were shut off",
+        "actor": "",
+        "action": "stopped, restrained",
+        "object": "fountains of the deep, windows of heaven, rain",
+        "place": "heaven, the deep",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the waters returned from off the earth continually",
+        "claim": "Floodwaters continuously withdrew from the land",
+        "actor": "waters",
+        "action": "returned",
+        "object": "",
+        "place": "earth",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and after the end of the hundred and fifty days the waters were abated",
+        "claim": "After 150 days had elapsed, the floodwaters diminished",
+        "actor": "",
+        "action": "abated",
+        "object": "waters",
+        "place": "",
+        "mechanism": "hundred and fifty days",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

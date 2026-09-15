@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "df79175bba82547d92e030eed6a019911ef53bdd9904c7abd1ee6826eb9bc43f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Command Aaron and his sons, saying, This is the law of the burnt offering",
+        "claim": "Aaron and his sons are commanded to follow the law of burnt offering",
+        "actor": "",
+        "action": "Command",
+        "object": "Aaron and his sons",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the fire of the altar shall be burning in it",
+        "claim": "The fire of the altar will burn continuously",
+        "actor": "the fire of the altar",
+        "action": "shall be burning",
+        "object": "",
+        "place": "the altar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

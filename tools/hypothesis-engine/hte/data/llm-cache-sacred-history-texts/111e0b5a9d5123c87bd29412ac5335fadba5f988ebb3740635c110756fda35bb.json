@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "477073814c939e837781990aa699dd80319d8c3a05c0dffba34d0ab1189cf808",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses went up into the mount",
+        "claim": "Moses ascended the mountain",
+        "actor": "Moses",
+        "action": "went up",
+        "place": "the mount",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "a cloud covered the mount",
+        "claim": "A cloud covered the mountain",
+        "actor": "a cloud",
+        "action": "covered",
+        "object": "the mount",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

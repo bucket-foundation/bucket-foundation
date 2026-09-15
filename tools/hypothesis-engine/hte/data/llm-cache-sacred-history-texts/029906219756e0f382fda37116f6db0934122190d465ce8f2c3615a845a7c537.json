@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1a6ce00665c07654528ab32eee9db1c80a453819870122629acc204196588d20",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "But those that encamp before the tabernacle toward the east, even before the tabernacle of the congregation eastward, shall be Moses, and Aaron and his sons, keeping the charge of the sanctuary for the charge of the children of Israel",
+        "claim": "Moses, Aaron and his sons shall encamp before the tabernacle toward the east and keep the charge of the sanctuary",
+        "actor": "Moses, Aaron, his sons",
+        "action": "encamp, keep charge",
+        "object": "sanctuary charge",
+        "place": "before the tabernacle toward the east",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and the stranger that cometh nigh shall be put to death",
+        "claim": "Strangers that come near the sanctuary shall be put to death",
+        "actor": "",
+        "action": "put to death",
+        "object": "the stranger that cometh nigh",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

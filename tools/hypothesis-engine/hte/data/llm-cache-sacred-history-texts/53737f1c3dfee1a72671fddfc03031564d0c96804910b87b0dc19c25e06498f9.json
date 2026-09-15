@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8a5fdff924ac04bf437e558d74a6d087fcf8348c84b9cd6d6a5dfc2ebb5e67c7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Remember Abraham, Isaac, and Israel, thy servants, to whom thou swarest by thine own self, and saidst unto them, I will multiply your seed as the stars of heaven",
+        "claim": "God swore to Abraham, Isaac, and Israel to multiply their descendants",
+        "actor": "God",
+        "action": "swore and said",
+        "object": "seed",
+        "place": "",
+        "mechanism": "by thine own self",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "all this land that I have spoken of will I give unto your seed",
+        "claim": "God promised to give the land to the descendants of Abraham, Isaac, and Israel",
+        "actor": "God",
+        "action": "will give",
+        "object": "seed",
+        "place": "all this land",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "they shall inherit it for ever",
+        "claim": "The descendants of Abraham, Isaac, and Israel shall inherit the land perpetually",
+        "actor": "they",
+        "action": "shall inherit",
+        "object": "it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

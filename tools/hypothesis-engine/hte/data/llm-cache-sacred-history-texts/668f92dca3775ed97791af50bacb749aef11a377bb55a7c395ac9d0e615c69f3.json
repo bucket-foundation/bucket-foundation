@@ -1,0 +1,61 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "bb73465bdd6cc1807d4b22a6e3c7178265e68c58131c5a3cbd1656486afb38a2",
+  "response": {
+    "items": [
+      {
+        "kind": "recipe",
+        "tier": "primary-text",
+        "quote": "Take thou also unto thee principal spices, of pure myrrh five hundred shekels, and of sweet cinnamon half so much, even two hundred and fifty shekels, and of sweet calamus two hundred and fifty shekels, 30:24 And of cassia five hundred shekels, after the shekel of the sanctuary, and of oil olive an hin:",
+        "claim": "The text gives a recipe for a holy anointing oil: pure myrrh 500 shekels, sweet cinnamon 250 shekels, sweet calamus 250 shekels and cassia 500 shekels, all by the shekel of the sanctuary, plus one hin of olive oil.",
+        "actor": "Moses (instructed by the LORD)",
+        "action": "take principal spices in set weights",
+        "object": "myrrh, sweet cinnamon, sweet calamus, cassia, olive oil",
+        "mechanism": "weighed by the shekel of the sanctuary and mixed with olive oil",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "practice",
+        "tier": "primary-text",
+        "quote": "And thou shalt make it an oil of holy ointment, an ointment compound after the art of the apothecary: it shall be an holy anointing oil.",
+        "claim": "The spices and olive oil are to be made into a compound ointment 'after the art of the apothecary', which the text calls a holy anointing oil.",
+        "actor": "Moses (instructed by the LORD)",
+        "action": "compound into an ointment",
+        "object": "holy anointing oil",
+        "mechanism": "compounding after the art of the apothecary",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "attribution",
+        "tier": "primary-text",
+        "quote": "Moreover the LORD spake unto Moses, saying,",
+        "claim": "The text presents the recipe as a command spoken by the LORD to Moses.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "mechanism": "",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "source-identification",
+        "tier": "model-prior",
+        "quote": "30:22 Moreover the LORD spake unto Moses, saying,",
+        "claim": "Unverified model-prior: the verse numbers 30:22\u201330:25 and the wording match Exodus 30:22\u201325 in the King James Version. The document does not name the book or translation, and it gives no date or place.",
+        "actor": "",
+        "action": "",
+        "object": "",
+        "mechanism": "",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cb256c487e06e634485f40030b0e14881c04e5f09c17764becb8c191a16bf474",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "he blessed Joseph",
+        "claim": "Jacob blessed Joseph",
+        "actor": "he",
+        "action": "blessed",
+        "object": "Joseph",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "God, before whom my fathers Abraham and Isaac did walk",
+        "claim": "Abraham and Isaac walked before God",
+        "actor": "Abraham and Isaac",
+        "action": "did walk",
+        "place": "before God",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the God which fed me all my life long unto this day",
+        "claim": "God provided sustenance to Jacob throughout his life",
+        "actor": "God",
+        "action": "fed",
+        "object": "me",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "The Angel which redeemed me from all evil",
+        "claim": "An Angel redeemed Jacob from all evil",
+        "actor": "The Angel",
+        "action": "redeemed",
+        "object": "me",
+        "mechanism": "from all evil",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "The Angel which redeemed me from all evil, bless the lads",
+        "claim": "The Angel blessed Joseph's sons",
+        "actor": "The Angel",
+        "action": "bless",
+        "object": "the lads",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "let my name be named on them, and the name of my fathers Abraham and Isaac",
+        "claim": "Jacob's and his fathers' names should be perpetuated in Joseph's sons",
+        "action": "be named",
+        "object": "my name... and the name of my fathers Abraham and Isaac",
+        "place": "on them",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "let them grow into a multitude in the midst of the earth",
+        "claim": "Joseph's sons should multiply and populate the earth",
+        "actor": "them",
+        "action": "grow into a multitude",
+        "place": "in the midst of the earth",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

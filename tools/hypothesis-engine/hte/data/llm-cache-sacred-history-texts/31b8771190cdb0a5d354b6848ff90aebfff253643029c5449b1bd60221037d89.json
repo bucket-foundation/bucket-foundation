@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f25e4e0989abd3a1cc7caaedb20d6a183604b530f66a78f44cdd4e413e9051e8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he took and put the testimony into the ark, and set the staves on the ark, and put the mercy seat above upon the ark",
+        "claim": "The ark was assembled by sequentially placing the testimony inside, staves on its exterior, and mercy seat positioned above",
+        "actor": "unnamed actor",
+        "action": "took, put, set",
+        "object": "testimony, staves, mercy seat, ark",
+        "place": "",
+        "mechanism": "sequential placement of ark components in layered configuration",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he brought the ark into the tabernacle, and set up the vail of the covering, and covered the ark of the testimony",
+        "claim": "The assembled ark was transported into the tabernacle and concealed with a covering veil",
+        "actor": "unnamed actor",
+        "action": "brought, set up, covered",
+        "object": "ark, vail of the covering",
+        "place": "tabernacle",
+        "mechanism": "veil covering procedure to conceal ark contents",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

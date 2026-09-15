@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "72c09c7302e015cd4a4f397edb3ac663730eff5a27c7fecc3582ceb0f0ad2523",
+  "response": {
+    "items": [
+      {
+        "kind": "quote",
+        "tier": "primary-text",
+        "quote": "And Joseph said unto his brethren, I die: and God will surely visit you, and bring you out of this land unto the land which he sware to Abraham, to Isaac, and to Jacob.",
+        "claim": "In verse 50:24, Joseph tells his brothers on his deathbed that God will visit them and bring them out of 'this land' to the land God swore to Abraham, Isaac, and Jacob.",
+        "actor": "Joseph",
+        "action": "said unto his brethren (deathbed declaration / prophecy)",
+        "object": "his brethren; the land which he sware to Abraham, to Isaac, and to Jacob",
+        "mechanism": "divine promise: God will visit and bring them out of this land",
+        "place": "'this land' (not named in the text; reading it as Egypt and the verse as Genesis 50:24 KJV comes from model-prior and is unverified)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

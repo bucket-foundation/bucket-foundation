@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "57f26b5853c4870ce83b8ea68e5e75b3d82ffdda53b7facfa2447f95a7d2ed3f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "14:1 And the LORD spake unto Moses, saying, 14:2 Speak unto the children of Israel, that they turn and encamp before Pihahiroth, between Migdol and the sea, over against Baalzephon: before it shall ye encamp by the sea.",
+        "claim": "The text says the LORD told Moses to have the children of Israel turn and camp by the sea, in front of Pihahiroth, between Migdol and the sea, and opposite Baalzephon. This is what the text reports. It does not show that the event happened or where these places were.",
+        "actor": "the LORD (speaking through Moses)",
+        "action": "commands to turn and encamp",
+        "object": "the children of Israel",
+        "place": "before Pihahiroth, between Migdol and the sea, over against Baalzephon, by the sea",
+        "mechanism": "divine instruction passed to Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "place-reference",
+        "tier": "primary-text",
+        "quote": "between Migdol and the sea, over against Baalzephon",
+        "claim": "The text places the camp using three named landmarks (Pihahiroth, Migdol, Baalzephon) next to 'the sea'. It gives no date or map location for any of them. That this passage is Exodus 14 in the King James wording is a model-prior note, not something the text states.",
+        "actor": "the children of Israel",
+        "action": "locates the encampment",
+        "object": "Pihahiroth, Migdol, Baalzephon",
+        "place": "by the sea",
+        "mechanism": "named landmarks relative to one another",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

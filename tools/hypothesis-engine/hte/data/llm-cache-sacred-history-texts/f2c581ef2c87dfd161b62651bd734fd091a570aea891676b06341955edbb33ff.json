@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "e94615f51e79983e829bc40f013b89fe5303354e6c21cc699579ab36ef988d9b",
+  "response": {
+    "items": [
+      {
+        "kind": "normative_rule",
+        "tier": "primary-text",
+        "quote": "When thou takest the sum of the children of Israel after their number, then shall they give every man a ransom for his soul unto the LORD, when thou numberest them; that there be no plague among them, when thou numberest them.",
+        "claim": "The text says that when the Israelites are counted in a census, every man must pay a ransom for his soul to the LORD so that no plague comes on them during the count.",
+        "actor": "every man of the children of Israel",
+        "action": "give a ransom for his soul unto the LORD",
+        "object": "census (taking the sum of the children of Israel)",
+        "mechanism": "The ransom paid at the census is presented as protection against a plague tied to the act of counting.",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "attribution",
+        "tier": "primary-text",
+        "quote": "30:11 And the LORD spake unto Moses, saying,",
+        "claim": "The text presents the census-ransom rule as a direct instruction from the LORD to Moses.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "mechanism": "The rule is given authority by being framed as speech from God.",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

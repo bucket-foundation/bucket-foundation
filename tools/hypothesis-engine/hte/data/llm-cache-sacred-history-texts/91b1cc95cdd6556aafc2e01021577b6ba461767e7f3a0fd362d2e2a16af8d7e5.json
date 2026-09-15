@@ -1,0 +1,52 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1e511048c3545bfcfe250ae0e4741df2b7d2aa15eabb4e98dacb6855a73b6fa6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses stretched forth his hand over the sea",
+        "claim": "Moses stretched forth his hand over the sea",
+        "actor": "Moses",
+        "action": "stretched forth hand",
+        "object": "sea",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the sea returned to his strength when the morning appeared",
+        "claim": "The sea returned to its strength when morning appeared",
+        "actor": "sea",
+        "action": "returned to strength",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the Egyptians fled against it",
+        "claim": "The Egyptians fled",
+        "actor": "Egyptians",
+        "action": "fled",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the LORD overthrew the Egyptians in the midst of the sea",
+        "claim": "The LORD overthrew the Egyptians in the midst of the sea",
+        "actor": "LORD",
+        "action": "overthrew",
+        "object": "Egyptians",
+        "place": "midst of the sea",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

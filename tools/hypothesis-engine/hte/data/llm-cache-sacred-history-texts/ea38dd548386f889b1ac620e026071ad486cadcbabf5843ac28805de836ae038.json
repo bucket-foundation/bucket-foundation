@@ -1,0 +1,43 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "1294f4f486b1d137d73411318c45e4bcbc9c87665204b78e93011d03e340f133",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The text frames what follows as speech from the LORD to Moses.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "Speak unto all the congregation of the children of Israel, and say unto them,",
+        "claim": "Moses is told to pass the message on to the whole congregation of the children of Israel.",
+        "actor": "the LORD",
+        "action": "commands Moses to speak to",
+        "object": "all the congregation of the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "Ye shall be holy: for I the LORD your God am holy.",
+        "claim": "The Israelites are commanded to be holy, and the reason given is that the LORD their God is holy.",
+        "actor": "the LORD",
+        "action": "commands holiness",
+        "object": "the children of Israel",
+        "mechanism": "The people must be holy because their God is holy.",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

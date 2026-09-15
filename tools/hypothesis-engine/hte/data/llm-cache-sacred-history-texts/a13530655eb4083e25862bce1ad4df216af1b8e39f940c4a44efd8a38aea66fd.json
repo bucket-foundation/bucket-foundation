@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "04b3cfeb65160a3aa667478c000f0979f10f279d83f37d97086ec75bbbce91cb",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the LORD which saidst unto me, Return unto thy country, and to thy kindred, and I will deal well with thee",
+        "claim": "The LORD spoke to Jacob, commanding him to return to his country and kindred and promising to deal well with him",
+        "actor": "the LORD",
+        "action": "saidst",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "I am not worthy of the least of all the mercies, and of all the truth, which thou hast shewed unto thy servant",
+        "claim": "Jacob asserts that he is unworthy of the mercies and truth that God has shown him",
+        "actor": "I",
+        "action": "am not worthy",
+        "object": "the mercies and truth",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "with my staff I passed over this Jordan; and now I am become two bands",
+        "claim": "Jacob crossed the Jordan with only a staff and has now become two bands",
+        "actor": "I",
+        "action": "passed over / become",
+        "object": "this Jordan / two bands",
+        "place": "Jordan",
+        "mechanism": "with my staff",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

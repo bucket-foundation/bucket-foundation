@@ -1,0 +1,68 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4ac65e9e3d78fb8a54af1537096706f3104d93601fe4d5e5fb05a2fe07bf0733",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Aaron, saying,",
+        "claim": "The LORD spoke to Aaron",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Aaron",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Do not drink wine nor strong drink, thou, nor thy sons with thee, when ye go into the tabernacle of the congregation, lest ye die:",
+        "claim": "Priests must not consume wine or strong drink when entering the tabernacle",
+        "actor": "thou, nor thy sons",
+        "action": "drink",
+        "object": "wine nor strong drink",
+        "place": "the tabernacle of the congregation",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "it shall be a statute for ever throughout your generations:",
+        "claim": "The law shall remain in effect as a perpetual statute through all generations",
+        "action": "shall be",
+        "object": "a statute",
+        "place": "throughout your generations",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And that ye may put difference between holy and unholy, and between unclean and clean;",
+        "claim": "A purpose of the law is to distinguish between holy and unholy, and between clean and unclean",
+        "actor": "ye",
+        "action": "put difference",
+        "object": "difference between holy and unholy, and between unclean and clean",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And that ye may teach the children of Israel all the statutes which the LORD hath spoken unto them by the hand of Moses.",
+        "claim": "A purpose of the law is to enable teaching of all God's statutes to Israel",
+        "actor": "ye",
+        "action": "teach",
+        "object": "all the statutes which the LORD hath spoken unto them",
+        "place": "the children of Israel",
+        "mechanism": "by the hand of Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

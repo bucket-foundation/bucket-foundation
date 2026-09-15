@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "b825b16d734c9b20a58ed62619ce03082da102dc61c821387183f83d37c0f02f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And it came to pass in the six hundredth and first year, in the first month, the first day of the month, the waters were dried up from off the earth: and Noah removed the covering of the ark, and looked, and, behold, the face of the ground was dry.",
+        "claim": "The text says that on the first day of the first month of the six hundred and first year, the waters had dried up from the earth. Noah removed the ark's covering and saw that the ground was dry. The date counts years within the story, not calendar years. (Unverified model-prior: the year is usually read as Noah's age, and the verse is Genesis 8:13, KJV; neither is stated in the document.)",
+        "actor": "Noah",
+        "action": "removed the covering of the ark and looked",
+        "object": "the covering of the ark; the face of the ground",
+        "mechanism": "the waters dried up from off the earth",
+        "place": "the earth (the ark)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

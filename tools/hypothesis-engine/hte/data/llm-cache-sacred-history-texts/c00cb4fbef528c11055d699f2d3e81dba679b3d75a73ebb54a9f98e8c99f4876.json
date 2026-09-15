@@ -1,0 +1,42 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6f9a9a02729a4e4dfd937443973e66a647b8d8ddcf47b5c7204a5f604cd7d5ca",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he reared up the court round about the tabernacle and the altar",
+        "claim": "Moses reared up the court around the tabernacle and the altar",
+        "actor": "he",
+        "action": "reared up",
+        "object": "the court",
+        "place": "round about the tabernacle and the altar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and set up the hanging of the court gate",
+        "claim": "The hanging of the court gate was set up",
+        "action": "set up",
+        "object": "the hanging of the court gate",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "So Moses finished the work",
+        "claim": "Moses finished the work",
+        "actor": "Moses",
+        "action": "finished",
+        "object": "the work",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

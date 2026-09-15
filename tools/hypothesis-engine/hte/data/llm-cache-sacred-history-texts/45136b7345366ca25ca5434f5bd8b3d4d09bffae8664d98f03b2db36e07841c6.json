@@ -1,0 +1,30 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "df89522f012c6827666c65e105db88da7b98dfe9c1ee408b810bbe9f79f58e15",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "On the first day of the first month shalt thou set up the tabernacle of the tent of the congregation.",
+        "claim": "Moses is commanded to set up the tabernacle on the first day of the first month",
+        "actor": "thou",
+        "action": "set up",
+        "object": "the tabernacle of the tent of the congregation",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

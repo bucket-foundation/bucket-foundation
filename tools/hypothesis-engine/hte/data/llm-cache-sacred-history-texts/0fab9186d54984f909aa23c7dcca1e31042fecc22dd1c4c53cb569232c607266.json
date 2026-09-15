@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "611d23fba37bc803e55a2479547678a2763aa8a24db1869a6fb2bffef0ef9deb",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And God said unto Abraham, Thou shalt keep my covenant therefore, thou, and thy seed after thee in their generations.",
+        "claim": "God commands Abraham and his descendants through generations to keep God's covenant",
+        "actor": "God",
+        "action": "commanded/said",
+        "object": "Abraham; his seed",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "43adc874d3ec18b4cb08aada2b27180855bd134d7aa782572133114e955a188d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Milcah, she hath also born children unto thy brother Nahor; Huz his firstborn, and Buz his brother, and Kemuel the father of Aram, And Chesed, and Hazo, and Pildash, and Jidlaph, and Bethuel.",
+        "claim": "Milcah bore children to Abraham's brother Nahor, named Huz, Buz, Kemuel, Chesed, Hazo, Pildash, Jidlaph, and Bethuel",
+        "actor": "Milcah",
+        "action": "born",
+        "object": "children",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Kemuel the father of Aram",
+        "claim": "Kemuel was the father of Aram",
+        "actor": "Kemuel",
+        "action": "father",
+        "object": "Aram",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

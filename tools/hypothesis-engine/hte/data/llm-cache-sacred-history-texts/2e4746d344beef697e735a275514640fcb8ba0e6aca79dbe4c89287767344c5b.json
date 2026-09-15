@@ -1,0 +1,89 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5bc24de99ac292f02f6a12bc874b21575da0b5e53e6f5731e02d24b9628071b9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they met Moses and Aaron, who stood in the way, as they came forth from Pharaoh",
+        "claim": "Workers encountered Moses and Aaron positioned in their path as they exited Pharaoh's presence",
+        "actor": "they",
+        "action": "met",
+        "object": "Moses and Aaron",
+        "place": "in the way",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "who stood in the way",
+        "claim": "Moses and Aaron positioned themselves in the workers' path",
+        "actor": "Moses and Aaron",
+        "action": "stood",
+        "place": "in the way",
+        "mechanism": "stood in the way",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "as they came forth from Pharaoh",
+        "claim": "Workers departed from Pharaoh's presence",
+        "actor": "they",
+        "action": "came forth",
+        "place": "from Pharaoh",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they said unto them",
+        "claim": "Workers spoke to Moses and Aaron",
+        "actor": "they",
+        "action": "said",
+        "object": "unto them",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "The LORD look upon you, and judge",
+        "claim": "Workers invoked the LORD to look upon and judge Moses and Aaron",
+        "actor": "The LORD",
+        "action": "look upon, judge",
+        "object": "you",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "ye have made our savour to be abhorred in the eyes of Pharaoh, and in the eyes of his servants",
+        "claim": "Moses and Aaron caused Pharaoh and his servants to abhor the Israelites",
+        "actor": "ye",
+        "action": "made abhorred",
+        "object": "our savour",
+        "place": "in the eyes of Pharaoh, in the eyes of his servants",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "to put a sword in their hand to slay us",
+        "claim": "Swords were placed in servants' hands to kill the workers",
+        "action": "put, slay",
+        "object": "a sword, us",
+        "mechanism": "put a sword in their hand",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

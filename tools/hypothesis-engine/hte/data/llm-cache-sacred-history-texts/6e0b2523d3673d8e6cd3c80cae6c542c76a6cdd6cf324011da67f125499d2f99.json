@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "fd2d065e66c73d89a353ef477a7451f3d2af6fe5f639775972368fe981fcb3bc",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And all the people answered together, and said, All that the LORD hath spoken we will do.",
+        "claim": "The people collectively committed to obeying all the LORD's words",
+        "actor": "all the people",
+        "action": "answered together, said",
+        "object": "all that the LORD hath spoken",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses returned the words of the people unto the LORD.",
+        "claim": "Moses conveyed the people's commitment back to the LORD",
+        "actor": "Moses",
+        "action": "returned",
+        "object": "the words of the people",
+        "place": "unto the LORD",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

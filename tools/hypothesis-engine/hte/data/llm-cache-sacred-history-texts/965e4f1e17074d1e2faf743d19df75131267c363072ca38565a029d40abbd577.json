@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "5c69f2344c658b7d2e51d8f4e83bd48a128c60f361af42340c5176768e8211e9",
+  "response": {
+    "items": [
+      {
+        "kind": "conditional-claim",
+        "tier": "primary-text",
+        "quote": "If they shall confess their iniquity, and the iniquity of their fathers, with their trespass which they trespassed against me, and that also they have walked contrary unto me; 26:41 And that I also have walked contrary unto them, and have brought them into the land of their enemies; if then their uncircumcised hearts be humbled, and they then accept of the punishment of their iniquity: 26:42 Then will I remember my covenant with Jacob, and also my covenant with Isaac, and also my covenant with Abraham will I remember; and I will remember the land.",
+        "claim": "The text makes remembering the covenant conditional. If the people confess their own sins and their fathers' sins, humble their hearts, and accept punishment, the speaker will remember his covenant with Jacob, Isaac and Abraham, and will remember the land.",
+        "actor": "the speaker (first-person divine voice)",
+        "action": "remember covenant",
+        "object": "covenant with Jacob, Isaac and Abraham; the land",
+        "mechanism": "confession of iniquity, humbled hearts, and accepting punishment",
+        "stance": "positive",
+        "place": "the land of their enemies (exile); the land",
+        "year": null
+      },
+      {
+        "kind": "causal-attribution",
+        "tier": "primary-text",
+        "quote": "And that I also have walked contrary unto them, and have brought them into the land of their enemies",
+        "claim": "The text says the speaker himself caused the exile into enemy land. It presents this as his answer to the people having walked contrary to him.",
+        "actor": "the speaker (first-person divine voice)",
+        "action": "brought into the land of their enemies",
+        "object": "them (the people addressed)",
+        "mechanism": "punishment in return for the people walking contrary to the speaker",
+        "stance": "negative",
+        "place": "the land of their enemies",
+        "year": null
+      }
+    ]
+  }
+}

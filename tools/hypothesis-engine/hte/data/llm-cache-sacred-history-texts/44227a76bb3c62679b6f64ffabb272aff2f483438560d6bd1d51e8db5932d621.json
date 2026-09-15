@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "50022843e7cee36b6e6dc6ac9acbcc2f51a5525d594bc447be0ca710b829f84d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the land of Egypt for the locusts, that they may come up upon the land of Egypt, and eat every herb of the land, even all that the hail hath left.",
+        "claim": "The LORD commands Moses to stretch out his hand over Egypt to bring locusts that will consume remaining vegetation.",
+        "actor": "the LORD",
+        "action": "said; commanded",
+        "object": "thine hand; the locusts; every herb of the land",
+        "place": "the land of Egypt",
+        "mechanism": "locusts",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

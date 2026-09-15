@@ -1,0 +1,66 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "84a96022682f6b9a6115136fc9e1b5f208ec987d4291b2741eceed9ace035c17",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "For the LORD had said unto Moses",
+        "claim": "The LORD communicated words to Moses",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Ye are a stiffnecked people",
+        "claim": "The children of Israel are characterized as stiffnecked",
+        "actor": "Ye",
+        "action": "are",
+        "object": "a stiffnecked people",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "I will come up into the midst of thee in a moment, and consume thee",
+        "claim": "The LORD will enter Israel's midst and consume the people instantly",
+        "actor": "I (the LORD)",
+        "action": "consume",
+        "object": "thee",
+        "place": "midst",
+        "mechanism": "in a moment",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "therefore now put off thy ornaments from thee",
+        "claim": "The children of Israel are commanded to remove their ornaments",
+        "actor": "thou",
+        "action": "put off",
+        "object": "thy ornaments",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "that I may know what to do unto thee",
+        "claim": "The LORD will determine what action to take toward Israel",
+        "actor": "I",
+        "action": "know what to do",
+        "object": "thee",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

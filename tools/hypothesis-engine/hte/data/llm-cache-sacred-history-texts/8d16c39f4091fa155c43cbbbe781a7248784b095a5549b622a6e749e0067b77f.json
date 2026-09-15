@@ -1,0 +1,43 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d383c5f4b82301fbf8aead47f93deafbad8517905e4156166816093e527fe830",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they made bells of pure gold",
+        "claim": "They made bells of pure gold",
+        "actor": "they",
+        "action": "made",
+        "object": "bells of pure gold",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and put the bells between the pomegranates upon the hem of the robe, round about between the pomegranates",
+        "claim": "They put bells between pomegranates on the hem of a robe, arranged round about",
+        "actor": "they",
+        "action": "put",
+        "object": "the bells",
+        "place": "upon the hem of the robe, between the pomegranates",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses regarding these items and their arrangement",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

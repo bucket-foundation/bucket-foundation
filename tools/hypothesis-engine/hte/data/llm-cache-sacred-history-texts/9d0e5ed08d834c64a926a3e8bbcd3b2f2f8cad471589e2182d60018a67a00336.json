@@ -1,0 +1,45 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "323c218bfd4d1e7d11ec8be37a60805bd6f03d14dae6b1b1e169641b5ed17ebf",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "they shall not go in to see when the holy things are covered, lest they die",
+        "claim": "Viewing covered holy things results in death",
+        "actor": "Kohathites",
+        "action": "see",
+        "object": "covered holy things",
+        "mechanism": "viewing\u2192death",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "But thus do unto them, that they may live, and not die, when they approach unto the most holy things",
+        "claim": "Proper procedural treatment prevents death when approaching holy things",
+        "actor": "Kohathites",
+        "action": "approach",
+        "object": "most holy things",
+        "mechanism": "proper procedure\u2192survival",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Aaron and his sons shall go in, and appoint them every one to his service and to his burden",
+        "claim": "Aaron and his sons will assign individual Kohathites to specific service roles and burdens",
+        "actor": "Aaron and his sons",
+        "action": "appoint",
+        "object": "Kohathites",
+        "mechanism": "hierarchical service assignment",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

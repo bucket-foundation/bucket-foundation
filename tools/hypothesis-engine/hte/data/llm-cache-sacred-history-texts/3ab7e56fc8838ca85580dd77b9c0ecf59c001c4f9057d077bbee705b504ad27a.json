@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4177c9e189a66e4d155dad36944361c18ac54f3141553e5926219acb33d44e02",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Therefore Sarah laughed within herself, saying, After I am waxed old shall I have pleasure, my lord being old also?",
+        "claim": "Sarah laughed within herself at the prospect of bearing pleasure in old age despite her husband's old age",
+        "actor": "Sarah",
+        "action": "laughed",
+        "object": "pleasure",
+        "place": "",
+        "mechanism": "within herself",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Abraham, Wherefore did Sarah laugh, saying, Shall I of a surety bear a child, which am old?",
+        "claim": "The LORD asked Abraham why Sarah laughed about bearing a child while old",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "",
+        "place": "",
+        "mechanism": "said unto Abraham",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Is any thing too hard for the LORD?",
+        "claim": "Nothing is too hard for the LORD",
+        "actor": "the LORD",
+        "action": "",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "At the time appointed I will return unto thee, according to the time of life, and Sarah shall have a son.",
+        "claim": "God promises to return at an appointed time and grant Sarah a son",
+        "actor": "the LORD",
+        "action": "will return",
+        "object": "a son",
+        "place": "",
+        "mechanism": "according to the time of life",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

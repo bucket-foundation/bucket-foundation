@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "b91b68055d034ed5e51b533235c8dccee2e4b3ab90da7cf2bdc260a65985d21f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "source-text",
+        "quote": "Now Moses kept the flock of Jethro his father in law, the priest of Midian",
+        "claim": "Moses tended the flock of Jethro, who was his father-in-law and the priest of Midian.",
+        "actor": "Moses",
+        "action": "kept the flock of",
+        "object": "Jethro, his father-in-law, the priest of Midian",
+        "place": "Midian",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "pastoral labor within a kinship relationship (son-in-law herding for father-in-law)"
+      },
+      {
+        "kind": "event",
+        "tier": "source-text",
+        "quote": "and he led the flock to the backside of the desert, and came to the mountain of God, even to Horeb",
+        "claim": "Moses led the flock to the far side of the desert and came to Horeb, called the mountain of God.",
+        "actor": "Moses",
+        "action": "led the flock to the backside of the desert and came to",
+        "object": "the mountain of God",
+        "place": "Horeb",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "herding movement across the desert"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "76341ae97b506190f7249717e2f93ccb144b27a31eec10607140b65e02566127",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses numbered them according to the word of the LORD, as he was commanded.",
+        "claim": "Moses numbered/counted a group (the referent of 'them') in obedience to God's command",
+        "actor": "Moses",
+        "action": "numbered",
+        "object": "them",
+        "place": "",
+        "mechanism": "word of the LORD",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

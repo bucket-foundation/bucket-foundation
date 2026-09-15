@@ -1,0 +1,57 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "60cd008f0b954bdad0629cd2b474f868465844562e826a1afe6de052e3960d6f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And they met Moses and Aaron, who stood in the way, as they came forth from Pharaoh:",
+        "claim": "An unnamed group (\"they\") met Moses and Aaron, who were standing in the way, as the group came out from Pharaoh. The document does not name the group. The verse numbers (5:20\u201321) fit Exodus 5, where they are the officers of the children of Israel, but that comes from model-prior and is unverified.",
+        "actor": "they (unnamed group)",
+        "action": "met",
+        "object": "Moses and Aaron",
+        "place": "on the way out from Pharaoh's presence",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "And they said unto them, The LORD look upon you, and judge;",
+        "claim": "The group called on the LORD to look upon Moses and Aaron and judge them, a formal complaint against the two.",
+        "actor": "they (unnamed group)",
+        "action": "invoked divine judgment against",
+        "object": "Moses and Aaron",
+        "mechanism": "appeal to the LORD as judge",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "because ye have made our savour to be abhorred in the eyes of Pharaoh, and in the eyes of his servants,",
+        "claim": "The group accused Moses and Aaron of making them hated (\"our savour to be abhorred\") by Pharaoh and his servants.",
+        "actor": "Moses and Aaron (as accused)",
+        "action": "made abhorred",
+        "object": "the speakers' standing with Pharaoh and his servants",
+        "mechanism": "damage to the group's reputation at Pharaoh's court",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "to put a sword in their hand to slay us.",
+        "claim": "The speakers said that Moses and Aaron's actions had given Pharaoh and his servants a reason or means (\"a sword in their hand\") to kill them. The speakers are describing a danger they fear. The text does not say anyone was killed.",
+        "actor": "Moses and Aaron (as accused)",
+        "action": "put a sword in the hand of",
+        "object": "Pharaoh and his servants",
+        "mechanism": "figurative: giving the authorities a pretext to kill the speakers",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

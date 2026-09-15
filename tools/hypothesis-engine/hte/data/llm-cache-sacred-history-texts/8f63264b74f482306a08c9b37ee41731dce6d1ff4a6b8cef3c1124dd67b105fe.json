@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "aaa762dcbc8dce9af2d84327a50df25df5818cd0128d2a12e16469c3a0c18fb2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And his sons did unto him according as he commanded them",
+        "claim": "Jacob's sons carried out his instructions regarding burial",
+        "actor": "his sons",
+        "action": "did unto him according as he commanded",
+        "object": "him",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "For his sons carried him into the land of Canaan, and buried him in the cave of the field of Machpelah, which Abraham bought with the field for a possession of a buryingplace of Ephron the Hittite, before Mamre",
+        "claim": "The sons transported Jacob to Canaan and buried him in the cave of Machpelah, which Abraham had purchased from Ephron the Hittite",
+        "actor": "his sons",
+        "action": "carried and buried",
+        "object": "him",
+        "place": "the land of Canaan; the cave of the field of Machpelah; before Mamre",
+        "mechanism": "buried",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "dd7fa1d398de195dfcbf4369531466dd1b9c09f9e6954cd20a4e601e7847735a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "when Moses went out unto the tabernacle",
+        "claim": "Moses went out to the tabernacle",
+        "actor": "Moses",
+        "action": "went out",
+        "place": "tabernacle",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "all the people rose up",
+        "claim": "All the people rose up",
+        "actor": "all the people",
+        "action": "rose up",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "stood every man at his tent door",
+        "claim": "Every man stood at his tent door",
+        "actor": "every man",
+        "action": "stood",
+        "place": "his tent door",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "looked after Moses, until he was gone into the tabernacle",
+        "claim": "The people looked after Moses until he entered the tabernacle",
+        "action": "looked after",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he was gone into the tabernacle",
+        "claim": "Moses was gone into the tabernacle",
+        "actor": "he",
+        "action": "was gone into",
+        "place": "tabernacle",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

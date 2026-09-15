@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "14c0b7a7c20b49563d52cc2086b20c9af4222fbcd15a1206d2b6b53696406b23",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses spake to the children of Israel, that they should bring forth him that had cursed out of the camp, and stone him with stones.",
+        "claim": "Moses commanded the Israelites to bring forth and execute someone who had blasphemed",
+        "actor": "Moses",
+        "action": "spake",
+        "object": "the children of Israel",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "that they should bring forth him that had cursed out of the camp",
+        "claim": "The children of Israel were commanded to bring forth the blasphemer from the camp",
+        "actor": "the children of Israel",
+        "action": "bring forth",
+        "object": "him that had cursed",
+        "place": "out of the camp",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and stone him with stones",
+        "claim": "The children of Israel executed the blasphemer by stoning",
+        "actor": "the children of Israel",
+        "action": "stone",
+        "object": "him",
+        "place": "",
+        "mechanism": "with stones",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the LORD commanded Moses",
+        "claim": "The LORD issued a command through Moses",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the children of Israel did as the LORD commanded Moses.",
+        "claim": "The Israelites executed the command of the LORD as conveyed by Moses",
+        "actor": "the children of Israel",
+        "action": "did",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "19b5390f23acf751d75f97e326f91fe7c507dba2b519514cbebf7957ee7f6d0a",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses face to face, as a man speaketh unto his friend.",
+        "claim": "The text says the LORD spoke to Moses face to face, the way a man speaks to his friend.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "mechanism": "direct face-to-face speech, likened to talking with a friend",
+        "place": "tabernacle (implied by context)",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And he turned again into the camp",
+        "claim": "The text says Moses went back into the camp.",
+        "actor": "Moses",
+        "action": "turned again into",
+        "object": "the camp",
+        "place": "the camp",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "but his servant Joshua, the son of Nun, a young man, departed not out of the tabernacle.",
+        "claim": "The text says Moses's servant Joshua, son of Nun, a young man, stayed in the tabernacle and did not leave it.",
+        "actor": "Joshua, the son of Nun",
+        "action": "departed not out of",
+        "object": "the tabernacle",
+        "mechanism": "stayed behind while Moses went back to the camp",
+        "place": "the tabernacle",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

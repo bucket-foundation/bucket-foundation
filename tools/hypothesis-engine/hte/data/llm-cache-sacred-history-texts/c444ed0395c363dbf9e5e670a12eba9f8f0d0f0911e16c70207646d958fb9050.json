@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "26b5da7afc762af160f9d2fdf1c0ebc721ebde3364c7bb4a06c8e0df38fee09a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD hardened the heart of Pharaoh",
+        "claim": "The LORD hardened Pharaoh's heart",
+        "actor": "LORD",
+        "action": "hardened",
+        "object": "heart of Pharaoh",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he hearkened not unto them",
+        "claim": "Pharaoh did not listen to Moses and Aaron",
+        "actor": "he",
+        "action": "hearkened not",
+        "object": "them",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

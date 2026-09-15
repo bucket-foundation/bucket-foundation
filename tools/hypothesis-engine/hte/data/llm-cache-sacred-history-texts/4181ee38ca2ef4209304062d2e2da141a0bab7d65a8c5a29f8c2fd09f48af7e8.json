@@ -1,0 +1,87 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f34c54e343907eb98e190794e8c3ca93206017b2de3d30b8d54fe5a1ec481730",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "When Esau saw that Isaac had blessed Jacob",
+        "claim": "Isaac blessed Jacob",
+        "actor": "Isaac",
+        "action": "blessed",
+        "object": "Jacob",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and sent him away to Padanaram, to take him a wife from thence",
+        "claim": "Isaac sent Jacob away to Padanaram to take a wife",
+        "actor": "Isaac",
+        "action": "sent",
+        "object": "Jacob",
+        "place": "Padanaram",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "as he blessed him he gave him a charge, saying, Thou shalt not take a wife of the daughters of Canaan",
+        "claim": "Isaac charged Jacob not to take a wife of the daughters of Canaan",
+        "actor": "Isaac",
+        "action": "gave charge",
+        "object": "Jacob",
+        "place": "Canaan",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Jacob obeyed his father and his mother, and was gone to Padanaram",
+        "claim": "Jacob obeyed his parents and went to Padanaram",
+        "actor": "Jacob",
+        "action": "obeyed, went",
+        "object": "his father and his mother",
+        "place": "Padanaram",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the daughters of Canaan pleased not Isaac his father",
+        "claim": "Daughters of Canaan did not please Isaac",
+        "actor": "daughters of Canaan",
+        "action": "pleased not",
+        "object": "Isaac",
+        "place": "Canaan",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then went Esau unto Ishmael, and took unto the wives which he had Mahalath the daughter of Ishmael Abraham's son, the sister of Nebajoth, to be his wife",
+        "claim": "Esau married Mahalath, daughter of Ishmael and sister of Nebajoth",
+        "actor": "Esau",
+        "action": "took",
+        "object": "Mahalath",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

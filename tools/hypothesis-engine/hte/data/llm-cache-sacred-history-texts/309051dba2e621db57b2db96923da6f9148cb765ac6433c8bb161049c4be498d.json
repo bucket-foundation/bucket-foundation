@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5d44bf86b8a253072519098b062e346128dbf925d76501d4deccd968e5328fec",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses stretched forth his hand over the sea, and the sea returned to his strength when the morning appeared; and the Egyptians fled against it; and the LORD overthrew the Egyptians in the midst of the sea.",
+        "claim": "Moses stretched his hand over the sea; the sea returned to normal at morning, and the LORD overthrew the Egyptians fleeing into the sea.",
+        "actor": "Moses, the LORD",
+        "action": "stretched forth hand, returned to strength, overthrew",
+        "object": "hand, sea, Egyptians",
+        "place": "over the sea, midst of the sea",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

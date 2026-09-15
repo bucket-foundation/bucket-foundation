@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "955a1344b56b233e1f2ae00dee94aab7e2b096a4ddee71e8981858fd9f11ce51",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Abraham took the wood of the burnt offering, and laid it upon Isaac his son",
+        "claim": "Abraham took wood of the burnt offering and placed it on his son Isaac",
+        "actor": "Abraham",
+        "action": "took...and laid it upon",
+        "object": "wood of the burnt offering",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "he took the fire in his hand, and a knife",
+        "claim": "Abraham took fire and a knife in his hand",
+        "actor": "Abraham",
+        "action": "took",
+        "object": "fire, knife",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "they went both of them together",
+        "claim": "Abraham and Isaac went together",
+        "actor": "Abraham, Isaac",
+        "action": "went",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "26dca3983c88af801b7afa312ba1f44ac76371b0967afd00195acce6e578d6bf",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Sarah died in Kirjatharba; the same is Hebron in the land of Canaan: and Abraham came to mourn for Sarah, and to weep for her.",
+        "claim": "Sarah died in Hebron (Kirjatharba), Canaan",
+        "actor": "Sarah",
+        "action": "died",
+        "object": "",
+        "place": "Kirjatharba/Hebron/Canaan",
+        "mechanism": "death",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

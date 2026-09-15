@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0efab415161144f6cbeac7c609596f75cf615169a4a4dbeedbfc7897b3b0b196",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses wrote all the words of the LORD, and rose up early in the morning, and builded an altar under the hill, and twelve pillars, according to the twelve tribes of Israel.",
+        "claim": "Moses rose up early in the morning and built an altar and twelve pillars arranged according to the twelve tribes of Israel.",
+        "actor": "Moses",
+        "action": "rose up early and builded",
+        "object": "altar, twelve pillars",
+        "place": "under the hill",
+        "mechanism": "twelve pillars according to the twelve tribes",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

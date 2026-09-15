@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "48ed8e31d98dc3b2dfe89ef738c7b81e8635d2ec6aaedd12e168180a7b6790d0",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-claim",
+        "tier": "primary-text",
+        "quote": "Take thy rod, and cast it before Pharaoh, and it shall become a serpent.",
+        "claim": "The text says the LORD told Moses to have Aaron throw his rod down in front of Pharaoh, and that the rod would turn into a serpent.",
+        "actor": "Aaron (instructed by the LORD via Moses)",
+        "action": "cast rod before Pharaoh",
+        "object": "rod becoming a serpent",
+        "mechanism": "divine instruction / miracle sign",
+        "place": "Egypt (Pharaoh's presence)",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "narrative-claim",
+        "tier": "primary-text",
+        "quote": "When Pharaoh shall speak unto you, saying, Shew a miracle for you: then thou shalt say unto Aaron",
+        "claim": "The text says the LORD told Moses and Aaron that Pharaoh would ask them for a miracle, and that this request would be the signal for the rod sign.",
+        "actor": "the LORD; Pharaoh",
+        "action": "anticipates Pharaoh demanding a miracle",
+        "object": "miracle as proof",
+        "mechanism": "conditional instruction",
+        "place": "Egypt",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

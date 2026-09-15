@@ -1,0 +1,57 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "50212f27cfe1d192418ea54b4feb883f03210182313448ccf4d16f740f14df22",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "document-text",
+        "quote": "Who am I, that I should go unto Pharaoh, and that I should bring forth the children of Israel out of Egypt?",
+        "claim": "In verse 3:11, Moses asks God why he should be the one to go to Pharaoh and bring the Israelites out of Egypt. He is doubting that he is fit for the task. Model-prior, unverified: the numbering and wording match Exodus 3:11 in the King James Version, but the document itself does not name its source.",
+        "actor": "Moses",
+        "action": "questions his own fitness to go to Pharaoh and lead Israel out of Egypt",
+        "object": "Pharaoh; the children of Israel",
+        "place": "Egypt",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "document-text",
+        "quote": "Certainly I will be with thee",
+        "claim": "In verse 3:12, God answers Moses's doubt by promising to be with him.",
+        "actor": "God",
+        "action": "promises to be with Moses",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "document-text",
+        "quote": "this shall be a token unto thee, that I have sent thee",
+        "claim": "God says there will be a sign (a 'token') showing that God sent Moses.",
+        "actor": "God",
+        "action": "promises a sign that Moses was sent by God",
+        "object": "Moses",
+        "mechanism": "a sign ('token') confirming that God sent him",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "document-text",
+        "quote": "When thou hast brought forth the people out of Egypt, ye shall serve God upon this mountain.",
+        "claim": "The sign God names is that, once Moses has brought the people out of Egypt, they will worship God on this same mountain. The sign only comes after the task is done.",
+        "actor": "God",
+        "action": "names the sign: the people will worship God on the mountain after they leave Egypt",
+        "object": "the people (children of Israel)",
+        "place": "this mountain (the mountain where Moses stands; not named in the document)",
+        "mechanism": "the sign comes true after the people leave Egypt",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

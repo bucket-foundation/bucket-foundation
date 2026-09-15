@@ -1,0 +1,30 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "21f5be3412f6b5975269323c5b5111eb904fca59e1a0f0c9732c4a62f5a055bf",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Pharaoh's heart is hardened, he refuseth to let the people go.",
+        "claim": "The LORD declared to Moses that Pharaoh's heart is hardened and refuses to let the people go",
+        "actor": "the LORD",
+        "action": "said",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Pharaoh's heart is hardened, he refuseth to let the people go.",
+        "claim": "Pharaoh refuses to let the people go",
+        "actor": "Pharaoh",
+        "action": "refuseth",
+        "object": "the people",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

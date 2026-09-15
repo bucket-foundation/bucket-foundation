@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7f5bec35970cc7699e1aecc408feb06230de9ac89fdc0949e7cbcd5404cb50ec",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said, It is not meet so to do; for we shall sacrifice the abomination of the Egyptians to the LORD our God: lo, shall we sacrifice the abomination of the Egyptians before their eyes, and will they not stone us?",
+        "claim": "Moses refuses to sacrifice the Egyptians' abominations before their eyes, because the Egyptians would stone them",
+        "actor": "Moses",
+        "action": "said (refused)",
+        "object": "the abomination of the Egyptians",
+        "place": "before their eyes",
+        "mechanism": "will stone us",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "We will go three days' journey into the wilderness, and sacrifice to the LORD our God, as he shall command us.",
+        "claim": "Moses proposes that the Israelites will journey into the wilderness and sacrifice to God according to God's command",
+        "actor": "We (the Israelites)",
+        "action": "will go and sacrifice",
+        "object": "the LORD our God",
+        "place": "three days' journey into the wilderness",
+        "mechanism": "as he shall command us",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

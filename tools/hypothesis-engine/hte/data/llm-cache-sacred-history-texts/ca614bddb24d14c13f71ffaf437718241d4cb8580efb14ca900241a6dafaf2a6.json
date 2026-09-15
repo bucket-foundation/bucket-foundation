@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8e36a0c89d19579971c400e6e7549cb86ae569a08d5cbc7d9e3c46658dcef20b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "5:28 And Lamech lived an hundred eighty and two years, and begat a son: 5:29 And he called his name Noah, saying, This same shall comfort us concerning our work and toil of our hands, because of the ground which the LORD hath cursed.",
+        "claim": "At age 182 years, Lamech fathered Noah, who would provide comfort regarding labor on cursed ground.",
+        "actor": "Lamech",
+        "action": "begat",
+        "object": "Noah",
+        "place": "",
+        "mechanism": "biological reproduction at age 182; cursed ground generating human labor",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

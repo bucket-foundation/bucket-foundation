@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7b677bce2df5449e21a6ab30195dac853a4a1e6819b1ba443e9e8086d17714b5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "18:1 And the LORD spake unto Moses, saying, 18:2 Speak unto the children of Israel, and say unto them, I am the LORD your God.",
+        "claim": "God spoke to Moses and commanded him to tell the children of Israel that God is their God",
+        "action": "spake, speak, say",
+        "actor": "the LORD, Moses",
+        "object": "Moses, the children of Israel",
+        "place": "",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

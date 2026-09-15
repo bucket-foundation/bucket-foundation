@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f7a3574a1632a37036ee66e18afcd0e2977b8c9bcf168592e737cedb5b22f7fe",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses, Stretch forth thine hand toward heaven, that there may be hail in all the land of Egypt, upon man, and upon beast, and upon every herb of the field, throughout the land of Egypt.",
+        "claim": "The LORD commanded Moses.",
+        "actor": "the LORD",
+        "action": "said unto",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses, Stretch forth thine hand toward heaven, that there may be hail in all the land of Egypt, upon man, and upon beast, and upon every herb of the field, throughout the land of Egypt.",
+        "claim": "Moses was commanded to stretch forth his hand toward heaven to bring hail upon Egypt.",
+        "actor": "Moses",
+        "action": "Stretch forth thine hand toward heaven",
+        "object": "",
+        "place": "all the land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

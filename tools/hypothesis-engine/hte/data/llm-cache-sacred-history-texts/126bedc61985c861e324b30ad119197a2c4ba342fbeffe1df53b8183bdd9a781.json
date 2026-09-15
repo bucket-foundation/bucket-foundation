@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0d704fe46e7f69cceaaa3812e11af8feb195ba7346a5db1c70cc885bf893dc6a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Abraham gave gifts",
+        "claim": "Abraham gave gifts to the sons of his concubines",
+        "actor": "Abraham",
+        "action": "gave gifts",
+        "object": "sons of his concubines",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "sent them away from Isaac his son, while he yet lived, eastward, unto the east country",
+        "claim": "Abraham sent the sons of his concubines away from Isaac to the east country while alive",
+        "actor": "Abraham",
+        "action": "sent away",
+        "object": "sons of his concubines",
+        "place": "east country",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

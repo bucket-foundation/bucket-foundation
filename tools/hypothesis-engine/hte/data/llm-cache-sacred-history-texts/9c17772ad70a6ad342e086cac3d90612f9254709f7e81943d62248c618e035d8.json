@@ -1,0 +1,94 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a9eb762c3a236c9839f9de168d56c1974ef11eb25f66eec333c97a02069ced56",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "God said unto him",
+        "claim": "God spoke to the addressee",
+        "actor": "God",
+        "action": "said",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "I am God Almighty",
+        "claim": "God identifies himself as God Almighty",
+        "actor": "I",
+        "action": "am",
+        "object": "God Almighty",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "be fruitful and multiply",
+        "claim": "Command to be fruitful and multiply",
+        "action": "be fruitful and multiply",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "a nation and a company of nations shall be of thee",
+        "claim": "A nation and company of nations shall come from the addressee",
+        "actor": "a nation and a company of nations",
+        "action": "shall be",
+        "object": "of thee",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "kings shall come out of thy loins",
+        "claim": "Kings shall descend from the addressee",
+        "actor": "kings",
+        "action": "shall come out",
+        "object": "thy loins",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the land which I gave Abraham and Isaac",
+        "claim": "God gave land to Abraham and Isaac",
+        "actor": "I",
+        "action": "gave",
+        "object": "the land",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "to thee I will give it",
+        "claim": "God will give the land to the addressee",
+        "actor": "I",
+        "action": "will give",
+        "object": "it",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "to thy seed after thee will I give the land",
+        "claim": "God will give the land to the addressee's descendants",
+        "actor": "I",
+        "action": "will give",
+        "object": "the land",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6a6a6ca58796d479d2ac24d6ac42c7bd4cac70ee1199da0b646b87b6ae502a86",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses took his wife and his sons, and set them upon an ass, and he returned to the land of Egypt: and Moses took the rod of God in his hand.",
+        "claim": "Moses took his wife and sons, set them upon an ass, returned to Egypt, and took the rod of God in his hand",
+        "actor": "Moses",
+        "action": "took, set, returned",
+        "object": "wife, sons, ass, rod of God",
+        "place": "land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

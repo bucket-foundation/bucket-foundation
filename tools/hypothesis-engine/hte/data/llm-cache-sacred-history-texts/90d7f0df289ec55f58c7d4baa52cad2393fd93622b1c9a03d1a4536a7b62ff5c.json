@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "b2f1caa56b483b3410094f56d265f7bd651a4cbfeea19d9ec3941144db09507d",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "for I have born him a son in his old age.",
+        "claim": "Sarah says she has borne Abraham a son in his old age.",
+        "actor": "Sarah",
+        "action": "bore a son",
+        "object": "a son to Abraham in his old age",
+        "place": "",
+        "year": null,
+        "stance": "positive",
+        "mechanism": ""
+      },
+      {
+        "kind": "claim",
+        "tier": "primary",
+        "quote": "Who would have said unto Abraham, that Sarah should have given children suck?",
+        "claim": "Sarah says no one would have told Abraham that she would nurse children, meaning it was unexpected.",
+        "actor": "Sarah",
+        "action": "said",
+        "object": "that Sarah would nurse children",
+        "place": "",
+        "year": null,
+        "stance": "positive",
+        "mechanism": ""
+      }
+    ]
+  }
+}

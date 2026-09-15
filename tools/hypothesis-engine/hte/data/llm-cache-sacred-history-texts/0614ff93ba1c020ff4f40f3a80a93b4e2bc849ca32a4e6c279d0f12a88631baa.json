@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "af42f53161fe618224bc9e20c586651e1baac2717d3170265f38f95797779df5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And he killed it",
+        "claim": "He killed the animal",
+        "actor": "he",
+        "action": "killed",
+        "object": "it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and Moses sprinkled the blood upon the altar round about",
+        "claim": "Moses sprinkled blood upon the altar",
+        "actor": "Moses",
+        "action": "sprinkled",
+        "object": "the blood",
+        "place": "the altar round about",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

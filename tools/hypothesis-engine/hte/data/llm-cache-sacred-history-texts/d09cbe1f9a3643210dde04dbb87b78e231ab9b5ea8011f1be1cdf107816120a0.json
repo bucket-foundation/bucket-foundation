@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "69c1aa0ccda9647a77f7bcd6a72eaeccd8ab089b01e31f5fd2db13a3a6822a52",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "25:1 And the LORD spake unto Moses, saying, 25:2 Speak unto the children of Israel, that they bring me an offering: of every man that giveth it willingly with his heart ye shall take my offering.",
+        "claim": "The text says the LORD told Moses to have the children of Israel bring an offering, to be taken only from each man who gives it willingly with his heart. This is what the text reports, not a verified historical event. The document gives only verse numbers (25:1\u20132). Naming the book as Exodus comes from model-prior and is not stated in the evidence.",
+        "actor": "the LORD (via Moses)",
+        "action": "commands collection of an offering",
+        "object": "offering from the children of Israel",
+        "mechanism": "voluntary giving: taken only from those who give willingly with their heart",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

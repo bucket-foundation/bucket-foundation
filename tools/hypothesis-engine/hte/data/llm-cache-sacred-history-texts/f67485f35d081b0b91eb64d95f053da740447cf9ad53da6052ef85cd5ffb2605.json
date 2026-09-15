@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "faf4614fdc515000841e9a38b306872760a124012a83aafb693a3e5661dfef3d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses rose up",
+        "claim": "Moses rose up",
+        "actor": "Moses",
+        "action": "rose up",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and his minister Joshua",
+        "claim": "Joshua was Moses' minister",
+        "actor": "Joshua",
+        "action": "",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and Moses went up into the mount of God",
+        "claim": "Moses went up into the mount of God",
+        "actor": "Moses",
+        "action": "went up",
+        "object": "",
+        "place": "the mount of God",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

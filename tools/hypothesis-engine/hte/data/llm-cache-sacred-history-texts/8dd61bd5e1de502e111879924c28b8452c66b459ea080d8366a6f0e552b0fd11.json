@@ -1,0 +1,73 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "63da3ebfeca5bbb459f93631e8d5758750ff5f5eb20e63678fc4311f8d49a57b",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses spake unto all the congregation of the children of Israel, saying, This is the thing which the LORD commanded, saying,",
+        "claim": "The text says Moses spoke to the whole congregation of the children of Israel and passed on a command he credited to the LORD. Passes 1 and 2 both support this.",
+        "actor": "Moses",
+        "action": "spake unto all the congregation",
+        "object": "the children of Israel",
+        "mechanism": "relaying a divine command",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "norm",
+        "tier": "primary-text",
+        "quote": "Take ye from among you an offering unto the LORD: whosoever is of a willing heart, let him bring it, an offering of the LORD;",
+        "claim": "The text says the offering was to be collected from among the people and given only by those 'of a willing heart', which makes it voluntary rather than required. Passes 1 and 2 both support this.",
+        "actor": "the children of Israel",
+        "action": "bring an offering",
+        "object": "an offering unto the LORD",
+        "mechanism": "voluntary giving by those of a willing heart",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "list",
+        "tier": "primary-text",
+        "quote": "gold, and silver, and brass,",
+        "claim": "The first materials listed for the offering are the metals gold, silver and brass. Only pass 1 has this, but the document states it word for word.",
+        "object": "gold, silver, brass",
+        "mechanism": "materials requested for the offering",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "list",
+        "tier": "primary-text",
+        "quote": "And blue, and purple, and scarlet, and fine linen, and goats\u2019 hair, 35:7 And rams\u2019 skins dyed red, and badgers\u2019 skins, and shittim wood,",
+        "claim": "The offering also included dyed materials (blue, purple, scarlet), fine linen, goats' hair, rams' skins dyed red, badgers' skins and shittim wood. Only pass 1 has this, but the document states it word for word.",
+        "object": "textiles, dyes, skins, shittim wood",
+        "mechanism": "materials requested for the offering",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "list",
+        "tier": "primary-text",
+        "quote": "And oil for the light, and spices for anointing oil, and for the sweet incense,",
+        "claim": "The offering included oil for the light and spices for the anointing oil and the sweet incense. Only pass 1 has this, but the document states it word for word.",
+        "object": "oil, spices",
+        "mechanism": "materials for lighting, anointing oil and incense",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "list",
+        "tier": "primary-text",
+        "quote": "And onyx stones, and stones to be set for the ephod, and for the breastplate.",
+        "claim": "The offering included onyx stones and stones to be set in the ephod and the breastplate. Only pass 1 has this, but the document states it word for word.",
+        "object": "onyx stones, set stones",
+        "mechanism": "materials for the ephod and breastplate",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

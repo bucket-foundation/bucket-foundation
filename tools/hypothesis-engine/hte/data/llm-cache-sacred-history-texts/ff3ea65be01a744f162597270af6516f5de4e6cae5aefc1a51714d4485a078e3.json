@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "65e4007626e605e6c0ec472ebd0a9c1e9d2a9371da29c4700ec23f25626fab5f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses and Aaron went and gathered together all the elders of the children of Israel",
+        "claim": "Moses and Aaron gathered together all the elders of the children of Israel",
+        "actor": "Moses and Aaron",
+        "action": "went and gathered together",
+        "object": "all the elders of the children of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Aaron spake all the words which the LORD had spoken unto Moses, and did the signs in the sight of the people",
+        "claim": "Aaron spoke all the words the LORD had spoken to Moses and performed signs before the people",
+        "actor": "Aaron",
+        "action": "spake all the words and did the signs",
+        "object": "all the words which the LORD had spoken unto Moses; the signs",
+        "place": "in the sight of the people",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

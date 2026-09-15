@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4ee6d0948c9f2db3dfb2286de3e32130e2c141f221632481b853e778d80c06ac",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And it came to pass on the morrow, that Moses sat to judge the people: and the people stood by Moses from the morning unto the evening.",
+        "claim": "Moses conducted judicial proceedings from morning until evening on the day following an unspecified prior event",
+        "actor": "Moses",
+        "action": "sat to judge",
+        "object": "the people",
+        "place": "",
+        "mechanism": "judicial judgment process\u2014temporal constraint of daylight hours limiting duration",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

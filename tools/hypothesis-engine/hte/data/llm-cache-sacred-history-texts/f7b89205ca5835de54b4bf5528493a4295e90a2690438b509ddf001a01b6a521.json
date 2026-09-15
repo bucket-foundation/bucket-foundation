@@ -1,0 +1,75 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "11599b495b746e9a37044da3ad483bbc40eb6b2fffc5f81145ae75ad528ad7a2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the sons of Aaron brought the blood unto him",
+        "claim": "The sons of Aaron brought blood to the priest",
+        "actor": "the sons of Aaron",
+        "action": "brought",
+        "object": "the blood",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "he dipped his finger in the blood",
+        "claim": "Aaron dipped his finger in the blood",
+        "actor": "he",
+        "action": "dipped",
+        "object": "his finger",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "put it upon the horns of the altar",
+        "claim": "Aaron put blood on the altar horns",
+        "action": "put",
+        "object": "it",
+        "place": "the horns of the altar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "poured out the blood at the bottom of the altar",
+        "claim": "Aaron poured blood at the altar base",
+        "action": "poured out",
+        "object": "the blood",
+        "place": "the bottom of the altar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the fat, and the kidneys, and the caul above the liver of the sin offering, he burnt upon the altar",
+        "claim": "Aaron burned the sacrificial parts on the altar",
+        "actor": "he",
+        "action": "burnt",
+        "object": "the fat, and the kidneys, and the caul above the liver of the sin offering",
+        "place": "upon the altar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses regarding the ritual procedures",
+        "actor": "the LORD",
+        "action": "commanded",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

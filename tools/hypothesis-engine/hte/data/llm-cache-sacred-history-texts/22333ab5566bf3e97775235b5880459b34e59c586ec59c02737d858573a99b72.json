@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "668b7afc91ef4933fc22e8b3fa329ddf4e40d658a6ca647817419dba4471e509",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "document",
+        "quote": "And Abraham gat up early in the morning to the place where he stood before the LORD:",
+        "claim": "Abraham got up early in the morning and went back to the place where he had stood before the LORD.",
+        "actor": "Abraham",
+        "action": "got up early and went to",
+        "object": "the place where he stood before the LORD",
+        "place": "the place where Abraham stood before the LORD",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "narrative statement in the source text (Genesis 19:27)"
+      },
+      {
+        "kind": "observation",
+        "tier": "document",
+        "quote": "And he looked toward Sodom and Gomorrah, and toward all the land of the plain, and beheld, and, lo, the smoke of the country went up as the smoke of a furnace.",
+        "claim": "Abraham looked toward Sodom, Gomorrah and the whole plain and saw smoke rising from the land like the smoke of a furnace.",
+        "actor": "Abraham",
+        "action": "looked toward and saw",
+        "object": "smoke rising from the country like the smoke of a furnace",
+        "place": "Sodom and Gomorrah and all the land of the plain",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "narrative statement in the source text (Genesis 19:28); the text gives no cause for the smoke"
+      }
+    ]
+  }
+}

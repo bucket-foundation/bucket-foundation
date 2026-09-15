@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0deacba51c0e8f32bc58491a2c06cbc43842733939e5dc434f1a89ad05e9fde1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Abraham rose up early in the morning, and saddled his ass, and took two of his young men with him, and Isaac his son, and clave the wood for the burnt offering, and rose up, and went unto the place of which God had told him.",
+        "claim": "Abraham rose early, prepared his donkey, took two young men and Isaac with him, prepared wood for a burnt offering, and traveled to a place designated by God",
+        "actor": "Abraham",
+        "action": "rose up early, saddled, took, clave, went",
+        "object": "his ass, two young men, Isaac his son, wood for burnt offering",
+        "place": "the place of which God had told him",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

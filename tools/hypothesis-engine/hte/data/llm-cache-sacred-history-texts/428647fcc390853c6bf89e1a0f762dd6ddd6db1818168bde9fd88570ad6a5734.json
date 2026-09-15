@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b9e0366a9927bb97186c45255a6e8f4672c8f4eb2748b682d1fc2d61bdb5572d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Abraham drew near, and said, Wilt thou also destroy the righteous with the wicked?",
+        "claim": "Abraham asked God whether He would destroy the righteous along with the wicked",
+        "actor": "Abraham",
+        "action": "drew near, and said",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Peradventure there be fifty righteous within the city: wilt thou also destroy and not spare the place for the fifty righteous that are therein?",
+        "claim": "Abraham asked whether God would spare the place if fifty righteous were found in the city",
+        "actor": "Abraham",
+        "action": "",
+        "object": "the place",
+        "place": "the city",
+        "mechanism": "Peradventure there be fifty righteous within the city",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "That be far from thee to do after this manner, to slay the righteous with the wicked: and that the righteous should be as the wicked, that be far from thee: Shall not the Judge of all the earth do right?",
+        "claim": "Abraham denied that God should slay the righteous along with the wicked",
+        "actor": "thee",
+        "action": "slay",
+        "object": "the righteous with the wicked",
+        "place": "",
+        "mechanism": "",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said, If I find in Sodom fifty righteous within the city, then I will spare all the place for their sakes.",
+        "claim": "The LORD promised to spare the place if fifty righteous are found in Sodom",
+        "actor": "the LORD",
+        "action": "will spare",
+        "object": "all the place",
+        "place": "Sodom",
+        "mechanism": "If I find in Sodom fifty righteous within the city",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "8a6cd1a8689c257996390c919ce9e0b73f3f1877f7a0bd1eadc82d51ba4f0d86",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And when the voice of the trumpet sounded long, and waxed louder and louder, Moses spake, and God answered him by a voice.",
+        "claim": "The text says that as a trumpet sounded long and grew louder and louder, Moses spoke, and God answered him with a voice. This is the text's own account, not a checked historical fact. All three passes agree on this content. The only disagreement was punctuation and whether to include the opening 'And when', and the verbatim quote settles that. The label 'Exodus 19:19 (KJV wording)' comes from model-prior only. The document shows just '19:19' and does not name the book. The setting at Mount Sinai also comes from model-prior and is not stated in the document.",
+        "actor": "Moses; God",
+        "action": "Moses spake; God answered him by a voice",
+        "object": "trumpet sounding long and waxing louder",
+        "mechanism": "voice response accompanying a prolonged, intensifying trumpet sound",
+        "year": null
+      }
+    ]
+  }
+}

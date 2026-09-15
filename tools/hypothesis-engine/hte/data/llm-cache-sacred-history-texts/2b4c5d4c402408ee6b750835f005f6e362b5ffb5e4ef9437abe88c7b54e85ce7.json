@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8c3a08c8f134d09f60a34e9ea1ebc1aaeb7ab319834753b2e61f068118a86923",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Lamech lived an hundred eighty and two years",
+        "claim": "Lamech lived 182 years",
+        "actor": "Lamech",
+        "action": "lived",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Lamech lived an hundred eighty and two years, and begat a son",
+        "claim": "Lamech fathered a son",
+        "actor": "Lamech",
+        "action": "begat",
+        "object": "a son",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "he called his name Noah",
+        "claim": "Lamech named his son Noah",
+        "actor": "he",
+        "action": "called",
+        "object": "his name Noah",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "This same shall comfort us concerning our work and toil of our hands, because of the ground which the LORD hath cursed",
+        "claim": "Noah shall comfort people regarding their labor because the ground was cursed",
+        "actor": "This same",
+        "action": "comfort",
+        "object": "us",
+        "place": "",
+        "mechanism": "concerning our work and toil of our hands, because of the ground which the LORD hath cursed",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the ground which the LORD hath cursed",
+        "claim": "The LORD cursed the ground",
+        "actor": "the LORD",
+        "action": "cursed",
+        "object": "the ground",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

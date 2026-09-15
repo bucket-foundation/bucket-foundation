@@ -1,0 +1,52 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "dcbc11e092455330a07f09d460019ed2a938ce4643e2e4b9fa0a680115794ec3",
+  "response": {
+    "items": [
+      {
+        "kind": "observation",
+        "tier": "primary-text",
+        "quote": "And when Moses\u2019 father in law saw all that he did to the people, he said, What is this thing that thou doest to the people?",
+        "claim": "Moses' father-in-law saw how Moses was dealing with the people and questioned the practice.",
+        "actor": "Moses\u2019 father in law",
+        "action": "observed and questioned",
+        "object": "Moses' handling of the people",
+        "year": null
+      },
+      {
+        "kind": "practice",
+        "tier": "primary-text",
+        "quote": "why sittest thou thyself alone, and all the people stand by thee from morning unto even?",
+        "claim": "Moses sat alone as the only judge while the people waited on him from morning until evening.",
+        "actor": "Moses",
+        "action": "sat alone in judgment",
+        "object": "the people",
+        "mechanism": "one person hearing every case",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "Because the people come unto me to enquire of God:",
+        "claim": "Moses said the people came to him to enquire of God, which explains why he did the judging himself.",
+        "actor": "Moses",
+        "action": "explained",
+        "object": "people enquiring of God",
+        "mechanism": "religious consultation through one intermediary",
+        "year": null
+      },
+      {
+        "kind": "practice",
+        "tier": "primary-text",
+        "quote": "When they have a matter, they come unto me; and I judge between one and another, and I do make them know the statutes of God, and his laws.",
+        "claim": "When people had a dispute, Moses decided between the parties and taught them God's statutes and laws.",
+        "actor": "Moses",
+        "action": "judged disputes and taught law",
+        "object": "the statutes of God, and his laws",
+        "mechanism": "deciding cases and teaching the law together",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "274909d3b8965117c7a455dbd4fc6a902bae06bf8f46cf1f76b207fc839089fe",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Now when Pharaoh heard this thing",
+        "claim": "Pharaoh heard something",
+        "actor": "Pharaoh",
+        "action": "heard",
+        "object": "this thing",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "he sought to slay Moses",
+        "claim": "Pharaoh sought to kill Moses",
+        "actor": "Pharaoh",
+        "action": "sought to slay",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Moses fled from the face of Pharaoh",
+        "claim": "Moses fled from Pharaoh",
+        "actor": "Moses",
+        "action": "fled",
+        "object": "Pharaoh",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "he dwelt in the land of Midian",
+        "claim": "Moses dwelt in the land of Midian",
+        "actor": "Moses",
+        "action": "dwelt",
+        "place": "land of Midian",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "he sat down by a well",
+        "claim": "Moses sat down by a well",
+        "actor": "Moses",
+        "action": "sat down",
+        "place": "by a well",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

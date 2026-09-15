@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7a0a59542a095ef4ca71caaa8101e38ef988248bde7da128c47175e771c2e854",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "when Moses was grown",
+        "claim": "Moses reached adulthood",
+        "actor": "Moses",
+        "action": "was grown",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "he went out unto his brethren, and looked on their burdens",
+        "claim": "Moses went out to his brethren and observed their burdens",
+        "actor": "he",
+        "action": "went out, looked on",
+        "object": "brethren, burdens",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "he spied an Egyptian smiting an Hebrew, one of his brethren",
+        "claim": "Moses witnessed an Egyptian striking a Hebrew",
+        "actor": "he",
+        "action": "spied",
+        "object": "Egyptian smiting an Hebrew",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "an Egyptian smiting an Hebrew, one of his brethren",
+        "claim": "An Egyptian was striking a Hebrew",
+        "actor": "Egyptian",
+        "action": "smiting",
+        "object": "Hebrew",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4ad47c1ccadf25d221d2089a4c7e995ccc1654ef67f16644eb862a65a0a1c307",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses told his father in law all that the LORD had done unto Pharaoh and to the Egyptians for Israel's sake, and all the travail that had come upon them by the way, and how the LORD delivered them.",
+        "claim": "Moses narrated to his father-in-law the acts of the LORD and Israel's exodus",
+        "actor": "Moses",
+        "action": "told",
+        "object": "his father in law",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "all that the LORD had done unto Pharaoh",
+        "claim": "The LORD performed acts against Pharaoh",
+        "actor": "the LORD",
+        "action": "had done",
+        "object": "Pharaoh",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and to the Egyptians for Israel's sake",
+        "claim": "The LORD acted upon the Egyptians for Israel's benefit",
+        "actor": "the LORD",
+        "action": "had done",
+        "object": "the Egyptians",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and how the LORD delivered them",
+        "claim": "The LORD saved Israel",
+        "actor": "the LORD",
+        "action": "delivered",
+        "object": "them",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

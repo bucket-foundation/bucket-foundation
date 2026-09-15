@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5b6adb2590fc0f460e8add6474d0927f8685fd86b2b56b49c7b3211b14a18503",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham lifted up his eyes, and looked, and behold behind him a ram caught in a thicket by his horns: and Abraham went and took the ram, and offered him up for a burnt offering in the stead of his son.",
+        "claim": "Abraham found a ram caught in a thicket by its horns and offered it as a burnt offering in place of his son",
+        "actor": "Abraham",
+        "action": "offered ram as burnt offering",
+        "object": "ram",
+        "place": "thicket",
+        "mechanism": "ram caught in thicket by horns",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

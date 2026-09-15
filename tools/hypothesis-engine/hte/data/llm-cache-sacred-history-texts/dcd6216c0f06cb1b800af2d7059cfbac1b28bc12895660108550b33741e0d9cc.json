@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4c1a3247ef678c1883bd25be5c3004f05bc7fb8b846eb6b011fb79313b2bb1c9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abimelech said unto Abraham, What sawest thou, that thou hast done this thing?",
+        "claim": "Abimelech asked Abraham what he saw that prompted his action",
+        "actor": "Abimelech",
+        "action": "said",
+        "object": "this thing",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham said, Because I thought, Surely the fear of God is not in this place; and they will slay me for my wife's sake.",
+        "claim": "Abraham stated he feared being killed because he believed God was not feared in that place",
+        "actor": "Abraham",
+        "action": "said",
+        "object": "",
+        "place": "this place",
+        "mechanism": "slay",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

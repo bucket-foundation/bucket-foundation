@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c28cd18f2437c0aebbf3d5c07ed2c3b507a86bcc94ccd9b650b50d6d51dbac57",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses after the death of the two sons of Aaron, when they offered before the LORD, and died",
+        "claim": "The LORD spoke to Moses after the death of Aaron's two sons",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "unto Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "when they offered before the LORD, and died",
+        "claim": "Aaron's two sons offered before the LORD and died",
+        "actor": "they",
+        "action": "offered; died",
+        "object": "",
+        "place": "before the LORD",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Speak unto Aaron thy brother, that he come not at all times into the holy place within the vail before the mercy seat, which is upon the ark; that he die not",
+        "claim": "The LORD commanded Moses to tell Aaron not to enter the holy place at all times",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "unto Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Speak unto Aaron thy brother, that he come not at all times into the holy place within the vail before the mercy seat, which is upon the ark",
+        "claim": "Aaron should not enter the holy place before the mercy seat",
+        "actor": "Aaron",
+        "action": "come not",
+        "object": "",
+        "place": "into the holy place within the vail before the mercy seat",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for I will appear in the cloud upon the mercy seat",
+        "claim": "The LORD will appear in the cloud upon the mercy seat",
+        "actor": "I",
+        "action": "will appear",
+        "object": "",
+        "place": "in the cloud upon the mercy seat",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

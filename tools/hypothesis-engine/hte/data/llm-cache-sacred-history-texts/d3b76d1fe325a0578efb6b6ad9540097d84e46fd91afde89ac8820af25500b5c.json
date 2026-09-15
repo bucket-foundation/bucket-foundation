@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1b8bea53f0548b77b75f1a709bafcaad5af73d849505c9fb800bcb244edbd38b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses did as the LORD commanded him",
+        "claim": "Moses obeyed the LORD's command",
+        "actor": "Moses",
+        "action": "did as the LORD commanded",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and the assembly was gathered together unto the door of the tabernacle of the congregation",
+        "claim": "The assembly gathered at the entrance of the tabernacle of the congregation",
+        "actor": "the assembly",
+        "action": "was gathered together",
+        "object": "",
+        "place": "the door of the tabernacle of the congregation",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

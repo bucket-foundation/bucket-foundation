@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3cb59802cabde895b2e20077d0177dba20d66acb0a6b082dbff98a2585983fa5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD called unto Moses",
+        "claim": "The LORD called unto Moses",
+        "actor": "LORD",
+        "action": "called",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and spake unto him out of the tabernacle of the congregation",
+        "claim": "The LORD spoke to Moses from the tabernacle of the congregation",
+        "actor": "LORD",
+        "action": "spake",
+        "object": "him",
+        "place": "tabernacle of the congregation",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Speak unto the children of Israel, and say unto them, If any man of you bring an offering unto the LORD, ye shall bring your offering of the cattle, even of the herd, and of the flock",
+        "claim": "The LORD commanded Moses to instruct the children of Israel to bring offerings of cattle or flock animals",
+        "actor": "LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

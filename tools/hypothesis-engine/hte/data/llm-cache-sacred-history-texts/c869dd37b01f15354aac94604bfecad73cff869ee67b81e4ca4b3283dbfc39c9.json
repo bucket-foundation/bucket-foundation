@@ -1,0 +1,30 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "209c5f8032dc8c3434107a52cba94974b61fc263cd8a19bb6f522c465eb7b7ca",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "But the Levites were not numbered among the children of Israel; as the LORD commanded Moses.",
+        "claim": "The Levites were not numbered among the children of Israel",
+        "action": "numbered",
+        "object": "the Levites",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

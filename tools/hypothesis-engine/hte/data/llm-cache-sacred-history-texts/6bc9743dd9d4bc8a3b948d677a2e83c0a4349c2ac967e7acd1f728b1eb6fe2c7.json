@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "ad856b7e07e3dbc1ffd67115a242bd740945c49eef746704566158036fee8a86",
+  "response": {
+    "items": [
+      {
+        "kind": "ritual-legal prescription",
+        "tier": "primary-text",
+        "quote": "5:15 If a soul commit a trespass, and sin through ignorance, in the holy things of the LORD; then he shall bring for his trespass unto the LORD a ram without blemish out of the flocks, with thy estimation by shekels of silver, after the shekel of the sanctuary, for a trespass offering.",
+        "claim": "The text says that a person who sins by mistake against the holy things of the LORD must bring a ram without blemish as a trespass offering. The ram's value is set in silver shekels, measured by the shekel of the sanctuary. Note: the document does not name its source. Calling it Leviticus 5:15 comes from model-prior and is unverified.",
+        "actor": "a soul (an individual who commits an unwitting trespass)",
+        "action": "brings a ram without blemish as a trespass offering",
+        "object": "a ram without blemish out of the flocks, valued in shekels of silver",
+        "mechanism": "The offender makes up for an accidental sin against sacred property by giving an unblemished ram, valued in silver by the sanctuary's shekel standard.",
+        "place": "unspecified (sanctuary referenced as the standard for the shekel)",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "attribution of divine speech",
+        "tier": "primary-text",
+        "quote": "5:14 And the LORD spake unto Moses, saying,",
+        "claim": "The text presents the trespass-offering rule that follows as words the LORD spoke to Moses.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "mechanism": "The rule is introduced as divine speech passed on through Moses.",
+        "place": "unspecified",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

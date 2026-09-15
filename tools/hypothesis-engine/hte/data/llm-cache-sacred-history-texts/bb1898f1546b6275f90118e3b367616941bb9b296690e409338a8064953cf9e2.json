@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8f8999134049b8cf3c9bd4d51cd78e745d78f321cbf7076ad600b6cfcb5073a6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And these are the generations of Isaac, Abraham's son: Abraham begat Isaac",
+        "claim": "Abraham fathered Isaac",
+        "actor": "Abraham",
+        "action": "begat",
+        "object": "Isaac",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Isaac was forty years old when he took Rebekah to wife, the daughter of Bethuel the Syrian of Padanaram, the sister to Laban the Syrian.",
+        "claim": "Isaac married Rebekah at age forty; Rebekah was daughter of Bethuel and sister to Laban, from Padanaram",
+        "actor": "Isaac",
+        "action": "took to wife",
+        "object": "Rebekah",
+        "place": "Padanaram",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a1f6eb563b6449c3442c564f114a202205528e345a948e840b87e1c2057a75e9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses in the wilderness of Sinai, in the tabernacle of the congregation, on the first day of the second month, in the second year after they were come out of the land of Egypt, saying,",
+        "claim": "The LORD spoke to Moses in the wilderness of Sinai in the tabernacle of the congregation",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "place": "wilderness of Sinai, in the tabernacle of the congregation",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "From twenty years old and upward, all that are able to go forth to war in Israel: thou and Aaron shall number them by their armies.",
+        "claim": "Moses and Aaron shall number the males of Israel able to go to war, organized by their armies",
+        "actor": "thou and Aaron",
+        "action": "shall number",
+        "object": "them",
+        "place": "Israel",
+        "mechanism": "by their armies",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

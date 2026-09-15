@@ -1,0 +1,59 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ffb4fbbdff50275bc0e6e0c538d68db8f2ec682d6b4e10dab38a68d11616e258",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Moses spake unto Aaron, and unto Eleazar and unto Ithamar, his sons that were left",
+        "claim": "Moses gave instructions to Aaron and to his two remaining sons Eleazar and Ithamar",
+        "actor": "Moses",
+        "object": "Aaron, Eleazar, Ithamar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Take the meat offering that remaineth of the offerings of the LORD made by fire, and eat it without leaven beside the altar",
+        "claim": "The remaining meat offering from the LORD's fire offerings should be taken and eaten without leaven beside the altar",
+        "action": "Take and eat",
+        "object": "meat offering",
+        "place": "beside the altar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for it is most holy",
+        "claim": "The meat offering is most holy",
+        "object": "meat offering",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And ye shall eat it in the holy place, because it is thy due, and thy sons' due, of the sacrifices of the LORD made by fire",
+        "claim": "The meat offering shall be eaten in the holy place as the priestly due of Aaron and his sons from the LORD's sacrifices",
+        "action": "eat",
+        "object": "meat offering",
+        "place": "holy place",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for so I am commanded",
+        "claim": "This practice was commanded",
+        "mechanism": "divine command",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

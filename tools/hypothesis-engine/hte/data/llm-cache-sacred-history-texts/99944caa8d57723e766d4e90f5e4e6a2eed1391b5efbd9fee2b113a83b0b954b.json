@@ -1,0 +1,57 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "cf6f64e29c885d08a797a97a629ba753d06e9b8c5e51c671512f8da7399b8ad7",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses called Bezaleel and Aholiab, and every wise hearted man, in whose heart the LORD had put wisdom, even every one whose heart stirred him up to come unto the work to do it",
+        "claim": "Moses summoned Bezaleel, Aholiab, and every skilled (wise-hearted) man who was willing to come and do the sanctuary work.",
+        "actor": "Moses",
+        "action": "called",
+        "object": "Bezaleel, Aholiab, and every wise hearted man willing to do the work",
+        "mechanism": "Volunteers were recruited by willingness ('whose heart stirred him up') and skill.",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "attribution",
+        "tier": "primary-text",
+        "quote": "in whose heart the LORD had put wisdom",
+        "claim": "The text says the craftsmen's skill (wisdom) was given by the LORD.",
+        "actor": "the LORD",
+        "action": "had put wisdom",
+        "object": "the hearts of the wise hearted men",
+        "mechanism": "The text presents the craftsmen's skill as a gift from God.",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And they received of Moses all the offering, which the children of Israel had brought for the work of the service of the sanctuary, to make it withal.",
+        "claim": "The craftsmen received from Moses all the offerings the Israelites had brought, to use for building the sanctuary.",
+        "actor": "Bezaleel, Aholiab, and the wise hearted men",
+        "action": "received",
+        "object": "all the offering brought by the children of Israel for the sanctuary",
+        "mechanism": "Moses handed the donated materials to the craftsmen to build the sanctuary.",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And they brought yet unto him free offerings every morning.",
+        "claim": "The Israelites kept bringing freewill offerings every morning.",
+        "actor": "the children of Israel",
+        "action": "brought",
+        "object": "free offerings",
+        "mechanism": "Voluntary donations kept arriving every day.",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

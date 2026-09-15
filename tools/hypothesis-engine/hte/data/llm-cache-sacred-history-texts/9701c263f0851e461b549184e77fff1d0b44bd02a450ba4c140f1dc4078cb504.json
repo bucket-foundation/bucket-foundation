@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "8aac28a5bb5d279a652405a4f878f473c50249572db1600f091a4e8f2b3f0ef4",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And he took all the fat that was upon the inwards, and the caul above the liver, and the two kidneys, and their fat, and Moses burned it upon the altar.",
+        "claim": "The text (verse 8:16) says Moses burned on the altar the fat on the inwards, the caul above the liver, and the two kidneys with their fat.",
+        "actor": "Moses",
+        "action": "burned",
+        "object": "the fat upon the inwards, the caul above the liver, and the two kidneys and their fat",
+        "mechanism": "burnt on the altar as part of a ritual offering; the document does not name the book or give context. Reading it as Leviticus 8:16 (KJV) comes from model-prior only and is unverified",
+        "place": "altar (no location given in the document)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

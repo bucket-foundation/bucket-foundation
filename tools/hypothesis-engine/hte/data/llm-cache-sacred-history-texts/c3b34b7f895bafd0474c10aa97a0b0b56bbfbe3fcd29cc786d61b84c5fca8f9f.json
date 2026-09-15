@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "26c23e3e92326e0ba8a1aee43db391dec29e9fcb23db065b2225444d6488804e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Rise up early in the morning, and stand before Pharaoh; lo, he cometh forth to the water",
+        "claim": "Pharaoh comes forth to the water at early morning",
+        "actor": "Pharaoh",
+        "action": "come forth",
+        "object": "",
+        "place": "water",
+        "mechanism": "morning visitation routine",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "fcd26be005ecd6637a799def9329032e657f827faed180b9784e6a78d9814b54",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses was content to dwell with the man",
+        "claim": "Moses agreed to remain and dwell with the man",
+        "actor": "Moses",
+        "action": "was content to dwell",
+        "object": "the man",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and he gave Moses Zipporah his daughter",
+        "claim": "The man gave his daughter Zipporah to Moses",
+        "actor": "he",
+        "action": "gave",
+        "object": "Zipporah his daughter",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

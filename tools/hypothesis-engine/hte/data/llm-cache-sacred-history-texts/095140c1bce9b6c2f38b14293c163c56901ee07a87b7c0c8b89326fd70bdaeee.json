@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f520b2b4a371f4bccc91887da4bcaaddafeb8b31d799983ae219ca354db920d0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the magicians could not stand before Moses because of the boils; for the boil was upon the magicians, and upon all the Egyptians.",
+        "claim": "Boils afflicted the magicians and Egyptians, rendering them unable to stand before Moses",
+        "actor": "magicians, Egyptians",
+        "action": "could not stand",
+        "object": "Moses",
+        "place": "Egypt (implied)",
+        "mechanism": "boils",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

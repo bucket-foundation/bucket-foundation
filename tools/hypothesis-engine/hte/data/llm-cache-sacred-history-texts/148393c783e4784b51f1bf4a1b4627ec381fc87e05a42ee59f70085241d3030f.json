@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1e541107d4c6b16ce785d9ac79cda9f17eacc7f7250c3c9c0c65866190312401",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And his sons Isaac and Ishmael buried him in the cave of Machpelah, in the field of Ephron the son of Zohar the Hittite, which is before Mamre",
+        "claim": "Isaac and Ishmael buried Abraham in the cave of Machpelah",
+        "actor": "his sons Isaac and Ishmael",
+        "action": "buried",
+        "object": "him",
+        "place": "cave of Machpelah, field of Ephron the son of Zohar the Hittite, before Mamre",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "The field which Abraham purchased of the sons of Heth",
+        "claim": "Abraham purchased the field from the sons of Heth",
+        "actor": "Abraham",
+        "action": "purchased",
+        "object": "field",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "there was Abraham buried, and Sarah his wife",
+        "claim": "Abraham and Sarah were buried in the field",
+        "actor": "",
+        "action": "buried",
+        "object": "Abraham, Sarah his wife",
+        "place": "there",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

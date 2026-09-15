@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "23663a56e33cd445caba5be15eef72204b25c800c498a4d32dcdae948c697066",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "For all the wells which his father's servants had digged in the days of Abraham his father, the Philistines had stopped them, and filled them with earth.",
+        "claim": "During Abraham's lifetime, Philistines blocked and filled with earth the wells that Abraham's servants had dug",
+        "actor": "Philistines",
+        "action": "stopped and filled with earth",
+        "object": "wells",
+        "place": "",
+        "mechanism": "filling wells with earth",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

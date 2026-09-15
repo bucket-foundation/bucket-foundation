@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f9ba9951469496f0b6596c092a114f8760b139559ff5df108e8551b575e86c20",
+  "response": {
+    "items": [
+      {
+        "quote": "And the LORD said unto Moses in Midian, Go, return into Egypt: for all the men are dead which sought thy life.",
+        "claim": "The LORD commanded Moses to return to Egypt from Midian because those seeking his life were now dead.",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "",
+        "place": "Midian, Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

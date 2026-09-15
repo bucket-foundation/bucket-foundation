@@ -1,0 +1,53 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "957b1f9be6c3af6b34f7caa0ff814ecd50eb2e4c853ed474059cd391ce43df90",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses said unto the people",
+        "claim": "Moses addressed the people",
+        "actor": "Moses",
+        "action": "said unto",
+        "object": "the people",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Ye have sinned a great sin",
+        "claim": "The people have committed a grave sin",
+        "actor": "Ye",
+        "action": "have sinned",
+        "object": "a great sin",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "I will go up unto the LORD",
+        "claim": "Moses will ascend to the LORD",
+        "actor": "I",
+        "action": "will go up unto",
+        "place": "the LORD",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "peradventure I shall make an atonement for your sin",
+        "claim": "Moses will make atonement for the people's sin",
+        "actor": "I",
+        "action": "shall make an atonement",
+        "object": "an atonement",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

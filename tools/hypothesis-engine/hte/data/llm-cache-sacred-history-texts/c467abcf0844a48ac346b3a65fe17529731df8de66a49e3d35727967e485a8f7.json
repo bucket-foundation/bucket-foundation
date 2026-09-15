@@ -1,0 +1,40 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "d62003b97868a9fff89ac591e9e2ece86c8acdaf6b5dab7a049151fea650e7cc",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Isaac digged again the wells of water, which they had digged in the days of Abraham his father",
+        "claim": "Isaac re-dug the water wells that had first been dug in the time of his father Abraham.",
+        "actor": "Isaac",
+        "action": "digged again",
+        "object": "the wells of water dug in the days of Abraham",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "for the Philistines had stopped them after the death of Abraham",
+        "claim": "After Abraham died, the Philistines stopped up the wells dug in his time, which is why Isaac had to dig them again.",
+        "actor": "the Philistines",
+        "action": "stopped",
+        "object": "the wells dug in the days of Abraham",
+        "mechanism": "The wells were blocked after Abraham's death, so they had to be dug again.",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and he called their names after the names by which his father had called them",
+        "claim": "Isaac gave the re-dug wells the same names his father Abraham had given them.",
+        "actor": "Isaac",
+        "action": "called their names",
+        "object": "the re-dug wells, named with Abraham's names for them",
+        "year": null
+      }
+    ]
+  }
+}

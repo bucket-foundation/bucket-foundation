@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f768c0074ee26bd8bd03511444473b780670ef1480d350447007dd2012417ae7",
+  "response": {
+    "items": [
+      {
+        "quote": "he washed the inwards and the legs in water",
+        "claim": "He washed the animal inwards and legs in water",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "he",
+        "action": "washed",
+        "object": "the inwards and the legs",
+        "place": "",
+        "mechanism": "in water",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "Moses burnt the whole ram upon the altar",
+        "claim": "Moses burned the whole ram on the altar",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "Moses",
+        "action": "burnt",
+        "object": "the whole ram",
+        "place": "the altar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "it was a burnt sacrifice for a sweet savour",
+        "claim": "The offering was a burnt sacrifice intended for a sweet savour",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "",
+        "action": "was",
+        "object": "it",
+        "place": "",
+        "mechanism": "for a sweet savour",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses to perform this sacrifice",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

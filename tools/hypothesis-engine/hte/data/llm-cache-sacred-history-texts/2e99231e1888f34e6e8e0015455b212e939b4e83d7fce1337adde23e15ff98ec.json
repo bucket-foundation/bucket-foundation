@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "24038f2fd55bfe37f5eee25b1981ce64f6a3aedce8a15008c9cc3f9faf86df8d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And these are the days of the years of Abraham's life which he lived, an hundred threescore and fifteen years.",
+        "claim": "Abraham lived 175 years (an hundred threescore and fifteen)",
+        "actor": "Abraham",
+        "action": "lived",
+        "object": "days of the years of his life",
+        "place": "",
+        "mechanism": "human aging expressed in years",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

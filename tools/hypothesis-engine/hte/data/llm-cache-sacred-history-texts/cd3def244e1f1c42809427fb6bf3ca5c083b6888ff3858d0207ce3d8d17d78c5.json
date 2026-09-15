@@ -1,0 +1,33 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "815bc7143754c1c28e2891e69f8a1f86b34016d5df56c72c7728007b93fb8f7c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses in mount Sinai, saying",
+        "claim": "The LORD spoke to Moses at mount Sinai",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "mount Sinai",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "When ye come into the land which I give you, then shall the land keep a sabbath unto the LORD",
+        "claim": "The land shall keep a sabbath unto the LORD when the people enter it",
+        "actor": "the land",
+        "action": "keep a sabbath",
+        "object": "sabbath",
+        "place": "the land",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}
