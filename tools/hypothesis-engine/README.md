@@ -45,7 +45,8 @@ are the two pieces still open.
 | `hte/generate.py` | (none; generator is out of `Bucket.*`'s scope) | `enumerate_placements` (lazy product, `OTHER` included, its own `span_start`/`bin_width` override the module-default TIME_BIN axis), `neighbors` (one-slot mutation, one-bin time shift, sequence relation change), `from_evidence` (the four evidence-driven generators: evidence-cluster, claim-gap, contradiction, cross-period-analogy; same `span_start`/`bin_width` override), `sequences_from` (Allen-relation pairing) |
 | `hte/unknowns.py` | `Bucket.Unknowns` (Good-Turing/Chao1 only) | `good_turing_missing_mass`, `chao1`, `coverage_interval`, `prior_profiles`, `robustness`, `surprise`, `GapNode`, `value_of_information`, `active_priority` |
 | `hte/tournament.py` | (none; out of `Bucket.*`'s scope) | `Judge`, `Critic`, `run` (Elo-seeded Swiss-style tournament), `critic_filter` |
-| `hte/export.py` | (none; a display/export layer) | `timeline_views` (per-bin, per-event, per-pair JSON), `write_views` (`timeline.json` + `TIMELINE.md`) |
+| `hte/partition.py` | (none; out of `Bucket.*`'s scope) | `partition` (groups placement hypotheses by (OBJECT, PLACE) plus a cluster of overlapping intervals, and sequence hypotheses by their ordered event pair, into competing sets), `partition_odds` (normalized posterior share and evidence-only Bayes factor per member, `shared_evidence` held out of that factor, `STATISTICAL-AUDIT-2026-09-15.md`'s "Explanandum partitions" fix) |
+| `hte/export.py` | (none; a display/export layer) | `timeline_views` (per-bin, per-event, per-pair JSON, each ranked entry carrying `hte.partition.partition_odds`'s own `partition` field alongside its opinion and Elo), `write_views` (`timeline.json` + `TIMELINE.md`) |
 
 ## Design notes for the next agent
 
@@ -549,9 +550,10 @@ prune (`timeline.json`'s own `posterior`/`elo` pair), kept in full so a
 later reader does not have to rerun the campaign to see them.
 `hte campaign results` turns one run directory into a flat, no-
 absolute-path JSON summary: manifest counts, a per-actor rollup over
-`survivors.json` (highest credence, lowest uncertainty, best Elo, and
-that best survivor's own four profile projections), the ten highest-
-Elo survivors in full, a curated calibration slice, and self-report.json
+`survivors.json` (highest credence, lowest uncertainty, best Elo, best
+explanandum-partition share off `timeline.json`, and that best
+survivor's own four profile projections), the ten highest-Elo
+survivors in full, a curated calibration slice, and self-report.json
 verbatim.
 
 ```bash

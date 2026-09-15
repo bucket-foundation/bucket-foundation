@@ -12,7 +12,7 @@ import dataclasses
 import json
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from . import artifacts, calibrate, diagnostics, export, holdout_ledger, predict, purge as purge_mod, question_map, runner
 from .belief import Constants
@@ -95,15 +95,15 @@ def _actor_of(entry: dict[str, Any]) -> str | None:
     return actor if isinstance(actor, str) else None
 
 
-def _per_actor_summary(survivors: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+def _per_actor_summary(
+    survivors: list[dict[str, Any]], share_by_id: Mapping[str, float] | None = None,
+) -> dict[str, dict[str, Any]]:
     """One row per ACTOR slot value named by a placement survivor in
-    `survivors` (`survivors.json`'s own `survivors` list): the highest
-    projected credence, lowest uncertainty mass, and highest evidence-
-    only lift (`b - d`, prior excluded) any survivor naming that actor
-    reached, the rating of its own best-Elo survivor, how many survivors
-    named it, and that best-Elo survivor's own four profile projections
-    (`hte.unknowns.robustness`'s `projections` dict, carried on every
-    entry's own `robustness` field)."""
+    `survivors`: highest projected credence, lowest uncertainty mass,
+    highest evidence-only lift (`b - d`), best-Elo survivor's rating and
+    four profile projections, survivor count, and `best_share`, the
+    largest explanandum-partition share (`hte.partition.partition_odds`'s
+    `share`, via `share_by_id`) any survivor naming that actor holds."""
     rows: dict[str, dict[str, Any]] = {}
     best_elo_entry: dict[str, dict[str, Any]] = {}
     for entry in survivors:
@@ -111,7 +111,8 @@ def _per_actor_summary(survivors: list[dict[str, Any]]) -> dict[str, dict[str, A
         if actor is None:
             continue
         row = rows.setdefault(
-            actor, {"max_P": None, "min_u": None, "max_lift": None, "best_elo": None, "n_survivors": 0},
+            actor,
+            {"max_P": None, "min_u": None, "max_lift": None, "best_elo": None, "best_share": None, "n_survivors": 0},
         )
         row["n_survivors"] += 1
         opinion = entry.get("opinion") or {}
@@ -122,6 +123,9 @@ def _per_actor_summary(survivors: list[dict[str, Any]]) -> dict[str, dict[str, A
             row["min_u"] = u_value
         if lift_value is not None and (row["max_lift"] is None or lift_value > row["max_lift"]):
             row["max_lift"] = lift_value
+        share = (share_by_id or {}).get(entry.get("hypothesis_id"))
+        if share is not None and (row["best_share"] is None or share > row["best_share"]):
+            row["best_share"] = share
         elo = entry.get("elo")
         if elo is not None and (row["best_elo"] is None or elo > row["best_elo"]):
             row["best_elo"] = elo
@@ -130,6 +134,17 @@ def _per_actor_summary(survivors: list[dict[str, Any]]) -> dict[str, dict[str, A
         best = best_elo_entry.get(actor)
         row["profile_projections"] = ((best.get("robustness") or {}).get("projections") or {}) if best else {}
     return rows
+
+
+def _share_by_hypothesis_id(views: dict[str, Any]) -> dict[str, float]:
+    """`hypothesis_id -> partition share`, off `timeline.json`'s
+    `event_views`/`pair_views`. Empty for a run with no `timeline.json`."""
+    entries = [e for ev in views.get("event_views", []) for e in ev.get("ranked_placements", [])]
+    entries += [e for p in views.get("pair_views", []) for e in p.get("competing_sequences", [])]
+    return {
+        e["hypothesis_id"]: e["partition"]["share"]
+        for e in entries if e.get("partition") and e["partition"].get("share") is not None
+    }
 
 
 def _cmd_campaign_results(args: argparse.Namespace) -> int:
@@ -141,15 +156,18 @@ def _cmd_campaign_results(args: argparse.Namespace) -> int:
     to hold out against), and `self-report.json` verbatim. Every file
     this command reads is optional except `MANIFEST.json` itself
     (`artifacts.load_manifest`'s own contract): a run missing
-    `survivors.json`, `calibration.json`, or `self-report.json` still
-    gets a result, with that section read as empty rather than this
-    command refusing to run over a partial run directory."""
+    `survivors.json`, `timeline.json`, `calibration.json`, or
+    `self-report.json` still gets a result, that section read as empty."""
     run_dir = Path(args.run_dir)
     manifest = artifacts.load_manifest(run_dir)
 
     survivors_path = run_dir / "survivors.json"
     survivors_data = json.loads(survivors_path.read_text()) if survivors_path.is_file() else {}
     survivors = survivors_data.get("survivors", [])
+
+    views_path = run_dir / "timeline.json"
+    views = json.loads(views_path.read_text()) if views_path.is_file() else {}
+    share_by_id = _share_by_hypothesis_id(views)
 
     self_report_path = run_dir / "self-report.json"
     self_report = json.loads(self_report_path.read_text()) if self_report_path.is_file() else {}
@@ -189,7 +207,7 @@ def _cmd_campaign_results(args: argparse.Namespace) -> int:
         "campaign": manifest.campaign,
         "corpus": manifest.corpus,
         "counts": dataclasses.asdict(manifest.counts),
-        "per_actor": _per_actor_summary(survivors),
+        "per_actor": _per_actor_summary(survivors, share_by_id),
         "top": top,
         "calibration": calibration,
         "self_report": self_report,

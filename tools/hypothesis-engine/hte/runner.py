@@ -764,6 +764,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     views = export.timeline_views(
         survivors, opinions, elos, time_bins, top_k=max(cfg["top_k"], len(survivors)),
         span_start=span_start, bin_width=bin_width, bin_labels=bin_labels,
+        evidence=corpus.evidence,
     )
     export.write_views(views, run_dir, fragility_ranked=fragility_top10)
     logger.log(f"exported {len(views.get('bins', []))} bin views, {len(views.get('event_views', []))} event views")
