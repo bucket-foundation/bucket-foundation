@@ -360,10 +360,7 @@ def _enrich_entry(entry: dict[str, Any], vocab: Vocabulary, opinions, supports_m
         "address": address,
         "slots": entry["slots"],
         "slot_labels": _slot_labels(vocab, entry["slots"]),
-        "opinion": (
-            {"b": opinion.b, "d": opinion.d, "u": opinion.u, "a": opinion.a, "P": opinion.project()}
-            if opinion is not None else None
-        ),
+        "opinion": ({**opinion.to_dict(), "P": opinion.project()} if opinion is not None else None),
         "elo": entry["elo"],
         "linked_evidence": {
             "supports": sorted(supports_map.get(address, [])),

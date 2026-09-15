@@ -193,7 +193,8 @@ class Opinion:
         """`b`/`d`/`u`/`a` plus the derived `lift` and `tipping_prior_0_6`
         (at the package's default floor `0.6`), inherited by every caller
         of this serializer (`hte.runner._survivor_opinion`, `hte.export.
-        _opinion_dict`) rather than recomputed by hand."""
+        _opinion_dict`, `hte.bridge_export.export_for_bridge`, `hte.api.
+        _enrich_entry`) rather than recomputed by hand."""
         return {
             "b": self.b, "d": self.d, "u": self.u, "a": self.a,
             "lift": self.lift(), "tipping_prior_0_6": self.tipping_prior(0.6),
@@ -202,6 +203,18 @@ class Opinion:
     @classmethod
     def from_dict(cls, d: dict) -> "Opinion":
         return cls(b=d["b"], d=d["d"], u=d["u"], a=d["a"])
+
+
+def opinion_clears_floor(opinion: "Opinion", *, floor_P: float, floor_u_max: float, lift_floor: float) -> bool:
+    """The single-opinion admission predicate every credence-floor gate
+    in this package shares (`hte.canon_writeback.select_above_floor`,
+    `hte.bridge_export.export_for_bridge`'s `accepted` flag): `P(h) >=
+    floor_P`, `u <= floor_u_max`, and evidence-only `lift = b - d >=
+    lift_floor`, with the prior `a` excluded from that last term
+    (`STATISTICAL-AUDIT-2026-09-15.md`). One opinion in, one gate
+    decision out, so every caller reads the same verdict for the same
+    opinion and floors."""
+    return opinion.project() >= floor_P and opinion.u <= floor_u_max and opinion.lift() >= lift_floor
 
 
 def fuse(o1: Opinion, o2: Opinion) -> Opinion:

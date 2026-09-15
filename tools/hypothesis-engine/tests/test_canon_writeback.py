@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from hte import bridge_export, canon_writeback
+from hte import api, bridge_export, canon_writeback
 from hte.address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
 from hte.belief import Opinion
 from hte.corpus import Corpus, fixtures
@@ -228,6 +228,37 @@ def test_select_above_floor_evidence_gate_excludes_the_prior(linking_run):
     assert both_fail == []
 
 
+def test_accept_verdict_and_opinion_shape_agree_across_select_bridge_and_serve(linking_run, monkeypatch):
+    """`select_above_floor`, `bridge_export.export_for_bridge`'s own
+    `accepted` flag, and `hte.api._enrich_entry`'s serve-path `opinion`
+    field all now share `hte.belief.opinion_clears_floor`/`Opinion.
+    to_dict()`: two opinions with identical (b, d, u) but different a
+    get the same accept verdict from the first two, and the same
+    opinion serialization from the last two."""
+    run_dir, _, _ = linking_run
+    candidates, ctx = canon_writeback.reconstruct_candidates(run_dir)
+    base = candidates[0]
+    high_prior = dataclasses.replace(base, opinion=Opinion(b=0.502, d=0.0, u=0.498, a=0.882))
+    low_prior = dataclasses.replace(base, opinion=Opinion(b=0.502, d=0.0, u=0.498, a=0.121))
+    monkeypatch.setattr(canon_writeback, "reconstruct_candidates", lambda rd: ([high_prior, low_prior], ctx))
+
+    selected = canon_writeback.select_above_floor(
+        [high_prior, low_prior], floor_P=0.0, floor_u_max=1.0, lift_floor=0.25,
+    )
+    assert len(selected) == 2
+
+    items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, lift_floor=0.25, branch="x")
+    assert all(item["accepted"] for item in items)
+
+    served = api._enrich_entry(
+        {"hypothesis_id": high_prior.short_id, "address": high_prior.hypothesis.address, "slots": {}, "elo": None},
+        ctx.corpus.vocab, {high_prior.hypothesis.address: high_prior.opinion}, {}, {},
+    )
+    expected = {**high_prior.opinion.to_dict(), "P": high_prior.posterior}
+    bridge_item = next(i for i in items if i["hypothesisId"] == high_prior.short_id)
+    assert bridge_item["opinion"] == served["opinion"] == expected
+
+
 def _fixture_novelty() -> NoveltyResult:
     return NoveltyResult(score=1.0, closest_path=None, closest_similarity=0.0, closest_bucket=None, n_compared=0)
 
@@ -394,7 +425,9 @@ def test_write_back_never_writes_canon_tier():
 
 def test_bridge_export_marks_accepted_by_the_given_floors(linking_run):
     run_dir, _, _ = linking_run
-    items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, branch="02-physics")
+    # lift_floor=-1.0 disables the evidence-mass gate; this test is
+    # about the P/u pair, matching select_above_floor's own equivalent.
+    items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0, branch="02-physics")
     assert len(items) == 2
     assert all(item["accepted"] for item in items)
     # canon_tier and origin are constant regardless of accepted: every

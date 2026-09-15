@@ -17,6 +17,7 @@ from hte.belief import (
     fuse,
     load_constants,
     load_detectability_table,
+    opinion_clears_floor,
     pooled_weight,
     score,
     sigmoid,
@@ -101,6 +102,18 @@ def test_opinion_to_dict_carries_lift_and_tipping_prior_and_from_dict_round_trip
     # from_dict reads only the four core fields; the derived ones are
     # recomputed on demand rather than round-tripped as stored state.
     assert Opinion.from_dict(d) == op
+
+
+def test_opinion_clears_floor_ignores_the_prior():
+    # Same shared predicate `select_above_floor` and `bridge_export`
+    # both call: identical (b, d, u), different a, same verdict either way.
+    high_a = Opinion(b=0.502, d=0.0, u=0.498, a=0.882)
+    low_a = Opinion(b=0.502, d=0.0, u=0.498, a=0.121)
+    floors = {"floor_P": 0.0, "floor_u_max": 1.0}
+    assert opinion_clears_floor(high_a, lift_floor=0.25, **floors)
+    assert opinion_clears_floor(low_a, lift_floor=0.25, **floors)
+    assert not opinion_clears_floor(high_a, lift_floor=0.6, **floors)
+    assert not opinion_clears_floor(low_a, lift_floor=0.6, **floors)
 
 
 def test_fuse_dogmatic_pair_returns_neutral():

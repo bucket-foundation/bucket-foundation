@@ -88,7 +88,7 @@ from . import propagate as propagate_mod
 from . import roles
 from . import unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
-from .belief import Constants, Opinion, load_detectability_table, score as belief_score
+from .belief import Constants, Opinion, load_detectability_table, opinion_clears_floor, score as belief_score
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus
 from .evidence import EvidenceItem
@@ -353,10 +353,12 @@ def select_above_floor(
     docstring), the exact gap the Younger Dryas live run exposed (0.941
     vs 0.562 off identical evidence, `STATISTICAL-AUDIT-2026-09-15.md`).
     `lift_floor` reads none of `a`, so admission always needs evidence
-    mass of its own."""
+    mass of its own. Delegates to `hte.belief.opinion_clears_floor`, the
+    one predicate `hte.bridge_export.export_for_bridge`'s own `accepted`
+    flag shares, so the two surfaces never drift apart."""
     return [
         c for c in candidates
-        if c.posterior >= floor_P and c.opinion.u <= floor_u_max and c.opinion.lift() >= lift_floor
+        if opinion_clears_floor(c.opinion, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor)
     ]
 
 
@@ -708,6 +710,7 @@ def _cite_block() -> dict[str, Any]:
 
 def build_envelope(
     cards: list[tuple[Candidate, Path]], *, branch: str, ctx: RunContext, floor_P: float, floor_u_max: float,
+    lift_floor: float = 0.25,
     signoff: str, understanding_by_id: dict[str, str] | None = None,
     novelty_by_id: dict[str, novelty_mod.NoveltyResult] | None = None,
     ranking: holdout_ledger.RankingStatus | None = None,
@@ -806,7 +809,7 @@ def build_envelope(
         "campaign": ctx.manifest.campaign,
         "generated_at": now,
         "signed_off_by": signoff,
-        "floors": {"P": floor_P, "u_max": floor_u_max},
+        "floors": {"P": floor_P, "u_max": floor_u_max, "lift": lift_floor},
         "agent_action_required": False,
         "payment_required_from_you": False,
         "summary": (
@@ -1057,14 +1060,17 @@ def write_back(
 
     envelope_dir.mkdir(parents=True, exist_ok=True)
     envelope = build_envelope(
-        card_paths, branch=branch, ctx=ctx, floor_P=floor_P, floor_u_max=floor_u_max, signoff=signoff,
-        understanding_by_id=understanding_by_id, novelty_by_id=novelty_by_id, ranking=ranking,
+        card_paths, branch=branch, ctx=ctx, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor,
+        signoff=signoff, understanding_by_id=understanding_by_id, novelty_by_id=novelty_by_id, ranking=ranking,
         cascade_report=cascade_report,
     )
     envelope_path.write_text(json.dumps(envelope, indent=2), encoding="utf-8")
 
     from . import bridge_export
-    bridge_export.write_bridge_export(run_dir, envelope_path=envelope_path, floor_P=floor_P, floor_u_max=floor_u_max, branch=branch)
+    bridge_export.write_bridge_export(
+        run_dir, envelope_path=envelope_path, floor_P=floor_P, floor_u_max=floor_u_max,
+        lift_floor=lift_floor, branch=branch,
+    )
 
     return written
 
