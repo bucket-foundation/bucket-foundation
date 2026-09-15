@@ -2,6 +2,7 @@
 import nextDynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import type { MutableRefObject } from "react";
 import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
 import type { ScrollState, DecorativeVariant } from "@/components/canon-globe/CanonGlobe";
@@ -121,6 +122,9 @@ interface Props {
    * e.g. a negative translate so the globe rises above the panel's top
    * edge. Ignored in `decorative` mode. */
   globeWrapperClassName?: string;
+  /** Inline style merged onto the same wrapper, e.g. a scroll-driven
+   * translate. Ignored in `decorative` mode. */
+  globeWrapperStyle?: CSSProperties;
   /** Bare-globe mode: renders only the R3F canvas, no search bar, branch
    * filter chips, layer toggles, time scrubber, expand button, corner
    * legend, or detail drawer. For a fixed decorative background mount. */
@@ -184,6 +188,7 @@ export default function CanonGlobeMount({
   branches,
   containerClassName,
   globeWrapperClassName,
+  globeWrapperStyle,
   decorative = false,
   scrollRef,
   variant,
@@ -202,6 +207,7 @@ export default function CanonGlobeMount({
       branches={branches}
       containerClassName={containerClassName}
       globeWrapperClassName={globeWrapperClassName}
+      globeWrapperStyle={globeWrapperStyle}
       layout={layout}
     />
   );
@@ -211,8 +217,9 @@ function InteractiveCanonGlobeMount({
   branches: _branches,
   containerClassName,
   globeWrapperClassName = "",
+  globeWrapperStyle,
   layout = "default",
-}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "layout">) {
+}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout">) {
   const home = layout === "home";
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
@@ -661,6 +668,7 @@ function InteractiveCanonGlobeMount({
         className={`relative w-full mx-auto flex-1 overflow-visible ${globeWrapperClassName}`}
         style={{
           minHeight: "440px",
+          ...globeWrapperStyle,
         }}
       >
         <div

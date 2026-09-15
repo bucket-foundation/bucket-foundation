@@ -2841,3 +2841,7 @@ None.
 - Decorative globe on /research-os: on mount it arrives from 1.1 rad to the left and eases into place over 3.6 s (cubic ease-out) while the particle shell grows from 65% to full; scroll drives it afterward. Frames stay under the 20 per second cap. Skipped under prefers-reduced-motion. The interactive globes (home panel, /canon/search) keep no intro, per the founder.
 - Home panel globe lift 38vh to 32vh.
 - Two scrolled loads of each page on the founder's GPU, 0 hangs.
+
+## 2026-09-15 home globe scroll placement
+
+- The home globe rises 18vh above the panel's top at page top (its halo clears the Research OS button) and slides back to the panel's center as the panel scrolls into view, reaching center once the panel fills the viewport. `CanonSearchPanel` computes progress = scrollY / panel top on a rAF-throttled scroll listener and passes a `translateY` through the new `globeWrapperStyle` prop on `CanonGlobeMount`; the fixed `-mt` lift is gone.

@@ -3605,3 +3605,7 @@ Squash-merged after this pass.
 ## 2026-09-15 Research OS globe intro
 
 `CanonGlobe.tsx`: intro offset and shell growth inside `ScrollSpinDriver`, `INTRO_*` constants. `CanonSearchPanel.tsx`: lift 32vh.
+
+## 2026-09-15 home globe scroll placement
+
+`CanonSearchPanel.tsx`: scroll-driven lift (18vh to 0). `CanonGlobeMount.tsx`: `globeWrapperStyle` prop merged onto the globe wrapper.
