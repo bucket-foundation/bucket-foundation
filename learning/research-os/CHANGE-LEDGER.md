@@ -3577,3 +3577,7 @@ Squash-merged after this pass.
 ## 2026-09-15 Research OS globe redesign
 
 `src/components/canon-globe/CanonGlobe.tsx`: `ScrollSpinDriver`, `ParticleShell`, `ContextRecovery`, decorative tilt group, `scrollRef` prop, decorative dpr 0.4; `AutoRotateDriver` removed. `src/components/FixedCanonGlobeBackground.tsx`: 192vh, radial mask, no CSS filter, writes `{y, velocity}`. `src/app/canon/CanonGlobeMount.tsx`: forwards `scrollRef`. Verified on the founder's AMD Phoenix iGPU in Chrome 150: hardware context, no GPU hang.
+
+## 2026-09-15 Research OS page to the artifact layout
+
+`src/app/research-os/page.tsx` rebuilt to the artifact structure; `src/app/research-os/landing.css` and `src/app/research-os/RevealRow.tsx` added. Globe roll, position, opacity, and dpr adjusted in `CanonGlobe.tsx` and `FixedCanonGlobeBackground.tsx`.

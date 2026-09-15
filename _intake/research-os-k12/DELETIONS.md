@@ -811,3 +811,7 @@ dev commit 65dbde7d0 (#117, "Research OS status band refresh to current main") r
 ## 2026-09-15 decorative globe driver
 
 `AutoRotateDriver` and its three constants, and the `scrollSpeedRef` prop, left `CanonGlobe.tsx` and `CanonGlobeMount.tsx` with the scroll-only spin. Full prior source: `git show 4f95f109b:src/components/canon-globe/CanonGlobe.tsx`.
+
+## 2026-09-15 Research OS page copy
+
+The eyebrow "§ Research OS · K-12", the "Try the prototype" hero CTA, the "§ five states" eyebrow, and the per-state meaning and signal sentences left `src/app/research-os/page.tsx` for the artifact layout. Prior file: `git show 19a7bc1c6:src/app/research-os/page.tsx`.

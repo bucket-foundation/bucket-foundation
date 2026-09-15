@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import FixedCanonGlobeBackground from "@/components/FixedCanonGlobeBackground";
+import RevealRow from "./RevealRow";
+import "./landing.css";
 
 // /research-os, Research OS for K-12 (beads ros-01 to ros-10). The
 // production-reaching path for the L1 rung of the depth ladder: a student
@@ -30,32 +32,15 @@ export const metadata: Metadata = {
   },
 };
 
-const STATES: { name: string; meaning: string; signal: string }[] = [
-  {
-    name: "Access",
-    meaning: "The concept is reachable. Its prerequisites are understood and the learner has opened it.",
-    signal: "Route exposure and an open event.",
-  },
-  {
-    name: "Awareness",
-    meaning: "The learner can recall the concept's claim and place it in the graph.",
-    signal: "Spaced-repetition retrievability above the Academy recall threshold.",
-  },
-  {
-    name: "Understanding",
-    meaning: "The learner can apply or explain the concept in a fresh context.",
-    signal: "A constructive task passed: self-explanation, a worked example, or a quote-and-check task.",
-  },
+const STATES: { name: string; line: string }[] = [
+  { name: "Access", line: "The concept is reachable. Its prerequisites are already understood." },
+  { name: "Awareness", line: "The learner recalls the concept and places it in the graph." },
+  { name: "Understanding", line: "The learner restates the concept and applies it within the topic." },
   {
     name: "Internalization",
-    meaning: "The concept holds over time and transfers.",
-    signal: "Memory stability above threshold and a delayed transfer item passed.",
+    line: "The learner connects the concept to other topics and applies it outside where it was taught.",
   },
-  {
-    name: "Production",
-    meaning: "The learner produced a claim with evidence and citations that reviewers accepted into the graph.",
-    signal: "A reviewed production record with a citable id.",
-  },
+  { name: "Production", line: "The learner creates a new method, application, or finding with the concept." },
 ];
 
 // One screenshot per state, same order as STATES, captured live from this
@@ -96,84 +81,80 @@ const STATE_SCREENSHOTS: { src: string; alt: string; route: string; label: strin
   },
 ];
 
+const TRUST = "Free · no login for the demo · every quote traces to a real source";
+
 export default function ResearchOsPage() {
   return (
     <>
       <FixedCanonGlobeBackground />
       <main className="stone-bone relative z-10 grain">
-      <div className="max-w-[1100px] mx-auto px-4 md:px-6 pt-14 md:pt-32 pb-6">
-        <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
-          § Research OS · K-12
-        </div>
-        <h1 className="font-display uppercase text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] chisel tracking-[0.005em] text-[color:var(--basalt)]">
-          Research OS <span className="inlay-gold">for K-12</span>
-        </h1>
-        <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Where students of all levels access, become aware of, understand,
-          internalize, and produce knowledge.
-        </p>
-        <div className="mt-6">
-          <Link
-            href="/research-os/workspace"
-            className="inline-block px-5 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)]"
-          >
-            Try the prototype →
-          </Link>
-        </div>
-      </div>
+        <section className="ros-hero">
+          <div className="ros-wrap">
+            <h1 className="font-display uppercase chisel text-[color:var(--basalt)]">
+              Research OS for <span className="inlay-gold">K-12</span>
+            </h1>
+            <p className="ros-sub">
+              Where students of all levels access, become aware of, understand,
+              internalize, and produce knowledge.
+            </p>
+            <div className="ros-cta-row">
+              <a className="ros-btn" href="#states">
+                See the Five States →
+              </a>
+              <span className="ros-trust">{TRUST}</span>
+            </div>
+          </div>
+        </section>
 
-      {/* ════════════════════════════════════════════════════════════ */}
-      {/* FIVE STATES · alternating rows, Access through Production      */}
-      {/* ════════════════════════════════════════════════════════════ */}
-      <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-10 md:py-16">
-        <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-10">
-          § five states
-        </div>
-        <div className="flex flex-col gap-16 md:gap-24">
-          {STATES.map((s, i) => {
-            const shot = STATE_SCREENSHOTS[i];
-            const imageRight = i % 2 === 0;
-            return (
-              <div
-                key={s.name}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center"
-              >
-                <div className={imageRight ? "md:order-1" : "md:order-2"}>
-                  <div className="font-display text-[color:var(--gold-deep)] text-[15px] mb-3">
-                    {String(i + 1).padStart(2, "0")}
+        <section id="states" className="ros-section">
+          <div className="ros-wrap">
+            <h2 className="ros-section-title font-display text-[color:var(--basalt)]">Five States</h2>
+            <p className="ros-section-sub">Five states. Reached in order.</p>
+            {STATES.map((s, i) => {
+              const shot = STATE_SCREENSHOTS[i];
+              return (
+                <RevealRow key={s.name} reverse={i % 2 === 1}>
+                  <div className="ros-image">
+                    <Image
+                      src={shot.src}
+                      alt={shot.alt}
+                      width={960}
+                      height={600}
+                      sizes="(min-width: 768px) 55vw, 100vw"
+                      priority={i === 0}
+                    />
                   </div>
-                  <h3 className="font-display uppercase text-[26px] md:text-[32px] tracking-[0.02em] text-[color:var(--basalt)] mb-4">
-                    {s.name}
-                  </h3>
-                  <p className="text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-md">
-                    {s.meaning}
-                  </p>
-                  <Link
-                    href={shot.route}
-                    className="mt-5 inline-block small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
-                  >
-                    view {shot.label} →
-                  </Link>
-                </div>
-                <div className={imageRight ? "md:order-2" : "md:order-1"}>
-                  <Image
-                    src={shot.src}
-                    alt={shot.alt}
-                    width={960}
-                    height={600}
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    // The first row's image is the page's LCP element;
-                    // mark it priority so Next preloads it instead of
-                    // lazy-loading a hero-sized image below the fold check.
-                    priority={i === 0}
-                    className="w-full h-auto rounded-md border border-[color:var(--hairline)] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
-                  />
-                </div>
-              </div>
-            );
-          })}
+                  <div className="ros-text">
+                    <div className="ros-num">
+                      {String(i + 1).padStart(2, "0")} / {String(STATES.length).padStart(2, "0")}
+                    </div>
+                    <h3 className="font-display text-[color:var(--basalt)]">{s.name}</h3>
+                    <p>{s.line}</p>
+                    <Link href={shot.route}>view {shot.label} →</Link>
+                  </div>
+                </RevealRow>
+              );
+            })}
+          </div>
+        </section>
+
+        <div className="ros-wrap">
+          <hr className="ros-divider" />
         </div>
-      </div>
+
+        <section id="cta" className="ros-section ros-final">
+          <div className="ros-wrap">
+            <h2 className="ros-section-title font-display text-[color:var(--basalt)]" style={{ marginBottom: 0 }}>
+              Start with one concept.
+            </h2>
+            <div className="ros-cta-row">
+              <Link className="ros-btn" href="/research-os/workspace">
+                Open the Workspace →
+              </Link>
+              <span className="ros-trust">{TRUST}</span>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );

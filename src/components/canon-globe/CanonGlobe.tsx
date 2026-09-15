@@ -20,7 +20,8 @@ function damp(current: number, target: number, lambda: number, dt: number) {
 // loop eases toward it; the particle shell around the globe expands with
 // scroll speed and settles back when scrolling stops.
 export type ScrollState = { y: number; velocity: number };
-const DECORATIVE_TILT = (35 * Math.PI) / 180;
+// Axis roll on screen: 35 degrees of tilt, then a quarter turn clockwise.
+const DECORATIVE_TILT = ((35 - 90) * Math.PI) / 180;
 const DECORATIVE_RAD_PER_PX = 0.0022;
 const DECORATIVE_SPIN_EASE = 4;
 const DECORATIVE_SHELL_EASE = 5;
@@ -265,7 +266,7 @@ export default function CanonGlobe({
         // Lower GPU pressure: cap DPR to 1, drop antialias. Helps on
         // browsers with shaky GPU drivers (Brave/Wayland/AMD on Linux
         // tends to crash with frequent context switches).
-        dpr={decorative ? 0.4 : 1}
+        dpr={decorative ? 0.22 : 1}
         frameloop="demand"  // only render on prop change / camera moves
         performance={{ min: 0.5 }}
         camera={{ position: [0, 0, 3.4], fov: 42 }}

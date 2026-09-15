@@ -2801,3 +2801,10 @@ None.
 - Particle shell: 3,200 gold and basalt points between 1.25 and 2.6 radii, scale eases toward 1 + scroll speed (cap 0.4) and settles back; counter-rotates at 0.55 of the globe.
 - `ContextRecovery`: requests a frame on `webglcontextrestored` so a GPU reset no longer leaves a blank canvas (the white square seen 2026-09-15 08:54 after Brave's reset).
 - Removed: `AutoRotateDriver`, `DECORATIVE_BASE_AUTOROTATE_SPEED`, `SCROLL_EXTRA_DECAY`, `AUTOROTATE_EASE`, the `scrollSpeedRef` prop (now `scrollRef: {y, velocity}`), and the wrapper's `filter` comment. Prior text at `git show 4f95f109b:src/components/canon-globe/CanonGlobe.tsx` and `git show 4f95f109b:src/components/FixedCanonGlobeBackground.tsx`.
+
+## 2026-09-15 Research OS page to the artifact layout
+
+- Page structure follows the reviewed artifact (196275f8): full-viewport hero with the h1 at clamp(2.8rem, 8vw, 6rem), subtext, gold mono button "See the Five States" and a mono trust line; centered "Five States" title and sub; five alternating rows (16:10 screenshot with hairline border and shadow, mono "01 / 05" counter that turns gold on reveal, 22px Cinzel h3, one-line meaning, route link); hairline divider; final centered CTA "Start with one concept." with "Open the Workspace"; the site Header and Footer stay. Rows slide and fade in through an IntersectionObserver (`RevealRow.tsx`, 22% threshold), static under prefers-reduced-motion. Styles in `src/app/research-os/landing.css`.
+- State copy replaced with the artifact's one-liners; the earlier meaning and signal text is at `git show 19a7bc1c6:src/app/research-os/page.tsx`.
+- Globe: axis rolled a quarter turn clockwise on top of the 35 degree tilt (-55 degrees on screen), center moved to 78vw by 64vh, wrapper opacity 0.55, backing store 0.22 dpr for a softer image.
+- Verified in Chrome 150 on the founder's Phoenix iGPU: hardware context, no console errors, reveal and scroll spin working. One amdgpu ring timeout attributed to `Process chrome` during the scroll-to-bottom pass (the 13th this boot; the first was Sep 5 before any of this work); the context recovered.

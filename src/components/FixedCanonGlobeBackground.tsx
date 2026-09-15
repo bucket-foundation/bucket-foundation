@@ -6,8 +6,8 @@ import type { ScrollState } from "@/components/canon-globe/CanonGlobe";
 
 /**
  * A single fixed, page-level mount of the real canon globe, decorative and
- * chromeless: twice the viewport height across, centered right of the text
- * column, soft (the globe renders at 0.4 device pixels per CSS pixel and
+ * chromeless: twice the viewport height across, tucked toward the bottom
+ * right, at 55% opacity, soft (the globe renders at 0.22 device pixels per CSS pixel and
  * the browser upsamples it; no CSS filter, a compositor blur over a layer
  * this large hangs the AMD Phoenix GPU under amdgpu), with a radial mask
  * so its edge dissolves into the bone ground. The globe spins only while the page scrolls (scroll position maps
@@ -47,8 +47,8 @@ export default function FixedCanonGlobeBackground() {
   return (
     <div
       aria-hidden
-      className="fixed z-[1] pointer-events-none left-[70vw] top-[50vh] -translate-x-1/2 -translate-y-1/2 w-[192vh] h-[192vh]"
-      style={{ WebkitMaskImage: edgeMask, maskImage: edgeMask }}
+      className="fixed z-[1] pointer-events-none left-[78vw] top-[64vh] -translate-x-1/2 -translate-y-1/2 w-[192vh] h-[192vh]"
+      style={{ opacity: 0.55, WebkitMaskImage: edgeMask, maskImage: edgeMask }}
     >
       {/* `branches` is required by CanonGlobeMount's type but read only by
           its interactive mount; decorative mode ignores it. The Earth mesh,
