@@ -295,6 +295,13 @@ settle. Three have answers.
    few for the linker to stack support on any address; the
    lowest-uncertainty hypothesis in the run is a refuted one,
    `f6d3055feedaf35f` (cosmic-impact, refuted, megafaunal-extinction, north-america, independent-replication-failure): b = 0.000, d = 0.940, u = 0.060, P = 0.016, Elo 118.
+   Under the uniform profile the three tie at 0.751: on this corpus's
+   evidence alone, meltwater routing, the impact hypothesis, and the
+   supernova trigger are indistinguishable, and the 0.941 against 0.562
+   gap is the consensus label filling the uncertainty mass. The impact
+   hypothesis misses the 0.6 claim floor by 0.038 of prior-filled mass
+   while the same single item carries meltwater over it. See
+   `_intake/hypothesis-engine/STATISTICAL-AUDIT-2026-09-15.md`.
 2. **Contested and fringe separate on stability.** Robustness marks
    193 of 206 `cosmic-impact` survivors stable and 46 of 54
    `meltwater-pulse`; `supernova-event` 3 of 31, `taurid-complex-swarm`
