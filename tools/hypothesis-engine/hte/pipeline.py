@@ -58,6 +58,12 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "writeback_signoff": None,
     "writeback_floor_P": 0.6,
     "writeback_floor_u_max": 0.5,
+    # `hte.canon_writeback.write_back`'s own FDR gate
+    # (`STATISTICAL-AUDIT-2026-09-15.md` item 5), forwarded here the same
+    # way `writeback_floor_P`/`writeback_floor_u_max` already are;
+    # `lift_floor` still passes straight through to `write_back`'s own
+    # default, unexposed at this layer.
+    "writeback_fdr_q": 0.10,
     "writeback_out_root": "bucket-canon",
     # `None` passes straight through to `hte.canon_writeback.write_back`'s
     # own default (`hte.holdout_ledger.DEFAULT_LEDGER_PATH`, the committed
@@ -328,6 +334,7 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
                     paths = canon_writeback.write_back(
                         run_dir, branch=cfg["writeback_branch"], signoff=cfg["writeback_signoff"],
                         floor_P=cfg["writeback_floor_P"], floor_u_max=cfg["writeback_floor_u_max"],
+                        fdr_q=cfg["writeback_fdr_q"],
                         out_root=cfg["writeback_out_root"], dry_run=cfg["dry_run"],
                         replay_only=cfg["replay_only"], ledger_path=cfg["writeback_ledger_path"],
                     )

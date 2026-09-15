@@ -47,6 +47,16 @@ adapter will face the same two questions:
   here comes from a different, narrower field: `timeline[].disputed ==
   False` (claims marked accepted), 11 of this corpus's 21 dated events.
 
+## Score formula
+
+`hte.belief.pooled_weight` used to multiply a hypothesis's own pooled
+weight by a cross-kind bonus, up to 1.3x, once two or more evidence
+kinds from different families carried weight on the same side.
+`STATISTICAL-AUDIT-2026-09-15.md` item 6 removed it: the bonus assumed
+evidence kinds corroborate independently, and nothing here ever
+estimated that independence. `pooled_weight` now sums each kind's own
+discounted weight plainly.
+
 ## Credence floors
 
 `hte.canon_writeback.select_above_floor` keeps a candidate only when
@@ -66,6 +76,15 @@ Younger Dryas run put two hypotheses built from the SAME evidence on
 opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
+
+A fourth gate, Benjamini-Hochberg false-discovery-rate control at `fdr_q`
+(default `0.10`), answers item 5's "3,205 hypotheses, one floor"
+finding: a single fixed floor over a population that size mismarks
+both directions. `select_above_floor` turns each candidate's `lift`
+into a p-like score, `1 - lift` clamped to `(0, 1]`, and runs BH over
+the full candidate set on it; only a candidate clearing BOTH the
+P/u/lift floor and BH's own cut is selected. `write_back` reports the
+BH threshold and reject count in the branch `INDEX.md` header.
 
 ## Why write-back stops at `candidate`
 

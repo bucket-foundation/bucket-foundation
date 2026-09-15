@@ -32,7 +32,7 @@ are the two pieces still open.
 | `hte/address.py` | `Bucket.Address` | `SlotTuple`, `encode_indices`/`decode_indices` (placement), `encode_sequence_indices`/`decode_sequence_indices`, `short_id`, and the concept-id-facing `encode`/`decode` wrappers |
 | `hte/hypothesis.py` | `Bucket.Hypothesis` | `Placement`, `Sequence`, `Hypothesis` (address, `claims`, `depends_on`, `meta`), JSON round trip, `prior_logit` |
 | `hte/evidence.py` | (plain data, `def:evidence`) | `EvidenceKind`, `EvidenceFamily`, `Tier`, `Stance`, `EvidenceSpan`, `Source`, `EvidenceItem` (carrying its own best-effort extracted `actor`/`action`/`object`/`place`/`mechanism`/`interval`/`stance`, `bkt-hte-evidence-slots`) |
-| `hte/belief.py` | `Bucket.Belief` | `Opinion`, `fuse`, `Constants`, `D`, `cross_kind_bonus`, `effective_count`, detectability (`load_detectability_table`, `detectability`, `detectability_scale`), `edge_strength`, `cluster_weight`, `weight`, `pooled_weight`, `score` |
+| `hte/belief.py` | `Bucket.Belief` | `Opinion`, `fuse`, `Constants`, `D`, `effective_count`, detectability (`load_detectability_table`, `detectability`, `detectability_scale`), `edge_strength`, `cluster_weight`, `weight`, `pooled_weight`, `score` |
 | `hte/link.py` | (none; a linking layer with no Lean counterpart) | `link_evidence` (fills `EvidenceItem.supports`/`refutes` by slot matching against a hypothesis population, `bkt-hte-evidence-slots`), `slot_match_score` (exact-id or fuzzy-label per-slot comparator, shared with `hte.calibrate`) |
 | `hte/llm.py` | none (own layer) | `complete`, the cached, schema-validated `claude -p` wrapper every role calls; `resolve_model`, `escalation_model`, `cache_stats`; `LLMError` and its three subclasses |
 | `hte/roles.py` | `main.tex` §8, `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §7 | One function per engine-loop role: `generate`, `critique`, `unknown_unknown`, `preservation_critique`, `judge`, `meta_review`, `self_report`, `extract` (the ensemble-of-3, agreement-scored, opus-escalated extractor, `bkt-hte-extraction-ensemble`; its schema additively carries the same slot fields `hte.evidence.EvidenceItem` does, `bkt-hte-evidence-slots`) |
@@ -527,6 +527,13 @@ absolute-path JSON summary: manifest counts, a per-actor rollup over
 that best survivor's own four profile projections), the ten highest-
 Elo survivors in full, a curated calibration slice, and self-report.json
 verbatim.
+
+`MANIFEST.json["prereg"]` (item 5's preregistration fix) is
+`{"criteria": {...}, "sha256": ...}`: the credence floors, `fdr_q`,
+`link_threshold`, `max_hypotheses`, and `seeds` this run commits to,
+hashed the moment `hte.runner.run_campaign` resolves its own config,
+before generation runs at all. Two runs from the same config share a
+hash; changing any one criterion changes it.
 
 ```bash
 python3 -m hte.cli campaign results runs/quantum-history/<timestamp>/ --out results.json

@@ -9,7 +9,6 @@ from hte.belief import (
     D,
     Opinion,
     cluster_weight,
-    cross_kind_bonus,
     detectability,
     detectability_scale,
     edge_strength,
@@ -139,7 +138,7 @@ def test_sigmoid_bounds_and_midpoint():
 
 
 # --------------------------------------------------------------------------
-# D, cross-kind bonus
+# D
 # --------------------------------------------------------------------------
 
 
@@ -148,12 +147,49 @@ def test_D_matches_worked_example_values():
     assert D(1) == pytest.approx(1.347, abs=1e-3)
 
 
-def test_cross_kind_bonus_within_family_is_one():
-    assert cross_kind_bonus([EvidenceKind.MATERIAL, EvidenceKind.GENETIC]) == pytest.approx(1.0)
+# --------------------------------------------------------------------------
+# Cross-kind bonus removed (item 6): single-kind pooled weight is
+# unaffected, multi-kind drops by exactly the old bonus factor.
+# --------------------------------------------------------------------------
 
 
-def test_cross_kind_bonus_cross_family_matches_worked_example():
-    assert cross_kind_bonus([EvidenceKind.MATERIAL, EvidenceKind.TEXTUAL]) == pytest.approx(1.3)
+def _pooled_support(span_id: str, kind: EvidenceKind, tier: Tier, blended_a: float, address: int) -> EvidenceItem:
+    return EvidenceItem(
+        id=span_id, kind=kind, tier=tier, source_id="s",
+        span=EvidenceSpan(doc_id="d", locator="l", quote="q", char_start=0, char_end=1),
+        provenance="manual", supports=[address], views={"blended_a": blended_a},
+    )
+
+
+def test_pooled_weight_single_kind_is_unaffected_by_the_bonus_removal():
+    """One kind never triggered the old bonus (no cross-family pair to
+    sum over), so pooled weight is the plain `D(n_eff) * sum(s_i)`."""
+    items = [
+        _pooled_support("e1", EvidenceKind.MATERIAL, Tier.T1, 0.8, address=1),
+        _pooled_support("e2", EvidenceKind.MATERIAL, Tier.T2, 0.4, address=1),
+    ]
+    s_plus, s_minus = pooled_weight(items, 1)
+    expected = D(2) * (TIER_WEIGHT[Tier.T1] * 0.8 + TIER_WEIGHT[Tier.T2] * 0.4)
+    assert s_plus == pytest.approx(expected)
+    assert s_minus == 0.0
+
+
+def test_pooled_weight_multi_kind_no_longer_gets_the_cross_kind_bonus():
+    """Two single-item kinds from different families: the removed bonus
+    would have multiplied this sum by `1 + 0.3*1 = 1.3` (one cross-
+    family pair); the plain sum below, with no multiplier, is what
+    `pooled_weight` returns now."""
+    items = [
+        _pooled_support("e1", EvidenceKind.MATERIAL, Tier.T1, 0.8, address=1),
+        _pooled_support("e2", EvidenceKind.TEXTUAL, Tier.T3, 0.6, address=1),
+    ]
+    s_plus, _ = pooled_weight(items, 1)
+    expected_no_bonus = D(1) * (TIER_WEIGHT[Tier.T1] * 0.8) + D(1) * (TIER_WEIGHT[Tier.T3] * 0.6)
+    assert s_plus == pytest.approx(expected_no_bonus)
+
+    old_cross_kind_bonus = 1.3  # 1 + 0.3 * one cross-family pair (the removed hte.belief.cross_kind_bonus)
+    old_total_would_have_been = expected_no_bonus * old_cross_kind_bonus
+    assert s_plus == pytest.approx(old_total_would_have_been / old_cross_kind_bonus)
 
 
 # --------------------------------------------------------------------------
@@ -319,23 +355,27 @@ def test_worked_example_prior_logits():
 
 
 def test_worked_example_pooled_weight_matches_paper():
+    """`main.tex`'s `tab:worked-example` computed this total WITH the
+    now-removed cross-kind bonus (item 6): `6.186` was `4.759 * 1.3`,
+    the bonus for one MATERIAL/TEXTUAL cross-family pair."""
     vocab = _catalhoyuk_vocab()
     hyp_farmers, hyp_aliens = _catalhoyuk_hypotheses(vocab)
     evidence = _catalhoyuk_evidence(hyp_farmers, hyp_aliens)
 
     s_plus_farmers, s_minus_farmers = pooled_weight(evidence, hyp_farmers.address)
-    assert s_plus_farmers == pytest.approx(6.186, abs=2e-3)
+    assert s_plus_farmers == pytest.approx(4.759, abs=2e-3)
     assert s_minus_farmers == 0.0
 
     s_plus_aliens, s_minus_aliens = pooled_weight(evidence, hyp_aliens.address)
     assert s_plus_aliens == 0.0
-    assert s_minus_aliens == pytest.approx(6.186, abs=2e-3)
+    assert s_minus_aliens == pytest.approx(4.759, abs=2e-3)
 
 
 def test_worked_example_opinions_match_paper_table():
-    """Reproduces `tab:worked-example` in `main.tex` §Belief model to 3
-    decimals: farmers b=0.756, d=0.000, u=0.244, P=0.982; aliens b=0.000,
-    d=0.756, u=0.244, P~0.00037."""
+    """`main.tex`'s own table (farmers b=0.756/d=0/u=0.244/P=0.982;
+    aliens b=0/d=0.756/u=0.244/P~0.00037) was computed WITH the now-
+    removed cross-kind bonus (item 6); these are the same opinions over
+    the bonus-free pooled weight."""
     vocab = _catalhoyuk_vocab()
     hyp_farmers, hyp_aliens = _catalhoyuk_hypotheses(vocab)
     evidence = _catalhoyuk_evidence(hyp_farmers, hyp_aliens)
@@ -343,15 +383,15 @@ def test_worked_example_opinions_match_paper_table():
     farmers_opinion = score(hyp_farmers, evidence, vocab)
     aliens_opinion = score(hyp_aliens, evidence, vocab)
 
-    assert farmers_opinion.b == pytest.approx(0.756, abs=1e-3)
+    assert farmers_opinion.b == pytest.approx(0.704, abs=1e-3)
     assert farmers_opinion.d == pytest.approx(0.000, abs=1e-3)
-    assert farmers_opinion.u == pytest.approx(0.244, abs=1e-3)
-    assert farmers_opinion.project() == pytest.approx(0.982, abs=1e-3)
+    assert farmers_opinion.u == pytest.approx(0.296, abs=1e-3)
+    assert farmers_opinion.project() == pytest.approx(0.978, abs=1e-3)
 
     assert aliens_opinion.b == pytest.approx(0.000, abs=1e-3)
-    assert aliens_opinion.d == pytest.approx(0.756, abs=1e-3)
-    assert aliens_opinion.u == pytest.approx(0.244, abs=1e-3)
-    assert aliens_opinion.project() == pytest.approx(0.00037, abs=1e-5)
+    assert aliens_opinion.d == pytest.approx(0.704, abs=1e-3)
+    assert aliens_opinion.u == pytest.approx(0.296, abs=1e-3)
+    assert aliens_opinion.project() == pytest.approx(0.00044, abs=1e-5)
 
 
 def test_worked_example_opinion_masses_still_sum_to_one():

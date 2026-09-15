@@ -118,10 +118,9 @@ def test_write_back_resolves_a_relative_out_root_against_repo_root(linking_run):
     `REPO_ROOT`-anchored regardless of `out_root`)."""
     run_dir, h_supported, h_refuted = linking_run
     relative_marker = "canon-out-swarm-relative-probe"
-    paths = canon_writeback.write_back(
+    paths = canon_writeback.write_back(  # lift_floor/fdr_q disabled: out of scope here
         run_dir, branch="02-physics", signoff="jane-reviewer",
-        # lift_floor=-1.0 disables the evidence-mass gate (out of scope here).
-        floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0, out_root=relative_marker, dry_run=True,
+        floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0, fdr_q=1.0, out_root=relative_marker, dry_run=True,
     )
     expected_prefix = canon_writeback.REPO_ROOT / relative_marker
     assert not expected_prefix.exists()  # dry_run: never created on disk

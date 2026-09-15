@@ -397,6 +397,7 @@ def test_writeback_stage_writes_cards_under_out_root_and_bridge_export_lands_nex
         "pipeline_out_dir": str(tmp_path / "pipeline-out"),
         "writeback": True, "writeback_branch": "07-mind", "writeback_signoff": "test-reviewer",
         "writeback_floor_P": 0.0, "writeback_floor_u_max": 1.0,
+        "writeback_fdr_q": 1.0,  # disables the FDR gate (item 5), out of scope here
         "writeback_out_root": str(out_root), "writeback_ledger_path": str(tmp_path / "ledger.jsonl"),
         "dry_run": False, "skip_publish": True,
     })
@@ -488,6 +489,7 @@ def test_writeback_stage_reports_write_backs_own_understanding_refusal_as_a_fail
         "pipeline_out_dir": str(tmp_path / "pipeline-out"),
         "writeback": True, "writeback_branch": "07-mind", "writeback_signoff": "test-reviewer",
         "writeback_floor_P": 0.0, "writeback_floor_u_max": 1.0,
+        "writeback_fdr_q": 1.0,  # a candidate must clear the gate to reach the refusal below
         "writeback_out_root": str(out_root), "writeback_ledger_path": str(tmp_path / "ledger.jsonl"),
         "dry_run": False, "skip_publish": True,
     })
