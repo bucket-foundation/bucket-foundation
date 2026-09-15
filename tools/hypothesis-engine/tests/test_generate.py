@@ -533,3 +533,17 @@ def test_sequences_from_needs_no_vocabulary_argument():
     params = inspect.signature(sequences_from).parameters
     assert "vocab" not in params
     assert "vocabulary" not in params
+
+
+def test_stratified_sample_floor_holds_per_stratum_when_cap_covers_the_strata():
+    """Every stratum keeps `min(size, ceil(cap / n_strata))` once `cap`
+    covers the stratum count; below it the total is still exactly `cap`
+    and the docstring promises nothing per stratum."""
+    import math
+    vocab = _status_skewed_vocab()
+    pool = _dominated_pool(vocab)
+    kept, frame = stratified_sample(pool, vocab, cap=3 * frame_n if (frame_n := len(stratified_sample(pool, vocab, cap=len(pool), seed=0)[1]["strata"])) else 3, seed=0)
+    floor = math.ceil(frame["cap"] / frame["n_strata"])
+    for label, row in frame["strata"].items():
+        assert row["kept"] >= min(row["generated"], floor), label
+    assert len(stratified_sample(pool, vocab, cap=1, seed=0)[0]) == 1

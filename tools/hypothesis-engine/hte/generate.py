@@ -306,9 +306,12 @@ def stratified_sample(
     one the earliest-indexed actor the TIME_BIN prime could reach).
 
     Strata are `_stratum_label`'s own key. Each stratum keeps at least
-    `min(its own size, ceil(cap / n_strata))` so a literature-thin actor
-    is never emptied by a popular one's volume; whatever of `cap`
-    remains once every floor is met goes to largest-remainder
+    `min(its own size, ceil(cap / n_strata))` while `cap` covers those
+    floors (`cap >= n_strata`), so a literature-thin actor is never
+    emptied by a popular one's volume; below that, `_apportion` places
+    the whole `cap` largest-remainder first and some strata keep
+    nothing. Whatever of `cap` remains once every floor is met goes to
+    largest-remainder
     apportionment (`_apportion`) proportional to each stratum's
     remaining room, so a dominant stratum still keeps close to its own
     share. Within a stratum the kept hypotheses are a
