@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "cc578bb65259f1caaf3eed9e302604886a03aa93f9ed2aabc325f8f31a93566b",
+  "response": {
+    "expected_evidence": [
+      "geological: a distinct 'Younger Dryas Boundary' (YDB) sediment layer (~12,900 cal BP / ~10,950 BCE) across multiple North American sites containing carbon spherules, magnetic microspherules, and elevated nanodiamond concentrations",
+      "geological: anomalous platinum/iridium enrichment in the same boundary layer (ice cores such as GISP2, lake varves, bogs) synchronous across a continent-wide extent",
+      "material: an archaeological 'black mat' horizon overlying Clovis-era occupation layers, with an apparent cultural/faunal discontinuity at many sites",
+      "material: megafaunal bone assemblages showing a sharp extinction pulse coincident with the boundary layer",
+      "astronomical: a confirmed impact crater or unambiguous airburst signature (e.g., shocked quartz, high-temperature melt glass) dated to the same interval \u2014 the most direct but so far unconfirmed line of evidence",
+      "genetic: a population bottleneck signature in North American megafauna (and possibly early human) genomes dated to this interval",
+      "model-prior (unverified, from training knowledge): this matches the real, still-contested 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), for which proponents have reported spherule/nanodiamond/platinum anomalies at dozens of sites, while multiple independent labs have failed to replicate key markers and mainstream geology largely attributes the layer to non-impact processes (wildfire soot, algal mats, terrestrial combustion). This should be treated as disputed, not established fact."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis corresponds to the real Younger Dryas Impact Hypothesis (YDIH), an inherently geological/geochemical claim rather than a textual or oral-history one, so the relevant detectability rows are geological (0.65) and material (0.35) for the younger-dryas period, with astronomical (0.7) applicable only if a crater/airburst signature had been preserved. Sediment, ice-core, and lake-varve records spanning ~13,000 years are well within the preservation window for such markers, and this is exactly the kind of evidence proponents have reported (spherules, nanodiamonds, platinum spikes) at numerous North American sites \u2014 so absence of a confirmed crater or universal replication is not primarily a detectability failure but reflects genuine scientific dispute over interpretation of layers that clearly do survive and have been sampled. Material/archaeological evidence (black mat, faunal turnover) is moderately detectable but confounded by other plausible causes (climate-driven extinction, human overhunting), which weakens the specificity of any positive signal to an impact origin. Because a very direct form of evidence (an impact crater) has never been located despite extensive search, and much of the reported geochemical evidence has faced replication problems, the adjustment (0.55) is set slightly below the raw geological/material average to reflect that the hypothesis remains actively falsifiable and contested by evidence that clearly could and did survive, rather than being obscured by poor preservation \u2014 i.e., low detectability is not the main explanation for any absence of confirming evidence here."
+  }
+}

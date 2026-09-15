@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b6294a4836698f2ffb629c0256857b0d3adc94f606648ac218482fdd7bfc2af1",
+  "response": {
+    "expected_evidence": [
+      "geological: multi-site sediment/ice-core stratigraphy at the Younger Dryas boundary (YDB) tested for platinum, iridium, and other impact-proxy anomalies, with failures to replicate or explainable-by-non-impact sourcing",
+      "geological: re-examination of purported nanodiamonds/lonsdaleite and magnetic microspherules showing they are more consistent with terrestrial/anthropogenic contamination or misidentified minerals",
+      "astronomical: systematic search for impact craters or airburst signatures (shocked quartz, tektites) dated to ~12.9-11.7 ka with null/negative results, plus atmospheric-modeling papers arguing a coherent multi-continent airburst is physically implausible",
+      "material/archaeological: absence of a widespread 'black mat' burn layer or destruction horizon correlating with Clovis-era site abandonment; continuity of Clovis/other Paleolithic material culture across the YD boundary rather than abrupt collapse",
+      "genetic: absence of a synchronized extinction-level population bottleneck in megafauna (and human) ancient DNA specifically timed to a sudden 12.9 ka event, versus evidence of earlier/gradual decline",
+      "model_prior: peer-reviewed critique literature (e.g., Pinter et al. 2011, Holliday & Meltzer, Boslough et al.) systematically refuting the Younger Dryas Impact Hypothesis on methodological and physical grounds"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis concerns the refutation of the Younger Dryas Impact Hypothesis (YDIH), a modern scientific debate rather than a claim requiring survival of Paleolithic-era artifacts per se. The relevant evidentiary channels are geological (0.65) and astronomical (0.7) detectability for the younger-dryas period, which are comparatively high in this table \u2014 sediment cores, ice cores, and impact-proxy layers (platinum/iridium spikes, nanodiamonds, spherules) are routinely sampled globally and are well-preserved/datable, making both positive and negative (refuting) findings highly detectable. Material archaeological evidence (0.35) and genetic evidence (0.3) are moderately detectable and have in fact been used (Clovis continuity, megafauna DNA timing) to argue against a sudden catastrophic cause. Model-prior (0.3) reflects that much of the refutation is scientific literature/consensus (low-tier per instructions when drawn from training rather than the provided evidence text) rather than direct archaeological finds \u2014 this is flagged as model-prior since it originates from my training knowledge of the ongoing YDIH controversy (Pinter et al., Holliday & Meltzer, Boslough, and later re-analyses), not from evidence text provided in this task. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are essentially inapplicable/unrecoverable for a non-literate Upper Paleolithic population and would not be expected to bear on this claim either way. Given the high detectability of the geological and astronomical channels that actually carry the refuting evidence, an absence of confirming impact-proxy signals across multiple independently sampled sites is a meaningful, well-attested negative result rather than an artifact of poor preservation \u2014 supporting the plausibility that refutation evidence could exist and be found. Suggested aggregate detectability_adjustment \u22480.55, weighting toward the well-preserved geological/astronomical proxies while discounting the weaker textual/oral/iconographic/linguistic channels."
+  }
+}

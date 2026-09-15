@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "150f1ae8b3f0c7d1d38d77584b351acb54f30723a2ad5adea84ae0118d3f7d44",
+  "response": {
+    "expected_evidence": [
+      "geological: a thin, broadly synchronous ~12,900 cal BP sedimentary layer ('black mat' / Younger Dryas boundary layer) across North America containing anomalous platinum/iridium enrichment, magnetic and glassy microspherules, and nanodiamonds/lonsdaleite, interpreted as impact/airburst ejecta fallout",
+      "astronomical: absence of a confirmed impact crater of appropriate age (consistent with an airburst rather than a surface impact), possibly circumstantial support from an impact/airburst-consistent debris field or field of secondary craters (e.g., proposed candidates under the Greenland ice or elsewhere)",
+      "material: archaeological signatures of ecological/cultural disruption at Clovis-era sites - abrupt stratigraphic discontinuities, charcoal/soot spikes indicating continent-wide biomass burning, and changes or gaps in Clovis toolkit distribution coincident with the boundary layer",
+      "genetic: megafauna extinction signatures and possible human population bottleneck/genetic discontinuity in North American lineages dated to ~12,900 BP (model-prior, weakly supported)",
+      "model_prior: this is a well-known, actively contested hypothesis (Younger Dryas Impact Hypothesis, e.g., Firestone et al. 2007, Wittke et al. 2013, Moore et al. 2017 platinum anomaly) with proponents citing the above geochemical markers and critics disputing reproducibility, dating precision, and non-impact explanations (e.g., wildfire, volcanism) for the same signals - treat this recollection as model-prior, not verified within this pipeline",
+      "oral_tradition: unlikely to survive given ~13,000 year time depth, though some researchers have speculatively linked flood/fire myths to this event (low-confidence, model-prior)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The core claimed evidence for this hypothesis is geochemical/sedimentological (platinum-iridium anomalies, nanodiamonds, magnetic spherules, a black-mat boundary layer) rather than a crater, since the mechanism proposed is airburst ejecta fallout, not a direct surface impact. Geological (0.65) and astronomical (0.7) detectability for the younger-dryas period are relatively high in this table, meaning such a globally-distributed thin marker layer, if it existed, has a plausible preservation and discovery pathway - and indeed proponents in the literature (model-prior: Firestone et al. 2007, later platinum-anomaly studies) report finding exactly this kind of layer at dozens of sites. This cuts against using low detectability to excuse absence of geological evidence: if the hypothesis were true, the geological signal should be fairly robust and reproducible, and its patchy replication in independent labs is itself relevant evidence against (not merely undetectable). Material (0.35) and genetic (0.3) evidence are much harder to detect at this age, so an absence of unambiguous archaeological or genetic corroboration is well explained by low detectability rather than falsity. Given the mixed picture - high detectability for the primary geochemical signature but low detectability for corroborating archaeological/genetic lines, and no requirement for a crater under the airburst mechanism - I set a moderate-high composite adjustment of 0.55, reflecting that meaningful evidence could plausibly survive and be found (and reportedly has been, though its interpretation remains disputed), while acknowledging genuine preservation limits on secondary evidence types."
+  }
+}

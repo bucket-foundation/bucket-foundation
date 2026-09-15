@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2289ba456d79037cda82e6887f62e5623223560562de3c6a0f6e04a0a1688314",
+  "response": {
+    "expected_evidence": [
+      "Ice-core geochemical records from Greenland (GISP2, NGRIP, NEEM) tested for platinum-group-element (Pt, Ir) anomalies, magnetic spherules, and nanodiamonds at the ~12.9 ka BP horizon, with multiple independent labs failing to reproduce the originally reported anomalies",
+      "Peer-reviewed replication/rebuttal literature (e.g. Pigati et al. 2012, Daulton et al. 2010, van Hoesel et al. 2012/2014, Boslough et al. 2012 critiques) documenting failed attempts to confirm the Younger Dryas Impact Hypothesis markers",
+      "Sediment core and terrestrial site re-analyses across North America/Europe showing inconsistent or absent nanodiamond/spherule signals used to argue against a coherent impact layer",
+      "Absence of a confirmed impact crater or unambiguous shocked-quartz/tektite field correlated to ~10,950 BC, cited as corroborating negative evidence",
+      "Meta-analyses or review articles summarizing the scientific consensus shift away from the cosmic-impact interpretation of YD onset cooling"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis describes a scientific refutation event (failed independent replication of the Younger Dryas Impact Hypothesis), which is conceptually a modern (20th-21st century CE) scientific process, not an event that occurred 'in' -10950 BP itself. The interval given (-10950) actually marks the dated YD onset layer being studied, not the date of the refutation debate \u2014 this is a temporal category mismatch worth flagging. Using the supplied period/evidence detectability table under 'younger-dryas', the most relevant channels are geological (0.65) and material (0.35) evidence from Greenland ice cores and associated sediment archives, since these are the physical substrates where impact-proxy replication attempts would leave traces; textual detectability for the ancient period itself is 0.0, which correctly reflects that no contemporaneous ~10,950 BC written record could exist, but this is largely irrelevant because the refutation debate's real evidentiary record (journal articles, replication data) is a modern textual/scientific artifact outside this ancient-period table entirely. Based on model-prior (unverified, from training recall rather than the evidence text provided): there was indeed a real, well-documented multi-year scientific controversy over the Younger Dryas Impact Hypothesis in which several independent groups reported failing to replicate platinum, nanodiamond, and spherule anomalies at YD-onset horizons, including in Greenland-adjacent and North American sites \u2014 so the underlying claim is plausible and evidence of this type does exist in the actual literature, even though it doesn't fit neatly into the ancient-period detectability schema given. Averaging the relevant physical-proxy channels (geological/material) rather than the inapplicable ancient textual/oral channels, I suggest a moderate-to-good detectability adjustment (~0.55), reflecting that ice-core and sediment-based replication evidence is reasonably preservable and searchable, while acknowledging that the low textual detectability score in this table is a mismatch artifact of forcing a modern scientific dispute into an ancient-period evidence framework rather than a true indicator of absent evidence."
+  }
+}

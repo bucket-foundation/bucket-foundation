@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ec7a64d00bcad5b8e2020c292513d6bced5a756dc8077ad1e42520b0e5834d76",
+  "response": {
+    "expected_evidence": [
+      "Geological: elevated platinum (and other platinum-group element) concentrations in a thin layer within Greenland ice cores dated to ~12,900 years BP (the Younger Dryas onset boundary)",
+      "Geological: correlated platinum/iridium anomaly in terrestrial sediment cores and paleosols at the Younger Dryas boundary (YDB) layer across multiple continents",
+      "Geological: presence of impact-diagnostic markers in the same stratigraphic layer \u2014 nanodiamonds, magnetic and glassy microspherules, melt-glass, high-temperature soot/charcoal ('black mat')",
+      "Geological: a shocked-quartz or crater signature (e.g., a candidate impact structure such as the proposed Hiawatha crater under the Greenland ice) with age constraints matching -10950",
+      "Astronomical: reconstructable orbital/dynamical evidence of a fragmented comet or asteroid stream intersecting Earth at this date (indirect, model-based)",
+      "Genetic/faunal: megafaunal extinction and population bottleneck signatures in North American/Eurasian species dated to the same interval",
+      "Material/archaeological: disruption or discontinuity in Clovis-era (or contemporaneous) archaeological sites in the Americas coincident with the layer",
+      "Model-prior: consistency with the broader Younger Dryas Impact Hypothesis literature (Firestone et al., Petaev et al., Kennett et al.), noting this remains scientifically contested"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The event date (-10950, ~12,950 BP) sits almost exactly at the Younger Dryas onset, so the 'younger-dryas' row is the most appropriate detectability context (with some overlap into terminal upper-paleolithic). Ice sheets like Greenland's are exceptionally good preservation media for annually resolved chemical anomalies over ~13 millennia, and geological/sedimentary stratigraphy generally has high preservation odds this recently (geological=0.65), which matches the real-world fact that a platinum anomaly at this horizon has in fact been reported in Greenland ice (Petaev et al. 2013) and in numerous YDB sediment sites worldwide \u2014 i.e., this is not a purely speculative hypothesis but one with an actual, if contested, empirical literature. Astronomical detectability is nominally high (0.7) but is misleading here: it reflects general capacity to date orbital/impact-related celestial phenomena, not the ability to independently verify a 13,000-year-old fragmented-comet encounter, since no confirmed crater of the right age/size has been unambiguously matched (the Hiawatha crater's age is still debated and likely much older). Material (0.35), genetic (0.3), and iconographic/oral_tradition (0.1) evidence for a purely geophysical/atmospheric event are inherently weak categories \u2014 humans of this period left no writing, and any megafaunal or archaeological discontinuity is only weakly diagnostic of an impact specifically versus other Younger Dryas-onset climate mechanisms (e.g., meltwater pulse, AMOC shutdown). Overall, could_have_survived=true because ice-core and sediment stratigraphy realistically preserve chemical signals across this timespan, but the hypothesis remains empirically contested precisely because corroborating crater/astronomical evidence and unambiguous causal attribution (impact vs. terrestrial/volcanic/cosmic-dust sources) are still missing. A low score should not be used to explain away this absence, since geological/ice-core detectability is genuinely favorable in this period; the real epistemic gap is interpretive (causal mechanism), not preservational. I set the adjusted value slightly below the geological/astronomical ceiling (0.65/0.7) to reflect that the platinum-anomaly evidence itself is real-world documented but the specific 'impact-ejecta-fallout' causal mechanism (vs. alternative explanations for the anomaly) remains unconfirmed and debated."
+  }
+}

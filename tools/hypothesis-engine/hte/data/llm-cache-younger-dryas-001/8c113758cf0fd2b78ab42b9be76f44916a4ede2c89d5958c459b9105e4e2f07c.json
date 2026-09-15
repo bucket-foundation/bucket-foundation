@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "14b7ec836667126535e7aa36395f68ade040f94e756a993b5af1175ea338a83d",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum/iridium enrichment layer in North American sediments dated near 10850 BCE, at the Younger Dryas onset boundary",
+      "geological: matching platinum spike in Greenland ice cores at the same interval (model-prior)",
+      "geological: associated magnetic spherules, nanodiamonds, and a black mat organic layer at the same horizon",
+      "astronomical: no confirmed impact crater, which is expected under an airburst mechanism rather than a detectability gap",
+      "material: disruption in Clovis-era occupation layers at or near the anomaly horizon",
+      "genetic: megafaunal extinction signal and possible human population bottleneck around the same interval",
+      "model_prior: existing published debate on the Younger Dryas Impact Hypothesis that this claim restates"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval -10850 corresponds to the Younger Dryas onset, so I treated the period as younger-dryas rather than unspecified, since the table has no row for an unspecified period. Platinum and related geochemical anomalies are preserved in sediment and ice-core stratigraphy, which is relatively durable over roughly 12800 years; geological detectability is 0.65 and astronomical is 0.7 for this period, among the highest categories available, while textual (0.0) and linguistic (0.05) are effectively undetectable and their absence should not count against the hypothesis. This matches the real-world pattern where platinum and iridium anomalies at this horizon have reportedly been reported at multiple North American sites and in Greenland ice cores; this is a model-prior recollection, moderately confident but contested in the literature, and is not independently verified here. An airburst mechanism specifically predicts no crater, so the absence of a crater is an expected non-finding rather than a detectability failure. Material and genetic evidence are weaker corroborators at 0.35 and 0.3 respectively, so their absence or ambiguity should not be read as strong evidence against the hypothesis. Given the moderately high detectability of the primary geological and astronomical evidence classes for this period, the hypothesis is plausible to detect, and ongoing scientific debate is more consistent with an actively contested but structurally detectable phenomenon than with an undetectable one."
+  }
+}

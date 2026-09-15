@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "0d065d918ad9eb510d80951c34d911dedf4fa6f32f502078ad717b9199d1c0b6",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and other platinum-group-element anomalies in a thin sediment/ice layer dated to the Younger Dryas onset boundary (~12,800-12,900 cal BP), consistent with reports at sites such as the Greenland ice core (Petaev et al.) and multiple North American stratigraphic sections (Moore et al., Firestone et al.)",
+      "Geological: associated markers often cited alongside platinum spikes - nanodiamonds, magnetic/glassy spherules, elevated soot/charcoal ('black mat' layer), and shocked quartz at the same stratigraphic horizon",
+      "Astronomical: identification (or search for) an impact crater or airburst structure of appropriate age in or near North America; orbital/dynamical modeling of a plausible impactor or fragmented comet stream",
+      "Material/archaeological: disruption or discontinuity in Clovis-era archaeological assemblages, megafaunal bone beds terminating abruptly at the boundary layer, changes in site occupation density across the horizon",
+      "Genetic: population bottleneck signatures in megafauna or early North American human lineages coincident with ~12,800 BP",
+      "model-prior: general plausibility of a Younger-Dryas-onset cosmic impact/airburst scenario as debated in the geoscience literature (contested, not consensus)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval given (-13000 to -12001) brackets the conventional Younger Dryas onset (~12,900-12,800 cal BP), so this is best classified under the 'younger-dryas' period row rather than generic upper-paleolithic, though the two rows are nearly identical in this table. The mechanism (impact-ejecta-fallout) and object (platinum-anomaly) point to stratigraphic/geochemical evidence, which is the highest-detectability evidence class available for this period (geological 0.65, astronomical 0.7) versus much weaker channels like textual (0.0, pre-literate), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1). Sediment and ice-core geochemical anomalies are physically robust and can persist for 10,000+ years in stable depositional contexts (ice sheets, lake varves, peat bogs), which is consistent with real published findings of platinum enrichment at the YD boundary in Greenland ice and several North American sites (model-prior, unverified against the evidence text provided here). This makes non-detection unlikely to stem purely from poor preservation \u2014 geological/astronomical channels are comparatively favorable for this period. However, material (0.35), genetic (0.3), and archaeological corroboration are weaker and more ambiguous, and the causal interpretation of any anomaly as 'impact-ejecta' versus alternative explanations (terrestrial volcanism, cosmic dust flux, reworking) remains actively contested in the literature \u2014 so 'could have survived' refers to the anomaly itself being detectable, not necessarily to unambiguous corroboration of the impact mechanism. I suggest a blended detectability adjustment of ~0.55, weighting toward the stronger geological/astronomical channels but discounted for the weakness of corroborating material/genetic/archaeological lines needed to fully validate 'corroborated' status."
+  }
+}

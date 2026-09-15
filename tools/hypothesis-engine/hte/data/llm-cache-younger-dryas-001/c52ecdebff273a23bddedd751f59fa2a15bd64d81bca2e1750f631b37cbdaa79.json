@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b33c78020a28f5b7340c88d210e013b8e097cd739c9c1ec1fc93d1c0a8d9faa8",
+  "response": {
+    "expected_evidence": [
+      "Platinum (Pt) concentration spike in Greenland ice cores (e.g., GISP2, GRIP, NEEM) dated to the Younger Dryas onset layer, consistent with ~10,950 14C BP / ~12,835-12,915 cal BP",
+      "Co-occurring platinum-group element (PGE) anomalies (iridium, osmium) and/or nanodiamonds, magnetic microspherules, and carbon spherules in the same ice/sediment horizon",
+      "Elevated ammonium and nitrate spikes in the ice indicative of biomass burning coincident with the Pt layer",
+      "Cross-site correlation of a synchronous Pt/PGE-rich 'Younger Dryas Boundary' layer in terrestrial sediments across the Northern Hemisphere (lake cores, loess, archaeological strata)",
+      "Astronomical/impact-modeling studies estimating bolide size, airburst vs. surface impact dynamics, and atmospheric dispersal patterns consistent with a Greenland or circum-Arctic source",
+      "Geochronological work tying the ice-core anomaly layer precisely to abrupt Northern Hemisphere temperature excursions (via oxygen isotopes) to test whether warming, not cooling, tracks megafaunal extinction timing",
+      "Faunal/genetic extinction-chronology data (radiocarbon dates on last-appearance megafauna fossils, ancient DNA population bottleneck signals) compared against the ice-core event horizon",
+      "Independent replication attempts (or failures to replicate) of the Pt anomaly magnitude in other ice cores or sediment archives, since this is a contested finding in the literature"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.7,
+    "rationale": "This hypothesis concerns a claim actively studied in the literature (model-prior, recalled but unverified beyond general familiarity): Petaev et al. (2013, PNAS) reported an anomalous platinum spike in the GISP2 Greenland ice core at the Younger Dryas onset, later invoked by Younger Dryas Impact Hypothesis proponents (Firestone et al. 2007; Wittke et al. 2013) and, in this hypothesis's framing, reinterpreted as corroborating abrupt Northern Hemisphere warming (rather than cooling) as the megafaunal extinction driver. Greenland ice sheets are an exceptionally high-fidelity geological archive with annual layer resolution and precise chronology, making preservation and detection of a discrete geochemical anomaly layer highly plausible \u2014 arguably better than the generic 'geological' detectability score (0.65) for the younger-dryas period would suggest, since ice cores are a best-case medium for this class of evidence (fine stratigraphic resolution, minimal bioturbation, direct atmospheric fallout record). I therefore nudge the detectability adjustment upward to 0.7, closer to the table's 'astronomical' tier than the generic geological baseline. Any absence of a decisive, uncontroversial replication of the Pt spike (a genuine feature of the ongoing scientific debate, since some follow-up studies failed to reproduce comparable PGE enrichments elsewhere) should not be read as strong evidence against the underlying event, given how narrow and technically demanding the ice-core PGE measurement is \u2014 but the specific causal reframing here (warming vs. cooling as the extinction driver) remains an interpretive layer resting on model-prior-level reasoning rather than an independently corroborated causal mechanism, so the 'corroborated' status of the placement should be treated cautiously."
+  }
+}

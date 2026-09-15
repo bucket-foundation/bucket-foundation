@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ee1c358cd166a2d3779b436c984ba2f1f1135fcb088c496e379d7eb742754057",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-group-element (esp. platinum/iridium) anomaly at a discrete Younger Dryas boundary (YDB) sediment layer across multiple North American sites",
+      "Geological: nanodiamonds, magnetic and glassy microspherules, and meltglass concentrated in the same ~12,900 BP layer",
+      "Geological: a widespread organic-rich 'black mat' layer directly overlying megafaunal remains and Clovis-era artifacts, marking an abrupt extinction/cultural horizon",
+      "Astronomical: identification of an impact crater, airburst scar, or shock-metamorphosed material consistent with a cosmic-impactor source (none conclusively dated to this event in North America; e.g., the Hiawatha crater proposal is disputed and mis-dated relative to -10950)",
+      "Material/archaeological: synchronous disappearance of Clovis toolkits, site abandonment, and continent-wide wildfire/soot/charcoal spikes at ~12.9 ka",
+      "Genetic: ancient-DNA-derived megafaunal population bottleneck or extinction timing clustering sharply at ~12.9 ka rather than a gradual decline",
+      "Oral tradition: speculative correspondences in some Indigenous North American flood/sky-fire origin narratives (low-confidence, hard to date or verify as related)",
+      "Model-prior: the pre-existing published scientific debate itself (Firestone et al. 2007 YDIH proposal and subsequent replication/refutation literature) as a low-tier prior rather than independent confirmation"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The date -10950 corresponds to the Younger Dryas onset (~12,900 cal BP), so the relevant row is ('younger-dryas', *) rather than a generic Upper Paleolithic default. The hypothesis's most diagnostic evidence classes are geological (0.65) and astronomical (0.7) \u2014 impact markers (PGE/platinum spikes, nanodiamonds, spherules, black mats) and any impact-structure signature \u2014 both of which have comparatively high detectability for this period because well-dated, well-studied sedimentary sequences (lake cores, loess, boundary layers) from ~12.9 ka are routinely preserved and sampled. Material (0.35) and genetic (0.3) evidence \u2014 Clovis abandonment layers and megafaunal-extinction chronology via ancient DNA \u2014 are moderately detectable but noisier due to preservation gaps and dating uncertainty. Textual (0.0) and linguistic (0.05) evidence are essentially impossible for a pre-literate period and should not be weighted as absence-of-falsification. Oral tradition (0.1) and iconographic (0.1) evidence are low-detectability and any claimed correspondence should be treated with heavy skepticism, not as corroboration. Because the two most relevant evidence classes (geological, astronomical) have reasonably high detectability scores (0.65\u20130.7), an absence of robust, independently replicated impact markers is less excusable on detectability grounds alone \u2014 this matches the real-world state of the Younger Dryas Impact Hypothesis (YDIH), where the proposed evidence (Firestone et al. 2007 and successors) has been actively sought, partially reported, but also repeatedly disputed/non-replicated by independent labs. So evidence could plausibly have survived and been found; the persistent controversy suggests genuine evidentiary weakness rather than a purely low-detectability artifact. I flag the model-prior component (0.3) as my own training-derived recollection of the YDIH debate, not verified against the evidence text provided, and treat it as low-tier context only."
+  }
+}

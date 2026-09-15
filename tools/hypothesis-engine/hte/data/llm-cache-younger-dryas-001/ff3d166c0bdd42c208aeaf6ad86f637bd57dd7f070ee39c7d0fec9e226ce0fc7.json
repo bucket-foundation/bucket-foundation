@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "da3a091f3da47bc2d3353f1a640ba621ac7e8808d75f9b15f7917f542ac4f921",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a discrete stratigraphic layer (the 'black mat') at ~12,900 cal BP across North American sites containing elevated platinum, iridium, and other impact-associated markers",
+      "Geological: nanodiamonds, magnetic microspherules, and glassy/melted spherules embedded in the YD boundary layer at multiple independent sites",
+      "Geological: shocked quartz or other high-pressure mineral phases indicative of impact (if a true hypervelocity impact occurred)",
+      "Astronomical: an identifiable impact crater or crater field dated to ~10,950 BCE, or airburst-consistent debris field, ice-core sulfate/dust spikes coincident with onset",
+      "Material/archaeological: abrupt discontinuity in Clovis-era tool assemblages, site abandonment layers, or charcoal/soot spikes indicating continent-scale biomass burning",
+      "Genetic: megafaunal population bottleneck or extinction signatures in ancient DNA dated to the same interval",
+      "Model-prior (low-tier): the broader Younger Dryas Impact Hypothesis literature and debated corroborating/refuting studies from the 2007-present scientific literature"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis's dated interval (-10950) sits at the Younger Dryas boundary, so I applied the 'younger-dryas' detectability row rather than an unspecified period. For an event of this kind, the strongest expected evidence is geological (impact-proxy layers: spherules, nanodiamonds, platinum anomaly, black mat) and astronomical (crater/airburst signatures, ice-core spikes), both of which have relatively high baseline detectability (0.65 and 0.7 respectively) because sediment and ice-core records from ~13,000 years ago are known to survive and have been extensively sampled across North America and Greenland. Material/archaeological evidence (Clovis disruption, extinction layers) has moderate detectability (0.35) since surface/near-surface sites from this era are more subject to erosion, reworking, and sampling bias. Genetic evidence (megafaunal bottlenecks) is only moderately detectable (0.3) given DNA degradation over 13,000 years, though not impossible with modern ancient-DNA methods. Textual, linguistic, oral-tradition, and iconographic evidence are essentially absent by definition for a pre-literate, pre-agricultural Upper Paleolithic/Younger Dryas context (0.0-0.1), so their absence is fully expected and uninformative about truth or falsity. Given that geological and astronomical channels \u2014 the most diagnostic for an impact event \u2014 are actually the *most* detectable categories in this table (unusually high for this time depth, since sediment/ice stratigraphy preserves well), a real impact-corroboration event should have left recoverable traces; the fact that the scientific community remains divided (multiple studies reporting inconsistent replication of spherule/nanodiamond findings) is evidence-relevant rather than purely a detectability artifact. I set the adjustment to 0.55, slightly above the raw geological/material average, reflecting that survival was plausible but real-world replication has been inconsistent across sites, which is compatible with either a real but patchy/weak signal or an overstated original claim \u2014 the low-detectability channels (textual, linguistic, oral tradition, iconographic) should not be held against the hypothesis, but the moderate-to-high detectability of the key geological/astronomical channels means genuine absence of corroboration there is more evidentially meaningful."
+  }
+}

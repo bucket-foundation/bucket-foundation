@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "53e23e874f5935cf2abcbcb4bf453035c43e3b643b6f5d7cbe29ef485dc51153",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.3,
+        "rationale": "model-prior: gamma-ray-ionization is not a recognized mechanism for meltwater-pulse effects (it belongs to impact/radiation hypotheses), and A's 10,000-yr interval plus 'corroborated' overreaches; B's point interval at the YD boundary and cautious 'inconclusive' label better fits the mismatch."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.62,
+        "rationale": "model-prior: the widely cited Younger Dryas onset (~12,900 cal BP) falls closer to A's interval [-12000,-11001] than to B's older [-13000,-12001] window, making A's dating context more evidentially accurate for a replication-failure critique."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: mainstream literature (Surovell 2009, Daulton 2010, Pigati 2012) trended toward treating the impact hypothesis as effectively refuted rather than merely 'inconclusive', slightly favoring A's stronger action verdict despite an imperfect mechanism label."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: independent-replication-failure critiques of YDB proxies were centered on North American sedimentary sites, not the Greenland ice sheet, so B's correct location outweighs its vaguer 'other-action' label."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: independent-replication-failure critiques (e.g., inconsistent iridium/platinum measurements across labs) map more directly onto a physical proxy like iridium-anomaly than onto the higher-level causal claim of megafaunal-extinction, giving B a slight edge despite A's tighter interval match to the YD boundary."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: the replication-failure critique is more commonly discussed in connection with the impact-megafaunal extinction causal link than with niche human population-demography studies, giving A a modest edge."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.75,
+        "rationale": "model-prior: B's interval [-20000,-19001] predates the Younger Dryas boundary by roughly 8,000+ years, an implausible timeframe for microspherule/YDB analysis, whereas A's interval sits close to the accepted YD onset, making A far more temporally coherent."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: multiple studies (Firestone et al., Wittke et al., Bunch et al.) reported and partially replicated microspherule concentrations as impact-ejecta evidence, supporting a 'corroborated' verdict for A, while B's vague 'other-action' label for the platinum-anomaly claim conveys less evidential specificity."
+      }
+    ]
+  }
+}

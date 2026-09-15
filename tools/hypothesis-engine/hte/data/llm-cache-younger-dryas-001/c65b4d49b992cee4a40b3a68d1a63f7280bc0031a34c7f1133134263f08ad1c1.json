@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "7f5491a53481be4eb7a1173188636406a9fbd0df83b1ac0adf0e9651e57a6271",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.33,
+        "rationale": "A is fully uncertain with a very low mechanism prior (a=0.011, gamma-ray-ionization), giving E=b+au\u22480.011, while B, though refuted, retains higher residual expectation (E\u22480.022) from its larger base-rate/uncertainty product, so B is marginally more supported."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.95,
+        "rationale": "Both hypotheses are maximally uncertain (u=1, b=d=0), so the comparison reduces to atomicity/base-rate plausibility: cosmic-impact+gamma-ray-ionization (a=0.011) is far more plausible than supernova-event+gamma-ray-ionization (a=0.00055), favoring A."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.73,
+        "rationale": "A is untested (u=1, a=0.018) yielding E\u22480.018, whereas B is partially refuted (d=0.40) with a lower mechanism prior (a=0.011) yielding E\u22480.0066, so A's expected support is higher."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.38,
+        "rationale": "A is fully uncertain with a low prior (a=0.0067, E\u22480.0067) while B, despite being refuted, has a higher residual expectation from its larger uncertainty-weighted base rate (E\u22480.0107), slightly favoring B."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses are identically uncertain (b=0,d=0,u=1) with the same atomicity (a=0.018), so the evidence provides no basis to prefer one over the other."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.87,
+        "rationale": "A, though largely refuted (d=0.94), retains a much higher expected value (E\u22480.016) due to its large atomicity (a=0.269) on the small remaining uncertainty, versus B's fully uncertain but very low-prior claim (a=0.0025, E\u22480.0025), favoring A."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.92,
+        "rationale": "Both are fully uncertain, but A's mechanism (impact-ejecta-fallout, a=0.018) has a much higher prior plausibility than B's gamma-ray-ionization trigger (a=0.0015), favoring A."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.02,
+        "rationale": "A is fully uncertain with an extremely low mechanism prior (supernova gamma-ray-ionization, a=0.00055, E\u22480.0006), while B, despite partial refutation, retains a much larger residual expectation (a=0.047 on 0.60 uncertainty, E\u22480.028), strongly favoring B."
+      }
+    ]
+  }
+}

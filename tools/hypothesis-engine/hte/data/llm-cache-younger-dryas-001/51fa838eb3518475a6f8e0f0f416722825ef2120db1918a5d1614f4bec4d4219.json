@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "feeb9d77472bfc0d44a70753c681edcd3a382f2ad8368ba86a7500fbf8859202",
+  "response": {
+    "expected_evidence": [
+      "A continent-wide (or global) layer at ~12,900 cal BP (Younger Dryas Boundary) showing anomalous platinum-group element (Pt, Ir) spikes",
+      "Nanodiamonds, cubic/hexagonal diamond polymorphs, or lonsdaleite in the YDB sediment layer",
+      "Magnetic microspherules and carbon spherules consistent with high-temperature impact/airburst formation",
+      "A 'black mat' organic-rich sediment layer directly overlying the proposed impact horizon at multiple North American sites",
+      "Continent-scale biomass-burning markers: soot, charcoal peaks, and polycyclic aromatic hydrocarbons synchronous with the YD onset",
+      "An identifiable impact crater or crater field (e.g., proposed candidates like the Hiawatha Glacier crater) datable to ~12,900 BP",
+      "Coincident megafaunal extinction horizon and abrupt decline/disappearance of Clovis-culture archaeological material directly above the layer",
+      "Independent replication of the above signatures at geographically dispersed sites with consistent, tightly-constrained dating",
+      "Ice-core or varve-based chronostratigraphic markers (e.g., ammonium, sulfate, or dust spikes) precisely dating an abrupt onset event at 10,950 BCE",
+      "Population genetic bottleneck signals in megafaunal or early human DNA dated to this interval"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis corresponds to the Younger Dryas Impact Hypothesis (YDIH), a real and actively contested position in Quaternary geology/archaeology (model-prior, not verified against supplied source text). If a cosmic impact or airburst triggered YD cooling, the primary expected evidence is geological (impact ejecta layers, PGE/iridium anomalies, nanodiamonds, microspherules, black mats, crater structures) and secondarily material/archaeological (megafaunal extinction and Clovis discontinuity) and astronomical/geochronological (precisely dated ice-core or varve markers). The detectability table assigns relatively high scores to geological (0.65) and astronomical (0.7) evidence for the younger-dryas period, and moderate scores to material (0.35) and genetic (0.3) evidence, reflecting that sedimentary and glacial-ice archives from ~13,000 years ago are well-preserved and routinely sampled -- this is not a deep-time detectability problem the way Paleozoic events are. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) evidence are essentially inapplicable since no writing or durable symbolic record exists this early. Given that geological/geochemical evidence of an impact of the claimed continental-to-global scale should plausibly survive and be detectable with modern methods (as demonstrated by successful, unambiguous impact-layer detection at the much older K-Pg boundary), a genuine low-detectability explanation for absence of confirmed evidence is only partially justified here. This is consistent with the actual scientific record (model-prior): despite extensive search, independent teams have largely failed to replicate the original platinum/nanodiamond findings, and no confirmed impact crater has been dated to this interval, which many researchers take as evidence against the hypothesis rather than merely a detection failure. The mechanism tag 'dating-uncertainty' in the hypothesis itself acknowledges this -- chronological imprecision across sites is a genuine complicating factor, but is a separate issue from whether the physical impact markers would have survived. I therefore suggest a detectability adjustment around 0.5, weighting the higher-detectability geological/astronomical evidence types (primary to this hypothesis) against the near-zero detectability of textual/linguistic/iconographic types that are irrelevant this deep in prehistory, while cautioning that low detectability should not be used to fully explain away the substantial negative/non-replicated evidence already reported in the literature for this specific claim."
+  }
+}

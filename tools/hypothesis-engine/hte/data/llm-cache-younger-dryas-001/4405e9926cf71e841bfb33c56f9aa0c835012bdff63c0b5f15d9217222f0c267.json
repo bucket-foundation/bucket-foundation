@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7b12b0befd2f005b40750caaf16b587dfb466edf9f267d04b8b8d94d090aa567",
+  "response": {
+    "$PARAMETER_NAME": "expected_evidence",
+    "expected_evidence": [
+      "geological: platinum/iridium enrichment layer at the Younger Dryas boundary (~12,900 cal BP) in lake, bog, and ice-core sediment cores across North America (this is the actual 'platinum-anomaly' cited by Younger Dryas Impact Hypothesis proponents, e.g. Firestone et al. 2007, Petaev et al. 2013 Greenland ice, Moore et al. 2017)",
+      "geological: associated markers in the same stratum \u2014 nanodiamonds, magnetic microspherules, high-temperature melt-glass, elevated soot/charcoal ('black mat' horizon)",
+      "astronomical: modeling/simulation studies of low-altitude airburst fragmentation (no crater expected under an airburst mechanism, consistent with absence of a confirmed North American YD-age crater)",
+      "material: archaeological discontinuity at Clovis-era sites (reduced artifact density above the boundary layer), megafaunal bone assemblages terminating at the horizon",
+      "material: widespread continental biomass-burning/wildfire signature (soot, charcoal spikes) synchronous with the boundary layer",
+      "genetic: bottleneck or extinction signatures in North American megafauna genomes dated to ~10,950 cal BCE",
+      "model_prior: existing peer-reviewed literature and ongoing scientific debate specifically proposing this cosmic-airburst/platinum-anomaly link (Younger Dryas Impact Hypothesis), including critical rebuttals disputing the anomaly's origin and dating precision"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval -10950 sits essentially at the Younger Dryas onset (~12,900 cal BP), so the 'younger-dryas' detectability row is most applicable rather than the broader upper-paleolithic default. Geological (0.65) and astronomical (0.70) detectability are relatively high for this period, and this is precisely the class of evidence (platinum/iridium spikes, nanodiamonds, spherules, black mat layers) that has actually been reported by researchers at numerous North American and global sites, making survival and detection highly plausible \u2014 this is not a case where absence of evidence should be presumed. Material evidence (archaeological/faunal discontinuities, 0.35) and genetic evidence (bottleneck signals, 0.30) are only moderately detectable given ~13,000 years of taphonomic loss, reworking, and dating-resolution problems, so partial or contested findings there are expected rather than a full record. Oral_tradition (0.10) and linguistic (0.05) evidence are essentially undetectable at this time depth and their absence carries no evidential weight against the hypothesis. Notably, unlike many prehistoric hypotheses, this one already has a live evidentiary record and active scientific controversy (proponents citing the platinum/spherule/nanodiamond layer, critics disputing its magnitude, dating synchroneity, and impact origin) \u2014 this is drawn from model-prior (training-derived) recollection of the Younger Dryas Impact Hypothesis literature and should be treated as an unverified, low-tier source pending confirmation against the actual evidence corpus in this pipeline. Given the moderately high detectability of the core diagnostic evidence type (geological/astronomical) and the real possibility that a null or contested finding reflects genuine scientific disagreement rather than mere undetectability, I suggest an overall detectability adjustment around 0.6 for this placement."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2939af231abb26f70fc0eb027c9f3f3b5f12a8046cc683e6a99e3e70d45a6492",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and nanodiamond anomalies in the Younger Dryas Boundary (YDB) sediment layer across North Atlantic-adjacent and North American sites; 'black mat' organic-rich layers marking abrupt ecological shift",
+      "Geological: high-resolution ice-core (e.g., Greenland GISP2/NGRIP) chemistry showing platinum spike coincident with YD onset (~12.9 ka)",
+      "Geological: magnetic spherules, meltglass, and shocked quartz grains interpreted as impact ejecta in YDB sediments",
+      "Astronomical/geological: identification of a candidate impact crater or airburst site (e.g., proposed Hiawatha Glacier crater, Greenland) with age constraints matching YD onset",
+      "Astronomical: cosmic dust/extraterrestrial He-3 or Ir enrichment records tying an impactor to the same interval",
+      "Material (archaeological): disruption/abandonment horizons at Clovis-age North American sites stratigraphically at the YDB layer",
+      "Genetic: megafaunal population bottleneck or extinction signatures dated to ~12.9 ka in ancient DNA records",
+      "Model-prior: existing published debate (Firestone et al. 2007 YDIH vs. critiques citing freshwater/AMOC-shutdown as sole driver) establishing whether airburst and meltwater-pulse mechanisms are treated as corroborating or competing"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval (-10950 to -9750, i.e. ~12,950-11,750 cal BP) sits at the Younger Dryas onset, so the 'younger-dryas' detectability row is most applicable, with geological (0.65) and astronomical (0.7) evidence being the highest-yield channels \u2014 consistent with the fact that this exact hypothesis (the Younger Dryas Impact Hypothesis) has generated a real, decades-long empirical literature: platinum/iridium spikes in ice cores, nanodiamonds and spherules in YDB sediments, and candidate craters (e.g., Hiawatha) have all been reported and searched for. Material (0.35) and genetic (0.3) evidence are lower-yield but plausible (Clovis-site disruption horizons, megafaunal DNA bottlenecks). Textual (0.0), linguistic (0.05), and oral_tradition (0.1) are essentially non-viable for a pre-literate, ~13,000-year-old event and their absence is fully explained by detectability rather than by falsity. The specific compound claim here \u2014 that a meltwater pulse is 'corroborated' by a cosmic-airburst mechanism \u2014 is unusual because mainstream paleoclimatology typically treats AMOC freshwater forcing and the airburst hypothesis as competing/alternative explanations for YD cooling rather than mutually reinforcing ones; the YDIH itself remains contested (many geologists dispute the impact markers as non-impact in origin). This tempers confidence: even though geological/astronomical evidence of *an* anomaly at the YDB is well-attested and could survive and be found, evidence that specifically corroborates a joint/complementary meltwater-pulse-plus-airburst causal chain (rather than either mechanism alone) is scarcer and more interpretively contested. I therefore set the adjustment (0.5) modestly below the raw geological/astronomical averages for the period, reflecting good physical preservation potential for impact-proxy evidence but genuine scientific controversy over interpretation, and reserving low weight for the non-material channels whose near-zero detectability explains their absence rather than implying the hypothesis is false."
+  }
+}

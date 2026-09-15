@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "c6641fc8f4349d262830a8198b1a77a6d78456a6fe7e8b845a960d1b5c9cfbee",
+  "response": {
+    "expected_evidence": [
+      "Multiple independently-run geochemical analyses of Younger Dryas boundary (YDB) sediment sections across North America failing to reproduce reported platinum, iridium, or osmium anomalies at ~10,950 BCE",
+      "Independent re-examination of claimed nanodiamond and magnetic-microspherule layers showing they are either absent, non-unique to the YD boundary, or attributable to non-impact processes (e.g., fungal spherules, detrital contamination, misidentification)",
+      "Absence of a securely dated, appropriately sized impact crater in North America or the North Atlantic correlating with the ~10,950 BCE horizon despite geophysical/astronomical surveys",
+      "Stratigraphic/geological studies showing megafaunal extinction and Clovis-culture decline as a diachronous, multi-century process rather than a synchronous catastrophic event",
+      "Ancient-DNA/genetic studies of megafaunal population trajectories showing gradual pre-Younger-Dryas decline rather than an abrupt population collapse at the hypothesized impact date",
+      "Published meta-analyses and consensus statements (e.g., Holliday & Meltzer 2010, Pigati et al. 2012, Boslough et al. 2012, van Hoesel et al. 2014, Meltzer et al. 2014) documenting failed replication attempts and methodological critiques of the original impact-marker claims",
+      "Comparative material evidence: lack of shocked quartz or other unambiguous impact ejecta in controlled excavation contexts across purported YDB sites"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis is not about an ancient event leaving traces to be excavated, but about a modern scientific refutation process (failed independent replication of the Younger Dryas Impact Hypothesis's proposed geochemical markers). The interval (-10950) anchors it to the younger-dryas period table. The strongest relevant evidence categories are geological (0.65) and astronomical (0.7), since crater-hunting and stratigraphic geochemistry are mature, high-resolution techniques well-suited to detecting or ruling out impact signatures, even for events ~13,000 years old. Material evidence (0.35) and genetic evidence (0.3) are moderately detectable \u2014 megafaunal bone/DNA records and sedimentary sequences from this period do survive reasonably well in North America, though preservation is patchy. Textual (0.0) and linguistic (0.05) evidence are essentially irrelevant/undetectable for a preliterate period, and oral tradition/iconographic evidence (0.1) is weak and unreliable this far back. Because this is fundamentally a live, ongoing scientific controversy (well documented in 20th\u201321st century literature \u2014 Holliday & Meltzer 2010, Pigati et al. 2012, Boslough et al. 2012, van Hoesel et al. 2014), the relevant 'evidence of refutation' already exists in the modern peer-reviewed record (a high-detectability model_prior/geological channel, ~0.3\u20130.65), independent of the age of the original claimed event. This is a case where the model-prior/geological/astronomical channels combine to make detection quite plausible; I weight the adjustment toward the geological/astronomical end (0.6) rather than the lower material/genetic end, reflecting that the actual test of this hypothesis occurs via modern replication studies rather than requiring fragile prehistoric artifacts to survive 13,000 years. Given this, an absence of confirmatory impact markers is more likely genuine non-replication (supporting the hypothesis) than a detectability failure, though some uncertainty remains due to incomplete global stratigraphic sampling and preservation gaps in North American Younger Dryas contexts."
+  }
+}

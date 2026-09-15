@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "02653e9adabfdd39758d046caa0110a2922ea888e8d34eb1c63e45eb6f601ceb",
+  "response": {
+    "expected_evidence": [
+      "Geological: anomalous platinum, iridium, and other siderophile-element spikes in the Greenland ice sheet at the ~12,900 cal yr BP horizon (matched to the -10950 interval)",
+      "Geological: layers of impact-related microspherules, meltglass, and nanodiamonds in ice core or associated proglacial sediment cores",
+      "Geological/astronomical: a physically identified impact crater or airburst structure of appropriate age beneath or near the Greenland ice sheet (e.g., candidate structures like Hiawatha crater, though its age is contested)",
+      "Geological: a synchronous 'black mat'/carbon-rich layer or soot/charcoal spike indicating continent-scale biomass burning coincident with the ice-core anomaly",
+      "Astronomical: cosmogenic isotope anomalies (e.g., Be-10, C-14) consistent with an extraterrestrial fallout event or airburst rather than purely solar/cosmic-ray modulation",
+      "Material: correlated ejecta/impact markers in terrestrial sediment sequences across the Northern Hemisphere dated to the same interval, supporting a synchronous fallout event rather than a local or diagenetic artifact",
+      "Genetic: megafauna population bottleneck or extinction signatures dated tightly to this interval (weak, indirect corroboration only)",
+      "Model-prior: prior published literature on the Younger Dryas Impact Hypothesis (YDIH), including both supporting studies (Firestone et al. and successors) and the substantial rebuttal literature disputing spherule/nanodiamond reproducibility and crater dating"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "Greenland ice cores are one of the highest-fidelity archives available for this period: annual layering allows sub-decadal dating precision, and atmospheric fallout (dust, tephra, isotopes, trace metals) is directly and continuously recorded, which is why the table already assigns relatively high detectability to geological (0.65) and astronomical (0.7) evidence for the younger-dryas period. This means that if a genuine cosmic-impact-driven ejecta fallout event coincided with Younger Dryas onset cooling, the ice-core stratigraphic and geochemical signal should very plausibly have survived and been discoverable \u2014 this is not a case where low preservation potential should be invoked to explain silence. Independently, material and geological evidence from terrestrial sites (spherules, nanodiamonds, black mats) has in fact been actively searched for and reported (Firestone et al. 2007 and follow-ups), so the search itself has occurred, meaning absence of a clean, universally-replicated impact signature is more likely to reflect a genuinely contested/unresolved hypothesis (many studies failed to replicate spherule/nanodiamond anomalies, and no confirmed crater of the right age has been located) rather than an undetectable event. I therefore keep the detectability adjustment close to the table's own geological/astronomical values (~0.6, averaging across the mixed evidence types including weaker genetic/material corroboration), rather than lowering it further, since low detectability is not a strong excuse for absence of corroboration here \u2014 the corroborating record on cosmic impact remains disputed in the literature on its actual merits (model-prior, unverified against primary sources), not primarily due to poor preservation."
+  }
+}

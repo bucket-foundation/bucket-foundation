@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "042c7b41b3bd767fb70aedaf064b1b622628c3dcfe5895bb2d7487a7ed03f20e",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-group-element (Pt, Ir) anomaly and/or nanodiamond/spherule concentrations in a ~12,900 BP boundary layer (black-mat equivalent) at Middle Eastern sedimentary or lake-core sequences",
+      "Astronomical/orbital modeling: reconstructed radiant and fragmentation trajectory of the Taurid meteor stream consistent with an airburst or impact event over the Fertile Crescent/Anatolia region circa 10,950 BCE",
+      "Iconographic: Pre-Pottery Neolithic A carvings (notably the Gobekli Tepe Vulture Stone, Pillar 43) argued to encode a comet/meteor-swarm and animal-death imagery contemporaneous with the proposed event",
+      "Material/archaeological: stratigraphic disruption, abrupt occupation hiatus, or faunal-turnover layers at Levantine/Anatolian Epipaleolithic-Natufian sites bracketing the Younger Dryas onset",
+      "Faunal/genetic: ancient-DNA or zooarchaeological bottleneck signatures in surviving Middle Eastern megafauna/large-game populations (wild equids, aurochs, gazelle) dated to the Younger Dryas boundary",
+      "Oral tradition: later Near Eastern flood or fire-from-the-sky catastrophe myths sometimes invoked as distorted transmission of the event (low confidence, long transmission gap)",
+      "model-prior: recollection of the broader Younger Dryas Impact Hypothesis (Firestone et al. 2007) and the Sweatman and Tsikritsis Gobekli Tepe comet-encoding proposal, both contested in the literature - flagged as unverified background knowledge, not confirmed fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.3,
+    "rationale": "The interval (13,000-12,001 BCE) sits at the Younger Dryas onset, so the younger-dryas detectability row is the appropriate baseline rather than a generic upper-paleolithic one. Geological (0.65) and astronomical (0.7) evidence are the most plausible carriers: boundary-layer geochemical signatures and orbital/Taurid-stream modeling are durable and repeatedly re-examined by modern instrumentation, so absence of confirming Pt/nanodiamond anomalies specifically in Middle Eastern strata would be moderately meaningful evidence against the hypothesis rather than purely a detection failure. Iconographic evidence is a notable exception: the table baseline (0.1) reflects generally poor survival of symbolic art this early, but the specific case invoked here, Gobekli Tepe's deliberately backfilled PPNA pillars, is a known outlier with exceptional preservation, so effective detectability for this site-specific iconographic claim is higher than the generic rate suggests - this is a genuine, if contested, finding rather than an absence. Material and genetic evidence remain weak carriers (0.35/0.3) because Middle Eastern megafauna were comparatively sparse to begin with (unlike the Americas or Eurasian mammoth steppe), so the megafaunal-extinction object is intrinsically harder to substantiate in this place regardless of detectability - a substantive weakness of the object-place pairing itself, not just a survival issue. Textual (0.0) and linguistic (0.05) evidence are essentially non-existent this far back and their absence carries no real weight either way. Overall detectability adjustment of 0.3 blends the elevated geological/astronomical/iconographic channels against the near-zero textual/linguistic channels, meaning confirming evidence is plausible to find if true, but its current absence beyond the contested Gobekli Tepe iconography is only weak-to-moderate evidence against the hypothesis given generally low baseline survivability for this period."
+  }
+}

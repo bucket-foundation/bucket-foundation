@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "cabb948ce324537cde749305b70a93e6df6b09714c1a773a1113306f20dcc516",
+  "response": {
+    "expected_evidence": [
+      "Geological: a synchronous Younger Dryas boundary layer across North American sites (about 12.8 ka) showing platinum and/or iridium anomalies, magnetic microspherules, and nanodiamonds proposed as impact proxy markers",
+      "Geological: continent-scale charcoal and soot spikes and biomass-burning aerosol proxies in ice cores and lake sediments consistent with a sudden combustion event linked to an impact winter trigger",
+      "Geological: the organic-rich black mat horizon commonly cited as capping megafaunal fossil occurrences",
+      "Geological and hydrological: sedimentary signature of a meltwater pulse, such as Lake Agassiz outburst routing into the North Atlantic, with abrupt freshwater-driven cooling proxies",
+      "Astronomical: independent extraterrestrial impact signatures such as shocked quartz, a crater or airburst structure, or cosmic isotope anomalies coincident with the same horizon",
+      "Material and archaeological: abrupt discontinuity in Clovis era tool assemblages and megafauna kill or butchery sites terminating sharply at the boundary",
+      "Genetic ancient DNA: a sharp, temporally clustered population bottleneck or extinction signal in megafaunal lineages such as mammoth, horse, and camelid dated to roughly 12.9 to 12.8 ka rather than a gradual decline",
+      "Model prior, low tier and from training rather than the provided evidence text: this matches the Younger Dryas Impact Hypothesis associated with Firestone and colleagues from 2007 onward, which remains scientifically contested. Several independent labs failed to replicate the platinum, nanodiamond, and microspherule signals, and megafaunal extinction dates across sites are not tightly synchronous, which many researchers cite as evidence against a single impact winter trigger in favor of combined climate change and human overkill models"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The interval from about 19050 to 9050 years before present straddles the late Upper Paleolithic, the Younger Dryas, and the early Holocene, so detectability was blended across those periods. The most diagnostic evidence classes for this hypothesis are geological (roughly 0.6 to 0.65) and astronomical (roughly 0.7), both comparatively well preserved and detectable over this timeframe through sediment cores, ice cores, and boundary layers that are routinely studied. This means that if a genuine, continent-wide impact and biomass-burning event had occurred and left the claimed proxies, it plausibly could have been found and would not simply be missed for preservation reasons alone. Material evidence (roughly 0.35) and genetic evidence (roughly 0.25 to 0.3) for megafaunal extinction are moderately detectable but noisier, given fragmentary archaeology and degraded ancient DNA, which can explain some inconsistency or lack of synchrony in extinction dating without requiring the hypothesis to be entirely false. Textual, linguistic, oral tradition, and iconographic evidence are essentially inapplicable or near zero for this period and were excluded from driving the adjustment. Because the strongest possible confirming evidence types (geological and astronomical) have moderate to good detectability, the persistent absence of a robust, replicated, globally consistent signal, as recalled from training as an unverified model-prior about the literature, is more plausibly attributable to the hypothesis being weakly supported or only partially correct than to poor detectability alone, though a genuine but localized or diluted signal could still have escaped confident detection. The blended detectability adjustment is set at 0.45, reflecting decent but imperfect preservation and detection potential rather than a low-detectability excuse for absence of confirming evidence."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "model": "sonnet",
+  "role": "self_report",
+  "prompt_sha256": "30fb4c89e84757d01ddc34943a44855d2858df527c89fa665af0497cc96a4402",
+  "response": {
+    "assumptions": [
+      "The 3 new vocab_added entries are treated as the full inventory of newly coined slot values this run; no other implicit additions were made.",
+      "'Missing mass' is read as the Chao1 unseen-species estimate applied to the observed hypothesis-token vocabulary (object/actor/mechanism slots combined), not a direct measure of historical truth-space coverage.",
+      "The wide coverage interval (0.0058-1.0) is assumed to reflect genuine estimator instability from a small evidence base (48 evidence items) rather than a data-entry artifact.",
+      "target_blind.first_run=True and prior_rate=None are taken to mean no real baseline exists yet for this campaign's proposal-rate comparison, so the reported 'steady: True' is a default/placeholder rather than a confirmed trend.",
+      "The meta-review refusal/truncation is assumed to be an isolated generation failure that does not silently bias the quantitative metrics (chao1, brier, surprise_rate, robustness_stable_fraction), which are computed by separate deterministic pipeline stages.",
+      "The 11.2% survivor rate (360/3205) is assumed to reflect normal plausibility filtering, not evidence that entire slot vocabularies are broken."
+    ],
+    "incomplete_vocabularies": [
+      "actor: only 1 new actor value added this run (independent NH warming as extinction driver) against 3205 generated hypotheses and a small 47-source corpus; the causal-actor space for YD triggers/effects is almost certainly under-sampled relative to the huge chao1 unseen-estimate.",
+      "mechanism: no new mechanism-slot entries were added at all this run despite heavy hypothesis volume, which given the chao1_estimate of ~189,255 against only 3,205 observed items is more consistent with a thinly sampled, still-emerging mechanism vocabulary than with genuine saturation.",
+      "object: 2 new object entries (10Be/nitrate radiation proxy, absence-of-crater evidence) surfaced from a corpus of only 48 evidence items, suggesting the physical-evidence-marker vocabulary is still being actively discovered rather than converged."
+    ],
+    "missing_mass_estimate": 0.0727,
+    "calibration_summary": "This run shows a low calibration Brier score (0.0536), indicating the engine's confidence estimates track survival outcomes reasonably well in isolation, but that number should be read alongside a moderate surprise rate (0.354) and a middling robustness-stable fraction (0.756) \u2014 together suggesting roughly a quarter of surviving hypotheses are fragile under perturbation and about a third deviate from prior expectation, which tempers how much credit the good Brier score deserves. The point estimate for missing vocabulary mass (0.073) looks reassuringly small, but its own confidence band (0.006\u20131.0) is so wide as to be nearly uninformative, meaning the '7% unseen' figure should be treated as a weak signal rather than a settled coverage claim, especially given the chao1 estimate implies well over 50x more unseen hypothesis-vocabulary combinations than observed. Combined with a failed meta-review this cycle, overall confidence in this run's self-assessment is moderate-low: the automated metrics look healthy on their face, but thin evidence volume (48 items), sparse vocab additions concentrated in only 2 of 3 slot types, and an unresolved qualitative review leave real uncertainty about whether the vocabulary and calibration are actually converging or just quiet.",
+    "target_blind_steady": true,
+    "target_blind_note": "The pipeline reports target_blind.steady=True with rate=0.6, but prior_rate=None and first_run=True mean there is literally no prior run to compare against \u2014 this is a baseline measurement, not a confirmed steady trend. Treat 'steady: True' here as a placeholder/default rather than evidence that the proposal rate for non-consensus actor/mechanism values is holding up; the real test (matching the falling-surprise-rate health check for target-blindness) can only be applied starting with the *next* run, when this run's 0.6 rate becomes prior_rate under stable evidence volume. Recommend explicitly flagging this run's target_blind result as 'baseline, not yet evaluable' in downstream trend dashboards rather than counting it as a positive steadiness data point."
+  }
+}

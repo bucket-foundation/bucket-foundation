@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "8edf6b1b62b2eb261e7adf9012897e1c3e8d24f3919a094f492c6d431ffdf0cd",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: independent geochemical re-analyses of sediment/soil cores from multiple Younger Dryas boundary (YDB) sites in North America testing for iridium, platinum-group elements, nanodiamonds, and magnetic spherules",
+      "Material: curated physical sediment samples and reference cores from original and follow-up excavations used for cross-lab comparison",
+      "Astronomical: absence/inconsistency of extraterrestrial impact markers (shocked quartz, high-temperature spherules) across independently sampled sites, and any crater-search or airburst-modeling studies",
+      "Model_prior/literature: peer-reviewed replication and meta-analysis papers (geochemistry/quaternary science journals) explicitly reporting failure to reproduce the original iridium anomaly, methodological critiques (e.g., contamination, non-impact origin of nanodiamonds/spherules), and resulting shift in scientific consensus",
+      "Genetic/faunal (secondary): reassessment of megafaunal extinction timing/genetic bottleneck data originally cited as corroborating the impact, now reinterpreted without invoking impact causation"
+    ],
+    "detectability_adjustment": 0.72,
+    "rationale": "This hypothesis describes a modern scientific epistemic event (failure of independent labs to replicate the Younger Dryas iridium anomaly) rather than an ancient cultural or biological trace, so its detectability is largely decoupled from the raw upper-paleolithic/younger-dryas period scores in the table, which mainly reflect preservation odds for artifacts, texts, or oral traditions produced *during* that era. The primary evidence for a 'refutation via independent-replication-failure' would be curated geological samples and peer-reviewed publications produced in the modern era, which have very high survival and discoverability once created (journal archives, sample repositories) \u2014 far higher than the table's geological (0.65) or material (0.35) figures for the younger-dryas period, which apply to the original ancient depositional record, not to modern re-analysis literature. Using the table only as a baseline for the physical geological substrate (still needing intact, sampleable sediment horizons, hence anchoring near the 'geological' row for younger-dryas), I raise the adjustment upward to reflect that the actual detection channel (scientific publication and lab replication) is a well-preserved modern record. As model-prior (unverified, from training, not the evidence text provided): I recall that real-world Younger Dryas Impact Hypothesis debates did include published failures to replicate anomaly signals at several sites (e.g., critiques attributed to researchers like Pigati, Holliday, van Hoesel, and Daulton) alongside continued defenses by proponents, so the controversy itself is genuinely contested rather than a clean refutation \u2014 this should be treated as a weak, unverified recollection, not an established fact. Given that such literature-based evidence, if it exists, would almost certainly have survived and been indexed, an absence of any corroborating replication-failure publications would weigh more toward the hypothesis being unsupported or overstated rather than toward 'evidence lost to poor preservation.'"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "eef58282769a7948ca7a8b684989862c0ee20b1df63b2e056a7220b7d2192429",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: a distinct stratigraphic marker layer (the so-called 'black mat') at ~12,900 cal BP sites across North America, dated tightly to ~10,950 BCE",
+      "geological: platinum and/or iridium concentration anomalies in sediment/ice cores coincident with the extinction horizon",
+      "geological: nanodiamonds, magnetic microspherules, and melt-glass consistent with an airburst/impact-winter event",
+      "geological: elevated soot, charcoal, and combustion-aerosol proxies indicating continent-scale biomass burning immediately preceding faunal decline",
+      "material: abrupt discontinuity or thinning in Clovis-era archaeological assemblages (tool styles, kill sites) at the same horizon",
+      "material: megafaunal skeletal remains showing a sharp last-appearance-date cluster around -10950 rather than a gradual decline",
+      "genetic: ancient-DNA-inferred population bottlenecks/extinction pulses in megafauna lineages timed to this interval",
+      "genetic: possible coincident human population bottleneck signal in ancient/modern DNA",
+      "astronomical: an identified impact crater, airburst debris field, or extraterrestrial (cosmic) chemical/isotopic signature independently corroborating a bolide event",
+      "oral_tradition: North American Indigenous narratives describing fire-from-the-sky, darkness, or catastrophic events (very weak, low-confidence corroboration only)",
+      "model_prior: existing published Younger Dryas Impact Hypothesis literature (Firestone et al. and successors) as a low-tier prior, noting it remains scientifically contested with many failed independent replications"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "The stated interval (-10950) matches the Younger Dryas onset boundary, so the 'younger-dryas' period row is the most appropriate detectability context (upper-paleolithic values are nearly identical and would not change the conclusion much). Geological evidence is the most diagnostic channel for this hypothesis (impact markers, black mat, biomass-burning proxies) and has comparatively high detectability (0.65) because deep, well-dated sediment sequences from this era are routinely preserved and sampled \u2014 this matches the fact that (per model-prior, unverified) a real, if contested, literature of platinum/iridium/spherule/nanodiamond claims already exists for this exact horizon. Material/archaeological (0.35) and genetic (0.3) evidence are moderately detectable \u2014 megafaunal and Clovis-era remains do survive and are datable, though taphonomic loss and small sample sizes limit resolution. Astronomical evidence (crater/debris field) is nominally high in the table (0.7) but in practice no confirmed crater has been identified for this event (per model-prior), which is itself informative: an airburst mechanism may leave no crater, so absence here should not be read as strong evidence against the hypothesis. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are essentially undetectable for a non-literate, pre-agricultural North American population at this date, so their absence carries no evidentiary weight. Overall, evidence of the required type (geological/material) could plausibly survive and has in fact been reported, but it remains scientifically disputed (many claimed spherule/nanodiamond/platinum signals have not been independently replicated, and the extinction pattern is also explained by gradual human overhunting plus climate change), so the low-to-moderate composite detectability (~0.5) should be weighted alongside genuine scientific controversy rather than treated as proof of either presence or absence of the causal impact event."
+  }
+}

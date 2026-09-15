@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "a328a36e45062e0ea9c44a65ae18da0034f63ff33460fe2ac0196d49eabe374e",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: B's 'inconclusive' action paired with 'dating-uncertainty' mechanism is internally consistent, whereas A's 'corroborated' action paired with a 'methodological-artifact' mechanism is self-contradictory (an artifact-driven result cannot properly be called corroborated); B's Greenland ice-sheet placement also matches real meltwater-pulse dating archives (ice cores)."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: both pair a strong 'corroborated' action with an undermining mechanism, but 'dating-uncertainty' (A) is a milder qualifier than 'methodological-artifact' (B), which more directly implies the corroboration itself is spurious."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.62,
+        "rationale": "model-prior: A's 'inconclusive'+'dating-uncertainty' framing matches the well-documented Younger Dryas radiocarbon-plateau problem, while B's 'corroborated' status for nanodiamond/impact-ejecta evidence overstates confidence given multiple published failures to replicate such findings."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: B's 'refuted'+'biomass-burning-impact-winter'+'multiple-continents' framing aligns with the documented pattern of widespread charcoal/soot claims being challenged across many regional studies, whereas A's 'triggered'+'impact-ejecta-fallout' pairing awkwardly attributes a freshwater-forcing actor to an ejecta mechanism with a strong causal claim."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.52,
+        "rationale": "model-prior: A's interval spans the full cooling duration (consistent with 'corroborated' status for an ongoing regime) while B's point-interval fits a discrete 'triggered' airburst event; roughly balanced, slight edge to A since 'corroborated' is a lower evidentiary bar than a strong causal 'triggered' claim for a still-contested airburst mechanism."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.53,
+        "rationale": "model-prior: impact-ejecta-fallout evidence (spherules, platinum anomalies) has somewhat more empirical grounding in sediment/ice records than the biomass-burning-impact-winter cooling-amplitude claim, which climate modeling has generally struggled to support."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.62,
+        "rationale": "model-prior: A's interval correctly brackets the YD onset window, while B's interval (-10000 to -9001) falls well past onset into the later/termination period, creating a temporal mismatch with the 'onset-cooling' object that weakens B's coherence."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.58,
+        "rationale": "model-prior: B claims 'younger-dryas-termination' but uses an interval (-11000 to -10001) that actually corresponds to the YD onset era rather than its termination (~-9750), an internal date-object mismatch; A's interval, though very broad and imprecise, does not contradict its own object in this way."
+      }
+    ]
+  }
+}

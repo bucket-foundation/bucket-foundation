@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "c5859fc931416573e2d08b0e1416c8b8b0788bcecc0cc3f19cf0a7dc4f433e1d",
+  "response": {
+    "expected_evidence": [
+      "Geological: melt-glass, siliceous scoria-like objects, and quartz microspherules in Younger Dryas Boundary sediment layers across multiple North American sites",
+      "Geological: elevated Ir, Pt, Ni geochemical anomalies co-located with the melt-glass horizon",
+      "Geological: nanodiamonds, magnetic spherules, and carbon spherules in the same stratigraphic layer",
+      "Astronomical: an identifiable impact crater or airburst signature consistent with a North American airburst around 10950 BCE",
+      "Material: disruption in Paleoindian occupation layers directly above or below the boundary horizon",
+      "Material: charcoal and soot layers indicating widespread biomass burning coincident with the boundary",
+      "Genetic: megafaunal extinction or bottleneck signatures in ancient DNA dated to the same interval",
+      "Model prior: published literature on the Younger Dryas Impact Hypothesis including original and follow-up studies"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The interval sits at the Younger Dryas onset so the younger-dryas row applies. Geological detectability is 0.65 and astronomical is 0.7, both relatively favorable, because boundary sediment layers are well preserved and have been extensively sampled across North America since this claim was first proposed in 2007. Material detectability is 0.35 and genetic is 0.3, meaning archaeological and skeletal corroboration is harder to secure and its absence is less diagnostic of falsity. No confirmed impact crater or unambiguous shocked-quartz field has been identified despite high astronomical detectability, and independent labs have repeatedly failed to replicate the original melt-glass and nanodiamond signals, which critics attribute to wildfire or terrestrial processes rather than impact. This suggests that where detectability is high, the largely contested or non-replicated evidence favors doubt about the hypothesis rather than a detection-limited absence of evidence. The composite adjustment of 0.45 averages the moderate scores across geological, astronomical, material, genetic, and model-prior categories. This assessment relies partly on model-prior knowledge of the Younger Dryas Impact Hypothesis debate rather than the evidence text provided in this task and should be treated as a low-tier, unverified source."
+  }
+}

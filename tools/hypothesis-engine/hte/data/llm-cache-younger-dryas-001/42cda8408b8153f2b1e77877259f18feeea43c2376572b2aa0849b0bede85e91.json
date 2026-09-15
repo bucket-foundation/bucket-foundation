@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "5869d66696367fc1df63a0e285d94fd72b4ecf907574d37df8113d3511a0c110",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "expected_evidence": [
+      "geological: a discrete iridium/platinum-group-element enrichment layer within dated Greenland ice-core strata (e.g., GISP2/NGRIP) at the ~12,900 cal BP / 10,950 BCE horizon, ideally paired with sulfate/ash geochemistry to rule out volcanic origin",
+      "material: co-occurring impact-proxy markers in the same or correlated sediment horizons \u2014 nanodiamonds, magnetic/glassy microspherules, meltglass, and shocked mineral grains at Younger Dryas boundary sites across the Northern Hemisphere",
+      "astronomical: modeling or independent confirmation of a plausible impactor/airburst source (e.g., fragmenting comet or bolide swarm) consistent with the timing and geographic spread of the ejecta signature",
+      "geological (secondary): correlative Younger Dryas boundary layer anomalies from non-ice-core archives (lake/marine sediment cores, loess) to cross-validate the ice-core signal",
+      "genetic (weak/indirect): megafaunal extinction or population bottleneck signatures temporally coincident with the proposed impact, though only suggestive and not confirmatory",
+      "model_prior: prior published debate/literature on the Younger Dryas Impact Hypothesis, including the Petaev et al. (2013) platinum anomaly report and subsequent critiques attributing such anomalies to volcanic or terrestrial processes"
+    ],
+    "rationale": "The interval [-10950,-10950] corresponds to ~10,950 BCE, essentially the Younger Dryas onset boundary (~12,900 cal BP), so I mapped the unspecified period to the 'younger-dryas' detectability row rather than upper-paleolithic broadly. For this period, geological (0.65) and astronomical (0.7) channels are the most favorable for preserving this kind of evidence, since Greenland ice sheets are continuously accumulating, annually-layered, chemically stable archives well-suited to detecting geochemical anomalies like iridium/platinum spikes \u2014 exactly the mechanism (impact-ejecta-fallout) proposed. Material evidence (spherules, nanodiamonds, meltglass) has moderate detectability (0.35) since it depends on preservation and identification in scattered sedimentary contexts outside ice cores. Genetic evidence is weak and indirect (0.3) since megafaunal bottleneck signals are multiply-caused and not a direct impact proxy. Textual (0.0) and linguistic (0.05) channels are essentially inapplicable for a pre-literate period this old, and oral tradition detectability is very low (0.1) given the ~13,000-year gap and lack of unbroken transmission. Given that ice-core and other geological archives have plausibly high preservation/detectability for this specific mechanism, an absence of a confirmed anomaly would be more informative of falsity than a low-detectability data gap \u2014 but note that real-world literature (e.g., Petaev et al. 2013 GISP2 platinum anomaly) shows this kind of evidence has in fact been reported and remains actively contested, which is consistent with moderate-to-good but not certain detectability. This is treated as model-prior background knowledge, not verified here. Overall I set detectability_adjustment to 0.6, reflecting strong potential for ice-core/geological preservation but moderated by the difficulty of definitively distinguishing an impact-ejecta signal from volcanic or diagenetic alternatives, and the weaker corroboration expected from material/genetic channels.</rationale>\n</invoke>\n"
+  }
+}

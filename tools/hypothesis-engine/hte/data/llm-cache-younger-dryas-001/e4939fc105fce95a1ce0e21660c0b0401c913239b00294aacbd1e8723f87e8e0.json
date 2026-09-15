@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "21ce40237298db373f11c704cc082eae8bcb260c61e722afe43764ab928f3a2a",
+  "response": {
+    "expected_evidence": [
+      "geological: impact-proxy markers at the ~12.8 ka boundary layer (black mat, elevated platinum/iridium, nanodiamonds, magnetic spherules, soot/charcoal spikes) across North American sedimentary sections",
+      "astronomical: orbital/dynamical modeling showing the Taurid meteor stream's debris field intersecting Earth's orbit at the proposed date, and/or airburst crater/strewnfield candidates",
+      "geological: onset-of-Younger-Dryas cooling signature (e.g., Greenland ice-core delta-O18 shift, meltwater pulse 1A/1B routing into the North Atlantic) temporally coincident with the proposed impact/airburst layer",
+      "material (archaeological): abrupt discontinuity or reorganization in Clovis-era lithic assemblages and site-occupation patterns at ~12.8 ka",
+      "genetic: ancient-DNA or population-genetic bottleneck/extinction signatures in North American megafauna (mammoth, mastodon, horse, etc.) dating tightly to the proposed interval",
+      "genetic: megafaunal dung-fungus (Sporormiella) decline curves from lake sediments as an extinction-timing proxy",
+      "oral_tradition: Indigenous North American narratives describing sky-fire, falling-star, or catastrophic-flood events (very weak, low-fidelity link if used as evidence)",
+      "model_prior: prior scholarly modeling/simulation work (e.g., Firestone et al. 2007 and subsequent literature) proposing or testing the Younger Dryas Impact Hypothesis"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.4,
+    "rationale": "This hypothesis corresponds to the well-known (and scientifically contested) 'Younger Dryas Impact Hypothesis,' which ties a Taurid-stream cosmic encounter to the meltwater pulse and North American megafaunal extinction around 12,800-11,700 cal BP \u2014 falling on the Upper Paleolithic/Younger Dryas boundary. Using the 'younger-dryas' detectability row as the closest match: geological (0.65) and astronomical (0.7) evidence types have relatively high detectability, and indeed this is reflected in the real literature \u2014 boundary sediment layers, platinum anomalies, nanodiamonds, and orbital/Taurid-stream modeling have all been published and remain physically preserved and re-testable in sediment cores. However, material/archaeological (0.35) and genetic (0.3) evidence are only moderately detectable, since megafaunal extinction chronology is noisy and multi-causal (also implicated: human overhunting, independent climate change), making causal attribution to a specific cosmic mechanism hard to isolate even where data exist. Oral-tradition (0.1) and linguistic/textual channels are essentially non-diagnostic this far back (no written record, and oral traditions from ~12,700 years ago cannot be reliably traced to a specific event without independent corroboration). Given this profile, evidence for parts of the hypothesis (chronological coincidence, existence of impact-proxy markers) has plausibly survived and been reported, but strong evidence specifically corroborating a causal 'Taurid-stream encounter -> extinction' mechanism (versus mere correlation) is intrinsically hard to detect and remains disputed in the literature (subsequent studies failed to replicate several proposed impact markers). I flag my knowledge of the Firestone et al. hypothesis and its rebuttals as model-prior, not verified against the evidence text provided in this task. A moderate overall detectability adjustment (~0.4) reflects strong geological/astronomical channel visibility offset by weak genetic/material/oral-tradition/textual channels and the inherent difficulty of proving mechanism (versus mere temporal coincidence) from surviving proxies."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "0fa59a03dbe788a6f32452b87ee4cd52ee69f7b8c27d972acc27f1ba44b0165c",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: elevated platinum/iridium and nanodiamond concentrations at the ~10,950 BCE (Younger Dryas boundary) stratigraphic layer across North American sites ('black mat' horizons)",
+      "Geological/geochemical: anomalous nitrate, ammonium, or cosmogenic isotope (14C, 10Be, 36Cl) spikes in ice cores or varved sediments consistent with atmospheric ionization/ozone depletion from a gamma-ray or radiation event",
+      "Astronomical: reconstructed orbital modeling showing Earth crossing a dense Taurid meteoroid stream filament at this date, or historical/telescopic Taurid-complex debris studies supporting a coincident swarm encounter",
+      "Material/archaeological: abrupt discontinuity in Clovis-associated tool assemblages or faunal remains synchronous with the extinction pulse",
+      "Genetic: megafaunal population bottleneck or extinction signatures in ancient DNA dated to this narrow window, distinguishable from gradual climate-driven decline",
+      "Iconographic/oral_tradition: Paleoindian imagery or later transmitted oral narratives referencing a 'sky fire' or catastrophic celestial event (very weak, expected largely absent)",
+      "model-prior: fringe literature (e.g., Younger Dryas Impact Hypothesis, cosmic-ray/superwave ionization proposals) already discusses similar mechanisms but remains contested and non-consensus"
+    ],
+    "detectability_adjustment": 0.3,
+    "rationale": "The interval -10950 falls at the Younger Dryas onset, so I applied the ('younger-dryas', *) detectability rows rather than an unspecified default. Geological (0.65) and astronomical (0.7) evidence for a Younger Dryas boundary anomaly (platinum/iridium/nanodiamond layers, black mats, cosmogenic isotope spikes) are the most plausible survivable traces, and such layers are indeed already documented in the literature for other proposed YD impact/airburst mechanisms, so preservation is credible. However, the hypothesis specifies a very particular mechanism\u2014gamma-ray ionization from a Taurid swarm\u2014rather than direct impact or airburst; isolating a gamma-ray-specific isotopic/ionization signature from other plausible causes (solar proton events, volcanic activity, impact ejecta) is difficult, and no known technique cleanly attributes ionization anomalies to gamma radiation versus other high-energy sources. Genetic (0.3) and material (0.35) lines could support timing correlation with extinction but cannot establish mechanism specificity. Textual (0.0) and oral_tradition (0.1)/iconographic (0.1) are essentially unavailable given the pre-literate Younger Dryas context. Given the action is marked 'inconclusive' in the hypothesis itself, and mechanism specificity is poorly distinguishable even where geological/astronomical proxies survive, I adjust the effective composite detectability down slightly from the raw geological/astronomical ceiling (~0.65-0.7) to ~0.3, reflecting that while boundary-layer evidence could survive and be found, attributing it uniquely to 'gamma-ray-ionization from Taurid swarm' specifically is only weakly supportable by any surviving proxy. This low-moderate adjustment should be read as explaining likely ambiguous/indirect evidence rather than as evidence against the hypothesis's core claim (a synchronous cosmic-related disruption at this date), which is a model-prior-level (0.3) association drawn from my training knowledge of contested Younger Dryas impact literature, not from any provided source text."
+  }
+}

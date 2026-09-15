@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "3c84aaf4f62d509be027965e3d99ea69bc339222d38e40e625bc58f8e58ecb86",
+  "response": {
+    "expected_evidence": [
+      "geological - high-resolution ice-core records (GISP2, GRIP) showing oxygen-isotope stratigraphy for timing of Younger Dryas termination and any meltwater signature",
+      "geological - annually-laminated (varved) lake and marine sediment cores (e.g. Cariaco Basin, glacial Lake Agassiz basin) used to date meltwater pulse routing and outflow timing",
+      "geological - geomorphological evidence of Lake Agassiz outlet channels (St Lawrence vs Mississippi vs Mackenzie routing) with radiocarbon-dated flood deposits",
+      "material - North American archaeological stratigraphy (Clovis-era sites, Younger Dryas Boundary black mat layers) with radiocarbon dates and debated impact-proxy layers (nanodiamonds, spherules, platinum anomaly)",
+      "astronomical/chronometric - cosmogenic isotope (14C, 10Be) calibration curves and tree-ring/varve cross-dating used to test synchroneity between meltwater pulse and Younger Dryas termination",
+      "genetic - population bottleneck or migration-pulse signals in North American faunal or human ancient DNA possibly correlating with the abrupt climate shift",
+      "model-prior (training-derived, unverified) - the known scientific debate (Broecker AMOC-shutdown hypothesis, Lake Agassiz drainage-routing controversy, Firestone impact hypothesis and later refutations) that explicitly frames the meltwater-pulse and Younger Dryas termination link as chronologically contested"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis concerns an acknowledged dating controversy rather than a single discrete event, so relevant evidence is the primary paleoclimate record plus the published debate over its interpretation. Using the younger-dryas detectability row, geological (0.65) and material (0.35) evidence dominate and have strong survivability: ice cores, varved lake and marine sediments, and glacial outwash geomorphology are robust archives that remain preserved and have been extensively sampled and dated (GISP2, GRIP, Cariaco Basin, Lake Agassiz spillways). Radiocarbon and cosmogenic dating records, treated near the astronomical/geological boundary (0.65-0.70), are also well preserved and are precisely the type of data generating dating-uncertainty disputes. Textual evidence is essentially impossible (0.0, pre-literate period), and genetic, linguistic, and oral-tradition signals are weak (0.3, 0.05, 0.1) since no continuous human record spans this precisely. Because the hypothesis explicitly asserts inconclusiveness rather than a definite causal claim, the expected evidence is largely the existence of conflicting or imprecisely dated records in geological and archaeological literature, matching the real debate over meltwater pulse timing, Lake Agassiz outlet routing, and the Younger Dryas Boundary impact hypothesis. Given strong preservation and active study of the dominant geological and material archives, a moderate-to-high detectability adjustment (about 0.55, averaging the dominant geological/material/astronomical channels while discounting near-zero textual/linguistic channels) is appropriate; apparent inconclusiveness is best explained by genuine methodological and dating-precision limits (varve-counting error, reservoir effects, calibration-curve resolution) rather than by absence of survivable evidence."
+  }
+}

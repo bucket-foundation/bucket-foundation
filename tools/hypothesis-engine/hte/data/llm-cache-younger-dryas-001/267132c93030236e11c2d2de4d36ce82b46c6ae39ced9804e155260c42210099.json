@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "c92a7da3602f099cb39412d3c894dfb97d6a5bd0279d66d3d50a66225be3b284",
+  "response": {
+    "expected_evidence": [
+      "Geological: elevated platinum/iridium/nanodiamond/magnetic-spherule concentrations in a synchronous Younger Dryas boundary (YDB) sediment layer across North America (~12,900 cal BP / ~10,950 14C BP)",
+      "Geological: continent-scale 'black mat' or soot/charcoal layer indicating sudden biomass-burning event coincident with YD onset",
+      "Astronomical: absence of a confirmed impact crater is expected under an airburst model (airbursts typically do not crater), but shocked quartz or high-temperature melt-glass spherules would be corroborating astronomical/geological proxies",
+      "Material/archaeological: abrupt stratigraphic disruption or abandonment signatures at Clovis-era sites in North America dated to the same horizon",
+      "Genetic: megafaunal population bottleneck or extinction-timing signals in ancient DNA clustering precisely at ~10,950 BP rather than gradually across the YD",
+      "Model_prior: existing published debate (Firestone et al. 2007 proposing the impact hypothesis vs. Pinter, Holliday, Boslough, Meltzer, Daulton and others reporting failed replication of platinum/iridium/nanodiamond spikes at most sites) \u2014 this is recalled from training, not from primary evidence text, and should be treated as low-tier/model-prior"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis specifies a single, sharply dated event (~10,950 BP) with a mechanistic claim (cosmic airburst) distinct from more common gradual-forcing explanations of Younger Dryas onset. Using the 'younger-dryas' period row (closest match to the unspecified/point-interval placement), the relevant evidence kinds have comparatively high baseline detectability: geological (0.65) and astronomical (0.7) are well above the table median, meaning that if a continental-scale airburst had occurred at this date, diagnostic sedimentary markers (platinum/iridium anomalies, nanodiamonds, spherules, soot layers) plausibly could have survived in the geological record and been found, and indeed some studies have reported such a layer. Material (0.35) and genetic (0.3) evidence are moderately detectable but less diagnostic on their own. Because detectability for the two most decisive evidence classes (geological, astronomical) is fairly high rather than low, an absence of robust, independently-replicated confirmation (as opposed to isolated, contested reports) argues somewhat more toward the hypothesis being unsupported or false than toward a pure detection failure \u2014 per the instruction that low detectability should be invoked to explain absence of evidence before falsity, but here detectability is only moderate, not low. I therefore set a moderate adjustment (0.5), averaging the higher astronomical/geological detectability against the much lower material/genetic/textual detectability for this period, and flag that the existing literature debate on this exact hypothesis is drawn from model-prior knowledge rather than the evidence text provided."
+  }
+}

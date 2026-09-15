@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "88bce75e29afa6ee8e72b72e65dd5df2ed7e1d29fb4a444b7fa87f390bc46dd6",
+  "response": {
+    "expected_evidence": [
+      "geological: multi-site sediment/loess core assays across Europe at the Younger Dryas onset boundary layer showing microspherule counts statistically indistinguishable from background (pre- and post-boundary) rather than an anomalous spike",
+      "geological: failed independent replication studies at candidate YDB sites (e.g., attempts to reproduce spherule/nanodiamond peaks reported at Usselo-type horizons in Belgium, Netherlands, Germany)",
+      "material: physical microspherules recovered and geochemically/petrographically reclassified as fungal sclerotia, volcanic ash, anthropogenic fly-ash, or common cosmic background dust rather than impact-diagnostic material",
+      "material: absence of correlated platinum/iridium/nickel geochemical anomaly in the same strata where spherules were claimed",
+      "astronomical: absence of any identified impact crater or airburst structure of appropriate age/size in or near Europe",
+      "astronomical: models/measurements showing spherule flux consistent with normal micrometeorite influx rather than a discrete airburst event",
+      "model_prior (peer-reviewed literature, modern): published critique/refutation papers (analogous to real-world Pigati et al., van Hoesel et al., Holliday et al. type replication failures) explicitly contesting the original impact-hypothesis claims",
+      "iconographic/oral_tradition: essentially none expected, since this is a scientific-method refutation, not a culturally transmitted record"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis is unusual in that the sought 'evidence' is not evidence of an ancient event itself but evidence of a modern scientific refutation of a claimed cosmic-airburst signature (microspherule concentrations) in European Younger Dryas-age (~12,900-11,700 cal BP) sediments. The relevant primary substrate is geological (lake/loess sediment sequences spanning the YD boundary), which is well-preserved and heavily studied across Europe, giving the geological row (0.6-0.65) and astronomical row (0.65-0.7) reasonably high detectability under the younger-dryas/upper-paleolithic tables. Material evidence (physical spherule samples, geochemical anomaly data) is moderately detectable (0.35) since it depends on targeted excavation and lab analysis rather than casual survival. Textual (0.0-0.02) and oral_tradition/iconographic (0.1) rows are essentially irrelevant here since a scientific refutation is not culturally transmitted or ancient-documented; the modern peer-reviewed literature itself sits outside the ancient-evidence detectability model and should be treated as high-confidence model_prior-tier information (0.3 baseline in-table, but functionally near-certain as contemporary published science), which I flag explicitly as drawn from training knowledge (model-prior) rather than from evidence text supplied to me, since I was not given the underlying source documents to verify. Given that multiple independent European sediment records were plausibly available and geologically accessible for resampling/reanalysis, an absence of confirming spherule anomalies is a meaningful, detectable result rather than a gap caused by poor preservation -- supporting that the refutation could genuinely have been established rather than being an artifact of low detectability. I set the aggregate detectability_adjustment at 0.55, averaging the higher geological/astronomical detectability against the lower material/textual/oral rows, reflecting that this refutation hinges primarily on geological and geochemical replication work rather than fragile organic, textual, or oral evidence."
+  }
+}

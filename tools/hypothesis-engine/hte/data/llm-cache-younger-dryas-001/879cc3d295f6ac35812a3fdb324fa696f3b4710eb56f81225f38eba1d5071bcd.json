@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "c5dc0afd53978dc968a004bb4b3e3527b2ee627e578ba250bd92eb39babb7461",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: anomalous spikes in cosmogenic radionuclides (10Be, 36Cl, 14C) in Greenland ice cores (GISP2/NGRIP/NEEM) dated to ~11,000-12,900 cal BP marking the Younger Dryas onset",
+      "geological: coincident nitrate (NO3-) concentration spikes in the same ice core layers, consistent with atmospheric NOx production from ionizing radiation",
+      "astronomical/geological: cross-matching of any Greenland isotope anomaly with contemporaneous 14C excursions in floating or partial tree-ring/lake-varve chronologies from the same interval",
+      "material: fine-resolution ice-layer chemistry (sulfate, nitrate, isotope ratio co-analysis) distinguishing a solar-proton-event signature from volcanic or biomass-burning signals",
+      "model_prior: theoretical/atmospheric-chemistry modeling of how a solar proton event's secondary gamma/bremsstrahlung radiation would ionize the atmosphere and produce a detectable NOx/isotope fingerprint, to compare against observed ice core data",
+      "astronomical: any independent corroborating solar-activity proxy (e.g., sunspot-driven cosmogenic production anomalies) constraining whether a solar proton event of sufficient magnitude occurred in this window"
+    ],
+    "detectability_adjustment": 0.6,
+    "rationale": "The hypothesis dates to the Younger Dryas onset (~11,000 cal BP boundary), for which the ('younger-dryas', 'geological') = 0.65 and ('younger-dryas', 'astronomical') = 0.7 rows are most relevant, since the primary expected evidence (cosmogenic isotope and nitrate anomalies) is preserved as geological/geochemical stratigraphy in ice cores rather than as textual or iconographic records (correctly near-zero for this period: textual=0.0, iconographic=0.1). Greenland ice sheet cores (GISP2, NGRIP, NEEM) provide continuous, well-dated, high-resolution stratigraphy extending well past 11,000 years ago, so if a solar proton event of sufficient magnitude occurred at YD onset, its cosmogenic-isotope and nitrate signature would plausibly have survived and be detectable with modern ice-core geochemistry \u2014 this is a genuinely high-detectability proxy class, unlike textual or oral-tradition records from this pre-literate period. This supports treating absence of a clear signal as informative (consistent with the hypothesis's own 'inconclusive' action flag) rather than attributing a gap purely to poor preservation. However, the stated mechanism ('gamma-ray-ionization' from a 'solar-proton-event') is somewhat non-standard \u2014 solar proton events are typically modeled as producing NOx/isotope signatures via particle ionization rather than gamma rays per se, which may reflect conflation with gamma-ray-burst hypotheses (e.g., AD 774/775-type events) \u2014 model-prior flag: this mechanism-labeling ambiguity is recalled from training rather than sourced from the evidence text, and should be treated as low-tier, unverified until corroborated. I set the detectability_adjustment at 0.6, slightly below the geological/astronomical row averages, to account for the added difficulty of causally attributing any detected anomaly specifically to a solar-proton mechanism (versus volcanic, impact, or other causes) even when the ice-core stratigraphy itself is well preserved."
+  }
+}

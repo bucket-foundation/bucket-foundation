@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7689720bb1e23c571aacb493b8928b8dd4bb4172a1878c849668bf64aac07154",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Archaeological settlement-pattern continuity/discontinuity data (Clovis-age site density, radiocarbon date distributions) across the ~10,950 BCE boundary in North America",
+      "Ancient/modern DNA studies testing for a population bottleneck or founder-effect discontinuity in Native American lineages around the Younger Dryas onset",
+      "Geological impact-proxy layers (black mat, platinum anomaly, nanodiamonds, microspherules) at multiple North American sites, and whether their stratigraphic position correlates with any demographic decline",
+      "Faunal extinction/turnover records (megafauna decline timing) compared against human occupation intensity as an independent demographic proxy",
+      "Astronomical/geophysical modeling or crater/airburst-signature searches assessing whether an airburst event of demography-altering scale is physically plausible at this date",
+      "Comparative regional archaeological surveys (lithic technology continuity, e.g., Clovis-to-Folsom transition) used to argue for or against population disruption",
+      "Model-prior literature synthesis from the ongoing Younger Dryas Impact Hypothesis debate (Firestone et al. vs. critics) as a low-tier corroborating/refuting source"
+    ],
+    "detectability_adjustment": 0.45,
+    "rationale": "Interval -10950 sits at the Younger Dryas onset boundary, so I use the 'younger-dryas' period row rather than 'upper-paleolithic' since the mechanism (cosmic-airburst) and claimed demographic effect are specifically tied to that boundary event debated in the YDIH literature. Relevant evidence kinds are geological (0.65) and astronomical (0.7) \u2014 both fairly detectable, since impact-proxy stratigraphy and airburst physics have been actively searched for across dozens of North American sites over the past two decades \u2014 plus material/archaeological (0.35) and genetic (0.3), which are much harder to resolve because Paleoindian population reconstructions from sparse site counts and ancient DNA are noisy and low-resolution at millennial timescales. Model-prior (0.3) reflects that this whole topic (YDIH) is a contested, unresolved debate in the literature I recall, not a settled fact, so any claim I make about it should be flagged as low-confidence. Averaging across the evidence kinds most relevant to testing a demographic 'refutation' claim (material, genetic, geological, astronomical, model_prior) gives roughly 0.45, meaning: if this refutation is true, we would plausibly have been able to detect supporting evidence (settlement continuity, absence of a genetic bottleneck) via archaeology and genetics, though not with high resolution \u2014 so a lack of decisive evidence in either direction should be partly attributed to the moderate-to-low detectability of demographic signals in this period rather than treated as proof the refutation is false. Geological/astronomical impact evidence is more robustly detectable and has in fact been the primary battleground of the actual YDIH debate.</rationale>\n</invoke>\n"
+  }
+}

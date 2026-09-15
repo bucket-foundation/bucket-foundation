@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "46c333c501ddd9faafd23fc49763b06b63be26d43823fabc7fb415a66a7595b8",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a Younger Dryas boundary (YDB) layer in Mexican lake/paleosol sediments (e.g., Lake Cuitzeo, Michoac\u00e1n) showing platinum/iridium anomalies, magnetic and glassy microspherules, nanodiamonds, and a 'black mat' organic-rich layer dated to ~10,950 BP",
+      "Geological: regional stratigraphic correlation of the Mexican YDB layer with other claimed YDB sites in North America/Europe as evidence of a synchronous, widespread encounter event",
+      "Astronomical: orbital-dynamics modeling showing the Taurid meteor stream's node intersecting Earth's orbit at ~10,950 BP, consistent with an intense meteor/fireball encounter",
+      "Astronomical: evidence of the Taurid complex's parent-body fragmentation timeline (e.g., Comet Encke lineage) supporting a larger, debris-rich stream at that epoch",
+      "Material/archaeological: disruption in Paleoindian (Clovis-era) occupation layers in Mexico coincident with the YDB horizon (site abandonment, tool assemblage change, scorched/melted material culture)",
+      "Material: melt glass, carbon spherules, or shocked quartz in archaeological or geological strata attributable to airburst heating rather than wildfire",
+      "Genetic: megafaunal extinction/population bottleneck signatures in Mexican fossil remains dated to the YD onset (weak, indirect)",
+      "Oral tradition/iconographic: indigenous Mesoamerican flood/sky-fire myths or possible rock art motifs interpretable as folk memory of a celestial catastrophe (very weak, highly speculative given the time depth)"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "Treating the interval (-10950) as coincident with the Younger Dryas onset, the relevant detectability row is ('younger-dryas', ...). The hypothesis's core evidentiary channels are geological (0.65) and astronomical (0.7), both comparatively high-detectability categories even for this deep-time period, meaning that if a Taurid-swarm encounter actually corroborated the YD cooling onset in Mexico, physical traces (impact markers, spherules, platinum anomalies in dated sediment) and orbital-mechanical reconstructions should in principle be recoverable and have in fact been claimed in the literature (e.g., the Lake Cuitzeo YDB study is model-prior knowledge from training, not verified here, and remains scientifically contested). Material (0.35) and genetic (0.3) support are weaker but still non-trivial. Oral_tradition (0.1), iconographic (0.1), linguistic (0.05), and textual (0.0) are essentially uninformative for a preliterate Paleoindian/Mesoamerican context this far back, so their absence carries no evidentiary weight against the hypothesis. Because the highest-value evidence types (geological, astronomical) are moderately-to-well detectable, an absence of robust, reproducible, community-accepted geological/astronomical confirmation is better explained by the hypothesis's contested/unconfirmed status (multiple attempted replications of YDB markers, including at Mexican sites, have produced inconsistent or disputed results per model-prior recollection) rather than by fundamentally poor preservation potential. I suggest a composite detectability_adjustment of 0.55, reflecting that evidence *could* plausibly survive and be found, but the overall evidentiary base for this period skews toward the lower end outside of geological/astronomical channels, tempering confidence that the specific 'Mexico' and 'corroborated' claims would leave an unambiguous, unique signature distinguishable from terrestrial explanations."
+  }
+}

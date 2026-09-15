@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "dfb31e1d91d5fc8a2c58c405f51ac3b31fbe175673631b363368af03f29fcab6",
+  "response": {
+    "expected_evidence": [
+      "Ice-core geochemical anomalies in Greenland cores (GISP2, GRIP, NGRIP) at the ~12,900 cal BP (younger-dryas onset) horizon: spikes in cosmogenic isotopes (10Be, 36Cl) consistent with enhanced atmospheric ionization from a gamma-ray/cosmic-ray flux event",
+      "Platinum, iridium, and nanodiamond/magnetic-spherule concentrations in the Younger Dryas boundary layer (widely reported at other sites, would be expected co-located in Greenland ice or adjacent sediment cores)",
+      "Anomalous 14C production spike in tree-ring/varve records synchronous with the proposed gamma-ray ionization event",
+      "Black mat / soot and biomass-burning markers in terrestrial sediment sequences near 12,900 BP indicating continent-scale wildfires triggered by atmospheric ionization or Taurid-complex fragmentation",
+      "Astronomical/meteoritic records: dust layer or extraterrestrial-flux markers (He-3, Ir) tied to Taurid stream encounter in the same ice strata",
+      "Genetic bottleneck signatures in North American megafauna and Clovis-era human populations dated to the interval",
+      "Model-prior literature on the Younger Dryas Impact Hypothesis and Taurid-complex encounter models (unverified, low-tier)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval [-12000,-11001] BCE aligns with the Younger Dryas onset (~12,900 cal BP), so the 'younger-dryas' detectability row is the appropriate baseline rather than 'upper-paleolithic'. The hypothesis's placement (Greenland ice sheet) is fortunate for detectability: polar ice cores are exceptionally well-preserved, continuously and highly resolved archives that have been intensively studied for exactly this time window (GISP2/GRIP/NGRIP), giving geological (0.65) and astronomical (0.7) evidence kinds strong survival and detection odds \u2014 any large cosmogenic-isotope or extraterrestrial-flux spike at this horizon would very likely already have been picked up by existing high-resolution sampling. Material (0.35) and genetic (0.3) evidence (megafaunal extinction, Clovis disruption, biomass-burning layers) are more degraded/ambiguous over 13,000 years, consistent with the ongoing controversy over the broader Younger Dryas Impact Hypothesis. The specific mechanism 'gamma-ray ionization' is not a standard, well-established trigger in the literature I'm aware of \u2014 the mainstream hypothesis invokes cometary/bolide airburst or Taurid-stream fragment impacts producing platinum/iridium/nanodiamond signatures, while a distinct 'gamma-ray-ionization' pathway (e.g., a nearby transient high-energy event enhancing atmospheric ionization/cloud nucleation) is a more speculative variant; I flag this as model-prior and unverified. Given the high preservation and research intensity of Greenland ice records for this exact interval, the absence of unambiguous evidence in the literature for a gamma-ray-ionization signature is somewhat informative against the hypothesis rather than purely a detectability failure \u2014 hence a moderate-to-fair aggregate detectability adjustment (~0.55) rather than a low one, weighting the strong ice-core/geological/astronomical channels against weaker material/genetic channels."
+  }
+}

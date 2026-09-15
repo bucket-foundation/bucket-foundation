@@ -1,0 +1,24 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7a8263bea5c8080610a48da420f19f878a26ef79c40068940251a07302654924",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: glacial lake outburst/spillway geomorphology along the St. Lawrence valley (e.g., evidence of Lake Agassiz drainage rerouting, scoured channels, outwash terraces)",
+      "geological: North Atlantic/Labrador Sea marine sediment cores showing a meltwater spike (low-salinity planktic foraminifera \u03b418O excursion, ice-rafted debris layer) time-correlated with Younger Dryas onset",
+      "geological: varve/lake-sediment chronologies and Greenland ice-core proxies (e.g., abrupt cooling signal, accumulation rate change) bracketing the proposed routing event",
+      "material/archaeological: dated faunal assemblages and kill/butchery sites showing megafaunal population decline or last-appearance dates clustering near the meltwater pulse interval",
+      "material: radiocarbon-dated bone/tooth collagen from megafauna taxa establishing extinction chronology relative to the routing event",
+      "genetic: ancient DNA from megafaunal remains (mammoth, horse, etc.) showing population bottleneck/decline signatures coincident with the interval",
+      "genetic: phylogeographic studies inferring effective population size crashes dated to ~12.9-11.7 ka",
+      "model_prior: existing paleoclimate literature (Broecker-style meltwater routing hypothesis, competing Mackenzie-routing and impact hypotheses) as background scientific consensus/debate",
+      "astronomical: cosmogenic isotope (10Be, 14C) production records used to synchronize ice-core and sediment chronologies to the proposed causal timing",
+      "oral_tradition: essentially none expected to survive given the ~9,000-19,000 year antiquity, so absence here is not informative",
+      "iconographic: none plausible; no continuous art/symbolic record from this depth of time linking to the event",
+      "textual: none possible, predates writing entirely"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis is fundamentally a paleoclimate/paleoecological causal claim (freshwater rerouting via the St. Lawrence corridor triggering or reinforcing Younger Dryas cooling, in turn implicated in North American megafaunal extinction), so its evidentiary weight rests almost entirely on geological, genetic, and material proxies rather than textual, linguistic, oral, or iconographic records \u2014 the latter categories score near 0 across all relevant periods (upper-paleolithic, younger-dryas, early-holocene) simply because writing, stable oral transmission over 9,000+ years, and durable iconographic traditions did not exist or cannot be reliably traced that far back. That is expected and uninformative as to truth or falsity. Geological detectability is comparatively strong (0.6\u20130.65 across the relevant bins) because marine/lake sediment cores, ice cores, and glacial geomorphology from this interval are well-preserved and have in fact been the primary real-world evidentiary basis for this class of hypothesis (Broecker's meltwater-routing hypothesis and its Mackenzie-routing rival). Material/archaeological (0.35\u20130.45) and genetic (0.25\u20130.35) detectability are moderate \u2014 enough megafaunal remains, kill sites, and ancient DNA studies exist from this window to potentially test extinction timing against the routing event, though sample sparsity, poor organic preservation in many settings, and dating-resolution limits genuinely constrain what could be found even if the hypothesis were true. Given the mixed but non-trivial detectability of the load-bearing evidence types (geological, material, genetic) versus the structurally near-zero detectability of the irrelevant types (textual, oral, iconographic, linguistic), an aggregate adjustment around 0.5 seems appropriate \u2014 treating an absence of, say, oral or textual corroboration as fully explained by detectability rather than as evidence against the hypothesis, while still requiring the geological/genetic/material record (which is plausibly recoverable) to actually show the correlation for the hypothesis to be considered supported. Note: my characterization of the Broecker-style St. Lawrence routing mechanism and its debated status relative to the Mackenzie-routing alternative is drawn from training-derived background (model-prior), not from the evidence text provided here, and should be treated as an unverified low-tier source pending direct evidentiary confirmation."
+  }
+}

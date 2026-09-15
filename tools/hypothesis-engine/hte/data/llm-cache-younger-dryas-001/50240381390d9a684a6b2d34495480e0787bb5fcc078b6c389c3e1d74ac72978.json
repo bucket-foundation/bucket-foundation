@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "06ca03f24a154be07614af7fd26cb4db484b0d5fc978f430545ca5102ac712fd",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: high-resolution ice-core stratigraphy from Greenland (e.g., GISP2/GRIP/NEEM) showing an ammonium/ammonia spike and elevated black-carbon or soot concentrations at the onset of the Younger Dryas, consistent with a biomass-burning 'impact winter' aerosol layer",
+      "Geological: platinum, iridium, or other extraterrestrial-proxy anomalies in the same ice-core horizon, dated to the ~12.8 ka BP onset boundary",
+      "Geological/material: nanodiamonds, magnetic spherules, or meltglass in terrestrial sediment sequences (bogs, lake cores) across the Northern Hemisphere correlated with the Greenland ice signal",
+      "Material: widespread charcoal/soot layers in contemporaneous archaeological or paleoecological sites indicating continent-scale biomass burning",
+      "Astronomical: any independently dated impact crater or airburst structure of appropriate age that could serve as the ignition source (contested in existing literature)",
+      "Genetic: megafaunal population bottleneck or extinction signatures in ancient DNA dated to the same interval, sometimes cited as corroborating ecological fallout",
+      "model_prior: the published Younger Dryas Impact Hypothesis literature (Firestone et al. 2007; Petaev et al. 2013 platinum spike in GISP2; Wittke et al. 2013; and subsequent rebuttals/controversy) discussing exactly this proposed mechanism"
+    ],
+    "detectability_adjustment": 0.62,
+    "rationale": "The interval (-11000 to -10001, i.e., ~13,000-11,000 cal BP) falls at the Younger Dryas onset, so the 'younger-dryas' detectability row is most applicable (geological=0.65, material=0.35, genetic=0.3, astronomical=0.7, textual=0.0). Ice sheets are an unusually favorable preservation medium: annually resolved layers in Greenland cores (GISP2, GRIP, NEEM) have in fact been analyzed for exactly this kind of signal (ammonium spikes as biomass-burning proxies, platinum anomalies as proposed impact proxies), and this is documented in the real (model-prior) literature on the Younger Dryas Impact Hypothesis, a genuinely contested but actively studied claim. This raises confidence above the generic 'geological' baseline for the period, since the specific place (Greenland ice sheet) and mechanism (biomass-burning impact winter) target a well-preserved, high-resolution archive rather than a diffuse or perishable one. However, corroboration ('other-actor') implies independent confirmation, which has in practice been difficult: many groups have failed to replicate the platinum/nanodiamond signals, and the hypothesis remains a minority position in the field \u2014 so absence of unambiguous multi-team corroboration is expected on scientific-controversy grounds as much as on preservation grounds. Weaker evidence classes (genetic, material spherules across dispersed continental sites, astronomical crater identification) are much less reliably detectable given site destruction, ice retreat/melt at other locations, and the general difficulty of identifying a Younger Dryas-age impact structure. Overall I set the adjustment slightly above the raw geological score (0.65) blended down by the lower material/genetic/astronomical companion evidence needed for full corroboration, landing at ~0.62."
+  }
+}

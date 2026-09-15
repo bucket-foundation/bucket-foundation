@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a0c760f41cc96350ebf3dbe3e9f30a80b481503536384bf0ab88c08eb849c8e7",
+  "response": {
+    "$PARAMETER_NAME": "\n",
+    "expected_evidence": [
+      "geological: platinum-group-element (Pt, Ir) anomaly, nanodiamonds, magnetic/carbon spherules, and a 'black mat' organic layer in lake/wetland sediment cores dated to ~12,900 cal BP (e.g., Lake Cuitzeo, Mexico, as reported by Israde-Alc\u00e1ntara et al. 2012)",
+      "material: stratigraphic extinction horizon showing abrupt cessation of megafaunal (mammoth, mastodon, horse, ground sloth) remains and Clovis-era archaeological material immediately above the proposed ejecta layer",
+      "astronomical: identification of a confirmed impact crater or airburst structure of appropriate age in or near Mexico/Central America (none currently confirmed for this event)",
+      "genetic: ancient-DNA evidence of a sharp population bottleneck or extirpation pulse in North/Central American megafauna lineages coinciding with ~10,950 BCE",
+      "oral_tradition/iconographic: Indigenous Mesoamerican or North American origin narratives describing sky-fire, darkness, or catastrophic destruction events that could be construed as folk memory of an impact (low reliability, long transmission gap)",
+      "model_prior: comparative literature on the broader Younger Dryas Impact Hypothesis (YDIH), including disputed replication studies and critiques of the Cuitzeo/other YDB layer claims"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The interval -10950 corresponds closely to the Younger Dryas onset (~12,900 cal BP), so I treat this as a 'younger-dryas' period case rather than unspecified. Under that row, geological (0.65) and astronomical (0.7) detectability are relatively high \u2014 fine-grained lake/wetland sediment cores and crater-search geophysics can in principle preserve and reveal impact-related signatures over 13,000 years, and indeed a Mexican site (Lake Cuitzeo) has been specifically cited in the literature (Israde-Alc\u00e1ntara et al. 2012) as showing platinum/nanodiamond/spherule anomalies at the right horizon \u2014 this is model-prior knowledge, not verified from the evidence text provided. However, material (0.35) and genetic (0.3) detectability for this period are low: megafaunal extinction is a gradual, multi-causal process (climate, human predation, habitat change) that is very hard to attribute definitively to a single impact event from bone-bed stratigraphy or ancient DNA alone, and no confirmed impact crater has been identified despite active searching, which weakens the astronomical channel's practical yield despite its nominal 0.7 score. Oral tradition (0.1) and linguistic (0.05) evidence are essentially unusable at this time depth. Because the hypothesis specifically requires 'corroboration' (not just occurrence), and because the strongest channel (geological) has produced results that remain scientifically contested/non-replicated at some other YDB sites, I adjust the composite detectability downward from the raw geological/astronomical scores toward a blended value (~0.45) that better reflects the realistic difficulty of achieving unambiguous corroboration, rather than treating absence of consensus as proof of falsity. A low-to-moderate detectability score here should temper interpretation of the mixed/contested evidence record as evidence of causal complexity and preservation/attribution difficulty, not as decisive disproof."
+  }
+}

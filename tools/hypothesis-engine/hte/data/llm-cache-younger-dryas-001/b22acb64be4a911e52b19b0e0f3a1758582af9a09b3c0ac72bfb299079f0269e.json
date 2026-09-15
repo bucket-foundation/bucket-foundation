@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "dd8f0d4f7947ec674cc2a44171b373dbffcd419c9d4398e417347c42a45134ff",
+  "response": {
+    "expected_evidence": [
+      "Sediment core stratigraphy across North American sites (e.g., the 'black mat' layer) sampled at ~10,950 BCE (12.9 ka) for nanodiamond, magnetic microspherule, and platinum anomaly concentrations",
+      "Geochemical/mineralogical re-analyses (electron microscopy, Raman spectroscopy) at multiple independent labs attempting to replicate or falsify claimed nanodiamond signatures",
+      "Comparative geological sections showing absence or inconsistency of the proposed impact-winter proxy layer across sites originally cited as supporting the impact hypothesis",
+      "Peer-reviewed scientific literature documenting failed replication attempts, arguing nanodiamonds were misidentified (e.g., as graphene aggregates or framboidal iron)",
+      "Paleoclimate/paleoecological proxies (pollen, charcoal, ice-core records) testing for a biomass-burning spike and abrupt cooling ('impact winter') signature coincident with the dated interval",
+      "Megafaunal extinction chronology and genetic bottleneck data tested for correlation (or lack thereof) with the proposed impact event",
+      "Astronomical/cosmochemical markers (iridium, extraterrestrial He-3, cosmic spherules) checked for consistency or inconsistency with an impact origin"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis concerns a refutation of the Younger Dryas Impact Hypothesis (YDIH) nanodiamond claims, so the interval (-10950) maps most closely to the 'younger-dryas' period row set rather than a later period. Crucially, the core evidence type here is geological/material (sediment stratigraphy, mineral assays), which is highly preservable and has in fact been extensively sampled across North America and elsewhere over the past ~15 years \u2014 this is a well-documented scientific controversy (model-prior, unverified beyond general recollection of the literature: multiple independent teams, e.g. Daulton et al., Pigati et al., Scott et al., reported failure to replicate significant nanodiamond concentrations at YD boundary sites, while others, e.g. Wolbach et al., reported supporting platinum anomalies \u2014 the debate is empirically active, not evidence-starved). Given the table's younger-dryas rows (geological 0.65, astronomical 0.70, material 0.35, genetic 0.30, model_prior 0.30, textual 0.0), the physical/geological carriers of this evidence are comparatively high-detectability for a prehistoric event, since sediment cores and impact-proxy layers survive well and are routinely sampled with modern instrumentation \u2014 unlike organic, linguistic, or textual traces from this period which are essentially absent by default. I therefore adjust the composite detectability upward from the material/genetic baseline toward a weighted midpoint reflecting the geological/astronomical channels' strength, since a refutation-type claim depends on exactly the kind of quantitative geochemical data that is both collectible and has demonstrably already been collected and debated in the literature. A low detectability score is not warranted here to explain absence of evidence, because abundant relevant evidence already exists in the geological/scientific record on both sides of this debate \u2014 the 'refuted' framing itself is testable against extant published data rather than requiring newly surviving artifacts."
+  }
+}

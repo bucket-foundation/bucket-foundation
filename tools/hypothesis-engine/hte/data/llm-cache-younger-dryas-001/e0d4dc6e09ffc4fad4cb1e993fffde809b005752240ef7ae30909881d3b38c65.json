@@ -1,0 +1,23 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fe220790e9bf6cf099cfc466804e0a0015288d8de1e888954d9990fcef316a04",
+  "response": {
+    "expected_evidence": [
+      "Geological: anomalous platinum-group element (iridium/platinum) spike in a thin sediment layer dated to ~10,950 BCE (the 'Younger Dryas Boundary' layer)",
+      "Geological: nanodiamonds (including lonsdaleite/cubic forms) concentrated in the same boundary layer",
+      "Geological: magnetic spherules, framboids, and melt-glass indicative of high-temperature/high-pressure formation",
+      "Geological: a continent-scale 'black mat' organic sediment layer marking an abrupt ecological transition",
+      "Material/archaeological: correlated disruption or thinning of Clovis-culture occupation layers directly above the boundary horizon",
+      "Material/archaeological: continental-scale charcoal/soot layer indicating widespread biomass burning coincident with the onset",
+      "Genetic: population bottleneck or extinction signatures in North American megafauna (mammoth, mastodon, etc.) genomes dating to this interval",
+      "Astronomical: absence of a corresponding impact crater, which proponents argue is consistent with a low-altitude airburst over the Laurentide ice sheet rather than a ground impact",
+      "Astronomical/model-based reconstructions of a fragmented comet or asteroid encounter (largely theoretical, not direct observational evidence)",
+      "Oral tradition (low-confidence, model-prior): Indigenous North American origin/flood/fire narratives sometimes cited by proponents as possible cultural memory, though this link is speculative and not independently verified",
+      "Model-prior (unverified, from training knowledge): this matches the real, actively debated 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), for which proponents report the above markers at dozens of sites across North America, Europe, and elsewhere, while numerous replication studies and critical geochemists dispute the anomalies as non-anomalous, misidentified, or reworked material, and the hypothesis remains a minority/contested position in Quaternary geology"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "Using the 'younger-dryas' row (interval centers on the YD onset at ~10,950 BCE), geological (0.65) and astronomical (0.7) detectability are comparatively high \u2014 sediment layers from this period are well-preserved and heavily sampled across many continents, so a genuine geochemical/impact signature of this kind would plausibly leave a detectable trace even ~13,000 years later. Material (0.35) and genetic (0.3) evidence is moderately detectable but degraded by time, taphonomy, and sparse Paleo-Indian archaeological preservation. Textual (0.0) and linguistic (0.05) evidence are essentially impossible for a pre-literate period and correctly contribute nothing. Oral tradition (0.1) and iconographic (0.1) evidence are low-confidence at best given ~13-millennium transmission gaps. Because the higher-detectability channels (geological, astronomical) are the ones that actually bear on this hypothesis, an absence of firm confirming evidence would be somewhat informative rather than fully excused by low detectability \u2014 and indeed this matches the real-world situation: proponents have published purported markers (nanodiamonds, PGE spikes, spherules, black mats) at many sites, but independent replication has frequently failed or given ambiguous/contested results, and no crater has been found. I therefore give could_have_survived=true and suggest a modest upward detectability_adjustment (0.55, blending the strong geological/astronomical rows with the weaker material/genetic/textual rows) reflecting that decent physical evidence should exist and largely has been sought, but its interpretation remains genuinely disputed in the literature rather than simply missing due to poor preservation \u2014 so absence-of-consensus here should not automatically be read as strong evidence of falsity, nor should a positive claim be treated as settled fact."
+  }
+}

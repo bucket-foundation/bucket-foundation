@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7a16ef67eac4819196a410680744bde8a21f862c64ed110a5c65eeb75a6e0ebb",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: iridium/platinum enrichment layers, nanodiamonds, magnetic microspherules, and 'black mat' organic layers at the ~12.9 ka boundary across North American sedimentary sequences",
+      "geological: shock-metamorphosed quartz or melt-glass at candidate impact/airburst sites",
+      "astronomical: orbital-dynamics modeling linking the Taurid meteor stream / disintegrating comet fragments to an Earth-crossing swarm capable of producing an airburst event",
+      "material: disrupted or terminated Clovis-era archaeological horizons, charcoal/soot layers indicating continent-wide biomass burning coincident with the boundary",
+      "genetic: megafaunal population bottleneck or extinction signatures, and possible human population decline signals in ancient DNA from the interval",
+      "model-prior: published Younger Dryas Impact Hypothesis literature (Firestone et al. and successors) proposing a cosmic airburst/impact triggering YD cooling and megafaunal extinction, though this remains scientifically contested with failed replications at several sites"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval (-11000 to -10001) aligns with the Younger Dryas onset, so the 'younger-dryas' detectability row is most applicable rather than the broader Upper Paleolithic default. Geological evidence (0.65) and astronomical/orbital modeling (0.7) are the most detectable channels for this hypothesis, since iridium anomalies, spherules, and boundary sediment layers preserve well in stratigraphic records and impactor dynamics can be reconstructed from meteor-stream studies -- consistent with the real-world (model-prior, unverified against the provided evidence text) Younger Dryas Impact Hypothesis debate. Material evidence (0.35) and genetic evidence (0.3) are weaker channels: organic/skeletal material from ~13,000 years ago is sparse and taphonomically degraded, and ancient DNA coverage for this exact window in North America is thin. Given the hypothesis leans heavily on geological (iridium anomaly) and astronomical (swarm corroboration) evidence types, which have above-average detectability for this period, a moderate-to-good composite adjustment (0.55) is warranted -- high enough to expect some evidence could realistically survive and be found, but tempered by the weaker material/genetic legs and by the fact that even claimed geological signals (e.g., nanodiamonds, platinum spikes) have proven difficult to replicate independently, which is itself consistent with imperfect but nonzero detectability rather than outright falsification. Low detectability in material/genetic channels should be treated as an expected data gap, not disconfirmation."
+  }
+}

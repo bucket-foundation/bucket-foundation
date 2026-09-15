@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a3c2b726517413e11e4416e56090b1a41d28dcd7de7c4f5ed901c0d505cb906e",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: high-resolution geochemical assay (Ir, Pt, Os platinum-group-element ratios) across annually-layered Greenland ice cores (GISP2, GRIP, NEEM, NGRIP) spanning the ~12.9-11.7 ka BP Younger Dryas onset layer, tested against chondritic/cosmic background ratios",
+      "Material: putative impact ejecta proxies in the same ice/sediment horizon - microspherules, meltglass, shocked quartz, nanodiamonds, magnetic microspherules - and their subsequent failure to replicate or be independently confirmed across labs",
+      "Astronomical/cosmochemical: comparison of the anomaly's elemental ratios (Ir/Pt/Os) to known extraterrestrial vs. terrestrial (volcanic, dust-influx, or crustal contamination) sources, and correlation with independently dated comet-fragment or bolide records",
+      "Geological (secondary): alternative-explanation stratigraphy - volcanic ash layers, dust-flux spikes, or diagenetic remobilization that could mimic or account for the anomaly without an impact",
+      "Model-prior: published re-analyses/rebuttals (e.g., failure-to-replicate studies, statistical critiques of the original platinum-spike papers) documenting the scientific refutation process itself"
+    ],
+    "detectability_adjustment": 0.75,
+    "rationale": "The claim concerns refutation of an iridium/platinum-group-element anomaly tied to the Younger Dryas Impact Hypothesis, located specifically in the Greenland ice sheet. Using the younger-dryas detectability row as baseline (geological 0.65, astronomical 0.7, material 0.35, genetic 0.3), the ice-sheet setting is an unusually favorable preservation context relative to typical terrestrial sites for this period: polar ice cores provide continuous, annually-resolved, minimally-disturbed stratigraphy that is routinely sampled at sub-annual resolution for exactly this kind of trace-element geochemistry (this is a model-prior recollection of GISP2/GRIP platinum-anomaly literature, not verified from provided evidence text, so it should be treated as low-tier/unverified). That raises the effective geological/astronomical detectability above the generic younger-dryas average, while material (spherules/nanodiamonds) and genetic lines remain at or below baseline since they require rarer, more easily contested field identifications. A refutation of this type (statistical/geochemical re-analysis showing the anomaly is within background variability or attributable to a non-impact source) is exactly the kind of evidence that ice-core science is well-equipped to produce and preserve, so absence of surviving evidence is unlikely to be the primary explanation if the hypothesis were false \u2014 genuine scientific disconfirmation is plausible and detectable. I therefore suggest a blended adjustment of 0.75, weighted toward the high-detectability geological/astronomical channels that dominate this hypothesis's evidentiary basis, rather than the lower material/genetic channels."
+  }
+}

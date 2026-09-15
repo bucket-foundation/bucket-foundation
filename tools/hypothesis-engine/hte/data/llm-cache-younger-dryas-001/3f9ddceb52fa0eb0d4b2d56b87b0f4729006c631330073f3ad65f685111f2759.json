@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "81f5c5789074bff36d202c7a4802ee2aff4134c11fb0d593db304c80cbb00203",
+  "response": {
+    "expected_evidence": [
+      "Geological: anomalous spikes in iridium/platinum-group elements, microspherules, or nanodiamonds in a distinct sediment layer (analogous to the proposed 'Younger Dryas boundary layer') dated to ~13,000-12,001 BCE",
+      "Geological/astronomical: cosmogenic radionuclide anomalies (14C, 10Be, 36Cl) in ice cores or sediment/tree-ring proxies consistent with an intense radiation/particle flux from a nearby supernova",
+      "Astronomical: hemispherically correlated radionuclide or isotopic anomalies serving as an indirect proxy for a transient high-energy sky event (no textual sky-observation records are possible, since writing did not yet exist)",
+      "Material/archaeological: a demographic disruption signature - settlement abandonment, discontinuity in lithic technocomplexes, or population decline across European Upper Paleolithic sites at the interval boundary",
+      "Genetic: a bottleneck or founder-effect signal in ancient European DNA lineages dated to this window",
+      "Geological: broader climatic/environmental proxies (pollen, faunal turnover) consistent with abrupt cooling potentially linked to fallout-driven climate forcing",
+      "Oral tradition/iconographic: essentially absent - no continuous transmission or symbolic record is expected to survive from this time depth"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.4,
+    "rationale": "The proposed interval (~13,000-12,001 BCE) straddles the Upper Paleolithic/Younger Dryas boundary, so detectability should draw on both rows. The most diagnostic channels for a supernova/impact-ejecta event are astronomical (~0.70) and geological (~0.60-0.65) proxies - cosmogenic isotope spikes and stratigraphic ejecta layers of this kind are known to survive in ice cores and sediments over 15,000-year timescales, so an absence of such signals would carry real evidentiary weight, while their presence would be strongly diagnostic. However, the hypothesis's actual object - 'population-demography' - requires material (~0.35) and genetic (~0.25-0.30) evidence, which is much weaker for this period: skeletal/genetic preservation from small, mobile Upper Paleolithic populations is poor, and isolating a demographic decline from other Late Glacial stressors (climatic oscillation, resource shifts, sampling bias) is difficult - consistent with the hypothesis's own 'inconclusive' action tag. Textual, linguistic, oral_tradition, and iconographic channels are essentially non-existent this far back (0.0-0.10) and should not be treated as informative in either direction. Because the hypothesis combines a highly detectable physical-fallout claim with a poorly detectable demographic claim, I weight the overall adjustment toward the lower-middle range, reflecting that failure to find corroborating demographic evidence is largely explained by low preservation/resolution rather than by the hypothesis being false, while still crediting the real chance that geological/astronomical proxies could have survived and been sampled. I also flag as model-prior (unverified, drawn from general training knowledge rather than the provided evidence) that the broader 'Younger Dryas impact hypothesis' literature is scientifically contested, and that a supernova-sourced (rather than cometary/asteroidal) fallout mechanism is a much less commonly discussed variant - this should be treated as low-confidence background context only, not as established fact."
+  }
+}

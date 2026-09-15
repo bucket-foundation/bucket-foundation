@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "279d2385b569fd69222720ca5af65a86c9f5ece1b124c77c0e81f93e691608e8",
+  "response": {
+    "expected_evidence": [
+      "Ice-core cosmogenic-isotope excursion (10Be, 36Cl, 14C production spike) at ~12.9 ka in Greenland cores (GISP2/NEEM/GRIP), consistent with a sudden burst of ionizing radiation rather than gradual solar/geomagnetic modulation",
+      "Ice-core nitrate (NO3-) spike indicating atmospheric NOx production from gamma-ray-driven ionization/ozone chemistry, co-located stratigraphically with the YD onset layer",
+      "A young (~11,000-13,000 yr) supernova remnant identifiable in modern astronomical surveys, with distance and orientation consistent with delivering a damaging gamma-ray/cosmic-ray flux to Earth (e.g., debated candidates like the Vela SNR)",
+      "Ozone-depletion proxy signatures (e.g., anomalous UV-B-sensitive biomarkers, pollen/spore damage) in dated sediment or ice layers coeval with the isotope spike",
+      "Secondary biological signal: megafaunal extinction/mutation pulse or genetic bottleneck signatures dated to the same interval (weak, confounded by other proposed YD-onset mechanisms)",
+      "Absence-of-alternative-cause argument: ruling out solar proton events, geomagnetic excursions, or bolide/comet airburst as the source of any observed isotope/nitrate spike",
+      "model-prior (unverified, low-tier): occasional fringe literature has speculated a link between a nearby supernova remnant and Younger Dryas onset, but this is not an established consensus finding from training data"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval falls at the younger-dryas/upper-paleolithic boundary, so the relevant detectability rows are dominated by astronomical (0.7) and geological (0.65) evidence, with material (0.35), genetic (0.3), and model_prior (0.3) as secondary channels, while textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are essentially irrelevant since no writing or stable oral/iconographic tradition existed at this depth in time. Greenland ice cores (GISP2, NEEM, GRIP) provide a continuous, well-dated archive spanning exactly this interval, so cosmogenic-isotope and nitrate excursions from a gamma-ray-ionization event would plausibly have survived and been detected if they existed at the required magnitude \u2014 this is a mature, frequently-sampled record, not a preservation gap. Likewise, supernova remnants persist observably for tens of thousands of years, so modern astronomical surveys are capable in principle of identifying (or ruling out) a remnant of the right age/distance/orientation; the fact that no consensus remnant precisely matching this mechanism's requirements has been confirmed is evidence-relevant, not merely a detection failure. However, the specific signature needed to confirm a *gamma-ray-ionization* cause (as opposed to solar proton events, geomagnetic excursions, or bolide/impact mechanisms already proposed for YD cooling) is harder to isolate: isotope and nitrate spikes are real and dated near 12.9 ka in some records, but they are ambiguous as to source and are conventionally attributed to other causes, and nitrate signals in particular are subject to post-depositional migration that can blur attribution. This partially explains why compelling, unambiguous evidence is scarce without invoking low detectability as the sole excuse. I therefore set the adjustment below the raw astronomical/geological detectability average (~0.68) to ~0.55, reflecting that detection tools were adequate to find supporting evidence had the specific mechanism operated as described, so an absence of a clearly attributable signal should weigh partly against the hypothesis rather than being fully absorbed by preservation/detectability limits."
+  }
+}

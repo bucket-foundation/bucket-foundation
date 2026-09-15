@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a16874bf3e23722d42a0458502d7a723af79bcac21de1530b53293995eecc537",
+  "response": {
+    "expected_evidence": [
+      "Geological (ice core, Greenland ice sheet): anomalous spikes in cosmogenic/ionization-proxy isotopes (10Be, 36Cl, elevated nitrate/ammonium) in ice layers precisely dated to ~10,001-11,000 BP at Younger Dryas onset",
+      "Astronomical: independent evidence or modeling of a proximate high-energy transient (e.g., nearby supernova, gamma-ray burst, or solar proton event) capable of producing atmospheric ionization at the right epoch",
+      "Geological/material (global): matching cosmogenic isotope anomalies in other archives (tree rings, other ice cores, speleothems) at the same horizon, corroborating a planet-wide ionization pulse rather than a purely local Greenland signal",
+      "Material: sedimentary or geochemical markers (e.g., platinum, unusual isotopic ratios) in Younger Dryas boundary layers, though these are more commonly cited in impact hypotheses than ionization ones",
+      "Genetic: mutation-rate or extinction-signature anomalies in contemporaneous megafauna/flora DNA consistent with a radiation pulse (low-confidence, hard-to-isolate signal)",
+      "Oral tradition/iconographic: Upper Paleolithic-descended catastrophe or 'sky-fire' narratives or rock art motifs plausibly encoding a witnessed ionizing sky event (very weak, highly speculative link)",
+      "model-prior: this gamma-ray-ionization trigger for Younger Dryas onset is not an evidence class per se but reflects an unverified, non-mainstream hypothesis analogous to (and less supported than) the Younger Dryas impact hypothesis; flagged as low-tier recalled context rather than established fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "Using the 'younger-dryas' period rows as the closest match to the object and interval, the two most diagnostic evidence classes for this hypothesis are geological (0.65) and astronomical (0.7) - both notably high-detectability categories, since Greenland ice cores spanning the YD onset have been drilled, dated, and geochemically analyzed in extraordinary detail (e.g., GISP2, NGRIP, GRIP). A genuine gamma-ray/cosmic ionization pulse at this boundary would very plausibly leave a preserved, measurable isotopic signature (10Be, 36Cl, nitrate spikes) in exactly the archive named in the hypothesis (Greenland ice sheet), and such records are already intensively studied for YD-onset climate proxies. Material (0.35) and genetic (0.3) evidence are moderately detectable but less specific to an ionization mechanism versus an impact one. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are essentially undetectable for this pre-literate period and appropriately explain silence in those channels rather than implying falsity. Given that the highest-detectability channels (geological, astronomical) are well within reach of existing scientific investigation and no mainstream corroborating isotopic anomaly matching a 'gamma-ray-ionization' trigger is established in the literature I am aware of (treated here as low-tier model-prior, not verified fact), the absence of such evidence is more likely attributable to the hypothesis being unsupported or fringe than to poor preservation or detection limits. I therefore set a moderate-to-high combined detectability_adjustment (0.6), reflecting that failure to find corroborating evidence in the most detectable channels is meaningful evidence against the hypothesis, while lower-detectability channels (oral tradition, iconographic, linguistic, textual) legitimately cannot be expected to preserve confirming or disconfirming signal from this era and their silence should not be held against the hypothesis."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "9bddcbbac652daf8e1331018546a3fd1d1100c5dbf3560c97cf3913a2ab29348",
+  "response": {
+    "expected_evidence": [
+      "Geological: elevated platinum/iridium anomaly layer at the Younger Dryas Boundary (YDB, ~12.9 ka) in stratigraphic sections on multiple continents",
+      "Geological: magnetic microspherules, glass-like carbon spherules, and nanodiamonds (lonsdaleite) concentrated at the YDB layer",
+      "Geological: 'black mat' organic-rich sediment layers marking abrupt ecological transition at YDB sites",
+      "Geological/astronomical: a confirmed impact crater or airburst structure of appropriate age (e.g., proposed Hiawatha Glacier crater, though its dating is disputed)",
+      "Astronomical: cosmic dust or extraterrestrial isotopic signatures (He-3, unusual Ni/Ir ratios) coincident with the YDB",
+      "Material: widespread biomass-burning proxies (charcoal peaks, soot, polycyclic aromatic hydrocarbons, combustion aerosols) synchronous across continents at YDB",
+      "Material: archaeological discontinuities in Clovis-era and contemporaneous Old World lithic traditions coincident with onset",
+      "Genetic: megafauna population bottleneck or extinction signatures (mammoth, mastodon, horse) dated to ~12.9 ka",
+      "Genetic: human population bottleneck signal in ancient DNA or reduced site density around YDB",
+      "Model-prior (unverified, from training knowledge, not the provided evidence text): this matches the real-world 'Younger Dryas Impact Hypothesis' (YDIH), a genuinely contested scientific proposal with reported (but heavily disputed and often non-replicated) platinum/spherule/nanodiamond findings at numerous sites, and no confirmed crater accepted by mainstream geology"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis corresponds to the real-world Younger Dryas Impact Hypothesis (YDIH), which I recognize from training as model-prior, unverified relative to the evidence text supplied here. The detectability table gives moderately high scores for the evidence types most central to this claim: geological (0.65) and astronomical (0.7) for the younger-dryas period, meaning stratigraphic markers of an impact (platinum spikes, spherules, nanodiamonds, black mats) and any crater/cosmic-dust signature have a real chance of preservation and discovery \u2014 and indeed such candidate evidence has been reported at numerous sites across North America, Europe, and the Middle East in the actual literature. Material evidence (0.35) and genetic evidence (0.3) are lower but non-trivial, consistent with fragmentary archaeological/paleontological signals (biomass-burning proxies, megafauna/human population discontinuities) that have also been proposed. Textual (0.0) and linguistic (0.05) evidence are essentially impossible for this pre-literate period and their absence is fully expected and uninformative about truth. Oral tradition (0.1) and iconographic (0.1) are low but not zero (some researchers have speculatively linked later mythological 'flood/fire from sky' motifs to this event, though this is weak and post-hoc). Given the moderate-to-good geological/astronomical detectability, absence of a universally agreed, unambiguous corroborating record is not primarily an artifact of poor preservation \u2014 some evidence has been found and reported \u2014 but the action='corroborated' claim overstates the actual epistemic status: mainstream geology/archaeology largely regards the impact markers as unreplicated or non-anomalous at most sites, and no confirmed impact crater or airburst structure of the right age has been widely accepted. I therefore judge the underlying event evidence could plausibly have survived and been searched for (detectability is not the primary obstacle), but the specific claim of cross-continental scientific 'corroboration' is not well supported by the balance of published findings; I suggest a blended detectability_adjustment of 0.5, weighting the higher geological/astronomical accessibility against the much lower textual/linguistic/oral channels and the genuinely mixed/contested nature of the physical evidence record."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "cdfbbfc5f9bed7cb6435c9c1634e78bf7a7d1f4e7e4005415afd00d1a0e43214",
+  "response": {
+    "expected_evidence": [
+      "Textual (modern scientific literature): peer-reviewed journal articles reporting failed attempts by independent labs to replicate proposed YD-boundary impact markers (nanodiamonds, magnetic microspherules, platinum/iridium anomalies, glass-like carbon) at claimed stratigraphic horizons across North American sites",
+      "Geological: re-sampled sediment cores/sections from originally cited sites showing absence or inconsistency of claimed marker layers when re-tested by different teams",
+      "Material: re-examined physical samples (purported nanodiamond/spherule specimens) reanalyzed via electron microscopy/spectrometry yielding null or contradictory results",
+      "Model_prior: scientific consensus review articles / meta-analyses (e.g. summarizing a decade-plus of replication attempts) concluding the impact hypothesis is not well supported",
+      "Astronomical/geological cross-checks: absence of corroborating extraterrestrial signatures (e.g. no confirmed impact crater, no matching cosmic dust flux anomaly) in independently collected records"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.85,
+    "rationale": "This hypothesis is unusual: although the placement interval (-10950) and nominal period tag point to the Younger Dryas onset, the actual event being asserted ('refuted...via independent-replication-failure') is not an ancient physical occurrence but a modern (20th/21st-century) scientific-process event \u2014 i.e., the outcome of scholarly attempts to replicate impact-marker findings. The Younger Dryas-period detectability table (material 0.35, geological 0.65, textual 0.0) governs preservation of *ancient* physical/textual traces from ~11,000 years ago, which is irrelevant here: the 'evidence' of a refutation-by-failed-replication would consist of modern peer-reviewed publications, re-analyzed sediment/material samples, and consensus reviews \u2014 artifacts of contemporary scientific record-keeping, not Paleolithic-era survival. Modern academic literature has near-certain preservation and discoverability (journals, databases, citation indices), so the naive period-table textual score of 0.0 dramatically understates true detectability for this claim. I therefore apply an upward adjustment (0.85) reflecting that if such a pattern of failed replications occurred, it would almost certainly be documented and retrievable in the scientific literature, independent of how well 11,000-year-old sediments themselves preserve. Note: I have no directly supplied evidence text confirming this specific replication-failure narrative for the Younger Dryas Impact Hypothesis; my belief that such a debate/pattern exists (e.g., contested nanodiamond/spherule replication attempts) is drawn from training-derived recollection and should be treated as low-tier, unverified 'model-prior' rather than established fact. Could the hypothesis be true and evidence still exist? Yes \u2014 a documented pattern of failed independent replications is the kind of thing that, if real, would leave a clear paper trail; low detectability would not adequately explain an absence of evidence here, so an absence would more likely indicate the refutation-by-replication-failure characterization itself is inaccurate or overstated rather than that evidence was lost to time."
+  }
+}

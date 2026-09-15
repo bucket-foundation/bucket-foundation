@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a023b6c8999af778a3e0562edac172a6878885e57a2d3f01ff996cf916a286e6",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "expected_evidence": [
+      "Geological: marine and lacustrine sediment cores showing a distinct meltwater-pulse signature (e.g., freshwater diatom/isotope spikes, sea-level jump, IRD layers) that can be dated and correlated with terrestrial stratigraphy across North America",
+      "Geological: varve chronologies and ice-core records (e.g., GISP2) bracketing the Younger Dryas onset/termination against which megafaunal last-occurrence dates could be cross-checked",
+      "Material: radiocarbon-dated megafaunal fossil assemblages (last-appearance dates) compiled in extinction chronology databases (e.g., FAUNMAP-type compilations) showing clustering near meltwater-pulse timing",
+      "Material: stratigraphic sections where meltwater-pulse deposits (e.g., outwash, flood gravels) directly overlie or interdigitate with megafaunal bone beds, giving a direct depositional link",
+      "Genetic: ancient-DNA-derived population decline/coalescent dates for extinct megafauna that could be compared to meltwater-pulse timing, though resolution is typically coarser than needed to resolve century-scale coincidence",
+      "Model-prior/synthesis literature: published debates and re-dating studies explicitly discussing radiocarbon calibration problems, reservoir effects, and 'dating-uncertainty' as the reason the meltwater-pulse/extinction correlation remains contested rather than confirmed"
+    ],
+    "rationale": "The hypothesis concerns a correlation between a meltwater pulse and North American megafaunal extinction that is explicitly qualified as resting on 'dating-uncertainty' rather than a clean causal/temporal match. The interval spans Upper Paleolithic through Younger Dryas into Early Holocene, so I averaged across those three period bins for the relevant evidence kinds. Geological evidence (sediment cores, ice cores, varve chronologies) has the highest detectability in this table (0.6-0.65) and is genuinely well preserved and heavily studied for this transition, so absence of a clean signal is more likely a real dating-resolution problem than a preservation gap. Material evidence (dated megafaunal fossils) is moderate (0.35-0.45): fossils survive reasonably well but sample sizes are small, taphonomically biased, and radiocarbon dates near the Younger Dryas suffer from calibration-curve wiggles ('radiocarbon plateau') and reservoir effects, which is precisely the kind of dating-uncertainty the hypothesis invokes. Genetic evidence (ancient DNA population dating) is lower (0.25-0.35) because molecular-clock/coalescent estimates for this period have wide confidence intervals, inherently limiting their power to resolve fine-scale timing questions. Given these mid-to-high detectability scores for the most relevant evidence kinds, the hypothesis is falsifiable/testable in principle and the type of evidence needed (precise, well-resolved chronology) plausibly could have survived and been recovered \u2014 the persistent ambiguity is best explained by genuine dating-resolution limits (calibration, reservoir effects, small sample sizes) rather than by evidence having failed to survive at all. This assessment relies partly on model-prior knowledge of the Younger Dryas/megafaunal-extinction debate (an unverified, low-tier source in this pipeline) since no specific evidence text was supplied."
+  }
+}

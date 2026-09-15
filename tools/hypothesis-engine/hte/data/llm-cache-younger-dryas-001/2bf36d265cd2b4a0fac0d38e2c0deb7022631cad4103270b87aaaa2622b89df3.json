@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "de8ba50871cf1709e197620998206fbd2780c6f144e7009830c7d93f4d909602",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "expected_evidence": [
+      "Astronomical: a cosmogenic-isotope excursion (10Be, 36Cl, 14C spike) in polar ice cores and tree-ring chronologies dated to ~12,900 cal BP (~10950 BCE), consistent with a burst of ionizing radiation rather than a bolide/impactor signature",
+      "Astronomical: absence of enhanced extraterrestrial markers (iridium, platinum group elements, impact spherules) that would instead indicate a comet/asteroid impact rather than a supernova-driven gamma-ray event",
+      "Astronomical/model-prior: identification of a plausible nearby (within ~kiloparsecs) supernova remnant or progenitor star with an age consistent with detonation ~13,000 years ago",
+      "Geological: a synchronous 'black mat' or carbon-rich boundary layer across North American sites, with nanodiamonds, soot, or fire-proxy anomalies at the YD onset horizon",
+      "Geological: ozone-depletion proxies (e.g., nitrate or sulfate spikes tied to atmospheric chemistry changes) in ice cores coincident with the isotope excursion",
+      "Material/archaeological: abrupt discontinuity or decline in Clovis-associated tool assemblages and site occupation at ~10950 BCE across North America",
+      "Material/paleontological: concentrated megafaunal extinction/death assemblages (mammoth, mastodon, ground sloth, etc.) clustering tightly at this date rather than spread over centuries",
+      "Genetic: population bottleneck or extinction signatures in ancient DNA of North American megafauna dated to this interval",
+      "Genetic: elevated mutation-rate or radiation-damage signatures in surviving fauna/flora genomes from the same stratigraphic horizon (a distinguishing genetic fingerprint of gamma-ray exposure)",
+      "Model-prior: existing published literature (e.g., Younger Dryas Impact Hypothesis debates, supernova/gamma-ray-burst trigger papers) reporting tests of ice-core 10Be/36Cl records against this scenario"
+    ],
+    "rationale": "The interval [-10950,-10950] falls squarely at the Younger Dryas onset boundary (~12,900 cal BP), so I treat the applicable detectability regime as 'younger-dryas' rather than the unspecified generic period, since that is the physically relevant climatic/archaeological horizon for this event. For that period, astronomical (0.7) and geological (0.65) evidence categories have the highest detectability \u2014 ice cores, tree rings, and sedimentary 'black mat' horizons from this interval are well-studied and routinely searched at high resolution, so a genuine large ionizing-radiation event should leave a legible, well-preserved isotopic and geochemical signature. Material (0.35) and genetic (0.3) evidence are moderately detectable (Clovis-era archaeology and megafaunal remains are reasonably well sampled but preservation and dating precision are limiting factors), while textual (0.0) and linguistic (0.05) evidence are essentially inapplicable given no writing systems existed in this period. Oral tradition (0.1) and iconographic (0.1) evidence are weakly detectable given the ~13,000-year gap and lack of durable symbolic media. Because the two most diagnostic evidence classes (astronomical, geological) have comparatively high detectability, an absence of a confirmed non-impact gamma-ray/cosmogenic-isotope signature in the existing, well-studied Younger Dryas boundary record is meaningful evidence against the hypothesis rather than simply a detection failure \u2014 real-world attempts (e.g., 10Be/36Cl studies testing supernova/GRB triggers for the YD) have generally not found support of the needed magnitude, which is treated here as model-prior (low-tier, unverified recollection) rather than confirmed fact. This is a highly specific and largely fringe variant (gamma-ray/supernova mechanism, as opposed to the more commonly discussed cometary-impact version of the Younger Dryas Impact Hypothesis), so while the evidence could plausibly have survived and been searched for, its absence carries real evidentiary weight against the hypothesis as stated. I set the overall detectability_adjustment at 0.55, reflecting a weighted blend favoring the high-detectability astronomical/geological channels that are most diagnostic for this specific mechanism, tempered by lower detectability in material/genetic/textual/linguistic channels."
+  }
+}

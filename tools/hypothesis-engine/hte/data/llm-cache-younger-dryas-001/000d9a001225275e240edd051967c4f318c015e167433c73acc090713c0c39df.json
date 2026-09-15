@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2ccc06bfd8716c3e5a6cd0e426cbaef6d5b40823ba86a6e0179ba52aad13e2df",
+  "response": {
+    "expected_evidence": [
+      "Geological: an iridium/platinum concentration anomaly in a thin sedimentary layer dated to ~12,800 cal BP (the 'Younger Dryas boundary' layer) across multiple North American (and global) sites",
+      "Geological: nanodiamonds (lonsdaleite/cubic diamonds), magnetic microspherules, and glass-like carbon spherules embedded in the same boundary layer",
+      "Geological/material: widespread biomass-burning proxies (soot, charcoal peaks, combustion aerosols) coincident with the YD onset layer, indicating continent-scale wildfires ('impact winter' signature)",
+      "Geological: a 'black mat' organic-rich layer directly overlying the proposed impact horizon at numerous stratigraphic sections",
+      "Astronomical/geochemical: extraterrestrial-derived material with isotopic signatures (e.g., high Ir/Pt ratios, shocked quartz, or meteoritic nickel) distinguishable from terrestrial or volcanic sources",
+      "Material: an identifiable impact crater or strewn field of the right size and age (candidate: sub-glacial Hiawatha crater, Greenland), though dating and size remain disputed",
+      "Genetic: a bottleneck or extinction signature in North American megafauna genomes and possibly in contemporaneous human population genetics coincident with ~12,800 cal BP",
+      "Material/archaeological: abrupt discontinuity or thinning in Clovis-culture archaeological layers directly above the boundary layer, interpreted as population disruption",
+      "Model-prior: this closely matches the well-known (and scientifically contested) 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), for which proponents report the above proxies at dozens of sites, while a substantial portion of the geological community has failed to independently replicate the nanodiamond/spherule signals and disputes their impact origin (favoring alternative explanations like meltwater-pulse forcing of AMOC)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis specifies a Younger-Dryas-onset event (~10,950 BCE / ~12,900 cal BP), for which the supplied table's 'younger-dryas' row is most applicable. Geological (0.65) and astronomical/cosmic-proxy (0.7) detectability are comparatively high because fine-grained sediment, ice-core, and lake-varve records from this interval are well-preserved and routinely sampled by Quaternary geologists, so a real impact-related anomaly (Ir/Pt spike, nanodiamonds, spherules, black mat) would very plausibly have been captured and reported \u2014 and indeed, per model-prior (unverified, from training knowledge), such claims have actually been published for numerous North American and circum-Atlantic sites. Material (0.35) and genetic (0.3) detectability are lower, reflecting the poor preservation of organic archaeological material and ancient DNA over 13,000 years, especially in a hunter-gatherer, pre-monumental context. Textual (0.0) and linguistic (0.05) evidence are essentially impossible this early. Given that evidence-seeking categories most relevant to this specific claim (geological, astronomical/cosmic-geochemical) sit in the 0.6\u20130.7 range, this is not a case where a low detectability score should be invoked to explain a total absence of evidence \u2014 physical evidence of the proposed type has in fact been reported by proponents. However, the low-moderate scores for corroborating material/genetic proxies, combined with the field's persistent failure to independently replicate the core geochemical signatures and the absence of a securely dated, appropriately sized impact crater, mean the hypothesis remains empirically contested rather than either confirmed or ruled out by absence of evidence. I set the aggregate detectability adjustment at 0.5, weighting geological/astronomical proxies (most diagnostic, high detectability) alongside material/genetic corroboration (lower detectability), which is consistent with 'some real evidence should exist and has been sought,' while flagging that ongoing non-replication is a scientific dispute over interpretation, not a detectability failure."
+  }
+}

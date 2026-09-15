@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "296149e2c7aafb8daa7fdb55012a662d011efba6587c497f738dd1092ecd06a7",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: absence or non-replication of platinum/iridium concentration spikes, nanodiamonds, magnetic spherules, and 'black mat' organic layers at ~12.9 ka in Middle Eastern sediment/lake cores (e.g., Lake Hula, Ghab Valley, Soreq Cave speleothems) that would otherwise support an impact layer",
+      "Geological/geochemical: independent re-analyses showing terrestrial (volcanic, wildfire, or anthropogenic) rather than extraterrestrial origin for purported impact proxies",
+      "Astronomical: lack of any identified impact crater, airburst structure, or corroborating bolide trajectory data for the region and interval",
+      "Material/archaeological: continuity (rather than abrupt collapse) in Natufian and other Levantine/Middle Eastern occupation sequences across the ~10,900 BCE boundary, arguing against a catastrophic impact-driven cultural discontinuity",
+      "Geological: regional biomass-burning proxies (charcoal, soot, PAHs) that correlate better with climatic drying/cooling trends than with a synchronous global impact-winter signature",
+      "Genetic: absence of a sharp human or faunal population bottleneck signature dated precisely to the impact-winter window in the Middle East",
+      "Model-prior (published literature, not primary evidence in this corpus): the broader Younger Dryas Impact Hypothesis controversy, where multiple independent labs failed to replicate original impact-marker claims, is recalled from training data and should be treated as unverified/low-tier corroboration only"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval (-11000 to -10001) falls within/at the tail of the Younger Dryas, so the younger-dryas detectability row is the appropriate baseline. A 'refutation' hypothesis of this kind is fundamentally an evidentiary/geochemical argument, and the strongest relevant channels\u2014geological (0.65) and astronomical (0.7)\u2014are both well above average, reflecting that sedimentary and geochemical records from this period do survive and are routinely sampled (lake cores, speleothems, loess sections) in the Middle East. Material/archaeological evidence (0.35) is moderately preserved via Natufian site stratigraphy, and genetic evidence (0.3) is weak but not negligible given some ancient-DNA and faunal bottleneck studies. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are essentially irrelevant/undetectable for this pre-literate period and were down-weighted to near zero in the composite. Given that geological and astronomical proxies are the primary evidentiary basis for the real-world Younger Dryas Impact Hypothesis debate (a controversy I recall from training as model-prior, not from provided evidence text), and these channels have above-average detectability for this period, an absence of confirmed impact markers is a meaningful and plausible outcome rather than merely a preservation failure. This justifies a moderately high overall adjustment (0.55), higher than the raw average across all channels, because the evidence types most load-bearing for this specific hypothesis (geological, astronomical) are also the most detectable ones in this period."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "01b5f1aef4336f6c20b4d622406f3915b5c7d0a1c0d7522e67f334c2f0394fab",
+  "response": {
+    "expected_evidence": [
+      "geological: a platinum/iridium enrichment layer in North American sediment cores and paleosols dated to ~10,850 BCE (the Younger Dryas boundary), often co-occurring with nanodiamonds, magnetic microspherules, and a 'black mat' organic layer",
+      "geological: soot/charcoal horizons indicating continent-scale wildfires synchronous with the anomaly layer",
+      "astronomical: a cosmogenic radionuclide spike (14C, 10Be, or 36Cl) in tree rings/ice cores consistent with an atmospheric ionization event, which would be the primary signature expected under a gamma-ray-ionization mechanism specifically (as opposed to physical impact ejecta)",
+      "astronomical: modeled/observed evidence of transient ozone depletion or atmospheric chemistry perturbation around the same date",
+      "material: stratigraphic discontinuity or abandonment horizon at Clovis-era archaeological sites in North America coincident with the boundary layer",
+      "genetic: megafaunal population bottleneck or extinction signatures in ancient DNA dated near 10,850 BCE (weak, indirect support)",
+      "model-prior (unverified, from training recall): the broader 'Younger Dryas Impact Hypothesis' literature, including reported platinum-anomaly findings (e.g., Moore et al.), is a real but contested body of work in mainstream science; the specific 'gamma-ray-ionization' causal mechanism (as opposed to bolide/airburst ejecta) is not a standard proposed mechanism in that literature and should be treated as speculative"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10850 corresponds to the Younger Dryas onset, so the 'younger-dryas' period row applies. Geological (0.65) and astronomical (0.7) evidence categories have relatively high base detectability for this period \u2014 sediment platinum/iridium layers and cosmogenic isotope records in ice cores and tree rings are known to survive well over this timescale, and a real platinum anomaly at the YD boundary in North America has in fact been reported in the literature (recalled here as unverified model-prior). This supports plausibility that corroborating evidence could exist and be found. However, the specific mechanism claimed \u2014 gamma-ray ionization rather than physical impact ejecta \u2014 is a much less standard and more speculative causal pathway; its unique diagnostic signature (atmospheric ionization via cosmogenic isotopes) is only indirectly diagnostic of gamma-ray-ionization specifically versus other atmospheric-perturbation mechanisms (e.g., volcanism, airburst, or a conventional impactor). Material (0.35) and genetic (0.3) evidence for this period are comparatively weak and indirect. Averaging the higher-detectability geological/astronomical channels most relevant to this hypothesis against the mechanism-specific uncertainty, a moderate-high detectability adjustment (~0.55) is warranted \u2014 high enough that absence of confirming gamma-ray-specific evidence should not be over-attributed to poor preservation, but tempered because the specific causal mechanism is harder to isolate from the general geological signature than the base astronomical/geological scores alone would suggest."
+  }
+}

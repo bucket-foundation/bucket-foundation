@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f2af877ca95ab273c18bc25288805735c2a5684244f3773559707c62250ba030",
+  "response": {
+    "expected_evidence": [
+      "Geological: a global/regional sediment layer at ~12,900 cal BP (the 'Younger Dryas boundary' or 'black mat') containing anomalous platinum/iridium spikes, magnetic and glassy microspherules, and nanodiamonds, preserved in lake/peat cores and loess sections across Europe.",
+      "Geological/ice-core: a synchronous chemical or particulate anomaly (e.g., platinum, ammonium, or soot spike) in Greenland ice cores dated to the YD onset.",
+      "Astronomical: physical remnant of an impactor - a crater, strewn field, or tektite/impact-glass field in or near Europe; alternatively, reconstructed orbital/debris-stream evidence linking a specific comet or fragmented body to an airburst.",
+      "Material/archaeological: abrupt disruption in Late Upper Paleolithic (e.g., Hamburgian/Federmesser) settlement patterns, tool-industry discontinuities, or a 'cultural break' layer directly overlying the proposed impact horizon.",
+      "Faunal/genetic: megafaunal extinction or population bottleneck signatures in European species dated precisely to 10,950 BCE, distinguishable from gradual climate-driven decline.",
+      "Genetic (human): a detectable discontinuity or bottleneck in Upper Paleolithic European human mtDNA/Y-DNA lineages coincident with the event.",
+      "Oral tradition: deep-time flood/fire/'sky-fire' cataclysm myths among circumpolar or European-derived oral traditions (highly speculative given the ~13,000-year gap and near-zero oral-tradition detectability).",
+      "Iconographic: Upper Paleolithic cave art or portable art motifs interpretable as a comet, airburst, or fire-from-sky event (again speculative and low-probability).",
+      "Textual: none expected or possible, as writing did not yet exist in this period."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "Using the 'younger-dryas' row (the interval -10950 matches the accepted YD onset date of ~12,900 cal BP, so this is the most applicable period key despite the hypothesis being formally 'unspecified'): geological (0.65) and astronomical (0.7) detectability are comparatively high, meaning that if a cosmic airburst had actually deposited an anomalous layer (platinum/iridium spike, nanodiamonds, microspherules) or left an identifiable impactor signature, sediment cores, ice cores, and loess sections from this period are well enough preserved and well enough studied that such evidence plausibly would have been found by now. Material (0.35) and genetic (0.3) detectability are moderate \u2014 archaeological and faunal/human genetic discontinuities from this era are patchier due to sparse Upper Paleolithic European sites and degraded ancient DNA, so absence of a clean signal there is less diagnostic. Textual evidence is impossible by construction (pre-writing), and oral_tradition/iconographic detectability are near-floor (0.1), so a lack of myths or cave-art depictions is fully expected regardless of the hypothesis's truth and should not be read as disconfirming. Overall, I set an aggregate detectability adjustment of ~0.5, reflecting that the strongest, most diagnostic evidence types for this hypothesis (geological, astronomical) have good preservation/detection potential, while the weaker forms have essentially none \u2014 so the absence of confirmed European impact-airburst markers is meaningful (not just an artifact of poor detectability) but should be weighed against the real controversy in the empirical record. Note (model-prior, unverified against the evidence text I was given): I recall this closely parallels the real 'Younger Dryas Impact Hypothesis' (e.g., Firestone et al. 2007) built on claimed platinum/nanodiamond/spherule layers across multiple continents, which remains scientifically contested, with many replication studies failing to confirm an extraterrestrial signal \u2014 this is a low-tier prior, not an established fact from the supplied materials.\"]"
+  }
+}

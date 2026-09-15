@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "4e69a69a681315998d08acbdab9d9d8a53c7d4335540a3b9c8606ee1455d61b8",
+  "response": {
+    "expected_evidence": [
+      "Geological: multi-continent stratigraphic/sediment-core reanalyses at the ~12,900 cal BP (Younger Dryas boundary) layer showing inconsistent or non-anomalous platinum/iridium concentrations across sites",
+      "Material: re-examination of purported impact proxies (nanodiamonds, magnetic microspherules, carbon spherules) showing they are common background terrestrial/detrital or combustion artifacts rather than extraterrestrial markers",
+      "Geological/paleoclimate: biomass-burning proxy records (charcoal, soot, PAHs) from lake and ice cores showing burning was regionally asynchronous and explainable by pre-existing climate/vegetation trends rather than a synchronous global impact-winter event",
+      "Astronomical: absence of a confirmed impact crater of appropriate size/age despite targeted searches (e.g., Greenland Hiawatha crater dating controversies)",
+      "Model_prior: published peer-reviewed critiques and replication failures (e.g., Pigati et al., Holliday et al., Pinter et al., Daulton et al.) forming the scientific consensus literature refuting the Younger Dryas Impact Hypothesis",
+      "Geological: ice-core records (e.g., GISP2) showing no platinum/iridium spike coincident with YD onset at expected magnitude across independently dated cores"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis concerns a modern scientific refutation of the Younger Dryas Impact Hypothesis (YDIH), so the 'evidence' in question is not fragile organic/cultural material needing to survive ~12,900 years intact, but rather geological sediment/ice-core stratigraphy and geochemical signatures (or their documented absence) that are well-preserved and repeatedly sampled across continents. Using the 'younger-dryas' row, geological (0.65) and astronomical (0.7, crater search feasibility) detectability are comparatively high, while material (0.35) and model_prior (0.3) are moderate; genetic, linguistic, textual, oral_tradition, and iconographic channels are essentially irrelevant or near-zero for this kind of claim. Because this refutation is an active, ongoing scientific debate documented in peer-reviewed literature (per model-prior, unverified beyond training recall) with multi-site geochemical replication studies (e.g., critiques by Pigati, Holliday, Pinter, Daulton), the relevant evidence types are exactly the ones with the highest detectability scores in this period, making it highly plausible the evidence exists and has already been found and published, rather than being suppressed by poor preservation. I set the composite detectability_adjustment at 0.55, reflecting the strong weighting toward geological/astronomical channels but tempered by the weaker material and model_prior components and the general noise inherent in cross-continental sediment correlation for a single-point-in-time event."
+  }
+}

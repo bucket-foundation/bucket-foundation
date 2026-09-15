@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "44ef4ca7580c540a436ae00b44c6ea4b700af155ac1a7c3bae14839341de7d81",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.48,
+        "rationale": "Both claims are speculative reconstructions; A's 'refuted' demographic-collapse claim aligns with archaeological studies (e.g., Buchanan et al.) finding no clear population decline, while B's black-mat/airburst link is a widely-cited but still contested Firestone-era proxy, so support is roughly comparable (model-prior)."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.55,
+        "rationale": "The Greenland ice-sheet platinum spike (Petaev et al. 2013, PNAS) is one of the more specifically documented and independently replicated proxies, giving A's 'corroborated' framing slightly stronger empirical grounding than B's broader continental causal claim (model-prior)."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.58,
+        "rationale": "Megafaunal-extinction-impact linkage, though heavily disputed, is the core, extensively studied YDIH claim, whereas a corroborated Middle-East population-demography effect from a cosmic airburst is a far more speculative, thinly-evidenced extension (model-prior)."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.65,
+        "rationale": "North American platinum-anomaly attribution to ejecta fallout (Moore et al. 2017) is a documented, mechanistically coherent proxy claim, while attributing the Younger Dryas *termination* (rather than onset) in Mexico to impact ejecta is a mechanistically mismatched and poorly evidenced claim (model-prior)."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.55,
+        "rationale": "Meltglass/impact-spherule evidence (Wittke et al. 2013) has held up somewhat better under later scrutiny than carbon-spherule counts, which faced significant reproducibility challenges (Surovell et al. 2009) (model-prior)."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.62,
+        "rationale": "Absence/refutation of a significant iridium anomaly at YDB layers is a fairly well-documented finding in the literature, whereas the specific Mexican megafaunal-extinction spherule evidence (Lake Cuitzeo) was later strongly disputed as misidentified (Daulton et al. 2015) (model-prior)."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.63,
+        "rationale": "Mainstream climate science favors meltwater-pulse explanations over impact-airburst causation for Younger Dryas onset cooling, supporting A's refutation, while iridium-anomaly claims in North America are among the weaker, largely unconfirmed YDIH proxies (model-prior)."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.66,
+        "rationale": "Meltglass/spherule evidence has multi-site published support (Wittke et al. 2013), while corroborating a population-demography decline from impact ejecta in North America runs counter to archaeological studies finding no clear collapse signal (Buchanan et al., Meltzer) (model-prior)."
+      }
+    ]
+  }
+}

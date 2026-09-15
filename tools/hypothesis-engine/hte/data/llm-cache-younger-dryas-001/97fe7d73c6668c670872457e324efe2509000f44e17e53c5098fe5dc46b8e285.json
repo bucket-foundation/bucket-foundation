@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b40b595b54c728ab420f2f9f850434fb29487ad77e5c98e37ab95b9f36f94b44",
+  "response": {
+    "expected_evidence": [
+      "Sedimentary layers (the Younger Dryas Boundary 'black mat') with anomalous magnetic and carbon microspherule concentrations across multiple North American sites",
+      "Nanodiamonds, lonsdaleite, and platinum-group element (Pt/Ir) anomalies co-located with the microspherule layer",
+      "Peer-reviewed geochemical/stratigraphic reports and their disputes (e.g., Firestone et al. 2007 vs. Pigati et al. 2012, Daulton et al., Surovell et al.) as model-prior literature",
+      "Archaeological correlation with Clovis-age occupation horizons directly beneath the layer, showing cultural/faunal discontinuity",
+      "Megafaunal bone assemblages showing an extinction pulse timed to the layer",
+      "Search results, positive or negative, for an associated impact crater or airburst structure in North America or Greenland",
+      "Independent replication studies testing whether the spherule layer is a synchronous continent-wide/global event or locally reworked material",
+      "Ice-core or varve records near 12,800 cal BP showing an ash/dust/soot spike consistent with impact fallout"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This corresponds to the Younger Dryas Impact Hypothesis (model-prior, unverified from training knowledge), so the relevant period is best treated as 'younger-dryas' rather than unspecified. The primary claimed evidence is geological (microspherule/nanodiamond/PGE layers), with moderate-high detectability (0.65) since terminal-Pleistocene sediment sequences and black-mat horizons are well preserved and have been sampled at many sites. Material/archaeological correlation has lower detectability (0.35) given sparse, disturbed Clovis-age sites. Astronomical evidence (a crater or airburst structure) has decent theoretical detectability (0.7) but has largely not been found, which is itself informative rather than a mere detection gap, since an impact of the required scale should leave harder-to-erase traces after only ~13,000 years. Genetic evidence is weakly diagnostic with low detectability (0.3). Because substantial primary evidence was in fact reported and searched for by multiple independent geochemistry labs, with mixed/contested replication (some finding elevated spherules, others attributing particles to non-impact sources like fungal spherules or industrial contamination), the ongoing controversy reflects genuine interpretive disagreement over actively studied, fairly detectable strata rather than absence of evidence caused by poor preservation. I set the adjustment at 0.5, between the higher geological/astronomical baseline and the lower material/genetic baseline, since low detectability should not be invoked to fully explain away weak corroboration when the record has already been extensively searched and sampled."
+  }
+}

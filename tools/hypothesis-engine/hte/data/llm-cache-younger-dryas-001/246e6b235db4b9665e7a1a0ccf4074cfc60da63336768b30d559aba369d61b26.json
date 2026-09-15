@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7fb22b6ae9151e3d991beb9d741099be6b5ba5743dec541edb2e849f7b6f056c",
+  "response": {
+    "expected_evidence": [
+      "Geological: anomalous platinum (and iridium/platinum-group-element) concentration spikes in a discrete stratigraphic layer at the Younger Dryas onset (~12,800 cal BP), detectable in ice cores (e.g., Greenland GISP2/GRIP) and in lake/peat/loess sediment sequences.",
+      "Astronomical/impact-proxy markers co-occurring with the platinum spike: magnetic microspherules, nanodiamonds (lonsdaleite/cubic diamond), melt-glass, and elevated iridium \u2014 used as corroborating impact-ejecta signatures.",
+      "Material/archaeological: a 'black mat' or charcoal-rich horizon at multiple North American and Eurasian sites marking abrupt faunal/cultural discontinuity coincident with the platinum layer.",
+      "Cross-continental replication: matching platinum anomaly timing and magnitude at geographically dispersed sites (e.g., North America, Greenland ice core, Western Europe, and potentially the Levant/Syria) needed to support the 'multiple-continents' claim.",
+      "Genetic: possible megafaunal population bottleneck/extinction signatures in ancient DNA dated to the same interval, though this is an indirect and weaker line of evidence.",
+      "Absence expected for textual, linguistic, oral-tradition, and iconographic evidence, since no literate or narrative-recording cultures existed in this pre-Holocene interval."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The hypothesis falls squarely in the Younger Dryas period/interval, and its core claim (a corroborated platinum anomaly across multiple continents from impact-ejecta fallout) is precisely the kind of signal captured by geological (0.65) and astronomical/impact-proxy (0.7) detectability channels, which are the highest-detectability rows available for this period \u2014 ice cores and fine-grained sediment sequences are known to preserve chemostratigraphic anomalies over 10,000+ years with reasonably good fidelity. Material evidence (black mat horizons, 0.35) offers weaker but plausible corroboration. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) channels are essentially inert for a pre-literate, pre-narrative-recording interval, so their absence is fully expected and uninformative about truth or falsity. Genetic evidence (0.3) is indirect at best (megafaunal bottlenecks, not human genetic signal). Given that geological/astronomical evidence \u2014 the most relevant channels \u2014 have moderate-to-good detectability (0.6\u20130.7) and, per model-prior, published literature (Firestone et al. 2007; Petaev et al. 2013; Moore et al. 2017; Wittke et al. 2013) does report platinum/PGE anomalies at multiple globally dispersed sites at this boundary (though causal interpretation as impact-driven remains scientifically contested), the hypothesis is falsifiable and testable, and any absence of evidence in the low-detectability channels (textual, linguistic, oral tradition, iconographic) should not be taken as evidence against it. I flag the causal 'impact-ejecta' mechanism attribution as unverified model-prior recollection rather than settled fact, since the platinum-anomaly observation itself is more robustly established in the literature than its interpretation as extraterrestrial impact ejecta versus alternative terrestrial/volcanic or reworking explanations."
+  }
+}

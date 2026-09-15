@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "51756646a61b1beea59cc81075bf3db8c6c617a2067946495951f463dbd0c331",
+  "response": {
+    "expected_evidence": [
+      "Geological: sediment/ice-core stratigraphy across multiple continents lacking a consistent, reproducible YD-boundary impact layer (no verifiable global platinum spike, shocked quartz, or spherule horizon at correct age in independently dated sections)",
+      "Geological/geochemical: failed independent replication of proposed impact markers (nanodiamonds, magnetic microspherules, iridium/platinum anomalies) by other labs, or demonstration that these markers have non-impact origins such as volcanic ash, terrestrial fungal or algal material, or cosmic dust background variability",
+      "Astronomical: absence of a corresponding impact crater or airburst structure of appropriate size and age; failure of proposed comet-fragmentation trajectory models to be corroborated",
+      "Geological/climatological: alternative causal chain evidence for YD cooling such as glacial Lake Agassiz meltwater pulse into the North Atlantic or AMOC shutdown proxies, better chronologically constrained than an impact trigger",
+      "Material/archaeological: continuity of Clovis and other Paleoindian lithic traditions across the YD boundary rather than an abrupt population collapse tied to a single catastrophic event",
+      "Genetic: absence of a sharp human or megafaunal population bottleneck signature precisely coincident with the proposed impact-winter date, or extinction timing shown to be staggered rather than instantaneous",
+      "Model-prior: published critique and consensus literature documenting non-replication and methodological problems with the original impact-hypothesis papers"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis is a refutation claim, testable mainly via modern re-analysis of well-preserved, precisely-dated geological and paleoclimatic archives such as ice cores, varved lake sediments, and loess sections, rather than fragile perishable materials. Geological (0.6-0.65) and astronomical (0.7) detectability for the younger-dryas and upper-paleolithic rows are comparatively high, and the real debate around this topic (failed replications of nanodiamond and platinum signals, absence of a matching crater, competing meltwater-pulse explanations) is the kind of evidence such records preserve well. Material and genetic lines (archaeological continuity, extinction/bottleneck timing) are moderately detectable (0.3-0.35) since Paleoindian sites and ancient DNA records exist but are sparse and unevenly distributed across multiple continents, weakening any globally uniform refutation claim. Textual, linguistic, oral_tradition, and iconographic channels are essentially non-viable (0.0-0.1) for this pre-literate period and are largely irrelevant to adjudicating this specific hypothesis. Because the geological and astronomical channels most relevant to this debate have relatively strong detectability, an absence of a confirmed, universally reproduced impact signature is more likely to reflect genuine non-existence supporting refutation than a mere detectability failure. I set the blended adjustment at 0.55, weighted toward the higher-detectability geological, astronomical, and model-prior channels that actually carry this debate. Note: my familiarity with the real-world Younger Dryas Impact Hypothesis controversy comes from training knowledge and should be treated as unverified model-prior background rather than an established fact within this exercise."
+  }
+}
