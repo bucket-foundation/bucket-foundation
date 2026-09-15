@@ -405,14 +405,12 @@ farmers-versus-extraterrestrials worked example from `main.tex` §Belief model
 `tests/test_llm.py` and `tests/test_roles.py` monkeypatch `subprocess.run`
 (or `hte.roles.llm.complete` directly), so they need no network access and
 no `claude` CLI. `tests/test_runner.py` and the `campaign run` case in
-`tests/test_cli.py` are the exception: they run `hte.runner.run_campaign`
-end to end over `hte.corpus.fixtures` in `replay_only=True` mode against
-the committed cache at `tests/fixtures/llm-cache/`, generated once by a
-real `claude -p` run and replayed forever after at no cost and no network
-call. `FIXTURE_CONFIG` in `tests/test_runner.py` documents which config
-values are load-bearing for that cache (`generate_n`, `combinatorial_max_items`,
-the campaign name itself): changing any of them changes a prompt's text,
-and so its cache key, and needs the cache regenerated to match.
+`tests/test_cli.py` run `hte.runner.run_campaign` end to end in fake
+mode. The read-only replay contract (`replay_only=True` hits a tracked
+cache, never shells out, never writes) is covered at the
+`hte.llm.complete` level in `tests/test_llm.py`, and a recorded run
+replays from its tracked cache under `hte/data/llm-cache-*` (see
+`docs/YOUNGER-DRYAS.md`, Reproduce).
 
 ### Hypothesis profiles and the Makefile
 

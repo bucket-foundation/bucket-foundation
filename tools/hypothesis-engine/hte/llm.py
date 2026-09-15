@@ -683,8 +683,8 @@ def complete(
 
     A cache hit returns instantly, no subprocess call. A cache miss with
     `replay_only=True` raises `LLMCacheMissError` rather than shelling out,
-    for tests and CI, which run only against cache files this package
-    commits at `tests/fixtures/llm-cache/`. A cache miss with
+    for tests, CI, and replays of a recorded run's own tracked cache
+    (`hte/data/llm-cache-*`). A cache miss with
     `replay_only=False` calls `claude -p`; a response that fails to parse
     as JSON or is missing a key `schema["required"]` names gets one
     corrective retry before this function raises
@@ -719,9 +719,8 @@ def complete(
     `provenance` is `None` or empty, when the call raises with no
     cached artifact for the index to point at (an invalid-JSON
     exhaustion, a timeout), when `replay_only=True` (this
-    package's own "read committed fixtures, write nothing" contract,
-    `tests/fixtures/llm-cache/`'s own role: a replay against a checked-in
-    cache directory must never leave it dirty), and, `provenance`
+    read-only replay contract: a replay against a tracked cache
+    directory must never leave it dirty), and, `provenance`
     included, in fake mode: fake mode's own contract is that `cache_dir`
     is accepted but unused, full stop, so a fake-mode run's `provenance`
     argument is accepted for call-site symmetry with the non-fake path
@@ -749,12 +748,10 @@ def complete(
     resolved_timeout = timeout if timeout is not None else resolve_timeout(role)
     cache_path = _cache_path(cache_dir, resolved_model, prompt)
     if cache_path.exists():
-        # `replay_only` is this package's own "read committed fixtures,
-        # write nothing" contract (`tests/fixtures/llm-cache/`'s own
-        # role): every test in this package that replays against it
-        # would otherwise leave that checked-in directory dirty on every
-        # run, an index line appended for a role call the test never
-        # asked to be attributed at all. A caller with a real, mutable
+        # `replay_only` is the read-only replay contract: a replay against
+        # a tracked cache directory must never leave it dirty, an index
+        # line appended for a role call the caller never asked to be
+        # attributed at all. A caller with a real, mutable
         # `cache_dir` (`replay_only=False`) still gets the write on a
         # cache hit, same as any other call.
         try:
