@@ -77,6 +77,17 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
+The discovery-date holdout can freeze the vocabulary at its cutoff.
+`Concept.introduced_year` records when a concept entered the written
+record; `Vocabulary.frozen_at(cutoff)` drops every concept coined at or
+after it, and `hte calibrate --freeze-vocab` runs the holdout on that
+copy, reporting `n_frozen_concepts`, so an event cannot be placed under
+a concept nobody had yet. The same change links the pre-cutoff items
+against the candidates inside `run_holdout` (deep copies, as the k-fold
+holdout does), which `hte calibrate` had never done: outside a runner
+every candidate scored at `P = a`. Years for the seeded vocabularies are
+a data pass still to do.
+
 Every run opens with a stance audit (`hte.runner.stance_audit`): per
 actor an evidence item names, how many items assert it and how many
 deny or downgrade it, logged before generation and carried in
