@@ -238,35 +238,21 @@ def _preservation_critic(prompt: str, schema: Mapping[str, Any]) -> dict[str, An
 # judge
 # --------------------------------------------------------------------------
 
-_OPINION_TEXT_RE = re.compile(r"opinion:\s*(Opinion\([^)]*\)|None)")
-_OPINION_FIELDS_RE = re.compile(r"b=([-\d.eE]+),\s*d=([-\d.eE]+),\s*u=([-\d.eE]+),\s*a=([-\d.eE]+)")
-
-
-def _project_from_text(text: str) -> float:
-    """`Opinion.project()` read back off `hte.roles.judge`'s own f-string
-    interpolation of an `Opinion` (its dataclass `repr`, `"Opinion(b=...,
-    d=..., u=..., a=...)"`), or `0.5` for `"None"` (no recorded opinion,
-    the same reading `hte.tournament._seed_elo` gives an unopined
-    hypothesis)."""
-    if text == "None":
-        return 0.5
-    m = _OPINION_FIELDS_RE.search(text)
-    if not m:
-        return 0.5
-    b, _d, u, a = (float(x) for x in m.groups())
-    return b + a * u
+_JUDGE_COUNTS_RE = re.compile(r"^(?P<label>[AB]) \(supports=(?P<supports>\d+), refutes=(?P<refutes>\d+)\):", re.MULTILINE)
 
 
 def _judge(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
-    """Returns the two hypotheses' projected-probability difference
-    passed through a sigmoid: `p_a_wins = sigmoid(P(A) - P(B))`, read off
-    the two `Opinion` reprs `hte.roles.judge`'s own prompt embeds. Neither
-    opinion found reads as `P = 0.5` for both, giving `p_a_wins = 0.5`."""
-    matches = _OPINION_TEXT_RE.findall(prompt)
-    p_a = _project_from_text(matches[0]) if len(matches) > 0 else 0.5
-    p_b = _project_from_text(matches[1]) if len(matches) > 1 else 0.5
-    p_a_wins = sigmoid(p_a - p_b)
-    return {"p_a_wins": p_a_wins, "rationale": f"fake stand-in: sigmoid(P(A)-P(B)) = sigmoid({p_a:.4f} - {p_b:.4f}) = {p_a_wins:.4f}"}
+    """`p_a_wins = sigmoid(net(A) - net(B))`, `net = supports - refutes`,
+    read off `hte.roles.judge`'s own per-side count line
+    (`bkt-hte-blind-roles`). A side with no count line to match (no
+    linked evidence) reads as `net = 0`, so two unlinked hypotheses draw
+    at `p_a_wins = 0.5`, matching the real prompt's own instruction."""
+    counts = {m.group("label"): (int(m.group("supports")), int(m.group("refutes"))) for m in _JUDGE_COUNTS_RE.finditer(prompt)}
+    supports_a, refutes_a = counts.get("A", (0, 0))
+    supports_b, refutes_b = counts.get("B", (0, 0))
+    net_a, net_b = supports_a - refutes_a, supports_b - refutes_b
+    p_a_wins = sigmoid(net_a - net_b)
+    return {"p_a_wins": p_a_wins, "rationale": f"fake stand-in: sigmoid(net(A)-net(B)) = sigmoid({net_a} - {net_b}) = {p_a_wins:.4f}"}
 
 
 # --------------------------------------------------------------------------
