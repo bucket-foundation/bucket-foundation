@@ -27,7 +27,7 @@ from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history, sacred_history_texts, younger_dryas
 from .corpus import vindication_fixture
-from .evidence import EvidenceItem
+from .evidence import Stance, EvidenceItem
 from .generate import combinatorial_sample, from_evidence, stratified_sample
 from .hypothesis import Hypothesis
 from .timeline import (
@@ -472,6 +472,20 @@ def _advocate_summary(notes: Mapping[int, Mapping[str, Any]]) -> dict[str, Any]:
     }
 
 
+def stance_audit(evidence: Sequence[EvidenceItem]) -> dict[str, dict[str, int]]:
+    """Per ACTOR slot value an item names: how many items assert it
+    (`Stance.POSITIVE`) and how many deny or downgrade it (`NEGATIVE`),
+    plus items naming no actor under `"(none)"`. The corpus's own stance
+    balance, printed before any scoring so a lopsided card set is visible
+    up front (`STATISTICAL-AUDIT-2026-09-15.md`, Evidence: 60 of 68 bound
+    live survivors carried only refutations)."""
+    audit: dict[str, dict[str, int]] = {}
+    for item in evidence:
+        row = audit.setdefault(item.actor or "(none)", {"positive": 0, "negative": 0})
+        row["positive" if item.stance == Stance.POSITIVE else "negative"] += 1
+    return dict(sorted(audit.items(), key=lambda kv: (-(kv[1]["positive"] + kv[1]["negative"]), kv[0])))
+
+
 def _survivor_opinion(opinion: Opinion) -> dict[str, float]:
     """`opinion.to_dict()` (`hte.belief.Opinion.to_dict`) plus its own
     projected credence `P`, the shape `survivors.json` persists per
@@ -535,6 +549,8 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     if cfg["corpus"] not in _CORPUS_LOADERS:
         raise ValueError(f"unknown corpus {cfg['corpus']!r}, expected one of {list(_CORPUS_LOADERS)}")
     corpus = _CORPUS_LOADERS[cfg["corpus"]]()
+    stance = stance_audit(corpus.evidence)
+    logger.log("stance audit: " + ", ".join(f"{actor} +{c['positive']}/-{c['negative']}" for actor, c in stance.items()))
     prior_ledger_note: dict[str, Any] = {"path": cfg["prior_ledger"], "applied": 0, "runs": 0, "appended": 0}
     if cfg["prior_ledger"]:
         ledger_counts, ledger_runs = prior_ledger.load_counts(cfg["prior_ledger"], corpus=cfg["corpus"])
@@ -924,7 +940,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         # text, and `MANIFEST.json` carries these without perturbing it.
         "counts": {
             **run_summary, "fragility_top10": fragility_top10,
-            "judge_disagreement": judge_disagreement, "sampling": sampling_frame, "prior_ledger": prior_ledger_note, "advocate": _advocate_summary(advocate_notes),
+            "judge_disagreement": judge_disagreement, "sampling": sampling_frame, "prior_ledger": prior_ledger_note, "advocate": _advocate_summary(advocate_notes), "stance": stance,
         },
     }
     # `hte.artifacts.validate_manifest` builds a `ManifestArtifact` from

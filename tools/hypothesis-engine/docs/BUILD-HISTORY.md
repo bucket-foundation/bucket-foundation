@@ -77,6 +77,13 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
+Every run opens with a stance audit (`hte.runner.stance_audit`): per
+actor an evidence item names, how many items assert it and how many
+deny or downgrade it, logged before generation and carried in
+`MANIFEST.json` `counts.stance` and in `campaign results`, so a card
+set that carries only refutations for one actor is visible before any
+number is read as a finding.
+
 The effective count reads a dependence graph. `Source` carries `authors`,
 `lab`, and `method`; `hte.belief.effective_count` unions two sources that
 share any of them, at full weight, on top of the stemma edges, so two

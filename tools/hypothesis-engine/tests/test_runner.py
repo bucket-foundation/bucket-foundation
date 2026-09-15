@@ -637,3 +637,22 @@ def test_survivors_carry_the_critic_likelihood_ratios(tmp_path, monkeypatch):
     rated = [e for e in entries if e["likelihood_ratios"]]
     assert rated, "the fake critic rates every listed item, so a bound survivor carries ratios"
     assert all(v in (10.0, 3.0, 1.5, 1.0) for e in rated for v in e["likelihood_ratios"].values())
+
+
+def test_stance_audit_counts_items_per_actor_by_stance():
+    from hte.corpus import vindication_fixture
+    audit = runner.stance_audit(vindication_fixture.build().evidence)
+    assert audit == {"unverified-observer": {"positive": 5, "negative": 1}}
+
+
+def test_manifest_carries_the_stance_audit(tmp_path, monkeypatch):
+    cfg = _fake_mode_cfg(
+        tmp_path, monkeypatch, corpus="production", max_hypotheses=20, combinatorial_max_items=1,
+        max_time_bins=2, run_extraction=False,
+    )
+    artifacts = runner.run_campaign(cfg)
+    manifest = json.loads((artifacts.run_dir / "MANIFEST.json").read_text())
+    stance = manifest["counts"]["stance"]
+    assert stance and all(set(row) == {"positive", "negative"} for row in stance.values())
+    assert sum(row["positive"] + row["negative"] for row in stance.values()) == manifest["counts"]["n_evidence"]
+    assert "stance audit:" in (artifacts.run_dir / "run.log").read_text()
