@@ -2629,3 +2629,26 @@ Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-l
 ### Verified
 
 `npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright at 1600x1000, scroll 0, 8s wait: `/canon/search` and `/research-os` both show the same brown landmass dot texture and the same colored figure/site markers along the coastlines, research-os at lower opacity, lower right, behind page content, autorotating, with drag/zoom disabled.
+
+## Canon globe: precomputed land mask
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. No canvas readback remains anywhere in the globe path. Founder report: in Brave with fingerprint protection on, the 2D canvas context or the `getImageData` readback in `landmaskFromImage.ts` is refused, `loadLandmask` rejects, and the globe renders with no land dots (the ghost sphere alone, near-invisible at 0.04 opacity). Headless Chromium never hit this since it allows the readback.
+
+### Added
+
+- `scripts/globe/build-landmask.mjs`: offline build script. `magick` decodes `public/textures/earth/2k_earth_daymap.jpg` to a raw interleaved RGB byte stream at its native 2048x1024; the script applies the same per-pixel rule the canvas sampler used (Rec. 601 luma, ocean ruled out when blue dominates red and green, threshold 90) and packs the result to 1 bit per pixel. Writes `public/textures/earth/landmask-2k.bin` (262,144 bytes, 1-bit packed, well under the 400 KB budget) and `public/textures/earth/landmask-2k.json` (width, height, threshold, and the packing convention). `npm run globe:landmask` runs it.
+- `public/textures/earth/landmask-2k.bin`, `public/textures/earth/landmask-2k.json`: the committed generated asset.
+
+### Edited
+
+- `src/components/canon-globe/landmaskFromImage.ts`: `loadLandmask` no longer touches a canvas. It fetches the `.bin` and its `.json` header, unpacks the bit for a given lat/lng into the same `Landmask` shape (`width`, `height`, `isLand`, `sample`) the R3F `Earth` mesh already consumed, so `Earth.tsx` needed no changes. `sample()` is kept for type compatibility (no caller reads it) and now reports a flat land/ocean value rather than the original RGB, since the packed asset carries one bit per pixel, not color. The old function body is preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+- `src/components/canon-globe/CanonGlobe.tsx`: `LANDMASK_URL` points at `/textures/earth/landmask-2k.bin` instead of the JPEG.
+- `package.json`: `globe:landmask` script.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched TypeScript/JS files. `/canon/search` and `/research-os` both render through the one shared `Earth` mesh (`CanonGlobeMount` to `R3FCanonGlobe` to `Earth`), so both pick up the new loader automatically; confirmed by tracing the import graph, no second landmask consumer exists.
+
+Reproduced the founder's failure with a Playwright script (`page.addInitScript` patching `HTMLCanvasElement.prototype.getContext` to return `null` for `'2d'`, leaving `'webgl'` untouched) against the pre-fix code at `/research-os`: console carried `[CanonGlobe] landmask load failed: Error: landmask: 2d context unavailable` and the globe rendered as a bare tan disc, no dots, zero `pageerror`s (the failure is swallowed inside `Earth.tsx`'s existing `.catch`, not thrown to `GlobeErrorBoundary`; the visible symptom is the same either way, an empty globe). Same script against the fixed code: no landmask warning, zero `pageerror`s, and the full dot globe rendered with the 2D context still disabled. Screenshot saved to `/tmp/claude-1000/-home-gian-agfarms/f2685240-3c83-4339-9fe3-36fe227e03cd/scratchpad/critic/globe-no2d.png`.
+
+Dot-placement parity: screenshotted `/research-os` at 1950x1160 with a normal (unpatched) browser before and after the change. `magick compare -metric AE` showed differences only as thin anti-aliasing edges traced around each dot, no shifted or missing clusters; continent outlines and dot density match pixel-for-pixel between the canvas-based and precomputed-asset renders, as expected since both apply the same threshold rule to the same JPEG decode.

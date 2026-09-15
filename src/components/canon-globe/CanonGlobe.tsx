@@ -100,7 +100,7 @@ interface CanonGlobeProps {
   scrollSpeedRef?: MutableRefObject<number>;
 }
 
-const LANDMASK_URL = "/textures/earth/2k_earth_daymap.jpg";
+const LANDMASK_URL = "/textures/earth/landmask-2k.bin";
 
 export default function CanonGlobe({
   markers = [],

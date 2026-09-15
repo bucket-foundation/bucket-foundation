@@ -3266,3 +3266,13 @@ The decorative and interactive mounts already shared one `R3FCanonGlobe` (same E
 ### Verified
 
 `npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright at 1600x1000, scroll 0, 8s wait: `/canon/search` and `/research-os` show matching landmass texture and colored point layer, research-os dimmed, lower right, behind content, autorotating, non-interactive.
+
+## Canon globe: precomputed land mask
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. No canvas readback remains anywhere in the globe path. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+The globe's land dots came from drawing the daymap JPEG into a 2D canvas and reading pixels back with `getImageData`, in Brave with fingerprint protection this readback is refused and the globe rendered with no dots. `scripts/globe/build-landmask.mjs` now bakes the same threshold rule into `public/textures/earth/landmask-2k.bin` (1-bit packed, 256 KB) plus a JSON header at build time; `landmaskFromImage.ts`'s `loadLandmask` fetches and unpacks that asset instead of touching a canvas. `Earth.tsx` and both mounts (`/canon/search`, `/research-os`) needed no changes, they already shared one loader. Old function body preserved in `_intake/research-os-k12/DELETIONS.md`.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright reproduction with a patched `HTMLCanvasElement.prototype.getContext('2d')` returning `null`: pre-fix showed the landmask warning and a dotless globe with zero `pageerror`s; post-fix showed the full dot globe with no warning and zero `pageerror`s. `magick compare` on plain (unpatched) 1950x1160 `/research-os` screenshots, before and after, showed only anti-aliasing-level differences, dot placement matches pixel-for-pixel.
