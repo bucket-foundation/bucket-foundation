@@ -35,6 +35,22 @@ def test_brier_score_empty_is_none():
     assert calibrate.brier_score([], []) is None
 
 
+# wilson_interval: STATISTICAL-AUDIT-2026-09-15.md, "coverage 0.30 has a
+# Wilson interval near 0.11 to 0.60".
+def test_wilson_interval_zero_of_n():
+    assert calibrate.wilson_interval(0, 10) == (0.0, pytest.approx(0.278, abs=1e-3))
+
+
+def test_wilson_interval_n_of_n():
+    assert calibrate.wilson_interval(10, 10)[1] == 1.0
+    assert calibrate.wilson_interval(10, 10)[0] == pytest.approx(0.723, abs=1e-3)
+
+
+def test_wilson_interval_three_of_ten_matches_the_audit():
+    lo, hi = calibrate.wilson_interval(3, 10)
+    assert (lo, hi) == (pytest.approx(0.108, abs=1e-3), pytest.approx(0.603, abs=1e-3))
+
+
 # --------------------------------------------------------------------------
 # run_holdout: the event-targeted rewrite (bkt-hte-holdout)
 #

@@ -261,25 +261,44 @@ _JUDGE_REQUIRED = ("id", "p_a_wins", "rationale")
 JudgePair = tuple[Hypothesis, Hypothesis, Mapping[str, Any]]
 
 
+def _judge_evidence_block(label: str, support: Sequence[EvidenceItem], refute: Sequence[EvidenceItem]) -> str:
+    """`hte.roles._judge_evidence_block`'s own contract, this module's
+    own copy (see the module docstring)."""
+    lines = [_evidence_line(e) for e in (*support, *refute)]
+    if not lines:
+        return f"{label}: no linked evidence."
+    return f"{label} (supports={len(support)}, refutes={len(refute)}):\n" + "\n".join(lines)
+
+
 def _judge_batch_prompt(batch: Sequence[tuple[str, Hypothesis, Hypothesis, Mapping[str, Any]]]) -> str:
     blocks = []
     for pair_id, a, b, context in batch:
-        opinions = context.get("opinions", {})
+        evidence: Sequence[EvidenceItem] = context.get("evidence", [])
+        support_a = [e for e in evidence if a.address in e.supports]
+        refute_a = [e for e in evidence if a.address in e.refutes]
+        support_b = [e for e in evidence if b.address in e.supports]
+        refute_b = [e for e in evidence if b.address in e.refutes]
+        draw_note = (
+            " Neither side has any linked evidence for this pair: return "
+            "p_a_wins=0.5 unless the two differ in internal consistency."
+            if not (support_a or refute_a or support_b or refute_b) else ""
+        )
         blocks.append(
             f"### id={pair_id}\n"
-            f"Hypothesis A: {_describe_hypothesis(a)}\nA's opinion: {opinions.get(a.address)}\n\n"
-            f"Hypothesis B: {_describe_hypothesis(b)}\nB's opinion: {opinions.get(b.address)}"
+            f"Hypothesis A: {_describe_hypothesis(a)}\n{_judge_evidence_block('A', support_a, refute_a)}\n\n"
+            f"Hypothesis B: {_describe_hypothesis(b)}\n{_judge_evidence_block('B', support_b, refute_b)}"
+            f"{draw_note}"
         )
     return (
-        "Judge which of two hypotheses the evidence favors more, given their "
-        "current opinions if any, for each of the following pairs.\n\n"
+        "Judge which of two hypotheses the linked evidence favors more, for "
+        "each of the following pairs.\n\n"
         + "\n\n".join(blocks) + "\n\n"
         f"Return a JSON array under \"results\" with exactly {len(batch)} entries, "
         "one per pair above, each carrying that pair's own id (the id= value "
         "from its heading), p_a_wins (your estimate of P(A is the better-"
         "supported hypothesis), in [0, 1]), and a one-line rationale. Judge "
-        "target-blind: apply the identical standard regardless of which "
-        "reading, orthodox or fringe, either hypothesis in a pair favors."
+        "target-blind: apply the identical standard to both sides regardless "
+        "of which one seems more familiar or better established."
     )
 
 

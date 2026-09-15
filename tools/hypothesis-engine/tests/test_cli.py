@@ -67,6 +67,17 @@ def test_calibrate_command_diagnose_writes_diagnostics_md(tmp_path, capsys):
     assert (tmp_path / "diagnostics.json").is_file()
 
 
+def test_calibrate_command_shuffle_writes_link_shuffle_into_diagnostics_json(tmp_path, capsys):
+    rc = cli.main(["calibrate", "--corpus", "quantum-history", "--diagnose", "--shuffle", "--out", str(tmp_path)])
+    assert rc == 0
+    assert "link-shuffle diagnostic written to" in capsys.readouterr().out
+    diag = json.loads((tmp_path / "diagnostics.json").read_text())
+    assert "reasons" in diag
+    shuffle = diag["link_shuffle"]
+    assert 0.0 <= shuffle["prior_only_fraction"] <= 1.0
+    assert -1.0 <= shuffle["mean_correlation"] <= 1.0
+
+
 def test_calibrate_command_diagnose_with_explicit_cutoff_uses_discovery_date_mode(tmp_path):
     rc = cli.main([
         "calibrate", "--corpus", "quantum-history", "--cutoff-years", "1995", "--diagnose", "--out", str(tmp_path),
@@ -173,14 +184,16 @@ def test_campaign_results_writes_per_actor_and_top_with_no_absolute_paths(tmp_pa
     assert isinstance(result["per_actor"], dict)
     assert result["per_actor"]  # the production corpus's own survivors name a real ACTOR
     for row in result["per_actor"].values():
-        assert set(row) >= {"max_P", "min_u", "best_elo", "n_survivors", "profile_projections"}
+        assert set(row) >= {"max_P", "min_u", "max_lift", "best_elo", "n_survivors", "profile_projections"}
         assert set(row["profile_projections"]) == {"consensus", "skeptic", "fringe", "uniform"}
 
     assert 0 < len(result["top"]) <= 10
     for entry in result["top"]:
-        assert set(entry) >= {"hypothesis_id", "address", "opinion", "elo", "robustness"}
-    elos = [e["elo"] for e in result["top"]]
-    assert elos == sorted(elos, reverse=True)
+        assert set(entry) >= {"hypothesis_id", "address", "opinion", "elo", "max_lift", "robustness"}
+    # `top` ranks by lift first, Elo second: assert the real sort key
+    # rather than the coincidental case where lift and Elo agree.
+    rank_keys = [(-e["max_lift"], -e["elo"]) for e in result["top"]]
+    assert rank_keys == sorted(rank_keys)
 
     assert result["self_report"]
 

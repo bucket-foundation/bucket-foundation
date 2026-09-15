@@ -1,10 +1,12 @@
+import dataclasses
 import json
 from pathlib import Path
 
 import pytest
 
-from hte import bridge_export, canon_writeback
+from hte import api, bridge_export, canon_writeback
 from hte.address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
+from hte.belief import Opinion
 from hte.corpus import Corpus, fixtures
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from hte.hypothesis import Hypothesis, Placement
@@ -169,7 +171,7 @@ def test_reconstruct_candidates_tracks_a_survivor_outside_every_bin_view(run_wit
     assert ctx.unrecoverable_survivor_ids == (h_hidden.short_id,)
     assert len(candidates) + len(ctx.unrecoverable_survivor_ids) == 2
 
-    selected = canon_writeback.select_above_floor(candidates, floor_P=0.0, floor_u_max=1.0)
+    selected = canon_writeback.select_above_floor(candidates, floor_P=0.0, floor_u_max=1.0, fdr_q=1.0)  # fdr_q=1.0 disables FDR (item 5)
     assert len(selected) == 1
     assert h_hidden.short_id not in {c.short_id for c in selected}
 
@@ -187,9 +189,9 @@ def test_write_back_over_a_run_with_a_hidden_survivor_still_writes_the_reconstru
     # real-write-back test in this file follows (see the fixture above).
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
 
-    paths = canon_writeback.write_back(
+    paths = canon_writeback.write_back(  # fdr_q=1.0 disables FDR (item 5)
         run_dir, branch="07-mind", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
-        out_root=out_root, dry_run=False, ledger_path=tmp_path / "ledger.jsonl",
+        fdr_q=1.0, out_root=out_root, dry_run=False, ledger_path=tmp_path / "ledger.jsonl",
     )
     card_paths = [p for p in paths if p.parent == out_root / "07-mind" / "hypotheses" and p.name != "INDEX.md"]
     assert len(card_paths) == 1
@@ -199,10 +201,119 @@ def test_write_back_over_a_run_with_a_hidden_survivor_still_writes_the_reconstru
 def test_select_above_floor_filters_on_both_p_and_u(linking_run):
     run_dir, h_supported, _ = linking_run
     candidates, _ = canon_writeback.reconstruct_candidates(run_dir)
-    loose = canon_writeback.select_above_floor(candidates, floor_P=0.0, floor_u_max=1.0)
+    # lift_floor=-1.0 and fdr_q=1.0 disable those gates: this test is
+    # about the P/u pair alone.
+    loose = canon_writeback.select_above_floor(candidates, floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0, fdr_q=1.0)
     assert len(loose) == 2
-    strict = canon_writeback.select_above_floor(candidates, floor_P=0.99, floor_u_max=0.01)
+    strict = canon_writeback.select_above_floor(candidates, floor_P=0.99, floor_u_max=0.01, lift_floor=-1.0, fdr_q=1.0)
     assert strict == []
+
+
+def test_select_above_floor_evidence_gate_excludes_the_prior(linking_run):
+    """Two opinions with identical (b, d, u) but different a land on the
+    same side of `lift_floor`, since `Opinion.lift` reads no `a`."""
+    run_dir, _, _ = linking_run
+    candidates, _ = canon_writeback.reconstruct_candidates(run_dir)
+    base = candidates[0]
+    high_prior = dataclasses.replace(base, opinion=Opinion(b=0.502, d=0.0, u=0.498, a=0.882))
+    low_prior = dataclasses.replace(base, opinion=Opinion(b=0.502, d=0.0, u=0.498, a=0.121))
+
+    both_pass = canon_writeback.select_above_floor(  # fdr_q=1.0 disables FDR: this test is about lift_floor alone
+        [high_prior, low_prior], floor_P=0.0, floor_u_max=1.0, lift_floor=0.25, fdr_q=1.0,
+    )
+    assert len(both_pass) == 2
+
+    both_fail = canon_writeback.select_above_floor(
+        [high_prior, low_prior], floor_P=0.0, floor_u_max=1.0, lift_floor=0.6, fdr_q=1.0,
+    )
+    assert both_fail == []
+
+
+# --------------------------------------------------------------------------
+# FDR control on the claim gate (STATISTICAL-AUDIT-2026-09-15.md item 5):
+# select_above_floor/fdr_summary run Benjamini-Hochberg over the full
+# candidate set on the evidence-only lift signal, on top of the P/u/lift
+# floor.
+# --------------------------------------------------------------------------
+
+
+def _candidate_with_lift(base: "canon_writeback.Candidate", lift: float) -> "canon_writeback.Candidate":
+    """`base` with its own opinion replaced by one at exactly the given
+    evidence-only `lift = b - d`, `u` filling the rest of the simplex
+    (`a` fixed at 0.5, irrelevant: `lift` reads none of it)."""
+    b = max(0.0, lift)
+    d = max(0.0, -lift)
+    return dataclasses.replace(base, opinion=Opinion(b=b, d=d, u=1.0 - b - d, a=0.5))
+
+
+def test_benjamini_hochberg_keeps_a_uniform_high_lift_set_and_rejects_a_uniform_low_lift_set(linking_run):
+    """`lift=0.9` (`p=0.1`) clears `p_(5) <= (5/5)*0.10` at rank 5, so
+    all five candidates are kept; `lift=0.05` (`p=0.95`) never clears it
+    at any rank, so BH rejects the whole set."""
+    run_dir, _, _ = linking_run
+    candidates, _ = canon_writeback.reconstruct_candidates(run_dir)
+    base = candidates[0]
+
+    high_lift = [_candidate_with_lift(base, 0.9) for _ in range(5)]
+    kept_high = canon_writeback.select_above_floor(
+        high_lift, floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0, fdr_q=0.10,
+    )
+    assert len(kept_high) == 5
+
+    low_lift = [_candidate_with_lift(base, 0.05) for _ in range(5)]
+    kept_low = canon_writeback.select_above_floor(
+        low_lift, floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0, fdr_q=0.10,
+    )
+    assert kept_low == []
+
+
+def test_fdr_summary_threshold_matches_a_hand_computation_on_five_candidates(linking_run):
+    """Lifts `0.99, 0.98, 0.97, 0.5, 0.1` give p-values `0.01, 0.02,
+    0.03, 0.5, 0.9`. At `q=0.10`, `m=5`, ranks 1-3 clear `p_(k) <=
+    (k/5)*0.10` (0.01<=0.02, 0.02<=0.04, 0.03<=0.06) and ranks 4-5 do
+    not, so BH keeps the 3 lowest and thresholds at `0.03`."""
+    run_dir, _, _ = linking_run
+    candidates, _ = canon_writeback.reconstruct_candidates(run_dir)
+    base = candidates[0]
+    five = [_candidate_with_lift(base, lift) for lift in (0.99, 0.98, 0.97, 0.5, 0.1)]
+
+    summary = canon_writeback.fdr_summary(five, fdr_q=0.10)
+    assert summary.threshold == pytest.approx(0.03)
+    assert summary.n_tested == 5
+    assert summary.n_kept == 3
+    assert summary.n_rejected == 2
+
+
+def test_accept_verdict_and_opinion_shape_agree_across_select_bridge_and_serve(linking_run, monkeypatch):
+    """`select_above_floor`, `bridge_export.export_for_bridge`'s own
+    `accepted` flag, and `hte.api._enrich_entry`'s serve-path `opinion`
+    field all now share `hte.belief.opinion_clears_floor`/`Opinion.
+    to_dict()`: two opinions with identical (b, d, u) but different a
+    get the same accept verdict from the first two, and the same
+    opinion serialization from the last two."""
+    run_dir, _, _ = linking_run
+    candidates, ctx = canon_writeback.reconstruct_candidates(run_dir)
+    base = candidates[0]
+    high_prior = dataclasses.replace(base, opinion=Opinion(b=0.502, d=0.0, u=0.498, a=0.882))
+    low_prior = dataclasses.replace(base, opinion=Opinion(b=0.502, d=0.0, u=0.498, a=0.121))
+    monkeypatch.setattr(canon_writeback, "reconstruct_candidates", lambda rd: ([high_prior, low_prior], ctx))
+
+    # fdr_q=1.0 disables FDR: bridge_export/api read no fdr_q at all.
+    selected = canon_writeback.select_above_floor(
+        [high_prior, low_prior], floor_P=0.0, floor_u_max=1.0, lift_floor=0.25, fdr_q=1.0,
+    )
+    assert len(selected) == 2
+
+    items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, lift_floor=0.25, branch="x")
+    assert all(item["accepted"] for item in items)
+
+    served = api._enrich_entry(
+        {"hypothesis_id": high_prior.short_id, "address": high_prior.hypothesis.address, "slots": {}, "elo": None},
+        ctx.corpus.vocab, {high_prior.hypothesis.address: high_prior.opinion}, {}, {},
+    )
+    expected = {**high_prior.opinion.to_dict(), "P": high_prior.posterior}
+    bridge_item = next(i for i in items if i["hypothesisId"] == high_prior.short_id)
+    assert bridge_item["opinion"] == served["opinion"] == expected
 
 
 def _fixture_novelty() -> NoveltyResult:
@@ -258,9 +369,9 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
     ledger_path = tmp_path / "ledger.jsonl"
 
-    paths = canon_writeback.write_back(
-        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
-        out_root=out_root, dry_run=False, ledger_path=ledger_path,
+    paths = canon_writeback.write_back(  # fdr_q=1.0 disables FDR (item 5)
+        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0,
+        fdr_q=1.0, out_root=out_root, dry_run=False, ledger_path=ledger_path,
     )
     for path in paths:
         assert path.is_file(), path
@@ -276,6 +387,11 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
 
     index_text = (out_root / "02-physics" / "hypotheses" / "INDEX.md").read_text()
     assert h_supported.short_id in index_text
+    # STATISTICAL-AUDIT-2026-09-15.md item 5: the index header reports the
+    # BH threshold and reject count over the full candidate population
+    # (fdr_q=1.0 above keeps both, so 0 rejected here).
+    assert "Lift-rank cutoff off (q=1.00)" in index_text
+    assert "all 2 candidate(s) pass this gate" in index_text
 
     ingestion_index = (fake_repo_root / "CANON-INGESTION-INDEX.md").read_text()
     assert "Recent additions" in ingestion_index
@@ -358,9 +474,9 @@ def test_write_back_refuses_without_signoff_or_understanding(tmp_path, linking_r
 
     monkeypatch.setattr(canon_writeback.roles, "understanding", lambda *a, **k: {"explanation": "   "})
     with pytest.raises(ValueError, match="understanding"):
-        canon_writeback.write_back(
+        canon_writeback.write_back(  # fdr_q=1.0: a candidate must clear the gate to reach the refusal below
             run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
-            out_root=out_root, dry_run=False, ledger_path=tmp_path / "ledger.jsonl",
+            fdr_q=1.0, out_root=out_root, dry_run=False, ledger_path=tmp_path / "ledger.jsonl",
         )
     assert not out_root.exists()  # signoff alone never clears the second gate
 
@@ -369,9 +485,27 @@ def test_write_back_never_writes_canon_tier():
     assert canon_writeback.CANON_TIER == "candidate"
 
 
+def test_bridge_export_accepted_is_select_above_floor_membership_under_the_cutoff(linking_run, monkeypatch):
+    """`export_for_bridge`'s `accepted` flag is membership in
+    `select_above_floor`'s kept set for the same candidates, floors, and
+    `fdr_q`, so the lift-rank cutoff never lets the two surfaces drift."""
+    run_dir, _, _ = linking_run
+    candidates, ctx = canon_writeback.reconstruct_candidates(run_dir)
+    base = candidates[0]
+    lifts = [0.999, 0.6, 0.3, 0.1, 0.0]
+    cands = [dataclasses.replace(base, opinion=Opinion(b=lift, d=0.0, u=1.0 - lift, a=0.5)) for lift in lifts]
+    monkeypatch.setattr(canon_writeback, "reconstruct_candidates", lambda rd: (cands, ctx))
+    kept = {id(c) for c in canon_writeback.select_above_floor(cands, floor_P=0.0, floor_u_max=1.0, lift_floor=0.25, fdr_q=0.10)}
+    items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, lift_floor=0.25, fdr_q=0.10, branch="x")
+    assert [item["accepted"] for item in items] == [id(c) in kept for c in cands]
+    assert any(items[i]["accepted"] for i in range(len(items))) and not items[-1]["accepted"]
+
+
 def test_bridge_export_marks_accepted_by_the_given_floors(linking_run):
     run_dir, _, _ = linking_run
-    items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, branch="02-physics")
+    # lift_floor=-1.0 disables the evidence-mass gate; this test is
+    # about the P/u pair, matching select_above_floor's own equivalent.
+    items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0, branch="02-physics")
     assert len(items) == 2
     assert all(item["accepted"] for item in items)
     # canon_tier and origin are constant regardless of accepted: every
@@ -479,9 +613,9 @@ def test_write_back_cards_are_invisible_to_the_pr22_canon_importer(tmp_path, lin
     ledger_path = tmp_path / "ledger.jsonl"
 
     for branch in ("07-mind", "02-physics"):
-        paths = canon_writeback.write_back(
+        paths = canon_writeback.write_back(  # fdr_q=1.0 disables FDR (item 5)
             run_dir, branch=branch, signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
-            out_root=out_root, dry_run=False, ledger_path=ledger_path,
+            fdr_q=1.0, out_root=out_root, dry_run=False, ledger_path=ledger_path,
         )
         card_paths = [p for p in paths if p.parent.name == "hypotheses" and p.suffix == ".md" and p.name != "INDEX.md"]
         assert card_paths
@@ -527,9 +661,9 @@ def test_write_back_marks_a_cascaded_candidate_contested(tmp_path, linking_run, 
         roots=(h_refuted.address,), threshold=0.05, entries=(cascade_entry,),
     )
 
-    paths = canon_writeback.write_back(
-        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
-        out_root=out_root, dry_run=False, ledger_path=ledger_path, cascade_report=cascade_report,
+    paths = canon_writeback.write_back(  # fdr_q=1.0 disables FDR (item 5)
+        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0,
+        fdr_q=1.0, out_root=out_root, dry_run=False, ledger_path=ledger_path, cascade_report=cascade_report,
     )
 
     card_paths = [p for p in paths if p.parent == out_root / "02-physics" / "hypotheses" and p.name != "INDEX.md"]

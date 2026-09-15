@@ -80,7 +80,7 @@ def test_reconstruct_candidates_keeps_the_reconstruction_on_an_address_mismatch(
 
     assert h_supported.short_id in {c.short_id for c in candidates}
     assert any("does not match the persisted address" in r.message for r in caplog.records)
-    # The mismatch is logged, not treated as unrecoverable: the entry still
+    # The mismatch is logged and the entry stays recoverable: it still
     # carried a real (if stale) address and time bin, so it is reconstructed.
     assert h_supported.short_id not in ctx.unrecoverable_survivor_ids
 
@@ -118,12 +118,12 @@ def test_write_back_resolves_a_relative_out_root_against_repo_root(linking_run):
     `REPO_ROOT`-anchored regardless of `out_root`)."""
     run_dir, h_supported, h_refuted = linking_run
     relative_marker = "canon-out-swarm-relative-probe"
-    paths = canon_writeback.write_back(
+    paths = canon_writeback.write_back(  # lift_floor/fdr_q disabled: out of scope here
         run_dir, branch="02-physics", signoff="jane-reviewer",
-        floor_P=0.0, floor_u_max=1.0, out_root=relative_marker, dry_run=True,
+        floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0, fdr_q=1.0, out_root=relative_marker, dry_run=True,
     )
     expected_prefix = canon_writeback.REPO_ROOT / relative_marker
-    assert not expected_prefix.exists()  # dry_run: never actually created
+    assert not expected_prefix.exists()  # dry_run: never created on disk
 
     # 2 candidates clear the floor here, so `written` is [card, card,
     # index_path, ingestion_index_path, envelope_path]; only the first

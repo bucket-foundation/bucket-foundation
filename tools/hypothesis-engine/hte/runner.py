@@ -11,13 +11,14 @@ unattended engine loop.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import subprocess
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, Mapping, Sequence
 
 from . import artifacts, batching, calibrate, export, link, llm, propagate, roles, tournament, unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
@@ -26,7 +27,7 @@ from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history, sacred_history_texts, younger_dryas
 from .evidence import EvidenceItem
-from .generate import combinatorial_sample, from_evidence
+from .generate import combinatorial_sample, from_evidence, stratified_sample
 from .hypothesis import Hypothesis
 from .timeline import (
     Interval, Resolution, RESOLUTION_WIDTH_YEARS, auto_resolution, bin_bounds, bin_label,
@@ -45,19 +46,29 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # item's own extracted slots instead of only per already-linked
     # address, a corpus this package's size (16 sources, 161 evidence
     # items, 105 ground-truth events) generates thousands of distinct
-    # addresses; a `max_hypotheses` still in the tens kept only the
-    # lowest few dozen by raw address value, which this address scheme's
-    # own TIME_BIN prime (`hte.address.PRIMES[4] == 11`, the fastest-
-    # growing factor in the whole product) reads as "the earliest
-    # century bin with any hypothesis at all," collapsing the kept
-    # population onto one seed. 400 clears every one of this corpus's 13
-    # decade bins with real depth in most of them (empirically checked
-    # against the shipped quantum-history corpus, `bkt-hte-evidence-
-    # slots`'s own regression note).
+    # addresses; a `max_hypotheses` still in the tens kept too few to
+    # clear this corpus's 13 decade bins with real depth. 400 clears
+    # every one of them (empirically checked against the shipped
+    # quantum-history corpus, `bkt-hte-evidence-slots`'s own regression
+    # note). Which of the addresses above 400 survive the cap is
+    # `hte.generate.stratified_sample`'s own call: a stratified sample
+    # by actor and status (`STATISTICAL-AUDIT-2026-09-15.md` item 1),
+    # in place of the old `sorted(...)[:cap]`, which kept whichever
+    # actor the vocabulary listed first, every run.
     "generate_n": 20,
     "generate_evidence_sample": 8,
     "combinatorial_max_items": 150,
+    # `hte.generate.combinatorial_sample`'s own knob: draws the ACTOR's
+    # `ConsensusStatus` class before the actor itself, so a class the
+    # vocabulary names once draws as much as one it names a hundred
+    # times (`STATISTICAL-AUDIT-2026-09-15.md` item 2). `False` restores
+    # the flat per-actor draw this replaces.
+    "combinatorial_status_balanced": True,
     "max_hypotheses": 400,
+    # `hte.generate.stratified_sample`'s own seed, apart from `seeds`
+    # above (`seeds` counts generation passes; this seeds the one
+    # sampling step run afterward, over every pass's merged pool).
+    "sampling_seed": 0,
     "tournament_rounds": 2,
     "top_k": 5,
     # Raised from 4 for the same reason: a strided 4-bin sample was
@@ -96,7 +107,41 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # explicitly (`hte campaign run --constants default`), matching
     # `load_constants`'s own two-value contract.
     "constants": "fitted",
+    # STATISTICAL-AUDIT-2026-09-15.md item 5 (preregistration): the
+    # `hte.canon_writeback` claim-gate criteria, unused by `run_campaign`
+    # itself, kept here only so `_prereg_criteria` can hash them before
+    # generation starts; `write_back` still takes its own floor/fdr_q args.
+    "floor_P": 0.6,
+    "floor_u_max": 0.5,
+    "lift_floor": 0.25,
+    "fdr_q": 1.0,
 }
+
+
+def _prereg_criteria(cfg: dict[str, Any]) -> dict[str, Any]:
+    """The seven values a campaign commits to before generating a single
+    hypothesis (item 5): the three credence floors, `fdr_q`,
+    `link_threshold`, `max_hypotheses`, `seeds`. Read straight off `cfg`,
+    never off anything this run computes."""
+    return {
+        "floor_P": cfg["floor_P"],
+        "floor_u": cfg["floor_u_max"],
+        "lift_floor": cfg["lift_floor"],
+        "fdr_q": cfg["fdr_q"],
+        "link_threshold": cfg["link_threshold"],
+        "max_hypotheses": cfg["max_hypotheses"],
+        "seeds": cfg["seeds"],
+    }
+
+
+def _prereg_manifest(cfg: dict[str, Any]) -> dict[str, Any]:
+    """`MANIFEST.json["prereg"]`: `_prereg_criteria(cfg)` plus a sha256
+    over its own canonical JSON, so two runs from the same config share
+    a hash and a changed criterion never does."""
+    criteria = _prereg_criteria(cfg)
+    canonical = json.dumps(criteria, sort_keys=True, separators=(",", ":"))
+    return {"criteria": criteria, "sha256": hashlib.sha256(canonical.encode("utf-8")).hexdigest()}
+
 
 _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
     "quantum-history": quantum_history.ingest,
@@ -331,6 +376,22 @@ def _judge_batch_adapter(
     return judge_batch
 
 
+def _judge_disagreement_count(
+    triples: Sequence[tuple[int, int, float]], opinions: Mapping[int, Opinion],
+) -> int:
+    """How many `(addr_x, addr_y, score_x)` triples (one per judged
+    pair, `score_x = P(addr_x wins)`) cross the side the belief-scored
+    opinion already favored (`bkt-hte-blind-roles`); a tie in either
+    the opinion or the score is never counted. This is the exact logic
+    behind `MANIFEST.json["counts"]["judge_disagreement"]`."""
+    count = 0
+    for addr_x, addr_y, score_x in triples:
+        p_x, p_y = opinions[addr_x].project(), opinions[addr_y].project()
+        if p_x != p_y and score_x != 0.5 and (p_x > p_y) != (score_x > 0.5):
+            count += 1
+    return count
+
+
 def _critic_survivors(
     hypotheses: list[Hypothesis], evidence: list[EvidenceItem], *, cache_dir: str, replay_only: bool,
     batch_size: int, workers: int | None, logger: Logger,
@@ -393,6 +454,11 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     no others are read.
     """
     cfg = {**DEFAULT_CONFIG, **(config or {})}
+    # Item 5: the claim-gate criteria hash, computed from `cfg` alone
+    # right here, before a single hypothesis exists. Carried to
+    # `manifest["prereg"]` far below (`README.md`'s "Running a real
+    # campaign" section).
+    prereg = _prereg_manifest(cfg)
     # This run's own `llm.stats()` snapshot (`docs/THROUGHPUT.md`), reset
     # here rather than accumulated across every campaign this process has run.
     # `roles.reset_refusal_log()` resets alongside it (`bkt-hte-refusal-
@@ -453,6 +519,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         combinatorial = combinatorial_sample(
             corpus.vocab, time_bins, max_items=cfg["combinatorial_max_items"], seed=seed,
             span_start=span_start, bin_width=bin_width,
+            status_balanced=cfg["combinatorial_status_balanced"],
         )
         evidence_driven = from_evidence(
             corpus.evidence, corpus.vocab, resolution, seed=seed,
@@ -464,8 +531,13 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
             by_address.setdefault(h.address, h)
         logger.log(f"generation seed {seed}: {len(combinatorial)} combinatorial + {len(evidence_driven)} evidence-driven = {len(seed_hyps)}")
 
-    all_hypotheses = sorted(by_address.values(), key=lambda h: h.address)[: cfg["max_hypotheses"]]
-    logger.log(f"generation total: {len(by_address)} distinct addresses, {len(all_hypotheses)} kept after max_hypotheses cap")
+    all_hypotheses, sampling_frame = stratified_sample(
+        by_address.values(), corpus.vocab, cap=cfg["max_hypotheses"], seed=cfg["sampling_seed"],
+    )
+    logger.log(
+        f"generation total: {len(by_address)} distinct addresses, {len(all_hypotheses)} kept "
+        f"after stratified sampling ({sampling_frame['n_strata']} strata, cap={cfg['max_hypotheses']})"
+    )
 
     link.link_evidence(corpus.evidence, all_hypotheses, corpus.vocab, threshold=cfg["link_threshold"])
     n_linked = sum(1 for e in corpus.evidence if e.supports or e.refutes)
@@ -526,11 +598,32 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     judge_batch = _judge_batch_adapter(
         cache_dir, replay_only, batch_size=cfg["judge_batch_size"], workers=cfg["llm_workers"],
     )
+
+    # `bkt-hte-blind-roles`: every judged pair's own address triple,
+    # recorded by wrapping the two judge callables (`hte.tournament.run`
+    # no longer sees `opinions`), scored by `_judge_disagreement_count`
+    # once the tournament finishes.
+    judged_pairs: list[tuple[int, int, float]] = []
+
+    def judge_tallied(x: Hypothesis, y: Hypothesis, ctx: dict) -> float:
+        score = judge(x, y, ctx)
+        judged_pairs.append((x.address, y.address, score))
+        return score
+
+    def judge_batch_tallied(pairs: Sequence[tuple[Hypothesis, Hypothesis, dict]]) -> list[float]:
+        scores = judge_batch(pairs)
+        judged_pairs.extend((x.address, y.address, score) for (x, y, _ctx), score in zip(pairs, scores))
+        return scores
+
     elos = tournament.run(
-        survivors, opinions, judge, rounds=cfg["tournament_rounds"], seed=0,
-        context={"opinions": opinions}, judge_batch=judge_batch,
+        survivors, opinions, judge_tallied, rounds=cfg["tournament_rounds"], seed=0,
+        context={"evidence": corpus.evidence}, judge_batch=judge_batch_tallied,
     )
-    logger.log(f"tournament: {len(elos)} hypotheses rated over {cfg['tournament_rounds']} rounds")
+    judge_disagreement = _judge_disagreement_count(judged_pairs, opinions)
+    logger.log(
+        f"tournament: {len(elos)} hypotheses rated over {cfg['tournament_rounds']} rounds, "
+        f"judge_disagreement={judge_disagreement}"
+    )
 
     profiles = unknowns.prior_profiles(corpus.vocab)
 
@@ -557,18 +650,23 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         survivors,
         key=lambda h: (-(elos.get(h.address) if elos.get(h.address) is not None else float("-inf")), h.address),
     )
-    survivors_payload = [
-        {
+    def _survivor_entry(h: Hypothesis) -> dict[str, Any]:
+        opinion_dict = _survivor_opinion(opinions[h.address])
+        return {
             "hypothesis_id": h.short_id,
             "address": h.address,
             "slots": _survivor_slots(h),
-            "opinion": _survivor_opinion(opinions[h.address]),
+            "opinion": opinion_dict,
+            # `lift` again, at the top level: the ceiling this survivor's
+            # evidence supports under any prior, named to match `hte.cli.
+            # _per_actor_summary`'s own per-actor rollup.
+            "max_lift": opinion_dict["lift"],
             "elo": elos.get(h.address),
             "preservation": preservation_by_address[h.address],
             "robustness": robustness_results[h.address],
         }
-        for h in survivors_sorted
-    ]
+
+    survivors_payload = [_survivor_entry(h) for h in survivors_sorted]
     survivors_artifact = {
         "artifact_version": artifacts.RUN_ARTIFACT_VERSION,
         "campaign": cfg["campaign"],
@@ -582,7 +680,8 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     surprise_rate = (len(surprise_items) / len(corpus.evidence)) if corpus.evidence else 0.0
 
     coverage = unknowns.coverage_interval(run_counts)
-    logger.log(f"coverage: observed={coverage['observed']} chao1_estimate={coverage['chao1_estimate']:.1f} missing_mass={coverage['missing_mass']:.4f}")
+    chao1_part = f"chao1_estimate={coverage['chao1_estimate']:.1f}" if coverage["chao1_estimate"] is not None else f"chao1_note={coverage['chao1_note']!r}"
+    logger.log(f"coverage: observed={coverage['observed']} missing_mass={coverage['missing_mass']:.4f} {chao1_part}")
 
     calibration = None
     if cfg["run_calibration"] and corpus.ground_truth:
@@ -705,6 +804,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     views = export.timeline_views(
         survivors, opinions, elos, time_bins, top_k=max(cfg["top_k"], len(survivors)),
         span_start=span_start, bin_width=bin_width, bin_labels=bin_labels,
+        evidence=corpus.evidence,
     )
     export.write_views(views, run_dir, fragility_ranked=fragility_top10)
     logger.log(f"exported {len(views.get('bins', []))} bin views, {len(views.get('event_views', []))} event views")
@@ -735,13 +835,20 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "git_sha": _git_sha(),
         "config": cfg,
         "extraction": extraction_note,
-        # `bkt-hte-retraction-propagation`: `run_summary` plus
-        # `fragility_top10`, added here rather than into `run_summary`
-        # itself, for the same cache-key-stability reason the
-        # `self_report` fold-in above documents: `run_summary` feeds
-        # `roles.self_report`'s own prompt text, and `MANIFEST.json`
-        # carries `fragility_top10` too without perturbing that prompt.
-        "counts": {**run_summary, "fragility_top10": fragility_top10},
+        # Item 5: the hash computed above, before generation started;
+        # carried through unchanged (recomputing it now would defeat the
+        # point).
+        "prereg": prereg,
+        # `bkt-hte-retraction-propagation`, `bkt-hte-blind-roles`, and the
+        # stratified sample (`STATISTICAL-AUDIT-2026-09-15.md` item 2):
+        # all three added here rather than into `run_summary` itself, for
+        # the cache-key-stability reason the `self_report` fold-in above
+        # documents: `run_summary` feeds `roles.self_report`'s own prompt
+        # text, and `MANIFEST.json` carries these without perturbing it.
+        "counts": {
+            **run_summary, "fragility_top10": fragility_top10,
+            "judge_disagreement": judge_disagreement, "sampling": sampling_frame,
+        },
     }
     # `hte.artifacts.validate_manifest` builds a `ManifestArtifact` from
     # this exact dict before it is ever written: a required field this
