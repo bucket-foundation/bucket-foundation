@@ -3,9 +3,12 @@
 Mirrors `Bucket.Belief` (`papers/history-hypothesis-engine/lean/Bucket/Belief.lean`),
 `main.tex` §Belief model, and `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §2-4: an
 opinion `(b, d, u, a)` in place of one sigmoid score, evidence pooled by kind
-with diminishing returns and a cross-kind independence bonus, a source stemma
-discounting corroboration that copies one archetype, and a detectability
-term scaling absence-of-evidence as a likelihood ratio.
+with diminishing returns, a source stemma discounting corroboration that
+copies one archetype, and a detectability term scaling absence-of-evidence
+as a likelihood ratio. `STATISTICAL-AUDIT-2026-09-15.md` item 6 removed this
+module's own cross-kind independence bonus: it multiplied pooled weight by
+up to 1.3 on the unstated assumption that evidence kinds contribute
+independently, and that independence was never estimated from anything.
 """
 from __future__ import annotations
 
@@ -13,9 +16,9 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any, Mapping, Sequence
 
-from .evidence import EvidenceItem, EvidenceKind, KIND_FAMILY, Source, Tier, TIER_WEIGHT
+from .evidence import EvidenceItem, EvidenceKind, Source, Tier, TIER_WEIGHT
 from .hypothesis import Hypothesis
 from .concepts import Vocabulary
 
@@ -268,7 +271,7 @@ def fuse(o1: Opinion, o2: Opinion) -> Opinion:
 
 
 # --------------------------------------------------------------------------
-# Diminishing returns and cross-kind bonus
+# Diminishing returns
 # --------------------------------------------------------------------------
 
 
@@ -280,20 +283,6 @@ def D(n: float, lam: float = 0.5) -> float:
     if n < 0:
         raise ValueError("n must be >= 0")
     return 1.0 + lam * math.log1p(n)
-
-
-def cross_kind_bonus(kinds: Iterable[EvidenceKind]) -> float:
-    """`X(K) = 1 + 0.3 * sum_pairs kind_distance(pair)` (`Eq. cross-kind`),
-    over the distinct evidence kinds `K` carrying real weight on one side.
-    `kind_distance` is 1 for a pair drawn from two different families
-    (`EvidenceFamily`), 0 for a pair from the same family."""
-    distinct = sorted(set(kinds), key=lambda k: k.value)
-    total = 0.0
-    for i in range(len(distinct)):
-        for j in range(i + 1, len(distinct)):
-            if KIND_FAMILY[distinct[i]] != KIND_FAMILY[distinct[j]]:
-                total += 1.0
-    return 1.0 + 0.3 * total
 
 
 # --------------------------------------------------------------------------
@@ -464,11 +453,12 @@ def pooled_weight(
     """The pooled supporting and refuting weights `S_+`, `S_-` for one
     hypothesis (`main.tex` §Belief model's `S_+`/`S_-` definition): group
     `items` by kind, discount each kind's summed weight by `D` on its
-    effective count, sum across kinds, then apply the cross-kind
-    independence bonus once over the kinds carrying real weight on that
-    side. `sources`, keyed by `source_id`, lets each kind's effective count
-    fall back from a raw item count to the stemma's connected-component
-    count (`effective_count`); with no `sources` given, `n_eff` is just the
+    effective count, then sum across kinds (a plain sum: item 6 removed
+    the cross-kind independence bonus this used to multiply by, since
+    nothing in this package estimates that independence). `sources`,
+    keyed by `source_id`, lets each kind's effective count fall back
+    from a raw item count to the stemma's connected-component count
+    (`effective_count`); with no `sources` given, `n_eff` is just the
     number of items in that kind.
 
     `constants.detectability_floor` (`Constants`'s own docstring) is
@@ -502,7 +492,7 @@ def pooled_weight(
                 n_eff = len(kind_items)
             s_sum = sum(cluster_weight(i, floored_table, period) for i in kind_items)
             total += D(n_eff, constants.lam) * s_sum
-        return cross_kind_bonus(groups.keys()) * total
+        return total
 
     return side(by_kind_support), side(by_kind_refute)
 

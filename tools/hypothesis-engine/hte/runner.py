@@ -11,6 +11,7 @@ unattended engine loop.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import subprocess
@@ -106,7 +107,41 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # explicitly (`hte campaign run --constants default`), matching
     # `load_constants`'s own two-value contract.
     "constants": "fitted",
+    # STATISTICAL-AUDIT-2026-09-15.md item 5 (preregistration): the
+    # `hte.canon_writeback` claim-gate criteria, unused by `run_campaign`
+    # itself, kept here only so `_prereg_criteria` can hash them before
+    # generation starts; `write_back` still takes its own floor/fdr_q args.
+    "floor_P": 0.6,
+    "floor_u_max": 0.5,
+    "lift_floor": 0.25,
+    "fdr_q": 1.0,
 }
+
+
+def _prereg_criteria(cfg: dict[str, Any]) -> dict[str, Any]:
+    """The seven values a campaign commits to before generating a single
+    hypothesis (item 5): the three credence floors, `fdr_q`,
+    `link_threshold`, `max_hypotheses`, `seeds`. Read straight off `cfg`,
+    never off anything this run computes."""
+    return {
+        "floor_P": cfg["floor_P"],
+        "floor_u": cfg["floor_u_max"],
+        "lift_floor": cfg["lift_floor"],
+        "fdr_q": cfg["fdr_q"],
+        "link_threshold": cfg["link_threshold"],
+        "max_hypotheses": cfg["max_hypotheses"],
+        "seeds": cfg["seeds"],
+    }
+
+
+def _prereg_manifest(cfg: dict[str, Any]) -> dict[str, Any]:
+    """`MANIFEST.json["prereg"]`: `_prereg_criteria(cfg)` plus a sha256
+    over its own canonical JSON, so two runs from the same config share
+    a hash and a changed criterion never does."""
+    criteria = _prereg_criteria(cfg)
+    canonical = json.dumps(criteria, sort_keys=True, separators=(",", ":"))
+    return {"criteria": criteria, "sha256": hashlib.sha256(canonical.encode("utf-8")).hexdigest()}
+
 
 _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
     "quantum-history": quantum_history.ingest,
@@ -419,6 +454,11 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     no others are read.
     """
     cfg = {**DEFAULT_CONFIG, **(config or {})}
+    # Item 5: the claim-gate criteria hash, computed from `cfg` alone
+    # right here, before a single hypothesis exists. Carried to
+    # `manifest["prereg"]` far below (`README.md`'s "Running a real
+    # campaign" section).
+    prereg = _prereg_manifest(cfg)
     # This run's own `llm.stats()` snapshot (`docs/THROUGHPUT.md`), reset
     # here rather than accumulated across every campaign this process has run.
     # `roles.reset_refusal_log()` resets alongside it (`bkt-hte-refusal-
@@ -795,6 +835,10 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "git_sha": _git_sha(),
         "config": cfg,
         "extraction": extraction_note,
+        # Item 5: the hash computed above, before generation started;
+        # carried through unchanged (recomputing it now would defeat the
+        # point).
+        "prereg": prereg,
         # `bkt-hte-retraction-propagation`, `bkt-hte-blind-roles`, and the
         # stratified sample (`STATISTICAL-AUDIT-2026-09-15.md` item 2):
         # all three added here rather than into `run_summary` itself, for

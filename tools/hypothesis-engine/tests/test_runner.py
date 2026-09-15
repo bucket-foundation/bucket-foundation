@@ -178,6 +178,62 @@ def test_judge_disagreement_count_excludes_draws_and_ties(monkeypatch):
 
 
 # --------------------------------------------------------------------------
+# Preregistration hash (item 5): MANIFEST.json["prereg"].
+# --------------------------------------------------------------------------
+
+
+def test_manifest_prereg_hash_is_stable_across_two_runs_with_the_same_config(tmp_path, monkeypatch):
+    cfg1 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run1"))
+    cfg2 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run2"))
+    a1 = runner.run_campaign(cfg1)
+    a2 = runner.run_campaign(cfg2)
+    manifest1 = json.loads((a1.run_dir / "MANIFEST.json").read_text())
+    manifest2 = json.loads((a2.run_dir / "MANIFEST.json").read_text())
+    assert manifest1["prereg"]["sha256"] == manifest2["prereg"]["sha256"]
+    assert manifest1["prereg"]["criteria"] == manifest2["prereg"]["criteria"]
+
+
+def test_manifest_prereg_hash_changes_when_lift_floor_changes(tmp_path, monkeypatch):
+    cfg1 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run1"))
+    cfg2 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run2"), lift_floor=0.4)
+    a1 = runner.run_campaign(cfg1)
+    a2 = runner.run_campaign(cfg2)
+    manifest1 = json.loads((a1.run_dir / "MANIFEST.json").read_text())
+    manifest2 = json.loads((a2.run_dir / "MANIFEST.json").read_text())
+    assert manifest1["prereg"]["sha256"] != manifest2["prereg"]["sha256"]
+    assert manifest1["prereg"]["criteria"]["lift_floor"] == 0.25  # DEFAULT_CONFIG's own default
+    assert manifest2["prereg"]["criteria"]["lift_floor"] == 0.4
+
+
+def test_prereg_is_computed_before_survivors_json_is_written(tmp_path, monkeypatch):
+    """Spies on both call sites to check the real runtime order in one
+    fake-mode run, rather than trusting the source layout alone."""
+    events: list[str] = []
+    real_prereg = runner._prereg_manifest
+
+    def spy_prereg(cfg):
+        events.append("prereg")
+        return real_prereg(cfg)
+
+    monkeypatch.setattr(runner, "_prereg_manifest", spy_prereg)
+
+    real_write_text = Path.write_text
+
+    def spy_write_text(self, data, *args, **kwargs):
+        if self.name == "survivors.json":
+            events.append("survivors.json")
+        return real_write_text(self, data, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "write_text", spy_write_text)
+
+    cfg = _fake_mode_cfg(tmp_path, monkeypatch)
+    runner.run_campaign(cfg)
+
+    assert "prereg" in events and "survivors.json" in events
+    assert events.index("prereg") < events.index("survivors.json")
+
+
+# --------------------------------------------------------------------------
 # Corpus registration (`bkt-hte-corpus-registration`): education-atlas and
 # production, alongside quantum-history and fixtures, in `_CORPUS_LOADERS`.
 # --------------------------------------------------------------------------

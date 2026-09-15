@@ -79,7 +79,7 @@ import subprocess
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 from . import artifacts as artifacts_mod
 from . import holdout_ledger
@@ -343,8 +343,82 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
     )
 
 
+# --------------------------------------------------------------------------
+# Lift-rank cutoff (STATISTICAL-AUDIT-2026-09-15.md item 5): a single
+# fixed floor over a population the size of a real campaign's candidate
+# pool mismarks both directions. The Benjamini-Hochberg step-up shape is
+# run over `1 - lift`, a score with no null distribution, so the rate it
+# controls is nominal: a permutation or placebo test (the link-shuffle
+# diagnostic in `hte.diagnostics` is the start) is what would license
+# reading it as a false discovery rate. It sits on top of, never in
+# place of, the P/u/lift floor above.
+# --------------------------------------------------------------------------
+
+_LIFT_P_FLOOR = 1e-9  # keeps the clamp's open lower bound (0, ...] strictly above 0
+
+
+def _lift_p_value(opinion: Opinion) -> float:
+    """`1 - lift` clamped to `(0, 1]`, the score the step-up cutoff
+    ranks; it is no p-value, since `lift` has no null distribution here.
+    Built from `lift` and never from `P_uniform` (`P` at a flat `a=0.5`):
+    `lift` reads no prior at all, the property the audit's Younger Dryas
+    finding needed, while `P_uniform` still rewards an unexamined
+    hypothesis through `a * u`."""
+    return min(1.0, max(_LIFT_P_FLOOR, 1.0 - opinion.lift()))
+
+
+def _benjamini_hochberg(p_values: Sequence[float], q: float) -> tuple[float | None, list[bool]]:
+    """The BH step-up procedure: the largest rank `k` with the `k`-th
+    smallest p-value `<= (k/m)*q` sets the kept set (ranks `1..k`) and
+    the threshold (that p-value; `None` if no rank clears the bar).
+    `q >= 1.0` always keeps everything, since every score here is
+    already `<= 1.0` and so clears `p_(m) <= (m/m)*q` at the last rank;
+    the same "disable" convention `lift_floor=-1.0` already uses."""
+    m = len(p_values)
+    if m == 0:
+        return None, []
+    order = sorted(range(m), key=lambda i: p_values[i])
+    threshold: float | None = None
+    k = 0
+    for rank, idx in enumerate(order, start=1):
+        if p_values[idx] <= (rank / m) * q:
+            k = rank
+            threshold = p_values[idx]
+    kept = [False] * m
+    for idx in order[:k]:
+        kept[idx] = True
+    return threshold, kept
+
+
+@dataclass(frozen=True)
+class FDRSummary:
+    """Step-up cutoff accounting for one `select_above_floor` call.
+    `n_rejected = n_tested - n_kept`, the plain-English "excluded by this
+    gate" count an index reader wants (the statistical "null rejected"
+    sense is `n_kept` instead, since keeping a candidate rejects its own
+    null of "no real evidence edge"; this field names the one used here)."""
+    q: float
+    threshold: float | None
+    n_tested: int
+    n_kept: int
+
+    @property
+    def n_rejected(self) -> int:
+        return self.n_tested - self.n_kept
+
+
+def fdr_summary(candidates: list[Candidate], *, fdr_q: float = 1.0) -> FDRSummary:
+    """`_benjamini_hochberg` over every candidate's `_lift_p_value`, the
+    same population `select_above_floor` gates on, packaged for
+    reporting rather than filtering."""
+    p_values = [_lift_p_value(c.opinion) for c in candidates]
+    threshold, kept = _benjamini_hochberg(p_values, fdr_q)
+    return FDRSummary(q=fdr_q, threshold=threshold, n_tested=len(candidates), n_kept=sum(kept))
+
+
 def select_above_floor(
     candidates: list[Candidate], *, floor_P: float, floor_u_max: float, lift_floor: float = 0.25,
+    fdr_q: float = 1.0,
 ) -> list[Candidate]:
     """Every candidate at or above the credence floor: `P(h) >= floor_P`,
     `u <= floor_u_max`, AND evidence-only lift `b - d >= lift_floor`
@@ -355,10 +429,23 @@ def select_above_floor(
     `lift_floor` reads none of `a`, so admission always needs evidence
     mass of its own. Delegates to `hte.belief.opinion_clears_floor`, the
     one predicate `hte.bridge_export.export_for_bridge`'s own `accepted`
-    flag shares, so the two surfaces never drift apart."""
+    flag shares, so the two surfaces never drift apart.
+
+    A fourth gate, on top of the floor: `fdr_q` (default `1.0`, off, item 5)
+    runs the BH step-up cutoff over the FULL `candidates` list, never only
+    the floor's own survivors, reported as a lift-rank cutoff and never as
+    a calibrated false discovery rate (`_lift_p_value`). Off by default
+    until a permutation null licenses a rate: at `q=0.10` over a real
+    campaign's hundreds of candidates the first rank needs a score below
+    `q/m`, a lift above 0.99, which no evidence-bound hypothesis reaches. `fdr_q=1.0` disables it, the same
+    convention `lift_floor=-1.0` already uses; a caller isolating the
+    P/u/lift floor passes it explicitly, as existing callers already do
+    for `lift_floor=-1.0`."""
+    p_values = [_lift_p_value(c.opinion) for c in candidates]
+    _, bh_kept = _benjamini_hochberg(p_values, fdr_q)
     return [
-        c for c in candidates
-        if opinion_clears_floor(c.opinion, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor)
+        c for c, kept in zip(candidates, bh_kept)
+        if kept and opinion_clears_floor(c.opinion, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor)
     ]
 
 
@@ -570,7 +657,26 @@ def render_card(
     return "\n".join(lines) + "\n"
 
 
-def render_index(cards: list[tuple[Candidate, Path]], *, branch: str, elo_label: str | None = None) -> str:
+def _fdr_header_line(fdr: "FDRSummary") -> str:
+    """The write-back index header's cutoff line (item 5): the step-up
+    threshold and reject count (`FDRSummary.n_rejected`'s own docstring)."""
+    if fdr.q >= 1.0:
+        return f"Lift-rank cutoff off (q={fdr.q:.2f}): all {fdr.n_tested} candidate(s) pass this gate."
+    if fdr.threshold is None:
+        return (
+            f"Lift-rank cutoff (BH step-up, q={fdr.q:.2f}): no candidate cleared the bar; "
+            f"{fdr.n_rejected} of {fdr.n_tested} candidate(s) rejected."
+        )
+    return (
+        f"Lift-rank cutoff (BH step-up, q={fdr.q:.2f}): threshold score<={fdr.threshold:.3f}; "
+        f"{fdr.n_rejected} of {fdr.n_tested} candidate(s) rejected."
+    )
+
+
+def render_index(
+    cards: list[tuple[Candidate, Path]], *, branch: str, elo_label: str | None = None,
+    fdr: "FDRSummary | None" = None,
+) -> str:
     if elo_label is None:
         elo_label = holdout_ledger.ranking_status().label
     lines = [
@@ -581,6 +687,8 @@ def render_index(cards: list[tuple[Candidate, Path]], *, branch: str, elo_label:
         elo_label,
         "",
     ]
+    if fdr is not None:
+        lines += [_fdr_header_line(fdr), ""]
     lines.append("| Hypothesis | P(h) | u | Lift | Tipping prior (0.6) | Elo | Card |")
     lines.append("|---|---|---|---|---|---|---|")
     for candidate, path in sorted(cards, key=lambda pair: pair[0].posterior, reverse=True):
@@ -834,6 +942,7 @@ def write_back(
     floor_P: float = 0.6,
     floor_u_max: float = 0.5,
     lift_floor: float = 0.25,
+    fdr_q: float = 1.0,
     out_root: str | Path = "bucket-canon",
     dry_run: bool = False,
     cache_dir: str | Path | None = None,
@@ -842,12 +951,14 @@ def write_back(
     cascade_report: "propagate_mod.CascadeReport | None" = None,
 ) -> list[Path]:
     """Turn the completed run at `run_dir` into canon-facing material:
-    one card per surviving hypothesis at or above the credence floor and
-    the evidence-mass floor (`select_above_floor`'s `floor_P`/
-    `floor_u_max`/`lift_floor`) under `<out_root>/<branch>/hypotheses/
-    <address-short>.md`, that branch's own `hypotheses/INDEX.md`, a dated
-    addendum block appended to `CANON-INGESTION-INDEX.md`, one feed event
-    per card plus the index (`tools/feed/feed.py`'s own API), and a
+    one card per surviving hypothesis at or above the credence floor,
+    the evidence-mass floor, and the FDR gate (`select_above_floor`'s
+    `floor_P`/`floor_u_max`/`lift_floor`/`fdr_q`) under `<out_root>/
+    <branch>/hypotheses/<address-short>.md`, that branch's own
+    `hypotheses/INDEX.md` (whose header reports the BH threshold and
+    reject count over the full candidate population, `fdr_summary`), a
+    dated addendum block appended to `CANON-INGESTION-INDEX.md`, one feed
+    event per card plus the index (`tools/feed/feed.py`'s own API), and a
     feed402-shaped envelope at `public/research/hypotheses/<run-id>.json`
     (`build_envelope`).
 
@@ -930,8 +1041,11 @@ def write_back(
         )
 
     candidates, ctx = reconstruct_candidates(run_dir)
-    selected = select_above_floor(candidates, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor)
+    selected = select_above_floor(
+        candidates, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor, fdr_q=fdr_q,
+    )
     selected.sort(key=lambda c: c.posterior, reverse=True)
+    fdr = fdr_summary(candidates, fdr_q=fdr_q)
 
     out_root_path = Path(out_root)
     if not out_root_path.is_absolute():
@@ -947,10 +1061,12 @@ def write_back(
 
     total_named = len(candidates) + len(ctx.unrecoverable_survivor_ids)
     logger.info(
-        "hte.canon_writeback.write_back: %s%d of %d survivor(s) clear P>=%.2f, u<=%.2f, lift>=%.2f over %s "
+        "hte.canon_writeback.write_back: %s%d of %d survivor(s) clear P>=%.2f, u<=%.2f, lift>=%.2f, "
+        "fdr_q=%.2f (BH threshold %s, %d rejected) over %s "
         "(%d of %d survivor(s) this run's own timeline.json names were reconstructable; "
         "see RunContext.unrecoverable_survivor_ids for the rest)",
-        "(dry run) " if dry_run else "", len(selected), len(candidates), floor_P, floor_u_max, lift_floor, run_dir,
+        "(dry run) " if dry_run else "", len(selected), len(candidates), floor_P, floor_u_max, lift_floor,
+        fdr_q, f"{fdr.threshold:.3f}" if fdr.threshold is not None else "none", fdr.n_rejected, run_dir,
         len(candidates), total_named,
     )
 
@@ -1026,7 +1142,7 @@ def write_back(
             canon_tier=tier, cascade_entry=cascade_entry,
         )
         path.write_text(card_text, encoding="utf-8")
-    index_path.write_text(render_index(card_paths, branch=branch, elo_label=ranking.label), encoding="utf-8")
+    index_path.write_text(render_index(card_paths, branch=branch, elo_label=ranking.label, fdr=fdr), encoding="utf-8")
 
     _append_ingestion_index(_ingestion_index_addendum(card_paths, branch=branch, ctx=ctx, signoff=signoff))
 
@@ -1078,6 +1194,7 @@ def write_back(
 __all__ = [
     "Candidate", "RunContext", "CANON_TIER", "CONTESTED_TIER",
     "reconstruct_candidates", "select_above_floor",
+    "FDRSummary", "fdr_summary",
     "render_card", "render_index", "build_envelope",
     "write_back",
 ]
