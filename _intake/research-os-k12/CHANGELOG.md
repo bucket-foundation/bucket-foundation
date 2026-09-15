@@ -2788,3 +2788,8 @@ None.
 - Fix: `invalidate()` after the mesh update in `Earth.tsx`. Same one-file change on `fix/globe-demand-invalidate` (PR #147 against `dev`) and on this branch. Local dev server after the fix: `{36000: 2, 7797: 1}` with no drag.
 - Review of `main` for the past two weeks: no globe file changed since 2026-08-24 (comment-only voice sweep); no dependency versions changed. `main` is 10 commits past the deployed production build `e614da874`; `feed.json` on `main` carries two `predict_register` events (#87) with no `author_github`, which breaks `generateStaticParams` for `/contributors/[handle]`, so a fresh build of `main` fails. `dev` carries the guard (#117).
 - Merged `origin/dev` into this branch to pick up that guard; kept the landing Research OS page over the #117 re-add of the removed sections (DELETIONS.md).
+
+## 2026-09-15 WebGL refusal diagnostic
+
+- `GlobeErrorBoundary` listens for `webglcontextcreationerror` and logs Chromium's status message (vendor, device, driver `ErrorMessage`) beside the render-error warning. Verified with headless Chromium under `--disable-gpu --disable-software-rasterizer`: the console names the refusal reason.
+- Founder's desktop Brave throws `Error creating WebGL context` inside `new WebGLRenderer` on every page with a globe, including production; the same pages render on his phone, on Vercel, and in headless Chromium. The 2026-08-24 `main` (`48c1c02b7`) runs on port 3300 for an A/B in the same browser.
