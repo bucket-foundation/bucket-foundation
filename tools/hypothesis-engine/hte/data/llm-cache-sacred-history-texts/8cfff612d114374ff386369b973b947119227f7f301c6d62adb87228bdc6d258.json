@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "894660691da038f530592fc7bc0fa8bd5728b7fd4f0ccb292c771c8b7270ca69",
+  "response": {
+    "items": [
+      {
+        "quote": "And the LORD said unto Moses, Pharaoh shall not hearken unto you; that my wonders may be multiplied in the land of Egypt.",
+        "claim": "God declares that wonders will be multiplied in Egypt because Pharaoh will refuse to listen to Moses.",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "wonders",
+        "place": "land of Egypt",
+        "mechanism": "multiplied",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

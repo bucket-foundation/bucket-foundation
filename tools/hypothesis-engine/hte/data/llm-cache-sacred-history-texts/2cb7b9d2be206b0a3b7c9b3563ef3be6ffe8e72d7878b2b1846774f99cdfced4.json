@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "195ad8c716e444d2c5e77a1c17f4dd8966e533083d7e63780b3a0b3d43d5c55a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then the priest shall go out of the house to the door of the house, and shut up the house seven days:",
+        "claim": "A house with suspected plague must be isolated for seven days before follow-up inspection",
+        "actor": "the priest",
+        "action": "shut up",
+        "object": "the house",
+        "place": "",
+        "mechanism": "seven days",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the priest shall come again the seventh day, and shall look: and, behold, if the plague be spread in the walls of the house;",
+        "claim": "On the seventh day, the priest performs a follow-up inspection to assess whether the plague has spread",
+        "actor": "the priest",
+        "action": "look",
+        "object": "the plague",
+        "place": "the walls of the house",
+        "mechanism": "the seventh day",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

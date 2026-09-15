@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "484dea69979ffaa9a7c6715fce6d5e1a4bf2a016d883973372298a6a448b0e04",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the years of the life of Amram were an hundred and thirty and seven years",
+        "claim": "Amram lived 137 years",
+        "actor": "Amram",
+        "action": "lived",
+        "object": "his years/lifespan",
+        "place": "",
+        "mechanism": "aging\u2014biological process of accumulating years",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

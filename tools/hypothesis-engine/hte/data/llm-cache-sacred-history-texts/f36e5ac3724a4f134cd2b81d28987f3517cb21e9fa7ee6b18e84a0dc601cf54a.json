@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e4daf2d8b6e1e97ab51b06ab26561751abdf39578f32cb5d9f1385219eeea5c7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Amram took him Jochebed his father's sister to wife",
+        "claim": "Amram married Jochebed, his paternal aunt",
+        "actor": "Amram",
+        "action": "took",
+        "object": "Jochebed his father's sister",
+        "place": "",
+        "mechanism": "to wife",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and she bare him Aaron and Moses",
+        "claim": "Jochebed gave birth to Aaron and Moses",
+        "actor": "she",
+        "action": "bare",
+        "object": "Aaron and Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and the years of the life of Amram were an hundred and thirty and seven years",
+        "claim": "Amram lived 137 years",
+        "actor": "Amram",
+        "action": "were",
+        "object": "an hundred and thirty and seven years",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d0cbff2912ea2fd3c3751af802cf3b1b325a1d8d4a0bc9d6f65ef0495cde34e0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses said unto Aaron, What did this people unto thee, that thou hast brought so great a sin upon them?",
+        "claim": "Moses accuses Aaron of bringing a great sin upon the people",
+        "actor": "Moses",
+        "action": "said",
+        "object": "sin",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Aaron said, Let not the anger of my lord wax hot: thou knowest the people, that they are set on mischief.",
+        "claim": "Aaron tells Moses not to be angry and asserts the people are inclined to mischief",
+        "actor": "Aaron",
+        "action": "said",
+        "object": "mischief",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

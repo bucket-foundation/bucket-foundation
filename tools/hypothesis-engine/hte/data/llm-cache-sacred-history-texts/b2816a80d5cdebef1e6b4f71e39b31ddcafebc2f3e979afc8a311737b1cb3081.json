@@ -1,0 +1,54 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4421bd192e0bf382823603b8812c0c5420a976f7e74181760c9baec0884b2abd",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Yet will I bring one plague more upon Pharaoh, and upon Egypt",
+        "claim": "God will bring one more plague upon Pharaoh and Egypt",
+        "actor": "I",
+        "action": "bring",
+        "object": "one plague more",
+        "place": "Egypt",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "afterwards he will let you go hence",
+        "claim": "Pharaoh will release the Israelites",
+        "actor": "he",
+        "action": "let",
+        "object": "you",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "when he shall let you go, he shall surely thrust you out hence altogether",
+        "claim": "Pharaoh will expel the Israelites completely",
+        "actor": "he",
+        "action": "thrust out",
+        "object": "you",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

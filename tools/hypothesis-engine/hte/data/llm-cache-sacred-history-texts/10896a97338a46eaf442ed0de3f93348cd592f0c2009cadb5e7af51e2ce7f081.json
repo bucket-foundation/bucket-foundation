@@ -1,0 +1,45 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "33b399553c91467d23d05a2953b35b5d171054284b690507faa870aad0f2558f",
+  "response": {
+    "items": [
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "Only thou shalt not number the tribe of Levi, neither take the sum of them among the children of Israel:",
+        "claim": "The LORD told Moses not to count the tribe of Levi or include them in the census of the children of Israel.",
+        "actor": "the LORD (spoken unto Moses)",
+        "action": "exclude from census",
+        "object": "tribe of Levi",
+        "mechanism": "divine command reported to Moses (1:48, 'For the LORD had spoken unto Moses, saying')",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "But thou shalt appoint the Levites over the tabernacle of testimony, and over all the vessels thereof, and over all things that belong to it:",
+        "claim": "Moses is told to put the Levites in charge of the tabernacle of testimony, its vessels, and everything that belongs to it.",
+        "actor": "Moses (commanded by the LORD)",
+        "action": "appoint",
+        "object": "Levites over the tabernacle of testimony and its vessels",
+        "mechanism": "divine command",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "they shall bear the tabernacle, and all the vessels thereof; and they shall minister unto it, and shall encamp round about the tabernacle.",
+        "claim": "The Levites are to carry the tabernacle and its vessels, serve in it, and camp all around it.",
+        "actor": "Levites",
+        "action": "bear, minister unto, and encamp round about",
+        "object": "the tabernacle and its vessels",
+        "mechanism": "assigned cultic duty following exclusion from census",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

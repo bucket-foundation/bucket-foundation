@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "7fac086d47c9931ae3bb0d7f53e9d87b7791081e509b401f2e69652fde8fdba9",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Abraham took the wood of the burnt offering, and laid it upon Isaac his son; and he took the fire in his hand, and a knife; and they went both of them together.",
+        "claim": "According to the text (Genesis 22:6), Abraham put the wood for the burnt offering on his son Isaac. Abraham carried the fire and a knife himself, and the two walked on together.",
+        "actor": "Abraham",
+        "action": "laid the burnt-offering wood upon Isaac and carried the fire and a knife",
+        "object": "wood of the burnt offering; fire; knife",
+        "mechanism": "Abraham divides what is needed for the offering between the two of them: Isaac carries the wood, and Abraham carries the fire and the knife.",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

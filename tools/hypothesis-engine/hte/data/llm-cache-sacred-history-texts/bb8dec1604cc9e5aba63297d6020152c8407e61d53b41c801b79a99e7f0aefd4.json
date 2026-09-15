@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f61b8bb74a98777bb5c4145ad266828101ab4998009c03f04e2eddc2a6ab3070",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And the LORD said unto Moses",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "How long refuse ye to keep my commandments and my laws?",
+        "claim": "The people refuse to keep the LORD's commandments and laws",
+        "actor": "ye",
+        "action": "refuse",
+        "object": "my commandments and my laws",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "the LORD hath given you the sabbath",
+        "claim": "The LORD gave the sabbath to the people",
+        "actor": "the LORD",
+        "action": "hath given",
+        "object": "the sabbath",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "he giveth you on the sixth day the bread of two days",
+        "claim": "The LORD provides two days' worth of bread on the sixth day",
+        "actor": "he",
+        "action": "giveth",
+        "object": "the bread of two days",
+        "place": "the sixth day",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "let no man go out of his place on the seventh day",
+        "claim": "No man shall leave his place on the seventh day",
+        "actor": "no man",
+        "action": "go out",
+        "object": "",
+        "place": "the seventh day",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

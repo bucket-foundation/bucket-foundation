@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "679b085a1667825ffbdcf5ac5bbfe4701b412c8c3029a89926588643902b13e0",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "document",
+        "quote": "The God of Abraham, and the God of Nahor, the God of their father, judge betwixt us.",
+        "claim": "In Genesis 31:53, a speaker calls on the God of Abraham and the God of Nahor, described as 'the God of their father', to judge between the two parties.",
+        "actor": "speaker (unnamed in excerpt)",
+        "action": "invokes divine judgment",
+        "object": "the God of Abraham, the God of Nahor, the God of their father",
+        "mechanism": "oath / covenant invocation",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "document",
+        "quote": "And Jacob sware by the fear of his father Isaac.",
+        "claim": "Jacob swore an oath by 'the fear of his father Isaac'.",
+        "actor": "Jacob",
+        "action": "sware (swore an oath)",
+        "object": "the fear of his father Isaac",
+        "mechanism": "oath",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

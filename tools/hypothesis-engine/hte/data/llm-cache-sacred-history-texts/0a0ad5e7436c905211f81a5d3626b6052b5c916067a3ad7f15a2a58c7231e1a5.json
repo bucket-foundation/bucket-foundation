@@ -1,0 +1,97 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c900815b694c6e2c48c06dcbbc1c8a8ad1ff0e347e28aa2c65b2d39b8acbf17b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses diligently sought the goat of the sin offering",
+        "claim": "Moses diligently sought the goat of the sin offering",
+        "actor": "Moses",
+        "action": "sought",
+        "object": "goat of the sin offering",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and, behold, it was burnt",
+        "claim": "The goat of the sin offering was burnt",
+        "object": "goat of the sin offering",
+        "action": "burnt",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and he was angry with Eleazar and Ithamar, the sons of Aaron which were left alive",
+        "claim": "Moses was angry with Eleazar and Ithamar",
+        "actor": "Moses",
+        "action": "was angry",
+        "object": "Eleazar and Ithamar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Wherefore have ye not eaten the sin offering in the holy place",
+        "claim": "Eleazar and Ithamar did not eat the sin offering in the holy place",
+        "actor": "Eleazar and Ithamar",
+        "action": "eaten",
+        "object": "sin offering",
+        "place": "holy place",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "seeing it is most holy",
+        "claim": "The sin offering is most holy",
+        "object": "sin offering",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "God hath given it you to bear the iniquity of the congregation, to make atonement for them before the LORD",
+        "claim": "God gave the sin offering to bear the iniquity of the congregation and make atonement",
+        "actor": "God",
+        "action": "given",
+        "object": "sin offering",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Behold, the blood of it was not brought in within the holy place",
+        "claim": "The blood of the sin offering was not brought into the holy place",
+        "action": "brought in",
+        "object": "blood of the sin offering",
+        "place": "holy place",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "ye should indeed have eaten it in the holy place, as I commanded",
+        "claim": "Eleazar and Ithamar should have eaten the sin offering in the holy place as commanded",
+        "actor": "Eleazar and Ithamar",
+        "action": "eaten",
+        "object": "sin offering",
+        "place": "holy place",
+        "mechanism": "as I commanded",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

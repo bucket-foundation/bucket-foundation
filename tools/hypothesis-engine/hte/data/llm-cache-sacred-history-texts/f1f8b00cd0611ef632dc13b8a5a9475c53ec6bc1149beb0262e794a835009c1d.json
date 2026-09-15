@@ -1,0 +1,41 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6723d6e33efb4acd7a31f9bdecc4caf4526417cd2ffc9c7232a12ca3aca81451",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD commanded Moses concerning sin and restitution",
+        "actor": "LORD, Moses",
+        "action": "spake",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "If a soul sin, and commit a trespass against the LORD, and lie unto his neighbour in that which was delivered him to keep, or in fellowship, or in a thing taken away by violence, or hath deceived his neighbour; Or have found that which was lost, and lieth concerning it, and sweareth falsely; in any of all these that a man doeth, sinning therein",
+        "claim": "Trespass against the LORD includes lying, deception about goods, theft, and false swearing",
+        "actor": "soul, man",
+        "action": "sin, commit trespass, lie, deceive, swear falsely",
+        "object": "things delivered, things taken by violence, lost things",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he shall restore that which he took violently away, or the thing which he hath deceitfully gotten, or that which was delivered him to keep, or the lost thing which he found, Or all that about which he hath sworn falsely; he shall even restore it in the principal, and shall add the fifth part more thereto, and give it unto him to whom it appertaineth, in the day of his trespass offering",
+        "claim": "The guilty must restore taken or deceived items plus one-fifth more to the rightful owner on the day of trespass offering",
+        "actor": "he",
+        "action": "restore, add, give",
+        "mechanism": "day of his trespass offering",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

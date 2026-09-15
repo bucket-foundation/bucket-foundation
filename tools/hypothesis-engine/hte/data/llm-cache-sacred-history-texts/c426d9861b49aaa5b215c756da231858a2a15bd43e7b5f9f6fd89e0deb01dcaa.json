@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b052d57edc233909c6289433391df0d635ea8e98c678c5be6da2845462f957e2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses was not able to enter into the tent of the congregation, because the cloud abode thereon, and the glory of the LORD filled the tabernacle.",
+        "claim": "Moses was prevented from entering the tent of the congregation because the cloud and the glory of the LORD filled it",
+        "actor": "Moses",
+        "action": "unable to enter",
+        "object": "tent of the congregation / tabernacle",
+        "place": "tent of the congregation",
+        "mechanism": "cloud and glory of the LORD",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

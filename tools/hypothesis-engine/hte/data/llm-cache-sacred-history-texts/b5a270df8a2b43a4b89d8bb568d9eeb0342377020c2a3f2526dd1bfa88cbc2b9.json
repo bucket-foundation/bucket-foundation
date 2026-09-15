@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a2124dfa4c670f6a6756b8df056cbe4adc338eb7cdf080d577a1cbb792a2241a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then Pharaoh called for Moses and Aaron,",
+        "claim": "Pharaoh summoned Moses and Aaron",
+        "actor": "Pharaoh",
+        "action": "called for",
+        "object": "Moses and Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Pharaoh called for Moses and Aaron, and said, Intreat the LORD, that he may take away the frogs from me, and from my people",
+        "claim": "Pharaoh commanded Moses and Aaron to entreat the LORD to remove the frogs",
+        "actor": "Pharaoh",
+        "action": "said",
+        "object": "Intreat the LORD",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "I will let the people go, that they may do sacrifice unto the LORD",
+        "claim": "Pharaoh promised to allow the people to leave and sacrifice to the LORD",
+        "actor": "Pharaoh",
+        "action": "will let go",
+        "object": "the people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

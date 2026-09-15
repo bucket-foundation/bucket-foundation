@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "53e5b963575ffc25fb6a4fab2cdbe40bf564092577c416f43855982755deb9f5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Noah began to be an husbandman, and he planted a vineyard",
+        "claim": "Noah planted a vineyard",
+        "actor": "Noah",
+        "action": "planted",
+        "object": "vineyard",
+        "place": "",
+        "mechanism": "husbandman's work",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he drank of the wine, and was drunken",
+        "claim": "Noah drank wine and became intoxicated",
+        "actor": "Noah",
+        "action": "drank",
+        "object": "wine",
+        "place": "",
+        "mechanism": "drinking",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and he was uncovered within his tent",
+        "claim": "Noah was uncovered inside his tent",
+        "actor": "Noah",
+        "action": "was uncovered",
+        "object": "",
+        "place": "tent",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

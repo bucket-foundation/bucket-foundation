@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "31449791d044ad60313745b53d2cc394fa60e1b44bdcf6cf767651a62bacc1c4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses and unto Aaron saying",
+        "claim": "God spoke to Moses and Aaron",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses and Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Cut ye not off the tribe of the families of the Kohathites from among the Levites",
+        "claim": "The Kohathites should not be cut off from the Levites",
+        "actor": "ye",
+        "action": "Cut off",
+        "object": "the tribe of the families of the Kohathites",
+        "place": "among the Levites",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Aaron and his sons shall go in, and appoint them every one to his service and to his burden",
+        "claim": "Aaron and his sons will appoint the Kohathites to their service and burden",
+        "actor": "Aaron and his sons",
+        "action": "appoint",
+        "object": "them",
+        "place": "go in",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "they shall not go in to see when the holy things are covered, lest they die",
+        "claim": "The Kohathites must not view covered holy things upon pain of death",
+        "actor": "they",
+        "action": "go in to see",
+        "object": "the holy things",
+        "place": "",
+        "mechanism": "lest they die",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

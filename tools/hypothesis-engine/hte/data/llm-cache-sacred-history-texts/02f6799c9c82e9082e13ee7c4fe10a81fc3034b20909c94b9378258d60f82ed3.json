@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "450d61f6f30b03d9b6d7bc89673265c5d6a161e41906d11ecd3902879055fad4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses in the wilderness of Sinai, in the tabernacle of the congregation, on the first day of the second month, in the second year after they were come out of the land of Egypt, saying, 1:2 Take ye the sum of all the congregation of the children of Israel, after their families, by the house of their fathers, with the number of their names, every male by their polls",
+        "claim": "The LORD commanded Moses to perform a census of Israelite males at a specific date: the first day of the second month, in the second year after the Exodus",
+        "actor": "LORD",
+        "action": "commanded",
+        "object": "congregation of Israel",
+        "place": "wilderness of Sinai",
+        "mechanism": "enumeration/census by household, family, and name",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

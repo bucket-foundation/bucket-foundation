@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6e2a7e674ce65876628122b24edcf269b503a5ba8da596ba0cbebd90b6ae078d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "If a soul shall sin through ignorance against any of the commandments of the LORD concerning things which ought not to be done, and shall do against any of them",
+        "claim": "A person can sin against God's commandments through ignorance",
+        "actor": "a soul",
+        "action": "sin",
+        "object": "the commandments of the LORD",
+        "place": "",
+        "mechanism": "through ignorance",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "If the priest that is anointed do sin according to the sin of the people",
+        "claim": "An anointed priest can commit sin similar to that of the people",
+        "actor": "the priest that is anointed",
+        "action": "sin",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "then let him bring for his sin, which he hath sinned, a young bullock without blemish unto the LORD for a sin offering",
+        "claim": "A priest who sins must bring a young unblemished bullock to the LORD as a sin offering",
+        "actor": "him",
+        "action": "bring",
+        "object": "a young bullock without blemish",
+        "place": "unto the LORD",
+        "mechanism": "for a sin offering",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

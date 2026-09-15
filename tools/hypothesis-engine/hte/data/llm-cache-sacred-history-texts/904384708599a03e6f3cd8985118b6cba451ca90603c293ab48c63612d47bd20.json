@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2e663712493f39c4ff1d63aafef59c7ddb3ae84c537b5ecc9e4cfc1bdcf14485",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Pharaoh called unto Moses, and said, Go ye, serve the LORD; only let your flocks and your herds be stayed: let your little ones also go with you.",
+        "claim": "Pharaoh called Moses and commanded the Israelites to serve the LORD, restricting their livestock but permitting their children to depart.",
+        "actor": "Pharaoh",
+        "action": "called unto, said",
+        "object": "Moses, the Israelites (ye)",
+        "place": "",
+        "mechanism": "speech",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

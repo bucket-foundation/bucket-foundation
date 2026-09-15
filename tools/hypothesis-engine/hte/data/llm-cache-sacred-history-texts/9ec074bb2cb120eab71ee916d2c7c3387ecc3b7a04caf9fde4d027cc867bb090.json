@@ -1,0 +1,32 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "121826948011d3dc3414704cc6e152c480d508e53f2263d63e9b0facbd726200",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "For these seven ewe lambs shalt thou take of my hand, that they may be a witness unto me, that I have digged this well.",
+        "claim": "Abraham gives Abimelech seven ewe lambs as a witness that Abraham dug the well, which supports his claim to it.",
+        "actor": "Abraham",
+        "action": "gives seven ewe lambs as a witness",
+        "object": "well",
+        "mechanism": "Accepting the gift of livestock serves as public proof that Abraham dug the well, and so that the well is his.",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Abimelech said unto Abraham, What mean these seven ewe lambs which thou hast set by themselves?",
+        "claim": "Abraham sets seven ewe lambs apart, and Abimelech asks what they are for. This leads into the witness about the well.",
+        "actor": "Abimelech",
+        "action": "asks what the seven ewe lambs set apart are for",
+        "object": "seven ewe lambs",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

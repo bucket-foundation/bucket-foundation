@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f24d4609a23cae9398bddd30893213ad1732bdfcc317455c3498c906220d9e3c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he took all the fat that was upon the inwards, and the caul above the liver, and the two kidneys, and their fat, and Moses burned it upon the altar.",
+        "claim": "Moses burned animal fat and organs upon the altar during an ordination ritual",
+        "actor": "Moses",
+        "action": "burned",
+        "object": "fat, caul above liver, two kidneys",
+        "place": "the altar",
+        "mechanism": "burning upon the altar",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

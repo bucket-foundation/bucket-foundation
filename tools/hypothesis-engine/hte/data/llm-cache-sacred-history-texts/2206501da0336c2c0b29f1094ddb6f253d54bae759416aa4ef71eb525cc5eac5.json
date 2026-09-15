@@ -1,0 +1,54 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "aa5a16bc5be7c3a0488a13654a614264cc97fca5be8badaf0ad27d30a3a7eca8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Wherefore criest thou unto me?",
+        "claim": "The LORD spoke to Moses and questioned why he was crying out",
+        "actor": "LORD",
+        "action": "said",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "speak unto the children of Israel, that they go forward",
+        "claim": "The children of Israel were commanded to proceed forward",
+        "actor": "children of Israel",
+        "action": "go",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "But lift thou up thy rod, and stretch out thine hand over the sea, and divide it",
+        "claim": "Moses was commanded to lift his rod and stretch his hand over the sea to divide it",
+        "actor": "thou",
+        "action": "lift, stretch, divide",
+        "object": "rod, hand, sea",
+        "place": "sea",
+        "mechanism": "rod, hand",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and the children of Israel shall go on dry ground through the midst of the sea",
+        "claim": "The children of Israel shall traverse on dry ground through the midst of the sea",
+        "actor": "children of Israel",
+        "action": "go",
+        "object": "dry ground",
+        "place": "midst of the sea",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

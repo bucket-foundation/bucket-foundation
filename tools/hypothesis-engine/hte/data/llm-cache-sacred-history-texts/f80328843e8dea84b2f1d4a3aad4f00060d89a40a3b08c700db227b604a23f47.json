@@ -1,0 +1,51 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0be51a457632996402ec9e69d87452e7702a4b30f716edc2ba4e1deaafc82326",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "they hearkened not unto Moses",
+        "claim": "The Israelites did not heed Moses's instructions",
+        "actor": "they",
+        "action": "hearkened not",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "some of them left of it until the morning",
+        "claim": "Some Israelites stored manna overnight despite instructions",
+        "actor": "some of them",
+        "action": "left",
+        "object": "it",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and it bred worms, and stank",
+        "claim": "The stored manna became infested and foul-smelling",
+        "object": "it",
+        "action": "bred worms, and stank",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and Moses was wroth with them",
+        "claim": "Moses became angry with the Israelites",
+        "actor": "Moses",
+        "action": "was wroth",
+        "object": "them",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8bf1b0ac3e36b5431f51f54f71ab49a756e202aa99feb24a04e26f21fe5cc8fa",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses gave commandment",
+        "claim": "Moses issued a commandment",
+        "actor": "Moses",
+        "action": "gave commandment",
+        "object": "commandment",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "they caused it to be proclaimed throughout the camp, saying, Let neither man nor woman make any more work for the offering of the sanctuary",
+        "claim": "An unspecified group proclaimed throughout the camp a prohibition on further work for the sanctuary offering",
+        "actor": "they",
+        "action": "caused proclamation",
+        "object": "proclamation",
+        "place": "throughout the camp",
+        "mechanism": "proclamation",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "So the people were restrained from bringing",
+        "claim": "The people were restrained from bringing",
+        "actor": "the people",
+        "action": "were restrained",
+        "object": "bringing",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "84e60067fbe470595012c71bb33c420a4c2a5010fc86b358375bf84d7aa969d3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses.",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "I have heard the murmurings of the children of Israel",
+        "claim": "The LORD heard the murmurings of the children of Israel.",
+        "actor": "I",
+        "action": "have heard",
+        "object": "the murmurings of the children of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "At even ye shall eat flesh, and in the morning ye shall be filled with bread",
+        "claim": "The children of Israel will eat flesh at evening and be filled with bread in the morning.",
+        "actor": "ye",
+        "action": "shall eat, shall be filled",
+        "object": "flesh, bread",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and ye shall know that I am the LORD your God",
+        "claim": "The children of Israel will know that the LORD is their God.",
+        "actor": "ye",
+        "action": "shall know",
+        "object": "that I am the LORD your God",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

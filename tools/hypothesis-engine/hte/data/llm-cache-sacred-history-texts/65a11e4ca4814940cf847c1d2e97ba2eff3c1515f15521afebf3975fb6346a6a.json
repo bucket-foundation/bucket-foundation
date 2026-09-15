@@ -1,0 +1,47 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "0c8c024ac7717af458bf5ec8664f4eec6e029f660c032896f2a9ca4784b26f62",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "thou shalt smite the rock, and there shall come water out of it, that the people may drink. And Moses did so",
+        "claim": "The text says Moses was told to strike the rock, that water would come out of it for the people to drink, and that Moses did so.",
+        "actor": "Moses",
+        "action": "smote the rock",
+        "object": "rock / water",
+        "place": "Horeb",
+        "mechanism": "Striking the rock, as instructed, makes water come out so the people can drink.",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "Behold, I will stand before thee there upon the rock in Horeb",
+        "claim": "The text places the divine instruction and presence at the rock in Horeb.",
+        "actor": "God (speaker)",
+        "action": "will stand before Moses",
+        "object": "the rock",
+        "place": "Horeb",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses did so in the sight of the elders of Israel.",
+        "claim": "The text says Moses struck the rock in front of the elders of Israel, so they saw it happen.",
+        "actor": "Moses",
+        "action": "did so in the sight of the elders",
+        "object": "elders of Israel",
+        "place": "Horeb",
+        "mechanism": "The elders of Israel watched it happen.",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "0b553407a4ca959d46a40f8bcc96f8c886b925e92f28d1d475d941f35ce4702f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "Neither shall thy name any more be called Abram, but thy name shall be Abraham; for a father of many nations have I made thee.",
+        "claim": "The text says Abram's name is changed to Abraham. The reason it gives is that the speaker has made him a father of many nations.",
+        "actor": "the speaker (\"I\"; in Genesis 17:5 this is God, but the verse as quoted does not name the speaker)",
+        "action": "renames",
+        "object": "Abram",
+        "mechanism": "a name change tied to a promise that he will be the father of many nations",
+        "place": "unspecified",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

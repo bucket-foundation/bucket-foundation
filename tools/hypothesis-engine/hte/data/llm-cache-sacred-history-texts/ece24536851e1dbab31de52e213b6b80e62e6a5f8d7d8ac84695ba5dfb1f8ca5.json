@@ -1,0 +1,31 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "53c5aad9ec601ab2289ca2ebb9095d976d3217c498995754c14f4546ec701b5e",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "6:24 And the LORD spake unto Moses, saying,",
+        "claim": "The text says the LORD spoke to Moses. This introduces the instruction that follows. Passes 1 and 2 both found this item.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "year": null
+      },
+      {
+        "kind": "rule",
+        "tier": "primary-text",
+        "quote": "Speak unto Aaron and to his sons, saying, This is the law of the sin offering: In the place where the burnt offering is killed shall the sin offering be killed before the LORD: it is most holy.",
+        "claim": "Moses is told to give Aaron and his sons the law of the sin offering. The sin offering must be killed before the LORD in the same place where the burnt offering is killed, and it is called most holy. Only pass 1 found this item. It is kept because it is stated directly in the document and is the main content of verse 6:25.",
+        "actor": "Aaron and his sons",
+        "action": "shall kill the sin offering",
+        "object": "sin offering",
+        "place": "the place where the burnt offering is killed, before the LORD",
+        "mechanism": "a law passed from the LORD through Moses to Aaron and his sons",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "cf6556347db2087330958d94b2fbb59b955b1628348cc8de23a64ba1c450bdc6",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD appeared unto him, and said, Go not down into Egypt; dwell in the land which I shall tell thee of:",
+        "claim": "The text says the LORD appeared to an unnamed man ('him') and told him not to go down into Egypt, but to live in a land the LORD would point out.",
+        "actor": "the LORD",
+        "action": "appeared and commanded not to go down into Egypt",
+        "object": "him (unnamed in this excerpt)",
+        "place": "Egypt (the place he is told not to go)",
+        "mechanism": "divine appearance and direct command",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "promise",
+        "tier": "primary-text",
+        "quote": "Sojourn in this land, and I will be with thee, and will bless thee; for unto thee, and unto thy seed, I will give all these countries",
+        "claim": "The text says the LORD told him to stay in the land, promised to be with him and bless him, and promised to give 'all these countries' to him and his descendants.",
+        "actor": "the LORD",
+        "action": "promised presence, blessing, and a grant of land",
+        "object": "him and his seed",
+        "place": "this land / all these countries",
+        "mechanism": "divine promise tied to staying in the land",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "promise",
+        "tier": "primary-text",
+        "quote": "and I will perform the oath which I sware unto Abraham thy father;",
+        "claim": "The text says the LORD promised to keep the oath He had sworn to Abraham, who is named as this man's father.",
+        "actor": "the LORD",
+        "action": "promised to perform a prior oath",
+        "object": "the oath sworn to Abraham",
+        "place": "unspecified",
+        "mechanism": "carrying out an earlier sworn oath",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "promise",
+        "tier": "primary-text",
+        "quote": "And I will make thy seed to multiply as the stars of heaven, and will give unto thy seed all these countries; and in thy seed shall all the nations of the earth be blessed;",
+        "claim": "The text says the LORD promised to make his descendants as many as the stars, give them all these countries, and bless all the nations of the earth through them.",
+        "actor": "the LORD",
+        "action": "promised many descendants, land, and blessing for the nations",
+        "object": "his seed; all the nations of the earth",
+        "place": "all these countries",
+        "mechanism": "divine promise",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "causal-claim",
+        "tier": "primary-text",
+        "quote": "Because that Abraham obeyed my voice, and kept my charge, my commandments, my statutes, and my laws.",
+        "claim": "The text gives Abraham's obedience as the reason for the promises: he obeyed the LORD's voice and kept His charge, commandments, statutes, and laws.",
+        "actor": "Abraham",
+        "action": "obeyed and kept the LORD's charge, commandments, statutes, and laws",
+        "object": "the LORD's voice and laws",
+        "place": "unspecified",
+        "mechanism": "Abraham's obedience is stated as the reason for the promises",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

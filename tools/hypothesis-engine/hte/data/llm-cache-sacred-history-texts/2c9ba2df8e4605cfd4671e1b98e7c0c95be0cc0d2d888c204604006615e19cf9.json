@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "563fb91503ca85e385e39c5d141432f94769876a4b51b1251e9a5b6deed4875e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses and unto Aaron, Take to you handfuls of ashes of the furnace, and let Moses sprinkle it toward the heaven in the sight of Pharaoh.",
+        "claim": "The LORD commanded Moses and Aaron to take handfuls of furnace ashes and have Moses sprinkle them toward heaven in Pharaoh's sight.",
+        "actor": "the LORD, Moses, Aaron",
+        "action": "said, Take, sprinkle",
+        "object": "handfuls of ashes of the furnace",
+        "place": "heaven, Pharaoh",
+        "mechanism": "sprinkling",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a57b41908c821e0ed61363a1ae1f8167bfde6dea4eb9cba0a3dccec522516572",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And it came to pass at the end of forty days, that Noah opened the window of the ark which he had made:",
+        "claim": "Noah opened the window of the ark at the end of forty days",
+        "actor": "Noah",
+        "action": "opened",
+        "object": "the window of the ark",
+        "place": "the ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he sent forth a raven, which went forth to and fro, until the waters were dried up from off the earth.",
+        "claim": "Noah sent forth a raven which went forth to and fro until the waters were dried up from the earth",
+        "actor": "he",
+        "action": "sent forth",
+        "object": "a raven",
+        "place": "the earth",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

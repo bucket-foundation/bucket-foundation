@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "55dcdbd25862c92823aee1494c2489b058f630497f8946f6e463c06abfed2e03",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses took the anointing oil, and anointed the tabernacle and all that was therein, and sanctified them.",
+        "claim": "Moses took anointing oil and anointed the tabernacle and its contents, sanctifying them.",
+        "actor": "Moses",
+        "action": "anointed and sanctified",
+        "object": "the tabernacle and all that was therein",
+        "place": "",
+        "mechanism": "anointing oil",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9ea6cc38107813916a1e65272d971ebe6d3bcb22bd68bd6e57ed12bf83c737c8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "he slew it",
+        "claim": "An animal was slain",
+        "actor": "he",
+        "action": "slew",
+        "object": "it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses took of the blood of it",
+        "claim": "Moses took blood from the animal",
+        "actor": "Moses",
+        "action": "took",
+        "object": "blood of it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "put it upon the tip of Aaron's right ear, and upon the thumb of his right hand, and upon the great toe of his right foot",
+        "claim": "Blood was applied to Aaron's right ear, right hand thumb, and right foot great toe",
+        "actor": "",
+        "action": "put",
+        "object": "it",
+        "place": "Aaron's right ear, thumb of his right hand, great toe of his right foot",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "10bb67ae7c372f0ecb3e90644f9bbff5e65e473979253c3e98fd791494da8040",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses and Aaron did all these wonders before Pharaoh",
+        "claim": "Moses and Aaron performed miraculous signs in Pharaoh's presence",
+        "actor": "Moses and Aaron",
+        "action": "did",
+        "object": "wonders",
+        "place": "before Pharaoh",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD hardened Pharaoh's heart",
+        "claim": "God caused Pharaoh to become obstinate",
+        "actor": "the LORD",
+        "action": "hardened",
+        "object": "Pharaoh's heart",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he would not let the children of Israel go out of his land",
+        "claim": "Pharaoh refused to permit the Israelites to depart from his land",
+        "actor": "he",
+        "action": "would not let",
+        "object": "the children of Israel",
+        "place": "his land",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

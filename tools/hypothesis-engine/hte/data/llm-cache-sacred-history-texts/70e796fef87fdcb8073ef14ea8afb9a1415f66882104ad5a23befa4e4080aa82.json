@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d2e89cde8269a6539b521844075dbb3927b9d96b84d183069cbc0f5d53dc6b1f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses spake so unto the children of Israel",
+        "claim": "Moses spoke to the children of Israel",
+        "actor": "Moses",
+        "action": "spake",
+        "object": "children of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "but they hearkened not unto Moses for anguish of spirit, and for cruel bondage",
+        "claim": "The children of Israel did not listen to Moses because of anguish of spirit and cruel bondage",
+        "actor": "they",
+        "action": "hearkened not",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

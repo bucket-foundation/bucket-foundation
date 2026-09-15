@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e25583c4c13adcd75ba3b270c255cd120e4e186d4549ca0089abe9a5cedfad51",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And Moses said unto Aaron, and unto Eleazar and unto Ithamar, his sons, Uncover not your heads, neither rend your clothes",
+        "claim": "Moses commanded Aaron, Eleazar, and Ithamar not to uncover their heads or rend their clothes",
+        "actor": "Moses",
+        "action": "said",
+        "object": "Aaron, Eleazar, Ithamar",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "lest ye die",
+        "claim": "Death would come to those who violated the command",
+        "actor": "ye",
+        "action": "would die",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "lest wrath come upon all the people",
+        "claim": "Wrath would come upon all people as a consequence of violation",
+        "actor": "wrath",
+        "action": "come",
+        "object": "all the people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "let your brethren, the whole house of Israel, bewail the burning which the LORD hath kindled",
+        "claim": "The house of Israel is commanded to bewail the burning",
+        "actor": "whole house of Israel",
+        "action": "bewail",
+        "object": "the burning",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "the burning which the LORD hath kindled",
+        "claim": "The LORD kindled the burning",
+        "actor": "the LORD",
+        "action": "hath kindled",
+        "object": "the burning",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

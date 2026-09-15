@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d34b4f5602a9cebb07547fd5f46a994c3068fce6b7063e6a3085d9964a3f8cd6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Abraham reproved Abimelech because of a well of water, which Abimelech's servants had violently taken away.",
+        "claim": "Abimelech's servants violently appropriated a well of water belonging to Abraham",
+        "actor": "Abimelech's servants",
+        "action": "had violently taken away",
+        "object": "well of water",
+        "place": "",
+        "mechanism": "violent appropriation of water infrastructure",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

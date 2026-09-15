@@ -1,0 +1,43 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1c8f09ed4de4ee7c44b73018cb208e67d488ab3e1bd0e87229ce89c5d3a893eb",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "as soon as he came nigh unto the camp, that he saw the calf, and the dancing",
+        "claim": "Moses came near the camp and saw the calf and dancing",
+        "actor": "he",
+        "action": "came nigh unto, saw",
+        "object": "camp, calf, dancing",
+        "place": "camp",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses' anger waxed hot",
+        "claim": "Moses became very angry",
+        "actor": "Moses",
+        "action": "waxed hot",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "he cast the tables out of his hands, and brake them beneath the mount",
+        "claim": "Moses cast the tables from his hands and broke them beneath the mount",
+        "actor": "he",
+        "action": "cast, brake",
+        "object": "tables, them",
+        "place": "beneath the mount",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

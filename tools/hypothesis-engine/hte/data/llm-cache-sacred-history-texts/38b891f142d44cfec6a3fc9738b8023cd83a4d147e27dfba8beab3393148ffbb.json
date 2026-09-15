@@ -1,0 +1,43 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "c70e2c41a172fab2c2c6483db2457e91bf181d5a4dc0be185b172bd282c9f8e0",
+  "response": {
+    "items": [
+      {
+        "kind": "speech-framing",
+        "tier": "primary",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The text says the command came from the LORD, spoken to Moses, who was to pass it on.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "directive",
+        "tier": "primary",
+        "quote": "Speak thou also unto the children of Israel, saying, Verily my sabbaths ye shall keep:",
+        "claim": "Moses is told to tell the children of Israel that they must keep the LORD's sabbaths.",
+        "actor": "the LORD (through Moses)",
+        "action": "commands keeping",
+        "object": "sabbaths; addressed to the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "rationale",
+        "tier": "primary",
+        "quote": "for it is a sign between me and you throughout your generations; that ye may know that I am the LORD that doth sanctify you.",
+        "claim": "Sabbath-keeping is described as a lasting sign between the LORD and Israel for all generations, so they will know the LORD is the one who sanctifies them.",
+        "actor": "the LORD",
+        "action": "establishes sign",
+        "object": "sabbath observance as covenant sign",
+        "mechanism": "a practice kept across generations serves as a sign of the relationship and of sanctification",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

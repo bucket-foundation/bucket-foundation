@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c93e926c7f9f7f27c333e8db3c3689178b6bff617106aeaa0c630ff1c2445c1f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the God which fed me all my life long unto this day",
+        "claim": "God provided sustenance to Jacob throughout his entire life until the present moment",
+        "stance": "positive",
+        "year": null,
+        "actor": "God",
+        "action": "fed",
+        "object": "me",
+        "place": "",
+        "mechanism": "feeding"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "let them grow into a multitude in the midst of the earth",
+        "claim": "Jacob's descendants will multiply and grow into a large population",
+        "stance": "positive",
+        "year": null,
+        "actor": "them",
+        "action": "grow",
+        "object": "multitude",
+        "place": "the midst of the earth",
+        "mechanism": "growth/multiplication"
+      }
+    ]
+  }
+}

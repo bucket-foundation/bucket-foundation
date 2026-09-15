@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a91bfc393bd083b74e025c1f777941b96e8ad645bdbcde8934ca2a48e29f9f5a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Then Moses called for all the elders of Israel, and said unto them, Draw out and take you a lamb according to your families, and kill the passover.",
+        "claim": "Moses instructed the elders of Israel to select and kill a lamb for Passover according to their families",
+        "actor": "Moses",
+        "action": "called for and said / instructed",
+        "object": "lamb; passover; elders of Israel",
+        "place": "",
+        "mechanism": "drawing out and taking a lamb according to families; killing",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

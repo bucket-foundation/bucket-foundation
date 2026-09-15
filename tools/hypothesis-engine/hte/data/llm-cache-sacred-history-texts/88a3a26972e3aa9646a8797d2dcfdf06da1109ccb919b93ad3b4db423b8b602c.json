@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "3bc1cc38b0bd7513d4ee5d6f98ca6ad5f0c035713f6783f55568f373ee73736f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And the LORD said unto Moses, Come up to me into the mount, and be there: and I will give thee tables of stone, and a law, and commandments which I have written; that thou mayest teach them.",
+        "claim": "The text says the LORD called Moses up onto the mount and promised to give him tables of stone with a law and commandments the LORD had written, so that Moses could teach them. The document gives only the verse number 24:12. Naming it as Exodus 24:12 comes from model-prior and is not stated in the document.",
+        "actor": "the LORD",
+        "action": "summons Moses up the mount and promises to give him written tables of stone, a law, and commandments",
+        "object": "tables of stone, a law, and commandments",
+        "place": "the mount",
+        "mechanism": "a written law passed to Moses so that he can teach it",
+        "year": null
+      }
+    ]
+  }
+}

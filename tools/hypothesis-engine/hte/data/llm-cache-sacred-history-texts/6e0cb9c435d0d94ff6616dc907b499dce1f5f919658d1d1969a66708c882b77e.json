@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "37892fe476e8741bb01a18605858fa288242110bf72cb46944e06e02b662f068",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "I will stand before thee there upon the rock in Horeb; and thou shalt smite the rock, and there shall come water out of it, that the people may drink",
+        "claim": "God will stand on the rock in Horeb; Moses will strike it and water will emerge for the people to drink",
+        "actor": "God, Moses",
+        "action": "stand, smite",
+        "object": "the rock",
+        "place": "Horeb",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses did so in the sight of the elders of Israel",
+        "claim": "Moses performed this action (smote the rock) in the sight of the elders of Israel",
+        "actor": "Moses",
+        "action": "did so (smote)",
+        "object": "the rock",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3d5d8edb37f1bbb1c85958e6eca0220ad4213221eb9e3ce1aa9060e10e9100fe",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Who am I, that I should go unto Pharaoh, and that I should bring forth the children of Israel out of Egypt?",
+        "claim": "Moses expresses doubt about his capability to go to Pharaoh and bring forth the Israelites",
+        "actor": "Moses",
+        "action": "go, bring forth",
+        "object": "Pharaoh, children of Israel",
+        "place": "Egypt",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Certainly I will be with thee",
+        "claim": "God promises to accompany Moses",
+        "actor": "God",
+        "action": "be with",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "this shall be a token unto thee, that I have sent thee",
+        "claim": "God's presence serves as a sign that God commissioned Moses",
+        "actor": "God",
+        "action": "have sent",
+        "object": "Moses",
+        "mechanism": "token",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "When thou hast brought forth the people out of Egypt",
+        "claim": "Moses will lead the people out of Egypt",
+        "actor": "Moses",
+        "action": "brought forth",
+        "object": "the people",
+        "place": "Egypt",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "ye shall serve God upon this mountain",
+        "claim": "After leaving Egypt, the people will worship God at a specific mountain",
+        "actor": "the people",
+        "action": "serve",
+        "object": "God",
+        "place": "this mountain",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "595962d5011525fd58f69ee5855b4f2f4e11187b13a3784397b400cbf1fc9e00",
+  "response": {
+    "items": [
+      {
+        "kind": "textual-assertion",
+        "tier": "primary-text",
+        "quote": "18:1 And the LORD spake unto Moses, saying,",
+        "claim": "The text says the LORD spoke to Moses. This opens a speech to him.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "mechanism": "direct divine speech",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual-assertion",
+        "tier": "primary-text",
+        "quote": "18:2 Speak unto the children of Israel, and say unto them, I am the LORD your God.",
+        "claim": "The text says Moses is told to pass a message to the children of Israel: \"I am the LORD your God.\" This names the LORD as their God.",
+        "actor": "Moses (instructed by the LORD)",
+        "action": "speak unto / say unto",
+        "object": "the children of Israel",
+        "mechanism": "message passed on through Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

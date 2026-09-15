@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "824150aec906b409cd4517f09f449330fc12ff80276e921e01ee0cae994a4e36",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham rose up early in the morning, and took bread, and a bottle of water, and gave it unto Hagar, putting it on her shoulder, and the child, and sent her away: and she departed, and wandered in the wilderness of Beersheba.",
+        "claim": "Abraham performed the action of preparing and sending away Hagar with provisions at early morning, using the physical mechanism of placing supplies on her shoulder.",
+        "actor": "Abraham",
+        "action": "rose up, took, gave, sent",
+        "object": "bread, bottle of water, Hagar, child",
+        "place": "wilderness of Beersheba",
+        "mechanism": "putting it on her shoulder",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

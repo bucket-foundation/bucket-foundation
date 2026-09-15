@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "a19798001e3431b31435a001bf309cdb5086d76a33ed102a41181e41a8b92097",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "And the LORD said unto Moses, Thus thou shalt say unto the children of Israel, Ye have seen that I have talked with you from heaven.",
+        "claim": "The text says the LORD told Moses to tell the Israelites that they had seen Him speak to them from heaven. Passes 1 and 2 agree on this quote; they differ only in punctuation and capital letters. The document itself only gives the verse number 20:22. Naming it as Exodus 20:22 (King James Version) is model-prior, not something the evidence states.",
+        "actor": "the LORD",
+        "action": "said unto / talked with from heaven",
+        "object": "Moses; the children of Israel",
+        "place": "heaven (as stated in the text); no earthly location given in the document",
+        "mechanism": "direct speech relayed through Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

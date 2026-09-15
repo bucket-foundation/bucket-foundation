@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "85bccef158cda6d2c0ee454ed636c21226a7fbb250ae23249d11a38dff45f71c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand toward heaven, that there may be darkness over the land of Egypt, even darkness which may be felt.",
+        "claim": "Stretching one's hand toward heaven produces tangible darkness over Egypt",
+        "actor": "Moses",
+        "action": "Stretch out thine hand toward heaven",
+        "object": "darkness",
+        "place": "heaven; land of Egypt",
+        "mechanism": "hand extension toward heaven",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

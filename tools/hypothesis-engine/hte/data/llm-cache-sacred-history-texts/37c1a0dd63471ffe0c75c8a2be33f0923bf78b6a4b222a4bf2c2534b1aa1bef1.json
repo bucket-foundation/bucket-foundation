@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "e512c7c05dd3f0982035876b4360516c200f0835d01e4bbdd5776bc637e35b67",
+  "response": {
+    "items": [
+      {
+        "kind": "genealogical-claim",
+        "tier": "primary-text",
+        "quote": "And the sons of Noah, that went forth of the ark, were Shem, and Ham, and Japheth",
+        "claim": "The text names Noah's sons who left the ark as Shem, Ham, and Japheth.",
+        "actor": "Noah",
+        "action": "had sons who went forth of the ark",
+        "object": "Shem, Ham, and Japheth",
+        "place": "the ark",
+        "mechanism": "genealogical statement",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "genealogical-claim",
+        "tier": "primary-text",
+        "quote": "and Ham is the father of Canaan.",
+        "claim": "The text says Ham is the father of Canaan.",
+        "actor": "Ham",
+        "action": "is the father of",
+        "object": "Canaan",
+        "place": "",
+        "mechanism": "genealogical statement",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

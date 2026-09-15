@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f6d03ec284181bc1c30bdb10df2f2cdfaa4f61e490aae8e87b271f181408cc83",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And God Almighty bless thee, and make thee fruitful, and multiply thee, that thou mayest be a multitude of people",
+        "claim": "God Almighty will bless, make fruitful, and multiply the recipient into a multitude of people",
+        "stance": "positive",
+        "actor": "God Almighty",
+        "action": "bless, make fruitful, multiply",
+        "object": "thee",
+        "place": "",
+        "mechanism": "",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And give thee the blessing of Abraham, to thee, and to thy seed with thee; that thou mayest inherit the land wherein thou art a stranger, which God gave unto Abraham",
+        "claim": "The blessing of Abraham will be given to the recipient and their seed, enabling them to inherit the land that God gave to Abraham",
+        "stance": "positive",
+        "actor": "God",
+        "action": "give, inherit, gave",
+        "object": "the blessing of Abraham, the land",
+        "place": "the land wherein thou art a stranger",
+        "mechanism": "",
+        "year": null
+      }
+    ]
+  }
+}

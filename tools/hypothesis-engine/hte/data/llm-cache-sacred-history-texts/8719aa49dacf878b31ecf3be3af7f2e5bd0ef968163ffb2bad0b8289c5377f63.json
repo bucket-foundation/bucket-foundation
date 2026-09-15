@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "ade98b70c5e1842a1c362bed4642218e52ec2b7aab2194f801251a334b0652a8",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "document",
+        "quote": "And Abraham stood up from before his dead, and spake unto the sons of Heth, saying,",
+        "claim": "Abraham got up from beside his dead and spoke to the sons of Heth.",
+        "actor": "Abraham",
+        "action": "stood up and spoke",
+        "object": "the sons of Heth",
+        "place": "",
+        "mechanism": "a direct spoken appeal to the local group",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "document",
+        "quote": "I am a stranger and a sojourner with you:",
+        "claim": "Abraham called himself a stranger and a sojourner among the sons of Heth, meaning a resident outsider with no land of his own there.",
+        "actor": "Abraham",
+        "action": "described himself as a stranger and sojourner",
+        "object": "his own status among the sons of Heth",
+        "place": "",
+        "mechanism": "stating his outsider status as the reason for his request",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "document",
+        "quote": "give me a possession of a buryingplace with you, that I may bury my dead out of my sight.",
+        "claim": "Abraham asked the sons of Heth to give him a burial place as a possession so he could bury his dead.",
+        "actor": "Abraham",
+        "action": "asked for a burial place as a possession",
+        "object": "a buryingplace",
+        "place": "",
+        "mechanism": "asking to get land held as a possession so he could bury his dead",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

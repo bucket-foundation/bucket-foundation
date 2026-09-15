@@ -1,0 +1,45 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "24415d992972895f0662a87562b5eb53b55505319f2698233ca35cdbf4f0eda6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses stretched forth his hand toward heaven; and there was a thick darkness in all the land of Egypt three days",
+        "claim": "Moses' hand-stretching gesture toward heaven produced total darkness over Egypt lasting exactly three days",
+        "actor": "Moses",
+        "action": "stretched forth his hand toward heaven",
+        "object": "his hand",
+        "place": "Egypt",
+        "mechanism": "hand-gesture transmission of darkness",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "They saw not one another, neither rose any from his place for three days",
+        "claim": "The darkness mechanism prevented all sight and voluntary movement for exactly three days",
+        "actor": "Egyptians",
+        "action": "unable to see or rise",
+        "place": "Egypt",
+        "mechanism": "darkness as mechanism of sensory and motor deprivation",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "but all the children of Israel had light in their dwellings",
+        "claim": "Israelite dwellings retained light while surrounding Egypt experienced darkness during the same three-day period",
+        "actor": "children of Israel",
+        "place": "dwellings",
+        "mechanism": "selective light preservation as physical mechanism",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

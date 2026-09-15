@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "05d0b003dffed847af751c96ac8df9c7f1dff4315fab3e77d0e95308d706e039",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying, 24:14 Bring forth him that hath cursed without the camp; and let all that heard him lay their hands upon his head, and let all the congregation stone him.",
+        "claim": "The LORD commanded that one who cursed should be brought outside the camp and stoned by the congregation",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "him that hath cursed",
+        "place": "the camp",
+        "mechanism": "stone",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

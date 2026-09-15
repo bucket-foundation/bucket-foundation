@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e8bfcaaf98df5d1a557d64fdfe74cc3dc95276abbf88ad077a446da66002cb15",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses and Aaron took these men which are expressed by their names",
+        "claim": "Moses and Aaron selected the men whose names were recorded",
+        "actor": "Moses and Aaron",
+        "action": "took",
+        "object": "these men which are expressed by their names",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And they assembled all the congregation together on the first day of the second month",
+        "claim": "Moses and Aaron assembled the entire congregation on the first day of the second month",
+        "actor": "they (Moses and Aaron)",
+        "action": "assembled",
+        "object": "all the congregation",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And they declared their pedigrees after their families, by the house of their fathers, according to the number of the names, from twenty years old and upward, by their polls",
+        "claim": "They recorded genealogies organized by family and household for individuals aged twenty and older",
+        "actor": "they (Moses and Aaron)",
+        "action": "declared",
+        "object": "their pedigrees",
+        "place": "",
+        "mechanism": "by their polls; by the house of their fathers; according to the number of the names, from twenty years old and upward",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

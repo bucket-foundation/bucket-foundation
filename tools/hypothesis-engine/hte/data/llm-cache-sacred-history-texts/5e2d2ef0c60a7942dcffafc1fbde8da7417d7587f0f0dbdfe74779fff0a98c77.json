@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "b15c698ecd47487c9e1fcfa3823e96a21bc413948c25a80a5228ff270bfd7034",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And he hewed two tables of stone like unto the first",
+        "claim": "Two stone tablets were cut to match the first ones.",
+        "actor": "he (Moses, per the verse's context)",
+        "action": "hewed",
+        "object": "two tables of stone like unto the first",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and Moses rose up early in the morning, and went up unto mount Sinai, as the LORD had commanded him",
+        "claim": "Moses got up early and went up Mount Sinai, as the LORD had commanded him.",
+        "actor": "Moses",
+        "action": "rose up early and went up",
+        "object": "mount Sinai",
+        "place": "mount Sinai",
+        "mechanism": "as the LORD had commanded him",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and took in his hand the two tables of stone",
+        "claim": "Moses carried the two stone tablets in his hand when he went up the mountain.",
+        "actor": "Moses",
+        "action": "took in his hand",
+        "object": "the two tables of stone",
+        "place": "mount Sinai",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

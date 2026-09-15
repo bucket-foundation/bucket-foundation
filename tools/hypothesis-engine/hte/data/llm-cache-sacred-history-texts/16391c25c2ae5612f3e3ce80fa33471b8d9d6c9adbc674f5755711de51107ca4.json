@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "da9593ca144d25e83ab0546f726f3bf0a6d78a3ba18c6ff585e9827f8d02296c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses said, This is the thing which the LORD commandeth, Fill an omer of it to be kept for your generations; that they may see the bread wherewith I have fed you in the wilderness, when I brought you forth from the land of Egypt.",
+        "claim": "Moses reported the LORD's command about preserving manna",
+        "actor": "Moses",
+        "action": "said",
+        "object": "the commandment",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "This is the thing which the LORD commandeth, Fill an omer of it to be kept for your generations",
+        "claim": "The LORD commanded to preserve an omer of manna for future generations",
+        "actor": "the LORD",
+        "action": "commandeth",
+        "object": "an omer of it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the bread wherewith I have fed you in the wilderness",
+        "claim": "The LORD provided bread to the people in the wilderness",
+        "actor": "I",
+        "action": "fed",
+        "object": "bread",
+        "place": "the wilderness",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "when I brought you forth from the land of Egypt",
+        "claim": "The LORD brought the people forth from Egypt",
+        "actor": "I",
+        "action": "brought forth",
+        "object": "you",
+        "place": "the land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

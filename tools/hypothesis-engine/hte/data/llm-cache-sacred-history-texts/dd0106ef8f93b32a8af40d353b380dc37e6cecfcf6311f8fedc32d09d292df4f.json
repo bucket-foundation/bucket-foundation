@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2cba2a27f6dd5135ffc64d30b7c19fb41c95a8b20c1ffc503f02023e716aaac6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And it came to pass at that time, that Abimelech and Phichol the chief captain of his host spake unto Abraham, saying",
+        "claim": "Abimelech and Phichol spoke to Abraham",
+        "actor": "Abimelech and Phichol the chief captain of his host",
+        "action": "spake unto",
+        "object": "Abraham",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "God is with thee in all that thou doest",
+        "claim": "God is with Abraham in all his undertakings",
+        "actor": "God",
+        "action": "is with",
+        "object": "thee",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Now therefore swear unto me here by God that thou wilt not deal falsely with me, nor with my son, nor with my son's son",
+        "claim": "Abimelech demands Abraham swear by God not to deal falsely with him and his descendants",
+        "actor": "",
+        "action": "swear",
+        "object": "me",
+        "place": "here",
+        "mechanism": "by God",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "but according to the kindness that I have done unto thee, thou shalt do unto me, and to the land wherein thou hast sojourned",
+        "claim": "Abraham will reciprocate kindness to Abimelech and his land",
+        "actor": "thou",
+        "action": "shalt do",
+        "object": "me",
+        "place": "the land wherein thou hast sojourned",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c20054a20cf45623c2718e571d36894d906ed56c7aa7e31bf111085feb6c8b4d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses and Aaron did so, as the LORD commanded; and he lifted up the rod, and smote the waters that were in the river, in the sight of Pharaoh, and in the sight of his servants; and all the waters that were in the river were turned to blood.",
+        "claim": "Moses and Aaron, commanded by the LORD, lifted a rod and struck the river's waters, causing all the waters to turn to blood",
+        "actor": "Moses and Aaron",
+        "action": "lifted up the rod, and smote the waters",
+        "object": "the waters",
+        "place": "the river",
+        "mechanism": "striking the waters with a rod causes transformation to blood",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "711e9f2755a635d86f4025b1857fed75ee8f4cd0166922e53f8907b0766a7fbe",
+  "response": {
+    "items": [
+      {
+        "kind": "relation",
+        "tier": "primary-text",
+        "quote": "Abraham begat Isaac",
+        "claim": "The text says Abraham was the father of Isaac.",
+        "actor": "Abraham",
+        "action": "begat",
+        "object": "Isaac",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Isaac was forty years old when he took Rebekah to wife",
+        "claim": "The text says Isaac married Rebekah when he was forty years old.",
+        "actor": "Isaac",
+        "action": "took to wife",
+        "object": "Rebekah",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "relation",
+        "tier": "primary-text",
+        "quote": "the daughter of Bethuel the Syrian of Padanaram",
+        "claim": "The text says Rebekah was the daughter of Bethuel the Syrian, from Padanaram.",
+        "actor": "Bethuel the Syrian",
+        "action": "father of",
+        "object": "Rebekah",
+        "place": "Padanaram",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "relation",
+        "tier": "primary-text",
+        "quote": "the sister to Laban the Syrian",
+        "claim": "The text says Rebekah was the sister of Laban the Syrian.",
+        "actor": "Rebekah",
+        "action": "sister of",
+        "object": "Laban the Syrian",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

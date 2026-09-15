@@ -1,0 +1,45 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "1e4d9fa39ffee457e13331f29a551944a711a2a9a526b525474bc5259447ff4f",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "But Moses\u2019 hands were heavy; and they took a stone, and put it under him, and he sat thereon;",
+        "claim": "The text says Moses' hands grew heavy, so a stone was put under him and he sat on it.",
+        "actor": "Moses (and unnamed attendants, 'they')",
+        "action": "sat on a stone placed under him",
+        "object": "stone",
+        "mechanism": "His hands were tired, so they gave him something to sit on to hold the position",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "and Aaron and Hur stayed up his hands, the one on the one side, and the other on the other side;",
+        "claim": "The text says Aaron and Hur held up Moses' hands, one on each side.",
+        "actor": "Aaron and Hur",
+        "action": "stayed up (held up) Moses' hands",
+        "object": "Moses' hands",
+        "mechanism": "Two people physically held his arms up from either side",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "and his hands were steady until the going down of the sun.",
+        "claim": "The text says that with this support, Moses' hands stayed steady until sunset.",
+        "actor": "Moses",
+        "action": "kept hands steady",
+        "object": "Moses' hands",
+        "mechanism": "The stone seat and the two helpers let him keep his hands up",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

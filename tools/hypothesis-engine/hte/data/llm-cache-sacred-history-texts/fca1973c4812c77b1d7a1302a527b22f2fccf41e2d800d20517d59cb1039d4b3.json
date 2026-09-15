@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "627a4cb9929e4373049facb41e55c86870262f874d6a67875a102acca2354d4f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses stretched forth his hand toward heaven",
+        "claim": "Moses stretched his hand toward heaven",
+        "actor": "Moses",
+        "action": "stretched forth his hand",
+        "object": "",
+        "place": "toward heaven",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "there was a thick darkness in all the land of Egypt three days",
+        "claim": "Thick darkness covered the land of Egypt for three days",
+        "actor": "",
+        "action": "was",
+        "object": "thick darkness",
+        "place": "all the land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "They saw not one another",
+        "claim": "The people could not see one another",
+        "actor": "They",
+        "action": "saw not",
+        "object": "one another",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "neither rose any from his place for three days",
+        "claim": "No one rose from their place for three days",
+        "actor": "any",
+        "action": "rose",
+        "object": "",
+        "place": "his place",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "but all the children of Israel had light in their dwellings",
+        "claim": "The children of Israel had light in their dwellings",
+        "actor": "all the children of Israel",
+        "action": "had light",
+        "object": "light",
+        "place": "their dwellings",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

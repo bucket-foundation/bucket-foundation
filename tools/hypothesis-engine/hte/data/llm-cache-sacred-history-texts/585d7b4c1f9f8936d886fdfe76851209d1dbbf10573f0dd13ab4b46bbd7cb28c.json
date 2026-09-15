@@ -1,0 +1,21 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c6d41407c02db5d9caaf5ffdb712ad5a65ea8a8ddec918d6eaee109294226391",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Abraham rose up early in the morning, and took bread, and a bottle of water, and gave it unto Hagar, putting it on her shoulder, and the child, and sent her away: and she departed, and wandered in the wilderness of Beersheba.",
+        "claim": "Abraham sent Hagar and the child away with bread and water; she wandered in the wilderness of Beersheba",
+        "actor": "Abraham",
+        "action": "sent her away",
+        "object": "Hagar and the child",
+        "place": "wilderness of Beersheba",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

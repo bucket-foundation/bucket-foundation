@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b4f31eb6e7c654324b7229281e216a708d8855311290ea0d7e3b73cbeb120272",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Pharaoh sent, and called for Moses and Aaron",
+        "claim": "Pharaoh summoned Moses and Aaron",
+        "actor": "Pharaoh",
+        "action": "sent and called for",
+        "object": "Moses and Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and said unto them, I have sinned this time",
+        "claim": "Pharaoh confessed to having sinned",
+        "actor": "Pharaoh",
+        "action": "said/confessed",
+        "object": "his own sin",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD is righteous",
+        "claim": "Pharaoh asserted the LORD's righteousness",
+        "actor": "Pharaoh",
+        "action": "asserted",
+        "object": "the LORD",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "I and my people are wicked",
+        "claim": "Pharaoh asserted that he and his people are wicked",
+        "actor": "Pharaoh",
+        "action": "asserted",
+        "object": "wickedness",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

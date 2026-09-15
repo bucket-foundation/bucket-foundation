@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4954319edc67711cae1253964b697183dd3f2876023eb93b4ed7853c2925e2da",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "with my staff I passed over this Jordan",
+        "claim": "Jacob crossed the Jordan River using a staff as a crossing aid",
+        "actor": "Jacob",
+        "action": "passed over",
+        "object": "Jordan",
+        "place": "Jordan",
+        "mechanism": "staff",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and now I am become two bands",
+        "claim": "Jacob's household or possessions are now divided into two separate bands",
+        "actor": "Jacob",
+        "action": "become",
+        "object": "two bands",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a459e9e7b290a0d7853a220bcca93bba11a400d49e29175d874ff5efe62fc940",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses came and called for the elders of the people, and laid before their faces all these words which the LORD commanded him.",
+        "claim": "Moses called for the elders of the people and laid before them all the words which the LORD commanded him",
+        "actor": "Moses",
+        "action": "called for / laid before their faces",
+        "object": "the elders of the people / all these words",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

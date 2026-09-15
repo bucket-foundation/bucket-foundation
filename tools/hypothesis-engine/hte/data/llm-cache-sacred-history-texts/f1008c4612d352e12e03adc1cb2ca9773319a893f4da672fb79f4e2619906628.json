@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "98640f5b6597f47598fc80ec0bce0fc5b69f494ec52014603ffd3228b8b17c92",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "primary",
+        "quote": "And the LORD spake unto Moses and unto Aaron, saying,",
+        "claim": "The text says the LORD spoke to Moses and Aaron and gave them the instruction that follows.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses and Aaron",
+        "place": "",
+        "mechanism": "divine command",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary",
+        "quote": "Take the sum of the sons of Kohath from among the sons of Levi, after their families, by the house of their fathers,",
+        "claim": "Moses and Aaron are told to count the Kohathites, a group within the Levites, by family and by their fathers' houses.",
+        "actor": "Moses and Aaron",
+        "action": "take the sum of",
+        "object": "the sons of Kohath from among the sons of Levi",
+        "place": "",
+        "mechanism": "census by families and by the house of their fathers",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary",
+        "quote": "From thirty years old and upward even until fifty years old, all that enter into the host, to do the work in the tabernacle of the congregation.",
+        "claim": "The count covers Kohathite men from 30 to 50 years old who join the service to work in the tabernacle of the congregation.",
+        "actor": "sons of Kohath",
+        "action": "enter into the host, to do the work",
+        "object": "the work in the tabernacle of the congregation",
+        "place": "tabernacle of the congregation",
+        "mechanism": "age limit for service (thirty to fifty years old)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6e67b30df351c0a9d86614fe11c2223f53c1d82718985d877414fc341b21903e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Shall a child be born unto him that is an hundred years old?",
+        "claim": "Questions whether biological reproduction can occur at age 100",
+        "actor": "Abraham",
+        "action": "born",
+        "object": "child",
+        "place": "",
+        "mechanism": "reproduction",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and shall Sarah, that is ninety years old, bear?",
+        "claim": "Questions whether a woman aged 90 can bear a child",
+        "actor": "Sarah",
+        "action": "bear",
+        "object": "child",
+        "place": "",
+        "mechanism": "reproduction",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Sarah thy wife shall bear thee a son indeed",
+        "claim": "States that Sarah will bear a son despite being aged 90",
+        "actor": "Sarah",
+        "action": "bear",
+        "object": "son",
+        "place": "",
+        "mechanism": "reproduction",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

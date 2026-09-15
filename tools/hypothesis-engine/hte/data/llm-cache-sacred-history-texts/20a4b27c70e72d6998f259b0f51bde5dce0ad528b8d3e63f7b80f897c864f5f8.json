@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d08785b661eacfc16c972668e81cdbbd58bdbd4a1ab9b066b8a1852647aabe7b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "on the sixth day they gathered twice as much bread, two omers for one man",
+        "claim": "The people gathered twice as much bread on the sixth day",
+        "actor": "they",
+        "action": "gathered",
+        "object": "bread",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "all the rulers of the congregation came and told Moses",
+        "claim": "The rulers of the congregation approached and informed Moses",
+        "actor": "all the rulers of the congregation",
+        "action": "came and told",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

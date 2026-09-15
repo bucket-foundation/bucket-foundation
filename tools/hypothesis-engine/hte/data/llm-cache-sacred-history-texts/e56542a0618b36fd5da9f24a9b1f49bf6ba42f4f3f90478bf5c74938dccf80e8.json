@@ -1,0 +1,41 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4b80707a93245bdee25b7958daff2ed13a17e2ffa88eb5c9972b9a5909891b14",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD went his way",
+        "claim": "The LORD departed",
+        "actor": "the LORD",
+        "action": "went",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "as soon as he had left communing with Abraham",
+        "claim": "The LORD ceased communion with Abraham",
+        "actor": "he",
+        "action": "left communing",
+        "object": "Abraham",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Abraham returned unto his place",
+        "claim": "Abraham returned to his dwelling",
+        "actor": "Abraham",
+        "action": "returned",
+        "place": "his place",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

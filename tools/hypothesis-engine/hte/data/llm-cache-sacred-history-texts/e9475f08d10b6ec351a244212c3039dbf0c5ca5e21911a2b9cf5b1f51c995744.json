@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c26e11562bbf1942682403bec6681336573b774d86981c516a6a7a4ac278f86a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he spread abroad the tent over the tabernacle, and put the covering of the tent above upon it",
+        "claim": "He spread the tent over the tabernacle and put the tent covering above it",
+        "actor": "he",
+        "action": "spread abroad and put",
+        "object": "the tent and the covering of the tent",
+        "place": "over the tabernacle and upon it",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "423ea5a5f9eb569c3aa2023c9d3ff614aef9e947e27819c6798ee39cceec0c0c",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "4:1 And the LORD spake unto Moses, saying,",
+        "claim": "The text says the LORD spoke to Moses, which introduces the rules that follow.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "norm",
+        "tier": "primary-text",
+        "quote": "4:2 Speak unto the children of Israel, saying, If a soul shall sin through ignorance against any of the commandments of the LORD concerning things which ought not to be done, and shall do against any of them:",
+        "claim": "Moses is told to tell the children of Israel about a case: a person who breaks one of the LORD's prohibitions through ignorance, meaning without intending to.",
+        "actor": "Moses (instructed to speak)",
+        "action": "speak unto / legislate for",
+        "object": "the children of Israel; a soul sinning through ignorance",
+        "mechanism": "conditional law covering unintentional breaking of the LORD's prohibitions",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "norm",
+        "tier": "primary-text",
+        "quote": "4:3 If the priest that is anointed do sin according to the sin of the people;",
+        "claim": "The law covers a specific case: the anointed priest sins, and his sin counts as the sin of the people.",
+        "actor": "the priest that is anointed",
+        "action": "do sin",
+        "object": "according to the sin of the people",
+        "mechanism": "the anointed priest's sin is linked to the people's guilt",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "norm",
+        "tier": "primary-text",
+        "quote": "then let him bring for his sin, which he hath sinned, a young bullock without blemish unto the LORD for a sin offering.",
+        "claim": "The fix required when the anointed priest sins is to bring a young bullock without blemish to the LORD as a sin offering.",
+        "actor": "the priest that is anointed",
+        "action": "bring",
+        "object": "a young bullock without blemish",
+        "mechanism": "sin offering to the LORD",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

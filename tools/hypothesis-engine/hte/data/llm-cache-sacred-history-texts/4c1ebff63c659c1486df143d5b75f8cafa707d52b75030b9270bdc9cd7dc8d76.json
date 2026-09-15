@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3b9b2af27180a53f9e579e4dd90a0290ed0e5ba7696525a110b81a96fe681787",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And I, behold, I have taken the Levites from among the children of Israel instead of all the firstborn that openeth the matrix among the children of Israel",
+        "claim": "God took the Levites from among Israel to serve in place of the firstborn",
+        "actor": "I",
+        "action": "have taken",
+        "object": "the Levites",
+        "place": "among the children of Israel",
+        "mechanism": "instead of all the firstborn",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "on the day that I smote all the firstborn in the land of Egypt",
+        "claim": "God smote all the firstborn in the land of Egypt",
+        "actor": "I",
+        "action": "smote",
+        "object": "all the firstborn",
+        "place": "in the land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "I hallowed unto me all the firstborn in Israel",
+        "claim": "God hallowed all the firstborn in Israel",
+        "actor": "I",
+        "action": "hallowed",
+        "object": "all the firstborn",
+        "place": "in Israel",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1cd86012840005f885f2852965985565ff79b266d4d3d908014471dabd820204",
+  "response": {
+    "items": [
+      {
+        "quote": "Moses brought Israel from the Red sea",
+        "claim": "Moses led Israel away from the Red Sea",
+        "kind": "textual",
+        "tier": "T3",
+        "actor": "Moses",
+        "action": "brought",
+        "object": "Israel",
+        "place": "Red sea",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "they went out into the wilderness of Shur",
+        "claim": "Israel departed into the wilderness of Shur",
+        "kind": "textual",
+        "tier": "T3",
+        "actor": "they (Israel)",
+        "action": "went out",
+        "place": "wilderness of Shur",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "they went three days in the wilderness, and found no water",
+        "claim": "Israel traveled for three days in the wilderness without locating water",
+        "kind": "textual",
+        "tier": "T3",
+        "actor": "they (Israel)",
+        "action": "went, found",
+        "object": "water",
+        "place": "wilderness",
+        "mechanism": "three days",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

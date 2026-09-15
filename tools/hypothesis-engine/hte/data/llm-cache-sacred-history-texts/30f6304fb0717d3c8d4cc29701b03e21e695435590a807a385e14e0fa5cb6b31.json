@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "dbc9b108030c085379ca2cd68e5084e254ef1f777b438666d964b22d5fa2872a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "In the place where the burnt offering is killed shall the sin offering be killed before the LORD",
+        "claim": "The sin offering must be killed in the place where the burnt offering is killed, before the LORD",
+        "actor": "",
+        "action": "killed",
+        "object": "sin offering",
+        "place": "the place where the burnt offering is killed",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "it is most holy",
+        "claim": "The sin offering is most holy",
+        "actor": "",
+        "action": "is",
+        "object": "it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

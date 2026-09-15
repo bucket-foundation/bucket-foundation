@@ -1,0 +1,43 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c7a50c496c76f5c90be951a8ce94e85c28bf7b445fd5e7d7a002955f0e4597a2",
+  "response": {
+    "items": [
+      {
+        "kind": "oral_tradition",
+        "tier": "T4",
+        "quote": "And the people thirsted there for water",
+        "claim": "The Israelites experienced thirst in the wilderness during the Exodus journey",
+        "mechanism": "thirst",
+        "place": "wilderness",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "oral_tradition",
+        "tier": "T4",
+        "quote": "the people murmured against Moses, and said, Wherefore is this that thou hast brought us up out of Egypt, to kill us and our children and our cattle with thirst?",
+        "claim": "The people attributed thirst as the physical mechanism by which they and their livestock would be killed",
+        "mechanism": "thirst",
+        "actor": "people",
+        "action": "murmured",
+        "object": "Moses",
+        "place": "Egypt",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "oral_tradition",
+        "tier": "T4",
+        "quote": "they be almost ready to stone me",
+        "claim": "The people threatened stoning as a mechanism of violence against Moses",
+        "mechanism": "stoning",
+        "actor": "people",
+        "object": "Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

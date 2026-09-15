@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "5b5a68651706dd379cd8d3d3a76fed6b14da6b04c63b7df8919d59be02da7923",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And it came to pass on the morrow, that Moses said unto the people, Ye have sinned a great sin: and now I will go up unto the LORD; peradventure I shall make an atonement for your sin.",
+        "claim": "On the next day, Moses told the people they had committed a great sin. He said he would go up to the LORD and might be able to make atonement for it. The text shows Moses unsure ('peradventure') whether atonement would work. The document only gives the verse number 32:30. Saying it comes from Exodus, and what the sin was, is model-prior (unverified) and is not stated in the evidence text.",
+        "actor": "Moses",
+        "action": "announced the people's great sin and his intent to go up to the LORD to seek atonement",
+        "object": "the people's sin",
+        "mechanism": "intercession / atonement sought through Moses going up to the LORD",
+        "stance": "negative",
+        "place": "",
+        "year": null
+      }
+    ]
+  }
+}

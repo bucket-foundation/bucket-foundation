@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5f50bbc4468729b504583b0dc50ee2b29223aff09ba64f76d6a1327963732f83",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke/commanded Moses",
+        "actor": "The LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Speak unto the children of Israel, and say unto them, When a man shall make a singular vow, the persons shall be for the LORD by thy estimation",
+        "claim": "Moses is commanded to instruct the Israelites regarding vow practices and valuation",
+        "actor": "Moses",
+        "action": "Speak",
+        "object": "the children of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "When a man shall make a singular vow, the persons shall be for the LORD by thy estimation",
+        "claim": "A man making a vow dedicates persons to the LORD per a valuation",
+        "actor": "a man",
+        "action": "make",
+        "object": "a singular vow",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

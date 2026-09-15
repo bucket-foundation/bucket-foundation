@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1735d1c260ec3d25ae01ddeedbd3698d22cea4d91ac99383f3421c8592397675",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "All that were numbered of the Levites, which Moses and Aaron numbered at the commandment of the LORD, throughout their families, all the males from a month old and upward, were twenty and two thousand.",
+        "claim": "Census of male Levites aged one month or older by Moses and Aaron, commanded by the LORD, totaled 22,000.",
+        "actor": "Moses and Aaron",
+        "action": "numbered",
+        "object": "male Levites",
+        "place": "",
+        "mechanism": "census/counting",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

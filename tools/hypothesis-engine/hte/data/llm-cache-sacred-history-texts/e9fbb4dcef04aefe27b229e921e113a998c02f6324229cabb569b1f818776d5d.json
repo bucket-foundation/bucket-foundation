@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6cd799d11163eb738acf7c09203b3659db30594ee4319c9f5c9e33829a90c576",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "At even, then ye shall know that the LORD hath brought you out from the land of Egypt",
+        "claim": "At evening, the Israelites will have the knowledge that the LORD has liberated them from Egypt",
+        "actor": "the LORD",
+        "action": "brought...out",
+        "object": "ye",
+        "place": "Egypt",
+        "mechanism": "even",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And in the morning, then ye shall see the glory of the LORD",
+        "claim": "In the morning, the Israelites will witness the glory of the LORD",
+        "actor": "ye",
+        "action": "see",
+        "object": "the glory of the LORD",
+        "place": "",
+        "mechanism": "morning",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD shall give you in the evening flesh to eat",
+        "claim": "The LORD will provide flesh to eat in the evening",
+        "actor": "the LORD",
+        "action": "give",
+        "object": "flesh",
+        "place": "",
+        "mechanism": "evening",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and in the morning bread to the full",
+        "claim": "Bread will be provided to satiety in the morning",
+        "actor": "",
+        "action": "",
+        "object": "bread",
+        "place": "",
+        "mechanism": "morning",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

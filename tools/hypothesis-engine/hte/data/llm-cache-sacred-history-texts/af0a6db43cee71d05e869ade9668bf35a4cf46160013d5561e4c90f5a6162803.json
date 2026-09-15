@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "43a4f07796ef9e7bcdd08d06b43b1d18fa8072ace59bc412f2218ebf45bdf7da",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And it came to pass on the morrow, that Moses sat to judge the people: and the people stood by Moses from the morning unto the evening.",
+        "claim": "Moses sat to judge the people, who stood by him from morning to evening.",
+        "actor": "Moses",
+        "action": "sat to judge / judge",
+        "object": "the people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

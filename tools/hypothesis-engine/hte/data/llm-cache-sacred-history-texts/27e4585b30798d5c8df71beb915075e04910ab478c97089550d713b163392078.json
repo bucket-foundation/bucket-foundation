@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7c5683a6b0f4052fd9b5a19c400bb11a96a6c156e10b07d21b8092b77515abad",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they made coats of fine linen of woven work for Aaron, and for his sons",
+        "claim": "Coats of fine linen were made for Aaron and his sons",
+        "actor": "they",
+        "action": "made",
+        "object": "coats",
+        "mechanism": "woven work",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And a mitre of fine linen, and goodly bonnets of fine linen, and linen breeches of fine twined linen",
+        "claim": "A mitre, bonnets, and breeches of fine linen were made",
+        "actor": "",
+        "action": "",
+        "object": "mitre, bonnets, breeches",
+        "mechanism": "",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And a girdle of fine twined linen, and blue, and purple, and scarlet, of needlework",
+        "claim": "A girdle of fine twined linen with blue, purple, and scarlet needlework was made",
+        "actor": "",
+        "action": "",
+        "object": "girdle",
+        "mechanism": "needlework",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses regarding the garments",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "mechanism": "",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "28f05b56a379b1981e669e2f6718fe57c2ea7eee964cc0fa90233e11f7ebce71",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And Moses and Aaron and his sons washed their hands and their feet thereat",
+        "claim": "Moses, Aaron, and his sons washed their hands and feet at the basin location",
+        "actor": "Moses, Aaron, his sons",
+        "action": "washed",
+        "object": "hands and feet",
+        "place": "thereat",
+        "mechanism": "washing",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "When they went into the tent of the congregation, and when they came near unto the altar, they washed; as the LORD commanded Moses",
+        "claim": "They washed when entering the tent of congregation and approaching the altar, in obedience to the LORD's command to Moses",
+        "actor": "they",
+        "action": "washed",
+        "object": "hands and feet (implied)",
+        "place": "tent of the congregation, altar",
+        "mechanism": "washing per command",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7df57beaa79e6c78cfb6e3fc55feda130c7db2ffd55ebce553860cb276cb1753",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And the LORD said unto Moses",
+        "claim": "The LORD commanded Moses",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Go on before the people",
+        "claim": "Moses was commanded to go before the people",
+        "actor": "Moses",
+        "action": "Go",
+        "object": "",
+        "place": "before the people",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "take with thee of the elders of Israel",
+        "claim": "Moses was commanded to take the elders of Israel with him",
+        "actor": "Moses",
+        "action": "take",
+        "object": "the elders of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "thy rod, wherewith thou smotest the river",
+        "claim": "Moses smote the river with his rod",
+        "actor": "Moses",
+        "action": "smotest",
+        "object": "the river",
+        "place": "",
+        "mechanism": "thy rod",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "take in thine hand, and go",
+        "claim": "Moses was commanded to take the rod in hand and go",
+        "actor": "Moses",
+        "action": "take",
+        "object": "thy rod",
+        "place": "",
+        "mechanism": "thine hand",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

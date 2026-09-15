@@ -1,0 +1,87 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f90b46fbca423bd29835530690c3a9e4fbd90c7f683d9e0990011458db81e43c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD said unto Moses, Depart, and go up hence, thou and the people which thou hast brought up out of the land of Egypt, unto the land which I sware unto Abraham, to Isaac, and to Jacob, saying, Unto thy seed will I give it:",
+        "claim": "The LORD commanded Moses and the people to depart from Egypt to the promised land",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses and the people",
+        "place": "from the land of Egypt, unto the land which I sware unto Abraham, to Isaac, and to Jacob",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And I will send an angel before thee",
+        "claim": "The LORD will send an angel to precede the people",
+        "actor": "I",
+        "action": "will send",
+        "object": "an angel",
+        "place": "before thee",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and I will drive out the Canaanite, the Amorite, and the Hittite, and the Perizzite, the Hivite, and the Jebusite:",
+        "claim": "The LORD will drive out the Canaanite and related peoples from the land",
+        "actor": "I",
+        "action": "will drive out",
+        "object": "the Canaanite, the Amorite, and the Hittite, and the Perizzite, the Hivite, and the Jebusite",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "for I will not go up in the midst of thee",
+        "claim": "The LORD will not go up in the midst of the people",
+        "actor": "I",
+        "action": "will not go up",
+        "object": "",
+        "place": "the midst of thee",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "lest I consume thee in the way",
+        "claim": "The LORD threatens to consume the people on their journey",
+        "actor": "I",
+        "action": "consume",
+        "object": "thee",
+        "place": "in the way",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "for thou art a stiffnecked people",
+        "claim": "The people are characterized as stiffnecked",
+        "actor": "thou",
+        "action": "art",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

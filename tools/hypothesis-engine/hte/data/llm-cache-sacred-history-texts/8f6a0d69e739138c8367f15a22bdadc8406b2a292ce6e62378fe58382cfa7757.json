@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "446b17cf76947fbd01db338522bf703c3d226e82d681bef799298a9646975ffe",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Because there were no graves in Egypt, hast thou taken us away to die in the wilderness? wherefore hast thou dealt thus with us, to carry us forth out of Egypt?",
+        "claim": "Moses took the Israelites from Egypt to the wilderness to die",
+        "actor": "thou (Moses)",
+        "action": "taken away / carried forth",
+        "object": "us",
+        "place": "Egypt, wilderness",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Is not this the word that we did tell thee in Egypt, saying, Let us alone, that we may serve the Egyptians?",
+        "claim": "The Israelites told Moses in Egypt they should let them serve the Egyptians",
+        "actor": "we",
+        "action": "tell",
+        "object": "the word",
+        "place": "Egypt",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "For it had been better for us to serve the Egyptians, than that we should die in the wilderness.",
+        "claim": "It would have been better to serve the Egyptians than to die in the wilderness",
+        "action": "had been better",
+        "object": "serve the Egyptians, die in the wilderness",
+        "place": "Egypt, wilderness",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

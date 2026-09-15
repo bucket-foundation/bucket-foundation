@@ -1,0 +1,77 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "41371b2446705d1589cd11046895ca0984ba95151ca4ba606c44a916fb6129c2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "When thou goest to return into Egypt",
+        "claim": "Moses will return to Egypt",
+        "actor": "thou",
+        "action": "goest to return",
+        "place": "Egypt",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "see that thou do all those wonders before Pharaoh",
+        "claim": "Moses will perform wonders before Pharaoh",
+        "actor": "thou",
+        "action": "do all those wonders",
+        "object": "all those wonders",
+        "place": "before Pharaoh",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "which I have put in thine hand",
+        "claim": "The LORD has placed wonders in Moses's hand",
+        "actor": "I",
+        "action": "have put",
+        "object": "wonders",
+        "place": "thine hand",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "I will harden his heart",
+        "claim": "The LORD will harden Pharaoh's heart",
+        "actor": "I",
+        "action": "will harden",
+        "object": "his heart",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he shall not let the people go",
+        "claim": "Pharaoh will not permit the people to leave",
+        "actor": "he",
+        "action": "shall not let the people go",
+        "object": "the people",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

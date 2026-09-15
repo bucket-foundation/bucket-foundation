@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "13d6227ab73a3f8503cdd173ff40485f74039996b959d5658cedb342e3a97bbc",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Abraham said of Sarah his wife, She is my sister",
+        "claim": "Abraham declared that Sarah was his sister",
+        "actor": "Abraham",
+        "action": "said",
+        "object": "Sarah",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Abimelech king of Gerar sent, and took Sarah",
+        "claim": "Abimelech, king of Gerar, sent for and took Sarah",
+        "actor": "Abimelech king of Gerar",
+        "action": "sent, and took",
+        "object": "Sarah",
+        "place": "Gerar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

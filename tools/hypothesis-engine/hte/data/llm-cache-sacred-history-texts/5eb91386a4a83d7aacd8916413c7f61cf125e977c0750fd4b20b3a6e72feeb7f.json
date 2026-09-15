@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "37dac6a583c9781cdccc3943253a3eca28348b01883590e6c2f1fd0011dce06e",
+  "response": {
+    "items": [
+      {
+        "quote": "And Ephron answered Abraham, saying unto him",
+        "claim": "Ephron answered Abraham",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "Ephron",
+        "action": "answered",
+        "object": "Abraham",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "the land is worth four hundred shekels of silver",
+        "claim": "Ephron valued the land at four hundred shekels of silver",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "Ephron",
+        "action": "valued",
+        "object": "land",
+        "mechanism": "valuation",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "bury therefore thy dead",
+        "claim": "Abraham is instructed to bury his dead",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "Abraham",
+        "action": "bury",
+        "object": "dead",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

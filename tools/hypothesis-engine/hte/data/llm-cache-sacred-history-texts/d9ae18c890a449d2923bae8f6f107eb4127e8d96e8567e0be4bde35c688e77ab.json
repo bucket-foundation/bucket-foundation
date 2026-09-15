@@ -1,0 +1,21 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "57e2d4ce44f701fb397dafb4e8f02d1277de2db747ac596c0e5d3e54f0cfd8a0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And it came to pass, when God destroyed the cities of the plain, that God remembered Abraham, and sent Lot out of the midst of the overthrow, when he overthrew the cities in the which Lot dwelt.",
+        "claim": "God destroyed the cities of the plain and rescued Lot from the destruction.",
+        "actor": "God",
+        "action": "destroyed",
+        "object": "the cities of the plain",
+        "place": "cities of the plain",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

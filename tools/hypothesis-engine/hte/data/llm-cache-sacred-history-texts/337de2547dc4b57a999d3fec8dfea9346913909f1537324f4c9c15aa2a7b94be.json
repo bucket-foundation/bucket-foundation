@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1868339b8c20b1bb26e28c6319e40d0ce3a52caebcdc850cfc436b3b3e58ba0b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou art a mighty prince among us",
+        "claim": "Abraham is acknowledged by the children of Heth as a mighty prince among them",
+        "actor": "Abraham",
+        "action": "art",
+        "object": "mighty prince",
+        "place": "among us",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "in the choice of our sepulchres bury thy dead; none of us shall withhold from thee his sepulchre, but that thou mayest bury thy dead",
+        "claim": "The children of Heth offer Abraham unrestricted choice of their burial places for his dead",
+        "actor": "children of Heth",
+        "action": "withhold",
+        "object": "sepulchre",
+        "place": "sepulchres",
+        "mechanism": "choice",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

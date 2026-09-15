@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a48876a1137ab5f793465cdaf34ab31921e864ac7392913e1f6a252f5a3a8d8b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses built an altar, and called the name of it Jehovahnissi",
+        "claim": "Moses built an altar",
+        "actor": "Moses",
+        "action": "built",
+        "object": "an altar",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses built an altar, and called the name of it Jehovahnissi",
+        "claim": "Moses called the altar's name Jehovahnissi",
+        "actor": "Moses",
+        "action": "called",
+        "object": "the name of it",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Because the LORD hath sworn that the LORD will have war with Amalek from generation to generation",
+        "claim": "The LORD swore that the LORD will have perpetual war with Amalek",
+        "actor": "the LORD",
+        "action": "sworn",
+        "object": "Amalek",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

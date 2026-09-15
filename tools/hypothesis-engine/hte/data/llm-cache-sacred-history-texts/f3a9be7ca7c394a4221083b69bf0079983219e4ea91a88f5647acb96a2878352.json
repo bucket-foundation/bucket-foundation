@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "422c5b1f0180c647d9b0b585d738215df3ff8d31d1aabca89a2efbf1dd1f60b3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD said unto Moses, Stretch forth thine hand toward heaven, that there may be hail in all the land of Egypt, upon man, and upon beast, and upon every herb of the field, throughout the land of Egypt.",
+        "claim": "Stretching one's hand toward heaven causes hail to fall upon Egypt",
+        "actor": "Moses",
+        "action": "Stretch forth thine hand toward heaven",
+        "object": "thine hand",
+        "place": "Egypt",
+        "mechanism": "hand stretching",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

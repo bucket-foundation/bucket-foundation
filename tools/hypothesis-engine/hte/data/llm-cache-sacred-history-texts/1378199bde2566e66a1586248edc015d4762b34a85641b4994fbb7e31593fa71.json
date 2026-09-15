@@ -1,0 +1,47 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "8016e5a6f0a4b3d40a24cb3fbb5fef9110eb02a519a2bdb2e0874583342e7952",
+  "response": {
+    "items": [
+      {
+        "kind": "speech-act",
+        "tier": "primary-text",
+        "quote": "And Abraham answered and said, Behold now, I have taken upon me to speak unto the LORD, which am but dust and ashes:",
+        "claim": "Abraham speaks to the LORD while calling himself humble, describing himself as 'but dust and ashes'.",
+        "actor": "Abraham",
+        "action": "addresses the LORD with self-abasement",
+        "object": "the LORD",
+        "stance": "positive",
+        "year": null,
+        "mechanism": "Humble language frames a bold request to God"
+      },
+      {
+        "kind": "conditional-question",
+        "tier": "primary-text",
+        "quote": "Peradventure there shall lack five of the fifty righteous: wilt thou destroy all the city for lack of five?",
+        "claim": "Abraham asks whether the LORD would destroy the whole city if it had five fewer than the fifty righteous people discussed earlier.",
+        "actor": "Abraham",
+        "action": "asks for a lower threshold of righteous people",
+        "object": "all the city",
+        "stance": "negative",
+        "place": "the city (not named in this excerpt)",
+        "year": null,
+        "mechanism": "Bargaining step by step: lowering the number of righteous people needed to spare the city"
+      },
+      {
+        "kind": "conditional-commitment",
+        "tier": "primary-text",
+        "quote": "And he said, If I find there forty and five, I will not destroy it.",
+        "claim": "The LORD agrees not to destroy the city if forty-five righteous people are found there.",
+        "actor": "the LORD",
+        "action": "promises not to destroy the city if a condition is met",
+        "object": "the city",
+        "stance": "positive",
+        "place": "the city (not named in this excerpt)",
+        "year": null,
+        "mechanism": "Sparing the city depends on finding at least forty-five righteous people"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f12df737b5ff949cad1213e880cc42aa829ab5cc8260fb8d8ea669156fa774ef",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses took of the anointing oil, and of the blood which was upon the altar",
+        "claim": "Moses took anointing oil and blood from the altar",
+        "actor": "Moses",
+        "action": "took",
+        "object": "anointing oil, blood",
+        "place": "altar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "sprinkled it upon Aaron, and upon his garments, and upon his sons, and upon his sons' garments with him",
+        "claim": "Moses sprinkled anointing oil and blood upon Aaron, his garments, his sons, and their garments",
+        "actor": "Moses",
+        "action": "sprinkled",
+        "object": "Aaron, his garments, his sons, his sons' garments",
+        "place": "",
+        "mechanism": "sprinkling",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "sanctified Aaron, and his garments, and his sons, and his sons' garments with him",
+        "claim": "Moses sanctified Aaron, his garments, his sons, and their garments",
+        "actor": "Moses",
+        "action": "sanctified",
+        "object": "Aaron, his garments, his sons, his sons' garments",
+        "place": "",
+        "mechanism": "anointing",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

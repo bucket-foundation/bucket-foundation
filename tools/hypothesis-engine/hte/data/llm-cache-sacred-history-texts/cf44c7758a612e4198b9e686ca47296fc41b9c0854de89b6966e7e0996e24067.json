@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8abef93f04eb3e47ea81052d3057c11cc3feb2a19801f7181cfb086e388c2b28",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Except the God of my father, the God of Abraham, and the fear of Isaac, had been with me, surely thou hadst sent me away now empty.",
+        "claim": "Jacob asserts that God's presence protected him from being sent away destitute by Laban",
+        "actor": "God of my father, God of Abraham, fear of Isaac",
+        "action": "had been with me",
+        "object": "me",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "God hath seen mine affliction and the labour of my hands, and rebuked thee yesternight.",
+        "claim": "God witnessed Jacob's suffering and labor, and rebuked Laban during the previous night",
+        "actor": "God",
+        "action": "hath seen, rebuked",
+        "object": "affliction and labour of my hands, thee",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

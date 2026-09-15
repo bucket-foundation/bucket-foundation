@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1102017b102a789a68d7fb8621f9205847f6e38ccd336377f1e8f76e6f267901",
+  "response": {
+    "items": [
+      {
+        "kind": "material",
+        "tier": "T4",
+        "quote": "his sons carried him into the land of Canaan, and buried him in the cave of the field of Machpelah",
+        "claim": "Jacob's sons transported and buried his body in the cave of Machpelah in Canaan",
+        "actor": "his sons",
+        "action": "carried and buried",
+        "object": "him",
+        "place": "Canaan, cave of Machpelah",
+        "mechanism": "transportation and burial",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "material",
+        "tier": "T4",
+        "quote": "which Abraham bought with the field for a possession of a buryingplace of Ephron the Hittite",
+        "claim": "Abraham purchased the field of Machpelah from Ephron the Hittite specifically to serve as a burial place",
+        "actor": "Abraham",
+        "action": "bought",
+        "object": "the field",
+        "place": "Machpelah",
+        "mechanism": "land purchase",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

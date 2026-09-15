@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "35ed5acd3b15c5efc3c08e8d23f84a931d0bd516813842af8333dddb95551d5e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Ephron dwelt among the children of Heth",
+        "claim": "Ephron lived among the Hittites",
+        "actor": "Ephron",
+        "action": "dwelt",
+        "place": "among the children of Heth",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Ephron the Hittite answered Abraham in the audience of the children of Heth, even of all that went in at the gate of his city, saying",
+        "claim": "Ephron the Hittite publicly responded to Abraham",
+        "actor": "Ephron the Hittite",
+        "action": "answered",
+        "object": "Abraham",
+        "place": "in the audience of the children of Heth, even of all that went in at the gate of his city",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the field give I thee, and the cave that is therein, I give it thee; in the presence of the sons of my people give I it thee",
+        "claim": "Ephron offered to give Abraham a field with a cave in the presence of his people",
+        "actor": "Ephron",
+        "action": "give",
+        "object": "the field and the cave that is therein",
+        "place": "in the presence of the sons of my people",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

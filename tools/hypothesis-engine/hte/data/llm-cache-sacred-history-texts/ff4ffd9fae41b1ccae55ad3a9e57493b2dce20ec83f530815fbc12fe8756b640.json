@@ -1,0 +1,20 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2833f9e5b977618f6ce967d0ffc3a676fc7c1f08d3d019d3933d63a136cbca94",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham journeyed from thence toward the south country, and dwelled between Kadesh and Shur, and sojourned in Gerar.",
+        "claim": "Abraham journeyed toward the south country and dwelled between Kadesh and Shur, sojourning in Gerar",
+        "actor": "Abraham",
+        "action": "journeyed, dwelled, sojourned",
+        "place": "south country, Kadesh, Shur, Gerar",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

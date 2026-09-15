@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cd3a2ebe5733bd39f790b9a88c401c338b98d35272564c92a409ece0e708c0f6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Abraham hastened into the tent unto Sarah, and said, Make ready quickly three measures of fine meal, knead it, and make cakes upon the hearth.",
+        "claim": "Abraham instructed Sarah to prepare three measures of fine meal as cakes on the hearth.",
+        "actor": "Abraham",
+        "action": "hastened and said",
+        "object": "three measures of fine meal",
+        "place": "tent, hearth",
+        "mechanism": "kneading and making cakes",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

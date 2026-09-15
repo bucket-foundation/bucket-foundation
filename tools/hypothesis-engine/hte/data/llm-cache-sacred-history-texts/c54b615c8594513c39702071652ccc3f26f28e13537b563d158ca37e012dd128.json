@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5dac841728d6b2c45f6ae67e8bce96c008736982c830f8c3526f0d6d196097da",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the sea, that the waters may come again upon the Egyptians, upon their chariots, and upon their horsemen.",
+        "claim": "Stretching one's hand over the sea causes the waters to return and engulf Egyptian military forces",
+        "actor": "Moses",
+        "action": "Stretch out thine hand",
+        "object": "the sea / the waters",
+        "place": "the sea",
+        "mechanism": "hand stretching over sea causes waters to return",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

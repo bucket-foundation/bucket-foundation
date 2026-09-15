@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5b446b5f5b330be1974149a0c514f98303ee9920e252e4a96cd718c64e399be9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "But unto the sons of the concubines, which Abraham had, Abraham gave gifts, and sent them away from Isaac his son, while he yet lived, eastward, unto the east country.",
+        "claim": "Abraham sent the sons of his concubines to the east country during his lifetime",
+        "actor": "Abraham",
+        "action": "sent them away",
+        "object": "sons of the concubines",
+        "place": "east country",
+        "mechanism": "sent eastward",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

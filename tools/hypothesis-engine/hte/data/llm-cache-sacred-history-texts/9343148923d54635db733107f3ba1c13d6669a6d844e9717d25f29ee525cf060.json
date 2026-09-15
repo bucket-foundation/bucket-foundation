@@ -1,0 +1,58 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "05c235f1e92b7f4a95a4fb4ee714379f4f845bed005886bae0010f07cd87a440",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And God remembered Noah, and every living thing, and all the cattle that was with him in the ark",
+        "claim": "God remembered Noah and all living creatures in the ark",
+        "actor": "God",
+        "action": "remembered",
+        "object": "Noah, every living thing, all the cattle",
+        "place": "the ark",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and God made a wind to pass over the earth, and the waters asswaged",
+        "claim": "God made a wind pass over the earth, causing the flood waters to subside",
+        "actor": "God",
+        "action": "made a wind to pass",
+        "object": "the earth, the waters",
+        "place": "the earth",
+        "mechanism": "wind",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "The fountains also of the deep and the windows of heaven were stopped, and the rain from heaven was restrained",
+        "claim": "The sources of the flood (fountains of the deep and rain from heaven) were stopped",
+        "action": "stopped, restrained",
+        "object": "fountains of the deep, windows of heaven, rain from heaven",
+        "place": "the deep, heaven",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the waters returned from off the earth continually: and after the end of the hundred and fifty days the waters were abated",
+        "claim": "After 150 days the flood waters receded completely from the earth",
+        "actor": "the waters",
+        "action": "returned, were abated",
+        "object": "the earth",
+        "place": "the earth",
+        "mechanism": "passage of 150 days",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

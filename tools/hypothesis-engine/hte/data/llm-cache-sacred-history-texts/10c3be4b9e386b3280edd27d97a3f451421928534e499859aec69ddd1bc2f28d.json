@@ -1,0 +1,42 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3cc356ca1156307cd2f62fa2ce8244933f07dfb0fd4ca047d0fb7fb4d4646a48",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD appeared unto him the same night",
+        "claim": "The LORD appeared to him",
+        "actor": "the LORD",
+        "action": "appeared",
+        "object": "him",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "I am the God of Abraham thy father",
+        "claim": "The LORD identified himself as the God of Abraham",
+        "actor": "I",
+        "action": "am",
+        "object": "the God of Abraham thy father",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "I am with thee, and will bless thee, and multiply thy seed",
+        "claim": "The LORD promised to be with him, bless him, and multiply his offspring",
+        "actor": "I",
+        "action": "am with, will bless, will multiply",
+        "object": "thee, thy seed",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

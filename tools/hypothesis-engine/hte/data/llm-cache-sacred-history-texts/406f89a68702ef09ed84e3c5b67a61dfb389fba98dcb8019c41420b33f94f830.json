@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7c0888f45d7fd53360daa0e3aaff6bc1c9c593fb1d51c089ce6d07bed592d779",
+  "response": {
+    "items": [
+      {
+        "quote": "And ye shall not go out from the door of the tabernacle of the congregation, lest ye die: for the anointing oil of the LORD is upon you.",
+        "claim": "Persons must not depart from the door of the tabernacle of the congregation, lest they die, because the anointing oil of the LORD is upon them",
+        "kind": "textual",
+        "tier": "T3",
+        "actor": "ye",
+        "action": "shall not go out",
+        "object": "",
+        "place": "door of the tabernacle of the congregation",
+        "mechanism": "anointing oil of the LORD",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "And they did according to the word of Moses.",
+        "claim": "They acted according to the word of Moses",
+        "kind": "textual",
+        "tier": "T3",
+        "actor": "they",
+        "action": "did",
+        "object": "",
+        "place": "",
+        "mechanism": "word of Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

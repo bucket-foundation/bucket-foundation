@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "186948ed6309efd2a51ce9b7180fd613659b3c9a41f505de124b546113398517",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text (scriptural narrative; not independently corroborated)",
+        "quote": "And it came to pass at that time, that Abimelech and Phichol the chief captain of his host spake unto Abraham, saying, God is with thee in all that thou doest: 21:23 Now therefore swear unto me here by God that thou wilt not deal falsely with me, nor with my son, nor with my son\u2019s son: but according to the kindness that I have done unto thee, thou shalt do unto me, and to the land wherein thou hast sojourned.",
+        "claim": "The text says Abimelech and Phichol, the chief captain of his army, asked Abraham to swear by God that he would not deal falsely with Abimelech or his descendants for two generations. They also asked him to repay Abimelech's kindness to him and to the land where he had lived. They gave as their reason that God was with Abraham in everything he did. Passes 1 and 2 agree on this item; pass 3 was empty. That verses 21:22-23 come from Genesis (KJV) is model-prior, not something the document states.",
+        "actor": "Abimelech and Phichol (chief captain of Abimelech's host)",
+        "action": "requested a sworn oath of non-deception and reciprocal kindness",
+        "object": "Abraham",
+        "mechanism": "oath sworn by God, justified by Abimelech's prior kindness and the belief that God was with Abraham",
+        "place": "the land wherein Abraham had sojourned (not named in the passage)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

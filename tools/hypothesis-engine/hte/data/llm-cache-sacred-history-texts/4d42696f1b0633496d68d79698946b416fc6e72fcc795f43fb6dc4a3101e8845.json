@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "2ae09c466944b145b72494f566e271c126f8fe57cb58688f3baaf0bf475a661e",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "16:34 As the LORD commanded Moses, so Aaron laid it up before the Testimony, to be kept.",
+        "claim": "The text says that Aaron laid 'it' up before the Testimony to be kept, following what the LORD commanded Moses. This passage does not say what 'it' is. The idea that 'it' means the jar of manna comes from the surrounding verses (Exodus 16:32-33), which are not in the evidence. That idea is model-prior, an unverified recollection, and should not be treated as established.",
+        "actor": "Aaron",
+        "action": "laid up to be kept, as commanded to Moses",
+        "object": "it (not named in this passage; manna per model-prior, unverified)",
+        "place": "before the Testimony",
+        "mechanism": "divine command passed on through Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

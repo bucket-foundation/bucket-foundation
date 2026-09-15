@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "81d73ab7a6a0d8b75b639e38c56406a5a905c6eb9c9e32443cb0951de68dd851",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And when Moses' father in law saw all that he did to the people",
+        "claim": "Moses' father-in-law observed all that Moses did to the people",
+        "actor": "Moses' father in law",
+        "action": "saw",
+        "object": "all that he did to the people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "why sittest thou thyself alone, and all the people stand by thee from morning unto even?",
+        "claim": "Moses sits alone while all the people stand by him from morning to evening",
+        "actor": "thou, all the people",
+        "action": "sittest alone, stand by thee",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Because the people come unto me to enquire of God",
+        "claim": "The people come to Moses to inquire of God",
+        "actor": "the people",
+        "action": "come unto me",
+        "object": "",
+        "place": "",
+        "mechanism": "to enquire of God",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "When they have a matter, they come unto me; and I judge between one and another, and I do make them know the statutes of God, and his laws.",
+        "claim": "Moses judges disputes between people and teaches them God's statutes and laws",
+        "actor": "they, I",
+        "action": "judge, make them know",
+        "object": "a matter, the statutes of God, and his laws",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

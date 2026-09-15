@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "08c486c95ae458556c884d4c864b65f6e3ddf314b6a4d07ad11bcbb4d7e3f1d7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses stretched forth his rod toward heaven: and the LORD sent thunder and hail, and the fire ran along upon the ground; and the LORD rained hail upon the land of Egypt.",
+        "claim": "Moses stretched his rod toward heaven, and the Lord sent thunder, hail, and fire upon Egypt",
+        "actor": "Moses; the LORD",
+        "action": "stretched forth his rod; sent thunder and hail; rained hail",
+        "object": "his rod; thunder and hail; fire; hail",
+        "place": "heaven; ground; land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

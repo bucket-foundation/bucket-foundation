@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bc45f506a5981aacf0eee59afe95b2b0d0403f48530ab091feb67d746b8301d7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Now Moses kept the flock of Jethro",
+        "claim": "Moses kept the flock of Jethro",
+        "actor": "Moses",
+        "action": "kept",
+        "object": "the flock",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Jethro his father in law, the priest of Midian",
+        "claim": "Jethro was Moses's father-in-law and priest of Midian",
+        "actor": "Jethro",
+        "action": "was",
+        "object": "priest",
+        "place": "Midian",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and he led the flock to the backside of the desert",
+        "claim": "Moses led the flock to the backside of the desert",
+        "actor": "Moses",
+        "action": "led",
+        "object": "the flock",
+        "place": "the backside of the desert",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and came to the mountain of God, even to Horeb",
+        "claim": "Moses came to the mountain of God at Horeb",
+        "actor": "Moses",
+        "action": "came",
+        "object": "",
+        "place": "the mountain of God, even to Horeb",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

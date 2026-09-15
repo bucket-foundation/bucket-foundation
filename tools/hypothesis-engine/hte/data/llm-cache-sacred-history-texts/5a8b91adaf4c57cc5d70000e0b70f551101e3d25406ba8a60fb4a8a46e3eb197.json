@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "553ef9ad36b7ec2f74af6eaeba808b6d1c22d9d6df75ac1f4f69f4bb26501cf9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the people stood afar off",
+        "claim": "The people positioned themselves at a distance",
+        "actor": "the people",
+        "action": "stood",
+        "place": "afar off",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Moses drew near unto the thick darkness where God was",
+        "claim": "Moses approached the location of God's presence in the thick darkness",
+        "actor": "Moses",
+        "action": "drew near",
+        "place": "the thick darkness where God was",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

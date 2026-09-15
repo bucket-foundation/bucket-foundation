@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d7b71972120ce66b04c118558dc46b1b87e85c9b749cb13e137f097bae6d0d2c",
+  "response": {
+    "items": [
+      {
+        "quote": "And Abimelech said unto Abraham, What mean these seven ewe lambs which thou hast set by themselves?",
+        "claim": "Abraham set seven ewe lambs by themselves",
+        "kind": "textual",
+        "tier": "T1",
+        "actor": "Abraham",
+        "action": "set",
+        "object": "seven ewe lambs",
+        "place": "",
+        "mechanism": "by themselves",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "And Abimelech said unto Abraham, What mean these seven ewe lambs which thou hast set by themselves?",
+        "claim": "Abimelech questioned Abraham about the meaning of the seven ewe lambs",
+        "kind": "textual",
+        "tier": "T1",
+        "actor": "Abimelech",
+        "action": "said",
+        "object": "seven ewe lambs",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "And he said, For these seven ewe lambs shalt thou take of my hand, that they may be a witness unto me, that I have digged this well.",
+        "claim": "Abraham affirms having dug a well",
+        "kind": "textual",
+        "tier": "T1",
+        "actor": "Abraham",
+        "action": "digged",
+        "object": "well",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "And he said, For these seven ewe lambs shalt thou take of my hand, that they may be a witness unto me, that I have digged this well.",
+        "claim": "Abraham gives seven ewe lambs to Abimelech as witness to having dug the well",
+        "kind": "textual",
+        "tier": "T1",
+        "actor": "Abraham",
+        "action": "give",
+        "object": "seven ewe lambs",
+        "place": "",
+        "mechanism": "witness",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

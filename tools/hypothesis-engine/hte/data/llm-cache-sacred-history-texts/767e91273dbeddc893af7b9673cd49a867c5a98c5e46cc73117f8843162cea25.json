@@ -1,0 +1,91 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f84fb83918d751d870cf5cb8969919710fc09180d06e5292d4a11bce749ced7a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying, This shall be the law of the leper in the day of his cleansing",
+        "claim": "God instructed Moses on the law for cleansing a leper",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "law of the leper",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "He shall be brought unto the priest",
+        "claim": "A leper shall be brought to a priest for cleansing inspection",
+        "actor": "the leper",
+        "action": "brought",
+        "object": "the priest",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the priest shall go forth out of the camp; and the priest shall look, and, behold, if the plague of leprosy be healed in the leper",
+        "claim": "The priest shall go outside the camp and examine whether the leprosy has healed",
+        "actor": "the priest",
+        "action": "go forth / look",
+        "place": "out of the camp",
+        "object": "the plague of leprosy",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Then shall the priest command to take for him that is to be cleansed two birds alive and clean, and cedar wood, and scarlet, and hyssop",
+        "claim": "The priest shall command procurement of two live clean birds, cedar wood, scarlet, and hyssop",
+        "actor": "the priest",
+        "action": "command",
+        "object": "two birds alive and clean, and cedar wood, and scarlet, and hyssop",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the priest shall command that one of the birds be killed in an earthen vessel over running water",
+        "claim": "One bird shall be killed in an earthen vessel positioned over running water",
+        "actor": "the priest",
+        "action": "command",
+        "object": "one of the birds",
+        "mechanism": "killed in an earthen vessel over running water",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "As for the living bird, he shall take it, and the cedar wood, and the scarlet, and the hyssop, and shall dip them and the living bird in the blood of the bird that was killed over the running water",
+        "claim": "The living bird and materials shall be dipped into the blood of the slaughtered bird",
+        "actor": "he",
+        "action": "dip",
+        "object": "living bird, cedar wood, scarlet, and hyssop",
+        "mechanism": "in the blood of the bird that was killed",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he shall sprinkle upon him that is to be cleansed from the leprosy seven times, and shall pronounce him clean, and shall let the living bird loose into the open field",
+        "claim": "The priest shall sprinkle the person seven times, pronounce them clean, and release the living bird to the open field",
+        "actor": "he",
+        "action": "sprinkle / pronounce / let loose",
+        "object": "him that is to be cleansed / the living bird",
+        "place": "open field",
+        "mechanism": "seven times",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

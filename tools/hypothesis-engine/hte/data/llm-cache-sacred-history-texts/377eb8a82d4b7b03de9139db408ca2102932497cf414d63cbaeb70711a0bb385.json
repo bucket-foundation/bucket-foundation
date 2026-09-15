@@ -1,0 +1,44 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "c7f1789b6a67d1d8e94ae6e47f60197612f67999a86542b6d82f14b8555e2f9f",
+  "response": {
+    "items": [
+      {
+        "kind": "legal-prescription",
+        "tier": "primary-text",
+        "quote": "Whosoever he be of the children of Israel, or of the strangers that sojourn in Israel, that giveth any of his seed unto Molech; he shall surely be put to death: the people of the land shall stone him with stones.",
+        "claim": "The text requires the death penalty for anyone who gives \"any of his seed\" to Molech, and says the people of the land are to carry it out by stoning. Reading \"seed\" as offspring, meaning child sacrifice, is an interpretation from model-prior (unverified) and is not stated in the document.",
+        "actor": "the people of the land",
+        "action": "stone to death",
+        "object": "whosoever giveth any of his seed unto Molech",
+        "mechanism": "stoning by the community as a legal punishment",
+        "stance": "negative",
+        "place": "Israel",
+        "year": null
+      },
+      {
+        "kind": "legal-scope",
+        "tier": "primary-text",
+        "quote": "Whosoever he be of the children of Israel, or of the strangers that sojourn in Israel",
+        "claim": "The ban and its penalty cover resident foreigners (\"strangers that sojourn in Israel\") as well as Israelites.",
+        "actor": "children of Israel and strangers that sojourn in Israel",
+        "action": "subject to prohibition",
+        "object": "giving seed unto Molech",
+        "place": "Israel",
+        "year": null
+      },
+      {
+        "kind": "attribution",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses, saying, 20:2 Again, thou shalt say to the children of Israel",
+        "claim": "The text presents the law as God's words spoken to Moses, who is to pass them on to the children of Israel. That this passage is Leviticus 20:1-2 (KJV) comes from model-prior (unverified) and is not stated in the document.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "mechanism": "divine command passed on through Moses",
+        "year": null
+      }
+    ]
+  }
+}

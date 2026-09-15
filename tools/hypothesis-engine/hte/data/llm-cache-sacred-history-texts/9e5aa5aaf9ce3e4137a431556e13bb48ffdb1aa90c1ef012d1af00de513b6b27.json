@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f803d12f12bcde884a8f7af276790b5c0de6dabe4c5067673b36ecd32a3a57db",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said unto the congregation, This is the thing which the LORD commanded to be done.",
+        "claim": "Moses told the congregation what the LORD commanded to be done",
+        "actor": "Moses",
+        "action": "said",
+        "object": "the thing which the LORD commanded to be done",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

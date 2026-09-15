@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a197abd41ed23f5db31d8c05a6c1a3de54ff05d973b8a89940f05b99b72e970a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the children of Heth answered Abraham, saying unto him,",
+        "claim": "The children of Heth answered Abraham",
+        "actor": "the children of Heth",
+        "action": "answered",
+        "object": "Abraham",
+        "place": "",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou art a mighty prince among us:",
+        "claim": "Abraham is a mighty prince among the children of Heth",
+        "actor": "thou",
+        "action": "art",
+        "object": "a mighty prince",
+        "place": "among us",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "in the choice of our sepulchres bury thy dead; none of us shall withhold from thee his sepulchre, but that thou mayest bury thy dead.",
+        "claim": "The children of Heth will not withhold their sepulchers from Abraham",
+        "actor": "none of us",
+        "action": "shall withhold",
+        "object": "his sepulchre",
+        "place": "our sepulchres",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

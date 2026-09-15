@@ -1,0 +1,31 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "ecce0045bd2b04246026791f9cd71e8be8b211a00ee5b695b6ac41a82fc4ca81",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "on the sixth day they gathered twice as much bread, two omers for one man",
+        "claim": "On the sixth day the people gathered twice the usual amount of bread, two omers per person.",
+        "actor": "they (the congregation)",
+        "action": "gathered",
+        "object": "twice as much bread, two omers for one man",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and all the rulers of the congregation came and told Moses",
+        "claim": "All the rulers of the congregation came and told Moses that twice as much bread had been gathered on the sixth day.",
+        "actor": "all the rulers of the congregation",
+        "action": "came and told",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

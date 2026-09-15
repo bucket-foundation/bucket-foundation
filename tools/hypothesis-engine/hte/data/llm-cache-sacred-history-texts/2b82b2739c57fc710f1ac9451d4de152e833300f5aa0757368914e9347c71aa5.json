@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d36ba323ec6f0e3dd18539b0fd0864d72abb4e270a1533510b65456473cf39b9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Abraham prayed unto God",
+        "claim": "Abraham offered prayer directed to God",
+        "actor": "Abraham",
+        "action": "prayed",
+        "object": "God",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "God healed Abimelech, and his wife, and his maidservants",
+        "claim": "God restored the health of Abimelech and his household members",
+        "actor": "God",
+        "action": "healed",
+        "object": "Abimelech, and his wife, and his maidservants",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "they bare children",
+        "claim": "The women in the household were able to conceive and bear children",
+        "actor": "they",
+        "action": "bare",
+        "object": "children",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

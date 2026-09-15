@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b519f4acb2fa442ee18b70e01b288d8e87c31f25ce71a4dd2720782cbf148f40",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And he stayed yet other seven days; and again he sent forth the dove out of the ark",
+        "claim": "After a seven-day interval, Noah sent the dove from the ark",
+        "actor": "he",
+        "action": "sent forth",
+        "object": "the dove",
+        "place": "the ark",
+        "mechanism": "seven days",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the dove came in to him in the evening; and, lo, in her mouth was an olive leaf pluckt off: so Noah knew that the waters were abated from off the earth",
+        "claim": "The dove's return in the evening bearing an olive leaf was the mechanism by which Noah determined the floodwaters had receded",
+        "actor": "the dove",
+        "action": "came in",
+        "object": "olive leaf",
+        "place": "the earth",
+        "mechanism": "olive leaf as physical evidence",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

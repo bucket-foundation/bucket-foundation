@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a3c78982995d905ed3e8a0b91fd7a5b6bba6f0da1a01f45b001dbc0eb2dc347d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Milcah, she hath also born children unto thy brother Nahor",
+        "claim": "Milcah bore children to Nahor",
+        "actor": "Milcah",
+        "action": "born",
+        "object": "children",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Huz his firstborn",
+        "claim": "Huz was Nahor's firstborn child",
+        "actor": "Huz",
+        "action": "",
+        "object": "firstborn",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Buz his brother",
+        "claim": "Buz was Nahor's child (brother to Huz)",
+        "actor": "Buz",
+        "action": "",
+        "object": "brother",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Kemuel the father of Aram",
+        "claim": "Kemuel was the father of Aram",
+        "actor": "Kemuel",
+        "action": "father",
+        "object": "Aram",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And Chesed, and Hazo, and Pildash, and Jidlaph, and Bethuel",
+        "claim": "Chesed, Hazo, Pildash, Jidlaph, and Bethuel were children of Milcah and Nahor",
+        "actor": "Chesed, Hazo, Pildash, Jidlaph, Bethuel",
+        "action": "",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

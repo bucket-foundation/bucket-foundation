@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "ffdf585e0434b1d92d0d91948bc4c9209fc0b3a10e54e62cfba35517ae79f53f",
+  "response": {
+    "items": [
+      {
+        "kind": "rule",
+        "tier": "primary-text",
+        "quote": "And the LORD said unto Moses, Speak unto the priests the sons of Aaron, and say unto them, There shall none be defiled for the dead among his people:",
+        "claim": "The text says the LORD told Moses to tell the priests, the sons of Aaron, that none of them may become ritually defiled for a dead person among his people.",
+        "actor": "the LORD (through Moses)",
+        "action": "forbid ritual defilement for the dead",
+        "object": "the priests, the sons of Aaron",
+        "mechanism": "a command passed on from the LORD through Moses to the priests",
+        "stance": "negative",
+        "place": "",
+        "year": null
+      },
+      {
+        "kind": "rule-exception",
+        "tier": "primary-text",
+        "quote": "But for his kin, that is near unto him, that is, for his mother, and for his father, and for his son, and for his daughter, and for his brother.",
+        "claim": "The text makes an exception to the ban: a priest may become defiled for close family, meaning his mother, father, son, daughter and brother.",
+        "actor": "the LORD (through Moses)",
+        "action": "allow defilement for close relatives",
+        "object": "a priest's close family (mother, father, son, daughter, brother)",
+        "mechanism": "an exception to the ban in verse 21:1, limited to the relatives it names",
+        "stance": "positive",
+        "place": "",
+        "year": null
+      }
+    ]
+  }
+}

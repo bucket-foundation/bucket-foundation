@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "904ff01e9b827fd0051123f1d9a0541b863407e9df43d6f311a36414f168feec",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said unto the people",
+        "claim": "Moses instructed the people to remember their exodus from Egypt",
+        "actor": "Moses",
+        "action": "said",
+        "object": "the people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "ye came out from Egypt, out of the house of bondage",
+        "claim": "The people departed from Egypt and slavery",
+        "actor": "ye",
+        "action": "came out",
+        "object": "Egypt",
+        "place": "Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "by strength of hand the LORD brought you out from this place",
+        "claim": "God brought the people out by divine strength",
+        "actor": "the LORD",
+        "action": "brought out",
+        "object": "you",
+        "place": "this place",
+        "mechanism": "by strength of hand",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "there shall no leavened bread be eaten",
+        "claim": "Leavened bread consumption is prohibited",
+        "actor": "",
+        "action": "eaten",
+        "object": "leavened bread",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

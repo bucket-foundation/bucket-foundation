@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5c9e978891b69df7f73e129c75f40ecdf93b3ab9df92aed44dbf349efd317ec1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the men turned their faces from thence",
+        "claim": "The men turned away from that location",
+        "actor": "the men",
+        "action": "turned their faces",
+        "object": "faces",
+        "place": "thence",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "went toward Sodom",
+        "claim": "The men traveled toward Sodom",
+        "actor": "the men",
+        "action": "went toward",
+        "object": "",
+        "place": "Sodom",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Abraham stood yet before the LORD",
+        "claim": "Abraham remained standing in the presence of the Lord",
+        "actor": "Abraham",
+        "action": "stood yet",
+        "object": "",
+        "place": "before the LORD",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

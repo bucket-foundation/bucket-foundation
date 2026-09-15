@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "049ac855481ce8c1fe27571d8401486802344eaea867e8000a7382264ae759ee",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses took the redemption money of them that were over and above them that were redeemed by the Levites:",
+        "claim": "Moses collected redemption money for the firstborn who exceeded the number redeemed by the Levites.",
+        "actor": "Moses",
+        "action": "took redemption money",
+        "object": "firstborn in excess of those redeemed by the Levites",
+        "mechanism": "payment of redemption money as a substitute for Levite redemption",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "quantity",
+        "tier": "primary-text",
+        "quote": "Of the firstborn of the children of Israel took he the money; a thousand three hundred and threescore and five shekels, after the shekel of the sanctuary:",
+        "claim": "The redemption money taken from the firstborn of Israel came to 1,365 shekels, measured by the shekel of the sanctuary.",
+        "actor": "Moses",
+        "action": "took money",
+        "object": "1,365 shekels (shekel of the sanctuary)",
+        "mechanism": "redemption payment from the firstborn of the children of Israel",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses gave the money of them that were redeemed unto Aaron and to his sons, according to the word of the LORD, as the LORD commanded Moses.",
+        "claim": "Moses gave the redemption money to Aaron and his sons, following the LORD's command.",
+        "actor": "Moses",
+        "action": "gave the redemption money",
+        "object": "Aaron and his sons",
+        "mechanism": "transfer to the priesthood by divine command",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

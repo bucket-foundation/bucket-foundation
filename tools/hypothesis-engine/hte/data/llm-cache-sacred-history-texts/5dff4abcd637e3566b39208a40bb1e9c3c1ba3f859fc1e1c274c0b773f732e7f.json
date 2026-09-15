@@ -1,0 +1,94 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c57c4d87b636e4ee2eb34e19720427af91d28011738ec44c7ab4ec80cf41148e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And I came this day unto the well",
+        "claim": "A servant came to a well",
+        "actor": "servant (speaker)",
+        "action": "came",
+        "place": "well",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and said, O LORD God of my master Abraham, if now thou do prosper my way which I go",
+        "claim": "A servant prayed to God requesting prosperity for his journey",
+        "actor": "servant",
+        "action": "prayed/said",
+        "object": "God",
+        "place": "well",
+        "mechanism": "prayer",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Behold, I stand by the well of water",
+        "claim": "A servant stood at a well of water",
+        "actor": "servant",
+        "action": "stand",
+        "place": "well of water",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "when the virgin cometh forth to draw water",
+        "claim": "A virgin came forth to draw water",
+        "actor": "virgin",
+        "action": "came forth",
+        "object": "water",
+        "place": "well",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and I say to her, Give me, I pray thee, a little water of thy pitcher to drink",
+        "claim": "A servant requested water from a virgin to drink from her pitcher",
+        "actor": "servant",
+        "action": "requested/said",
+        "object": "water",
+        "place": "well",
+        "mechanism": "speech",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And she say to me, Both drink thou, and I will also draw for thy camels",
+        "claim": "A virgin offered water to the servant and offered to draw water for his camels",
+        "actor": "virgin",
+        "action": "offered/said",
+        "object": "water, drawing for camels",
+        "place": "well",
+        "mechanism": "speech",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "let the same be the woman whom the LORD hath appointed out for my master's son",
+        "claim": "The LORD appointed a woman as a wife for Abraham's son",
+        "actor": "LORD",
+        "action": "appointed",
+        "object": "woman",
+        "mechanism": "divine appointment/sign",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

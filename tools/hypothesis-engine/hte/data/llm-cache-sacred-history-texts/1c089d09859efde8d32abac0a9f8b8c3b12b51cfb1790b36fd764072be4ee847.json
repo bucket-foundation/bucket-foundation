@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0c2df79492efe7f6b6c5293de5e4a8bdb26237a4cf47708cbe0f3d7bb53ff579",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Then went up Moses, and Aaron, Nadab, and Abihu, and seventy of the elders of Israel",
+        "claim": "Moses, Aaron, Nadab, Abihu, and seventy elders of Israel ascended",
+        "actor": "Moses, and Aaron, Nadab, and Abihu, and seventy of the elders of Israel",
+        "action": "went up",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And they saw the God of Israel",
+        "claim": "They beheld the God of Israel",
+        "actor": "they",
+        "action": "saw",
+        "object": "the God of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and there was under his feet as it were a paved work of a sapphire stone",
+        "claim": "A paved work of sapphire stone appeared beneath God's feet",
+        "actor": "",
+        "action": "was",
+        "object": "a paved work of a sapphire stone",
+        "place": "under his feet",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and as it were the body of heaven in his clearness",
+        "claim": "The body of heaven in clearness appeared alongside the sapphire work",
+        "actor": "",
+        "action": "",
+        "object": "the body of heaven",
+        "place": "",
+        "mechanism": "as it were",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

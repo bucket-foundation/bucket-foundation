@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b26a9b55ab0b5b0d51c1c13459b757e05c711694a9acabce37243ca550cb2cd3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses went into the midst of the cloud, and gat him up into the mount",
+        "claim": "Moses entered a cloud and ascended the mountain",
+        "actor": "Moses",
+        "action": "went, gat him up",
+        "object": "the cloud, the mount",
+        "place": "the mount",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses was in the mount forty days and forty nights",
+        "claim": "Moses remained on the mountain for forty days and forty nights",
+        "actor": "Moses",
+        "action": "was",
+        "object": "",
+        "place": "the mount",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

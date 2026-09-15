@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7e5cd76c1fe891c23308707c8534d66ef975b567dfd2a2679ed347e3bd131035",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the angel of the LORD called unto him out of heaven, and said, Abraham, Abraham",
+        "claim": "The angel of the LORD called unto Abraham from heaven",
+        "actor": "the angel of the LORD",
+        "action": "called",
+        "object": "him",
+        "place": "heaven",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and he said, Here am I",
+        "claim": "Abraham responded to the angel's call by saying 'Here am I'",
+        "actor": "he",
+        "action": "said",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

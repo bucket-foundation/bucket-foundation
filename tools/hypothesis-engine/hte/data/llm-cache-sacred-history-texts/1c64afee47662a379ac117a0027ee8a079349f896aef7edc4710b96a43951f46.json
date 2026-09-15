@@ -1,0 +1,52 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d37476360374934f32997d13c8217eedd83e40aea3fa47ee4985722fd95bb069",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses",
+        "claim": "The LORD communicated with Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Take thy rod",
+        "claim": "Aaron was to take his rod",
+        "action": "Take",
+        "object": "thy rod",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "stretch out thine hand upon the waters of Egypt, upon their streams, upon their rivers, and upon their ponds, and upon all their pools of water",
+        "claim": "Aaron was to stretch out his hand over the waters of Egypt",
+        "action": "stretch out",
+        "object": "thine hand",
+        "place": "waters of Egypt, streams, rivers, ponds, pools of water",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "that they may become blood; and that there may be blood throughout all the land of Egypt, both in vessels of wood, and in vessels of stone",
+        "claim": "The waters would become blood throughout Egypt and in vessels",
+        "action": "become",
+        "object": "blood",
+        "place": "Egypt",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

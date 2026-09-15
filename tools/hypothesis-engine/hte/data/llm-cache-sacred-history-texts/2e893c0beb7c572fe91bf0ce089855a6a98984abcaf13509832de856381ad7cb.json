@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f90317c798a3578d742597516da1ed0cde00a20f3ae4c217413a92692072b1cd",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "8:15 And God spake unto Noah, saying, 8:16 Go forth of the ark, thou, and thy wife, and thy sons, and thy sons' wives with thee.",
+        "claim": "God commanded Noah to exit the ark with his family",
+        "actor": "God",
+        "action": "spake unto / commanded",
+        "object": "Noah, his wife, his sons, and their wives",
+        "place": "the ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

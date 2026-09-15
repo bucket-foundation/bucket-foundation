@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c33387a43af500ee333532bdb6db530d5f7fb9658b74e31e86ce8fe7179bb0b4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying, Take the Levites instead of all the firstborn among the children of Israel, and the cattle of the Levites instead of their cattle; and the Levites shall be mine: I am the LORD.",
+        "claim": "Substitution mechanism: Levites replace all firstborn of Israel and Levite cattle replace their cattle",
+        "actor": "the LORD",
+        "action": "command/Take",
+        "object": "Levites, firstborn children, cattle",
+        "place": "Israel",
+        "mechanism": "substitution (indicated by 'instead of')",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

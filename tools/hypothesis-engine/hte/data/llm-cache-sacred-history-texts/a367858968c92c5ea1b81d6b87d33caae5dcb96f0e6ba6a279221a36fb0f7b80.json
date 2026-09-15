@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "06ce9906e795ecedd6a897199bd27cd885749020333937e38e565f187b96209c",
+  "response": {
+    "items": [
+      {
+        "quote": "And Abraham hearkened unto Ephron; and Abraham weighed to Ephron the silver, which he had named in the audience of the sons of Heth, four hundred shekels of silver, current money with the merchant.",
+        "claim": "Abraham weighed out to Ephron four hundred shekels of silver in the audience of the sons of Heth.",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "Abraham",
+        "action": "weighed to",
+        "object": "the silver / four hundred shekels of silver",
+        "place": "audience of the sons of Heth",
+        "mechanism": "current money with the merchant",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

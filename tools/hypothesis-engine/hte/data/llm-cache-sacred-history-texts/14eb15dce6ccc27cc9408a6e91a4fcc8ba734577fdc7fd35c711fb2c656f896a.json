@@ -1,0 +1,53 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4449a366dea97df559871649438363bb07c8059d42c9319cd903609a1a7bc1c8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the God of my father, the God of Abraham, and the fear of Isaac, had been with me",
+        "claim": "God of Abraham and Isaac was with Jacob",
+        "actor": "God",
+        "action": "had been with",
+        "object": "me",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "surely thou hadst sent me away now empty",
+        "claim": "Without divine protection, Laban would have sent Jacob away empty",
+        "actor": "thou",
+        "action": "hadst sent away",
+        "object": "me",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "God hath seen mine affliction and the labour of my hands",
+        "claim": "God observed Jacob's affliction and labor",
+        "actor": "God",
+        "action": "hath seen",
+        "object": "mine affliction and the labour of my hands",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "God hath seen mine affliction and the labour of my hands, and rebuked thee yesternight",
+        "claim": "God rebuked Laban",
+        "actor": "God",
+        "action": "rebuked",
+        "object": "thee",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "edce732865f83858617d644991365cc5bb135a30391cf0a20a1358895b7400be",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD spake unto Moses and Aaron, saying,",
+        "claim": "The LORD spoke to Moses and Aaron",
+        "actor": "LORD",
+        "action": "spake",
+        "object": "Moses and Aaron",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "he shall be brought unto Aaron the priest, or unto one of his sons the priests:",
+        "claim": "A man with potential plague symptoms shall be brought to Aaron the priest or one of his sons",
+        "actor": "",
+        "action": "brought",
+        "object": "he",
+        "place": "unto Aaron the priest",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the priest shall look on the plague in the skin of the flesh:",
+        "claim": "The priest shall look upon the plague in the skin",
+        "actor": "priest",
+        "action": "look",
+        "object": "the plague",
+        "place": "in the skin of the flesh",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and the priest shall look on him, and pronounce him unclean.",
+        "claim": "The priest shall pronounce him unclean",
+        "actor": "priest",
+        "action": "pronounce",
+        "object": "him",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

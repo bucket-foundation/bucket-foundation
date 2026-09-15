@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d82df06ef8f8f316041096b19ecf17f77446d31c3505e39e6e3ba893991aa8cb",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And all the days of Noah were nine hundred and fifty years: and he died.",
+        "claim": "Noah lived 950 years",
+        "actor": "Noah",
+        "action": "lived",
+        "object": "950 years",
+        "place": "",
+        "mechanism": "human aging and mortality",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

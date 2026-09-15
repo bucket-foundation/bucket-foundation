@@ -1,0 +1,34 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e37ce340541a885725c1d8d0938ff9379b1fdbff9a83b898e93f94e51531d352",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he washed the inwards and the legs in water",
+        "claim": "The inwards and legs of the offering were washed in water as a purification mechanism",
+        "actor": "he",
+        "action": "washed",
+        "object": "inwards and legs",
+        "mechanism": "water washing",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses burnt the whole ram upon the altar: it was a burnt sacrifice for a sweet savour, and an offering made by fire unto the LORD",
+        "claim": "Burning of the ram on the altar produced a sweet savour through combustion mechanism",
+        "actor": "Moses",
+        "action": "burnt",
+        "object": "whole ram",
+        "place": "altar",
+        "mechanism": "combustion producing aromatic effect",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

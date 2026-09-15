@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1b072d11293a94bf534d4e36a3498922e939023903dd78850e5ecc3cdc9424c0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then Pharaoh called for Moses and Aaron in haste; and he said, I have sinned against the LORD your God, and against you.",
+        "claim": "Pharaoh called for Moses and Aaron in haste and admitted to sinning against the LORD and against them",
+        "actor": "Pharaoh",
+        "action": "called for, said",
+        "object": "Moses and Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

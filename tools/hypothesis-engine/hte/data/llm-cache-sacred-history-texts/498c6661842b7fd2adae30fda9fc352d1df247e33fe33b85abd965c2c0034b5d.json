@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "aaf920f43581125133b140ee4353cbd43bee9b8970fbd275f09a118c33b4c954",
+  "response": {
+    "items": [
+      {
+        "quote": "And the LORD said unto Moses, Rise up early in the morning, and stand before Pharaoh, and say unto him, Thus saith the LORD God of the Hebrews, Let my people go, that they may serve me.",
+        "claim": "The LORD commanded Moses to tell Pharaoh to release the Hebrew people",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "the LORD, Moses",
+        "action": "said, commanded",
+        "object": "the Hebrew people",
+        "place": "",
+        "mechanism": "verbal command",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

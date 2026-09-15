@@ -1,0 +1,51 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "dd26f9ec1697fcf6d25f364085d5dacaa0bab1c3df9af876065de019d0116c69",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Noah removed the covering of the ark",
+        "claim": "Noah removed the covering of the ark",
+        "actor": "Noah",
+        "action": "removed",
+        "object": "the covering of the ark",
+        "year": 601,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and looked, and, behold, the face of the ground was dry",
+        "claim": "Noah looked at the ground and saw it was dry",
+        "actor": "Noah",
+        "action": "looked",
+        "object": "the face of the ground",
+        "year": 601,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the waters were dried up from off the earth",
+        "claim": "The waters dried up from off the earth",
+        "action": "dried up",
+        "object": "the waters",
+        "place": "the earth",
+        "year": 601,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the face of the ground was dry",
+        "claim": "The ground was dry",
+        "object": "the face of the ground",
+        "year": 601,
+        "stance": "positive"
+      }
+    ]
+  }
+}

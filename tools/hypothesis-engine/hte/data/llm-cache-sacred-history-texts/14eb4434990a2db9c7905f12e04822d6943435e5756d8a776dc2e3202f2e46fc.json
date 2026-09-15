@@ -1,0 +1,56 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "11685bd7bd0072d7d68c9c04750268d518681c975a63e0877653dd191093e4e8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD called unto him out of the mountain, saying,",
+        "claim": "The LORD called to Moses from the mountain",
+        "actor": "the LORD",
+        "action": "called",
+        "object": "him",
+        "place": "out of the mountain",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Ye have seen what I did unto the Egyptians,",
+        "claim": "God performed divine acts against the Egyptians",
+        "actor": "I",
+        "action": "did",
+        "object": "the Egyptians",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "how I bare you on eagles' wings,",
+        "claim": "God carried the Israelites on eagles' wings",
+        "actor": "I",
+        "action": "bare",
+        "object": "you",
+        "mechanism": "on eagles' wings",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and brought you unto myself.",
+        "claim": "God brought the Israelites into his presence",
+        "actor": "I",
+        "action": "brought",
+        "object": "you",
+        "place": "unto myself",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

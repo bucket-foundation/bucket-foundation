@@ -1,0 +1,61 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "7a82c95bf3003c7abf7cf50cf733fe3e009c2a1ebe86bcca4090b9001e2c7a60",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses stretched forth his hand over the sea",
+        "claim": "The text says Moses stretched out his hand over the sea.",
+        "actor": "Moses",
+        "action": "stretched forth his hand over",
+        "object": "the sea",
+        "place": "the sea",
+        "mechanism": "gesture by Moses comes just before the sea returns (narrative sequence)",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "the sea returned to his strength when the morning appeared",
+        "claim": "The text says the sea returned to its full force at daybreak.",
+        "actor": "the sea",
+        "action": "returned to his strength",
+        "object": "the sea",
+        "place": "the sea",
+        "mechanism": "waters flow back in the morning after Moses' gesture",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and the Egyptians fled against it",
+        "claim": "The text says the Egyptians fled toward the returning waters.",
+        "actor": "the Egyptians",
+        "action": "fled against",
+        "object": "the returning sea",
+        "place": "the sea",
+        "mechanism": "the returning waters cut off the Egyptians' escape",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and the LORD overthrew the Egyptians in the midst of the sea",
+        "claim": "The text says the LORD overthrew the Egyptians in the middle of the sea.",
+        "actor": "the LORD",
+        "action": "overthrew",
+        "object": "the Egyptians",
+        "place": "in the midst of the sea",
+        "mechanism": "the text credits God with the defeat, carried out through the returning sea",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "d1725a463a1126c57aac16468dc2492b26d6d267fbd8094172d18bd797f86657",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses wrote all the words of the LORD",
+        "claim": "Moses wrote down all the words of the LORD.",
+        "actor": "Moses",
+        "action": "wrote",
+        "object": "all the words of the LORD",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "Putting the divine words in writing"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and rose up early in the morning, and builded an altar under the hill",
+        "claim": "Moses got up early in the morning and built an altar at the foot of the hill.",
+        "actor": "Moses",
+        "action": "builded",
+        "object": "an altar",
+        "place": "under the hill",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "Building an altar for worship"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and twelve pillars, according to the twelve tribes of Israel",
+        "claim": "Moses set up twelve pillars, one for each of the twelve tribes of Israel.",
+        "actor": "Moses",
+        "action": "builded",
+        "object": "twelve pillars",
+        "place": "under the hill",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "Twelve pillars standing for the twelve tribes of Israel"
+      }
+    ]
+  }
+}

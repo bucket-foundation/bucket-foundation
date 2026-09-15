@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "321c0c4ed3bb568115bb587549bf5b44a135fd65d57ca1100ad415d78ec0f4d0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses spake unto Aaron, Say unto all the congregation of the children of Israel, Come near before the LORD",
+        "claim": "Moses spoke to Aaron and instructed him to tell the congregation of the children of Israel to come near before the LORD",
+        "actor": "Moses",
+        "action": "spake",
+        "object": "Aaron; congregation of the children of Israel",
+        "place": "",
+        "mechanism": "speech/command",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for he hath heard your murmurings",
+        "claim": "The LORD heard the murmurings of the Israelites",
+        "actor": "the LORD",
+        "action": "hath heard",
+        "object": "murmurings",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

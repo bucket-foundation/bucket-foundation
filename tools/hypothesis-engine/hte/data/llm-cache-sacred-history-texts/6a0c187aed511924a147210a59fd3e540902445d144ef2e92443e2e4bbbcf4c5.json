@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b963b249dc026aaf28539bf75ae95d0ef7e1f14316ddaa4389ed30faf9e84cad",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses said, This is the thing which the LORD commanded that ye should do: and the glory of the LORD shall appear unto you.",
+        "claim": "Moses states that the LORD commanded the people to do something and that the LORD's glory will appear to them",
+        "actor": "Moses",
+        "action": "said; commanded",
+        "object": "the thing which the LORD commanded; the glory of the LORD",
+        "place": "",
+        "mechanism": "speech",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

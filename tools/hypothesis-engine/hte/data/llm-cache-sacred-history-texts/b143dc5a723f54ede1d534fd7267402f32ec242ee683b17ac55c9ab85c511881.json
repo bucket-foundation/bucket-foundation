@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7eaa923476deeeaba7dc48ec53749b7ceba1e44227984ff72c70d3137c6ce009",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the sons of Noah, that went forth of the ark, were Shem, and Ham, and Japheth",
+        "claim": "Noah's three sons Shem, Ham, and Japheth exited the ark",
+        "actor": "sons of Noah",
+        "action": "went forth",
+        "object": "",
+        "place": "the ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Ham is the father of Canaan",
+        "claim": "Ham fathered Canaan",
+        "actor": "Ham",
+        "action": "is the father of",
+        "object": "Canaan",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

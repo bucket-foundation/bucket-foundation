@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "cc82afeeac2ca468e0697ffe36620fd34cb3a2c808f9b89992ba78dfc6e50315",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "17:22 And he left off talking with him, and God went up from Abraham.",
+        "claim": "The document says God stopped talking with Abraham and went up from him. The document gives no date or place. The verse number 17:22 suggests this is Genesis 17:22, but that comes from model-prior and is not confirmed.",
+        "actor": "God",
+        "action": "left off talking with and went up from",
+        "object": "Abraham",
+        "place": "",
+        "year": null,
+        "mechanism": ""
+      }
+    ]
+  }
+}

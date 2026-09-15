@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a3f7a9b15479d24c7344693761b1fc9925628146c3147797a1f4f3fee514a604",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD gave Moses a command",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "speech",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Speak unto the children of Israel, saying, The fifteenth day of this seventh month shall be the feast of tabernacles for seven days unto the LORD",
+        "claim": "Moses commanded to proclaim a seven-day feast of tabernacles on the fifteenth day of the seventh month",
+        "actor": "Moses",
+        "action": "Speak",
+        "object": "the children of Israel",
+        "place": "",
+        "mechanism": "proclamation",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

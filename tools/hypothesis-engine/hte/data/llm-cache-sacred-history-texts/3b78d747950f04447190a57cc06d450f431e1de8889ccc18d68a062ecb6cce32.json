@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4b7a35e0402461c02921be39032685936cb33b13a89f060e6e9337af5e487723",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And it came to pass on the eighth day, that Moses called Aaron and his sons, and the elders of Israel",
+        "claim": "Moses called Aaron and his sons and the elders of Israel on the eighth day",
+        "actor": "Moses",
+        "action": "called",
+        "object": "Aaron and his sons, and the elders of Israel",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And he said unto Aaron, Take thee a young calf for a sin offering, and a ram for a burnt offering, without blemish, and offer them before the LORD",
+        "claim": "Moses commanded Aaron to take a young calf and a ram without blemish and to offer them before the LORD",
+        "actor": "Moses",
+        "action": "said",
+        "object": "Aaron",
+        "place": "before the LORD",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

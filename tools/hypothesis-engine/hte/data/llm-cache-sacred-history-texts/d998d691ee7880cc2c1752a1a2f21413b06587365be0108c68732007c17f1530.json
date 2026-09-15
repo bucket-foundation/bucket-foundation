@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "9273e75c357ab2dc04e8440532f57f6d2966aab7f3a1f47054a6d5db25044021",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And he called for Moses and Aaron by night, and said, Rise up, and get you forth from among my people, both ye and the children of Israel; and go, serve the LORD, as ye have said.",
+        "claim": "A ruler ('he') summoned Moses and Aaron at night and told them and the children of Israel to leave his people and go serve the LORD, as they had asked. The excerpt does not name 'he'. Identifying him as Pharaoh of Egypt (Exodus 12:31) comes from model-prior and is unverified.",
+        "actor": "he (unnamed in the excerpt; Pharaoh per model-prior, unverified)",
+        "action": "called for by night and ordered to depart",
+        "object": "Moses, Aaron, and the children of Israel",
+        "place": "not stated in excerpt (Egypt per model-prior, unverified)",
+        "mechanism": "Granting the earlier request ('as ye have said') to go and serve the LORD",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}
