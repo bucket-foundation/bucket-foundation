@@ -263,10 +263,12 @@ TOOL_DEFINITION: dict[str, Any] = {
                 "type": "object",
                 "properties": {
                     "observed": {"type": "integer"},
-                    "chao1_estimate": {"type": "number"},
+                    # None below the seed floor or at f2=0 (hte.unknowns.coverage_interval).
+                    "chao1_estimate": {"type": ["number", "null"]},
+                    "chao1_note": {"type": ["string", "null"]},
                     "missing_mass": {"type": "number"},
-                    "coverage_low": {"type": "number"},
-                    "coverage_high": {"type": "number"},
+                    "coverage_low": {"type": ["number", "null"]},
+                    "coverage_high": {"type": ["number", "null"]},
                 },
             },
             "surprise_items": {

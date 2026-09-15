@@ -37,8 +37,8 @@ are the two pieces still open.
 | `hte/llm.py` | none (own layer) | `complete`, the cached, schema-validated `claude -p` wrapper every role calls; `resolve_model`, `escalation_model`, `cache_stats`; `LLMError` and its three subclasses |
 | `hte/roles.py` | `main.tex` §8, `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §7 | One function per engine-loop role: `generate`, `critique`, `unknown_unknown`, `preservation_critique`, `judge`, `meta_review`, `self_report`, `extract` (the ensemble-of-3, agreement-scored, opus-escalated extractor, `bkt-hte-extraction-ensemble`; its schema additively carries the same slot fields `hte.evidence.EvidenceItem` does, `bkt-hte-evidence-slots`) |
 | `hte/corpus/` | `main.tex` §8's retrieval-envelope paragraph | `Corpus`, `GroundTruthEvent`, `RetrievalEnvelope` (`bkt-hte-retrieval-provenance`, fixture mode only); `quantum_history.ingest` (parses `quantum/07-history/*.md`) and `fixtures.build` (a tiny synthetic corpus of the same shape) |
-| `hte/calibrate.py` | `main.tex` §9 | `holdout_by_discovery_date`, `run_holdout` (event-targeted: a held-out event's own matching placement at the right date scored against `1`, its top wrong-interval competitor against `0`), `holdout_kfold`, `choose_holdout_mode`, `run_calibration`, `fit_constants`, `write_calibration`, `brier_score`, `calibration_curve` (`bkt-hte-holdout`, `bkt-hte-calibration-redesign`) |
-| `hte/diagnostics.py` | (none; a k-fold/discovery-date coverage diagnostic, no Lean counterpart) | `coverage_report` (why a held-out event has no matching placement, one reason per event from a fixed set, `bkt-hte-generation-coverage`), `write_diagnostics` |
+| `hte/calibrate.py` | `main.tex` §9 | `holdout_by_discovery_date`, `run_holdout` (event-targeted: a held-out event's own matching placement at the right date scored against `1`, its top wrong-interval competitor against `0`), `holdout_kfold`, `choose_holdout_mode`, `run_calibration`, `fit_constants`, `write_calibration`, `brier_score`, `calibration_curve`, `wilson_interval` (`bkt-hte-holdout`, `bkt-hte-calibration-redesign`) |
+| `hte/diagnostics.py` | (none; a k-fold/discovery-date coverage diagnostic, no Lean counterpart) | `coverage_report` (why a held-out event has no matching placement, one reason per event from a fixed set, `bkt-hte-generation-coverage`), `write_diagnostics`, `link_shuffle_test`, `shuffle_report` |
 | `hte/runner.py` | `main.tex` §8's whole engine loop | `run_campaign`, `RunArtifacts`, `Logger` |
 | `hte/artifacts.py` | none (own layer, `bkt-hte-artifact-contract`) | Typed dataclasses for every file `run_campaign` writes under one run directory (`ManifestArtifact`, `SelfReportArtifact`, `CalibrationArtifact`, `TimelineArtifact`, `CascadeArtifact`, `SurvivorsArtifact`), `load_run`/`load_manifest`, `RUN_ARTIFACT_VERSION` |
 | `hte/cli.py` | none (own layer) | The `hte` console script: `campaign run`/`results`, `calibrate`, `views` |
@@ -122,10 +122,25 @@ are the two pieces still open.
   formula from the classic bias-corrected estimator.** The Lean
   definition's `f2 = 0` fallback is `S_obs + f1(f1-1)/2`; the textbook
   Chao1 bias-corrected form for that case divides by `2(f2+1)` instead of
-  `2`. `hte.unknowns.chao1` and
-  `hte.unknowns.coverage_interval` both use the Lean formula, so a value
-  computed here matches `Bucket.Unknowns.chao1_ge_sObs`'s own proof
-  obligation, `chao1(...) >= S_obs`, under the identical arithmetic.
+  `2`. `hte.unknowns.chao1` uses the Lean formula unconditionally, so a
+  value computed there matches `Bucket.Unknowns.chao1_ge_sObs`'s own
+  proof obligation, `chao1(...) >= S_obs`, under the identical
+  arithmetic.
+- **`coverage_interval`'s Chao1 estimate needs a seed floor
+  (STATISTICAL-AUDIT-2026-09-15.md).** Below `DEFAULT_CHAO1_SEED_FLOOR`
+  (5) runs, or at `f2 == 0`, `chao1_estimate`/`coverage_low`/
+  `coverage_high` read `None` and `chao1_note` names why, `missing_mass`
+  as the headline instead; the key set is fixed either way. `run_holdout`
+  and `holdout_kfold` also carry a `coverage_of_truth_ci`
+  (`hte.calibrate.wilson_interval`) next to every `coverage_of_truth`.
+- **`hte.diagnostics.link_shuffle_test` checks whether a ranking is
+  driven by evidence or by the prior alone.** It permutes which address
+  each evidence link names, holding link counts fixed, and rescores: no
+  link means `P = a` on both sides, so `prior_only_fraction` is the
+  share of hypotheses that never move, and `mean_correlation` is the
+  Spearman correlation between the real ranking and each permuted one.
+  `shuffle_report` runs it over a corpus; `hte calibrate --shuffle` is
+  the CLI entry point, merged into `diagnostics.json` as `"link_shuffle"`.
 - **`from_evidence`'s claim-gap generator sweeps each concept slot in
   turn instead of one fixed "the" gap slot.** Nothing in `EvidenceItem`
   marks which slot a piece of evidence leaves unresolved, so this generator

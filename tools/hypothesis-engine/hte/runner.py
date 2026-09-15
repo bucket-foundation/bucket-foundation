@@ -640,7 +640,8 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     surprise_rate = (len(surprise_items) / len(corpus.evidence)) if corpus.evidence else 0.0
 
     coverage = unknowns.coverage_interval(run_counts)
-    logger.log(f"coverage: observed={coverage['observed']} chao1_estimate={coverage['chao1_estimate']:.1f} missing_mass={coverage['missing_mass']:.4f}")
+    chao1_part = f"chao1_estimate={coverage['chao1_estimate']:.1f}" if coverage["chao1_estimate"] is not None else f"chao1_note={coverage['chao1_note']!r}"
+    logger.log(f"coverage: observed={coverage['observed']} missing_mass={coverage['missing_mass']:.4f} {chao1_part}")
 
     calibration = None
     if cfg["run_calibration"] and corpus.ground_truth:

@@ -48,11 +48,15 @@ function's return value into `DIAGNOSTICS.md`, next to `CALIBRATION.md`.
 from __future__ import annotations
 
 import copy
+import dataclasses
+import math
+import random
 from collections import Counter
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any, Callable, Mapping, Sequence
 
-from . import calibrate
+from . import belief, calibrate
+from .belief import Constants
 from .concepts import Vocabulary, other_id
 from .corpus import Corpus
 from .evidence import EvidenceItem
@@ -60,6 +64,8 @@ from .generate import PLACEMENT_CONCEPT_SLOTS
 from .hypothesis import Hypothesis
 from .link import slot_match_score
 from .timeline import Resolution
+
+ScoreFn = Callable[[Hypothesis, Sequence[EvidenceItem], Vocabulary], float]
 
 REASONS: tuple[str, ...] = (
     "no_evidence_after_holdout",
@@ -248,6 +254,98 @@ _CAP_NOTE = (
 )
 
 
+# Link-shuffle test: is the ranking driven by evidence, or the prior
+# alone? (STATISTICAL-AUDIT-2026-09-15.md, "Link permutation test")
+
+
+def _spearman(a: Sequence[float], b: Sequence[float]) -> float:
+    # Ranks by hand, ties by average rank; 1.0 on no rank variation.
+    def ranks(values: Sequence[float]) -> list[float]:
+        order = sorted(range(len(values)), key=lambda i: values[i])
+        out = [0.0] * len(values)
+        i = 0
+        while i < len(order):
+            j = i
+            while j + 1 < len(order) and values[order[j + 1]] == values[order[i]]:
+                j += 1
+            avg = (i + j) / 2 + 1
+            for k in range(i, j + 1):
+                out[order[k]] = avg
+            i = j + 1
+        return out
+
+    if len(a) < 2:
+        return 1.0
+    ra, rb = ranks(a), ranks(b)
+    mean_a, mean_b = sum(ra) / len(ra), sum(rb) / len(rb)
+    cov = sum((x - mean_a) * (y - mean_b) for x, y in zip(ra, rb))
+    var_a = sum((x - mean_a) ** 2 for x in ra)
+    var_b = sum((y - mean_b) ** 2 for y in rb)
+    return cov / math.sqrt(var_a * var_b) if var_a and var_b else 1.0
+
+
+def _permute_links(evidence: Sequence[EvidenceItem], rng: random.Random) -> list[EvidenceItem]:
+    # Reshuffles supports/refutes addresses across the population (each
+    # kind its own pool); every item keeps its own link counts.
+    supports = [addr for item in evidence for addr in item.supports]
+    refutes = [addr for item in evidence for addr in item.refutes]
+    rng.shuffle(supports)
+    rng.shuffle(refutes)
+    out, si, ri = [], 0, 0
+    for item in evidence:
+        n_s, n_r = len(item.supports), len(item.refutes)
+        out.append(dataclasses.replace(item, supports=supports[si:si + n_s], refutes=refutes[ri:ri + n_r]))
+        si, ri = si + n_s, ri + n_r
+    return out
+
+
+def link_shuffle_test(
+    hypotheses: Sequence[Hypothesis], evidence: Sequence[EvidenceItem], vocab: Vocabulary,
+    score_fn: ScoreFn, seed: int, *, n_permutations: int = 20,
+) -> dict[str, Any]:
+    """Rescores `hypotheses` under `n_permutations` link-shuffled copies
+    of `evidence`. Returns `{"n_permutations", "n_hypotheses",
+    "correlations"` (real ranking vs. each permutation's, Spearman),
+    `"mean_correlation", "prior_only_fraction"}` (share of hypotheses
+    whose score never moved: no link means `P = a` either way)."""
+    addresses = [h.address for h in hypotheses]
+    real = {a: score_fn(h, evidence, vocab) for a, h in zip(addresses, hypotheses)}
+    real_values = [real[a] for a in addresses]
+
+    rng = random.Random(seed)
+    correlations, unchanged_fractions = [], []
+    for _ in range(n_permutations):
+        permuted_evidence = _permute_links(evidence, rng)
+        permuted = {a: score_fn(h, permuted_evidence, vocab) for a, h in zip(addresses, hypotheses)}
+        correlations.append(_spearman(real_values, [permuted[a] for a in addresses]))
+        unchanged = sum(1 for a in addresses if math.isclose(real[a], permuted[a], abs_tol=1e-12))
+        unchanged_fractions.append(unchanged / len(addresses) if addresses else 1.0)
+
+    return {
+        "n_permutations": n_permutations,
+        "n_hypotheses": len(addresses),
+        "correlations": correlations,
+        "mean_correlation": sum(correlations) / len(correlations) if correlations else 1.0,
+        "prior_only_fraction": sum(unchanged_fractions) / len(unchanged_fractions) if unchanged_fractions else 1.0,
+    }
+
+
+def shuffle_report(corpus: Corpus, constants: Constants, *, seed: int = 0, n_permutations: int = 20) -> dict[str, Any]:
+    """`hte calibrate --shuffle`: one candidate per evidence item (same
+    population `_diagnose_kfold` builds), fed to `link_shuffle_test`."""
+    span_start, bin_width, _resolution = calibrate._corpus_time_binning(corpus)
+    candidates: dict[tuple[int, int, int], Hypothesis] = {}
+    for item in corpus.evidence:
+        hyp = calibrate._placement_from_item(item, corpus.vocab, span_start=span_start, bin_width=bin_width)
+        if hyp is not None:
+            candidates.setdefault(calibrate._candidate_key(hyp), hyp)
+
+    def score_fn(h: Hypothesis, ev: Sequence[EvidenceItem], vocab: Vocabulary) -> float:
+        return belief.score(h, ev, vocab, constants=constants).project()
+
+    return link_shuffle_test(list(candidates.values()), corpus.evidence, corpus.vocab, score_fn, seed, n_permutations=n_permutations)
+
+
 def coverage_report(corpus: Corpus, run_artifacts: Mapping[str, Any]) -> dict[str, Any]:
     """For every ground-truth event in `corpus` that `run_artifacts` (a
     `hte.calibrate.run_holdout`/`holdout_kfold`/`run_calibration` result
@@ -348,4 +446,4 @@ def write_diagnostics(report: Mapping[str, Any], out_dir: str | Path) -> None:
     (out / "DIAGNOSTICS.md").write_text("\n".join(lines) + "\n")
 
 
-__all__ = ["REASONS", "coverage_report", "write_diagnostics"]
+__all__ = ["REASONS", "coverage_report", "write_diagnostics", "link_shuffle_test", "shuffle_report"]
