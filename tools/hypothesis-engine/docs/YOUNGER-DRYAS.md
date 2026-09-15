@@ -255,16 +255,16 @@ Run `20260915T002022Z`, git `2bc097676`, corpus `younger-dryas`.
 
 | # | Id | Actor | Action | Object | Place | Time | b | d | u | a | P | Elo | Stable |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | `763b9c2442aa47cc` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.502 | 0.000 | 0.498 | 0.88 | 0.941 | 2604 | True |
-| 2 | `9b803e9341a0d3a8` | meltwater-pulse | triggered | younger-dryas-onset-cooling | north-atlantic | -20000..-19001 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2311 | True |
-| 3 | `a376dbc934a93298` | meltwater-pulse | inconclusive | younger-dryas-termination | greenland-ice-sheet | -12850..-5950 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2309 | True |
-| 4 | `cbb9b065cbca2dec` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2308 | True |
-| 5 | `ccbc41e00dae9da3` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2307 | True |
-| 6 | `899b5f62fa616238` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2306 | True |
-| 7 | `7edb47ebdce6d461` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2305 | True |
-| 8 | `15f1be1a1bc53099` | meltwater-pulse | inconclusive | younger-dryas-onset-cooling | north-america | -11150..-10850 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2305 | True |
-| 9 | `9e354faaaf474e7d` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -12750..-9750 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2303 | True |
-| 10 | `623acbb49ca31a95` | meltwater-pulse | inconclusive | younger-dryas-onset-cooling | greenland-ice-sheet | -12850..-5950 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2300 | True |
+| 1 | `763b9c2442aa47cc` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.502 | 0.000 | 0.498 | 0.881 | 0.941 | 2604 | True |
+| 2 | `9b803e9341a0d3a8` | meltwater-pulse | triggered | younger-dryas-onset-cooling | north-atlantic | -20000..-19001 | 0.000 | 0.000 | 1.000 | 0.881 | 0.881 | 2311 | True |
+| 3 | `a376dbc934a93298` | meltwater-pulse | inconclusive | younger-dryas-termination | greenland-ice-sheet | -12850..-5950 | 0.000 | 0.000 | 1.000 | 0.881 | 0.881 | 2309 | True |
+| 4 | `cbb9b065cbca2dec` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.881 | 0.881 | 2308 | True |
+| 5 | `ccbc41e00dae9da3` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.881 | 0.881 | 2307 | True |
+| 6 | `899b5f62fa616238` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.881 | 0.881 | 2306 | True |
+| 7 | `7edb47ebdce6d461` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.881 | 0.881 | 2305 | True |
+| 8 | `15f1be1a1bc53099` | meltwater-pulse | inconclusive | younger-dryas-onset-cooling | north-america | -11150..-10850 | 0.000 | 0.000 | 1.000 | 0.881 | 0.881 | 2305 | True |
+| 9 | `9e354faaaf474e7d` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -12750..-9750 | 0.000 | 0.000 | 1.000 | 0.881 | 0.881 | 2303 | True |
+| 10 | `623acbb49ca31a95` | meltwater-pulse | inconclusive | younger-dryas-onset-cooling | greenland-ice-sheet | -12850..-5950 | 0.000 | 0.000 | 1.000 | 0.881 | 0.881 | 2300 | True |
 
 ### Calibration
 
