@@ -653,3 +653,16 @@ def test_survivors_artifact_has_one_entry_per_survivor_with_full_opinion_and_rob
         assert entry["preservation"] is not None
         assert isinstance(entry["slots"], dict)
         assert "ACTOR" in entry["slots"] or "RELATION" in entry["slots"]  # placement vs. sequence shape
+
+
+def test_survivors_carry_the_critic_likelihood_ratios(tmp_path, monkeypatch):
+    cfg = _fake_mode_cfg(
+        tmp_path, monkeypatch, corpus="production", max_hypotheses=20,
+        combinatorial_max_items=1, max_time_bins=2, run_extraction=False,
+    )
+    artifacts = runner.run_campaign(cfg)
+    entries = json.loads((artifacts.run_dir / "survivors.json").read_text())["survivors"]
+    assert entries
+    rated = [e for e in entries if e["likelihood_ratios"]]
+    assert rated, "the fake critic rates every listed item, so a bound survivor carries ratios"
+    assert all(v in (10.0, 3.0, 1.5, 1.0) for e in rated for v in e["likelihood_ratios"].values())

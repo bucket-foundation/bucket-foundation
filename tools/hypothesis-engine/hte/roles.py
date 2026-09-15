@@ -26,6 +26,7 @@ from dataclasses import dataclass
 from typing import Any, Callable, Mapping, Sequence
 
 from . import llm
+from .belief import DISCRIMINATION_LR
 from . import provenance as prov
 from .concepts import Slot, Vocabulary
 from .evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Stance, Tier
@@ -231,15 +232,35 @@ def generate(context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = 
 # critique
 # --------------------------------------------------------------------------
 
+DISCRIMINATION_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "additionalProperties": {"type": "string", "enum": ["strong", "moderate", "weak", "none"]},
+}
+DISCRIMINATION_PROMPT = (
+    "Under \"discrimination\", keyed by evidence id, rate how much more likely each "
+    "listed item is under this hypothesis than under the strongest competing "
+    "explanation of the same event: strong, moderate, weak, or none."
+)
+
 CRITIQUE_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
         "keep": {"type": "boolean"},
         "issues": {"type": "array", "items": {"type": "string"}},
         "rationale": {"type": "string"},
+        "discrimination": DISCRIMINATION_SCHEMA,
     },
     "required": ["keep", "issues", "rationale"],
 }
+
+
+def likelihood_ratios(report: Mapping[str, Any]) -> dict[str, float]:
+    """The critic's `discrimination` ratings, keyed by evidence id, as
+    likelihood ratios (`hte.belief.DISCRIMINATION_LR`); an unknown label
+    or a missing map rates nothing, so those items keep their tier-only
+    weight."""
+    ratings = report.get("discrimination") or {}
+    return {eid: DISCRIMINATION_LR[label] for eid, label in ratings.items() if label in DISCRIMINATION_LR}
 
 # `critic` refused/truncated default (`bkt-hte-refusal-handling`): reject
 # the hypothesis rather than keep it, since `keep=True` on no real
@@ -292,7 +313,7 @@ def critique(h: Hypothesis, evidence: Sequence[EvidenceItem], *, cache_dir: str,
         "hypothesis (for example the actor is not attested inside the "
         "stated time bin, or the place sits outside every tradition the "
         "actor belongs to). List every such issue found; an empty evidence "
-        "set is not itself a contradiction."
+        "set is not itself a contradiction. " + DISCRIMINATION_PROMPT
     )
     return _with_refusal_default(
         lambda: llm.complete(

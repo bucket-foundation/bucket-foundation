@@ -298,6 +298,23 @@ def D(n: float, lam: float = 0.5) -> float:
 # --------------------------------------------------------------------------
 
 
+DISCRIMINATION_LR: dict[str, float] = {"strong": 10.0, "moderate": 3.0, "weak": 1.5, "none": 1.0}
+
+
+def discrimination(lr: float | None) -> float:
+    """The share of an item's tier weight its likelihood ratio earns:
+    `1 - 1/lr` for `lr >= 1`, so an item as likely under the hypothesis
+    as under its strongest competitor (`lr = 1`) moves no credence and a
+    tenfold one earns 0.9; `1.0` when unrated (`None`), the tier-only
+    reading kept until a critic rates the item. `DISCRIMINATION_LR`
+    maps the critic's four ratings to ratios
+    (`STATISTICAL-AUDIT-2026-09-15.md` item 6: likelihood in place of
+    vote counting)."""
+    if lr is None:
+        return 1.0
+    return max(0.0, 1.0 - 1.0 / max(lr, 1.0))
+
+
 def effective_count(
     sources: Sequence[Source],
     edge_weights: Mapping[tuple[str, str], float] | None = None,
@@ -457,6 +474,7 @@ def pooled_weight(
     detect_table: DetectabilityTable | None = None,
     period: str | None = None,
     constants: Constants = Constants(),
+    likelihood_ratios: Mapping[str, float] | None = None,
 ) -> tuple[float, float]:
     """The pooled supporting and refuting weights `S_+`, `S_-` for one
     hypothesis (`main.tex` §Belief model's `S_+`/`S_-` definition): group
@@ -467,7 +485,9 @@ def pooled_weight(
     keyed by `source_id`, lets each kind's effective count fall back
     from a raw item count to the stemma's connected-component count
     (`effective_count`); with no `sources` given, `n_eff` is just the
-    number of items in that kind.
+    number of items in that kind. `likelihood_ratios`, keyed by evidence
+    id, scales each item's weight by `discrimination` (an unrated item
+    keeps its full weight).
 
     `constants.detectability_floor` (`Constants`'s own docstring) is
     applied once here, to every entry `detect_table` carries, before
@@ -498,7 +518,10 @@ def pooled_weight(
                 n_eff = effective_count(kind_sources, stemma_edge_weights, constants.theta_prune) if kind_sources else len(kind_items)
             else:
                 n_eff = len(kind_items)
-            s_sum = sum(cluster_weight(i, floored_table, period) for i in kind_items)
+            s_sum = sum(
+                cluster_weight(i, floored_table, period) * discrimination((likelihood_ratios or {}).get(i.id))
+                for i in kind_items
+            )
             total += D(n_eff, constants.lam) * s_sum
         return total
 
@@ -520,6 +543,7 @@ def score(
     stemma_edge_weights: Mapping[tuple[str, str], float] | None = None,
     period: str | None = None,
     constants: Constants = Constants(),
+    likelihood_ratios: Mapping[str, float] | None = None,
 ) -> Opinion:
     """`Eq. opinion-sum`: the fused opinion for `hypothesis`, from the
     evidence in `evidence` that names its address and the prior logit
@@ -531,7 +555,7 @@ def score(
     r, s = pooled_weight(
         evidence, hypothesis.address,
         sources=sources, stemma_edge_weights=stemma_edge_weights,
-        detect_table=table, period=period, constants=constants,
+        detect_table=table, period=period, constants=constants, likelihood_ratios=likelihood_ratios,
     )
     a = sigmoid(hypothesis.prior_logit(vocab))
     return Opinion.from_evidence(r, s, constants.W, a)
