@@ -438,6 +438,7 @@ def _build_response(
         span_start=time_binning.get("span_start", 0),
         bin_width=time_binning.get("bin_width", 1),
         bin_labels=bin_labels,
+        evidence=corpus.evidence,
     )
     supports_map, refutes_map = _evidence_link_maps(corpus.evidence)
     bins_out = [
