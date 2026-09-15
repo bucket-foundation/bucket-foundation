@@ -16,13 +16,39 @@ export class GlobeErrorBoundary extends Component<
   { hasError: boolean }
 > {
   state = { hasError: false };
+  private lastStatus: string | null = null;
+
+  // Chromium puts the driver's reason for refusing a WebGL context in the
+  // event's statusMessage (GPU process disabled, blocklisted adapter, too
+  // many live contexts). The event fires on the canvas before Three.js
+  // throws, so a capturing listener on document sees it first.
+  private onCreationError = (event: Event) => {
+    const status = (event as WebGLContextEvent).statusMessage || "";
+    this.lastStatus = status;
+    console.error(
+      "[canon-globe] WebGL context creation refused by the browser:",
+      status || "(no status message)"
+    );
+  };
+
+  componentDidMount() {
+    document.addEventListener("webglcontextcreationerror", this.onCreationError, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("webglcontextcreationerror", this.onCreationError, true);
+  }
 
   static getDerivedStateFromError() {
     return { hasError: true };
   }
 
   componentDidCatch(error: Error) {
-    console.warn("[canon-globe] render error, falling back to empty space:", error);
+    console.warn(
+      "[canon-globe] render error, falling back to empty space:",
+      error,
+      this.lastStatus ? `browser status: ${this.lastStatus}` : "browser status: none reported"
+    );
   }
 
   render() {
