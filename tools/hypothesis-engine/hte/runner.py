@@ -573,18 +573,23 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         survivors,
         key=lambda h: (-(elos.get(h.address) if elos.get(h.address) is not None else float("-inf")), h.address),
     )
-    survivors_payload = [
-        {
+    def _survivor_entry(h: Hypothesis) -> dict[str, Any]:
+        opinion_dict = _survivor_opinion(opinions[h.address])
+        return {
             "hypothesis_id": h.short_id,
             "address": h.address,
             "slots": _survivor_slots(h),
-            "opinion": _survivor_opinion(opinions[h.address]),
+            "opinion": opinion_dict,
+            # `lift` again, at the top level: the ceiling this survivor's
+            # evidence supports under any prior, named to match `hte.cli.
+            # _per_actor_summary`'s own per-actor rollup.
+            "max_lift": opinion_dict["lift"],
             "elo": elos.get(h.address),
             "preservation": preservation_by_address[h.address],
             "robustness": robustness_results[h.address],
         }
-        for h in survivors_sorted
-    ]
+
+    survivors_payload = [_survivor_entry(h) for h in survivors_sorted]
     survivors_artifact = {
         "artifact_version": artifacts.RUN_ARTIFACT_VERSION,
         "campaign": cfg["campaign"],

@@ -173,14 +173,16 @@ def test_campaign_results_writes_per_actor_and_top_with_no_absolute_paths(tmp_pa
     assert isinstance(result["per_actor"], dict)
     assert result["per_actor"]  # the production corpus's own survivors name a real ACTOR
     for row in result["per_actor"].values():
-        assert set(row) >= {"max_P", "min_u", "best_elo", "n_survivors", "profile_projections"}
+        assert set(row) >= {"max_P", "min_u", "max_lift", "best_elo", "n_survivors", "profile_projections"}
         assert set(row["profile_projections"]) == {"consensus", "skeptic", "fringe", "uniform"}
 
     assert 0 < len(result["top"]) <= 10
     for entry in result["top"]:
-        assert set(entry) >= {"hypothesis_id", "address", "opinion", "elo", "robustness"}
-    elos = [e["elo"] for e in result["top"]]
-    assert elos == sorted(elos, reverse=True)
+        assert set(entry) >= {"hypothesis_id", "address", "opinion", "elo", "max_lift", "robustness"}
+    # `top` ranks by lift first, Elo second: assert the real sort key
+    # rather than the coincidental case where lift and Elo agree.
+    rank_keys = [(-e["max_lift"], -e["elo"]) for e in result["top"]]
+    assert rank_keys == sorted(rank_keys)
 
     assert result["self_report"]
 

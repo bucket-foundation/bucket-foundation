@@ -17,6 +17,7 @@ from hte.belief import (
     fuse,
     load_constants,
     load_detectability_table,
+    opinion_clears_floor,
     pooled_weight,
     score,
     sigmoid,
@@ -58,6 +59,61 @@ def test_opinion_rejects_bad_inputs():
         Opinion.from_evidence(-1.0, 0.0, 2.0, 0.5)
     with pytest.raises(ValueError):
         Opinion.from_evidence(0.0, 0.0, 0.0, 0.5)
+
+
+# --------------------------------------------------------------------------
+# lift and tipping_prior (STATISTICAL-AUDIT-2026-09-15.md, audit item 1:
+# evidence-only lift and a tipping-point prior on every claim surface)
+# --------------------------------------------------------------------------
+
+
+def test_lift_equals_b_minus_d_and_is_invariant_to_the_prior():
+    rng = random.Random(23)
+    for _ in range(200):
+        r, s = rng.uniform(0, 50), rng.uniform(0, 50)
+        a1, a2 = rng.uniform(0, 1), rng.uniform(0, 1)
+        op1 = Opinion.from_evidence(r, s, 2.0, a1)
+        op2 = Opinion.from_evidence(r, s, 2.0, a2)  # same evidence, swapped prior
+        assert op1.lift() == pytest.approx(op1.b - op1.d)
+        assert op1.lift() == pytest.approx(op2.lift())  # `a` never enters `lift`
+
+
+@pytest.mark.parametrize("op", [
+    Opinion(b=0.7, d=0.3, u=0.0, a=0.5),  # u == 0: no prior left to move
+    Opinion(b=0.8, d=0.0, u=0.2, a=0.5),  # floor < b: cleared at a=0 already
+    Opinion(b=0.1, d=0.0, u=0.1, a=0.5),  # floor > b + u: unreachable even at a=1
+])
+def test_tipping_prior_is_none_when_no_achievable_prior_crosses_the_floor(op):
+    assert op.tipping_prior(0.6) is None
+
+
+def test_tipping_prior_finds_the_real_crossing_value():
+    op = Opinion(b=0.502, d=0.0, u=0.498, a=0.882)
+    tip = op.tipping_prior(0.6)
+    assert tip == pytest.approx((0.6 - 0.502) / 0.498)
+    assert Opinion(b=op.b, d=op.d, u=op.u, a=tip).project() == pytest.approx(0.6)
+
+
+def test_opinion_to_dict_carries_lift_and_tipping_prior_and_from_dict_round_trips():
+    op = Opinion(b=0.502, d=0.0, u=0.498, a=0.882)
+    d = op.to_dict()
+    assert d["lift"] == pytest.approx(op.lift())
+    assert d["tipping_prior_0_6"] == pytest.approx(op.tipping_prior(0.6))
+    # from_dict reads only the four core fields; the derived ones are
+    # recomputed on demand rather than round-tripped as stored state.
+    assert Opinion.from_dict(d) == op
+
+
+def test_opinion_clears_floor_ignores_the_prior():
+    # Same shared predicate `select_above_floor` and `bridge_export`
+    # both call: identical (b, d, u), different a, same verdict either way.
+    high_a = Opinion(b=0.502, d=0.0, u=0.498, a=0.882)
+    low_a = Opinion(b=0.502, d=0.0, u=0.498, a=0.121)
+    floors = {"floor_P": 0.0, "floor_u_max": 1.0}
+    assert opinion_clears_floor(high_a, lift_floor=0.25, **floors)
+    assert opinion_clears_floor(low_a, lift_floor=0.25, **floors)
+    assert not opinion_clears_floor(high_a, lift_floor=0.6, **floors)
+    assert not opinion_clears_floor(low_a, lift_floor=0.6, **floors)
 
 
 def test_fuse_dogmatic_pair_returns_neutral():

@@ -570,6 +570,10 @@ def test_survivors_artifact_has_one_entry_per_survivor_with_full_opinion_and_rob
     for entry in entries:
         opinion = entry["opinion"]
         assert opinion["P"] == pytest.approx(opinion["b"] + opinion["a"] * opinion["u"], abs=1e-9)
+        # `max_lift`: the top-level mirror of `opinion["lift"]`, named to
+        # match `hte.cli._per_actor_summary`'s own per-actor rollup.
+        assert entry["max_lift"] == pytest.approx(opinion["lift"])
+        assert opinion["lift"] == pytest.approx(opinion["b"] - opinion["d"])
         assert set(entry["robustness"]["projections"]) == {"consensus", "skeptic", "fringe", "uniform"}
         assert entry["preservation"] is not None
         assert isinstance(entry["slots"], dict)
