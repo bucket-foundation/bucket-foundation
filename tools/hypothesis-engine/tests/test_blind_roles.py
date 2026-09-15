@@ -1,10 +1,13 @@
 """`bkt-hte-blind-roles` (audit item 3, `_intake/hypothesis-engine/
 STATISTICAL-AUDIT-2026-09-15.md`): the critic and judge prompts carry no
-`ConsensusStatus`, prior, or Elo, so neither role's verdict moves on a
-label alone, and swapping which side of a pair reaches the judge as A
-versus B mirrors the returned probability. `HTE_LLM_MODE=fake`
-throughout: `hte.fakellm`'s stand-ins are deterministic functions of
-prompt text alone, exactly what a leaked label would show up in.
+`ConsensusStatus`, prior, or Elo, and swapping which side of a pair
+reaches the judge as A versus B mirrors the returned probability.
+`HTE_LLM_MODE=fake` throughout: `hte.fakellm`'s stand-ins are
+deterministic functions of prompt text, so an identical prompt gives an
+identical verdict; the swap test below relies on that determinism, but
+only the two direct prompt-content scans (`_assert_no_banned_terms`)
+read the full rendered section, so they are what catches a label
+leaked outside the fields `hte.fakellm._judge`/`_critic` parse.
 """
 from __future__ import annotations
 
@@ -69,7 +72,18 @@ def _capture_prompt(monkeypatch, response: dict, call) -> str:
     return seen["prompt"]
 
 
-def _run_pipeline(vocab):
+# Both production judge paths (`hte.runner.run_campaign` wires
+# `hte.batching.batch_judge` by default, falling back to `hte.roles.
+# judge` per pair; either can be handed to `hte.tournament.run` as its
+# single-call `judge`), so the label-swap and banned-terms tests below
+# run against both rather than only the single-item one.
+_JUDGE_CALLERS = {
+    "roles.judge": lambda a, b, ctx: roles.judge(a, b, ctx, cache_dir="unused"),
+    "batching.batch_judge": lambda a, b, ctx: batching.batch_judge([(a, b, ctx)], cache_dir="unused")[0],
+}
+
+
+def _run_pipeline(vocab, judge_call):
     """One critic filter plus one judge round, real production entry
     points (`hte.batching.batch_critique`, `hte.tournament.run`)."""
     corpus = fixtures.build()
@@ -78,17 +92,17 @@ def _run_pipeline(vocab):
     corpus.evidence[0].supports.append(a.address)
     corpus.evidence[4].supports.append(b.address)
     reports = batching.batch_critique([a, b], corpus.evidence, cache_dir="unused")
-    judge = lambda x, y, ctx: roles.judge(x, y, ctx, cache_dir="unused")  # noqa: E731
-    elos = tournament.run([a, b], {}, judge, rounds=1, seed=0, context={"evidence": corpus.evidence})
+    elos = tournament.run([a, b], {}, judge_call, rounds=1, seed=0, context={"evidence": corpus.evidence})
     return reports, elos
 
 
-def test_critic_and_judge_are_unaffected_by_a_consensus_status_swap():
+@pytest.mark.parametrize("judge_call", _JUDGE_CALLERS.values(), ids=_JUDGE_CALLERS.keys())
+def test_critic_and_judge_are_unaffected_by_a_consensus_status_swap(judge_call):
     vocab = fixtures.build().vocab
-    before_reports, before_elos = _run_pipeline(vocab)
+    before_reports, before_elos = _run_pipeline(vocab, judge_call)
 
     _swap_actor_consensus_status(vocab, "alpha-team", "unverified-observer")
-    after_reports, after_elos = _run_pipeline(vocab)
+    after_reports, after_elos = _run_pipeline(vocab, judge_call)
 
     assert before_reports == after_reports
     assert before_elos == after_elos
@@ -105,15 +119,29 @@ def test_critic_prompt_carries_no_consensus_or_prior_language(monkeypatch):
     _assert_no_banned_terms(prompt)
 
 
-def test_judge_prompt_carries_no_consensus_or_prior_language(monkeypatch):
+# `_judge_batch_prompt` (`hte.batching`) is its own duplicated copy of
+# the hypothesis-and-evidence rendering `hte.roles.judge` uses (see
+# `hte.batching`'s own module docstring), so a leak introduced only
+# there would pass a scan of `roles.judge`'s prompt alone.
+_JUDGE_PROMPT_CASES = {
+    "roles.judge": (
+        lambda a, b, ctx: roles.judge(a, b, ctx, cache_dir="unused"),
+        {"p_a_wins": 0.5, "rationale": "fine"},
+    ),
+    "batching.batch_judge": (
+        lambda a, b, ctx: batching.batch_judge([(a, b, ctx)], cache_dir="unused"),
+        {"results": [{"id": "0", "p_a_wins": 0.5, "rationale": "fine"}]},
+    ),
+}
+
+
+@pytest.mark.parametrize("judge_call, response", _JUDGE_PROMPT_CASES.values(), ids=_JUDGE_PROMPT_CASES.keys())
+def test_judge_prompt_carries_no_consensus_or_prior_language(monkeypatch, judge_call, response):
     corpus = fixtures.build()
     a = _hyp(corpus.vocab, "alpha-team")
     b = _hyp(corpus.vocab, "unverified-observer")
     corpus.evidence[0].supports.append(a.address)
-    prompt = _capture_prompt(
-        monkeypatch, {"p_a_wins": 0.5, "rationale": "fine"},
-        lambda: roles.judge(a, b, {"evidence": corpus.evidence}, cache_dir="unused"),
-    )
+    prompt = _capture_prompt(monkeypatch, response, lambda: judge_call(a, b, {"evidence": corpus.evidence}))
     _assert_no_banned_terms(prompt)
 
 

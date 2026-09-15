@@ -17,7 +17,7 @@ import subprocess
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, Mapping, Sequence
 
 from . import artifacts, batching, calibrate, export, link, llm, propagate, roles, tournament, unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
@@ -331,6 +331,22 @@ def _judge_batch_adapter(
     return judge_batch
 
 
+def _judge_disagreement_count(
+    triples: Sequence[tuple[int, int, float]], opinions: Mapping[int, Opinion],
+) -> int:
+    """How many `(addr_x, addr_y, score_x)` triples (one per judged
+    pair, `score_x = P(addr_x wins)`) cross the side the belief-scored
+    opinion already favored (`bkt-hte-blind-roles`); a tie in either
+    the opinion or the score is never counted. This is the exact logic
+    behind `MANIFEST.json["counts"]["judge_disagreement"]`."""
+    count = 0
+    for addr_x, addr_y, score_x in triples:
+        p_x, p_y = opinions[addr_x].project(), opinions[addr_y].project()
+        if p_x != p_y and score_x != 0.5 and (p_x > p_y) != (score_x > 0.5):
+            count += 1
+    return count
+
+
 def _critic_survivors(
     hypotheses: list[Hypothesis], evidence: list[EvidenceItem], *, cache_dir: str, replay_only: bool,
     batch_size: int, workers: int | None, logger: Logger,
@@ -527,32 +543,27 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         cache_dir, replay_only, batch_size=cfg["judge_batch_size"], workers=cfg["llm_workers"],
     )
 
-    # `bkt-hte-blind-roles`: pairs where the judge crosses the side the
-    # opinion already favored, tallied by wrapping the two judge
-    # callables (`hte.tournament.run` no longer sees `opinions`).
-    judge_disagreement = 0
-
-    def _tally(x: Hypothesis, y: Hypothesis, score: float) -> None:
-        nonlocal judge_disagreement
-        p_x, p_y = opinions[x.address].project(), opinions[y.address].project()
-        if p_x != p_y and score != 0.5 and (p_x > p_y) != (score > 0.5):
-            judge_disagreement += 1
+    # `bkt-hte-blind-roles`: every judged pair's own address triple,
+    # recorded by wrapping the two judge callables (`hte.tournament.run`
+    # no longer sees `opinions`), scored by `_judge_disagreement_count`
+    # once the tournament finishes.
+    judged_pairs: list[tuple[int, int, float]] = []
 
     def judge_tallied(x: Hypothesis, y: Hypothesis, ctx: dict) -> float:
         score = judge(x, y, ctx)
-        _tally(x, y, score)
+        judged_pairs.append((x.address, y.address, score))
         return score
 
     def judge_batch_tallied(pairs: Sequence[tuple[Hypothesis, Hypothesis, dict]]) -> list[float]:
         scores = judge_batch(pairs)
-        for (x, y, _ctx), score in zip(pairs, scores):
-            _tally(x, y, score)
+        judged_pairs.extend((x.address, y.address, score) for (x, y, _ctx), score in zip(pairs, scores))
         return scores
 
     elos = tournament.run(
         survivors, opinions, judge_tallied, rounds=cfg["tournament_rounds"], seed=0,
         context={"evidence": corpus.evidence}, judge_batch=judge_batch_tallied,
     )
+    judge_disagreement = _judge_disagreement_count(judged_pairs, opinions)
     logger.log(
         f"tournament: {len(elos)} hypotheses rated over {cfg['tournament_rounds']} rounds, "
         f"judge_disagreement={judge_disagreement}"

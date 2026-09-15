@@ -7,6 +7,7 @@ from hypothesis import given
 from hypothesis import strategies as st
 
 from hte import llm, roles, runner
+from hte.belief import Opinion
 from hte.corpus import Corpus, GroundTruthEvent, education_atlas, production
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
 from hte.timeline import Interval
@@ -122,6 +123,24 @@ def test_manifest_carries_llm_stats(tmp_path):
     # shelled out to `claude -p`.
     assert manifest["llm_stats"]
     assert all(row["calls"] == row["cache_hits"] for row in manifest["llm_stats"].values())
+
+
+def test_judge_disagreement_count_excludes_draws_and_ties(monkeypatch):
+    """`bkt-hte-blind-roles`: the exact logic behind `MANIFEST.json`
+    `counts.judge_disagreement`, two judged pairs (one agrees with the
+    opinion's own P-ordering, one disagrees) plus a draw."""
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    opinions = {
+        1: Opinion(b=0.9, d=0.0, u=0.1, a=0.5),  # high P
+        2: Opinion(b=0.0, d=0.9, u=0.1, a=0.5),  # low P
+        3: Opinion(b=0.5, d=0.0, u=0.5, a=0.5),
+    }
+    triples = [
+        (1, 2, 0.0),  # opinion favors 1; score favors 2 -> disagreement
+        (1, 2, 1.0),  # opinion favors 1; score favors 1 -> agreement
+        (1, 3, 0.5),  # a draw score, excluded regardless of opinion
+    ]
+    assert runner._judge_disagreement_count(triples, opinions) == 1
 
 
 # --------------------------------------------------------------------------
