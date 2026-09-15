@@ -3581,3 +3581,7 @@ Squash-merged after this pass.
 ## 2026-09-15 Research OS page to the artifact layout
 
 `src/app/research-os/page.tsx` rebuilt to the artifact structure; `src/app/research-os/landing.css` and `src/app/research-os/RevealRow.tsx` added. Globe roll, position, opacity, and dpr adjusted in `CanonGlobe.tsx` and `FixedCanonGlobeBackground.tsx`.
+
+## 2026-09-15 decorative globe made safe on the Phoenix iGPU
+
+`Earth.tsx`: `dotDetail`, `dotColor`, `dotOpacity` props. `Halo.tsx`: `alpha` uniform. `CanonGlobe.tsx`: opaque lighter 18,000-dot decorative Earth, 20 fps scroll frame cap, diagnostic `variant` prop. `FixedCanonGlobeBackground.tsx`: no compositor effects, painted edge gradient, query switches. `Footer.tsx`: `relative z-[2]`. New `src/app/research-os/globe-test/page.tsx`.

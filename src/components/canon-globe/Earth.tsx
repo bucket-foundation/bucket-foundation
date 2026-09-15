@@ -15,6 +15,12 @@ interface EarthProps {
   targetRotationY: number;
   reducedMotion: boolean;
   landmaskUrl: string;
+  /** Dot material opacity; below 1 the dots render transparent. */
+  dotOpacity?: number;
+  /** Sphere segments per dot; 8 is the interactive globe, 4 is a cheap disc. */
+  dotDetail?: number;
+  /** Dot color. */
+  dotColor?: number;
   children?: React.ReactNode;
   /** number of fibonacci candidate points; ~15000 is the sweet spot. */
   sampleCount?: number;
@@ -49,6 +55,9 @@ export function Earth({
   targetRotationY,
   reducedMotion,
   landmaskUrl,
+  dotOpacity = 1,
+  dotDetail = 8,
+  dotColor = 0x1f1c16,
   children,
   sampleCount = 36000,
   dotRadius = 0.0038,
@@ -153,14 +162,19 @@ export function Earth({
   });
 
   // Shared geometry for instanced dots, small, low-poly disc-like sphere.
-  const dotGeo = useMemo(() => new THREE.SphereGeometry(dotRadius, 8, 8), [dotRadius]);
+  const dotGeo = useMemo(
+    () => new THREE.SphereGeometry(dotRadius, dotDetail, Math.max(3, Math.round(dotDetail / 2))),
+    [dotRadius, dotDetail]
+  );
   const dotMat = useMemo(
     () =>
       new THREE.MeshBasicMaterial({
-        color: 0x1f1c16,
+        color: dotColor,
         toneMapped: false,
+        transparent: dotOpacity < 1,
+        opacity: dotOpacity,
       }),
-    []
+    [dotOpacity, dotColor]
   );
 
   return (

@@ -129,6 +129,8 @@ interface Props {
    * external scroll-velocity value that eases auto-rotate speed up and
    * back down to its base rate. */
   scrollRef?: MutableRefObject<ScrollState>;
+  /** Diagnostic variants for the decorative mount. */
+  variant?: { noshell?: boolean; fulldpr?: boolean; nospin?: boolean; notilt?: boolean; opaque?: boolean };
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
@@ -153,7 +155,9 @@ const DEFAULT_CONTAINER_CLASSNAME =
 function DecorativeCanonGlobeMount({
   containerClassName,
   scrollRef,
+  variant,
 }: {
+  variant?: { noshell?: boolean; fulldpr?: boolean; nospin?: boolean; notilt?: boolean; opaque?: boolean };
   containerClassName?: string;
   scrollRef?: MutableRefObject<ScrollState>;
 }) {
@@ -164,6 +168,7 @@ function DecorativeCanonGlobeMount({
           markers={[]}
           decorative
           scrollRef={scrollRef}
+          variant={variant}
           className="relative z-0"
         />
       </GlobeErrorBoundary>
@@ -177,12 +182,13 @@ export default function CanonGlobeMount({
   globeWrapperClassName,
   decorative = false,
   scrollRef,
+  variant,
 }: Props) {
   if (decorative) {
     return (
       <DecorativeCanonGlobeMount
         containerClassName={containerClassName}
-        scrollRef={scrollRef}
+        scrollRef={scrollRef} variant={variant}
       />
     );
   }

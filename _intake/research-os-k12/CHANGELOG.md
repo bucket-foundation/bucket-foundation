@@ -2808,3 +2808,10 @@ None.
 - State copy replaced with the artifact's one-liners; the earlier meaning and signal text is at `git show 19a7bc1c6:src/app/research-os/page.tsx`.
 - Globe: axis rolled a quarter turn clockwise on top of the 35 degree tilt (-55 degrees on screen), center moved to 78vw by 64vh, wrapper opacity 0.55, backing store 0.22 dpr for a softer image.
 - Verified in Chrome 150 on the founder's Phoenix iGPU: hardware context, no console errors, reveal and scroll spin working. One amdgpu ring timeout attributed to `Process chrome` during the scroll-to-bottom pass (the 13th this boot; the first was Sep 5 before any of this work); the context recovered.
+
+## 2026-09-15 decorative globe made safe on the Phoenix iGPU
+
+- Bisected on the founder's AMD Radeon 780M (Phoenix) under amdgpu with Chrome 150, counting only `ring gfx_0.0.0 timeout` events attributed to the test browser's GPU process id. The page without the globe: 0 hangs in 5 loads. The decorative globe on a bare page: hangs within 1 to 2 loads. Spin off: 0. Opaque dots: 0. So the trigger was scroll-driven frames over 36,000 transparent 128-triangle dot instances.
+- Decorative mount now draws 18,000 opaque four-segment dots in a lighter basalt (`0x5a4f3d`) instead of 55% transparent ones, keeps the Halo at 0.55 alpha and the particle shell, and caps scroll-driven frames at one per 50 ms. Wrapper has no CSS filter, opacity, or mask; the edge dissolves under a painted bone radial gradient, and the Footer sits above the globe layer (`z-[2]`).
+- Result: 0 hangs over 4 loads on the bare route, 4 and then 8 loads on /research-os, each load scrolling to the bottom and back, WebGL alive throughout.
+- Diagnostics kept: `/research-os/globe-test` (globe on a bare page) and query switches on the decorative mount (`noglobe`, `small`, `noshell`, `fulldpr`, `nofade`, `nospin`, `notilt`, `absolute`, `opaque`) for the next GPU check.

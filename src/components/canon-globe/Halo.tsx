@@ -10,18 +10,21 @@ interface HaloProps {
   radius?: number;
   color?: string;
   enabled?: boolean;
+  /** Multiplies both rims' alpha. */
+  alpha?: number;
 }
 
 export function Halo({
   radius = 1.05,
   color = "#B8861E",
   enabled = true,
+  alpha = 1,
 }: HaloProps) {
   // Inner crisp gold rim, sits just off the surface, sharp fresnel.
   const innerMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
-        uniforms: { uColor: { value: new THREE.Color(color) } },
+        uniforms: { uColor: { value: new THREE.Color(color) }, uAlpha: { value: alpha } },
         vertexShader: /* glsl */ `
           varying vec3 vNormal;
           varying vec3 vViewDir;
@@ -36,9 +39,10 @@ export function Halo({
           varying vec3 vNormal;
           varying vec3 vViewDir;
           uniform vec3 uColor;
+          uniform float uAlpha;
           void main() {
             float fres = pow(1.0 - dot(vNormal, vViewDir), 3.5);
-            float a = smoothstep(0.2, 1.0, fres) * 0.55;
+            float a = smoothstep(0.2, 1.0, fres) * 0.55 * uAlpha;
             gl_FragColor = vec4(uColor, a);
           }
         `,
@@ -47,14 +51,14 @@ export function Halo({
         depthWrite: false,
         blending: THREE.NormalBlending,
       }),
-    [color]
+    [color, alpha]
   );
 
   // Outer atmospheric bloom, wider, softer, gives the planet a glow halo.
   const outerMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
-        uniforms: { uColor: { value: new THREE.Color(color) } },
+        uniforms: { uColor: { value: new THREE.Color(color) }, uAlpha: { value: alpha } },
         vertexShader: /* glsl */ `
           varying vec3 vNormal;
           varying vec3 vViewDir;
@@ -69,9 +73,10 @@ export function Halo({
           varying vec3 vNormal;
           varying vec3 vViewDir;
           uniform vec3 uColor;
+          uniform float uAlpha;
           void main() {
             float fres = pow(1.0 - dot(vNormal, vViewDir), 1.6);
-            float a = smoothstep(0.0, 1.0, fres) * 0.22;
+            float a = smoothstep(0.0, 1.0, fres) * 0.22 * uAlpha;
             gl_FragColor = vec4(uColor, a);
           }
         `,
@@ -80,7 +85,7 @@ export function Halo({
         depthWrite: false,
         blending: THREE.NormalBlending,
       }),
-    [color]
+    [color, alpha]
   );
 
   if (!enabled) return null;

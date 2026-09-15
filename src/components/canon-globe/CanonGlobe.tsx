@@ -1,6 +1,6 @@
 "use client";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import type { MutableRefObject } from "react";
 import { OrbitControls } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
@@ -29,6 +29,17 @@ const DECORATIVE_VELOCITY_DECAY = 3;
 const DECORATIVE_MAX_EXPANSION = 0.4;
 const DECORATIVE_EXPANSION_PER_VELOCITY = 0.25;
 const SHELL_COUNT = 3200;
+// Decorative transparency lives in the materials, never in CSS opacity:
+// an opacity or mask on the wrapper makes the compositor render the
+// whole 2100px layer offscreen, which hangs the founder's Phoenix iGPU.
+const DECORATIVE_ALPHA = 0.55;
+// Decorative dots stay opaque (transparent instancing plus scroll frames
+// wedged the founder's iGPU); a lighter color carries the "less dark" ask.
+const DECORATIVE_DOT_COLOR = 0x5a4f3d;
+const DECORATIVE_DOT_COUNT = 18000;
+const DECORATIVE_DOT_DETAIL = 4;
+// Scroll-driven frames are capped at this interval (20 per second).
+const DECORATIVE_FRAME_MS = 50;
 
 /**
  * Eases the decorative globe's spin toward scrollY * DECORATIVE_RAD_PER_PX
@@ -47,12 +58,34 @@ function ScrollSpinDriver({
 }) {
   const invalidate = useThree((state) => state.invalidate);
   const current = useRef({ rot: 0, scale: 1 });
+  const frame = useRef({ last: 0, timer: 0 as ReturnType<typeof setTimeout> | 0 });
+
+  // Request at most one frame per DECORATIVE_FRAME_MS.
+  const requestFrame = useCallback(() => {
+    const f = frame.current;
+    const now = performance.now();
+    const wait = DECORATIVE_FRAME_MS - (now - f.last);
+    if (wait <= 0) {
+      f.last = now;
+      invalidate();
+      return;
+    }
+    if (f.timer) return;
+    f.timer = setTimeout(() => {
+      f.timer = 0;
+      f.last = performance.now();
+      invalidate();
+    }, wait);
+  }, [invalidate]);
 
   useEffect(() => {
-    const onScroll = () => invalidate();
+    const onScroll = () => requestFrame();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [invalidate]);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame.current.timer) clearTimeout(frame.current.timer);
+    };
+  }, [requestFrame]);
 
   useFrame((_state, delta) => {
     const spin = spinRef.current;
@@ -72,7 +105,7 @@ function ScrollSpinDriver({
     }
     scroll.velocity *= Math.exp(-DECORATIVE_VELOCITY_DECAY * delta);
     if (Math.abs(targetRot - c.rot) > 1e-4 || Math.abs(targetScale - c.scale) > 1e-4) {
-      invalidate();
+      requestFrame();
     }
   });
   return null;
@@ -139,7 +172,7 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
           alphaTest={0.05}
           vertexColors
           transparent
-          opacity={0.7}
+          opacity={0.7 * DECORATIVE_ALPHA}
           sizeAttenuation
           depthWrite={false}
         />
@@ -211,6 +244,8 @@ interface CanonGlobeProps {
   /** Read every frame when `decorative` is on: page scroll position and
    * speed. Position drives the spin, speed drives the particle shell. */
   scrollRef?: MutableRefObject<ScrollState>;
+  /** Diagnostic variants for the decorative mount. */
+  variant?: { noshell?: boolean; fulldpr?: boolean; nospin?: boolean; notilt?: boolean; opaque?: boolean };
 }
 
 const LANDMASK_URL = "/textures/earth/landmask-2k.bin";
@@ -223,9 +258,11 @@ export default function CanonGlobe({
   onSelectChange,
   decorative = false,
   scrollRef,
+  variant,
 }: CanonGlobeProps) {
   const reducedMotion = useReducedMotion();
-  const scrollSpin = decorative && !reducedMotion;
+  const scrollSpin = decorative && !reducedMotion && !variant?.nospin;
+  const alpha = decorative && !variant?.opaque ? DECORATIVE_ALPHA : 1;
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
   const spinRef = useRef<THREE.Group | null>(null);
   const shellRef = useRef<THREE.Group | null>(null);
@@ -266,7 +303,7 @@ export default function CanonGlobe({
         // Lower GPU pressure: cap DPR to 1, drop antialias. Helps on
         // browsers with shaky GPU drivers (Brave/Wayland/AMD on Linux
         // tends to crash with frequent context switches).
-        dpr={decorative ? 0.22 : 1}
+        dpr={decorative && !variant?.fulldpr ? 0.22 : 1}
         frameloop="demand"  // only render on prop change / camera moves
         performance={{ min: 0.5 }}
         camera={{ position: [0, 0, 3.4], fov: 42 }}
@@ -287,13 +324,17 @@ export default function CanonGlobe({
           />
         </points>
 
-        <group rotation={decorative ? [0, 0, DECORATIVE_TILT] : [0, 0, 0]}>
+        <group rotation={decorative && !variant?.notilt ? [0, 0, DECORATIVE_TILT] : [0, 0, 0]}>
         <group ref={spinRef}>
         <Suspense fallback={null}>
           <Earth
             targetRotationY={0}
             reducedMotion={true /* let OrbitControls drive rotation */}
             landmaskUrl={LANDMASK_URL}
+            dotOpacity={1}
+            dotDetail={decorative ? DECORATIVE_DOT_DETAIL : 8}
+            dotColor={decorative ? DECORATIVE_DOT_COLOR : 0x1f1c16}
+            sampleCount={decorative ? DECORATIVE_DOT_COUNT : undefined}
           >
             <CanonMarkers
               markers={markers}
@@ -307,8 +348,8 @@ export default function CanonGlobe({
             />
           </Earth>
         </Suspense>
-        <Halo enabled />
-        {decorative && <ParticleShell shellRef={shellRef} />}
+        <Halo enabled alpha={alpha} />
+        {decorative && !variant?.noshell && <ParticleShell shellRef={shellRef} />}
         </group>
         </group>
 
