@@ -395,7 +395,7 @@ def _judge_disagreement_count(
 def _critic_survivors(
     hypotheses: list[Hypothesis], evidence: list[EvidenceItem], *, cache_dir: str, replay_only: bool,
     batch_size: int, workers: int | None, logger: Logger,
-) -> list[Hypothesis]:
+) -> tuple[list[Hypothesis], dict[int, dict[str, float]]]:
     """The critic-filtered survivor list, `hte.batching.batch_critique`
     wired per `docs/THROUGHPUT.md`'s own recipe: `batch_size`
     hypotheses per `claude -p` call, each hypothesis a batch entry that
@@ -411,11 +411,13 @@ def _critic_survivors(
         workers=workers,
     )
     survivors: list[Hypothesis] = []
+    ratios: dict[int, dict[str, float]] = {}
     for h, report in zip(hypotheses, reports):
         logger.log(f"critic on {h.short_id}: keep={report.get('keep')} issues={report.get('issues')}")
         if report.get("keep", True):
             survivors.append(h)
-    return survivors
+            ratios[h.address] = roles.likelihood_ratios(report)
+    return survivors, ratios
 
 
 def _survivor_opinion(opinion: Opinion) -> dict[str, float]:
@@ -543,7 +545,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     n_linked = sum(1 for e in corpus.evidence if e.supports or e.refutes)
     logger.log(f"evidence linking: {n_linked} of {len(corpus.evidence)} items linked to a hypothesis (threshold={cfg['link_threshold']})")
 
-    survivors = _critic_survivors(
+    survivors, likelihood_ratios = _critic_survivors(
         all_hypotheses, corpus.evidence, cache_dir=cache_dir, replay_only=replay_only,
         batch_size=cfg["critic_batch_size"], workers=cfg["llm_workers"], logger=logger,
     )
@@ -558,7 +560,13 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     preservation_by_address = {h.address: note for h, note in zip(survivors, preservation_results)}
 
     constants = load_constants(cfg["constants"])
-    opinions = {h.address: belief_score(h, corpus.evidence, corpus.vocab, table, constants=constants) for h in survivors}
+    opinions = {
+        h.address: belief_score(
+            h, corpus.evidence, corpus.vocab, table, constants=constants,
+            likelihood_ratios=likelihood_ratios.get(h.address),
+        )
+        for h in survivors
+    }
 
     # Retraction propagation (`bkt-hte-retraction-propagation`, `docs/
     # PROPAGATION.md`): every address this run's own corpus flags as
@@ -628,7 +636,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     profiles = unknowns.prior_profiles(corpus.vocab)
 
     def score_fn(h: Hypothesis, evidence: list[EvidenceItem], vocab: Vocabulary) -> Opinion:
-        return belief_score(h, evidence, vocab, table, constants=constants)
+        return belief_score(h, evidence, vocab, table, constants=constants, likelihood_ratios=likelihood_ratios.get(h.address))
 
     robustness_results = {
         h.address: unknowns.robustness(h, corpus.evidence, profiles, score_fn) for h in survivors
@@ -661,6 +669,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
             # evidence supports under any prior, named to match `hte.cli.
             # _per_actor_summary`'s own per-actor rollup.
             "max_lift": opinion_dict["lift"],
+            "likelihood_ratios": likelihood_ratios.get(h.address, {}),
             "elo": elos.get(h.address),
             "preservation": preservation_by_address[h.address],
             "robustness": robustness_results[h.address],
