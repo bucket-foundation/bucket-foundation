@@ -77,6 +77,16 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
+The base rate is a Beta prior now, updated across campaigns
+(`hte/prior_ledger.py`). Each concept's `prior_logit` is the label's
+starting mean with four pseudo-observations; a campaign run with
+`--prior-ledger <path>` reads the ledger back into the vocabulary before
+generation and, after scoring, appends per concept how many scored
+survivors naming it carried positive evidence-only lift and how many
+negative. `lift` reads no prior, so the label never feeds itself. Ledger
+rows are per corpus and per run; `MANIFEST.json` `counts.prior_ledger`
+records what was applied and appended.
+
 The vindication holdout is the false-negative test the discovery-date
 holdout cannot run, since that one scores agreement with the
 literature's own record. `hte.calibrate.run_vindication` reads a

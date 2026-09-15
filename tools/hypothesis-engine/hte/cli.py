@@ -67,6 +67,7 @@ def _cmd_campaign_run(args: argparse.Namespace) -> int:
         "corpus": args.corpus,
         "out_dir": args.out,
         "replay_only": args.replay_only,
+        "prior_ledger": args.prior_ledger,
         "seeds": args.seeds,
         "verbose": args.verbose,
     }
@@ -395,6 +396,7 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument("--campaign", default=None, help="default: the corpus name (--corpus)")
     run_p.add_argument("--cache-dir", default=None)
     run_p.add_argument("--replay-only", action="store_true")
+    run_p.add_argument("--prior-ledger", default=None, help="cross-campaign Beta-prior ledger to read before generation and append after scoring (hte.prior_ledger)")
     run_p.add_argument("--seeds", type=int, default=3)
     run_p.add_argument("--verbose", action="store_true")
     run_p.add_argument("--generate-n", type=int, default=None, help="LLM-proposed placements per generate() call (default: runner.DEFAULT_CONFIG)")
