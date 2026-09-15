@@ -26,7 +26,7 @@ from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history, sacred_history_texts, younger_dryas
 from .evidence import EvidenceItem
-from .generate import combinatorial_sample, from_evidence
+from .generate import combinatorial_sample, from_evidence, stratified_sample
 from .hypothesis import Hypothesis
 from .timeline import (
     Interval, Resolution, RESOLUTION_WIDTH_YEARS, auto_resolution, bin_bounds, bin_label,
@@ -45,19 +45,29 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # item's own extracted slots instead of only per already-linked
     # address, a corpus this package's size (16 sources, 161 evidence
     # items, 105 ground-truth events) generates thousands of distinct
-    # addresses; a `max_hypotheses` still in the tens kept only the
-    # lowest few dozen by raw address value, which this address scheme's
-    # own TIME_BIN prime (`hte.address.PRIMES[4] == 11`, the fastest-
-    # growing factor in the whole product) reads as "the earliest
-    # century bin with any hypothesis at all," collapsing the kept
-    # population onto one seed. 400 clears every one of this corpus's 13
-    # decade bins with real depth in most of them (empirically checked
-    # against the shipped quantum-history corpus, `bkt-hte-evidence-
-    # slots`'s own regression note).
+    # addresses; a `max_hypotheses` still in the tens kept too few to
+    # clear this corpus's 13 decade bins with real depth. 400 clears
+    # every one of them (empirically checked against the shipped
+    # quantum-history corpus, `bkt-hte-evidence-slots`'s own regression
+    # note). Which of the addresses above 400 survive the cap is
+    # `hte.generate.stratified_sample`'s own call: a stratified sample
+    # by actor and status (`STATISTICAL-AUDIT-2026-09-15.md` item 1),
+    # in place of the old `sorted(...)[:cap]`, which kept whichever
+    # actor the vocabulary listed first, every run.
     "generate_n": 20,
     "generate_evidence_sample": 8,
     "combinatorial_max_items": 150,
+    # `hte.generate.combinatorial_sample`'s own knob: draws the ACTOR's
+    # `ConsensusStatus` class before the actor itself, so a class the
+    # vocabulary names once draws as much as one it names a hundred
+    # times (`STATISTICAL-AUDIT-2026-09-15.md` item 2). `False` restores
+    # the flat per-actor draw this replaces.
+    "combinatorial_status_balanced": True,
     "max_hypotheses": 400,
+    # `hte.generate.stratified_sample`'s own seed, apart from `seeds`
+    # above (`seeds` counts generation passes; this seeds the one
+    # sampling step run afterward, over every pass's merged pool).
+    "sampling_seed": 0,
     "tournament_rounds": 2,
     "top_k": 5,
     # Raised from 4 for the same reason: a strided 4-bin sample was
@@ -469,6 +479,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         combinatorial = combinatorial_sample(
             corpus.vocab, time_bins, max_items=cfg["combinatorial_max_items"], seed=seed,
             span_start=span_start, bin_width=bin_width,
+            status_balanced=cfg["combinatorial_status_balanced"],
         )
         evidence_driven = from_evidence(
             corpus.evidence, corpus.vocab, resolution, seed=seed,
@@ -480,8 +491,13 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
             by_address.setdefault(h.address, h)
         logger.log(f"generation seed {seed}: {len(combinatorial)} combinatorial + {len(evidence_driven)} evidence-driven = {len(seed_hyps)}")
 
-    all_hypotheses = sorted(by_address.values(), key=lambda h: h.address)[: cfg["max_hypotheses"]]
-    logger.log(f"generation total: {len(by_address)} distinct addresses, {len(all_hypotheses)} kept after max_hypotheses cap")
+    all_hypotheses, sampling_frame = stratified_sample(
+        by_address.values(), corpus.vocab, cap=cfg["max_hypotheses"], seed=cfg["sampling_seed"],
+    )
+    logger.log(
+        f"generation total: {len(by_address)} distinct addresses, {len(all_hypotheses)} kept "
+        f"after stratified sampling ({sampling_frame['n_strata']} strata, cap={cfg['max_hypotheses']})"
+    )
 
     link.link_evidence(corpus.evidence, all_hypotheses, corpus.vocab, threshold=cfg["link_threshold"])
     n_linked = sum(1 for e in corpus.evidence if e.supports or e.refutes)
@@ -594,18 +610,23 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         survivors,
         key=lambda h: (-(elos.get(h.address) if elos.get(h.address) is not None else float("-inf")), h.address),
     )
-    survivors_payload = [
-        {
+    def _survivor_entry(h: Hypothesis) -> dict[str, Any]:
+        opinion_dict = _survivor_opinion(opinions[h.address])
+        return {
             "hypothesis_id": h.short_id,
             "address": h.address,
             "slots": _survivor_slots(h),
-            "opinion": _survivor_opinion(opinions[h.address]),
+            "opinion": opinion_dict,
+            # `lift` again, at the top level: the ceiling this survivor's
+            # evidence supports under any prior, named to match `hte.cli.
+            # _per_actor_summary`'s own per-actor rollup.
+            "max_lift": opinion_dict["lift"],
             "elo": elos.get(h.address),
             "preservation": preservation_by_address[h.address],
             "robustness": robustness_results[h.address],
         }
-        for h in survivors_sorted
-    ]
+
+    survivors_payload = [_survivor_entry(h) for h in survivors_sorted]
     survivors_artifact = {
         "artifact_version": artifacts.RUN_ARTIFACT_VERSION,
         "campaign": cfg["campaign"],
@@ -772,10 +793,16 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "git_sha": _git_sha(),
         "config": cfg,
         "extraction": extraction_note,
-        # `bkt-hte-retraction-propagation`/`bkt-hte-blind-roles`: both
-        # added directly here, for the cache-key-stability reason the
-        # `self_report` fold-in above documents.
-        "counts": {**run_summary, "fragility_top10": fragility_top10, "judge_disagreement": judge_disagreement},
+        # `bkt-hte-retraction-propagation`, `bkt-hte-blind-roles`, and the
+        # stratified sample (`STATISTICAL-AUDIT-2026-09-15.md` item 2):
+        # all three added here rather than into `run_summary` itself, for
+        # the cache-key-stability reason the `self_report` fold-in above
+        # documents: `run_summary` feeds `roles.self_report`'s own prompt
+        # text, and `MANIFEST.json` carries these without perturbing it.
+        "counts": {
+            **run_summary, "fragility_top10": fragility_top10,
+            "judge_disagreement": judge_disagreement, "sampling": sampling_frame,
+        },
     }
     # `hte.artifacts.validate_manifest` builds a `ManifestArtifact` from
     # this exact dict before it is ever written: a required field this

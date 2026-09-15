@@ -150,6 +150,29 @@ class Opinion:
         `Bucket.Belief.project`)."""
         return self.b + self.a * self.u
 
+    def lift(self) -> float:
+        """The evidence-only signal `b - d` (Jeffreys: prior odds and the
+        Bayes factor reported apart). `lift` reads no `a`, so two opinions
+        from identical evidence but different priors carry the same
+        `lift` even when `project()` disagrees
+        (`STATISTICAL-AUDIT-2026-09-15.md`'s Younger Dryas case: `b=0.502,
+        d=0, u=0.498` for both, projected to 0.941 and 0.562)."""
+        return self.b - self.d
+
+    def tipping_prior(self, floor: float) -> float | None:
+        """Reverse Bayes: the base rate `a` at which `project()` sits at
+        `floor`, solving `floor = b + a*u`. `None` at `u <= 0` (no prior
+        moves a dogmatic opinion) or when the solved value falls outside
+        `[0, 1]` (no achievable prior crosses `floor`). Otherwise the
+        prior a claim's own gate decision turns on
+        (`STATISTICAL-AUDIT-2026-09-15.md`'s Reverse-Bayes fix)."""
+        if self.u <= 0:
+            return None
+        a_tip = (floor - self.b) / self.u
+        if a_tip < 0.0 or a_tip > 1.0:
+            return None
+        return a_tip
+
     @classmethod
     def from_evidence(cls, r: float, s: float, W: float, a: float) -> "Opinion":
         """`Eq. opinion-sum` / `Bucket.Belief.fromEvidence`: the fused
@@ -167,11 +190,31 @@ class Opinion:
         return cls(b=r / denom, d=s / denom, u=W / denom, a=a)
 
     def to_dict(self) -> dict:
-        return {"b": self.b, "d": self.d, "u": self.u, "a": self.a}
+        """`b`/`d`/`u`/`a` plus the derived `lift` and `tipping_prior_0_6`
+        (at the package's default floor `0.6`), inherited by every caller
+        of this serializer (`hte.runner._survivor_opinion`, `hte.export.
+        _opinion_dict`, `hte.bridge_export.export_for_bridge`, `hte.api.
+        _enrich_entry`) rather than recomputed by hand."""
+        return {
+            "b": self.b, "d": self.d, "u": self.u, "a": self.a,
+            "lift": self.lift(), "tipping_prior_0_6": self.tipping_prior(0.6),
+        }
 
     @classmethod
     def from_dict(cls, d: dict) -> "Opinion":
         return cls(b=d["b"], d=d["d"], u=d["u"], a=d["a"])
+
+
+def opinion_clears_floor(opinion: "Opinion", *, floor_P: float, floor_u_max: float, lift_floor: float) -> bool:
+    """The single-opinion admission predicate every credence-floor gate
+    in this package shares (`hte.canon_writeback.select_above_floor`,
+    `hte.bridge_export.export_for_bridge`'s `accepted` flag): `P(h) >=
+    floor_P`, `u <= floor_u_max`, and evidence-only `lift = b - d >=
+    lift_floor`, with the prior `a` excluded from that last term
+    (`STATISTICAL-AUDIT-2026-09-15.md`). One opinion in, one gate
+    decision out, so every caller reads the same verdict for the same
+    opinion and floors."""
+    return opinion.project() >= floor_P and opinion.u <= floor_u_max and opinion.lift() >= lift_floor
 
 
 def fuse(o1: Opinion, o2: Opinion) -> Opinion:

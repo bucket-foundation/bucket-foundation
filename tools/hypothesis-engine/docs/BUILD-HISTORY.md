@@ -60,6 +60,13 @@ that motivates the `u` half of the floor: a majority of this run's
 highest-`P` survivors carry `u = 1.0` and `b = 0`, high prior, zero
 examination, and the floor excludes every one of them.
 
+A third floor, `lift = b - d >= lift_floor` (default `0.25`), closes a
+case the `P`/`u` pair does not: `STATISTICAL-AUDIT-2026-09-15.md`'s
+Younger Dryas run put two hypotheses built from the SAME evidence on
+opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
+reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
+`P(h)`, the prior a gate decision turns on.
+
 ## Why write-back stops at `candidate`
 
 `hte.canon_writeback.write_back` never writes `canon_tier: canon`. Per

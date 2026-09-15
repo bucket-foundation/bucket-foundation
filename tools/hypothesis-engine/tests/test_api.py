@@ -120,7 +120,7 @@ def test_response_carries_opinion_elo_slot_labels_and_linked_evidence(monkeypatc
     entries = [e for b in response["timeline"]["bins"] for e in b["ranked_hypotheses"]]
     assert entries, "at least one ranked hypothesis expected over the full fixture set"
     entry = entries[0]
-    assert entry["opinion"] is None or set(entry["opinion"]) == {"b", "d", "u", "a", "P"}
+    assert entry["opinion"] is None or set(entry["opinion"]) == {"b", "d", "u", "a", "lift", "tipping_prior_0_6", "P"}
     assert "elo" in entry
     assert set(entry["slot_labels"]) == set(entry["slots"])
     assert set(entry["linked_evidence"]) == {"supports", "refutes"}

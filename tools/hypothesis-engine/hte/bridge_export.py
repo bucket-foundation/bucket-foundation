@@ -62,10 +62,10 @@ None of the fields below are part of the TypeScript interface as read
 from source; each is named plainly so PR #14's own review can decide
 whether to widen the type to match:
 
-- `accepted` (bool): whether the hypothesis clears the caller's own
-  `floor_P`/`floor_u_max`, `hte.canon_writeback.select_above_floor`'s
-  own rule, repeated here since a bridge caller may want it without
-  re-deriving the two floors itself.
+- `accepted` (bool): whether the hypothesis clears `floor_P`/
+  `floor_u_max`/`lift_floor` via `hte.belief.opinion_clears_floor`,
+  the same predicate `select_above_floor` calls, repeated here for a
+  bridge caller that wants it without re-deriving all three floors.
 - `canon_tier` (`"candidate"`, always, snake_case to match the graph
   schema's own column-naming convention rather than the interface's
   camelCase): every hypothesis this module exports is candidate
@@ -79,7 +79,7 @@ whether to widen the type to match:
   reliable tier among the hypothesis's own linked evidence. See
   "`tierAssigned` is deliberately left `None`" above for why this lives
   here and not in `tierAssigned`.
-- `opinion` (`{"b", "d", "u", "a", "P"}`): the full subjective-logic
+- `opinion` (`Opinion.to_dict()` plus `P`): the full subjective-logic
   opinion, not just its projection. `posterior` above already carries
   `P` alone for a caller that only wants the interface's own documented
   field; `opinion` exists because `u` (uncertainty mass) has no home in
@@ -107,6 +107,7 @@ from pathlib import Path
 from typing import Any
 
 from . import canon_writeback
+from .belief import opinion_clears_floor
 
 ENGINE_NAME = "hte"
 ORIGIN = "engine"
@@ -135,7 +136,7 @@ def _slots_for_bridge(candidate: "canon_writeback.Candidate", ctx: "canon_writeb
 
 
 def export_for_bridge(
-    run_dir: str | Path, *, floor_P: float = 0.6, floor_u_max: float = 0.5, branch: str = "",
+    run_dir: str | Path, *, floor_P: float = 0.6, floor_u_max: float = 0.5, lift_floor: float = 0.25, branch: str = "",
 ) -> list[dict[str, Any]]:
     """Every survivor `run_dir` carries, as an `EngineHypothesisInput`-
     shaped dict plus this module's own additive fields (see this
@@ -152,9 +153,9 @@ def export_for_bridge(
 
     items: list[dict[str, Any]] = []
     for candidate in candidates:
-        accepted = candidate.posterior >= floor_P and candidate.opinion.u <= floor_u_max
-        evidence_items = candidate.supports + candidate.refutes
         opinion = candidate.opinion
+        accepted = opinion_clears_floor(opinion, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor)
+        evidence_items = candidate.supports + candidate.refutes
         items.append({
             "engine": ENGINE_NAME,
             "runId": ctx.run_id,
@@ -178,7 +179,7 @@ def export_for_bridge(
             "canon_tier": canon_writeback.CANON_TIER,
             "origin": ORIGIN,
             "source_tier": _source_tier(candidate),
-            "opinion": {"b": opinion.b, "d": opinion.d, "u": opinion.u, "a": opinion.a, "P": candidate.posterior},
+            "opinion": {**opinion.to_dict(), "P": candidate.posterior},
             "evidenceCitations": [
                 {"ref": item.id, "sourceId": item.source_id, "citation": item.span.locator, "quote": item.span.quote}
                 for item in evidence_items
@@ -188,14 +189,14 @@ def export_for_bridge(
 
 
 def write_bridge_export(
-    run_dir: str | Path, *, envelope_path: Path, floor_P: float = 0.6, floor_u_max: float = 0.5, branch: str = "",
+    run_dir: str | Path, *, envelope_path: Path, floor_P: float = 0.6, floor_u_max: float = 0.5, lift_floor: float = 0.25, branch: str = "",
 ) -> Path:
     """`export_for_bridge`'s own I/O wrapper: writes the result next to
     the feed402 envelope `hte.canon_writeback.write_back` already wrote,
     at `<envelope_path's own stem>.bridge.json` (`public/research/
     hypotheses/<run-id>.bridge.json` for `write_back`'s own envelope
     path). Returns the path written."""
-    items = export_for_bridge(run_dir, floor_P=floor_P, floor_u_max=floor_u_max, branch=branch)
+    items = export_for_bridge(run_dir, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor, branch=branch)
     out_path = envelope_path.with_name(f"{envelope_path.stem}.bridge.json")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(items, indent=2), encoding="utf-8")
