@@ -68,14 +68,14 @@ const DECORATIVE_DOT_RADIUS = 0.0075;
 const DECORATIVE_DOT_DETAIL = 6;
 // Scroll-driven frames are capped at this interval (20 per second).
 const DECORATIVE_FRAME_MS = 50;
-// Decorative render: half-resolution buffer, blurred in two separable
-// passes inside WebGL. A CSS blur on the canvas wrapper hangs the
-// founder's Phoenix iGPU; these passes are tiny fullscreen draws.
-const DECORATIVE_DPR = 0.5;
-// Each pass is a 9-tap kernel stepped this many buffer pixels, so one
-// pair at 0.55 spreads about 2.2 buffer pixels, 4.4 CSS pixels at half dpr.
-const DECORATIVE_BLUR_PX = 0.55;
-const DECORATIVE_BLUR_PASSES = 1;
+// Mount intro for the decorative globe only: it arrives from
+// INTRO_SPIN_RAD to the left and its shell grows from INTRO_SHELL_SCALE,
+// both easing out over INTRO_MS. The interactive globes stay still until
+// dragged.
+const INTRO_MS = 3600;
+const INTRO_SPIN_RAD = 1.1;
+const INTRO_SHELL_SCALE = 0.65;
+const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
 /**
  * Eases the decorative globe's spin toward scrollY * DECORATIVE_RAD_PER_PX
@@ -94,6 +94,7 @@ function ScrollSpinDriver({
 }) {
   const invalidate = useThree((state) => state.invalidate);
   const current = useRef({ rot: 0, scale: 1 });
+  const introStart = useRef(performance.now());
   const frame = useRef({ last: 0, timer: 0 as ReturnType<typeof setTimeout> | 0 });
 
   // Request at most one frame per DECORATIVE_FRAME_MS.
@@ -115,6 +116,7 @@ function ScrollSpinDriver({
   }, [invalidate]);
 
   useEffect(() => {
+    requestFrame();
     const onScroll = () => requestFrame();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -133,14 +135,16 @@ function ScrollSpinDriver({
     const c = current.current;
     c.rot = damp(c.rot, targetRot, DECORATIVE_SPIN_EASE, delta);
     c.scale = damp(c.scale, targetScale, DECORATIVE_SHELL_EASE, delta);
-    spin.rotation.y = c.rot;
+    const introT = Math.min(1, (performance.now() - introStart.current) / INTRO_MS);
+    const introK = 1 - easeOutCubic(introT);
+    spin.rotation.y = c.rot - introK * INTRO_SPIN_RAD;
     const shell = shellRef.current;
     if (shell) {
-      shell.scale.setScalar(c.scale);
-      shell.rotation.y = c.rot * 0.55;
+      shell.scale.setScalar(c.scale * (INTRO_SHELL_SCALE + (1 - INTRO_SHELL_SCALE) * (1 - introK)));
+      shell.rotation.y = (c.rot - introK * INTRO_SPIN_RAD) * 0.55;
     }
     scroll.velocity *= Math.exp(-DECORATIVE_VELOCITY_DECAY * delta);
-    if (Math.abs(targetRot - c.rot) > 1e-4 || Math.abs(targetScale - c.scale) > 1e-4) {
+    if (introT < 1 || Math.abs(targetRot - c.rot) > 1e-4 || Math.abs(targetScale - c.scale) > 1e-4) {
       requestFrame();
     }
   });

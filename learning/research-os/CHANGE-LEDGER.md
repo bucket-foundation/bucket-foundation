@@ -3601,3 +3601,7 @@ Squash-merged after this pass.
 ## 2026-09-15 home canon search panel
 
 `src/app/canon/CanonGlobeMount.tsx`: `layout` prop, home left column, `Drawer` `transparent`. `src/components/CanonSearchPanel.tsx`: transparent, `layout="home"`, lift 38vh. `src/components/Presentation.tsx`: hero 78vh, `z-20`.
+
+## 2026-09-15 Research OS globe intro
+
+`CanonGlobe.tsx`: intro offset and shell growth inside `ScrollSpinDriver`, `INTRO_*` constants. `CanonSearchPanel.tsx`: lift 32vh.

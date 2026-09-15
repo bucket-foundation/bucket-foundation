@@ -2835,3 +2835,9 @@ None.
 - `CanonGlobeMount` gains `layout="home"`: the search pill, layer toggles, and branch chips sit in a left column (380px, top-left of the panel) over the globe; the detail drawer and its sticky header carry no background (`Drawer` `transparent` prop); fullscreen mode keeps the default layout.
 - `CanonSearchPanel`: no surface, hairline, or `backdrop-blur` of its own (the page ground shows through); globe lifted 38vh above the panel's top edge. Hero (`Presentation`) at 78vh and `z-20` so the dome slides behind the headline, copy, and CTA instead of over them.
 - Two scrolled loads on the founder's GPU, 0 hangs.
+
+## 2026-09-15 Research OS globe intro
+
+- Decorative globe on /research-os: on mount it arrives from 1.1 rad to the left and eases into place over 3.6 s (cubic ease-out) while the particle shell grows from 65% to full; scroll drives it afterward. Frames stay under the 20 per second cap. Skipped under prefers-reduced-motion. The interactive globes (home panel, /canon/search) keep no intro, per the founder.
+- Home panel globe lift 38vh to 32vh.
+- Two scrolled loads of each page on the founder's GPU, 0 hangs.
