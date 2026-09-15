@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7ca9450ae8a61f4dcd7306e110e2626764ce4786d1b183f9602d99bfa494866c",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: Younger Dryas Boundary (YDB) layer anomalies in Greenland ice cores (GISP2/GRIP) such as elevated platinum, iridium, or extraterrestrial-sourced nanodiamonds coinciding with ~10,900 BCE onset",
+      "geological: 'black mat' organic-rich sediment layers and cosmic dust/spherule concentrations at contemporaneous terrestrial sites correlated to the ice-sheet record",
+      "astronomical: orbital-dynamics modeling showing the Taurid meteor stream's debris complex intersecting Earth's orbit in the relevant epoch, and radiant/fireball corridor reconstructions",
+      "material: magnetic and glassy microspherules, meltglass, or soot/charcoal spikes in stratigraphic layers dated to the YD onset (proxy sites outside Greenland, since direct Greenland ice-sheet material recovery is difficult)",
+      "genetic: megafaunal extinction or population bottleneck signatures temporally clustering with the proposed impact/airburst event (weak, indirect proxy)",
+      "model_prior: existing Younger Dryas Impact Hypothesis (YDIH) literature and debate, which already invokes a cometary/Taurid-related encounter as a candidate trigger for YD cooling"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis ties a Taurid-stream cosmic encounter to the Younger Dryas termination as recorded in the Greenland ice sheet. This falls in the 'younger-dryas' period bucket, where geological (0.65) and astronomical (0.70) detectability are comparatively high \u2014 ice cores and orbital/meteor-stream modeling are exactly the kind of long-lived, physically robust records that can survive ~13,000 years and be recovered/analyzed with modern instrumentation. Material evidence (0.35) is moderate: proxy indicators like spherules or soot layers exist at various YDB sites globally, though direct high-resolution material recovery from the Greenland ice sheet itself is logistically harder than at exposed terrestrial sections. Genetic (0.3) and oral_tradition/linguistic/iconographic (0.05\u20130.1) channels are poorly suited to an event this far back \u2014 no anatomically continuous cultural transmission chain is well-attested at 11,000 BCE, so their near-absence is expected on detectability grounds alone, not evidence against the hypothesis. Textual evidence (0.0) is definitionally impossible pre-writing. Notably, real-world analogues of the expected evidence (GISP2 platinum anomaly, nanodiamond claims, black mat horizons) do exist in the literature as part of the contested Younger Dryas Impact Hypothesis \u2014 this is a model-prior recollection from training data, not verified within this evidence set, and remains scientifically disputed rather than confirmed. Given the mix of favorable (geological/astronomical) and unfavorable (genetic/textual/linguistic) channels for this specific claim, and that the strongest corroborating channels are plausible but not conclusively confirming, I suggest a blended detectability adjustment around 0.5 \u2014 high enough that a genuine encounter should leave findable traces, but low enough to account for the difficulty of attributing any such traces specifically to a 'corroborated by another actor' framing versus purely natural climatic forcing."
+  }
+}

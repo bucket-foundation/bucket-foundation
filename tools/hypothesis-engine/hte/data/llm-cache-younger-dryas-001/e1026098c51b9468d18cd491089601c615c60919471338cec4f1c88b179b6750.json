@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "d3ae2012471d92cdfbad124f134c3492d8c668c00baf7c243752332230413b6f",
+  "response": {
+    "expected_evidence": [
+      "Geological/sedimentary: independent, multi-site assays of purported YD boundary layer markers (nanodiamonds, magnetic and carbon spherules, platinum/iridium anomalies) showing failure to reproduce original Firestone et al. (2007) results across labs",
+      "Material/analytical: peer-reviewed replication studies (e.g., Pigati et al. 2012, Daulton et al., van Hoesel et al., Holliday & Meltzer, Surovell et al.) reporting non-detection or methodological artifacts in samples from North American sites originally cited as impact evidence",
+      "Model_prior/consensus evidence: statements from geological/archaeological professional bodies or review articles characterizing the impact hypothesis as unsupported or minority-view after failed replication attempts",
+      "Astronomical/impact-modeling: absence of a confirmed North American impact crater of appropriate age/size despite search efforts, cited in refutation literature",
+      "Textual (modern scientific literature, not ancient 'textual' category): published critiques, comment/response exchanges in journals (PNAS, JGR, Journal of Archaeological Science) documenting the replication dispute"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.85,
+    "rationale": "This hypothesis is unusual in that its actor and mechanism (a scientific community refuting a claim via 'independent-replication-failure') describe a modern (late 20th/21st-century) scientific process, not a physical event embedded in the -10950 stratigraphic record itself. The interval given (-10950) dates the Younger Dryas onset being discussed, but the refutation event itself \u2014 failed replication of the Firestone et al. (2007) impact-marker claims by independent labs (model-prior: I recall studies such as Pigati et al. 2012, Daulton et al., van Hoesel et al., and Holliday & Meltzer critiques, though I cannot verify current consensus status past my training cutoff) \u2014 would have occurred and been documented in modern peer-reviewed literature, which has near-certain preservation and discoverability, unlike genuinely ancient upper-paleolithic/younger-dryas-period textual or material evidence. The supplied detectability table is built for archaeological-period source material contemporaneous with -10950 (e.g., younger-dryas geological=0.65, textual=0.0, material=0.35) and substantially underestimates detectability for this claim, because the actual evidentiary record (journal articles, replication datasets, conference proceedings) is a 20th/21st-century textual/scientific-literature phenomenon with survival probability close to certainty, not an artifact that had to survive ~13,000 years. I therefore adjust the effective detectability upward from the table's low younger-dryas geological/material/textual values to reflect that the relevant evidence class is modern scientific documentation rather than ancient deposits \u2014 while still flagging that whether the hypothesis is empirically true (full refutation vs. ongoing dispute) is a separate, contested question that I hold as low-confidence model-prior, not confirmed fact."
+  }
+}

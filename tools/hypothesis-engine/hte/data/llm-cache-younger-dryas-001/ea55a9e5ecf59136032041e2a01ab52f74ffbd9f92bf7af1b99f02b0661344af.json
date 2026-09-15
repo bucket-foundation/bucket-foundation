@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "193e4a0178b4c488c4658ae361900bb64651cefcdb0eeefdfa1fc672162aa711",
+  "response": {
+    "expected_evidence": [
+      "geological: magnetic microspherules, glassy/vesicular meltglass, and carbon spherules concentrated in a thin sedimentary layer dated to ~12,900 cal BP across multiple North American sites",
+      "geological: elevated platinum/iridium and other siderophile-element anomalies at the same stratigraphic horizon, interpreted as an extraterrestrial signature",
+      "geological: a 'black mat' organic-rich layer overlying the proposed impact horizon, associated with regional biomass-burning charcoal/soot spikes",
+      "material/archaeological: disruption or termination of Clovis-associated occupation layers directly above or within the proposed event horizon",
+      "genetic/paleontological: megafaunal extinction signatures (bison, mammoth, horse, etc.) clustering near the same time window, though genetic bottleneck timing is hard to resolve precisely",
+      "absence of an impact crater \u2014 expected under this hypothesis's stated 'airburst' mechanism (no crater should exist even if the event occurred), so this absence is not itself disconfirming",
+      "model-prior (low-tier, unverified from training): this scenario matches the real-world 'Younger Dryas Impact Hypothesis' (Firestone et al., 2007) \u2014 a published but highly contested claim; independent labs have repeatedly failed to replicate the spherule/nanodiamond findings, and no consensus extraterrestrial signature has been confirmed as of my training data"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.4,
+    "rationale": "The interval -10950 (~12,900 cal BP) sits at the Younger Dryas onset, so I used the 'younger-dryas' detectability row rather than a generic Upper Paleolithic default. The strongest applicable evidence categories are geological (0.65) and material/archaeological (0.35), since sediment cores, black mats, and Clovis-layer stratigraphy from this period are well-studied and preservable over ~13,000 years in North America \u2014 geological preservation at this timescale is routine, so absence of evidence would be a weak excuse if searched for. Astronomical evidence (0.7) is less directly applicable here because the mechanism is explicitly an airburst, which by definition leaves no crater; the relevant astronomical-adjacent proxies (siderophile anomalies) are folded into the geological category instead. Genetic (0.3), textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) contribute little given no writing systems and sparse population/genetic resolution at this depth in time. Because this maps onto a real, actively contested scientific hypothesis (model-prior, low confidence) where claimed physical evidence exists in the literature but has faced serious replication failures and lack of independent confirmation, I lower the blended detectability below the raw geological/material average (~0.5) to reflect that even when evidence is technically detectable and searched-for extensively, the community has not reached confirmatory consensus \u2014 this reflects genuine ambiguity in the underlying signal rather than a survivorship/detectability gap. The hypothesis could have survived in the geological/archaeological record and largely has been searched for, but the mixed, disputed results mean an adjustment near 0.4 better represents realistic expected evidentiary strength than either extreme."
+  }
+}

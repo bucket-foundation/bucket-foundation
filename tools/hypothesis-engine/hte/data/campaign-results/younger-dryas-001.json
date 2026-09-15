@@ -1,0 +1,834 @@
+{
+  "run_id": "20260915T002022Z",
+  "campaign": "younger-dryas",
+  "corpus": "younger-dryas",
+  "counts": {
+    "campaign": "younger-dryas",
+    "n_sources": 47,
+    "n_evidence": 48,
+    "n_hypotheses_generated": 3205,
+    "n_survivors": 360,
+    "vocab_added": [
+      {
+        "slot": "object",
+        "id": "uu-beryllium-10-and-nitrate-concentration-spikes-in-ice-cores-radiation-exposure-proxy",
+        "label": "Beryllium-10 and nitrate concentration spikes in ice cores (radiation-exposure proxy)",
+        "rationale": "brakenridge-2011-supernova-c0 cites ice-core 10Be and nitrate spikes as the physical evidence for a supernova trigger, a distinct chemical marker not covered by the existing platinum/iridium/nanodiamond/spherule/meltglass object entries."
+      },
+      {
+        "slot": "object",
+        "id": "uu-absence-of-a-confirmed-impact-crater-matching-the-proposed-12-9-ka-event",
+        "label": "Absence of a confirmed impact crater matching the proposed 12.9 ka event",
+        "rationale": "boslough-2012-chapter-c0 explicitly weighs the impact hypothesis against the lack of any known crater, a distinct line of physical evidence not represented among the current object entries (which cover ejecta markers but not crater evidence itself)."
+      },
+      {
+        "slot": "actor",
+        "id": "uu-abrupt-northern-hemisphere-warming-events-independent-of-younger-dryas-cooling-as-megafaunal-extinction-driver",
+        "label": "Abrupt Northern Hemisphere warming events (independent of Younger Dryas cooling) as megafaunal extinction driver",
+        "rationale": "cooper-2015-c0 argues ancient-DNA megafaunal population turnover tracks rapid post-glacial warming pulses rather than the 12.9 ka Younger Dryas cooling onset, naming a causal driver distinct from all triggers currently listed for the cooling event."
+      }
+    ],
+    "coverage": {
+      "observed": 3205,
+      "chao1_estimate": 189255.0,
+      "missing_mass": 0.07267095544436503,
+      "coverage_low": 0.005773655172517245,
+      "coverage_high": 1.0
+    },
+    "robustness_stable_fraction": 0.7555555555555555,
+    "surprise_rate": 0.3541666666666667,
+    "calibration_brier": 0.05357112049428644,
+    "target_blind": {
+      "rate": 0.6,
+      "prior_rate": null,
+      "steady": true,
+      "first_run": true
+    },
+    "meta_review": {
+      "summary": "meta-review unavailable: the model refused or was truncated (1 refusal/truncation event(s) recorded this run so far).",
+      "flags": [
+        "model-refusal"
+      ],
+      "recommended_actions": [
+        "rerun meta_review once the refusal or truncation clears"
+      ]
+    },
+    "fragility_top10": [
+      {
+        "address": 1170399490260,
+        "short_id": "d835f53923021201",
+        "fragility": 55.0,
+        "fan_out": 55,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 12874394392860,
+        "short_id": "25a0d32a06516c90",
+        "fragility": 55.0,
+        "fan_out": 55,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 4184178177679500,
+        "short_id": "7d3eab7008261da6",
+        "fragility": 55.0,
+        "fan_out": 55,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 713212189377187500,
+        "short_id": "88406e3edfaf3d70",
+        "fragility": 33.0,
+        "fan_out": 33,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 473237079213508630020,
+        "short_id": "b759f3fd5ddf0d6f",
+        "fragility": 32.0,
+        "fan_out": 32,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 2366185396067543150100,
+        "short_id": "6e85e20d84916b16",
+        "fragility": 32.0,
+        "fan_out": 32,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 11830926980337715750500,
+        "short_id": "f6d3055feedaf35f",
+        "fragility": 32.0,
+        "fan_out": 32,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 19915078826455312500,
+        "short_id": "41ea97a02ab0b019",
+        "fragility": 30.0,
+        "fan_out": 30,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 99575394132276562500,
+        "short_id": "4d0c1d0eeafbc9bf",
+        "fragility": 30.0,
+        "fan_out": 30,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 258896024743919062500,
+        "short_id": "bd76b29a11d26d8f",
+        "fragility": 30.0,
+        "fan_out": 30,
+        "independent_support_share": 0.0,
+        "flagged": true
+      }
+    ]
+  },
+  "per_actor": {
+    "meltwater-pulse": {
+      "max_P": 0.9406930039389096,
+      "min_u": 0.4975297170155471,
+      "best_elo": 2604.2235084949016,
+      "n_survivors": 54,
+      "profile_projections": {
+        "consensus": 0.9406930039389096,
+        "skeptic": 0.9406930039389096,
+        "fringe": 0.9406930039389096,
+        "uniform": 0.7512351414922266
+      }
+    },
+    "cosmic-impact": {
+      "max_P": 0.5617772790455435,
+      "min_u": 0.059876185487844395,
+      "best_elo": 1642.0074905990914,
+      "n_survivors": 206,
+      "profile_projections": {
+        "consensus": 0.5617772790455435,
+        "skeptic": 0.5617772790455435,
+        "fringe": 0.7512351414922266,
+        "uniform": 0.7512351414922266
+      }
+    },
+    "supernova-event": {
+      "max_P": 0.5027453067832539,
+      "min_u": 0.4975297170155471,
+      "best_elo": 1504.9698678230795,
+      "n_survivors": 31,
+      "profile_projections": {
+        "consensus": 0.5027453067832539,
+        "skeptic": 0.5024753229559992,
+        "fringe": 0.9999949600284541,
+        "uniform": 0.7512351414922266
+      }
+    },
+    "uu-abrupt-northern-hemisphere-warming-events-independent-of-younger-dryas-cooling-as-megafaunal-extinction-driver": {
+      "max_P": 0.2689414213699951,
+      "min_u": 1.0,
+      "best_elo": 1112.411675235158,
+      "n_survivors": 5,
+      "profile_projections": {
+        "consensus": 0.2689414213699951,
+        "skeptic": 0.2689414213699951,
+        "fringe": 0.7310585786300049,
+        "uniform": 0.5
+      }
+    },
+    "other-actor": {
+      "max_P": 0.2689414213699951,
+      "min_u": 1.0,
+      "best_elo": 1106.4,
+      "n_survivors": 17,
+      "profile_projections": {
+        "consensus": 0.2689414213699951,
+        "skeptic": 0.2689414213699951,
+        "fringe": 0.5,
+        "uniform": 0.5
+      }
+    },
+    "volcanic-eruption": {
+      "max_P": 0.18242552380635632,
+      "min_u": 0.5976261827347658,
+      "best_elo": 893.7473612790712,
+      "n_survivors": 13,
+      "profile_projections": {
+        "consensus": 0.18242552380635632,
+        "skeptic": 0.18242552380635632,
+        "fringe": 0.37754066879814546,
+        "uniform": 0.5
+      }
+    },
+    "taurid-complex-swarm": {
+      "max_P": 0.028342943549972355,
+      "min_u": 0.4975297170155471,
+      "best_elo": 131.3234713747763,
+      "n_survivors": 24,
+      "profile_projections": {
+        "consensus": 0.028342943549972355,
+        "skeptic": 0.003999822949493207,
+        "fringe": 0.5936263597852727,
+        "uniform": 0.2988130913673829
+      }
+    },
+    "solar-proton-event": {
+      "max_P": 0.029312230751356316,
+      "min_u": 0.5976261827347658,
+      "best_elo": 120.57736599174763,
+      "n_survivors": 10,
+      "profile_projections": {
+        "consensus": 0.029312230751356316,
+        "skeptic": 0.004070137715896127,
+        "fringe": 0.995929862284104,
+        "uniform": 0.5
+      }
+    }
+  },
+  "top": [
+    {
+      "hypothesis_id": "763b9c2442aa47cc",
+      "address": 8867955964691223650250,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "corroborated",
+        "OBJECT": "megafaunal-extinction",
+        "PLACE": "north-america",
+        "MECHANISM": "climate-driven-extinction",
+        "TIME": {
+          "start": -19050,
+          "end": -9050
+        }
+      },
+      "opinion": {
+        "b": 0.5024702829844531,
+        "d": 0.0,
+        "u": 0.4975297170155471,
+        "a": 0.8807970779778823,
+        "P": 0.9406930039389096
+      },
+      "elo": 2604.2235084949016,
+      "preservation": {
+        "expected_evidence": [
+          "Geological: Ice-core and marine/lacustrine sediment cores dating Meltwater Pulse 1A (~14,600 BP) and 1B (~11,500 BP), including delta-O18 shifts, sea-level jump signatures, and abrupt cooling markers correlated in time with extinction horizons.",
+          "Geological/stratigraphic: Younger Dryas boundary layers (e.g., black mats) in North American sediment sequences marking abrupt climate reversal, cross-referenced against last-appearance stratigraphy of megafauna.",
+          "Material/paleontological: Radiocarbon-dated fossil remains of North American megafauna (mammoth, mastodon, horse, camel, ground sloth, short-faced bear) clustering their last-appearance dates around meltwater-pulse/Younger Dryas transitions, compiled in extinction chronology databases.",
+          "Genetic: Ancient DNA (including sedaDNA) from megafauna populations showing bottlenecks, declining genetic diversity, or population collapse timed to climate transitions rather than solely to human arrival.",
+          "Genetic: Phylogeographic reconstructions of megafaunal population size changes (e.g., mammoth, horse, bison) using coalescent/Bayesian skyline methods anchored to radiocarbon-calibrated timescales.",
+          "Astronomical/geochemical (tangential, competing-hypothesis adjacent): Any correlated proxy records (e.g., isotopic or geochemical anomalies) used to argue for vs. against a purely climatic mechanism as opposed to impact or overkill mechanisms.",
+          "Model-prior: General paleoclimatic and paleontological literature (not directly verified in this evidence set) suggesting debate between climate-driven, human-overkill, and multi-causal explanations for the North American megafaunal extinction."
+        ],
+        "could_have_survived": true,
+        "detectability_adjustment": 0.55,
+        "rationale": "The hypothesis's interval (-19050 to -9050) spans the tail of the Upper Paleolithic through the Younger Dryas into the early Holocene, straddling three detectability rows. Textual, linguistic, oral_tradition, and iconographic channels are essentially unavailable this deep in prehistory (0.0-0.25 across all three periods) and their absence is fully expected by detectability alone, not by falsity. However, the two evidence classes most relevant to this specific hypothesis \u2014 geological (0.6-0.65) and genetic (0.25-0.35) \u2014 are comparatively strong for this timescale, because meltwater pulses and Younger Dryas cooling leave robust, well-preserved physical signatures (ice cores, sediment stratigraphy, sea-level records) and because ancient/sedimentary DNA techniques have matured enough (as model-prior knowledge, unverified in the provided evidence text) to recover megafaunal population history over 10,000-20,000 year timescales. Material evidence (radiocarbon-dated fossil last-appearance data) is also moderately robust (0.35-0.45). Given that this is an actively studied topic in mainstream paleoclimatology/paleontology with a genuine record of ice-core, sediment, and aDNA-based chronological correlation work, I adjust detectability upward from the raw table average (~0.3) to about 0.55 for the geological+genetic+material composite that matters most here, reflecting that absence of textual/oral/iconographic evidence is fully explained by period constraints, while the core geological/genetic evidence needed to corroborate or refute a climate-driven mechanism is plausibly recoverable and has likely already been partially explored in the real scientific literature \u2014 though the causal 'corroborated' claim remains contested against competing overkill and impact hypotheses."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.9406930039389096,
+          "skeptic": 0.9406930039389096,
+          "fringe": 0.9406930039389096,
+          "uniform": 0.7512351414922266
+        },
+        "spread": 0.18945786244668306,
+        "robustness": 0.8105421375533169,
+        "stable": true
+      }
+    },
+    {
+      "hypothesis_id": "9b803e9341a0d3a8",
+      "address": 3409377850462614240210,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "triggered",
+        "OBJECT": "younger-dryas-onset-cooling",
+        "PLACE": "north-atlantic",
+        "MECHANISM": "st-lawrence-routing",
+        "TIME": {
+          "start": -20000,
+          "end": -19001
+        }
+      },
+      "opinion": {
+        "b": 0.0,
+        "d": 0.0,
+        "u": 1.0,
+        "a": 0.8807970779778823,
+        "P": 0.8807970779778823
+      },
+      "elo": 2310.909473055854,
+      "preservation": {
+        "could_have_survived": true,
+        "expected_evidence": [
+          "Ice-core oxygen-isotope (\u03b418O) abrupt-shift records (e.g., GISP2, NGRIP) marking onset of pronounced cooling",
+          "Varved/laminated glacial-lake sediment sequences (Lake Agassiz, Lake Ojibway, Champlain Sea) showing a shift in outflow drainage from the Mississippi corridor to the St. Lawrence valley",
+          "Marine sediment cores from the Gulf of St. Lawrence / Labrador Sea / northwest Atlantic showing a low-salinity/freshwater spike (planktonic foraminiferal \u03b418O excursion, IRD layer, meltwater cap)",
+          "Geomorphological evidence of a St. Lawrence outlet flood channel or spillway erosion feature dated to the proposed interval",
+          "Radiocarbon- or cosmogenic-nuclide-dated moraine/ice-margin retreat features correlating with the routing switch",
+          "Terrestrial pollen/lake-sediment cooling proxies in eastern North America and Europe synchronous with the event",
+          "Population-genetic bottleneck signals in North American megafauna or contemporaneous human groups (weak, indirect)"
+        ],
+        "detectability_adjustment": 0.55,
+        "rationale": "If a St. Lawrence meltwater-routing event triggered Younger Dryas-style cooling, the expected signature would be almost entirely geological/paleoclimatic: ice-core isotope excursions, glacial-lake varve/outflow-channel evidence, and marine sediment freshwater/IRD spikes. These proxy archives are exceptionally well-preserved and precisely dated (annual-resolution ice cores and varves), so detectability for this evidence class is genuinely high (geological ~0.6-0.65, astronomical/chronometric ~0.65-0.7 in the table), and absence of such signals would be meaningful rather than merely a preservation artifact. Material, genetic, linguistic, textual, and oral-tradition evidence are essentially irrelevant or undetectable at this time depth (textual=0, oral_tradition/linguistic near 0), so their absence carries no weight. The larger problem is chronological: as model-prior (unverified, from training knowledge, not from supplied evidence) the real Younger Dryas onset is dated to roughly 12,900 calendar years BP (~10,900 BCE) via well-replicated ice-core and varve chronologies \u2014 several millennia later than the stated interval of -20000 to -19001 (~20,000-19,000 years BP, i.e., Last Glacial Maximum). Because the diagnostic geological/astronomical archives for this exact question are highly detectable and heavily studied, an absence of a documented cooling/freshwater-routing event at ~20-19 kya is not well explained by poor preservation \u2014 it more likely reflects a date/label mismatch in the hypothesis itself rather than a detectability failure. I therefore blend the 'younger-dryas' and 'upper-paleolithic' geological/astronomical rows and slightly discount for the apparent chronological inconsistency, landing at 0.55 rather than treating this as a straightforward high-detectability confirmation opportunity."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.8807970779778823,
+          "skeptic": 0.8807970779778823,
+          "fringe": 0.8807970779778823,
+          "uniform": 0.5
+        },
+        "spread": 0.3807970779778823,
+        "robustness": 0.6192029220221177,
+        "stable": true
+      }
+    },
+    {
+      "hypothesis_id": "a376dbc934a93298",
+      "address": 2669291789778674710650,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "inconclusive",
+        "OBJECT": "younger-dryas-termination",
+        "PLACE": "greenland-ice-sheet",
+        "MECHANISM": "dating-uncertainty",
+        "TIME": {
+          "start": -12850,
+          "end": -5950
+        }
+      },
+      "opinion": {
+        "b": 0.0,
+        "d": 0.0,
+        "u": 1.0,
+        "a": 0.8807970779778823,
+        "P": 0.8807970779778823
+      },
+      "elo": 2309.2339356757225,
+      "preservation": {
+        "expected_evidence": [
+          "Greenland ice core \u03b418O/\u03b415N stratigraphy (GISP2, GRIP, NGRIP) with annual layer counts spanning the Younger Dryas\u2013Holocene transition",
+          "Discrepancies between ice-core layer-counted chronologies and independent radiocarbon/varve chronologies used to date the YD termination",
+          "Meltwater pulse (e.g., MWP-1B) sea-level/coral records (Barbados, Tahiti) and attempts to correlate their timing with the Greenland ice record",
+          "Tephra/volcanic ash marker horizons used as cross-dating tie-points between ice cores and terrestrial/marine sequences",
+          "Cosmogenic isotope (10Be, 36Cl) production records used to independently constrain ice-core age models",
+          "Published stratigraphic/geochronological literature explicitly discussing dating uncertainty or lack of consensus on meltwater-pulse/YD-termination synchrony",
+          "Lake and marine sediment varve or laminae counts from the North Atlantic region correlated (or failing to correlate) with the ice-core timeline"
+        ],
+        "could_have_survived": true,
+        "detectability_adjustment": 0.62,
+        "rationale": "This hypothesis is not about a cultural or behavioral event but about a documented scientific/dating uncertainty concerning the correlation of a meltwater pulse with the Younger Dryas termination as recorded in the Greenland ice sheet. The interval given (-12850 to -5950) spans the tail end of the Younger Dryas period-bucket into the early Holocene bucket, so the relevant detectability rows are ('younger-dryas', 'geological')=0.65, ('younger-dryas', 'astronomical')=0.70, ('early-holocene', 'geological')=0.60, ('early-holocene', 'astronomical')=0.65, with material evidence (0.35\u20130.45) as a secondary channel; textual, linguistic, oral_tradition, and iconographic channels are essentially inapplicable (near 0) since this predates and is unrelated to human record-keeping. Unlike most prehistoric hypotheses, this one concerns a physical/geological archive \u2014 polar ice sheets are among the best-preserved, highest-resolution paleoclimate records available, with annual-layer-counted chronologies, isotopic proxies, and cross-checked cosmogenic/tephra tie-points. This makes the relevant 'geological' and 'astronomical' (radiometric/isotopic dating) channels unusually reliable and well-preserved compared to typical Pleistocene/early-Holocene hypotheses about human activity, culture, or events lacking a durable physical medium. The 'inconclusive'/'dating-uncertainty' framing of the hypothesis itself is consistent with real, documented scientific debate (model-prior, unverified: I recall there being genuine literature-level disagreement about precise synchroneity between meltwater pulses like MWP-1B and the YD termination as seen in Greenland ice cores, but I cannot cite specific studies with confidence from training alone). Given the strong preservation of ice-core and associated geological/astronomical archives, I raise the suggested detectability adjustment above the raw table averages (which are dragged down by irrelevant textual/oral/iconographic categories) to ~0.62, reflecting that absence of a clean resolution to the dating uncertainty is better explained by genuine scientific ambiguity in an otherwise highly detectable archive, not by poor preservation or low detectability."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.8807970779778823,
+          "skeptic": 0.8807970779778823,
+          "fringe": 0.8807970779778823,
+          "uniform": 0.5
+        },
+        "spread": 0.3807970779778823,
+        "robustness": 0.6192029220221177,
+        "stable": true
+      }
+    },
+    {
+      "hypothesis_id": "cbb9b065cbca2dec",
+      "address": 23883983712839250,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "corroborated",
+        "OBJECT": "megafaunal-extinction",
+        "PLACE": "north-america",
+        "MECHANISM": "fungal-sclerotia-formation",
+        "TIME": {
+          "start": -19050,
+          "end": -9050
+        }
+      },
+      "opinion": {
+        "b": 0.0,
+        "d": 0.0,
+        "u": 1.0,
+        "a": 0.8807970779778823,
+        "P": 0.8807970779778823
+      },
+      "elo": 2308.0736822021017,
+      "preservation": {
+        "expected_evidence": [
+          "geological: lake/pond/bog sediment cores spanning ~19,050-9,050 BP showing stratigraphic markers (e.g., 'black mat' layers, clay caps) coincident with meltwater-pulse discharge signals (grain-size shifts, isotopic freshwater excursions in nearby marine/lacustrine records)",
+          "geological/palynological: fungal spore assemblages, notably Sporormiella-type dung-fungus spore decline curves and any co-occurring fungal sclerotia abundance spikes in the same core intervals, used as a megaherbivore-biomass proxy",
+          "material: radiocarbon-dated megafaunal bone/tooth assemblages showing a terminal decline or last-appearance dates clustering near the hypothesized interval, correlated stratigraphically with the fungal/meltwater signal",
+          "genetic: ancient DNA (sedaDNA or bone-derived) tracking megafaunal population decline/genetic diversity loss timing relative to the fungal sclerotia horizon and meltwater pulse chronology",
+          "geochemical/geological: independent dating (radiocarbon, tephra, or platinum/iridium anomaly layers if tied to broader YD boundary event claims) tying the fungal sclerotia horizon to a specific meltwater-pulse episode rather than to unrelated climate or human-driven causes",
+          "model_prior: prior paleoecological literature (e.g., Sporormiella-decline studies at the Younger Dryas boundary in North America) as a template for what a genuine fungal-proxy/extinction correlation record looks like"
+        ],
+        "could_have_survived": true,
+        "detectability_adjustment": 0.45,
+        "rationale": "The hypothesis's interval (-19050 to -9050) spans the Upper Paleolithic, Younger Dryas, and Early Holocene periods, so no single detectability row applies cleanly; the core claimed event (meltwater pulse correlating with megafaunal extinction via fungal sclerotia) is most closely tied to the Younger Dryas boundary, where geological detectability is comparatively high (0.65) but material (0.35), genetic (0.3), and other categories are low, and textual/linguistic/oral_tradition/iconographic evidence is essentially unavailable (pre-literate, no surviving cultural transmission channel across ~9-19 ka). Sediment-core fungal spore/sclerotia records and dated megafaunal bone assemblages are genuinely the kind of archive that has survived and been studied in real paleoecology (my recollection of Sporormiella-decline studies at the North American Younger Dryas boundary is treated here as unverified model-prior, not confirmed fact from the evidence set). This makes 'could_have_survived' true in principle \u2014 such geological/palynological archives are robust and long-preserving \u2014 but the specific causal chain asserted here (meltwater pulse -> fungal sclerotia formation -> extinction, rather than simple temporal correlation or an alternative driver like human overhunting or independent climate cooling) is a much stronger and more mechanistically specific claim than what sediment/fossil proxies alone can typically corroborate. Low detectability in textual, linguistic, oral_tradition, and iconographic channels (all \u22640.1-0.2 across relevant periods) should not be read as evidence against the hypothesis, since no literate or narrative-preserving culture existed in North America across this span to record it; absence there is expected and uninformative. The moderate suggested adjustment (0.45) reflects that geological/palynological evidence is plausibly detectable and partially exists in the literature as correlational data, while genetic and material lines are weaker, and the specific 'meltwater-pulse as corroborated causal driver via fungal sclerotia' mechanism remains harder to demonstrate than a mere temporal coincidence, tempering confidence that surviving evidence would specifically corroborate causation rather than mere correlation."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.8807970779778823,
+          "skeptic": 0.8807970779778823,
+          "fringe": 0.8807970779778823,
+          "uniform": 0.5
+        },
+        "spread": 0.3807970779778823,
+        "robustness": 0.6192029220221177,
+        "stable": true
+      }
+    },
+    {
+      "hypothesis_id": "ccbc41e00dae9da3",
+      "address": 52473112217107832250,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "corroborated",
+        "OBJECT": "megafaunal-extinction",
+        "PLACE": "north-america",
+        "MECHANISM": "amoc-shutdown",
+        "TIME": {
+          "start": -19050,
+          "end": -9050
+        }
+      },
+      "opinion": {
+        "b": 0.0,
+        "d": 0.0,
+        "u": 1.0,
+        "a": 0.8807970779778823,
+        "P": 0.8807970779778823
+      },
+      "elo": 2307.3599999999997,
+      "preservation": {
+        "expected_evidence": [
+          "Geological: ocean/lake sediment core proxies (\u03b418O foraminifera, IRD, grain-size) showing reduced North Atlantic Deep Water formation coincident with a glacial meltwater discharge event (e.g., Lake Agassiz drainage routed via St. Lawrence or Mackenzie corridors) at the Younger Dryas onset (~12.9 ka)",
+          "Geological: Greenland/Antarctic ice-core records (\u03b418O, dust, methane) documenting the abrupt Younger Dryas cooling consistent with AMOC slowdown",
+          "Geological: varved lake sediment chronologies and 'black mat' stratigraphic horizons in North America marking the extinction/climate transition",
+          "Genetic: ancient DNA and phylogenetic bottleneck/coalescent analyses of North American megafauna (mammoth, horse, camel, short-faced bear) showing population decline or collapse timing clustering near the YD boundary",
+          "Material/archaeological: radiocarbon-dated megafaunal last-appearance datasets and faunal assemblage turnover in North American sites bracketing the interval",
+          "Model-prior (low-tier, from training): general familiarity with the 'meltwater pulse/Broecker hypothesis' linking glacial lake outburst floods to AMOC weakening and Younger Dryas cooling, and its contested overlap with megafaunal extinction and human-overkill debates"
+        ],
+        "could_have_survived": true,
+        "detectability_adjustment": 0.45,
+        "rationale": "The hypothesis ties a specific mechanism (AMOC shutdown from a meltwater pulse) to megafaunal extinction in North America across an interval that straddles the Upper Paleolithic and Younger Dryas periods (roughly 21,000-11,000 years ago). The relevant evidentiary channels are overwhelmingly geological (ice cores, marine/lake sediment isotopic and grain-size proxies) and genetic (ancient DNA bottleneck signatures), with material/archaeological (radiocarbon-dated faunal turnover) as secondary support. Per the detectability table, geological (0.6-0.65) and to a lesser extent material (0.35) and genetic (0.25-0.3) evidence for this era have non-trivial but modest survival/discoverability, while textual, linguistic, oral_tradition, and iconographic channels are essentially inapplicable (values 0.0-0.1) for a pre-literate, pre-iconographic causal-climate claim. Astronomical detectability is listed high (0.7) but this largely reflects dating-calibration utility (varve/radiocarbon chronometry) rather than direct evidence of the causal claim itself, so I weight it lightly. Because ice-core and marine-sediment records of the Younger Dryas cooling and meltwater discharge are well-documented in the paleoclimate literature (model-prior, unverified against the actual evidence corpus here), and megafaunal extinction chronologies have been extensively radiocarbon-dated, this kind of correlational/mechanistic evidence plausibly has survived and been found. However, 'corroborated' implies a settled causal link, whereas the actual scientific literature treats AMOC-shutdown-as-driver-of-extinction as one contested hypothesis among competing explanations (human overkill, direct climate stress, impact hypothesis), so absence of a definitive causal smoking gun should not be read as falsity \u2014 it reflects the genuine difficulty of establishing causation (vs. correlation) from proxy records this old, compounded by only moderate detectability scores across the dominant evidence types (geological ~0.6-0.65, genetic ~0.25-0.3, material ~0.35). I suggest a blended detectability adjustment of ~0.45, weighted toward geological evidence as the primary plausible channel, with genetic and material as supporting but weaker channels, and near-zero contribution from textual/linguistic/oral/iconographic channels for this period."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.8807970779778823,
+          "skeptic": 0.8807970779778823,
+          "fringe": 0.8807970779778823,
+          "uniform": 0.5
+        },
+        "spread": 0.3807970779778823,
+        "robustness": 0.6192029220221177,
+        "stable": true
+      }
+    },
+    {
+      "hypothesis_id": "899b5f62fa616238",
+      "address": 4036393247469833250,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "corroborated",
+        "OBJECT": "megafaunal-extinction",
+        "PLACE": "north-america",
+        "MECHANISM": "arctic-mackenzie-routing",
+        "TIME": {
+          "start": -19050,
+          "end": -9050
+        }
+      },
+      "opinion": {
+        "b": 0.0,
+        "d": 0.0,
+        "u": 1.0,
+        "a": 0.8807970779778823,
+        "P": 0.8807970779778823
+      },
+      "elo": 2306.434003696113,
+      "preservation": {
+        "expected_evidence": [
+          "geological: physical trace of a catastrophic Arctic-directed meltwater discharge along the Mackenzie River corridor \u2014 scoured bedrock/valley walls, boulder pavements, outwash gravels, and erosional terraces in the Mackenzie Valley dated to the Younger Dryas onset (~12.9 ka)",
+          "geological: sediment cores from the Beaufort Sea/Arctic Ocean showing a freshwater/meltwater pulse signature (low-salinity planktic foraminifera, oxygen-isotope excursions, ice-rafted debris spike) coincident with Lake Agassiz drainage",
+          "geological: stratigraphic evidence of glacial Lake Agassiz's outlet shifting from the St. Lawrence/Mississippi route to a northern/Mackenzie route (relict shorelines, spillway channels, varve chronology)",
+          "geological: AMOC-slowdown proxies (e.g., North Atlantic sediment core Nd/Pa isotopes, benthic foraminifera) showing thermohaline disruption timed to the routing event",
+          "material: North American faunal bone-bed and archaeological (Clovis-era) site chronologies showing megafaunal extinction/population collapse clustering near the meltwater/YD-onset date",
+          "material: radiocarbon 'last appearance' dates for megafauna (mammoth, mastodon, horse, etc.) concentrated around the hypothesized routing event",
+          "genetic: ancient DNA from megafaunal remains showing population bottlenecks, declining heterozygosity, or extinction timing statistically coincident with the meltwater pulse",
+          "genetic: coalescent-based demographic reconstructions (from modern or ancient genomes) inferring a sharp population decline at ~12.9-11.7 ka",
+          "model_prior: existing paleoclimate literature (e.g., Broecker-style meltwater routing hypotheses, Murton et al.-style Mackenzie outburst-flood studies) linking Arctic freshwater forcing to Younger Dryas cooling and downstream ecological stress on megafauna"
+        ],
+        "could_have_survived": true,
+        "detectability_adjustment": 0.5,
+        "rationale": "This hypothesis spans the Upper Paleolithic through Younger Dryas into the Early Holocene, but its causal core (meltwater rerouting -> AMOC disruption -> ecological stress -> extinction) is centered on the Younger Dryas onset (~12.9 ka). Geological evidence for this kind of event is the most detectable category across all relevant periods (0.60-0.65 in the table) because glacial outburst floods leave durable physical traces (scoured valleys, outwash deposits, marine sediment cores) that are routinely recovered by Quaternary geologists (e.g., real-world work such as Murton et al. 2010 identifying a Mackenzie-corridor flood path is a direct analog, treated here as model-prior context rather than confirmed fact for this specific hypothesis instance). Material and genetic evidence for the extinction side of the claim is moderately detectable (0.30-0.45 range) since megafaunal bone beds and increasingly ancient-DNA datasets do exist for this interval, but establishing tight causal coincidence (rather than mere temporal correlation) is harder and more contested. Textual, linguistic, oral_tradition, and iconographic evidence are essentially absent by construction (pre-literate, pre-agricultural context; detectability 0.0-0.2), so their absence is fully expected and uninformative about truth or falsity. Astronomical evidence is not mechanistically relevant to a routing/AMOC hypothesis (as opposed to an impact hypothesis), so its higher table detectability score is a red herring here \u2014 I would not expect astronomical evidence tied to this specific mechanism regardless of detectability. Given that the strongest and most relevant evidence classes (geological) are both plausible in principle and reasonably detectable, while the weakest links (genetic/material causal attribution) are moderately but not highly detectable, I set the overall detectability adjustment at 0.5 \u2014 high enough that a real absence of corroborating geological data would be somewhat informative against the hypothesis, but low enough to caution that failure to find tight material/genetic causal proof should not be read as strong disconfirmation."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.8807970779778823,
+          "skeptic": 0.8807970779778823,
+          "fringe": 0.8807970779778823,
+          "uniform": 0.5
+        },
+        "spread": 0.3807970779778823,
+        "robustness": 0.6192029220221177,
+        "stable": true
+      }
+    },
+    {
+      "hypothesis_id": "7edb47ebdce6d461",
+      "address": 682150458822401819250,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "corroborated",
+        "OBJECT": "megafaunal-extinction",
+        "PLACE": "north-america",
+        "MECHANISM": "demographic-decline-evidence",
+        "TIME": {
+          "start": -19050,
+          "end": -9050
+        }
+      },
+      "opinion": {
+        "b": 0.0,
+        "d": 0.0,
+        "u": 1.0,
+        "a": 0.8807970779778823,
+        "P": 0.8807970779778823
+      },
+      "elo": 2305.4842095212757,
+      "preservation": {
+        "expected_evidence": [
+          "Ancient DNA (aDNA) time-series from North American megafauna (mammoth, horse, bison, ground sloth) showing declining effective population size / heterozygosity in the millennia before extinction, temporally aligned with meltwater-pulse dates",
+          "Sedimentary and isotopic records (\u03b418O in corals, speleothems, ice cores; freshwater discharge layers) documenting the timing and magnitude of the meltwater pulse (e.g., MWP-1A ~14.6 ka) for cross-correlation with biological decline",
+          "Radiocarbon date-frequency distributions (summed probability distributions) of megafaunal fossils showing a taper/decline in occurrence density coincident with or following the pulse",
+          "Sea-level/proglacial lake outburst geological evidence (varves, outwash deposits) establishing the causal hydrological mechanism (AMOC disruption, regional cooling) linking the pulse to ecosystem stress",
+          "Paleoecological proxies (pollen, coprophilous fungal spores like Sporormiella) indicating vegetation/habitat shifts and megaherbivore decline in North American basins",
+          "Faunal turnover/extinction chronologies from stratified fossil sites bracketing the interval"
+        ],
+        "could_have_survived": true,
+        "detectability_adjustment": 0.45,
+        "rationale": "The hypothesis requires corroboration between a hydrological/climatic event (meltwater pulse) and a demographic decline in megafauna, so the diagnostic evidence classes are genetic (aDNA population-decline signatures), geological (meltwater/outwash/isotopic records dating and characterizing the pulse), and material (radiocarbon-dated fossil abundance and paleoecological proxies like Sporormiella). The interval (-19050 to -9050) spans the Late Upper Paleolithic through the Younger Dryas into the Early Holocene, so I averaged detectability across those three period rows rather than a single bucket. Geological detectability is comparatively strong in this era (0.60\u20130.65 across the three periods) because meltwater pulses leave robust, independently dateable sedimentary/isotopic signatures that survive well over these timescales. Genetic detectability is weaker and rising through the interval (0.25 \u2192 0.30 \u2192 0.35) since ancient DNA preservation in North American climates is possible but degrades with age and is unevenly sampled across taxa and sites \u2014 this is a real limiting factor, not evidence against the hypothesis. Material/fossil evidence (radiocarbon date-frequency, faunal assemblages) sits in the low-to-mid range (0.35\u20130.45), constrained by preservation bias and dating precision (reservoir effects, hiatuses) rather than absence of the phenomenon. Notably, this is a genuine, actively studied research program in Quaternary science \u2014 model-prior recollection (unverified, low-tier) suggests published work (e.g., Lorenzen et al. 2011-style ancient-DNA demographic reconstructions, and separate abrupt-warming/extinction correlation studies) has attempted exactly this kind of multi-proxy corroboration, meaning the evidence types listed are not merely hypothetical but plausibly already exist in the literature to some degree. Given the moderate-to-good detectability of the geological leg and the real but imperfect detectability of the genetic leg, a fully corroborated (all evidence lines aligned) case is achievable but not guaranteed to be fully resolved; a low or missing corroboration signal should not be read as strong evidence against the hypothesis, since genetic and fine-grained demographic data in particular remain only moderately detectable across this multi-period interval."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.8807970779778823,
+          "skeptic": 0.8807970779778823,
+          "fringe": 0.8807970779778823,
+          "uniform": 0.5
+        },
+        "spread": 0.3807970779778823,
+        "robustness": 0.6192029220221177,
+        "stable": true
+      }
+    },
+    {
+      "hypothesis_id": "15f1be1a1bc53099",
+      "address": 838920276787583480490,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "inconclusive",
+        "OBJECT": "younger-dryas-onset-cooling",
+        "PLACE": "north-america",
+        "MECHANISM": "dating-uncertainty",
+        "TIME": {
+          "start": -11150,
+          "end": -10850
+        }
+      },
+      "opinion": {
+        "b": 0.0,
+        "d": 0.0,
+        "u": 1.0,
+        "a": 0.8807970779778823,
+        "P": 0.8807970779778823
+      },
+      "elo": 2305.1199999999994,
+      "preservation": {
+        "expected_evidence": [
+          "Geological: North Atlantic/Arctic sediment cores showing freshwater-pulse proxies (planktic foram \u03b418O excursions, ice-rafted debris layers) coinciding with YD onset",
+          "Geological: geomorphological traces of catastrophic Lake Agassiz drainage (outlet channels, spillway scour, glacial lake shoreline/strandline chronologies) in North America",
+          "Geochemical: Nd isotope and Pa/Th proxies used to trace meltwater routing (Hudson Strait/St. Lawrence vs. Mackenzie corridor)",
+          "Astronomical/geological: Greenland ice-core annual layer counts (GISP2/GRIP/NGRIP) documenting the abruptness of YD cooling onset",
+          "Geochronological: cosmogenic isotope (10Be, 14C) production anomalies and the well-known radiocarbon calibration plateau spanning the YD onset, the literal source of the 'dating-uncertainty' status",
+          "Chronological cross-comparison literature: discrepancies/offsets between varve chronologies, ice-core layer counts, and radiocarbon dates for the onset (the direct evidentiary signature of 'inconclusive' + 'dating-uncertainty')",
+          "Material: North American Paleoindian archaeological stratigraphy (e.g. Clovis-age sites) showing occupation/subsistence shifts bracketing the cooling onset",
+          "Material: lake/pond varve and pollen records from North America and Europe recording rapid vegetation/temperature shifts at onset",
+          "Genetic: limited paleogenomic signal of population bottlenecks in North American fauna/humans around this interval (weak, indirect)"
+        ],
+        "could_have_survived": true,
+        "detectability_adjustment": 0.6,
+        "rationale": "This hypothesis is essentially a chronological/mechanistic claim about the Younger Dryas onset and the Meltwater Pulse trigger hypothesis, explicitly flagged as 'inconclusive' due to 'dating-uncertainty' \u2014 this matches a real scientific situation I recall from training (model-prior, unverified against any evidence text provided): the YD onset sits on a notorious radiocarbon calibration plateau, and ice-core, varve, and marine-sediment chronologies for the meltwater trigger have historically disagreed by centuries, which is plausibly why the hypothesis is coded as inconclusive rather than confirmed or refuted. Using the 'younger-dryas' period row (closest match to 'younger-dryas-onset-cooling' as object) as the primary reference, the dominant relevant evidence kinds \u2014 geological (0.65) and astronomical/ice-core chronology (0.7) \u2014 are the highest-detectability categories in the entire table for this period, meaning this is exactly the kind of proxy evidence expected to survive and be recoverable (sediment cores, ice cores, and geomorphic features are physically robust and have been the basis of decades of published paleoclimate research). Material (0.35) and genetic (0.3) evidence for associated North American Paleoindian human/faunal response are moderately detectable but secondary/supportive. Textual, linguistic, oral_tradition, and iconographic evidence are essentially inapplicable (near-zero) since no human record-keeping existed in North America at this timeframe. Given the high detectability of the core relevant evidence types (geological/astronomical), an 'inconclusive' status is best explained by genuine scientific disagreement among independently well-preserved, well-studied records (competing proxies giving different timing/route signals) rather than by evidence failing to survive or remaining unfound. I therefore set a weighted detectability adjustment (~0.6) reflecting strong recoverability of the primary geological/astronomical proxies balanced against weaker material/genetic corroboration, and conclude that absence of firm consensus reflects real complexity in the paleoclimate record, not poor detectability."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.8807970779778823,
+          "skeptic": 0.8807970779778823,
+          "fringe": 0.8807970779778823,
+          "uniform": 0.5
+        },
+        "spread": 0.3807970779778823,
+        "robustness": 0.6192029220221177,
+        "stable": true
+      }
+    },
+    {
+      "hypothesis_id": "9e354faaaf474e7d",
+      "address": 211848554744339262750,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "corroborated",
+        "OBJECT": "megafaunal-extinction",
+        "PLACE": "north-america",
+        "MECHANISM": "dating-uncertainty",
+        "TIME": {
+          "start": -12750,
+          "end": -9750
+        }
+      },
+      "opinion": {
+        "b": 0.0,
+        "d": 0.0,
+        "u": 1.0,
+        "a": 0.8807970779778823,
+        "P": 0.8807970779778823
+      },
+      "elo": 2303.1999999999994,
+      "preservation": {
+        "could_have_survived": true,
+        "expected_evidence": [
+          "geological: dated sediment/stratigraphic sequences documenting the meltwater pulse (e.g., Lake Agassiz drainage chronology, Gulf of Mexico/St. Lawrence outflow sediments) correlated in time with the Younger Dryas boundary layer",
+          "geological: radiocarbon calibration data showing a 'plateau' or noisy region in the ~12,900-11,700 cal BP window that would produce artificial clustering/uncertainty in extinction dates (the specific mechanism named in the hypothesis)",
+          "material: large samples of directly-dated megafaunal skeletal remains (bone collagen radiocarbon dates) from North American sites, ideally with tight stratigraphic control, used to test whether extinction dates cluster with meltwater-pulse timing or are smeared by dating error",
+          "material: faunal dung-fungus spore records (e.g., Sporormiella) from lake cores tracking megaherbivore biomass decline relative to the pulse",
+          "genetic: ancient DNA studies of megafaunal population size/bottleneck timing (e.g., mammoth, horse, bison lineages) compared against the proposed pulse date",
+          "astronomical: proposed extraterrestrial-impact proxies (platinum anomaly, nanodiamonds, magnetic spherules) at the YD onset, since some versions of this hypothesis tie the meltwater pulse to a cosmic trigger",
+          "model_prior: existing scientific literature/debate (radiocarbon dating critiques such as Fiedel's work, and reviews like Faith & Surovell) explicitly discussing whether apparent synchroneity of extinction and climate events is a dating-resolution artifact rather than genuine causal correlation"
+        ],
+        "detectability_adjustment": 0.5,
+        "rationale": "The interval [-12750,-9750] straddles the Younger Dryas onset through the Younger Dryas/early-Holocene transition, so I averaged the 'younger-dryas' and adjacent 'early-holocene' detectability rows rather than a single unspecified period. Geological (0.65) and astronomical (0.7) evidence kinds are the most detectable \u2014 sediment cores, varve chronologies, and impact-proxy layers from this era are well-preserved and have been extensively sampled across North America, and the radiocarbon-plateau problem in exactly this window is a documented, model-prior-level issue (unverified against the provided evidence text, drawn from training knowledge) that would directly support a 'dating-uncertainty' mechanism. Material (0.35-0.45) and genetic (0.3-0.35) evidence is moderately detectable: megafaunal bone collagen and ancient DNA do survive from this timeframe (e.g., La Brea, Alaskan permafrost sites) and have been the subject of active dating-precision debates, but preservation and sample density remain limiting. Model_prior evidence (0.3-0.35) is inherently present in the scientific literature debate itself. Given the convergence of multiple independently-collectible evidence streams (geological, astronomical, genetic, material) and the topic's status as a long-running, heavily studied controversy, a lack of clear surviving evidence would be somewhat surprising rather than expected \u2014 so absence of strong confirming/disconfirming evidence should not be read as strong evidence of falsity, but the hypothesis is falsifiable/verifiable in principle and detection was plausible. I set the aggregate adjustment at 0.5, weighting the higher-detectability geological/astronomical channels against the lower material/genetic ones, since the hypothesis's core claim (dating uncertainty conflating a real correlation) is testable primarily through geological/radiocarbon evidence that is well-preserved for this period."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.8807970779778823,
+          "skeptic": 0.8807970779778823,
+          "fringe": 0.8807970779778823,
+          "uniform": 0.5
+        },
+        "spread": 0.3807970779778823,
+        "robustness": 0.6192029220221177,
+        "stable": true
+      }
+    },
+    {
+      "hypothesis_id": "623acbb49ca31a95",
+      "address": 533858357955734942130,
+      "slots": {
+        "ACTOR": "meltwater-pulse",
+        "ACTION": "inconclusive",
+        "OBJECT": "younger-dryas-onset-cooling",
+        "PLACE": "greenland-ice-sheet",
+        "MECHANISM": "dating-uncertainty",
+        "TIME": {
+          "start": -12850,
+          "end": -5950
+        }
+      },
+      "opinion": {
+        "b": 0.0,
+        "d": 0.0,
+        "u": 1.0,
+        "a": 0.8807970779778823,
+        "P": 0.8807970779778823
+      },
+      "elo": 2299.9999999999995,
+      "preservation": {
+        "expected_evidence": [
+          "Continuous, annually-resolved ice-core stratigraphy from Greenland cores (GISP2, GRIP, NGRIP) spanning the YD onset, including layer-counted chronologies (e.g., GICC05) that could show ambiguity or revision in the exact date of onset",
+          "Cosmogenic radionuclide records (10Be in ice, 14C in tree rings/speleothems) used as independent chronometers to cross-check ice-core layer counts and reveal dating discrepancies",
+          "Marine and terrestrial meltwater-pulse proxies (sea-level jump records, coral reef terraces, foraminiferal/oxygen-isotope shifts) associated with MWP-1A that could be compared against the ice-core YD onset date to test synchroneity or lag",
+          "Varve-count and lake-sediment chronologies (e.g., European lake records) offering alternate absolute dating that might conflict with or support ice-core ages",
+          "Speleothem U-series dated records showing abrupt hydroclimate shifts near YD onset, useful for chronological cross-validation",
+          "Published glaciological/geochronological literature explicitly discussing dating uncertainty, offset, or inconclusiveness between meltwater-pulse timing and YD cooling onset in Greenland records",
+          "Model-prior consensus estimate (~12,900-12,850 cal BP for YD onset) against which the claimed wide 'inconclusive' interval (extending anomalously to ~5950) would be evaluated"
+        ],
+        "could_have_survived": true,
+        "detectability_adjustment": 0.55,
+        "rationale": "The hypothesis is a meta-claim about dating uncertainty between a meltwater pulse and the Younger Dryas onset as recorded in the Greenland ice sheet, so the relevant evidence kinds are geological (ice-core stratigraphy, varves, speleothems) and astronomical/geochronological (cosmogenic nuclide chronologies used for cross-dating), with some material (marine/coral sea-level proxies) support. No period tag was supplied, but the subject matter spans the younger-dryas/early-holocene boundary, where the table gives geological \u22480.6-0.65 and astronomical \u22480.65-0.7 \u2014 both comparatively high-detectability channels, reflecting that ice cores, cosmogenic isotope records, and sediment archives are physically robust, still exist, and are actively studied and re-dated in the literature. Textual, linguistic, and oral-tradition evidence are essentially inapplicable/undetectable (~0-0.15) for this pre-literate, purely physical-proxy timeframe, so their absence is fully expected and uninformative about truth or falsity. Because the core evidence types (ice-core layers, cosmogenic isotopes, marine/sediment proxies) have good preservation and are routinely reported in peer-reviewed glaciology/paleoclimate literature, genuine dating-uncertainty debates about YD onset synchroneity with meltwater pulses are plausible to find if they exist \u2014 detectability is moderate-to-good, not the limiting factor. However, the anomalously wide claimed interval (extending to ~5950, well into the Holocene, far past any mainstream YD-onset estimate) is not something dating uncertainty in ice cores would plausibly produce; this stretches credulity independent of detectability and should be weighed as evidence against the hypothesis as stated, even though the underlying evidence classes are well-preserved and searchable. I set a blended detectability adjustment of 0.55, averaging the moderately-high geological/astronomical scores against the near-zero scores for textual/linguistic/oral channels that are structurally inapplicable to this ice-sheet/paleoclimate context."
+      },
+      "robustness": {
+        "projections": {
+          "consensus": 0.8807970779778823,
+          "skeptic": 0.8807970779778823,
+          "fringe": 0.8807970779778823,
+          "uniform": 0.5
+        },
+        "spread": 0.3807970779778823,
+        "robustness": 0.6192029220221177,
+        "stable": true
+      }
+    }
+  ],
+  "calibration": {
+    "brier": 0.05357112049428644,
+    "coverage_of_truth": 0.3,
+    "mode": "discovery_date",
+    "cutoff_years": 2010,
+    "n_holdout_events": 10,
+    "n_covered_events": 3
+  },
+  "self_report": {
+    "assumptions": [
+      "The 3 new vocab_added entries are treated as the full inventory of newly coined slot values this run; no other implicit additions were made.",
+      "'Missing mass' is read as the Chao1 unseen-species estimate applied to the observed hypothesis-token vocabulary (object/actor/mechanism slots combined), not a direct measure of historical truth-space coverage.",
+      "The wide coverage interval (0.0058-1.0) is assumed to reflect genuine estimator instability from a small evidence base (48 evidence items) rather than a data-entry artifact.",
+      "target_blind.first_run=True and prior_rate=None are taken to mean no real baseline exists yet for this campaign's proposal-rate comparison, so the reported 'steady: True' is a default/placeholder rather than a confirmed trend.",
+      "The meta-review refusal/truncation is assumed to be an isolated generation failure that does not silently bias the quantitative metrics (chao1, brier, surprise_rate, robustness_stable_fraction), which are computed by separate deterministic pipeline stages.",
+      "The 11.2% survivor rate (360/3205) is assumed to reflect normal plausibility filtering, not evidence that entire slot vocabularies are broken.",
+      "1 model refusal/truncation default(s) this run (meta_review=1); see MANIFEST.json['refusals'] for the affected hypothesis/document ids."
+    ],
+    "incomplete_vocabularies": [
+      "actor: only 1 new actor value added this run (independent NH warming as extinction driver) against 3205 generated hypotheses and a small 47-source corpus; the causal-actor space for YD triggers/effects is almost certainly under-sampled relative to the huge chao1 unseen-estimate.",
+      "mechanism: no new mechanism-slot entries were added at all this run despite heavy hypothesis volume, which given the chao1_estimate of ~189,255 against only 3,205 observed items is more consistent with a thinly sampled, still-emerging mechanism vocabulary than with genuine saturation.",
+      "object: 2 new object entries (10Be/nitrate radiation proxy, absence-of-crater evidence) surfaced from a corpus of only 48 evidence items, suggesting the physical-evidence-marker vocabulary is still being actively discovered rather than converged."
+    ],
+    "missing_mass_estimate": 0.0727,
+    "calibration_summary": "This run shows a low calibration Brier score (0.0536), indicating the engine's confidence estimates track survival outcomes reasonably well in isolation, but that number should be read alongside a moderate surprise rate (0.354) and a middling robustness-stable fraction (0.756) \u2014 together suggesting roughly a quarter of surviving hypotheses are fragile under perturbation and about a third deviate from prior expectation, which tempers how much credit the good Brier score deserves. The point estimate for missing vocabulary mass (0.073) looks reassuringly small, but its own confidence band (0.006\u20131.0) is so wide as to be nearly uninformative, meaning the '7% unseen' figure should be treated as a weak signal rather than a settled coverage claim, especially given the chao1 estimate implies well over 50x more unseen hypothesis-vocabulary combinations than observed. Combined with a failed meta-review this cycle, overall confidence in this run's self-assessment is moderate-low: the automated metrics look healthy on their face, but thin evidence volume (48 items), sparse vocab additions concentrated in only 2 of 3 slot types, and an unresolved qualitative review leave real uncertainty about whether the vocabulary and calibration are actually converging or just quiet.",
+    "target_blind_steady": true,
+    "target_blind_note": "The pipeline reports target_blind.steady=True with rate=0.6, but prior_rate=None and first_run=True mean there is literally no prior run to compare against \u2014 this is a baseline measurement, not a confirmed steady trend. Treat 'steady: True' here as a placeholder/default rather than evidence that the proposal rate for non-consensus actor/mechanism values is holding up; the real test (matching the falling-surprise-rate health check for target-blindness) can only be applied starting with the *next* run, when this run's 0.6 rate becomes prior_rate under stable evidence volume. Recommend explicitly flagging this run's target_blind result as 'baseline, not yet evaluable' in downstream trend dashboards rather than counting it as a positive steadiness data point.",
+    "fragility_top10": [
+      {
+        "address": 1170399490260,
+        "short_id": "d835f53923021201",
+        "fragility": 55.0,
+        "fan_out": 55,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 12874394392860,
+        "short_id": "25a0d32a06516c90",
+        "fragility": 55.0,
+        "fan_out": 55,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 4184178177679500,
+        "short_id": "7d3eab7008261da6",
+        "fragility": 55.0,
+        "fan_out": 55,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 713212189377187500,
+        "short_id": "88406e3edfaf3d70",
+        "fragility": 33.0,
+        "fan_out": 33,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 473237079213508630020,
+        "short_id": "b759f3fd5ddf0d6f",
+        "fragility": 32.0,
+        "fan_out": 32,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 2366185396067543150100,
+        "short_id": "6e85e20d84916b16",
+        "fragility": 32.0,
+        "fan_out": 32,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 11830926980337715750500,
+        "short_id": "f6d3055feedaf35f",
+        "fragility": 32.0,
+        "fan_out": 32,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 19915078826455312500,
+        "short_id": "41ea97a02ab0b019",
+        "fragility": 30.0,
+        "fan_out": 30,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 99575394132276562500,
+        "short_id": "4d0c1d0eeafbc9bf",
+        "fragility": 30.0,
+        "fan_out": 30,
+        "independent_support_share": 0.0,
+        "flagged": true
+      },
+      {
+        "address": 258896024743919062500,
+        "short_id": "bd76b29a11d26d8f",
+        "fragility": 30.0,
+        "fan_out": 30,
+        "independent_support_share": 0.0,
+        "flagged": true
+      }
+    ]
+  },
+  "source_run": {
+    "run_id": "20260915T002022Z",
+    "git_sha": "2bc097676"
+  }
+}

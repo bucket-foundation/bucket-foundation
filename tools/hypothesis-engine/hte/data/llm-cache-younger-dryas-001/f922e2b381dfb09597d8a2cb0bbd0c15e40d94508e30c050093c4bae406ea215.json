@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "9adb0870595bb0fa0d560cfd2674112f6d775625efae309cd79ce722b4869cb8",
+  "response": {
+    "expected_evidence": [
+      "Younger Dryas boundary (YDB) sediment/ice-core layers across Europe showing either (a) freshwater/meltwater proxies (foraminiferal \u03b418O excursions, IRD, reduced NADW proxies) consistent with AMOC shutdown, or (b) impact-related markers (nanodiamonds, platinum/iridium spikes, magnetic spherules, soot/charcoal spikes) consistent with a biomass-burning 'impact winter'",
+      "Continent-wide biomass-burning proxy records (charcoal influx, black mat/soot horizons) in European lake and peat cores dated to the YD onset interval",
+      "Greenland/European ice-core geochemistry (dust, ammonium, sulfate, extraterrestrial platinum group elements) bracketing the YD onset date",
+      "North Atlantic/European marine and lacustrine sediment cores documenting glacial lake outburst flood signatures (e.g., Lake Agassiz-type drainage pulses) argued to trigger AMOC weakening",
+      "Archaeological/faunal assemblages in Europe showing abrupt ecological or megafaunal disruption coincident with YD onset that could be attributed to either mechanism",
+      "Ancient DNA population bottleneck signals in European Upper Paleolithic human/faunal remains near the YD boundary",
+      "Model-prior literature: the Firestone et al. Younger Dryas Impact Hypothesis vs. Broecker-style meltwater/AMOC-shutdown hypothesis debate and subsequent rebuttal studies"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis sits at the intersection of two well-studied, competing causal narratives for Younger Dryas onset cooling: freshwater/AMOC-shutdown ('meltwater-pulse') versus cosmic-impact-driven biomass burning ('impact winter'). The interval given (-10000 to -9001) actually corresponds more closely to the mid/late Younger Dryas or its termination rather than the conventional onset (~-10900), which is a structural mismatch worth flagging independent of evidentiary questions. Geological and astronomical proxy archives (ice cores, marine/lacustrine sediment cores, YDB layers) are the primary channels where this kind of causal claim would leave traces, and per the younger-dryas detectability table these are the highest-scoring evidence forms (geological 0.65, astronomical 0.70), reflecting that such deposits are well-preserved and have in fact been extensively sampled in the real literature (this recollection is a model-prior, not sourced from provided evidence). Material (0.35), genetic (0.30), and model_prior (0.30) channels are moderately informative but far less diagnostic for adjudicating between competing forcing mechanisms. Textual (0.0) and oral_tradition (0.1) are essentially inapplicable given no writing systems existed in this period. Because the high-value evidence classes (geological, astronomical) have comparatively good survival/detectability, an absence of a clean, unambiguous 'refutation' signal in the record is more plausibly explained by genuine scientific ambiguity/ongoing controversy (the YD Impact Hypothesis remains contested in mainstream geology, model-prior) rather than by poor preservation. Evidence could plausibly have survived and been found \u2014 and largely has, in the form of decades of contested YDB studies \u2014 but it has not produced a clean 'refutation' as framed by this hypothesis, which itself has an oddly inverted actor/mechanism structure (meltwater-pulse refuting cooling via a biomass-burning mechanism) that does not cleanly map onto either standard causal narrative."
+  }
+}

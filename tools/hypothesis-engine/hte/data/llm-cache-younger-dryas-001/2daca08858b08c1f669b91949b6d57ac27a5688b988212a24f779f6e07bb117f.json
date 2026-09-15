@@ -1,0 +1,62 @@
+{
+  "model": "sonnet",
+  "role": "critic",
+  "prompt_sha256": "2efc1098d9818988b74ca2368d7d07f7fb5245ebcce6ebf0fc5b18fb2f4b0f1e",
+  "response": {
+    "results": [
+      {
+        "id": "ad6a8c0249d70c31",
+        "keep": true,
+        "issues": [
+          "The cited refuting evidence (boslough-2012-chapter-c0) discusses critique of the cosmic-impact hypothesis and never mentions volcanic eruptions, so it does not actually address the 'volcanic-eruption' actor named in this hypothesis \u2014 but this is an evidentiary mismatch, not a concrete contradiction of the hypothesis's placement fields (time, place) themselves."
+        ],
+        "rationale": "No contradiction is shown against the hypothesis's actor, place, or interval; the attached evidence is simply off-topic relative to the volcanic-eruption actor, which is a support-strength issue rather than a stated contradiction."
+      },
+      {
+        "id": "5e19866304737d63",
+        "keep": false,
+        "issues": [
+          "The cited refuting evidence (waters-stafford-2007-c0) concerns Clovis radiocarbon dating (~11,050-10,800 radiocarbon years BP, i.e. roughly the Younger Dryas period), not a meltwater-pulse event or ice-core-chronology dating.",
+          "The hypothesis interval [-20000,-19001] is thousands of years outside the ~11,000 BP timeframe the cited evidence actually discusses, so the evidence does not attest the actor or object within the stated time bin."
+        ],
+        "rationale": "The evidence's dated material (~11,050-10,800 BP) directly contradicts the hypothesis's stated interval of -20000 to -19001, a concrete chronological mismatch, and the evidence topic (Clovis archaeological dating) does not correspond to a meltwater-pulse actor or ice-core-chronology object."
+      },
+      {
+        "id": "f55c64bc700c20f3",
+        "keep": true,
+        "issues": [],
+        "rationale": "The van-hoesel-2014 evidence concerns the Usselo horizon in the Netherlands (Europe), nanodiamond concentrations, and the Younger Dryas boundary timeframe, all consistent with the hypothesis's place, object, and interval; no concrete contradiction is present."
+      },
+      {
+        "id": "8c600acb410411fc",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached, so there is no concrete contradiction to justify rejection; plausibility alone is not grounds to reject."
+      },
+      {
+        "id": "dfe9e20a98dd9303",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached, so there is no concrete contradiction to justify rejection."
+      },
+      {
+        "id": "a176fb70eef0d784",
+        "keep": true,
+        "issues": [],
+        "rationale": "The haile-2009 evidence discusses mammoth and horse persistence in interior Alaska (North America) well past the proposed synchronous extinction pulse, consistent with the hypothesis's place and object; no concrete contradiction with the stated interval or actor is shown."
+      },
+      {
+        "id": "25ef3c793febdc55",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached, so there is no concrete contradiction to justify rejection."
+      },
+      {
+        "id": "1770258cb7f299ad",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached, so there is no concrete contradiction to justify rejection."
+      }
+    ]
+  }
+}

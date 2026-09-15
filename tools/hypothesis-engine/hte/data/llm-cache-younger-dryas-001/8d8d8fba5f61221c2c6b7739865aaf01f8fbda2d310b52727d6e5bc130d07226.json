@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "5fd76b31879e50abb20a4c9ea5f6d3456b113c99128e8f9adda07dd8a0bdec37",
+  "response": {
+    "expected_evidence": [
+      "geological: anomalous platinum (and iridium/other PGE) concentration spikes in sediment/ice-core layers dated to ~10,850 BCE across multiple North American sites (this is the actual empirical basis of the Younger Dryas Impact Hypothesis, cf. Petaev et al. 2013 Greenland ice core Pt spike, Moore et al. 2017 continent-wide Pt anomaly survey)",
+      "material: associated impact-proxy markers in the same stratigraphic horizon \u2014 microspherules, nanodiamonds, magnetic/glassy spherules, soot and charcoal 'black mat' layers at Younger Dryas Boundary sites",
+      "geological: isotopic/chemical fingerprinting distinguishing extraterrestrial vs. terrestrial (volcanic) platinum sources",
+      "astronomical: independent corroboration such as a plausible impact crater, tektite field, or cosmic-dust flux anomaly from the same interval (largely still missing/contested in the literature)",
+      "genetic: indirect signal in megafauna population bottleneck/extinction timing coinciding with the proposed impact date",
+      "model_prior: the Younger Dryas Impact Hypothesis is a known, actively debated framework in the archaeological/geological literature (proposed ~2007, still contested as of my training data) \u2014 recalled from training, not from provided evidence text"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis corresponds to the real, published Younger Dryas Impact Hypothesis (YDIH), for which platinum anomalies at ~12,800 cal BP have genuinely been reported at numerous North American sites and in the Greenland ice core (model-prior recollection, not verified against the evidence text given here). Geological stratigraphy is a comparatively durable, high-preservation archive \u2014 sediment/ice cores 12.8 ka old are well within reach of modern sampling, hence a 'geological' detectability of ~0.6\u20130.65 for the younger-dryas period is appropriate. However, corroborating 'material' impact-diagnostic evidence (spherules, nanodiamonds, an actual crater) is far more equivocal, contested for taphonomic and analytical reasons, and detectability for material evidence at this period is markedly lower (~0.35), which explains why a fully confirmed, undisputed impact signature has not emerged despite active, well-funded search. There is no textual evidence possible (pre-literate, detectability 0.0) and oral-tradition/iconographic channels are extremely weak (0.1) for this deep-time period, so their absence is fully explained by low detectability rather than by the hypothesis being false. Given the mix of moderately strong (geological) and weak (material, astronomical corroboration) detectability channels for the relevant evidence types, I suggest a blended adjustment of ~0.55, slightly above the raw 'geological' baseline for younger-dryas (0.65) discounted by the weaker material/astronomical corroboration needed to fully validate a genuine cosmic impact versus alternative explanations (e.g., terrestrial volcanism, wildfire, or analytical artifacts) \u2014 which is consistent with the ongoing scientific controversy over this exact hypothesis."
+  }
+}

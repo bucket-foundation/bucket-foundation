@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fa512f9fbbc815e781e8f1a95130d1a6947ca47aa5494cf4e738e67a849cf8e4",
+  "response": {
+    "expected_evidence": [
+      "Ice-core sulfate/tephra spikes (Greenland, and any Arctic Ocean-adjacent cores) dated to ~10,900\u201310,001 BCE indicating a volcanic eruption of sufficient magnitude to affect Northern Hemisphere climate",
+      "Marine sediment cores from the Arctic Ocean floor showing tephra layers, ash horizons, or submarine volcanic deposits (e.g., from Gakkel Ridge or circum-Arctic volcanic centers) coeval with the Younger Dryas onset",
+      "Geochemical re-analysis of the Younger Dryas Boundary (YDB) platinum/iridium/nanodiamond layer showing volcanic rather than extraterrestrial elemental/isotopic signatures (e.g., Ni-Cr ratios, PGE patterns consistent with terrestrial magma rather than chondritic material)",
+      "Astronomical/impact-marker literature reassessing or failing to replicate cosmic-impact proxies (spherules, shocked quartz, nanodiamonds) at Arctic sites, undermining the airburst hypothesis",
+      "Sulfur-isotope or volcanic glass shard chemistry linking a specific eruption to megafaunal die-off timing and Younger Dryas cooling",
+      "Genetic/paleontological data on megafaunal population decline timing that correlates better with volcanic climate forcing than with an abrupt impact event",
+      "Model-prior literature synthesizing the ongoing Younger Dryas Impact Hypothesis debate, including volcanic-alternative explanations proposed by skeptics"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.35,
+    "rationale": "The interval [-11000,-10001] and mechanism dispute align most closely with the 'younger-dryas' period row, where geological (0.65) and astronomical (0.7) detectability are comparatively high because ice cores, well-studied YD-boundary sites, and global sediment archives from this period have been extensively sampled and are central to an active scientific controversy (the Younger Dryas Impact Hypothesis). However, the specific 'place' constraint of the Arctic Ocean sharply lowers practical detectability relative to the table baseline: the Arctic Ocean seafloor is poorly cored compared to terrestrial YD-boundary sites, is perennially ice-covered making sediment/tephra recovery logistically difficult and historically rare, and volcanic centers there (e.g., Gakkel Ridge) are only sparsely surveyed. Material evidence (0.35) and genetic evidence (0.3) are also weak in this period generally. So while the general Younger Dryas volcanic-vs-impact debate is well evidenced globally (ice cores, YDB layers elsewhere), evidence specifically tied to the Arctic Ocean locale is much sparser, justifying a downward adjustment from the geological/astronomical baseline (~0.65-0.7) to roughly 0.35, reflecting genuine site-access limitations rather than the hypothesis being false. Absence of a confirmed Arctic Ocean volcanic 'refutation' signature is therefore weak evidence against the hypothesis given how undersampled that specific region is."
+  }
+}

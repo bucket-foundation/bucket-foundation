@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "11dc746126244381b92fb32695817a03a71168ff3ea8269e470c5017ebbd48f9",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum (and often iridium/spherule) concentration spikes in sediment or paleosol layers dated to ~10850 BCE (the Younger Dryas boundary 'black mat' horizon) at Middle Eastern sites",
+      "Material/archaeological: anomalous platinum, meltglass, magnetic spherules, or nanodiamonds recovered from stratified archaeological deposits in the region (e.g. claims from sites like Abu Hureyra, Syria)",
+      "Astronomical/geochemical: cross-correlation of the platinum anomaly with known Younger Dryas onset markers found at other global YDB sites (Greenland ice cores, North American and European sediment sequences)",
+      "Genetic/paleoecological: coincident megafaunal extinction or vegetation-shift signatures in regional pollen/faunal records as an indirect proxy for an abrupt environmental disturbance",
+      "model_prior: the broader Younger Dryas Impact Hypothesis (YDIH) literature, which is contested/debated among researchers, some reporting Pt/Ir anomalies and others failing to replicate them"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10850 corresponds closely to the Younger Dryas onset (~12.8 ka BP), so I am treating 'younger-dryas' as the operative period despite the hypothesis leaving period unspecified. In that period, geological (0.65) and astronomical (0.7) detectability are relatively high, since platinum/iridium anomalies and impact-ejecta markers are the kind of physical, chemically stable signal that preserves well in sediment and ice-core stratigraphy over 12,000+ years, and is actively searched for by geochemists. Material evidence (0.35) is lower because archaeological occupation layers in the Middle East from this exact window are sparser and more disturbed than lake/ice cores. Genetic (0.3), oral_tradition (0.1), iconographic (0.1), linguistic (0.05), and textual (0.0) are all near-baseline-uninformative for this claim, since no writing existed and oral/iconographic transmission over 12+ millennia is unreliable as primary evidence. As model-prior (unverified, from training knowledge, not from supplied evidence text): the Younger Dryas Impact Hypothesis is a real, actively debated research program, and platinum anomalies at YDB-aged strata (including a claimed occurrence at Abu Hureyra, Syria, in the broader Middle East/Levant) have been reported by proponents, though disputed by skeptical replication studies elsewhere. This means the hypothesis is falsifiable/verifiable in principle and evidence of the claimed type has plausibly been sought and partially reported, so a low detectability score should not be invoked to explain away silence \u2014 if the platinum anomaly is absent from Middle Eastern strata, that is more informative of falsity than of poor preservation, given geological/astronomical detectability in this period is well above the midpoint. I set the overall adjustment to 0.55, roughly a weighted midpoint favoring the strong geological/astronomical channels but discounted for the weaker material and near-zero textual/linguistic contributions, and for the fact that the hypothesis's specific regional and mechanistic claims are more contested and less firmly corroborated than the general Younger Dryas boundary phenomenon."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f362f7d69d103ec2c88927083cb9b5f6f3eabca312ce31f407f9330535e8a941",
+  "response": {
+    "expected_evidence": [
+      "Geological: anomalous platinum/iridium enrichment layers, nanodiamonds, magnetic and glassy microspherules, and meltglass at the Younger Dryas boundary (~10,950 BCE) horizon, including at Middle Eastern sites such as Abu Hureyra, Syria",
+      "Geological: 'black mat' organic-rich layer marking abrupt YD-onset cooling and ecological disruption",
+      "Astronomical: compositional/isotopic signatures consistent with extraterrestrial (cometary/asteroidal) material rather than terrestrial or volcanic sources; airburst-modeling consistency (no crater expected for an airburst)",
+      "Material/archaeological: abrupt occupation disruption, burn layers, or settlement abandonment horizons at Epipaleolithic/Natufian sites in the Levant coinciding with the YD boundary",
+      "Genetic: megafaunal extinction/bottleneck signatures and human population genetic discontinuities dated to the YD onset",
+      "Oral tradition/iconographic (weak, indirect): later Neolithic Near Eastern iconography (e.g., possible catastrophist or celestial imagery) sometimes cited as folk-memory, though these postdate the event by millennia and are highly speculative",
+      "Textual: none expected \u2014 Middle East was preliterate at 10,950 BCE"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The interval (-10950) corresponds to the Younger Dryas onset, so the 'younger-dryas' period row is the appropriate detectability reference rather than the unspecified label. For this period, geological (0.65) and astronomical (0.7) evidence kinds have relatively high detectability \u2014 consistent with the fact that proponents of the real-world Younger Dryas Impact Hypothesis have pointed to purported iridium/platinum anomalies, nanodiamonds, microspherules, and meltglass, including at the Middle Eastern site of Abu Hureyra, Syria (this specific example is drawn from model-prior recollection of the published impact-hypothesis literature, not from evidence provided in this task, and should be treated as unverified/contested \u2014 many geologists dispute these findings). Material and genetic evidence have moderate detectability (0.35, 0.3) since Epipaleolithic Levantine sites and megafaunal/human genetic records from this era are sparse but not absent. Textual evidence is impossible (0.0) since writing did not exist. Oral tradition and iconography are weakly detectable (0.1) given ~13,000 years of transmission decay before any recording medium existed. Given that geological and astronomical channels \u2014 the most diagnostic for a cosmic-airburst mechanism \u2014 have the highest detectability scores in this period, an absence of confirmed evidence would be more informative than for, say, oral tradition or textual channels; however, because such physical evidence *could* plausibly survive and has, per model-prior, actually been claimed (albeit disputed) in the literature, the hypothesis is falsifiable-in-principle rather than one where low detectability alone explains silence. I suggest a composite detectability_adjustment of ~0.45, reflecting strong potential in geological/astronomical channels offset by very weak-to-zero potential in textual, linguistic, oral, and iconographic channels for this deep-prehistoric, preliterate period."
+  }
+}

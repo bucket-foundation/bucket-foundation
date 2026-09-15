@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "091bb450131b8078571e7580678a586b91ec31ce3d0ce40cf8cb7f185b6f3183",
+  "response": {
+    "expected_evidence": [
+      "geological: sediment cores/stratigraphic sections at the Younger Dryas boundary (~12,900 cal BP) across North America lacking a reproducible spike in nanodiamond concentration when reanalyzed by independent labs",
+      "geological: failure to detect elevated platinum, iridium, or other extraterrestrial-impact proxy markers in the same YDB layers where nanodiamonds were originally reported",
+      "astronomical/geophysical: absence of a confirmed impact crater of appropriate age and size in North America or the Greenland ice sheet consistent with a continent-scale ejecta event",
+      "material: re-examination of original 'black mat'/YDB layer samples showing alternative, non-impact origins for carbon spherules and purported hexagonal diamond polymorphs (e.g., misidentification as graphene/graphite aggregates or authigenic minerals)",
+      "model_prior: peer-reviewed replication studies and meta-analyses reporting inability to reproduce the original 2007 nanodiamond findings at multiple independent sites",
+      "model_prior: scientific consensus reviews concluding the Younger Dryas Impact Hypothesis lacks robust, reproducible physical support"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.7,
+    "rationale": "This hypothesis concerns the modern scientific *refutation* of nanodiamond-based Younger Dryas Impact Hypothesis claims in North America, dated to ~10,950 BCE. Mapping the interval to the 'younger-dryas' period row, relevant evidence kinds are geological (0.65) and astronomical (0.7) for physical impact proxies, material (0.35) for stratigraphic/archaeological context, and model_prior (0.3 baseline) for the scholarly debate. Critically, the actual evidentiary contest occurred in the 20th-21st century peer-reviewed literature (replication attempts, geochemical reanalysis, sample re-examination), not in ancient artifact preservation \u2014 journal publications and curated sediment/ice-core archives are far more durable and detectable than typical Younger-Dryas-age organic or archaeological remains, which justifies raising the composite detectability above the raw table averages. Note: specific named studies/authors recalled here are drawn from training knowledge (model-prior, unverified against supplied evidence text) rather than confirmed citations, and should be treated as low-tier background context. Overall, if the impact/nanodiamond claim was genuinely refuted, that refutation would very plausibly be findable in the durable, actively-studied geological and paleoclimate literature record, so could_have_survived is true and a low detectability score should not be used to explain away absence of such evidence."
+  }
+}

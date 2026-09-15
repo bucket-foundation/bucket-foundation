@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "df2baead4e8c3d7585eb30cc8a2bc7d97bc7b25226bf88b082b5d220d0b1d7b4",
+  "response": {
+    "expected_evidence": [
+      "geological: a widespread 'Younger Dryas Boundary' sediment layer with platinum/iridium anomalies, nanodiamonds, magnetic/glassy spherules, and 'black mat' organic layers across multiple continents (already partially reported in real literature, though contested)",
+      "astronomical: an impact crater or multiple airburst structures dated to ~12,900 BP; absence of a confirmed crater is a known evidentiary gap",
+      "material/archaeological: abrupt discontinuities in site occupation density, tool-tradition turnover (e.g., Clovis-to-Folsom transition), and reduced site counts interpreted as population decline across North America, Europe, and possibly other continents",
+      "genetic: ancient-DNA signatures of a population bottleneck or lineage replacement synchronous with ~10,900 BCE across affected regions",
+      "geological/paleoenvironmental: megafaunal extinction horizons and pollen/charcoal spikes indicating continent-wide biomass burning coincident with the boundary layer",
+      "oral_tradition: flood/fire/'sky-fire' catastrophe myths proposed (speculatively) as folk memory of the event",
+      "iconographic: purported symbolic depictions (e.g., contested readings of G\u00f6bekli Tepe pillar carvings) argued to encode the event",
+      "model_prior: general knowledge that this maps to the real-world, still-debated 'Younger Dryas Impact Hypothesis,' which has produced published but contested geochemical evidence and no confirmed crater or clear demographic corroboration"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.35,
+    "rationale": "The interval (-11000 to -10001) matches the Younger Dryas onset, so the 'younger-dryas' detectability row applies. Geological (0.65) and astronomical (0.7) evidence for an impact layer are relatively detectable in principle, and indeed sediment-based YDB markers (platinum spikes, spherules, nanodiamonds, black mats) have real published claims, meaning this class of evidence could plausibly survive and be found. However, the hypothesis specifically claims 'corroborated' effects on population-demography across multiple continents via ejecta fallout \u2014 this requires convergent genetic (0.3) and archaeological/material (0.35) demographic evidence, which is much harder to preserve and unambiguously attribute to a single causal event over 12,900 years, especially disentangling it from independent climate-driven (Younger Dryas cooling) demographic shifts. Textual evidence is essentially impossible (0.0, preliterate period) and oral tradition/iconographic evidence is very weak (0.1) and inherently unfalsifiable at this time depth. No confirmed impact crater exists despite reasonably high astronomical detectability, which is a genuine evidentiary gap rather than proof of absence given multiple plausible airburst (non-cratering) scenarios. Given the compound, multi-continent demographic corroboration required, I weight the overall adjustment toward the weaker demographic-evidence channels (genetic, material) rather than the stronger geological/astronomical proxy channels, since the hypothesis is not merely about an impact but about its corroborated demographic effect."
+  }
+}

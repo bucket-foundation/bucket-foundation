@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a2405a92471ac3f34e1af402b2b26cae9f4b402b8ecdd2010e00e06999f3fa0c",
+  "response": {
+    "expected_evidence": [
+      "Geological: absence (or non-reproducibility) of a globally-correlated Younger Dryas Boundary (YDB) layer containing shocked quartz, high-temperature spherules, or a platinum/iridium anomaly at ~12,900 cal BP across independently dated North American sites",
+      "Astronomical/geological: absence of a confirmed impact crater or verified bolide airburst structure of appropriate size and age (e.g., failure to identify a Younger Dryas-age crater under the Greenland/Laurentide ice sheets or elsewhere)",
+      "Geological: reinterpretation of proposed 'impact markers' (nanodiamonds, magnetic spherules, carbon spherules) as products of wildfire, volcanism, or terrestrial/cosmic background processes rather than impact ejecta",
+      "Material/archaeological: continuity or gradual decline in megafaunal remains and Clovis-era archaeological assemblages across the YD boundary rather than an abrupt extinction horizon coincident with a single ejecta event",
+      "Genetic/paleontological: ancient-DNA and radiocarbon-dated extinction chronologies showing staggered, taxon-specific megafaunal die-offs spanning millennia rather than a synchronous continent-wide kill at 10,950 BCE",
+      "Model-prior: the post-2010s scientific literature consensus (multiple independent labs failing to replicate original YDIH platinum/nanodiamond signals) documenting refutation of the impact hypothesis"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis concerns the refutation of the Younger Dryas Impact Hypothesis (YDIH) as the cause of North American megafaunal extinction, dated to the Younger Dryas onset (~10,950 BCE). No period was specified, but the interval maps directly onto the 'younger-dryas' row of the detectability table. Textual evidence is irrelevant/impossible (0.0, pre-literate era) and oral tradition/iconographic/linguistic channels are weak (0.05-0.1), so absence of narrative or symbolic corroboration is fully expected and uninformative about truth. However, the core lines of evidence relevant to an impact-vs-no-impact question are geological (0.65) and astronomical (0.7) in this period, both comparatively high in the table \u2014 sediment cores, ice cores, and crater surveys are well-preserved and detectable with modern instrumentation even ~13,000 years later. Material (0.35) and genetic (0.3) evidence of extinction timing/pattern are moderately detectable via fossil dating and ancient DNA. Given that the strongest-detectability channels (geological, astronomical) are exactly the ones needed to test for impact ejecta or a crater, a genuine absence of such markers (supporting refutation) would plausibly have been noticed rather than simply lost to poor preservation. This matches the actual scientific record: repeated failed replications of platinum/nanodiamond spikes and no confirmed crater despite active searching support the refutation hypothesis being detectable rather than merely unfalsifiable. I weight the overall adjustment toward the geological/astronomical channels (the decisive evidence types for this specific mechanism) while discounting the low-detectability channels that are structurally inapplicable to a prehistoric, non-literate context. This weighting (0.55) reflects a model-prior judgment (unverified, drawn from general familiarity with the YDIH scientific debate) rather than a specific verified textual source."
+  }
+}

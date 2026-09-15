@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "8a02082d0b690339c609c5a0c132b71f56ab3eca79e591757d8fdea765570a71",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.4,
+        "rationale": "A pairs megafaunal-extinction with greenland-ice-sheet, a location with no megafaunal fossil record (ice-core data is chemical/climatic, not extinction evidence), while B's iridium-anomaly-in-Middle-East echoes real claimed YDIH sites like Abu Hureyra, giving B a slight edge."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.3,
+        "rationale": "A again places megafaunal-extinction evidence in the geographically mismatched greenland-ice-sheet, whereas B's carbon-spherule-concentration in North America at a timeframe spanning the YD onset closely mirrors the well-cited Firestone et al. spherule claims, making B better grounded."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.35,
+        "rationale": "A links impact-ejecta-fallout to the YD termination, which is not the event the impact hypothesis targets (onset, not termination) creating a causal mismatch; B's timing (YD onset) and mechanism fit better even though 'population-demography in Mexico' is a geographically unusual but not incoherent claim."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.15,
+        "rationale": "B describes YD-onset-cooling across multiple continents via cosmic-airburst, a well-documented global climate signal central to YDIH claims, while A's 'population-demography corroborated in greenland-ice-sheet' is an implausible evidentiary pairing (ice sheets don't record human demography)."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.3,
+        "rationale": "A again suffers from the greenland-ice-sheet/megafaunal-extinction location mismatch, while B's YD-onset-cooling in North America via cosmic-airburst is a core, well-attested YDIH claim despite the vague 'other-action' tag."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.15,
+        "rationale": "A's carbon-spherule claim is dated to -20000/-19001, well outside the Younger Dryas window the hypothesis concerns (a major chronological mismatch), whereas B's platinum-anomaly in North America at -10850 matches the correct YD-onset timing used in real platinum-spike studies."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.3,
+        "rationale": "A mislabels an interval consistent with the YD onset (-10950) as the 'younger-dryas-termination', an internal chronological inconsistency, while B's refutation of a broadly-timed (-20000/-19001) iridium claim is actually consistent with how many out-of-window impact-marker claims have been treated in the literature."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.7,
+        "rationale": "A's population-demography-multiple-continents claim, while speculative, is at least conceptually coherent with a global impact-winter narrative, whereas B locates megafaunal-extinction evidence in the arctic-ocean, a marine setting poorly suited to terrestrial megafauna extinction data."
+      }
+    ]
+  }
+}

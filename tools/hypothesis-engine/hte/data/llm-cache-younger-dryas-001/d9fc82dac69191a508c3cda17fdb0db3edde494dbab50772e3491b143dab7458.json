@@ -1,0 +1,24 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "354508684628fc16912ca19295855de47fa7f46c9ca842fd6304431659ef58aa",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: Younger Dryas Boundary (YDB) sedimentary 'black mat' layer marking abrupt cooling/extinction horizon across North America",
+      "geological: nanodiamonds (hexagonal lonsdaleite, cubic) in YDB sediments",
+      "geological: magnetic and glassy/melt-glass microspherules with high-temperature formation signatures at YDB sites",
+      "geological: elevated platinum-group element anomalies (notably platinum spikes recovered from Greenland ice cores and North American sites)",
+      "geological: soot/charcoal spike indicating continent-scale biomass burning at YDB",
+      "astronomical: orbital/dynamical modeling of a fragmenting comet or Taurid-complex progenitor consistent with a ~12,900 cal BP airburst swarm",
+      "material/archaeological: disruption or decline in Clovis-culture site distribution and toolkit continuity at ~10,950 BCE horizon",
+      "material/archaeological: megafaunal extinction horizon coincident with YDB layer (mammoth, mastodon, ground sloth remains terminating near this boundary)",
+      "genetic: population bottleneck or extinction signature in ancient DNA of North American megafauna near the YD onset",
+      "genetic: possible human population decline/bottleneck signal in ancient DNA around this interval",
+      "oral_tradition: Indigenous North American narratives describing catastrophic fire, darkness, or sky-events (highly speculative, low-confidence linkage)",
+      "iconographic: essentially none expected given absence of durable symbolic/artistic record in North America at this time depth"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis corresponds to the well-known (and still contested) Younger Dryas Impact Hypothesis (YDIH). No period tag was given, so I anchored detectability on the 'younger-dryas' row, which is the direct onset period, since the mechanism (airburst) and its geological/atmospheric signature should be contemporaneous with the climatic transition rather than requiring later Holocene preservation. Geological (0.65) and astronomical (0.7) rows are the strongest-detectability channels available for this period, which matches reality: the actual published literature (model-prior, not verified against a supplied evidence corpus here) does report candidate geological proxies \u2014 nanodiamonds, magnetic/glassy microspherules, a platinum anomaly recovered from Greenland ice and multiple North American sites, and a continent-wide soot/black-mat layer \u2014 precisely the kind of evidence this hypothesis predicts, and precisely the kind of evidence a ~12,900-year-old sedimentary/ice-core record is capable of preserving. Astronomical evidence here is less about a directly observed impactor (impossible for a prehistoric event) and more about orbital-dynamics modeling of a candidate progenitor (e.g., a fragmenting comet or Taurid-stream body), which is not time-degraded and remains testable today, justifying its high detectability score independent of age. Material (0.35) and genetic (0.3) evidence \u2014 Clovis-site disruption, megafaunal extinction timing, ancient-DNA bottlenecks \u2014 are plausible correlates but are weaker discriminators because coincidence-in-time does not establish causation, and preservation/sampling of organic and skeletal material from this exact interval is patchier. Oral tradition (0.1) and iconographic (0.1) evidence are essentially non-detectable for a pre-literate North American population at this depth in time and should not be treated as meaningfully absent-therefore-false; their near-zero detectability fully explains their absence regardless of whether the hypothesis is true. Overall, the hypothesis is falsifiable and has in fact generated an active, if disputed, evidentiary literature (nanodiamond/microspherule/platinum findings vs. counter-analyses by researchers such as Holliday, Boslough, Pigati, and Surovell questioning reproducibility, terrestrial origin of spherules, and dating precision). Absence of universal consensus is therefore better explained by genuine scientific contestation over ambiguous, hard-to-replicate trace signals than by the hypothesis being clearly false, but the contested nature and moderate-to-low detectability in several supporting evidence channels (material, genetic) warrant a composite detectability adjustment below the top geological/astronomical scores."
+  }
+}

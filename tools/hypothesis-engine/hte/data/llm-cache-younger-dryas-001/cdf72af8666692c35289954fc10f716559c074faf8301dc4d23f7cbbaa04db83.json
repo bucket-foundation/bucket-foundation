@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "41c443ec22cd0a51772e18e5fe9a9ecf2f6856e053d6cfb8282fae9ecbc2252a",
+  "response": {
+    "expected_evidence": [
+      "Ice-core geochemical anomalies in Greenland cores (GISP2, NGRIP, NEEM) at the ~12,900\u201311,700 cal BP horizon: spikes in nitrate (NO3-), 10Be and 36Cl cosmogenic/solar-proton-event proxies coincident with the YD onset layer",
+      "Platinum, iridium, and other platinum-group-element anomalies in the same ice-core horizon, interpreted as extraterrestrial/cometary (Taurid) dust influx",
+      "Astronomical/orbital-dynamics modeling reconstructing the Taurid meteor stream's position and density ~12,900 years ago to show an Earth-crossing encounter capable of depositing debris and/or triggering a solar-proton flux enhancement",
+      "Microspherules, nanodiamonds, and magnetic/carbon spherules in Greenland and correlative Northern Hemisphere YD boundary sediments (the broader Younger Dryas Impact Hypothesis proxy suite)",
+      "Annual-layer counting and dating precision in the ice core tying any nitrate/10Be spike tightly (within a year or few years) to the onset of the YD cooling step",
+      "Independent corroboration from other polar/mid-latitude 10Be or 14C archives (Antarctic ice, tree-ring 14C) to distinguish a true solar-proton event from purely terrestrial/volcanic nitrate sources",
+      "Theoretical/model-based reconstructions (model-prior) of how a Taurid encounter could produce both an impact-debris layer and an associated solar-proton-event signal"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "Greenland ice sheets are one of the best-preserved, highest-resolution archives spanning exactly this interval (-12000 to -11001), with annually resolved geological/geochemical proxies (nitrate, 10Be, 36Cl, PGE anomalies) routinely used to detect solar-proton events and cosmic dust influx \u2014 hence the high period-level detectability scores for 'geological' (0.65) and 'astronomical' (0.7) in the younger-dryas row. Material evidence (microspherules, nanodiamonds) from correlative sediment sites is moderately detectable (0.35), consistent with the ongoing, contested Younger Dryas Impact Hypothesis literature where such signals have been reported but remain disputed rather than absent due to poor preservation. Genetic, textual, linguistic, and oral-tradition evidence are essentially irrelevant or non-existent for this specific geophysical claim (textual=0.0, linguistic=0.05), so their absence carries no evidentiary weight against the hypothesis. Model-prior evidence (orbital dynamics modeling of the Taurid stream) is moderately detectable (0.3) since it is a theoretical reconstruction rather than a physical trace. Given that the highest-value evidence types (geological ice-core stratigraphy and astronomical/orbital modeling) both have strong detectability for this exact period, an absence of a clear, uncontested confirmation in the record is more likely to reflect genuine scientific ambiguity/falsity of the specific mechanism (solar-proton-event corroboration of a Taurid encounter) than a failure of preservation \u2014 I set the adjustment at 0.6, weighted toward the strong geological/astronomical detectability but tempered by the weaker material and model-prior support and the specificity/compound nature of the causal claim."
+  }
+}

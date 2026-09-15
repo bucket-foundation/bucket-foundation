@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "8005d9a850b08dac08277de35b28ebc4e913640663b34a0b92e3fc942e0cf1f6",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: anomalous platinum-group element (Pt, Ir) enrichment layer, elevated iridium, nanodiamonds (hexagonal lonsdaleite), magnetic microspherules/nanospherules, and a carbon-rich 'black mat' sediment layer dated to ~10,950 BCE across multiple continents",
+      "Astronomical: an identifiable impact crater or crater field (or airburst-consistent shocked quartz/melt glass) correlating in age with YD onset; absence of large crater is expected if scenario is an airburst rather than surface impact",
+      "Material/archaeological: disruption or discontinuity in Clovis (and contemporaneous Old World) lithic industries, evidence of widespread wildfires (charcoal/soot spikes) coincident with megafaunal extinction horizons",
+      "Genetic: population bottleneck signatures in North American megafauna (mammoth, etc.) and possibly early human populations dating to the YD boundary",
+      "Model-prior (unverified, from training recollection, not from provided evidence text): the Younger Dryas Impact Hypothesis (Firestone et al. 2007 and later work) proposing a cosmic airburst/impact triggered YD cooling, extinction, and human cultural shifts \u2014 this remains actively contested in the literature with many researchers attributing the same sedimentary signatures to non-impact processes",
+      "Iconographic/oral tradition: speculative claims of Paleolithic/early Holocene rock art or later oral traditions (e.g., flood/fire myths) encoding a sky-fire event \u2014 low confidence, largely post-hoc and disputed",
+      "Textual: none expected \u2014 event predates writing entirely"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The event (~10,950 BCE) sits right at the Upper Paleolithic/Younger Dryas boundary, a fully preliterate period, so textual and linguistic evidence are essentially unattainable (0.0-0.05) and their absence carries no evidential weight against the hypothesis. The most diagnostic evidence classes are geological (0.65) and astronomical (0.7), both of which have comparatively high survivability/detectability for this period \u2014 sedimentary impact proxies (platinum spikes, nanodiamonds, microspherules, black mats) are exactly the kind of physical trace that can persist ~13,000 years and has, per model-prior (unverified) recollection, actually been reported at numerous YD-boundary sites, making this a real, debated hypothesis rather than a purely speculative one. However, a confirmed crater or unambiguous airburst signature remains absent, which is plausibly explained by the low base rate of crater preservation/discovery for airbursts (which may leave no crater at all) combined with only moderate astronomical detectability even where conditions are favorable. Material and genetic evidence (bottlenecks, cultural discontinuity) are moderately detectable (0.35/0.3) but confounded by other causes (climate-driven extinction, overhunting), so their ambiguity should not be read as strong disconfirmation. Iconographic and oral-tradition evidence for this era are very low detectability (0.1) given no durable symbolic record from directly affected populations at this depth in time, so their scarcity is expected rather than telling. Overall, given genuinely elevated geological/astronomical detectability for this period and the existence of real (if contested) proxy evidence in the literature, the hypothesis could plausibly have left recoverable traces, and a suggested overall detectability adjustment of ~0.55 (weighted toward the higher geological/astronomical values, offset by near-zero textual/linguistic/iconographic detectability) is appropriate for judging absence of additional confirmatory evidence."
+  }
+}

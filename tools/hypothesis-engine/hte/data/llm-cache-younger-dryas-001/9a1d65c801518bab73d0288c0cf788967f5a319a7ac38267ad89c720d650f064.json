@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "5b4dc85755d47e56d4c911382ede07296fbd077851697ef219d9d7e072c62773",
+  "response": {
+    "expected_evidence": [
+      "Geochemical stratigraphic markers (nanodiamonds, platinum/iridium spikes, magnetic microspherules, 'black mat' layers) at the ~12,900 BP Younger Dryas onset boundary, sampled across multiple independent sites/labs",
+      "Radiocarbon/varve/ice-core chronologies correlating meltwater-pulse timing (e.g., Lake Agassiz drainage, Gulf of Mexico/St. Lawrence outflow signals) with megafaunal last-appearance dates",
+      "Ancient-DNA and coalescent extinction-timing studies for North American megafauna (mammoth, mastodon, horse, camelops, etc.) tested against meltwater-pulse chronology",
+      "Published replication/non-replication studies (peer-reviewed literature record) attempting to reproduce the original Younger Dryas Boundary/meltwater-extinction geochemical signatures at independent sites",
+      "Sediment-core paleoclimate proxies (pollen, isotopes) documenting the meltwater pulse's magnitude and regional extent relative to faunal turnover records",
+      "Model_prior synthesis: historiography of the scientific debate itself (citation patterns, meta-analyses, review papers) documenting whether independent labs corroborated or failed to corroborate the causal link"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "This hypothesis is a meta-scientific claim (that independent replication of a meltwater-pulse -> megafaunal-extinction causal link failed), not a direct claim about a Pleistocene event alone. It has two evidentiary layers: (1) the underlying paleoenvironmental/geochemical signal at ~12,900-11,700 BP (Younger Dryas onset), and (2) the modern scientific record of replication attempts. Layer (2) is very well preserved (peer-reviewed literature, archived cores, lab datasets are essentially permanent once published), which pushes detectability up regardless of period. Layer (1) depends on geological/geochemical and genetic preservation, which the table rates only moderately for the Younger Dryas period: geological 0.65, astronomical 0.70 (relevant if the mechanism ties to impact-related markers), material 0.35, genetic 0.30, model_prior 0.30. Textual, linguistic, oral_tradition, and iconographic channels are essentially inapplicable/near-zero this deep in prehistory and do not bear on a replication-failure claim anyway. Averaging the applicable, load-bearing channels (geological, material, genetic, astronomical, model_prior) and weighting toward geological/model_prior (since the hypothesis is fundamentally about scientific corroboration status, which is documented in the literature far better than the table's raw geological/genetic figures alone suggest) yields an adjusted estimate around 0.45 \u2014 higher than the raw genetic/material averages but capped by the fact that the primary Pleistocene physical signal itself is only moderately preserved and unevenly distributed across sites, which is exactly why the real-world Younger Dryas Impact Hypothesis controversy features conflicting site-to-site replication results. A low score here should be read as reflecting genuine site-level heterogeneity and preservation limits on the geological signal, not as evidence that the corroboration-failure claim is false; conversely, the strong survival of the published-literature layer means absence of evidence for the debate itself is implausible \u2014 the debate is well documented \u2014 while absence/inconsistency of the underlying markers across sites is exactly the kind of ambiguous signal expected under this hypothesis."
+  }
+}

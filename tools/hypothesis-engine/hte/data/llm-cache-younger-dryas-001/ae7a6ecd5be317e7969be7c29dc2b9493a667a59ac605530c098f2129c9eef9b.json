@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "39b272f58ee5a0a084061a576ee7726adb93351f8d1bd726a7f8092c98223e6d",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.3,
+        "rationale": "Both opinions are fully uncertain (u=1, no b/d evidence), so comparison rests on base-rate plausibility and mechanism fit; B's impact-ejecta-fallout across multiple continents matches the actual YDB nanodiamond/spherule evidence base far better than a localized Taurid-stream encounter over the Middle East, and B also has a higher base-rate weight (a=0.018 vs 0.0025)."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.3,
+        "rationale": "A carries substantial disbelief mass (d\u22480.50) indicating real evidence pushes against a multi-continent Taurid-stream YD-onset trigger, whereas B is simply untested (u=1); active evidential pushback on A outweighs B's mere lack of data, so B is not disfavored while A is partially refuted."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.3,
+        "rationale": "Neither has any accumulated evidence (u=1 for both), so the tie-break is mechanism plausibility and base rate; cosmic-airburst as the trigger for YD cooling is the more standard/parsimonious YDIH mechanism than a generic 'taurid-stream-encounter corroborated' claim, and B's higher base rate (0.018 vs 0.0025) reinforces this."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.3,
+        "rationale": "Both are fully uncertain; A posits a mechanistically unsupported gamma-ray-ionization pathway for YD cooling (a very fringe, low base-rate claim, a=0.00055) while B, despite an awkward interval offset and vague 'other-action', involves a more commonly discussed Taurid-airburst/megafaunal-extinction linkage with a much higher base rate (a=0.018)."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.55,
+        "rationale": "B's opinion shows meaningful disbelief mass (d\u22480.40) suggesting the 'cosmic-impact refuted' framing is itself evidentially shaky, while A sits at pure uncertainty (u=1) with no evidence either for or against; absent active evidence, A is not disfavored the way B is, giving A a slight edge."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.58,
+        "rationale": "Both hypotheses have zero accumulated evidence (u=1) and both pair an actor with a mismatched mechanism (cosmic-impact/gamma-ray vs supernova/taurid-stream), but A's markedly higher base rate (a=0.011 vs 0.0009) suggests it is the more commonly attested combination in the broader evidence corpus."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.5,
+        "rationale": "Identical base rates (a=0.011) and identical full-uncertainty opinions (u=1) for both; A links solar-proton-events to nanodiamond concentrations via impact-ejecta-fallout while B links the same actor to YD cooling via cosmic-airburst, both equally speculative pairings with no distinguishing evidence."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.35,
+        "rationale": "A is purely uncertain (u=1, a=0.0067, no evidence), whereas B shows strong evidential engagement (d\u22480.81, u\u22480.19) indicating the corpus actively disbelieves the 'refuted' framing of a cosmic-impact/population-demography link\u2014i.e., real evidence exists bearing on B's claim, which counts for more than A's total absence of evidence."
+      }
+    ]
+  }
+}

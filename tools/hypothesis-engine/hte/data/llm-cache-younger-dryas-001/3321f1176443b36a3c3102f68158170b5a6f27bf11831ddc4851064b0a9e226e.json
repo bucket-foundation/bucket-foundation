@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "cead2fb0adf99d7ad3dd1c8418e7a1f3e399f04fbf89872f9db8788bcc13bd3d",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum/iridium (Pt-Ir) geochemical anomaly at the ~12.9 ka boundary layer within contiguous, annually-resolved Greenland ice cores (e.g., GISP2/NEEM/NGRIP)",
+      "Geological: magnetic/glassy microspherules, aciniform (impact-type) carbon, and nanodiamond concentrations in the same ice-core horizon or in contemporaneous lake/bog sediments and the North American 'black mat' layer",
+      "Astronomical: cosmogenic-nuclide spikes (e.g., Be-10, Cl-36) or extraterrestrial He-3 enrichment consistent with an airburst/impact-ejecta pulse",
+      "Astronomical: candidate crater or strewn-field material (sub-ice or circum-Arctic) datable to the same interval",
+      "Material: abrupt dust/ash loading, soot, or combustion-residue spike coincident with megafaunal extinction and Clovis-culture disruption in terrestrial archaeological sequences",
+      "Genetic: ancient-DNA population bottleneck/extinction signatures in megafauna and possibly human groups dated to the same narrow window",
+      "Iconographic: contested symbolic representations (e.g., proposed 'impact' motifs at sites like G\u00f6bekli Tepe) \u2014 low-confidence, speculative link",
+      "Oral tradition: flood/fire cataclysm myths sometimes retrospectively linked to this event \u2014 very low evidentiary weight",
+      "Model-prior (training recall, not verified evidence text): the existing Younger Dryas Impact Hypothesis (Firestone et al. 2007; Petaev et al. 2013 Pt anomaly; subsequent critiques by Pigati, Holliday, van Hoesel et al. disputing an extraterrestrial origin) \u2014 this is a live, contested scientific debate, not settled fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The placement targets the Greenland ice sheet specifically, which is an unusually favorable preservation medium for exactly this kind of evidence: continuous, finely stratified, dateable ice layers can retain geochemical fallout signatures (Pt, Ir, spherules, nanodiamonds, cosmogenic nuclides) from an atmospheric ejecta event with high fidelity, unlike most terrestrial contexts. This pushes the relevant evidence kinds toward the higher end of the younger-dryas row ('astronomical' 0.7, 'geological' 0.65) rather than the low baseline for 'textual' (0.0, no writing existed) or 'linguistic'/'oral_tradition'/'iconographic' (0.05\u20130.1, essentially unrecoverable at this depth in time). Material and genetic evidence (0.35/0.3) are moderately plausible via terrestrial black-mat and extinction-pulse correlations but are inherently more equivocal and taphonomically noisier than the ice-core record. Given this skew toward the high-detectability geological/astronomical channels for the specific place named in the hypothesis, I adjust the effective detectability upward from the flat material/genetic baseline to ~0.6, reflecting that if a genuine impact-ejecta fallout event occurred, ice-core-based evidence plausibly could have survived and been found \u2014 and in the real record, some candidate anomalies (e.g., a debated Pt spike) have indeed been reported, though their extraterrestrial-impact interpretation remains scientifically contested rather than corroborated. Absence of unambiguous crater/strewn-field evidence or universal Pt confirmation should therefore be weighed as partly a low-detectability/ambiguous-signal problem (volcanic and other terrestrial sources can mimic these anomalies) rather than as decisive proof of falsity."
+  }
+}

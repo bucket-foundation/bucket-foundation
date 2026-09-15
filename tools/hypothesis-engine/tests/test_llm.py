@@ -1,4 +1,5 @@
 import json
+import subprocess
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -97,6 +98,26 @@ def test_cache_hit_never_calls_subprocess(tmp_path, monkeypatch):
 def test_replay_only_cache_miss_raises(tmp_path):
     with pytest.raises(llm.LLMCacheMissError):
         llm.complete("hello", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, replay_only=True)
+
+
+def test_replay_only_cache_hit_never_spawns_a_subprocess(tmp_path):
+    """PR #154 (`bkt-hte-stratified-sample`) dropped `test_runner.py::
+    test_run_campaign_replay_only_makes_no_subprocess_call`; this recovers
+    that contract at the level it lives, `hte.llm.complete` itself,
+    apart from any one end-to-end campaign's own fixture. `tests/
+    conftest.py`'s autouse `_no_real_subprocess` guard turns any real
+    `subprocess.run`/`Popen` call during this test into a `RuntimeError`,
+    so returning the cached value below is itself proof no call happened."""
+    cache_dir = tmp_path / "cache"
+    cache_dir.mkdir()
+    key = llm._cache_key("sonnet", "hello")
+    (cache_dir / f"{key}.json").write_text(json.dumps({
+        "model": "sonnet", "role": "critic", "prompt_sha256": "x", "response": {"greeting": "cached"},
+    }))
+    result = llm.complete(
+        "hello", role="critic", schema=SCHEMA, model="sonnet", cache_dir=cache_dir, replay_only=True,
+    )
+    assert result == {"greeting": "cached"}
 
 
 def test_complete_calls_cli_and_writes_cache(tmp_path, monkeypatch):
@@ -258,14 +279,6 @@ def test_model_refusal_records_stats(tmp_path, monkeypatch):
     assert stats["critic"]["truncations"] == 0
 
 
-def test_model_refusal_does_not_write_cache(tmp_path, monkeypatch):
-    fake = _fake_run([(1, _refusal_envelope())])
-    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
-    with pytest.raises(llm.ModelRefusal):
-        llm.complete("hi", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path)
-    assert list(Path(tmp_path).glob("*.json")) == []
-
-
 def test_max_tokens_stop_reason_raises_model_truncation(tmp_path, monkeypatch):
     fake = _fake_run([(0, _refusal_envelope(stop_reason="max_tokens", result="partial output"))])
     monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
@@ -281,6 +294,67 @@ def test_empty_result_raises_model_truncation(tmp_path, monkeypatch):
     with pytest.raises(llm.ModelTruncation) as excinfo:
         llm.complete("hi", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path)
     assert excinfo.value.reason == "empty_result"
+
+
+# `bkt-hte-llm-refusal-cache`: the Younger Dryas meta-review call hit a
+# typed refusal live and wrote no cache entry, so `--replay-only` raised
+# `LLMCacheMissError` at that step after every earlier stage replayed.
+
+
+def test_refusal_is_cached_and_replay_reproduces_it(tmp_path, monkeypatch):
+    fake = _fake_run([(1, _refusal_envelope(cost=0.02))])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+    with pytest.raises(llm.ModelRefusal) as live:
+        llm.complete("hi", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, provenance=_PROVENANCE)
+    assert _index_lines(tmp_path)[-1]["outcome"] == "refusal"
+
+    # `conftest.py`'s autouse guard turns a real subprocess spawn into a
+    # `RuntimeError`; this empty queue proves neither replay below spawns.
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=_fake_run([])))
+    with pytest.raises(llm.ModelRefusal) as replayed:
+        llm.complete("hi", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, replay_only=True)
+    assert replayed.value.cost_usd == live.value.cost_usd == pytest.approx(0.02)
+
+    default = {"greeting": "defaulted"}
+    results = llm.complete_many(
+        ["hi"], role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, replay_only=True, default=default,
+    )
+    assert results == [default]
+
+
+# `bkt-hte-extractor-timeout`: sacred-history-texts slices timed out
+# twice in 422 calls at the old global 300s.
+
+
+def test_timeout_raises_llm_timeout_error_and_records_stats(tmp_path, monkeypatch, caplog):
+    llm.reset_stats()
+
+    def run(argv, capture_output, text, timeout):  # noqa: ARG001 - matches subprocess.run's call shape
+        raise subprocess.TimeoutExpired(cmd=argv, timeout=timeout)
+
+    # `_invoke_cli` catches `subprocess.TimeoutExpired` off whatever
+    # `llm.subprocess` currently is, so the real class must ride along.
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=run, TimeoutExpired=subprocess.TimeoutExpired))
+    caplog.set_level("ERROR", logger="hte.llm")
+    with pytest.raises(llm.LLMTimeoutError):
+        llm.complete("hi", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, timeout=5)
+    assert llm.stats()["critic"]["timeouts"] == 1
+    assert list(Path(tmp_path).glob("*.json")) == []  # no answer to cache
+    assert any("timed out after 5s" in r.getMessage() and "prompt length" in r.getMessage() for r in caplog.records)
+
+
+def test_extractor_gets_a_longer_timeout_from_the_policy(tmp_path, monkeypatch):
+    assert llm.resolve_timeout("extractor") > llm.resolve_timeout("critic") == llm.DEFAULT_TIMEOUT_S
+
+    seen_timeouts = []
+
+    def run(argv, capture_output, text, timeout):
+        seen_timeouts.append(timeout)
+        return SimpleNamespace(returncode=0, stdout=_envelope(structured_output={"greeting": "hi"}), stderr="")
+
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=run))
+    llm.complete("hi", role="extractor", schema=SCHEMA, model="haiku", cache_dir=tmp_path)
+    assert seen_timeouts == [llm.resolve_timeout("extractor")]
 
 
 def _selective_refusal_run(refuse_marker: str):
@@ -455,10 +529,9 @@ def test_fake_mode_with_provenance_never_creates_cache_dir(tmp_path):
 def test_replay_only_cache_hit_with_provenance_never_writes_the_index(tmp_path):
     """The regression this test guards: `hte.roles.generate`/`critique`/
     `unknown_unknown` pass `provenance=` on every call now, including
-    every call this package's own test suite makes against the
-    committed `tests/fixtures/llm-cache/` directory under `replay_only=
-    True`. Writing an index line on that cache-hit path would leave a
-    checked-in fixture directory dirty on every test run; `replay_only`'s
+    every replay against a tracked run cache under `replay_only=True`.
+    Writing an index line on that cache-hit path would leave a tracked
+    cache directory dirty on every replay; `replay_only`'s
     own contract (`hte.llm.complete`'s own docstring) is read-only,
     full stop, matching fake mode's own "never touches `cache_dir`"
     contract one branch up."""

@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "780e0e072a5f1d0da7089c3e15ffcc00689b10fda3442cbda00ae102a0a96f98",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum (and possibly iridium/osmium) enrichment layer at the ~12,900 cal BP Younger Dryas onset horizon in Greenland ice cores (e.g., GISP2, NEEM), synchronous with known YD boundary layer (YDB) sediments elsewhere",
+      "material: microspherules, meltglass, nanodiamonds, magnetic/carbon spherules in the same ice or associated terrestrial YDB sedimentary sequences",
+      "geological/material: elevated soot, charcoal, and combustion aerosol markers (biomass-burning proxy) in the ice matching an 'impact winter' signature",
+      "astronomical: independent lines of evidence for an extraterrestrial body (comet/asteroid fragment) such as cosmic dust/micrometeorite flux anomalies, or (weakly) a candidate crater/airburst structure",
+      "genetic: coincident megafaunal extinction/population bottleneck signals and possibly human population contraction in the relevant interval",
+      "model_prior: existing YDIH literature (Firestone et al. 2007; Petaev et al. 2013 platinum spike paper; subsequent replication attempts and critiques) documenting this exact claim",
+      "oral_tradition/iconographic: highly speculative cometary imagery (e.g., claimed G\u00f6bekli Tepe 'vulture stone') or flood/fire myths sometimes invoked by proponents, though these are contested and low-confidence",
+      "textual: none expected, as this predates writing entirely"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval -10950 corresponds to ~12,900 cal BP, the Younger Dryas onset, so the younger-dryas detectability row is the appropriate reference rather than a blended/unspecified default. Ice-core geochemistry (geological, 0.65) and astronomical/cosmic-dust proxies (0.7) are the highest-detectability channels here, and this is exactly the type of evidence actually reported in the literature: a platinum anomaly at the YD boundary in Greenland ice (model-prior, unverified against the provided evidence text: Petaev et al. 2013 and related YDIH work; this is drawn from training recall, not the task's evidence corpus, so flagged as model-prior). Material markers like spherules/nanodiamonds/soot (0.35) are moderately detectable and have been claimed in terrestrial YDB sites, though replication has been contentious. Genetic (0.3), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are all low-detectability for this pre-literate, deep-time interval, and textual evidence is impossible (0.0) since writing did not yet exist. Given that the core physical/geochemical evidence types (geological, astronomical, material) sit in the 0.35\u03b20.7 range, absence of corroborating textual/oral/iconographic evidence should not be read as evidence against the hypothesis \u03b2 it is expected under this detectability profile. The suggested aggregate adjustment of 0.6 reflects that the hypothesis's most diagnostic evidence types (ice-core geochemistry, cosmic proxies) are reasonably preservable and searchable, making a genuine test of the hypothesis plausible, while acknowledging that confirmation remains empirically contested in the broader (recalled, not sourced-here) literature."
+  }
+}

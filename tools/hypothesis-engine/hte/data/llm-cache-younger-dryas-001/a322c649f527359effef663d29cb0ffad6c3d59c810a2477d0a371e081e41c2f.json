@@ -1,0 +1,23 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "37b45c1cf054c3b321bb6ce278a84e5687077332cc299518de2842906db63c30",
+  "response": {
+    "expected_evidence": [
+      "geological: anomalous platinum, iridium, or nickel enrichment layers at ~12,800-12,900 cal BP horizon (the 'Younger Dryas Boundary' layer) in sediment cores/paleosols across multiple continents",
+      "geological: nanodiamonds, magnetic spherules, meltglass, and carbon spherules concentrated at the same stratigraphic horizon, interpreted as cosmic-impact/airburst proxies",
+      "geological: black mat / dark organic-rich sedimentary layer marking abrupt onset of cooling coincident with the proposed impact horizon",
+      "astronomical: orbital-dynamics modeling showing the Taurid meteor stream/complex intersecting Earth's orbit with a debris density sufficient for a cluster of airbursts around 12,900 BP",
+      "astronomical: identification of a parent comet or fragmenting body whose breakup produced the Taurid stream and could date to this interval",
+      "material (archaeological): disruption or discontinuity in Clovis-era (and other Upper Paleolithic) occupation layers, or unusual burn/scorch layers at multiple sites across continents",
+      "material/faunal: megafaunal extinction remains and rapid-onset extinction signatures clustering at the boundary layer",
+      "genetic: population bottleneck signatures in surviving megafauna or human lineages datable to this narrow interval",
+      "iconographic: rock art or portable art depicting fireball/comet-like imagery near this date range (highly speculative, e.g., disputed 'Younger Dryas comet' rock art claims)",
+      "oral_tradition: flood/fire/sky-catastrophe myths hypothesized (very tenuously) to encode a cosmic event, though these would postdate the event by many millennia of oral transmission",
+      "textual: none expected \u2014 writing did not yet exist"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis is fundamentally a geological/astronomical claim (a real-world debated proposal often called the Younger Dryas Impact/Taurid hypothesis, drawn here from model-prior recollection rather than the provided evidence text, and it remains scientifically contested). Its two strongest evidentiary channels \u2014 geological (sediment proxy layers: platinum, nanodiamonds, spherules) and astronomical (orbital modeling of the Taurid stream) \u2014 have comparatively high detectability scores in the younger-dryas/upper-paleolithic tables (0.6\u20130.7), meaning that if the event occurred, physical/chemical traces plausibly could have survived 13,000+ years in stratified sediments and ice cores, and the orbital dynamics are in principle reconstructible today independent of ancient survival. This is consistent with real-world attempts (e.g., Firestone et al. and successors) to locate exactly such multi-continent boundary-layer anomalies, though those findings remain disputed by other researchers \u2014 so absence of a fully accepted consensus signal is not strong evidence of falsity, but the search itself is well within detectable range. By contrast, textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) channels are essentially non-diagnostic for a preliterate Upper Paleolithic population: no writing existed, and any oral or artistic transmission across ~10,000+ years to the nearest literate recording is expected to have decayed past recognizability regardless of whether the event happened. Genetic (0.25\u20130.3) and material/archaeological (0.35) channels sit in the middle \u2014 bottleneck or occupation-discontinuity signals could exist but are easily confounded with independent causes (over-hunting, climate shift itself) and are only weakly diagnostic of a specifically cosmic mechanism. Given this spread, a composite detectability adjustment of ~0.5 is suggested, weighted toward the higher-detectability geological/astronomical channels that carry the real evidentiary weight for this hypothesis, while acknowledging that low scores in textual/linguistic/oral/iconographic channels should not be read as evidence against the hypothesis \u2014 they are structurally uninformative for this period."
+  }
+}

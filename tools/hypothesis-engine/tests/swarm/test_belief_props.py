@@ -1,12 +1,12 @@
 """Property tests over `hte.belief`: the opinion algebra, diminishing
-returns, the cross-kind bonus, stemma effective count (cycles and
-self-references included), and detectability scaling."""
+returns, stemma effective count (cycles and self-references included),
+and detectability scaling."""
 from __future__ import annotations
 
 import math
 
 import pytest
-from tests.swarm.conftest import cyclic_sources, evidence_item, evidence_kinds_st, evidence_weights, positive_W, simplex_points, unit_floats
+from tests.swarm.conftest import cyclic_sources, evidence_item, evidence_weights, positive_W, simplex_points, unit_floats
 from hypothesis import assume, given
 from hypothesis import strategies as st
 
@@ -179,26 +179,6 @@ def test_D_is_concave_via_decreasing_slopes(n1, gap1, gap2):
 def test_D_rejects_negative_n(n):
     with pytest.raises(ValueError):
         belief.D(n)
-
-
-# --------------------------------------------------------------------------
-# cross_kind_bonus: 1 for a single kind, non-decreasing under set growth
-# --------------------------------------------------------------------------
-
-
-@given(evidence_kinds_st)
-def test_cross_kind_bonus_is_one_for_a_single_kind(kind):
-    assert belief.cross_kind_bonus([kind]) == 1.0
-
-
-@given(st.lists(evidence_kinds_st, min_size=0, max_size=4), st.lists(evidence_kinds_st, min_size=0, max_size=4))
-def test_cross_kind_bonus_is_nondecreasing_under_set_growth(subset, extra):
-    superset = subset + extra
-    assert belief.cross_kind_bonus(superset) >= belief.cross_kind_bonus(subset) - 1e-12
-
-
-def test_cross_kind_bonus_empty_is_one():
-    assert belief.cross_kind_bonus([]) == 1.0
 
 
 # --------------------------------------------------------------------------

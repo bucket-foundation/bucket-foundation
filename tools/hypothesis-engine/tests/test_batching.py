@@ -4,7 +4,6 @@ from types import SimpleNamespace
 import pytest
 
 from hte import batching, llm, roles
-from hte.belief import Opinion
 from hte.corpus import fixtures
 from hte.generate import combinatorial_sample
 
@@ -74,8 +73,12 @@ def test_batch_critique_in_fake_mode_matches_serial(tmp_path, monkeypatch):
 def test_batch_judge_in_fake_mode_matches_serial(tmp_path, monkeypatch):
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
     corpus, hyps = _hypotheses(8)
-    opinions = {h.address: Opinion(b=0.2, d=0.1, u=0.7, a=0.5) for h in hyps}
-    context = {"opinions": opinions}
+    # Every pair's own first hypothesis carries one supporting item, its
+    # second none, so the fake judge's evidence-count balance gives a
+    # real verdict rather than the uniform no-evidence draw.
+    for i in range(0, 8, 2):
+        corpus.evidence[0].supports.append(hyps[i].address)
+    context = {"evidence": corpus.evidence}
     pairs = [(hyps[i], hyps[i + 1], context) for i in range(0, 8, 2)]
 
     serial = [roles.judge(a, b, context, cache_dir=tmp_path, replay_only=False) for a, b, _ in pairs]
@@ -83,6 +86,7 @@ def test_batch_judge_in_fake_mode_matches_serial(tmp_path, monkeypatch):
 
     assert len(batched) == 4
     assert batched == serial
+    assert all(s != pytest.approx(0.5) for s in serial)
 
 
 # --------------------------------------------------------------------------
@@ -108,8 +112,9 @@ def test_batch_critique_multiple_chunks_preserve_order_under_pmap(tmp_path, monk
 def test_batch_judge_multiple_chunks_preserve_order_under_pmap(tmp_path, monkeypatch):
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
     corpus, hyps = _hypotheses(24)
-    opinions = {h.address: Opinion(b=0.2, d=0.1, u=0.7, a=0.5) for h in hyps}
-    context = {"opinions": opinions}
+    for i in range(0, 24, 2):
+        corpus.evidence[0].supports.append(hyps[i].address)
+    context = {"evidence": corpus.evidence}
     pairs = [(hyps[i], hyps[i + 1], context) for i in range(0, 24, 2)]
 
     serial = [roles.judge(a, b, context, cache_dir=tmp_path, replay_only=False) for a, b, _ in pairs]
@@ -117,6 +122,7 @@ def test_batch_judge_multiple_chunks_preserve_order_under_pmap(tmp_path, monkeyp
 
     assert len(batched) == 12
     assert batched == serial
+    assert all(s != pytest.approx(0.5) for s in serial)
 
 
 def test_batch_critique_empty_input_returns_empty_list_no_pmap_call(tmp_path):

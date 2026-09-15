@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "9837e2b87c80b9e2df27d1d247976b3979a841489582f4f9cdeef0d88f45cf3e",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.35,
+        "rationale": "Both hypotheses are fully uncertain (u=1, no belief/disbelief evidence); B's higher base-rate/expected value (0.018 vs 0.0009) gives it a marginal edge with no real evidentiary support either way."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.68,
+        "rationale": "A is fully uncertain (no evidence against it) while B carries substantial disbelief (d\u22480.50), so A's expected truth-value (0.00055) exceeds B's discounted value (0.00028)."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.4,
+        "rationale": "Both are fully uncertain with no belief/disbelief; B's higher base rate (0.0067 vs 0.00055) slightly favors it in expected value, though neither has actual evidentiary support."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.75,
+        "rationale": "A remains fully uncertain (no evidence against it), whereas B is strongly disbelieved (d\u22480.94), indicating the evidence actively undermines B's claim of refutation."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.25,
+        "rationale": "A is strongly disbelieved (d\u22480.81) while B remains fully uncertain with no counter-evidence, so B is comparatively better supported."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.25,
+        "rationale": "A carries heavy disbelief (d\u22480.81) versus B's full uncertainty with no disconfirming evidence, favoring B."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.5,
+        "rationale": "Identical opinion vectors (b=0,d=0,u=1,a=0.018) for both hypotheses; evidence is equally absent and equally uninformative for A and B."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses have identical opinion vectors (b=0,d=0,u=1,a=0.018), so evidence provides no basis to favor either."
+      }
+    ]
+  }
+}

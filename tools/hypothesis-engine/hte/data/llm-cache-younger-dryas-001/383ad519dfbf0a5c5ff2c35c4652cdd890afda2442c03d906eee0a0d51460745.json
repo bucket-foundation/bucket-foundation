@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "16aef5abfbd7947cea06c7fc7ee1f3bf05fbf5fd631d30282ef4453674f03b83",
+  "response": {
+    "expected_evidence": [
+      "Multiple independently-dated sediment cores/stratigraphic sections at proposed Younger Dryas Boundary (YDB) sites showing that platinum/iridium anomalies, magnetic spherules, and nanodiamonds do not cluster tightly at ~10,950 BP but instead show wide chronological scatter or reworking",
+      "Radiocarbon and varve-chronology re-analyses (e.g., re-dating of Bull Creek, Blackwater Draw, Gainey, Chobot and other Clovis-age sites) revealing inconsistent or statistically indistinguishable ages between the claimed impact layer and background sediment",
+      "Peer-reviewed geochronological critiques (Pinter, Boslough, Holliday, Meltzer et al.-style analyses) identifying age-model errors, sediment mixing, bioturbation, or contamination that could produce false synchroneity with YD onset",
+      "Absence of a corroborating impact crater or unambiguous shocked-quartz/melt-glass horizon precisely dated to the YD onset",
+      "Statistical re-evaluation showing the '10,950 cal BP' date is an artifact of calibration-curve wiggles or small sample sizes rather than a genuine synchronous event across sites",
+      "Geological/geomorphological data (loess, paleosol, lake-varve records) indicating gradual rather than abrupt onset of YD cooling, undermining a single-instant causal impact date"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis concerns a refutation via dating-uncertainty, which is inherently a modern geochronological/stratigraphic critique rather than evidence from a literate or oral-tradition source in the Younger Dryas period itself. The relevant evidence classes are geological (0.65) and material (0.35) under the 'younger-dryas' row, both moderately-to-well preserved because sediment cores, varve sequences, and radiocarbon-datable organic material from ~11,000 BP North American sites are routinely recovered and analyzed in modern geoscience (this real-world controversy, the Younger Dryas Impact Hypothesis debate, is documented in peer-reviewed literature \u2014 noted here as model-prior background, not verified from provided text). Astronomical evidence (0.7) such as absence of a confirmed crater is also detectable but less central to a 'dating-uncertainty' refutation mechanism specifically. Textual (0.0) and oral_tradition (0.1) are essentially irrelevant since no contemporaneous written or oral record from 10,950 BP would encode causal/chronological precision about an impact event. Genetic (0.3) and iconographic (0.1) evidence are largely inapplicable to this dating-mechanism claim. Given that the core evidence type (geological/stratigraphic re-dating) has comparatively high detectability, an absence of confirmatory evidence for the refutation would be more likely to reflect genuine scientific ambiguity/ongoing debate than a detection-limited gap \u2014 hence I set the combined detectability adjustment moderately high (0.55), reflecting that this evidence, if it exists, is quite plausible to have survived and been found, though outside geological/material channels detectability drops sharply."
+  }
+}

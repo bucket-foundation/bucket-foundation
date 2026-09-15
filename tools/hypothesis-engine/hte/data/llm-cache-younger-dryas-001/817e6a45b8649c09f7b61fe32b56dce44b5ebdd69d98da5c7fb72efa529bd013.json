@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e2388b715f42cd97d7934bffa252c48619a292440a119ba4b7f9682a8a6990a9",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.7,
+    "expected_evidence": [
+      "Platinum-group-element (Pt, Ir) concentration anomaly in a well-dated Greenland ice-core layer (e.g. GISP2/GRIP/NGRIP) at ~12.8-12.9 ka BP coincident with YD onset (geological)",
+      "Elevated ammonium and nitrate/oxalate spikes in the same ice layer interpreted as biomass-burning combustion products (geological)",
+      "Acidity/sulfate perturbation distinguishable from known volcanic signals, to rule in/out an impact vs. eruption source (geological)",
+      "Nanodiamonds, magnetic microspherules, or meltglass in ice or proximal marine/lake sediment cores dated to the same horizon (material/geological)",
+      "Continental-to-hemispheric charcoal/soot stratigraphic record showing a synchronous biomass-burning spike at YD onset, cross-correlated with the Greenland layer (material, geological)",
+      "Independent replication of the Pt/Ir anomaly across other Northern Hemisphere ice cores or terrestrial YD boundary sections (geological, material)",
+      "Faunal/pollen turnover or megafaunal extinction pulse in nearby cores consistent with an abrupt 'impact winter' rather than gradual climate forcing (genetic, material)",
+      "Absence of a competing, better-supported freshwater/AMOC-forcing signal (meltwater pulse geochemistry) at the same horizon, since this hypothesis competes directly with the mainstream meltwater-forcing explanation (geological)"
+    ],
+    "rationale": "Greenland ice sheets are one of the best-preserved, continuously-sampled paleoclimate archives available, with sub-annual layer resolution spanning the Younger Dryas onset (~10,850 cal BC / 12.8 ka BP), so geological/geochemical evidence for this hypothesis is highly detectable in principle \u2014 this is reflected in the relatively high baseline ('younger-dryas','geological')=0.65, which I nudge slightly upward (to ~0.7) because ice-sheet stratigraphy specifically (as opposed to generic terrestrial geology) offers exceptional preservation and existing, actively-studied core archives (GISP2, GRIP, NGRIP) that have already been queried for exactly this kind of anomaly. Material evidence (spherules, nanodiamonds, black mats) elsewhere has lower detectability (0.35) due to greater exposure to erosion/reworking outside ice. Textual, linguistic, oral-tradition, and iconographic channels are essentially non-existent for a pre-Holocene, pre-literate, pre-symbolic-recording-of-climate event (0.0\u20130.1), so their absence carries no evidential weight against the hypothesis. Model-prior note (unverified, from training, not from supplied evidence text): the Younger Dryas Impact Hypothesis is a real but actively contested proposal in the literature \u2014 a Pt anomaly in Greenland ice has indeed been reported (Petaev et al. 2013), but its interpretation as evidence of a cosmic impact causing YD-onset cooling via impact winter remains disputed, with the mainstream explanation instead favoring glacial meltwater disruption of North Atlantic circulation. This means that even though the relevant evidence types are detectable and some of the expected markers have in fact been reported, the causal claim of 'corroborated' cosmic impact triggering the cooling is not settled science \u2014 so a low detectability score should not be invoked to explain missing evidence here, since search and discovery in this specific archive has already occurred and produced ambiguous/contested results rather than silence."
+  }
+}

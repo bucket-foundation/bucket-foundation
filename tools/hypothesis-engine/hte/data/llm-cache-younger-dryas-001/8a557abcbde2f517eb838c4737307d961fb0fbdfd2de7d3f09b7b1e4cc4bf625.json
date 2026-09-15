@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fc7befefad11bb1d7c4166466894651edfbb267e934c378f8b30570ef7da8ea8",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and nickel geochemical anomalies in sediment layers dated to ~12,900 BP ('black mat' horizon) across North American sites and Greenland ice cores",
+      "Geological: nanodiamonds, magnetic spherules, and glassy/melted carbon spherules embedded in the Younger Dryas boundary layer",
+      "Geological: widespread charcoal/soot layers suggesting continental-scale biomass burning coincident with onset",
+      "Astronomical: absence or presence of a confirmed impact crater or strewn field of impact ejecta/tektites correlated to the interval",
+      "Material/archaeological: abrupt discontinuity or thinning in Clovis-culture artifact assemblages directly above the proposed impact layer",
+      "Material/paleontological: megafaunal extinction horizon (mammoth, mastodon, etc. remains ceasing) coincident with the boundary layer",
+      "Genetic: bottleneck or extinction signatures in ancient DNA of North American megafauna and possibly human populations dated to the interval",
+      "Model-prior: this matches the well-known, still-disputed 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), for which some proponents report the above geochemical markers at multiple sites while numerous independent studies have failed to replicate them or attribute the signals to non-impact processes"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis places a cosmic airburst/impact event right at the Pleistocene\u2013Younger Dryas boundary (~12,900\u201312,000 BP), a period with markedly better preservation for geological and astronomical proxies than for cultural, linguistic, or textual ones (unsurprising given no writing existed). Using the 'younger-dryas' row (matching the object 'younger-dryas-onset-cooling'): geological=0.65 and astronomical=0.70 are relatively high, reflecting that ice cores, varved lake sediments, and stratified geological sections from this era are well-dated and well-preserved, making platinum/iridium anomalies, nanodiamonds, and spherules plausible to detect if the event occurred \u2014 and indeed such signals have been reported (though contested) in the real literature, which is model-prior information here, not confirmed by any evidence text I was given. Material (0.35) and genetic (0.3) detectability are lower because Upper Paleolithic North American archaeological and biomolecular preservation is patchy, sparse, and subject to taphonomic loss over 13,000+ years, so an absence of unambiguous Clovis-disruption or megafaunal-DNA-bottleneck evidence would not strongly refute the hypothesis. Textual (0.0) and linguistic (0.05) are essentially inapplicable/irrelevant given no written records existed. Given that the highest-detectability channels (geological, astronomical) are moderately-to-highly capable of preserving and revealing evidence of this specific kind of event, the hypothesis could plausibly have survived to be tested and evidenced by modern science \u2014 and largely has been, in the ongoing (and unresolved) Younger Dryas Impact Hypothesis debate. I set an aggregate detectability_adjustment of 0.55, slightly above the material/genetic floor but below the peak geological/astronomical values, reflecting that overall confirmation requires convergence across multiple evidence types (geochemical + archaeological + genetic), and that convergence has been difficult to achieve, which tempers confidence without implying the underlying event is false \u2014 low convergence here is attributable to real disagreement over signal interpretation and moderate-but-imperfect preservation, not to inherent undetectability."
+  }
+}

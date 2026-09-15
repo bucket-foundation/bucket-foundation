@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f6bb0ac31a2af9d53cfa8c4c2146fcd0a942ef62a9d9645618433a05a0f98356",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "expected_evidence": [
+      "Geological: a distinct Younger Dryas boundary (YDB) layer (~12.9 ka) containing platinum/iridium anomalies, magnetic and glassy spherules, nanodiamonds, and elevated charcoal/soot ('black mat') indicating widespread biomass burning",
+      "Geological: proglacial lake/ice-sheet drainage sediments (e.g. Lake Agassiz outburst deposits) showing a meltwater pulse into the North Atlantic/Arctic coinciding with AMOC slowdown proxies",
+      "Astronomical: an identifiable impact crater or airburst structure of appropriate age (e.g. sub-glacial candidates like Hiawatha), or cosmic-impact proxy minerals (shocked quartz, high-temperature melt glass)",
+      "Geological/paleoclimatic: North Atlantic sediment cores and Greenland ice cores showing an abrupt onset of cooling, freshwater signal (delta-18O excursion), and reduced North Atlantic Deep Water formation proxies",
+      "Material/genetic: megafaunal extinction and human population decline/bottleneck signatures (Clovis-era discontinuity) temporally correlated with the YD onset layer",
+      "Model-prior: contested prior literature (YDIH) reporting and disputing these same proxies across dozens of sites worldwide"
+    ],
+    "rationale": "This hypothesis is a hybrid of the Younger Dryas Impact Hypothesis (YDIH) and the meltwater-forcing (AMOC shutdown) model, positing that an extraterrestrial impact/airburst generated ejecta fallout that destabilized ice sheets, releasing a meltwater pulse that triggered YD cooling in the North Atlantic. Geological and astronomical evidence classes score highest for this period-context (0.65 and 0.7 respectively), reflecting that sedimentary boundary layers, ice cores, and cosmic-impact markers (spherules, nanodiamonds, Pt/Ir anomalies) are well-preserved and have in fact been extensively searched for at dozens of sites globally since the hypothesis was proposed (Firestone et al. 2007). Material (0.35) and genetic (0.3) evidence for associated megafaunal/human population effects are moderately detectable, while textual, linguistic, oral_tradition, and iconographic evidence are essentially inapplicable/near-zero for a pre-literate, pre-agricultural period. Because detectability for the two most diagnostic evidence classes (geological, astronomical) is comparatively high, an impact-driven meltwater trigger \u2014 if real \u2014 should plausibly have left recoverable, reproducible traces; the fact that reported YDB markers have been widely contested and largely not replicated independently (e.g., failure to confirm nanodiamond/Pt spikes at many sites, and the Hiawatha crater dating to ~58 Ma rather than ~12.9 ka per model-prior recollection) argues against detectability failure as the explanation for weak support, and instead suggests the causal chain proposed (impact -> ejecta fallout -> meltwater pulse -> YD cooling) is not well corroborated by the geological/astronomical record as currently understood. I flag the crater-dating point and the 'largely disputed today' characterization as model-prior, not verified against supplied evidence text."
+  }
+}

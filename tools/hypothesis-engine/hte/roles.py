@@ -26,6 +26,7 @@ from dataclasses import dataclass
 from typing import Any, Callable, Mapping, Sequence
 
 from . import llm
+from .belief import DISCRIMINATION_LR
 from . import provenance as prov
 from .concepts import Slot, Vocabulary
 from .evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Stance, Tier
@@ -231,15 +232,35 @@ def generate(context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = 
 # critique
 # --------------------------------------------------------------------------
 
+DISCRIMINATION_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "additionalProperties": {"type": "string", "enum": ["strong", "moderate", "weak", "none"]},
+}
+DISCRIMINATION_PROMPT = (
+    "Under \"discrimination\", keyed by evidence id, rate how much more likely each "
+    "listed item is under this hypothesis than under the strongest competing "
+    "explanation of the same event: strong, moderate, weak, or none."
+)
+
 CRITIQUE_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
         "keep": {"type": "boolean"},
         "issues": {"type": "array", "items": {"type": "string"}},
         "rationale": {"type": "string"},
+        "discrimination": DISCRIMINATION_SCHEMA,
     },
     "required": ["keep", "issues", "rationale"],
 }
+
+
+def likelihood_ratios(report: Mapping[str, Any]) -> dict[str, float]:
+    """The critic's `discrimination` ratings, keyed by evidence id, as
+    likelihood ratios (`hte.belief.DISCRIMINATION_LR`); an unknown label
+    or a missing map rates nothing, so those items keep their tier-only
+    weight."""
+    ratings = report.get("discrimination") or {}
+    return {eid: DISCRIMINATION_LR[label] for eid, label in ratings.items() if label in DISCRIMINATION_LR}
 
 # `critic` refused/truncated default (`bkt-hte-refusal-handling`): reject
 # the hypothesis rather than keep it, since `keep=True` on no real
@@ -292,7 +313,7 @@ def critique(h: Hypothesis, evidence: Sequence[EvidenceItem], *, cache_dir: str,
         "hypothesis (for example the actor is not attested inside the "
         "stated time bin, or the place sits outside every tradition the "
         "actor belongs to). List every such issue found; an empty evidence "
-        "set is not itself a contradiction."
+        "set is not itself a contradiction. " + DISCRIMINATION_PROMPT
     )
     return _with_refusal_default(
         lambda: llm.complete(
@@ -508,25 +529,51 @@ JUDGE_DEFAULT: dict[str, Any] = {
 }
 
 
+def _judge_evidence_block(label: str, support: Sequence[EvidenceItem], refute: Sequence[EvidenceItem]) -> str:
+    """`label`'s own linked evidence (`EvidenceItem.supports`/`refutes`),
+    quoted by id and span, plus a supports/refutes count: what a judge
+    compares instead of an `Opinion`, prior, or Elo (`bkt-hte-blind-
+    roles`)."""
+    lines = [_evidence_line(e) for e in (*support, *refute)]
+    if not lines:
+        return f"{label}: no linked evidence."
+    return f"{label} (supports={len(support)}, refutes={len(refute)}):\n" + "\n".join(lines)
+
+
 def judge(a: Hypothesis, b: Hypothesis, context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = False) -> float:
     """The tournament's pairwise debate judge (`main.tex` §8's ranking
-    tournament): given two hypotheses and shared context (their current
-    opinions, the evidence each names, or anything else
-    `hte.tournament.run` wants the judge to see), returns `P(a beats b)`
-    in `[0, 1]`. `hte.tournament.run` is expected to call this
-    symmetrically or take `1 - judge(b, a, ...)` as its own consistency
-    check; this function itself makes no such guarantee across two
-    separate calls."""
-    opinions = context.get("opinions", {})
+    tournament): given two hypotheses and their own linked evidence
+    (`context["evidence"]`, filtered here to each side's own `supports`/
+    `refutes`), returns `P(a beats b)` in `[0, 1]`. Blind by construction
+    (`bkt-hte-blind-roles`: the live Younger Dryas run's top ten by Elo
+    were nine unbound consensus hypotheses, traced to this prompt once
+    embedding each side's `Opinion`, `a` included). `hte.tournament.run`
+    randomizes which side lands in the A slot per pair and maps the
+    result back; `judge` itself is expected to be called symmetrically
+    or as `1 - judge(b, a, ...)`, a guarantee it makes no attempt to
+    enforce across two separate calls."""
+    evidence: Sequence[EvidenceItem] = context.get("evidence", [])
+    support_a = [e for e in evidence if a.address in e.supports]
+    refute_a = [e for e in evidence if a.address in e.refutes]
+    support_b = [e for e in evidence if b.address in e.supports]
+    refute_b = [e for e in evidence if b.address in e.refutes]
+    draw_note = (
+        "\n\nNeither hypothesis has any linked evidence. Return "
+        "p_a_wins=0.5 (a draw) unless the two differ in internal "
+        "consistency (for example one places its actor outside the time "
+        "or tradition its own claim requires); note any such difference "
+        "in your rationale."
+        if not (support_a or refute_a or support_b or refute_b) else ""
+    )
     prompt = (
-        "Judge which of two hypotheses the evidence favors more, given "
-        "their current opinions if any.\n\n"
-        f"Hypothesis A: {_describe_hypothesis(a)}\nA's opinion: {opinions.get(a.address)}\n\n"
-        f"Hypothesis B: {_describe_hypothesis(b)}\nB's opinion: {opinions.get(b.address)}\n\n"
+        "Judge which of two hypotheses the linked evidence favors more.\n\n"
+        f"Hypothesis A: {_describe_hypothesis(a)}\n{_judge_evidence_block('A', support_a, refute_a)}\n\n"
+        f"Hypothesis B: {_describe_hypothesis(b)}\n{_judge_evidence_block('B', support_b, refute_b)}"
+        f"{draw_note}\n\n"
         "Return p_a_wins, your estimate of P(A is the better-supported "
         "hypothesis), in [0, 1], with a one-line rationale. Judge target-"
-        "blind: apply the identical standard regardless of which reading, "
-        "orthodox or fringe, either hypothesis favors."
+        "blind: apply the identical standard to both sides regardless of "
+        "which one seems more familiar or better established."
     )
     response = _with_refusal_default(
         lambda: llm.complete(prompt, role="judge", schema=JUDGE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
@@ -538,6 +585,71 @@ def judge(a: Hypothesis, b: Hypothesis, context: Mapping[str, Any], *, cache_dir
 # --------------------------------------------------------------------------
 # meta_review
 # --------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------
+# advocate
+# --------------------------------------------------------------------------
+
+ADVOCATE_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "properties": {
+        "support": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {"id": {"type": "string"}, "reason": {"type": "string"}},
+                "required": ["id", "reason"],
+            },
+        },
+        "decisive_test": {"type": "string"},
+    },
+    "required": ["support", "decisive_test"],
+}
+ADVOCATE_DEFAULT: dict[str, Any] = {"support": [], "decisive_test": "model refused or was truncated"}
+ADVOCATE_POOL = 24  # candidate items shown per call: those sharing a slot value with the hypothesis, unlinked to it
+
+
+def advocate_pool(h: Hypothesis, evidence: Sequence[EvidenceItem], *, limit: int = ADVOCATE_POOL) -> list[EvidenceItem]:
+    """The items the advocate may claim: not yet linked to `h` either way,
+    sharing at least one named slot value with it, highest tier first,
+    at most `limit`."""
+    p = h.content
+    slots = {p.actor, p.action, p.object, p.place, p.mechanism}
+    pool = [
+        e for e in evidence
+        if h.address not in e.supports and h.address not in e.refutes
+        and slots & {e.actor, e.action, e.object, e.place, e.mechanism}
+    ]
+    pool.sort(key=lambda e: (e.tier.value, e.id))
+    return pool[:limit]
+
+
+def advocate(
+    h: Hypothesis, pool: Sequence[EvidenceItem], *, cache_dir: str, replay_only: bool = False,
+) -> dict[str, Any]:
+    """The devil's advocate (`STATISTICAL-AUDIT-2026-09-15.md`, Model
+    roles): every other role is asked to be right; this one is asked to
+    argue for a low-prior hypothesis and is scored on the evidence it
+    finds. It sees only `pool` (`advocate_pool`: items not yet linked to
+    `h`) and names the ones that support `h` with a reason each, plus the
+    observation that would settle the question. The runner links what it
+    names, rescores, and records the lift gained."""
+    prompt = (
+        "Argue for this hypothesis. Your job is to find support the linker "
+        "missed, from the candidate items below only; name every item that "
+        "supports the hypothesis, by id, with one sentence each on why. Name "
+        "no item that does not support it. Then state the single observation "
+        "that would settle the question either way.\n\n"
+        f"Hypothesis: {_describe_hypothesis(h)}\n"
+        f"Claims: {h.claims}\n\n"
+        "Candidate items:\n" + "\n".join(_evidence_line(e) for e in pool) + "\n\n"
+        "Return support (id, reason) and decisive_test."
+    )
+    return _with_refusal_default(
+        lambda: llm.complete(prompt, role="advocate", schema=ADVOCATE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="advocate", default=ADVOCATE_DEFAULT, log_id=h.short_id,
+    )
+
 
 META_REVIEW_SCHEMA: dict[str, Any] = {
     "type": "object",
@@ -943,7 +1055,7 @@ def extract(
             kind=kind,
             tier=tier,
             source_id=doc_id,
-            span=EvidenceSpan(doc_id=doc_id, locator=f"extract:{n}", quote=raw["quote"], char_start=start, char_end=end),
+            span=EvidenceSpan(doc_id=doc_id, locator=f"extract:{n}", quote=raw["quote"], char_start=start, char_end=end, doc_length=len(document_text)),
             provenance="llm-extraction-escalated" if escalated else "llm-extraction-ensemble",
             actor=_slot_label(raw, "actor"),
             action=_slot_label(raw, "action"),

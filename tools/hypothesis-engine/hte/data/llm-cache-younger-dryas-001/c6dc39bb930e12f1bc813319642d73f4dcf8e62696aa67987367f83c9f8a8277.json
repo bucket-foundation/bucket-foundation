@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e9e4f20803a79fd7069a2ca36cf97d2f0e601c278bfe1e4d12d103fefb694983",
+  "response": {
+    "expected_evidence": [
+      "Geological: a Younger Dryas boundary (YDB) sediment layer (~12,900 cal BP / ~10950 BCE) across North American sites showing elevated nanodiamond (lonsdaleite/cubic) concentrations, magnetic spherules, and platinum/iridium anomalies",
+      "Astronomical/geological proxy: a cosmogenic radionuclide spike (Be-10 in ice cores, C-14 anomaly in datable organics) consistent with an intense solar proton event at that date, analogous to known Miyake-type events (774 CE, 993 CE, 663 BCE, 5259 BCE)",
+      "Material: physical impact-ejecta markers (melt glass, spherules, shocked quartz) co-located stratigraphically with the nanodiamond layer",
+      "Geological: charcoal/soot layer indicating continent-wide biomass burning coincident with the dated horizon",
+      "Genetic: a population bottleneck signature in North American megafauna/human lineages around 10950 BCE (weak, indirect)",
+      "Model-prior (unverified, from training knowledge, not the evidence text): theoretical/simulation literature on whether a solar proton event alone (without an actual bolide/comet) can plausibly generate 'impact-ejecta-fallout' nanodiamonds"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The interval (-10950) sits essentially at the Younger Dryas onset, so the younger-dryas detectability row applies. Geological (0.65) and astronomical (0.7) proxies for this window are relatively well preserved (YDB sediment sequences, polar ice cores), and a real, heavily-studied literature (Firestone et al. 2007 and successors, recalled here as model-prior, unverified against the supplied evidence text) reports nanodiamond/spherule anomalies at this horizon in North America \u2014 so this part of the hypothesis is in principle detectable. However independent replication of those nanodiamond claims has repeatedly failed at many sites, which is itself informative and suggests the absence of a clean, universally-reproduced signal is not purely a detectability artifact. The 'solar-proton-event' actor is the weaker link: known Miyake-type SPE spikes are identified via annually-resolved tree-ring C-14, but continuous absolute tree-ring chronologies do not reliably extend to ~10950 BCE, and ice-core dating at that depth carries multi-decade-to-century uncertainty, so pinning an SPE to a single exact year this far back is near the practical resolution limit of any surviving archive. Mechanistically, solar proton events (energetic particle flux) do not naturally produce 'impact-ejecta-fallout' (a term implying a bolide/airburst), so this actor-mechanism pairing looks like a conflation of two distinct hypotheses (cosmic impact vs. solar event) rather than an established causal chain \u2014 a model-prior caveat, not confirmed fact. Given decent but imperfect archive survival for geological/astronomical proxies, contested replication of the core physical signal, and a poor mechanistic fit between actor and mechanism, the adjustment is set below the raw geological/astronomical table averages: absence of unambiguous single-year corroboration is only partly attributable to low detectability and partly reflects a genuinely weak or miscast causal claim, so low detectability alone should not be read as strong evidence the hypothesis is false, but it also should not be read as strongly supporting it."
+  }
+}

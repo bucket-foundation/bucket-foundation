@@ -16,12 +16,15 @@ from __future__ import annotations
 
 import json
 
-from hte import diagnostics
+import pytest
+
+from hte import belief, diagnostics
 from hte.belief import Constants
 from hte import calibrate
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from hte.corpus import Corpus, GroundTruthEvent
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
+from hte.hypothesis import Hypothesis, Placement
 from hte.timeline import Interval
 
 
@@ -225,3 +228,37 @@ def test_write_diagnostics_lists_uncovered_events_under_their_own_reason(tmp_pat
     md = (tmp_path / "DIAGNOSTICS.md").read_text()
     assert "mismatch-target" in md
     assert "interval-target" in md
+
+
+# link_shuffle_test (STATISTICAL-AUDIT-2026-09-15.md, "Link permutation test")
+
+_SCORE = lambda h, ev, vocab: belief.score(h, ev, vocab).project()  # noqa: E731
+
+
+def _placement_hyp(actor: str) -> Hypothesis:
+    p = Placement(actor=actor, action="acted", object="object-x", place="place-x",
+                  mechanism="mechanism-x", interval=Interval(2000, 2000))
+    return Hypothesis.from_placement(p, _vocab())
+
+
+def test_link_shuffle_test_with_no_evidence_is_entirely_prior_only():
+    hyps = [_placement_hyp(a) for a in ("alice", "bob", "carol", "dave")]
+    result = diagnostics.link_shuffle_test(hyps, [], _vocab(), _SCORE, seed=0, n_permutations=5)
+    assert result["prior_only_fraction"] == 1.0
+    assert result["mean_correlation"] == pytest.approx(1.0)
+
+
+def test_link_shuffle_test_with_signal_only_in_links_drops_correlation():
+    # Flat, identical prior; one item each, tiers T1..T6 (decreasing
+    # weight) bound one-to-one to an address, so ranking comes entirely
+    # from WHICH tier lands on WHICH address, exactly what a shuffle
+    # scrambles (link COUNT per address can't move under a shuffle).
+    hyps = [_placement_hyp(a) for a in ("alice", "bob", "carol", "dave")]
+    evidence = []
+    for h, tier in zip(hyps, (Tier.T1, Tier.T2, Tier.T4, Tier.T6)):
+        item = _item(f"ev-{h.address}", interval=None, supports=[h.address])
+        item.tier = tier
+        evidence.append(item)
+    result = diagnostics.link_shuffle_test(hyps, evidence, _vocab(), _SCORE, seed=0, n_permutations=30)
+    assert result["mean_correlation"] < 0.5
+    assert result["prior_only_fraction"] < 1.0

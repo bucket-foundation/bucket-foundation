@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fe16076222703e2b07ed2cb59c24e46fc02748d34cc7527bd7709e6f0559bb30",
+  "response": {
+    "$PARAMETER_NAME": "$PARAMETER_VALUE",
+    "expected_evidence": [
+      "Geological: platinum, iridium, and other platinum-group-element enrichment spikes in a thin stratigraphic layer (~12,800 cal BP / c. 10,850 BCE) across North American sedimentary sequences, ice cores, and lake/bog deposits",
+      "Geological: associated 'black mat' organic-rich layer marking the Younger Dryas onset boundary, often with elevated magnetic spherules, microspherules, nanodiamonds, and soot/charcoal indicating widespread burning",
+      "Astronomical: physical impact/airburst signatures such as a confirmed impact crater, shocked quartz, or meteoritic fragments of matching age (still contested/unconfirmed in literature)",
+      "Material/archaeological: disruption or discontinuity in Clovis-era archaeological horizons directly above or within the anomaly layer (reduced site density, tool-type transitions)",
+      "Genetic: megafaunal population bottleneck or extinction signatures in ancient DNA dated close to 10,850 BCE consistent with abrupt ecological disruption",
+      "Model-prior: existing Younger Dryas Impact Hypothesis literature (e.g., Firestone et al. 2007, Petaev et al. 2013 Greenland ice-core platinum spike, LeCompte et al.) proposing a cosmic-impact trigger for the YD cooling event"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval -10850 corresponds closely to the accepted Younger Dryas onset boundary (~12,800 cal BP), so the applicable period is 'younger-dryas' rather than the unspecified label given. For this period, geological (0.65) and astronomical (0.7) detectability are comparatively high relative to other evidence kinds, meaning fine-grained stratigraphic anomalies (platinum/iridium spikes, black mats, spherules) are plausible to preserve and detect over ~12,800 years, and indeed this is consistent with real published findings (e.g., platinum enrichment in Greenland ice cores and North American YDB sites) that I recall as model-prior, unverified against the evidence text provided here. Material (0.35) and genetic (0.3) evidence is moderately detectable but more fragile and interpretively contested (e.g., linking archaeological discontinuities or megafaunal genetic bottlenecks causally to an impact rather than to independent YD climate cooling). Textual, linguistic, oral_tradition, and iconographic evidence are essentially inapplicable (near-zero detectability) since no literate or narrative-recording cultures existed in North America at this date. Given that the strongest expected evidence types (geological, astronomical) have historically moderate-to-good survivability and there is real precedent of such anomalies being reported in the literature, absence of confirmatory evidence would not strongly indicate falsity \u2014 but the persistent lack of a confirmed impact crater or shocked-quartz signature (astronomical) is a genuine detectability gap that tempers confidence. I weight the overall adjustment toward the geological signal as primary evidence class, discounted slightly for the still-unresolved crater/astronomical confirmation and the archaeological/genetic evidence's weaker causal specificity."
+  }
+}

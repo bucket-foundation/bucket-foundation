@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "edc279ca051ba8c275004271f0c5feb28b7cc9f14ce669815084a3ed248ad68d",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum (and iridium) concentration anomaly in a discrete ice-core layer at approximately 12,950 cal BP (GISP2/NEEM/NGRIP-style annually-resolved stratigraphy)",
+      "geological: associated markers in the same horizon such as meltglass, microspherules, nanodiamonds, and elevated Ni/Co/Cr ratios consistent with extraterrestrial or impact-ejecta chemistry",
+      "geological: correlative black-mat or soot/charcoal-rich layer in contemporaneous terrestrial sediments across Younger Dryas boundary sites outside Greenland",
+      "astronomical: bolide airburst or impact modeling (trajectory, altitude, energy) consistent with an ice-sheet or near-ice-sheet event; candidate crater search beneath the Greenland ice",
+      "material: shocked quartz, microspherules, or other ejecta-fallout material recoverable from ice cores or proximal outwash sediment",
+      "genetic or ecological indirect evidence: megafaunal extinction or population bottleneck signatures temporally clustering with the anomaly, used as corroborating but not primary evidence",
+      "model_prior: prior published claims such as Petaev et al. 2013 PNAS platinum spike in GISP2 and the broader Younger Dryas Impact Hypothesis literature, as an existing but contested evidentiary basis"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.68,
+    "rationale": "The interval -10950 (about 12,950 years BP) falls essentially at the Younger Dryas onset, so the younger-dryas detectability row is the appropriate context rather than the unspecified period label. The hypothesis's core claim, a platinum anomaly in the Greenland ice sheet from impact-ejecta fallout, is unusually well suited to preservation and detection: polar ice sheets provide continuous, annually-resolved stratigraphy with minimal post-depositional disturbance, which is exactly the kind of archive that captures fine atmospheric fallout signals like a platinum spike. This matches the baseline geological (0.65) and astronomical (0.70) detectability scores for the younger-dryas period, both notably higher than material (0.35) or genetic (0.30) evidence for the same period, because chemical and stratigraphic signals in ice are far more robust to time-averaged loss than organic or skeletal material. I nudge the aggregate adjustment slightly above the plain geological baseline (to about 0.68) because the specific medium, ice cores, is a best-case preservation environment even within the geological category. This upward nudge is model-prior reasoning on my part, not verified against provided evidence text: it reflects that ice-core platinum anomalies at this horizon have reportedly been described in the literature (for example Petaev et al. 2013), which is consistent with, though not proof of, the impact-ejecta mechanism specifically, since the anomaly's cause remains actively debated, with alternative explanations such as volcanic or terrestrial platinum-group-element remobilization also proposed. Given the high plausibility of survival and detection for this evidence type, an absence of a corroborated, independently replicated anomaly would weigh more toward the hypothesis being false or the mechanism being misattributed rather than toward poor detectability, but the presence of a genuine, debated anomaly at this horizon is fully consistent with the high detectability score assigned here."
+  }
+}

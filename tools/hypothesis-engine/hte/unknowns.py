@@ -59,39 +59,37 @@ def chao1(counts: Mapping[int, int]) -> float:
     return s_obs + (f1 ** 2) / (2 * f2)
 
 
-def _chao1_variance(s_obs: int, f1: int, f2: int, s_est: float) -> float:
-    """The Chao1 sampling variance (`chao1987estimating`, as summarized by
-    `colwell1994estimating`), used only to size `coverage_interval`'s
-    confidence bounds below. The `f2 = 0` branch is Chao's own correction
-    for that case; both branches read `0.0` when `f1 = 0`, since a richness
-    estimate with no singletons at all carries no Chao1-specific
+def _chao1_variance(f1: int, f2: int) -> float:
+    """The Chao1 sampling variance for `f2 > 0` (`chao1987estimating`, as
+    summarized by `colwell1994estimating`), used only to size
+    `coverage_interval`'s confidence bounds below, which return before
+    calling this when `f2 = 0`. Reads `0.0` when `f1 = 0`, since a
+    richness estimate with no singletons carries no Chao1-specific
     uncertainty of this kind."""
     if f1 == 0:
         return 0.0
-    if f2 > 0:
-        ratio = f1 / f2
-        return f2 * (0.5 * ratio ** 2 + ratio ** 3 + 0.25 * ratio ** 4)
-    if s_est <= 0:
-        return 0.0
-    return f1 * (f1 - 1) / 2.0 + f1 * (2 * f1 - 1) ** 2 / 4.0 - f1 ** 4 / (4.0 * s_est)
+    ratio = f1 / f2
+    return f2 * (0.5 * ratio ** 2 + ratio ** 3 + 0.25 * ratio ** 4)
 
 
-def coverage_interval(run_counts: Sequence[Mapping[int, int]]) -> dict:
+DEFAULT_CHAO1_SEED_FLOOR = 5
+
+
+def coverage_interval(
+    run_counts: Sequence[Mapping[int, int]], *, seed_floor: int = DEFAULT_CHAO1_SEED_FLOOR
+) -> dict:
     """A coverage-share interval across several generation runs
-    (`Eq. coverage`, `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §8): `run_counts`
-    gives one address-to-count mapping per run, and the estimate here
-    treats each run as one Good-Turing/Chao1 sample, reading "seen `k`
-    times" as "present in exactly `k` runs" rather than raw within-run
-    frequency, per §6b's own framing ("`f1` is the count of hypotheses seen
-    in exactly one run").
+    (`Eq. coverage`, `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §8): one address-
+    to-count mapping per run in `run_counts`.
 
-    Returns `{"observed", "chao1_estimate", "missing_mass", "coverage_low",
-    "coverage_high"}`. `coverage_low`/`coverage_high` come from a 95%
-    normal-approximation band on the Chao1 estimate (`_chao1_variance`):
-    a wider Chao1 estimate implies a narrower share of it this corpus has
-    seen, so the estimate's upper bound feeds `coverage_low` and
-    its lower bound, floored at `observed` (`chao1_ge_sObs`'s own
-    guarantee, `Bucket.Unknowns`), feeds `coverage_high`.
+    Chao1 needs independent samples to size its own variance from
+    (STATISTICAL-AUDIT-2026-09-15.md, "Chao1 at three seeds... 189,255 on
+    3,205 observed"): below `seed_floor` runs, or at `f2 == 0`,
+    `chao1_estimate`/`coverage_low`/`coverage_high` read `None`,
+    `chao1_note` names why, and `missing_mass` is the headline instead.
+    Returns the same fixed key set either way: `{"observed",
+    "chao1_estimate", "chao1_note", "missing_mass", "coverage_low",
+    "coverage_high"}`.
     """
     presence: dict[int, int] = {}
     total_membership = 0
@@ -101,25 +99,37 @@ def coverage_interval(run_counts: Sequence[Mapping[int, int]]) -> dict:
             total_membership += 1
 
     s_obs = len(presence)
-    n1 = sum(1 for c in presence.values() if c == 1)
-    f1 = n1
+    f1 = sum(1 for c in presence.values() if c == 1)
     f2 = sum(1 for c in presence.values() if c == 2)
-    missing_mass = (n1 / total_membership) if total_membership > 0 else 0.0
-    s_est = float(s_obs + f1 * (f1 - 1) / 2) if f2 == 0 else float(s_obs + (f1 ** 2) / (2 * f2))
-    variance = _chao1_variance(s_obs, f1, f2, s_est)
-    sd = math.sqrt(max(variance, 0.0))
+    missing_mass = (f1 / total_membership) if total_membership > 0 else 0.0
+    n_seeds = len(run_counts)
 
+    if n_seeds < seed_floor or f2 == 0:
+        why = (
+            f"only {n_seeds} seed(s), below the floor of {seed_floor}" if n_seeds < seed_floor
+            else "no doubletons (f2=0) to estimate variance from"
+        )
+        return {
+            "observed": s_obs,
+            "chao1_estimate": None,
+            "chao1_note": f"Chao1 needs independent samples; {why}. Good-Turing missing mass "
+                          f"({missing_mass:.4f}) is the headline instead.",
+            "missing_mass": missing_mass,
+            "coverage_low": None,
+            "coverage_high": None,
+        }
+
+    s_est = float(s_obs + (f1 ** 2) / (2 * f2))
+    sd = math.sqrt(_chao1_variance(f1, f2))
     est_low = max(s_obs, s_est - 1.96 * sd)
     est_high = s_est + 1.96 * sd
-    coverage_low = (s_obs / est_high) if est_high > 0 else 0.0
-    coverage_high = min(1.0, s_obs / est_low) if est_low > 0 else 1.0
-
     return {
         "observed": s_obs,
         "chao1_estimate": s_est,
+        "chao1_note": None,
         "missing_mass": missing_mass,
-        "coverage_low": coverage_low,
-        "coverage_high": coverage_high,
+        "coverage_low": (s_obs / est_high) if est_high > 0 else 0.0,
+        "coverage_high": min(1.0, s_obs / est_low) if est_low > 0 else 1.0,
     }
 
 
@@ -412,6 +422,7 @@ __all__ = [
     "good_turing_missing_mass",
     "chao1",
     "coverage_interval",
+    "DEFAULT_CHAO1_SEED_FLOOR",
     "prior_profiles",
     "robustness",
     "surprise",

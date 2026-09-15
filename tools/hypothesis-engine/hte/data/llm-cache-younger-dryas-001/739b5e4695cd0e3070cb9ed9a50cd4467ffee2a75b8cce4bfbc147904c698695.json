@@ -1,0 +1,59 @@
+{
+  "model": "sonnet",
+  "role": "critic",
+  "prompt_sha256": "bb386bc17b88ef201b955c29d6e897199fd10ee7e3492f1d86d4ea07bc1a3f0e",
+  "response": {
+    "results": [
+      {
+        "id": "15d99ad08c361641",
+        "keep": true,
+        "issues": [],
+        "rationale": "The refuting evidence (boslough-2012-chapter-c0) critiques the physical plausibility of a cosmic-impact YD cooling mechanism generally, but does not establish that 'taurid-complex-swarm' as actor is unattested within the -10950 time bin, nor that 'north-america' falls outside any tradition tied to this actor. No concrete structural contradiction (time-bin or place-tradition) is shown, so plausibility-based disagreement about the mechanism label is not sufficient grounds to reject."
+      },
+      {
+        "id": "ba8992ab17db1860",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached to this hypothesis, so there is no concrete contradiction (e.g., actor unattested in the time bin or place outside the actor's tradition) to justify rejection. An empty evidence set is not itself grounds for rejection."
+      },
+      {
+        "id": "deb716c64c0596dd",
+        "keep": true,
+        "issues": [],
+        "rationale": "No evidence (supporting or refuting) is attached. Absent a concrete contradiction, the hypothesis is retained per instructions."
+      },
+      {
+        "id": "5a8de02d3818532b",
+        "keep": false,
+        "issues": [
+          "Interval mismatch: the hypothesis places the cosmic-impact vs. fungal-sclerotia dispute over carbon-spherule-concentration in [-20000,-19001], but the cited refuting evidence (scott-2010-c0) concerns the carbonaceous spherules from the proposed Younger Dryas impact layer, which is dated to roughly -10950 (the YD onset), not -20000 to -19001. The actor/object combination (cosmic-impact debate over the YD spherule layer) is not attested within the stated time bin."
+        ],
+        "rationale": "The evidence explicitly ties the fungal-sclerotia-vs-impact-melt spherule debate to the Younger Dryas impact layer (~-10950), which falls far outside the hypothesis's stated interval of [-20000,-19001]. This is a concrete time-bin contradiction, not merely a plausibility judgment, so the hypothesis is rejected."
+      },
+      {
+        "id": "7597bad8ea76162c",
+        "keep": true,
+        "issues": [],
+        "rationale": "No evidence is attached to this hypothesis. There is no shown contradiction regarding the meltwater-pulse actor's attestation within [-10950,-9750] or the north-atlantic placement, so it is retained."
+      },
+      {
+        "id": "53aa8d1801f0820a",
+        "keep": true,
+        "issues": [],
+        "rationale": "No evidence is attached. The middle-east placement for nanodiamond findings is not contradicted by any cited evidence (and is broadly consistent with known YD-proxy sites such as Abu Hureyra, Syria, per model-prior, though this is not confirmed by the evidence text itself). No concrete contradiction found."
+      },
+      {
+        "id": "64873cf5b5a5a31d",
+        "keep": true,
+        "issues": [],
+        "rationale": "No evidence is attached to this hypothesis, so there is no concrete contradiction of the actor's attestation within [-11000,-10001] or the multiple-continents placement."
+      },
+      {
+        "id": "e37ad7a733619d68",
+        "keep": true,
+        "issues": [],
+        "rationale": "No evidence is attached. Nothing contradicts the cosmic-impact actor being attested at -10950 or the north-america placement, so the hypothesis is retained."
+      }
+    ]
+  }
+}

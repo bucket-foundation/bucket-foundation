@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "3c6676f34ed473498abe2fb1865794e38036e1f6f0faea2b9500cc0f5e40aa2f",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: a continent-wide Younger Dryas boundary (YDB) layer bearing nanodiamonds, magnetic/carbon microspherules, elevated platinum or iridium concentrations, and 'black mat' organic layers overlying the extinction horizon",
+      "astronomical: platinum/iridium anomaly matched in Greenland ice cores or other archives datable to ~10,950 BCE, consistent with an extraterrestrial (cometary/asteroidal) airburst signature",
+      "material/archaeological: abrupt discontinuity or thinning in Clovis-era artifact density immediately above the proposed impact layer, possible scorched/burned paleosol horizons at multiple North American sites",
+      "genetic: a sharp megafaunal population bottleneck or extinction signal in ancient DNA/radiocarbon-dated remains clustering tightly around the -10,950 date rather than a gradual decline",
+      "iconographic (low confidence, model-prior): possible symbolic depictions of a sky-fire or cataclysmic event in contemporaneous or near-contemporaneous art (e.g., disputed comparisons to G\u00f6bekli Tepe-style imagery, though that site is later/different region)",
+      "oral_tradition (low confidence, model-prior): flood/fire/darkened-sky origin narratives in North American Indigenous oral traditions, though such traditions are very difficult to date-anchor to a specific Paleoindian event"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis maps most closely to the 'younger-dryas' period row given the -10,950 date, which sits at the accepted Younger Dryas onset boundary. For that period, geological (0.65) and astronomical (0.7) detectability are comparatively high, meaning that if a cosmic airburst genuinely triggered the extinction event, diagnostic physical traces (impact markers, spherules, platinum spikes, black mat horizons) would plausibly have survived and be findable in the sedimentary/ice-core record. Material archaeological evidence (0.35) and genetic evidence (0.3) are moderate, while oral_tradition (0.1) and iconographic (0.1) evidence are weak and unlikely to provide reliable independent corroboration this far back. Given the moderate-to-high detectability for the strongest evidence classes, an absence of a clear, reproducible impact signature would be more informative against the hypothesis than a low-detectability excuse \u2014 consistent with the real-world Younger Dryas Impact Hypothesis (Firestone et al. 2007 and successors) remaining scientifically contested precisely because proposed physical evidence (nanodiamonds, spherules) has faced replication and interpretation disputes among independent labs, rather than being simply unrecoverable. I flag this real-world YDIH controversy as model-prior, since it derives from training knowledge rather than evidence supplied in this task. Overall I suggest a composite detectability adjustment around 0.55, weighting the strong geological/astronomical channels against the weak oral/iconographic ones, and noting that non-detection of a consensus impact layer is meaningful evidence against the hypothesis rather than something fully explained by poor preservation odds."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "0fddb669f66272fe279b78af2d2b1510aeca1e147793a67ec29241abd370652a",
+  "response": {
+    "expected_evidence": [
+      "geological: multi-site, independently replicated sediment/paleosol geochemistry across the Younger Dryas boundary (YDB) layer showing failure to reproduce anomalous iridium (and other platinum-group element) enrichment originally reported (e.g., Pigati et al. 2012, Paquay et al. 2009, Holliday et al. 2014 style reanalyses)",
+      "geological: stratigraphic/chronological critiques showing claimed YDB layers are not synchronous or well-dated across sites (Meltzer et al. 2014 PNAS-type chronological refutation)",
+      "astronomical: absence of a confirmed, correctly-dated impact crater in North America consistent with the proposed event",
+      "material: failure of blind/independent labs to verify claimed extraterrestrial markers (magnetic spherules, nanodiamonds, carbon spherules) at YDB sites (Daulton et al. 2010, van Hoesel et al. 2014 review)",
+      "model_prior: peer-reviewed scientific consensus/meta-analyses in geology and impact-science literature documenting the refutation of the iridium-anomaly claim"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The hypothesis concerns a modern scientific refutation of the Younger Dryas Impact Hypothesis's iridium-anomaly claim, dated to the Younger Dryas onset (~11,000-10,001 BCE). Unlike cultural/archaeological hypotheses, the relevant 'evidence' is not artifacts from the period itself but rather physical geological archives (lake sediments, loess, paleosols) spanning that boundary, which are well-preserved and have been repeatedly, independently sampled by multiple labs over the past ~15 years, plus the resulting peer-reviewed literature. Using the younger-dryas period table: geological (0.65) and astronomical (0.7, crater-search feasibility) detectability are relatively high, material (0.35) is moderate given contested microparticle identification, and model_prior (0.3) reflects reliance on recalled literature rather than primary source verification here. Textual/linguistic/oral_tradition/iconographic categories are essentially inapplicable (near-zero) since this is a geochemical/scientific dispute, not a cultural record. Blending the applicable high-relevance categories (geological, astronomical, material, model_prior) yields a composite detectability estimate of ~0.6, higher than a naive average across all evidence types would suggest, because the diagnostic evidence for this specific hypothesis is concentrated in categories with above-average preservation/detectability for this period. This is consistent with real-world outcomes: independent reanalyses (e.g., Pigati et al. 2012; Holliday et al. 2014; Meltzer et al. 2014) have in fact been published disputing the original iridium-anomaly claims (Firestone et al. 2007), so the evidence plausibly could and did survive to be found, supporting rather than undermining the hypothesis of refutation. Note: specific citations here are drawn from model-prior (training-derived recollection) rather than a verified source text provided in this task, and should be treated as an unverified, low-tier reference pending confirmation."
+  }
+}

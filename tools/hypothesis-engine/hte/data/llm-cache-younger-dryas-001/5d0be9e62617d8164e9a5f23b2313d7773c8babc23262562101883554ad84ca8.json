@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "00b0166ab3442f1aaea73dbd4b35901a4b82d39c0e216ef4a9893ae28d78eafd",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.78,
+        "rationale": "A carries substantive corroborating opinion mass (b=0.50, u=0.50) for a coherent claim, while B is a fully vacuous opinion (u=1.0) about an unrelated object/place pairing; opinion strength alone favors A."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.35,
+        "rationale": "Both opinions are fully vacuous (u=1.0); by model-prior content plausibility, B's fungal-sclerotia-formation (a real Sporormiella dung-fungus decline proxy) in north-america is more coherent for megafaunal-extinction than A's dating-uncertainty mechanism placed anomalously in greenland-ice-sheet."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.58,
+        "rationale": "Both are vacuous opinions on the same inconclusive/dating-uncertainty claim; A's tight interval (-11150,-10850) more precisely brackets the model-prior YD onset date than B's much broader, less discriminating interval (-12850,-5950)."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.65,
+        "rationale": "Both opinions are vacuous; A pairs 'corroborated' with amoc-shutdown, a coherent, well-known real climate mechanism, whereas B pairs 'corroborated' with dating-uncertainty, which is internally contradictory (uncertainty undermines corroboration)."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.45,
+        "rationale": "Both vacuous; A mislabels an onset-era interval as 'younger-dryas-termination' (factual interval mismatch per model-prior chronology), while B's 'corroborated'+'dating-uncertainty' pairing is also internally contradictory, leaving a marginal edge to A due to B's more direct logical inconsistency being roughly comparable, so near-even with slight A lean overridden by A's date error, net near 0.45."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.25,
+        "rationale": "Both vacuous; A's 'independent-replication-failure' mechanism is self-contradictory paired with 'corroborated', while B's arctic-mackenzie-routing is a coherent, model-prior-plausible meltwater pathway mechanism supporting corroboration."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.25,
+        "rationale": "Both vacuous; A's 'methodological-artifact' mechanism undercuts the 'corroborated' action (an artifact implies false signal), whereas B's 'demographic-decline-evidence' is coherent support for corroboration."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.5,
+        "rationale": "Both vacuous opinions with identical intervals and action; st-lawrence-routing and bayesian-age-modeling are both model-prior-plausible, coherent mechanisms for a corroborated claim, so no clear edge either way."
+      }
+    ]
+  }
+}

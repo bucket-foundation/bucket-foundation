@@ -73,19 +73,38 @@ def test_chao1_never_below_observed():
         assert chao1(counts) >= len(counts)
 
 
-def test_coverage_interval_shape_and_bounds():
+_COVERAGE_KEYS = {"observed", "chao1_estimate", "chao1_note", "missing_mass", "coverage_low", "coverage_high"}
+
+
+def test_coverage_interval_shape_and_bounds_at_five_seeds():
+    # 5 runs clear the seed floor: f1=2 (addresses 1, 6), f2=4 (2..5).
+    run_counts = [{1: 1, 2: 1}, {2: 1, 3: 1}, {3: 1, 4: 1}, {4: 1, 5: 1}, {5: 1, 6: 1}]
+    result = coverage_interval(run_counts)
+    assert set(result) == _COVERAGE_KEYS
+    assert result["observed"] == 6
+    assert result["chao1_estimate"] >= result["observed"]
+    assert result["chao1_note"] is None
+    assert 0.0 <= result["coverage_low"] <= result["coverage_high"] <= 1.0
+
+
+def test_coverage_interval_below_seed_floor_gates_chao1():
+    # The 3-seed population the bead ("Chao1 coverage estimate is
+    # unusable at three seeds") was filed against.
     run_counts = [{1: 1, 2: 1}, {2: 1, 3: 1}, {3: 1, 4: 1}]
     result = coverage_interval(run_counts)
-    assert set(result) == {"observed", "chao1_estimate", "missing_mass", "coverage_low", "coverage_high"}
-    assert result["observed"] == 4
-    assert result["chao1_estimate"] >= result["observed"]
-    assert 0.0 <= result["coverage_low"] <= result["coverage_high"] <= 1.0
+    assert set(result) == _COVERAGE_KEYS
+    assert result["chao1_estimate"] is None
+    assert result["coverage_low"] is None
+    assert result["coverage_high"] is None
+    assert "3 seed" in result["chao1_note"]
+    assert result["missing_mass"] > 0.0
 
 
 def test_coverage_interval_empty_runs():
     result = coverage_interval([])
     assert result["observed"] == 0
     assert result["missing_mass"] == 0.0
+    assert result["chao1_estimate"] is None
 
 
 # --------------------------------------------------------------------------

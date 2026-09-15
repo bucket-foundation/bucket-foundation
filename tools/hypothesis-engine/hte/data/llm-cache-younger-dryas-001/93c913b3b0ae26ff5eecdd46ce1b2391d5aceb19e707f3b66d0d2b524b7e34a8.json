@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "957d8606102c6cd46f6507b39a67e95b7a89a562f646004a8f5edc0fc883000e",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: a distinct ~12,800 cal BP sedimentary marker layer (the 'black mat') containing elevated platinum, iridium and other platinum-group-element anomalies",
+      "geological: nanodiamonds (lonsdaleite, cubic diamonds), magnetic spherules, and melt-glass/meltglass droplets consistent with high-temperature airburst formation, in Middle Eastern strata (e.g. Abu Hureyra, Syria layers)",
+      "material: disrupted or abandoned occupation horizons at Middle Eastern Epipaleolithic/Natufian sites coinciding with the YD onset, charcoal/soot layers indicating widespread biomass burning",
+      "astronomical: reconstructions/simulations of a fragmenting comet (e.g. Encke-complex debris stream) trajectory and airburst dynamics consistent with a Middle-East-region impact corridor; possible meteorite/tektite-like fallback material",
+      "genetic: megafaunal or human population bottleneck signals in ancient DNA dated to ~10,850 BC in the region",
+      "oral_tradition: later Near Eastern flood/fire/catastrophe myths speculatively linked (low confidence, model-prior) to a remembered cosmic event",
+      "iconographic: possible symbolic depictions in later Near Eastern/Anatolian art (e.g. speculative links to G\u00f6bekli Tepe pillar carvings) interpreted as commemorating the event (highly speculative, model-prior)"
+    ],
+    "detectability_adjustment": 0.45,
+    "rationale": "This hypothesis corresponds to the (controversial) Younger Dryas Impact Hypothesis localized to a Middle Eastern site \u2014 most plausibly Abu Hureyra, Syria, which model-prior recollection (unverified) associates with published claims of meltglass, spherules, and a platinum/iridium anomaly at the YD boundary (Bunch et al. 2012; Moore et al. 2020). Using the 'younger-dryas' detectability row as the closest period match: geological (0.65) and astronomical (0.7, reflecting orbital/impact-dynamics modeling rather than direct observation) are the highest-yield evidence classes and are exactly the ones proponents of this hypothesis have cited. Material evidence (0.35) is moderate \u2014 Epipaleolithic Middle Eastern sites are sparse and taphonomically fragile at 12,800 years, but not absent (Abu Hureyra itself is a counter-example of preservation). Genetic (0.3) and oral_tradition (0.1) are weak channels: no written records exist (textual = 0.0, correctly reflecting pre-literate Middle East at this date), and any oral-tradition linkage to later myth would require millennia of transmission with no verifiable chain, so its near-absence is expected from low detectability rather than being evidence against the event. Iconographic evidence (0.1) is similarly weak and speculative. Given real published (if contested) geological/material findings exist at a matching Middle Eastern site and date, the hypothesis is falsifiable and testable evidence has plausibly survived and been found \u2014 absence of stronger corroboration (e.g., in genetic or oral-tradition channels) is well explained by intrinsically low detectability for a non-literate, ~12,850-year-old event rather than by the hypothesis being false. I suggest a blended detectability adjustment of ~0.45, weighting toward the moderate-to-high geological/astronomical channels while discounting the near-zero textual/oral channels, matching the mixed but non-trivial evidentiary record actually cited in this line of research."
+  }
+}

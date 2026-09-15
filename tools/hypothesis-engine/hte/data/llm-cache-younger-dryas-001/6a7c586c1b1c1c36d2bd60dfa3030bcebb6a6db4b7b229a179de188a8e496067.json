@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "6d8077924f1ab4dc895ecd5e82397d99a2149320f269de4b946d39af3ce30f9c",
+  "response": {
+    "expected_evidence": [
+      "geological: physical trace of a catastrophic Arctic-directed meltwater discharge along the Mackenzie River corridor \u2014 scoured bedrock/valley walls, boulder pavements, outwash gravels, and erosional terraces in the Mackenzie Valley dated to the Younger Dryas onset (~12.9 ka)",
+      "geological: sediment cores from the Beaufort Sea/Arctic Ocean showing a freshwater/meltwater pulse signature (low-salinity planktic foraminifera, oxygen-isotope excursions, ice-rafted debris spike) coincident with Lake Agassiz drainage",
+      "geological: stratigraphic evidence of glacial Lake Agassiz's outlet shifting from the St. Lawrence/Mississippi route to a northern/Mackenzie route (relict shorelines, spillway channels, varve chronology)",
+      "geological: AMOC-slowdown proxies (e.g., North Atlantic sediment core Nd/Pa isotopes, benthic foraminifera) showing thermohaline disruption timed to the routing event",
+      "material: North American faunal bone-bed and archaeological (Clovis-era) site chronologies showing megafaunal extinction/population collapse clustering near the meltwater/YD-onset date",
+      "material: radiocarbon 'last appearance' dates for megafauna (mammoth, mastodon, horse, etc.) concentrated around the hypothesized routing event",
+      "genetic: ancient DNA from megafaunal remains showing population bottlenecks, declining heterozygosity, or extinction timing statistically coincident with the meltwater pulse",
+      "genetic: coalescent-based demographic reconstructions (from modern or ancient genomes) inferring a sharp population decline at ~12.9-11.7 ka",
+      "model_prior: existing paleoclimate literature (e.g., Broecker-style meltwater routing hypotheses, Murton et al.-style Mackenzie outburst-flood studies) linking Arctic freshwater forcing to Younger Dryas cooling and downstream ecological stress on megafauna"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis spans the Upper Paleolithic through Younger Dryas into the Early Holocene, but its causal core (meltwater rerouting -> AMOC disruption -> ecological stress -> extinction) is centered on the Younger Dryas onset (~12.9 ka). Geological evidence for this kind of event is the most detectable category across all relevant periods (0.60-0.65 in the table) because glacial outburst floods leave durable physical traces (scoured valleys, outwash deposits, marine sediment cores) that are routinely recovered by Quaternary geologists (e.g., real-world work such as Murton et al. 2010 identifying a Mackenzie-corridor flood path is a direct analog, treated here as model-prior context rather than confirmed fact for this specific hypothesis instance). Material and genetic evidence for the extinction side of the claim is moderately detectable (0.30-0.45 range) since megafaunal bone beds and increasingly ancient-DNA datasets do exist for this interval, but establishing tight causal coincidence (rather than mere temporal correlation) is harder and more contested. Textual, linguistic, oral_tradition, and iconographic evidence are essentially absent by construction (pre-literate, pre-agricultural context; detectability 0.0-0.2), so their absence is fully expected and uninformative about truth or falsity. Astronomical evidence is not mechanistically relevant to a routing/AMOC hypothesis (as opposed to an impact hypothesis), so its higher table detectability score is a red herring here \u2014 I would not expect astronomical evidence tied to this specific mechanism regardless of detectability. Given that the strongest and most relevant evidence classes (geological) are both plausible in principle and reasonably detectable, while the weakest links (genetic/material causal attribution) are moderately but not highly detectable, I set the overall detectability adjustment at 0.5 \u2014 high enough that a real absence of corroborating geological data would be somewhat informative against the hypothesis, but low enough to caution that failure to find tight material/genetic causal proof should not be read as strong disconfirmation."
+  }
+}

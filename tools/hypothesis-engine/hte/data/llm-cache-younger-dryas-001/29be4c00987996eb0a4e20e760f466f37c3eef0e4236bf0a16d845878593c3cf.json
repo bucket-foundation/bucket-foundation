@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "1f7572c183e1260a516d520a90afe7b77e083706f2732379524ae151a171ac21",
+  "response": {
+    "expected_evidence": [
+      "Geological: high-resolution dating (radiocarbon, varve counts, ice-core annual layers) placing Lake Agassiz/proglacial meltwater outburst (freshwater routing into the North Atlantic/Arctic) at or immediately before the Younger Dryas onset (~12.9 ka BP), with AMOC-slowdown proxies (e.g., Pa/Th ratios, benthic \u03b413C, ice-rafted debris) tracking the cooling onset.",
+      "Astronomical/geochemical: replication studies (or failure to replicate) of purported impact markers \u2014 platinum/iridium anomalies, nanodiamonds, magnetic/glassy spherules, and a continent-wide 'black mat' \u2014 at the YD boundary across independent North American sites, used to argue against a cosmic-impact trigger.",
+      "Material/archaeological: absence of a synchronous, continent-scale biomass-burning horizon (charcoal peak) in sediment cores that would be expected under an 'impact winter' mechanism, versus a burning signal better explained by climate-driven vegetation shifts from the meltwater-forced cooling.",
+      "Genetic: megafauna extinction/population bottleneck timing (ancient DNA, isotopic records) tested against meltwater-pulse timing rather than an abrupt impact event.",
+      "Model-prior (unverified, from training knowledge): mainstream Quaternary science literature largely treats the Younger Dryas Impact Hypothesis as contested/largely unsupported after failed replications, favoring meltwater/AMOC-forcing explanations \u2014 this is a recollection, not sourced evidence provided here."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.62,
+    "rationale": "This hypothesis concerns a Quaternary-scale paleoclimate/paleoscience causal debate rather than a human cultural or textual event, so the dominant relevant evidence classes are geological and astronomical/geochemical proxy records, not textual or oral-tradition sources (unsurprisingly textual=0.0 for this period). The interval [-10000,-9001] falls within/near the Younger Dryas period, where geological detectability is comparatively high (0.65) and astronomical/geochemical detectability is the highest of any category (0.7), reflecting that ice cores, varved lake sediments, radiocarbon-dated outburst-flood deposits, and boundary-layer geochemical markers (Pt, Ir, spherules, nanodiamonds) are well-preserved and routinely recovered/analyzed by modern geoscience regardless of the absence of human written records. Material (archaeological charcoal/black-mat) and genetic (megafaunal ancient DNA) evidence are moderately detectable (0.35/0.3) and supplementary. Given that the load-bearing evidence types for this hypothesis (geological, astronomical) are the best-preserved categories available for this period, I adjust the effective detectability upward from the generic material/genetic-weighted average toward ~0.62, reflecting that failure to find confirming impact-refutation evidence would be more informative of actual (non-)support than of poor preservation. Could-have-survived is true: this is a heavily studied interval with abundant, independently dated geological archives worldwide."
+  }
+}

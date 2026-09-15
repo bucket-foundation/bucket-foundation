@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "055e3b2f3a5a2443f6174369c29119f3d91d3607b5a250a906547c120988f3ed",
+  "response": {
+    "expected_evidence": [
+      "Geological: iridium/platinum-group-element anomalies, nanodiamonds, magnetic spherules, and carbon-spherule layers at the ~12.9 ka Younger Dryas boundary (YDB) across multiple North American stratigraphic sections",
+      "Astronomical: identification of an impact crater, comet/asteroid fragment debris, or airburst signatures consistent with a ~10,950 BP event",
+      "Material/archaeological: disruption or discontinuity in Clovis-culture toolkits and site occupation coincident with YD onset; widespread megafaunal bone beds with burn/impact signatures",
+      "Genetic: population bottleneck or extinction signatures in North American megafauna (mammoth, mastodon, etc.) and any human population discontinuity dated to ~10,950 BP",
+      "Model-prior/meta-scientific record: a body of independent replication studies (multiple labs, multiple sites) attempting and failing to reproduce the original YDB proxy signals, published critiques, and consensus statements in the geoscience literature documenting non-replication",
+      "Iconographic/oral-tradition (low-weight, speculative): any Indigenous North American narratives referencing sky-fire or catastrophic cooling events, though these are weak and hard to date precisely"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis is unusual: it is not a claim that an impact occurred, but a meta-scientific claim that the cosmic-impact-causes-YD-cooling hypothesis is 'inconclusive' because independent labs failed to replicate the original proxy evidence (iridium, nanodiamonds, spherules, etc.) at YDB sites. Two separate evidentiary tracks matter. (1) Direct physical evidence for/against an impact: geological (0.65) and astronomical (0.7) channels are the most detectable for the younger-dryas period per the table, since impact proxies and crater/airburst signatures are robust, chemically stable, and widely sought by researchers; material (0.35) and genetic (0.3) evidence of ecological/cultural disruption are moderately detectable but confounded by many non-impact causes (climate shift, overhunting), which is itself consistent with an 'inconclusive' outcome. (2) The 'replication-failure' mechanism itself is not really period-evidence at all but a feature of the modern scientific record (dozens of peer-reviewed replication attempts, meta-analyses, and consensus reviews from ~2007 onward) \u2014 this is extremely well-documented and highly detectable in the present, effectively bypassing the ancient-period textual=0.0 constraint, since the 'text' in question is modern academic literature about the ancient event, not textual artifacts from 10,950 BP. Given that the strongest-detectability channels (geological, astronomical) are exactly the ones central to testing this hypothesis, and the meta-scientific replication record is independently and robustly attested, absence of a confirmed crater or consistent proxy signal is a genuine, meaningful null result rather than an artifact of poor preservation. I set the blended detectability_adjustment at 0.5, reflecting strong detectability for the core physical-science evidence (geological/astronomical ~0.65-0.7) offset by weaker archaeological/genetic corroboration (~0.3-0.35) and the caveat that the 'inconclusive' status itself is best evidenced through the modern literature record rather than the ancient-period channels in the table."
+  }
+}

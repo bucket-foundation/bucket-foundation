@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "d42ab2682f94e34c4c680fb378411006a55ac77f71a0b2b61b95ed0846f70543",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-group-element (Pt, Ir) anomaly and/or elevated ammonium/nitrate spikes in a dated layer of the Greenland ice sheet (e.g., GISP2/NGRIP cores) coinciding with the Younger Dryas boundary interval",
+      "Geological: cosmic-impact proxies such as meltglass, magnetic/glassy spherules, and nanodiamonds in the same ice-core horizon or in correlative terrestrial sediment layers ('black mat')",
+      "Astronomical: orbital-dynamics modeling connecting a Taurid-complex fragment or comet breakup to an airburst event over the ice sheet (indirect, model-based rather than observational)",
+      "Material: archaeological correlates such as abrupt discontinuities, burn layers, or abandonment horizons at contemporaneous Upper Paleolithic sites, though these would be outside Greenland proper",
+      "Genetic: population bottleneck or extinction signatures in megafauna (and possibly human) ancient DNA/permafrost remains dated to the interval",
+      "Model-prior: the existing (contested) Younger Dryas Impact Hypothesis literature (e.g., platinum spike studies in Greenland ice cores) as an unverified prior recalled from training data, not from a supplied source text",
+      "Oral tradition / iconographic: 'sky-fire' or cataclysm motifs speculatively tied to this event (very low-confidence, commonly cited but not well substantiated)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.42,
+    "rationale": "The hypothesis places the key evidence directly in the Greenland ice sheet, which is one of the best-preserving archives available for this period: annual-layer ice cores can retain fine chemical stratigraphy (platinum, ammonium, glass spherules) across the Younger Dryas boundary, matching the 'geological' detectability of 0.65 in the table (using the younger-dryas row, since the -11000 to -10001 interval falls within/at the tail of the accepted YD window ~12,900-11,700 BP). This is consistent with real (though scientifically contested) findings of platinum anomalies in GISP2-type cores that I recall from training as model-prior \u2014 stated here explicitly as unverified, not established fact. Astronomical detectability is nominally high (0.7) in the table, but for this hypothesis 'astronomical' evidence would only be indirect orbital-dynamics modeling of a hypothetical fragment, not direct observation, so its practical value is more modest than the raw score suggests. Other supporting kinds \u2014 material (0.35), genetic (0.3), oral_tradition (0.1), iconographic (0.1), linguistic (0.05), textual (0.0) \u2014 are all low, reflecting that corroborating archaeological, genetic, or cultural-memory evidence from Upper Paleolithic/Younger Dryas-era populations is sparse and poorly preserved, and no textual evidence can exist for a pre-literate period. Averaging across the evidence types actually relevant to this specific placement (geological dominant, astronomical secondary, material/genetic tertiary, with oral/iconographic/linguistic/textual contributing little), a composite detectability around 0.4-0.45 is appropriate: high enough that absence of confirmed evidence should not be treated as strong disconfirmation, but low enough to explain why the hypothesis remains scientifically contested rather than settled. The evidence could plausibly have survived (ice cores are physically capable of preserving such signals over 12,000+ years), so a genuine absence-of-evidence argument would need to rely on the low scores for the weaker channels (genetic, oral, iconographic, linguistic, textual) rather than on the geological channel where preservation is comparatively strong."
+  }
+}

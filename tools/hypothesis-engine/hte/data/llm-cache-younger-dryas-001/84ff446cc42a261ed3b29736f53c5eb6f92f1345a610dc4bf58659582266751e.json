@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "de3226421d8dec8cc999b4675554ca7e0820e404705dc02d905853c83d65a5fd",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum/iridium anomaly layers, nanodiamonds, magnetic spherules, and 'black mat' organic-rich sediment horizons dated to ~12,900 cal BP across North Atlantic-adjacent basins",
+      "Geological: sudden discontinuity in Greenland/NA ice-core or lake-varve records showing abrupt cooling coincident with a proposed impact/airburst signature (e.g., sulfate or ammonium spikes) rather than a purely gradual meltwater-driven AMOC signal",
+      "Astronomical: physical crater(s) or strewnfield debris consistent with a cosmic airburst circa 10,900 BCE (none confirmed to date)",
+      "Astronomical: cosmogenic isotope (10Be, 14C) anomalies indicative of an extraterrestrial trigger",
+      "Material: archaeological occupation-layer disruptions or Clovis-era site abandonment horizons correlated with the onset layer",
+      "Genetic: megafaunal population bottleneck/extinction signatures dated tightly to the YD boundary",
+      "Oral_tradition: flood/fire-from-sky myths (weak, indirect, hard to date to this specific event)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis sits within the younger-dryas period bucket, where geological (0.65) and astronomical (0.7) evidence channels are the most favorable for preservation and detection \u2014 ice cores, lake/ocean sediment cores, and varve sequences from ~12,900 BP are well-studied and routinely yield high-resolution stratigraphic records, so absence of a robust airburst signature is not primarily an artifact of poor preservation. Material (0.35) and genetic (0.3) evidence are moderately detectable but degrade faster and are confounded by other extinction drivers. Oral_tradition (0.1) and iconographic (0.1) evidence are essentially non-diagnostic this far back (pre-writing, no fixed transmission), and textual (0.0) is impossible for this period. Given that decades of dedicated searches (Firestone et al. 2007 and follow-up studies) have looked specifically for platinum spikes, nanodiamonds, and impact spherules in exactly the geological/astronomical channels where detectability is highest, and results have been mixed/contested with no confirmed crater or unambiguous extraterrestrial marker, the 'inconclusive' action label in the hypothesis is well justified \u2014 this looks like a case where evidence *was* actively searched for in high-detectability channels and returned ambiguous results, rather than a case of good evidence lost to poor preservation. I therefore set the adjustment moderately (0.5, below the raw geological/astronomical averages) to reflect that failure to confirm the cosmic-airburst mechanism carries more evidentiary weight against it here than in a low-detectability period, while still leaving room because impact-airburst signatures (as opposed to full impact craters) can be genuinely faint and easy to overlook or misattribute. Note: any specific claims about published find patterns (e.g., Firestone et al.) are drawn from training-derived recall and should be treated as model-prior, not verified within this evidence text."
+  }
+}

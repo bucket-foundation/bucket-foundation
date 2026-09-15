@@ -32,19 +32,21 @@ are the two pieces still open.
 | `hte/address.py` | `Bucket.Address` | `SlotTuple`, `encode_indices`/`decode_indices` (placement), `encode_sequence_indices`/`decode_sequence_indices`, `short_id`, and the concept-id-facing `encode`/`decode` wrappers |
 | `hte/hypothesis.py` | `Bucket.Hypothesis` | `Placement`, `Sequence`, `Hypothesis` (address, `claims`, `depends_on`, `meta`), JSON round trip, `prior_logit` |
 | `hte/evidence.py` | (plain data, `def:evidence`) | `EvidenceKind`, `EvidenceFamily`, `Tier`, `Stance`, `EvidenceSpan`, `Source`, `EvidenceItem` (carrying its own best-effort extracted `actor`/`action`/`object`/`place`/`mechanism`/`interval`/`stance`, `bkt-hte-evidence-slots`) |
-| `hte/belief.py` | `Bucket.Belief` | `Opinion`, `fuse`, `Constants`, `D`, `cross_kind_bonus`, `effective_count`, detectability (`load_detectability_table`, `detectability`, `detectability_scale`), `edge_strength`, `cluster_weight`, `weight`, `pooled_weight`, `score` |
+| `hte/belief.py` | `Bucket.Belief` | `Opinion`, `fuse`, `Constants`, `D`, `effective_count`, detectability (`load_detectability_table`, `detectability`, `detectability_scale`), `edge_strength`, `cluster_weight`, `weight`, `pooled_weight`, `score` |
 | `hte/link.py` | (none; a linking layer with no Lean counterpart) | `link_evidence` (fills `EvidenceItem.supports`/`refutes` by slot matching against a hypothesis population, `bkt-hte-evidence-slots`), `slot_match_score` (exact-id or fuzzy-label per-slot comparator, shared with `hte.calibrate`) |
 | `hte/llm.py` | none (own layer) | `complete`, the cached, schema-validated `claude -p` wrapper every role calls; `resolve_model`, `escalation_model`, `cache_stats`; `LLMError` and its three subclasses |
 | `hte/roles.py` | `main.tex` §8, `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §7 | One function per engine-loop role: `generate`, `critique`, `unknown_unknown`, `preservation_critique`, `judge`, `meta_review`, `self_report`, `extract` (the ensemble-of-3, agreement-scored, opus-escalated extractor, `bkt-hte-extraction-ensemble`; its schema additively carries the same slot fields `hte.evidence.EvidenceItem` does, `bkt-hte-evidence-slots`) |
 | `hte/corpus/` | `main.tex` §8's retrieval-envelope paragraph | `Corpus`, `GroundTruthEvent`, `RetrievalEnvelope` (`bkt-hte-retrieval-provenance`, fixture mode only); `quantum_history.ingest` (parses `quantum/07-history/*.md`) and `fixtures.build` (a tiny synthetic corpus of the same shape) |
-| `hte/calibrate.py` | `main.tex` §9 | `holdout_by_discovery_date`, `run_holdout` (event-targeted: a held-out event's own matching placement at the right date scored against `1`, its top wrong-interval competitor against `0`), `holdout_kfold`, `choose_holdout_mode`, `run_calibration`, `fit_constants`, `write_calibration`, `brier_score`, `calibration_curve` (`bkt-hte-holdout`, `bkt-hte-calibration-redesign`) |
-| `hte/diagnostics.py` | (none; a k-fold/discovery-date coverage diagnostic, no Lean counterpart) | `coverage_report` (why a held-out event has no matching placement, one reason per event from a fixed set, `bkt-hte-generation-coverage`), `write_diagnostics` |
+| `hte/calibrate.py` | `main.tex` §9 | `holdout_by_discovery_date`, `run_holdout` (event-targeted: a held-out event's own matching placement at the right date scored against `1`, its top wrong-interval competitor against `0`), `holdout_kfold`, `choose_holdout_mode`, `run_calibration`, `fit_constants`, `write_calibration`, `brier_score`, `calibration_curve`, `wilson_interval` (`bkt-hte-holdout`, `bkt-hte-calibration-redesign`) |
+| `hte/diagnostics.py` | (none; a k-fold/discovery-date coverage diagnostic, no Lean counterpart) | `coverage_report` (why a held-out event has no matching placement, one reason per event from a fixed set, `bkt-hte-generation-coverage`), `write_diagnostics`, `link_shuffle_test`, `shuffle_report` |
 | `hte/runner.py` | `main.tex` §8's whole engine loop | `run_campaign`, `RunArtifacts`, `Logger` |
-| `hte/cli.py` | none (own layer) | The `hte` console script: `campaign run`, `calibrate`, `views` |
+| `hte/artifacts.py` | none (own layer, `bkt-hte-artifact-contract`) | Typed dataclasses for every file `run_campaign` writes under one run directory (`ManifestArtifact`, `SelfReportArtifact`, `CalibrationArtifact`, `TimelineArtifact`, `CascadeArtifact`, `SurvivorsArtifact`), `load_run`/`load_manifest`, `RUN_ARTIFACT_VERSION` |
+| `hte/cli.py` | none (own layer) | The `hte` console script: `campaign run`/`results`, `calibrate`, `views` |
 | `hte/generate.py` | (none; generator is out of `Bucket.*`'s scope) | `enumerate_placements` (lazy product, `OTHER` included, its own `span_start`/`bin_width` override the module-default TIME_BIN axis), `neighbors` (one-slot mutation, one-bin time shift, sequence relation change), `from_evidence` (the four evidence-driven generators: evidence-cluster, claim-gap, contradiction, cross-period-analogy; same `span_start`/`bin_width` override), `sequences_from` (Allen-relation pairing) |
 | `hte/unknowns.py` | `Bucket.Unknowns` (Good-Turing/Chao1 only) | `good_turing_missing_mass`, `chao1`, `coverage_interval`, `prior_profiles`, `robustness`, `surprise`, `GapNode`, `value_of_information`, `active_priority` |
 | `hte/tournament.py` | (none; out of `Bucket.*`'s scope) | `Judge`, `Critic`, `run` (Elo-seeded Swiss-style tournament), `critic_filter` |
-| `hte/export.py` | (none; a display/export layer) | `timeline_views` (per-bin, per-event, per-pair JSON), `write_views` (`timeline.json` + `TIMELINE.md`) |
+| `hte/partition.py` | (none; out of `Bucket.*`'s scope) | `partition` (groups placement hypotheses by (OBJECT, PLACE) plus a cluster of overlapping intervals, and sequence hypotheses by their ordered event pair, into competing sets), `partition_odds` (normalized posterior share and evidence-only Bayes factor per member, `shared_evidence` held out of that factor, `STATISTICAL-AUDIT-2026-09-15.md`'s "Explanandum partitions" fix) |
+| `hte/export.py` | (none; a display/export layer) | `timeline_views` (per-bin, per-event, per-pair JSON, each ranked entry carrying `hte.partition.partition_odds`'s own `partition` field alongside its opinion and Elo), `write_views` (`timeline.json` + `TIMELINE.md`) |
 
 ## Design notes for the next agent
 
@@ -121,10 +123,25 @@ are the two pieces still open.
   formula from the classic bias-corrected estimator.** The Lean
   definition's `f2 = 0` fallback is `S_obs + f1(f1-1)/2`; the textbook
   Chao1 bias-corrected form for that case divides by `2(f2+1)` instead of
-  `2`. `hte.unknowns.chao1` and
-  `hte.unknowns.coverage_interval` both use the Lean formula, so a value
-  computed here matches `Bucket.Unknowns.chao1_ge_sObs`'s own proof
-  obligation, `chao1(...) >= S_obs`, under the identical arithmetic.
+  `2`. `hte.unknowns.chao1` uses the Lean formula unconditionally, so a
+  value computed there matches `Bucket.Unknowns.chao1_ge_sObs`'s own
+  proof obligation, `chao1(...) >= S_obs`, under the identical
+  arithmetic.
+- **`coverage_interval`'s Chao1 estimate needs a seed floor
+  (STATISTICAL-AUDIT-2026-09-15.md).** Below `DEFAULT_CHAO1_SEED_FLOOR`
+  (5) runs, or at `f2 == 0`, `chao1_estimate`/`coverage_low`/
+  `coverage_high` read `None` and `chao1_note` names why, `missing_mass`
+  as the headline instead; the key set is fixed either way. `run_holdout`
+  and `holdout_kfold` also carry a `coverage_of_truth_ci`
+  (`hte.calibrate.wilson_interval`) next to every `coverage_of_truth`.
+- **`hte.diagnostics.link_shuffle_test` checks whether a ranking is
+  driven by evidence or by the prior alone.** It permutes which address
+  each evidence link names, holding link counts fixed, and rescores: no
+  link means `P = a` on both sides, so `prior_only_fraction` is the
+  share of hypotheses that never move, and `mean_correlation` is the
+  Spearman correlation between the real ranking and each permuted one.
+  `shuffle_report` runs it over a corpus; `hte calibrate --shuffle` is
+  the CLI entry point, merged into `diagnostics.json` as `"link_shuffle"`.
 - **`from_evidence`'s claim-gap generator sweeps each concept slot in
   turn instead of one fixed "the" gap slot.** Nothing in `EvidenceItem`
   marks which slot a piece of evidence leaves unresolved, so this generator
@@ -174,6 +191,17 @@ are the two pieces still open.
   opinion, a dependency this module does not carry. `run` executes one
   full tournament from a fixed `opinions` snapshot; a caller wanting the
   paper's reseed re-scores and calls `run` again.
+- **`roles.judge`/`batching.batch_judge` never see `ConsensusStatus`, a
+  prior, or an Elo** (`bkt-hte-blind-roles`: the live Younger Dryas
+  run's top ten by Elo were nine unbound consensus hypotheses, traced
+  to the judge prompt once embedding each side's `Opinion`). The prompt
+  carries each side's own linked evidence instead (quoted by id and
+  span, plus a supports/refutes count), a pair with none on either side
+  asked for a draw; `tournament.run` also randomizes which side reaches
+  the prompt as A versus B, per pair and round from its own `seed`.
+  `model-policy.json` runs `judge` on `opus`, apart from `critic`'s
+  `sonnet`; `runner.run_campaign` counts crossings against the belief-
+  scored opinion into `MANIFEST.json` `counts.judge_disagreement`.
 - **`export.timeline_views`' `time_bins` are plain century-bin indices,**
   the same `hte.timeline.time_bin_index` units `hte.generate.
   enumerate_placements` takes, not `Interval` objects, so both modules
@@ -321,6 +349,23 @@ are the two pieces still open.
   (`API Error: ... Details: [bio]`), so the corpus was rewritten around an
   astronomical sighting instead, a toy domain no slot combination reads as
   dual-use.
+- **`max_hypotheses` truncates by a stratified sample
+  (`STATISTICAL-AUDIT-2026-09-15.md` item 1).** `hte.runner.run_campaign`
+  used to keep `sorted(by_address.values(), key=lambda h: h.address)[:
+  max_hypotheses]`: the lowest Gödel numbers, every run, every seed, so
+  whichever actor the vocabulary happened to list first decided the
+  critic's own population (the live Younger Dryas run: 3,205 distinct
+  addresses, 400 kept, all of them the earliest-indexed actor the
+  TIME_BIN prime could reach). `hte.generate.stratified_sample` now
+  strata by ACTOR id and `ConsensusStatus` (one shared stratum for every
+  sequence), floors each at `min(its size, ceil(cap / n_strata))`, and
+  hands out the rest by size, so an actor the corpus names once is never
+  emptied by one it names a hundred times. The frame lands in
+  `MANIFEST.json["counts"]["sampling"]`. `hte.generate.
+  combinatorial_sample`'s own `status_balanced` knob (default `True`)
+  gets the same treatment on the ACTOR draw: the `ConsensusStatus` class
+  is drawn before the actor, so status classes split the combinatorial
+  budget evenly regardless of how many actors populate each one.
 
 ## Decisions made where the source material left room
 
@@ -361,14 +406,12 @@ farmers-versus-extraterrestrials worked example from `main.tex` §Belief model
 `tests/test_llm.py` and `tests/test_roles.py` monkeypatch `subprocess.run`
 (or `hte.roles.llm.complete` directly), so they need no network access and
 no `claude` CLI. `tests/test_runner.py` and the `campaign run` case in
-`tests/test_cli.py` are the exception: they run `hte.runner.run_campaign`
-end to end over `hte.corpus.fixtures` in `replay_only=True` mode against
-the committed cache at `tests/fixtures/llm-cache/`, generated once by a
-real `claude -p` run and replayed forever after at no cost and no network
-call. `FIXTURE_CONFIG` in `tests/test_runner.py` documents which config
-values are load-bearing for that cache (`generate_n`, `combinatorial_max_items`,
-the campaign name itself): changing any of them changes a prompt's text,
-and so its cache key, and needs the cache regenerated to match.
+`tests/test_cli.py` run `hte.runner.run_campaign` end to end in fake
+mode. The read-only replay contract (`replay_only=True` hits a tracked
+cache, never shells out, never writes) is covered at the
+`hte.llm.complete` level in `tests/test_llm.py`, and a recorded run
+replays from its tracked cache under `hte/data/llm-cache-*` (see
+`docs/YOUNGER-DRYAS.md`, Reproduce).
 
 ### Hypothesis profiles and the Makefile
 
@@ -495,6 +538,32 @@ or, once installed (`pip install -e .`), the `hte` console script directly.
 Every LLM call `run_campaign` makes shells out to the `claude` CLI already
 authenticated on this machine; nothing in this package ever reads or prints
 an API key.
+
+Every survivor's own full opinion, Elo, preservation critique, and
+robustness dict lands in `survivors.json` under the run directory,
+alongside `MANIFEST.json`, `self-report.json`, `calibration.json`, and
+`timeline.json`: the per-hypothesis numbers those four files either
+aggregate (`MANIFEST.json["counts"]["robustness_stable_fraction"]`) or
+prune (`timeline.json`'s own `posterior`/`elo` pair), kept in full so a
+later reader does not have to rerun the campaign to see them.
+`hte campaign results` turns one run directory into a flat, no-
+absolute-path JSON summary: manifest counts, a per-actor rollup over
+`survivors.json` (highest credence, lowest uncertainty, best Elo, best
+explanandum-partition share off `timeline.json`, and that best
+survivor's own four profile projections), the ten highest-Elo
+survivors in full, a curated calibration slice, and self-report.json
+verbatim.
+
+`MANIFEST.json["prereg"]` (item 5's preregistration fix) is
+`{"criteria": {...}, "sha256": ...}`: the credence floors, `fdr_q`,
+`link_threshold`, `max_hypotheses`, and `seeds` this run commits to,
+hashed the moment `hte.runner.run_campaign` resolves its own config,
+before generation runs at all. Two runs from the same config share a
+hash; changing any one criterion changes it.
+
+```bash
+python3 -m hte.cli campaign results runs/quantum-history/<timestamp>/ --out results.json
+```
 
 `hte calibrate`'s own `--diagnose` flag additionally writes
 `DIAGNOSTICS.md` next to `CALIBRATION.md`: a per-reason breakdown of

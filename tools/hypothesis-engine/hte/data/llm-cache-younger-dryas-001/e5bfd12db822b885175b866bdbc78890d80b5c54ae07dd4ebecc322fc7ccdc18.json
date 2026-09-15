@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "1601c800fb181b5a5410fdc88f2aff34fae4888f606af4f8109000a49b7fe46c",
+  "response": {
+    "$PARAMETER_NAME_1": "expected_evidence",
+    "expected_evidence": [
+      "Geological: elevated concentrations of carbon spherules, magnetic microspherules, and nanodiamonds in a thin sedimentary horizon (the proposed 'Younger Dryas boundary layer' / 'black mat') at multiple stratified North American sites",
+      "Geological: anomalous platinum/iridium enrichment coincident with the same horizon",
+      "Astronomical: geochemical/isotopic signatures consistent with extraterrestrial (cosmic) origin (e.g., Pt/Ir ratios, shocked quartz, meltglass) rather than terrestrial wildfire or volcanic sources; absence of a confirmed impact crater consistent with an airburst scenario",
+      "Material/archaeological: stratigraphic correlation between the spherule layer and disruption of Clovis-era occupation layers or site abandonment",
+      "Genetic: bottleneck signatures in North American megafauna (and possibly human) populations dating to the interval",
+      "Geological: correlated onset of Younger Dryas cooling in ice-core/lake-sediment proxy records near the same date",
+      "Oral_tradition: Indigenous North American narratives describing catastrophic fire/darkness/flood events (weak, highly contested as corroboration)",
+      "Model_prior: existing published scientific debate (e.g., Firestone et al. 2007 proposal vs. Pinter et al., van Hoesel et al. critiques) as an indicator this evidence class has already been actively sought"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis corresponds to the real 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007) concerning carbon/magnetic spherule and nanodiamond concentrations at ~10,900-10,000 BCE across North American sites. The interval given falls at the Younger Dryas onset, so the 'younger-dryas' period row is the best match; geological (0.65) and astronomical (0.7) are the primary relevant evidence kinds and both have comparatively high detectability, consistent with the fact that this evidence type has genuinely been sought, found, and remains actively debated in peer-reviewed literature over the past two decades \u2014 i.e., detection was plausible and largely happened. Material (0.35) and genetic (0.3) evidence are weaker due to poor organic/archaeological preservation over 13,000 years, textual evidence is essentially impossible (0.0, no writing existed), and oral_tradition (0.1) evidence, while occasionally invoked by proponents, is highly unreliable as corroboration over such a timespan. Given that sedimentary/geochemical evidence is durable and has already been reported (with contested interpretation) at numerous North American sites, absence-of-evidence arguments carry less weight here than they would for the weaker evidence kinds \u2014 the controversy centers on interpretation of found evidence, not on total absence. I suggest a composite detectability adjustment of ~0.55, slightly below the raw geological/astronomical table values to account for the lower-detectability kinds (material, genetic, oral_tradition, textual) that would also be needed for full corroboration of 'actor=cosmic-impact, action=corroborated', and to flag that some cited evidence (e.g., platinum/nanodiamond claims) is model-prior/contested rather than settled fact."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "f7da45314141452c9668703581e219c6342dc80bd76aeefb17588e9010184e15",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.58,
+        "rationale": "model-prior: North Atlantic is the canonical locus for meltwater-driven AMOC disruption tied to YD onset, and A's multi-century interval better matches the onset's duration than B's single-year North America placement."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: A's causal link (meltwater pulse triggering YD cooling via freshwater forcing in the North Atlantic) reflects the mainstream Broecker hypothesis, whereas B's claim that meltwater-pulse corroborates megafaunal extinction is a weaker, less-established causal chain."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: B's interval (~13000-12000 cal BP) corresponds to YD onset dates, not the termination (~11600 cal BP) it claims to describe, creating an internal mismatch that A's broad but non-contradictory megafaunal-extinction window avoids."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: A's interval and North Atlantic placement align with standard YD onset dating and the accepted freshwater-forcing region, while B's later interval and Europe placement are less canonical for the onset event."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: A's combination (North America, impact-ejecta/airburst mechanism, ~12800 BP) closely matches the well-documented platinum-anomaly findings at the Younger Dryas boundary, a more robust empirical link than B's weaker meltwater-to-extinction claim."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: A's tight interval matches the debated Clovis-era population decline near the YD boundary, giving it more specific (though still contested) support than B's extremely broad, less falsifiable interval."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.18,
+        "rationale": "B's actor 'cosmic-impact' is causally coherent with the impact-ejecta-fallout mechanism producing a platinum anomaly, matches real Greenland ice-core platinum-spike evidence, and already carries substantial accrued belief, unlike A's incongruous meltwater-pulse actor."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: both platinum-anomaly and nanodiamond evidence are cited YDIH proxies, but platinum spikes have been more consistently replicated across sites while nanodiamond findings faced notable replication challenges, giving A a slight edge."
+      }
+    ]
+  }
+}

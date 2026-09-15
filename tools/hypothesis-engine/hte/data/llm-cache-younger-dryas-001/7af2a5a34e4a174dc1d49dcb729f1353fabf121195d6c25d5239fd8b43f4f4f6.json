@@ -1,0 +1,23 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "8265c8cb863ecd547a66c9eadc8818f9029b542cd6cfb3229d26868bfb70648e",
+  "response": {
+    "expected_evidence": [
+      "geological: nanodiamonds (cubic and hexagonal/lonsdaleite polymorphs) concentrated in a thin Younger Dryas Boundary (YDB) sediment layer across North American sites",
+      "geological: magnetic microspherules and iron-rich spherules co-occurring with the nanodiamond layer",
+      "geological: iridium and/or platinum group element anomaly (elevated Pt spike, matching signals reported in Greenland ice cores) at the same stratigraphic horizon",
+      "geological: 'black mat' organic-rich layer marking the YDB horizon, with elevated charcoal/soot indicating continental-scale biomass burning",
+      "geological: glassy/melted carbon spherules or meltglass suggestive of high-temperature airburst formation",
+      "astronomical: absence of a confirmed terrestrial impact crater of appropriate age/size (consistent with an airburst rather than a ground impact), searched via aerial/satellite and geophysical survey",
+      "astronomical: extraterrestrial-diagnostic PGE ratios or cosmic dust/micrometeorite signatures in the boundary layer",
+      "material: disruption in Clovis-culture archaeological stratigraphy and site abandonment patterns near ~10,950 BCE",
+      "genetic: population bottleneck or extinction signatures in North American megafauna (mammoth, mastodon, etc.) genomes dated to this interval",
+      "genetic: possible discontinuity signal in early North American human population genetics around this horizon",
+      "model-prior: existing published literature on the Younger Dryas Impact Hypothesis (Firestone et al. 2007 and follow-ups) reporting nanodiamonds/spherules, alongside substantial rebuttal literature (Pigati, Surovell, van Hoesel, Daulton) disputing replication and proposing terrestrial/contamination explanations"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10950 corresponds to the Younger Dryas onset boundary (~12,900 cal BP), which is the well-known 'Younger Dryas Impact Hypothesis' (YDIH) context rather than a generic Upper Paleolithic placement, so the 'younger-dryas' detectability row is the appropriate reference. That row assigns relatively high detectability to geological (0.65) and astronomical (0.7) evidence, moderate detectability to material (0.35) and genetic (0.3), and low detectability to textual/linguistic/oral_tradition (near-zero, appropriately, since no writing or oral transmission from this period is expected to survive). This pattern matches reality: the YDIH is in fact one of the most extensively tested prehistoric-impact hypotheses, with published claims of nanodiamonds, magnetic microspherules, platinum/iridium anomalies, and black-mat charcoal layers across dozens of North American sites \u2014 evidence that plausibly could and did get reported, precisely because geological/sedimentary preservation and modern analytical geochemistry (astronomical-adjacent PGE/cosmic-dust analysis) are well-suited to detecting such signals even ~13,000 years later. However, this evidence base is also heavily contested in the literature (failed replications, claims of terrestrial contamination or fungal/algal misidentification of 'nanodiamonds'), so the model-prior category should be treated as unverified and split between supporting and refuting studies. Given the relatively strong detectability for the diagnostic evidence types (geological, astronomical) but weaker detectability for corroborating material/genetic evidence, and the real ambiguity/controversy already known from the literature, I suggest a moderate overall detectability adjustment around 0.55 \u2014 high enough that absence of undisputed evidence is not itself strong proof against the hypothesis, but not so high that the existing contested findings should be treated as settled confirmation."
+  }
+}

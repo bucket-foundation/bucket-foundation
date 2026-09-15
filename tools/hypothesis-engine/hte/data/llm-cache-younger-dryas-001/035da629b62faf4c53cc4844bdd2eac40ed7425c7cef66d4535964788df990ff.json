@@ -1,0 +1,29 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "3b8ad6167d312115948248406eb227be5b27a8c0edd61e52ce713d1ae372a890",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.78,
+        "rationale": "Both opinions are fully uncertain (u=1) so the base-rate atomicity is the only signal; A's atomicity (0.0067) is ~7x B's (0.0009), indicating stronger accumulated evidentiary weight for the supernova-triggered YD-cooling airburst claim than for the inconclusive Taurid-stream/megafaunal-extinction claim."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.62,
+        "rationale": "With u=1 for both, atomicity is the deciding signal; A's atomicity (0.00247) modestly exceeds B's (0.00150), giving a mild edge to the corroborated Taurid-swarm/YD-onset-cooling reading over the gamma-ray/termination claim, though the margin is not large."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.78,
+        "rationale": "A remains fully uncertain with projected probability equal to its atomicity (~0.00055), while B carries explicit disbelief (d\u22480.50), roughly halving its projected support (~0.00028); active disbelief in B (evidence pushing against the megafaunal-extinction/gamma-ray/-12000..-11001 reading) favors A."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.56,
+        "rationale": "Atomicity is identical for both (0.00055) with full uncertainty, so no opinion-based edge; using model-prior chronology, A's -13000..-12001 interval sits closer to the widely-cited ~-10950 YD-onset date used elsewhere in this dataset than B's -20000..-19001 interval, which is far removed from established megafaunal-extinction/YD timing, giving A a slight plausibility edge."
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "75b3ac8fa1f05401dc3bef86044bfbba5f3657af5dda0bc2426c6298c8cba2e5",
+  "response": {
+    "expected_evidence": [
+      "Geological: multi-site sediment/paleosol cores at the Younger Dryas boundary (YDB) tested for iridium/platinum concentration anomalies across North America, Europe, and the Middle East, with independent labs failing to reproduce Firestone et al.-style spikes",
+      "Geological: absence or inconsistency of platinum-group-element (PGE) enrichment layers when re-sampled by different research groups, used as the basis for refutation papers",
+      "Material: physical impact-proxy candidates (magnetic microspherules, nanodiamonds, meltglass, carbon spherules) examined and reinterpreted as non-impact in origin (e.g., fungal/algal, wildfire, or terrestrial detrital sources)",
+      "Astronomical: absence of a correlated large impact crater of appropriate age/size, and lack of confirmed extraterrestrial isotopic signatures (e.g., He-3, chromium isotopes) in the same strata",
+      "Geological: ice-core (Greenland) records lacking a corroborating platinum/iridium spike precisely at the YD onset horizon in some analyses (contested)",
+      "Textual (modern scholarly literature, not period-original): peer-reviewed rebuttal papers documenting failed replication attempts and methodological critiques",
+      "Genetic/paleoenvironmental: megafaunal extinction and vegetation-change proxies re-examined and attributed to climatic rather than impact causes, weakening the impact-ejecta correlation"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis concerns a 'refutation' of the Younger Dryas Impact Hypothesis (iridium-anomaly claim), which is fundamentally a geological/geochemical question about sediment strata dated to roughly 12,900-11,700 cal BP, matching the given interval. Unlike most Paleolithic-era hypotheses, the primary evidence class here (geological deposits) is exactly the kind of material that survives well over this timescale and has, per model-prior (unverified, drawn from training knowledge rather than the supplied evidence text), actually been the subject of extensive real peer-reviewed replication studies across multiple continents (a genuine, ongoing scientific controversy since Firestone et al. 2007, with rebuttals such as Surovell et al. 2009, Pinter et al. 2011, van Hoesel et al., and Boslough et al.). The detectability table scores geological (0.65) and astronomical (0.70) evidence relatively high for the younger-dryas period, and material evidence (0.35) moderately, which together support that both the original claimed anomaly and its refutation data could plausibly be preserved and recovered. Textual detectability for this period is scored 0.0, but that reflects absence of period-original writing, not the modern scholarly record analyzing the geology - the latter is a distinct evidentiary channel outside this table's period-original-text framing. Genetic (0.30) and linguistic/oral_tradition/iconographic channels (0.05-0.10) are largely irrelevant or weak for this geochemical dispute. Given that multiple independent labs did in fact publish null or contradictory PGE results at various YDB sites, the hypothesis is plausible and detectable; I raise the suggested detectability_adjustment slightly above the raw geological/astronomical average to 0.6, reflecting that this is one of the better-documented and independently verifiable categories of Pleistocene-boundary evidence, while still discounting for the patchiness and site-to-site inconsistency that characterizes the actual debate. Any absence of a fully compelling consensus should be read as reflecting genuine scientific ambiguity/low material detectability rather than certain falsity of either the original impact claim or its refutation."
+  }
+}

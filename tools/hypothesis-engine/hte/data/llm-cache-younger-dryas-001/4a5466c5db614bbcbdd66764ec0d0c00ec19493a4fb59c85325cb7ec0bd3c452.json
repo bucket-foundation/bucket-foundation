@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ea942f3b88921dc1fe15d47dedc4833a6dfad1faddea4ec988b81b82930abd8a",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-enrichment horizon at the Younger Dryas Boundary (YDB) layer in North American sediment cores/paleosols, dated to ~10,850 BCE (~12,800 cal BP)",
+      "Astronomical/geochemical: platinum group element (Pt/Ir) anomaly matched in Greenland ice cores (analogous to Petaev et al. 2013), plus possible extraterrestrial markers (microspherules, nanodiamonds, magnetic spherules) in the same stratum",
+      "Geological: independent proxy for a meltwater pulse coinciding with the same interval \u2014 e.g., Lake Agassiz/Agassiz-Ojibway drainage signatures, freshwater flux spikes in \u03b418O or Nd-isotope records from Gulf of Mexico/North Atlantic cores, abrupt AMOC-weakening signals",
+      "Material: black mat layer / abrupt faunal turnover horizon associated with the YDB across multiple North American archaeological/paleontological sites",
+      "Genetic: megafauna extinction bottleneck signatures or population decline timing in ancient DNA consistent with an abrupt ~10,850 BCE event (weak, indirect link)",
+      "Model-prior/literature: published Younger Dryas Impact Hypothesis papers proposing a causal/corroborating link between an extraterrestrial platinum anomaly and meltwater-pulse-driven climate disruption, alongside a substantial rebuttal literature disputing reproducibility of the platinum/spherule signal at many sites"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10850 corresponds to the Younger Dryas onset, so the 'younger-dryas' row is the appropriate detectability context rather than the unspecified period label. That row shows relatively high geological (0.65) and astronomical (0.7) detectability, moderate material (0.35) and genetic (0.3), and near-zero textual/linguistic detectability \u2014 consistent with this being a purely paleoenvironmental/geochemical hypothesis with no written record possible for this era. Physical carriers of the proposed evidence (ice cores, YDB sediment layers, lake-drainage sediments, isotopic proxies) are exactly the kind of long-lived geological archives known to survive ~12,800 years, and indeed a platinum anomaly at this horizon has been reported in real ice-core and sediment studies (Petaev et al. 2013; Firestone et al. 2007 YDB literature) \u2014 model-prior, moderate confidence. So detection was clearly plausible and largely realized in the literature: the anomaly and a meltwater-pulse-timed climate disruption have both been reported, satisfying baseline detectability. However, 'corroborated' implies a robust causal/statistical link between the platinum anomaly and an impact-ejecta-fallout mechanism specifically driving the meltwater pulse, and this is scientifically contested \u2014 numerous replication studies failed to reproduce the platinum/spherule spike at many independent sites, and the impact-driven-meltwater-pulse causal chain is a minority position, not a specific detectability gap. I weight the adjustment slightly above the raw geological/astronomical average (0.65/0.7) downward to ~0.55 because while the physical evidence classes are detectable, the object of the hypothesis (a corroborated causal linkage rather than mere co-occurrence) requires convergent, replicated multi-proxy evidence that is harder to achieve than single-proxy detection, without this being primarily a preservation/detectability problem."
+  }
+}

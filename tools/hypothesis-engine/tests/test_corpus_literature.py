@@ -86,6 +86,21 @@ def test_frontmatter_fields_parsed(cards):
     assert len(bloom.research_questions) == 2
 
 
+def test_card_doc_length_matches_its_own_raw_file(cards):
+    # bkt-hte-evidence-span-doc-length: every Card this module's own parse
+    # path produces carries the length of its own raw file text, the same
+    # string its key_claims' char_start/char_end are located against.
+    bloom = _card(cards, "bloom-1984")
+    raw = (FIXTURES_DIR / bloom.relative_path).read_text()
+    assert bloom.doc_length == len(raw)
+
+
+def test_evidence_item_spans_carry_the_card_doc_length(corpus):
+    for item in corpus.evidence:
+        assert item.span.doc_length is not None
+        assert item.span.char_end <= item.span.doc_length
+
+
 def test_quoted_title_with_embedded_quotes_is_unescaped():
     # not in the 6-card fixture subset, but the escape case this module's
     # own docstring names (Deci and Ryan 2000); regression-tested directly
@@ -312,8 +327,8 @@ def test_load_reads_a_real_card_whose_key_claims_wrap(tmp_path):
 
 def test_wrapped_authors_entry_is_also_folded_correctly():
     # `_parse_list` shares `_iter_list_item_spans` with `_parse_claims`;
-    # a wrapped `authors:` entry must read as one joined name, not vanish
-    # the same way a wrapped claim used to.
+    # a wrapped `authors:` entry must read as one joined name. A wrapped
+    # claim vanished the same way before that fix.
     raw = _MULTILINE_CLAIMS_CARD.replace(
         '  - "Author, A."\n', '  - "Author, A. and an Additional\n    Long Coauthor Name, B."\n',
     )
@@ -322,10 +337,10 @@ def test_wrapped_authors_entry_is_also_folded_correctly():
 
 
 def test_unterminated_quoted_claim_is_skipped_not_crashed():
-    # A missing closing quote anywhere in the field (a real authoring
-    # error, not this module's own concern to repair) must not raise or
-    # hang; it is read as zero further items rather than a partial,
-    # truncated one.
+    # A missing closing quote anywhere in the field is a real authoring
+    # error; repairing it is outside this module's own concern. Parsing
+    # must not raise or hang: the malformed entry reads as zero further
+    # items, the source of the ValueError raised below.
     raw = _MULTILINE_CLAIMS_CARD.replace(
         '  - "The first claim wraps across two\n'
         '    physical lines before its own closing quote."\n'
@@ -961,30 +976,35 @@ def test_discover_card_roots_against_the_real_repo_checkout():
         assert literature.LOCAL_INTAKE_DIR in discovered
 
 
-def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_six_degraded_named_in_the_log(caplog):
+def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_every_degraded_card_named_in_the_log(caplog):
     """bkt-hte-outbox-seam review, "High": `literature.load(cards_dir=
     None)` used to raise against this repo's own on-disk corpus, because
-    six real cards carry `doi: null`. It must now succeed, report the
-    real 177-card corpus (grown from 147 by batch five, `bkt-hte-
-    literature-multiline-claims`), degrade (never drop) all six, and
-    name every one of them in `load_raw`'s own `skipped_or_degraded` log
-    line."""
+    some real cards carry `doi: null`. It must now succeed, report every
+    card `load_raw` returns (the intake tree grows with each batch, so
+    the expected counts come from `load_raw` itself), degrade (never
+    drop) each DOI-less card, and name every one of them in `load_raw`'s
+    own `skipped_or_degraded` log line."""
     if not literature.LOCAL_INTAKE_DIR.is_dir():
         pytest.skip("literature adapter: no _intake/research-os-k12-literature/ tree in this checkout")
+
+    raw = literature.load_raw(literature.discover_card_roots())
+    expected_sources = len({card.doi for card in raw})
+    expected_degraded = sum(1 for card in raw if card.doi_missing)
+    assert expected_degraded > 0
 
     with caplog.at_level(logging.WARNING, logger="hte.corpus.literature"):
         corpus = literature.load(cards_dir=None)
 
-    assert len(corpus.sources) == 177
+    assert len(corpus.sources) == expected_sources
     degraded_ids = [source_id for source_id in corpus.sources if source_id.startswith("nodoi:")]
-    assert len(degraded_ids) == 6
+    assert len(degraded_ids) == expected_degraded
     degraded_items = [item for item in corpus.evidence if item.source_id in degraded_ids]
     assert degraded_items
     assert all(item.tier == Tier.T4 for item in degraded_items)
     assert all(item.views.get("doi_missing") is True for item in degraded_items)
 
     assert "skipped_or_degraded" in caplog.text
-    assert "6 of 177" in caplog.text
+    assert f"{expected_degraded} of {len(raw)}" in caplog.text
     for relative_path in (
         "educational-methods/anderson-krathwohl-2001-taxonomy-revision.md",
         "educational-methods/wiske-1998-teaching-for-understanding.md",
@@ -1159,6 +1179,7 @@ def test_ensure_cards_cached_leaves_no_partial_final_file_on_a_write_failure(tmp
     assert dest.read_text() == raw_text
 
 
+@pytest.mark.slow  # live GitHub call; a stalled DNS lookup has no socket timeout and hung `make test` twice on 2026-09-15
 def test_live_fetch_lists_cards_or_skips_when_offline():
     """One real, small GitHub API call against `main` (PR #5 merged into
     `main` during this module's own review, deleting `DEFAULT_REF`'s own

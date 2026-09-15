@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "1228dc051b0b92dd85c1256e10772738cb09a436c180e7996a8a43ff90614248",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.2,
+        "rationale": "model-prior: B (Taurid swarm/cosmic-airburst triggering YD onset cooling across multiple continents, dated to ~10950 BCE) matches the well-known, widely-cited Younger Dryas Impact Hypothesis claim and has internally consistent actor/mechanism/date; A pairs a supernova actor with a biomass-burning-impact-winter mechanism that is mechanistically inconsistent (that mechanism belongs to impactor scenarios, not supernovae) and carries only 'inconclusive' status."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: A links Taurid swarm impact-ejecta-fallout to a platinum anomaly near the canonical ~10950 BCE date/place (North America), matching the actual Petaev-type platinum spike evidence cited in YDIH literature; B claims the Taurid swarm 'triggered' the YD *termination* (rather than onset) via cosmic-airburst at -10000/-9001, which is a poor mechanistic/temporal fit since impact hypotheses target onset cooling, not termination."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: A cites an iridium anomaly as 'corroborated' evidence for Taurid impact, but iridium-anomaly claims at the YD boundary are among the more disputed/poorly-replicated lines of evidence in the literature; B restates the core cosmic-impact/taurid-stream-encounter causing YD onset cooling with the standard ~10950 BCE date, a more commonly cited and coherent claim, giving it a slight edge."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: A pairs Taurid swarm with cosmic-airburst (a mechanistically consistent combination) for meltglass evidence, though the -13000/-12001 interval and Greenland placement don't match the typical ~10950 BCE/Middle-East meltglass sites; B pairs a supernova actor with 'impact-ejecta-fallout,' a mechanism that doesn't logically follow from a supernova, making B's internal actor-mechanism logic weaker, so A gets a slight edge on consistency despite its own date/place mismatch."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.3,
+        "rationale": "model-prior: B's north-america/-10950 placement matches the well-documented nanodiamond-concentration evidence tied to the YD boundary layer, even though 'solar-proton-event' as actor for impact-ejecta-fallout is an odd mechanistic pairing; A's supernova-triggered platinum anomaly in the Middle East at -12000/-11001 mismatches both the typical evidence location (North America/Greenland) and timing, and pairs supernova with the impactor-specific cosmic-airburst mechanism inconsistently."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: A has the correct ~10950 BCE date/place for YD onset cooling but implausibly pairs a solar-proton-event actor with a cosmic-airburst mechanism (unrelated physical processes); B's supernova/gamma-ray-ionization pairing is mechanistically coherent (gamma rays are a real supernova byproduct) and appropriately hedged as 'inconclusive,' though its -12000/-11001 date is off from the canonical onset date, giving B a modest edge on internal consistency."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: A restates the mainstream YDIH claim (Taurid impact-ejecta-fallout triggering North American megafaunal extinction) at the correct ~10950 BCE date, a prominent and still-debated hypothesis; B's supernova/gamma-ray-ionization causing YD cooling, marked 'refuted,' is a more niche claim, and while the refutation may be accurate, A's claim is the more evidentially substantive and widely engaged-with hypothesis overall."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: A pairs a mismatched actor-mechanism (Taurid swarm with gamma-ray-ionization, a mechanism that doesn't logically follow from a meteor swarm) but hedges appropriately with 'inconclusive'; B pairs supernova with 'biomass-burning-impact-winter' (an impactor-specific mechanism) at a mismatched date/place for microspherule evidence yet overclaims 'corroborated,' making B's overclaiming with mismatched mechanics the weaker-supported claim."
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "54b90dbc8f2a89426881a745b51400bc10ce27b9a5666b17592e649cbb62e4f3",
+  "response": {
+    "expected_evidence": [
+      "geological: absence or non-reproducibility of platinum, iridium, and nanodiamond anomalies at the ~12,800 cal BP YD-onset boundary layer across independently sampled sites on multiple continents (lake cores, loess, ice cores)",
+      "geological: reinterpretation of 'black mat' layers and magnetic/carbon spherules as authigenic (framboidal magnetite, fungal/algal carbon spherules, wildfire soot) rather than impact-derived, via SEM/EDS geochemical reanalysis",
+      "geological: failure to find a corresponding impact crater or strewn field of shocked quartz/melt glass consistent with a continent-scale or multi-continent airburst event",
+      "astronomical: physical/atmospheric modeling papers arguing a cosmic airburst of the required scale is not physically plausible without a crater or unambiguous shock-metamorphic signature",
+      "geological: chronostratigraphic re-dating showing proposed 'impact markers' are not synchronous across sites (time-transgressive rather than instantaneous), undermining a single-trigger mechanism",
+      "material/archaeological: independent labs' failure to replicate original platinum-spike and megafaunal-extinction correlation when re-sampling the same stratigraphic sections under blind/controlled protocols",
+      "model_prior (my own training-data knowledge, unverified against source text): a substantial peer-reviewed critical literature (e.g., Pigati, Holliday, Boslough, van Hoesel, Meltzer) disputing the Younger Dryas Impact Hypothesis, though pro-impact groups (Kennett, Wittke, Israde-Alc\u00e1ntara, Moore et al.) have continued publishing multi-continent platinum-anomaly support into the 2020s, meaning the debate is contested rather than cleanly 'refuted'"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The relevant evidence for this hypothesis is not traditional archaeology but modern geochemical/stratigraphic analysis of sediment layers dated to the Younger Dryas onset (~12,800 cal BP), plus astronomical/physical modeling and re-analysis of prior impact claims. The detectability table gives comparatively high scores for 'younger-dryas' geological (0.65) and astronomical (0.7) evidence, reflecting that lake cores, loess sequences, and ice cores from this period are well-preserved and routinely sampled at high resolution across many continents -- one of the more detectable prehistoric intervals, not one plagued by poor preservation. Given that, an absence of confirmatory impact markers, or a body of papers reporting failed replication, would be a plausible and detectable signal rather than something masked by low detectability. However, I flag that my knowledge of the actual state of this debate is model-prior (unverified against any provided source text): the scientific literature on the Younger Dryas Impact Hypothesis is genuinely contested as of my training data, with both critical and supportive peer-reviewed papers continuing to appear into the 2020s. Framing the outcome as a clean 'refuted' verdict likely overstates the consensus; 'disputed, with significant critical literature but not universal rejection' is more accurate. I set the detectability adjustment at 0.6, averaging the geological/astronomical/material rows and discounting slightly because the dominant obstacle to a clean refutation verdict is interpretive disagreement among specialists, not evidentiary scarcity."
+  }
+}

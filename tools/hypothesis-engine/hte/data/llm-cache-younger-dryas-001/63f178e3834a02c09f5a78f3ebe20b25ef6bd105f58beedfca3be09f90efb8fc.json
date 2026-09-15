@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "dcf93f84e80da503fedfe75ee7cc4b05d2d5306e25a5a139692982f1efb1fd00",
+  "response": {
+    "$PARAMETER_NAME": "could_have_survived",
+    "expected_evidence": [
+      "Geological: platinum/iridium anomalies, nanodiamonds, magnetic spherules, and 'black mat' organic layers at the ~10,950 BCE (Younger Dryas onset) boundary across multiple continents (North America, Europe, Middle East)",
+      "Astronomical: crater or strewn-field evidence, or airburst modeling (e.g., Hiawatha crater hypothesis, cosmic ray/isotope signatures like 14C or 10Be spikes)",
+      "Material/archaeological: abrupt discontinuities in lithic industries, site-occupation density drop-offs (e.g., end of Clovis culture in North America), synchronous abandonment layers on multiple continents",
+      "Genetic: population bottleneck signatures in ancient/modern DNA (human and megafaunal) dated to ~13,000 cal BP, detectable via reduced haplotype diversity or coalescent timing",
+      "Oral tradition: flood/fire-from-sky catastrophe myths potentially preserving folk memory of the event (weak, given ~13,000-year transmission gap)",
+      "Iconographic: Paleolithic cave art or portable art possibly depicting a sky-fire or catastrophic event (e.g., disputed interpretations of G\u00f6bekli Tepe pillars)",
+      "Model-prior: general scientific literature on the Younger Dryas Impact Hypothesis (YDIH) and its critiques"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.3,
+    "rationale": "The interval -10950 corresponds to the Younger Dryas onset (~12,900 cal BP), the period most associated with the Younger Dryas Impact Hypothesis (YDIH), so I anchor detectability to the 'younger-dryas' row rather than 'upper-paleolithic', 'early-holocene', or later rows. Geological (0.65) and astronomical (0.7) detectability are comparatively high, and indeed geological YD-boundary markers (platinum spikes, nanodiamonds, spherules) have been reported at many sites worldwide since the 2000s-2010s \u2014 this is consistent with what the hypothesis would predict if true. However, the specific claim here is not merely 'an impact/airburst occurred' but that it is 'corroborated' as affecting population-demography across multiple continents. That demographic-effect claim depends heavily on material (0.35) and genetic (0.3) evidence categories, which are much weaker: ancient DNA sampling density for ~13,000 BP populations is sparse, bottleneck signals are confounded by post-glacial climate change and normal Late Pleistocene population dynamics, and archaeological 'discontinuity' evidence (e.g., end of Clovis) is contested and could reflect climate-driven adaptation rather than a demographic catastrophe. Textual (0.0) and linguistic (0.05) evidence are essentially absent by definition (pre-literate period), and oral tradition (0.1)/iconographic (0.1) evidence is very weak and speculative given the ~13-millennium transmission gap. Given this, absence of strong, unambiguous multi-continent demographic corroboration is well explained by low detectability in the genetic/material/textual channels rather than by the hypothesis being false \u2014 the underlying impact/airburst signature itself is more detectable than the demographic consequence being asserted. This assessment relies partly on model-prior knowledge of the YDIH literature and its ongoing scientific controversy (nanodiamond/platinum findings have been independently disputed by some research groups), which should be treated as unverified/low-tier context rather than established fact."
+  }
+}

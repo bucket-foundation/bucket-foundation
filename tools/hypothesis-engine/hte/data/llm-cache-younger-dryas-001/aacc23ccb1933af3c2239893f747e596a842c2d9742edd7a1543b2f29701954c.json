@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e3c534a6e8c0d5747256ae7696617cd1dcf0704305ef1e03dd4306159f1c1b9f",
+  "response": {
+    "$PARAMETER_NAME": "expected_evidence",
+    "expected_evidence": [
+      "Geological/stratigraphic evidence: presence or absence of impact-diagnostic markers (nanodiamonds, platinum/iridium spikes, magnetic spherules, 'black mat' layers) at the Younger Dryas onset boundary (~12,900 cal BP) across North American sites, and independent replication (or failure to replicate) these findings by multiple labs.",
+      "Paleoenvironmental/geological proxies for continent-wide biomass burning: charcoal records, soot/PAH layers, pollen assemblages indicating whether a synchronous, extreme wildfire event ('impact winter' trigger) actually occurred versus more localized or gradual fire regime changes.",
+      "Archaeological/material evidence: changes in site density, tool assemblage continuity/discontinuity (e.g., Clovis-to-Folsom transition), and summed probability distributions (SPDs) of radiocarbon dates used to test for a demographic collapse or population bottleneck in North America at this interval.",
+      "Genetic evidence: ancient DNA or modern Native American genomic studies searching for a population bottleneck or founder-effect signature dated to ~10,950 BCE that would corroborate or refute a catastrophic demographic event.",
+      "Astronomical/geological search evidence: absence of a confirmed impact crater of appropriate age/size in North America, and re-analyses/critiques in the geoscience literature disputing the extraterrestrial origin of the proposed markers.",
+      "Model-prior (unverified, from training knowledge, not the evidence text): the Younger Dryas Impact Hypothesis (Firestone et al. 2007) proposing a cosmic impact causing megafaunal extinction and human population decline has been extensively challenged by subsequent studies (e.g., failure to replicate nanodiamond/spherule findings, radiocarbon SPD studies showing no clear population collapse), making a 'refuted' framing plausible but this recollection should be treated as low-confidence and not established fact."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10950 corresponds to the Younger Dryas onset, so the 'younger-dryas' period row is most applicable rather than the broader upper-paleolithic default. Relevant evidence kinds are geological (0.65), material/archaeological (0.35), and genetic (0.3), with astronomical (0.7) for crater/impact-marker searches \u2014 all comparatively high-detectability categories for this row, since geological strata and archaeological radiocarbon records from ~13,000 years ago are well-preserved and have in fact been the subject of extensive, decades-long scientific investigation (this is a real, actively studied and debated hypothesis in the literature). Textual (0.0), linguistic (0.05), oral tradition (0.1), and iconographic (0.1) are essentially irrelevant/unavailable for a preliterate, pre-oral-tradition-preservation era this old. Given that the core evidence types (geological stratigraphy, radiocarbon-based demographic reconstruction, genetic bottleneck studies) are moderately-to-highly detectable and have already generated a substantial published record either supporting or undermining the impact hypothesis, an absence of clear refuting/supporting evidence would be somewhat surprising rather than fully expected \u2014 so a moderate-to-elevated composite detectability adjustment (~0.55) is warranted, blending the higher geological/astronomical scores with the lower genetic/material scores. This is high enough that if no evidence at all existed, that absence would weigh somewhat against the hypothesis being true, though not decisively, since genetic and demographic archaeological evidence remains only moderately detectable even in principle."
+  }
+}

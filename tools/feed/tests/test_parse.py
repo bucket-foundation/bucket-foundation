@@ -138,8 +138,8 @@ class ParseTests(unittest.TestCase):
              "bucket-canon/05-biophysics/melanin/DOSSIER.md")
         sha2 = commit(self.repo, "promote melanin")
         events = run_parse(self.repo, sha1, sha2)
-        types = [e["type"] for e in events]
-        self.assertIn("promote", types)
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["type"], "promote")
 
     def test_retract(self):
         write(self.repo, "bucket-canon/05-biophysics/melanin/primary-papers.bib", BIB_SAMPLE)
@@ -156,6 +156,130 @@ class ParseTests(unittest.TestCase):
         e1 = run_parse(self.repo, self.sha0, sha1)
         e2 = run_parse(self.repo, self.sha0, sha1)
         self.assertEqual([e["id"] for e in e1], [e["id"] for e in e2])
+
+
+YAML_ONE_RECORD = """records:
+- id: bkt-aaa111
+  title: A paper.
+  doi: 10.1/aaa
+  canon_score: 70
+"""
+
+YAML_TWO_RECORDS = YAML_ONE_RECORD + """- id: bkt-bbb222
+  title: Second paper.
+  doi: 10.1/bbb
+  canon_score: 80
+"""
+
+FEED = REPO / "tools" / "feed" / "feed.py"
+
+
+def run_feed_update(cwd: Path, events: list[dict]) -> subprocess.CompletedProcess:
+    env = os.environ.copy()
+    env["BUCKET_FEED_ROOT"] = str(cwd)
+    stdin = "\n".join(json.dumps(e) for e in events)
+    return subprocess.run(
+        [sys.executable, str(FEED), "update"],
+        cwd=cwd, input=stdin, capture_output=True, text=True, env=env,
+    )
+
+
+class YamlPromotionTests(unittest.TestCase):
+    """A promotion out of _intake/ lands as a new or extended
+    primary-papers.yaml, never a rename, the real shape PRs #9, #45, and
+    #129 shipped with no feed event. These cover the fix: a brand-new
+    dossier file and an appended record each resolve to exactly one
+    add_paper event, keyed by the record's own id (card_event_id), so a
+    second run over the same range adds nothing to the ledger.
+    """
+
+    def setUp(self):
+        self.repo = make_tmp_repo()
+        write(self.repo, "README.md", "# seed\n")
+        self.sha0 = commit(self.repo, "seed")
+
+    def tearDown(self):
+        shutil.rmtree(self.repo, ignore_errors=True)
+
+    def test_new_file_promotion_yields_one_event(self):
+        # seed the branch first so add_branch doesn't also fire in the
+        # range under test, isolating the yaml-promotion behavior.
+        write(self.repo, "bucket-canon/07-mind/existing-topic/README.md", "# existing\n")
+        sha1 = commit(self.repo, "seed 07-mind branch")
+        write(
+            self.repo, "bucket-canon/07-mind/new-topic/primary-papers.yaml",
+            YAML_ONE_RECORD,
+        )
+        sha2 = commit(self.repo, "promote bkt-aaa111 into new-topic")
+
+        events = run_parse(self.repo, sha1, sha2)
+        self.assertEqual(len(events), 1)
+        ev = events[0]
+        self.assertEqual(ev["type"], "add_paper")
+        self.assertEqual(ev["branch"], "07-mind")
+        self.assertEqual(ev["topic"], "new-topic")
+        self.assertEqual(ev["title"], "A paper.")
+        self.assertEqual(ev["doi"], "10.1/aaa")
+
+    def test_extended_yaml_promotion_yields_one_event(self):
+        write(
+            self.repo, "bucket-canon/07-mind/existing-topic/primary-papers.yaml",
+            YAML_ONE_RECORD,
+        )
+        sha1 = commit(self.repo, "seed one record")
+        write(
+            self.repo, "bucket-canon/07-mind/existing-topic/primary-papers.yaml",
+            YAML_TWO_RECORDS,
+        )
+        sha2 = commit(self.repo, "promote bkt-bbb222 into existing-topic")
+
+        events = run_parse(self.repo, sha1, sha2)
+        self.assertEqual(len(events), 1)
+        ev = events[0]
+        self.assertEqual(ev["type"], "add_paper")
+        self.assertEqual(ev["title"], "Second paper.")
+        self.assertEqual(ev["doi"], "10.1/bbb")
+
+    def test_yaml_promotion_id_matches_feed_card_event_id(self):
+        """The id parse.py derives for a new-file promotion must equal
+        the id feed.py's check-cards/emit-for-cards would derive for the
+        same card, or the two paths would double-emit the same event."""
+        sys.path.insert(0, str(FEED.parent))
+        from feed import card_event_id as feed_card_event_id  # noqa: E402
+
+        write(self.repo, "bucket-canon/07-mind/existing-topic/README.md", "# existing\n")
+        sha1 = commit(self.repo, "seed 07-mind branch")
+        path = "bucket-canon/07-mind/new-topic/primary-papers.yaml"
+        write(self.repo, path, YAML_ONE_RECORD)
+        sha2 = commit(self.repo, "promote bkt-aaa111 into new-topic")
+
+        events = run_parse(self.repo, sha1, sha2)
+        self.assertEqual(len(events), 1)
+        expected = feed_card_event_id("add_paper", path, "bkt-aaa111")
+        self.assertEqual(events[0]["id"], expected)
+
+    def test_rerunning_yields_no_new_ledger_events(self):
+        write(self.repo, "bucket-canon/07-mind/existing-topic/README.md", "# existing\n")
+        sha1 = commit(self.repo, "seed 07-mind branch")
+        write(
+            self.repo, "bucket-canon/07-mind/new-topic/primary-papers.yaml",
+            YAML_ONE_RECORD,
+        )
+        sha2 = commit(self.repo, "promote bkt-aaa111 into new-topic")
+
+        events = run_parse(self.repo, sha1, sha2)
+        first = run_feed_update(self.repo, events)
+        self.assertEqual(first.returncode, 0, first.stderr)
+        self.assertIn("+1 events", first.stderr)
+
+        # same commit range parsed and fed again: the ledger already has
+        # this card's event id, so nothing new is added.
+        second = run_feed_update(self.repo, run_parse(self.repo, sha1, sha2))
+        self.assertEqual(second.returncode, 0, second.stderr)
+        self.assertIn("+0 events", second.stderr)
+
+        feed = json.loads((self.repo / "feed.json").read_text())
+        self.assertEqual(feed["total_events"], 1)
 
 
 if __name__ == "__main__":

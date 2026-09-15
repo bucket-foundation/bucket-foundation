@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "bb25fb83cf3c3d06b9ad7685e5a2018963c2777f7797dd0c6891a14d70ed3b04",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.5,
+        "rationale": "model-prior: both are specific YDIH marker claims (Abu Hureyra microspherules vs. Mexican megafaunal-extinction/ejecta link) with comparably contested literature support; no clear differentiator."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: the North-America biomass-burning/impact-winter link to YD cooling is the original, most heavily cited core YDIH claim, whereas a Middle-East platinum-anomaly-via-airburst claim is narrower and less commonly reported in the literature I recall."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: describing the multi-continent YDIH evidence as 'inconclusive' better matches the genuinely contested state of the debate, whereas an outright 'refuted' verdict for Greenland ice specifically conflicts with reported platinum spikes (e.g., Petaev et al.) there."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: Greenland ice-sheet cores have concrete reported platinum-anomaly evidence tied to a cosmic-airburst narrative, giving B slightly more specific empirical grounding than the broader, less evidenced 'North Atlantic' placement in A."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: the North-America megafaunal-extinction/biomass-burning-impact-winter claim (B) is the foundational, more extensively argued YDIH claim, while the Middle-East cooling-corroboration claim (A) rests on more disputed Abu Hureyra evidence."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: critiques of YDIH (e.g., Pinter et al.) specifically challenged European microspherule counts, making a 'refuted' verdict there plausible, while a 'corroborated' Middle-East platinum/ejecta claim is comparatively less firmly established."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: North American platinum anomalies are among the more robustly reported empirical YDIH markers, giving A slightly firmer support than a broad multi-continent 'refuted' cooling claim in B, which is also plausible but less specific."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: the Greenland ice-core platinum anomaly (Petaev et al. 2013) is a well-documented specific finding, whereas North American iridium anomalies have been largely challenged/unreproduced in follow-up studies, weakening B's 'corroborated' claim."
+      }
+    ]
+  }
+}

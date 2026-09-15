@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "3359f3f8a102d2f49a1f9b0227509152ef4a5af538b790dee4c536094e902515",
+  "response": {
+    "$PARAMETER_NAME": "\n",
+    "expected_evidence": [
+      "Geological: continuous, unremarkable sedimentary/varve sequences across the ~12,900\u201311,700 cal BP boundary lacking a distinct impact ejecta layer (no reproducible spike in platinum, iridium, or other extraterrestrial-associated elements across independently dated sites)",
+      "Astronomical/geochemical: absence or non-reproducibility of purported impact proxies such as nanodiamonds, magnetic spherules, and shocked quartz in the Younger Dryas Boundary layer when re-examined by independent labs",
+      "Geological: ice-core records (e.g., Greenland GISP2/GRIP) showing a climate transition consistent with gradual/ocean-circulation-driven cooling (e.g., Lake Agassiz meltwater discharge disrupting AMOC) rather than an abrupt single-event signature",
+      "Material/archaeological: Paleoindian/Upper Paleolithic site stratigraphy showing continuity of occupation and lithic technology across the boundary rather than a synchronous destruction or abandonment horizon attributable to an airburst",
+      "Genetic: megafaunal extinction and human population genetic signals showing gradual, staggered timing inconsistent with a single sudden catastrophic trigger",
+      "Model-prior (modern scientific literature, not ancient evidence): peer-reviewed replication studies (e.g., Pigati et al., Daulton et al., van Hoesel et al.) reporting failure to reproduce Firestone et al.'s original impact markers, and meta-analyses concluding the impact hypothesis is not well supported"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The hypothesis concerns a scientific refutation (absence of confirmable impact evidence) rather than direct evidence of a human/cultural event, so the relevant evidence classes are geological and astronomical (geochemical/isotopic) proxies plus corroborating material and genetic records, with textual, linguistic, oral_tradition and iconographic evidence essentially irrelevant/unavailable this early (textual=0.0, oral_tradition/iconographic ~0.1) since no writing or reliably transmitted narrative exists from ~11,000 BCE. Using the 'younger-dryas' row (the period matching the given interval) as the best-fit context, geological (0.65) and astronomical (0.7) detectability are comparatively high because ice cores, marine/lake sediment cores, and boundary-layer stratigraphy from this interval are well-preserved and have been extensively, independently re-sampled \u2014 exactly the kind of evidence that would let a refutation (non-reproducibility of impact markers) be robustly established, as has in fact occurred in the real scientific literature (model-prior, unverified beyond general recollection). Material (0.35) and genetic (0.3) evidence for this period are more fragmentary but still sufficient to check for continuity vs. catastrophic disruption. Given the relatively strong geological/astronomical detectability, an absence of impact signatures is a meaningful, plausible-to-observe outcome rather than merely an artifact of poor preservation \u2014 supporting refutation rather than being explained away by low detectability. I set the overall detectability_adjustment at 0.6, reflecting a weighted blend favoring the high-detectability geological/astronomical channels that are most diagnostic for this hypothesis, while acknowledging the near-zero detectability of textual/oral/iconographic channels that are irrelevant to this pre-literate period."
+  }
+}

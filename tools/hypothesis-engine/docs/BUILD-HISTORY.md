@@ -47,6 +47,16 @@ adapter will face the same two questions:
   here comes from a different, narrower field: `timeline[].disputed ==
   False` (claims marked accepted), 11 of this corpus's 21 dated events.
 
+## Score formula
+
+`hte.belief.pooled_weight` used to multiply a hypothesis's own pooled
+weight by a cross-kind bonus, up to 1.3x, once two or more evidence
+kinds from different families carried weight on the same side.
+`STATISTICAL-AUDIT-2026-09-15.md` item 6 removed it: the bonus assumed
+evidence kinds corroborate independently, and nothing here ever
+estimated that independence. `pooled_weight` now sums each kind's own
+discounted weight plainly.
+
 ## Credence floors
 
 `hte.canon_writeback.select_above_floor` keeps a candidate only when
@@ -59,6 +69,108 @@ of a floor over engine output is to keep the former out of
 that motivates the `u` half of the floor: a majority of this run's
 highest-`P` survivors carry `u = 1.0` and `b = 0`, high prior, zero
 examination, and the floor excludes every one of them.
+
+A third floor, `lift = b - d >= lift_floor` (default `0.25`), closes a
+case the `P`/`u` pair does not: `STATISTICAL-AUDIT-2026-09-15.md`'s
+Younger Dryas run put two hypotheses built from the SAME evidence on
+opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
+reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
+`P(h)`, the prior a gate decision turns on.
+
+The discovery-date holdout can freeze the vocabulary at its cutoff.
+`Concept.introduced_year` records when a concept entered the written
+record; `Vocabulary.frozen_at(cutoff)` drops every concept coined at or
+after it, and `hte calibrate --freeze-vocab` runs the holdout on that
+copy, reporting `n_frozen_concepts`, so an event cannot be placed under
+a concept nobody had yet. The same change links the pre-cutoff items
+against the candidates inside `run_holdout` (deep copies, as the k-fold
+holdout does), which `hte calibrate` had never done: outside a runner
+every candidate scored at `P = a`. Years for the seeded vocabularies are
+a data pass still to do.
+
+Every run opens with a stance audit (`hte.runner.stance_audit`): per
+actor an evidence item names, how many items assert it and how many
+deny or downgrade it, logged before generation and carried in
+`MANIFEST.json` `counts.stance` and in `campaign results`, so a card
+set that carries only refutations for one actor is visible before any
+number is read as a finding.
+
+The effective count reads a dependence graph. `Source` carries `authors`,
+`lab`, and `method`; `hte.belief.effective_count` unions two sources that
+share any of them, at full weight, on top of the stemma edges, so two
+items from co-authored papers count as one trial for the diminishing
+return `D(n_eff)`. The runner now passes the corpus's sources into
+scoring (it had passed only the items, so `n_eff` was the raw item
+count), and the literature and Younger Dryas loaders fill `authors` from
+their cards; the surname proxy stays only as the stemma-parent guess in
+the literature loader.
+
+A devil's advocate argues for the lowest-prior survivors
+(`hte.roles.advocate`, `advocate_k` per run, default 8). Every other role
+is asked to be right; this one is shown only items not yet linked to
+the hypothesis that share a slot value with it, names the ones that
+support it with a reason each, and states the observation that would
+settle the question. The runner links what it names, rescores, and
+records `lift_before`, `lift_after`, and the links added per survivor
+in `survivors.json`, with `counts.advocate` in the manifest carrying
+the argued count, links added, and mean gain: the role is scored on
+the evidence it finds.
+
+The base rate is a Beta prior now, updated across campaigns
+(`hte/prior_ledger.py`). Each concept's `prior_logit` is the label's
+starting mean with four pseudo-observations; a campaign run with
+`--prior-ledger <path>` reads the ledger back into the vocabulary before
+generation and, after scoring, appends per concept how many scored
+survivors naming it carried positive evidence-only lift and how many
+negative. `lift` reads no prior, so the label never feeds itself. Ledger
+rows are per corpus and per run; `MANIFEST.json` `counts.prior_ledger`
+records what was applied and appended.
+
+The vindication holdout is the false-negative test the discovery-date
+holdout cannot run, since that one scores agreement with the
+literature's own record. `hte.calibrate.run_vindication` reads a
+ground-truth event carrying `acceptance_year` (a claim that was fringe
+at discovery and mainstream later) with only the evidence recorded
+before that year, and a `control` event (an exploded claim) with every
+item, refutations included; an event is lifted when its best true
+reading's evidence-only lift clears the floor and beats every
+wrong-interval competitor. It reports `vindication_rate` and
+`false_alarm_rate` with Wilson intervals, `hte calibrate --vindication`
+writes them to `vindication.json`, and `hte.corpus.vindication_fixture`
+carries one synthetic case of each; the real cases (Alvarez, plate
+tectonics, H. pylori, prions; cold fusion, polywater, N-rays, Piltdown)
+are a queued bead.
+
+Evidence weight now carries a likelihood ratio. The critic rates each
+listed item's discrimination (strong, moderate, weak, none: how much
+more likely the item is under the hypothesis than under the strongest
+competing explanation of the same event), `hte.roles.likelihood_ratios`
+maps the ratings to 10, 3, 1.5, 1, and `hte.belief.discrimination`
+scales the item's tier weight by `1 - 1/lr`, so an item as likely under
+both explanations moves no credence and a tenfold one keeps 0.9 of its
+weight. An unrated item keeps its full weight, the vote-counting reading
+the audit's Evidence table names, until a critic rates it; the ratings
+ride in `survivors.json` under `likelihood_ratios`.
+
+Alongside the floors, every serialized opinion carries `scored`
+(`Opinion.scored`, `u < 1`): a hypothesis no evidence reached reads at
+its prior, which is missing data, so ranked surfaces list scored
+opinions first, `TIMELINE.md` shows the flag, and `campaign results`
+counts `n_unscored` per actor. The live Younger Dryas run had 292 of
+360 survivors unscored.
+
+A fourth gate, a lift-rank cutoff with the Benjamini-Hochberg step-up
+shape at `fdr_q` (default `1.0`, off), answers item 5's "3,205
+hypotheses, one floor" finding: a single fixed floor over a population
+that size mismarks both directions. `select_above_floor` ranks each
+candidate's `1 - lift` clamped to `(0, 1]` and runs the step-up over
+the full candidate set; only a candidate clearing BOTH the P/u/lift
+floor and the cutoff is selected. The score has no null distribution,
+so the rate it controls is nominal and the gate stays off until a
+permutation null (the link-shuffle diagnostic) licenses it; at
+`q=0.10` over a real campaign's candidates the first rank would need a
+lift above 0.99. `write_back` reports the
+BH threshold and reject count in the branch `INDEX.md` header.
 
 ## Why write-back stops at `candidate`
 

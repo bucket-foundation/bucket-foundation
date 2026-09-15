@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "61312914c9a3c83faa05442bd78663b05748a43a0b02266dca1a364306379d92",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.5,
+        "rationale": "A and B carry identical opinion vectors (b=0.502,d=0,u=0.498,a=0.119; E\u22480.562 both), so the evidence provides no differential support between the impact-ejecta megafaunal-extinction claim and the cosmic-airburst YD-cooling claim."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.6,
+        "rationale": "A's expected probability (b+a\u00b7u\u22480.503) modestly exceeds B's (\u22480.474, which carries an explicit refuted-leaning belief split), so A is marginally better supported by the current opinion state."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.68,
+        "rationale": "A retains substantial projected mass (E\u22480.439 despite high disbelief) reflecting active refutation of meltwater-pulse-as-megafaunal-cause, whereas B is pure vacuous uncertainty (E\u22480.269) with no evidential mass at all, so A is better evidentially grounded."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses are fully vacuous (u=1.0, no belief or disbelief mass), so neither is favored by current evidence."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.5,
+        "rationale": "Identical vacuous opinions (u=1.0) for both A and B leave no evidential basis to prefer either."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses have identical fully-uncertain opinions (u=1.0), so evidence does not differentiate them."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.5,
+        "rationale": "Same vacuous opinion state (u=1.0) for both mechanisms attached to YD termination, so no evidential preference exists."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses are entirely uncommitted (u=1.0, no belief/disbelief), giving no basis in the current evidence to favor one over the other."
+      }
+    ]
+  }
+}

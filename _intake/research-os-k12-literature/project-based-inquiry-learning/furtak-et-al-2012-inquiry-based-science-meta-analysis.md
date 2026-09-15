@@ -12,6 +12,10 @@ url: "https://doi.org/10.3102/0034654312457206"
 openalex_id: "https://openalex.org/W2139936815"
 branch: "project-based-inquiry-learning"
 tier: "outcome"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-cb0247570780)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/cognitive-load/primary-papers.yaml (id bkt-c5fafa2790f1, Sweller 1988)"
 why_it_matters: >
   A meta-analysis of 37 experimental and quasi-experimental studies of inquiry-based science
   teaching, introducing a framework distinguishing cognitive features of an inquiry activity

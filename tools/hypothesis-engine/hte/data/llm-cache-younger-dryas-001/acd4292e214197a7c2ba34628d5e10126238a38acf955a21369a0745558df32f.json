@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "1b0ca1b711b49524753f53edf5ce70ae53ab4d54ca0d4177d8b3edff890d95d7",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and nanodiamond concentration anomalies in a distinct 'Younger Dryas Boundary' (YDB) sediment layer dated ~12,900 BP, reported at multiple continental sites (N. America, Europe, Middle East)",
+      "Geological: a widespread carbon-rich 'black mat' layer with elevated soot/charcoal indicating continent-scale biomass burning coincident with YD onset",
+      "Geological/ice-core: platinum and ammonium spikes in Greenland ice cores at the YD onset horizon",
+      "Material: magnetic microspherules, glassy/melted spherules, and claimed shocked-mineral grains in YDB sediments interpreted as impact/airburst ejecta",
+      "Astronomical: orbital-dynamics modeling showing the Taurid meteoroid stream (parent body fragmentation of a large comet) intersecting Earth's orbit more densely circa 12,900 BP, consistent with modern Taurid fireball swarm encounters as a 'remnant' signal",
+      "Material: archaeological evidence of Clovis-era site abandonment/disruption and megafaunal extinction pulses clustering near the YD onset date across North America",
+      "Genetic: megafauna and possibly human population bottleneck signatures dated to the YD transition",
+      "Iconographic: contested symbolic depictions (e.g., Gobekli Tepe pillar imagery) interpreted by some researchers as a memory of a celestial/impact event",
+      "Absence of a single large confirmed impact crater of matching age (expected under an airburst/multi-fragment swarm scenario rather than a single crater-forming impact)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis targets the Younger Dryas onset window (-12000 to -11001), so the 'younger-dryas' detectability row is most applicable (with 'upper-paleolithic' as a close secondary given the associated human cultures). Two channels dominate the expected evidentiary footprint: geological (0.65) and astronomical (0.7), both high-detectability by the table, and this matches reality \u2014 this is a scientifically active, evidence-rich but contested hypothesis (the 'Younger Dryas Impact Hypothesis'), with published claims of platinum/iridium/nanodiamond anomalies, black-mat layers, and ice-core spikes at multiple sites, plus real orbital-mechanics literature on Taurid stream fragmentation. Material evidence (0.35) is moderate \u2014 Clovis-site and megafaunal-extinction correlations exist but are indirect and disputed. Genetic (0.3), iconographic (0.1), oral_tradition (0.1), linguistic (0.05), and textual (0.0) channels are weak or nonexistent for this pre-literate period, so the near-total absence of textual/oral corroboration is fully expected from low detectability rather than being evidence against the hypothesis. Because the strongest-detectability channels (geological, astronomical) are exactly where evidence has in fact been reported and actively debated in the literature, the hypothesis clears the bar of 'could plausibly have survived and been found' \u2014 though the persistent scientific controversy (many geologists dispute the anomalies as non-impact in origin) means the evidence is present but contested, not conclusive. I weight my suggested adjustment (0.5) toward the midpoint of the table's high (geological/astronomical) and low (textual/oral/iconographic/genetic) values, reflecting that a real signal is detectable in principle and has partially materialized, but corroboration across independent lines needed for a 'corroborated' causal claim remains only partial. Note: portions of this assessment (e.g., which specific sites/papers) draw on model-prior recollection of the Younger Dryas Impact Hypothesis literature rather than the evidence text provided, and should be treated as unverified until checked against primary sources."
+  }
+}

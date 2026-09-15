@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "986fa80c6ac7e3bea050c4463b7a62dd6c95a864bfbc23495e6eeedc63efbeca",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.55,
+        "rationale": "Using projected probability P=b+a\u00b7u, A\u22480.0224 (high disbelief mass 0.81 but larger atomicity 0.119) vs B\u22480.0180 (pure uncertainty, low atomicity 0.018); both are weakly supported but A edges out B marginally."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.71,
+        "rationale": "A's projected probability (0.0224, driven by atomicity 0.119) exceeds B's (0.0090, atomicity 0.018 despite similar ~0.5 disbelief mass), so evidence weighting favors A."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.63,
+        "rationale": "Both share atomicity 0.018, but A is pure uncertainty (u=1, P=0.018) while B carries substantial disbelief mass (d=0.40) that shrinks its projected probability to 0.0107, favoring A."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.38,
+        "rationale": "Both hypotheses are total uncertainty (u=1, d=0) with no direct evidence; B's higher atomicity/base-rate (0.011 vs 0.0067) gives it a modest edge in projected probability, slightly favoring B."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.08,
+        "rationale": "Both are fully uncertain claims with no evidence mass, but B's atomicity (0.018) is roughly 12x A's (0.0015), so the base-rate-driven projected probability strongly favors B."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.5,
+        "rationale": "Identical opinion vectors (b=0, d=0, u=1, a=0.0067) for both hypotheses leave no evidentiary basis to prefer either."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.62,
+        "rationale": "Both are total-uncertainty claims (u=1, d=0); A's higher atomicity (0.018 vs 0.011) gives it a modestly higher projected probability, favoring A."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.78,
+        "rationale": "A retains a non-trivial projected probability (0.0090) despite ~50% disbelief mass, driven by higher atomicity (0.018), while B is pure uncertainty with a very low atomicity (0.0025, P\u22480.0025), favoring A."
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "12c510b73a28e40c968ad9c2dc7d1ab06a27547dd188a4d7a4187a37bd564af8",
+  "response": {
+    "expected_evidence": [
+      "geological: nanodiamond (n-diamond/lonsdaleite) concentrations in the Younger Dryas Boundary (YDB) sedimentary layer across multiple North American sites",
+      "geological/astronomical: associated impact-proxy markers in the same layer \u2014 magnetic spherules, meltglass, high-temperature carbon spherules, iridium/platinum anomalies, and elevated 3He or other extraterrestrial isotopic signatures",
+      "geological: a 'black mat' organic-rich layer directly overlying the proposed impact horizon, marking an abrupt ecological/hydrological shift",
+      "astronomical: independent confirmation via ice-core records (e.g., Greenland) showing a synchronous abrupt cooling/warming perturbation or platinum spike at ~12,900 cal BP",
+      "material: stratigraphic association between the nanodiamond/impact layer and the termination of Clovis-associated archaeological occupation layers",
+      "geological: continent-wide (ideally hemispheric) consistency of nanodiamond concentration peaks reproduced by independent labs using standardized extraction protocols",
+      "genetic: megafaunal population decline/extinction timing (ancient DNA, radiocarbon date clustering) coinciding precisely with the proposed impact/warming event rather than with broader YD climatic deterioration",
+      "geological: absence of, or alternative explanation for, a confirmed impact crater of appropriate size and age",
+      "model-prior: this hypothesis closely tracks the real-world, still-disputed Younger Dryas Impact Hypothesis (Firestone et al. 2007) and its proposed nanodiamond evidence; multiple independent replication attempts (e.g., Pigati et al. 2012, Daulton et al. 2010, van Hoesel et al.) reported failure to reproduce claimed nanodiamond concentrations or attributed observed carbon nanostructures to non-impact processes (wildfire chars, misidentified graphene/graphane), which I flag as an unverified recollection rather than confirmed fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "Using the younger-dryas row (interval -10950 corresponds to the YD onset boundary, ~12,900 cal BP), the dominant evidence classes for this hypothesis are geological (0.65) and astronomical (0.7) \u2014 both comparatively high-detectability categories, since impact-ejecta proxies (nanodiamonds, spherules, iridium/platinum anomalies) are inorganic, chemically robust, and preserved in datable sedimentary horizons that have been extensively sampled across North America. Material (0.35) and genetic (0.3) evidence for megafaunal extinction timing are moderately preservable but less decisive. Because the primary evidence type here is geological/astronomical rather than fragile organic, textual, or oral material, a low detectability score would not adequately explain absence or non-replication of the claimed nanodiamond signal \u2014 sediment cores and impact proxies from this period have in fact been widely searched by multiple independent research groups. Therefore I set a moderate-high detectability_adjustment (0.6): evidence could plausibly survive and be found, so persistent failure to independently corroborate the nanodiamond concentrations (as recalled from model-prior, not verified in the provided evidence text) should weigh more toward doubting the hypothesis than toward attributing absence of evidence to poor preservation."
+  }
+}

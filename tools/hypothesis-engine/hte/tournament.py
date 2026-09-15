@@ -94,7 +94,9 @@ def run(
     random draw computed once up front, so the same `seed` over the same
     `hypotheses` always produces the same sequence of pairings, and a
     different `seed` only ever changes how ties are broken, never the
-    ratings' math.
+    ratings' math. Which address of a pair reaches `judge`/`judge_batch`
+    in the A slot is a second, per-pair-per-round `seed`-derived draw
+    (`bkt-hte-blind-roles`), mapped back before the Elo update runs.
 
     `judge_batch` (default `None`, the single-call fallback: every pair
     goes through `judge` one at a time, exactly as before) is an optional
@@ -131,10 +133,18 @@ def run(
         if not pairs:
             continue
 
+        # Position-bias control (`bkt-hte-blind-roles`): a coin flip per
+        # pair, drawn from `rng` (so the sequence stays a function of
+        # `seed` alone), decides which address reaches the judge in the
+        # A slot; `scores` maps the result back onto `addr_a` below.
+        judge_side = [rng.random() < 0.5 for _ in pairs]
+        judge_pairs = [(b, a) if swapped else (a, b) for (a, b), swapped in zip(pairs, judge_side)]
+
         if judge_batch is not None:
-            scores = list(judge_batch([(by_address[a], by_address[b], ctx) for a, b in pairs]))
+            raw_scores = list(judge_batch([(by_address[x], by_address[y], ctx) for x, y in judge_pairs]))
         else:
-            scores = [judge(by_address[a], by_address[b], ctx) for a, b in pairs]
+            raw_scores = [judge(by_address[x], by_address[y], ctx) for x, y in judge_pairs]
+        scores = [1.0 - s if swapped else s for s, swapped in zip(raw_scores, judge_side)]
 
         for (addr_a, addr_b), score_a in zip(pairs, scores):
             elo_a, elo_b = elo[addr_a], elo[addr_b]

@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7b8f3fd4583a7e21e46542cc50b761774a91514691ec98aec8fd57c5379b73bb",
+  "response": {
+    "expected_evidence": [
+      "geological: a discrete platinum-group-element (Pt) concentration spike in Greenland ice core stratigraphy (e.g., GISP2/GRIP/NGRIP) dated to the Younger Dryas onset boundary layer (~12,900 cal BP / -10950 in this interval's convention)",
+      "astronomical/geological: co-occurring impact-ejecta proxies in the same ice layer or nearby sediment cores \u2014 iridium enrichment, magnetic spherules, nanodiamonds, or meltglass consistent with extraterrestrial fallout",
+      "geological: correlative platinum/PGE anomalies in terrestrial sediment or lake-core sequences outside Greenland at the same stratigraphic horizon, used to corroborate a synchronous, geographically widespread fallout event",
+      "geological: independent dating (ice layer counting, tephra/volcanic ash tie-points) placing the anomaly precisely at the meltwater-pulse/YD-onset boundary rather than at an unrelated horizon",
+      "model_prior: published geochemical mass-balance or isotopic modeling arguing the Pt anomaly is extraterrestrial/impact-derived rather than volcanic, cosmic dust background, or diagenetic in origin",
+      "genetic: (weak, indirect) megafaunal or human population bottleneck signals temporally coincident with the anomaly, sometimes cited as a corroborating consequence rather than direct impact evidence"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.75,
+    "rationale": "The interval -10950 places this at the Younger Dryas onset, so the 'younger-dryas' period rows apply (geological 0.65, astronomical 0.7, material 0.35, genetic 0.3, textual/linguistic/oral_tradition near 0). Ice sheets are an unusually favorable preservation medium for exactly this kind of evidence: continuous annual-to-sub-annual layering allows fine-grained geochemical stratigraphy, and platinum/PGE anomalies are chemically stable and not easily destroyed by post-depositional weathering the way organic or skeletal material would be. This is a case where the specific medium (polar ice core) outperforms the generic 'geological' category average, so I adjust upward from the table's 0.65 baseline to ~0.75, blending in the somewhat higher 'astronomical' detectability (0.7) since ejecta-fallout signatures are actively targeted by cosmochemists using mass spectrometry on ice cores. Note (model-prior, unverified against the evidence text provided): I recall from training that a platinum anomaly in the GISP2 Greenland ice core coincident with the Younger Dryas onset was reported in the literature (Petaev et al., ~2013), which is consistent with this hypothesis being empirically testable and plausibly already partly supported \u2014 but I flag this as model-prior rather than confirmed within this task's evidence base. Given the high geological/astronomical detectability and the maturity of ice-core geochemistry as a detection method, absence of such an anomaly (if actually absent) would be reasonably strong evidence against the hypothesis rather than merely a preservation failure; conversely, if present, it is quite plausible it would have survived and been found. Lack of corroborating iridium or spherule evidence in some studies (a real point of scientific controversy in the broader Younger Dryas impact debate) should be weighed against overconfidence, since a PGE anomaly alone is also compatible with non-impact volcanic or terrestrial mechanisms."
+  }
+}

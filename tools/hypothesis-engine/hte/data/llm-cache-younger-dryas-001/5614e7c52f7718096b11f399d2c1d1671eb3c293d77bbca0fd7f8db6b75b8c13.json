@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "32ef798e29f67a3959498d41892316edb50ae00e2bab03fdf3afd7aae82ab45d",
+  "response": {
+    "expected_evidence": [
+      "Ice-core geochemical stratigraphy (Greenland cores: GISP2, GRIP, NGRIP, NEEM) showing a platinum-group-element (Pt, Pd, Ir) anomaly layer precisely dated to ~10,950 BCE, coincident with the accepted Younger Dryas onset chronozone",
+      "Co-occurring volcanic sulfate (SO4^2-) spike and/or cryptotephra/glass-shard layer in the same ice-core interval, since a volcanic-eruption actor should leave a diagnostic acid/sulfate signature distinct from an impact signature",
+      "Geochemical fingerprinting of tephra shards (major/trace element composition) matching a known or candidate volcanic source region/eruption, to substantiate 'volcanic-eruption' as the actor",
+      "PGE isotopic and elemental ratios (e.g., Pt/Ir, Os-187/188, chondritic vs. crustal/volcanic signatures) in the anomaly layer, used to test whether the Pt spike is consistent with volcanic ejecta rather than extraterrestrial/impact-derived material",
+      "Absence or presence of impact-diagnostic markers (nanodiamonds, magnetic/glass microspherules, shocked quartz) in the same layer, needed to adjudicate between the stated 'impact-ejecta-fallout' mechanism label and the 'volcanic-eruption' actor, which are conceptually mismatched",
+      "Published paleoclimate/geochemistry literature (e.g., Petaev et al. 2013, Sun et al. 2020, and related Younger Dryas boundary studies) discussing the origin of the Pt anomaly and whether volcanic sourcing was considered or ruled out",
+      "Correlative astronomical/cosmic dust records (if the mechanism were genuinely impact-related) or absence of any corroborating extraterrestrial component, relevant mainly to disambiguate the actor claim"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The claimed interval (-10950) aligns with the well-studied Younger Dryas onset boundary, so I use the 'younger-dryas' detectability row. Greenland ice sheets are exceptional archives: annually resolved stratigraphy in cores like GISP2/GRIP/NGRIP has already been intensively analyzed for exactly this platinum anomaly (geological detectability 0.65, material 0.35), meaning if a genuine volcanic sulfate/tephra signature coincident with the Pt spike existed, it would very plausibly have already been detected and reported in the existing ice-core literature (model-prior detectability 0.3, reflecting that this is a known, debated topic rather than untested speculation). However, there is a notable internal inconsistency in the hypothesis itself: 'volcanic-eruption' as actor paired with 'impact-ejecta-fallout' as mechanism is not a standard or coherent geochemical pairing \u2014 volcanic eruptions do not produce 'impact ejecta.' This mismatch is not primarily a detectability problem (the ice-core record is highly detectable/preserved and already heavily sampled), so a documented absence of a volcanic sulfate/tephra co-signal in existing high-resolution core data would count as genuine evidence against the hypothesis rather than being explained away by poor preservation. I set the adjustment at 0.5, averaging the relatively strong geological/ice-core detectability (0.65) against weaker material-evidence detectability (0.35) and the low-to-moderate reliability of model-prior literature (0.3) on this specific volcanic-vs-impact attribution question, which remains genuinely contested in the sourced record (model-prior, unverified)."
+  }
+}

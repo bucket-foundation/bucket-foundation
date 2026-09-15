@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "01bbee7329d45705bbde7d5174279b0a9f9bd332bae85938049a77c84d3075cc",
+  "response": {
+    "expected_evidence": [
+      "geological: absence or negligible extent of purported impact-proxy layers (platinum spikes, nanodiamonds, spherules, black-mat horizons) that would need to be geographically widespread and stratigraphically synchronous with -12000 to -11001 to support a demographic-collapse-causing airburst",
+      "astronomical/geophysical: lack of a confirmed impact crater or unambiguous airburst signature of sufficient scale in North America",
+      "material/archaeological: continuity (rather than sharp discontinuity) in Clovis and post-Clovis lithic technocomplexes across the Younger Dryas boundary, and summed radiocarbon-date probability distributions (a standard population proxy) showing no statistically significant demographic collapse near 12900 cal BP",
+      "genetic: ancient DNA and modern Native American genetic diversity/coalescent studies showing no population bottleneck or discontinuity signal at the relevant time depth",
+      "oral_tradition/iconographic: absence of a robust, independently corroborated corpus of indigenous narratives specifically describing a catastrophic sky-fire depopulation event",
+      "model_prior: existing scholarly consensus and meta-analyses critiquing the Younger Dryas Impact Hypothesis, concluding the impact-driven collapse claim is not well supported"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval -12000 to -11001 spans the Upper Paleolithic/Younger Dryas boundary in the Americas, so I averaged the two closest table rows (upper-paleolithic and younger-dryas) rather than using a distant later period. Key evidentiary classes for testing this refuted hypothesis are geological (0.6-0.65) and astronomical (0.7), both moderately-to-highly detectable; this is exactly the kind of evidence (platinum/nanodiamond layers, crater search) that has been extensively investigated, so absence of a confirmed crater or of a sustained population-collapse signal is informative rather than a preservation artifact. Material evidence (radiocarbon date distributions, lithic continuity) is moderately detectable (0.35-0.45) and has been compiled and analyzed by archaeologists. Genetic evidence is the weakest link (0.25-0.3) because ancient DNA sampling density for Terminal Pleistocene North America is very sparse, so a lack of genetic bottleneck data should not be read as strong disconfirmation of continuity claims -- it is a detectability gap rather than an evidentiary one. Oral tradition and iconographic evidence are essentially uninformative here (0.1) given time depth and absence of writing. Because the higher-detectability categories (geological, astronomical, material) bear most directly on testing 'refuted' and have plausibly survived and been searched (this is a well-studied, contested hypothesis in the literature -- flagged here as model-prior, not directly verified from the evidence text supplied), I judge the hypothesis testable with a moderate overall detectability adjustment of about 0.5, weighted toward the well-preserved geological/astronomical/material record over the sparse genetic and near-absent textual/oral records."
+  }
+}

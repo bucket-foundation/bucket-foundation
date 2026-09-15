@@ -102,6 +102,10 @@ class LLMInvocationError(LLMError):
     """The `claude` CLI exited nonzero or reported `is_error` itself."""
 
 
+class LLMTimeoutError(LLMInvocationError):
+    """`claude -p` exceeded its `timeout` (`subprocess.TimeoutExpired`)."""
+
+
 class LLMInvalidResponseError(LLMError):
     """The response was not JSON, or was missing a required schema key,
     on both the first attempt and the one corrective retry."""
@@ -218,19 +222,21 @@ class _RoleStats:
     `hte.roles` rather than aborting the call, but tallied here so
     `hte.runner.run_campaign`'s own `MANIFEST.json` can report how many times
     it happened without re-deriving it from `hte.roles.refusal_log()`
-    alone."""
+    alone. `timeouts` counts every `LLMTimeoutError` this role has hit."""
     calls: int = 0
     cache_hits: int = 0
     rate_limit_pauses: int = 0
     wall_time_s: float = 0.0
     refusals: int = 0
     truncations: int = 0
+    timeouts: int = 0
 
     def to_dict(self) -> dict[str, float | int]:
         return {
             "calls": self.calls, "cache_hits": self.cache_hits,
             "rate_limit_pauses": self.rate_limit_pauses, "wall_time_s": self.wall_time_s,
             "refusals": self.refusals, "truncations": self.truncations,
+            "timeouts": self.timeouts,
         }
 
 
@@ -270,6 +276,12 @@ class _StatsRegistry:
         with self._lock:
             row = self._by_role.setdefault(role, _RoleStats())
             row.truncations += 1
+            row.wall_time_s += wall_time_s
+
+    def record_timeout(self, role: str, *, wall_time_s: float) -> None:
+        with self._lock:
+            row = self._by_role.setdefault(role, _RoleStats())
+            row.timeouts += 1
             row.wall_time_s += wall_time_s
 
     def snapshot(self) -> dict[str, dict[str, float | int]]:
@@ -323,6 +335,11 @@ def resolve_model(role: str) -> str:
 
 def escalation_model() -> str:
     return _model_policy()["escalation"]
+
+
+def resolve_timeout(role: str) -> float:
+    """`model-policy.json`'s own `timeouts[role]`, else `DEFAULT_TIMEOUT_S`."""
+    return _model_policy().get("timeouts", {}).get(role, DEFAULT_TIMEOUT_S)
 
 
 def _cache_key(model: str, prompt: str) -> str:
@@ -400,7 +417,9 @@ def _provenance_index_path(cache_dir: str | Path) -> Path:
     return Path(cache_dir) / "index.jsonl"
 
 
-def _append_provenance_index(cache_dir: str | Path, *, cache_key: str, role: str, provenance: dict[str, Any]) -> None:
+def _append_provenance_index(
+    cache_dir: str | Path, *, cache_key: str, role: str, provenance: dict[str, Any], outcome: str | None = None,
+) -> None:
     """Appends one line to `<cache_dir>/index.jsonl` mapping `cache_key`
     (the same sha256 `_cache_key`/`_cache_path` use for the response file
     itself) to `provenance`'s own source/production/learner ids
@@ -418,6 +437,7 @@ def _append_provenance_index(cache_dir: str | Path, *, cache_key: str, role: str
     never touches `cache_dir`, `replay_only`'s is that it only ever reads
     a committed cache, never writes to it, and `tests/test_purge.py`
     builds its cache/index fixtures through neither path.
+    `outcome`, when given, marks this line as a cached refusal.
     Guarded by a lock: `complete_many` calls this from several `hte.
     parallel.pmap` worker threads at once, and a bare append can
     interleave two writers' lines into one corrupt line without it."""
@@ -431,6 +451,8 @@ def _append_provenance_index(cache_dir: str | Path, *, cache_key: str, role: str
         "production_ids": sorted(set(provenance.get("production_ids") or [])),
         "learner_ids": sorted(set(provenance.get("learner_ids") or [])),
     }
+    if outcome is not None:
+        line["outcome"] = outcome
     path = _provenance_index_path(cache_dir)
     with _INDEX_LOCK:
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -438,18 +460,46 @@ def _append_provenance_index(cache_dir: str | Path, *, cache_key: str, role: str
             f.write(json.dumps(line) + "\n")
 
 
-def _read_cache(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text())["response"]
+def _refusal_outcome(exc: _RefusalLike) -> str:
+    """The `index.jsonl` `outcome` for `exc`."""
+    return f"truncation:{exc.reason}" if isinstance(exc, ModelTruncation) else "refusal"
 
 
-def _write_cache(path: Path, *, model: str, role: str, prompt: str, response: dict[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    payload = {
-        "model": model,
-        "role": role,
-        "prompt_sha256": _prompt_sha256(prompt),
-        "response": response,
+def _refusal_payload(exc: _RefusalLike) -> dict[str, Any]:
+    """The cache-record shape `_read_cached_result` rebuilds `exc` from."""
+    payload: dict[str, Any] = {
+        "kind": "truncation" if isinstance(exc, ModelTruncation) else "refusal",
+        "cost_usd": exc.cost_usd, "envelope": exc.envelope,
     }
+    if isinstance(exc, ModelTruncation):
+        payload["reason"] = exc.reason
+    return payload
+
+
+def _read_cached_result(path: Path, *, role: str, prompt: str) -> dict[str, Any]:
+    """The cached response for `path`, or the same typed refusal/
+    truncation raised again, instead of `LLMCacheMissError` on replay."""
+    payload = json.loads(path.read_text())
+    refusal = payload.get("refusal")
+    if refusal is None:
+        return payload["response"]
+    kwargs = dict(
+        role=role, prompt_sha256=_prompt_sha256(prompt),
+        cost_usd=refusal.get("cost_usd"), envelope=refusal.get("envelope", {}),
+    )
+    if refusal["kind"] == "truncation":
+        raise ModelTruncation(reason=refusal["reason"], **kwargs)
+    raise ModelRefusal(**kwargs)
+
+
+def _write_cache(
+    path: Path, *, model: str, role: str, prompt: str,
+    response: dict[str, Any] | None = None, refusal: dict[str, Any] | None = None,
+) -> None:
+    """Writes `response` or `refusal` (exactly one) for `(model, prompt)`."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload: dict[str, Any] = {"model": model, "role": role, "prompt_sha256": _prompt_sha256(prompt)}
+    payload["refusal" if refusal is not None else "response"] = refusal if refusal is not None else response
     tmp = path.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(payload, indent=2))
     tmp.replace(path)
@@ -551,8 +601,11 @@ def _invoke_cli(prompt: str, model: str, schema: dict[str, Any], timeout: float,
         logger.error("hte.llm: role=%r the `claude` CLI is not on PATH", role)
         raise LLMInvocationError("the `claude` CLI is not on PATH") from exc
     except subprocess.TimeoutExpired as exc:
-        logger.error("hte.llm: role=%r claude -p timed out after %ss", role, timeout)
-        raise LLMInvocationError(f"claude -p timed out after {timeout}s") from exc
+        logger.error(
+            "hte.llm: role=%r claude -p timed out after %ss (prompt length %d chars)",
+            role, timeout, len(prompt),
+        )
+        raise LLMTimeoutError(f"claude -p timed out after {timeout}s") from exc
     _check_rate_limit(proc.stdout, proc.stderr)
 
     envelope: dict[str, Any] | None = None
@@ -616,7 +669,7 @@ def complete(
     model: str | None = None,
     cache_dir: str | Path,
     replay_only: bool = False,
-    timeout: float = DEFAULT_TIMEOUT_S,
+    timeout: float | None = None,
     mode: str | None = None,
     provenance: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -625,12 +678,13 @@ def complete(
 
     `role` picks the default model from `hte/data/model-policy.json` when
     `model` is `None`; passing `model` explicitly (as `hte.roles.extract`
-    does for its opus escalation) overrides that lookup.
+    does for its opus escalation) overrides that lookup. `timeout` left
+    `None` resolves the same way, through `resolve_timeout(role)`.
 
     A cache hit returns instantly, no subprocess call. A cache miss with
     `replay_only=True` raises `LLMCacheMissError` rather than shelling out,
-    for tests and CI, which run only against cache files this package
-    commits at `tests/fixtures/llm-cache/`. A cache miss with
+    for tests, CI, and replays of a recorded run's own tracked cache
+    (`hte/data/llm-cache-*`). A cache miss with
     `replay_only=False` calls `claude -p`; a response that fails to parse
     as JSON or is missing a key `schema["required"]` names gets one
     corrective retry before this function raises
@@ -651,7 +705,8 @@ def complete(
     never absorbs either into a default value, `hte.roles`'s own
     per-role fallback does that at the caller, so every existing direct
     `complete()` call site that has not opted into a default still sees
-    the raise.
+    the raise, now cached under the same key so a replay reproduces it;
+    a timeout raises `LLMTimeoutError` instead, uncached.
 
     `provenance` (`docs/PRIVACY.md`), when given, is a dict of opaque
     source/production/learner id lists (`hte.provenance.collect`'s own
@@ -661,12 +716,11 @@ def complete(
     the prompt or response text. `hte.roles` passes this for every role
     call that carries evidence; `hte.purge` reads the index back to find
     which cached answers trace to a production or learner id. No-op when
-    `provenance` is `None` or empty, when the call raises (a refusal, a
-    truncation, an invalid-JSON exhaustion: there is no cached artifact
-    yet for the index to point at), when `replay_only=True` (this
-    package's own "read committed fixtures, write nothing" contract,
-    `tests/fixtures/llm-cache/`'s own role: a replay against a checked-in
-    cache directory must never leave it dirty), and, `provenance`
+    `provenance` is `None` or empty, when the call raises with no
+    cached artifact for the index to point at (an invalid-JSON
+    exhaustion, a timeout), when `replay_only=True` (this
+    read-only replay contract: a replay against a tracked cache
+    directory must never leave it dirty), and, `provenance`
     included, in fake mode: fake mode's own contract is that `cache_dir`
     is accepted but unused, full stop, so a fake-mode run's `provenance`
     argument is accepted for call-site symmetry with the non-fake path
@@ -691,18 +745,29 @@ def complete(
         return response
 
     resolved_model = model or resolve_model(role)
+    resolved_timeout = timeout if timeout is not None else resolve_timeout(role)
     cache_path = _cache_path(cache_dir, resolved_model, prompt)
     if cache_path.exists():
-        response = _read_cache(cache_path)
-        _STATS.record_call(role, cache_hit=True, wall_time_s=time.monotonic() - start)
-        # `replay_only` is this package's own "read committed fixtures,
-        # write nothing" contract (`tests/fixtures/llm-cache/`'s own
-        # role): every test in this package that replays against it
-        # would otherwise leave that checked-in directory dirty on every
-        # run, an index line appended for a role call the test never
-        # asked to be attributed at all. A caller with a real, mutable
+        # `replay_only` is the read-only replay contract: a replay against
+        # a tracked cache directory must never leave it dirty, an index
+        # line appended for a role call the caller never asked to be
+        # attributed at all. A caller with a real, mutable
         # `cache_dir` (`replay_only=False`) still gets the write on a
         # cache hit, same as any other call.
+        try:
+            response = _read_cached_result(cache_path, role=role, prompt=prompt)
+        except (ModelRefusal, ModelTruncation) as exc:
+            if isinstance(exc, ModelTruncation):
+                _STATS.record_truncation(role, wall_time_s=time.monotonic() - start)
+            else:
+                _STATS.record_refusal(role, wall_time_s=time.monotonic() - start)
+            if provenance and not replay_only:
+                _append_provenance_index(
+                    cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance,
+                    outcome=_refusal_outcome(exc),
+                )
+            raise
+        _STATS.record_call(role, cache_hit=True, wall_time_s=time.monotonic() - start)
         if provenance and not replay_only:
             _append_provenance_index(cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance)
         return response
@@ -717,19 +782,27 @@ def complete(
     for attempt in range(2):
         call_prompt = prompt if attempt == 0 else _retry_prompt(prompt, schema, last_error)
         try:
-            envelope = _invoke_cli(call_prompt, resolved_model, schema, timeout, role=role)
+            envelope = _invoke_cli(call_prompt, resolved_model, schema, resolved_timeout, role=role)
         except RateLimit:
             _STATS.record_rate_limit_pause(role)
             raise
-        except ModelRefusal:
-            # No corrective retry: the retry prompt below is for invalid
-            # JSON shape while the answer itself was given, and re-asking with the
-            # same content would only refuse again. `hte.roles`'s own
-            # per-role default absorbs this at the caller.
-            _STATS.record_refusal(role, wall_time_s=time.monotonic() - start)
+        except LLMTimeoutError:
+            _STATS.record_timeout(role, wall_time_s=time.monotonic() - start)
             raise
-        except ModelTruncation:
-            _STATS.record_truncation(role, wall_time_s=time.monotonic() - start)
+        except (ModelRefusal, ModelTruncation) as exc:
+            # No corrective retry: re-asking with the same content would
+            # only refuse again. Cached under the same key a successful
+            # call would use, so a later replay raises it again too.
+            if isinstance(exc, ModelTruncation):
+                _STATS.record_truncation(role, wall_time_s=time.monotonic() - start)
+            else:
+                _STATS.record_refusal(role, wall_time_s=time.monotonic() - start)
+            _write_cache(cache_path, model=resolved_model, role=role, prompt=prompt, refusal=_refusal_payload(exc))
+            if provenance:
+                _append_provenance_index(
+                    cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance,
+                    outcome=_refusal_outcome(exc),
+                )
             raise
         try:
             response = _parse_response(envelope, required)
@@ -762,7 +835,7 @@ def complete_many(
     model: str | None = None,
     cache_dir: str | Path,
     replay_only: bool = False,
-    timeout: float = DEFAULT_TIMEOUT_S,
+    timeout: float | None = None,
     mode: str | None = None,
     workers: int | None = None,
     default: dict[str, Any] | None = None,
@@ -824,11 +897,15 @@ def complete_many(
             resolved_model = model or resolve_model(role)
             cache_path = _cache_path(cache_dir, resolved_model, prompt)
             if cache_path.exists():
-                start = time.monotonic()
-                results[i] = _read_cache(cache_path)
-                _STATS.record_call(role, cache_hit=True, wall_time_s=time.monotonic() - start)
-                if provenance and not replay_only:  # see complete()'s own comment on this branch
-                    _append_provenance_index(cache_dir, cache_key=cache_path.stem, role=role, provenance=provenance)
+                try:
+                    results[i] = complete(
+                        prompt, role=role, schema=schema, model=model, cache_dir=cache_dir,
+                        replay_only=replay_only, timeout=timeout, mode=mode, provenance=provenance,
+                    )
+                except (ModelRefusal, ModelTruncation):
+                    if default is None:  # same rule as a `pending` prompt below
+                        raise
+                    results[i] = default
                 continue
         pending.append(i)
 

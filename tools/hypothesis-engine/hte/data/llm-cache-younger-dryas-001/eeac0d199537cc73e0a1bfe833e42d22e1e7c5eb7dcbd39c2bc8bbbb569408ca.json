@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "75b3cc358415f8bb388bb6e767803ee7893ba23a13c4aa57c092a5dd20fa936a",
+  "response": {
+    "expected_evidence": [
+      "Geological: multi-site sediment core and stratigraphic sampling across Europe at the Younger Dryas boundary layer (~12.8 ka BP), tested for nanodiamond polymorphs (lonsdaleite, cubic diamond), magnetic spherules, and platinum/iridium anomalies",
+      "Material: archived sediment and black-mat horizon samples from originally cited YDIH sites, re-examined by independent laboratories",
+      "Model_prior/literature: peer-reviewed replication and critique studies (e.g. work by Daulton, Pigati, van Hoesel, Surovell and colleagues) reporting failure to reproduce nanodiamond concentrations or identifying misidentification of graphitized carbon as diamond",
+      "Astronomical/geochemical: absence of corroborating extraterrestrial markers such as a confirmed impact crater or matching cosmic-spherule chemistry in the same stratigraphic window",
+      "Consensus or meta-analytic statements from the Quaternary science community treating the nanodiamond claim as unreplicated or refuted"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.78,
+    "rationale": "This hypothesis concerns a modern scientific refutation of a claim about the Younger Dryas boundary (~10,850 interval), so the decisive evidence is largely a contemporary paper trail: preserved sediment cores, published geochemical datasets, and peer-reviewed replication studies, rather than an ancient artifact subject to millennia of taphonomic loss. The period-based detectability table (younger-dryas: geological 0.65, material 0.35, astronomical 0.7, model_prior 0.3) is calibrated for survival of ancient traces and understates detectability here, since the relevant evidence is a well-archived modern scientific record. Independent labs did publish failed-replication and methodological-critique papers on nanodiamond claims tied to the Younger Dryas boundary (model-prior, drawn from training memory rather than the provided evidence text, so flagged as unverified), making this type of refutation evidence genuinely recoverable in the literature. I therefore adjust detectability upward from the raw table average (~0.55) to ~0.78, reflecting that this is fundamentally a documentation/replication question rather than an archaeological preservation problem. Absence of nanodiamond concentrations in re-tested cores is itself the expected positive evidence for 'refuted'; a low detectability score should not be invoked here since the scientific record is not silent."
+  }
+}
