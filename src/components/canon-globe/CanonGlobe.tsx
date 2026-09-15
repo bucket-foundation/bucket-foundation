@@ -77,6 +77,15 @@ const INTRO_SPIN_RAD = 1.1;
 const INTRO_SHELL_SCALE = 0.65;
 const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
+// Decorative render: half-resolution buffer, blurred in two separable
+// passes inside WebGL. A CSS blur on the canvas wrapper hangs the
+// founder's Phoenix iGPU; these passes are tiny fullscreen draws.
+const DECORATIVE_DPR = 0.5;
+// Each pass is a 9-tap kernel stepped this many buffer pixels, so one
+// pair at 0.55 spreads about 2.2 buffer pixels, 4.4 CSS pixels at half dpr.
+const DECORATIVE_BLUR_PX = 0.55;
+const DECORATIVE_BLUR_PASSES = 1;
+
 /**
  * Eases the decorative globe's spin toward scrollY * DECORATIVE_RAD_PER_PX
  * and the particle shell's scale toward 1 + scroll speed. The canvas runs
