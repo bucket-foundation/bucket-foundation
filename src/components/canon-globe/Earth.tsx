@@ -1,5 +1,5 @@
 "use client";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { loadLandmask } from "./landmaskFromImage";
@@ -56,6 +56,10 @@ export function Earth({
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const [count, setCount] = useState(0);
+  // The canvas runs frameloop="demand": a mutation made outside React's
+  // render (this effect resolves a promise) draws nothing until something
+  // asks for a frame. Ask for one once the dots are placed.
+  const invalidate = useThree((state) => state.invalidate);
 
   // Build a stable buffer of dot transforms once the landmask is loaded.
   const transforms = useMemo(
@@ -123,13 +127,14 @@ export function Earth({
       mesh.instanceColor.needsUpdate = true;
       mesh.count = kept;
       setCount(kept);
+      invalidate();
     }).catch((err) => {
       // Non-fatal: globe will render as the faint sphere alone.
       console.warn("[CanonGlobe] landmask load failed:", err);
     });
 
     return () => { cancelled = true; };
-  }, [landmaskUrl, sampleCount, transforms]);
+  }, [landmaskUrl, sampleCount, transforms, invalidate]);
 
   useFrame((_state, delta) => {
     if (!groupRef.current) return;
