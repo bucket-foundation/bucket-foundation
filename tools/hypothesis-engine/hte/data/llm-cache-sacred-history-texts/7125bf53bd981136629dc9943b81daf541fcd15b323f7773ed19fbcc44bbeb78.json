@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "506bb5d195678874e3834db3c449651a7a04b51cb643b2c125a29cf4f23b3610",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Moses besought the LORD his God, and said",
+        "claim": "Moses appealed to God seeking His favor",
+        "actor": "Moses",
+        "action": "besought",
+        "object": "the LORD his God",
+        "place": "",
+        "mechanism": "said",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "which thou hast brought forth out of the land of Egypt with great power, and with a mighty hand",
+        "claim": "God brought the Israelite people forth out of Egypt using great power and a mighty hand",
+        "actor": "thou",
+        "action": "brought forth",
+        "object": "thy people",
+        "place": "the land of Egypt",
+        "mechanism": "great power, with a mighty hand",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "For mischief did he bring them out, to slay them in the mountains, and to consume them from the face of the earth",
+        "claim": "The Egyptians might claim God maliciously brought the Israelites out in order to slay them",
+        "actor": "he",
+        "action": "bring them out, slay them, consume them",
+        "object": "them",
+        "place": "the mountains",
+        "mechanism": "",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "thy wrath wax hot against thy people",
+        "claim": "God's wrath was kindled against the Israelite people",
+        "actor": "thy wrath",
+        "action": "wax hot",
+        "object": "thy people",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

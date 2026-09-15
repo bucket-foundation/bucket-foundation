@@ -1,0 +1,53 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cb23a490bc5681cd7bce5cd37907abf1b93dcc5dffe847aed81e7a42b7d4b7d7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses",
+        "actor": "The LORD",
+        "action": "spake",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "When thou takest the sum of the children of Israel after their number,",
+        "claim": "Moses shall take a census of the children of Israel",
+        "actor": "thou (Moses)",
+        "action": "takest",
+        "object": "the sum of the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "then shall they give every man a ransom for his soul unto the LORD, when thou numberest them;",
+        "claim": "Each of the children of Israel shall give a ransom for his soul to the LORD during a census",
+        "actor": "they (children of Israel)",
+        "action": "give",
+        "object": "ransom for his soul",
+        "place": "unto the LORD",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "that there be no plague among them, when thou numberest them.",
+        "claim": "The ransom payment prevents plague among the children of Israel during numbering",
+        "object": "plague",
+        "place": "among them",
+        "mechanism": "ransom payment during numbering",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

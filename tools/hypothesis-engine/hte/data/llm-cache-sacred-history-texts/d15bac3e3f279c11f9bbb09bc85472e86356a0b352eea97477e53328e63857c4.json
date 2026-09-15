@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "52add7859653bb8ef8717d3d239dacb416b22ecc8bec76b4cd50987ff7b6d938",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "when Moses held up his hand, that Israel prevailed",
+        "claim": "When Moses held up his hand, Israel prevailed in the battle against Amalek",
+        "actor": "Moses",
+        "action": "held up his hand",
+        "object": "his hand",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "when he let down his hand, Amalek prevailed",
+        "claim": "When Moses let down his hand, Amalek prevailed",
+        "actor": "he (Moses)",
+        "action": "let down his hand",
+        "object": "his hand",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

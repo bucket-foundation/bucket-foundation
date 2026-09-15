@@ -1,0 +1,60 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "dab94af9e9f43311e5789378a04e63f7611f680a6ad6a787ebbb222380b0b4a7",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "as soon as he came nigh unto the camp, that he saw the calf, and the dancing",
+        "claim": "When Moses came near the camp, he saw the calf and the dancing.",
+        "actor": "Moses",
+        "action": "came near the camp and saw",
+        "object": "the calf and the dancing",
+        "place": "the camp",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "Moses\u2019 anger waxed hot",
+        "claim": "Moses became very angry when he saw the calf and the dancing.",
+        "actor": "Moses",
+        "action": "became angry",
+        "object": "the calf and the dancing",
+        "place": "the camp",
+        "stance": "positive",
+        "mechanism": "The text says his anger followed right after he saw the calf and the dancing ('as soon as... he saw'), so seeing them is what set it off.",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "he cast the tables out of his hands",
+        "claim": "Moses threw the tables out of his hands.",
+        "actor": "Moses",
+        "action": "cast out of his hands",
+        "object": "the tables",
+        "place": "near the camp",
+        "stance": "positive",
+        "mechanism": "The throwing is joined to his anger by 'and' in the text, which suggests the anger led to it.",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "and brake them beneath the mount",
+        "claim": "Moses broke the tables at the foot of the mount.",
+        "actor": "Moses",
+        "action": "brake (broke)",
+        "object": "the tables",
+        "place": "beneath the mount",
+        "stance": "positive",
+        "mechanism": "The tables broke as part of the same angry throw.",
+        "year": null
+      }
+    ]
+  }
+}

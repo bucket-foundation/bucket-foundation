@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "5f1accdb16b6421f832008d2f396dfd6ae03f862fa43020648d8158052babfac",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-attribution",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The text says the instructions that follow were spoken by the LORD to Moses. This records what the text says about where the law came from. It is not a verified historical event.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "divine speech passed on to Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "legal-provision",
+        "tier": "primary-text",
+        "quote": "Speak unto the children of Israel, and say unto them, When a man shall make a singular vow, the persons shall be for the LORD by thy estimation.",
+        "claim": "Moses is told to give the Israelites a rule: when a man makes a special vow, the people covered by it belong to the LORD at a value set by an assessment.",
+        "actor": "Moses (instructed to speak to the children of Israel)",
+        "action": "make a singular vow",
+        "object": "persons dedicated to the LORD",
+        "place": "",
+        "mechanism": "people dedicated by a vow are valued by an assessment (\"by thy estimation\")",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

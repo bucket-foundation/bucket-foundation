@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "838ecade754a439665acb768e5206daae333e8e306c99921fb9b50775fb145e2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses spake unto all the congregation of the children of Israel, saying, This is the thing which the LORD commanded, saying,",
+        "claim": "Moses spoke to the congregation of Israel and conveyed that the LORD commanded an offering",
+        "actor": "Moses",
+        "action": "spake",
+        "object": "congregation of the children of Israel",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Take ye from among you an offering unto the LORD: whosoever is of a willing heart, let him bring it, an offering of the LORD; gold, and silver, and brass, 35:6 And blue, and purple, and scarlet, and fine linen, and goats' hair, 35:7 And rams' skins dyed red, and badgers' skins, and shittim wood, 35:8 And oil for the light, and spices for anointing oil, and for the sweet incense, 35:9 And onyx stones, and stones to be set for the ephod, and for the breastplate.",
+        "claim": "An offering should be brought from the willing-hearted consisting of metals, textiles, animal skins, wood, oils, spices, and stones",
+        "actor": "whosoever is of a willing heart",
+        "action": "bring",
+        "object": "offering",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "69cfa5c5c0bf301355d3f4c2286147e9fc3664518c71dcf6b7c5759df432eff3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he brought Aaron's sons",
+        "claim": "Aaron's sons were brought",
+        "actor": "he",
+        "action": "brought",
+        "object": "Aaron's sons",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses put of the blood upon the tip of their right ear, and upon the thumbs of their right hands, and upon the great toes of their right feet",
+        "claim": "Moses applied blood to the tips of right ears, thumbs of right hands, and great toes of right feet",
+        "actor": "Moses",
+        "action": "put",
+        "object": "blood",
+        "place": "right ear, right hands, right feet",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses sprinkled the blood upon the altar round about",
+        "claim": "Moses sprinkled blood on the altar",
+        "actor": "Moses",
+        "action": "sprinkled",
+        "object": "blood",
+        "place": "altar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

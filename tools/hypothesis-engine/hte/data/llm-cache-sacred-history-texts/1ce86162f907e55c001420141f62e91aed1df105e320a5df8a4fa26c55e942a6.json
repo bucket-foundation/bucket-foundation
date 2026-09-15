@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9a53473dbff187aa4376da892b25b504c3d7ed51b1a0b142117adcaace706448",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "then shall they give every man a ransom for his soul unto the LORD, when thou numberest them; that there be no plague among them, when thou numberest them",
+        "claim": "Census of Israelites requires individual ransom payment to prevent plague during numbering",
+        "actor": "children of Israel",
+        "action": "numbering/census",
+        "object": "souls (via ransom payment)",
+        "place": "",
+        "mechanism": "ransom payment prevents plague during census",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

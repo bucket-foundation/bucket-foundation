@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b51affb9dd0ed268d0dab283a2b3783a33ec3074a5ccf704096179d23c934ea3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he put the altar of burnt offering by the door of the tabernacle of the tent of the congregation, and offered upon it the burnt offering and the meat offering; as the LORD commanded Moses.",
+        "claim": "An altar of burnt offering was placed by the tabernacle entrance and offerings were made upon it.",
+        "actor": "he",
+        "action": "put, offered",
+        "object": "altar of burnt offering, burnt offering and meat offering",
+        "place": "by the door of the tabernacle of the tent of the congregation",
+        "mechanism": "divine command",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

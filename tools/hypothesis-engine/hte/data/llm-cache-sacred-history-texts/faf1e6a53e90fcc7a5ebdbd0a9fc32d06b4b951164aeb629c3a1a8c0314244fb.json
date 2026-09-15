@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e60fae13250bcfdd90ad97297c6d043d46b27cf2191579d290f87861353e3c25",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they judged the people at all seasons: the hard causes they brought unto Moses, but every small matter they judged themselves.",
+        "claim": "Judges judged the people at all seasons, handling small matters themselves",
+        "actor": "they",
+        "action": "judged",
+        "object": "the people",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the hard causes they brought unto Moses",
+        "claim": "The judges brought hard cases to Moses",
+        "actor": "they",
+        "action": "brought",
+        "object": "the hard causes",
+        "place": "unto Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

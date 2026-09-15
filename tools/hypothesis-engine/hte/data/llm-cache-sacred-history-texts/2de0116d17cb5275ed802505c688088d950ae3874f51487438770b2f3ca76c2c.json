@@ -1,0 +1,55 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "eb6967fdb13dbed14cba299c4c8dc262d0f9ea5d5391e16355ef8a089c45261d",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "when the people saw that Moses delayed to come down out of the mount",
+        "claim": "The people saw that Moses was taking a long time to come down from the mountain.",
+        "actor": "Moses",
+        "action": "delayed to come down",
+        "object": "the mount",
+        "place": "the mount",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "the people gathered themselves together unto Aaron",
+        "claim": "Because Moses was delayed, the people gathered around Aaron.",
+        "actor": "the people",
+        "action": "gathered themselves together",
+        "object": "Aaron",
+        "place": "the mount",
+        "mechanism": "Moses' delay led the people to turn to Aaron",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "said unto him, Up, make us gods, which shall go before us",
+        "claim": "The people asked Aaron to make them gods to go before them.",
+        "actor": "the people",
+        "action": "demanded that Aaron make gods",
+        "object": "gods, which shall go before us",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "for as for this Moses, the man that brought us up out of the land of Egypt, we wot not what is become of him",
+        "claim": "The reason the people gave was that they did not know what had happened to Moses, the man who brought them out of Egypt.",
+        "actor": "the people",
+        "action": "stated uncertainty about Moses' fate",
+        "object": "Moses",
+        "place": "the land of Egypt",
+        "mechanism": "Not knowing what happened to their leader was the reason they gave for asking for gods",
+        "year": null
+      }
+    ]
+  }
+}

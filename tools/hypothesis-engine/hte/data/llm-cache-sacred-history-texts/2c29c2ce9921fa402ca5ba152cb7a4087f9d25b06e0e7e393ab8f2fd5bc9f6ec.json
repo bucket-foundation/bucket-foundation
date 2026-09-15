@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "04651e4ecdfa946443d9da520258346db7a7d58502d737001c28d4561a94b482",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And his sons did unto him according as he commanded them",
+        "claim": "The sons of the dead patriarch followed his burial instructions. The text only says 'him'. Identifying him as Jacob/Israel comes from the surrounding chapter of Genesis 50 and is an unverified model-prior, not something in this excerpt.",
+        "actor": "his sons",
+        "action": "did according as he commanded",
+        "object": "burial instructions of their father",
+        "place": "",
+        "mechanism": "a dying father's command obeyed by his sons",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "For his sons carried him into the land of Canaan, and buried him in the cave of the field of Machpelah",
+        "claim": "The sons carried their father's body into Canaan and buried him in the cave of the field of Machpelah.",
+        "actor": "his sons",
+        "action": "carried and buried",
+        "object": "their father's body",
+        "place": "cave of the field of Machpelah, land of Canaan, before Mamre",
+        "mechanism": "moving the body to be buried in the family's burial place",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "which Abraham bought with the field for a possession of a buryingplace of Ephron the Hittite, before Mamre",
+        "claim": "Abraham had earlier bought the field and cave of Machpelah, near Mamre, from Ephron the Hittite to own as a burial place.",
+        "actor": "Abraham",
+        "action": "bought",
+        "object": "the field and cave of Machpelah as a buryingplace",
+        "place": "Machpelah, before Mamre",
+        "mechanism": "buying land to own as a family burial place",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

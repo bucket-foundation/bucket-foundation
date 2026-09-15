@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5dfd294ed4da8e44df681be327630a83636c822b4cbc463e8b6cc442e1770bd3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And the LORD said unto Moses",
+        "claim": "The LORD said to Moses",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Speak unto the priests the sons of Aaron, and say unto them",
+        "claim": "Moses was instructed to speak unto the priests of Aaron",
+        "actor": "",
+        "action": "Speak",
+        "object": "the priests the sons of Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "There shall none be defiled for the dead among his people",
+        "claim": "The priests shall not be defiled for the dead among his people",
+        "actor": "",
+        "action": "be defiled",
+        "object": "",
+        "place": "among his people",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "But for his kin, that is near unto him, that is, for his mother, and for his father, and for his son, and for his daughter, and for his brother.",
+        "claim": "Priests may be defiled for their close relatives",
+        "actor": "",
+        "action": "be defiled",
+        "object": "his kin",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

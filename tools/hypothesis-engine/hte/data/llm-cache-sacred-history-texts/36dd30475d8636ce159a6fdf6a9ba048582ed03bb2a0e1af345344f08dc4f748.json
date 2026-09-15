@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "83f7558622f6dae46cf15304db5ad0d01c49194d77f92f4dfcc481a090c5678e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD spake unto Moses and Aaron, saying",
+        "claim": "The LORD commanded Moses and Aaron regarding leprosy identification",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses and Aaron",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "When a man shall have in the skin of his flesh a rising, a scab, or bright spot, and it be in the skin of his flesh like the plague of leprosy; then he shall be brought unto Aaron the priest, or unto one of his sons the priests",
+        "claim": "A man with skin symptoms resembling leprosy shall be brought to Aaron the priest or one of his sons",
+        "actor": "a man",
+        "action": "shall be brought",
+        "object": "Aaron the priest, or one of his sons the priests",
+        "place": "unto Aaron the priest",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the priest shall look on the plague in the skin of the flesh: and when the hair in the plague is turned white, and the plague in sight be deeper than the skin of his flesh, it is a plague of leprosy: and the priest shall look on him, and pronounce him unclean",
+        "claim": "The priest diagnoses leprosy when white hair appears in the lesion and it extends deeper than the skin, then pronounces the person unclean",
+        "actor": "the priest",
+        "action": "shall look, pronounce",
+        "object": "the plague, him",
+        "mechanism": "white hair in plague; plague deeper than skin",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

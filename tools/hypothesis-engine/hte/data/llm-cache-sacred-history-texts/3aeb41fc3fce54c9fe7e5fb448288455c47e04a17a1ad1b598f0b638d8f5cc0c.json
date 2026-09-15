@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "1c689dcec0e74a879cfa088cbd67e278ad5cbd4641ab726302585eff01013646",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "primary",
+        "quote": "And Moses said unto the LORD, The people cannot come up to mount Sinai: for thou chargedst us, saying, Set bounds about the mount, and sanctify it.",
+        "claim": "The text has Moses tell the LORD that the people cannot come up Mount Sinai, because the LORD had already ordered that limits be set around the mountain and that it be made holy. The verse number 19:23 is in the document. Naming it as Exodus 19:23 (KJV) comes from model-prior and is not checked against the document.",
+        "actor": "Moses",
+        "action": "said unto the LORD that the people cannot come up",
+        "object": "mount Sinai; bounds set about the mount",
+        "mechanism": "an earlier divine order to set bounds about the mount and sanctify it keeps the people off the mountain",
+        "place": "Mount Sinai",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "451732a858eeaa3063b5c3ba185a557dd986db9ca7c2f36dd469448c6279f0ce",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses and Aaron said unto all the children of Israel, At even, then ye shall know that the LORD hath brought you out from the land of Egypt:",
+        "claim": "The text says Moses and Aaron told all the children of Israel that by evening they would know the LORD had brought them out of Egypt.",
+        "actor": "Moses and Aaron",
+        "action": "said",
+        "object": "all the children of Israel",
+        "place": "Egypt",
+        "mechanism": "divine deliverance (the text's own framing)",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And in the morning, then ye shall see the glory of the LORD;",
+        "claim": "The text says the Israelites were told they would see the glory of the LORD in the morning.",
+        "actor": "Moses and Aaron",
+        "action": "promised",
+        "object": "the glory of the LORD",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "This shall be, when the LORD shall give you in the evening flesh to eat, and in the morning bread to the full;",
+        "claim": "The text says Moses announced that the LORD would give the people meat in the evening and plenty of bread in the morning.",
+        "actor": "Moses",
+        "action": "announced provision",
+        "object": "flesh in the evening and bread in the morning",
+        "mechanism": "divine provision of food (the text's own framing)",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "your murmurings are not against us, but against the LORD.",
+        "claim": "The text says Moses told the people that their complaints were really against the LORD, not against Moses and Aaron.",
+        "actor": "Moses",
+        "action": "redirected complaint",
+        "object": "the murmurings of the children of Israel",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "1979ea2a9992fa1fc6fc55fb7c232e8da728bc0fc3621cabe38ea4f4996b80a2",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the sons of Aaron brought the blood unto him",
+        "claim": "The sons of Aaron brought the blood of the sin offering to the officiant. The text says only 'him'; that this means Aaron comes from the surrounding chapter (Leviticus 9), which is an unverified model-prior reading and is not in the excerpt.",
+        "actor": "sons of Aaron",
+        "action": "brought",
+        "object": "the blood (of the sin offering)",
+        "place": "the altar",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "ritual procedure: passing the blood to the officiant"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and he dipped his finger in the blood, and put it upon the horns of the altar, and poured out the blood at the bottom of the altar",
+        "claim": "The officiant dipped his finger in the blood, put it on the horns of the altar, and poured the rest out at the bottom of the altar.",
+        "actor": "he (the officiant; Aaron by model-prior inference)",
+        "action": "dipped finger in, applied to horns, poured out",
+        "object": "the blood",
+        "place": "horns and bottom of the altar",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "ritual application of blood to the altar"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "But the fat, and the kidneys, and the caul above the liver of the sin offering, he burnt upon the altar",
+        "claim": "The officiant burned the fat, the kidneys and the caul above the liver of the sin offering on the altar.",
+        "actor": "he (the officiant; Aaron by model-prior inference)",
+        "action": "burnt",
+        "object": "the fat, kidneys, and caul above the liver of the sin offering",
+        "place": "upon the altar",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "burning set-apart parts of the sacrifice"
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The text says this procedure followed a command the LORD gave to Moses.",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "place": "",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "divine command given as the authority for the ritual"
+      }
+    ]
+  }
+}

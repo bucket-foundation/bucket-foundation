@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ddce2ec2a98ee383f80ad3184e572578f95cef56fe933055af5b9497a503f278",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Take also the sum of the sons of Gershon, throughout the houses of their fathers, by their families; From thirty years old and upward until fifty years old shalt thou number them; all that enter in to perform the service, to do the work in the tabernacle of the congregation.",
+        "claim": "Moses was commanded to number the sons of Gershon aged thirty to fifty years old who perform service in the tabernacle, organized by family",
+        "actor": "Moses",
+        "action": "number",
+        "object": "the sons of Gershon",
+        "place": "throughout the houses of their fathers; in the tabernacle of the congregation",
+        "mechanism": "by their families; all that enter to perform service",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

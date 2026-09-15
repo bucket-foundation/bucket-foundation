@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "25c9203c114b4eaa61fe2e73e00520d49c48a1f0d7244756c4ffcbb7dcb299d4",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "And he said, Cast it on the ground.",
+        "claim": "The text says an unnamed speaker ('he') told the person he was speaking to to throw 'it' on the ground.",
+        "actor": "he (unnamed speaker)",
+        "action": "commanded to cast it on the ground",
+        "object": "it (unnamed object)",
+        "mechanism": "spoken command",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "And he cast it on the ground, and it became a serpent",
+        "claim": "The text says the object was thrown on the ground and turned into a serpent. This is what the passage reports, not a checked historical event.",
+        "actor": "he (the one addressed)",
+        "action": "cast it on the ground; it became a serpent",
+        "object": "it (unnamed object)",
+        "mechanism": "narrated transformation after being thrown to the ground",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "and Moses fled from before it.",
+        "claim": "The text says Moses ran away from the serpent. Model-prior (not confirmed): this verse is Exodus 4:3 and the object is Moses' rod or staff. The document itself does not name the object or the book.",
+        "actor": "Moses",
+        "action": "fled",
+        "object": "the serpent",
+        "mechanism": "reaction to the serpent",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

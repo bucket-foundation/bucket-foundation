@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "099096d6dd5bcb7cd27c27d319fff7034fd45fc0812a0adae3c2fc9e756bb599",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "So Abraham prayed unto God: and God healed Abimelech, and his wife, and his maidservants; and they bare children.",
+        "claim": "The text (Genesis 20:17) says that after Abraham prayed to God, God healed Abimelech, his wife and his maidservants, and they then had children.",
+        "actor": "Abraham",
+        "action": "prayed unto God (intercession) leading to healing",
+        "object": "Abimelech, his wife, and his maidservants",
+        "mechanism": "intercessory prayer followed by divine healing, restoring the ability to bear children",
+        "place": "Gerar (from surrounding chapter context, not stated in this verse; model-prior)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

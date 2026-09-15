@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "17496a37a1a4cdff355847e494d847e0764e950685cda8515808149dc19698e2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "How long refuse ye to keep my commandments and my laws?",
+        "claim": "The people refuse to keep the LORD's commandments and laws",
+        "actor": "ye",
+        "action": "refuse",
+        "object": "commandments and laws",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD hath given you the sabbath",
+        "claim": "The LORD has given the people the sabbath",
+        "actor": "the LORD",
+        "action": "given",
+        "object": "sabbath",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he giveth you on the sixth day the bread of two days",
+        "claim": "On the sixth day, the LORD provides bread sufficient for two days",
+        "actor": "he",
+        "action": "giveth",
+        "object": "bread of two days",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "let no man go out of his place on the seventh day",
+        "claim": "On the seventh day, no one should leave their place",
+        "actor": "no man",
+        "action": "go out",
+        "object": "",
+        "place": "his place",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

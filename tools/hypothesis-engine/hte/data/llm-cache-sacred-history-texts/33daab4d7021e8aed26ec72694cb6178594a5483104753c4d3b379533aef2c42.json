@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7f065d9ce55ae5ed93c4f44b30212909b1b41e0b2cf0d3cfc5d4e27daede9789",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he took all the fat that was upon the inwards, and the caul above the liver, and the two kidneys, and their fat",
+        "claim": "He took the fat and organs from the sacrifice",
+        "actor": "he",
+        "action": "took",
+        "object": "fat, caul, kidneys",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and Moses burned it upon the altar",
+        "claim": "Moses burned the organs on the altar",
+        "actor": "Moses",
+        "action": "burned",
+        "object": "it",
+        "place": "altar",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

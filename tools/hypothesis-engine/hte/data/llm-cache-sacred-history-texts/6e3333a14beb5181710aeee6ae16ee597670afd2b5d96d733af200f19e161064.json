@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1ce4164aead8f40a2f76a08de0f7630e482d794694bf3579ff6ed422d31f7675",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the shepherds came and drove them away",
+        "claim": "The shepherds drove away the women",
+        "actor": "the shepherds",
+        "action": "drove them away",
+        "object": "them",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "but Moses stood up and helped them",
+        "claim": "Moses helped the women",
+        "actor": "Moses",
+        "action": "helped them",
+        "object": "them",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and watered their flock",
+        "claim": "The flock was watered",
+        "actor": "",
+        "action": "watered",
+        "object": "their flock",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

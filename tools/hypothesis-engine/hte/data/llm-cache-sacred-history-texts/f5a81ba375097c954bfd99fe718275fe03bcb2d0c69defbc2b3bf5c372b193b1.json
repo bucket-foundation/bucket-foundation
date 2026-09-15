@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3224546d83df965bd77c40dd94d2bc306f1fb538d31e61ab63bdb7f5a1df75b7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he put forth his hand, and caught it, and it became a rod in his hand",
+        "claim": "A serpent was caught and transformed into a rod in someone's hand",
+        "actor": "he",
+        "action": "caught it, and it became a rod",
+        "object": "it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "That they may believe that the LORD God of their fathers, the God of Abraham, the God of Isaac, and the God of Jacob, hath appeared unto thee",
+        "claim": "God manifested to Moses in order that the people would believe in God's identity",
+        "actor": "the LORD God of their fathers, the God of Abraham, the God of Isaac, and the God of Jacob",
+        "action": "hath appeared",
+        "object": "thee",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

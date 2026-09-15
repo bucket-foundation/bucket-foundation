@@ -1,0 +1,45 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "f91d20265b1001d2e8c8624dded783ee9dc2bd50ae6f2b698e773376da562d06",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "And Moses said before the LORD, Behold, I am of uncircumcised lips, and how shall Pharaoh hearken unto me?",
+        "claim": "Moses objects to the LORD that he speaks poorly ('of uncircumcised lips') and asks how Pharaoh will listen to him.",
+        "actor": "Moses",
+        "action": "objects / expresses doubt",
+        "object": "his ability to persuade Pharaoh",
+        "mechanism": "a speech impediment or lack of eloquence that he believes will stop Pharaoh from listening",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "See, I have made thee a god to Pharaoh",
+        "claim": "The LORD tells Moses that He has made him 'a god to Pharaoh', meaning Moses will hold authority over Pharaoh.",
+        "actor": "the LORD",
+        "action": "appoints",
+        "object": "Moses",
+        "mechanism": "being given godlike standing makes up for Moses's weak speech",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "and Aaron thy brother shall be thy prophet.",
+        "claim": "The LORD appoints Aaron, Moses's brother, to be Moses's prophet (his spokesman) before Pharaoh.",
+        "actor": "the LORD",
+        "action": "appoints",
+        "object": "Aaron",
+        "mechanism": "Aaron speaks for Moses, which answers Moses's objection about his 'uncircumcised lips'",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

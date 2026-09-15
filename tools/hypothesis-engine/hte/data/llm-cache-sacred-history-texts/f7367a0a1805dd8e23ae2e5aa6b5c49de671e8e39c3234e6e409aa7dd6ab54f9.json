@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b5a78fab43b0463a097ac82d136c325636a17418f9f1090e775db47ad420d2f3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And it came to pass on the day when the LORD spake unto Moses in the land of Egypt",
+        "claim": "The LORD spoke to Moses while in the land of Egypt",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "That the LORD spake unto Moses, saying, I am the LORD: speak thou unto Pharaoh king of Egypt all that I say unto thee.",
+        "claim": "The LORD commanded Moses to relay all the LORD's words to Pharaoh, king of Egypt",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "Egypt",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

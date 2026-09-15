@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f42026e2745ddba0a8bf9c60975737a136b25274ce797a187d201497043de08d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses spake unto all the congregation of the children of Israel, saying, This is the thing which the LORD commanded",
+        "claim": "Moses spoke to the congregation of Israel, communicating the LORD's command",
+        "actor": "Moses",
+        "action": "spake",
+        "object": "congregation of the children of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "This is the thing which the LORD commanded, saying, Take ye from among you an offering unto the LORD: whosoever is of a willing heart, let him bring it, an offering of the LORD",
+        "claim": "The LORD commanded the congregation to bring offerings",
+        "actor": "The LORD",
+        "action": "commanded",
+        "object": "offering",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

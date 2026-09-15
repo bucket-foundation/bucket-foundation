@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7416391ffb533cddbc9e00a78959162f323267d085d08aae7eb1fcc7d7d2288a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses told Aaron all the words of the LORD who had sent him, and all the signs which he had commanded him.",
+        "claim": "Moses communicated to Aaron all the words of the LORD and all the signs the LORD had commanded.",
+        "actor": "Moses",
+        "action": "told",
+        "object": "Aaron; all the words of the LORD and all the signs",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

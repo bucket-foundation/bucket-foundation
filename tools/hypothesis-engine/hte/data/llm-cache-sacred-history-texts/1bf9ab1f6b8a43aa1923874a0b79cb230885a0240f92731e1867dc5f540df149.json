@@ -1,0 +1,87 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0fba73bdd4ea2d3ca1023e39d73ce617d3c8650035e3cc3f6ba4bf64de443d22",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Go, get thee down",
+        "claim": "The LORD commanded Moses to go down",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "thy people, which thou broughtest out of the land of Egypt, have corrupted themselves",
+        "claim": "The Israelite people corrupted themselves after being brought out of Egypt",
+        "actor": "thy people",
+        "action": "have corrupted themselves",
+        "object": "",
+        "place": "the land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "They have turned aside quickly out of the way which I commanded them",
+        "claim": "The people turned aside quickly from the way God commanded them",
+        "actor": "They",
+        "action": "have turned aside quickly",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "they have made them a molten calf",
+        "claim": "The people made a molten calf",
+        "actor": "they",
+        "action": "have made",
+        "object": "a molten calf",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "have worshipped it, and have sacrificed thereunto",
+        "claim": "The people worshipped the molten calf and made sacrifices to it",
+        "actor": "they",
+        "action": "have worshipped",
+        "object": "it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "These be thy gods, O Israel, which have brought thee up out of the land of Egypt",
+        "claim": "The people claimed the calf was their god that brought them up from Egypt",
+        "actor": "These",
+        "action": "have brought thee up",
+        "object": "thee",
+        "place": "the land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

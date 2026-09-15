@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bd96fefa3fcfdca40ff3e241dc76ba111aeefaa4041e6753c4ae5f4018f083d1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he cried unto the LORD; and the LORD shewed him a tree, which when he had cast into the waters, the waters were made sweet",
+        "claim": "A tree, when cast into bitter water, renders it sweet",
+        "actor": "the LORD, he [Moses]",
+        "action": "shewed a tree, cast into waters",
+        "object": "a tree, the waters",
+        "place": "",
+        "mechanism": "tree-casting into water \u2192 water-sweetening",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "If thou wilt diligently hearken to the voice of the LORD thy God, and wilt do that which is right in his sight, and wilt give ear to his commandments, and keep all his statutes, I will put none of these diseases upon thee, which I have brought upon the Egyptians: for I am the LORD that healeth thee.",
+        "claim": "Obedience to God's commandments mechanically produces divine protection from disease",
+        "actor": "the people, the LORD",
+        "action": "keep statutes, will put none of these diseases",
+        "object": "his statutes, these diseases",
+        "place": "",
+        "mechanism": "keeping statutes \u2192 divine withholding of disease",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

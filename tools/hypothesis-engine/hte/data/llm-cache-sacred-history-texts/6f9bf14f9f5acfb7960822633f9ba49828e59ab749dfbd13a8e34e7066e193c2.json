@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "15f149d2190aea5f059cda7444bb76e4bdd00e3299c493641e682c82a4906074",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then the LORD said unto Moses, Now shalt thou see what I will do to Pharaoh: for with a strong hand shall he let them go, and with a strong hand shall he drive them out of his land.",
+        "claim": "God tells Moses he will force Pharaoh to release the Israelites and expel them from Egypt.",
+        "actor": "the LORD; Moses; Pharaoh",
+        "action": "said; let go; drive out",
+        "object": "them (Israelites); his land (Egypt)",
+        "place": "Egypt",
+        "mechanism": "strong hand (divine coercion)",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

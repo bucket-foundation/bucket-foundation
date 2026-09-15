@@ -1,0 +1,34 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "6c485cc18ba90f68aa17e45ad5fe4cfd6e9a65f20bed622a2dc15cdc9ddc275c",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And it came to pass in those days, when Moses was grown, that he went out unto his brethren, and looked on their burdens",
+        "claim": "The text says that once Moses was grown, he went out to his brethren and saw their burdens.",
+        "actor": "Moses",
+        "action": "went out unto and looked on the burdens of",
+        "object": "his brethren (the Hebrews)",
+        "place": "",
+        "mechanism": "",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and he spied an Egyptian smiting an Hebrew, one of his brethren.",
+        "claim": "The text says Moses saw an Egyptian beating a Hebrew, whom it calls one of Moses's own brethren.",
+        "actor": "an Egyptian",
+        "action": "smiting",
+        "object": "an Hebrew, one of Moses's brethren",
+        "place": "",
+        "mechanism": "physical violence observed by Moses",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

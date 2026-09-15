@@ -1,0 +1,64 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "cf2f4b1860308133aeeced11c589ceb0b6418f110e51105eec8d9451df32d7eb",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And it came to pass, before he had done speaking, that, behold, Rebekah came out",
+        "claim": "Rebekah came out before the speaker had finished speaking.",
+        "actor": "Rebekah",
+        "action": "came out",
+        "year": null
+      },
+      {
+        "kind": "event-detail",
+        "tier": "primary-text",
+        "quote": "Rebekah came out, who was born to Bethuel, son of Milcah, the wife of Nahor, Abraham\u2019s brother, with her pitcher upon her shoulder",
+        "claim": "When Rebekah came out, she was carrying a pitcher on her shoulder.",
+        "actor": "Rebekah",
+        "action": "carried",
+        "object": "pitcher",
+        "year": null
+      },
+      {
+        "kind": "kinship",
+        "tier": "primary-text",
+        "quote": "Rebekah came out, who was born to Bethuel",
+        "claim": "Rebekah was the daughter of Bethuel.",
+        "actor": "Rebekah",
+        "object": "Bethuel",
+        "year": null
+      },
+      {
+        "kind": "kinship",
+        "tier": "primary-text",
+        "quote": "Bethuel, son of Milcah",
+        "claim": "Bethuel was the son of Milcah.",
+        "actor": "Bethuel",
+        "object": "Milcah",
+        "year": null
+      },
+      {
+        "kind": "kinship",
+        "tier": "primary-text",
+        "quote": "Milcah, the wife of Nahor",
+        "claim": "Milcah was the wife of Nahor.",
+        "actor": "Milcah",
+        "object": "Nahor",
+        "year": null
+      },
+      {
+        "kind": "kinship",
+        "tier": "primary-text",
+        "quote": "Nahor, Abraham\u2019s brother",
+        "claim": "Nahor was Abraham's brother, so Rebekah was Abraham's great-niece through Nahor and Milcah.",
+        "actor": "Nahor",
+        "object": "Abraham",
+        "year": null
+      }
+    ]
+  }
+}

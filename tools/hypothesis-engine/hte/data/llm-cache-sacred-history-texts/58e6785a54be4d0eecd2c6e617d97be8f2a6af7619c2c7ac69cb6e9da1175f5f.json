@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "40a67caaf5df9fe3ce3b162815fa7a8a3d331e5fff642f34dc22d135f786f95d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And every living substance was destroyed which was upon the face of the ground, both man, and cattle, and the creeping things, and the fowl of the heaven; and they were destroyed from the earth",
+        "claim": "All living creatures on earth were destroyed",
+        "actor": "man, cattle, creeping things, fowl",
+        "action": "destroyed",
+        "object": "every living substance",
+        "place": "the ground, the earth",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and Noah only remained alive, and they that were with him in the ark",
+        "claim": "Noah and those with him in the ark remained alive",
+        "actor": "Noah, they that were with him",
+        "action": "remained alive",
+        "object": "",
+        "place": "the ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

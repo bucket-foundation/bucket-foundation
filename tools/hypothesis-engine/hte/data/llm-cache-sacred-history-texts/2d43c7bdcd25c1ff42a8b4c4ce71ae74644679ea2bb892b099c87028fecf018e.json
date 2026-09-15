@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4036f23abe465db1680405d1d1bbe98d58a94720a1c3b9d6d8884a66b2cae553",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the voice of the trumpet sounded long, and waxed louder and louder",
+        "claim": "The trumpet's voice sounded long and grew progressively louder",
+        "actor": "trumpet",
+        "action": "sounded, waxed louder",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses spake",
+        "claim": "Moses spoke",
+        "actor": "Moses",
+        "action": "spake",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "God answered him by a voice",
+        "claim": "God answered Moses by means of a voice",
+        "actor": "God",
+        "action": "answered",
+        "object": "him",
+        "place": "",
+        "mechanism": "by a voice",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

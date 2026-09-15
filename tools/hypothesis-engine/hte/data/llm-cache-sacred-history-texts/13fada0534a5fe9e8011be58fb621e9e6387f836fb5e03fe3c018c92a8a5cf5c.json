@@ -1,0 +1,126 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "6d6300fcdda776689cbc3e98240c25aa1f749f234642e92a4312a52d3ce442e3",
+  "response": {
+    "items": [
+      {
+        "kind": "normative-prescription",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses and unto Aaron, saying, 14:34 When ye be come into the land of Canaan, which I give to you for a possession, and I put the plague of leprosy in a house of the land of your possession;",
+        "claim": "The text presents the rules for 'plague of leprosy' in houses as a divine instruction to Moses and Aaron. The rules apply once the people have settled in Canaan, and the text says God is the one who puts the plague in a house.",
+        "actor": "the LORD",
+        "action": "instructs Moses and Aaron on house leprosy",
+        "object": "house in the land of possession",
+        "place": "land of Canaan",
+        "mechanism": "divine attribution of the affliction; law applies after settlement",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "normative-prescription",
+        "tier": "primary-text",
+        "quote": "And he that owneth the house shall come and tell the priest, saying, It seemeth to me there is as it were a plague in the house:",
+        "claim": "The process starts when the homeowner reports a suspected plague to the priest. The owner only reports it; the priest is the one who makes the diagnosis.",
+        "actor": "house owner",
+        "action": "reports suspected plague",
+        "object": "priest",
+        "place": "land of Canaan",
+        "mechanism": "lay reporting to a priestly authority",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "normative-prescription",
+        "tier": "primary-text",
+        "quote": "Then the priest shall command that they empty the house, before the priest go into it to see the plague, that all that is in the house be not made unclean: and afterward the priest shall go in to see the house:",
+        "claim": "The priest orders the house emptied before he inspects it. The stated reason is so that its contents are not made unclean, which implies uncleanness takes effect when the priest declares it, not before.",
+        "actor": "priest",
+        "action": "orders house emptied before inspection",
+        "object": "house contents",
+        "place": "land of Canaan",
+        "mechanism": "emptying first keeps the contents from being declared unclean",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "normative-prescription",
+        "tier": "primary-text",
+        "quote": "And he shall look on the plague, and, behold, if the plague be in the walls of the house with hollow strakes, greenish or reddish, which in sight are lower than the wall;",
+        "claim": "The signs the priest looks for are hollow streaks in the walls, greenish or reddish, that look lower than the wall surface.",
+        "actor": "priest",
+        "action": "inspects walls",
+        "object": "hollow strakes, greenish or reddish",
+        "place": "land of Canaan",
+        "mechanism": "diagnosis by what can be seen",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "normative-prescription",
+        "tier": "primary-text",
+        "quote": "Then the priest shall go out of the house to the door of the house, and shut up the house seven days:",
+        "claim": "If the signs are there, the priest leaves the house and shuts it up for seven days. All three passes agree on this item.",
+        "actor": "priest",
+        "action": "shuts up the house",
+        "object": "house",
+        "place": "land of Canaan",
+        "mechanism": "seven-day isolation",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "normative-prescription",
+        "tier": "primary-text",
+        "quote": "And the priest shall come again the seventh day, and shall look: and, behold, if the plague be spread in the walls of the house;",
+        "claim": "The priest inspects again on the seventh day, and the next step depends on whether the plague has spread in the walls. All three passes agree on this item.",
+        "actor": "priest",
+        "action": "re-inspects on the seventh day",
+        "object": "walls of the house",
+        "place": "land of Canaan",
+        "mechanism": "deciding by whether the plague has spread after a set waiting period",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "normative-prescription",
+        "tier": "primary-text",
+        "quote": "Then the priest shall command that they take away the stones in which the plague is, and they shall cast them into an unclean place without the city:",
+        "claim": "If the plague has spread, the affected stones are taken out and thrown into an unclean place outside the city.",
+        "actor": "priest",
+        "action": "orders removal of affected stones",
+        "object": "infected stones",
+        "place": "unclean place without the city",
+        "mechanism": "taking the contamination out of the house and dumping it outside the city",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "normative-prescription",
+        "tier": "primary-text",
+        "quote": "And he shall cause the house to be scraped within round about, and they shall pour out the dust that they scrape off without the city into an unclean place:",
+        "claim": "The inside of the house is scraped all around, and the scraped-off dust is also dumped in an unclean place outside the city.",
+        "actor": "priest",
+        "action": "has the interior scraped",
+        "object": "scraped dust",
+        "place": "unclean place without the city",
+        "mechanism": "scraping off the surface and dumping the waste outside the city",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "normative-prescription",
+        "tier": "primary-text",
+        "quote": "And they shall take other stones, and put them in the place of those stones; and he shall take other morter, and shall plaister the house.",
+        "claim": "The removed stones are replaced with new ones, and the house is re-plastered with new mortar.",
+        "actor": "priest and householders",
+        "action": "replace stones and re-plaster",
+        "object": "stones and mortar",
+        "place": "land of Canaan",
+        "mechanism": "repairing the house with new materials",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

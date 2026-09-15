@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f2aa00dda563a5d3d6009a97023b9f737369915ef7b28bded88d944c9c629cef",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And his sons did unto him according as he commanded them",
+        "claim": "Jacob's sons obeyed his final commands",
+        "actor": "his sons",
+        "action": "did",
+        "object": "him",
+        "place": "",
+        "mechanism": "according as he commanded them",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "For his sons carried him into the land of Canaan, and buried him in the cave of the field of Machpelah",
+        "claim": "Jacob's sons carried him to Canaan",
+        "actor": "his sons",
+        "action": "carried",
+        "object": "him",
+        "place": "the land of Canaan",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "For his sons carried him into the land of Canaan, and buried him in the cave of the field of Machpelah",
+        "claim": "Jacob's sons buried him in the cave of Machpelah",
+        "actor": "his sons",
+        "action": "buried",
+        "object": "him",
+        "place": "the cave of the field of Machpelah",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "which Abraham bought with the field for a possession of a buryingplace of Ephron the Hittite, before Mamre",
+        "claim": "Abraham purchased the field of Machpelah from Ephron the Hittite as a burial place",
+        "actor": "Abraham",
+        "action": "bought",
+        "object": "the field",
+        "place": "before Mamre",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

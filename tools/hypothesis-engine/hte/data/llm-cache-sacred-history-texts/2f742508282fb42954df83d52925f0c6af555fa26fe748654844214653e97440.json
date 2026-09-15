@@ -1,0 +1,43 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6ec2a473db40e73188551c0a119d413062198cf3e902369f84df27db36af71fe",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham gat up early in the morning to the place where he stood before the LORD",
+        "claim": "Abraham rose early in the morning to the place where he stood before the LORD",
+        "actor": "Abraham",
+        "action": "gat up early in the morning",
+        "place": "the place where he stood before the LORD",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he looked toward Sodom and Gomorrah, and toward all the land of the plain",
+        "claim": "Abraham looked toward Sodom, Gomorrah, and all the land of the plain",
+        "actor": "he",
+        "action": "looked toward",
+        "place": "Sodom and Gomorrah, and all the land of the plain",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and, lo, the smoke of the country went up as the smoke of a furnace",
+        "claim": "Smoke from the country rose up like furnace smoke",
+        "actor": "the smoke of the country",
+        "action": "went up",
+        "place": "the country",
+        "mechanism": "as the smoke of a furnace",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

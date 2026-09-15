@@ -1,0 +1,54 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "134211d9a046089057478e41a6e8d34b18016de60809c0a8fc534e7bbe070bde",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "He slew also the bullock and the ram for a sacrifice of peace offerings, which was for the people: and Aaron's sons presented unto him the blood, which he sprinkled upon the altar round about",
+        "claim": "A bullock and ram were slain as peace offerings and their blood was sprinkled upon the altar",
+        "actor": "He (Aaron)",
+        "action": "slew, sprinkled",
+        "object": "bullock, ram, blood",
+        "place": "altar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the fat of the bullock and of the ram, the rump, and that which covereth the inwards, and the kidneys, and the caul above the liver",
+        "claim": "Specific parts (fat, rump, organs, kidneys, caul) were designated from the sacrificial animals",
+        "object": "fat, rump, inwards, kidneys, caul, liver",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they put the fat upon the breasts, and he burnt the fat upon the altar",
+        "claim": "The fat was placed upon the breasts and then burned upon the altar",
+        "action": "put, burnt",
+        "object": "fat, breasts",
+        "place": "altar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the breasts and the right shoulder Aaron waved for a wave offering before the LORD; as Moses commanded",
+        "claim": "Aaron waved the breasts and right shoulder as a wave offering before the Lord, following Moses's command",
+        "actor": "Aaron",
+        "action": "waved",
+        "object": "breasts, right shoulder",
+        "place": "before the LORD",
+        "mechanism": "wave offering (Moses commanded)",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "1c8589c8bf7c8c56c2aef4da70984a05b48d48a5955e82f9ffe31cf56f07d1b6",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the child grew, and was weaned",
+        "claim": "The child (Isaac) grew and was weaned.",
+        "actor": "Isaac",
+        "action": "was weaned",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and Abraham made a great feast the same day that Isaac was weaned",
+        "claim": "Abraham held a great feast on the same day Isaac was weaned.",
+        "actor": "Abraham",
+        "action": "made a great feast",
+        "object": "feast marking Isaac's weaning",
+        "place": "",
+        "mechanism": "celebration of weaning",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

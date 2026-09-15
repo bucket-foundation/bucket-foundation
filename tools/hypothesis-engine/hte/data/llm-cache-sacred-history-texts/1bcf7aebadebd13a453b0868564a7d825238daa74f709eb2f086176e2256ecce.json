@@ -1,0 +1,55 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "545c53983169479d9ac5423a4879b14323224aae93c2273727c5c88ecba903da",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Moses stretched out his hand over the sea",
+        "claim": "Moses stretched out his hand over the sea",
+        "actor": "Moses",
+        "action": "stretched out his hand",
+        "object": "his hand",
+        "place": "over the sea",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the LORD caused the sea to go back by a strong east wind all that night",
+        "claim": "The LORD caused the sea to go back by a strong east wind all that night",
+        "actor": "the LORD",
+        "action": "caused the sea to go back",
+        "object": "the sea",
+        "mechanism": "a strong east wind",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the LORD caused the sea to go back by a strong east wind all that night, and made the sea dry land",
+        "claim": "The LORD made the sea dry land",
+        "actor": "the LORD",
+        "action": "made",
+        "object": "the sea",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the waters were divided",
+        "claim": "The waters were divided",
+        "actor": "the waters",
+        "action": "were divided",
+        "object": "the waters",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "330af842477411f5207d18d81347aebe75ff4e526fe787b48538be35e760321d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he slew it; and Moses took the blood, and put it upon the horns of the altar round about with his finger, and purified the altar, and poured the blood at the bottom of the altar, and sanctified it, to make reconciliation upon it.",
+        "claim": "Moses performed a blood sacrifice ritual at the altar for purification and reconciliation",
+        "actor": "Moses",
+        "action": "slew, took blood, put upon horns, purified, poured, sanctified",
+        "object": "it (animal), blood, altar",
+        "place": "altar",
+        "mechanism": "blood ritual application",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

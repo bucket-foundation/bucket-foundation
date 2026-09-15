@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8bba64df948d490ae8a3a8da6473dcf737807fd9682f3c8f28f3aeb4062f3a6b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And God said unto Noah, This is the token of the covenant, which I have established between me and all flesh that is upon the earth.",
+        "claim": "God established a covenant with Noah and all flesh upon the earth, marked by a token sign.",
+        "actor": "God",
+        "action": "established",
+        "object": "covenant",
+        "place": "the earth",
+        "mechanism": "token",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

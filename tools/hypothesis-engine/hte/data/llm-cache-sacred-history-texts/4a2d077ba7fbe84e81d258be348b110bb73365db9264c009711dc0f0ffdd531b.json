@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "51f6ad0bcd6190deed20a481615ed098bd1765bd13f40f44a6d5773ef89e8eda",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD commanded Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "The fifteenth day of this seventh month shall be the feast of tabernacles for seven days unto the LORD",
+        "claim": "The fifteenth day of the seventh month is designated as the feast of tabernacles lasting seven days",
+        "actor": "",
+        "action": "shall be",
+        "object": "feast of tabernacles",
+        "place": "",
+        "mechanism": "religious observance",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

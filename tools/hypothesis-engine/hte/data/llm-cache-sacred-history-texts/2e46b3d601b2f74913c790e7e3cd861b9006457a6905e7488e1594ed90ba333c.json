@@ -1,0 +1,42 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c21b906916e9662e315adfb949cec859705b630f72cb548ad646700f100947ba",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Behold, when I come unto the children of Israel, and shall say unto them, The God of your fathers hath sent me unto you; and they shall say to me, What is his name? what shall I say unto them?",
+        "claim": "When Moses tells the children of Israel that God sent him, they will ask for God's name",
+        "actor": "children of Israel",
+        "action": "ask",
+        "object": "God's name",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And God said unto Moses, I AM THAT I AM",
+        "claim": "God told Moses his name is I AM THAT I AM",
+        "actor": "God",
+        "action": "said",
+        "object": "I AM THAT I AM",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Thus shalt thou say unto the children of Israel, I AM hath sent me unto you",
+        "claim": "God commanded Moses to tell the children of Israel that I AM sent him",
+        "actor": "Moses",
+        "action": "say",
+        "object": "the children of Israel",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

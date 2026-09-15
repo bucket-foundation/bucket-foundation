@@ -1,0 +1,32 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "ed91ada7c512cc0ac80b9bc5013071353989b406c89f19c63f52db5e49a41f74",
+  "response": {
+    "items": [
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "Also on the tenth day of this seventh month there shall be a day of atonement: it shall be an holy convocation unto you; and ye shall afflict your souls, and offer an offering made by fire unto the LORD.",
+        "claim": "The text says a day of atonement falls on the tenth day of the seventh month. It is to be a holy convocation, a day when the people afflict their souls and offer an offering made by fire to the LORD.",
+        "actor": "the LORD (through Moses)",
+        "action": "prescribes observance",
+        "object": "day of atonement",
+        "mechanism": "holy convocation, affliction of souls, and an offering made by fire",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "attribution",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The text says the day-of-atonement instruction was spoken by the LORD to Moses.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

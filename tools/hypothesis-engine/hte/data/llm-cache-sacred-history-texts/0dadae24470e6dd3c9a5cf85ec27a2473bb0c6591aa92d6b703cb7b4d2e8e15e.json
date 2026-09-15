@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "abeba5ff2ec9daf4db5d863af807086fa5af30cf813244f47bb73b72321f95ad",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Sanctify unto me all the firstborn, whatsoever openeth the womb among the children of Israel, both of man and of beast",
+        "claim": "The LORD commanded sanctification of all firstborn among the children of Israel",
+        "actor": "the LORD",
+        "action": "Sanctify",
+        "object": "all the firstborn",
+        "place": "among the children of Israel",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "it is mine",
+        "claim": "The firstborn belong to the LORD",
+        "actor": "the LORD",
+        "action": "is",
+        "object": "it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

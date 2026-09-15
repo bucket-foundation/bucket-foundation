@@ -1,0 +1,33 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "1daab297c05e6e46b047b6db25d2065cf3f5c2b220cca260d461d42020ea440b",
+  "response": {
+    "items": [
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "24:13 And the LORD spake unto Moses, saying, 24:14 Bring forth him that hath cursed without the camp;",
+        "claim": "The text says the LORD told Moses to take the man who had cursed outside the camp.",
+        "actor": "the LORD",
+        "action": "commanded removal of the one who cursed to outside the camp",
+        "object": "him that hath cursed",
+        "place": "without the camp",
+        "mechanism": "divine speech to Moses",
+        "year": null
+      },
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "and let all that heard him lay their hands upon his head, and let all the congregation stone him.",
+        "claim": "The text lays out a two-step procedure: everyone who heard the cursing lays their hands on the man's head, and then the whole congregation stones him.",
+        "actor": "all that heard him; all the congregation",
+        "action": "lay hands upon his head, then stone him",
+        "object": "him that hath cursed",
+        "place": "without the camp",
+        "mechanism": "communal laying on of hands followed by communal stoning",
+        "year": null
+      }
+    ]
+  }
+}

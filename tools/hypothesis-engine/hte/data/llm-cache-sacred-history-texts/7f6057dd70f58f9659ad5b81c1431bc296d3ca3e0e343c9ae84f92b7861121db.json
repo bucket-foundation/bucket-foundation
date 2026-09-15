@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3b8aee0314d7bf0a685ce502a80c0849ad04f86ea8039e054f832acf8596630b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Speak unto the children of Israel, that they bring me an offering",
+        "claim": "Moses is commanded to instruct the children of Israel to bring an offering",
+        "actor": "Moses",
+        "action": "Speak",
+        "object": "children of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "of every man that giveth it willingly with his heart ye shall take my offering",
+        "claim": "From every willing man, an offering is to be taken",
+        "actor": "every man",
+        "action": "giveth willingly",
+        "object": "offering",
+        "place": "",
+        "mechanism": "willingly with his heart",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

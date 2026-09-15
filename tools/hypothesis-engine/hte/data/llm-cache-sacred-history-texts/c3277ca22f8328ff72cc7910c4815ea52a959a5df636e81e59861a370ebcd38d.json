@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "02dd6390a7f39cac1c2a9d994f33bdde268e691ee9f1fd25788d9dd1f16351a6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Then Abraham fell upon his face, and laughed, and said in his heart, Shall a child be born unto him that is an hundred years old? and shall Sarah, that is ninety years old, bear?",
+        "claim": "Abraham expresses skepticism about procreation at advanced ages (himself 100 years old, Sarah 90)",
+        "actor": "Abraham",
+        "action": "fell upon his face, and laughed, and said in his heart",
+        "object": "a child, Sarah",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Abraham said unto God, O that Ishmael might live before thee!",
+        "claim": "Abraham expresses a wish for Ishmael to prosper before God",
+        "actor": "Abraham",
+        "action": "said unto God",
+        "object": "Ishmael",
+        "place": "before thee",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And God said, Sarah thy wife shall bear thee a son indeed; and thou shalt call his name Isaac: and I will establish my covenant with him for an everlasting covenant, and with his seed after him.",
+        "claim": "God promises Sarah will bear a son named Isaac and establishes an eternal covenant with him and his descendants",
+        "actor": "God",
+        "action": "said",
+        "object": "a son, Isaac, covenant",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

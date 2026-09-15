@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4bf2de782568e4407fbe1056d804a0122558b54080a603571d8e9194fc8e685e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses brought Aaron and his sons, and washed them with water.",
+        "claim": "Moses washed Aaron and his sons with water",
+        "actor": "Moses",
+        "action": "washed",
+        "object": "Aaron and his sons",
+        "place": "",
+        "mechanism": "washing with water",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

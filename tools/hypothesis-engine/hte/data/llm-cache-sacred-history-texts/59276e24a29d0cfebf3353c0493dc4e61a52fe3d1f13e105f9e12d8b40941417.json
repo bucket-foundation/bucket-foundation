@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "781b89fdc07fdbc26b792d8e66b9308d929e7a16f1455fbf25b23044f993424e",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And he slew it; and Moses took the blood, and put it upon the horns of the altar round about with his finger, and purified the altar",
+        "claim": "In the text, after the animal was slain, Moses put its blood on the horns of the altar with his finger, and the text says this purified the altar.",
+        "actor": "Moses",
+        "action": "applied blood to the horns of the altar with his finger",
+        "object": "altar",
+        "mechanism": "using sacrificial blood as a purifying agent",
+        "place": "altar (not otherwise specified in text)",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and poured the blood at the bottom of the altar",
+        "claim": "In the text, Moses poured the rest of the blood at the base of the altar.",
+        "actor": "Moses",
+        "action": "poured blood at the base of the altar",
+        "object": "altar",
+        "mechanism": "disposing of sacrificial blood at the altar base",
+        "place": "altar (not otherwise specified in text)",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "purpose",
+        "tier": "primary-text",
+        "quote": "and sanctified it, to make reconciliation upon it.",
+        "claim": "The text says Moses sanctified the altar so that reconciliation could be made on it.",
+        "actor": "Moses",
+        "action": "sanctified the altar",
+        "object": "altar",
+        "mechanism": "consecration to allow reconciliation (atonement) rites",
+        "place": "altar (not otherwise specified in text)",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "01ba762d69f9624a29699e4305c0ccb52aabbe8ed054aa0d8106413c49997989",
+  "response": {
+    "items": [
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "Remember Abraham, Isaac, and Israel, thy servants, to whom thou swarest by thine own self, and saidst unto them, I will multiply your seed as the stars of heaven, and all this land that I have spoken of will I give unto your seed, and they shall inherit it for ever.",
+        "claim": "The speaker asks God to remember an oath God swore by himself to Abraham, Isaac, and Israel: to make their descendants as many as the stars and to give those descendants 'all this land' to keep forever. The text only tells us that the speaker says this promise was made. It does not show that the promise was kept or that anyone ever held the land. Naming the verse as Exodus 32:13 (Moses pleading with God after the golden calf) comes from model-prior, not from the document, which gives only the verse number 32:13.",
+        "actor": "God (as reported by the speaker; identifying the speaker as Moses comes from model-prior and is unverified)",
+        "action": "swore an oath to multiply their descendants and give them the land",
+        "object": "the seed (descendants) of Abraham, Isaac, and Israel; 'all this land that I have spoken of'",
+        "mechanism": "an oath God swore by himself (a divine promise)",
+        "place": "'this land' (not named in the text)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

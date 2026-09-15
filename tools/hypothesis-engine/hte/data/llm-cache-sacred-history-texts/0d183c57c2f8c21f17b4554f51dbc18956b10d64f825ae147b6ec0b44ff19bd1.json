@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "8fcffc4d61c2023972958626b36d47d9065fd56593c72ff810dbf68cfdb3cb19",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD called unto Moses, and spake unto him out of the tabernacle of the congregation, saying,",
+        "claim": "The text says the LORD called to Moses and spoke to him from the tabernacle of the congregation.",
+        "actor": "the LORD",
+        "action": "called unto and spake unto",
+        "object": "Moses",
+        "place": "tabernacle of the congregation",
+        "mechanism": "divine speech from the tabernacle",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "prescription",
+        "tier": "primary-text",
+        "quote": "Speak unto the children of Israel, and say unto them, If any man of you bring an offering unto the LORD, ye shall bring your offering of the cattle, even of the herd, and of the flock.",
+        "claim": "Moses is told to instruct the children of Israel that anyone bringing an offering to the LORD must bring it from their livestock: the herd or the flock.",
+        "actor": "children of Israel",
+        "action": "bring an offering",
+        "object": "cattle, of the herd and of the flock",
+        "place": "tabernacle of the congregation",
+        "mechanism": "religious law passed on through Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

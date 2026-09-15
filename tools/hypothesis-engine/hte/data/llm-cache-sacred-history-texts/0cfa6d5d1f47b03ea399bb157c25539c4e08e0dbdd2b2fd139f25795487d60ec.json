@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e0381dd19010df6183b093b14e8b0976df280e6122896a77ba0e26d90aa6820f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "ye came out from Egypt, out of the house of bondage",
+        "claim": "The Israelite people departed from Egypt where they had been enslaved",
+        "actor": "ye (the people)",
+        "action": "came out",
+        "object": "Egypt, house of bondage",
+        "place": "Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "by strength of hand the LORD brought you out from this place",
+        "claim": "God caused the Israelite departure from Egypt through divine strength",
+        "actor": "the LORD",
+        "action": "brought out",
+        "object": "you (the people)",
+        "place": "this place (Egypt)",
+        "mechanism": "strength of hand",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "there shall no leavened bread be eaten",
+        "claim": "A law prohibiting consumption of leavened bread is to be observed",
+        "actor": "",
+        "action": "shall not be eaten",
+        "object": "leavened bread",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

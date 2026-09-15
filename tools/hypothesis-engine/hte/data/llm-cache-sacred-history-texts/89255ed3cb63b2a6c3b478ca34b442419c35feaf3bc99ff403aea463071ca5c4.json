@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "903e18ebf552ca85270c462ec40c98ba5937ac81b439379f77621b7388ec4d0f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text (scriptural narrative; not independently verified)",
+        "quote": "And God remembered Noah, and every living thing, and all the cattle that was with him in the ark: and God made a wind to pass over the earth, and the waters asswaged;",
+        "claim": "The text says God remembered Noah and the animals in the ark, then sent a wind over the earth, and the flood waters went down.",
+        "actor": "God",
+        "action": "remembered Noah and made a wind to pass over the earth",
+        "object": "Noah, every living thing, the cattle in the ark; the flood waters",
+        "mechanism": "wind passing over the earth",
+        "place": "the earth / the ark",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text (scriptural narrative; not independently verified)",
+        "quote": "The fountains also of the deep and the windows of heaven were stopped, and the rain from heaven was restrained;",
+        "claim": "The text says the fountains of the deep and the windows of heaven were closed, and the rain stopped.",
+        "actor": "God (implied)",
+        "action": "stopped and restrained",
+        "object": "fountains of the deep, windows of heaven, rain from heaven",
+        "mechanism": "stopping the sources of the flood water",
+        "place": "the earth",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text (scriptural narrative; not independently verified)",
+        "quote": "And the waters returned from off the earth continually: and after the end of the hundred and fifty days the waters were abated.",
+        "claim": "The text says the waters kept draining off the earth, and by the end of 150 days they had gone down.",
+        "actor": "the waters",
+        "action": "returned from off the earth continually; were abated",
+        "object": "flood waters",
+        "mechanism": "continual draining off the earth",
+        "place": "the earth",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

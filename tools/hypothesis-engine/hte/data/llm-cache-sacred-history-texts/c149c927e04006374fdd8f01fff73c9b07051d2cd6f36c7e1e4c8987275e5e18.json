@@ -1,0 +1,41 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "63406a5d043ad79816f1ae7576ca74177cc5f166aaac783a662422727824c35a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Speak unto Aaron and to his sons, that they separate themselves from the holy things of the children of Israel",
+        "claim": "Aaron and his sons are commanded to separate themselves from the holy things of the children of Israel",
+        "actor": "Aaron and to his sons",
+        "action": "separate themselves",
+        "object": "holy things of the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and that they profane not my holy name in those things which they hallow unto me",
+        "claim": "Aaron and his sons are commanded not to profane the holy name in things they make sacred",
+        "actor": "they",
+        "action": "profane",
+        "object": "my holy name",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

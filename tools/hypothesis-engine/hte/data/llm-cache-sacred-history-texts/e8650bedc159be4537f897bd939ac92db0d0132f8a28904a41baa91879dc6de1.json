@@ -1,0 +1,46 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a505e5741cad8a9ff9dd3290fe69db6159fe92efa0e87a99ce8bd9b27adc8228",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Speak unto the children of Israel, and say unto them, When ye be come into the land which I give unto you, and shall reap the harvest thereof, then ye shall bring a sheaf of the firstfruits of your harvest unto the priest:",
+        "claim": "When Israelites enter the promised land and harvest crops, they must bring a sheaf of firstfruits to the priest",
+        "actor": "children of Israel",
+        "action": "bring",
+        "object": "sheaf of the firstfruits",
+        "place": "the land",
+        "mechanism": "upon coming to the land and reaping harvest",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he shall wave the sheaf before the LORD, to be accepted for you:",
+        "claim": "The priest shall wave the sheaf before the LORD for acceptance on behalf of the people",
+        "actor": "priest",
+        "action": "wave",
+        "object": "sheaf",
+        "place": "before the LORD",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "on the morrow after the sabbath the priest shall wave it.",
+        "claim": "The sheaf waving ritual occurs on the day following the sabbath",
+        "actor": "priest",
+        "action": "wave",
+        "object": "it",
+        "mechanism": "morrow after the sabbath",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

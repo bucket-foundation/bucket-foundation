@@ -1,0 +1,56 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "60be1c6c0dbb4310dd7a05d8c151e85f0c3a79e51b09a9d876abefb514567190",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Abimelech and Phichol the chief captain of his host spake unto Abraham, saying",
+        "claim": "Abimelech and Phichol spoke to Abraham",
+        "actor": "Abimelech and Phichol",
+        "action": "spake",
+        "object": "Abraham",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "God is with thee in all that thou doest",
+        "claim": "God is with Abraham in all that he does",
+        "actor": "God",
+        "action": "is with",
+        "object": "thee",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Now therefore swear unto me here by God that thou wilt not deal falsely with me, nor with my son, nor with my son's son",
+        "claim": "Abraham swears not to deal falsely with Abimelech and his descendants",
+        "actor": "thou",
+        "action": "swear",
+        "object": "me, my son, my son's son",
+        "place": "here",
+        "mechanism": "by God",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "according to the kindness that I have done unto thee, thou shalt do unto me, and to the land wherein thou hast sojourned",
+        "claim": "Abraham will reciprocate the kindness shown by Abimelech",
+        "actor": "thou",
+        "action": "shalt do",
+        "object": "me, the land",
+        "place": "the land wherein thou hast sojourned",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

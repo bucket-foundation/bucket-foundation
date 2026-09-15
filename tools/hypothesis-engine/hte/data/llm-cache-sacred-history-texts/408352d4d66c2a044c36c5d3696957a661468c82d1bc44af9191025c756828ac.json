@@ -1,0 +1,77 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d3e0e4a76ebfec6c5d7c6a7a346ce57d7cbeae377b6045b5f4af25fc6675c5c4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses and Aaron said unto all the children of Israel",
+        "claim": "Moses and Aaron made a public announcement to the Israelites",
+        "actor": "Moses, Aaron",
+        "action": "said",
+        "object": "all the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD hath brought you out from the land of Egypt",
+        "claim": "The LORD led the Israelites out of Egypt",
+        "actor": "the LORD",
+        "action": "brought",
+        "object": "you (the Israelites)",
+        "place": "land of Egypt",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "ye shall see the glory of the LORD",
+        "claim": "The Israelites would witness the glory of the LORD",
+        "actor": "ye (the Israelites)",
+        "action": "shall see",
+        "object": "the glory of the LORD",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he heareth your murmurings against the LORD",
+        "claim": "The LORD hears the complaints of the Israelites",
+        "actor": "he (the LORD)",
+        "action": "heareth",
+        "object": "your murmurings",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Moses said, This shall be, when the LORD shall give you in the evening flesh to eat, and in the morning bread to the full",
+        "claim": "Moses announced that the LORD would provide meat and bread daily",
+        "actor": "Moses, the LORD",
+        "action": "said; shall give",
+        "object": "flesh; bread",
+        "mechanism": "evening; morning",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD heareth your murmurings which ye murmur against him",
+        "claim": "The LORD hears the Israelites' complaints against him",
+        "actor": "the LORD",
+        "action": "heareth",
+        "object": "your murmurings",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

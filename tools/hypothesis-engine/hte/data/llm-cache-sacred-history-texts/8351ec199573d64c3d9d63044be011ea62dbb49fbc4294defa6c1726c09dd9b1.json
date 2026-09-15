@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c5ee72aaf6040f4d378c09f72e8b095f3d105c31e4b798ec3121f0b0f9e92f4f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And they brought that which Moses commanded before the tabernacle of the congregation: and all the congregation drew near and stood before the LORD.",
+        "claim": "The congregation brought what Moses commanded before the tabernacle and stood before the LORD",
+        "actor": "they / all the congregation",
+        "action": "brought / drew near / stood before",
+        "object": "that which Moses commanded",
+        "place": "before the tabernacle of the congregation / before the LORD",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

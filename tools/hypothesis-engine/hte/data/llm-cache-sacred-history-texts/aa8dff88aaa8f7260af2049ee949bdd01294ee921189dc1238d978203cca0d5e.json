@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "02bda5f54f03a370563cae325d6b25c4ef7f2cce977a9a2a98d33df35692d894",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And they brought that which Moses commanded before the tabernacle of the congregation",
+        "claim": "The people brought what Moses had commanded to the front of the tabernacle of the congregation.",
+        "actor": "they (the people)",
+        "action": "brought that which Moses commanded",
+        "object": "that which Moses commanded",
+        "place": "before the tabernacle of the congregation",
+        "mechanism": "obedience to Moses' command",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and all the congregation drew near and stood before the LORD",
+        "claim": "The whole congregation came forward and stood before the LORD.",
+        "actor": "all the congregation",
+        "action": "drew near and stood",
+        "object": "the LORD",
+        "place": "before the tabernacle of the congregation",
+        "mechanism": "gathering together for worship",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

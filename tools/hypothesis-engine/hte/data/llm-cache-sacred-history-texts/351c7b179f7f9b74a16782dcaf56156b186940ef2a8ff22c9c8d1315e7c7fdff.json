@@ -1,0 +1,34 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8654f66274b80b0156556a7b22ebd6faeac4af49ae57ee2d4b71774b750f9fb9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Only thou shalt not number the tribe of Levi, neither take the sum of them among the children of Israel",
+        "claim": "The Levites were not to be included in the census enumeration of Israel",
+        "actor": "Levites",
+        "action": "excluded from numbering",
+        "object": "tribe of Levi",
+        "mechanism": "numerical enumeration/census",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "they shall bear the tabernacle, and all the vessels thereof; and they shall minister unto it, and shall encamp round about the tabernacle",
+        "claim": "The Levites were assigned to bear and transport the tabernacle, minister to it, and camp around it",
+        "actor": "Levites",
+        "action": "bear, minister, encamp",
+        "object": "tabernacle and vessels",
+        "place": "round about the tabernacle",
+        "mechanism": "physical bearing and spatial arrangement",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

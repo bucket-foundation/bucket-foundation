@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6651cd2683d86aecb1e13dddcb343dd35755f525c52c452e6f7b877d1840149c",
+  "response": {
+    "items": [
+      {
+        "quote": "Neither shall thy name any more be called Abram, but thy name shall be Abraham",
+        "claim": "God renamed Abram to Abraham",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "God",
+        "action": "renamed",
+        "object": "Abram",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "for a father of many nations have I made thee",
+        "claim": "God made Abraham a father of many nations",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "God",
+        "action": "made",
+        "object": "Abraham",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

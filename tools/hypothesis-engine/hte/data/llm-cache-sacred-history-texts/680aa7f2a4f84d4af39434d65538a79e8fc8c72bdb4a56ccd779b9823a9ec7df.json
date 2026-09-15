@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "2f0b368f24ce18c7954495758482810d965de72d9f64bcb9eb5fb98a491bd76f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "39:42 According to all that the LORD commanded Moses, so the children of Israel made all the work.",
+        "claim": "The children of Israel made all the work in line with everything the LORD commanded Moses.",
+        "actor": "children of Israel",
+        "action": "made all the work",
+        "object": "all the work (the text does not say which; the idea that it means the tabernacle comes only from model-prior and is unverified)",
+        "mechanism": "they followed what the LORD commanded Moses",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

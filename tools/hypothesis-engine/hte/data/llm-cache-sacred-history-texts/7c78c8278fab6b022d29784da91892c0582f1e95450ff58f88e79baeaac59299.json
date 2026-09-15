@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "60f88724adddfde078c05e3bc51835469373037459740cdcc81124d6f381a6c3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses stretched forth his rod toward heaven: and the LORD sent thunder and hail, and the fire ran along upon the ground; and the LORD rained hail upon the land of Egypt.",
+        "claim": "Stretching a rod toward heaven causes thunder, hail, and fire to occur",
+        "actor": "Moses, the LORD",
+        "action": "stretched rod toward heaven; sent thunder and hail; rained hail",
+        "object": "rod, thunder, hail, fire",
+        "place": "heaven, ground, land of Egypt",
+        "mechanism": "Rod-elevation triggering meteorological phenomena (thunder, hail, ground fire)",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

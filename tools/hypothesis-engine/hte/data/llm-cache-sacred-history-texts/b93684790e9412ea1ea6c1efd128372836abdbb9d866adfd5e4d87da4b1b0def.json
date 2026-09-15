@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "4d1cd739ceb0711ca74cba72cb16152f6bb11f0f3ca0d32352e78e5e7829ffdc",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "3:4 And when the LORD saw that he turned aside to see, God called unto him out of the midst of the bush, and said, Moses, Moses. And he said, Here am I.",
+        "claim": "The text says that when the LORD saw the man turn aside to look, God called to him from the middle of the bush, saying \"Moses, Moses,\" and Moses answered \"Here am I.\" All three passes found this same single item and differed only in punctuation. The quote is copied exactly from the document. Naming the source as Exodus 3:4 in the King James Version comes from model-prior (training recall) and is not verified, because the document gives only the verse number 3:4.",
+        "actor": "God (the LORD)",
+        "action": "called unto him out of the midst of the bush",
+        "object": "Moses",
+        "place": "the midst of the bush",
+        "mechanism": "divine speech from the bush after Moses turned aside to see",
+        "year": null
+      }
+    ]
+  }
+}

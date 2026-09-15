@@ -1,0 +1,73 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7094a2ab8cc7175e83168284c61368ee7da708597043150d2c9681bf84ca738b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then Abraham fell upon his face, and laughed",
+        "claim": "Abraham fell on his face and laughed",
+        "actor": "Abraham",
+        "action": "fell upon his face, laughed",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Shall a child be born unto him that is an hundred years old? and shall Sarah, that is ninety years old, bear?",
+        "claim": "Abraham doubted whether conception could occur at their advanced ages",
+        "actor": "Abraham",
+        "action": "questioned",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham said unto God, O that Ishmael might live before thee!",
+        "claim": "Abraham expressed a desire that Ishmael might live before God",
+        "actor": "Abraham",
+        "action": "said",
+        "object": "Ishmael",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Sarah thy wife shall bear thee a son indeed",
+        "claim": "Sarah shall bear a son to Abraham",
+        "actor": "Sarah",
+        "action": "shall bear",
+        "object": "a son",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou shalt call his name Isaac",
+        "claim": "Abraham shall name his son Isaac",
+        "actor": "Abraham",
+        "action": "shalt call",
+        "object": "his name Isaac",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "I will establish my covenant with him for an everlasting covenant, and with his seed after him",
+        "claim": "God will establish an everlasting covenant with the son and his descendants",
+        "actor": "God",
+        "action": "will establish",
+        "object": "my covenant",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

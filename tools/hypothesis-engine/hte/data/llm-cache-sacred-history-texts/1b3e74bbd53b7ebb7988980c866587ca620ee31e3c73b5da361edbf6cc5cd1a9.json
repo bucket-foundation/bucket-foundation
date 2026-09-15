@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "98c598757079fabd56956fb7137aa9dd92a579cc05bbae5b0afd66bec235d6c8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses took the redemption money of them that were over and above them that were redeemed by the Levites: 3:50 Of the firstborn of the children of Israel took he the money; a thousand three hundred and threescore and five shekels, after the shekel of the sanctuary:",
+        "claim": "Moses took 1,365 sanctuary shekels as redemption money from the firstborn of Israel, representing the excess above amounts redeemed by the Levites",
+        "actor": "Moses",
+        "action": "took",
+        "object": "the money (1,365 shekels)",
+        "place": "",
+        "mechanism": "excess of firstborn redemptions above Levite redemptions",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses gave the money of them that were redeemed unto Aaron and to his sons, according to the word of the LORD, as the LORD commanded Moses.",
+        "claim": "Moses distributed the redemption money to Aaron and his sons in obedience to the LORD's command",
+        "actor": "Moses",
+        "action": "gave",
+        "object": "the money of them that were redeemed",
+        "place": "",
+        "mechanism": "as the LORD commanded / according to the word of the LORD",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

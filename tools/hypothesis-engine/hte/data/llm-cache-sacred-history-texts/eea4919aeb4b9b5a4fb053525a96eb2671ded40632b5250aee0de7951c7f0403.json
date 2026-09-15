@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ba975b69fe840a94922eaddffe37fea62de0ce57a30077127625032748a1faf4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moreover he said, I am the God of thy father, the God of Abraham, the God of Isaac, and the God of Jacob.",
+        "claim": "A divine being identifies himself as the God of Abraham, Isaac, and Jacob",
+        "actor": "he",
+        "action": "said",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses hid his face; for he was afraid to look upon God.",
+        "claim": "Moses hid his face because he was afraid to look upon God",
+        "actor": "Moses",
+        "action": "hid",
+        "object": "his face",
+        "mechanism": "fear",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

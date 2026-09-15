@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5a707464375169443bf3e23d18aca4f978dda7910b30d7b171a90fad81ae2090",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "But the bullock, and his hide, his flesh, and his dung, he burnt with fire without the camp; as the LORD commanded Moses.",
+        "claim": "The bullock, its hide, flesh, and dung were burned with fire outside the camp in accordance with divine command given to Moses.",
+        "actor": "he",
+        "action": "burnt",
+        "object": "the bullock, and his hide, his flesh, and his dung",
+        "place": "without the camp",
+        "mechanism": "the LORD commanded Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

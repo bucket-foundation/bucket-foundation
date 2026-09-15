@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c313035452b25031700deed145174f72d1215e67427e9e06432942c33ecadf13",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they came to the place which God had told him of; and Abraham built an altar there, and laid the wood in order, and bound Isaac his son, and laid him on the altar upon the wood.",
+        "claim": "Abraham built an altar at a divinely appointed place, arranged wood, bound his son Isaac, and laid him on the altar.",
+        "actor": "Abraham",
+        "action": "built, laid, bound, laid",
+        "object": "altar, wood, Isaac",
+        "place": "the place which God had told him of",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

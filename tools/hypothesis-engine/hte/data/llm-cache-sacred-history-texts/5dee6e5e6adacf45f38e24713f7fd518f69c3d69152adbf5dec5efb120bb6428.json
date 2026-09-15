@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f7c6950b4171e9652049a101e5f9ffe5be71b0653d5429694be91e215db78ac9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "speech",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Speak unto Aaron, and to his sons, and unto all the children of Israel, and say unto them",
+        "claim": "Moses is commanded to speak to Aaron, his sons, and the children of Israel",
+        "actor": "Moses",
+        "action": "Speak",
+        "object": "Aaron, his sons, children of Israel",
+        "place": "",
+        "mechanism": "commandment",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "that will offer his oblation for all his vows, and for all his freewill offerings, which they will offer unto the LORD for a burnt offering",
+        "claim": "Members of the house of Israel or strangers will offer oblations to the LORD",
+        "actor": "he [of the house of Israel or strangers]",
+        "action": "will offer",
+        "object": "oblation",
+        "place": "",
+        "mechanism": "offering",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Ye shall offer at your own will a male without blemish, of the beeves, of the sheep, or of the goats",
+        "claim": "An unblemished male animal shall be offered at the offerer's discretion",
+        "actor": "Ye",
+        "action": "shall offer",
+        "object": "male without blemish, of the beeves, of the sheep, or of the goats",
+        "place": "",
+        "mechanism": "sacrifice",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

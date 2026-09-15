@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "db4954df13f1aa57be9c2c8d86f7c9cfe897dac57cca13c73b8234eb286ff7d6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Sarah saw the son of Hagar the Egyptian, which she had born unto Abraham, mocking.",
+        "claim": "Sarah saw the son of Hagar mocking",
+        "year": null,
+        "stance": "positive",
+        "actor": "Sarah",
+        "action": "saw",
+        "object": "the son of Hagar the Egyptian",
+        "place": "",
+        "mechanism": ""
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Sarah saw the son of Hagar the Egyptian, which she had born unto Abraham, mocking.",
+        "claim": "The son of Hagar the Egyptian was mocking",
+        "year": null,
+        "stance": "positive",
+        "actor": "the son of Hagar the Egyptian",
+        "action": "mocking",
+        "object": "",
+        "place": "",
+        "mechanism": ""
+      }
+    ]
+  }
+}

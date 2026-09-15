@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7b58df6f77a3d8bb751f82678db93cd5be59b929d38163473d9d06af4e05dbf4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And when the voice of the trumpet sounded long, and waxed louder and louder, Moses spake, and God answered him by a voice.",
+        "claim": "A trumpet voice sounded progressively longer and louder while Moses spoke and God answered him with a voice",
+        "actor": "Moses, God",
+        "action": "sounded, spake, answered",
+        "object": "trumpet voice, voice",
+        "place": "",
+        "mechanism": "trumpet, voice",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

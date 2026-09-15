@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "fcf5e223a94cc2a34a46d45b3df38692e8133211304841627f2c3980c9f7b573",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Pharaoh sent, and called for Moses and Aaron, and said unto them, I have sinned this time: the LORD is righteous, and I and my people are wicked.",
+        "claim": "Pharaoh confesses to having sinned and asserts that the LORD is righteous while he and his people are wicked",
+        "actor": "Pharaoh",
+        "action": "sent, called for, said",
+        "object": "Moses and Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

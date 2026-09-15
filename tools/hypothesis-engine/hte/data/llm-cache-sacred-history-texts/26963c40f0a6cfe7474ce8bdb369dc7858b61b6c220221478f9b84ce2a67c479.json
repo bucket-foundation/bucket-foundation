@@ -1,0 +1,42 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "249f9b364d29aa47494bec6f8c9f4fe8caa282b18791402bdcb27eb74c012088",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses face to face, as a man speaketh unto his friend.",
+        "claim": "The LORD spoke to Moses face to face as a man speaks to a friend",
+        "actor": "the LORD, Moses",
+        "action": "spake",
+        "mechanism": "face to face",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he turned again into the camp",
+        "claim": "He turned again into the camp",
+        "actor": "he",
+        "action": "turned again",
+        "place": "the camp",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "but his servant Joshua, the son of Nun, a young man, departed not out of the tabernacle.",
+        "claim": "Joshua, the son of Nun, did not depart from the tabernacle",
+        "actor": "Joshua, the son of Nun",
+        "action": "departed not",
+        "place": "the tabernacle",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

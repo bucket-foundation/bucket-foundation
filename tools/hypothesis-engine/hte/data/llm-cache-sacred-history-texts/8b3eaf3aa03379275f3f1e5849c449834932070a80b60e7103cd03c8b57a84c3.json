@@ -1,0 +1,54 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9c17e453364c720d5daedc2a683165f26890c40c53440340de4beaaf3d8dfe38",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "I bowed down my head",
+        "claim": "The speaker bowed down his head",
+        "actor": "I",
+        "action": "bowed down",
+        "object": "head",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "worshipped the LORD",
+        "claim": "The speaker worshipped the LORD",
+        "actor": "I",
+        "action": "worshipped",
+        "object": "the LORD",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "blessed the LORD God of my master Abraham",
+        "claim": "The speaker blessed the LORD God of his master Abraham",
+        "actor": "I",
+        "action": "blessed",
+        "object": "the LORD God of my master Abraham",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "which had led me in the right way to take my master's brother's daughter unto his son",
+        "claim": "The LORD God of Abraham had led the speaker in the right way",
+        "actor": "the LORD God of my master Abraham",
+        "action": "had led",
+        "object": "me",
+        "place": "the right way",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

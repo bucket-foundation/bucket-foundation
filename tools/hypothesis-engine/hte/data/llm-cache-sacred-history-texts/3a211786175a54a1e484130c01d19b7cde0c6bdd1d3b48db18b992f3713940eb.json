@@ -1,0 +1,70 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "41a0bc52974c27b9c1f04279148c841fd050f59c19e5a16c504f61485e9be73b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Now these are the generations of Ishmael, Abraham's son, whom Hagar the Egyptian, Sarah's handmaid, bare unto Abraham",
+        "claim": "Ishmael is Abraham's son born to Hagar, an Egyptian who was Sarah's handmaid",
+        "actor": "Hagar",
+        "action": "bore",
+        "object": "Ishmael",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the firstborn of Ishmael, Nebajoth; and Kedar, and Adbeel, and Mibsam",
+        "claim": "Ishmael's firstborn son was Nebajoth; his other sons included Kedar, Adbeel, and Mibsam",
+        "actor": "Ishmael",
+        "object": "sons named",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Mishma, and Dumah, and Massa",
+        "claim": "Three additional sons of Ishmael were Mishma, Dumah, and Massa",
+        "actor": "Ishmael",
+        "object": "sons named",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Hadar, and Tema, Jetur, Naphish, and Kedemah",
+        "claim": "Five more sons of Ishmael were Hadar, Tema, Jetur, Naphish, and Kedemah",
+        "actor": "Ishmael",
+        "object": "sons named",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "These are the sons of Ishmael, and these are their names, by their towns, and by their castles; twelve princes according to their nations",
+        "claim": "Ishmael had twelve sons who were princes; they are identified by their towns and castles according to their nations",
+        "actor": "Ishmael",
+        "object": "twelve princes",
+        "place": "towns and castles",
+        "mechanism": "according to their nations",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "44fdbff04c9d16922141d85abb7e5092da339e58f6fcca901b6bd28048790489",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses took the breast, and waved it for a wave offering before the LORD",
+        "claim": "Moses took the breast and waved it as a wave offering before the LORD",
+        "actor": "Moses",
+        "action": "took, waved",
+        "object": "the breast",
+        "place": "before the LORD",
+        "mechanism": "wave offering",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses to perform the ritual action",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

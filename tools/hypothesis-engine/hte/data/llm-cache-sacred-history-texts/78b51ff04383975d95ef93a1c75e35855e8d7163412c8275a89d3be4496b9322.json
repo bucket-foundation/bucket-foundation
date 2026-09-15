@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5ee5032584fd71d8ffdde0c7f2694f0938f51c194d8dc8414f4dab4cefc9a20f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD spake unto Moses and unto Aaron, saying",
+        "claim": "The LORD spoke to Moses and Aaron",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Every man of the children of Israel shall pitch by his own standard, with the ensign of their father's house: far off about the tabernacle of the congregation shall they pitch",
+        "claim": "The men of Israel shall pitch by their standards far from the tabernacle",
+        "actor": "Every man of the children of Israel",
+        "action": "pitch",
+        "object": "",
+        "place": "far off about the tabernacle of the congregation",
+        "mechanism": "by his own standard, with the ensign of their father's house",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

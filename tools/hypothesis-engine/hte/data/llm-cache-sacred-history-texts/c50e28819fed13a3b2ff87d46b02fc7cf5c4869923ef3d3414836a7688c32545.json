@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "208c1b40fc01a9687f395a2f4b57a35945180cb9d1fb1f0b22f57bb7fcc11630",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "source-text",
+        "quote": "And Moses and Aaron did all these wonders before Pharaoh",
+        "claim": "The text says Moses and Aaron performed 'all these wonders' in front of Pharaoh.",
+        "actor": "Moses and Aaron",
+        "action": "did wonders before",
+        "object": "Pharaoh",
+        "place": "Pharaoh's land (the text does not name it)",
+        "mechanism": "wonders (the text gives no details in this verse)",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "causal-claim",
+        "tier": "source-text",
+        "quote": "and the LORD hardened Pharaoh\u2019s heart, so that he would not let the children of Israel go out of his land.",
+        "claim": "The text says the LORD hardened Pharaoh's heart. As a result, Pharaoh would not let the Israelites leave his land.",
+        "actor": "the LORD",
+        "action": "hardened the heart of",
+        "object": "Pharaoh",
+        "place": "Pharaoh's land (the text does not name it)",
+        "mechanism": "God hardened Pharaoh's heart, so Pharaoh would not let the Israelites go",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

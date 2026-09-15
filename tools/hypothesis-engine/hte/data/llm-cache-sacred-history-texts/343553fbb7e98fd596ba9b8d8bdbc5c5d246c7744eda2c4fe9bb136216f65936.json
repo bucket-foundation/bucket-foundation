@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bb00ca4c71b8f3289e29522668cb03f61f9de60102bbfdb9cf5e4a4a73158f3a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD spake unto Moses, Say unto Aaron, Stretch forth thine hand with thy rod over the streams, over the rivers, and over the ponds, and cause frogs to come up upon the land of Egypt.",
+        "claim": "The LORD commands Aaron to stretch his rod over Egyptian waters and cause frogs to emerge onto the land",
+        "actor": "Aaron",
+        "action": "Stretch forth thine hand with thy rod and cause frogs to come up",
+        "object": "frogs",
+        "place": "the land of Egypt",
+        "mechanism": "thy rod",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

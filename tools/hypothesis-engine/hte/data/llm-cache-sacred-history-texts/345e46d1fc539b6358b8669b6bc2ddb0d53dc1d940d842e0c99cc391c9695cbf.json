@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5213426bceb637a1cce108e2688a367950fb23e110486445a5608bc97a6d2a9e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And when the children of Israel saw it, they said one to another, It is manna: for they wist not what it was.",
+        "claim": "The Israelites saw and called something manna, which they did not recognize",
+        "actor": "the children of Israel",
+        "action": "saw, said",
+        "object": "manna",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said unto them, This is the bread which the LORD hath given you to eat.",
+        "claim": "Moses identifies the substance as bread provided by the LORD for consumption",
+        "actor": "Moses",
+        "action": "said",
+        "object": "bread",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

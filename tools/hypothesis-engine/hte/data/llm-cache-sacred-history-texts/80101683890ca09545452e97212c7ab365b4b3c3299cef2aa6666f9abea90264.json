@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "91a5244ac66011eca5f55d75ba9d1abc0923d30f2423239629047d9b1e958c97",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "There shall none be defiled for the dead among his people",
+        "claim": "Priests shall not be defiled for the dead among their people",
+        "actor": "priests",
+        "action": "defiled",
+        "object": "the dead",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "But for his kin, that is near unto him, that is, for his mother, and for his father, and for his son, and for his daughter, and for his brother",
+        "claim": "Priests may be defiled for close relatives",
+        "actor": "",
+        "action": "",
+        "object": "his kin",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

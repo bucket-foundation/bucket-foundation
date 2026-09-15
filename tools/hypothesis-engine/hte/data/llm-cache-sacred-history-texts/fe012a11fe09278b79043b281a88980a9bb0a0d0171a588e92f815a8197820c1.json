@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8cb1cc7f92d3b1cff8bd5f447e4b9145ead4c04b0a44a2a2ce520d5bbadda49e",
+  "response": {
+    "items": [
+      {
+        "quote": "And the LORD spake unto Moses and Aaron in the land of Egypt saying, This month shall be unto you the beginning of months: it shall be the first month of the year to you.",
+        "claim": "The LORD declared to Moses and Aaron in Egypt that a specific month shall be the beginning of months and the first month of the year.",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "the LORD, Moses, Aaron",
+        "action": "spake",
+        "object": "This month",
+        "place": "the land of Egypt",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

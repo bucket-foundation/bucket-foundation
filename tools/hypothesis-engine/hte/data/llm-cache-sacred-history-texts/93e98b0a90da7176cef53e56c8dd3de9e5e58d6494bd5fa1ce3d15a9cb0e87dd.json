@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "43433a7662b7f2e5f881814e2827e6bbf729c262f01cb60eb5a8f116443c71ab",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD appeared unto him the same night, and said, I am the God of Abraham thy father: fear not, for I am with thee, and will bless thee, and multiply thy seed for my servant Abraham\u2019s sake.",
+        "claim": "The text says the LORD appeared at night to a son of Abraham ('him', not named in this verse) and identified himself as the God of Abraham. He told him not to fear and promised to be with him, bless him and multiply his descendants for Abraham's sake. The verse only says 'him'. Reading that as Isaac, and placing the scene at Beersheba, comes from the surrounding chapter (Genesis 26:23). That context is not in this excerpt, so it is model-prior and unverified. This is a religious text reporting a divine appearance, so the item is evidence of what the text claims, not proof that the event happened.",
+        "actor": "the LORD",
+        "action": "appeared and promised to be with, bless, and multiply the seed of",
+        "object": "Abraham's son (unnamed in this verse; Isaac per model-prior)",
+        "mechanism": "a night appearance and a spoken promise, grounded in the covenant with Abraham ('for my servant Abraham\u2019s sake')",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

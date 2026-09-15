@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f74fdeac4aae3d9296c7d3605cb780a110685d635bbf59303bb3f85a772b459c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the LORD spake unto Moses, saying, Speak unto the children of Israel, saying",
+        "claim": "Moses was commanded to speak to the children of Israel",
+        "actor": "Moses",
+        "action": "Speak",
+        "object": "the children of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "In the seventh month, in the first day of the month, shall ye have a sabbath, a memorial of blowing of trumpets, an holy convocation",
+        "claim": "The children of Israel shall have a sabbath and memorial of blowing of trumpets on the first day of the seventh month",
+        "actor": "ye",
+        "action": "shall have",
+        "object": "a sabbath, a memorial of blowing of trumpets, an holy convocation",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

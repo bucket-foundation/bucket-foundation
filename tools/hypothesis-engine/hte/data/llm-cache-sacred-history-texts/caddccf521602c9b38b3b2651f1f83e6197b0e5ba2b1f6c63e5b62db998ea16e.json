@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "0c56b7a32184efaff199c99dfdff524c2e8b41f72f5133a51ee666113c19248c",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And he washed the inwards and the legs in water",
+        "claim": "The inner organs and legs of the ram were washed in water before it was burnt.",
+        "actor": "he (the officiant; the verse does not name him)",
+        "action": "washed",
+        "object": "the inwards and the legs of the ram",
+        "mechanism": "washing with water to prepare the sacrifice",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and Moses burnt the whole ram upon the altar: it was a burnt sacrifice for a sweet savour, and an offering made by fire unto the LORD",
+        "claim": "Moses burnt the whole ram on the altar. The text calls it a burnt sacrifice for a sweet savour and an offering made by fire to the LORD.",
+        "actor": "Moses",
+        "action": "burnt",
+        "object": "the whole ram",
+        "mechanism": "burning the whole ram on the altar as an offering",
+        "place": "the altar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The text says the offering was carried out as the LORD had commanded Moses.",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "mechanism": "following a divine command",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

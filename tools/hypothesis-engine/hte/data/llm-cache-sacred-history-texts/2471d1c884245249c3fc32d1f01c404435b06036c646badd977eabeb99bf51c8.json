@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "eaecea30e9e000c76443b6390b82f17e7d1fc6d3dee6642af0d65230f77265c3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Jethro, Moses' father in law, took a burnt offering and sacrifices for God",
+        "claim": "Jethro took a burnt offering and sacrifices for God",
+        "actor": "Jethro",
+        "action": "took",
+        "object": "a burnt offering and sacrifices",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Aaron came, and all the elders of Israel, to eat bread with Moses' father in law before God",
+        "claim": "Aaron and all the elders of Israel came to eat bread with Moses' father in law before God",
+        "actor": "Aaron and all the elders of Israel",
+        "action": "came",
+        "object": "",
+        "place": "with Moses' father in law before God",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

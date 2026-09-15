@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "49aa101ce25d8ad25c6aa71b253d9b7f33d795a0584f460ae2f28da894d4a02a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses said unto the LORD, The people cannot come up to mount Sinai: for thou chargedst us, saying, Set bounds about the mount, and sanctify it.",
+        "claim": "Moses told the LORD that the people cannot ascend mount Sinai because God had commanded them to establish boundaries and sanctify it",
+        "actor": "Moses",
+        "action": "said",
+        "object": "the LORD",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "thou chargedst us, saying, Set bounds about the mount, and sanctify it.",
+        "claim": "God commanded them to establish boundaries around the mount and sanctify it",
+        "actor": "thou",
+        "action": "chargedst",
+        "object": "us",
+        "place": "the mount",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "The people cannot come up to mount Sinai",
+        "claim": "The people were unable to ascend mount Sinai",
+        "actor": "The people",
+        "action": "cannot come up",
+        "object": "mount Sinai",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

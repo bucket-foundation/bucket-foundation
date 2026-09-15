@@ -363,3 +363,20 @@ against the new totals rather than the old ones:
   Bahá'í, Greek, and one of the two Mesopotamian editions (Enuma Elish)
   attest thinly, pulling the blended rate down, and the pre-filtered
   subset's own wall time with it.
+
+## Slice one, live
+
+`scripts/extract_slice.py --offset 0 --limit 500 --chunk-size 20`, started
+2026-09-14 13:31Z, finished 18:03Z: the first 500 passages of the
+figure-attested subset (6,207 passages over the 8 editions on that
+commit, `attested_subset()`'s own order), all of them from the KJV Bible
+edition since it leads `TEXT_RECORDS`. 1,505 extractor calls (haiku, three
+passes per passage) and 283 opus escalations on ensemble disagreement, 2
+rate-limit pauses, 2 timeouts at 300 s (raised to 600 s for this role in
+#156), 16,262 s wall clock. 917 evidence items, saved as
+`hte/data/sacred-history-texts-slice-1-corpus.json` and registered as the
+`sacred-history-texts-slice-1` corpus. The model cache is tracked under
+`hte/data/llm-cache-sacred-history-texts/` (1,783 entries, 7.0 MB), so the
+slice replays in under a second with `replay_only=True` and no call. The
+script's warm phase makes live calls on any cache miss; run it only when
+extending the window.

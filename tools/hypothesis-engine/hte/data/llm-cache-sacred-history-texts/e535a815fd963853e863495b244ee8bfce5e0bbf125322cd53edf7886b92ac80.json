@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "939a78af798247677cab93f9cb059286f6106dd47a285f781879f5c37557a264",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then on the third day Abraham lifted up his eyes, and saw the place afar off.",
+        "claim": "Abraham observed a distant location on the third day after his departure",
+        "actor": "Abraham",
+        "action": "lifted up his eyes, and saw",
+        "object": "the place",
+        "place": "afar off",
+        "mechanism": "visual perception",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

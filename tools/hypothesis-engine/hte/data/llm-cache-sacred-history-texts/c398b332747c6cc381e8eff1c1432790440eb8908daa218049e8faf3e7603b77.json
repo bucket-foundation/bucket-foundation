@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ab2d0be9ca85d1dd324b6168dd2890bf3457dc92baacf6aa9e4f5d06f51c48f9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "I am of uncircumcised lips",
+        "claim": "Moses identifies himself as having uncircumcised lips, implying a speech impediment",
+        "actor": "Moses",
+        "action": "am",
+        "object": "of uncircumcised lips",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "how shall Pharaoh hearken unto me?",
+        "claim": "Moses questions whether Pharaoh will listen to him",
+        "actor": "Pharaoh",
+        "action": "hearken",
+        "object": "unto me",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "I have made thee a god to Pharaoh",
+        "claim": "The LORD declares he has made Moses a god in relation to Pharaoh",
+        "actor": "the LORD",
+        "action": "made",
+        "object": "thee a god to Pharaoh",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Aaron thy brother shall be thy prophet",
+        "claim": "The LORD declares Aaron shall be Moses's prophet",
+        "actor": "Aaron",
+        "action": "shall be",
+        "object": "thy prophet",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "fe3a0f1296245da6278eeff8d02bd3fad9fd345a19ca1da3871fa4058d62283b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And ye shall not go out from the door of the tabernacle of the congregation",
+        "claim": "The priests are prohibited from leaving the tabernacle door",
+        "actor": "ye",
+        "action": "shall not go out",
+        "place": "door of the tabernacle of the congregation",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for the anointing oil of the LORD is upon you",
+        "claim": "The LORD has anointed the priests with sacred oil",
+        "actor": "the LORD",
+        "object": "you",
+        "mechanism": "anointing oil",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And they did according to the word of Moses",
+        "claim": "The priests complied with the command of Moses",
+        "actor": "they",
+        "action": "did according to the word",
+        "mechanism": "the word of Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

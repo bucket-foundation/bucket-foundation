@@ -1,0 +1,84 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "a1275eead3106c41616f3c5aab591bb247a6577a05396aa2f015d6e1a3fafe2b",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "He slew also the bullock and the ram for a sacrifice of peace offerings, which was for the people",
+        "claim": "The officiant (unnamed 'He' in 9:18; 9:21 names Aaron in the same sequence) killed a bullock and a ram as a peace-offering sacrifice on behalf of the people.",
+        "actor": "Aaron (inferred from 9:21; 9:18 says only 'He')",
+        "action": "slew",
+        "object": "the bullock and the ram (sacrifice of peace offerings for the people)",
+        "year": null,
+        "mechanism": "animal sacrifice as peace offering on behalf of the people",
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "Aaron\u2019s sons presented unto him the blood, which he sprinkled upon the altar round about",
+        "claim": "Aaron's sons brought the sacrificial blood to him, and he sprinkled it all around the altar.",
+        "actor": "Aaron's sons; Aaron",
+        "action": "presented the blood; sprinkled it upon the altar round about",
+        "object": "the blood of the peace offerings",
+        "place": "the altar",
+        "year": null,
+        "mechanism": "blood rite performed at the altar, with the sons assisting",
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And the fat of the bullock and of the ram, the rump, and that which covereth the inwards, and the kidneys, and the caul above the liver",
+        "claim": "The fat parts taken from the bullock and the ram were the rump, the fat covering the inwards, the kidneys, and the caul above the liver.",
+        "actor": "Aaron's sons (presenting, continuing from 9:18)",
+        "action": "presented",
+        "object": "fat of the bullock and ram: rump, fat covering the inwards, kidneys, caul above the liver",
+        "year": null,
+        "mechanism": "the specified fat portions set apart for the altar",
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And they put the fat upon the breasts, and he burnt the fat upon the altar",
+        "claim": "The fat was laid on the breast portions, and then he burned the fat on the altar.",
+        "actor": "Aaron's sons ('they'); Aaron ('he')",
+        "action": "put the fat upon the breasts; burnt the fat",
+        "object": "the fat",
+        "place": "the altar",
+        "year": null,
+        "mechanism": "burning the fat on the altar",
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And the breasts and the right shoulder Aaron waved for a wave offering before the LORD",
+        "claim": "Aaron waved the breasts and the right shoulder before the LORD as a wave offering.",
+        "actor": "Aaron",
+        "action": "waved",
+        "object": "the breasts and the right shoulder",
+        "place": "before the LORD",
+        "year": null,
+        "mechanism": "wave offering",
+        "stance": "positive"
+      },
+      {
+        "kind": "claim",
+        "tier": "primary",
+        "quote": "as Moses commanded",
+        "claim": "The text says these ritual actions were done as Moses had commanded.",
+        "actor": "Moses",
+        "action": "commanded",
+        "object": "the peace-offering ritual carried out by Aaron and his sons",
+        "year": null,
+        "mechanism": "doing the ritual under Moses' instructions",
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "adba21b4f06cf4155491caf352e70ec279f63c1d17cb43a0c013bec00917ef26",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Then sang Moses and the children of Israel this song unto the LORD, and spake, saying, I will sing unto the LORD, for he hath triumphed gloriously: the horse and his rider hath he thrown into the sea.",
+        "claim": "Moses and the children of Israel sang a song to the LORD celebrating his triumph in throwing horses and riders into the sea",
+        "actor": "Moses and the children of Israel",
+        "action": "sang",
+        "object": "this song",
+        "place": "the sea",
+        "mechanism": "thrown into the sea",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "276e66920eccc43514c32286677065c06ffa618f8e421c2172d5509ebdec35ee",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Moses delayed to come down out of the mount",
+        "claim": "Moses delayed descending from the mountain",
+        "actor": "Moses",
+        "action": "delayed to come down",
+        "place": "the mount",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the people gathered themselves together unto Aaron",
+        "claim": "The people assembled before Aaron",
+        "actor": "the people",
+        "action": "gathered themselves together",
+        "object": "Aaron",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the people said unto him, Up, make us gods, which shall go before us",
+        "claim": "The people requested that Aaron make gods to lead them",
+        "actor": "the people",
+        "action": "said",
+        "object": "Aaron",
+        "mechanism": "speech",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "this Moses, the man that brought us up out of the land of Egypt",
+        "claim": "Moses led the people out of Egypt",
+        "actor": "Moses",
+        "action": "brought us up",
+        "object": "the people",
+        "place": "the land of Egypt",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "we wot not what is become of him",
+        "claim": "The people do not know what has become of Moses",
+        "actor": "the people",
+        "action": "wot not",
+        "object": "what is become of Moses",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

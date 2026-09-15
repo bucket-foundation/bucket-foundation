@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "2848c3c9609f7fe61b1d8a32c5143b8a1a3b90535615e2b78ffaa077713f8f88",
+  "response": {
+    "items": [
+      {
+        "kind": "claim",
+        "tier": "primary",
+        "quote": "Except the God of my father, the God of Abraham, and the fear of Isaac, had been with me, surely thou hadst sent me away now empty.",
+        "claim": "The speaker says the God of his father (the God of Abraham, the fear of Isaac) was with him, and that without this the person he is addressing would have sent him away with nothing.",
+        "actor": "the God of my father, the God of Abraham, and the fear of Isaac",
+        "action": "had been with",
+        "object": "the speaker (unnamed in the text; the traditional reading of Genesis 31:42 that this is Jacob speaking to Laban is an unverified model-prior)",
+        "mechanism": "divine presence stopped the listener from sending the speaker away empty",
+        "stance": "positive",
+        "place": "",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "primary",
+        "quote": "God hath seen mine affliction and the labour of my hands, and rebuked thee yesternight.",
+        "claim": "The speaker says God saw his suffering and hard work and rebuked the person he is addressing the night before.",
+        "actor": "God",
+        "action": "saw the speaker's affliction and labour, and rebuked the listener",
+        "object": "the listener (unnamed in the text; the reading that this is Laban is an unverified model-prior)",
+        "mechanism": "a divine rebuke delivered the night before (yesternight)",
+        "stance": "negative",
+        "place": "",
+        "year": null
+      }
+    ]
+  }
+}

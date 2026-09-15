@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a1d11f9d7094791b20d65fa1725970f0a19092696bf6ec4301ef22bc0acefae6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses went and returned to Jethro his father in law",
+        "claim": "Moses went and returned to Jethro, his father-in-law",
+        "actor": "Moses",
+        "action": "went and returned",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and said unto him, Let me go, I pray thee, and return unto my brethren which are in Egypt, and see whether they be yet alive",
+        "claim": "Moses requested permission to return to his brothers in Egypt to see if they were alive",
+        "actor": "Moses",
+        "action": "said",
+        "object": "him",
+        "place": "Egypt",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Jethro said to Moses, Go in peace",
+        "claim": "Jethro told Moses to go in peace",
+        "actor": "Jethro",
+        "action": "said",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

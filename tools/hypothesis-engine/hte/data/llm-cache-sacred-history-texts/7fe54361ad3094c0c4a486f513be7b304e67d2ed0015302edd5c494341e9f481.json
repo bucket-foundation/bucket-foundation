@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a1135c27f4d3c775361d23b6ac366577573218d6dbea31f8c85896f653c7574e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Which the LORD commanded Moses in mount Sinai",
+        "claim": "The LORD commanded Moses in mount Sinai regarding the laws of burnt offerings and peace offerings",
+        "actor": "The LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "place": "mount Sinai",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "in the day that he commanded the children of Israel to offer their oblations unto the LORD, in the wilderness of Sinai",
+        "claim": "The LORD commanded the children of Israel to offer oblations unto the LORD in the wilderness of Sinai",
+        "actor": "he (the LORD)",
+        "action": "commanded",
+        "object": "the children of Israel to offer their oblations",
+        "place": "wilderness of Sinai",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7057f759cd4eaccf280b3791d158a1158aade46a7cf2c78e86ebbb1d2c074797",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses took of the anointing oil, and of the blood which was upon the altar, and sprinkled it upon Aaron, and upon his garments, and upon his sons, and upon his sons' garments with him; and sanctified Aaron, and his garments, and his sons, and his sons' garments with him.",
+        "claim": "Moses sanctified Aaron and his sons by sprinkling anointing oil and blood from the altar.",
+        "actor": "Moses",
+        "action": "sprinkled, sanctified",
+        "object": "Aaron, his garments, his sons, his sons' garments; anointing oil, blood",
+        "place": "",
+        "mechanism": "sprinkling of anointing oil and blood",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

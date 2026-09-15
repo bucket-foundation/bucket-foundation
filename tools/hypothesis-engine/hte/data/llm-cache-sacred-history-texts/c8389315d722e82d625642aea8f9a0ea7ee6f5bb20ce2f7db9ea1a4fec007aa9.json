@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ee95e8aeb8e62ea093f18a79b3254672622e914a3aae16e67809c36aefa16df1",
+  "response": {
+    "items": [
+      {
+        "claim": "The LORD spoke to Moses with instructions about animal offerings",
+        "quote": "And the LORD spake unto Moses, saying",
+        "kind": "textual",
+        "tier": "T3",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "claim": "Animals must be seven days old under their mother before being accepted as burnt offerings to the LORD",
+        "quote": "When a bullock, or a sheep, or a goat, is brought forth, then it shall be seven days under the dam; and from the eighth day and thenceforth it shall be accepted for an offering made by fire unto the LORD",
+        "kind": "textual",
+        "tier": "T3",
+        "actor": "a bullock, or a sheep, or a goat",
+        "action": "shall be accepted for an offering",
+        "object": "an offering made by fire unto the LORD",
+        "place": "",
+        "mechanism": "seven days under the dam; from the eighth day",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

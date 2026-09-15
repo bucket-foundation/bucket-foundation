@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b797c6fb15ae9c01d2f6b1bc20436cdd8c609d56ffb68b6a153abca9835d0cd2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham took the wood of the burnt offering, and laid it upon Isaac his son; and he took the fire in his hand, and a knife; and they went both of them together.",
+        "claim": "Abraham took the wood of the burnt offering, laid it upon Isaac his son, took fire and a knife, and both went together.",
+        "actor": "Abraham, Isaac",
+        "action": "took, laid, went",
+        "object": "wood of the burnt offering, fire, knife",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

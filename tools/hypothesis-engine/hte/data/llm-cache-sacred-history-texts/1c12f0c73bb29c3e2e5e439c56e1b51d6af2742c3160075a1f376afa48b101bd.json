@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "63f7c5c7cd40e5f162acf778da267e8ca621a370fa7dbf9eaea6b6eb578ca367",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses with instructions",
+        "actor": "The LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "divine speech",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Speak unto the children of Israel, and say unto them, Concerning the feasts of the LORD, which ye shall proclaim to be holy convocations",
+        "claim": "The children of Israel shall proclaim the LORD's feasts as holy convocations",
+        "actor": "children of Israel",
+        "action": "proclaim",
+        "object": "feasts",
+        "place": "",
+        "mechanism": "commandment",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

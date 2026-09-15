@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "cfc6083406bea38f4aecfb0a56c0812df3062656bd13570c4fa22720e00a5625",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And Moses alone shall come near the LORD: but they shall not come nigh; neither shall the people go up with him.",
+        "claim": "The text says that only Moses may come near the LORD. The others ('they') must not come near, and the people must not go up with him.",
+        "actor": "Moses",
+        "action": "come near the LORD alone",
+        "object": "the LORD",
+        "mechanism": "a command limiting who may come near: Moses alone, with the others and the people kept back",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

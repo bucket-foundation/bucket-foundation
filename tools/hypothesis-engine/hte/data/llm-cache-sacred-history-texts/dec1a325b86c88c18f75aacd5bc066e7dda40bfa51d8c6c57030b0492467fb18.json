@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "6b2c2e0df82d41ef885f90f5d61d7e82a214969f2ea07d7dec1950214db54ba4",
+  "response": {
+    "items": [
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "4:21 And the LORD spake unto Moses, saying, 4:22 Take also the sum of the sons of Gershon, throughout the houses of their fathers, by their families;",
+        "claim": "The text says the LORD told Moses to count the sons of Gershon, grouped by their fathers' houses and by families. The document does not name the book. Identifying it as Numbers 4:21-22 (KJV) comes only from the verse numbers and background knowledge (model-prior, unverified).",
+        "actor": "the LORD (speaking to Moses)",
+        "action": "ordered a count of the sons of Gershon",
+        "object": "sons of Gershon",
+        "place": "",
+        "mechanism": "a count grouped by family line (houses of their fathers, families)",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "eligibility-rule",
+        "tier": "primary-text",
+        "quote": "4:23 From thirty years old and upward until fifty years old shalt thou number them; all that enter in to perform the service, to do the work in the tabernacle of the congregation.",
+        "claim": "The count of Gershonites is limited to men aged thirty to fifty who enter service to do the work of the tabernacle of the congregation. The age range sets who may serve.",
+        "actor": "Moses (instructed)",
+        "action": "count Gershonites aged 30 to 50",
+        "object": "Gershonites who can serve",
+        "place": "tabernacle of the congregation",
+        "mechanism": "an age limit (30 to 50) decides who can do tabernacle work",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

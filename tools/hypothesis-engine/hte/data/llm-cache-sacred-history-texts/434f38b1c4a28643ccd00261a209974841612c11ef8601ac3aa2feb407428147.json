@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "4b4b2e83ebdb5c74104b112097bad4a51b049ccd229ed93765351fde9ba759aa",
+  "response": {
+    "items": [
+      {
+        "kind": "textual-claim",
+        "tier": "primary-text",
+        "quote": "11:1 And the LORD spake unto Moses and to Aaron, saying unto them,",
+        "claim": "The text says the LORD spoke to both Moses and Aaron together, so the instruction that follows is presented as divine speech given to both leaders.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses and Aaron",
+        "mechanism": "divine speech as the source of the instruction",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual-claim",
+        "tier": "primary-text",
+        "quote": "11:2 Speak unto the children of Israel, saying, These are the beasts which ye shall eat among all the beasts that are on the earth.",
+        "claim": "Moses and Aaron are told to pass on to the Israelites a list of land animals they may eat. This sets up a dietary rule about which animals are allowed as food. The rule is announced here, but the actual animals are not listed within this excerpt. The book is not named in the document. Identifying it as Leviticus 11 is model-prior, unverified.",
+        "actor": "Moses and Aaron (instructed by the LORD)",
+        "action": "speak unto / declare permitted foods",
+        "object": "the children of Israel; beasts which ye shall eat",
+        "mechanism": "a food rule given by divine command and passed on through leaders",
+        "place": "on the earth (land animals)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

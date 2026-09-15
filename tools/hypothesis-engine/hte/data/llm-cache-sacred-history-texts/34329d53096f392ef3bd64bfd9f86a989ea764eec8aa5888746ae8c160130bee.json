@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "788a9ea3d05b826988e332094015509b8523727d8447c9047c2c523ef00924d1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham was an hundred years old, when his son Isaac was born unto him.",
+        "claim": "Abraham was 100 years old when his son Isaac was born",
+        "actor": "Abraham",
+        "action": "was an hundred years old",
+        "object": "Isaac",
+        "place": "",
+        "mechanism": "aging",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

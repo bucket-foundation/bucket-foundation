@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "11318acf68180a49feb860b612de09a9c5fd87290f48d3650406a645c4ad3120",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses called unto them",
+        "claim": "Moses called to Aaron and the rulers",
+        "actor": "Moses",
+        "action": "called",
+        "object": "them",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Aaron and all the rulers of the congregation returned unto him",
+        "claim": "Aaron and the rulers of the congregation returned to Moses",
+        "actor": "Aaron and all the rulers of the congregation",
+        "action": "returned",
+        "object": "him",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and Moses talked with them",
+        "claim": "Moses talked with Aaron and the rulers",
+        "actor": "Moses",
+        "action": "talked",
+        "object": "them",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

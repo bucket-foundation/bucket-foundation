@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "4bf37f4e3c718c4fb6c9ed485d206a4a586810e65e7078beec82b8d169182460",
+  "response": {
+    "items": [
+      {
+        "kind": "textual-claim",
+        "tier": "primary",
+        "quote": "And God Almighty bless thee, and make thee fruitful, and multiply thee, that thou mayest be a multitude of people;",
+        "claim": "The text asks God Almighty to bless the person addressed, make them fruitful and multiply them so they become a multitude of people.",
+        "actor": "God Almighty",
+        "action": "bless, make fruitful, multiply",
+        "object": "thee (the addressee) and descendants",
+        "mechanism": "divine blessing",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual-claim",
+        "tier": "primary",
+        "quote": "And give thee the blessing of Abraham, to thee, and to thy seed with thee; that thou mayest inherit the land wherein thou art a stranger, which God gave unto Abraham.",
+        "claim": "The text passes the blessing of Abraham to the addressee and his descendants, so that he may inherit the land where he is a stranger, a land the text says God gave to Abraham.",
+        "actor": "God",
+        "action": "give the blessing of Abraham; grant inheritance of land",
+        "object": "the land wherein thou art a stranger",
+        "mechanism": "inherited covenant blessing passed down from Abraham",
+        "place": "the land wherein thou art a stranger (not named in the text)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

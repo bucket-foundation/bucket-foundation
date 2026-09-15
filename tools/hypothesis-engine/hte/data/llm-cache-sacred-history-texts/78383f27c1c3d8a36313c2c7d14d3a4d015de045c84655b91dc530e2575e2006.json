@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "28cd863e408bd60f27552ca67bd03fd1cc60a25631b86c5053083995097bed13",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he put the altar of burnt offering by the door of the tabernacle of the tent of the congregation",
+        "claim": "Someone placed the altar of burnt offering at the entrance of the tabernacle tent",
+        "actor": "he",
+        "action": "put",
+        "object": "altar of burnt offering",
+        "place": "by the door of the tabernacle of the tent of the congregation",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and offered upon it the burnt offering and the meat offering",
+        "claim": "Burnt and meat offerings were made on the altar",
+        "actor": "he",
+        "action": "offered",
+        "object": "the burnt offering and the meat offering",
+        "place": "upon it",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses regarding these procedures",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

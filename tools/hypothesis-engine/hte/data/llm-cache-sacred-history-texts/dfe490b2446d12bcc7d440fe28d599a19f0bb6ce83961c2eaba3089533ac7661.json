@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "96060d5c4120c84c4ca2609f65395c1272909c228c5f2845259dd68e431450f4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "34:8 And Moses made haste, and bowed his head toward the earth, and worshipped.",
+        "claim": "Moses made haste, bowed his head toward the earth, and worshipped.",
+        "actor": "Moses",
+        "action": "made haste, bowed his head, worshipped",
+        "object": "",
+        "place": "the earth",
+        "mechanism": "bowed his head",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

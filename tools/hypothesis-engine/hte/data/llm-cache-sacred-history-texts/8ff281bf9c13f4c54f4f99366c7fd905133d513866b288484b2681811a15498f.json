@@ -1,0 +1,60 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "d26c0dea1f288ac6ed9242d45a8307e9a31d47612ad34dd764e6e031f7eae7de",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "And Moses besought the LORD his God, and said, LORD, why doth thy wrath wax hot against thy people",
+        "claim": "The text says Moses pleaded with God and asked why God's anger burned against the people.",
+        "actor": "Moses",
+        "action": "besought (interceded with)",
+        "object": "the LORD his God",
+        "year": null
+      },
+      {
+        "kind": "narrative-claim",
+        "tier": "primary-text",
+        "quote": "which thou hast brought forth out of the land of Egypt with great power, and with a mighty hand",
+        "claim": "Moses' plea says God brought the people out of Egypt with great power and a mighty hand.",
+        "actor": "the LORD",
+        "action": "brought forth",
+        "object": "thy people",
+        "place": "Egypt",
+        "mechanism": "great power, and with a mighty hand",
+        "year": null
+      },
+      {
+        "kind": "argument",
+        "tier": "primary-text",
+        "quote": "Wherefore should the Egyptians speak, and say, For mischief did he bring them out, to slay them in the mountains, and to consume them from the face of the earth?",
+        "claim": "Moses argues that destroying the people would let the Egyptians say God freed them only to kill them. This is an appeal to God's reputation.",
+        "actor": "Moses",
+        "action": "argues",
+        "object": "the Egyptians' possible accusation",
+        "place": "the mountains",
+        "year": null
+      },
+      {
+        "kind": "petition",
+        "tier": "primary-text",
+        "quote": "Turn from thy fierce wrath, and repent of this evil against thy people.",
+        "claim": "Moses asks God to turn away from his anger and to reconsider (\"repent of\") the harm he planned against the people.",
+        "actor": "Moses",
+        "action": "petitions",
+        "object": "the LORD's fierce wrath",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "source-identification",
+        "tier": "model-prior",
+        "quote": "32:11 And Moses besought the LORD his God",
+        "claim": "Unverified model-prior: the verse numbers and wording suggest this is Exodus 32:11-12 in the King James Version, during the golden calf episode. The document itself does not name the book, translation or context.",
+        "year": null
+      }
+    ]
+  }
+}

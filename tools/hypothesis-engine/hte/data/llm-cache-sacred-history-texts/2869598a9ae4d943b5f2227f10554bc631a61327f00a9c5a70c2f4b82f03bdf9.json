@@ -1,0 +1,43 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0a4659ad3f2bfa71ae6f79d6532b64e1867c3e0a7fae151c6b4b10544abde55c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said unto Pharaoh, Glory over me: when shall I intreat for thee, and for thy servants, and for thy people, to destroy the frogs from thee and thy houses, that they may remain in the river only?",
+        "claim": "Moses addresses Pharaoh and asks when he should pray to remove the frogs from the people's houses, leaving only those in the river",
+        "actor": "Moses",
+        "action": "said",
+        "object": "Pharaoh",
+        "place": "houses, river",
+        "mechanism": "intreat",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he said, To morrow.",
+        "claim": "Pharaoh specifies that the frogs should be removed tomorrow",
+        "actor": "Pharaoh",
+        "action": "said",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he said, Be it according to thy word: that thou mayest know that there is none like unto the LORD our God.",
+        "claim": "Pharaoh agrees with Moses and affirms God's unique power",
+        "actor": "Pharaoh",
+        "action": "said",
+        "object": "thy word",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

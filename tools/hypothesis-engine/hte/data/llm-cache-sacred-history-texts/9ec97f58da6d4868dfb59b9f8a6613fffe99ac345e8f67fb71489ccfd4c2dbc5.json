@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "47f773d19e44a0ff33cc54668f3fbb90bdcc3f513c85e9c08579f9a96eaab958",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "that which Moses commanded",
+        "claim": "Moses commanded specific offerings or instructions",
+        "actor": "Moses",
+        "action": "commanded",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "they brought that which Moses commanded before the tabernacle of the congregation",
+        "claim": "The congregation brought before the tabernacle whatever Moses had commanded",
+        "actor": "they",
+        "action": "brought",
+        "object": "that which Moses commanded",
+        "place": "before the tabernacle of the congregation",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "all the congregation drew near and stood before the LORD",
+        "claim": "All the congregation drew near to and stood before the LORD",
+        "actor": "all the congregation",
+        "action": "drew near and stood",
+        "object": "",
+        "place": "before the LORD",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

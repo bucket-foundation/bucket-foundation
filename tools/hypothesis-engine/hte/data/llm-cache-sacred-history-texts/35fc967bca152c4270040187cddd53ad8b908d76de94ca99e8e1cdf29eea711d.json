@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "166a4bd98b9c5663aa17201e89db78b5e7b55d87fe94a1e7a125d656ec6412b0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD said unto Moses, Go in unto Pharaoh",
+        "claim": "The LORD commanded Moses to go to Pharaoh",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "for I have hardened his heart, and the heart of his servants",
+        "claim": "The LORD hardened Pharaoh's heart and the hearts of his servants",
+        "actor": "I",
+        "action": "hardened",
+        "object": "his heart, his servants' hearts",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "that I might shew these my signs before him",
+        "claim": "The LORD would display miraculous signs before Pharaoh",
+        "actor": "I",
+        "action": "shew",
+        "object": "these my signs",
+        "place": "before him",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "what things I have wrought in Egypt, and my signs which I have done among them",
+        "claim": "The LORD performed miraculous works and signs in Egypt",
+        "actor": "I",
+        "action": "wrought, done",
+        "object": "things, my signs",
+        "place": "Egypt, among them",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

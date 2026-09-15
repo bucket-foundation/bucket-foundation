@@ -1,0 +1,42 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0654a5b66d808ec8f2e2e2225fc4e0f3854081f99f39bde0469a6f72cc33221e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "after the death of the two sons of Aaron, when they offered before the LORD, and died",
+        "claim": "Aaron's two sons died when they offered before the LORD",
+        "actor": "the two sons of Aaron",
+        "action": "offered; died",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Speak unto Aaron thy brother, that he come not at all times into the holy place within the vail before the mercy seat, which is upon the ark; that he die not",
+        "claim": "The LORD commanded Aaron not to enter the holy place at all times",
+        "actor": "Aaron",
+        "action": "come not",
+        "object": "the holy place within the vail before the mercy seat",
+        "place": "the holy place; the vail; the mercy seat; the ark",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "for I will appear in the cloud upon the mercy seat",
+        "claim": "The LORD will appear in the cloud upon the mercy seat",
+        "actor": "the LORD",
+        "action": "appear",
+        "place": "the cloud; the mercy seat",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

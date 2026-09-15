@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f82a8ecaa8a2824574280737ca51033bda0ac941dd46fd9eb1c29bd581678df3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Now these are the generations of the sons of Noah, Shem, Ham, and Japheth",
+        "claim": "Noah fathered three sons named Shem, Ham, and Japheth",
+        "actor": "Noah",
+        "action": "fathered",
+        "object": "Shem, Ham, Japheth",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and unto them were sons born after the flood",
+        "claim": "Sons were born to Shem, Ham, and Japheth after the flood",
+        "actor": "Shem, Ham, Japheth",
+        "action": "fathered",
+        "object": "sons",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

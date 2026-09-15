@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "223936b00d0db22f5d0eff6cb6d2473acd38a4af193ab94f6bb2e1014f137ce7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses, Write thou these words: for after the tenor of these words I have made a covenant with thee and with Israel.",
+        "claim": "The LORD commanded Moses to write words that formalize a covenant with Israel.",
+        "actor": "the LORD, Moses",
+        "action": "said, Write",
+        "object": "words, covenant",
+        "place": "",
+        "mechanism": "tenor of these words",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

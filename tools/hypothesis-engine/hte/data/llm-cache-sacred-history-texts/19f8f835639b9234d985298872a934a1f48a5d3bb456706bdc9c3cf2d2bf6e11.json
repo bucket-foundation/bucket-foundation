@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "80e5c7cb11389936b3ccfd927bf8ecc061fb20c0ef9e75f8893d27a99e4e7def",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they took ashes of the furnace, and stood before Pharaoh; and Moses sprinkled it up toward heaven; and it became a boil breaking forth with blains upon man, and upon beast.",
+        "claim": "Moses sprinkled furnace ashes upward before Pharaoh, causing boils and sores to break forth on humans and animals",
+        "actor": "Moses",
+        "action": "sprinkled",
+        "object": "ashes of the furnace",
+        "place": "before Pharaoh",
+        "mechanism": "sprinkling ashes toward heaven",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

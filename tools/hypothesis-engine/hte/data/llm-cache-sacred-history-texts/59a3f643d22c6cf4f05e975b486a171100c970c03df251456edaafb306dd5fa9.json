@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bb4143e9aa1287c7388284ec083aa43d89152bc10f58e013f901b88b45f62a8e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Go, and gather the elders of Israel together",
+        "claim": "Moses is commanded to gather the elders of Israel together",
+        "actor": "you",
+        "action": "gather",
+        "object": "the elders of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "The LORD God of your fathers, the God of Abraham, of Isaac, and of Jacob, appeared unto me",
+        "claim": "God appeared to Moses",
+        "actor": "The LORD God",
+        "action": "appeared",
+        "object": "me",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "I have surely visited you, and seen that which is done to you in Egypt",
+        "claim": "God visited and observed the Israelites' affliction in Egypt",
+        "actor": "I",
+        "action": "visited and seen",
+        "object": "you",
+        "place": "Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "I will bring you up out of the affliction of Egypt unto the land of the Canaanites, and the Hittites, and the Amorites, and the Perizzites, and the Hivites, and the Jebusites, unto a land flowing with milk and honey",
+        "claim": "God will deliver the Israelites from Egypt to the promised land",
+        "actor": "I",
+        "action": "bring up",
+        "object": "you",
+        "place": "from Egypt unto the land of the Canaanites, the Hittites, the Amorites, the Perizzites, the Hivites, and the Jebusites",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

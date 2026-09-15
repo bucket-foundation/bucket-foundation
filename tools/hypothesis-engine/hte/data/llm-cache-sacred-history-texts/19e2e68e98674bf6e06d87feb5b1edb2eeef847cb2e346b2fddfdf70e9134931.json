@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "79486cfb438a16157e7ab2460743c6f82775fd1918f7da4dbace69f33263c967",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And he slew it;",
+        "claim": "The sacrificial animal was slain. The text only says \"he\" and does not name the actor or the animal in this verse.",
+        "actor": "unspecified (\"he\")",
+        "action": "slew",
+        "object": "it (sacrificial animal, not named in this verse)",
+        "place": "",
+        "mechanism": "slaughter",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and Moses took of the blood of it, and put it upon the tip of Aaron's right ear, and upon the thumb of his right hand, and upon the great toe of his right foot.",
+        "claim": "Moses put the animal's blood on the tip of Aaron's right ear, his right thumb and his right big toe. The document gives only the verse number 8:23. The book (Leviticus) and the ordination setting are not in the text; they come from model-prior and are unverified.",
+        "actor": "Moses",
+        "action": "applied blood",
+        "object": "Aaron's right ear tip, right thumb, and right great toe",
+        "place": "",
+        "mechanism": "ritual application of sacrificial blood",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

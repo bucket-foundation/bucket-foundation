@@ -1,0 +1,45 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8fd1ca7862336fe4c11e596311b67c30f06e0b4f34f7b3849ad45abf77c3a39e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And they took ashes of the furnace, and stood before Pharaoh",
+        "claim": "Unidentified actors took furnace ashes and stood before Pharaoh",
+        "actor": "they",
+        "action": "took, stood",
+        "object": "ashes of the furnace",
+        "place": "before Pharaoh",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and Moses sprinkled it up toward heaven",
+        "claim": "Moses sprinkled ashes upward toward heaven",
+        "actor": "Moses",
+        "action": "sprinkled",
+        "object": "it",
+        "mechanism": "up toward heaven",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and it became a boil breaking forth with blains upon man, and upon beast",
+        "claim": "Boils with blains broke forth on man and beast",
+        "actor": "it",
+        "action": "became",
+        "object": "boil breaking forth with blains",
+        "place": "upon man, and upon beast",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

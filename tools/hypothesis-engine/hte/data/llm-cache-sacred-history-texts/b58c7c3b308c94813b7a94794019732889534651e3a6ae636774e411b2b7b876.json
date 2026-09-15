@@ -1,0 +1,83 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0527b2548572677d4d713359d40a1cb966cd00d81e13780f94d14b4532603ca5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses and unto Aaron, saying, 14:34 When ye be come into the land of Canaan, which I give to you for a possession, and I put the plague of leprosy in a house of the land of your possession",
+        "claim": "The LORD instructed Moses and Aaron that plague of leprosy afflicts houses in Canaan",
+        "actor": "the LORD, Moses, Aaron",
+        "action": "spake",
+        "object": "plague of leprosy",
+        "place": "land of Canaan, house",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he that owneth the house shall come and tell the priest, saying, It seemeth to me there is as it were a plague in the house",
+        "claim": "The house owner must report suspected plague to the priest",
+        "actor": "he that owneth the house",
+        "action": "come, tell",
+        "object": "plague",
+        "place": "house",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then the priest shall command that they empty the house, before the priest go into it to see the plague, that all that is in the house be not made unclean: and afterward the priest shall go in to see the house: 14:37 And he shall look on the plague, and, behold, if the plague be in the walls of the house with hollow strakes, greenish or reddish, which in sight are lower than the wall",
+        "claim": "The priest must order the house emptied, then inspect for plague appearing as greenish or reddish hollow marks sunken in walls",
+        "actor": "the priest",
+        "action": "command, empty, go, see, look",
+        "object": "plague, house",
+        "place": "walls of the house",
+        "mechanism": "hollow strakes, greenish or reddish",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then the priest shall go out of the house to the door of the house, and shut up the house seven days: 14:39 And the priest shall come again the seventh day, and shall look: and, behold, if the plague be spread in the walls of the house",
+        "claim": "The priest shall quarantine the house for seven days, then re-inspect to determine if plague has spread",
+        "actor": "the priest",
+        "action": "go out, shut up, come, look",
+        "object": "plague, house",
+        "place": "walls of the house, door of the house",
+        "mechanism": "seven days",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then the priest shall command that they take away the stones in which the plague is, and they shall cast them into an unclean place without the city: 14:41 And he shall cause the house to be scraped within round about, and they shall pour out the dust that they scrape off without the city into an unclean place",
+        "claim": "Stones with plague must be removed and cast outside the city; the house interior must be scraped and dust disposed of outside the city",
+        "actor": "the priest, they",
+        "action": "command, take away, cast, cause the house to be scraped, pour out",
+        "object": "stones, dust",
+        "place": "unclean place without the city",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they shall take other stones, and put them in the place of those stones; and he shall take other morter, and shall plaister the house",
+        "claim": "New stones and mortar must replace the removed materials and the house must be replastered",
+        "actor": "they, he",
+        "action": "take, put, plaister",
+        "object": "stones, morter",
+        "place": "house",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "c2bd648e64fa8b84e12bcb4525d44b3c9798398104cbacfc032c4ce4fb2ca4b6",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Abraham hearkened unto Ephron; and Abraham weighed to Ephron the silver, which he had named in the audience of the sons of Heth, four hundred shekels of silver, current money with the merchant.",
+        "claim": "Abraham agreed to Ephron's price and paid him four hundred shekels of silver by weight, the price Ephron had named publicly in front of the sons of Heth.",
+        "actor": "Abraham",
+        "action": "weighed out payment of silver to",
+        "object": "Ephron (four hundred shekels of silver)",
+        "place": "among the sons of Heth",
+        "mechanism": "a purchase agreed in public before witnesses and paid in weighed silver",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "mechanism",
+        "tier": "primary-text",
+        "quote": "four hundred shekels of silver, current money with the merchant",
+        "claim": "The text treats weighed silver, measured in shekels, as a standard medium of exchange that merchants accepted.",
+        "actor": "merchants",
+        "action": "accepted as currency",
+        "object": "silver weighed in shekels",
+        "place": "among the sons of Heth",
+        "mechanism": "payment by weighing metal rather than counting coins",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

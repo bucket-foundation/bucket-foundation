@@ -1,0 +1,58 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "e413dc4e1ed8662da1c51facdc181e7d54e16b0b463a533e7c58f8ccc531bf78",
+  "response": {
+    "items": [
+      {
+        "kind": "practice",
+        "tier": "primary",
+        "quote": "When ye be come into the land which I give unto you, and shall reap the harvest thereof, then ye shall bring a sheaf of the firstfruits of your harvest unto the priest:",
+        "claim": "The text tells the Israelites that, once they have settled in the promised land and are reaping its harvest, they must bring a sheaf of the first grain harvested to the priest.",
+        "actor": "children of Israel",
+        "action": "bring a sheaf of the firstfruits of the harvest",
+        "object": "sheaf of firstfruits",
+        "mechanism": "divine command passed on through Moses",
+        "place": "the land which I give unto you",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "ritual",
+        "tier": "primary",
+        "quote": "And he shall wave the sheaf before the LORD, to be accepted for you:",
+        "claim": "The priest waves the firstfruits sheaf before the LORD, and the text says its purpose is to win acceptance for the people.",
+        "actor": "the priest",
+        "action": "wave the sheaf before the LORD",
+        "object": "sheaf of firstfruits",
+        "mechanism": "wave offering to be accepted on the people's behalf",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "calendar",
+        "tier": "primary",
+        "quote": "on the morrow after the sabbath the priest shall wave it.",
+        "claim": "The wave offering is set for the day after the sabbath. All three passes agreed on this item. The text does not say which sabbath it means.",
+        "actor": "the priest",
+        "action": "wave the sheaf",
+        "object": "sheaf of firstfruits",
+        "mechanism": "timing set relative to the sabbath",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "authority",
+        "tier": "primary",
+        "quote": "And the LORD spake unto Moses, saying, 23:10 Speak unto the children of Israel, and say unto them,",
+        "claim": "The text presents the firstfruits law as the LORD's words to Moses, which Moses is to repeat to the Israelites. The document gives only verse numbers (23:9\u201311). Naming it as Leviticus 23 comes from model-prior and is not verified by the evidence text.",
+        "actor": "the LORD; Moses",
+        "action": "command to be passed on",
+        "object": "children of Israel",
+        "mechanism": "divine speech relayed through Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

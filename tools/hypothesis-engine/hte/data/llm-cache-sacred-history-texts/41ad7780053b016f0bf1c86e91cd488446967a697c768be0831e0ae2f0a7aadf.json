@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a2731bb93ab1a0a1d3a0cb8b6e2c4d2ece38b6a6e2e39cecfeb41b28fcb9cdbb",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD said unto Moses, Take unto thee sweet spices, stacte, and onycha, and galbanum; these sweet spices with pure frankincense: of each shall there be a like weight:",
+        "claim": "The LORD commanded Moses to take equal weights of four sweet spices",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "sweet spices, stacte, and onycha, and galbanum, frankincense",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And thou shalt make it a perfume, a confection after the art of the apothecary, tempered together, pure and holy:",
+        "claim": "Moses was instructed to make a holy perfume using apothecary art from the spices",
+        "actor": "thou",
+        "action": "make",
+        "object": "a perfume, a confection",
+        "place": "",
+        "mechanism": "after the art of the apothecary, tempered together",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And thou shalt beat some of it very small, and put of it before the testimony in the tabernacle of the congregation, where I will meet with thee: it shall be unto you most holy.",
+        "claim": "Moses was instructed to beat the incense into very fine powder",
+        "actor": "thou",
+        "action": "beat",
+        "object": "some of it",
+        "place": "",
+        "mechanism": "very small",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And thou shalt beat some of it very small, and put of it before the testimony in the tabernacle of the congregation, where I will meet with thee: it shall be unto you most holy.",
+        "claim": "Moses was instructed to place the incense before the testimony in the tabernacle",
+        "actor": "thou",
+        "action": "put",
+        "object": "of it",
+        "place": "before the testimony in the tabernacle of the congregation",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

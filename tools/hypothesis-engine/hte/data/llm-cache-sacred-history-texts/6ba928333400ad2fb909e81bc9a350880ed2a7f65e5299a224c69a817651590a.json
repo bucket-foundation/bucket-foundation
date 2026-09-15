@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2dae232d321b5885b1130c55ed716c8df451c4105b82261363729eb68309575e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses said unto Aaron and to his sons, Boil the flesh at the door of the tabernacle of the congregation: and there eat it with the bread that is in the basket of consecrations, as I commanded, saying, Aaron and his sons shall eat it.",
+        "claim": "Moses commanded Aaron and his sons to boil the flesh and eat it with bread from the basket of consecrations at the tabernacle",
+        "actor": "Moses",
+        "action": "commanded",
+        "object": "Aaron and his sons",
+        "place": "door of the tabernacle of the congregation",
+        "mechanism": "boil and eat",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

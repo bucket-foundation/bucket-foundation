@@ -1,0 +1,33 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5dd14f53c3f3ec9ebd110c9e27fb35e6446f2906cb8fc0702337c78ee88c94c6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Peradventure the woman will not be willing to follow me unto this land: must I needs bring thy son again unto the land from whence thou camest?",
+        "claim": "The servant expresses concern that the woman may not be willing to follow to Abraham's land and questions whether to bring the son back",
+        "actor": "the woman",
+        "action": "follow",
+        "object": "me",
+        "place": "this land",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "Beware thou that thou bring not my son thither again",
+        "claim": "Abraham commands the servant not to bring his son back to the origin land",
+        "actor": "thou",
+        "action": "bring",
+        "object": "my son",
+        "place": "thither",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c0cb0c048f9d354e3dc156c80e483bbb5ea156647b8e0996631f5ce66c0e63bc",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "wells which his father's servants had digged in the days of Abraham his father",
+        "claim": "Abraham's servants dug wells during Abraham's lifetime",
+        "actor": "his father's servants",
+        "action": "digged",
+        "object": "wells",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the Philistines had stopped them, and filled them with earth",
+        "claim": "The Philistines stopped the wells by filling them with earth",
+        "actor": "the Philistines",
+        "action": "stopped",
+        "object": "them",
+        "place": "",
+        "mechanism": "filled them with earth",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

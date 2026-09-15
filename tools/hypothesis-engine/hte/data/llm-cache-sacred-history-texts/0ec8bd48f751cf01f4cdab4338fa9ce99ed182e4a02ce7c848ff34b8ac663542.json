@@ -1,0 +1,42 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "dd83e0b98e05dfb3cacfaba288fe0aea1d3b0f4a11e1249083a76729ceb28777",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses entered into the tabernacle",
+        "claim": "Moses entered into the tabernacle",
+        "actor": "Moses",
+        "action": "entered",
+        "object": "the tabernacle",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the cloudy pillar descended, and stood at the door of the tabernacle",
+        "claim": "The cloudy pillar descended and stood at the door of the tabernacle",
+        "actor": "the cloudy pillar",
+        "action": "descended, stood",
+        "place": "the door of the tabernacle",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the Lord talked with Moses",
+        "claim": "The Lord talked with Moses",
+        "actor": "the Lord",
+        "action": "talked",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

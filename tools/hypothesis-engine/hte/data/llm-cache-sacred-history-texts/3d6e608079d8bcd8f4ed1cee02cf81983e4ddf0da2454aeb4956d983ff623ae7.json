@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "30147368eccf5dfb27c19cd95d4cd05d1beab80cd37b5e9c77fab4ebb6cec538",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "8:30 And Moses went out from Pharaoh, and intreated the LORD.",
+        "claim": "Moses departed from Pharaoh and appealed to the LORD at time 8:30",
+        "actor": "Moses",
+        "action": "went out, intreated",
+        "object": "Pharaoh, the LORD",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

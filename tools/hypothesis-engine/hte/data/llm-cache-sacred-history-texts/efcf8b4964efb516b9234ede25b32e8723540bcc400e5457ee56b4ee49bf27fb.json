@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "211aeeff70d97392900d5961bfaa2715a0b63fb4778156898e7e1b010caeaaa6",
+  "response": {
+    "items": [
+      {
+        "quote": "Now these are the generations of the sons of Noah, Shem, Ham, and Japheth: and unto them were sons born after the flood.",
+        "claim": "Sons of Noah (Shem, Ham, and Japheth) had sons born after the flood.",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "sons of Noah; Shem, Ham, and Japheth",
+        "action": "were sons born",
+        "object": "sons",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

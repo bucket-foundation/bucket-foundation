@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "49c97498eb44daf0013b8f05d851f49bc9b4682dab1a7788afbe9e7cf8beb21b",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And when Joshua heard the noise of the people as they shouted, he said unto Moses, There is a noise of war in the camp.",
+        "claim": "When Joshua heard the people shouting, he told Moses there was a noise of war in the camp.",
+        "actor": "Joshua",
+        "action": "heard the people shouting and told Moses it sounded like war",
+        "object": "the noise of the people shouting",
+        "place": "the camp",
+        "year": null,
+        "mechanism": "Joshua took the sound of shouting to mean there was fighting and told Moses so"
+      }
+    ]
+  }
+}

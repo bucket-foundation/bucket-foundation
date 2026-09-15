@@ -1,0 +1,64 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c799ad9c0e1f8e3a72df1d648dac6e83e471da38efa0cf317f07deb1423cadd4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses said unto the children of Israel, See, the LORD hath called by name Bezaleel the son of Uri, the son of Hur, of the tribe of Judah",
+        "claim": "Moses announced to the children of Israel that God called Bezaleel by name",
+        "actor": "Moses",
+        "action": "said",
+        "place": "children of Israel",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD hath called by name Bezaleel the son of Uri, the son of Hur, of the tribe of Judah",
+        "claim": "God selected Bezaleel by name for sacred work",
+        "actor": "the LORD",
+        "action": "called by name",
+        "object": "Bezaleel",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he hath filled him with the spirit of God, in wisdom, in understanding, and in knowledge, and in all manner of workmanship",
+        "claim": "God endowed Bezaleel with divine spirit and multiple forms of expertise",
+        "actor": "he",
+        "action": "filled with spirit",
+        "object": "him",
+        "mechanism": "the spirit of God, wisdom, understanding, knowledge, workmanship",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And to devise curious works, to work in gold, and in silver, and in brass",
+        "claim": "Skilled at devising intricate works and working with precious metals",
+        "action": "devise and work",
+        "object": "curious works, gold, silver, brass",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And in the cutting of stones, to set them, and in carving of wood, to make any manner of cunning work",
+        "claim": "Skilled in stone cutting, stone-setting, and woodcarving",
+        "action": "cutting, setting, carving",
+        "object": "stones, wood",
+        "mechanism": "cunning work",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

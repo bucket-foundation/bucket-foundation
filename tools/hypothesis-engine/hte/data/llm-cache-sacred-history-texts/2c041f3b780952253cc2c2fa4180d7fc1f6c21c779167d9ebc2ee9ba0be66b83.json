@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "e1b9591c2acc06b5523e3cbfc4eafcebd12cc3dbdfc9850fd10dd32a609918d3",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text (scriptural narrative; not independently verified history)",
+        "quote": "And it came to pass, as Moses entered into the tabernacle, the cloudy pillar descended, and stood at the door of the tabernacle, and the Lord talked with Moses.",
+        "claim": "The text says that when Moses went into the tabernacle, the cloudy pillar came down and stood at its door, and the Lord spoke with Moses. This is what the narrative claims, not a confirmed historical event. Identifying the verse as Exodus 33:9 in the King James wording comes from model-prior, not from the document itself.",
+        "actor": "Moses; the Lord",
+        "action": "entered the tabernacle; the cloudy pillar came down and stood at the door; the Lord talked with Moses",
+        "object": "tabernacle",
+        "place": "door of the tabernacle",
+        "mechanism": "divine communication shown by the cloudy pillar coming down",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

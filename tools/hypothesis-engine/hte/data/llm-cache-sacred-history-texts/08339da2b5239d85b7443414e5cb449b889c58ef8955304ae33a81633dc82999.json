@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "fc14d36a0c42093803d1d62ce448be090fe83feb728ba34cba30a5f373f581b5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "So Abraham returned unto his young men",
+        "claim": "Abraham returned to rejoin his young men",
+        "actor": "Abraham",
+        "action": "returned",
+        "object": "his young men",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and they rose up and went together to Beersheba",
+        "claim": "Abraham and his young men traveled together to Beersheba",
+        "actor": "they",
+        "action": "rose up and went",
+        "object": "",
+        "place": "Beersheba",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and Abraham dwelt at Beersheba",
+        "claim": "Abraham settled at Beersheba",
+        "actor": "Abraham",
+        "action": "dwelt",
+        "object": "",
+        "place": "Beersheba",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

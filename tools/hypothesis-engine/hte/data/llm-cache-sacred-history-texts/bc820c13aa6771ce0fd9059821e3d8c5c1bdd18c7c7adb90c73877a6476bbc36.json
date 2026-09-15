@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a084c9f9690b980ca4b7e9a3c770d321baf63a6919c1b9176ce493032fde7d60",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses said unto the LORD, O my LORD, I am not eloquent, neither heretofore, nor since thou hast spoken unto thy servant: but I am slow of speech, and of a slow tongue.",
+        "claim": "Moses told the LORD that he is not eloquent and has slow speech.",
+        "actor": "Moses",
+        "action": "said",
+        "object": "statement of his speech impediment",
+        "place": "",
+        "mechanism": "speech",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "8f527560b871c8a98754c7a69de78577b822297ef6cafa26891c6863e75f3c40",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "Wherefore the people did chide with Moses, and said, Give us water that we may drink.",
+        "claim": "The people argued with Moses and demanded water to drink.",
+        "actor": "the people",
+        "action": "chide with; demand water",
+        "object": "Moses",
+        "mechanism": "lack of water",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses said unto them, Why chide ye with me? wherefore do ye tempt the LORD?",
+        "claim": "Moses asked the people why they argued with him and said they were testing the LORD.",
+        "actor": "Moses",
+        "action": "rebuke",
+        "object": "the people",
+        "mechanism": "sees their complaint as testing the LORD",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "condition",
+        "tier": "primary-text",
+        "quote": "And the people thirsted there for water",
+        "claim": "The people were thirsty because there was no water there.",
+        "actor": "the people",
+        "action": "thirst",
+        "object": "water",
+        "mechanism": "no water at the location",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and the people murmured against Moses, and said, Wherefore is this that thou hast brought us up out of Egypt, to kill us and our children and our cattle with thirst?",
+        "claim": "The people complained against Moses, accusing him of bringing them out of Egypt to let them, their children and their cattle die of thirst.",
+        "actor": "the people",
+        "action": "murmur against; accuse",
+        "object": "Moses",
+        "mechanism": "thirst leading to fear of death and resentment of leaving Egypt",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses cried unto the LORD, saying, What shall I do unto this people? they be almost ready to stone me.",
+        "claim": "Moses cried out to the LORD for guidance, saying the people were close to stoning him.",
+        "actor": "Moses",
+        "action": "cry out for guidance",
+        "object": "the LORD",
+        "mechanism": "threat of violence from the people",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

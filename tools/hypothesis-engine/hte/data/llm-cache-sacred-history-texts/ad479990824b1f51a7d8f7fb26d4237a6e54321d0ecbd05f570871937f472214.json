@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b320f7316b07555e7ea94c8e8ce72da7fa24c0fe84f2264e7722bf6275f344ba",
+  "response": {
+    "items": [
+      {
+        "quote": "And the LORD said unto Moses, Write this for a memorial in a book, and rehearse it in the ears of Joshua",
+        "claim": "The LORD commanded Moses to write a memorial in a book and rehearse it orally to Joshua",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "the LORD",
+        "action": "said/commanded",
+        "object": "a memorial in a book",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "quote": "for I will utterly put out the remembrance of Amalek from under heaven",
+        "claim": "The LORD will completely erase all remembrance of Amalek from the world",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "the LORD",
+        "action": "will put out",
+        "object": "the remembrance of Amalek",
+        "place": "under heaven",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

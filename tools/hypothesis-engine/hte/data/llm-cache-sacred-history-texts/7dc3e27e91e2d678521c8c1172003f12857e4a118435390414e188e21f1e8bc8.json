@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1a7caa45d594093c079aeb0c43f6f7a59ca15518067e4f8ab1490e073d6224d1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses went out of the city from Pharaoh, and spread abroad his hands unto the LORD: and the thunders and hail ceased, and the rain was not poured upon the earth.",
+        "claim": "Moses went out of the city and spread his hands toward the LORD, whereupon the thunder, hail, and rain ceased.",
+        "actor": "Moses",
+        "action": "went out of the city, spread abroad his hands",
+        "object": "his hands",
+        "place": "the city",
+        "mechanism": "spreading of hands toward the LORD",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

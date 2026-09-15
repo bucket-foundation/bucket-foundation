@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a15f00ab0a74354d03db6369be38275edff2cdbd82005d74c76dd4d4acae844a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the sea",
+        "claim": "The LORD commanded Moses to stretch out his hand over the sea",
+        "actor": "the LORD",
+        "action": "said unto",
+        "object": "Moses",
+        "place": "over the sea",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "that the waters may come again upon the Egyptians, upon their chariots, and upon their horsemen",
+        "claim": "The waters would come again upon the Egyptians and their military forces",
+        "actor": "the waters",
+        "action": "come again upon",
+        "object": "the Egyptians, upon their chariots, and upon their horsemen",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

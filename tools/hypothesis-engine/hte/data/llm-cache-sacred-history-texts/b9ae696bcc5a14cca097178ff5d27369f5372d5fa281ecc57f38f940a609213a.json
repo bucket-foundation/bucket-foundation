@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cbf8d11ac980e671f69d840806cf5c6fddb50cceeadbb6aaeaa9b920c73c3d24",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "these seven ewe lambs which thou hast set by themselves",
+        "claim": "Abraham set aside seven ewe lambs",
+        "actor": "Abraham",
+        "action": "set by themselves",
+        "object": "seven ewe lambs",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "I have digged this well",
+        "claim": "Abraham dug a well",
+        "actor": "Abraham",
+        "action": "digged",
+        "object": "this well",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "For these seven ewe lambs shalt thou take of my hand, that they may be a witness unto me, that I have digged this well",
+        "claim": "Abraham gave seven ewe lambs to Abimelech to serve as a witness to his well-digging",
+        "actor": "Abraham",
+        "action": "take of my hand",
+        "object": "seven ewe lambs",
+        "place": "",
+        "mechanism": "a witness",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

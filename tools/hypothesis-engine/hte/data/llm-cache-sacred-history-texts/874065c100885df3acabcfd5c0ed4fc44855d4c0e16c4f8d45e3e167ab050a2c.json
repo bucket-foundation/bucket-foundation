@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a673980790f4b0889fabd0050cbaf0745b28f992d70f5e7b00f47dd8bb5a71c1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Abraham said unto his young men, Abide ye here with the ass; and I and the lad will go yonder and worship, and come again to you.",
+        "claim": "Abraham instructed his young men to remain with the donkey while he and the boy go to a place called yonder to worship and return.",
+        "actor": "Abraham",
+        "action": "said unto",
+        "object": "young men, ass, lad",
+        "place": "yonder",
+        "mechanism": "speech/verbal instruction",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

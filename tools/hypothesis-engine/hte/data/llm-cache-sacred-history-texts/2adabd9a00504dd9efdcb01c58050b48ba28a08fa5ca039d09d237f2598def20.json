@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "163d899797d7265339548e2deb373fb0a7f51aedcb252211d784f7235ea5e333",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "thou sayest unto me, Bring up this people",
+        "claim": "The LORD commanded Moses to bring up the people",
+        "actor": "thou",
+        "action": "sayest",
+        "object": "this people",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "thou hast not let me know whom thou wilt send with me",
+        "claim": "The LORD has not informed Moses whom he will send with him",
+        "actor": "thou",
+        "action": "hast not let know",
+        "object": "me",
+        "place": "",
+        "mechanism": "",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "thou hast said, I know thee by name",
+        "claim": "The LORD said he knows Moses by name",
+        "actor": "I",
+        "action": "know",
+        "object": "thee",
+        "place": "",
+        "mechanism": "by name",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "thou hast also found grace in my sight",
+        "claim": "The LORD found favor toward Moses",
+        "actor": "thou",
+        "action": "found grace in",
+        "object": "",
+        "place": "my sight",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

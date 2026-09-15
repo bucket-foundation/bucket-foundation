@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b3e3550f5397f544e4a0fe59a1a7246ca3acff5717ec9b9d4dcf16cb27a3efe5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Abraham was old, and well stricken in age",
+        "claim": "Abraham was old and advanced in years",
+        "actor": "Abraham",
+        "action": "was old",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the LORD had blessed Abraham in all things",
+        "claim": "God blessed Abraham in all respects",
+        "actor": "the LORD",
+        "action": "had blessed",
+        "object": "Abraham",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}
