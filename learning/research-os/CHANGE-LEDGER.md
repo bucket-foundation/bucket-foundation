@@ -3593,3 +3593,7 @@ Squash-merged after this pass.
 ## 2026-09-15 decorative globe blur in WebGL
 
 `CanonGlobe.tsx`: `BlurPipeline` (EffectComposer, one blur pass pair, priority-1 `useFrame`), `DECORATIVE_DPR` 0.5, `DECORATIVE_DOT_DETAIL` 6.
+
+## 2026-09-15 decorative dot field and live tuning
+
+`Earth.tsx`: `limbScale` prop with an `onBeforeCompile` vertex patch. `CanonGlobe.tsx`: `DecorativeVariant` type, numeric overrides, `BlurPipeline` props. `FixedCanonGlobeBackground.tsx`: numeric query parsing.

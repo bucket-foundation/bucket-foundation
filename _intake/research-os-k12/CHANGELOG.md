@@ -2824,3 +2824,8 @@ None.
 ## 2026-09-15 decorative globe blur in WebGL
 
 - The 0.22 dpr stand-in read as low resolution. The decorative mount now renders at 0.5 dpr into an RGBA target and runs one horizontal plus one vertical 9-tap blur pass (three-stdlib `EffectComposer`, `HorizontalBlurShader`, `VerticalBlurShader`, step 0.55 buffer pixels, about 4 CSS pixels of spread) before the last pass draws to the transparent canvas. Dot detail back to 6 segments. 0 hangs over 7 scrolled loads on the founder's GPU; wrapper edge pixels still identical inside and out.
+
+## 2026-09-15 decorative dot field and live tuning
+
+- Decorative field: 80,000 candidates (about 23,000 land dots), radius 0.0046, color `0x5f5240`, limb dots shrunk to 0.3 through an `onBeforeCompile` vertex patch so stacked edge dots no longer form a dark crescent; blur step 0.7; shell points larger and fainter (size 0.11, opacity 0.32 of the decorative alpha).
+- Query tuning on the decorative mount, read by `FixedCanonGlobeBackground` into `DecorativeVariant`: `dots`, `dotr`, `dotcolor` (hex), `limb`, `blur`, `passes`, `dpr`, beside the boolean switches. Example: `/research-os?dots=100000&blur=0.9&dotcolor=4a4436`.

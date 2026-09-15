@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import CanonGlobeMount from "@/app/canon/CanonGlobeMount";
-import type { ScrollState } from "@/components/canon-globe/CanonGlobe";
+import type { ScrollState, DecorativeVariant } from "@/components/canon-globe/CanonGlobe";
 
 /**
  * A single fixed, page-level mount of the real canon globe, decorative and
@@ -26,11 +26,31 @@ export default function FixedCanonGlobeBackground() {
   const scrollRef = useRef<ScrollState>({ y: 0, velocity: 0 });
   // Diagnostic switch: ?noglobe=1 renders the page without this mount.
   const [disabled, setDisabled] = useState(false);
-  const [variant, setVariant] = useState({ small: false, noshell: false, fulldpr: false, nofade: false, nospin: false, notilt: false, absolute: false, opaque: false });
+  const [variant, setVariant] = useState<DecorativeVariant & { small: boolean; absolute: boolean }>({
+    small: false,
+    absolute: false,
+  });
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     setDisabled(q.has("noglobe"));
-    setVariant({ small: q.has("small"), noshell: q.has("noshell"), fulldpr: q.has("fulldpr"), nofade: q.has("nofade"), nospin: q.has("nospin"), notilt: q.has("notilt"), absolute: q.has("absolute"), opaque: q.has("opaque") });
+    const num = (k: string) => (q.has(k) && Number.isFinite(Number(q.get(k))) ? Number(q.get(k)) : undefined);
+    const hex = (k: string) => (q.has(k) && /^[0-9a-f]{6}$/i.test(q.get(k) || "") ? parseInt(q.get(k) as string, 16) : undefined);
+    setVariant({
+      small: q.has("small"),
+      absolute: q.has("absolute"),
+      noshell: q.has("noshell"),
+      fulldpr: q.has("fulldpr"),
+      nospin: q.has("nospin"),
+      notilt: q.has("notilt"),
+      opaque: q.has("opaque"),
+      dots: num("dots"),
+      dotr: num("dotr"),
+      dotcolor: hex("dotcolor"),
+      limb: num("limb"),
+      blur: num("blur"),
+      passes: num("passes"),
+      dpr: num("dpr"),
+    });
   }, []);
 
   useEffect(() => {

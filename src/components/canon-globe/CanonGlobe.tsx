@@ -27,6 +27,23 @@ function damp(current: number, target: number, lambda: number, dt: number) {
 // loop eases toward it; the particle shell around the globe expands with
 // scroll speed and settles back when scrolling stops.
 export type ScrollState = { y: number; velocity: number };
+/** Diagnostic and tuning switches for the decorative mount, read from the
+ * page's query string by FixedCanonGlobeBackground. Numbers override the
+ * DECORATIVE_* defaults below. */
+export type DecorativeVariant = {
+  noshell?: boolean;
+  fulldpr?: boolean;
+  nospin?: boolean;
+  notilt?: boolean;
+  opaque?: boolean;
+  dots?: number;
+  dotr?: number;
+  dotcolor?: number;
+  limb?: number;
+  blur?: number;
+  passes?: number;
+  dpr?: number;
+};
 // Axis roll on screen: 35 degrees of tilt, then a quarter turn clockwise.
 const DECORATIVE_TILT = ((35 - 90) * Math.PI) / 180;
 const DECORATIVE_RAD_PER_PX = 0.0022;
@@ -42,8 +59,12 @@ const SHELL_COUNT = 3200;
 const DECORATIVE_ALPHA = 0.55;
 // Decorative dots stay opaque (transparent instancing plus scroll frames
 // wedged the founder's iGPU); a lighter color carries the "less dark" ask.
-const DECORATIVE_DOT_COLOR = 0x5a4f3d;
-const DECORATIVE_DOT_COUNT = 18000;
+const DECORATIVE_DOT_COLOR = 0x5f5240;
+const DECORATIVE_LIMB_SCALE = 0.3;
+// Candidates on the sphere; about 29% land on continents. Dense so the
+// field reads as soft continents at twice the size, and a touch larger.
+const DECORATIVE_DOT_COUNT = 80000;
+const DECORATIVE_DOT_RADIUS = 0.0046;
 const DECORATIVE_DOT_DETAIL = 6;
 // Scroll-driven frames are capped at this interval (20 per second).
 const DECORATIVE_FRAME_MS = 50;
@@ -53,7 +74,7 @@ const DECORATIVE_FRAME_MS = 50;
 const DECORATIVE_DPR = 0.5;
 // Each pass is a 9-tap kernel stepped this many buffer pixels, so one
 // pair at 0.55 spreads about 2.2 buffer pixels, 4.4 CSS pixels at half dpr.
-const DECORATIVE_BLUR_PX = 0.55;
+const DECORATIVE_BLUR_PX = 0.7;
 const DECORATIVE_BLUR_PASSES = 1;
 
 /**
@@ -185,8 +206,8 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
       new THREE.ShaderMaterial({
         uniforms: {
           uMap: { value: sprite },
-          uOpacity: { value: 0.7 * DECORATIVE_ALPHA },
-          uSize: { value: 0.05 },
+          uOpacity: { value: 0.32 * DECORATIVE_ALPHA },
+          uSize: { value: 0.11 },
           uScale: { value: 100 },
           uFade: { value: new THREE.Vector2(0.45, 0.9) },
         },
@@ -238,7 +259,7 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
  * then DECORATIVE_BLUR_PASSES pairs of horizontal and vertical blur, the
  * last pass to the screen. The canvas stays transparent.
  */
-function BlurPipeline() {
+function BlurPipeline({ blurPx, passCount }: { blurPx: number; passCount: number }) {
   const gl = useThree((state) => state.gl);
   const scene = useThree((state) => state.scene);
   const camera = useThree((state) => state.camera);
@@ -254,7 +275,7 @@ function BlurPipeline() {
     const composer = new EffectComposer(gl, target);
     composer.addPass(new RenderPass(scene, camera));
     const passes: ShaderPass[] = [];
-    for (let i = 0; i < DECORATIVE_BLUR_PASSES; i++) {
+    for (let i = 0; i < passCount; i++) {
       const h = new ShaderPass(HorizontalBlurShader);
       const v = new ShaderPass(VerticalBlurShader);
       composer.addPass(h);
@@ -263,7 +284,7 @@ function BlurPipeline() {
     }
     passes[passes.length - 1].renderToScreen = true;
     return { composer, passes };
-  }, [gl, scene, camera]);
+  }, [gl, scene, camera, passCount]);
 
   useEffect(() => {
     const dpr = gl.getPixelRatio();
@@ -272,10 +293,10 @@ function BlurPipeline() {
     const w = Math.max(1, size.width * dpr);
     const h = Math.max(1, size.height * dpr);
     pipeline.passes.forEach((pass, i) => {
-      if (i % 2 === 0) pass.uniforms.h.value = DECORATIVE_BLUR_PX / w;
-      else pass.uniforms.v.value = DECORATIVE_BLUR_PX / h;
+      if (i % 2 === 0) pass.uniforms.h.value = blurPx / w;
+      else pass.uniforms.v.value = blurPx / h;
     });
-  }, [pipeline, size, gl]);
+  }, [pipeline, size, gl, blurPx]);
 
   useEffect(() => {
     const { composer } = pipeline;
@@ -355,7 +376,7 @@ interface CanonGlobeProps {
    * speed. Position drives the spin, speed drives the particle shell. */
   scrollRef?: MutableRefObject<ScrollState>;
   /** Diagnostic variants for the decorative mount. */
-  variant?: { noshell?: boolean; fulldpr?: boolean; nospin?: boolean; notilt?: boolean; opaque?: boolean };
+  variant?: DecorativeVariant;
 }
 
 const LANDMASK_URL = "/textures/earth/landmask-2k.bin";
@@ -413,7 +434,7 @@ export default function CanonGlobe({
         // Lower GPU pressure: cap DPR to 1, drop antialias. Helps on
         // browsers with shaky GPU drivers (Brave/Wayland/AMD on Linux
         // tends to crash with frequent context switches).
-        dpr={decorative && !variant?.fulldpr ? DECORATIVE_DPR : 1}
+        dpr={decorative && !variant?.fulldpr ? variant?.dpr ?? DECORATIVE_DPR : 1}
         frameloop="demand"  // only render on prop change / camera moves
         performance={{ min: 0.5 }}
         camera={{ position: [0, 0, 3.4], fov: 42 }}
@@ -444,8 +465,10 @@ export default function CanonGlobe({
             landmaskUrl={LANDMASK_URL}
             dotOpacity={1}
             dotDetail={decorative ? DECORATIVE_DOT_DETAIL : 8}
-            dotColor={decorative ? DECORATIVE_DOT_COLOR : 0x1f1c16}
-            sampleCount={decorative ? DECORATIVE_DOT_COUNT : undefined}
+            dotColor={decorative ? variant?.dotcolor ?? DECORATIVE_DOT_COLOR : 0x1f1c16}
+            sampleCount={decorative ? variant?.dots ?? DECORATIVE_DOT_COUNT : undefined}
+            dotRadius={decorative ? variant?.dotr ?? DECORATIVE_DOT_RADIUS : undefined}
+            limbScale={decorative ? variant?.limb ?? DECORATIVE_LIMB_SCALE : 1}
           >
             <CanonMarkers
               markers={markers}
@@ -500,7 +523,12 @@ export default function CanonGlobe({
           <ScrollSpinDriver spinRef={spinRef} shellRef={shellRef} scrollRef={scrollRef} />
         )}
         <ContextRecovery />
-        {decorative && <BlurPipeline />}
+        {decorative && (
+          <BlurPipeline
+            blurPx={variant?.blur ?? DECORATIVE_BLUR_PX}
+            passCount={variant?.passes ?? DECORATIVE_BLUR_PASSES}
+          />
+        )}
       </Canvas>
     </div>
   );

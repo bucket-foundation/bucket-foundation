@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { MutableRefObject } from "react";
 import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
-import type { ScrollState } from "@/components/canon-globe/CanonGlobe";
+import type { ScrollState, DecorativeVariant } from "@/components/canon-globe/CanonGlobe";
 import StaticCanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
 import type { CanonMarker } from "@/components/canon-globe";
 import timelineData from "@/data/canon-timeline.json";
@@ -130,7 +130,7 @@ interface Props {
    * back down to its base rate. */
   scrollRef?: MutableRefObject<ScrollState>;
   /** Diagnostic variants for the decorative mount. */
-  variant?: { noshell?: boolean; fulldpr?: boolean; nospin?: boolean; notilt?: boolean; opaque?: boolean };
+  variant?: DecorativeVariant;
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
@@ -157,7 +157,7 @@ function DecorativeCanonGlobeMount({
   scrollRef,
   variant,
 }: {
-  variant?: { noshell?: boolean; fulldpr?: boolean; nospin?: boolean; notilt?: boolean; opaque?: boolean };
+  variant?: DecorativeVariant;
   containerClassName?: string;
   scrollRef?: MutableRefObject<ScrollState>;
 }) {
