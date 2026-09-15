@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { MutableRefObject } from "react";
 import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
+import type { ScrollState } from "@/components/canon-globe/CanonGlobe";
 import StaticCanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
 import type { CanonMarker } from "@/components/canon-globe";
 import timelineData from "@/data/canon-timeline.json";
@@ -127,7 +128,7 @@ interface Props {
   /** Read every frame by the R3F globe when `decorative` is set: an
    * external scroll-velocity value that eases auto-rotate speed up and
    * back down to its base rate. */
-  scrollSpeedRef?: MutableRefObject<number>;
+  scrollRef?: MutableRefObject<ScrollState>;
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
@@ -151,10 +152,10 @@ const DEFAULT_CONTAINER_CLASSNAME =
  */
 function DecorativeCanonGlobeMount({
   containerClassName,
-  scrollSpeedRef,
+  scrollRef,
 }: {
   containerClassName?: string;
-  scrollSpeedRef?: MutableRefObject<number>;
+  scrollRef?: MutableRefObject<ScrollState>;
 }) {
   return (
     <div className={containerClassName} style={{ width: "100%", height: "100%" }}>
@@ -162,7 +163,7 @@ function DecorativeCanonGlobeMount({
         <R3FCanonGlobe
           markers={[]}
           decorative
-          scrollSpeedRef={scrollSpeedRef}
+          scrollRef={scrollRef}
           className="relative z-0"
         />
       </GlobeErrorBoundary>
@@ -175,13 +176,13 @@ export default function CanonGlobeMount({
   containerClassName,
   globeWrapperClassName,
   decorative = false,
-  scrollSpeedRef,
+  scrollRef,
 }: Props) {
   if (decorative) {
     return (
       <DecorativeCanonGlobeMount
         containerClassName={containerClassName}
-        scrollSpeedRef={scrollSpeedRef}
+        scrollRef={scrollRef}
       />
     );
   }

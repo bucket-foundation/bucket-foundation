@@ -807,3 +807,7 @@ export async function loadLandmask(
 ## 2026-09-14 merge of dev into site-local-2026-09-14
 
 dev commit 65dbde7d0 (#117, "Research OS status band refresh to current main") re-added the status band, five-state table, four tools, frontier, productions, and where-it-sits sections to `src/app/research-os/page.tsx`. The founder removed those sections from this page on 2026-09-14 (entry above), so the merge keeps the landing version. The #117 text is unchanged on `origin/dev` at `git show 65dbde7d0:src/app/research-os/page.tsx`.
+
+## 2026-09-15 decorative globe driver
+
+`AutoRotateDriver` and its three constants, and the `scrollSpeedRef` prop, left `CanonGlobe.tsx` and `CanonGlobeMount.tsx` with the scroll-only spin. Full prior source: `git show 4f95f109b:src/components/canon-globe/CanonGlobe.tsx`.

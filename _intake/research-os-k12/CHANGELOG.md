@@ -2793,3 +2793,11 @@ None.
 
 - `GlobeErrorBoundary` listens for `webglcontextcreationerror` and logs Chromium's status message (vendor, device, driver `ErrorMessage`) beside the render-error warning. Verified with headless Chromium under `--disable-gpu --disable-software-rasterizer`: the console names the refusal reason.
 - Founder's desktop Brave throws `Error creating WebGL context` inside `new WebGLRenderer` on every page with a globe, including production; the same pages render on his phone, on Vercel, and in headless Chromium. The 2026-08-24 `main` (`48c1c02b7`) runs on port 3300 for an A/B in the same browser.
+
+## 2026-09-15 Research OS globe redesign
+
+- Fixed decorative globe: 192vh square (2x), centered at 70vw by 50vh, radial mask so the edge dissolves into the bone ground, backing store at 0.4 device pixels per CSS pixel so the browser upsamples it soft. No CSS `filter`: a 3px compositor blur over that layer hung the AMD Phoenix iGPU under amdgpu in Chrome within seconds (kernel `ring gfx_0.0.0 timeout`, `Process chrome`), the same failure Brave's Flatpak build hits on its own; without the filter the page renders on the real GPU with zero hangs through a scroll.
+- Spin: 35 degree tilt, rotation follows scroll position (0.0022 rad per px, eased at 4 per second), no base auto-rotation. `ScrollSpinDriver` requests frames on scroll and keeps requesting until the ease settles, so `frameloop="demand"` stays.
+- Particle shell: 3,200 gold and basalt points between 1.25 and 2.6 radii, scale eases toward 1 + scroll speed (cap 0.4) and settles back; counter-rotates at 0.55 of the globe.
+- `ContextRecovery`: requests a frame on `webglcontextrestored` so a GPU reset no longer leaves a blank canvas (the white square seen 2026-09-15 08:54 after Brave's reset).
+- Removed: `AutoRotateDriver`, `DECORATIVE_BASE_AUTOROTATE_SPEED`, `SCROLL_EXTRA_DECAY`, `AUTOROTATE_EASE`, the `scrollSpeedRef` prop (now `scrollRef: {y, velocity}`), and the wrapper's `filter` comment. Prior text at `git show 4f95f109b:src/components/canon-globe/CanonGlobe.tsx` and `git show 4f95f109b:src/components/FixedCanonGlobeBackground.tsx`.

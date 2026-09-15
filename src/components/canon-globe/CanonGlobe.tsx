@@ -15,40 +15,128 @@ function damp(current: number, target: number, lambda: number, dt: number) {
   return current + (target - current) * (1 - Math.exp(-lambda * dt));
 }
 
-// Base auto-rotate rate for decorative mounts (three.js units, roughly one
-// full turn every ~5 minutes at this speed). Kept slow, so this globe
-// reads as ambient background motion the eye can ignore while scrolling.
-const DECORATIVE_BASE_AUTOROTATE_SPEED = 0.35;
-// Decay rate (per second) applied to the scroll-speed ref, and the lerp
-// rate the actual OrbitControls speed eases toward its target at.
-const SCROLL_EXTRA_DECAY = 2.2;
-const AUTOROTATE_EASE = 3;
+// Decorative mount: the globe spins only when the page scrolls. Scroll
+// position maps to a rotation target (radians per pixel) and the frame
+// loop eases toward it; the particle shell around the globe expands with
+// scroll speed and settles back when scrolling stops.
+export type ScrollState = { y: number; velocity: number };
+const DECORATIVE_TILT = (35 * Math.PI) / 180;
+const DECORATIVE_RAD_PER_PX = 0.0022;
+const DECORATIVE_SPIN_EASE = 4;
+const DECORATIVE_SHELL_EASE = 5;
+const DECORATIVE_VELOCITY_DECAY = 3;
+const DECORATIVE_MAX_EXPANSION = 0.4;
+const DECORATIVE_EXPANSION_PER_VELOCITY = 0.25;
+const SHELL_COUNT = 3200;
 
 /**
- * Reads an external scroll-velocity speed ref every frame, decays it back
- * toward zero, and eases the mounted OrbitControls' autoRotateSpeed toward
- * base rate plus that extra. Only mounted for a decorative globe with
- * autoRotate on, keeps the interactive globe's frame loop untouched.
+ * Eases the decorative globe's spin toward scrollY * DECORATIVE_RAD_PER_PX
+ * and the particle shell's scale toward 1 + scroll speed. The canvas runs
+ * frameloop="demand": a scroll event requests one frame, and this driver
+ * keeps requesting frames until both eases settle.
  */
-function AutoRotateDriver({
-  controlsRef,
-  scrollSpeedRef,
-  base,
+function ScrollSpinDriver({
+  spinRef,
+  shellRef,
+  scrollRef,
 }: {
-  controlsRef: MutableRefObject<OrbitControlsImpl | null>;
-  scrollSpeedRef?: MutableRefObject<number>;
-  base: number;
+  spinRef: MutableRefObject<THREE.Group | null>;
+  shellRef: MutableRefObject<THREE.Group | null>;
+  scrollRef?: MutableRefObject<ScrollState>;
 }) {
+  const invalidate = useThree((state) => state.invalidate);
+  const current = useRef({ rot: 0, scale: 1 });
+
+  useEffect(() => {
+    const onScroll = () => invalidate();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [invalidate]);
+
   useFrame((_state, delta) => {
-    const controls = controlsRef.current;
-    if (!controls) return;
-    const extra = scrollSpeedRef?.current ?? 0;
-    if (scrollSpeedRef) {
-      scrollSpeedRef.current = extra * Math.exp(-SCROLL_EXTRA_DECAY * delta);
+    const spin = spinRef.current;
+    const scroll = scrollRef?.current;
+    if (!spin || !scroll) return;
+    const targetRot = scroll.y * DECORATIVE_RAD_PER_PX;
+    const targetScale =
+      1 + Math.min(DECORATIVE_MAX_EXPANSION, scroll.velocity * DECORATIVE_EXPANSION_PER_VELOCITY);
+    const c = current.current;
+    c.rot = damp(c.rot, targetRot, DECORATIVE_SPIN_EASE, delta);
+    c.scale = damp(c.scale, targetScale, DECORATIVE_SHELL_EASE, delta);
+    spin.rotation.y = c.rot;
+    const shell = shellRef.current;
+    if (shell) {
+      shell.scale.setScalar(c.scale);
+      shell.rotation.y = c.rot * 0.55;
     }
-    const target = base + extra;
-    controls.autoRotateSpeed = damp(controls.autoRotateSpeed, target, AUTOROTATE_EASE, delta);
+    scroll.velocity *= Math.exp(-DECORATIVE_VELOCITY_DECAY * delta);
+    if (Math.abs(targetRot - c.rot) > 1e-4 || Math.abs(targetScale - c.scale) > 1e-4) {
+      invalidate();
+    }
   });
+  return null;
+}
+
+/**
+ * Near-field particle shell around the decorative globe: gold and basalt
+ * points between 1.25 and 2.6 radii, denser near the surface. Scaled and
+ * counter-rotated by ScrollSpinDriver.
+ */
+function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | null> }) {
+  const geometry = useMemo(() => {
+    const pos = new Float32Array(SHELL_COUNT * 3);
+    const col = new Float32Array(SHELL_COUNT * 3);
+    const gold = new THREE.Color("#B8861E");
+    const basalt = new THREE.Color("#4A4436");
+    const tmp = new THREE.Color();
+    for (let i = 0; i < SHELL_COUNT; i++) {
+      const u = Math.random() * 2 - 1;
+      const t = Math.random() * Math.PI * 2;
+      const r = 1.25 + 1.35 * Math.pow(Math.random(), 1.8);
+      const sn = Math.sqrt(1 - u * u);
+      pos[i * 3] = r * sn * Math.cos(t);
+      pos[i * 3 + 1] = r * u;
+      pos[i * 3 + 2] = r * sn * Math.sin(t);
+      tmp.copy(basalt).lerp(gold, Math.random() < 0.35 ? 1 : Math.random() * 0.3);
+      col[i * 3] = tmp.r;
+      col[i * 3 + 1] = tmp.g;
+      col[i * 3 + 2] = tmp.b;
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+    return geo;
+  }, []);
+  return (
+    <group ref={shellRef}>
+      <points geometry={geometry}>
+        <pointsMaterial
+          size={0.028}
+          vertexColors
+          transparent
+          opacity={0.6}
+          sizeAttenuation
+          depthWrite={false}
+        />
+      </points>
+    </group>
+  );
+}
+
+/**
+ * After the browser restores a lost WebGL context (a GPU reset), three.js
+ * rebuilds its state but nothing requests a frame under frameloop="demand",
+ * so the canvas would stay blank. Request one.
+ */
+function ContextRecovery() {
+  const gl = useThree((state) => state.gl);
+  const invalidate = useThree((state) => state.invalidate);
+  useEffect(() => {
+    const el = gl.domElement;
+    const onRestored = () => invalidate();
+    el.addEventListener("webglcontextrestored", onRestored);
+    return () => el.removeEventListener("webglcontextrestored", onRestored);
+  }, [gl, invalidate]);
   return null;
 }
 
@@ -95,9 +183,9 @@ interface CanonGlobeProps {
    * auto-rotate is enabled instead (skipped under prefers-reduced-motion,
    * which renders a static globe). */
   decorative?: boolean;
-  /** Read every frame when `decorative` is on: an external scroll-velocity
-   * value that eases the auto-rotate speed up and back down to base rate. */
-  scrollSpeedRef?: MutableRefObject<number>;
+  /** Read every frame when `decorative` is on: page scroll position and
+   * speed. Position drives the spin, speed drives the particle shell. */
+  scrollRef?: MutableRefObject<ScrollState>;
 }
 
 const LANDMASK_URL = "/textures/earth/landmask-2k.bin";
@@ -109,11 +197,13 @@ export default function CanonGlobe({
   onHoverChange,
   onSelectChange,
   decorative = false,
-  scrollSpeedRef,
+  scrollRef,
 }: CanonGlobeProps) {
   const reducedMotion = useReducedMotion();
-  const autoRotate = decorative && !reducedMotion;
+  const scrollSpin = decorative && !reducedMotion;
   const controlsRef = useRef<OrbitControlsImpl | null>(null);
+  const spinRef = useRef<THREE.Group | null>(null);
+  const shellRef = useRef<THREE.Group | null>(null);
   // Camera distance from origin, in scene units (Earth radius = 1).
   // Seeded to match the camera's starting position (z=3.4 below).
   const [cameraDistance, setCameraDistance] = useState(3.4);
@@ -151,7 +241,7 @@ export default function CanonGlobe({
         // Lower GPU pressure: cap DPR to 1, drop antialias. Helps on
         // browsers with shaky GPU drivers (Brave/Wayland/AMD on Linux
         // tends to crash with frequent context switches).
-        dpr={1}
+        dpr={decorative ? 0.4 : 1}
         frameloop="demand"  // only render on prop change / camera moves
         performance={{ min: 0.5 }}
         camera={{ position: [0, 0, 3.4], fov: 42 }}
@@ -172,6 +262,8 @@ export default function CanonGlobe({
           />
         </points>
 
+        <group rotation={decorative ? [0, 0, DECORATIVE_TILT] : [0, 0, 0]}>
+        <group ref={spinRef}>
         <Suspense fallback={null}>
           <Earth
             targetRotationY={0}
@@ -191,6 +283,9 @@ export default function CanonGlobe({
           </Earth>
         </Suspense>
         <Halo enabled />
+        {decorative && <ParticleShell shellRef={shellRef} />}
+        </group>
+        </group>
 
         {/* Drag to rotate + scroll to zoom. `minDistance` is set tight
  against the Earth surface (radius=1 in scene units) so users
@@ -218,21 +313,16 @@ export default function CanonGlobe({
           // Zoom logarithmically, wider steps at far view, finer at
           // close zoom so the last "click" doesn't overshoot the surface.
           zoomSpeed={Math.max(0.25, 0.7 * Math.min(1, (cameraDistance - 1) / 2.4))}
-          autoRotate={autoRotate}
-          autoRotateSpeed={DECORATIVE_BASE_AUTOROTATE_SPEED}
         />
         <CameraTracker
           controlsRef={controlsRef}
           onDistance={setCameraDistance}
           onPosition={setCameraPosition}
         />
-        {autoRotate && (
-          <AutoRotateDriver
-            controlsRef={controlsRef}
-            scrollSpeedRef={scrollSpeedRef}
-            base={DECORATIVE_BASE_AUTOROTATE_SPEED}
-          />
+        {scrollSpin && (
+          <ScrollSpinDriver spinRef={spinRef} shellRef={shellRef} scrollRef={scrollRef} />
         )}
+        <ContextRecovery />
       </Canvas>
     </div>
   );

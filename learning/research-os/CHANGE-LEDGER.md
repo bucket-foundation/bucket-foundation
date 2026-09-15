@@ -3573,3 +3573,7 @@ Squash-merged after this pass.
 ## 2026-09-15 WebGL refusal diagnostic
 
 `src/components/canon-globe/GlobeErrorBoundary.tsx`: capturing `webglcontextcreationerror` listener logs the browser's status message and repeats it in the boundary's warning. No visual change.
+
+## 2026-09-15 Research OS globe redesign
+
+`src/components/canon-globe/CanonGlobe.tsx`: `ScrollSpinDriver`, `ParticleShell`, `ContextRecovery`, decorative tilt group, `scrollRef` prop, decorative dpr 0.4; `AutoRotateDriver` removed. `src/components/FixedCanonGlobeBackground.tsx`: 192vh, radial mask, no CSS filter, writes `{y, velocity}`. `src/app/canon/CanonGlobeMount.tsx`: forwards `scrollRef`. Verified on the founder's AMD Phoenix iGPU in Chrome 150: hardware context, no GPU hang.
