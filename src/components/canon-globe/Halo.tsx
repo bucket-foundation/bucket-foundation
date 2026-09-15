@@ -12,6 +12,9 @@ interface HaloProps {
   enabled?: boolean;
   /** Multiplies both rims' alpha. */
   alpha?: number;
+  /** Radial fade in normalized device units: alpha falls from 1 at
+   * fade[0] to 0 at fade[1] from the canvas center. Off by default. */
+  fade?: [number, number];
 }
 
 export function Halo({
@@ -19,20 +22,23 @@ export function Halo({
   color = "#B8861E",
   enabled = true,
   alpha = 1,
+  fade = [10, 11],
 }: HaloProps) {
   // Inner crisp gold rim, sits just off the surface, sharp fresnel.
   const innerMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
-        uniforms: { uColor: { value: new THREE.Color(color) }, uAlpha: { value: alpha } },
+        uniforms: { uColor: { value: new THREE.Color(color) }, uAlpha: { value: alpha }, uFade: { value: new THREE.Vector2(fade[0], fade[1]) } },
         vertexShader: /* glsl */ `
           varying vec3 vNormal;
           varying vec3 vViewDir;
+          varying vec2 vNdc;
           void main() {
             vNormal = normalize(normalMatrix * normal);
             vec4 mv = modelViewMatrix * vec4(position, 1.0);
             vViewDir = normalize(-mv.xyz);
             gl_Position = projectionMatrix * mv;
+            vNdc = gl_Position.xy / gl_Position.w;
           }
         `,
         fragmentShader: /* glsl */ `
@@ -40,9 +46,12 @@ export function Halo({
           varying vec3 vViewDir;
           uniform vec3 uColor;
           uniform float uAlpha;
+          uniform vec2 uFade;
+          varying vec2 vNdc;
           void main() {
             float fres = pow(1.0 - dot(vNormal, vViewDir), 3.5);
             float a = smoothstep(0.2, 1.0, fres) * 0.55 * uAlpha;
+            a *= 1.0 - smoothstep(uFade.x, uFade.y, length(vNdc));
             gl_FragColor = vec4(uColor, a);
           }
         `,
@@ -51,22 +60,24 @@ export function Halo({
         depthWrite: false,
         blending: THREE.NormalBlending,
       }),
-    [color, alpha]
+    [color, alpha, fade]
   );
 
   // Outer atmospheric bloom, wider, softer, gives the planet a glow halo.
   const outerMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
-        uniforms: { uColor: { value: new THREE.Color(color) }, uAlpha: { value: alpha } },
+        uniforms: { uColor: { value: new THREE.Color(color) }, uAlpha: { value: alpha }, uFade: { value: new THREE.Vector2(fade[0], fade[1]) } },
         vertexShader: /* glsl */ `
           varying vec3 vNormal;
           varying vec3 vViewDir;
+          varying vec2 vNdc;
           void main() {
             vNormal = normalize(normalMatrix * normal);
             vec4 mv = modelViewMatrix * vec4(position, 1.0);
             vViewDir = normalize(-mv.xyz);
             gl_Position = projectionMatrix * mv;
+            vNdc = gl_Position.xy / gl_Position.w;
           }
         `,
         fragmentShader: /* glsl */ `
@@ -74,9 +85,12 @@ export function Halo({
           varying vec3 vViewDir;
           uniform vec3 uColor;
           uniform float uAlpha;
+          uniform vec2 uFade;
+          varying vec2 vNdc;
           void main() {
             float fres = pow(1.0 - dot(vNormal, vViewDir), 1.6);
             float a = smoothstep(0.0, 1.0, fres) * 0.22 * uAlpha;
+            a *= 1.0 - smoothstep(uFade.x, uFade.y, length(vNdc));
             gl_FragColor = vec4(uColor, a);
           }
         `,
@@ -85,7 +99,7 @@ export function Halo({
         depthWrite: false,
         blending: THREE.NormalBlending,
       }),
-    [color, alpha]
+    [color, alpha, fade]
   );
 
   if (!enabled) return null;

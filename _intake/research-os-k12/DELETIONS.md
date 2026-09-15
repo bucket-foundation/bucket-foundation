@@ -815,3 +815,7 @@ dev commit 65dbde7d0 (#117, "Research OS status band refresh to current main") r
 ## 2026-09-15 Research OS page copy
 
 The eyebrow "§ Research OS · K-12", the "Try the prototype" hero CTA, the "§ five states" eyebrow, and the per-state meaning and signal sentences left `src/app/research-os/page.tsx` for the artifact layout. Prior file: `git show 19a7bc1c6:src/app/research-os/page.tsx`.
+
+## 2026-09-15 painted edge overlay
+
+The bone radial-gradient overlay div inside `FixedCanonGlobeBackground.tsx` and its `nofade` query switch are gone; the Halo and shell fade in their shaders instead. Prior file: `git show 191e0ec90:src/components/FixedCanonGlobeBackground.tsx`.

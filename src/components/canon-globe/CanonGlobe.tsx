@@ -160,23 +160,60 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
     }
     const geo = new THREE.BufferGeometry();
     geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-    geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+    geo.setAttribute("aColor", new THREE.BufferAttribute(col, 3));
     return geo;
   }, []);
+  // Points shader with the Halo's radial fade, so the shell dissolves
+  // before the square canvas edge instead of being clipped by it.
+  const material = useMemo(
+    () =>
+      new THREE.ShaderMaterial({
+        uniforms: {
+          uMap: { value: sprite },
+          uOpacity: { value: 0.7 * DECORATIVE_ALPHA },
+          uSize: { value: 0.05 },
+          uScale: { value: 100 },
+          uFade: { value: new THREE.Vector2(0.45, 0.9) },
+        },
+        vertexShader: /* glsl */ `
+          uniform float uSize;
+          uniform float uScale;
+          attribute vec3 aColor;
+          varying vec3 vColor;
+          varying vec2 vNdc;
+          void main() {
+            vColor = aColor;
+            vec4 mv = modelViewMatrix * vec4(position, 1.0);
+            gl_Position = projectionMatrix * mv;
+            gl_PointSize = uSize * uScale / -mv.z;
+            vNdc = gl_Position.xy / gl_Position.w;
+          }
+        `,
+        fragmentShader: /* glsl */ `
+          uniform sampler2D uMap;
+          uniform float uOpacity;
+          uniform vec2 uFade;
+          varying vec3 vColor;
+          varying vec2 vNdc;
+          void main() {
+            float a = texture2D(uMap, gl_PointCoord).a * uOpacity;
+            a *= 1.0 - smoothstep(uFade.x, uFade.y, length(vNdc));
+            if (a < 0.02) discard;
+            gl_FragColor = vec4(vColor, a);
+          }
+        `,
+        transparent: true,
+        depthWrite: false,
+      }),
+    [sprite]
+  );
+  // Point size scales with the drawing buffer height, as PointsMaterial does.
+  useFrame((state) => {
+    material.uniforms.uScale.value = (state.size.height * state.viewport.dpr) / 2;
+  });
   return (
     <group ref={shellRef}>
-      <points geometry={geometry}>
-        <pointsMaterial
-          size={0.05}
-          map={sprite ?? undefined}
-          alphaTest={0.05}
-          vertexColors
-          transparent
-          opacity={0.7 * DECORATIVE_ALPHA}
-          sizeAttenuation
-          depthWrite={false}
-        />
-      </points>
+      <points geometry={geometry} material={material} />
     </group>
   );
 }
@@ -312,8 +349,9 @@ export default function CanonGlobe({
         {/* dot-globe is unlit (MeshBasicMaterial), ambient is harmless. */}
         <ambientLight intensity={0.5} />
 
-        {/* far-field starlike dots, gold-flecked */}
-        <points geometry={stars}>
+        {/* far-field starlike dots, gold-flecked; the decorative mount
+            skips them so nothing fills the canvas out to its square edge */}
+        {!decorative && <points geometry={stars}>
           <pointsMaterial
             size={0.04}
             color="#B8861E"
@@ -322,7 +360,7 @@ export default function CanonGlobe({
             sizeAttenuation
             depthWrite={false}
           />
-        </points>
+        </points>}
 
         <group rotation={decorative && !variant?.notilt ? [0, 0, DECORATIVE_TILT] : [0, 0, 0]}>
         <group ref={spinRef}>
@@ -348,7 +386,7 @@ export default function CanonGlobe({
             />
           </Earth>
         </Suspense>
-        <Halo enabled alpha={alpha} />
+        <Halo enabled alpha={alpha} fade={decorative ? [0.45, 0.9] : undefined} />
         {decorative && !variant?.noshell && <ParticleShell shellRef={shellRef} />}
         </group>
         </group>

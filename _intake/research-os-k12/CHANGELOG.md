@@ -2815,3 +2815,8 @@ None.
 - Decorative mount now draws 18,000 opaque four-segment dots in a lighter basalt (`0x5a4f3d`) instead of 55% transparent ones, keeps the Halo at 0.55 alpha and the particle shell, and caps scroll-driven frames at one per 50 ms. Wrapper has no CSS filter, opacity, or mask; the edge dissolves under a painted bone radial gradient, and the Footer sits above the globe layer (`z-[2]`).
 - Result: 0 hangs over 4 loads on the bare route, 4 and then 8 loads on /research-os, each load scrolling to the bottom and back, WebGL alive throughout.
 - Diagnostics kept: `/research-os/globe-test` (globe on a bare page) and query switches on the decorative mount (`noglobe`, `small`, `noshell`, `fulldpr`, `nofade`, `nospin`, `notilt`, `absolute`, `opaque`) for the next GPU check.
+
+## 2026-09-15 decorative globe edge
+
+- The straight edge at the globe wrapper's boundary came from inside the canvas: the Halo's back-face disc (95% of the canvas) ended in a rim, the particle shell (radius 2.6 against a visible half-height of 1.3) filled the canvas and was clipped square, and the far-field star flecks speckled the whole canvas. The earlier CSS mask had hidden all three.
+- Halo gains a `fade` uniform (alpha falls from 0.45 to 0.9 of the canvas radius, in device units); the shell is now its own points shader with the same fade and the sprite map; the decorative mount skips the far-field stars. The painted bone overlay and its `nofade` switch are removed. Pixel check on the founder's GPU: colors just inside and outside the wrapper edge identical at three heights; 3 scrolled loads, 0 hangs.

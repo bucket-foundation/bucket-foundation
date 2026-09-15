@@ -11,8 +11,8 @@ import type { ScrollState } from "@/components/canon-globe/CanonGlobe";
  * the browser upsamples it). No CSS filter, opacity, or mask on this
  * wrapper: each makes the compositor render the 2100px layer offscreen,
  * and that hangs the AMD Phoenix iGPU under amdgpu within a few loads.
- * Transparency is in the globe's materials and the edge dissolves under a
- * painted radial gradient of the bone ground. The globe spins only while the page scrolls (scroll position maps
+ * Transparency lives in the globe's materials and the Halo disc fades out
+ * in its own shader before it reaches the canvas edge. The globe spins only while the page scrolls (scroll position maps
  * to rotation, eased inside the R3F frame loop) and its particle shell
  * expands with scroll speed and settles back. This component measures
  * scroll and writes {y, velocity}; the globe reads it every frame.
@@ -72,17 +72,6 @@ export default function FixedCanonGlobeBackground() {
         containerClassName="relative w-full h-full"
         variant={variant}
       />
-      {/* Painted gradient, no mask or opacity on the wrapper: transparent
-          over the globe's middle, bone at the edge, so the border dissolves
-          into the page ground. The footer sits above this layer. */}
-      {!variant.nofade && <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at center, rgba(239,232,212,0) 36%, rgba(239,232,212,0.85) 58%, var(--bone) 68%)",
-        }}
-      />}
     </div>
   );
 }
