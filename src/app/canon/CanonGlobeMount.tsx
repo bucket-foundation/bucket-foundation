@@ -136,8 +136,9 @@ interface Props {
   /** Diagnostic variants for the decorative mount. */
   variant?: DecorativeVariant;
   /** "home": search bar, layer toggles, and branch chips sit in a left
-   * column over the globe, and the container and detail drawer carry no
-   * background of their own. Interactive mount only. */
+   * column over the globe on their own bone-2 card, the detail drawer keeps
+   * its bone surface, and the container between them carries no background.
+   * Interactive mount only. */
   layout?: "default" | "home";
 }
 
@@ -450,7 +451,7 @@ function InteractiveCanonGlobeMount({
       <div
         className={
           home && !expanded
-            ? "absolute left-4 md:left-8 top-6 z-30 w-[min(380px,calc(100vw-2rem))] flex flex-col items-start gap-3"
+            ? "absolute left-4 md:left-8 top-6 z-30 w-[min(400px,calc(100vw-2rem))] flex flex-col items-start gap-3 p-4 rounded-2xl border border-[color:var(--hairline)] bg-[color:var(--bone-2)]"
             : "z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0"
         }
       >
@@ -795,7 +796,6 @@ function InteractiveCanonGlobeMount({
       {/* RIGHT-SIDE INFO DRAWER */}
       <Drawer
         selected={selected}
-        transparent={home && !expanded}
         onClose={() => setSelected(null)}
         onSelectMarker={(id) => {
           // Same-era / nearby click, find the marker by id in the
