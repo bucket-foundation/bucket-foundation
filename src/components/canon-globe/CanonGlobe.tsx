@@ -59,12 +59,12 @@ const SHELL_COUNT = 3200;
 const DECORATIVE_ALPHA = 0.55;
 // Decorative dots stay opaque (transparent instancing plus scroll frames
 // wedged the founder's iGPU); a lighter color carries the "less dark" ask.
-const DECORATIVE_DOT_COLOR = 0x5f5240;
+const DECORATIVE_DOT_COLOR = 0x4a4436;
 const DECORATIVE_LIMB_SCALE = 0.3;
 // Candidates on the sphere; about 29% land on continents. Dense so the
 // field reads as soft continents at twice the size, and a touch larger.
-const DECORATIVE_DOT_COUNT = 80000;
-const DECORATIVE_DOT_RADIUS = 0.0046;
+const DECORATIVE_DOT_COUNT = 36000;
+const DECORATIVE_DOT_RADIUS = 0.0075;
 const DECORATIVE_DOT_DETAIL = 6;
 // Scroll-driven frames are capped at this interval (20 per second).
 const DECORATIVE_FRAME_MS = 50;
@@ -74,7 +74,7 @@ const DECORATIVE_FRAME_MS = 50;
 const DECORATIVE_DPR = 0.5;
 // Each pass is a 9-tap kernel stepped this many buffer pixels, so one
 // pair at 0.55 spreads about 2.2 buffer pixels, 4.4 CSS pixels at half dpr.
-const DECORATIVE_BLUR_PX = 0.7;
+const DECORATIVE_BLUR_PX = 0.55;
 const DECORATIVE_BLUR_PASSES = 1;
 
 /**
