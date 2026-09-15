@@ -2820,3 +2820,7 @@ None.
 
 - The straight edge at the globe wrapper's boundary came from inside the canvas: the Halo's back-face disc (95% of the canvas) ended in a rim, the particle shell (radius 2.6 against a visible half-height of 1.3) filled the canvas and was clipped square, and the far-field star flecks speckled the whole canvas. The earlier CSS mask had hidden all three.
 - Halo gains a `fade` uniform (alpha falls from 0.45 to 0.9 of the canvas radius, in device units); the shell is now its own points shader with the same fade and the sprite map; the decorative mount skips the far-field stars. The painted bone overlay and its `nofade` switch are removed. Pixel check on the founder's GPU: colors just inside and outside the wrapper edge identical at three heights; 3 scrolled loads, 0 hangs.
+
+## 2026-09-15 decorative globe blur in WebGL
+
+- The 0.22 dpr stand-in read as low resolution. The decorative mount now renders at 0.5 dpr into an RGBA target and runs one horizontal plus one vertical 9-tap blur pass (three-stdlib `EffectComposer`, `HorizontalBlurShader`, `VerticalBlurShader`, step 0.55 buffer pixels, about 4 CSS pixels of spread) before the last pass draws to the transparent canvas. Dot detail back to 6 segments. 0 hangs over 7 scrolled loads on the founder's GPU; wrapper edge pixels still identical inside and out.

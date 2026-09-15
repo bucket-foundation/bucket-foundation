@@ -3589,3 +3589,7 @@ Squash-merged after this pass.
 ## 2026-09-15 decorative globe edge
 
 `Halo.tsx`: `fade` prop and `uFade` uniform. `CanonGlobe.tsx`: `ParticleShell` ShaderMaterial with radial fade, far-field stars off in decorative mode. `FixedCanonGlobeBackground.tsx`: painted overlay and `nofade` switch removed.
+
+## 2026-09-15 decorative globe blur in WebGL
+
+`CanonGlobe.tsx`: `BlurPipeline` (EffectComposer, one blur pass pair, priority-1 `useFrame`), `DECORATIVE_DPR` 0.5, `DECORATIVE_DOT_DETAIL` 6.

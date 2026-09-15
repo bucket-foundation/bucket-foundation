@@ -4,6 +4,13 @@ import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import type { MutableRefObject } from "react";
 import { OrbitControls } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import {
+  EffectComposer,
+  HorizontalBlurShader,
+  RenderPass,
+  ShaderPass,
+  VerticalBlurShader,
+} from "three-stdlib";
 import { Earth, EARTH_RADIUS } from "./Earth";
 import { Halo } from "./Halo";
 import { CanonMarkers, type CanonMarker } from "./CanonMarkers";
@@ -37,9 +44,17 @@ const DECORATIVE_ALPHA = 0.55;
 // wedged the founder's iGPU); a lighter color carries the "less dark" ask.
 const DECORATIVE_DOT_COLOR = 0x5a4f3d;
 const DECORATIVE_DOT_COUNT = 18000;
-const DECORATIVE_DOT_DETAIL = 4;
+const DECORATIVE_DOT_DETAIL = 6;
 // Scroll-driven frames are capped at this interval (20 per second).
 const DECORATIVE_FRAME_MS = 50;
+// Decorative render: half-resolution buffer, blurred in two separable
+// passes inside WebGL. A CSS blur on the canvas wrapper hangs the
+// founder's Phoenix iGPU; these passes are tiny fullscreen draws.
+const DECORATIVE_DPR = 0.5;
+// Each pass is a 9-tap kernel stepped this many buffer pixels, so one
+// pair at 0.55 spreads about 2.2 buffer pixels, 4.4 CSS pixels at half dpr.
+const DECORATIVE_BLUR_PX = 0.55;
+const DECORATIVE_BLUR_PASSES = 1;
 
 /**
  * Eases the decorative globe's spin toward scrollY * DECORATIVE_RAD_PER_PX
@@ -219,6 +234,64 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
 }
 
 /**
+ * Takes over rendering for the decorative mount: scene to an RGBA target,
+ * then DECORATIVE_BLUR_PASSES pairs of horizontal and vertical blur, the
+ * last pass to the screen. The canvas stays transparent.
+ */
+function BlurPipeline() {
+  const gl = useThree((state) => state.gl);
+  const scene = useThree((state) => state.scene);
+  const camera = useThree((state) => state.camera);
+  const size = useThree((state) => state.size);
+
+  const pipeline = useMemo(() => {
+    const target = new THREE.WebGLRenderTarget(1, 1, {
+      format: THREE.RGBAFormat,
+      type: THREE.UnsignedByteType,
+      depthBuffer: true,
+      stencilBuffer: false,
+    });
+    const composer = new EffectComposer(gl, target);
+    composer.addPass(new RenderPass(scene, camera));
+    const passes: ShaderPass[] = [];
+    for (let i = 0; i < DECORATIVE_BLUR_PASSES; i++) {
+      const h = new ShaderPass(HorizontalBlurShader);
+      const v = new ShaderPass(VerticalBlurShader);
+      composer.addPass(h);
+      composer.addPass(v);
+      passes.push(h, v);
+    }
+    passes[passes.length - 1].renderToScreen = true;
+    return { composer, passes };
+  }, [gl, scene, camera]);
+
+  useEffect(() => {
+    const dpr = gl.getPixelRatio();
+    pipeline.composer.setPixelRatio(dpr);
+    pipeline.composer.setSize(size.width, size.height);
+    const w = Math.max(1, size.width * dpr);
+    const h = Math.max(1, size.height * dpr);
+    pipeline.passes.forEach((pass, i) => {
+      if (i % 2 === 0) pass.uniforms.h.value = DECORATIVE_BLUR_PX / w;
+      else pass.uniforms.v.value = DECORATIVE_BLUR_PX / h;
+    });
+  }, [pipeline, size, gl]);
+
+  useEffect(() => {
+    const { composer } = pipeline;
+    return () => {
+      composer.renderTarget1.dispose();
+      composer.renderTarget2.dispose();
+    };
+  }, [pipeline]);
+
+  useFrame(() => {
+    pipeline.composer.render();
+  }, 1);
+  return null;
+}
+
+/**
  * After the browser restores a lost WebGL context (a GPU reset), three.js
  * rebuilds its state but nothing requests a frame under frameloop="demand",
  * so the canvas would stay blank. Request one.
@@ -340,7 +413,7 @@ export default function CanonGlobe({
         // Lower GPU pressure: cap DPR to 1, drop antialias. Helps on
         // browsers with shaky GPU drivers (Brave/Wayland/AMD on Linux
         // tends to crash with frequent context switches).
-        dpr={decorative && !variant?.fulldpr ? 0.22 : 1}
+        dpr={decorative && !variant?.fulldpr ? DECORATIVE_DPR : 1}
         frameloop="demand"  // only render on prop change / camera moves
         performance={{ min: 0.5 }}
         camera={{ position: [0, 0, 3.4], fov: 42 }}
@@ -427,6 +500,7 @@ export default function CanonGlobe({
           <ScrollSpinDriver spinRef={spinRef} shellRef={shellRef} scrollRef={scrollRef} />
         )}
         <ContextRecovery />
+        {decorative && <BlurPipeline />}
       </Canvas>
     </div>
   );
