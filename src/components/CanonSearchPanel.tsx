@@ -26,7 +26,7 @@ export default function CanonSearchPanel({ branches }: Props) {
       <CanonGlobeMount
         branches={branches}
         containerClassName="relative w-full h-full overflow-visible flex flex-col"
-        globeWrapperClassName="-mt-[32vh]"
+        globeWrapperClassName="-mt-[26vh]"
         layout="home"
       />
     </section>
