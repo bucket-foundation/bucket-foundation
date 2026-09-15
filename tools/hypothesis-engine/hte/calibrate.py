@@ -353,6 +353,85 @@ def run_holdout(
 _LOW_COVERAGE_THRESHOLD = 0.5
 
 
+def run_vindication(
+    corpus: Corpus,
+    constants: Constants,
+    *,
+    lift_floor: float = 0.25,
+    match_threshold: float = DEFAULT_MATCH_THRESHOLD,
+) -> dict[str, Any]:
+    """The false-negative test the discovery-date holdout cannot run
+    (`STATISTICAL-AUDIT-2026-09-15.md`, Evaluation: calibration against
+    the literature's record rewards agreement with the null). Two event
+    classes from `corpus.ground_truth`: a *vindicated* event carries
+    `acceptance_year`, and is read with only the evidence recorded before
+    that year (`discovery_year < acceptance_year`), the way `run_holdout`
+    reads a cutoff; a *control* (`control=True`, an exploded claim) is
+    read with every item, refutations included. An event counts as
+    *lifted* when its best true reading (a candidate naming its slots and
+    overlapping its year, `run_holdout`'s own matcher) has evidence-only
+    lift `b - d >= lift_floor` and no wrong-interval competitor's lift
+    exceeds it. `vindication_rate` is lifted over covered vindicated
+    events; `false_alarm_rate` is lifted over covered controls; both carry
+    Wilson intervals. Uncovered events (no candidate at all) are listed
+    with `covered=False` and excluded from the rates, as `run_holdout`
+    excludes them from Brier."""
+    ev_by_id = {e.id: e for e in corpus.evidence}
+    span_start, bin_width, resolution = _corpus_time_binning(corpus)
+    rows: list[dict[str, Any]] = []
+
+    def lift_of(h: Hypothesis, evidence: list[EvidenceItem]) -> float:
+        return belief.score(h, evidence, corpus.vocab, constants=constants).lift()
+
+    for g in sorted(corpus.ground_truth, key=lambda g: (g.discovery_year, g.id)):
+        if g.acceptance_year is None and not g.control:
+            continue
+        target = ev_by_id.get(g.id)
+        if target is None:
+            continue
+        cutoff = g.acceptance_year if not g.control else None
+        # Deep copies, as `holdout_kfold` takes them: `link_evidence` writes
+        # `supports`/`refutes` in place, and each event reads its own slice.
+        evidence = [
+            copy.deepcopy(ev_by_id[e.id]) for e in corpus.ground_truth
+            if e.id in ev_by_id and (cutoff is None or e.discovery_year < cutoff)
+        ]
+        candidates: dict[tuple[int, int, int], Hypothesis] = {}
+        for item in evidence:
+            hyp = _placement_from_item(item, corpus.vocab, span_start=span_start, bin_width=bin_width)
+            if hyp is not None:
+                candidates.setdefault(_candidate_key(hyp), hyp)
+        candidate_list = list(candidates.values())
+        link_evidence(evidence, candidate_list, corpus.vocab, threshold=match_threshold)
+        matches = [h for h in candidate_list if _matches_event(target, h.content, corpus.vocab, threshold=match_threshold)]
+        true_matches = [h for h in matches if _interval_overlaps_year(h.content.interval, g.year, resolution)]
+        wrong_matches = [h for h in matches if not _interval_overlaps_year(h.content.interval, g.year, resolution)]
+        row: dict[str, Any] = {
+            "event_id": g.id, "event_label": g.label, "kind": "control" if g.control else "vindicated",
+            "cutoff": cutoff, "covered": bool(true_matches), "lift_true": None, "lift_wrong": None, "lifted": None,
+        }
+        if true_matches:
+            row["lift_true"] = max(lift_of(h, evidence) for h in true_matches)
+            row["lift_wrong"] = max((lift_of(h, evidence) for h in wrong_matches), default=None)
+            row["lifted"] = row["lift_true"] >= lift_floor and (row["lift_wrong"] is None or row["lift_true"] > row["lift_wrong"])
+        rows.append(row)
+
+    def rate(kind: str) -> tuple[int, int, float | None, tuple[float, float]]:
+        covered = [r for r in rows if r["kind"] == kind and r["covered"]]
+        k = sum(1 for r in covered if r["lifted"])
+        n = len(covered)
+        return k, n, (k / n if n else None), wilson_interval(k, n)
+
+    k_v, n_v, rate_v, ci_v = rate("vindicated")
+    k_c, n_c, rate_c, ci_c = rate("control")
+    return {
+        "lift_floor": lift_floor,
+        "n_vindicated": n_v, "n_lifted": k_v, "vindication_rate": rate_v, "vindication_rate_ci": ci_v,
+        "n_controls": n_c, "n_false_alarms": k_c, "false_alarm_rate": rate_c, "false_alarm_rate_ci": ci_c,
+        "rows": rows,
+    }
+
+
 def _low_coverage_note(
     corpus: Corpus,
     n_covered: int,
