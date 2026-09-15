@@ -976,7 +976,7 @@ def test_discover_card_roots_against_the_real_repo_checkout():
         assert literature.LOCAL_INTAKE_DIR in discovered
 
 
-def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_six_degraded_named_in_the_log(caplog):
+def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_every_degraded_card_named_in_the_log(caplog):
     """bkt-hte-outbox-seam review, "High": `literature.load(cards_dir=
     None)` used to raise against this repo's own on-disk corpus, because
     some real cards carry `doi: null`. It must now succeed, report every
