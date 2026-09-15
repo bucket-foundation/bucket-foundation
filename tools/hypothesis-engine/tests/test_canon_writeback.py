@@ -1,3 +1,4 @@
+import dataclasses
 import json
 from pathlib import Path
 
@@ -5,6 +6,7 @@ import pytest
 
 from hte import bridge_export, canon_writeback
 from hte.address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
+from hte.belief import Opinion
 from hte.corpus import Corpus, fixtures
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier
 from hte.hypothesis import Hypothesis, Placement
@@ -199,10 +201,31 @@ def test_write_back_over_a_run_with_a_hidden_survivor_still_writes_the_reconstru
 def test_select_above_floor_filters_on_both_p_and_u(linking_run):
     run_dir, h_supported, _ = linking_run
     candidates, _ = canon_writeback.reconstruct_candidates(run_dir)
-    loose = canon_writeback.select_above_floor(candidates, floor_P=0.0, floor_u_max=1.0)
+    # lift_floor=-1.0 disables the evidence-mass gate (its own test below).
+    loose = canon_writeback.select_above_floor(candidates, floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0)
     assert len(loose) == 2
-    strict = canon_writeback.select_above_floor(candidates, floor_P=0.99, floor_u_max=0.01)
+    strict = canon_writeback.select_above_floor(candidates, floor_P=0.99, floor_u_max=0.01, lift_floor=-1.0)
     assert strict == []
+
+
+def test_select_above_floor_evidence_gate_excludes_the_prior(linking_run):
+    """Two opinions with identical (b, d, u) but different a land on the
+    same side of `lift_floor`, since `Opinion.lift` reads no `a`."""
+    run_dir, _, _ = linking_run
+    candidates, _ = canon_writeback.reconstruct_candidates(run_dir)
+    base = candidates[0]
+    high_prior = dataclasses.replace(base, opinion=Opinion(b=0.502, d=0.0, u=0.498, a=0.882))
+    low_prior = dataclasses.replace(base, opinion=Opinion(b=0.502, d=0.0, u=0.498, a=0.121))
+
+    both_pass = canon_writeback.select_above_floor(
+        [high_prior, low_prior], floor_P=0.0, floor_u_max=1.0, lift_floor=0.25,
+    )
+    assert len(both_pass) == 2
+
+    both_fail = canon_writeback.select_above_floor(
+        [high_prior, low_prior], floor_P=0.0, floor_u_max=1.0, lift_floor=0.6,
+    )
+    assert both_fail == []
 
 
 def _fixture_novelty() -> NoveltyResult:
@@ -259,7 +282,7 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     ledger_path = tmp_path / "ledger.jsonl"
 
     paths = canon_writeback.write_back(
-        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
+        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0,
         out_root=out_root, dry_run=False, ledger_path=ledger_path,
     )
     for path in paths:
@@ -528,7 +551,7 @@ def test_write_back_marks_a_cascaded_candidate_contested(tmp_path, linking_run, 
     )
 
     paths = canon_writeback.write_back(
-        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0,
+        run_dir, branch="02-physics", signoff="jane-reviewer", floor_P=0.0, floor_u_max=1.0, lift_floor=-1.0,
         out_root=out_root, dry_run=False, ledger_path=ledger_path, cascade_report=cascade_report,
     )
 
