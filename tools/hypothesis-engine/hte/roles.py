@@ -586,6 +586,71 @@ def judge(a: Hypothesis, b: Hypothesis, context: Mapping[str, Any], *, cache_dir
 # meta_review
 # --------------------------------------------------------------------------
 
+# --------------------------------------------------------------------------
+# advocate
+# --------------------------------------------------------------------------
+
+ADVOCATE_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "properties": {
+        "support": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {"id": {"type": "string"}, "reason": {"type": "string"}},
+                "required": ["id", "reason"],
+            },
+        },
+        "decisive_test": {"type": "string"},
+    },
+    "required": ["support", "decisive_test"],
+}
+ADVOCATE_DEFAULT: dict[str, Any] = {"support": [], "decisive_test": "model refused or was truncated"}
+ADVOCATE_POOL = 24  # candidate items shown per call: those sharing a slot value with the hypothesis, unlinked to it
+
+
+def advocate_pool(h: Hypothesis, evidence: Sequence[EvidenceItem], *, limit: int = ADVOCATE_POOL) -> list[EvidenceItem]:
+    """The items the advocate may claim: not yet linked to `h` either way,
+    sharing at least one named slot value with it, highest tier first,
+    at most `limit`."""
+    p = h.content
+    slots = {p.actor, p.action, p.object, p.place, p.mechanism}
+    pool = [
+        e for e in evidence
+        if h.address not in e.supports and h.address not in e.refutes
+        and slots & {e.actor, e.action, e.object, e.place, e.mechanism}
+    ]
+    pool.sort(key=lambda e: (e.tier.value, e.id))
+    return pool[:limit]
+
+
+def advocate(
+    h: Hypothesis, pool: Sequence[EvidenceItem], *, cache_dir: str, replay_only: bool = False,
+) -> dict[str, Any]:
+    """The devil's advocate (`STATISTICAL-AUDIT-2026-09-15.md`, Model
+    roles): every other role is asked to be right; this one is asked to
+    argue for a low-prior hypothesis and is scored on the evidence it
+    finds. It sees only `pool` (`advocate_pool`: items not yet linked to
+    `h`) and names the ones that support `h` with a reason each, plus the
+    observation that would settle the question. The runner links what it
+    names, rescores, and records the lift gained."""
+    prompt = (
+        "Argue for this hypothesis. Your job is to find support the linker "
+        "missed, from the candidate items below only; name every item that "
+        "supports the hypothesis, by id, with one sentence each on why. Name "
+        "no item that does not support it. Then state the single observation "
+        "that would settle the question either way.\n\n"
+        f"Hypothesis: {_describe_hypothesis(h)}\n"
+        f"Claims: {h.claims}\n\n"
+        "Candidate items:\n" + "\n".join(_evidence_line(e) for e in pool) + "\n\n"
+        "Return support (id, reason) and decisive_test."
+    )
+    return _with_refusal_default(
+        lambda: llm.complete(prompt, role="advocate", schema=ADVOCATE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
+        role="advocate", default=ADVOCATE_DEFAULT, log_id=h.short_id,
+    )
+
+
 META_REVIEW_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {

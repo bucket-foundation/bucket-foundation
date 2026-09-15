@@ -10,7 +10,8 @@
     "self_report": "sonnet",
     "extractor": "haiku",
     "referee": "sonnet",
-    "understanding": "sonnet"
+    "understanding": "sonnet",
+    "advocate": "sonnet"
   },
   "escalation": "opus",
   "_timeouts_note": "Per-role claude -p timeout override in seconds (hte.llm.resolve_timeout); a role with no entry here uses hte.llm.DEFAULT_TIMEOUT_S (300s). extractor is raised past the default: sacred-history-texts slices timed out twice in 422 calls at 300s (bkt-hte-extractor-timeout).",

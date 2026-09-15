@@ -230,6 +230,21 @@ def _unknown_unknown(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
 # --------------------------------------------------------------------------
 
 
+_CANDIDATE_BLOCK_RE = re.compile(r"Candidate items:\n(.*?)\n\n", re.DOTALL)
+
+
+def _advocate(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
+    """Names the first listed candidate item as support (`hte.roles.
+    advocate`'s own prompt layout), so a fake-mode run exercises the
+    link-and-rescore path deterministically."""
+    m = _CANDIDATE_BLOCK_RE.search(prompt)
+    ids = _ID_RE.findall(m.group(1)) if m else []
+    return {
+        "support": [{"id": ids[0], "reason": "fake stand-in: first candidate"}] if ids else [],
+        "decisive_test": "fake stand-in: no test named",
+    }
+
+
 def _preservation_critic(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
     """A neutral adjustment: no expected-evidence guess, survival judged
     plausible, and a mid-scale `0.5` detectability adjustment, regardless
@@ -388,6 +403,7 @@ _DISPATCH = {
     "critic": _critic,
     "unknown_unknown": _unknown_unknown,
     "preservation_critic": _preservation_critic,
+    "advocate": _advocate,
     "judge": _judge,
     "meta_review": _meta_review,
     "self_report": _self_report,
