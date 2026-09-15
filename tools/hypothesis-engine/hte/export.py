@@ -12,7 +12,9 @@ from typing import Mapping, Sequence
 
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
 from .belief import Opinion
+from .evidence import EvidenceItem
 from .hypothesis import Hypothesis, Placement
+from .partition import partition, partition_odds
 
 
 def _posterior(h: Hypothesis, opinions: Mapping[int, Opinion]) -> float | None:
@@ -68,7 +70,10 @@ def _slots_of(placement: Placement) -> dict:
     }
 
 
-def _ranked_entry(h: Hypothesis, opinions: Mapping[int, Opinion], elos: Mapping[int, float]) -> dict:
+def _ranked_entry(
+    h: Hypothesis, opinions: Mapping[int, Opinion], elos: Mapping[int, float],
+    partition_info: Mapping[int, dict] | None = None,
+) -> dict:
     posterior = _posterior(h, opinions)
     return {
         "hypothesis_id": h.short_id,
@@ -77,6 +82,7 @@ def _ranked_entry(h: Hypothesis, opinions: Mapping[int, Opinion], elos: Mapping[
         "posterior": posterior,
         "elo": elos.get(h.address),
         "opinion": _opinion_dict(opinions.get(h.address), posterior),
+        "partition": (partition_info or {}).get(h.address),
     }
 
 
@@ -90,6 +96,7 @@ def timeline_views(
     span_start: int = DEFAULT_SPAN_START,
     bin_width: int = DEFAULT_BIN_WIDTH,
     bin_labels: Mapping[int, str] | None = None,
+    evidence: Sequence[EvidenceItem] = (),
 ) -> dict:
     """The three timeline views of `TIMELINE-AND-COMBINATORICS-SPEC.md` §5,
     over `hypotheses` scored by `opinions` (projected posterior) and
@@ -126,6 +133,10 @@ def timeline_views(
     carries the same hypotheses in the same order with their full entries
     alongside it, additive rather than a replacement.
 
+    Every entry also carries `partition` (`hte.partition.partition_odds`'s
+    `{"share", "bayes_factor_vs_best", "shared_evidence"}`). `evidence`,
+    when given, names `shared_evidence`; the empty default leaves it empty.
+
     Display pruning, `top_k`, lives only here; nothing upstream of this
     function is pruned by it. `event_views` and `pair_views` are never
     capped by `top_k`: every placement or sequence hypothesis they
@@ -133,6 +144,12 @@ def timeline_views(
     """
     placements = [h for h in hypotheses if not h.is_sequence]
     sequences = [h for h in hypotheses if h.is_sequence]
+    # `address -> hte.partition.partition_odds`'s per-member entry, over
+    # every competing set `hte.partition.partition` finds (each address
+    # in exactly one set, so this merge never collides).
+    partition_info: dict[int, dict] = {}
+    for members in partition(hypotheses).values():
+        partition_info.update(partition_odds(members, opinions, evidence))
 
     bins_out = []
     for tbin in time_bins:
@@ -141,7 +158,7 @@ def timeline_views(
         label = (bin_labels or {}).get(tbin, str(tbin))
         bins_out.append({
             "time_bin": {"index": tbin, "label": label},
-            "ranked_hypotheses": [_ranked_entry(h, opinions, elos) for h in ranked],
+            "ranked_hypotheses": [_ranked_entry(h, opinions, elos, partition_info) for h in ranked],
         })
 
     events: dict[tuple[str, str], list[Hypothesis]] = {}
@@ -153,16 +170,16 @@ def timeline_views(
         event_views.append({
             "event": {"object": obj, "place": place},
             "competing_placements": [h.short_id for h in ranked],
-            "ranked_placements": [_ranked_entry(h, opinions, elos) for h in ranked],
+            "ranked_placements": [_ranked_entry(h, opinions, elos, partition_info) for h in ranked],
         })
 
-    pairs: dict[tuple, list[Hypothesis]] = {}
-    for h in sequences:
-        seq = h.content
-        key = ((seq.first.object, seq.first.place), (seq.second.object, seq.second.place))
-        pairs.setdefault(key, []).append(h)
+    # `hte.partition.partition`'s own sequence key is exactly this view's
+    # pair key ((OBJECT, PLACE), (OBJECT, PLACE)); grouping sequences a
+    # second time here used to duplicate that call, so this reads its
+    # groups directly instead of rebuilding them.
     pair_views = []
-    for (first_key, second_key), hs in pairs.items():
+    for key, hs in partition(sequences).items():
+        _, first_key, second_key = key
         ranked = sorted(hs, key=lambda h: _rank_key(h, opinions, elos), reverse=True)
         pair_views.append({
             "pair": {
@@ -176,6 +193,7 @@ def timeline_views(
                     "posterior": _posterior(h, opinions),
                     "elo": elos.get(h.address),
                     "opinion": _opinion_dict(opinions.get(h.address), _posterior(h, opinions)),
+                    "partition": partition_info.get(h.address),
                 }
                 for h in ranked
             ],
@@ -204,6 +222,12 @@ def _opinion_field(entry: dict, field: str) -> float | None:
     return opinion.get(field) if opinion else None
 
 
+def _partition_field(entry: dict, field: str) -> float | None:
+    """`entry["partition"][field]`, `None`-safe like `_opinion_field`."""
+    partition_entry = entry.get("partition")
+    return partition_entry.get(field) if partition_entry else None
+
+
 def write_views(
     views: dict, out_dir: str | Path, *,
     fragility_ranked: list[dict] | None = None, fragility_threshold: float | None = None,
@@ -218,11 +242,12 @@ def write_views(
     hypotheses` (`timeline_views`'s `top_k` is where display pruning, if
     any, already happened; this function prunes nothing further), each
     row's posterior, uncertainty mass (`u`, beside `P`,
-    `bkt-hte-timeline-opinion-export`), evidence-only lift (`b - d`), and
-    tipping-point prior at the 0.6 floor (`STATISTICAL-AUDIT-2026-09-15.md`'s
-    Jeffreys and Reverse-Bayes fixes) rounded to 3 decimals and its Elo
-    to 1, all purely a display rounding: `timeline.json` alongside it
-    keeps every value at the full precision `timeline_views` computed.
+    `bkt-hte-timeline-opinion-export`), evidence-only lift (`b - d`),
+    tipping-point prior at the 0.6 floor, partition share, and Bayes
+    factor against the set's own best other member, rounded to 3
+    decimals and its Elo to 1, all purely a display rounding:
+    `timeline.json` alongside it keeps every value at the full precision
+    `timeline_views` computed.
 
     `fragility_ranked` (`bkt-hte-retraction-propagation`, `docs/
     PROPAGATION.md`), when given, is `hte.propagate.rank_fragility`'s
@@ -254,14 +279,18 @@ def write_views(
     for b in views.get("bins", []):
         lines.append(f"## Time bin {b['time_bin'].get('label', b['time_bin']['index'])}")
         lines.append("")
-        lines.append("| Hypothesis | Slots | Posterior | u | Lift | Tipping prior (0.6) | Elo (unvalidated) |")
-        lines.append("|---|---|---|---|---|---|---|")
+        lines.append(
+            "| Hypothesis | Slots | Posterior | u | Lift | Tipping prior (0.6) | Elo (unvalidated) | "
+            "Share | Bayes factor vs best |"
+        )
+        lines.append("|---|---|---|---|---|---|---|---|---|")
         for entry in b["ranked_hypotheses"]:
             lines.append(
                 f"| {entry['hypothesis_id']} | {entry['slots']} | "
                 f"{_fmt(entry['posterior'], 3)} | {_fmt(_opinion_field(entry, 'u'), 3)} | "
                 f"{_fmt(_opinion_field(entry, 'lift'), 3)} | {_fmt(_opinion_field(entry, 'tipping_prior_0_6'), 3)} | "
-                f"{_fmt(entry['elo'], 1)} |"
+                f"{_fmt(entry['elo'], 1)} | {_fmt(_partition_field(entry, 'share'), 3)} | "
+                f"{_fmt(_partition_field(entry, 'bayes_factor_vs_best'), 3)} |"
             )
         lines.append("")
 

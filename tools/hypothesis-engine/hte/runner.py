@@ -18,7 +18,7 @@ import subprocess
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, Mapping, Sequence
 
 from . import artifacts, batching, calibrate, export, link, llm, propagate, roles, tournament, unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
@@ -376,6 +376,22 @@ def _judge_batch_adapter(
     return judge_batch
 
 
+def _judge_disagreement_count(
+    triples: Sequence[tuple[int, int, float]], opinions: Mapping[int, Opinion],
+) -> int:
+    """How many `(addr_x, addr_y, score_x)` triples (one per judged
+    pair, `score_x = P(addr_x wins)`) cross the side the belief-scored
+    opinion already favored (`bkt-hte-blind-roles`); a tie in either
+    the opinion or the score is never counted. This is the exact logic
+    behind `MANIFEST.json["counts"]["judge_disagreement"]`."""
+    count = 0
+    for addr_x, addr_y, score_x in triples:
+        p_x, p_y = opinions[addr_x].project(), opinions[addr_y].project()
+        if p_x != p_y and score_x != 0.5 and (p_x > p_y) != (score_x > 0.5):
+            count += 1
+    return count
+
+
 def _critic_survivors(
     hypotheses: list[Hypothesis], evidence: list[EvidenceItem], *, cache_dir: str, replay_only: bool,
     batch_size: int, workers: int | None, logger: Logger,
@@ -582,11 +598,32 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     judge_batch = _judge_batch_adapter(
         cache_dir, replay_only, batch_size=cfg["judge_batch_size"], workers=cfg["llm_workers"],
     )
+
+    # `bkt-hte-blind-roles`: every judged pair's own address triple,
+    # recorded by wrapping the two judge callables (`hte.tournament.run`
+    # no longer sees `opinions`), scored by `_judge_disagreement_count`
+    # once the tournament finishes.
+    judged_pairs: list[tuple[int, int, float]] = []
+
+    def judge_tallied(x: Hypothesis, y: Hypothesis, ctx: dict) -> float:
+        score = judge(x, y, ctx)
+        judged_pairs.append((x.address, y.address, score))
+        return score
+
+    def judge_batch_tallied(pairs: Sequence[tuple[Hypothesis, Hypothesis, dict]]) -> list[float]:
+        scores = judge_batch(pairs)
+        judged_pairs.extend((x.address, y.address, score) for (x, y, _ctx), score in zip(pairs, scores))
+        return scores
+
     elos = tournament.run(
-        survivors, opinions, judge, rounds=cfg["tournament_rounds"], seed=0,
-        context={"opinions": opinions}, judge_batch=judge_batch,
+        survivors, opinions, judge_tallied, rounds=cfg["tournament_rounds"], seed=0,
+        context={"evidence": corpus.evidence}, judge_batch=judge_batch_tallied,
     )
-    logger.log(f"tournament: {len(elos)} hypotheses rated over {cfg['tournament_rounds']} rounds")
+    judge_disagreement = _judge_disagreement_count(judged_pairs, opinions)
+    logger.log(
+        f"tournament: {len(elos)} hypotheses rated over {cfg['tournament_rounds']} rounds, "
+        f"judge_disagreement={judge_disagreement}"
+    )
 
     profiles = unknowns.prior_profiles(corpus.vocab)
 
@@ -643,7 +680,8 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     surprise_rate = (len(surprise_items) / len(corpus.evidence)) if corpus.evidence else 0.0
 
     coverage = unknowns.coverage_interval(run_counts)
-    logger.log(f"coverage: observed={coverage['observed']} chao1_estimate={coverage['chao1_estimate']:.1f} missing_mass={coverage['missing_mass']:.4f}")
+    chao1_part = f"chao1_estimate={coverage['chao1_estimate']:.1f}" if coverage["chao1_estimate"] is not None else f"chao1_note={coverage['chao1_note']!r}"
+    logger.log(f"coverage: observed={coverage['observed']} missing_mass={coverage['missing_mass']:.4f} {chao1_part}")
 
     calibration = None
     if cfg["run_calibration"] and corpus.ground_truth:
@@ -766,6 +804,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     views = export.timeline_views(
         survivors, opinions, elos, time_bins, top_k=max(cfg["top_k"], len(survivors)),
         span_start=span_start, bin_width=bin_width, bin_labels=bin_labels,
+        evidence=corpus.evidence,
     )
     export.write_views(views, run_dir, fragility_ranked=fragility_top10)
     logger.log(f"exported {len(views.get('bins', []))} bin views, {len(views.get('event_views', []))} event views")
@@ -800,15 +839,16 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         # carried through unchanged (recomputing it now would defeat the
         # point).
         "prereg": prereg,
-        # `bkt-hte-retraction-propagation`: `run_summary` plus
-        # `fragility_top10`, added here rather than into `run_summary`
-        # itself, for the same cache-key-stability reason the
-        # `self_report` fold-in above documents: `run_summary` feeds
-        # `roles.self_report`'s own prompt text, and `MANIFEST.json`
-        # carries `fragility_top10` and `sampling` (`stratified_sample`'s
-        # own frame, `STATISTICAL-AUDIT-2026-09-15.md` item 1) too,
-        # without perturbing that prompt.
-        "counts": {**run_summary, "fragility_top10": fragility_top10, "sampling": sampling_frame},
+        # `bkt-hte-retraction-propagation`, `bkt-hte-blind-roles`, and the
+        # stratified sample (`STATISTICAL-AUDIT-2026-09-15.md` item 2):
+        # all three added here rather than into `run_summary` itself, for
+        # the cache-key-stability reason the `self_report` fold-in above
+        # documents: `run_summary` feeds `roles.self_report`'s own prompt
+        # text, and `MANIFEST.json` carries these without perturbing it.
+        "counts": {
+            **run_summary, "fragility_top10": fragility_top10,
+            "judge_disagreement": judge_disagreement, "sampling": sampling_frame,
+        },
     }
     # `hte.artifacts.validate_manifest` builds a `ManifestArtifact` from
     # this exact dict before it is ever written: a required field this

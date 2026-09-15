@@ -36,6 +36,7 @@ from __future__ import annotations
 
 import copy
 import json
+import math
 import random
 from dataclasses import dataclass
 from itertools import product
@@ -55,6 +56,19 @@ from .timeline import Interval, RESOLUTION_WIDTH_YEARS, Resolution, auto_resolut
 
 DEFAULT_MATCH_THRESHOLD = 0.6
 DEFAULT_KFOLD_K = 5
+
+
+def wilson_interval(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    """The 95% Wilson score interval for `k` successes out of `n` trials
+    (STATISTICAL-AUDIT-2026-09-15.md: "coverage 0.30 has a Wilson
+    interval near 0.11 to 0.60"). `(0.0, 0.0)` when `n == 0`."""
+    if n == 0:
+        return (0.0, 0.0)
+    phat = k / n
+    denom = 1 + z * z / n
+    center = phat + z * z / (2 * n)
+    margin = z * math.sqrt(phat * (1 - phat) / n + z * z / (4 * n * n))
+    return max(0.0, (center - margin) / denom), min(1.0, (center + margin) / denom)
 
 
 def holdout_by_discovery_date(
@@ -327,6 +341,7 @@ def run_holdout(
         "n_holdout_events": n_holdout,
         "n_covered_events": n_covered,
         "coverage_of_truth": coverage_of_truth,
+        "coverage_of_truth_ci": wilson_interval(n_covered, n_holdout),
         "coverage_note": _low_coverage_note(corpus, n_covered, n_holdout, coverage_of_truth, corpus_name=corpus_name),
         "brier_score": brier,
         "calibration_curve": calibration_curve(predictions, n_bins=n_bins),
@@ -648,6 +663,7 @@ def holdout_kfold(
             "n_holdout_events": n_targets,
             "n_covered_events": n_covered,
             "coverage_of_truth": coverage,
+            "coverage_of_truth_ci": wilson_interval(n_covered, n_targets),
             "brier_score": brier_score([p["predicted"] for p in fold_predictions], [p["observed"] for p in fold_predictions]),
             "calibration_curve": calibration_curve(fold_predictions, n_bins=n_bins),
             "predictions": fold_predictions,
@@ -660,6 +676,7 @@ def holdout_kfold(
         "n_holdout_events": n_targets_total,
         "n_covered_events": n_covered_total,
         "coverage_of_truth": (n_covered_total / n_targets_total) if n_targets_total else None,
+        "coverage_of_truth_ci": wilson_interval(n_covered_total, n_targets_total),
         "brier_score": brier_score([p["predicted"] for p in pooled_predictions], [p["observed"] for p in pooled_predictions]),
         "calibration_curve": calibration_curve(pooled_predictions, n_bins=n_bins),
     }
@@ -674,6 +691,7 @@ def holdout_kfold(
         "n_holdout_events": n_targets_total,
         "n_covered_events": n_covered_total,
         "coverage_of_truth": aggregate["coverage_of_truth"],
+        "coverage_of_truth_ci": aggregate["coverage_of_truth_ci"],
         "coverage_note": None,
         "brier_score": aggregate["brier_score"],
         "calibration_curve": aggregate["calibration_curve"],
@@ -1095,7 +1113,8 @@ def write_calibration(
         f"Cutoff year: {result.get('cutoff_years')}",
         f"Held-out events: {result.get('n_holdout_events')}",
         f"Covered by a matching pre-cutoff placement: {result.get('n_covered_events')} "
-        f"(coverage of truth: {result.get('coverage_of_truth')})",
+        f"(coverage of truth: {result.get('coverage_of_truth')}, 95% Wilson interval "
+        f"{result.get('coverage_of_truth_ci')})",
         f"Brier score: {result.get('brier_score')}",
         "",
     ]
@@ -1118,11 +1137,11 @@ def write_calibration(
 
     folds = result.get("folds")
     if folds:
-        lines += ["", "## Per-fold", "", "| Fold | Held out | Covered | Coverage of truth | Brier score |", "|---|---|---|---|---|"]
+        lines += ["", "## Per-fold", "", "| Fold | Held out | Covered | Coverage of truth | 95% Wilson CI | Brier score |", "|---|---|---|---|---|---|"]
         for f in folds:
             lines.append(
                 f"| {f['fold']} | {f['n_holdout_events']} | {f['n_covered_events']} | "
-                f"{f['coverage_of_truth']} | {f['brier_score']} |"
+                f"{f['coverage_of_truth']} | {f.get('coverage_of_truth_ci')} | {f['brier_score']} |"
             )
 
     fit = result.get("fit")
@@ -1141,7 +1160,7 @@ def write_calibration(
 
 __all__ = [
     "holdout_by_discovery_date", "run_holdout", "holdout_kfold", "choose_holdout_mode",
-    "run_calibration", "fit_constants", "write_calibration",
+    "run_calibration", "fit_constants", "write_calibration", "wilson_interval",
     "brier_score", "calibration_curve", "DEFAULT_MATCH_THRESHOLD", "DEFAULT_KFOLD_K",
     "evaluate_pooled", "fit_constants_pooled", "build_pooled_fit_corpora",
     "DEFAULT_MIN_SYNTH_COVERAGE", "DEFAULT_COVERAGE_PENALTY_WEIGHT",
