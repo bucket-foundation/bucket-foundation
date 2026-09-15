@@ -987,7 +987,7 @@ def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_six_de
     if not literature.LOCAL_INTAKE_DIR.is_dir():
         pytest.skip("literature adapter: no _intake/research-os-k12-literature/ tree in this checkout")
 
-    raw = literature.load_raw(cards_dir=None)
+    raw = literature.load_raw(literature.discover_card_roots())
     expected_sources = len({card.doi for card in raw})
     expected_degraded = sum(1 for card in raw if card.doi_missing)
     assert expected_degraded > 0
