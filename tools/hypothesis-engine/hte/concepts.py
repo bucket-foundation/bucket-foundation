@@ -48,6 +48,12 @@ class Concept:
     prior_logit: float
     consensus_status: ConsensusStatus
     definition_url: str | None = None
+    # The astronomical year this concept entered the written record, for
+    # `Vocabulary.frozen_at`: a discovery-date holdout that keeps a concept
+    # coined after its cutoff leaks the future into the vocabulary
+    # (`STATISTICAL-AUDIT-2026-09-15.md`, Evaluation). `None` means unknown
+    # or timeless, kept under any cutoff.
+    introduced_year: int | None = None
 
     def to_dict(self) -> dict:
         return {
@@ -57,6 +63,7 @@ class Concept:
             "prior_logit": self.prior_logit,
             "consensus_status": self.consensus_status.value,
             "definition_url": self.definition_url,
+            "introduced_year": self.introduced_year,
         }
 
     @classmethod
@@ -68,6 +75,7 @@ class Concept:
             prior_logit=float(d["prior_logit"]),
             consensus_status=ConsensusStatus(d["consensus_status"]),
             definition_url=d.get("definition_url"),
+            introduced_year=int(d["introduced_year"]) if d.get("introduced_year") is not None else None,
         )
 
 
@@ -150,6 +158,19 @@ class Vocabulary:
         n = sum(1 for c in self.by_slot.get(slot, []) if c.consensus_status != ConsensusStatus.OTHER)
         a = self.alpha.get(slot, self.default_alpha)
         return a / (a + n)
+
+    def frozen_at(self, cutoff: int) -> "Vocabulary":
+        """A copy with every concept whose `introduced_year` is at or after
+        `cutoff` removed, bucket order otherwise kept, so a holdout at
+        `cutoff` cannot place an event under a concept nobody had yet.
+        Concepts with no year are kept."""
+        return Vocabulary(
+            by_slot={
+                slot: [c for c in concepts if c.introduced_year is None or c.introduced_year < cutoff]
+                for slot, concepts in self.by_slot.items()
+            },
+            alpha=dict(self.alpha), default_alpha=self.default_alpha,
+        )
 
     def to_dict(self) -> dict:
         return {
