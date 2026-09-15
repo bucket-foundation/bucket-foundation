@@ -213,6 +213,7 @@ def _cmd_campaign_results(args: argparse.Namespace) -> int:
         "campaign": manifest.campaign,
         "corpus": manifest.corpus,
         "counts": dataclasses.asdict(manifest.counts),
+        "stance": (json.loads((run_dir / "MANIFEST.json").read_text()).get("counts") or {}).get("stance"),
         "per_actor": _per_actor_summary(survivors, share_by_id),
         "top": top,
         "calibration": calibration,

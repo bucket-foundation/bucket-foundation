@@ -1,3 +1,4 @@
+import dataclasses
 import json
 import random
 
@@ -531,3 +532,30 @@ def test_discrimination_scales_weight_by_likelihood_ratio_and_leaves_unrated_ite
     strong, _ = pooled_weight(items, 1, likelihood_ratios={"e1": 10.0})
     assert none_rated == 0.0
     assert strong == pytest.approx(0.9 * unrated)
+
+
+def test_effective_count_unions_sources_sharing_an_author_lab_or_method():
+    from hte.evidence import Source
+    def src(i, **kw):
+        return Source(id=i, kind=EvidenceKind.TEXTUAL, **kw)
+    assert effective_count([src("a", authors=["Bunch, T."]), src("b", authors=["bunch, t. "]), src("c", authors=["Holliday"])]) == 2
+    assert effective_count([src("a", lab="Kennett"), src("b", lab="kennett"), src("c")]) == 2
+    assert effective_count([src("a", method="XRF"), src("b", method="xrf"), src("c", method="OSL")]) == 2
+    assert effective_count([src("a"), src("b"), src("c")]) == 3
+    assert effective_count([src("a", authors=["X"]), src("b", authors=["X"], lab="L"), src("c", lab="L")]) == 1
+
+
+def test_pooled_weight_discounts_two_items_from_coauthored_sources_as_one_trial():
+    from hte.evidence import Source
+    items = [
+        _pooled_support("e1", EvidenceKind.MATERIAL, Tier.T1, 0.8, address=1),
+        _pooled_support("e2", EvidenceKind.MATERIAL, Tier.T1, 0.8, address=1),
+    ]
+    items[1] = dataclasses.replace(items[1], source_id="s2")
+    items[0] = dataclasses.replace(items[0], source_id="s1")
+    independent = {"s1": Source(id="s1", kind=EvidenceKind.TEXTUAL, authors=["A"]), "s2": Source(id="s2", kind=EvidenceKind.TEXTUAL, authors=["B"])}
+    shared = {"s1": Source(id="s1", kind=EvidenceKind.TEXTUAL, authors=["A"]), "s2": Source(id="s2", kind=EvidenceKind.TEXTUAL, authors=["A"])}
+    s_ind, _ = pooled_weight(items, 1, sources=independent)
+    s_shared, _ = pooled_weight(items, 1, sources=shared)
+    assert s_shared < s_ind
+    assert s_shared == pytest.approx(D(1) * 2 * TIER_WEIGHT[Tier.T1] * 0.8)

@@ -27,7 +27,7 @@ from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history, sacred_history_texts, younger_dryas
 from .corpus import vindication_fixture
-from .evidence import EvidenceItem
+from .evidence import Stance, EvidenceItem
 from .generate import combinatorial_sample, from_evidence, stratified_sample
 from .hypothesis import Hypothesis
 from .timeline import (
@@ -96,6 +96,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "critic_batch_size": 8,
     "judge_batch_size": 8,
     "preservation_batch_size": 8,
+    "advocate_k": 8,             # lowest-prior survivors the devil's advocate argues for (0 turns the role off)
     "llm_workers": None,
     # k-fold evidence holdout (`bkt-hte-calibration-redesign`,
     # `hte.calibrate.holdout_kfold`): folds and its own stratification
@@ -423,6 +424,68 @@ def _critic_survivors(
     return survivors, ratios
 
 
+def _run_advocate(
+    survivors: list[Hypothesis], opinions: dict[int, Opinion], corpus: Corpus, table: Any, constants: Any,
+    likelihood_ratios: Mapping[int, Mapping[str, float]], *, k: int, cache_dir: str, replay_only: bool, logger: Logger,
+) -> dict[int, dict[str, Any]]:
+    """The devil's advocate pass (`hte.roles.advocate`): for the `k`
+    survivors with the lowest base rate `a`, ask for support the linker
+    missed among unlinked items sharing a slot value, link what it names,
+    rescore, and record the lift gained. Updates `opinions` in place for
+    the argued hypotheses."""
+    notes: dict[int, dict[str, Any]] = {}
+    if k <= 0 or not survivors:
+        return notes
+    by_id = {e.id: e for e in corpus.evidence}
+    targets = sorted(survivors, key=lambda h: (opinions[h.address].a, h.address))[:k]
+    for h in targets:
+        pool = roles.advocate_pool(h, corpus.evidence)
+        before = opinions[h.address].lift()
+        added: list[str] = []
+        decisive = ""
+        if pool:
+            report = roles.advocate(h, pool, cache_dir=cache_dir, replay_only=replay_only)
+            decisive = str(report.get("decisive_test", ""))
+            allowed = {e.id for e in pool}
+            for entry in report.get("support", []):
+                eid = entry.get("id") if isinstance(entry, dict) else None
+                if eid in allowed and h.address not in by_id[eid].supports:
+                    by_id[eid].supports.append(h.address)
+                    added.append(eid)
+            if added:
+                opinions[h.address] = belief_score(
+                    h, corpus.evidence, corpus.vocab, table, sources=corpus.sources, constants=constants,
+                    likelihood_ratios=likelihood_ratios.get(h.address),
+                )
+        after = opinions[h.address].lift()
+        notes[h.address] = {"links_added": added, "lift_before": before, "lift_after": after, "decisive_test": decisive}
+        logger.log(f"advocate on {h.short_id}: {len(added)} link(s) added, lift {before:.3f} -> {after:.3f}")
+    return notes
+
+
+def _advocate_summary(notes: Mapping[int, Mapping[str, Any]]) -> dict[str, Any]:
+    gains = [n["lift_after"] - n["lift_before"] for n in notes.values()]
+    return {
+        "n_argued": len(notes),
+        "links_added": sum(len(n["links_added"]) for n in notes.values()),
+        "mean_gain": (sum(gains) / len(gains)) if gains else None,
+    }
+
+
+def stance_audit(evidence: Sequence[EvidenceItem]) -> dict[str, dict[str, int]]:
+    """Per ACTOR slot value an item names: how many items assert it
+    (`Stance.POSITIVE`) and how many deny or downgrade it (`NEGATIVE`),
+    plus items naming no actor under `"(none)"`. The corpus's own stance
+    balance, printed before any scoring so a lopsided card set is visible
+    up front (`STATISTICAL-AUDIT-2026-09-15.md`, Evidence: 60 of 68 bound
+    live survivors carried only refutations)."""
+    audit: dict[str, dict[str, int]] = {}
+    for item in evidence:
+        row = audit.setdefault(item.actor or "(none)", {"positive": 0, "negative": 0})
+        row["positive" if item.stance == Stance.POSITIVE else "negative"] += 1
+    return dict(sorted(audit.items(), key=lambda kv: (-(kv[1]["positive"] + kv[1]["negative"]), kv[0])))
+
+
 def _survivor_opinion(opinion: Opinion) -> dict[str, float]:
     """`opinion.to_dict()` (`hte.belief.Opinion.to_dict`) plus its own
     projected credence `P`, the shape `survivors.json` persists per
@@ -486,6 +549,8 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     if cfg["corpus"] not in _CORPUS_LOADERS:
         raise ValueError(f"unknown corpus {cfg['corpus']!r}, expected one of {list(_CORPUS_LOADERS)}")
     corpus = _CORPUS_LOADERS[cfg["corpus"]]()
+    stance = stance_audit(corpus.evidence)
+    logger.log("stance audit: " + ", ".join(f"{actor} +{c['positive']}/-{c['negative']}" for actor, c in stance.items()))
     prior_ledger_note: dict[str, Any] = {"path": cfg["prior_ledger"], "applied": 0, "runs": 0, "appended": 0}
     if cfg["prior_ledger"]:
         ledger_counts, ledger_runs = prior_ledger.load_counts(cfg["prior_ledger"], corpus=cfg["corpus"])
@@ -572,7 +637,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     constants = load_constants(cfg["constants"])
     opinions = {
         h.address: belief_score(
-            h, corpus.evidence, corpus.vocab, table, constants=constants,
+            h, corpus.evidence, corpus.vocab, table, sources=corpus.sources, constants=constants,
             likelihood_ratios=likelihood_ratios.get(h.address),
         )
         for h in survivors
@@ -590,6 +655,10 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     # is always written, with an empty `entries` list when nothing
     # retracted this run, so a caller never has to guess whether the
     # stage ran.
+    advocate_notes = _run_advocate(
+        survivors, opinions, corpus, table, constants, likelihood_ratios,
+        k=cfg["advocate_k"], cache_dir=cache_dir, replay_only=replay_only, logger=logger,
+    )
     retracted_now = propagate.changed_from_retractions(corpus.evidence, corpus.sources) & set(opinions)
     cascade_report = propagate.propagate(
         survivors, opinions, retracted_now, evidence=corpus.evidence, vocab=corpus.vocab,
@@ -646,7 +715,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     profiles = unknowns.prior_profiles(corpus.vocab)
 
     def score_fn(h: Hypothesis, evidence: list[EvidenceItem], vocab: Vocabulary) -> Opinion:
-        return belief_score(h, evidence, vocab, table, constants=constants, likelihood_ratios=likelihood_ratios.get(h.address))
+        return belief_score(h, evidence, vocab, table, sources=corpus.sources, constants=constants, likelihood_ratios=likelihood_ratios.get(h.address))
 
     robustness_results = {
         h.address: unknowns.robustness(h, corpus.evidence, profiles, score_fn) for h in survivors
@@ -680,6 +749,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
             # _per_actor_summary`'s own per-actor rollup.
             "max_lift": opinion_dict["lift"],
             "likelihood_ratios": likelihood_ratios.get(h.address, {}),
+            "advocate": advocate_notes.get(h.address),
             "elo": elos.get(h.address),
             "preservation": preservation_by_address[h.address],
             "robustness": robustness_results[h.address],
@@ -870,7 +940,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         # text, and `MANIFEST.json` carries these without perturbing it.
         "counts": {
             **run_summary, "fragility_top10": fragility_top10,
-            "judge_disagreement": judge_disagreement, "sampling": sampling_frame, "prior_ledger": prior_ledger_note,
+            "judge_disagreement": judge_disagreement, "sampling": sampling_frame, "prior_ledger": prior_ledger_note, "advocate": _advocate_summary(advocate_notes), "stance": stance,
         },
     }
     # `hte.artifacts.validate_manifest` builds a `ManifestArtifact` from

@@ -77,6 +77,34 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
+Every run opens with a stance audit (`hte.runner.stance_audit`): per
+actor an evidence item names, how many items assert it and how many
+deny or downgrade it, logged before generation and carried in
+`MANIFEST.json` `counts.stance` and in `campaign results`, so a card
+set that carries only refutations for one actor is visible before any
+number is read as a finding.
+
+The effective count reads a dependence graph. `Source` carries `authors`,
+`lab`, and `method`; `hte.belief.effective_count` unions two sources that
+share any of them, at full weight, on top of the stemma edges, so two
+items from co-authored papers count as one trial for the diminishing
+return `D(n_eff)`. The runner now passes the corpus's sources into
+scoring (it had passed only the items, so `n_eff` was the raw item
+count), and the literature and Younger Dryas loaders fill `authors` from
+their cards; the surname proxy stays only as the stemma-parent guess in
+the literature loader.
+
+A devil's advocate argues for the lowest-prior survivors
+(`hte.roles.advocate`, `advocate_k` per run, default 8). Every other role
+is asked to be right; this one is shown only items not yet linked to
+the hypothesis that share a slot value with it, names the ones that
+support it with a reason each, and states the observation that would
+settle the question. The runner links what it names, rescores, and
+records `lift_before`, `lift_after`, and the links added per survivor
+in `survivors.json`, with `counts.advocate` in the manifest carrying
+the argued count, links added, and mean gain: the role is scored on
+the evidence it finds.
+
 The base rate is a Beta prior now, updated across campaigns
 (`hte/prior_ledger.py`). Each concept's `prior_logit` is the label's
 starting mean with four pseudo-observations; a campaign run with
