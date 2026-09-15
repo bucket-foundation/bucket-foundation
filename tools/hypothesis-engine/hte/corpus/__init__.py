@@ -34,13 +34,27 @@ class GroundTruthEvent:
     year: int
     doc_id: str
     discovery_year: int
+    # `hte.calibrate.run_vindication`: the year the claim became mainstream
+    # (a vindicated alternative, scored on lift before that year), and
+    # whether the event is an exploded claim kept as a negative control
+    # (scored on lift staying low once every item is in).
+    acceptance_year: int | None = None
+    control: bool = False
 
     def to_dict(self) -> dict[str, Any]:
-        return {"id": self.id, "label": self.label, "year": self.year, "doc_id": self.doc_id, "discovery_year": self.discovery_year}
+        return {
+            "id": self.id, "label": self.label, "year": self.year, "doc_id": self.doc_id,
+            "discovery_year": self.discovery_year, "acceptance_year": self.acceptance_year, "control": self.control,
+        }
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "GroundTruthEvent":
-        return cls(id=d["id"], label=d["label"], year=int(d["year"]), doc_id=d["doc_id"], discovery_year=int(d["discovery_year"]))
+        acceptance = d.get("acceptance_year")
+        return cls(
+            id=d["id"], label=d["label"], year=int(d["year"]), doc_id=d["doc_id"],
+            discovery_year=int(d["discovery_year"]),
+            acceptance_year=int(acceptance) if acceptance is not None else None, control=bool(d.get("control", False)),
+        )
 
 
 @dataclass(frozen=True)

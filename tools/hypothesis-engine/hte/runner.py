@@ -26,6 +26,7 @@ from .belief import Opinion, load_constants, load_detectability_table, score as 
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus, quantum_history
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, sacred_history, sacred_history_texts, younger_dryas
+from .corpus import vindication_fixture
 from .evidence import EvidenceItem
 from .generate import combinatorial_sample, from_evidence, stratified_sample
 from .hypothesis import Hypothesis
@@ -146,6 +147,7 @@ def _prereg_manifest(cfg: dict[str, Any]) -> dict[str, Any]:
 _CORPUS_LOADERS: dict[str, Callable[[], Corpus]] = {
     "quantum-history": quantum_history.ingest,
     "fixtures": fixtures_corpus.build,
+    "vindication-fixture": vindication_fixture.build,
     "education-atlas": education_atlas.load,
     "production": production.load,
     "literature": literature.load_default,
