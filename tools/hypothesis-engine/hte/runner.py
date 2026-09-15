@@ -526,11 +526,37 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     judge_batch = _judge_batch_adapter(
         cache_dir, replay_only, batch_size=cfg["judge_batch_size"], workers=cfg["llm_workers"],
     )
+
+    # `bkt-hte-blind-roles`: pairs where the judge crosses the side the
+    # opinion already favored, tallied by wrapping the two judge
+    # callables (`hte.tournament.run` no longer sees `opinions`).
+    judge_disagreement = 0
+
+    def _tally(x: Hypothesis, y: Hypothesis, score: float) -> None:
+        nonlocal judge_disagreement
+        p_x, p_y = opinions[x.address].project(), opinions[y.address].project()
+        if p_x != p_y and score != 0.5 and (p_x > p_y) != (score > 0.5):
+            judge_disagreement += 1
+
+    def judge_tallied(x: Hypothesis, y: Hypothesis, ctx: dict) -> float:
+        score = judge(x, y, ctx)
+        _tally(x, y, score)
+        return score
+
+    def judge_batch_tallied(pairs: Sequence[tuple[Hypothesis, Hypothesis, dict]]) -> list[float]:
+        scores = judge_batch(pairs)
+        for (x, y, _ctx), score in zip(pairs, scores):
+            _tally(x, y, score)
+        return scores
+
     elos = tournament.run(
-        survivors, opinions, judge, rounds=cfg["tournament_rounds"], seed=0,
-        context={"opinions": opinions}, judge_batch=judge_batch,
+        survivors, opinions, judge_tallied, rounds=cfg["tournament_rounds"], seed=0,
+        context={"evidence": corpus.evidence}, judge_batch=judge_batch_tallied,
     )
-    logger.log(f"tournament: {len(elos)} hypotheses rated over {cfg['tournament_rounds']} rounds")
+    logger.log(
+        f"tournament: {len(elos)} hypotheses rated over {cfg['tournament_rounds']} rounds, "
+        f"judge_disagreement={judge_disagreement}"
+    )
 
     profiles = unknowns.prior_profiles(corpus.vocab)
 
@@ -735,13 +761,10 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "git_sha": _git_sha(),
         "config": cfg,
         "extraction": extraction_note,
-        # `bkt-hte-retraction-propagation`: `run_summary` plus
-        # `fragility_top10`, added here rather than into `run_summary`
-        # itself, for the same cache-key-stability reason the
-        # `self_report` fold-in above documents: `run_summary` feeds
-        # `roles.self_report`'s own prompt text, and `MANIFEST.json`
-        # carries `fragility_top10` too without perturbing that prompt.
-        "counts": {**run_summary, "fragility_top10": fragility_top10},
+        # `bkt-hte-retraction-propagation`/`bkt-hte-blind-roles`: both
+        # added directly here, for the cache-key-stability reason the
+        # `self_report` fold-in above documents.
+        "counts": {**run_summary, "fragility_top10": fragility_top10, "judge_disagreement": judge_disagreement},
     }
     # `hte.artifacts.validate_manifest` builds a `ManifestArtifact` from
     # this exact dict before it is ever written: a required field this
