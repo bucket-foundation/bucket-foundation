@@ -251,10 +251,10 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
     # exercised discovery-date holdout in the first place (`bkt-hte-
     # generation-coverage`).
     if args.cutoff_years is not None:
-        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years, corpus_name=args.corpus)
+        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years, corpus_name=args.corpus, freeze_vocab=args.freeze_vocab)
         result.setdefault("mode", "discovery_date")  # `--diagnose`'s own required field; bare run_holdout carries no "mode" key
     else:
-        result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed, corpus_name=args.corpus)
+        result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed, corpus_name=args.corpus, freeze_vocab=args.freeze_vocab)
     if args.fit:
         grid = {"W": [1.0, 2.0, 3.0], "lam": [0.25, 0.5, 0.75], "tier_scale": [0.75, 1.0, 1.25]}
         result["fit"] = calibrate.fit_constants(corpus, grid, cutoff_years=args.cutoff_years, k=args.k, seed=args.kfold_seed)
@@ -434,6 +434,7 @@ def build_parser() -> argparse.ArgumentParser:
     calibrate_p.add_argument("--fit", action="store_true", help="also grid-search W/lam/tier_scale")
     calibrate_p.add_argument("--diagnose", action="store_true", help="also write DIAGNOSTICS.md: a per-reason breakdown of every uncovered event (hte.diagnostics.coverage_report)")
     calibrate_p.add_argument("--shuffle", action="store_true", help="also run the link-permutation shuffle diagnostic (hte.diagnostics.link_shuffle_test) and merge it into diagnostics.json")
+    calibrate_p.add_argument("--freeze-vocab", action="store_true", help="discovery-date holdout drops concepts whose introduced_year is at or after the cutoff (Vocabulary.frozen_at)")
     calibrate_p.add_argument("--vindication", action="store_true", help="also run the vindicated-alternatives holdout and control check (hte.calibrate.run_vindication) into vindication.json")
     calibrate_p.add_argument("--out", default="runs/_calibration")
     calibrate_p.set_defaults(func=_cmd_calibrate)

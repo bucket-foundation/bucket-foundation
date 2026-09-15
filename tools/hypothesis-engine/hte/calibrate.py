@@ -254,6 +254,7 @@ def run_holdout(
     n_bins: int = 10,
     match_threshold: float = DEFAULT_MATCH_THRESHOLD,
     corpus_name: str = "this corpus",
+    freeze_vocab: bool = False,
 ) -> dict[str, Any]:
     """The discovery-date holdout (`main.tex` §9) over every ground-truth
     event in `corpus`, at `cutoff_years`: every event's own dated fact is
@@ -293,18 +294,26 @@ def run_holdout(
     """
     pre_events, post_events = holdout_by_discovery_date(corpus.ground_truth, cutoff_years)
     ev_by_id = {e.id: e for e in corpus.evidence}
-    pre_evidence = [ev_by_id[g.id] for g in pre_events if g.id in ev_by_id]
+    # Deep copies, as `holdout_kfold` takes them: the candidates are linked
+    # against the pre-cutoff items here, so a candidate's own credence reads
+    # its evidence rather than its prior alone (before this, `hte calibrate`
+    # scored every candidate at `P = a` unless a runner had linked the items).
+    pre_evidence = [copy.deepcopy(ev_by_id[g.id]) for g in pre_events if g.id in ev_by_id]
+    vocab = corpus.vocab.frozen_at(cutoff_years) if freeze_vocab else corpus.vocab
+    n_frozen = sum(len(v) for v in corpus.vocab.by_slot.values()) - sum(len(v) for v in vocab.by_slot.values())
     span_start, bin_width, resolution = _corpus_time_binning(corpus)
 
     candidates: dict[tuple[int, int, int], Hypothesis] = {}
     for item in pre_evidence:
-        hyp = _placement_from_item(item, corpus.vocab, span_start=span_start, bin_width=bin_width)
+        hyp = _placement_from_item(item, vocab, span_start=span_start, bin_width=bin_width)
         if hyp is not None:
             candidates.setdefault(_candidate_key(hyp), hyp)
     candidate_list = list(candidates.values())
+    link_evidence(pre_evidence, candidate_list, vocab, threshold=match_threshold)
+    n_linked = sum(1 for e in pre_evidence if e.supports or e.refutes)
 
     def projected(h: Hypothesis) -> float:
-        return belief.score(h, pre_evidence, corpus.vocab, constants=constants).project()
+        return belief.score(h, pre_evidence, vocab, constants=constants).project()
 
     n_covered = 0
     predictions: list[dict[str, Any]] = []
@@ -312,7 +321,7 @@ def run_holdout(
         target = ev_by_id.get(g.id)
         if target is None:
             continue
-        matches = [h for h in candidate_list if _matches_event(target, h.content, corpus.vocab, threshold=match_threshold)]
+        matches = [h for h in candidate_list if _matches_event(target, h.content, vocab, threshold=match_threshold)]
         true_matches = [h for h in matches if _interval_overlaps_year(h.content.interval, g.year, resolution)]
         if not true_matches:
             continue
@@ -340,6 +349,9 @@ def run_holdout(
         "match_threshold": match_threshold,
         "n_holdout_events": n_holdout,
         "n_covered_events": n_covered,
+        "freeze_vocab": freeze_vocab,
+        "n_frozen_concepts": n_frozen,
+        "n_linked_pre_cutoff_items": n_linked,
         "coverage_of_truth": coverage_of_truth,
         "coverage_of_truth_ci": wilson_interval(n_covered, n_holdout),
         "coverage_note": _low_coverage_note(corpus, n_covered, n_holdout, coverage_of_truth, corpus_name=corpus_name),
@@ -820,6 +832,7 @@ def run_calibration(
     n_bins: int = 10,
     resolution: Resolution | None = None,
     corpus_name: str = "this corpus",
+    freeze_vocab: bool = False,
 ) -> dict[str, Any]:
     """`choose_holdout_mode(corpus)`, then the matching holdout
     (`run_holdout` for `"discovery_date"`, `holdout_kfold` for
@@ -841,6 +854,7 @@ def run_calibration(
         result = run_holdout(
             corpus, constants, cutoff_years=cutoff, match_threshold=match_threshold,
             n_bins=n_bins, corpus_name=corpus_name,
+            freeze_vocab=freeze_vocab,
         )
     else:
         result = holdout_kfold(
