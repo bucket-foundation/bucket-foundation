@@ -82,7 +82,29 @@ function ScrollSpinDriver({
  * points between 1.25 and 2.6 radii, denser near the surface. Scaled and
  * counter-rotated by ScrollSpinDriver.
  */
+// Soft round sprite for the shell points; the default point sprite is a
+// hard square, which reads as pixels at the decorative mount's 0.4 dpr.
+function makeDotSprite(): THREE.Texture | null {
+  if (typeof document === "undefined") return null;
+  const size = 64;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return null;
+  const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  g.addColorStop(0, "rgba(255,255,255,1)");
+  g.addColorStop(0.45, "rgba(255,255,255,0.85)");
+  g.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
 function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | null> }) {
+  const sprite = useMemo(() => makeDotSprite(), []);
   const geometry = useMemo(() => {
     const pos = new Float32Array(SHELL_COUNT * 3);
     const col = new Float32Array(SHELL_COUNT * 3);
@@ -111,10 +133,12 @@ function ParticleShell({ shellRef }: { shellRef: MutableRefObject<THREE.Group | 
     <group ref={shellRef}>
       <points geometry={geometry}>
         <pointsMaterial
-          size={0.028}
+          size={0.05}
+          map={sprite ?? undefined}
+          alphaTest={0.05}
           vertexColors
           transparent
-          opacity={0.6}
+          opacity={0.7}
           sizeAttenuation
           depthWrite={false}
         />
