@@ -529,10 +529,9 @@ def test_fake_mode_with_provenance_never_creates_cache_dir(tmp_path):
 def test_replay_only_cache_hit_with_provenance_never_writes_the_index(tmp_path):
     """The regression this test guards: `hte.roles.generate`/`critique`/
     `unknown_unknown` pass `provenance=` on every call now, including
-    every call this package's own test suite makes against the
-    committed `tests/fixtures/llm-cache/` directory under `replay_only=
-    True`. Writing an index line on that cache-hit path would leave a
-    checked-in fixture directory dirty on every test run; `replay_only`'s
+    every replay against a tracked run cache under `replay_only=True`.
+    Writing an index line on that cache-hit path would leave a tracked
+    cache directory dirty on every replay; `replay_only`'s
     own contract (`hte.llm.complete`'s own docstring) is read-only,
     full stop, matching fake mode's own "never touches `cache_dir`"
     contract one branch up."""

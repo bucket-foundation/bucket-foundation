@@ -176,6 +176,8 @@ def _generator(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
 
 _SUPPORT_BLOCK_RE = re.compile(r"Supporting evidence:\n(.*?)\n\nRefuting evidence:", re.DOTALL)
 _HAS_LINE_RE = re.compile(r"^- \(", re.MULTILINE)
+_REFUTE_BLOCK_RE = re.compile(r"Refuting evidence:\n(.*?)(?:\n\n|\Z)", re.DOTALL)
+_ID_RE = re.compile(r"\[([^\[\]]+)\]$", re.MULTILINE)
 
 
 def _critic(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
@@ -185,12 +187,20 @@ def _critic(prompt: str, schema: Mapping[str, Any]) -> dict[str, Any]:
     either way."""
     m = _SUPPORT_BLOCK_RE.search(prompt)
     supporting = m.group(1) if m else ""
+    r = _REFUTE_BLOCK_RE.search(prompt)
+    refuting = r.group(1) if r else ""
+    # Deterministic discrimination ratings (`hte.roles.DISCRIMINATION_PROMPT`):
+    # every supporting item "moderate", every refuting item "weak".
+    discrimination = {**{eid: "moderate" for eid in _ID_RE.findall(supporting)},
+                      **{eid: "weak" for eid in _ID_RE.findall(refuting)}}
     if _HAS_LINE_RE.search(supporting):
-        return {"keep": True, "issues": [], "rationale": "fake stand-in: at least one linked evidence item supports this hypothesis"}
+        return {"keep": True, "issues": [], "rationale": "fake stand-in: at least one linked evidence item supports this hypothesis",
+                "discrimination": discrimination}
     return {
         "keep": False,
         "issues": ["no supporting evidence linked to this hypothesis"],
         "rationale": "fake stand-in: the supporting-evidence section is empty",
+        "discrimination": discrimination,
     }
 
 

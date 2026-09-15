@@ -77,6 +77,24 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
+Evidence weight now carries a likelihood ratio. The critic rates each
+listed item's discrimination (strong, moderate, weak, none: how much
+more likely the item is under the hypothesis than under the strongest
+competing explanation of the same event), `hte.roles.likelihood_ratios`
+maps the ratings to 10, 3, 1.5, 1, and `hte.belief.discrimination`
+scales the item's tier weight by `1 - 1/lr`, so an item as likely under
+both explanations moves no credence and a tenfold one keeps 0.9 of its
+weight. An unrated item keeps its full weight, the vote-counting reading
+the audit's Evidence table names, until a critic rates it; the ratings
+ride in `survivors.json` under `likelihood_ratios`.
+
+Alongside the floors, every serialized opinion carries `scored`
+(`Opinion.scored`, `u < 1`): a hypothesis no evidence reached reads at
+its prior, which is missing data, so ranked surfaces list scored
+opinions first, `TIMELINE.md` shows the flag, and `campaign results`
+counts `n_unscored` per actor. The live Younger Dryas run had 292 of
+360 survivors unscored.
+
 A fourth gate, a lift-rank cutoff with the Benjamini-Hochberg step-up
 shape at `fdr_q` (default `1.0`, off), answers item 5's "3,205
 hypotheses, one floor" finding: a single fixed floor over a population

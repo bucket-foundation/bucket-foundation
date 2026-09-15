@@ -509,3 +509,25 @@ def test_detectability_floor_never_lowers_a_value_already_above_it():
     low_floor = pooled_weight([item], 1, detect_table=table, period="classical", constants=Constants(detectability_floor=0.1))
     default_result = pooled_weight([item], 1, detect_table=table, period="classical", constants=Constants())
     assert low_floor == default_result
+
+
+def test_opinion_scored_is_false_at_its_prior_and_true_once_evidence_binds():
+    unscored = Opinion.from_evidence(0.0, 0.0, 2.0, 0.7)
+    assert unscored.u == 1.0 and unscored.project() == 0.7 and unscored.scored() is False
+    assert unscored.to_dict()["scored"] is False
+    scored = Opinion.from_evidence(1.0, 0.0, 2.0, 0.7)
+    assert scored.scored() is True and scored.to_dict()["scored"] is True
+
+
+def test_discrimination_scales_weight_by_likelihood_ratio_and_leaves_unrated_items_whole():
+    from hte.belief import discrimination
+    assert discrimination(None) == 1.0
+    assert discrimination(1.0) == 0.0
+    assert discrimination(10.0) == pytest.approx(0.9)
+    assert discrimination(0.5) == 0.0
+    items = [_pooled_support("e1", EvidenceKind.MATERIAL, Tier.T1, 0.8, address=1)]
+    unrated, _ = pooled_weight(items, 1)
+    none_rated, _ = pooled_weight(items, 1, likelihood_ratios={"e1": 1.0})
+    strong, _ = pooled_weight(items, 1, likelihood_ratios={"e1": 10.0})
+    assert none_rated == 0.0
+    assert strong == pytest.approx(0.9 * unrated)

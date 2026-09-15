@@ -187,3 +187,17 @@ def test_fakellm_is_deterministic_across_calls():
     r1 = fakellm.complete(prompt, role="generator", schema=GENERATE_SCHEMA)
     r2 = fakellm.complete(prompt, role="generator", schema=GENERATE_SCHEMA)
     assert r1 == r2
+
+
+def test_fake_critic_rates_every_listed_item_and_roles_maps_the_ratings_to_ratios():
+    from hte import roles
+    from hte.fakellm import _critic
+    prompt = (
+        "Critique this hypothesis.\n\nSupporting evidence:\n- (material, T1) 'x' [e1]\n\n"
+        "Refuting evidence:\n- (textual, T3) 'y' [e2]\n\nReturn keep=false only if ..."
+    )
+    report = _critic(prompt, roles.CRITIQUE_SCHEMA)
+    assert report["discrimination"] == {"e1": "moderate", "e2": "weak"}
+    assert roles.likelihood_ratios(report) == {"e1": 3.0, "e2": 1.5}
+    assert roles.likelihood_ratios({"discrimination": {"e1": "bogus"}}) == {}
+    assert roles.likelihood_ratios({}) == {}

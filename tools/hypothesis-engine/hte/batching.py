@@ -133,6 +133,7 @@ CRITIQUE_BATCH_SCHEMA: dict[str, Any] = {
                     "keep": {"type": "boolean"},
                     "issues": {"type": "array", "items": {"type": "string"}},
                     "rationale": {"type": "string"},
+                    "discrimination": roles.DISCRIMINATION_SCHEMA,
                 },
                 "required": ["id", "keep", "issues", "rationale"],
             },
@@ -165,10 +166,10 @@ def _critique_batch_prompt(batch: Sequence[Hypothesis], evidence: Sequence[Evide
         "contradicts it (for example the actor is not attested inside the "
         "stated time bin, or the place sits outside every tradition the actor "
         "belongs to); list every such issue found, an empty evidence set is not "
-        "itself a contradiction.\n\n"
+        "itself a contradiction. " + roles.DISCRIMINATION_PROMPT + "\n\n"
         f"Return a JSON array under \"results\" with exactly {len(batch)} entries, "
         "one per hypothesis above, each carrying that hypothesis's own id (the "
-        "id= value from its heading) plus its own keep/issues/rationale, so it "
+        "id= value from its heading) plus its own keep/issues/rationale/discrimination, so it "
         "can be matched back to its hypothesis regardless of the order you "
         "return the entries in."
     )

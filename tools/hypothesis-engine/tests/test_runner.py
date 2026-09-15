@@ -12,32 +12,13 @@ from hte.corpus import Corpus, GroundTruthEvent, education_atlas, production
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
 from hte.timeline import Interval
 
-FIXTURE_CACHE = str(Path(__file__).parent / "fixtures" / "llm-cache")
-
-# Every field below must match the config used to seed `tests/fixtures/
-# llm-cache/`: the cache key is a hash of (model, prompt), and several
-# prompts this campaign builds (`generate_n`, `combinatorial_max_items`,
-# and the campaign name itself, embedded in the self-report's own prompt)
-# change the prompt text, and so the cache key, if changed here without
-# re-seeding the cache. `resolution` is pinned to `"century"` for the
-# same reason: left unset, `hte.runner.run_campaign` would auto-select a
-# rung from this corpus's own ground-truth span (`hte.timeline.
-# auto_resolution`), which would shift every combinatorial hypothesis's
-# own TIME_BIN axis away from `hte.address`'s original fixed 20,000-
-# year/century span this cache was seeded under. Pinning `"century"`
-# reuses that original span exactly (`hte.runner._resolve_time_binning`'s
-# own documented behavior for a pinned resolution). `combinatorial_
-# status_balanced` is pinned `False` for the same reason:
-# `hte.generate.combinatorial_sample`'s status-balanced draw (default
-# `True` in production, `STATISTICAL-AUDIT-2026-09-15.md` item 2) picks
-# a different actor than the flat draw this cache was seeded under,
-# which would change the combinatorial slice and every prompt built from
-# it.
+# Small knobs so a fake-mode campaign runs in about a second; `resolution`
+# pinned so time binning stays fixed across corpora, and the flat
+# combinatorial draw kept so the pool composition these tests count on
+# does not move with the vocabulary's status labels.
 FIXTURE_CONFIG = {
     "campaign": "fixture-seed",
     "corpus": "fixtures",
-    "cache_dir": FIXTURE_CACHE,
-    "replay_only": True,
     "seeds": 1,
     "generate_n": 2,
     "tournament_rounds": 1,
@@ -49,31 +30,20 @@ FIXTURE_CONFIG = {
 
 
 def _fake_mode_cfg(tmp_path, monkeypatch, **overrides):
-    """`FIXTURE_CONFIG`'s own generation knobs (pool composition,
-    resolution, campaign name), run through `HTE_LLM_MODE=fake` instead
-    of the real committed cache: `hte.generate.stratified_sample`
-    (`STATISTICAL-AUDIT-2026-09-15.md` item 1) spreads the kept
-    hypotheses across every actor stratum instead of the address-sorted
-    top 8 this fixture's real cache was seeded against, so a stratified
-    run needs critique responses the committed cache never carries."""
+    """`FIXTURE_CONFIG` run through `HTE_LLM_MODE=fake` with a scratch cache."""
     monkeypatch.setenv("HTE_LLM_MODE", "fake")
     return {**FIXTURE_CONFIG, "cache_dir": str(tmp_path / "cache"), "replay_only": False,
             "out_dir": str(tmp_path), **overrides}
 
 
 @pytest.fixture(autouse=True)
-def _real_llm_mode(monkeypatch):
-    """`FIXTURE_CONFIG` above pins `replay_only=True` against a real,
-    committed cache (`FIXTURE_CACHE`) with no `HTE_LLM_MODE` of its own:
-    every test below that builds a config from it is asserting the real
-    cache-replay contract (a hit returns the seeded response, a miss
-    raises `LLMCacheMissError`), which an ambient `HTE_LLM_MODE=fake`
-    would silently swap for `hte.fakellm`'s generic stand-ins instead,
-    breaking that contract without ever raising. Pinning it unset here
-    (harmless for this file's own explicitly fake-mode tests, which each
-    call their own `monkeypatch.setenv("HTE_LLM_MODE", "fake")` on top of
-    this) keeps this file correct under `env -u HTE_LLM_MODE make test`
-    and `HTE_LLM_MODE=fake make test` alike."""
+def _no_ambient_llm_mode(monkeypatch):
+    """`HTE_LLM_MODE` unset for every test here unless the test sets it:
+    a `fake` value leaking from another test file turns a
+    `replay_only=True` cache-miss test into a full fake-mode campaign,
+    which on `education-atlas` runs a k-fold calibration for minutes
+    (the 2026-09-15 hang at `test_campaign_run_replay_only_fails_only_on_
+    cache_miss[education-atlas]`)."""
     monkeypatch.delenv("HTE_LLM_MODE", raising=False)
 
 
@@ -134,8 +104,9 @@ def test_run_campaign_end_to_end_in_fake_mode(tmp_path, monkeypatch):
     assert "run complete" in log_text
 
 
-def test_run_campaign_replay_only_raises_on_true_cache_miss(tmp_path):
-    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path), "cache_dir": str(tmp_path / "empty-cache")}
+def test_run_campaign_replay_only_raises_on_true_cache_miss(tmp_path, monkeypatch):
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
+    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path), "cache_dir": str(tmp_path / "empty-cache"), "replay_only": True}
     with pytest.raises(llm.LLMCacheMissError):
         runner.run_campaign(cfg)
 
@@ -653,3 +624,16 @@ def test_survivors_artifact_has_one_entry_per_survivor_with_full_opinion_and_rob
         assert entry["preservation"] is not None
         assert isinstance(entry["slots"], dict)
         assert "ACTOR" in entry["slots"] or "RELATION" in entry["slots"]  # placement vs. sequence shape
+
+
+def test_survivors_carry_the_critic_likelihood_ratios(tmp_path, monkeypatch):
+    cfg = _fake_mode_cfg(
+        tmp_path, monkeypatch, corpus="production", max_hypotheses=20,
+        combinatorial_max_items=1, max_time_bins=2, run_extraction=False,
+    )
+    artifacts = runner.run_campaign(cfg)
+    entries = json.loads((artifacts.run_dir / "survivors.json").read_text())["survivors"]
+    assert entries
+    rated = [e for e in entries if e["likelihood_ratios"]]
+    assert rated, "the fake critic rates every listed item, so a bound survivor carries ratios"
+    assert all(v in (10.0, 3.0, 1.5, 1.0) for e in rated for v in e["likelihood_ratios"].values())

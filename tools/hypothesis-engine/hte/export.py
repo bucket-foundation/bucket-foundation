@@ -45,10 +45,10 @@ def _opinion_dict(opinion: Opinion | None, posterior: float | None) -> dict[str,
 
 
 def _rank_key(h: Hypothesis, opinions: Mapping[int, Opinion], elos: Mapping[int, float]):
-    """Ranks by evidence-only lift (`b - d`, prior `a` excluded) first,
-    projected posterior second, current Elo third, all missing-safe: an
-    unscored hypothesis sorts after every scored one at the same tier
-    rather than raising or crashing the sort. Lift leads so two
+    """Ranks scored opinions (`Opinion.scored`, any evidence bound) ahead
+    of unscored ones, then by evidence-only lift (`b - d`, prior `a`
+    excluded), projected posterior, and current Elo, all missing-safe: a
+    hypothesis at its prior never outranks one the evidence reached. Lift leads so two
     hypotheses built from the same evidence rank together regardless of
     which prior label (`ConsensusStatus`) either was assigned
     (`STATISTICAL-AUDIT-2026-09-15.md`'s Younger Dryas case)."""
@@ -57,6 +57,7 @@ def _rank_key(h: Hypothesis, opinions: Mapping[int, Opinion], elos: Mapping[int,
     posterior = _posterior(h, opinions)
     elo = elos.get(h.address)
     return (
+        bool(opinion is not None and opinion.scored()),
         lift if lift is not None else float("-inf"),
         posterior if posterior is not None else float("-inf"),
         elo if elo is not None else float("-inf"),
@@ -280,13 +281,14 @@ def write_views(
         lines.append(f"## Time bin {b['time_bin'].get('label', b['time_bin']['index'])}")
         lines.append("")
         lines.append(
-            "| Hypothesis | Slots | Posterior | u | Lift | Tipping prior (0.6) | Elo (unvalidated) | "
+            "| Hypothesis | Slots | Scored | Posterior | u | Lift | Tipping prior (0.6) | Elo (unvalidated) | "
             "Share | Bayes factor vs best |"
         )
-        lines.append("|---|---|---|---|---|---|---|---|---|")
+        lines.append("|---|---|---|---|---|---|---|---|---|---|")
         for entry in b["ranked_hypotheses"]:
             lines.append(
                 f"| {entry['hypothesis_id']} | {entry['slots']} | "
+                f"{'yes' if _opinion_field(entry, 'scored') else 'no'} | "
                 f"{_fmt(entry['posterior'], 3)} | {_fmt(_opinion_field(entry, 'u'), 3)} | "
                 f"{_fmt(_opinion_field(entry, 'lift'), 3)} | {_fmt(_opinion_field(entry, 'tipping_prior_0_6'), 3)} | "
                 f"{_fmt(entry['elo'], 1)} | {_fmt(_partition_field(entry, 'share'), 3)} | "
