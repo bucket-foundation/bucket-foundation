@@ -31,8 +31,8 @@ tie at 0.751. The reported gap, 0.941 against 0.562, is the label.
 
 | Practice today | Principle | Cost | Fix |
 |---|---|---|---|
-| `sorted(by_address)[:400]` | Random or stratified sampling, frame recorded | Keeps the lowest vocabulary indices, whichever actors those are | Stratified sample by actor and status; frame in the manifest |
-| 3,649 evidence-driven vs 150 combinatorial per seed | Importance sampling by status | Alternative space rides on 150 draws | Proportional draws per status class |
+| `runner.py:467`: `sorted(by_address.values(), key=lambda h: h.address)[: cfg["max_hypotheses"]]` | Random or stratified sampling, frame recorded | Keeps the lowest vocabulary indices, whichever actors those are | Stratified sample by actor and status; frame in the manifest |
+| 3,649 evidence-driven vs 150 combinatorial per seed (run log, quoted in `docs/YOUNGER-DRYAS.md`) | Importance sampling by status | Alternative space rides on 150 draws | Proportional draws per status class |
 | Each address scored as an independent proposition | Partition of competing explanations; Bayes factors; likelihood ratio 1 for shared evidence | Meltwater and impact for one event can both sit above 0.9 | Explanandum partitions with normalized posterior odds |
 | No complexity penalty | Occam factor, MDL | Specificity of the vocabulary decides rank | Penalize slot specificity and interval width |
 
@@ -40,7 +40,7 @@ tie at 0.751. The reported gap, 0.941 against 0.562, is the label.
 
 | Practice today | Principle | Cost | Fix |
 |---|---|---|---|
-| `r = D(n₊)·S₊`, fixed W = 2 | Likelihood model per item, P(E|H)/P(E|¬H) | One item gives b = 0.502 to every hypothesis; strong and weak items match | Elicited or estimated likelihood ratio per evidence kind |
+| `r = D(n₊)·S₊`, fixed W = 2 | Likelihood model per item, P(E given H) over P(E given not H) | One item gives b = 0.502 to every hypothesis; strong and weak items match | Elicited or estimated likelihood ratio per evidence kind |
 | Dependence via stemma and surname proxy | Effective sample size from a dependence graph | Meltglass and platinum groups counted as independent | Coauthor, lab, and method edges; ESS in the opinion |
 | Unlinked = P = a | Missing-not-at-random handling | 292 of 360 survivors unscored and reported as unsupported | Linker recall per actor on a labeled set; unlinked marked unscored |
 | Cards chosen by one agent, no stance audit | Stated search protocol, inclusion criteria before retrieval, file-drawer check | 60 of 68 bound survivors carry only refutations | Stance counts per actor in the corpus doc; protocol hash in the manifest |

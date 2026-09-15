@@ -277,6 +277,13 @@ Run `20260915T002022Z`, git `2bc097676`, corpus `younger-dryas`.
 | Coverage of truth | 0.300 |
 | Brier score | 0.054 |
 
+Generation, from the run log: `generation seed 0: 150 combinatorial +
+3649 evidence-driven = 3799` (seeds 1 and 2 identical), `generation
+total: 3205 distinct addresses, 400 kept after max_hypotheses cap`,
+`evidence linking: 38 of 48 items linked to a hypothesis (threshold=0.6)`,
+`critic filter: 360 of 400 survived`, `tournament: 360 hypotheses rated
+over 2 rounds`.
+
 ### What the live pass answered
 
 The fake-mode section above listed four questions a live pass should
