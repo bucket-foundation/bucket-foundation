@@ -148,7 +148,7 @@ def timeline_views(
     # every competing set `hte.partition.partition` finds (each address
     # in exactly one set, so this merge never collides).
     partition_info: dict[int, dict] = {}
-    for members in partition(hypotheses, span_start=span_start, bin_width=bin_width).values():
+    for members in partition(hypotheses).values():
         partition_info.update(partition_odds(members, opinions, evidence))
 
     bins_out = []
@@ -178,7 +178,7 @@ def timeline_views(
     # second time here used to duplicate that call, so this reads its
     # groups directly instead of rebuilding them.
     pair_views = []
-    for key, hs in partition(sequences, span_start=span_start, bin_width=bin_width).items():
+    for key, hs in partition(sequences).items():
         _, first_key, second_key = key
         ranked = sorted(hs, key=lambda h: _rank_key(h, opinions, elos), reverse=True)
         pair_views.append({

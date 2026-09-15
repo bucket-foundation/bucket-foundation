@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from typing import Mapping, Sequence
 
-from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
 from .belief import Constants, Opinion, pooled_weight
 from .evidence import EvidenceItem
 from .hypothesis import Hypothesis
@@ -21,23 +20,48 @@ EPSILON = 0.01
 PartitionKey = tuple
 
 
-def partition(
-    hypotheses: Sequence[Hypothesis],
-    *, span_start: int = DEFAULT_SPAN_START, bin_width: int = DEFAULT_BIN_WIDTH,
-) -> dict[PartitionKey, list[Hypothesis]]:
-    """Groups `hypotheses` into one competing set per explanandum: a
-    placement's (OBJECT, PLACE, TIME_BIN); a sequence's ordered event
-    pair (`hte.export.timeline_views`'s own `pair_views` key)."""
+def _overlap_clusters(hs: Sequence[Hypothesis]) -> list[list[Hypothesis]]:
+    """Connected components of interval overlap, `hs` sorted by interval
+    start first: a member joins the running cluster while its own start
+    is at or before that cluster's own furthest end so far, so overlap
+    composes transitively (a point interval inside a wide one joins it,
+    and a third interval overlapping only that point joins the same
+    cluster too, even without touching the wide one directly)."""
+    ordered = sorted(hs, key=lambda h: h.content.interval.start)
+    clusters: list[list[Hypothesis]] = []
+    cluster_end = None
+    for h in ordered:
+        iv = h.content.interval
+        if clusters and iv.start <= cluster_end:
+            clusters[-1].append(h)
+            cluster_end = max(cluster_end, iv.end)
+        else:
+            clusters.append([h])
+            cluster_end = iv.end
+    return clusters
+
+
+def partition(hypotheses: Sequence[Hypothesis]) -> dict[PartitionKey, list[Hypothesis]]:
+    """Groups `hypotheses` into one competing set per explanandum. A
+    sequence's explanandum is its ordered event pair (`hte.export.
+    timeline_views`'s own `pair_views` key). A placement's explanandum is
+    its (OBJECT, PLACE) plus one cluster of mutually overlapping
+    intervals (`_overlap_clusters`), so two actors dated to overlapping
+    ranges rival each other even when neither names the other's exact
+    interval.
+    """
     groups: dict[PartitionKey, list[Hypothesis]] = {}
+    by_object_place: dict[tuple[str, str], list[Hypothesis]] = {}
     for h in hypotheses:
         if h.is_sequence:
             seq = h.content
             key = ("sequence", (seq.first.object, seq.first.place), (seq.second.object, seq.second.place))
+            groups.setdefault(key, []).append(h)
         else:
-            p = h.content
-            tbin = time_bin_index(p.interval.start, span_start, bin_width)
-            key = ("placement", p.object, p.place, tbin)
-        groups.setdefault(key, []).append(h)
+            by_object_place.setdefault((h.content.object, h.content.place), []).append(h)
+    for (obj, place), hs in by_object_place.items():
+        for idx, cluster in enumerate(_overlap_clusters(hs)):
+            groups[("placement", obj, place, idx)] = cluster
     return groups
 
 
@@ -48,21 +72,23 @@ def partition_odds(
 ) -> dict[int, dict]:
     """Per member, keyed by `Hypothesis.address`, within one set from
     `partition`: `share` (`P_i / sum(P_j)`, `P`=0 for no opinion;
-    singleton reads 1.0); `shared_evidence`, ids of items in `evidence`
-    whose `supports`/`refutes` names two or more of the set's addresses
-    at once (an item naming OBJECT/PLACE/TIME but not ACTOR links every
-    actor proposed), attached to every member; and `bayes_factor_vs_
-    best`, `(b_i + eps)/(d_i + eps)` over the same ratio for whichever
-    other member has the highest lift (`b - d`; `None` for a singleton).
-    A member `shared_evidence` touches gets `b`/`d` recomputed from
-    `evidence` with those items removed first (`hte.belief.pooled_
-    weight`), so they cannot inflate both sides in step.
+    singleton reads 1.0; a set whose members' `P` all sum to 0 splits
+    evenly, `1/n` each, rather than dividing by zero); `shared_evidence`,
+    ids of items in `evidence` whose `supports`/`refutes` names two or
+    more of the set's addresses at once (an item naming OBJECT/PLACE/
+    TIME but not ACTOR links every actor proposed), attached to every
+    member; and `bayes_factor_vs_best`, `(b_i + eps)/(d_i + eps)` over
+    the same ratio for whichever other member has the highest lift
+    (`b - d`; `None` for a singleton). A member `shared_evidence`
+    touches gets `b`/`d` recomputed from `evidence` with those items
+    removed first (`hte.belief.pooled_weight`), so they cannot inflate
+    both sides in step.
     """
     addresses = [h.address for h in members]
     projected = {a: (opinions[a].project() if a in opinions else 0.0) for a in addresses}
     total = sum(projected.values())
-    singleton = len(addresses) == 1
-    shares = {a: 1.0 if singleton else (projected[a] / total if total > 0 else 0.0) for a in addresses}
+    n = len(addresses)
+    shares = {a: 1.0 if n == 1 else (projected[a] / total if total > 0 else 1.0 / n) for a in addresses}
 
     addr_set = set(addresses)
     linked: dict[int, set[str]] = {a: set() for a in addresses}
