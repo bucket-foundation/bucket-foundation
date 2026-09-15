@@ -186,10 +186,7 @@ def test_pooled_weight_multi_kind_no_longer_gets_the_cross_kind_bonus():
     s_plus, _ = pooled_weight(items, 1)
     expected_no_bonus = D(1) * (TIER_WEIGHT[Tier.T1] * 0.8) + D(1) * (TIER_WEIGHT[Tier.T3] * 0.6)
     assert s_plus == pytest.approx(expected_no_bonus)
-
-    old_cross_kind_bonus = 1.3  # 1 + 0.3 * one cross-family pair (the removed hte.belief.cross_kind_bonus)
-    old_total_would_have_been = expected_no_bonus * old_cross_kind_bonus
-    assert s_plus == pytest.approx(old_total_would_have_been / old_cross_kind_bonus)
+    assert s_plus < expected_no_bonus * 1.3  # the removed bonus would have multiplied by 1 + 0.3 * one pair
 
 
 # --------------------------------------------------------------------------

@@ -360,6 +360,55 @@ def _mock_paper_referee_publish(monkeypatch) -> None:
     monkeypatch.setattr(pipeline.publish_mod, "publish", lambda run_dir, paper_dir, **k: {"dry_run": True})
 
 
+def test_fresh_run_hashes_the_gate_the_writeback_stage_applies(tmp_path, monkeypatch):
+    """Preregistration (item 5): the pipeline's write-back floors flow into
+    the fresh run's config, so `MANIFEST.json["prereg"]["criteria"]` and
+    the values `write_back` receives are the same numbers, and the stage
+    reports no `prereg_mismatch`."""
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    _mock_paper_referee_publish(monkeypatch)
+    received: dict = {}
+
+    def fake_write_back(run_dir, **kwargs):
+        received.update(kwargs)
+        return []
+
+    import hte.canon_writeback as canon_writeback_mod
+    monkeypatch.setattr(canon_writeback_mod, "write_back", fake_write_back)
+
+    summary = pipeline.run_pipeline({
+        "corpus": "production", "out_dir": str(tmp_path / "runs"),
+        "pipeline_out_dir": str(tmp_path / "pipeline-out"),
+        "writeback": True, "writeback_branch": "07-mind", "writeback_signoff": "test-reviewer",
+        "writeback_floor_P": 0.7, "writeback_floor_u_max": 0.4, "writeback_fdr_q": 0.2,
+        "runner_overrides": {
+            "lift_floor": 0.4, "max_hypotheses": 20, "combinatorial_max_items": 1,
+            "max_time_bins": 2, "run_extraction": False,
+        },
+        "dry_run": True, "skip_publish": True,
+    })
+
+    assert summary["stages"]["writeback"]["ok"] is True
+    assert summary["stages"]["writeback"]["prereg_mismatch"] == []
+    assert (received["floor_P"], received["floor_u_max"], received["lift_floor"], received["fdr_q"]) == (0.7, 0.4, 0.4, 0.2)
+    manifest = json.loads(next((tmp_path / "runs").glob("*/*/MANIFEST.json")).read_text())
+    criteria = manifest["prereg"]["criteria"]
+    assert (criteria["floor_P"], criteria["floor_u"], criteria["lift_floor"], criteria["fdr_q"]) == (0.7, 0.4, 0.4, 0.2)
+
+
+def test_from_run_regated_under_other_floors_records_the_prereg_mismatch(tmp_path, monkeypatch, synth_run_dir_for_writeback):
+    _mock_paper_referee_publish(monkeypatch)
+    summary = pipeline.run_pipeline({
+        "from_run": str(synth_run_dir_for_writeback), "out_dir": str(tmp_path / "runs"),
+        "pipeline_out_dir": str(tmp_path / "pipeline-out"),
+        "writeback": True, "writeback_branch": "07-mind", "writeback_signoff": "test-reviewer",
+        "writeback_floor_P": 0.0, "writeback_floor_u_max": 1.0,
+        "writeback_out_root": str(tmp_path / "canon-out"), "dry_run": True, "skip_publish": True,
+    })
+    assert summary["stages"]["writeback"]["ok"] is True
+    assert summary["stages"]["writeback"]["prereg_mismatch"] == ["floor_P", "floor_u"]
+
+
 def test_writeback_stage_dry_run_writes_nothing(tmp_path, monkeypatch, synth_run_dir_for_writeback):
     _mock_paper_referee_publish(monkeypatch)
     out_root = tmp_path / "canon-out"

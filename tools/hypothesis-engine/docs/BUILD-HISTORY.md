@@ -77,13 +77,17 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
-A fourth gate, Benjamini-Hochberg false-discovery-rate control at `fdr_q`
-(default `0.10`), answers item 5's "3,205 hypotheses, one floor"
-finding: a single fixed floor over a population that size mismarks
-both directions. `select_above_floor` turns each candidate's `lift`
-into a p-like score, `1 - lift` clamped to `(0, 1]`, and runs BH over
-the full candidate set on it; only a candidate clearing BOTH the
-P/u/lift floor and BH's own cut is selected. `write_back` reports the
+A fourth gate, a lift-rank cutoff with the Benjamini-Hochberg step-up
+shape at `fdr_q` (default `1.0`, off), answers item 5's "3,205
+hypotheses, one floor" finding: a single fixed floor over a population
+that size mismarks both directions. `select_above_floor` ranks each
+candidate's `1 - lift` clamped to `(0, 1]` and runs the step-up over
+the full candidate set; only a candidate clearing BOTH the P/u/lift
+floor and the cutoff is selected. The score has no null distribution,
+so the rate it controls is nominal and the gate stays off until a
+permutation null (the link-shuffle diagnostic) licenses it; at
+`q=0.10` over a real campaign's candidates the first rank would need a
+lift above 0.99. `write_back` reports the
 BH threshold and reject count in the branch `INDEX.md` header.
 
 ## Why write-back stops at `candidate`

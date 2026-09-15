@@ -344,22 +344,26 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
 
 
 # --------------------------------------------------------------------------
-# FDR control (STATISTICAL-AUDIT-2026-09-15.md item 5): a single fixed
-# floor over a population the size of a real campaign's candidate pool
-# mismarks both directions. Benjamini-Hochberg turns each candidate's
-# lift into a p-like score and controls the reject rate over the whole
-# set, on top of (never instead of) the P/u/lift floor above.
+# Lift-rank cutoff (STATISTICAL-AUDIT-2026-09-15.md item 5): a single
+# fixed floor over a population the size of a real campaign's candidate
+# pool mismarks both directions. The Benjamini-Hochberg step-up shape is
+# run over `1 - lift`, a score with no null distribution, so the rate it
+# controls is nominal: a permutation or placebo test (the link-shuffle
+# diagnostic in `hte.diagnostics` is the start) is what would license
+# reading it as a false discovery rate. It sits on top of, never in
+# place of, the P/u/lift floor above.
 # --------------------------------------------------------------------------
 
 _LIFT_P_FLOOR = 1e-9  # keeps the clamp's open lower bound (0, ...] strictly above 0
 
 
 def _lift_p_value(opinion: Opinion) -> float:
-    """`1 - lift` clamped to `(0, 1]`, a p-like score for Benjamini-
-    Hochberg. Built from `lift` rather than `P_uniform` (`P` at a flat
-    `a=0.5` prior): `lift` reads no prior at all, the property the
-    audit's Younger Dryas finding needed, while `P_uniform` still
-    rewards an unexamined hypothesis through `a * u`."""
+    """`1 - lift` clamped to `(0, 1]`, the score the step-up cutoff
+    ranks; it is no p-value, since `lift` has no null distribution here.
+    Built from `lift` and never from `P_uniform` (`P` at a flat `a=0.5`):
+    `lift` reads no prior at all, the property the audit's Younger Dryas
+    finding needed, while `P_uniform` still rewards an unexamined
+    hypothesis through `a * u`."""
     return min(1.0, max(_LIFT_P_FLOOR, 1.0 - opinion.lift()))
 
 
@@ -388,7 +392,7 @@ def _benjamini_hochberg(p_values: Sequence[float], q: float) -> tuple[float | No
 
 @dataclass(frozen=True)
 class FDRSummary:
-    """BH accounting for one `select_above_floor` call, for reporting.
+    """Step-up cutoff accounting for one `select_above_floor` call.
     `n_rejected = n_tested - n_kept`, the plain-English "excluded by this
     gate" count an index reader wants (the statistical "null rejected"
     sense is `n_kept` instead, since keeping a candidate rejects its own
@@ -403,7 +407,7 @@ class FDRSummary:
         return self.n_tested - self.n_kept
 
 
-def fdr_summary(candidates: list[Candidate], *, fdr_q: float = 0.10) -> FDRSummary:
+def fdr_summary(candidates: list[Candidate], *, fdr_q: float = 1.0) -> FDRSummary:
     """`_benjamini_hochberg` over every candidate's `_lift_p_value`, the
     same population `select_above_floor` gates on, packaged for
     reporting rather than filtering."""
@@ -414,7 +418,7 @@ def fdr_summary(candidates: list[Candidate], *, fdr_q: float = 0.10) -> FDRSumma
 
 def select_above_floor(
     candidates: list[Candidate], *, floor_P: float, floor_u_max: float, lift_floor: float = 0.25,
-    fdr_q: float = 0.10,
+    fdr_q: float = 1.0,
 ) -> list[Candidate]:
     """Every candidate at or above the credence floor: `P(h) >= floor_P`,
     `u <= floor_u_max`, AND evidence-only lift `b - d >= lift_floor`
@@ -427,9 +431,13 @@ def select_above_floor(
     one predicate `hte.bridge_export.export_for_bridge`'s own `accepted`
     flag shares, so the two surfaces never drift apart.
 
-    A fourth gate, on top of the floor: `fdr_q` (default `0.10`, item 5)
-    runs Benjamini-Hochberg over the FULL `candidates` list, never only
-    the floor's own survivors. `fdr_q=1.0` disables it, the same
+    A fourth gate, on top of the floor: `fdr_q` (default `1.0`, off, item 5)
+    runs the BH step-up cutoff over the FULL `candidates` list, never only
+    the floor's own survivors, reported as a lift-rank cutoff and never as
+    a calibrated false discovery rate (`_lift_p_value`). Off by default
+    until a permutation null licenses a rate: at `q=0.10` over a real
+    campaign's hundreds of candidates the first rank needs a score below
+    `q/m`, a lift above 0.99, which no evidence-bound hypothesis reaches. `fdr_q=1.0` disables it, the same
     convention `lift_floor=-1.0` already uses; a caller isolating the
     P/u/lift floor passes it explicitly, as existing callers already do
     for `lift_floor=-1.0`."""
@@ -650,15 +658,17 @@ def render_card(
 
 
 def _fdr_header_line(fdr: "FDRSummary") -> str:
-    """The write-back index header's FDR line (item 5): the BH threshold
-    and reject count (`FDRSummary.n_rejected`'s own docstring)."""
+    """The write-back index header's cutoff line (item 5): the step-up
+    threshold and reject count (`FDRSummary.n_rejected`'s own docstring)."""
+    if fdr.q >= 1.0:
+        return f"Lift-rank cutoff off (q={fdr.q:.2f}): all {fdr.n_tested} candidate(s) pass this gate."
     if fdr.threshold is None:
         return (
-            f"Benjamini-Hochberg FDR (q={fdr.q:.2f}): no candidate cleared the bar; "
+            f"Lift-rank cutoff (BH step-up, q={fdr.q:.2f}): no candidate cleared the bar; "
             f"{fdr.n_rejected} of {fdr.n_tested} candidate(s) rejected."
         )
     return (
-        f"Benjamini-Hochberg FDR (q={fdr.q:.2f}): threshold p<={fdr.threshold:.3f}; "
+        f"Lift-rank cutoff (BH step-up, q={fdr.q:.2f}): threshold score<={fdr.threshold:.3f}; "
         f"{fdr.n_rejected} of {fdr.n_tested} candidate(s) rejected."
     )
 
@@ -932,7 +942,7 @@ def write_back(
     floor_P: float = 0.6,
     floor_u_max: float = 0.5,
     lift_floor: float = 0.25,
-    fdr_q: float = 0.10,
+    fdr_q: float = 1.0,
     out_root: str | Path = "bucket-canon",
     dry_run: bool = False,
     cache_dir: str | Path | None = None,

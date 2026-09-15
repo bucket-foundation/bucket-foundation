@@ -390,8 +390,8 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     # STATISTICAL-AUDIT-2026-09-15.md item 5: the index header reports the
     # BH threshold and reject count over the full candidate population
     # (fdr_q=1.0 above keeps both, so 0 rejected here).
-    assert "Benjamini-Hochberg FDR (q=1.00)" in index_text
-    assert "0 of 2 candidate(s) rejected" in index_text
+    assert "Lift-rank cutoff off (q=1.00)" in index_text
+    assert "all 2 candidate(s) pass this gate" in index_text
 
     ingestion_index = (fake_repo_root / "CANON-INGESTION-INDEX.md").read_text()
     assert "Recent additions" in ingestion_index
@@ -483,6 +483,22 @@ def test_write_back_refuses_without_signoff_or_understanding(tmp_path, linking_r
 
 def test_write_back_never_writes_canon_tier():
     assert canon_writeback.CANON_TIER == "candidate"
+
+
+def test_bridge_export_accepted_is_select_above_floor_membership_under_the_cutoff(linking_run, monkeypatch):
+    """`export_for_bridge`'s `accepted` flag is membership in
+    `select_above_floor`'s kept set for the same candidates, floors, and
+    `fdr_q`, so the lift-rank cutoff never lets the two surfaces drift."""
+    run_dir, _, _ = linking_run
+    candidates, ctx = canon_writeback.reconstruct_candidates(run_dir)
+    base = candidates[0]
+    lifts = [0.999, 0.6, 0.3, 0.1, 0.0]
+    cands = [dataclasses.replace(base, opinion=Opinion(b=lift, d=0.0, u=1.0 - lift, a=0.5)) for lift in lifts]
+    monkeypatch.setattr(canon_writeback, "reconstruct_candidates", lambda rd: (cands, ctx))
+    kept = {id(c) for c in canon_writeback.select_above_floor(cands, floor_P=0.0, floor_u_max=1.0, lift_floor=0.25, fdr_q=0.10)}
+    items = bridge_export.export_for_bridge(run_dir, floor_P=0.0, floor_u_max=1.0, lift_floor=0.25, fdr_q=0.10, branch="x")
+    assert [item["accepted"] for item in items] == [id(c) in kept for c in cands]
+    assert any(items[i]["accepted"] for i in range(len(items))) and not items[-1]["accepted"]
 
 
 def test_bridge_export_marks_accepted_by_the_given_floors(linking_run):

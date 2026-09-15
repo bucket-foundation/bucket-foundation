@@ -62,9 +62,10 @@ None of the fields below are part of the TypeScript interface as read
 from source; each is named plainly so PR #14's own review can decide
 whether to widen the type to match:
 
-- `accepted` (bool): whether the hypothesis clears `floor_P`/
-  `floor_u_max`/`lift_floor` via `hte.belief.opinion_clears_floor`,
-  the same predicate `select_above_floor` calls, repeated here for a
+- `accepted` (bool): whether the hypothesis is in
+  `hte.canon_writeback.select_above_floor`'s own kept set for this run
+  (the P/u/lift floor plus the lift-rank cutoff), the one call the
+  write-back index uses too, repeated here for a
   bridge caller that wants it without re-deriving all three floors.
 - `canon_tier` (`"candidate"`, always, snake_case to match the graph
   schema's own column-naming convention rather than the interface's
@@ -107,7 +108,6 @@ from pathlib import Path
 from typing import Any
 
 from . import canon_writeback
-from .belief import opinion_clears_floor
 
 ENGINE_NAME = "hte"
 ORIGIN = "engine"
@@ -136,7 +136,8 @@ def _slots_for_bridge(candidate: "canon_writeback.Candidate", ctx: "canon_writeb
 
 
 def export_for_bridge(
-    run_dir: str | Path, *, floor_P: float = 0.6, floor_u_max: float = 0.5, lift_floor: float = 0.25, branch: str = "",
+    run_dir: str | Path, *, floor_P: float = 0.6, floor_u_max: float = 0.5, lift_floor: float = 0.25,
+    fdr_q: float = 1.0, branch: str = "",
 ) -> list[dict[str, Any]]:
     """Every survivor `run_dir` carries, as an `EngineHypothesisInput`-
     shaped dict plus this module's own additive fields (see this
@@ -145,6 +146,11 @@ def export_for_bridge(
     additions). Pure: reads `run_dir` and its own corpus, writes
     nothing."""
     candidates, ctx = canon_writeback.reconstruct_candidates(run_dir)
+    accepted_ids = {
+        id(c) for c in canon_writeback.select_above_floor(
+            candidates, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor, fdr_q=fdr_q,
+        )
+    }
     # `MANIFEST.json["models"]` is `hte.llm._model_policy()`'s own whole
     # file (`{"_note", "roles": {"generator": ..., ...}, "escalation"}`),
     # not a flat `{"generator": ...}` map; the role alias lives one level
@@ -154,7 +160,7 @@ def export_for_bridge(
     items: list[dict[str, Any]] = []
     for candidate in candidates:
         opinion = candidate.opinion
-        accepted = opinion_clears_floor(opinion, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor)
+        accepted = id(candidate) in accepted_ids
         evidence_items = candidate.supports + candidate.refutes
         items.append({
             "engine": ENGINE_NAME,
@@ -189,14 +195,15 @@ def export_for_bridge(
 
 
 def write_bridge_export(
-    run_dir: str | Path, *, envelope_path: Path, floor_P: float = 0.6, floor_u_max: float = 0.5, lift_floor: float = 0.25, branch: str = "",
+    run_dir: str | Path, *, envelope_path: Path, floor_P: float = 0.6, floor_u_max: float = 0.5, lift_floor: float = 0.25,
+    fdr_q: float = 1.0, branch: str = "",
 ) -> Path:
     """`export_for_bridge`'s own I/O wrapper: writes the result next to
     the feed402 envelope `hte.canon_writeback.write_back` already wrote,
     at `<envelope_path's own stem>.bridge.json` (`public/research/
     hypotheses/<run-id>.bridge.json` for `write_back`'s own envelope
     path). Returns the path written."""
-    items = export_for_bridge(run_dir, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor, branch=branch)
+    items = export_for_bridge(run_dir, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor, fdr_q=fdr_q, branch=branch)
     out_path = envelope_path.with_name(f"{envelope_path.stem}.bridge.json")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(items, indent=2), encoding="utf-8")

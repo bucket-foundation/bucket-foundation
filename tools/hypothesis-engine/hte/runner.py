@@ -114,7 +114,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "floor_P": 0.6,
     "floor_u_max": 0.5,
     "lift_floor": 0.25,
-    "fdr_q": 0.10,
+    "fdr_q": 1.0,
 }
 
 
