@@ -176,6 +176,14 @@ class Opinion:
             return None
         return a_tip
 
+    def scored(self) -> bool:
+        """Whether any evidence reached this opinion: `u < 1`. An unscored
+        opinion reads at its prior (`project() == a`), which is missing
+        data, never a verdict; every ranked surface lists scored opinions
+        first and names the rest unscored (`STATISTICAL-AUDIT-2026-09-15.md`,
+        Evidence table: 292 of 360 live survivors sat at `P = a`)."""
+        return self.u < 1.0
+
     @classmethod
     def from_evidence(cls, r: float, s: float, W: float, a: float) -> "Opinion":
         """`Eq. opinion-sum` / `Bucket.Belief.fromEvidence`: the fused
@@ -193,13 +201,13 @@ class Opinion:
         return cls(b=r / denom, d=s / denom, u=W / denom, a=a)
 
     def to_dict(self) -> dict:
-        """`b`/`d`/`u`/`a` plus the derived `lift` and `tipping_prior_0_6`
+        """`b`/`d`/`u`/`a` plus the derived `scored`, `lift`, and `tipping_prior_0_6`
         (at the package's default floor `0.6`), inherited by every caller
         of this serializer (`hte.runner._survivor_opinion`, `hte.export.
         _opinion_dict`, `hte.bridge_export.export_for_bridge`, `hte.api.
         _enrich_entry`) rather than recomputed by hand."""
         return {
-            "b": self.b, "d": self.d, "u": self.u, "a": self.a,
+            "b": self.b, "d": self.d, "u": self.u, "a": self.a, "scored": self.scored(),
             "lift": self.lift(), "tipping_prior_0_6": self.tipping_prior(0.6),
         }
 

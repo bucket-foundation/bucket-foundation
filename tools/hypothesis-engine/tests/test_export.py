@@ -72,6 +72,23 @@ def test_timeline_views_ranks_by_lift_before_posterior():
     assert ranked_ids == [h_farmers.short_id, h_aliens.short_id]
 
 
+def test_timeline_views_ranks_a_scored_zero_lift_entry_above_an_unscored_one():
+    # Equal lift (0.0) and a higher posterior on the unscored side: the
+    # entry the evidence reached still ranks first, since a hypothesis at
+    # its prior is missing data, never a verdict.
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, _, elos = _fixture(vocab)
+    opinions = {
+        h_farmers.address: Opinion(b=0.2, d=0.2, u=0.6, a=0.1),   # scored, lift 0.0, P=0.26
+        h_aliens.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.94),  # unscored, lift 0.0, P=0.94
+    }
+    tbin = time_bin_index(_interval().start)
+    views = timeline_views([h_farmers, h_aliens, h_seq], opinions, elos, [tbin])
+    ranked = views["bins"][0]["ranked_hypotheses"]
+    assert [entry["hypothesis_id"] for entry in ranked] == [h_farmers.short_id, h_aliens.short_id]
+    assert [entry["opinion"]["scored"] for entry in ranked] == [True, False]
+
+
 def test_timeline_views_bin_caps_at_top_k():
     vocab = _small_vocab()
     h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
@@ -198,7 +215,7 @@ def test_write_views_shows_u_beside_p_in_the_bin_table(tmp_path):
 
     write_views(views, tmp_path)
     text = (tmp_path / "TIMELINE.md").read_text()
-    assert "| Hypothesis | Slots | Posterior | u | Lift | Tipping prior (0.6) | Elo (unvalidated) |" in text
+    assert "| Hypothesis | Slots | Scored | Posterior | u | Lift | Tipping prior (0.6) | Elo (unvalidated) |" in text
     assert f"{opinions[h_farmers.address].u:.3f}" in text
     assert f"{opinions[h_farmers.address].lift():.3f}" in text
 

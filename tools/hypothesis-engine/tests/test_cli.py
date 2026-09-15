@@ -232,6 +232,7 @@ def test_campaign_results_over_a_run_with_no_calibration_still_writes(tmp_path):
     assert result["calibration"] is None
     assert result["self_report"] == {}
     assert result["per_actor"]["actor-0"]["n_survivors"] == 1
+    assert result["per_actor"]["actor-0"]["n_unscored"] in (0, 1)
     assert result["per_actor"]["actor-0"]["best_elo"] == 1550.0
     assert result["top"][0]["hypothesis_id"] == "h1"
     assert str(tmp_path) not in out_path.read_text()
