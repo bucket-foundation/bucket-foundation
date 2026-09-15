@@ -261,9 +261,8 @@ def _resolve_time_binning(cfg: dict[str, Any], corpus: Corpus) -> tuple[Resoluti
     "1910s", ... instead of the paper's own archaeological-scale "bin
     219". A pinned `cfg["resolution"]` instead reuses `hte.address`'s
     original fixed 20,000-year span at that rung's own width, reproducing
-    this package's pre-fix behavior exactly: `tests/test_runner.py`'s own
-    `FIXTURE_CONFIG` pins `"century"` for this reason, so its frozen
-    replay-only `claude -p` cache, keyed by prompt text, still hits.
+    this package's pre-fix behavior exactly; a tracked run cache, keyed
+    by prompt text, replays only under the resolution it was recorded with.
 
     The span this function returns is anchored at the union of every
     ground-truth event's own year AND every `corpus.evidence` item's own
@@ -737,13 +736,11 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     # after-the-fact treatment `assumptions` gets below for a refusal or
     # a clamp note. Folded in here rather than into `run_summary` itself:
     # `run_summary` feeds straight into `roles.self_report`'s own prompt
-    # text (`f"Run data: {dict(run)}"`), and that prompt is exactly what
-    # `tests/fixtures/llm-cache/`'s committed replay fixtures are keyed
-    # by (`tests/test_runner.py`'s own `FIXTURE_CONFIG` docstring); adding
-    # a key to `run_summary` directly would change that prompt's own
-    # cache key and break every committed fixture response for this run's
-    # own `self_report` role, for every existing test replaying against
-    # it, not only this bead's own new ones.
+    # text (`f"Run data: {dict(run)}"`), and that prompt is the cache key
+    # a tracked run cache replays the `self_report` role under; adding a
+    # key to `run_summary` directly would change it and break replay of
+    # every recorded run. Folding extra fields in here keeps the prompt,
+    # and so the key, unchanged.
     self_report = dict(self_report)
     self_report["fragility_top10"] = fragility_top10
 

@@ -3,33 +3,17 @@ from pathlib import Path
 
 from hte import cli
 
-FIXTURE_CACHE = str(Path(__file__).parent / "fixtures" / "llm-cache")
 
 
-def test_campaign_run_replay_only(tmp_path, capsys):
-    # These extra flags must match the config `tests/fixtures/llm-cache/` was
-    # seeded with (see `tests/test_runner.py`'s `FIXTURE_CONFIG`), since they
-    # change prompt text and so the cache key a replay-only run looks up.
+def test_campaign_run_writes_a_manifest_in_fake_mode(tmp_path, capsys, monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
     rc = cli.main([
-        "campaign", "run",
-        "--corpus", "fixtures",
-        "--campaign", "fixture-seed",
-        "--out", str(tmp_path),
-        "--cache-dir", FIXTURE_CACHE,
-        "--replay-only",
-        "--seeds", "1",
-        "--generate-n", "2",
-        "--combinatorial-max-items", "5",
-        "--max-hypotheses", "8",
-        "--tournament-rounds", "1",
-        "--resolution", "century",
+        "campaign", "run", "--corpus", "production", "--campaign", "fixture-seed", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "1", "--max-hypotheses", "20",
+        "--tournament-rounds", "1", "--resolution", "century",
     ])
     assert rc == 0
-    out = capsys.readouterr().out
-    assert "run written to" in out
-    # `_target_blind.json` (the target-blind check's persisted state, see
-    # `hte.runner._target_blind_check`) sits alongside the timestamped run
-    # directories under the campaign folder, so filter to directories only.
+    assert "run written to" in capsys.readouterr().out
     run_dirs = [p for p in (tmp_path / "fixture-seed").iterdir() if p.is_dir()]
     assert len(run_dirs) == 1
     assert (run_dirs[0] / "MANIFEST.json").is_file()

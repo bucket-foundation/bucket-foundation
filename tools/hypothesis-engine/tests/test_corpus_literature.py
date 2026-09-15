@@ -1179,6 +1179,7 @@ def test_ensure_cards_cached_leaves_no_partial_final_file_on_a_write_failure(tmp
     assert dest.read_text() == raw_text
 
 
+@pytest.mark.slow  # live GitHub call; a stalled DNS lookup has no socket timeout and hung `make test` twice on 2026-09-15
 def test_live_fetch_lists_cards_or_skips_when_offline():
     """One real, small GitHub API call against `main` (PR #5 merged into
     `main` during this module's own review, deleting `DEFAULT_REF`'s own
