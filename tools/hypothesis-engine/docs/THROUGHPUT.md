@@ -35,8 +35,9 @@ judge_scores = batching.batch_judge(
 ```
 
 `llm.stats()` returns a per-role snapshot (`calls`, `cache_hits`,
-`rate_limit_pauses`, `wall_time_s`) once wired in; embed it into
-`MANIFEST.json` alongside the existing `cache` stats:
+`rate_limit_pauses`, `refusals`, `truncations`, `timeouts`,
+`wall_time_s`) once wired in; embed it into `MANIFEST.json` alongside
+the existing `cache` stats:
 
 ```python
 manifest["llm_stats"] = llm.stats()
@@ -154,3 +155,8 @@ chunk whose call fails outright falls back the same way for every item
 in it. `HTE_LLM_MODE=fake` has no batch-shaped stand-in, so a batch
 call under fake mode always falls back to single-item calls across the
 board, exercised as such in `tests/test_batching.py`.
+
+## Refusal and timeout accounting
+
+A refusal or truncation is cached under its own `(model, prompt)` key and replays as the same typed exception under `--replay-only`, instead of raising `LLMCacheMissError`.
+`stats()` counts a `timeouts` entry per role alongside `refusals`/`truncations`, and `extractor` gets a longer `claude -p` timeout from `hte/data/model-policy.json`'s `timeouts` map, since its own long slices ran past the 300s default.
