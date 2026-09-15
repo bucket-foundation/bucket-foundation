@@ -3154,6 +3154,7 @@ Reviewer-side finish of PR #74 (faded guidance, ros-14, Iteration above) after r
 - `review/pr74` confirmed a fast-forward of `feat/ros-faded-guidance`'s remote head: pushed directly to the PR's own head branch rather than opening a superseding PR.
 
 No fix needed beyond the one docstring conflict. Pushed and merged.
+
 ## Iteration 26: lateral reading on Check
 
 `PLAN-REVISION-3.md` section 2c's design response to Wineburg and McGrew (2019) and Breakstone and colleagues (2021): at Understanding tier and above, revealing a held Check verdict now needs a real, independent second source, composed on top of the existing cognitive-forcing reveal (Iteration 22). Picks up a wip commit (`f4c2c7fe2`, "partial work preserved after spend-limit stop") that had already landed `lateral-reading.ts`, the `findIndependentSources`/`assessSourceIndependence` pair in `locate.ts`, the `"corroboration"` evidence kind and `onCorroborationRecorded` in `stages.ts`, Rule 5 (`lateralReadingFlag`) in `production-guard.ts`, the `db.ts` loaders, and the migration, but had not yet wired any route, page, test, or doc.
@@ -3276,3 +3277,291 @@ The globe's land dots came from drawing the daymap JPEG into a 2D canvas and rea
 ### Verified
 
 `npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright reproduction with a patched `HTMLCanvasElement.prototype.getContext('2d')` returning `null`: pre-fix showed the landmask warning and a dotless globe with zero `pageerror`s; post-fix showed the full dot globe with no warning and zero `pageerror`s. `magick compare` on plain (unpatched) 1950x1160 `/research-os` screenshots, before and after, showed only anti-aliasing-level differences, dot placement matches pixel-for-pixel.
+## Iteration 27: literature batch five
+
+Date 2026-09-11. Branch `intake/ros-literature-5`, worktree `.ros-worktrees/lit5`.
+Literature batch five: 30 new DOI-verified papers across four areas the task brief named:
+validating AI-generated hypothesis rankings, required-versus-voluntary participation and
+incentives in student research, epistemic-cognition instruments, and human understanding
+of AI-produced science.
+
+### Added
+
+- 10 files across `_intake/research-os-k12-literature/scientific-discovery-metascience/`
+  (9) and `ai-and-researchers/` (1): the founding calibration-scoring papers (Brier 1950;
+  Murphy 1973), a forecasting-tournament study (Mellers and others 2014), three
+  independent replication-forecasting studies (Dreber and others 2015; Camerer and
+  others 2018; Forsell and others 2019), three AI-for-science benchmarks (Chan and
+  others 2024, MLE-bench; Jansen and others 2024, DiscoveryWorld; Majumder and others
+  2024, DiscoveryBench), and the execution-focused follow-up to this corpus's own Si,
+  Yang, and Hashimoto (2024) card (Si, Hashimoto, and Yang 2025).
+- 7 files across `_intake/research-os-k12-literature/educational-methods/` (3) and
+  `student-research-experiences/` (4): choice and autonomy-support evidence (Patall,
+  Cooper, and Robinson 2008; Cordova and Lepper 1996; Reeve 2006) and academic-integrity
+  and mandatory-service evidence (McCabe, Trevino, and Butterfield 2001; Bretag and
+  others 2019; Stukas, Snyder, and Clary 1999; Metz and Youniss 2003).
+- 6 files under `_intake/research-os-k12-literature/epistemic-cognition/`: the
+  field-founding review (Hofer and Pintrich 1997), the founding multidimensional beliefs
+  instrument (Schommer 1990), an integrated four-position model (Greene, Azevedo, and
+  Torney-Purta 2008), a metacognition-facet reframing of this corpus's own Kuhn (1999)
+  card (Barzilai and Zohar 2014), a four-level developmental trajectory (Kuhn, Cheney,
+  and Weinstock 2000), and a belief-emotion-learning model tested in a classroom-relevant
+  domain (Muis, Pekrun, Sinatra, and others 2015).
+- 7 files across `_intake/research-os-k12-literature/hci-human-ai-collaboration/` (5)
+  and `ai-and-researchers/` (2): general explanation-science and XAI-evaluation evidence
+  (Miller 2019; Lombrozo 2006; Keil 2006; Zemla and others 2017; Hase and Bansal 2020)
+  and two direct follow-ups to this corpus's own Messeri and Crockett (2024) card (Binz
+  and others 2025; Musslick and others 2025).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended from 147 to 177 rows,
+  per-area counts updated, a new "Literature batch five" summary section appended.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: three of the
+  twelve open questions (4, 5, 12) gained an "Evidence added in batch five" paragraph.
+- `learning/research-os/PLAN-REVISION-3.md`: section 2b (required participation and
+  production misconduct) and section 2d (epistemic cognition and argumentation) each
+  gained an "Evidence added in batch five" paragraph stating support, complication, or
+  contradiction, plus a paragraph sharpening each section's own design response; neither
+  section's own OPEN status changed.
+- `tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md`: a new "Ranking validation
+  evidence" section appended, pointing at the ten batch-five cards bearing on
+  `hte.holdout_ledger` and the `ranking_status` label PR #60 shipped; no code changed.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass, logged below in
+  this same iteration for cross-reference.
+
+### Removed
+
+None.
+
+### Verified
+
+Read in full before writing: `_intake/research-os-k12-literature/README.md` (for the
+frontmatter schema, copied from `kuhn-1999-developmental-model-critical-thinking.md` and
+`krenn-et-al-2022-scientific-understanding-with-ai.md`), `PLAN-REVISION-3.md` section 2
+(items b and d), `tools/hypothesis-engine/docs/LOOP-LOG.md`'s "2026-09-10, PR #60
+review" and "2026-09-10, ros-11 review items" entries and `RESEARCH-OS-INTEGRATION.md`'s
+own question 19 and holdout-campaign sections, and `learning/research-os/ENGINE-
+BRIDGE.md`. Every new paper's DOI and OpenAlex work id was checked live against
+`api.openalex.org` at intake time (Crossref cross-checked for two records where an
+online-first year diverged from a print-issue year); none are placeholders. `hase-
+bansal-2020-evaluating-explainable-ai.md`'s own arXiv abstract initially returned a
+mismatched record from OpenAlex's `abstract_inverted_index` for a different DOI in the
+same family of works; re-fetched directly from arXiv's own API before the card was
+written, confirming the correct abstract for the intended paper. Two cards, `metz-
+youniss-2003-required-service-heightens-volunteerism.md` and `kuhn-cheney-weinstock-
+2000-development-epistemological-understanding.md`, carry no indexed abstract in
+OpenAlex, Crossref, or Semantic Scholar; each card's own "Verification note" names the
+source used to ground its claims instead. The task brief's own "Muis 2015" target did
+not resolve to an exact classroom-intervention match; the closest verified 2015 Muis
+paper was used in its place and documented as a substitution. No file under `src/` or
+`public/` is touched by this pass, and no file under `tools/hypothesis-engine/hte/` or
+`tools/hypothesis-engine/tests/` changed, so `npm run build`/`test:research-os` and the
+engine's `make test` gate do not apply; `RESEARCH-OS-INTEGRATION.md`'s own new section
+is documentation only. A grep-based self-audit against the full banned-word,
+filler-adverb, AI-tell, antithesis, and em/en-dash rule lists ran against every file
+this pass authored or edited; the pre-commit `agf-lint-voice` hook itself returned 0
+violations on every commit in this pass. Corpus row count (177) matched the corpus file
+count exactly, `find` counted per branch after this pass: 40 educational methods, 37
+HCI, 27 scientific discovery, 15 AI and researchers, 7 teacher workload and adoption, 11
+prerequisite graphs, 14 student research experiences, 7 project-based and inquiry
+learning, 5 writing and argumentation, 10 epistemic cognition, 4 source evaluation.
+
+## Iteration 28: canon-intake promotion pass three
+
+Date 2026-09-14. Branch `intake/ros-canon-promotion-3`, worktree
+`.ros-worktrees/canon3`. Finishing pass over a wip commit
+(`e8edd4d1e`, "partial work preserved after spend-limit stop") that had
+already landed the `07-mind/cognitive-load/` dossier, its `TAXONOMY_NOTES.md`
+rename-log entry, and four new `_intake/research-os-k12-literature/` cards
+(Sweller 1988, Kuhn 1991, Toulmin 1958, Osborne 2010's own cross-reference
+addendum), and died before the outcome-record batch. Landed on top of
+Iteration 27 (literature batch five) above, merged from `origin/main` into
+this branch before this iteration's own work. Full detail in
+`_intake/research-os-k12/CHANGELOG.md`'s matching entry; this ledger
+carries the summary.
+
+### Added
+
+- One new canon dossier, `bucket-canon/07-mind/cognitive-load/` (Sweller
+  1988), converged via `tools/canon-pipeline/intake.py --min-score 70`
+  (`added=0 kept=1 changed=False` on both re-runs), inherited from the
+  wip commit and re-verified.
+- Ten records added to the existing `bucket-canon/07-mind/
+  sub-outcomes/education/` dossier, converged via `tools/canon-pipeline/
+  intake.py --min-score 30`: five guidance-and-inquiry studies depending
+  on the new cognitive-load foundation (Chen and Yang 2019; Furtak,
+  Seidel, Iverson, and Briggs 2012; Lazonder and Harmsen 2016; Kirschner,
+  Sweller, and Clark 2006; Hmelo-Silver, Duncan, and Chinn 2007), two
+  source-evaluation studies depending on the pass-two information-foraging
+  foundation (Wineburg and McGrew 2019; Breakstone et al. 2021), and three
+  student-research-experience studies depending on the pass-two
+  curiosity-and-motivation foundation (Grinnell, Dalley, and Reisch 2020;
+  Bangera and Brownell 2014; Sadler, Burgin, McKinney, and Ponjuán 2010),
+  each naming the canon-tier foundation it depends on.
+- `provenance_signoff: "pending: gianyrox"` on all eleven new records,
+  per the ros-11 governance rule.
+- `bucket-canon/TAXONOMY_NOTES.md`: the cognitive-load rename-log entry
+  (inherited from the wip commit).
+
+### Edited
+
+- Ten intake cards marked `status: promoted` with `promoted_to` and
+  `depends_on_foundation` pointers; claim text unchanged in all ten.
+- `bucket-canon/07-mind/sub-outcomes/education/README.md` and
+  `CANON_INDEX.md`: extended dependency convention and a pass-three
+  outcome-entries table.
+- `_intake/research-os-k12-literature/README.md`: index table updated
+  for thirteen rows (ten status changes, three new rows for Sweller,
+  Kuhn, and Toulmin), corpus total 177 to 180 (after Iteration 27's own
+  147-to-177 growth), plus a new section recording the pass.
+- `CANON-INGESTION-INDEX.md`: a dated table of the eleven promotions.
+
+### Removed
+
+None.
+
+### Verified
+
+- `tools/canon-pipeline/intake.py` run twice on both touched dossiers
+  this iteration: `07-mind/cognitive-load/` (`changed=False` on both
+  runs) and `07-mind/sub-outcomes/education/` (first run `changed=True`,
+  a line-wrap reflow of hand-edited `relation` fields to the emitter's
+  own canonical width, no content change; second run `changed=False`,
+  confirming convergence). The one below-floor pre-existing record
+  (Wang et al. 2024, Tutor CoPilot, score 10) stayed rejected and
+  preserved both runs, per the fail-safe convention.
+- Sweller 1988's DOI (`10.1207/s15516709cog1202_4`) independently
+  verified against the live Crossref API (title, author, journal, and
+  year match the intake card and `primary-papers.yaml` exactly).
+- `agf-lint-voice check` on every file this pass touched found six
+  in-scope violations (two banned words in `toulmin-1958-uses-of-
+  argument.md`, one filler adverb in `kuhn-1991-skills-of-argument.md`,
+  two antithesis constructions across `osborne-2010-arguing-to-learn.md`,
+  `bucket-canon/07-mind/cognitive-load/CANON_INDEX.md`, and
+  `bucket-canon/TAXONOMY_NOTES.md`); fixed by hand, clean on the second
+  pass. Remaining reported hits sit outside this pass's own diff
+  (`_intake/research-os-k12/CHANGELOG.md` history predating line 2496,
+  an unchanged context row in `_intake/research-os-k12-literature/
+  README.md`) or are machine-fetched bibliographic data and the canon
+  pipeline's own scoring-reason strings (`CBE—Life Sciences Education`'s
+  own em dash, `+25 highly cited` in `canon_score_reasons`), the same
+  pattern already present in every merged dossier on `main`.
+  `agf-lint-voice-src check` clean.
+- No file under `src/` or `public/` is touched by this pass, so no
+  `npm run build` gate applies to it, the same pass-one/pass-two
+  convention.
+- `git fetch origin && git merge origin/main` merged 38 commits from
+  `origin/main`, Iteration 27 (literature batch five) and PR #87
+  (prediction register) among them, plus unrelated hypothesis-engine
+  work, into this branch. Two files conflicted
+  (`_intake/research-os-k12-literature/README.md`,
+  `learning/research-os/CHANGE-LEDGER.md`), both narrative-only (a
+  corpus-count summary paragraph and this ledger's own entry
+  numbering); both sides' content kept, `README.md`'s combined count
+  recomputed to 180 and this ledger's own new entry renumbered
+  Iteration 27 to Iteration 28 to stay chronological. The merge commit
+  (`f79e6c0ef`) used the org pre-commit hook's `AGF_VOICE_SKIP=1`
+  bypass, the same precedent this ledger's own PR #84 review entry
+  records: the merge's staged-file set includes 174 pre-existing voice
+  violations from `origin/main`'s own history (`CHANGE-LEDGER.md`
+  entries before this pass's own iteration, `tools/hypothesis-engine`
+  test files, `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`), none of
+  them touched by this pass's own diff.
+- A branch-policy change landed on `origin/dev` after this iteration's
+  own `origin/main` merge (`CLAUDE.md`'s new "Branch Policy" section,
+  PR #126: `main` takes merges from `dev` only, `dev` is the default
+  PR target for `intake/*` branches like this one). `git fetch origin
+  && git merge origin/dev` merged the two additional commits cleanly,
+  no conflict. `tools/canon-pipeline/intake.py` re-run twice on both
+  dossiers after this merge, `changed=False` on every run, confirming
+  the branch-policy merge changed no canon content. This pass's PR
+  targets `dev`, not `main`, per the new policy.
+
+## PR #87 review: prediction register
+
+Reviewed `feat/hte-prediction-register` (PR #87) against `main` in worktree `~/agfarms/.ros-worktrees/r87`, branch `review/pr87`. Engine-only change: `tools/hypothesis-engine/hte/predict.py` (new), `hte/cli.py` (new `predict register`/`resolve`/`report` subcommands), `docs/PREDICTION.md` (new), `predictions/ledger.jsonl` (new), `tests/test_predict.py` (new), plus regenerated `feed.json`/`feed.xml`/`feed/2026-09.json`. No file under `src/`, `scripts/research-os/`, or `learning/research-os/` in the diff, so `ENGINE-BRIDGE.md`'s contract is unaffected and no `npm ci`/`tsc`/`build`/`test:research-os` gate applies. Full account: `tools/hypothesis-engine/docs/LOOP-LOG.md`'s matching "2026-09-14, PR87 review" entry (leak scan, governance reconciliation against `hte.holdout_ledger`, ruff/pytest gates).
+
+### Fixed
+
+- `tools/hypothesis-engine/tests/test_predict.py`: removed an unused `timezone` import and rewrote a lambda assignment (`to_dict_sorted`) as a `def`, the only two `ruff check` hits inside this PR's own files.
+
+### Verified
+
+- Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
+- `hte.predict`'s forecast ledger and `hte.holdout_ledger`'s ranking ledger stay two distinct sources of truth for two distinct claims (a hypothesis's own `P(h)` versus Elo's relative order); `elo_status` stays sourced from `holdout_ledger.ranking_status` alone, unmodified by this PR.
+- `make test`: 1562 passed, 3 skipped, 1 deselected (a pre-existing flaky live-network test outside this PR's diff).
+
+## ros-11 remaining items
+
+Branch `feat/ros-11-engine-review-items-2` (worktree `~/agfarms/.ros-worktrees/ros11b`), against `main`. Four items land: the fusion stress-test, the Allen-relations check, the CASP-style calibration cadence, and span doc-length validation. Closes the three items the 2026-09-10 "ros-11 review items" entry above left open (item 5, item 7, item 8), plus the `bkt-hte-evidence-span-doc-length` follow-up filed in `BEADS-PENDING.jsonl` after the PR #60 review (item 4's own char_end-against-document-length gap). Engine-only change, no `src/`/`public/` file touched.
+
+- **Fusion stress-test** (Yager 1987, PLAN.md item 5): `hte/fusion_stress.py`, `tests/test_fusion_stress.py` (12 tests), `docs/FUSION-STRESS-2026-09-11.md`. Landed earlier in this branch's history; carried forward through this resume unchanged.
+- **Allen-relations check** (Allen 1983, PLAN.md item 7): `hte/temporal_consistency.py`, `tests/test_temporal_consistency.py` (11 tests), `docs/TEMPORAL-CONSISTENCY.md`. `check_sequence` validates a sequence hypothesis's RELATION slot against its two placements' own intervals.
+- **CASP-style calibration cadence** (PLAN.md item 8): `hte/casp_cadence.py`, `tests/test_casp_cadence.py` (21 tests), `docs/CASP-CADENCE.md`. Imports `hte.holdout_ledger` only (`from . import holdout_ledger`); does not import `hte.predict` and duplicates none of PR #87's own prediction-register logic. `hte.holdout_ledger` stays the single source of truth for ranking-holdout outcomes; `hte.predict`'s `predictions/ledger.jsonl` is a separate, unrelated ledger for a hypothesis's own forecast resolution.
+- **Span doc-length validation** (`bkt-hte-evidence-span-doc-length`): `hte.evidence.EvidenceSpan.doc_length` (`tests/test_evidence.py`) refuses a span whose `char_end` exceeds the stored document length. Wired through both corpus adapters that carry real document text: `hte.corpus.literature.Card.doc_length`/`_build_corpus` (`tests/test_corpus_literature.py`, already covered) and `hte.corpus.younger_dryas.Card.doc_length`/`_build_corpus` (`tests/test_corpus_younger_dryas.py`, two new tests added this pass, `test_younger_dryas_card_doc_length_matches_its_own_raw_file`/`test_younger_dryas_evidence_spans_carry_the_card_doc_length`; the wiring existed on this branch with no dedicated test until this pass closed the gap). Documented in `docs/EVIDENCE-SPAN-DOC-LENGTH.md`.
+
+### Resume note
+
+This branch's own prior run merged `origin/main` and stopped mid-merge, uncommitted, twice: once leaving a clean five-file diff (the CASP-cadence docstring clarification and the `younger_dryas.py` doc-length wiring, plus three new doc files), and a second time with a real conflict in `hte/corpus/literature.py` between this branch's `doc_length` field and `origin/main`'s concurrently-landed `doi_missing` field (PR #114/#119/#120/#122 merged upstream in between). Both sides kept: `Card` on `literature.py` now carries `doc_length` and `doi_missing` together, `_parse_frontmatter` sets both. The merge picked up `data/whats-new.json` (a machine-generated changelog copying commit subjects verbatim, now added to `.voiceignore` for the same reason `LOOP-LOG.md` already is there) and a handful of pre-existing voice-lint hits in merged-in test/docs prose, rewritten by hand.
+
+### Fixed
+
+- `tools/hypothesis-engine/hte/corpus/younger_dryas.py`: removed an unused `other_id` import (pre-existing since PR #81, `ruff check --fix`), the only `ruff` hit in a file this pass touches.
+- `tools/hypothesis-engine/hte/corpus/literature.py`'s `_fetch_card_paths`: its `except urllib.error.URLError` caught neither a raw socket/SSL `TimeoutError` nor `http.client.HTTPException` (`IncompleteRead`'s own base, a proxied or rate-limited connection dropping mid-body) nor `json.JSONDecodeError` (a body arriving truncated but readable), so `test_live_fetch_lists_cards_or_skips_when_offline`'s own documented "skips itself... rather than failing the suite when offline, rate-limited" contract broke under this sandbox's real network conditions (`IncompleteRead` propagated uncaught, `make test` red). Widened to `except (OSError, http.client.HTTPException, json.JSONDecodeError)`, `OSError` being `URLError`'s own base class; the test now skips cleanly.
+
+### Verified
+
+- `make test` (fast profile): 1672 passed, 1 skipped, 18 deselected (`slow`, unchanged from `main`), 0 failed; the skip is `test_live_fetch_lists_cards_or_skips_when_offline` clearing cleanly under this sandbox's live network (a `504 Gateway Timeout` against the GitHub API).
+- `ruff check .`: 53 pre-existing errors elsewhere in the tree (test-file unused imports, none in this pass's four modules or their tests), unchanged by this pass beyond the one fix above.
+- `agf-lint-voice-src check` / `agf-lint-voice check` clean on every file this pass authored, edited, or merged in.
+- `ENGINE-BRIDGE.md` reviewed and left unchanged: none of the four items touch `graph.nodes`/`graph.edges`/`graph.productions`/the outbox table, or any field the bridge's Next.js side reads.
+## Iteration 27: status band refresh to current main
+
+`/research-os`'s "§ status" section rewritten so it states truthfully what is on main today. Scope held to that one section: nothing else on the page touched, since the hero and globe changes live on the open PR #11 branch. Every shipped claim checked against `gh pr list --state merged --limit 60` and the linked doc under `learning/research-os/` before it was listed.
+
+### Edited
+
+- `src/app/research-os/page.tsx`: the "§ status" section's first paragraph split into two (the shipped list grew from six items to thirteen: routing with confidence flags, the diagnostic probe, the four-tool workspace with enforced contracts, cognitive forcing with a calibration record, faded guidance with worked examples, lateral reading with an independent second source, the production provenance guard, the teacher review queue and class view, the OneRoster CSV importer, the consent gate and profile with privacy export/delete, the engine bridge with its outbox and campaign caller, the canon sign-off tool, and the pre-registration draft), each naming its doc file inline (`ROUTING.md`, `WORKSPACE.md`, `GUIDANCE.md`, `LATERAL-READING.md`, `PRODUCTION-GUARD.md`, `TEACHER-LAYER.md`, `ROSTER.md`, `ENGINE-BRIDGE.md`, `tools/canon-pipeline/SIGNOFF.md`, `study/`). The "not yet on main" paragraph rewritten to name a Clever/ClassLink roster connector, verified parental consent, a payment to a minor contributor, an LLM-inferred edge applied to the graph without review, applying an accepted production to the live database, and a partner school, replacing the stale "roster sync from a school system" and "canon write-back without a human sign-off" lines both closed by shipped work since. The third paragraph (candidate subjects, repository pointers, pilot/study framing) kept its existing sentences and gained one closing sentence with an inline link, "Read the plan," to `learning/research-os/PLAN-REVISION-3.md` on GitHub.
+- `_intake/research-os-k12/DELETIONS.md`: the two replaced paragraphs' original text preserved verbatim, per this repo's own convention.
+- `_intake/research-os-k12/CHANGELOG.md`: this pass logged.
+
+### Removed
+
+None. No file deleted; the replaced status-section text is preserved verbatim in `_intake/research-os-k12/DELETIONS.md`.
+
+### Verified
+
+`npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean, `/research-os` present in the route manifest at 245 B, the same page-weight class as before this pass (the added text carries no new import, no new client component). `next lint --file src/app/research-os/page.tsx`: clean. `agf-lint-voice-src check src/app/research-os/page.tsx`: 0 violations. Every new `(<code>...</code>)` fragment checked directly against the rendered `.next/server/app/research-os.html` output: no stray space around any parenthesis, confirming the multi-line JSX-text-adjacent-to-tag pattern used here collapses the same way the file's pre-existing status paragraph already does. Manual 400px review: the two new paragraphs share the existing `max-w-2xl`/`text-[15px]`/`leading-[1.75]` classes the other three already use; no new element, no horizontal scroll.
+
+Every shipped item traced to one merged PR: `ROUTING.md`/confidence flags (#27), the diagnostic probe (#21), `WORKSPACE.md`'s enforced contracts (#37), cognitive forcing and the calibration record (#63), `GUIDANCE.md` (#74), `LATERAL-READING.md` (#84, Iteration 26 above), `PRODUCTION-GUARD.md` (#73), `TEACHER-LAYER.md` (#28), `ROSTER.md` (#52), the consent gate and compliance work (#35, #47), the engine bridge's outbox and campaign caller (#14, #30), the canon sign-off tool (#61), and the pre-registration draft (#34, #76). Every not-shipped item traced to its own doc: `ROSTER.md` and `PLAN-REVISION-3.md` item 3 for the Clever/ClassLink stubs, `compliance/README.md` part B item 2 for verified parental consent, `PRODUCTION-GUARD.md`'s own "no payment code" line for the minor-payment gap, `ROUTING.md`'s "never applied by that script" line for both inference scripts, and `PLAN-REVISION-3.md`'s own "No partner school" line, unchanged since that revision.
+
+## Iteration 28: finishing pass and merge to current main
+
+Resumed the same worktree and branch after a spend-limit stop. The preserved wip commit's changelog text carried no meta-commentary hit on a fresh `agf-lint-voice-src`/`agf-lint-voice` pass; nothing to rewrite there. Re-ran the shipped/not-shipped verification against `gh pr list --state merged --limit 200` (97 merged PRs, up from the 60 the prior pass checked): every item still traces to the same PR, and every PR merged since (#85 through #87, all `hte` engineering) is `tools/hypothesis-engine` internal work, none of it a Research OS user-facing feature the status band should name.
+
+### Edited
+
+- `src/app/contributors/lib.ts`: `getAllHandles()` now skips a falsy `author_github` before adding it to the handle set, instead of adding every event's value unconditionally.
+
+### Removed
+
+None.
+
+### Verified
+
+`git fetch origin && git merge origin/main` merged 21 commits (through PR #87) with no conflicts; the diff against `origin/main` afterward held to the same four files this branch already carried. `npm run build` then failed: `generateStaticParams` for `/contributors/[handle]` received an object where a string was required, because PR #87's `predict_register` feed events carry `author_github: null`, and `typeof null === "object"` in JavaScript, so the un-guarded `getAllHandles()` put `null` in its `Set<string>` and `.map((handle) => ({ handle }))` produced one static param with a `null` handle. This predates this branch and touches no Research OS file; fixed with the one-line guard above, the correct read of a system-generated feed event with no human author. `npm ci`, `npx tsc --noEmit`, and `npm run build` all clean after the fix; `/research-os` unchanged in the manifest at 244 B. `next lint --file src/app/research-os/page.tsx --file src/app/contributors/lib.ts`: clean. `agf-lint-voice-src check` on both files: 0 violations.
+
+## PR #117 review: status band refresh and merge
+
+Reviewed `feat/ros-status-band-2` (PR #117) against `main` in worktree `~/agfarms/.ros-worktrees/r117`, branch `review/pr117`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (leak scan, per-claim doc and merged-PR verification, diff-scope check, the `contributors/lib.ts` fix review, voice re-check, the `origin/main` merge and its `CHANGE-LEDGER.md` conflict resolution, and the gate results including the sandboxed `npm run build`'s pre-existing, PR-unrelated Google Fonts network block).
+
+### Verified
+
+- Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
+- Every shipped and not-shipped claim in the status band traced to a merged PR (101 checked) and a supporting line in its named doc; `PLAN-REVISION-3.md` confirmed current (`PLAN-REVISION-4.md` does not exist on `main`).
+- `git diff origin/main...HEAD --stat`: exactly the five files the PR claims, all inside the "§ status" section.
+- `npm ci`, `npx tsc --noEmit`, `next lint` on both touched files, `npm run test:research-os` (30 files, 455 tests, 0 fail): clean.
+- `agf-lint-voice-src check` and `agf-lint-voice check`: 0 violations.
+
+Squash-merged after this pass.

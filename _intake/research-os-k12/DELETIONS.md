@@ -783,3 +783,27 @@ export async function loadLandmask(
   return { width, height, isLand, sample };
 }
 ```
+## 2026-09-11, `src/app/research-os/page.tsx`, status band refresh to current main
+
+**Reason.** Bead-equivalent task: refresh the status band so it states truthfully what is on main today, verified against `gh pr list --state merged --limit 60` and the docs under `learning/research-os/` (`ROUTING.md`, `WORKSPACE.md`, `GUIDANCE.md`, `LATERAL-READING.md`, `PRODUCTION-GUARD.md`, `TEACHER-LAYER.md`, `ROSTER.md`, `ENGINE-BRIDGE.md`, `compliance/`, `study/`, `tools/canon-pipeline/SIGNOFF.md`). The paragraph below named only the `ros-07`-era shipped set (routing, probe, workspace, teacher layer, engine bridge, export/delete, consent gate); it named none of cognitive forcing, faded guidance, lateral reading, the production provenance guard, or the OneRoster CSV importer, all merged to `main` since. Replaced with two paragraphs that name every shipped item this pass confirmed against a merged PR, keeping the same heading and the same lead sentence shape. The "not yet on main" paragraph below it also understated the gap: it named "roster sync from a school system" where a OneRoster CSV importer has since shipped (Clever and ClassLink stay stubs), and it named "canon write-back without a human sign-off" where the sign-off tool has since shipped, but it omitted the LLM-assisted edge-inference proposal path and the absence of a partner school. Replaced with the accurate list. The third paragraph (candidate subjects, repository pointers, pilot/study framing) is unchanged in substance, gaining only a closing sentence and a link to `PLAN-REVISION-3.md`.
+
+**Original text, replaced in the "§ status" paragraph** (the first paragraph, "Design, iteration 2..."):
+
+> Design, iteration 2, September 2026. On main today: frontier-backward
+> routing with confidence flags on a weak edge, a diagnostic probe for
+> a cold-start learner, the four-tool workspace (find, quote, check,
+> organize) with every contract enforced in code, a teacher review
+> queue and class view with an accept path, an engine bridge covered
+> by tests, self-service export and delete of a learner&apos;s own
+> data, and a consent gate in front of every learner-authored write.
+
+**Original text, replaced in the "§ status" paragraph** (the second paragraph, "Not yet on main..."):
+
+> Not yet on main: applying an accepted production to the live
+> database, roster sync from a school system, verified parental
+> consent, a payment to a minor contributor, and canon write-back
+> without a human sign-off.
+
+## 2026-09-14 merge of dev into site-local-2026-09-14
+
+dev commit 65dbde7d0 (#117, "Research OS status band refresh to current main") re-added the status band, five-state table, four tools, frontier, productions, and where-it-sits sections to `src/app/research-os/page.tsx`. The founder removed those sections from this page on 2026-09-14 (entry above), so the merge keeps the landing version. The #117 text is unchanged on `origin/dev` at `git show 65dbde7d0:src/app/research-os/page.tsx`.

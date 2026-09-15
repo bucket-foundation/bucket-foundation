@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2ae9495d362148ad823b8fa3fdffa52d2b63c13f8519d7571001050a24a8c452",
+  "response": {
+    "expected_evidence": [
+      "Peer-reviewed paleoclimate/geology papers proposing a specific volcanic eruption or tephra layer as the trigger for Younger Dryas onset cooling in North America",
+      "Ice-core sulfate/ash spike records (e.g., Greenland GISP2/NGRIP) checked for a large eruption signal synchronous with ~10,950 BP",
+      "Tephrochronology and geochemical fingerprinting studies from North American lake/bog sediment cores attempting to locate/match the proposed ash layer",
+      "Independent replication attempts by separate labs re-testing the original tephra/geochemical or platinum-group-element signatures",
+      "Published rebuttals, comment/reply exchanges, or meta-analyses documenting failure to reproduce the volcanic signal and consequent rejection of the hypothesis",
+      "Radiocarbon and varve-chronology cross-checks used to argue the eruption and the cooling onset are not synchronous"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.85,
+    "rationale": "This hypothesis concerns not primarily an ancient event whose traces had to survive ~13,000 years of taphonomic loss, but a modern scientific episode: a proposed volcanic trigger for Younger Dryas cooling being independently tested and refuted. The primary evidentiary record for 'refutation via independent-replication-failure' is contemporary peer-reviewed literature, conference proceedings, and archived datasets, which are essentially fully preserved in modern journals/repositories rather than subject to Paleolithic-era preservation odds. The underlying physical substrate being contested (tephra/sulfate/geochemical markers in North American sediments and ice cores) maps onto the younger-dryas row of the table: geological=0.65 and material=0.35 are reasonable for whether the original claimed physical evidence itself survived and was locatable, but the table's textual=0.0 for this period reflects the absence of written records from 10,950 BCE, not the absence of the modern scientific paper trail documenting the refutation -- that documentation is near-certain to exist and be discoverable via citation databases and published replication studies. Because the decisive evidence (failed independent replication) is a modern academic-record phenomenon rather than an artifact requiring millennia of preservation, I adjust effective detectability upward from raw table values (which would otherwise wrongly suggest low expected evidence). If no rebuttal/replication-failure literature is found, that is more likely true absence (the refutation did not happen as described, or is mischaracterized) than a preservation artifact, given how well modern scientific debates are archived -- this partly undercuts the standard 'low detectability excuses absence of evidence' logic for the refutation-event portion, while the geological/material rows still apply normally to the underlying Younger Dryas physical substrate being debated."
+  }
+}

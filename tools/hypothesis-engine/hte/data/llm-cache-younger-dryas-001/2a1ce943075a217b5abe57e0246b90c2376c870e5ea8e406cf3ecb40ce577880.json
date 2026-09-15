@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "ad9aaeb2cc70cccab0cee16e7adc7fc627148034041d79aba9eca93f1293235e",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: a North American iridium anomaly at the YD boundary is a core, frequently-cited YDIH claim (Firestone et al. 2007), whereas megafaunal extinction attributed to a Middle-East cosmic airburst is an atypical geographic pairing with weaker documented support; opinions themselves are uninformative (u=1 both)."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: B's interval (-10950) matches the widely cited YD onset chronology (~12.9 ka BP) tied to impact-ejecta claims, while A's interval (-13000 to -12001) predates the standard YDIH dating, making B's temporal placement better aligned with the literature."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: nanodiamond concentrations in Greenland ice cores are a specifically documented YDIH proxy (e.g., Kurbatov et al. 2010), whereas iridium anomalies are more commonly reported from North American terrestrial sites, so B's object-place pairing is better evidenced."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: multi-continent refutation of a cosmic-airburst-driven YD cooling mechanism reflects the substantial mainstream literature failing to replicate impact markers globally, while attributing megafaunal-extinction corroboration to Greenland ice-sheet data is an unusual, poorly supported evidentiary link."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: Mexican lake sites (e.g., Lake Cuitzeo) are actual claimed YDIH impact locales tied to YD cooling onset, whereas a Middle-East iridium anomaly via airburst is a less standard/attested claim in the literature."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: microspherule concentrations reportedly found at Abu Hureyra, Syria (Middle East) are a specific published YDIH claim, while megafaunal-extinction evidence tied to Greenland ice-sheet impact-ejecta is a weaker, less typical evidentiary pairing."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: refutation of cosmic-impact-driven megafaunal extinction across continents is broadly supported by subsequent multidisciplinary studies, while a cosmic-airburst directly triggering AMOC slowdown is a more speculative causal chain versus the standard meltwater-pulse explanation."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: both are plausible but uncertain; North American megafaunal extinction via impact-ejecta is a central (though contested) YDIH claim, while Middle-East population-demography shifts from airburst (e.g., Abu Hureyra) is a narrower, fringe corroborated claim, roughly comparable in support."
+      }
+    ]
+  }
+}

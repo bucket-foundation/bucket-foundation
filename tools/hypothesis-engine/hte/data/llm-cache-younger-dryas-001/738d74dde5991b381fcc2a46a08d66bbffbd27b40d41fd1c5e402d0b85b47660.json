@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fbd7c78ed41486439101b38bfe9a2458ca7416b5aefc014fc9dd99903fc638f5",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum/iridium/nanodiamond or meltglass anomalies in Greenland ice cores (GISP2, GRIP, NGRIP, NEEM) precisely dated to ~10,950 BCE marking an extraterrestrial input spike at the Younger Dryas onset",
+      "Geological/material: correlated Younger Dryas boundary (YDB) layer markers (magnetic microspherules, carbon spherules, soot/char) at terrestrial sites contemporaneous with the ice-core signal",
+      "Astronomical/model_prior: orbital-dynamics reconstructions showing the Taurid meteor stream complex (and any associated large fragmenting body) intersecting Earth's orbit in a geometry consistent with a dense encounter at ~10,950 BCE",
+      "Astronomical: modern observational analogs (e.g. dense Taurid resonant swarm passages, fireball clustering) used to argue the ancient stream could have been massive/dense enough to deliver an impact/airburst cluster",
+      "Geological: abrupt proxy shifts (dust, sea-salt, temperature proxies) in the same ice-core interval indicating rapid climatic perturbation coincident with the proposed encounter",
+      "Material: any preserved impact/airburst debris (spherules, shocked quartz) directly within or near the Greenland ice sheet itself, not just at lower-latitude YDB sites",
+      "Weak/speculative: oral-tradition or iconographic motifs of cosmic catastrophe (low expected weight, very low detectability this period)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The hypothesis sits in the younger-dryas period bucket. The most relevant evidence kinds are geological (0.65) and astronomical (0.7), both comparatively high-detectability channels for this era, and this matches reality: Greenland ice cores spanning ~10,950 BCE do exist and have genuinely been mined for platinum/iridium/nanodiamond anomalies (e.g., Petaev et al. 2013 platinum spike; broader Younger Dryas Impact Hypothesis literature), so absence of such geochemical markers would be moderately informative rather than merely a detection-gap artifact. However, the specific causal claim here is not just 'an extraterrestrial event occurred' but that it was corroborated as a Taurid-stream-complex encounter specifically (mechanism-level attribution). That requires orbital-dynamics modeling of a meteoroid stream's structure ~13,000 years in the past, which is subject to severe chaotic diffusion and is largely reconstructive/theoretical (model_prior, detectability 0.3) rather than directly observable. Material evidence (0.35) and genetic evidence (0.3) are only moderately preservable at this age, and textual/linguistic/iconographic/oral-tradition channels are essentially non-existent for Upper Paleolithic Greenland (0.0-0.1), so failure to find cultural corroboration is fully explained by low detectability, not falsity. Net: the broad 'cooling event with extraterrestrial geochemical signature' claim is testable and has decent survival odds, but the specific 'Taurid complex' attribution (vs. other bolide/comet-fragment hypotheses) is much harder to positively corroborate, pulling the overall adjustment down from the raw geological/astronomical averages (~0.68) to a more conservative ~0.45 that reflects the weaker, model-dependent, and still scientifically contested nature of the mechanism-specific claim (model-prior: this remains an actively disputed hypothesis in the impact-hypothesis literature, not a settled finding)."
+  }
+}

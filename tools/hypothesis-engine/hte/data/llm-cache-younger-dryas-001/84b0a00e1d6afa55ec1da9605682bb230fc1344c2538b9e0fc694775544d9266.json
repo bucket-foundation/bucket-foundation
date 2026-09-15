@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "93403c1c428ec6a057311b4cb661dadea109a7d3a86f01c8d9d1826b297183b8",
+  "response": {
+    "expected_evidence": [
+      "Geological/geochemical impact proxies at the ~12,900 cal BP (10,950 BCE) horizon across North American sites: platinum-group element anomalies, nanodiamonds, magnetic and glassy microspherules, elevated iridium, and a 'black mat' organic-rich layer marking the Younger Dryas boundary",
+      "Marine/lacustrine sediment core evidence for an abrupt freshwater or meltwater pulse into the North Atlantic coincident with the same horizon (foraminiferal oxygen-isotope shifts, ice-rafted debris changes, reduced North Atlantic Deep Water proxies) that would mechanistically link an airburst-triggered ice-sheet disruption to AMOC slowdown",
+      "Astronomical/airburst-specific traces: shocked quartz, high-temperature meltglass, or a candidate crater/strewn field (though a true airburst may leave no crater, only ejecta/thermal signatures)",
+      "Archaeological/material evidence of disruption to Clovis-era human occupation and stratigraphic correlation of megafaunal extinction layers with the impact horizon; widespread continental wildfire/soot and charcoal spikes",
+      "Genetic evidence: population bottleneck or extinction signatures in North American megafauna DNA, and any discontinuity in early Paleoindian genetic lineages around this date",
+      "Oral tradition: Indigenous North American narratives describing catastrophic sky-fire, darkness, or flood events, offered only as weak corroborative color, not proof",
+      "Model-prior literature: the existing Younger Dryas Impact Hypothesis (YDIH) papers proposing a cosmic airburst/impact as trigger for YD cooling and meltwater-driven AMOC weakening, and counter-papers disputing reproducibility of the impact markers"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis dates to exactly the conventional Younger Dryas onset (~12,900 cal BP), so I classified it under the 'younger-dryas' period row rather than leaving it unspecified. Quaternary geology and paleoceanography have good enough temporal resolution and preservation at this timescale that impact-proxy horizons (nanodiamonds, PGE anomalies, spherules, black mats) and AMOC-related sediment proxies are plausibly detectable (geological ~0.65, astronomical ~0.7 per the table) \u2014 and indeed this is precisely the terrain of the real, actively contested Younger Dryas Impact Hypothesis (model-prior, unverified as settled science). However, material/archaeological (0.35) and genetic (0.3) evidence from Paleoindian/megafaunal contexts is sparser and harder to unambiguously tie to a single-year causal event, and oral traditions (0.1) are weak and heavily filtered through millennia of transmission. The core difficulty is not preservation per se but causal specificity: distinguishing an airburst-triggered meltwater/AMOC mechanism from the many competing YD-onset explanations (Lake Agassiz drainage, orbital forcing, internal ocean variability) requires converging multi-proxy evidence that has in practice been reported by some teams but disputed/non-reproduced by others. Given the reasonably high geological/astronomical detectability offset by lower material/genetic detectability and genuine mechanistic ambiguity, I set an aggregate adjustment of 0.5 \u2014 evidence absence should be attributed partly to real detectability limits (especially for a 'no-crater' airburst) and partly to the hypothesis being one of several live scientific alternatives rather than confirmed fact."
+  }
+}

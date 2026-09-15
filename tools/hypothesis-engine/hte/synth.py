@@ -194,7 +194,7 @@ def _quote(actor: str, action: str, object_: str, place: str, mechanism: str, ye
 
 
 def _span(doc_id: str, locator: str, quote: str) -> EvidenceSpan:
-    return EvidenceSpan(doc_id=doc_id, locator=locator, quote=quote, char_start=0, char_end=len(quote))
+    return EvidenceSpan(doc_id=doc_id, locator=locator, quote=quote, char_start=0, char_end=len(quote), doc_length=len(quote))
 
 
 # --------------------------------------------------------------------------

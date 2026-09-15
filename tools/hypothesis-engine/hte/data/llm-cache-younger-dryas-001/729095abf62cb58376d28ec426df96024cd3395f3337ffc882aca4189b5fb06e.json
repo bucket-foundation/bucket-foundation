@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2026fec01a6ed0460e3103ec218988f2d488daf0bd2a4e47d585a8b712955d6c",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: YD boundary layer (~12.9 ka) sediment/ice-core sequences across multiple continents tested for platinum/iridium anomalies, magnetic spherules, nanodiamonds, and soot/charcoal 'black mat' horizons \u2014 refutation would show these are non-reproducible, geochemically terrestrial/volcanic in origin, or confined to local sites rather than globally synchronous",
+      "geological: absence of a confirmed impact crater or ejecta field of appropriate age despite systematic search (e.g., under Greenland ice, seafloor surveys)",
+      "material: archaeological site stratigraphy (e.g., Clovis-era North American sites) showing no abrupt catastrophic destruction layer coincident with YD onset, or showing biomass-burning signatures attributable to climate-driven wildfire/human land use rather than impact winter",
+      "astronomical: cosmic dust/extraterrestrial particle flux records and crater-search survey data (radar, gravimetric, geophysical) inconsistent with a large bolide impact at 12.9 ka",
+      "geological: independent paleoclimate proxies (ice cores, speleothems, lake varves) showing the YD cooling onset pattern is better explained by meltwater/AMOC-shutdown mechanisms than by impact-winter aerosol loading",
+      "genetic: megafaunal extinction and human population genetic bottleneck timing not tightly coupled to a single catastrophic event at 12.9 ka",
+      "model-prior: published peer-reviewed critiques and failed replication studies of the Younger Dryas Impact Hypothesis (Firestone et al. 2007 and follow-ups) \u2014 this is a real, actively contested scientific literature, not directly retrievable from the evidence text provided, so flagged as low-tier/unverified recollection",
+      "oral_tradition: comparative mythology claims linking flood/fire legends to a YD-era impact, which refutation would treat as unsupported or coincidental"
+    ],
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval (-13000 to -12001) falls squarely in the Younger Dryas onset, so the younger-dryas detectability row is the appropriate anchor. The core evidence needed to adjudicate (refute or support) a cosmic-impact/biomass-burning-impact-winter mechanism is geological (0.65) and astronomical (0.7) \u2014 sediment/ice-core boundary layers, geochemical markers, and crater-search data \u2014 both of which are relatively well-preserved and have in fact been the subject of extensive, decades-long multi-continent scientific investigation (this is one of the most intensively sampled Quaternary horizons). Material evidence (0.35) from archaeological sites is moderately detectable, while genetic (0.3), linguistic (0.05), oral_tradition (0.1), iconographic (0.1) and textual (0.0, no writing existed then) evidence are largely irrelevant or undetectable for a 13,000-year-old event by nature of the period, not because the refutation claim is weak. Because the dominant relevant channels (geological, astronomical, material) are moderately-to-well detectable and have already been actively searched by real research programs, an absence of confirming impact signatures is informative rather than merely a preservation artifact \u2014 supporting that the evidence could plausibly have survived and been assessed. I weight the overall adjustment near 0.6, reflecting strong detectability in the geological/astronomical channels that matter most, tempered by near-zero detectability in textual/linguistic channels irrelevant to a pre-literate period. Note: specific claims about actual published refutation studies (e.g., failed nanodiamond replication, terrestrial platinum sourcing) are drawn from general scientific-literature recall (model-prior), not from the evidence text supplied, and should be treated as unverified pending source confirmation."
+  }
+}

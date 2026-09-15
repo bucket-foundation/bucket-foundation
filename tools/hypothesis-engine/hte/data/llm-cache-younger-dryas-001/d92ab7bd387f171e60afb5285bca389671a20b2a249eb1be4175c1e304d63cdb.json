@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "44e38232d7d435f0a9717e066b7e9e52803ed8698fb03f830c3b00fae04cadc2",
+  "response": {
+    "expected_evidence": [
+      "Geological: a synchronous spike in cosmogenic radionuclides (14C, 10Be, 36Cl, 26Al) in ice cores (Greenland/Antarctica), varve sediments, corals, and speleothems dated to ~10,950 BCE, distinct from solar-proton-event (Miyake-type) spikes.",
+      "Geological/chemical: anomalous nitrate or NOx-derived ion layers in polar ice consistent with atmospheric ionization and ozone-layer disruption from a burst of gamma radiation.",
+      "Astronomical: identification of a supernova remnant, compact stellar remnant, or transient source with an age/distance consistent with a lethal gamma-ray flux reaching Earth at that date (a 'smoking gun' progenitor).",
+      "Genetic: mutation-rate anomalies, elevated extinction/bottleneck signatures in North American megafauna and early human (Clovis-era) populations coincident with the event, beyond what is explained by climate change alone.",
+      "Material/archaeological: a North American cultural discontinuity (e.g., Clovis assemblage disruption) at the right stratigraphic horizon, though this alone does not distinguish an impact mechanism from a gamma-ray mechanism.",
+      "Model-prior: existing fringe/speculative literature proposing a nearby supernova or gamma-ray/cosmic-ray event as a driver of Younger Dryas onset, distinguished from the more mainstream bolide/airburst impact hypothesis."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The younger-dryas period bucket gives relatively high detectability for the two evidence kinds that would be most diagnostic of a gamma-ray-ionization mechanism specifically: astronomical (0.7) and geological (0.65), since ice cores, sediments, and tree-ring/coral archives spanning this interval are well preserved and have already been intensively searched for cosmogenic-isotope anomalies (e.g., around the well-documented radiocarbon/10Be spikes used to study this period). Material (0.35) and genetic (0.3) evidence are only moderately detectable and are not mechanism-specific (they would equally support an impact or a purely climatic cause). Textual, oral_tradition, linguistic, and iconographic evidence are essentially undetectable for this pre-literate period (0.0-0.1), so their absence carries no evidentiary weight against the hypothesis. Because the two highest-value evidence classes (astronomical progenitor signatures and geological radionuclide spikes) are well within the range of things that would have been preserved and already searched for by paleoclimate and astrophysics researchers, the current absence of a confirmed matching supernova/GRB progenitor or an isotope spike specifically dated to 10,950 BCE is more informative of the hypothesis's low likelihood than of poor detectability. I set the adjustment at 0.55, weighting toward the moderately-high astronomical/geological detectability while discounting for the mechanism's specificity (a gamma-ray source, as opposed to a generic impact/airburst) which raises the evidentiary bar beyond what the standard Younger Dryas impact debate has already examined. This is a model-prior-informed judgment, not established fact, since the 'gamma-ray-ionization' variant is a low-tier, largely unverified idea in my training data rather than a well-supported mainstream mechanism."
+  }
+}

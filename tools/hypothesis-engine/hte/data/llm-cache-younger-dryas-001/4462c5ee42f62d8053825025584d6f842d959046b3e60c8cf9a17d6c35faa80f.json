@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "8d5536ea16d64d80cde1345ed5d6a6dd22ddf306ab1f0852ade743ca0309ceaa",
+  "response": {
+    "expected_evidence": [
+      "Greenland ice core \u03b418O/\u03b415N stratigraphy (GISP2, GRIP, NGRIP) with annual layer counts spanning the Younger Dryas\u2013Holocene transition",
+      "Discrepancies between ice-core layer-counted chronologies and independent radiocarbon/varve chronologies used to date the YD termination",
+      "Meltwater pulse (e.g., MWP-1B) sea-level/coral records (Barbados, Tahiti) and attempts to correlate their timing with the Greenland ice record",
+      "Tephra/volcanic ash marker horizons used as cross-dating tie-points between ice cores and terrestrial/marine sequences",
+      "Cosmogenic isotope (10Be, 36Cl) production records used to independently constrain ice-core age models",
+      "Published stratigraphic/geochronological literature explicitly discussing dating uncertainty or lack of consensus on meltwater-pulse/YD-termination synchrony",
+      "Lake and marine sediment varve or laminae counts from the North Atlantic region correlated (or failing to correlate) with the ice-core timeline"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.62,
+    "rationale": "This hypothesis is not about a cultural or behavioral event but about a documented scientific/dating uncertainty concerning the correlation of a meltwater pulse with the Younger Dryas termination as recorded in the Greenland ice sheet. The interval given (-12850 to -5950) spans the tail end of the Younger Dryas period-bucket into the early Holocene bucket, so the relevant detectability rows are ('younger-dryas', 'geological')=0.65, ('younger-dryas', 'astronomical')=0.70, ('early-holocene', 'geological')=0.60, ('early-holocene', 'astronomical')=0.65, with material evidence (0.35\u20130.45) as a secondary channel; textual, linguistic, oral_tradition, and iconographic channels are essentially inapplicable (near 0) since this predates and is unrelated to human record-keeping. Unlike most prehistoric hypotheses, this one concerns a physical/geological archive \u2014 polar ice sheets are among the best-preserved, highest-resolution paleoclimate records available, with annual-layer-counted chronologies, isotopic proxies, and cross-checked cosmogenic/tephra tie-points. This makes the relevant 'geological' and 'astronomical' (radiometric/isotopic dating) channels unusually reliable and well-preserved compared to typical Pleistocene/early-Holocene hypotheses about human activity, culture, or events lacking a durable physical medium. The 'inconclusive'/'dating-uncertainty' framing of the hypothesis itself is consistent with real, documented scientific debate (model-prior, unverified: I recall there being genuine literature-level disagreement about precise synchroneity between meltwater pulses like MWP-1B and the YD termination as seen in Greenland ice cores, but I cannot cite specific studies with confidence from training alone). Given the strong preservation of ice-core and associated geological/astronomical archives, I raise the suggested detectability adjustment above the raw table averages (which are dragged down by irrelevant textual/oral/iconographic categories) to ~0.62, reflecting that absence of a clean resolution to the dating uncertainty is better explained by genuine scientific ambiguity in an otherwise highly detectable archive, not by poor preservation or low detectability."
+  }
+}

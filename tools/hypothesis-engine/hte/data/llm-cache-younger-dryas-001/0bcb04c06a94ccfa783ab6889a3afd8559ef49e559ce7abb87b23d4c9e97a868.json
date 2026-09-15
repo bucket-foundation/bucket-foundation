@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "9212841c8a67bd6bdfc9fcc6d60a0f91fef13552162a3141818297563884434d",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a thin stratigraphic horizon (the proposed Younger Dryas Boundary layer, ~12,900 cal BP) containing meltglass, vesicular carbon spherules, magnetic/iron-rich spherules, and platinum-group element anomalies at multiple North American sites",
+      "Geological: nanodiamonds (e.g., lonsdaleite, cubic diamonds) embedded in sediment or bound in carbon matrices at the same horizon",
+      "Material/archaeological: melted or shocked quartz grains, high-temperature melt-glass associated with Clovis-age or terminal Paleoindian occupation layers",
+      "Astronomical/geophysical: an identifiable impact crater, airburst signature, or independently dated bolide fragment consistent with an impact/airburst event circa 10,950 BCE (none confirmed to date)",
+      "Geological: correlated black mat layers marking abrupt faunal extinction/ecological disruption coincident with the proposed impact horizon",
+      "Model-prior (low-tier, from training not the provided evidence text): this matches the long-debated 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), where meltglass/spherule/nanodiamond evidence has been reported at dozens of sites but is heavily contested by independent labs failing to replicate findings, and no confirmed impact crater exists"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10950 aligns closely with the Younger Dryas onset (~12,900 cal BP), so the younger-dryas detectability row is the best match despite the period field being unspecified. Geological evidence (0.65 baseline) is the most relevant channel: impact-ejecta layers, meltglass, spherules, and nanodiamonds are physically durable and have plausibly survived in stratified sediments, which is consistent with the fact that such evidence has actually been reported by proponents at numerous sites across North America and beyond. However, direct astronomical/crater evidence (0.7 baseline) has notably NOT been found despite intensive search, which is itself informative \u2014 either no crater exists (favoring an airburst-only mechanism, or falsifying the hypothesis) or it is submerged/eroded/ice-covered and undetected. Material culture evidence (0.35 baseline) is lower-yield since Paleoindian sites are sparse and disturbance/taphonomy limits preservation. I slightly reduce the blended adjustment to 0.55 from the raw geological figure to account for the mixed, multi-channel nature of the claim (requiring corroboration across geological, astronomical, and material lines) and the well-documented replication failures in independent labs, which lower confidence that any positive detections reflect a real impact event rather than terrestrial/anthropogenic contamination or misidentification. This low-to-moderate detectability score should be weighed before treating absence of a confirmed crater as strong evidence against the hypothesis, since airburst events need not leave a crater at all, and existing claimed meltglass/spherule finds remain unresolved rather than absent \u2014 genuine controversy, not silence, characterizes this evidentiary record. Caveat: interpretation of the YD impact debate is drawn from model-prior (training knowledge), not from the evidence text supplied, and should be treated as low-tier and unverified within this pipeline."
+  }
+}

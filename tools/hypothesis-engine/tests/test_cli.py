@@ -93,6 +93,137 @@ def test_calibrate_command_fit_grid(tmp_path):
     assert result["n_covered_events"] > 0
 
 
+def _assert_no_artifact_says_generic_corpus(root: Path) -> None:
+    # The exact defect: `write_calibration`'s own placeholder default
+    # (`result.get("corpus_name", "this corpus")`) leaking into a real
+    # report's `Corpus:` line. This matches the full line rather than a
+    # bare "this corpus" substring, because that phrase also shows up in
+    # legitimate prose elsewhere (`choose_holdout_mode`'s k-fold reason:
+    # "...(this corpus's own documented simplification)..."), a usage
+    # this fix leaves alone.
+    for path in root.rglob("*"):
+        if path.is_file():
+            assert "Corpus: this corpus" not in path.read_text(errors="ignore"), path
+
+
+def test_calibrate_command_names_the_real_corpus_not_the_generic_placeholder(tmp_path):
+    """PR #85 follow-up: `_cmd_calibrate` threaded no `corpus_name` into
+    `calibrate.run_holdout`/`run_calibration`, so a real `CALIBRATION.md`
+    read `Corpus: this corpus` regardless of `--corpus`. `--corpus
+    production` (`hte.corpus.production.load`, no network) must name
+    itself in the report instead."""
+    rc = cli.main(["calibrate", "--corpus", "production", "--out", str(tmp_path)])
+    assert rc == 0
+    assert "Corpus: production" in (tmp_path / "CALIBRATION.md").read_text()
+    _assert_no_artifact_says_generic_corpus(tmp_path)
+
+
+def test_campaign_run_calibration_names_the_real_corpus(tmp_path, monkeypatch):
+    """Same follow-up, `hte.runner.run_campaign`'s own post-run calibration
+    call site: it also threaded no `corpus_name`, so a real campaign's
+    `CALIBRATION.md` read the generic placeholder too."""
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    rc = cli.main([
+        "campaign", "run", "--corpus", "fixtures", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "5",
+        "--max-hypotheses", "8", "--tournament-rounds", "1", "--resolution", "century",
+    ])
+    assert rc == 0
+    run_dirs = [p for p in (tmp_path / "fixtures").iterdir() if p.is_dir()]
+    assert len(run_dirs) == 1
+    assert "Corpus: fixtures" in (run_dirs[0] / "CALIBRATION.md").read_text()
+    _assert_no_artifact_says_generic_corpus(run_dirs[0])
+
+
+# --------------------------------------------------------------------------
+# campaign results (`bkt-hte-survivors-artifact`)
+# --------------------------------------------------------------------------
+
+
+def test_campaign_results_writes_per_actor_and_top_with_no_absolute_paths(tmp_path, monkeypatch):
+    # `production` (not `fixtures`): this exact flag set's own critic
+    # pass keeps 4 of `production`'s hypotheses and none of `fixtures`'
+    # own, checked empirically and deterministically against both
+    # corpora (`tests/test_runner.py`'s own identical config comment);
+    # a survivors count of zero would let the shape assertions below
+    # pass vacuously over empty collections.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    rc = cli.main([
+        "campaign", "run", "--corpus", "production", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "1", "--combinatorial-max-items", "1",
+        "--max-hypotheses", "5", "--tournament-rounds", "1",
+    ])
+    assert rc == 0
+    run_dirs = [p for p in (tmp_path / "production").iterdir() if p.is_dir()]
+    assert len(run_dirs) == 1
+    run_dir = run_dirs[0]
+
+    out_path = tmp_path / "results.json"
+    rc = cli.main(["campaign", "results", str(run_dir), "--out", str(out_path)])
+    assert rc == 0
+    assert out_path.is_file()
+
+    result = json.loads(out_path.read_text())
+    assert result["run_id"] == run_dir.name
+    assert result["campaign"] == "production"
+    assert result["corpus"] == "production"
+    assert isinstance(result["counts"], dict)
+    assert result["source_run"]["run_id"] == run_dir.name
+
+    assert isinstance(result["per_actor"], dict)
+    assert result["per_actor"]  # the production corpus's own survivors name a real ACTOR
+    for row in result["per_actor"].values():
+        assert set(row) >= {"max_P", "min_u", "best_elo", "n_survivors", "profile_projections"}
+        assert set(row["profile_projections"]) == {"consensus", "skeptic", "fringe", "uniform"}
+
+    assert 0 < len(result["top"]) <= 10
+    for entry in result["top"]:
+        assert set(entry) >= {"hypothesis_id", "address", "opinion", "elo", "robustness"}
+    elos = [e["elo"] for e in result["top"]]
+    assert elos == sorted(elos, reverse=True)
+
+    assert result["self_report"]
+
+    raw_text = out_path.read_text()
+    assert str(tmp_path) not in raw_text, "campaign results must carry no absolute path"
+
+
+def test_campaign_results_over_a_run_with_no_calibration_still_writes(tmp_path):
+    """A hand-built run directory carrying only `MANIFEST.json` and
+    `survivors.json` (no `calibration.json`, no `self-report.json`):
+    `campaign results` reads every one of those three files as optional
+    past the manifest itself, per `_cmd_campaign_results`'s own
+    docstring, rather than refusing over a partial run directory."""
+    run_dir = tmp_path / "runs" / "camp" / "20260101T000000Z"
+    run_dir.mkdir(parents=True)
+    (run_dir / "MANIFEST.json").write_text(json.dumps({
+        "campaign": "camp", "corpus": "fixtures", "git_sha": "abc1234",
+        "counts": {"n_survivors": 1},
+    }))
+    (run_dir / "survivors.json").write_text(json.dumps({
+        "artifact_version": "1.0.0", "campaign": "camp", "corpus": "fixtures",
+        "survivors": [{
+            "hypothesis_id": "h1", "address": 1,
+            "slots": {"ACTOR": "actor-0"},
+            "opinion": {"b": 0.5, "d": 0.1, "u": 0.4, "a": 0.3, "P": 0.62},
+            "elo": 1550.0,
+            "preservation": {"could_have_survived": True},
+            "robustness": {"projections": {"consensus": 0.6, "skeptic": 0.5, "fringe": 0.55, "uniform": 0.4}, "stable": True},
+        }],
+    }))
+
+    out_path = tmp_path / "results.json"
+    rc = cli.main(["campaign", "results", str(run_dir), "--out", str(out_path)])
+    assert rc == 0
+    result = json.loads(out_path.read_text())
+    assert result["calibration"] is None
+    assert result["self_report"] == {}
+    assert result["per_actor"]["actor-0"]["n_survivors"] == 1
+    assert result["per_actor"]["actor-0"]["best_elo"] == 1550.0
+    assert result["top"][0]["hypothesis_id"] == "h1"
+    assert str(tmp_path) not in out_path.read_text()
+
+
 def test_views_command_rewrites_timeline_md(tmp_path):
     views = {"bins": [], "event_views": [], "pair_views": []}
     (tmp_path / "timeline.json").write_text(json.dumps(views))

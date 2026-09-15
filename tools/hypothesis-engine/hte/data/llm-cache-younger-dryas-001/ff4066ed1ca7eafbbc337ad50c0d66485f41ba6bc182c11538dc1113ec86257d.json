@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "08d966efa496aa68dfd81a40dc4b187ba2fec6da116672acec21335efbb32755",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.55,
+        "rationale": "Model-prior: A rests on a directly measured proxy (Pt spike in Greenland ice, cf. Petaev et al.) while B asserts the more contested causal claim that impact triggered continent-wide YD cooling, a mechanism mainstream climatology instead attributes to meltwater/AMOC forcing."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.55,
+        "rationale": "Model-prior: A makes a specific, literature-matched claim (YDB meltglass reported in N. America, Wittke et al.) while B's 'other-action' verb is uninformatively vague, giving A a slight edge in evidentiary specificity."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.4,
+        "rationale": "Model-prior: 'corroborated' megafaunal-extinction causation is one of the weakest, most contested links in YDIH (mainstream favors climate/overhunting), whereas nanodiamond concentration is at least a recurrently reported (if disputed) direct physical proxy, favoring B slightly."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.55,
+        "rationale": "Model-prior: Pt anomalies in European YDB sites are a repeatedly cited evidence line, whereas nanodiamonds are more typically reported in terrestrial sediment than in Greenland ice cores, making A's placement marginally better matched to known reporting."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.45,
+        "rationale": "Model-prior: microspherule concentration in N. America via airburst matches original YDB claims (Firestone et al.) but is heavily disputed on reproducibility; the refutation of impact-driven megafaunal extinction across continents aligns with a fairly broad mainstream critical consensus, tilting slightly toward B."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.6,
+        "rationale": "Model-prior: multi-continent platinum anomalies are among the more robustly repeated YDB findings, while claiming the impact 'triggered' YD cooling confined to North America both overstates causation and understates the event's broader hemispheric scope."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.55,
+        "rationale": "Model-prior: A's ejecta-fallout-to-cooling mechanism is at least logically coherent (dust-driven impact winter), whereas B pairs nanodiamonds with a biomass-burning mechanism and an unusual Greenland ice-core location, a less coherent proxy-mechanism match."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.6,
+        "rationale": "Model-prior: multiple published critiques refute a causal cosmic-impact origin for YD cooling in favor of meltwater/ocean-circulation forcing, aligning with A, while B's claim of impact-triggered cooling localized to Mexico is a narrower, less-supported causal assertion."
+      }
+    ]
+  }
+}

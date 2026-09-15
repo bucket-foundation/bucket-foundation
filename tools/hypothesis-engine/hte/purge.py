@@ -4,13 +4,14 @@ engine ever derived from one production id (`docs/PRIVACY.md`).
 Four landing spots, each its own pass, none needing another to succeed:
 
 1. **Run directories** under `runs_root` (`hte.runner.run_campaign`'s own
-   `MANIFEST.json`/`timeline.json`/`self-report.json`/`run.log`). A run
-   whose `MANIFEST.json["provenance"]["production_ids"]` names only this
-   one id is deleted whole; a run naming this id alongside others is
-   redacted in place: `MANIFEST.json`'s own `by_production[<id>]` entry
-   (which carries this production's quotes/labels/learner id in clear
-   text) is removed, and every occurrence of those quotes/labels inside
-   `timeline.json`/`self-report.json`/`run.log` is blotted out with a
+   `MANIFEST.json`/`timeline.json`/`self-report.json`/`survivors.json`/
+   `run.log`). A run whose `MANIFEST.json["provenance"]["production_ids"]`
+   names only this one id is deleted whole; a run naming this id
+   alongside others is redacted in place: `MANIFEST.json`'s own
+   `by_production[<id>]` entry (which carries this production's
+   quotes/labels/learner id in clear text) is removed, and every
+   occurrence of those quotes/labels inside `timeline.json`/`self-
+   report.json`/`survivors.json`/`run.log` is blotted out with a
    `[redacted:<id>]` marker, a literal substring match against each
    file's own text rather than a parse into any particular JSON shape
    (`hte.generate`/`hte.link`/`hte.runner` are under review on other
@@ -46,10 +47,11 @@ is never treated as "nothing to purge here": since this module cannot
 parse it, it cannot rule out that file carrying the purged production's
 own text, so the path and the exception's class land in the report's
 own `unreadable` list instead. A redaction `_redact_file` refuses
-because writing it would corrupt `timeline.json`/`self-report.json`
-lands the same way, in `redaction_refused`. Either list non-empty means
-the purge cannot be certified complete: `report["complete"]` is `False`
-and `hte purge`'s own CLI exits non-zero, since learner text this call
+because writing it would corrupt `timeline.json`/`self-report.json`/
+`survivors.json` lands the same way, in `redaction_refused`. Either
+list non-empty means the purge cannot be certified complete:
+`report["complete"]` is `False` and `hte purge`'s own CLI exits
+non-zero, since learner text this call
 was supposed to remove may remain on disk.
 
 Every artifact here is addressed by **production id**, never a raw
@@ -180,11 +182,12 @@ def _purge_run(manifest_path: Path, production_id: str, *, dry_run: bool) -> dic
     this production's quotes/labels/learner id in clear text, so
     removing the id from the summary lists alone would leave the actual
     text sitting right next to it); `timeline.json`/`self-report.json`/
-    `run.log` each get every occurrence of that production's own quotes
-    and slot labels blotted out (`_redact_file`), and a file where
-    `_redact_file` refused the write (would corrupt otherwise-valid
-    JSON) lands in this report's own `redaction_refused` list rather
-    than being dropped from `files_redacted` with no other trace."""
+    `survivors.json`/`run.log` each get every occurrence of that
+    production's own quotes and slot labels blotted out (`_redact_file`),
+    and a file where `_redact_file` refused the write (would corrupt
+    otherwise-valid JSON) lands in this report's own `redaction_refused`
+    list rather than being dropped from `files_redacted` with no other
+    trace."""
     try:
         manifest = _load_json(manifest_path)
     except (OSError, json.JSONDecodeError) as exc:
@@ -213,7 +216,9 @@ def _purge_run(manifest_path: Path, production_id: str, *, dry_run: bool) -> dic
 
     files_redacted = []
     redaction_refused = []
-    for name, validate_json in (("timeline.json", True), ("self-report.json", True), ("run.log", False)):
+    for name, validate_json in (
+        ("timeline.json", True), ("self-report.json", True), ("survivors.json", True), ("run.log", False),
+    ):
         outcome = _redact_file(run_dir / name, variants, marker, validate_json=validate_json, dry_run=dry_run)
         if outcome == "redacted":
             files_redacted.append(name)
@@ -436,8 +441,8 @@ def purge(
     `report["unreadable"]` names every `MANIFEST.json`, bridge export,
     or feed402 envelope this call could not parse (`{"path", "error"}`
     per entry); `report["redaction_refused"]` names every
-    `timeline.json`/`self-report.json` a redaction would have corrupted
-    (`{"run_dir", "file", "reason"}` per entry). Either non-empty means
+    `timeline.json`/`self-report.json`/`survivors.json` a redaction would
+    have corrupted (`{"run_dir", "file", "reason"}` per entry). Either non-empty means
     `report["complete"]` is `False` and `report["warning"]` explains
     that learner text for `production_id` may remain in one of those
     files: this call never folds "could not check" into "nothing here."

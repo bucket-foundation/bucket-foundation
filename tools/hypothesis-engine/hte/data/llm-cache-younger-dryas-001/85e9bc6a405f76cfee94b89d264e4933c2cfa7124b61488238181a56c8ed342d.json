@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2b5152147319dcd682efefecd95ba3fc1a1945f8e4e97b3c6ab2b4f171b633b8",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: a stratigraphic Younger Dryas boundary (YDB) layer ~12,900 cal BP containing elevated iridium/platinum, magnetic and glassy spherules, nanodiamonds, and a subsequent 'black mat' organic-rich layer marking abrupt ecological change",
+      "astronomical: identification of an impact crater or airburst structure in or near North America dated to ~10,950 BCE (no confirmed crater currently accepted; candidates like the Hiawatha crater are disputed and dated differently)",
+      "material: abrupt discontinuity in megafauna bone assemblages and Clovis-era archaeological sites (reduced site density, charcoal/soot layers, burned material at the YDB horizon)",
+      "genetic: population bottleneck or extinction signatures in North American megafauna mitochondrial/ancient DNA records dated to the Younger Dryas onset, and possible human population bottleneck signals",
+      "oral_tradition: indigenous North American narratives describing catastrophic fire, darkness, or sky-events (weak, highly contested, hard to date/attribute reliably to this specific event)",
+      "model-prior (low-tier, from training recall not the supplied evidence text): the broader Younger Dryas Impact Hypothesis literature reporting nanodiamond/platinum anomalies at numerous sites, and the ongoing scientific controversy/rebuttals questioning reproducibility of these markers"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The point-interval (-10950) corresponds to the Younger Dryas onset, so the 'younger-dryas' row is the appropriate detectability basis rather than 'upper-paleolithic' broadly. Geological (0.65) and astronomical (0.7) evidence categories already score high in that row, reflecting that geochemical/stratigraphic markers (iridium/platinum anomalies, spherules, nanodiamonds, black mats) are the primary evidence type for this hypothesis and such sedimentary layers can plausibly persist ~13,000 years and have in fact been reported at many sites (model-prior, from training recall of the Younger Dryas Impact Hypothesis literature \u2014 treat as unverified). However, the specific sub-claim of an actual impact structure or ejecta-source crater in North America is much less detectable: any crater would likely have been under the Laurentide ice sheet at 10,950 BCE, making it highly susceptible to glacial erosion, burial under sediment/ice, or complete destruction, which suppresses astronomical/crater-based detectability well below the generic 0.7 baseline. Material and genetic lines (megafauna bone beds, DNA bottlenecks) are moderately detectable but confounded by co-occurring climate-driven extinction drivers, making attribution to a single-year cosmic-impact trigger difficult even when the extinction signal itself is found. Oral tradition evidence is essentially undetectable/unverifiable at this time depth (0.1) and should not be treated as informative either way. Overall, absence of a confirmed crater or unambiguous ejecta layer should NOT be treated as strong evidence against the hypothesis, given plausible taphonomic destruction (ice cover, erosion, reworking) and the genuinely contested, still-unresolved state of the underlying YDIH literature; a moderate composite detectability (~0.55) balances the higher geological/astronomical baseline against the specific burial/erosion problem for direct impact-source evidence."
+  }
+}

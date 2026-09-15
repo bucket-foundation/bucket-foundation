@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "aa92d4e20428adb31a58f2bfa4a0b8863a5b594a67201e32a3c4e9c42f4e4069",
+  "response": {
+    "expected_evidence": [
+      "Geological: a distinct Younger Dryas boundary layer (about 12900 cal BP, matching -10950) containing platinum and iridium anomalies, magnetic and glassy spherules, nanodiamonds, and black-mat organic-rich horizons found across multiple continents (North America, Europe, parts of Asia and South America)",
+      "Astronomical/geophysical: traces consistent with a low-altitude cometary or asteroidal airburst (shocked quartz, melt glass, unusual isotopic ratios) rather than a discrete impact crater, since airbursts leave no crater",
+      "Material/archaeological: abrupt discontinuity in Clovis-era or regional equivalent lithic industries, sudden megafaunal bone-bed die-offs, burned layers, or charcoal spikes indicating continent-scale wildfires coincident with the boundary",
+      "Genetic: bottleneck or extinction signatures in ancient DNA of megafauna species dating to the same narrow window, and possibly a coincident human population bottleneck",
+      "Oral tradition: flood, fire, or sky-catastrophe myths in geographically dispersed cultures interpreted as distant folk-memory echoes, though this is weak given the roughly 13000-year gap to any recorded transmission",
+      "Iconographic: rare Upper Paleolithic art motifs speculatively linked to celestial catastrophe, though such claims are highly speculative and mostly postdate this interval"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "This hypothesis matches the well-known and still contested Younger Dryas Impact Hypothesis, dated to the Younger Dryas onset around 10950 BCE. Per the detectability table, geological (0.65) and astronomical (0.7) proxies are the most likely to survive and be detectable for this period, which aligns with the actual empirical record: literature I recall from training (a model-prior source, not verified against a supplied evidence corpus here) reports platinum and iridium anomalies, nanodiamonds, and black mats at multiple Younger Dryas boundary sites on several continents. Material (0.35) and genetic (0.3) evidence are moderately detectable and also partially attested in this recollection, such as Clovis-era disruption and megafaunal bottlenecks, though causally ambiguous. Textual (0.0) and linguistic (0.05) evidence are essentially impossible this far back, and oral tradition (0.1) and iconographic (0.1) evidence are too indirect and low-fidelity over a roughly 13000-year gap to be probative, so their absence should not be read as evidence against the hypothesis. Weighting toward the higher-detectability geological, astronomical, and material channels most relevant to an airburst mechanism, I suggest an aggregate detectability adjustment of about 0.45, high enough that real evidence, if the hypothesis were true, plausibly could and largely has survived and been found, but low enough via the near-zero textual, linguistic, and oral channels that absence of confirmatory cultural-memory or crater evidence should not be weighed strongly against the hypothesis. Note: specifics of the empirical findings referenced here rely on model-prior training knowledge and are not independently verified within this task's evidence base."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2079723c4471a5a9bd9d4978ead07ecd2bd66147289613c977e608b0dc4b907a",
+  "response": {
+    "expected_evidence": [
+      "geological: Younger Dryas Boundary black mat layer at approximately 12.8 ka across North American sites with elevated nanodiamond concentrations",
+      "geological: associated magnetic microspherules, platinum group element anomalies, and carbon spherules in the same horizon",
+      "geological: melt glass and impact spherule fields co-located with the nanodiamond layer",
+      "material: Clovis era occupation layers showing cultural discontinuity coincident with the boundary layer",
+      "material: megafaunal bone assemblages clustering at an extinction horizon near the same stratum",
+      "astronomical: modeling of a plausible airburst or fragmented comet impactor consistent with continent wide ejecta dispersal without a single confirmed crater",
+      "genetic: population bottleneck signals in megafauna near 12.9 to 12.8 ka",
+      "model_prior: the contested Younger Dryas Impact Hypothesis literature, recalled from training and treated as unverified"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.62,
+    "rationale": "This hypothesis aligns with the younger-dryas period row since the interval [-13000,-12001] brackets the accepted ~12.9-11.7 ka onset/black-mat boundary. Nanodiamond, microspherule, and platinum-group-element residues are geological/mineralogical signals that survive well in fine sediment even without organic preservation, matching the table's relatively high geological detectability (0.65) for this period. Astronomical detectability is also elevated (0.7), since ejecta-dispersal and airburst modeling is a mature analytical method that does not require a physical crater to be diagnostic. Material (0.35) and genetic (0.3) channels are weaker because Clovis-era organic remains and ancient extinction-genetic signals are taphonomically fragile over 13,000 years. Per an unverified model-prior recalled from training, nanodiamond/platinum-anomaly evidence has in fact been reported at multiple North American sites in real published literature (e.g., Firestone et al. 2007 and follow-ups), though independent replication has been inconsistent and contested by other geoarchaeological teams. This means any absence of universal confirmation (no confirmed crater, mixed replication) is plausibly explained by genuinely low expected detectability for an airburst event, which need not leave a crater, and by real measurement difficulty, rather than by the hypothesis being false. Because the core claim (nanodiamond concentration) sits specifically in the best-preserved channels (geological/astronomical) rather than the weaker material/genetic ones, I set the aggregate detectability adjustment slightly above the unweighted row average, at 0.62."
+  }
+}

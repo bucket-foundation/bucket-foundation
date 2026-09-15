@@ -18,7 +18,7 @@ from __future__ import annotations
 import json
 
 import pytest
-from hypothesis import HealthCheck, given, settings
+from hypothesis import HealthCheck, assume, given, settings
 from hypothesis import strategies as st
 
 from hte.corpus import research_os_outbox
@@ -87,9 +87,40 @@ def test_resolve_credentials_prefers_explicit_args_over_env(monkeypatch, url, ke
 @_MONKEYPATCH_GIVEN
 def test_resolve_credentials_error_never_echoes_a_supplied_key(monkeypatch, secret_key):
     monkeypatch.delenv("SUPABASE_URL", raising=False)
+    # FINDING-2026-09-14-701: `_resolve_credentials`'s missing-credential
+    # message is a fixed string naming this module, `hte.corpus.
+    # research_os_outbox`, with no interpolation of `key` anywhere in its
+    # source. A Hypothesis-generated `secret_key` that happens to match a
+    # substring of that fixed text (`"research"`, `"environment"`, ...)
+    # fails this assertion without the module ever having echoed anything;
+    # the boilerplate collision is unrelated to the real property under
+    # test, so it is excluded here rather than asserted away.
+    with pytest.raises(RuntimeError) as baseline_info:
+        research_os_outbox._resolve_credentials(None, "")
+    assume(secret_key not in str(baseline_info.value))
+
     with pytest.raises(RuntimeError) as exc_info:
         research_os_outbox._resolve_credentials(None, secret_key)
     assert secret_key not in str(exc_info.value)
+
+
+def test_resolve_credentials_boilerplate_collision_is_not_a_real_leak(monkeypatch):
+    """FINDING-2026-09-14-701's own reproduction: `secret_key="research"`
+    made the property above fail, because the module's own name (`hte.
+    corpus.research_os_outbox`) shares that substring with the fixed
+    missing-credential message. Confirmed here directly, outside
+    Hypothesis, so the collision stays documented as a fixed-message
+    artifact rather than the credential being echoed: the same message
+    fires whatever `key` is, and a key that shares no substring with it
+    never appears in the raised text."""
+    monkeypatch.delenv("SUPABASE_URL", raising=False)
+    with pytest.raises(RuntimeError) as exc_info:
+        research_os_outbox._resolve_credentials(None, "research")
+    assert "research" in str(exc_info.value)  # present via the module's own name
+
+    with pytest.raises(RuntimeError) as exc_info2:
+        research_os_outbox._resolve_credentials(None, "xyzzy-not-a-boilerplate-word")
+    assert "xyzzy-not-a-boilerplate-word" not in str(exc_info2.value)
 
 
 def test_resolve_credentials_raises_when_either_is_missing(monkeypatch):
@@ -220,3 +251,68 @@ def test_load_never_raises_over_a_random_mixed_batch(monkeypatch, specs):
     monkeypatch.setattr(research_os_outbox.urllib.request, "urlopen", lambda request, timeout=30: _FakeResponse(rows))
     corpus = research_os_outbox.load(url="https://example.supabase.co", key="k")
     assert_corpus_invariants(corpus)
+
+
+# ---------------------------------------------------------------------------
+# fetch_unconsumed_rows / mark_consumed: a failed request surfaces as
+# RuntimeError naming the table, never the bare urllib exception
+# ---------------------------------------------------------------------------
+
+
+@given(table=st.from_regex(r"[a-z_]{3,20}", fullmatch=True))
+@_MONKEYPATCH_GIVEN
+def test_fetch_unconsumed_rows_wraps_urlerror_in_runtimeerror(monkeypatch, table):
+    def fail_urlopen(request, timeout=30):
+        raise research_os_outbox.urllib.error.URLError("connection refused")
+
+    monkeypatch.setattr(research_os_outbox.urllib.request, "urlopen", fail_urlopen)
+    with pytest.raises(RuntimeError) as exc_info:
+        research_os_outbox.fetch_unconsumed_rows(url="https://example.supabase.co", key="k", table=table)
+    assert table in str(exc_info.value)
+    assert "connection refused" in str(exc_info.value)
+
+
+@given(table=st.from_regex(r"[a-z_]{3,20}", fullmatch=True))
+@_MONKEYPATCH_GIVEN
+def test_mark_consumed_wraps_urlerror_in_runtimeerror(monkeypatch, table):
+    def fail_urlopen(request, timeout=30):
+        raise research_os_outbox.urllib.error.URLError("connection refused")
+
+    monkeypatch.setattr(research_os_outbox.urllib.request, "urlopen", fail_urlopen)
+    with pytest.raises(RuntimeError) as exc_info:
+        research_os_outbox.mark_consumed(["id-1"], url="https://example.supabase.co", key="k", table=table)
+    assert table in str(exc_info.value)
+    assert "connection refused" in str(exc_info.value)
+
+
+# ---------------------------------------------------------------------------
+# _stamp_corpus_provenance: a row with no resolvable id is skipped, not
+# crashed on. `_build`'s own call path never reaches this branch (a row
+# with no id already fails `Production.from_dict` and is isolated into
+# `skipped` before `good_rows`/`_stamp_corpus_provenance` ever sees it,
+# `tests/test_corpus_research_os_outbox.py::
+# test_build_skips_a_row_with_no_id_without_raising`), so this calls the
+# module function directly with a row shape `_build` itself never passes
+# it, to exercise the defensive `if not production_id: continue` branch
+# on its own terms.
+# ---------------------------------------------------------------------------
+
+
+@given(
+    row_id=_id_st,
+    bad_row=st.fixed_dictionaries({}) | st.fixed_dictionaries({"id": st.just("")}) | st.fixed_dictionaries({"id": st.none()}),
+)
+@settings(deadline=None)
+def test_stamp_corpus_provenance_skips_a_row_with_no_resolvable_id(row_id, bad_row):
+    good = _row(row_id, "accepted")
+    corpus, good_ids, _skipped = research_os_outbox._build([good], research_os_outbox.DEFAULT_TABLE, "draft")
+    assert good_ids == [row_id]
+    before_source = corpus.sources[row_id]
+    before_production_id, before_learner_id = before_source.production_id, before_source.learner_id
+
+    research_os_outbox._stamp_corpus_provenance(corpus, [bad_row])
+
+    # the malformed row stamped nothing new onto the corpus, and the
+    # earlier good row's own stamp is untouched
+    assert corpus.sources[row_id].production_id == before_production_id
+    assert corpus.sources[row_id].learner_id == before_learner_id

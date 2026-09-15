@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f923e6c62927c17d2b874d65e22b0edd01bd0f2de3d68cb1b73dcf70b81f1cb6",
+  "response": {
+    "expected_evidence": [
+      "Geological: elevated iridium/platinum-group-element anomalies, magnetic microspherules, and nanodiamond concentrations in a distinct Younger Dryas boundary (YDB) layer across multiple North American stratigraphic sites",
+      "Geological: a confirmed impact crater or field of craters (or subglacial equivalent) dated to ~12,900 cal BP",
+      "Material: 'black mat' organic-rich layers immediately overlying the last in-situ megafaunal remains and Clovis-era artifacts, marking abrupt faunal/cultural discontinuity",
+      "Material: shocked quartz, meltglass, and carbon spherules co-located with the extinction/abandonment horizon",
+      "Astronomical: identifiable parent comet/asteroid fragment, orbital debris stream, or corroborating impact-related atmospheric dust signal (e.g., in ice cores) synchronous with the YD onset",
+      "Genetic: ancient-DNA-based extinction/bottleneck dating for megafaunal taxa clustering sharply at the YD onset rather than showing gradual decline",
+      "Geological/paleoclimatic: independent confirmation of an abrupt cooling spike (YD onset) causally linked to atmospheric loading from impact ejecta rather than meltwater-pulse mechanisms",
+      "Oral_tradition (weak, speculative): Indigenous North American narratives describing a sky-fire or catastrophic event, though such traditions are difficult to date and rarely traceable to a specific Pleistocene event",
+      "Iconographic (very weak, speculative): any depictions plausibly referencing a cosmic catastrophe, though no reliable Upper Paleolithic North American iconographic corpus of this kind is known"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The stated interval (-12000 to -11001) corresponds closely to the Younger Dryas onset (~12,900-11,700 cal BP), so the 'younger-dryas' row is the appropriate detectability context rather than a generic Upper Paleolithic default. For that period, geological (0.65) and astronomical (0.7) evidence kinds have comparatively high detectability, meaning that if a continent-scale cosmic impact had truly triggered megafaunal extinction via ejecta fallout, primary physical traces (boundary-layer geochemical anomalies, an impact crater, shocked minerals) should be well-preserved and findable with modern methods \u2014 and indeed this is one of the most intensively searched-for signatures in Quaternary geoscience (this recollection of the actual Younger Dryas Impact Hypothesis debate is model-prior, not derived from the evidence text). Material (0.35) and genetic (0.3) detectability are moderate, reflecting that megafaunal bone/DNA records exist but causal attribution (impact vs. climate vs. overhunting) is harder to pin down from bones/DNA alone. Oral_tradition (0.1) and iconographic (0.1) evidence are essentially undetectable/unreliable at this time depth, so their absence carries little evidential weight against the hypothesis. Because the highest-value evidence classes (geological, astronomical) are only moderately-to-highly detectable but have been extensively searched, an absence or persistent non-replication of core impact markers (no confirmed crater, disputed spherule/nanodiamond findings) is somewhat informative against the hypothesis rather than purely attributable to poor preservation \u2014 though genuine detectability limits (erosion, glacial disturbance, dispersed/thin ejecta layers) mean the hypothesis cannot be considered falsified outright. Suggested detectability_adjustment of 0.55 reflects a period/evidence-kind blend weighted toward the moderately-high geological/astronomical detectability that dominates the hypothesis's core testable claims, tempered by the low detectability of corroborating cultural/oral evidence."
+  }
+}

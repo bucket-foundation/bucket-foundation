@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "577472e9beb90c254053ebb25fb19ce983ef9489b8f5f62030925b11fba75713",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.88,
+        "rationale": "A carries substantial accrued belief (b\u22480.50) while B is fully uncommitted (u=1.0), so the evidence state directly favors A over B."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.55,
+        "rationale": "Both hypotheses are evidentially uncommitted (u=1.0), but A's 'inconclusive' action is self-consistent with zero evidence, whereas B claims 'corroborated' status despite no supporting mass, a mismatch that weakens B (model-prior judgment)."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.42,
+        "rationale": "Both are fully uncertain; B's 'inconclusive' label is internally consistent with the absent evidence mass, while A asserts 'corroborated' with none, favoring B slightly (model-prior judgment)."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.6,
+        "rationale": "Both are fully uncertain and make strong claims, but B's interval (-20000 to -19001) predates the commonly cited Younger Dryas onset window, an internal chronological inconsistency that A's interval does not share (model-prior on YD chronology)."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.58,
+        "rationale": "A's 'inconclusive' framing matches the zero-evidence state; B pairs 'corroborated' megafaunal-extinction with a routing mechanism more typically invoked for triggering cooling than extinction, a weaker mechanism-object fit (model-prior)."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.72,
+        "rationale": "B pairs the action 'corroborated' with a mechanism literally named 'independent-replication-failure', an internally contradictory combination, while A's 'inconclusive' label is coherent with its own zero-evidence opinion."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.58,
+        "rationale": "Both are fully uncertain with identical action/object/place; AMOC shutdown is a more direct, commonly cited causal mechanism linking meltwater pulses to cooling-driven extinction than 'bayesian-age-modeling', which is a dating methodology rather than a causal mechanism (model-prior)."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.42,
+        "rationale": "Both show mechanism-object mismatches (species vulnerability doesn't establish a cooling event; dating uncertainty undercuts rather than supports corroboration), but A's mismatch is a more complete category error, so B is judged marginally better supported (model-prior)."
+      }
+    ]
+  }
+}

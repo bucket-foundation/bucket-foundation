@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "6d3736cbdce6c35d8341e138933922448951c537e5c92bb5a11701ba3e1e3121",
+  "response": {
+    "expected_evidence": [
+      "geological: Greenland ice-core (GISP2/NGRIP/GRIP) cosmogenic-isotope spikes (10Be, 36Cl) and nitrate/ammonium excursions at the ~12.9 ka YD-onset horizon consistent with enhanced atmospheric ionization from a gamma-ray flux",
+      "geological: anomalous 14C production excursion in tree-ring/lake-varve records synchronous with the ice-core signal (Miyake-event-style spike)",
+      "astronomical: identification and age-dating of a supernova remnant (e.g., Vela or similar) within a plausible distance (~100s of ly) whose explosion date brackets 11000-10001 BCE",
+      "astronomical: modeling/simulation evidence that gamma-ray flux from the candidate remnant's distance/energy could measurably ionize the upper atmosphere and alter climate forcing",
+      "geological: stratospheric ozone-depletion proxies (e.g., nitrate spikes tied to NOx production) in ice cores coincident with the isotope excursion",
+      "material: absence or reinterpretation of the black-mat/impact-marker layer conventionally cited for the competing impact hypothesis, if the supernova explanation is meant to displace it",
+      "model_prior: theoretical/astrophysical literature discussing a supernova-gamma-ray-ionization mechanism as an alternative to the YD impact hypothesis (unverified, recalled from training, treat as low-tier)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis's core evidentiary requirements are geological (ice-core isotopic/chemical excursions) and astronomical (a datable, distance-appropriate supernova remnant), both of which score relatively high in this table (0.65 and 0.7 respectively for the younger-dryas period, which best matches the -11000 to -10001 interval). Greenland ice sheets are an unusually well-preserved, continuously-deposited, high-resolution archive spanning this exact time and place, so if a nearby supernova had ionized the atmosphere strongly enough to trigger or 'refute' the conventional YD-onset cooling narrative, a cosmogenic-isotope/nitrate signature should plausibly have survived and already been searched for in extensively studied cores (GISP2/GRIP/NGRIP). Astronomical dating of candidate remnants (e.g., Vela) is also achievable with modern techniques. However, corroborating material evidence (black-mat/impact markers, 0.35) and genetic evidence (megafaunal extinction patterns, 0.3) are weaker channels, textual evidence is impossible (0.0, pre-writing), and oral tradition/iconographic evidence is essentially unusable (0.1) for a non-human-observed event this far back. My own knowledge of a confirmed supernova-YD gamma-ray causal link is only a speculative, low-tier model-prior association (loosely resembling real but contested discussions of the Vela supernova and YD-onset isotope anomalies) rather than an established finding \u2014 I have not verified this against the underlying evidence corpus. Given the strong geological/astronomical detectability but the specificity and exotic nature of the 'refuted' causal claim, and the fact that mainstream ice-core literature has not (to my knowledge) confirmed such a supernova-driven mechanism, absence of confirming evidence here is more likely genuine (i.e., leans toward the hypothesis being unsupported) rather than purely a detectability failure, though detectability is high enough that a real signal likely would have been found and reported by now."
+  }
+}

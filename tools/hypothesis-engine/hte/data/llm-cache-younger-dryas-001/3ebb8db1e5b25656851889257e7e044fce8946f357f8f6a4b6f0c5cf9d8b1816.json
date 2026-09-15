@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "39f43f88f55bac8d3b2e3e535f4ee6172af8abaf88f588433bb641909e75cd41",
+  "response": {
+    "expected_evidence": [
+      "Ice-core geochemical anomalies at the Younger Dryas onset horizon (~12.9 ka): elevated platinum, iridium, or other platinum-group-element spikes",
+      "Presence of nanodiamonds, magnetic/glassy spherules, or meltglass in the Greenland ice sheet or associated Younger Dryas Boundary (YDB) layer",
+      "Cosmogenic/extraterrestrial radionuclide anomalies in ice cores (e.g., unusual 10Be, 36Cl spikes) that could indicate an astrophysical energetic event",
+      "Diagnostic supernova-specific tracers such as live radioisotopes (e.g., 60Fe, 53Mn) distinguishing a stellar-origin airburst from a solar-system comet/asteroid airburst",
+      "Elevated ammonium, nitrate, or soot/biomass-burning proxies in ice layers consistent with continental-scale wildfires from an airburst",
+      "Sudden dust/aerosol loading or acidity layer in the ice-core stratigraphy synchronous with Younger Dryas onset climate shift",
+      "Corroborating geological evidence outside Greenland (North American/European YDB sediments) showing coeval impact-proxy layers",
+      "Model-prior astrophysical literature on nearby supernova candidates and expected fallout signatures for this epoch"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis places its causal mechanism (cosmic airburst) and its clearest evidentiary trace in the Greenland ice sheet during the Younger Dryas onset window, which is well matched to the 'younger-dryas' row of the detectability table. That row has unusually high scores for geological (0.65) and astronomical (0.70) evidence relative to almost all other evidence kinds and periods in the table, reflecting the fact that polar ice cores preserve fine, dateable annual/sub-annual stratigraphy capable of recording geochemical and cosmogenic anomalies over 13,000 years. Material evidence (0.35) and genetic evidence (0.30, e.g., megafaunal/extinction proxies) are moderately detectable but secondary to the core ice-core signal. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) evidence are essentially inapplicable given no writing systems or settled iconographic traditions existed in this pre-Holocene interval, so their absence carries no evidentiary weight against the hypothesis. The main complication is not detectability but specificity: the actor is labeled 'supernova-event' rather than the more commonly discussed cometary/asteroidal airburst source in the mainstream Younger Dryas Impact Hypothesis (this comparison is model-prior, not drawn from the evidence text). A true supernova origin would require distinct diagnostic tracers (e.g., live 60Fe) not typically sought or reported in standard YDB studies, which somewhat lowers confidence that existing surveys would have specifically detected or ruled out this variant even though the ice sheet itself is a highly capable preservation medium. The action='inconclusive' tag in the hypothesis itself signals that even within the engine's own framework this attribution is unresolved. Given the high preservation potential of Greenland ice geochemistry but the added specificity burden of a supernova (vs. generic impactor) source, I set detectability slightly below the raw geological/astronomical average to reflect this discriminability gap, while still treating it as clearly higher than baseline categories such as textual or linguistic evidence, so a low detectability score is not the primary reason to expect absent confirmation here \u2014 genuine testability exists and any absence of the supernova-specific signature (e.g., 60Fe) would carry real evidentiary weight against the hypothesis rather than being explained away by poor preservation."
+  }
+}

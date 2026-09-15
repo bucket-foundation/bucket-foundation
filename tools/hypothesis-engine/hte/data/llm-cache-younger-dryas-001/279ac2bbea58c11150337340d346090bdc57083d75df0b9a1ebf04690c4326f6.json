@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "bca89d7e9561f777845c48c26f4b37eb5c870beca8a0eb3d80aa5079f13ab9da",
+  "response": {
+    "expected_evidence": [
+      "Geochemical assays (Ir, Pt, Os, other platinum-group elements) from Younger Dryas boundary (YDB) sediment layers across multiple European sites showing background-level (non-anomalous) concentrations",
+      "Independent replication attempts (or failures to replicate) of the original iridium-anomaly claims, published as peer-reviewed critiques",
+      "Lake/peat sediment or ice-core proxy records spanning ~10,900 cal BC without a corresponding iridium/platinum spike",
+      "Absence of confirmed hypervelocity-impact indicators (shocked quartz, high-temperature melt spherules, nanodiamonds) in independently re-analyzed YDB samples",
+      "Astronomical/geophysical surveys failing to identify a corresponding impact crater or airburst structure of appropriate age in or near Europe",
+      "Statistical/methodological critique literature (e.g., contamination, misidentification of magnetic/carbon spherules, analytical artifacts) explaining the original anomaly reports",
+      "Meta-analyses or consensus statements from the geoscience community treating the impact hypothesis as unsupported"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis concerns a refutation event dated to the Younger Dryas onset. The relevant evidence classes are geological (sediment/ice-core geochemistry, spherule/nanodiamond analyses) and astronomical (crater/airburst search, bolide modeling), both of which have comparatively high detectability for this period (0.65 and 0.7 respectively in the table), since modern high-precision mass spectrometry and dating techniques can resolve trace-element anomalies (or their absence) in well-preserved sediment cores tens of thousands of years old. Material archaeological evidence (0.35) and genetic evidence (0.3) are secondary and less diagnostic for a refutation of a specific geochemical anomaly claim. Because the underlying scientific debate (Younger Dryas Impact Hypothesis) is a documented, recent (post-2007) controversy with an extensive published literature of both original claims and rebuttals, the refutation itself is highly detectable as a matter of historical/scientific record \u2014 this is not a case where a low detectability score should be invoked to explain silence. I weight the adjustment toward the geological/astronomical channels (primary evidentiary basis for confirming or refuting an iridium anomaly) while discounting slightly for the weaker material/genetic/textual channels, yielding an overall adjustment around 0.6. Note: my characterization of the Younger Dryas Impact Hypothesis debate and its critique literature draws on model-prior (unverified, recalled-from-training) knowledge rather than the evidence text provided, and should be treated accordingly."
+  }
+}

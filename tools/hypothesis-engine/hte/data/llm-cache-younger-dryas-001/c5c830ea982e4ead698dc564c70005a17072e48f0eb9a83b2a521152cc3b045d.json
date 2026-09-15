@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7cd7e1651d12f29f630417c28f5cfec4d2760f263414733caf5026ca8f75d872",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "expected_evidence": [
+      "geological: absence of a reproducible impact-marker horizon (no consistent platinum/iridium anomaly, no verified nanodiamond or magnetic-spherule layer, no confirmed impact crater) across independently sampled Younger Dryas boundary sediment sections in North America",
+      "material/archaeological: continuity rather than collapse in Clovis-era site density, lithic tool-industry succession, and radiocarbon date distributions across ~10,950 BCE, arguing against an abrupt demographic crash",
+      "material/archaeological: absence of mass-mortality assemblages, wildfire/soot 'black mat' interpreted instead via alternative (non-impact) depositional mechanisms",
+      "genetic: lack of a detectable population bottleneck signature in reconstructed Native American ancestral effective population size curves around this date (sparse ancient-DNA sampling for this period limits resolution)",
+      "astronomical: absence of corroborating evidence for a cometary fragmentation/airburst event (no confirmed extraterrestrial signature matching proposed impactor)",
+      "model_prior: published critiques and replication failures from the geoscience community (2010s-2020s) rebutting the original Younger Dryas Impact Hypothesis (Firestone et al. 2007) on demographic/population grounds"
+    ],
+    "rationale": "The dated interval (-10950) sits at the Younger Dryas onset, so the younger-dryas detectability row is most applicable (with upper-paleolithic as a plausible alternate framing). Refutation of a proposed impact-driven demographic collapse rests mainly on negative/continuity evidence: geological sediment records (0.65 detectability) are the strongest channel, since YDIH markers have been searched for extensively and their absence or non-reproducibility across many sites is well published. Archaeological/material continuity data (0.35) is moderately detectable and has been the second major line of published refutation (Clovis site and dating continuity). Genetic evidence (0.3) is the weakest channel here because ancient-DNA sampling density for ~13,000 BP North American populations is low, so a bottleneck's absence is harder to establish with confidence \u2014 low detectability should be read as inconclusiveness rather than proof the collapse didn't happen. Astronomical corroboration (0.7) is high in principle but not very informative for the demographic claim specifically. Oral tradition and iconographic channels are essentially unusable this far back (0.1) and textual is null (0.0/0.05), so their absence carries no evidentiary weight against or for the hypothesis. Given that the strongest-detectability channel (geological) plus a well-studied secondary channel (material/archaeological continuity) are the actual empirical basis historically used to argue against catastrophic Younger Dryas impact-driven population collapse, the hypothesis is plausible and testable with survivable evidence \u2014 this is not a case where low detectability should be invoked to excuse an evidence gap. I set the overall detectability_adjustment to 0.5, reflecting strong geological/astronomical channels offset by weak genetic/oral/textual channels, consistent with real ongoing scientific debate (treated here partly as model-prior background on the YDIH controversy, not treated as settled fact).\""
+  }
+}

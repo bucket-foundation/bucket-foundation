@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b63268dae54633d734a85103e40fc2716d12772ae0130e962210fcc2829a05a5",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-group-element anomaly (Pt, Ir) and enrichment spike precisely at the ~10,850 BCE (12.8 ka) horizon in sediment/ice cores from Middle Eastern basins",
+      "Geological: 'black mat' organic-rich sediment layer marking abrupt onset of cooling, with elevated soot/charcoal indicating continent-scale wildfires",
+      "Geological: microspherules (magnetic and glassy), nanodiamonds, and melt-glass/meltglass droplets in the same stratigraphic horizon",
+      "Material/archaeological: airburst-melted materials, vitrified surfaces, or scorched occupation layers at Middle Eastern Epipaleolithic/Natufian sites (e.g., Abu Hureyra, Syria) dated to the YD boundary",
+      "Material: sudden disruption or abandonment horizon in settlement stratigraphy coincident with the dated event",
+      "Astronomical/model_prior: orbital dynamical reconstruction of a fragmenting Taurid-complex comet consistent with a multi-airburst episode at this date",
+      "Geological/paleoclimate: independently dated abrupt cooling signal in regional pollen, lake, or speleothem records synchronous with the impact-proxy layer",
+      "Iconographic (weak/speculative): symbolic imagery (e.g., early Anatolian carved pillars) argued by some researchers to encode memory of a sky event, though highly contested",
+      "Oral tradition (weak/speculative): flood/catastrophe myths sometimes invoked as folk memory, though far too late and unreliable to serve as real corroboration"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis maps most naturally onto the 'younger-dryas' period row, since the dated interval (-10850) sits at the YD onset. The strongest expected evidence channels for a cosmic-airburst-driven onset of YD cooling are geological (0.65) and astronomical/orbital modeling (0.7), both well within survivable/detectable range \u2014 sediment horizons, ice cores, and lake cores from this period are routinely preserved and sampled, and this exact question has in fact been studied at Middle Eastern sites like Abu Hureyra. Material/archaeological evidence is lower but non-trivial (0.35), reflecting sparse and patchy Epipaleolithic occupation records. Genetic (0.3), iconographic (0.1) and oral_tradition (0.1) evidence are poor channels: genetic signal for an airburst is indirect at best, iconographic/oral claims (e.g., G\u00f6bekli Tepe 'vulture stone' interpretations, flood myths) are millennia removed from the event and highly interpretive, so their near-absence should not be read as strongly falsifying. Textual evidence is essentially impossible (0.0) since writing did not exist. Given that geological and astronomical proxies are the load-bearing evidence types and both have moderate-to-high detectability, absence of unambiguous impact markers is meaningful, but the actual literature is genuinely contested (claimed platinum spikes, spherules, and black mats exist at various YD-boundary sites, but many independent groups have failed to replicate them or attribute them to terrestrial/volcanic/wildfire processes rather than impact). This suggests the hypothesis's status should be treated as 'corroborated' only weakly and provisionally \u2014 detectability alone does not fully explain the persistent scientific disagreement, so failure to reach consensus likely reflects genuine ambiguity in the geological signal rather than pure preservation/detectability failure. I set the aggregate detectability adjustment at 0.5, splitting the difference between the high-detectability geological/astronomical channels and the low-detectability material/genetic/iconographic/oral/textual channels that would otherwise be needed for full corroboration."
+  }
+}

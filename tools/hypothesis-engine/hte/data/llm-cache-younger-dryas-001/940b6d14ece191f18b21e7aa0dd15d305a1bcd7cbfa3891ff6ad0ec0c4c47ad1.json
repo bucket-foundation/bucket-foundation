@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "a4ae3c272804b8236daa3e6190e2f0bd74b71e52f93a482a82df98a9a70cfadb",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses carry identical Subjective Logic opinions (b=0.502,d=0,u=0.498,a=0.119; projected probability \u22480.561), so the evidence provides no basis to prefer one over the other."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.55,
+        "rationale": "Projected probability (b+a*u) is slightly higher for A (\u22480.503) than for B (\u22480.474), giving A a modest edge despite both carrying substantial uncertainty and zero disbelief."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.62,
+        "rationale": "A's projected probability (\u22480.439, driven by a high base-rate of 0.881 despite d=0.502) exceeds B's (\u22480.269, which is total uncertainty with a lower base rate), so the opinion algebra favors A."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses are pure vacuous opinions (u=1, same base rate 0.269), so neither is more evidentially supported than the other."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.5,
+        "rationale": "Identical fully-uncertain opinions (b=0,d=0,u=1,a=0.269) for both hypotheses mean no evidential distinction can be drawn."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses have identical vacuous opinions (u=1, a=0.269), so there is no differential evidential support."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses share the same fully-uncertain opinion (b=0,d=0,u=1,a=0.269), leaving no basis to favor either."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.5,
+        "rationale": "Both hypotheses have identical vacuous opinions (u=1,a=0.269), so the evidence does not distinguish between them."
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "8976e2716e89cee774e0805ba589b9c2b81141b688307341d20c4d76f73c9b06",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: systematic re-sampling of Younger Dryas boundary (YDB) stratigraphic layers across multiple North American sites showing iridium concentrations at or near background crustal levels rather than the enriched spikes originally reported.",
+      "Geological: platinum/iridium and platinum-group-element ratios inconsistent with an extraterrestrial (chondritic) source, instead matching terrestrial/volcanic or reworked sediment signatures.",
+      "Material: failed independent replication of purported impact markers (magnetic spherules, nanodiamonds, carbon spherules) in YDB sediments by labs unaffiliated with the original proponents.",
+      "Material: identification of contamination, misidentification, or non-impact origins (e.g., fungal/algal carbon structures mistaken for nanodiamonds) in re-examined samples.",
+      "Astronomical: orbital-mechanics modeling of the Taurid meteor/debris stream showing that a coherent, continent-scale multi-fragment impact swarm at ~10,950 BCE is dynamically implausible or has too low a probability given stream dispersion and Earth-crossing geometry.",
+      "Astronomical: absence of a dated, dateable impact crater or crater field in North America correlating to the proposed event.",
+      "Model_prior: peer-reviewed critical literature (multiple independent research groups) converging on rejection of the Younger Dryas Impact Hypothesis as originally formulated, published in the decades following the initial claim."
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval (-10950) places this at the Younger Dryas onset boundary. Since the hypothesis is a 'refutation' claim, the relevant evidence is not ancient artifacts but modern geological re-sampling of YD boundary sediments, platinum-group-element geochemistry, spherule/nanodiamond replication studies, and astronomical dynamical modeling of the Taurid stream. Per the detectability table for 'younger-dryas': geological=0.65 and astronomical=0.7 are comparatively high, reflecting that sediment cores and stratigraphic layers from ~13,000 years ago are well-studied and widely sampled across North America, and orbital/astronomical modeling does not depend on fragile physical preservation at all (it uses present-day computed dynamics), so it is highly detectable in principle. Material evidence (spherules, nanodiamonds) is lower (0.35) since microscopic markers are harder to unambiguously attribute and are subject to contamination/lab-to-lab variability, which is itself part of why the refutation debate persists. Model_prior is weighted lowest (0.3) since it reflects unverified recall rather than the evidence record itself. Given moderate-to-high detectability for the two dominant evidence classes (geological, astronomical), an absence of unambiguous confirming iridium anomalies is NOT primarily attributable to poor preservation or low detectability \u2014 the record is good enough that repeated independent studies could and (per model-prior, unverified) reportedly did fail to replicate the original iridium/impact-marker signal. This supports treating a 'refuted' status as plausible and well-evidenced rather than as a false negative from poor detectability. I set the combined adjustment at 0.55, roughly averaging the four relevant kinds (geological 0.65, astronomical 0.7, material 0.35, model_prior 0.3) with extra weight toward the two higher, more diagnostic channels."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "b870cd795912174353b447c9d2806b8ded91110435001ed54aeb14abc9f3b99e",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: A's 'corroborated' multi-continent synchronous megafaunal extinction overstates support (extinction timing was not globally synchronous), while B's exact-date platinum-anomaly-refuted claim, though contested, aligns with genuine reproducibility disputes over the Greenland platinum spike, giving B a slight edge."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: A's interval (-10950) matches the well-dated Younger Dryas boundary and a real proposed Mexican YDB site, whereas B's carbon-spherule claim is placed 2000+ years too early relative to the actual proposed impact horizon, undermining its chronological plausibility."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: A asserts a strong causal 'triggered' link between airburst and YD cooling onset that is scientifically contested (mainstream favors meltwater/AMOC forcing), while B's 'inconclusive' status for nanodiamonds accurately reflects the genuine, unresolved reproducibility debate in the literature."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: platinum anomalies (A) have somewhat broader cross-site/ice-core corroboration than carbon spherules (B), whose counts have been more frequently disputed by independent labs, giving A a modest edge under otherwise identical place/time/action framing."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.75,
+        "rationale": "A's date (-10850) is close to the well-established YD boundary chronology, whereas B places refuted YD-onset cooling ~8,000-9,000 years before the actual onset date, a chronological mismatch that severely undercuts B's plausibility."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.45,
+        "rationale": "Both hypotheses misapply the impact-era date (-10950, actually the onset time) to the YD termination (~2,000 years later); given equal chronological error, B's more specific tie to a documented candidate site (Mexico) via 'corroborated' language gives it a very slight edge over A's stronger but equally misplaced causal claim."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: B correctly pairs the -10950 date with the onset event and cites biomass-burning/impact-winter, a mechanism genuinely proposed in the literature for onset cooling; A pairs a termination-era date with an ejecta-fallout mechanism that is chronologically disconnected from termination, making B the more internally coherent hypothesis."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: A's 'refuted' status for a multi-continent population-collapse claim matches actual archaeological/genetic pushback against demographic-catastrophe narratives, while B's 'corroborated' multi-continent synchronous megafaunal extinction overstates the weaker, non-synchronous actual extinction record."
+      }
+    ]
+  }
+}

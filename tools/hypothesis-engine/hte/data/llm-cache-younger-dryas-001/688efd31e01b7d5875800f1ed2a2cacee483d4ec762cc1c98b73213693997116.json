@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "c32b53899c8b5738fd979862716c3d77ee43ff808f0bb329a969028d898b8529",
+  "response": {
+    "expected_evidence": [
+      "geological: a discrete platinum (Pt) concentration spike within a narrow ice-core depth interval at Greenland cores (e.g., GISP2, NEEM) dated to roughly 12,900 cal BP, the Younger Dryas onset, analogous to an iridium-style extraterrestrial marker",
+      "geological: co-occurring anomalies in other platinum-group elements (Ir, Os) or dust/sulfate spikes in the same ice layer",
+      "material: nanodiamonds, magnetic and glassy spherules, and meltglass in terrestrial sediments at the Younger Dryas boundary (black mat layers) across multiple sites",
+      "astronomical: orbital-dynamics modeling showing the Taurid meteor stream complex intersecting Earth's orbit in a geometry consistent with a cluster of impacts or airbursts around 10,950 BCE",
+      "astronomical: identification of a candidate fragmenting parent comet within the Taurid complex whose breakup timeline matches the proposed encounter",
+      "genetic: megafaunal population bottleneck or extinction signals clustering near the Younger Dryas onset, as indirect corroboration",
+      "model_prior: prior Younger Dryas Impact Hypothesis literature, including a previously reported platinum anomaly in a Greenland ice core near this date, which this hypothesis appears to reference or extend"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.65,
+    "rationale": "The interval -10950 falls at the Younger Dryas onset, so I use the 'younger-dryas' row rather than an unspecified period. Ice sheets are excellent long-term archives for trace-element and dust stratigraphy, and the table already gives relatively high detectability to geological (0.65) and astronomical (0.7) evidence in this period, matching the plausibility of detecting or refuting a platinum anomaly tied to a proposed impact or airburst via ice-core chemistry and orbital-mechanics modeling. Material evidence such as spherules, nanodiamonds, and black mats is only moderately detectable (0.35) because it is scattered across disparate terrestrial sites subject to erosion, reworking, and contested stratigraphic correlation, consistent with real-world controversy over such markers. Genetic (0.3) and model_prior (0.3) evidence are weaker corroborants: extinction-timing genetics is noisy, and prior literature on this specific topic is itself contested. Textual, linguistic, oral_tradition, and iconographic channels are essentially absent (near zero) for this preliterate period, so their absence should not count as evidence against the hypothesis. I recall as model-prior, not from any evidence text provided here, that a platinum anomaly in a Greenland ice core near the Younger Dryas boundary has been reported in the scientific literature, though this remains a contested finding; treating it as low-tier unverified prior knowledge, the specific geological signature in this hypothesis is independently plausible and detectable rather than requiring special pleading. I therefore suggest a composite detectability adjustment of about 0.65, near the geological/astronomical average, while noting that mechanistic attribution specifically to the Taurid stream (versus a single bolide or other source) is much harder to establish than the mere existence of an anomaly, and so should be weighted down slightly relative to the strongest individual row values."
+  }
+}

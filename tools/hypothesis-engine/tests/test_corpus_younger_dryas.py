@@ -36,6 +36,22 @@ def test_younger_dryas_every_card_carries_a_non_empty_doi_check():
         assert "crossref" in card.doi_check.lower()
 
 
+def test_younger_dryas_card_doc_length_matches_its_own_raw_file():
+    # bkt-hte-evidence-span-doc-length: every Card this module's own parse
+    # path produces carries the length of its own raw file text, the same
+    # string its claims' char_start/char_end are located against.
+    for card in yd.load_raw():
+        raw = (yd.DEFAULT_CARDS_DIR / f"{card.slug}.md").read_text()
+        assert card.doc_length == len(raw)
+
+
+def test_younger_dryas_evidence_spans_carry_the_card_doc_length():
+    corpus = yd.load()
+    for e in corpus.evidence:
+        assert e.span.doc_length is not None
+        assert e.span.char_end <= e.span.doc_length
+
+
 def test_younger_dryas_evidence_spans_are_valid_and_anchored():
     corpus = yd.load()
     cards_by_doi = {c.doi: c for c in yd.load_raw()}

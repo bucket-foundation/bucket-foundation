@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "5ba8f1f13922bba1c39cf0eebea23bdc2c4a56fbb033d6cee407c592167ff45b",
+  "response": {
+    "expected_evidence": [
+      "Geological: a distinct Younger Dryas boundary (YDB) layer (~12,800\u201312,900 cal BP, consistent with -10950) containing platinum/iridium anomalies, magnetic spherules, nanodiamonds, soot and charcoal spikes, and the characteristic 'black mat' horizon across North American sites",
+      "Geological/geochemical: elevated biomass-burning proxies (charcoal, PAHs, ammonium, black carbon) in lake and peat sediment cores coincident with the extinction interval",
+      "Astronomical: cosmogenic isotope anomalies (14C, 10Be, 36Cl spikes) in ice cores or tree rings indicative of an abrupt high-energy radiation/particle event; absence of any catalogued nearby supernova remnant with an independently dated age of ~12,950 BP",
+      "Material/archaeological: abrupt disappearance of megafaunal skeletal remains and Clovis-associated kill/butchery sites at or just above the boundary layer, occupation hiatus or shift in lithic technology",
+      "Genetic: ancient DNA showing a sharp population bottleneck/extinction pulse in North American megafauna (mammoth, horse, camelid, etc.) dated to ~12,900 cal BP, with no comparable pulse in unaffected regions",
+      "Genetic: absence of a corresponding extinction-synchronous signature in human population genomes if the event caused broader ecosystem collapse",
+      "Oral tradition: Indigenous North American narratives describing sky-fire, darkness, or catastrophic cold (low-confidence, hard to date/verify)",
+      "Iconographic: none expected \u2014 no known Paleoindian art tradition exists for direct depiction of a celestial catastrophe",
+      "model-prior (unverified): mainstream Younger Dryas Impact Hypothesis literature invokes a cometary/bolide airburst rather than a supernova; no catalogued supernova remnant is independently dated to ~10,950 BCE at a distance capable of triggering biomass burning on Earth, making the specific 'supernova-event' actor speculative relative to the comet-impact variant"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.42,
+    "rationale": "The interval -10950 aligns closely with the Younger Dryas onset (~12,900 cal BP), so the younger-dryas detectability row is the most relevant reference class. Geological (0.65) and astronomical/cosmogenic proxy (0.70) evidence for this period are comparatively well-preserved and heavily studied \u2014 the YDB layer, black mats, platinum/iridium anomalies, nanodiamonds, and cosmogenic isotope records have been extensively searched for and reported (though results remain contested, matching the 'inconclusive' action in the hypothesis). Material (0.35) and genetic (0.30) evidence for megafaunal extinction timing is also moderately detectable via radiocarbon-dated bone assemblages and ancient DNA bottleneck signatures. However, oral tradition (0.10) and iconographic (0.10) evidence are essentially unrecoverable at this time depth, and textual/linguistic evidence (0.0/0.05) is non-existent for a pre-literate, pre-15,000-year-old society. A key weakness is mechanistic: standard literature on this event (Younger Dryas Impact Hypothesis) attributes biomass burning/impact winter to a cometary/bolide airburst, not a supernova \u2014 no known supernova remnant is independently dated to this interval at a plausible distance, which is a model-prior caveat lowering confidence in the specific actor claim even if the extinction-timing and biomass-burning geological signatures themselves are real and detectable. Weighting the higher-yield geological/astronomical channels against the near-zero textual/linguistic/oral channels and discounting for the non-standard supernova mechanism yields an overall detectability adjustment of ~0.42, meaning genuine absence of confirmatory (or disconfirming) evidence in weaker channels should not be read as strong evidence against the hypothesis, while the geological/astronomical record \u2014 where evidence has been actively and repeatedly sought \u2014 carries more evidentiary weight for the 'inconclusive' status."
+  }
+}

@@ -10,6 +10,10 @@ url: "https://doi.org/10.1177/016146811912101102"
 openalex_id: "https://openalex.org/W3093401944"
 branch: "source-evaluation"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-2c2b01cd8a19)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/information-foraging/primary-papers.yaml (id bkt-c033b128f77f, Pirolli and Card 1999)"
 why_it_matters: >
   An expert/novice study of 45 experienced internet users (10 Ph.D. historians, 10
   professional fact checkers, 25 Stanford undergraduates), finding fact checkers evaluate
@@ -41,11 +45,11 @@ how_it_bears_on_research_os: >
 
 An expert/novice study of 45 experienced internet users, finding fact checkers evaluate
 websites by leaving the page to check other sources, "lateral reading," while historians and
-students stayed within a site and were more often misled by superficial cues.
+students stayed within a site and were misled by superficial cues.
 
 ## Key Claims
 
-- Historians and undergraduate students often fell victim to features that are simple to
+- Historians and undergraduate students fell victim to features that are simple to
   fake, such as official-looking logos and domain names, reading vertically within one site.
 - Professional fact checkers left the site under evaluation to check other sources first,
   the strategy the paper names lateral reading, before returning to judge the original site.

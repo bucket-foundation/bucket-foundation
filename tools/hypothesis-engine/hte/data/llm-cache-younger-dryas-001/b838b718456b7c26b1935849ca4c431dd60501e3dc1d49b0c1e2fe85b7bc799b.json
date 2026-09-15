@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f5c042e01df58de5577f8604f8f3175dbf94d890e7a21a83b61f5b43ad06f045",
+  "response": {
+    "expected_evidence": [
+      "Geological: a distinct sedimentary boundary layer (e.g., 'black mat') containing anomalous platinum/iridium spikes, nanodiamonds, magnetic and glassy spherules, and elevated charcoal/soot indicating widespread biomass burning at multiple continental sites dated to ~13,000-12,000 BCE",
+      "Astronomical: physical or inferred airburst signatures (shocked quartz, meltglass, cosmic spherules with extraterrestrial isotopic ratios) consistent with a Taurid-complex fragmentation event; absence of a single large crater is expected for an airburst rather than a crater-forming impact",
+      "Material/archaeological: abrupt discontinuities or abandonment horizons in Upper Paleolithic (e.g., Clovis-age) sites across the Northern Hemisphere, changes in tool traditions, or contemporaneous megafaunal extinction layers",
+      "Genetic: detectable population bottleneck or founder-effect signatures in ancient human and megafaunal DNA dated to this window, indicating sudden demographic contraction across multiple continents",
+      "Model-prior: this closely parallels the real (but disputed) 'Younger Dryas Impact Hypothesis' literature already circulating in geoscience/archaeology, which should be treated as a low-tier, unverified prior rather than confirmed fact",
+      "Oral tradition: flood, fire, or 'dark sun' catastrophe myths that could in principle encode a memory of the event, though this is highly speculative for a non-literate period this far back",
+      "Iconographic: cave art or portable art depicting celestial fireballs or catastrophic imagery from the relevant epoch (very low expected survival/legibility)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.35,
+    "rationale": "The interval (~13,000-12,001 BCE) sits at the Pleistocene/Younger Dryas boundary, so I treat it under the 'younger-dryas' detectability row set (with overlap into 'upper-paleolithic'). Geological (0.6-0.65) and astronomical (0.7) evidence categories have relatively good survivability because impact/airburst proxies (platinum anomalies, nanodiamonds, spherules) are chemically robust and preserved in sediment cores and paleosols across continents -- this is exactly the kind of evidence the real, still-contested Younger Dryas Impact Hypothesis relies on (model-prior, low-tier/unverified). However, the specific causal claim in this hypothesis -- that the airburst directly drove multi-continental human 'population demography' change -- requires genetic/demographic evidence (bottleneck signals, ancient DNA discontinuities) which has much lower detectability (0.25-0.3) due to sparse ancient-DNA sampling density for this era and confounding factors (climate shifts, cultural transitions) that make attribution to a single cosmic trigger very difficult to isolate. Textual, linguistic, and iconographic channels are essentially non-existent or negligible (0.0-0.1) for a non-literate, pre-agricultural population at this depth in time, so their absence carries no falsifying weight. Overall, geological/astronomical proxies could plausibly survive and be found (and similar proxies have been reported in the literature, though disputed), but the demographic/causal link to human population decline specifically is weakly detectable and its absence should not be read as strong evidence against the hypothesis. I suggest a blended detectability adjustment of ~0.35, reflecting decent physical-proxy survivability offset by poor detectability of the demographic mechanism itself and the generally contested, low-confidence status of this class of hypothesis."
+  }
+}

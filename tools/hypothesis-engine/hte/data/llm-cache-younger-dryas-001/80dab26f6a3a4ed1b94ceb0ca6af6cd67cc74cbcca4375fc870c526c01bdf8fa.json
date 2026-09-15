@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "59b455c75c875eabdb312ab3b12d40cf84d0efb4c2405141d5150843f2f8f52b",
+  "response": {
+    "expected_evidence": [
+      "Geological: a stratigraphic 'black mat' layer and associated impact-proxy markers (nanodiamonds, magnetic microspherules, elevated iridium/platinum) at the Younger Dryas onset boundary (~12,900 cal BP / ~10,950 BCE) across North American sites",
+      "Geological: carbon-rich soot/charcoal layers indicating continent-scale wildfires coincident with the boundary",
+      "Astronomical: modeled/reconstructed orbital dynamics of the Taurid meteor stream showing a denser debris complex intersecting Earth's orbit near this date (indirect, model-based rather than direct observational evidence)",
+      "Astronomical: any preserved record of contemporaneous multiple airbursts/impact craters attributable to a swarm event",
+      "Material/archaeological: disruption or discontinuity in Clovis-era archaeological assemblages, sudden cessation of megafaunal kill sites, changes in tool technology coincident with the layer",
+      "Genetic: ancient-DNA-based abrupt population bottlenecks/extinction signatures in megafauna (mammoth, mastodon, horse, etc.) dated to this narrow interval",
+      "Oral tradition: Indigenous North American origin/catastrophe narratives describing fire from the sky, darkness, or mass animal death (weak, highly mediated evidence)",
+      "Iconographic: possible Paleolithic-era imagery of celestial events or animal die-offs (very unlikely to survive or be identifiable)",
+      "Textual: none expected (pre-literate context)",
+      "Model-prior: prior scientific literature (e.g., Firestone et al. 2007 and subsequent disputed replications/refutations) proposing and contesting a Younger Dryas impact-related extinction mechanism"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The specified date (-10950, i.e. ~10,950 BCE) coincides almost exactly with the Younger Dryas onset boundary (~12,900 cal BP), so I applied the 'younger-dryas' row rather than the broader 'upper-paleolithic' period, since it is the more precise match for this event. For a hypothesis of this kind (a swarm-impact/ejecta-fallout trigger for megafaunal extinction), the most diagnostic evidence kinds are geological (impact proxies, black mat, spherules, iridium/platinum anomalies) and astronomical (orbital/debris-stream reconstruction), both rated relatively high in this table (0.65 and 0.7 respectively) because such physical markers are durable and detectable with modern instrumentation even ~13,000 years later. Material (archaeological) and genetic evidence are moderately detectable (0.35, 0.3) since bone beds, kill sites, and ancient DNA can preserve extinction-timing signals, though causal attribution to an impact specifically (versus climate change, human overhunting, or other Younger Dryas drivers) is harder to establish. Textual evidence is essentially impossible (0.0) since this predates writing entirely, and oral tradition/iconographic evidence (0.1 each) is very weakly preserved and highly filtered through millennia of oral transmission, making it unreliable even if some catastrophe folklore exists. Given this profile, I weighted the adjustment toward the higher geological/astronomical detectability while discounting for the near-zero textual/iconographic/oral channels and the archaeologically-contested nature of actual reported findings (per model-prior, unverified): a real, ongoing, and disputed scientific literature (the Younger Dryas Impact Hypothesis) exists proposing exactly this kind of evidence, but has faced significant replication failures and alternative explanations for the same proxies, which tempers confidence without falsifying the hypothesis outright. This is a low-confidence, training-derived contextual note (model-prior), not a citation from provided evidence text. Overall, absence of a fully confirmed/uncontested detection is well explained by moderate-to-low detectability in most channels rather than requiring the hypothesis to be false."
+  }
+}

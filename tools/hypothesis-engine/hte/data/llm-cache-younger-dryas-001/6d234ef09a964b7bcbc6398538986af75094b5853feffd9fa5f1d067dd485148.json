@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "1e26ec8d86b38a846b165033a6f6273a50ccc59ce0222d13ba72d06f063cf274",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a synchronous ~12,900 cal BP boundary layer showing anomalous concentrations of platinum, iridium, or other siderophile elements at multiple North Atlantic-adjacent and North American sites",
+      "Geological: nanodiamonds, magnetic microspherules, and carbon spherules embedded in the same stratigraphic horizon ('black mat')",
+      "Geological: continent-scale charcoal/soot layers indicating synchronous biomass burning at the YD onset",
+      "Astronomical/geophysical: a plausible source body (e.g., a fragmented comet such as an Encke-family object) with modeled trajectory intersecting the North Atlantic/Laurentide region, or at minimum absence of a confirmed impact crater consistent with an airburst (no crater expected)",
+      "Material/archaeological: disruption or discontinuity in Clovis-era (or equivalent Upper Paleolithic) toolkits and settlement patterns coincident with the YD boundary",
+      "Genetic: population bottleneck signatures in North American megafauna (and possibly human populations) dated to ~10,950 BCE consistent with abrupt ecological collapse",
+      "Model-prior: the existing 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors) literature proposing exactly this mechanism, alongside a substantial counter-literature reporting failed replication of the platinum/nanodiamond signal at many sites"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "Treating the period as 'younger-dryas' (matching the object and the -10,950 interval, i.e. ~12,900 cal BP), the table gives relatively high detectability for geological (0.65) and astronomical (0.7) evidence, moderate for material (0.35) and genetic (0.3), and near-zero for textual/linguistic/oral_tradition (pre-literate, far outside any oral-tradition retention window). Because the two evidence classes most central to testing this hypothesis (geological sedimentary signatures and astronomical/impactor modeling) are the *most* detectable categories in this period, an absence of confirmed evidence is harder to excuse purely on preservation/detectability grounds \u2014 sediment records spanning the YD boundary are well-preserved globally (ice cores, lake varves, loess sequences), so this is exactly the kind of event geoscience is well-equipped to detect. This matches the real historical situation (model-prior, unverified against the provided evidence text): the Younger Dryas Impact Hypothesis was proposed based on claimed platinum/nanodiamond/spherule anomalies, but numerous independent labs reported failure to replicate these signals at many sites, and no crater or unambiguous airburst signature has been confirmed. So detection was plausible and has in fact been actively pursued; the persistent controversy reflects contested/inconsistent evidence rather than an intrinsic detectability floor. I weight the composite adjustment (0.55) below the geological/astronomical ceiling to account for the weaker corroborating channels (material, genetic) and the fact that a specific 'airburst' mechanism (vs. alternative explanations like meltwater pulse forcing) requires converging multi-proxy confirmation that has not been robustly achieved."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "80b8fb98890a87461a446485561b5430bb558b11d7d25c699a67ae449dbacb16",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.65,
+        "rationale": "A's refutation of a cosmic-airburst cause for cross-continental megafaunal extinction aligns with diachronous extinction evidence (model-prior), whereas B calls the Greenland platinum anomaly 'refuted' though multiple studies (Petaev 2013, Moore 2017) have generally corroborated rather than refuted it."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.55,
+        "rationale": "A's 'inconclusive' label for North American nanodiamonds matches the well-documented replication controversy (model-prior); B's refutation of a cosmic-airburst effect on population demography is plausible but a less commonly evidenced claim, giving A a slight edge."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.15,
+        "rationale": "A pairs an awkwardly-phrased object with an interval (-20000 to -19001) that is millennia removed from the stated '12.9 ka event', undermining internal coherence, while B's refutation of impact-winter-driven YD cooling in Mexico is coherent and interval-consistent."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.35,
+        "rationale": "A's strong causal 'triggered' claim for an Arctic Ocean airburst remains a contested minority position (model-prior); B's refutation of biomass-burning impact winter as the YD cooling driver better matches the broader consensus favoring meltwater/AMOC mechanisms, despite a minor interval offset."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.6,
+        "rationale": "A's 'corroborated' carbon-spherule finding reflects genuine (if contested) positive studies, while B's causal claim that airburst 'triggered' megafaunal extinction is one of the most heavily disputed parts of the hypothesis given non-synchronous extinction timing (model-prior)."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.58,
+        "rationale": "A's 'inconclusive' platinum-anomaly claim is coherent given site-dependent replication; B pairs megafaunal extinction with an 'impact-ejecta-fallout' mechanism that is a poor causal fit, reducing internal coherence."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.65,
+        "rationale": "A's measured 'inconclusive' stance on airburst-driven YD cooling matches ongoing scientific uncertainty (model-prior); B's claim that Greenland evidence 'corroborates' the biomass-burning-impact-winter mechanism overstates support, since AMOC shutdown remains the favored mainstream explanation."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.4,
+        "rationale": "Both refutations are directionally consistent with known replication failures, but A's interval (-13000 to -12001) poorly matches the ~12.9 ka event timing, whereas B's interval aligns well with the accepted YD onset window, making B more internally coherent."
+      }
+    ]
+  }
+}

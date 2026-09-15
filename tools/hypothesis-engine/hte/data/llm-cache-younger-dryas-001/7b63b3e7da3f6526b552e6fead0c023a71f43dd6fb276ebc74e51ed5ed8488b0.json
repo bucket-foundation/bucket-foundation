@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "12ca2c1791e22f76649b65058767554578af11e1bcffdf5b456b29d8a8454065",
+  "response": {
+    "expected_evidence": [
+      "Ice-core geochemical anomalies (Greenland GISP2/NGRIP/GRIP) \u2014 spikes in cosmogenic/ionization-linked radionuclides such as 10Be, 36Cl, or nitrate/ammonium layers coincident with -20000 to -19001 BP, attributable to a gamma-ray/cosmic-ray ionization pulse",
+      "Astronomical identification of a supernova remnant (or associated pulsar/neutron star) whose kinematic/expansion age and heliocentric distance are consistent with an explosion ~19,000\u201320,000 years ago close enough to irradiate Earth",
+      "Independent isotopic corroboration in other archives (Antarctic ice cores, marine sediment 10Be, radiocarbon proxies) showing a synchronous ionization/cosmic-ray signal globally, not Greenland-only",
+      "Geological/sedimentary markers of abrupt atmospheric-chemistry or ozone-depletion effects (e.g., nitrate spikes, stratospheric proxy changes) in the correct ice layers",
+      "Model-prior astrophysical plausibility: known nearby supernova remnants/pulsars with characteristic ages matching ~19,000\u201320,000 years (recollection-based, unverified model-prior claim, not confirmed by any provided source)",
+      "Faint indirect cultural traces (Upper Paleolithic iconography/oral tradition) of an anomalously bright transient sky event, though extremely tenuous at this time depth",
+      "Chronological consistency check: the conventionally accepted Younger Dryas onset is ~12,900 cal BP (~10,900 BCE), not 19,000\u201320,000 BP \u2014 the hypothesis's stated interval is offset by roughly 6,000\u20137,000 years from the accepted onset, a structural problem independent of detectability"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "Using the 'upper-paleolithic' row (since the stated interval -20000 to -19001 falls in that period, even though the object references 'younger-dryas-onset-cooling'), the most diagnostic evidence types are astronomical (0.7) and geological (0.6): Greenland ice cores (GISP2/NGRIP) extend well past 20,000 BP with fine annual-to-decadal layer resolution, so a real gamma-ray/cosmic-ray ionization pulse of supernova origin should in principle have left a detectable radionuclide/nitrate signature, and supernova remnants can in principle persist and be dated astronomically, though precision at 20,000-year remove is difficult. Other evidence classes are weak: material (0.35), genetic (0.25), iconographic (0.1), oral tradition (0.1), and model_prior (0.3) are all low, reflecting that cultural/biological corroboration this far back is essentially unrecoverable, and any specific astrophysical claim about a supernova at this exact epoch is only a low-confidence, unverified model-prior recollection rather than an established source. Weighting toward the two strongest channels (astronomical, geological) while discounting the weaker corroborating channels yields an overall adjustment around 0.5, meaning a genuine absence of confirmed evidence would be only moderately explained by low detectability \u2014 plenty of the strongest evidence types (ice-core geochemistry, astronomical remnant dating) are plausibly preservable and findable if the event occurred as described. Separately, and independent of detectability, there is a notable chronological inconsistency: the conventionally accepted onset of Younger Dryas cooling is dated to ~12,900 cal BP, not 19,000\u201320,000 BP as specified in the hypothesis's interval \u2014 this mismatch (stated plainly as an unverified model-prior recollection) raises doubts about the hypothesis's internal coherence that should not be conflated with the detectability score itself."
+  }
+}

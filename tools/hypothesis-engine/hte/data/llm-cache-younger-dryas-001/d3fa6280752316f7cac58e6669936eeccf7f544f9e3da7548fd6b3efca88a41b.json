@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "d4e0115e387f6edb4c05e6bf59f580928879f8007b79c6544f048a5ab3c315cc",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: elevated nanodiamond (hexagonal lonsdaleite, cubic diamond) concentrations in a thin sedimentary layer dated to ~12,900 BP (Younger Dryas boundary) at multiple North American sites",
+      "Geological: associated markers in the same stratum - magnetic microspherules, iridium/platinum anomalies, charcoal 'black mat' layers, aciniform soot",
+      "Material/archaeological: stratigraphic correlation between the YDB layer and terminal Clovis occupation horizons or megafaunal bone beds",
+      "Geological: independent replication of nanodiamond counts via multiple extraction/imaging protocols (TEM, XRD) across different labs and localities",
+      "Model-prior/literature: published debate (Firestone et al. 2007 proposal vs. Daulton, Pigati, van Hoesel et al. critiques) over reproducibility and identification criteria for the nanodiamonds",
+      "Astronomical (indirect): modeling of a plausible impactor/airburst source (comet fragmentation) consistent with a continent-wide ejecta scatter, absent an actual crater"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "The date (-10950, i.e., ~12,950 BP) places this squarely at the Younger Dryas onset, so I am scoring against the 'younger-dryas' row rather than a generic upper-paleolithic default, even though the record leaves period unspecified. This is a known real-world controversy (the Younger Dryas Impact Hypothesis, YDIH) that I recall from training as model-prior, not from supplied evidence text, so I flag it as such and treat it cautiously. The dominant expected evidence class is geological (sediment layers, nanodiamonds, spherules, black mats), which has detectability 0.65 in this table row - these strata are physically robust and have in fact been sampled at numerous sites, so absence-of-finding is not well explained by poor preservation. Material/archaeological corroboration (0.35) and genetic proxies like megafaunal extinction signatures (0.3) are weaker and patchier. Astronomical evidence (0.7) is high in the table but only marginally applicable here since no crater has been identified - the 'evidence' is indirect (ejecta only, not an impact structure), so I don't weight it as heavily as the raw table value suggests. Averaging across the plausible evidence classes actually used (geological, material, genetic, model_prior) with geological dominant, I settle on an overall detectability of ~0.5, somewhat below the raw geological row score to account for the archaeological/genetic components being weaker channels for confirming an impact-ejecta-fallout mechanism specifically. Because the taphonomic and analytical detectability here is only moderate rather than low, the 'inconclusive' status assigned to this hypothesis should NOT be read as evidence absence excused by poor preservation - it genuinely reflects an active, well-evidenced but unresolved scientific dispute over reproducibility and interpretation of the nanodiamond signal, not a case where a low detectability score should stand in for falsity or for lack of searching."
+  }
+}

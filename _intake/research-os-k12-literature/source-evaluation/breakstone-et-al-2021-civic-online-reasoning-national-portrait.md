@@ -15,6 +15,10 @@ url: "https://doi.org/10.3102/0013189x211017495"
 openalex_id: "https://openalex.org/W3164656280"
 branch: "source-evaluation"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-d1b4d20be98f)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/information-foraging/primary-papers.yaml (id bkt-c033b128f77f, Pirolli and Card 1999)"
 why_it_matters: >
   The largest national assessment of its kind, 3,446 US high school students given a live
   internet connection and six constructed-response source-evaluation tasks, finding students
@@ -54,9 +58,9 @@ across every task.
   could not distinguish news stories from ads on a popular site's home page.
 - More than half of students believed an anonymously posted, provenance-weak Facebook video
   provided strong evidence of US voter fraud.
-- Students were frequently misled by weak credibility signals, a site's look, its top-level
-  domain, its About page, and information volume; scores varied by grade level, self-reported
-  grades, locality, socioeconomic status, race, maternal education, and lunch-program status.
+- Students were misled by weak credibility signals, a site's look, its top-level domain, its
+  About page, and information volume; scores varied by grade level, self-reported grades,
+  locality, socioeconomic status, race, maternal education, and lunch-program status.
 
 ## Research Questions It Leaves Open
 

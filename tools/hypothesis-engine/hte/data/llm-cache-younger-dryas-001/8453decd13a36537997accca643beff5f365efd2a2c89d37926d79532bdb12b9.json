@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "1697193364e295d4b63dfcdd38f7bfc7d49f64afb7274f88f4af4f991d670b00",
+  "response": {
+    "expected_evidence": [
+      "Ice-core geochemical anomaly in Greenland cores (GISP2/GRIP/NGRIP) at the ~13,000\u201312,001 BCE horizon: spikes in nitrate, ammonium, sulfate, platinum, or extraterrestrial-flux markers (astronomical/geological)",
+      "Cosmogenic isotope excursion (Be-10, Cl-36) in the same ice strata consistent with an unusually intense solar proton event (astronomical)",
+      "A correlated 'black mat' or impact-proxy layer (nanodiamonds, magnetic spherules, iridium/platinum enrichment) at Younger Dryas-onset archaeological/paleontological sites across North America and Eurasia (geological/material)",
+      "Abrupt megafaunal bone-bed discontinuity or extinction pulse dated radiometrically to the same narrow interval (material/genetic)",
+      "Ancient-DNA population bottleneck or extinction signature in megafaunal lineages timed to this interval (genetic)",
+      "Existing published literature on the Younger Dryas Impact Hypothesis and on Miyake-event solar proton spikes, which this hypothesis appears to synthesize (model_prior)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The proposed interval (13,000\u201312,001 BCE) sits at the Late Glacial/Younger Dryas transition, so the 'younger-dryas' row is the best available proxy (geological 0.65, astronomical 0.70, genetic 0.30, material 0.35, model_prior 0.30). Greenland ice sheet is an unusually favorable substrate: continuous, well-dated, high-resolution ice-core records (GISP2/NGRIP) extend well past this interval, so geochemical/isotopic anomalies (nitrate spikes, cosmogenic isotope excursions) that a genuine solar-proton event would leave are very plausibly preserved and already searched for by paleoclimatologists \u2014 this pushes the geological/astronomical detectability above the generic table baseline. However, two things pull the composite adjustment down from the astronomical/geological ceiling: (1) the hypothesis's mechanism is internally inconsistent by mainstream physics \u2014 solar proton events are radiation/particle-flux phenomena, not kinetic 'airburst' impactors, so it conflates two distinct real-but-separate literatures (Younger Dryas Impact Hypothesis nanodiamond/platinum evidence, and Miyake-event cosmogenic-isotope spikes) into a single causal chain that isn't independently attested; (2) the genetic and material evidence needed to link any such event causally to megafaunal extinction specifically (rather than correlate with it) is intrinsically weak for this period (genetic 0.30, material 0.35) since ancient DNA and faunal bone chronologies from ~15,000 years ago are sparse and poorly time-resolved. Treat any specific 'solar-proton-airburst-megafauna' causal claim as model-prior-level speculation unless a peer-reviewed source is cited; the underlying observational anomalies (platinum/nanodiamond layers, ice-core isotope spikes) are real and detectable in the literature, but the causal synthesis in this hypothesis is not independently established."
+  }
+}

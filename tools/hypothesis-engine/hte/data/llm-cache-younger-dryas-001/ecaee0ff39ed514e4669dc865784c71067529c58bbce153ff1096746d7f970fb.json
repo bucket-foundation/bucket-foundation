@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ca058d892696f64110767ff0626d43b004d1fc92b8477fcf40281bd42337317b",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: absence/inconsistency of platinum, iridium, or osmium anomalies in sediment cores and 'black mat' layers across multiple continents at the YD boundary",
+      "Geological: failure to replicate reported nanodiamond, magnetic microspherule, or carbon-spherule concentrations in independent re-analyses of the same strata",
+      "Material/archaeological: continuity of Clovis-era and other Upper Paleolithic lithic technologies and human occupation across the YD boundary without a population-collapse signature",
+      "Genetic: absence of a synchronous megafaunal or human population bottleneck precisely at the proposed impact date, or evidence that extinctions were staggered rather than abrupt",
+      "Model_prior/textual (modern scientific literature, not ancient): peer-reviewed rebuttal papers, meta-analyses, and consensus statements from Quaternary science bodies concluding the impact markers are not extraterrestrial or not synchronous",
+      "Astronomical: absence of a confirmed impact crater of appropriate age/size, or reassignment of candidate craters to unrelated periods",
+      "Alternative-mechanism geological evidence: meltwater-pulse/AMOC-shutdown proxies (e.g., Lake Agassiz drainage signatures) offered as the accepted non-impact explanation for YD cooling"
+    ],
+    "detectability_adjustment": 0.3,
+    "rationale": "The hypothesis is internally anomalous: it dates the 'refutation' event to -20000..-19001 (Last Glacial Maximum / late Upper Paleolithic), roughly 7,000-8,000 years before the actual Younger Dryas onset (~12,900-11,700 cal BP, i.e. ~-10900 to -9700), which the refutation is supposed to concern. This chronological mismatch is not something the evidence text can resolve; it suggests either a data-entry error in the hypothesis's interval field or a conflation of the LGM with the YD boundary. Because 'period' is unspecified, I anchor detectability to the interval given (Upper Paleolithic rows) rather than the (correct) Younger Dryas rows, since the engine's placement, not the topical content, drives what evidence window is being asked about. Under the Upper Paleolithic rows, the most relevant evidence kinds are geological (0.6) and material (0.35), with astronomical (0.7) plausible for crater-search null results; genetic (0.25), model_prior (0.3), textual (0.0), oral_tradition (0.1), iconographic (0.1), and linguistic (0.05) are weak. Averaging across the evidence kinds actually relevant to testing an impact-refutation claim (geological, material, astronomical, genetic, model_prior) yields a modest composite detectability. Separately, as model-prior (unverified recall, not from provided evidence text): I recall that the real Younger Dryas Impact Hypothesis (proposed ~2007) has been extensively contested, with multiple independent labs failing to replicate nanodiamond/platinum signals at many sites, and a majority of Quaternary scientists treating it as not well-supported by the mid-2010s \u2014 this is a genuinely modern (textual, near-certain-detectability) scientific debate, not a Paleolithic-era phenomenon, which reinforces that the interval attached to this hypothesis is likely mis-specified. Given the low-to-moderate detectability of the geological/material proxies at the (incorrectly) specified ancient interval, and the total absence of textual/oral/iconographic access to Ice-Age-era events, an absence of confirming evidence at that specific interval should not be read as strong evidence against the underlying (modern) scientific refutation \u2014 it more likely reflects the mismatched date placement."
+  }
+}

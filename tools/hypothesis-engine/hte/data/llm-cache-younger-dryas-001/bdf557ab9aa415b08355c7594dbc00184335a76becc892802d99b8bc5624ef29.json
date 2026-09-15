@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "241494b1459af516f21e38e4fb74c00bbbce56257cfca2fa7e52d642cd77de6c",
+  "response": {
+    "expected_evidence": [
+      "geological: cosmogenic/ionization proxies in ice cores and sediment layers dated to ~10,950 BCE \u2014 spikes in 10Be, 36Cl, 15N, nitrate, or ammonium consistent with atmospheric ionization/ozone depletion",
+      "geological: a distinct radiocarbon (14C) production spike or 'Miyake-event'-like anomaly in tree rings/varves near the boundary layer",
+      "astronomical: identification of a plausible nearby transient source (supernova remnant, magnetar giant flare, or GRB progenitor) whose age/distance is consistent with a lethal gamma-ray flux reaching Earth ~13ka",
+      "geological: black-mat/boundary-layer sediment markers (already invoked in the broader Younger Dryas impact literature) reinterpreted as ionization-driven rather than impact-debris-driven",
+      "genetic: elevated mutation-rate or bottleneck signatures in ancient megafaunal DNA dated to the same window",
+      "material: absence (rather than presence) of conventional impact ejecta (spherules, shocked quartz, platinum anomaly) since gamma-ray ionization does not require a physical impactor \u2014 this absence itself is diagnostic and expected under the hypothesis",
+      "model-prior (unverified, from training recall): this scenario resembles speculative 'Younger Dryas nova/GRB' proposals in some fringe literature, distinct from the mainstream comet-airburst Younger Dryas Impact Hypothesis; treat as low-confidence background knowledge, not established fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval (~10,950 BCE) falls at the Younger Dryas onset, so the younger-dryas detectability row is most applicable rather than a generic Upper Paleolithic default. The mechanism (gamma-ray ionization from a cosmic source) predicts atmospheric/geochemical signatures \u2014 cosmogenic isotope spikes (10Be, 36Cl), nitrate/ozone-depletion markers, and possibly a 14C production anomaly \u2014 which are exactly the kind of proxy preserved in ice cores and varved sediments; these fall under 'geological' (0.65) and 'astronomical' (0.7) detectability, both comparatively high for this period. However, the causal link to 'megafaunal-extinction' specifically requires corroborating genetic (0.3) or material (0.35) evidence tying the ionization event to a synchronous extinction pulse, and no textual (0.0) or reliable oral-tradition (0.1) record can exist this far back. The action is already flagged 'inconclusive,' consistent with a scenario where the physical/geochemical proxies are preservable and have been searched for, but a definitive causal chain (ionization event -> extinction, as opposed to correlation with climate/Clovis-culture changes) remains unestablished \u2014 this is a genuine evidentiary gap rather than a pure detectability failure. Because the most mechanism-relevant evidence types (geological, astronomical) have moderate-to-high survivability while the extinction-causation link (genetic, material) has much lower survivability/specificity, I weight the overall adjustment toward the middle: ~0.5. This is somewhat above the raw unweighted average of the table's Younger Dryas rows because the hypothesis's core physical signature (ionization/isotope anomalies) is unusually well-preserved for this era, but is pulled down because the causal attachment to megafaunal extinction specifically is the weakest, least detectable link. Note the GRB/ionization framing itself is being treated here as model-prior background (low-tier, unverified) rather than a documented consensus mechanism."
+  }
+}

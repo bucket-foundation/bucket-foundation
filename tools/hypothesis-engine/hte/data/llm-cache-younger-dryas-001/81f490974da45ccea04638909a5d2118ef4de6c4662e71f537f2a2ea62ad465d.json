@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "346a30b4458decc303dfdc37fde91d8b65e30a7d6e7db4ca1521c83c2f8d3530",
+  "response": {
+    "expected_evidence": [
+      "Geological: Greenland ice-core geochemical anomalies at the ~12,800 cal BP horizon (elevated platinum, iridium, nanodiamonds, or other cosmic-impact proxies) coincident with cooling onset",
+      "Geological/astronomical: cosmogenic isotope spikes (e.g., Be-10, Cl-36, or a C-14 excursion analogous to a Miyake event) in ice or contemporaneous tree-ring/sediment archives, indicative of a sudden ionizing radiation pulse",
+      "Astronomical: orbital-dynamics modeling and meteor-stream reconstructions showing the Taurid complex's node crossing Earth's orbit and debris density sufficient to plausibly deliver an ionizing/fragmentation event circa 10,900 BCE",
+      "Material: continental 'black mat' / boundary layer sediments with soot, charcoal, or spherules at archaeological sites correlating with megafaunal extinction and Clovis-era disruption",
+      "Genetic: megafaunal population bottleneck or extinction signatures dated to the YD onset, potentially used as indirect corroboration",
+      "Model-prior/theoretical: astrophysical modeling of how a meteor-stream encounter could produce gamma-ray or bremsstrahlung ionization sufficient to affect atmospheric chemistry or trigger climate feedbacks"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval [-11000,-10001] BCE places this squarely in the Younger Dryas onset, so the 'younger-dryas' detectability row is the appropriate reference despite the period field being left unspecified. Greenland ice sheets provide a continuous, high-resolution, annually-layered archive spanning this exact period, making geological (0.65) and astronomical (0.7, via independently reconstructed meteor-stream orbital dynamics) evidence classes quite plausible to detect if the hypothesized event occurred \u2014 this matches the real, ongoing (and contested) Younger Dryas Impact Hypothesis literature, which the 'inconclusive' action tag in the hypothesis itself reflects (model-prior: I recall this remains an active, unresolved debate in the literature, not a settled fact). However, the specific mechanism proposed \u2014 gamma-ray ionization from a Taurid swarm \u2014 is harder to distinguish from alternative causes (impact ejecta, solar activity changes, volcanic forcing) using the same proxies, so even surviving geochemical anomalies would be ambiguous as to mechanism, consistent with 'inconclusive' rather than confirmed or refuted. Material (0.35) and genetic (0.3) evidence are lower-yield: megafaunal and archaeological correlations exist but are causally muddy and taphonomically incomplete over 12,900 years. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) evidence are essentially inapplicable this deep in the Upper Paleolithic\u2013Younger Dryas boundary, well before writing or durable narrative/iconographic transmission, so their near-zero detectability should be read as expected absence, not as evidence against the hypothesis. Weighting toward the most mechanism-relevant and highest-detectability classes (geological, astronomical) while discounting the low-yield classes, I estimate a blended detectability adjustment of ~0.55: high enough that a genuine event of this kind should have left findable ice-core/isotopic traces, but tempered by the difficulty of attributing any such trace specifically to a gamma-ray-ionization mechanism versus competing explanations."
+  }
+}

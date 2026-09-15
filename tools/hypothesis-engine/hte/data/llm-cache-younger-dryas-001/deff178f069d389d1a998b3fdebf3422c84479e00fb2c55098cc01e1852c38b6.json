@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "db591f8ee1043f71afa9a4ce28a7ccccd632add869c31594cc5893307a20c3eb",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a volcanic sulfate/ash (tephra) spike in Greenland and Antarctic ice cores dated to ~12,900 cal BP, ideally matched to a specific eruptive source",
+      "Geological/material: a correlative ash or cryptotephra layer in Arctic Ocean sediment cores (e.g., Lomonosov Ridge, Mendeleev Ridge cores) coincident with the Younger Dryas boundary",
+      "Astronomical: anomalous ionization proxies such as nitrate (NOx) spikes or cosmogenic isotope excursions (10Be, 14C, 36Cl) in ice cores that would indicate atmospheric gamma-ray ionization at the YD onset",
+      "Geological: stratospheric aerosol loading signatures (sulfur isotope anomalies, mass-independent fractionation) consistent with a very large, climate-forcing eruption",
+      "Material: disrupted megafaunal/archaeological assemblages (e.g., Clovis-era sites) showing an abrupt occupation gap or the 'black mat' boundary layer often cited for YD-onset events",
+      "Genetic: a population bottleneck signature in megafauna or early human genomes dated to ~12,900 BP",
+      "Model-prior (low tier): existing volcanic-forcing and extraterrestrial/gamma-ray-burst hypotheses for YD onset in the literature, none of which currently converge on a single Arctic Ocean volcanic-gamma mechanism"
+    ],
+    "detectability_adjustment": 0.32,
+    "rationale": "Using the 'younger-dryas' period rows (interval matches YD onset directly), the relevant evidence kinds are geological (0.65), astronomical (0.7), material (0.35), and genetic (0.3), with model_prior at 0.3. These are among the higher-detectability categories in the table, meaning polar ice cores and some Arctic sediment archives from this interval do survive and have been intensively studied for sulfate/ash and isotopic anomalies \u2014 so an absence of a confirmed large eruption + coincident ionization spike is more likely to reflect true absence than poor preservation. However, I discount the raw average downward for two reasons: (1) the specific 'arctic-ocean' placement has sparse, low-resolution sediment core coverage compared to the global ice-core network, so a source specifically localized there is harder to pin down even though the era generally is well-recorded; and (2) the mechanism itself (gamma-ray-ionization from a volcanic eruption) is not a recognized physical pathway \u2014 gamma-ray/cosmogenic-isotope ionization signals are conventionally attributed to cosmic/astrophysical sources (e.g., solar proton events, supernovae, impacts), not volcanism, which produces sulfate aerosol forcing rather than ionizing radiation. This is a model-prior judgment, not drawn from the evidence text, and it suggests the hypothesis conflates two distinct, separately-studied causal mechanisms for YD onset. Because the underlying mechanism is physically implausible rather than merely hard to detect, any observed lack of confirming evidence should be weighted toward the hypothesis being false rather than toward low detectability \u2014 hence a moderate detectability_adjustment (~0.32) rather than treating silence as fully explained by poor preservation."
+  }
+}

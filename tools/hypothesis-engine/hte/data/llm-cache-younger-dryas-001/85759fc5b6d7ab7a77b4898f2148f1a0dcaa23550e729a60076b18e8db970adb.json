@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "9c23915945627f88cf26f91cb1a1309352111017d4e3dacae26b5d5612ce2c8f",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a platinum/iridium/osmium geochemical anomaly at the Younger Dryas Boundary (YDB) horizon in Greenland ice cores (e.g., GISP2) and in terrestrial sediment sequences worldwide",
+      "Geological: layer of magnetic and glassy microspherules, melt-glass, and nanodiamonds (lonsdaleite) in the YDB sedimentary layer",
+      "Geological: a 'black mat' organic-rich layer marking abrupt ecological disruption at ~12,900 cal BP",
+      "Astronomical: a hypothesized subglacial impact crater or airburst signature under/near the Greenland ice sheet (e.g., debate around Hiawatha crater dating)",
+      "Astronomical: modeled trajectory/fragmentation evidence of a Younger Dryas-age comet or bolide consistent with an airburst rather than a single crater",
+      "Material/archaeological: disruption in Clovis-era (or contemporaneous Old World) lithic assemblages and settlement patterns coincident with the onset layer",
+      "Material: megafaunal extinction/die-off signatures (bone beds, extinction chronologies) clustering near the YDB horizon",
+      "Genetic: population bottleneck signals in megafauna and possibly human mitochondrial/genomic lineages dated to ~12,900 BP",
+      "Geological: elevated soot/charcoal (biomass burning) markers indicating continent-scale wildfires triggered by an airburst",
+      "Ice-core: physical/chemical perturbation layer in Greenland ice matching the proposed date (dust, ammonium, or platinum spikes)"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis proposes a discrete cosmic airburst event at ~10,950 BCE tied to Younger Dryas onset, located at the Greenland ice sheet. Using the 'younger-dryas' detectability row as the closest period match, geological (0.65) and astronomical (0.7) evidence categories are the most detectable, since ice cores and sediment sequences from this era are well-preserved archives capable of recording geochemical anomalies (platinum, iridium), microspherules, nanodiamonds, and soot layers \u2014 and such candidate signals (e.g., the GISP2 platinum spike reported by Petaev et al. 2013, and YDB spherule/nanodiamond claims by Firestone et al.) have in fact been reported in the literature, which is model-prior knowledge from training rather than evidence directly supplied here. Material (0.35) and genetic (0.3) evidence are less detectable due to poor Upper Paleolithic-era preservation and small population sizes, while textual, linguistic, oral_tradition, and iconographic categories are essentially undetectable (near 0) since writing, stable oral transmission, and iconography did not yet exist at this depth in time. Given that ice sheets and deep sediment cores are unusually good preservation media for this specific mechanism (compared to, say, textual or linguistic evidence which is structurally impossible this early), I'd raise the composite detectability slightly above the raw geological/astronomical average to ~0.55, reflecting that the hypothesis targets exactly the evidence types (ice-core geochemistry, sediment stratigraphy) that are best preserved for this period, even though no confirmed impact crater has been found and the broader YDB hypothesis remains scientifically contested. This means genuine absence of a crater or unambiguous cosmic material is only weak evidence against the hypothesis \u2014 non-detection is expected to some degree because a low-altitude airburst over ice would leave a smeared/diffuse geochemical signature rather than a discrete crater, and any surface crater could be obscured or erased by subsequent ice sheet dynamics."
+  }
+}

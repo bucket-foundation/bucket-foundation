@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "bdcb287e181b4de6d79c1cc017b26f6324d4ff1daf635e5a680039e5e48f953a",
+  "response": {
+    "expected_evidence": [
+      "geological: nanodiamond concentrations (cubic/hexagonal diamond, lonsdaleite) at a dated Younger Dryas onset (YDB) sediment horizon across multiple North American sites",
+      "geological: associated markers in the same horizon \u2014 magnetic/glassy spherules, platinum and iridium anomalies, meltglass, elevated PAH/soot",
+      "material: a 'black mat' organic-rich layer marking abrupt ecological transition, with charcoal/soot consistent with continent-scale biomass burning",
+      "material: archaeological horizon showing Clovis-era site abandonment or occupation hiatus coincident with the layer",
+      "geological/astronomical: a confirmed impact crater or airburst structure of appropriate age (largely absent from the literature \u2014 a key evidentiary gap)",
+      "genetic: megafauna population bottleneck/extinction signatures clustering near 12.9 ka",
+      "model_prior: this matches the published 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007; Kennett et al.), which remains scientifically contested due to inconsistent replication of nanodiamond/spherule findings by independent labs"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval (-10950) corresponds to ~12,900 cal BP, the Younger Dryas onset, so I used the 'younger-dryas' period row rather than an unspecified default. This hypothesis mirrors a real, actively debated scientific claim (the Younger Dryas Impact Hypothesis), which I treat as model-prior/unverified background rather than established fact. Sediment-based geological evidence (nanodiamonds, spherules, black mat) is exactly the type of proxy expected to survive ~13,000 years in stratified deposits, and the table's geological (0.65) and astronomical (0.7) detectability for this period are reasonably high, since sediment cores and impact-related mineralogy are routinely recoverable. Material archaeological evidence (0.35) is moderately preservable but coarser-grained. However, two factors argue against a high adjustment: (1) despite extensive searching, no confirmed impact crater has been identified, which is a strong disconfirming absence for an 'impact' mechanism specifically (astronomical evidence category underdelivers relative to its 0.7 baseline); and (2) nanodiamond/spherule findings have suffered from failed independent replication in several studies, meaning the 'corroborated' status in the hypothesis is optimistic relative to the actual contested literature. Genetic evidence (0.3) for megafauna bottlenecks is weak and confounded by other extinction drivers (human overhunting, climate change). Given decent geological/material preservation potential but a genuinely contested and incompletely corroborated evidentiary record (not a pure detectability/preservation problem), I set the adjustment at 0.5 \u2014 moderate, reflecting real survivability of the proxy evidence while flagging that absence of a crater and inconsistent replication are substantive scientific issues rather than mere detection failures."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fe4e926ffed03939e1c63a5c0ccd1884adc517122813f44addb65cb21474b6be",
+  "response": {
+    "expected_evidence": [
+      "Geological: a distinct Younger Dryas Boundary (YDB) sedimentary layer (~12,900 cal BP / ~10,950 BCE) across North American sites containing elevated nanodiamond concentrations (hexagonal lonsdaleite, cubic diamonds), magnetic microspherules, iridium/platinum group element anomalies, and a 'black mat' organic-rich layer",
+      "Geological: corresponding signal in ice cores (e.g., Greenland) showing platinum/iridium spikes and possible extraterrestrial dust concentrations at the same date",
+      "Astronomical: identification of a supernova remnant or historical/indirect record (e.g., anomalous Fe-60 or other short-lived radionuclide isotopic signature) consistent with a nearby stellar explosion at ~10,950 BCE that could plausibly deliver impact-like ejecta to Earth",
+      "Material/archaeological: disruption or discontinuity in Clovis-era archaeological assemblages, site abandonment patterns, or associated megafaunal extinction horizons in North America coincident with the layer",
+      "Genetic: population bottleneck signatures in North American megafauna or early human lineages dated to this interval",
+      "Model-prior: consistency with established impact-ejecta nanodiamond formation mechanisms (typically linked to comet/asteroid impacts or airbursts rather than supernovae, since supernova-origin nanodiamonds are usually presolar grains predating the solar system, not a mechanism for terrestrial fallout ~13,000 years ago)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The specified date (-10950) corresponds almost exactly to the Younger Dryas onset boundary (~12,900 cal BP), so I evaluated this against the 'younger-dryas' period row rather than treating it as unspecified. Geological (0.65) and astronomical (0.7) evidence for this period have comparatively high detectability \u2014 sediment layers, ice cores, and isotopic/impact markers from this interval are well-studied and preservable over ~13,000 years, and indeed a substantial (though contested) scientific literature already exists searching for exactly this kind of YDB nanodiamond/spherule signature. Material (0.35) and genetic (0.3) evidence are moderately detectable, consistent with the patchy North American archaeological and megafaunal record from this era. However, the hypothesis's specific mechanism \u2014 attributing the nanodiamond layer to a 'supernova-event' via 'impact-ejecta-fallout' \u2014 is scientifically unusual: mainstream YDIH research attributes nanodiamond layers to cometary/asteroidal impact or airburst processes, not to a nearby supernova, and no known supernova remnant or associated short-lived radionuclide signature (e.g., Fe-60) at the appropriate age/distance has been reported despite reasonably good astronomical detectability for this period. This is a case where a real geological anomaly (the YDB layer) may exist and has been actively investigated (and disputed) in the literature \u2014 model-prior treated only as unverified background, not established fact \u2014 while the specific supernova-causation mechanism lacks the corroborating astronomical evidence that should be findable if the hypothesis were true, given the non-trivial detectability score. Composite adjustment (~0.45) reflects decent geological/astronomical detectability tempered by the implausibility and lack of corroboration for the supernova-specific mechanism, and lower detectability in genetic/material channels for this period."
+  }
+}

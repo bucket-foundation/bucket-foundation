@@ -12,11 +12,13 @@ before any of this happens.
 """
 from __future__ import annotations
 
+import json
+
 import pytest
 
 from hte import propagate
 from hte.address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
-from hte.belief import Constants, score as belief_score
+from hte.belief import Constants, Opinion, pooled_weight as belief_pooled_weight, score as belief_score
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from hte.corpus import quantum_history
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Tier
@@ -29,7 +31,7 @@ INTERVAL = Interval(start=TBIN_START, end=TBIN_START + DEFAULT_BIN_WIDTH - 1)
 
 def _vocab() -> Vocabulary:
     vocab = Vocabulary()
-    for actor_id in ("r-actor", "a-actor", "b-actor", "c-actor", "d-actor"):
+    for actor_id in ("r-actor", "a-actor", "b-actor", "c-actor", "d-actor", "e-actor"):
         vocab.add(Concept(actor_id, Slot.ACTOR, actor_id, 0.0, ConsensusStatus.CONSENSUS))
     vocab.add(Concept("act", Slot.ACTION, "Acted", 0.0, ConsensusStatus.CONSENSUS))
     vocab.add(Concept("obj", Slot.OBJECT, "Object", 0.0, ConsensusStatus.CONSENSUS))
@@ -48,6 +50,17 @@ def _item(item_id: str, address: int, kind: EvidenceKind, tier: Tier, source_id:
         id=item_id, kind=kind, tier=tier, source_id=source_id,
         span=EvidenceSpan(doc_id="doc", locator=item_id, quote="q", char_start=0, char_end=1),
         provenance="test-fixture", supports=[address],
+    )
+
+
+def _refuting_item(item_id: str, address: int, kind: EvidenceKind, tier: Tier, source_id: str) -> EvidenceItem:
+    """Same shape as `_item`, refuting `address` instead of supporting it:
+    the `s > 0` fixture item the disbelief-propagation test below needs,
+    since `_item` only ever builds a `supports` item."""
+    return EvidenceItem(
+        id=item_id, kind=kind, tier=tier, source_id=source_id,
+        span=EvidenceSpan(doc_id="doc", locator=item_id, quote="q", char_start=0, char_end=1),
+        provenance="test-fixture", refutes=[address],
     )
 
 
@@ -210,6 +223,66 @@ def test_two_hop_dependent_moves_less_than_one_hop(monkeypatch=None):
     assert report.updated_opinions[c.address].d == pytest.approx(0.0)
 
 
+def test_one_hop_dependent_with_its_own_disbelief_shrinks_d_with_b_never_rises():
+    """QA review, PR #78: "d unchanged" (the claim A/B/C above all
+    exercise) only holds because their own base `s` is 0. A dependent
+    that already carries refuting weight of its own (`s > 0`) has that
+    weight damped by the exact same factor as its supporting weight,
+    so `d` shrinks together with `b` as the cascade damps it, it never
+    rises: the retraction adds no NEW disbelief to a dependent, since
+    nothing new ever refutes a dependent, only the retracted root
+    itself. `E` depends on `R` directly (one hop) and carries one
+    supporting and one refuting item of its own."""
+    vocab = _vocab()
+    r = _hypothesis("r-actor", vocab)
+    e = _hypothesis("e-actor", vocab, depends_on=[r.address])
+
+    sources = {
+        "src-r1": Source(id="src-r1", kind=EvidenceKind.MATERIAL),
+        "src-r2": Source(id="src-r2", kind=EvidenceKind.MATERIAL, stemma_parents=["src-r1"]),
+        "src-e-support": Source(id="src-e-support", kind=EvidenceKind.MATERIAL),
+        "src-e-refute": Source(id="src-e-refute", kind=EvidenceKind.GENETIC),
+    }
+    evidence = [
+        _item("ev-r1", r.address, EvidenceKind.MATERIAL, Tier.T1, "src-r1"),
+        _item("ev-r2", r.address, EvidenceKind.MATERIAL, Tier.T1, "src-r2"),
+        _item("ev-e-support", e.address, EvidenceKind.MATERIAL, Tier.T2, "src-e-support"),
+        _refuting_item("ev-e-refute", e.address, EvidenceKind.GENETIC, Tier.T3, "src-e-refute"),
+    ]
+
+    opinions_before = _opinions([r, e], evidence, vocab, sources)
+    op_before = opinions_before[e.address]
+    assert op_before.d > 0.0  # the fixture's whole point: s > 0 up front
+
+    _retract_root(evidence, sources, r.address)
+    opinions_after_root = _opinions([r, e], evidence, vocab, sources)
+
+    report = propagate.propagate(
+        [r, e], opinions_after_root, {r.address},
+        evidence=evidence, vocab=vocab, sources=sources,
+        threshold=0.0,  # this fixture's own move may be small; record it regardless
+    )
+    op_after = report.updated_opinions[e.address]
+
+    # The predicted amount, derived independently from the same public
+    # pieces `propagate` itself composes (`pooled_weight` for E's own
+    # base r/s, R's own post-retraction projection as the one-hop damp
+    # factor, `Opinion.from_evidence` over the damped pair) rather than
+    # by re-running `propagate`'s own internals a second time.
+    base_r, base_s = belief_pooled_weight(evidence, e.address, sources=sources, constants=Constants())
+    damp = opinions_after_root[r.address].project()
+    expected = Opinion.from_evidence(base_r * damp, base_s * damp, Constants().W, op_before.a)
+
+    assert op_after.b == pytest.approx(expected.b)
+    assert op_after.d == pytest.approx(expected.d)
+
+    # d fell, it did not rise, no more than the predicted amount; b fell
+    # by the same proportion, so the b:d ratio survives the cascade even
+    # as both values shrink toward 0.
+    assert 0.0 < op_after.d < op_before.d
+    assert op_before.b / op_before.d == pytest.approx(op_after.b / op_after.d)
+
+
 def test_independent_node_is_not_touched():
     vocab, (r, a, b, c, d), evidence, sources = _planted_graph()
     opinions_before = _opinions([r, a, b, c, d], evidence, vocab, sources)
@@ -257,6 +330,56 @@ def test_cascade_report_lists_a_b_c_with_correct_hops_and_shares():
     as_dict = report.to_dict()
     assert as_dict["roots"] == [r.address]
     assert {e["address"] for e in as_dict["entries"]} == addresses
+
+
+def test_mixed_direct_and_routed_parent_still_reports_full_routed_share():
+    """QA review, PR #78, Low: every `routed_share` assertion above is a
+    dependent with exactly one parent, itself the retracted root or one
+    hop off it, so none of them exercises a dependent that ALSO carries
+    a parent entirely outside the cascade (a real mixed case). `M`
+    depends on both `R` (the retracted root) and `X` (an independent
+    hypothesis this cascade never touches): `propagate`'s own
+    `active_parents = sorted(p for p in parents if p in active)` filters
+    `X` straight out, so `M`'s damping routes entirely through `R`
+    regardless of `X`'s presence, `routed_share == 1.0`, exactly as it
+    does for a dependent with only one parent to begin with. A
+    `routed_share` BELOW 1.0 needs fractional attribution across two
+    INDEPENDENTLY-MOVING roots sharing one dependent, which
+    `_damp_and_share`'s own docstring names as real, unbuilt follow-up
+    work (`share` is hardcoded to `1.0` whenever `active_parents` is
+    non-empty); this fixture's `X` never moves, so it never becomes a
+    second root for this cascade to split across, and `routed_share`
+    has no path to fall below `1.0` under today's single-root design."""
+    vocab = _vocab()
+    r = _hypothesis("r-actor", vocab)
+    x = _hypothesis("a-actor", vocab)  # independent: no evidence links it to R, no retraction touches it
+    m = _hypothesis("b-actor", vocab, depends_on=[r.address, x.address])
+
+    sources = {
+        "src-r1": Source(id="src-r1", kind=EvidenceKind.MATERIAL),
+        "src-r2": Source(id="src-r2", kind=EvidenceKind.MATERIAL, stemma_parents=["src-r1"]),
+        "src-x1": Source(id="src-x1", kind=EvidenceKind.MATERIAL),
+        "src-m1": Source(id="src-m1", kind=EvidenceKind.MATERIAL),
+    }
+    evidence = [
+        _item("ev-r1", r.address, EvidenceKind.MATERIAL, Tier.T1, "src-r1"),
+        _item("ev-r2", r.address, EvidenceKind.MATERIAL, Tier.T1, "src-r2"),
+        _item("ev-x1", x.address, EvidenceKind.MATERIAL, Tier.T2, "src-x1"),
+        _item("ev-m1", m.address, EvidenceKind.MATERIAL, Tier.T2, "src-m1"),
+    ]
+
+    _retract_root(evidence, sources, r.address)
+    opinions_after_root = _opinions([r, x, m], evidence, vocab, sources)
+
+    report = propagate.propagate(
+        [r, x, m], opinions_after_root, {r.address},
+        evidence=evidence, vocab=vocab, sources=sources,
+    )
+
+    by_address = {e.address: e for e in report.entries}
+    assert x.address not in by_address  # X has no path back to R: never a root, never reached either
+    entry = by_address[m.address]
+    assert entry.routed_share == pytest.approx(1.0)
 
 
 def test_propagate_is_deterministic():
@@ -416,3 +539,41 @@ def test_run_campaign_replay_only_writes_an_empty_cascade_when_nothing_retracted
 
     self_report = __import__("json").loads((artifacts.run_dir / "self-report.json").read_text())
     assert "fragility_top10" in self_report
+
+
+def test_quantum_history_replay_produces_an_identical_timeline_and_empty_cascade(tmp_path, monkeypatch):
+    """QA review, PR #78, Low: the PR body's own "quantum-history replay
+    run is byte-identical when nothing is retracted" claim was backed
+    only by indirect evidence (the full suite's own cache-replay tests
+    passing), never a byte-for-byte diff of a real quantum-history run
+    against itself. `quantum_history.ingest()` carries no retracted item
+    or source (`test_quantum_history_corpus_carries_no_retraction_by_
+    default` above), so `propagate`'s own stage inside `run_campaign` is
+    a structural no-op for this corpus: `cascade.json` should come out
+    empty, and running the SAME deterministic (`HTE_LLM_MODE=fake`,
+    fixed seed) campaign twice should write byte-identical `timeline.
+    json` and `cascade.json` both times, the golden-diff regression net
+    the review names, using each run as its own golden copy rather than
+    a checked-in file that would go stale the moment the corpus grows."""
+    from hte import runner
+
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    base_cfg = {
+        "campaign": "quantum-history-golden-diff", "corpus": "quantum-history",
+        "replay_only": False, "seeds": 1, "generate_n": 1, "combinatorial_max_items": 1,
+        "max_hypotheses": 5, "tournament_rounds": 1, "max_time_bins": 2, "run_extraction": False,
+    }
+
+    first_dir = tmp_path / "first"
+    second_dir = tmp_path / "second"
+    first = runner.run_campaign({**base_cfg, "out_dir": str(first_dir), "cache_dir": str(first_dir / "cache")})
+    second = runner.run_campaign({**base_cfg, "out_dir": str(second_dir), "cache_dir": str(second_dir / "cache")})
+
+    first_cascade = json.loads((first.run_dir / "cascade.json").read_text())
+    second_cascade = json.loads((second.run_dir / "cascade.json").read_text())
+    assert first_cascade["roots"] == [] and first_cascade["entries"] == []
+    assert first_cascade == second_cascade
+
+    first_timeline = (first.run_dir / "timeline.json").read_text()
+    second_timeline = (second.run_dir / "timeline.json").read_text()
+    assert first_timeline == second_timeline  # byte-identical, not just equal after parsing

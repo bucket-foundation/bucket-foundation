@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fea7f093ded323e15e2a52b8d59da18fe9c9f20cc381a2be5607e70320de6fd2",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: a discrete geochemical anomaly layer in Greenland ice cores (GISP2/GRIP/NGRIP) dated to ~10,950 BP showing elevated platinum/iridium, or a distinct ejecta/tephra-like horizon",
+      "geological: microspherules, melt-glass, or nanodiamond concentrations in the same annually-resolved ice layer",
+      "astronomical: identification of a plausible source crater or bolide fragment record (e.g., sub-glacial crater candidates such as Hiawatha) with an age consistent with -10,950",
+      "material: correlative extraterrestrial-marker layer (black-mat sediment, spherules, Pt anomaly) in contemporaneous terrestrial/lake sediment cores outside Greenland for cross-validation",
+      "genetic: coincident megafaunal extinction or population bottleneck signatures timed to the same interval (indirect, weak corroboration)",
+      "model_prior: pre-existing published Younger Dryas Impact Hypothesis literature (e.g., Firestone et al. 2007 and subsequent platinum-anomaly studies) describing the same claimed signature"
+    ],
+    "detectability_adjustment": 0.7,
+    "rationale": "Greenland ice sheets are among the highest-resolution, best-dated geological archives available for this timeframe: annual layering, tight chronological control via oxygen-isotope stratigraphy and volcanic tie-points, and decades of intensive coring (GISP2, GRIP, NGRIP) mean that an impact-ejecta fallout event at ~10,950 BP should be directly detectable as a geochemical spike if it occurred, unlike most Paleolithic-era hypotheses that depend on sparse, poorly preserved material remains. I therefore raise the geological/astronomical detectability above the generic younger-dryas table baseline (0.65/0.7) only marginally, settling on ~0.7, since the ice-sheet setting is a best-case preservation environment for this evidence class, not a degraded one. This matters because low detectability is normally used to explain away absent evidence \u2014 but here, targeted searches have actually been conducted (e.g., reported platinum anomalies in GISP2, contested nanodiamond/spherule claims), so an absence of robust, reproduced evidence is more informative of a genuinely contested or unconfirmed claim than of poor preservation. Note: my knowledge of the specific studies (Firestone et al. 2007, Petaev et al. 2013, and follow-up critiques disputing reproducibility) is drawn from training/model-prior, not from evidence supplied in this task, and should be treated as unverified background rather than an established finding for this exercise. Given the strong preservation context, the hypothesis could plausibly have left survivable evidence if true, but the low-tier prior suggests the impact-ejecta interpretation for the Younger Dryas transition remains a minority, disputed position within mainstream geoscience."
+  }
+}

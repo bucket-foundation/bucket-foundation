@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "3d5ab66b8dfe4e49625c0afb1281fca86770d06e71f9aa1a3b29f727c1a61fe7",
+  "response": {
+    "expected_evidence": [
+      "geological: elevated platinum/iridium concentration spikes in Younger Dryas Boundary (YDB) sediment layers across North American sites (~12.8 ka cal BP)",
+      "geological: associated impact-proxy markers (magnetic microspherules, nanodiamonds, carbon spherules, black mat organic-rich layer) at multiple stratigraphic sections",
+      "geological: platinum anomaly signal in Greenland ice cores dating to the YD onset, used as a cross-check against North American terrestrial sites",
+      "astronomical: search for a confirmed impact crater or airburst structure of appropriate age (none definitively identified; ejecta interpreted as possible airburst rather than crater-forming impact)",
+      "astronomical: cosmic dust/extraterrestrial isotopic signatures (e.g., Os/Ir ratios, He-3) in the same boundary layer to corroborate an extraterrestrial vs terrestrial/volcanic source",
+      "material (archaeological): apparent disruption or discontinuity in Clovis-culture occupation layers directly above/below the YDB layer at several North American sites",
+      "genetic: possible bottleneck or extinction signatures in North American megafauna (mammoth, mastodon, etc.) DNA coincident with the proposed impact date",
+      "model-prior: existing scientific literature and debate on the Younger Dryas Impact Hypothesis (YDIH), including supporting studies (e.g. Firestone et al. 2007, Petaev et al. 2013 platinum spike) and rebuttals disputing spherule and nanodiamond identifications and platinum provenance"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis corresponds to the well-known Younger Dryas Impact Hypothesis, with the stated interval (~10,850 BCE / ~12.8 ka BP) matching the proposed YDB platinum/iridium anomaly. Using the 'younger-dryas' period row (the interval falls within it despite the 'period' field being unspecified), the dominant relevant evidence kinds are geological (0.65) and astronomical (0.7), both of which have reasonably high survivability/detectability for this era, consistent with the fact that platinum and other impact-proxy anomalies have genuinely been reported and studied in the primary literature (this recollection is drawn from training data, i.e. model-prior, and should be treated as a low-tier unverified source pending direct evidence-text confirmation). Material (0.35) and genetic (0.3) evidence for associated megafaunal extinction or cultural disruption are far less reliably preserved or causally attributable, and textual/linguistic/oral-tradition/iconographic evidence is essentially inapplicable this far back (near-zero detectability), which explains why the absence of direct human testimonial evidence is a detectability artifact rather than proof against the event. The 'inconclusive' action in the hypothesis itself matches the real-world scientific status: multiple sites report anomalies, but crater confirmation is lacking and some proxies are contested as non-impact in origin. Weighting toward the two highest-detectability evidence kinds relevant to a physical fallout event (geological, astronomical) while discounting weaker corroborating kinds (material, genetic) yields an aggregate suggested detectability adjustment of ~0.55, moderately high but appropriately tempered given genuine scientific controversy and non-universal replication across sites."
+  }
+}

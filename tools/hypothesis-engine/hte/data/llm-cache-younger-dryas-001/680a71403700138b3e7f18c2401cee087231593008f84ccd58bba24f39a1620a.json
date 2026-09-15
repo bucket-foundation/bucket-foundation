@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "4a7eddd3dc8bb74ebb6adbb224f9e071cd40714f5c6805cf01bccf11785bacef",
+  "response": {
+    "expected_evidence": [
+      "Geological: enriched platinum-group-element (Pt, Ir) anomaly layer at ~12.8 ka boundary in North American sediment/soil sections (the 'Younger Dryas Boundary' layer)",
+      "Geological/ice-core: platinum spike in Greenland ice cores (e.g., GISP2) dated to the YD onset",
+      "Material: co-occurring magnetic/glassy microspherules, nanodiamonds, and soot/charcoal 'black mat' horizon at North American archaeological and paleontological sites",
+      "Astronomical: orbital-dynamics modeling showing a plausible Taurid-complex fragment/debris-stream trajectory intersecting Earth at ~10,850 BCE",
+      "Geological: shocked quartz, melt-glass, or other high-pressure impact indicators (would strengthen but are largely absent in published YDIH literature)",
+      "Genetic/paleoecological: megafaunal extinction/population-bottleneck signal in North America temporally coincident with the anomaly (indirect, weak corroboration)",
+      "Model-prior: theoretical linkage (Clube-Napier-style Taurid swarm hypothesis) connecting a still-fragmenting Taurid complex to a Pleistocene-terminal impact/airburst event"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10850 falls at the Younger Dryas onset (~12.8 ka), so I classified this under the 'younger-dryas' period rather than treating it as unspecified. Geological (0.65) and astronomical (0.7) evidence classes for this period are relatively high-detectability: platinum/PGE geochemical anomalies are robust, chemically stable signals that survive well in sediment cores, ice cores, and paleosols over ~13,000 years, and indeed a real North American/Greenland platinum anomaly at this boundary is documented in the published literature (this is the actual empirical basis for the Younger Dryas Impact Hypothesis) \u2014 so 'platinum-anomaly' as an object is independently plausible to detect and largely already detected. However, the hypothesis's specific causal claim \u2014 that this anomaly is 'corroborated' as caused by a 'taurid-complex-swarm' via 'impact-ejecta-fallout' \u2014 is a much narrower and harder-to-verify attribution. Linking a geochemical anomaly to a specific cometary/meteoroid stream requires orbital-dynamics modeling (astronomical, moderate detectability but highly inferential) and definitive impact-diagnostic evidence (shocked quartz, craters, melt glass) that has largely NOT been found despite extensive search, and remains scientifically contested (many researchers attribute the Pt anomaly to non-impact terrestrial/volcanic or extraterrestrial-dust sources rather than a discrete impact event). Material evidence (spherules, nanodiamonds) has comparatively low base detectability (0.35) and has itself been subject to replication disputes. Given that the anomaly itself is detectable/found but the specific Taurid-swarm-impact-ejecta causal mechanism is not robustly corroborated by the strongest evidence classes (shocked minerals, crater), I lower the adjustment below the raw geological/astronomical ceiling to reflect that absence of definitive impact-diagnostic material evidence is more plausibly attributable to the mechanism being contested/incorrect (or a non-cratering airburst that leaves minimal classic impact evidence) than to poor preservation, while still acknowledging genuinely limited detectability for pinning a diffuse cometary swarm (vs. a single bolide) to a precise fallout event."
+  }
+}

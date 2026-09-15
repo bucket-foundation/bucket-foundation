@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "fa91f5b550c276564daae0c4ea73afdce7993bf85fae05468e1db786662952a2",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.6,
+        "rationale": "A's onset-cooling/-10950/Middle-East framing aligns with the Abu Hureyra spherule claims and correct YD onset date, while B mislabels an onset-era date as the 'termination' and pairs an impact-winter (cooling) mechanism with corroborating cooling as termination, which is mechanistically inconsistent (model-prior)."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.65,
+        "rationale": "A's refutation across multiple continents via impact-ejecta-fallout matches the well-documented replication-failure literature (Holliday, Daulton, Pigati) on YDB ejecta, whereas B's 'corroborated...termination' via airburst has the wrong causal timing (impact should precede cooling onset, not termination) (model-prior)."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.75,
+        "rationale": "A's interval (-10950) matches the well-established YD onset date and its airburst-triggers-cooling claim is the core YDIH thesis, while B's refutation is dated to -20000/-19000, ~9000 years off from the actual onset, a clear factual mismatch (model-prior)."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.55,
+        "rationale": "B already carries partial stored disbelief (d\u22480.40) suggesting prior evidence leans against it, and its expected value (~0.109) is marginally below A's uninformed expectation (~0.119), though A's Middle-East placement for megafaunal extinction is itself weakly supported (model-prior, low confidence)."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.3,
+        "rationale": "B's refutation of a volcanic trigger for YD-onset-cooling across multiple continents mirrors real broad replication-failure studies, whereas A pairs a volcanic actor with a cosmic-airburst mechanism and an unusual arctic-ocean/megafaunal-extinction target, a less coherent combination (model-prior)."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.55,
+        "rationale": "Both reflect real reported platinum anomalies (Greenland ice core ~Petaev et al.; North America sites ~Moore et al.) with plausible dates; A's Greenland ice-core date (-10950) slightly better matches the originally reported, well-replicated platinum spike (model-prior, low confidence)."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.3,
+        "rationale": "B's corroborated nanodiamond claim in North America at -10950 closely matches the well-known (if contested) Kennett et al. YDB nanodiamond reports, while A's vague 'other-action' megafaunal-extinction claim in Mexico is dated too early (-12000 to -11001) relative to the actual YD onset (model-prior)."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.55,
+        "rationale": "A's volcanic-trigger-for-YD-cooling has some real precedent (e.g., Laacher See eruption timing hypotheses), even though placed in North America rather than Europe, whereas B's volcanic-eruption-triggers-megafaunal-extinction via impact-ejecta-fallout mechanism is a more incoherent actor-mechanism pairing (model-prior, low confidence)."
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "aebdd94d444b7c15d03e391183c9643aecf4df07db3df16cd125c96c6bc46445",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Ice-core oxygen-isotope (\u03b418O) abrupt-shift records (e.g., GISP2, NGRIP) marking onset of pronounced cooling",
+      "Varved/laminated glacial-lake sediment sequences (Lake Agassiz, Lake Ojibway, Champlain Sea) showing a shift in outflow drainage from the Mississippi corridor to the St. Lawrence valley",
+      "Marine sediment cores from the Gulf of St. Lawrence / Labrador Sea / northwest Atlantic showing a low-salinity/freshwater spike (planktonic foraminiferal \u03b418O excursion, IRD layer, meltwater cap)",
+      "Geomorphological evidence of a St. Lawrence outlet flood channel or spillway erosion feature dated to the proposed interval",
+      "Radiocarbon- or cosmogenic-nuclide-dated moraine/ice-margin retreat features correlating with the routing switch",
+      "Terrestrial pollen/lake-sediment cooling proxies in eastern North America and Europe synchronous with the event",
+      "Population-genetic bottleneck signals in North American megafauna or contemporaneous human groups (weak, indirect)"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "If a St. Lawrence meltwater-routing event triggered Younger Dryas-style cooling, the expected signature would be almost entirely geological/paleoclimatic: ice-core isotope excursions, glacial-lake varve/outflow-channel evidence, and marine sediment freshwater/IRD spikes. These proxy archives are exceptionally well-preserved and precisely dated (annual-resolution ice cores and varves), so detectability for this evidence class is genuinely high (geological ~0.6-0.65, astronomical/chronometric ~0.65-0.7 in the table), and absence of such signals would be meaningful rather than merely a preservation artifact. Material, genetic, linguistic, textual, and oral-tradition evidence are essentially irrelevant or undetectable at this time depth (textual=0, oral_tradition/linguistic near 0), so their absence carries no weight. The larger problem is chronological: as model-prior (unverified, from training knowledge, not from supplied evidence) the real Younger Dryas onset is dated to roughly 12,900 calendar years BP (~10,900 BCE) via well-replicated ice-core and varve chronologies \u2014 several millennia later than the stated interval of -20000 to -19001 (~20,000-19,000 years BP, i.e., Last Glacial Maximum). Because the diagnostic geological/astronomical archives for this exact question are highly detectable and heavily studied, an absence of a documented cooling/freshwater-routing event at ~20-19 kya is not well explained by poor preservation \u2014 it more likely reflects a date/label mismatch in the hypothesis itself rather than a detectability failure. I therefore blend the 'younger-dryas' and 'upper-paleolithic' geological/astronomical rows and slightly discount for the apparent chronological inconsistency, landing at 0.55 rather than treating this as a straightforward high-detectability confirmation opportunity."
+  }
+}

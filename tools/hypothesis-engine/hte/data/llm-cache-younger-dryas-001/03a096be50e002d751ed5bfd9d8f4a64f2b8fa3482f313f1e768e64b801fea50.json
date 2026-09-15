@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a23b027042d3e54c95d64b78423a7e703f7cb92e6cfc7e34973bf25cfb110d5f",
+  "response": {
+    "expected_evidence": [
+      "Geological: absence/inconsistency of iridium anomalies, magnetic microspherules, and nanodiamonds at the ~12.9 ka Younger Dryas boundary layer across independently dated sites, or demonstration that reported markers are not synchronous or not extraterrestrial in origin",
+      "Geochemical re-analysis showing purported 'impact proxies' (nanodiamonds, spherules, platinum spikes) are better explained by terrestrial/anthropogenic processes, misidentification (e.g., framboidal vs. impact spherules), or lab contamination",
+      "Astronomical/geological search results: absence of a confirmed impact crater of appropriate size and date (~12.9 ka) in North America or under the Laurentide ice sheet",
+      "High-resolution Greenland/Antarctic ice-core records spanning the YD onset lacking a corresponding platinum, ammonium, or soot spike consistent with a continent-scale biomass-burning/impact-winter event",
+      "Paleoecological/charcoal records showing biomass burning at YD onset was regional/gradual rather than a sudden hemispheric conflagration",
+      "Paleontological/genetic evidence (ancient DNA, radiocarbon chronologies) showing megafaunal extinctions in North America were staggered over centuries/millennia and often predate or postdate 12.9 ka, inconsistent with an instantaneous impact-driven collapse",
+      "Archaeological continuity evidence (Clovis and post-Clovis material culture) showing no abrupt population collapse or occupation hiatus precisely at 12.9 ka",
+      "Model-prior: peer-reviewed literature synthesizing the 2000s-2020s scientific debate (e.g., failed replications, critical reviews) in which much of the geoscience community rejected the Younger Dryas Impact Hypothesis"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis is a scientific-refutation claim: it asserts the cosmic-impact explanation for North American megafaunal extinction was disconfirmed, not that an impact left no trace. The relevant evidence for such a refutation is exactly the kind of material with strong survival/detectability for the Younger Dryas interval: the YD boundary is preserved in high-resolution Greenland/Antarctic ice cores, varved lake sediments, and widely sampled stratigraphic sections, giving geological detectability ~0.65 and astronomical (crater-search) detectability ~0.7 per the table \u2014 both above average for this period. Genetic/chronological megafaunal data (~0.3) and archaeological material continuity (~0.35) are moderately detectable, consistent with existing ancient-DNA and radiocarbon literature (model-prior ~0.3). Textual, linguistic, oral-tradition, and iconographic channels are essentially irrelevant (near-zero) since this is a pre-literate interval and the refutation itself is a modern scientific process rather than an ancient record. Weighting the channels actually invoked (geological, astronomical, genetic, material, model-prior) rather than the full table average yields a moderate-to-good composite detectability (~0.55), so absence of confirmatory impact markers is a credible, well-evidenced basis for refutation rather than an artifact of poor preservation. This aligns with model-prior knowledge (unverified against the provided evidence text) that the Younger Dryas Impact Hypothesis has been extensively tested and substantially disputed/rejected in mainstream geoscience literature, making the 'refuted' framing plausible and its supporting evidence types very likely to have survived and been discoverable given modern high-resolution paleoclimate archives."
+  }
+}

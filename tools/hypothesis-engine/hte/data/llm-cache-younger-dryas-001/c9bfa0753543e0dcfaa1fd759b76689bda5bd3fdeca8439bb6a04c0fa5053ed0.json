@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "875237e5ba3783318e9d88bda4676af1bb4fbb2e3d59bc357a8f78b34ba6c6da",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "expected_evidence": [
+      "Geological: platinum, iridium, or osmium concentration spikes in North Atlantic marine/lake sediment cores and Greenland ice cores dated to ~12,900-11,700 cal BP (the proposed impact-ejecta-fallout signature)",
+      "Geological: nanodiamonds, magnetic microspherules, and glassy/melted spherules in a discrete stratigraphic layer ('black mat' or equivalent) at the Younger Dryas boundary",
+      "Geological/astronomical: identification of a candidate impact crater or airburst site (e.g., sub-ice or sub-marine structure) of appropriate age near the North Atlantic/Laurentide margin",
+      "Geological: coeval evidence of a meltwater pulse - e.g., a freshwater/isotopic (delta18O) excursion in North Atlantic cores, glacial lake outburst deposits (e.g., Lake Agassiz drainage channels), or AMOC proxy (Pa/Th, benthic-planktic delta13C) disruption matching the cooling onset",
+      "Astronomical: modeled or independently dated cometary/asteroid fragmentation event, or terrestrial records of widespread wildfire/soot consistent with airburst",
+      "Genetic: megafaunal extinction/population bottleneck signatures or Clovis-culture discontinuity in North American genetic/archaeological record around the same interval",
+      "Material: abrupt archaeological occupation hiatus or artifact-layer change (e.g., Clovis sites) coincident with the sediment anomaly",
+      "Model_prior: prior published Younger Dryas Impact Hypothesis literature (Firestone et al. 2007, Kennett et al., Wolbach et al. 2018) reporting these proxies, noting this remains scientifically contested"
+    ],
+    "rationale": "The hypothesis conflates two distinct proposed drivers of Younger Dryas cooling - a glacial meltwater pulse (freshwater forcing of AMOC) and an extraterrestrial impact-ejecta event - treating the latter as corroborating the former. Both mechanisms, if real, leave geological and astronomical traces (platinum/iridium anomalies, nanodiamonds, spherules, isotopic excursions, outburst-flood deposits) that are exactly the kind of high-preservation-potential proxies captured by ice cores, lake sediments, and marine cores spanning this interval. Using the 'younger-dryas' row (the interval -10950 to -9750 falls squarely in the YD onset/early YD, with some overlap into terminal Upper Paleolithic), geological (0.65) and astronomical (0.7) detectability are comparatively high, while material (0.35), genetic (0.3), and textual (0.0, since no writing existed) evidence are much weaker. Given the strong weighting toward geological/astronomical proxies for this specific mechanism (impact-ejecta-fallout), I adjust the blended detectability upward from a flat average to reflect that the most diagnostic evidence types for this hypothesis are also the most preservable and searchable ones. This is consistent with model-prior knowledge (unverified, low-tier) that real sediment/ice-core studies have in fact searched for and reported such anomalies (e.g., the published Younger Dryas Impact Hypothesis debate), though the scientific consensus on causal impact-ejecta forcing remains disputed and alternative explanations (purely meltwater/AMOC, no extraterrestrial component) are favored by many researchers. Overall, absence of unambiguous evidence should not by itself be read as strong disconfirmation, since much of the needed proxy work depends on locating and dating extremely thin, geographically dispersed sediment layers - a nontrivial but not implausible detection task."
+  }
+}

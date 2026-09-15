@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "06a6a8ca7efd550d6e4e3e4948b14938a3c7c538fbb5689265b14622561d9e68",
+  "response": {
+    "expected_evidence": [
+      "Geological: elevated nanodiamond concentrations (hexagonal lonsdaleite, cubic diamonds) in a thin stratigraphic horizon (the 'Younger Dryas Boundary' layer) across multiple North American sites, co-occurring with magnetic microspherules, carbon spherules, platinum/iridium anomalies, and a 'black mat' organic-rich layer",
+      "Geological: melt-glass and impact-spherule fields with quench textures indicating high-temperature formation, geochemically distinguishable from volcanic or cosmic background dust",
+      "Astronomical/geophysical: an identifiable impact crater or crater field of appropriate age (possibly under ice sheet, e.g. Hiawatha crater in Greenland, though its dating is contested and not clearly -10950)",
+      "Material/archaeological: an abrupt disruption or discontinuity in Clovis-era archaeological assemblages and a synchronous megafaunal extinction horizon across North American sites",
+      "Genetic: population bottleneck signatures in North American megafauna (mammoth, mastodon, etc.) and early human lineages dated to ~10,950 BCE",
+      "Model-prior: peer-reviewed literature on the 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and subsequent replication attempts/rebuttals) describing both supporting and strongly disputing findings"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis maps to the Younger Dryas onset (~10,950 BCE), so the 'younger-dryas' period row is the appropriate reference rather than 'upper-paleolithic' broadly, though the two overlap. The dominant evidence classes are geological (0.65) and astronomical/geophysical (0.7), which are the highest-detectability categories in the table for this period \u2014 sedimentary ejecta layers, microspherules, and nanodiamonds are chemically and physically robust, get buried and preserved in loess/lake/ice cores, and are searchable with modern analytical techniques (SEM, mass spectrometry) applied retroactively to well-dated stratigraphic sections. Material/archaeological (0.35) and genetic (0.3) evidence are moderately detectable given known megafaunal extinction and Clovis-culture stratigraphy, though causal attribution to a single instantaneous impact event is harder. Oral tradition (0.1), iconographic (0.1), linguistic (0.05), and textual (0.0) evidence are essentially unavailable this far back, consistent with the low scores. Because the highest-detectability channels (geological, astronomical) are exactly where evidence should have concentrated, an absence of confirmed evidence (e.g., no universally accepted impact crater, inconsistent nanodiamond replication across labs) is harder to excuse purely via low detectability \u2014 this is a case where the detectability profile is high enough (~0.55-0.7 in the strongest channels) that the actual scientific controversy (many replication failures, disputed nanodiamond identifications, no confirmed crater) more likely reflects genuine evidential weakness of the hypothesis (model-prior: it is a scientifically contested/minority hypothesis) than a survival/preservation failure. I set my adjustment slightly above the table's blended average to reflect that geological/astronomical detectability for a continent-scale ejecta event is somewhat higher than the generic period average, since such deposits have been actively and extensively searched for over the last two decades."
+  }
+}

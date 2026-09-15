@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "bad0c6cdaf1fd8ce593f835d5b70c0cfab6f2e41b7086322336ec9b961f0a269",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.35,
+        "rationale": "B's claim that the iridium anomaly was refuted aligns with multiple published failed-replication studies (Pinter et al., Surovell et al.), whereas A's claim that cosmic airburst causation of YD onset cooling is corroborated conflicts with the mainstream meltwater-pulse/AMOC explanation and remains highly contested."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.55,
+        "rationale": "Both pair a well-known actor with a mismatched mechanism, but A's meltwater-pulse-as-cause-of-YD-onset-cooling is a long-established mainstream mechanism despite the odd taurid-stream tag, while B's actor description is internally self-contradictory (extinction-driver concept used to 'trigger' cooling), making it less coherent."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.65,
+        "rationale": "A's platinum-anomaly corroboration via impact ejecta matches actual published North American/Greenland platinum spike findings (e.g., Petaev et al., Moore et al.), while B's 'triggered via dating-uncertainty' is internally incoherent since dating uncertainty is an epistemic critique, not a causal trigger mechanism."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.65,
+        "rationale": "A's corroboration of impact-ejecta fallout at YD onset in Greenland matches specific published findings (e.g., Greenland platinum anomaly near onset), whereas B links cosmic-airburst corroboration to YD termination, a phase generally attributed to non-impact climate dynamics with little supporting literature."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.4,
+        "rationale": "A's 'triggered via methodological-artifact' is self-undermining (artifact framing implies the effect is not real), while B's meltwater-pulse/megafaunal-extinction interval roughly matches recognized extinction timing despite an equally mismatched taurid-stream mechanism tag."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.55,
+        "rationale": "A's biomass-burning-impact-winter mechanism for YD onset cooling closely matches specific published YDIH work (e.g., Wolbach et al. on impact winter), giving it slightly more direct evidentiary grounding than B's more general and more disputed ejecta-to-extinction causal claim."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.55,
+        "rationale": "Both mismatch actor and mechanism, but A at least asserts a definite 'corroborated' claim tied to a somewhat-discussed cosmic-ionization idea, while B pairs a vague 'other-action' with an epistemic (non-causal) mechanism for volcanic eruption, making it even weaker and less committal."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.3,
+        "rationale": "B's narrower interval (~12750\u20139750) more closely matches the actual clustering window proposed for North American megafaunal extinction and is more falsifiable/specific, whereas A's 10,000-year span is too broad to be meaningfully supported by the evidence."
+      }
+    ]
+  }
+}

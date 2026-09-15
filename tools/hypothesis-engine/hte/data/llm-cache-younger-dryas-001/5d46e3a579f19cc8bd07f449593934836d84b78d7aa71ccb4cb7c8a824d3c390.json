@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "77d2a92ef63fd4ee1e67b3ebc5f4097ee6c7ef45c3b7ebee9c01def1648e5066",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum/iridium/other platinum-group-element enrichment layer in Greenland ice cores (e.g., GISP2, NGRIP) dated to ~12,900 cal BP / ~10,950 BCE \u2014 this is the specific signal (Petaev et al. 2013 platinum anomaly) that YDIH proponents cite as ejecta fallout evidence",
+      "Geological: nanodiamonds, magnetic/glassy spherules, meltglass and shocked-mineral fragments in the same ice/sediment horizon",
+      "Astronomical/geological: a source crater or airburst signature (e.g., subglacial Hiawatha crater), though its age has been independently dated to far older than 10,950 BCE by recent studies, weakening the causal link",
+      "Material/archaeological: discontinuity or decline in occupation sites (e.g., Clovis complex collapse) and megafaunal extinction records in North America/Eurasia, used as proxy for 'population-demography' impact",
+      "Genetic: population bottleneck or extinction signatures in ancient human/faunal DNA coincident with the YD onset",
+      "model-prior: the broader Younger Dryas Impact Hypothesis literature and its ongoing, unresolved scientific controversy",
+      "Direct demographic evidence of a human population IN Greenland itself at 10,950 BCE is not expected to exist, since archaeological consensus places first human settlement of Greenland millennia later (~2500 BCE), which is a major structural problem for placing 'population-demography' impact at this specific location"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "Interval -10950 aligns with the Younger Dryas onset (~12,900 cal BP), so I evaluated against the 'younger-dryas' row (closely bracketed by 'upper-paleolithic'). The core physical claim \u2014 ejecta/fallout signature preserved in Greenland ice \u2014 has real precedent (a documented platinum anomaly in GISP2 ice cores at this horizon, model-prior, unverified beyond general recollection), and ice-sheet geological archives have comparatively high detectability (0.6\u20130.7) because ice stratigraphy preserves fine-grained chronological signals well, unlike most other Paleolithic contexts. This supports could_have_survived=true for the impact-ejecta-fallout mechanism itself. However, the hypothesis's object is 'population-demography' at place='greenland-ice-sheet' \u2014 this is a poor structural fit, since archaeological consensus (model-prior) holds that Greenland had no human population at 10,950 BCE; first settlement is generally dated millennia later. So while geological/astronomical fallout evidence is plausible and moderately detectable, direct demographic corroboration specifically located in Greenland is not something that could exist to be found \u2014 its absence should be read as a category mismatch in the hypothesis rather than a detectability failure. Genetic (0.3) and material (0.35) detectability for human-population effects are low for this period regardless, and any demographic effects would more plausibly be evidenced in North America/Eurasia archaeological/genetic records, not in the Greenland ice sheet itself. I weighted the adjustment down from the higher geological/astronomical values to reflect this place-object mismatch while still crediting the real detectability of an ice-core fallout signal."
+  }
+}

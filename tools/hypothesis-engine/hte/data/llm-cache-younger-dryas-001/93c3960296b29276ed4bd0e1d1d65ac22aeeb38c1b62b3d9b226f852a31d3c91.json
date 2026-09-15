@@ -1,0 +1,23 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "46eb11b94b2521b2d97f54ef2bc15b64f6f1c5ba6d26a2e164c0d17fd1f2e52f",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and other siderophile-element anomalies in a well-dated ~12,900 BP boundary layer across North American and global sediment sequences",
+      "Geological: nanodiamonds, magnetic microspherules, and meltglass/impact spherules in the Younger Dryas Boundary (YDB) black mat layer",
+      "Geological: sharp charcoal/soot spike indicating continental-scale biomass burning coincident with YD onset",
+      "Geological: ice-core (e.g., Greenland GISP2/GRIP) chemical/particulate anomalies dated to the YD onset",
+      "Astronomical: orbital/dynamical modeling showing the Taurid meteor stream's debris field and Earth-crossing geometry ca. 10,950 BCE consistent with a dense encounter",
+      "Astronomical: identification of a plausible fragmenting parent body or crater(s) (e.g., proposed Hiawatha Glacier crater) datable to the same interval",
+      "Material/archaeological: abrupt disruption or hiatus in Clovis-culture site occupation layers directly beneath/at the black mat horizon",
+      "Material/paleontological: megafaunal extinction markers (bone bed terminations, dung fungus Sporormiella decline) clustering at the same horizon",
+      "Genetic: population bottleneck or extinction signatures in ancient DNA of North American megafauna and early human populations dated to ~10,950 BCE",
+      "Oral tradition: indigenous North American narratives describing sky-fire, darkness, or catastrophic cold events (highly speculative, hard to date/verify)",
+      "Model-prior: consistency with independently modeled Taurid stream density peaks recurring on multi-millennial cycles"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis sits at the Pleistocene/Holocene transition, spanning the tail of the Upper Paleolithic and the Younger Dryas boundary itself, so both period rows are relevant; I weight toward 'younger-dryas' since the claimed event IS the onset of that stadial. The strongest expected evidence channels are geological (0.6-0.65 detectability: ice cores, sediment boundary layers, black mats \u2014 well preserved and already the subject of an active real-world scientific literature, the 'Younger Dryas Impact Hypothesis' associated with Firestone et al. and later platinum-anomaly studies) and astronomical (0.7: orbital modeling of the Taurid stream is a modern reconstructive method not dependent on ancient preservation, so it is highly detectable in principle). Material archaeological evidence (Clovis disruption, megafaunal extinction markers) has moderate detectability (0.35) since Upper Paleolithic North American sites are sparse and taphonomically poor. Genetic evidence is weaker (0.25-0.3) given degraded ancient DNA from this era. Textual (0.0) and linguistic (0.05) evidence are essentially impossible this far back \u2014 no writing systems existed, so their total absence is fully explained by detectability, not by falsity. Oral tradition and iconographic evidence are low (0.1) \u2014 any surviving Indigenous narratives would have undergone millennia of transmission distortion, making them suggestive at best, not confirmatory. Given that this claim (a Taurid-stream/cosmic-impact trigger for the Younger Dryas onset) is itself a real, actively debated hypothesis in the literature with claimed physical correlates (platinum spikes, nanodiamonds, black mats) that were sought and partially reported \u2014 though heavily contested for replicability and alternative explanations (volcanism, terrestrial processes) \u2014 I flag this as a `model-prior`-informed judgment. Overall I set the detectability adjustment at 0.55, reflecting that the highest-value evidence types (geological, astronomical) are quite detectable and have in fact been actively searched, while archaeological/genetic/textual/oral corroboration remains structurally limited by the deep time depth and pre-literate context \u2014 so weak or contested archaeological evidence should not be read as strong evidence against the hypothesis."
+  }
+}

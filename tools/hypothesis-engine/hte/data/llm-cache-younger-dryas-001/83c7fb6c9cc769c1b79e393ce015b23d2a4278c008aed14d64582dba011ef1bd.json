@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "da99807c21a1ec0cdfe9ed300311c714f77d27b3ad4bfd01995a1674d8f65e7f",
+  "response": {
+    "$PARAMETER_NAME": "$PARAMETER_VALUE",
+    "expected_evidence": [
+      "Geological: anomalous elemental/isotopic markers (platinum group element spikes, iridium, nanodiamonds, magnetic microspherules) concentrated in a thin stratigraphic layer at ~12,900 cal BP across North American sites ('black mat' boundary)",
+      "Geological: charcoal/soot layers indicating continent-scale biomass burning coincident with onset of Younger Dryas cooling",
+      "Astronomical: orbital-dynamics modeling showing Earth's passage through a dense Taurid meteor stream/debris trail circa 10,900-12,900 BP capable of producing airbursts",
+      "Astronomical/geological: impact-proxy craters, penetration funnels, or shocked quartz/impact spherules attributable to a cometary fragment swarm rather than a single crater",
+      "Material: disruption or abandonment horizon in Clovis-era archaeological sites immediately above the proposed impact layer, changes in lithic technology coincident with faunal turnover",
+      "Material/genetic: megafaunal bone assemblages and ancient DNA showing population collapse/extinction timing clustering tightly around the hypothesized event rather than a gradual decline",
+      "Genetic: bottleneck or extinction signatures in surviving lineages (e.g., bison) dated to the interval",
+      "Oral_tradition: Indigenous North American narratives describing sky-fire, darkness, or catastrophic cold events, cautiously interpreted as possible cultural memory",
+      "Model_prior: prior scientific literature (Firestone et al. 2007 YDB hypothesis, Kennett et al., Napier/Bunch Taurid-complex proposals) proposing and testing this mechanism"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis maps most closely onto the 'younger-dryas' period row, since the proposed mechanism (Taurid-stream encounter triggering the Younger Dryas onset, meltwater pulse, and megafaunal extinction) centers on the ~12,900 cal BP boundary, even though the stated interval [-19050,-9050] stretches back into the Upper Paleolithic and forward into the Early Holocene. For this period, astronomical (0.7) and geological (0.65) detectability are comparatively high, meaning stratigraphic impact-proxy layers and orbital-dynamics reconstructions are the kinds of evidence most likely to have survived and been recovered \u2014 and indeed this is an actively studied (if contested) real-world hypothesis (the 'Younger Dryas Impact Hypothesis'), with claimed nanodiamond/platinum spikes at numerous sites, though replication has been inconsistent and many geologists dispute the impact interpretation in favor of terrestrial/volcanic or Agassiz-meltwater-only explanations (this framing is model-prior, not verified within the evidence text provided). Material (0.35) and genetic (0.3) evidence \u2014 faunal turnover, ancient DNA bottlenecks, Clovis-layer disruption \u2014 is only moderately detectable given poor organic preservation over ~13,000 years and taphonomic loss, so gaps here are expected regardless of truth. Textual evidence is essentially impossible (0.0, no writing systems existed), and oral_tradition/iconographic evidence is weak (0.1) due to millennia of transmission decay, so the near-total absence of a written or iconographic record should not be read as evidence against the hypothesis. Overall, because the highest-detectability channels (astronomical, geological) are precisely the ones most relevant to testing this mechanism, meaningful evidence could plausibly survive and has arguably been sought; the persistent scientific controversy over that evidence's interpretation (rather than its total absence) is the more accurate current state, so I suggest a moderate combined detectability adjustment reflecting strong findability for geological/astronomical proxies but weak findability for the corroborating archaeological/genetic/cultural threads."
+  }
+}

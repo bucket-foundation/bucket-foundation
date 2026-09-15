@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "531b599186721baaae96046dfbccf2fd83e1d9143ecca2d66460933f0e63323e",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: platinum/iridium anomalies, nanodiamonds, magnetic/impact spherules, or a 'black mat' organic-rich layer in European lake sediments, loess sequences, or peat bogs dated to ~11,000\u201312,000 BP",
+      "geological: shocked quartz or melt-glass (trinitite-like) deposits associated with a low-altitude airburst rather than a crater, since Taurid-complex fragments are thought to airburst rather than form large craters",
+      "astronomical: orbital-dynamics modeling of the Taurid meteor stream/complex showing a plausible fragmented giant comet capable of producing swarm encounters in this window (largely inferential, present-day modeling rather than ancient artifact)",
+      "material/archaeological: abrupt destruction or fire horizons at Upper Paleolithic sites in Europe stratigraphically coincident with the proposed airburst date",
+      "material: megafaunal bone assemblages (mammoth, woolly rhinoceros, etc.) showing a sharp die-off/extinction horizon in Europe at this interval rather than the more commonly documented gradual, staggered decline",
+      "genetic: ancient DNA population-bottleneck or extinction-timing signals in European megafauna clustering tightly around -10000 to -9001",
+      "iconographic/oral_tradition: contested candidate depictions of a catastrophic sky event (e.g., disputed 'comet' imagery claims at sites like G\u00f6bekli Tepe, though that site is in Anatolia, not Europe proper, and postdates this interval)",
+      "model_prior (low-tier, unverified): the broader 'Younger Dryas Impact Hypothesis' literature, which is highly contested in mainstream geoscience, with many platinum/nanodiamond findings disputed or unreplicated"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval [-10000,-9001] BCE (~11,000\u201312,000 BP) sits near the tail end of the Younger Dryas / onset of the early Holocene, straddling two detectability regimes rather than matching the classic Younger Dryas Impact Hypothesis date (~10,900 BCE / 12,900 BP) more precisely. Using the younger-dryas/early-holocene rows, the most relevant channels are geological (0.60\u20130.65) and astronomical (0.65\u20130.70), which are comparatively high for this era \u2014 sedimentary archives (loess, lake cores, peat) from this window do survive in Europe and are routinely sampled, and Taurid-stream orbital dynamics are calculable today independent of ancient preservation. Material (0.35\u20130.45) and genetic (0.25\u20130.35) evidence for a sharp, geographically confined (European) megafaunal extinction pulse is more marginal, since European megafaunal decline is generally documented as staggered rather than a single abrupt event, unlike the North-American-focused impact-hypothesis literature this scenario is modeled on. Textual (~0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) channels are essentially uninformative this far back, so their absence carries no evidentiary weight against the hypothesis. Given the moderately favorable geological/astronomical detectability, the specific claim (Taurid-complex swarm airburst driving megafaunal extinction specifically in Europe) could plausibly have left detectable traces and is testable in principle \u2014 the main empirical obstacle is not preservation but the historically low replication/consensus rate for the associated impact markers (platinum, nanodiamonds) in the actual paleoclimate literature (model-prior, unverified). A blended adjustment of ~0.5 reflects reasonably good preservation potential for the physical/astronomical evidence, tempered by the low specificity/detectability of a Europe-only, sharply-dated extinction signal."
+  }
+}

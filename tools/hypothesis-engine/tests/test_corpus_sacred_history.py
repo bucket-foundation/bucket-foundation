@@ -31,6 +31,16 @@ def test_sacred_history_evidence_spans_are_valid_and_anchored():
         assert raw[e.span.char_start:e.span.char_end] == e.span.quote
 
 
+def test_sacred_history_evidence_spans_carry_doc_length():
+    # bkt-hte-evidence-span-doc-length: every span this adapter builds
+    # knows its own document's full length (the raw sacred-history.json
+    # text every span is located against), not just its own char range.
+    corpus = sacred_history.ingest()
+    raw = sacred_history.DEFAULT_CORPUS_PATH.read_text(encoding="utf-8")
+    for e in corpus.evidence:
+        assert e.span.doc_length == len(raw)
+
+
 def test_sacred_history_stemma_parents_reference_real_sources_and_no_self_loop():
     corpus = sacred_history.ingest()
     for source in corpus.sources.values():
@@ -273,3 +283,48 @@ def test_sacred_history_human_curated_correlations_get_tier_t3_ai_derived_get_t4
     assert ai_derived
     for e in ai_derived:
         assert e.tier == Tier.T4
+
+
+def test_sacred_history_with_texts_false_by_default_is_unaffected():
+    """`with_texts` defaults to `False`: the correlation-only `Corpus`
+    every test above already reads must stay exactly what it was before
+    `hte.corpus.sacred_history_texts` existed at all."""
+    corpus = sacred_history.ingest()
+    assert len(corpus.sources) == 13
+    assert len(corpus.provenance) == 1
+
+
+def test_sacred_history_with_texts_true_merges_sources_evidence_and_provenance(monkeypatch):
+    """`with_texts=True` calls `hte.corpus.sacred_history_texts.load()`
+    and folds its own `Corpus` in (`_merge_with_texts`); this test
+    monkeypatches that one call to a small stub `Corpus` so it never
+    touches the real, 77,000-plus-passage disk inventory (`docs/
+    SACRED-HISTORY-TEXTS.md`'s own cost estimate names that count; a
+    real run of it belongs to that doc's own future campaign, a
+    separate concern from this test suite)."""
+    from hte.corpus import sacred_history_texts
+    from hte.corpus import Corpus, RetrievalEnvelope
+    from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Source, Stance, Tier as TierEnum
+
+    stub_source = Source(id="stub-edition", kind=EvidenceKind.TEXTUAL, date="1611", stemma_parents=["judaism"])
+    stub_item = EvidenceItem(
+        id="stub-edition-p0000-ex-0", kind=EvidenceKind.TEXTUAL, tier=TierEnum.T3, source_id="stub-edition",
+        span=EvidenceSpan(doc_id="stub-edition-p0000", locator="extract:0", quote="stub passage", char_start=0, char_end=12),
+        provenance="llm-extraction-ensemble", stance=Stance.POSITIVE,
+    )
+    stub_corpus = Corpus(
+        sources={"stub-edition": stub_source}, evidence=[stub_item], ground_truth=[],
+        provenance=[RetrievalEnvelope(retrieval_run_id="stub", doc_id="stub-edition", source_path="/dev/null", fetched_at="2026-09-11T00:00:00+00:00")],
+        vocab=sacred_history.load_vocab(),
+    )
+    monkeypatch.setattr(sacred_history_texts, "load", lambda: stub_corpus)
+
+    baseline = sacred_history.ingest()
+    merged = sacred_history.ingest(with_texts=True)
+
+    assert len(merged.sources) == len(baseline.sources) + 1
+    assert merged.sources["stub-edition"] is stub_source
+    assert len(merged.evidence) == len(baseline.evidence) + 1
+    assert stub_item in merged.evidence
+    assert merged.ground_truth == baseline.ground_truth
+    assert len(merged.provenance) == len(baseline.provenance) + 1

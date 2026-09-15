@@ -1,4 +1,4 @@
-"""`hte` console script: `campaign run`, `calibrate`, `views`,
+"""`hte` console script: `campaign run`/`results`, `calibrate`, `views`,
 `holdout-ledger report`/`verify`, `question-map`, `purge`,
 `predict register`/`resolve`/`report`.
 
@@ -8,14 +8,16 @@ contract (`pyproject.toml`).
 from __future__ import annotations
 
 import argparse
+import dataclasses
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
-from . import calibrate, diagnostics, export, holdout_ledger, predict, purge as purge_mod, question_map, runner
+from . import artifacts, calibrate, diagnostics, export, holdout_ledger, predict, purge as purge_mod, question_map, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
-from .corpus import quantum_history, younger_dryas
+from .corpus import quantum_history, sacred_history_texts, younger_dryas
 
 _CORPUS_LOADERS = {
     "quantum-history": quantum_history.ingest,
@@ -35,6 +37,12 @@ _CORPUS_LOADERS = {
     # 82-card `LOCAL_INTAKE_DIR` tree yet.
     "literature": literature.load_default,
     "sacred-history": sacred_history.ingest,
+    # Passage-level extraction over the primary texts this repo mirrors
+    # for 6 of `sacred-history`'s 13 traditions (`hte.corpus.
+    # sacred_history_texts`'s own module docstring, `docs/SACRED-HISTORY-
+    # TEXTS.md`); `sacred_history.ingest(with_texts=True)` is the merged
+    # reading, this entry is the bare texts-only corpus on its own.
+    "sacred-history-texts": sacred_history_texts.load,
     # 47 open-metadata, DOI-verified cards on the Younger Dryas boundary
     # (12.9-11.7 ka BP) impact-hypothesis debate; see `hte.runner.
     # _CORPUS_LOADERS`'s own identical entry and `hte.corpus.
@@ -72,9 +80,116 @@ def _cmd_campaign_run(args: argparse.Namespace) -> int:
     ):
         if value is not None:
             config[key] = value
-    artifacts = runner.run_campaign(config)
-    print(f"run written to {artifacts.run_dir}")
-    print(json.dumps(artifacts.manifest["counts"], indent=2, default=str))
+    run_artifacts = runner.run_campaign(config)
+    print(f"run written to {run_artifacts.run_dir}")
+    print(json.dumps(run_artifacts.manifest["counts"], indent=2, default=str))
+    return 0
+
+
+def _actor_of(entry: dict[str, Any]) -> str | None:
+    """`entry["slots"]["ACTOR"]` for a placement survivor, `None` for a
+    sequence survivor: `hte.runner._survivor_slots` nests a sequence's
+    two placements under `slots["first"/"second"]` instead of a
+    top-level `ACTOR`, out of scope for this flat per-actor summary."""
+    actor = (entry.get("slots") or {}).get("ACTOR")
+    return actor if isinstance(actor, str) else None
+
+
+def _per_actor_summary(survivors: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """One row per ACTOR slot value named by a placement survivor in
+    `survivors` (`survivors.json`'s own `survivors` list): the highest
+    projected credence and lowest uncertainty mass any survivor naming
+    that actor reached, the rating of its own best-Elo survivor, how
+    many survivors named it, and that best-Elo survivor's own four
+    profile projections (`hte.unknowns.robustness`'s `projections` dict,
+    carried on every entry's own `robustness` field)."""
+    rows: dict[str, dict[str, Any]] = {}
+    best_elo_entry: dict[str, dict[str, Any]] = {}
+    for entry in survivors:
+        actor = _actor_of(entry)
+        if actor is None:
+            continue
+        row = rows.setdefault(actor, {"max_P": None, "min_u": None, "best_elo": None, "n_survivors": 0})
+        row["n_survivors"] += 1
+        opinion = entry.get("opinion") or {}
+        p_value, u_value = opinion.get("P"), opinion.get("u")
+        if p_value is not None and (row["max_P"] is None or p_value > row["max_P"]):
+            row["max_P"] = p_value
+        if u_value is not None and (row["min_u"] is None or u_value < row["min_u"]):
+            row["min_u"] = u_value
+        elo = entry.get("elo")
+        if elo is not None and (row["best_elo"] is None or elo > row["best_elo"]):
+            row["best_elo"] = elo
+            best_elo_entry[actor] = entry
+    for actor, row in rows.items():
+        best = best_elo_entry.get(actor)
+        row["profile_projections"] = ((best.get("robustness") or {}).get("projections") or {}) if best else {}
+    return rows
+
+
+def _cmd_campaign_results(args: argparse.Namespace) -> int:
+    """One flat, no-absolute-path JSON summary of a completed
+    `campaign run`: `MANIFEST.json`'s own counts, a per-actor rollup
+    over `survivors.json`, the ten highest-Elo survivors in full, a
+    curated slice of `calibration.json` (when the run had ground truth
+    to hold out against), and `self-report.json` verbatim. Every file
+    this command reads is optional except `MANIFEST.json` itself
+    (`artifacts.load_manifest`'s own contract): a run missing
+    `survivors.json`, `calibration.json`, or `self-report.json` still
+    gets a result, with that section read as empty rather than this
+    command refusing to run over a partial run directory."""
+    run_dir = Path(args.run_dir)
+    manifest = artifacts.load_manifest(run_dir)
+
+    survivors_path = run_dir / "survivors.json"
+    survivors_data = json.loads(survivors_path.read_text()) if survivors_path.is_file() else {}
+    survivors = survivors_data.get("survivors", [])
+
+    self_report_path = run_dir / "self-report.json"
+    self_report = json.loads(self_report_path.read_text()) if self_report_path.is_file() else {}
+
+    calibration_path = run_dir / "calibration.json"
+    calibration: dict[str, Any] | None = None
+    if calibration_path.is_file():
+        raw = json.loads(calibration_path.read_text())
+        calibration = {
+            "brier": raw.get("brier_score"),
+            "coverage_of_truth": raw.get("coverage_of_truth"),
+            "mode": raw.get("mode"),
+            "cutoff_years": raw.get("cutoff_years"),
+            "n_holdout_events": raw.get("n_holdout_events"),
+            "n_covered_events": raw.get("n_covered_events"),
+        }
+        # `hte.diagnostics.write_diagnostics`'s own `diagnostics.json`,
+        # written by `hte calibrate --diagnose`: read only when a
+        # caller placed one in the same run directory, per this
+        # command's own "if present" contract for uncovered reasons.
+        diagnostics_path = run_dir / "diagnostics.json"
+        if diagnostics_path.is_file():
+            reasons = json.loads(diagnostics_path.read_text()).get("reasons")
+            if reasons:
+                calibration["uncovered_reasons"] = reasons
+
+    top = sorted(
+        survivors, key=lambda e: -(e.get("elo") if e.get("elo") is not None else float("-inf")),
+    )[:10]
+
+    result = {
+        "run_id": run_dir.name,
+        "campaign": manifest.campaign,
+        "corpus": manifest.corpus,
+        "counts": dataclasses.asdict(manifest.counts),
+        "per_actor": _per_actor_summary(survivors),
+        "top": top,
+        "calibration": calibration,
+        "self_report": self_report,
+        "source_run": {"run_id": run_dir.name, "git_sha": manifest.git_sha},
+    }
+
+    out_path = Path(args.out)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(result, indent=2, default=str))
+    print(f"campaign results written to {out_path}")
     return 0
 
 
@@ -101,10 +216,10 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
     # exercised discovery-date holdout in the first place (`bkt-hte-
     # generation-coverage`).
     if args.cutoff_years is not None:
-        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years)
+        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years, corpus_name=args.corpus)
         result.setdefault("mode", "discovery_date")  # `--diagnose`'s own required field; bare run_holdout carries no "mode" key
     else:
-        result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed)
+        result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed, corpus_name=args.corpus)
     if args.fit:
         grid = {"W": [1.0, 2.0, 3.0], "lam": [0.25, 0.5, 0.75], "tier_scale": [0.75, 1.0, 1.25]}
         result["fit"] = calibrate.fit_constants(corpus, grid, cutoff_years=args.cutoff_years, k=args.k, seed=args.kfold_seed)
@@ -247,6 +362,15 @@ def build_parser() -> argparse.ArgumentParser:
              "no fitted file on disk; 'default': opt out, use Constants() unconditionally",
     )
     run_p.set_defaults(func=_cmd_campaign_run)
+
+    results_p = campaign_sub.add_parser(
+        "results",
+        help="one flat, no-absolute-path JSON summary of a completed run: counts, "
+             "per-actor rollup, top-ten survivors by Elo, calibration, self-report",
+    )
+    results_p.add_argument("run_dir")
+    results_p.add_argument("--out", required=True)
+    results_p.set_defaults(func=_cmd_campaign_results)
 
     calibrate_p = sub.add_parser("calibrate", help="run the discovery-date or k-fold holdout (mode auto-picked; see choose_holdout_mode)")
     calibrate_p.add_argument("--corpus", default="quantum-history", choices=sorted(_CORPUS_LOADERS))

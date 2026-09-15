@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "cf0ae3c4c7ea280d3db055f65f2610d9cbb0ea7436c6974829d0f827e12ced23",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a distinct sedimentary layer (the so-called 'black mat'/Younger Dryas boundary layer) across North American sites containing platinum and iridium anomalies, magnetic microspherules, nanodiamonds, and soot/charcoal indicating widespread burning",
+      "Astronomical/cosmogenic: anomalous spikes in cosmogenic or supernova-linked isotopes (e.g., 10Be, 14C, or extraterrestrial 60Fe) in ice cores or sediment cores dated to ~10,950 BCE that could indicate either an impact or a nearby supernova's radiation/particle flux",
+      "Material/archaeological: abrupt discontinuity or thinning in Clovis-era artifact assemblages and stratigraphic hiatus at multiple North American sites coinciding with the proposed date",
+      "Faunal/genetic: sharp decline or extinction signatures in megafaunal ancient-DNA population-genetic records (bison, mammoth, horse, etc.) clustering near the same interval, and skeletal assemblages showing sudden population collapse rather than gradual decline",
+      "Geological: shocked quartz, glassy spherules, or other impact-diagnostic mineralogical markers if an actual impact (rather than pure supernova irradiation) is implicated",
+      "Oral tradition: Indigenous North American origin/catastrophe narratives describing a 'sky fire,' falling star, or darkness event, cautiously read as possible deep-time transmission",
+      "Model-prior: existing scientific literature/debate on the Younger Dryas Impact Hypothesis and any proposed supernova-trigger variants"
+    ],
+    "detectability_adjustment": 0.42,
+    "rationale": "The interval (-10950) sits at the Younger Dryas onset, so the 'younger-dryas' row is the appropriate detectability context (no distinct period was specified in the hypothesis, but this date anchors it there rather than upper-paleolithic proper). Under that row, geological (0.65) and astronomical (0.70) evidence have relatively good survival odds \u2014 sediment/ice-core layers and isotopic anomalies from ~13,000 years ago are well within the range paleoclimatology and impact-geology can still sample (this mirrors the real, contested Younger Dryas Impact Hypothesis literature \u2014 treated here as model-prior context, not confirmed fact). Material/archaeological (0.35) and genetic (0.30) evidence are moderately detectable but degrade faster and are harder to attribute causally to a specific single-event trigger rather than gradual climate/human pressures. Oral tradition (0.10), iconographic (0.10), and linguistic (0.05) evidence are very unlikely to have survived 13 millennia intact and attributable, and textual evidence (0.0) is impossible since writing did not yet exist. The hypothesis's own 'action=inconclusive' tag matches this evidentiary profile: the mechanism (supernova-driven impact-ejecta fallout) is scientifically contested, with claimed markers (platinum spikes, nanodiamonds, microspherules) reported by some studies but disputed or unreplicated by others, and no confirmed impact crater or unambiguous supernova signature has been established. Given the mix of a few high-detectability geological/astronomical channels and several near-zero channels (textual, linguistic, oral tradition), a moderate composite adjustment (~0.42) is appropriate: enough to explain why some suggestive geochemical evidence exists and is actively debated, while the low scores in textual/linguistic/oral channels explain why direct corroborating cultural or written testimony is absent without that absence indicating the hypothesis is false."
+  }
+}

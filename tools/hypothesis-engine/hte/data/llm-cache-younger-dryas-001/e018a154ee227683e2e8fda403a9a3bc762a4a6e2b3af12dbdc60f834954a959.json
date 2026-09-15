@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f71efc9807608b45f124723d8767e9e910f361c3b034f9bc9eba3b482e68c3fe",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: high-resolution ice-core geochemistry (e.g., GISP2/GRIP/NEEM Ir, Pt, Os concentration profiles) at the Younger Dryas onset horizon showing no statistically significant iridium spike, or showing the apparent anomaly is an artifact of measurement/contamination rather than extraterrestrial input",
+      "Astronomical/impact-marker: absence or non-replication of independent cosmic-impact proxies (shocked quartz, magnetic microspherules, nanodiamonds, platinum-group-element enrichment) across multiple YD boundary sites, undermining the airburst mechanism",
+      "Material: sediment/soil layer analyses at YD boundary sites worldwide failing to show consistent spherule or soot layers correlated with an airburst event",
+      "Model_prior (unverified, from training, not from provided evidence text): the known scientific literature debate over the Younger Dryas Impact Hypothesis, including papers (e.g., Paquay et al. 2009; Pigati et al. 2012; van Hoesel et al. 2012) reporting failure to replicate Firestone et al.'s (2007) iridium/impact-marker claims in Greenland ice and other YD boundary sediments",
+      "Note: the actual 'refutation' as a scholarly act would have occurred via modern (20th-21st century) peer-reviewed publications, not through any actor or artifact datable to -11000 to -10001; this is a structural mismatch between the hypothesis's placed interval and the true locus of the refuting evidence"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "Using the 'younger-dryas' row (closest match to the -11000/-10001 interval) as the relevant detectability context: geological (0.65) and astronomical (0.7) evidence types are the most probative for testing/refuting an iridium-anomaly-driven cosmic-airburst claim, and both are reasonably well preserved \u2014 polar ice cores (GISP2, GRIP, NEEM) and globally distributed YD boundary sediment sequences are physically robust archives that have in fact been repeatedly resampled and reanalyzed by real research groups, so absence of a replicated anomaly is a meaningful and detectable negative result rather than a preservation failure. Material evidence (spherules, nanodiamonds) is lower detectability (0.35) since such microscopic markers are harder to unambiguously attribute or rule out across sites. Textual (0.0) and oral_tradition (0.1) are essentially inapplicable since no Upper Paleolithic/YD-era society produced writing, and the 'refutation' event itself is inherently a modern scientific act (peer-reviewed literature), which falls outside the ontology's period-indexed evidence forms altogether \u2014 this is a category mismatch that lowers confidence in treating the hypothesis as a discrete ancient 'event' the ontology can score cleanly. Weighing geological/astronomical strength against material weakness and the textual/oral near-zero contribution, and discounting slightly for the actor-period mismatch, an aggregate adjustment of ~0.55 reflects a reasonably strong (not high) chance that confirming or disconfirming physical evidence exists and would already have been reported in the accessible geochemical/ice-core record, meaning genuine absence of an anomaly there is informative rather than merely undetected."
+  }
+}

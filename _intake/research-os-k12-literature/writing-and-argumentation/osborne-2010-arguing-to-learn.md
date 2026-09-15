@@ -30,7 +30,7 @@ how_it_bears_on_research_os: >
   discourse, defending a claim against challenge, more than from claim construction alone. Names a
   structural gap in the current design worth flagging alongside Berland and Reiser (2009,
   `berland-reiser-2009-argumentation-explanation.md`)'s own persuading-goal finding: Research
-  OS's teacher-review step is evaluative rather than dialogic, and carries none of the peer
+  OS's teacher-review step is a single evaluative response, carrying none of the peer
   debate this piece treats as the mechanism of the benefit.
 ---
 
@@ -62,7 +62,17 @@ Frames overlap-map question 5 and the Production tier in argumentation terms: a 
 claim, evidence, and stance are the raw materials of scientific argument, and this piece's own
 case is that the reasoning benefit comes from discourse, defending a claim against challenge,
 more than from claim construction alone. Names a structural gap alongside Berland and Reiser (2009):
-Research OS's teacher-review step is evaluative rather than dialogic, carrying none of the
+Research OS's teacher-review step is a single evaluative response, carrying none of the
 peer debate this piece treats as the mechanism of the benefit.
 
 Cross-indexed against: `writing-and-argumentation/berland-reiser-2009-argumentation-explanation.md`.
+
+**Foundations this card rests on** (added 2026-09-11, canon intake pass three,
+`intake/ros-canon-promotion-3`): this piece's own argument-structure vocabulary and
+argument-as-skill claim are not stated here first. Toulmin (1958,
+`writing-and-argumentation/toulmin-1958-uses-of-argument.md`) states the claim-grounds-
+warrant structure; Kuhn (1991,
+`writing-and-argumentation/kuhn-1991-skills-of-argument.md`) states the empirical case that
+argumentative skill is a learnable, discourse-dependent competence. Both cards were screened
+and verified this pass (canon_score 70 each) but not promoted; see each card's own Canon
+Screening section.

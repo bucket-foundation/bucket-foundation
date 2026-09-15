@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "eade7c4158ec73809f1e787a657a7e6afa44482a851c6503ec30d0a43dbda3e3",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum, iridium, and osmium anomalies in Greenlandic/Arctic ice cores and Younger Dryas boundary sediment layers ('black mat')",
+      "geological: impact-diagnostic markers \u2014 nanodiamonds, magnetic spherules, shocked quartz, glassy carbon spherules in circum-Arctic sediment cores",
+      "astronomical: identification of an impact crater or crater-like seafloor structure in the Arctic Ocean basin dated to ~10,950 BCE",
+      "astronomical: bolide/comet fragment trajectory modeling consistent with an Arctic Ocean impact",
+      "material (archaeological): abrupt disruption/abandonment layers at Paleoindian/Paleolithic sites across the Northern Hemisphere coincident with the layer",
+      "genetic: population bottleneck or extinction-pulse signatures in megafaunal (mammoth, mastodon, etc.) ancient DNA dated to the same interval",
+      "model_prior: existing Younger Dryas Impact Hypothesis literature (Firestone et al. 2007 and successors) proposing a similar mechanism, plus the ongoing, unresolved scientific controversy and failed independent replications of the platinum/nanodiamond signals"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.35,
+    "rationale": "The proposed date (~10,950 BCE) sits at the Younger Dryas onset boundary, so I anchor detectability to the 'younger-dryas' row set rather than a later period. Geological (0.65) and astronomical (0.7) detectability are nominally decent for this period because ice-core and sediment-layer proxies (Pt/Ir anomalies, nanodiamonds, spherules) are exactly the kind of evidence this hypothesis predicts, and such proxies have in fact been reported and debated in the literature (model-prior, unverified/contested: the Younger Dryas Impact Hypothesis, e.g. Firestone et al. 2007, Petaev et al. 2013 platinum spike) \u2014 so this is not purely speculative. However, the hypothesis specifies the impact site itself as the Arctic Ocean, which is a critical downward adjustment the generic period table doesn't capture: Arctic Ocean seafloor is heavily ice-covered, poorly bathymetrically surveyed, and any crater could be buried under sediment or sea ice with only sparse research-vessel/submarine coverage compared to terrestrial or shelf sites. This makes direct crater-detection extremely unlikely even if a real impact occurred, independent of the hypothesis's truth. Fallout proxies (ejecta, spherules, isotopic anomalies) transported into Greenland/circum-Arctic ice cores and lake sediments are more plausible to have survived and been sampled, which is why some Pt/Ir signals have already been reported (though disputed and not universally replicated, indicating the broader scientific community treats current evidence as inconclusive rather than confirming or falsifying). Given the strong site-specific detection penalty for an underwater, ice-covered, unmapped Arctic Ocean crater, I adjust the composite detectability down from the naive table average (~0.5) to about 0.35, meaning a genuine absence of a confirmed Arctic Ocean crater should weigh only lightly against the hypothesis, while the partial existence of ice-core/sediment anomaly evidence (however contested) is consistent with \u2014 but does not confirm \u2014 this specific placement of the source impact."
+  }
+}

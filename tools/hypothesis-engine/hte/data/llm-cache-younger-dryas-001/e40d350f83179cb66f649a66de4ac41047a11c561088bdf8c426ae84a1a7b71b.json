@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e134869a6e3341cb2a30b84263e09758a6ab270bec83fcb95e692b89f6c86fa3",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-group-element (Pt, Ir) spikes, magnetic microspherules, meltglass/impact spherules, and nanodiamond concentrations in Greenland ice-core stratigraphy dated to roughly 13000-12000 BCE",
+      "Geological: a distinct scoria or ejecta-like layer within firn/ice strata coincident with the proposed airburst horizon",
+      "Astronomical: orbital-dynamics modeling and radiant/stream reconstructions tying a Taurid-complex fragment cluster to an Earth-crossing encounter in this interval",
+      "Astronomical: cosmogenic isotope spikes (10Be, 14C) in ice or tree rings coincident with a bolide/airburst event",
+      "Material: shocked quartz or vitrified melt products recovered from ice-core samples or peripheral sediment cores",
+      "Genetic: population bottleneck signatures in contemporaneous megafauna or human groups coincident with the event (weak, indirect link)",
+      "Oral tradition/iconographic: possible later folkloric or symbolic motifs referencing celestial fire events (very low confidence given the long transmission gap of over ten thousand years)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The event falls in the terminal Upper Paleolithic/pre-Younger Dryas interval, so both the 'upper-paleolithic' and 'younger-dryas' detectability rows apply and are nearly identical: geological about 0.6-0.65, astronomical about 0.7, material about 0.35, genetic about 0.25-0.3, oral_tradition and iconographic about 0.1. Greenland ice sheets are unusually good archives (fine annual layering, preserved chemistry and particulates), which explains the comparatively high geological and astronomical scores despite the general poverty of textual and linguistic evidence this far back. This is consistent with the real debate around the Younger Dryas Impact Hypothesis, where platinum anomalies and microspherule layers have been reported in Greenland ice cores near this boundary; I flag this as model-prior background knowledge rather than something established in the evidence text given to me. Direct meltglass recovery specifically attributable to a Taurid-complex airburst is harder to obtain and confirm: it requires deep ice coring, faces contamination risk, and is difficult to distinguish from background micrometeorite or volcanic particulate flux, which keeps material and genetic detectability low-to-moderate. Oral tradition and iconographic evidence are essentially non-diagnostic at this time depth, since no writing exists and any surviving symbolic transmission across roughly fifteen thousand years to later art or myth would be highly attenuated and speculative. Given that the most plausible detection channels (geological and astronomical) score in the 0.6-0.7 range, an absence of definitive meltglass-specific findings should not be read as strong disconfirmation of the hypothesis; it is fully plausible that such evidence exists but remains underexplored or is confounded with ordinary background signals in the ice-core record. I therefore set the overall detectability adjustment to 0.55, weighting toward the stronger geological/astronomical channels while accounting for the near-absence of corroborating material, genetic, textual, or symbolic evidence at this age."
+  }
+}

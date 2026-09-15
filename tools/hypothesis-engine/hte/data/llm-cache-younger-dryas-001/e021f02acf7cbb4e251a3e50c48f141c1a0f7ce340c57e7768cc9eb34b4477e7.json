@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "024237f557b740c60399217088522888554874a4e685b0ce48d09713907b9386",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: a synchronous Younger Dryas boundary (YDB) sedimentary layer across North America bearing elevated platinum and/or iridium concentrations, nanodiamonds (including lonsdaleite), magnetic microspherules/framboids, glassy melt spherules, and an overlying carbon-rich 'black mat' marking abrupt faunal/floral turnover",
+      "geological: shocked or melted quartz grains and impact-proxy charcoal/soot spikes indicating continent-scale biomass burning at ~12,800 cal BP",
+      "astronomical: orbital-dynamics modeling showing the Taurid meteor stream/Encke-complex could have hosted a large fragmenting body capable of producing multiple airbursts ~10,900 BCE; candidate crater structures proposed in the literature (e.g., subglacial Hiawatha crater, though its dating is independently contested)",
+      "material/archaeological: disruption in Clovis-era lithic technology, settlement abandonment patterns, and megafaunal kill-site distributions coinciding with the YD onset/termination",
+      "genetic: ancient-DNA signatures of a North American megafaunal population bottleneck or extinction pulse synchronous with the proposed event",
+      "oral_tradition: Indigenous North American narratives referencing sky-fire, darkness, or catastrophic cold (weak/speculative given ~12,000 years of transmission)",
+      "iconographic: claimed rock-art panels interpreted as depicting a celestial airburst event (contested identifications, e.g. at some Southwest US sites)",
+      "model_prior: the existing published YDB impact hypothesis literature (Firestone et al. 2007 and successors) and the substantial peer-reviewed counter-literature disputing platinum/nanodiamond replicability (Pinter, Holliday, Daulton, Scott, etc.) \u2014 recalled from training, not verified here, so treated as low-tier model-prior"
+    ],
+    "detectability_adjustment": 0.58,
+    "rationale": "This hypothesis maps most naturally onto the 'younger-dryas' period row rather than 'upper-paleolithic' or 'early-holocene', since the interval [-10000,-9001] sits within/at the tail of the Younger Dryas and the object explicitly names the YD termination. Under that row, geological (0.65) and astronomical (0.7) detectability are comparatively high, which matches the real-world pattern (per model-prior, unverified against source text) that this is an actively debated hypothesis precisely because a candidate geological signature (the YDB platinum/nanodiamond/black-mat layer) has been reported at many sites and is testable \u2014 even though replication has been contested by a substantial body of critical geological work. Astronomical evidence is indirect (orbital modeling of the Taurid/Encke complex) rather than a smoking-gun crater, since no unambiguous North American impact crater of the right age/size has been confirmed, which caps confidence despite the high table detectability score. Material, genetic, oral_tradition, iconographic, and textual detectabilities are all low (0.0\u20130.35) for this period, consistent with the absence of writing, poor faunal/human DNA preservation continuity, and the near-impossibility of confidently tracing oral or iconographic traditions back 12,000+ years \u2014 so weak or absent evidence in those channels should not be read as evidence against the hypothesis, only as a detectability artifact of the period. Given the mixed profile \u2014 plausible-but-contested strong-channel evidence (geological/astronomical) alongside expected near-total silence in weak channels \u2014 a detectability adjustment around 0.55\u20130.6 (I suggest 0.58) better reflects the overall evidentiary ceiling than any single row value, and evidence absence in the low-detectability channels should be weighted as inconclusive rather than falsifying."
+  }
+}

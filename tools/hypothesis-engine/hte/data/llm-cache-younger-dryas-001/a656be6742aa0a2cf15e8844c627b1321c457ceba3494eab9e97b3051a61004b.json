@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ab2f81df1b8082c7514797247844484ba1e1015e54509612dd49be3b8515ddb8",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: a distinct Younger Dryas boundary (YDB) sedimentary layer containing nanodiamonds (hexagonal lonsdaleite, cubic diamonds), magnetic microspherules, and elevated platinum/iridium concentrations at ~12,900 cal BP across multiple North American sites",
+      "geological: a 'black mat' organic-rich layer directly overlying the nanodiamond/spherule horizon, associated with a sharp cooling signal consistent with meltwater-pulse-driven AMOC disruption",
+      "astronomical/geochemical: platinum and helium-3 anomalies and impact-proxy markers (charcoal spikes indicating continent-wide biomass burning) coincident with the same stratigraphic horizon",
+      "material/archaeological: disruption or abandonment horizons at Clovis-era sites, changes in lithic technology, and megafaunal bone beds terminating abruptly at the YDB layer",
+      "genetic: population bottleneck or extinction signatures in North American megafauna (mammoth, mastodon, horse) genomes dated to this interval",
+      "model_prior: the well-known (and contested) Younger Dryas Impact Hypothesis literature (Firestone et al. 2007 and successors) proposing an extraterrestrial trigger for the Younger Dryas onset and megafaunal extinction, alongside failed-replication studies disputing the nanodiamond/spherule findings"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "Treating interval -10950 as the Younger Dryas onset boundary, the relevant detectability row is ('younger-dryas', *). Geological evidence (0.65) and astronomical/geochemical proxies (0.7) are the most plausible surviving evidence classes since fine sedimentary layers, spherules, and platinum anomalies are robust physical signatures that can persist ~13,000 years and have in fact been reported (and independently disputed) in the literature \u2014 this matches known model-prior knowledge of the real-world 'Younger Dryas Impact Hypothesis' controversy (Firestone et al. 2007 vs. multiple non-replication studies), which I flag as model-prior rather than verified fact. Material/archaeological evidence (0.35) and genetic evidence (0.3) are weaker channels for this period given preservation bias and sparse Paleoindian archaeological density. Textual (0.0) and linguistic (0.05) evidence are essentially impossible this far preliterate, and oral tradition (0.1) is too attenuated over 13 millennia to be reliable. Given that multiple independent physical-proxy channels (geological, astronomical/geochemical) have moderate-to-good detectability and such evidence has already been actively searched for and reported (albeit contested) in real stratigraphic records, absence of universal confirmation is better explained by genuine scientific non-replication/regional heterogeneity of impact-ejecta deposition rather than by low detectability alone. I set the aggregate detectability adjustment at 0.5, reflecting that while some evidence categories (geological, astronomical) are quite detectable, others (genetic, material, textual) drag the composite down, and the hypothesis remains empirically contestable rather than confidently falsifiable purely on preservation grounds."
+  }
+}

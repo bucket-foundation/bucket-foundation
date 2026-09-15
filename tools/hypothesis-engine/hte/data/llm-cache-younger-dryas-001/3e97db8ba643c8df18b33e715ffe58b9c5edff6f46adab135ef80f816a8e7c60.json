@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "3460a7c54642dc3f5d3e7f4fcf0be040d49435c4d2e8838a2191db1a7526d183",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-group-element (Pt/Ir) spike in a discrete stratigraphic layer dated to ~10,850 BCE (YD onset boundary) in European lake sediments, peat bogs, loess sections, and ice-core proxies",
+      "Geological/astronomical: co-occurring impact-ejecta markers in the same layer - magnetic/glassy spherules, nanodiamonds, meltglass, shocked quartz, or elevated Ir/Pt ratios consistent with extraterrestrial fallout",
+      "Material: a 'black mat' or carbon-rich horizon at multiple European archaeological/paleontological sites marking abrupt faunal/vegetation change at the same date",
+      "Material/genetic: megafaunal extinction or population bottleneck signatures (bone assemblages, ancient DNA) clustering right at or after the dated horizon across European sites",
+      "Astronomical: independent confirmation via extraterrestrial/cosmogenic isotope proxies (e.g., 10Be, 14C spike) supporting an impact or airburst event at that date",
+      "model-prior: existing Younger Dryas Impact Hypothesis (YDIH) literature reporting platinum anomalies (originally emphasized from Greenland ice cores and some North American sites) and the ongoing scientific dispute over reproducibility at European localities"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10850 corresponds to the Younger Dryas onset (~12,800 cal BP), so the relevant period bucket is 'younger-dryas' rather than any generic Upper Paleolithic default. The hypothesis's core claim - a platinum anomaly from impact-ejecta fallout - is fundamentally a geological/geochemical signature, with 'geological' (0.65) and 'astronomical' (0.7) being the highest-detectability channels in this period per the table; these proxies (sediment cores, ice cores, peat/loess sequences) are well-preserved across Europe and routinely sampled at high resolution, so if a genuine, widespread platinum enrichment layer existed at this date it plausibly would have been found already. Material evidence (extinction/black-mat horizons, 0.35) and genetic evidence (megafaunal DNA bottlenecks, 0.3) are moderately detectable but noisier and harder to date precisely to a single year. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) channels are essentially inapplicable or near-zero for a preliterate Younger Dryas population and should not be treated as informative absences. model-prior (0.3) is relevant here because this hypothesis closely tracks the real, actively-debated Younger Dryas Impact Hypothesis (YDIH), which reports platinum/iridium anomalies primarily from Greenland ice cores and North American sites, with European corroboration being comparatively sparse and contested/non-replicated in several follow-up studies (I recall this only as model-prior, not verified against the evidence text provided). Given the relatively high detectability of geological/astronomical proxies, an absence of confirmed European platinum anomalies is more likely to reflect either a real absence of the signal in Europe specifically, or genuine scientific non-replication, rather than pure undetectability - so I weight the overall adjustment moderately (0.55), averaging the high-detectability geological/astronomical channels against the much lower detectability of corroborating cultural/textual channels and the weakly-supportive model-prior tier. The hypothesis 'could have survived' as evidence in principle, but its truth is not strongly established by absence/inconsistency across European sites."
+  }
+}

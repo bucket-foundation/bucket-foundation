@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "c6915af2db30f86180d7a79a96cf54b386261f832ade4f0fc2e5b20bb4933268",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: nanodiamond findings in YDB sediments were widely non-replicated in later studies (Daulton et al.), making B's 'refuted' framing better calibrated than A's 'corroborated' framing of an impact-driven mechanism for YD cooling, which remains a fringe, contested claim."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: iridium anomalies tied to the YDIH were largely not confirmed/replicated at most European sites, so B's 'refuted' status is closer to mainstream consensus than A's strong 'corroborated' claim for a globally impact-driven YD termination, which is still disputed."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: the YDIH's megafaunal-extinction claims center on North America (Clovis-age extinctions), so B's geographic placement is more consistent with the evidence base than A's assertion of a triggered European extinction event."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: impact ejecta triggering carbon-spherule deposition in North America matches the original YDB claim structure (Firestone et al.), whereas B conflates the impact (hypothesized at YD onset) with causing YD termination, a mismatched causal/timing claim."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: A's microspherule claim mirrors well-documented (if contested) North American YDB assemblages, while B's Middle East nanodiamond 'corroboration' echoes the Abu Hureyra claims later challenged as likely misidentified industrial material."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: Greenland platinum anomaly data exist but causal attribution remains genuinely unsettled, making A's 'inconclusive' framing better calibrated than B's strong 'triggered' claim for global impact-driven YD cooling onset."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: both are plausible; Mexican spherule findings are genuinely contested (inconclusive fits), but B's refutation of an impact-driven cooling/biomass-burning-winter link also aligns with mainstream skepticism, leaving the pair close to balanced."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.65,
+        "rationale": "A's -10950 date is internally consistent with YD onset dating used elsewhere in this dataset, while B places YD 'termination' only ~100 years after onset, contradicting the well-established ~1000+ year YD duration, undermining B's coherence."
+      }
+    ]
+  }
+}

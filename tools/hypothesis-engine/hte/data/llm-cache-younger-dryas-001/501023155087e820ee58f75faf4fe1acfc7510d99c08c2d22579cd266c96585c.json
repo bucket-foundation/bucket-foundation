@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "5944a2a1da42a7410316e8ac3a3b17d7041444627322fbf7477e6141af2ebfc0",
+  "response": {
+    "expected_evidence": [
+      "Geological: YDB (Younger Dryas Boundary) sediment layers with platinum anomaly, nanodiamonds, soot/charcoal spikes at ~12,900 cal BP, tested for correlation (or lack thereof) with settlement abandonment in Mexican sites",
+      "Archaeological/material: continuity or discontinuity in Paleoindian (Clovis and related) site occupation, artifact density, and radiocarbon date distributions across the ~12,000-11,000 BCE boundary in central/northern Mexico (e.g., Chiapas, Sonora, Valsequillo-region sites)",
+      "Astronomical/impactite evidence: extraterrestrial markers (iridium/platinum spherules, magnetic microspherules) indicating an impact or airburst event, independent of demographic outcome",
+      "Genetic: ancient mitochondrial or nuclear DNA from Paleoindian skeletal remains showing (or not showing) a population bottleneck or lineage discontinuity around this interval",
+      "Paleoenvironmental/geological proxies for 'impact winter': pollen, charcoal, and lake-sediment records indicating (or ruling out) abrupt biomass burning and climatic cooling in Mexican regions",
+      "Population-demography proxies: summed probability distributions (SPD) of radiocarbon dates as a proxy for population size trends before/after the interval",
+      "Skeletal/paleodemographic data (mortality profiles, site abandonment patterns) from any preserved human remains"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.4,
+    "rationale": "This hypothesis concerns the Younger Dryas boundary (~10,900 BCE) and the contested Younger Dryas Impact Hypothesis (YDIH), specifically whether a cosmic impact caused a demographic collapse in Mexico via biomass-burning/impact-winter. Using the 'younger-dryas' row (closest match to the -12000/-11001 interval) as primary, supplemented by 'upper-paleolithic' for the regional cultural context: geological (0.6-0.65) and astronomical (0.7) detectability are relatively high, since YDB sediment layers, spherules, and platinum/iridium anomalies are physically robust and have been actively searched for across North America, including Mexico. However, the demographic claim itself relies on much weaker channels \u2014 genetic evidence (0.25-0.3) is limited by poor ancient-DNA preservation in Mexico's often warm/humid or heavily disturbed depositional contexts, and material/archaeological evidence (0.35) is hampered by the sparse, poorly dated Paleoindian record in Mexico compared to the U.S. Southwest. Textual, linguistic, oral_tradition, and iconographic channels are essentially inapplicable (near-zero) since no writing or established oral-tradition transmission exists for this timeframe. Because the hypothesis is a 'refutation' claim (absence of demographic effect despite any impact), the key evidentiary burden falls on continuity in the weakest channels (genetic, material demography proxies), which lowers overall composite detectability even though the impact-event evidence itself (geological/astronomical) is well-attested. A low finding of direct 'refutation' evidence should therefore be attributed substantially to sparse regional sampling and poor Mexican Paleoindian genetic/archaeological preservation rather than treated as evidence that the impact-driven collapse did occur. Net detectability is assessed as moderate-low (~0.4), reflecting strong geological/astronomical potential offset by weak genetic/material/demographic channels critical to testing the demography claim specifically."
+  }
+}

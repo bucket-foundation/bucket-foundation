@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fee0503a88eae8e47b0c83d970ec92c70b479b6ee074f87c59f56c1a6423a881",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Astronomical: identification of a supernova remnant with an age of ~19,000-22,000 years located close enough (tens of parsecs) to plausibly deliver ionizing gamma/cosmic-ray flux to Earth",
+      "Geological/ice-core: spikes in cosmogenic radionuclides (10Be, 36Cl) and nitrate/ozone-depletion proxies in Greenland and Antarctic ice cores dated to ~20,000-19,000 BCE",
+      "Geological: anomalous 60Fe or other supernova-derived isotopic signatures in deep-sea sediment/ice layers of matching age",
+      "Genetic: synchronized ancient-DNA signatures of megafaunal population bottlenecks or extinction pulses across multiple continents clustering at ~20,000-19,000 BCE",
+      "Material/paleontological: faunal turnover or extinction horizons in stratified sites on multiple continents dated to this interval",
+      "Iconographic (low likelihood): Upper Paleolithic cave art or portable art depicting an unusual celestial 'new star' event",
+      "Oral tradition (very low likelihood, given ~21,000-year gap): any deep-time mytheme describing a sky-brightening or dying-star event",
+      "model-prior: cross-check against known megafaunal extinction chronologies, which mostly cluster at other times (e.g., ~12,900 BP Younger Dryas onset, ~40,000 BP in Australia) rather than 20,000-19,000 BCE"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "Mapping the interval (-20000 to -19001) to the Upper Paleolithic period, the strongest expected signatures are astronomical/geological: a nearby supernova causing gamma-ray-driven ionization should leave cosmogenic-isotope (10Be/36Cl) and nitrate/ozone-depletion spikes in polar ice cores, which extend well past 20,000 BP and are routinely and sensitively analyzed for exactly this kind of anomaly (detectability ~0.6-0.7 per table). This means that if the event occurred, corroborating geophysical evidence is quite likely to be preserved and detectable, so absence of a documented radionuclide/ozone anomaly at this date is more informative than in most other rows of this table. Genetic and material lines of evidence (ancient DNA bottleneck signals, faunal turnover strata) are only moderately detectable (~0.25-0.35) given poor DNA preservation depth and patchy Upper Paleolithic faunal records across continents, so a lack of clearly synchronized multi-continent extinction signal at this exact date is only weak evidence either way. Textual (0.0) and oral-tradition (0.1) channels are essentially non-existent this far back, so their total absence carries no evidentiary weight against the hypothesis. Iconographic evidence (0.1) is likewise a poor witness given how rare and ambiguous Upper Paleolithic art motifs are. Combining these, I set the overall detectability adjustment near the midpoint (0.5), reflecting that the most diagnostic evidence type (ice-core isotopic/ozone proxies) is fairly well preserved and searchable, while the biological/archaeological corroboration is much weaker \u2014 so a real absence of ice-core signal argues against the hypothesis, but absence of genetic/material/textual/oral corroboration should not be treated as strong disconfirmation. Independently, my own (model-prior, unverified) recollection is that documented megafaunal extinction pulses cluster more around the Younger Dryas boundary (~12,900 BP) and, in Australia, around ~40,000 BP, rather than 20,000-19,000 BCE, which is an additional prior-based reason for skepticism, stated here only as a low-tier model-prior rather than confirmed fact."
+  }
+}
