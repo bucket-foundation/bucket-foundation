@@ -99,6 +99,26 @@ def test_replay_only_cache_miss_raises(tmp_path):
         llm.complete("hello", role="critic", schema=SCHEMA, model="sonnet", cache_dir=tmp_path, replay_only=True)
 
 
+def test_replay_only_cache_hit_never_spawns_a_subprocess(tmp_path):
+    """PR #154 (`bkt-hte-stratified-sample`) dropped `test_runner.py::
+    test_run_campaign_replay_only_makes_no_subprocess_call`; this recovers
+    that contract at the level it lives, `hte.llm.complete` itself,
+    apart from any one end-to-end campaign's own fixture. `tests/
+    conftest.py`'s autouse `_no_real_subprocess` guard turns any real
+    `subprocess.run`/`Popen` call during this test into a `RuntimeError`,
+    so returning the cached value below is itself proof no call happened."""
+    cache_dir = tmp_path / "cache"
+    cache_dir.mkdir()
+    key = llm._cache_key("sonnet", "hello")
+    (cache_dir / f"{key}.json").write_text(json.dumps({
+        "model": "sonnet", "role": "critic", "prompt_sha256": "x", "response": {"greeting": "cached"},
+    }))
+    result = llm.complete(
+        "hello", role="critic", schema=SCHEMA, model="sonnet", cache_dir=cache_dir, replay_only=True,
+    )
+    assert result == {"greeting": "cached"}
+
+
 def test_complete_calls_cli_and_writes_cache(tmp_path, monkeypatch):
     fake = _fake_run([(0, _envelope(structured_output={"greeting": "hi"}))])
     monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
