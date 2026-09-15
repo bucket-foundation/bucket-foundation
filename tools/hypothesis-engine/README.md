@@ -190,6 +190,17 @@ are the two pieces still open.
   opinion, a dependency this module does not carry. `run` executes one
   full tournament from a fixed `opinions` snapshot; a caller wanting the
   paper's reseed re-scores and calls `run` again.
+- **`roles.judge`/`batching.batch_judge` never see `ConsensusStatus`, a
+  prior, or an Elo** (`bkt-hte-blind-roles`: the live Younger Dryas
+  run's top ten by Elo were nine unbound consensus hypotheses, traced
+  to the judge prompt once embedding each side's `Opinion`). The prompt
+  carries each side's own linked evidence instead (quoted by id and
+  span, plus a supports/refutes count), a pair with none on either side
+  asked for a draw; `tournament.run` also randomizes which side reaches
+  the prompt as A versus B, per pair and round from its own `seed`.
+  `model-policy.json` runs `judge` on `opus`, apart from `critic`'s
+  `sonnet`; `runner.run_campaign` counts crossings against the belief-
+  scored opinion into `MANIFEST.json` `counts.judge_disagreement`.
 - **`export.timeline_views`' `time_bins` are plain century-bin indices,**
   the same `hte.timeline.time_bin_index` units `hte.generate.
   enumerate_placements` takes, not `Interval` objects, so both modules

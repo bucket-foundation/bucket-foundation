@@ -98,25 +98,30 @@ def _actor_of(entry: dict[str, Any]) -> str | None:
 def _per_actor_summary(survivors: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     """One row per ACTOR slot value named by a placement survivor in
     `survivors` (`survivors.json`'s own `survivors` list): the highest
-    projected credence and lowest uncertainty mass any survivor naming
-    that actor reached, the rating of its own best-Elo survivor, how
-    many survivors named it, and that best-Elo survivor's own four
-    profile projections (`hte.unknowns.robustness`'s `projections` dict,
-    carried on every entry's own `robustness` field)."""
+    projected credence, lowest uncertainty mass, and highest evidence-
+    only lift (`b - d`, prior excluded) any survivor naming that actor
+    reached, the rating of its own best-Elo survivor, how many survivors
+    named it, and that best-Elo survivor's own four profile projections
+    (`hte.unknowns.robustness`'s `projections` dict, carried on every
+    entry's own `robustness` field)."""
     rows: dict[str, dict[str, Any]] = {}
     best_elo_entry: dict[str, dict[str, Any]] = {}
     for entry in survivors:
         actor = _actor_of(entry)
         if actor is None:
             continue
-        row = rows.setdefault(actor, {"max_P": None, "min_u": None, "best_elo": None, "n_survivors": 0})
+        row = rows.setdefault(
+            actor, {"max_P": None, "min_u": None, "max_lift": None, "best_elo": None, "n_survivors": 0},
+        )
         row["n_survivors"] += 1
         opinion = entry.get("opinion") or {}
-        p_value, u_value = opinion.get("P"), opinion.get("u")
+        p_value, u_value, lift_value = opinion.get("P"), opinion.get("u"), opinion.get("lift")
         if p_value is not None and (row["max_P"] is None or p_value > row["max_P"]):
             row["max_P"] = p_value
         if u_value is not None and (row["min_u"] is None or u_value < row["min_u"]):
             row["min_u"] = u_value
+        if lift_value is not None and (row["max_lift"] is None or lift_value > row["max_lift"]):
+            row["max_lift"] = lift_value
         elo = entry.get("elo")
         if elo is not None and (row["best_elo"] is None or elo > row["best_elo"]):
             row["best_elo"] = elo
@@ -130,7 +135,8 @@ def _per_actor_summary(survivors: list[dict[str, Any]]) -> dict[str, dict[str, A
 def _cmd_campaign_results(args: argparse.Namespace) -> int:
     """One flat, no-absolute-path JSON summary of a completed
     `campaign run`: `MANIFEST.json`'s own counts, a per-actor rollup
-    over `survivors.json`, the ten highest-Elo survivors in full, a
+    over `survivors.json`, the ten survivors ranked by lift then Elo in
+    full (`hte.export._rank_key`'s own ordering), a
     curated slice of `calibration.json` (when the run had ground truth
     to hold out against), and `self-report.json` verbatim. Every file
     this command reads is optional except `MANIFEST.json` itself
@@ -171,7 +177,11 @@ def _cmd_campaign_results(args: argparse.Namespace) -> int:
                 calibration["uncovered_reasons"] = reasons
 
     top = sorted(
-        survivors, key=lambda e: -(e.get("elo") if e.get("elo") is not None else float("-inf")),
+        survivors,
+        key=lambda e: (
+            -(e.get("max_lift") if e.get("max_lift") is not None else float("-inf")),
+            -(e.get("elo") if e.get("elo") is not None else float("-inf")),
+        ),
     )[:10]
 
     result = {

@@ -21,12 +21,13 @@ def _posterior(h: Hypothesis, opinions: Mapping[int, Opinion]) -> float | None:
 
 
 def _opinion_dict(opinion: Opinion | None, posterior: float | None) -> dict[str, float] | None:
-    """The full subjective-logic opinion, `{"b", "d", "u", "a", "P"}`,
-    `None` when `opinion` itself is missing (the same missing-safe
-    reading `_posterior`/`elos.get` already give the rest of a ranked
-    entry). Matches `hte.bridge_export.export_for_bridge`'s and `hte.
-    api._enrich_entry`'s own opinion-dict convention, so a caller reading
-    any of the three sees the same shape.
+    """`opinion.to_dict()` (`hte.belief.Opinion.to_dict`: `b`/`d`/`u`/`a`
+    plus the derived, prior-excluded `lift` and `tipping_prior_0_6`) with
+    `P` set to `posterior` alongside it, `None` when `opinion` itself is
+    missing (the same missing-safe reading `_posterior`/`elos.get`
+    already give the rest of a ranked entry). Matches `hte.bridge_export.
+    export_for_bridge`'s and `hte.api._enrich_entry`'s own opinion-dict
+    convention, so a caller reading any of the three sees the same shape.
 
     `bkt-hte-timeline-opinion-export`: before this, `timeline.json` (and
     `TIMELINE.md`) carried only the projected posterior `P`, `u`
@@ -38,16 +39,23 @@ def _opinion_dict(opinion: Opinion | None, posterior: float | None) -> dict[str,
     run just to see it (`hte.canon_writeback`'s own top docstring)."""
     if opinion is None:
         return None
-    return {"b": opinion.b, "d": opinion.d, "u": opinion.u, "a": opinion.a, "P": posterior}
+    return {**opinion.to_dict(), "P": posterior}
 
 
 def _rank_key(h: Hypothesis, opinions: Mapping[int, Opinion], elos: Mapping[int, float]):
-    """Ranks by projected posterior first, current Elo second, both
-    missing-safe: an unscored hypothesis sorts after every scored one at
-    the same tier rather than raising or crashing the sort."""
+    """Ranks by evidence-only lift (`b - d`, prior `a` excluded) first,
+    projected posterior second, current Elo third, all missing-safe: an
+    unscored hypothesis sorts after every scored one at the same tier
+    rather than raising or crashing the sort. Lift leads so two
+    hypotheses built from the same evidence rank together regardless of
+    which prior label (`ConsensusStatus`) either was assigned
+    (`STATISTICAL-AUDIT-2026-09-15.md`'s Younger Dryas case)."""
+    opinion = opinions.get(h.address)
+    lift = opinion.lift() if opinion is not None else None
     posterior = _posterior(h, opinions)
     elo = elos.get(h.address)
     return (
+        lift if lift is not None else float("-inf"),
         posterior if posterior is not None else float("-inf"),
         elo if elo is not None else float("-inf"),
     )
@@ -186,14 +194,14 @@ def _fmt(value: float | None, decimals: int) -> str:
     return f"{value:.{decimals}f}" if value is not None else "None"
 
 
-def _u_of(entry: dict) -> float | None:
-    """`entry["opinion"]["u"]`, `None`-safe both when `entry` carries no
+def _opinion_field(entry: dict, field: str) -> float | None:
+    """`entry["opinion"][field]`, `None`-safe both when `entry` carries no
     `opinion` at all (an older `timeline.json`, predating
     `bkt-hte-timeline-opinion-export`) and when `opinion` itself is
     `None` (`_opinion_dict`'s own reading for a hypothesis with no
     opinion at all)."""
     opinion = entry.get("opinion")
-    return opinion.get("u") if opinion else None
+    return opinion.get(field) if opinion else None
 
 
 def write_views(
@@ -209,8 +217,10 @@ def write_views(
     `TIMELINE.md`'s own table lists every one of a bin's own `ranked_
     hypotheses` (`timeline_views`'s `top_k` is where display pruning, if
     any, already happened; this function prunes nothing further), each
-    row's posterior and uncertainty mass (`u`, beside `P`,
-    `bkt-hte-timeline-opinion-export`) rounded to 3 decimals and its Elo
+    row's posterior, uncertainty mass (`u`, beside `P`,
+    `bkt-hte-timeline-opinion-export`), evidence-only lift (`b - d`), and
+    tipping-point prior at the 0.6 floor (`STATISTICAL-AUDIT-2026-09-15.md`'s
+    Jeffreys and Reverse-Bayes fixes) rounded to 3 decimals and its Elo
     to 1, all purely a display rounding: `timeline.json` alongside it
     keeps every value at the full precision `timeline_views` computed.
 
@@ -244,12 +254,14 @@ def write_views(
     for b in views.get("bins", []):
         lines.append(f"## Time bin {b['time_bin'].get('label', b['time_bin']['index'])}")
         lines.append("")
-        lines.append("| Hypothesis | Slots | Posterior | u | Elo (unvalidated) |")
-        lines.append("|---|---|---|---|---|")
+        lines.append("| Hypothesis | Slots | Posterior | u | Lift | Tipping prior (0.6) | Elo (unvalidated) |")
+        lines.append("|---|---|---|---|---|---|---|")
         for entry in b["ranked_hypotheses"]:
             lines.append(
                 f"| {entry['hypothesis_id']} | {entry['slots']} | "
-                f"{_fmt(entry['posterior'], 3)} | {_fmt(_u_of(entry), 3)} | {_fmt(entry['elo'], 1)} |"
+                f"{_fmt(entry['posterior'], 3)} | {_fmt(_opinion_field(entry, 'u'), 3)} | "
+                f"{_fmt(_opinion_field(entry, 'lift'), 3)} | {_fmt(_opinion_field(entry, 'tipping_prior_0_6'), 3)} | "
+                f"{_fmt(entry['elo'], 1)} |"
             )
         lines.append("")
 

@@ -225,6 +225,8 @@ TOOL_DEFINITION: dict[str, Any] = {
                                                 "properties": {
                                                     "b": {"type": "number"}, "d": {"type": "number"},
                                                     "u": {"type": "number"}, "a": {"type": "number"},
+                                                    "lift": {"type": "number"},
+                                                    "tipping_prior_0_6": {"type": ["number", "null"]},
                                                     "P": {"type": "number"},
                                                 },
                                             },

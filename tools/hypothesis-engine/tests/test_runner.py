@@ -7,6 +7,7 @@ from hypothesis import given
 from hypothesis import strategies as st
 
 from hte import llm, roles, runner
+from hte.belief import Opinion
 from hte.corpus import Corpus, GroundTruthEvent, education_atlas, production
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
 from hte.timeline import Interval
@@ -156,6 +157,24 @@ def test_manifest_carries_llm_stats(tmp_path, monkeypatch):
     assert "llm_stats" in manifest
     assert manifest["llm_stats"]
     assert all(row["calls"] > 0 for row in manifest["llm_stats"].values())
+
+
+def test_judge_disagreement_count_excludes_draws_and_ties(monkeypatch):
+    """`bkt-hte-blind-roles`: the exact logic behind `MANIFEST.json`
+    `counts.judge_disagreement`, two judged pairs (one agrees with the
+    opinion's own P-ordering, one disagrees) plus a draw."""
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    opinions = {
+        1: Opinion(b=0.9, d=0.0, u=0.1, a=0.5),  # high P
+        2: Opinion(b=0.0, d=0.9, u=0.1, a=0.5),  # low P
+        3: Opinion(b=0.5, d=0.0, u=0.5, a=0.5),
+    }
+    triples = [
+        (1, 2, 0.0),  # opinion favors 1; score favors 2 -> disagreement
+        (1, 2, 1.0),  # opinion favors 1; score favors 1 -> agreement
+        (1, 3, 0.5),  # a draw score, excluded regardless of opinion
+    ]
+    assert runner._judge_disagreement_count(triples, opinions) == 1
 
 
 # --------------------------------------------------------------------------
@@ -570,6 +589,10 @@ def test_survivors_artifact_has_one_entry_per_survivor_with_full_opinion_and_rob
     for entry in entries:
         opinion = entry["opinion"]
         assert opinion["P"] == pytest.approx(opinion["b"] + opinion["a"] * opinion["u"], abs=1e-9)
+        # `max_lift`: the top-level mirror of `opinion["lift"]`, named to
+        # match `hte.cli._per_actor_summary`'s own per-actor rollup.
+        assert entry["max_lift"] == pytest.approx(opinion["lift"])
+        assert opinion["lift"] == pytest.approx(opinion["b"] - opinion["d"])
         assert set(entry["robustness"]["projections"]) == {"consensus", "skeptic", "fringe", "uniform"}
         assert entry["preservation"] is not None
         assert isinstance(entry["slots"], dict)

@@ -88,7 +88,7 @@ from . import propagate as propagate_mod
 from . import roles
 from . import unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START
-from .belief import Constants, Opinion, load_detectability_table, score as belief_score
+from .belief import Constants, Opinion, load_detectability_table, opinion_clears_floor, score as belief_score
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from .corpus import Corpus
 from .evidence import EvidenceItem
@@ -343,15 +343,23 @@ def reconstruct_candidates(run_dir: str | Path) -> tuple[list[Candidate], RunCon
     )
 
 
-def select_above_floor(candidates: list[Candidate], *, floor_P: float, floor_u_max: float) -> list[Candidate]:
-    """Every candidate at or above the credence floor: projected
-    posterior `P(h) >= floor_P` AND uncertainty mass `u <= floor_u_max`.
-    Both must hold: a hypothesis nobody has examined can still read a
-    high `P(h)` off its prior alone (`a` close to 1) while carrying
-    `u = 1.0`, exactly the unexamined case `hte.belief.Opinion`'s own
-    docstring distinguishes from a supported one; the `u` floor is what
-    keeps that case out of `bucket-canon/`."""
-    return [c for c in candidates if c.posterior >= floor_P and c.opinion.u <= floor_u_max]
+def select_above_floor(
+    candidates: list[Candidate], *, floor_P: float, floor_u_max: float, lift_floor: float = 0.25,
+) -> list[Candidate]:
+    """Every candidate at or above the credence floor: `P(h) >= floor_P`,
+    `u <= floor_u_max`, AND evidence-only lift `b - d >= lift_floor`
+    (default `0.25`). All three must hold: the `P`/`u` pair alone lets a
+    claim clear the gate on its prior `a` (`hte.belief.Opinion`'s own
+    docstring), the exact gap the Younger Dryas live run exposed (0.941
+    vs 0.562 off identical evidence, `STATISTICAL-AUDIT-2026-09-15.md`).
+    `lift_floor` reads none of `a`, so admission always needs evidence
+    mass of its own. Delegates to `hte.belief.opinion_clears_floor`, the
+    one predicate `hte.bridge_export.export_for_bridge`'s own `accepted`
+    flag shares, so the two surfaces never drift apart."""
+    return [
+        c for c in candidates
+        if opinion_clears_floor(c.opinion, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor)
+    ]
 
 
 # --------------------------------------------------------------------------
@@ -573,11 +581,15 @@ def render_index(cards: list[tuple[Candidate, Path]], *, branch: str, elo_label:
         elo_label,
         "",
     ]
-    lines.append("| Hypothesis | P(h) | u | Elo | Card |")
-    lines.append("|---|---|---|---|---|")
+    lines.append("| Hypothesis | P(h) | u | Lift | Tipping prior (0.6) | Elo | Card |")
+    lines.append("|---|---|---|---|---|---|---|")
     for candidate, path in sorted(cards, key=lambda pair: pair[0].posterior, reverse=True):
-        lines.append(f"| `{candidate.short_id}` | {candidate.posterior:.3f} | {candidate.opinion.u:.3f} | "
-                      f"{candidate.elo if candidate.elo is not None else '(unrated)'} | [{path.name}]({path.name}) |")
+        opinion = candidate.opinion
+        lines.append(
+            f"| `{candidate.short_id}` | {candidate.posterior:.3f} | {opinion.u:.3f} | "
+            f"{opinion.lift():.3f} | {_fmt_opt(opinion.tipping_prior(0.6))} | "
+            f"{candidate.elo if candidate.elo is not None else '(unrated)'} | [{path.name}]({path.name}) |"
+        )
     lines.append("")
     return "\n".join(lines)
 
@@ -698,6 +710,7 @@ def _cite_block() -> dict[str, Any]:
 
 def build_envelope(
     cards: list[tuple[Candidate, Path]], *, branch: str, ctx: RunContext, floor_P: float, floor_u_max: float,
+    lift_floor: float = 0.25,
     signoff: str, understanding_by_id: dict[str, str] | None = None,
     novelty_by_id: dict[str, novelty_mod.NoveltyResult] | None = None,
     ranking: holdout_ledger.RankingStatus | None = None,
@@ -796,7 +809,7 @@ def build_envelope(
         "campaign": ctx.manifest.campaign,
         "generated_at": now,
         "signed_off_by": signoff,
-        "floors": {"P": floor_P, "u_max": floor_u_max},
+        "floors": {"P": floor_P, "u_max": floor_u_max, "lift": lift_floor},
         "agent_action_required": False,
         "payment_required_from_you": False,
         "summary": (
@@ -820,6 +833,7 @@ def write_back(
     signoff: str | None = None,
     floor_P: float = 0.6,
     floor_u_max: float = 0.5,
+    lift_floor: float = 0.25,
     out_root: str | Path = "bucket-canon",
     dry_run: bool = False,
     cache_dir: str | Path | None = None,
@@ -828,8 +842,9 @@ def write_back(
     cascade_report: "propagate_mod.CascadeReport | None" = None,
 ) -> list[Path]:
     """Turn the completed run at `run_dir` into canon-facing material:
-    one card per surviving hypothesis at or above the credence floor
-    (`select_above_floor`) under `<out_root>/<branch>/hypotheses/
+    one card per surviving hypothesis at or above the credence floor and
+    the evidence-mass floor (`select_above_floor`'s `floor_P`/
+    `floor_u_max`/`lift_floor`) under `<out_root>/<branch>/hypotheses/
     <address-short>.md`, that branch's own `hypotheses/INDEX.md`, a dated
     addendum block appended to `CANON-INGESTION-INDEX.md`, one feed event
     per card plus the index (`tools/feed/feed.py`'s own API), and a
@@ -915,7 +930,7 @@ def write_back(
         )
 
     candidates, ctx = reconstruct_candidates(run_dir)
-    selected = select_above_floor(candidates, floor_P=floor_P, floor_u_max=floor_u_max)
+    selected = select_above_floor(candidates, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor)
     selected.sort(key=lambda c: c.posterior, reverse=True)
 
     out_root_path = Path(out_root)
@@ -932,10 +947,10 @@ def write_back(
 
     total_named = len(candidates) + len(ctx.unrecoverable_survivor_ids)
     logger.info(
-        "hte.canon_writeback.write_back: %s%d of %d survivor(s) clear P>=%.2f, u<=%.2f over %s "
+        "hte.canon_writeback.write_back: %s%d of %d survivor(s) clear P>=%.2f, u<=%.2f, lift>=%.2f over %s "
         "(%d of %d survivor(s) this run's own timeline.json names were reconstructable; "
         "see RunContext.unrecoverable_survivor_ids for the rest)",
-        "(dry run) " if dry_run else "", len(selected), len(candidates), floor_P, floor_u_max, run_dir,
+        "(dry run) " if dry_run else "", len(selected), len(candidates), floor_P, floor_u_max, lift_floor, run_dir,
         len(candidates), total_named,
     )
 
@@ -1045,14 +1060,17 @@ def write_back(
 
     envelope_dir.mkdir(parents=True, exist_ok=True)
     envelope = build_envelope(
-        card_paths, branch=branch, ctx=ctx, floor_P=floor_P, floor_u_max=floor_u_max, signoff=signoff,
-        understanding_by_id=understanding_by_id, novelty_by_id=novelty_by_id, ranking=ranking,
+        card_paths, branch=branch, ctx=ctx, floor_P=floor_P, floor_u_max=floor_u_max, lift_floor=lift_floor,
+        signoff=signoff, understanding_by_id=understanding_by_id, novelty_by_id=novelty_by_id, ranking=ranking,
         cascade_report=cascade_report,
     )
     envelope_path.write_text(json.dumps(envelope, indent=2), encoding="utf-8")
 
     from . import bridge_export
-    bridge_export.write_bridge_export(run_dir, envelope_path=envelope_path, floor_P=floor_P, floor_u_max=floor_u_max, branch=branch)
+    bridge_export.write_bridge_export(
+        run_dir, envelope_path=envelope_path, floor_P=floor_P, floor_u_max=floor_u_max,
+        lift_floor=lift_floor, branch=branch,
+    )
 
     return written
 

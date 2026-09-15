@@ -211,6 +211,28 @@ def test_run_with_judge_batch_and_a_single_hypothesis_never_calls_it():
 
 
 # --------------------------------------------------------------------------
+# run: position-bias control (`bkt-hte-blind-roles`)
+# --------------------------------------------------------------------------
+
+
+def test_run_with_a_purely_positional_judge_still_ties_the_ratings():
+    """A judge that always favors whichever hypothesis it is handed
+    first cannot inflate either address once position is randomized per
+    pair: over enough rounds the two seats even out, unlike the old
+    unconditional first-argument-always-wins behavior."""
+    vocab = _small_vocab()
+    h1 = _hypothesis(vocab, "farmers", "labor")
+    h2 = _hypothesis(vocab, "aliens", "tech")
+    opinions = {h1.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.5), h2.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.5)}
+
+    def positional_judge(a, b, _ctx):
+        return 1.0  # "whichever address is passed as `a` wins"
+
+    elos = run([h1, h2], opinions, positional_judge, rounds=40, seed=0)
+    assert abs(elos[h1.address] - elos[h2.address]) < 200.0
+
+
+# --------------------------------------------------------------------------
 # critic_filter
 # --------------------------------------------------------------------------
 
