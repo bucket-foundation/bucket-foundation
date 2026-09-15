@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a859cd885322f45e734f36f050304ca9fd6bd7358abeaeeed2b96f2000a0ef02",
+  "response": {
+    "could_have_survived": false,
+    "expected_evidence": [
+      "Geological: iridium/platinum enrichment layer at the ~10,950 BCE Younger Dryas boundary in European lake and peat sediment cores",
+      "Geological: nanodiamonds, magnetic microspherules, and carbon spherules in a discrete YD-onset horizon",
+      "Geological: a 'black mat' or organic-rich boundary layer marking abrupt ecological transition",
+      "Astronomical: an identifiable impact crater or strewn field of ejecta in or near Europe dated to ~10,950 BCE",
+      "Material/faunal: megafaunal bone assemblages and archaeological faunal-turnover records showing an abrupt extinction pulse synchronous with the boundary layer rather than gradual decline",
+      "Material: disruption/discontinuity in Upper Paleolithic (e.g., Magdalenian) occupation layers at the same horizon",
+      "Genetic: ancient-DNA signatures of a sudden population bottleneck or synchronous extinction across multiple megafaunal taxa dated to this interval",
+      "Model-prior: published Younger Dryas Impact Hypothesis literature and counter-literature discussing European proxy sites"
+    ],
+    "detectability_adjustment": 0.35,
+    "rationale": "The claimed date (~10,950 BCE) coincides with the Younger Dryas onset, so the younger-dryas detectability row applies. Geological (0.65) and astronomical (0.7) evidence classes have nominally high survivability -- sediment cores spanning the YD boundary are common across Europe and impact proxies (iridium, spherules, nanodiamonds) are chemically robust over 13,000 years. However, actual detection is undercut in practice: despite decades of the broader Younger Dryas Impact Hypothesis debate and extensive coring at many European sites, no confirmed impact crater has been found in or near Europe for this date, and the reported geochemical anomalies (iridium/platinum/nanodiamond spikes) remain contested and inconsistently reproduced between labs. Material (0.35) and genetic (0.3) evidence for a synchronous, impact-driven (rather than climate- or human-driven) megafaunal extinction in Europe specifically is weak and confounded by concurrent Younger Dryas cooling and human hunting pressure, making attribution to an impact mechanism difficult even where extinction timing is well documented. Given that the highest-detectability lines of evidence (astronomical crater, unambiguous geological ejecta layer) were specifically searched for and not conclusively found, this leans toward the absence reflecting genuine lack of support rather than pure non-preservation, though some low-to-moderate probability remains that a marine or ice-sheet impact left no European crater and that proxy signals are real but subtle. I set the overall detectability adjustment lower (0.35) than the individual high table values because the strongest expected evidence types (crater, unambiguous global ejecta layer) were actively but unsuccessfully sought, and the mechanism-specific attribution evidence (genetic, material) is intrinsically weak in this record."
+  }
+}

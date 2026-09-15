@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ab9654a913d324d068f1e980d881514efbdf72d7d5d669b91c5303dc76d70925",
+  "response": {
+    "expected_evidence": [
+      "Geological: re-analysis of Younger Dryas boundary (YDB) sediment layers at Middle Eastern sites (e.g., Abu Hureyra, Syria) showing absence or non-diagnostic levels of platinum-group element spikes, nanodiamonds, magnetic spherules, or shocked quartz previously cited as impact markers",
+      "Material/archaeological: reinterpretation of the Abu Hureyra 'meltglass' as anthropogenic (biomass-burning/hearth-fire) melt product rather than cosmic-impact melt, based on compositional and morphological analysis",
+      "Astronomical: absence of a confirmed impact crater, bolide trajectory, or corroborating airburst signature in the Middle East region for the ~13,000\u201312,000 BCE window",
+      "Model_prior/textual (modern scholarly): peer-reviewed rebuttal publications and critique papers (e.g., geochemistry/archaeometry journals) explicitly refuting the cosmic-airburst causation claim for YD-onset cooling",
+      "Geological: independent paleoclimate proxy records (pollen, ice/lake cores) from the region showing the cooling onset is better explained by ocean-circulation/meltwater-pulse mechanisms rather than an abrupt impact signature"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.7,
+    "rationale": "This hypothesis describes a modern scientific refutation of the Younger Dryas Impact Hypothesis (YDIH) as applied to a Middle Eastern site (most plausibly Abu Hureyra, Syria, whose 'meltglass' was originally cited as impact evidence and later reanalyzed). Using the period table, the event interval (-13000 to -12001) falls at the Younger Dryas onset, so the 'younger-dryas' row applies: geological 0.65, astronomical 0.70, material 0.35, model_prior 0.30, textual 0.0. Because the actual evidentiary trail here is not ancient testimony but a modern scientific debate conducted on well-preserved, analyzable sediment/archaeological samples using contemporary geochemical and microscopy techniques, the effective detectability is higher than the raw ancient-evidence rows suggest \u2014 refutation papers, if they exist, are highly discoverable in the modern scientific literature (analogous to a documented event with a paper trail rather than something requiring fresh excavation). I therefore adjust the composite detectability upward from the raw geological/astronomical baseline (~0.65-0.70) toward ~0.7, reflecting strong preservation of sediment records and high visibility of published critique work, while still respecting that material/on-site archaeological evidence (0.35) and any oral/iconographic corroboration (0.1) remain weak categories. This is model-prior reasoning based on my training-data familiarity with YDIH critique literature (e.g., Sun et al.-style reanalyses of Abu Hureyra glass); I have not verified specific publications against the evidence text provided, so this attribution should be treated as low-tier/unverified (model-prior) until corroborated. If no refutation evidence is found in the record, this moderate-to-high detectability score means absence of evidence is a meaningful (though not fully decisive) signal against the hypothesis, rather than being fully explained away by poor preservation."
+  }
+}

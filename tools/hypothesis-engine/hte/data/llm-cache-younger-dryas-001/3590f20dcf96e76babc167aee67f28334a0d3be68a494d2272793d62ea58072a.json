@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "3416c4adcb499d44e67ef42e7aff1ea2206786db3d90f774ff0a9c6189e3202c",
+  "response": {
+    "expected_evidence": [
+      "Ice-core geochemical depth profiles (Pt, Ir, Os concentrations) from Greenland cores (e.g., GISP2, NEEM, NGRIP) spanning the ~12,800 cal BP (10950 BCE) horizon, showing the Pt/Ir ratio and comparing it to chondritic/impact-diagnostic values",
+      "Absence or sub-threshold levels of iridium and other classic impact markers (shocked quartz, chondritic Ni-Cr spinels, nanodiamonds) co-occurring with the Pt spike, used to argue against an extraterrestrial impact origin",
+      "Identification of alternative terrestrial or non-impact sources for the Pt anomaly (e.g., volcanic outgassing, continental dust flux changes, anthropogenic/lab contamination during ice-core processing, or a broad cosmic-dust background rather than a discrete impact event)",
+      "Discovery of similar Pt anomalies at other, unrelated stratigraphic horizons in the same or other ice cores, undermining the uniqueness/catastrophic-impact interpretation",
+      "Published peer-reviewed re-analyses/critiques (post-dating the original Petaev et al. 2013-style detection) statistically or geochemically refuting the impact interpretation of the Pt layer",
+      "High-resolution annual-layer dating cross-checks showing the Pt anomaly does not precisely coincide with independently dated Younger Dryas onset markers or other impact-diagnostic proxies (microspherules, soot/PAH spikes)",
+      "Complementary geological evidence from non-ice archives (lake sediments, loess) either supporting or failing to corroborate a synchronous global impact signature"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.75,
+    "rationale": "The interval -10950 (10950 BCE) places this squarely at the Younger Dryas onset, so the 'younger-dryas' row is the appropriate period despite the hypothesis leaving period unspecified. The dominant evidence kinds here are geological (ice-core stratigraphy/geochemistry, table value 0.65) and material (microspherule/nanodiamond re-analysis, 0.35), with astronomical/impact-modeling contributions (0.7). Textual (0.0) and linguistic/oral_tradition kinds are irrelevant since Younger Dryas societies were preliterate and the relevant record is a modern scientific/instrumental one, not a period text. Unlike typical Pleistocene geological evidence, polar ice sheets are an exceptional, continuously-cored and actively-monitored archive with annual-layer resolution and minimal post-depositional disturbance, so detectability for the geological/material categories should be adjusted upward from the generic table baseline (0.65/0.35) to roughly 0.75 overall. This is consistent with reality: the Pt anomaly was in fact detected in GISP2 ice (Petaev et al. 2013), and subsequent debate in the peer-reviewed literature over whether it indicates an impact (vs. volcanic/terrestrial/contamination sources) is exactly the kind of 'refutation' evidence this hypothesis predicts, and such evidence is documented and findable. Given the high preservation quality of ice-core archives and the fact that this specific scientific controversy is already active in the literature, absence of refutation evidence would be informative rather than merely a detectability artifact \u2014 but a genuine low-confidence refutation could still be under-detected if it depends on nuanced statistical reanalysis (a 'model-prior' judgment on my part, not verified against the provided evidence text) rather than a single decisive geochemical marker."
+  }
+}

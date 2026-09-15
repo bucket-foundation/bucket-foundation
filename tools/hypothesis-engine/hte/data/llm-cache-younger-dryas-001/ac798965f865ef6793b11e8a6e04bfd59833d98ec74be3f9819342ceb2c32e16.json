@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "1d3e45cd3e4029e7ab072a411f4c8c42fcfa8d27523ead262620091c166ba5a8",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum-group element (Pt, Ir) anomalies, magnetic spherules, nanodiamonds, and 'black mat' layers dated to ~12,900 cal BP across European sediment/ice-core/loess sections (Younger Dryas Boundary layer)",
+      "geological: abrupt shift in pollen, lake-sediment, and speleothem proxies marking onset of YD cooling coincident with any impact/airburst horizon",
+      "astronomical: orbital-dynamics modeling showing the Taurid meteoroid stream's node intersecting Earth's orbit ~13,000 years ago, and clustering of large-body fragments consistent with a swarm encounter",
+      "material: archaeological occupation-layer disruptions, abandonment horizons, or unusual burn/charcoal layers at Upper Paleolithic European sites dated to the YD onset",
+      "material: megafaunal bone-bed extinction horizons or unusual scorching/melt-glass residues near the YD boundary",
+      "genetic: population bottleneck signatures in European megafauna (and possibly human) mtDNA/genomic data dated to ~13 ka",
+      "iconographic: possible depictions of celestial/swarm events in Upper Paleolithic portable art or cave art (very speculative, e.g. comparisons to later G\u00f6bekli Tepe imagery which postdates this event)",
+      "oral_tradition: deep-time flood/fire-from-sky myths claimed to encode the event (highly speculative given ~13,000-year transmission gap)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The event date (-10950, YD onset) falls at the Upper Paleolithic/Younger Dryas boundary, where the table gives strong detectability for geological (0.6-0.65) and astronomical (0.7) evidence but very weak detectability for textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) channels, with moderate material (0.35) and genetic (0.25-0.3) signals. This pattern matches the real-world Younger Dryas Impact Hypothesis literature (model-prior, unverified): proponents point to platinum/iridium spikes, nanodiamonds, and black-mat horizons in sediment cores as the primary physical evidence class, which is exactly the geological proxy category the table rates highly detectable and inherently preservable in stratified deposits and ice cores over millennia. Astronomical evidence here is not physical survival but reconstructable orbital modeling of the Taurid complex, which is available regardless of era (hence the high 0.7 score) but is inherently indirect/inferential and contested (model-prior: Taurid-YD linkage is a minority, disputed position in the field). Cultural evidence (writing, language, sustained oral tradition, iconography) is essentially precluded \u2014 no writing existed, and 13,000 years vastly exceeds any credible oral-transmission window, so absence of textual/linguistic/oral corroboration should not count against the hypothesis at all. Genetic and material archaeological evidence is only moderately preservable given the sparse Upper Paleolithic European record and taphonomic loss over 13 millennia. Net effect: could-have-survived evidence plausibly exists for the geological/astronomical channels (and this is indeed actively debated in the real literature), while the near-total absence of cultural-record evidence is fully explained by detectability constraints rather than by falsity of the hypothesis. I set the overall adjustment at 0.5, averaging the strong geological/astronomical detectability against the weak-to-null cultural/textual channels that dominate most evidence categories for this period."
+  }
+}

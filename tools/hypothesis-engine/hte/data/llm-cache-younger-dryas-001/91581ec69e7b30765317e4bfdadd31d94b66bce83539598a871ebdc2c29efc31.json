@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "123b2b46c5c8e644fc9ad8f716f7d211f949fce84047129c2bfdadc3f4e4897d",
+  "response": {
+    "expected_evidence": [
+      "geological platinum and iridium anomaly layers at the Younger Dryas boundary across multiple continents",
+      "nanodiamonds, glassy/magnetic microspherules, and carbon spherules concentrated at the same boundary layer",
+      "a widespread black mat organic-rich layer interpreted as biomass-burning residue (soot, charcoal, PAHs) at YD onset",
+      "abrupt discontinuities or abandonment horizons at Clovis-era and contemporaneous Old World archaeological sites coincident with the boundary layer",
+      "megafaunal extinction pulse and associated population bottleneck signatures in surviving species genomes dated to the interval",
+      "an identifiable impact crater or crater field of appropriate size and age consistent with a Younger Dryas-age impactor",
+      "independent stratigraphic replication of the boundary layer at widely separated sites on different continents, required for the multiple-continents placement",
+      "flood or catastrophe motifs in oral tradition, or possible sky-event depictions in iconography (low confidence, largely speculative)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis corresponds to the real-world Younger Dryas Impact Hypothesis, proposed by Firestone et al. (2007) and elaborated by Kennett and others, positing a cosmic impact or airburst that triggered biomass burning and an impact winter at Younger Dryas onset (~10,900 BCE). Using the younger-dryas period row, which matches the given interval, geological detectability is relatively high (0.65) and astronomical detectability is even higher (0.70): if a genuine impact and synchronous burning layer existed, physical traces such as platinum/iridium anomalies, nanodiamonds, spherules, a black mat, or a crater should be reasonably preservable and findable. This is not a low-detectability regime the way textual (0.0) or linguistic (0.05) evidence would be for this period. Material (0.35) and genetic (0.30) evidence are moderately detectable but degrade faster over an ~13,000-year timescale due to site destruction and DNA degradation, weakening confidence there specifically. Consistent with this, the hypothesis action is marked 'inconclusive,' matching the real scientific status: published claims of platinum and nanodiamond anomalies exist at some sites, but numerous independent labs have reportedly failed to replicate spherule and nanodiamond findings at other claimed localities, and no confirmed impact crater of the right age/size has been located, despite detectability suggesting such evidence should be findable if present. This makes the case genuinely evidentially contested rather than primarily an artifact of poor preservation, so could_have_survived is true, and the inconclusive status is better explained by weak/mixed empirical support than by low detectability alone. My specific recollection of replication disputes and debated crater candidates (e.g., failed nanodiamond replications, Hiawatha crater debates) is drawn from training data rather than the evidence text provided, so it should be treated as unverified model-prior rather than established fact. The suggested detectability_adjustment of 0.5 averages the most evidentially load-bearing kinds for this period: geological 0.65, astronomical 0.70, material 0.35, and genetic 0.30."
+  }
+}

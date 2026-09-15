@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b8b36226665ac4ae656b282341cf104d8fc07d66bb516fbadc1138d6943d2a12",
+  "response": {
+    "$FUNCTION_NAME": "StructuredOutput",
+    "expected_evidence": [
+      "geological: a continent-wide platinum (and iridium) enrichment spike in sediment/ice layers dated to ~12,900 cal BP (Younger Dryas Boundary), often co-occurring with a 'black mat' organic-rich layer",
+      "geological: associated markers such as nanodiamonds, magnetic microspherules, and carbon spherules in the same stratigraphic horizon across multiple North American sites",
+      "astronomical: search for an impact crater or airburst signature (e.g., shocked quartz, high-pressure mineral phases) consistent with an extraterrestrial impactor; absence of a confirmed crater is itself notable given the hypothesis",
+      "material: archaeological evidence of disruption in Clovis-era occupation layers directly beneath/at the platinum-bearing horizon (site abandonment, tool assemblage changes)",
+      "genetic: megafaunal extinction signatures and possible human population bottleneck effects correlated with the same interval (weak, indirect evidence)",
+      "model_prior: existing published Younger Dryas Impact Hypothesis literature (Firestone et al. 2007; Petaev et al. 2013 Greenland ice-core platinum anomaly; Moore et al. 2017 multi-site platinum survey) as an unverified prior baseline"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.68,
+    "rationale": "The interval -10950 (~12,950 cal BP) falls essentially at the Younger Dryas onset boundary, so the 'younger-dryas' row is the appropriate detectability context rather than a generic Upper Paleolithic default. Platinum-anomaly evidence is fundamentally geological/geochemical in nature \u2014 preserved in ice cores, lake sediments, and paleosols \u2014 which is a relatively high-detectability channel (table value 0.65) because such strata are widely sampled and geochemically stable over 13,000 years, unlike organic or textual traces. Astronomical evidence (crater/shock features) also carries a high baseline detectability (0.70) in this table, reflecting that impact-related mineralogical signatures, where present, tend to be robust once looked for, even though a confirmed crater remains unidentified. Material (archaeological) and genetic evidence are moderately detectable but more equivocal, since occupation-layer disruption and extinction timing are influenced by many confounding factors besides an impact. Textual, linguistic, oral_tradition, and iconographic channels are essentially inapplicable this far back (values 0.0\u20130.1), so their absence is fully expected and uninformative about the hypothesis's truth. This case is notable in that this is a real, actively studied hypothesis in the literature (the Younger Dryas Impact Hypothesis) with genuine reported platinum anomalies at Greenland ice cores and dozens of North American sites \u2014 meaning the 'model-prior' recollection here is not purely speculative but reflects an unverified line of published research that I cannot independently confirm within this pipeline. Given the moderately-high combined detectability of the primary (geological/astronomical) evidence types and the real-world survival of such anomaly layers, I set the adjustment slightly above the raw geological figure but below the astronomical ceiling, at 0.68, to reflect that geological platinum evidence is the leading diagnostic channel with good preservation odds, while acknowledging the hypothesis remains scientifically contested (a lower posterior confidence than the detectability score alone would imply) since a confirmed crater/airburst mechanism is still absent from the literature I recall."
+  }
+}

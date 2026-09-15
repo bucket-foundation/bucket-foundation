@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "b2104f9bb1154c1159bb8b8016b044d5441bf8dbf6221a13b4bfed9f89f545f9",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.6,
+        "rationale": "Model-prior: A's mechanism (biomass-burning-impact-winter) is the actual causal chain proposed by YDIH proponents (Firestone et al.) and specifically targeted by refutation studies (e.g., Pinter et al. 2011), whereas B's 'impact-ejecta-fallout' is a less coherent causal link for cooling itself, though B's single-year interval is more precisely dated."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.35,
+        "rationale": "Given opinions differ: B carries higher disbelief (d=0.50 vs 0.40) and lower uncertainty, indicating the pipeline's evidence more strongly supports the refutation encoded in B (iridium-anomaly/cosmic-airburst) than A (YD-cooling/cosmic-airburst)."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.55,
+        "rationale": "Model-prior: nanodiamond refutation is one of the most robustly replicated null results in the YDIH literature (multiple independent labs failed to reproduce), slightly edging out the carbon-spherule refutation which remains marginally more contested in the record."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.25,
+        "rationale": "Model-prior: A's platinum-anomaly interval (-13000 to -12001) is ~2000 years off from the well-established YD-onset dating (~12.9 ka BP) of the actual Pt anomaly, undermining its 'corroborated' claim, while B's iridium-anomaly refutation at the correct onset window matches the mainstream finding that iridium was not reliably replicated."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.45,
+        "rationale": "Model-prior: B's refutation of megafaunal-extinction via impact-winter is backed by strong extinction-chronology literature (Grayson & Meltzer, Surovell) showing no synchronous die-off, a slightly more robust refutation than the nanodiamond-in-Europe claim in A."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.65,
+        "rationale": "Model-prior: A's carbon-spherule refutation uses the correct YD-onset date and matches well-documented replication failures, whereas B's platinum-anomaly corroboration uses a chronologically mismatched interval (~2000 yrs off) and an overly broad 'multiple-continents' scope not well supported by the actual (mostly NA/Greenland) Pt evidence."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.6,
+        "rationale": "Model-prior: B's platinum-anomaly interval (-12000 to -11001) still does not align well with the established ~12.9 ka YD-onset dating of the Pt signal, weakening its corroboration claim relative to A's correctly dated (though mechanistically loose) megafaunal-extinction refutation."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.4,
+        "rationale": "Model-prior: B pairs nanodiamond-concentration with cosmic-airburst, a mechanistically coherent (shock-synthesis) proposed link well covered by replication-failure literature, whereas A pairs iridium-anomaly with biomass-burning-impact-winter, a mismatched mechanism-object combination for an ejecta-type marker."
+      }
+    ]
+  }
+}

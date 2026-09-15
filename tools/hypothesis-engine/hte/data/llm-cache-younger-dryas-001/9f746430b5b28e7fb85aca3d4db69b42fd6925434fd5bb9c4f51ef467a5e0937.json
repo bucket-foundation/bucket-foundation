@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "09787089e2dd8b7c95a11325a1e66606b08ff1847fa47dde8520d46864988e9b",
+  "response": {
+    "$FUNCTION_NAME2": "StructuredOutput",
+    "expected_evidence": [
+      "Geological: an anomalous boundary layer at ~10,950 BP (Younger Dryas onset) containing platinum/iridium enrichment, magnetic and glassy spherules, nanodiamonds, or a 'black mat' horizon interpreted as ejecta fallout",
+      "Astronomical/geochemical: a spike in cosmogenic isotopes (10Be, 14C, 36Cl) in ice cores, tree rings, or varved sediments consistent with an extreme solar proton event (a 'Miyake event')",
+      "Material/archaeological: abrupt cessation of megafaunal remains and Clovis-associated kill/butcher sites in North America closely bracketing the dated layer, plus possible scorched/burned paleosol horizons",
+      "Genetic: bottleneck or extinction signatures in ancient DNA of megafaunal lineages, and possibly in contemporaneous human populations, dated to the same narrow interval",
+      "Oral tradition/iconographic: indigenous North American flood, fire-from-sky, or catastrophe narratives (low-confidence, since these are typically undateable and reconstructed only via later ethnography)",
+      "Model-prior: existing published Younger Dryas Impact Hypothesis literature and its critiques, which already debate similar markers (noting this is a low-tier, unverified-by-me recollection, not primary evidence)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "Mapping the -10950 date to the 'younger-dryas' period row (closest analog since no period tag was given), the relevant evidence classes are dominated by astronomical (0.70) and geological (0.65) detectability, which are comparatively high for this era because physical stratigraphy and ice-core/cosmogenic-isotope records from ~12,950 years ago do survive and are actively studied. Material/faunal evidence is moderate (0.35), genetic evidence lower (0.30), and textual/linguistic/oral/iconographic evidence is very low (0.0\u20130.10) since no writing systems existed and oral traditions from this depth of time are essentially unrecoverable in verifiable form. Given this, absence of textual or oral confirmation should not be read as evidence against the hypothesis \u2014 it is expected regardless of truth. However, geological and astronomical proxies (platinum/iridium/spherule layers, 10Be/14C spikes) are exactly the kind of evidence that has actually been searched for in the real Younger Dryas boundary debate, so if the event occurred, a real signal plausibly could have survived and been detected, even though interpretation remains contested in the literature. One important caveat (model-prior, unverified): the hypothesis's own internal mechanism is physically incoherent \u2014 a 'solar-proton-event' does not itself produce 'impact-ejecta-fallout' (ejecta implies a bolide/comet impact, not a solar particle event); an SPE would instead be evidenced via cosmogenic-isotope spikes rather than iridium/spherule ejecta layers. This mismatch suggests either a mislabeled actor/mechanism pairing or a conflation of two distinct real hypotheses (solar superflare vs. cosmic impact) about Younger Dryas megafaunal extinction, and should be flagged rather than treated as settled. Net: evidence absence in textual/oral/linguistic channels is fully explained by low detectability; but the moderate-to-high detectability in geological/astronomical channels means genuine confirming evidence, if it existed, had a fair chance to survive and be found, so the hypothesis cannot lean solely on 'poor preservation' as an excuse in those two channels."
+  }
+}

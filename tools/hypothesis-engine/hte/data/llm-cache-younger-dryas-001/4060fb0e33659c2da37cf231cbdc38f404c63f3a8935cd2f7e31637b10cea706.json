@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "c99781660084003fd768a248663b2d474d1832e3025e4264f73a236dc7510036",
+  "response": {
+    "expected_evidence": [
+      "Independent geochemical re-analysis of the same sediment cores/strata originally claimed to show elevated microspherule concentrations at the ~12,900 cal BP (Younger Dryas boundary) horizon, reporting null or background-level results (geological)",
+      "Replication studies from multiple North American sites (e.g., re-sampled Younger Dryas boundary layers) using blind protocols, showing failure to reproduce spherule counts (geological/material)",
+      "Published critiques/meta-analyses in peer-reviewed literature documenting methodological problems (e.g., spherules attributed to fungal, volcanic, or authigenic origin rather than impact ejecta) (model_prior/geological)",
+      "Absence of a corroborating impact crater or airburst signature despite targeted searches (astronomical)",
+      "Statistical/spatial analysis showing microspherule concentrations fall within normal background variability rather than a synchronous continent-wide fallout layer (geological)",
+      "Physical archival samples (cores, soil profiles) retained in repositories allowing third-party verification (material)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.62,
+    "rationale": "The interval -10950 corresponds to the Younger Dryas onset (~12,900 cal BP), so the 'younger-dryas' row is the applicable detectability context rather than the later cultural periods. This hypothesis is unusual in that it concerns a *refutation* achieved through modern scientific replication of geological/geochemical data rather than direct recovery of ancient artifacts, so the relevant evidence forms are geological (0.65) and material/sedimentary sampling (0.35), with astronomical (crater/airburst) search evidence also weighted highly (0.7) since absence of a corroborating crater is itself informative. Genetic, linguistic, textual, oral_tradition, and iconographic evidence are essentially irrelevant to a geochemical microspherule debate and were excluded from the weighting. Averaging the relevant high-signal categories (geological, material, astronomical) yields a detectability adjustment around 0.6\u20130.65. Because the underlying sediment layers from ~12,900 years ago are geologically recent and well within reach of standard coring/sampling techniques, and because this is in fact an active, well-documented area of peer-reviewed geochemical replication research (I recall, as unverified model-prior, published studies such as Pigati et al. 2012, Surovell et al. 2009, and Daulton et al. 2010 reporting failure to replicate Younger Dryas boundary microspherule/nanodiamond concentrations), the evidence for a refutation is quite plausible to have survived and be discoverable \u2014 this is not a case where a low detectability score should be invoked to explain silence; rather, if the refutation is true, corroborating null-result geochemical studies should exist and be found in the literature."
+  }
+}

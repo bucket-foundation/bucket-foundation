@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f202c84951851cd6ea812289b99f9ba40217f0874c9bd01c8241255f296727d5",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and osmium concentration spikes at the ~12,800 cal BP horizon in lake/marine sediment cores and ice cores across multiple continents",
+      "Geological: nanodiamonds (hexagonal lonsdaleite, cubic diamonds) and magnetic/glass spherules embedded in the Younger Dryas Boundary (YDB) layer",
+      "Geological: a widespread 'black mat' sediment layer marking abrupt biomass-burning residue (charcoal, soot, polycyclic aromatic hydrocarbons, aciniform carbon) at numerous sites in North America, Europe, and parts of Asia/South America",
+      "Astronomical/geological: an identifiable impact crater or crater field of appropriate age (candidates proposed, e.g. Hiawatha Glacier structure, though dating remains contested) or evidence of an airburst/fragmented comet stream",
+      "Geological: abrupt proxy shifts (grain size, isotopic, dust flux) in ice cores (e.g. Greenland GISP2/NGRIP) coincident with the proposed impact date",
+      "Material/archaeological: disruption in Clovis and contemporaneous toolkit traditions, site abandonment layers, or extinction-correlated faunal remains directly above/at the YDB layer",
+      "Genetic: megafaunal population bottleneck or extinction signatures dated to ~12,800 cal BP; possible human population bottleneck signals in ancient DNA",
+      "Model-prior (unverified, low-tier): this maps to the real-world 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), which remains scientifically contested \u2014 proponents report YDB markers at 50+ globally distributed sites, while many geologists/impact specialists dispute reproducibility, chronological precision, and non-impact explanations for the same proxies (e.g., wildfires, terrestrial magnetic particles)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The hypothesis is fundamentally geological/geochemical in nature (impact markers, biomass-burning proxies, sediment anomalies), which is exactly the kind of evidence most likely to survive over an ~12,850-year timespan in ice cores, lake sediments, and marine cores \u2014 hence the relatively high geological detectability scores (0.65 for younger-dryas, 0.6 for upper-paleolithic) are appropriate baselines. The 'multiple-continents' scope of the claim actually improves plausibility of surviving evidence, since a real global-scale event would leave redundant, geographically dispersed signatures, several of which have in fact been reported in the literature (as model-prior, unverified within this pipeline). Material/archaeological evidence (tool traditions, faunal remains) has moderate survivability (0.35\u20130.45) consistent with typical Paleolithic-era organic preservation limits. Astronomical evidence (a physical crater or debris stream) is the weakest link: even if a real impact occurred, cratering evidence is easily destroyed or obscured by glaciation, erosion, and ice-sheet dynamics over this interval, and no consensus crater has been identified \u2014 this tempers the otherwise high nominal astronomical detectability score (0.7) for this specific sub-claim. Genetic evidence (population bottlenecks) is harder to detect at this resolution given ancient DNA degradation and sparse sampling (0.25\u20130.3). Given the geological/material dominance of the expected evidence and its comparatively favorable preservation odds, but tempered by the unresolved crater/astronomical component and the contested nature of existing published claims, I suggest an aggregate detectability adjustment of ~0.6 \u2014 higher than a strict average of the table rows, reflecting the redundancy advantage of a multi-continent claim, but capped short of the higher end because the causal 'impactor' evidence itself remains the weakest and most disputed link in the chain."
+  }
+}

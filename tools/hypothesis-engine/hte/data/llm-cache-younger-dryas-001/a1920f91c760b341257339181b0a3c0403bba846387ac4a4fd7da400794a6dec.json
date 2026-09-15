@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2f94086742b7da85f94fc6742775dbe836ab4347151ece85241a37009b6c84b3",
+  "response": {
+    "expected_evidence": [
+      "Geological: in-situ meltglass/vitrified sediment lenses at the claimed Middle Eastern site(s), consistent with the ~12,800-year Younger Dryas boundary (YDB) layer",
+      "Geological: associated proxy suite typically invoked for airburst events \u2014 magnetic/glassy microspherules, platinum-group-element (PGE, esp. Pt/Ir) anomaly, nanodiamonds, and a 'black mat' organic-rich horizon capping the layer",
+      "Geological: petrographic/geochemical signature distinguishing cosmic melt from anthropogenic (furnace/kiln) or lightning-strike (fulgurite) glass \u2014 e.g. high-temperature quench textures, exotic mineral inclusions, isotopic ratios",
+      "Material/archaeological: stratigraphic disruption of an Upper Paleolithic occupation layer directly beneath/around the meltglass horizon at a site such as Abu Hureyra (Syria), the site most commonly cited in this literature",
+      "Astronomical: modeled airburst parameters (altitude, yield, trajectory) inferred from the absence of a crater plus the spatial scatter/orientation of ejecta, cross-checked against known extraterrestrial dust/comet-fragment scenarios",
+      "Chronometric: radiocarbon or OSL dates on the melt layer and bracketing sediments placing it within -13000 to -12001",
+      "Genetic (weak/indirect): any regional demographic bottleneck signal in ancient DNA around this interval, offered as corroborating but not diagnostic",
+      "Oral tradition (very weak/speculative): later Near Eastern flood/fire myths sometimes retrospectively cited as folk memory, though this link is unfalsifiable and largely model-prior conjecture rather than documented continuity",
+      "model-prior: my own recollection is that this maps onto the contested 'Younger Dryas Impact Hypothesis' (Bunch et al. 2012 reported meltglass at Abu Hureyra; Boslough, Holliday, van Hoesel and others subsequently argued the glass is more consistent with anthropogenic (dung/reed-fuel hearth) or other terrestrial high-temperature processes, not a cosmic airburst). This is unverified, low-tier recall, not a citation I can confirm from the provided evidence text."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval -13000 to -12001 sits at the Younger Dryas onset, so I use the ('younger-dryas', *) detectability row as the base rather than a single generic period value, since the hypothesis is explicitly framed in YDIH terms. The dominant evidence channels for a 'corroborated meltglass' claim are geological (0.65) and material/archaeological (0.35); astronomical evidence (0.7) is mostly indirect modeling rather than a directly recoverable trace, and textual (0.0), linguistic (0.05), and oral_tradition (0.1) are essentially inert this far back in the pre-literate Upper Paleolithic/terminal Pleistocene. Silicate meltglass and PGE anomalies are chemically robust and can plausibly survive >12,000 years, especially in the relatively arid depositional context of Middle Eastern sites \u2014 so absence of evidence would be a poor default explanation here; if the hypothesis is true, physical melt-glass samples should in principle still be extractable and analyzable today (as claims already exist in the literature). I set the blended detectability_adjustment at 0.5, splitting the difference between the strong geological channel (0.65) and the weaker material/stratigraphic channel (0.35), and discounting slightly for the genuine scientific controversy over whether such glass is cosmogenic versus anthropogenic/pyrogenic in origin \u2014 a corroboration claim in this space is plausible to detect but hard to confirm unambiguously, which is a matter of evidentiary ambiguity rather than non-survival."
+  }
+}

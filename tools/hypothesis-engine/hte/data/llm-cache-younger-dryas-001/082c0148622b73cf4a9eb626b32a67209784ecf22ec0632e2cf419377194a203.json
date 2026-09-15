@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f99a4d8b58dd84a3f01b322424d91f4e401dc1e5381a4e57ccf24b3a3bfbc0ff",
+  "response": {
+    "expected_evidence": [
+      "Geochemical stratigraphic anomaly: elevated platinum (and possibly iridium/other platinum-group elements) concentration in a single, precisely-dated ice layer within Greenland ice cores (e.g., GISP2, NEEM) corresponding to ~10,950 BCE",
+      "Physical ejecta proxies co-occurring in the same ice/sediment horizon: magnetic microspherules, meltglass, nanodiamonds, or carbon spherules",
+      "Correlative platinum/PGE spikes in Younger Dryas boundary (YDB) sediments at terrestrial sites across North America and Europe, used to cross-check the ice-core signal",
+      "Geological/sedimentological markers of abrupt climatic disruption coincident with the anomaly (e.g., black mat layers, changes in pollen/charcoal records) consistent with an impact-triggered onset of the Younger Dryas",
+      "Absence or ambiguity of a confirmed impact crater or unambiguous shocked-quartz/high-pressure mineral evidence, which is why the hypothesis remains 'inconclusive' rather than confirmed",
+      "Published isotopic or elemental ratio analysis (e.g., Pt/Ir ratios, osmium isotopes) attempting to distinguish cosmic vs. volcanic/terrestrial sources for the anomaly",
+      "Model-prior literature: the well-known Younger Dryas Impact Hypothesis (YDIH) debate, including the 2013 Petaev et al. PNAS platinum-in-Greenland-ice-core study and subsequent critiques"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.7,
+    "rationale": "The interval -10950 corresponds closely to the accepted Younger Dryas onset (~12,900 cal yr BP), so despite the hypothesis leaving 'Period' unspecified, the younger-dryas detectability row is the appropriate reference rather than upper-paleolithic in general. Of the listed evidence kinds, geological (0.65) and astronomical (0.7) score highest for this period, with material (0.35) and model_prior (0.3) lower. However, this specific hypothesis is unusually well-suited to survival: ice sheets are an exceptional archival medium for annually-resolved geochemical stratigraphy, arguably better than the generic 'geological' category implies for most Upper Paleolithic contexts, since ice cores (GISP2/NEEM) provide continuous, precisely-dated records unaffected by the erosional and diagenetic losses that typically degrade sedimentary geological evidence from this era. This matches known real-world findings (model-prior, unverified against the evidence text provided): a platinum anomaly was reported in Greenland ice cores at a horizon matching the Younger Dryas onset (Petaev et al. 2013), fitting the 'inconclusive' action framing, since the broader Younger Dryas Impact Hypothesis remains scientifically contested due to lack of a confirmed crater or universally accepted extraterrestrial fingerprint (e.g., debates over whether the anomaly reflects volcanic, cosmic, or terrestrial processes). Given this, I adjust detectability upward from the raw geological/astronomical table averages (~0.65-0.7) to 0.7, reflecting the ice sheet's superior preservation fidelity for exactly this kind of trace geochemical signal, while still capping it below 'confirmed' certainty because crater-level and mineralogical shock evidence (the strongest confirmatory material) is much harder to detect/preserve and remains genuinely absent or disputed \u2014 consistent with the 'inconclusive' action in the hypothesis rather than indicating the hypothesis is false."
+  }
+}

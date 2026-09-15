@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "4b3a5cc2f40f8eb979b3b438a9cc7a6113f2fdb8bc8bf4c53caa3669dad67c51",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.62,
+        "rationale": "Both opinions are fully uncertain (u=1, b=d=0), so the SL expected value E=b+a\u00b7u reduces to the base rate a; A's a=0.0110 exceeds B's a=0.0067, giving A a modest edge with no other evidence to differentiate them."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.78,
+        "rationale": "A carries full uncertainty and a non-trivial base rate (E\u22480.0067), while B is explicitly refuted with strong disbelief (d=0.81) dragging its expected value down to \u22480.0021, so evidence favors A over the refuted claim in B."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.6,
+        "rationale": "A has substantial disbelief (d=0.40) but its higher base rate still yields E\u22480.0107, slightly above B's fully-uncertain E\u22480.0067, giving A a modest evidential edge."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.87,
+        "rationale": "Both are fully uncertain, so comparison rests on base rate: A's a=0.0110 is roughly 12x B's a=0.0009, strongly favoring A under identical uncertainty conditions."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.87,
+        "rationale": "Both hypotheses are fully uncertain (u=1); A's base rate (0.0067) is about 12x B's (0.00055), so the expected support strongly favors A."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.13,
+        "rationale": "With both opinions fully uncertain, the base rates decide: B's a=0.0067 is roughly 12x A's a=0.00055, so evidence favors B."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.3,
+        "rationale": "Both fully uncertain opinions; B's base rate (0.0015) is about 2.7x A's (0.00055), giving B the edge in expected support."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.22,
+        "rationale": "Both hypotheses share identical disbelief (d=0.50) from similarly contested claims, but B's much higher base rate (0.0110 vs 0.0025) yields a higher expected value, favoring B over A."
+      }
+    ]
+  }
+}

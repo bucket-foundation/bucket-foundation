@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7baf2b642d78b6b50b4010dc440416907d24b06fd457eef9d8ed43781329c2d6",
+  "response": {
+    "expected_evidence": [
+      "Geological: a discrete boundary layer (~12,800-12,900 cal BP, Younger Dryas onset) across North American stratigraphic sections containing elevated carbon spherules, magnetic microspherules, and glassy/scoriaceous carbon",
+      "Material: nanodiamonds (lonsdaleite/cubic), melted glass, platinum-group element (Pt, Ir) anomalies co-occurring with the spherule layer in sediment cores and paleosols",
+      "Geological: consistent radiocarbon/varve dating tying the spherule-rich layer tightly to 13,000-12,000 BP across multiple independent sites",
+      "Astronomical: identification of a plausible impact crater or airburst signature (e.g., shocked quartz, tektites) or corroborating cosmic-ray-exposure/cratering-rate data consistent with a Younger Dryas-age impactor",
+      "Material: black mat / biomass-burning markers (soot, charcoal, PAHs) stratigraphically coincident with the spherule concentration, taken as evidence of continent-wide wildfires from ejecta fallout",
+      "Genetic/paleontological: megafaunal extinction and population bottleneck signatures temporally aligned with the proposed impact layer",
+      "Model-prior: prior published claims (Firestone et al. 2007 and successors) describing YDB spherule/nanodiamond findings at dozens of North American and global sites"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis corresponds to the real-world 'Younger Dryas Impact Hypothesis' (model-prior, unverified against the provided evidence text). The proposed interval (-13000 to -12001) falls squarely in the Younger Dryas period, so the 'younger-dryas' detectability row is the appropriate reference: geological (0.65) and astronomical (0.7) detectability are relatively high, material (0.35) is moderate, and genetic (0.3) is lower. Sediment layers, spherules, and geochemical anomalies from ~12,900 years ago are well within the preservation window of lake, bog, and loess stratigraphy commonly used in Quaternary geology, and such layers have in fact been repeatedly sampled by multiple independent labs over the past ~15-20 years. This means that if a genuine, robust, continent-wide impact-ejecta signal existed, it plausibly should have already produced consistent, replicable corroboration -- yet the actual scientific record (per model-prior) shows contested, non-replicating results at many sites, with several labs reporting null findings for spherules/nanodiamonds at supposedly diagnostic locations. Because detectability for geological/material evidence in this period is moderate-to-good rather than low, an absence of clean, independently replicated corroboration is harder to excuse purely on taphonomic/detectability grounds -- it should count more heavily against the 'corroborated' status than a low-detectability excuse would allow. Astronomical evidence for an actual crater or airburst mechanism is weaker still, since no confirmed North American crater of the right age/size has been identified, and this gap is only partially explained by the airburst-over-ice-sheet variant of the hypothesis (which itself is difficult to verify given Laurentide ice sheet retreat and erosion). I set the adjustment slightly below the raw geological/astronomical averages (0.5) to reflect that the specific evidentiary claim (a corroborated carbon-spherule concentration constituting confirmed impact ejecta) requires cross-site replicability that has proven elusive despite reasonably favorable preservation conditions, i.e., partial absence of clean corroboration is more evidentially informative here than in low-detectability periods."
+  }
+}

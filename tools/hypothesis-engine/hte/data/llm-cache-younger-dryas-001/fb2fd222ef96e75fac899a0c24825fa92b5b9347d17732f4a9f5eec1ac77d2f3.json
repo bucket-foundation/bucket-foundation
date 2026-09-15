@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2fad87105bd4b334f7c38af42bfd36a4028a919b5aeadbb5c280d11169877575",
+  "response": {
+    "expected_evidence": [
+      "Independent geochemical replication studies (platinum/iridium concentration measurements) from multiple North American Younger Dryas boundary (YDB) sites failing to reproduce the original anomaly",
+      "Peer-reviewed critique papers explicitly challenging or refuting the iridium/platinum spike claims (e.g. analogous to the real Pigati et al. 2012 and Holliday/Surovell-style rebuttals of Firestone et al. 2007, per model-prior)",
+      "Stratigraphic/sedimentological surveys of the ~10,950 BCE boundary layer across multiple sites showing inconsistent or absent iridium enrichment",
+      "Re-analysis of purported nanodiamonds, magnetic microspherules, and 'black mat' layers showing alternative (non-impact) origins such as fungal, algal, or anthropogenic sources",
+      "Astronomical/geophysical modeling papers arguing against an airburst mechanism as sufficient to produce the claimed geochemical signature",
+      "Meta-analyses or review articles summarizing the scientific consensus shift away from the cosmic-impact interpretation",
+      "Absence of a confirmed impact crater or unambiguous shocked-quartz/tektite evidence dated to this interval"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10950 corresponds to the Younger Dryas onset, so I used the 'younger-dryas' detectability row. The hypothesis describes a *refutation* event, meaning the expected evidence is largely negative/critical: failed replications, contested geochemical signatures, and rebuttal literature. The primary evidence classes relevant here are geological (0.65) and astronomical (0.7) modeling/impact-signature work, both reasonably detectable because sedimentary boundary layers persist physically and can be resampled repeatedly by modern researchers regardless of the event's antiquity \u2014 the 'refutation' itself is a modern scientific act performed on preserved deposits, not an ancient record that must survive intact. Material evidence (spherules, meltglass; 0.35) and genetic evidence (megafaunal extinction correlation; 0.3) are moderately detectable but more ambiguous. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are essentially inapplicable since no contemporaneous human recording tradition existed at this depth of prehistory. Given this mix, I weight the adjustment toward the geological/astronomical end but temper it for the weaker material/genetic legs, landing at ~0.55. This is a real historical debate I recognize from training (the Younger Dryas Impact Hypothesis controversy involving Firestone et al. 2007 and subsequent rebuttals) \u2014 I flag this as model-prior, not confirmed from any provided evidence text, since no source documents were supplied in this task. Because the underlying geological strata are physically preserved and repeatedly sampled by multiple independent labs in the real world, a genuine absence of confirmed iridium anomalies is plausibly explained by actual non-replication rather than by poor detectability, so a low detectability score should not be invoked to excuse absence of evidence here \u2014 the refutation is itself well-documented modern science, which further supports that survival/detection was plausible rather than definitionally blocked by the ancient period."
+  }
+}

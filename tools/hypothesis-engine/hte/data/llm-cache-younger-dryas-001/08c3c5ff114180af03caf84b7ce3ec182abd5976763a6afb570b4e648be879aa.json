@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "bc9b4577abc710864923d8c3ac325601edeb2712856b27a4408bd9f3a0fb319d",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: a widespread 'black mat' organic-rich sediment layer dated to ~10,950 BCE marking the Younger Dryas onset boundary across North American sites",
+      "geological: anomalous concentrations of platinum, iridium, and other impact-proxy elements in the YD boundary layer",
+      "geological: nanodiamonds, magnetic spherules, and melt-glass/microspherules in boundary sediments consistent with high-temperature airburst ejecta",
+      "geological: absence of a large impact crater, consistent with an airburst (no ground impact) rather than a crater-forming event",
+      "material (archaeological): disruption or abandonment horizon in Clovis-culture sites and associated soot/charcoal layers indicating continent-scale biomass burning",
+      "material/genetic: megafaunal extinction pulse and associated genetic bottleneck signatures in surviving North American megafauna lineages around the same interval",
+      "astronomical: reconstructed orbital/debris-stream models (e.g., Taurid complex fragmentation) proposed as the source body, though not independently observable after the fact",
+      "genetic: possible population bottleneck signal in contemporaneous human (Paleoindian) mitochondrial/genomic lineages, though data are sparse",
+      "oral_tradition: Indigenous North American flood/fire/darkness narratives sometimes cited as possible cultural memory, though these are far too late-attested and unreliable to serve as primary evidence",
+      "model-prior: this hypothesis corresponds to the real, actively debated 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), which remains scientifically contested rather than established"
+    ],
+    "detectability_adjustment": 0.45,
+    "rationale": "Using the 'younger-dryas' row (interval -10950 sits at the YD onset), the diagnostic evidence for a cosmic-airburst trigger is overwhelmingly geological/geochemical (0.65) and secondarily material-archaeological (0.35) and genetic (0.30); astronomical detectability is nominally rated 0.7 in the table, but this is misleading for an airburst specifically, since airbursts by definition leave no crater and no direct astronomical record survives independent of the geological proxies themselves \u2014 I weight astronomical evidence down accordingly. Textual (0.0) and iconographic (0.1) evidence are essentially non-existent because Paleoindian North America was pre-literate, so their absence carries no evidential weight against the hypothesis. Oral tradition (0.1) is similarly weak and chronologically far removed, so any surviving myths are only very weak corroboration at best. Given this profile, I set my own detectability_adjustment at 0.45, a moderate blended value reflecting that geological/geochemical proxies (the primary expected signature) are reasonably likely to survive and be found (as they arguably have, in disputed form: the platinum/iridium/nanodiamond boundary-layer anomalies reported at various sites), while direct astronomical confirmation (crater, fireball record) is structurally unattainable for an airburst and should not be expected regardless of truth. Note: the underlying claim matches a known, still-controversial real-world hypothesis (Younger Dryas Impact Hypothesis) that I recognize from training as model-prior, not from any evidence text provided here \u2014 mainstream geology has repeatedly challenged reproducibility of the proposed markers, so the low-to-moderate detectability score should account for much of the persistent absence-of-consensus rather than implying the hypothesis is false."
+  }
+}

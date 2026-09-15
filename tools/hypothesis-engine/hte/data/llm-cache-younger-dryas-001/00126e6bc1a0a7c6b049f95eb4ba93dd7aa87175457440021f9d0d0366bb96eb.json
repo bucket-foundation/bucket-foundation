@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "421a497e84544a02ba9b3d6a6c87e0439c4a654fbbb7461acab3253a8731f5c1",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Direct geological evidence: a discrete stratigraphic layer in Greenland ice cores (e.g., GISP2, GRIP, NEEM, NGRIP) dated to ~10,950 BCE containing elevated microspherule/magnetic-spherule concentrations",
+      "Platinum-group-element (PGE) anomaly (especially platinum spike) coincident with the microspherule layer, analogous to the reported Pt anomaly at the Younger Dryas onset in Greenland ice",
+      "Iridium and/or nickel enrichment in the same ice layer as a possible extraterrestrial chemical signature",
+      "Nanodiamond and lonsdaleite concentrations in the ice/sediment interval, cited elsewhere as YDB (Younger Dryas Boundary) markers",
+      "Correlated microspherule/PGE layers in terrestrial sediment cores, lake varves, and loess sections across the Northern Hemisphere dated to the same interval (cross-site geological corroboration)",
+      "Elevated cosmic dust flux or extraterrestrial He-3 isotope excursions in the ice core or marine sediment (astronomical evidence)",
+      "Impact/airburst modeling studies (astronomical/model_prior) proposing a comet fragmentation or airburst source consistent with a Greenland Ice Sheet fallout zone",
+      "Possible 'black mat' organic-rich layer or faunal turnover markers in adjacent terrestrial records (material/geological) coincident with the ice layer, used as a secondary dating anchor",
+      "Weak/indirect genetic signal: megafaunal or human population bottleneck signatures in ancient DNA dated near this interval (low specificity, contested)",
+      "Model-prior: ongoing scientific debate literature (Younger Dryas Impact Hypothesis, Firestone et al. 2007; Petaev et al. 2013 Pt anomaly; subsequent critiques) as an unverified background reference, not primary evidence"
+    ],
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval -10950 (~10,950 BCE) sits essentially at the Younger Dryas onset boundary, so the 'younger-dryas' row is the most appropriate detectability context (geological 0.65, material 0.35, astronomical 0.70, genetic 0.30, model_prior 0.30), with 'upper-paleolithic' values being nearly identical and thus not materially changing the assessment. Greenland ice sheets are an unusually favorable preservation medium for exactly this kind of hypothesis: they provide continuous, finely stratified, absolutely-dateable annual layers in which microspherules, platinum-group elements, and other fallout markers can be directly measured (as has actually been done for the real Younger Dryas Pt anomaly in GISP2 ice, a case I recall from training as model-prior context, not from evidence provided here). This pushes the effective detectability for the geological/material channel somewhat above the generic Younger Dryas terrestrial-sediment baseline, because ice cores avoid many of the bioturbation, erosion, and diagenetic problems that plague open-air sedimentary sites. Astronomical corroboration (cosmic dust flux, He-3 anomalies, impact modeling) is plausible and independently detectable at 0.70. Genetic and textual/oral channels are weak or absent as expected for this period (genetic 0.30, textual ~0, oral_tradition 0.10), so their absence should not be read as evidence against the hypothesis. Given the strong preservation potential of the specific medium named in the hypothesis (an ice sheet, rather than a generic terrestrial deposit), I suggest a modestly upward-adjusted overall detectability of 0.6, reflecting that if the impact-ejecta-fallout event occurred as stated, corroborating microspherule/PGE evidence in Greenland ice was quite plausible to survive and be recoverable by modern ice-core geochemistry, even though the hypothesis itself remains scientifically contested and any single anomaly layer is open to alternative (non-impact) explanations such as volcanic or terrestrial sourcing."
+  }
+}

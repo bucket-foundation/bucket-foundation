@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ec31d40d816c79366caf4ad5de9628b842d5e30796b7827dde7e5bb445f5e48e",
+  "response": {
+    "expected_evidence": [
+      "geological: multiple independently-dated Younger Dryas boundary (YDB) sediment/lake-core sections tested for the claimed impact proxies (nanodiamonds, magnetic/glassy spherules, platinum spike, high-temperature melt-glass) with failed replication in independent labs",
+      "geological: re-analysis showing the 'black mat' layer and associated markers are diachronous (not synchronous at ~10,950 BCE) or attributable to normal wetland/paludal formation rather than an impact event",
+      "astronomical: absence of a confirmed impact crater, bolide fragments, or unambiguous extraterrestrial isotopic signature (e.g., Ir/Pt ratios inconsistent with a chondritic impactor, alternative terrestrial/volcanic sourcing of platinum anomalies)",
+      "material: archaeological record showing continuity of Clovis-era and other North American human occupation across the YD onset rather than an abrupt cultural collapse",
+      "genetic/paleontological: ancient-DNA and faunal-turnover studies indicating megafaunal decline was gradual/multi-causal (climate, human predation) rather than an abrupt airburst-triggered extinction pulse",
+      "model_prior: peer-reviewed critique literature (e.g., Pigati et al. 2012, Holliday et al. 2014, Meltzer et al. 2014, van Hoesel et al. reviews, Wu et al. on Pt sourcing) representing the scientific consensus process by which the hypothesis was challenged/refuted"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "No source evidence text was supplied for this hypothesis in this session, so everything below is drawn from model-prior (unverified, low-tier recall of the real-world Younger Dryas Impact Hypothesis debate) rather than the pipeline's extracted evidence. Using the 'younger-dryas' row (interval -10950 falls in the YD onset window), the relevant kinds are geological (0.65) and astronomical (0.70) \u2014 both comparatively high, since sedimentary/lake-core stratigraphy and any impact-derived isotopic/mineralogical markers from ~13,000 years ago are known to preserve well and are routinely sampled by geoscientists. Material (0.35) and genetic (0.30) evidence for a 'refutation' (archaeological continuity, gradual extinction patterns) are moderately detectable but noisier and more indirect. Textual (0.0) and oral_tradition/iconographic (0.10) are essentially irrelevant since no writing existed and oral traditions cannot reliably encode a null result. A refutation claim of this kind is unusual in that its real evidentiary weight lives in modern replication studies of ancient strata (model_prior 0.30) rather than newly surviving artifacts \u2014 this is consistent with the actual scientific history, where the original 2007 impact claim was contested through the 2010s\u20132020s by failed independent replication of nanodiamond/spherule/platinum signals and disputes over Pt sourcing, without any crater or bolide fragment ever being found. Because the underlying geological record from this period is well-preserved and has in fact been repeatedly re-sampled and tested by multiple independent teams, absence of confirming impact markers is a meaningful (not merely a preservation-driven) negative result \u2014 supporting that the evidence base for a refutation could plausibly exist and be findable, while acknowledging the period's non-material record (textual, linguistic, oral) contributes essentially nothing."
+  }
+}

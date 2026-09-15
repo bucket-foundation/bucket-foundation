@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "bf630240047be6669be22c8828bd09f6e2576e6a949b4581eb3672785257355b",
+  "response": {
+    "expected_evidence": [
+      "Peer-reviewed replication studies analyzing YD boundary layer sediments across multiple European sites for nanodiamond concentrations (material)",
+      "Geochemical/geological stratigraphic surveys of YD onset boundary layers (~10950 BCE) testing for platinum, iridium, magnetic spherule anomalies (geological)",
+      "Transmission electron microscopy (TEM) re-analyses questioning nanodiamond identification (e.g., misidentification as graphene, aggregate carbon, or amorphous material) (material)",
+      "Astronomical/impact-modeling papers assessing plausibility of an airburst event consistent with the claimed timing and no corroborating crater or ejecta field (astronomical)",
+      "Meta-analyses/critique papers compiling failed independent replications across the original claimed sites (textual - modern scientific literature, not ancient)",
+      "Absence of corroborating genetic bottleneck signals in contemporaneous faunal/human populations tied specifically to an airburst event (genetic, weak relevance)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval (-10950 to -9750) falls squarely within the Younger Dryas boundary period, so the younger-dryas row is the appropriate detectability context. Because the hypothesis concerns a *refutation* of a physical-evidence claim (nanodiamond/spherule anomalies tied to the YD impact hypothesis), the primary expected evidence is not textual/oral (near-zero detectability at 0.0-0.1 for this period) but material (0.35), geological (0.65), and astronomical/impact-modeling (0.7) records. These categories have moderate-to-good detectability because YD boundary strata are widely preserved, datable, and have already been the subject of numerous independent geochemical and microscopic re-analyses in the real scientific literature (this matches known model-prior knowledge of the ongoing YDIH controversy, flagged here as model-prior rather than confirmed from provided evidence). Genetic (0.3) and iconographic/oral_tradition (0.1) evidence are largely irrelevant or undetectable for a geochemical claim about sediment anomalies. Given that geological and astronomical detectability are comparatively strong (0.6-0.7) for this period, a refutation grounded in failure to replicate nanodiamond concentrations across multiple sites is plausible to detect and has apparently already been reported in the literature (per model-prior), supporting could_have_survived=true. The suggested adjustment of 0.5 reflects a weighted blend favoring the higher-detectability geological/astronomical channels while discounting the lower-detectability material/genetic channels, and remains conservative because the 'textual' evidence for this refutation is modern scientific literature rather than period-original textual material, which the detectability table does not directly capture."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fcee79d8a61500b003daf3487f6738013a84538dc07d5083cda8f0e8a3ac928c",
+  "response": {
+    "expected_evidence": [
+      "Geological: sulfate/acidity spikes and tephra shards in Greenland ice cores (GISP2/NGRIP/GRIP) at the Younger Dryas onset horizon, consistent with a volcanic eruption signal",
+      "Astronomical/geochemical: cosmogenic isotope anomalies (10Be, 36Cl, 14C spikes) in ice cores or tree rings that could indicate elevated atmospheric ionization from gamma-ray exposure",
+      "Material: ejecta or fallout layers (ash, microspherules) in the Greenland ice sheet or associated sediment cores dated to ~11000-10001 BCE",
+      "Genetic: population bottleneck or demographic shift signatures in contemporaneous human/faunal remains attributable to abrupt cooling",
+      "Model-prior: existing literature on candidate eruptions (e.g., Laacher See) or on the competing Younger Dryas impact hypothesis, since 'gamma-ray-ionization' as a mechanism is more commonly associated with cosmic/astrophysical triggers than volcanism"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "Using the 'younger-dryas' row (best match to the stated interval and object) rather than 'upper-paleolithic', the most relevant evidence classes are geological (0.65) and astronomical/isotopic (0.7), both comparatively high-detectability categories for this period \u2014 Greenland ice cores (GISP2, NGRIP, GRIP) provide continuous, high-resolution, well-studied records spanning exactly this interval, including sulfate, tephra, and cosmogenic isotope layers. Material evidence (tephra/microspherules, 0.35) and genetic evidence (0.3) are moderate; textual (0.0) and linguistic (0.05) are essentially inapplicable for this pre-literate period. Because the primary expected evidence types (ice-core geological/geochemical records) have historically strong preservation and have been extensively sampled by paleoclimate research, absence of a clear volcanic-sulfate-plus-gamma-ionization signal in the literature is not well explained by poor detectability alone. Note also a mechanistic tension in the hypothesis itself: 'gamma-ray-ionization' is a mechanism conventionally invoked for cosmic/astrophysical triggers (e.g., supernova or impact-related hypotheses for Younger Dryas onset), not for volcanic eruptions, which act via sulfate aerosol loading and radiative forcing. This mismatch, combined with the hypothesis's own 'inconclusive' action label, suggests the pairing may reflect a conflation of two distinct competing YD-onset hypotheses (volcanic vs. cosmic/impact) rather than a well-evidenced causal claim. This assessment of mechanism plausibility relies on model-prior background knowledge about YD-onset hypotheses, not on evidence text provided, and should be treated as unverified. Given moderately high detectability for the relevant evidence classes, I set detectability_adjustment at 0.55 \u2014 not low enough to fully explain evidentiary silence via poor preservation, weighting the inconclusive verdict more toward genuine scientific uncertainty/falsity than toward missing-but-plausible evidence."
+  }
+}

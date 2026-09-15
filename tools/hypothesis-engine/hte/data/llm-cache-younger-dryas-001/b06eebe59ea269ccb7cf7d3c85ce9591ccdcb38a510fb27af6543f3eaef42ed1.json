@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "8485b0dcfa51a73a1c66f6da45f89453d1e15e796e1b350c6ab7f06b048f7b5f",
+  "response": {
+    "expected_evidence": [
+      "geological: a discrete Younger Dryas boundary (YDB) sedimentary layer showing anomalous platinum, iridium, or other impactor-associated elemental spikes across North American sites",
+      "geological: nanodiamonds, magnetic microspherules, and 'black mat' organic-rich layers dated to ~12,800 cal BP interpreted as impact/airburst ejecta",
+      "astronomical: cosmic dust/extraterrestrial isotopic signatures (e.g., He-3, Ni/Ir ratios) in the boundary layer, or a candidate impact structure/crater or documented airburst-fragmentation event over the ice sheet",
+      "material (archaeological): abrupt discontinuity or abandonment horizon in Clovis-era archaeological sites correlated with the boundary layer, wildfire/soot layers, changes in lithic technology timing",
+      "genetic: ancient DNA/paleontological dating showing a sharp synchronous population collapse of megafauna species (mammoth, mastodon, horse, etc.) clustering near the proposed impact date rather than a gradual decline",
+      "geological: evidence of catastrophic ice-sheet meltwater pulse into the North Atlantic (drainage of glacial Lake Agassiz) temporally linked to the same boundary layer, supporting the 'meltwater-pulse corroborated' link",
+      "model-prior (low-tier, unverified): this configuration closely matches the published Younger Dryas Impact Hypothesis (YDIH) literature (Firestone et al. 2007 and successors), which remains actively disputed by mainstream Quaternary science; recalled from training, not from a provided evidence text"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis's interval (-12750 to -9750) spans the Younger Dryas onset into the early Holocene, so I anchor mainly on 'younger-dryas' detectability values with some early-Holocene blending. The dominant evidence classes implicated are geological (0.65) and astronomical (0.7), both rated highly detectable because impact/airburst proxies (spherules, nanodiamonds, elemental anomalies, ice-core/meltwater signatures) are physically robust and preservable in sediment and ice-core records over millennia \u2014 and indeed such layers have been extensively searched for and reported, though contested, in the real literature (model-prior, unverified against the provided evidence text). Material/archaeological (0.35) and genetic (0.3) evidence are far less reliably preserved or causally attributable this far back, and textual evidence is impossible (0.0) since writing did not exist. Because the primary evidence types for this hypothesis fall into the higher-detectability geological/astronomical bins, a low detectability score would not by itself explain an absence of impact-layer or ice-core evidence \u2014 if the hypothesized airburst and its corroborating effects on megafaunal extinction occurred as stated, physical traces should plausibly have survived and been discoverable with modern stratigraphic and isotopic methods. I set a composite detectability adjustment of 0.55, weighting toward the high geological/astronomical values but tempering for the weaker material/genetic legs of the causal chain (extinction timing, archaeological discontinuity) that are harder to detect and attribute causally even when found. This means the hypothesis is meaningfully falsifiable from the record \u2014 absence of a clear, replicated impact signature counts as real evidence against it rather than an artifact of poor preservation \u2014 consistent with the real-world scientific controversy where many attempts to replicate the original impact markers have failed or given inconsistent results (model-prior, unverified)."
+  }
+}

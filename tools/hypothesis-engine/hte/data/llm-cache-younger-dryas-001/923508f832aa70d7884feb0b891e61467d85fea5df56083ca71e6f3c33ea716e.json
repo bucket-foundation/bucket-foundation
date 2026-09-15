@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "b3433ec631220abc833cde6b81ed5a4e948c8f169716e01288f92794da179f5f",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: B's 1000-yr window on YD-onset-cooling more tightly matches known ~12.9kyr BP onset than A's broader 3000-yr megafaunal-extinction window, though both share an odd meltwater-pulse/cosmic-airburst mechanism pairing."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.3,
+        "rationale": "model-prior: B's single-year platinum-anomaly claim closely matches the well-documented YDB platinum spike (~12.8kyr BP), a more concrete/specific claim than A's vaguer 'population-demography' corroboration."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: B pairs microspherule-concentration correctly with impact-ejecta-fallout mechanism (internally coherent), whereas A pairs platinum-anomaly with cosmic-airburst, a less standard mechanism attribution for that proxy."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.25,
+        "rationale": "model-prior: A's 10,000-year interval is too broad to meaningfully corroborate a specific extinction event, while B's tighter 3000-yr window around the YD is far more targeted."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: both suffer specificity problems (A's interval is offset from typical YD-onset dating; B's 10,000-yr span is excessively broad), but B's extreme breadth is the larger flaw, marginally favoring A."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: A's precise single-year date (-10950) aligns closely with the commonly cited YDB impact date, giving it more specific evidential grounding than B's broad 3000-yr window."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.15,
+        "rationale": "model-prior: B's actor='cosmic-impact' is causally coherent with an impact-ejecta-fallout mechanism producing a platinum anomaly, whereas A's actor='meltwater-pulse' does not plausibly cause impact ejecta; B also already carries substantive supporting belief in its opinion state."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: B's corroboration of a directly measurable platinum anomaly is more empirically groundable than A's causal 'triggered' claim linking impact-airburst to YD cooling, a more contested inferential chain, though both are internally coherent with actor='cosmic-impact'."
+      }
+    ]
+  }
+}

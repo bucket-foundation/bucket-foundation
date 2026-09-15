@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "c6dbe474df1be0a5315afe322f23c69a6edff437a37b0c3cd1cd04002ae8c782",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological (ice core, Greenland, ~10,950 BCE horizon): spikes in cosmogenic radionuclides (10Be, 36Cl) and nitrate (NOx) concentrations consistent with a gamma-ray-driven ionization/ozone-depletion event coincident with the onset of Younger Dryas cooling",
+      "Geological/atmospheric: an associated global radiocarbon (14C) production spike (Miyake-event-like) in tree-ring or ice-core proxies dated to the same interval",
+      "Astronomical: identification of a supernova remnant of appropriate age (~13,000 yr) and sufficient proximity (within roughly 1-3 kpc) to have delivered a gamma-ray/cosmic-ray flux capable of perturbing Earth's atmosphere",
+      "Astronomical/model-prior: catalogued historical or radio/X-ray-detectable remnants (pulsars, expanding shells) whose kinematic back-tracking places an explosion event near -10,950",
+      "Material: platinum-group/iridium or magnetic-spherule anomalies in Younger Dryas boundary sediments (often cited in impact-hypothesis literature, could overlap if reinterpreted as supernova-derived fallout)",
+      "Genetic: megafaunal/human population bottleneck or mutation-rate signatures coincident with the onset date (weak, indirect proxy)",
+      "Oral tradition/iconographic: motifs of a catastrophic sky event in later Holocene myth or Paleolithic art (very low evidentiary weight given time depth and lack of writing)"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "This is a pre-literate, deep-time (Younger Dryas onset, ~10,950 BCE) hypothesis, so the detectability table's 'textual' (0.0), 'linguistic' (0.05), 'oral_tradition' (0.1) and 'iconographic' (0.1) channels are essentially closed off by definition, not by the hypothesis being false. The two channels most relevant to a gamma-ray/supernova mechanism -- 'astronomical' (0.7) and 'geological' (0.65) -- are, notably, the highest-scoring categories in the whole table for this period, meaning if the event occurred as described it plausibly would have left detectable traces: Greenland ice cores are extremely well-sampled at high temporal resolution precisely across the YD boundary, so a large nitrate/radionuclide anomaly of the required magnitude would very likely have already been noticed by paleoclimate researchers, and a nearby young supernova remnant would still be observable today (remnants remain detectable in radio/X-ray for tens of thousands of years). The fact that no unambiguous remnant or precisely-dated ionization spike matching the required gamma-ray dose has been confirmed argues moderately against the hypothesis, but does not rule it out, since 'material' (0.35), 'genetic' (0.3) and 'model_prior' (0.3) evidence for this period are all only weakly diagnostic and gamma-ray effects can be difficult to distinguish from other causes (volcanic, impact-related) of the same isotopic signatures. The hypothesis's own action field is 'inconclusive,' which is consistent with a real but currently underdetermined signal rather than either strong confirmation or clean falsification. I weight the adjustment toward the higher astronomical/geological ceiling but discount it for the absence, to date, of a corroborating remnant or unambiguous isotopic spike, landing near the middle of the plausible range rather than treating silence as proof of absence. This synthesis draws partly on model-prior knowledge of Younger Dryas ice-core radionuclide studies and supernova remnant survey limits, which should be treated as tentative background rather than confirmed within this evidence set."
+  }
+}

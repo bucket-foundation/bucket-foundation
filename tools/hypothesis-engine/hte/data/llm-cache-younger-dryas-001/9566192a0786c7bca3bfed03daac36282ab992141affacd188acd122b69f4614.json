@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "0637620d7ddebf48e946d9ef29ffdcbd9ca3772d922d3d4c71788496600a5e33",
+  "response": {
+    "expected_evidence": [
+      "Geological: laterally-correlated carbon spherule / magnetic microspherule layers in ice cores, lake sediments, marine cores, and loess deposits dated to ~19,000\u201320,000 cal BP on multiple continents",
+      "Geochemical: platinum-group element (Pt, Ir) anomalies, nanodiamond concentrations, and shocked-quartz or melt-glass horizons co-located with the spherule layer",
+      "Astronomical/orbital: reconstructed cometary or asteroidal fragment stream models consistent with a multi-impact/airburst event at this date, or a candidate source crater/strewn field",
+      "Material/archaeological: disrupted or burned Upper Paleolithic occupation horizons, black-mat-like layers, or faunal turnover signatures stratigraphically bracketing the interval",
+      "Genetic: population bottleneck or extinction pulse signals in ancient DNA of megafauna (and possibly humans) dated near 19,000\u201320,000 BP",
+      "Oral tradition: flood/fire/sky-catastrophe narratives (low expected weight given depth of time and lack of continuous transmission)",
+      "Iconographic: Upper Paleolithic cave/portable art depicting celestial or catastrophic events (very low expected weight)",
+      "Textual: none possible (pre-literate period)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis is fundamentally a geochemical/sedimentological claim (carbon spherules from impact ejecta), so the primary evidentiary channels are geological (0.6) and, secondarily, astronomical modeling of impactor dynamics (0.7) for the Upper Paleolithic period \u2014 both comparatively favorable given that ice cores, marine/lake sediment cores, and loess sequences reliably extend well past 20,000 BP and are routinely sampled for exactly this kind of microparticle/PGE signature (as demonstrated by the analogous, better-attested Younger Dryas boundary work at ~12,800 BP). Material (0.35) and genetic (0.25) evidence are plausible but weaker corroborators at this age. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) evidence are essentially non-diagnostic this far back and their absence should not be read as evidence against the hypothesis. Weighting toward the two strongest channels (geological, astronomical) but tempering for the very demanding bar of 'corroborated' simultaneous multi-continent spherule layers \u2014 which requires several independently dated, chemically matched sites \u2014 yields a composite adjustment around 0.5. Note (model-prior, unverified): I am not aware of any established multi-continent carbon-spherule/impact-ejecta layer dated specifically to ~19,000\u201320,000 BP in the actual paleoclimate/impact literature; the well-documented analogous case sits at the Younger Dryas onset (~12,800 BP), roughly 6,000\u20137,000 years later. This chronological mismatch should be weighed against treating the hypothesis as established, even though the physical evidence types described could, in principle, have survived and been detected."
+  }
+}

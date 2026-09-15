@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "74eafbcd0f97ca584ca3231e24e4c3b3829a70fb2e36c0595c6b16a2b1511ebc",
+  "response": {
+    "expected_evidence": [
+      "geological: sediment/stratigraphic layer at the ~12,900 cal BP boundary across North American sites showing anomalous iridium and/or platinum group element (PGE) concentrations",
+      "geological: magnetic microspherules, nanodiamonds, and glassy/melted spherule fallout embedded in the same boundary layer ('black mat' horizon)",
+      "geological: search for a corresponding impact crater or airburst structure of appropriate age (none confirmed to date)",
+      "material/archaeological: disruption or termination of Clovis-culture occupation layers directly beneath or coincident with the boundary layer",
+      "material: charcoal/soot layers indicating continent-scale biomass burning coincident with the anomaly",
+      "genetic: population bottleneck or extinction signatures in North American megafauna (mammoth, mastodon, etc.) genomes dated to this interval",
+      "astronomical: cosmic dust/extraterrestrial spherule chemistry matching bolide or cometary debris composition",
+      "model_prior: published geochemical survey papers (e.g., Firestone et al. 2007 and subsequent replication/rebuttal studies) reporting or disputing the iridium anomaly across multiple sites"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10950 (~12,900 cal BP) corresponds to the Younger Dryas onset boundary, so the 'younger-dryas' detectability row is most applicable rather than a generic Upper Paleolithic default. Geological evidence (sediment cores, boundary-layer geochemistry) has the highest detectability (0.65) in this period because fine-grained lacustrine/peat stratigraphy from ~13,000 years ago is routinely preserved and sampled by paleoclimatologists, and this exact interval has in fact been the subject of extensive published geochemical survey work (a real, contested hypothesis in the literature \u2014 treated here as model-prior, not confirmed fact). Astronomical detectability is nominally high (0.7) but mainly reflects the ease of searching for extraterrestrial dust/crater signatures, not confirmation; no crater has been securely identified, which is itself evidence-relevant rather than a detectability failure. Material (archaeological) and genetic evidence are moderately detectable (0.35 and 0.3) since Clovis-era sites and megafaunal remains from this age are known but sparse and subject to preservation/sampling bias, so an absence of clear-cut archaeological or genetic corroboration is plausibly a detectability artifact rather than proof the event didn't occur. Textual, linguistic, oral_tradition, and iconographic evidence are essentially inapplicable/undetectable (0.0\u20130.1) given the total absence of writing or durable narrative transmission over eleven millennia. Averaging across the plausible evidence classes (geological, material, astronomical, genetic, model_prior) weighted toward geological/material as primary diagnostic channels yields an overall detectability adjustment of ~0.55: physical evidence for such an event could plausibly survive and has been actively searched for, but the mixed/contested state of published findings (replication failures for the iridium signal at many sites) means an absence of universally corroborating evidence is only partly explained by detectability limits \u2014 some of it may reflect genuine non-occurrence or misattribution of the anomaly."
+  }
+}

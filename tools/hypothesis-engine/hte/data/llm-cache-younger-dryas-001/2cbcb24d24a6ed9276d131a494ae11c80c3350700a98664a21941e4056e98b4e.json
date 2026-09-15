@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ddd551dfee21aafdc50d8380e8db93810e5b410173d3c1d80cfb43855b2493b0",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "expected_evidence": [
+      "Geological: absence or non-replication of a synchronous, continent-wide platinum/iridium anomaly at ~10,950 BP across independent Younger Dryas boundary (YDB) sites",
+      "Geological: reinterpretation of the 'black mat' layer as a wetland/paleosol facies rather than an impact deposit",
+      "Geological: failure to identify verified impact craters or shocked-quartz grains of the correct age in North America",
+      "Astronomical: absence of independently replicated nanodiamond, magnetic spherule, or meltglass assemblages meeting standard impact-proxy criteria across multiple labs",
+      "Material/archaeological: radiocarbon and stratigraphic dating showing megafaunal extinctions and Clovis-culture changes were diachronous/staggered rather than an abrupt synchronous die-off at 10,950 BP",
+      "Genetic: ancient-DNA and population-genetic studies showing megafaunal population declines beginning well before the proposed impact date, consistent with climate- or human-driven (overkill) attrition",
+      "Model-prior: published critiques (e.g., Pinter et al., Holliday & Meltzer, van Hoesel et al.) concluding the impact evidence fails standard criteria and that overkill/climate change better explain the extinction pattern",
+      "Geological: continued Clovis and later human occupation layers directly above/through the boundary without an extinction-level hiatus"
+    ],
+    "rationale": "The hypothesis asserts a scientific refutation (not an ancient event per se) of the Younger Dryas Impact Hypothesis (YDIH) as the cause of North American megafaunal extinction, dated to the YD onset (~10,950 BP). This is best matched to the 'younger-dryas' period row. Refutation-type claims are tested primarily through geological and astronomical proxy evidence (impact markers, black mat stratigraphy) and material/genetic chronological data showing extinction was not a single synchronous event. These categories have moderate-to-good detectability in this period (geological 0.65, astronomical 0.7, material 0.35, genetic 0.3), reflecting that Quaternary geology and paleontology are well-studied fields with active, well-preserved sedimentary and faunal records, even though textual/linguistic/oral evidence is essentially absent (preliterate context, ~0.0\u20130.1) and thus irrelevant to testing this claim. Because the relevant proxy evidence types (geological, astronomical) have relatively high detectability, and this is in fact a well-documented real-world scientific controversy (multiple published replication failures and critiques of the YDIH), absence of confirming impact evidence is a meaningful and plausible signal of refutation rather than merely a preservation/detection failure. A composite detectability adjustment of ~0.55 (weighting the high-detectability geological/astronomical categories most relevant to testing an impact claim, tempered by lower-detectability material/genetic chronological evidence) is suggested. Model-prior note: reliance on recollection of the YDIH scientific debate (Pinter et al. 2011, Holliday & Meltzer 2010, van Hoesel et al.) is flagged as model-prior, not verified against a provided evidence text.\""
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "35a6d6edbe26f1ef08eee9faa077817a120dd4fa439562582434ea1f62a013e1",
+  "response": {
+    "expected_evidence": [
+      "Geological: Ice-core and marine/lacustrine sediment cores dating Meltwater Pulse 1A (~14,600 BP) and 1B (~11,500 BP), including delta-O18 shifts, sea-level jump signatures, and abrupt cooling markers correlated in time with extinction horizons.",
+      "Geological/stratigraphic: Younger Dryas boundary layers (e.g., black mats) in North American sediment sequences marking abrupt climate reversal, cross-referenced against last-appearance stratigraphy of megafauna.",
+      "Material/paleontological: Radiocarbon-dated fossil remains of North American megafauna (mammoth, mastodon, horse, camel, ground sloth, short-faced bear) clustering their last-appearance dates around meltwater-pulse/Younger Dryas transitions, compiled in extinction chronology databases.",
+      "Genetic: Ancient DNA (including sedaDNA) from megafauna populations showing bottlenecks, declining genetic diversity, or population collapse timed to climate transitions rather than solely to human arrival.",
+      "Genetic: Phylogeographic reconstructions of megafaunal population size changes (e.g., mammoth, horse, bison) using coalescent/Bayesian skyline methods anchored to radiocarbon-calibrated timescales.",
+      "Astronomical/geochemical (tangential, competing-hypothesis adjacent): Any correlated proxy records (e.g., isotopic or geochemical anomalies) used to argue for vs. against a purely climatic mechanism as opposed to impact or overkill mechanisms.",
+      "Model-prior: General paleoclimatic and paleontological literature (not directly verified in this evidence set) suggesting debate between climate-driven, human-overkill, and multi-causal explanations for the North American megafaunal extinction."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis's interval (-19050 to -9050) spans the tail of the Upper Paleolithic through the Younger Dryas into the early Holocene, straddling three detectability rows. Textual, linguistic, oral_tradition, and iconographic channels are essentially unavailable this deep in prehistory (0.0-0.25 across all three periods) and their absence is fully expected by detectability alone, not by falsity. However, the two evidence classes most relevant to this specific hypothesis \u2014 geological (0.6-0.65) and genetic (0.25-0.35) \u2014 are comparatively strong for this timescale, because meltwater pulses and Younger Dryas cooling leave robust, well-preserved physical signatures (ice cores, sediment stratigraphy, sea-level records) and because ancient/sedimentary DNA techniques have matured enough (as model-prior knowledge, unverified in the provided evidence text) to recover megafaunal population history over 10,000-20,000 year timescales. Material evidence (radiocarbon-dated fossil last-appearance data) is also moderately robust (0.35-0.45). Given that this is an actively studied topic in mainstream paleoclimatology/paleontology with a genuine record of ice-core, sediment, and aDNA-based chronological correlation work, I adjust detectability upward from the raw table average (~0.3) to about 0.55 for the geological+genetic+material composite that matters most here, reflecting that absence of textual/oral/iconographic evidence is fully explained by period constraints, while the core geological/genetic evidence needed to corroborate or refute a climate-driven mechanism is plausibly recoverable and has likely already been partially explored in the real scientific literature \u2014 though the causal 'corroborated' claim remains contested against competing overkill and impact hypotheses."
+  }
+}

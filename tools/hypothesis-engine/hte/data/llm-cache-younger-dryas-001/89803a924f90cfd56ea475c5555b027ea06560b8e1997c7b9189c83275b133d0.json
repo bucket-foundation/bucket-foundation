@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "c4d02c181b82344b1e350c90b50606c15b4268931ad192e27decf1fb9c346656",
+  "response": {
+    "expected_evidence": [
+      "Geological: Younger Dryas boundary (YDB) sediment layer proxies at ~10,950 BCE across North American sites \u2014 magnetic spherules, nanodiamonds, elevated platinum/iridium, meltglass, and 'black mat' organic layers interpreted by proponents as impact/airburst ejecta.",
+      "Astronomical: modeled or inferred airburst signatures (shock-fused materials, high-temperature melt products) consistent with an extraterrestrial/cometary airburst rather than a crater-forming impact.",
+      "Material/archaeological: a documented decline, hiatus, or shift in Clovis-era site density and radiocarbon date frequency in North America around 10,950 BCE, potentially interpreted as population disruption; changes in tool-industry continuity (Clovis to post-Clovis transitions).",
+      "Genetic: a detectable population bottleneck or founder-effect signature in ancient/modern Native American genomes dating to the terminal Pleistocene, consistent with a sudden demographic contraction.",
+      "Faunal/paleoecological (geological/material overlap): megafaunal extinction pulse and vegetation change coinciding with the YD onset, sometimes cited as indirect demographic evidence via subsistence disruption.",
+      "Oral tradition: indigenous North American narratives of catastrophic sky-fire or darkness events, offered as weak corroborating (but highly uncertain) evidence.",
+      "Model-prior: the existing Younger Dryas Impact Hypothesis (YDIH) literature itself, which is a contested but real body of prior claims \u2014 should be flagged as low-tier, unverified/disputed rather than established fact."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval -10950 matches the Younger Dryas onset, so the 'younger-dryas' period row is the appropriate reference rather than a generic Upper Paleolithic default. Physical impact-proxy evidence (geological, astronomical) has comparatively high listed detectability (0.65\u20130.7) because YD boundary sediments are widespread, datable, and have been extensively sampled across multiple continents, including North America \u2014 this evidence, if it existed, plausibly could and did survive and get found (this is exactly the empirical basis of the real-world Younger Dryas Impact Hypothesis, model-prior). However, the hypothesis specifically claims the airburst *triggered a population-demography* effect, which requires an additional causal/demographic evidence layer: material (site-frequency/radiocarbon decline, 0.35) and genetic (bottleneck signatures, 0.3) rows are much lower detectability, reflecting that such short-timescale demographic signals are hard to isolate from noise, sampling bias, and confounding causes (e.g., climate cooling itself, unrelated cultural shifts). Oral tradition (0.1) is essentially non-diagnostic at this time depth. Given the mix \u2014 strong detectability for the physical/geological signature of an airburst-type event but weak detectability for the specific demographic-causation link \u2014 a blended adjustment of ~0.5 is appropriate: it is plausible that ejecta/geochemical evidence could survive and be found (and has been claimed, controversially, in the literature), but the demographic-impact claim specifically is much harder to substantiate and its absence from a fully convincing record should be attributed partly to low detectability of genetic/archaeological demographic signals rather than treated as proof the event did not affect population levels. Note: the real-world YDIH remains scientifically contested (nanodiamond/platinum findings disputed by independent labs), so any 'evidence' here should be treated as model-prior/uncertain, not confirmed fact."
+  }
+}

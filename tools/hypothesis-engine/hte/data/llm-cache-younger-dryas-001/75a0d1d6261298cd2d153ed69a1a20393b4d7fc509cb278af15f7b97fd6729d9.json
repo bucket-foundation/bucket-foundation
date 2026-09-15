@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "239c5103defc206e4337472a13c7e5cccb71227cba7105b4f1cf5dc97313a349",
+  "response": {
+    "expected_evidence": [
+      "Geological: multiple independently-sampled Younger Dryas boundary (~12.9 ka) sediment/ice cores across North America showing failure to reproduce the originally claimed platinum spike, nanodiamond concentrations, magnetic microspherules, or shocked quartz reported by proponents of the impact hypothesis",
+      "Material/archaeological: continuity (rather than abrupt collapse) in Clovis-to-Folsom site distribution, artifact density, and radiocarbon date frequency across the ~12,900 BP boundary, undermining a population-collapse signature",
+      "Genetic: absence of a sharply dated (~12,900 BP), continent-wide bottleneck signal in ancient/modern Native American population genetic reconstructions",
+      "Model_prior (scientific literature, unverified against source text): published independent-replication-failure studies and critical reviews of the Younger Dryas Impact Hypothesis (e.g., work by Pinter, Daulton, Holliday & Meltzer, van Hoesel et al. from ~2010-2014) explicitly reporting non-reproduction of proponents' markers and challenging the population-collapse narrative",
+      "Astronomical: absence of a confirmed, dated impact crater in North America consistent with a ~12,900 BP event despite targeted search"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis is a meta-scientific claim (that the cosmic-impact-caused-demographic-change idea was refuted by failed independent replication) rather than a direct claim about a Pleistocene event itself, so the decisive evidence lives partly in modern scientific literature and partly in the same physical/genetic proxies the original hypothesis relied on. Using the younger-dryas row as the applicable period: geological (0.65) and material (0.35) channels are the strongest native evidence types for this kind of claim, since replication attempts are precisely geochemical/stratigraphic resampling studies; genetic (0.30) is weaker but relevant for demographic-bottleneck testing; model_prior (0.30) captures the historiographical layer of published critique/consensus papers. Modern peer-reviewed literature documenting failed replications is, unlike ancient textual/oral evidence (0.0-0.1), essentially guaranteed to survive and be discoverable, which pushes plausibility of detection upward beyond what the raw table channels alone would suggest. Note as model-prior (unverified against the given evidence text): I recall that the real Younger Dryas Impact Hypothesis controversy did generate substantial failed-replication literature in the 2010s (e.g., critiques of Firestone et al. 2007's markers), but the debate was reopened by later (post-2020) studies reporting a broader platinum anomaly, so 'refuted' may overstate the actual state of consensus rather than reflect a clean, settled falsification. Given the blend of moderately high geological/material detectability and near-certain survivability of the modern critical literature, a low detectability score is not the primary explanation for any absence of confirming evidence here \u2014 if the hypothesis is true, corroborating replication-failure studies should be readily findable, and if they are not found, that weighs somewhat toward the hypothesis being incomplete or contested rather than simply undetectable."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "1db0558fdda981bbd0e2d23f3ac082c510d77ddc74f4e9d985f4139154a6b93c",
+  "response": {
+    "expected_evidence": [
+      "Geological: absence of reproducibly replicated impact markers (platinum spikes, shocked quartz, nanodiamonds, impact spherules) across independent labs at the ~12,900 cal BP Younger Dryas boundary layer in lake, marine, and loess sediment cores on multiple continents",
+      "Astronomical: absence of a confirmed impact crater or airburst structure of appropriate age/size, and lack of independent orbital/cosmic-fragment reconstruction corroborating a Younger Dryas impactor",
+      "Geological/ice-core: absence of a corresponding platinum or iridium anomaly, or presence of alternative non-impact explanations (e.g., background micrometeorite flux, volcanic/terrestrial sources, wildfire-derived carbon misidentified as impact spherules) in Greenland/Antarctic ice cores and other well-dated archives",
+      "Material/paleontological: radiocarbon-dated megafaunal extinction chronologies showing staggered, asynchronous die-offs across continents rather than an abrupt simultaneous collapse at ~10,900-10,800 BC, inconsistent with a single instantaneous cosmic event",
+      "Genetic: ancient-DNA-based population decline curves for megafauna showing gradual pre-existing decline (tied to climate change and/or human arrival) rather than a sudden bottleneck coincident with the hypothesized impact date",
+      "Model-prior (low-tier, recalled not verified): published critiques and failed replication attempts (e.g., work associated with researchers such as Surovell, Pigati, Daulton, Boslough) arguing the Younger Dryas Impact Hypothesis lacks reproducible physical evidence and that megafaunal extinction is better explained by overkill/climate mechanisms"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The claimed event/refutation falls right at the Younger Dryas onset (~12,900 cal BP), for which the table's 'younger-dryas' row is most applicable given the unspecified period label. Refuting a cosmic-airburst-driven mass extinction hinges on high-preservation, high-precision proxy records (ice cores, lake and marine sediment cores, loess sections) capable of resolving both the presence/absence of impact markers and the fine-grained timing of megafaunal decline. Geological (0.65) and astronomical (0.7) detectability are comparatively high for this period because well-dated, well-preserved stratigraphic and ice-core archives from ~11,000 years ago are routinely sampled and already form the empirical basis of the real scientific YDIH debate \u2014 multiple independent labs have in fact attempted (and largely failed) to replicate the original impact-marker claims, which is itself the kind of evidence a refutation hypothesis predicts. Material (0.35) and genetic (0.3) detectability are lower because faunal fossil records and ancient DNA from this window are patchier, but radiocarbon-dating databases of megafaunal last-appearance dates are dense enough to test synchroneity. Given these moderate-to-high detectability values across the most diagnostic evidence kinds, an absence of confirmatory impact evidence is a meaningful, well-attested finding rather than a simple detectability failure \u2014 supporting rather than undermining the refutation hypothesis. I flag that specifics of named researchers/studies are recalled from training (model-prior, low-tier, unverified) rather than confirmed against source text provided in this session."
+  }
+}

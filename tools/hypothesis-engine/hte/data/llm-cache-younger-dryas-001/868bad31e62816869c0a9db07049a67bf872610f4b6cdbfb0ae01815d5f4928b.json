@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ce60e779aa685f1aed85ba9a067a0cb2df4af2581d416c6720e032fa24ae6dad",
+  "response": {
+    "expected_evidence": [
+      "Geological: tephra/ash fall deposits or a distinct volcanic ash layer in North American stratigraphic sections dated to ~10,950 BCE (~12,900 cal BP)",
+      "Geological: sulfate/aerosol spike in Greenland or Antarctic ice cores at the corresponding date, consistent with a large eruption",
+      "Astronomical/geochemical: cosmogenic isotope anomalies (14C spike in tree rings, 10Be/36Cl spikes in ice cores) that could indicate elevated ionizing radiation reaching the atmosphere/surface",
+      "Geological: the well-known Younger Dryas boundary 'black mat' layer and associated markers (platinum anomaly, nanodiamonds, magnetic spherules) at North American sites, examined for a volcanic (rather than impact) origin",
+      "Material/paleontological: megafaunal bone assemblages showing a synchronous last-appearance-date cluster in North America coincident with the proposed event",
+      "Genetic: ancient DNA/phylogenetic signals of a sudden population bottleneck or extinction pulse in North American megafauna around this date",
+      "Material: paleoenvironmental/pollen or charcoal records indicating abrupt cooling or ecosystem disruption ('volcanic winter') coincident with the interval",
+      "Absence-of-alternative evidence: lack of extraterrestrial impact markers that would instead support a cosmic-impact explanation of the same boundary layer"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.35,
+    "rationale": "The proposed date (~10,950 BCE) falls essentially at the Younger Dryas onset boundary, one of the most intensively studied intervals in Quaternary science (ice cores, varved lake sediments, tephrochronology, megafaunal bone dating, and cosmogenic isotope records all have fine-grained coverage here). Using the younger-dryas row as the closest analog: geological (0.65) and astronomical (0.7) evidence categories are highly detectable for this period, material/faunal evidence is moderate (0.35), and genetic evidence is moderate (0.3). This means that if a real, large-scale volcanic eruption with atmospheric/ionizing effects had triggered synchronous North American megafaunal extinction, the physical traces (tephra, ice-core sulfate spikes, isotope anomalies, extinction-date clustering) would very plausibly have survived and already been looked for, since the YD boundary layer is one of the most heavily sampled horizons in paleoclimate science. So an absence of confirming evidence here is more informative of falsity than of poor preservation \u2014 detectability is not the primary limiting factor. However, I lower the adjustment substantially below the raw table averages because of a structural problem with the hypothesis itself: linking a 'volcanic-eruption' actor to a 'gamma-ray-ionization' mechanism is not a recognized physical pathway in the literature I'm aware of (model-prior, unverified) \u2014 volcanic eruptions produce ash, sulfate aerosols, and climatic cooling, not gamma-ray ionization; that mechanism is instead associated in the (contested) Younger Dryas Impact Hypothesis with a cosmic/extraterrestrial trigger (comet airburst), not a terrestrial volcano. This actor-mechanism mismatch means that even abundant, well-preserved geological/astronomical data would be very unlikely to specifically confirm a 'volcanic eruption causing gamma-ray ionization' pathway, independent of how well such data types generally survive. The detectability_adjustment (0.35) reflects a discount from the table's higher raw geological/astronomical values to account for this mechanism-specificity gap, while still crediting that the general evidentiary record for this exact interval is unusually rich and well preserved for pre-textual prehistory."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "17fad9f01a7d0bd04ae43993b54174505c9a27300addb55c9ea2e927279ac591",
+  "response": {
+    "expected_evidence": [
+      "Geological: a distinct terminal Pleistocene 'black mat'/boundary sediment layer at multiple North American sites (~10,950 14C BP) containing the claimed impact proxies \u2014 magnetic microspherules, nanodiamonds, iridium/platinum anomalies, glass-like carbon",
+      "Geological: ice-core records (e.g., Greenland) for coeval sulfate, dust, or platinum spikes that would corroborate or fail to corroborate a real impact event",
+      "Astronomical: search for a confirmed impact crater, airburst deposit, or unambiguous extraterrestrial chemical signature (Ir/Pt ratios matching chondritic material) \u2014 a methodological-artifact hypothesis predicts this should be absent or ambiguous",
+      "Material/archaeological: stratigraphic discontinuity in Clovis-era occupation layers at North American sites coincident with the YD boundary",
+      "Genetic: megafaunal extinction pulse signatures or bottlenecks in ancient DNA around the YD onset that proponents attribute to impact but critics attribute to climate/overkill",
+      "Model-prior (methodological literature): independent replication studies, blind re-analyses, and meta-analyses testing whether nanodiamond/spherule identifications are misidentified terrestrial materials (framboidal magnetite, combustion-derived carbon spherules, laboratory contamination) rather than genuine impact ejecta",
+      "Model-prior: documented inter-laboratory disagreement, failure to reproduce original YDIH findings, and critiques of statistical/sampling methodology in the original impact-marker papers"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis frames the well-known Younger Dryas Impact Hypothesis (YDIH) claim as a methodological artifact rather than a genuine causal event \u2014 i.e., it predicts that the physical markers cited for a cosmic impact are misidentified or non-reproducible rather than that no debate or data exist. Unlike most prehistoric hypotheses, the Quaternary geological record for this interval is exceptionally well preserved and heavily studied: continuous lake/marine sediment cores, ice cores, and terrestrial 'black mat' exposures across North America have been repeatedly sampled by multiple independent labs over the past ~15 years (this is model-prior knowledge from published Quaternary science literature, not verified against source text here). The table's baseline geological (0.65) and astronomical (0.7) detectability for the Younger Dryas period are reasonable, but I'd nudge the blended figure to ~0.6 because: (1) material/archaeological detectability is comparatively low (0.35, reflecting sparse and disturbed Paleoindian sites), (2) genetic evidence for this specific mechanism question is only moderately informative (0.3), and (3) the strongest test of a 'methodological-artifact' mechanism \u2014 failed replication and contamination critiques \u2014 falls under model_prior/geological categories that are well documented in the modern scientific literature, somewhat offsetting the archaeological weakness. Given this favorable detectability, if the impact-triggering claim were a real physical event, we would expect corroborating extraterrestrial signatures (crater, consistent isotopic anomalies) to have been found by now; their persistent absence or non-replication is itself informative and consistent with (not merely explained away by) the methodological-artifact mechanism, so absence of confirmatory evidence here should weigh toward the hypothesis rather than being dismissed as an unrelated detection failure."
+  }
+}

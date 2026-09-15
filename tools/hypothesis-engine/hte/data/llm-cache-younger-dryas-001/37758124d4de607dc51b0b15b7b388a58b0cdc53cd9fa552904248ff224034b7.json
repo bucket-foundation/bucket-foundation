@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ee85f55a75ea028b934a87ca7b18623c5fe0811a4efbc1111b14a26d39bb102e",
+  "response": {
+    "expected_evidence": [
+      "Geological stratigraphy at proposed impact/meltwater-pulse boundary layers (e.g., black mat, platinum/iridium anomalies, nanodiamond/magnetic-spherule claims) showing whether these markers are reproducible across independent labs or are extraction/measurement artifacts",
+      "Radiocarbon date compilations for megafaunal last-occurrence fossils (e.g., FAUNMAP-type databases) reanalyzed for sampling bias, Signor-Lipps effect, and clustering artifacts near calibration-curve plateaus rather than a genuine synchronous extinction pulse",
+      "Sedimentological/chronostratigraphic studies testing whether the apparent temporal coincidence of meltwater pulse (1A) and extinction dates is an artifact of hiatuses, reworking, or coarse dating resolution",
+      "Ancient DNA / genetic coalescent-based extinction timing studies on megafaunal taxa, checked against radiocarbon-based extinction dates for concordance or systematic offset",
+      "Statistical/methodological papers (chronological hygiene critiques, e.g., work in the tradition of Grayson & Meltzer) explicitly arguing the extinction-impact correlation stems from dataset artifacts rather than causal or coincidental synchrony",
+      "Independent replication attempts (or failures) of proposed impact markers across multiple Younger Dryas boundary sites in North America",
+      "Taphonomic/museum-collection studies showing skewed sampling toward well-preserved or easily-dated specimens, producing spurious clustering of extinction dates near ~12,900 cal BP"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis is a meta-scientific/methodological claim (that the apparent corroboration between the meltwater-pulse/Younger Dryas onset and North American megafaunal extinction is an artifact of dating practice or sampling rather than a real signal), not a claim about a directly observable ancient event. Its primary evidentiary channels are geological (stratigraphy, boundary-layer markers) and material/genetic (fossil bone collagen, ancient DNA, radiocarbon date databases), for which the younger-dryas detectability table gives 0.65, 0.35, and 0.30 respectively, with astronomical/geochemical marker studies at 0.7. Textual, linguistic, oral_tradition, and iconographic channels are essentially inapplicable (rows near 0.0\u20130.1) since no contemporaneous societies produced records. Importantly, because the relevant 'evidence' consists of physical specimens (bones, sediments, DNA) that are actively re-collectable and re-datable by modern science rather than symbolic/perishable records, actual detectability is higher than the raw table baseline would suggest for a purely archaeological-symbolic claim \u2014 this is reflected in known model-prior: the Younger Dryas Impact Hypothesis has in fact been extensively challenged in the literature via failed replications of platinum/nanodiamond signals and critiques of radiocarbon-date clustering (Grayson & Meltzer-style 'chronological hygiene' arguments), which is exactly the kind of methodological-artifact evidence this hypothesis predicts. I flag this recollection as model-prior, not verified against the evidence text provided. Given that such critique literature plausibly already exists and specimens remain available for redating, absence of confirming evidence would be more informative here than in typical prehistoric-symbolic hypotheses, so I set the adjustment moderately (0.5) \u2014 above the sparse oral/textual/linguistic channels but below the ceiling, since some sub-evidence (early genetic coalescent dating precision, full independent multi-site replication) remains only partially achievable with current techniques."
+  }
+}

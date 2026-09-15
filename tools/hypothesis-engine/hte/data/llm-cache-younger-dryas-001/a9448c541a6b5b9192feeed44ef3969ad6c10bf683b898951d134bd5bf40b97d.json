@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a1d2866185265ef3586c6751a14c1d87dd9ea903bc2a186ddef914de5863ed6e",
+  "response": {
+    "expected_evidence": [
+      "geological: anomalous platinum (and often associated iridium/nickel) enrichment in a discrete sediment layer at ~10,950 BCE (Younger Dryas onset 'boundary layer'), detectable via ICP-MS in lake cores, peat bogs, loess sections",
+      "geological: co-occurring proxies often invoked with impact-ejecta claims \u2014 microspherules, nanodiamonds, meltglass, magnetic spherules, a 'black mat' horizon",
+      "astronomical: crater search / impact-structure candidates, cosmic-dust/extraterrestrial-isotope signatures (He-3, Ir ratios) consistent with bolide airburst or impact",
+      "material: archaeological-context correlations (Clovis-era site abandonment layers, faunal turnover) at Mexican sites bracketing the same date",
+      "genetic: megafaunal population bottleneck/extinction signals dated near 10,950 BCE (weak, indirect corroboration)",
+      "model-prior: general Younger Dryas Impact Hypothesis literature reporting platinum anomalies at multiple global sites, including some Mexican lake-sediment cores (e.g., Lake Cuitzeo-type studies) \u2014 recalled from training, not independently verified here"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval -10950 (~10,950 BCE) sits essentially at the Younger Dryas onset, so the 'younger-dryas' detectability row is the correct reference rather than an unspecified period. The claim hinges almost entirely on geological (sediment/ice-core geochemistry) and secondarily astronomical evidence types, which have the highest detectability scores in this period (geological 0.65, astronomical 0.70) \u2014 platinum is chemically robust and well-preserved in stratified sediments/ice over 13,000 years, and such YD-boundary platinum anomalies have genuinely been reported in the literature at multiple sites worldwide (a fact I recall from training as model-prior, unverified in this session). Material, genetic, linguistic, textual, oral_tradition, and iconographic channels are largely irrelevant or near-zero for a geochemical signature this ancient and are not expected to contribute much. Given the relatively favorable geological/astronomical detectability for this period, absence of confirmed evidence would not be strongly excused by low detectability \u2014 if the anomaly exists at the claimed Mexican location, it is plausible it could have been sampled and reported already; conversely, existing literature on this specific hypothesis is contested (the broader Younger Dryas Impact Hypothesis remains scientifically debated, with several failed replication attempts), so a lack of independent corroboration should carry meaningful evidentiary weight against the hypothesis, not be dismissed purely as a detection-limit problem. I set the adjustment slightly above the raw geological/astronomical average (~0.55) to reflect that platinum-anomaly detection is a mature, well-established technique in this specific sub-domain, making practical detectability somewhat better than the generic table value for the period as a whole."
+  }
+}

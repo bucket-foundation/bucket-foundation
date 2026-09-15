@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "0903a5e5dd030b17f82536db7e0bc0b75e8dbeda4410a9a09bccdccaa8d2c67c",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: elevated platinum-group elements (iridium/platinum) anomaly in a thin sediment layer dated to ~12,800 cal BP (the 'black mat'/YDB horizon)",
+      "geological: nanodiamonds, magnetic spherules, and meltglass/impact-proxy microspherules in the same stratum (claims exist for Abu Hureyra, Syria)",
+      "geological: charcoal-rich soot/combustion layer indicating a continent-scale wildfire pulse coincident with the airburst",
+      "astronomical: absence of an impact crater consistent with an airburst mechanism (a non-detection that is itself expected, not disconfirming)",
+      "astronomical: any orbital-dynamics/meteor-stream reconstruction linking a fragmenting comet/asteroid to this date (largely speculative for prehistory)",
+      "material: disrupted or abandoned occupation layers at Middle Eastern sites (e.g., Abu Hureyra) with anomalous melt materials embedded in structures or sediments",
+      "genetic: megafaunal population bottleneck or extirpation signal dated to ~10,850 BCE in Middle Eastern faunal genomes (weak expectation, since Middle East megafaunal loss is less pronounced than in the Americas)",
+      "model_prior: existing (contested) Younger Dryas Impact Hypothesis literature proposing an airburst causing the YD onset and megafaunal decline"
+    ],
+    "detectability_adjustment": 0.4,
+    "rationale": "The interval -10850 falls essentially at the Younger Dryas onset (~12,800-12,900 cal BP), so the 'younger-dryas' detectability row is the best-fit context despite the hypothesis leaving period unspecified. Under that row, geological (0.65) and astronomical (0.7) evidence types are nominally the most detectable, and indeed this is exactly the kind of evidence (PGE/iridium spikes, nanodiamonds, spherules, black-mat layers) the real-world Younger Dryas Impact Hypothesis debate centers on, with Abu Hureyra in Syria specifically claimed as a Middle Eastern airburst site by some researchers (model-prior, unverified/contested). However, several factors argue for downward adjustment from the raw table average: (1) an airburst mechanism, by definition, would NOT produce a crater, so 'astronomical' detectability in the crater-hunting sense is largely inapplicable \u2014 the true diagnostic evidence is geological/geochemical, not astronomical in the telescopic sense; (2) material and genetic detectability for a megafaunal-extinction claim specifically located in the Middle East is weaker than the table's generic values because Middle Eastern faunal turnover at ~10,850 BCE is less pronounced and less well-documented than in the Americas or Eurasian steppe, making corroborating extinction data harder to find even if it exists; (3) the underlying scientific literature (model-prior only) treats the YD impact/airburst hypothesis, including the Abu Hureyra meltglass claims, as actively disputed, with multiple independent labs failing to replicate key markers \u2014 so even where sediment records exist and have been sampled, the evidence found has been contested rather than confirmatory. Given these countervailing factors, I lower the blended geological/astronomical/material/genetic detectability from the table's ~0.5-0.65 range to roughly 0.4, reflecting that while relevant sediment archives plausibly survived (favoring 'could have survived' = true), the specific corroborating signal for a Middle East megafaunal-extinction/airburst link is harder to detect and more equivocal than the raw table numbers suggest."
+  }
+}

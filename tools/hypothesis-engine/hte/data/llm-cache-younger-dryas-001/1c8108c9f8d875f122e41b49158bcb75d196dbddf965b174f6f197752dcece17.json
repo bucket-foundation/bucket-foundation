@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b3da2eac9892e27c48a1b10667eb4d3379eed30854d95e7c6becc00211de4136",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a discrete Younger Dryas Boundary (YDB) sedimentary layer (~12,900 cal BP) containing platinum anomalies, magnetic and glassy spherules, nanodiamonds, high-temperature meltglass, and elevated iridium/osmium across multiple North American (and global) sites",
+      "Geological: a 'black mat' organic layer overlying the YDB horizon at many sites, associated with abrupt faunal turnover",
+      "Astronomical: orbital/dynamical modeling linking the Taurid meteor stream's parent body (fragmented giant comet) to a dense debris trail capable of producing a cluster of airbursts ~12,900 years ago; historical/modern enhanced Taurid meteor showers as an analog",
+      "Material/archaeological: disruption or abandonment horizon at Clovis-era sites, scorched or shocked quartz, microspherules embedded in Clovis-age artifacts or bone, evidence of continent-wide biomass burning (soot, charcoal spikes)",
+      "Genetic: bottleneck or extinction signatures in North American megafaunal lineages (mammoth, mastodon, etc.) dated to the onset interval",
+      "Oral tradition: Native American origin/flood/fire narratives interpreted as possible transmitted memory of a catastrophic sky-event (highly speculative)",
+      "Model-prior: existing published Younger Dryas Impact Hypothesis (YDIH) literature and its critiques, since this hypothesis restates a known contested scientific debate"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval (-10950) places this squarely at the Younger Dryas onset, so the younger-dryas detectability row is the relevant one rather than the unspecified-period default. Under that row, geological (0.65) and astronomical (0.7) evidence kinds are the most detectable \u2014 consistent with the fact that the real-world Younger Dryas Impact Hypothesis rests almost entirely on stratigraphic/geochemical proxies (platinum, spherules, nanodiamonds, black mat) and on Taurid-stream orbital modeling, both of which are exactly the kinds of evidence with high survivability scores here. Material archaeological evidence (0.35) and genetic evidence (0.3) are only moderately detectable, matching the sparse and contested nature of Clovis-site impact proxies and megafaunal genetic bottleneck data. Oral tradition (0.1), iconographic (0.1), linguistic (0.05), and textual (0.0) evidence are essentially undetectable this deep in prehistory \u2014 there is no expectation of surviving symbolic or written record from ~13,000 years ago in North America, so the total absence of such evidence is fully explained by detectability rather than by falsity of the hypothesis. Overall, the hypothesis could plausibly have left detectable traces (and, per model-prior, real debated geochemical/astronomical evidence of this type does exist in the literature), so could_have_survived=True. I suggest a composite detectability_adjustment of ~0.55, weighting toward the higher astronomical/geological scores since those are the evidence kinds most diagnostic of the mechanism, while acknowledging that genetic, material, and especially symbolic/textual/oral kinds contribute much less and should not be treated as strong disconfirming absences. This assessment relies partly on model-prior recollection of the YDIH scientific debate, which remains unresolved/contested in current literature and should be treated as low-tier unverified context rather than established fact.\""
+  }
+}

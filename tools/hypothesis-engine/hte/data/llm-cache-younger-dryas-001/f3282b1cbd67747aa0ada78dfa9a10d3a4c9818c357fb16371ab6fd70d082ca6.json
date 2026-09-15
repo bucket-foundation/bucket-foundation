@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "86db41e1e0a8bcec260b59681a27276d773f4e42d9b41a66eff19cba157eb6f2",
+  "response": {
+    "expected_evidence": [
+      "geological: sharp platinum/iridium/nanodiamond and magnetic-microspherule anomaly layer in Greenland ice cores (e.g. GISP2/NGRIP) dated to the Younger Dryas onset (~12,900 cal BP), analogous to published Younger Dryas Boundary (YDB) platinum spike claims",
+      "geological: correlated dust/ammonium/ash spikes and abrupt isotopic (\u03b418O) shift in the same ice layers marking rapid cooling onset",
+      "astronomical: orbital-dynamics modeling showing the Taurid meteor stream complex's node/radiant intersecting Earth's orbit at the relevant epoch, consistent with a dense encounter (per Clube/Napier-style Taurid Complex hypotheses)",
+      "astronomical: reconstructed comet/fragment breakup history producing debris density sufficient for a bombardment or airburst cluster",
+      "material: extraterrestrial impact proxies (spherules, melt glass, nanodiamonds) in terrestrial YDB sediment sites across the Northern Hemisphere, correlatable to the same event as the ice-core signal",
+      "genetic: megafaunal population bottleneck/extinction signatures and possible human population decline genetic signals dated near onset (weak, indirect link)",
+      "oral_tradition/iconographic: purported catastrophist myths or 'comet' iconography (e.g. contested Vulture Stone/G\u00f6bekli Tepe interpretations) claimed as folk-memory of the event",
+      "model-prior: existing published Younger Dryas Impact Hypothesis / Taurid Complex literature (Firestone et al. 2007, Petaev et al. 2013, Napier, Wolbach et al.) as prior scientific framing, not independently verified here"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "Greenland ice sheets preserve annually resolved layers spanning the Younger Dryas onset, so geological (0.65) and astronomical/orbital-modeling (0.7) lines of evidence are highly plausible to survive and be detected \u2014 this matches real (if contested) published work such as the Petaev et al. platinum-anomaly study and Napier/Clube Taurid Complex modeling, which I flag as model-prior since I cannot independently verify current literature status. Material impact-proxy evidence (spherules/nanodiamonds) in broader sediment records is moderately detectable (0.35) but has historically been disputed on grounds of contamination and reproducibility, which tempers confidence without implying falsity. Genetic evidence is weak and indirect (0.3) since Younger Dryas-era genomes are sparse and any extinction/bottleneck signal is hard to attribute causally to a specific mechanism. Textual evidence is essentially impossible (0.0) since writing did not exist in this era, and oral_tradition/iconographic claims (0.1) are extremely low-confidence given ~10,000+ years of transmission distance and the highly speculative nature of proposed prehistoric comet iconography. Given the strong plausibility of ice-core and astronomical detectability, an absence of positive geological/astronomical corroboration would be more evidentially meaningful than absence of oral/iconographic or textual traces, whose near-zero detectability fully explains their absence regardless of the hypothesis's truth. Overall adjustment (0.55) reflects that this is a testable, moderately-preserved-record hypothesis, not one doomed to undetectability, but corroboration remains scientifically contested rather than settled."
+  }
+}

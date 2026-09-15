@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "0059383a8c98751b34b2f70997e89bea9a50aedb4467c771f2c06eb66c14a45c",
+  "response": {
+    "expected_evidence": [
+      "Archaeological continuity: uninterrupted or only gradually shifting lithic technology and site occupation across the Younger Dryas boundary (e.g., Clovis-to-Folsom transition) rather than a demographic collapse (material)",
+      "Ancient-DNA and population-genetic studies of Paleoindian and later Native American remains showing no strong bottleneck or founder-effect signature dated to roughly 12,900 BP (genetic)",
+      "Continued or only modestly reduced site density and occupation intensity in North American radiocarbon-dated site databases spanning the Younger Dryas onset (material)",
+      "Absence of, or only localized/ambiguous, impact-proxy markers such as platinum anomalies, nanodiamonds, meltglass, or a black mat at a scale sufficient to argue continent-wide demographic effects (geological)",
+      "Lack of a confirmed large Taurid-stream impactor or crater, and independent astronomical/orbital-dynamics assessments arguing against a Taurid encounter capable of causing population-level effects (astronomical)",
+      "Megafauna extinction timing and paleoclimate proxies that are not causally coupled to a sudden human population crash (geological)",
+      "No consistent oral-tradition motifs among North American Indigenous groups specifically describing a sky-fire extinction event tied to this date (oral_tradition, low expected weight)",
+      "Absence of iconographic depictions such as petroglyphs or portable art unambiguously showing a cosmic airburst or mass-death event at this horizon (iconographic, low expected weight)",
+      "Mainstream archaeological consensus treating the Younger Dryas Impact Hypothesis as contested or largely unsupported for continental depopulation (model_prior, unverified/low-tier)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "This placement asserts a REFUTATION: that a Taurid-stream cosmic impact did NOT cause a North American population/demographic disruption at approximately 10,950 BCE, coinciding with the Younger Dryas onset, so the younger-dryas detectability row is most applicable. Evidence for a refutation is inherently evidence of continuity or absence-of-effect rather than a positive catastrophic signature, which is harder to demonstrate unambiguously but is exactly the kind of null result the geological, genetic, and material records are well-suited to preserve. Geological (0.65) and astronomical (0.7) detectability are comparatively high, reflecting decades of active, well-funded testing of the Younger Dryas Impact Hypothesis (platinum layers, nanodiamonds, crater surveys, orbital modeling) that could readily surface confirming or disconfirming data. Genetic (0.3) and material/archaeological (0.35) detectability are moderate: ancient DNA and site-occupation records exist but are sparse and unevenly dated for this exact window, limiting resolution of a demographic collapse-versus-continuity argument. Textual (0.0) and linguistic (0.05) evidence are essentially impossible for a preliterate population at this time, and oral_tradition (0.1) and iconographic (0.1) evidence are weak both because such traditions and art are hard to date this precisely and because negative claims (absence of catastrophe) are not naturally encoded in myth or art. Given the strong existing scientific record on geology and astronomy for this specific hypothesis, the refutation is plausibly detectable and testable even though several evidence channels are structurally weak. The overall adjustment (0.45) is a weighted blend favoring the higher-detectability geological/astronomical/material channels most relevant to demographic-impact claims, while discounting for the near-total absence of textual/linguistic/iconographic corroboration expected for this timeframe; a low score in those specific channels should not be read as evidence against the refutation itself."
+  }
+}

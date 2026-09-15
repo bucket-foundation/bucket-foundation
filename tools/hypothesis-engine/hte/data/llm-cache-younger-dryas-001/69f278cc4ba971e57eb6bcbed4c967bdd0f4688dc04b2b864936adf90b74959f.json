@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "72806ad8d35733898196a4ff85dbb7c455d33eecb5a46094b6e1f47450e5c092",
+  "response": {
+    "expected_evidence": [
+      "geological: freshwater/meltwater signatures (isotopic excursions, e.g., low d18O pulses) in North Atlantic and Gulf of Mexico marine sediment cores dated to the Younger Dryas onset, consistent with Lake Agassiz/Lake Ojibway or Arctic outburst drainage disrupting AMOC",
+      "geological: ice-core proxies (GISP2, NGRIP) showing abrupt cooling and dust/chemistry shifts synchronous with the proposed meltwater pulse",
+      "geological: varved lake sediments, glacial outwash channels, and geomorphological traces of a catastrophic drainage event (e.g., relict spillway channels in the Canadian Shield/Mississippi-Hudson corridors)",
+      "material (paleontological): megafaunal fossil assemblages and radiocarbon-dated extinction/last-appearance datums in North America clustering around the Younger Dryas boundary, ideally showing differential timing across taxa (species-specific pattern)",
+      "material (archaeological): Clovis-era site abandonment, technological shifts, or population decline signatures coincident with the cooling event",
+      "genetic: ancient DNA from megafaunal remains showing species-specific population bottlenecks, loss of genetic diversity, or extirpation events that correlate with cooling but differ in severity by species (supporting species-specific-vulnerability)",
+      "genetic: phylogeographic studies distinguishing climate-driven range contraction from other extinction drivers (overkill, disease) on a per-taxon basis",
+      "astronomical/geochemical (tangential): platinum/iridium or spherule layers sometimes invoked in the competing Younger Dryas impact hypothesis, relevant as an alternative causal mechanism to rule in/out",
+      "model_prior: general paleoclimate consensus (Broecker-style freshwater-forcing hypothesis) linking meltwater pulses to Younger Dryas cooling, and separate literature on selective megafaunal extinction vulnerability"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The hypothesis sits mostly in the Younger Dryas period (with onset drawing from late Upper Paleolithic conditions) and its causal claim is inherently geophysical/paleoecological rather than cultural, so it depends almost entirely on non-textual, non-linguistic evidence channels. Per the detectability table, geological (0.6-0.65) and astronomical (0.7) proxies for this period are the highest-detectability channels and are exactly the kind of archives (ice cores, marine/lake sediment cores, geomorphology) known to preserve abrupt Pleistocene-Holocene climate transitions -- this is a real, actively studied paleoclimate signal, not a purely speculative claim. Material/paleontological evidence (0.35) and genetic/ancient-DNA evidence (0.25-0.3) are lower but still nonzero and improving with technology (ancient DNA recovery from megafaunal remains has advanced substantially in recent decades), so differential species vulnerability is in principle testable even though bone/DNA preservation over ~12,000+ years is lossy and geographically patchy. Textual, linguistic, oral_tradition, and iconographic channels are essentially inapplicable (0.0-0.1) since this predates writing and oral traditions this far back are unreliable as direct corroboration -- their absence should not be read as evidence against the hypothesis. Overall, the hypothesis is testable via existing paleoclimate and paleogenetic methods, and corroborating (or disconfirming) evidence has plausibly survived and been actively sought, justifying a moderate composite detectability adjustment around 0.45, dominated by the strong geological/ice-core signal but tempered by weaker and more fragmentary genetic/material support for the specific species-specific-vulnerability mechanism."
+  }
+}

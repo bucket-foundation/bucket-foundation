@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e4eb5af58b5fceadcae9a636a2d8b688ccaa087f5b3e9a2a5082f6a2d242d368",
+  "response": {
+    "expected_evidence": [
+      "Geological: sediment/ice-core stratigraphy at the ~12,900 cal BP Younger Dryas boundary (YDB) showing absence or non-replication of proposed impact markers (platinum anomaly, nanodiamonds, magnetic spherules, soot/charcoal 'black mat') across independently sampled North American sites",
+      "Geological: geochemical background studies attributing purported anomalies to non-impact sources (e.g., wildfire soot, terrestrial volcanic/detrital platinum, cosmic dust flux baseline) rather than a discrete impact event",
+      "Astronomical: orbital-dynamics modeling of the Taurid meteor stream/complex assessing probability and physical plausibility of a fragment large enough to trigger hemispheric cooling arriving precisely at ~10,950 BCE",
+      "Astronomical/geological: absence of a corresponding impact crater or airburst structure of appropriate size and age in North America or the adjoining ice sheet",
+      "Material (archaeological): continuity (rather than abrupt termination) of Clovis/Paleoindian material culture and site occupation across the YD onset boundary, arguing against a sudden catastrophic disruption",
+      "Model-prior (modern scientific literature, recalled from training, not primary evidence): peer-reviewed replication failures and critiques of the Younger Dryas Impact Hypothesis (e.g., Pigati et al. 2012, Holliday & Meltzer 2010, van Hoesel et al., Daulton et al. on nanodiamond re-identification) - flagged as model-prior, unverified within this evidence base",
+      "Genetic: megafauna extinction chronology/genetic bottleneck timing data that is more consistent with climate-driven or human-predation causes than an abrupt impact event"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.58,
+    "rationale": "The interval -10,950 aligns closely with the conventional Younger Dryas onset (~12,900 cal BP), so the 'younger-dryas' row is the appropriate detectability context rather than 'upper-paleolithic'. A refutation of the Younger Dryas Impact Hypothesis (YDIH) would primarily manifest as geological (0.65) and astronomical (0.7) evidence - both scored relatively high in this table, meaning sediment/ice-core records and orbital-dynamics reconstructions from this period are well-preserved and analytically accessible with modern methods. This is corroborated by the fact that the YDIH has in reality been an intensely studied, high-resolution debate (multiple independent labs sampling the same boundary layers), which is consistent with high geological/astronomical detectability rather than being a low-detectability 'absence of evidence' scenario. Material evidence (Clovis continuity, 0.35) and genetic evidence (extinction timing, 0.3) are secondary and moderately detectable, while textual (0.0) and linguistic (0.05) are essentially inapplicable for a preliterate context and contribute nothing. Because the strongest-relevance evidence types (geological, astronomical) are the ones with the highest detectability scores in this table, absence of confirmed impact markers is a meaningful, plausible finding rather than a detection-limited null result - supporting that the refutation could indeed be evidenced and found. I weight the overall adjustment toward the geological/astronomical average, moderated downward slightly by the lower-scoring material/genetic contributions, landing near 0.58. Any specific claims about actual published replication studies (e.g., named papers/authors) are drawn from training-based model-prior recall, not from verified evidence text provided here, and should be treated as low-tier/unverified pending confirmation."
+  }
+}

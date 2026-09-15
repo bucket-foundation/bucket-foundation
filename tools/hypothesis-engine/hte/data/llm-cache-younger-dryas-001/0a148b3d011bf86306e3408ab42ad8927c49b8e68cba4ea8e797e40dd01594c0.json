@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "64971bc304d95c2002b78d1642fed6361d5085c19e05d226d064092d08ee6693",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: platinum (and iridium) concentration anomaly in sediment/ice cores dated to ~12,800 cal BP (Younger Dryas boundary layer) across multiple North American sites",
+      "geological: associated markers in the same stratigraphic layer (magnetic spherules, high-temperature meltglass, nanodiamonds, soot/charcoal spikes) consistent with an impact-ejecta or airburst fallout event",
+      "astronomical/cosmogenic: proxy signatures such as anomalous cosmogenic nuclide (e.g., 10Be, 14C) excursions or ice-core chemistry consistent with an extraterrestrial input near the same date",
+      "material: macroscopic impact debris (tektites, shocked quartz, meteoritic fragments) if a proximal source crater or airburst site exists",
+      "genetic: megafaunal extinction/population bottleneck signals temporally coincident with the boundary layer (indirect corroboration, weak link)",
+      "model_prior: existing paleoclimate/impact literature (Younger Dryas Impact Hypothesis, e.g., platinum-anomaly studies by Petaev et al. 2013, Moore et al. 2017) discussing and debating this exact anomaly as corroborating or refuting evidence"
+    ],
+    "detectability_adjustment": 0.6,
+    "rationale": "The date -10850 corresponds closely to the Younger Dryas onset (~12,800 cal BP), so the 'younger-dryas' row is the appropriate detectability context rather than a generic upper-paleolithic default. In that row, geological (0.65) and astronomical (0.7) evidence kinds are the most preservable/detectable channels for this hypothesis, since platinum/iridium anomalies and cosmogenic proxies are recorded in long-lived sedimentary and ice-core archives that are routinely sampled by paleoclimate and impact-geology research; this matches the real-world fact (recalled as model-prior, unverified against the evidence text supplied) that platinum spikes at the Younger Dryas boundary have indeed been reported at numerous North American sites, making this hypothesis plausible and its corroborating evidence type well within reach of existing detection methods. Material evidence (macroscopic ejecta, spherules) is less durable over ~12,800 years of weathering, erosion, and bioturbation, hence the lower material detectability (0.35), and genetic evidence is only indirectly linked to an impact-ejecta mechanism, warranting a lower weight (0.3). Textual, linguistic, oral_tradition, and iconographic channels are essentially inapplicable this far back given the near-zero/low detectability scores for pre-literate, pre-oral-continuity-tracked periods, so their absence is fully explained by detectability limits rather than by the hypothesis being false. Averaging across the plausible, high-yield channels (geological, astronomical) while discounting the less durable material/genetic channels yields a composite adjustment of ~0.6, reflecting that this is one of the better-attested and independently corroborated paleo-impact hypotheses, but still short of certainty because no confirmed impact crater or unambiguous meltglass source has been conclusively linked to a solar-proton-event mechanism specifically (as opposed to a cometary/asteroidal impact mechanism more commonly discussed in the literature)."
+  }
+}

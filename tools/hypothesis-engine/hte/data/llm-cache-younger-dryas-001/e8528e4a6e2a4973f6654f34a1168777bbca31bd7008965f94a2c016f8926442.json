@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "06fc1c7920d8eb17488feacac611c5b89f7d36dab38d862edcd3721d1e73a30b",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum/iridium anomaly layers (Younger Dryas Boundary layer) at multiple North American sedimentary sites",
+      "Geological: magnetic and glassy spherules, nanodiamonds, and melt-glass within the same boundary layer",
+      "Geological: black mat organic-rich sediment layer marking the Younger Dryas onset across North American sites",
+      "Astronomical: physical or computational modeling consistent with a low-altitude airburst reproducing observed spherule and melt distributions without requiring a crater",
+      "Geochemical: extraterrestrial-signature ratios (Ni, Cr, Os, Ir) in the anomaly layer",
+      "Ice-core geochemical records (e.g., Greenland) showing a correlated platinum spike near the same interval",
+      "Material/archaeological: disruption or discontinuity in Clovis-era occupation sites near the Younger Dryas onset",
+      "Genetic: megafaunal population decline signals temporally clustering near the proposed event",
+      "Model_prior: prior published debate framework (Firestone-era hypothesis and later critiques) as existing but contested background"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis maps onto the younger-dryas period row since the interval brackets the conventional Younger Dryas onset. The core claim is fundamentally geological and astronomical, and both categories have comparatively high detectability in this table (geological 0.65, astronomical 0.7) relative to textual (0.0) or oral_tradition (0.1), which are essentially inapplicable this far back. Sedimentary platinum/iridium anomalies, spherules, and black-mat layers are exactly the kind of physical trace that can survive over roughly 13,000 years, and such anomalies have been reported at various North American sites in the literature I recall from training (model-prior, unverified), though their interpretation as evidence of a cosmic airburst versus terrestrial or statistical artifacts remains actively disputed. Material archaeological evidence (Clovis disruption) has only middling detectability (0.35) and many confounds; genetic (0.3) and linguistic/oral_tradition/iconographic channels (0.05-0.1) are weak evidentiary channels for an event predating writing and reliable oral tradition. Because the most diagnostic evidence types (geological, astronomical) have above-average detectability, an absence of unambiguous corroborating evidence would be harder to excuse purely on detectability grounds than for a linguistic or textual claim; the persistent scientific controversy over interpretation of existing platinum/spherule data (rather than total absence of data) is consistent with genuinely mixed, moderately detectable evidence rather than clear confirmation or falsification. I set the aggregate detectability adjustment at 0.6, weighting the high-detectability geological/astronomical channels most relevant to this mechanism claim, while discounting the many low-detectability channels that are largely non-informative for this period and hypothesis type."
+  }
+}

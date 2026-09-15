@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "6aa550043b25b1c3ec21fff4dd10d7bf0630762360c8584325b3120e61bac03d",
+  "response": {
+    "expected_evidence": [
+      "Cosmogenic radionuclide spike (10Be, 36Cl) in Greenland ice cores dated to ~12,900 cal BP, indicating a sudden burst of ionizing/cosmic radiation coincident with Younger Dryas onset",
+      "Synchronous atmospheric 14C production spike in tree-ring/varve records matching the ice-core radionuclide anomaly",
+      "Nitrate (NOx) and ammonium concentration anomalies in Greenland ice layers consistent with gamma-ray-induced atmospheric chemistry changes (NOx production from ionization of N2/O2)",
+      "Identification of a nearby supernova remnant (SNR) with kinematic/expansion-age dating consistent with ~13,000 years ago, within a distance capable of delivering damaging gamma-ray flux to Earth",
+      "Absence of, or disruption to, ozone-layer proxies in the ice record consistent with gamma-ray-driven ozone depletion prior to the cooling onset",
+      "Model-prior: existing published astrophysical/paleoclimate literature proposing or testing a nearby supernova as a Younger Dryas trigger mechanism"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis proposes a highly detectable class of evidence: (1) astronomical evidence (a nearby supernova remnant, dateable via expansion/proper-motion kinematics) and (2) geological/ice-core evidence (cosmogenic radionuclide and NOx anomalies), both of which sit in the higher-detectability bands for this era (astronomical ~0.7, geological ~0.65 in the younger-dryas row), since Greenland ice sheets preserve continuous, well-studied stratigraphic records precisely spanning this interval and modern astrophysical surveys can locate and age young (order 10-20 kyr) supernova remnants out to considerable distances. Material (soot/impact-proxy) and genetic evidence are far weaker discriminators for a supernova-specific mechanism (0.3-0.35) and are not primary expected evidence here. No confirmed, unambiguous ice-core radionuclide spike or NOx anomaly precisely coincident with the Younger Dryas onset, and no candidate SNR with a securely dated age matching ~12,900 cal BP and sufficient proximity, is established in the mainstream record as far as I can determine from training knowledge (model-prior, unverified) \u2014 the dominant explanations for YD cooling in the literature I recall are AMOC/meltwater-pulse shutdown and, separately, the contested Younger Dryas impact hypothesis, not a supernova gamma-ray mechanism. Because the expected evidence types (astronomical, geological) have comparatively high detectability for this period and such signals are actively searched for by ice-core and radionuclide chronologists, the absence of a confirmed detection is somewhat informative against the hypothesis rather than being fully explained by poor preservation. I set the detectability adjustment at 0.55, reflecting that while the highest-detectability evidence types (astronomical, geological) support the possibility that corroborating traces could have survived and been found, the overall evidentiary case is weakened by the lower detectability of supporting material/genetic proxies and by this being a minority, largely unconfirmed hypothesis in the literature."
+  }
+}

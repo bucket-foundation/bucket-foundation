@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "8257a4c331e68d361d2c90de2ff81057f1ce6cfdcf01c5eae16fa227190bb771",
+  "response": {
+    "expected_evidence": [
+      "Geological: failure of multiple independent labs to detect statistically significant platinum, iridium, or nanodiamond anomalies at the ~12,900 cal BP Younger Dryas boundary (YDB) layer across the claimed panel of North American sites",
+      "Geological: re-analysis papers (e.g. Pinter et al. 2011 'The Younger Dryas impact hypothesis: A requiem'; Daulton et al. 2010 on nanodiamonds; van Hoesel et al. 2014; Holliday & Meltzer 2010) reporting non-replication or methodological artifacts (misidentified magnetic spherules, framboids, or contamination) in independent re-sampling of original core/stratigraphy sites",
+      "Astronomical: absence of a confirmed impact crater of appropriate age (~12,900 BP) and size in North America or the Greenland/Laurentide ice sheet despite targeted searches",
+      "Material/archaeological: absence of a demonstrable causal break in Clovis lithic technology, megafaunal extinction timing, or human population decline tightly synchronous with the claimed impact layer across sites",
+      "Model-prior (scientific literature record): peer-reviewed rebuttal and replication-failure literature (this is a modern textual/publication record, not ancient preservation-dependent evidence, so its survival is effectively guaranteed regardless of the table's ancient-period detectability values)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The hypothesis's substantive content (geological/geochemical markers, a possible crater, and archaeological correlates in the 13,000-12,001 BP window) maps onto the 'younger-dryas' detectability row, where geological (0.65) and astronomical (0.7) evidence are comparatively well-preserved and detectable, while material (0.35) is moderate. However, the actual mechanism cited \u2014 'independent-replication-failure' \u2014 is fundamentally a feature of the *modern scientific record* (peer-reviewed papers from ~2010-2020s re-testing the original 2007 Firestone et al. claims), not of ancient stratigraphy itself. That publication trail is essentially certain to survive and be found (functionally textual detectability near 1.0 in a modern-scholarship sense), which is not captured by any row in the given table since it stops at 'classical'. Averaging the ancient-evidence detectability (geological/astronomical/material, ~0.55-0.65) with the near-certain survivability of the modern critique literature justifies an upward-adjusted composite of ~0.6. This is consistent with model-prior knowledge (low-tier, unverified) that the Younger Dryas Impact Hypothesis did in fact face well-documented independent replication failures in the geological record (misidentified spherules/nanodiamonds, no confirmed crater), making the hypothesis plausible and its absence-of-confirming-impact-evidence not attributable mainly to poor detectability but to genuine non-replication. Could-have-survived is true: stratigraphic sediment cores, magnetic/carbon spherule samples, and platinum-anomaly measurements from this period are routinely sampled and archived, and failed-replication findings would be published and searchable."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "81d47dac8479382e752f0faf3e91a21e26b3cb797fd9df295afc316e884e7992",
+  "response": {
+    "expected_evidence": [
+      "Geological: absence or inconsistency of platinum/iridium/spherule 'impact ejecta' layers across the claimed multi-continent Younger Dryas boundary sites, or demonstration that such anomalies are explained by non-impact processes (volcanism, wildfire, terrestrial reworking, coal fly-ash contamination)",
+      "Geological/astronomical: failure to locate a confirmed impact crater of appropriate age and size (e.g., sub-glacial search results from Greenland such as Hiawatha crater dated too young/old to match), or independent dating showing candidate craters don't align with -11000 to -10001 interval",
+      "Astronomical: lack of corroborating extraterrestrial signatures (shocked quartz, proper nanodiamond polymorphs reproducible by independent labs) at claimed sites",
+      "Material/archaeological: continuity of Clovis and other Paleoindian technological traditions across the YD boundary rather than abrupt collapse, suggesting no catastrophic disruption event",
+      "Genetic: megafaunal population decline/extinction showing gradual, staggered timing across species and continents (inconsistent with a single synchronous impact trigger), better correlating with human arrival/overhunting and/or climatic warming-cooling stress",
+      "Model-prior: peer-reviewed refutation literature (e.g., critiques by Pigati, Daulton, Holliday, van Hoesel, Boslough and colleagues) systematically re-testing and failing to replicate original YDIH markers"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "This hypothesis is a refutation claim, so the relevant evidence is negative/counter-evidence: absence of reproducible impact markers, absence of a dated crater, and gradual (non-catastrophic) extinction/cultural-continuity patterns. Mapping the -11000 to -10001 interval to the 'younger-dryas' period row, the strongest-detectability channels are astronomical (0.7) and geological (0.65) \u2014 sediment cores, ice cores, and crater surveys are well-preserved and heavily studied for this exact interval, which is why the YDIH debate has in fact been extensively tested and largely rebutted in the literature (model-prior, unverified beyond general recollection of the scientific debate). Material/archaeological (0.35) and genetic (0.3) evidence is moderately detectable via lithic assemblages and ancient DNA/dating of megafaunal remains, though preservation and sampling gaps limit certainty. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are essentially inapplicable/undetectable for a pre-literate, ~13,000-year-old event. Given that the most decisive evidence types (geological, astronomical) have relatively good survivability for this period, the refutation is plausible to detect and is not merely an artifact of poor preservation \u2014 a moderate-to-good blended detectability (~0.45) reflects that some evidence channels (textual, linguistic, iconographic, oral) contribute little while geological/astronomical/genetic/material channels carry most of the evidentiary weight."
+  }
+}

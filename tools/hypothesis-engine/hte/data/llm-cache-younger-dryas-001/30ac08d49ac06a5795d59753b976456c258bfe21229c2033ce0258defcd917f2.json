@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "57760f2d52b7e3fd1318bbb5d2ccd08851c8fdc7a26d6f2d25e99ab39298282d",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum/iridium anomaly spike in Greenland ice-core stratigraphy dated to ~10,950 BCE (Younger Dryas onset boundary)",
+      "geological: magnetic/glassy microspherules, nanodiamonds, or melt-glass particles in the same ice layer",
+      "astronomical: candidate impact structure or crater ejecta field (e.g. sub-glacial crater under the Greenland ice sheet) with matching age",
+      "genetic: synchronous megafaunal population collapse/bottleneck signal in ancient DNA dated near the same interval",
+      "material: archaeological occupation hiatus or Clovis-era assemblage disruption layer correlating with the ejecta horizon",
+      "model_prior: prior published Younger Dryas Impact Hypothesis (YDIH) literature reporting platinum/spherule anomalies in Greenland and elsewhere"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.72,
+    "rationale": "The hypothesis pins a precise calendar interval (~10,950 BCE) to the Younger Dryas onset and specifies the Greenland ice sheet as the findspot, which is actually an unusually favorable preservation context: polar ice cores (GISP2, NEEM, NGRIP) provide continuous, finely dated annual stratigraphy that has genuinely been sampled for exactly this kind of signal (platinum spikes, spherules) in real published studies (model-prior, unverified in detail here). This pushes geological and astronomical detectability above the generic younger-dryas baseline (0.65/0.70), since ice-sheet archives are near-ideal for capturing and preserving a single fallout event, unlike terrestrial sediments subject to erosion/reworking. Genetic and material evidence remain harder to pin to a single-year interval given dating uncertainty and taphonomic loss typical of the period, so those stay near baseline (0.30/0.35). Textual, linguistic, oral_tradition, and iconographic channels are essentially non-existent this early and contribute nothing. Given that a real search for this signature has been conducted and produced at least contested positive reports, absence of definitive confirmation should be read as scientific controversy/replication failure rather than a detectability failure - the archive type is well-suited to preserving such evidence if the event occurred, but the impact-mechanism itself remains empirically disputed."
+  }
+}

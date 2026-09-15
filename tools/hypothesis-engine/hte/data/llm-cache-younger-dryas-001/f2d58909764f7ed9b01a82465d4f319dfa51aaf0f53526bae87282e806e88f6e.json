@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e77207c1bed3eec86f5830278c4fdbe57ceab4268b621b4b08f976c22cd4a9bd",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-group element (iridium/platinum) enrichment spikes in the c. 10,850 BCE sediment/stratigraphic layer at Middle Eastern sites (e.g., Abu Hureyra, Syria), plus microspherules, magnetic grains, and a Younger Dryas Boundary black mat layer",
+      "Material: meltglass, vesicular carbon spherules, and purported nanodiamonds recovered from occupation layers dated to this interval (as claimed by Bunch et al. 2012 for Abu Hureyra, though later disputed by Sun et al. 2020 and others)",
+      "Astronomical/geochemical proxies: cosmogenic isotope anomalies (e.g., 14C, 10Be spikes) or ice-core signatures consistent with an airburst event around 12,800 cal BP",
+      "Genetic: population bottleneck or discontinuity signals in regional human/faunal DNA coincident with the event (weak, indirect)",
+      "Oral tradition: flood/fire-from-sky myths in later Near Eastern cultures sometimes speculatively linked to a folk memory of the event (e.g., interpretations of Gobekli Tepe's 'Vulture Stone')",
+      "Iconographic: symbolic depictions on early Neolithic/Epipaleolithic art potentially encoding a cosmic event (highly speculative, contested)",
+      "model-prior: existing Younger Dryas Impact Hypothesis (YDIH) literature and its extension to Levantine sites like Abu Hureyra"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The interval -10850 corresponds closely to the Younger Dryas onset (~12,800 cal BP), so I am classifying this under the 'younger-dryas' period row rather than treating it as unspecified. The hypothesis's core claim (iridium/impact-proxy anomaly, Middle East, airburst mechanism) maps most directly onto geological and material evidence kinds. Per the detectability table, younger-dryas geological (0.65) and astronomical (0.7) detectability are relatively high, meaning that if a real cosmic airburst deposited PGE/iridium anomalies, spherules, or meltglass in this era, such signals plausibly could survive in stratified sediment and be detected by modern geochemical analysis \u2014 this is exactly the empirical basis of the real-world Younger Dryas Impact Hypothesis and its claimed Abu Hureyra (Syria, Middle East) meltglass/nanodiamond evidence (model-prior, unverified: Bunch et al. 2012). However, material evidence detectability is markedly lower (0.35) because organic/glassy residues degrade and single-site findings are taphonomically fragile, and the actual published evidence for this specific locality has been substantially challenged by later reanalysis (model-prior: Sun et al. 2020 argued the 'impact markers' at Abu Hureyra are more consistent with ordinary combustion/anthropogenic processes, not an extraterrestrial airburst). Textual (0.0) and linguistic (0.05) evidence cannot exist this early (pre-writing), and oral_tradition/iconographic proxies (0.1 each) are extremely low-confidence and speculative bridges across ~10,000+ years, so their absence is fully expected on detectability grounds alone rather than indicating falsity. Given this mix \u2014 moderately high detectability for the diagnostic geological/astronomical proxies but low detectability and already-contested status for the corroborating material evidence, and near-zero detectability for all soft/cultural proxies \u2014 I set an aggregate detectability adjustment of 0.45, slightly below the raw geological score, to reflect that even where evidence could survive and has been sought, its interpretation as a genuine cosmic-impact signature (versus mundane taphonomic/anthropogenic causes) remains actively disputed in the literature, so evidentiary absence or ambiguity should not be read as strong disconfirmation of the hypothesis."
+  }
+}

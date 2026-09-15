@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "4c094e85a16ba9c73502cc1edce66a5332095c675216c76f264e33d53a2f2c29",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Ancient-DNA/genetic studies of Paleoindian and early North American populations showing continuous genetic diversity/effective population size across ~12,900 cal BP with no bottleneck signature (genetic)",
+      "Archaeological/material continuity across the Younger Dryas boundary: uninterrupted lithic technocomplex sequences (e.g., Clovis to Folsom/Dalton), stable site occupation density and radiocarbon-dated site frequency curves (material)",
+      "Ice-core and sediment radionuclide records (10Be, 36Cl, 14C spikes) tested for evidence of an ionizing cosmic/gamma-ray event at ~10,950 BCE, with null or inconclusive results (astronomical)",
+      "Younger Dryas boundary sedimentary layers analyzed for impact/ionization proxies (platinum, iridium, nanodiamonds, magnetic spherules, soot/biomass-burning markers) showing either absence or non-correlation with any demographic decline (geological)",
+      "Peer-reviewed critiques/meta-analyses explicitly refuting a causal link between a cosmic-impact/gamma-ray-ionization event and North American population demography (model_prior, drawing on published debates over the Younger Dryas Impact Hypothesis)",
+      "Absence of expected biological effects of gamma-ray ionization (e.g., elevated mutation load, skin/eye pathology proxies, ozone-depletion-linked UV damage markers) in skeletal or genetic remains (genetic/material, largely negative evidence)"
+    ],
+    "detectability_adjustment": 0.4,
+    "rationale": "This hypothesis is a refutation claim tied to the Younger Dryas onset (-10950 falls at the YD boundary, so the 'younger-dryas' row applies best). Confirming a refutation requires (a) proxy records capable of detecting or excluding a gamma-ray/cosmic ionization signal (ice-core radionuclides, boundary-layer geochemistry) and (b) demographic proxies (ancient DNA, site-frequency/lithic continuity) capable of showing no population disruption. Per the table, astronomical (0.7) and geological (0.65) detectability are relatively strong for this period, since ice cores and sedimentary sequences from ~13,000 cal BP are well preserved and heavily studied (this overlaps with real scientific literature on the Younger Dryas Impact Hypothesis and its critiques). However, genetic (0.3) and material (0.35) detectability for directly assessing demographic continuity in North American Paleoindians is weaker, given sparse skeletal/genomic sampling from this era, and any 'refutation' ultimately rests heavily on model_prior (0.3) \u2014 i.e., scientific consensus/argument rather than a single physical artifact of absence. Averaging across the relevant evidence kinds (weighted toward the stronger geological/astronomical channels but tempered by weak genetic/material/model_prior channels) yields a composite detectability below any single row, so I set the adjustment at 0.4. This is a case where a low detectability score for genetic/material channels should explain sparse direct demographic evidence, without implying the refutation itself is false \u2014 much of the supporting case would necessarily come from indirect proxy and literature-level model_prior sources (noted here as model-prior, unverified) rather than de novo period-specific data."
+  }
+}

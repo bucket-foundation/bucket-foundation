@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "6358ec836ce8ddb4830637f8f7c3019ff7d34a1fc9a9bdf60d2ba9571b6eee0f",
+  "response": {
+    "expected_evidence": [
+      "geological: geochemical impact/burn proxy layer within Greenland ice cores (GISP2/GRIP/NGRIP) at the Younger Dryas onset boundary (~12.9 ka) \u2014 platinum/iridium enrichment, elevated ammonium and nitrate (biomass-burning proxies), black-carbon/soot horizon, possible nanodiamond or magnetic microspherule concentrations",
+      "astronomical: cosmogenic-isotope excursion (10Be, 36Cl in ice; correlated 14C in contemporaneous tree-ring/lake records) that could indicate an enhanced cosmic-ray/radiation flux consistent with a nearby supernova, rather than solar or ordinary production variability",
+      "material: correlative charcoal/soot 'black mat' sediment layers at multiple Northern Hemisphere sites dated to the same interval, indicating continent-scale biomass burning consistent with an impact-winter mechanism",
+      "genetic: megafaunal population bottleneck/extinction signatures in ancient DNA dated to ~12.9-11.7 ka coincident with the proposed event",
+      "model-prior: recollection that the mainstream 'Younger Dryas Impact Hypothesis' attributes the platinum/soot anomaly to a cometary airburst/fragmentation, not a supernova; a supernova-specific trigger is a minority/fringe variant with limited peer corroboration (flagged as low-tier, unverified)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "Greenland ice sheet stratigraphy is one of the best-preserved, highest-resolution archives for this interval \u2014 continuous annual layering with well-developed chronologies makes geological signals (platinum/iridium spikes, ammonium/nitrate biomass-burning markers, black-carbon layers) highly detectable (table value 0.65 for younger-dryas/geological), and such anomalies have in fact been reported and debated in the literature for the YD boundary, supporting could_have_survived=true. Astronomical detectability is nominally even higher (0.7) via cosmogenic-isotope proxies (10Be/36Cl/14C), but these can only indicate an elevated radiation/cosmic-ray flux \u2014 they cannot uniquely confirm a supernova as opposed to solar or other causes, and no corroborated supernova remnant of the correct age/distance is known (model-prior, weak). Material (0.35), genetic (0.3), and oral_tradition/iconographic/textual (near 0, since no writing existed) channels are weak or absent as expected for a pre-literate period, consistent with the hypothesis engine's 'action=inconclusive' framing \u2014 the causal mechanism remains genuinely contested in the evidentiary record even though the record itself (ice cores) is well preserved. Given that the strongest, most decisive lines of evidence (geological and astronomical) are moderately-to-highly detectable but do not cleanly discriminate 'supernova' from alternative triggers (e.g., cometary airburst), I set the composite detectability adjustment slightly below the geological/astronomical ceiling to reflect this specificity gap, rather than treating persistent inconclusiveness as evidence of falsity."
+  }
+}

@@ -211,10 +211,146 @@ test**, in order:
    anomaly corroboration groups, the two most likely to flip if a
    coauthorship-aware independence check replaces the surname proxy.
 
+## Campaign one, live
+
+Live `claude -p` pass (Sonnet), `HTE_LLM_WORKERS=4 hte campaign run --corpus
+younger-dryas --seeds 3`, run `20260914T224502Z`, 2026-09-14 22:45Z to
+2026-09-15 00:20Z, 467 model calls. Numbers below come from
+`hte/data/campaign-results/younger-dryas-001.json` (assembled by `hte
+campaign results` from a `--replay-only` pass over the run's own cache, git
+`2176fea`; that replay reproduced the live `calibration.json` byte for byte
+and every one of the 336 timeline entries' Elo and posterior). The full
+per-survivor record is `younger-dryas-001.survivors.json` next to it, and
+the model cache is tracked at `hte/data/llm-cache-younger-dryas-001/`, so
+the run replays at zero cost.
+
+Run `20260915T002022Z`, git `2bc097676`, corpus `younger-dryas`.
+
+| Metric | Value |
+|---|---|
+| Sources | 47 |
+| Evidence items | 48 |
+| Hypotheses generated | 3205 |
+| Survivors (critic filter) | 360 |
+| Coverage (Chao1 estimate) | 189255.0, observed 3205 (missing mass 0.073) |
+| Robustness stable fraction | 0.756 |
+| Surprise rate | 0.354 |
+| Target-blind rate | 0.600 |
+| Calibration Brier score | 0.054 |
+
+### Per actor
+
+| Actor | Survivors | Max P | Min u | Best Elo | Consensus | Skeptic | Fringe | Uniform |
+|---|---|---|---|---|---|---|---|---|
+| `meltwater-pulse` | 54 | 0.941 | 0.498 | 2604 | 0.941 | 0.941 | 0.941 | 0.751 |
+| `cosmic-impact` | 206 | 0.562 | 0.060 | 1642 | 0.562 | 0.562 | 0.751 | 0.751 |
+| `supernova-event` | 31 | 0.503 | 0.498 | 1505 | 0.503 | 0.502 | 1.000 | 0.751 |
+| `uu-abrupt-northern-hemisphere-warming-events-independent-of-younger-dryas-cooling-as-megafaunal-extinction-driver` | 5 | 0.269 | 1.000 | 1112 | 0.269 | 0.269 | 0.731 | 0.500 |
+| `other-actor` | 17 | 0.269 | 1.000 | 1106 | 0.269 | 0.269 | 0.500 | 0.500 |
+| `volcanic-eruption` | 13 | 0.182 | 0.598 | 894 | 0.182 | 0.182 | 0.378 | 0.500 |
+| `taurid-complex-swarm` | 24 | 0.028 | 0.498 | 131 | 0.028 | 0.004 | 0.594 | 0.299 |
+| `solar-proton-event` | 10 | 0.029 | 0.598 | 121 | 0.029 | 0.004 | 0.996 | 0.500 |
+
+### Top ten by Elo
+
+| # | Id | Actor | Action | Object | Place | Time | b | d | u | a | P | Elo | Stable |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | `763b9c2442aa47cc` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.502 | 0.000 | 0.498 | 0.88 | 0.941 | 2604 | True |
+| 2 | `9b803e9341a0d3a8` | meltwater-pulse | triggered | younger-dryas-onset-cooling | north-atlantic | -20000..-19001 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2311 | True |
+| 3 | `a376dbc934a93298` | meltwater-pulse | inconclusive | younger-dryas-termination | greenland-ice-sheet | -12850..-5950 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2309 | True |
+| 4 | `cbb9b065cbca2dec` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2308 | True |
+| 5 | `ccbc41e00dae9da3` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2307 | True |
+| 6 | `899b5f62fa616238` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2306 | True |
+| 7 | `7edb47ebdce6d461` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -19050..-9050 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2305 | True |
+| 8 | `15f1be1a1bc53099` | meltwater-pulse | inconclusive | younger-dryas-onset-cooling | north-america | -11150..-10850 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2305 | True |
+| 9 | `9e354faaaf474e7d` | meltwater-pulse | corroborated | megafaunal-extinction | north-america | -12750..-9750 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2303 | True |
+| 10 | `623acbb49ca31a95` | meltwater-pulse | inconclusive | younger-dryas-onset-cooling | greenland-ice-sheet | -12850..-5950 | 0.000 | 0.000 | 1.000 | 0.88 | 0.881 | 2300 | True |
+
+### Calibration
+
+| Metric | Value |
+|---|---|
+| Mode | discovery_date |
+| Cutoff year | 2010 |
+| Held-out events | 10 |
+| Covered | 3 |
+| Coverage of truth | 0.300 |
+| Brier score | 0.054 |
+
+### What the live pass answered
+
+The fake-mode section above listed four questions a live pass should
+settle. Three have answers.
+
+1. **The consensus-versus-contested gap holds at the same magnitude.**
+   `meltwater-pulse` sits at 0.941 under consensus, skeptic, and fringe;
+   `cosmic-impact` at 0.562 under consensus and skeptic and 0.751 under
+   fringe; `supernova-event` at 0.503 / 0.502 / 1.000. Those are the
+   fake-mode values to three decimals. The reason is structural: of the
+   68 evidence-bound survivors, 8 carry one supporting item (7 at b =
+   0.502, u = 0.498, one at b = 0.402) and 60 carry only refuting items
+   (b = 0, d from 0.402 to 0.940). Among the supported eight, P = b +
+   a·u separates them by the prior alone, which is why the per-actor
+   maxima repeat the vocabulary's priors. The corpus's 48 items are too
+   few for the linker to stack support on any address; the
+   lowest-uncertainty hypothesis in the run is a refuted one,
+   `f6d3055feedaf35f` (cosmic-impact, refuted, megafaunal-extinction, north-america, independent-replication-failure): b = 0.000, d = 0.940, u = 0.060, P = 0.016, Elo 118.
+2. **Contested and fringe separate on stability.** Robustness marks
+   193 of 206 `cosmic-impact` survivors stable and 46 of 54
+   `meltwater-pulse`; `supernova-event` 3 of 31, `taurid-complex-swarm`
+   2 of 24, `solar-proton-event` 0 of 10. `taurid-complex-swarm`'s own
+   best survivor now reads 0.028 / 0.004 / 0.594 / 0.299 across the four
+   profiles, where fake mode gave 0.504 / 0.502 / 1.000 / 0.751: a live
+   critic kept only taurid hypotheses whose linked item counts against
+   them.
+3. **Coverage of truth did not move.** Discovery-date holdout at cutoff
+   2010 covered 3 of 10 held-out events, the fake-mode value, from a
+   population of 3,205 addresses against fake mode's 2,476. The Brier
+   score fell from 0.188 to 0.054. The uncovered seven are slot
+   mismatches in fake mode's diagnosis, so the limit is the slot
+   vocabulary. The fourth question, coauthorship-aware independence on
+   the meltglass and platinum groups, is untouched: the surname proxy is
+   still the independence check.
+
+### Findings about the engine
+
+- **Elo inherits the prior when evidence is absent.** 292 of 360
+  survivors bind no evidence (u = 1.000, P = a). The top ten by Elo are
+  all `meltwater-pulse`, and nine of them are unbound; the judge, shown
+  two hypotheses with no evidence naming either, favors the consensus
+  actor. `elo_status` stays `unvalidated_tournament_ranking`. Ranking
+  surfaces should sort by P with Elo as the tiebreak, or the judge
+  prompt should carry the linked items. Filed as a bead.
+- **The unknown-unknown role coined an actor that outranks three seeded
+  ones.** `uu-abrupt-northern-hemisphere-warming-events-independent-of-
+  younger-dryas-cooling-as-megafaunal-extinction-driver` (from Cooper
+  2015's ancient-DNA turnover argument) produced 5 survivors at P 0.269,
+  Elo 1112, above `volcanic-eruption`, `taurid-complex-swarm`, and
+  `solar-proton-event`. Two object entries were added the same way:
+  10Be and nitrate spikes in ice cores (Brakenridge 2011) and the
+  absence of a matching crater (Boslough 2012).
+- **Chao1 is unusable at three seeds.** Observed 3,205 addresses,
+  Chao1 189,255, interval 0.0058 to 1.0 in the self-report. Good-Turing
+  missing mass (0.073) is the number to read; Chao1 needs more seeds
+  before it means anything. Filed as a bead.
+- **One refusal, and it breaks replay.** The meta-review call returned
+  a typed refusal (`MANIFEST.json['refusals']`) and left no entry under
+  the replay's cache key, so `--replay-only` raises `LLMCacheMissError`
+  at that step after every prior stage has replayed. A refusal should
+  replay the way a response does. Filed as a bead.
+- **Preservation critique is one call per survivor.** 360 of the 467
+  calls. The critic and judge roles batch 32 at a time; this one does
+  not yet. Filed as a bead.
+
 ## Reproduce
 
 ```bash
 cd tools/hypothesis-engine
 HTE_LLM_MODE=fake python3 -m hte.cli campaign run --corpus younger-dryas --seeds 2 --out runs
 HTE_LLM_MODE=fake python3 -m hte.cli calibrate --diagnose --corpus younger-dryas --out runs/_calibration
+
+# Campaign one, live, replayed from its tracked cache at zero cost:
+python3 -m hte.cli campaign run --corpus younger-dryas --seeds 3 --replay-only \
+  --cache-dir hte/data/llm-cache-younger-dryas-001 --out runs
+python3 -m hte.cli campaign results runs/younger-dryas/<timestamp> --out /tmp/yd-001.json
 ```

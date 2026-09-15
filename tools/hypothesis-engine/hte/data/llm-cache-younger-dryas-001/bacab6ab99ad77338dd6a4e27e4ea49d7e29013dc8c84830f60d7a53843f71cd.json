@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "40db48f4ef891aaf125b9459604c9ce4ae8e3b4ba2341994d3e7688c33d20d3b",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Peer-reviewed replication/refutation papers attempting to reproduce nanodiamond, magnetic microspherule, and platinum-anomaly signals reported at the ~12.9 ka Younger Dryas boundary layer across independent sites in North America (textual/scientific-literature evidence)",
+      "Independent laboratory re-analyses of the same or new YDB sediment cores/sections finding null or non-reproducible results for proposed impact proxies (material/geological evidence: sediment cores, magnetic grains, spherule counts)",
+      "Meta-analyses or consensus review articles summarizing failed replication attempts and methodological critiques (e.g., misidentification of terrestrial/authigenic spherules, contamination, non-unique platinum sourcing)",
+      "Correspondence, comments/rebuttals, and conference proceedings documenting the scientific dispute and its resolution (textual)",
+      "Absence of an impact crater, shocked quartz, or confirmed extraterrestrial chemical signature despite targeted search (geological/material negative evidence)",
+      "Stratigraphic/geochronological studies showing YD onset/termination boundary is better explained by AMOC shutdown or other terrestrial climate mechanisms rather than impact (geological)",
+      "model-prior: named studies such as Surovell et al. 2009, Pigati et al. 2012, Holliday et al. 2014, van Hoesel et al. 2014, Meltzer et al. 2014 (PNAS) reporting failed independent replication of YD impact markers \u2014 recalled from training, not verified against the provided evidence text"
+    ],
+    "detectability_adjustment": 0.9,
+    "rationale": "This hypothesis is not describing an event that occurred during the Younger Dryas itself, but rather a modern scientific act (a 20th/21st-century scholarly community 'refuting' the cosmic-impact hypothesis for the YD termination via failed independent replication). The period-keyed detectability table (e.g., ('younger-dryas','textual')=0.0, ('younger-dryas','material')=0.35) is calibrated for evidence *originating* in the Pleistocene/early Holocene itself \u2014 writing, artifacts, sediments laid down at that time \u2014 which is the wrong reference class for a claim whose evidentiary trail is 21st-century peer-reviewed literature, lab notebooks, and published datasets. That kind of documentary/scientific record has near-certain survivability and discoverability (it exists in journals, repositories, and citation databases), so the raw table's low 'textual' score for the Younger Dryas period would misleadingly suggest an absence-of-evidence-explains-absence-of-detection situation that does not actually apply here. I therefore apply a substantially upward-adjusted detectability score (0.9) reflecting the actual medium of evidence (modern scientific publication and re-analyzed sediment/material samples), rather than the ancient-period baseline. Given this, the hypothesis is empirically well-supported or well-refutable by findable evidence \u2014 could_have_survived is true, and any gaps in the record would need to be explained by genuine absence of successful replication (consistent with the hypothesis) rather than by poor preservation or lost records, since the relevant evidence is recent and well archived. Note: specific named studies listed are drawn from model-prior (training recall) and should be treated as unverified pending confirmation against primary literature or the evidence corpus."
+  }
+}

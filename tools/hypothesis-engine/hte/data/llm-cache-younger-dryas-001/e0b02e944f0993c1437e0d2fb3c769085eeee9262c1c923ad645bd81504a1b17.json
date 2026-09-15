@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "c7a580640a66479d9ad50be1d2a87c66b304c7c96710e681e4cdad0d326e7fb0",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.55,
+        "rationale": "Model-prior: the causal mechanism actually proposed for YD-onset cooling in the literature is soot-driven 'impact winter' from biomass burning, so a refutation targeting that exact mechanism (A) is more directly on-point and better documented (e.g., critiques of insufficient soot/energy budgets) than refuting cooling via generic ejecta fallout (B), which is not the standard proposed cooling driver."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.42,
+        "rationale": "Model-prior: refutation of nanodiamond concentrations via failed independent replication (multiple labs, e.g., Daulton et al.) is one of the more robustly documented rebuttals in the YDIH literature, giving a slight edge to B over the less conclusively settled refutation of an airburst-cooling causal link (A)."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.55,
+        "rationale": "Model-prior: multi-continent platinum anomalies have relatively strong, repeatedly cross-referenced support (e.g., Greenland ice and multi-site syntheses), giving corroboration (A) a modest edge over the iridium refutation (B), which, while also well-supported, addresses a weaker/less-central proxy claim."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.35,
+        "rationale": "Model-prior: meltglass claims (e.g., Abu Hureyra) remain heavily contested with credible counter-papers proposing non-impact origins, whereas platinum-anomaly corroboration in North America has more consistent, replicated support, favoring B."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.55,
+        "rationale": "Model-prior: the non-synchronous, staggered nature of megafaunal extinction across sites is a well-established mainstream refutation of a single-event impact cause, arguably more solidly documented than the still-debated nanodiamond refutation, giving A a slight edge."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.6,
+        "rationale": "Model-prior: carbon-spherule refutation via ejecta-fallout mechanism is internally coherent with alternative explanations (e.g., fungal sclerotia) documented in follow-up studies, whereas pairing nanodiamonds with a biomass-burning-impact-winter mechanism is a less natural/well-evidenced linkage, favoring A."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.35,
+        "rationale": "Model-prior: refuting the iridium anomaly via an ejecta-fallout mechanism is mechanistically coherent and well documented (iridium spikes largely unreplicated), whereas attributing megafaunal-extinction refutation to an ejecta-fallout mechanism is a less standard/coherent pairing, favoring B."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.55,
+        "rationale": "Model-prior: multi-continent platinum-anomaly corroboration has comparatively strong, repeated support in the literature, giving A a modest edge over the nanodiamond refutation (B), which, though also reasonably well-supported, is a narrower single-region claim."
+      }
+    ]
+  }
+}

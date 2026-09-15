@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "fa326396751a6cb001b07978c6324f40a29034ce5ae426f73991797553e21522",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.018,
+        "rationale": "Both hypotheses are fully uncertain (u=1, b=d=0), so ranking reduces to base-rate plausibility a; B's much higher a (0.0293 vs 0.00055) gives it a far larger expected support, so B is favored."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.379,
+        "rationale": "Both are equally 'refuted' with identical b/d/u, differing only in mechanism base rate; B's mechanism (taurid-stream-encounter, a=0.0180) outweighs A's (gamma-ray-ionization, a=0.0110), so B is modestly favored."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.976,
+        "rationale": "A carries full uncertainty but a much higher base rate (0.0110) than B, which also suffers partial disbelief (d\u22480.50) on top of a tiny base rate (0.00055), yielding A a far larger expected value."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.379,
+        "rationale": "Both are fully uncertain with no belief/disbelief; comparing base rates alone, B's mechanism (taurid-stream-encounter, a=0.0180) exceeds A's (gamma-ray-ionization, a=0.0110), slightly favoring B."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.186,
+        "rationale": "Both fully uncertain; B's base rate (0.0293, solar-proton/independent-replication-failure) is roughly 4x A's (0.0067, impact-ejecta-fallout), favoring B."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.428,
+        "rationale": "A is fully uncertain with a=0.0067; B carries partial disbelief (d\u22480.50) but a higher base rate (0.0180) for its mechanism, giving B a slightly larger expected value, marginally favoring B."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.814,
+        "rationale": "Both fully uncertain; A's base rate (0.0293, gamma-ray-ionization/other-actor) is much higher than B's (0.0067, cosmic-airburst/supernova), favoring A."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.729,
+        "rationale": "Both fully uncertain; A's mechanism base rate (0.0180, biomass-burning-impact-winter) exceeds B's (0.0067, cosmic-airburst), favoring A."
+      }
+    ]
+  }
+}

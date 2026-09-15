@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "3df9741ed79aff8f82ef387bcf285d09a771efc53b73b94cc9f390110202f578",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "expected_evidence": [
+      "geological: elevated platinum/iridium/nanodiamond/microspherule concentrations in a thin sediment layer dated to ~10,950 BCE ('Younger Dryas boundary layer'), often associated with a 'black mat' organic layer",
+      "geological: a confirmed impact crater or strewn field of shocked quartz/impact glass of matching age in North America (none unambiguously identified to date)",
+      "astronomical: physical impactor fragments, tektites, or a documented crater structure consistent with a Younger Dryas-age cosmic impact",
+      "material/archaeological: abrupt disruption or termination of Clovis-culture occupation layers coincident with the proposed impact horizon",
+      "genetic: megafaunal population bottleneck or extinction signatures in ancient DNA dated sharply to the impact interval rather than a gradual decline",
+      "model_prior: the ongoing scientific literature and consensus debate (Firestone et al. 2007 proposal vs. numerous rebuttal/non-replication studies) regarding platinum/nanodiamond anomalies and lack of a confirmed crater"
+    ],
+    "rationale": "Because the hypothesis's interval (-10950) matches the Younger Dryas onset rather than the unspecified 'period' label given, I evaluated it against the 'younger-dryas' row rather than a generic default. Under that row, the most diagnostic evidence types for a cosmic impact \u2014 geological (0.65) and astronomical (0.7) \u2014 have comparatively high detectability, meaning that if a continent-scale impact ejecta event actually occurred at that time, corroborating markers (consistent platinum/iridium/nanodiamond spikes, a crater or strewn field, shocked minerals) should plausibly have been preserved and discoverable with modern geochemical and remote-sensing methods, much as has happened for other well-established impact events (e.g., K-Pg boundary). Material (0.35) and genetic (0.3) evidence are moderately detectable but noisier, since megafaunal decline could have multiple co-occurring causes (climate shift, human overhunting) that would obscure a single sharp signature. Oral tradition (0.1) and linguistic (0.05) evidence are essentially non-recoverable at this time depth, and textual evidence (0.0) is impossible, so their absence carries no evidentiary weight against the hypothesis. In the real record (model-prior, low-tier/unverified), platinum and other anomaly signals have been reported at some sites but not consistently replicated across independent labs, and despite extensive search no confirmed North American impact crater of the right age has been found \u2014 this pattern of 'searched-for-but-mixed/absent' evidence, combined with the already-fairly-high detectability of geological/astronomical proxies, argues that the ambiguity reflects genuine evidentiary weakness/contention (matching the hypothesis's own 'inconclusive' action label) rather than a detectability/preservation failure. Hence could_have_survived=true, and I suggest a composite detectability_adjustment of ~0.55, roughly averaging the stronger geological/astronomical channels with the weaker material/genetic/oral channels for this period."
+  }
+}

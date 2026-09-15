@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "44e40e31f6a168ac1005b365addd0985bc1ac7f492a068a4d72b6f3e8831c149",
+  "response": {
+    "expected_evidence": [
+      "geological: a distinct Younger Dryas boundary (YDB) layer (~12,900 cal BP / roughly the -10950 date) showing platinum/iridium enrichment, nanodiamonds, magnetic spherules, and a 'black mat' horizon across North American sites",
+      "geological/astronomical: anomalous Fe-60 (iron-60) or other supernova-nucleosynthesis radioisotope signature in dated sediment or ice-core layers, distinguishing a supernova source from an asteroidal/cometary one",
+      "astronomical: identifiable nearby supernova remnant or associated pulsar with an age consistent with ~10950 BCE, or a documented cosmic-ray/\u00b9\u2074C production spike in tree rings/ice cores attributable to a supernova rather than solar events",
+      "genetic: a sharp megafaunal population bottleneck or extinction signature in ancient DNA dated to the same narrow interval across multiple North American taxa",
+      "material: archaeological occupation hiatus, Clovis-age site abandonment layer, or associated cultural discontinuity in the same stratigraphic horizon",
+      "model_prior: peer-reviewed modeling of atmospheric/ozone effects from a nearby supernova capable of producing 'ejecta-fallout' analogous to an impact layer"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "The interval -10950 aligns closely with the Younger Dryas onset, so the 'younger-dryas' period row is the appropriate detectability context rather than the unspecified default. Geological (0.65) and astronomical (0.7) detectability are comparatively high for this period, and indeed the YD boundary layer has been intensively studied for exactly this kind of anomaly (Pt/Ir enrichment, nanodiamonds, black mats), so if a bolide/impact-type event occurred, its geological trace plausibly could have survived and been found. However, the hypothesis as stated conflates two distinct mechanisms: 'supernova-event' as actor with 'impact-ejecta-fallout' as mechanism. Impact-ejecta-fallout is the standard signature of an asteroid/comet impact (the well-known but contested Younger Dryas Impact Hypothesis), not of a supernova, which would instead be expected to leave radioisotopic (Fe-60) or cosmic-ray/\u00b9\u2074C signatures rather than crater ejecta. No confirmed Fe-60 anomaly or nearby supernova remnant of the correct age has been robustly reported in verified literature to my knowledge (model-prior, unverified) \u2014 this is a low-tier recollection, not sourced from provided evidence. Given that the specific supernova-linked signature (astronomical) is much harder to detect and has not been corroborated, while the generic geological impact-layer evidence that does exist is more consistent with a conventional bolide-impact explanation than a supernova one, I lower the composite detectability below the raw geological/astronomical averages to reflect the mismatch between mechanism and actor and the absence of the specific isotopic/astronomical fingerprint a supernova origin would require. Absence of confirmed supernova-specific evidence should not be treated as strong evidence of falsity, since generic YD-boundary anomalies are debated and could partly overlap, but the core supernova-causation claim remains speculative and only weakly detectable given the tools available for this period."
+  }
+}

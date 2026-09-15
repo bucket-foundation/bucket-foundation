@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "3045cc44885300ad5c515a65f4406a8ce7e2df16aa887e32afe6dda545443d0d",
+  "response": {
+    "expected_evidence": [
+      "Astronomical: identifiable supernova remnant (SNR) or compact stellar corpse (neutron star/pulsar) within roughly 50-100 pc of Earth with a kinematic/cooling age consistent with ~10,950 BCE (~12,970 BP)",
+      "Geological/geochemical: a spike in cosmogenic/supernova-tracer isotopes (60Fe, 10Be, 36Cl) in ice cores, deep-sea sediments, or lunar/terrestrial archives dated to this horizon",
+      "Geological: elevated nitrate (NOx) and reduced ozone-related proxies in ice cores reflecting atmospheric ionization from gamma-ray flux",
+      "Geological: a coeval 14C production spike (Miyake-type event) in tree rings or ice cores, distinct from and larger than known Younger Dryas carbon anomalies",
+      "Material/archaeological: North American megafaunal extinction horizon (e.g., black mat, Clovis-age faunal turnover) with abrupt, geographically broad die-off pattern rather than gradual attrition",
+      "Genetic: a sharp population bottleneck or extinction signature in ancient DNA of North American megafauna dated precisely to this interval",
+      "Model-prior: existing published searches for a Younger Dryas-associated cosmic/impact trigger (impact hypothesis, nanodiamonds, platinum layer) which could be compared against or conflated with a supernova mechanism"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis dates to roughly -10,950, which aligns closely with the Younger Dryas onset (~12,900 cal BP) rather than a distinct period, so I evaluated it against the 'younger-dryas' row. The mechanism (gamma-ray ionization from a nearby supernova) makes strong, specific, and in-principle highly detectable predictions: a still-identifiable SNR/compact remnant of the right age and proximity (astronomical, table value 0.7), and geochemical fingerprints (60Fe, 10Be/36Cl, NOx, and 14C spikes) in well-preserved Holocene-boundary ice cores and sediment cores (geological, table value 0.65). These archives are routinely sampled at sub-decadal resolution for exactly this period because of intense Younger Dryas research, so absence of a confirmed signal is more evidentially meaningful than for a low-detectability domain like oral tradition or linguistics. Material (extinction horizon) and genetic (bottleneck) evidence are also moderately detectable (0.35, 0.3) and well-studied for YD megafauna, though extinction timing alone cannot distinguish a supernova mechanism from other proposed triggers (impact, climate). No textual or iconographic evidence is expected or possible for a preliterate period this old (0.0-0.1), and this should not be held against the hypothesis. Given that the most diagnostic evidence classes (astronomical, geological) have moderately-high to high detectability, and researchers have actively searched YD-age archives for cosmic-ray/isotopic anomalies without confirming a supernova-scale 60Fe or matching nearby remnant, the absence of confirming evidence is more informative here than in low-detectability domains \u2014 it counts as genuine (if not fully conclusive) evidence against the hypothesis rather than being fully explained away by poor preservation. I set the aggregate detectability_adjustment slightly above the raw geological/material average (~0.5) to 0.55, reflecting that the astronomical falsification channel (remnant search) is unusually powerful and has had ample opportunity to succeed, while still leaving room for uncertainty in genetic/material attribution of causality versus mere coincidence in timing."
+  }
+}

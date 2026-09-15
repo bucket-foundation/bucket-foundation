@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "9a6ddeffcf2fc360ad84f1046b8c0fa0f04ec3d91607430f42f3646c2bbd2b94",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "expected_evidence": [
+      "Geological: tephra/ash layers or geochemical anomaly horizons (e.g., elevated sulfate, platinum-group elements) in North American sediment sequences dated to ~13,000\u201312,001 BCE, potentially overlapping the Younger Dryas boundary 'black mat' layer",
+      "Geological: ice-core sulfate/ash spikes (Greenland/Antarctic cores) that could be correlated in time with a North American eruption and with YD termination",
+      "Astronomical/chronometric: varve counts, radiocarbon calibration curves, or annual-layer chronologies showing dating uncertainty or a re-datable overlap between a volcanic event and the YD-termination boundary (directly relevant given the 'dating-uncertainty' mechanism)",
+      "Material: archaeological/stratigraphic disruption layers (e.g., Clovis-era site abandonment, ash lenses) in North American terrestrial sequences",
+      "Genetic: megafaunal or human population bottleneck signals timed near the proposed eruption/termination window (weak, indirect)",
+      "Model-prior (low-tier, unverified): general familiarity with Younger Dryas boundary debates (impact hypothesis vs. volcanic/terrestrial alternative explanations for platinum/ash anomalies) recalled from training, not from supplied evidence text"
+    ],
+    "rationale": "The interval and 'younger-dryas-termination' object place this squarely in the younger-dryas period row of the detectability table (no explicit period was given, so I mapped it to the closest matching row rather than upper-paleolithic or early-holocene). The mechanism 'dating-uncertainty' specifically implicates geological (0.65) and astronomical/chronometric (0.7) evidence channels as the most diagnostic and most detectable \u2014 ice-core sulfate spikes, tephra layers, and varve/radiocarbon chronologies are exactly the kind of record that could either support or undermine a claimed volcanic trigger via re-dating. Material evidence (0.35) is moderately detectable (stratigraphic disruption at archaeological sites) but weaker as direct proof of volcanic causation. Genetic (0.3), oral_tradition (0.1), iconographic (0.1), and textual (0.0) channels are essentially uninformative for this period \u2014 there is no writing, and oral/iconographic traditions from ~15,000 years ago are not preserved in verifiable form. Given that geological and astronomical archives (ice cores, lake varves, sediment cores) are well-studied for exactly this boundary in existing Quaternary science, absence of confirmed North American volcanic-eruption evidence for this specific window is more informative than in low-detectability channels \u2014 but the overall adjustment is pulled toward moderate (0.5) because the strongest channels (geological/astronomical) are counterbalanced by essentially null textual/oral evidence and only modest material/genetic support. My knowledge of the broader Younger Dryas impact-hypothesis debate (including proposed volcanic/terrestrial alternative explanations for the platinum/ash signal) is flagged here as model-prior only, since it was not confirmed against a supplied evidence corpus."
+  }
+}

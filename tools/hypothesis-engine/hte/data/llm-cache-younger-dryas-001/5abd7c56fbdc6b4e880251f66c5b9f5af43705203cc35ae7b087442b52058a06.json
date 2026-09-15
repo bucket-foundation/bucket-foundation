@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "75ac4ff9cf5cf854c4ac208408cfc6c32a9eba1fcc41caa4c2cf321964749e24",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: B (impact-triggered YD cooling in the North Atlantic via airburst) matches the central, most-discussed YDIH claim, whereas A pairs megafaunal-extinction evidence with the ice-sheet locale, an odd place/object mismatch since extinction data come from continental sites, not ice cores."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: B's specific causal verb 'triggered' plus Greenland ice-sheet locale aligns with actual proxy evidence (e.g. platinum spikes in Greenland ice) for YD cooling, while A's vague 'other-action' is a weaker, less substantive epistemic claim despite a plausible place."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: A's 'refuted' status roughly reflects real scientific pushback on biomass-burning/impact-winter claims, but its interval (-13000 to -12001) is offset from the ~-10950 YD onset used elsewhere; B's iridium-anomaly claim is a classic but heavily disputed YDIH marker, making the pair roughly balanced."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.3,
+        "rationale": "model-prior: B names a specific, actually-reported evidentiary proxy (nanodiamond concentration in North America) central to YDIH literature, while A's 'other-place' designation is vague and non-specific, weakening its evidentiary content."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.18,
+        "rationale": "model-prior: A misplaces megafaunal extinction (a North American Pleistocene phenomenon) in the Middle East, an incoherent geographic pairing, whereas B's microspherule concentration corroborated via impact-ejecta-fallout in North America matches actual reported YDIH evidence sites and mechanisms."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: A's interval (-10850) is consistent with the accepted YD onset timing used across other hypotheses, while B's interval (-20000 to -19001) is thousands of years too early to plausibly relate to the Younger Dryas, undermining its temporal coherence."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: A's characterization of North American platinum-anomaly evidence as 'inconclusive' reasonably reflects genuine mixed replication results in the literature, whereas B pairs microspherule concentration with the Greenland ice sheet, a locale more associated with platinum/iridium ice-core spikes than microspherules."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: A's chain (impact-triggered biomass-burning-impact-winter causing megafaunal extinction in North America) is the coherent core YDIH extinction narrative, while B mismatches mechanism to evidence type, since biomass-burning-impact-winter does not directly explain a deposited platinum anomaly (better explained by impact-ejecta-fallout)."
+      }
+    ]
+  }
+}

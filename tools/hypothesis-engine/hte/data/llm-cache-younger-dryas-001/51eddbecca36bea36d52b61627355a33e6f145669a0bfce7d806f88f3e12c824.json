@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ba0a3982a2823e23ba78c492c1b3dcebcd88946fd5dbaabfc2294d7b8930f0dd",
+  "response": {
+    "expected_evidence": [
+      "Geological: elevated platinum (and often iridium) concentrations in a thin, dated sediment layer (~12,800 cal BP / c. 10,850 BCE) at multiple North American stratigraphic sections",
+      "Geological: co-occurring proxies at the same horizon \u2014 magnetic spherules, nanodiamonds, high-temperature meltglass/microspherules, and a 'black mat' organic-rich layer",
+      "Geological/paleoclimate: soot, charcoal, and elevated combustion-derived polycyclic aromatic hydrocarbons indicating a continental-scale biomass-burning event coincident with the platinum spike",
+      "Astronomical: a candidate impact structure or airburst signature (e.g., subglacial crater candidates, extraterrestrial dust/microspherule chemistry) consistent with a Younger Dryas-age bolide or airburst",
+      "Material/archaeological: abrupt changes in Clovis-era site occupation/abandonment patterns directly above or at the platinum/black-mat horizon",
+      "Faunal/genetic: megafaunal extinction pulse and population bottleneck signals in ancient DNA dated close to the same interval",
+      "Model-prior: existing peer-reviewed literature proposing and debating the Younger Dryas Impact Hypothesis (platinum, iridium, nanodiamond, spherule data from Firestone et al., Petaev et al., Moore et al., Wittke et al., and subsequent critiques)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval (-10850) aligns with the Younger Dryas onset boundary, so the 'younger-dryas' row of the detectability table is the appropriate reference rather than the broader Upper Paleolithic default. The core evidentiary channels for this hypothesis are geological (0.65) and astronomical (0.7), both scoring relatively high for this period \u2014 thin, chemically distinct sediment horizons (platinum/iridium spikes, spherules, nanodiamonds, black mats) are well-preserved in lake, peat, and loess sequences across North America and have in fact been reported in the published literature (model-prior, unverified/contested tier). Material archaeological evidence (Clovis-layer stratigraphy, 0.35) and genetic/paleontological extinction-pulse signals (0.3) are secondary and less certain to survive or be unambiguously attributable, consistent with their lower scores. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) evidence are essentially non-existent for a preliterate, near-Pleistocene North American context and their absence is fully expected rather than diagnostic of falsity. Notably, if the mechanism was an atmospheric airburst rather than a ground impact, the lack of a confirmed crater does not undermine the hypothesis, since airbursts characteristically leave no crater \u2014 this is why astronomical detectability is scored on dust/spherule chemistry and candidate subglacial structures rather than requiring a definitive crater. Given that geological and astronomical channels \u2014 the most relevant and highest-scoring categories for this claim \u2014 have plausible preservation and, per model-prior recollection, some corroborating anomalies have already been reported (though the causal 'impact' interpretation remains scientifically contested against alternative terrestrial explanations), the hypothesis could plausibly have left detectable traces. I weight the overall detectability toward the geological/astronomical scores (mid-to-upper range) while discounting for the weaker material/genetic/cultural channels, yielding an adjusted estimate of ~0.6."
+  }
+}

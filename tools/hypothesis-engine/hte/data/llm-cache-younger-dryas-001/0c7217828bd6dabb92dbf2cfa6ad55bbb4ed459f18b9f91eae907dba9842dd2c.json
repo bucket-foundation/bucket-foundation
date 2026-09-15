@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7b450f449952c406e046bc5e89f8e923e1ffb60b2e0dd7c56af9d86de5966dda",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and other siderophile-element anomalies in a discrete Greenland ice-sheet layer (e.g., GISP2/NGRIP) dated to ~10,850 BCE, analogous to the Petaev et al. (2013) platinum spike",
+      "Geological: nanodiamonds, magnetic microspherules, and cosmic-impact spherules concentrated at the same ice/sediment horizon",
+      "Geological/biomass-burning markers: elevated ammonium, soot, black carbon, and polycyclic aromatic hydrocarbons (PAHs) indicating continental-scale wildfires (biomass-burning-impact-winter signature) coeval with the anomaly layer",
+      "Geological: a 'black mat' organic-rich layer at terrestrial Younger Dryas boundary sites correlating in age with the ice-core anomaly",
+      "Astronomical: candidate impact crater(s) or airburst structures of Younger Dryas age, or cosmic dust/extraterrestrial He-3 enrichment in sediments",
+      "Astronomical: short-term climate-forcing proxies (dust veil, sulfate/soot aerosol loading) consistent with an impact-winter scenario rather than purely volcanic or meltwater forcing",
+      "Material (archaeological): abrupt Clovis-era site abandonment, tool-kit discontinuities, or occupation hiatus across North America dated to the same interval",
+      "Genetic: megafaunal population bottleneck or extinction signatures (proboscideans, equids, etc.) and/or human population bottleneck dated to ~10,850 BCE",
+      "Model-prior: broader Younger Dryas Impact Hypothesis literature (contested) proposing a cometary/airburst trigger for YD onset/cooling and associated biomass burning"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis is essentially the (still-disputed) Younger Dryas Impact Hypothesis, localized to a specific Greenland ice-sheet layer and pinned to a single calendar year (-10850). For the younger-dryas period, geological (0.65) and astronomical (0.7) detectability are comparatively high because Greenland ice sheets preserve fine, often annually-resolved stratigraphy capable of recording siderophile-element anomalies, soot/PAH biomass-burning markers, and microspherules \u2014 this is exactly the kind of evidence that has, in fact, been reported in the real-world literature (e.g., Petaev et al. 2013's platinum anomaly in GISP2, though contested by subsequent studies). Material (0.35) and genetic (0.3) evidence for the associated megafaunal/human population effects are less reliably preserved but not implausible given known Clovis-era archaeological and paleoecological records. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) evidence are essentially non-existent for a pre-literate period this far back and should not be expected regardless of whether the hypothesis is true. Because the hypothesis targets the ice-sheet record specifically \u2014 the single highest-detectability medium available for this period \u2014 a low-to-moderate absence of corroborating evidence in other strata (material, genetic) should not be treated as strong disconfirmation; conversely, given the target medium's decent preservation potential (0.6\u20130.7), if the hypothesized anomaly/biomass-burning signature is genuinely absent from actual ice-core records, that absence carries more evidentiary weight than it would for lower-detectability categories. I set the composite detectability_adjustment at 0.55, averaging the high-preservation geological/astronomical channels most relevant to this specific claim against the much lower-preservation textual/linguistic/oral_tradition/iconographic channels that are irrelevant this deep in prehistory, and tempering slightly for the extreme precision (single-year dating) demanded by the hypothesis, which exceeds typical ice-core chronological resolution uncertainty (~ years to low tens of years) at this age."
+  }
+}
