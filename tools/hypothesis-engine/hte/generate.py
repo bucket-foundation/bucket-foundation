@@ -18,8 +18,9 @@ own "scoring and display prune the result; generation does not."
 from __future__ import annotations
 
 import itertools
+import math
 import random
-from typing import Iterable, Iterator
+from typing import Any, Iterable, Iterator
 
 from .address import (
     ALLEN_RELATION_ORDER,
@@ -151,6 +152,7 @@ def combinatorial_sample(
     seed: int = 0,
     span_start: int = DEFAULT_SPAN_START,
     bin_width: int = DEFAULT_BIN_WIDTH,
+    status_balanced: bool = True,
 ) -> list[Hypothesis]:
     """A bounded, seeded random sample of up to `max_items` distinct
     placements drawn from the same `ACTOR x ACTION x OBJECT x PLACE x
@@ -185,6 +187,18 @@ def combinatorial_sample(
     items` at or above the full space's own size returns that whole
     space (bounded attempts still terminate: every draw eventually
     lands on one of the few addresses not yet seen).
+
+    `status_balanced` (default `True`, `hte.runner.DEFAULT_CONFIG`'s own
+    `combinatorial_status_balanced` knob) changes only the ACTOR draw: a
+    flat `rng.choice` over every actor (`False`) hands each
+    `ConsensusStatus` class as many draws as it has actors, so a corpus
+    naming three fringe alternatives against thirty consensus figures
+    spends ten times the budget on the consensus side
+    (`STATISTICAL-AUDIT-2026-09-15.md`'s "actors the literature names
+    less get few draws"). `True` draws the class first, uniformly over
+    whichever of consensus/contested/fringe/other the ACTOR slot
+    populates, then draws the actor uniformly within it, so a
+    one-member class draws as much as a hundred-member one.
     """
     axes = {slot: vocab.concepts(slot) for slot in PLACEMENT_CONCEPT_SLOTS}
     bins = list(time_bins)
@@ -197,6 +211,17 @@ def combinatorial_sample(
     target = min(max_items, total_space)
 
     rng = random.Random(seed)
+    actor_by_status: dict[ConsensusStatus, list] = {}
+    if status_balanced:
+        for concept in axes[Slot.ACTOR]:
+            actor_by_status.setdefault(concept.consensus_status, []).append(concept)
+    status_keys = sorted(actor_by_status)  # fixed order: draw order stays seed-reproducible
+
+    def draw_actor():
+        if not status_keys:
+            return rng.choice(axes[Slot.ACTOR])
+        return rng.choice(actor_by_status[rng.choice(status_keys)])
+
     seen: set[int] = set()
     out: list[Hypothesis] = []
     max_attempts = max(target * 20, 20)
@@ -204,7 +229,7 @@ def combinatorial_sample(
     while len(out) < target and attempts < max_attempts:
         attempts += 1
         placement = Placement(
-            actor=rng.choice(axes[Slot.ACTOR]).id,
+            actor=draw_actor().id,
             action=rng.choice(axes[Slot.ACTION]).id,
             object=rng.choice(axes[Slot.OBJECT]).id,
             place=rng.choice(axes[Slot.PLACE]).id,
@@ -217,6 +242,130 @@ def combinatorial_sample(
         seen.add(hyp.address)
         out.append(hyp)
     return out
+
+
+def _stratum_label(h: Hypothesis, vocab: Vocabulary) -> str:
+    """`stratified_sample`'s own stratum key: one shared label for every
+    sequence (its address names no single ACTOR slot), else the
+    placement's ACTOR concept id paired with that actor's own
+    `ConsensusStatus` (`OTHER` if `vocab` no longer resolves the id,
+    rather than raising)."""
+    if h.is_sequence:
+        return "sequence"
+    actor_id = h.content.actor
+    concept = vocab.get(Slot.ACTOR, actor_id)
+    status = concept.consensus_status if concept is not None else ConsensusStatus.OTHER
+    return f"actor:{actor_id}|status:{status.value}"
+
+
+def _apportion(capacities: dict[str, int], total: int) -> dict[str, int]:
+    """Largest-remainder apportionment of `total` indivisible units
+    across `capacities`, each label capped at its own capacity. The
+    whole `total` is placed unless `capacities`' own sum is smaller, in
+    which case every capacity is exhausted instead. Remainder ties
+    break on the label itself, so two calls over the same arguments
+    always return the same allocation."""
+    total = max(0, min(total, sum(capacities.values())))
+    alloc = {label: 0 for label in capacities}
+    if total == 0 or not capacities:
+        return alloc
+    cap_sum = sum(capacities.values())
+    shares = {label: capacities[label] * total / cap_sum for label in capacities}
+    for label in capacities:
+        alloc[label] = min(capacities[label], int(shares[label]))
+    remainder = total - sum(alloc.values())
+    order = sorted(capacities, key=lambda label: (-(shares[label] - int(shares[label])), label))
+    while remainder > 0:
+        placed = False
+        for label in order:
+            if remainder <= 0:
+                break
+            if alloc[label] < capacities[label]:
+                alloc[label] += 1
+                remainder -= 1
+                placed = True
+        if not placed:
+            break  # every capacity exhausted; the `total` cap above makes this unreachable
+    return alloc
+
+
+def stratified_sample(
+    hypotheses: Iterable[Hypothesis],
+    vocab: Vocabulary,
+    *,
+    cap: int,
+    seed: int = 0,
+) -> tuple[list[Hypothesis], dict[str, Any]]:
+    """A stratified, seeded random sample of up to `cap` hypotheses, in
+    place of `sorted(by_address.values(), key=lambda h: h.address)[:
+    cap]` (`STATISTICAL-AUDIT-2026-09-15.md` hypothesis-space item 1):
+    address-sort-and-slice always kept the lowest Gödel numbers, so the
+    vocabulary's own listing order, never evidence or plausibility,
+    decided which generated hypotheses ever reached the critic (the
+    live Younger Dryas run: 3,205 distinct addresses, 400 kept, every
+    one the earliest-indexed actor the TIME_BIN prime could reach).
+
+    Strata are `_stratum_label`'s own key. Each stratum keeps at least
+    `min(its own size, ceil(cap / n_strata))` so a literature-thin actor
+    is never emptied by a popular one's volume; whatever of `cap`
+    remains once every floor is met goes to largest-remainder
+    apportionment (`_apportion`) proportional to each stratum's
+    remaining room, so a dominant stratum still keeps close to its own
+    share. Within a stratum the kept hypotheses are a
+    `random.Random(seed)` sample, never the lowest addresses; the
+    returned list is sorted by address regardless, for a stable
+    ordering rather than the draw order. The same `seed` over the same
+    input always returns the same sample; `cap` at or above the input's
+    own size returns everything, one full stratum each, unsampled.
+
+    Returns `(kept, frame)`. `frame` is `{"cap", "n_strata", "strata":
+    {label: {"generated", "kept"}, ...}}`, folded verbatim into
+    `MANIFEST.json["counts"]["sampling"]` by `hte.runner.run_campaign`.
+    """
+    pool = list(hypotheses)
+    if cap <= 0 or not pool:
+        return [], {"cap": cap, "n_strata": 0, "strata": {}}
+
+    by_stratum: dict[str, list[Hypothesis]] = {}
+    for h in pool:
+        by_stratum.setdefault(_stratum_label(h, vocab), []).append(h)
+
+    labels = sorted(by_stratum)
+    n_strata = len(labels)
+    sizes = {label: len(by_stratum[label]) for label in labels}
+    total = sum(sizes.values())
+
+    if total <= cap:
+        kept_counts = dict(sizes)
+    else:
+        floor_target = math.ceil(cap / n_strata)
+        floor_counts = {label: min(sizes[label], floor_target) for label in labels}
+        if sum(floor_counts.values()) > cap:
+            # Every stratum reached the ceiling floor (possible whenever
+            # `cap % n_strata != 0`): apportion `cap` itself across the
+            # floors rather than the raw sizes, so the shrink lands
+            # proportionally instead of on whichever stratum sorts first.
+            floor_counts = _apportion(floor_counts, cap)
+        kept_counts = dict(floor_counts)
+        remaining = cap - sum(kept_counts.values())
+        if remaining > 0:
+            room = {label: sizes[label] - kept_counts[label] for label in labels}
+            extra = _apportion(room, remaining)
+            for label in labels:
+                kept_counts[label] += extra[label]
+
+    rng = random.Random(seed)
+    kept: list[Hypothesis] = []
+    frame_strata: dict[str, dict[str, int]] = {}
+    for label in labels:
+        bucket = sorted(by_stratum[label], key=lambda h: h.address)
+        k = kept_counts[label]
+        sample = bucket if k >= len(bucket) else rng.sample(bucket, k)
+        kept.extend(sample)
+        frame_strata[label] = {"generated": sizes[label], "kept": k}
+
+    kept.sort(key=lambda h: h.address)
+    return kept, {"cap": cap, "n_strata": n_strata, "strata": frame_strata}
 
 
 # --------------------------------------------------------------------------

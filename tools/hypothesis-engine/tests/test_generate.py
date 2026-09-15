@@ -1,3 +1,5 @@
+from collections import Counter
+
 from hte.address import time_bin_index
 from hte.concepts import Concept, ConsensusStatus, Slot, Vocabulary
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
@@ -8,6 +10,7 @@ from hte.generate import (
     from_evidence,
     neighbors,
     sequences_from,
+    stratified_sample,
 )
 from hte.hypothesis import Hypothesis, Placement, Sequence
 from hte.timeline import AllenRelation, Interval, Resolution, relate
@@ -158,6 +161,133 @@ def test_combinatorial_sample_returns_empty_list_for_zero_max_items():
 def test_combinatorial_sample_returns_empty_list_for_no_time_bins():
     vocab = _small_vocab()
     assert combinatorial_sample(vocab, [], max_items=5, seed=0) == []
+
+
+def _status_skewed_vocab() -> Vocabulary:
+    """One CONSENSUS actor, four FRINGE actors, plus `Vocabulary`'s own
+    auto-appended `other-actor` (OTHER): three status classes, one of
+    them (FRINGE) four times the headcount of the other two, the exact
+    skew `combinatorial_sample`'s `status_balanced` knob corrects."""
+    vocab = _small_vocab()
+    vocab.by_slot[Slot.ACTOR] = [
+        Concept("consensus-actor", Slot.ACTOR, "C", 0.0, ConsensusStatus.CONSENSUS),
+        *(Concept(f"fringe-{i}", Slot.ACTOR, f"F{i}", 0.0, ConsensusStatus.FRINGE) for i in range(4)),
+    ]
+    vocab.__post_init__()  # re-append the OTHER placeholder this replacement dropped
+    return vocab
+
+
+def test_combinatorial_sample_status_balanced_gives_each_status_class_an_equal_share():
+    vocab = _status_skewed_vocab()
+    tbin = time_bin_index(_interval().start)
+    n = 600
+
+    def class_counts(status_balanced: bool) -> Counter:
+        counts = Counter()
+        for seed in range(n):
+            actor = combinatorial_sample(vocab, [tbin], max_items=1, seed=seed, status_balanced=status_balanced)[0].content.actor
+            counts[vocab.get(Slot.ACTOR, actor).consensus_status] += 1
+        return counts
+
+    balanced = class_counts(True)
+    # Balanced draws the class first, so consensus (1 actor), fringe (4
+    # actors), and other (1 actor) each land near n/3, regardless of
+    # fringe's own headcount. `_status_skewed_vocab` names no CONTESTED
+    # actor at all, so only these three classes ever draw.
+    for status in (ConsensusStatus.CONSENSUS, ConsensusStatus.FRINGE, ConsensusStatus.OTHER):
+        assert n / 3 * 0.6 <= balanced[status] <= n / 3 * 1.4
+
+    flat = class_counts(False)
+    # Flat draws per actor, so fringe (4 of 6 actors) draws about 4x
+    # either singleton class, the skew `status_balanced=True` replaces.
+    assert flat[ConsensusStatus.FRINGE] > 2 * flat[ConsensusStatus.CONSENSUS]
+    assert flat[ConsensusStatus.FRINGE] > 2 * flat[ConsensusStatus.OTHER]
+
+
+# --------------------------------------------------------------------------
+# stratified_sample
+# --------------------------------------------------------------------------
+
+
+def _dominated_pool(vocab: Vocabulary) -> list[Hypothesis]:
+    """100 hypotheses over `_status_skewed_vocab()`'s own actors: 90 for
+    `consensus-actor` at the lowest addresses, 5 each for two of the
+    fringe actors at addresses far above them, the exact shape
+    `STATISTICAL-AUDIT-2026-09-15.md` item 1 names, address order
+    tracking one actor's own volume rather than the corpus's evidence.
+    """
+    def hyp(address: int, actor: str) -> Hypothesis:
+        return Hypothesis(address=address, content=_placement(vocab, actor=actor))
+
+    return (
+        [hyp(i, "consensus-actor") for i in range(90)]
+        + [hyp(1000 + i, "fringe-0") for i in range(5)]
+        + [hyp(2000 + i, "fringe-1") for i in range(5)]
+    )
+
+
+def test_stratified_sample_keeps_every_stratum_non_empty_against_a_dominant_actor():
+    vocab = _status_skewed_vocab()
+    pool = _dominated_pool(vocab)
+    kept, frame = stratified_sample(pool, vocab, cap=30, seed=0)
+    by_actor = Counter(h.content.actor for h in kept)
+
+    # The address-sorted top 30 this replaces is 30 `consensus-actor`
+    # hypotheses and zero of either fringe actor (the live incident:
+    # `runner.py`'s own `sorted(...)[:cap]`, addresses 0-29 all below
+    # fringe's 1000+). Both fringe strata are too small (5) to ever need
+    # downsampling, so they come through whole.
+    assert by_actor["fringe-0"] == 5
+    assert by_actor["fringe-1"] == 5
+    # `consensus-actor` still keeps the largest share (its own 90 of 100
+    # hypotheses), short of the 30/30 the old truncation gave it.
+    assert 15 <= by_actor["consensus-actor"] <= 25
+    assert len(kept) == 30
+
+
+def test_stratified_sample_is_deterministic_given_seed():
+    vocab = _status_skewed_vocab()
+    pool = _dominated_pool(vocab)
+    first = [h.address for h in stratified_sample(pool, vocab, cap=12, seed=7)[0]]
+    second = [h.address for h in stratified_sample(pool, vocab, cap=12, seed=7)[0]]
+    assert first == second
+
+
+def test_stratified_sample_never_exceeds_the_requested_cap():
+    vocab = _status_skewed_vocab()
+    pool = _dominated_pool(vocab)
+    for cap in (0, 1, 5, 12, 30, 55, 100, 500):
+        kept, _frame = stratified_sample(pool, vocab, cap=cap, seed=0)
+        assert len(kept) == min(cap, len(pool))
+
+
+def test_stratified_sample_frame_sums_match_cap_and_pool():
+    vocab = _status_skewed_vocab()
+    pool = _dominated_pool(vocab)
+    kept, frame = stratified_sample(pool, vocab, cap=30, seed=0)
+    assert frame["cap"] == 30
+    assert frame["n_strata"] == len(frame["strata"])
+    assert sum(s["kept"] for s in frame["strata"].values()) == len(kept)
+    assert sum(s["generated"] for s in frame["strata"].values()) == len(pool)
+
+
+def test_stratified_sample_returns_empty_frame_for_zero_cap():
+    vocab = _status_skewed_vocab()
+    kept, frame = stratified_sample(_dominated_pool(vocab), vocab, cap=0, seed=0)
+    assert kept == []
+    assert frame == {"cap": 0, "n_strata": 0, "strata": {}}
+
+
+def test_stratified_sample_gives_sequences_their_own_stratum():
+    vocab = _status_skewed_vocab()
+    first = _placement(vocab, actor="consensus-actor")
+    second = _placement(vocab, actor="fringe-0", interval=Interval(start=-6000, end=-5901))
+    seq = Hypothesis(address=10**6, content=Sequence(first=first, relation=AllenRelation.BEFORE, second=second))
+    pool = _dominated_pool(vocab) + [seq]
+    kept, frame = stratified_sample(pool, vocab, cap=len(pool), seed=0)
+    assert "sequence" in frame["strata"]
+    assert frame["strata"]["sequence"] == {"generated": 1, "kept": 1}
+    assert seq in kept
 
 
 # --------------------------------------------------------------------------
