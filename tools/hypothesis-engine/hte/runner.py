@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
 
-from . import artifacts, batching, calibrate, export, link, llm, propagate, roles, tournament, unknowns
+from . import artifacts, batching, calibrate, export, link, llm, prior_ledger, propagate, roles, tournament, unknowns
 from .address import DEFAULT_BIN_WIDTH, DEFAULT_SPAN_START, time_bin_index
 from .belief import Opinion, load_constants, load_detectability_table, score as belief_score
 from .concepts import Concept, ConsensusStatus, Slot, Vocabulary
@@ -82,6 +82,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "run_extraction": True,
     "resolution": None,          # None auto-selects a rung from the corpus's own span (hte.timeline.auto_resolution); a named rung ("century", ...) pins it and reuses the paper's original fixed 20,000-year span
     "link_threshold": 0.6,
+    "prior_ledger": None,        # path of the cross-campaign Beta-prior ledger (hte.prior_ledger); None leaves the label priors as written
     # Throughput wiring (`bkt-hte-throughput`, `docs/THROUGHPUT.md`):
     # `critic_batch_size`/`judge_batch_size` are `hte.batching.
     # batch_critique`/`batch_judge`'s own `batch_size`, hypotheses (or
@@ -484,6 +485,12 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     if cfg["corpus"] not in _CORPUS_LOADERS:
         raise ValueError(f"unknown corpus {cfg['corpus']!r}, expected one of {list(_CORPUS_LOADERS)}")
     corpus = _CORPUS_LOADERS[cfg["corpus"]]()
+    prior_ledger_note: dict[str, Any] = {"path": cfg["prior_ledger"], "applied": 0, "runs": 0, "appended": 0}
+    if cfg["prior_ledger"]:
+        ledger_counts, ledger_runs = prior_ledger.load_counts(cfg["prior_ledger"], corpus=cfg["corpus"])
+        prior_ledger_note["applied"] = prior_ledger.apply(corpus.vocab, ledger_counts)
+        prior_ledger_note["runs"] = ledger_runs
+        logger.log(f"prior ledger: {prior_ledger_note['applied']} concept priors updated from {ledger_runs} earlier run(s)")
     logger.log(f"loaded corpus: {len(corpus.sources)} sources, {len(corpus.evidence)} evidence items, {len(corpus.ground_truth)} ground-truth events")
 
     extraction_note = None
@@ -685,6 +692,12 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     }
     (run_dir / "survivors.json").write_text(json.dumps(survivors_artifact, indent=2))
     logger.log(f"survivors artifact: {len(survivors_payload)} entries written to survivors.json")
+    if cfg["prior_ledger"]:
+        prior_ledger_note["appended"] = prior_ledger.append(
+            cfg["prior_ledger"], run_id=run_dir.name, corpus=cfg["corpus"],
+            counts=prior_ledger.outcomes(survivors, opinions),
+        )
+        logger.log(f"prior ledger: {prior_ledger_note['appended']} concept rows appended")
 
     surprise_items = unknowns.surprise(corpus.evidence, survivors)
     surprise_rate = (len(surprise_items) / len(corpus.evidence)) if corpus.evidence else 0.0
@@ -855,7 +868,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         # text, and `MANIFEST.json` carries these without perturbing it.
         "counts": {
             **run_summary, "fragility_top10": fragility_top10,
-            "judge_disagreement": judge_disagreement, "sampling": sampling_frame,
+            "judge_disagreement": judge_disagreement, "sampling": sampling_frame, "prior_ledger": prior_ledger_note,
         },
     }
     # `hte.artifacts.validate_manifest` builds a `ManifestArtifact` from
