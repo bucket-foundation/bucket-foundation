@@ -2845,3 +2845,9 @@ None.
 ## 2026-09-15 home globe scroll placement
 
 - The home globe rises 18vh above the panel's top at page top (its halo clears the Research OS button) and slides back to the panel's center as the panel scrolls into view, reaching center once the panel fills the viewport. `CanonSearchPanel` computes progress = scrollY / panel top on a rAF-throttled scroll listener and passes a `translateY` through the new `globeWrapperStyle` prop on `CanonGlobeMount`; the fixed `-mt` lift is gone.
+
+## 2026-09-15 home panel surfaces, hero seam, scrubber width
+
+- Home search column sits on a bone-2 card with a hairline; the detail drawer keeps its bone surface; the middle of the panel stays clear.
+- The hero's ambient patina had been painting over the top of the globe's halo (the section carried `z-20`), leaving a horizontal seam at the hero's bottom edge. Only the hero's content wrapper is `z-20` now; the section itself sits below the globe.
+- The year scrubber ends 24px before the drawer in the home layout (`md:pr-[464px]`).

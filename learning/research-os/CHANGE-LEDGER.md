@@ -3609,3 +3609,7 @@ Squash-merged after this pass.
 ## 2026-09-15 home globe scroll placement
 
 `CanonSearchPanel.tsx`: scroll-driven lift (18vh to 0). `CanonGlobeMount.tsx`: `globeWrapperStyle` prop merged onto the globe wrapper.
+
+## 2026-09-15 home panel surfaces, hero seam, scrubber width
+
+`CanonGlobeMount.tsx`: home column card, drawer surface back, scrubber right padding. `Presentation.tsx`: `z-20` moved from the hero section to its content wrapper.

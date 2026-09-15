@@ -724,7 +724,7 @@ function InteractiveCanonGlobeMount({
  made it a centered 768px island with empty bone on both
  sides; this version uses every horizontal pixel the layout
  gives it. */}
-      <div className="w-full mt-3 px-4 md:px-6 md:pb-6 flex-shrink-0">
+      <div className={`w-full mt-3 px-4 md:px-6 md:pb-6 flex-shrink-0 ${home && !expanded ? "md:pr-[464px]" : ""}`}>
         <div
           className="text-[10px] uppercase tracking-[0.22em] mb-2 px-1 text-center"
           style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
