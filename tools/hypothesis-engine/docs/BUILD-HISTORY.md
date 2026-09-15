@@ -77,6 +77,17 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
+A devil's advocate argues for the lowest-prior survivors
+(`hte.roles.advocate`, `advocate_k` per run, default 8). Every other role
+is asked to be right; this one is shown only items not yet linked to
+the hypothesis that share a slot value with it, names the ones that
+support it with a reason each, and states the observation that would
+settle the question. The runner links what it names, rescores, and
+records `lift_before`, `lift_after`, and the links added per survivor
+in `survivors.json`, with `counts.advocate` in the manifest carrying
+the argued count, links added, and mean gain: the role is scored on
+the evidence it finds.
+
 The base rate is a Beta prior now, updated across campaigns
 (`hte/prior_ledger.py`). Each concept's `prior_logit` is the label's
 starting mean with four pseudo-observations; a campaign run with
