@@ -2781,3 +2781,10 @@ None.
 - `tools/canon-pipeline/intake.py` run twice on each touched dossier: `07-mind/cognitive-load` (`added=0 kept=1 changed=False` both runs) and `07-mind/sub-outcomes/education` (`added=0 kept=20 changed=False` both runs, one pre-existing below-floor record rejected and preserved both times).
 - Sweller 1988's DOI independently re-verified via a live Crossref API fetch (WebFetch), matching the intake card and `primary-papers.yaml` on title, author, journal, and year.
 - No file under `src/` or `public/` is touched by this pass, so no `npm run build`/`npm run test:research-os`/`next lint` gate applies to it, the same pass-one/pass-two convention. `agf-lint-voice check` run on every touched prose file.
+
+## 2026-09-14 canon globe dots on production
+
+- Production `/canon/search` showed a bare disc with markers and no continent dots. Cause: the canvas runs `frameloop="demand"` and `Earth.tsx` places the land dots inside a promise callback after the land mask loads, so no frame is requested after the update. The first frames draw all 36,000 instances at the origin; the continents appear only after a drag. Probe on www.bucket.foundation hooking `drawElementsInstanced`: `{36000: 2}` before a drag, `{7797: 9}` after.
+- Fix: `invalidate()` after the mesh update in `Earth.tsx`. Same one-file change on `fix/globe-demand-invalidate` (PR #147 against `dev`) and on this branch. Local dev server after the fix: `{36000: 2, 7797: 1}` with no drag.
+- Review of `main` for the past two weeks: no globe file changed since 2026-08-24 (comment-only voice sweep); no dependency versions changed. `main` is 10 commits past the deployed production build `e614da874`; `feed.json` on `main` carries two `predict_register` events (#87) with no `author_github`, which breaks `generateStaticParams` for `/contributors/[handle]`, so a fresh build of `main` fails. `dev` carries the guard (#117).
+- Merged `origin/dev` into this branch to pick up that guard; kept the landing Research OS page over the #117 re-add of the removed sections (DELETIONS.md).

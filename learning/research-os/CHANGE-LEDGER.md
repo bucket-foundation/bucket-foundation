@@ -3565,3 +3565,7 @@ Reviewed `feat/ros-status-band-2` (PR #117) against `main` in worktree `~/agfarm
 - `agf-lint-voice-src check` and `agf-lint-voice check`: 0 violations.
 
 Squash-merged after this pass.
+
+## 2026-09-14 canon globe frame request
+
+`src/components/canon-globe/Earth.tsx`: `invalidate()` after the instanced mesh update so the land dots draw as soon as the land mask resolves under `frameloop="demand"`. PR #147 against `dev`; also on `site-local-2026-09-14`. `origin/dev` merged into `site-local-2026-09-14`; the #117 Research OS page sections stay removed here, recorded in `_intake/research-os-k12/DELETIONS.md`.
