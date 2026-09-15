@@ -112,10 +112,13 @@ def _per_actor_summary(
             continue
         row = rows.setdefault(
             actor,
-            {"max_P": None, "min_u": None, "max_lift": None, "best_elo": None, "best_share": None, "n_survivors": 0},
+            {"max_P": None, "min_u": None, "max_lift": None, "best_elo": None, "best_share": None,
+             "n_survivors": 0, "n_unscored": 0},
         )
         row["n_survivors"] += 1
         opinion = entry.get("opinion") or {}
+        if not opinion.get("scored", opinion.get("u", 1.0) < 1.0):
+            row["n_unscored"] += 1
         p_value, u_value, lift_value = opinion.get("P"), opinion.get("u"), opinion.get("lift")
         if p_value is not None and (row["max_P"] is None or p_value > row["max_P"]):
             row["max_P"] = p_value

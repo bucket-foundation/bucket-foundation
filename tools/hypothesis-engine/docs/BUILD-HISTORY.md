@@ -77,6 +77,13 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
+Alongside the floors, every serialized opinion carries `scored`
+(`Opinion.scored`, `u < 1`): a hypothesis no evidence reached reads at
+its prior, which is missing data, so ranked surfaces list scored
+opinions first, `TIMELINE.md` shows the flag, and `campaign results`
+counts `n_unscored` per actor. The live Younger Dryas run had 292 of
+360 survivors unscored.
+
 A fourth gate, a lift-rank cutoff with the Benjamini-Hochberg step-up
 shape at `fdr_q` (default `1.0`, off), answers item 5's "3,205
 hypotheses, one floor" finding: a single fixed floor over a population

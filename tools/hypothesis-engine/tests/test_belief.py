@@ -509,3 +509,11 @@ def test_detectability_floor_never_lowers_a_value_already_above_it():
     low_floor = pooled_weight([item], 1, detect_table=table, period="classical", constants=Constants(detectability_floor=0.1))
     default_result = pooled_weight([item], 1, detect_table=table, period="classical", constants=Constants())
     assert low_floor == default_result
+
+
+def test_opinion_scored_is_false_at_its_prior_and_true_once_evidence_binds():
+    unscored = Opinion.from_evidence(0.0, 0.0, 2.0, 0.7)
+    assert unscored.u == 1.0 and unscored.project() == 0.7 and unscored.scored() is False
+    assert unscored.to_dict()["scored"] is False
+    scored = Opinion.from_evidence(1.0, 0.0, 2.0, 0.7)
+    assert scored.scored() is True and scored.to_dict()["scored"] is True
