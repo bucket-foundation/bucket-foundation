@@ -1100,7 +1100,7 @@ def _build_corpus(cards: list[Card]) -> Corpus:
 
         sources[card.doi] = Source(
             id=card.doi, kind=kind, date=str(card.year),
-            stemma_parents=stemma_parents, batches=[card.batch],
+            stemma_parents=stemma_parents, batches=[card.batch], authors=list(card.authors),
         )
         provenance.append(RetrievalEnvelope(
             retrieval_run_id=f"literature-adapter-file-ingest-{card.batch}", doc_id=card.doi,

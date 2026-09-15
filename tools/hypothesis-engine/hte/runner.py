@@ -454,7 +454,7 @@ def _run_advocate(
                     added.append(eid)
             if added:
                 opinions[h.address] = belief_score(
-                    h, corpus.evidence, corpus.vocab, table, constants=constants,
+                    h, corpus.evidence, corpus.vocab, table, sources=corpus.sources, constants=constants,
                     likelihood_ratios=likelihood_ratios.get(h.address),
                 )
         after = opinions[h.address].lift()
@@ -621,7 +621,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     constants = load_constants(cfg["constants"])
     opinions = {
         h.address: belief_score(
-            h, corpus.evidence, corpus.vocab, table, constants=constants,
+            h, corpus.evidence, corpus.vocab, table, sources=corpus.sources, constants=constants,
             likelihood_ratios=likelihood_ratios.get(h.address),
         )
         for h in survivors
@@ -699,7 +699,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     profiles = unknowns.prior_profiles(corpus.vocab)
 
     def score_fn(h: Hypothesis, evidence: list[EvidenceItem], vocab: Vocabulary) -> Opinion:
-        return belief_score(h, evidence, vocab, table, constants=constants, likelihood_ratios=likelihood_ratios.get(h.address))
+        return belief_score(h, evidence, vocab, table, sources=corpus.sources, constants=constants, likelihood_ratios=likelihood_ratios.get(h.address))
 
     robustness_results = {
         h.address: unknowns.robustness(h, corpus.evidence, profiles, score_fn) for h in survivors

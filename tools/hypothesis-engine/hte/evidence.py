@@ -166,6 +166,13 @@ class Source:
     stemma_parents: list[str] = field(default_factory=list)
     batches: list[str] = field(default_factory=list)
     retracted_by: str | None = None
+    # Dependence edges beyond the stemma (`STATISTICAL-AUDIT-2026-09-15.md`,
+    # Evidence: shared authorship, lab, or method are not independent
+    # trials): `hte.belief.effective_count` unions two sources that share
+    # an author, a lab, or a method at full weight.
+    authors: list[str] = field(default_factory=list)
+    lab: str | None = None
+    method: str | None = None
 
     def to_dict(self) -> dict:
         return {
