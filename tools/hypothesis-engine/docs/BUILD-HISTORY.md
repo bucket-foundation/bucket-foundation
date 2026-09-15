@@ -77,6 +77,16 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
+The effective count reads a dependence graph. `Source` carries `authors`,
+`lab`, and `method`; `hte.belief.effective_count` unions two sources that
+share any of them, at full weight, on top of the stemma edges, so two
+items from co-authored papers count as one trial for the diminishing
+return `D(n_eff)`. The runner now passes the corpus's sources into
+scoring (it had passed only the items, so `n_eff` was the raw item
+count), and the literature and Younger Dryas loaders fill `authors` from
+their cards; the surname proxy stays only as the stemma-parent guess in
+the literature loader.
+
 A devil's advocate argues for the lowest-prior survivors
 (`hte.roles.advocate`, `advocate_k` per run, default 8). Every other role
 is asked to be right; this one is shown only items not yet linked to

@@ -321,7 +321,9 @@ def effective_count(
     theta_prune: float = 0.6,
 ) -> int:
     """`n_eff`, the effective count of a cluster's sources (`def:stemma`):
-    the number of connected components of the stemma graph after removing
+    the number of connected components of the dependence graph, stemma
+    edges (below) plus shared-author, shared-lab, and shared-method edges
+    (`Source.authors`/`lab`/`method`), after removing
     every `copies_from`/`shares_archetype_with` edge below `theta_prune`
     (default 0.6). `sources` gives the cluster's `Source` nodes; each
     source's own `stemma_parents` is its outgoing edge set. `edge_weights`
@@ -353,6 +355,20 @@ def effective_count(
             w = weights.get((s.id, p), 1.0)
             if w >= theta_prune:
                 union(s.id, p)
+
+    # Dependence edges at full weight: two sources sharing an author (case
+    # and whitespace folded), a lab, or a method are one trial for this
+    # count (`Source.authors`/`lab`/`method`, the audit's dependence graph
+    # in place of the surname proxy).
+    first_by_key: dict[tuple[str, str], str] = {}
+    for s in sources:
+        keys = [("author", a.strip().lower()) for a in s.authors if a.strip()]
+        keys += [("lab", s.lab.strip().lower())] if s.lab and s.lab.strip() else []
+        keys += [("method", s.method.strip().lower())] if s.method and s.method.strip() else []
+        for key in keys:
+            other = first_by_key.setdefault(key, s.id)
+            if other != s.id:
+                union(s.id, other)
 
     return len({find(i) for i in ids})
 
