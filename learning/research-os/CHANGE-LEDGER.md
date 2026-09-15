@@ -3613,3 +3613,7 @@ Squash-merged after this pass.
 ## 2026-09-15 home panel surfaces, hero seam, scrubber width
 
 `CanonGlobeMount.tsx`: home column card, drawer surface back, scrubber right padding. `Presentation.tsx`: `z-20` moved from the hero section to its content wrapper.
+
+## 2026-09-15 halo disc no longer clipped on the interactive globes
+
+`CanonGlobe.tsx`: camera fov 44 for interactive mounts, 42 decorative.

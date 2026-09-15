@@ -450,7 +450,11 @@ export default function CanonGlobe({
         dpr={decorative && !variant?.fulldpr ? variant?.dpr ?? DECORATIVE_DPR : 1}
         frameloop="demand"  // only render on prop change / camera moves
         performance={{ min: 0.5 }}
-        camera={{ position: [0, 0, 3.4], fov: 42 }}
+        // The outer halo bloom (radius 1.24 at distance 3.4) subtends 21.4
+        // degrees; a 42 degree fov cut its crown and foot flat. 44 keeps
+        // the whole disc inside the canvas on the interactive mounts. The
+        // decorative mount fades its halo in-shader and keeps 42.
+        camera={{ position: [0, 0, 3.4], fov: decorative ? 42 : 44 }}
         gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       >
         {/* dot-globe is unlit (MeshBasicMaterial), ambient is harmless. */}

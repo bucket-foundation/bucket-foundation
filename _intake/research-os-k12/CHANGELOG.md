@@ -2851,3 +2851,7 @@ None.
 - Home search column sits on a bone-2 card with a hairline; the detail drawer keeps its bone surface; the middle of the panel stays clear.
 - The hero's ambient patina had been painting over the top of the globe's halo (the section carried `z-20`), leaving a horizontal seam at the hero's bottom edge. Only the hero's content wrapper is `z-20` now; the section itself sits below the globe.
 - The year scrubber ends 24px before the drawer in the home layout (`md:pr-[464px]`).
+
+## 2026-09-15 halo disc no longer clipped on the interactive globes
+
+- The outer halo bloom (radius 1.24 at camera distance 3.4) subtends 21.4 degrees and the 42 degree vertical fov cut it flat at the canvas's top and bottom, a chord about 38% of the disc wide; at page top on the home page that read as a sliced tan disc under the hero. Interactive mounts now use fov 44 (globe about 4.5% smaller, disc fully inside the canvas). The decorative mount fades its halo in-shader and keeps 42.
