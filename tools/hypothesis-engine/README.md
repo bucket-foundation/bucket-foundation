@@ -322,6 +322,23 @@ are the two pieces still open.
   (`API Error: ... Details: [bio]`), so the corpus was rewritten around an
   astronomical sighting instead, a toy domain no slot combination reads as
   dual-use.
+- **`max_hypotheses` truncates by a stratified sample
+  (`STATISTICAL-AUDIT-2026-09-15.md` item 1).** `hte.runner.run_campaign`
+  used to keep `sorted(by_address.values(), key=lambda h: h.address)[:
+  max_hypotheses]`: the lowest Gödel numbers, every run, every seed, so
+  whichever actor the vocabulary happened to list first decided the
+  critic's own population (the live Younger Dryas run: 3,205 distinct
+  addresses, 400 kept, all of them the earliest-indexed actor the
+  TIME_BIN prime could reach). `hte.generate.stratified_sample` now
+  strata by ACTOR id and `ConsensusStatus` (one shared stratum for every
+  sequence), floors each at `min(its size, ceil(cap / n_strata))`, and
+  hands out the rest by size, so an actor the corpus names once is never
+  emptied by one it names a hundred times. The frame lands in
+  `MANIFEST.json["counts"]["sampling"]`. `hte.generate.
+  combinatorial_sample`'s own `status_balanced` knob (default `True`)
+  gets the same treatment on the ACTOR draw: the `ConsensusStatus` class
+  is drawn before the actor, so status classes split the combinatorial
+  budget evenly regardless of how many actors populate each one.
 
 ## Decisions made where the source material left room
 

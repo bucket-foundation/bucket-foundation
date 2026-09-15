@@ -83,13 +83,16 @@ over an `hte.synth` world sized to 400 hypotheses post-`max_hypotheses`
 cap (`hte.synth.make_world(0, n_actors=12, n_actions=6, n_objects=8,
 n_places=6, n_mechanisms=5, span=(1900,2000), n_true_events=5,
 evidence_per_event=(3,6))`, `combinatorial_max_items=100`,
-`max_hypotheses=400`), with `hte.llm.complete` itself mocked to sleep
-200ms and always return a valid response (`hte.fakellm`'s own critic/
-judge stand-ins have no batch-shaped response, so every batched call
-under `HTE_LLM_MODE=fake` falls back to single-item calls by design,
-`docs/THROUGHPUT.md`'s own "Fallback behavior" section below; measuring
-the real wiring's own speedup needs a mock that lets a batch call
-succeed instead):
+`max_hypotheses=400`; a world sized exactly to the cap never truncates,
+so these numbers hold regardless of `hte.generate.stratified_sample`
+replacing the address sort the cap used to apply,
+`STATISTICAL-AUDIT-2026-09-15.md` item 1), with `hte.llm.complete`
+itself mocked to sleep 200ms and always return a valid response (`hte.
+fakellm`'s own critic/judge stand-ins have no batch-shaped response, so
+every batched call under `HTE_LLM_MODE=fake` falls back to single-item
+calls by design, `docs/THROUGHPUT.md`'s own "Fallback behavior" section
+below; measuring the real wiring's own speedup needs a mock that lets a
+batch call succeed instead):
 
 | Config | `HTE_LLM_WORKERS` | `critic_batch_size`/`judge_batch_size` | Wall time | LLM calls | Speedup |
 |---|---|---|---|---|---|
