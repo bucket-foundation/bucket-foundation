@@ -145,15 +145,26 @@ def test_fakellm_critic_rejects_when_no_supporting_evidence():
     assert response["keep"] is False
 
 
-def test_fakellm_judge_is_sigmoid_of_projection_difference():
-    from hte.belief import Opinion, sigmoid
+def test_fakellm_judge_is_sigmoid_of_linked_evidence_balance():
+    """`bkt-hte-blind-roles`: the fake judge reads each side's own
+    supports/refutes count off `hte.roles.judge`'s own evidence-block
+    line, never an `Opinion` (the prompt carries none)."""
+    from hte.belief import sigmoid
 
-    a = Opinion(b=0.8, d=0.1, u=0.1, a=0.5)
-    b = Opinion(b=0.1, d=0.8, u=0.1, a=0.5)
-    prompt = f"Hypothesis A: ...\nA's opinion: {a}\n\nHypothesis B: ...\nB's opinion: {b}\n\nReturn p_a_wins..."
+    prompt = (
+        "Hypothesis A: ...\nA (supports=2, refutes=0):\n- (textual, T2) 'x' [e1]\n\n"
+        "Hypothesis B: ...\nB (supports=0, refutes=1):\n- (textual, T2) 'y' [e2]\n\n"
+        "Return p_a_wins..."
+    )
     response = fakellm.complete(prompt, role="judge", schema=JUDGE_SCHEMA)
-    expected = sigmoid(a.project() - b.project())
+    expected = sigmoid((2 - 0) - (0 - 1))
     assert response["p_a_wins"] == pytest.approx(expected)
+
+
+def test_fakellm_judge_draws_when_neither_side_has_linked_evidence():
+    prompt = "Hypothesis A: ...\nA: no linked evidence.\n\nHypothesis B: ...\nB: no linked evidence.\n\nReturn p_a_wins..."
+    response = fakellm.complete(prompt, role="judge", schema=JUDGE_SCHEMA)
+    assert response["p_a_wins"] == pytest.approx(0.5)
 
 
 def test_fakellm_understanding_echoes_statement():

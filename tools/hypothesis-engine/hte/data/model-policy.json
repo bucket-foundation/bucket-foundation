@@ -1,11 +1,11 @@
 {
-  "_note": "Which Claude model backs each hte.roles function (bkt-hte-self-accounting). Values are CLI model aliases, passed straight through to `claude -p --model`. `escalation` is not a role; hte.roles.extract reaches for it when its three-member ensemble disagrees above the agreement threshold in hte/roles.py's EXTRACT_AGREEMENT_THRESHOLD.",
+  "_note": "Which Claude model backs each hte.roles function (bkt-hte-self-accounting). Values are CLI model aliases, passed straight through to `claude -p --model`. `escalation` is not a role; hte.roles.extract reaches for it when its three-member ensemble disagrees above the agreement threshold in hte/roles.py's EXTRACT_AGREEMENT_THRESHOLD. `judge` runs on `opus`; `critic` stays on `sonnet` (bkt-hte-blind-roles): a documented cost on the live Younger Dryas run was a top ten by Elo of nine unbound consensus hypotheses. `opus` is a second Claude model, not a second model family (the audit's own fix column asks for uncorrelated errors across architectures); `hte/llm.py` shells out to the `claude` CLI only, so a real second family needs a different provider wired in there, tracked as a follow-up. `hte.runner.run_campaign` logs a `judge_disagreement` count into MANIFEST.json['counts'] (how often the judge's verdict crosses the side the belief-scored opinion already favored) as a running check on how much the gap still matters.",
   "roles": {
     "generator": "sonnet",
     "critic": "sonnet",
     "unknown_unknown": "sonnet",
     "preservation_critic": "sonnet",
-    "judge": "sonnet",
+    "judge": "opus",
     "meta_review": "sonnet",
     "self_report": "sonnet",
     "extractor": "haiku",

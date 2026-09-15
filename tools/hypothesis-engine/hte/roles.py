@@ -508,25 +508,51 @@ JUDGE_DEFAULT: dict[str, Any] = {
 }
 
 
+def _judge_evidence_block(label: str, support: Sequence[EvidenceItem], refute: Sequence[EvidenceItem]) -> str:
+    """`label`'s own linked evidence (`EvidenceItem.supports`/`refutes`),
+    quoted by id and span, plus a supports/refutes count: what a judge
+    compares instead of an `Opinion`, prior, or Elo (`bkt-hte-blind-
+    roles`)."""
+    lines = [_evidence_line(e) for e in (*support, *refute)]
+    if not lines:
+        return f"{label}: no linked evidence."
+    return f"{label} (supports={len(support)}, refutes={len(refute)}):\n" + "\n".join(lines)
+
+
 def judge(a: Hypothesis, b: Hypothesis, context: Mapping[str, Any], *, cache_dir: str, replay_only: bool = False) -> float:
     """The tournament's pairwise debate judge (`main.tex` §8's ranking
-    tournament): given two hypotheses and shared context (their current
-    opinions, the evidence each names, or anything else
-    `hte.tournament.run` wants the judge to see), returns `P(a beats b)`
-    in `[0, 1]`. `hte.tournament.run` is expected to call this
-    symmetrically or take `1 - judge(b, a, ...)` as its own consistency
-    check; this function itself makes no such guarantee across two
-    separate calls."""
-    opinions = context.get("opinions", {})
+    tournament): given two hypotheses and their own linked evidence
+    (`context["evidence"]`, filtered here to each side's own `supports`/
+    `refutes`), returns `P(a beats b)` in `[0, 1]`. Blind by construction
+    (`bkt-hte-blind-roles`: the live Younger Dryas run's top ten by Elo
+    were nine unbound consensus hypotheses, traced to this prompt once
+    embedding each side's `Opinion`, `a` included). `hte.tournament.run`
+    randomizes which side lands in the A slot per pair and maps the
+    result back; `judge` itself is expected to be called symmetrically
+    or as `1 - judge(b, a, ...)`, a guarantee it makes no attempt to
+    enforce across two separate calls."""
+    evidence: Sequence[EvidenceItem] = context.get("evidence", [])
+    support_a = [e for e in evidence if a.address in e.supports]
+    refute_a = [e for e in evidence if a.address in e.refutes]
+    support_b = [e for e in evidence if b.address in e.supports]
+    refute_b = [e for e in evidence if b.address in e.refutes]
+    draw_note = (
+        "\n\nNeither hypothesis has any linked evidence. Return "
+        "p_a_wins=0.5 (a draw) unless the two differ in internal "
+        "consistency (for example one places its actor outside the time "
+        "or tradition its own claim requires); note any such difference "
+        "in your rationale."
+        if not (support_a or refute_a or support_b or refute_b) else ""
+    )
     prompt = (
-        "Judge which of two hypotheses the evidence favors more, given "
-        "their current opinions if any.\n\n"
-        f"Hypothesis A: {_describe_hypothesis(a)}\nA's opinion: {opinions.get(a.address)}\n\n"
-        f"Hypothesis B: {_describe_hypothesis(b)}\nB's opinion: {opinions.get(b.address)}\n\n"
+        "Judge which of two hypotheses the linked evidence favors more.\n\n"
+        f"Hypothesis A: {_describe_hypothesis(a)}\n{_judge_evidence_block('A', support_a, refute_a)}\n\n"
+        f"Hypothesis B: {_describe_hypothesis(b)}\n{_judge_evidence_block('B', support_b, refute_b)}"
+        f"{draw_note}\n\n"
         "Return p_a_wins, your estimate of P(A is the better-supported "
         "hypothesis), in [0, 1], with a one-line rationale. Judge target-"
-        "blind: apply the identical standard regardless of which reading, "
-        "orthodox or fringe, either hypothesis favors."
+        "blind: apply the identical standard to both sides regardless of "
+        "which one seems more familiar or better established."
     )
     response = _with_refusal_default(
         lambda: llm.complete(prompt, role="judge", schema=JUDGE_SCHEMA, cache_dir=cache_dir, replay_only=replay_only),
