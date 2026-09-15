@@ -976,30 +976,35 @@ def test_discover_card_roots_against_the_real_repo_checkout():
         assert literature.LOCAL_INTAKE_DIR in discovered
 
 
-def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_six_degraded_named_in_the_log(caplog):
+def test_load_cards_dir_none_against_the_real_repo_checkout_succeeds_with_every_degraded_card_named_in_the_log(caplog):
     """bkt-hte-outbox-seam review, "High": `literature.load(cards_dir=
     None)` used to raise against this repo's own on-disk corpus, because
-    six real cards carry `doi: null`. It must now succeed, report the
-    real 177-card corpus (grown from 147 by batch five, `bkt-hte-
-    literature-multiline-claims`), degrade (never drop) all six, and
-    name every one of them in `load_raw`'s own `skipped_or_degraded` log
-    line."""
+    some real cards carry `doi: null`. It must now succeed, report every
+    card `load_raw` returns (the intake tree grows with each batch, so
+    the expected counts come from `load_raw` itself), degrade (never
+    drop) each DOI-less card, and name every one of them in `load_raw`'s
+    own `skipped_or_degraded` log line."""
     if not literature.LOCAL_INTAKE_DIR.is_dir():
         pytest.skip("literature adapter: no _intake/research-os-k12-literature/ tree in this checkout")
+
+    raw = literature.load_raw(literature.discover_card_roots())
+    expected_sources = len({card.doi for card in raw})
+    expected_degraded = sum(1 for card in raw if card.doi_missing)
+    assert expected_degraded > 0
 
     with caplog.at_level(logging.WARNING, logger="hte.corpus.literature"):
         corpus = literature.load(cards_dir=None)
 
-    assert len(corpus.sources) == 177
+    assert len(corpus.sources) == expected_sources
     degraded_ids = [source_id for source_id in corpus.sources if source_id.startswith("nodoi:")]
-    assert len(degraded_ids) == 6
+    assert len(degraded_ids) == expected_degraded
     degraded_items = [item for item in corpus.evidence if item.source_id in degraded_ids]
     assert degraded_items
     assert all(item.tier == Tier.T4 for item in degraded_items)
     assert all(item.views.get("doi_missing") is True for item in degraded_items)
 
     assert "skipped_or_degraded" in caplog.text
-    assert "6 of 177" in caplog.text
+    assert f"{expected_degraded} of {len(raw)}" in caplog.text
     for relative_path in (
         "educational-methods/anderson-krathwohl-2001-taxonomy-revision.md",
         "educational-methods/wiske-1998-teaching-for-understanding.md",
