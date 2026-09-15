@@ -67,6 +67,17 @@ def test_calibrate_command_diagnose_writes_diagnostics_md(tmp_path, capsys):
     assert (tmp_path / "diagnostics.json").is_file()
 
 
+def test_calibrate_command_shuffle_writes_link_shuffle_into_diagnostics_json(tmp_path, capsys):
+    rc = cli.main(["calibrate", "--corpus", "quantum-history", "--diagnose", "--shuffle", "--out", str(tmp_path)])
+    assert rc == 0
+    assert "link-shuffle diagnostic written to" in capsys.readouterr().out
+    diag = json.loads((tmp_path / "diagnostics.json").read_text())
+    assert "reasons" in diag
+    shuffle = diag["link_shuffle"]
+    assert 0.0 <= shuffle["prior_only_fraction"] <= 1.0
+    assert -1.0 <= shuffle["mean_correlation"] <= 1.0
+
+
 def test_calibrate_command_diagnose_with_explicit_cutoff_uses_discovery_date_mode(tmp_path):
     rc = cli.main([
         "calibrate", "--corpus", "quantum-history", "--cutoff-years", "1995", "--diagnose", "--out", str(tmp_path),

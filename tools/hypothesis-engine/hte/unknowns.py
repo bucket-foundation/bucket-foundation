@@ -59,21 +59,17 @@ def chao1(counts: Mapping[int, int]) -> float:
     return s_obs + (f1 ** 2) / (2 * f2)
 
 
-def _chao1_variance(s_obs: int, f1: int, f2: int, s_est: float) -> float:
-    """The Chao1 sampling variance (`chao1987estimating`, as summarized by
-    `colwell1994estimating`), used only to size `coverage_interval`'s
-    confidence bounds below. The `f2 = 0` branch is Chao's own correction
-    for that case; both branches read `0.0` when `f1 = 0`, since a richness
-    estimate with no singletons at all carries no Chao1-specific
+def _chao1_variance(f1: int, f2: int) -> float:
+    """The Chao1 sampling variance for `f2 > 0` (`chao1987estimating`, as
+    summarized by `colwell1994estimating`), used only to size
+    `coverage_interval`'s confidence bounds below, which return before
+    calling this when `f2 = 0`. Reads `0.0` when `f1 = 0`, since a
+    richness estimate with no singletons carries no Chao1-specific
     uncertainty of this kind."""
     if f1 == 0:
         return 0.0
-    if f2 > 0:
-        ratio = f1 / f2
-        return f2 * (0.5 * ratio ** 2 + ratio ** 3 + 0.25 * ratio ** 4)
-    if s_est <= 0:
-        return 0.0
-    return f1 * (f1 - 1) / 2.0 + f1 * (2 * f1 - 1) ** 2 / 4.0 - f1 ** 4 / (4.0 * s_est)
+    ratio = f1 / f2
+    return f2 * (0.5 * ratio ** 2 + ratio ** 3 + 0.25 * ratio ** 4)
 
 
 DEFAULT_CHAO1_SEED_FLOOR = 5
@@ -124,7 +120,7 @@ def coverage_interval(
         }
 
     s_est = float(s_obs + (f1 ** 2) / (2 * f2))
-    sd = math.sqrt(_chao1_variance(s_obs, f1, f2, s_est))
+    sd = math.sqrt(_chao1_variance(f1, f2))
     est_low = max(s_obs, s_est - 1.96 * sd)
     est_high = s_est + 1.96 * sd
     return {
