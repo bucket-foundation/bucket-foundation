@@ -72,7 +72,7 @@ export default function Presentation() {
       {/* ════════════════════════════════════════════════════════════ */}
       {/* HERO · the inscription                                        */}
       {/* ════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden grain min-h-[84vh] flex flex-col justify-center">
+      <section className="relative z-20 overflow-hidden grain min-h-[78vh] flex flex-col justify-center">
         {/* Ambient patina */}
         <div
           aria-hidden

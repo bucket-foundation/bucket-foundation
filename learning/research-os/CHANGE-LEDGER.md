@@ -3597,3 +3597,7 @@ Squash-merged after this pass.
 ## 2026-09-15 decorative dot field and live tuning
 
 `Earth.tsx`: `limbScale` prop with an `onBeforeCompile` vertex patch. `CanonGlobe.tsx`: `DecorativeVariant` type, numeric overrides, `BlurPipeline` props. `FixedCanonGlobeBackground.tsx`: numeric query parsing.
+
+## 2026-09-15 home canon search panel
+
+`src/app/canon/CanonGlobeMount.tsx`: `layout` prop, home left column, `Drawer` `transparent`. `src/components/CanonSearchPanel.tsx`: transparent, `layout="home"`, lift 38vh. `src/components/Presentation.tsx`: hero 78vh, `z-20`.

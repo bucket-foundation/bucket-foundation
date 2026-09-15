@@ -2829,3 +2829,9 @@ None.
 
 - Decorative field: 80,000 candidates (about 23,000 land dots), radius 0.0046, color `0x5f5240`, limb dots shrunk to 0.3 through an `onBeforeCompile` vertex patch so stacked edge dots no longer form a dark crescent; blur step 0.7; shell points larger and fainter (size 0.11, opacity 0.32 of the decorative alpha).
 - Query tuning on the decorative mount, read by `FixedCanonGlobeBackground` into `DecorativeVariant`: `dots`, `dotr`, `dotcolor` (hex), `limb`, `blur`, `passes`, `dpr`, beside the boolean switches. Example: `/research-os?dots=100000&blur=0.9&dotcolor=4a4436`.
+
+## 2026-09-15 home canon search panel
+
+- `CanonGlobeMount` gains `layout="home"`: the search pill, layer toggles, and branch chips sit in a left column (380px, top-left of the panel) over the globe; the detail drawer and its sticky header carry no background (`Drawer` `transparent` prop); fullscreen mode keeps the default layout.
+- `CanonSearchPanel`: no surface, hairline, or `backdrop-blur` of its own (the page ground shows through); globe lifted 38vh above the panel's top edge. Hero (`Presentation`) at 78vh and `z-20` so the dome slides behind the headline, copy, and CTA instead of over them.
+- Two scrolled loads on the founder's GPU, 0 hangs.

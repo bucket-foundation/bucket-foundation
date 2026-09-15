@@ -131,6 +131,10 @@ interface Props {
   scrollRef?: MutableRefObject<ScrollState>;
   /** Diagnostic variants for the decorative mount. */
   variant?: DecorativeVariant;
+  /** "home": search bar, layer toggles, and branch chips sit in a left
+   * column over the globe, and the container and detail drawer carry no
+   * background of their own. Interactive mount only. */
+  layout?: "default" | "home";
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
@@ -183,6 +187,7 @@ export default function CanonGlobeMount({
   decorative = false,
   scrollRef,
   variant,
+  layout,
 }: Props) {
   if (decorative) {
     return (
@@ -197,6 +202,7 @@ export default function CanonGlobeMount({
       branches={branches}
       containerClassName={containerClassName}
       globeWrapperClassName={globeWrapperClassName}
+      layout={layout}
     />
   );
 }
@@ -205,7 +211,9 @@ function InteractiveCanonGlobeMount({
   branches: _branches,
   containerClassName,
   globeWrapperClassName = "",
-}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName">) {
+  layout = "default",
+}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "layout">) {
+  const home = layout === "home";
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
   const [expanded, setExpanded] = useState(false);
@@ -432,7 +440,13 @@ function InteractiveCanonGlobeMount({
       </button>
 
       {/* SEARCH BAR, rounded pill at the top of the tool container */}
-      <div className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
+      <div
+        className={
+          home && !expanded
+            ? "absolute left-4 md:left-8 top-6 z-30 w-[min(380px,calc(100vw-2rem))] flex flex-col items-start gap-3"
+            : "z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0"
+        }
+      >
         <div className="w-full max-w-2xl pointer-events-auto">
           <div
             className="rounded-full shadow-sm flex items-center px-2"
@@ -773,6 +787,7 @@ function InteractiveCanonGlobeMount({
       {/* RIGHT-SIDE INFO DRAWER */}
       <Drawer
         selected={selected}
+        transparent={home && !expanded}
         onClose={() => setSelected(null)}
         onSelectMarker={(id) => {
           // Same-era / nearby click, find the marker by id in the
@@ -808,10 +823,13 @@ function InteractiveCanonGlobeMount({
 
 function Drawer({
   selected,
+  transparent = false,
   onClose,
   onSelectMarker,
 }: {
   selected: CanonMarker | null;
+  /** No surface of its own: the page ground shows through. */
+  transparent?: boolean;
   onClose: () => void;
   /** Called when the user clicks a same-era or nearby cross-reference. */
   onSelectMarker?: (id: string) => void;
@@ -983,8 +1001,8 @@ function Drawer({
         }`}
         style={{
           width: "min(440px, 100vw)",
-          background: "var(--bone)",
-          borderLeft: "1px solid var(--hairline)",
+          background: transparent ? "transparent" : "var(--bone)",
+          borderLeft: transparent ? "none" : "1px solid var(--hairline)",
         }}
       >
         {selected && (
@@ -993,7 +1011,7 @@ function Drawer({
  scrolls the cross-reference sections below. */}
             <div
               className="sticky top-0 z-10 px-6 md:px-8 pt-6 md:pt-8 pb-4"
-              style={{ background: "var(--bone)", borderBottom: "1px solid var(--hairline)" }}
+              style={{ background: transparent ? "transparent" : "var(--bone)", borderBottom: "1px solid var(--hairline)" }}
             >
               <div className="flex items-baseline justify-between mb-3">
                 <span
