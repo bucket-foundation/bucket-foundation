@@ -95,6 +95,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # rather than fixing a worker count in code.
     "critic_batch_size": 8,
     "judge_batch_size": 8,
+    "preservation_batch_size": 8,
     "llm_workers": None,
     # k-fold evidence holdout (`bkt-hte-calibration-redesign`,
     # `hte.calibrate.holdout_kfold`): folds and its own stratification
@@ -560,8 +561,9 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     logger.log(f"critic filter: {len(survivors)} of {len(all_hypotheses)} survived")
 
     table = load_detectability_table()
-    preservation_results = roles.preservation_critique_many(
-        survivors, table, cache_dir=cache_dir, replay_only=replay_only, workers=cfg["llm_workers"],
+    preservation_results = batching.batch_preservation(
+        survivors, table, batch_size=max(1, cfg["preservation_batch_size"]), cache_dir=cache_dir,
+        replay_only=replay_only, workers=cfg["llm_workers"],
     )
     for h, note in zip(survivors, preservation_results):
         logger.log(f"preservation critique on {h.short_id}: could_have_survived={note.get('could_have_survived')}")
