@@ -17,11 +17,13 @@ from typing import Any, Mapping
 from . import artifacts, calibrate, diagnostics, export, holdout_ledger, predict, purge as purge_mod, question_map, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
+from .corpus import vindication_fixture
 from .corpus import quantum_history, sacred_history_texts, younger_dryas
 
 _CORPUS_LOADERS = {
     "quantum-history": quantum_history.ingest,
     "fixtures": fixtures_corpus.build,
+    "vindication-fixture": vindication_fixture.build,
     "education-atlas": education_atlas.load,
     "production": production.load,
     # ros-12 item 2: `public.research_os_productions_outbox`, read (not
@@ -65,6 +67,7 @@ def _cmd_campaign_run(args: argparse.Namespace) -> int:
         "corpus": args.corpus,
         "out_dir": args.out,
         "replay_only": args.replay_only,
+        "prior_ledger": args.prior_ledger,
         "seeds": args.seeds,
         "verbose": args.verbose,
     }
@@ -267,6 +270,13 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
         diagnostics.write_diagnostics(report, out_dir)
         print(f"diagnostics written to {out_dir / 'DIAGNOSTICS.md'}")
         print(f"reasons for the uncovered remainder: {report['reasons']}")
+    if args.vindication:
+        vindication = calibrate.run_vindication(corpus, Constants())
+        (out_dir / "vindication.json").write_text(json.dumps(vindication, indent=2))
+        print(
+            f"vindication written to {out_dir / 'vindication.json'} "
+            f"(vindication_rate={vindication['vindication_rate']}, false_alarm_rate={vindication['false_alarm_rate']})"
+        )
     if args.shuffle:
         shuffle_result = diagnostics.shuffle_report(corpus, Constants(), seed=args.kfold_seed)
         diagnostics_path = out_dir / "diagnostics.json"
@@ -386,6 +396,7 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument("--campaign", default=None, help="default: the corpus name (--corpus)")
     run_p.add_argument("--cache-dir", default=None)
     run_p.add_argument("--replay-only", action="store_true")
+    run_p.add_argument("--prior-ledger", default=None, help="cross-campaign Beta-prior ledger to read before generation and append after scoring (hte.prior_ledger)")
     run_p.add_argument("--seeds", type=int, default=3)
     run_p.add_argument("--verbose", action="store_true")
     run_p.add_argument("--generate-n", type=int, default=None, help="LLM-proposed placements per generate() call (default: runner.DEFAULT_CONFIG)")
@@ -422,6 +433,7 @@ def build_parser() -> argparse.ArgumentParser:
     calibrate_p.add_argument("--fit", action="store_true", help="also grid-search W/lam/tier_scale")
     calibrate_p.add_argument("--diagnose", action="store_true", help="also write DIAGNOSTICS.md: a per-reason breakdown of every uncovered event (hte.diagnostics.coverage_report)")
     calibrate_p.add_argument("--shuffle", action="store_true", help="also run the link-permutation shuffle diagnostic (hte.diagnostics.link_shuffle_test) and merge it into diagnostics.json")
+    calibrate_p.add_argument("--vindication", action="store_true", help="also run the vindicated-alternatives holdout and control check (hte.calibrate.run_vindication) into vindication.json")
     calibrate_p.add_argument("--out", default="runs/_calibration")
     calibrate_p.set_defaults(func=_cmd_calibrate)
 

@@ -77,6 +77,31 @@ opposite sides of `floor_P` (0.941 vs 0.562) by prior alone. `lift`
 reads no `a`; `hte.belief.Opinion.tipping_prior` prints, alongside
 `P(h)`, the prior a gate decision turns on.
 
+The base rate is a Beta prior now, updated across campaigns
+(`hte/prior_ledger.py`). Each concept's `prior_logit` is the label's
+starting mean with four pseudo-observations; a campaign run with
+`--prior-ledger <path>` reads the ledger back into the vocabulary before
+generation and, after scoring, appends per concept how many scored
+survivors naming it carried positive evidence-only lift and how many
+negative. `lift` reads no prior, so the label never feeds itself. Ledger
+rows are per corpus and per run; `MANIFEST.json` `counts.prior_ledger`
+records what was applied and appended.
+
+The vindication holdout is the false-negative test the discovery-date
+holdout cannot run, since that one scores agreement with the
+literature's own record. `hte.calibrate.run_vindication` reads a
+ground-truth event carrying `acceptance_year` (a claim that was fringe
+at discovery and mainstream later) with only the evidence recorded
+before that year, and a `control` event (an exploded claim) with every
+item, refutations included; an event is lifted when its best true
+reading's evidence-only lift clears the floor and beats every
+wrong-interval competitor. It reports `vindication_rate` and
+`false_alarm_rate` with Wilson intervals, `hte calibrate --vindication`
+writes them to `vindication.json`, and `hte.corpus.vindication_fixture`
+carries one synthetic case of each; the real cases (Alvarez, plate
+tectonics, H. pylori, prions; cold fusion, polywater, N-rays, Piltdown)
+are a queued bead.
+
 Evidence weight now carries a likelihood ratio. The critic rates each
 listed item's discrimination (strong, moderate, weak, none: how much
 more likely the item is under the hypothesis than under the strongest

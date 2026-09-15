@@ -160,3 +160,11 @@ board, exercised as such in `tests/test_batching.py`.
 
 A refusal or truncation is cached under its own `(model, prompt)` key and replays as the same typed exception under `--replay-only`, instead of raising `LLMCacheMissError`.
 `stats()` counts a `timeouts` entry per role alongside `refusals`/`truncations`, and `extractor` gets a longer `claude -p` timeout from `hte/data/model-policy.json`'s `timeouts` map, since its own long slices ran past the 300s default.
+
+## Preservation critique batching
+
+`hte.batching.batch_preservation` sends `preservation_batch_size` survivors
+(default 8) per call against the shared detectability table, with the same
+per-id validation and single-call fallback `batch_critique` uses. On the
+live Younger Dryas run the role was 360 of 467 calls, one per survivor;
+at the default it is 45.
