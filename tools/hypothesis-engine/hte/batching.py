@@ -238,6 +238,98 @@ def batch_critique(
 # batch_judge
 # --------------------------------------------------------------------------
 
+# --------------------------------------------------------------------------
+# batch_preservation
+# --------------------------------------------------------------------------
+
+PRESERVATION_BATCH_SCHEMA: dict[str, Any] = {
+    "type": "object",
+    "properties": {
+        "results": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {"type": "string"},
+                    "expected_evidence": {"type": "array", "items": {"type": "string"}},
+                    "could_have_survived": {"type": "boolean"},
+                    "detectability_adjustment": {"type": "number"},
+                    "rationale": {"type": "string"},
+                },
+                "required": ["id", "expected_evidence", "could_have_survived", "detectability_adjustment", "rationale"],
+            },
+        },
+    },
+    "required": ["results"],
+}
+_PRESERVATION_REQUIRED = ("id", "expected_evidence", "could_have_survived", "detectability_adjustment", "rationale")
+
+
+def _preservation_batch_prompt(batch: Sequence[Hypothesis], table: Mapping[Any, float], period: str | None) -> str:
+    rows = [f"{k}: {v}" for k, v in table.items()] if table else ["(no detectability table supplied)"]
+    blocks = [f"Hypothesis id={h.short_id}: {_describe_hypothesis(h)}" for h in batch]
+    return (
+        "For each hypothesis below, if it were true, what evidence would you "
+        "expect to exist, and could that evidence plausibly have survived to "
+        "be found, given the shared detectability context? A low detectability "
+        "score should explain an absence of evidence before falsity does.\n\n"
+        f"Period: {period or '(unspecified)'}\n\n"
+        "Detectability table rows:\n" + "\n".join(rows) + "\n\n"
+        + "\n\n".join(blocks) + "\n\n"
+        f"Return a JSON array under \"results\" with exactly {len(batch)} entries, "
+        "one per hypothesis above, each carrying that hypothesis's own id (the "
+        "id= value from its heading) plus its own expected_evidence, "
+        "could_have_survived, detectability_adjustment in [0, 1], and rationale."
+    )
+
+
+def batch_preservation(
+    hypotheses: Sequence[Hypothesis],
+    table: Mapping[Any, float],
+    *,
+    period: str | None = None,
+    batch_size: int = 8,
+    cache_dir: str,
+    replay_only: bool = False,
+    workers: int | None = None,
+) -> list[dict[str, Any]]:
+    """`hte.roles.preservation_critique`'s own contract, one dict per
+    hypothesis in order, `batch_size` hypotheses per call against the
+    shared detectability table, `workers` chunks in flight; any entry the
+    batch drops, repeats, or leaves short falls back to one direct
+    `hte.roles.preservation_critique` call, the same recovery
+    `batch_critique` uses. On the live Younger Dryas run this role was
+    360 of 467 calls, one per survivor."""
+    chunks = _chunks(list(hypotheses), batch_size)
+    if not chunks:
+        return []
+
+    def _run_chunk(chunk: list[Hypothesis]) -> list[Any]:
+        return _run_batch(
+            _preservation_batch_prompt(chunk, table, period), role="preservation_critic",
+            schema=PRESERVATION_BATCH_SCHEMA, cache_dir=cache_dir, replay_only=replay_only,
+        )
+
+    chunk_entries = pmap(_run_chunk, chunks, workers=workers)
+    results_by_id: dict[str, dict[str, Any]] = {}
+    for chunk, entries in zip(chunks, chunk_entries):
+        by_id = _validated_entries(entries, _PRESERVATION_REQUIRED)
+        for h in chunk:
+            entry = by_id.get(h.short_id)
+            if entry is not None:
+                results_by_id[h.short_id] = {
+                    "expected_evidence": [str(x) for x in entry["expected_evidence"]],
+                    "could_have_survived": bool(entry["could_have_survived"]),
+                    "detectability_adjustment": min(1.0, max(0.0, float(entry["detectability_adjustment"]))),
+                    "rationale": str(entry["rationale"]),
+                }
+            else:
+                results_by_id[h.short_id] = roles.preservation_critique(
+                    h, table, period=period, cache_dir=cache_dir, replay_only=replay_only,
+                )
+    return [results_by_id[h.short_id] for h in hypotheses]
+
+
 JUDGE_BATCH_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
