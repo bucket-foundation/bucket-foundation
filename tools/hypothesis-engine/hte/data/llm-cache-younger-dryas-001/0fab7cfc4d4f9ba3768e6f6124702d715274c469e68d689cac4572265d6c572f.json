@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "add65d25438aa8eb50dd9138c26ae6c36e8bb787b9473664d21705e430004b61",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum/iridium anomalies and elevated platinum-group-element concentrations in YD boundary layer (~12,800 cal BP) sediments across North America",
+      "Geological: magnetic and glassy microspherules, nanodiamonds (hexagonal lonsdaleite), and melt-glass in the YD boundary layer",
+      "Geological: continent-wide 'black mat' organic-rich layer marking abrupt ecological transition at YD onset",
+      "Geological: soot/charcoal spikes indicating widespread biomass burning synchronous with onset",
+      "Astronomical: absence of a confirmed impact crater of appropriate age (expected if mechanism is an airburst rather than surface impact) or, alternatively, candidate crater structures (e.g., under Greenland ice) datable to ~12,900 cal BP",
+      "Astronomical: cosmic-ray-exposure or extraterrestrial isotope signatures (He-3, Ir) in ice cores from Greenland/Antarctica",
+      "Material/archaeological: disruption or thinning of Clovis-culture artifact layers directly above the boundary layer, evidence of contemporaneous megafaunal extinction horizon",
+      "Genetic: population bottleneck signatures in North American megafauna and Paleoindian human genomes dated to ~12,900 cal BP",
+      "Geological (meltwater linkage): glacial lake outburst/drainage evidence (e.g., Lake Agassiz routing changes) synchronous with both the proposed airburst and the onset of AMOC-disruption cooling",
+      "model_prior: this hypothesis corresponds to the real, actively debated 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), for which proponents have published purported nanodiamond/spherule/platinum evidence at dozens of sites, but numerous independent labs have failed to replicate these findings and no confirmed impact crater has been identified as of my training knowledge \u2014 recalled from training, not from provided evidence text, so treat as unverified"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "Using the 'younger-dryas' period row (interval -10950 \u2248 12,950 BP aligns with YD onset, ~12,900 cal BP) rather than the unspecified label. The mechanism (cosmic-airburst causing/triggering a meltwater pulse which then drove YD-onset cooling) implies evidence should cluster in geological (0.65) and astronomical (0.70) categories, which have the highest detectability scores for this period \u2014 sediment/ice-core/boundary-layer stratigraphy from ~12,900 years ago is well within the range that can and does survive (e.g., varved lake sediments, ice cores, loess sections), so absence of such evidence would be informative, not merely a detectability artifact. Material/archaeological (0.35) and genetic (0.30) evidence are less likely to survive/be diagnostic at this age, and textual/linguistic/oral_tradition/iconographic are essentially null (pre-writing, pre-recorded oral tradition, near-zero for this period), so their absence is fully expected and uninformative. Blending across the evidence kinds most relevant to this specific claim (geological, astronomical, with lower weight to material/genetic), a composite detectability of ~0.55 seems appropriate \u2014 high enough that real evidence (or its absence) is meaningful, but not so high as to ignore the intrinsic difficulty of confirming causal mechanism (airburst vs. purely internal ice-sheet dynamics) 13,000 years after the fact. Model-prior (unverified, from training, not the provided evidence text): this scenario matches the real-world 'Younger Dryas Impact Hypothesis,' for which claimed platinum/nanodiamond/spherule evidence exists but has had inconsistent replication success and remains a minority position in Quaternary science; no confirmed impact crater has been identified. Given that geological/astronomical detectability is moderate-to-high for this period, a genuine cosmic-airburst-to-meltwater-pulse causal chain, if true, plausibly could have left recoverable traces \u2014 so the persistent lack of a firm scientific consensus is more consistent with contested/weak evidence than with pure undetectability."
+  }
+}

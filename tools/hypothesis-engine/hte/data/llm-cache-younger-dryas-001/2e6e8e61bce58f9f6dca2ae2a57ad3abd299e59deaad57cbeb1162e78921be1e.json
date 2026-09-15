@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "4f4d7f2ad5b5112b65fdc128e0d6b068d2e5f69db6b24d51e13af39dca555fd0",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: meltglass/melt-product spherules from an airburst are a more concrete, frequently-cited physical proxy in YDIH literature than the broader, more contested causal claim that ejecta fallout produced the YD onset-cooling."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: attributing the entire YD termination to impact ejecta is a fringe, mechanistically weak claim, whereas refutation of European microspherule concentrations reflects well-documented replication failures in the literature, so B's refuted status is better evidenced."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: megafaunal-extinction causation via impact remains genuinely unresolved in mainstream literature so 'inconclusive' fits well, while pairing meltglass formation with an ejecta-fallout (rather than airburst) mechanism is a mechanistic mismatch that weakens A."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: population-demography decline tied to impact-ejecta effects has some archaeological/genetic support, whereas invoking a biomass-burning impact-winter mechanism to explain YD termination (a warming event) is mechanistically incoherent since impact winter would drive cooling, not termination."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: the iridium-anomaly claim is placed ~7000+ years before the accepted YD window, making its refutation almost definitional/uninformative, while a platinum anomaly near the Middle East at the correct YD-onset date matches documented real-world platinum spike findings (e.g., Abu Hureyra), favoring B."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: YD onset-cooling causation by airburst remains actively disputed, matching an 'inconclusive' verdict, whereas claiming the YD termination itself was corroborated by cosmic-airburst misapplies the impact hypothesis (which targets onset, not termination), making B's claim less credible."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: an impact-winter/biomass-burning mechanism driving onset cooling (matching Greenland ice-core ammonium/biomass-burning signals) is mechanistically coherent, whereas nanodiamond concentrations are more naturally linked to impact-ejecta/airburst formation than to a biomass-burning-impact-winter mechanism, a mismatch for B."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: refutation of the iridium anomaly within the actual ~12,800 BP YD-onset window aligns with well-documented replication failures in the literature, giving B stronger evidentiary grounding than refuting an impact-driven YD termination, a claim rarely seriously advanced in the first place."
+      }
+    ]
+  }
+}

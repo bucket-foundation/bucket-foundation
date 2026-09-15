@@ -101,6 +101,35 @@ def test_load_run_succeeds_on_a_fresh_hte_synth_run(fresh_synth_run):
     assert data.counts.n_sources is not None
 
 
+def test_fresh_hte_synth_run_timeline_carries_u_on_every_ranked_entry(fresh_synth_run):
+    """`bkt-hte-timeline-opinion-export`: a real fake-mode campaign run's
+    own `timeline.json` (`hte.export.write_views`'s own output over a
+    real run, this file's own motivating contract) carries the full
+    opinion, `u` included, on every ranked hypothesis in every one of
+    the three views `hte.export.timeline_views` returns. The write-back
+    credence-floor filter's own read of `u` off a reconstructed opinion
+    is covered separately, `tests/test_canon_writeback.py::
+    test_select_above_floor_filters_on_both_p_and_u`: `hte.canon_
+    writeback.reconstruct_candidates` only knows the corpora registered
+    in `hte.runner._CORPUS_LOADERS`, a set that excludes a synth run's
+    own generated `synthetic-*` corpus name."""
+    data = artifacts.load_run(fresh_synth_run)
+    assert data.timeline.bins, "fresh_synth_run's own small-world preset should place at least one bin"
+
+    seen_ranked_entries = 0
+    for b in data.timeline.bins:
+        for entry in b["ranked_hypotheses"]:
+            assert "opinion" in entry
+            if entry["opinion"] is not None:
+                assert "u" in entry["opinion"]
+                seen_ranked_entries += 1
+    assert seen_ranked_entries > 0, "expected at least one opined ranked hypothesis in this fake-mode run"
+
+    for ev in data.timeline.event_views:
+        for placement_entry in ev.get("ranked_placements", []):
+            assert "opinion" in placement_entry
+
+
 # --------------------------------------------------------------------------
 # emit_paper over every one of those same run directories
 # --------------------------------------------------------------------------
@@ -179,3 +208,28 @@ def test_calibration_artifact_reads_the_post_redesign_shape_not_the_retired_n_so
     assert new_shape.calibration.n_holdout_events == 105
     assert new_shape.calibration.n_covered_events == 17
     assert new_shape.calibration.brier_score == 0.42
+
+
+# --------------------------------------------------------------------------
+# survivors.json (`bkt-hte-survivors-artifact`): `RunData.survivors`, the
+# same "no file, no defaulting" reading `calibration` gets above.
+# --------------------------------------------------------------------------
+
+
+def test_load_run_reads_survivors_artifact_when_present(fresh_synth_run):
+    data = artifacts.load_run(fresh_synth_run)
+    assert isinstance(data.survivors, artifacts.SurvivorsArtifact)
+    assert data.survivors.campaign
+    assert data.survivors.survivors
+    entry = data.survivors.survivors[0]
+    assert "hypothesis_id" in entry
+    assert "opinion" in entry
+    assert "robustness" in entry
+
+
+def test_load_run_survivors_is_none_when_the_file_is_absent(tmp_path):
+    run_dir = tmp_path / "runs" / "camp" / "20260101T000000Z"
+    run_dir.mkdir(parents=True)
+    (run_dir / "MANIFEST.json").write_text(json.dumps({"campaign": "camp"}))
+    data = artifacts.load_run(run_dir)
+    assert data.survivors is None

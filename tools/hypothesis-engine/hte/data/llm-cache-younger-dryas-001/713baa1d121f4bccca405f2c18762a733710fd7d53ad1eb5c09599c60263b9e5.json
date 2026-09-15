@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "30bf6e04c09cc700a782924c3ff7f1bc71bbca7207f31034620f726e0e920082",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: dated sediment/stratigraphic sequences documenting the meltwater pulse (e.g., Lake Agassiz drainage chronology, Gulf of Mexico/St. Lawrence outflow sediments) correlated in time with the Younger Dryas boundary layer",
+      "geological: radiocarbon calibration data showing a 'plateau' or noisy region in the ~12,900-11,700 cal BP window that would produce artificial clustering/uncertainty in extinction dates (the specific mechanism named in the hypothesis)",
+      "material: large samples of directly-dated megafaunal skeletal remains (bone collagen radiocarbon dates) from North American sites, ideally with tight stratigraphic control, used to test whether extinction dates cluster with meltwater-pulse timing or are smeared by dating error",
+      "material: faunal dung-fungus spore records (e.g., Sporormiella) from lake cores tracking megaherbivore biomass decline relative to the pulse",
+      "genetic: ancient DNA studies of megafaunal population size/bottleneck timing (e.g., mammoth, horse, bison lineages) compared against the proposed pulse date",
+      "astronomical: proposed extraterrestrial-impact proxies (platinum anomaly, nanodiamonds, magnetic spherules) at the YD onset, since some versions of this hypothesis tie the meltwater pulse to a cosmic trigger",
+      "model_prior: existing scientific literature/debate (radiocarbon dating critiques such as Fiedel's work, and reviews like Faith & Surovell) explicitly discussing whether apparent synchroneity of extinction and climate events is a dating-resolution artifact rather than genuine causal correlation"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval [-12750,-9750] straddles the Younger Dryas onset through the Younger Dryas/early-Holocene transition, so I averaged the 'younger-dryas' and adjacent 'early-holocene' detectability rows rather than a single unspecified period. Geological (0.65) and astronomical (0.7) evidence kinds are the most detectable \u2014 sediment cores, varve chronologies, and impact-proxy layers from this era are well-preserved and have been extensively sampled across North America, and the radiocarbon-plateau problem in exactly this window is a documented, model-prior-level issue (unverified against the provided evidence text, drawn from training knowledge) that would directly support a 'dating-uncertainty' mechanism. Material (0.35-0.45) and genetic (0.3-0.35) evidence is moderately detectable: megafaunal bone collagen and ancient DNA do survive from this timeframe (e.g., La Brea, Alaskan permafrost sites) and have been the subject of active dating-precision debates, but preservation and sample density remain limiting. Model_prior evidence (0.3-0.35) is inherently present in the scientific literature debate itself. Given the convergence of multiple independently-collectible evidence streams (geological, astronomical, genetic, material) and the topic's status as a long-running, heavily studied controversy, a lack of clear surviving evidence would be somewhat surprising rather than expected \u2014 so absence of strong confirming/disconfirming evidence should not be read as strong evidence of falsity, but the hypothesis is falsifiable/verifiable in principle and detection was plausible. I set the aggregate adjustment at 0.5, weighting the higher-detectability geological/astronomical channels against the lower material/genetic ones, since the hypothesis's core claim (dating uncertainty conflating a real correlation) is testable primarily through geological/radiocarbon evidence that is well-preserved for this period."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f3036f94a831342e815fcb3b5fb679874a0ae080cbd0422d46bdb67ac8a11264",
+  "response": {
+    "expected_evidence": [
+      "Geological ice-core evidence: a distinct platinum enrichment layer in a well-dated Greenland ice core, possibly with co-occurring iridium or platinum-group-element enrichments consistent with impact-ejecta fallout.",
+      "Corroborating material and geological evidence: platinum or PGE anomalies at the same stratigraphic age from independent non-Greenland sites, supporting the corroborated-actor status.",
+      "Material evidence: associated impact-proxy markers such as meltglass, spherules, or nanodiamonds in the same horizon.",
+      "Astronomical evidence: modeling or physical evidence consistent with a bolide airburst or impact event capable of producing widespread ejecta fallout.",
+      "Geological chronology: precise ice-core dating placing the anomaly at approximately 10950 BCE, correlating with the Younger Dryas onset boundary.",
+      "Model prior, unverified, from training knowledge: consistency with published Younger Dryas Impact Hypothesis literature describing a platinum spike in Greenland ice cores and continent-wide platinum anomalies at multiple sites.",
+      "Genetic and paleoecological evidence: correlated megafaunal extinction signals near the same date, as weaker circumstantial support."
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.62,
+    "rationale": "The hypothesis concerns a chemical anomaly (platinum enrichment) preserved in annually layered polar ice, dated to roughly 10950 BCE, coinciding with the Younger Dryas onset. No period label was explicitly given, so this was mapped to the younger-dryas row since the stated interval matches that boundary event referenced in impact-hypothesis literature (model-prior, unverified). Under that mapping, geological (0.65) and astronomical (0.70) detectability scores are comparatively high, since ice sheets are excellent high-resolution archives and platinum-group-element anomalies are chemically robust and persist for tens of thousands of years, making this exactly the kind of evidence most likely to survive and later be measured via ice-core geochemistry. Material evidence (0.35) is moderate, since corroborating finds such as spherules or meltglass at other sites depend on sedimentary preservation and research attention. Genetic (0.30) and other proxy categories are weaker and more circumstantial, and textual, linguistic, oral-tradition, and iconographic evidence are essentially inapplicable this far back (near zero). Because the hypothesis explicitly requires a corroborated status implying multiple independent measurements agreeing, and because geochemical surveys of ice cores and sediments from this interval are plausible and have reportedly been conducted (model-prior, unverified), an absence of confirming evidence in this pipeline's dataset should not be treated as strong evidence against the hypothesis, given how detectable this evidence type inherently is. The aggregate detectability adjustment is set at 0.62, weighting toward the strong geological and astronomical detectability of the core evidence while discounting for weaker corroborating strands (material, genetic) and near-zero applicability of textual, linguistic, iconographic, and oral-tradition categories."
+  }
+}

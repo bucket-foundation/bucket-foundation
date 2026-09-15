@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2f1aa1bab21e152a79aa76f2dd56a993e6aebb9e4cbf6a6db5519946f4b6528a",
+  "response": {
+    "expected_evidence": [
+      "Geological/ice-core: a discrete platinum (and possibly iridium/palladium) concentration spike in annually-resolved Greenland ice cores (e.g., GISP2, NEEM, NGRIP) dated to the Younger Dryas onset horizon, ideally with corresponding sulfate, ammonium, or biomass-burning proxy peaks",
+      "Geological (terrestrial correlate): matching platinum/iridium anomaly in Younger Dryas boundary (YDB) sediment layers across North America and Eurasia, plus microspherules, nanodiamonds, meltglass, and shocked quartz reported at YDB sites",
+      "Astronomical: identification of a plausible impactor source (e.g., fragmenting comet/asteroid, candidate crater such as the proposed Hiawatha Glacier structure) or orbital-dynamics modeling consistent with a fallout event at ~10,950 BCE",
+      "Material/archaeological: coeval charcoal/soot 'black mat' layers, megafaunal extinction horizons, and Clovis-culture discontinuity in North American stratigraphy",
+      "Genetic: population bottleneck signatures in megafauna (and possibly early human) genomes dated near the YD onset",
+      "Model-prior: published literature already proposing this exact anomaly (Petaev et al. 2013 PNAS reported a platinum anomaly in the GISP2 Greenland ice core at the Younger Dryas onset, and Firestone et al. 2007 proposed the broader Younger Dryas Impact Hypothesis with YDB platinum/iridium/spherule evidence across multiple continents) \u2014 this is recalled from training data, not from provided evidence text, and should be treated as unverified model-prior pending independent confirmation"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.72,
+    "rationale": "The claimed date (-10950) falls essentially at the Younger Dryas onset, so I use the 'younger-dryas' row rather than a generic period. Ice sheets are exceptional long-term archives: continuous, minimally disturbed, annually-layered accumulation makes trace-metal fallout signatures like platinum anomalies highly preservable and directly measurable by ice-core drilling and mass spectrometry, a mature and already-applied technique. This pushes detectability for this specific geological/ice-core evidence class above the generic 'geological' baseline of 0.65 for the younger-dryas period, toward ~0.72, while corroborating astronomical evidence (crater/impactor identification, 0.7 baseline) and terrestrial geological correlates (YDB sediment sites) remain more equivocal and harder to unambiguously attribute to a single event versus alternative flux sources (e.g., volcanic or background cosmic dust). Material, genetic, and linguistic/textual/oral-tradition/iconographic channels are essentially uninformative this far back (per table: material 0.35, genetic 0.3, textual 0.0, linguistic 0.05, oral_tradition 0.1, iconographic 0.1), so absence of archaeological or cultural corroboration should not be read as evidence against the hypothesis. Given that a platinum anomaly at essentially this exact horizon in a Greenland ice core has reportedly already been documented in the literature (model-prior, unverified against any evidence text provided to me), the hypothesis is plausible and its core evidentiary signature (ice-core platinum spike) is one of the more detectable types available for this period, even though the broader impact-hypothesis interpretation (versus alternative explanations like volcanic platinum sourcing) remains scientifically contested."
+  }
+}

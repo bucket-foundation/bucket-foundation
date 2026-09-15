@@ -1,0 +1,65 @@
+{
+  "model": "sonnet",
+  "role": "critic",
+  "prompt_sha256": "6c00513d0b59b69c1acbfee2490a34f8246a4c500f1bd0cccfb2f983a2ed47a3",
+  "response": {
+    "results": [
+      {
+        "id": "8479b722ab8cddf4",
+        "keep": false,
+        "issues": [
+          "Interval mismatch: hypothesis places the event at -20000 to -19001, but the cited evidence dates the black-mat/airburst layer and Younger Dryas onset to 12.9 ka (~-12900), which falls entirely outside the stated interval."
+        ],
+        "rationale": "The refuting evidence explicitly dates the triggering event to 12.9 ka, contradicting the hypothesis's -20000/-19001 interval."
+      },
+      {
+        "id": "99a6d2b4c8814d2a",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached to critique; nothing in the record contradicts the placement, so it is retained by default."
+      },
+      {
+        "id": "ca56cf0a45030be7",
+        "keep": false,
+        "issues": [
+          "Interval mismatch: hypothesis places the impact-driven extinction at -20000 to -19001, but the cited evidence ties the black-mat boundary layer (and associated Clovis/megafauna decline) to the same ~12.9 ka Younger Dryas onset horizon, outside the stated interval."
+        ],
+        "rationale": "The refuting evidence's dating of the black-mat layer contradicts the -20000/-19001 interval given for the hypothesis."
+      },
+      {
+        "id": "b5b612552e941a46",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached; no contradiction is demonstrated."
+      },
+      {
+        "id": "56afb18ebe177bc1",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached; no contradiction is demonstrated."
+      },
+      {
+        "id": "a08ca4544df78b8b",
+        "keep": false,
+        "issues": [
+          "Interval mismatch: hypothesis places the platinum anomaly at -20000 to -19001, but the cited evidence dates the platinum anomaly to the Younger Dryas onset (matching the GISP2 spike at 12.9 ka), outside the stated interval."
+        ],
+        "rationale": "The refuting evidence's dating of the platinum anomaly at the Younger Dryas onset (~12.9 ka) contradicts the hypothesis's stated -20000/-19001 interval."
+      },
+      {
+        "id": "3d8f3f001b6e2371",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached; no contradiction is demonstrated."
+      },
+      {
+        "id": "a559b55e36cf3d1c",
+        "keep": false,
+        "issues": [
+          "Interval mismatch: hypothesis places the Greenland ice-sheet platinum anomaly at -20000 to -19001, but the cited evidence dates the GISP2 platinum spike to the Younger Dryas onset annual layer (~12.9 ka), outside the stated interval."
+        ],
+        "rationale": "The refuting evidence's dating of the GISP2 platinum spike to the Younger Dryas onset contradicts the hypothesis's -20000/-19001 interval."
+      }
+    ]
+  }
+}

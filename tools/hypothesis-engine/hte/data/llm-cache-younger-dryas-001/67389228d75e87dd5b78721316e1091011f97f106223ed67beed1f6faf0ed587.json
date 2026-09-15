@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "dd9427df51cf4f3f25ba776665b2a7cfa1242b0eb7203cefc9d7fff87de6dc71",
+  "response": {
+    "expected_evidence": [
+      "geological: Younger Dryas boundary layer showing anomalous platinum, iridium, or other platinum-group element concentrations consistent with extraterrestrial input",
+      "geological: nanodiamonds, magnetic microspherules, and glassy carbon spherules in sediment layers dated to about 10950 BCE across multiple North American sites",
+      "geological: a black mat organic-rich layer marking an abrupt ecological transition coincident with the proposed impact date",
+      "astronomical: orbital and dynamical modeling linking the Taurid meteor stream parent-comet fragmentation history to a plausible dense-debris encounter around 12900 cal BP",
+      "astronomical: airburst signatures such as shocked quartz or impact spherules, since a confirmed impact crater is not required for a cluster-airburst scenario",
+      "material: abrupt disruption or abandonment horizon at Clovis-culture archaeological sites stratigraphically aligned with extinction and impact markers",
+      "genetic: megafaunal population genetics showing bottleneck or extinction timing clustering tightly around 10950 BCE rather than a gradual decline",
+      "oral_tradition: Indigenous North American narratives describing catastrophic fire, darkness, or sky events that might speculatively preserve memory of the event",
+      "model_prior: existing scientific literature proposing and disputing this impact-extinction link, such as the Firestone et al. 2007 Younger Dryas Impact Hypothesis and subsequent replication debates"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis matches the real, contested Younger Dryas Impact Hypothesis, which I recognize from training as model-prior, not from the supplied evidence text, so it is flagged as such. The interval given (-10950) aligns with the accepted onset of the Younger Dryas, so the younger-dryas detectability row was used rather than an unspecified-period default. Key confirmatory evidence types, geological markers such as platinum and iridium anomalies, nanodiamonds, spherules, and black mat layers, plus astronomical or dynamical modeling of the Taurid stream, have comparatively high detectability (0.65-0.7) for this period because such geochemical signatures can persist in stratified sediments and ice cores for over 10000 years; proponents claim to have found them at dozens of sites, though replication has been inconsistent and disputed by other geoscientists. This means an absence of universally accepted evidence is not strong proof of falsity by itself, since real scientific disagreement over interpretation (terrestrial versus extraterrestrial origin of spherules and nanodiamonds) is a major driver of the ongoing controversy, not simply poor preservation. Lower-detectability evidence types, oral_tradition (0.1), iconographic (0.1), genetic (0.3), and material (0.35), genuinely could be missing or ambiguous largely because they are harder to preserve or attribute precisely across an 11000-year gap, especially fine-grained genetic bottleneck dating and unbroken oral traditions. The combined detectability_adjustment of 0.5 weights toward the higher-detectability geological and astronomical channels, since those are the load-bearing evidence classes for testing this specific mechanism, while discounting for the weaker material, genetic, and oral corroboration needed to establish the causal triggered claim, i.e., that the impact specifically caused the megafaunal extinction rather than merely coinciding with independent climatic cooling."
+  }
+}

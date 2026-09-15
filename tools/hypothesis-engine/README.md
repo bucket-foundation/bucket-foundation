@@ -40,7 +40,8 @@ are the two pieces still open.
 | `hte/calibrate.py` | `main.tex` §9 | `holdout_by_discovery_date`, `run_holdout` (event-targeted: a held-out event's own matching placement at the right date scored against `1`, its top wrong-interval competitor against `0`), `holdout_kfold`, `choose_holdout_mode`, `run_calibration`, `fit_constants`, `write_calibration`, `brier_score`, `calibration_curve` (`bkt-hte-holdout`, `bkt-hte-calibration-redesign`) |
 | `hte/diagnostics.py` | (none; a k-fold/discovery-date coverage diagnostic, no Lean counterpart) | `coverage_report` (why a held-out event has no matching placement, one reason per event from a fixed set, `bkt-hte-generation-coverage`), `write_diagnostics` |
 | `hte/runner.py` | `main.tex` §8's whole engine loop | `run_campaign`, `RunArtifacts`, `Logger` |
-| `hte/cli.py` | none (own layer) | The `hte` console script: `campaign run`, `calibrate`, `views` |
+| `hte/artifacts.py` | none (own layer, `bkt-hte-artifact-contract`) | Typed dataclasses for every file `run_campaign` writes under one run directory (`ManifestArtifact`, `SelfReportArtifact`, `CalibrationArtifact`, `TimelineArtifact`, `CascadeArtifact`, `SurvivorsArtifact`), `load_run`/`load_manifest`, `RUN_ARTIFACT_VERSION` |
+| `hte/cli.py` | none (own layer) | The `hte` console script: `campaign run`/`results`, `calibrate`, `views` |
 | `hte/generate.py` | (none; generator is out of `Bucket.*`'s scope) | `enumerate_placements` (lazy product, `OTHER` included, its own `span_start`/`bin_width` override the module-default TIME_BIN axis), `neighbors` (one-slot mutation, one-bin time shift, sequence relation change), `from_evidence` (the four evidence-driven generators: evidence-cluster, claim-gap, contradiction, cross-period-analogy; same `span_start`/`bin_width` override), `sequences_from` (Allen-relation pairing) |
 | `hte/unknowns.py` | `Bucket.Unknowns` (Good-Turing/Chao1 only) | `good_turing_missing_mass`, `chao1`, `coverage_interval`, `prior_profiles`, `robustness`, `surprise`, `GapNode`, `value_of_information`, `active_priority` |
 | `hte/tournament.py` | (none; out of `Bucket.*`'s scope) | `Judge`, `Critic`, `run` (Elo-seeded Swiss-style tournament), `critic_filter` |
@@ -495,6 +496,24 @@ or, once installed (`pip install -e .`), the `hte` console script directly.
 Every LLM call `run_campaign` makes shells out to the `claude` CLI already
 authenticated on this machine; nothing in this package ever reads or prints
 an API key.
+
+Every survivor's own full opinion, Elo, preservation critique, and
+robustness dict lands in `survivors.json` under the run directory,
+alongside `MANIFEST.json`, `self-report.json`, `calibration.json`, and
+`timeline.json`: the per-hypothesis numbers those four files either
+aggregate (`MANIFEST.json["counts"]["robustness_stable_fraction"]`) or
+prune (`timeline.json`'s own `posterior`/`elo` pair), kept in full so a
+later reader does not have to rerun the campaign to see them.
+`hte campaign results` turns one run directory into a flat, no-
+absolute-path JSON summary: manifest counts, a per-actor rollup over
+`survivors.json` (highest credence, lowest uncertainty, best Elo, and
+that best survivor's own four profile projections), the ten highest-
+Elo survivors in full, a curated calibration slice, and self-report.json
+verbatim.
+
+```bash
+python3 -m hte.cli campaign results runs/quantum-history/<timestamp>/ --out results.json
+```
 
 `hte calibrate`'s own `--diagnose` flag additionally writes
 `DIAGNOSTICS.md` next to `CALIBRATION.md`: a per-reason breakdown of

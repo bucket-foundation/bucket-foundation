@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "863fb0faf9da43b5af36229a74f85a0f5e64f5c3714c95107c6e205fc239193d",
+  "response": {
+    "expected_evidence": [
+      "Astronomical: a datable Galactic supernova remnant or expansion-age reconstruction consistent with roughly 10,950 BCE",
+      "Geological/ice-core: spikes in cosmogenic isotopes (10Be, 14C, 36Cl, possibly 60Fe) in ice cores and sediments dated to the Younger Dryas boundary",
+      "Geological: nitrate and ozone-depletion proxies in ice cores consistent with atmospheric ionization from a gamma-ray flux",
+      "Geological: re-examination of the known Younger Dryas boundary 'black mat' layer for isotopic signatures distinct from the standard impact-hypothesis markers",
+      "Material/archaeological: disruption in Clovis-culture occupation patterns and megafaunal extinction records coincident with the event",
+      "Genetic: population bottleneck signatures in North American megafauna and early human populations near this interval",
+      "Oral tradition/iconographic: cosmic-catastrophe motifs in later Indigenous oral traditions or rock art (low reliability, long inferential chain)",
+      "Model-prior: existing speculative literature proposing a nearby supernova or gamma-ray event near the Younger Dryas onset, treated as unverified prior knowledge"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10950 corresponds to the Younger Dryas onset/termination window, so the 'younger-dryas' detectability row is the appropriate reference. That row gives relatively high detectability for astronomical (0.7) and geological (0.65) evidence, moderate for material (0.35) and genetic (0.3), and near-zero for textual, linguistic, oral_tradition, and iconographic evidence, consistent with a pre-literate, pre-agricultural context. A genuine nearby supernova with gamma-ray ionization effects should, in principle, leave detectable cosmogenic-isotope and remnant-based signatures within reach of modern ice-core and astrophysical dating, so absence of a confirmed supernova remnant or isotopic anomaly of the right age is meaningful negative evidence rather than something automatically excused by poor preservation. Direct archaeological/genetic linkage is weaker and more indirect, and non-material evidence forms (oral tradition, iconography, texts) are essentially unrecoverable for this period, so those channels' absence carries little weight. Because the strongest, most diagnostic evidence types (astronomical, geological) have comparatively good detectability, a null result there is more informative against the hypothesis than nulls in weaker channels. I set the aggregate detectability adjustment at 0.55, weighting toward the high-detectability astronomical/geological channels most relevant to testing a gamma-ray/supernova mechanism while down-weighting the many low-detectability qualitative channels. Any mention of candidate supernova remnants or existing supernova-YD hypotheses is drawn from model-prior recollection and should be treated as unverified until cross-checked against primary sources."
+  }
+}

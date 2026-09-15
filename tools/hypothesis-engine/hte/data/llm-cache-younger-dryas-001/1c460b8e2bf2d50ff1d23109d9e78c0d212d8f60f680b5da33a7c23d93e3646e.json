@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "660381047e96eeda1e4eab9445481339c827d0f8e9186aff793b5d93a46d0ab1",
+  "response": {
+    "expected_evidence": [
+      "geological: ice-core (Greenland/Antarctic) chemical anomalies coincident with the Younger Dryas onset \u2014 spikes in nitrate, ammonium, or platinum-group elements that could be (mis)read as ionization/impact signatures, alongside meltwater-pulse (MWP-1A) sedimentary/isotopic (\u03b418O, freshwater diatom) signals in North Atlantic cores",
+      "astronomical/geological: cosmogenic isotope excursions (14C in tree rings/varves, 10Be or 36Cl in ice cores) that would be the expected physical fingerprint of an ionizing radiation event around 12,900\u201311,700 BP",
+      "geological: black mat / Younger Dryas boundary layer sediments across North America showing the claimed correlation between meltwater pulse timing and megafaunal die-off horizons",
+      "material: stratified megafaunal bone beds and radiocarbon date clusters showing an extinction pulse tightly synchronized with the meltwater/ionization event rather than a gradual decline",
+      "genetic: ancient-DNA population bottleneck or crash signatures in surviving megafaunal lineages (mammoth, horse, etc.) dated to the proposed window",
+      "model_prior (low-tier): theoretical/simulation literature proposing a mechanistic pathway by which meltwater-pulse-triggered ionization could physiologically or ecologically stress megafauna \u2014 speculative and not part of mainstream Younger Dryas impact or overkill literature as best I recall from training",
+      "oral_tradition/iconographic: essentially none expected, as this predates any known symbolic or narrative record capable of encoding such an abstract mechanistic claim"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.35,
+    "rationale": "The underlying physical phenomena implied by this hypothesis (a meltwater pulse, an extinction pulse, and any coincident ionizing-radiation/cosmogenic-isotope anomaly) fall mainly in the Younger Dryas/early Holocene window (interval spans late Upper Paleolithic through early Holocene), where geological (0.6-0.65) and astronomical (0.65-0.7) proxies are relatively well-preserved and detectable via ice cores, varved sediments, and tree-ring 14C records \u2014 so the raw physical traces could plausibly survive and have been searched for. However, the specific causal linkage asserted \u2014 that a meltwater pulse 'corroborated' megafaunal extinction specifically through a gamma-ray-ionization mechanism \u2014 is not a mechanism I can verify from any established literature in my training; it reads as a synthetic/composite claim (echoing fringe gamma-ray-burst-extinction hypotheses more associated with deep time, e.g. Ordovician, than the Younger Dryas) and should be flagged as model-prior-level speculation rather than an attested hypothesis. Genetic (0.3) and material (0.35) evidence for a synchronized extinction pulse is only moderately detectable, and there is essentially no textual, linguistic, or oral-tradition channel for this period (values 0.0-0.1) since it predates writing and any oral chains reaching this depth are unreliable. Averaging across the plausible evidence channels (geological, astronomical, genetic, material) while heavily discounting the specific mechanistic claim (low confidence, no corroborating literature recalled) yields a blended detectability of roughly 0.35: absence of definitive corroborating evidence for the gamma-ray-ionization pathway specifically should be attributed primarily to the mechanism being speculative/unattested rather than to poor preservation, since genuine physical proxies for the meltwater pulse and extinction timing are independently detectable and well-studied in the mainstream literature under different causal frameworks (e.g., climate-driven or overkill hypotheses)."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b9a95ad46c930f1b4a8caa251ff20fb6fba198fbbcd89d5c73dbb45b50ed21ad",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-group element (Pt, Ir) spikes, nanodiamonds, magnetic/glassy spherules, and 'black mat' organic-rich layers dated to ~12,900 cal BP (Younger Dryas Boundary, YDB) at North American sites (e.g., Murray Springs, Blackwater Draw)",
+      "Material/archaeological: abrupt discontinuities or abandonment horizons in Clovis-era lithic assemblages coinciding with the YDB layer; megafaunal bone beds terminating abruptly at the same stratigraphic horizon",
+      "Astronomical: proposed correlation with the Taurid meteor stream / a disintegrating comet as an impactor source (largely inferential/model-based rather than direct observational)",
+      "Genetic: population bottleneck or extinction signatures in megafaunal ancient-DNA time series clustering near the YD onset; possible human population genetic bottleneck signal in same window",
+      "Oral tradition: speculative claims linking some Indigenous North American origin/catastrophe narratives to a sky-fire event (highly contested, low evidentiary weight)",
+      "Iconographic: essentially none expected/attested for this pre-literate context",
+      "Textual: none expected (pre-writing)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis corresponds to the real 'Younger Dryas Impact Hypothesis' (model-prior, unverified against provided evidence text: e.g. Firestone et al. 2007 and subsequent debate), proposing a cosmic airburst/meltwater-pulse event corroborating North American megafaunal extinction. The claimed interval (-19050 to -9050) spans Upper Paleolithic through Younger Dryas into early Holocene; the core event (~10,900 cal BCE) sits in the Younger Dryas period, which has the highest relevant detectability scores in the table for geological (0.65) and astronomical (0.7) evidence, moderate scores for material (0.35) and genetic (0.3), and near-zero for textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) \u2014 consistent with a pre-literate, pre-iconographic society. Geological stratigraphy (impact-proxy markers at the YDB layer) and megafaunal bone-bed terminations are exactly the kind of physical evidence that plausibly survives ~12,900 years in sedimentary contexts and has, per model-prior recollection, actually been searched for and reported by proponents \u2014 though the finds remain scientifically contested, with many geologists disputing the impact interpretation in favor of alternative climatic mechanisms. Genetic and archaeological evidence is harder to detect but not implausible given the geological detectability ceiling (0.6-0.65) for this era. Given that (a) the primary evidentiary channels (geological, astronomical/model-based, material) have moderate-to-high detectability for this period, and (b) real-world claimed evidence exists but is disputed rather than absent, the appropriate stance is that the hypothesis is testable and evidence could plausibly have survived and been sought \u2014 low detectability in the textual/linguistic/iconographic/oral_tradition channels should not be read as falsifying, since those channels are near-zero for any Upper-Paleolithic/Younger-Dryas claim regardless of truth. Overall corroboration status should be treated as contested/unresolved rather than confirmed or refuted, and a moderate composite detectability adjustment (~0.5) reflects strong signal potential in geological/astronomical channels offset by weak signal in genetic/material/social-memory channels."
+  }
+}

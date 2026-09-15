@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2f4732ea95a226ddb5ef8c6b09e0638b14255416b1dbf5bca0b803b0b6d2fa0a",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: platinum, iridium, and other impact-proxy element anomalies in Greenland ice-core layers dated to the Younger Dryas onset (analogous to the real Petaev et al. platinum spike reported in GISP2 ice)",
+      "Geological/astronomical: elevated nitrate (NO3-) concentrations in ice cores, consistent with atmospheric ionization/NOx production from a gamma-ray or high-energy particle flux event",
+      "Astronomical: anomalous spikes in cosmogenic isotopes (10Be, 36Cl, 14C) in ice cores or tree rings coincident with the YD boundary, which would be the primary signature expected from a gamma-ray ionization mechanism",
+      "Geological: microspherules, nanodiamonds, or shocked mineral grains in the same ice/sediment horizon (contested in the real-world Younger Dryas Impact Hypothesis literature)",
+      "Material: abrupt discontinuities in Upper Paleolithic (e.g., Clovis-associated) archaeological assemblages at ~12,900 BP, offered as indirect/circumstantial support",
+      "Genetic: population bottleneck or extinction signatures in megafauna genomic records at the YD boundary, though these are more directly tied to climate than to a cosmic trigger and hard to attribute causally",
+      "Textual/oral_tradition/iconographic: essentially none expected, since this predates writing and any surviving oral tradition would be unverifiable and heavily mediated by later reinterpretation",
+      "model-prior: general awareness that the 'Younger Dryas Impact Hypothesis' is a real, still-contested scientific debate with some ice-core geochemical anomalies reported but not consensus-confirmed, and that specifically 'gamma-ray ionization' as a mechanism is a less mainstream variant (more associated with nearby-supernova/GRB hypotheses than classic bolide-impact models) \u2014 this framing is recalled from training, not from any provided source text, and should be treated as unverified"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "No source evidence text was supplied for this task, so all substantive content here is model-prior (unverified recall) about the real-world Younger Dryas Impact Hypothesis debate, not a document under analysis. The hypothesis's 'inconclusive' action label matches the actual state of that scientific controversy: some geochemical anomalies (e.g., platinum, nitrate spikes) have been reported in Greenland ice cores at the YD boundary, but replication and causal attribution (let alone the specific 'gamma-ray ionization' mechanism, which is atypical relative to standard bolide/airburst framings) remain disputed. Using the younger-dryas row (closest match to the object/interval despite the period field being left unspecified), the diagnostic evidence classes for this mechanism \u2014 astronomical (0.7) and geological (0.65) \u2014 have the highest detectability scores in the table, and Greenland ice sheets are in fact an unusually good preservation medium (continuous annual layering) for exactly the isotopic/geochemical signals a gamma-ray ionization event would leave. This makes survival and eventual detection of relevant evidence plausible in principle. However, secondary corroborating lines (material 0.35, genetic 0.3) are much weaker, and textual/oral_tradition/iconographic evidence (0.0\u20130.1) is essentially unattainable this far back in prehistory, so an absence of narrative or cultural-memory evidence is fully expected and uninformative about truth or falsity. Weighting toward the two most mechanism-relevant, higher-detectability channels while discounting the near-zero channels yields a suggested overall detectability adjustment of ~0.55 \u2014 high enough that the hypothesis is testable in principle via ice-core geochemistry, but not so high that the persistent scientific inconclusiveness should be read as evidence against the hypothesis."
+  }
+}

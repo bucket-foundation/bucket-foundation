@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "4ed543341d418c489681f30ad3a1f513680806e97a14c9058b17b9b894906e72",
+  "response": {
+    "expected_evidence": [
+      "Geological: elevated platinum/iridium/nickel and other platinum-group-element anomalies at the ~12,800 cal BP Younger Dryas boundary (YDB) layer in sediment cores, ice cores, and paleosols on multiple continents",
+      "Geological: nanodiamonds (lonsdaleite/cubic), magnetic microspherules, and glassy melt-spherules embedded in the YDB layer",
+      "Geological: 'black mat' carbon-rich organic layer marking the boundary, interpreted as a biomass-burning signature",
+      "Geological/astronomical: continent-scale soot, charcoal, and polycyclic aromatic hydrocarbon (PAH) spikes indicating synchronous large-scale wildfires",
+      "Astronomical: identification of a datable impact crater or crater field consistent with the ~10,900 BCE age (e.g., proposed candidates like the Hiawatha structure)",
+      "Material/archaeological: abrupt discontinuities in Clovis-era and other Paleolithic archaeological assemblages at the YDB horizon across North America and Eurasia",
+      "Genetic: megafaunal extinction signatures and human population bottlenecks/discontinuities dated to the YDB interval",
+      "Ice-core geochemical spikes (Greenland/Antarctica) in platinum, iridium, or ammonium at the corresponding depth/age"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis restates the Younger Dryas Impact Hypothesis (YDIH): a cosmic impact corroborated across multiple continents via ejecta fallout at the YD termination (~10,900 BCE). No period tag matches exactly, but 'younger-dryas' is the direct match for the interval/object given. Its detectability table shows geological (0.65) and astronomical (0.70) evidence as the most recoverable channels for this era \u2014 sediment/ice-core stratigraphy and crater geology can and do survive over 13,000 years, which is consistent with the real-world fact (model-prior, unverified by me) that researchers have in fact reported platinum, iridium, nanodiamond, and microspherule anomalies at dozens of YDB sites on several continents. Material (0.35) and genetic (0.30) evidence are weaker channels \u2014 archaeological occupation records and ancient genomes from this deep-time, low-preservation context are patchy, which matches the mixed and contested nature of megafaunal-extinction and Clovis-discontinuity correlations. Textual (0.0), linguistic (0.05), and oral_tradition (0.10) are essentially non-diagnostic this far back given no writing and negligible chance oral traditions retain fidelity across 13 millennia. Given that the strongest expected evidence types (geological, astronomical) sit at moderate-to-high detectability for this period, an absence of universally accepted confirmatory evidence is not well explained by poor preservation alone \u2014 much of the relevant material has in fact been sought and reported, but replication has been inconsistent and independent labs have failed to reproduce some claimed markers (model-prior, unverified). This suggests the low-consensus status of YDIH reflects genuine scientific disagreement over interpretation/replication rather than the evidence being fundamentally unrecoverable. I set the blended detectability_adjustment at 0.55, reflecting decent-but-imperfect preservation potential for the dominant geological/astronomical evidence classes, moderated downward by the weaker material/genetic corroboration expected for a Paleolithic-adjacent event of this age."
+  }
+}

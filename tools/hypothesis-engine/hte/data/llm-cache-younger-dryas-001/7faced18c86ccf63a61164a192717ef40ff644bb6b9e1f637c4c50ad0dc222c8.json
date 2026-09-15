@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "55173bdcceeba6b46b4e8271bee007bd6973c48fbd332d947e7b6b836362df05",
+  "response": {
+    "expected_evidence": [
+      "geological: elevated microspherule (magnetic + siliceous) concentrations in a discrete Younger Dryas boundary (YDB)-age stratum in European lake, bog, and loess sediment cores",
+      "geological: coeval platinum/iridium and other siderophile-element anomalies in the same horizon",
+      "geological: nanodiamonds, carbon spherules, and high-temperature melt-glass associated with the YD onset layer",
+      "astronomical/geophysical: modeled comet/asteroid fragmentation-airburst trajectory consistent with a Europe-wide (or Northern Hemisphere) ejecta fallout pattern, absent a corresponding large impact crater",
+      "material: 'black mat' or scorched/soot horizons at Upper Paleolithic habitation sites stratigraphically aligned with the YD onset",
+      "genetic: megafauna population bottleneck or extinction signatures dated to the YD onset (indirect, weak corroboration)",
+      "model_prior: the existing Younger Dryas Impact Hypothesis literature (e.g., Firestone et al. 2007 and subsequent replication/rebuttal studies) \u2014 flagged as contested, unverified model-prior rather than confirmed fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval [-11000,-10001] corresponds to the Younger Dryas onset rather than the broader Upper Paleolithic, so the 'younger-dryas' row is the more appropriate detectability reference despite the row's near-identical values to upper-paleolithic. The hypothesis is fundamentally geochemical/sedimentological in nature (microspherule fallout), so geological (0.65) and astronomical/geophysical (0.7) rows dominate expected evidence, while material (0.35) and genetic (0.3) evidence are only weakly diagnostic and indirect. Sediment archives spanning ~12,900 years BP (lake cores, loess, ice-adjacent deposits) are known to survive in Europe and have been actively sampled for exactly this kind of signal, so absence of universally accepted confirmation is more plausibly explained by the genuine scientific controversy (replication failures, contamination critiques) than by non-existence of any preservable record. This is a real, actively debated hypothesis in the literature (model-prior, low-tier, unverified as settled fact) rather than a purely speculative one, which raises confidence that if a strong signal existed it would likely have already been reported somewhere, but current published results are mixed/contested rather than absent. Weighting toward the geological/astronomical channels that are most relevant to this specific mechanism, a blended detectability adjustment of 0.6 is suggested \u2014 higher than material/genetic-only estimates would imply, reflecting that the primary evidence class for an ejecta-fallout claim (sediment geochemistry) is comparatively well-preserved and searchable for this period."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fe602866fa4d3fa57bdb716f3562e6a191e3929b24b6284e024195df33cf7eeb",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Ice-core stratigraphy (e.g., GISP2/NGRIP-type layers) showing meltwater/freshwater-forcing signatures (\u03b418O excursions, dust, sulfate/aerosol layers) bracketing the Younger Dryas termination, as opposed to impact-diagnostic layers",
+      "Sediment/geomorphological record of catastrophic proglacial lake drainage (Lake Agassiz/Lake Ojibway-type outburst, meltwater pulse 1A style features) feeding into the North Atlantic and disrupting AMOC",
+      "Geochemical/isotopic markers (Pb, sulfate, dust flux) consistent with freshwater forcing rather than an airburst signature",
+      "Astronomical/impact-diagnostic markers (platinum anomaly, nanodiamonds, magnetic/glassy spherules, iridium) at the YD boundary layer \u2014 their absence or reinterpretation would be key negative evidence against the cosmic-airburst mechanism",
+      "Model-prior: published paleoclimate consensus/debate literature explicitly weighing meltwater-pulse vs. cosmic-airburst causation for the Younger Dryas termination"
+    ],
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis is framed not as a human cultural event but as a geophysical causal claim (meltwater pulse vs. cosmic airburst as driver of the Younger Dryas termination), so the relevant evidence classes are overwhelmingly geological and astronomical rather than textual/oral/iconographic (which are near-zero for this period regardless, per the table: textual 0.0, oral_tradition 0.1, iconographic 0.1, linguistic 0.05). Using the 'younger-dryas' row as the closest period match, geological (0.65) and astronomical (0.7) detectability are comparatively high \u2014 ice-core and sediment archives from this interval are well-preserved, continuously sampled, and have been the subject of decades of active research (GISP2/NGRIP cores, Lake Agassiz drainage geomorphology, YD boundary 'black mat' studies), meaning both confirming and disconfirming signals are highly likely to have been found if they exist. Material (0.35) and genetic (0.3) evidence are less directly relevant to a climate-forcing mechanism claim and score lower. Because the two most relevant evidence classes score well above the mid-range, an absence of supporting airburst-refutation evidence in the literature is more likely attributable to the claim's actual evidentiary standing (or to the specific 'refuted' relationship being a debated/contested characterization) than to poor preservation or search effort. I set the overall detectability adjustment at 0.6, reflecting strong preservation/detection potential for the geological/astronomical core evidence, tempered by near-zero contributions from textual, linguistic, and iconographic channels and by the unusual 'refuted' causal-relationship framing, which is harder to evidence unambiguously than a simple event occurrence."
+  }
+}

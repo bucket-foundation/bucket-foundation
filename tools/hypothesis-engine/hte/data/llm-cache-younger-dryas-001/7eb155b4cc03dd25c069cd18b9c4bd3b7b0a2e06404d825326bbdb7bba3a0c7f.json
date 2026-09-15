@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a92c77dae21085a846ea7c687fa77d6e5d4e8104ecad71927b847bc6fd07d3db",
+  "response": {
+    "expected_evidence": [
+      "Geological: a discrete platinum (and possibly iridium/Pt-anomaly) enrichment layer in Greenland ice cores (e.g., GISP2, GRIP, NEEM, NGRIP) datable to ~10,950 BCE via annual-layer counting",
+      "Astronomical/geochemical: a coincident spike in cosmogenic radionuclides (10Be, 36Cl, 14C) in the same ice-core depth interval, which would be the signature expected from a solar proton event (SPE) rather than from impact ejecta",
+      "Material: correlative platinum/microspherule/nanodiamond-rich sediment layers at Younger-Dryas-boundary sites outside Greenland, supporting a global rather than purely polar fallout event",
+      "Geological: independent dating cross-checks (varve counts, tephra markers) tying the ice-core anomaly to the same calendar interval as terrestrial YD-boundary black-mat/platinum layers",
+      "Genetic: indirect signal such as a megafaunal extinction/population bottleneck pulse temporally clustered with the anomaly (weak, circumstantial)",
+      "Model-prior/literature: published studies (e.g., Petaev et al. 2013 Greenland Pt anomaly; Firestone et al. 2007 YD impact hypothesis; Miyake-event radionuclide spike literature) that have already searched for and reported (or disputed) these signals"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10950 corresponds almost exactly to the Younger Dryas onset boundary (~12,900 cal BP), so I am treating the applicable period as 'younger-dryas' rather than leaving it unspecified. For this period the table gives relatively high detectability for geological (0.65) and astronomical (0.7) evidence, moderate for material (0.35) and genetic (0.3), and near-zero for textual/linguistic (pre-literate society). Greenland ice sheet cores (GISP2/GRIP/NGRIP/NEEM) provide continuous, annually-resolved stratigraphy extending well past 10,950 BCE, so both a platinum anomaly and any cosmogenic-isotope spike from a solar proton event are exactly the kind of signal that, if real, is very likely to have survived and to be measurable with modern ice-core geochemistry \u2014 this is corroborated by actual model-prior recollection that a Greenland Pt anomaly near the YD boundary has been reported in the literature (Petaev et al. 2013), and that the broader Younger Dryas Impact Hypothesis (Firestone et al. 2007 and successors) is an active, evidence-contested research program. However, the specific causal linkage proposed \u2014 a solar proton event 'corroborating' a platinum anomaly via an 'impact-ejecta-fallout' mechanism \u2014 mixes two distinct physical processes: SPEs are expected to leave cosmogenic-isotope (10Be/36Cl/14C) signatures, not platinum-group-element enrichment, which is instead attributed to extraterrestrial impactor/ejecta debris. This mechanistic mismatch means that even with high detectability, finding both signals stacked together would not straightforwardly corroborate a single unified event; the two evidence classes could equally well indicate two unrelated processes near the same ice depth. Given the high preservation potential of Greenland ice but the definitional/mechanistic incoherence of the hypothesis, I set overall detectability moderately high but not maximal, weighted toward the strong geological/astronomical channels while discounting for the weaker material/genetic corroboration and the conceptual mismatch between actor and mechanism."
+  }
+}

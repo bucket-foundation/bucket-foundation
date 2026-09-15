@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b9dea685062bdf1bc921917f7e1516df23d8c798b09cfac1b1c15c8089cc95bd",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.65,
+    "expected_evidence": [
+      "geological: platinum-group-element (Pt, Ir, Os) anomaly spike within the ice stratigraphy dated to ~12.8 ka BP, analogous to the reported GISP2 platinum anomaly (model-prior, Petaev et al. 2013)",
+      "geological: nanodiamonds, magnetic and glassy microspherules, or shocked mineral grains embedded in the same ice layer or in correlative Younger Dryas boundary (YDB) sediments across the Northern Hemisphere (model-prior, Firestone et al. 2007 and successors)",
+      "astronomical: extraterrestrial isotopic signatures (e.g., anomalous 3He, osmium isotope ratios, or chondritic elemental ratios) distinguishing an impact/airburst source from volcanic or terrestrial dust",
+      "astronomical/geological: a corresponding impact crater or strewn field of appropriate age (~12,800 years) in Greenland or a plausible source region (e.g., debated Hiawatha crater, though current dating estimates place it much older, ~58 ka - model-prior, contested)",
+      "material: a correlated dark/black mat or carbon-rich boundary layer in terrestrial North American/European archaeological sites at the same horizon, associated with megafaunal extinction and Clovis-culture discontinuity (model-prior)",
+      "genetic: population bottleneck signatures in megafauna and/or human lineages dated to the YD onset, consistent with abrupt ecological disruption",
+      "model_prior: pre-existing peer-reviewed literature and ongoing scientific debate specifically testing/refuting the Younger Dryas Impact Hypothesis (YDIH), since this is a known, actively contested hypothesis in the geoscience community"
+    ],
+    "rationale": "This hypothesis restates the actively-debated Younger Dryas Impact Hypothesis (YDIH), for which I am relying on model-prior recall of published claims (Firestone et al. 2007 YDB markers; Petaev et al. 2013 GISP2 platinum spike; ongoing rebuttals arguing the anomalies are volcanic, terrestrial, or statistical artifacts) rather than verified source text provided in this task. Ice sheets like Greenland's are unusually strong preservation media for this kind of evidence: continuous annual-layer accumulation, minimal bioturbation, and established high-resolution chronologies mean atmospheric fallout signatures (elemental anomalies, spherules, isotopic excursions) are well-suited to survive and be detected if they existed, which is why I raise the geological/astronomical detectability above the generic younger-dryas geological value (0.65) toward ~0.65-0.75 specifically for an ice-sheet context. However, direct impact-crater evidence is much less detectable in this period/place combination \u2014 Greenland's ice sheet would not preserve a crater itself (that requires exposed bedrock), and any candidate crater (e.g., Hiawatha) currently lacks secure YD-age dating, which is a genuine evidentiary gap rather than a preservation failure. Given the plausibly high survivability of fallout-layer evidence in ice cores, the continued absence of scientific consensus on a confirmed impactor is better explained by genuine ambiguity/contestation in existing published findings than by an inherent inability of the evidence to survive \u2014 so a low detectability score should not be invoked to fully explain the absence of confirmatory evidence here; the adjustment reflects moderately-high plausible detectability weighted by mixed evidence-kind quality (strong for geological/astronomical, weak for genetic/textual/linguistic)."
+  }
+}

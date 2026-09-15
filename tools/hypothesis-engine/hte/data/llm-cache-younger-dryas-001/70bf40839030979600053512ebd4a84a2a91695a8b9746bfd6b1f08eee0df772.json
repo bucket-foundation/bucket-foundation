@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "5dbdde8139442dbd2873e2b7c44fb00aebd974a0dece4e57308f2bee3a519b99",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Astronomical: identification of a supernova remnant (e.g., a pulsar/SNR such as Vela) with an age estimate overlapping ~13,000-12,001 BCE and a distance close enough to plausibly irradiate Earth with gamma rays/cosmic rays",
+      "Geological/geochemical: anomalous spikes in ice-core 10Be, 36Cl, and NOx/nitrate proxies (from atmospheric ionization and ozone-layer disruption) dated to the interval, cross-checked against Greenland/Antarctic ice-core chronologies",
+      "Geological: coeval spike in atmospheric 14C recorded in tree-ring or lake-varve records, consistent with cosmic-ray flux increase",
+      "Geological: black-mat/extinction-horizon sediment layers in North America showing unusual elemental or isotopic signatures coincident with the proposed event",
+      "Material/paleontological: megafaunal bone-bed dating clustering tightly around the proposed interval, distinguishing a sudden ionization-driven die-off from gradual climate-driven decline",
+      "Genetic: population bottleneck or mutational-load signatures in ancient megafaunal DNA consistent with a rapid, radiation-linked mortality event",
+      "Model-prior: existing astrophysical literature proposing a nearby supernova (e.g., Vela) as a contributor to Younger Dryas-era atmospheric/biological changes"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -13000 to -12001 falls in the terminal Upper Paleolithic, just before the conventional Younger Dryas onset, so I anchor detectability to the 'upper-paleolithic' row rather than 'younger-dryas'. The hypothesis's mechanism (gamma-ray ionization from a supernova) is inherently astronomical/geochemical rather than textual or linguistic, and those are the highest-scoring channels available (astronomical 0.7, geological 0.6), while material (0.35) and genetic (0.25) evidence for megafaunal extinction timing is only moderately preservable and genetic sampling of that age is sparse. Textual (0.0) and linguistic (0.05) evidence are essentially irrelevant/unavailable for this pre-literate period, and oral tradition (0.1) is weak. Long ice-core records (Greenland/Antarctica) and dendrochronological/radiocarbon archives genuinely extend back this far, and known pulsar/SNR age estimates (e.g., Vela) are independently checkable, so if the event occurred, corroborating geochemical and astronomical traces could plausibly have survived and been found \u2014 this is not a case where absence of evidence is purely an artifact of poor preservation. However, attributing any detected anomaly specifically to a *gamma-ray-mediated* extinction mechanism (versus impact debris, volcanism, or coincidental SNR timing) is difficult, which is why the object's action is marked 'inconclusive.' I set a blended detectability adjustment of 0.55, weighting the astronomical/geological channels most heavily while discounting for the near-total absence of textual/genetic/material corroboration expected at this time depth. A low overall score here should be read as reflecting genuine evidentiary ambiguity and weak causal attribution, not necessarily that the underlying supernova-timing coincidence is false \u2014 model-prior recollection of a 'Vela supernova/Younger Dryas' proposal is treated as unverified model-prior, not established fact.\""
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "feda2a7b6b8e6d8810d61c0d37a8f5f44857672536891b5a67357b3a457b4605",
+  "response": {
+    "expected_evidence": [
+      "Geological/stratigraphic: absence of synchronous, reproducible impact-proxy layers (platinum spikes, nanodiamonds, shocked quartz, spherules) at the ~12,900 cal BP boundary across multiple continents, or documented failures to replicate earlier positive findings",
+      "Astronomical/geophysical: modeling/physics critiques showing an airburst of the proposed scale is inconsistent with known impactor populations, lack of an identified crater or coherent strewn field, and inconsistent dating of proposed proxies between sites",
+      "Genetic (ancient DNA): population continuity across the Younger Dryas boundary in affected regions (e.g., Clovis-era Anzick-1 genome linking continuously to later Native American populations) rather than a bottleneck/extinction signature",
+      "Archaeological/material: continuity of lithic technocomplexes and site occupation across the boundary (e.g., Clovis-to-Folsom transition) rather than a synchronous, multi-continent abandonment horizon",
+      "Meta-scientific/model_prior: published critical literature (geologists, impact specialists) systematically refuting the Younger Dryas Impact Hypothesis's demographic-collapse claims"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This placement is best read as a meta-level claim about the state of the Younger Dryas Impact Hypothesis (YDIH) debate: that cosmic-airburst-driven population collapse across multiple continents at ~11,000-10,001 BCE has been refuted. Because the interval sits at the Younger Dryas onset, the 'younger-dryas' detectability row applies best. Refutation-type claims are, in a sense, easier to substantiate than the original positive claim, because they rely on absence/inconsistency of proxies (geological, astronomical: ~0.65-0.7 detectability) plus positive continuity signals in genetics and archaeology (~0.3-0.35 detectability, limited by sparse Pleistocene-Holocene aDNA and site preservation). Textual and linguistic evidence are essentially inapplicable (near-zero detectability, correctly so, since no scripts existed) and their absence is fully expected rather than diagnostic of falsity. Oral tradition/iconographic evidence is likewise weak (0.1) for this period and its scarcity should not be read as evidence against the hypothesis. Model-prior (unverified recollection): there is a real, active scientific literature (e.g., Pinter, Boslough, and others) disputing YDIH impact markers, and ancient-DNA studies (e.g., the Anzick-1 Clovis genome) that support demographic continuity into later Native American populations rather than a collapse \u2014 this is consistent with, but not confirmed here as, established fact. Given moderate-to-good detectability in the geological and astronomical/geophysical domains (where refutation-relevant negative/critical evidence is most likely to be preserved and published) and weaker but still present genetic/archaeological signals, the composite detectability across relevant evidence kinds converges near 0.5, meaning an absence of confirming impact evidence is expected and should not automatically be treated as proof the underlying debate never occurred or was undocumented."
+  }
+}

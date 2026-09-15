@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e162593f72d49031fec5f378500e04d85674608cb12ddbfa3525ca2d3e15118b",
+  "response": {
+    "expected_evidence": [
+      "Geological: layers of magnetic and carbon microspherules, nanodiamonds, elevated iridium or platinum, and black mat organic-rich sediment horizons dated to roughly 12900 cal BP across multiple North American sites",
+      "Material: widespread charcoal and soot layers indicating continent-scale biomass burning coincident with the proposed impact horizon; abrupt discontinuity in Clovis-era archaeological occupation layers",
+      "Astronomical: an identifiable impact crater or airburst structure of appropriate age and size, or shocked quartz, tektite, or glassy spherule fields consistent with impact ejecta",
+      "Genetic: population bottleneck signatures in North American megafauna and possibly early human lineages coincident with the interval, detectable via ancient DNA or coalescent analysis",
+      "Geological secondary: correlated proxy dip in temperature or pollen records marking Younger Dryas onset synchronized with the carbon spherule layer",
+      "Oral tradition and iconographic evidence: extremely weak or absent, since no textual or artistic record exists this far back; any Indigenous flood or fire narratives cited as corroboration are unfalsifiable and low value",
+      "Model-prior, unverified, from training knowledge and not the evidence text provided: this matches the well known Younger Dryas Impact Hypothesis proposed by Firestone and colleagues around 2007 and later work, for which proponents have reported spherule and nanodiamond layers at dozens of sites, but which remains heavily contested; many replication attempts failed, spherules have been reinterpreted as fungal or authigenic, and no confirmed crater has been located; this should be treated as a disputed, low tier prior rather than established fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval from -13000 to -12001 corresponds to the Younger Dryas onset, so the younger-dryas period row is most applicable. Geological evidence at 0.65 is the strongest channel here: sediment horizons of this age are routinely preserved and datable via radiocarbon and stratigraphy, and this exact hypothesis, the Younger Dryas Impact Hypothesis, has in fact been extensively searched for and reported on in the literature, so absence of universally accepted confirmation is not primarily a detectability problem since the material has been looked for and partial or contested signals exist. Material evidence at 0.35, such as charcoal layers and archaeological disruption, is moderately detectable but harder to attribute causally to a single event. Astronomical evidence at a nominal 0.7 ceiling for a crater or ejecta field is theoretically highly detectable if a crater existed, yet none has been confirmed after decades of search, which pushes toward the crater simply not existing or being obscured by ice sheet cover or ocean rather than low detectability alone. Genetic at 0.3 and oral tradition or iconographic at 0.1 channels are too weak or absent this far back to be diagnostic. Given that dedicated, high profile scientific search efforts across geological and material channels have already occurred with mixed or contested results, I adjust detectability slightly upward from a naive average toward 0.55, reflecting that this hypothesis is genuinely testable and largely has been tested, so persistent lack of unanimous confirmation carries real evidentiary weight against it, while still allowing for real uncertainty from imperfect global stratigraphic coverage."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "043b60b4247e30e74e4ab4672dec493547978f5359347274755230dfc9fc70d7",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: YDIH evidence for Middle-East cooling via biomass-burning-impact-winter is a narrow, weakly attested claim, while multi-continent population-demography effects tied to ejecta fallout is a more commonly cited (if still contested) YDIH claim, giving B a slight edge."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: Greenland ice-core platinum/microspherule anomalies (e.g., Petaev et al.) are among the more robust pieces of YDIH evidence, whereas North American meltglass claims have been more heavily disputed as pedogenic/wildfire artifacts, slightly favoring A."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.3,
+        "rationale": "model-prior: A links impact to YD termination at a date (-10950) that matches YD onset not termination, an internal temporal mismatch that undercuts its coherence relative to B's more standard nanodiamond/NA claim."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: mainstream literature generally attributes YD termination to oceanic/climatic (Bond-event) processes rather than impact, making A's 'refuted' framing more consistent with consensus than B's 'corroborated' impact-driven termination claim."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: iridium-anomaly evidence for YDIH has been less consistently replicated than population-decline/Clovis-collapse claims tied to a proposed airburst, giving B a marginal edge."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: both hypotheses contain some mismatch (impact mechanistically tied to onset not termination for A; demographic data poorly evidenced via ice-sheet records for B), roughly balancing plausibility with a slight lean to B."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: nanodiamonds in North America are the classic YDB claim but A's vague 'other-action' status is less informative than B's explicit corroboration of nanodiamonds at European sites, which have also been reported in the literature."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.25,
+        "rationale": "model-prior: A's interval (-13000/-12001) falls well outside the accepted Younger Dryas onset window, a clear temporal mismatch, whereas B's date and Greenland iridium-anomaly claim align much better with established YDIH chronology."
+      }
+    ]
+  }
+}

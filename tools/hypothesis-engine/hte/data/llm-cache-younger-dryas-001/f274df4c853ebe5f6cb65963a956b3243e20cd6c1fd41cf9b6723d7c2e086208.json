@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "4174c614e01dcacd14baa9602b8bef95ec0c7d790436fd5711a9e49093cf4d65",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: elevated platinum-group element (Pt, Ir) anomaly in a thin stratigraphic layer dated to ~10,950 BCE, reported at multiple continental sites",
+      "geological: nanodiamonds, magnetic/carbon spherules, and meltglass concentrated at the same boundary layer",
+      "geological: a 'black mat' organic-rich sedimentary horizon marking abrupt ecological change at numerous North American, European, and Middle Eastern localities",
+      "geological/astronomical: Greenland/Antarctic ice-core platinum or iridium spike synchronous with YD onset",
+      "geological: continental-scale soot/charcoal layer suggesting widespread biomass burning coincident with the boundary",
+      "astronomical: orbital modeling showing the Taurid meteor stream's parent body could plausibly have fragmented and delivered a swarm capable of multiple airbursts around this date",
+      "material/archaeological (weak): disruption or abandonment horizons at Upper Paleolithic sites near the boundary layer",
+      "genetic/paleontological: megafaunal extinction or population bottleneck signals temporally correlated with the boundary layer",
+      "geological: absence of a confirmed large impact crater, consistent with an airburst rather than surface-impact mechanism",
+      "model-prior (low confidence, unverified): this closely matches the real, still-contested 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and subsequent work), which has both supporting reports and multiple failed-replication/critical rebuttal studies in the literature"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis specifies a mechanism (impact-ejecta-fallout) and timing (~10,950 BCE, Younger Dryas onset) that fall squarely in the 'younger-dryas' detectability row rather than a later cultural period, since no textual, linguistic, or strong iconographic record could exist for humans at this time (textual=0.0, linguistic=0.05, oral_tradition=0.1). The two channels most diagnostic of an impact-ejecta event \u2014 geological (0.65) and astronomical (0.7) \u2014 have comparatively high detectability, meaning sediment/ice-core stratigraphy and orbital/meteor-stream modeling are exactly the kind of evidence that plausibly survives and is findable today; this matches the real-world fact (recalled as model-prior, not from provided evidence text) that a multi-decade scientific controversy already exists over reported platinum/iridium/nanodiamond boundary layers at Younger Dryas sites on several continents. Material (0.35) and genetic (0.3) evidence for human/megafaunal impacts is moderately detectable but noisier and more indirect. Given the high geological/astronomical channels, an absence of any corroborating anomaly would be somewhat informative against the hypothesis, but the channels most likely to preserve any true signal (geological, astronomical) are reasonably robust, so low detectability alone cannot fully explain a total absence of evidence \u2014 hence a moderate overall adjustment of 0.55, reflecting decent survivability balanced against the near-zero textual/linguistic channels and the genuinely contested, unresolved status of the actual geochemical evidence in the literature."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2bcb25ef4bdf3cf4debb303494906ba591e3997cd1ebeaadc0499f304a2d0037",
+  "response": {
+    "expected_evidence": [
+      "geological: sedimentary Younger Dryas Boundary (YDB) layer containing meltglass, vesicular carbon spherules, magnetic microspherules, and nanodiamonds at multiple North American stratigraphic sites",
+      "geological: platinum-group element (especially platinum) and iridium anomalies in the ~12,900 cal BP boundary layer",
+      "material: disrupted or terminated Clovis-era archaeological horizons directly beneath or at the proposed impact layer",
+      "astronomical: modeled airburst/impact trajectory reconstructions, and absence (or presence) of a corresponding crater consistent with an airburst rather than a ground impact",
+      "material: charcoal/soot 'black mat' layers indicating continent-wide biomass burning coincident with the boundary",
+      "genetic: megafaunal extinction/population bottleneck signals in ancient DNA dated to the interval (weak, indirect)",
+      "model_prior: existing published Younger Dryas Impact Hypothesis (YDIH) literature (Firestone et al. 2007 and subsequent site surveys/critiques) as an unverified prior on plausibility and controversy"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval -10950 corresponds to the Younger Dryas onset, so the relevant period row is 'younger-dryas'. Geological (0.65) and astronomical (0.7) detectability are both high in this table, and meltglass/spherule/nanodiamond evidence is exactly the kind of physically robust, chemically distinctive material that survives well in sedimentary records over roughly 13,000 years, unlike fragile evidence types such as textual or oral-tradition records which sit near 0 for this period. Material archaeological evidence (0.35) is moderate, consistent with the patchy preservation of Clovis-age sites. This hypothesis maps onto a real, actively debated body of published findings (flagged here as model-prior, an unverified source from training recall rather than the provided evidence text) claiming multi-site North American meltglass/spherule layers dated to this event, so absence of evidence is not the primary concern here; the ongoing scientific debate centers on interpretation (cosmic impact vs. terrestrial, volcanic, or anthropogenic origins for the spherules/glass) rather than non-preservation. Given the combination of favorable geological/astronomical detectability and the fact that corroborating material has reportedly already been recovered and reported at multiple sites in the literature, I raise the composite adjustment modestly above the raw geological/astronomical average to about 0.6, reflecting that low detectability is an implausible explanation for any evidentiary gaps here; genuine skepticism about this hypothesis should rest on interpretive/methodological critique of the found material rather than on claims that evidence could not have survived."
+  }
+}

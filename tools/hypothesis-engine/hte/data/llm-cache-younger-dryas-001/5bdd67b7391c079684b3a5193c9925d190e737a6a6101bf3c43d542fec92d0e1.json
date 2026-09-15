@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2463924529404b9434220982d321833cd3cb78827d1b9acf903a951528135aa0",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: nanodiamond-bearing layer (hexagonal lonsdaleite/cubic diamond nanoparticles) in Greenland ice cores (e.g., GISP2, NGRIP, NEEM) dated to ~10,950 BCE / Younger Dryas onset",
+      "Geological: co-occurring platinum, iridium, or other siderophile-element anomaly spike in the same ice layer",
+      "Geological: magnetic microspherules and glassy/melted spherules consistent with impact ejecta or airburst melt",
+      "Geological: elevated ammonium, nitrate, and black-carbon/soot signal indicating continent-scale biomass burning coincident with the layer",
+      "Material: correlative Younger Dryas Boundary (YDB) layer with nanodiamonds/spherules/platinum in terrestrial sediment cores and lake/bog sequences across the Northern Hemisphere ('black mat')",
+      "Astronomical/geochemical modeling: airburst or fragmented comet/asteroid trajectory and energy-yield reconstructions consistent with an ejecta-fallout mechanism",
+      "Genetic (low relevance): megafaunal extinction/population bottleneck signals near the same date, sometimes cited as corroborating but indirect",
+      "Model-prior (unverified, from training knowledge, not the provided evidence text): the debated Younger Dryas Impact Hypothesis literature (Firestone et al. 2007; Kinzie et al. 2014 nanodiamonds in GISP2; Surovell et al. 2009 non-replication; ongoing controversy over whether observed nanodiamonds are impact-derived or terrestrial/detrital artifacts)"
+    ],
+    "detectability_adjustment": 0.62,
+    "rationale": "The hypothesis is precisely the kind of claim Greenland ice cores are well-suited to test: annually resolved, continuously deposited, and datable to within decades near 10,950 BCE, which corresponds to the Younger Dryas onset boundary rather than the 'upper-paleolithic' cultural period label per se. Using the younger-dryas row is most appropriate since the interval is a fixed calendar point tied to that climatic/stratigraphic event. Geological (0.65) and astronomical (0.7) detectability are relatively high for this period \u2014 ice-core stratigraphy, platinum/iridium geochemistry, and microspherule/nanodiamond analysis are mature, high-resolution techniques capable of resolving single-year layers deep in the past, and this is exactly the empirical battleground the real Younger Dryas Impact Hypothesis has occupied (nanodiamonds reported by some teams, e.g., in GISP2 ice, disputed/non-replicated by others \u2014 a fact I hold as model-prior, not verified from the provided evidence). Material evidence (0.35) from terrestrial sediment correlates is moderately detectable but more taphonomically vulnerable (erosion, reworking, contamination) than the ice-core record itself. Genetic, textual, linguistic, oral_tradition, and iconographic channels are essentially irrelevant or near-zero for a geochemical/impact event this far back, so they contribute little to an aggregate detectability score. Because the diagnostic evidence type (geological/ice-core nanodiamond stratigraphy) sits in the moderately-high detectability range, an absence of confirmed evidence would be somewhat but not overwhelmingly informative against the hypothesis \u2014 it is plausible the signal exists but is faint, spatially heterogeneous, or contested in interpretation (as the real YDIH debate shows), so low detectability should partially, not fully, explain any lack of corroboration. I set the adjustment at 0.62, weighting toward the geological/astronomical channels that are actually diagnostic for this hypothesis while discounting the near-irrelevant channels."
+  }
+}

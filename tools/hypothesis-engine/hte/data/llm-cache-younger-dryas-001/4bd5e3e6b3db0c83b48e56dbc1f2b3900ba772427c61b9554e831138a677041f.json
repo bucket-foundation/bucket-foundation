@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "8ab72474377c65505fea5d145b3cf11ed6ba7d6c26121533584dd72a759ea2f1",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: platinum anomalies are among the more widely replicated YDB proxies (Petaev 2013, LeCompte 2012), so calling it 'refuted' is weakly supported; but the causal link from impact to YD cooling onset (B) is itself highly contested (meltwater-pulse alternative favored by mainstream), so neither claim is strongly evidenced, tilting slightly to B."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: a global biomass-burning spike at the YD onset (multi-continent charcoal records) is fairly well documented, whereas nanodiamond concentrations are among the most disputed/least replicated YDB proxies (Daulton et al. failed replications), favoring A."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: nanodiamond evidence for cosmic-airburst is weakly replicated and contested, while platinum-anomaly evidence, though debated specifically for the Mexico locus (Lake Cuitzeo controversy), rests on a broader base of independent replications elsewhere, giving B a modest edge."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.6,
+        "rationale": "model-prior: multi-continent YD cooling onset dating is well established even if the impact-ejecta causal mechanism is disputed, whereas a Middle-East-specific megafaunal extinction pulse tied to cosmic airburst is a much thinner and less-documented locus in the literature."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: AMOC slowdown at YD onset is well documented but mainstream science attributes it to meltwater forcing rather than airburst-triggering; multi-continent megafaunal extinction synchrony with impact is also weak since extinction timing varies greatly by continent, leaving both claims poorly supported with a slight edge to B for broader corroborating extinction-pulse literature in N. America specifically."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: Europe is the classic type-locality for YD cooling with strong regional paleoclimate support, giving A a slight edge over the more geographically over-extended and temporally variable claim of multi-continent megafaunal extinction synchronously caused by a single cosmic airburst."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: iridium anomalies at YDB sites were largely not replicated at significant levels in independent studies (unlike platinum), weakening A's 'corroborated' claim, while archaeological demographic studies (e.g., Buchanan et al.) have argued against a catastrophic population collapse, lending some support to B's 'refuted' framing."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: Greenland ice-sheet YDB evidence is more strongly tied to platinum/spherule spikes than to meltglass specifically, weakening A somewhat, but B's claim that impact-ejecta triggered a N. American population change runs counter to archaeological demographic studies that found no clear catastrophic collapse, giving A a slight net edge."
+      }
+    ]
+  }
+}

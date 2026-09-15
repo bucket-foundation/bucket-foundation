@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "91e66152f061eb673068a9d45022f0075658ed17a7f2623cc1f49c88ef86a4b7",
+  "response": {
+    "expected_evidence": [
+      "Cosmogenic isotope excursions (14C, 10Be, 36Cl) in ice cores and varved sediments precisely dated to ~10,950 BP that would be diagnostic of a gamma-ray/cosmic ionization event (their absence or mistiming is the key refutational evidence)",
+      "Absence or mismatch of impact-proxy markers (platinum spike, nanodiamonds, iridium anomaly, magnetic spherules) with any gamma-ray-burst-specific signature, distinguishing this mechanism from a conventional impactor",
+      "Astronomical/astrophysical case for a candidate nearby supernova or gamma-ray-burst source (or lack thereof) capable of irradiating Earth at that date",
+      "Faunal chronology (radiocarbon-dated megafaunal remains) showing extinction pulse timing inconsistent with a single sharp ionization event, i.e., extinctions staggered/gradual rather than synchronous",
+      "Ancient DNA / population genetic data on North American megafauna showing decline patterns (bottleneck timing, genetic diversity loss) inconsistent with an acute radiation-driven mass mortality",
+      "Ozone-depletion or biological stress proxies (e.g., UV-B damage markers in preserved spores/pollen, unusual mutation load) that a gamma-ray ionization event would be expected to leave, and their presence/absence",
+      "Model-prior literature record of the gamma-ray-burst-as-YD-trigger hypothesis (e.g., Melott & Thomas-type proposals) and subsequent critique/refutation in the scientific literature"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.45,
+    "rationale": "This hypothesis concerns a refutation of a specific mechanistic claim (gamma-ray ionization from a cosmic event) as the cause of North American megafaunal extinction, dated to the Younger Dryas boundary (~10,950 BP). The most diagnostic evidence classes are geological (ice-core/sediment isotope and impact-proxy records) and astronomical (cosmogenic isotope excursions, candidate source identification), which have relatively good preservation and detection potential for this period (younger-dryas row: geological 0.65, astronomical 0.7). Genetic (ancient DNA of megafauna, 0.3) and material/archaeological faunal chronology (0.35) evidence is moderately preserved and has been actively studied. Textual (0.0) and linguistic (0.05) evidence are irrelevant/non-existent for a pre-literate period and should not count against the hypothesis. Oral tradition (0.1) and iconographic (0.1) evidence are essentially unavailable this far back. Model-prior literature (0.3) exists as a real scientific debate (a gamma-ray-burst/supernova trigger for the Younger Dryas radiocarbon spike has been proposed and contested in the literature \u2014 flagged here as model-prior, not verified from the evidence text). Weighting toward the geological/astronomical/genetic channels most relevant to testing an ionization mechanism, and down-weighting textual/linguistic/oral/iconographic channels that are structurally near-zero for this period, yields a composite detectability of roughly 0.45. Given this, an absence of a clean, dated cosmogenic isotope spike or corroborating astrophysical source is a plausible and expected form of 'evidence of refutation' rather than an indication that the underlying question is unanswerable \u2014 the refutation is plausible and detectable within the surviving proxy record, so falsity (of the gamma-ray-impact-as-cause claim) can be reasonably distinguished from mere non-detection."
+  }
+}

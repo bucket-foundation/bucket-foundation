@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "c0b47deae52a6d8d5809a34956ea9c56b740c12254afa0e743a20a68520302b7",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.3,
+        "rationale": "Opinions are numerically tied, but A's 'triggered YD onset cooling' interval (-13000 to -12001) is inconsistent with the -10950 onset date used consistently across the other refuted-proxy hypotheses in this set, while B's refutation of the iridium anomaly at the consistent -10950 date matches model-prior knowledge that YDB iridium enrichment has largely failed replication, favoring B."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.65,
+        "rationale": "Opinions tied numerically; A's refuted nanodiamond claim sits near the internally-consistent -10950 YD onset date and matches model-prior that nanodiamond 'evidence' has been extensively contested/refuted in the literature, whereas B's 'triggered' claim uses an off-convention -12000/-11001 window, making A the more internally-consistent and better-supported reading."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.65,
+        "rationale": "Tied opinions; A's refutation of a synchronous megafaunal extinction sits at the consistent -10950 date and aligns with model-prior that extinction timing is poorly synchronized with any single impact event, while B corroborates nanodiamonds at the anomalous -13000/-12001 window used elsewhere only for contested trigger claims, favoring A."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.32,
+        "rationale": "Tied opinions; B's refutation of carbon-spherule evidence at the consistent -10950 date matches model-prior that spherule 'evidence' has largely been shown non-diagnostic/refuted, while A's 'triggered megafaunal extinction' claim uses the off-convention -12000/-11001 window associated with less-supported trigger assertions, favoring B."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.3,
+        "rationale": "Identical fully-uncertain opinions; content favors B because the classic (and comparatively more discussed) Taurid-encounter claim concerns YD onset cooling, and the given interval (-11000/-10001) sits closer to conventional onset timing than to YD termination, which model-prior attributes mainly to ocean-circulation resumption rather than a cosmic mechanism."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.58,
+        "rationale": "Tied opinions on refuting microspherule concentration; A's cosmic-airburst mechanism is more mechanistically consistent with the no-crater, low-altitude-airburst framing of the YDIH per model-prior, whereas B's 'impact-ejecta-fallout' implies a cratering event not typically part of that hypothesis, giving A a slight edge."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.45,
+        "rationale": "Projected probabilities from the given opinions are close but B (taurid-swarm corroboration, b+a*u\u22480.0025) edges out A (gamma-ray-ionization refutation, b+a*u\u22480.0021); qualitatively A's refutation of a speculative gamma-ray-demography mechanism is plausible, but the numeric evidence signal marginally favors B."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.6,
+        "rationale": "Both hypotheses are fully uncertain placeholders differing only in base rate; A's base rate (0.018) exceeds B's (0.0067), and both are fringe/inconclusive claims, so the numeric evidence signal marginally favors A while neither is well substantiated per model-prior."
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "ac1398a67a0c16b87d462c3598b5d1af12d4dbcf401352d0d8713c89ae7d5bc7",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.55,
+        "rationale": "Both opinions are fully uncertain (b=d=0,u=1), so no accumulated evidence differentiates them; A's slightly higher base rate (a=0.0110 vs 0.0009) gives it a marginal projected-probability edge (E=b+au: 0.0110 vs 0.0009), but with zero actual evidence this is only a weak tilt."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.45,
+        "rationale": "Both opinions carry no evidence (b=d=0,u=1); B's higher base rate (a=0.0110 vs A's a=0.0067) gives it a slightly higher projected probability, so B is marginally favored though the difference is essentially prior-driven, not evidenced."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.2,
+        "rationale": "A carries substantial disbelief (d=0.502, u=0.498) indicating evidence actively cuts against it, while B is fully uncertain with no counter-evidence (u=1); an actively disbelieved hypothesis is disfavored relative to a neutral, untested one, so B wins more often."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.2,
+        "rationale": "Despite both claiming 'corroborated', A's opinion shows meaningful disbelief (d=0.502) suggesting evidence contradicts the multi-continent framing, whereas B is fully uncertain (u=1) with no counter-evidence recorded, favoring B."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.4,
+        "rationale": "Both opinions are fully uninformed (b=d=0,u=1); B's larger base rate (a=0.0067 vs A's a=0.00055) gives it a modestly higher projected probability, so B is favored, though again this is prior-driven rather than direct evidence."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.3,
+        "rationale": "Both are 'refuted' claims, but B shows much stronger evidenced confidence (d=0.940, u=0.060) versus A's more uncertain, weaker disbelief (d=0.402, u=0.598); the low residual uncertainty in B indicates the refutation claim is more solidly evidenced, so B is the better-supported hypothesis."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.4,
+        "rationale": "A and B share identical belief/disbelief/uncertainty (d=0.8125,u=0.1875), differing only in base rate a (0.018 vs 0.119 for the cosmic-airburst mechanism), giving B a modestly higher projected probability under otherwise equal evidence."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.75,
+        "rationale": "A carries strong, low-uncertainty evidence (d=0.940, u=0.060) indicating a well-evidenced refutation of the impact-replication claim, while B is entirely uncommitted (b=d=0,u=1) with only a small base rate; A's substantive epistemic grounding, even as a negative finding, outweighs B's lack of any evidence."
+      }
+    ]
+  }
+}

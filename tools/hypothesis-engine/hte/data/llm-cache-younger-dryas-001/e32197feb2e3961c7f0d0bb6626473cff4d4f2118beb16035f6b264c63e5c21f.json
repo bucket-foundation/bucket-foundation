@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e6c730ac9fe49de11e66d25ed8d27847c29be9460fef41e9ea5dfee4f490cbfa",
+  "response": {
+    "expected_evidence": [
+      "Geological: anomalous layer at ~10,950 BCE (Younger Dryas boundary) containing platinum/iridium enrichment, nanodiamonds, magnetic and glassy microspherules, and a 'black mat' organic-rich sediment horizon across North American sites",
+      "Astronomical: evidence of an impact/airburst source \u2014 an identified crater, cosmic-related isotopic ratios (e.g., He-3, Pt/Ir ratios matching extraterrestrial material), or ice-core/sediment records of atmospheric fallout dated to the same interval",
+      "Material (archaeological/paleontological): abrupt megafaunal bone-bed termination horizons, Clovis-age site abandonment or disruption layers directly overlying/associated with the ejecta layer",
+      "Genetic: population bottleneck or extinction signatures in megafaunal (and possibly early human) genomes dating to ~10,950 BCE, consistent with a sudden extinction pulse rather than gradual decline",
+      "Oral tradition: flood, fire-from-the-sky, or darkness myths among descendant populations (very weak/unreliable given time depth and pre-literacy)",
+      "Iconographic: rare Paleolithic-era imagery suggestive of a catastrophic celestial event (very unlikely to exist or be interpretable)",
+      "Textual: none expected \u2014 no writing systems existed in this period"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The interval -10950 corresponds to the Younger Dryas onset, so the 'younger-dryas' detectability row is the appropriate reference rather than an unspecified period default. For an impact-ejecta-fallout mechanism, the diagnostic evidence classes are geological (0.65) and astronomical (0.7) proxies \u2014 anomaly layers, spherules, black mats, isotopic signatures \u2014 which have relatively high preservation/detectability because sedimentary and ice-core records from this era are routinely sampled and dated by modern geochemistry. This matches known real-world claims (the Younger Dryas Impact Hypothesis), where such geological/astronomical proxies have in fact been reported at multiple sites, though causal linkage to megafaunal extinction remains scientifically contested (model-prior: I recall this is an actively disputed hypothesis in the literature, with critics citing lack of a confirmed crater and inconsistent replication of the platinum/nanodiamond signals \u2014 this is unverified recollection, not confirmed by the evidence text provided). Material and genetic evidence (extinction horizons, population bottlenecks) are moderately detectable (0.35/0.3) since megafaunal remains and ancient DNA do survive but dating precision and causal attribution to a single instantaneous event are harder to establish. Textual evidence is essentially impossible (0.0, no writing existed), and oral tradition/iconographic evidence is very low detectability (0.1) given ~13,000 years of transmission/preservation decay. Given that the strongest expected evidence types (geological, astronomical) have moderately high detectability in this period, an absence of definitive, undisputed evidence is not strongly explained by low detectability alone \u2014 it is plausible for evidence to exist and have been found, which is consistent with the real ongoing (if contested) empirical record for this hypothesis. I suggest an overall detectability adjustment of 0.6, weighting toward the geological/astronomical channels most relevant to an 'impact-ejecta-fallout' mechanism while acknowledging weaker material/genetic support and near-zero textual/iconographic/oral_tradition detectability."
+  }
+}

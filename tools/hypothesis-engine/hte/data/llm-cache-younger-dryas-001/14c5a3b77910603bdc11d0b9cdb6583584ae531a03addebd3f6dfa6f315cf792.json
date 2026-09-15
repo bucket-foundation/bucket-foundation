@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "191a3a33bc0328bcf4dfee91b37fa81ee1fc4a41ec2aa76c2b47a22ab2e1f924",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: absence or inconsistency of platinum/iridium/osmium anomalies at YD boundary layers across independently sampled North American sites (re-analysis showing spikes not statistically distinguishable from background or not reproducible)",
+      "Geological: 'black mat' layers reinterpreted as wetland/algal-bloom deposits rather than impact-related combustion layers",
+      "Geological: nanodiamond and magnetic microspherule claims failing replication or shown to be misidentified (e.g., framboidal glassy carbon vs. true impact diamonds)",
+      "Geological/geomorphological: absence of any confirmed impact crater of appropriate age and size in North America or under the Laurentide ice sheet",
+      "Geological: alternative causal mechanism evidence -- meltwater pulse from glacial Lake Agassiz into the North Atlantic disrupting AMOC, independent of any impact signature",
+      "Material/archaeological: megafauna extinction and Clovis-culture decline timing shown to be gradual/staggered rather than an abrupt synchronous 'impact winter' collapse",
+      "Material: continent-wide biomass-burning/soot spike claims not corroborated by independent charcoal/soot records outside the original sample sites",
+      "Astronomical: no corroborating record of a bolide/airburst event (e.g., no consistent tektite field, no unambiguous shocked quartz) despite targeted searches",
+      "model_prior: published critique literature (Pigati et al. 2012, Holliday & Meltzer, Boslough et al., van Hoesel et al.) presenting failed replications and methodological critiques of the original YDIH papers -- this is a modern scientific literature record, not a period-contemporary source, so it sits outside the ancient detectability table but is the primary channel through which 'refutation' would actually be evidenced"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis concerns a 'refutation' event, but the refutation itself is a modern (20th-21st century) scientific process, not an event within the -11000 to -10001 interval. The evidentiary substrate being contested (geological strata, sediment cores, extinction/archaeological records) does date to the Younger Dryas onset, so I anchored the detectability table to the 'younger-dryas' row rather than treating the period as unspecified. Under that row, geological (0.65) and astronomical (0.7) evidence are the most plausibly detectable channels -- consistent with reality, since this is precisely the kind of debate that has played out in the peer-reviewed geological/geochemical literature (Pigati et al. 2012, Holliday & Meltzer 2010, Boslough et al. 2012, van Hoesel et al. 2014), with multiple independent labs failing to replicate platinum/iridium/nanodiamond spikes and no impact crater ever confirmed. Material evidence (0.35) is moderate -- megafauna/Clovis archaeological records are preserved but interpretively contested. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are appropriately near-zero since no contemporaneous symbolic/written record exists from preliterate North America ~11,000 BCE, so their low scores correctly explain silence in those channels rather than implying the refutation is unfounded. Genetic (0.3) and model_prior (0.3) are secondary. I nudge the overall composite adjustment to 0.55 (above the raw geological/astronomical average) because the actual detection pathway for a 'refutation' claim runs almost entirely through modern scientific re-analysis of geological proxies rather than through period-contemporary artifacts -- a channel not explicitly represented in the table but empirically the most productive one, and one where detection has demonstrably already occurred (this is a live, well-evidenced scientific controversy, not a case of absent evidence). This is model-prior knowledge of the YDIH debate literature, flagged as such and not treated as established fact within this pipeline."
+  }
+}

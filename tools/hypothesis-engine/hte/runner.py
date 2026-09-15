@@ -357,6 +357,35 @@ def _critic_survivors(
     return survivors
 
 
+def _survivor_opinion(opinion: Opinion) -> dict[str, float]:
+    """`opinion.to_dict()` (`hte.belief.Opinion.to_dict`) plus its own
+    projected credence `P`, the shape `survivors.json` persists per
+    hypothesis. Kept local rather than folded into `Opinion.to_dict()`
+    itself: `hte.canon_writeback`'s own feed402 envelope already writes
+    `candidate.opinion.to_dict()` as a sibling of a separate `posterior`
+    field, and widening `to_dict()`'s own four-key contract would reach
+    that call site's own output shape too, for no gain here."""
+    return {**opinion.to_dict(), "P": opinion.project()}
+
+
+def _survivor_slots(h: Hypothesis) -> dict[str, Any]:
+    """`hte.export._slots_of`'s own ACTOR/ACTION/OBJECT/PLACE/MECHANISM
+    dict, plus a TIME entry for every placement `h` carries. A placement
+    hypothesis has one placement and one interval, so it gets one flat
+    dict with TIME added; a sequence hypothesis has two placements and
+    the Allen relation between them, so it gets a top-level RELATION
+    plus one nested `first`/`second` dict, each built the same way."""
+    if h.is_sequence:
+        seq = h.content
+        return {
+            "RELATION": seq.relation.value,
+            "first": {**export._slots_of(seq.first), "TIME": {"start": seq.first.interval.start, "end": seq.first.interval.end}},
+            "second": {**export._slots_of(seq.second), "TIME": {"start": seq.second.interval.start, "end": seq.second.interval.end}},
+        }
+    placement = h.content
+    return {**export._slots_of(placement), "TIME": {"start": placement.interval.start, "end": placement.interval.end}}
+
+
 def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     """Run the whole engine loop once and write every artifact under
     `<out_dir>/<campaign>/<timestamp>/`. `config` overrides
@@ -454,6 +483,7 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     )
     for h, note in zip(survivors, preservation_results):
         logger.log(f"preservation critique on {h.short_id}: could_have_survived={note.get('could_have_survived')}")
+    preservation_by_address = {h.address: note for h, note in zip(survivors, preservation_results)}
 
     constants = load_constants(cfg["constants"])
     opinions = {h.address: belief_score(h, corpus.evidence, corpus.vocab, table, constants=constants) for h in survivors}
@@ -511,6 +541,42 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         h.address: unknowns.robustness(h, corpus.evidence, profiles, score_fn) for h in survivors
     }
     stable_count = sum(1 for r in robustness_results.values() if r["stable"])
+
+    # `bkt-hte-survivors-artifact`: every survivor's own full opinion,
+    # Elo, preservation critique, and robustness dict, persisted here
+    # rather than only the aggregates `self_report`/`MANIFEST.json` keep
+    # (`robustness_stable_fraction`) and the pruned `posterior`/`elo`
+    # pair `timeline.json` keeps: a live run's per-hypothesis numbers
+    # are otherwise gone the moment this process exits. `text` (a
+    # rendered statement) is left out: neither `Placement` nor
+    # `Sequence` carries a render method of its own, only `hte.
+    # canon_writeback._statement`'s free function does, which needs a
+    # full corpus reconstruction this in-memory run has no reason to
+    # redo.
+    survivors_sorted = sorted(
+        survivors,
+        key=lambda h: (-(elos.get(h.address) if elos.get(h.address) is not None else float("-inf")), h.address),
+    )
+    survivors_payload = [
+        {
+            "hypothesis_id": h.short_id,
+            "address": h.address,
+            "slots": _survivor_slots(h),
+            "opinion": _survivor_opinion(opinions[h.address]),
+            "elo": elos.get(h.address),
+            "preservation": preservation_by_address[h.address],
+            "robustness": robustness_results[h.address],
+        }
+        for h in survivors_sorted
+    ]
+    survivors_artifact = {
+        "artifact_version": artifacts.RUN_ARTIFACT_VERSION,
+        "campaign": cfg["campaign"],
+        "corpus": cfg["corpus"],
+        "survivors": survivors_payload,
+    }
+    (run_dir / "survivors.json").write_text(json.dumps(survivors_artifact, indent=2))
+    logger.log(f"survivors artifact: {len(survivors_payload)} entries written to survivors.json")
 
     surprise_items = unknowns.surprise(corpus.evidence, survivors)
     surprise_rate = (len(surprise_items) / len(corpus.evidence)) if corpus.evidence else 0.0

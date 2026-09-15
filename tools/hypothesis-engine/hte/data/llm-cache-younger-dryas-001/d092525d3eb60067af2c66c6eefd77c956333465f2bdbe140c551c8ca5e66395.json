@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b7039e4c1087dfbd00f80126528e04450c88627344ba7efff9e26766e86a046b",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: a discrete platinum/iridium/nickel-rich fallout layer (impact-ejecta or 'YD boundary layer') in Greenland ice cores (e.g. GISP2, NEEM) dated to ~12,900 cal BP, coincident with Younger Dryas onset",
+      "geological: magnetic/glassy microspherules, meltglass, and nanodiamonds in the same ice/sediment horizon, mirroring the North American 'black mat' YDB layer",
+      "astronomical: reconstructed impactor/airburst parameters (trajectory, fragment size, comet vs asteroid composition) consistent with a Greenland or North Atlantic impact source",
+      "material: archaeological/faunal assemblages (e.g. Clovis-culture sites, megafauna bone beds) showing an abrupt termination or hiatus layer stratigraphically tied to the fallout horizon",
+      "genetic: a sharp megafaunal population bottleneck or extinction pulse dated to the same interval in ancient-DNA/phylogenetic records; possible correlated human population bottleneck",
+      "model_prior: awareness that the real-world Younger Dryas Impact Hypothesis is contested \u2014 a Pt anomaly has been reported in Greenland ice (Petaev et al. 2013) near this date, but most geoscientists dispute an impact origin or its causal role in megafaunal extinction (model-prior, unverified against the given evidence text)"
+    ],
+    "detectability_adjustment": 0.68,
+    "rationale": "The interval (-10950) corresponds to the Younger Dryas onset (~12,900 cal BP), so the relevant period row is 'younger-dryas' rather than the unspecified label. For this period the table gives high baseline detectability for geological (0.65) and astronomical (0.7) evidence and low-to-moderate for material (0.35) and genetic (0.3), with textual/linguistic/iconographic near zero (pre-literate era, appropriately near-0). Because the specified locus is the Greenland ice sheet itself \u2014 an exceptionally high-fidelity, continuously accumulating archive with fine annual/seasonal layering \u2014 the geological and astronomical detectability should be adjusted upward from the generic younger-dryas baseline (toward ~0.75) since ice cores are precisely the medium best suited to preserving and later detecting fallout signatures like Pt/Ir spikes, spherules, and nanodiamonds. This is consistent with the fact that such a Pt anomaly has in fact been reported near this date (a model-prior recollection, not verified against the provided evidence corpus). However, material and genetic detectability remain modest because megafaunal/human occupation evidence in Greenland proper is sparse, and linking any ice-core chemical anomaly causally to 'triggered megafaunal extinction' (rather than mere correlation with an abrupt climate shift) is inherently hard to establish from ice-core data alone, which explains why the hypothesis remains scientifically contested even where the fallout-layer evidence itself is not obviously absent. Overall, low detectability in non-geological/astronomical channels (textual, linguistic, oral_tradition, iconographic) fully accounts for their absence and should not be read as evidence against the hypothesis; the debate instead centers on interpretation of the geological/astronomical signal that does plausibly survive."
+  }
+}

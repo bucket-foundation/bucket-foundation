@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "086ea87793a603669b7b1031f8f0cfc165f2b15e750561a7d33e24db2e65cbb6",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum-group element (Pt, Ir) anomalies in sediment layers dated to ~12,900 cal BP across multiple continents",
+      "Geological: nanodiamond, magnetic microspherule, and melt-glass concentrations at the Younger Dryas boundary (YDB) layer",
+      "Geological: 'black mat' organic-rich sediment layer marking abrupt faunal/vegetation change",
+      "Astronomical: an identifiable impact crater, airburst structure, or ejecta field consistent with a Younger Dryas-age cosmic impact",
+      "Material/archaeological: abrupt discontinuity in megafaunal bone assemblages and associated Clovis-era (or regional equivalent) archaeological sites across continents",
+      "Genetic: ancient-DNA-inferred population bottlenecks/extinction timing for megafauna clustering tightly around ~12,900 BP",
+      "Oral tradition: flood/fire/sky-event myths that could be interpreted as memory of an impact (low confidence, likely post-hoc)",
+      "Iconographic: Paleolithic-era depictions of a catastrophic sky event (very unlikely to exist given low iconographic tradition at this period)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The date -10950 (~12,900 cal BP) aligns with the Younger Dryas onset, so the 'younger-dryas' row is the appropriate detectability context rather than the unspecified period label. Geological (0.65) and astronomical (0.7) evidence kinds have relatively favorable detectability at this timeframe because sediment cores, loess sequences, and lake/ocean cores from this interval are routinely sampled and dated in modern geochronology, and a large-enough impact structure or ejecta layer should in principle be preservable and findable even after ~13,000 years. Material (0.35) and genetic (0.3) evidence is moderately detectable \u2014 megafaunal bone assemblages and ancient DNA extinction chronologies from this period do exist and have been studied. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) evidence kinds are essentially inapplicable or unreliable this far back, so their absence carries little evidential weight either way. Based on model-prior (unverified, training-derived) knowledge: this hypothesis closely mirrors the real 'Younger Dryas Impact Hypothesis' (YDIH), for which some geological signatures (platinum anomalies, nanodiamonds, black mats) have been reported at multiple sites, but the interpretation is contested \u2014 critics argue the platinum/nanodiamond evidence is not reproducible or has alternative explanations (volcanism, wildfire soot, terrestrial processes), and no confirmed impact crater of appropriate age/size has been located despite searching. Because the astronomical/geological detectability scores here are already fairly high (0.6-0.7), the continued absence of a definitive crater or unambiguous impact-only geochemical signature is somewhat harder to fully excuse via poor preservation, and should count as weak-to-moderate evidence against the hypothesis rather than mere non-detection. I set the overall detectability adjustment at 0.55, splitting the difference: moderately favorable for finding fallout/geological signatures, but not so low that non-confirmation is fully explained away by detectability failure alone."
+  }
+}

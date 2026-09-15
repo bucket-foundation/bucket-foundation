@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "528b10219e9c702badc0dca4e59aaee009978aed8dad47cb2fb2a2921c8ab67b",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and osmium anomaly spikes in Younger Dryas boundary (YDB) sediment layers across North America (~12.9 ka)",
+      "Geological: nanodiamonds, magnetic microspherules, and high-temperature melt-glass/scoria-like objects in the YDB 'black mat' layer",
+      "Geological: soot/charcoal peaks indicating continent-scale biomass burning coincident with onset of cooling",
+      "Astronomical: orbital-dynamics modeling showing Earth crossing a dense filament of the Taurid meteor stream/Encke-related debris complex circa 10950 BCE (largely a model-prior/theoretical line, not observational)",
+      "Astronomical: absence of any direct historical/observational record of the swarm encounter (no written or oral-tradition observers existed at needed fidelity)",
+      "Material/archaeological: disruption or abandonment horizon at Clovis-era sites, extinction pulse of North American megafauna, and reduction in human population/artifact density right at the YDB",
+      "Genetic: population bottleneck or extinction signatures in megafaunal and possibly human ancient DNA dated to ~10950 BCE (weak, low-resolution proxy)",
+      "Iconographic/oral_tradition: hypothetical depictions of a sky-fire or comet-swarm catastrophe in Paleoindian rock art or much later oral traditions (very low expected preservation/attribution confidence)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval (-10950) aligns with the Younger Dryas onset, so the 'younger-dryas' detectability row is the most applicable proxy, with material=0.35, genetic=0.3, astronomical=0.7, geological=0.65, and near-zero textual/linguistic detectability (no writing systems existed). This is a real, actively debated hypothesis (the Younger Dryas Impact Hypothesis / Taurid-complex encounter), and its principal evidentiary channel is geological/geochemical (platinum-iridium anomalies, nanodiamonds, black-mat soot layers), which has moderately high preservation potential (0.65) and has in fact been searched for extensively in the literature, though results remain contested rather than clearly 'corroborated.' Astronomical detectability is nominally high (0.7), but this reflects proxy geological/cosmic-dust signatures rather than any direct observational record, since no human observers left records of the event itself \u2014 direct astronomical corroboration is not obtainable for this period, only indirect geochemical/orbital-modeling inference. Material archaeological evidence (Clovis-site disruption, megafaunal extinction) has only moderate preservation (0.35), and genetic, oral-tradition, and iconographic channels are weak or effectively absent given the pre-literate, deep-time context. Given that the strongest-detectability channels (geological, astronomical-proxy) are the ones most relevant to this hypothesis, absence of unambiguous evidence is somewhat less excusable than for a hypothesis relying only on textual/oral channels \u2014 but genuine ambiguity remains because 'astronomical' detectability here is really indirect/geological in practice, not a literal sky record. I flag orbital-dynamics claims about a specific Taurid swarm encounter as largely model-prior (Clube & Napier-style theorizing plus later YDB proponents such as Firestone et al.), not settled fact \u2014 the broader scientific community has not reached consensus, and several independent studies have failed to replicate key markers (nanodiamonds, spherules) at some sites. A detectability_adjustment of 0.55 reflects a blended estimate favoring the higher geological/astronomical-proxy rows while discounting for the mostly indirect, model-based nature of the 'astronomical' evidence and the low reliability of material/genetic/oral channels for this deep time period."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "8059a0cd13e67962e21d64c5cf6c60e8098174492702927850c6d3c839172a1b",
+  "response": {
+    "expected_evidence": [
+      "geological: a Younger Dryas boundary (YDB) sedimentary layer in Mexican lake/lakebed cores (e.g., Lake Cuitzeo, Michoac\u00e1n) showing anomalous platinum/iridium enrichment, magnetic spherules, and a 'black mat' organic-rich layer dated to ~10,950 BCE",
+      "material: carbon/glassy microspherules, melt-glass, shocked quartz grains, or nanodiamonds embedded in the same stratigraphic horizon",
+      "material: a continent-scale charcoal/soot spike indicating synchronous biomass burning at the YD onset",
+      "genetic: a documented discontinuity in megafaunal ancient-DNA lineages or a human (Clovis-era) population bottleneck signature coincident with the event",
+      "astronomical: identification of a source impactor, crater, or airburst structure consistent with a Mexico-region or nearby impact",
+      "model_prior: the existing Younger Dryas Impact Hypothesis (YDIH) literature, including the Israde-Alc\u00e1ntara et al. (2012) Lake Cuitzeo spherule study and subsequent replication attempts/critiques"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.4,
+    "rationale": "The hypothesis restates the Younger Dryas Impact Hypothesis (YDIH), which I recognize primarily from model-prior training knowledge as a contested proposal rather than an established fact \u2014 flagged here as model-prior, not verified. If true, the strongest expected signal is geological: a YD-boundary sediment layer bearing platinum/iridium anomalies, spherules, or nanodiamonds, and this evidence type has relatively good preservation potential in the younger-dryas period (table value 0.65), consistent with real published claims from a Mexican site (Lake Cuitzeo). So detection of some geological signal was plausible and in fact reported in the literature, meaning absence-of-evidence is not the primary explanation here \u2014 the debate is instead about whether reported signals are genuine, reproducible, and causally tied to an actual impact (several independent labs failed to replicate nanodiamond/platinum spikes, and Cuitzeo dating/interpretation has been challenged). Other evidence kinds are much weaker: astronomical detectability is nominally high (0.7) for the period in general, but confirming an actual impact crater or source body specifically for a Mexico impact is essentially undetectable \u2014 no confirmed YD-age crater has been located there, and craters can be destroyed, buried, or (if airburst) leave no crater at all, which is a legitimate detectability-driven explanation for that gap. Textual (0.0) and linguistic (0.05) evidence are essentially impossible for a preliterate population, and oral_tradition (0.1) / iconographic (0.1) are too fragile and too easily distorted over millennia to serve as reliable corroboration. Genetic evidence (0.3) could show extinction/bottleneck signatures but these are equally explicable by non-impact climate mechanisms, so it is weak corroboration regardless of survival. Given this mix \u2014 decent geological detectability but contested/non-replicated findings, near-zero textual/linguistic signal, and no confirmed crater despite plausible detectability \u2014 I adjust the effective composite detectability down from the raw geological figure (0.65) to about 0.4, reflecting that a specific, geographically-localized, causally-corroborated impact claim requires convergent multi-proxy confirmation that has largely not materialized despite reasonable chances of detection, rather than the claim being untestable in principle."
+  }
+}

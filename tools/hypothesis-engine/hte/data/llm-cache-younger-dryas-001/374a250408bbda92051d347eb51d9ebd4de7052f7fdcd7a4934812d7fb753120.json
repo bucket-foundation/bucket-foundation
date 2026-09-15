@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "d56921960dcd7f223de997c415a593f7aabe755b357eddfeb2f2c000b1b76688",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: platinum-group-element (Pt, Ir, Os) anomaly layers in Younger Dryas boundary (YDB) sediment cores/paleosols across North America, correlated stratigraphically at ~12.8 ka (calibrated) / ~10,850 14C BP",
+      "Geological: identification of accompanying tephra/volcanic ash horizons or geochemical glass shards that could be sourced to a specific eruption (e.g., trace-element fingerprinting matching known volcanic centers)",
+      "Material: microspherules, melt-glass, nanodiamonds, or scoria fragments recovered from the same horizon, analyzed to distinguish volcanic vs. extraterrestrial origin",
+      "Geological: isotopic ratios (e.g., Os-187/188, Pt/Ir ratios) used in peer-reviewed literature to argue for volcanic rather than impact origin of the Pt anomaly",
+      "Model-prior: existing published scientific debate/critique literature (e.g., counter-arguments to the Younger Dryas Impact Hypothesis proposing volcanic or terrestrial sourcing of Pt spikes)",
+      "Astronomical: cosmic-dust flux or extraterrestrial marker cross-checks (e.g., iridium co-anomaly presence/absence) used to rule impact in or out",
+      "Absence expected: textual, linguistic, oral_tradition, or iconographic records, since no literate or narrative-preserving culture existed in North America at this time depth"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval (-10850) corresponds to the Younger Dryas onset (~12.8 ka cal BP), so the 'younger-dryas' detectability row is the appropriate baseline rather than a generic classical-period row. The hypothesis concerns a geochemical/stratigraphic question (whether a volcanic-eruption source, rather than an impact-ejecta mechanism, explains the North American platinum anomaly) \u2014 this is fundamentally a geological/material evidence question, not textual, linguistic, or iconographic, since no writing or durable symbolic record existed in this period (textual=0.0, linguistic=0.05, oral_tradition=0.1, iconographic=0.1). Geological evidence has relatively high detectability (0.65) because sediment stratigraphy, PGE anomalies, and tephra layers are robust, long-preserved physical signals routinely sampled in Younger Dryas boundary research; material evidence (spherules, melt-glass) is moderately detectable (0.35) since such fine particulates are harder to preserve/identify unambiguously. Astronomical markers (co-occurring iridium, cosmic dust) are also fairly detectable (0.7) when present, though largely used as counter-evidence for a volcanic explanation. Model-prior (0.3) evidence exists as an active, unresolved scientific debate in the literature (volcanic vs. impact origin of Pt spikes), which I recall as a real but contested area of paleoclimate science \u2014 flagged as model-prior since I cannot verify current consensus. Combining the weights across the plausible evidence kinds (geological, material, astronomical, model_prior) and down-weighting for the near-total absence of textual/linguistic/oral/iconographic channels appropriate to this deep-time, pre-literate context, I estimate an overall detectability of ~0.55: high enough that lack of confirmed volcanic sourcing in the literature would be meaningful (not merely an artifact of poor preservation), but low enough that ambiguity in distinguishing volcanic vs. impact-derived Pt anomalies in the geologic record is expected and should not be read as strong evidence against the hypothesis on its own."
+  }
+}

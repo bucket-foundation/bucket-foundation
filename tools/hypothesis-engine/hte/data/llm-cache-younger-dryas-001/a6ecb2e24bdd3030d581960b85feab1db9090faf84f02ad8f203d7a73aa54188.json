@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "cb57ed643070f05c2c4550e60605b97b0250964738e5d8313ac051a16210d222",
+  "response": {
+    "expected_evidence": [
+      "Greenland ice-core geochemical anomalies at ~12.9 ka layer (e.g., platinum, iridium, or other extraterrestrial-marker spikes) that would be ABSENT or below-background if impact is refuted",
+      "Younger Dryas Boundary (YDB) sedimentary layer analyses (nanodiamonds, magnetic/glassy spherules, meltglass, soot/charcoal 'black mat') from North American and Eurasian sites, expected to show non-anomalous or terrestrial-origin signatures",
+      "Continuous biomass-burning proxy records (charcoal influx, ammonium/soot in ice cores) showing burning consistent with climatic/vegetation drivers rather than a sudden impact-triggered global wildfire spike",
+      "Absence of a securely dated impact crater of appropriate size/age (astronomical/geological survey data)",
+      "Cosmogenic nuclide (10Be, 14C spike) records that would show no unexplained excursion attributable to a cosmic impact at YD onset",
+      "Independent paleoclimate proxies (oxygen isotopes, dust, sea-salt) in Greenland ice cores showing the YD cooling onset pattern is gradual/consistent with ocean circulation (AMOC shutdown) rather than abrupt impact-winter signature",
+      "Faunal/megafaunal extinction and human population genetic bottleneck timing data that do not cluster precisely with a single impact event",
+      "Peer-reviewed literature/model-prior consensus summarizing multi-site failure to replicate YDB impact markers"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.62,
+    "rationale": "The hypothesis concerns a refutation of the Younger Dryas Impact Hypothesis (YDIH) using Greenland ice-sheet and biomass-burning evidence around 12,900\u201312,000 BP, which falls in the 'younger-dryas' detectability bracket (geological 0.65, astronomical 0.70, material 0.35, genetic 0.30). This is one of the best-preserved and most intensively studied intervals in Quaternary science: Greenland ice cores (GISP2, GRIP, NGRIP, NEEM) provide annually-resolved geochemical, isotopic, and particulate records spanning the YD onset, and the YDB layer has been sampled at dozens of sites worldwide for platinum, iridium, nanodiamonds, spherules, and soot/charcoal. This means the relevant geological and astronomical evidence classes are genuinely high-detectability (well above the material/genetic ones), consistent with an active, ongoing empirical debate in the literature (much of which I recognize only as model-prior from training rather than verified against the supplied evidence text). Because ice-core stratigraphy is exceptionally well preserved and has already been repeatedly re-analyzed by independent labs, an absence of confirmed impact markers (or presence of only ambiguous/non-reproducible signals) is a meaningful, positive refutation signal rather than a detection failure \u2014 so a null/refuting result is plausible and would likely have been found and published if true. I nudge the aggregate detectability slightly above the raw table average (favoring the strong geological/astronomical rows over the weaker material/genetic ones) to reflect that ice-core and sediment-marker methods are the primary evidentiary channels for this specific claim."
+  }
+}

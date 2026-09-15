@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "d51911288f6e3cbd33f3bc8d41c3fedc071b6dfd134bb8e2a4a6691de5d24905",
+  "response": {
+    "expected_evidence": [
+      "geological: a distinct Younger Dryas Boundary (YDB) sediment layer around 10,950 BCE across multiple North American stratigraphic sections containing anomalous concentrations of nanodiamonds (cubic and hexagonal/lonsdaleite polymorphs)",
+      "geological: co-occurring proxies in the same layer such as platinum/iridium anomaly spikes, magnetic spherules, high-temperature meltglass, and a carbon-rich black mat organic layer",
+      "material: shocked quartz grains and soot/charcoal spikes indicating continent-scale biomass burning, recoverable via SEM/TEM analysis of sediment cores and outcrops",
+      "material: stratigraphic association with the Clovis-era megafauna extinction horizon and archaeological abandonment layers at North American sites",
+      "astronomical: identification of a source crater or airburst signature (for example a candidate structure under the Hiawatha Glacier) with extraterrestrial platinum-group-element ratios matching the YDB layer",
+      "genetic: a detectable population bottleneck signature in North American megafauna and/or early human lineages dated to the same interval",
+      "model_prior: prior academic literature (Firestone et al. 2007 and successor studies) proposing and contesting the Younger Dryas Impact Hypothesis on this evidentiary basis"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.58,
+    "rationale": "The hypothesis specifies a precise date of 10,950 BCE aligning with the Younger Dryas onset boundary, so the younger-dryas detectability row is used rather than a broader period. The core claimed evidence (nanodiamond concentrations, platinum/iridium anomalies, magnetic spherules, black mat layers) is fundamentally geological/sedimentary, with a secondary material-science microscopy component. Geological (0.65) and astronomical-proxy (0.7) detectability are relatively high for this period because Quaternary sediment sequences from about 13,000 years ago are well preserved and have been sampled at many dozens of sites across North America, Europe, and the Middle East specifically to test this claim since 2007. Material evidence detectability is moderate (0.35) given limited organic/artifact preservation over this timespan, and genetic detectability is low to moderate (0.3) since ancient DNA from this interval is sparse and extinction signals are confounded by multiple drivers. Textual, linguistic, oral tradition, and iconographic evidence are essentially inapplicable given this predates writing. Because the most relevant evidence type (geological/material) is also comparatively detectable, and because the scientific community has already conducted extensive multi-site searches for this exact signature with genuinely mixed and contested results, an absence or weakness of confirming evidence should not be attributed primarily to low detectability; the topic has been actively investigated repeatedly. This is recalled from training as model-prior context about the real, disputed Younger Dryas Impact Hypothesis controversy, not verified against any evidence text provided here, and is flagged as such. A moderately high detectability_adjustment (0.58) reflects that if a continental-scale impact-ejecta-fallout event had occurred as claimed, its principal signatures should plausibly have survived and been found, making the persistent lack of scientific consensus evidentially meaningful rather than simply a detection failure."
+  }
+}

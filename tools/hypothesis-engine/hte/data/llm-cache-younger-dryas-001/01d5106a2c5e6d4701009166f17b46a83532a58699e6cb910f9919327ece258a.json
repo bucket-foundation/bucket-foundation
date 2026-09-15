@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "9a110374af5d8d18588e154032fb5a5e151adb2cd04ffb6db44d6703812023ec",
+  "response": {
+    "expected_evidence": [
+      "Geological: a distinct Younger Dryas boundary (YDB) sedimentary layer (~12.9 ka) containing nanodiamonds, magnetic microspherules, glassy/carbon spherules, iridium and platinum anomalies, and a 'black mat' organic-rich layer directly overlying the impact horizon at multiple North American sites",
+      "Geological/astronomical: platinum spike in Greenland ice cores dated to the same interval, interpreted as extraterrestrial fallout",
+      "Astronomical: identification of an impactor source (e.g., fragmented comet debris, cosmic-impact proxies like shocked quartz or high-temperature melt glass)",
+      "Material/archaeological: abrupt termination of Clovis-culture artifact horizons and megafaunal bone beds immediately below/at the proposed impact layer, with charcoal/soot layers indicating continent-wide wildfires coincident with the event",
+      "Genetic: a sharp, dated population-decline or extinction signature in ancient DNA of megafaunal taxa (mammoth, horse, etc.) clustering tightly at ~10,950 BP rather than showing gradual decline through the Younger Dryas",
+      "Model-prior: independent replication of the YDB impact markers by multiple research teams across separate sites, since the original 2007 Firestone et al. proposal has been the subject of extensive attempted replication and criticism (e.g., failure to reproduce nanodiamond/spherule findings at several sites, alternative explanations for microspherules as non-impact in origin)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis corresponds to the Younger Dryas Impact Hypothesis (YDIH), asserting a direct impact-ejecta mechanism for megafaunal extinction independent of YD cooling. Using the younger-dryas row (interval ~10,950 BP aligns with YD onset), the relevant evidence classes have moderate-to-high detectability: geological (0.65) and astronomical (0.70) proxies (impact spherules, nanodiamonds, iridium/platinum anomalies, ice-core signals) are well-preserved in sedimentary and glacial archives and are routinely sampled by paleoclimate/impact researchers. Material evidence (0.35) and genetic evidence (0.30) are lower but still non-trivial given extensive Clovis-site excavation and ancient-DNA megafaunal studies. Because these are precisely the proxy types geologists and impact scientists have actively searched for since the 2007 Firestone et al. proposal \u2014 and found only inconsistent, largely non-replicated, and heavily disputed results (e.g., Pinter et al. 2011 'conspicuous absence of evidence') \u2014 the absence of robust, independently replicated confirming evidence is informative rather than merely a detectability artifact. Given moderate-high detectability across the most diagnostic evidence types (geological, astronomical), a true, continent-scale impact-ejecta event with direct causal link to extinction should plausibly have left more consistent, reproducible traces than have been documented. I therefore assign a moderate detectability adjustment (0.55) reflecting that evidence absence carries real evidentiary weight against the hypothesis, while acknowledging genuine preservation/sampling limitations (geological reworking, limited YDB site density, bioturbation) that prevent a fully confident falsification."
+  }
+}

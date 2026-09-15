@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "ed9ff740f837242b17e01c7aa0d175139ac6d002ede75fc52e95318facfb44b1",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.06,
+        "rationale": "model-prior: B matches the well-established Broecker meltwater/St.-Lawrence-routing mechanism for YD onset cooling, while A pairs an extinction-vulnerability mechanism with a cooling object, an internal mismatch that undercuts its coherence."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.5,
+        "rationale": "model-prior: both attach a self-undermining mechanism (methodological-artifact vs. independent-replication-failure) to a 'corroborated' extinction claim; neither is better evidenced than the other from available information."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: dating uncertainty around the YD boundary is a genuinely documented issue, making A's 'inconclusive' framing defensible, whereas B's claim that nanodiamond evidence is 'corroborated' overstates a heavily disputed, largely non-replicated proxy."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: platinum anomalies at the YD boundary are directly measured in multiple studies (B), whereas the causal claim that biomass-burning/impact-winter drove megafaunal extinction (A) is a more speculative multi-step inference that mainstream extinction literature does not strongly corroborate."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: reported microspherule concentrations (A) are a more direct empirical proxy claim than the causal leap to megafaunal extinction via impact ejecta (B), which most extinction-timing studies do not support as tightly coupled."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: charcoal/soot record studies have specifically refuted widespread biomass-burning impact-winter signals at YD onset (supporting B's 'refuted' label), while the cosmic-airburst mechanism for YD cooling remains genuinely unresolved, making A's 'inconclusive' also reasonable but slightly less strongly evidenced than B's refutation."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.3,
+        "rationale": "model-prior: A's strong 'corroborated' claim for biomass-burning-driven extinction conflicts with charcoal-record studies that have largely refuted a continent-wide fire/impact-winter signal, whereas B's cosmic-airburst trigger claim, though disputed, is not as directly contradicted."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: A's refutation of biomass-burning-driven YD cooling aligns with studies discounting a global fire signal, while B's 'corroborated' impact-ejecta causation for YD cooling overstates the still-contested Younger Dryas Impact Hypothesis evidence."
+      }
+    ]
+  }
+}

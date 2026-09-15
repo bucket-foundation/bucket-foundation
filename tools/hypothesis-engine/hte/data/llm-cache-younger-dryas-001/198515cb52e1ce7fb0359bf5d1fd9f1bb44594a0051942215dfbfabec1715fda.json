@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "eb2e44fd66ef627c7e0748a8dd49fb51031f37736681fbc262b7fbaea5abea55",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a discrete platinum-enrichment spike in stratigraphic sections (paleosols, lake/bog sediment cores, loess) at multiple North American sites dated to ~10850 BCE, at or near the Younger Dryas boundary (YDB) layer",
+      "Geological/geochemical: co-occurring platinum-group-element (Pt/Ir/Pd) ratios anomalous relative to local crustal background, suggestive of an extraterrestrial or impact-plume source, potentially also seen in Greenland ice cores at a correlative age",
+      "Astronomical: physical or chemical proxies consistent with an impact/airburst event (elevated iridium, nanodiamonds, magnetic microspherules, meltglass) in the same YDB stratigraphic horizon",
+      "Material: archaeological-layer disruption or discontinuity in occupation debris at YDB-age North American sites coincident with the anomaly",
+      "Genetic: megafaunal population bottleneck or extinction signatures (mammoth, horse, etc.) clustering near the same date",
+      "model_prior: existing published literature on the Younger Dryas Boundary impact hypothesis (e.g., Firestone et al. 2007, Petaev et al. 2013 Greenland ice-core Pt anomaly, Moore et al. 2017 multi-site Pt anomaly survey) already reporting platinum anomalies of this kind and age"
+    ],
+    "detectability_adjustment": 0.6,
+    "rationale": "A platinum anomaly tied to an impact-ejecta fallout event at ~10850 BCE aligns with the well-studied Younger Dryas boundary (YDB), so I treat the period as 'younger-dryas' for detectability purposes rather than the unspecified label. Geological archives (sediment cores, paleosols, ice cores) have a comparatively high preservation/detection likelihood in this period (0.65 in the table) because such anomalies are chemically robust and datable via stratigraphy, and this is corroborated by model-prior knowledge (unverified, low-tier recollection) of actual published findings of a platinum spike at the YDB in Greenland ice cores and multiple North American sites (Petaev et al. 2013; Moore et al. 2017). Astronomical-type markers (extraterrestrial PGE signatures, spherules, nanodiamonds) also have relatively high nominal detectability (0.7) though their interpretation as impact evidence remains scientifically contested. Material archaeological evidence (0.35) and genetic extinction signals (0.3) are only moderately detectable and mostly circumstantial/correlative rather than direct evidence of 'impact-ejecta fallout' specifically. Textual, linguistic, oral-tradition, and iconographic evidence are essentially inapplicable this far back (0.0\u20130.1) since no writing or reliably transmitted oral/iconographic record from ~10850 BCE plausibly survives; their absence is fully explained by detectability rather than by the hypothesis being false. Given that geological and astronomical channels are the primary expected evidence types and both have moderate-to-good detectability in this period, and independent literature already reports the anomaly, I judge detection is plausible and evidence of the specified kind could indeed have survived. I set my aggregate detectability_adjustment at 0.6, weighting toward the geological/astronomical channels (the most relevant and highest-scoring rows) while discounting for the fact that mechanistic attribution to a genuine 'cosmic impact' event (versus alternative terrestrial or non-impact processes for the Pt enrichment) remains actively disputed in the literature, and much of this rests on model-prior recall rather than the provided evidence text."
+  }
+}

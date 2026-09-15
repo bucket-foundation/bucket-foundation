@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "846d29371bb8ae79acc5336f737224706cfcb680a40463977495d18e1ac9ebf1",
+  "response": {
+    "expected_evidence": [
+      "Geological/sedimentological studies of Younger Dryas Boundary (YDB) layers at multiple North American sites testing for claimed impact markers (platinum anomaly, nanodiamonds, magnetic/glassy spherules, iridium enrichment)",
+      "Peer-reviewed replication attempts by independent labs reporting failure to reproduce the original impact-marker signatures outside the initiator group's sample set (functionally modern textual/model_prior evidence, not ancient text)",
+      "Meta-analyses, review articles, and consensus statements from critics summarizing non-replication and methodological critiques of the Younger Dryas Impact Hypothesis",
+      "Astronomical/orbital-dynamics modeling of the Taurid meteor stream/complex assessing whether a coherent swarm could plausibly deliver a North American airburst near -10950",
+      "Material evidence: physical microspherule, nanodiamond, or carbon-sphere samples collected and reported as absent, background-level, or misidentified at re-tested sites",
+      "Radiocarbon/geochronological dating cross-checks confirming or disputing synchroneity of any purported impact layer with the actual Younger Dryas onset"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.78,
+    "rationale": "This hypothesis is not about an ancient event leaving faint archaeological traces from ~10,950 BCE \u2014 it is a claim about a MODERN scientific historiographic outcome (whether independent replication attempts refuted the Younger Dryas Impact Hypothesis/Taurid-swarm mechanism). The underlying geological substrate (YD boundary sediments) is relatively young (~13 ka) and has been extensively cored, dated, and geochemically assayed at dozens of North American sites over the past ~15 years, so preservation of the physical record is good (consistent with the table's younger-dryas geological=0.65 and material=0.35 scores). However, the decisive evidence for whether replication actually failed lives overwhelmingly in peer-reviewed literature (papers, meta-analyses, conference proceedings) \u2014 a channel the provided table scores at textual=0.0 for this period because it assumes ancient written records, a category mismatch: modern scientific publishing has near-total detectability/survivability. I therefore adjust upward from the raw table average (which would sit near 0.3-0.35 if textual is weighted at 0) to ~0.78, reflecting that (a) sediment/geochemical evidence is moderately well preserved and heavily sampled, (b) astronomical/orbital modeling of the Taurid complex is highly tractable (astronomical=0.7 in the table), and (c) the actual arbiter of 'refutation via replication failure' is modern academic record-keeping, essentially fully detectable rather than governed by ancient-artifact taphonomy. Specific recollections of named studies/authors on the Younger Dryas Impact Hypothesis debate are drawn from training data and should be treated as low-tier model-prior, not verified fact, pending confirmation against the actual evidence corpus."
+  }
+}

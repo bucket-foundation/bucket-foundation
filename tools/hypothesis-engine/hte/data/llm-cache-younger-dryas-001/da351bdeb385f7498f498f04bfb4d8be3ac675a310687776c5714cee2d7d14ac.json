@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "531596000ac84a3073f344c43b2512287bac788dd0b005514277ad8a43f82fb6",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.55,
+        "rationale": "Opinions are tied (same actor base rate, u=1); model-prior: the core YDIH claim that cosmic impact corroborates YD onset cooling has more published support (Firestone/Kennett line) than the claim that the platinum anomaly in North America was refuted, since multiple studies (e.g. Moore et al. 2017) reported the anomaly rather than refuting it."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.55,
+        "rationale": "Opinions tied; model-prior: nanodiamond claims have faced substantial documented replication failures/critiques (Daulton et al.), making 'refuted' plausible, while the airburst-driven YD cooling corroboration in B remains more contested, giving A a slight edge."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.42,
+        "rationale": "Opinions tied; model-prior: the strongest published platinum-anomaly evidence is from Greenland ice cores (Petaev et al. 2013), making B's Greenland corroboration better grounded than A's less-established Mexico platinum claim, despite B's less-typical airburst mechanism."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.55,
+        "rationale": "B's own opinion already carries partial disbelief (d\u22480.40), lowering its projected probability below A's tied base rate; also model-prior notes impact hypotheses are usually invoked for YD onset, not termination, so A's termination claim is only marginally favored over B's already-discounted volcanic refutation."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.42,
+        "rationale": "Opinions tied; model-prior: attributing nanodiamond formation (a hallmark impact signature) to volcanic action via an impact-ejecta mechanism is physically incongruous and poorly supported, making A's corroboration less credible than B's refutation claim, itself an odd actor-mechanism pairing but less strongly contradicted."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.58,
+        "rationale": "Opinions tied; model-prior: debates over biomass-burning/impact-winter evidence being refuted are documented in the literature (contested soot/PAH studies), whereas attributing a volcanic eruption 'triggering' cooling via a cosmic-airburst mechanism is internally inconsistent, favoring A."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.42,
+        "rationale": "Opinions tied; model-prior: some literature proposes volcanic/geologic sourcing for platinum-group anomalies as an alternative to impact, giving B's platinum corroboration slightly more grounding than A's claim that volcanism triggered megafaunal extinction via an impact-ejecta mechanism, which is a stronger actor-mechanism mismatch."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.55,
+        "rationale": "Opinions tied; A makes a concrete, at-least-discussed claim (volcanic/geologic origin proposed for platinum anomalies) while B's vague 'other-action' on megafaunal extinction is under-specified and less evaluable, slightly favoring A."
+      }
+    ]
+  }
+}

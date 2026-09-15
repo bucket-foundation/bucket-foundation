@@ -13,9 +13,48 @@ def test_evidence_span_rejects_bad_range():
         EvidenceSpan(doc_id="d", locator="l", quote="q", char_start=10, char_end=5)
 
 
+def test_evidence_span_doc_length_is_optional():
+    # No doc_length on hand at all (the common case for an adapter with no
+    # document text in scope): internal char_start/char_end consistency is
+    # still checked, but nothing is checked against a document length.
+    span = EvidenceSpan(doc_id="d", locator="l", quote="q", char_start=0, char_end=1000)
+    assert span.doc_length is None
+
+
+def test_evidence_span_accepts_char_end_at_doc_length():
+    span = EvidenceSpan(doc_id="d", locator="l", quote="q", char_start=0, char_end=4, doc_length=4)
+    assert span.doc_length == 4
+
+
+def test_evidence_span_refuses_char_end_past_doc_length():
+    with pytest.raises(ValueError, match="exceeds doc_id"):
+        EvidenceSpan(doc_id="d", locator="l", quote="q", char_start=0, char_end=5, doc_length=4)
+
+
+def test_evidence_span_rejects_negative_doc_length():
+    with pytest.raises(ValueError):
+        EvidenceSpan(doc_id="d", locator="l", quote="q", char_start=0, char_end=1, doc_length=-1)
+
+
 def test_evidence_span_roundtrip():
     span = _span()
     assert EvidenceSpan.from_dict(span.to_dict()) == span
+
+
+def test_evidence_span_roundtrip_carries_doc_length():
+    span = EvidenceSpan(doc_id="doc-1", locator="p.4", quote="a hand-tool mark", char_start=10, char_end=27, doc_length=100)
+    back = EvidenceSpan.from_dict(span.to_dict())
+    assert back == span
+    assert back.doc_length == 100
+
+
+def test_evidence_span_from_dict_without_doc_length_defaults_to_none():
+    # Backward compatibility: a span serialized before this field existed
+    # (no "doc_length" key at all) reads back with no document-length
+    # check applied, rather than raising a KeyError.
+    old_shape = {"doc_id": "d", "locator": "l", "quote": "q", "char_start": 0, "char_end": 1}
+    span = EvidenceSpan.from_dict(old_shape)
+    assert span.doc_length is None
 
 
 def test_tier_weight_table_matches_paper():

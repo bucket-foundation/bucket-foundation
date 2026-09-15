@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ac933fcb3521048b3dd02029c18db50cdd2a258f030886fce22081bef01ecbfb",
+  "response": {
+    "expected_evidence": [
+      "geological: anomalous concentrations of platinum, iridium, or other extraterrestrial-associated elements in a thin stratigraphic layer dated to ~12,900-11,700 BP across North American sites (and correlative sites elsewhere)",
+      "geological: presence of nanodiamonds, magnetic microspherules, and melt-glass/scoria-like objects in the same 'black mat' boundary layer",
+      "geological: a continent-scale carbon-rich 'black mat' sedimentary layer marking abrupt ecological disruption at the YD onset",
+      "astronomical: absence of a confirmed impact crater of appropriate age/size in North America, which under an airburst mechanism is an expected (non-falsifying) absence rather than a gap in evidence",
+      "astronomical/geological: shocked quartz or other high-pressure mineral phases indicative of impact/airburst energies (contested, low frequency if mechanism is airburst rather than surface impact)",
+      "material (archaeological): disruption or discontinuity in Clovis-culture site occupation, tool assemblages, or settlement patterns coincident with the YD boundary",
+      "genetic: population bottleneck or extinction signatures in North American megafauna DNA coincident with YD onset",
+      "oral_tradition: Indigenous North American origin/catastrophe narratives referencing fire-from-sky or similar events (highly speculative given ~13,000 year gap and oral transmission fidelity)",
+      "model_prior: existing peer-reviewed Younger Dryas Impact Hypothesis literature (Firestone et al. 2007 and subsequent debate/rebuttals) as an unverified prior rather than settled fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis corresponds to the real, actively contested Younger Dryas Impact Hypothesis (YDIH), which I recognize primarily from model-prior training knowledge rather than from provided source text, so it should be treated as unverified. Using the 'younger-dryas' detectability row (closest match to the stated interval, since 'period' was left unspecified), geological (0.65) and astronomical (0.7) evidence classes are the most probative and also the most detectable: durable stratigraphic markers (platinum/iridium anomalies, nanodiamonds, microspherules, black mats) can survive ~13,000 years in sediment and have in fact been reported (and contested) at many North American sites, so absence of such evidence would be meaningful. The airburst mechanism specifically predicts no crater, so the well-documented absence of a confirmed North American impact crater is consistent with, not contrary to, the hypothesis, and should not be weighted as strong disconfirming evidence. Material/archaeological (0.35) and genetic (0.3) evidence is weaker and more ambiguous because Clovis-culture disruption and megafaunal decline have multiple competing causal explanations (climate change, overhunting) independent of any impact. Textual (0.0), linguistic (0.05), and oral_tradition (0.1) evidence are essentially non-detectable at this time depth \u2014 there is no writing, and any surviving oral tradition would be too degraded/reinterpreted after 13,000 years to serve as reliable corroboration, so their absence carries little evidentiary weight against the hypothesis. Overall I suggest an aggregate detectability adjustment around 0.55, reflecting that the strongest evidence classes (geological, astronomical) for this specific hypothesis are moderately-to-well preserved and searchable, while weaker classes appropriately explain gaps rather than falsifying the claim."
+  }
+}

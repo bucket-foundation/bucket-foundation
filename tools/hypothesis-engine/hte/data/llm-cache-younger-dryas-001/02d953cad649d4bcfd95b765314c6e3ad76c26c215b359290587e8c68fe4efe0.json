@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "008899aa891bf59f64db7f8337e5b2af952e72bb04309f9faea68fc4ef94227b",
+  "response": {
+    "$PARAMETER_NAME": "{}",
+    "expected_evidence": [
+      "Ice-core stratigraphic samples (GISP2, NEEM, NGRIP, GRIP) spanning the ~10,850 BCE Younger Dryas onset horizon, analyzed for nanodiamond polytypes (lonsdaleite, cubic nanodiamond) at the claimed impact layer",
+      "Companion geochemical proxies expected alongside a real impact (platinum, iridium, or other siderophile-element spikes, magnetic spherules, charcoal/soot peaks) checked for correlation or lack thereof with the nanodiamond claim",
+      "Independent replication/re-analysis studies attempting to reproduce the original nanodiamond identifications (electron microscopy, Raman spectroscopy, XRD) in the same or parallel ice cores",
+      "Published critiques identifying methodological artifacts (e.g., graphitic/graphene contamination misidentified as diamond, statistical/counting errors, lab contamination) that would undercut the original detection",
+      "Search for a corresponding impact crater or coeval ejecta field consistent with a Younger Dryas-onset cosmic impact",
+      "Broader Younger Dryas Impact Hypothesis literature (Firestone et al. 2007 original claim vs. Surovell et al. 2009, Daulton et al. 2010, Pigati et al. 2012, van Hoesel et al. 2012, Paquay et al. and similar refutation/rebuttal papers) - flagged as model-prior recollection, not verified against source text",
+      "Multi-proxy sedimentary/ice-core dating confirming or denying that any anomalous layer aligns precisely with -10850"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.8,
+    "rationale": "The hypothesis describes a *refutation* event, meaning the primary evidentiary trail is not ancient physical remains subject to millennia of taphonomic loss, but continuously preserved Greenland ice cores plus the modern peer-reviewed scientific record documenting attempts to replicate and then challenge the original nanodiamond-in-ice claims. Using the supplied table, the underlying interval (~10,850 BCE) falls in the younger-dryas period bucket, where geological (0.65) and astronomical (0.7) detectability are comparatively strong and material (0.35) is moderate - reflecting that ice-core stratigraphy is one of the best-preserved paleoclimate archives available, unlike organic/artifactual material culture from the same era. However, because the object of the hypothesis is a *scientific refutation* (a 21st-century research outcome) rather than a prehistoric event needing archaeological recovery, the effective detectability is substantially higher than the raw table average across all categories: ice cores are actively drilled, archived, and repeatedly re-sampled by multiple independent labs, and refutation/rebuttal papers are formally published and indexed, making this among the most detectable and cross-checkable categories of claims in the entire framework. I therefore suggest an upward adjustment from the raw table blend (~0.35-0.45 average across material/geological/astronomical) to ~0.8, reflecting that survival of evidence is governed by modern archival/publication practices rather than ancient preservation odds. Note: specific study names and outcomes (e.g., Daulton et al., van Hoesel et al.) are recalled from training as model-prior and are not verified against the evidence text provided in this task - they should be treated as low-tier, unconfirmed leads rather than established fact. Absence of confirmation in the supplied context should not be read as evidence against the refutation given how high the plausible detectability is; if no supporting evidence is found in the actual source corpus, that gap is more likely a corpus-coverage limitation than an indication the refutation did not occur."
+  }
+}

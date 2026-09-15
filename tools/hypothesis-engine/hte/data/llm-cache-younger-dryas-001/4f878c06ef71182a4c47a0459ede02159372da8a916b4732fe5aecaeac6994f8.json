@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7916812e8cda50c26a0a9421b11d9fe8fbfc464c6821bed52ffe26719daff5d5",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum-group-element (Pt) concentration spikes at the ~12,900 cal BP Younger Dryas boundary layer in ice cores and sedimentary/paleosol sequences on multiple continents",
+      "geological: co-occurring iridium, nanodiamonds, magnetic and glassy spherules, and elevated soot/charcoal (black mat) horizons at the same stratigraphic boundary",
+      "astronomical: airburst-consistent modeling signatures - absence of a single large impact crater but presence of distributed high-temperature melt-glass/spherule fields consistent with atmospheric fragmentation",
+      "material: archaeological discontinuities near the boundary (e.g. Clovis-era site abandonment layers) coincident with the anomaly layer",
+      "genetic: megafaunal extinction/bottleneck signatures in ancient DNA dating close to the boundary interval",
+      "oral_tradition: catastrophist sky-fire or flood/destruction narratives in disparate cultures (very weak given time depth)",
+      "model_prior: existing scientific literature on the Younger Dryas Impact Hypothesis proposing this platinum-anomaly/airburst scenario, alongside contested counter-literature attributing anomalies to terrestrial or volcanic processes"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesized interval (-10950, roughly 12,950 BP) sits at the Younger Dryas onset boundary, so the younger-dryas detectability row is most appropriate. A global cosmic-airburst event producing a platinum anomaly is precisely the kind of phenomenon favored by geological (0.65) and astronomical (0.7) detectability in this period - thin stratigraphic marker layers (ice cores, lake/peat sediments, paleosols) can preserve geochemical spikes over millennia, and this matches real published (if contested) evidence: platinum/iridium/nanodiamond layers reported across North America, Europe, and elsewhere at the YD boundary. Material (0.35) and genetic (0.3) evidence are much weaker at this time depth because organic/archaeological preservation and ancient-DNA resolution are limited in the Upper Paleolithic/Younger Dryas horizon, so gaps there (e.g. no unambiguous crater, contested megafaunal-extinction synchronicity) are better explained by low detectability than by falsity. Oral tradition (0.1), iconographic (0.1), linguistic (0.05), and textual (0.0) evidence are essentially non-diagnostic at this age, so their absence carries little evidentiary weight either way. The hypothesis is thus falsifiable/verifiable mainly through geological and astronomical/geochemical channels with decent survival odds; I set the adjustment slightly below the average of those two strongest categories to reflect genuine scientific controversy over interpretation (proxy ambiguity, non-replication at some sites, alternative volcanic explanations) that tempers straightforward detectability."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fc7b3dc1b3df3eaff8cb0cb837d97e15e471386328f289cec31b1ca0ebfaae7b",
+  "response": {
+    "expected_evidence": [
+      "Cosmogenic radionuclide spikes (14C in tree rings, 10Be and 36Cl in ice cores) dated to ~11,000-10,001 BP consistent with an extreme solar proton event (astronomical/geological)",
+      "Ice-core nitrate and other chemical proxy spikes coinciding with the proposed event and with the Younger Dryas termination boundary (geological)",
+      "Consistent, independently reproduced platinum/nanodiamond/spherule anomaly layers at the YD boundary across multiple continents, if conflated with the broader YD-impact debate (material)",
+      "Sediment and lake-core stratigraphic markers showing an abrupt climatic/geochemical shift synchronous with the proposed SPE (geological)",
+      "Multi-laboratory replication studies (or failures thereof) of the above radionuclide/geochemical signals (model_prior / meta-scientific record)",
+      "Absence or inconsistency of corroborating genetic, linguistic, or iconographic markers, since preliterate North American populations left no textual record and only sparse, ambiguous material/oral traces"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.62,
+    "rationale": "Using the 'younger-dryas' row as the closest period match to the -11000..-10001 interval, the most diagnostic evidence classes for a solar-proton-event (SPE) trigger are astronomical (0.7) and geological (0.65) proxies: cosmogenic isotope spikes (14C, 10Be, 36Cl) in tree rings and ice cores, and correlated geochemical/sedimentary anomalies. These archives are dense, well-dated, and have been intensively sampled by multiple independent labs for exactly this period (Greenland/Antarctic ice cores, global tree-ring chronologies), so detectability here is comparatively high relative to other kinds. Material evidence (0.35, e.g., platinum/nanodiamond boundary layers) and genetic evidence (0.3) are markedly less diagnostic and less well preserved; textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) evidence are essentially unavailable for a preliterate North American population at this date and cannot meaningfully confirm or refute the claim. The hypothesis's own mechanism tag \u2014 'independent-replication-failure' \u2014 is telling: it points to the documented real-world pattern (model-prior, low-tier recollection) in which early reports of YD-boundary radionuclide/impact-proxy anomalies were not consistently reproduced by independent laboratories. Because the highest-detectability evidence classes (astronomical, geological) are exactly the ones that have been searched extensively and where replication has repeatedly failed or produced conflicting results, the absence of a robust, independently confirmed signal is much more likely attributable to the event not having occurred (or not at the claimed magnitude/effect) than to poor preservation or search effort. I therefore judge the evidence could plausibly have survived and been found, and set a detectability adjustment (~0.62, weighting astronomical/geological most heavily) reflecting that non-replication under high-detectability conditions is meaningful negative evidence rather than a preservation artifact."
+  }
+}

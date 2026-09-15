@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "591b56067e60b9c14017de798c1f3539d38279b79e64e994c9e8e3c2b34947e8",
+  "response": {
+    "expected_evidence": [
+      "Geological: a synchronous ~10,950 BP (Younger Dryas boundary) sedimentary layer containing anomalous platinum, iridium, or other platinum-group-element enrichment across widely separated sites (the 'YDB' black mat layer)",
+      "Geological: nanodiamonds, melted glassy spherules, magnetic microspherules, and carbon spherules/soot indicating high-temperature airburst/impact-related combustion, ideally found on multiple continents",
+      "Astronomical: absence of a single large crater (consistent with an airburst rather than a ground impact), but possible identification of a fragmented comet/asteroid source or corroborating ice-core chemistry (e.g., Greenland ice platinum spike)",
+      "Material/archaeological: a continent-spanning occupation hiatus, extinction horizon, or destruction layer at Clovis-age sites in North America coincident with the YD onset",
+      "Genetic: a detectable population bottleneck signature in megafauna (or early human) genomes dated to ~12,900 years BP, consistent with mass die-off",
+      "Oral tradition/iconographic: mythological motifs describing sky-fire, world-ending flood/fire events that could be interpreted (speculatively) as folk memory of the event",
+      "Model-prior: awareness that this closely matches the real, actively debated 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), which remains contested in mainstream geology"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The event is dated precisely to the Younger Dryas onset (~10,950 cal BP), so the 'younger-dryas' row is most applicable rather than the broader upper-paleolithic row. Geological (0.65) and astronomical (0.7) channels have the best chance of preserving evidence: an airburst is expected to leave sedimentary geochemical signatures (PGE anomalies, nanodiamonds, spherules) rather than a crater, and such thin but chemically distinct horizons are known to survive in loess, lake, and ice-core stratigraphy over 10,000+ years, matching real-world claims (e.g., the YDB hypothesis, Greenland ice platinum spike) that I recognize from model-prior training knowledge, not from evidence supplied in this task. Material archaeological evidence (0.35) and genetic bottleneck signals (0.3) are plausible but much weaker/noisier over this timescale, especially for corroborating a *cosmic* mechanism specifically versus other causes of megafaunal extinction. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) channels are essentially non-detectable this far back, since no writing systems existed and oral traditions this old are not reliably traceable to a specific dated event. Given that the strongest expected evidence types (geological, astronomical) sit at moderate-to-good detectability while several plausible corroborating types (material, genetic) are much weaker, a combined adjustment around 0.55 reflects that the hypothesis is testable and evidence-bearing strata could plausibly survive and be sampled across continents, but corroboration is inherently harder to achieve robustly than for later, better-preserved periods \u2014 meaning genuine scientific controversy/absence of universal acceptance is expected on detectability grounds alone, not necessarily as evidence against the event's occurrence."
+  }
+}

@@ -467,7 +467,7 @@ def _counter_consideration_items(
         items.append(EvidenceItem(
             id=f"{corr['id']}-counter-{i}", kind=EvidenceKind.TEXTUAL, tier=tier,
             source_id=place,
-            span=EvidenceSpan(doc_id="sacred-history.json", locator=f"correlations/{corr['id']}/counterConsiderations[{i}]", quote=caveat, char_start=start, char_end=end),
+            span=EvidenceSpan(doc_id="sacred-history.json", locator=f"correlations/{corr['id']}/counterConsiderations[{i}]", quote=caveat, char_start=start, char_end=end, doc_length=len(raw)),
             provenance="sacred-history-counter-consideration",
             actor=actor, action=action, object=obj, place=place, mechanism=mechanism,
             interval=interval, stance=Stance.NEGATIVE,
@@ -512,7 +512,7 @@ def _correlation_items(
 
         evidence.append(EvidenceItem(
             id=corr["id"], kind=EvidenceKind.TEXTUAL, tier=tier, source_id=place,
-            span=EvidenceSpan(doc_id="sacred-history.json", locator=f"correlations/{corr['id']}", quote=statement, char_start=start, char_end=end),
+            span=EvidenceSpan(doc_id="sacred-history.json", locator=f"correlations/{corr['id']}", quote=statement, char_start=start, char_end=end, doc_length=len(raw)),
             provenance="sacred-history-correlation",
             actor=actor, action=action, object=obj, place=place, mechanism=mechanism,
             interval=interval, stance=Stance.POSITIVE,

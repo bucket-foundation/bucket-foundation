@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ac8a281a06f31dae6257db5bc775cc500dda61c1e46bbe8fdf63dd257b3ca6f0",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: elevated carbon spherule / magnetic microspherule concentrations in a thin stratigraphic layer (Younger Dryas Boundary layer) across North American sedimentary sections",
+      "geological: associated platinum, iridium, or other siderophile-element anomalies in the same horizon",
+      "geological: nanodiamonds, melt-glass, and 'black mat' organic-rich layer directly above the spherule horizon",
+      "astronomical: physical impact crater or airburst structure (or absence thereof, consistent with an airburst rather than a ground impact)",
+      "astronomical/geological: charcoal and soot layers indicating continent-scale wildfires coincident with the horizon",
+      "material (archaeological): disruption or discontinuity in Clovis-era artifact assemblages and site occupation at ~10,950 BCE",
+      "material/faunal: megafaunal extinction signatures (bone beds, extinction horizon) clustering near the same date",
+      "genetic: population bottleneck signals in surviving North American megafauna or early human lineages dated to this interval",
+      "model_prior: published Younger Dryas Impact Hypothesis literature (Firestone et al. 2007 and follow-up studies) reporting these proxies, alongside contested replication/rebuttal studies"
+    ],
+    "detectability_adjustment": 0.6,
+    "rationale": "The dated interval (~10,950 BCE) corresponds to the Younger Dryas onset boundary, so the 'younger-dryas' period row is the appropriate detectability baseline. The hypothesis (Younger Dryas Impact Hypothesis) primarily predicts geological/geochemical evidence (carbon spherules, microspherules, platinum/iridium anomalies, nanodiamonds, black mat) which has a baseline detectability of 0.65, and companion astronomical evidence (crater/airburst structure or its diagnostic absence) at 0.7 \u2014 both relatively favorable because fine-grained sedimentary and ice-core records from this period are well preserved and widely sampled. Material (archaeological, 0.35) and genetic (0.3) evidence are less reliably detectable given poor preservation of organic/skeletal material over ~13,000 years and the difficulty of resolving fine-scale population bottlenecks. Textual and linguistic evidence are essentially inapplicable (0.0/0.05) since this predates writing and is far outside plausible oral-tradition retention. Given that carbon-spherule and microspherule layers matching this description have in fact been reported (per model-prior knowledge of the Firestone et al. 2007 YDIH literature and subsequent multi-site studies, though the impact-origin interpretation remains contested versus wildfire/other terrestrial explanations), I adjust the effective detectability for the dominant geological/astronomical evidence types slightly upward from the raw table average, to about 0.6, reflecting that this class of evidence is genuinely well-suited to survive and has already been the subject of active empirical search \u2014 an absence of geological anomalies would therefore be more informative against the hypothesis than absence of material or genetic evidence would be. This is a low-tier model-prior recollection, not a verified determination from the evidence text provided."
+  }
+}

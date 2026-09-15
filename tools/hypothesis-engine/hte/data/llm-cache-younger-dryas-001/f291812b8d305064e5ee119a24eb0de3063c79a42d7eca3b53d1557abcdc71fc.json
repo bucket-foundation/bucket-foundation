@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "0ca807fa8e677e816aa38f9347544bf22b3daafd839ccadf251cd2530c5ad330",
+  "response": {
+    "expected_evidence": [
+      "geological: elevated nanodiamond (cubic/lonsdaleite) concentrations in a discrete stratigraphic layer (the 'black mat'/Younger Dryas boundary layer) across multiple North American sedimentary sequences dated to ~12,900 cal BP",
+      "geological: associated platinum, iridium, or other siderophile-element anomalies, magnetic spherules, and glassy/melted microspherules in the same boundary layer",
+      "geological: charcoal and soot spikes indicating continent-wide biomass burning coincident with the layer",
+      "material/archaeological: disruption or abandonment signatures at Clovis-age sites directly above/below the boundary layer",
+      "material: absence of a confirmed impact crater (expected under an airburst-only mechanism, so its absence is not disconfirming)",
+      "astronomical: theoretical/modeling evidence of an airburst event (fragmentation of a comet/bolide), though no direct instrumental record is possible for this era",
+      "genetic: megafaunal extinction bottleneck signals and/or human population genetic discontinuity around 12.9 ka in North America",
+      "oral_tradition: indigenous narratives referencing fire-from-sky, darkness, or catastrophic events that could be post-hoc associated with the event",
+      "iconographic: rock art or petroglyph motifs proposed (controversially) to depict a cosmic/airburst event"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis corresponds to the well-known Younger Dryas Impact Hypothesis (YDIH), placing the nanodiamond/impact-proxy signature at ~10,950 BCE in North America. Using the 'younger-dryas' row, the most relevant evidence channels are geological (0.65) and material (0.35), which are the actual channels this hypothesis rests on (sediment stratigraphy, nanodiamonds, spherules, platinum anomalies, charcoal layers) \u2014 both are moderately-to-well detectable, meaning the evidence class is not intrinsically hidden from discovery. Astronomical detectability is nominally high (0.7) but is not really applicable here since no direct instrumental record of a prehistoric airburst can exist; the absence of a crater is expected, not diagnostic, under an airburst mechanism. Genetic (0.3), oral_tradition (0.1), and iconographic (0.1) channels are weak and speculative corroborators at best. Because geological/material detectability is moderate-to-good and this is precisely the kind of evidence that has, in fact, been reported at multiple North American sites (Firestone et al. and follow-on studies), the hypothesis could plausibly have left detectable traces and such traces have plausibly been found \u2014 this is a live, actively debated empirical claim in the literature rather than a case explained by low detectability. However, replication of nanodiamond/spherule signals has been inconsistent across independent labs (a known point of contention I recall as model-prior, not verified from provided evidence text), so the primary uncertainty here is about interpretive/methodological reliability and reproducibility of the corroborating data, not about whether evidence could physically survive/be observed. I set the aggregate detectability adjustment at 0.55, reflecting a mix dominated by the higher geological/material channels but tempered by the near-zero contribution of textual, linguistic, and iconographic channels for this period."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ecada96f5a829c538d56ffa76ced575a7f5adb39cb0243be497fa16026718de2",
+  "response": {
+    "expected_evidence": [
+      "Geological: dated sediment/ice-core records of meltwater pulse timing (e.g., \u03b418O excursions, glacial lake drainage geomorphology such as Lake Agassiz outburst deposits) placed within -12750 to -9750",
+      "Genetic: ancient-DNA and radiocarbon-based extinction-date estimates for North American megafauna (mammoth, mastodon, horse, ground sloth) tested for temporal overlap with the meltwater-pulse/Younger-Dryas onset",
+      "Material: radiocarbon-dated megafaunal bone assemblages and Clovis-horizon archaeological layers used to anchor extinction chronology against the climatic event",
+      "Model-prior (unverified, from training knowledge): the modern scientific literature record of the Younger Dryas Impact/meltwater-pulse hypothesis controversy, in which multiple independent labs attempted to replicate proposed boundary markers (nanodiamonds, platinum spikes, magnetic spherules) and several reported failure to reproduce or corroborate the original findings, weakening the causal chain from meltwater pulse to extinction"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "This hypothesis is a meta-scientific claim about whether independent replication attempts failed to corroborate a meltwater-pulse -> megafaunal-extinction link in North America circa 12,750-9,750 BP, which falls in the younger-dryas period bin. The underlying physical evidence needed to test this (glacial-lake drainage/isotope geology, extinction-timing genetics/radiocarbon dates, bone/archaeological assemblages) has good long-term preservation potential: geological (0.65) and material (0.35) detectability are moderate-to-good for this period, and genetic dating evidence (0.30) is lower but still a well-established modern technique applied to this exact question (e.g., ancient DNA studies of megafaunal extinction chronology). Textual detectability for the ancient period itself is essentially zero (0.0), which is irrelevant here since the 'replication failure' evidence is not an ancient textual record but a feature of the modern scientific publication record (an out-of-band evidentiary channel not well captured by this ancient-period detectability table). Because the primary geological and genetic proxies needed to adjudicate corroboration/replication are independently dateable and physically robust (ice cores, lake sediments, fossil bone), a genuine absence-of-evidence for a real replication failure would be somewhat informative rather than fully explained by non-survival -- but genetic/material detectability is still only moderate, so partial non-detection remains plausible. Overall I suggest a blended detectability_adjustment of ~0.5, averaging the geological (0.65), material (0.35), genetic (0.30) rows and treating the 'independent-replication-failure' mechanism itself as evidenced mainly through model-prior knowledge (0.30) of the ongoing Younger Dryas Impact Hypothesis controversy rather than through any evidence class native to the ancient period."
+  }
+}

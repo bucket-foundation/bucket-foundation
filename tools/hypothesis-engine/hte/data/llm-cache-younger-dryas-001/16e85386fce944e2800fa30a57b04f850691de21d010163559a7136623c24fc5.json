@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f4f4a3375090a4c09c233560ec2dd9bdb49ec718602a6a4b7dc84da1af209445",
+  "response": {
+    "expected_evidence": [
+      "Geochemical anomaly layer in Greenland ice cores (GISP2/GRIP/NEEM) at ~12,900 cal BP showing elevated platinum, iridium, or other platinum-group elements consistent with extraterrestrial material",
+      "Nanodiamonds, lonsdaleite, or magnetic microspherules in the same ice-core horizon or in correlative Younger Dryas Boundary (YDB) sediments elsewhere",
+      "A distinct 'black mat' organic-rich sediment layer at YD onset in terrestrial sites, often cited as corroborating YDB evidence",
+      "Elevated ammonium/nitrate or soot/charcoal spikes in ice cores suggesting continent-scale biomass burning coincident with the cooling onset",
+      "Cosmogenic isotope or airburst-proxy signatures (e.g., shocked quartz, melt-glass spherules) though these are more typically terrestrial than glacial",
+      "Correlation in timing between the ice-core anomaly and megafaunal extinction / Clovis-culture discontinuity in the archaeological record (indirect corroboration, not primary airburst evidence)",
+      "Modeling/astronomical reconstructions of a plausible bolide or fragmented comet trajectory consistent with a Northern Hemisphere multi-site strewn field",
+      "Absence of an identified impact crater, which proponents attribute to burial under ice or ocean, but which is itself a diagnostic gap"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis matches the real-world 'Younger Dryas Impact Hypothesis' (YDIH), for which the most cited direct evidentiary claim is a platinum-group-element anomaly reported in the GISP2 Greenland ice core (Petaev et al. 2013) at the YD onset, alongside nanodiamond/microspherule/black-mat claims from terrestrial YDB sites. This is model-prior knowledge, not verified against a supplied evidence corpus, and I flag it as such \u2014 the YDIH remains scientifically contested, with several independent groups (e.g., Holliday et al. and others) failing to replicate the platinum spike or attributing it to non-impact processes (volcanic, terrestrial reworking, or measurement artifacts), so 'corroborated' overstates the actual consensus status. Using the table, the interval (-11000 to -10001) sits at the younger-dryas/upper-paleolithic boundary; I weight toward the 'younger-dryas' row since the onset event itself is the target. Ice cores are a genuinely favorable archive: continuous, datable, chemically stratified, and heavily studied for exactly this period, which argues for detectability somewhat above generic 'geological' (0.65) but tempered by the difficulty of unambiguously attributing any trace anomaly to a cosmic airburst versus terrestrial/volcanic sources, and by the total absence of textual, linguistic, or strong iconographic support (essentially 0, per table) since no writing existed. Material and genetic evidence at this resolution is sparse and hard to link causally to an airburst specifically. Given real geochemical work has already been attempted on this exact medium (Greenland ice) with disputed but nonzero findings, I set an aggregate adjustment of 0.55 \u2014 evidence absence to date is not primarily a detectability failure (the ice-core archive is excellent and accessible) but reflects genuine scientific non-replication and alternative explanations for the observed anomalies, so weak/contested detection findings should weigh somewhat against the hypothesis's truth value rather than being fully excused by low detectability."
+  }
+}

@@ -6,10 +6,11 @@ HISTORY.md`).
 A run directory on disk (`MANIFEST.json`, `timeline.json`, `calibration.
 json`, `self-report.json`, `hte.artifacts.load_run`'s own contract)
 carries every survivor's short id, address, slots, projected posterior,
-and Elo (`timeline.json`'s own `bins[].ranked_hypotheses`), but not the
-raw `(b, d, u, a)` opinion, its linked evidence, or its exact dated
-interval: `hte.export.timeline_views` prunes to exactly the fields
-`TIMELINE.md` displays, keeping only which time BIN a hypothesis fell in
+full opinion, and Elo (`timeline.json`'s own `bins[].ranked_hypotheses`,
+its `opinion` field since `bkt-hte-timeline-opinion-export`), but not its
+linked evidence or its exact dated interval: `hte.export.timeline_views`
+prunes to exactly the fields `TIMELINE.md` displays plus that opinion,
+keeping only which time BIN a hypothesis fell in
 (`time_bin_index(interval.start, ...)`), never its own interval's real
 start and end. `write_back` recovers the rest by re-ingesting the run's
 own corpus (a pure, deterministic, no-LLM call for every corpus this
@@ -19,7 +20,10 @@ belief.score` over a `Placement` rebuilt from each survivor's own
 persisted slots and time bin, its own interval reconstructed as that
 bin's own full span (`hte.generate._interval_for_bin`'s own convention,
 exactly matching every `combinatorial_sample`-generated hypothesis, the
-majority of a typical frontier).
+majority of a typical frontier); this recomputed opinion, never the
+persisted one, is what every `Candidate` below carries, so a reconstruction
+difference (this same docstring, two paragraphs down) still applies to it
+exactly as before.
 
 `hte.link.link_evidence`'s own per-pair decision depends only on `(item,
 hypothesis, vocab, threshold)`, never on which other hypotheses share

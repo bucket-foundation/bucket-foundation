@@ -1,0 +1,241 @@
+{
+  "model": "sonnet",
+  "role": "generator",
+  "prompt_sha256": "14d6c2c249107a8f29d8dbbe399b2d3ab015865606771d377a5ece55da4f1814",
+  "response": {
+    "proposals": [
+      {
+        "actor": "other-actor",
+        "action": "corroborated",
+        "object": "younger-dryas-onset-cooling",
+        "place": "greenland-ice-sheet",
+        "mechanism": "other-mechanism",
+        "supporting_evidence_ids": [
+          "alley-2000-c0"
+        ],
+        "rationale": "Greenland ice-core annual-layer records establish the abrupt onset of YD cooling as a physical fact independent of any proposed trigger.",
+        "other_labels": {
+          "actor": "Ice-core stratigraphic record itself, not a causal trigger agent",
+          "mechanism": "Annual ice-layer counting used to date the abrupt climate transition"
+        }
+      },
+      {
+        "actor": "other-actor",
+        "action": "corroborated",
+        "object": "younger-dryas-termination",
+        "place": "greenland-ice-sheet",
+        "mechanism": "other-mechanism",
+        "supporting_evidence_ids": [
+          "alley-2000-c0"
+        ],
+        "rationale": "Ice-core annual-layer counting shows YD termination occurred within years-to-decades, a benchmark any trigger hypothesis must explain.",
+        "other_labels": {
+          "actor": "Ice-core stratigraphic record itself, not a causal trigger agent",
+          "mechanism": "Annual ice-layer counting used to date the abrupt termination"
+        }
+      },
+      {
+        "actor": "other-actor",
+        "action": "corroborated",
+        "object": "ice-core-chronology",
+        "place": "greenland-ice-sheet",
+        "mechanism": "other-mechanism",
+        "supporting_evidence_ids": [
+          "alley-2000-c0"
+        ],
+        "rationale": "Central Greenland ice cores establish the ~1,300-year duration and basic structure of the YD event, a chronological framework independent of trigger debates.",
+        "other_labels": {
+          "actor": "Ice-core stratigraphic record itself, not a causal trigger agent",
+          "mechanism": "Annual ice-layer counting establishing duration/structure"
+        }
+      },
+      {
+        "actor": "cosmic-impact",
+        "action": "refuted",
+        "object": "uu-absence-of-a-confirmed-impact-crater-matching-the-proposed-12-9-ka-event",
+        "place": "multiple-continents",
+        "mechanism": "cosmic-airburst",
+        "supporting_evidence_ids": [
+          "boslough-2012-chapter-c0"
+        ],
+        "rationale": "A critics' review chapter finds no crater matching a 12.9 ka impact, weighing against the airburst/impact hypothesis on physical-plausibility grounds."
+      },
+      {
+        "actor": "cosmic-impact",
+        "action": "refuted",
+        "object": "younger-dryas-onset-cooling",
+        "place": "multiple-continents",
+        "mechanism": "biomass-burning-impact-winter",
+        "supporting_evidence_ids": [
+          "boslough-2012-chapter-c0"
+        ],
+        "rationale": "The review finds no atmospheric-physics mechanism by which a single airburst/impact-winter effect could produce a millennium-long cooling like the YD."
+      },
+      {
+        "actor": "cosmic-impact",
+        "action": "refuted",
+        "object": "iridium-anomaly",
+        "place": "multiple-continents",
+        "mechanism": "impact-ejecta-fallout",
+        "supporting_evidence_ids": [
+          "boslough-2012-chapter-c0"
+        ],
+        "rationale": "Absence of consistent chondritic geochemistry undercuts interpretation of boundary geochemical anomalies as genuine extraterrestrial ejecta fallout."
+      },
+      {
+        "actor": "supernova-event",
+        "action": "inconclusive",
+        "object": "uu-beryllium-10-and-nitrate-concentration-spikes-in-ice-cores-radiation-exposure-proxy",
+        "place": "greenland-ice-sheet",
+        "mechanism": "gamma-ray-ionization",
+        "supporting_evidence_ids": [
+          "brakenridge-2011-supernova-c0"
+        ],
+        "rationale": "Be-10 and nitrate spikes near the Pleistocene-Holocene transition are proposed as consistent with, but not conclusive proof of, ionizing radiation from a nearby supernova."
+      },
+      {
+        "actor": "supernova-event",
+        "action": "inconclusive",
+        "object": "megafaunal-extinction",
+        "place": "north-america",
+        "mechanism": "gamma-ray-ionization",
+        "supporting_evidence_ids": [
+          "brakenridge-2011-supernova-c0"
+        ],
+        "rationale": "A nearby core-collapse supernova is offered as an alternative astrophysical trigger for the terminal Rancholabrean extinction pulse, distinct from bolide-impact or meltwater mechanisms."
+      },
+      {
+        "actor": "supernova-event",
+        "action": "inconclusive",
+        "object": "younger-dryas-onset-cooling",
+        "place": "greenland-ice-sheet",
+        "mechanism": "gamma-ray-ionization",
+        "supporting_evidence_ids": [
+          "brakenridge-2011-supernova-c0"
+        ],
+        "rationale": "The same ice-core radiation proxies used for the extinction-pulse argument are also floated as a possible trigger for YD cooling onset itself."
+      },
+      {
+        "actor": "meltwater-pulse",
+        "action": "triggered",
+        "object": "younger-dryas-onset-cooling",
+        "place": "north-atlantic",
+        "mechanism": "st-lawrence-routing",
+        "supporting_evidence_ids": [
+          "broecker-1989-c0"
+        ],
+        "rationale": "Laurentide meltwater rerouted through the Great Lakes/St. Lawrence Valley into the North Atlantic is proposed to have freshened surface waters and triggered YD cooling. Note: sourced from model-prior/general literature context (Broecker 1989) as flagged in the evidence tag."
+      },
+      {
+        "actor": "meltwater-pulse",
+        "action": "inconclusive",
+        "object": "younger-dryas-onset-cooling",
+        "place": "north-atlantic",
+        "mechanism": "st-lawrence-routing",
+        "supporting_evidence_ids": [
+          "broecker-2006-c0"
+        ],
+        "rationale": "A later review finds the expected St. Lawrence flood sediment signature largely missing, leaving the specific routing pathway (though not the underlying meltwater mechanism) unresolved."
+      },
+      {
+        "actor": "meltwater-pulse",
+        "action": "inconclusive",
+        "object": "amoc-slowdown",
+        "place": "arctic-ocean",
+        "mechanism": "arctic-mackenzie-routing",
+        "supporting_evidence_ids": [
+          "broecker-2006-c0"
+        ],
+        "rationale": "With the St. Lawrence pathway's sediment signature missing, an Arctic/Mackenzie routing alternative remains an open, partly inferential (model-prior-informed) possibility for how meltwater reached the ocean to slow AMOC."
+      },
+      {
+        "actor": "cosmic-impact",
+        "action": "refuted",
+        "object": "population-demography",
+        "place": "north-america",
+        "mechanism": "demographic-decline-evidence",
+        "supporting_evidence_ids": [
+          "buchanan-2008-c0"
+        ],
+        "rationale": "Summed radiocarbon probability distributions show no Paleoindian population decline at 12.9 ka, the opposite of the collapse a catastrophic impact would be expected to leave in the record."
+      },
+      {
+        "actor": "cosmic-impact",
+        "action": "corroborated",
+        "object": "meltglass-melt-products",
+        "place": "multiple-continents",
+        "mechanism": "cosmic-airburst",
+        "supporting_evidence_ids": [
+          "bunch-2012-c0"
+        ],
+        "rationale": "Melt-glass and scoria-like objects formed above 2200 C at 18 YD boundary sites on four continents are presented as high-temperature evidence for cosmic airbursts at 12.9 ka."
+      },
+      {
+        "actor": "cosmic-impact",
+        "action": "corroborated",
+        "object": "carbon-spherule-concentration",
+        "place": "multiple-continents",
+        "mechanism": "impact-ejecta-fallout",
+        "supporting_evidence_ids": [
+          "bunch-2012-c0"
+        ],
+        "rationale": "Scoria-like carbonaceous objects at multiple YD boundary sites are interpreted as ejecta-fallout products of a cosmic airburst rather than wildfire, volcanic, or anthropogenic processes."
+      },
+      {
+        "actor": "meltwater-pulse",
+        "action": "corroborated",
+        "object": "amoc-slowdown",
+        "place": "north-atlantic",
+        "mechanism": "amoc-shutdown",
+        "supporting_evidence_ids": [
+          "carlson-2010-c0"
+        ],
+        "rationale": "A synthesis of two decades of meltwater-routing, ice-sheet, and ocean-model evidence concludes Atlantic meltwater forcing of AMOC slowdown is the best-supported cause of YD cooling."
+      },
+      {
+        "actor": "cosmic-impact",
+        "action": "refuted",
+        "object": "younger-dryas-onset-cooling",
+        "place": "north-atlantic",
+        "mechanism": "amoc-shutdown",
+        "supporting_evidence_ids": [
+          "carlson-2010-c0"
+        ],
+        "rationale": "Because meltwater-driven AMOC slowdown already accounts for the YD's timing and magnitude, the review treats the extraterrestrial-impact hypothesis as an unnecessary additional cause."
+      },
+      {
+        "actor": "cosmic-impact",
+        "action": "refuted",
+        "object": "uu-absence-of-a-confirmed-impact-crater-matching-the-proposed-12-9-ka-event",
+        "place": "multiple-continents",
+        "mechanism": "independent-replication-failure",
+        "supporting_evidence_ids": [
+          "boslough-2012-chapter-c0"
+        ],
+        "rationale": "The critics' co-authored review functions as an independent assessment/replication attempt of impact evidence, failing to find a crater or adequate supporting physics."
+      },
+      {
+        "actor": "meltwater-pulse",
+        "action": "triggered",
+        "object": "amoc-slowdown",
+        "place": "north-atlantic",
+        "mechanism": "amoc-shutdown",
+        "supporting_evidence_ids": [
+          "broecker-1989-c0"
+        ],
+        "rationale": "Broecker's original hypothesis frames freshening of North Atlantic surface waters via rerouted meltwater as directly weakening deep-water formation (AMOC), the proximate mechanism for YD cooling."
+      },
+      {
+        "actor": "supernova-event",
+        "action": "inconclusive",
+        "object": "megafaunal-extinction",
+        "place": "multiple-continents",
+        "mechanism": "gamma-ray-ionization",
+        "supporting_evidence_ids": [
+          "brakenridge-2011-supernova-c0"
+        ],
+        "rationale": "The supernova-ionization hypothesis is framed as a hemispheric/global-scale alternative to bolide-impact and meltwater explanations for the terminal Pleistocene extinction pulse, though evidence remains suggestive rather than conclusive."
+      }
+    ]
+  }
+}

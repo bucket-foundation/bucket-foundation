@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f7c177a28fcfcbad1bf09bb34fa26f19286a3d9739d19c4b411f7e8a71f9d35b",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: Greenland ice-core stratigraphy (GISP2, GRIP, NGRIP, NEEM) showing anomalous peaks in ammonium, nitrate, and biomass-burning aerosol proxies (black carbon / refractory black carbon) coincident with the ~11,000\u201310,001 BCE (Younger Dryas boundary) horizon.",
+      "Astronomical/geochemical: a platinum-group-element (Pt, Ir) anomaly layer in the same ice strata, interpreted as an extraterrestrial or airburst signature co-occurring with the biomass-burning spike (e.g., the reported GISP2 platinum spike near the YD onset/termination).",
+      "Material: correlative Younger-Dryas-boundary 'black mat' layers at terrestrial sites (North America, Europe) containing soot, charcoal, magnetic spherules, and nanodiamonds, offered as independent corroboration of a continent- or hemisphere-scale biomass-burning event.",
+      "Geological: sedimentary charcoal/pollen records from lake and bog cores showing a synchronous continental-scale fire episode ('impact winter' signature: temporary cooling, reduced biomass productivity) at the same interval.",
+      "Genetic: megafaunal population bottleneck or extinction signatures in ancient DNA/coalescent records dated to this interval, cited as an ecological consequence of an impact-winter/biomass-burning event.",
+      "Model-prior: the broader Younger Dryas Impact Hypothesis (YDIH) literature (Firestone et al. 2007 and successors/critics) as an unverified, contested framework that this hypothesis draws on."
+    ],
+    "detectability_adjustment": 0.6,
+    "rationale": "The hypothesis is anchored to the Younger Dryas interval and specifically to the Greenland ice sheet, which is one of the best-preserved, continuously-resolved paleoclimate archives available (annual layering, trapped aerosols, and geochemical markers). For this period, the baseline table gives 'younger-dryas' geological=0.65 and astronomical=0.70, both well above the material (0.35), genetic (0.30), and near-zero textual/linguistic/oral scores expected for a pre-literate, pre-agricultural interval. Because the hypothesis explicitly names the ice sheet as the evidentiary medium, the relevant evidence classes (ice-core geochemistry and PGE/astronomical anomaly layers) fall into the higher-detectability categories rather than the low ones, and such records have in fact been reported and debated in the real literature (e.g., ammonium/black-carbon spikes and a platinum anomaly near the YD boundary in GISP2), meaning the evidence type is not merely hypothetical but plausibly recoverable and already partly investigated. Corroborating terrestrial 'black mat' and charcoal layers (material/geological) are lower-preservation but still documented at many sites, supporting moderate-to-good survivability. Textual, linguistic, and iconographic evidence are essentially impossible for a preliterate ~13,000-year-old event (scores 0\u20130.1) and their absence should not be read as evidence against the hypothesis. Given the concentration of expected evidence in the high-detectability geological/astronomical channels tied directly to the named ice-sheet locus, I adjust the overall detectability upward from the raw younger-dryas average (~0.28) to 0.60, reflecting that the specific medium invoked (Greenland ice) is unusually favorable for preserving and detecting the proposed biomass-burning/impact-winter signal, even though the causal interpretation (impact-driven vs. purely climatic) of any detected anomaly remains scientifically contested (model-prior caveat)."
+  }
+}
