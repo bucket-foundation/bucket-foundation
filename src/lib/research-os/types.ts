@@ -16,7 +16,7 @@ export type EdgeKind =
   | "example_of"
   | "contradicts";
 
-/** The five learner states, in order (RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3). */
+/** The five levels of interaction, in order; see `Level` below for the current framing. */
 export type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
 
 export const STAGE_ORDER: Stage[] = [
@@ -30,6 +30,18 @@ export const STAGE_ORDER: Stage[] = [
 export function stageAtLeast(stage: Stage, min: Stage): boolean {
   return STAGE_ORDER.indexOf(stage) >= STAGE_ORDER.indexOf(min);
 }
+
+/**
+ * The five words are levels of interaction with the graph, each holding the
+ * ones before it (learning/research-os/INTEGRATION-PLAN.md section 2,
+ * 2026-09-15): Access (who can see and use a node), Awareness (where it
+ * leads), Understanding (learning it), Internalization (it meets the rest of
+ * the graph), Production (a new node). `Stage` stays the column and the
+ * older name across the code; new code reads and writes `Level`.
+ */
+export type Level = Stage;
+export const LEVEL_ORDER: Level[] = STAGE_ORDER;
+export const levelAtLeast = stageAtLeast;
 
 /** The exact string POST /api/research-os/privacy requires in a delete
  * request's `confirm` field (bkt-ros ros-07 follow-up, task item 2: "the

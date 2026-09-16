@@ -95,6 +95,7 @@ import {
 import { SECOND_SOURCE_QUESTION_COPY, SECOND_SOURCE_AGREE_QUESTION_COPY } from "@/lib/research-os/lateral-reading";
 import { DELETE_CONFIRM_TOKEN } from "@/lib/research-os/types";
 import { firstHalfOfWorkedExample } from "@/lib/research-os/worked-examples";
+import AccessBlock from "./AccessBlock";
 
 const TARGET_SLUG = "why-the-sky-is-blue";
 
@@ -1040,6 +1041,7 @@ export default function ResearchOsWorkspacePage() {
                   </div>
                   <h2 className="font-display uppercase text-[20px] mt-1 text-[color:var(--basalt)]">{selected.title}</h2>
                   <p className="mt-2 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{selected.summary}</p>
+                  <AccessBlock nodeId={selected.id} token={token} />
                 </div>
               )}
 

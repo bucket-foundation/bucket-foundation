@@ -3625,3 +3625,7 @@ Squash-merged after this pass.
 ## 2026-09-15 ros-22 shell and nav, first pass
 
 `Presentation.tsx` cut to hero and panel; `Header.tsx` NAV collapsed; `src/app/research-os/layout.tsx` and `ResearchOsNav.tsx` added; `MANIFESTO.md` section 3 bullet and date; `INTEGRATION-PLAN.md` section 11 and decision 6.
+
+## 2026-09-15 ros-21 the Access level as a data model
+
+New: migration `20260915000000_research_os_access.sql`, `access.ts`, `access-db.ts`, `api/research-os/access/route.ts`, `workspace/AccessBlock.tsx`, `profile/AccessMine.tsx`, `scripts/test-research-os-access.ts`, `ACCESS.md`. Edited: `types.ts` (Level alias), `workspace/page.tsx`, `profile/page.tsx`, `package.json` test entry.

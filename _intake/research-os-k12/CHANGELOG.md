@@ -2868,3 +2868,10 @@ None.
 - Research OS shell: `src/app/research-os/layout.tsx` adds a module bar (`ResearchOsNav.tsx`) under the site header on every Research OS page: Overview, Map, Learn, Workspace, Produce, Frontier, Class, Profile, Corpora, each pointing at the surface that holds that area today (INTEGRATION-PLAN.md section 9).
 - Manifesto: `MANIFESTO.md` is the one canonical text and `/manifesto` renders it; the homepage pull quote is gone with the cut; the Research OS bullet in section 3 now carries the five-levels framing and the one-product thesis; dated "2026-04-14, revised 2026-09-15". `/mission` is a different document (the education-atlas mission) and stays.
 - INTEGRATION-PLAN.md: done date as soon as possible, first partner contact recorded, decision 6 settled (a teacher can require the paper written in Research OS; acceptance into the public graph is never required).
+
+## 2026-09-15 ros-21 the Access level as a data model
+
+- Migration `20260915000000_research_os_access.sql`: `graph.nodes.visibility` (public, private, shared) and `owner_id`; `graph.node_grants` (person or group, roles view, continue, extend, cite, replicate, review, optional expiry); `graph.access_requests` (purpose, message, pending, granted, denied); `graph.imports` (dataset, paper, notes, corpus, creating a private node in branch `00-imports`); node read policy replaced by `visible_select`.
+- `src/lib/research-os/access.ts`: pure rules (`canView`, `can`, `visibleNodeIds`, `nextVisibility`, `grantAllowed`, `requestAllowed`, `decideRequest`), tested by `scripts/test-research-os-access.ts` (8 tests, in `test:research-os`). `access-db.ts`: service-role wrappers. `/api/research-os/access`: GET by node or `mine=1`, POST set_visibility, grant, revoke, request, decide, import.
+- Workspace: `AccessBlock` under the selected node's summary (badge, verbs, request control, owner switch and pending requests). Profile: `AccessMine` (owned nodes, own requests, import form).
+- `types.ts`: `Level`, `LEVEL_ORDER`, `levelAtLeast` as the current names over `Stage`. Doc: `learning/research-os/ACCESS.md`.
