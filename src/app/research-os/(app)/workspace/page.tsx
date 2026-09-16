@@ -851,15 +851,14 @@ export default function ResearchOsWorkspacePage() {
           <Link href="/research-os" className="underline decoration-[color:var(--gold)] underline-offset-4">
             § Research OS · K-12
           </Link>
-          {" / workspace, Phase 0 prototype"}
+          {" / workspace"}
         </div>
         <h1 className="font-display uppercase text-[clamp(1.5rem,4vw,2.5rem)] leading-[1.1] chisel text-[color:var(--basalt)]">
           why is the sky blue?
         </h1>
         <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
-          The Phase 0 seed path: grade 3-5 facts about light and air, forward to Rayleigh scattering and the
-          lambda-to-the-minus-4 law. Sign in to track your own Access/Awareness/Understanding/Internalization
-          state; browsing the map works signed out too.
+          The seed path: grade 3-5 facts about light and air, forward to Rayleigh scattering and the
+          lambda-to-the-minus-4 law. Your level on each node is recorded as you work.
         </p>
 
         {/* Auth panel */}
