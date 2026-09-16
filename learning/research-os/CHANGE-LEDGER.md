@@ -3629,3 +3629,7 @@ Squash-merged after this pass.
 ## 2026-09-15 ros-21 the Access level as a data model
 
 New: migration `20260915000000_research_os_access.sql`, `access.ts`, `access-db.ts`, `api/research-os/access/route.ts`, `workspace/AccessBlock.tsx`, `profile/AccessMine.tsx`, `scripts/test-research-os-access.ts`, `ACCESS.md`. Edited: `types.ts` (Level alias), `workspace/page.tsx`, `profile/page.tsx`, `package.json` test entry.
+
+## 2026-09-15 ros-29 Learn inside the workspace, first pass
+
+New: `learn-link.ts`, `workspace/LearnBlock.tsx`, `scripts/test-research-os-learn-link.ts`. Edited: `academy/page.tsx` (deep-link pass-through), `workspace/page.tsx` (GraphNodeLite branch and provenance, LearnBlock), `Header.tsx` (DynamicWidget removed), `package.json`.

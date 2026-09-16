@@ -2875,3 +2875,10 @@ None.
 - `src/lib/research-os/access.ts`: pure rules (`canView`, `can`, `visibleNodeIds`, `nextVisibility`, `grantAllowed`, `requestAllowed`, `decideRequest`), tested by `scripts/test-research-os-access.ts` (8 tests, in `test:research-os`). `access-db.ts`: service-role wrappers. `/api/research-os/access`: GET by node or `mine=1`, POST set_visibility, grant, revoke, request, decide, import.
 - Workspace: `AccessBlock` under the selected node's summary (badge, verbs, request control, owner switch and pending requests). Profile: `AccessMine` (owned nodes, own requests, import form).
 - `types.ts`: `Level`, `LEVEL_ORDER`, `levelAtLeast` as the current names over `Stage`. Doc: `learning/research-os/ACCESS.md`.
+
+## 2026-09-15 ros-29 Learn inside the workspace, first pass
+
+- `src/lib/research-os/learn-link.ts`: from a node's provenance (`academy_atom`, `source`, `atom_id`) the Academy lesson and its deep link `/academy?branch=<file>&atom=<id>`; for canon nodes in a branch with an Academy corpus, the branch; `recallFor` reads the atom's FSRS card out of the Academy progress payload (retrievability, mastery, due). Tests: `scripts/test-research-os-learn-link.ts` (4, in `test:research-os`).
+- `/academy` forwards `branch`, `atom`, `view`, `nb`, `onboard` into the framed app, which already handles them at boot.
+- Workspace: `LearnBlock` under the selected node: open the lesson, live recall and mastery from `/api/academy/progress` when signed in.
+- Header: the Dynamic web3 widget left the desktop and drawer headers (one account, email one-time code, INTEGRATION-PLAN.md section 6); the Contribute link stays.

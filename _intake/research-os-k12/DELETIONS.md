@@ -829,3 +829,7 @@ The artifact one-liners for the five states on `src/app/research-os/page.tsx` ar
 Removed from `src/components/Presentation.tsx` on the founder's approval (answers Q3 and item 3): the canon stat strip, the Research OS for K-12 section, the AI-native paste-this-URL section, the thesis tablet, the manifesto pull, the eight canon plinths, the protocol monolith, the how-a-citation-works inscription, the closer and its stele marquee, plus the `Stat` and `Tier` helpers and the `Globe`, `InverseOmega`, and `AiPasteCTA` imports they used. The homepage is the reform-education hero and the canon search panel. Full prior file: `git show 182736aa8:src/components/Presentation.tsx`.
 
 Nav: the Academy and Access top-level tabs left `src/components/Header.tsx`; Academy is Research OS → Learn, Access is Canon → Agent access, the depth ladder is under Research OS. Prior nav: `git show 182736aa8:src/components/Header.tsx`.
+
+## 2026-09-15 Dynamic widget in the header
+
+`DynamicWidget` and its `HAS_DYNAMIC` branches left `src/components/Header.tsx` (desktop and drawer). Prior file: `git show a5d9becce:src/components/Header.tsx`. The Dynamic provider stays mounted in `src/providers/Web3Providers.tsx` for the canon's contribute and cite flows.

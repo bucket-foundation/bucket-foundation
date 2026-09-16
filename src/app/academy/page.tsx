@@ -18,7 +18,19 @@ export const metadata: Metadata = {
 // The Academy is a self-contained app (source of truth: learning/app, synced into
 // public/academy-app by scripts/sync-academy.mjs). We frame it so it inherits the site
 // header/nav as a real tab while keeping its own local-first engine intact.
-export default function AcademyPage() {
+// Deep links: /academy?branch=<file>&atom=<id> (and the app's own view, nb,
+// onboard params) pass through to the framed app, so a Research OS node's
+// Learn link opens its lesson.
+const PASS = ["branch", "atom", "view", "nb", "onboard"] as const;
+
+export default function AcademyPage({ searchParams }: { searchParams?: Record<string, string | string[] | undefined> }) {
+  const q = new URLSearchParams();
+  for (const k of PASS) {
+    const v = searchParams?.[k];
+    const s = Array.isArray(v) ? v[0] : v;
+    if (typeof s === "string" && s) q.set(k, s);
+  }
+  const src = q.toString() ? `/academy-app/index.html?${q.toString()}` : "/academy-app/index.html";
   return (
     <>
       {/* On-ramp strip: the Academy is the consume side of the depth ladder
@@ -51,7 +63,7 @@ export default function AcademyPage() {
         </div>
       </div>
       <iframe
-        src="/academy-app/index.html"
+        src={src}
         title="Bucket Academy"
         loading="eager"
         style={{
