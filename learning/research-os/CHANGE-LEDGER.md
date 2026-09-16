@@ -3621,3 +3621,7 @@ Squash-merged after this pass.
 ## 2026-09-15 Research OS integration plan
 
 `learning/research-os/INTEGRATION-PLAN.md` added. `src/app/research-os/page.tsx` STATES copy and section sub. `BEADS-PENDING.jsonl` +13 (ros-20 to ros-33).
+
+## 2026-09-15 ros-22 shell and nav, first pass
+
+`Presentation.tsx` cut to hero and panel; `Header.tsx` NAV collapsed; `src/app/research-os/layout.tsx` and `ResearchOsNav.tsx` added; `MANIFESTO.md` section 3 bullet and date; `INTEGRATION-PLAN.md` section 11 and decision 6.

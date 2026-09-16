@@ -15,7 +15,7 @@ Decisions settled by the answers:
 | 3, engine output | Lives in the graph. Compute runs privately or publicly; private portions of the graph exist. |
 | 4, homepage | Reform education above, canon search below, equal weight; most other homepage sections go. |
 | 5, PR #11 | Superseded by the shipped landing branch. |
-| 6, required participation | Open; the founder read the question as unclear. Default: the routed workspace can be required by a teacher, submitting a production stays optional. |
+| 6, required participation | Settled 2026-09-15. A teacher assigns a paper and requires the class to write it in Research OS; the finished paper is the production and is required as the assignment. Acceptance into the public graph stays a review outcome and is never required. |
 
 ## 2. The five levels
 
@@ -120,8 +120,8 @@ The founder picked all twelve items. Sequence inside the release:
 
 Research items running beside the build: primality and penetration tiering, production placement and ingenuity score, graph rules for proof and replication.
 
-## 11. Open items
+## 11. Dates and partner
 
-- Done for the first release and its date: unanswered. Proposed: the nine steps above, shipped to the landing branch behind the existing routes, with one library partner using it, by 2026-11-15.
-- Required participation: default above until the founder answers.
-- Pilot partner: none.
+- **Done date: as soon as possible.** The nine steps ship in order to the landing branch, each merged when it passes review, with no release gate holding finished steps back. Step 1 (shell and nav, two-section homepage, one manifesto) started 2026-09-15 on the founder's approval.
+- **First partner contact: Dr. Cristofer Slotoroff**, the founder's tenth-grade English teacher. Public profile: Chief Officer for Education and Libraries at The Juice Learning, Ed.D., 13 years as a New Jersey high-school English teacher and district administrator, publishes educational research, ORCID 0000-0003-4078-6637. The education-and-libraries brief matches the plan's venue. Approach: the founder writes first, as a former student, with the Research OS page and this plan; the ask is one conversation about a library or classroom pilot and an introduction to a school library. No edtech sales motion is needed for that.
+- **Required participation**: settled, see the decisions table.

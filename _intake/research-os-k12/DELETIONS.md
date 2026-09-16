@@ -823,3 +823,9 @@ The bone radial-gradient overlay div inside `FixedCanonGlobeBackground.tsx` and 
 ## 2026-09-15 five-state copy
 
 The artifact one-liners for the five states on `src/app/research-os/page.tsx` are replaced by the interaction-level copy. Prior file: `git show 34ecdf536:src/app/research-os/page.tsx`.
+
+## 2026-09-15 homepage cut, ros-22
+
+Removed from `src/components/Presentation.tsx` on the founder's approval (answers Q3 and item 3): the canon stat strip, the Research OS for K-12 section, the AI-native paste-this-URL section, the thesis tablet, the manifesto pull, the eight canon plinths, the protocol monolith, the how-a-citation-works inscription, the closer and its stele marquee, plus the `Stat` and `Tier` helpers and the `Globe`, `InverseOmega`, and `AiPasteCTA` imports they used. The homepage is the reform-education hero and the canon search panel. Full prior file: `git show 182736aa8:src/components/Presentation.tsx`.
+
+Nav: the Academy and Access top-level tabs left `src/components/Header.tsx`; Academy is Research OS → Learn, Access is Canon → Agent access, the depth ladder is under Research OS. Prior nav: `git show 182736aa8:src/components/Header.tsx`.

@@ -34,7 +34,7 @@ Underneath that product sits the **patronage layer** that makes it durable: the 
 
 Concretely:
 
-- **Research OS** is the workspace: five states per concept (Access, Awareness, Understanding, Internalization, Production), a constrained AI that finds, quotes, checks, and organizes but never writes the learner's answer, and a teacher view over the same map.
+- **Research OS** is the product, and every other surface lives inside it. Five levels of interaction with the graph, each holding the ones before it: Access (who can see and use a node: public, private, or shared, the way a repository or a drive works), Awareness (where knowledge can go from here), Understanding (learning the node itself), Internalization (the learned node meets the rest of the graph), Production (a new node, built from the nodes you hold and placed among them). The workspace finds, quotes, checks, and organizes; it never writes the answer.
 - A **bucket** is a content-addressed folder containing a paper, a manifest, and an HTTP 402 payment receipt.
 - The **canon** is the small set of buckets that have been judged to contain *foundations*, axioms, real math, rules, laws, principles, primary derivations, across seven branches: mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind.
 - The **protocol** is the open specification (CC0-in-intent) that lets anyone implement a bucket. There is no permission to ask. No node is authoritative.
@@ -126,4 +126,4 @@ The first Renaissance happened because a few hundred people in a few cities had 
 We are not asking you to wait for permission. We are asking you to start.
 
 The founding maintainer
-2026-04-14
+2026-04-14, revised 2026-09-15

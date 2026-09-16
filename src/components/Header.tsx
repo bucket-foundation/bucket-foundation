@@ -12,15 +12,20 @@ type NavItem = {
 };
 
 const NAV: NavItem[] = [
-  // Research OS leads: it is the product. Canon, protocol, and the API
-  // are the substrate underneath it, reachable from Canon's own dropdown
-  // and the footer rather than their own top-level tabs.
+  // Research OS is the product; every surface lives inside it. Canon is
+  // the substrate underneath. Everything else lives in the Research OS
+  // dropdown, the footer, or the module bar on Research OS pages.
   {
     href: "/research-os",
     label: "Research OS",
     sub: [
-      { href: "/research-os",           label: "Overview",         meta: "reform education" },
-      { href: "/research-os/workspace", label: "Try the workspace", meta: "find · quote · check · organize" },
+      { href: "/research-os",           label: "Overview",   meta: "five levels of interaction" },
+      { href: "/research-os/workspace", label: "Workspace",  meta: "find · quote · check · organize" },
+      { href: "/academy",               label: "Learn",      meta: "lessons, recall, mastery" },
+      { href: "/canon/search",          label: "Map",        meta: "the canon on the globe" },
+      { href: "/research-os/class",     label: "Class",      meta: "teachers and librarians" },
+      { href: "/research-os/profile",   label: "Profile",    meta: "levels, credentials, privacy" },
+      { href: "/ladder",                label: "The depth ladder", meta: "mastery → frontier → produce" },
     ],
   },
   {
@@ -31,19 +36,11 @@ const NAV: NavItem[] = [
       { href: "/canon/claims",   label: "All claims",    meta: "browse the cards" },
       { href: "/canon/bridges",  label: "Bridges",       meta: "17 multi-branch primitives" },
       { href: "/canon/graph",    label: "Knowledge graph", meta: "1,133 nodes · PageRank" },
-    ],
-  },
-  {
-    href: "/academy",
-    label: "Academy",
-    sub: [
-      { href: "/academy", label: "Open the Academy", meta: "spaced-repetition mastery" },
-      { href: "/ladder",  label: "The depth ladder", meta: "mastery → frontier → produce" },
+      { href: "/access",         label: "Agent access",  meta: "MCP, llms.txt, x402" },
     ],
   },
   // About → /governance, /manifesto, /contributors, /join.
   { href: "/whats-new",      label: "What's new" },
-  { href: "/access",         label: "Access" },
   { href: "/about",          label: "About" },
 ];
 
