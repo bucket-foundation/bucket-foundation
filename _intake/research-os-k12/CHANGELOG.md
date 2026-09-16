@@ -2888,3 +2888,10 @@ None.
 - `RESEARCH_OS_LLM_ENABLED` (default off) is the one switch. Off: Check grades the learner's own verdict (support or contradiction) against their attached quotes with a fixed rubric (`deterministicCheck`: quote attached and logged, verdict recorded, own words, term overlap), and Organize splits the learner's notes by sentence and line (`deterministicOrganize`); both keep the existing response shapes, so forcing, lateral reading, the evidence log, and level transitions run unchanged. On: the model paths as before. `GET /api/research-os/route` reports `llmEnabled`; the workspace shows the verdict control when it is false. Doc: `learning/research-os/NO-MODEL.md`. Tests: `scripts/test-research-os-deterministic.ts` (7, in `test:research-os`).
 - Pen: `PenBlock` on the node panel, free writing stored in the browser by node; no route reads it.
 - Map in place: `MapBlock` on the node panel links a canon-ingested node to its claims page, any node to the search globe with its title as the query (`/canon/search?q=`, new deep link in `CanonGlobeMount`), its branch page, and the bridges.
+
+## 2026-09-15 ros-33 the game layer and the path map
+
+- Migration `20260915010000_research_os_game.sql`: `xp`, `streak_days`, `last_active_day`, `badges` on `graph.learner_profiles`.
+- `src/lib/research-os/game.ts`: XP per level (2, 10, 25, 50, 100), levels at 50 n (n - 1), streaks by UTC day, badges at internalization and production once per node; `applyTransition` composes them. Tests: `scripts/test-research-os-game.ts` (5, in `test:research-os`).
+- `recordEvidence` awards after every evidence write (`awardProgress`), so every route counts once; `loadGame`, `loadXpForLearners` in `db.ts`. `/api/research-os/profile` returns `game`; `/api/research-os/class` returns `xpByLearner`.
+- Workspace: `PathMap` above the routed chain, a winding SVG path colored by level, the target ringed, click selects. Profile: `GameSection` (level, XP bar, streak, badges). Class view: top-ten class leaderboard. Doc: `learning/research-os/GAME.md`.

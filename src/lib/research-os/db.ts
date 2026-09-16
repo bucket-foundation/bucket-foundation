@@ -15,6 +15,7 @@ import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind, Stage } from "./
 import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow, GraphProductionRow } from "./engine-bridge";
 import { buildProductionOutboxRow } from "./engine-bridge";
 import type { PrereqAncestorRow } from "./closure";
+import { applyTransition, type Badge, type GameState } from "./game";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -609,6 +610,50 @@ export async function recordEvidence(
       { onConflict: "learner_id,node_id" },
     );
   if (error) throw new Error(`recordEvidence: upsert failed: ${error.message}`);
+
+  // ros-33: the game layer reads every recorded transition here, so a level
+  // rise counts once wherever it was recorded. Awarding never fails the
+  // evidence write.
+  try {
+    await awardProgress(learnerId, nodeId, (existing?.stage as Stage | undefined) ?? null, stage as Stage);
+  } catch {
+    /* the profile row is missing or the columns are not migrated yet */
+  }
+}
+
+// ---------------------------------------------------------------------------
+// The game layer (bkt-ros ros-33). Rules in src/lib/research-os/game.ts.
+// ---------------------------------------------------------------------------
+
+export async function loadGame(learnerId: string): Promise<GameState | null> {
+  const { data, error } = await graphService()
+    .from("learner_profiles")
+    .select("xp,streak_days,last_active_day,badges")
+    .eq("learner_id", learnerId)
+    .maybeSingle();
+  if (error || !data) return null;
+  const row = data as { xp: number | null; streak_days: number | null; last_active_day: string | null; badges: Badge[] | null };
+  return { xp: row.xp ?? 0, streakDays: row.streak_days ?? 0, lastActiveDay: row.last_active_day, badges: Array.isArray(row.badges) ? row.badges : [] };
+}
+
+export async function awardProgress(learnerId: string, nodeId: string, from: Stage | null, to: Stage): Promise<void> {
+  const current = (await loadGame(learnerId)) ?? { xp: 0, streakDays: 0, lastActiveDay: null, badges: [] };
+  const next = applyTransition(current, nodeId, from, to);
+  const { error } = await graphService()
+    .from("learner_profiles")
+    .update({ xp: next.xp, streak_days: next.streakDays, last_active_day: next.lastActiveDay, badges: next.badges })
+    .eq("learner_id", learnerId);
+  if (error) throw new Error(`awardProgress: update failed: ${error.message}`);
+}
+
+/** XP per learner for a class leaderboard; missing profiles read as 0. */
+export async function loadXpForLearners(learnerIds: string[]): Promise<Map<string, number>> {
+  const out = new Map<string, number>();
+  if (learnerIds.length === 0) return out;
+  const { data, error } = await graphService().from("learner_profiles").select("learner_id,xp").in("learner_id", learnerIds);
+  if (error) return out;
+  for (const r of (data as { learner_id: string; xp: number | null }[]) || []) out.set(r.learner_id, r.xp ?? 0);
+  return out;
 }
 
 // ---------------------------------------------------------------------------

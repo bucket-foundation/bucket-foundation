@@ -69,6 +69,8 @@ interface ClassView {
   id: string;
   name: string;
   learnerIds: string[];
+  /** ros-33: XP per learner, for the class leaderboard. */
+  xpByLearner?: Record<string, number>;
   grid: ClassGrid;
   blocked: BlockedLearner[];
   readyForHarderTarget: ReadyLearner[];
@@ -293,6 +295,22 @@ export default function ResearchOsClassPage() {
             <section key={c.id} className="mt-10">
               <h2 className="font-display uppercase text-[16px] text-[color:var(--basalt)] mb-1">{c.name}</h2>
               <p className="text-[12px] text-[color:var(--basalt-2)] mb-3">{c.learnerIds.length} learner(s)</p>
+
+              {c.xpByLearner && Object.keys(c.xpByLearner).length > 0 && (
+                <div className="mb-4">
+                  <div className="text-[10px] small-caps tracking-[0.18em] text-[color:var(--aegean-deep)] mb-1">class leaderboard</div>
+                  <ol className="flex flex-wrap gap-x-4 gap-y-1 text-[12px]" style={{ fontFamily: "var(--font-jetbrains)" }}>
+                    {Object.entries(c.xpByLearner)
+                      .sort((a, b) => b[1] - a[1])
+                      .slice(0, 10)
+                      .map(([id, xp], i) => (
+                        <li key={id}>
+                          <span className="text-[color:var(--basalt-3)]">{i + 1}.</span> {shortId(id)} · {xp} xp
+                        </li>
+                      ))}
+                  </ol>
+                </div>
+              )}
 
               <div className="overflow-x-auto">
                 <table className="border-collapse min-w-full">

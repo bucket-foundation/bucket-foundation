@@ -3637,3 +3637,7 @@ New: `learn-link.ts`, `workspace/LearnBlock.tsx`, `scripts/test-research-os-lear
 ## 2026-09-15 ros-23 the workspace without a model, ros-30 the Map in place
 
 New: `deterministic.ts`, `workspace/PenBlock.tsx`, `workspace/MapBlock.tsx`, `scripts/test-research-os-deterministic.ts`, `NO-MODEL.md`. Edited: `api/research-os/workspace/route.ts` (verdict and quotes fields, deterministic Check and Organize), `api/research-os/route/route.ts` (`llmEnabled`), `workspace/page.tsx` (verdict control, request fields, mounts), `canon/CanonGlobeMount.tsx` (`?q=`), `package.json`.
+
+## 2026-09-15 ros-33 the game layer and the path map
+
+New: migration `20260915010000_research_os_game.sql`, `game.ts`, `workspace/PathMap.tsx`, `profile/GameSection.tsx`, `scripts/test-research-os-game.ts`, `GAME.md`. Edited: `db.ts` (award hook, loadGame, loadXpForLearners), `api/research-os/profile/route.ts`, `api/research-os/class/route.ts`, `workspace/page.tsx`, `profile/page.tsx`, `class/page.tsx`, `package.json`.

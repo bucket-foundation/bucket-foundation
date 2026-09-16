@@ -99,6 +99,7 @@ import AccessBlock from "./AccessBlock";
 import LearnBlock from "./LearnBlock";
 import MapBlock from "./MapBlock";
 import PenBlock from "./PenBlock";
+import PathMap from "./PathMap";
 
 const TARGET_SLUG = "why-the-sky-is-blue";
 
@@ -997,6 +998,14 @@ export default function ResearchOsWorkspacePage() {
                 below the routing confidence floor and should have a
                 teacher's eyes on it. */}
             <div className="flex flex-col gap-4">
+              <PathMap
+                steps={route.chain.map((s) => ({ id: s.node.id, title: s.node.title, stage: s.stage, isFrontier: s.isFrontier }))}
+                selectedId={selected?.id ?? null}
+                onSelect={(id) => {
+                  const s = route.chain.find((x) => x.node.id === id);
+                  if (s) setSelected(s.node);
+                }}
+              />
               <div className="flex flex-col gap-px bg-[color:var(--hairline)]">
                 {route.chain.map((step) => {
                   const flag = route.lowConfidenceFlags.find((f) => f.fromNodeId === step.node.id);
