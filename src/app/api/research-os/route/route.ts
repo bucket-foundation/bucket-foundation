@@ -58,6 +58,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { computeFrontier } from "@/lib/research-os/frontier";
+import { llmEnabled } from "@/lib/research-os/deterministic";
 import { findFrontierEngineTargets } from "@/lib/research-os/engine-frontier";
 import { guidanceLevel } from "@/lib/research-os/guidance";
 import type { GuidanceLevel } from "@/lib/research-os/types";
@@ -146,6 +147,9 @@ export async function GET(req: NextRequest) {
       lowConfidenceFlags: result.lowConfidenceFlags,
       engineFrontier,
       guidance,
+      // ros-23: false until RESEARCH_OS_LLM_ENABLED is on; the workspace
+      // shows the learner's own verdict control for Check when false.
+      llmEnabled: llmEnabled(),
       learner: learnerId ? "self" : "anonymous",
     },
     { headers: { "cache-control": "no-store" } },

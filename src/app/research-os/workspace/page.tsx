@@ -97,6 +97,8 @@ import { DELETE_CONFIRM_TOKEN } from "@/lib/research-os/types";
 import { firstHalfOfWorkedExample } from "@/lib/research-os/worked-examples";
 import AccessBlock from "./AccessBlock";
 import LearnBlock from "./LearnBlock";
+import MapBlock from "./MapBlock";
+import PenBlock from "./PenBlock";
 
 const TARGET_SLUG = "why-the-sky-is-blue";
 
@@ -174,6 +176,8 @@ interface LowConfidenceFlag {
 }
 
 interface RouteResponse {
+  /** ros-23: false when the workspace runs without a model. */
+  llmEnabled?: boolean;
   target: GraphNodeLite;
   frontier: GraphNodeLite[];
   chain: ChainStep[];
@@ -314,6 +318,8 @@ export default function ResearchOsWorkspacePage() {
   const [checkAttemptId, setCheckAttemptId] = useState<string | null>(null);
   const [checkConfidence, setCheckConfidence] = useState<LearnerConfidence | "">("");
   const [checkSourcePrediction, setCheckSourcePrediction] = useState("");
+  // ros-23: the learner's own verdict, sent when the workspace runs without a model.
+  const [checkVerdict, setCheckVerdict] = useState<"support" | "contradiction" | "">("");
   const [checkForcingError, setCheckForcingError] = useState<string | null>(null);
   // Lateral reading (PLAN-REVISION-3.md section 2c): the reveal step's
   // third question, a candidate search plus an agree/disagree mark. The
@@ -582,7 +588,14 @@ export default function ResearchOsWorkspacePage() {
       const res = await fetch("/api/research-os/workspace", {
         method: "POST",
         headers: { "content-type": "application/json", ...authHeaders() },
-        body: JSON.stringify({ action: "check", nodeId: selected.id, explanation, sessionId }),
+        body: JSON.stringify({
+          action: "check",
+          nodeId: selected.id,
+          explanation,
+          sessionId,
+          verdict: checkVerdict || undefined,
+          quotes: quotedSources.map((q) => ({ quotable_span: q.quotable_span, citation: q.citation })),
+        }),
       });
       const data = await res.json();
       if (handleConsentResponse(res, data)) return;
@@ -624,6 +637,8 @@ export default function ResearchOsWorkspacePage() {
           attemptId: checkAttemptId,
           learnerConfidence: checkConfidence,
           sourcePrediction: checkSourcePrediction,
+          verdict: checkVerdict || undefined,
+          quotes: quotedSources.map((q) => ({ quotable_span: q.quotable_span, citation: q.citation })),
           secondSourceNodeId: secondSourceNodeId || undefined,
           passagesAgree: secondSourcePassagesAgree === "agree",
           sessionId,
@@ -1045,6 +1060,8 @@ export default function ResearchOsWorkspacePage() {
                   <p className="mt-2 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{selected.summary}</p>
                   <LearnBlock node={selected} token={token} />
                   <AccessBlock nodeId={selected.id} token={token} />
+                  <MapBlock node={selected} />
+                  <PenBlock nodeId={selected.id} />
                 </div>
               )}
 
@@ -1102,7 +1119,23 @@ export default function ResearchOsWorkspacePage() {
                         placeholder="explain this node in your own words…"
                         className="border border-[color:var(--hairline)] px-2 py-1 text-[13px] w-full bg-white/60 min-h-[70px]"
                       />
-                      <button onClick={runCheck} disabled={!token || !selected || busy === "check"} className="mt-2 text-[12px] small-caps underline">
+                      {route.llmEnabled === false && (
+                        <div className="mt-2 flex flex-wrap items-center gap-3 text-[12px]">
+                          <span className="text-[color:var(--basalt-3)]">your quotes</span>
+                          {(["support", "contradiction"] as const).map((v) => (
+                            <label key={v} className="inline-flex items-center gap-1 cursor-pointer">
+                              <input type="radio" name="check-verdict" value={v} checked={checkVerdict === v} onChange={() => setCheckVerdict(v)} />
+                              {v} my explanation
+                            </label>
+                          ))}
+                          <span className="text-[color:var(--basalt-3)]">no model reads this; a fixed rubric grades it</span>
+                        </div>
+                      )}
+                      <button
+                        onClick={runCheck}
+                        disabled={!token || !selected || busy === "check" || (route.llmEnabled === false && !checkVerdict)}
+                        className="mt-2 text-[12px] small-caps underline"
+                      >
                         {busy === "check" ? "checking…" : "check my explanation"}
                       </button>
                     </>

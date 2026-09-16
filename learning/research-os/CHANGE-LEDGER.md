@@ -3633,3 +3633,7 @@ New: migration `20260915000000_research_os_access.sql`, `access.ts`, `access-db.
 ## 2026-09-15 ros-29 Learn inside the workspace, first pass
 
 New: `learn-link.ts`, `workspace/LearnBlock.tsx`, `scripts/test-research-os-learn-link.ts`. Edited: `academy/page.tsx` (deep-link pass-through), `workspace/page.tsx` (GraphNodeLite branch and provenance, LearnBlock), `Header.tsx` (DynamicWidget removed), `package.json`.
+
+## 2026-09-15 ros-23 the workspace without a model, ros-30 the Map in place
+
+New: `deterministic.ts`, `workspace/PenBlock.tsx`, `workspace/MapBlock.tsx`, `scripts/test-research-os-deterministic.ts`, `NO-MODEL.md`. Edited: `api/research-os/workspace/route.ts` (verdict and quotes fields, deterministic Check and Organize), `api/research-os/route/route.ts` (`llmEnabled`), `workspace/page.tsx` (verdict control, request fields, mounts), `canon/CanonGlobeMount.tsx` (`?q=`), `package.json`.

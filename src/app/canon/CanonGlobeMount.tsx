@@ -322,6 +322,13 @@ function InteractiveCanonGlobeMount({
 
   // Search + branch filter
   const [q, setQ] = useState("");
+  // Deep link: /canon/search?q=<text> opens with the query filled (the
+  // Research OS Map block sends a node's title here).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const initial = new URLSearchParams(window.location.search).get("q");
+    if (initial && initial.trim()) setQ(initial.trim());
+  }, []);
   const [branchFilter, setBranchFilter] = useState<string | null>(null);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);

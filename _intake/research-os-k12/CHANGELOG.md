@@ -2882,3 +2882,9 @@ None.
 - `/academy` forwards `branch`, `atom`, `view`, `nb`, `onboard` into the framed app, which already handles them at boot.
 - Workspace: `LearnBlock` under the selected node: open the lesson, live recall and mastery from `/api/academy/progress` when signed in.
 - Header: the Dynamic web3 widget left the desktop and drawer headers (one account, email one-time code, INTEGRATION-PLAN.md section 6); the Contribute link stays.
+
+## 2026-09-15 ros-23 the workspace without a model, ros-30 the Map in place
+
+- `RESEARCH_OS_LLM_ENABLED` (default off) is the one switch. Off: Check grades the learner's own verdict (support or contradiction) against their attached quotes with a fixed rubric (`deterministicCheck`: quote attached and logged, verdict recorded, own words, term overlap), and Organize splits the learner's notes by sentence and line (`deterministicOrganize`); both keep the existing response shapes, so forcing, lateral reading, the evidence log, and level transitions run unchanged. On: the model paths as before. `GET /api/research-os/route` reports `llmEnabled`; the workspace shows the verdict control when it is false. Doc: `learning/research-os/NO-MODEL.md`. Tests: `scripts/test-research-os-deterministic.ts` (7, in `test:research-os`).
+- Pen: `PenBlock` on the node panel, free writing stored in the browser by node; no route reads it.
+- Map in place: `MapBlock` on the node panel links a canon-ingested node to its claims page, any node to the search globe with its title as the query (`/canon/search?q=`, new deep link in `CanonGlobeMount`), its branch page, and the bridges.
