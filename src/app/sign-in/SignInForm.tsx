@@ -135,9 +135,6 @@ export default function SignInForm({ next }: { next: string | null }) {
         {busy ? "sending" : "continue"}
       </button>
       {error && <p role="alert" className="text-[12px] text-[color:var(--crimson)]">{error}</p>}
-      <p className="mt-2 text-[12px] leading-[1.6] text-[color:var(--basalt-3)]">
-        No password. We email you a one-time code. A new address creates an account.
-      </p>
     </form>
   );
 }
