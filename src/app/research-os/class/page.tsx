@@ -26,6 +26,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
+import AssignmentsPanel from "./AssignmentsPanel";
+import OverrideControl from "./OverrideControl";
 
 type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
 
@@ -296,6 +298,8 @@ export default function ResearchOsClassPage() {
               <h2 className="font-display uppercase text-[16px] text-[color:var(--basalt)] mb-1">{c.name}</h2>
               <p className="text-[12px] text-[color:var(--basalt-2)] mb-3">{c.learnerIds.length} learner(s)</p>
 
+              <AssignmentsPanel classId={c.id} path={c.grid.path} token={token} />
+
               {c.xpByLearner && Object.keys(c.xpByLearner).length > 0 && (
                 <div className="mb-4">
                   <div className="text-[10px] small-caps tracking-[0.18em] text-[color:var(--aegean-deep)] mb-1">class leaderboard</div>
@@ -330,7 +334,10 @@ export default function ResearchOsClassPage() {
                     {c.grid.rows.map((row) => (
                       <tr key={row.learnerId} className="border-t border-[color:var(--hairline)]">
                         <td className="p-2 text-[12px] text-[color:var(--basalt)] sticky left-0 bg-[color:var(--bone)] whitespace-nowrap">
-                          {shortId(row.learnerId)}
+                          <div className="flex flex-col gap-1">
+                            <span>{shortId(row.learnerId)}</span>
+                            <OverrideControl classId={c.id} learnerId={row.learnerId} path={c.grid.path} token={token} onDone={() => void loadClasses()} />
+                          </div>
                         </td>
                         {row.cells.map((cell) => (
                           <td key={cell.nodeId} className="p-2">

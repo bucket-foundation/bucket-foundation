@@ -66,3 +66,19 @@ export class ClassLinkSource implements RosterSource {
     throw new Error("ClassLinkSource: not configured. See this file's own header for the CLASSLINK_* env contract; no district partner is connected yet.");
   }
 }
+
+/**
+ * Google Classroom (INTEGRATION-PLAN.md section 7). Same contract as
+ * CleverSource: the Classroom API's courses, students, and teachers map onto
+ * the RosterBundle the OneRoster path already applies. Not configured until
+ * a school connects an OAuth client (GOOGLE_CLASSROOM_CLIENT_ID,
+ * GOOGLE_CLASSROOM_CLIENT_SECRET, GOOGLE_CLASSROOM_REFRESH_TOKEN); fetching
+ * before then throws so a misconfigured sync never writes an empty roster.
+ */
+export class GoogleClassroomSource implements RosterSource {
+  readonly sourceSystem = "google-classroom";
+
+  async fetchBundle(): Promise<RosterBundle> {
+    throw new Error("GoogleClassroomSource: not configured. Set the GOOGLE_CLASSROOM_* env contract once a school connects Classroom.");
+  }
+}

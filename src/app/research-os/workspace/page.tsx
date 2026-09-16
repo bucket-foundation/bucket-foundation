@@ -100,8 +100,14 @@ import LearnBlock from "./LearnBlock";
 import MapBlock from "./MapBlock";
 import PenBlock from "./PenBlock";
 import PathMap from "./PathMap";
+import AssignmentsBanner from "./AssignmentsBanner";
 
-const TARGET_SLUG = "why-the-sky-is-blue";
+const DEFAULT_TARGET_SLUG = "why-the-sky-is-blue";
+// The routed target: ?target=<slug> (an assignment's deep link) or the
+// Phase 0 default. Read once at module load in the browser; the server
+// render uses the default and the client re-renders with the same value.
+const TARGET_SLUG =
+  typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("target")?.trim() || DEFAULT_TARGET_SLUG : DEFAULT_TARGET_SLUG;
 
 // Phase 0 has no sealed, held-out transfer-item pool (LEARNER-STATE-MODEL.md
 // section 4's "Transfer-task construction rule" names the real pool as
@@ -998,6 +1004,7 @@ export default function ResearchOsWorkspacePage() {
                 below the routing confidence floor and should have a
                 teacher's eyes on it. */}
             <div className="flex flex-col gap-4">
+              <AssignmentsBanner token={token} currentTarget={TARGET_SLUG} />
               <PathMap
                 steps={route.chain.map((s) => ({ id: s.node.id, title: s.node.title, stage: s.stage, isFrontier: s.isFrontier }))}
                 selectedId={selected?.id ?? null}

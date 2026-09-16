@@ -2895,3 +2895,11 @@ None.
 - `src/lib/research-os/game.ts`: XP per level (2, 10, 25, 50, 100), levels at 50 n (n - 1), streaks by UTC day, badges at internalization and production once per node; `applyTransition` composes them. Tests: `scripts/test-research-os-game.ts` (5, in `test:research-os`).
 - `recordEvidence` awards after every evidence write (`awardProgress`), so every route counts once; `loadGame`, `loadXpForLearners` in `db.ts`. `/api/research-os/profile` returns `game`; `/api/research-os/class` returns `xpByLearner`.
 - Workspace: `PathMap` above the routed chain, a winding SVG path colored by level, the target ringed, click selects. Profile: `GameSection` (level, XP bar, streak, badges). Class view: top-ten class leaderboard. Doc: `learning/research-os/GAME.md`.
+
+## 2026-09-15 ros-27 roles as grants, assignments, level overrides, the Class step
+
+- Migration `20260915020000_research_os_roles_assignments.sql`: `class_members.role` (learner, teacher, librarian, parent, peer, reviewer, researcher) and `related_learner_id`; `graph.assignments`; `graph.level_overrides`.
+- `roles.ts` (who runs, reviews, sees whom; override validation and event) and `assignments.ts` (status, validation), tested by `scripts/test-research-os-roles-assignments.ts` (6, in `test:research-os`). `class-db.ts`: `verifyClassStaff` (reviewer_email or a teacher or librarian membership), assignments, overrides through `recordEvidence`, member roles.
+- Routes: `/api/research-os/assignments` (GET by class or mine, POST create and close), `/api/research-os/override` (POST), `/api/research-os/members` (GET, POST).
+- Class view: `AssignmentsPanel` (open assignments, assign a target from the class path with title, instructions, due date, paper required) and an `OverrideControl` on each grid row. Workspace: `AssignmentsBanner` with status and a link to each assigned target; `?target=<slug>` sets the routed target.
+- Roster: `GoogleClassroomSource` beside Clever and ClassLink, throwing until credentials exist. Doc: `learning/research-os/CLASS.md`.

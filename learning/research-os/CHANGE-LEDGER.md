@@ -3641,3 +3641,7 @@ New: `deterministic.ts`, `workspace/PenBlock.tsx`, `workspace/MapBlock.tsx`, `sc
 ## 2026-09-15 ros-33 the game layer and the path map
 
 New: migration `20260915010000_research_os_game.sql`, `game.ts`, `workspace/PathMap.tsx`, `profile/GameSection.tsx`, `scripts/test-research-os-game.ts`, `GAME.md`. Edited: `db.ts` (award hook, loadGame, loadXpForLearners), `api/research-os/profile/route.ts`, `api/research-os/class/route.ts`, `workspace/page.tsx`, `profile/page.tsx`, `class/page.tsx`, `package.json`.
+
+## 2026-09-15 ros-27 roles as grants, assignments, level overrides
+
+New: migration `20260915020000_research_os_roles_assignments.sql`, `roles.ts`, `assignments.ts`, `class-db.ts`, `api/research-os/assignments`, `api/research-os/override`, `api/research-os/members`, `class/AssignmentsPanel.tsx`, `class/OverrideControl.tsx`, `workspace/AssignmentsBanner.tsx`, `scripts/test-research-os-roles-assignments.ts`, `CLASS.md`. Edited: `roster/sources.ts`, `class/page.tsx`, `workspace/page.tsx` (target from the URL), `package.json`.
