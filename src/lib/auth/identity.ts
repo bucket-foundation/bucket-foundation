@@ -1,7 +1,7 @@
 /**
- * app.identities, server-only. Same pattern as the Research OS routes: the
- * caller is verified first (cookie session or Bearer token), then a
- * service-role client bound to the private `app` schema reads or writes
+ * bucket.identities, server-only. Same pattern as the Research OS routes:
+ * the caller is verified first (cookie session or Bearer token), then a
+ * service-role client bound to the private `bucket` schema reads or writes
  * that person's row alone. Never import from a client component.
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
@@ -15,10 +15,10 @@ export function identityConfigured(): boolean {
 }
 
 let _svc: SupabaseClient | null = null;
-function appService(): SupabaseClient {
+function bucketService(): SupabaseClient {
   if (_svc) return _svc;
   _svc = createClient(SUPABASE_URL as string, SERVICE_ROLE_KEY as string, {
-    db: { schema: "app" },
+    db: { schema: "bucket" },
     auth: { persistSession: false, autoRefreshToken: false },
   }) as unknown as SupabaseClient;
   return _svc;
@@ -41,10 +41,10 @@ function fromRow(r: Row): Identity {
 
 const COLS = "user_id,handle,display_name,wallet,wallet_chain,created_at";
 
-/** The person's identity row, created on first read if the auth trigger has not run. */
+/** The person's identity row, created on first read. */
 export async function getIdentity(userId: string): Promise<Identity | null> {
   if (!identityConfigured()) return null;
-  const svc = appService();
+  const svc = bucketService();
   const { data, error } = await svc.from("identities").select(COLS).eq("user_id", userId).maybeSingle();
   if (error) return null;
   if (data) return fromRow(data as Row);
@@ -60,7 +60,7 @@ export async function setHandle(userId: string, raw: string): Promise<IdentityRe
   if (!identityConfigured()) return { ok: false, error: "unavailable" };
   const check = checkHandle(raw);
   if (!check.ok) return { ok: false, error: check.reason === "reserved" ? "reserved_handle" : "invalid_handle" };
-  const { data, error } = await appService().from("identities").upsert({ user_id: userId, handle: check.handle }, { onConflict: "user_id" }).select(COLS).single();
+  const { data, error } = await bucketService().from("identities").upsert({ user_id: userId, handle: check.handle }, { onConflict: "user_id" }).select(COLS).single();
   if (error) return { ok: false, error: error.code === "23505" ? "handle_taken" : "write_failed" };
   return { ok: true, value: fromRow(data as Row) };
 }
@@ -68,7 +68,7 @@ export async function setHandle(userId: string, raw: string): Promise<IdentityRe
 export async function setDisplayName(userId: string, raw: string): Promise<IdentityResult<Identity>> {
   if (!identityConfigured()) return { ok: false, error: "unavailable" };
   const displayName = raw.trim().slice(0, 80) || null;
-  const { data, error } = await appService().from("identities").upsert({ user_id: userId, display_name: displayName }, { onConflict: "user_id" }).select(COLS).single();
+  const { data, error } = await bucketService().from("identities").upsert({ user_id: userId, display_name: displayName }, { onConflict: "user_id" }).select(COLS).single();
   if (error) return { ok: false, error: "write_failed" };
   return { ok: true, value: fromRow(data as Row) };
 }
@@ -79,7 +79,7 @@ const WALLET_RE = /^0x[0-9a-fA-F]{40}$/;
 export async function linkWallet(userId: string, wallet: string | null, chain: string | null): Promise<IdentityResult<Identity>> {
   if (!identityConfigured()) return { ok: false, error: "unavailable" };
   if (wallet !== null && !WALLET_RE.test(wallet)) return { ok: false, error: "invalid_wallet" };
-  const { data, error } = await appService()
+  const { data, error } = await bucketService()
     .from("identities")
     .upsert({ user_id: userId, wallet, wallet_chain: wallet ? chain : null }, { onConflict: "user_id" })
     .select(COLS)

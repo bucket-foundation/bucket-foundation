@@ -14,8 +14,8 @@ PR-056 and PR-058 (`docs/PROBLEM-REGISTER.md`). Full account: `docs/AUTH.md`,
   identity,handle}.ts`, `src/providers/SessionProvider.tsx`, `src/middleware.ts` session
   refresh and protected paths, `/sign-in`, `/account`, `/auth/sign-out`, `/api/account`,
   `src/components/auth/{UserMenu,SignInGate}.tsx`.
-- `supabase/migrations/20260916000000_app_identities.sql`: `app.identities` keyed on
-  `auth.users.id`, unique handle and wallet, sign-up trigger, backfill, RLS.
+- `supabase/migrations/20260916000000_bucket_identities.sql`: `bucket.identities` keyed on
+  `auth.users.id`, unique handle and wallet, created on first read, RLS.
 - The application shell `src/app/research-os/(app)/{layout,AppShell}.tsx` and the signed-in
   home `/research-os/home`; UI primitives `src/components/ui/index.tsx`.
 - The Academy session bridge: `src/app/academy/AcademyFrame.tsx` and `adoptSession` in
@@ -33,8 +33,13 @@ PR-056 and PR-058 (`docs/PROBLEM-REGISTER.md`). Full account: `docs/AUTH.md`,
 - `Web3Providers` mounts under `/knowledge`, `/library`, `/research`, `/assets` only; the
   root layout mounts `SessionProvider`.
 - `next.config.mjs`: ESLint runs in builds; the five pre-existing lint errors fixed.
-- `.env.example`, `CLAUDE.md` Repo section, `src/components/Header.tsx` (user menu, Home and
-  Account entries), `/research-os` landing (Open Research OS call to action).
+- `.env.example`, `CLAUDE.md` Repo section, `src/components/Header.tsx` (the Contribute
+  button is now the Sign in control, Home and Account entries), `/research-os` landing (Open
+  Research OS call to action), `/join` redirects to `/sign-in`, the footer's Join link is
+  Sign in. The sign-in page is a standard form: title, email, continue, code.
+- The identities table lives in Bucket's private `bucket` schema with no trigger on the
+  shared `auth.users` (the Supabase instance serves several ventures); rows are created on
+  first read.
 
 ### Removed
 

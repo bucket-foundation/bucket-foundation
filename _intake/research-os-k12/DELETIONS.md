@@ -6,6 +6,35 @@ replaced sentence is never lost. See also
 `learning/research-os/CHANGE-LEDGER.md`, PR #3's own ledger for the same
 convention.
 
+## 2026-09-16, the Contribute button and the /join page
+
+**Reason.** Founder direction: "make the contribute button just be sign in". The header's
+Contribute button (desktop and phone drawer) is now the Sign in control
+(`src/components/auth/UserMenu.tsx`), `/join` redirects to `/sign-in`, and the footer's
+"Join" link points at `/sign-in`. The full retired page is kept verbatim at
+`_intake/research-os-k12/retired/join-page-2026-09-16.tsx`.
+
+**Removed header JSX, verbatim:**
+
+```tsx
+            <Link
+                href="/join"
+                className="hidden sm:inline-flex small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-5 py-2 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] hover:bg-[color:var(--aegean-deep)] transition items-center min-h-[44px]"
+              >
+                Contribute
+              </Link>
+```
+
+```tsx
+                          <Link
+                href="/join"
+                onClick={closeDrawer}
+                className="block text-center small-caps text-[12px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-6 py-4 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] min-h-[52px] tracking-[0.1em]"
+              >
+                Contribute to the canon
+              </Link>
+```
+
 ## 2026-09-16, the per-page one-time-code form and the module bar
 
 **Reason.** One site session (`docs/AUTH.md`). The seven copies of the form below

@@ -15,7 +15,7 @@ One session for the whole site. A person signs in once at `/sign-in` with an ema
 | Sign-in | `src/app/sign-in/` | Email, then code. `next` is sanitized. Under-13 copy points to the class flow. |
 | Sign-out | `src/app/auth/sign-out/route.ts` | POST only; clears the session and returns home. The header and the app shell post to it. |
 | Account | `src/app/account/`, `src/app/api/account/route.ts` | Email, handle, display name, linked wallet, sign-out. |
-| Identity | `supabase/migrations/20260916000000_app_identities.sql`, `src/lib/auth/identity.ts` | `app.identities` keyed on `auth.users.id`: unique handle, unique wallet. A trigger creates the row on sign-up; `getIdentity` creates it on first read otherwise. Reached through the service-role client bound to the `app` schema; the schema stays off PostgREST. |
+| Identity | `supabase/migrations/20260916000000_bucket_identities.sql`, `src/lib/auth/identity.ts` | `bucket.identities` keyed on `auth.users.id`: unique handle, unique wallet. `getIdentity` creates the row on a person's first read (no trigger on the shared `auth.users`). Reached through the service-role client bound to the private `bucket` schema. |
 | Header | `src/components/auth/UserMenu.tsx` | Sign in, or the person's name and sign out. |
 | Page gate | `src/components/auth/SignInGate.tsx` | Rendered by app pages for the moment before the browser client hydrates. |
 | Academy bridge | `src/app/academy/AcademyFrame.tsx`, `learning/app/js/auth.js` `adoptSession` | The site posts its session into the frame on load, on request, and on every change; the frame's own sign-in link goes to the site's `/sign-in` when framed. Same origin only. |
@@ -36,7 +36,7 @@ Sign out: a POST to `/auth/sign-out` from the header, the account page, or the a
 
 ## Retired
 
-NextAuth v4 (`src/lib/auth.ts`, `src/app/api/auth/[...nextauth]`, `next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`): `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/knowledge`, `/library`, `/research`, and `/assets` (the bucket 1.0 publish path); a wallet becomes an identity fact on `app.identities.wallet` when that flow links it.
+NextAuth v4 (`src/lib/auth.ts`, `src/app/api/auth/[...nextauth]`, `next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`): `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/knowledge`, `/library`, `/research`, and `/assets` (the bucket 1.0 publish path); a wallet becomes an identity fact on `bucket.identities.wallet` when that flow links it.
 
 ## Register
 

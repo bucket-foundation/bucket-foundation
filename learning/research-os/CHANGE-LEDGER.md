@@ -12,7 +12,7 @@ Date 2026-09-16. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-l
 - `src/app/sign-in/{page,SignInForm}.tsx`, `src/app/account/{page,AccountForm}.tsx`, `src/app/auth/sign-out/route.ts`, `src/app/api/account/route.ts`, `src/components/auth/{UserMenu,SignInGate}.tsx`, `src/components/ui/index.tsx`.
 - `src/app/research-os/(app)/{layout,AppShell}.tsx`, `src/app/research-os/(app)/home/{page,HomeClient}.tsx`.
 - `src/app/academy/AcademyFrame.tsx`; `adoptSession`, `listenToParent`, `framed` in `learning/app/js/auth.js`; the framed sign-in link in `learning/app/js/auth-ui.js`.
-- `supabase/migrations/20260916000000_app_identities.sql`, `scripts/test-auth-paths.ts`, `.github/workflows/site-ci.yml`.
+- `supabase/migrations/20260916000000_bucket_identities.sql`, `scripts/test-auth-paths.ts`, `.github/workflows/site-ci.yml`.
 - `isClassStaffAnywhere` in `src/lib/research-os/class-db.ts`.
 
 ### Edited

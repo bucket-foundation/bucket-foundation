@@ -70,8 +70,8 @@ export default function SignInForm({ next }: { next: string | null }) {
 
   if (!enabled) {
     return (
-      <p className="mt-8 text-[13px] text-[color:var(--basalt-2)]">
-        Sign-in is off on this deployment: the site has no Supabase configuration.
+      <p role="alert" className="mt-8 text-[13px] text-[color:var(--crimson)]">
+        Sign-in is not available right now.
       </p>
     );
   }
@@ -84,7 +84,7 @@ export default function SignInForm({ next }: { next: string | null }) {
     return (
       <form onSubmit={verify} className="mt-8 flex flex-col gap-3">
         <label htmlFor="sign-in-code" className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
-          the code we sent to {email.trim()}
+          enter the code sent to {email.trim()}
         </label>
         <input
           id="sign-in-code"
@@ -119,7 +119,7 @@ export default function SignInForm({ next }: { next: string | null }) {
   return (
     <form onSubmit={sendCode} className="mt-8 flex flex-col gap-3">
       <label htmlFor="sign-in-email" className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
-        email
+        email address
       </label>
       <input
         id="sign-in-email"
@@ -132,11 +132,11 @@ export default function SignInForm({ next }: { next: string | null }) {
         className={INPUT}
       />
       <button type="submit" disabled={busy || !email.trim()} className={BUTTON}>
-        {busy ? "sending" : "send me a code"}
+        {busy ? "sending" : "continue"}
       </button>
       {error && <p role="alert" className="text-[12px] text-[color:var(--crimson)]">{error}</p>}
       <p className="mt-2 text-[12px] leading-[1.6] text-[color:var(--basalt-3)]">
-        No password. A new email creates an account. Under 13, a teacher or parent signs in with you and a class code follows.
+        No password. We email you a one-time code. A new address creates an account.
       </p>
     </form>
   );

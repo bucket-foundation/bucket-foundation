@@ -188,12 +188,6 @@ export default function Header() {
 
           <div className="flex items-center gap-2">
             <UserMenu />
-            <Link
-                href="/join"
-                className="hidden sm:inline-flex small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-5 py-2 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] hover:bg-[color:var(--aegean-deep)] transition items-center min-h-[44px]"
-              >
-                Contribute
-              </Link>
             {/* Hamburger, md:hidden */}
             <button
               type="button"
@@ -384,13 +378,7 @@ export default function Header() {
           </nav>
 
           <div className="p-5 border-t border-[color:var(--hairline)] bg-[color:var(--bone-2)]">
-                          <Link
-                href="/join"
-                onClick={closeDrawer}
-                className="block text-center small-caps text-[12px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-6 py-4 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] min-h-[52px] tracking-[0.1em]"
-              >
-                Contribute to the canon
-              </Link>
+            <UserMenu drawer onNavigate={closeDrawer} />
             <div className="mt-3 text-center text-[10px] small-caps text-[color:var(--basalt-3)] tracking-[0.15em]">
               free to read · paid to cite
             </div>

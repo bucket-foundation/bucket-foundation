@@ -1,5 +1,5 @@
 /**
- * Handle rules for app.identities.handle: 3 to 24 characters, lowercase
+ * Handle rules for bucket.identities.handle: 3 to 24 characters, lowercase
  * letters, digits, and single hyphens between them. Pure; tested in
  * scripts/test-auth-paths.ts.
  */
