@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
 import { getBrowserSupabase, supabaseConfigured } from "@/lib/supabase/browser";
 import { safeNextPath } from "@/lib/auth/paths";
 import { useSession } from "@/providers/SessionProvider";
@@ -12,7 +11,6 @@ const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px
 const BUTTON = "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 
 export default function SignInForm({ next }: { next: string | null }) {
-  const router = useRouter();
   const { user, loading } = useSession();
   const destination = safeNextPath(next);
   const [step, setStep] = useState<Step>("email");
@@ -22,15 +20,30 @@ export default function SignInForm({ next }: { next: string | null }) {
   const [error, setError] = useState<string | null>(null);
   const codeRef = useRef<HTMLInputElement>(null);
   const enabled = supabaseConfigured();
+  const [slow, setSlow] = useState(false);
+  const sent = useRef(false);
+
+  // A full navigation, so the middleware and server components read the
+  // fresh session cookies on the first request. Runs once.
+  function leave() {
+    if (sent.current) return;
+    sent.current = true;
+    setStep("done");
+    window.location.replace(destination);
+  }
 
   // Already signed in: go where the person was headed.
   useEffect(() => {
-    if (!loading && user && step !== "done") {
-      setStep("done");
-      router.replace(destination);
-      router.refresh();
-    }
-  }, [loading, user, step, destination, router]);
+    if (!loading && user && step !== "done") leave();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, user, step]);
+
+  // If the browser has not left the page in a few seconds, show the link.
+  useEffect(() => {
+    if (step !== "done") return;
+    const t = window.setTimeout(() => setSlow(true), 3000);
+    return () => window.clearTimeout(t);
+  }, [step]);
 
   useEffect(() => {
     if (step === "code") codeRef.current?.focus();
@@ -63,9 +76,7 @@ export default function SignInForm({ next }: { next: string | null }) {
       setError(friendly(err?.message ?? "That code did not match. Ask for a new one."));
       return;
     }
-    setStep("done");
-    router.replace(destination);
-    router.refresh();
+    leave();
   }
 
   if (!enabled) {
@@ -77,7 +88,19 @@ export default function SignInForm({ next }: { next: string | null }) {
   }
 
   if (step === "done") {
-    return <p className="mt-8 text-[13px] text-[color:var(--basalt-2)]">Signed in. Taking you there.</p>;
+    return (
+      <div className="mt-8 flex flex-col gap-3" role="status" aria-live="polite">
+        <div className="flex items-center gap-3 text-[13px] text-[color:var(--basalt-2)]">
+          <span aria-hidden className="inline-block w-3 h-3 rounded-full border border-[color:var(--gold-deep)] border-t-transparent animate-spin" />
+          Signed in. Opening Research OS.
+        </div>
+        {slow && (
+          <a href={destination} className={BUTTON + " text-center"}>
+            continue
+          </a>
+        )}
+      </div>
+    );
   }
 
   if (step === "code") {
