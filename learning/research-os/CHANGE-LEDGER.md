@@ -3645,3 +3645,7 @@ New: migration `20260915010000_research_os_game.sql`, `game.ts`, `workspace/Path
 ## 2026-09-15 ros-27 roles as grants, assignments, level overrides
 
 New: migration `20260915020000_research_os_roles_assignments.sql`, `roles.ts`, `assignments.ts`, `class-db.ts`, `api/research-os/assignments`, `api/research-os/override`, `api/research-os/members`, `class/AssignmentsPanel.tsx`, `class/OverrideControl.tsx`, `workspace/AssignmentsBanner.tsx`, `scripts/test-research-os-roles-assignments.ts`, `CLASS.md`. Edited: `roster/sources.ts`, `class/page.tsx`, `workspace/page.tsx` (target from the URL), `package.json`.
+
+## 2026-09-15 ros-32 under-13 gates and the guardian payee
+
+New: migration `20260915030000_research_os_consent_paths.sql`, `consent-paths.ts`, `consent-vendor.ts`, `api/research-os/consent`, `api/research-os/payee`, `profile/ConsentPayeeSection.tsx`, `scripts/test-research-os-consent-paths.ts`, `CONSENT-PATHS.md`. Edited: `consent.ts` (`requireConsent`, `resolveConsentPaths`), `profile/page.tsx`, `package.json`.

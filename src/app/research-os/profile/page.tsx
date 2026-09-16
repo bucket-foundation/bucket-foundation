@@ -26,6 +26,7 @@ import { BIRTH_YEAR_BUCKET_LABELS, ROLE_LABELS } from "@/lib/research-os/profile
 import type { BirthYearBucket, ConsentStatus, LearnerRole } from "@/lib/research-os/consent";
 import AccessMine from "./AccessMine";
 import GameSection from "./GameSection";
+import ConsentPayeeSection from "./ConsentPayeeSection";
 
 const ROLE_OPTIONS: LearnerRole[] = ["student", "teacher", "independent"];
 const BUCKET_OPTIONS: BirthYearBucket[] = ["under13", "13to17", "18plus"];
@@ -269,6 +270,7 @@ export default function ResearchOsProfilePage() {
             )}
           </div>
         )}
+        <ConsentPayeeSection token={token} />
         <GameSection token={token} />
         <AccessMine token={token} />
       </div>

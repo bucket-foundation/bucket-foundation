@@ -2903,3 +2903,9 @@ None.
 - Routes: `/api/research-os/assignments` (GET by class or mine, POST create and close), `/api/research-os/override` (POST), `/api/research-os/members` (GET, POST).
 - Class view: `AssignmentsPanel` (open assignments, assign a target from the class path with title, instructions, due date, paper required) and an `OverrideControl` on each grid row. Workspace: `AssignmentsBanner` with status and a link to each assigned target; `?target=<slug>` sets the routed target.
 - Roster: `GoogleClassroomSource` beside Clever and ClassLink, throwing until credentials exist. Doc: `learning/research-os/CLASS.md`.
+
+## 2026-09-15 ros-32 under-13 gates and the guardian payee
+
+- Migration `20260915030000_research_os_consent_paths.sql`: `classes.consent_basis` and `consent_document`; `graph.consent_requests` (privo, kid, manual; pending, verified, declined; hashed guardian contact); `learner_profiles.payee_type`, `guardian_contact_hash`, `payee_visibility`.
+- `consent-paths.ts` (`effectiveConsent` over adult, profile, school exception, vendor; `consentPathFor`; `payeeFor`; `hashContact`), tested by `scripts/test-research-os-consent-paths.ts` (5, in `test:research-os`). `consent-vendor.ts`: PRIVO and k-ID stubs, the manual path. `requireConsent` resolves the paths and writes through.
+- Routes: `/api/research-os/consent` (GET; POST request, record, class_basis) and `/api/research-os/payee` (GET, POST). Profile: `ConsentPayeeSection`. Doc: `learning/research-os/CONSENT-PATHS.md`.
