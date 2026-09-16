@@ -3649,3 +3649,7 @@ New: migration `20260915020000_research_os_roles_assignments.sql`, `roles.ts`, `
 ## 2026-09-15 ros-32 under-13 gates and the guardian payee
 
 New: migration `20260915030000_research_os_consent_paths.sql`, `consent-paths.ts`, `consent-vendor.ts`, `api/research-os/consent`, `api/research-os/payee`, `profile/ConsentPayeeSection.tsx`, `scripts/test-research-os-consent-paths.ts`, `CONSENT-PATHS.md`. Edited: `consent.ts` (`requireConsent`, `resolveConsentPaths`), `profile/page.tsx`, `package.json`.
+
+## 2026-09-15 ros-31 frontier kinds and regions, ros-24 the Awareness view
+
+New: migration `20260915040000_research_os_frontier_kinds.sql`, `directions.ts`, `api/research-os/directions`, `api/research-os/frontier`, `workspace/DirectionsBlock.tsx`, `scripts/test-research-os-directions.ts`, `FRONTIER.md`. Edited: `types.ts`, `db.ts` (loadSubgraph), `access-db.ts` (filterSubgraphForViewer), `api/research-os/route/route.ts`, `workspace/page.tsx`, `package.json`.

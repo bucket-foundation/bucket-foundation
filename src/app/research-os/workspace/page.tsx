@@ -101,6 +101,7 @@ import MapBlock from "./MapBlock";
 import PenBlock from "./PenBlock";
 import PathMap from "./PathMap";
 import AssignmentsBanner from "./AssignmentsBanner";
+import DirectionsBlock from "./DirectionsBlock";
 
 const DEFAULT_TARGET_SLUG = "why-the-sky-is-blue";
 // The routed target: ?target=<slug> (an assignment's deep link) or the
@@ -1075,6 +1076,11 @@ export default function ResearchOsWorkspacePage() {
                   <h2 className="font-display uppercase text-[20px] mt-1 text-[color:var(--basalt)]">{selected.title}</h2>
                   <p className="mt-2 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{selected.summary}</p>
                   <LearnBlock node={selected} token={token} />
+                  <DirectionsBlock
+                    nodeId={selected.id}
+                    branch={selected.branch ?? "02-physics"}
+                    onSelect={(n) => setSelected({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: 0, summary: null })}
+                  />
                   <AccessBlock nodeId={selected.id} token={token} />
                   <MapBlock node={selected} />
                   <PenBlock nodeId={selected.id} />

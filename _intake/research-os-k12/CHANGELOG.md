@@ -2909,3 +2909,9 @@ None.
 - Migration `20260915030000_research_os_consent_paths.sql`: `classes.consent_basis` and `consent_document`; `graph.consent_requests` (privo, kid, manual; pending, verified, declined; hashed guardian contact); `learner_profiles.payee_type`, `guardian_contact_hash`, `payee_visibility`.
 - `consent-paths.ts` (`effectiveConsent` over adult, profile, school exception, vendor; `consentPathFor`; `payeeFor`; `hashContact`), tested by `scripts/test-research-os-consent-paths.ts` (5, in `test:research-os`). `consent-vendor.ts`: PRIVO and k-ID stubs, the manual path. `requireConsent` resolves the paths and writes through.
 - Routes: `/api/research-os/consent` (GET; POST request, record, class_basis) and `/api/research-os/payee` (GET, POST). Profile: `ConsentPayeeSection`. Doc: `learning/research-os/CONSENT-PATHS.md`.
+
+## 2026-09-15 ros-31 frontier kinds and regions, ros-24 the Awareness view
+
+- Migration `20260915040000_research_os_frontier_kinds.sql`: node kinds hypothesis, extension, replication, peer_review; edge kinds extends, replicates, reviews, answers; `nodes.frontier_flag` (open_question, frontier). `types.ts` unions extended; `GraphNode` carries `visibility`, `ownerId`, `frontierFlag`.
+- `directions.ts` (`directionsFrom`: dependents, reachable frontier, open questions, reach per depth), tested by `scripts/test-research-os-directions.ts` (4, in `test:research-os`). `/api/research-os/directions`. Workspace: `DirectionsBlock` ("where this leads") under the selected node.
+- `filterSubgraphForViewer` (`access-db.ts`) keeps the graph a viewer may see; the routing route runs over it and returns `openQuestions` as a target source. `/api/research-os/frontier` sets and lists flags. `loadSubgraph` carries visibility, owner, and flag. Doc: `learning/research-os/FRONTIER.md`.

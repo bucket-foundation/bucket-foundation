@@ -59,6 +59,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { computeFrontier } from "@/lib/research-os/frontier";
 import { llmEnabled } from "@/lib/research-os/deterministic";
+import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { findFrontierEngineTargets } from "@/lib/research-os/engine-frontier";
 import { guidanceLevel } from "@/lib/research-os/guidance";
 import type { GuidanceLevel } from "@/lib/research-os/types";
@@ -97,6 +98,9 @@ export async function GET(req: NextRequest) {
   let nodes, edges;
   try {
     ({ nodes, edges } = await loadSubgraph(branch));
+    // ros-31: private and shared regions. Routing runs over the graph this
+    // viewer may see; hidden nodes and their edges never enter the walk.
+    ({ nodes, edges } = await filterSubgraphForViewer(nodes, edges, learnerId));
   } catch {
     return bad(500, "graph_load_failed");
   }
@@ -146,6 +150,9 @@ export async function GET(req: NextRequest) {
       gap: result.gap,
       lowConfidenceFlags: result.lowConfidenceFlags,
       engineFrontier,
+      // ros-31: canon claims flagged as open questions in this branch, a
+      // frontier target source beside the engine's candidates.
+      openQuestions: nodes.filter((n) => n.frontierFlag === "open_question").map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier })),
       guidance,
       // ros-23: false until RESEARCH_OS_LLM_ENABLED is on; the workspace
       // shows the learner's own verdict control for Check when false.

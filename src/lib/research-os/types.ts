@@ -6,7 +6,19 @@
  * function, testable with plain objects and no database.
  */
 
-export type NodeKind = "fact" | "concept" | "law" | "derivation" | "primary_source" | "artifact";
+export type NodeKind =
+  | "fact"
+  | "concept"
+  | "law"
+  | "derivation"
+  | "primary_source"
+  | "artifact"
+  // ros-31, frontier kinds: a hypothesis (engine or human), an extension of
+  // a claim, a replication of a study, a peer review of a production.
+  | "hypothesis"
+  | "extension"
+  | "replication"
+  | "peer_review";
 
 export type EdgeKind =
   | "prerequisite"
@@ -14,7 +26,13 @@ export type EdgeKind =
   | "cites"
   | "generalizes"
   | "example_of"
-  | "contradicts";
+  | "contradicts"
+  // ros-31: an extension extends a claim, a replication replicates a study,
+  // a peer review reviews a production, a production answers an open question.
+  | "extends"
+  | "replicates"
+  | "reviews"
+  | "answers";
 
 /** The five levels of interaction, in order; see `Level` below for the current framing. */
 export type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";
@@ -99,6 +117,12 @@ export interface GraphNode {
   /** ros-14: present only for a node the seed has authored one for (Phase
    * 0: the sky-blue path's first six nodes). Absent everywhere else. */
   workedExample?: WorkedExample;
+  /** ros-21: graph.nodes.visibility and owner_id; absent on fixtures and
+   * on rows read before the access migration. */
+  visibility?: "public" | "private" | "shared";
+  ownerId?: string | null;
+  /** ros-31: graph.nodes.frontier_flag, an open question or the branch frontier. */
+  frontierFlag?: "open_question" | "frontier" | null;
 }
 
 export interface GraphEdge {

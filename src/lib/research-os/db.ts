@@ -112,6 +112,9 @@ interface NodeRow {
   labels: Record<string, { title?: string; summary?: string }> | null;
   provenance: Record<string, unknown> | null;
   worked_example: { text?: unknown; source?: unknown } | null;
+  visibility?: string | null;
+  owner_id?: string | null;
+  frontier_flag?: string | null;
 }
 
 /** graph.nodes.worked_example -> GraphNode.workedExample (bkt-ros ros-14).
@@ -144,7 +147,7 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
   const svc = graphService();
   const { data: nodeRows, error: nodeErr } = await svc
     .from("nodes")
-    .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example")
+    .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example,visibility,owner_id,frontier_flag")
     .eq("branch", branch);
   if (nodeErr) throw new Error(`loadSubgraph: node query failed: ${nodeErr.message}`);
   const nodes: GraphNode[] = ((nodeRows as NodeRow[]) || []).map((r) => ({
@@ -158,6 +161,9 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
     workedExample: toWorkedExample(r.worked_example),
+    visibility: (r.visibility as GraphNode["visibility"]) ?? "public",
+    ownerId: r.owner_id ?? null,
+    frontierFlag: (r.frontier_flag as GraphNode["frontierFlag"]) ?? null,
   }));
 
   const ids = nodes.map((n) => n.id);

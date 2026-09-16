@@ -7,6 +7,7 @@
  */
 import { graphService } from "./db";
 import {
+  canView,
   decideRequest,
   grantAllowed,
   nextVisibility,
@@ -48,6 +49,37 @@ function requestFromRow(r: RequestRow): AccessRequest & { createdAt: string } {
     decidedAt: r.decided_at,
     createdAt: r.created_at,
   };
+}
+
+/**
+ * ros-31: the graph a viewer may see. Public nodes always; private and
+ * shared nodes when access.ts's canView allows, with the viewer's grants
+ * loaded in one query for the branch's non-public nodes. Edges touching a
+ * hidden node are dropped, so routing and directions never cross into a
+ * node the viewer cannot open.
+ */
+export async function filterSubgraphForViewer<N extends { id: string; visibility?: Visibility; ownerId?: string | null }, E extends { fromId: string; toId: string }>(
+  nodes: N[],
+  edges: E[],
+  viewerId: string | null
+): Promise<{ nodes: N[]; edges: E[] }> {
+  const nonPublic = nodes.filter((n) => (n.visibility ?? "public") !== "public");
+  if (nonPublic.length === 0) return { nodes, edges };
+  const viewer: Viewer = { id: viewerId, groups: viewerId ? await loadViewerGroups(viewerId) : [] };
+  let grants: NodeGrant[] = [];
+  if (viewerId) {
+    const { data } = await graphService()
+      .from("node_grants")
+      .select("id,node_id,grantee_id,grantee_group,role,expires_at")
+      .in("node_id", nonPublic.map((n) => n.id));
+    grants = ((data as GrantRow[]) || []).map(grantFromRow);
+  }
+  const keep = new Set(
+    nodes
+      .filter((n) => canView({ id: n.id, visibility: n.visibility ?? "public", ownerId: n.ownerId ?? null }, viewer, grants))
+      .map((n) => n.id)
+  );
+  return { nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
 }
 
 export async function loadNodeAccess(nodeId: string): Promise<NodeAccess | null> {

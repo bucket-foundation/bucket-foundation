@@ -120,6 +120,24 @@ The founder picked all twelve items. Sequence inside the release:
 
 Research items running beside the build: primality and penetration tiering, production placement and ingenuity score, graph rules for proof and replication.
 
+### Status, 2026-09-15
+
+Every step has a first pass on the landing branch (PR #146), each with a migration where it needs one, a pure rule module with tests, a route, and a surface. Nothing has run against a live Supabase yet; the migrations apply in order after the founder's live apply.
+
+| Step | Bead | Landed as |
+|---|---|---|
+| 1 shell and nav | ros-22 | module bar, collapsed nav, two-section homepage, one manifesto |
+| 2 five levels | ros-21 | visibility, grants, requests, imports; ACCESS.md |
+| 3 Learn inside | ros-29 | lesson deep links, live recall on the node panel |
+| 4 Map inside | ros-30 | claims, globe query, branch, bridges from the node panel |
+| 5 workspace without AI | ros-23 | deterministic Check and Organize, the pen; NO-MODEL.md |
+| 6 path map and game layer | ros-33 | XP, levels, streaks, badges, path map, class leaderboard; GAME.md |
+| 7 class | ros-27 | roles as grants, assignments, overrides, member roles; CLASS.md |
+| 8 consent and payee | ros-32 | school exception, vendor requests, guardian payee; CONSENT-PATHS.md |
+| 9 frontier | ros-31, ros-24 | frontier kinds and flags, viewer-filtered regions, the Awareness view; FRONTIER.md |
+
+Open research items keep their beads: ros-25 (primality tiering), ros-26 (placement and ingenuity score). Founder review is the next gate: the review list is in the session report of 2026-09-15.
+
 ## 11. Dates and partner
 
 - **Done date: as soon as possible.** The nine steps ship in order to the landing branch, each merged when it passes review, with no release gate holding finished steps back. Step 1 (shell and nav, two-section homepage, one manifesto) started 2026-09-15 on the founder's approval.
