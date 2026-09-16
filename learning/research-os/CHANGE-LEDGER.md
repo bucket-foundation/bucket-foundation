@@ -810,7 +810,7 @@ touched here). Full account: `learning/research-os/ENGINE-BRIDGE.md`.
   filtered to `consumed_at is null`, through `hte.corpus.production`'s
   existing normalizer (`Production.from_dict`). Registered as the
   `"research-os"` corpus in `hte.cli`'s own `_CORPUS_LOADERS`.
-- `supabase/migrations/20260910030000_research_os_outbox_consumed_at.sql`
+- `supabase/migrations/20260910030002_research_os_outbox_consumed_at.sql`
   (ros-12 item 2): adds `consumed_at` to the outbox table, additive,
   idempotent.
 - `tools/hypothesis-engine/tests/test_corpus_research_os_outbox.py`
@@ -970,7 +970,7 @@ the engine bridge both touched (`package.json`'s `test:research-os` script,
 - `src/lib/research-os/closure.ts` (from the preserved wip commits; item 1):
   `ancestorsOf` and `computeAncestorClosure`, the in-memory counterpart to
   `graph.prereq_ancestor`.
-- `supabase/migrations/20260910010000_research_os_prereq_ancestor.sql` (from the
+- `supabase/migrations/20260910010001_research_os_prereq_ancestor.sql` (from the
   preserved wip commits; item 1): the closure table itself, public-read RLS.
 - `scripts/rebuild-prereq-ancestor.ts` (item 1): rebuilds `graph.prereq_ancestor` for
   one branch from `graph.edges`, delete-and-reinsert, matching
@@ -1436,7 +1436,7 @@ already claim.
 
 ### Added
 
-- `supabase/migrations/20260910030000_research_os_edge_confidence.sql`: `confidence`
+- `supabase/migrations/20260910030001_research_os_edge_confidence.sql`: `confidence`
   (real, default 1.0) and `confidence_source` (text, checked against `seed`,
   `academy_requires`, `canon_map`, `inferred`, `teacher`) on `graph.edges`;
   `min_confidence` (real, default 1.0) on `graph.prereq_ancestor`.
@@ -2711,7 +2711,7 @@ touches nothing that file covers; left unchanged.
 - `src/lib/research-os/canon-link.ts`: fs-backed `loadCanonClaims`/`canonClaimsAsDuplicateCandidates` (reading `scripts/research-os/ingest/out/canon-claims.json`, falling back to the committed `sample-canon-claims.json`) and `lookupCanonSignoff` (the unfiltered `provenance_signoff` lookup `canon-primary.ts`'s own cached loader cannot answer).
 - `scripts/research-os/ingest/canon-claims.ts`: the canon-claims generator, every branch, reusing `ingest/canon.ts`'s own law-vs-title summary rule; wired as `npm run ingest:research-os:canon-claims`.
 - `scripts/research-os/ingest/out/sample-canon-claims.json`: seven hand-picked entries, one per canon branch, drawn from a real generator run.
-- `supabase/migrations/20260910060000_research_os_production_guard.sql`: five columns on `graph.productions`, `source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`, `production_incentive_eligible`.
+- `supabase/migrations/20260910060001_research_os_production_guard.sql`: five columns on `graph.productions`, `source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`, `production_incentive_eligible`.
 - `scripts/test-research-os-production-guard.ts`: 21 tests over `production-guard.ts` and `canon-link.ts`, including a near-duplicate fixture; wired into `npm run test:research-os`.
 - `learning/research-os/PRODUCTION-GUARD.md`: the full rule set, what a teacher sees, what is logged.
 - `stages.ts`'s `onQuoteReturned`: a new `"quote"`-kind evidence event, `EvidenceEvent.locator`, written by the Quote tool whenever it returns a real curated passage (never for the `"summary"` fallback), the record `checkSourceProvenance` matches a Production's own sources against.
@@ -3038,7 +3038,7 @@ Review of PR #76 (preregistration revision 1, Iteration 25 above), docs-only, as
 - Naive n-per-arm formula (n = 2(z_alpha/2 + z_beta)^2/d^2, alpha = 0.025 two-sided, power = 0.80) hand-recomputed: 76/119/211 at d = 0.5/0.4/0.3. Cluster-corrected formula (DEFF = 1 + (m_bar-1) x ICC, m_bar = 25) hand-recomputed: 262/405/691 at ICC 0.05/0.10/0.20. Both match the draft's own tables exactly, no drift from the prior review's own expected figures.
 - Furtak and colleagues (2012), Lazonder and Harmsen (2016), and Chen and Yang (2019) checked against their own intake cards. Pooled effects match on all three (Furtak's mean d = 0.50 across 37 studies with the teacher-led/student-led 0.40 gap; Lazonder and Harmsen's d = 0.66/0.71/0.50 across 72 studies; Chen and Yang's positive, moderator-tested effect with no pooled number in its own card). Furtak's card states no explicit population line; the draft's table cell "K-12 and undergraduate science students" is this pass's own addition rather than a phrase traceable to the card, flagged as a minor citation-precision finding; the pooled effect the n-table depends on stays accurate.
 - Factor decision (forcing and guidance both fixed on for Phase 1) is stated with its own reasoning (the already-underpowered base three-arm contrast, the five-consented-learner integrity floor, the class-level confound risk of a factorial split, and both switches defaulting on in shipped code); `guidanceLevel` is registered as a pre-specified H1/H2 covariate in the Covariates section.
-- The two new outcomes map to real fields: `learnerConfidence`/`sourcePrediction`/`predictionCorrect`/`forcingEnabled` are typed `EvidenceEvent` fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` (PR #63, merged); `source_provenance`/`duplicate_flag`/`counter_evidence`/`counter_evidence_required` are real columns in `supabase/migrations/20260910060000_research_os_production_guard.sql` (PR #73, merged).
+- The two new outcomes map to real fields: `learnerConfidence`/`sourcePrediction`/`predictionCorrect`/`forcingEnabled` are typed `EvidenceEvent` fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` (PR #63, merged); `source_provenance`/`duplicate_flag`/`counter_evidence`/`counter_evidence_required` are real columns in `supabase/migrations/20260910060001_research_os_production_guard.sql` (PR #73, merged).
 - Required participation and misconduct risk subsection cites Grinnell and colleagues (2020) and keeps Production submission opt-in per `PLAN-REVISION-3.md` decision 6, stratifying a required-Production class via the new `productionRequired` covariate rather than excluding it.
 - Revision history section exists in `PREREGISTRATION-DRAFT.md`; every sentence it replaces (both files' header status lines, the effect-size paragraph, the naive-n table, the diversity-outcome judge cell, the Exploratory analyses sentence, `INSTRUMENTS.md`'s intro paragraph and closing section) is preserved verbatim in `DELETIONS.md`. `RESEARCH-QUESTIONS.md`'s diff carries no removed lines against `origin/main`, append-only confirmed.
 - No partner school, IRB approval, PI, or host institution claimed: `PREREGISTRATION-DRAFT.md`'s opening paragraph and its Registration timing section both deny partner and IRB status directly, unchanged by this revision.

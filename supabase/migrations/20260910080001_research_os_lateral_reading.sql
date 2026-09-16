@@ -17,7 +17,7 @@
 -- "single-source" or null, computed once at submit time by
 -- /api/research-os/production's POST against this learner's own
 -- "corroboration"-kind evidence events, the same "computed once, never
--- recomputed" discipline 20260910060000_research_os_production_guard.sql's
+-- recomputed" discipline 20260910060001_research_os_production_guard.sql's
 -- duplicate_flag already keeps. Informational only, never blocks an
 -- accept decision the way an unverified source does.
 --

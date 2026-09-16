@@ -34,6 +34,19 @@ Sign out: a POST to `/auth/sign-out` from the header, the account page, or the a
 
 `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` turn sign-in on. `SUPABASE_SERVICE_ROLE_KEY` lets handlers reach the private schemas. Without the first two, `/sign-in` says so, the header shows no account control, and protected paths still redirect to `/sign-in`.
 
+## Local development
+
+`supabase/config.toml` runs the same stack on this machine through Docker: Postgres, Auth, PostgREST, and Inbucket for the one-time-code emails. Migrations apply on start; the seed is `npm run seed:research-os`.
+
+```bash
+npm run db:local          # start (first run pulls the images)
+npm run db:local:status   # prints the local URL and keys as env lines
+npm run db:local:reset    # drop, re-apply every migration
+npm run db:local:stop
+```
+
+Put the local `API_URL`, `ANON_KEY`, and `SERVICE_ROLE_KEY` from `db:local:status` into `.env.local` as `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY`. Sign-in codes land in Inbucket at http://localhost:54324. The hosted project gets the same migrations with `npx supabase link` and `npx supabase db push`; `graph` and `bucket` must be in its exposed schemas (Settings → API), which `config.toml` sets for the local stack.
+
 ## Retired
 
 NextAuth v4 (`src/lib/auth.ts`, `src/app/api/auth/[...nextauth]`, `next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`): `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/knowledge`, `/library`, `/research`, and `/assets` (the bucket 1.0 publish path); a wallet becomes an identity fact on `bucket.identities.wallet` when that flow links it.

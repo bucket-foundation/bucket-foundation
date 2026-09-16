@@ -41,6 +41,16 @@ PR-056 and PR-058 (`docs/PROBLEM-REGISTER.md`). Full account: `docs/AUTH.md`,
   shared `auth.users` (the Supabase instance serves several ventures); rows are created on
   first read.
 
+### Renamed
+
+- Five migrations shared a version number with a neighbor, which the Supabase CLI rejects
+  (`schema_migrations` is keyed on version): `prereq_ancestor` → `20260910010001`,
+  `edge_confidence` → `20260910030001`, `outbox_consumed_at` → `20260910030002`,
+  `production_guard` → `20260910060001`, `lateral_reading` → `20260910080001`. Apply order
+  is unchanged. `supabase/config.toml`, `supabase/templates/magic-link.html`, and
+  `20260916010000_service_role_grants.sql` make the same set run on a local stack
+  (`npm run db:local`) and on a hosted project.
+
 ### Removed
 
 - NextAuth v4: `src/lib/auth.ts`, `src/app/api/auth/[...nextauth]/route.ts`, the `next-auth`
@@ -1119,7 +1129,7 @@ account: `learning/research-os/ENGINE-BRIDGE.md`.
   (`fetch_unconsumed_rows`/`mark_consumed`/`fetch_and_build`/`load`/
   `load_and_consume`): the outbox reader, registered as the `"research-os"`
   corpus in `hte.cli`'s own `_CORPUS_LOADERS`.
-  `supabase/migrations/20260910030000_research_os_outbox_consumed_at.sql`
+  `supabase/migrations/20260910030002_research_os_outbox_consumed_at.sql`
   adds the row's own `consumed_at` column. Tested against a fixture row,
   `tools/hypothesis-engine/tests/test_corpus_research_os_outbox.py`.
 - `hte.unknowns.unresolved_slot_gaps`
@@ -1422,7 +1432,7 @@ corpus, 8 nodes / 4 edges from the canon dossiers, 4 review items (all
 Branch `feat/ros-phase0-stubs`. Closed four of the Phase 0 PR's (#6) listed stubs,
 scoped to section 8's Phase 1 boundary: the `prereq_ancestor` closure table
 (`src/lib/research-os/closure.ts`, `scripts/rebuild-prereq-ancestor.ts`, migration
-`20260910010000_research_os_prereq_ancestor.sql`, wired into
+`20260910010001_research_os_prereq_ancestor.sql`, wired into
 `computeFrontier`/`frontier.ts` and `GET /api/research-os/route`); the diagnostic
 probe (`src/lib/research-os/probe.ts`, `GET`/`POST /api/research-os/probe`, a
 workspace-page panel); real verbatim Quote passages for Tyndall 1869, Rayleigh 1871,
@@ -2360,7 +2370,7 @@ available in this environment to screenshot it directly.
 
 `feat/ros-production-guard` against `main`, worktree `.ros-worktrees/guard`, not yet merged. Adds the Production provenance guard: quote-locator source verification, duplicate detection against prior work and canon, a counter-evidence field required at the internalization tier (Osborne 2010), and a citation-incentive-eligibility signal tied to canon sign-off (`GOVERNANCE.md`).
 
-`src/lib/research-os/production-guard.ts` holds the four pure rule functions, `checkSourceProvenance` (a source verifies when it carries the locator of a real `"quote"`-kind evidence event this learner produced, `stages.ts`'s new `onQuoteReturned`), `computeDuplicateFlag` (normalized token overlap, the lexical-Jaccard approach `tools/hypothesis-engine/hte/novelty.py` already uses, ported to TypeScript, against this learner's own prior claims, class peers' accepted claims, and canon claim texts), `requiresCounterEvidence` (true once the learner's own submit-time stage reached Internalization), and `computeIncentiveEligible` (no payment code, a stored signal only). `src/lib/research-os/canon-link.ts` supplies the two fs-backed reads that function needs, the canon-claims candidate list and an unfiltered `provenance_signoff` lookup by canon record id. Five new columns land on `graph.productions` (`supabase/migrations/20260910060000_research_os_production_guard.sql`).
+`src/lib/research-os/production-guard.ts` holds the four pure rule functions, `checkSourceProvenance` (a source verifies when it carries the locator of a real `"quote"`-kind evidence event this learner produced, `stages.ts`'s new `onQuoteReturned`), `computeDuplicateFlag` (normalized token overlap, the lexical-Jaccard approach `tools/hypothesis-engine/hte/novelty.py` already uses, ported to TypeScript, against this learner's own prior claims, class peers' accepted claims, and canon claim texts), `requiresCounterEvidence` (true once the learner's own submit-time stage reached Internalization), and `computeIncentiveEligible` (no payment code, a stored signal only). `src/lib/research-os/canon-link.ts` supplies the two fs-backed reads that function needs, the canon-claims candidate list and an unfiltered `provenance_signoff` lookup by canon record id. Five new columns land on `graph.productions` (`supabase/migrations/20260910060001_research_os_production_guard.sql`).
 
 `/api/research-os/production`'s POST computes and stores the guard's output on a real submission (never a draft save) and refuses one that needs counter-evidence and has none. `/api/research-os/review`'s POST refuses to approve a production carrying an unverified source, and the review queue (both route and page) surfaces every guard flag beside its production, with a return-note template and a disabled approve button while a source is unverified.
 
@@ -2480,7 +2490,7 @@ Full account in `learning/research-os/CHANGE-LEDGER.md`'s matching iteration.
 
 ## 2026-09-11, PR #76 review pass
 
-Review of PR #76 (preregistration revision 1, docs-only) as methods reviewer. Recomputed the naive n-per-arm formula (n = 2(z_alpha/2 + z_beta)^2/d^2, alpha = 0.025 two-sided, power = 0.80) by hand: 76/119/211 at d = 0.5/0.4/0.3, and the cluster-corrected figures (DEFF = 1 + (m_bar-1) x ICC, m_bar = 25) at 262/405/691 for ICC 0.05/0.10/0.20, both matching the draft exactly, no drift from the prior review's own figures. Checked the three meta-analytic anchors (Furtak and colleagues 2012, Lazonder and Harmsen 2016, Chen and Yang 2019) against their own intake cards: pooled effects and moderators match on all three; Furtak's card states no explicit population descriptor; the table's "K-12 and undergraduate science students" phrase is this pass's own addition, noted as a minor finding, and the pooled d = 0.50 the n-table draws from stays accurate. Confirmed the calibration outcome's fields (`learnerConfidence`, `sourcePrediction`, `predictionCorrect`, `forcingEnabled`) and the provenance-flags fields (`source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`) are real, typed fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` and real columns in `supabase/migrations/20260910060000_research_os_production_guard.sql`, both merged to `main`. Confirmed the Required participation and misconduct risk subsection cites Grinnell and colleagues (2020) and keeps Production submission opt-in per `PLAN-REVISION-3.md` decision 6. Confirmed the Revision history section exists and every replaced sentence (both files' header status lines, the effect-size paragraph, the naive-n table, the diversity-outcome judge cell, the Exploratory analyses sentence, `INSTRUMENTS.md`'s intro and closing section) is preserved verbatim in `DELETIONS.md`. `RESEARCH-QUESTIONS.md`'s diff carries no removed lines, append-only confirmed. No partner school, IRB approval, PI, or host institution claimed anywhere in the touched files; both existing denials (`PREREGISTRATION-DRAFT.md`'s opening paragraph and its Registration timing section) stand unchanged.
+Review of PR #76 (preregistration revision 1, docs-only) as methods reviewer. Recomputed the naive n-per-arm formula (n = 2(z_alpha/2 + z_beta)^2/d^2, alpha = 0.025 two-sided, power = 0.80) by hand: 76/119/211 at d = 0.5/0.4/0.3, and the cluster-corrected figures (DEFF = 1 + (m_bar-1) x ICC, m_bar = 25) at 262/405/691 for ICC 0.05/0.10/0.20, both matching the draft exactly, no drift from the prior review's own figures. Checked the three meta-analytic anchors (Furtak and colleagues 2012, Lazonder and Harmsen 2016, Chen and Yang 2019) against their own intake cards: pooled effects and moderators match on all three; Furtak's card states no explicit population descriptor; the table's "K-12 and undergraduate science students" phrase is this pass's own addition, noted as a minor finding, and the pooled d = 0.50 the n-table draws from stays accurate. Confirmed the calibration outcome's fields (`learnerConfidence`, `sourcePrediction`, `predictionCorrect`, `forcingEnabled`) and the provenance-flags fields (`source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`) are real, typed fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` and real columns in `supabase/migrations/20260910060001_research_os_production_guard.sql`, both merged to `main`. Confirmed the Required participation and misconduct risk subsection cites Grinnell and colleagues (2020) and keeps Production submission opt-in per `PLAN-REVISION-3.md` decision 6. Confirmed the Revision history section exists and every replaced sentence (both files' header status lines, the effect-size paragraph, the naive-n table, the diversity-outcome judge cell, the Exploratory analyses sentence, `INSTRUMENTS.md`'s intro and closing section) is preserved verbatim in `DELETIONS.md`. `RESEARCH-QUESTIONS.md`'s diff carries no removed lines, append-only confirmed. No partner school, IRB approval, PI, or host institution claimed anywhere in the touched files; both existing denials (`PREREGISTRATION-DRAFT.md`'s opening paragraph and its Registration timing section) stand unchanged.
 
 Leak scan of the PR's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Gates: nothing under `src/` or `public/` changed; branch already carries `origin/main` (merged mid-pass by the PR's own author, confirmed fast-forward-clean here); no file deleted, `git diff --name-status` shows every touched file as `M`. `agf-lint-voice check` clean on `RESEARCH-QUESTIONS.md`, `INSTRUMENTS.md`, `PREREGISTRATION-DRAFT.md`, and `CHANGE-LEDGER.md`; `agf-lint-voice-src check` clean on the one touched source file. No fix needed; merged as-is.
 

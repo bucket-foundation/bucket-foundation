@@ -409,7 +409,7 @@ export async function loadForcingEnabledForLearner(learnerId: string): Promise<b
 /**
  * The per-class lateral-reading second-source override (bkt-ros,
  * PLAN-REVISION-3.md section 2c; `graph.classes.second_source_required`,
- * migration 20260910080000_research_os_lateral_reading.sql). Same shape
+ * migration 20260910080001_research_os_lateral_reading.sql). Same shape
  * and same fail-open posture as loadForcingEnabledForLearner right above:
  * `null` on "no override on file", on a learner in no class, or on any
  * query failure, all three of which `src/lib/research-os/lateral-
