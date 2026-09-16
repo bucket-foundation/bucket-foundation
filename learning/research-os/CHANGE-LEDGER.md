@@ -3617,3 +3617,7 @@ Squash-merged after this pass.
 ## 2026-09-15 halo disc no longer clipped on the interactive globes
 
 `CanonGlobe.tsx`: camera fov 44 for interactive mounts, 42 decorative.
+
+## 2026-09-15 Research OS integration plan
+
+`learning/research-os/INTEGRATION-PLAN.md` added. `src/app/research-os/page.tsx` STATES copy and section sub. `BEADS-PENDING.jsonl` +13 (ros-20 to ros-33).

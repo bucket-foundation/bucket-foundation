@@ -32,15 +32,26 @@ export const metadata: Metadata = {
   },
 };
 
+// Five levels of interaction with the graph, each holding the ones before
+// it. Founder's framing, 2026-09-15: learning/research-os/INTEGRATION-PLAN.md.
 const STATES: { name: string; line: string }[] = [
-  { name: "Access", line: "The concept is reachable. Its prerequisites are already understood." },
-  { name: "Awareness", line: "The learner recalls the concept and places it in the graph." },
-  { name: "Understanding", line: "The learner restates the concept and applies it within the topic." },
+  {
+    name: "Access",
+    line: "Who can see and use a piece of knowledge. Public, private, or shared with named people, the way a repository or a drive works.",
+  },
+  {
+    name: "Awareness",
+    line: "Knowing where knowledge can go. From any node, the directions beyond it and the frontier around it.",
+  },
+  { name: "Understanding", line: "Learning the thing itself. Lessons, recall, and checks until the concept holds." },
   {
     name: "Internalization",
-    line: "The learner connects the concept to other topics and applies it outside where it was taught.",
+    line: "The learned concept meets the rest of the graph. Connections, transfer, use beyond where it was taught.",
   },
-  { name: "Production", line: "The learner creates a new method, application, or finding with the concept." },
+  {
+    name: "Production",
+    line: "A new node on the graph, built from the nodes you hold, placed among them, and cited by others.",
+  },
 ];
 
 // One screenshot per state, same order as STATES, captured live from this
@@ -109,7 +120,7 @@ export default function ResearchOsPage() {
         <section id="states" className="ros-section">
           <div className="ros-wrap">
             <h2 className="ros-section-title font-display text-[color:var(--basalt)]">Five States</h2>
-            <p className="ros-section-sub">Five states. Reached in order.</p>
+            <p className="ros-section-sub">Five levels of interaction with the graph. Each holds the ones before it.</p>
             {STATES.map((s, i) => {
               const shot = STATE_SCREENSHOTS[i];
               return (

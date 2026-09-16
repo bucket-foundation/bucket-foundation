@@ -2855,3 +2855,9 @@ None.
 ## 2026-09-15 halo disc no longer clipped on the interactive globes
 
 - The outer halo bloom (radius 1.24 at camera distance 3.4) subtends 21.4 degrees and the 42 degree vertical fov cut it flat at the canvas's top and bottom, a chord about 38% of the disc wide; at page top on the home page that read as a sliced tan disc under the hero. Interactive mounts now use fov 44 (globe about 4.5% smaller, disc fully inside the canvas). The decorative mount fades its halo in-shader and keeps 42.
+
+## 2026-09-15 Research OS integration plan
+
+- `learning/research-os/INTEGRATION-PLAN.md` written from the founder's questionnaire answers (artifact `KuAjHWswfh9pzownAjcPzp`): Research OS is the one product, every built surface folds in, K-12 first with libraries as the venue, the five words reframed as levels of interaction with the graph (access as visibility and grants, awareness as directions, understanding as learning, internalization as the learned node meeting the graph, production as a new node), tier by primality, roles as grants, no AI at first release, the module map, a nine-step first release. Settles plan decisions 1, 2, 3, 4, 5; 6 stays open with a default.
+- Research OS page: the five-level copy rewritten to that framing; section sub reads "Five levels of interaction with the graph. Each holds the ones before it." Prior copy: `git show 34ecdf536:src/app/research-os/page.tsx`.
+- 13 beads queued in `BEADS-PENDING.jsonl` (ros-20 to ros-33) while Nucleus stays unreachable.
