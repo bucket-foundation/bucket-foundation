@@ -2,6 +2,35 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## auth-1: system-wide auth and the Research OS application shell
+
+Date 2026-09-16. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry, `docs/AUTH.md`, `docs/RESEARCH-OS-APP.md`.
+
+### Added
+
+- `src/lib/supabase/browser.ts`, `src/lib/supabase/server.ts`, `src/lib/auth/paths.ts`, `src/lib/auth/verify.ts`, `src/lib/auth/identity.ts`, `src/lib/auth/handle.ts`, `src/providers/SessionProvider.tsx`.
+- `src/app/sign-in/{page,SignInForm}.tsx`, `src/app/account/{page,AccountForm}.tsx`, `src/app/auth/sign-out/route.ts`, `src/app/api/account/route.ts`, `src/components/auth/{UserMenu,SignInGate}.tsx`, `src/components/ui/index.tsx`.
+- `src/app/research-os/(app)/{layout,AppShell}.tsx`, `src/app/research-os/(app)/home/{page,HomeClient}.tsx`.
+- `src/app/academy/AcademyFrame.tsx`; `adoptSession`, `listenToParent`, `framed` in `learning/app/js/auth.js`; the framed sign-in link in `learning/app/js/auth-ui.js`.
+- `supabase/migrations/20260916000000_app_identities.sql`, `scripts/test-auth-paths.ts`, `.github/workflows/site-ci.yml`.
+- `isClassStaffAnywhere` in `src/lib/research-os/class-db.ts`.
+
+### Edited
+
+- `src/middleware.ts`: session refresh on every request, protected paths, Kruse gate kept.
+- `src/lib/research-os/db.ts`: `verifyToken` delegates to `verifyRequestUser`.
+- `src/app/api/academy/{progress,profile}/route.ts`: `verifyUser` delegates to `verifyRequestUser`.
+- `src/app/research-os/(app)/{workspace,class,review,roster,edges,profile}/page.tsx`, `src/app/canon/signoff/page.tsx`: the one-time-code form, `sendOtp`, `verifyOtp`, and the `email`, `otpSent`, `otpCode`, `authBusy`, `authError` state replaced by `<SignInGate signedIn={Boolean(token)} />`; pages other than the workspace also drop `signOut`. The removed form is recorded once in `_intake/research-os-k12/DELETIONS.md`.
+- `src/app/api/chat/route.ts`: `getSessionUser()` in place of NextAuth.
+- `src/app/layout.tsx`: `SessionProvider` in place of `Web3Providers`; `src/app/{knowledge,library,research,assets}/layout.tsx` mount `Web3Providers`.
+- `src/components/Header.tsx`: `UserMenu`, Home and Account entries. `src/app/research-os/page.tsx` and `landing.css`: the Open Research OS button.
+- `next.config.mjs` ESLint gate on; `src/app/canon/graph/page.tsx`, `src/app/research/tools/{causaldesigner,mlreprocard}/page.tsx`, `src/app/research-os/(app)/profile/GameSection.tsx` (apostrophes), `src/app/chat/page.tsx` (`for (;;)`).
+- `package.json` (`test`, `test:auth`, `typecheck`; `next-auth` and `@auth/supabase-adapter` removed), `.env.example`, `CLAUDE.md`.
+
+### Removed
+
+- `src/lib/auth.ts`, `src/app/api/auth/[...nextauth]/route.ts`, `src/app/research-os/layout.tsx`, `src/app/research-os/ResearchOsNav.tsx`. Text in `_intake/research-os-k12/DELETIONS.md`.
+
 ## ros-14: faded guidance for low-prior-knowledge learners
 
 Date 2026-09-10/11. Branch `feat/ros-faded-guidance`, worktree `.ros-worktrees/scaffold`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry. Concurrent with PR #63 (cognitive forcing, edits `src/app/research-os/workspace/page.tsx` and the workspace Check route); server-side and library work landed first, page work landed after PR #63 merged (confirmed via `gh pr view 63`).

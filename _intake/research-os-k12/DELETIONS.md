@@ -6,6 +6,105 @@ replaced sentence is never lost. See also
 `learning/research-os/CHANGE-LEDGER.md`, PR #3's own ledger for the same
 convention.
 
+## 2026-09-16, the per-page one-time-code form and the module bar
+
+**Reason.** One site session (`docs/AUTH.md`). The seven copies of the form below
+(`src/app/research-os/{workspace,class,review,roster,edges,profile}/page.tsx`,
+`src/app/canon/signoff/page.tsx`; placeholder text varied between `you@school.example`
+and `reviewer@school.example`) are replaced by `<SignInGate />`, and
+`src/app/research-os/ResearchOsNav.tsx` by the application shell.
+
+**Removed JSX, verbatim from the workspace page:**
+
+```tsx
+        {/* Auth panel */}
+        <div className="mt-6 p-4 bg-[color:var(--bone)] shadow-[inset_0_1px_0_rgba(239,232,212,0.6)]">
+          {token ? (
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <span className="text-[13px] text-[color:var(--basalt-2)]">Signed in.</span>
+              <button onClick={signOut} className="text-[12px] small-caps underline underline-offset-4">
+                sign out
+              </button>
+            </div>
+          ) : !otpSent ? (
+            <div className="flex items-center gap-2 flex-wrap">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@school.example"
+                className="border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-white/60 flex-1 min-w-[200px]"
+              />
+              <button
+                onClick={sendOtp}
+                disabled={authBusy || !email.trim()}
+                className="px-4 py-2 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
+              >
+                {authBusy ? "sending…" : "send code"}
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 flex-wrap">
+              <input
+                value={otpCode}
+                onChange={(e) => setOtpCode(e.target.value)}
+                placeholder="6-digit code"
+                className="border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-white/60 w-[160px]"
+              />
+              <button
+                onClick={verifyOtp}
+                disabled={authBusy || !otpCode.trim()}
+                className="px-4 py-2 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
+              >
+                {authBusy ? "verifying…" : "verify"}
+              </button>
+            </div>
+          )}
+          {authError && <p className="mt-2 text-[12px] text-red-700">{authError}</p>}
+        </div>
+```
+
+**Removed handlers, verbatim (`shouldCreateUser` was `true` on the workspace and profile pages, `false` elsewhere):**
+
+```tsx
+  async function sendOtp() {
+    if (!supabase || !email.trim()) return;
+    setAuthBusy(true);
+    setAuthError(null);
+    const { error } = await supabase.auth.signInWithOtp({ email: email.trim(), options: { shouldCreateUser: true } });
+    setAuthBusy(false);
+    if (error) setAuthError(error.message);
+    else setOtpSent(true);
+  }
+
+  async function verifyOtp() {
+    if (!supabase || !otpCode.trim()) return;
+    setAuthBusy(true);
+    setAuthError(null);
+    const { data, error } = await supabase.auth.verifyOtp({ email: email.trim(), token: otpCode.trim(), type: "email" });
+    setAuthBusy(false);
+    if (error) {
+      setAuthError(error.message);
+      return;
+    }
+    if (data.session) setToken(data.session.access_token);
+  }
+```
+
+**Removed module bar entries (`ResearchOsNav.tsx`), verbatim:**
+
+```ts
+  { href: "/research-os", label: "Overview", match: ["/research-os"] },
+  { href: "/canon/search", label: "Map", match: ["/canon"] },
+  { href: "/academy", label: "Learn", match: ["/academy", "/ladder"] },
+  { href: "/research-os/workspace", label: "Workspace", match: ["/research-os/workspace"] },
+  { href: "/research-os/review", label: "Produce", match: ["/research-os/review", "/research/papers"] },
+  { href: "/research", label: "Frontier", match: ["/research", "/research-os/edges"] },
+  { href: "/research-os/class", label: "Class", match: ["/research-os/class", "/research-os/roster"] },
+  { href: "/research-os/profile", label: "Profile", match: ["/research-os/profile", "/m"] },
+  { href: "/library", label: "Corpora", match: ["/library", "/knowledge", "/kruse", "/sacred-history"] },
+```
+
 ## 2026-09-10, `src/app/research-os/page.tsx`
 
 **Reason.** The system review (`RESEARCH-OS-K12-SYSTEM-REVIEW.md` sections 8

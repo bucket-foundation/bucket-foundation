@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import UserMenu from "@/components/auth/UserMenu";
 import InverseOmega from "./InverseOmega";
 import { useEffect, useRef, useState } from "react";
 
@@ -18,12 +19,14 @@ const NAV: NavItem[] = [
     href: "/research-os",
     label: "Research OS",
     sub: [
+      { href: "/research-os/home",      label: "Home",       meta: "today, your path, your classes" },
       { href: "/research-os",           label: "Overview",   meta: "five levels of interaction" },
       { href: "/research-os/workspace", label: "Workspace",  meta: "find · quote · check · organize" },
       { href: "/academy",               label: "Learn",      meta: "lessons, recall, mastery" },
       { href: "/canon/search",          label: "Map",        meta: "the canon on the globe" },
       { href: "/research-os/class",     label: "Class",      meta: "teachers and librarians" },
       { href: "/research-os/profile",   label: "Profile",    meta: "levels, credentials, privacy" },
+      { href: "/account",               label: "Account",    meta: "handle, wallet, sign out" },
       { href: "/ladder",                label: "The depth ladder", meta: "mastery → frontier → produce" },
     ],
   },
@@ -184,7 +187,8 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-                          <Link
+            <UserMenu />
+            <Link
                 href="/join"
                 className="hidden sm:inline-flex small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-5 py-2 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] hover:bg-[color:var(--aegean-deep)] transition items-center min-h-[44px]"
               >

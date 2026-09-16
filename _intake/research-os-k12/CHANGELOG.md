@@ -1,5 +1,48 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-16: system-wide auth and the Research OS application shell
+
+Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Founder direction
+(2026-09-16): "the product is research os and all that has been built is within it";
+"upgrade the repo to have full system wide auth"; "follow system standards". Register rows
+PR-056 and PR-058 (`docs/PROBLEM-REGISTER.md`). Full account: `docs/AUTH.md`,
+`docs/RESEARCH-OS-APP.md`, and `learning/research-os/CHANGE-LEDGER.md`'s matching entry.
+
+### Added
+
+- One site session: `src/lib/supabase/{browser,server}.ts`, `src/lib/auth/{paths,verify,
+  identity,handle}.ts`, `src/providers/SessionProvider.tsx`, `src/middleware.ts` session
+  refresh and protected paths, `/sign-in`, `/account`, `/auth/sign-out`, `/api/account`,
+  `src/components/auth/{UserMenu,SignInGate}.tsx`.
+- `supabase/migrations/20260916000000_app_identities.sql`: `app.identities` keyed on
+  `auth.users.id`, unique handle and wallet, sign-up trigger, backfill, RLS.
+- The application shell `src/app/research-os/(app)/{layout,AppShell}.tsx` and the signed-in
+  home `/research-os/home`; UI primitives `src/components/ui/index.tsx`.
+- The Academy session bridge: `src/app/academy/AcademyFrame.tsx` and `adoptSession` in
+  `learning/app/js/auth.js`; the framed app's sign-in link goes to the site's `/sign-in`.
+- `scripts/test-auth-paths.ts` (`npm run test:auth`), `npm run typecheck`,
+  `.github/workflows/site-ci.yml` (typecheck, lint, unit, Research OS, Academy validate).
+
+### Changed
+
+- `src/lib/research-os/db.ts` `verifyToken` and both Academy route verifiers go through
+  `verifyRequestUser`: a Bearer token first, else the cookie session.
+- The six Research OS pages and `canon/signoff` drop their own one-time-code forms for
+  `SignInGate`; the app pages move into the `(app)` route group (URLs unchanged).
+- `src/app/api/chat/route.ts` reads `getSessionUser()`.
+- `Web3Providers` mounts under `/knowledge`, `/library`, `/research`, `/assets` only; the
+  root layout mounts `SessionProvider`.
+- `next.config.mjs`: ESLint runs in builds; the five pre-existing lint errors fixed.
+- `.env.example`, `CLAUDE.md` Repo section, `src/components/Header.tsx` (user menu, Home and
+  Account entries), `/research-os` landing (Open Research OS call to action).
+
+### Removed
+
+- NextAuth v4: `src/lib/auth.ts`, `src/app/api/auth/[...nextauth]/route.ts`, the `next-auth`
+  and `@auth/supabase-adapter` packages, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`.
+- `src/app/research-os/{layout,ResearchOsNav}.tsx` (the module bar), replaced by the shell.
+  Text recorded in `_intake/research-os-k12/DELETIONS.md`.
+
 ## 2026-09-11: literature batch five
 
 Branch `intake/ros-literature-5`. Task: 25 to 35 new DOI-verified papers across four

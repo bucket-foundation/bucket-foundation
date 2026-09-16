@@ -1,0 +1,43 @@
+name: site-ci
+
+on:
+  pull_request:
+    branches: [dev, main]
+    paths:
+      - "src/**"
+      - "scripts/**"
+      - "learning/app/**"
+      - "supabase/migrations/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.json"
+      - "next.config.mjs"
+      - ".github/workflows/site-ci.yml"
+  push:
+    branches: [dev]
+
+concurrency:
+  group: site-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: typecheck
+        run: npm run typecheck
+      - name: lint
+        run: npm run lint
+      - name: unit tests
+        run: npm test
+      - name: research os tests
+        run: npm run test:research-os
+      - name: academy app
+        run: bash learning/app/validate.sh

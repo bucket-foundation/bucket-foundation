@@ -4,8 +4,7 @@
 
 import { NextRequest } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getSessionUser } from "@/lib/supabase/server";
 import { meterUsage } from "@/lib/meter";
 import {
   searchPubmed,
@@ -130,11 +129,8 @@ async function runTool(
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  const userId =
-    (session?.user as { id?: string } | undefined)?.id ||
-    session?.user?.email ||
-    null;
+  const sessionUser = await getSessionUser();
+  const userId = sessionUser?.id ?? null;
   if (!userId) {
     return new Response(JSON.stringify({ error: "unauthenticated" }), {
       status: 401,

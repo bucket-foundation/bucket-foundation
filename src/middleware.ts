@@ -1,58 +1,51 @@
 /**
- * Gate the private Kruse Index preview.
+ * Site middleware: one session for the whole site, plus the Kruse preview gate.
  *
- * Rules:
- * - `/kruse` itself is a PUBLIC preview/landing, no gate.
- * - `/kruse/search` and `/api/kruse/*` are gated by an HS256 magic-link
- * cookie. Missing / invalid / expired -> 404 (do not leak existence).
- * - First visit anywhere under /kruse with ?t=<token> -> set cookie,
- * 302 to /kruse/search (strip token).
+ * 1. Every matched request refreshes the Supabase session cookies through
+ *    @supabase/ssr, so server components and route handlers read a live
+ *    session and an expired access token is renewed before the page renders.
+ * 2. Paths in src/lib/auth/paths.ts PROTECTED_PREFIXES need a signed-in
+ *    person; anonymous requests go to /sign-in?next=<path>.
+ * 3. /kruse/search and /api/kruse/* keep their HS256 magic-link cookie gate:
+ *    missing or invalid returns 404 so the preview's existence stays private.
  */
 
 import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_MAX_AGE_SECONDS, COOKIE_NAME, verifyToken } from "@/lib/kruse-token";
+import { isProtectedPath, signInUrl } from "@/lib/auth/paths";
+import { getMiddlewareSupabase, authConfigured } from "@/lib/supabase/server";
 
 export const config = {
-  matcher: ["/kruse/:path*", "/api/kruse/:path*"],
+  // Pages and the Kruse API. Skipped: Next internals, the framed Academy
+  // app, static files by extension, and every other /api route (handlers
+  // verify the cookie session themselves through src/lib/auth/verify.ts).
+  matcher: [
+    "/((?!_next/static|_next/image|academy-app|textures|api/(?!kruse)|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|avif|woff|woff2|ttf|bin|json|txt|xml|webmanifest|mp4|css|js|map)$).*)",
+  ],
 };
 
 function notFound(): NextResponse {
-  return new NextResponse("Not Found", {
-    status: 404,
-    headers: { "content-type": "text/plain; charset=utf-8" },
-  });
+  return new NextResponse("Not Found", { status: 404, headers: { "content-type": "text/plain; charset=utf-8" } });
 }
 
-function isGatedPath(pathname: string): boolean {
-  // The public preview at /kruse is always reachable.
-  // Everything deeper under /kruse, plus the JSON API, is gated.
+function isKrusePath(pathname: string): boolean {
+  return pathname === "/kruse" || pathname.startsWith("/kruse/") || pathname.startsWith("/api/kruse");
+}
+
+function isKruseGated(pathname: string): boolean {
   if (pathname === "/kruse" || pathname === "/kruse/") return false;
-  if (pathname.startsWith("/api/kruse")) return true;
-  if (pathname.startsWith("/kruse/")) return true;
-  return false;
+  return pathname.startsWith("/api/kruse") || pathname.startsWith("/kruse/");
 }
 
-export async function middleware(req: NextRequest) {
+async function kruse(req: NextRequest): Promise<NextResponse> {
   const { pathname, searchParams } = req.nextUrl;
-
-  // 1. Incoming magic link: ?t=<token>, accepted on any /kruse path.
   const rawToken = searchParams.get("t");
   if (rawToken) {
     const payload = await verifyToken(rawToken);
-    if (!payload) {
-      // Invalid token, for the public preview path, let it through unchrome.
-      if (!isGatedPath(pathname)) return NextResponse.next();
-      return notFound();
-    }
-
+    if (!payload) return isKruseGated(pathname) ? notFound() : NextResponse.next();
     const clean = req.nextUrl.clone();
     clean.search = "";
-    // If they clicked a link straight at /kruse, upgrade them to the gated
-    // search view now that they have a valid token.
-    if (clean.pathname === "/kruse" || clean.pathname === "/kruse/") {
-      clean.pathname = "/kruse/search";
-    }
-
+    if (clean.pathname === "/kruse" || clean.pathname === "/kruse/") clean.pathname = "/kruse/search";
     const res = NextResponse.redirect(clean, 302);
     res.cookies.set(COOKIE_NAME, rawToken, {
       httpOnly: true,
@@ -63,24 +56,44 @@ export async function middleware(req: NextRequest) {
     });
     return res;
   }
-
-  // 2. Public preview, no cookie required.
-  if (!isGatedPath(pathname)) {
-    return NextResponse.next();
-  }
-
-  // 3. Gated path, cookie required.
+  if (!isKruseGated(pathname)) return NextResponse.next();
   const cookie = req.cookies.get(COOKIE_NAME)?.value;
   if (!cookie) return notFound();
-
   const payload = await verifyToken(cookie);
   if (!payload) {
     const res = notFound();
     res.cookies.delete(COOKIE_NAME);
     return res;
   }
-
   const headers = new Headers(req.headers);
   headers.set("x-kruse-recipient", payload.r);
   return NextResponse.next({ request: { headers } });
+}
+
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+  if (isKrusePath(pathname)) return kruse(req);
+
+  const res = NextResponse.next({ request: { headers: req.headers } });
+  if (!authConfigured()) {
+    if (isProtectedPath(pathname)) return NextResponse.redirect(new URL(signInUrl(pathname + req.nextUrl.search), req.url));
+    return res;
+  }
+
+  const supabase = getMiddlewareSupabase(req, res);
+  let signedIn = false;
+  try {
+    const { data } = await supabase.auth.getUser();
+    signedIn = Boolean(data.user);
+  } catch {
+    signedIn = false;
+  }
+
+  if (!signedIn && isProtectedPath(pathname)) {
+    const redirect = NextResponse.redirect(new URL(signInUrl(pathname + req.nextUrl.search), req.url));
+    // Carry any refreshed cookies onto the redirect so the sign-in page starts clean.
+    res.cookies.getAll().forEach((c) => redirect.cookies.set(c));
+    return redirect;
+  }
+  return res;
 }

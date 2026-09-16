@@ -11,9 +11,8 @@ const SECURITY_HEADERS = [
 ];
 
 const nextConfig = {
-  // Pre-existing lint warnings in unrelated files (chat, etc.) shouldn't
-  // block production builds. CI/local lint stays separate.
-  eslint: { ignoreDuringBuilds: true },
+  // ESLint runs in the production build; an error fails the build.
+  eslint: { ignoreDuringBuilds: false },
 
   // The /api/canon/search Lambda + the canon-graph + canon-evidence libs
   // read files from _intake/ via fs.readFileSync at runtime. Next.js's

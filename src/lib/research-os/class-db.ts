@@ -210,3 +210,14 @@ export async function setMemberRole(
 }
 
 export { loadClassMemberships as listMembers };
+
+/** True when the person holds a staff role (teacher or librarian) in any class; the app shell shows the Teach group on it. */
+export async function isClassStaffAnywhere(userId: string): Promise<boolean> {
+  try {
+    const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", userId).in("role", ["teacher", "librarian"]).limit(1);
+    if (error || !data) return false;
+    return data.length > 0;
+  } catch {
+    return false;
+  }
+}

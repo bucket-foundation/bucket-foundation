@@ -11,6 +11,7 @@
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
+import { verifyRequestUser } from "../auth/verify";
 import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind, Stage } from "./types";
 import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow, GraphProductionRow } from "./engine-bridge";
 import { buildProductionOutboxRow } from "./engine-bridge";
@@ -66,28 +67,13 @@ export interface VerifiedIdentity {
 }
 
 /**
- * Verify the caller's Supabase access token and return their id + email, or
- * null. We never trust a client-supplied user id, only the token, verified
- * by gotrue, decides identity (matches /api/academy/progress verifyUser).
- * Shared by verifyLearner below and reviewer.ts's verifyReviewer, which
- * additionally checks the email against its allowlist.
+ * Verify the caller (Bearer token or the site cookie session, see
+ * src/lib/auth/verify.ts) and return their id + email, or null. Shared by
+ * verifyLearner below and reviewer.ts's verifyReviewer, which additionally
+ * checks the email against its allowlist.
  */
 async function verifyToken(req: NextRequest): Promise<VerifiedIdentity | null> {
-  const auth = req.headers.get("authorization") || "";
-  const m = auth.match(/^Bearer\s+(.+)$/i);
-  if (!m) return null;
-  const token = m[1].trim();
-  if (!token) return null;
-  try {
-    const verifier = createClient(SUPABASE_URL as string, ANON_KEY as string, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-    const { data, error } = await verifier.auth.getUser(token);
-    if (error || !data?.user?.id) return null;
-    return { id: data.user.id, email: data.user.email ?? null };
-  } catch {
-    return null;
-  }
+  return verifyRequestUser(req);
 }
 
 /** Verify the caller's token and return their user id, or null. */

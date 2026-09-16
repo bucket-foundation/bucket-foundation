@@ -109,8 +109,11 @@ export default function ResearchOsPage() {
               internalize, and produce knowledge.
             </p>
             <div className="ros-cta-row">
-              <a className="ros-btn" href="#states">
-                See the Five States →
+              <Link className="ros-btn" href="/research-os/home">
+                Open Research OS →
+              </Link>
+              <a className="ros-btn ros-btn-quiet" href="#states">
+                See the Five States
               </a>
               <span className="ros-trust">{TRUST}</span>
             </div>

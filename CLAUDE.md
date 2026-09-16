@@ -29,9 +29,10 @@ Part of AGFarms venture studio. Org dashboard: https://nucleus.agfarms.dev/admin
 This venture is a single repo (cloned from `gianyrox/bucket-foundation`, pending transfer to `AGFarms/bucket-foundation` on formal nonprofit filing or a proper nonprofit legal entity).
 
 - **Next.js 14** app on Vercel (`src/app`, `src/components`, `src/context`, `src/lib`, `src/providers`)
-- **Story Protocol** SDK for IP NFT minting
-- **Walrus** for on-chain content storage
-- **Dynamic** for web3 auth
+- **Supabase Auth** for the one site session (`docs/AUTH.md`): email one-time code at `/sign-in`, cookies through `@supabase/ssr`, `app.identities` per person
+- **Research OS** is the product (`docs/RESEARCH-OS-APP.md`, `learning/research-os/INTEGRATION-PLAN.md`); the app lives under `src/app/research-os/(app)`
+- **Story Protocol** SDK for IP NFT minting and **Walrus** for content storage, on the bucket 1.0 publish path only
+- **Dynamic** for wallet linking under `/knowledge`, `/library`, `/research`, `/assets`
 - **Supabase** for off-chain metadata
 
 ## Strategic Docs

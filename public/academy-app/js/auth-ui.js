@@ -69,6 +69,20 @@
 
   function renderEmail(card, back) {
     pending.stage = "email";
+    // Framed under bucket.foundation: the site owns the session, so send
+    // the person to the site's sign-in and let the parent post it back in.
+    if (Auth.state().framed) {
+      card.innerHTML =
+        '<div class="auth-title">Save your progress</div>' +
+        '<p class="auth-sub">Sign in once on bucket.foundation and the Academy, ' +
+        "the workspace, and your class all follow.</p>";
+      var go = el("a", "btn primary wide", "Sign in on bucket.foundation");
+      go.href = "/sign-in?next=%2Facademy";
+      go.target = "_top";
+      card.appendChild(go);
+      card.appendChild(footer(back));
+      return;
+    }
     card.innerHTML =
       '<div class="auth-title">Save your progress</div>' +
       '<p class="auth-sub">Optional. Sign in with your email to sync your ' +

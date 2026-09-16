@@ -63,6 +63,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { verifyRequestUser } from "@/lib/auth/verify";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -126,21 +127,8 @@ function service(): SupabaseClient {
  * client might send, only the token, verified by gotrue, decides identity.
  */
 async function verifyUser(req: NextRequest): Promise<string | null> {
-  const auth = req.headers.get("authorization") || "";
-  const m = auth.match(/^Bearer\s+(.+)$/i);
-  if (!m) return null;
-  const token = m[1].trim();
-  if (!token) return null;
-  try {
-    const verifier = createClient(SUPABASE_URL as string, ANON_KEY as string, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-    const { data, error } = await verifier.auth.getUser(token);
-    if (error || !data?.user?.id) return null;
-    return data.user.id;
-  } catch {
-    return null;
-  }
+  const user = await verifyRequestUser(req);
+  return user?.id ?? null;
 }
 
 export async function GET(req: NextRequest): Promise<NextResponse> {

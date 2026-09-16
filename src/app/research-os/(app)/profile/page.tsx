@@ -27,6 +27,7 @@ import type { BirthYearBucket, ConsentStatus, LearnerRole } from "@/lib/research
 import AccessMine from "./AccessMine";
 import GameSection from "./GameSection";
 import ConsentPayeeSection from "./ConsentPayeeSection";
+import SignInGate from "@/components/auth/SignInGate";
 
 const ROLE_OPTIONS: LearnerRole[] = ["student", "teacher", "independent"];
 const BUCKET_OPTIONS: BirthYearBucket[] = ["under13", "13to17", "18plus"];
@@ -48,11 +49,6 @@ export default function ResearchOsProfilePage() {
   }, []);
 
   const [token, setToken] = useState<string | null>(null);
-  const [email, setEmail] = useState("");
-  const [otpSent, setOtpSent] = useState(false);
-  const [otpCode, setOtpCode] = useState("");
-  const [authError, setAuthError] = useState<string | null>(null);
-  const [authBusy, setAuthBusy] = useState(false);
 
   const [role, setRole] = useState<LearnerRole | "">("");
   const [bucket, setBucket] = useState<BirthYearBucket | "">("");
@@ -88,28 +84,6 @@ export default function ResearchOsProfilePage() {
       .catch(() => setLoadError("network_error"));
   }, [token]);
 
-  async function sendOtp() {
-    if (!supabase || !email.trim()) return;
-    setAuthBusy(true);
-    setAuthError(null);
-    const { error } = await supabase.auth.signInWithOtp({ email: email.trim(), options: { shouldCreateUser: true } });
-    setAuthBusy(false);
-    if (error) setAuthError(error.message);
-    else setOtpSent(true);
-  }
-
-  async function verifyOtp() {
-    if (!supabase || !otpCode.trim()) return;
-    setAuthBusy(true);
-    setAuthError(null);
-    const { data, error } = await supabase.auth.verifyOtp({ email: email.trim(), token: otpCode.trim(), type: "email" });
-    setAuthBusy(false);
-    if (error) {
-      setAuthError(error.message);
-      return;
-    }
-    if (data.session) setToken(data.session.access_token);
-  }
 
   async function signOut() {
     if (!supabase) return;
@@ -163,50 +137,7 @@ export default function ResearchOsProfilePage() {
           yes before you can use the AI tools.
         </p>
 
-        <div className="mt-6 p-4 bg-[color:var(--bone)] shadow-[inset_0_1px_0_rgba(239,232,212,0.6)]">
-          {token ? (
-            <div className="flex items-center justify-between gap-3 flex-wrap">
-              <span className="text-[13px] text-[color:var(--basalt-2)]">Signed in.</span>
-              <button onClick={signOut} className="text-[12px] small-caps underline underline-offset-4">
-                sign out
-              </button>
-            </div>
-          ) : !otpSent ? (
-            <div className="flex items-center gap-2 flex-wrap">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@school.example"
-                className="border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-white/60 flex-1 min-w-0"
-              />
-              <button
-                onClick={sendOtp}
-                disabled={authBusy || !email.trim()}
-                className="px-4 py-2 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
-              >
-                {authBusy ? "sending…" : "send code"}
-              </button>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2 flex-wrap">
-              <input
-                value={otpCode}
-                onChange={(e) => setOtpCode(e.target.value)}
-                placeholder="6-digit code"
-                className="border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-white/60 w-[140px]"
-              />
-              <button
-                onClick={verifyOtp}
-                disabled={authBusy || !otpCode.trim()}
-                className="px-4 py-2 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
-              >
-                {authBusy ? "verifying…" : "verify"}
-              </button>
-            </div>
-          )}
-          {authError && <p className="mt-2 text-[12px] text-red-700 break-words">{authError}</p>}
-        </div>
+        <SignInGate signedIn={Boolean(token)} />
 
         {loadError && <p className="mt-4 text-[13px] text-red-700">Could not load your profile ({loadError}).</p>}
 

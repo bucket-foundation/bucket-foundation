@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AcademyFrame from "./AcademyFrame";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -62,17 +63,7 @@ export default function AcademyPage({ searchParams }: { searchParams?: Record<st
           </Link>
         </div>
       </div>
-      <iframe
-        src={src}
-        title="Bucket Academy"
-        loading="eager"
-        style={{
-          width: "100%",
-          height: "calc(100dvh - 58px - 41px)",
-          border: 0,
-          display: "block",
-        }}
-      />
+      <AcademyFrame src={src} />
     </>
   );
 }
