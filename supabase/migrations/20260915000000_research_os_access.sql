@@ -32,8 +32,12 @@ create table if not exists graph.node_grants (
   expires_at    timestamptz,
   check ((grantee_id is not null) <> (grantee_group is not null))
 );
-create unique index if not exists node_grants_person_role_uq on graph.node_grants (node_id, grantee_id, role) where grantee_id is not null;
-create unique index if not exists node_grants_group_role_uq on graph.node_grants (node_id, grantee_group, role) where grantee_group is not null;
+-- Full (not partial) unique indexes: PostgREST upserts name only the
+-- conflict columns, and Postgres matches ON CONFLICT to a partial index only
+-- when the predicate is repeated. Nulls are distinct, so each index binds
+-- the rows of its own grantee kind alone.
+create unique index if not exists node_grants_person_role_uq on graph.node_grants (node_id, grantee_id, role);
+create unique index if not exists node_grants_group_role_uq on graph.node_grants (node_id, grantee_group, role);
 create index if not exists node_grants_grantee_idx on graph.node_grants (grantee_id);
 alter table graph.node_grants enable row level security;
 do $$ begin
