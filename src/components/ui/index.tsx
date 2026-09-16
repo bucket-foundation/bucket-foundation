@@ -13,7 +13,7 @@ export const BTN_SECONDARY =
   "inline-flex items-center justify-center px-4 py-2 text-[12px] small-caps tracking-[0.14em] border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:bg-[color:var(--bone-2)] min-h-[44px] rounded-sm";
 export const LINK = "underline decoration-[color:var(--gold)] underline-offset-4 text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)]";
 
-export function PageHeader({ eyebrow, title, lede, actions }: { eyebrow?: string; title: string; lede?: ReactNode; actions?: ReactNode }) {
+export function PageHeader({ eyebrow, title, lede, actions }: { eyebrow?: ReactNode; title: string; lede?: ReactNode; actions?: ReactNode }) {
   return (
     <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
       <div className="min-w-0 max-w-2xl">

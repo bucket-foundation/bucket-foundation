@@ -149,7 +149,7 @@ export default function HomeClient() {
             <Link href="/research-os/workspace" className={BTN_PRIMARY}>
               open the workspace
             </Link>
-            <Link href="/canon/search" className={BTN_SECONDARY}>
+            <Link href="/research-os/map" className={BTN_SECONDARY}>
               the map
             </Link>
           </>
@@ -250,8 +250,8 @@ export default function HomeClient() {
       )}
 
       <nav aria-label="Elsewhere in Research OS" className="flex flex-wrap gap-x-6 gap-y-2 text-[13px]">
-        <Link href="/academy" className={LINK}>lessons and recall</Link>
-        <Link href="/canon/search" className={LINK}>the canon on the globe</Link>
+        <Link href="/research-os/learn" className={LINK}>lessons and recall</Link>
+        <Link href="/research-os/map" className={LINK}>the canon on the globe</Link>
         <Link href="/research-os/profile" className={LINK}>levels, consent, privacy</Link>
         <Link href="/account" className={LINK}>account</Link>
       </nav>

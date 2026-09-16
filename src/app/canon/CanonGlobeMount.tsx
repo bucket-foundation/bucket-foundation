@@ -140,6 +140,9 @@ interface Props {
    * its bone surface, and the container between them carries no background.
    * Interactive mount only. */
   layout?: "default" | "home";
+  /** Inside Research OS: the drawer also offers "work on this", which opens
+   * the workspace with the selected claim or figure as the Find query. */
+  workspaceLinks?: boolean;
 }
 
 const DEFAULT_CONTAINER_CLASSNAME =
@@ -194,6 +197,7 @@ export default function CanonGlobeMount({
   scrollRef,
   variant,
   layout,
+  workspaceLinks,
 }: Props) {
   if (decorative) {
     return (
@@ -210,6 +214,7 @@ export default function CanonGlobeMount({
       globeWrapperClassName={globeWrapperClassName}
       globeWrapperStyle={globeWrapperStyle}
       layout={layout}
+      workspaceLinks={workspaceLinks}
     />
   );
 }
@@ -220,7 +225,8 @@ function InteractiveCanonGlobeMount({
   globeWrapperClassName = "",
   globeWrapperStyle,
   layout = "default",
-}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout">) {
+  workspaceLinks = false,
+}: Pick<Props, "branches" | "containerClassName" | "globeWrapperClassName" | "globeWrapperStyle" | "layout" | "workspaceLinks">) {
   const home = layout === "home";
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
@@ -831,6 +837,7 @@ function InteractiveCanonGlobeMount({
             setYear((y) => Math.max(y, site.year));
           }
         }}
+        workspaceLinks={workspaceLinks}
       />
     </div>
   );
@@ -839,12 +846,15 @@ function InteractiveCanonGlobeMount({
 function Drawer({
   selected,
   transparent = false,
+  workspaceLinks = false,
   onClose,
   onSelectMarker,
 }: {
   selected: CanonMarker | null;
   /** No surface of its own: the page ground shows through. */
   transparent?: boolean;
+  /** Offer "work on this", which opens the Research OS workspace. */
+  workspaceLinks?: boolean;
   onClose: () => void;
   /** Called when the user clicks a same-era or nearby cross-reference. */
   onSelectMarker?: (id: string) => void;
@@ -1062,6 +1072,14 @@ function Drawer({
 
               {/* Primary CTA row, like the branch page's top nav */}
               <div className="flex flex-wrap gap-1.5">
+                {workspaceLinks && (
+                  <Link
+                    href={`/research-os/workspace?q=${encodeURIComponent(search ? search.title : selected.title)}`}
+                    className="small-caps text-[10px] tracking-[0.18em] bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] px-3 py-1.5 transition"
+                  >
+                    work on this →
+                  </Link>
+                )}
                 {/* Open the canonical page when one exists */}
                 {search ? (
                   <Link

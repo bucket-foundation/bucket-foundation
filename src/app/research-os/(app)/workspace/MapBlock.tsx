@@ -27,7 +27,7 @@ export default function MapBlock({
             canon claims for {concept} →
           </Link>
         )}
-        <Link href={`/canon/search?${q}`} className={link}>
+        <Link href={`/research-os/map?${q}`} className={link}>
           find on the globe →
         </Link>
         {branchSlug && (

@@ -1,5 +1,38 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-16: the Academy and the canon map inside Research OS
+
+Branch `site-local-2026-09-14`. Founder direction: "upgrade academy to fit the same form inside
+research os now, not route elsewhere, and upgrade it itself to fit function and form; same with
+canon search, their components need to be used in utility of research os". Full account:
+`docs/RESEARCH-OS-APP.md` (Learn, Map).
+
+### Added
+
+- `src/lib/academy/fsrs.ts`, `src/lib/academy/engine.ts`: TypeScript ports of
+  `learning/app/js/fsrs.js`, `engine.js`, and the parts of `adaptive.js` they use (leverage, the
+  encompassing map, proficiency, FIRe, the daily route, grading, streaks, summaries, the merge
+  from `auth.js`). `scripts/test-academy-engine.ts` (`npm run test:academy`, 6 tests).
+- `src/lib/academy/progress-store.ts` (local keys unchanged, server sync through the session),
+  `src/lib/academy/corpus-client.ts`.
+- The Learn module: `src/app/research-os/(app)/learn/{useAcademy,Lesson,Drill,LearnHome,
+  BranchView,AtomView,StudySession}.tsx` and the routes `learn`, `learn/[branch]`,
+  `learn/[branch]/[atom]`, `learn/[branch]/study`. Markdown and math through react-markdown,
+  remark-gfm, remark-math, rehype-katex, katex.
+- The Map module: `src/app/research-os/(app)/map/page.tsx`; `workspaceLinks` on
+  `CanonGlobeMount` (the drawer's "work on this"); `?q=` on the workspace pre-fills and runs Find.
+
+### Changed
+
+- Every Learn link points into Research OS: `learnTargetFor`, the shell, home, header, the depth
+  ladder, mission, verify, the mastery profile, the credential builder, the sitemap.
+  `/academy?branch=&atom=` redirects to the same atom. Map links point at `/research-os/map`.
+
+### Removed
+
+- `src/app/academy/AcademyFrame.tsx` (the iframe bridge; the app no longer frames the PWA).
+  `learning/app` stays as the corpus source and the standalone build.
+
 ## 2026-09-16: system-wide auth and the Research OS application shell
 
 Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Founder direction

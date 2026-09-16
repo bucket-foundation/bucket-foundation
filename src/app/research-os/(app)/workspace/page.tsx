@@ -82,7 +82,7 @@
  * feedback; loadRoute() (already called after every successful Check)
  * refreshes it here. See learning/research-os/GUIDANCE.md.
  */
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import SignInGate from "@/components/auth/SignInGate";
@@ -291,7 +291,11 @@ export default function ResearchOsWorkspacePage() {
     setSessionId(readOrCreateSessionId());
   }, []);
 
-  const [locateQuery, setLocateQuery] = useState("");
+  // ?q=<query> (from the map's "work on this") pre-fills Find and runs it once signed in.
+  const [locateQuery, setLocateQuery] = useState(() =>
+    typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("q")?.trim() ?? "" : ""
+  );
+  const locateFromUrl = useRef(typeof window !== "undefined" && Boolean(new URLSearchParams(window.location.search).get("q")?.trim()));
   const [locateResults, setLocateResults] = useState<Array<{ nodeId: string; slug: string; title: string; summary: string | null; citation: string }>>([]);
   const [quote, setQuote] = useState<{ kind?: "quote" | "summary"; quotable_span: string | null; locator?: string | null; citation: string } | null>(null);
   // ros-04, canvas item 3: "sources I have quoted", every distinct Quote
@@ -507,6 +511,14 @@ export default function ResearchOsWorkspacePage() {
       /* best-effort; the map still renders from the last known state */
     }
   }
+
+  useEffect(() => {
+    if (token && locateFromUrl.current && locateQuery.trim()) {
+      locateFromUrl.current = false;
+      void runLocate();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   async function runLocate() {
     if (!token || !locateQuery.trim()) return;

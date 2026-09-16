@@ -30,9 +30,8 @@ export const ACADEMY_BRANCH_FILES = [
 ] as const;
 
 export function academyHref(branchFile: string, atomId: string | null): string {
-  const q = new URLSearchParams({ branch: branchFile });
-  if (atomId) q.set("atom", atomId);
-  return `/academy?${q.toString()}`;
+  const base = `/research-os/learn/${encodeURIComponent(branchFile)}`;
+  return atomId ? `${base}/${encodeURIComponent(atomId)}` : base;
 }
 
 export function learnTargetFor(node: { branch?: string; provenance?: Record<string, unknown> | null }): LearnTarget | null {

@@ -12,20 +12,20 @@ test("an academy atom node links to its lesson", () => {
   assert.ok(t);
   assert.equal(t.branchFile, "02-physics");
   assert.equal(t.atomId, "waves");
-  assert.equal(t.href, "/academy?branch=02-physics&atom=waves");
+  assert.equal(t.href, "/research-os/learn/02-physics/waves");
 });
 
 test("a canon node in a branch with an academy corpus links to the branch", () => {
   const t = learnTargetFor({ branch: "01-mathematics", provenance: { type: "primary_source" } });
   assert.ok(t);
   assert.equal(t.atomId, null);
-  assert.equal(t.href, "/academy?branch=01-mathematics");
+  assert.equal(t.href, "/research-os/learn/01-mathematics");
   assert.equal(learnTargetFor({ branch: "05-biophysics" })?.branchFile, "biophysics");
   assert.equal(learnTargetFor({ branch: "09-deep-history" }), null);
 });
 
 test("academyHref encodes", () => {
-  assert.equal(academyHref("07-mind", "a b"), "/academy?branch=07-mind&atom=a+b");
+  assert.equal(academyHref("07-mind", "a b"), "/research-os/learn/07-mind/a%20b");
 });
 
 test("recallFor reads the card and reports recall, mastery, and due", () => {

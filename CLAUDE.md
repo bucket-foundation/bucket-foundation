@@ -185,7 +185,7 @@ Secret, do not use it. Cleanup tracked in `bkt-*` bead.
 
 The learning system.
 
-**Bucket Academy** is a learning app shipped 2026-06-12..15. Lives in `learning/app/`
+**Bucket Academy** is the Learn module of Research OS as of 2026-09-16 (`docs/RESEARCH-OS-APP.md`; engine port in `src/lib/academy/{fsrs,engine}.ts`, surfaces under `src/app/research-os/(app)/learn`, `/academy` redirects there). The original app, still the corpus source and a standalone build, shipped 2026-06-12..15 and lives in `learning/app/`
 (vanilla-JS PWA: `js/{fsrs,engine,adaptive,diagnostic,assess,auth,auth-ui,tutor,
 onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 `corpus/*.json`), mirrored to `public/academy-app/` by `scripts/sync-academy.mjs`
