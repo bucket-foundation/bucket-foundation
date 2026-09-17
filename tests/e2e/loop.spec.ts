@@ -65,10 +65,32 @@ test("learn: a deck, an atom, and its drill", async () => {
   await expect(page.getByText(/recorded/i)).toBeVisible();
 });
 
+test("the node page carries the standing and the verbs; search opens a node", async () => {
+  await page.goto("/research-os/n/academy-02-physics-kinematics");
+  await expect(page.getByRole("heading", { name: /kinematics/i })).toBeVisible();
+  for (const name of ["learn", "sources", "check", "transfer", "around", "produce", "access"]) {
+    await expect(page.locator(`#${name}`)).toBeVisible();
+  }
+  await page.keyboard.press("Control+k");
+  const box = page.getByPlaceholder("search the graph");
+  await expect(box).toBeVisible();
+  await box.fill("rayleigh");
+  await expect(page.getByRole("option").first()).toBeVisible();
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/\/research-os\/n\//);
+});
+
+test("the map is the graph", async () => {
+  await page.goto("/research-os/map?branch=02-physics");
+  await expect(page.getByRole("heading", { name: /the graph/i })).toBeVisible();
+  await expect(page.getByRole("img", { name: /02-physics graph/i })).toBeVisible();
+  await expect(page.getByText(/nodes · /)).toBeVisible();
+});
+
 test("the workspace and the map render inside the shell", async () => {
   await page.goto("/research-os/workspace");
   await expect(page.getByRole("heading", { name: /why is the sky blue/i })).toBeVisible();
-  await page.goto("/research-os/map");
+  await page.goto("/research-os/map?view=globe");
   await expect(page.getByRole("heading", { name: /the canon on the globe/i })).toBeVisible();
   await expect(page.getByPlaceholder(/search canon/i)).toBeVisible();
 });

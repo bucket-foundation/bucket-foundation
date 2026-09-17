@@ -13,6 +13,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { configured, verifyLearner } from "@/lib/research-os/db";
 import { closeAssignment, createAssignment, listAssignments, listAssignmentsForLearner, verifyClassStaff } from "@/lib/research-os/class-db";
+import { grantAccess, loadNodeAccess } from "@/lib/research-os/access-db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -54,7 +55,18 @@ export async function POST(req: NextRequest) {
   if (body.action === "create") {
     if (!body.targetSlug?.trim()) return bad(400, "target_required");
     const r = await createAssignment(staff, body.classId, body.targetSlug.trim(), body);
-    return r.ok ? NextResponse.json({ assignment: r.value }, NO_STORE) : bad(r.error === "forbidden" ? 403 : r.error === "write_failed" ? 500 : 400, r.error);
+    if (!r.ok) return bad(r.error === "forbidden" ? 403 : r.error === "write_failed" ? 500 : 400, r.error);
+    // A class is a region: a private or shared node the assigner owns becomes
+    // visible to the class it is assigned to (IDEAL-STATE.md, Access × class).
+    try {
+      const node = await loadNodeAccess(r.value.targetNodeId);
+      if (node && node.visibility !== "public" && node.ownerId === staff.id) {
+        await grantAccess(node, { id: staff.id, groups: [] }, { group: `class:${body.classId}` }, "view");
+      }
+    } catch {
+      /* the assignment stands; sharing is best-effort */
+    }
+    return NextResponse.json({ assignment: r.value }, NO_STORE);
   }
   if (body.action === "close") {
     if (!body.assignmentId) return bad(400, "assignment_required");
