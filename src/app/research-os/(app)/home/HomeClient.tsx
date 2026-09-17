@@ -6,6 +6,7 @@ import { useSession } from "@/providers/SessionProvider";
 import SignInGate from "@/components/auth/SignInGate";
 import ClassesPanel from "./ClassesPanel";
 import ConnectionsPanel from "./ConnectionsPanel";
+import LoopPanel from "./LoopPanel";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LINK, LoadingState, PageHeader, Panel, StageChip } from "@/components/ui";
 
 /**
@@ -145,7 +146,7 @@ export default function HomeClient() {
       <PageHeader
         eyebrow="Research OS"
         title="today"
-        lede={<>Hello, {name}. Five levels of interaction with one graph: access, awareness, understanding, internalization, production.</>}
+        lede={<>Hello, {name}. Where you stand on the five levels, and the next step on each.</>}
         actions={
           <>
             <Link href="/research-os/workspace" className={BTN_PRIMARY}>
@@ -157,6 +158,8 @@ export default function HomeClient() {
           </>
         }
       />
+
+      <LoopPanel />
 
       {needsProfile && (
         <Panel title="two questions first">

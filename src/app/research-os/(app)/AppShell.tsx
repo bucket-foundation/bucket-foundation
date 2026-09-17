@@ -27,6 +27,7 @@ const LEARN: Item[] = [
   { href: "/research-os/workspace", label: "Workspace", hint: "find, quote, check, organize", match: ["/research-os/workspace"] },
   { href: "/research-os/learn", label: "Learn", hint: "lessons and recall", match: ["/research-os/learn"] },
   { href: "/research-os/map", label: "Map", hint: "the canon on the globe", match: ["/research-os/map"] },
+  { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },
   { href: "/research-os/profile", label: "Profile", hint: "levels, consent, privacy", match: ["/research-os/profile"] },
 ];
 

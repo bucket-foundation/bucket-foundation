@@ -31,6 +31,13 @@ Productions, Sharing with a class).
 - Learn test yourself: `src/lib/academy/assess.ts` (port of `assess.js`), `AssessmentSession.tsx`,
   `/research-os/learn/[branch]/assess`; `scripts/test-academy-assess.ts`.
 
+### Added, fourth pass
+
+- The loop block at the top of home (`LoopPanel.tsx`, `/api/research-os/loop`), with a
+  start-here first run; `/research-os/productions` (`ProductionsList.tsx`) and a Productions
+  entry in the shell; the production list API returns node titles;
+  `src/lib/research-os/connections-db.ts` shared by the connections and loop routes.
+
 ### Verified
 
 On the local stack, signed in: create a class (teacher, join code), push mastered Learn

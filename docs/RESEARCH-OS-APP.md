@@ -22,7 +22,7 @@ The teach group shows for an email on `RESEARCH_OS_REVIEWER_EMAILS` or a teacher
 
 ## Home
 
-`/research-os/home` is where sign-in lands. It reads the person's game state (`/api/research-os/profile`), open assignments (`/api/research-os/assignments?mine=1`), and the current path (`/api/research-os/route` plus `/api/research-os/state`), and shows: level, XP, streak, and badges; what to continue; where the person stands on the current chain with a level chip per node; the open questions on the branch; and a prompt to finish the two-question profile when it is missing.
+`/research-os/home` is where sign-in lands. At the top, the loop block (`LoopPanel`, `/api/research-os/loop`) shows the five levels as the person's live state with one next action each: nodes owned and imports (Access), nodes opened (Awareness), nodes held and decks started (Understanding), connections held and the nearest bridge (Internalization), productions by status and the nodes they became (Production). A first run shows a three-step way in instead. `/research-os/productions` lists everything the person produced with its status and the node it became. Below, it reads the person's game state (`/api/research-os/profile`), open assignments (`/api/research-os/assignments?mine=1`), and the current path (`/api/research-os/route` plus `/api/research-os/state`), and shows: level, XP, streak, and badges; what to continue; where the person stands on the current chain with a level chip per node; the open questions on the branch; and a prompt to finish the two-question profile when it is missing.
 
 ## Learn
 
