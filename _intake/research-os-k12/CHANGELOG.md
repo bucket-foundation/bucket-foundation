@@ -1,5 +1,25 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-17: everything researched in one graph; the workspace over the full scope
+
+Branch `site-local-2026-09-14`. Founder direction: "you should be able to use the full scope that
+is in search canon and everything should be able to connect, there should be a node knowledge graph
+somewhere that connects canon to mastery; bring together everything we have ever researched".
+
+### Added
+
+- `scripts/research-os/ingest/canon-all.ts`: claims (599) and their concepts (105), primary
+  papers from every branch (135), figures (99), sites (47), bridges (30) as nodes; edges
+  example_of, derives_from, cites, contributes, authored, bridges. `src/lib/research-os/ingest/
+  link.ts`, the canon-to-mastery linker; `scripts/test-research-os-link.ts`.
+- Migration `20260916040000_research_os_canon_kinds.sql`: node kinds `figure`, `site`; edge kinds
+  `contributes`, `authored`, `bridges`.
+- The map lists every branch in the graph and filters by source; canon edges dashed.
+- `workspace/TargetPicker.tsx`: the workspace opens on any node; the route API resolves the
+  target's branch; the header reads from the target.
+- `inChunks` in `db.ts`: id-list queries run in chunks (PostgREST rejects long URLs), used by the
+  subgraph and learner-state loaders, the graph API, and the connections loader.
+
 ## 2026-09-17: the ideal state, moves 1 to 3
 
 Branch `site-local-2026-09-14`. Founder direction: "i want the ideal state to be accomplished"

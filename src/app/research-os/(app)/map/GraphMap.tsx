@@ -14,6 +14,7 @@ interface GNode {
   tier: number;
   frontierFlag: string | null;
   visibility: string;
+  source: string;
 }
 interface GEdge {
   fromId: string;
@@ -31,16 +32,27 @@ interface GraphData {
   signedIn: boolean;
 }
 
-export const BRANCHES: { id: string; label: string }[] = [
-  { id: "00-learning-to-learn", label: "Learning to learn" },
-  { id: "01-mathematics", label: "Mathematics" },
-  { id: "02-physics", label: "Physics" },
-  { id: "03-chemistry", label: "Chemistry" },
-  { id: "04-information", label: "Information" },
-  { id: "05-biophysics", label: "Biophysics" },
-  { id: "06-cosmology", label: "Cosmology" },
-  { id: "07-mind", label: "Mind" },
-];
+const branchLabel = (id: string) => id.replace(/^\d+-/, "").replace(/-/g, " ");
+
+/** What a node came from, for the stroke and the filter: the Academy, the canon, the person's own work. */
+const SOURCE_OF: Record<string, string> = {
+  academy_atom: "atoms",
+  seed: "atoms",
+  canon_claim: "claims",
+  canon_concept: "claims",
+  canon_bridge: "claims",
+  canon_entry: "papers",
+  canon_paper: "papers",
+  canon_source: "papers",
+  canon_figure: "figures",
+  canon_site: "figures",
+  production: "productions",
+  import: "productions",
+};
+const SOURCE_STROKE: Record<string, string> = { atoms: "var(--basalt-3)", claims: "var(--aegean-deep)", papers: "var(--gold-deep)", figures: "var(--laurel-deep)", productions: "var(--crimson)" };
+const SOURCES = ["atoms", "claims", "papers", "figures", "productions"] as const;
+const PRODUCTION_KINDS = new Set(["production", "extension", "replication", "peer_review", "hypothesis"]);
+const sourceOf = (n: GNode) => SOURCE_OF[n.source] ?? (PRODUCTION_KINDS.has(n.kind) || n.source === "import" ? "productions" : "atoms");
 
 const STAGE_FILL: Record<string, string> = {
   access: "var(--basalt-3)",
@@ -66,6 +78,15 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
   const [q, setQ] = useState(initialQuery);
   const [layer, setLayer] = useState<"standing" | "class">("standing");
   const [hover, setHover] = useState<string | null>(null);
+  const [branches, setBranches] = useState<{ id: string; nodes: number }[]>([]);
+  const [show, setShow] = useState<Set<string>>(() => new Set(SOURCES));
+
+  useEffect(() => {
+    fetch("/api/research-os/graph?list=1", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : { branches: [] }))
+      .then((j: { branches?: { id: string; nodes: number }[] }) => setBranches(j.branches ?? []))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -82,7 +103,9 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
     };
   }, [branch]);
 
-  const layout = useMemo(() => (data ? layoutGraph(data.nodes.map((n) => ({ id: n.id, tier: n.tier, title: n.title })), data.edges.filter((e) => e.kind === "prerequisite")) : null), [data]);
+  const shown = useMemo(() => (data ? data.nodes.filter((n) => show.has(sourceOf(n))) : []), [data, show]);
+  const shownIds = useMemo(() => new Set(shown.map((n) => n.id)), [shown]);
+  const layout = useMemo(() => (data ? layoutGraph(shown.map((n) => ({ id: n.id, tier: n.tier, title: n.title })), data.edges.filter((e) => shownIds.has(e.fromId) && shownIds.has(e.toId))) : null), [data, shown, shownIds]);
   const pos = useMemo(() => new Map((layout?.placed ?? []).map((p) => [p.id, p])), [layout]);
   const byId = useMemo(() => new Map((data?.nodes ?? []).map((n) => [n.id, n])), [data]);
   const needle = q.trim().toLowerCase();
@@ -112,18 +135,19 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-center gap-2">
         <div role="tablist" aria-label="Branch" className="flex flex-wrap gap-1">
-          {BRANCHES.map((b) => (
+          {(branches.length ? branches : [{ id: branch, nodes: 0 }]).map((b) => (
             <button
               key={b.id}
               role="tab"
               aria-selected={branch === b.id}
+              title={b.nodes ? `${b.nodes} nodes` : undefined}
               onClick={() => {
                 setBranch(b.id);
                 router.replace(`/research-os/map?branch=${encodeURIComponent(b.id)}`);
               }}
               className={"small-caps text-[10px] tracking-[0.16em] px-3 py-2 border rounded-sm min-h-[36px] " + (branch === b.id ? "border-[color:var(--gold-deep)] text-[color:var(--basalt)] bg-[color:var(--bone)]" : "border-[color:var(--hairline)] text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)]")}
             >
-              {b.label}
+              {branchLabel(b.id)}
             </button>
           ))}
         </div>
@@ -153,7 +177,29 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
           </ul>
         )}
         {layer === "class" && <span>Darker gold: more of your learners hold the node at Understanding or above.</span>}
-        {data && <span className="ml-auto [font-variant-numeric:tabular-nums]">{data.nodes.length} nodes · {data.edges.length} edges</span>}
+        <div role="group" aria-label="Show" className="flex flex-wrap gap-1">
+          {SOURCES.map((src) => (
+            <button
+              key={src}
+              type="button"
+              aria-pressed={show.has(src)}
+              onClick={() =>
+                setShow((prev) => {
+                  const next = new Set(prev);
+                  if (next.has(src)) next.delete(src);
+                  else next.add(src);
+                  return next;
+                })
+              }
+              className={"small-caps tracking-[0.14em] px-2 py-1 border rounded-sm inline-flex items-center gap-1 " + (show.has(src) ? "border-[color:var(--basalt-3)] text-[color:var(--basalt)]" : "border-[color:var(--hairline)] text-[color:var(--basalt-3)] opacity-60")}
+            >
+              <span className="inline-block w-2.5 h-2.5 rounded-full" style={{ border: `2px solid ${SOURCE_STROKE[src]}` }} />
+              {src}
+              {data ? ` · ${data.nodes.filter((n) => sourceOf(n) === src).length}` : ""}
+            </button>
+          ))}
+        </div>
+        {data && <span className="ml-auto [font-variant-numeric:tabular-nums]">{shown.length} of {data.nodes.length} nodes · {data.edges.length} edges</span>}
       </div>
 
       {status === null ? (
@@ -172,25 +218,36 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
             ))}
             <g stroke="var(--hairline)" strokeWidth="1" fill="none">
               {data.edges
-                .filter((e) => e.kind === "prerequisite")
+                .filter((e) => shownIds.has(e.fromId) && shownIds.has(e.toId))
                 .map((e) => {
                   const a = pos.get(e.fromId);
                   const b = pos.get(e.toId);
                   if (!a || !b) return null;
                   const lit = hover === e.fromId || hover === e.toId;
                   const mx = (a.x + b.x) / 2;
-                  return <path key={`${e.fromId}-${e.toId}`} d={`M${a.x + R},${a.y} C${mx},${a.y} ${mx},${b.y} ${b.x - R},${b.y}`} stroke={lit ? "var(--gold-deep)" : "var(--hairline)"} strokeWidth={lit ? 1.5 : 1} />;
+                  const canon = e.kind !== "prerequisite";
+                  return (
+                    <path
+                      key={`${e.fromId}-${e.toId}-${e.kind}`}
+                      d={`M${a.x + R},${a.y} C${mx},${a.y} ${mx},${b.y} ${b.x - R},${b.y}`}
+                      stroke={lit ? "var(--gold-deep)" : canon ? "var(--aegean-deep)" : "var(--hairline)"}
+                      strokeOpacity={lit ? 1 : canon ? 0.35 : 1}
+                      strokeDasharray={canon ? "3 3" : undefined}
+                      strokeWidth={lit ? 1.5 : 1}
+                    />
+                  );
                 })}
             </g>
-            {data.nodes.map((n) => {
+            {shown.map((n) => {
               const p = pos.get(n.id);
               if (!p) return null;
               const f = fillFor(n);
+              const stroke = n.frontierFlag ? "var(--gold-deep)" : SOURCE_STROKE[sourceOf(n)];
               const dim = matches && !matches.has(n.id);
               return (
                 <g key={n.id} transform={`translate(${p.x},${p.y})`} opacity={dim ? 0.18 : 1} style={{ cursor: "pointer" }} onMouseEnter={() => setHover(n.id)} onMouseLeave={() => setHover(null)} onClick={() => router.push(`/research-os/n/${encodeURIComponent(n.slug)}`)}>
                   {assignedIds.has(n.id) && <rect x={-R - 3} y={-R - 3} width={2 * R + 6} height={2 * R + 6} fill="none" stroke="var(--crimson)" strokeWidth="1.5" />}
-                  <circle r={R} fill={f.fill} fillOpacity={f.opacity} stroke={n.frontierFlag ? "var(--gold-deep)" : "var(--basalt-3)"} strokeWidth={n.frontierFlag ? 2.5 : 0.75} />
+                  <circle r={R} fill={f.fill} fillOpacity={f.opacity} stroke={stroke} strokeWidth={n.frontierFlag ? 2.5 : 1.25} />
                   <text x={R + 5} y={4} fontSize="11" fill="var(--basalt)" style={{ pointerEvents: "none" }}>
                     {n.title.length > 30 ? n.title.slice(0, 29) + "…" : n.title}
                   </text>

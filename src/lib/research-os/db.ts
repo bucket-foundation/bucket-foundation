@@ -129,6 +129,21 @@ interface StateRow {
 }
 
 /** Every node + prerequisite/derivation/citation/canon edge in one branch (Phase 0: '02-physics'). */
+/**
+ * PostgREST filters travel in the URL, and a long `in (...)` list of ids
+ * fails with "URI too long". Run a query per chunk of ids and merge.
+ */
+export const IN_CHUNK = 60;
+export async function inChunks<T>(ids: string[], run: (chunk: string[]) => Promise<{ data: T[] | null; error: { message: string } | null }>): Promise<T[]> {
+  const out: T[] = [];
+  for (let i = 0; i < ids.length; i += IN_CHUNK) {
+    const { data, error } = await run(ids.slice(i, i + IN_CHUNK));
+    if (error) throw new Error(error.message);
+    if (data) out.push(...data);
+  }
+  return out;
+}
+
 export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]; edges: GraphEdge[] }> {
   const svc = graphService();
   const { data: nodeRows, error: nodeErr } = await svc
@@ -155,12 +170,13 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
   const ids = nodes.map((n) => n.id);
   if (ids.length === 0) return { nodes, edges: [] };
 
-  const { data: edgeRows, error: edgeErr } = await svc
-    .from("edges")
-    .select("id,from_id,to_id,kind,weight,confidence,confidence_source")
-    .in("from_id", ids);
-  if (edgeErr) throw new Error(`loadSubgraph: edge query failed: ${edgeErr.message}`);
-  const edges: GraphEdge[] = ((edgeRows as EdgeRow[]) || []).map((r) => ({
+  let edgeRows: EdgeRow[];
+  try {
+    edgeRows = await inChunks<EdgeRow>(ids, (chunk) => svc.from("edges").select("id,from_id,to_id,kind,weight,confidence,confidence_source").in("from_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>);
+  } catch (err) {
+    throw new Error(`loadSubgraph: edge query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  const edges: GraphEdge[] = (edgeRows || []).map((r) => ({
     id: r.id,
     fromId: r.from_id,
     toId: r.to_id,
@@ -176,13 +192,13 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
 export async function loadLearnerStates(learnerId: string, nodeIds: string[]): Promise<LearnerNodeState[]> {
   if (nodeIds.length === 0) return [];
   const svc = graphService();
-  const { data, error } = await svc
-    .from("learner_node_state")
-    .select("node_id,stage,confidence,updated_at")
-    .eq("learner_id", learnerId)
-    .in("node_id", nodeIds);
-  if (error) throw new Error(`loadLearnerStates: query failed: ${error.message}`);
-  return ((data as StateRow[]) || []).map((r) => ({
+  let data: StateRow[];
+  try {
+    data = await inChunks<StateRow>(nodeIds, (chunk) => svc.from("learner_node_state").select("node_id,stage,confidence,updated_at").eq("learner_id", learnerId).in("node_id", chunk) as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>);
+  } catch (err) {
+    throw new Error(`loadLearnerStates: query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  return (data || []).map((r) => ({
     nodeId: r.node_id,
     stage: r.stage as LearnerNodeState["stage"],
     confidence: r.confidence,
@@ -214,13 +230,14 @@ export async function loadLearnerStatesForMany(learnerIds: string[], nodeIds: st
   const out = new Map<string, LearnerNodeState[]>();
   if (learnerIds.length === 0 || nodeIds.length === 0) return out;
   const svc = graphService();
-  const { data, error } = await svc
-    .from("learner_node_state")
-    .select("learner_id,node_id,stage,confidence,updated_at")
-    .in("learner_id", learnerIds)
-    .in("node_id", nodeIds);
-  if (error) throw new Error(`loadLearnerStatesForMany: query failed: ${error.message}`);
-  for (const r of (data as (StateRow & { learner_id: string })[]) || []) {
+  let data: (StateRow & { learner_id: string })[];
+  try {
+    const learners = learnerIds.slice(0, IN_CHUNK);
+    data = await inChunks<StateRow & { learner_id: string }>(nodeIds, (chunk) => svc.from("learner_node_state").select("learner_id,node_id,stage,confidence,updated_at").in("learner_id", learners).in("node_id", chunk) as unknown as Promise<{ data: (StateRow & { learner_id: string })[] | null; error: { message: string } | null }>);
+  } catch (err) {
+    throw new Error(`loadLearnerStatesForMany: query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  for (const r of data || []) {
     const state: LearnerNodeState = { nodeId: r.node_id, stage: r.stage as LearnerNodeState["stage"], confidence: r.confidence, updatedAt: r.updated_at };
     if (!out.has(r.learner_id)) out.set(r.learner_id, []);
     out.get(r.learner_id)!.push(state);

@@ -89,7 +89,9 @@ test("the map is the graph", async () => {
 
 test("the workspace and the map render inside the shell", async () => {
   await page.goto("/research-os/workspace");
-  await expect(page.getByRole("heading", { name: /why is the sky blue/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /what are you working toward/i })).toBeVisible();
+  await page.goto("/research-os/workspace?target=why-the-sky-is-blue");
+  await expect(page.getByRole("heading", { level: 1, name: /why the sky is blue/i })).toBeVisible();
   await page.goto("/research-os/map?view=globe");
   await expect(page.getByRole("heading", { name: /the canon on the globe/i })).toBeVisible();
   await expect(page.getByPlaceholder(/search canon/i)).toBeVisible();

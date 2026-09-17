@@ -20,6 +20,10 @@ Research OS is the product (`learning/research-os/INTEGRATION-PLAN.md`). The sit
 
 The teach group shows for an email on `RESEARCH_OS_REVIEWER_EMAILS` or a teacher or librarian membership in any class (`isClassStaffAnywhere` in `src/lib/research-os/class-db.ts`).
 
+## The graph
+
+One graph holds everything researched. `scripts/research-os/ingest/academy-import.ts` writes the 487 Academy atoms and their prerequisite edges; `scripts/research-os/ingest/canon-all.ts` writes the canon on top: one `concept` per claim folder (105), one `fact` or `law` per claim card (599), one `primary_source` per paper across every branch (135), one `figure` (99), one `site` (47), and one `concept` per cross-branch bridge cluster (30), 1,013 nodes and 1,424 edges. Canon meets mastery through edges: a claim `example_of` its concept and `derives_from` the atoms it names, a concept `derives_from` the atoms its claims name, a paper `cites` the atoms it names, a figure `contributes` to atoms and `authored` papers by author name, a bridge `bridges` its member claims. The links come from `src/lib/research-os/ingest/link.ts`, an IDF-weighted overlap over titles and summaries within a branch, recorded with a confidence and the shared words. Every node carries `provenance.type` (`academy_atom`, `canon_claim`, `canon_concept`, `canon_paper`, `canon_figure`, `canon_site`, `canon_bridge`, `production`, `import`), which the map and the node page read.
+
 ## Node
 
 `/research-os/n/<slug>` is the center (`src/app/research-os/(app)/n`). One read, `/api/research-os/node`, returns the node, the viewer's standing with its evidence, prerequisites and dependents, directions, the Learn target, the viewer's productions on it and the public nodes that extend, replicate, or review it, the viewer's verbs, the assignments targeting it, and for staff the class holders by level. The page shows the standing and what raised it, then the five levels as verbs in place: learn (the lesson and drill for the atom it came from, through `useAcademy`), sources (quote with a locator, kept for the next two), check (an explanation against the quotes, with the forcing step when a class turns it on), transfer (a prompt built from the node's dependents, held for a teacher), around (rests on, unlocks, where it leads, open questions, relations across branches), produce (a production, extension, replication, or peer review from this node through the one form, `ProduceForm`), class (assignments targeting it; for staff, learners by level, the holds and productions waiting on this node with decide in place, and assign in place), and access.
@@ -44,7 +48,7 @@ Surfaces: `/research-os/learn` (every deck with the person's progress), `/resear
 
 ## Map
 
-The map is the graph. `/research-os/map` lays one branch out by tier (`src/lib/research-os/graph-layout.ts`, a barycenter ordering over prerequisite edges) from `/api/research-os/graph?branch=`: every node a point colored by the viewer's standing, prerequisite edges as lines, the frontier ringed gold, assignments in the viewer's classes boxed red, a find box, and for staff a class heatmap layer (the share of learners at Understanding or above per node). Click opens the node page. `?view=globe` shows the canon globe (`CanonGlobeMount`, the same component as the public `/canon/search`) with "work on this" in its drawer.
+The map is the graph. `/research-os/map` lists every branch the graph holds and lays one out by tier (`src/lib/research-os/graph-layout.ts`, a barycenter ordering over prerequisite edges) from `/api/research-os/graph?branch=`: every node a point colored by the viewer's standing, prerequisite edges as lines, the frontier ringed gold, assignments in the viewer's classes boxed red, a find box, a filter by what nodes came from (atoms, claims, papers, figures, productions; canon edges dashed), and for staff a class heatmap layer (the share of learners at Understanding or above per node). Click opens the node page. `?view=globe` shows the canon globe (`CanonGlobeMount`, the same component as the public `/canon/search`) with "work on this" in its drawer.
 
 ## Class
 
@@ -73,6 +77,10 @@ An import with a public URL is fetched on the server (`src/lib/research-os/impor
 ## End to end
 
 `npm run e2e` (`playwright.config.ts`, `tests/e2e/loop.spec.ts`) runs the loop as a person against the dev server and the local stack: the sign-in redirect, an email code from the mail catcher, home, a deck and an atom with a graded drill, the workspace, the map, the account page, sign out. `E2E_CHROME` points it at a system Chrome; `E2E_BASE_URL` and `E2E_MAIL_URL` override the defaults. The site-ci workflow runs the same suite on demand (workflow_dispatch) over a fresh local stack.
+
+## Workspace
+
+`/research-os/workspace` without a target is the picker: search the whole graph, your open assignments, the map, a deck, the seed path. With `?target=<slug>` it lays the path to that node from what you hold; the route resolves the target's branch, the header reads from the target, and the node page is one link away. Every node in the graph can be a target.
 
 ## Primitives
 

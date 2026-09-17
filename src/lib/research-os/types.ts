@@ -18,7 +18,11 @@ export type NodeKind =
   | "hypothesis"
   | "extension"
   | "replication"
-  | "peer_review";
+  | "peer_review"
+  // an accepted production of a new claim; a canon figure; a site on the globe.
+  | "production"
+  | "figure"
+  | "site";
 
 export type EdgeKind =
   | "prerequisite"
@@ -32,7 +36,12 @@ export type EdgeKind =
   | "extends"
   | "replicates"
   | "reviews"
-  | "answers";
+  | "answers"
+  // canon-all: a figure contributes to a concept, a figure authored a paper,
+  // a bridge cluster bridges its member claims.
+  | "contributes"
+  | "authored"
+  | "bridges";
 
 /** The five levels of interaction, in order; see `Level` below for the current framing. */
 export type Stage = "access" | "awareness" | "understanding" | "internalization" | "production";

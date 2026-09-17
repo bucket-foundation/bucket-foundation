@@ -25,7 +25,7 @@ interface Item {
 
 const LEARN: Item[] = [
   { href: "/research-os/home", label: "Home", hint: "today, your path, your classes", match: ["/research-os/home"] },
-  { href: "/research-os/workspace", label: "Path", hint: "your route to a target", match: ["/research-os/workspace", "/research-os/n"] },
+  { href: "/research-os/workspace", label: "Workspace", hint: "any node: find, quote, check, produce", match: ["/research-os/workspace", "/research-os/n"] },
   { href: "/research-os/learn", label: "Learn", hint: "lessons and recall", match: ["/research-os/learn"] },
   { href: "/research-os/map", label: "Map", hint: "the graph, the globe", match: ["/research-os/map"] },
   { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },

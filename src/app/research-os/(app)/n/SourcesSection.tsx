@@ -19,7 +19,15 @@ export default function SourcesSection({ data, quotes, onQuote, onChanged }: { d
   const [got, setGot] = useState<QuoteResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const p = data.node.provenance ?? {};
-  const line = [p.author, p.year, p.title, p.publisher].filter(Boolean).join(" · ");
+  const line =
+    p.type === "canon_claim"
+      ? [typeof p.video === "string" ? `From "${p.video}"` : null, typeof p.timestamp === "string" ? `at ${p.timestamp}` : null, typeof p.concept === "string" ? `concept: ${String(p.concept).replace(/-/g, " ")}` : null].filter(Boolean).join(" · ")
+      : p.type === "canon_figure"
+        ? [typeof p.lifespan === "string" ? p.lifespan : null, Array.isArray(p.works) ? `${(p.works as { title: string }[]).length} primary works` : null].filter(Boolean).join(" · ")
+        : p.type === "canon_site"
+          ? [typeof p.year === "number" ? (p.year < 0 ? `${-p.year} BCE` : `${p.year} CE`) : null, typeof p.lat === "number" ? `${p.lat}, ${p.lng}` : null].filter(Boolean).join(" · ")
+          : [p.author, p.year, p.title, p.publisher].filter(Boolean).join(" · ");
+  const url = typeof p.url === "string" ? p.url : typeof p.wikipedia === "string" ? p.wikipedia : null;
 
   async function quote() {
     setBusy(true);
@@ -43,9 +51,9 @@ export default function SourcesSection({ data, quotes, onQuote, onChanged }: { d
     <Section id="sources" level="awareness" title="sources" meta={quotes.length ? `${quotes.length} quoted` : undefined}>
       <div className="flex flex-col gap-3">
         {line ? <p className="text-[13px] text-[color:var(--basalt-2)]">{line}</p> : <p className="text-[13px] text-[color:var(--basalt-3)]">No provenance recorded on this node.</p>}
-        {typeof p.url === "string" && (
-          <a href={p.url} target="_blank" rel="noreferrer" className="text-[12px] underline underline-offset-4 text-[color:var(--aegean-deep)] break-all">
-            {p.url}
+        {url && (
+          <a href={url} target="_blank" rel="noreferrer" className="text-[12px] underline underline-offset-4 text-[color:var(--aegean-deep)] break-all">
+            {url}
           </a>
         )}
         {typeof p.doi === "string" && <span className="text-[12px] font-mono text-[color:var(--basalt-3)]">doi {p.doi}</span>}

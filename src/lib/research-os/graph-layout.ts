@@ -62,9 +62,9 @@ export function layoutGraph(nodes: LayoutNode[], edges: LayoutEdge[]): Layout {
   }
   const rows = Math.max(1, ...byCol.map((c) => c.length));
   const placed: Placed[] = [];
+  // Columns align to the top, so the first screen of a tall branch shows nodes.
   byCol.forEach((c, ci) => {
-    const offset = (rows - c.length) / 2;
-    c.forEach((n, ri) => placed.push({ id: n.id, col: ci, row: ri, x: PAD_X + ci * COL_W, y: PAD_Y + (offset + ri) * ROW_H }));
+    c.forEach((n, ri) => placed.push({ id: n.id, col: ci, row: ri, x: PAD_X + ci * COL_W, y: PAD_Y + ri * ROW_H }));
   });
   return { placed, columns: tiers, rows, width: PAD_X * 2 + Math.max(1, tiers.length) * COL_W, height: PAD_Y * 2 + rows * ROW_H };
 }

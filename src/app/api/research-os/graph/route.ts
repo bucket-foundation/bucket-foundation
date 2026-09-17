@@ -6,7 +6,7 @@
  * per node by level (the heatmap). Signed out: public nodes, no standing.
  */
 import { NextRequest, NextResponse } from "next/server";
-import { configured, graphService, loadSubgraph, verifyLearner } from "@/lib/research-os/db";
+import { IN_CHUNK, configured, graphService, inChunks, loadSubgraph, verifyLearner } from "@/lib/research-os/db";
 import { filterSubgraphForViewer } from "@/lib/research-os/access-db";
 import { listMyClasses } from "@/lib/research-os/classes";
 
@@ -18,7 +18,15 @@ const STAGES = ["access", "awareness", "understanding", "internalization", "prod
 
 export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
-  const branch = (new URL(req.url).searchParams.get("branch") || "02-physics").trim();
+  const url = new URL(req.url);
+  if (url.searchParams.get("list")) {
+    const { data } = await graphService().from("nodes").select("branch,kind").limit(20000);
+    const counts = new Map<string, number>();
+    ((data as { branch: string }[]) || []).forEach((r) => counts.set(r.branch, (counts.get(r.branch) ?? 0) + 1));
+    const branches = Array.from(counts.entries()).map(([id, nodes]) => ({ id, nodes })).sort((a, b) => a.id.localeCompare(b.id));
+    return NextResponse.json({ branches }, NO_STORE);
+  }
+  const branch = (url.searchParams.get("branch") || "02-physics").trim();
   if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(branch)) return bad(400, "bad_branch");
   const viewerId = await verifyLearner(req);
   let graph;
@@ -35,25 +43,26 @@ export async function GET(req: NextRequest) {
   let holders: Record<string, Record<string, number>> | null = null;
   let learners = 0;
   if (viewerId && ids.length) {
-    const [{ data: st }, classes] = await Promise.all([
-      svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", ids),
+    const [st, classes] = await Promise.all([
+      inChunks<{ node_id: string; stage: string }>(ids, (chunk) => svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", chunk) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []),
       listMyClasses(viewerId),
     ]);
-    ((st as { node_id: string; stage: string }[]) || []).forEach((r) => (standing[r.node_id] = r.stage));
+    st.forEach((r) => (standing[r.node_id] = r.stage));
     const classIds = classes.map((c) => c.id);
     if (classIds.length) {
-      const { data: asg } = await svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", classIds).in("target_node_id", ids).is("closed_at", null);
+      const { data: asg } = await svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", classIds).is("closed_at", null);
       const nameOf = new Map(classes.map((c) => [c.id, c.name]));
-      assignments = ((asg as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]) || []).map((a) => ({ nodeId: a.target_node_id, title: a.title, className: nameOf.get(a.class_id) ?? "", dueAt: a.due_at }));
+      const idSet = new Set(ids);
+      assignments = ((asg as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]) || []).filter((a) => idSet.has(a.target_node_id)).map((a) => ({ nodeId: a.target_node_id, title: a.title, className: nameOf.get(a.class_id) ?? "", dueAt: a.due_at }));
       const staffIds = classes.filter((c) => c.role === "teacher" || c.role === "librarian").map((c) => c.id);
       if (staffIds.length) {
         const { data: members } = await svc.from("class_members").select("learner_id").in("class_id", staffIds);
         const learnerIds = Array.from(new Set(((members as { learner_id: string }[]) || []).map((m) => m.learner_id)));
         learners = learnerIds.length;
         if (learnerIds.length) {
-          const { data: rows } = await svc.from("learner_node_state").select("node_id,stage").in("learner_id", learnerIds).in("node_id", ids);
+          const rows = await inChunks<{ node_id: string; stage: string }>(ids, (chunk) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", learnerIds.slice(0, IN_CHUNK)).in("node_id", chunk) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []);
           holders = {};
-          ((rows as { node_id: string; stage: string }[]) || []).forEach((r) => {
+          rows.forEach((r) => {
             const h = (holders![r.node_id] = holders![r.node_id] ?? Object.fromEntries(STAGES.map((s) => [s, 0])));
             h[r.stage] = (h[r.stage] ?? 0) + 1;
           });
@@ -64,7 +73,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json(
     {
       branch,
-      nodes: nodes.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, frontierFlag: n.frontierFlag ?? null, visibility: n.visibility ?? "public" })),
+      nodes: nodes.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, frontierFlag: n.frontierFlag ?? null, visibility: n.visibility ?? "public", source: String((n.provenance as { type?: string } | undefined)?.type ?? "") })),
       edges: edges.map((e) => ({ fromId: e.fromId, toId: e.toId, kind: e.kind })),
       standing,
       assignments,

@@ -86,6 +86,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import SignInGate from "@/components/auth/SignInGate";
+import TargetPicker from "./TargetPicker";
 import ProduceBlock, { type ProduceKind } from "./ProduceBlock";
 import {
   LEARNER_CONFIDENCE_VALUES,
@@ -109,6 +110,7 @@ const DEFAULT_TARGET_SLUG = "why-the-sky-is-blue";
 // The routed target: ?target=<slug> (an assignment's deep link) or the
 // Phase 0 default. Read once at module load in the browser; the server
 // render uses the default and the client re-renders with the same value.
+const HAS_TARGET = typeof window !== "undefined" && Boolean(new URLSearchParams(window.location.search).get("target")?.trim());
 const TARGET_SLUG =
   typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("target")?.trim() || DEFAULT_TARGET_SLUG : DEFAULT_TARGET_SLUG;
 
@@ -118,7 +120,7 @@ const TARGET_SLUG =
 // prompt below so the evidence log at least records WHICH item was
 // answered, forwarded verbatim rather than checked against a pool table
 // that does not exist yet.
-const TRANSFER_ITEM_ID = "why-the-sky-is-blue::sunset-red-lambda4-v1";
+const TRANSFER_ITEM_ID = `${TARGET_SLUG}::transfer-v1`;
 
 const SESSION_STORAGE_KEY = "research-os-session-id";
 const NOTES_STORAGE_KEY = `research-os-notes:${TARGET_SLUG}`;
@@ -876,6 +878,8 @@ export default function ResearchOsWorkspacePage() {
     }
   }
 
+  if (!HAS_TARGET) return <TargetPicker />;
+
   return (
     <main>
       <div className="max-w-[1100px] mx-0 px-0 py-0">
@@ -885,12 +889,23 @@ export default function ResearchOsWorkspacePage() {
           </Link>
           {" / workspace"}
         </div>
-        <h1 className="font-display uppercase text-[clamp(1.5rem,4vw,2.5rem)] leading-[1.1] chisel text-[color:var(--basalt)]">
-          why is the sky blue?
+        <h1 className="font-display uppercase text-[clamp(1.5rem,4vw,2.5rem)] leading-[1.1] chisel text-[color:var(--basalt)] [text-wrap:balance]">
+          {route?.target?.title ?? "workspace"}
         </h1>
         <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
-          The seed path: grade 3-5 facts about light and air, forward to Rayleigh scattering and the
-          lambda-to-the-minus-4 law. Your level on each node is recorded as you work.
+          {route?.target?.summary ?? "The path to this target from what you already hold. Your level on each node is recorded as you work."}
+          {route?.target && (
+            <>
+              {" "}
+              <Link href={`/research-os/n/${encodeURIComponent(route.target.slug)}`} className="underline decoration-[color:var(--gold)] underline-offset-4">
+                open the node page
+              </Link>
+              {" · "}
+              <Link href="/research-os/workspace" className="underline decoration-[color:var(--gold)] underline-offset-4">
+                change target
+              </Link>
+            </>
+          )}
         </p>
 
         {/* Auth panel */}
@@ -1385,8 +1400,9 @@ export default function ResearchOsWorkspacePage() {
                 <div className="p-4 bg-[color:var(--bone)]">
                   <div className="font-display uppercase text-[14px] mb-2">transfer item</div>
                   <p className="text-[12px] text-[color:var(--basalt-2)] mb-2">
-                    A sunset looks red. Using the lambda^-4 law, explain why the SAME scattering that makes
-                    the daytime sky blue makes a sunset red instead.
+                    {TARGET_SLUG === DEFAULT_TARGET_SLUG
+                      ? "A sunset looks red. Using the lambda^-4 law, explain why the SAME scattering that makes the daytime sky blue makes a sunset red instead."
+                      : `Take "${route?.target?.title ?? "this target"}" somewhere it was not taught: a case, a field, or a question outside this branch. Where does it hold, and where does it stop applying?`}
                   </p>
                   <textarea
                     value={transferAnswer}
