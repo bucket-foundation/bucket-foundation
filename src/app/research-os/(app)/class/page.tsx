@@ -199,10 +199,9 @@ export default function ResearchOsClassPage() {
           class view
         </h1>
         <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
-          The classes your own reviewer email owns: state per learner and seed-path node, who is
-          blocked and where, who is ready for a harder target, and every Production or
-          internalization transfer waiting on a decision. Gated to the same
-          RESEARCH_OS_REVIEWER_EMAILS allowlist as the review queue.
+          The classes you teach: state per learner and seed-path node, who is blocked and where,
+          who is ready for a harder target, and every Production or internalization transfer
+          waiting on a decision. Create a class from home and share its join code.
         </p>
 
         <SignInGate signedIn={Boolean(token)} />
@@ -255,8 +254,8 @@ export default function ResearchOsClassPage() {
                         learner
                       </th>
                       {c.grid.path.map((n) => (
-                        <th key={n.id} className="text-left text-[10px] small-caps tracking-[0.08em] text-[color:var(--basalt-2)] p-2 whitespace-nowrap max-w-[140px]">
-                          {n.title}
+                        <th key={n.id} title={n.title} className="text-left align-bottom text-[10px] small-caps tracking-[0.08em] text-[color:var(--basalt-2)] p-2 min-w-[132px] max-w-[132px]">
+                          <span className="block leading-[1.3] [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] overflow-hidden">{n.title}</span>
                         </th>
                       ))}
                     </tr>
