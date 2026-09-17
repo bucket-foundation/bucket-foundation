@@ -78,7 +78,7 @@ export default function LearnHome() {
                 <span>{r.streak} day streak</span>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
-                <Link href={`/research-os/learn/${r.deck.id}/study`} className={BTN_PRIMARY}>
+                <Link href={r.introduced > 0 ? `/research-os/learn/${r.deck.id}/study` : `/research-os/learn/${r.deck.id}/place`} className={BTN_PRIMARY}>
                   {r.introduced > 0 ? (r.due > 0 ? "review" : "continue") : "start"}
                 </Link>
                 <Link href={`/research-os/learn/${r.deck.id}`} className="inline-flex items-center px-3 text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)]">

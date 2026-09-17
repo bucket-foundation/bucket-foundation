@@ -51,6 +51,9 @@ export default function BranchView({ branch }: { branch: string }) {
             <Link href={`/research-os/learn/${branch}/study`} className={BTN_PRIMARY}>
               {a.routeItems.length > 0 ? `study today (${a.routeItems.length})` : "study"}
             </Link>
+            <Link href={`/research-os/learn/${branch}/place`} className={BTN_SECONDARY}>
+              {s.introduced === 0 ? "place me first" : "re-take placement"}
+            </Link>
             <Link href="/research-os/learn" className={BTN_SECONDARY}>
               all decks
             </Link>

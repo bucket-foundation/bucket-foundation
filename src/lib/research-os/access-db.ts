@@ -6,6 +6,7 @@
  * write. Never import from a client component.
  */
 import { graphService } from "./db";
+import { fetchTextFromUrl, SUMMARY_CHARS } from "./import-fetch";
 import {
   canView,
   decideRequest,
@@ -214,9 +215,13 @@ export async function decideAccessRequest(
 export async function createImport(
   ownerId: string,
   input: { kind: "dataset" | "paper" | "notes" | "corpus"; title: string; source?: Record<string, unknown> }
-): Promise<AccessResult<{ importId: string; nodeId: string }>> {
+): Promise<AccessResult<{ importId: string; nodeId: string; fetched: boolean }>> {
   const svc = graphService();
   const slug = `import-${ownerId.slice(0, 8)}-${Date.now().toString(36)}`;
+  // A source with a public URL is fetched so the node carries its text
+  // (import-fetch.ts); the import stays a title and a link when it fails.
+  const url = typeof input.source?.url === "string" ? input.source.url : null;
+  const fetched = url ? await fetchTextFromUrl(url) : null;
   const { data: node, error: nodeErr } = await svc
     .from("nodes")
     .insert({
@@ -225,8 +230,9 @@ export async function createImport(
       kind: input.kind === "paper" ? "primary_source" : "artifact",
       tier: 0,
       branch: "00-imports",
-      summary: null,
-      provenance: { type: "import", kind: input.kind, ...(input.source ?? {}) },
+      summary: fetched ? fetched.text.slice(0, SUMMARY_CHARS) : null,
+      worked_example: fetched ? { text: fetched.text, source: url } : null,
+      provenance: { type: "import", kind: input.kind, ...(input.source ?? {}), ...(fetched ? { fetched_title: fetched.title, fetched_bytes: fetched.bytes, fetched_at: new Date().toISOString() } : {}) },
       created_by: ownerId,
       owner_id: ownerId,
       visibility: "private",
@@ -240,5 +246,5 @@ export async function createImport(
     .select("id")
     .single();
   if (impErr || !imp) return { ok: false, error: "import_write_failed" };
-  return { ok: true, value: { importId: imp.id as string, nodeId: node.id as string } };
+  return { ok: true, value: { importId: imp.id as string, nodeId: node.id as string, fetched: Boolean(fetched) } };
 }

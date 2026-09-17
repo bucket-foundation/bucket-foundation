@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSession } from "@/providers/SessionProvider";
 import SignInGate from "@/components/auth/SignInGate";
 import ClassesPanel from "./ClassesPanel";
+import ConnectionsPanel from "./ConnectionsPanel";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LINK, LoadingState, PageHeader, Panel, StageChip } from "@/components/ui";
 
 /**
@@ -235,6 +236,8 @@ export default function HomeClient() {
           )}
         </Panel>
       </div>
+
+      <ConnectionsPanel />
 
       <ClassesPanel />
 

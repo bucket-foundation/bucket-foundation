@@ -50,6 +50,18 @@ Every write to `/api/academy/progress` runs `syncAcademyMastery` (`src/lib/resea
 
 The access block on a node lets its owner grant view to a whole class (`grantAccess` with the `class:<id>` group), from the classes the person belongs to.
 
+## Internalization on home
+
+`/api/research-os/connections` (`src/lib/research-os/connections.ts`) reads the person's understood nodes and every edge other than a prerequisite between them and nodes in other branches: a held connection when both ends are understood, a bridge one step away when one is. The home panel "across branches" lists both, each opening the workspace on the node, so the next transfer target is the one the graph names.
+
+## Imports with content
+
+An import with a public URL is fetched on the server (`src/lib/research-os/import-fetch.ts`: http(s) only, no local or private hosts, 8 s, 1 MB, HTML stripped to text). The node gets the first 600 characters as its summary and up to 6,000 as `worked_example.text`, so the workspace's quote and check tools read the source. A failed fetch leaves the import as a title and a link.
+
+## End to end
+
+`npm run e2e` (`playwright.config.ts`, `tests/e2e/loop.spec.ts`) runs the loop as a person against the dev server and the local stack: the sign-in redirect, an email code from the mail catcher, home, a deck and an atom with a graded drill, the workspace, the map, the account page, sign out. `E2E_CHROME` points it at a system Chrome; `E2E_BASE_URL` and `E2E_MAIL_URL` override the defaults. The site-ci workflow runs the same suite on demand (workflow_dispatch) over a fresh local stack.
+
 ## Primitives
 
 `src/components/ui/index.tsx`: `PageHeader`, `Panel`, `LoadingState`, `EmptyState`, `ErrorState`, `StageChip`, and the button and link class constants. New surfaces use these; older pages move over as they are touched.
