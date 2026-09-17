@@ -121,7 +121,7 @@ export default function PlacementSession({ branch }: { branch: string }) {
         )}
         <div className="flex flex-wrap gap-2">
           <Link href={`/research-os/learn/${branch}/study`} className={BTN_PRIMARY}>
-            study today's route
+            study today&rsquo;s route
           </Link>
           <Link href={`/research-os/learn/${branch}`} className={BTN_SECONDARY}>
             the deck

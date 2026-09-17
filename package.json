@@ -27,7 +27,7 @@
     "lint": "next lint",
     "test": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-kruse-token.ts && npm run test:auth && npm run test:academy",
     "test:auth": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-auth-paths.ts",
-    "test:academy": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-academy-engine.ts && npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-academy-diagnostic.ts",
+    "test:academy": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-academy-engine.ts && npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-academy-diagnostic.ts && npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-academy-assess.ts",
     "typecheck": "tsc --noEmit",
     "e2e": "playwright test",
     "db:local": "npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,pg_prove",

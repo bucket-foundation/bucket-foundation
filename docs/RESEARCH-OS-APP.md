@@ -30,6 +30,10 @@ The Academy runs inside the shell as the Learn module (`src/app/research-os/(app
 
 Surfaces: `/research-os/learn` (every deck with the person's progress), `/research-os/learn/[branch]` (summary, today's route, the atoms by shell with mastery), `/research-os/learn/[branch]/[atom]` (the lesson at three depths with the full text and equations, then retrieval at the depth mastery calls for), `/research-os/learn/[branch]/study` (today's route one item at a time). `/academy?branch=&atom=` redirects to the same atom, so every older link holds. A Research OS node's Learn link (`learnTargetFor`) opens its atom here.
 
+### Placement and test yourself
+
+`/research-os/learn/[branch]/place` runs the Academy's adaptive placement (`src/lib/academy/diagnostic.ts`: a log-odds belief per atom, the atom nearest 0.5 asked next, a confident "I knew it" flooring the prerequisite closure and "I did not" flooring the dependents, at most eighteen questions); known atoms are seeded as started with a modest schedule. A new deck starts there. `/research-os/learn/[branch]/assess` is the sealed run (`src/lib/academy/assess.ts`): ten items across started atoms at rising depth, answered before the answer shows, graded on the spot where the answer is a number or a short expression and self-checked at lower trust otherwise; every verdict feeds the scheduler at the item's depth, and missed atoms link back to study. Tests: `scripts/test-academy-diagnostic.ts`, `scripts/test-academy-assess.ts`.
+
 ## Map
 
 The canon globe (`src/app/canon/CanonGlobeMount.tsx`, the same component as the public `/canon/search`) runs inside the shell at `/research-os/map` with `workspaceLinks`: the drawer's first action on a claim or figure is "work on this", which opens the workspace with that title as the Find query (`/research-os/workspace?q=`). The workspace's Map block links back to the map with the node's title.

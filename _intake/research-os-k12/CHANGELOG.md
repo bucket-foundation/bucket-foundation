@@ -24,6 +24,13 @@ Productions, Sharing with a class).
   approval.
 - Class sharing in the workspace's access block.
 
+### Added, third pass
+
+- Learn placement: `src/lib/academy/diagnostic.ts` (port of `diagnostic.js`),
+  `PlacementSession.tsx`, `/research-os/learn/[branch]/place`; `scripts/test-academy-diagnostic.ts`.
+- Learn test yourself: `src/lib/academy/assess.ts` (port of `assess.js`), `AssessmentSession.tsx`,
+  `/research-os/learn/[branch]/assess`; `scripts/test-academy-assess.ts`.
+
 ### Verified
 
 On the local stack, signed in: create a class (teacher, join code), push mastered Learn
