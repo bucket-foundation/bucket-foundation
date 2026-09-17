@@ -86,6 +86,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import SignInGate from "@/components/auth/SignInGate";
+import ProduceBlock, { type ProduceKind } from "./ProduceBlock";
 import {
   LEARNER_CONFIDENCE_VALUES,
   LEARNER_CONFIDENCE_COPY,
@@ -348,6 +349,10 @@ export default function ResearchOsWorkspacePage() {
   const [transferSaved, setTransferSaved] = useState(false);
   const [production, setProduction] = useState({ claim: "", evidence: "", sources: "", transferProof: "", counterEvidence: "" });
   const [productionStatus, setProductionStatus] = useState<string | null>(null);
+  // The kind of production the form saves (ProduceBlock): a plain production
+  // of the target, or an extension / replication / peer review of a node.
+  const [productionKind, setProductionKind] = useState<"production" | ProduceKind>("production");
+  const [relatedNode, setRelatedNode] = useState<GraphNodeLite | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
 
   // ros-04, canvas item 3: a free scratch notes area in the right column,
@@ -767,6 +772,8 @@ export default function ResearchOsWorkspacePage() {
         body: JSON.stringify({
           targetNodeId: route.target.id,
           claim: production.claim,
+          kind: productionKind,
+          relatedNodeId: relatedNode?.id ?? null,
           evidence: production.evidence.split("\n").filter(Boolean),
           sources: production.sources.split("\n").filter(Boolean),
           transferProof: { text: production.transferProof },
@@ -1026,6 +1033,15 @@ export default function ResearchOsWorkspacePage() {
                   <AccessBlock nodeId={selected.id} token={token} />
                   <MapBlock node={selected} />
                   <PenBlock nodeId={selected.id} />
+                  <ProduceBlock
+                    node={selected}
+                    active={productionKind}
+                    onPick={(kind) => {
+                      setProductionKind(kind);
+                      setRelatedNode(selected);
+                      document.getElementById("production")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                  />
                 </div>
               )}
 
@@ -1374,6 +1390,15 @@ export default function ResearchOsWorkspacePage() {
               )}
 
               {/* Production form */}
+              <div id="production" />
+              {productionKind !== "production" && relatedNode && (
+                <p className="mb-2 text-[12px] text-[color:var(--basalt-2)]">
+                  A {productionKind.replace("_", " ")} of <span className="text-[color:var(--basalt)]">{relatedNode.title}</span>.{" "}
+                  <button type="button" onClick={() => { setProductionKind("production"); setRelatedNode(null); }} className="underline underline-offset-4">
+                    make it a plain production instead
+                  </button>
+                </p>
+              )}
               <div className="p-4 bg-[color:var(--bone)]">
                 <div className="font-display uppercase text-[14px] mb-2">production</div>
                 <label className="text-[11px] small-caps text-[color:var(--aegean-deep)]">claim</label>

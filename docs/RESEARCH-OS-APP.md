@@ -34,6 +34,22 @@ Surfaces: `/research-os/learn` (every deck with the person's progress), `/resear
 
 The canon globe (`src/app/canon/CanonGlobeMount.tsx`, the same component as the public `/canon/search`) runs inside the shell at `/research-os/map` with `workspaceLinks`: the drawer's first action on a claim or figure is "work on this", which opens the workspace with that title as the Find query (`/research-os/workspace?q=`). The workspace's Map block links back to the map with the node's title.
 
+## Class
+
+A teacher creates a class from the home page (`ClassesPanel`, `POST /api/research-os/classes {action: "create", name}`); the class gets a join code and the creator a teacher membership, and `reviewer_email` is set to the creator so the class grid and the review queue scope to them. Anyone enters a code to join as a learner; staff change roles on the roster. The reviewer gate (`verifyReviewer`) accepts a teacher or librarian membership beside the env allowlist, and the shell shows the teach group on the same test. Migration `20260916020000_research_os_class_codes.sql`; library `src/lib/research-os/classes.ts`.
+
+## Learn to graph
+
+Every write to `/api/academy/progress` runs `syncAcademyMastery` (`src/lib/research-os/learn-sync.ts`): each atom whose fused mastery meets `MASTERED_THRESHOLD` moves its ingested node (provenance type `academy_atom`, matched on deck and atom id) to Understanding through `onAcademyMastery`, which records the evidence and awards XP like every other transition. The same person reads one state in Learn, the workspace, and home.
+
+## Productions
+
+`graph.productions.kind` is `production`, `extension`, `replication`, or `peer_review`; `related_node_id` names the node acted on. The workspace's produce block on a node starts an extension, a replication, or a peer review of it in the Production form. On approval the production becomes a node of the matching kind in the target's branch, owned by the learner, with an edge to the node it acts on (`derives_from` the target for a production; `extends`, `replicates`, `reviews` otherwise), so accepted work is on the graph and citable (`src/lib/research-os/production-node.ts`; migrations `20260916030000` and `20260916030001`).
+
+## Sharing with a class
+
+The access block on a node lets its owner grant view to a whole class (`grantAccess` with the `class:<id>` group), from the classes the person belongs to.
+
 ## Primitives
 
 `src/components/ui/index.tsx`: `PageHeader`, `Panel`, `LoadingState`, `EmptyState`, `ErrorState`, `StageChip`, and the button and link class constants. New surfaces use these; older pages move over as they are touched.

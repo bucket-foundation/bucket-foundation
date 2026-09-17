@@ -64,6 +64,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { verifyRequestUser } from "@/lib/auth/verify";
+import { syncAcademyMastery } from "@/lib/research-os/learn-sync";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -212,5 +213,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   if (error) return json({ error: "write_failed" }, 500);
 
-  return json({ ok: true, written: rows.length });
+  // Learn to graph (docs/RESEARCH-OS-APP.md, Learn): a mastered atom moves
+  // its graph node to Understanding. Best-effort; the progress write above
+  // is what the client is waiting on.
+  let advanced = 0;
+  for (const row of rows) {
+    try {
+      advanced += (await syncAcademyMastery(uid, row.branch, row.data)).advanced;
+    } catch {
+      /* graph unavailable or not migrated */
+    }
+  }
+
+  return json({ ok: true, written: rows.length, advanced });
 }

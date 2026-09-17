@@ -69,6 +69,7 @@ export type EvidenceKind =
   | "open"
   | "explanation"
   | "check"
+  | "academy_mastery"
   | "transfer_item"
   | "production_submitted"
   | "production_returned"
@@ -171,6 +172,10 @@ export interface EvidenceEvent {
   confidence?: "high" | "medium" | "low";
   held?: boolean;
   heldReason?: string;
+  /** "academy_mastery": the Learn atom, its deck, and the fused mastery that crossed the threshold. */
+  atomId?: string;
+  branch?: string;
+  mastery?: number;
   note?: string;
   reviewerId?: string; // set only on a "teacher_review" / "production_returned" event
   reviewId?: string; // graph.teacher_reviews.id, set only on a "teacher_review" / "production_returned" event
@@ -311,6 +316,33 @@ export function onCorroborationRecorded(
     passagesAgree: context.passagesAgree,
   };
   return { nextStage: currentStage, event };
+}
+
+/**
+ * -> understanding from the Learn module: the person's fused mastery of the
+ * Academy atom this node was ingested from (provenance.type
+ * "academy_atom") crossed the mastered threshold. Learning the thing
+ * itself is what Understanding means, so the transition applies from
+ * access or awareness; a node already at understanding or beyond keeps its
+ * stage and records the evidence.
+ */
+export function onAcademyMastery(
+  currentStage: Stage,
+  learn: { atomId: string; branch: string; mastery: number; threshold: number },
+  now: string = new Date().toISOString(),
+): StageTransition {
+  const eligible = learn.mastery >= learn.threshold && !stageAtLeast(currentStage, "understanding");
+  const nextStage: Stage = eligible ? "understanding" : currentStage;
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "academy_mastery",
+    fromStage: currentStage,
+    toStage: nextStage,
+    atomId: learn.atomId,
+    branch: learn.branch,
+    mastery: +learn.mastery.toFixed(3),
+  };
+  return { nextStage, event };
 }
 
 /**

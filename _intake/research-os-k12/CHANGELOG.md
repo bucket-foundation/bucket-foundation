@@ -1,5 +1,36 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-17: the loop connected
+
+Branch `site-local-2026-09-14`. Founder direction: "get to work on all of this", after the
+level-by-level audit. Full account: `docs/RESEARCH-OS-APP.md` (Class, Learn to graph,
+Productions, Sharing with a class).
+
+### Added
+
+- The Academy (487 nodes, 820 prerequisite edges) and the 02-physics canon entries are
+  ingested into the local graph with the existing importers; the graph now holds 517 nodes.
+- Classes a teacher can create and anyone can join by code: migration
+  `20260916020000_research_os_class_codes.sql`, `src/lib/research-os/classes.ts`,
+  `/api/research-os/classes`, `ClassesPanel` on home; `verifyReviewer` accepts a teacher or
+  librarian membership.
+- Learn to graph: `onAcademyMastery` in `stages.ts` (evidence kind `academy_mastery`),
+  `src/lib/research-os/learn-sync.ts`, run after every `/api/academy/progress` write;
+  `scripts/test-research-os-learn-sync.ts`.
+- Production kinds and nodes: migrations `20260916030000_research_os_production_kinds.sql`
+  and `20260916030001_research_os_production_node_kind.sql`, `production-node.ts`
+  (an accepted production becomes a node with its edge), `kind` and `relatedNodeId` on the
+  production route, `ProduceBlock` in the workspace, the review route creating the node on
+  approval.
+- Class sharing in the workspace's access block.
+
+### Verified
+
+On the local stack, signed in: create a class (teacher, join code), push mastered Learn
+progress and read the node at Understanding, start an extension of that node, submit it with
+counter-evidence, approve it as the teacher, and read the new `extension` node in
+`02-physics` with its `extends` edge.
+
 ## 2026-09-16: the Academy and the canon map inside Research OS
 
 Branch `site-local-2026-09-14`. Founder direction: "upgrade academy to fit the same form inside

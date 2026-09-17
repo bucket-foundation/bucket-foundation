@@ -51,6 +51,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { PRODUCTION_KINDS, type ProductionKind } from "@/lib/research-os/production-node";
 import {
   configured,
   graphService,
@@ -100,6 +101,10 @@ export async function GET(req: NextRequest) {
 interface ProductionBody {
   id?: string;
   targetNodeId?: string;
+  /** production (default), extension, replication, or peer_review. */
+  kind?: string;
+  /** The node an extension, replication, or peer review acts on. */
+  relatedNodeId?: string | null;
   claim?: string;
   evidence?: unknown[];
   sources?: unknown[];
@@ -206,6 +211,8 @@ export async function POST(req: NextRequest) {
   };
   if (body.id) row.id = body.id;
   if (body.targetNodeId) row.target_node_id = body.targetNodeId;
+  if (typeof body.kind === "string" && PRODUCTION_KINDS.includes(body.kind as ProductionKind)) row.kind = body.kind;
+  if (body.relatedNodeId !== undefined) row.related_node_id = body.relatedNodeId;
   // source_provenance/duplicate_flag/counter_evidence_required are guard
   // output, only ever recomputed on a real submission (see above); a draft
   // save omits these keys so a prior submission's own guard results are

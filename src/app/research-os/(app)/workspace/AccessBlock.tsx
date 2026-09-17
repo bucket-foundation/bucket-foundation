@@ -25,6 +25,21 @@ const LABEL: Record<Visibility, string> = { public: "public", private: "private"
 
 export default function AccessBlock({ nodeId, token }: { nodeId: string; token: string | null }) {
   const [data, setData] = useState<AccessResponse | null>(null);
+  // Classes the person belongs to, for sharing a node with a whole class.
+  const [classes, setClasses] = useState<{ id: string; name: string; role: string }[]>([]);
+  const [shareClass, setShareClass] = useState("");
+
+  useEffect(() => {
+    if (!token) return;
+    let alive = true;
+    fetch("/api/research-os/classes", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : { classes: [] }))
+      .then((j: { classes?: { id: string; name: string; role: string }[] }) => alive && setClasses(j.classes ?? []))
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [token]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [purpose, setPurpose] = useState<Purpose>("cite");
@@ -157,6 +172,25 @@ export default function AccessBlock({ nodeId, token }: { nodeId: string; token: 
             className="px-2 py-0.5 rounded-full border border-[color:var(--gold)] small-caps text-[10px] tracking-[0.14em] hover:bg-[color:var(--gold)] hover:text-[color:var(--basalt)]"
           >
             request
+          </button>
+        </div>
+      )}
+      {data.isOwner && classes.length > 0 && (
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <label htmlFor="share-class" className="text-[color:var(--basalt-3)]">share with class</label>
+          <select id="share-class" value={shareClass} onChange={(e) => setShareClass(e.target.value)} className="border border-[color:var(--hairline)] px-2 py-1 text-[12px] bg-white/60">
+            <option value="">choose</option>
+            {classes.map((c) => (
+              <option key={c.id} value={c.id}>{c.name}</option>
+            ))}
+          </select>
+          <button
+            type="button"
+            disabled={busy || !shareClass}
+            onClick={() => void post({ action: "grant", granteeGroup: `class:${shareClass}`, role: "view" })}
+            className="underline underline-offset-4 disabled:opacity-50"
+          >
+            grant view
           </button>
         </div>
       )}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSession } from "@/providers/SessionProvider";
 import SignInGate from "@/components/auth/SignInGate";
+import ClassesPanel from "./ClassesPanel";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LINK, LoadingState, PageHeader, Panel, StageChip } from "@/components/ui";
 
 /**
@@ -234,6 +235,8 @@ export default function HomeClient() {
           )}
         </Panel>
       </div>
+
+      <ClassesPanel />
 
       {route.state === "ready" && route.value.openQuestions.length > 0 && (
         <Panel title="open questions on this branch" meta="frontier targets">
