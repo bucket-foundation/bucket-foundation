@@ -4,18 +4,21 @@ Target design. Updated as rows in `docs/PROBLEM-REGISTER.md` close. Current-stat
 
 ## Product
 
-One loop: read canon → cite → author gets paid over x402 on Base → agents discover via feed402. Every surface either serves the loop or lives in `apps/labs`.
+Research OS is the product (founder decision, 2026-09-15, `learning/research-os/INTEGRATION-PLAN.md`). Every surface built lives inside it. The canon and the citation rail are its backbone: read canon, cite, the author gets paid over x402 on Base, agents discover via feed402. K-12 is the first audience, libraries the first venue, and the five words (Access, Awareness, Understanding, Internalization, Production) are levels of interaction with one graph. The first release runs without a model.
 
-| Tier | Can do | Identity |
-|---|---|---|
-| Reader | Browse canon, papers, bridges, graph, academy, learn | none or email |
-| Author | Claim a wallet, see citations and payouts, submit canon via PR | email + wallet |
-| Agent | Free capped `/api/research`; paid insight tier with a key and receipts | key, optional wallet |
-| Admin | Accept canon, fund payouts, mint Story IP as an optional post-payment step | email + role |
+One account per person (`app.identities` keyed on `auth.users.id`, unique wallet and handle) carries identity facts rather than product tiers:
 
-One citation economy: feed402 envelope + x402 EIP-3009 settlement on Base, signed server-side. The Story Iliad testnet + Walrus + `public.*` path from bucket 1.0 retires along with `/library`, `/knowledge`, `AuthorContext`, `CiteTokensContext`, `ResearchContext`, `src/lib/story`, `src/lib/walrus`.
+| Fact on the account | Grants |
+|---|---|
+| email verified | learner surfaces, the workspace, the Academy, the map |
+| class membership with a role | teacher, librarian, parent, peer, reviewer, researcher surfaces (`learning/research-os/CLASS.md`) |
+| wallet linked | payouts as an author; citations settled to the wallet |
+| agent key | free capped `/api/research`; paid insight tier with receipts |
+| admin role | accept canon, fund payouts, mint Story IP as an optional post-payment step |
 
-The Academy stack is the reference pattern for every user-data route: verified caller token, service-role client, private schema PostgREST never exposes, per-user filter enforced in code, RLS as second layer, documented 503 when the DB is paused.
+One citation economy: feed402 envelope + x402 EIP-3009 settlement on Base, signed server-side. The Story Iliad testnet + Walrus + `public.*` path from bucket 1.0 retires along with `/library`, `/knowledge`, `AuthorContext`, `CiteTokensContext`, and `IpMetadataContext`. `apps/labs` holds only what INTEGRATION-PLAN.md section 9 freezes.
+
+The Academy stack is the reference pattern for every user-data route: verified caller (a cookie session read server-side, or a Bearer token from an agent), service-role client, private schema PostgREST never exposes, per-user filter enforced in code, RLS as second layer, documented 503 when the DB is paused. The Research OS routes follow it.
 
 ## Repo layout
 
