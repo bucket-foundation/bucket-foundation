@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e66b88d17d7b5403032eddd3678eccccfe50be2a8a556e6f4e4e89715a28339c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Noah was six hundred years old when the flood of waters was upon the earth.",
+        "claim": "Noah was six hundred years old when the flood waters covered the earth.",
+        "actor": "Noah",
+        "action": "was six hundred years old",
+        "object": "six hundred years old",
+        "place": "the earth",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

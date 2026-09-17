@@ -1,0 +1,56 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0e661fe9beff2ddb55dfd9691910813539d9d4859f94e957d23d7db9b861cced",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Abraham drew near, and said, Wilt thou also destroy the righteous with the wicked?",
+        "claim": "Abraham questions whether God would destroy righteous people along with the wicked",
+        "actor": "God",
+        "action": "destroy",
+        "object": "the righteous, the wicked",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Peradventure there be fifty righteous within the city: wilt thou also destroy and not spare the place for the fifty righteous that are therein?",
+        "claim": "Abraham asks whether God would spare the place if fifty righteous were found within it",
+        "actor": "God",
+        "action": "destroy, spare",
+        "object": "the place",
+        "place": "the city",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "That be far from thee to do after this manner, to slay the righteous with the wicked: and that the righteous should be as the wicked, that be far from thee: Shall not the Judge of all the earth do right?",
+        "claim": "Abraham asserts that the Judge of all the earth should not slay the righteous with the wicked",
+        "actor": "God",
+        "action": "slay, do right",
+        "object": "the righteous, the wicked",
+        "place": "the earth",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said, If I find in Sodom fifty righteous within the city, then I will spare all the place for their sakes.",
+        "claim": "God promises to spare the entire place if He finds fifty righteous within Sodom",
+        "actor": "the LORD",
+        "action": "spare",
+        "object": "all the place",
+        "place": "Sodom",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

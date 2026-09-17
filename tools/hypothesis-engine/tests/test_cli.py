@@ -3,33 +3,17 @@ from pathlib import Path
 
 from hte import cli
 
-FIXTURE_CACHE = str(Path(__file__).parent / "fixtures" / "llm-cache")
 
 
-def test_campaign_run_replay_only(tmp_path, capsys):
-    # These extra flags must match the config `tests/fixtures/llm-cache/` was
-    # seeded with (see `tests/test_runner.py`'s `FIXTURE_CONFIG`), since they
-    # change prompt text and so the cache key a replay-only run looks up.
+def test_campaign_run_writes_a_manifest_in_fake_mode(tmp_path, capsys, monkeypatch):
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
     rc = cli.main([
-        "campaign", "run",
-        "--corpus", "fixtures",
-        "--campaign", "fixture-seed",
-        "--out", str(tmp_path),
-        "--cache-dir", FIXTURE_CACHE,
-        "--replay-only",
-        "--seeds", "1",
-        "--generate-n", "2",
-        "--combinatorial-max-items", "5",
-        "--max-hypotheses", "8",
-        "--tournament-rounds", "1",
-        "--resolution", "century",
+        "campaign", "run", "--corpus", "production", "--campaign", "fixture-seed", "--out", str(tmp_path),
+        "--seeds", "1", "--generate-n", "2", "--combinatorial-max-items", "1", "--max-hypotheses", "20",
+        "--tournament-rounds", "1", "--resolution", "century",
     ])
     assert rc == 0
-    out = capsys.readouterr().out
-    assert "run written to" in out
-    # `_target_blind.json` (the target-blind check's persisted state, see
-    # `hte.runner._target_blind_check`) sits alongside the timestamped run
-    # directories under the campaign folder, so filter to directories only.
+    assert "run written to" in capsys.readouterr().out
     run_dirs = [p for p in (tmp_path / "fixture-seed").iterdir() if p.is_dir()]
     assert len(run_dirs) == 1
     assert (run_dirs[0] / "MANIFEST.json").is_file()
@@ -65,6 +49,17 @@ def test_calibrate_command_diagnose_writes_diagnostics_md(tmp_path, capsys):
     assert "reasons for the uncovered remainder" in out
     assert (tmp_path / "DIAGNOSTICS.md").is_file()
     assert (tmp_path / "diagnostics.json").is_file()
+
+
+def test_calibrate_command_shuffle_writes_link_shuffle_into_diagnostics_json(tmp_path, capsys):
+    rc = cli.main(["calibrate", "--corpus", "quantum-history", "--diagnose", "--shuffle", "--out", str(tmp_path)])
+    assert rc == 0
+    assert "link-shuffle diagnostic written to" in capsys.readouterr().out
+    diag = json.loads((tmp_path / "diagnostics.json").read_text())
+    assert "reasons" in diag
+    shuffle = diag["link_shuffle"]
+    assert 0.0 <= shuffle["prior_only_fraction"] <= 1.0
+    assert -1.0 <= shuffle["mean_correlation"] <= 1.0
 
 
 def test_calibrate_command_diagnose_with_explicit_cutoff_uses_discovery_date_mode(tmp_path):
@@ -173,14 +168,16 @@ def test_campaign_results_writes_per_actor_and_top_with_no_absolute_paths(tmp_pa
     assert isinstance(result["per_actor"], dict)
     assert result["per_actor"]  # the production corpus's own survivors name a real ACTOR
     for row in result["per_actor"].values():
-        assert set(row) >= {"max_P", "min_u", "best_elo", "n_survivors", "profile_projections"}
+        assert set(row) >= {"max_P", "min_u", "max_lift", "best_elo", "n_survivors", "profile_projections"}
         assert set(row["profile_projections"]) == {"consensus", "skeptic", "fringe", "uniform"}
 
     assert 0 < len(result["top"]) <= 10
     for entry in result["top"]:
-        assert set(entry) >= {"hypothesis_id", "address", "opinion", "elo", "robustness"}
-    elos = [e["elo"] for e in result["top"]]
-    assert elos == sorted(elos, reverse=True)
+        assert set(entry) >= {"hypothesis_id", "address", "opinion", "elo", "max_lift", "robustness"}
+    # `top` ranks by lift first, Elo second: assert the real sort key
+    # rather than the coincidental case where lift and Elo agree.
+    rank_keys = [(-e["max_lift"], -e["elo"]) for e in result["top"]]
+    assert rank_keys == sorted(rank_keys)
 
     assert result["self_report"]
 
@@ -219,6 +216,7 @@ def test_campaign_results_over_a_run_with_no_calibration_still_writes(tmp_path):
     assert result["calibration"] is None
     assert result["self_report"] == {}
     assert result["per_actor"]["actor-0"]["n_survivors"] == 1
+    assert result["per_actor"]["actor-0"]["n_unscored"] in (0, 1)
     assert result["per_actor"]["actor-0"]["best_elo"] == 1550.0
     assert result["top"][0]["hypothesis_id"] == "h1"
     assert str(tmp_path) not in out_path.read_text()

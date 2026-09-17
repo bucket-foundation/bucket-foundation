@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2c20399ac09c8efd8d4263214e556ee18577248b950ffff5b7e487bc7b2b5ffd",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Then Moses said unto Aaron, This is it that the LORD spake, saying, I will be sanctified in them that come nigh me, and before all the people I will be glorified.",
+        "claim": "Moses communicated to Aaron the LORD's words stating the LORD will be sanctified in those who approach Him and glorified before all people",
+        "actor": "Moses",
+        "action": "said",
+        "object": "Aaron; the divine message",
+        "place": "",
+        "mechanism": "speech",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Aaron held his peace.",
+        "claim": "Aaron remained silent in response to Moses's statement",
+        "actor": "Aaron",
+        "action": "held his peace",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

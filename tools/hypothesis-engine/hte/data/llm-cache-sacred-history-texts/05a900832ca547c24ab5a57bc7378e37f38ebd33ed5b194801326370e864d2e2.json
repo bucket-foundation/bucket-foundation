@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "2f62369434e145440c9ae2778b8171c639025bab561108854f5d898104b67bb2",
+  "response": {
+    "items": [
+      {
+        "kind": "practice",
+        "tier": "primary-text",
+        "quote": "24:1 And the LORD spake unto Moses, saying, 24:2 Command the children of Israel, that they bring unto thee pure oil olive beaten for the light, to cause the lamps to burn continually.",
+        "claim": "The text says the LORD told Moses to have the Israelites bring pure beaten olive oil to keep the lamps burning continually. The document gives only verse numbers 24:1-2. Naming the book as Leviticus comes from model-prior, not from the text, and is unverified.",
+        "actor": "the children of Israel (commanded by the LORD through Moses)",
+        "action": "bring pure beaten olive oil",
+        "object": "pure oil olive beaten, for the lamps",
+        "mechanism": "beaten olive oil used as lamp fuel so the lamps burn continually",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

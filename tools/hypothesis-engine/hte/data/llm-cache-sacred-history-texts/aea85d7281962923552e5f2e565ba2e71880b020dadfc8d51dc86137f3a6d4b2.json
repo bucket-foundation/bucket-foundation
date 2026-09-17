@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "07a2c458b43760ff4990bce9fee0b7114a448ad5f4d29571dcf3d3d8e0a34222",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And the men turned their faces from thence, and went toward Sodom",
+        "claim": "The document says the men turned away from where they were and went toward Sodom. This is a claim made in the text, not a confirmed historical event.",
+        "actor": "the men",
+        "action": "turned their faces from thence and went toward",
+        "object": "Sodom",
+        "place": "Sodom",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "but Abraham stood yet before the LORD",
+        "claim": "The document says Abraham stayed standing before the LORD after the men left. This is a claim made in the text, not a confirmed historical event.",
+        "actor": "Abraham",
+        "action": "stood yet before",
+        "object": "the LORD",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

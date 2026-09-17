@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1d33fa565bd19c100c838553e99b2c39554ac484ef854e28427ace0765013e29",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses and Aaron went out from Pharaoh",
+        "claim": "Moses and Aaron departed from Pharaoh's presence",
+        "actor": "Moses and Aaron",
+        "action": "went out from",
+        "object": "Pharaoh",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and Moses cried unto the LORD because of the frogs which he had brought against Pharaoh",
+        "claim": "Moses appealed to the LORD regarding the frogs brought against Pharaoh",
+        "actor": "Moses",
+        "action": "cried unto",
+        "object": "the LORD",
+        "place": "",
+        "mechanism": "because of the frogs which he had brought against Pharaoh",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

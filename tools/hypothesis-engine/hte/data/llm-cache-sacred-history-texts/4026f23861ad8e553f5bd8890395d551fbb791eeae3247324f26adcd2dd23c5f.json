@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9c3c485e46d374bee9113f3bdce8743608c636de84fa034ca8378d4e3142a047",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And when the LORD saw that he turned aside to see",
+        "claim": "The LORD observed someone turning aside to look",
+        "actor": "the LORD",
+        "action": "saw",
+        "object": "he turned aside to see",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "God called unto him out of the midst of the bush, and said, Moses, Moses",
+        "claim": "God called from within the bush and spoke the name Moses twice",
+        "actor": "God",
+        "action": "called",
+        "object": "him",
+        "place": "the midst of the bush",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he said, Here am I",
+        "claim": "The addressee responded with presence and readiness",
+        "actor": "he",
+        "action": "said",
+        "object": "Here am I",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

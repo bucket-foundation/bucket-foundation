@@ -1,0 +1,21 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0992e8f9fecb2592cbe44995addf5c6b459741fdb5a239f652761bca6870e3a5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses and Aaron went into the tabernacle of the congregation, and came out, and blessed the people: and the glory of the LORD appeared unto all the people.",
+        "claim": "The glory of the LORD appeared to all the people after Moses and Aaron blessed them",
+        "actor": "Moses and Aaron",
+        "action": "blessed",
+        "object": "people",
+        "place": "tabernacle of the congregation",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

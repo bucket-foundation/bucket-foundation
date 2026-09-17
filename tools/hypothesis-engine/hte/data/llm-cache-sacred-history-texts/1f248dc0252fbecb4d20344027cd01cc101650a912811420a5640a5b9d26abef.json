@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "1eb7cdd8d717c21d676db7a9cd7cbd090d25f7aa55db6cdfefeb072de6241e48",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "18:7 And Abraham ran unto the herd, and fetcht a calf tender and good, and gave it unto a young man; and he hasted to dress it.",
+        "claim": "Abraham ran to the herd, took a tender, good calf and gave it to a young man (a servant), who quickly prepared it.",
+        "actor": "Abraham",
+        "action": "fetched a calf from the herd and gave it to a young man to prepare",
+        "object": "a calf tender and good",
+        "mechanism": "A household servant ('a young man') slaughtered and prepared the animal quickly ('hasted to dress it'). The document calls this verse 18:7 but gives no wider context. Reading it as hospitality toward guests comes only from model-prior and is not in this text.",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

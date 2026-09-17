@@ -1,0 +1,54 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d366ed3eb6e7f7d5f45414c37cc29b9215db8be823be4f870c57981e8d952d88",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the angel of the LORD called unto Abraham out of heaven the second time",
+        "claim": "The angel of the LORD called to Abraham from heaven a second time",
+        "actor": "angel of the LORD",
+        "action": "called",
+        "object": "Abraham",
+        "place": "heaven",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "By myself have I sworn, saith the LORD, for because thou hast done this thing, and hast not withheld thy son, thine only son",
+        "claim": "God swore an oath because Abraham obeyed and did not withhold his son",
+        "actor": "the LORD",
+        "action": "sworn",
+        "mechanism": "thou hast done this thing, and hast not withheld thy son, thine only son",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "That in blessing I will bless thee, and in multiplying I will multiply thy seed as the stars of the heaven, and as the sand which is upon the sea shore; and thy seed shall possess the gate of his enemies",
+        "claim": "God promised to bless Abraham, multiply his descendants as numerous as stars and sand, and give them possession of their enemies' gates",
+        "actor": "I; thy seed",
+        "action": "will bless; will multiply; shall possess",
+        "object": "thee; thy seed; the gate of his enemies",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And in thy seed shall all the nations of the earth be blessed; because thou hast obeyed my voice",
+        "claim": "All nations of the earth shall be blessed through Abraham's seed because of his obedience",
+        "actor": "all the nations of the earth",
+        "action": "shall be blessed",
+        "mechanism": "thy seed; thou hast obeyed my voice",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "e1c19ff71c9e325b23c1d766b48c8968f2a261f2e0bd674e7a03b1c57555970c",
+  "response": {
+    "items": [
+      {
+        "kind": "framing-attribution",
+        "tier": "primary-text",
+        "quote": "12:1 And the LORD spake unto Moses, saying,",
+        "claim": "The text says the law that follows was spoken by the LORD to Moses. Passes 1 and 2 agree on this.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "framing-audience",
+        "tier": "primary-text",
+        "quote": "12:2 Speak unto the children of Israel, saying,",
+        "claim": "Moses is told to pass the law on to the children of Israel. Only pass 2 has this, but the words are in the document, so it is kept.",
+        "actor": "Moses",
+        "action": "speak unto",
+        "object": "the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "legal-condition",
+        "tier": "primary-text",
+        "quote": "If a woman have conceived seed, and born a man child:",
+        "claim": "The rule applies when a woman conceives and gives birth to a male child. Passes 1 and 2 agree on this.",
+        "actor": "a woman",
+        "action": "conceived seed, and born",
+        "object": "a man child",
+        "year": null
+      },
+      {
+        "kind": "legal-rule",
+        "tier": "primary-text",
+        "quote": "then she shall be unclean seven days;",
+        "claim": "After giving birth to a male child, the woman is ritually unclean for seven days. All three passes agree on this.",
+        "actor": "a woman who has born a man child",
+        "action": "shall be unclean",
+        "object": "seven days",
+        "mechanism": "ritual impurity for a fixed period after childbirth",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "legal-analogy",
+        "tier": "primary-text",
+        "quote": "according to the days of the separation for her infirmity shall she be unclean.",
+        "claim": "Her uncleanness after the birth is compared to the days of separation for her infirmity (menstrual impurity). All three passes agree on this. Reading 'infirmity' as menstruation is an unverified model-prior interpretation; the document itself does not say so.",
+        "actor": "a woman who has born a man child",
+        "action": "shall be unclean",
+        "object": "the days of the separation for her infirmity",
+        "mechanism": "treated like the days of separation for her infirmity",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

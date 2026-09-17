@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "924e477982d987f551352c62872c51b0702ab7e7f1f0937c7a96510297125879",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses let his father in law depart; and he went his way into his own land.",
+        "claim": "Moses let his father-in-law leave, and the father-in-law went back to his own land.",
+        "actor": "Moses",
+        "action": "let depart",
+        "object": "his father in law",
+        "place": "his own land (not named in the text)",
+        "stance": "positive",
+        "year": null,
+        "mechanism": "Departure: the father-in-law returns home with Moses's permission. The verse is numbered 18:27. Model-prior (unverified): this is probably Exodus 18:27, and the father-in-law is probably Jethro of Midian. The text itself names neither."
+      }
+    ]
+  }
+}

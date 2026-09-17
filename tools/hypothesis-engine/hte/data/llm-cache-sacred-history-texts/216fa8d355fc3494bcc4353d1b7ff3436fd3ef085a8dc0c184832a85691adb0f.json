@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c43ce0ee8fe77e9919c25981e30e64433404ee1058c4371e3823e739f1b2eb5c",
+  "response": {
+    "items": [
+      {
+        "quote": "Abraham begat Isaac",
+        "claim": "Abraham fathered Isaac",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "Abraham",
+        "action": "begat",
+        "object": "Isaac",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "Isaac was forty years old when he took Rebekah to wife",
+        "claim": "Isaac married Rebekah at age forty",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "Isaac",
+        "action": "took to wife",
+        "object": "Rebekah",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "the daughter of Bethuel the Syrian of Padanaram",
+        "claim": "Rebekah was the daughter of Bethuel the Syrian of Padanaram",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "Bethuel",
+        "action": "fathered",
+        "object": "Rebekah",
+        "place": "Padanaram",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

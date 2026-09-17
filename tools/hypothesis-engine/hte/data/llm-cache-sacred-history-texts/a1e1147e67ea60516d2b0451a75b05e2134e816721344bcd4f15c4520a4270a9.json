@@ -1,0 +1,54 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "4a3721d190dd50992882086be5879a8820c6d668fdc7643b7b84f370d5837af7",
+  "response": {
+    "items": [
+      {
+        "kind": "speech",
+        "tier": "primary-text (scriptural narrative, Exodus 32:7, KJV; reports what the LORD said, not independently verifiable)",
+        "quote": "And the LORD said unto Moses, Go, get thee down; for thy people, which thou broughtest out of the land of Egypt, have corrupted themselves:",
+        "claim": "The text reports that the LORD told Moses to go down because the people he had brought out of Egypt had corrupted themselves.",
+        "actor": "the LORD",
+        "action": "commanded Moses to go down and accused the people of corrupting themselves",
+        "object": "Moses; the people brought out of Egypt",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text (scriptural narrative, Exodus 32:8, KJV)",
+        "quote": "They have turned aside quickly out of the way which I commanded them:",
+        "claim": "The text says the people quickly turned away from the way the LORD had commanded them.",
+        "actor": "the people (Israel)",
+        "action": "turned aside from the commanded way",
+        "object": "the way which the LORD commanded",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text (scriptural narrative, Exodus 32:8, KJV)",
+        "quote": "they have made them a molten calf, and have worshipped it, and have sacrificed thereunto",
+        "claim": "The text says the people made a molten (cast metal) calf, worshipped it, and offered sacrifices to it.",
+        "actor": "the people (Israel)",
+        "action": "made, worshipped, and sacrificed to",
+        "object": "a molten calf",
+        "mechanism": "casting a metal idol, followed by worship and sacrifice",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "speech",
+        "tier": "primary-text (scriptural narrative, Exodus 32:8, KJV)",
+        "quote": "and said, These be thy gods, O Israel, which have brought thee up out of the land of Egypt.",
+        "claim": "The text says the people declared that the calf was the god or gods who had brought Israel up out of Egypt.",
+        "actor": "the people (Israel)",
+        "action": "proclaimed the calf as their gods and credited it with the Exodus",
+        "object": "the molten calf",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

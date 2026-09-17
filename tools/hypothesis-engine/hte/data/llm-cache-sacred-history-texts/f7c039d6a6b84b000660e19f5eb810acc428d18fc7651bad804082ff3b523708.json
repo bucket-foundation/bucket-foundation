@@ -1,0 +1,87 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ec9123e173a7b5da12b8b2523cfe379dc84ae507cbe1a59c6ec0214a35651643",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "When Jethro, the priest of Midian, Moses' father in law, heard of all that God had done for Moses, and for Israel his people, and that the LORD had brought Israel out of Egypt",
+        "claim": "Jethro heard about God's actions for Moses and Israel and the exodus from Egypt",
+        "actor": "Jethro",
+        "action": "heard",
+        "object": "all that God had done for Moses and Israel; the exodus",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Then Jethro, Moses' father in law, took Zipporah, Moses' wife, after he had sent her back, And her two sons",
+        "claim": "Jethro took Zipporah and her two sons after Moses had sent them away",
+        "actor": "Jethro",
+        "action": "took",
+        "object": "Zipporah and her two sons",
+        "place": "",
+        "mechanism": "after he had sent her back",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for he said, I have been an alien in a strange land",
+        "claim": "Moses said he had been a sojourner in a foreign land",
+        "actor": "Moses",
+        "action": "said, had been",
+        "object": "",
+        "place": "a strange land",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for the God of my father, said he, was mine help, and delivered me from the sword of Pharaoh",
+        "claim": "God was Moses' help and delivered him from Pharaoh's threat",
+        "actor": "God",
+        "action": "was help, delivered",
+        "object": "me (Moses)",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Jethro, Moses' father in law, came with his sons and his wife unto Moses into the wilderness, where he encamped at the mount of God",
+        "claim": "Jethro came with his family to Moses in the wilderness and encamped at the mount of God",
+        "actor": "Jethro",
+        "action": "came, encamped",
+        "object": "unto Moses, at the mount of God",
+        "place": "the wilderness, the mount of God",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he said unto Moses, I thy father in law Jethro am come unto thee, and thy wife, and her two sons with her",
+        "claim": "Jethro announced to Moses that he had come with Moses' wife and two sons",
+        "actor": "Jethro",
+        "action": "said, am come",
+        "object": "unto Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

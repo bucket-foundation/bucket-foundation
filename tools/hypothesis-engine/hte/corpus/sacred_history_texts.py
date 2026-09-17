@@ -428,3 +428,15 @@ def load(
 __all__ = [
     "TextRecord", "TEXT_RECORDS", "split_passages", "ingest_passages", "load", "DEFAULT_CACHE_DIR",
 ]
+
+
+SLICE_ONE_PATH = Path(__file__).resolve().parents[1] / "data" / "sacred-history-texts-slice-1-corpus.json"
+
+
+def load_slice_one() -> Corpus:
+    """The first live extraction slice (`docs/SACRED-HISTORY-TEXTS.md`,
+    "Slice one, live"): 500 figure-attested KJV passages through the
+    three-pass extractor ensemble, 917 evidence items, replayed from the
+    tracked cache under `hte/data/llm-cache-sacred-history-texts/` by
+    `scripts/extract_slice.py` and saved as one `Corpus`."""
+    return Corpus.load(SLICE_ONE_PATH)

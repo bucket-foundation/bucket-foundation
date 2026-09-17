@@ -1,0 +1,54 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "adaf8448c2d22b1719f3001990738b065c64a646fd5b4d6dc618fef032ce025e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses took the bones of Joseph with him",
+        "claim": "Moses took the bones of Joseph with him",
+        "actor": "Moses",
+        "action": "took",
+        "object": "the bones of Joseph",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he had straitly sworn the children of Israel",
+        "claim": "Joseph had straitly sworn the children of Israel",
+        "actor": "he",
+        "action": "straitly sworn",
+        "object": "the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "God will surely visit you",
+        "claim": "God will surely visit you",
+        "actor": "God",
+        "action": "will surely visit",
+        "object": "you",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "ye shall carry up my bones away hence with you",
+        "claim": "The people will carry up his bones away from this place",
+        "actor": "ye",
+        "action": "shall carry up",
+        "object": "my bones",
+        "place": "hence",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "a56d7ddd2fd0ac1f6ed5685e60a9c17d6cbe8a0599aded9e4db2e12161e9fdf6",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD said unto Moses, Hew thee two tables of stone like unto the first: and I will write upon these tables the words that were in the first tables, which thou brakest.",
+        "claim": "The text (verse 34:1) says the LORD told Moses to cut two new stone tablets like the first ones. The LORD would write on them the same words that were on the first tablets, which Moses had broken. This is what the text claims, not a proven historical event. Naming the book as Exodus comes from model-prior only, since the document gives just '34:1'.",
+        "actor": "the LORD",
+        "action": "commanded Moses to hew two new tables of stone and promised to rewrite the words of the first tables on them",
+        "object": "two tables of stone",
+        "mechanism": "divine command to Moses; the first tables had been broken by Moses",
+        "stance": "positive",
+        "place": "",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b90991ec8a40e16479f63f0a138a03efd91327c566a1ca0b1afb80c063ccbeb5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said, Thus saith the LORD, About midnight will I go out into the midst of Egypt: And all the firstborn in the land of Egypt shall die, from the first born of Pharaoh that sitteth upon his throne, even unto the firstborn of the maidservant that is behind the mill; and all the firstborn of beasts.",
+        "claim": "Moses reported that the LORD said he would go out into Egypt at midnight and cause the firstborn to die",
+        "actor": "Moses",
+        "action": "said",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Thus saith the LORD, About midnight will I go out into the midst of Egypt",
+        "claim": "The LORD claims he will go out into the midst of Egypt at midnight",
+        "actor": "the LORD",
+        "action": "go out",
+        "place": "the midst of Egypt",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And all the firstborn in the land of Egypt shall die, from the first born of Pharaoh that sitteth upon his throne, even unto the firstborn of the maidservant that is behind the mill; and all the firstborn of beasts.",
+        "claim": "All firstborn in Egypt shall die, including those of Pharaoh, servants, and beasts",
+        "actor": "the firstborn",
+        "action": "shall die",
+        "place": "the land of Egypt",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

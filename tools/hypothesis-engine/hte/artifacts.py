@@ -196,6 +196,13 @@ class RunCounts:
     # `bkt-hte-retraction-propagation`: `hte.propagate.rank_fragility`'s
     # own return shape, the ten most fragile survivors this run scored.
     fragility_top10: list[dict[str, Any]] = field(default_factory=list)
+    # `hte.generate.stratified_sample`'s own frame
+    # (`STATISTICAL-AUDIT-2026-09-15.md` item 1): `{"cap", "n_strata",
+    # "strata": {label: {"generated", "kept"}, ...}}`, a plain dict like
+    # `meta_review` above rather than its own dataclass, since a
+    # stratum's own label is a runtime-built string this contract
+    # cannot enumerate ahead of a run.
+    sampling: dict[str, Any] = field(default_factory=dict)
 
 
 _NESTED[(RunCounts, "coverage")] = CoverageStats

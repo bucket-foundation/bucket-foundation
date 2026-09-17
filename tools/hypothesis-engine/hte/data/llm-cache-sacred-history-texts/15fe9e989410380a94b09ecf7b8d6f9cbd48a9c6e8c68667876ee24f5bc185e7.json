@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "737216ecefa273666a94d1db8705717693f1c542ad16a73fc0e744e6ab3c2733",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Israel saw that great work which the LORD did upon the Egyptians",
+        "claim": "Israel witnessed a great work performed by the LORD against the Egyptians",
+        "actor": "Israel",
+        "action": "saw",
+        "object": "that great work",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and the people feared the LORD",
+        "claim": "The people experienced fear of the LORD",
+        "actor": "the people",
+        "action": "feared",
+        "object": "the LORD",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and believed the LORD, and his servant Moses",
+        "claim": "The people had faith in the LORD and his servant Moses",
+        "actor": "the people",
+        "action": "believed",
+        "object": "the LORD, and his servant Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

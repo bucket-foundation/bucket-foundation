@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a3b4cc37cf17f83875d12d80d0ae799441988a76983443b906d494ec700ed2ee",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "So Joshua did as Moses had said to him, and fought with Amalek",
+        "claim": "Joshua fought Amalek as instructed by Moses",
+        "actor": "Joshua",
+        "action": "fought",
+        "object": "Amalek",
+        "place": "",
+        "mechanism": "as Moses had said to him",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses, Aaron, and Hur went up to the top of the hill",
+        "claim": "Moses, Aaron, and Hur ascended to the top of a hill",
+        "actor": "Moses, Aaron, and Hur",
+        "action": "went up",
+        "object": "",
+        "place": "the top of the hill",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

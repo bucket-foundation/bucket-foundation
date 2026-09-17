@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "1f5f65805196d5b375a6801446408f147dbd4268f191303609ad046e80676d1c",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses after the death of the two sons of Aaron, when they offered before the LORD, and died;",
+        "claim": "The text says the LORD spoke to Moses after Aaron's two sons died when they made an offering before the LORD.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "divine speech following the deaths of Aaron's two sons during an offering",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "prohibition",
+        "tier": "primary-text",
+        "quote": "Speak unto Aaron thy brother, that he come not at all times into the holy place within the vail before the mercy seat, which is upon the ark; that he die not:",
+        "claim": "Moses is told to instruct Aaron not to enter the holy place behind the veil, before the mercy seat on the ark, at any time he chooses, so that he does not die.",
+        "actor": "Aaron",
+        "action": "come not at all times into",
+        "object": "the holy place within the vail before the mercy seat",
+        "place": "holy place within the vail, before the mercy seat upon the ark",
+        "mechanism": "access is restricted, and breaking the restriction is tied to death",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "rationale",
+        "tier": "primary-text",
+        "quote": "for I will appear in the cloud upon the mercy seat.",
+        "claim": "The reason given for the restriction is that the LORD will appear in the cloud on the mercy seat.",
+        "actor": "the LORD",
+        "action": "will appear",
+        "object": "the cloud upon the mercy seat",
+        "place": "mercy seat",
+        "mechanism": "the divine presence in the cloud is the stated reason access is limited",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

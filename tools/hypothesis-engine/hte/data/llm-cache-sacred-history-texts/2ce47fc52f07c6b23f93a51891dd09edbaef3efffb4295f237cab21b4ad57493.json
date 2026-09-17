@@ -1,0 +1,56 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "df1da2c3ab370f9c24267a5fde7536f93432168ddd2cd0c19b896e0359182443",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Who am I, that I should go unto Pharaoh, and that I should bring forth the children of Israel out of Egypt?",
+        "claim": "Moses questions whether he should go to Pharaoh and bring forth the children of Israel out of Egypt",
+        "actor": "I",
+        "action": "go unto Pharaoh, bring forth",
+        "object": "children of Israel",
+        "place": "Egypt",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Certainly I will be with thee",
+        "claim": "God promises to be with Moses",
+        "actor": "I",
+        "action": "will be",
+        "object": "thee",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "this shall be a token unto thee, that I have sent thee",
+        "claim": "A token will be given as proof that God has sent Moses",
+        "actor": "I",
+        "action": "have sent",
+        "object": "thee",
+        "mechanism": "token",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "When thou hast brought forth the people out of Egypt, ye shall serve God upon this mountain",
+        "claim": "When the people are brought out of Egypt, they will serve God upon a mountain",
+        "actor": "ye",
+        "action": "brought forth, serve",
+        "object": "people, God",
+        "place": "Egypt, mountain",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

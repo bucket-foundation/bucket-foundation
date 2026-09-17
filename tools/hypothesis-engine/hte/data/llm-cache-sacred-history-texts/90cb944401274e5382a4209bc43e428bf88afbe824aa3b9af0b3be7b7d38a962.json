@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e3adfbebea1a82a5966fff655a871add5a493c928e133a9142e57644a88daec3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses called Mishael and Elzaphan, the sons of Uzziel the uncle of Aaron, and said unto them, Come near, carry your brethren from before the sanctuary out of the camp.",
+        "claim": "Moses called Mishael and Elzaphan (sons of Uzziel, uncle of Aaron) and commanded them to carry their brethren away from before the sanctuary and out of the camp.",
+        "actor": "Moses",
+        "action": "called; said unto them, Come near, carry",
+        "object": "your brethren",
+        "place": "before the sanctuary; out of the camp",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

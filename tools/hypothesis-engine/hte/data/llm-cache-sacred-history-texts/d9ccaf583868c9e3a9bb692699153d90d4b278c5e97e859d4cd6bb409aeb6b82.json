@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9e21be8ec4a489a657dd08c835c4b2279188061d7c18f474909b5da328acdf1c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Isaac digged again the wells of water, which they had digged in the days of Abraham his father",
+        "claim": "Isaac re-excavated wells of water that had been dug originally",
+        "actor": "Isaac",
+        "action": "digged again",
+        "object": "wells of water",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "which they had digged in the days of Abraham his father",
+        "claim": "People dug the wells during Abraham's lifetime",
+        "actor": "they",
+        "action": "digged",
+        "object": "wells",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for the Philistines had stopped them after the death of Abraham",
+        "claim": "The Philistines blocked the wells after Abraham's death",
+        "actor": "Philistines",
+        "action": "stopped",
+        "object": "them",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and he called their names after the names by which his father had called them",
+        "claim": "Isaac named the wells using the same names his father Abraham had assigned",
+        "actor": "he",
+        "action": "called their names",
+        "object": "their names",
+        "place": "",
+        "mechanism": "after the names by which his father had called them",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

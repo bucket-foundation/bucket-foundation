@@ -1,0 +1,21 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "936ef49a8bf571d97e182a7e281f726469bd45b986ec935e9d0037f32a3c9035",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "In the six hundredth year of Noah's life, in the second month, the seventeenth day of the month, the same day were all the fountains of the great deep broken up, and the windows of heaven were opened.",
+        "claim": "The fountains of the great deep were broken up and the windows of heaven were opened",
+        "action": "broke up and opened",
+        "object": "fountains of the great deep, windows of heaven",
+        "place": "heaven",
+        "mechanism": "rupturing of the earth's foundations and opening of celestial barriers",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

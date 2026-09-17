@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b364565bd2b05f48b869ac7025d4d065f4e20a8fb23872592007c60f29159d09",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And they made bells of pure gold, and put the bells between the pomegranates upon the hem of the robe, round about between the pomegranates",
+        "claim": "Bells of pure gold were made and positioned between pomegranates on the hem of a robe",
+        "actor": "they",
+        "action": "made and put",
+        "object": "bells of pure gold",
+        "place": "upon the hem of the robe, between the pomegranates",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "A bell and a pomegranate, a bell and a pomegranate, round about the hem of the robe to minister in; as the LORD commanded Moses",
+        "claim": "The bells and pomegranates alternated in pattern around the hem of the robe for ministerial use, as commanded by God to Moses",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "the pattern of bells and pomegranates",
+        "place": "the hem of the robe",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

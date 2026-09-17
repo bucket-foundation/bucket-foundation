@@ -1,0 +1,41 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "95dd4db0f5c24ee7307d03c72ee9df92103586658d05e1660e2aaf8488840db7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses went down from the mount unto the people",
+        "claim": "Moses descended from the mountain to the people",
+        "actor": "Moses",
+        "action": "went down",
+        "place": "the mount",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and sanctified the people",
+        "claim": "The people were sanctified",
+        "action": "sanctified",
+        "object": "the people",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and they washed their clothes",
+        "claim": "The people washed their clothes",
+        "actor": "they",
+        "action": "washed",
+        "object": "their clothes",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "c52f76d0f09b4432e891a84353370ebb70f5ee55be89e7d2512811921f0d64dc",
+  "response": {
+    "items": [
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses, Say unto Aaron, Stretch forth thine hand with thy rod over the streams, over the rivers, and over the ponds, and cause frogs to come up upon the land of Egypt.",
+        "claim": "In the text, the LORD tells Moses to have Aaron stretch his hand and rod over Egypt's streams, rivers and ponds so that frogs come up over the land of Egypt. This is a scriptural narrative claim, not a checked historical event. All three passes agree on the content; pass 2 only adds a stray semicolon. The document gives only the verse label 8:5. Calling it Exodus 8:5 in the King James Version is an unverified model-prior guess.",
+        "actor": "the LORD (instructing Moses, who instructs Aaron)",
+        "action": "command to stretch forth hand with rod and cause frogs to come up",
+        "object": "frogs; streams, rivers, and ponds",
+        "place": "land of Egypt",
+        "mechanism": "Aaron stretches his hand with his rod over the waters, as divinely commanded",
+        "year": null
+      }
+    ]
+  }
+}

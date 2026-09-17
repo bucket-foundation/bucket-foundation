@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "78e5e0b88bb3ce1b84ff8fff5b7999b4369c2f98aa64b728d30a399bbf5657a8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he blessed Joseph, and said, God, before whom my fathers Abraham and Isaac did walk, the God which fed me all my life long unto this day",
+        "claim": "Jacob blessed Joseph and invoked God who walked with Abraham and Isaac and sustained him throughout his life",
+        "actor": "he (Jacob)",
+        "action": "blessed",
+        "object": "Joseph",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "The Angel which redeemed me from all evil, bless the lads",
+        "claim": "The Angel redeemed Jacob from all evil; Jacob requests this Angel bless Joseph's sons",
+        "actor": "The Angel",
+        "action": "redeemed; bless",
+        "object": "the lads",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "let my name be named on them, and the name of my fathers Abraham and Isaac",
+        "claim": "Jacob's name and the names of Abraham and Isaac are to be placed upon Joseph's sons",
+        "actor": "Jacob",
+        "action": "let be named",
+        "object": "my name, name of my fathers Abraham and Isaac",
+        "place": "on them",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "let them grow into a multitude in the midst of the earth",
+        "claim": "Jacob requests that Joseph's sons grow into a multitude within the earth",
+        "actor": "them",
+        "action": "grow",
+        "object": "",
+        "place": "in the midst of the earth",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

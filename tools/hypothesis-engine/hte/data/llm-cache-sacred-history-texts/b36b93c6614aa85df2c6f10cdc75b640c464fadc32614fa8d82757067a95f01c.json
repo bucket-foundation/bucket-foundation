@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c49f098e0ee5f62eaabb0064098b15cc1385b1bbab9a22a5d6f837861808fdc2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Abraham took Ishmael his son, and all that were born in his house, and all that were bought with his money, every male among the men of Abraham's house; and circumcised the flesh of their foreskin in the selfsame day, as God had said unto him.",
+        "claim": "Abraham circumcised Ishmael and all males of his household in accordance with God's prior instruction",
+        "actor": "Abraham",
+        "action": "circumcised",
+        "object": "Ishmael his son and every male among the men of Abraham's house",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "as God had said unto him",
+        "claim": "God had previously instructed Abraham regarding circumcision",
+        "actor": "God",
+        "action": "said",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

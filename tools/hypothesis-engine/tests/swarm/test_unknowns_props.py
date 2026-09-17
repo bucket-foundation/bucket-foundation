@@ -61,22 +61,28 @@ run_counts_st = st.lists(counts_st, min_size=1, max_size=6)
 
 @given(run_counts_st)
 def test_coverage_interval_low_never_exceeds_high(run_counts):
+    # Below the seed floor, or with f2=0, coverage_low/high both read
+    # None (`test_coverage_interval_below_seed_floor_gates_chao1`); the
+    # bound holds only where Chao1 ran.
     result = unknowns.coverage_interval(run_counts)
-    assert result["coverage_low"] <= result["coverage_high"] + 1e-9
+    if result["coverage_low"] is not None:
+        assert result["coverage_low"] <= result["coverage_high"] + 1e-9
 
 
 @given(run_counts_st)
 def test_coverage_interval_bounds_are_fractions(run_counts):
     result = unknowns.coverage_interval(run_counts)
-    assert 0.0 <= result["coverage_low"] <= 1.0 + 1e-9
-    assert 0.0 <= result["coverage_high"] <= 1.0 + 1e-9
+    if result["coverage_low"] is not None:
+        assert 0.0 <= result["coverage_low"] <= 1.0 + 1e-9
+        assert 0.0 <= result["coverage_high"] <= 1.0 + 1e-9
     assert 0.0 <= result["missing_mass"] <= 1.0 + 1e-9
 
 
 def test_coverage_interval_of_no_runs_reads_as_fully_uncertain_zero_observed():
     result = unknowns.coverage_interval([])
     assert result["observed"] == 0
-    assert result["coverage_low"] <= result["coverage_high"]
+    assert result["coverage_low"] is None
+    assert result["coverage_high"] is None
 
 
 # --------------------------------------------------------------------------

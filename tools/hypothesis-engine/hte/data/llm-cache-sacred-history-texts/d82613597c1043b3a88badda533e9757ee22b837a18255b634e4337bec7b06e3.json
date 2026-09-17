@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "93424d996d37f3a4c338221d80c018580986359ba27811160d8cbce0d6379d0a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the men rose up from thence, and looked toward Sodom",
+        "claim": "The men stood and turned their gaze toward Sodom",
+        "actor": "the men",
+        "action": "rose up and looked toward",
+        "object": "Sodom",
+        "place": "thence",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and Abraham went with them to bring them on the way",
+        "claim": "Abraham accompanied the men to escort them partway",
+        "actor": "Abraham",
+        "action": "went with them to bring them on the way",
+        "object": "them",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

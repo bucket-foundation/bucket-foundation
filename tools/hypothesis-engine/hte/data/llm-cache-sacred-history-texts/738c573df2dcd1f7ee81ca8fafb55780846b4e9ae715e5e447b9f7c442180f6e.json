@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "e23074d620d134e8e6a5411f96ad290fcf7c4a56df22668d7e0393c8aed4919e",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text (scriptural narrative; historicity unverified)",
+        "quote": "And Moses and Aaron came in unto Pharaoh, and said unto him, Thus saith the LORD God of the Hebrews, How long wilt thou refuse to humble thyself before me? let my people go, that they may serve me.",
+        "claim": "According to the text (Exodus 10:3), Moses and Aaron went before Pharaoh. Speaking for the LORD God of the Hebrews, they asked how long he would refuse to humble himself and told him to let the people go so they could serve God.",
+        "actor": "Moses and Aaron",
+        "action": "came in unto Pharaoh and demanded release of the Hebrews",
+        "object": "Pharaoh",
+        "mechanism": "message delivered in the name of the LORD God of the Hebrews",
+        "place": "Pharaoh's court (the verse gives no location; Egypt is inferred from model-prior only)",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

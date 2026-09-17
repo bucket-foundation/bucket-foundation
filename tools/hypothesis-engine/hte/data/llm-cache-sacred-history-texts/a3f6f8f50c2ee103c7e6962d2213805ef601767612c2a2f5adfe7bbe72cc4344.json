@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bdc732af9fc5df1c1b73409265aae7d2793d28114d71acacc1b8dc2603ec2fb7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And God blessed Noah and his sons, and said unto them, Be fruitful, and multiply, and replenish the earth.",
+        "claim": "God blessed Noah and his sons and commanded them to be fruitful, multiply, and replenish the earth",
+        "actor": "God",
+        "action": "blessed, said",
+        "object": "Noah and his sons",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

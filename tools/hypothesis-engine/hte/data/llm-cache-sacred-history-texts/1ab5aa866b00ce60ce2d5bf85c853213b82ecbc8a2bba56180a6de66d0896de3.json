@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "37799f5194b0ac8de943cd8d507e625a72bb6aed542e6287cab4568f4e079cc3",
+  "response": {
+    "items": [
+      {
+        "quote": "For they said unto me, Make us gods, which shall go before us",
+        "claim": "The Israelites requested the speaker make gods for them to lead them",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "they; me",
+        "action": "said; Make",
+        "object": "gods",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "this Moses, the man that brought us up out of the land of Egypt",
+        "claim": "Moses is identified as the one who brought the Israelites out of Egypt",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "Moses",
+        "action": "brought",
+        "object": "us",
+        "place": "Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "we wot not what is become of him",
+        "claim": "The Israelites do not know what has become of Moses",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "we",
+        "action": "wot not",
+        "object": "him",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

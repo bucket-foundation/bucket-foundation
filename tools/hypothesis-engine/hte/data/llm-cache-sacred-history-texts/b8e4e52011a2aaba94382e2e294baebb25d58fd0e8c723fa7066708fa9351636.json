@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e8a63a694ce8e2513c3b7549ef3ae7e8602cc612620b50a6e2029bd88dd5d7cb",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the whole congregation of the children of Israel murmured against Moses and Aaron in the wilderness",
+        "claim": "The congregation of Israel murmured against Moses and Aaron in the wilderness",
+        "actor": "the whole congregation of the children of Israel",
+        "action": "murmured against",
+        "object": "Moses and Aaron",
+        "place": "the wilderness",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Would to God we had died by the hand of the LORD in the land of Egypt, when we sat by the flesh pots, and when we did eat bread to the full",
+        "claim": "The Israelites wished they had died by God's hand in Egypt when they had food",
+        "actor": "we",
+        "action": "had died",
+        "object": "",
+        "place": "the land of Egypt",
+        "mechanism": "by the hand of the LORD",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for ye have brought us forth into this wilderness, to kill this whole assembly with hunger",
+        "claim": "The Israelites accused Moses and Aaron of bringing them into the wilderness to kill them with hunger",
+        "actor": "ye",
+        "action": "brought us forth / to kill",
+        "object": "us / this whole assembly",
+        "place": "this wilderness",
+        "mechanism": "hunger",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

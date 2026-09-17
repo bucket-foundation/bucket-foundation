@@ -1,0 +1,51 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d960d10de336c461d2931fa34138067ac81c6ddc0cf8287b126ffdc4b2745264",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And God said moreover unto Moses",
+        "claim": "God spoke to Moses",
+        "actor": "God",
+        "action": "said",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Thus shalt thou say unto the children of Israel",
+        "claim": "God commanded Moses to speak to the children of Israel",
+        "actor": "Moses",
+        "action": "say",
+        "object": "the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the LORD God of your fathers, the God of Abraham, the God of Isaac, and the God of Jacob, hath sent me unto you",
+        "claim": "God, identified as God of the patriarchs, sent himself to the children of Israel",
+        "actor": "the LORD God",
+        "action": "hath sent",
+        "object": "you",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "this is my name for ever, and this is my memorial unto all generations",
+        "claim": "God declares his name and memorial will be eternal and remembered through all generations",
+        "object": "name and memorial",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

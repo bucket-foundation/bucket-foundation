@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f3be993ffbc59f432131f1d8d6b53ed26f8741a026fd4ee7537df9343f3f357a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses and unto Aaron, saying,",
+        "claim": "The LORD spoke to Moses and Aaron with a command",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Take the sum of the sons of Kohath from among the sons of Levi, after their families, by the house of their fathers,",
+        "claim": "Command to conduct a census of Kohathites organized by family and household",
+        "actor": "",
+        "action": "Take the sum",
+        "object": "the sons of Kohath",
+        "place": "",
+        "mechanism": "after their families, by the house of their fathers",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "From thirty years old and upward even until fifty years old, all that enter into the host, to do the work in the tabernacle of the congregation.",
+        "claim": "Males aged 30-50 who enter the military host shall perform work in the tabernacle",
+        "actor": "all that enter into the host",
+        "action": "do the work",
+        "object": "",
+        "place": "the tabernacle of the congregation",
+        "mechanism": "From thirty years old and upward even until fifty years old",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8fca5e172e1b6524658909f7352b5651c0071002ac91fc93c04e09fc435aa15d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD appeared unto him, and said, Go not down into Egypt; dwell in the land which I shall tell thee of",
+        "claim": "The LORD appeared to the addressee and commanded them not to go to Egypt but to dwell in a land God would specify",
+        "actor": "the LORD",
+        "action": "appeared, said",
+        "object": "him",
+        "place": "Egypt, the land",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Sojourn in this land, and I will be with thee, and will bless thee; for unto thee, and unto thy seed, I will give all these countries, and I will perform the oath which I sware unto Abraham thy father",
+        "claim": "The LORD will dwell with the addressee and bless them, give countries to them and their seed, and perform the oath sworn to Abraham",
+        "actor": "I",
+        "action": "will be with, will bless, will give, will perform",
+        "object": "thee, thy seed, all these countries, the oath",
+        "place": "this land",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And I will make thy seed to multiply as the stars of heaven, and will give unto thy seed all these countries",
+        "claim": "The LORD will make the addressee's seed multiply numerously and will give them countries",
+        "actor": "I",
+        "action": "will make multiply, will give",
+        "object": "thy seed, all these countries",
+        "mechanism": "as the stars of heaven",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and in thy seed shall all the nations of the earth be blessed",
+        "claim": "All nations of the earth will be blessed through the addressee's seed",
+        "actor": "all the nations of the earth",
+        "action": "shall be blessed",
+        "place": "earth",
+        "mechanism": "in thy seed",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Because that Abraham obeyed my voice, and kept my charge, my commandments, my statutes, and my laws",
+        "claim": "Abraham obeyed God's voice and kept His commandments, statutes, and laws",
+        "actor": "Abraham",
+        "action": "obeyed, kept",
+        "object": "my voice, my charge, my commandments, my statutes, and my laws",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

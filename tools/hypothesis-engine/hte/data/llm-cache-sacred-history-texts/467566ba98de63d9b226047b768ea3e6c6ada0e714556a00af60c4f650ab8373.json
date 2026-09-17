@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "39af141ed3124752410bec44ed965a3ed6dde8a041b922e7beaffa895be95f61",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Take Aaron and his sons with him, and the garments, and the anointing oil, and a bullock for the sin offering, and two rams, and a basket of unleavened bread",
+        "claim": "Moses was instructed to take Aaron, his sons, garments, anointing oil, a bullock, two rams, and unleavened bread",
+        "actor": "Moses",
+        "action": "Take",
+        "object": "Aaron and his sons, garments, anointing oil, bullock, rams, basket of unleavened bread",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And gather thou all the congregation together unto the door of the tabernacle of the congregation",
+        "claim": "Moses was instructed to gather all the congregation at the door of the tabernacle of the congregation",
+        "actor": "thou (Moses)",
+        "action": "gather",
+        "object": "all the congregation",
+        "place": "door of the tabernacle of the congregation",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

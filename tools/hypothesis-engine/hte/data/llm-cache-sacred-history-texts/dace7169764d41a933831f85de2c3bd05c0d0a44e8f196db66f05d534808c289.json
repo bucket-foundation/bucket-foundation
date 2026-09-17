@@ -1,0 +1,21 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cdd0e9bd4ff89bdb7e501839a228ebc5a7ca2092bbf71f97547ef228e0d939b3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the heart of Pharaoh was hardened, neither would he let the children of Israel go; as the LORD had spoken by Moses.",
+        "claim": "Pharaoh's heart was hardened and he refused to let the children of Israel go, as the LORD had spoken through Moses",
+        "actor": "Pharaoh",
+        "action": "hardened; would not let go",
+        "object": "children of Israel",
+        "mechanism": "the LORD had spoken by Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "41da12ba3459a600c78ddc1d9e2bcfeb8e4a209dc2de8287257cd9bd5fe7bb75",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "she brought him unto Pharaoh's daughter",
+        "claim": "An unnamed woman brought the child to Pharaoh's daughter",
+        "actor": "she",
+        "action": "brought",
+        "object": "him",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "he became her son",
+        "claim": "The child became Pharaoh's daughter's son",
+        "actor": "he",
+        "action": "became",
+        "object": "her son",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "she called his name Moses",
+        "claim": "Pharaoh's daughter named the child Moses",
+        "actor": "she",
+        "action": "called",
+        "object": "his name",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Because I drew him out of the water",
+        "claim": "Pharaoh's daughter claimed she drew the child out of the water",
+        "actor": "I",
+        "action": "drew out",
+        "object": "him",
+        "place": "water",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

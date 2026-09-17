@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "8e8a9a4e5c60318c65ec4bb73bbe8d119d5c3996fa0c76b4155ff9b19113f27a",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "primary",
+        "quote": "Moreover he said, I am the God of thy father, the God of Abraham, the God of Isaac, and the God of Jacob.",
+        "claim": "The speaker says he is the God of the addressee's father, and the God of Abraham, Isaac, and Jacob.",
+        "actor": "God (the speaker)",
+        "action": "self-identifies",
+        "object": "Moses (addressee); ancestors Abraham, Isaac, Jacob",
+        "place": "",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "divine self-identification through ancestral lineage"
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And Moses hid his face; for he was afraid to look upon God.",
+        "claim": "Moses hid his face because he was afraid to look at God.",
+        "actor": "Moses",
+        "action": "hid his face",
+        "object": "God",
+        "place": "",
+        "year": null,
+        "stance": "negative",
+        "mechanism": "fear of looking upon God"
+      }
+    ]
+  }
+}

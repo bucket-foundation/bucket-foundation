@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b1e6033f1a5cf3e52dad504b94522643a9c829bc18363a4653854b7e79f91a22",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And all the wise men, that wrought all the work of the sanctuary, came every man from his work which they made",
+        "claim": "The wise men who had worked on the sanctuary came from their work",
+        "actor": "wise men",
+        "action": "came",
+        "object": "work of the sanctuary",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they spake unto Moses, saying, The people bring much more than enough for the service of the work, which the LORD commanded to make.",
+        "claim": "The people brought more material than sufficient for the sanctuary work",
+        "actor": "The people",
+        "action": "bring",
+        "object": "service of the work",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

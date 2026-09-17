@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e88360d307579ec77c4b4364b86b4691ac04db88db314eecfc989de690e702b7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses and unto Aaron, Take to you handfuls of ashes of the furnace, and let Moses sprinkle it toward the heaven in the sight of Pharaoh.",
+        "claim": "At Exodus 9:8, instructions specify a physical mechanism: taking handfuls of furnace ashes and sprinkling them toward heaven before Pharaoh",
+        "actor": "Moses and Aaron",
+        "action": "sprinkle",
+        "object": "ashes of the furnace",
+        "place": "toward heaven, in sight of Pharaoh",
+        "mechanism": "taking handfuls of ashes and sprinkling toward heaven",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

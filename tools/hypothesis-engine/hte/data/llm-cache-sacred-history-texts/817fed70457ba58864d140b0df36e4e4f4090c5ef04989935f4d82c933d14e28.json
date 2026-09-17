@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0b0fdf8aafa058347833804eb4719b9a15911019676e42a069dd540dc9c5f170",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then went up Moses, and Aaron, Nadab, and Abihu, and seventy of the elders of Israel",
+        "claim": "Moses, Aaron, Nadab, Abihu, and seventy elders of Israel ascended",
+        "actor": "Moses, and Aaron, Nadab, and Abihu, and seventy of the elders of Israel",
+        "action": "went up",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they saw the God of Israel: and there was under his feet as it were a paved work of a sapphire stone, and as it were the body of heaven in his clearness",
+        "claim": "The group saw God with a sapphire-like paved surface and heaven-like appearance beneath God's feet",
+        "actor": "they",
+        "action": "saw",
+        "object": "the God of Israel",
+        "mechanism": "paved work of a sapphire stone, and the body of heaven in his clearness",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "87c081562950100d691f9f6038ca9eaf2cedf0f8066a11659eb5e2481e827941",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "that they turn and encamp before Pihahiroth, between Migdol and the sea, over against Baalzephon",
+        "claim": "The children of Israel were commanded to turn and encamp at Pihahiroth between Migdol and the sea",
+        "actor": "the children of Israel",
+        "action": "turn and encamp",
+        "object": "",
+        "place": "before Pihahiroth, between Migdol and the sea, over against Baalzephon",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

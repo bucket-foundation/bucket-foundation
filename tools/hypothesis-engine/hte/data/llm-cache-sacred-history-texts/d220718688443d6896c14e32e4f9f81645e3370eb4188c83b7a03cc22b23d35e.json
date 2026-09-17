@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "104e19b7a11fe1e533dcbf4798b3c14023e88cb5a98eefa45e1a5bf06c19779c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "In the selfsame day entered Noah, and Shem, and Ham, and Japheth, the sons of Noah, and Noah's wife, and the three wives of his sons with them, into the ark",
+        "claim": "Noah and his family (sons Shem, Ham, Japheth, Noah's wife, and the wives of his sons) entered the ark",
+        "actor": "Noah, Shem, Ham, Japheth, Noah's wife, the wives of his sons",
+        "action": "entered",
+        "object": "the ark",
+        "place": "the ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "They, and every beast after his kind, and all the cattle after their kind, and every creeping thing that creepeth upon the earth after his kind, and every fowl after his kind, every bird of every sort.",
+        "claim": "Animals of various kinds (beasts, cattle, creeping things, fowl, and birds) entered the ark",
+        "actor": "beasts, cattle, creeping things, fowl, birds",
+        "action": "entered",
+        "object": "the ark",
+        "place": "the ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

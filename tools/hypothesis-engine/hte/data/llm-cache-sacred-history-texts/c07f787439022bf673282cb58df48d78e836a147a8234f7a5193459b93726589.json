@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "410b8868c14a25bbfff6cc9a707fc4f86c231612e2a32c0067e4528f1af6a4a3",
+  "response": {
+    "items": [
+      {
+        "kind": "practice",
+        "tier": "primary-text",
+        "quote": "Write this for a memorial in a book",
+        "claim": "The text shows the LORD telling Moses to write a record in a book as a memorial, so the event would be remembered.",
+        "actor": "the LORD",
+        "action": "commands to write",
+        "object": "a memorial in a book",
+        "mechanism": "written record used to keep memory alive",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "practice",
+        "tier": "primary-text",
+        "quote": "rehearse it in the ears of Joshua",
+        "claim": "Along with the written record, Moses is told to recite the memorial aloud to Joshua, so the memory is passed on by speech as well as in writing.",
+        "actor": "Moses (commanded by the LORD)",
+        "action": "recite aloud",
+        "object": "Joshua",
+        "mechanism": "spoken passing-on of memory to a successor or leader, alongside the written record",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "for I will utterly put out the remembrance of Amalek from under heaven",
+        "claim": "The LORD states an intent to wipe out all memory of Amalek. Oddly, the reason given for writing the memorial is that Amalek's memory will be erased.",
+        "actor": "the LORD",
+        "action": "declares intent to erase remembrance",
+        "object": "Amalek",
+        "mechanism": "divine erasure of collective memory",
+        "place": "under heaven",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

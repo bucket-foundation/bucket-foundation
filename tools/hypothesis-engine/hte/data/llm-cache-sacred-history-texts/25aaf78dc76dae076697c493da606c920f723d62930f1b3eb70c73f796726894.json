@@ -1,0 +1,33 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "e4e8d794c941356e67f41f4803094c366dbed706fff612e8c1db15cc801e2965",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And the child grew, and she brought him unto Pharaoh\u2019s daughter, and he became her son.",
+        "claim": "After the child grew, she brought him to Pharaoh's daughter, and he became her son (adoption into Pharaoh's household).",
+        "actor": "she (the child's nurse/mother, unnamed in this verse)",
+        "action": "brought the grown child to Pharaoh's daughter, who took him as her son",
+        "object": "the child (Moses)",
+        "mechanism": "adoption",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And she called his name Moses: and she said, Because I drew him out of the water.",
+        "claim": "Pharaoh's daughter named the child Moses, saying she gave the name because she drew him out of the water.",
+        "actor": "Pharaoh's daughter",
+        "action": "named the child Moses",
+        "object": "the child",
+        "mechanism": "naming explained by drawing him out of the water (etymology given in the text)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

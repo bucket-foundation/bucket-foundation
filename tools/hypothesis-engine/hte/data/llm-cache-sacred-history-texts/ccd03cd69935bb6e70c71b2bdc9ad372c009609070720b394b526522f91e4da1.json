@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bd20b3baaa11173a571d1643f6dbb789308acdcd0118729aed8c9a77b2c3abaf",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses, Put forth thine hand, and take it by the tail.",
+        "claim": "The LORD commanded Moses to put forth his hand and take something by the tail.",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he put forth his hand",
+        "claim": "Moses put forth his hand.",
+        "actor": "he",
+        "action": "put forth",
+        "object": "his hand",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and caught it",
+        "claim": "Moses caught an object.",
+        "actor": "he",
+        "action": "caught",
+        "object": "it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and it became a rod in his hand",
+        "claim": "The object became a rod in Moses's hand.",
+        "actor": "it",
+        "action": "became",
+        "object": "a rod",
+        "place": "in his hand",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the LORD God of their fathers, the God of Abraham, the God of Isaac, and the God of Jacob, hath appeared unto thee",
+        "claim": "The LORD God appeared to Moses.",
+        "actor": "the LORD God of their fathers, the God of Abraham, the God of Isaac, and the God of Jacob",
+        "action": "hath appeared",
+        "object": "unto thee",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

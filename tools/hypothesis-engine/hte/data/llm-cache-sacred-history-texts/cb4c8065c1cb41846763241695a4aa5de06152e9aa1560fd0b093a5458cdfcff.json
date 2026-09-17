@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "eefa8c8b95adf706a174c37efb1fdf97b83346963da72b7e95f40e21d51ed379",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses and Aaron went into the tabernacle of the congregation, and came out, and blessed the people: and the glory of the LORD appeared unto all the people.",
+        "claim": "The text says Moses and Aaron went into the tabernacle of the congregation, came out, and blessed the people, and that the glory of the LORD then appeared to all the people. All three passes agree on this. They differ only in punctuation and capitalization, so the quote follows the document's exact wording. That this is Leviticus 9:23 (KJV) is model-prior only; the document gives just the verse number 9:23.",
+        "actor": "Moses and Aaron",
+        "action": "entered the tabernacle, came out, and blessed the people",
+        "object": "the people",
+        "place": "tabernacle of the congregation",
+        "mechanism": "priestly blessing after leaving the tabernacle, followed by an appearance of the glory of the LORD",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

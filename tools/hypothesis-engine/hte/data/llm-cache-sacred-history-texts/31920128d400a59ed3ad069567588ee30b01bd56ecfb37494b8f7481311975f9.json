@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a67d869b6c8f6d2b1a77135daa1d75d4b5e84ef0e2c36f690e4263207b816fe7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "when he went out the second day, behold, two men of the Hebrews strove together",
+        "claim": "Two Hebrew men were engaged in strife or fighting",
+        "actor": "two men of the Hebrews",
+        "action": "strove together",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he said to him that did the wrong, Wherefore smitest thou thy fellow?",
+        "claim": "Moses questioned a Hebrew man about striking another Hebrew",
+        "actor": "he (Moses)",
+        "action": "smitest",
+        "object": "thy fellow",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Who made thee a prince and a judge over us?",
+        "claim": "A Hebrew man challenged Moses's assumed authority over them",
+        "actor": "thee (Moses)",
+        "action": "",
+        "object": "",
+        "place": "over us",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "as thou killedst the Egyptian?",
+        "claim": "Moses had killed an Egyptian",
+        "actor": "thou (Moses)",
+        "action": "killedst",
+        "object": "the Egyptian",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Moses feared, and said, Surely this thing is known.",
+        "claim": "Moses feared because his deed (killing the Egyptian) was now known",
+        "actor": "Moses",
+        "action": "feared",
+        "object": "this thing",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

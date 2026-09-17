@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "cee6bf9e4e4a1812c3d9bd25a8918e5397839c73f42e4a38796fba8088ab17ea",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "And Isaac spake unto Abraham his father, and said, My father: and he said, Here am I, my son. And he said, Behold the fire and the wood: but where is the lamb for a burnt offering?",
+        "claim": "In the text (verse 22:7), Isaac speaks to his father Abraham and asks where the lamb for the burnt offering is, since the fire and the wood are there.",
+        "actor": "Isaac",
+        "action": "asks where the lamb for the burnt offering is",
+        "object": "lamb for a burnt offering",
+        "place": "",
+        "mechanism": "",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "And Abraham said, My son, God will provide himself a lamb for a burnt offering: so they went both of them together.",
+        "claim": "In the text (verse 22:8), Abraham answers that God will provide a lamb for the burnt offering, and the two of them go on together.",
+        "actor": "Abraham",
+        "action": "says God will provide the lamb; goes on with Isaac",
+        "object": "lamb for a burnt offering",
+        "place": "",
+        "mechanism": "God providing the offering, as Abraham states it",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

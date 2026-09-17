@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "68f668d920ca977d1a350e5b1d821c7d29a55116bc60d1398a8e9deea721e079",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "40:19 And he spread abroad the tent over the tabernacle, and put the covering of the tent above upon it; as the LORD commanded Moses.",
+        "claim": "The text says 'he' spread the tent over the tabernacle and put the tent's covering on top of it, as the LORD had commanded Moses. The verse itself does not name 'he'. Reading 'he' as Moses, and placing this verse in Exodus 40 during the setting up of the tabernacle, comes from model-prior and is not in the evidence given.",
+        "actor": "he (unnamed in the verse; Moses per model-prior, unverified)",
+        "action": "spread abroad the tent over the tabernacle and put the covering of the tent above upon it",
+        "object": "tabernacle, tent, and covering of the tent",
+        "mechanism": "done as the LORD commanded Moses",
+        "place": "the tabernacle",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

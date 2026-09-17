@@ -1,0 +1,52 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "62eadbc9e02b5acb604e9a28c2f84effd523a555ca534feaaacf7bce4def4014",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "In the text, the LORD speaks to Moses to give him a message.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "I have heard the murmurings of the children of Israel: speak unto them, saying,",
+        "claim": "The LORD says he has heard the children of Israel complaining, and tells Moses to pass his answer on to them.",
+        "actor": "the LORD",
+        "action": "heard the murmurings of; instructs Moses to speak unto",
+        "object": "the children of Israel",
+        "mechanism": "divine response to popular complaint, relayed through Moses",
+        "year": null
+      },
+      {
+        "kind": "promise",
+        "tier": "primary",
+        "quote": "At even ye shall eat flesh, and in the morning ye shall be filled with bread;",
+        "claim": "The LORD promises the children of Israel meat in the evening and enough bread in the morning.",
+        "actor": "the LORD",
+        "action": "promises provision of",
+        "object": "flesh at even and bread in the morning",
+        "mechanism": "divine provision of food",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary",
+        "quote": "and ye shall know that I am the LORD your God.",
+        "claim": "The text gives the reason for the food: so the children of Israel will know that the LORD is their God.",
+        "actor": "the LORD",
+        "action": "declares purpose",
+        "object": "the children of Israel's knowledge that he is the LORD their God",
+        "mechanism": "provision as proof of divine identity",
+        "year": null
+      }
+    ]
+  }
+}

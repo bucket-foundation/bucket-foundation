@@ -12,16 +12,18 @@ import dataclasses
 import json
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from . import artifacts, calibrate, diagnostics, export, holdout_ledger, predict, purge as purge_mod, question_map, runner
 from .belief import Constants
 from .corpus import education_atlas, fixtures as fixtures_corpus, literature, production, research_os_outbox, sacred_history
+from .corpus import vindication_fixture
 from .corpus import quantum_history, sacred_history_texts, younger_dryas
 
 _CORPUS_LOADERS = {
     "quantum-history": quantum_history.ingest,
     "fixtures": fixtures_corpus.build,
+    "vindication-fixture": vindication_fixture.build,
     "education-atlas": education_atlas.load,
     "production": production.load,
     # ros-12 item 2: `public.research_os_productions_outbox`, read (not
@@ -43,6 +45,7 @@ _CORPUS_LOADERS = {
     # TEXTS.md`); `sacred_history.ingest(with_texts=True)` is the merged
     # reading, this entry is the bare texts-only corpus on its own.
     "sacred-history-texts": sacred_history_texts.load,
+    "sacred-history-texts-slice-1": sacred_history_texts.load_slice_one,
     # 47 open-metadata, DOI-verified cards on the Younger Dryas boundary
     # (12.9-11.7 ka BP) impact-hypothesis debate; see `hte.runner.
     # _CORPUS_LOADERS`'s own identical entry and `hte.corpus.
@@ -65,6 +68,7 @@ def _cmd_campaign_run(args: argparse.Namespace) -> int:
         "corpus": args.corpus,
         "out_dir": args.out,
         "replay_only": args.replay_only,
+        "prior_ledger": args.prior_ledger,
         "seeds": args.seeds,
         "verbose": args.verbose,
     }
@@ -95,28 +99,40 @@ def _actor_of(entry: dict[str, Any]) -> str | None:
     return actor if isinstance(actor, str) else None
 
 
-def _per_actor_summary(survivors: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+def _per_actor_summary(
+    survivors: list[dict[str, Any]], share_by_id: Mapping[str, float] | None = None,
+) -> dict[str, dict[str, Any]]:
     """One row per ACTOR slot value named by a placement survivor in
-    `survivors` (`survivors.json`'s own `survivors` list): the highest
-    projected credence and lowest uncertainty mass any survivor naming
-    that actor reached, the rating of its own best-Elo survivor, how
-    many survivors named it, and that best-Elo survivor's own four
-    profile projections (`hte.unknowns.robustness`'s `projections` dict,
-    carried on every entry's own `robustness` field)."""
+    `survivors`: highest projected credence, lowest uncertainty mass,
+    highest evidence-only lift (`b - d`), best-Elo survivor's rating and
+    four profile projections, survivor count, and `best_share`, the
+    largest explanandum-partition share (`hte.partition.partition_odds`'s
+    `share`, via `share_by_id`) any survivor naming that actor holds."""
     rows: dict[str, dict[str, Any]] = {}
     best_elo_entry: dict[str, dict[str, Any]] = {}
     for entry in survivors:
         actor = _actor_of(entry)
         if actor is None:
             continue
-        row = rows.setdefault(actor, {"max_P": None, "min_u": None, "best_elo": None, "n_survivors": 0})
+        row = rows.setdefault(
+            actor,
+            {"max_P": None, "min_u": None, "max_lift": None, "best_elo": None, "best_share": None,
+             "n_survivors": 0, "n_unscored": 0},
+        )
         row["n_survivors"] += 1
         opinion = entry.get("opinion") or {}
-        p_value, u_value = opinion.get("P"), opinion.get("u")
+        if not opinion.get("scored", opinion.get("u", 1.0) < 1.0):
+            row["n_unscored"] += 1
+        p_value, u_value, lift_value = opinion.get("P"), opinion.get("u"), opinion.get("lift")
         if p_value is not None and (row["max_P"] is None or p_value > row["max_P"]):
             row["max_P"] = p_value
         if u_value is not None and (row["min_u"] is None or u_value < row["min_u"]):
             row["min_u"] = u_value
+        if lift_value is not None and (row["max_lift"] is None or lift_value > row["max_lift"]):
+            row["max_lift"] = lift_value
+        share = (share_by_id or {}).get(entry.get("hypothesis_id"))
+        if share is not None and (row["best_share"] is None or share > row["best_share"]):
+            row["best_share"] = share
         elo = entry.get("elo")
         if elo is not None and (row["best_elo"] is None or elo > row["best_elo"]):
             row["best_elo"] = elo
@@ -127,23 +143,38 @@ def _per_actor_summary(survivors: list[dict[str, Any]]) -> dict[str, dict[str, A
     return rows
 
 
+def _share_by_hypothesis_id(views: dict[str, Any]) -> dict[str, float]:
+    """`hypothesis_id -> partition share`, off `timeline.json`'s
+    `event_views`/`pair_views`. Empty for a run with no `timeline.json`."""
+    entries = [e for ev in views.get("event_views", []) for e in ev.get("ranked_placements", [])]
+    entries += [e for p in views.get("pair_views", []) for e in p.get("competing_sequences", [])]
+    return {
+        e["hypothesis_id"]: e["partition"]["share"]
+        for e in entries if e.get("partition") and e["partition"].get("share") is not None
+    }
+
+
 def _cmd_campaign_results(args: argparse.Namespace) -> int:
     """One flat, no-absolute-path JSON summary of a completed
     `campaign run`: `MANIFEST.json`'s own counts, a per-actor rollup
-    over `survivors.json`, the ten highest-Elo survivors in full, a
+    over `survivors.json`, the ten survivors ranked by lift then Elo in
+    full (`hte.export._rank_key`'s own ordering), a
     curated slice of `calibration.json` (when the run had ground truth
     to hold out against), and `self-report.json` verbatim. Every file
     this command reads is optional except `MANIFEST.json` itself
     (`artifacts.load_manifest`'s own contract): a run missing
-    `survivors.json`, `calibration.json`, or `self-report.json` still
-    gets a result, with that section read as empty rather than this
-    command refusing to run over a partial run directory."""
+    `survivors.json`, `timeline.json`, `calibration.json`, or
+    `self-report.json` still gets a result, that section read as empty."""
     run_dir = Path(args.run_dir)
     manifest = artifacts.load_manifest(run_dir)
 
     survivors_path = run_dir / "survivors.json"
     survivors_data = json.loads(survivors_path.read_text()) if survivors_path.is_file() else {}
     survivors = survivors_data.get("survivors", [])
+
+    views_path = run_dir / "timeline.json"
+    views = json.loads(views_path.read_text()) if views_path.is_file() else {}
+    share_by_id = _share_by_hypothesis_id(views)
 
     self_report_path = run_dir / "self-report.json"
     self_report = json.loads(self_report_path.read_text()) if self_report_path.is_file() else {}
@@ -171,7 +202,11 @@ def _cmd_campaign_results(args: argparse.Namespace) -> int:
                 calibration["uncovered_reasons"] = reasons
 
     top = sorted(
-        survivors, key=lambda e: -(e.get("elo") if e.get("elo") is not None else float("-inf")),
+        survivors,
+        key=lambda e: (
+            -(e.get("max_lift") if e.get("max_lift") is not None else float("-inf")),
+            -(e.get("elo") if e.get("elo") is not None else float("-inf")),
+        ),
     )[:10]
 
     result = {
@@ -179,7 +214,8 @@ def _cmd_campaign_results(args: argparse.Namespace) -> int:
         "campaign": manifest.campaign,
         "corpus": manifest.corpus,
         "counts": dataclasses.asdict(manifest.counts),
-        "per_actor": _per_actor_summary(survivors),
+        "stance": (json.loads((run_dir / "MANIFEST.json").read_text()).get("counts") or {}).get("stance"),
+        "per_actor": _per_actor_summary(survivors, share_by_id),
         "top": top,
         "calibration": calibration,
         "self_report": self_report,
@@ -216,10 +252,10 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
     # exercised discovery-date holdout in the first place (`bkt-hte-
     # generation-coverage`).
     if args.cutoff_years is not None:
-        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years, corpus_name=args.corpus)
+        result = calibrate.run_holdout(corpus, Constants(), cutoff_years=args.cutoff_years, corpus_name=args.corpus, freeze_vocab=args.freeze_vocab)
         result.setdefault("mode", "discovery_date")  # `--diagnose`'s own required field; bare run_holdout carries no "mode" key
     else:
-        result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed, corpus_name=args.corpus)
+        result = calibrate.run_calibration(corpus, Constants(), k=args.k, seed=args.kfold_seed, corpus_name=args.corpus, freeze_vocab=args.freeze_vocab)
     if args.fit:
         grid = {"W": [1.0, 2.0, 3.0], "lam": [0.25, 0.5, 0.75], "tier_scale": [0.75, 1.0, 1.25]}
         result["fit"] = calibrate.fit_constants(corpus, grid, cutoff_years=args.cutoff_years, k=args.k, seed=args.kfold_seed)
@@ -236,6 +272,24 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
         diagnostics.write_diagnostics(report, out_dir)
         print(f"diagnostics written to {out_dir / 'DIAGNOSTICS.md'}")
         print(f"reasons for the uncovered remainder: {report['reasons']}")
+    if args.vindication:
+        vindication = calibrate.run_vindication(corpus, Constants())
+        (out_dir / "vindication.json").write_text(json.dumps(vindication, indent=2))
+        print(
+            f"vindication written to {out_dir / 'vindication.json'} "
+            f"(vindication_rate={vindication['vindication_rate']}, false_alarm_rate={vindication['false_alarm_rate']})"
+        )
+    if args.shuffle:
+        shuffle_result = diagnostics.shuffle_report(corpus, Constants(), seed=args.kfold_seed)
+        diagnostics_path = out_dir / "diagnostics.json"
+        merged = json.loads(diagnostics_path.read_text()) if diagnostics_path.is_file() else {}
+        merged["link_shuffle"] = shuffle_result
+        diagnostics_path.write_text(json.dumps(merged, indent=2))
+        print(
+            f"link-shuffle diagnostic written to {diagnostics_path} "
+            f"(mean_correlation={shuffle_result['mean_correlation']:.3f}, "
+            f"prior_only_fraction={shuffle_result['prior_only_fraction']:.3f})"
+        )
     return 0
 
 
@@ -344,6 +398,7 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument("--campaign", default=None, help="default: the corpus name (--corpus)")
     run_p.add_argument("--cache-dir", default=None)
     run_p.add_argument("--replay-only", action="store_true")
+    run_p.add_argument("--prior-ledger", default=None, help="cross-campaign Beta-prior ledger to read before generation and append after scoring (hte.prior_ledger)")
     run_p.add_argument("--seeds", type=int, default=3)
     run_p.add_argument("--verbose", action="store_true")
     run_p.add_argument("--generate-n", type=int, default=None, help="LLM-proposed placements per generate() call (default: runner.DEFAULT_CONFIG)")
@@ -379,6 +434,9 @@ def build_parser() -> argparse.ArgumentParser:
     calibrate_p.add_argument("--kfold-seed", type=int, default=0, help="k-fold stratification seed when auto-mode picks k-fold (default: %(default)s)")
     calibrate_p.add_argument("--fit", action="store_true", help="also grid-search W/lam/tier_scale")
     calibrate_p.add_argument("--diagnose", action="store_true", help="also write DIAGNOSTICS.md: a per-reason breakdown of every uncovered event (hte.diagnostics.coverage_report)")
+    calibrate_p.add_argument("--shuffle", action="store_true", help="also run the link-permutation shuffle diagnostic (hte.diagnostics.link_shuffle_test) and merge it into diagnostics.json")
+    calibrate_p.add_argument("--freeze-vocab", action="store_true", help="discovery-date holdout drops concepts whose introduced_year is at or after the cutoff (Vocabulary.frozen_at)")
+    calibrate_p.add_argument("--vindication", action="store_true", help="also run the vindicated-alternatives holdout and control check (hte.calibrate.run_vindication) into vindication.json")
     calibrate_p.add_argument("--out", default="runs/_calibration")
     calibrate_p.set_defaults(func=_cmd_calibrate)
 

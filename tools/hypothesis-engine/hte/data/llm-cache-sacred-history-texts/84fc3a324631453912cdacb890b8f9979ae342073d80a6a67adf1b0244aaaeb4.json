@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "7b3ee3b79bd8aa3f29fc2e031da964e5e6425e9e6406884421e089c4011774ea",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "document-text",
+        "quote": "And the children of Israel did according to the word of Moses; and they borrowed of the Egyptians jewels of silver, and jewels of gold, and raiment:",
+        "claim": "The text says the children of Israel followed Moses' instruction and asked the Egyptians for silver jewellery, gold jewellery and clothing.",
+        "actor": "children of Israel",
+        "action": "borrowed",
+        "object": "jewels of silver, jewels of gold, and raiment",
+        "place": "Egypt",
+        "mechanism": "acting according to the word of Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "document-text",
+        "quote": "And the LORD gave the people favour in the sight of the Egyptians, so that they lent unto them such things as they required.",
+        "claim": "The text says the Egyptians gave the Israelites what they asked for because the LORD made the Egyptians look on them with favour.",
+        "actor": "Egyptians",
+        "action": "lent",
+        "object": "such things as they required",
+        "place": "Egypt",
+        "mechanism": "divine favour given by the LORD in the sight of the Egyptians",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "document-text",
+        "quote": "And they spoiled the Egyptians.",
+        "claim": "The text says the Israelites stripped the Egyptians of their goods.",
+        "actor": "children of Israel",
+        "action": "spoiled",
+        "object": "the Egyptians",
+        "place": "Egypt",
+        "mechanism": "acquisition of goods through the lending described just before",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

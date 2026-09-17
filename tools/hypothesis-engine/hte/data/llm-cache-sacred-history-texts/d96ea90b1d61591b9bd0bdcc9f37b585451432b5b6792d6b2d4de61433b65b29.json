@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7d678958fd319beadcec12e828b291d9fd6857008a559cdbd516a4827f44ed1b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "for I have born him a son in his old age",
+        "claim": "Sarah bore a son to Abraham in his old age",
+        "actor": "I",
+        "action": "born",
+        "object": "a son",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Sarah should have given children suck",
+        "claim": "Sarah nursed/gave suck to children",
+        "actor": "Sarah",
+        "action": "given suck",
+        "object": "children",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

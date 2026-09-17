@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a77554ccee714d743e95252307b65116bd1c25c15748f00eb671bef9bb696eec",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said unto Pharaoh, Glory over me: when shall I intreat for thee, and for thy servants, and for thy people, to destroy the frogs from thee and thy houses, that they may remain in the river only?",
+        "claim": "Moses asks Pharaoh when to pray for removal of frogs from houses and people",
+        "actor": "Moses",
+        "action": "said",
+        "object": "Pharaoh, frogs",
+        "place": "",
+        "mechanism": "intreat",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he said, To morrow.",
+        "claim": "Pharaoh designates tomorrow as the time for frog removal",
+        "actor": "he",
+        "action": "said",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he said, Be it according to thy word: that thou mayest know that there is none like unto the LORD our God.",
+        "claim": "Pharaoh affirms the uniqueness of the LORD and the validity of Moses's word",
+        "actor": "he",
+        "action": "said",
+        "object": "word, LORD",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5ca03ead026446a2c42b2458010930a903aa289cc14b36414e8381a09ea15876",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses took the tabernacle, and pitched it without the camp, afar off from the camp, and called it the Tabernacle of the congregation.",
+        "claim": "Moses took the tabernacle, set it up outside the camp, and named it the Tabernacle of the congregation",
+        "actor": "Moses",
+        "action": "took, pitched, called",
+        "object": "the tabernacle",
+        "place": "without the camp, afar off from the camp",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And it came to pass, that every one which sought the LORD went out unto the tabernacle of the congregation, which was without the camp.",
+        "claim": "Those who sought the LORD traveled to the tabernacle outside the camp",
+        "actor": "every one which sought the LORD",
+        "action": "went out",
+        "object": "",
+        "place": "unto the tabernacle of the congregation, which was without the camp",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

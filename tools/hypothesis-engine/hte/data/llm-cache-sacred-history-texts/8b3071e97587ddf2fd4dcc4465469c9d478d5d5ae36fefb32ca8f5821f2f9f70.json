@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6319a3bac0eb02c760c6a9057161134a3bb82590900a2cdc0a4c7c9432daff21",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses and Aaron went in unto Pharaoh",
+        "claim": "Moses and Aaron approached Pharaoh",
+        "actor": "Moses and Aaron",
+        "action": "went in",
+        "object": "Pharaoh",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and they did so as the LORD had commanded",
+        "claim": "Moses and Aaron performed the action the LORD had commanded",
+        "actor": "they",
+        "action": "did so",
+        "object": "",
+        "place": "",
+        "mechanism": "as the LORD had commanded",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and Aaron cast down his rod before Pharaoh, and before his servants",
+        "claim": "Aaron threw down his rod in the presence of Pharaoh and his servants",
+        "actor": "Aaron",
+        "action": "cast down",
+        "object": "his rod",
+        "place": "before Pharaoh, and before his servants",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and it became a serpent",
+        "claim": "The rod transformed into a serpent",
+        "actor": "it",
+        "action": "became",
+        "object": "a serpent",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

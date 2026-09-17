@@ -1,0 +1,66 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "16fbc8ca1dc121ad29dbb28b35e2afa51278e52f31ce0197f0597940abc30ccd",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Aaron, saying,",
+        "claim": "The LORD commanded Aaron",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Aaron",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Do not drink wine nor strong drink, thou, nor thy sons with thee, when ye go into the tabernacle of the congregation, lest ye die:",
+        "claim": "Aaron and his sons were forbidden to drink wine or strong drink when entering the tabernacle",
+        "actor": "thou, nor thy sons with thee",
+        "action": "not drink",
+        "object": "wine nor strong drink",
+        "place": "tabernacle of the congregation",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "it shall be a statute for ever throughout your generations:",
+        "claim": "The prohibition shall be an everlasting statute",
+        "actor": "it",
+        "action": "be a statute",
+        "place": "throughout your generations",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And that ye may put difference between holy and unholy, and between unclean and clean;",
+        "claim": "Aaron and his sons were to distinguish between holy and unholy, clean and unclean",
+        "actor": "ye",
+        "action": "put difference",
+        "object": "holy and unholy, and between unclean and clean",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And that ye may teach the children of Israel all the statutes which the LORD hath spoken unto them by the hand of Moses.",
+        "claim": "Aaron and his sons were to teach the children of Israel the LORD's statutes as delivered through Moses",
+        "actor": "ye",
+        "action": "teach",
+        "object": "the children of Israel",
+        "mechanism": "by the hand of Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

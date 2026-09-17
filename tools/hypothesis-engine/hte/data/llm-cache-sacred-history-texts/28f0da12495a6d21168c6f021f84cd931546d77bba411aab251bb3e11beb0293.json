@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "01706042647035d8e823cda4403432b557a99ac9f7a9a6059e727c377507a660",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And God said unto Abraham, As for Sarai thy wife, thou shalt not call her name Sarai, but Sarah shall her name be.",
+        "claim": "God commanded Abraham to change his wife's name from Sarai to Sarah.",
+        "actor": "God",
+        "action": "said",
+        "object": "name change from Sarai to Sarah",
+        "place": "",
+        "mechanism": "divine command",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a1de89318aef898d3c94bbd9fa3a53b8fcc8bfb26a5af890eea91b34516008a4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "for Aaron had made them naked unto their shame among their enemies",
+        "claim": "Aaron stripped the people, causing shame before enemies",
+        "actor": "Aaron",
+        "action": "made naked",
+        "object": "people",
+        "place": "among their enemies",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Then Moses stood in the gate of the camp, and said, Who is on the LORD's side? let him come unto me. And all the sons of Levi gathered themselves together unto him.",
+        "claim": "Moses summoned from the camp gate and the Levites assembled to him",
+        "actor": "Moses",
+        "action": "stood in gate and called",
+        "object": "sons of Levi",
+        "place": "gate of the camp",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

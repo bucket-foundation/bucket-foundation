@@ -1,0 +1,79 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "234c5afbf3f3badd1ebc6def298fd1ee964a4f403058801579185392f0740e67",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the people murmured against Moses, saying, What shall we drink?",
+        "claim": "The Israelite people complained to Moses about having no water to drink",
+        "actor": "the people",
+        "action": "murmured",
+        "mechanism": "saying",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he cried unto the LORD",
+        "claim": "Moses called out to God in prayer",
+        "actor": "he",
+        "action": "cried",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and the LORD shewed him a tree, which when he had cast into the waters, the waters were made sweet",
+        "claim": "God showed Moses a tree that made water potable when placed in it",
+        "actor": "the LORD",
+        "action": "shewed",
+        "object": "a tree",
+        "place": "the waters",
+        "mechanism": "cast into the waters",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "there he made for them a statute and an ordinance",
+        "claim": "God established laws and ordinances for the people at that location",
+        "actor": "he",
+        "action": "made",
+        "object": "a statute and an ordinance",
+        "place": "there",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and there he proved them",
+        "claim": "God tested the people at that location",
+        "actor": "he",
+        "action": "proved",
+        "object": "them",
+        "place": "there",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "If thou wilt diligently hearken to the voice of the LORD thy God, and wilt do that which is right in his sight, and wilt give ear to his commandments, and keep all his statutes, I will put none of these diseases upon thee, which I have brought upon the Egyptians: for I am the LORD that healeth thee.",
+        "claim": "God promises to withhold diseases from the obedient, having previously inflicted diseases upon Egypt, and identifies as a healer",
+        "actor": "I",
+        "action": "put",
+        "object": "diseases",
+        "mechanism": "obedience",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

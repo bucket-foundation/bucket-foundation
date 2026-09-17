@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "23b79abbd118636c912b0a54dbbbd262b4dcab6e0359a25e953af3b3a72658b1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said unto the people, Remember this day, in which ye came out from Egypt, out of the house of bondage; for by strength of hand the LORD brought you out from this place",
+        "claim": "The exodus from Egypt was accomplished on this day by the strength of the LORD's hand",
+        "actor": "the LORD",
+        "action": "brought out",
+        "object": "the people",
+        "place": "Egypt",
+        "mechanism": "strength of hand",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1c084e8fd28273952670ad74048dd175614f29ec48821546f75a4ca825b97f30",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses and Aaron came in unto Pharaoh",
+        "claim": "Moses and Aaron entered Pharaoh's presence",
+        "actor": "Moses and Aaron",
+        "action": "came in",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and said unto him, Thus saith the LORD God of the Hebrews, How long wilt thou refuse to humble thyself before me? let my people go, that they may serve me",
+        "claim": "Moses and Aaron conveyed to Pharaoh the LORD's demand to release His people",
+        "actor": "Moses and Aaron",
+        "action": "said",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "How long wilt thou refuse to humble thyself before me?",
+        "claim": "Pharaoh refuses to humble himself before God",
+        "actor": "Pharaoh",
+        "action": "refuse",
+        "object": "to humble thyself",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Thus saith the LORD God of the Hebrews, How long wilt thou refuse to humble thyself before me? let my people go, that they may serve me",
+        "claim": "The LORD God demands release of the Hebrew people",
+        "actor": "the LORD God of the Hebrews",
+        "action": "let",
+        "object": "my people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

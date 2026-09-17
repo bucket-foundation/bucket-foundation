@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "94aedd29beec8a7c88c093b57161905ce30bef3bcc99c4d9eb41232b26dd81ba",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Noah begat three sons, Shem, Ham, and Japheth.",
+        "claim": "Noah fathered three sons named Shem, Ham, and Japheth.",
+        "actor": "Noah",
+        "action": "begat",
+        "object": "three sons (Shem, Ham, Japheth)",
+        "place": "",
+        "mechanism": "biological reproduction",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

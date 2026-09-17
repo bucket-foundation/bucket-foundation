@@ -1,0 +1,45 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "70a72a8097ab2ab3897bfe48565cd26da6a7a66c7a8e0cdb9c8629f0808a3f21",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses stretched out his hand over the sea",
+        "claim": "The text says Moses stretched out his hand over the sea.",
+        "actor": "Moses",
+        "action": "stretched out his hand over",
+        "object": "the sea",
+        "place": "the sea",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "mechanism",
+        "tier": "primary-text",
+        "quote": "the LORD caused the sea to go back by a strong east wind all that night, and made the sea dry land",
+        "claim": "The text says the LORD made the sea go back using a strong east wind that blew all night, which turned the sea into dry land.",
+        "actor": "the LORD",
+        "action": "caused to go back; made dry land",
+        "object": "the sea",
+        "mechanism": "a strong east wind blowing all that night",
+        "place": "the sea",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and the waters were divided",
+        "claim": "The text says the waters were divided.",
+        "object": "the waters",
+        "action": "were divided",
+        "place": "the sea",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6ddb861e64f20b0d11678cfb38cf64095bdb614a05a2315e03f226704dcd0449",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he stayed yet other seven days; and again he sent forth the dove out of the ark",
+        "claim": "Noah waited seven days, then sent the dove out of the ark",
+        "actor": "Noah",
+        "action": "sent forth",
+        "object": "the dove",
+        "place": "the ark",
+        "mechanism": "after seven days passed",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the dove came in to him in the evening; and, lo, in her mouth was an olive leaf pluckt off",
+        "claim": "The dove returned to Noah in the evening with an olive leaf in its mouth",
+        "actor": "the dove",
+        "action": "came in",
+        "object": "the olive leaf",
+        "place": "the ark",
+        "mechanism": "the leaf was in the dove's mouth",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "so Noah knew that the waters were abated from off the earth",
+        "claim": "Noah inferred from the dove's return that the floodwaters had receded from the earth",
+        "actor": "Noah",
+        "action": "knew",
+        "object": "that the waters were abated",
+        "place": "the earth",
+        "mechanism": "the dove's return with the leaf",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

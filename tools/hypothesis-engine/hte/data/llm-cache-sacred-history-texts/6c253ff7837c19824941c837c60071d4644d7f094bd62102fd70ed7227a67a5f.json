@@ -1,0 +1,67 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "fa9115e9358706afd27cd82667fed908a66de85db11b5048d7fca5df15281609",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And when he went out the second day, behold, two men of the Hebrews strove together",
+        "claim": "On the second day after he went out, Moses saw two Hebrew men fighting each other.",
+        "actor": "two men of the Hebrews",
+        "action": "strove together",
+        "object": "each other",
+        "mechanism": "physical quarrel observed by Moses",
+        "year": null
+      },
+      {
+        "kind": "speech",
+        "tier": "primary-text",
+        "quote": "and he said to him that did the wrong, Wherefore smitest thou thy fellow?",
+        "claim": "Moses stepped in and asked the man in the wrong why he was hitting his fellow Hebrew.",
+        "actor": "Moses",
+        "action": "rebuked",
+        "object": "him that did the wrong",
+        "mechanism": "verbal challenge",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "speech",
+        "tier": "primary-text",
+        "quote": "Who made thee a prince and a judge over us?",
+        "claim": "The Hebrew in the wrong rejected Moses' right to act as a ruler or judge over them.",
+        "actor": "him that did the wrong",
+        "action": "challenged authority of",
+        "object": "Moses",
+        "mechanism": "rhetorical question denying Moses' standing",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "speech",
+        "tier": "primary-text",
+        "quote": "intendest thou to kill me, as thou killedst the Egyptian?",
+        "claim": "The Hebrew man showed he knew Moses had killed an Egyptian. He asked whether Moses meant to kill him the same way.",
+        "actor": "him that did the wrong",
+        "action": "accused",
+        "object": "Moses",
+        "mechanism": "reference to Moses' earlier killing of an Egyptian",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses feared, and said, Surely this thing is known.",
+        "claim": "Moses became afraid once he realized his killing of the Egyptian had become known.",
+        "actor": "Moses",
+        "action": "feared",
+        "object": "exposure of the killing of the Egyptian",
+        "mechanism": "realization that the deed was publicly known",
+        "year": null
+      }
+    ]
+  }
+}

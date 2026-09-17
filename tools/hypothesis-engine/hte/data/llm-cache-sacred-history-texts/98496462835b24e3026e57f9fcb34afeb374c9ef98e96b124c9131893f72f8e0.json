@@ -1,0 +1,53 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0b37172cc133990a4db94fc603d95be42dc2c48bd73f96812ef5e464847cb48e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then Abimelech called Abraham, and said unto him, What hast thou done unto us?",
+        "claim": "Abimelech called Abraham and questioned what wrongdoing he had committed",
+        "actor": "Abimelech",
+        "action": "called, said",
+        "object": "Abraham",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou hast brought on me and on my kingdom a great sin",
+        "claim": "Abraham brought a great sin upon Abimelech and his kingdom",
+        "actor": "thou (Abraham)",
+        "action": "brought",
+        "object": "a great sin",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou hast done deeds unto me that ought not to be done",
+        "claim": "Abraham committed deeds against Abimelech that were improper",
+        "actor": "thou (Abraham)",
+        "action": "done",
+        "object": "deeds",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "what have I offended thee",
+        "claim": "Abimelech questions what offense he has committed against Abraham",
+        "actor": "I (Abimelech)",
+        "action": "offended",
+        "object": "thee (Abraham)",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

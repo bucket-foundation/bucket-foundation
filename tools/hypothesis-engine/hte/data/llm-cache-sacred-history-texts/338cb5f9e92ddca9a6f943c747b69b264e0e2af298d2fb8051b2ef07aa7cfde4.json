@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "6ca376c2797d53b90fed14d81012c29276ee467858a9581e46df04828787f798",
+  "response": {
+    "items": [
+      {
+        "kind": "instruction",
+        "tier": "primary-text",
+        "quote": "30:17 And the LORD spake unto Moses, saying, 30:18 Thou shalt also make a laver of brass, and his foot also of brass, to wash withal",
+        "claim": "The text says the LORD told Moses to make a brass laver with a brass foot, used for washing.",
+        "actor": "the LORD (speaking to Moses)",
+        "action": "commands the making of",
+        "object": "laver of brass with foot of brass",
+        "mechanism": "divine verbal instruction",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "instruction",
+        "tier": "primary-text",
+        "quote": "and thou shalt put it between the tabernacle of the congregation and the altar, and thou shalt put water therein.",
+        "claim": "The text says the laver was to be placed between the tabernacle of the congregation and the altar and filled with water.",
+        "actor": "Moses (as instructed by the LORD)",
+        "action": "place and fill with water",
+        "object": "laver of brass",
+        "mechanism": "divine verbal instruction",
+        "place": "between the tabernacle of the congregation and the altar",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -110,9 +110,8 @@ def _opinions(hypotheses, evidence, vocab, sources):
 
 def _retract_root(evidence, sources, root_address):
     """Applies two independent retracting items to `root_address` (two
-    different evidence kinds and families, so the retraction's own
-    cross-kind bonus applies): the collapse this test file's own
-    docstring describes as "turns out false"."""
+    different evidence kinds and families): the collapse this test
+    file's own docstring describes as "turns out false"."""
     propagate.apply_retraction(
         evidence, sources, target_address=root_address,
         retracting_source=Source(id="src-retraction-1", kind=EvidenceKind.TEXTUAL),
@@ -208,6 +207,10 @@ def test_two_hop_dependent_moves_less_than_one_hop(monkeypatch=None):
     report = propagate.propagate(
         [r, a, b, c, d], opinions_after_root, {r.address},
         evidence=evidence, vocab=vocab, sources=sources,
+        # Item 6's bonus removal drops C's two-hop delta to ~0.0499,
+        # just under the default threshold=0.05; 0.01 keeps this test's
+        # real point (a two-hop delta is smaller than a one-hop one).
+        threshold=0.01,
     )
     by_address = {e.address: e for e in report.entries}
 
@@ -312,6 +315,7 @@ def test_cascade_report_lists_a_b_c_with_correct_hops_and_shares():
     report = propagate.propagate(
         [r, a, b, c, d], opinions_after_root, {r.address},
         evidence=evidence, vocab=vocab, sources=sources,
+        threshold=0.01,  # see test_two_hop_dependent_moves_less_than_one_hop
     )
 
     addresses = report.addresses()
@@ -515,17 +519,18 @@ def test_quantum_history_corpus_carries_no_retraction_by_default():
 
 
 def test_run_campaign_replay_only_writes_an_empty_cascade_when_nothing_retracted(tmp_path, monkeypatch):
-    # Reuses `tests/test_runner.py`'s own `FIXTURE_CONFIG` exactly (same
-    # campaign name, same committed cache): several of this config's own
-    # values are baked into the cache key of the seeded fixture
-    # responses (`test_runner.py`'s own module docstring on
-    # `FIXTURE_CONFIG`), so a different campaign name here would miss
-    # that cache entirely rather than replay it.
+    # `tests/test_runner.py`'s own `_fake_mode_cfg` (`hte.generate.
+    # stratified_sample`, `STATISTICAL-AUDIT-2026-09-15.md` item 1, no
+    # longer keeps the address-sorted top 8 this fixture's committed
+    # real cache was seeded against, so this reuses the same fake-mode,
+    # "production"-corpus substitute `test_runner.py` switched to).
     from hte import runner
-    from tests.test_runner import FIXTURE_CONFIG
+    from tests.test_runner import _fake_mode_cfg
 
-    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
-    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path)}
+    cfg = _fake_mode_cfg(
+        tmp_path, monkeypatch, corpus="production", max_hypotheses=20,
+        combinatorial_max_items=1, max_time_bins=2, run_extraction=False,
+    )
     artifacts = runner.run_campaign(cfg)
 
     cascade_path = artifacts.run_dir / "cascade.json"

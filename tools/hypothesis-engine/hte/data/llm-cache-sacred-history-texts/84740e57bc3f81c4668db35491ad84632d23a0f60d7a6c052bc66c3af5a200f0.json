@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "3e8e95ddfe87151005272c1cc5f3d46e0f2de1159ee2ffc0fa62f4f587d0099a",
+  "response": {
+    "items": [
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "12:1 And the LORD spake unto Moses and Aaron in the land of Egypt saying, 12:2 This month shall be unto you the beginning of months: it shall be the first month of the year to you.",
+        "claim": "The text says the LORD told Moses and Aaron, while they were in Egypt, that this month would be the start of months and the first month of their year. This is a calendar rule set by the text: the year begins with this month. The text itself does not name the month or give a date. Identifying the passage as Exodus 12:1-2 and the month as Abib/Nisan is from model-prior only (unverified), not from the evidence.",
+        "actor": "the LORD (as speaker), addressing Moses and Aaron",
+        "action": "declared / instituted",
+        "object": "this month as the beginning of months and the first month of the year",
+        "place": "the land of Egypt",
+        "mechanism": "a spoken divine command that sets the start of the calendar year",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

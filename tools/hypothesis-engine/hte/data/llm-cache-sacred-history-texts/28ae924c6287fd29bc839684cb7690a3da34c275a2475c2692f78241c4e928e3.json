@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "634134db59cba55cbf4907355d3fd0fb86a910a9af810d4d90dd739c0fb4d7c1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Thus was all the work of the tabernacle of the tent of the congregation finished",
+        "claim": "The work of the tabernacle of the tent of the congregation was completed",
+        "actor": "",
+        "action": "finished",
+        "object": "work of the tabernacle of the tent of the congregation",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the children of Israel did according to all that the LORD commanded Moses, so did they",
+        "claim": "The children of Israel obeyed everything that the LORD commanded through Moses",
+        "actor": "children of Israel",
+        "action": "did",
+        "object": "",
+        "place": "",
+        "mechanism": "according to all that the LORD commanded Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

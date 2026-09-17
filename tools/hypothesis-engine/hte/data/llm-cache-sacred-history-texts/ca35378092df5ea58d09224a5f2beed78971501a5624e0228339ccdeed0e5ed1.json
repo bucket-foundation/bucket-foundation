@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7860324d6527a54dd370fc5ff8b753b7c93e85536135d8a1a61abe3d0fe91e50",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And they made coats of fine linen of woven work for Aaron, and for his sons, And a mitre of fine linen, and goodly bonnets of fine linen, and linen breeches of fine twined linen, And a girdle of fine twined linen, and blue, and purple, and scarlet, of needlework",
+        "claim": "Artisans made fine linen garments for Aaron and his sons",
+        "actor": "they",
+        "action": "made",
+        "object": "coats, mitre, bonnets, breeches, girdle",
+        "place": "",
+        "mechanism": "woven work, needlework",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

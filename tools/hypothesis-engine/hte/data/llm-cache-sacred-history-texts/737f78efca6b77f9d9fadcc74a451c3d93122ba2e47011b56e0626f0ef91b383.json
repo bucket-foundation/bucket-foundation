@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "d95775a2837604dab0ff81a4f5f5f0442b82c93be1c0c09646cefd4013a3e0be",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "source-text",
+        "quote": "And Abraham took sheep and oxen, and gave them unto Abimelech; and both of them made a covenant.",
+        "claim": "Abraham gave sheep and oxen to Abimelech, and the two of them made a covenant.",
+        "actor": "Abraham",
+        "action": "gave sheep and oxen to, and made a covenant with",
+        "object": "Abimelech",
+        "mechanism": "a gift of livestock that went along with making a covenant between the two parties",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

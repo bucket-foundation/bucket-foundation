@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ac52c4baf30aec08a533b8842517f89d2cbcb2fd3d13c4519c54a3cdc800cbda",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Moses sat to judge the people",
+        "claim": "Moses performed judicial duties over the people",
+        "actor": "Moses",
+        "action": "sat, judge",
+        "object": "the people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the people stood by Moses from the morning unto the evening",
+        "claim": "The people remained present with Moses throughout the day",
+        "actor": "the people",
+        "action": "stood",
+        "object": "",
+        "place": "by Moses",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

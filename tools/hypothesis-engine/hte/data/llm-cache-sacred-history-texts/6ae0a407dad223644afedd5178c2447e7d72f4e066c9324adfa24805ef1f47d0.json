@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "95fe6ce9175cd7ee2dfa4ece4b5a70b374e4af0379383d04e20dbb7c50035eae",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD said unto Moses, Rise up early in the morning, and stand before Pharaoh; lo, he cometh forth to the water; and say unto him, Thus saith the LORD, Let my people go, that they may serve me.",
+        "claim": "The LORD commanded Moses to confront Pharaoh and demand the release of the Israelites",
+        "actor": "The LORD",
+        "action": "said",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "lo, he cometh forth to the water",
+        "claim": "Pharaoh comes forth to the water",
+        "actor": "Pharaoh",
+        "action": "cometh forth",
+        "object": "",
+        "place": "to the water",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

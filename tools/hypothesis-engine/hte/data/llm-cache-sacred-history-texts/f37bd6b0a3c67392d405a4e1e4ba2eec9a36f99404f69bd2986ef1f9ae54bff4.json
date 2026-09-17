@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "62d112759ab97964ded86439d7e28bf3a601b56910e9f2f093d2a82106e0b721",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "19:20 And the LORD came down upon mount Sinai, on the top of the mount: and the LORD called Moses up to the top of the mount; and Moses went up.",
+        "claim": "The text says the LORD came down onto the top of Mount Sinai and called Moses up to the top of the mountain, and Moses went up.",
+        "actor": "the LORD; Moses",
+        "action": "came down upon the mount; called Moses up; Moses went up",
+        "object": "top of mount Sinai",
+        "place": "Mount Sinai",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "Narrative statement in a numbered verse (19:20). The document does not name its source. The match to Exodus 19:20 (King James Version) comes from model-prior only and has not been checked. Passes 1 and 2 agreed on this wording apart from punctuation. Pass 3 was empty."
+      }
+    ]
+  }
+}

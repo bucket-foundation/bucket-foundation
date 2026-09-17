@@ -1,0 +1,42 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2638cf31ead55e3c1503bc46dd1b9d3be34fa986f349c07bb322b7c3c6154d55",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said before the LORD, Behold, I am of uncircumcised lips, and how shall Pharaoh hearken unto me?",
+        "claim": "Moses expressed to God his concern about his speech difficulty and doubt that Pharaoh would listen to him",
+        "actor": "Moses",
+        "action": "said",
+        "place": "before the LORD",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "See, I have made thee a god to Pharaoh",
+        "claim": "The LORD appointed Moses as a god to Pharaoh",
+        "actor": "the LORD",
+        "action": "made",
+        "object": "god",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Aaron thy brother shall be thy prophet",
+        "claim": "Aaron was designated to serve as Moses's prophet",
+        "actor": "Aaron",
+        "action": "shall be",
+        "object": "prophet",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

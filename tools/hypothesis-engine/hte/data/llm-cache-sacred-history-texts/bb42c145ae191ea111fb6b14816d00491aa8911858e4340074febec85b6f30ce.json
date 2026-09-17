@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7fe2e685787884791ad02d4c0391e2e62e23226df904ff733c6a456a1fed10e0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Lamech lived after he begat Noah five hundred ninety and five years",
+        "claim": "Lamech lived 595 years after fathering Noah",
+        "actor": "Lamech",
+        "action": "lived",
+        "object": "five hundred ninety and five years",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And all the days of Lamech were seven hundred seventy and seven years",
+        "claim": "Lamech's total lifespan was 777 years",
+        "actor": "Lamech",
+        "action": "",
+        "object": "seven hundred seventy and seven years",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and he died",
+        "claim": "Lamech died",
+        "actor": "Lamech",
+        "action": "died",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "274f44d3ae6dbf0d9c1b8a9b89a9145d2b51d7dac4b9622f42947a1da003bcd2",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "document",
+        "quote": "And he reared up the court round about the tabernacle and the altar",
+        "claim": "He (Moses, named later in the same verse) set up the court around the tabernacle and the altar.",
+        "actor": "Moses",
+        "action": "reared up",
+        "object": "the court round about the tabernacle and the altar",
+        "place": "tabernacle",
+        "stance": "positive",
+        "year": null,
+        "mechanism": ""
+      },
+      {
+        "kind": "event",
+        "tier": "document",
+        "quote": "and set up the hanging of the court gate",
+        "claim": "He (Moses) set up the hanging at the court gate.",
+        "actor": "Moses",
+        "action": "set up",
+        "object": "the hanging of the court gate",
+        "place": "court gate of the tabernacle",
+        "stance": "positive",
+        "year": null,
+        "mechanism": ""
+      },
+      {
+        "kind": "event",
+        "tier": "document",
+        "quote": "So Moses finished the work.",
+        "claim": "Moses finished the work.",
+        "actor": "Moses",
+        "action": "finished",
+        "object": "the work",
+        "place": "tabernacle",
+        "stance": "positive",
+        "year": null,
+        "mechanism": ""
+      }
+    ]
+  }
+}

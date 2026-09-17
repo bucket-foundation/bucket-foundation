@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2fcbf85de17e0257586a52e85be3489245b67255578885105d5915f8235d0f7c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the servant of his house, that ruled over all that he had",
+        "claim": "Abraham's household servant had authority over all his possessions",
+        "actor": "servant",
+        "action": "ruled over",
+        "object": "all that he had",
+        "place": "his house",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And I will make thee swear by the LORD, the God of heaven, and the God of the earth",
+        "claim": "Abraham will require the servant to swear an oath before God",
+        "actor": "Abraham",
+        "action": "make swear",
+        "object": "the servant",
+        "place": "",
+        "mechanism": "by the LORD, the God of heaven, and the God of the earth",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou shalt not take a wife unto my son of the daughters of the Canaanites, among whom I dwell",
+        "claim": "The servant shall not marry a wife from the Canaanites for Isaac",
+        "actor": "servant",
+        "action": "not take",
+        "object": "a wife of the daughters of the Canaanites",
+        "place": "among the Canaanites",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "But thou shalt go unto my country, and to my kindred, and take a wife unto my son Isaac",
+        "claim": "The servant shall travel to Abraham's homeland and kinfolk to obtain a wife for Isaac",
+        "actor": "servant",
+        "action": "go, take",
+        "object": "a wife unto my son Isaac",
+        "place": "my country, and my kindred",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

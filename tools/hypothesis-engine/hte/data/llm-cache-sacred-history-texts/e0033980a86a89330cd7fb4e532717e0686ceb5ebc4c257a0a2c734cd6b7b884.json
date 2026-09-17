@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2d98b0f93dbbfb2cb5a254c2756e1260a1a6527d2418fb713718ac35fa1486e4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "36:6 And Moses gave commandment, and they caused it to be proclaimed throughout the camp, saying, Let neither man nor woman make any more work for the offering of the sanctuary. So the people were restrained from bringing.",
+        "claim": "Moses commanded the people to cease making work for the sanctuary offering",
+        "actor": "Moses",
+        "action": "gave commandment",
+        "object": "work for the sanctuary offering",
+        "place": "the camp",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "269a205876cd75b969b311e1d701ced683f9f2ef2797f1bb4172cd72ce5a34fc",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the servant said unto him, Peradventure the woman will not be willing to follow me unto this land: must I needs bring thy son again unto the land from whence thou camest?",
+        "claim": "The servant raises concern that a woman may refuse to follow him to Abraham's land and asks whether he should return Abraham's son to his native land if she does",
+        "actor": "servant",
+        "action": "raised concern; posed question",
+        "object": "woman's willingness; Abraham's son",
+        "place": "this land; the land from whence thou camest",
+        "mechanism": "speech; questioning",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Abraham said unto him, Beware thou that thou bring not my son thither again.",
+        "claim": "Abraham commanded his servant not to bring his son back to his native land",
+        "actor": "Abraham",
+        "action": "commanded",
+        "object": "the servant's bringing back of the son",
+        "place": "thither (the native land)",
+        "mechanism": "direct speech; imperative command",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

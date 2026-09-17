@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2a0d495f4e08112e125e371e77e94ad8b7332cb3f5927f47928340d59a69830d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD said unto Moses",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Hew thee two tables of stone like unto the first",
+        "claim": "God commanded the hewing of two stone tablets like the first ones",
+        "actor": "",
+        "action": "Hew",
+        "object": "two tables of stone",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and I will write upon these tables the words that were in the first tables",
+        "claim": "The LORD will write the words upon the new stone tablets",
+        "actor": "I",
+        "action": "will write",
+        "object": "the words",
+        "place": "upon these tables",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the first tables, which thou brakest",
+        "claim": "Moses broke the first stone tablets",
+        "actor": "thou",
+        "action": "brakest",
+        "object": "the first tables",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

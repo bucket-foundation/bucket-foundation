@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "43cf738d86c1bde89e207d9b7fd73e158d232b9732fea066c01d82def4e4da09",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses stretched forth his hand toward heaven; and there was a thick darkness in all the land of Egypt three days:",
+        "claim": "The text (Exodus 10:22) says Moses stretched his hand toward heaven and a thick darkness covered all of Egypt for three days. This is the narrative's own account and has not been checked against outside historical sources.",
+        "actor": "Moses",
+        "action": "stretched forth his hand toward heaven",
+        "object": "thick darkness over the land of Egypt",
+        "place": "Egypt",
+        "mechanism": "The narrative ties the darkness to Moses' gesture toward heaven",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "They saw not one another, neither rose any from his place for three days:",
+        "claim": "The text (Exodus 10:23) says that during the darkness people in Egypt could not see one another, and no one got up from their place for three days.",
+        "actor": "inhabitants of Egypt",
+        "action": "saw not one another, neither rose from their place",
+        "object": "their movement and sight",
+        "place": "Egypt",
+        "mechanism": "The thick darkness stopped them from seeing or moving",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "but all the children of Israel had light in their dwellings.",
+        "claim": "The text (Exodus 10:23) says that, unlike the rest of Egypt, all the Israelites had light in their homes during the darkness.",
+        "actor": "children of Israel",
+        "action": "had light",
+        "object": "their dwellings",
+        "place": "Egypt",
+        "mechanism": "The narrative presents the Israelites as exempt from the darkness",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

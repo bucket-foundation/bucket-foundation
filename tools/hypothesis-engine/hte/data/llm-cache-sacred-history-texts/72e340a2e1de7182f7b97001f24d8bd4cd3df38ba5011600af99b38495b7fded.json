@@ -1,0 +1,55 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "33aeba3c8d807687c124efea1bc3612a7c205fbcb93cd02f82cfbb83a187802f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And when Moses saw that the people were naked;",
+        "claim": "Moses saw that the people were naked.",
+        "actor": "Moses",
+        "action": "saw",
+        "object": "the people were naked",
+        "place": "the camp",
+        "year": null
+      },
+      {
+        "kind": "causal-claim",
+        "tier": "primary-text",
+        "quote": "for Aaron had made them naked unto their shame among their enemies:",
+        "claim": "The text blames Aaron for the people's nakedness, which shamed them in front of their enemies.",
+        "actor": "Aaron",
+        "action": "made naked",
+        "object": "the people",
+        "mechanism": "Aaron's leadership left the people exposed and shamed in front of their enemies",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "Then Moses stood in the gate of the camp, and said, Who is on the LORD\u2019s side? let him come unto me.",
+        "claim": "Moses stood in the gate of the camp and called on whoever was on the LORD's side to come to him.",
+        "actor": "Moses",
+        "action": "stood in the gate and called for allegiance",
+        "object": "those on the LORD's side",
+        "place": "gate of the camp",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And all the sons of Levi gathered themselves together unto him.",
+        "claim": "All the sons of Levi answered Moses's call and gathered around him.",
+        "actor": "sons of Levi",
+        "action": "gathered themselves together",
+        "object": "Moses",
+        "place": "gate of the camp",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "2ed812a87c96eb4a30b7a299a303c4470fff7312d761042a0adc42ec7e7557c4",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the men rose up from thence, and looked toward Sodom: and Abraham went with them to bring them on the way.",
+        "claim": "The document (verse-numbered 18:16) says the men got up from where they were and looked toward Sodom, and Abraham went with them to see them off. The text doesn't name the book it comes from. It is often identified as Genesis 18:16, but that comes from model-prior and hasn't been checked against a source.",
+        "actor": "the men; Abraham",
+        "action": "rose up and looked toward Sodom; Abraham accompanied them to bring them on the way",
+        "object": "the men (Abraham's visitors)",
+        "place": "toward Sodom (departure point unspecified, 'thence')",
+        "year": null
+      }
+    ]
+  }
+}

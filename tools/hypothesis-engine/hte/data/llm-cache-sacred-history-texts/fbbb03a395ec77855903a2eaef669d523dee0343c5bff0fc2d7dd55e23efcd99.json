@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1bc6655cd596739962df0cd88d1372a75629caf849bbf3644a8f35cea991fbd1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Abraham reproved Abimelech because of a well of water, which Abimelech's servants had violently taken away.",
+        "claim": "Abraham reproved Abimelech regarding a well of water that Abimelech's servants had violently taken",
+        "actor": "Abraham",
+        "action": "reproved",
+        "object": "Abimelech",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Abraham reproved Abimelech because of a well of water, which Abimelech's servants had violently taken away.",
+        "claim": "Abimelech's servants had violently taken away a well of water",
+        "actor": "Abimelech's servants",
+        "action": "taken away",
+        "object": "a well of water",
+        "place": "",
+        "mechanism": "violently",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2de9b82253e2c3fc12cc7e1c6ae416b2810a8b459c6722a4434ffd88a7728291",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses, Hew thee two tables of stone like unto the first: and I will write upon these tables the words that were in the first tables, which thou brakest.",
+        "claim": "The LORD commands Moses to hew two stone tables identical to the first, and promises to write upon them the same words that were on the broken first tables",
+        "actor": "the LORD, Moses",
+        "action": "said, Hew, will write, brakest",
+        "object": "two tables of stone, words, first tables",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

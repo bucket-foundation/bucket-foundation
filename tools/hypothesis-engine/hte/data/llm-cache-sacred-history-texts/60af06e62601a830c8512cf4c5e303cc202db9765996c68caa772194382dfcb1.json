@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d40afe5b4be6477354e57c31ed37f329b03c3adedf3ed7496047b28ec0c599b0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And God said unto Noah, The end of all flesh is come before me; for the earth is filled with violence through them; and, behold, I will destroy them with the earth.",
+        "claim": "God declares to Noah that all flesh shall end because violence has filled the earth, and He will destroy them with it.",
+        "actor": "God, Noah",
+        "action": "said, will destroy",
+        "object": "all flesh, the earth",
+        "place": "",
+        "mechanism": "violence",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

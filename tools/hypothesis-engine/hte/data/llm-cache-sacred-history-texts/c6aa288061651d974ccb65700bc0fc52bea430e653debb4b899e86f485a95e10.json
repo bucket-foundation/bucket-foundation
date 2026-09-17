@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "259af3f647272de2b7d46a4a56943ec112f2037aaeb30f663eb9302b4efa2114",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying, Command Aaron and his sons, saying, This is the law of the burnt offering: It is the burnt offering, because of the burning upon the altar all night unto the morning, and the fire of the altar shall be burning in it.",
+        "claim": "The law of the burnt offering prescribes that it be burned upon the altar all night unto the morning with fire burning continuously.",
+        "actor": "the LORD",
+        "action": "Command",
+        "object": "the burnt offering",
+        "place": "the altar",
+        "mechanism": "the burning upon the altar all night unto the morning, and the fire of the altar shall be burning in it",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5960b979d90bba3903ec0b90bc0e50b94af939cd408ed7c887ebdf5cf405725d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses chose able men out of all Israel, and made them heads over the people, rulers of thousands, rulers of hundreds, rulers of fifties, and rulers of tens.",
+        "claim": "Moses chose able men from Israel and appointed them as hierarchical administrators (heads, rulers of thousands, hundreds, fifties, and tens) over the people",
+        "actor": "Moses",
+        "action": "chose and made",
+        "object": "able men; heads over the people; rulers of thousands, hundreds, fifties, tens",
+        "place": "Israel (source); over the people (destination)",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

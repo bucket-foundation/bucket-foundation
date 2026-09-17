@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9e16281bf7e3010f4f8c0ee2895b3eb1aa1c8b74cf82d71c49f7041b0c85ba9e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And God spake unto Moses, and said unto him, I am the LORD",
+        "claim": "God spoke to Moses and identified himself as 'the LORD'",
+        "actor": "God",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And I appeared unto Abraham, unto Isaac, and unto Jacob, by the name of God Almighty",
+        "claim": "God appeared to Abraham, Isaac, and Jacob, identified by the name 'God Almighty'",
+        "actor": "God",
+        "action": "appeared",
+        "object": "Abraham, Isaac, Jacob",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "by my name JEHOVAH was I not known to them",
+        "claim": "The name JEHOVAH was not known to Abraham, Isaac, and Jacob",
+        "actor": "God",
+        "action": "known",
+        "object": "Abraham, Isaac, Jacob",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

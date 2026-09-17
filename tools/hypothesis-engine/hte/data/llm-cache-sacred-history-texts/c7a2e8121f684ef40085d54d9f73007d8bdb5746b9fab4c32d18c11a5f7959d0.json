@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "baf8e9d8bdb42484bcdc5ee48d53a0f2cf3c1c355c7d376a50466cbfc65a0f38",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "These are those that were numbered, which Moses and Aaron numbered, and the princes of Israel, being twelve men: each one was for the house of his fathers.",
+        "claim": "Moses and Aaron, together with twelve princes of Israel, carried out a census, and each prince stood for his own ancestral house. Passes 1 and 2 agree on this item; pass 3 was empty. Identifying the verse as Numbers 1:44 is a model-prior guess, not something the document says.",
+        "actor": "Moses and Aaron, with the twelve princes of Israel",
+        "action": "numbered (conducted a census)",
+        "object": "the people of Israel, by ancestral house",
+        "mechanism": "one prince per ancestral house (house of his fathers) as representative",
+        "place": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

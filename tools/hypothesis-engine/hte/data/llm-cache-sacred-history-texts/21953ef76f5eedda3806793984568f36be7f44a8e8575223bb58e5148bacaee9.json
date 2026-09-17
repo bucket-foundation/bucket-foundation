@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "67854c0ac1fe2df5274776592c9511464c9530c8edd30af0dc01e132821e65b6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "God spoke to Moses with a message",
+        "actor": "LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Speak unto all the congregation of the children of Israel, and say unto them, Ye shall be holy",
+        "claim": "Moses is commanded to address all Israelites and tell them to be holy",
+        "actor": "",
+        "action": "Speak / say",
+        "object": "all the congregation of the children of Israel / them",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Ye shall be holy",
+        "claim": "The congregation of Israel shall be holy",
+        "actor": "Ye",
+        "action": "shall be",
+        "object": "holy",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "for I the LORD your God am holy",
+        "claim": "The LORD is holy",
+        "actor": "I the LORD your God",
+        "action": "am",
+        "object": "holy",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f2d10d61126a38eff92f8ec7f4133e4c362cd41e7f1d180d7d1c9e16d2fe6227",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD communicated with Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Go in, speak unto Pharaoh king of Egypt, that he let the children of Israel go out of his land",
+        "claim": "Moses was commanded to speak to Pharaoh and demand the release of the Israelites from Egypt",
+        "actor": "Moses",
+        "action": "go in, speak",
+        "object": "Pharaoh",
+        "place": "Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

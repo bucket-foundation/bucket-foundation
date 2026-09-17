@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "50e2f41ac6fd4e4317475f56ea54c28196ceb0c79f00c98bf991360bf311668c",
+  "response": {
+    "items": [
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "13:1 And the LORD spake unto Moses, saying, 13:2 Sanctify unto me all the firstborn, whatsoever openeth the womb among the children of Israel, both of man and of beast: it is mine.",
+        "claim": "The text says the LORD told Moses that every firstborn among the children of Israel, both human and animal, must be set apart ('sanctified') because it belongs to the LORD. This is what the text itself states, not a verified historical event. Placing the passage in the Book of Exodus relies only on the verse numbering plus model-prior knowledge, since the book is not named in the document.",
+        "actor": "the LORD (speaking to Moses)",
+        "action": "commands sanctification of",
+        "object": "all firstborn of man and beast among the children of Israel",
+        "mechanism": "divine claim of ownership ('it is mine') over whatever first opens the womb",
+        "place": "among the children of Israel (no specific place stated)",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

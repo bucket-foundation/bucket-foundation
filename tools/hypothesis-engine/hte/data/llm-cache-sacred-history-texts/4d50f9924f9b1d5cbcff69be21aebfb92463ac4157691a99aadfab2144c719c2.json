@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0af6dc0053dba84767c7704824e59416c4f1a0a7f8c91e2ed19a6c8f13fa5de2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses and Aaron went into the tabernacle of the congregation",
+        "claim": "Moses and Aaron entered the tabernacle of the congregation",
+        "actor": "Moses and Aaron",
+        "action": "went into",
+        "object": "",
+        "place": "the tabernacle of the congregation",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and came out",
+        "claim": "Moses and Aaron exited the tabernacle",
+        "actor": "Moses and Aaron",
+        "action": "came out",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and blessed the people",
+        "claim": "Moses and Aaron blessed the people",
+        "actor": "Moses and Aaron",
+        "action": "blessed",
+        "object": "the people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and the glory of the LORD appeared unto all the people",
+        "claim": "The glory of the LORD appeared to all the people",
+        "actor": "the glory of the LORD",
+        "action": "appeared",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

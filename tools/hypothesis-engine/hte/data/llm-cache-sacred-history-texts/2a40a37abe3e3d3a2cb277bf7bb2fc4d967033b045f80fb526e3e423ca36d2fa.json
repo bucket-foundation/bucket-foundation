@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "e66532379def4def95be1d460fabde85b2ce0ffc9cc1e323707ca71eb6047567",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Pharaoh\u2019s servants said unto him, How long shall this man be a snare unto us? let the men go, that they may serve the LORD their God: knowest thou not yet that Egypt is destroyed?",
+        "claim": "Pharaoh's servants urged him to let the Israelite men go, saying Egypt was already destroyed.",
+        "actor": "Pharaoh's servants",
+        "action": "urged release of the Israelite men",
+        "object": "Pharaoh",
+        "place": "Egypt",
+        "mechanism": "court advisers pressing the ruler after the plagues had damaged Egypt",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses and Aaron were brought again unto Pharaoh: and he said unto them, Go, serve the LORD your God: but who are they that shall go?",
+        "claim": "Moses and Aaron were brought back to Pharaoh, who agreed they could go and serve their God but asked who exactly would go.",
+        "actor": "Pharaoh",
+        "action": "gave conditional permission and asked who would go",
+        "object": "Moses and Aaron",
+        "place": "Egypt",
+        "mechanism": "negotiation over who would be allowed to leave",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses said, We will go with our young and with our old, with our sons and with our daughters, with our flocks and with our herds will we go; for we must hold a feast unto the LORD.",
+        "claim": "Moses demanded that everyone go, young and old, sons and daughters, with their flocks and herds, to hold a feast to the LORD.",
+        "actor": "Moses",
+        "action": "demanded that the whole people and their livestock leave",
+        "object": "Pharaoh",
+        "place": "Egypt",
+        "mechanism": "religious duty to hold a feast, given as the reason everyone had to go",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

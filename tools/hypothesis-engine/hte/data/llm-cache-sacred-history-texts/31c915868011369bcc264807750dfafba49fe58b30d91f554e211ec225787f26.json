@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "9f657928f733f8035d948820f99928921d558d7162b52ac0a02f8ec47a6c2e89",
+  "response": {
+    "items": [
+      {
+        "kind": "ritual-act",
+        "tier": "primary-text",
+        "quote": "And Moses took of the anointing oil, and of the blood which was upon the altar, and sprinkled it upon Aaron, and upon his garments, and upon his sons, and upon his sons\u2019 garments with him; and sanctified Aaron, and his garments, and his sons, and his sons\u2019 garments with him.",
+        "claim": "According to the text (verse 8:30), Moses sprinkled anointing oil and blood from the altar on Aaron, his sons, and their garments, and so sanctified them. This is what the text says happened, not a confirmed historical event. Tagging the verse as Leviticus 8:30 comes from model-prior (unverified); the document itself gives only '8:30'.",
+        "actor": "Moses",
+        "action": "sprinkled anointing oil and altar blood upon; sanctified",
+        "object": "Aaron, his garments, his sons, and his sons' garments",
+        "mechanism": "sprinkling of anointing oil combined with blood taken from the altar",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

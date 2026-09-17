@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "d0b5dc010ec0f1abc95358081dfb13935afdcebc0b98606cd4a14edc2cca5e6e",
+  "response": {
+    "items": [
+      {
+        "kind": "instruction",
+        "tier": "primary-text",
+        "quote": "8:1 And the LORD spake unto Moses, saying, 8:2 Take Aaron and his sons with him, and the garments, and the anointing oil, and a bullock for the sin offering, and two rams, and a basket of unleavened bread;",
+        "claim": "The text says the LORD told Moses to bring Aaron and his sons, along with the garments, the anointing oil, a bullock for the sin offering, two rams and a basket of unleavened bread.",
+        "actor": "the LORD (as speaker); Moses (as the one told)",
+        "action": "told Moses to bring",
+        "object": "Aaron and his sons, the garments, the anointing oil, a bullock for the sin offering, two rams, a basket of unleavened bread",
+        "mechanism": "a spoken command, as the text tells it",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "instruction",
+        "tier": "primary-text",
+        "quote": "8:3 And gather thou all the congregation together unto the door of the tabernacle of the congregation.",
+        "claim": "The text says Moses was told to gather the whole congregation at the door of the tabernacle of the congregation.",
+        "actor": "Moses",
+        "action": "gather",
+        "object": "all the congregation",
+        "mechanism": "a spoken command, as the text tells it",
+        "place": "door of the tabernacle of the congregation",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "context",
+        "tier": "model-prior",
+        "quote": "8:1 And the LORD spake unto Moses, saying,",
+        "claim": "Unverified model-prior: the verse numbers and wording look like Leviticus 8:1-3 in the King James Version. Most readers take this passage as the start of the story of Aaron and his sons being made priests. The document itself names neither the book nor the translation, and gives no date.",
+        "actor": "",
+        "action": "",
+        "object": "",
+        "mechanism": "",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

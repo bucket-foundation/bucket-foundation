@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6c172ca91ee243434c4fe728a25905ec1af5c59cc7695ab0a276a5f0e7e21073",
+  "response": {
+    "items": [
+      {
+        "kind": "material",
+        "tier": "T4",
+        "quote": "And Isaac digged again the wells of water, which they had digged in the days of Abraham his father",
+        "claim": "Isaac re-dug wells that had been originally dug during Abraham's lifetime",
+        "actor": "Isaac",
+        "action": "digged again",
+        "object": "wells of water",
+        "mechanism": "well excavation and restoration",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "material",
+        "tier": "T4",
+        "quote": "for the Philistines had stopped them after the death of Abraham",
+        "claim": "The Philistines physically blocked or filled the wells at a point after Abraham's death",
+        "actor": "Philistines",
+        "action": "stopped",
+        "object": "wells",
+        "mechanism": "well obstruction",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "linguistic",
+        "tier": "T4",
+        "quote": "and he called their names after the names by which his father had called them",
+        "claim": "Isaac preserved the original names Abraham had given to the wells",
+        "actor": "Isaac",
+        "action": "called their names",
+        "object": "names of wells",
+        "mechanism": "naming transmission",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

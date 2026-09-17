@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "696fdcb1725e20c09bc7a2a7b7f07c24bceb5e0809036b743d4ac4946688d201",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And it came to pass, when Moses went out unto the tabernacle, that all the people rose up, and stood every man at his tent door, and looked after Moses, until he was gone into the tabernacle.",
+        "claim": "When Moses went out to the tabernacle, all the people rose up and stood at their tent doors watching him until he entered",
+        "actor": "Moses; all the people",
+        "action": "went out unto the tabernacle; rose up and stood; looked after",
+        "object": "the tabernacle; Moses",
+        "place": "the tabernacle; tent doors",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

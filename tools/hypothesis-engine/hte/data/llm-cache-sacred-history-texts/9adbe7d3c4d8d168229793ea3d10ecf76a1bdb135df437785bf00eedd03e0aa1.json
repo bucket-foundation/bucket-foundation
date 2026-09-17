@@ -1,0 +1,54 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2af8cdaa9e78188de9bb950d589269bd7c7622ab86d3433eec30a66ff1fdab57",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD commanded Moses regarding the construction of tabernacle furnishings",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Thou shalt also make a laver of brass, and his foot also of brass, to wash withal",
+        "claim": "Moses is commanded to make a brass laver with brass base for washing",
+        "actor": "Thou",
+        "action": "make",
+        "object": "a laver of brass",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "thou shalt put it between the tabernacle of the congregation and the altar",
+        "claim": "The laver is commanded to be positioned between the tabernacle and altar",
+        "actor": "thou",
+        "action": "put",
+        "object": "it",
+        "place": "between the tabernacle of the congregation and the altar",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "thou shalt put water therein",
+        "claim": "Water is commanded to be placed in the laver",
+        "actor": "thou",
+        "action": "put",
+        "object": "water",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

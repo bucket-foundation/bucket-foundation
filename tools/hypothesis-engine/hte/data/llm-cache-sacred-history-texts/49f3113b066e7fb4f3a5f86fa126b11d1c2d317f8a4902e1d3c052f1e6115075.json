@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0629c9cb50500eb757e93a7481bcb117d3d84f6bba80d086cab6179f1c81564c",
+  "response": {
+    "items": [
+      {
+        "quote": "And Moses spake to the children of Israel, that they should bring forth him that had cursed out of the camp, and stone him with stones.",
+        "claim": "Moses commanded the Israelites to execute someone through stoning for cursing",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "Moses",
+        "action": "spake",
+        "object": "the children of Israel",
+        "place": "the camp",
+        "mechanism": "stoning with stones",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "And the children of Israel did as the LORD commanded Moses.",
+        "claim": "The Israelites obeyed the LORD's command as relayed through Moses",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "the children of Israel",
+        "action": "did",
+        "object": "",
+        "place": "",
+        "mechanism": "as the LORD commanded",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bfe8585221c9a3f0cbe1cec7b56ea32c68a3e6bf657119f829b9fc8f747ab262",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD said unto Moses, Say unto Aaron, Stretch out thy rod, and smite the dust of the land, that it may become lice throughout all the land of Egypt.",
+        "claim": "The LORD commanded that striking the dust with a rod would transform it into lice throughout Egypt",
+        "actor": "Aaron",
+        "action": "smite",
+        "object": "dust of the land",
+        "place": "Egypt",
+        "mechanism": "striking dust with a rod",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

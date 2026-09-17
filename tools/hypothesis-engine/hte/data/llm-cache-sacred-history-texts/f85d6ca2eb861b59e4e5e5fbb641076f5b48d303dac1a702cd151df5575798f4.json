@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "17bca3d3e1ba224eb1a5a7819dfce974092910a644c5d53a03eef25e832832be",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And they said unto Moses, Speak thou with us, and we will hear: but let not God speak with us, lest we die.",
+        "claim": "The Israelites told Moses to speak to them directly rather than God, fearing that God's direct speech would cause their death.",
+        "actor": "they (the people); Moses; God",
+        "action": "said; requested (negative: let not speak)",
+        "object": "Moses (recipient of speech); us (the people, whom God should not address)",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

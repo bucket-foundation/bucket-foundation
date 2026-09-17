@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b4110f5af9d2dbc38f5cb0c0cc5547b3981b719bf9fa59960f3b0a2fd3dae6b8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the shepherds came and drove them away: but Moses stood up and helped them, and watered their flock.",
+        "claim": "Moses stood up and helped shepherds, watering their flock",
+        "actor": "Moses",
+        "action": "stood up, helped, watered",
+        "object": "flock",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

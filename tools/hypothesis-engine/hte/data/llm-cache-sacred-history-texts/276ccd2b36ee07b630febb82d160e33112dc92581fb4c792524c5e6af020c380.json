@@ -1,0 +1,67 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1e3ef4669b2aaf004a4cfed7d5bd498fc8b76d577bd493201b0dfa8dbcdfb400",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Abraham said unto his eldest servant of his house, that ruled over all that he had, Put, I pray thee, thy hand under my thigh",
+        "claim": "Abraham commanded his eldest servant to place his hand under his thigh as a gesture of oath-taking",
+        "actor": "Abraham",
+        "action": "said/commanded",
+        "object": "his eldest servant",
+        "mechanism": "placing hand under thigh",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "that ruled over all that he had",
+        "claim": "Abraham's eldest servant had authority over all of Abraham's possessions",
+        "actor": "servant",
+        "action": "ruled",
+        "object": "all that he had",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And I will make thee swear by the LORD, the God of heaven, and the God of the earth, that thou shalt not take a wife unto my son of the daughters of the Canaanites",
+        "claim": "Abraham commanded his servant to swear an oath not to take a wife for Isaac from among the Canaanites",
+        "actor": "Abraham",
+        "action": "make swear",
+        "object": "servant",
+        "place": "Canaanites",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "among whom I dwell",
+        "claim": "Abraham dwells among the Canaanites",
+        "actor": "Abraham",
+        "action": "dwell",
+        "place": "Canaanites",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "But thou shalt go unto my country, and to my kindred, and take a wife unto my son Isaac",
+        "claim": "Abraham commanded his servant to travel to Abraham's country and kinfolk to take a wife for Isaac",
+        "actor": "servant",
+        "action": "go/take wife",
+        "place": "Abraham's country and kindred",
+        "object": "wife for Isaac",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

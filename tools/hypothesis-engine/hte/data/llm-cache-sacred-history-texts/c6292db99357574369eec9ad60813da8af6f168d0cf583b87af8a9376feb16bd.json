@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cf55a82d1dd9fbb6647bf6cb1a35792e0aaf76292323a4aabb873695964a0811",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses stretched out his hand over the sea; and the LORD caused the sea to go back by a strong east wind all that night, and made the sea dry land, and the waters were divided.",
+        "claim": "The LORD caused the sea to go back and become dry land through a strong east wind when Moses stretched out his hand",
+        "actor": "Moses, LORD",
+        "action": "stretched out hand, caused to go back, made dry, divided",
+        "object": "hand, sea, waters",
+        "place": "sea",
+        "mechanism": "strong east wind",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

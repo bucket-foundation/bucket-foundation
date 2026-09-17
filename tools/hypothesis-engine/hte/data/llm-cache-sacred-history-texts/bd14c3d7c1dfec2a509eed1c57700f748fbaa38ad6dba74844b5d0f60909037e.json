@@ -1,0 +1,34 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9b8f82b01abd001b00ee7e142785a3540c0795553a5369c508e9cbe0940afdb3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "These are the families of the sons of Noah, after their generations, in their nations",
+        "claim": "Noah's sons had families organized by generation into distinct nations",
+        "actor": "sons of Noah",
+        "action": "are",
+        "object": "families",
+        "place": "nations",
+        "mechanism": "generations",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and by these were the nations divided in the earth after the flood",
+        "claim": "The families of Noah's sons formed or comprised the divided nations of the earth after the flood",
+        "actor": "these",
+        "action": "divided",
+        "object": "nations",
+        "place": "earth",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

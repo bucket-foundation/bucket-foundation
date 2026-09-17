@@ -1,0 +1,60 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d5a9632ab5ddc267b13b535f17fa0bd94416d5a66e5fd5127c76e27b9a641ece",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD stood above it, and said, I am the LORD God of Abraham thy father, and the God of Isaac",
+        "claim": "The LORD appeared to Jacob and identified himself as God of Abraham and Isaac",
+        "actor": "the LORD",
+        "action": "stood above it, and said",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the land whereon thou liest, to thee will I give it, and to thy seed",
+        "claim": "The land will be given to Jacob and his descendants",
+        "action": "will I give",
+        "object": "the land",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "thy seed shall be as the dust of the earth",
+        "claim": "Jacob's descendants will multiply to be as numerous as dust of the earth",
+        "actor": "thy seed",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "thou shalt spread abroad to the west, and to the east, and to the north, and to the south",
+        "claim": "Jacob's descendants will spread geographically in all cardinal directions",
+        "actor": "thou",
+        "action": "shalt spread abroad",
+        "place": "to the west, and to the east, and to the north, and to the south",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "in thee and in thy seed shall all the families of the earth be blessed",
+        "claim": "All families of the earth will be blessed through Jacob and his descendants",
+        "actor": "all the families of the earth",
+        "action": "be blessed",
+        "mechanism": "in thee and in thy seed",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

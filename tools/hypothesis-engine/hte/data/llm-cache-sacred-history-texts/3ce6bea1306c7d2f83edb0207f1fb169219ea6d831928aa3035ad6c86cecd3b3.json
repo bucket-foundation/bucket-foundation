@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "e7afe08a6ade06e7fd00531136312a8a3757d232c9e91f13b6317917febdc331",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses, Go unto Pharaoh, and say unto him, Thus saith the LORD, Let my people go, that they may serve me.",
+        "claim": "The text says the LORD told Moses to go to Pharaoh and demand that he let 'my people' go so they could serve the LORD. This is only what the text says, not a confirmed historical event. Identifying the verse as Exodus 8:1 (KJV) comes from model-prior and is unverified. The document itself only labels it '8:1'.",
+        "actor": "the LORD (via Moses)",
+        "action": "commands Moses to demand release of the people",
+        "object": "Pharaoh; 'my people'",
+        "mechanism": "Divine command passed to a ruler through a human messenger",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

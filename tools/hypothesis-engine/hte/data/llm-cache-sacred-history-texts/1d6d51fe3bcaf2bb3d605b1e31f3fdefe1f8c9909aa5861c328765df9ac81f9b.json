@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "879a461c7266adf2f3c042f5ec95cbacaf4b2b5992f13d80d913612d5bb77041",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-event",
+        "tier": "primary-text",
+        "quote": "And Moses stretched forth his rod over the land of Egypt, and the LORD brought an east wind upon the land all that day, and all that night; and when it was morning, the east wind brought the locusts.",
+        "claim": "The text says that after Moses stretched his rod over Egypt, the LORD brought an east wind for a full day and night, and by morning the wind had brought the locusts. This is what the narrative says, not a verified historical event. Labeling the verse as Exodus 10:13 comes from model-prior (only '10:13' is in the document) and is unverified.",
+        "actor": "Moses; the LORD",
+        "action": "stretched forth his rod; brought an east wind that carried locusts",
+        "object": "locusts",
+        "place": "land of Egypt",
+        "mechanism": "An east wind blowing all day and all night carried the locusts into the land",
+        "year": null
+      }
+    ]
+  }
+}

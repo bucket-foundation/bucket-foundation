@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "eaff7adaa9aa53ec6b65d60943652b12cca5b13800e104485929385bd58e6c36",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Jacob sware by the fear of his father Isaac",
+        "claim": "Jacob swore an oath invoking the fear of his father Isaac",
+        "actor": "Jacob",
+        "action": "sware (swore)",
+        "object": "by the fear of his father Isaac",
+        "stance": "positive",
+        "year": null,
+        "place": "",
+        "mechanism": "oath"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "The God of Abraham, and the God of Nahor, the God of their father, judge betwixt us",
+        "claim": "An invocation calling upon the God of Abraham and Nahor to judge between two parties",
+        "actor": "The God of Abraham, and the God of Nahor",
+        "action": "judge",
+        "object": "betwixt us",
+        "stance": "positive",
+        "year": null,
+        "place": "",
+        "mechanism": "invocation"
+      }
+    ]
+  }
+}

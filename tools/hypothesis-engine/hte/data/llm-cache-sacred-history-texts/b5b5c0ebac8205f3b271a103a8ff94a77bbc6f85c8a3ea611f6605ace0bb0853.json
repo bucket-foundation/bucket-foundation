@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "eb2672308b805945b1dbadd02f62f04454c2a584f012266ebae348342ce6e4f6",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And Moses called unto them; and Aaron and all the rulers of the congregation returned unto him: and Moses talked with them.",
+        "claim": "Moses called to the people; Aaron and all the rulers of the congregation came back to him, and Moses spoke with them.",
+        "actor": "Moses",
+        "action": "called unto and talked with",
+        "object": "Aaron and all the rulers of the congregation",
+        "mechanism": "Moses called them, and the leaders came back to talk with him (the text gives no reason for the call).",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

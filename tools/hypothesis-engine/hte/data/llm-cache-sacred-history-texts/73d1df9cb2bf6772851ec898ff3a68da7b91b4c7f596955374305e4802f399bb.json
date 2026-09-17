@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "510816901d10659d182cf09c4d029e74c95d593a1655e53e7b8875c34bbd98f6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Isaac went unto Abimelech king of the Philistines unto Gerar.",
+        "claim": "Isaac traveled to Gerar to meet Abimelech, king of the Philistines",
+        "actor": "Isaac",
+        "action": "went unto",
+        "object": "Abimelech",
+        "place": "Gerar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And there was a famine in the land, beside the first famine that was in the days of Abraham.",
+        "claim": "A famine occurred in the land during Isaac's time, following a prior famine in Abraham's era",
+        "actor": "",
+        "action": "was",
+        "object": "famine",
+        "place": "the land",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4e72a280c7cdbdb2c77f4ce74b1d70b036bb1cb686f66ca4919329e176e739ad",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses was fourscore years old, and Aaron fourscore and three years old, when they spake unto Pharaoh.",
+        "claim": "Moses was 80 years old and Aaron was 83 years old when they spoke to Pharaoh",
+        "actor": "Moses and Aaron",
+        "action": "spake unto Pharaoh",
+        "object": "Pharaoh",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

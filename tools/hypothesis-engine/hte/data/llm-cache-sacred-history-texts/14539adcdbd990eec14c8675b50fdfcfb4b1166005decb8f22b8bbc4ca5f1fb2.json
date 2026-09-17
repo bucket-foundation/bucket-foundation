@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "02e4514b01571670c5d41ce1e6888a21787ae63dc50e5199e3230fbac777c550",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses let his father in law depart",
+        "claim": "Moses permitted his father-in-law to depart",
+        "actor": "Moses",
+        "action": "let depart",
+        "object": "father in law",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and he went his way into his own land",
+        "claim": "The father-in-law departed to his own land",
+        "actor": "he",
+        "action": "went his way",
+        "object": "",
+        "place": "his own land",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

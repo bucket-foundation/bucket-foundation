@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "117b1957c5c0af63b64aa08af4523f984150c791ffb8a9bd072ce64ccd767f28",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "If a soul commit a trespass, and sin through ignorance, in the holy things of the LORD",
+        "claim": "A soul commits trespass and sin through ignorance in the holy things",
+        "actor": "a soul",
+        "action": "commit a trespass, and sin",
+        "object": "",
+        "place": "in the holy things of the LORD",
+        "mechanism": "through ignorance",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "then he shall bring for his trespass unto the LORD a ram without blemish out of the flocks, with thy estimation by shekels of silver, after the shekel of the sanctuary, for a trespass offering",
+        "claim": "The sinner shall bring a ram without blemish to the LORD as a trespass offering, valued in shekels of silver",
+        "actor": "he",
+        "action": "bring",
+        "object": "a ram without blemish out of the flocks",
+        "place": "unto the LORD",
+        "mechanism": "with thy estimation by shekels of silver, after the shekel of the sanctuary",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

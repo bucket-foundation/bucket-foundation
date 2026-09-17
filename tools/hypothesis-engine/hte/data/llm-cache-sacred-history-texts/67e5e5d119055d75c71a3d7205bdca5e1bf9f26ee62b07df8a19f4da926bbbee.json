@@ -1,0 +1,33 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c1af87f794daa83f39dc0a0b5b54c9bed7343455c2478b02d3c729ef10109126",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And they brought the tabernacle unto Moses, the tent, and all his furniture, his taches, his boards, his bars, and his pillars, and his sockets",
+        "claim": "The tabernacle with its furnishings and structural components was brought to Moses",
+        "actor": "they",
+        "action": "brought",
+        "object": "the tabernacle, the tent, furniture, taches, boards, bars, pillars, sockets",
+        "place": "unto Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the holy garments for Aaron the priest, and his sons' garments, to minister in the priest's office",
+        "claim": "Aaron the priest and his sons received holy garments for their priestly ministry",
+        "actor": "Aaron the priest, his sons",
+        "action": "minister",
+        "object": "the holy garments, his sons' garments",
+        "place": "the priest's office",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

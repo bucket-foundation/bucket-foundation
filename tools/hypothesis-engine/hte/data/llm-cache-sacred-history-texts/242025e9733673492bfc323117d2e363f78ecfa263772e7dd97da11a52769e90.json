@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "ab07452cde64f8155ae7c8fba5ef922923a1811eec4f3e3d0c9d5ffd4d479534",
+  "response": {
+    "items": [
+      {
+        "kind": "narrative-claim",
+        "tier": "primary-text",
+        "quote": "And when the children of Israel saw it, they said one to another, It is manna: for they wist not what it was.",
+        "claim": "The text says the Israelites saw an unfamiliar substance, did not know what it was, and said to one another 'It is manna'.",
+        "actor": "children of Israel",
+        "action": "named an unfamiliar substance",
+        "object": "manna",
+        "place": "unspecified in document",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "The text presents the name as coming from the people's uncertainty ('for they wist not what it was')."
+      },
+      {
+        "kind": "narrative-claim",
+        "tier": "primary-text",
+        "quote": "And Moses said unto them, This is the bread which the LORD hath given you to eat.",
+        "claim": "The text says Moses told the Israelites the substance was bread the LORD had given them to eat.",
+        "actor": "Moses",
+        "action": "identified the substance as food given by God",
+        "object": "manna / bread",
+        "place": "unspecified in document",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "Moses gives a religious reason for the food: the LORD provided it."
+      }
+    ]
+  }
+}

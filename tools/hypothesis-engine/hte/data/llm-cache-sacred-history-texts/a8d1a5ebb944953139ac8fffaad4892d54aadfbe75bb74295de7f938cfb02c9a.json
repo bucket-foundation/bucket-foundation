@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0178d2366b68188ff5145b8030a4083e385bd4439d6d429d353ba9e6dfe0b4c8",
+  "response": {
+    "items": [
+      {
+        "quote": "It is not meet so to do; for we shall sacrifice the abomination of the Egyptians to the LORD our God",
+        "claim": "Sacrificing the abomination of the Egyptians is not appropriate or lawful",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "we",
+        "action": "sacrifice",
+        "object": "the abomination of the Egyptians",
+        "place": "",
+        "mechanism": "to the LORD our God",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "quote": "shall we sacrifice the abomination of the Egyptians before their eyes, and will they not stone us?",
+        "claim": "If they sacrifice Egyptian animals before Egyptians, the Egyptians will stone them",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "they",
+        "action": "stone",
+        "object": "us",
+        "place": "before their eyes",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "We will go three days' journey into the wilderness, and sacrifice to the LORD our God, as he shall command us",
+        "claim": "They will journey three days into the wilderness and sacrifice to the LORD as commanded",
+        "kind": "textual",
+        "tier": "T4",
+        "actor": "We",
+        "action": "go, sacrifice",
+        "object": "",
+        "place": "three days' journey into the wilderness",
+        "mechanism": "as he shall command us",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

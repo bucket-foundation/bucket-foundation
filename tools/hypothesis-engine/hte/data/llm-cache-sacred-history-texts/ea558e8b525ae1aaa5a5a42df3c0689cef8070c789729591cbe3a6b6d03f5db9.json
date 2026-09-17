@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "35dec90092993a6422c4568ac5f72fbf4031976507c36a6c0fffed05e1dcdc20",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And it came to pass, when Moses held up his hand, that Israel prevailed: and when he let down his hand, Amalek prevailed.",
+        "claim": "The position of Moses's raised or lowered hand directly determines whether Israel or Amalek prevails in battle",
+        "actor": "Moses",
+        "action": "held up and let down his hand",
+        "object": "his hand",
+        "mechanism": "Hand position causally determines military victory: raised hand \u2192 Israel prevails; lowered hand \u2192 Amalek prevails",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

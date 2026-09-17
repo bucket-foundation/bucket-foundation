@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b224b10a1fd3d5ec6761844b500adf47d6c6544b8be47a51756feaa02cf4d02e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou hast brought so great a sin upon them",
+        "claim": "Aaron brought a great sin upon the people",
+        "actor": "Aaron",
+        "action": "brought",
+        "object": "a great sin",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "that they are set on mischief",
+        "claim": "The people are set on mischief",
+        "actor": "the people",
+        "action": "are set on",
+        "object": "mischief",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

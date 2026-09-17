@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "659dc92e2677491073173df1824b09e43ac63aa9b8ef842c87410a9ae625f695",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And the LORD spake unto Moses and unto Aaron, saying, 2:2 Every man of the children of Israel shall pitch by his own standard, with the ensign of their father\u2019s house: far off about the tabernacle of the congregation shall they pitch.",
+        "claim": "The text says the LORD told Moses and Aaron that every Israelite must camp by his own standard, with the banner of his father's house, at a distance around the tabernacle of the congregation. (Passes 1 and 2 agreed on this item; pass 3 was empty. Identifying the passage as Numbers 2:1-2 in the KJV is model-prior and is not stated in the document.)",
+        "actor": "the LORD (speaking to Moses and Aaron)",
+        "action": "commanded the camp arrangement",
+        "object": "children of Israel camping by standard and father's-house ensign around the tabernacle",
+        "place": "around the tabernacle of the congregation",
+        "mechanism": "each man camps by his tribal standard and the ensign of his father's house, far off about the tabernacle",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

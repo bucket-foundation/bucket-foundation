@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "fc1f842a2a19ccfbc02b5d02e1f5f40a773b9304dd466dd782b24399946cbda8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Noah builded an altar unto the LORD; and took of every clean beast, and of every clean fowl, and offered burnt offerings on the altar.",
+        "claim": "Noah built an altar to the LORD, took every clean beast and fowl, and offered them as burnt offerings on the altar.",
+        "actor": "Noah",
+        "action": "builded an altar unto the LORD; took of every clean beast, and of every clean fowl; offered burnt offerings on the altar",
+        "object": "altar; clean beasts and clean fowls; burnt offerings",
+        "place": "on the altar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

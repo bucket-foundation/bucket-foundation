@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8cfd6c70d45fabb62facb00f4e5648aa9634fd83451385a32cc176b4be5872bd",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "19:23 And Moses said unto the LORD, The people cannot come up to mount Sinai: for thou chargedst us, saying, Set bounds about the mount, and sanctify it.",
+        "claim": "Moses states that the people cannot ascend mount Sinai because God previously charged them to set bounds about the mount and sanctify it.",
+        "actor": "Moses, the LORD, the people",
+        "action": "said, chargedst, Set bounds, sanctify",
+        "object": "the people, the mount",
+        "place": "mount Sinai",
+        "mechanism": "God's command",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

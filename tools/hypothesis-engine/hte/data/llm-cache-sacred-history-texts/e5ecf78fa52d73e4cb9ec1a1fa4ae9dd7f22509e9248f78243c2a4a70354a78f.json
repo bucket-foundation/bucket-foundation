@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "6c4262fe60b498b43ef20cbc8d63aa2b36da4d38f02ebeee6ef439be634dc476",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text (scriptural/narrative; historicity unverified)",
+        "quote": "Then sang Moses and the children of Israel this song unto the LORD, and spake, saying, I will sing unto the LORD, for he hath triumphed gloriously: the horse and his rider hath he thrown into the sea.",
+        "claim": "According to the text, Moses and the children of Israel sang a song to the LORD celebrating his triumph, in which the horse and its rider were thrown into the sea. Passes 1 and 2 agreed on this item. Pass 3 was empty. Based only on model-prior knowledge, this is Exodus 15:1 (KJV), the Song of the Sea. The document itself only labels it '15:1'.",
+        "actor": "Moses and the children of Israel",
+        "action": "sang a song of praise",
+        "object": "the LORD; horse and rider thrown into the sea",
+        "mechanism": "divine triumph (as described by the text)",
+        "place": "the sea (not named in the passage)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

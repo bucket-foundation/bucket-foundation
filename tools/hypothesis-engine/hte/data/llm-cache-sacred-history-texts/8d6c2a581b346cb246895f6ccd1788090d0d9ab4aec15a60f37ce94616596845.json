@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3ab07b6ad1c19817124b4b7865a6936f311670b2b16bff1055b5d0530e95ca66",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham stretched forth his hand, and took the knife to slay his son.",
+        "claim": "Abraham took a knife with the intention to kill his son",
+        "actor": "Abraham",
+        "action": "stretched forth his hand, and took the knife to slay his son",
+        "object": "the knife",
+        "place": "",
+        "mechanism": "stretched forth his hand, and took the knife",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

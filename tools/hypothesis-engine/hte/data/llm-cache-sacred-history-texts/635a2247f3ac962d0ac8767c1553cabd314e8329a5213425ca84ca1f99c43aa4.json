@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "61799b45c73b599eb08e0e7d49765b7069a6f3e30a9ac20f0b57451c69a046f2",
+  "response": {
+    "items": [
+      {
+        "kind": "genealogy",
+        "tier": "primary-text",
+        "quote": "Now these are the generations of Ishmael, Abraham\u2019s son, whom Hagar the Egyptian, Sarah\u2019s handmaid, bare unto Abraham",
+        "claim": "The text says Ishmael was Abraham's son, born to Hagar the Egyptian, who was Sarah's handmaid.",
+        "actor": "Hagar",
+        "action": "bare",
+        "object": "Ishmael",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "genealogy",
+        "tier": "primary-text",
+        "quote": "the firstborn of Ishmael, Nebajoth; and Kedar, and Adbeel, and Mibsam, 25:14 And Mishma, and Dumah, and Massa, 25:15 Hadar, and Tema, Jetur, Naphish, and Kedemah",
+        "claim": "The text lists Ishmael's sons as Nebajoth (the firstborn), Kedar, Adbeel, Mibsam, Mishma, Dumah, Massa, Hadar, Tema, Jetur, Naphish and Kedemah.",
+        "actor": "Ishmael",
+        "action": "fathered",
+        "object": "Nebajoth, Kedar, Adbeel, Mibsam, Mishma, Dumah, Massa, Hadar, Tema, Jetur, Naphish, Kedemah",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "political-organization",
+        "tier": "primary-text",
+        "quote": "These are the sons of Ishmael, and these are their names, by their towns, and by their castles; twelve princes according to their nations.",
+        "claim": "The text presents Ishmael's twelve sons as princes of separate nations, each linked to towns and castles.",
+        "actor": "sons of Ishmael",
+        "action": "ruled as princes",
+        "object": "twelve nations",
+        "place": "towns and castles",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

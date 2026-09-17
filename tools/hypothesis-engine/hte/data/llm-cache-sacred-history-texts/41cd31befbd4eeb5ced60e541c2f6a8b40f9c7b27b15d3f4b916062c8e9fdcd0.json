@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f7c68e811bcdaf0c982b4442552e4a86daab3a8f5186bd5f0e710a2427b5d6cf",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses stretched forth his hand toward heaven; and there was a thick darkness in all the land of Egypt three days",
+        "claim": "Moses stretched his hand toward heaven, causing thick darkness to fall over Egypt for three days",
+        "actor": "Moses",
+        "action": "stretched forth his hand toward heaven",
+        "object": "thick darkness",
+        "place": "land of Egypt",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "They saw not one another, neither rose any from his place for three days",
+        "claim": "For three days, they could not see one another or rise from their places",
+        "actor": "They",
+        "action": "saw not one another, neither rose any from his place",
+        "object": "one another",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "but all the children of Israel had light in their dwellings",
+        "claim": "The Israelites had light in their dwellings",
+        "actor": "children of Israel",
+        "action": "had light",
+        "object": "light",
+        "place": "their dwellings",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

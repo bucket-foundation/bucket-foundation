@@ -35,8 +35,9 @@ judge_scores = batching.batch_judge(
 ```
 
 `llm.stats()` returns a per-role snapshot (`calls`, `cache_hits`,
-`rate_limit_pauses`, `wall_time_s`) once wired in; embed it into
-`MANIFEST.json` alongside the existing `cache` stats:
+`rate_limit_pauses`, `refusals`, `truncations`, `timeouts`,
+`wall_time_s`) once wired in; embed it into `MANIFEST.json` alongside
+the existing `cache` stats:
 
 ```python
 manifest["llm_stats"] = llm.stats()
@@ -83,13 +84,16 @@ over an `hte.synth` world sized to 400 hypotheses post-`max_hypotheses`
 cap (`hte.synth.make_world(0, n_actors=12, n_actions=6, n_objects=8,
 n_places=6, n_mechanisms=5, span=(1900,2000), n_true_events=5,
 evidence_per_event=(3,6))`, `combinatorial_max_items=100`,
-`max_hypotheses=400`), with `hte.llm.complete` itself mocked to sleep
-200ms and always return a valid response (`hte.fakellm`'s own critic/
-judge stand-ins have no batch-shaped response, so every batched call
-under `HTE_LLM_MODE=fake` falls back to single-item calls by design,
-`docs/THROUGHPUT.md`'s own "Fallback behavior" section below; measuring
-the real wiring's own speedup needs a mock that lets a batch call
-succeed instead):
+`max_hypotheses=400`; a world sized exactly to the cap never truncates,
+so these numbers hold regardless of `hte.generate.stratified_sample`
+replacing the address sort the cap used to apply,
+`STATISTICAL-AUDIT-2026-09-15.md` item 1), with `hte.llm.complete`
+itself mocked to sleep 200ms and always return a valid response (`hte.
+fakellm`'s own critic/judge stand-ins have no batch-shaped response, so
+every batched call under `HTE_LLM_MODE=fake` falls back to single-item
+calls by design, `docs/THROUGHPUT.md`'s own "Fallback behavior" section
+below; measuring the real wiring's own speedup needs a mock that lets a
+batch call succeed instead):
 
 | Config | `HTE_LLM_WORKERS` | `critic_batch_size`/`judge_batch_size` | Wall time | LLM calls | Speedup |
 |---|---|---|---|---|---|
@@ -151,3 +155,16 @@ chunk whose call fails outright falls back the same way for every item
 in it. `HTE_LLM_MODE=fake` has no batch-shaped stand-in, so a batch
 call under fake mode always falls back to single-item calls across the
 board, exercised as such in `tests/test_batching.py`.
+
+## Refusal and timeout accounting
+
+A refusal or truncation is cached under its own `(model, prompt)` key and replays as the same typed exception under `--replay-only`, instead of raising `LLMCacheMissError`.
+`stats()` counts a `timeouts` entry per role alongside `refusals`/`truncations`, and `extractor` gets a longer `claude -p` timeout from `hte/data/model-policy.json`'s `timeouts` map, since its own long slices ran past the 300s default.
+
+## Preservation critique batching
+
+`hte.batching.batch_preservation` sends `preservation_batch_size` survivors
+(default 8) per call against the shared detectability table, with the same
+per-id validation and single-call fallback `batch_critique` uses. On the
+live Younger Dryas run the role was 360 of 467 calls, one per survivor;
+at the default it is 45.

@@ -17,6 +17,7 @@ campaign.
 """
 from __future__ import annotations
 
+import dataclasses
 import json
 import time
 from dataclasses import dataclass
@@ -56,8 +57,15 @@ DEFAULT_CONFIG: dict[str, Any] = {
     # hard-refuses a missing signoff, and this stage checks it up front
     # too so the failure reads as a labeled precondition failure.
     "writeback_signoff": None,
+    # The three gate values below flow into the fresh run's config, so
+    # `MANIFEST.json["prereg"]` hashes them before generation, and the
+    # writeback stage gates on the same values, so hash and gate agree
+    # for a fresh run; a `from_run` re-gated under other floors records
+    # the differing keys as the stage's `prereg_mismatch`. `lift_floor`
+    # rides along through `runner_overrides`.
     "writeback_floor_P": 0.6,
     "writeback_floor_u_max": 0.5,
+    "writeback_fdr_q": 1.0,
     "writeback_out_root": "bucket-canon",
     # `None` passes straight through to `hte.canon_writeback.write_back`'s
     # own default (`hte.holdout_ledger.DEFAULT_LEDGER_PATH`, the committed
@@ -86,6 +94,7 @@ class StageResult:
     seconds: float
     output: Any = None
     error: str | None = None
+    prereg_mismatch: list[str] | None = None
 
     @property
     def outcome(self) -> str:
@@ -109,6 +118,7 @@ class StageResult:
         return {
             "name": self.name, "ran": self.ran, "ok": self.ok, "outcome": self.outcome,
             "seconds": round(self.seconds, 3), "output": self.output, "error": self.error,
+            "prereg_mismatch": self.prereg_mismatch,
         }
 
 
@@ -144,6 +154,18 @@ def _failed_stage(name: str, stage_dir: Path, reason: str) -> StageResult:
     result = StageResult(name=name, ran=False, ok=False, seconds=0.0, error=reason)
     _write_stage_json(stage_dir, result)
     return result
+
+
+def _prereg_mismatch(run_dir: Path, gate: dict[str, Any]) -> list[str]:
+    """Keys where the run's preregistered criteria (`MANIFEST.json
+    ["prereg"]["criteria"]`, hashed before generation) differ from the
+    gate this pipeline applies. Empty for a fresh run, whose config
+    carried these same values into the hash; non-empty only for a
+    `from_run` re-gated under different floors, which the writeback
+    stage's summary then records as `prereg_mismatch`."""
+    manifest = json.loads((Path(run_dir) / "MANIFEST.json").read_text())
+    criteria = (manifest.get("prereg") or {}).get("criteria") or {}
+    return sorted(key for key, value in gate.items() if key in criteria and criteria[key] != value)
 
 
 def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -262,7 +284,9 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
             from . import runner  # imported lazily: runner.py is under active parallel edit elsewhere in this package
             runner_cfg = {
                 "campaign": campaign_name, "corpus": cfg["corpus"], "out_dir": cfg["out_dir"],
-                "replay_only": cfg["replay_only"], "seeds": cfg["seeds"], **cfg["runner_overrides"],
+                "replay_only": cfg["replay_only"], "seeds": cfg["seeds"],
+                "floor_P": cfg["writeback_floor_P"], "floor_u_max": cfg["writeback_floor_u_max"],
+                "fdr_q": cfg["writeback_fdr_q"], **cfg["runner_overrides"],
             }
             artifacts = runner.run_campaign(runner_cfg)
             nonlocal run_dir
@@ -323,17 +347,26 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
                     "section 10, GOVERNANCE.md)",
                 )
             else:
+                from . import runner as runner_mod
+                gate = {
+                    "floor_P": cfg["writeback_floor_P"], "floor_u": cfg["writeback_floor_u_max"],
+                    "lift_floor": cfg["runner_overrides"].get("lift_floor", runner_mod.DEFAULT_CONFIG["lift_floor"]),
+                    "fdr_q": cfg["writeback_fdr_q"],
+                }
+
                 def _writeback() -> list[str]:
                     from . import canon_writeback
                     paths = canon_writeback.write_back(
                         run_dir, branch=cfg["writeback_branch"], signoff=cfg["writeback_signoff"],
-                        floor_P=cfg["writeback_floor_P"], floor_u_max=cfg["writeback_floor_u_max"],
+                        floor_P=gate["floor_P"], floor_u_max=gate["floor_u"],
+                        lift_floor=gate["lift_floor"], fdr_q=gate["fdr_q"],
                         out_root=cfg["writeback_out_root"], dry_run=cfg["dry_run"],
                         replay_only=cfg["replay_only"], ledger_path=cfg["writeback_ledger_path"],
                     )
                     return [str(p) for p in paths]
 
                 stages["writeback"] = _time_stage("writeback", pipeline_dir / "writeback", _writeback)
+                stages["writeback"] = dataclasses.replace(stages["writeback"], prereg_mismatch=_prereg_mismatch(run_dir, gate))
         else:
             stages["writeback"] = _skipped_stage(
                 "writeback", pipeline_dir / "writeback",

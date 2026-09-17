@@ -514,7 +514,10 @@ def _build_corpus(cards: list[Card]) -> Corpus:
 
     for card in cards:
         stemma_parents = sorted({slug_to_doi[s] for s in (*card.rebuts, *card.replicates) if s in slug_to_doi})
-        sources[card.doi] = Source(id=card.doi, kind=EvidenceKind(card.kind), date=str(card.year), stemma_parents=stemma_parents)
+        sources[card.doi] = Source(
+            id=card.doi, kind=EvidenceKind(card.kind), date=str(card.year), stemma_parents=stemma_parents,
+            authors=list(card.authors),
+        )
         provenance.append(RetrievalEnvelope(
             retrieval_run_id=RETRIEVAL_RUN_ID, doc_id=card.doi, source_path=card.relative_path,
             fetched_at=fetched_at, fixture=True, citation_count=card.cited_by_count, lineage_count=len(stemma_parents),

@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c19800b7a0bc4c8814e6a7948efd94928e67fdf6f197ed1059e45ba796be5620",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "22:17 And the LORD spake unto Moses, saying, 22:18 Speak unto Aaron, and to his sons, and unto all the children of Israel, and say unto them, Whatsoever he be of the house of Israel, or of the strangers in Israel, that will offer his oblation for all his vows, and for all his freewill offerings, which they will offer unto the LORD for a burnt offering;",
+        "claim": "The LORD instructed Moses to inform Aaron and the Israelites that those of the house of Israel and strangers may make vow and freewill offerings as burnt offerings.",
+        "actor": "the LORD, Moses",
+        "action": "spake",
+        "object": "oblation, vows, freewill offerings, burnt offering",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "22:19 Ye shall offer at your own will a male without blemish, of the beeves, of the sheep, or of the goats.",
+        "claim": "Offerings must be male animals without blemish selected from cattle, sheep, or goats.",
+        "actor": "Ye",
+        "action": "offer",
+        "object": "male without blemish, beeves, sheep, goats",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

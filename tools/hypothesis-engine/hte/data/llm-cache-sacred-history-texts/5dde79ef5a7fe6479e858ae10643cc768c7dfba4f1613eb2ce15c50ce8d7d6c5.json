@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0ddac9133d9bebf8ca6910fc733779ad12582318f20aafe5917e22ae73576f76",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the king of Egypt said unto them, Wherefore do ye, Moses and Aaron, let the people from their works? get you unto your burdens.",
+        "claim": "The king of Egypt rebuked Moses and Aaron for allowing the people to stop working",
+        "actor": "king of Egypt",
+        "action": "said",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Wherefore do ye, Moses and Aaron, let the people from their works?",
+        "claim": "Moses and Aaron allowed the people to stop working",
+        "actor": "Moses and Aaron",
+        "action": "let",
+        "object": "the people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

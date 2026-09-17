@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cc941570040cc87ad2965ed38be296e1cc840df316fb08c06f1fb9924221272c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the glory of the LORD abode upon mount Sinai, and the cloud covered it six days: and the seventh day he called unto Moses out of the midst of the cloud.",
+        "claim": "The glory of the LORD abode upon mount Sinai; a cloud covered it for six days; on the seventh day God called to Moses from within the cloud.",
+        "actor": "the LORD",
+        "action": "abode, covered, called",
+        "object": "mount Sinai, Moses",
+        "place": "mount Sinai",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

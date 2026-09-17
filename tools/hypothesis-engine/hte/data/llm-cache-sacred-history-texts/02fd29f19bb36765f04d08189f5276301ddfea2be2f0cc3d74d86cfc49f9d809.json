@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0ca113375caa4e64c79ee299148c129413a63dd295863971bb71cb0c780ae32d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Noah went forth, and his sons, and his wife, and his sons' wives with him",
+        "claim": "Noah and his family departed from the ark",
+        "actor": "Noah, his sons, his wife, his sons' wives",
+        "action": "went forth",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Every beast, every creeping thing, and every fowl, and whatsoever creepeth upon the earth, after their kinds, went forth out of the ark.",
+        "claim": "All animals of various types departed from the ark organized by kind",
+        "actor": "Every beast, every creeping thing, every fowl, whatsoever creepeth upon the earth",
+        "action": "went forth",
+        "object": "",
+        "place": "the ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

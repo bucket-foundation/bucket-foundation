@@ -1,0 +1,56 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f65f4bbe74c5d5794c2191738d1154bc88b55f6a6dad923d2736c9a22642fd07",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses called Bezaleel and Aholiab, and every wise hearted man, in whose heart the LORD had put wisdom, even every one whose heart stirred him up to come unto the work to do it",
+        "claim": "Moses called Bezaleel, Aholiab, and wise-hearted men to do the work",
+        "actor": "Moses",
+        "action": "called",
+        "object": "Bezaleel, Aholiab, wise hearted men",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "in whose heart the LORD had put wisdom",
+        "claim": "The LORD put wisdom in the hearts of the wise-hearted men",
+        "actor": "the LORD",
+        "action": "put",
+        "object": "wisdom",
+        "place": "hearts",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they received of Moses all the offering, which the children of Israel had brought for the work of the service of the sanctuary, to make it withal",
+        "claim": "The wise-hearted men received offerings from the children of Israel for the sanctuary",
+        "actor": "they",
+        "action": "received",
+        "object": "offering",
+        "place": "sanctuary",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they brought yet unto him free offerings every morning",
+        "claim": "Free offerings were brought every morning",
+        "actor": "they",
+        "action": "brought",
+        "object": "free offerings",
+        "mechanism": "every morning",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}
