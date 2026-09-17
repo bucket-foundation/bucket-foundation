@@ -1,5 +1,28 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-17: the ideal state, moves 1 to 3
+
+Branch `site-local-2026-09-14`. Founder direction: "i want the ideal state to be accomplished"
+(`learning/research-os/IDEAL-STATE.md`). Full account: `docs/RESEARCH-OS-APP.md` (Node, Search,
+Map).
+
+### Added
+
+- The node surface: `src/app/research-os/(app)/n/{NodeView,Section,LearnSection,SourcesSection,
+  CheckSection,TransferSection,AroundSection,ProduceForm,ProductionsSection,ClassSection,
+  ReviewOnNode}.tsx`, `n/[slug]/page.tsx`, `/api/research-os/node`.
+- One search: `src/lib/research-os/search.ts`, `/api/research-os/search`, `SearchPalette.tsx` in
+  the shell (Ctrl or Cmd K, the sidebar); `scripts/test-research-os-search.ts`.
+- The map as the graph: `src/lib/research-os/graph-layout.ts`, `/api/research-os/graph`,
+  `map/GraphMap.tsx`; the globe at `?view=globe`; `scripts/test-research-os-graph-layout.ts`.
+- Review in place: the review queue carries `relatedNodeId` and `kind`; `ReviewOnNode` decides
+  holds and productions on the node.
+
+### Changed
+
+- Home, connections, the loop, productions, Learn, and the workspace's node panel open the node
+  page; the workspace opens on an open assignment when no target is given and is named Path.
+
 ## 2026-09-17: the loop connected
 
 Branch `site-local-2026-09-14`. Founder direction: "get to work on all of this", after the

@@ -20,6 +20,14 @@ Research OS is the product (`learning/research-os/INTEGRATION-PLAN.md`). The sit
 
 The teach group shows for an email on `RESEARCH_OS_REVIEWER_EMAILS` or a teacher or librarian membership in any class (`isClassStaffAnywhere` in `src/lib/research-os/class-db.ts`).
 
+## Node
+
+`/research-os/n/<slug>` is the center (`src/app/research-os/(app)/n`). One read, `/api/research-os/node`, returns the node, the viewer's standing with its evidence, prerequisites and dependents, directions, the Learn target, the viewer's productions on it and the public nodes that extend, replicate, or review it, the viewer's verbs, the assignments targeting it, and for staff the class holders by level. The page shows the standing and what raised it, then the five levels as verbs in place: learn (the lesson and drill for the atom it came from, through `useAcademy`), sources (quote with a locator, kept for the next two), check (an explanation against the quotes, with the forcing step when a class turns it on), transfer (a prompt built from the node's dependents, held for a teacher), around (rests on, unlocks, where it leads, open questions, relations across branches), produce (a production, extension, replication, or peer review from this node through the one form, `ProduceForm`), class (assignments targeting it; for staff, learners by level, the holds and productions waiting on this node with decide in place, and assign in place), and access.
+
+## Search
+
+`/api/research-os/search?q=` ranks the nodes the viewer may see by title, slug, and summary (`src/lib/research-os/search.ts`) and returns each with the viewer's standing. `SearchPalette` opens on every app page with Ctrl or Cmd K and from the sidebar; Enter opens the node.
+
 ## Home
 
 `/research-os/home` is where sign-in lands. At the top, the loop block (`LoopPanel`, `/api/research-os/loop`) shows the five levels as the person's live state with one next action each: nodes owned and imports (Access), nodes opened (Awareness), nodes held and decks started (Understanding), connections held and the nearest bridge (Internalization), productions by status and the nodes they became (Production). A first run shows a three-step way in instead. `/research-os/productions` lists everything the person produced with its status and the node it became. Below, it reads the person's game state (`/api/research-os/profile`), open assignments (`/api/research-os/assignments?mine=1`), and the current path (`/api/research-os/route` plus `/api/research-os/state`), and shows: level, XP, streak, and badges; what to continue; where the person stands on the current chain with a level chip per node; the open questions on the branch; and a prompt to finish the two-question profile when it is missing.
@@ -36,7 +44,7 @@ Surfaces: `/research-os/learn` (every deck with the person's progress), `/resear
 
 ## Map
 
-The canon globe (`src/app/canon/CanonGlobeMount.tsx`, the same component as the public `/canon/search`) runs inside the shell at `/research-os/map` with `workspaceLinks`: the drawer's first action on a claim or figure is "work on this", which opens the workspace with that title as the Find query (`/research-os/workspace?q=`). The workspace's Map block links back to the map with the node's title.
+The map is the graph. `/research-os/map` lays one branch out by tier (`src/lib/research-os/graph-layout.ts`, a barycenter ordering over prerequisite edges) from `/api/research-os/graph?branch=`: every node a point colored by the viewer's standing, prerequisite edges as lines, the frontier ringed gold, assignments in the viewer's classes boxed red, a find box, and for staff a class heatmap layer (the share of learners at Understanding or above per node). Click opens the node page. `?view=globe` shows the canon globe (`CanonGlobeMount`, the same component as the public `/canon/search`) with "work on this" in its drawer.
 
 ## Class
 

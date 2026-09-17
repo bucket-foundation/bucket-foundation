@@ -83,7 +83,7 @@ A teacher opens the class heatmap. Three learners sit at Awareness on "scatterin
 
 ## What it takes
 
-Four moves, each usable on its own, in order.
+Four moves, each usable on its own, in order. Status on 2026-09-17: moves 1 to 3 built on `site-local-2026-09-14` (the node surface, one search, the map as the graph with the class heatmap, assign and review on the node); move 4's peer review, extension, and replication of productions work through the node page; citations and engine hypotheses wait on the payout rail and an engine host.
 
 1. **The node surface and one search.** Move the workspace's tools onto `/research-os/n/<slug>`; the workspace keeps the path rail and opens on the person's assignment, last node, or deck frontier. One `/api/research-os/search` over nodes, passages, and claims, behind Find, the map, Learn, and a palette on every page.
 2. **The map as the graph.** A graph layer beside the globe: nodes by branch and tier, colored by standing, with the class overlay for staff and the frontier layer for everyone.

@@ -13,6 +13,7 @@ import AroundSection from "./AroundSection";
 import ProductionsSection from "./ProductionsSection";
 import ClassSection from "./ClassSection";
 import AccessBlock from "../workspace/AccessBlock";
+import Section from "./Section";
 import { useSession } from "@/providers/SessionProvider";
 
 const SECTIONS: { id: string; label: string; level: string }[] = [
@@ -111,10 +112,9 @@ export default function NodeView({ slug }: { slug: string }) {
       <AroundSection data={data} />
       <ProductionsSection data={data} quotes={quotes} onChanged={load} />
       <ClassSection data={data} onChanged={load} />
-      <section id="access" className="scroll-mt-28">
-        <h2 className="small-caps text-[11px] tracking-[0.18em] text-[color:var(--aegean-deep)]">access</h2>
+      <Section id="access" level="access" title="access" meta={node.visibility}>
         <AccessBlock nodeId={node.id} token={accessToken} />
-      </section>
+      </Section>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import Section from "./Section";
 import type { NodeData } from "./types";
 import { BTN_PRIMARY, STAGE_LABEL } from "@/components/ui";
+import ReviewOnNode from "./ReviewOnNode";
 
 /** The class on this node: assignments that target it, and for staff, who in the class holds it at which level, with assign in place. */
 export default function ClassSection({ data, onChanged }: { data: NodeData; onChanged: () => void }) {
@@ -73,6 +74,13 @@ export default function ClassSection({ data, onChanged }: { data: NodeData; onCh
               ))}
               <span className="text-[12px] text-[color:var(--basalt-3)] self-center">of {total}</span>
             </div>
+          </div>
+        )}
+
+        {staffClasses.length > 0 && (
+          <div>
+            <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">waiting on you</h3>
+            <ReviewOnNode nodeId={data.node.id} onChanged={onChanged} />
           </div>
         )}
 

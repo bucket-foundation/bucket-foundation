@@ -115,6 +115,8 @@ interface ProductionRow {
   id: string;
   learner_id: string;
   target_node_id: string;
+  related_node_id?: string | null;
+  kind?: string | null;
   claim: string | null;
   evidence: unknown[];
   sources: unknown[];
@@ -164,7 +166,7 @@ export async function GET(req: NextRequest) {
   const { data: productionRows, error: prodErr } = await svc
     .from("productions")
     .select(
-      "id,learner_id,target_node_id,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required,lateral_reading_flag",
+      "id,learner_id,target_node_id,related_node_id,kind,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required,lateral_reading_flag",
     )
     .eq("status", "submitted")
     .order("created_at", { ascending: true });
@@ -214,6 +216,8 @@ export async function GET(req: NextRequest) {
           id: p.id,
           learnerId: p.learner_id,
           targetNodeId: p.target_node_id,
+          relatedNodeId: p.related_node_id ?? null,
+          kind: p.kind ?? "production",
           targetTitle: titleById.get(p.target_node_id) ?? p.target_node_id,
           claim: p.claim,
           evidence: p.evidence,
