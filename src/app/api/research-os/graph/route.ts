@@ -20,9 +20,14 @@ export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const url = new URL(req.url);
   if (url.searchParams.get("list")) {
-    const { data } = await graphService().from("nodes").select("branch,kind").limit(20000);
+    // PostgREST pages at 1,000 rows; walk the pages.
     const counts = new Map<string, number>();
-    ((data as { branch: string }[]) || []).forEach((r) => counts.set(r.branch, (counts.get(r.branch) ?? 0) + 1));
+    for (let from = 0; ; from += 1000) {
+      const { data } = await graphService().from("nodes").select("branch").range(from, from + 999);
+      const rows = (data as { branch: string }[]) || [];
+      rows.forEach((r) => counts.set(r.branch, (counts.get(r.branch) ?? 0) + 1));
+      if (rows.length < 1000) break;
+    }
     const branches = Array.from(counts.entries()).map(([id, nodes]) => ({ id, nodes })).sort((a, b) => a.id.localeCompare(b.id));
     return NextResponse.json({ branches }, NO_STORE);
   }

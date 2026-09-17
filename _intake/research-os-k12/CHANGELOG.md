@@ -17,6 +17,10 @@ somewhere that connects canon to mastery; bring together everything we have ever
 - The map lists every branch in the graph and filters by source; canon edges dashed.
 - `workspace/TargetPicker.tsx`: the workspace opens on any node; the route API resolves the
   target's branch; the header reads from the target.
+- `scripts/research-os/ingest/intake-all.ts` and `lib/apply-drafts.ts`: the literature cards (178),
+  the concept digests with their PubMed papers (26 + 177), and the queued concept targets (8,
+  flagged open questions) join the graph: 371 nodes, 241 edges. 1,903 nodes across 14 branches
+  after both importers.
 - `inChunks` in `db.ts`: id-list queries run in chunks (PostgREST rejects long URLs), used by the
   subgraph and learner-state loaders, the graph API, and the connections loader.
 

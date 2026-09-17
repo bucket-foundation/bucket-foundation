@@ -146,12 +146,21 @@ export async function inChunks<T>(ids: string[], run: (chunk: string[]) => Promi
 
 export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]; edges: GraphEdge[] }> {
   const svc = graphService();
-  const { data: nodeRows, error: nodeErr } = await svc
-    .from("nodes")
-    .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example,visibility,owner_id,frontier_flag")
-    .eq("branch", branch);
-  if (nodeErr) throw new Error(`loadSubgraph: node query failed: ${nodeErr.message}`);
-  const nodes: GraphNode[] = ((nodeRows as NodeRow[]) || []).map((r) => ({
+  // PostgREST pages at 1,000 rows; a branch can hold more.
+  const nodeRows: NodeRow[] = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error: nodeErr } = await svc
+      .from("nodes")
+      .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example,visibility,owner_id,frontier_flag")
+      .eq("branch", branch)
+      .order("slug")
+      .range(from, from + 999);
+    if (nodeErr) throw new Error(`loadSubgraph: node query failed: ${nodeErr.message}`);
+    const page = (data as NodeRow[]) || [];
+    nodeRows.push(...page);
+    if (page.length < 1000) break;
+  }
+  const nodes: GraphNode[] = nodeRows.map((r) => ({
     id: r.id,
     slug: r.slug,
     title: r.title,
