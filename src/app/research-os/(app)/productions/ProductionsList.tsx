@@ -80,7 +80,7 @@ export default function ProductionsList() {
                     </div>
                     <div className="text-[12px] text-[color:var(--basalt-3)]">
                       {p.kind === "production" ? "on " : `${KIND[p.kind]} of `}
-                      <Link href={`/research-os/workspace?target=${encodeURIComponent(data.nodes[p.kind === "production" ? p.target_node_id : p.related_node_id ?? p.target_node_id]?.slug ?? "")}`} className="underline underline-offset-4 hover:text-[color:var(--basalt)]">
+                      <Link href={`/research-os/n/${encodeURIComponent(data.nodes[p.kind === "production" ? p.target_node_id : p.related_node_id ?? p.target_node_id]?.slug ?? "")}`} className="underline underline-offset-4 hover:text-[color:var(--basalt)]">
                         {title(p.kind === "production" ? p.target_node_id : p.related_node_id ?? p.target_node_id)}
                       </Link>
                       {" · "}
@@ -88,7 +88,7 @@ export default function ProductionsList() {
                       {p.node_id && data.nodes[p.node_id] && (
                         <>
                           {" · now the node "}
-                          <Link href={`/research-os/workspace?target=${encodeURIComponent(data.nodes[p.node_id].slug)}`} className="underline underline-offset-4 text-[color:var(--gold-deep)]">
+                          <Link href={`/research-os/n/${encodeURIComponent(data.nodes[p.node_id].slug)}`} className="underline underline-offset-4 text-[color:var(--gold-deep)]">
                             {data.nodes[p.node_id].title}
                           </Link>
                         </>

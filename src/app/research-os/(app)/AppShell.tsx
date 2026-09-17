@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import SearchPalette from "./SearchPalette";
 
 /**
  * The Research OS application frame: a sidebar on wide screens, a tab bar
@@ -24,7 +25,7 @@ interface Item {
 
 const LEARN: Item[] = [
   { href: "/research-os/home", label: "Home", hint: "today, your path, your classes", match: ["/research-os/home"] },
-  { href: "/research-os/workspace", label: "Workspace", hint: "find, quote, check, organize", match: ["/research-os/workspace"] },
+  { href: "/research-os/workspace", label: "Path", hint: "your route to a target", match: ["/research-os/workspace", "/research-os/n"] },
   { href: "/research-os/learn", label: "Learn", hint: "lessons and recall", match: ["/research-os/learn"] },
   { href: "/research-os/map", label: "Map", hint: "the canon on the globe", match: ["/research-os/map"] },
   { href: "/research-os/productions", label: "Productions", hint: "drafts, submitted, accepted", match: ["/research-os/productions"] },
@@ -48,12 +49,26 @@ export default function AppShell({ user, children }: { user: ShellUser; children
   if (user.staff) groups.push({ title: "teach", items: TEACH });
   const all = groups.flatMap((g) => g.items);
   const name = user.handle || (user.email ? user.email.split("@")[0] : "you");
+  const [searchOpen, setSearchOpen] = useState(false);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((o) => !o);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
     <div className="stone-bone grain min-h-screen">
       {/* Phone tab bar */}
       <nav aria-label="Research OS" className="md:hidden sticky top-[58px] z-30 border-b border-[color:var(--hairline)] bg-[color:var(--bone)]/90 backdrop-blur-[2px]">
         <div className="flex items-center gap-1 overflow-x-auto px-2">
+          <button type="button" onClick={() => setSearchOpen(true)} className="small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap min-h-[44px] text-[color:var(--basalt-3)]">
+            search
+          </button>
           {all.map((it) => {
             const on = isOn(it, pathname);
             return (
@@ -73,10 +88,15 @@ export default function AppShell({ user, children }: { user: ShellUser; children
         </div>
       </nav>
 
+      <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
       <div className="max-w-[1200px] mx-auto md:grid md:grid-cols-[224px_minmax(0,1fr)] md:gap-8 px-4 md:px-6">
         {/* Sidebar */}
         <aside className="hidden md:block py-8">
           <div className="sticky top-[96px]">
+            <button type="button" onClick={() => setSearchOpen(true)} className="w-full mb-3 flex items-center justify-between px-3 py-2 border border-[color:var(--hairline)] rounded-sm text-[12px] text-[color:var(--basalt-3)] hover:bg-[color:var(--bone)] transition">
+              <span>search the graph</span>
+              <kbd className="font-mono text-[10px]">⌘K</kbd>
+            </button>
             <Link href="/account" className="block p-3 border border-[color:var(--hairline)] rounded-sm hover:bg-[color:var(--bone-2)] transition">
               <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">signed in</div>
               <div className="mt-0.5 text-[14px] text-[color:var(--basalt)] truncate" title={user.email ?? undefined}>{name}</div>

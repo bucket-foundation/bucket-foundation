@@ -97,7 +97,7 @@ export default function LoopPanel() {
       name: "Internalization",
       state: n(loop.internalization.held, "connection") + " held",
       detail: loop.internalization.bridges ? `${n(loop.internalization.bridges, "bridge")} one step away` : `${loop.internalization.nodes} internalized`,
-      href: loop.internalization.nextBridge ? `/research-os/workspace?target=${encodeURIComponent(loop.internalization.nextBridge.slug)}` : "/research-os/workspace",
+      href: loop.internalization.nextBridge ? `/research-os/n/${encodeURIComponent(loop.internalization.nextBridge.slug)}` : "/research-os/workspace",
       cta: loop.internalization.nextBridge ? `cross to ${loop.internalization.nextBridge.title}` : "transfer",
       lit: loop.internalization.held > 0 || loop.internalization.nodes > 0,
     },

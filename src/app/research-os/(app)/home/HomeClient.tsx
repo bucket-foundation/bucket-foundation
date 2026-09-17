@@ -249,7 +249,7 @@ export default function HomeClient() {
           <ul className="flex flex-wrap gap-2">
             {route.value.openQuestions.slice(0, 8).map((q) => (
               <li key={q.id}>
-                <Link href={`/research-os/workspace?target=${encodeURIComponent(q.slug)}`} className={BTN_SECONDARY + " text-[11px]"}>
+                <Link href={`/research-os/n/${encodeURIComponent(q.slug)}`} className={BTN_SECONDARY + " text-[11px]"}>
                   {q.title}
                 </Link>
               </li>
@@ -299,7 +299,7 @@ function PathList({ route }: { route: RouteResponse }) {
           <li key={s.node.id} className="py-2.5 flex items-center justify-between gap-3">
             <div className="min-w-0 flex items-baseline gap-2">
               <span className="text-[11px] text-[color:var(--basalt-3)] [font-variant-numeric:tabular-nums] w-6 shrink-0">{s.hops === 0 ? "◆" : `-${s.hops}`}</span>
-              <Link href={`/research-os/workspace?target=${encodeURIComponent(s.node.slug)}`} className="text-[13px] text-[color:var(--basalt)] hover:underline underline-offset-4 truncate">
+              <Link href={`/research-os/n/${encodeURIComponent(s.node.slug)}`} className="text-[13px] text-[color:var(--basalt)] hover:underline underline-offset-4 truncate">
                 {s.node.title}
               </Link>
             </div>

@@ -296,6 +296,19 @@ export default function ResearchOsWorkspacePage() {
   const [locateQuery, setLocateQuery] = useState(() =>
     typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("q")?.trim() ?? "" : ""
   );
+  // No ?target: open on the person's first open assignment. A full load, so
+  // the module-level TARGET_SLUG picks it up.
+  useEffect(() => {
+    if (!token || new URLSearchParams(window.location.search).get("target")) return;
+    fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : { assignments: [] }))
+      .then((j: { assignments?: { targetSlug: string; status: string }[] }) => {
+        const open = (j.assignments ?? []).find((a) => a.status !== "accepted");
+        if (open && open.targetSlug !== TARGET_SLUG) window.location.replace(`/research-os/workspace?target=${encodeURIComponent(open.targetSlug)}`);
+      })
+      .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
   const locateFromUrl = useRef(typeof window !== "undefined" && Boolean(new URLSearchParams(window.location.search).get("q")?.trim()));
   const [locateResults, setLocateResults] = useState<Array<{ nodeId: string; slug: string; title: string; summary: string | null; citation: string }>>([]);
   const [quote, setQuote] = useState<{ kind?: "quote" | "summary"; quotable_span: string | null; locator?: string | null; citation: string } | null>(null);
@@ -1024,6 +1037,9 @@ export default function ResearchOsWorkspacePage() {
                   </div>
                   <h2 className="font-display uppercase text-[20px] mt-1 text-[color:var(--basalt)]">{selected.title}</h2>
                   <p className="mt-2 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{selected.summary}</p>
+                  <Link href={`/research-os/n/${encodeURIComponent(selected.slug)}`} className="mt-2 inline-block text-[12px] small-caps underline decoration-[color:var(--gold)] underline-offset-4">
+                    open the node page →
+                  </Link>
                   <LearnBlock node={selected} token={token} />
                   <DirectionsBlock
                     nodeId={selected.id}

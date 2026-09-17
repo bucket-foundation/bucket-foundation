@@ -50,6 +50,7 @@ export default function AtomView({ branch, atomId }: { branch: string; atomId: s
         <h1 className="font-display uppercase text-[clamp(1.4rem,3.6vw,2.25rem)] leading-[1.1] chisel text-[color:var(--basalt)] [text-wrap:balance]">{atom.title}</h1>
         <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[color:var(--basalt-3)]">
           {started ? <span>mastery {Math.round(mastery * 100)}%</span> : <span>new to you</span>}
+          <Link href={`/research-os/n/academy-${branch}-${atomId}`} className="underline underline-offset-4 hover:text-[color:var(--basalt)]">this atom on the graph</Link>
           {requires.length > 0 && (
             <span>
               after{" "}

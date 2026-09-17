@@ -57,9 +57,9 @@ export default function ConnectionsPanel() {
               <ul className="mt-1 flex flex-col divide-y divide-[color:var(--hairline)]">
                 {data.held.slice(0, 8).map((h) => (
                   <li key={`${h.from.id}-${h.to.id}-${h.kind}`} className="py-2 text-[13px] text-[color:var(--basalt)]">
-                    <Link href={`/research-os/workspace?target=${encodeURIComponent(h.from.slug)}`} className="hover:underline underline-offset-4">{h.from.title}</Link>
+                    <Link href={`/research-os/n/${encodeURIComponent(h.from.slug)}`} className="hover:underline underline-offset-4">{h.from.title}</Link>
                     <span className="text-[color:var(--basalt-3)]"> {KIND[h.kind] ?? h.kind} </span>
-                    <Link href={`/research-os/workspace?target=${encodeURIComponent(h.to.slug)}`} className="hover:underline underline-offset-4">{h.to.title}</Link>
+                    <Link href={`/research-os/n/${encodeURIComponent(h.to.slug)}`} className="hover:underline underline-offset-4">{h.to.title}</Link>
                     <div className="text-[11px] text-[color:var(--basalt-3)]">{branchName(h.from.branch)} · {branchName(h.to.branch)}</div>
                   </li>
                 ))}
@@ -74,7 +74,7 @@ export default function ConnectionsPanel() {
               <ul className="mt-1 flex flex-col divide-y divide-[color:var(--hairline)]">
                 {data.bridges.slice(0, 8).map((b) => (
                   <li key={`${b.held.id}-${b.next.id}-${b.kind}`} className="py-2 text-[13px]">
-                    <Link href={`/research-os/workspace?target=${encodeURIComponent(b.next.slug)}`} className="text-[color:var(--basalt)] hover:underline underline-offset-4">{b.next.title}</Link>
+                    <Link href={`/research-os/n/${encodeURIComponent(b.next.slug)}`} className="text-[color:var(--basalt)] hover:underline underline-offset-4">{b.next.title}</Link>
                     <div className="text-[11px] text-[color:var(--basalt-3)]">
                       {branchName(b.next.branch)} · {KIND[b.kind] ?? b.kind} {b.held.title} ({branchName(b.held.branch)}), which you hold
                     </div>
