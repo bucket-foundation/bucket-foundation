@@ -29,9 +29,10 @@ Part of AGFarms venture studio. Org dashboard: https://nucleus.agfarms.dev/admin
 This venture is a single repo (cloned from `gianyrox/bucket-foundation`, pending transfer to `AGFarms/bucket-foundation` on formal nonprofit filing or a proper nonprofit legal entity).
 
 - **Next.js 14** app on Vercel (`src/app`, `src/components`, `src/context`, `src/lib`, `src/providers`)
-- **Story Protocol** SDK for IP NFT minting
-- **Walrus** for on-chain content storage
-- **Dynamic** for web3 auth
+- **Supabase Auth** for the one site session (`docs/AUTH.md`): email one-time code at `/sign-in`, cookies through `@supabase/ssr`, `bucket.identities` per person
+- **Research OS** is the product (`docs/RESEARCH-OS-APP.md`, `learning/research-os/INTEGRATION-PLAN.md`); the app lives under `src/app/research-os/(app)`
+- **Story Protocol** SDK for IP NFT minting and **Walrus** for content storage, on the bucket 1.0 publish path only
+- **Dynamic** for wallet linking under `/knowledge`, `/library`, `/research`, `/assets`
 - **Supabase** for off-chain metadata
 
 ## Strategic Docs
@@ -184,7 +185,7 @@ Secret, do not use it. Cleanup tracked in `bkt-*` bead.
 
 The learning system.
 
-**Bucket Academy** is a learning app shipped 2026-06-12..15. Lives in `learning/app/`
+**Bucket Academy** is the Learn module of Research OS as of 2026-09-16 (`docs/RESEARCH-OS-APP.md`; engine port in `src/lib/academy/{fsrs,engine}.ts`, surfaces under `src/app/research-os/(app)/learn`, `/academy` redirects there). The original app, still the corpus source and a standalone build, shipped 2026-06-12..15 and lives in `learning/app/`
 (vanilla-JS PWA: `js/{fsrs,engine,adaptive,diagnostic,assess,auth,auth-ui,tutor,
 onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 `corpus/*.json`), mirrored to `public/academy-app/` by `scripts/sync-academy.mjs`
@@ -413,3 +414,13 @@ The main checkout is shared by several sessions and carries their untracked work
 ### Research OS seam
 
 The engine exposes `hte.api.hypothesize`, `hte-serve` (`POST /hypothesize`, `GET /health`, localhost), and the `hypothesize` MCP tool definition in `hte/mcp_tool.py`. The app side applies `tools/hypothesis-engine/docs/research-os-hypothesize-route.patch`. Field mapping lives in `tools/hypothesis-engine/docs/PRODUCTION-SCHEMA-ALIGNMENT.md`; contract tests fail when the production schema drifts.
+
+## Branch Policy
+
+Three long-lived branches, set on 2026-09-14 to stop Vercel building on every push.
+
+- `main`: production. Vercel builds it. Receives merges from `dev` only, on the founder's cadence.
+- `dev`: integration and the default PR target. Vercel builds it only when a site path changes (`vercel.json` `ignoreCommand`). Site work (`feat/site-*`, `feat/ros-*`, `intake/*` that the site renders) opens PRs into `dev`.
+- `hte/integration`: engine work. Vercel never builds it (`git.deploymentEnabled` blocks `hte/*`, and `scripts/vercel-ignore-build.sh` skips the same prefix). Every engine PR (`feat/hte-*`, `fix/hte-*`, `test/hte-*`, `run/*`, `docs/hte-*`) targets `hte/integration`; the cloud loop merges its own there. One batch PR carries `hte/integration` into `dev` when the batch is reviewed.
+
+Rules: never push to `main`; a PR into `main` comes from `dev` alone; engine PRs never target `dev` or `main` directly; a branch that needs a preview build must avoid the blocked prefixes. Same rule applies to every Claude session working this repo.

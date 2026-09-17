@@ -1,0 +1,56 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3c82e0aeb98d50a7372edca58979fab7de2b341f41f8bde3d6f9df88c2eeee99",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then the LORD said unto Moses",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "what I will do to Pharaoh",
+        "claim": "The LORD will perform an action against Pharaoh",
+        "actor": "I",
+        "action": "do",
+        "object": "Pharaoh",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "with a strong hand shall he let them go",
+        "claim": "Pharaoh will release the Israelites with a strong hand",
+        "actor": "he",
+        "action": "let them go",
+        "object": "them",
+        "mechanism": "with a strong hand",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "with a strong hand shall he drive them out of his land",
+        "claim": "Pharaoh will expel the Israelites from his land with a strong hand",
+        "actor": "he",
+        "action": "drive them out",
+        "object": "them",
+        "place": "his land",
+        "mechanism": "with a strong hand",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

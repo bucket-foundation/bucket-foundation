@@ -1,0 +1,64 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "273e2cb0420476559ba6513621a791e0dd04c1911520e415cd4bafa8b0917d5a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the son of an Israelitish woman, whose father was an Egyptian, went out among the children of Israel: and this son of the Israelitish woman and a man of Israel strove together in the camp",
+        "claim": "A son of an Israelite woman and Egyptian father quarreled with an Israelite man in the camp",
+        "actor": "the son of an Israelitish woman; a man of Israel",
+        "action": "strove",
+        "place": "the camp",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the Israelitish woman's son blasphemed the name of the Lord, and cursed",
+        "claim": "The son blasphemed the Lord's name and cursed",
+        "actor": "Israelitish woman's son",
+        "action": "blasphemed and cursed",
+        "object": "the name of the Lord",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they brought him unto Moses",
+        "claim": "They brought him to Moses",
+        "actor": "they",
+        "action": "brought",
+        "object": "him",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "(and his mother's name was Shelomith, the daughter of Dibri, of the tribe of Dan:)",
+        "claim": "The mother's name was Shelomith, daughter of Dibri, of the tribe of Dan",
+        "actor": "his mother",
+        "place": "tribe of Dan",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they put him in ward, that the mind of the LORD might be shewed them",
+        "claim": "They imprisoned him that the Lord's intention might be revealed",
+        "actor": "they",
+        "action": "put in ward",
+        "object": "him",
+        "mechanism": "that the mind of the LORD might be shewed them",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

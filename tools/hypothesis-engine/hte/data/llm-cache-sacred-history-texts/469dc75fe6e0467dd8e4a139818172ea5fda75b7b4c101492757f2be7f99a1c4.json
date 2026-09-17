@@ -1,0 +1,34 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "7d1074b0db23ceaa29d010a14ebe41e7e3ec7a1aaa2ff9a1f0f43451842456ad",
+  "response": {
+    "items": [
+      {
+        "kind": "setting",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses in mount Sinai, saying,",
+        "claim": "The text says the LORD spoke to Moses at Mount Sinai. This frames the law that follows as speech from God.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "place": "mount Sinai",
+        "mechanism": "divine speech",
+        "year": null
+      },
+      {
+        "kind": "law",
+        "tier": "primary-text",
+        "quote": "When ye come into the land which I give you, then shall the land keep a sabbath unto the LORD.",
+        "claim": "The children of Israel are told that once they enter the land given to them, the land must keep a sabbath to the LORD.",
+        "actor": "the children of Israel",
+        "action": "keep a sabbath",
+        "object": "the land",
+        "place": "the land which I give you",
+        "mechanism": "divine command passed through Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

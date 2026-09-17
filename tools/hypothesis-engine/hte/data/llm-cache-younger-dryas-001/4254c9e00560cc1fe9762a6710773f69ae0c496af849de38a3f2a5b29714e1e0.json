@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7e06192798855053c0ae9fd8acae9a707663e5b230120dc28dacdd48ba96857a",
+  "response": {
+    "expected_evidence": [
+      "Ice-core cosmogenic radionuclide anomalies (elevated 10Be, 36Cl, 14C production spike) dated to ~11000-10001 BCE consistent with a gamma-ray/cosmic-ray ionization event",
+      "A supernova remnant or otherwise identifiable astronomical source positioned/dated such that its gamma-ray flux could plausibly have reached Earth at this time",
+      "Geological/sedimentary markers of atmospheric ozone depletion or nitrate spikes coincident with the extinction interval",
+      "Genetic signatures of an abrupt, geographically broad megafaunal population bottleneck or die-off in North American species dated to this narrow window (ancient DNA)",
+      "Skeletal/material evidence of unusual radiation-related biological stress (rare and hard to distinguish from other stressors) in preserved megafaunal remains",
+      "Corroborating extinction-layer material evidence (e.g., a horizon of rapid faunal turnover) independently dated to the same centuries",
+      "No textual or oral-tradition evidence is expected, since this predates writing and any oral record would be far too degraded/reworked over ~13,000 years to be reliably attributable"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.4,
+    "rationale": "The interval -11000 to -10001 falls in the Younger Dryas onset window, so the 'younger-dryas' detectability row is the most applicable proxy for an unspecified period. Under that row, astronomical (0.7) and geological (0.65) evidence types have relatively high survivability - ice cores, sediment cores, and cosmogenic-isotope records from this era are well-preserved and heavily studied, so a genuine gamma-ray-ionization event of extinction-causing magnitude should plausibly have left a detectable radionuclide/ozone-depletion signature if it occurred. Genetic evidence (0.3) is moderately detectable via ancient DNA of megafauna, though sample degradation and geographic gaps limit certainty. Textual (0.0) and oral tradition (0.1) evidence are essentially unrecoverable this far back, so their absence carries little to no evidentiary weight against the hypothesis. Material evidence (0.35) is moderate. As model-prior (low-tier, unverified): mainstream paleoclimate and archaeological literature attributes the Younger Dryas megafaunal extinction primarily to climate shifts, habitat change, and human overhunting; the well-known 'Younger Dryas impact hypothesis' invokes a cometary/asteroidal airburst with platinum/nanodiamond/black-mat evidence, not a gamma-ray-ionization mechanism specifically, and I am not aware of a confirmed nearby supernova or GRB source robustly dated to this exact 1,000-year window. Given that the relevant proxies (ice cores, isotope records) are well-preserved and intensively sampled for this period yet no confirmed gamma-ray-specific signature has been established in that record, the absence of corroborating evidence leans toward disconfirming the hypothesis rather than reflecting poor detectability - hence a moderate-low overall adjustment of 0.4, weighted between the high astronomical/geological detectability and the near-total absence of textual/linguistic/oral corroboration inherent to this deep-time period."
+  }
+}

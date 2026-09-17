@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "86ebdeded09ff83859d1ee6f559e0271d6d87a09aa04f581525b76f1725c48ea",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "according to the commandment of Moses",
+        "claim": "Moses issued a commandment for the tabernacle accounting",
+        "actor": "Moses",
+        "action": "commanded",
+        "object": "tabernacle accounting",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "by the hand of Ithamar, son to Aaron the priest",
+        "claim": "Ithamar, son of Aaron the priest, performed the counting of the tabernacle",
+        "actor": "Ithamar",
+        "action": "counted",
+        "object": "the tabernacle of testimony",
+        "place": "",
+        "mechanism": "by his hand",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

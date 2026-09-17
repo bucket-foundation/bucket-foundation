@@ -37,10 +37,11 @@ def _predict_corpus() -> Corpus:
     - `ev-examined`, one full-slot item examining `h_examined` (its own
       `u` drops to ~0.37, `|P - a|` ~0.18, a confident call with room to
       spare over `_CLAIM_CONFIDENCE_MIN`);
-    - `ev-sup2`/`ev-sup3`/`ev-sup4`, three independent full-slot items
-      (three different `EvidenceKind`s, so `hte.belief.cross_kind_bonus`
-      applies) examining `h_confident`, driving its own `u` to ~0.12 and
-      `P` to ~0.98, a second, even more confident call;
+    - `ev-sup2`/`ev-sup3`/`ev-sup4`/`ev-sup5`, four independent full-slot
+      items examining `h_confident`, driving its own `u` to ~0.13 and
+      `P` to ~0.98. The fourth item is what keeps `|P - a|` (~0.159)
+      clear of `_CLAIM_CONFIDENCE_MIN` (0.15) now that item 6 removed
+      the cross-kind bonus three items used to lean on for that margin;
     - `ev-gap`, naming only `ACTOR`, leaving `ACTION`/`OBJECT`/`PLACE`/
       `MECHANISM` unresolved for `hte.unknowns.unresolved_slot_gaps` to
       find, and linking (weakly) only to `h_examined`, never to either
@@ -78,6 +79,13 @@ def _predict_corpus() -> Corpus:
         actor="beta-team", action="extended", object="comet-q", place="beta-observatory", mechanism="photometric-method",
         interval=INTERVAL_A, stance=Stance.POSITIVE,
     )
+    sup5 = EvidenceItem(
+        id="ev-sup5", kind=EvidenceKind.GENETIC, tier=Tier.T1, source_id="src-1",
+        span=EvidenceSpan(doc_id="doc-1", locator="l6", quote="beta team extended comet q orbit a fourth time", char_start=60, char_end=75),
+        provenance="test-fixture",
+        actor="beta-team", action="extended", object="comet-q", place="beta-observatory", mechanism="photometric-method",
+        interval=INTERVAL_A, stance=Stance.POSITIVE,
+    )
     gap = EvidenceItem(
         id="ev-gap", kind=EvidenceKind.TEXTUAL, tier=Tier.T3, source_id="src-1",
         span=EvidenceSpan(doc_id="doc-1", locator="l2", quote="alpha team did something else", char_start=10, char_end=20),
@@ -85,7 +93,7 @@ def _predict_corpus() -> Corpus:
     )
     return Corpus(
         sources={"src-1": Source(id="src-1", kind=EvidenceKind.TEXTUAL)},
-        evidence=[examined, sup2, sup3, sup4, gap], ground_truth=[], provenance=[], vocab=base.vocab,
+        evidence=[examined, sup2, sup3, sup4, sup5, gap], ground_truth=[], provenance=[], vocab=base.vocab,
     )
 
 

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "006e4af067078630819ba3646376385d61f33982ed29d5a3836beb286a0f1bf7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And it came to pass, that on the sixth day they gathered twice as much bread, two omers for one man: and all the rulers of the congregation came and told Moses.",
+        "claim": "On the sixth day, the Israelites gathered twice as much bread (two omers per person), which the congregation's rulers reported to Moses.",
+        "actor": "they (the Israelites); all the rulers of the congregation; Moses",
+        "action": "gathered; came and told",
+        "object": "bread; two omers",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

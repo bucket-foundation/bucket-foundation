@@ -3,11 +3,11 @@ under `gutenberg/`/`archive/` that carry one of `hte.corpus.sacred_
 history`'s 13 traditions' own scripture, commentary, or narrative prose.
 `docs/SACRED-HISTORY-TEXTS.md` is this module's own inventory, restated
 as a doc: which text maps to which tradition, in what language and
-edition, and which of the 13 traditions this repo's own mirror carries no
-primary text for at all (7 of 13 as of this module's own first pass:
-`islam`, `bahai`, `sikhism`, `jainism`, `greek`, `mesopotamian`,
-`zoroastrianism`; see that doc's own "traditions with no text on disk"
-table for why each one is absent).
+edition. This module's own first pass covered 6 of 13 traditions,
+leaving 7 with no primary text at all (`islam`, `bahai`, `sikhism`,
+`jainism`, `greek`, `mesopotamian`, `zoroastrianism`); a later text-
+acquisition pass (this same doc's own acquisition table) filled every
+one of those seven, so `TEXT_RECORDS` below now covers all 13.
 
 `hte.corpus.sacred_history` reads one compiled JSON bundle (`src/data/
 sacred-history.json`) with no LLM call anywhere in it, exactly the
@@ -147,10 +147,15 @@ class TextRecord:
 # `wikisource/` stub page naming only a translation list or a chapter
 # index with no verse or paragraph text of its own (`docs/SACRED-HISTORY-
 # TEXTS.md`'s own "excluded" table lists every stub this module does not
-# read, and why). Six of the compiled bundle's 13 traditions are covered
-# here (`christianity`, `judaism`, `tao-confucian`, `buddhism`,
-# `hinduism`, `lds`); the other seven carry no primary text in this
-# repo's own mirror at all as of this module's first pass.
+# read, and why). All 13 of the compiled bundle's traditions are covered
+# here as of the text-acquisition pass that added the eleven editions
+# below `book-of-mormon`: `christianity`, `judaism`, `tao-confucian`,
+# `buddhism`, `hinduism`, `lds` (this module's first pass), plus
+# `islam`, `zoroastrianism`, `greek`, `mesopotamian`, `jainism`,
+# `sikhism`, and `bahai` (the seven this module's first pass named as
+# carrying no primary text at all; `docs/SACRED-HISTORY-TEXTS.md`'s own
+# "traditions with no text on disk" section is now historical, every one
+# of its seven traditions has an edition below).
 TEXT_RECORDS: tuple[TextRecord, ...] = (
     TextRecord(
         text_id="kjv-bible", tradition="christianity",
@@ -197,6 +202,90 @@ TEXT_RECORDS: tuple[TextRecord, ...] = (
         text_id="book-of-mormon", tradition="lds",
         path=_REPO_ROOT / "gutenberg" / "PG-17-the-book-of-mormon-b-an-account-written-by-the-hand-of-mormon-upon-pla" / "PG-17.txt",
         language="en", edition_label="The Book of Mormon (1830)", edition_year=1830,
+    ),
+    # Below this line: the seven traditions this module's first pass
+    # named as carrying no primary text at all, filled by the text-
+    # acquisition pass in `docs/SACRED-HISTORY-TEXTS.md`'s own inventory
+    # table. Every path here was checked for a real, verified public-
+    # domain edition (Project Gutenberg or a named `archive.org`
+    # identifier, never a `wikisource/` chapter-index stub); the
+    # acquisition table names each one's translator, year, and public-
+    # domain basis.
+    TextRecord(
+        text_id="quran-rodwell", tradition="islam",
+        path=_REPO_ROOT / "gutenberg" / "PG-2800-the-koran-al-quran-rodwell" / "PG-2800.txt",
+        language="en", edition_label="Rodwell (trans.), The Koran (Al-Qur'an), 2nd ed. (1876)",
+        edition_year=1876,
+    ),
+    TextRecord(
+        text_id="hesiod-homeric-hymns-evelyn-white", tradition="greek",
+        path=_REPO_ROOT / "gutenberg" / "PG-348-hesiod-the-homeric-hymns-and-homerica" / "PG-348.txt",
+        language="en",
+        edition_label="Evelyn-White (trans.), Hesiod, the Homeric Hymns, and Homerica (Loeb Classical Library, 1914)",
+        edition_year=1914,
+    ),
+    TextRecord(
+        text_id="avesta-vendidad-darmesteter", tradition="zoroastrianism",
+        path=_REPO_ROOT / "archive" / "india.history.resource.85791" / "85791_djvu.txt",
+        language="en",
+        edition_label="Darmesteter (trans.), The Zend-Avesta Part I: The Vendidad, Sacred Books of the East vol. IV (1880)",
+        edition_year=1880,
+    ),
+    TextRecord(
+        text_id="avesta-part2-darmesteter", tradition="zoroastrianism",
+        path=_REPO_ROOT / "archive" / "wg923" / "WG923-1883 -The Sacred Books of East - Vol 23 of 50 - Zoroastrianism-Zend Avesta -Part 2 of 3_djvu.txt",
+        language="en",
+        edition_label="Darmesteter (trans.), The Zend-Avesta Part II, Sacred Books of the East vol. XXIII (1883)",
+        edition_year=1883,
+    ),
+    TextRecord(
+        text_id="avesta-part3-mills", tradition="zoroastrianism",
+        path=_REPO_ROOT / "archive" / "wg931" / "WG931-1887 -The Sacred Books of East - Vol 31 of 50 -Zoroastrianism-Zend Avesta -Part 3 of 3_djvu.txt",
+        language="en",
+        edition_label="Mills (trans.), The Zend-Avesta Part III (Yasna, Visparad, Afrinagan, Gahs), Sacred Books of the East vol. XXXI (1887)",
+        edition_year=1887,
+    ),
+    TextRecord(
+        text_id="gilgamesh-thompson", tradition="mesopotamian",
+        path=_REPO_ROOT / "archive" / "thompson-1928-gilgamesh" / "Thompson_1928_Gilgamesh_djvu.txt",
+        language="en",
+        edition_label="Thompson, The Epic of Gilgamish: Text, Transliteration, and Notes (London, 1928)",
+        edition_year=1928,
+    ),
+    TextRecord(
+        text_id="enuma-elish-king", tradition="mesopotamian",
+        path=_REPO_ROOT / "archive" / "the-seven-tablets-of-creation.-vol.-1" / "The seven tablets of creation. Vol. 1_djvu.txt",
+        language="en",
+        edition_label="King, The Seven Tablets of Creation, or the Babylonian and Assyrian Legends Concerning the Creation of the World and of Mankind, Vol. I (1902)",
+        edition_year=1902,
+    ),
+    TextRecord(
+        text_id="jaina-sutras-part1-jacobi", tradition="jainism",
+        path=_REPO_ROOT / "archive" / "in.ernet.dli.2015.37732" / "2015.37732.Jaina-Sutras--Pt-1_djvu.txt",
+        language="en",
+        edition_label="Jacobi (trans.), Jaina Sutras Part I (Akaranga Sutra, Kalpa Sutra), Sacred Books of the East vol. XXII (1884)",
+        edition_year=1884,
+    ),
+    TextRecord(
+        text_id="jaina-sutras-part2-jacobi", tradition="jainism",
+        path=_REPO_ROOT / "archive" / "mlbd.gainasutraspart20000vol-45.unse" / "mlbd.gainasutraspart20000vol-45.unse_djvu.txt",
+        language="en",
+        edition_label="Jacobi (trans.), Jaina Sutras Part II (Uttaradhyayana Sutra, Sutrakritanga Sutra), Sacred Books of the East vol. XLV (1895)",
+        edition_year=1895,
+    ),
+    TextRecord(
+        text_id="sikh-religion-vol1-macauliffe", tradition="sikhism",
+        path=_REPO_ROOT / "archive" / "in.ernet.dli.2015.45269" / "2015.45269.The-Sikh-Religion--Vol1_djvu.txt",
+        language="en",
+        edition_label="Macauliffe, The Sikh Religion: Its Gurus, Sacred Writings and Authors, Vol. I (Oxford, Clarendon Press, 1909)",
+        edition_year=1909,
+    ),
+    TextRecord(
+        text_id="kitab-i-iqan-ali-kuli-khan", tradition="bahai",
+        path=_REPO_ROOT / "archive" / "dli.ministry.10422" / "E01069_The_Book_of_Ighan_djvu.txt",
+        language="en",
+        edition_label="Baha'u'llah (Ali Kuli Khan, trans.), The Book of Ighan (Kitab-i-Iqan), 3rd ed. (Bahai Publishing Society, Chicago, 1915)",
+        edition_year=1915,
     ),
 )
 
@@ -339,3 +428,15 @@ def load(
 __all__ = [
     "TextRecord", "TEXT_RECORDS", "split_passages", "ingest_passages", "load", "DEFAULT_CACHE_DIR",
 ]
+
+
+SLICE_ONE_PATH = Path(__file__).resolve().parents[1] / "data" / "sacred-history-texts-slice-1-corpus.json"
+
+
+def load_slice_one() -> Corpus:
+    """The first live extraction slice (`docs/SACRED-HISTORY-TEXTS.md`,
+    "Slice one, live"): 500 figure-attested KJV passages through the
+    three-pass extractor ensemble, 917 evidence items, replayed from the
+    tracked cache under `hte/data/llm-cache-sacred-history-texts/` by
+    `scripts/extract_slice.py` and saved as one `Corpus`."""
+    return Corpus.load(SLICE_ONE_PATH)

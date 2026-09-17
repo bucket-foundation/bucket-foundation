@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "9df4c2db4d3c8e61f0acf475a6b560113a414cff6782cc7cacefd89bd1a7e083",
+  "response": {
+    "expected_evidence": [
+      "Geological: a Younger Dryas Boundary sediment layer around 10950 BCE across North American sites containing elevated nanodiamond concentrations including hexagonal lonsdaleite and cubic diamond nanocrystals",
+      "Geological: co-occurring impact-ejecta proxies in the same stratum such as magnetic microspherules, glassy carbon spherules, and iridium or platinum-group element anomalies",
+      "Geological: a continental-scale black mat organic-rich layer marking the boundary, often with elevated charcoal and soot indicating widespread biomass burning",
+      "Material or archaeological: disruption of Clovis-era artifact assemblages at or above the proposed impact layer, and megafauna bone beds terminating at the boundary",
+      "Astronomical: orbital-dynamics modeling linking the modern Taurid meteor stream to a denser ancient debris trail capable of producing an airburst cluster over North America around 10950 BCE",
+      "Genetic: a detectable population bottleneck signature in North American megafauna or early human populations dated to the same interval",
+      "Model-prior, unverified: this matches the published Younger Dryas Impact Hypothesis, a real but heavily contested claim, with several independent labs reporting failure to replicate nanodiamond findings or attributing the structures to non-impact carbon forms"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The interval -10950 corresponds almost exactly to the Younger Dryas onset boundary, so the relevant period is younger-dryas. The core claimed evidence type, nanodiamonds and associated impact proxies in sediment, is geological, which has a comparatively high baseline detectability of 0.65 for this period, and the causal mechanism, a Taurid-complex airburst and fallout event, is amenable to astronomical or orbital modeling at 0.70, also high. Material and genetic lines are weaker channels for this era, around 0.35 and 0.30, but still plausible given known megafauna extinction and Clovis-boundary archaeology. Because sedimentary layers from roughly 13000 years ago are routinely preserved and sampled via cores and outcrops worldwide, and because this exact evidentiary claim has in fact been searched for and reported by multiple research teams, with genuine unresolved scientific disagreement over replication and identification of the nanostructures, the absence of settled consensus is better explained by contested methodology and possible measurement issues than by low detectability. Physical evidence of this kind, if truly present at the hypothesized scale, is well within reach of modern geochemical and microscopy techniques, so a low-detectability excuse is only partially warranted, and I weight overall detectability upward from the raw geological or astronomical average to reflect that this hypothesis has already been actively and repeatedly tested empirically. Note that attribution to the Younger Dryas Impact Hypothesis literature is model-prior, recalled from training rather than supplied evidence, and should be treated as an unverified, contested claim rather than an established fact."
+  }
+}

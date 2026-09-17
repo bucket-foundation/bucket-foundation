@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "4540b779e2336488edfef513de34788c9ea0b0455ee159019ba7ed97dfc1ca87",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and nanodiamond anomalies in the Younger Dryas boundary (YDB) sediment layer across multiple continents (Greenland ice cores, North American black mat sites, European and Middle Eastern loess/lake sequences)",
+      "Geological: magnetic spherules, glassy melt-glass microspherules, and shocked quartz at YDB-dated strata",
+      "Geological: abrupt paleoclimate proxy shift (isotope, pollen, lake-varve records) marking onset of cooling synchronous with proposed impact date",
+      "Astronomical: orbital modeling reconstructing the Taurid meteor stream parent-comet fragmentation and its intersection with Earth orbit around 10,950 BCE",
+      "Astronomical: modern Taurid-complex debris (e.g. 2P/Encke and associated asteroids) as a surviving remnant consistent with a larger Pleistocene progenitor body",
+      "Material archaeological: disruption or abandonment layers at Clovis-age and contemporaneous Old World sites, changes in lithic technology coincident with the boundary layer",
+      "Genetic: megafaunal population bottleneck or extinction signatures dated to the onset interval",
+      "Iconographic: speculative depictions of a celestial or cometary event in Upper Paleolithic cave art or carved stone imagery",
+      "Oral tradition: flood, fire, or darkness catastrophe myths proposed very speculatively as transmitted memory of the event",
+      "model-prior: general scientific literature on the Younger Dryas Impact Hypothesis as a contested but actively studied claim"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis maps to the real Younger Dryas Impact Hypothesis, which I recognize primarily from model-prior training knowledge rather than from any evidence text provided in this session; this is flagged accordingly. Using the younger-dryas period row as the closest match to the -10,950 interval, the strongest expected evidence types are geological (0.65) and astronomical (0.7), both highly detectable in principle: sediment and ice-core boundary layers and orbital or meteor-stream modeling are exactly the kind of proxies that survive and have in fact been repeatedly sampled and debated across multiple continents in the actual scientific literature (Greenland, North America, Syria, Europe). Material (0.35) and genetic (0.3) evidence, such as site disruption layers and megafaunal bottlenecks, are moderately detectable but more ambiguous and easily confounded with unrelated Holocene transition effects. Iconographic (0.1) and oral_tradition (0.1) evidence for an Upper Paleolithic, non-literate population (textual = 0.0) are very low-detectability channels; absence of clear symbolic or mythic record from roughly 13,000 years ago should not be read as strong disconfirmation given how poorly such evidence would preserve or be recognized. Because the two most decisive evidence classes, geological and astronomical, are comparatively well-preserved and have actually been searched extensively, yielding a genuinely unresolved scientific controversy rather than silence, the combined detectability adjustment is set at 0.55: high enough that absence of a clear consensus is somewhat informative, but low enough to account for poor preservation of corroborating archaeological, genetic, and symbolic channels for a sparse Terminal Pleistocene population. The hypothesis could plausibly have left detectable traces, and real geochemical and geological claims of this kind do exist in the literature, though their interpretation as impact-caused versus terrestrial or volcanic remains actively disputed, which is itself consistent with moderate but imperfect detectability rather than outright fabrication."
+  }
+}

@@ -11,6 +11,10 @@ url: "https://doi.org/10.1207/s15326985ep4102_1"
 openalex_id: "https://openalex.org/W1976637107"
 branch: "project-based-inquiry-learning"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-621583c6b56f)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/cognitive-load/primary-papers.yaml (id bkt-c5fafa2790f1, Sweller 1988)"
 why_it_matters: >
   The sharpest complicating evidence this whole batch supplies: an argument cited across the field,
   grounded in cognitive-load theory and expert-novice differences, that minimally guided

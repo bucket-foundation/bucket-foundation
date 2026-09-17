@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "baf6e89a5104acfd60d10811d1375c7a0a8b3feb083a3468d65ee7a06397a336",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: Younger Dryas boundary (YDB) sediment cores/layers from multiple North American sites showing carbon-spherule counts that fail to replicate across independent labs or are inconsistent with a single synchronous impact horizon",
+      "material: microscopic/morphological and chemical analyses (SEM, EDS) showing 'carbon spherules' are better explained as fungal sclerotia, algal cysts, insect fecal pellets, or wildfire char rather than impact melt/ablation spherules",
+      "material: absence or non-reproducibility of accompanying impact markers (shocked quartz, high-pressure polymorphs, melt glass) in the same strata",
+      "astronomical/geological: lack of a confirmed, dated North American impact crater of appropriate size/age to source a continent-wide spherule layer",
+      "model_prior: published scientific literature (peer-reviewed papers, replication attempts, critical reviews) documenting the refutation/contested status of the Younger Dryas Impact Hypothesis's spherule evidence",
+      "geological: chronostratigraphic dating (radiocarbon, varve counts) showing spherule peaks are diachronous/site-specific rather than a single global -10,950 event layer"
+    ],
+    "detectability_adjustment": 0.8,
+    "rationale": "The interval (-10950) aligns with the Younger Dryas onset, so the base table's 'younger-dryas' row is the natural anchor (geological 0.65, material 0.35, astronomical 0.7, model_prior 0.3). However, this hypothesis is not about artifacts left by an ancient actor but about a *modern scientific refutation* of the carbon-spherule/impact claim \u2014 i.e., the actual evidentiary record consists of 21st-century peer-reviewed sediment analyses, replication studies, and lab data, not perishable Pleistocene-era physical traces. That record (papers by e.g. Pigati, Scott, Daulton, Holliday, Surovell, Boslough and others; this is drawn from model-prior/training knowledge of the YDIH scientific debate, not verified against the evidence text given, so it should be treated as low-tier/unverified) is extremely well preserved, widely replicated/cited, and highly discoverable via literature search, unlike the sediment layer itself which is subject to the lower base geological/material rates. This pushes real-world detectability well above the raw table values for 'younger-dryas' geological/material kinds. If the refutation is true, we would expect abundant, findable documentation (multiple independent labs failing to replicate spherule concentrations, alternative non-impact explanations for spherule morphology, absence of corroborating shock-metamorphic markers, no matching crater). Because the evidentiary trail is modern scholarly output rather than fragile ancient material, an absence of such evidence would weigh more heavily against the hypothesis being true (rather than being explained by poor preservation), so I raise the adjustment to ~0.8 relative to the table's ~0.3\u20130.65 range for this period/evidence-kind mix. Could the evidence have survived to be found? Yes \u2014 modern journal literature and sample archives are durable and searchable, so detection is highly plausible; a lack of such refutation literature would be genuine evidence of absence rather than a detectability artifact."
+  }
+}

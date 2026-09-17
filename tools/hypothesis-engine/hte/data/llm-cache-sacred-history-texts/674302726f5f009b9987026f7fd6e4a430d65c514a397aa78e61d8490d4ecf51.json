@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "99814a480ced953b29631ca402fd7df082c5dc714b76256daefa8022f0a057f0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses stretched forth his rod over the land of Egypt",
+        "claim": "Moses stretched forth his rod over the land of Egypt",
+        "actor": "Moses",
+        "action": "stretched forth his rod",
+        "object": "his rod",
+        "place": "the land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the LORD brought an east wind upon the land all that day, and all that night",
+        "claim": "The LORD brought an east wind upon the land for a full day and night",
+        "actor": "the LORD",
+        "action": "brought an east wind",
+        "object": "an east wind",
+        "place": "the land",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "when it was morning, the east wind brought the locusts",
+        "claim": "The east wind brought the locusts in the morning",
+        "actor": "the east wind",
+        "action": "brought the locusts",
+        "object": "the locusts",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

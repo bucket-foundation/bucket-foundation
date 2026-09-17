@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "67ea431e331b417283e7d74359a04c4059cba1c8363ab656e0bba4ff5dc8bf55",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Noah went in, and his sons, and his wife, and his sons' wives with him, into the ark, because of the waters of the flood.",
+        "claim": "Noah and his family entered the ark because of flood waters.",
+        "actor": "Noah",
+        "action": "went in",
+        "object": "the ark",
+        "place": "",
+        "mechanism": "waters of the flood",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

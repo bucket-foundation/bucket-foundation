@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5f05b2e5e8cffc27cfec3d1fd66a10746a7ca78468e130b7a6c9c6492c03644e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "there they buried Abraham and Sarah his wife",
+        "claim": "Abraham and Sarah were buried at a specified location",
+        "actor": "they",
+        "action": "buried",
+        "object": "Abraham and Sarah his wife",
+        "place": "there",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "there they buried Isaac and Rebekah his wife",
+        "claim": "Isaac and Rebekah were buried at a specified location",
+        "actor": "they",
+        "action": "buried",
+        "object": "Isaac and Rebekah his wife",
+        "place": "there",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and there I buried Leah",
+        "claim": "Leah was buried at a specified location",
+        "actor": "I",
+        "action": "buried",
+        "object": "Leah",
+        "place": "there",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

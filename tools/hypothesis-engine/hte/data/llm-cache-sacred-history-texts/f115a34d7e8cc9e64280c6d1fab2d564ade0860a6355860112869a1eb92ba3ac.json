@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "15ab56c1058451a8453553876f382cf8fb22988514dbbbd030c2527e9501db2c",
+  "response": {
+    "items": [
+      {
+        "kind": "speech",
+        "tier": "primary",
+        "quote": "Then Moses said unto Aaron, This is it that the LORD spake, saying, I will be sanctified in them that come nigh me, and before all the people I will be glorified.",
+        "claim": "Moses tells Aaron that this is what the LORD said: He will be sanctified in those who come near Him, and glorified before all the people.",
+        "actor": "Moses",
+        "action": "said unto Aaron",
+        "object": "Aaron",
+        "mechanism": "quoting a statement he attributes to the LORD",
+        "stance": "positive",
+        "place": "",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "And Aaron held his peace.",
+        "claim": "Aaron said nothing in reply to Moses.",
+        "actor": "Aaron",
+        "action": "held his peace",
+        "object": "Moses' statement",
+        "mechanism": "silence",
+        "stance": "negative",
+        "place": "",
+        "year": null
+      }
+    ]
+  }
+}

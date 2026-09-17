@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0aab5d41f65196a3af08cfd307a763cfc111df7603394560abb05ab60c4224c3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he hewed two tables of stone like unto the first; and Moses rose up early in the morning, and went up unto mount Sinai, as the LORD had commanded him, and took in his hand the two tables of stone.",
+        "claim": "Moses rose up early in the morning, went unto mount Sinai, and took two tables of stone that had been hewed like the first, as the LORD had commanded him.",
+        "actor": "Moses, the LORD",
+        "action": "rose up, went up, took",
+        "object": "two tables of stone",
+        "place": "mount Sinai",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "73ef11ef627111d6dde6635c060da1545907b88f3c8c2ae8ac9c1dcfb2bab083",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "36:6 And Moses gave commandment, and they caused it to be proclaimed throughout the camp, saying, Let neither man nor woman make any more work for the offering of the sanctuary. So the people were restrained from bringing.",
+        "claim": "The text says Moses gave an order, announced throughout the camp, that no man or woman should make any more work for the sanctuary offering, and that the people were then held back from bringing more. The document shows only the verse number 36:6. Naming the book as Exodus (KJV wording) comes from model-prior, not from the document. This is what the text claims, not a verified historical event.",
+        "actor": "Moses",
+        "action": "commanded a camp-wide proclamation halting contributions",
+        "object": "offering of the sanctuary",
+        "place": "the camp",
+        "mechanism": "public proclamation throughout the camp restraining further giving",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

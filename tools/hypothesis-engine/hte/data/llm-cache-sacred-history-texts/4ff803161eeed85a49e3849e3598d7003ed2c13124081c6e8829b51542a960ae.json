@@ -1,0 +1,100 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "80bb0dbaaa71be983e97cd7be45f45f557cbe8621a8b5287a5f678f0d5aa8e89",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the people did chide with Moses",
+        "claim": "The people complained to Moses",
+        "actor": "the people",
+        "action": "chide",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "said, Give us water that we may drink",
+        "claim": "The people demanded water for drinking",
+        "actor": "the people",
+        "action": "said",
+        "object": "water",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses said unto them, Why chide ye with me?",
+        "claim": "Moses questioned the people about their complaints",
+        "actor": "Moses",
+        "action": "said",
+        "object": "them",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the people thirsted there for water",
+        "claim": "The people experienced thirst",
+        "actor": "the people",
+        "action": "thirsted",
+        "place": "there",
+        "object": "for water",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the people murmured against Moses",
+        "claim": "The people murmured against Moses",
+        "actor": "the people",
+        "action": "murmured",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou hast brought us up out of Egypt, to kill us and our children and our cattle with thirst",
+        "claim": "The people accused Moses of leading them out of Egypt to kill them through thirst",
+        "actor": "thou/Moses",
+        "action": "brought up out of Egypt",
+        "object": "us and our children and our cattle",
+        "place": "Egypt",
+        "mechanism": "with thirst",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Moses cried unto the LORD",
+        "claim": "Moses prayed to the LORD",
+        "actor": "Moses",
+        "action": "cried",
+        "object": "unto the LORD",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "they be almost ready to stone me",
+        "claim": "The people were nearly ready to stone Moses",
+        "actor": "they/the people",
+        "action": "ready to stone",
+        "object": "me/Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

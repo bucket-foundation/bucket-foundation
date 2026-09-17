@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "61e6245a25a1b0f857d494ec16d4813060de8dcb73c7b2e3552bf0caad603637",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "which Moses and Aaron numbered",
+        "claim": "Moses and Aaron performed a numbering (census) of the people",
+        "actor": "Moses and Aaron",
+        "action": "numbered",
+        "object": "those",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "each one was for the house of his fathers",
+        "claim": "Each of the twelve princes was designated to represent/account for the house of his fathers",
+        "actor": "each one",
+        "action": "was for",
+        "object": "the house of his fathers",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

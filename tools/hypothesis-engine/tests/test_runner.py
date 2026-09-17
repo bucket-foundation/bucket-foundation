@@ -7,57 +7,59 @@ from hypothesis import given
 from hypothesis import strategies as st
 
 from hte import llm, roles, runner
+from hte.belief import Opinion
 from hte.corpus import Corpus, GroundTruthEvent, education_atlas, production
 from hte.evidence import EvidenceItem, EvidenceKind, EvidenceSpan, Tier
 from hte.timeline import Interval
 
-FIXTURE_CACHE = str(Path(__file__).parent / "fixtures" / "llm-cache")
-
-# Every field below must match the config used to seed `tests/fixtures/
-# llm-cache/`: the cache key is a hash of (model, prompt), and several
-# prompts this campaign builds (`generate_n`, `combinatorial_max_items`,
-# and the campaign name itself, embedded in the self-report's own prompt)
-# change the prompt text, and so the cache key, if changed here without
-# re-seeding the cache. `resolution` is pinned to `"century"` for the
-# same reason: left unset, `hte.runner.run_campaign` would auto-select a
-# rung from this corpus's own ground-truth span (`hte.timeline.
-# auto_resolution`), which would shift every combinatorial hypothesis's
-# own TIME_BIN axis away from `hte.address`'s original fixed 20,000-
-# year/century span this cache was seeded under. Pinning `"century"`
-# reuses that original span exactly (`hte.runner._resolve_time_binning`'s
-# own documented behavior for a pinned resolution).
+# Small knobs so a fake-mode campaign runs in about a second; `resolution`
+# pinned so time binning stays fixed across corpora, and the flat
+# combinatorial draw kept so the pool composition these tests count on
+# does not move with the vocabulary's status labels.
 FIXTURE_CONFIG = {
     "campaign": "fixture-seed",
     "corpus": "fixtures",
-    "cache_dir": FIXTURE_CACHE,
-    "replay_only": True,
     "seeds": 1,
     "generate_n": 2,
     "tournament_rounds": 1,
     "max_hypotheses": 8,
     "combinatorial_max_items": 5,
+    "combinatorial_status_balanced": False,
     "resolution": "century",
 }
 
 
+def _fake_mode_cfg(tmp_path, monkeypatch, **overrides):
+    """`FIXTURE_CONFIG` run through `HTE_LLM_MODE=fake` with a scratch cache."""
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    return {**FIXTURE_CONFIG, "cache_dir": str(tmp_path / "cache"), "replay_only": False,
+            "out_dir": str(tmp_path), **overrides}
+
+
 @pytest.fixture(autouse=True)
-def _real_llm_mode(monkeypatch):
-    """`FIXTURE_CONFIG` above pins `replay_only=True` against a real,
-    committed cache (`FIXTURE_CACHE`) with no `HTE_LLM_MODE` of its own:
-    every test below that builds a config from it is asserting the real
-    cache-replay contract (a hit returns the seeded response, a miss
-    raises `LLMCacheMissError`), which an ambient `HTE_LLM_MODE=fake`
-    would silently swap for `hte.fakellm`'s generic stand-ins instead,
-    breaking that contract without ever raising. Pinning it unset here
-    (harmless for this file's own explicitly fake-mode tests, which each
-    call their own `monkeypatch.setenv("HTE_LLM_MODE", "fake")` on top of
-    this) keeps this file correct under `env -u HTE_LLM_MODE make test`
-    and `HTE_LLM_MODE=fake make test` alike."""
+def _no_ambient_llm_mode(monkeypatch):
+    """`HTE_LLM_MODE` unset for every test here unless the test sets it:
+    a `fake` value leaking from another test file turns a
+    `replay_only=True` cache-miss test into a full fake-mode campaign,
+    which on `education-atlas` runs a k-fold calibration for minutes
+    (the 2026-09-15 hang at `test_campaign_run_replay_only_fails_only_on_
+    cache_miss[education-atlas]`)."""
     monkeypatch.delenv("HTE_LLM_MODE", raising=False)
 
 
-def test_run_campaign_end_to_end_replay_only(tmp_path):
-    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path)}
+def test_run_campaign_end_to_end_in_fake_mode(tmp_path, monkeypatch):
+    # `corpus="production"` overrides `FIXTURE_CONFIG`'s own "fixtures"
+    # here: `hte.fakellm`'s critic stand-in rejects every unlinked
+    # hypothesis outright (stricter than the real model,
+    # `docs/YOUNGER-DRYAS.md`'s own critic quote keeps one), and the
+    # tiny "fixtures" corpus links nothing under fake mode at any cap,
+    # `combinatorial_status_balanced` either way (confirmed against
+    # this branch's own unmodified base commit too, so this predates
+    # this bead). "production" survives fine.
+    cfg = _fake_mode_cfg(
+        tmp_path, monkeypatch, corpus="production", max_hypotheses=20,
+        combinatorial_max_items=1, max_time_bins=2, run_extraction=False,
+    )
     artifacts = runner.run_campaign(cfg)
 
     assert artifacts.run_dir.is_dir()
@@ -77,8 +79,23 @@ def test_run_campaign_end_to_end_replay_only(tmp_path):
 
     manifest = json.loads((artifacts.run_dir / "MANIFEST.json").read_text())
     assert manifest["campaign"] == "fixture-seed"
-    assert manifest["corpus"] == "fixtures"
-    assert manifest["cache"]["files"] > 0
+    assert manifest["corpus"] == "production"
+    # Fake mode accepts `cache_dir` but never writes to it (`hte.llm.
+    # complete`'s own fake-mode contract), so this run's own `llm_stats`
+    # carries the call count instead of `cache["files"]`.
+    assert manifest["llm_stats"]
+
+    # `hte.generate.stratified_sample`'s own frame
+    # (`STATISTICAL-AUDIT-2026-09-15.md` item 1), folded into
+    # `MANIFEST.json["counts"]["sampling"]` verbatim: `generated` sums to
+    # every distinct address this run built, `kept` to the population
+    # the critic saw (`n_survivors` is the critic-filtered subset of
+    # that, always `<=`).
+    sampling = manifest["counts"]["sampling"]
+    assert sampling["cap"] == cfg["max_hypotheses"]
+    assert sum(s["generated"] for s in sampling["strata"].values()) == manifest["counts"]["n_hypotheses_generated"]
+    assert sum(s["kept"] for s in sampling["strata"].values()) >= manifest["counts"]["n_survivors"]
+    assert sum(s["kept"] for s in sampling["strata"].values()) <= cfg["max_hypotheses"]
     assert manifest["seeds"] == [0]
     assert "git_sha" in manifest
 
@@ -87,24 +104,16 @@ def test_run_campaign_end_to_end_replay_only(tmp_path):
     assert "run complete" in log_text
 
 
-def test_run_campaign_replay_only_raises_on_true_cache_miss(tmp_path):
-    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path), "cache_dir": str(tmp_path / "empty-cache")}
+def test_run_campaign_replay_only_raises_on_true_cache_miss(tmp_path, monkeypatch):
+    monkeypatch.delenv("HTE_LLM_MODE", raising=False)
+    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path), "cache_dir": str(tmp_path / "empty-cache"), "replay_only": True}
     with pytest.raises(llm.LLMCacheMissError):
         runner.run_campaign(cfg)
 
 
-def test_run_campaign_replay_only_makes_no_subprocess_call(tmp_path, monkeypatch):
-    def explode(*args, **kwargs):
-        raise AssertionError("replay_only run must never shell out to claude -p")
-
-    monkeypatch.setattr(llm, "subprocess", type("S", (), {"run": staticmethod(explode)}))
-    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path)}
-    runner.run_campaign(cfg)  # would raise via `explode` above on any cache miss
-
-
-def test_run_campaign_is_deterministic_across_runs(tmp_path):
-    cfg1 = {**FIXTURE_CONFIG, "out_dir": str(tmp_path / "run1")}
-    cfg2 = {**FIXTURE_CONFIG, "out_dir": str(tmp_path / "run2")}
+def test_run_campaign_is_deterministic_across_runs(tmp_path, monkeypatch):
+    cfg1 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run1"))
+    cfg2 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run2"))
     a1 = runner.run_campaign(cfg1)
     a2 = runner.run_campaign(cfg2)
     assert {h.address for h in a1.hypotheses} == {h.address for h in a2.hypotheses}
@@ -112,16 +121,87 @@ def test_run_campaign_is_deterministic_across_runs(tmp_path):
     assert a1.coverage == a2.coverage
 
 
-def test_manifest_carries_llm_stats(tmp_path):
-    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path)}
+def test_manifest_carries_llm_stats(tmp_path, monkeypatch):
+    cfg = _fake_mode_cfg(tmp_path, monkeypatch)
     artifacts = runner.run_campaign(cfg)
     manifest = json.loads((artifacts.run_dir / "MANIFEST.json").read_text())
     assert "llm_stats" in manifest
-    # Every role this replay-only fixture campaign calls read entirely
-    # from cache, so every counted call is a cache hit and none of them
-    # shelled out to `claude -p`.
     assert manifest["llm_stats"]
-    assert all(row["calls"] == row["cache_hits"] for row in manifest["llm_stats"].values())
+    assert all(row["calls"] > 0 for row in manifest["llm_stats"].values())
+
+
+def test_judge_disagreement_count_excludes_draws_and_ties(monkeypatch):
+    """`bkt-hte-blind-roles`: the exact logic behind `MANIFEST.json`
+    `counts.judge_disagreement`, two judged pairs (one agrees with the
+    opinion's own P-ordering, one disagrees) plus a draw."""
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    opinions = {
+        1: Opinion(b=0.9, d=0.0, u=0.1, a=0.5),  # high P
+        2: Opinion(b=0.0, d=0.9, u=0.1, a=0.5),  # low P
+        3: Opinion(b=0.5, d=0.0, u=0.5, a=0.5),
+    }
+    triples = [
+        (1, 2, 0.0),  # opinion favors 1; score favors 2 -> disagreement
+        (1, 2, 1.0),  # opinion favors 1; score favors 1 -> agreement
+        (1, 3, 0.5),  # a draw score, excluded regardless of opinion
+    ]
+    assert runner._judge_disagreement_count(triples, opinions) == 1
+
+
+# --------------------------------------------------------------------------
+# Preregistration hash (item 5): MANIFEST.json["prereg"].
+# --------------------------------------------------------------------------
+
+
+def test_manifest_prereg_hash_is_stable_across_two_runs_with_the_same_config(tmp_path, monkeypatch):
+    cfg1 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run1"))
+    cfg2 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run2"))
+    a1 = runner.run_campaign(cfg1)
+    a2 = runner.run_campaign(cfg2)
+    manifest1 = json.loads((a1.run_dir / "MANIFEST.json").read_text())
+    manifest2 = json.loads((a2.run_dir / "MANIFEST.json").read_text())
+    assert manifest1["prereg"]["sha256"] == manifest2["prereg"]["sha256"]
+    assert manifest1["prereg"]["criteria"] == manifest2["prereg"]["criteria"]
+
+
+def test_manifest_prereg_hash_changes_when_lift_floor_changes(tmp_path, monkeypatch):
+    cfg1 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run1"))
+    cfg2 = _fake_mode_cfg(tmp_path, monkeypatch, out_dir=str(tmp_path / "run2"), lift_floor=0.4)
+    a1 = runner.run_campaign(cfg1)
+    a2 = runner.run_campaign(cfg2)
+    manifest1 = json.loads((a1.run_dir / "MANIFEST.json").read_text())
+    manifest2 = json.loads((a2.run_dir / "MANIFEST.json").read_text())
+    assert manifest1["prereg"]["sha256"] != manifest2["prereg"]["sha256"]
+    assert manifest1["prereg"]["criteria"]["lift_floor"] == 0.25  # DEFAULT_CONFIG's own default
+    assert manifest2["prereg"]["criteria"]["lift_floor"] == 0.4
+
+
+def test_prereg_is_computed_before_survivors_json_is_written(tmp_path, monkeypatch):
+    """Spies on both call sites to check the real runtime order in one
+    fake-mode run, rather than trusting the source layout alone."""
+    events: list[str] = []
+    real_prereg = runner._prereg_manifest
+
+    def spy_prereg(cfg):
+        events.append("prereg")
+        return real_prereg(cfg)
+
+    monkeypatch.setattr(runner, "_prereg_manifest", spy_prereg)
+
+    real_write_text = Path.write_text
+
+    def spy_write_text(self, data, *args, **kwargs):
+        if self.name == "survivors.json":
+            events.append("survivors.json")
+        return real_write_text(self, data, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "write_text", spy_write_text)
+
+    cfg = _fake_mode_cfg(tmp_path, monkeypatch)
+    runner.run_campaign(cfg)
+
+    assert "prereg" in events and "survivors.json" in events
+    assert events.index("prereg") < events.index("survivors.json")
 
 
 # --------------------------------------------------------------------------
@@ -345,7 +425,15 @@ def test_production_campaign_survives_one_truncated_judge_call(tmp_path, monkeyp
     cfg = {
         "campaign": "production", "corpus": "production", "out_dir": str(tmp_path),
         "cache_dir": str(tmp_path / "cache"), "replay_only": False, "seeds": 1,
-        "generate_n": 1, "combinatorial_max_items": 1, "max_hypotheses": 5,
+        # `max_hypotheses: 5` (this test's own value before `hte.generate.
+        # stratified_sample` replaced the address-sorted cap) kept the
+        # production corpus's own lowest-address actor every run, which
+        # happened to carry linked evidence; a stratified sample spreads
+        # those 5 across every actor stratum, most with no evidence
+        # linked at this cap's own floor, so the critic call finds zero
+        # survivors and there is nothing left for `judge` to ever see. 30
+        # keeps enough of every stratum for at least one survivor pair.
+        "generate_n": 1, "combinatorial_max_items": 1, "max_hypotheses": 30,
         "tournament_rounds": 1, "max_time_bins": 2, "run_extraction": False,
         "judge_batch_size": 1, "llm_workers": 1,
     }
@@ -465,7 +553,7 @@ def test_run_campaign_honors_an_explicit_constants_default(tmp_path, monkeypatch
         return real_load_constants(source)
 
     monkeypatch.setattr(runner, "load_constants", spy)
-    cfg = {**FIXTURE_CONFIG, "out_dir": str(tmp_path), "constants": "default"}
+    cfg = _fake_mode_cfg(tmp_path, monkeypatch, constants="default")
     runner.run_campaign(cfg)
     assert captured["source"] == "default"
 
@@ -479,7 +567,92 @@ def test_run_campaign_with_no_constants_key_falls_back_to_the_default_config(tmp
         return real_load_constants(source)
 
     monkeypatch.setattr(runner, "load_constants", spy)
-    cfg = {k: v for k, v in FIXTURE_CONFIG.items() if k != "constants"}
-    cfg["out_dir"] = str(tmp_path)
+    cfg = {k: v for k, v in _fake_mode_cfg(tmp_path, monkeypatch).items() if k != "constants"}
     runner.run_campaign(cfg)
     assert captured["source"] == "fitted"  # DEFAULT_CONFIG's own default, no override given
+
+
+# --------------------------------------------------------------------------
+# survivors.json (`bkt-hte-survivors-artifact`): every survivor's own full
+# opinion, Elo, preservation critique, and robustness dict, persisted next
+# to `timeline.json`'s pruned `posterior`/`elo` pair and `MANIFEST.json`'s
+# aggregate `robustness_stable_fraction`.
+# --------------------------------------------------------------------------
+
+
+def test_survivors_artifact_has_one_entry_per_survivor_with_full_opinion_and_robustness(tmp_path, monkeypatch):
+    # `production` over `fixtures`: this exact config's own critic pass
+    # (`hte.fakellm._critic`'s "at least one linked evidence item"
+    # rule) keeps 4 of `production`'s hypotheses and zero of `fixtures`'
+    # own, confirmed empirically and deterministically against both
+    # corpora (`hte.link.link_evidence`'s own threshold match runs
+    # independent of fakellm's own hash, a real property of each
+    # corpus's own evidence). A survivors count of zero would let
+    # every assertion in the loop below pass vacuously.
+    monkeypatch.setenv("HTE_LLM_MODE", "fake")
+    cfg = {
+        "campaign": "production", "corpus": "production", "out_dir": str(tmp_path),
+        "cache_dir": str(tmp_path / "cache"), "replay_only": False, "seeds": 1,
+        "generate_n": 1, "combinatorial_max_items": 1, "max_hypotheses": 5,
+        "tournament_rounds": 1, "max_time_bins": 2, "run_extraction": False,
+    }
+    artifacts = runner.run_campaign(cfg)
+    assert artifacts.hypotheses  # see the config comment above: must be non-empty for this test to mean anything
+
+    survivors_path = artifacts.run_dir / "survivors.json"
+    assert survivors_path.is_file()
+    data = json.loads(survivors_path.read_text())
+    assert data["campaign"] == "production"
+    assert data["corpus"] == "production"
+    assert data["artifact_version"]
+
+    entries = data["survivors"]
+    assert len(entries) == len(artifacts.hypotheses)
+    assert {e["hypothesis_id"] for e in entries} == {h.short_id for h in artifacts.hypotheses}
+
+    elos_in_order = [e["elo"] for e in entries]
+    assert elos_in_order == sorted(elos_in_order, reverse=True)
+
+    for entry in entries:
+        opinion = entry["opinion"]
+        assert opinion["P"] == pytest.approx(opinion["b"] + opinion["a"] * opinion["u"], abs=1e-9)
+        # `max_lift`: the top-level mirror of `opinion["lift"]`, named to
+        # match `hte.cli._per_actor_summary`'s own per-actor rollup.
+        assert entry["max_lift"] == pytest.approx(opinion["lift"])
+        assert opinion["lift"] == pytest.approx(opinion["b"] - opinion["d"])
+        assert set(entry["robustness"]["projections"]) == {"consensus", "skeptic", "fringe", "uniform"}
+        assert entry["preservation"] is not None
+        assert isinstance(entry["slots"], dict)
+        assert "ACTOR" in entry["slots"] or "RELATION" in entry["slots"]  # placement vs. sequence shape
+
+
+def test_survivors_carry_the_critic_likelihood_ratios(tmp_path, monkeypatch):
+    cfg = _fake_mode_cfg(
+        tmp_path, monkeypatch, corpus="production", max_hypotheses=20,
+        combinatorial_max_items=1, max_time_bins=2, run_extraction=False,
+    )
+    artifacts = runner.run_campaign(cfg)
+    entries = json.loads((artifacts.run_dir / "survivors.json").read_text())["survivors"]
+    assert entries
+    rated = [e for e in entries if e["likelihood_ratios"]]
+    assert rated, "the fake critic rates every listed item, so a bound survivor carries ratios"
+    assert all(v in (10.0, 3.0, 1.5, 1.0) for e in rated for v in e["likelihood_ratios"].values())
+
+
+def test_stance_audit_counts_items_per_actor_by_stance():
+    from hte.corpus import vindication_fixture
+    audit = runner.stance_audit(vindication_fixture.build().evidence)
+    assert audit == {"unverified-observer": {"positive": 5, "negative": 1}}
+
+
+def test_manifest_carries_the_stance_audit(tmp_path, monkeypatch):
+    cfg = _fake_mode_cfg(
+        tmp_path, monkeypatch, corpus="production", max_hypotheses=20, combinatorial_max_items=1,
+        max_time_bins=2, run_extraction=False,
+    )
+    artifacts = runner.run_campaign(cfg)
+    manifest = json.loads((artifacts.run_dir / "MANIFEST.json").read_text())
+    stance = manifest["counts"]["stance"]
+    assert stance and all(set(row) == {"positive", "negative"} for row in stance.values())
+    assert sum(row["positive"] + row["negative"] for row in stance.values()) == manifest["counts"]["n_evidence"]
+    assert "stance audit:" in (artifacts.run_dir / "run.log").read_text()

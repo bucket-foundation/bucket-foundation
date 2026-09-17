@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a56c8f919afaa6ac0749f7e65d74f5f0ffbd298f956f6844bd90ac477db1fafa",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Therefore Sarah laughed within herself, saying, After I am waxed old shall I have pleasure, my lord being old also?",
+        "claim": "Sarah laughed to herself, expressing doubt about bearing a child in old age",
+        "actor": "Sarah",
+        "action": "laughed",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD said unto Abraham, Wherefore did Sarah laugh, saying, Shall I of a surety bear a child, which am old?",
+        "claim": "The LORD spoke to Abraham, questioning why Sarah laughed about bearing a child in old age",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Abraham",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "At the time appointed I will return unto thee, according to the time of life, and Sarah shall have a son.",
+        "claim": "The LORD promised to return at the appointed time",
+        "actor": "the LORD",
+        "action": "will return",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "At the time appointed I will return unto thee, according to the time of life, and Sarah shall have a son.",
+        "claim": "Sarah shall bear a son",
+        "actor": "Sarah",
+        "action": "shall have",
+        "object": "a son",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

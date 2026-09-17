@@ -196,6 +196,13 @@ class RunCounts:
     # `bkt-hte-retraction-propagation`: `hte.propagate.rank_fragility`'s
     # own return shape, the ten most fragile survivors this run scored.
     fragility_top10: list[dict[str, Any]] = field(default_factory=list)
+    # `hte.generate.stratified_sample`'s own frame
+    # (`STATISTICAL-AUDIT-2026-09-15.md` item 1): `{"cap", "n_strata",
+    # "strata": {label: {"generated", "kept"}, ...}}`, a plain dict like
+    # `meta_review` above rather than its own dataclass, since a
+    # stratum's own label is a runtime-built string this contract
+    # cannot enumerate ahead of a run.
+    sampling: dict[str, Any] = field(default_factory=dict)
 
 
 _NESTED[(RunCounts, "coverage")] = CoverageStats
@@ -392,6 +399,39 @@ class TimelineArtifact:
 
 
 # --------------------------------------------------------------------------
+# survivors.json (`bkt-hte-survivors-artifact`)
+# --------------------------------------------------------------------------
+
+
+@dataclass
+class SurvivorsArtifact:
+    """`survivors.json`: every surviving hypothesis's own full `hte.
+    belief.Opinion`, Elo, preservation-critique note, and `hte.unknowns.
+    robustness` dict, written by `hte.runner.run_campaign` right after
+    robustness is computed. `MANIFEST.json["counts"]["robustness_
+    stable_fraction"]` keeps only the aggregate over this same
+    population, and `timeline.json`'s own `ranked_hypotheses` keep only
+    `posterior`/`elo`; this file is where the rest of a run's own
+    per-hypothesis numbers live once the process that computed them has
+    exited. `survivors` stays a plain `list[dict]` rather than its own
+    nested dataclass, the same treatment `TimelineArtifact.bins` and
+    `RunCounts.fragility_top10` get above: each entry's own shape
+    (`hypothesis_id`, `address`, `slots`, `opinion`, `elo`,
+    `preservation`, `robustness`) is read with `.get()` by every caller
+    so far, never by direct dict index, so this contract's own
+    motivating bug (module docstring) has no foothold here. `None` for a
+    run predating this bead, the same `CascadeArtifact`-style "no file,
+    no defaulting" reading `RunData.survivors` gets below, since "this
+    run wrote no survivors.json" is a real, distinct state from "every
+    field on it defaulted."
+    """
+    artifact_version: str | None = None
+    campaign: str | None = None
+    corpus: str | None = None
+    survivors: list[dict[str, Any]] = field(default_factory=list)
+
+
+# --------------------------------------------------------------------------
 # load_run: every artifact one run directory carries, loaded once
 # --------------------------------------------------------------------------
 
@@ -412,6 +452,9 @@ class RunData:
     # empty `CascadeArtifact` a reader could confuse with "ran, found
     # nothing to retract."
     cascade: CascadeArtifact | None = None
+    # `bkt-hte-survivors-artifact`: the same "no file, no defaulting"
+    # reading `cascade` gets above, for `survivors.json`.
+    survivors: SurvivorsArtifact | None = None
 
     @property
     def campaign(self) -> str:
@@ -446,7 +489,10 @@ def load_run(run_dir: str | Path) -> RunData:
     manifest names no campaign to report on at all), `timeline.json`,
     `calibration.json` (kept `None` when its own file is absent, no
     defaulting: no discovery-date holdout having run is its own real,
-    distinct state), and `self-report.json`.
+    distinct state), `self-report.json`, `cascade.json`, and
+    `survivors.json` (the last two are kept `None`, the same absent-
+    file reading `calibration` gets above, when their own file is
+    absent).
 
     Every field any of the four carries missing falls back to its own
     documented default and logs one warning (`_opt`/`_build`'s own
@@ -472,9 +518,13 @@ def load_run(run_dir: str | Path) -> RunData:
     cascade_data = _read_json(cascade_path)
     cascade = _build(CascadeArtifact, cascade_data, path=str(cascade_path)) if cascade_data is not None else None
 
+    survivors_path = run_dir / "survivors.json"
+    survivors_data = _read_json(survivors_path)
+    survivors = _build(SurvivorsArtifact, survivors_data, path=str(survivors_path)) if survivors_data is not None else None
+
     return RunData(
         run_dir=run_dir, manifest=manifest, timeline=timeline, calibration=calibration,
-        self_report=self_report, cascade=cascade,
+        self_report=self_report, cascade=cascade, survivors=survivors,
     )
 
 
@@ -482,5 +532,6 @@ __all__ = [
     "RUN_ARTIFACT_VERSION",
     "CoverageStats", "TargetBlindStats", "RunCounts", "ManifestArtifact",
     "SelfReportArtifact", "CalibrationArtifact", "TimelineArtifact", "CascadeArtifact",
-    "RunData", "load_run", "load_manifest", "validate_manifest", "validate_self_report",
+    "SurvivorsArtifact", "RunData", "load_run", "load_manifest", "validate_manifest",
+    "validate_self_report",
 ]

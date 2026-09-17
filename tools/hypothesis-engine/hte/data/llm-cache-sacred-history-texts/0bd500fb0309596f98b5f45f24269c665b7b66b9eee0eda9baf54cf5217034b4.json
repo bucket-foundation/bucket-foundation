@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bff1eda3ce832e85a6f387234d90313b9f3a1ee4a5bf9304c7e231effac4d4ed",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "So Moses brought Israel from the Red sea, and they went out into the wilderness of Shur; and they went three days in the wilderness, and found no water.",
+        "claim": "Moses brought Israel from the Red Sea into the wilderness of Shur, where after three days of travel they found no water",
+        "actor": "Moses, Israel",
+        "action": "brought, went out, went, found",
+        "object": "Israel, wilderness, water",
+        "place": "Red sea, wilderness of Shur, wilderness",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

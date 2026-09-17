@@ -1,0 +1,63 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0e61d3cef439230aa8d7c72910d25566f1fe8798154f273ebbecd67c10c653a7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Abraham rose up early in the morning",
+        "claim": "Abraham rose up early in the morning",
+        "actor": "Abraham",
+        "action": "rose up early",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Abraham rose up early in the morning, and took bread, and a bottle of water",
+        "claim": "Abraham took bread and a bottle of water",
+        "actor": "Abraham",
+        "action": "took",
+        "object": "bread, bottle of water",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Abraham rose up early in the morning, and took bread, and a bottle of water, and gave it unto Hagar, putting it on her shoulder, and the child",
+        "claim": "Abraham gave provisions to Hagar and placed them on her shoulder",
+        "actor": "Abraham",
+        "action": "gave, putting",
+        "object": "bread, bottle of water, child",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Abraham rose up early in the morning, and took bread, and a bottle of water, and gave it unto Hagar, putting it on her shoulder, and the child, and sent her away",
+        "claim": "Abraham sent Hagar away",
+        "actor": "Abraham",
+        "action": "sent away",
+        "object": "her",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and she departed, and wandered in the wilderness of Beersheba.",
+        "claim": "Hagar departed and wandered in the wilderness of Beersheba",
+        "actor": "she",
+        "action": "departed, wandered",
+        "place": "wilderness of Beersheba",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

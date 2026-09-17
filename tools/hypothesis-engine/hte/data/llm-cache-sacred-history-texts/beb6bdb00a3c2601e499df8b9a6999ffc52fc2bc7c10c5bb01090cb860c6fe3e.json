@@ -1,0 +1,41 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4946a8307f8025eca13dc4984816b301173eaa47fcf4870fdeca56eff9500d79",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses alone shall come near the LORD",
+        "claim": "Moses alone shall approach the LORD",
+        "actor": "Moses",
+        "action": "come near",
+        "object": "the LORD",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "but they shall not come nigh",
+        "claim": "They (the elders and priests) shall not approach",
+        "actor": "they",
+        "action": "come nigh",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "neither shall the people go up with him",
+        "claim": "The people shall not go up with Moses",
+        "actor": "the people",
+        "action": "go up",
+        "object": "him",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

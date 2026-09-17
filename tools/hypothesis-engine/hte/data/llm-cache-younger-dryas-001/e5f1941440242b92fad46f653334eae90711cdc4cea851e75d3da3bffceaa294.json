@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e8c1ea37404e2bfc747d3e9fc78175a5ff651cd907bd4fcec480ae69bf1eeadb",
+  "response": {
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "expected_evidence": [
+      "Geological: a thin sedimentary layer (the proposed 'Younger Dryas Boundary' or black-mat horizon) across North American sites containing magnetic/iron-rich microspherules, elevated concentrations, and associated markers like nanodiamonds, platinum/iridium anomalies, and glass-like carbon spherules.",
+      "Geological/geochemical: platinum-group-element and osmium isotope spikes in lake sediment and loess cores dated to the interval, used as impact-winter proxies.",
+      "Astronomical/cosmogenic: anomalous cosmogenic radionuclide signals (e.g., Be-10, C-14 production spikes, or short-lived isotopes like Ni-59) in ice cores or tree rings that could indicate an unusual influx of cosmic radiation consistent with a nearby supernova.",
+      "Material/archaeological: widespread charcoal and soot layers indicating continent-scale biomass burning synchronous with the microspherule layer; disruption or discontinuity in Clovis-era lithic assemblages.",
+      "Genetic/paleontological: megafaunal population bottleneck or extinction signatures in ancient DNA and faunal turnover records dated to the same interval, consistent with an abrupt 'impact winter' collapse.",
+      "Astronomical (direct): identification of a plausible nearby supernova remnant or historical record (e.g., in other cultures' astronomical observations) dated to ~13,000-12,000 BP, though such records are essentially unattainable this far back.",
+      "Oral tradition: flood/fire/darkness catastrophe myths among descendant populations, treated as weak corroborating evidence at best."
+    ],
+    "rationale": "This hypothesis corresponds to a fringe variant of the Younger Dryas Impact Hypothesis (YDIH), which in mainstream form attributes the ~12,900 BP microspherule/black-mat layer to a cometary/asteroid impact or airburst rather than a supernova; the specific 'supernova-event' actor traces to minority proposals (e.g., Firestone-associated work, LaViolette's cosmic-ray/supernova model) that I hold as low-confidence model-prior, not established fact. The core empirical claim \u2014 microspherule concentrations tied to biomass burning and an impact-winter mechanism in North America \u2014 has genuinely been investigated: geological (microspherules, PGE anomalies, black mats: detectability ~0.6-0.65) and astronomical/cosmogenic proxies (radionuclide spikes: detectability ~0.7) are both reasonably well-preserved and searchable in this period per the table, so absence of confirming evidence would carry real evidentiary weight rather than being fully excused by poor preservation. However, material (charcoal/artifact) and genetic (paleontological DNA) evidence are only moderately detectable (~0.25-0.35) for the Upper Paleolithic/Younger Dryas boundary, and oral tradition/iconographic evidence is essentially unusable this far back (~0.05-0.1), so failure to find those specific threads is expected regardless of truth. Critically, the actual empirical record here is contested: some teams (Firestone et al. 2007) reported microspherule/nanodiamond anomalies, but multiple independent replication attempts (Pigati et al. 2012, Holliday et al., van Hoesel et al.) failed to reproduce the signal at many sites, and the supernova-specific mechanism lacks any confirmed cosmogenic radionuclide anomaly in ice cores. Given moderate-to-good detectability for the geological/astronomical channels that matter most, the mixed/largely non-replicated evidence base is better explained by the hypothesis being weakly supported or false (especially the supernova mechanism specifically) rather than by systematic undetectability \u2014 hence a moderate, not low, adjustment."
+  }
+}

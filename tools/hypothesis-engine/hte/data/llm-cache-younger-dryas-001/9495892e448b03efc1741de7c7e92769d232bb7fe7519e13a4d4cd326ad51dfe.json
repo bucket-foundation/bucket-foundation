@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ad5262538037374b3b3e7e867488b669feb194958b38a0674a95cc4f5000c886",
+  "response": {
+    "expected_evidence": [
+      "Geological sediment/ice-core strata at ~12,900 cal BP (Younger Dryas boundary, 'black mat' layer) sampled across multiple North American sites, showing nanodiamond and lonsdaleite concentrations",
+      "Co-occurring geochemical markers (magnetic spherules, platinum/iridium anomalies, glass-like carbon) that could be compared against known volcanic tephra signatures to test a volcanic vs. impact origin",
+      "Tephrochronology/geochemical fingerprinting linking any volcanic ash horizon at this date to a specific known eruption (e.g., trace-element and isotopic matching to a volcanic source)",
+      "Astronomical/atmospheric proxies (sulfate spikes in ice cores, stratospheric aerosol signatures) consistent with a large eruption around 10,950 BCE",
+      "Independent replication studies (multiple labs re-analyzing the same boundary layer) addressing the ongoing controversy over nanodiamond authenticity and formation mechanism",
+      "Model-prior literature debate (Firestone et al. 2007 impact hypothesis vs. subsequent volcanic/terrestrial-origin counter-proposals) as a secondary, lower-tier evidentiary trace"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis maps to the Younger Dryas onset (~10,950 BCE \u2248 12,900 cal BP), a period with well-preserved, well-studied sediment/ice-core stratigraphy across North America \u2014 the actual 'nanodiamond at the YD boundary' debate is a real, extensively sampled scientific controversy (model-prior, unverified in detail from this session). Geological (0.65) and astronomical/ice-core (0.7) detectability are relatively high for this period because continuous depositional records (lake sediments, ice cores) from ~13,000 years ago do survive and are routinely cored and dated. Material evidence (spherules, ejecta) is moderately detectable (0.35) since fine particulate/microscopic markers degrade or are hard to unambiguously source. Genetic (0.3) and model_prior (0.3) are weaker, indirect channels. Given that the strongest expected evidence types (geological, astronomical/ice-core) sit in the 0.6\u20130.7 detectability range, an absence of clear corroborating volcanic-sourced nanodiamond data would be only partially explained by poor preservation \u2014 much of this record has in fact been sampled in the real literature, so a null result carries more evidentiary weight than in low-detectability channels like textual or linguistic evidence. I set the blended adjustment at 0.55, weighting toward the geological/astronomical channels most relevant to this specific mechanism (impact-ejecta-fallout vs. volcanic sourcing) while discounting material/genetic contributions that are less directly diagnostic and the 'corroborated' actor-object framing which does not clearly correspond to a well-established mechanism in what I recall (model-prior, low confidence).\""
+  }
+}

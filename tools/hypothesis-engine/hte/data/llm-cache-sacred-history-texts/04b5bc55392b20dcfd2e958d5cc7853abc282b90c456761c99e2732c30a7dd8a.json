@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9d12a10dd17ab42ccf7e9e66c23b02c8925712f62ab1dcc5ca7dc3bbf43c9ccf",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Noah, Come thou and all thy house into the ark; for thee have I seen righteous before me in this generation.",
+        "claim": "God commands Noah to enter the ark with his family because God has judged Noah righteous.",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "Noah and all thy house",
+        "place": "the ark",
+        "mechanism": "righteousness",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -360,10 +360,7 @@ def _enrich_entry(entry: dict[str, Any], vocab: Vocabulary, opinions, supports_m
         "address": address,
         "slots": entry["slots"],
         "slot_labels": _slot_labels(vocab, entry["slots"]),
-        "opinion": (
-            {"b": opinion.b, "d": opinion.d, "u": opinion.u, "a": opinion.a, "P": opinion.project()}
-            if opinion is not None else None
-        ),
+        "opinion": ({**opinion.to_dict(), "P": opinion.project()} if opinion is not None else None),
         "elo": entry["elo"],
         "linked_evidence": {
             "supports": sorted(supports_map.get(address, [])),
@@ -441,6 +438,7 @@ def _build_response(
         span_start=time_binning.get("span_start", 0),
         bin_width=time_binning.get("bin_width", 1),
         bin_labels=bin_labels,
+        evidence=corpus.evidence,
     )
     supports_map, refutes_map = _evidence_link_maps(corpus.evidence)
     bins_out = [

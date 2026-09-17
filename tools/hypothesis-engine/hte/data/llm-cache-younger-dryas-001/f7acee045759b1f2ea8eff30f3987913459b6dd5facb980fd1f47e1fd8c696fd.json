@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "d423c5f5f8816c36c9ebc22a5329cc4a5feb61c7823c09f61bfb66c94cebbfdd",
+  "response": {
+    "expected_evidence": [
+      "Geochemical anomaly layer at ~12,800 cal BP across European sediment/loess/lake cores: elevated iridium, platinum, or other platinum-group elements (geological)",
+      "Nanodiamonds (hexagonal lonsdaleite, cubic diamonds) and magnetic microspherules/framboids concentrated in a single stratigraphic horizon (geological)",
+      "Shocked quartz grains or melt-glass/impact spherules with high-temperature textures (geological)",
+      "A continent-scale 'black mat' organic-rich layer marking abrupt ecological transition, associated with megafaunal extinction horizon (geological/material)",
+      "Charcoal/soot spikes indicating continent-wide biomass burning coincident with the proposed impact (geological/material)",
+      "An identifiable impact crater or strewn field in Europe or the North Atlantic (astronomical) - though an airburst event would not necessarily leave one",
+      "Archaeological occupation hiatus or population bottleneck in Upper Paleolithic European sites right at YD onset (material)",
+      "Ancient DNA signal of a genetic bottleneck in European megafauna or human populations at this horizon (genetic)",
+      "Possible symbolic/iconographic representations of a sky-fire or catastrophe event in contemporaneous portable art or cave art (iconographic) - highly speculative given dating uncertainty",
+      "Comparative multi-site replication of the above anomalies by independent labs (cross-cutting evidential form)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis corresponds to the well-known (and still-debated) Younger Dryas Impact Hypothesis. The interval spans the younger-dryas/early-holocene boundary, so I weighted the 'younger-dryas' and 'early-holocene' detectability rows for the relevant evidence kinds. The mechanism (impact-ejecta-fallout) primarily predicts geological and astronomical signatures, which are the most detectable categories available for this period (geological ~0.6-0.65, astronomical ~0.65-0.7) because sedimentary/geochemical proxies (iridium/platinum anomalies, nanodiamonds, spherules, black mat horizons) are physically robust and routinely preserved and sampled in Quaternary stratigraphy, independent of human record-keeping. Material and genetic evidence (extinction/bottleneck signals) are moderately detectable (0.35-0.45), while textual, linguistic, oral_tradition, and iconographic evidence are essentially non-existent or unreliable this far back (textual ~0, oral_tradition/iconographic ~0.1-0.2), since no writing exists and symbolic art from this period is sparse and hard to interpret catastrophically. Because the highest-value evidence types (geological/astronomical) are actually fairly detectable, an absence of a robust, replicated anomaly signal is more evidentially informative against the hypothesis than a simple preservation-failure explanation would suggest \u2014 this matches the real-world pattern where initial claims of platinum/nanodiamond spikes have faced substantial non-replication and alternative explanations (wildfire, terrestrial volcanic, or normal detrital sources) in the broader geoscience literature (model-prior, low-tier recollection, not verified in this evidence set). I set detectability_adjustment to 0.55 to reflect that while material/genetic/iconographic/oral channels are weak, the core diagnostic geological/astronomical channels are reasonably strong, so silence in those channels carries real evidential weight rather than being fully explained by poor preservation."
+  }
+}

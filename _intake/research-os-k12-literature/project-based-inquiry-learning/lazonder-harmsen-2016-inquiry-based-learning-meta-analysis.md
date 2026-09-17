@@ -10,6 +10,10 @@ url: "https://doi.org/10.3102/0034654315627366"
 openalex_id: "https://openalex.org/W2267754083"
 branch: "project-based-inquiry-learning"
 tier: "outcome"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-0841454744a9)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/cognitive-load/primary-papers.yaml (id bkt-c5fafa2790f1, Sweller 1988)"
 why_it_matters: >
   A meta-analysis of 72 studies comparing the effectiveness of different types of guidance in
   inquiry-based learning across age groups, finding guidance improves learning activities,

@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "463ca4d4a185292bb371e0945b98ff3ffab4b3230e6474629319176c84efaba0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the children of Israel did according to the word of Moses",
+        "claim": "The Israelites obeyed Moses's instructions",
+        "actor": "children of Israel",
+        "action": "did according to the word of",
+        "object": "word of Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "they borrowed of the Egyptians jewels of silver, and jewels of gold, and raiment",
+        "claim": "The Israelites borrowed precious items and clothing from the Egyptians",
+        "actor": "they (Israelites)",
+        "action": "borrowed",
+        "object": "jewels of silver, and jewels of gold, and raiment",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD gave the people favour in the sight of the Egyptians",
+        "claim": "God granted the Israelites favor in the eyes of the Egyptians",
+        "actor": "the LORD",
+        "action": "gave",
+        "object": "favour",
+        "place": "sight of the Egyptians",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "so that they lent unto them such things as they required",
+        "claim": "The Egyptians lent the Israelites the things they required",
+        "actor": "they (Egyptians)",
+        "action": "lent",
+        "object": "such things as they required",
+        "place": "",
+        "mechanism": "so that (causal)",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And they spoiled the Egyptians",
+        "claim": "The Israelites took/plundered possessions from the Egyptians",
+        "actor": "they (Israelites)",
+        "action": "spoiled",
+        "object": "the Egyptians",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

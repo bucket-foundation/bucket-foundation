@@ -10,6 +10,10 @@ url: "https://doi.org/10.1016/j.edurev.2018.11.001"
 openalex_id: "https://openalex.org/W2909848243"
 branch: "project-based-inquiry-learning"
 tier: "outcome"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-d586a01c4c6a)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/cognitive-load/primary-papers.yaml (id bkt-c5fafa2790f1, Sweller 1988)"
 why_it_matters: >
   A meta-analysis of project-based learning's effect on student academic achievement,
   quantifying an effect size and testing moderators. Supplies a concrete, published

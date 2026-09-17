@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "37723702d53fe2cb17a7de88def886d9c10446bd9a6ae019d01b3292a7c1cd1f",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum, iridium, and nanodiamond anomalies in a thin sedimentary layer (~12.9 ka) across North American sites, often associated with a 'black mat' layer marking sudden ecological change",
+      "geological: spherules, meltglass, and carbon spikes consistent with airburst/impact ejecta at multiple stratigraphic sites",
+      "astronomical: identification of an impact crater, airburst signature, or extraterrestrial debris field correlated to the proposed event (none conclusively confirmed to date)",
+      "material: abrupt discontinuity or decline in Clovis-era archaeological sites/toolkits in North America coinciding with the proposed date, interpreted as population disruption",
+      "genetic: ancient-DNA bottleneck signatures or haplogroup frequency shifts in Paleoamerican populations around 12.9-11.7 ka",
+      "geological/climatic: correlated proxy records (lake/ice cores) showing abrupt cooling consistent with a meltwater-pulse forcing mechanism co-occurring with any ejecta layer",
+      "oral_tradition: Indigenous North American narratives describing catastrophic fire-from-sky or flood events (highly speculative, difficult to date or authenticate)",
+      "iconographic: purported rock art/petroglyph motifs interpreted by some researchers as depicting a cometary or airburst event (contested identifications)",
+      "model_prior: this closely tracks the real, actively debated Younger Dryas Impact Hypothesis (Firestone et al. 2007 and successors), which has produced supporting claims but also numerous failed-replication and critical rebuttal studies"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.42,
+    "rationale": "The interval (-11000 to -10001) sits at the Pleistocene/Younger Dryas boundary, so I weight the 'younger-dryas' detectability row (with some blending toward 'upper-paleolithic') as most applicable. Geological (0.65) and astronomical (0.7) evidence types have relatively high inherent detectability because impact/ejecta signatures (iridium, platinum, nanodiamonds, spherules, black mats) are chemically/physically robust and preservable in stratified sediments over 13,000 years, and this is exactly the kind of evidence actually reported in the literature for the real-world Younger Dryas Impact Hypothesis. However, material (0.35) and genetic (0.3) evidence for a demographic effect specifically on North American populations is much harder to detect: Paleoamerican archaeological and skeletal/genetic records from this era are sparse, poorly dated, and taphonomically degraded, so a demographic 'corroboration' signal is inherently hard to isolate from normal Pleistocene population noise. Oral_tradition (0.1) and iconographic (0.1) evidence are essentially undetectable at this time depth \u2014 any surviving narratives or rock art could not be reliably dated to or distinguished from later reinterpretation, so their absence (or weak, contested presence) is expected regardless of truth. Given this mix, and that the strongest claimed evidence (geological/astronomical ejecta layers) has actually been reported by some research groups but disputed/not replicated by others, I do not treat non-replication as strong disconfirmation \u2014 under this framework it is treated as a low/moderate but non-zero detectability regime where mixed, contested findings are the expected outcome even if the hypothesis were true. This is consistent with the real, ongoing 'model-prior' scientific debate (Younger Dryas Impact Hypothesis), which I flag as a low-tier, unverified source per instructions rather than settled fact. Net detectability adjustment reflects a moderate-plausibility scenario: real evidence-gathering has occurred and produced some corroborating material, but the demographic-specific claim (population impact) remains far less detectable than the geological/impact-marker claim, pulling the composite score down from the higher geological/astronomical values toward the middle of the range."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a6837e3f2a2555b955090fd1bf6c39fdfb98619303d5d52359bbdde0eaebe4d5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And it came to pass in those days, when Moses was grown, that he went out unto his brethren, and looked on their burdens: and he spied an Egyptian smiting an Hebrew, one of his brethren.",
+        "claim": "When Moses was grown, he went out to observe his people's burdens and witnessed an Egyptian striking a Hebrew",
+        "actor": "Moses",
+        "action": "went out, looked on, spied",
+        "object": "burdens, Egyptian smiting an Hebrew",
+        "place": "",
+        "mechanism": "smiting",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

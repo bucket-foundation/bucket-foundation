@@ -1,0 +1,38 @@
+name: canon-feed-check
+
+# Fails a PR that ships a canon card (a new primary-papers.yaml record, or
+# a canon_tier change) with no matching feed event in the ledger. This is
+# the mechanical fix for a real failure mode: PRs #9, #45, and #129 all
+# shipped cards with reviews and a checked-off Promotion checklist, and no
+# feed event, because the checklist line was a human step nobody ran.
+# Read-only: it checks tools/feed/feed.py check-cards and reports; it
+# never writes to the ledger or commits. See tools/feed/README.md.
+
+on:
+  pull_request:
+    paths:
+      - "bucket-canon/**"
+
+permissions:
+  contents: read
+
+jobs:
+  check-cards:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch base branch
+        run: git fetch origin "${{ github.base_ref }}"
+
+      - name: Canon cards must have a feed event
+        run: |
+          python3 tools/feed/feed.py check-cards --base "origin/${{ github.base_ref }}"

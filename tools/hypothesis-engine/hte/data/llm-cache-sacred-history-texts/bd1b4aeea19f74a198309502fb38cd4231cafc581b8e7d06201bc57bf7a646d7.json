@@ -1,0 +1,47 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "2fb9bd8230969a7ebb8e4ba245ba93d4e465e640677fea36a9b4a5a4aa54154f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Abraham said unto his eldest servant of his house, that ruled over all that he had, Put, I pray thee, thy hand under my thigh:",
+        "claim": "In this text, Abraham tells his eldest servant, who ran his whole household, to put his hand under Abraham's thigh before swearing an oath.",
+        "actor": "Abraham",
+        "action": "asks for an oath gesture (hand under thigh)",
+        "object": "eldest servant of his house",
+        "mechanism": "a physical gesture that goes with swearing an oath",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And I will make thee swear by the LORD, the God of heaven, and the God of the earth, that thou shalt not take a wife unto my son of the daughters of the Canaanites, among whom I dwell:",
+        "claim": "Abraham makes the servant swear by the LORD, God of heaven and earth, not to find a wife for his son among the Canaanite women, who are the people Abraham lives among.",
+        "actor": "Abraham",
+        "action": "makes the servant swear an oath banning marriage to a Canaanite",
+        "object": "the servant; wife for his son",
+        "mechanism": "an oath sworn by God",
+        "place": "land of the Canaanites (where Abraham dwells)",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "But thou shalt go unto my country, and to my kindred, and take a wife unto my son Isaac.",
+        "claim": "Abraham orders the servant to go to Abraham's home country and relatives to find a wife for Isaac, which means marrying within the family group.",
+        "actor": "Abraham",
+        "action": "sends the servant to find a bride among his relatives",
+        "object": "wife for Isaac",
+        "mechanism": "marrying within one's own kin",
+        "place": "Abraham's country and kindred",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

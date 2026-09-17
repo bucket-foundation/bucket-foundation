@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "23cc5b2d6d2517324eb9829a2a8609516f5a423325ae58c292649b8a400d1ce3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And God spake unto Noah, and to his sons with him, saying",
+        "claim": "God spoke to Noah and his sons",
+        "actor": "God",
+        "action": "spake",
+        "object": "Noah, and to his sons",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And I, behold, I establish my covenant with you, and with your seed after you",
+        "claim": "God establishes a covenant with Noah and his seed",
+        "actor": "I",
+        "action": "establish",
+        "object": "my covenant",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And with every living creature that is with you, of the fowl, of the cattle, and of every beast of the earth with you; from all that go out of the ark, to every beast of the earth",
+        "claim": "The covenant extends to all creatures from the ark",
+        "actor": "",
+        "action": "",
+        "object": "every living creature, of the fowl, of the cattle, and of every beast of the earth",
+        "place": "the ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

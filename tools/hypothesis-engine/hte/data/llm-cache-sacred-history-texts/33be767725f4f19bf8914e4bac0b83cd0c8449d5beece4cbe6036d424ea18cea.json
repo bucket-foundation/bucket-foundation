@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9d4cd74c668088f16284d3f89984198601cb056c46f19df24effa6a128a6a151",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Isaac spake unto Abraham his father, and said, My father: and he said, Behold the fire and the wood: but where is the lamb for a burnt offering?",
+        "claim": "Isaac questioned Abraham about the absence of the lamb for the burnt offering",
+        "actor": "Isaac",
+        "action": "spake",
+        "object": "the lamb",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Abraham said, My son, God will provide himself a lamb for a burnt offering",
+        "claim": "Abraham stated that God will provide a lamb for the burnt offering",
+        "actor": "Abraham",
+        "action": "said",
+        "object": "a lamb",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "so they went both of them together",
+        "claim": "Abraham and Isaac proceeded together",
+        "actor": "they",
+        "action": "went",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5bc8cd974051547726dc529de37c3edf72ccda9fe756c09b6d711a84978349f3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Write this for a memorial in a book",
+        "claim": "Divine command to use written inscription as a mechanism to preserve memory through a written memorial",
+        "actor": "",
+        "action": "Write",
+        "object": "memorial",
+        "place": "",
+        "mechanism": "writing in a book",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "rehearse it in the ears of Joshua",
+        "claim": "Divine command to use oral rehearsal as a mechanism to transmit memory to the next generation",
+        "actor": "",
+        "action": "rehearse",
+        "object": "it (the account)",
+        "place": "in the ears of Joshua",
+        "mechanism": "oral rehearsal",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

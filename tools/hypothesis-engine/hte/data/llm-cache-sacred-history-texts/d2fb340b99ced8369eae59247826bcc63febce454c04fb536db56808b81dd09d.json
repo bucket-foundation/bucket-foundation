@@ -1,0 +1,87 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c4834b64911a06348172a80945de56f3f2dc23ca4fe42030bcafdb43c07c1a50",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The Lord spoke to Moses to deliver instructions about harvest practices",
+        "actor": "The LORD",
+        "action": "spake",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Speak unto the children of Israel, and say unto them",
+        "claim": "An addressee (Moses) was commanded to speak to and instruct the children of Israel",
+        "action": "Speak",
+        "object": "the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and shall reap the harvest thereof",
+        "claim": "The children of Israel shall reap the harvest",
+        "actor": "ye",
+        "action": "reap",
+        "object": "the harvest",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "then ye shall bring a sheaf of the firstfruits of your harvest unto the priest",
+        "claim": "The children of Israel were commanded to bring the first sheaf of the harvest to the priest",
+        "actor": "ye",
+        "action": "bring",
+        "object": "a sheaf of the firstfruits of your harvest",
+        "place": "unto the priest",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And he shall wave the sheaf before the LORD, to be accepted for you",
+        "claim": "The priest shall wave the sheaf before the Lord for acceptance of the offering",
+        "actor": "he",
+        "action": "wave",
+        "object": "the sheaf",
+        "place": "before the LORD",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "on the morrow after the sabbath the priest shall wave it",
+        "claim": "The priest shall wave the sheaf on the day following the sabbath",
+        "actor": "the priest",
+        "action": "wave",
+        "object": "it",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the land which I give unto you",
+        "claim": "God gives the land to the children of Israel",
+        "actor": "I",
+        "action": "give",
+        "object": "the land",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

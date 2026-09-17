@@ -1,0 +1,54 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c7e06dc3d7630b27ad698c497006f8336a0ac075d7c0bfd3adceb335bb682a3f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses took his wife and his sons",
+        "claim": "Moses took his wife and his sons",
+        "actor": "Moses",
+        "action": "took",
+        "object": "his wife and his sons",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and set them upon an ass",
+        "claim": "He set them upon a donkey",
+        "action": "set",
+        "object": "them",
+        "mechanism": "upon an ass",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and he returned to the land of Egypt",
+        "claim": "He returned to the land of Egypt",
+        "actor": "he",
+        "action": "returned",
+        "place": "the land of Egypt",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and Moses took the rod of God in his hand",
+        "claim": "Moses took the rod of God",
+        "actor": "Moses",
+        "action": "took",
+        "object": "the rod of God",
+        "mechanism": "in his hand",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

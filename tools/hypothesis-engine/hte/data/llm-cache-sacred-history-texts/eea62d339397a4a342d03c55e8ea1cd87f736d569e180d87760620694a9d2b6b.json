@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "73579d82e092b1943a152e02272488572a84e8d77470c410fa3765b594e5b658",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Then Abimelech called Abraham, and said unto him, What hast thou done unto us? and what have I offended thee, that thou hast brought on me and on my kingdom a great sin? thou hast done deeds unto me that ought not to be done.",
+        "claim": "Abimelech accuses Abraham of doing wrongful deeds that brought a great sin upon him and his kingdom",
+        "actor": "Abraham",
+        "action": "done deeds",
+        "object": "sin",
+        "place": "kingdom",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "d4400486827d9ab16aac154595d9877000fea35c01d7005b73fc5c3c90703059",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum, iridium, and nanodiamond anomaly layers ('black mat') at ~12.9 ka in stratified sediment/ice cores across North America, Europe, and elsewhere",
+      "Astronomical: identification of a candidate impactor, comet fragment trajectory reconstructions, or crater/strewn-field candidates (e.g., proposed Hiawatha crater linkage, though contested)",
+      "Geological: magnetic spherules, melt-glass, carbon spherules, and soot/charcoal spikes coincident with megafaunal extinction horizon",
+      "Material/archaeological: abrupt discontinuity in Clovis-era lithic assemblages or site abandonment layers at the YD boundary",
+      "Genetic: population bottleneck signatures in ancient DNA or mtDNA lineages dated to ~12.9 ka (weak/indirect)",
+      "Model-prior (unverified, from training): the published Younger Dryas Impact Hypothesis literature (Firestone et al. 2007 and subsequent debate) proposing multi-continent proxy evidence, alongside numerous replication-failure and re-interpretation papers disputing the anomalies as impact-diagnostic"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis maps most directly onto the younger-dryas/upper-paleolithic boundary rows, where geological (0.6\u20130.65) and astronomical (0.7) detectability are comparatively high \u2014 sediment cores, ice cores, and paleosols from ~12.9 ka are routinely sampled and dated, so a genuine multi-continent impact signature (iridium/platinum spikes, nanodiamonds, spherules, black mat) is exactly the kind of proxy that plausibly survives and has in fact been actively searched for. Textual (0.0) and linguistic (0.05) evidence are correctly near-zero since writing did not exist. Material (0.35) and genetic (0.25\u20130.3) evidence are weak because Upper Paleolithic archaeological and genomic records are sparse and coarsely resolved, so absence of a clean archaeological discontinuity or bottleneck signal is not strong disconfirmation. Oral tradition (0.1) and iconographic (0.1) evidence are essentially unattainable at this depth in time and should not be weighed against the hypothesis. Critically, this is one of the few Pleistocene-era hypotheses where actual empirical search has occurred at scale (multiple published field campaigns across continents), yet the outcome \u2014 per my training-derived recollection, flagged here as unverified model-prior, not established fact \u2014 has been persistent non-replication and contested interpretation of the proposed markers by independent labs, rather than confirmed 'corroboration.' Detection was plausible and partly attempted; the specific hypothesis wording of 'corroborated' overstates the actual evidentiary consensus, which remains disputed rather than absent. I therefore set the adjustment moderately above the raw geological/astronomical baseline to reflect that search effort and preservation were sufficient to generate real (if contested) data, while noting the corroboration claim itself is not well supported by that data."
+  }
+}

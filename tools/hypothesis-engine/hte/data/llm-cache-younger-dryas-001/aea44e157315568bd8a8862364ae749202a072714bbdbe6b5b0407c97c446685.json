@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "226e8bac5e6015b4d1cc780cc817b92bb72322e3d6881c8bf5c67e5ef9f4cd4f",
+  "response": {
+    "$PARAMETER_NAME": "expected_evidence",
+    "expected_evidence": [
+      "Geological: a continent-wide platinum/iridium enrichment layer at the Younger Dryas boundary (~12,800-12,900 cal BP) in sediment cores, ice cores, and paleosols across North America (this layer is independently well-documented, e.g., Greenland ice core Pt spike, Moore et al. continental Pt anomaly)",
+      "Astronomical/geological: a diagnostic radioisotope signature (notably live 60Fe, or anomalous isotopic ratios inconsistent with chondritic/asteroidal material) in the same stratigraphic horizon, since supernova ejecta carries a distinct nucleosynthetic fingerprint different from solar-system impactor material",
+      "Astronomical: identification of a supernova remnant or compact stellar remnant with a kinematic age and distance consistent with reaching Earth ~10,850 BCE",
+      "Geological: nanodiamonds, magnetic spherules, and other impact-proxy markers co-located with the platinum spike, and their isotopic composition tested against supernova vs. asteroidal origin",
+      "Material/archaeological: disruption horizon in Clovis-era sites correlated with the anomaly layer",
+      "Genetic: megafauna extinction/bottleneck signatures dated to the same interval",
+      "Model-prior (theoretical): physical plausibility of a nearby supernova depositing a sharp, localized 'fallout' pulse of platinum-group elements rather than a diffuse, long-duration interstellar dust increase"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis maps to the Younger Dryas boundary interval (~10,850 BCE \u2248 12,800-12,900 cal BP) and proposes a supernova, rather than an asteroid/comet, as the source of the well-known North American platinum anomaly. Using the younger-dryas detectability rows, the most relevant evidence classes are geological (0.65) and astronomical (0.7), both comparatively high \u2014 this class of evidence is exactly the kind (ice cores, sediment layers, isotopic fingerprints) that has demonstrably survived and been recovered for this period, since the platinum/iridium boundary layer itself is already an established empirical finding in the literature (model-prior: Greenland ice-core Pt spike, Moore et al. 2017 continental Pt anomaly, nanodiamond/spherule studies). Because detectability for the diagnostic evidence types is moderate-to-high rather than low, an absence of corroborating supernova-specific signals (e.g., live 60Fe or non-chondritic isotopic ratios, or a remnant of matching age/distance) is more likely attributable to the mechanism being incorrect than to poor preservation or search effort. Model-prior astrophysics also weighs against plausibility: known nearby-supernova radioisotope events (e.g., ~2-3 Myr ago from the Local Bubble, and the ~65 kyr and ~2 Myr deep-sea 60Fe detections) show that such events leave a distinct, well-preserved isotopic signature quite different from a localized 'impact ejecta fallout' pulse of platinum-group elements \u2014 the latter morphology is the consensus signature of an extraterrestrial (asteroidal/cometary) impactor, not diffuse supernova dust. I therefore set the detectability_adjustment modestly below the raw table average for the compound evidence needed (geological+astronomical+model_prior), reflecting that while detection was plausible and evidence-recovery infrastructure exists, the specific corroborating supernova signature has not been reported despite active, ongoing search in this exact stratigraphic context \u2014 an absence that argues against, not merely obscures, the hypothesis. This assessment leans on model-prior knowledge of supernova nucleosynthesis/radioisotope signatures and existing Younger Dryas Pt/Ir literature, which should be treated as an unverified, low-tier source pending direct evidence-text confirmation."
+  }
+}

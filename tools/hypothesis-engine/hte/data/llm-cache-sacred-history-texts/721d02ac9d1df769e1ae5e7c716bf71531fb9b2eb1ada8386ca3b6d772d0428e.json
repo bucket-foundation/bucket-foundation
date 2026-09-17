@@ -1,0 +1,43 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "677ed465d00e28e8c164280596f52c8138ed10537d1dbc6c0edd197fb2e37350",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "I die",
+        "claim": "Joseph announces he is dying",
+        "actor": "I",
+        "action": "die",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "God will surely visit you",
+        "claim": "God will visit Joseph's brethren",
+        "actor": "God",
+        "action": "visit",
+        "object": "you",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and bring you out of this land unto the land which he sware to Abraham, to Isaac, and to Jacob",
+        "claim": "God will lead the Israelites from Egypt to Canaan via covenant sworn to their ancestors",
+        "actor": "God",
+        "action": "bring",
+        "object": "you",
+        "place": "this land unto the land",
+        "mechanism": "sware",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

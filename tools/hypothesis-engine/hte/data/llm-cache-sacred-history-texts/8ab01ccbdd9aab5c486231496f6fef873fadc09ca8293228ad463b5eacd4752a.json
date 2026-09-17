@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2a013f648ab4a3e7abfb3ce93d0cbe9bd907d2ccd304b5048b4d75775c932b7a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Noah was five hundred years old",
+        "claim": "Noah was five hundred years old",
+        "actor": "Noah",
+        "action": "was",
+        "object": "five hundred years old",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and Noah begat Shem, Ham, and Japheth",
+        "claim": "Noah fathered Shem, Ham, and Japheth",
+        "actor": "Noah",
+        "action": "begat",
+        "object": "Shem, Ham, and Japheth",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

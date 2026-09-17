@@ -1,0 +1,69 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "eef1808403684a4596f4af6162302e95664bdea1285a32e41c5438e4483c9168",
+  "response": {
+    "items": [
+      {
+        "kind": "attribution",
+        "tier": "primary",
+        "quote": "And the LORD spake unto Moses and Aaron, saying,",
+        "claim": "The text says the rules that follow were given by the LORD to Moses and Aaron.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses and Aaron",
+        "mechanism": "divine instruction",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "norm",
+        "tier": "primary",
+        "quote": "When a man shall have in the skin of his flesh a rising, a scab, or bright spot, and it be in the skin of his flesh like the plague of leprosy; then he shall be brought unto Aaron the priest, or unto one of his sons the priests:",
+        "claim": "A person with a rising, scab, or bright spot on the skin that looks like leprosy must be brought to Aaron the priest or to one of his sons.",
+        "actor": "the afflicted man (brought by others)",
+        "action": "shall be brought unto",
+        "object": "Aaron the priest or one of his sons the priests",
+        "mechanism": "priests have authority over skin disease",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "norm",
+        "tier": "primary",
+        "quote": "And the priest shall look on the plague in the skin of the flesh:",
+        "claim": "The priest must examine the affected skin.",
+        "actor": "the priest",
+        "action": "shall look on",
+        "object": "the plague in the skin of the flesh",
+        "mechanism": "examination by eye",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "norm",
+        "tier": "primary",
+        "quote": "when the hair in the plague is turned white, and the plague in sight be deeper than the skin of his flesh, it is a plague of leprosy:",
+        "claim": "The text gives two signs that a mark is leprosy: the hair in it has turned white, and it looks deeper than the skin.",
+        "actor": "the priest",
+        "action": "diagnoses",
+        "object": "plague of leprosy",
+        "mechanism": "signs that can be seen (white hair, looks deeper than the skin)",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "norm",
+        "tier": "primary",
+        "quote": "and the priest shall look on him, and pronounce him unclean.",
+        "claim": "If the signs are there, the priest must declare the person unclean.",
+        "actor": "the priest",
+        "action": "pronounce unclean",
+        "object": "the afflicted man",
+        "mechanism": "formal declaration by a priest",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "24c5089575a9a60d02b96efd98a83142f0829fdf47cfcc3a7e018e9da1340604",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: platinum/iridium/nanodiamond enrichment layer at the Younger Dryas boundary in lake/marine sediment cores or loess sections in the Middle East",
+      "geological: 'black mat' organic-rich layer marking abrupt ecological transition",
+      "astronomical: radionuclide spike (10Be, 36Cl, 14C) or cosmogenic isotope anomaly in ice cores/tree rings consistent with an airburst or increased cosmic-ray flux",
+      "astronomical: any isotopic signature (e.g., unusual 60Fe or nucleosynthetic anomaly) that would specifically implicate a supernova rather than an asteroid/comet impactor",
+      "material: meltglass, microspherules, or shocked quartz at archaeological sites (e.g., Abu Hureyra-type deposits) dated to the interval",
+      "material: abrupt occupation-layer disruption or hiatus at Middle Eastern Upper Paleolithic/Epipaleolithic sites",
+      "genetic: population bottleneck signal in contemporaneous human or faunal DNA from the region",
+      "iconographic: symbolic depictions of a sky-event on portable art or early monumental carvings (speculative, e.g., Gobekli Tepe-adjacent traditions)",
+      "oral_tradition: flood/fire-from-sky catastrophe motifs in later Near Eastern mythography, treated as very weak indirect evidence given the ~10,000+ year transmission gap",
+      "textual: none expected \u2014 writing does not exist in this interval"
+    ],
+    "rationale": "The interval -12000 to -11001 sits at the Younger Dryas onset / late Upper Paleolithic boundary, so I blended the 'younger-dryas' and 'upper-paleolithic' detectability rows (they are nearly identical) rather than later periods. The strongest expected proxies are geological (platinum/iridium layers, black mats: ~0.6-0.65 detectability) and astronomical (ice-core/tree-ring radionuclide anomalies: ~0.65-0.7), both of which are realistically preservable and, per my training-derived model-prior (unverified), some such platinum-anomaly and meltglass/spherule findings have actually been reported for this general period, including at a Middle Eastern site (Abu Hureyra, Syria) \u2014 this is a model-prior recollection, not confirmed within this pipeline's evidence base. Material and genetic evidence are moderately detectable (~0.3-0.45) but far less specific. Textual evidence is impossible (0.0, pre-writing), and linguistic, oral-tradition, and iconographic evidence are all very low (~0.05-0.1) given the ~10,000+ year gap to any recorded transmission, so their absence is expected and uninformative about truth or falsity. Critically, the hypothesis's specific causal mechanism \u2014 a supernova (as opposed to the far more commonly discussed comet/asteroid impactor) triggering the anomaly \u2014 has essentially no distinguishing evidence type in this list; ordinary platinum/iridium enrichment does not discriminate between an extraterrestrial impactor and a supernova-linked airburst, and the isotopic signatures that would (e.g., 60Fe) are not established as detected. So while the general 'platinum-anomaly/airburst' evidence class is plausible and could survive, the specific 'supernova' attribution is largely unfalsifiable/undetectable with current proxies and should be treated as speculative model-prior rather than supported fact.",
+    "detectability_adjustment": 0.55
+  }
+}

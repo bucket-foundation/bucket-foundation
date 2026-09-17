@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "e9076087fa7e77b58dc507a842d624e8c34c1cb0820217a526515756e918e394",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.6,
+        "rationale": "A carries no evidence (u=1) while B is strongly disbelieved (d=0.94) as a refutation claim, so B's specific 'refuted' assertion is undercut; A's projected probability (b+au\u22480.018) also edges out B's (\u22480.016)."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.47,
+        "rationale": "Both hypotheses have zero belief/disbelief and full uncertainty (no evidence bears on either); B's marginally higher atomicity/base-rate (0.029 vs 0.018) gives it a slightly higher projected probability, so a small edge to B."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.6,
+        "rationale": "A is fully uncertain with no counter-evidence (projected P\u22480.029), whereas B carries partial disbelief (d=0.40) undermining its own 'refuted' claim (projected P\u22480.018); A is comparatively better supported by default."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.45,
+        "rationale": "Neither hypothesis has accrued belief/disbelief (u=1 for both); B's higher atomicity (0.0067 vs 0.0025) gives it a marginally higher projected probability, tipping slightly toward B."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.45,
+        "rationale": "Both are entirely uncommitted (u=1); B's higher base-rate atomicity (0.018 vs 0.011) yields a modestly higher projected probability, favoring B slightly."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.5,
+        "rationale": "The two opinions are numerically identical (b=0, d=0, u=1, same atomicity), so the evidence is exactly balanced between the impact-ejecta-fallout and biomass-burning mechanisms for this event."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.35,
+        "rationale": "Both hypotheses are fully uncertain, but B's atomicity (0.018) is roughly 32x A's (0.00055), giving B a substantially higher projected/default probability in the absence of direct evidence."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.65,
+        "rationale": "Both hypotheses are fully uncertain, but A's atomicity (0.018) is roughly 32x B's (0.00055), giving A a substantially higher projected/default probability in the absence of direct evidence."
+      }
+    ]
+  }
+}

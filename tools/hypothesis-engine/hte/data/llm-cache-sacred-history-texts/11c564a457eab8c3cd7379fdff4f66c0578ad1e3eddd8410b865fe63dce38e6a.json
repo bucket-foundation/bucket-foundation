@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6da511f455be7c9b7af0e347bf59c16b971bab2c0b77bd2689b6fac22063cfd2",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD instructed Moses regarding a legal matter",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Bring forth him that hath cursed without the camp;",
+        "claim": "The person who cursed was to be brought outside the camp",
+        "actor": "",
+        "action": "bring forth",
+        "object": "him that hath cursed",
+        "place": "without the camp",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and let all that heard him lay their hands upon his head,",
+        "claim": "All who heard the cursing were to lay their hands on the blasphemer's head",
+        "actor": "all that heard him",
+        "action": "lay their hands upon",
+        "object": "his head",
+        "place": "",
+        "mechanism": "lay their hands upon his head",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and let all the congregation stone him.",
+        "claim": "The congregation was to stone the person",
+        "actor": "all the congregation",
+        "action": "stone",
+        "object": "him",
+        "place": "",
+        "mechanism": "stone",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

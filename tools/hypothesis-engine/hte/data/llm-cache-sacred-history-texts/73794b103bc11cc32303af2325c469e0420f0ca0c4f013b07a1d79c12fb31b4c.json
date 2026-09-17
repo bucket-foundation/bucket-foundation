@@ -1,0 +1,43 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7232ec196fa3c538c9670558ed39bb35468f5fa4512c31a2affe134fd7f11633",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thy seed shall be as the dust of the earth",
+        "claim": "Jacob's descendants will be as numerous as the dust of the earth",
+        "actor": "Jacob's seed",
+        "object": "dust of the earth",
+        "mechanism": "quantitative comparison",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou shalt spread abroad to the west, and to the east, and to the north, and to the south",
+        "claim": "Jacob's descendants will spread in all cardinal directions",
+        "actor": "Jacob's seed",
+        "action": "spread",
+        "place": "west, east, north, south",
+        "mechanism": "geographic expansion",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "the land whereon thou liest, to thee will I give it, and to thy seed",
+        "claim": "God will give the land to Jacob and his descendants",
+        "actor": "LORD God",
+        "action": "give",
+        "object": "the land",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

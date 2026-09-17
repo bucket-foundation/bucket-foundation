@@ -1,0 +1,33 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "246f1cfa2e27972cd44b4d9e96d70d7e1c404fd2dc7f211d4f76d47b6c1d19d3",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "document",
+        "quote": "And all the wise men, that wrought all the work of the sanctuary, came every man from his work which they made;",
+        "claim": "The skilled workers building the sanctuary each left their work to come and speak with Moses.",
+        "actor": "the wise men that wrought all the work of the sanctuary",
+        "action": "came from his work",
+        "object": "the work of the sanctuary",
+        "place": "sanctuary",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "document",
+        "quote": "And they spake unto Moses, saying, The people bring much more than enough for the service of the work, which the LORD commanded to make.",
+        "claim": "The workers told Moses that the people were bringing much more than was needed for the work the LORD had commanded.",
+        "actor": "the wise men (sanctuary workers)",
+        "action": "spake unto Moses, reporting a surplus of contributions",
+        "object": "the people's offerings for the service of the work",
+        "mechanism": "The people's voluntary offerings went beyond what the commanded work required.",
+        "place": "sanctuary",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ab50ca0e2d9763b9198cc6f0bd30e8ab17fdb6e2b2af5c797f65c2a0bad79cd4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Abimelech took sheep, and oxen, and menservants, and womenservants, and gave them unto Abraham, and restored him Sarah his wife.",
+        "claim": "Abimelech transferred livestock and servants to Abraham and returned Sarah to him",
+        "actor": "Abimelech",
+        "action": "took, gave, restored",
+        "object": "sheep, oxen, menservants, womenservants, Sarah",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

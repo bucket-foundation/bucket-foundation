@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "fa3a368ee8875400eb1e202a0ec3b8896f0ecdb55083552020a054a6fe624ae1",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses said unto Aaron, What did this people unto thee, that thou hast brought so great a sin upon them?",
+        "claim": "Moses questions Aaron and says Aaron is responsible for bringing a great sin on the people.",
+        "actor": "Moses",
+        "action": "accuses",
+        "object": "Aaron",
+        "mechanism": "questioning Aaron's leadership responsibility for the people's sin",
+        "place": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Aaron said, Let not the anger of my lord wax hot: thou knowest the people, that they are set on mischief.",
+        "claim": "Aaron asks Moses not to be angry and blames the sin on the people, saying they are set on mischief.",
+        "actor": "Aaron",
+        "action": "shifts blame to",
+        "object": "the people",
+        "mechanism": "appealing to the people's bad character to excuse himself",
+        "place": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

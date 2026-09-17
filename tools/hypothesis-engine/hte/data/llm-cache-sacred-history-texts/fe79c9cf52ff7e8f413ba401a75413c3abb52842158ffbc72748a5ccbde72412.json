@@ -1,0 +1,21 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "26728d2f898ed80f4917b5db1dca56134afd89bd1447f49d55b6dbb59497c60c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And he cut the ram into pieces; and Moses burnt the head, and the pieces, and the fat.",
+        "claim": "A ram was cut into pieces and its head, pieces, and fat were burned.",
+        "actor": "he, Moses",
+        "action": "cut, burnt",
+        "object": "ram, head, pieces, fat",
+        "mechanism": "cutting into pieces, burning",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

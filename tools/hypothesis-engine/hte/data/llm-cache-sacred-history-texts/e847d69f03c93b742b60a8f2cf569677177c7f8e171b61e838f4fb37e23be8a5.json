@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "280478fbf7d1f9c8d3f00e32c1aac55387f06de631e53efea9dfb7cf6bc5223f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And Moses said unto God, Behold, when I come unto the children of Israel, and shall say unto them, The God of your fathers hath sent me unto you; and they shall say to me, What is his name? what shall I say unto them?",
+        "claim": "Moses reports to God that when he comes to the children of Israel and tells them God sent him, they will ask what God's name is",
+        "actor": "Moses",
+        "action": "said",
+        "object": "God",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "and they shall say to me, What is his name?",
+        "claim": "The children of Israel will ask Moses for God's name",
+        "actor": "the children of Israel",
+        "action": "shall say",
+        "object": "me",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "And God said unto Moses, I AM THAT I AM",
+        "claim": "God reveals to Moses that his name is \"I AM THAT I AM\"",
+        "actor": "God",
+        "action": "said",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T1",
+        "quote": "and he said, Thus shalt thou say unto the children of Israel, I AM hath sent me unto you.",
+        "claim": "God instructs Moses to tell the children of Israel that \"I AM\" sent him",
+        "actor": "God",
+        "action": "said",
+        "object": "the children of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

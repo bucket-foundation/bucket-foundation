@@ -1,0 +1,55 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "176182b6f5588e0b63fceb5c093830623d358cbbefc145d034ce49a61c5e3e5a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "for he had straitly sworn the children of Israel, saying, God will surely visit you; and ye shall carry up my bones away hence with you",
+        "claim": "Joseph swore an oath to the children of Israel",
+        "actor": "Joseph",
+        "action": "sworn",
+        "object": "children of Israel",
+        "mechanism": "straitly",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses took the bones of Joseph with him",
+        "claim": "Moses took the bones of Joseph with him",
+        "actor": "Moses",
+        "action": "took",
+        "object": "bones of Joseph",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "ye shall carry up my bones away hence with you",
+        "claim": "The children of Israel were commanded to carry Joseph's bones away",
+        "actor": "ye (children of Israel)",
+        "action": "carry",
+        "object": "my bones (Joseph's bones)",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "God will surely visit you",
+        "claim": "God will surely visit the children of Israel",
+        "actor": "God",
+        "action": "visit",
+        "object": "you (children of Israel)",
+        "mechanism": "surely",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

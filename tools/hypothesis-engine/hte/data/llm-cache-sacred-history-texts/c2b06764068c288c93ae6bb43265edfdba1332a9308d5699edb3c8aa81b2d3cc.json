@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "7be598188709d304f0e9adbbfe48717bdbe5759b49c8c378d65f26c0b3faf28e",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "8:13 And Moses brought Aaron\u2019s sons, and put coats upon them, and girded them with girdles, and put bonnets upon them; as the LORD commanded Moses.",
+        "claim": "Moses brought Aaron's sons, put coats on them, tied girdles around them and put bonnets on them, as the LORD had commanded Moses.",
+        "actor": "Moses",
+        "action": "brought and clothed (put on coats, girded with girdles, put on bonnets)",
+        "object": "Aaron's sons",
+        "mechanism": "acting on a divine command ('as the LORD commanded Moses')",
+        "stance": "positive",
+        "place": "",
+        "year": null
+      }
+    ]
+  }
+}

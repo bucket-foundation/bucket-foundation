@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9edc7a3c977bb850f9886dd7bca128b71bde36c2fc10934d1b8e8d6e04a295a6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD said unto Moses, Yet will I bring one plague more upon Pharaoh, and upon Egypt; afterwards he will let you go hence: when he shall let you go, he shall surely thrust you out hence altogether.",
+        "claim": "The final plague will cause Pharaoh to release the Israelites from Egypt",
+        "actor": "the LORD",
+        "action": "bring; let go; thrust out",
+        "object": "plague; Pharaoh; Egypt",
+        "place": "Egypt",
+        "mechanism": "plague",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

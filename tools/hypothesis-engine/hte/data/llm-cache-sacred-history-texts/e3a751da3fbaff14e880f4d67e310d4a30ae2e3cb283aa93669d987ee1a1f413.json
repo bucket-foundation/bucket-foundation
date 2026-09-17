@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "25f059efbf136013920239824ae1ecd5e908a66c7d529c17d4f4794b6e653868",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses came and told the people all the words of the LORD, and all the judgments",
+        "claim": "Moses reported to the people all God's words and judgments",
+        "actor": "Moses",
+        "action": "came and told",
+        "object": "the people",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and all the people answered with one voice, and said, All the words which the LORD hath said will we do",
+        "claim": "The people unanimously committed to obeying all God's words",
+        "actor": "all the people",
+        "action": "answered and said",
+        "object": "all the words which the LORD hath said",
+        "mechanism": "with one voice",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0091c0c75e82fcad8f9fa71da3b5bf8a2d5d832a135a3df9b93e1cff248f69be",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "behold, Rebekah came out, who was born to Bethuel, son of Milcah, the wife of Nahor, Abraham's brother, with her pitcher upon her shoulder",
+        "claim": "Rebekah came out carrying a pitcher on her shoulder",
+        "actor": "Rebekah",
+        "action": "came out",
+        "object": "pitcher",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "who was born to Bethuel, son of Milcah, the wife of Nahor, Abraham's brother",
+        "claim": "Rebekah was born to Bethuel; Bethuel was son of Milcah; Milcah was wife of Nahor; Nahor was brother of Abraham",
+        "actor": "Bethuel; Milcah; Nahor; Abraham",
+        "object": "Rebekah",
+        "mechanism": "genealogical relation",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

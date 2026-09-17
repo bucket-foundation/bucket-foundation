@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7f9611085491a2db6068efb76985c7cd0f6175415a0ec659dcc0bb4179ab500b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And of the blue, and purple, and scarlet, they made cloths of service, to do service in the holy place, and made the holy garments for Aaron; as the LORD commanded Moses.",
+        "claim": "Workers made holy garments for Aaron using blue, purple, and scarlet materials for service in the holy place",
+        "actor": "they",
+        "action": "made",
+        "object": "holy garments for Aaron",
+        "place": "holy place",
+        "mechanism": "blue, and purple, and scarlet",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "as the LORD commanded Moses",
+        "claim": "The LORD commanded Moses (to execute this work)",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

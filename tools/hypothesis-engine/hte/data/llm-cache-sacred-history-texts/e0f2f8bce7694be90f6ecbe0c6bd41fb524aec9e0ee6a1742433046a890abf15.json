@@ -1,0 +1,31 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "f2757da44d660e312fd883c4ef9ffff282a8d690277e88a0f8522a2b49efd2e8",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses took his wife and his sons, and set them upon an ass, and he returned to the land of Egypt",
+        "claim": "The text (verse 4:20) says Moses put his wife and sons on a donkey and went back to the land of Egypt.",
+        "actor": "Moses",
+        "action": "returned with his wife and sons",
+        "object": "his wife and his sons, set upon an ass",
+        "place": "land of Egypt",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and Moses took the rod of God in his hand.",
+        "claim": "The text says Moses carried the 'rod of God' in his hand when he went back to Egypt.",
+        "actor": "Moses",
+        "action": "took in his hand",
+        "object": "the rod of God",
+        "place": "land of Egypt",
+        "year": null
+      }
+    ]
+  }
+}

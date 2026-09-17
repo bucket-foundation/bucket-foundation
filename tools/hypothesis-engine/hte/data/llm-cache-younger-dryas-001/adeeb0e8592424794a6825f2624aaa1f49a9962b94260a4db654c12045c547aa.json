@@ -1,0 +1,65 @@
+{
+  "model": "sonnet",
+  "role": "critic",
+  "prompt_sha256": "1d62f315c3f17d118b5421d3ed2edee2c3725d32fe9e5cc1bee2376c48c66fed",
+  "response": {
+    "results": [
+      {
+        "id": "d27d63340a8319c9",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached to test this hypothesis against, so there is no concrete contradiction to point to. The broad interval [-19050,-9050] is also internally consistent with the stated mechanism='dating-uncertainty' for a meltwater-pulse/megafaunal-extinction linkage in North America. Empty evidence is not itself grounds for rejection."
+      },
+      {
+        "id": "25a0d32a06516c90",
+        "keep": true,
+        "issues": [],
+        "rationale": "Although labeled 'refuting evidence', the firestone-2007-c0 citation actually corroborates this hypothesis's content: it describes a cosmic-impact/airburst ejecta layer at Clovis-age North American sites interpreted as having triggered Younger Dryas onset cooling, matching actor, action, object, mechanism, and place exactly. The cited ~12.9 ka timing broadly overlaps the hypothesis's [-12000,-11001] interval given normal Quaternary dating-convention variance (calibrated vs. uncalibrated ages for the YD boundary), so no concrete contradiction is present."
+      },
+      {
+        "id": "aaaa0cdaccee94e0",
+        "keep": false,
+        "issues": [
+          "brakenridge-2011-supernova-c0 dates the proposed ionizing-radiation signal to 'near the Pleistocene-Holocene transition,' a well-attested event at roughly 11.7 ka BP, which falls well outside the hypothesis's stated interval of -20000 to -19001 (~19-20 ka BP) \u2014 a roughly 7,000-9,000 year mismatch, not a rounding discrepancy."
+        ],
+        "rationale": "Actor, mechanism, object, and place align with the evidence, but the evidence's own timing for the proposed supernova-linked extinction pulse is inconsistent with the ~19-20 ka interval asserted by the hypothesis, which is a concrete chronological contradiction."
+      },
+      {
+        "id": "c7c1a9ee83e44fcb",
+        "keep": false,
+        "issues": [
+          "sweatman-2021-review-c0 explicitly concerns 'the published Younger Dryas boundary record' (a well-attested ~12.9 ka event), not the ~19-20 ka window implied by the hypothesis's interval [-20000,-19001]."
+        ],
+        "rationale": "The evidence supports a cosmic-impact / platinum-anomaly corroboration narrative consistent with actor, action, object, and mechanism, but it is tied specifically to the Younger Dryas boundary timeframe (~12.9 ka), which directly contradicts the placement of this event at ~19-20 ka."
+      },
+      {
+        "id": "ccedc7ad64b2242b",
+        "keep": false,
+        "issues": [
+          "holliday-2014-synthesis-c0 addresses the Younger Dryas impact hypothesis specifically, whose markers/chronology cluster around ~12.9 ka, inconsistent with the hypothesis's stated interval of -20000 to -19001 (~19-20 ka BP)."
+        ],
+        "rationale": "Content-wise the evidence supports the 'refuted' framing (no independent replication, no abrupt population disruption) matching action, object, and mechanism, but the chronological placement at ~19-20 ka contradicts the well-known ~12.9 ka Younger Dryas boundary context the evidence is actually describing."
+      },
+      {
+        "id": "0cde390d8e7c7f2a",
+        "keep": false,
+        "issues": [
+          "The hypothesis's object is 'younger-dryas-onset-cooling,' a well-attested event at ~12.9 ka, but the hypothesis places it at -20000 to -19001 (~19-20 ka BP), a mismatch of roughly 6,000-7,000 years not supported by napier-2010-c0's own framing of YD-era extinction pulses."
+        ],
+        "rationale": "Napier-2010 supports the Taurid-swarm mechanism, multiple-continent scope, and 'corroborated' framing generally, but ties the Younger-Dryas-specific pulse to its conventional ~12.9 ka dating, contradicting the hypothesis's ~19-20 ka interval for that specific onset event."
+      },
+      {
+        "id": "8409d68dc32fd976",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached to test this hypothesis against, so there is no concrete contradiction available. An empty evidence set alone is not grounds for rejection."
+      },
+      {
+        "id": "a682111f058a280d",
+        "keep": true,
+        "issues": [],
+        "rationale": "No supporting or refuting evidence is attached to test this hypothesis against, so there is no concrete contradiction available. An empty evidence set alone is not grounds for rejection."
+      }
+    ]
+  }
+}

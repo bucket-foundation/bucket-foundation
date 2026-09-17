@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "00abf12339c5949f0e31ed4e7d4288db173008ca644dbe9fefe4e1e8a9b8ac8f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Go unto the people, and sanctify them to day and to morrow, and let them wash their clothes",
+        "claim": "The LORD commands Moses to sanctify the people for two days and have them wash their clothes",
+        "actor": "LORD, Moses",
+        "action": "said, sanctify, wash",
+        "object": "people, clothes",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And be ready against the third day: for the third day the LORD will come down in the sight of all the people upon mount Sinai",
+        "claim": "The LORD will come down upon mount Sinai on the third day in the sight of all the people",
+        "actor": "LORD",
+        "action": "come down",
+        "object": "",
+        "place": "mount Sinai",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

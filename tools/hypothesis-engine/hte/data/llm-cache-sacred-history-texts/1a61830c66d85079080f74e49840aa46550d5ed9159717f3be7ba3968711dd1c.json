@@ -1,0 +1,32 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "65aafe730c7e988730dc9c176acf690e04aa73952fbdc2ef3719c21720df23dc",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "So Moses brought Israel from the Red sea, and they went out into the wilderness of Shur",
+        "claim": "The text says Moses led Israel away from the Red Sea into the wilderness of Shur.",
+        "actor": "Moses",
+        "action": "led away from the Red Sea into the wilderness",
+        "object": "Israel",
+        "place": "Red Sea; wilderness of Shur",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary",
+        "quote": "and they went three days in the wilderness, and found no water.",
+        "claim": "The text says Israel travelled three days in the wilderness of Shur without finding water.",
+        "actor": "Israel",
+        "action": "travelled three days without finding water",
+        "object": "water",
+        "place": "wilderness of Shur",
+        "mechanism": "lack of water on a desert march",
+        "year": null
+      }
+    ]
+  }
+}

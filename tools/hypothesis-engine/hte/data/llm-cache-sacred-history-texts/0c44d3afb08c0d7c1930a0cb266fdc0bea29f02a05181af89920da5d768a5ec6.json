@@ -1,0 +1,46 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "789fb3b5e9ec6185f95f8433fba39feb8ceb02686c16466fe849a4ad9345f287",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Take unto thee sweet spices, stacte, and onycha, and galbanum; these sweet spices with pure frankincense: of each shall there be a like weight:",
+        "claim": "Incense for the tabernacle should use equal weights of stacte, onycha, galbanum, and frankincense",
+        "actor": "thou",
+        "action": "Take",
+        "object": "sweet spices, stacte, and onycha, and galbanum; these sweet spices with pure frankincense",
+        "mechanism": "of each shall there be a like weight",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And thou shalt make it a perfume, a confection after the art of the apothecary, tempered together, pure and holy:",
+        "claim": "The spices should be made into a perfume using apothecary techniques",
+        "actor": "thou",
+        "action": "make",
+        "object": "perfume, a confection",
+        "mechanism": "after the art of the apothecary, tempered together, pure and holy",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And thou shalt beat some of it very small, and put of it before the testimony in the tabernacle of the congregation, where I will meet with thee: it shall be unto you most holy.",
+        "claim": "The perfume should be beaten finely and placed before the testimony in the tabernacle of the congregation",
+        "actor": "thou",
+        "action": "beat, put",
+        "object": "it",
+        "place": "before the testimony in the tabernacle of the congregation",
+        "mechanism": "beat some of it very small",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

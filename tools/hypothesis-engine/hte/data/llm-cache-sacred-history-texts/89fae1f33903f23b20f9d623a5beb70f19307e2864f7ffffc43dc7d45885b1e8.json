@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "2fbdb5adb742f45b94fb26ce9d392671251e1e07998306d191b7aa9073c34def",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "document-text",
+        "quote": "Notwithstanding they hearkened not unto Moses; but some of them left of it until the morning, and it bred worms, and stank",
+        "claim": "Some people ignored Moses's instruction and kept part of it until morning, and what they kept went bad: it bred worms and stank.",
+        "actor": "some of them (those addressed by Moses)",
+        "action": "left of it until the morning, disregarding Moses",
+        "object": "it (the item referred to in the preceding text; the passage itself does not name it)",
+        "mechanism": "Food kept overnight against instruction spoiled (bred worms, stank)",
+        "place": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "event",
+        "tier": "document-text",
+        "quote": "and Moses was wroth with them",
+        "claim": "Moses was angry with the people who disobeyed his instruction and kept it until morning.",
+        "actor": "Moses",
+        "action": "was wroth with",
+        "object": "them (those who left of it until the morning)",
+        "mechanism": "Reaction to disobedience",
+        "place": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "919fd369a14ba69f8823cc6de30f79ae0dffb98f8470895ae4ff4c6c631f3021",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD spake unto Moses and to Aaron, saying unto them,",
+        "claim": "The LORD spoke to Moses and Aaron",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Speak unto the children of Israel, saying, These are the beasts which ye shall eat among all the beasts that are on the earth.",
+        "claim": "Moses and Aaron were commanded to speak to the children of Israel about which beasts they shall eat",
+        "actor": "Moses and Aaron",
+        "action": "Speak",
+        "object": "the children of Israel",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "These are the beasts which ye shall eat among all the beasts that are on the earth.",
+        "claim": "The children of Israel shall eat certain designated beasts",
+        "actor": "the children of Israel",
+        "action": "shall eat",
+        "object": "the beasts",
+        "place": "the earth",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

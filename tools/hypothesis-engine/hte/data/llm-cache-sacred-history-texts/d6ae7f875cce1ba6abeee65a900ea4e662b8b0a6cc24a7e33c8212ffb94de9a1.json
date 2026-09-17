@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c9e10b193ac40c507b01b3ecb9d0a5af314982a048ba0f54455e2b162a2df3d9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses gathered all the congregation of the children of Israel together, and said unto them, These are the words which the LORD hath commanded, that ye should do them.",
+        "claim": "Moses gathered the congregation of Israel and spoke to them, conveying the LORD's commandments.",
+        "actor": "Moses",
+        "action": "gathered and said",
+        "object": "congregation of the children of Israel",
+        "place": "",
+        "mechanism": "gathering and addressing the assembly",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

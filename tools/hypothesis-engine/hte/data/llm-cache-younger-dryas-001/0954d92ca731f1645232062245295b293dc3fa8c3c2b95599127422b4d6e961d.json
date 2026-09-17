@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fda48570a600da123edb1eebc3b0401daa20c2781ccb9f0bf05b6ec47d47823c",
+  "response": {
+    "$PARAMETER_NAME": "expected_evidence",
+    "expected_evidence": [
+      "Nanodiamond (lonsdaleite, cubic diamond, n-diamond) concentrations in the Younger Dryas Boundary (YDB) sediment layer at multiple North American sites (e.g., Lake Cuitzeo, Murray Springs, Blackville, Gainey, etc.)",
+      "Associated geochemical markers in the same stratigraphic horizon: platinum/iridium anomalies, magnetic microspherules, glass-like carbon spherules, and elevated charcoal/soot ('black mat') layers",
+      "Radiocarbon/varve dating of the YDB layer clustering tightly around ~10,950 BCE (12,900 cal BP)",
+      "Peer-reviewed publications (Firestone et al. 2007 and follow-up studies) reporting independent replication of nanodiamond peaks at additional cores/outcrops across the continent",
+      "Counter-publications/failed replication attempts (a real feature of this literature) that would need to be weighed against corroborating studies",
+      "Correlative paleoenvironmental proxies: megafaunal extinction/decline markers, pollen shifts, and Younger Dryas cooling signatures in the same cores",
+      "Any proposed but unconfirmed impact structure, crater, or extraterrestrial fragment (airburst model predicts no crater, so absence here is expected, not disconfirming)",
+      "Model-prior literature context: the 'Younger Dryas Impact Hypothesis' is a well-known, actively contested scientific debate rather than an obscure claim, so its general existence in the scholarly record is itself a form of corroborating (though contested) evidence"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "Mapping -10950 (a single-year point) to the Younger Dryas onset (~12,900 cal BP) places this squarely in the 'younger-dryas' period row. The hypothesis concerns physical/geochemical fallout evidence (nanodiamonds, spherules, PGE anomalies) preserved in sedimentary strata across North America \u2014 exactly the kind of evidence captured by the 'material' (0.35) and 'geological' (0.65) detectability rows, with 'astronomical' corroboration (impact/airburst signatures) rated even higher (0.7) in this period. Genetic (0.3) and oral_tradition (0.1) evidence are only weakly relevant and not central to this specific claim. Unlike many prehistoric hypotheses, this one corresponds to an actual, well-documented, and heavily studied scientific research program (the Younger Dryas Impact Hypothesis, Firestone et al. 2007 onward), meaning a substantial body of peer-reviewed material and geological evidence already exists in the literature \u2014 both supporting and disputing replication across dozens of sites. This elevates the realistic detectability above the raw material/geological baseline average (~0.5) toward the upper end of the astronomical/geological range, since the relevant strata are geologically young, widespread, and have been actively sampled by multiple independent labs. I therefore suggest an aggregate adjustment of 0.55, reflecting that this is one of the more detectable hypotheses in the Pleistocene-Holocene transition domain \u2014 sedimentary nanodiamond/spherule layers are robust, distributed, and dateable, even though textual/linguistic/iconographic channels remain essentially unavailable (score ~0) for a pre-literate period, and even though the scientific community itself remains split on whether the corroborating signal is genuine or an artifact of contamination/measurement (this ongoing controversy is itself model-prior knowledge, not confirmed fact, and is flagged as such rather than treated as settled). A low score on non-material channels should not be read as evidence against the hypothesis; the geological/material/astronomical channels are the only ones expected to bear on it, and those are moderately-to-well preserved for a ~13,000-year-old event."
+  }
+}

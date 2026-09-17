@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c0ed1bf9549796787d8a6d45fb7c1707bebe71342dcab53b59498844e46d8308",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Jacob came unto Isaac his father unto Mamre, unto the city of Arbah, which is Hebron, where Abraham and Isaac sojourned.",
+        "claim": "Jacob came to his father Isaac at Mamre (Arbah/Hebron), where Abraham and Isaac had sojourned",
+        "actor": "Jacob",
+        "action": "came",
+        "object": "Isaac his father",
+        "place": "Mamre, the city of Arbah, which is Hebron",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

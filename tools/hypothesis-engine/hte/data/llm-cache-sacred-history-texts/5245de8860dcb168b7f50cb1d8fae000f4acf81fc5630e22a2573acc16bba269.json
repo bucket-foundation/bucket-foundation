@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "eebafb62d8c06792058b5f18c0d747dc178389683b4efd274e36ef3f430dd4ed",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD said unto Moses, When thou goest to return into Egypt, see that thou do all those wonders before Pharaoh, which I have put in thine hand: but I will harden his heart, that he shall not let the people go.",
+        "claim": "God will harden Pharaoh's heart to prevent him from releasing the Israelites",
+        "actor": "the LORD",
+        "action": "will harden",
+        "object": "his heart",
+        "place": "Egypt",
+        "mechanism": "heart-hardening",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

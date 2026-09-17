@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ae36b58ee24ed114b3bc534ed04cc86e65e6e2f7bde174915c21a98f74d605c2",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: distinct platinum (Pt) anomaly/enrichment layer within a discrete Greenland ice core horizon (e.g., GISP2/NEEM/NGRIP) dated to ~12,900 cal BP / ~10,950 BCE, ideally co-occurring with iridium, nickel, or other platinum-group-element enrichments",
+      "astronomical: associated impact-ejecta proxies such as meteoritic/cosmic spherules, microspherules, or extraterrestrial dust/micrometeorite flux spike in the same ice layer",
+      "geological: correlative Younger Dryas Boundary (YDB) sedimentary markers at terrestrial sites (nanodiamonds, magnetic spherules, soot/charcoal 'black mat' layers) that could cross-date with the ice core anomaly",
+      "material: charcoal/soot horizons indicating continent-scale biomass burning coincident with the proposed impact event",
+      "genetic: megafaunal extinction or population bottleneck signals (e.g., mammoth, short-faced bear) clustering near the same timeframe, offered as indirect corroboration",
+      "model_prior: published Younger Dryas Impact Hypothesis literature (e.g., Petaev et al. 2013 platinum anomaly report, Firestone et al. 2007) proposing this exact mechanism and interval"
+    ],
+    "detectability_adjustment": 0.72,
+    "rationale": "The interval -10950 (~12,900 cal BP) falls precisely at the Younger Dryas onset, so the 'younger-dryas' row is the appropriate detectability baseline (geological 0.65, astronomical 0.7) rather than the unspecified period default. Ice sheets are an unusually favorable preservation medium: they form continuous, datable, high-resolution annual layers that trap and preserve atmospheric fallout (platinum-group elements, cosmic dust) far better than most terrestrial sedimentary or archaeological contexts from this era. This is reflected in the already-elevated astronomical/geological detectability scores relative to material (0.35) or genetic (0.3) evidence for the same period, which involve organic/skeletal preservation subject to much higher taphonomic loss. Because this specific type of evidence (a platinum spike in a Greenland ice core) has, per model-prior knowledge of the Younger Dryas Impact Hypothesis literature, actually been reported at GISP2 in real studies, I judge the baseline geological/astronomical rows slightly understate detectability for this precise ice-core proxy and suggest an upward adjustment to ~0.72. Absence of corroborating terrestrial YDB markers or genetic/faunal signals should not be treated as strong evidence against the hypothesis, since those proxy classes have much lower baseline detectability (0.3\u20130.35) and are far more taphonomically fragile than a compositional anomaly locked in stratified ice."
+  }
+}

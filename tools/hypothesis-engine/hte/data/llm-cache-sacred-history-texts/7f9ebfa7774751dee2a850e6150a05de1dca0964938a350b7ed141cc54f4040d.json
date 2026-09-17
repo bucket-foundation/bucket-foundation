@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "a4fd0b616b17267813d07ab2abceb56d0ddd04f5babd7699ae7b015e33be872b",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "when Moses went out unto the tabernacle",
+        "claim": "Moses went out to the tabernacle.",
+        "actor": "Moses",
+        "action": "went out unto",
+        "object": "the tabernacle",
+        "place": "the tabernacle",
+        "stance": "positive",
+        "year": null,
+        "mechanism": ""
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "all the people rose up, and stood every man at his tent door, and looked after Moses, until he was gone into the tabernacle",
+        "claim": "When Moses went out to the tabernacle, all the people rose up, each stood at his tent door, and they watched Moses until he had gone into the tabernacle.",
+        "actor": "all the people",
+        "action": "rose up, stood at tent doors, and looked after",
+        "object": "Moses",
+        "place": "tent doors (camp), facing the tabernacle",
+        "stance": "positive",
+        "year": null,
+        "mechanism": "Moses going out to the tabernacle set it off: the people's standing and watching lasted 'until he was gone into the tabernacle'."
+      }
+    ]
+  }
+}

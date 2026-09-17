@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "6e2274ef1b07ff8d066c553ad8ea754b93a1f0ba82416dbadd70de45d9c0d340",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses went into the midst of the cloud, and gat him up into the mount",
+        "claim": "Moses went into the middle of the cloud and climbed up the mountain.",
+        "actor": "Moses",
+        "action": "went into the midst of the cloud and ascended",
+        "object": "the cloud; the mount",
+        "place": "the mount (the text doesn't name it here)",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and Moses was in the mount forty days and forty nights",
+        "claim": "Moses stayed on the mountain for forty days and forty nights.",
+        "actor": "Moses",
+        "action": "remained",
+        "object": "the mount",
+        "place": "the mount (the text doesn't name it here)",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

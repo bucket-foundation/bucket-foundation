@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ad2fa2b6d8066fa9176de3e84b745a3f27c8c056979b0d544273bbb5280df68f",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "But Moses' hands were heavy;",
+        "claim": "Moses experienced hand fatigue",
+        "actor": "Moses",
+        "action": "were heavy",
+        "object": "hands",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "they took a stone, and put it under him, and he sat thereon;",
+        "claim": "Unidentified persons obtained and positioned a stone as a seat for Moses",
+        "actor": "they; he (Moses)",
+        "action": "took; put; sat",
+        "object": "stone",
+        "place": "",
+        "mechanism": "placing stone beneath and sitting upon it",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Aaron and Hur stayed up his hands, the one on the one side, and the other on the other side;",
+        "claim": "Aaron and Hur supported Moses' hands from opposite sides",
+        "actor": "Aaron and Hur",
+        "action": "stayed up",
+        "object": "his hands",
+        "place": "the one side and the other side",
+        "mechanism": "standing on opposite sides",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "his hands were steady until the going down of the sun.",
+        "claim": "Moses' hands remained steady until sunset",
+        "actor": "Moses",
+        "action": "were steady",
+        "object": "hands",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

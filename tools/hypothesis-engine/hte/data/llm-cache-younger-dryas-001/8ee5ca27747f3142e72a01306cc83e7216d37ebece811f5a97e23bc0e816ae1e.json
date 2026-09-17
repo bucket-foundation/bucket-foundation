@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "eff356d576ef204fa17d8c9eb2fe7e80fb8df921021cc73a891b02d314329b31",
+  "response": {
+    "expected_evidence": [
+      "Geological: elevated nanodiamond concentrations (cubic and hexagonal lonsdaleite-type) in the Younger Dryas boundary layer of Greenland ice cores (e.g., GISP2/NGRIP) at ~10,850 cal BP",
+      "Geological: associated platinum, iridium, and other siderophile-element anomalies in the same ice-core horizon",
+      "Geological/material: magnetic microspherules and impact spherules in the boundary sediment layer, cross-checked against North American 'black mat' sites",
+      "Material: elevated soot, charcoal, and polycyclic aromatic hydrocarbon (PAH) markers indicating a continent/hemisphere-scale biomass-burning episode coincident with the layer",
+      "Geological: ammonium and other combustion-proxy spikes in ice-core chemistry consistent with widespread fires",
+      "Astronomical/geological: independent dating (annual ice layer counting, radiocarbon on charcoal) placing the anomaly precisely at the Younger Dryas onset, plus search for a plausible impact/airburst source (crater, tektites, shocked quartz)",
+      "Genetic: megafaunal population bottleneck/extinction signatures and possible human population decline signals dated to the same interval",
+      "model_prior: prior published Younger Dryas Impact Hypothesis (Firestone et al. 2007 and successors) literature and its contested replication history"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval (-10,850) falls squarely at the Younger Dryas onset, so 'younger-dryas' detectability values are the relevant baseline rather than 'upper-paleolithic'. Ice cores like GISP2 provide continuous, annually resolved stratigraphy well beyond 12,800 years, so a geochemical/geological signature (nanodiamonds, Pt/Ir anomalies, ammonium/soot spikes) from this exact interval is physically preservable \u2014 geological detectability is comparatively high (0.65) and this is the dominant evidence channel for this hypothesis. Material evidence (spherules, black mat, charcoal) has moderate detectability (0.35) consistent with the patchy, site-dependent nature of Younger Dryas boundary layer finds across the globe. Genetic evidence of megafaunal/human bottlenecks is weaker and lower detectability (0.3), and astronomical evidence for an actual impactor (crater, airburst source) is essentially absent in the literature despite high nominal astronomical detectability (0.7), which is itself informative: an event large enough to leave a global nanodiamond/soot layer should plausibly also leave crater or shocked-mineral evidence, and its absence is a real evidentiary gap, not just a preservation failure. Model-prior evidence (I recall from training, unverified) is that the original nanodiamond/impact claims (Firestone et al. 2007) have faced substantial non-replication and re-interpretation (e.g., some purported nanodiamonds reclassified as graphene aggregates), making this a genuinely contested rather than settled hypothesis. Net: the evidence type most central to the claim (ice-core geochemical anomaly) could plausibly have survived and been sampled, so absence of a *robust, independently replicated* signal is more informative of low support than of a detectability failure \u2014 hence a moderate downward adjustment from the naive geological ceiling of 0.65 to reflect the added burden of needing convergent astronomical/impact-source evidence that has not materialized."
+  }
+}

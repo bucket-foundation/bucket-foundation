@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "6c405c1dfd3edcac023d8f0664762677e1bd43a087844d7b6b40099a9c8fd3a1",
+  "response": {
+    "expected_evidence": [
+      "Geological: a distinct tephra/ash layer or volcanic glass shards in North American sediment cores dated to ~10950 BCE, geochemically fingerprinted to a specific volcanic source",
+      "Geological/astronomical: a corresponding sulfate spike in Greenland/Antarctic ice cores at the matching annual layer, used to cross-date the eruption",
+      "Material: a stratigraphic 'extinction horizon' (e.g., black mat-type layer) directly overlying or coincident with the ash/fallout layer, with abrupt cessation of megafaunal bones and Clovis-era artifacts above it",
+      "Material: kill/camp sites showing sudden faunal assemblage collapse dated to the same interval",
+      "Genetic: ancient-DNA evidence of a sharp population bottleneck or extinction pulse in megafaunal lineages coincident with the dated fallout layer",
+      "Model-prior: known eruption catalogs/volcanic records identifying a North American (or global) eruption large enough to cause ejecta fallout at this date"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The date (-10950) falls at/near the Younger Dryas onset, so I use the younger-dryas detectability row as the closest analog (period unspecified). Geological (0.65) and astronomical/ice-core (0.7) evidence for large volcanic eruptions is generally well-preserved and detectable at this timescale \u2014 tephra layers and ice-core sulfate spikes from this period are routinely recovered, so absence of a matching signal is reasonably strong negative evidence rather than a detection failure. Material evidence (0.35) for the extinction event itself (bone beds, black-mat layers) is moderately detectable and has in fact been extensively studied for this exact interval. Genetic (0.3) and model_prior (0.3) evidence are weaker channels. However, there is an important internal inconsistency worth flagging as model-prior (unverified, from training, not from the provided evidence): the well-known 'impact-ejecta-fallout' signature at this boundary (nanodiamonds, platinum anomaly, spherules) is conventionally attributed in the literature to the contested Younger Dryas Impact Hypothesis (an extraterrestrial impact/airburst), not to a volcanic eruption, and I am not aware of a major North American volcanic eruption dated precisely to 10950 BCE implicated in megafaunal extinction (the well-documented Laacher See eruption of similar age is in Europe, not North America). Given moderate-to-good detectability across the relevant geological/astronomical/material channels, if a North American volcanic-fallout-driven extinction event of this magnitude had occurred, matching geochemical and stratigraphic evidence would plausibly have been found by now; its absence in this specific volcanic-source form is therefore more likely to reflect the hypothesis being incorrect (or conflating volcanic with impact mechanisms) than a pure detectability gap \u2014 hence a moderate detectability adjustment of 0.5 that blends the stronger geological/astronomical channels with the weaker material/genetic/model_prior channels for the younger-dryas period, rather than treating the claim as fully undetectable."
+  }
+}

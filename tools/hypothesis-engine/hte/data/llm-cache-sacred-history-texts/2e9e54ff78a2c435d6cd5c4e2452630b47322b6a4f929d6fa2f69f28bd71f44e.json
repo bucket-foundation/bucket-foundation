@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1fb558372f8b4c0149c513c4921574b701f6041f4eea9c7c7214f552948ed1b4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham said of Sarah his wife, She is my sister: and Abimelech king of Gerar sent, and took Sarah.",
+        "claim": "Abraham told Abimelech that Sarah was his sister, and Abimelech took her.",
+        "actor": "Abraham; Abimelech king of Gerar",
+        "action": "said; sent and took",
+        "object": "Sarah his wife; Sarah",
+        "place": "Gerar",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

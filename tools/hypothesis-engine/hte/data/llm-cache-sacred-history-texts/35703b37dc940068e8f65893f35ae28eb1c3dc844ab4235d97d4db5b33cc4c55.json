@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3e31cba1d7f11cccbc5741df2d3d51f166b484219be01bd20a04deff874c029b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses and unto Aaron, saying",
+        "claim": "God speaks to Moses and Aaron with instructions",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses and Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "When Pharaoh shall speak unto you, saying, Shew a miracle for you",
+        "claim": "Pharaoh will request Moses and Aaron to show a miracle",
+        "actor": "Pharaoh",
+        "action": "shall speak",
+        "object": "you",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "then thou shalt say unto Aaron, Take thy rod, and cast it before Pharaoh",
+        "claim": "Aaron is commanded to take his rod and cast it before Pharaoh",
+        "actor": "Aaron",
+        "action": "cast",
+        "object": "rod",
+        "place": "before Pharaoh",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and it shall become a serpent",
+        "claim": "The rod will transform into a serpent",
+        "actor": "it",
+        "action": "become",
+        "object": "serpent",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

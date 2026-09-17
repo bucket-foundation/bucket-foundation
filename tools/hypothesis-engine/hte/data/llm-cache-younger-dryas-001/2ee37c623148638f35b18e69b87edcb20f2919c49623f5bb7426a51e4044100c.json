@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "72ef1556f4fc668b0c8fefd09872dbfe8a482bc0da0b1d71aec880a4ec59cc45",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: magnetic/glassy microspherules, platinum-group-element (Pt/Ir) anomaly, and nanodiamond concentrations within the Younger Dryas boundary (YDB) layer at Middle Eastern sedimentary sequences (lake cores, archaeological strata)",
+      "material: meltglass, scoria-like fused material, or carbon spherules recovered from archaeological horizons dated to ~10850 BCE, most plausibly at sites such as Abu Hureyra (Syria), paralleling published YDIH claims (model-prior: Moore et al. 2020 Abu Hureyra 'cosmic airburst' study, contested by subsequent critiques)",
+      "astronomical: independent trajectory/energy modeling and cross-correlation with other purported global YDB-layer sites (Greenland ice cores, North American YDB sites) supporting a synchronous airburst event",
+      "geological (secondary): charcoal/soot layer or black mat horizon co-occurring with the spherule layer, consistent with a regional biomass-burning signature",
+      "genetic: weak/indirect regional megafauna or vegetation turnover signal coincident with the layer, of low specificity to an impact mechanism",
+      "model_prior: awareness that the Younger Dryas Impact Hypothesis is an actively disputed hypothesis in the literature, with some teams reporting corroborating microspherule/PGE data and others failing to replicate or attributing spherules to industrial contamination or misidentification \u2014 this should be flagged explicitly as low-tier unverified recollection, not established fact"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "The interval -10850 sits at the Younger Dryas onset (~12.9-12.8 ka BP), so the 'younger-dryas' detectability row is the relevant reference rather than the surrounding upper-paleolithic bracket. For a microspherule-concentration claim the dominant evidence class is geological (0.65) and, secondarily, astronomical/modeling corroboration (0.7) and material archaeological correlates (0.35); genetic (0.3), textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) are essentially irrelevant or non-existent for a non-literate Terminal Pleistocene population. Because geological sediment layers from this horizon are reasonably well-preserved and have been directly targeted by real YDIH fieldwork in the Middle East (Abu Hureyra), absence of confirmed evidence is not fully explained by poor preservation alone \u2014 moderate detectability means a genuine event should leave a findable signature, yet the specific Middle East 'corroborated' claim remains scientifically contested (replication failures, contamination critiques) rather than a detectability artifact. I weight the composite adjustment toward the moderate end (~0.5) to reflect that geological/astronomical channels are reasonably sensitive but material/genetic/textual channels contribute little, and the corroboration status itself is disputed in the source literature (model-prior, unverified)."
+  }
+}

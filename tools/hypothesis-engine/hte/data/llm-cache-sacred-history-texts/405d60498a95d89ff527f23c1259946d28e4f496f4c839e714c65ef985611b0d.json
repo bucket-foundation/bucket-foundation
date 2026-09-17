@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7eb13fc66b789815fbf1ae223e61cf557d42ec537117bbf4863d7054abb30656",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses, Stretch out thine hand over the land of Egypt for the locusts, that they may come up upon the land of Egypt, and eat every herb of the land, even all that the hail hath left.",
+        "claim": "A plague of locusts would consume Egyptian vegetation that survived hail damage",
+        "actor": "LORD, Moses, locusts",
+        "action": "command, stretch, eat",
+        "object": "land, locusts, herbs",
+        "place": "Egypt",
+        "mechanism": "locusts consume vegetation",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

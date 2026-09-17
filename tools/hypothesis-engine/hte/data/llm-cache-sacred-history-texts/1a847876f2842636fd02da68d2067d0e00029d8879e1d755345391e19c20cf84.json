@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7b5d50589f1e53fa9faede5bc2b459a581241bdba568de38219c43081fb2347a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Joseph said unto his brethren, I die",
+        "claim": "Joseph declares to his brethren that he will die",
+        "actor": "Joseph",
+        "action": "said",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "God will surely visit you",
+        "claim": "God will visit Joseph's brethren",
+        "actor": "God",
+        "action": "visit",
+        "object": "you",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and bring you out of this land unto the land which he sware to Abraham, to Isaac, and to Jacob",
+        "claim": "God will bring Joseph's brethren out of this land into the land God swore to Abraham, Isaac, and Jacob",
+        "actor": "God",
+        "action": "bring",
+        "object": "you",
+        "place": "out of this land unto the land which he sware to Abraham, to Isaac, and to Jacob",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the land which he sware to Abraham, to Isaac, and to Jacob",
+        "claim": "God swore an oath to Abraham, Isaac, and Jacob concerning a land",
+        "actor": "he",
+        "action": "sware",
+        "object": "land",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

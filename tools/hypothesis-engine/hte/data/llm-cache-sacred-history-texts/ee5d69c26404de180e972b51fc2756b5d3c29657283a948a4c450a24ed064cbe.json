@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1a187640f6df592dd6afafa2dba18cd73e6d13f8586a8ae51ca0999b62e32a80",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "For Moses had said, Consecrate yourselves today to the LORD, even every man upon his son, and upon his brother; that he may bestow upon you a blessing this day.",
+        "claim": "Moses commanded the Israelites to consecrate themselves to the LORD to receive a blessing.",
+        "actor": "Moses",
+        "action": "said / commanded",
+        "object": "Israelites (yourselves)",
+        "place": "",
+        "mechanism": "consecration to the LORD",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

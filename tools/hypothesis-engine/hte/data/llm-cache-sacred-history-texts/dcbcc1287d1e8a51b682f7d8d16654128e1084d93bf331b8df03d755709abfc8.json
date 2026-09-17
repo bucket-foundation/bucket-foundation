@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3e6706ffcc56a4476cc25912a0bd37a6482bc0c63a2084670b08c64ae9455c7a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the LORD said unto Moses, Come up to me into the mount, and be there",
+        "claim": "The LORD commanded Moses to ascend the mount and remain there",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "to ascend the mount and be there",
+        "place": "the mount",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "and I will give thee tables of stone, and a law, and commandments which I have written",
+        "claim": "The LORD promised to give Moses tables of stone and commandments the LORD had written",
+        "actor": "the LORD",
+        "action": "will give",
+        "object": "tables of stone, law, commandments",
+        "mechanism": "written by the LORD",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "that thou mayest teach them",
+        "claim": "Moses will teach the commandments",
+        "actor": "Moses",
+        "action": "teach",
+        "object": "commandments",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

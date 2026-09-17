@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3bef6e51aaded8c2ab32e43b0b57fcd6b44308376d3a57b6ffd7c9b03aee23f3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he put the golden altar in the tent of the congregation before the vail: 40:27 And he burnt sweet incense thereon; as the LORD commanded Moses.",
+        "claim": "A golden altar was placed in the tent of the congregation before the veil, and sweet incense was burned upon it in accordance with the LORD's command to Moses.",
+        "actor": "he",
+        "action": "put / burnt",
+        "object": "golden altar / sweet incense",
+        "place": "tent of the congregation before the vail",
+        "mechanism": "LORD commanded",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

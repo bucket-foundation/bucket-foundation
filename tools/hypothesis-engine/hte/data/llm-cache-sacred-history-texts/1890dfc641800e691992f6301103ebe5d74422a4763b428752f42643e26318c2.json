@@ -1,0 +1,53 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "138339dc72b07f878d5f2a9b20021424b2e3c45b14c73cb59d12945276fe8b54",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said to Aaron, Go into the wilderness to meet Moses.",
+        "claim": "The LORD commanded Aaron to go into the wilderness to meet Moses",
+        "actor": "the LORD",
+        "action": "said",
+        "place": "wilderness",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he went",
+        "claim": "Aaron went",
+        "actor": "he",
+        "action": "went",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and met him in the mount of God",
+        "claim": "He met Moses at the mount of God",
+        "actor": "he",
+        "action": "met",
+        "object": "him",
+        "place": "the mount of God",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "and kissed him",
+        "claim": "He kissed Moses",
+        "actor": "he",
+        "action": "kissed",
+        "object": "him",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

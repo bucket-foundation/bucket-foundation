@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "cd5bdbbaecc7f18523e47288256d176b8134705a649ac51442ff743900cc685a",
+  "response": {
+    "$PARAMETER_NAME": "could_have_survived",
+    "detectability_adjustment": 0.6,
+    "expected_evidence": [
+      "Geological: sediment/varve records of glacial Lake Agassiz-Ojibway outflow routes (St. Lawrence vs. Mackenzie/Arctic pathways) with datable flood horizons",
+      "Geological: freshwater signal (reduced salinity, oxygen-isotope excursions) in North Atlantic and Arctic marine cores near 12.9 ka",
+      "Astronomical/ice-core: Greenland ice-core (GISP2/NGRIP) layer-counted chronologies and dust/isotope records bracketing YD onset, used to cross-check radiocarbon ages",
+      "Material: radiocarbon dates from North American archaeological and paleoecological sites falling on the ~12.9 ka radiocarbon 'plateau', producing wide/overlapping calibrated age ranges (the core 'dating-uncertainty' signature)",
+      "Geological: outburst-flood geomorphology (scour, spillway channels) in the Great Lakes/St. Lawrence corridor with associated cosmogenic or luminescence dates",
+      "Model_prior: published paleoclimate modeling studies testing sensitivity of AMOC shutdown to meltwater timing/routing, explicitly noting chronological ambiguity",
+      "Genetic: population/paleoecological proxy shifts (pollen, faunal turnover) near the YD boundary, though genetic evidence for a specific meltwater trigger is indirect at best"
+    ],
+    "could_have_survived": true,
+    "rationale": "The hypothesis is essentially a historiographic/meta-claim: that the meltwater-pulse trigger for Younger Dryas cooling remains inconclusive because of dating uncertainty. This is a documented, active debate in the paleoclimate literature (Broecker's meltwater hypothesis vs. alternative triggers), and the interval given (~10,950\u20139,750 BCE) aligns with the accepted radiocarbon-cal BP window for YD onset, which is precisely the period where a well-known 14C 'plateau' causes wide calibration uncertainty \u2014 this is itself the mechanism named. Given no fixed period label was supplied, I map the interval to the 'younger-dryas' period row, where geological (0.65) and astronomical/ice-core (0.7) detectability are comparatively high, since layered ice cores, varves, and marine/lake sediment cores from this era are well preserved and routinely sampled. Material archaeological dating evidence (0.35) is moderate \u2014 consistent with the very radiocarbon-plateau problem the hypothesis describes. Textual (0.0) and linguistic (0.05) evidence are essentially impossible this far back, and oral tradition/iconographic evidence (0.1) is negligible, as expected pre-writing. Because the core evidence types needed (geological stratigraphy, ice-core chronology, radiocarbon dating records) have moderate-to-good preservation/detectability and this debate is in fact well attested in existing paleoclimate scholarship, absence of a definitive resolution is better explained by genuine scientific ambiguity (the stated 'inconclusive' status) than by evidence having failed to survive. A low-detectability explanation for silence is not strongly needed here, though the material/archaeological dating channel's moderate score does partly account for why site-level 14C chronologies remain contested."
+  }
+}

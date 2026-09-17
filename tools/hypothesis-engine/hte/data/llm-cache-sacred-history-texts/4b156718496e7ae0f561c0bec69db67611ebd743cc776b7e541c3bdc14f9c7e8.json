@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bc7a0b24a7af79eac85cd78fd5d4bb5819e3b37f794b2b8b21a0063ac7e5256c",
+  "response": {
+    "items": [
+      {
+        "quote": "And the LORD spake unto Moses and unto Aaron, saying",
+        "claim": "The LORD spoke to Moses and Aaron",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses and Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "Take the sum of the sons of Kohath from among the sons of Levi, after their families, by the house of their fathers",
+        "claim": "A census was to be taken of the sons of Kohath from among the Levites, organized by families and ancestral houses",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "",
+        "action": "Take",
+        "object": "the sons of Kohath",
+        "place": "among the sons of Levi",
+        "mechanism": "by the house of their fathers",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "From thirty years old and upward even until fifty years old, all that enter into the host, to do the work in the tabernacle of the congregation",
+        "claim": "Those selected were aged 30 to 50 years old and were to perform work in the tabernacle",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "all that enter into the host",
+        "action": "do the work",
+        "object": "",
+        "place": "the tabernacle of the congregation",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b176051210c86c9f4e393a4babc4094528180cfccad93e505437d0f57f3b49cc",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum (and possibly iridium/osmium) enrichment spike in a thin sedimentary layer dated to ~12,800-12,900 cal BP (matching -10850) at Middle Eastern sites",
+      "geological: associated proxies such as magnetic/glassy spherules, nanodiamonds, and a 'black mat' organic-rich layer overlying the anomaly",
+      "astronomical/geochemical modeling: airburst physics reconstructions (fireball trajectory, energy yield) consistent with a low-altitude cosmic airburst rather than a crater-forming impact",
+      "material/archaeological: contemporaneous burn layers, disrupted occupation horizons, or abandonment/rebuilding episodes at Middle Eastern sites (e.g. Abu Hureyra, Syria) coeval with the platinum layer",
+      "genetic: population bottleneck signatures in regional fauna or early human groups datable to the same interval (weak signal, low preservation likelihood)",
+      "model_prior: existing Younger Dryas Impact Hypothesis (YDIH) literature, including published claims of platinum/melt-glass anomalies at Abu Hureyra, Syria, presented as a Middle East corroboration point",
+      "oral_tradition/iconographic: possible flood, fire-from-sky, or catastrophe motifs in later Near Eastern mythology, though any such link would be highly speculative and not scientifically probative"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.62,
+    "rationale": "The hypothesis places a cosmic-airburst-linked platinum anomaly at ~10850 (calibrated), which aligns with the Younger Dryas onset boundary (~12,800-12,900 cal BP) central to the real, still-contested Younger Dryas Impact Hypothesis (YDIH). Using the 'younger-dryas' period row, geological (0.65) and astronomical (0.7) detectability are comparatively high, meaning a genuine platinum/spherule/nanodiamond signal in sediment or ice cores would plausibly survive and be findable with modern geochemical techniques even after ~12,800 years, since compacted stratigraphic layers and ice-core records are robust archives. Material archaeological evidence (0.35) and genetic evidence (0.3) are much weaker due to poor organic/skeletal preservation and disturbance over millennia in Middle Eastern arid/semi-arid contexts. Textual (0.0) and linguistic (0.05) evidence are essentially impossible this deep in prehistory, and oral_tradition/iconographic evidence (0.1 each) is far too indirect and undatable to be probative, so their absence should not be read as evidence against the hypothesis. Notably, there is actual model-prior support here (unverified, low-tier, drawn from training knowledge rather than the provided evidence text): published YDIH studies have specifically claimed a platinum spike and impact-related markers at Abu Hureyra, Syria \u2014 a genuine Middle Eastern site \u2014 which would directly instantiate this hypothesis if the identification and dating hold up under the field's ongoing scientific debate. Given this specific real-world anchor plus the already favorable geological/astronomical detectability for this period, I adjust the aggregate detectability upward slightly from the geological/astronomical baseline (~0.65-0.7) but temper it by the much weaker material/genetic legs and the controversial/contested status of YDIH evidence overall, yielding a composite adjustment of 0.62. This supports 'could have survived' as true: absence of corroborating textual, linguistic, or strong archaeological evidence is fully expected and uninformative, while the presence or absence of a genuine platinum/geochemical anomaly remains a legitimate, detectable test of the hypothesis."
+  }
+}

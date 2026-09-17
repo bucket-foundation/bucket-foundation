@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "cd4cf572ad6fcd33a372fea40b4bf11a24fcf49bb95137a923dbfa27ee4f38e0",
+  "response": {
+    "expected_evidence": [
+      "Geological: North Atlantic/Arctic sediment cores showing freshwater-pulse proxies (planktic foram \u03b418O excursions, ice-rafted debris layers) coinciding with YD onset",
+      "Geological: geomorphological traces of catastrophic Lake Agassiz drainage (outlet channels, spillway scour, glacial lake shoreline/strandline chronologies) in North America",
+      "Geochemical: Nd isotope and Pa/Th proxies used to trace meltwater routing (Hudson Strait/St. Lawrence vs. Mackenzie corridor)",
+      "Astronomical/geological: Greenland ice-core annual layer counts (GISP2/GRIP/NGRIP) documenting the abruptness of YD cooling onset",
+      "Geochronological: cosmogenic isotope (10Be, 14C) production anomalies and the well-known radiocarbon calibration plateau spanning the YD onset, the literal source of the 'dating-uncertainty' status",
+      "Chronological cross-comparison literature: discrepancies/offsets between varve chronologies, ice-core layer counts, and radiocarbon dates for the onset (the direct evidentiary signature of 'inconclusive' + 'dating-uncertainty')",
+      "Material: North American Paleoindian archaeological stratigraphy (e.g. Clovis-age sites) showing occupation/subsistence shifts bracketing the cooling onset",
+      "Material: lake/pond varve and pollen records from North America and Europe recording rapid vegetation/temperature shifts at onset",
+      "Genetic: limited paleogenomic signal of population bottlenecks in North American fauna/humans around this interval (weak, indirect)"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis is essentially a chronological/mechanistic claim about the Younger Dryas onset and the Meltwater Pulse trigger hypothesis, explicitly flagged as 'inconclusive' due to 'dating-uncertainty' \u2014 this matches a real scientific situation I recall from training (model-prior, unverified against any evidence text provided): the YD onset sits on a notorious radiocarbon calibration plateau, and ice-core, varve, and marine-sediment chronologies for the meltwater trigger have historically disagreed by centuries, which is plausibly why the hypothesis is coded as inconclusive rather than confirmed or refuted. Using the 'younger-dryas' period row (closest match to 'younger-dryas-onset-cooling' as object) as the primary reference, the dominant relevant evidence kinds \u2014 geological (0.65) and astronomical/ice-core chronology (0.7) \u2014 are the highest-detectability categories in the entire table for this period, meaning this is exactly the kind of proxy evidence expected to survive and be recoverable (sediment cores, ice cores, and geomorphic features are physically robust and have been the basis of decades of published paleoclimate research). Material (0.35) and genetic (0.3) evidence for associated North American Paleoindian human/faunal response are moderately detectable but secondary/supportive. Textual, linguistic, oral_tradition, and iconographic evidence are essentially inapplicable (near-zero) since no human record-keeping existed in North America at this timeframe. Given the high detectability of the core relevant evidence types (geological/astronomical), an 'inconclusive' status is best explained by genuine scientific disagreement among independently well-preserved, well-studied records (competing proxies giving different timing/route signals) rather than by evidence failing to survive or remaining unfound. I therefore set a weighted detectability adjustment (~0.6) reflecting strong recoverability of the primary geological/astronomical proxies balanced against weaker material/genetic corroboration, and conclude that absence of firm consensus reflects real complexity in the paleoclimate record, not poor detectability."
+  }
+}

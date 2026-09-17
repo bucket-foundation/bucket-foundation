@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "9f544592316824c2ed489f51334aa973e879bcb7ebfc6ca71b2bba5bf4244e71",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: A pairs a 'meltwater-pulse' actor with a 'taurid-stream-encounter' mechanism (an actor/mechanism mismatch with no direct evidentiary basis), while B's impact-ejecta-fallout mechanism for nanodiamond concentration matches published (if contested) YDB literature, giving B somewhat stronger evidentiary coherence despite its odd 'abrupt-warming' actor label."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.7,
+        "rationale": "model-prior: A matches the real Petaev et al. platinum-anomaly finding in the Greenland ice core near the YD boundary with a generic actor and coherent impact-ejecta mechanism, whereas B pairs an 'abrupt-warming' actor with impact-ejecta fallout, a mechanistically incoherent combination, favoring A."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.55,
+        "rationale": "model-prior: A's claim of nanodiamond concentration in North America via impact ejecta reflects an actual (if disputed) empirical dataset, while B's stronger causal claim that a cosmic airburst 'triggered' YD cooling is the most contested, least mainstream-supported part of the impact hypothesis, giving A a slight edge."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.35,
+        "rationale": "model-prior: A's actor label explicitly frames abrupt-warming events as independent of YD-cooling drivers, yet the placement has it triggering YD cooling itself, an internal contradiction, whereas B's generic actor triggering megafaunal extinction via impact ejecta is an internally coherent (if contested) version of the impact hypothesis."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.4,
+        "rationale": "model-prior: B's claim that Greenland ice-core records corroborate YD onset cooling via cosmic airburst aligns with actual platinum-anomaly/ice-core evidence, while A's 'methodological-artifact' mechanism for an action verb of 'triggered' is somewhat self-contradictory (an artifact doesn't causally trigger a real event), slightly favoring B."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.45,
+        "rationale": "model-prior: A's mechanism 'dating-uncertainty' echoes genuine literature critiques (e.g., Holliday & Meltzer) of synchroneity claims for YD-onset cooling, but pairing it with 'triggered' is awkward; B misapplies a cosmic-airburst mechanism to YD termination, a combination with no real support since impact claims target onset not termination, roughly balancing the two."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.3,
+        "rationale": "model-prior: both combine 'meltwater-pulse' actor with an unrelated 'gamma-ray-ionization' mechanism, but B's epistemically humble 'inconclusive' action better matches the genuinely unsettled state of evidence than A's stronger, weakly-supported 'corroborated' claim linking meltwater pulses to megafaunal extinction via gamma rays."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.65,
+        "rationale": "model-prior: A's actor/object/place (meltwater-pulse driving YD-onset-cooling via disrupted Arctic-Ocean circulation) matches the mainstream Broecker meltwater hypothesis despite an oddly mismatched gamma-ray-ionization mechanism field, while B's volcanic-eruption-causes-YD-termination combination has little corresponding support in the literature."
+      }
+    ]
+  }
+}

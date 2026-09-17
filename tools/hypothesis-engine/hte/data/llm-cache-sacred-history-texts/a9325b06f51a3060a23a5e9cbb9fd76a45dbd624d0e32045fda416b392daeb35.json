@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f9560a82e1bb5b5791d4ae1d2bb7b3ab7473c7a9db3ed0557fade7ae85b1d3ee",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD said unto Moses, Depart, and go up hence, thou and the people which thou hast brought up out of the land of Egypt, unto the land which I sware unto Abraham, to Isaac, and to Jacob, saying, Unto thy seed will I give it:",
+        "claim": "The LORD commanded Moses to lead the people out of Egypt to the land promised to Abraham, Isaac, and Jacob",
+        "actor": "the LORD",
+        "action": "said, Depart, and go up",
+        "object": "Moses, the people",
+        "place": "the land of Egypt, the land",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And I will send an angel before thee; and I will drive out the Canaanite, the Amorite, and the Hittite, and the Perizzite, the Hivite, and the Jebusite:",
+        "claim": "The LORD will send an angel and drive out the Canaanite peoples",
+        "actor": "I",
+        "action": "will send, will drive out",
+        "object": "an angel, the Canaanite, the Amorite, the Hittite, the Perizzite, the Hivite, the Jebusite",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Unto a land flowing with milk and honey: for I will not go up in the midst of thee; for thou art a stiffnecked people: lest I consume thee in the way.",
+        "claim": "The destination land flows with milk and honey; the LORD will not accompany the stiffnecked people",
+        "actor": "I",
+        "action": "will not go up",
+        "object": "thee",
+        "place": "a land flowing with milk and honey",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

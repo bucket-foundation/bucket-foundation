@@ -4,6 +4,7 @@
 _intake/kruse-blog-corpus/articles/
 archive/
 blog/
+gutenberg/
 museum/
 pubmed/
 
@@ -18,3 +19,8 @@ tools/hypothesis-engine/docs/LOOP-LOG.md
 # a real, DOI-checked paper. Rewording a paper's own published title or
 # abstract to satisfy the linter would misquote the citation.
 tools/hypothesis-engine/hte/data/younger-dryas/
+
+# Machine-generated changelog feed (scripts/build-whats-new-entry.mjs):
+# each entry's title/summary is a verbatim copy of a past commit subject
+# line. Rewording an entry here would misquote that commit's own message.
+data/whats-new.json

@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "a0e2871359e1f561c7404eff0094e6f042c6e78ef9fe220e3c333c2701760e03",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: a distinct Younger-Dryas-boundary (YDB) sedimentary layer (~10,900-10,950 14C BP / ~12.8 ka cal BP) containing magnetic and glassy microspherules, consistent with impact/airburst ejecta fallout, often associated with the so-called 'black mat' horizon",
+      "Geochemical/material: elevated concentrations of platinum, iridium, or other siderophile/extraterrestrial markers co-occurring with the microspherule layer at multiple North American sites",
+      "Material: nanodiamonds, melt-glass, or carbon spherules in the same stratigraphic horizon, sometimes cited alongside Clovis-era archaeological layers",
+      "Geological: correlation of the microspherule-rich layer across geographically dispersed North American sedimentary basins/lake cores (spatial consistency test for an ejecta fallout field)",
+      "Astronomical/geological: absence of a confirmed impact crater of appropriate age/size (expected if mechanism is airburst rather than surface impact, but this absence is itself diagnostic evidence proponents must explain)",
+      "Genetic/paleoecological: coincident megafaunal extinction pulse or Clovis population/cultural discontinuity in the same time window (indirect, weaker corroborating evidence)",
+      "Model-prior: published literature (e.g., Firestone et al. 2007 and successors) claiming detection of this layer at numerous sites, contrasted with multiple independent labs reporting failure to replicate the anomaly"
+    ],
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis corresponds to the real Younger Dryas Impact Hypothesis (YDIH), placed at the YD onset (~10,950 uncalibrated BP). Using the 'younger-dryas' period row is most appropriate given the interval (rather than the broader upper-paleolithic bin). Geological (0.65) and material (0.35) evidence for this claim are the most directly relevant kinds, and unlike many prehistoric hypotheses, this one has actually been extensively tested: microspherule, nanodiamond, and platinum-anomaly layers have been reported (and independently contested) at numerous North American sedimentary sites over the past ~15 years, indicating that YD-boundary sediments are well enough preserved and accessible to modern geochemical/microscopy techniques for such a signal to be detectable if present. This real-world detection history justifies nudging the composite detectability above the raw geological/material baseline (0.65/0.35) toward ~0.6, since the actual empirical record shows this class of evidence is recoverable, even though its interpretation (impact vs. terrestrial/anthropogenic origin) remains scientifically disputed. Astronomical evidence (crater search, 0.7 baseline) is weak by design since the hypothesis specifies an airburst/ejecta-fallout mechanism, not a cratering impact, so absence of a crater is not strong evidence against the hypothesis and should not be over-weighted. Textual, linguistic, oral-tradition, and iconographic evidence are essentially inapplicable/near-zero for this pre-literate, pre-agricultural-scale event and their low table values (0.0-0.1) appropriately explain their absence rather than implying falsity. Note: the specific interpretation of any spherule/microspherule data as impact-derived versus terrestrial (e.g., fungal spherules, cosmic dust background, or contamination) remains an unresolved empirical controversy in the literature, which I flag here as model-prior context rather than settled fact."
+  }
+}

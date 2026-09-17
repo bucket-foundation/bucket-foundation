@@ -34,7 +34,7 @@ export default function Page() {
           <span className="inlay-gold">ML experiment.</span>
         </h1>
         <p className="mt-6 text-[16px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Describe an ML experiment — dataset, version, splits, seed, hyperparameters, training, framework, compute, evaluation, and what you released. MLReproCard scores a real weighted reproducibility rubric (grounded in the NeurIPS/ICML reproducibility checklists, Mitchell et al. 2019 Model Cards, and Gundersen's reproducibility taxonomy) across data, code, training, evaluation, compute, and sharing — flags exactly which repro elements are missing, assigns an R0–R3 level and an overall 0–100 score, and fills in a normalized model card. Deterministic; no LLM, no network.
+          Describe an ML experiment — dataset, version, splits, seed, hyperparameters, training, framework, compute, evaluation, and what you released. MLReproCard scores a real weighted reproducibility rubric (grounded in the NeurIPS/ICML reproducibility checklists, Mitchell et al. 2019 Model Cards, and Gundersen&rsquo;s reproducibility taxonomy) across data, code, training, evaluation, compute, and sharing — flags exactly which repro elements are missing, assigns an R0–R3 level and an overall 0–100 score, and fills in a normalized model card. Deterministic; no LLM, no network.
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 

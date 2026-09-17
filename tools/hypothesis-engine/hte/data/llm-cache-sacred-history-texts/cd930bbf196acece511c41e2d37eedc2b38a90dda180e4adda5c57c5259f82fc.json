@@ -1,0 +1,43 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "8334cf9cbdfefd4ab745d0db79115cffba898d94c5b9fb4cfd38e26b292757ac",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "Then Abimelech called Abraham, and said unto him, What hast thou done unto us?",
+        "claim": "Abimelech called Abraham to him and confronted him about what he had done to Abimelech and his people.",
+        "actor": "Abimelech",
+        "action": "summoned and confronted",
+        "object": "Abraham",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "what have I offended thee, that thou hast brought on me and on my kingdom a great sin?",
+        "claim": "Abimelech said Abraham had brought a great sin on him and his kingdom, and asked how he had wronged Abraham to deserve it.",
+        "actor": "Abimelech",
+        "action": "accused",
+        "object": "Abraham",
+        "mechanism": "Abraham's actions exposed Abimelech and his kingdom to a great sin",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "thou hast done deeds unto me that ought not to be done.",
+        "claim": "Abimelech said Abraham's actions toward him broke accepted standards of conduct.",
+        "actor": "Abimelech",
+        "action": "condemned the conduct of",
+        "object": "Abraham",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

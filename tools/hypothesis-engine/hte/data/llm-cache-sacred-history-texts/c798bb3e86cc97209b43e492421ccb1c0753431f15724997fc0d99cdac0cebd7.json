@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f70990e7960b46caab1b7162871e367c567c04e1487671ddccafbae8d04881da",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham called the name of his son that was born unto him, whom Sarah bare to him, Isaac.",
+        "claim": "Abraham named his newborn son Isaac",
+        "actor": "Abraham",
+        "action": "called the name",
+        "object": "his son",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "whom Sarah bare to him",
+        "claim": "Sarah gave birth to Isaac",
+        "actor": "Sarah",
+        "action": "bare",
+        "object": "his son",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

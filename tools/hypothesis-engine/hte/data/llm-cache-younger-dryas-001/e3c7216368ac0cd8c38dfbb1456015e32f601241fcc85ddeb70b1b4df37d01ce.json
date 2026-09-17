@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "838500fb783b3ade725d490193e05bb1ebef0e5bfc22e1ed6f33516d1e4f27d3",
+  "response": {
+    "expected_evidence": [
+      "geological: a continent-wide 'black mat' sedimentary layer (organic-rich, often wetland/algal) dated to ~12,900 cal BP marking the Pleistocene megafauna extinction horizon",
+      "geological: proposed impact markers within/at the base of the black mat layer \u2014 nanodiamonds, magnetic spherules, iridium/platinum anomalies, charcoal spikes indicating continental biomass burning",
+      "astronomical: ice-core geochemical anomalies (elevated ammonium, nitrate, platinum) coincident with YD onset; absence of a confirmed impact crater (expected under an airburst, not a ground impact)",
+      "astronomical/geological: cosmogenic isotope signals (10Be, 14C) suggestive of an extraterrestrial input, though these can also stem from solar/geomagnetic causes",
+      "material: archaeological discontinuity in Clovis-culture sites, sudden faunal turnover, and abandonment layers directly above/below the boundary",
+      "genetic: megafaunal population bottleneck or extinction signatures in ancient DNA; possible human population decline signals in North American lineages",
+      "model_prior: the published Younger Dryas Impact Hypothesis literature (Firestone et al. 2007 and successors), which remains contested in the geoscience community and should be treated as an unverified, disputed prior rather than settled fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis dates to ~10,950 BCE, essentially the Younger Dryas onset, so I evaluate it against the 'younger-dryas' period row rather than the unspecified generic period. For that period, geological (0.65) and astronomical (0.7) evidence channels are relatively favorable \u2014 sedimentary boundary layers, ice cores, and geochemical anomalies preserve well over millennia and have in fact been extensively sampled across North America. Material (0.35) and genetic (0.3) evidence are moderately detectable but more fragmentary given sparse Paleoindian archaeological density and poor ancient-DNA preservation this far back. Oral tradition (0.1) and textual (0.0) evidence are essentially non-existent this early, as expected. Given that black mat layers, spherules, nanodiamonds, and platinum anomalies have actually been reported by proponents at numerous sites, evidence of the type predicted by the hypothesis is not merely plausible but has been claimed to be found \u2014 though the causal interpretation (cosmic airburst vs. terrestrial/wetland processes) remains scientifically contested, with many geologists attributing the same markers to non-impact causes. This means the hypothesis could have survived to be evidenced, but the existence of candidate evidence does not resolve the underlying causal dispute. I set the blended detectability_adjustment at 0.55, weighting the strong geological/astronomical channels against the weaker material/genetic ones and treating the impact-hypothesis literature itself as a contested model_prior rather than confirmed fact."
+  }
+}

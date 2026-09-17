@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "727fa5a7f3c6a7f5d994e203732e70c13acac84caf5bf3995d65f16b4c1c931b",
+  "response": {
+    "expected_evidence": [
+      "Stratigraphic sediment core/sample sets from putative Younger Dryas Boundary (YDB) layers at multiple North American sites, available for independent re-sampling",
+      "Material microanalysis (TEM/SEM/Raman spectroscopy) of purported 'nanodiamonds' distinguishing true hexagonal/cubic nanodiamonds from misidentified artifacts (e.g., graphene, aromatized organic carbon, turbostratic carbon)",
+      "Geological control samples from strata above/below the YDB layer showing whether claimed nanodiamond concentrations are truly anomalous or within background noise",
+      "Independent replication studies from separate labs attempting to reproduce the original nanodiamond concentration spike",
+      "Correlated impact-proxy geological evidence (iridium/platinum anomalies, magnetic microspherules, impact glass) that would be expected to co-occur with a genuine airburst but whose absence or inconsistency supports refutation",
+      "Peer-reviewed scientific literature documenting failed replication, methodological critique, or reinterpretation of the original nanodiamond dataset",
+      "Astronomical/geochemical modeling assessing whether an airburst of the proposed scale is physically consistent with the claimed material signature"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis concerns the refutation of a claimed nanodiamond concentration anomaly tied to the Younger Dryas onset (~10,950 BCE), which places it in the younger-dryas period bucket. This is fundamentally a geological/material claim: nanodiamond signatures are preserved in sediment strata, and North American YDB layers have been widely sampled and are physically accessible for re-analysis, giving reasonably good survival odds (geological detectability 0.65, material 0.35 in the table). Unlike textual or oral evidence (near-zero for this pre-literate period), the relevant evidence class here is exactly the kind the table rates highest for this era \u2014 durable sedimentary/geological deposits and material microstructures \u2014 so absence of confirmation is unlikely to be purely a preservation artifact. Refutation-type hypotheses are particularly well-suited to detection because they only require failure to replicate an anomaly against control strata, not recovery of a rare positive signal, making them more robust to low detectability than confirmation-type impact hypotheses. Note: my recollection that this maps to real-world scientific debate over the Younger Dryas Impact Hypothesis (e.g., disputes over Firestone et al. 2007 nanodiamond claims) is drawn from model-prior/training knowledge, not from verified evidence text provided in this task, and should be treated as low-tier and unconfirmed. Averaging the material and geological detectability values (with some weight toward geological, since bulk stratigraphic sampling is the primary evidentiary pathway) yields an adjusted detectability of roughly 0.5, supporting that a genuine refutation (absence of a reproducible anomaly) could plausibly have been established and survived as documented science rather than being an artifact of poor preservation."
+  }
+}

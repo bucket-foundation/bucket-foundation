@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "7ece5cd02de200cedb2f40fe3f0a0e2497a6778bc584cee0a8240c9d7a1ec13d",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: an anomalous sediment layer at ~12,900 cal BP (the Younger Dryas boundary 'black mat') across North American sites, showing either a distinct volcanic tephra/ash horizon with matching geochemical signature, OR extraterrestrial impact/airburst proxies (platinum and iridium anomalies, magnetic and glassy microspherules, nanodiamonds) \u2014 note these are two different, largely incompatible signatures depending on whether the actor is truly volcanic or truly cosmic",
+      "astronomical/geological: a corresponding sulfate or ash spike in Greenland and Antarctic ice cores dated to ~10,950 BCE, distinguishing volcanic sulfate aerosol loading from cosmic-impact dust/soot signatures",
+      "material: a continent-wide charcoal/biomass-burning spike and disruption or abandonment horizon at Clovis-era archaeological sites coincident with the cooling onset",
+      "genetic: a North American megafaunal extinction/population-bottleneck signature and a human population genetic bottleneck dated to the YD onset",
+      "model_prior: existing paleoclimate/archaeological literature on the Younger Dryas Impact Hypothesis (Firestone et al. and successors) and on YD volcanic-forcing hypotheses, plus critiques disputing reproducibility of the proposed markers"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The Younger Dryas onset (~10,950 BCE) is one of the most intensively studied paleoclimate boundaries, with well-preserved ice-core, lake-sediment, and archaeological records across North America, so relevant geological (0.65) and astronomical/ice-core (0.7) proxies are highly likely to have survived and been searched for \u2014 and indeed the real-world Younger Dryas Impact Hypothesis debate shows this evidence class has been actively pursued and contested. Material (0.35) and genetic (0.3) traces are less directly diagnostic of a specific trigger mechanism and more prone to preservation gaps and multiple confounding causes (overkill, climate stress), so absence there is less informative. A notable issue with this specific hypothesis is internal incoherence: it names a 'volcanic-eruption' actor but a 'cosmic-airburst' mechanism, which are distinct and largely non-overlapping causal pathways in the literature (volcanic sulfate forcing vs. extraterrestrial impact/airburst proxies) \u2014 this looks like a hybridized or mis-specified hypothesis rather than a coherent single claim, which should temper confidence in any evidence gathered under it. Given the generally good preservation and active scientific scrutiny of this exact period/event, low detectability is not a strong excuse for absence of confirming impact-specific markers, though the volcanic-vs-cosmic ambiguity itself lowers how cleanly any found evidence could be attributed. This assessment relies partly on model-prior knowledge of the YDIH debate, which should be treated as unverified background rather than an established fact for this specific hypothesis instance."
+  }
+}

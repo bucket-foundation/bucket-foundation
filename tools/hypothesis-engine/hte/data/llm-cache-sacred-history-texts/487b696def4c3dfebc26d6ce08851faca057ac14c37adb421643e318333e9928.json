@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2fc9bab5158a5baaab9b0274062b71b03f1e28430cbf8febc482c4fdd1d726b9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses brought Aaron's sons, and put coats upon them, and girded them with girdles, and put bonnets upon them; as the LORD commanded Moses.",
+        "claim": "Moses clothed Aaron's sons with coats, girdles, and bonnets as commanded by the LORD",
+        "actor": "Moses",
+        "action": "brought, put, girded",
+        "object": "Aaron's sons, coats, girdles, bonnets",
+        "place": "",
+        "mechanism": "dressing/clothing",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

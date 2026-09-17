@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "987dc4333be3987fb330350a26fc158c44523bd520de5983c2398fb36af7eec0",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham planted a grove in Beersheba, and called there on the name of the LORD, the everlasting God.",
+        "claim": "Abraham planted a grove in Beersheba and called on the name of God there",
+        "actor": "Abraham",
+        "action": "planted a grove and called on the name of the LORD",
+        "object": "a grove",
+        "place": "Beersheba",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

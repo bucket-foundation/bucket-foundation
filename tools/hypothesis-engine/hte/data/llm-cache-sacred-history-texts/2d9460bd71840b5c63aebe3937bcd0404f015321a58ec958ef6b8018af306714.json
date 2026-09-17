@@ -1,0 +1,66 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d20d98d03e73a61ac13f58106f957e8f2b41da22e69578b4cf53d8ce6f528f7a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And when the children of Israel saw it",
+        "claim": "The children of Israel observed a substance",
+        "actor": "children of Israel",
+        "action": "saw",
+        "object": "it",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "they said one to another, It is manna",
+        "claim": "The children of Israel identified the substance as manna",
+        "actor": "they",
+        "action": "said",
+        "object": "manna",
+        "mechanism": "one to another",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "for they wist not what it was",
+        "claim": "The children of Israel did not know what the substance actually was",
+        "actor": "they",
+        "action": "wist not",
+        "object": "it",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Moses said unto them, This is the bread which the LORD hath given you to eat",
+        "claim": "Moses told them the substance was bread provided by the LORD",
+        "actor": "Moses",
+        "action": "said",
+        "object": "bread",
+        "mechanism": "unto them",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the bread which the LORD hath given you to eat",
+        "claim": "The LORD gave bread to the children of Israel",
+        "actor": "the LORD",
+        "action": "hath given",
+        "object": "bread",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

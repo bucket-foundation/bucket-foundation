@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "816958281ca83e5d1c0f5dc93d490c9edac3898b53520a324c7cfb0fdf3bf5f5",
+  "response": {
+    "expected_evidence": [
+      "Sediment core geochemistry from Lake Cuitzeo and other Mexican YD-boundary sites showing absence/failure-to-replicate of platinum, iridium, or osmium anomalies at the ~12,800 cal BP boundary",
+      "Independent lab re-analyses failing to confirm the nanodiamond (hexagonal lonsdaleite) concentrations originally reported by Israde-Alc\u00e1ntara et al. (2012) at Lake Cuitzeo",
+      "Charcoal/soot (biomass-burning proxy) records reinterpreted as consistent with normal regional fire regimes rather than a synchronous continent-wide impact-triggered burning event",
+      "Absence of a confirmed, dated impact crater or unambiguous shocked-quartz/spherule ejecta layer correlating to ~12,900-11,700 cal BP",
+      "Alternative geological/paleoclimate evidence (Lake Agassiz meltwater pulse timing, North Atlantic ice-rafted debris, Greenland ice-core dust/isotope records) offered as competing non-impact mechanisms for YD cooling onset",
+      "Astronomical/orbital-dynamics modeling papers arguing no near-Earth object population is consistent with a synchronous multi-site impact/airburst at this date",
+      "Genetic/faunal extinction chronology studies decoupling megafaunal decline timing from the proposed impact date, undermining the 'impact winter' causal chain",
+      "Published critical review/meta-analysis literature (post-2010s) explicitly stating the YDIH's Mexican evidence has not withstood independent scrutiny"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis is not about a primary cultural/historical event but about the status of a modern scientific controversy (the Younger Dryas Impact Hypothesis, YDIH) as applied to a specific Mexican locality (Lake Cuitzeo), where 'refuted' evidence would take the form of geochemical, sedimentological, and astronomical counter-analyses rather than direct human testimony. Using the 'younger-dryas' period row as the closest match to the -11000 to -10001 interval, the most load-bearing evidence kinds are geological (0.65) and astronomical (0.7) detectability, both comparatively high because sediment cores, ice cores, and crater/ejecta searches are physical, durable, and have in fact been actively re-sampled and published on in real scientific literature (e.g., failed replications of nanodiamond/platinum spikes at Cuitzeo, absence of a confirmed crater, alternative meltwater-pulse explanations). Material evidence (charcoal/soot reinterpretation, 0.35) and genetic/extinction chronology data (0.3) are moderately detectable but noisier and more contested. Textual (0.0), linguistic (0.05), oral_tradition (0.1), and iconographic (0.1) channels are essentially irrelevant/undetectable for this period and are not expected to contribute evidence either way \u2014 their near-zero scores should not be read as evidence against the hypothesis, since no textual or oral record from ~11,000 BCE could exist to begin with. Given that this is a live, ongoing debate in the geological/planetary-science literature with multiple published re-analyses (both supporting and refuting), the relevant evidence is plausible to have survived and been found via the geological and astronomical channels, while the overall low detectability in non-physical channels (linguistic, textual, oral, iconographic) appropriately explains why no corroborating cultural memory exists \u2014 that absence reflects channel limitation, not falsity of the refutation claim itself. I therefore suggest a moderate-to-high composite detectability of 0.55, weighted toward the strong geological/astronomical channels but discounted by the weak textual/linguistic/oral/iconographic channels and only moderate material/genetic reliability."
+  }
+}

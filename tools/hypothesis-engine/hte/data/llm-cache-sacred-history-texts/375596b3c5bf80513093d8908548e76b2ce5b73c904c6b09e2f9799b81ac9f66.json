@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "c6d6dda68e20f42310c899a291de929e4b7231da7fb7a035f464c10bf68c0c1f",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "8:6 And it came to pass at the end of forty days, that Noah opened the window of the ark which he had made:",
+        "claim": "At the end of forty days, Noah opened the window of the ark he had built.",
+        "actor": "Noah",
+        "action": "opened",
+        "object": "the window of the ark",
+        "place": "the ark",
+        "mechanism": "narrative statement in Genesis 8:6",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "8:7 And he sent forth a raven, which went forth to and fro, until the waters were dried up from off the earth.",
+        "claim": "Noah sent out a raven, which flew back and forth until the waters had dried up from the earth.",
+        "actor": "Noah",
+        "action": "sent forth",
+        "object": "a raven",
+        "place": "the ark",
+        "mechanism": "narrative statement in Genesis 8:7",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

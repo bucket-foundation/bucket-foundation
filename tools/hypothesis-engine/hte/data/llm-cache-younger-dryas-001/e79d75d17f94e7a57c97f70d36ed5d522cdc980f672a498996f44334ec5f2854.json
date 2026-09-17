@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f61a10ef40ac7526749e62641e762e68c47bfb0eac53332b4c107a0fab1e8e9b",
+  "response": {
+    "expected_evidence": [
+      "geological: absence or non-reproducibility of iridium/platinum anomalies, magnetic spherules, and nanodiamonds at Younger Dryas boundary (YDB) layers across independently sampled sites on multiple continents",
+      "geological/astronomical: absence of a confirmed impact crater of appropriate age and size, or failure of candidate craters (e.g., Hiawatha) to date to the YD boundary",
+      "geological: independent stratigraphic dating showing the 'black mat' and platinum spike are not synchronous across sites, undermining a single synchronous impact event",
+      "geological: alternative terrestrial explanations for purported impact markers (e.g., wildfire soot, contamination, misidentified framboidal magnetite)",
+      "material (archaeological): continuity of Clovis/Paleoindian lithic technocomplexes across the YD boundary without a discontinuity attributable to a catastrophic impact",
+      "astronomical: modeling/statistical critiques showing an airburst or impact of the proposed scale is physically implausible given known impactor flux",
+      "published scientific literature (meta-scientific record, not ancient text): peer-reviewed replication failures and rebuttals of YDIH markers constituting the refutation evidence itself",
+      "genetic/paleontological: megafauna extinction timing showing gradual decline consistent with climate/human-hunting causes rather than a single abrupt impact event"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis concerns the *refutation* of the Younger Dryas Impact Hypothesis, so the operative evidence is largely modern geoscientific re-analysis of YD boundary sediments rather than evidence from human witnesses or writing at ~10,800-11,000 cal BP (a pre-literate period, hence textual detectability=0.0, correctly predicting no ancient textual record). The strongest channels are geological (0.65) and astronomical/impact-modeling (0.7) under the younger-dryas row, both comparatively high because sedimentary/stratigraphic sections and crater surveys are physically durable and have been extensively sampled at dozens of sites worldwide, with results already published. Material archaeological (0.35) and genetic/paleontological (0.30) evidence are moderately detectable and also well studied for this interval. Oral tradition (0.10) and iconographic (0.10) evidence are essentially inapplicable this far back and unnecessary for a refutation resting on physical/geochemical science. I set the aggregate adjustment (0.6) slightly above a simple average of all rows, weighting toward the geological/astronomical channels that actually carry the refutation argument, since the relevant samples demonstrably survived and have already been analyzed by modern researchers. Note: my characterization of the state of the YDIH scientific debate (replication failures, candidate crater issues) is model-prior knowledge from training, not verified against the evidence text supplied in this pipeline, and should be checked against the pipeline's actual evidence records before being treated as established fact."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "f039171a344b297e6ef77e3fcf30090df42d38138c235c74c86368c8fea067b6",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Abraham lifted up his eyes, and looked, and behold behind him a ram caught in a thicket by his horns",
+        "claim": "In the narrative, Abraham looks up and sees a ram behind him with its horns caught in a thicket.",
+        "actor": "Abraham",
+        "action": "saw",
+        "object": "a ram caught in a thicket by its horns",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and Abraham went and took the ram, and offered him up for a burnt offering in the stead of his son.",
+        "claim": "In the narrative, Abraham takes the ram and sacrifices it as a burnt offering instead of his son.",
+        "actor": "Abraham",
+        "action": "offered as a burnt offering",
+        "object": "the ram, in place of his son",
+        "mechanism": "substitution: the ram is sacrificed instead of the son",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "d8f48832003a508ac4f926b18e6f449b4f112e571688bd387d6b773cc070c137",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses in the wilderness of Sinai, in the tabernacle of the congregation, on the first day of the second month, in the second year after they were come out of the land of Egypt, saying,",
+        "claim": "The text says a divine command came to Moses in the tabernacle of the congregation in the wilderness of Sinai. It dates this to the first day of the second month of the second year after the Israelites left Egypt. This is a relative date inside the story, not a calendar year.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "place": "wilderness of Sinai (tabernacle of the congregation)",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "divine command"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "Take ye the sum of all the congregation of the children of Israel, after their families, by the house of their fathers, with the number of their names, every male by their polls;",
+        "claim": "The text says Moses was told to count the whole congregation of Israel. The count was to go by families and fathers' houses, recording names and counting every male one by one.",
+        "actor": "Moses",
+        "action": "take the sum (census)",
+        "object": "all the congregation of the children of Israel, every male",
+        "place": "wilderness of Sinai",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "census organized by family and paternal house, recorded by name and head count"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "From twenty years old and upward, all that are able to go forth to war in Israel: thou and Aaron shall number them by their armies.",
+        "claim": "The text says the count covered males aged twenty and older who were fit for war. Moses and Aaron were to number them by their armies, so the census was meant to count fighting men.",
+        "actor": "Moses and Aaron",
+        "action": "number",
+        "object": "males twenty years old and upward able to go to war",
+        "place": "wilderness of Sinai",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "counting men of fighting age, grouped by army units"
+      }
+    ]
+  }
+}

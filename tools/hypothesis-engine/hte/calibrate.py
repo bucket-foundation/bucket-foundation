@@ -36,6 +36,7 @@ from __future__ import annotations
 
 import copy
 import json
+import math
 import random
 from dataclasses import dataclass
 from itertools import product
@@ -55,6 +56,19 @@ from .timeline import Interval, RESOLUTION_WIDTH_YEARS, Resolution, auto_resolut
 
 DEFAULT_MATCH_THRESHOLD = 0.6
 DEFAULT_KFOLD_K = 5
+
+
+def wilson_interval(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    """The 95% Wilson score interval for `k` successes out of `n` trials
+    (STATISTICAL-AUDIT-2026-09-15.md: "coverage 0.30 has a Wilson
+    interval near 0.11 to 0.60"). `(0.0, 0.0)` when `n == 0`."""
+    if n == 0:
+        return (0.0, 0.0)
+    phat = k / n
+    denom = 1 + z * z / n
+    center = phat + z * z / (2 * n)
+    margin = z * math.sqrt(phat * (1 - phat) / n + z * z / (4 * n * n))
+    return max(0.0, (center - margin) / denom), min(1.0, (center + margin) / denom)
 
 
 def holdout_by_discovery_date(
@@ -240,6 +254,7 @@ def run_holdout(
     n_bins: int = 10,
     match_threshold: float = DEFAULT_MATCH_THRESHOLD,
     corpus_name: str = "this corpus",
+    freeze_vocab: bool = False,
 ) -> dict[str, Any]:
     """The discovery-date holdout (`main.tex` §9) over every ground-truth
     event in `corpus`, at `cutoff_years`: every event's own dated fact is
@@ -279,18 +294,26 @@ def run_holdout(
     """
     pre_events, post_events = holdout_by_discovery_date(corpus.ground_truth, cutoff_years)
     ev_by_id = {e.id: e for e in corpus.evidence}
-    pre_evidence = [ev_by_id[g.id] for g in pre_events if g.id in ev_by_id]
+    # Deep copies, as `holdout_kfold` takes them: the candidates are linked
+    # against the pre-cutoff items here, so a candidate's own credence reads
+    # its evidence rather than its prior alone (before this, `hte calibrate`
+    # scored every candidate at `P = a` unless a runner had linked the items).
+    pre_evidence = [copy.deepcopy(ev_by_id[g.id]) for g in pre_events if g.id in ev_by_id]
+    vocab = corpus.vocab.frozen_at(cutoff_years) if freeze_vocab else corpus.vocab
+    n_frozen = sum(len(v) for v in corpus.vocab.by_slot.values()) - sum(len(v) for v in vocab.by_slot.values())
     span_start, bin_width, resolution = _corpus_time_binning(corpus)
 
     candidates: dict[tuple[int, int, int], Hypothesis] = {}
     for item in pre_evidence:
-        hyp = _placement_from_item(item, corpus.vocab, span_start=span_start, bin_width=bin_width)
+        hyp = _placement_from_item(item, vocab, span_start=span_start, bin_width=bin_width)
         if hyp is not None:
             candidates.setdefault(_candidate_key(hyp), hyp)
     candidate_list = list(candidates.values())
+    link_evidence(pre_evidence, candidate_list, vocab, threshold=match_threshold)
+    n_linked = sum(1 for e in pre_evidence if e.supports or e.refutes)
 
     def projected(h: Hypothesis) -> float:
-        return belief.score(h, pre_evidence, corpus.vocab, constants=constants).project()
+        return belief.score(h, pre_evidence, vocab, constants=constants).project()
 
     n_covered = 0
     predictions: list[dict[str, Any]] = []
@@ -298,7 +321,7 @@ def run_holdout(
         target = ev_by_id.get(g.id)
         if target is None:
             continue
-        matches = [h for h in candidate_list if _matches_event(target, h.content, corpus.vocab, threshold=match_threshold)]
+        matches = [h for h in candidate_list if _matches_event(target, h.content, vocab, threshold=match_threshold)]
         true_matches = [h for h in matches if _interval_overlaps_year(h.content.interval, g.year, resolution)]
         if not true_matches:
             continue
@@ -326,7 +349,11 @@ def run_holdout(
         "match_threshold": match_threshold,
         "n_holdout_events": n_holdout,
         "n_covered_events": n_covered,
+        "freeze_vocab": freeze_vocab,
+        "n_frozen_concepts": n_frozen,
+        "n_linked_pre_cutoff_items": n_linked,
         "coverage_of_truth": coverage_of_truth,
+        "coverage_of_truth_ci": wilson_interval(n_covered, n_holdout),
         "coverage_note": _low_coverage_note(corpus, n_covered, n_holdout, coverage_of_truth, corpus_name=corpus_name),
         "brier_score": brier,
         "calibration_curve": calibration_curve(predictions, n_bins=n_bins),
@@ -336,6 +363,85 @@ def run_holdout(
 
 
 _LOW_COVERAGE_THRESHOLD = 0.5
+
+
+def run_vindication(
+    corpus: Corpus,
+    constants: Constants,
+    *,
+    lift_floor: float = 0.25,
+    match_threshold: float = DEFAULT_MATCH_THRESHOLD,
+) -> dict[str, Any]:
+    """The false-negative test the discovery-date holdout cannot run
+    (`STATISTICAL-AUDIT-2026-09-15.md`, Evaluation: calibration against
+    the literature's record rewards agreement with the null). Two event
+    classes from `corpus.ground_truth`: a *vindicated* event carries
+    `acceptance_year`, and is read with only the evidence recorded before
+    that year (`discovery_year < acceptance_year`), the way `run_holdout`
+    reads a cutoff; a *control* (`control=True`, an exploded claim) is
+    read with every item, refutations included. An event counts as
+    *lifted* when its best true reading (a candidate naming its slots and
+    overlapping its year, `run_holdout`'s own matcher) has evidence-only
+    lift `b - d >= lift_floor` and no wrong-interval competitor's lift
+    exceeds it. `vindication_rate` is lifted over covered vindicated
+    events; `false_alarm_rate` is lifted over covered controls; both carry
+    Wilson intervals. Uncovered events (no candidate at all) are listed
+    with `covered=False` and excluded from the rates, as `run_holdout`
+    excludes them from Brier."""
+    ev_by_id = {e.id: e for e in corpus.evidence}
+    span_start, bin_width, resolution = _corpus_time_binning(corpus)
+    rows: list[dict[str, Any]] = []
+
+    def lift_of(h: Hypothesis, evidence: list[EvidenceItem]) -> float:
+        return belief.score(h, evidence, corpus.vocab, constants=constants).lift()
+
+    for g in sorted(corpus.ground_truth, key=lambda g: (g.discovery_year, g.id)):
+        if g.acceptance_year is None and not g.control:
+            continue
+        target = ev_by_id.get(g.id)
+        if target is None:
+            continue
+        cutoff = g.acceptance_year if not g.control else None
+        # Deep copies, as `holdout_kfold` takes them: `link_evidence` writes
+        # `supports`/`refutes` in place, and each event reads its own slice.
+        evidence = [
+            copy.deepcopy(ev_by_id[e.id]) for e in corpus.ground_truth
+            if e.id in ev_by_id and (cutoff is None or e.discovery_year < cutoff)
+        ]
+        candidates: dict[tuple[int, int, int], Hypothesis] = {}
+        for item in evidence:
+            hyp = _placement_from_item(item, corpus.vocab, span_start=span_start, bin_width=bin_width)
+            if hyp is not None:
+                candidates.setdefault(_candidate_key(hyp), hyp)
+        candidate_list = list(candidates.values())
+        link_evidence(evidence, candidate_list, corpus.vocab, threshold=match_threshold)
+        matches = [h for h in candidate_list if _matches_event(target, h.content, corpus.vocab, threshold=match_threshold)]
+        true_matches = [h for h in matches if _interval_overlaps_year(h.content.interval, g.year, resolution)]
+        wrong_matches = [h for h in matches if not _interval_overlaps_year(h.content.interval, g.year, resolution)]
+        row: dict[str, Any] = {
+            "event_id": g.id, "event_label": g.label, "kind": "control" if g.control else "vindicated",
+            "cutoff": cutoff, "covered": bool(true_matches), "lift_true": None, "lift_wrong": None, "lifted": None,
+        }
+        if true_matches:
+            row["lift_true"] = max(lift_of(h, evidence) for h in true_matches)
+            row["lift_wrong"] = max((lift_of(h, evidence) for h in wrong_matches), default=None)
+            row["lifted"] = row["lift_true"] >= lift_floor and (row["lift_wrong"] is None or row["lift_true"] > row["lift_wrong"])
+        rows.append(row)
+
+    def rate(kind: str) -> tuple[int, int, float | None, tuple[float, float]]:
+        covered = [r for r in rows if r["kind"] == kind and r["covered"]]
+        k = sum(1 for r in covered if r["lifted"])
+        n = len(covered)
+        return k, n, (k / n if n else None), wilson_interval(k, n)
+
+    k_v, n_v, rate_v, ci_v = rate("vindicated")
+    k_c, n_c, rate_c, ci_c = rate("control")
+    return {
+        "lift_floor": lift_floor,
+        "n_vindicated": n_v, "n_lifted": k_v, "vindication_rate": rate_v, "vindication_rate_ci": ci_v,
+        "n_controls": n_c, "n_false_alarms": k_c, "false_alarm_rate": rate_c, "false_alarm_rate_ci": ci_c,
+        "rows": rows,
+    }
 
 
 def _low_coverage_note(
@@ -648,6 +754,7 @@ def holdout_kfold(
             "n_holdout_events": n_targets,
             "n_covered_events": n_covered,
             "coverage_of_truth": coverage,
+            "coverage_of_truth_ci": wilson_interval(n_covered, n_targets),
             "brier_score": brier_score([p["predicted"] for p in fold_predictions], [p["observed"] for p in fold_predictions]),
             "calibration_curve": calibration_curve(fold_predictions, n_bins=n_bins),
             "predictions": fold_predictions,
@@ -660,6 +767,7 @@ def holdout_kfold(
         "n_holdout_events": n_targets_total,
         "n_covered_events": n_covered_total,
         "coverage_of_truth": (n_covered_total / n_targets_total) if n_targets_total else None,
+        "coverage_of_truth_ci": wilson_interval(n_covered_total, n_targets_total),
         "brier_score": brier_score([p["predicted"] for p in pooled_predictions], [p["observed"] for p in pooled_predictions]),
         "calibration_curve": calibration_curve(pooled_predictions, n_bins=n_bins),
     }
@@ -674,6 +782,7 @@ def holdout_kfold(
         "n_holdout_events": n_targets_total,
         "n_covered_events": n_covered_total,
         "coverage_of_truth": aggregate["coverage_of_truth"],
+        "coverage_of_truth_ci": aggregate["coverage_of_truth_ci"],
         "coverage_note": None,
         "brier_score": aggregate["brier_score"],
         "calibration_curve": aggregate["calibration_curve"],
@@ -723,6 +832,7 @@ def run_calibration(
     n_bins: int = 10,
     resolution: Resolution | None = None,
     corpus_name: str = "this corpus",
+    freeze_vocab: bool = False,
 ) -> dict[str, Any]:
     """`choose_holdout_mode(corpus)`, then the matching holdout
     (`run_holdout` for `"discovery_date"`, `holdout_kfold` for
@@ -744,6 +854,7 @@ def run_calibration(
         result = run_holdout(
             corpus, constants, cutoff_years=cutoff, match_threshold=match_threshold,
             n_bins=n_bins, corpus_name=corpus_name,
+            freeze_vocab=freeze_vocab,
         )
     else:
         result = holdout_kfold(
@@ -1095,7 +1206,8 @@ def write_calibration(
         f"Cutoff year: {result.get('cutoff_years')}",
         f"Held-out events: {result.get('n_holdout_events')}",
         f"Covered by a matching pre-cutoff placement: {result.get('n_covered_events')} "
-        f"(coverage of truth: {result.get('coverage_of_truth')})",
+        f"(coverage of truth: {result.get('coverage_of_truth')}, 95% Wilson interval "
+        f"{result.get('coverage_of_truth_ci')})",
         f"Brier score: {result.get('brier_score')}",
         "",
     ]
@@ -1118,11 +1230,11 @@ def write_calibration(
 
     folds = result.get("folds")
     if folds:
-        lines += ["", "## Per-fold", "", "| Fold | Held out | Covered | Coverage of truth | Brier score |", "|---|---|---|---|---|"]
+        lines += ["", "## Per-fold", "", "| Fold | Held out | Covered | Coverage of truth | 95% Wilson CI | Brier score |", "|---|---|---|---|---|---|"]
         for f in folds:
             lines.append(
                 f"| {f['fold']} | {f['n_holdout_events']} | {f['n_covered_events']} | "
-                f"{f['coverage_of_truth']} | {f['brier_score']} |"
+                f"{f['coverage_of_truth']} | {f.get('coverage_of_truth_ci')} | {f['brier_score']} |"
             )
 
     fit = result.get("fit")
@@ -1141,7 +1253,7 @@ def write_calibration(
 
 __all__ = [
     "holdout_by_discovery_date", "run_holdout", "holdout_kfold", "choose_holdout_mode",
-    "run_calibration", "fit_constants", "write_calibration",
+    "run_calibration", "fit_constants", "write_calibration", "wilson_interval",
     "brier_score", "calibration_curve", "DEFAULT_MATCH_THRESHOLD", "DEFAULT_KFOLD_K",
     "evaluate_pooled", "fit_constants_pooled", "build_pooled_fit_corpora",
     "DEFAULT_MIN_SYNTH_COVERAGE", "DEFAULT_COVERAGE_PENALTY_WEIGHT",

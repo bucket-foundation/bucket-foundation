@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "49d9276d407e2019d40f5f176bd4168bc8a4cfa712b270c9c870954c1e9d8820",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "sanctify them to day and to morrow, and let them wash their clothes",
+        "claim": "The people must sanctify themselves and wash their clothes today and tomorrow in preparation",
+        "actor": "the people",
+        "action": "wash",
+        "object": "their clothes",
+        "place": "",
+        "mechanism": "washing their clothes",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "for the third day the LORD will come down in the sight of all the people upon mount Sinai",
+        "claim": "On the third day, the LORD will appear visibly to all the people at Mount Sinai",
+        "actor": "the LORD",
+        "action": "come down",
+        "object": "",
+        "place": "mount Sinai",
+        "mechanism": "in the sight of all the people",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

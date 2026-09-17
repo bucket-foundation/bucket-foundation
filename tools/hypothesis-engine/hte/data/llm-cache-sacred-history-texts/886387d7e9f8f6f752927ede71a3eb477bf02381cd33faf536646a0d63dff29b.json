@@ -1,0 +1,43 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "54d0c8c93acb877bb91de36e31a3709848df62143f65f26648d4f7dd7b5e4596",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD said unto Moses",
+        "claim": "The LORD communicated directly with Moses through speech",
+        "actor": "The LORD",
+        "action": "said",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Thus thou shalt say unto the children of Israel",
+        "claim": "Moses was instructed to speak to the children of Israel",
+        "actor": "Moses",
+        "action": "shalt say",
+        "object": "the children of Israel",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Ye have seen that I have talked with you from heaven",
+        "claim": "The LORD claims to have communicated with the children of Israel from heaven",
+        "actor": "The LORD",
+        "action": "talked",
+        "object": "the children of Israel",
+        "place": "heaven",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

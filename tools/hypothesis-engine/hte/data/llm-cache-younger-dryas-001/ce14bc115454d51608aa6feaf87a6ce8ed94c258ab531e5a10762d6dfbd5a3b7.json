@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "5bf0489dd97e4a54768721ce8da2588b54f8cfd7aad522dcf8fb8ab08b0b50d4",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: platinum, iridium and/or nanodiamond enrichment layer at the Younger Dryas boundary (YDB) horizon in lake/bog sediment cores, notably at Lake Cuitzeo and other Mexican basins (model-prior: this is the empirical core of the published Younger Dryas Impact Hypothesis literature, e.g. Israde-Alc\u00e1ntara et al. 2012)",
+      "geological: 'black mat' organic-rich sediment layer marking abrupt ecological disruption at ~12,900 cal BP",
+      "geological: magnetic/glassy spherules, melt-glass, and charcoal/soot spikes consistent with airburst thermal pulse rather than a crater (airbursts typically leave no impact crater)",
+      "material: disruption or discontinuity in Clovis-era/Paleoindian lithic assemblages and site occupation in the region",
+      "material/genetic: megafaunal extinction signal (bone beds, isotopic or ancient-DNA extinction/bottleneck evidence) coincident with the onset date",
+      "astronomical: cosmic-ray-produced isotope anomalies (e.g., extraterrestrial He-3, shocked quartz) or ice-core/tree-ring proxies for a coeval airburst/impact event",
+      "oral_tradition/iconographic: speculative later flood- or fire-from-sky myths sometimes invoked by proponents, but these are far removed in time and low-confidence links (model-prior, contested)",
+      "textual: none expected \u2014 predates writing entirely"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "This maps most naturally onto the 'younger-dryas' period row rather than 'upper-paleolithic', since the interval (-10950) is the YD onset itself, and the hypothesis is a specific, well-known (though contested) proposal \u2014 the Younger Dryas Impact Hypothesis \u2014 for which real geological work exists specifically in Mexico (Lake Cuitzeo core studies reporting platinum/nanodiamond/spherule anomalies). Geological detectability is the dominant plausible channel (table value 0.65) since an airburst (unlike a cratering impact) primarily leaves sedimentary/geochemical proxies rather than a crater, structural, or astronomical-observational record. Material (0.35) and genetic (0.3) evidence via megafaunal extinction and Paleoindian site disruption are secondary but plausible. Textual (0.0) is correctly near-zero since writing did not exist. Oral tradition (0.1) and iconographic (0.1) evidence are essentially non-detectable at this remove and any claimed links (e.g., to later flood myths) are speculative model-prior associations, not verified evidence, so their absence should not be read as strong disconfirmation. Astronomical detectability is nominally high in the table (0.7) but the pathway is indirect (isotopic/ice-core proxies) rather than direct sky-observation records, since no human observational record from this era survives. Weighting toward the geological channel as the realistic primary evidence source, but discounting because much of the published YDB geochemical evidence has been independently disputed/failed to replicate at some sites, I set the overall detectability adjustment to 0.55 \u2014 evidence of this kind is plausible to find and has, per model-prior recall, actually been sought and partially reported in Mexico, but its interpretation remains scientifically contested, so a genuine absence or ambiguity of confirmed evidence should be weighed as likely reflecting this contested/low-signal detectability rather than as strong proof the hypothesis is false."
+  }
+}

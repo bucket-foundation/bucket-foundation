@@ -1,0 +1,17 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "54324d3a5b502baf0977905b9d505c4af243dacc1b0a410f08dc1862e2c452a3",
+  "response": {
+    "expected_evidence": [
+      "Geological: platinum/iridium/palladium anomaly spike within a narrow ice-core layer dated to ~12,900 cal BP (Younger Dryas onset), replicated across multiple Greenland cores (e.g. GISP2, GRIP, NEEM)",
+      "Astronomical/geochemical: associated markers of an airburst or impact - nanodiamonds, magnetic/glassy spherules, meltglass, elevated iridium in the same stratigraphic horizon, ideally cross-matched with non-ice terrestrial sites (Younger Dryas Boundary layer)",
+      "Material/archaeological: coincident disruption in nearby human occupation layers (e.g. Clovis-age sites in North America) or megafaunal extinction horizons at the same date",
+      "Genetic: population bottleneck or extinction signatures in megafauna/human lineages dated to the same interval",
+      "Model-prior: existing published claims (e.g. Firestone et al. 2007 Younger Dryas Impact Hypothesis; Petaev et al. 2013 Greenland platinum anomaly) proposing exactly this platinum spike, which is itself a low-tier unverified recollection until checked against the evidence text"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.62,
+    "rationale": "The interval [-10950,-10950] (~12,900 cal BP) corresponds to the Younger Dryas onset boundary, so the 'younger-dryas' detectability row is the appropriate reference despite the period field being left unspecified. For a platinum/impact-marker anomaly, the relevant evidence kinds are primarily geological (0.65) and astronomical (0.70), both scored high in this table because polar ice sheets and layered sediments are excellent, well-preserved, high-resolution archives that are routinely cored and geochemically analyzed - a real anomaly of this kind would very plausibly survive and be detected with modern ICP-MS/ultra-trace techniques, and indeed a Greenland platinum spike at this date has been reported in the literature (model-prior, unverified against the given evidence text). Corroborating material evidence (0.35) and genetic evidence (0.3) are much less reliable at this age due to poor Paleolithic-era preservation and site destruction, and textual/oral/iconographic evidence (0.0-0.1) are essentially unattainable since writing and most transmissible oral/iconographic traditions postdate this event by many millennia. Because the specific claim rests on ice-core geochemistry - the best-preserved and highest-detectability record type available for this period - a corroborating signal, if real, was reasonably likely to survive and be found; a low detectability score would not by itself explain non-detection here. Overall I weight the composite detectability toward the geological/astronomical end (~0.6-0.65) rather than the lower material/genetic figures, since the hypothesis's evidentiary basis (platinum-anomaly) sits squarely in the high-detectability categories, while still discounting slightly for the reproducibility disputes and contested corroboration status surrounding this specific claim in the actual scientific record."
+  }
+}

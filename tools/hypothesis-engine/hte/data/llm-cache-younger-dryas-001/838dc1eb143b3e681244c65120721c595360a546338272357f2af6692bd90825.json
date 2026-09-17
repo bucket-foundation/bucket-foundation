@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "ec49380353bd5920090a8aba31b97fab4374238424a7d10cb7eefbf6697b7d40",
+  "response": {
+    "expected_evidence": [
+      "Geological/ice-core: anomalous platinum, iridium, or other platinum-group-element spikes in Greenland ice cores (e.g., GISP2/GRIP/NEEM) precisely dated to ~12,800 cal BP / 10,850 BCE",
+      "Geological: a continent-spanning 'black mat' or Younger Dryas Boundary (YDB) sediment layer containing nanodiamonds, magnetic/glassy spherules, and elevated soot/charcoal consistent with continent-scale biomass burning ('impact winter' signature)",
+      "Astronomical/geological: an identifiable impact crater or structure beneath or near the Greenland ice sheet (e.g., candidate structures like Hiawatha crater) with an age matching 10,850 BCE, plus shocked quartz or impact glass",
+      "Astronomical: independent confirmation of a large bolide/comet fragmentation event via cosmogenic isotopes (Be-10, C-14 spike) or meteoritic debris in the same stratigraphic horizon",
+      "Material/archaeological: abrupt discontinuity in Clovis-era and contemporaneous occupation layers, widespread fire-related deposits, and last-appearance datums of megafaunal remains clustering tightly at this date across multiple sites",
+      "Genetic: population bottleneck or extinction-pulse signatures in ancient DNA of North American/Eurasian megafauna dated to this interval",
+      "Oral tradition/iconographic (very weak expected signal): possible cometary or catastrophe motifs in later Paleolithic/early Holocene art or much-later oral traditions, though such links would be highly speculative and hard to date"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "This hypothesis corresponds to the well-known 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors), which I recognize from training as model-prior, not from documents provided in this session. The interval -10850 aligns with the Younger Dryas onset (~12.8 ka cal BP), so I map the period to 'younger-dryas' rather than the unspecified label. Because the hypothesis explicitly names the Greenland ice sheet as the locus of evidence, it points to an unusually high-fidelity archive: annually layered ice cores with strong chronological control, which is why the table's geological (0.65) and astronomical (0.70) detectability scores for this period are already comparatively high. Unlike most prehistoric hypotheses, this one is *not* primarily a case of poor preservation limiting testability \u2014 ice cores, YDB sediment sequences, and crater surveys have actually been searched, and specific claimed signals (platinum anomalies, nanodiamonds, magnetic spherules, and a candidate crater such as Hiawatha) have been reported by proponents. However, per my training-derived recollection, much of this evidence has been contested or failed independent replication (e.g., disputes over nanodiamond/platinum reproducibility, and radiometric dating suggesting the Hiawatha structure is far older than 10,850 BCE), so absence of firm corroboration here likely reflects genuine scientific disagreement/falsification risk rather than low detectability. I nudge the overall detectability adjustment upward from the raw table average (which is pulled down by near-zero textual/linguistic/oral scores that are largely irrelevant to this claim) to 0.55, reflecting that the most diagnostic evidence types (geological ice-core stratigraphy, astronomical/crater evidence) are genuinely well-preserved and searchable for this specific place and period, even though weaker evidence classes (oral tradition, iconography, genetics of a single extinction pulse) remain poorly detectable and should not be weighted heavily against the hypothesis."
+  }
+}

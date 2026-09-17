@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "fa957dbfafa884274a79499386d128c71adad1c162892243c4d14c5513a7ea07",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And when Moses' father in law saw all that he did to the people",
+        "claim": "Moses' father-in-law observed Moses performing judicial work",
+        "actor": "Moses' father in law",
+        "action": "saw",
+        "object": "all that he did to the people",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "he said, What is this thing that thou doest to the people? why sittest thou thyself alone, and all the people stand by thee from morning unto even?",
+        "claim": "Moses' father-in-law questioned why Moses alone bore the burden of judging the people",
+        "actor": "Moses' father in law",
+        "action": "said/asked",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Because the people come unto me to enquire of God",
+        "claim": "The people came to Moses to inquire of God",
+        "actor": "the people",
+        "action": "come unto",
+        "object": "me",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "When they have a matter, they come unto me",
+        "claim": "When disputes arose, the people came to Moses",
+        "actor": "they (the people)",
+        "action": "come unto",
+        "object": "me",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and I judge between one and another",
+        "claim": "Moses rendered judgment between disputing parties",
+        "actor": "I (Moses)",
+        "action": "judge",
+        "object": "between one and another",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "and I do make them know the statutes of God, and his laws",
+        "claim": "Moses instructed the people in God's statutes and laws",
+        "actor": "I (Moses)",
+        "action": "make them know",
+        "object": "the statutes of God, and his laws",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

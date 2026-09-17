@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "14e98b33b6882ae9a28fe220cf04df1b51fe3f425f702f05c17aca0914adf9c6",
+  "response": {
+    "expected_evidence": [
+      "Geological: a synchronous ~12,800 cal BP boundary layer across multiple continents showing anomalous concentrations of platinum, iridium, or other extraterrestrial-associated elements",
+      "Geological: nanodiamonds, magnetic microspherules, and shocked/melted quartz grains in dated Younger Dryas onset sediments (lake cores, loess, ice cores)",
+      "Geological/ice-core: spikes in ammonium, nitrate, black carbon, and sulfate in Greenland/Antarctic ice cores indicating a hemispheric or global biomass-burning event at YD onset",
+      "Material/archaeological: widespread charcoal and soot layers ('black mat' horizons) at multiple sites correlating with disruption of Clovis-era and other Upper Paleolithic occupation layers",
+      "Material/paleontological: abrupt megafaunal extinction/decline signatures stratigraphically tied to the same boundary layer",
+      "Astronomical: identification of a plausible impactor source (crater, airburst structure, or comet-fragment trail) or corroborating cosmic-dust flux anomaly",
+      "Genetic: population bottleneck signals in megafaunal and early human lineages dating to ~12.8 ka",
+      "Oral tradition/iconographic: speculative, low-confidence candidate motifs (e.g., catastrophe/fire-from-sky narratives) - not expected to be diagnostic given pre-literate context"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The Younger Dryas onset (~12,800 cal BP) falls in a period with comparatively strong sedimentary and cryospheric preservation: continuous, well-dated lake, marine, loess, and ice-core archives exist across many continents, giving geological (0.65) and astronomical (0.7) detectability scores that are actually higher than for most Upper Paleolithic evidence classes, and material evidence (0.35) is moderate given known Clovis-era archaeological visibility. This means that if a synchronous cosmic-impact/biomass-burning event of the claimed magnitude occurred, corroborating geochemical markers (platinum/iridium anomalies, nanodiamonds, spherules, ice-core biomass-burning proxies) should be detectable and reproducible across independently sampled sites worldwide - and indeed this is exactly the evidence proponents (e.g., the original YDB impact hypothesis papers) have claimed to find. However, numerous independent replication attempts at many of the same sites have failed to reproduce the platinum, nanodiamond, and spherule signals, and no impact crater or unambiguous extraterrestrial proxy has been confirmed at the required continental scale. Because detectability for the relevant evidence classes (geological, astronomical) is moderate-to-high rather than low, the persistent absence/non-replication of confirmatory evidence is better explained by the hypothesis being weakly supported or likely false than by an intrinsic inability to preserve or find such evidence. Genetic and material lines of evidence are more equivocal (moderate detectability), so partial ambiguity there is more forgivable, but the core geochemical/geological claims should have been robustly detectable if true. Textual, linguistic, oral_tradition, and iconographic evidence are essentially non-diagnostic for this period (near-zero to very low detectability) and their absence carries no evidential weight either way. Model-prior note: my characterization of the YDB hypothesis as heavily disputed/non-replicated in the broader scientific literature is drawn from training-derived background knowledge (model-prior, unverified against the evidence text provided) and should be treated as a low-tier claim pending independent confirmation."
+  }
+}

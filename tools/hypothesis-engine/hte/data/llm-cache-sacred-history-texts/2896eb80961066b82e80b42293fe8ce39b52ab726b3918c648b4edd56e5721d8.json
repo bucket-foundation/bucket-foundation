@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "2b88ea4d4588a90021e981e86db87d82d910edbe47029be95a81fbecde68e6e0",
+  "response": {
+    "items": [
+      {
+        "quote": "And Moses went out to meet his father in law",
+        "claim": "Moses went out to meet his father-in-law",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "Moses",
+        "action": "went out to meet",
+        "object": "his father in law",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "and did obeisance, and kissed him",
+        "claim": "Moses performed obeisance and kissed his father-in-law",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "",
+        "action": "did obeisance, and kissed",
+        "object": "him",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "and they asked each other of their welfare",
+        "claim": "They inquired about each other's welfare",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "they",
+        "action": "asked",
+        "object": "each other of their welfare",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "quote": "and they came into the tent",
+        "claim": "They entered the tent",
+        "kind": "textual",
+        "tier": "T5",
+        "actor": "they",
+        "action": "came",
+        "object": "",
+        "place": "the tent",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

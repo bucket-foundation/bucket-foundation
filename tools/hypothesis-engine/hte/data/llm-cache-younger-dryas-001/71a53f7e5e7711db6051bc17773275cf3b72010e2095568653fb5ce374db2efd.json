@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "61bd67f924923282c1e72de0f8239a6706d229639c16e643c6409cd2c94c52ef",
+  "response": {
+    "expected_evidence": [
+      "Ice-core sulfate/sulfur-isotope spikes (e.g., Greenland GISP2/GRIP, Antarctic cores) dated to ~12,900 cal BP that would indicate a large explosive eruption coincident with YD onset",
+      "Tephra/volcanic glass shard layers in lake and marine sediments across multiple continents, geochemically fingerprinted to a known or unknown eruptive source",
+      "Sedimentary charcoal and soot/PAH records showing biomass-burning spikes that could be attributed to volcanic-triggered climate stress rather than an extraterrestrial impact winter",
+      "Reduced or reinterpreted extraterrestrial proxy signals (platinum, iridium, nanodiamonds, magnetic microspherules) at the YD boundary layer that the volcanic hypothesis would need to explain away or co-opt",
+      "Cosmogenic/geochemical dating (varve counts, ice-layer counting) tying any eruption horizon precisely to the onset of YD cooling (~-10900 to -10700 interval)",
+      "Comparative volcanological literature/model_prior reasoning about known Late Glacial eruptions (e.g., large Northern Hemisphere volcanic events) capable of producing a multi-year impact winter and continental-scale biomass burning"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis sits squarely in the 'younger-dryas' period bucket (interval -11000 to -10001 matches the YD onset), for which geological (0.65) and material (0.35) detectability are moderate-to-good \u2014 polar ice cores, varved lake sediments, and marine cores from this interval are extensively sampled and well-preserved, and tephra/sulfate/charcoal signals at the YD boundary have in fact been actively searched for and published on (this is a live, ongoing scientific controversy versus the Younger Dryas Impact Hypothesis). Astronomical-dating-adjacent proxies (ice-layer counting, 0.7) are also strong for this period, aiding precise chronological placement of any eruption relative to the cooling onset. Genetic (0.3) and oral_tradition/iconographic/linguistic/textual evidence are essentially inapplicable or non-existent this far back (textual = 0.0), so their absence carries no evidentiary weight against the hypothesis. Given moderate-to-good detectability for the most relevant kinds (geological, material), an absence of a clear, dated, multi-continent volcanic signal coincident with YD onset would be a genuinely informative negative result rather than an artifact of poor preservation \u2014 hence I do not fully discount findings either way. I weighted the adjustment toward the geological/material/astronomical mean (~0.55) rather than dragging it down with the near-zero textual/linguistic/oral scores, since those simply aren't expected evidence types for this hypothesis. Note: my characterization of the Younger Dryas Impact Hypothesis debate and its counter-volcanic explanations reflects model-prior knowledge of the scientific literature, not verified evidence text provided in this session, and should be treated as low-tier/unverified within this pipeline."
+  }
+}

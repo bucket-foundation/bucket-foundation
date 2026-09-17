@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f2705027f74701348c28a4cebf41b00a9362821743fcfc2622fb9e3e270d8ba8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD did according to the word of Moses; and the frogs died out of the houses, out of the villages, and out of the fields.",
+        "claim": "Frogs died in houses, villages, and fields through the word of Moses",
+        "actor": "the LORD",
+        "action": "caused to die",
+        "object": "the frogs",
+        "place": "houses, villages, fields",
+        "mechanism": "according to the word of Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

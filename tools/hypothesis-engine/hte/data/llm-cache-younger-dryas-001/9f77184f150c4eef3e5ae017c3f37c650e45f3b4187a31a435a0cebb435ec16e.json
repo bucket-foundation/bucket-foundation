@@ -1,0 +1,21 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "10669b80dbf2ec193920d33a374dab5fe02a5bd069fdf5668c86b7f4c97b591e",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: platinum/iridium geochemical anomaly layer coincident with YD-onset boundary (~12,900 cal BP) across North American sedimentary sequences",
+      "geological: 'black mat' organic-rich sediment horizon marking abrupt B\u00f8lling-Aller\u00f8d/Younger Dryas transition",
+      "material: magnetic spherules, glassy/carbon microspherules, and nanodiamonds (e.g., lonsdaleite) concentrated in the boundary layer",
+      "material: elevated soot/charcoal and biomass-burning markers suggesting continent-wide wildfires at the boundary",
+      "material: abrupt disappearance of diagnostic Clovis-era artifacts above the boundary layer at multiple sites",
+      "genetic: megafaunal extinction/population-bottleneck signatures (mammoth, mastodon, etc.) clustering near the boundary date",
+      "astronomical/geological: an identifiable impact crater or strewnfield of the appropriate age (e.g., sub-ice candidates such as the Hiawatha structure) \u2014 largely unconfirmed as contemporaneous",
+      "model_prior: numerical/physical modeling of an airburst or low-angle impact capable of triggering rapid Northern Hemisphere cooling",
+      "oral_tradition/iconographic: catastrophe or 'sky-fire' motifs in later Indigenous or circum-Atlantic oral traditions and rock art (weak, highly indirect if any)"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis corresponds to the real, actively debated Younger Dryas Impact Hypothesis (YDIH), which I recognize from training as model-prior, not from provided evidence text \u2014 treat that recollection as low-tier and unverified. The dated interval (-10950, i.e. ~12,950 BP) sits essentially at the Upper Paleolithic/Younger Dryas boundary, so I blended the two closest rows, weighting toward 'younger-dryas' (geological 0.65, material 0.35, astronomical 0.7) since the hypothesis explicitly concerns the onset event. Geological and sedimentary evidence (spherules, nanodiamonds, platinum anomalies, black mats) is the core expected signature, and such thin stratigraphic horizons are known to survive well in lake, bog, and loess sequences over millennia \u2014 consistent with the moderately high geological/material detectability scores in the table and with the fact that proponents have in fact reported such layers at dozens of North American sites (per model-prior). This supports 'could_have_survived = true': absence of universally accepted confirmatory evidence (e.g., no undisputed contemporaneous impact crater, inconsistent nanodiamond replication across independent labs) is at least partly explainable by genuine geological preservation/detectability limits rather than purely by falsity \u2014 impact ejecta from a low-density airburst over ice sheets could leave a diffuse, hard-to-uniquely-attribute signal. Textual and linguistic evidence are essentially impossible (pre-writing, near-zero detectability), and oral-tradition/iconographic evidence is only weakly informative given the ~10,000+ year gap before any recording. Genetic evidence (megafaunal bottlenecks) is real but only indirectly diagnostic of an impact versus other YD-onset drivers (e.g., meltwater-pulse Atlantic circulation shutdown), so it cannot alone corroborate the mechanism. Given the specific searchability of geochemical/impact markers relative to the table's generic geological/material baselines, I nudge the composite detectability slightly upward from the raw table averages (~0.5) to 0.55, reflecting that this is an evidence type well-suited to survive and be actively investigated, even though the interpretive consensus remains contested."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6f783e80d8f094a080d74645b46254c402f3c945ca6792a7ef5b64391d76596b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he charged them, and said unto them, I am to be gathered unto my people: bury me with my fathers in the cave that is in the field of Ephron the Hittite",
+        "claim": "Jacob charged his sons to bury him with his fathers in the cave in the field of Ephron the Hittite",
+        "actor": "he",
+        "action": "charged",
+        "object": "them",
+        "place": "cave in the field of Ephron the Hittite",
+        "mechanism": "said",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "In the cave that is in the field of Machpelah, which is before Mamre, in the land of Canaan, which Abraham bought with the field of Ephron the Hittite for a possession of a buryingplace",
+        "claim": "Abraham purchased the field of Ephron the Hittite in the field of Machpelah, before Mamre, in the land of Canaan as a burial place",
+        "actor": "Abraham",
+        "action": "bought",
+        "object": "field of Ephron the Hittite",
+        "place": "field of Machpelah, before Mamre, land of Canaan",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

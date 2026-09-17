@@ -62,6 +62,8 @@ export function computeStats(handle: string, all: FeedEvent[]): ContributorStats
 
 export function getAllHandles(): string[] {
   const s = new Set<string>();
-  for (const e of getAllEvents()) s.add(e.author_github);
+  for (const e of getAllEvents()) {
+    if (e.author_github) s.add(e.author_github);
+  }
   return Array.from(s).sort();
 }

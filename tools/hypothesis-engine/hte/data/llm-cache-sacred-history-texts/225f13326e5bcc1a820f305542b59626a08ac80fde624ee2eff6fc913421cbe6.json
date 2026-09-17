@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "4892c5137f1844c7bef8f25d7a12204688e4ad76be25f569a02067c6d765ed8b",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "this day have they offered their sin offering and their burnt offering before the LORD",
+        "claim": "People offered sin offering and burnt offering before the LORD on this day",
+        "actor": "they",
+        "action": "offered",
+        "object": "sin offering and burnt offering",
+        "place": "before the LORD",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "such things have befallen me",
+        "claim": "Aaron has experienced afflictions",
+        "actor": "Aaron",
+        "action": "befallen",
+        "object": "things",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "if I had eaten the sin offering to day, should it have been accepted in the sight of the LORD?",
+        "claim": "Aaron questions whether eating the sin offering would have been acceptable to the LORD",
+        "actor": "Aaron",
+        "action": "eaten",
+        "object": "sin offering",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "when Moses heard that, he was content",
+        "claim": "Moses heard Aaron's explanation and accepted it",
+        "actor": "Moses",
+        "action": "heard",
+        "object": "that",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "95b1e039101a903e05619b279d579c60bbd6c7b00ee361c5e4d1951592b0d360",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And when Joshua heard the noise of the people as they shouted",
+        "claim": "Joshua heard the noise made by people shouting",
+        "actor": "Joshua",
+        "action": "heard",
+        "object": "the noise of the people",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And when Joshua heard the noise of the people as they shouted",
+        "claim": "The people shouted",
+        "actor": "the people",
+        "action": "shouted",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "he said unto Moses, There is a noise of war in the camp",
+        "claim": "Joshua said to Moses that there was a noise of war in the camp",
+        "actor": "Joshua",
+        "action": "said",
+        "object": "the claim about noise of war",
+        "place": "the camp",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

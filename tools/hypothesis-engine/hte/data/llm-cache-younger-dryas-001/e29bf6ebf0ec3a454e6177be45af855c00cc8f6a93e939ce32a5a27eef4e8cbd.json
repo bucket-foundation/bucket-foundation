@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "099a0b32b7e4c8fa0f9973213c4b53e6303102fefabd2862a256ed10df508804",
+  "response": {
+    "expected_evidence": [
+      "Geological: a platinum-group-element (Pt, Ir) enrichment layer, magnetic microspherules, and/or nanodiamond concentration spike in Greenland ice cores precisely dated to the Younger Dryas onset boundary (~12,900 cal BP)",
+      "Geological/material: correlated 'black mat'/soot or biomass-burning proxy layers in ice core and terrestrial sediment records synchronous with the ice-core anomaly",
+      "Astronomical: a cosmogenic radionuclide excursion (10Be, 36Cl, or 14C spike) in the same ice strata, distinguishing an impact/meteor-stream flux signal from a supernova irradiation signal",
+      "Astronomical: age-dating of a nearby supernova remnant (e.g., via expansion-rate back-calculation) landing near ~10,900 BCE, or a documented gamma-ray/cosmic-ray burst signature",
+      "Material: multi-site cross-correlation of the same event horizon (impact proxies) across independent Younger Dryas Boundary sites outside Greenland",
+      "Genetic: megafaunal extinction bottleneck signatures and/or human population genetic bottleneck (e.g., Clovis-era) time-aligned with the onset interval",
+      "Model-prior: existing published hypotheses (Younger Dryas Impact Hypothesis, Taurid-stream/supernova trigger proposals) as a starting expectation, flagged as contested/low-confidence literature rather than established fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "The Greenland ice sheet is one of the best-preserved, continuously and annually resolved archives available for this exact interval, and both the 'geological' (0.65) and 'astronomical' (0.7) evidence channels for the younger-dryas period score high in the detectability table -- well above material (0.35) or genetic (0.3) channels. This means that if a supernova/Taurid-stream-linked cooling event of the proposed magnitude had occurred, chemostratigraphic and isotopic traces plausibly would have survived and been discoverable by modern ice-core science; absence of a clean, reproducible signal is therefore more evidentially meaningful here than in lower-detectability contexts (e.g., oral_tradition 0.1, textual 0.0, linguistic 0.05, which are near-irrelevant this far back in pre-literate Upper Paleolithic/Younger Dryas time). However, the hypothesis is a composite/entangled claim (supernova actor + Taurid-stream mechanism + inconclusive action), which real-world literature (model-prior, low confidence) treats as genuinely contested -- proposed Pt/Ir anomalies exist in some studies but have not been consistently replicated across sites, and no supernova remnant has been confidently dated to this exact window. I set the detectability_adjustment at 0.6, slightly below the raw astronomical/geological averages, to reflect that even though the physical medium (ice sheet) is highly preservation-favorable, disentangling a supernova signature from an impact/meteor-stream signature within the same stratigraphic layer is intrinsically harder to detect unambiguously, so failure to find clear evidence should be read as partly a specificity/detectability limitation rather than outright falsification."
+  }
+}

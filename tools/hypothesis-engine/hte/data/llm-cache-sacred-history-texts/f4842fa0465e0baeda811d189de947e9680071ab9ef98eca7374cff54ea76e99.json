@@ -1,0 +1,32 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7bcb9fa7bb8c632da5518494a8cf2a21c528251e8f25cedc2e2a9ff700771a96",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "As the LORD commanded Moses",
+        "claim": "The LORD commanded Moses to preserve an offering",
+        "actor": "LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Aaron laid it up before the Testimony, to be kept",
+        "claim": "Aaron placed an item before the Testimony for preservation",
+        "actor": "Aaron",
+        "action": "laid it up",
+        "place": "before the Testimony",
+        "mechanism": "preservation",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

@@ -56,6 +56,39 @@ def test_timeline_views_bins_are_ranked_by_posterior():
     assert bin_view["ranked_hypotheses"][0]["posterior"] > bin_view["ranked_hypotheses"][1]["posterior"]
 
 
+def test_timeline_views_ranks_by_lift_before_posterior():
+    # A low-P entry with real evidence mass must outrank a high-P entry
+    # with none, the opposite of a P-first sort over these two opinions.
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, _, elos = _fixture(vocab)
+    opinions = {
+        h_farmers.address: Opinion(b=0.5, d=0.0, u=0.5, a=0.0),   # P=0.50, lift=0.50
+        h_aliens.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.94),  # P=0.94, lift=0.00
+    }
+    tbin = time_bin_index(_interval().start)
+
+    views = timeline_views([h_farmers, h_aliens, h_seq], opinions, elos, [tbin])
+    ranked_ids = [entry["hypothesis_id"] for entry in views["bins"][0]["ranked_hypotheses"]]
+    assert ranked_ids == [h_farmers.short_id, h_aliens.short_id]
+
+
+def test_timeline_views_ranks_a_scored_zero_lift_entry_above_an_unscored_one():
+    # Equal lift (0.0) and a higher posterior on the unscored side: the
+    # entry the evidence reached still ranks first, since a hypothesis at
+    # its prior is missing data, never a verdict.
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, _, elos = _fixture(vocab)
+    opinions = {
+        h_farmers.address: Opinion(b=0.2, d=0.2, u=0.6, a=0.1),   # scored, lift 0.0, P=0.26
+        h_aliens.address: Opinion(b=0.0, d=0.0, u=1.0, a=0.94),  # unscored, lift 0.0, P=0.94
+    }
+    tbin = time_bin_index(_interval().start)
+    views = timeline_views([h_farmers, h_aliens, h_seq], opinions, elos, [tbin])
+    ranked = views["bins"][0]["ranked_hypotheses"]
+    assert [entry["hypothesis_id"] for entry in ranked] == [h_farmers.short_id, h_aliens.short_id]
+    assert [entry["opinion"]["scored"] for entry in ranked] == [True, False]
+
+
 def test_timeline_views_bin_caps_at_top_k():
     vocab = _small_vocab()
     h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
@@ -84,6 +117,40 @@ def test_timeline_views_pair_view_lists_competing_sequences():
     assert seq_entry["relation"] == "before"
 
 
+def test_timeline_views_ranked_hypotheses_carry_the_full_opinion():
+    # bkt-hte-timeline-opinion-export: P alone cannot tell an unexamined
+    # hypothesis (u near 1) from an examined, moderately-believed one at
+    # the same P; the ranked entry's own opinion field is where the rest
+    # of (b, d, u, a) lives now.
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
+    tbin = time_bin_index(_interval().start)
+    views = timeline_views([h_farmers, h_aliens, h_seq], opinions, elos, [tbin])
+    for entry in views["bins"][0]["ranked_hypotheses"]:
+        opinion = opinions[
+            h_farmers.address if entry["hypothesis_id"] == h_farmers.short_id else h_aliens.address
+        ]
+        assert entry["opinion"] == {**opinion.to_dict(), "P": opinion.project()}
+
+
+def test_timeline_views_event_and_pair_views_carry_the_full_opinion_too():
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
+    views = timeline_views([h_farmers, h_aliens, h_seq], opinions, elos, [])
+
+    [event] = views["event_views"]
+    assert {p["hypothesis_id"] for p in event["ranked_placements"]} == {h_farmers.short_id, h_aliens.short_id}
+    for p in event["ranked_placements"]:
+        assert p["opinion"]["u"] is not None
+        assert p["elo"] is not None
+
+    [pair] = views["pair_views"]
+    [seq_entry] = pair["competing_sequences"]
+    assert seq_entry["hypothesis_id"] == h_seq.short_id
+    assert seq_entry["elo"] == elos[h_seq.address]
+    assert seq_entry["opinion"] == {**opinions[h_seq.address].to_dict(), "P": opinions[h_seq.address].project()}
+
+
 def test_timeline_views_handles_missing_opinion_and_elo():
     vocab = _small_vocab()
     h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
@@ -93,6 +160,7 @@ def test_timeline_views_handles_missing_opinion_and_elo():
     entry = views["bins"][0]["ranked_hypotheses"][0]
     assert entry["posterior"] is None
     assert entry["elo"] is None
+    assert entry["opinion"] is None
 
 
 def test_write_views_round_trips_through_json(tmp_path):
@@ -135,6 +203,21 @@ def test_write_views_writes_a_markdown_table(tmp_path):
     assert "# Timeline" in text
     assert h_farmers.short_id in text
     assert "before" in text
+
+
+def test_write_views_shows_u_beside_p_in_the_bin_table(tmp_path):
+    # bkt-hte-timeline-opinion-export: TIMELINE.md's own bin table gets a
+    # `u` column beside Posterior, reading each entry's own opinion.u.
+    vocab = _small_vocab()
+    h_farmers, h_aliens, h_seq, opinions, elos = _fixture(vocab)
+    tbin = time_bin_index(_interval().start)
+    views = timeline_views([h_farmers, h_aliens, h_seq], opinions, elos, [tbin])
+
+    write_views(views, tmp_path)
+    text = (tmp_path / "TIMELINE.md").read_text()
+    assert "| Hypothesis | Slots | Scored | Posterior | u | Lift | Tipping prior (0.6) | Elo (unvalidated) |" in text
+    assert f"{opinions[h_farmers.address].u:.3f}" in text
+    assert f"{opinions[h_farmers.address].lift():.3f}" in text
 
 
 def test_write_views_creates_out_dir(tmp_path):

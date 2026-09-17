@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f1eaab66c6e0959ab07cb292b1fbc7cf80f45db664c2beb0b7cfe1430e66453d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "The children of Israel brought a willing offering unto the LORD, every man and woman, whose heart made them willing to bring",
+        "claim": "The children of Israel brought a voluntary offering to the LORD",
+        "actor": "The children of Israel / every man and woman",
+        "action": "brought",
+        "object": "a willing offering",
+        "place": "",
+        "mechanism": "whose heart made them willing",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "whose heart made them willing to bring for all manner of work",
+        "claim": "The people's willing hearts motivated them to bring materials for the work",
+        "actor": "heart",
+        "action": "made willing",
+        "object": "them (the people)",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "which the LORD had commanded to be made by the hand of Moses",
+        "claim": "The LORD commanded work to be made through Moses as agent",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "work",
+        "place": "",
+        "mechanism": "by the hand of Moses",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

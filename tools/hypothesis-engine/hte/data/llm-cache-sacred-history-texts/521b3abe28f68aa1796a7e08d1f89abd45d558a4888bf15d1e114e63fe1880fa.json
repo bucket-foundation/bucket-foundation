@@ -1,0 +1,48 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "ec8dceb639da19636d2dedc71af4c31870686db316f430c62140315119b5f063",
+  "response": {
+    "items": [
+      {
+        "kind": "genealogical-lifespan",
+        "tier": "primary-text",
+        "quote": "And Lamech lived after he begat Noah five hundred ninety and five years",
+        "claim": "The text says Lamech lived 595 years after Noah was born.",
+        "actor": "Lamech",
+        "action": "lived after begetting",
+        "object": "Noah",
+        "place": "unspecified",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "genealogical record (Genesis 5:30)"
+      },
+      {
+        "kind": "genealogical-offspring",
+        "tier": "primary-text",
+        "quote": "and begat sons and daughters",
+        "claim": "The text says Lamech had more sons and daughters after Noah was born. Only pass 2 extracted this, but it is word for word in the document, so it is kept.",
+        "actor": "Lamech",
+        "action": "begat",
+        "object": "sons and daughters",
+        "place": "unspecified",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "genealogical record (Genesis 5:30)"
+      },
+      {
+        "kind": "genealogical-lifespan",
+        "tier": "primary-text",
+        "quote": "And all the days of Lamech were seven hundred seventy and seven years: and he died.",
+        "claim": "The text says Lamech lived 777 years in total and then died.",
+        "actor": "Lamech",
+        "action": "died",
+        "object": "total lifespan of 777 years",
+        "place": "unspecified",
+        "year": null,
+        "stance": "positive",
+        "mechanism": "genealogical record (Genesis 5:31)"
+      }
+    ]
+  }
+}

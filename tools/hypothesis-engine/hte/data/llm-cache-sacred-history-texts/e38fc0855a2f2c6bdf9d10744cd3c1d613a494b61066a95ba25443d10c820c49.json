@@ -1,0 +1,61 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "b80402ae3bbbac4f6bf455d16ef03c6af063dc6cdb0f2feffeb57fb6bbe46585",
+  "response": {
+    "items": [
+      {
+        "kind": "speech-act",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The passage presents what follows as a command spoken by the LORD to Moses.",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "divine speech to an intermediary",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "instruction",
+        "tier": "primary-text",
+        "quote": "Command Aaron and his sons, saying, This is the law of the burnt offering:",
+        "claim": "Moses is told to give Aaron and his sons a set rule (\"law\") for the burnt offering, which places the priestly line in charge of the rite.",
+        "actor": "Moses",
+        "action": "command",
+        "object": "Aaron and his sons",
+        "place": "",
+        "mechanism": "passing ritual law down to the priesthood",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "ritual-practice",
+        "tier": "primary-text",
+        "quote": "It is the burnt offering, because of the burning upon the altar all night unto the morning,",
+        "claim": "The text says the burnt offering gets its name from being burned on the altar all night until morning.",
+        "actor": "Aaron and his sons",
+        "action": "burning",
+        "object": "burnt offering",
+        "place": "the altar",
+        "mechanism": "burning through the night",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "ritual-practice",
+        "tier": "primary-text",
+        "quote": "and the fire of the altar shall be burning in it.",
+        "claim": "The altar fire is required to stay burning.",
+        "actor": "Aaron and his sons",
+        "action": "keep burning",
+        "object": "the fire of the altar",
+        "place": "the altar",
+        "mechanism": "keeping the fire going",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

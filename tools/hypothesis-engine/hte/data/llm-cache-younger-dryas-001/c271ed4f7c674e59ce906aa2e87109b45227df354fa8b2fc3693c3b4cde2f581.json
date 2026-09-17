@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "b4fba9e79e21c924660ca0411764d1141e9f4a7dbdd4779e05dfeca9f562b49e",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "geological: elevated iridium/platinum-group-element anomaly layer coincident with ~10,950 BCE (Younger Dryas Boundary) in North American sediment/loess/lake cores",
+      "geological: magnetic spherules, nanodiamonds, meltglass, and shocked/melted quartz grains in the same stratigraphic horizon at multiple independent sites",
+      "geological: a 'black mat' or carbon-rich layer marking abrupt ecological disruption directly above the anomaly",
+      "astronomical: identification of a plausible impact crater, airburst structure, or cosmic-material signature (e.g., Fe-Ni spherules with extraterrestrial isotopic ratios) dated to the same interval",
+      "material/archaeological: disruption or abandonment horizon at Clovis-age sites, changes in lithic technology, or widespread biomass-burning/charcoal peaks synchronous with the anomaly",
+      "genetic: ancient-DNA signatures of a sudden population bottleneck in North American megafauna (mammoth, horse, etc.) time-correlated with the layer",
+      "model_prior: the existing (contested) scientific literature on the Younger Dryas Impact Hypothesis (Firestone et al. 2007 and successors) reporting exactly these proxies, alongside published critiques disputing reproducibility",
+      "oral_tradition: speculative correlations drawn by some proponents to Native American oral narratives of fire/flood cataclysms (low reliability, hard to date precisely)"
+    ],
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis pins a very specific date (~10,950 BCE) that coincides almost exactly with the Younger Dryas onset boundary, so I treat the relevant period as 'younger-dryas' rather than the broader 'upper-paleolithic' bucket, since that is when the diagnostic geochemical signature would be deposited. For this period, geological (0.65) and astronomical (0.7) channels are the most detectability-favorable \u2014 sediment/ice/lake-core stratigraphy from ~13,000 years ago is routinely preserved and sampled, and extraterrestrial-material proxies (Ir/Pt anomalies, spherules, nanodiamonds) are exactly the kind of thing geoarchaeology is built to find. Material/archaeological evidence (0.35) and genetic evidence (0.3) are much weaker channels this far back \u2014 organic preservation, faunal DNA, and site-level correlation are patchy. Oral tradition (0.1), linguistic (0.05), iconographic (0.1), and textual (0.0) are effectively non-informative at this time depth. Because this is a real, actively studied hypothesis (the Younger Dryas Impact Hypothesis), evidence of the proposed type has in fact been reported at multiple North American sites (model-prior, unverified against the evidence text given to me), though it remains scientifically contested \u2014 some independent labs failed to replicate the anomalies, and no confirmed impact crater has been identified. This mixed empirical record is consistent with moderate-to-good detectability rather than a total absence of evidence, so a low-detectability explanation for silence is not strongly needed here \u2014 there IS evidence, it's just disputed rather than absent. I set my own adjustment (0.5) slightly below the raw geological/astronomical scores to reflect that: (a) 13,000 years introduces real taphonomic loss/bioturbation risk even in favorable geological contexts, and (b) the archaeological/genetic corroboration channels that would strengthen a 'triggered by cosmic impact' causal claim (as opposed to a mere coincident anomaly) are considerably weaker, pulling down the composite detectability for the full causal chain implied by the hypothesis."
+  }
+}

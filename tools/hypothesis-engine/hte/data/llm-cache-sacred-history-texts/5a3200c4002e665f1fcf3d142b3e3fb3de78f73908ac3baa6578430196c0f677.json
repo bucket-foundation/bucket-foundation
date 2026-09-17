@@ -1,0 +1,100 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "facae926c8a4535131ed4f4b7a3fad10dccd92afc86955d8712a7e721eea8935",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And Moses diligently sought the goat of the sin offering",
+        "claim": "Moses sought the goat of the sin offering",
+        "actor": "Moses",
+        "action": "sought",
+        "object": "the goat of the sin offering",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and, behold, it was burnt",
+        "claim": "The sin offering was burnt",
+        "actor": "it (the goat)",
+        "action": "burnt",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "and he was angry with Eleazar and Ithamar, the sons of Aaron which were left alive",
+        "claim": "Moses was angry with Eleazar and Ithamar",
+        "actor": "he (Moses)",
+        "action": "was angry",
+        "object": "Eleazar and Ithamar, the sons of Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "Wherefore have ye not eaten the sin offering in the holy place",
+        "claim": "Eleazar and Ithamar had not eaten the sin offering in the holy place",
+        "actor": "ye (Eleazar and Ithamar)",
+        "action": "eaten",
+        "object": "the sin offering",
+        "place": "the holy place",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "God hath given it you to bear the iniquity of the congregation, to make atonement for them before the LORD",
+        "claim": "God gave the sin offering to Eleazar and Ithamar",
+        "actor": "God",
+        "action": "hath given",
+        "object": "it (the sin offering)",
+        "place": "",
+        "mechanism": "to bear the iniquity of the congregation, to make atonement",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "the blood of it was not brought in within the holy place",
+        "claim": "The blood of the sin offering was not brought into the holy place",
+        "actor": "the blood of it",
+        "action": "brought in",
+        "object": "",
+        "place": "within the holy place",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "ye should indeed have eaten it in the holy place, as I commanded",
+        "claim": "Moses commanded them to eat the sin offering in the holy place",
+        "actor": "I (Moses)",
+        "action": "commanded",
+        "object": "ye (Eleazar and Ithamar)",
+        "place": "in the holy place",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

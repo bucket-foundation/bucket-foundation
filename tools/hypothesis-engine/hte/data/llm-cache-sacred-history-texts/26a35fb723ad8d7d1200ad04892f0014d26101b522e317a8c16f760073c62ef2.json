@@ -1,0 +1,71 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "d0771a41424bafe519a72ae00c73f27579b5206c6dccd17304b668afefd00b5c",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the son of an Israelitish woman, whose father was an Egyptian, went out among the children of Israel: and this son of the Israelitish woman and a man of Israel strove together in the camp;",
+        "claim": "The text says a man with an Israelite mother and an Egyptian father fought with an Israelite man inside the camp.",
+        "actor": "son of an Israelitish woman and an Egyptian father",
+        "action": "strove together",
+        "object": "a man of Israel",
+        "place": "the camp",
+        "year": null,
+        "stance": "negative",
+        "mechanism": "a quarrel in the camp between a man of mixed parentage and an Israelite"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the Israelitish woman\u2019s son blasphemed the name of the Lord, and cursed.",
+        "claim": "The text says the Israelite woman's son blasphemed the name of the Lord and cursed.",
+        "actor": "the Israelitish woman\u2019s son",
+        "action": "blasphemed and cursed",
+        "object": "the name of the Lord",
+        "place": "the camp",
+        "year": null,
+        "stance": "negative",
+        "mechanism": "verbal offence against the divine name"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And they brought him unto Moses:",
+        "claim": "The text says the offender was brought to Moses to be judged.",
+        "actor": "the people (unspecified 'they')",
+        "action": "brought him unto",
+        "object": "Moses",
+        "place": "the camp",
+        "year": null,
+        "mechanism": "the case was sent up to the community's leader"
+      },
+      {
+        "kind": "attribute",
+        "tier": "primary-text",
+        "quote": "(and his mother\u2019s name was Shelomith, the daughter of Dibri, of the tribe of Dan:)",
+        "claim": "The text names the offender's mother as Shelomith, daughter of Dibri, from the tribe of Dan.",
+        "actor": "Shelomith",
+        "action": "identified as mother",
+        "object": "the Israelitish woman\u2019s son",
+        "place": "tribe of Dan",
+        "year": null,
+        "mechanism": "family and tribal lineage traced through the mother"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And they put him in ward, that the mind of the LORD might be shewed them.",
+        "claim": "The text says the offender was held in custody until the Lord's will about the case was made known.",
+        "actor": "the people (unspecified 'they')",
+        "action": "put him in ward",
+        "object": "the Israelitish woman\u2019s son",
+        "place": "the camp",
+        "year": null,
+        "mechanism": "held in custody until a ruling came from God"
+      }
+    ]
+  }
+}

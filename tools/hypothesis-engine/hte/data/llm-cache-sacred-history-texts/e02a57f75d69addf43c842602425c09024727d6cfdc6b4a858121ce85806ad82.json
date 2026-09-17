@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "08d967af3e63cb2dda1ebb78f36b7f3bc254c1ef28b23977bf6e8a9c150c75a4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the children of Israel made all the work",
+        "claim": "The children of Israel completed all the work.",
+        "actor": "the children of Israel",
+        "action": "made",
+        "object": "all the work",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the LORD commanded Moses",
+        "claim": "The LORD issued a command to Moses.",
+        "actor": "the LORD",
+        "action": "commanded",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

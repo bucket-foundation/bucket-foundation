@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fcb736b909e2b65f137aa6fc6f6b7c66d94e772ae24978e723a700cb1f5f4805",
+  "response": {
+    "could_have_survived": true,
+    "expected_evidence": [
+      "Geological: Absence or inconsistency of expected impact markers (shocked quartz, high-temperature melt-glass, consistent enrichment ratios) across the ~12.8 ka Younger Dryas boundary 'black mat' layers sampled at multiple North American sites",
+      "Geological: Platinum/iridium enrichment shown to correlate with local terrestrial/volcanic or reworked sources rather than a synchronous continent-wide fallout layer",
+      "Material: Failed inter-laboratory replication of nanodiamond and magnetic-spherule claims originally cited as impact ejecta",
+      "Material: Lack of an identified impact crater or in-situ ejecta field of appropriate age and size in North America",
+      "Astronomical: No corroborating airburst/impactor physical remains (meteoritic fragments, tektites) consistent with a Younger Dryas-age cosmic impact",
+      "Model-prior (scientific literature): Peer-reviewed critiques and re-analyses (e.g., work by Pigati, Holliday, Surovell, van Hoesel and colleagues) arguing the platinum anomaly is better explained by non-impact processes, dating uncertainty, or measurement artifacts"
+    ],
+    "detectability_adjustment": 0.55,
+    "rationale": "The event date (-10850) aligns with the Younger Dryas onset boundary, so the 'younger-dryas' detectability row is most applicable rather than 'upper-paleolithic' broadly. This hypothesis concerns a *refutation* claim rather than the impact itself, which is somewhat favorable for detectability: refutation rests on demonstrating absence/inconsistency of expected signatures across many independently sampled sites, and on modern re-analysis of preserved sediment cores and published datasets rather than on rare, fragile primary ejecta. Geological (0.65) and astronomical (0.70) detectability are comparatively high for this period because boundary-layer stratigraphy and crater/ejecta search areas have been extensively surveyed in the real scientific literature (this matches recognizable model-prior knowledge of the ongoing Younger Dryas Impact Hypothesis controversy, which I flag as model-prior and not verified against the provided evidence corpus). Material evidence (0.35) is weaker since ejecta/spherule/nanodiamond claims are contested and taphonomically fragile, and model_prior corroboration for this specific period is only moderate (0.30). Averaging across these plausible evidence channels (material, geological, astronomical, model_prior) yields a moderate composite detectability around 0.5\u20130.6; I suggest 0.55. This means an absence of confirmatory impact markers in the record is a fairly meaningful negative signal (supporting 'refuted'), rather than being purely explained away by poor preservation \u2014 though some genuine impact evidence could still have been destroyed by 12,800 years of subsequent erosion, reworking, and human/post-glacial landscape disturbance, so failure to find impact evidence is not proof of absence at the highest confidence level.\""
+  }
+}

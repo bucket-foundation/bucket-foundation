@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ea3ac6a1765eaa2109900680271ab65f769db3671c4d0ec1d0945f26f4946db8",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses took the breast, and waved it for a wave offering before the LORD: for of the ram of consecration it was Moses' part; as the LORD commanded Moses.",
+        "claim": "Moses took and waved the breast of a ram of consecration as a wave offering before the LORD",
+        "actor": "Moses",
+        "action": "took and waved",
+        "object": "breast",
+        "place": "before the LORD",
+        "mechanism": "waving",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

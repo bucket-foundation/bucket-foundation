@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cd63e0360a4ade3ac6965a95549071e3bb35d5ecbae4fc96d7a140254731a56e",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses called unto them; and Aaron and all the rulers of the congregation returned unto him: and Moses talked with them.",
+        "claim": "Moses called to an assembly; Aaron and the congregation's rulers returned to him; Moses spoke with them.",
+        "actor": "Moses, Aaron, rulers of the congregation",
+        "action": "called, returned, talked",
+        "object": "them",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

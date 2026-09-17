@@ -1,0 +1,44 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b0d4783f1e979703a2813f94fcd0a33e2552f1f75f39611e025047e1aa49c933",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Only thou shalt not number the tribe of Levi, neither take the sum of them among the children of Israel",
+        "claim": "The tribe of Levi shall not be numbered among the children of Israel",
+        "actor": "thou",
+        "action": "not number",
+        "object": "tribe of Levi",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "But thou shalt appoint the Levites over the tabernacle of testimony, and over all the vessels thereof, and over all things that belong to it",
+        "claim": "The Levites shall be appointed to oversee the tabernacle of testimony and all its contents",
+        "actor": "thou",
+        "action": "appoint",
+        "object": "Levites",
+        "place": "tabernacle of testimony",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "they shall bear the tabernacle, and all the vessels thereof; and they shall minister unto it, and shall encamp round about the tabernacle",
+        "claim": "The Levites shall bear the tabernacle and its vessels, minister to it, and camp around it",
+        "actor": "they",
+        "action": "bear, minister, encamp",
+        "object": "tabernacle, vessels",
+        "place": "round about the tabernacle",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

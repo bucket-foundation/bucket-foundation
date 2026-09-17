@@ -1,0 +1,34 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "652eb0cb7c21d83abd9496def5ce852bbe6b90c01ed893bf91a592458ec1940b",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "And the servant said unto him, Peradventure the woman will not be willing to follow me unto this land: must I needs bring thy son again unto the land from whence thou camest?",
+        "claim": "The servant asks what to do if the woman will not follow him to this land: should he take the son back to the land Abraham came from?",
+        "actor": "the servant",
+        "action": "asks",
+        "object": "whether to bring Abraham's son back to the land from whence Abraham came",
+        "mechanism": "a conditional question about the woman being unwilling to travel",
+        "place": "",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "And Abraham said unto him, Beware thou that thou bring not my son thither again.",
+        "claim": "Abraham tells the servant not to take his son back to that land.",
+        "actor": "Abraham",
+        "action": "forbids",
+        "object": "returning his son to the land from whence Abraham came",
+        "mechanism": "a direct instruction to the servant",
+        "place": "",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

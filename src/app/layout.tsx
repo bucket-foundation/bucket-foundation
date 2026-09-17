@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Web3Providers from "@/providers/Web3Providers";
+import { SessionProvider } from "@/providers/SessionProvider";
 
 const SITE_URL = "https://www.bucket.foundation";
 const SITE_NAME = "bucket.foundation";
@@ -249,8 +249,8 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <Web3Providers>
-        <body className="stone-bg min-h-screen">
+      <body className="stone-bg min-h-screen">
+        <SessionProvider>
           <Script
             id="ld-org"
             type="application/ld+json"
@@ -266,8 +266,8 @@ export default function RootLayout({
  on Vercel. Both are no-ops in local dev. */}
           <Analytics />
           <SpeedInsights />
-        </body>
-      </Web3Providers>
+        </SessionProvider>
+      </body>
     </html>
   );
 }

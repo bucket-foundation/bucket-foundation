@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "d6f07c34de7674ed0206076fd0a2a23d76434744214fb3c30055f509a6c4f9d6",
+  "response": {
+    "expected_evidence": [
+      "Geological: high-resolution sediment/ice-core proxies (\u03b418O excursions, meltwater outburst flood deposits, glacial lake drainage sequences, sea-level jump records) precisely dated and run through Bayesian chronological models to pin down meltwater pulse timing",
+      "Material: radiocarbon-dated megafaunal skeletal assemblages and last-appearance-date (LAD) compilations from North American sites, aggregated into Bayesian extinction-chronology models (e.g. OxCal/BCal-style analyses)",
+      "Genetic: ancient DNA from megafaunal taxa (e.g. mammoth, horse, bison) showing population bottlenecks/declines whose modeled timing is compared statistically to meltwater pulse dates",
+      "Astronomical/geochronological: cosmogenic isotope (10Be, 14C production) records and varve/ice-layer counting used to cross-synchronize terrestrial extinction records with the meltwater/ice-core timescale",
+      "Archaeological stratigraphy at kill or occupation sites bracketing the extinction interval, used as supporting terminus dates in the Bayesian model",
+      "Model-prior (recalled from training, unverified against supplied evidence text): published Bayesian age-modeling studies (in the vein of Surovell/Waguespack-type or aDNA population-decline work) that have attempted to statistically test synchroneity between a North American meltwater pulse (e.g., a pulse akin to MWP-1A) and megafaunal extinction pulses \u2014 this is the kind of study the hypothesis itself describes, so its existence in the literature is expected but should be treated as low-tier recollection, not confirmed fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis spans the Upper Paleolithic through Younger Dryas into the early Holocene (~19,050\u20139,050 BCE), a window with no textual (0\u20130.02) or reliable linguistic (0.05\u20130.1) evidence, but comparatively strong geological (0.6\u20130.65) and astronomical/cosmogenic (0.65\u20130.7) detectability, moderate material (0.35\u20130.45) and genetic (0.25\u20130.35) detectability, and weak oral tradition/iconographic detectability (0.1\u20130.2). Because the hypothesis's own mechanism is 'bayesian-age-modeling' over exactly these geological and radiocarbon/genetic datasets, the evidence types it needs are precisely the ones with the highest detectability scores in this period. Ice-core and sediment records of meltwater pulses, and radiocarbon/aDNA-dated megafaunal remains, are well-known to survive and be recoverable \u2014 this is an actively studied empirical domain, not one dependent on fragile textual or oral transmission. Consequently, an absence of clear corroborating evidence would be harder to excuse purely on detectability grounds for the geological/genetic channels, though genetic and fine-grained material dating still carry real preservation and sampling limitations (bone collagen degradation, DNA damage, incomplete faunal records) that legitimately could suppress recovery of a tight statistical correlation even if the underlying causal link were real. Overall, evidence could plausibly have survived and been found, but moderate uncertainty in the weaker channels (genetic, material precision) justifies a middling aggregate detectability adjustment rather than a high one."
+  }
+}

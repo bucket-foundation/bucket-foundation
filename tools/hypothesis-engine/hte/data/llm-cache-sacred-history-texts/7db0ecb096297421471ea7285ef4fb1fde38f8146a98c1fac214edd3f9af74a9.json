@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "9d6a717a18f3147dfca84cdf7605a7697418ab6e02a62f32a52cbaab5e75cc37",
+  "response": {
+    "items": [
+      {
+        "kind": "directive",
+        "tier": "primary-text",
+        "quote": "And ye shall not go out from the door of the tabernacle of the congregation, lest ye die: for the anointing oil of the LORD is upon you.",
+        "claim": "The people addressed as 'ye' are told not to leave the door of the tabernacle of the congregation, on pain of death, because the anointing oil of the LORD is on them. The verse does not name who 'ye' is. Saying it means Aaron and his remaining sons comes from surrounding Leviticus 10 context that is not in this document, so treat that as unverified (model-prior).",
+        "actor": "Moses (speaker implied by 'the word of Moses')",
+        "action": "prohibited leaving the tabernacle door",
+        "object": "the addressees ('ye') who bear the anointing oil",
+        "mechanism": "the anointing oil of the LORD is upon them; leaving would bring death",
+        "place": "door of the tabernacle of the congregation",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And they did according to the word of Moses.",
+        "claim": "The people addressed obeyed Moses' instruction.",
+        "actor": "the addressees ('they')",
+        "action": "complied with the instruction",
+        "object": "the word of Moses",
+        "mechanism": "obedience to Moses' command",
+        "place": "tabernacle of the congregation",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

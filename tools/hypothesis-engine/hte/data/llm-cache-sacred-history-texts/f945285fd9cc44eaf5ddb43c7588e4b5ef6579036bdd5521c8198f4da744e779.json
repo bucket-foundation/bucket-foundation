@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "7a3cbe04473bb824e6535a5d6d1d8e7de75e4be8a3fcd44566f438c5063e0415",
+  "response": {
+    "items": [
+      {
+        "kind": "claim",
+        "tier": "primary-text",
+        "quote": "And he said, Blessed be the LORD God of my master Abraham, who hath not left destitute my master of his mercy and his truth: I being in the way, the LORD led me to the house of my master\u2019s brethren.",
+        "claim": "The speaker, a servant of Abraham, blesses the LORD God of Abraham for keeping his mercy and truth toward Abraham, and says the LORD guided him on his journey to the house of his master's relatives. (That this is Genesis 24:27 and that the speaker is Abraham's servant sent to find a wife for Isaac comes from model-prior, not the text given, and is unverified.)",
+        "actor": "Abraham's servant (the speaker, 'he')",
+        "action": "blessed the LORD and said he had been led to his master's kin",
+        "object": "the house of my master's brethren",
+        "mechanism": "divine guidance ('the LORD led me') while traveling ('I being in the way')",
+        "place": "the house of Abraham's brethren (no further location given in the text)",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

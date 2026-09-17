@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "7b31765ec0cc5f2c57b4dc8c694f53b8af7b7add6876bc278d3b0c6140cb482e",
+  "response": {
+    "items": [
+      {
+        "kind": "statement",
+        "tier": "primary",
+        "quote": "And Moses answered and said, But, behold, they will not believe me, nor hearken unto my voice: for they will say, The LORD hath not appeared unto thee.",
+        "claim": "Moses objects that the people will not believe him or listen to him, because they will say the LORD has not appeared to him. (The document labels this verse 4:1. Identifying it as Exodus 4:1 comes only from model-prior and is not in the evidence.)",
+        "actor": "Moses",
+        "action": "objected that the people would not believe him or listen to his voice",
+        "object": "the people's expected disbelief that the LORD had appeared to Moses",
+        "mechanism": "expected doubt about whether a divine appearance really happened",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

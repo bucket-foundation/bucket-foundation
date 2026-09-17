@@ -1,0 +1,20 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "1baebd56c0aba765335be6cbc281840291de28405228f08c0619e9930ac5e026",
+  "response": {
+    "expected_evidence": [
+      "geological: a continent-wide 'Younger Dryas Boundary' sedimentary layer at ~12.9-12.7 ka BP containing platinum/iridium anomalies, magnetic microspherules, meltglass, and nanodiamonds",
+      "geological: elevated charcoal, soot, and polycyclic aromatic hydrocarbon (PAH) concentrations in lake/peat cores indicating continent-scale biomass burning coeval with the boundary layer",
+      "geological: 'black mat' organic-rich layers directly overlying the last in-situ megafaunal remains at many North American sites",
+      "geological/climatic: independent evidence of a meltwater pulse (e.g., Lake Agassiz drainage routing, freshwater signal in North Atlantic sediment cores, IRD, abrupt AMOC-slowdown proxies) temporally linked to the extinction/burning signal",
+      "astronomical: physical impact evidence (crater, cosmic-impact spherules/microtektites of appropriate age) or airburst-diagnostic materials (shocked quartz, high-temperature melt products) consistent with a Younger Dryas-age extraterrestrial event",
+      "material (archaeological/paleontological): tight, well-dated clustering of terminal megafaunal bone dates and human (e.g., Clovis) site abandonment/technological turnover right at 12.9-12.7 ka, ideally replicated at many independently dated sites",
+      "genetic: ancient-DNA signals showing sharp population bottlenecks/local extinctions in North American megafauna and a genetic bottleneck in contemporaneous human populations dated to the same narrow window",
+      "model_prior: this configuration matches the well-known (and long-disputed) 'Younger Dryas Impact Hypothesis' (Firestone et al. 2007 and successors) \u2014 recalled from training as a contested, actively debated proposal, not a settled fact"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The claimed interval (~12,750\u20139,750 cal BP) straddles the Younger Dryas and early Holocene, periods with comparatively good preservation for geological/sedimentary and astronomical-impact evidence (table detectability 0.6\u20130.7) because varved lake sediments, peat bogs, ice cores, and marine cores from this window are routinely sampled and dated with high precision. Material (archaeological/paleontological, ~0.35\u20130.45) and genetic (~0.3\u20130.35) evidence are moderately detectable \u2014 bone beds and Clovis-era sites are well studied, though ancient DNA from this age range is harder to recover than from later periods. Oral tradition, iconographic, linguistic, and textual evidence are essentially non-existent this far back (0.0\u20130.15) and are not expected to contribute. Given that geological/astronomical detectability is actually fairly high for this period, an absence of a clean, universally replicated impact signature (platinum/nanodiamond spikes, craters) is more likely to reflect a genuinely weak or absent causal link than a pure detectability failure \u2014 this is consistent with the real-world trajectory of the Younger Dryas Impact Hypothesis, where the initial 2007 claims (a model-prior recollection, not verified against the evidence text here) have been substantially disputed by non-replication at many sites and by mismatches in extinction/human-occupation chronology. I set the adjustment at a moderate 0.5, averaging the strong geological/astronomical detectability against the weaker material/genetic detectability and the field's documented replication problems, which argue against inflating survival odds much higher despite good sediment preservation for this era."
+  }
+}

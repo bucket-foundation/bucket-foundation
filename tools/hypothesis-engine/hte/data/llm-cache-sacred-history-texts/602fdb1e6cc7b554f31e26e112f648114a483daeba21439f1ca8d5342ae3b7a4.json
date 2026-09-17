@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6530afc2b9032f6e088c844693d13780cac00eab0cf35a59f3c0232fee7fab22",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the sons of Aaron brought the blood unto him: and he dipped his finger in the blood, and put it upon the horns of the altar, and poured out the blood at the bottom of the altar",
+        "claim": "Aaron's sons brought blood to him; he dipped his finger in it and applied it to the altar horns, then poured the remainder at the altar base",
+        "actor": "the sons of Aaron, he [Aaron]",
+        "action": "brought, dipped, put, poured",
+        "object": "blood",
+        "place": "altar, horns of the altar, bottom of the altar",
+        "mechanism": "manual finger application and pouring",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "But the fat, and the kidneys, and the caul above the liver of the sin offering, he burnt upon the altar; as the LORD commanded Moses",
+        "claim": "The fat, kidneys, and caul above the liver from the sin offering were burned on the altar in accordance with the LORD's command to Moses",
+        "actor": "he [implied priest], the LORD",
+        "action": "burnt, commanded",
+        "object": "fat, kidneys, caul above the liver of the sin offering",
+        "place": "altar",
+        "mechanism": "burning",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

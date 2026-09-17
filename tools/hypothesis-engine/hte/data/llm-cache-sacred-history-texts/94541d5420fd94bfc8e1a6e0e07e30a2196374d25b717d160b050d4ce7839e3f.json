@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7e0dd851f1f7682aa3f65ea88e390d0f538e3ac22690a532540005b20dce70f9",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses and Aaron went in unto Pharaoh, and they did so as the LORD had commanded: and Aaron cast down his rod before Pharaoh, and before his servants, and it became a serpent.",
+        "claim": "Moses and Aaron came before Pharaoh and Aaron cast down his rod, which became a serpent.",
+        "actor": "Moses, Aaron",
+        "action": "went in, cast down",
+        "object": "Pharaoh, rod",
+        "place": "before Pharaoh, before his servants",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

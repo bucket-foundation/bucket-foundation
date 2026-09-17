@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "aed7eccd83d13ca7b935b395ddb089593234c55ba461f82305ff73bd93514795",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "After I am waxed old shall I have pleasure, my lord being old also?",
+        "claim": "Sarah questions whether she can experience pleasure and conceive after reaching old age.",
+        "actor": "Sarah",
+        "action": "questioning",
+        "object": "pleasure",
+        "place": "",
+        "mechanism": "waxed old",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "At the time appointed I will return unto thee, according to the time of life, and Sarah shall have a son.",
+        "claim": "At a divinely appointed time, according to natural cycles of life, Sarah shall bear a son.",
+        "actor": "Sarah",
+        "action": "shall have a son",
+        "object": "a son",
+        "place": "",
+        "mechanism": "the time appointed; the time of life",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

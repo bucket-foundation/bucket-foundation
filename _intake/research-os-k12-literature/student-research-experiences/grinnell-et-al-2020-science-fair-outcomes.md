@@ -11,6 +11,10 @@ url: "https://doi.org/10.1371/journal.pone.0229237"
 openalex_id: "https://openalex.org/W3005754804"
 branch: "student-research-experiences"
 tier: "canon"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-78897115331b)"
+promoted_at: "2026-09-14"
+depends_on_foundation: "bucket-canon/07-mind/curiosity-and-motivation/primary-papers.yaml (id bkt-25a39cdf1218, Deci and Ryan 2000)"
 why_it_matters: >
   Extends the same research group's 2018 survey to a national sample and a sharper question:
   what outcomes, including negative ones, follow from requiring science fair participation.

@@ -1,0 +1,61 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "647f4be61e0c466677b7c9c469c15af346516a643a13032fd37be769e43c4747",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "9:20 And Noah began to be an husbandman",
+        "claim": "The text says Noah began to work as a husbandman (a farmer who works the land).",
+        "actor": "Noah",
+        "action": "began to be",
+        "object": "an husbandman",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and he planted a vineyard",
+        "claim": "The text says Noah planted a vineyard.",
+        "actor": "Noah",
+        "action": "planted",
+        "object": "a vineyard",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "9:21 And he drank of the wine, and was drunken",
+        "claim": "The text says Noah drank wine, presumably from the vineyard he planted, and became drunk.",
+        "actor": "Noah",
+        "action": "drank; was drunken",
+        "object": "the wine",
+        "place": "",
+        "mechanism": "drinking wine caused drunkenness",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and he was uncovered within his tent",
+        "claim": "The text says that while drunk, Noah lay uncovered inside his tent.",
+        "actor": "Noah",
+        "action": "was uncovered",
+        "object": "himself",
+        "place": "within his tent",
+        "mechanism": "followed from his drunkenness",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

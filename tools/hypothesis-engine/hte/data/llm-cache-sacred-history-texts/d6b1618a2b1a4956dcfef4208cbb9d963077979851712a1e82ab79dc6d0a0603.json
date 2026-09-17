@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c50cfd929e565a34d068307cf44560599ea214ebdf6550bafda6619cc9cd1bb6",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And the child grew, and was weaned",
+        "claim": "Isaac experienced biological growth and reached the developmental milestone of weaning",
+        "actor": "Isaac (the child)",
+        "action": "grew and was weaned",
+        "object": "",
+        "place": "",
+        "mechanism": "biological development and weaning",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Abraham made a great feast the same day that Isaac was weaned",
+        "claim": "A feast was held on the same calendar day as Isaac's weaning, establishing a temporal coincidence between a biological milestone and a social event",
+        "actor": "Abraham",
+        "action": "made a great feast",
+        "object": "a great feast",
+        "place": "",
+        "mechanism": "social/cultural response to developmental milestone",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

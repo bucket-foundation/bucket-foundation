@@ -1,0 +1,21 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "66e8b5b5c9cb45b205e475488e8eb18ed1084ff2fcf20a8149b8483a84ef82aa",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD spake unto Moses, Say unto Aaron, Take thy rod, and stretch out thine hand upon the waters of Egypt, upon their streams, upon their rivers, and upon their ponds, and upon all their pools of water, that they may become blood; and that there may be blood throughout all the land of Egypt, both in vessels of wood, and in vessels of stone.",
+        "claim": "Verse 7:19 of the text says the LORD told Moses to tell Aaron to stretch his rod over all the waters of Egypt (streams, rivers, ponds, pools) so they would turn to blood throughout the land, even in wooden and stone vessels. The text only reports this as a command. It is not independent evidence that the event happened. Naming the source as Exodus 7:19 in the King James Version is an unverified model-prior identification and is not stated in the document.",
+        "actor": "the LORD (via Moses and Aaron)",
+        "action": "commands waters to be turned to blood",
+        "object": "waters of Egypt (streams, rivers, ponds, pools, water in wooden and stone vessels)",
+        "place": "Egypt",
+        "mechanism": "Aaron stretching out his hand with his rod over the waters",
+        "year": null
+      }
+    ]
+  }
+}

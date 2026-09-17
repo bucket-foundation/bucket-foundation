@@ -1,0 +1,61 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "7890ba77dcce576f89f375c89acbc3dbfbf269294bdbe4ace10b206132467bd1",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "Then sang Moses and the children of Israel this song unto the LORD",
+        "claim": "Moses and the children of Israel sang a song to the LORD",
+        "actor": "Moses and the children of Israel",
+        "action": "sang",
+        "object": "this song",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "I will sing unto the LORD",
+        "claim": "The speaker will sing to the LORD",
+        "actor": "I",
+        "action": "will sing",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "he hath triumphed gloriously",
+        "claim": "The LORD triumphed gloriously",
+        "actor": "he (the LORD)",
+        "action": "triumphed",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the horse and his rider hath he thrown into the sea",
+        "claim": "The LORD threw the horse and his rider into the sea",
+        "actor": "he (the LORD)",
+        "action": "thrown",
+        "object": "the horse and his rider",
+        "place": "the sea",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

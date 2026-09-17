@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "e9ce23f1445b69c039d948d183472860810a2de68986bcf2608c6fca0a5ea743",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said, Eat that to day; for to day is a sabbath unto the LORD: to day ye shall not find it in the field.",
+        "claim": "Moses commanded people to eat manna on the Sabbath and stated it would not be found in the field that day",
+        "actor": "Moses",
+        "action": "said/commanded",
+        "object": "manna (that)",
+        "place": "the field",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

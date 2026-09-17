@@ -1,0 +1,65 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "9ee08b8a81f1278d0c5d83cab0a0db9c05f885d065a2ae23ce610885b8d91f4a",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And he stayed yet other seven days",
+        "claim": "Noah waited for seven additional days",
+        "actor": "Noah",
+        "action": "stayed",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And again he sent forth the dove out of the ark",
+        "claim": "Noah released the dove from the ark a second time",
+        "actor": "Noah",
+        "action": "sent forth",
+        "object": "the dove",
+        "place": "the ark",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the dove came in to him in the evening",
+        "claim": "The dove returned to Noah in the evening",
+        "actor": "the dove",
+        "action": "came in",
+        "place": "to him",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "in her mouth was an olive leaf pluckt off",
+        "claim": "An olive leaf was found in the dove's mouth",
+        "actor": "the dove",
+        "object": "an olive leaf",
+        "place": "in her mouth",
+        "mechanism": "pluckt off",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "so Noah knew that the waters were abated from off the earth",
+        "claim": "Noah inferred that the floodwaters had receded from the earth",
+        "actor": "Noah",
+        "action": "knew",
+        "place": "from off the earth",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

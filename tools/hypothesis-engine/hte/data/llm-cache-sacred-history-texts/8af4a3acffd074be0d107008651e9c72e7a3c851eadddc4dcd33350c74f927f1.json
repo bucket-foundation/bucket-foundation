@@ -1,0 +1,43 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "ebc453803a7f1c583c3b864a67b6ad4f480364add08951130deeb553524fc0df",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the glory of the LORD abode upon mount Sinai",
+        "claim": "The glory of the LORD remained upon mount Sinai",
+        "actor": "the glory of the LORD",
+        "action": "abode",
+        "place": "mount Sinai",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the cloud covered it six days",
+        "claim": "The cloud covered mount Sinai for six days",
+        "actor": "the cloud",
+        "action": "covered",
+        "object": "it",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "the seventh day he called unto Moses out of the midst of the cloud",
+        "claim": "On the seventh day, the LORD called unto Moses from within the cloud",
+        "actor": "he",
+        "action": "called",
+        "object": "Moses",
+        "place": "the midst of the cloud",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

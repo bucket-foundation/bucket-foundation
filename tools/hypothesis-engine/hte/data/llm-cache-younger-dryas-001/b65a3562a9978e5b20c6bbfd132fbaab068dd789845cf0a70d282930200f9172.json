@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "e31928e5ca85b446c3403e7c64f1e6ea929be690935c577c94bded3401104694",
+  "response": {
+    "expected_evidence": [
+      "Geological: sediment cores and ice cores across the YD boundary layer (~10,950 BCE / 12.9 ka) tested for absence or non-replicability of platinum anomalies, iridium enrichment, magnetic/meltglass spherules, and nanodiamonds at multiple independent sites",
+      "Geological: stratigraphic/paleoclimate evidence showing a gradual rather than instantaneous onset of cooling, consistent with meltwater-pulse/AMOC-shutdown forcing instead of an abrupt impact signature",
+      "Astronomical: absence of a dated impact crater of appropriate size/age in North America or Greenland ice sheet; failure of independent modeling to identify a plausible airburst/impact event at this date",
+      "Astronomical/geological: lack of a synchronous global cosmic-dust or extraterrestrial-isotope (He-3, Ir) spike correlated with the YD boundary across hemispheres",
+      "Material/archaeological: Clovis-era site stratigraphy lacking a catastrophic destruction or mass-extinction horizon uniquely attributable to impact ejecta rather than gradual climatic/human-driven megafauna decline",
+      "Genetic: megafauna and human population genetic signals showing gradual decline/bottleneck rather than an abrupt synchronous collapse at 10,950 BCE",
+      "Model_prior: peer-reviewed replication failures and meta-analyses concluding that reported platinum/nanodiamond signals are not globally distributed or not demonstrably extraterrestrial in origin"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.58,
+    "rationale": "This hypothesis is a meta-level claim about scientific refutation of the Younger Dryas Impact Hypothesis (YDIH), so the relevant evidence classes are geological and astronomical records of the YD boundary layer plus the model_prior class representing accumulated scientific literature/consensus. Per the detectability table for the younger-dryas period, geological (0.65) and astronomical (0.7) evidence are comparatively well preserved and detectable relative to textual (0.0) or oral_tradition (0.1) evidence, because ice cores, varved lake sediments, and global stratigraphic sections spanning ~12.9 ka have been extensively sampled by paleoclimatologists over decades, largely independent of cultural/linguistic preservation issues. Material (0.35) and genetic (0.3) evidence are moderate, reflecting patchier archaeological/paleogenomic coverage of North American megafauna and Clovis sites. Because the strongest relevant channels (geological, astronomical) are above-average in detectability for this period, an absence of confirmed impact markers (platinum, spherules, nanodiamonds, a crater) across many independently sampled sites is a meaningful, well-powered null result rather than a preservation artifact \u2014 supporting the plausibility of the hypothesis (refutation) rather than merely reflecting poor detectability. I set the composite detectability_adjustment at 0.58, averaging the higher geological/astronomical detectability against the weaker material/genetic/textual channels, and note that any claim about ancient oral traditions or texts describing the event should be treated with very low confidence (textual=0.0, oral_tradition=0.1) as expected 'silence' there is uninformative. My characterization of the current state of the YDIH scientific debate is drawn from training-era recollection and should be treated as low-tier model-prior, not verified current literature."
+  }
+}

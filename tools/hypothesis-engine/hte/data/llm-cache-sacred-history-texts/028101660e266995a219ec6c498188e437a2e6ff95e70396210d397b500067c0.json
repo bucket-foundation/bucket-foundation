@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d65b4fa146c37e290b85f0dfe4a31c2d0abd38df50709d7e099bd64dbf8d4c15",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Moses took the blood, and sprinkled it on the people, and said, Behold the blood of the covenant, which the LORD hath made with you concerning all these words.",
+        "claim": "Moses sprinkled blood on the people and spoke of it as the blood of a covenant made by the Lord",
+        "actor": "Moses",
+        "action": "took the blood, sprinkled it, said",
+        "object": "blood, the people",
+        "place": "",
+        "mechanism": "sprinkling blood on people",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

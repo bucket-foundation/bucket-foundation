@@ -1,0 +1,21 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "69aa84d82549689dedc9dbe82e3b2ce60a699d80d60f61d11a79abac77a56086",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And it came to pass, as Moses entered into the tabernacle, the cloudy pillar descended, and stood at the door of the tabernacle, and the Lord talked with Moses.",
+        "claim": "When Moses entered the tabernacle, a cloudy pillar descended and stood at the door, and the Lord spoke with Moses.",
+        "actor": "Moses, the Lord",
+        "action": "entered, descended, stood, talked",
+        "object": "the tabernacle, the cloudy pillar",
+        "place": "the tabernacle, the door of the tabernacle",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

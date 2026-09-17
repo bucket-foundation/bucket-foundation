@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "29195d7c7b04d31c0a11544451781898e52f495a7647f0237770c401b1bb1056",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "And the LORD spake unto Moses, Say unto Aaron, Take thy rod, and stretch out thine hand upon the waters of Egypt, upon their streams, upon their rivers, and upon their ponds, and upon all their pools of water, that they may become blood; and that there may be blood throughout all the land of Egypt, both in vessels of wood, and in vessels of stone.",
+        "claim": "The LORD commanded Aaron to stretch out his hand upon the waters of Egypt and turn them into blood throughout the land",
+        "actor": "Aaron",
+        "action": "stretch out thine hand upon the waters",
+        "object": "waters of Egypt",
+        "place": "Egypt",
+        "mechanism": "stretch out thine hand upon the waters",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "381700b298d715810895e01d198ca78bf85e9240dd87ac661e0ecd23acb3717c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD called unto Moses, and spake unto him out of the tabernacle of the congregation, saying,",
+        "claim": "The LORD communicated with Moses from the tabernacle of the congregation",
+        "actor": "the LORD",
+        "action": "called unto and spake unto",
+        "object": "",
+        "place": "tabernacle of the congregation",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "If any man of you bring an offering unto the LORD, ye shall bring your offering of the cattle, even of the herd, and of the flock.",
+        "claim": "Offerings to the LORD should be of cattle from the herd or flock",
+        "actor": "any man of you",
+        "action": "bring",
+        "object": "offering of the cattle, even of the herd, and of the flock",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

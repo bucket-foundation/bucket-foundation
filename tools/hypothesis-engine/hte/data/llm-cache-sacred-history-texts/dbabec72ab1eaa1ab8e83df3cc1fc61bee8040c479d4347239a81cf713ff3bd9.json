@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "1105ce7f25a8ffc362ae8c48040893317842a28af3b6e39eb2c31f2bda15e4ca",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses said unto Joshua, Choose us out men, and go out, fight with Amalek:",
+        "claim": "Moses tells Joshua to choose men and go out to fight Amalek.",
+        "actor": "Moses",
+        "action": "commands",
+        "object": "Joshua to choose men and fight Amalek",
+        "mechanism": "direct verbal order",
+        "place": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "to morrow I will stand on the top of the hill with the rod of God in mine hand.",
+        "claim": "Moses says that the next day he will stand on top of the hill holding the rod of God.",
+        "actor": "Moses",
+        "action": "will stand",
+        "object": "the rod of God",
+        "mechanism": "standing on the hilltop holding the rod of God during the battle",
+        "place": "the top of the hill",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "fe23bed99306cde58a83324c8bbda39b2d5173042ff5e587ac17c99f23761ecf",
+  "response": {
+    "expected_evidence": [
+      "Geological: sedimentary boundary layers (e.g., 'black mat', platinum/iridium anomalies, nanodiamond concentrations) at ~12,900\u201311,700 cal BP marking the Younger Dryas onset, as already documented in existing Younger Dryas Impact Hypothesis literature (model-prior)",
+      "Astronomical/geochemical: cosmogenic isotope spikes (14C, 10Be, 36Cl) or nitrate/ozone-depletion signatures in ice cores that would indicate an ionizing-radiation event (e.g., nearby supernova or gamma-ray burst) coincident with the meltwater pulse",
+      "Geological: freshwater-forcing proxies (e.g., IRD layers, oxygen-isotope excursions in North Atlantic cores) documenting Meltwater Pulse 1A/1B and AMOC slowdown, independent of any radiation signature",
+      "Genetic: megafaunal population bottleneck or extinction-timing signals (ancient DNA, coalescent dating) clustering around 12,750\u20139,750 BP in North America",
+      "Material/archaeological: extinction horizon in faunal assemblages, Clovis-era site stratigraphy showing megafaunal disappearance",
+      "Model-prior: existing fringe hypotheses (e.g., LaViolette's galactic superwave/gamma-ray-burst extinction proposals) that explicitly link ionizing radiation events to late-Pleistocene extinctions, distinct from the mainstream meltwater-pulse/AMOC-collapse extinction narrative"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.5,
+    "rationale": "The hypothesis yokes two causally distinct mechanisms \u2014 a meltwater pulse (an oceanographic/AMOC-forcing event) and gamma-ray ionization (an astrophysical radiation event) \u2014 as if the former were 'corroborated' by the latter for megafaunal extinction. These are not standardly linked in the literature: mainstream Younger Dryas extinction work (impact hypothesis, meltwater/AMOC collapse, human overkill, climate stress) does not invoke gamma-ray ionization as a mediating mechanism; that idea appears mainly in fringe astrophysical-catastrophism proposals (flagged here as model-prior, unverified). Using the younger-dryas/upper-paleolithic detectability rows (the interval [-12750,-9750] spans B\u00f8lling-Aller\u00f8d through early Holocene, centered on the YD), relevant channels have moderate-to-good preservation potential: geological (0.6-0.65) and astronomical/cosmogenic (0.7) records (ice cores, varved sediments, isotope archives) are well known to survive from this period and are routinely sampled for exactly this kind of signal (e.g., 14C plateaus, 10Be spikes). Genetic (0.25-0.3) and material (0.35-0.45) evidence for megafaunal decline is also independently attested. Because the physical archives capable of recording an ionizing-radiation spike (ice cores, marine/lake sediments) do plausibly survive and have been extensively studied for this exact time window, the absence of a documented gamma-ray-ionization signal tied to meltwater pulsing is more likely due to the mechanism's implausibility/incoherence than to poor preservation or detection failure. I therefore assign a moderate detectability adjustment reflecting good preservation but low prior plausibility of the specific claimed mechanism."
+  }
+}

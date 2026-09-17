@@ -1,0 +1,50 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "9422368ba4cf61608bbdafdde10a2b04ff2aef3aaa4e13e36c0b35f2e7aa2a29",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "23:2 And Sarah died in Kirjatharba; the same is Hebron in the land of Canaan",
+        "claim": "The text says Sarah died at Kirjatharba, which it identifies with Hebron in the land of Canaan.",
+        "actor": "Sarah",
+        "action": "died",
+        "place": "Kirjatharba (Hebron), land of Canaan",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "place-identification",
+        "tier": "primary-text",
+        "quote": "Kirjatharba; the same is Hebron in the land of Canaan",
+        "claim": "The text treats Kirjatharba as another name for Hebron and places it in the land of Canaan.",
+        "object": "Kirjatharba",
+        "place": "Hebron, land of Canaan",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "and Abraham came to mourn for Sarah, and to weep for her.",
+        "claim": "The text says Abraham came to mourn and weep for Sarah after she died.",
+        "actor": "Abraham",
+        "action": "came to mourn and weep",
+        "object": "Sarah",
+        "place": "Kirjatharba (Hebron), land of Canaan",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "source-attribution",
+        "tier": "model-prior",
+        "quote": "23:2",
+        "claim": "Not verified, from model-prior only: the verse number and wording suggest this is Genesis 23:2 in the King James Version. The document does not name the book or translation.",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

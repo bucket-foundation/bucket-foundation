@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "a880c07c4c24243b8ad2d012cf1abf5be1a536755e5e8744dbb355e98d9af3dc",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "This is the thing which the LORD commandeth, Fill an omer of it to be kept for your generations",
+        "claim": "The LORD commanded the Israelites to preserve an omer of manna for future generations",
+        "actor": "the LORD",
+        "action": "commandeth",
+        "object": "an omer of it",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the bread wherewith I have fed you in the wilderness",
+        "claim": "God provided bread (manna) to sustain the Israelites during their wilderness journey",
+        "actor": "I",
+        "action": "have fed",
+        "object": "bread",
+        "place": "the wilderness",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "when I brought you forth from the land of Egypt",
+        "claim": "God brought the Israelites forth from the land of Egypt",
+        "actor": "I",
+        "action": "brought forth",
+        "object": "you",
+        "place": "the land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

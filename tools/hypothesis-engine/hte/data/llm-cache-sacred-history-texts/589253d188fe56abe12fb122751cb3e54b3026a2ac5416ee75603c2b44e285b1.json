@@ -1,0 +1,68 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "5ae0b4507e2f92f48a73f20aecfaf40bc9d5424c5bae84c40ceb5845bb39224c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying,",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake unto",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "See, I have called by name Bezaleel the son of Uri, the son of Hur, of the tribe of Judah:",
+        "claim": "God called Bezaleel by name, identifying him as the son of Uri, the son of Hur, of the tribe of Judah",
+        "actor": "I",
+        "action": "called by name",
+        "object": "Bezaleel the son of Uri, the son of Hur, of the tribe of Judah",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And I have filled him with the spirit of God, in wisdom, and in understanding, and in knowledge, and in all manner of workmanship,",
+        "claim": "God filled Bezaleel with the spirit of God and with wisdom, understanding, knowledge, and workmanship",
+        "actor": "I",
+        "action": "filled",
+        "object": "him",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "To devise cunning works, to work in gold, and in silver, and in brass,",
+        "claim": "Bezaleel is empowered to devise cunning works and work in gold, silver, and brass",
+        "action": "devise, work",
+        "object": "cunning works, gold, silver, brass",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And in cutting of stones, to set them, and in carving of timber, to work in all manner of workmanship.",
+        "claim": "Bezaleel is empowered to cut and set stones and carve timber in all manner of workmanship",
+        "action": "cutting, setting, carving, work",
+        "object": "stones, timber, workmanship",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

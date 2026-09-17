@@ -1,0 +1,41 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "3a06411b00c35fe9c2e0ee2d4de4cd920aa597e929f3149ced556294b33528e2",
+  "response": {
+    "items": [
+      {
+        "quote": "after the death of Abraham",
+        "claim": "Abraham died",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "Abraham",
+        "action": "death",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "quote": "God blessed his son Isaac",
+        "claim": "God blessed Isaac",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "God",
+        "action": "blessed",
+        "object": "Isaac",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "quote": "Isaac dwelt by the well Lahairoi",
+        "claim": "Isaac dwelt by the well Lahairoi",
+        "kind": "textual",
+        "tier": "T2",
+        "actor": "Isaac",
+        "action": "dwelt",
+        "place": "the well Lahairoi",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

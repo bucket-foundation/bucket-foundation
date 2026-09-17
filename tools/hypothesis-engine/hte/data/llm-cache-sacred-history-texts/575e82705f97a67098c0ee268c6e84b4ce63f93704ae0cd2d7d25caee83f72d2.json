@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "58f0730688d59666eeeef7ec7ca0137dc14f3f69cee29992a72bdcf56bf0ead3",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Then Moses said unto Aaron",
+        "claim": "Moses spoke to Aaron",
+        "actor": "Moses",
+        "action": "said",
+        "object": "Aaron",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "This is it that the LORD spake, saying, I will be sanctified in them that come nigh me, and before all the people I will be glorified",
+        "claim": "The LORD will be sanctified in those who approach him and glorified before all people",
+        "actor": "the LORD",
+        "action": "will be sanctified and glorified",
+        "object": "",
+        "place": "before all the people",
+        "mechanism": "in them that come nigh me",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Aaron held his peace",
+        "claim": "Aaron remained silent",
+        "actor": "Aaron",
+        "action": "held his peace",
+        "object": "",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

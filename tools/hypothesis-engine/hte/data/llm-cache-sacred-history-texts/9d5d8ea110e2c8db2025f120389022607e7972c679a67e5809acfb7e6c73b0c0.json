@@ -1,0 +1,54 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "a799c2e5d28746d2ba229a210c2f6aa7739ef8c7510297675bb3f07a2e23fc00",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And Moses returned unto the LORD, and said, LORD, wherefore hast thou so evil entreated this people?",
+        "claim": "In the text, Moses returns to the LORD and asks why the LORD has treated the people so badly.",
+        "actor": "Moses",
+        "action": "returned unto and questioned",
+        "object": "the LORD",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "why is it that thou hast sent me?",
+        "claim": "In the text, Moses asks the LORD why he was sent at all.",
+        "actor": "Moses",
+        "action": "questioned the purpose of his commission",
+        "object": "the LORD",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "causal-claim",
+        "tier": "primary-text",
+        "quote": "For since I came to Pharaoh to speak in thy name, he hath done evil to this people",
+        "claim": "In the text, Moses says that since he spoke to Pharaoh in the LORD's name, Pharaoh has treated the people worse.",
+        "actor": "Pharaoh",
+        "action": "hath done evil to",
+        "object": "this people",
+        "mechanism": "Moses speaking to Pharaoh in the LORD's name was followed by Pharaoh treating the people worse",
+        "stance": "negative",
+        "year": null
+      },
+      {
+        "kind": "statement",
+        "tier": "primary-text",
+        "quote": "neither hast thou delivered thy people at all",
+        "claim": "In the text, Moses complains that the LORD has not delivered the people at all.",
+        "actor": "the LORD",
+        "action": "hast not delivered",
+        "object": "thy people",
+        "stance": "negative",
+        "year": null
+      }
+    ]
+  }
+}

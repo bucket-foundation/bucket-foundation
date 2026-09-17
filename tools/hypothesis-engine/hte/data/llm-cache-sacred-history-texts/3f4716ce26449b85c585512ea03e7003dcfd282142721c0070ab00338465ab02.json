@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "40aa1316a4378e3ebe455240f823bd6f6e60574c74291998d2e85e52a11b5dd5",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And Pharaoh called for Moses and for Aaron, and said, Go ye, sacrifice to your God in the land.",
+        "claim": "Pharaoh commanded Moses and Aaron to sacrifice to their God in the land",
+        "actor": "Pharaoh",
+        "action": "called for",
+        "object": "Moses and Aaron",
+        "place": "the land",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

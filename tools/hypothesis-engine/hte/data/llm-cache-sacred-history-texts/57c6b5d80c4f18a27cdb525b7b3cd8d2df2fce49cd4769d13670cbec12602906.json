@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "8dc4c89e9bb3b4ecc5f5861037b2e42899afa02203e514df98b60f86851498aa",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "And Abraham hearkened unto Ephron",
+        "claim": "Abraham agreed to or accepted Ephron's terms",
+        "actor": "Abraham",
+        "action": "hearkened",
+        "object": "Ephron",
+        "place": "",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "Abraham weighed to Ephron the silver, which he had named in the audience of the sons of Heth, four hundred shekels of silver, current money with the merchant",
+        "claim": "Abraham transferred four hundred shekels of silver to Ephron in the presence of the sons of Heth",
+        "actor": "Abraham",
+        "action": "weighed",
+        "object": "the silver",
+        "place": "audience of the sons of Heth",
+        "mechanism": "current money with the merchant",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "textual",
+        "tier": "T3",
+        "quote": "the silver, which he had named in the audience of the sons of Heth",
+        "claim": "Ephron specified or named the price of the silver in front of witnesses",
+        "actor": "Ephron",
+        "action": "had named",
+        "object": "the silver",
+        "place": "audience of the sons of Heth",
+        "mechanism": "",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

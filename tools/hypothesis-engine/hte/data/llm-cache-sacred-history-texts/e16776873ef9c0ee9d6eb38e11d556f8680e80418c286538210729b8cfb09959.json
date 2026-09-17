@@ -1,0 +1,35 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "1266d3b22b7609db7165a5d7fcfdd9f38a93bcfefb25c38b3e566a3a82cb4134",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "There went in two and two unto Noah into the ark, the male and the female, as God had commanded Noah.",
+        "claim": "Animals entered Noah's ark in pairs, male and female, as commanded by God",
+        "actor": "beasts, fowls, creeping things",
+        "action": "went in",
+        "object": "the ark",
+        "place": "unto Noah into the ark",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T5",
+        "quote": "as God had commanded Noah",
+        "claim": "God commanded Noah to bring animals into the ark",
+        "actor": "God",
+        "action": "commanded",
+        "object": "Noah",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

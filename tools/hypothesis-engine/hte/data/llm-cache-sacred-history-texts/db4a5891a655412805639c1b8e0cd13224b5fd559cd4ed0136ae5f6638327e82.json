@@ -1,0 +1,74 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "f5c22c2ae3d6bcdfed75ba7b6adb91f0debb1e65becaefdbf5e09fedf670e802",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses besought the LORD his God, and said",
+        "claim": "Moses besought God",
+        "actor": "Moses",
+        "action": "besought, said",
+        "object": "the LORD his God",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "why doth thy wrath wax hot against thy people",
+        "claim": "God's wrath waxes hot against his people",
+        "actor": "thy wrath",
+        "action": "wax hot",
+        "object": "thy people",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "which thou hast brought forth out of the land of Egypt with great power, and with a mighty hand",
+        "claim": "God brought the people forth out of Egypt with great power and a mighty hand",
+        "actor": "thou",
+        "action": "brought forth",
+        "object": "thy people",
+        "place": "the land of Egypt",
+        "mechanism": "great power, and with a mighty hand",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Wherefore should the Egyptians speak, and say, For mischief did he bring them out, to slay them in the mountains, and to consume them from the face of the earth?",
+        "claim": "The Egyptians would claim that God brought them out for mischief to slay them in the mountains",
+        "actor": "the Egyptians, he",
+        "action": "speak, say, bring them out, slay them, consume them",
+        "object": "them",
+        "place": "the mountains, the face of the earth",
+        "mechanism": "For mischief",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Turn from thy fierce wrath, and repent of this evil against thy people",
+        "claim": "Moses urges God to turn from his fierce wrath and repent of the evil against his people",
+        "actor": "thou",
+        "action": "Turn from, repent",
+        "object": "thy fierce wrath, this evil",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      }
+    ]
+  }
+}

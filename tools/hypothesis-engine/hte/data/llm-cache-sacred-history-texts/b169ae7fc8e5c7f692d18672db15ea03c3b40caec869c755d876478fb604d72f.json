@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "87764e91e2db244a61074b250646ada75927466117ac5a54102c514f72faf852",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Abraham was ninety years old and nine, when he was circumcised in the flesh of his foreskin.",
+        "claim": "Abraham was 99 years old when circumcised",
+        "actor": "Abraham",
+        "action": "circumcised",
+        "object": "the flesh of his foreskin",
+        "place": "",
+        "mechanism": "circumcision",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

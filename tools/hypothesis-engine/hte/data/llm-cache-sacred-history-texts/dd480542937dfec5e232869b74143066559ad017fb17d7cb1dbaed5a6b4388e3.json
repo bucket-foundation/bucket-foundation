@@ -1,0 +1,54 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "c296646c08de59cb08b7c04b04944c2a190d31be95a1f62bcbf5cdad8457a7e4",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Wherefore the people did chide with Moses, and said, Give us water that we may drink",
+        "claim": "The people complained to Moses demanding water to drink",
+        "actor": "the people",
+        "action": "chide",
+        "object": "water",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said unto them, Why chide ye with me? wherefore do ye tempt the LORD?",
+        "claim": "Moses questioned why the people complained and tempted God",
+        "actor": "Moses",
+        "action": "said",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the people thirsted there for water; and the people murmured against Moses, and said, Wherefore is this that thou hast brought us up out of Egypt, to kill us and our children and our cattle with thirst?",
+        "claim": "The people were thirsty, murmured against Moses, and accused him of bringing them from Egypt to kill them with thirst",
+        "actor": "the people",
+        "action": "murmured",
+        "place": "there",
+        "mechanism": "to kill us and our children and our cattle with thirst",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses cried unto the LORD, saying, What shall I do unto this people? they be almost ready to stone me.",
+        "claim": "Moses cried to God saying the people were almost ready to stone him",
+        "actor": "Moses",
+        "action": "cried unto",
+        "object": "the LORD",
+        "mechanism": "to stone",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

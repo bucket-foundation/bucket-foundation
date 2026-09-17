@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "f45a470a0325cf7ca951ee639a05dc4f227de6ab266d974b50c749d9dddb4af3",
+  "response": {
+    "expected_evidence": [
+      "geological: platinum-group element (esp. Ir, Pt) enrichment layers at the ~12,900 cal BP Younger Dryas boundary (YDB) across multiple continents",
+      "geological: nanodiamonds, magnetic and glassy microspherules, and aciniform soot/black-mat horizons in lake, bog, and loess stratigraphy",
+      "geological: elevated platinum anomaly in Greenland ice cores dated to YD onset",
+      "material: continental-scale charcoal/soot spikes suggesting widespread biomass burning coincident with megafaunal decline and Clovis-era site disruption in North America",
+      "astronomical: absence of, or search for, a confirmed impact crater of appropriate age/size (consistent with an airburst rather than a cratering impact, per the stated ejecta-fallout mechanism)",
+      "genetic: population bottleneck signatures in megafauna and possibly early human groups dated near 12.9 ka (weak, indirect)",
+      "model-prior: my recollection of the real-world Younger Dryas Impact Hypothesis (Firestone et al. 2007 and subsequent debate) describing exactly these lines of geological evidence and their contested replication across sites \u2014 flagged as unverified model-prior, not derived from provided evidence text"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.55,
+    "rationale": "The hypothesis requires physical ejecta-fallout signatures (Ir/Pt anomalies, nanodiamonds, spherules, soot/black mats) preserved in sedimentary/ice-core stratigraphy across several continents around 12.9 ka. The younger-dryas geological detectability score (0.65) is comparatively high, reflecting that fine-grained sediment, peat, and ice-core records from this period are known to survive and be sampled, so absence of such geological evidence would be meaningfully informative rather than merely an artifact of poor preservation. Material evidence (0.35) and genetic evidence (0.3) are moderately but not strongly detectable given sparse Upper Paleolithic/terminal Pleistocene archaeological and genomic sampling density. Astronomical evidence is nominally highly detectable (0.7), but because the stated mechanism is an airburst-style ejecta fallout rather than a classic cratering impact, the lack of a confirmed crater is not strong negative evidence \u2014 this is a known feature of the real-world YDIH debate (model-prior, unverified). Textual, linguistic, oral-tradition, and iconographic channels are essentially inapplicable this early (all \u22640.1, textual=0.0), so their absence carries no evidential weight either way. Given the moderately-high geological detectability and that comparable evidence has plausibly been sought and partly reported in the real literature, I set an aggregate detectability_adjustment of 0.55 \u2014 primarily weighted toward geological/material channels, discounted for the weaker genetic/astronomical/other channels and for the genuinely contested replication of ejecta signatures across sites."
+  }
+}

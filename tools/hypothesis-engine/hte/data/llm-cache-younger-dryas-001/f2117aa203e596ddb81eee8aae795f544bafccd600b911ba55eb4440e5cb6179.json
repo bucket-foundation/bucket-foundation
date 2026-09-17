@@ -1,0 +1,19 @@
+{
+  "model": "sonnet",
+  "role": "preservation_critic",
+  "prompt_sha256": "2ebb992c580cf82a73a8309e06c85c4ff664817363d4bf2581043c07637411c8",
+  "response": {
+    "expected_evidence": [
+      "Geological: absence/inconsistency of shocked quartz, nanodiamonds, magnetic/glassy spherules, and platinum-group-element anomalies across independently sampled Younger Dryas boundary (YDB) sediment layers on multiple continents, with failed replication by independent labs",
+      "Geological: reinterpretation of proposed impact markers (e.g., 'black mat' layers, platinum spikes) as products of ordinary terrestrial processes (wildfire char, fungal/algal blooms, background cosmic dust flux, or reworked sediment) rather than impact ejecta",
+      "Astronomical/geological: absence of any confirmed impact crater of appropriate size/age (~12,900 BP) anywhere on Earth or under ice sheets despite targeted surveys",
+      "Astronomical: bolide/airburst modeling papers showing physical implausibility of a single cosmic impact/airburst producing the claimed global-scale cooling and multi-continent ejecta signature",
+      "Geological/climatic: paleoclimate proxy records (ice cores, varved lake sediments, speleothems) showing YD cooling onset is better explained by AMOC (ocean circulation) shutdown from glacial meltwater pulses rather than a punctuated impact event, with no coincident anomaly",
+      "Genetic/material: megafauna extinction and human population/cultural (e.g., Clovis) decline timing shown via dating to be decoupled from, or predate/postdate, the proposed impact horizon, undermining a causal impact-extinction link",
+      "Model_prior: peer-reviewed scientific consensus literature (post-2007 Firestone et al. hypothesis) documenting systematic refutation, meta-analyses, and failed independent replication across multiple continents"
+    ],
+    "could_have_survived": true,
+    "detectability_adjustment": 0.6,
+    "rationale": "This hypothesis concerns the refutation of the Younger Dryas Impact Hypothesis (YDIH), a well-documented modern scientific controversy rather than a claim requiring recovery of faint prehistoric traces alone. The relevant evidence classes are geological and astronomical proxies (sediment layers, ice cores, crater surveys, bolide modeling), which the detectability table rates relatively high for the younger-dryas period (geological ~0.65, astronomical ~0.7) compared to textual (~0.0) or oral_tradition (~0.1) evidence, which are essentially inapplicable this far back. Because refutation here rests on absence/inconsistency of proposed impact markers (nanodiamonds, spherules, PGE anomalies, craters) and on independent replication failures, and because such geological/astronomical records and subsequent scientific literature are extensively preserved and studied (this is an active, heavily published debate with dozens of independent research groups), detection is highly plausible rather than blocked by poor preservation. Material and genetic lines (megafauna/human population timing) contribute supporting but lower-detectability (~0.3-0.35) evidence. I set the overall detectability_adjustment at 0.6, reflecting strong geological/astronomical detectability tempered by the near-zero contribution of textual/linguistic/oral_tradition channels at this time depth. Given this, an absence of confirmatory impact evidence (or presence of refuting studies) should be read as evidence of the hypothesis's truth, not as a detection failure \u2014 the low-detectability channels (textual, linguistic) are the ones we would not expect to contribute regardless of the hypothesis's truth value, so their silence is uninformative, while the high-detectability geological/astronomical silence on confirmed impact markers is informative and consistent with 'refuted'."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "6129070c3565f538f2e6bebe04541f97310c751180a54dac62db75a79c6686de",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And the LORD said unto Moses and Aaron, This is the ordinance of the passover",
+        "claim": "The LORD instructed Moses and Aaron regarding the passover ordinance",
+        "actor": "the LORD",
+        "action": "said",
+        "object": "ordinance of the passover",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "There shall no stranger eat thereof",
+        "claim": "Strangers are prohibited from eating of the passover",
+        "actor": "stranger",
+        "action": "eat",
+        "object": "thereof",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "But every man's servant that is bought for money, when thou hast circumcised him, then shall he eat thereof",
+        "claim": "A man's servant purchased for money and circumcised shall be permitted to eat of the passover",
+        "actor": "every man's servant that is bought for money",
+        "action": "eat",
+        "object": "thereof",
+        "place": "",
+        "mechanism": "when thou hast circumcised him",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

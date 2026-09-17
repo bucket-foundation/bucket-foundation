@@ -88,7 +88,7 @@ def build() -> Corpus:
         idx = text.find(quote)
         if idx < 0:
             raise ValueError(f"fixture quote not found in {doc_id}: {quote!r}")
-        return EvidenceSpan(doc_id=doc_id, locator=locator, quote=quote, char_start=idx, char_end=idx + len(quote))
+        return EvidenceSpan(doc_id=doc_id, locator=locator, quote=quote, char_start=idx, char_end=idx + len(quote), doc_length=len(text))
 
     evidence = [
         EvidenceItem(

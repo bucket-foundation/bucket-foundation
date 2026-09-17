@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "cf1c6385144b50af04a530d4e11c82bbc56a11110712e0dd85aeb345f5ee8d0c",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "thou shalt smite the rock, and there shall come water out of it, that the people may drink. And Moses did so",
+        "claim": "Striking a rock produces water that flows out for drinking",
+        "actor": "Moses",
+        "action": "smite/strike",
+        "object": "rock",
+        "place": "Horeb",
+        "mechanism": "percussion on rock yields water discharge",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

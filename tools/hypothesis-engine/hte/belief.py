@@ -3,9 +3,12 @@
 Mirrors `Bucket.Belief` (`papers/history-hypothesis-engine/lean/Bucket/Belief.lean`),
 `main.tex` §Belief model, and `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §2-4: an
 opinion `(b, d, u, a)` in place of one sigmoid score, evidence pooled by kind
-with diminishing returns and a cross-kind independence bonus, a source stemma
-discounting corroboration that copies one archetype, and a detectability
-term scaling absence-of-evidence as a likelihood ratio.
+with diminishing returns, a source stemma discounting corroboration that
+copies one archetype, and a detectability term scaling absence-of-evidence
+as a likelihood ratio. `STATISTICAL-AUDIT-2026-09-15.md` item 6 removed this
+module's own cross-kind independence bonus: it multiplied pooled weight by
+up to 1.3 on the unstated assumption that evidence kinds contribute
+independently, and that independence was never estimated from anything.
 """
 from __future__ import annotations
 
@@ -13,9 +16,9 @@ import json
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any, Mapping, Sequence
 
-from .evidence import EvidenceItem, EvidenceKind, KIND_FAMILY, Source, Tier, TIER_WEIGHT
+from .evidence import EvidenceItem, EvidenceKind, Source, Tier, TIER_WEIGHT
 from .hypothesis import Hypothesis
 from .concepts import Vocabulary
 
@@ -150,6 +153,37 @@ class Opinion:
         `Bucket.Belief.project`)."""
         return self.b + self.a * self.u
 
+    def lift(self) -> float:
+        """The evidence-only signal `b - d` (Jeffreys: prior odds and the
+        Bayes factor reported apart). `lift` reads no `a`, so two opinions
+        from identical evidence but different priors carry the same
+        `lift` even when `project()` disagrees
+        (`STATISTICAL-AUDIT-2026-09-15.md`'s Younger Dryas case: `b=0.502,
+        d=0, u=0.498` for both, projected to 0.941 and 0.562)."""
+        return self.b - self.d
+
+    def tipping_prior(self, floor: float) -> float | None:
+        """Reverse Bayes: the base rate `a` at which `project()` sits at
+        `floor`, solving `floor = b + a*u`. `None` at `u <= 0` (no prior
+        moves a dogmatic opinion) or when the solved value falls outside
+        `[0, 1]` (no achievable prior crosses `floor`). Otherwise the
+        prior a claim's own gate decision turns on
+        (`STATISTICAL-AUDIT-2026-09-15.md`'s Reverse-Bayes fix)."""
+        if self.u <= 0:
+            return None
+        a_tip = (floor - self.b) / self.u
+        if a_tip < 0.0 or a_tip > 1.0:
+            return None
+        return a_tip
+
+    def scored(self) -> bool:
+        """Whether any evidence reached this opinion: `u < 1`. An unscored
+        opinion reads at its prior (`project() == a`), which is missing
+        data, never a verdict; every ranked surface lists scored opinions
+        first and names the rest unscored (`STATISTICAL-AUDIT-2026-09-15.md`,
+        Evidence table: 292 of 360 live survivors sat at `P = a`)."""
+        return self.u < 1.0
+
     @classmethod
     def from_evidence(cls, r: float, s: float, W: float, a: float) -> "Opinion":
         """`Eq. opinion-sum` / `Bucket.Belief.fromEvidence`: the fused
@@ -167,11 +201,31 @@ class Opinion:
         return cls(b=r / denom, d=s / denom, u=W / denom, a=a)
 
     def to_dict(self) -> dict:
-        return {"b": self.b, "d": self.d, "u": self.u, "a": self.a}
+        """`b`/`d`/`u`/`a` plus the derived `scored`, `lift`, and `tipping_prior_0_6`
+        (at the package's default floor `0.6`), inherited by every caller
+        of this serializer (`hte.runner._survivor_opinion`, `hte.export.
+        _opinion_dict`, `hte.bridge_export.export_for_bridge`, `hte.api.
+        _enrich_entry`) rather than recomputed by hand."""
+        return {
+            "b": self.b, "d": self.d, "u": self.u, "a": self.a, "scored": self.scored(),
+            "lift": self.lift(), "tipping_prior_0_6": self.tipping_prior(0.6),
+        }
 
     @classmethod
     def from_dict(cls, d: dict) -> "Opinion":
         return cls(b=d["b"], d=d["d"], u=d["u"], a=d["a"])
+
+
+def opinion_clears_floor(opinion: "Opinion", *, floor_P: float, floor_u_max: float, lift_floor: float) -> bool:
+    """The single-opinion admission predicate every credence-floor gate
+    in this package shares (`hte.canon_writeback.select_above_floor`,
+    `hte.bridge_export.export_for_bridge`'s `accepted` flag): `P(h) >=
+    floor_P`, `u <= floor_u_max`, and evidence-only `lift = b - d >=
+    lift_floor`, with the prior `a` excluded from that last term
+    (`STATISTICAL-AUDIT-2026-09-15.md`). One opinion in, one gate
+    decision out, so every caller reads the same verdict for the same
+    opinion and floors."""
+    return opinion.project() >= floor_P and opinion.u <= floor_u_max and opinion.lift() >= lift_floor
 
 
 def fuse(o1: Opinion, o2: Opinion) -> Opinion:
@@ -225,7 +279,7 @@ def fuse(o1: Opinion, o2: Opinion) -> Opinion:
 
 
 # --------------------------------------------------------------------------
-# Diminishing returns and cross-kind bonus
+# Diminishing returns
 # --------------------------------------------------------------------------
 
 
@@ -239,23 +293,26 @@ def D(n: float, lam: float = 0.5) -> float:
     return 1.0 + lam * math.log1p(n)
 
 
-def cross_kind_bonus(kinds: Iterable[EvidenceKind]) -> float:
-    """`X(K) = 1 + 0.3 * sum_pairs kind_distance(pair)` (`Eq. cross-kind`),
-    over the distinct evidence kinds `K` carrying real weight on one side.
-    `kind_distance` is 1 for a pair drawn from two different families
-    (`EvidenceFamily`), 0 for a pair from the same family."""
-    distinct = sorted(set(kinds), key=lambda k: k.value)
-    total = 0.0
-    for i in range(len(distinct)):
-        for j in range(i + 1, len(distinct)):
-            if KIND_FAMILY[distinct[i]] != KIND_FAMILY[distinct[j]]:
-                total += 1.0
-    return 1.0 + 0.3 * total
-
-
 # --------------------------------------------------------------------------
 # Stemma effective count
 # --------------------------------------------------------------------------
+
+
+DISCRIMINATION_LR: dict[str, float] = {"strong": 10.0, "moderate": 3.0, "weak": 1.5, "none": 1.0}
+
+
+def discrimination(lr: float | None) -> float:
+    """The share of an item's tier weight its likelihood ratio earns:
+    `1 - 1/lr` for `lr >= 1`, so an item as likely under the hypothesis
+    as under its strongest competitor (`lr = 1`) moves no credence and a
+    tenfold one earns 0.9; `1.0` when unrated (`None`), the tier-only
+    reading kept until a critic rates the item. `DISCRIMINATION_LR`
+    maps the critic's four ratings to ratios
+    (`STATISTICAL-AUDIT-2026-09-15.md` item 6: likelihood in place of
+    vote counting)."""
+    if lr is None:
+        return 1.0
+    return max(0.0, 1.0 - 1.0 / max(lr, 1.0))
 
 
 def effective_count(
@@ -264,7 +321,9 @@ def effective_count(
     theta_prune: float = 0.6,
 ) -> int:
     """`n_eff`, the effective count of a cluster's sources (`def:stemma`):
-    the number of connected components of the stemma graph after removing
+    the number of connected components of the dependence graph, stemma
+    edges (below) plus shared-author, shared-lab, and shared-method edges
+    (`Source.authors`/`lab`/`method`), after removing
     every `copies_from`/`shares_archetype_with` edge below `theta_prune`
     (default 0.6). `sources` gives the cluster's `Source` nodes; each
     source's own `stemma_parents` is its outgoing edge set. `edge_weights`
@@ -296,6 +355,20 @@ def effective_count(
             w = weights.get((s.id, p), 1.0)
             if w >= theta_prune:
                 union(s.id, p)
+
+    # Dependence edges at full weight: two sources sharing an author (case
+    # and whitespace folded), a lab, or a method are one trial for this
+    # count (`Source.authors`/`lab`/`method`, the audit's dependence graph
+    # in place of the surname proxy).
+    first_by_key: dict[tuple[str, str], str] = {}
+    for s in sources:
+        keys = [("author", a.strip().lower()) for a in s.authors if a.strip()]
+        keys += [("lab", s.lab.strip().lower())] if s.lab and s.lab.strip() else []
+        keys += [("method", s.method.strip().lower())] if s.method and s.method.strip() else []
+        for key in keys:
+            other = first_by_key.setdefault(key, s.id)
+            if other != s.id:
+                union(s.id, other)
 
     return len({find(i) for i in ids})
 
@@ -417,16 +490,20 @@ def pooled_weight(
     detect_table: DetectabilityTable | None = None,
     period: str | None = None,
     constants: Constants = Constants(),
+    likelihood_ratios: Mapping[str, float] | None = None,
 ) -> tuple[float, float]:
     """The pooled supporting and refuting weights `S_+`, `S_-` for one
     hypothesis (`main.tex` §Belief model's `S_+`/`S_-` definition): group
     `items` by kind, discount each kind's summed weight by `D` on its
-    effective count, sum across kinds, then apply the cross-kind
-    independence bonus once over the kinds carrying real weight on that
-    side. `sources`, keyed by `source_id`, lets each kind's effective count
-    fall back from a raw item count to the stemma's connected-component
-    count (`effective_count`); with no `sources` given, `n_eff` is just the
-    number of items in that kind.
+    effective count, then sum across kinds (a plain sum: item 6 removed
+    the cross-kind independence bonus this used to multiply by, since
+    nothing in this package estimates that independence). `sources`,
+    keyed by `source_id`, lets each kind's effective count fall back
+    from a raw item count to the stemma's connected-component count
+    (`effective_count`); with no `sources` given, `n_eff` is just the
+    number of items in that kind. `likelihood_ratios`, keyed by evidence
+    id, scales each item's weight by `discrimination` (an unrated item
+    keeps its full weight).
 
     `constants.detectability_floor` (`Constants`'s own docstring) is
     applied once here, to every entry `detect_table` carries, before
@@ -457,9 +534,12 @@ def pooled_weight(
                 n_eff = effective_count(kind_sources, stemma_edge_weights, constants.theta_prune) if kind_sources else len(kind_items)
             else:
                 n_eff = len(kind_items)
-            s_sum = sum(cluster_weight(i, floored_table, period) for i in kind_items)
+            s_sum = sum(
+                cluster_weight(i, floored_table, period) * discrimination((likelihood_ratios or {}).get(i.id))
+                for i in kind_items
+            )
             total += D(n_eff, constants.lam) * s_sum
-        return cross_kind_bonus(groups.keys()) * total
+        return total
 
     return side(by_kind_support), side(by_kind_refute)
 
@@ -479,6 +559,7 @@ def score(
     stemma_edge_weights: Mapping[tuple[str, str], float] | None = None,
     period: str | None = None,
     constants: Constants = Constants(),
+    likelihood_ratios: Mapping[str, float] | None = None,
 ) -> Opinion:
     """`Eq. opinion-sum`: the fused opinion for `hypothesis`, from the
     evidence in `evidence` that names its address and the prior logit
@@ -490,7 +571,7 @@ def score(
     r, s = pooled_weight(
         evidence, hypothesis.address,
         sources=sources, stemma_edge_weights=stemma_edge_weights,
-        detect_table=table, period=period, constants=constants,
+        detect_table=table, period=period, constants=constants, likelihood_ratios=likelihood_ratios,
     )
     a = sigmoid(hypothesis.prior_logit(vocab))
     return Opinion.from_evidence(r, s, constants.W, a)

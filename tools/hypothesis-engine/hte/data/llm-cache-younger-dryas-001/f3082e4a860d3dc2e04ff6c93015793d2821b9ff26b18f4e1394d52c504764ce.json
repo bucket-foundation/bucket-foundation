@@ -1,0 +1,49 @@
+{
+  "model": "sonnet",
+  "role": "judge",
+  "prompt_sha256": "c3c258ca06c64552c24885c256e825dd56b192c0c48f02859acddbc5a182f589",
+  "response": {
+    "results": [
+      {
+        "id": "0",
+        "p_a_wins": 0.62,
+        "rationale": "Both hypotheses are fully uncertain (u=1) with no belief/disbelief mass, so the only differentiator is base-rate atomicity; A's atomicity (0.0067) is ~12x B's (0.00055), giving A a modest edge in projected probability."
+      },
+      {
+        "id": "1",
+        "p_a_wins": 0.78,
+        "rationale": "Both are 'refuted' claims, but A carries much lower disbelief (0.40) than B (0.94), indicating the independent-replication-failure evidence undermines the cosmic-impact/north-america claim (B) far more decisively than the solar-proton-event claim (A)."
+      },
+      {
+        "id": "2",
+        "p_a_wins": 0.42,
+        "rationale": "Both fully uncertain corroboration claims for the platinum anomaly; B's atomicity (0.018) exceeds A's (0.011), giving B a modestly higher projected probability under the taurid-stream mechanism."
+      },
+      {
+        "id": "3",
+        "p_a_wins": 0.6,
+        "rationale": "Comparing across mismatched objects under identical full uncertainty, A's atomicity (0.0067) is markedly higher than B's (0.00055), tipping projected probability toward A."
+      },
+      {
+        "id": "4",
+        "p_a_wins": 0.62,
+        "rationale": "Both fully uncertain; A's atomicity (0.011) is over 7x B's (0.0015), so A's projected probability for the megafaunal-extinction trigger edges out B's inconclusive taurid-swarm claim."
+      },
+      {
+        "id": "5",
+        "p_a_wins": 0.5,
+        "rationale": "Identical opinion vectors (b=0,d=0,u=1,a=0.00669) for both hypotheses yield no basis to prefer either."
+      },
+      {
+        "id": "6",
+        "p_a_wins": 0.38,
+        "rationale": "A carries substantial disbelief (0.50), indicating partial refutation, while B remains fully uncertain with a slightly higher projected probability (0.0015 vs A's 0.0012), favoring B."
+      },
+      {
+        "id": "7",
+        "p_a_wins": 0.18,
+        "rationale": "Both fully uncertain, but B's atomicity (0.018) is roughly 20x A's (0.0009), giving the corroborated platinum-anomaly/cosmic-impact hypothesis (B) a much higher projected probability than the inconclusive supernova claim (A)."
+      }
+    ]
+  }
+}

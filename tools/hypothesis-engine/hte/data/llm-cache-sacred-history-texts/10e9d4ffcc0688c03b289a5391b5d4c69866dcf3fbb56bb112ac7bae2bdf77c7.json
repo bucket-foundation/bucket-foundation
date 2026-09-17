@@ -1,0 +1,33 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "d36f0bcb14a234b4691241eae542763aabfa70f0163a76a9805a9c53f14ba618",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses, saying",
+        "claim": "The LORD spoke to Moses",
+        "actor": "the LORD",
+        "action": "spake",
+        "object": "Moses",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Bring the tribe of Levi near, and present them before Aaron the priest, that they may minister unto him",
+        "claim": "The tribe of Levi was brought near and presented before Aaron the priest to minister to him",
+        "actor": "Moses (implicit)",
+        "action": "Bring and present",
+        "object": "the tribe of Levi",
+        "place": "before Aaron the priest",
+        "mechanism": "that they may minister unto him",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "0c1f3f998808bf22205058096f835a81e30d93cf8135dbc24f459bcb94ad36eb",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "of each shall there be a like weight",
+        "claim": "Each ingredient should be in equal weight proportion",
+        "actor": "",
+        "action": "",
+        "object": "each",
+        "place": "",
+        "mechanism": "like weight",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And thou shalt make it a perfume, a confection after the art of the apothecary, tempered together, pure and holy",
+        "claim": "Perfume should be made using apothecary's technique of tempering",
+        "actor": "thou",
+        "action": "make",
+        "object": "perfume/confection",
+        "place": "",
+        "mechanism": "art of the apothecary, tempered",
+        "year": null,
+        "stance": "positive"
+      },
+      {
+        "kind": "textual",
+        "tier": "T2",
+        "quote": "And thou shalt beat some of it very small",
+        "claim": "Part of the mixture should be beaten into fine particles",
+        "actor": "thou",
+        "action": "beat",
+        "object": "it",
+        "place": "",
+        "mechanism": "beat",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

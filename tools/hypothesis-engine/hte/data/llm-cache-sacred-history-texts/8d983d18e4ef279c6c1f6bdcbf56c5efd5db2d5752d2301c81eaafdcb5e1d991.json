@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "b8e4420873062b7581e5bda819462a1515b4faf75e21d36308be67336dee476d",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And it came to pass, when Moses came down from mount Sinai with the two tables of testimony in Moses' hand, when he came down from the mount, that Moses wist not that the skin of his face shone while he talked with him.",
+        "claim": "Moses came down from mount Sinai carrying the two tables of testimony, and the skin of his face shone although Moses was unaware of it.",
+        "actor": "Moses",
+        "action": "came down from mount Sinai; skin of his face shone",
+        "object": "two tables of testimony; his face",
+        "place": "mount Sinai",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

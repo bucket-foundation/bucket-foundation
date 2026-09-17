@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "68fc1fd657584e726df48b85d132cb5e4b8b4c73cc9a405dc7639c950d806025",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses stretched forth his rod over the land of Egypt, and the LORD brought an east wind upon the land all that day, and all that night; and when it was morning, the east wind brought the locusts.",
+        "claim": "An east wind transported locusts to Egypt on the morning following a day-and-night wind event triggered by Moses raising his rod.",
+        "actor": "the east wind",
+        "action": "brought",
+        "object": "the locusts",
+        "place": "the land of Egypt",
+        "mechanism": "east wind",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

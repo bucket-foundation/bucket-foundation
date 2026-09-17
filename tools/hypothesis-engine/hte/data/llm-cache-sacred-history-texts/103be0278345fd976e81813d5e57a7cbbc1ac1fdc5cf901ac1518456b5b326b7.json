@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "6e5f1045e4496d03c83281fa82b80aa91756a1ece4c70c17f503f4bcc0f023bd",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And the LORD said to Aaron, Go into the wilderness to meet Moses.",
+        "claim": "The text says the LORD told Aaron to go into the wilderness to meet Moses.",
+        "actor": "the LORD",
+        "action": "instructed",
+        "object": "Aaron",
+        "place": "the wilderness",
+        "mechanism": "divine command",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And he went, and met him in the mount of God, and kissed him.",
+        "claim": "The text says Aaron went, met Moses at the mount of God, and kissed him.",
+        "actor": "Aaron",
+        "action": "met and kissed",
+        "object": "Moses",
+        "place": "the mount of God",
+        "mechanism": "obeying the divine command",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

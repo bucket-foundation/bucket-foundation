@@ -1,0 +1,48 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "bffca16fb3c69af21c49f6017ffd83f1bd296d14ae2a0307248e1f5d683fa8a7",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses spake before the LORD, saying, Behold, the children of Israel have not hearkened unto me; how then shall Pharaoh hear me, who am of uncircumcised lips?",
+        "claim": "Moses expressed doubt that Pharaoh would listen to him because he had a speech impediment",
+        "actor": "Moses",
+        "action": "spake",
+        "object": "Pharaoh",
+        "place": "",
+        "mechanism": "uncircumcised lips",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "Behold, the children of Israel have not hearkened unto me",
+        "claim": "The children of Israel did not listen to Moses",
+        "actor": "the children of Israel",
+        "action": "have not hearkened",
+        "object": "Moses",
+        "place": "",
+        "mechanism": "",
+        "year": null,
+        "stance": "negative"
+      },
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And the LORD spake unto Moses and unto Aaron, and gave them a charge unto the children of Israel, and unto Pharaoh king of Egypt, to bring the children of Israel out of the land of Egypt.",
+        "claim": "The LORD commanded Moses and Aaron to lead the children of Israel out of Egypt",
+        "actor": "the LORD",
+        "action": "gave them a charge",
+        "object": "the children of Israel",
+        "place": "the land of Egypt",
+        "mechanism": "",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "5c82576668303d9053565cd24f916de5a000b0473adab0110985af9e80204565",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "source-text",
+        "quote": "And he stayed yet other seven days; and again he sent forth the dove out of the ark;",
+        "claim": "The text says he (Noah, named in 8:11) waited another seven days and sent the dove out of the ark again.",
+        "actor": "Noah",
+        "action": "sent forth",
+        "object": "the dove",
+        "place": "the ark",
+        "mechanism": "waited seven more days, then released the dove again",
+        "stance": "positive",
+        "year": null
+      },
+      {
+        "kind": "event",
+        "tier": "source-text",
+        "quote": "And the dove came in to him in the evening; and, lo, in her mouth was an olive leaf pluckt off: so Noah knew that the waters were abated from off the earth.",
+        "claim": "The text says the dove came back in the evening with a freshly plucked olive leaf, and from this Noah knew the floodwaters had gone down.",
+        "actor": "Noah",
+        "action": "knew / inferred",
+        "object": "the waters were abated from off the earth",
+        "place": "the ark",
+        "mechanism": "the olive leaf the dove brought back showed that plants were above water again",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

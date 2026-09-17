@@ -1,0 +1,22 @@
+{
+  "model": "haiku",
+  "role": "extractor",
+  "prompt_sha256": "57e9a4b6b929c6ed67a80ac17484bd1f8d3fa692f24e61d02fac317ab093bd15",
+  "response": {
+    "items": [
+      {
+        "kind": "textual",
+        "tier": "T4",
+        "quote": "And Moses said unto Joshua, Choose us out men, and go out, fight with Amalek: to morrow I will stand on the top of the hill with the rod of God in mine hand.",
+        "claim": "Moses commands Joshua to gather men and fight Amalek, while Moses will stand on a hill holding the rod of God.",
+        "actor": "Moses, Joshua",
+        "action": "fight",
+        "object": "Amalek",
+        "place": "the top of the hill",
+        "mechanism": "the rod of God",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}

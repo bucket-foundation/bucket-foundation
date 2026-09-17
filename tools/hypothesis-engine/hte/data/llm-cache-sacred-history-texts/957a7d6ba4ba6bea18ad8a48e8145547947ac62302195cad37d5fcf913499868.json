@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "ba29c35a557d6447941651a1cd73a915c27f2832bdb93a0836ea2ad29ca40cb1",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "And he put the altar of burnt offering by the door of the tabernacle of the tent of the congregation, and offered upon it the burnt offering and the meat offering; as the LORD commanded Moses.",
+        "claim": "The altar of burnt offering was placed at the door of the tabernacle of the tent of the congregation, and burnt and meat offerings were made on it, as the LORD had commanded Moses.",
+        "actor": "he (unnamed in the verse; that this is Moses, Exodus 40:29 KJV, is model-prior and unverified)",
+        "action": "put the altar of burnt offering in place and offered burnt and meat offerings on it",
+        "object": "altar of burnt offering; burnt offering; meat offering",
+        "place": "door of the tabernacle of the tent of the congregation",
+        "mechanism": "done by command of the LORD to Moses",
+        "stance": "positive",
+        "year": null
+      }
+    ]
+  }
+}

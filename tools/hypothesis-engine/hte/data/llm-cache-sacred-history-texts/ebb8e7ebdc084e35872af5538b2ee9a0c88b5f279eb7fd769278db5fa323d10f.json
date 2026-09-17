@@ -1,0 +1,22 @@
+{
+  "model": "opus",
+  "role": "escalation",
+  "prompt_sha256": "ab28966fc3687aba620426d5c36d14dbfaff801c952d424ae6c0078293f300b6",
+  "response": {
+    "items": [
+      {
+        "kind": "event",
+        "tier": "primary-text",
+        "quote": "But when Moses went in before the LORD to speak with him, he took the vail off, until he came out. And he came out, and spake unto the children of Israel that which he was commanded.",
+        "claim": "The text says Moses took off his veil when he went in to speak with the LORD and kept it off until he came out. He then told the children of Israel what he had been commanded.",
+        "actor": "Moses",
+        "action": "removed the veil before the LORD and then passed on the commands to Israel",
+        "object": "vail (veil); commandments passed to the children of Israel",
+        "mechanism": "Moses speaks with the LORD without his veil, then passes on what he was commanded to the people. Which book this verse comes from is not in the document. Only the verse label 34:34 appears there. Linking it to Exodus 34:34 (KJV wording) comes from model-prior and is unverified.",
+        "place": "unspecified (before the LORD)",
+        "year": null,
+        "stance": "positive"
+      }
+    ]
+  }
+}
