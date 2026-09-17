@@ -22,7 +22,7 @@
  * reading the env var itself.
  */
 import type { NextRequest } from "next/server";
-import { verifyLearnerIdentity } from "./db";
+import { graphService, verifyLearnerIdentity } from "./db";
 
 export interface Reviewer {
   id: string;
@@ -61,6 +61,20 @@ export function isReviewerEmail(email: string): boolean {
 export async function verifyReviewer(req: NextRequest): Promise<Reviewer | null> {
   const identity = await verifyLearnerIdentity(req);
   if (!identity?.email) return null;
-  if (!isReviewerEmail(identity.email)) return null;
+  if (!isReviewerEmail(identity.email) && !(await holdsStaffRole(identity.id))) return null;
   return { id: identity.id, email: identity.email };
+}
+
+/**
+ * A teacher or librarian membership in any class (graph.class_members.role)
+ * makes a person a reviewer beside the env allowlist, so a teacher who
+ * created their own class reviews without a deploy.
+ */
+async function holdsStaffRole(userId: string): Promise<boolean> {
+  try {
+    const { data, error } = await graphService().from("class_members").select("class_id").eq("learner_id", userId).in("role", ["teacher", "librarian"]).limit(1);
+    return !error && Array.isArray(data) && data.length > 0;
+  } catch {
+    return false;
+  }
 }

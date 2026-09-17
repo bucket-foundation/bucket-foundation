@@ -461,3 +461,42 @@ p.chisel, li.chisel, small.chisel, .chisel p, .chisel li {
     0 1px 0 rgba(239,232,212,0.75),
     0 -1px 0 rgba(31,28,22,0.35);
 }
+
+/* Scroll gravity: a "proximity" snap, a soft pull only near a target,
+   never a hard scroll-jack. scroll-snap-type has to live on the actual
+   scrolling box, the document itself for a normal page, so this sets it
+   on html rather than a wrapper div; it is inert on every page in this
+   repo except one that also opts a section in with .snap-gravity-target,
+   and today only the homepage's canon-search section does. Wrapped in
+   prefers-reduced-motion: no-preference since CSS scroll-snap has no
+   built-in reduced-motion behavior of its own. */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.snap-gravity-target) {
+    scroll-snap-type: y proximity;
+  }
+}
+.snap-gravity-target {
+  scroll-snap-align: center;
+  scroll-margin-block: 2rem;
+}
+
+/* Research OS Learn: lesson markdown. */
+.lesson-prose h1, .lesson-prose h2, .lesson-prose h3, .lesson-prose h4 {
+  font-family: var(--font-display, "Cinzel", serif);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--basalt);
+  margin: 1.4em 0 0.5em;
+  line-height: 1.2;
+}
+.lesson-prose h2 { font-size: 15px; }
+.lesson-prose h3, .lesson-prose h4 { font-size: 13px; }
+.lesson-prose p { margin: 0.6em 0; }
+.lesson-prose ul, .lesson-prose ol { margin: 0.6em 0 0.6em 1.2em; }
+.lesson-prose li { margin: 0.25em 0; }
+.lesson-prose code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.92em; background: rgba(31, 28, 22, 0.06); padding: 0 0.3em; border-radius: 2px; }
+.lesson-prose pre { overflow-x: auto; padding: 0.75em 1em; background: rgba(31, 28, 22, 0.06); border-radius: 4px; }
+.lesson-prose blockquote { border-left: 2px solid var(--gold); padding-left: 1em; color: var(--basalt-3); }
+.lesson-prose table { border-collapse: collapse; margin: 0.8em 0; }
+.lesson-prose th, .lesson-prose td { border: 1px solid var(--hairline); padding: 0.3em 0.6em; text-align: left; }
+.lesson-prose .katex-display { overflow-x: auto; padding: 0.4em 0; }

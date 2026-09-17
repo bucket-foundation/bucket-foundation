@@ -53,9 +53,7 @@ export interface EligibleConcept {
 function conceptUrl(branch: string, atomId: string): string {
   // The Academy concept is addressable in-app; we point at the deep-link the
   // static app understands (branch + atom). Resolvable + stable.
-  return `${SITE_ORIGIN}/academy?deck=${encodeURIComponent(
-    branch
-  )}&atom=${encodeURIComponent(atomId)}`;
+  return `${SITE_ORIGIN}/research-os/learn/${encodeURIComponent(branch)}/${encodeURIComponent(atomId)}`;
 }
 
 /** Pull the canon concept gloss for richer alignment text (best-effort). */

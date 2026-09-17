@@ -182,7 +182,7 @@ export default async function MasteryProfilePage({
       )}
 
       <footer className="mp-foot">
-        <a className="mp-cta" href="/academy">
+        <a className="mp-cta" href="/research-os/learn">
           Build your own → Bucket Academy
         </a>
         <div className="mp-slogan">build the past. build history.</div>

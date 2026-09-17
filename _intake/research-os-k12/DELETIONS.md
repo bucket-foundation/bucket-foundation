@@ -6,6 +6,134 @@ replaced sentence is never lost. See also
 `learning/research-os/CHANGE-LEDGER.md`, PR #3's own ledger for the same
 convention.
 
+## 2026-09-16, the Contribute button and the /join page
+
+**Reason.** Founder direction: "make the contribute button just be sign in". The header's
+Contribute button (desktop and phone drawer) is now the Sign in control
+(`src/components/auth/UserMenu.tsx`), `/join` redirects to `/sign-in`, and the footer's
+"Join" link points at `/sign-in`. The full retired page is kept verbatim at
+`_intake/research-os-k12/retired/join-page-2026-09-16.tsx`.
+
+**Removed header JSX, verbatim:**
+
+```tsx
+            <Link
+                href="/join"
+                className="hidden sm:inline-flex small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-5 py-2 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] hover:bg-[color:var(--aegean-deep)] transition items-center min-h-[44px]"
+              >
+                Contribute
+              </Link>
+```
+
+```tsx
+                          <Link
+                href="/join"
+                onClick={closeDrawer}
+                className="block text-center small-caps text-[12px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-6 py-4 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] min-h-[52px] tracking-[0.1em]"
+              >
+                Contribute to the canon
+              </Link>
+```
+
+## 2026-09-16, the per-page one-time-code form and the module bar
+
+**Reason.** One site session (`docs/AUTH.md`). The seven copies of the form below
+(`src/app/research-os/{workspace,class,review,roster,edges,profile}/page.tsx`,
+`src/app/canon/signoff/page.tsx`; placeholder text varied between `you@school.example`
+and `reviewer@school.example`) are replaced by `<SignInGate />`, and
+`src/app/research-os/ResearchOsNav.tsx` by the application shell.
+
+**Removed JSX, verbatim from the workspace page:**
+
+```tsx
+        {/* Auth panel */}
+        <div className="mt-6 p-4 bg-[color:var(--bone)] shadow-[inset_0_1px_0_rgba(239,232,212,0.6)]">
+          {token ? (
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <span className="text-[13px] text-[color:var(--basalt-2)]">Signed in.</span>
+              <button onClick={signOut} className="text-[12px] small-caps underline underline-offset-4">
+                sign out
+              </button>
+            </div>
+          ) : !otpSent ? (
+            <div className="flex items-center gap-2 flex-wrap">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@school.example"
+                className="border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-white/60 flex-1 min-w-[200px]"
+              />
+              <button
+                onClick={sendOtp}
+                disabled={authBusy || !email.trim()}
+                className="px-4 py-2 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
+              >
+                {authBusy ? "sending…" : "send code"}
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 flex-wrap">
+              <input
+                value={otpCode}
+                onChange={(e) => setOtpCode(e.target.value)}
+                placeholder="6-digit code"
+                className="border border-[color:var(--hairline)] px-3 py-2 text-[13px] bg-white/60 w-[160px]"
+              />
+              <button
+                onClick={verifyOtp}
+                disabled={authBusy || !otpCode.trim()}
+                className="px-4 py-2 text-[12px] small-caps bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50"
+              >
+                {authBusy ? "verifying…" : "verify"}
+              </button>
+            </div>
+          )}
+          {authError && <p className="mt-2 text-[12px] text-red-700">{authError}</p>}
+        </div>
+```
+
+**Removed handlers, verbatim (`shouldCreateUser` was `true` on the workspace and profile pages, `false` elsewhere):**
+
+```tsx
+  async function sendOtp() {
+    if (!supabase || !email.trim()) return;
+    setAuthBusy(true);
+    setAuthError(null);
+    const { error } = await supabase.auth.signInWithOtp({ email: email.trim(), options: { shouldCreateUser: true } });
+    setAuthBusy(false);
+    if (error) setAuthError(error.message);
+    else setOtpSent(true);
+  }
+
+  async function verifyOtp() {
+    if (!supabase || !otpCode.trim()) return;
+    setAuthBusy(true);
+    setAuthError(null);
+    const { data, error } = await supabase.auth.verifyOtp({ email: email.trim(), token: otpCode.trim(), type: "email" });
+    setAuthBusy(false);
+    if (error) {
+      setAuthError(error.message);
+      return;
+    }
+    if (data.session) setToken(data.session.access_token);
+  }
+```
+
+**Removed module bar entries (`ResearchOsNav.tsx`), verbatim:**
+
+```ts
+  { href: "/research-os", label: "Overview", match: ["/research-os"] },
+  { href: "/canon/search", label: "Map", match: ["/canon"] },
+  { href: "/academy", label: "Learn", match: ["/academy", "/ladder"] },
+  { href: "/research-os/workspace", label: "Workspace", match: ["/research-os/workspace"] },
+  { href: "/research-os/review", label: "Produce", match: ["/research-os/review", "/research/papers"] },
+  { href: "/research", label: "Frontier", match: ["/research", "/research-os/edges"] },
+  { href: "/research-os/class", label: "Class", match: ["/research-os/class", "/research-os/roster"] },
+  { href: "/research-os/profile", label: "Profile", match: ["/research-os/profile", "/m"] },
+  { href: "/library", label: "Corpora", match: ["/library", "/knowledge", "/kruse", "/sacred-history"] },
+```
+
 ## 2026-09-10, `src/app/research-os/page.tsx`
 
 **Reason.** The system review (`RESEARCH-OS-K12-SYSTEM-REVIEW.md` sections 8
@@ -494,6 +622,295 @@ commit.
 >
 > Every field named above as a schema gap is additive and optional, following the same discipline `EVIDENCE-SCHEMA.md`'s own contract states directly: a writer omits a field it has nothing for, and no existing transition function, review route, or evidence-event reader needs to change to tolerate the addition. None of the three instruments is implemented; this file specifies what `ros-04` and `ros-06` build against, the same relationship `EVIDENCE-SCHEMA.md` holds to `LEARNER-STATE-MODEL.md` section 4.
 
+## 2026-09-14, `src/app/research-os/page.tsx`, hero-mounted interactive globe removed
+
+**Reason.** Founder spec for the site-local homepage/research-os pass: the interactive `CanonGlobeMount` search tool comes out of the `/research-os` hero, replaced by a fixed, decorative, non-interactive globe rendered once at the page level (`FixedCanonGlobeBackground`, position fixed, anchored bottom right, behind all content, blurred, `pointer-events: none`). The interactive search tool stays live on `/canon`, `/canon/search`, and the new homepage `CanonSearchPanel`; `/research-os` no longer needs its own copy.
+
+**Original JSX, removed verbatim** (sat directly below the hero's CTA row in `ResearchOsPage`, importing `CanonGlobeMount` from `@/app/canon/CanonGlobeMount` and `ScrollReveal` from `@/components/ScrollReveal`, both imports also removed since this was their only use on this page):
+
+```tsx
+      {/* Hero visual: the real canon search globe, the same live component,
+          real branch data, and real search (against /api/canon/search)
+          /canon and /canon/search mount. Its own error boundary degrades
+          to the static SVG globe when WebGL is unavailable, the same
+          fallback /canon uses. */}
+      <ScrollReveal className="relative z-10">
+        <div className="w-full px-2 sm:px-4 md:px-6">
+          <div className="text-center small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] mb-3">
+            § find sources, over the same canon this tool searches
+          </div>
+          <div id="globe-capture" className="max-w-[1800px] mx-auto">
+            <CanonGlobeMount
+              branches={globeBranches}
+              containerClassName="relative w-full mx-0 md:h-[88vh] md:max-h-[1000px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
+            />
+          </div>
+        </div>
+      </ScrollReveal>
+```
+
+Also removed from the same component: the `getBranches()`/`globeBranches` computation at the top of `ResearchOsPage` (its only consumer was the JSX above) and the `"Read the plan ↗"` external link beside the "Try the prototype →" CTA, trimming the hero to the one CTA the founder spec asked for.
+
+## 2026-09-14: Research OS landing trimmed to hero, fixed globe, Five States
+
+File: `src/app/research-os/page.tsx`. Reason: founder direction 2026-09-14: Research OS landing is hero, fixed globe, Five States only. Six sections removed, the alternating-row "Five States" block stays. The `TOOLS` array, the `Card` helper, and their only call sites went with the sections that used them.
+
+Removed section 1, the numbered-table restatement of the five states (the alternating-row version above it stays):
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § five states per concept
+</div>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  Each concept in the graph carries one of five states for each learner.
+  The states reuse the Academy&apos;s mastery signals and add a reviewed
+  production at the top. The design gives a teacher the ability to see,
+  question, and override any state, with the override recorded; no
+  teacher view has shipped yet (see status, below).
+</p>
+<div className="mt-6 grid grid-cols-1 gap-px bg-[color:var(--hairline)] grid-hairlines">
+  {STATES.map((s, i) => (
+    <div
+      key={s.name}
+      className="bg-[color:var(--bone)] p-6 md:p-7 grid grid-cols-1 md:grid-cols-[140px_1fr_1fr] gap-3 md:gap-6"
+    >
+      <div className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">
+        <span className="text-[color:var(--gold-deep)] mr-2">{i + 1}</span>
+        {s.name}
+      </div>
+      <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{s.meaning}</p>
+      <p className="text-[13px] leading-[1.7] text-[color:var(--basalt-3)]">{s.signal}</p>
+    </div>
+  ))}
+</div>
+```
+
+Removed section 2, "your tools, no pen" (find, quote, check, organize), plus the `TOOLS` array that fed it:
+
+```tsx
+const TOOLS: { name: string; body: string }[] = [
+  {
+    name: "find",
+    body: "Retrieval over the canon, mirrored OpenAlex and Crossref metadata, and open-licensed public sources. Every hit carries a license.",
+  },
+  {
+    name: "quote",
+    body: "Exact spans with source id, canonical URL, license, and locator. The tool refuses to paraphrase.",
+  },
+  {
+    name: "check",
+    body: "Does a quoted span support, contradict, or fail to settle the learner's claim. The tool abstains when retrieval is weak.",
+  },
+  {
+    name: "organize",
+    body: "Claim, evidence, and warrant scaffolds; outlines; citation formatting. Labels only, no generated prose.",
+  },
+];
+```
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § four tools, no pen
+</div>
+<div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
+  {TOOLS.map((t) => (
+    <div key={t.name} className="bg-[color:var(--bone)] p-7 md:p-8 flex flex-col gap-3">
+      <div className="font-display uppercase text-[20px] tracking-[0.04em] text-[color:var(--basalt)]">
+        {t.name}
+      </div>
+      <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
+      <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{t.body}</p>
+    </div>
+  ))}
+</div>
+```
+
+Removed section 3, "frontier first, then backward":
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § frontier first, then backward
+</div>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  A learner or a teacher picks a frontier: a concept at the edge of a
+  branch, or a live hypothesis from Bucket&apos;s hypothesis engine. The
+  router walks the prerequisite graph backward to what the learner
+  already understands, then forward again to the target. Supports fade
+  as the learner&apos;s state rises.
+</p>
+```
+
+Removed section 4, "productions that enter the graph":
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § productions that enter the graph
+</div>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  A production is a claim, the quoted evidence behind it, the checks it
+  passed, and its citations. When a teacher and a Bucket reviewer accept
+  it, the production becomes a node with a citable id, registered on the
+  same rail as every paper on this site, and the hypothesis engine can
+  read it as evidence. Citation fees for a contributor under eighteen go
+  to a guardian or a custodial account, never to the minor directly, and
+  recognition ships before any payout does.
+</p>
+```
+
+Removed section 5, "where it sits" (Academy, Ladder, Research cards), plus the `Card` helper that rendered each tile:
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § where it sits
+</div>
+<div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines">
+  <Card href="/academy" title="Academy" body="The consume side: spaced-repetition mastery over the foundations of each branch. Research OS reads the same states." />
+  <Card href="/ladder" title="Ladder" body="The L0 to L5 climb from literacy to producing knowledge. Research OS is the production path for the K-12 rung." />
+  <Card href="/research" title="Research" body="The tools, datasets, atlas, and papers. Accepted student productions land here as citable nodes." />
+</div>
+```
+
+```tsx
+function Card({ href, title, body }: { href: string; title: string; body: string }) {
+  return (
+    <Link href={href} className="block h-full">
+      <div className="bg-[color:var(--bone)] p-7 md:p-8 flex flex-col gap-3 min-h-[150px] h-full shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]">
+        <div className="font-display uppercase text-[20px] tracking-[0.04em] text-[color:var(--basalt)]">
+          {title}
+        </div>
+        <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
+        <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">{body}</p>
+        <div className="mt-auto pt-3 text-[11px] small-caps tracking-[0.14em]">
+          <span className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
+            open {title.toLowerCase()} →
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+```
+
+Removed section 6, "status":
+
+```tsx
+<div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+  § status
+</div>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  Design, iteration 2, September 2026. On main today: frontier-backward
+  routing with confidence flags on a weak edge, a diagnostic probe for
+  a cold-start learner, the four-tool workspace (find, quote, check,
+  organize) with every contract enforced in code, a teacher review
+  queue and class view with an accept path, an engine bridge covered
+  by tests, self-service export and delete of a learner&apos;s own
+  data, and a consent gate in front of every learner-authored write.
+</p>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  Not yet on main: applying an accepted production to the live
+  database, roster sync from a school system, verified parental
+  consent, a payment to a minor contributor, and canon write-back
+  without a human sign-off.
+</p>
+<p className="mt-4 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+  Grades 3 to 5 (why the sky is blue) and the history of quantum
+  physics for grades 9 to 12 remain the two candidate subjects for the
+  next demonstration; which one leads is still an open choice
+  (<code className="text-[13px]">_intake/research-os-k12/RESEARCH-OS-K12-SYSTEM-REVIEW.md</code>{" "}
+  section 11). The plan, the learner-state model, the production
+  schema, the vendor and data-source map, and the funding and people
+  map are public in the repository under{" "}
+  <code className="text-[13px]">learning/research-os/</code> and{" "}
+  <code className="text-[13px]">_intake/research-os-k12/</code>.
+  Pilot classrooms, a pre-registered study of the four-tool constraint,
+  and a state-validation paper come before any wider release.
+</p>
+```
+
+The wrapping `<div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">` and its leading `carved-rule` divider were removed along with the six sections, since nothing remained under them.
+
+## 2026-09-14: Home page logo mark removed above the headline
+
+File: `src/components/Presentation.tsx`. Reason: founder direction 2026-09-14, the square stone glyph sat above the headline and read as noise ahead of the panel-peek fix; the `Image` import went with its only call site.
+
+```tsx
+<div className="carve-in-1 flex justify-center mb-8">
+  <Image
+    src="/brand/omega-stonepunk.png"
+    alt="The bucket.foundation mark, a carved inverse omega"
+    width={72}
+    height={72}
+    priority
+    className="rounded-sm border-2 border-[color:var(--basalt)] shadow-[0_20px_30px_-18px_rgba(13,13,13,0.45)]"
+  />
+</div>
+```
+
+## 2026-09-14: Canvas-readback landmask loader replaced with a precomputed asset
+
+File: `src/components/canon-globe/landmaskFromImage.ts`. Reason: the founder's Brave browser (fingerprint protection) refuses the 2D canvas context or the `getImageData` readback, the old `loadLandmask` threw, and the globe rendered with no land dots. The land/ocean decision is now baked offline by `scripts/globe/build-landmask.mjs` into `public/textures/earth/landmask-2k.bin` (1-bit packed grid) plus `landmask-2k.json` (header); the client fetches and unpacks bytes instead of drawing the daymap into a canvas. See `CHANGELOG.md` in this directory and `learning/research-os/CHANGE-LEDGER.md` for the full account.
+
+The `loadLandmask` function body below (the whole file, unchanged since first written) is preserved verbatim:
+
+```ts
+// Landmask sampler. Loads a daymap image into an offscreen canvas and exposes
+// `isLand(lat, lng)` based on a luminance threshold. Ocean pixels on the NASA
+// blue-marble daymap read dark blue (low R, modest G, high B); land reads as
+// warm browns + greens with much higher luminance. A simple Y > threshold cut
+// is enough to separate them at 2k resolution.
+
+export type Landmask = {
+  width: number;
+  height: number;
+  isLand: (lat: number, lng: number) => boolean;
+  sample: (lat: number, lng: number) => { r: number; g: number; b: number; y: number };
+};
+
+export async function loadLandmask(
+  url: string,
+  threshold = 90
+): Promise<Landmask> {
+  const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+    const el = new Image();
+    el.crossOrigin = "anonymous";
+    el.onload = () => resolve(el);
+    el.onerror = reject;
+    el.src = url;
+  });
+
+  const canvas = document.createElement("canvas");
+  canvas.width = img.naturalWidth;
+  canvas.height = img.naturalHeight;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  if (!ctx) throw new Error("landmask: 2d context unavailable");
+  ctx.drawImage(img, 0, 0);
+  const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+  const sample = (lat: number, lng: number) => {
+    // equirectangular: lng in [-180,180] → x in [0,w); lat in [90,-90] → y in [0,h)
+    const u = ((lng + 180) % 360) / 360;
+    const v = (90 - lat) / 180;
+    const x = Math.min(width - 1, Math.max(0, Math.floor(u * width)));
+    const y = Math.min(height - 1, Math.max(0, Math.floor(v * height)));
+    const i = (y * width + x) * 4;
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    // Rec. 601 luma
+    const yLum = 0.299 * r + 0.587 * g + 0.114 * b;
+    return { r, g, b, y: yLum };
+  };
+
+  const isLand = (lat: number, lng: number) => {
+    const { r, g, b, y } = sample(lat, lng);
+    // Ocean is dominated by blue channel; land tends to have R or G >= B.
+    if (b > r + 25 && b > g + 10) return false;
+    return y > threshold;
+  };
+
+  return { width, height, isLand, sample };
+}
+```
 ## 2026-09-11, `src/app/research-os/page.tsx`, status band refresh to current main
 
 **Reason.** Bead-equivalent task: refresh the status band so it states truthfully what is on main today, verified against `gh pr list --state merged --limit 60` and the docs under `learning/research-os/` (`ROUTING.md`, `WORKSPACE.md`, `GUIDANCE.md`, `LATERAL-READING.md`, `PRODUCTION-GUARD.md`, `TEACHER-LAYER.md`, `ROSTER.md`, `ENGINE-BRIDGE.md`, `compliance/`, `study/`, `tools/canon-pipeline/SIGNOFF.md`). The paragraph below named only the `ros-07`-era shipped set (routing, probe, workspace, teacher layer, engine bridge, export/delete, consent gate); it named none of cognitive forcing, faded guidance, lateral reading, the production provenance guard, or the OneRoster CSV importer, all merged to `main` since. Replaced with two paragraphs that name every shipped item this pass confirmed against a merged PR, keeping the same heading and the same lead sentence shape. The "not yet on main" paragraph below it also understated the gap: it named "roster sync from a school system" where a OneRoster CSV importer has since shipped (Clever and ClassLink stay stubs), and it named "canon write-back without a human sign-off" where the sign-off tool has since shipped, but it omitted the LLM-assisted edge-inference proposal path and the absence of a partner school. Replaced with the accurate list. The third paragraph (candidate subjects, repository pointers, pilot/study framing) is unchanged in substance, gaining only a closing sentence and a link to `PLAN-REVISION-3.md`.
@@ -514,3 +931,33 @@ commit.
 > database, roster sync from a school system, verified parental
 > consent, a payment to a minor contributor, and canon write-back
 > without a human sign-off.
+
+## 2026-09-14 merge of dev into site-local-2026-09-14
+
+dev commit 65dbde7d0 (#117, "Research OS status band refresh to current main") re-added the status band, five-state table, four tools, frontier, productions, and where-it-sits sections to `src/app/research-os/page.tsx`. The founder removed those sections from this page on 2026-09-14 (entry above), so the merge keeps the landing version. The #117 text is unchanged on `origin/dev` at `git show 65dbde7d0:src/app/research-os/page.tsx`.
+
+## 2026-09-15 decorative globe driver
+
+`AutoRotateDriver` and its three constants, and the `scrollSpeedRef` prop, left `CanonGlobe.tsx` and `CanonGlobeMount.tsx` with the scroll-only spin. Full prior source: `git show 4f95f109b:src/components/canon-globe/CanonGlobe.tsx`.
+
+## 2026-09-15 Research OS page copy
+
+The eyebrow "§ Research OS · K-12", the "Try the prototype" hero CTA, the "§ five states" eyebrow, and the per-state meaning and signal sentences left `src/app/research-os/page.tsx` for the artifact layout. Prior file: `git show 19a7bc1c6:src/app/research-os/page.tsx`.
+
+## 2026-09-15 painted edge overlay
+
+The bone radial-gradient overlay div inside `FixedCanonGlobeBackground.tsx` and its `nofade` query switch are gone; the Halo and shell fade in their shaders instead. Prior file: `git show 191e0ec90:src/components/FixedCanonGlobeBackground.tsx`.
+
+## 2026-09-15 five-state copy
+
+The artifact one-liners for the five states on `src/app/research-os/page.tsx` are replaced by the interaction-level copy. Prior file: `git show 34ecdf536:src/app/research-os/page.tsx`.
+
+## 2026-09-15 homepage cut, ros-22
+
+Removed from `src/components/Presentation.tsx` on the founder's approval (answers Q3 and item 3): the canon stat strip, the Research OS for K-12 section, the AI-native paste-this-URL section, the thesis tablet, the manifesto pull, the eight canon plinths, the protocol monolith, the how-a-citation-works inscription, the closer and its stele marquee, plus the `Stat` and `Tier` helpers and the `Globe`, `InverseOmega`, and `AiPasteCTA` imports they used. The homepage is the reform-education hero and the canon search panel. Full prior file: `git show 182736aa8:src/components/Presentation.tsx`.
+
+Nav: the Academy and Access top-level tabs left `src/components/Header.tsx`; Academy is Research OS → Learn, Access is Canon → Agent access, the depth ladder is under Research OS. Prior nav: `git show 182736aa8:src/components/Header.tsx`.
+
+## 2026-09-15 Dynamic widget in the header
+
+`DynamicWidget` and its `HAS_DYNAMIC` branches left `src/components/Header.tsx` (desktop and drawer). Prior file: `git show a5d9becce:src/components/Header.tsx`. The Dynamic provider stays mounted in `src/providers/Web3Providers.tsx` for the canon's contribute and cite flows.

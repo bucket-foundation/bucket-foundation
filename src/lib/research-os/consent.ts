@@ -58,6 +58,7 @@
  * part B item 2) is the only writer of that column, and stays a TODO.
  */
 import { graphService } from "./db";
+import { effectiveConsent, type ClassConsent, type ConsentRequestRecord, type EffectiveConsent } from "./consent-paths";
 
 export type LearnerRole = "student" | "teacher" | "independent";
 export type BirthYearBucket = "under13" | "13to17" | "18plus";
@@ -166,7 +167,43 @@ export async function requireConsent(learnerId: string, action: ConsentAction): 
   const svc = graphService();
   const { data, error } = await svc.from("learner_profiles").select("*").eq("learner_id", learnerId).maybeSingle();
   if (error || !data) return decideConsent(null, action);
-  return decideConsent(toLearnerProfile(data as LearnerProfileRow), action);
+  const profile = toLearnerProfile(data as LearnerProfileRow);
+  const first = decideConsent(profile, action);
+  if (first.allowed || first.reason !== "consent_required") return first;
+
+  // ros-32: the consent paths beyond the profile column. A rostered learner
+  // in a class under the school exception, or a verified vendor request,
+  // reads as consent; the result is written through to the profile so the
+  // next check is one read.
+  const effective = await resolveConsentPaths(learnerId, profile);
+  if (effective.status === "none") return first;
+  await svc
+    .from("learner_profiles")
+    .update({ consent_status: effective.status, consent_source: effective.source, updated_at: new Date().toISOString() })
+    .eq("learner_id", learnerId);
+  return decideConsent({ ...profile, consentStatus: effective.status, consentSource: effective.source }, action);
+}
+
+/** The school-exception and vendor paths for one learner (consent-paths.ts). */
+export async function resolveConsentPaths(learnerId: string, profile: LearnerProfile): Promise<EffectiveConsent> {
+  const svc = graphService();
+  const { data: members } = await svc.from("class_members").select("class_id,role").eq("learner_id", learnerId);
+  const memberships = ((members as { class_id: string; role: string | null }[]) || []).map((m) => ({ classId: m.class_id, role: m.role || "learner" }));
+  const classIds = memberships.map((m) => m.classId);
+  const classes: ClassConsent[] = [];
+  if (classIds.length) {
+    const { data: rows } = await svc.from("classes").select("id,consent_basis,consent_document").in("id", classIds);
+    for (const c of (rows as { id: string; consent_basis: string | null; consent_document: string | null }[]) || []) {
+      classes.push({ classId: c.id, consentBasis: c.consent_basis === "school" ? "school" : "none", consentDocument: c.consent_document });
+    }
+  }
+  const { data: reqs } = await svc.from("consent_requests").select("vendor,status,vendor_ref").eq("learner_id", learnerId);
+  const requests: ConsentRequestRecord[] = ((reqs as { vendor: ConsentRequestRecord["vendor"]; status: ConsentRequestRecord["status"]; vendor_ref: string | null }[]) || []).map((r) => ({
+    vendor: r.vendor,
+    status: r.status,
+    vendorRef: r.vendor_ref,
+  }));
+  return effectiveConsent(profile, memberships, classes, requests);
 }
 
 export interface ConsentBlockedBody {

@@ -235,7 +235,7 @@ export default function Page() {
           <Lever
             n="04"
             title="the academy · learning-to-learn"
-            href="/academy"
+            href="/research-os/learn"
             cta="open the academy"
             body="Spaced-repetition mastery over the canon's seven branches — and a first-class 'Learning to learn' branch that TEACHES the highest-leverage missing skill the research names (metacognition, retrieval, spacing) as content you master, where 84% of students reread and 72% wrongly believe massing beats spacing. Most systems only USE this science; Bucket also teaches it."
           />
@@ -346,7 +346,7 @@ export default function Page() {
               /canon
             </Link>
             <Link
-              href="/academy"
+              href="/research-os/learn"
               className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
             >
               /academy

@@ -53,7 +53,7 @@ export function envSecondSourceRequiredDefault(): boolean {
 }
 
 /** A class-level override (`graph.classes.second_source_required`,
- * migration 20260910080000_research_os_lateral_reading.sql) wins when
+ * migration 20260910080001_research_os_lateral_reading.sql) wins when
  * set; `null`/`undefined` (no override on file, or the lookup failed
  * open, db.ts's loadSecondSourceRequiredForLearner) defers to the env
  * default. Split from that lookup so this decision is unit-testable with

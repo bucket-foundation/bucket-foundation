@@ -1,7 +1,7 @@
 "use client";
 
-import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
 import Link from "next/link";
+import UserMenu from "@/components/auth/UserMenu";
 import InverseOmega from "./InverseOmega";
 import { useEffect, useRef, useState } from "react";
 
@@ -12,6 +12,24 @@ type NavItem = {
 };
 
 const NAV: NavItem[] = [
+  // Research OS is the product; every surface lives inside it. Canon is
+  // the substrate underneath. Everything else lives in the Research OS
+  // dropdown, the footer, or the module bar on Research OS pages.
+  {
+    href: "/research-os",
+    label: "Research OS",
+    sub: [
+      { href: "/research-os/home",      label: "Home",       meta: "today, your path, your classes" },
+      { href: "/research-os",           label: "Overview",   meta: "five levels of interaction" },
+      { href: "/research-os/workspace", label: "Workspace",  meta: "find · quote · check · organize" },
+      { href: "/research-os/learn",     label: "Learn",      meta: "lessons, recall, mastery" },
+      { href: "/research-os/map",       label: "Map",        meta: "the canon on the globe" },
+      { href: "/research-os/class",     label: "Class",      meta: "teachers and librarians" },
+      { href: "/research-os/profile",   label: "Profile",    meta: "levels, credentials, privacy" },
+      { href: "/account",               label: "Account",    meta: "handle, wallet, sign out" },
+      { href: "/ladder",                label: "The depth ladder", meta: "mastery → frontier → produce" },
+    ],
+  },
   {
     href: "/canon",
     label: "Canon",
@@ -20,23 +38,11 @@ const NAV: NavItem[] = [
       { href: "/canon/claims",   label: "All claims",    meta: "browse the cards" },
       { href: "/canon/bridges",  label: "Bridges",       meta: "17 multi-branch primitives" },
       { href: "/canon/graph",    label: "Knowledge graph", meta: "1,133 nodes · PageRank" },
+      { href: "/access",         label: "Agent access",  meta: "MCP, llms.txt, x402" },
     ],
   },
-  // Build → /protocol, /learn, /research (hub row on /build).
   // About → /governance, /manifesto, /contributors, /join.
   { href: "/whats-new",      label: "What's new" },
-  { href: "/build",          label: "Build" },
-  {
-    href: "/academy",
-    label: "Academy",
-    sub: [
-      { href: "/academy", label: "Open the Academy", meta: "spaced-repetition mastery" },
-      { href: "/ladder",  label: "The depth ladder", meta: "mastery → frontier → produce" },
-    ],
-  },
-  { href: "/research-os",    label: "Research OS" },
-  { href: "/access",         label: "Access" },
-  { href: "/chat",           label: "Chat" },
   { href: "/about",          label: "About" },
 ];
 
@@ -51,7 +57,6 @@ const CANON = [
   { slug: "earth",       num: "VIII", name: "earth"       },
 ];
 
-const HAS_DYNAMIC = !!process.env.NEXT_PUBLIC_DYNAMIC_ENV_ID;
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -182,16 +187,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            {HAS_DYNAMIC ? (
-              <div className="hidden sm:block"><DynamicWidget /></div>
-            ) : (
-              <Link
-                href="/join"
-                className="hidden sm:inline-flex small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-5 py-2 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] hover:bg-[color:var(--aegean-deep)] transition items-center min-h-[44px]"
-              >
-                Contribute
-              </Link>
-            )}
+            <UserMenu />
             {/* Hamburger, md:hidden */}
             <button
               type="button"
@@ -382,17 +378,7 @@ export default function Header() {
           </nav>
 
           <div className="p-5 border-t border-[color:var(--hairline)] bg-[color:var(--bone-2)]">
-            {HAS_DYNAMIC ? (
-              <DynamicWidget />
-            ) : (
-              <Link
-                href="/join"
-                onClick={closeDrawer}
-                className="block text-center small-caps text-[12px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] px-6 py-4 rounded-sm shadow-[0_1px_0_rgba(239,232,212,0.35)_inset,0_2px_6px_rgba(31,28,22,0.25)] min-h-[52px] tracking-[0.1em]"
-              >
-                Contribute to the canon
-              </Link>
-            )}
+            <UserMenu drawer onNavigate={closeDrawer} />
             <div className="mt-3 text-center text-[10px] small-caps text-[color:var(--basalt-3)] tracking-[0.15em]">
               free to read · paid to cite
             </div>

@@ -11,10 +11,12 @@
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
+import { verifyRequestUser } from "../auth/verify";
 import type { GraphNode, GraphEdge, LearnerNodeState, EdgeKind, Stage } from "./types";
 import type { EngineNodeDraft, GapNodeDraft, ProductionOutboxRow, GraphProductionRow } from "./engine-bridge";
 import { buildProductionOutboxRow } from "./engine-bridge";
 import type { PrereqAncestorRow } from "./closure";
+import { applyTransition, type Badge, type GameState } from "./game";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -65,28 +67,13 @@ export interface VerifiedIdentity {
 }
 
 /**
- * Verify the caller's Supabase access token and return their id + email, or
- * null. We never trust a client-supplied user id, only the token, verified
- * by gotrue, decides identity (matches /api/academy/progress verifyUser).
- * Shared by verifyLearner below and reviewer.ts's verifyReviewer, which
- * additionally checks the email against its allowlist.
+ * Verify the caller (Bearer token or the site cookie session, see
+ * src/lib/auth/verify.ts) and return their id + email, or null. Shared by
+ * verifyLearner below and reviewer.ts's verifyReviewer, which additionally
+ * checks the email against its allowlist.
  */
 async function verifyToken(req: NextRequest): Promise<VerifiedIdentity | null> {
-  const auth = req.headers.get("authorization") || "";
-  const m = auth.match(/^Bearer\s+(.+)$/i);
-  if (!m) return null;
-  const token = m[1].trim();
-  if (!token) return null;
-  try {
-    const verifier = createClient(SUPABASE_URL as string, ANON_KEY as string, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-    const { data, error } = await verifier.auth.getUser(token);
-    if (error || !data?.user?.id) return null;
-    return { id: data.user.id, email: data.user.email ?? null };
-  } catch {
-    return null;
-  }
+  return verifyRequestUser(req);
 }
 
 /** Verify the caller's token and return their user id, or null. */
@@ -111,6 +98,9 @@ interface NodeRow {
   labels: Record<string, { title?: string; summary?: string }> | null;
   provenance: Record<string, unknown> | null;
   worked_example: { text?: unknown; source?: unknown } | null;
+  visibility?: string | null;
+  owner_id?: string | null;
+  frontier_flag?: string | null;
 }
 
 /** graph.nodes.worked_example -> GraphNode.workedExample (bkt-ros ros-14).
@@ -139,14 +129,38 @@ interface StateRow {
 }
 
 /** Every node + prerequisite/derivation/citation/canon edge in one branch (Phase 0: '02-physics'). */
+/**
+ * PostgREST filters travel in the URL, and a long `in (...)` list of ids
+ * fails with "URI too long". Run a query per chunk of ids and merge.
+ */
+export const IN_CHUNK = 60;
+export async function inChunks<T>(ids: string[], run: (chunk: string[]) => Promise<{ data: T[] | null; error: { message: string } | null }>): Promise<T[]> {
+  const out: T[] = [];
+  for (let i = 0; i < ids.length; i += IN_CHUNK) {
+    const { data, error } = await run(ids.slice(i, i + IN_CHUNK));
+    if (error) throw new Error(error.message);
+    if (data) out.push(...data);
+  }
+  return out;
+}
+
 export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]; edges: GraphEdge[] }> {
   const svc = graphService();
-  const { data: nodeRows, error: nodeErr } = await svc
-    .from("nodes")
-    .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example")
-    .eq("branch", branch);
-  if (nodeErr) throw new Error(`loadSubgraph: node query failed: ${nodeErr.message}`);
-  const nodes: GraphNode[] = ((nodeRows as NodeRow[]) || []).map((r) => ({
+  // PostgREST pages at 1,000 rows; a branch can hold more.
+  const nodeRows: NodeRow[] = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error: nodeErr } = await svc
+      .from("nodes")
+      .select("id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example,visibility,owner_id,frontier_flag")
+      .eq("branch", branch)
+      .order("slug")
+      .range(from, from + 999);
+    if (nodeErr) throw new Error(`loadSubgraph: node query failed: ${nodeErr.message}`);
+    const page = (data as NodeRow[]) || [];
+    nodeRows.push(...page);
+    if (page.length < 1000) break;
+  }
+  const nodes: GraphNode[] = nodeRows.map((r) => ({
     id: r.id,
     slug: r.slug,
     title: r.title,
@@ -157,17 +171,21 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
     labels: r.labels ?? undefined,
     provenance: r.provenance ?? undefined,
     workedExample: toWorkedExample(r.worked_example),
+    visibility: (r.visibility as GraphNode["visibility"]) ?? "public",
+    ownerId: r.owner_id ?? null,
+    frontierFlag: (r.frontier_flag as GraphNode["frontierFlag"]) ?? null,
   }));
 
   const ids = nodes.map((n) => n.id);
   if (ids.length === 0) return { nodes, edges: [] };
 
-  const { data: edgeRows, error: edgeErr } = await svc
-    .from("edges")
-    .select("id,from_id,to_id,kind,weight,confidence,confidence_source")
-    .in("from_id", ids);
-  if (edgeErr) throw new Error(`loadSubgraph: edge query failed: ${edgeErr.message}`);
-  const edges: GraphEdge[] = ((edgeRows as EdgeRow[]) || []).map((r) => ({
+  let edgeRows: EdgeRow[];
+  try {
+    edgeRows = await inChunks<EdgeRow>(ids, (chunk) => svc.from("edges").select("id,from_id,to_id,kind,weight,confidence,confidence_source").in("from_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>);
+  } catch (err) {
+    throw new Error(`loadSubgraph: edge query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  const edges: GraphEdge[] = (edgeRows || []).map((r) => ({
     id: r.id,
     fromId: r.from_id,
     toId: r.to_id,
@@ -183,13 +201,13 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
 export async function loadLearnerStates(learnerId: string, nodeIds: string[]): Promise<LearnerNodeState[]> {
   if (nodeIds.length === 0) return [];
   const svc = graphService();
-  const { data, error } = await svc
-    .from("learner_node_state")
-    .select("node_id,stage,confidence,updated_at")
-    .eq("learner_id", learnerId)
-    .in("node_id", nodeIds);
-  if (error) throw new Error(`loadLearnerStates: query failed: ${error.message}`);
-  return ((data as StateRow[]) || []).map((r) => ({
+  let data: StateRow[];
+  try {
+    data = await inChunks<StateRow>(nodeIds, (chunk) => svc.from("learner_node_state").select("node_id,stage,confidence,updated_at").eq("learner_id", learnerId).in("node_id", chunk) as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>);
+  } catch (err) {
+    throw new Error(`loadLearnerStates: query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  return (data || []).map((r) => ({
     nodeId: r.node_id,
     stage: r.stage as LearnerNodeState["stage"],
     confidence: r.confidence,
@@ -221,13 +239,14 @@ export async function loadLearnerStatesForMany(learnerIds: string[], nodeIds: st
   const out = new Map<string, LearnerNodeState[]>();
   if (learnerIds.length === 0 || nodeIds.length === 0) return out;
   const svc = graphService();
-  const { data, error } = await svc
-    .from("learner_node_state")
-    .select("learner_id,node_id,stage,confidence,updated_at")
-    .in("learner_id", learnerIds)
-    .in("node_id", nodeIds);
-  if (error) throw new Error(`loadLearnerStatesForMany: query failed: ${error.message}`);
-  for (const r of (data as (StateRow & { learner_id: string })[]) || []) {
+  let data: (StateRow & { learner_id: string })[];
+  try {
+    const learners = learnerIds.slice(0, IN_CHUNK);
+    data = await inChunks<StateRow & { learner_id: string }>(nodeIds, (chunk) => svc.from("learner_node_state").select("learner_id,node_id,stage,confidence,updated_at").in("learner_id", learners).in("node_id", chunk) as unknown as Promise<{ data: (StateRow & { learner_id: string })[] | null; error: { message: string } | null }>);
+  } catch (err) {
+    throw new Error(`loadLearnerStatesForMany: query failed: ${err instanceof Error ? err.message : String(err)}`);
+  }
+  for (const r of data || []) {
     const state: LearnerNodeState = { nodeId: r.node_id, stage: r.stage as LearnerNodeState["stage"], confidence: r.confidence, updatedAt: r.updated_at };
     if (!out.has(r.learner_id)) out.set(r.learner_id, []);
     out.get(r.learner_id)!.push(state);
@@ -416,7 +435,7 @@ export async function loadForcingEnabledForLearner(learnerId: string): Promise<b
 /**
  * The per-class lateral-reading second-source override (bkt-ros,
  * PLAN-REVISION-3.md section 2c; `graph.classes.second_source_required`,
- * migration 20260910080000_research_os_lateral_reading.sql). Same shape
+ * migration 20260910080001_research_os_lateral_reading.sql). Same shape
  * and same fail-open posture as loadForcingEnabledForLearner right above:
  * `null` on "no override on file", on a learner in no class, or on any
  * query failure, all three of which `src/lib/research-os/lateral-
@@ -609,6 +628,50 @@ export async function recordEvidence(
       { onConflict: "learner_id,node_id" },
     );
   if (error) throw new Error(`recordEvidence: upsert failed: ${error.message}`);
+
+  // ros-33: the game layer reads every recorded transition here, so a level
+  // rise counts once wherever it was recorded. Awarding never fails the
+  // evidence write.
+  try {
+    await awardProgress(learnerId, nodeId, (existing?.stage as Stage | undefined) ?? null, stage as Stage);
+  } catch {
+    /* the profile row is missing or the columns are not migrated yet */
+  }
+}
+
+// ---------------------------------------------------------------------------
+// The game layer (bkt-ros ros-33). Rules in src/lib/research-os/game.ts.
+// ---------------------------------------------------------------------------
+
+export async function loadGame(learnerId: string): Promise<GameState | null> {
+  const { data, error } = await graphService()
+    .from("learner_profiles")
+    .select("xp,streak_days,last_active_day,badges")
+    .eq("learner_id", learnerId)
+    .maybeSingle();
+  if (error || !data) return null;
+  const row = data as { xp: number | null; streak_days: number | null; last_active_day: string | null; badges: Badge[] | null };
+  return { xp: row.xp ?? 0, streakDays: row.streak_days ?? 0, lastActiveDay: row.last_active_day, badges: Array.isArray(row.badges) ? row.badges : [] };
+}
+
+export async function awardProgress(learnerId: string, nodeId: string, from: Stage | null, to: Stage): Promise<void> {
+  const current = (await loadGame(learnerId)) ?? { xp: 0, streakDays: 0, lastActiveDay: null, badges: [] };
+  const next = applyTransition(current, nodeId, from, to);
+  const { error } = await graphService()
+    .from("learner_profiles")
+    .update({ xp: next.xp, streak_days: next.streakDays, last_active_day: next.lastActiveDay, badges: next.badges })
+    .eq("learner_id", learnerId);
+  if (error) throw new Error(`awardProgress: update failed: ${error.message}`);
+}
+
+/** XP per learner for a class leaderboard; missing profiles read as 0. */
+export async function loadXpForLearners(learnerIds: string[]): Promise<Map<string, number>> {
+  const out = new Map<string, number>();
+  if (learnerIds.length === 0) return out;
+  const { data, error } = await graphService().from("learner_profiles").select("learner_id,xp").in("learner_id", learnerIds);
+  if (error) return out;
+  for (const r of (data as { learner_id: string; xp: number | null }[]) || []) out.set(r.learner_id, r.xp ?? 0);
+  return out;
 }
 
 // ---------------------------------------------------------------------------

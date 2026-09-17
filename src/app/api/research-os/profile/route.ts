@@ -32,6 +32,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { validateProfileInput } from "@/lib/research-os/profile";
 import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
+import { loadGame } from "@/lib/research-os/db";
+import { summarize } from "@/lib/research-os/game";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -64,8 +66,10 @@ export async function GET(req: NextRequest) {
     .maybeSingle();
   if (error) return bad(500, "read_failed");
 
+  // ros-33: the game layer beside the profile (null until the profile row exists).
+  const game = await loadGame(learnerId);
   return NextResponse.json(
-    { profile: data ? toResponseProfile(data as LearnerProfileRow) : null },
+    { profile: data ? toResponseProfile(data as LearnerProfileRow) : null, game: game ? summarize(game) : null },
     { headers: { "cache-control": "no-store" } },
   );
 }

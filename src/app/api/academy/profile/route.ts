@@ -41,6 +41,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { verifyRequestUser } from "@/lib/auth/verify";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import {
   assemblePublicProfile,
@@ -93,21 +94,8 @@ function service(): SupabaseClient {
 
 /** Verify the caller's Supabase access token; return their user id or null. */
 async function verifyUser(req: NextRequest): Promise<string | null> {
-  const auth = req.headers.get("authorization") || "";
-  const m = auth.match(/^Bearer\s+(.+)$/i);
-  if (!m) return null;
-  const token = m[1].trim();
-  if (!token) return null;
-  try {
-    const verifier = createClient(SUPABASE_URL as string, ANON_KEY as string, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-    const { data, error } = await verifier.auth.getUser(token);
-    if (error || !data?.user?.id) return null;
-    return data.user.id;
-  } catch {
-    return null;
-  }
+  const user = await verifyRequestUser(req);
+  return user?.id ?? null;
 }
 
 interface ProfileRecord {

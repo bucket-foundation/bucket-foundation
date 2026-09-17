@@ -101,7 +101,7 @@ export default function VerifyPage({
       </section>
 
       <footer className="vfy-foot">
-        <a className="vfy-cta" href="/academy">
+        <a className="vfy-cta" href="/research-os/learn">
           Build your own → Bucket Academy
         </a>
         <div className="vfy-slogan">build the past. build history.</div>

@@ -50,6 +50,11 @@
   var API_PROFILE = API_BASE + "/api/academy/profile";
 
   var sb = null; // Supabase client (lazy)
+  // Framed under the site (src/app/academy/AcademyFrame.tsx): the parent
+  // posts its session in and this client adopts it, so one sign-in covers
+  // the site and the app. Same origin only.
+  var framed = false;
+  try { framed = global.parent && global.parent !== global; } catch (e) { framed = false; }
   var session = null; // current Supabase session (or null)
   var listeners = []; // onChange subscribers
   var syncing = false;
@@ -293,6 +298,7 @@
   function publicState() {
     return {
       enabled: enabled,
+      framed: framed,
       signedIn: !!(session && session.user),
       email: session && session.user ? session.user.email : null,
       syncing: syncing,
@@ -388,11 +394,38 @@
     });
   }
 
+  // Adopt a session posted by the parent page, or drop ours when the parent
+  // signed out. Tokens are only accepted from the parent window on the same
+  // origin.
+  function adoptSession(s) {
+    return ensureClient().then(function () {
+      if (s && s.access_token && s.refresh_token) {
+        return sb.auth.setSession({ access_token: s.access_token, refresh_token: s.refresh_token });
+      }
+      if (session) return sb.auth.signOut();
+      return null;
+    }).catch(function () {});
+  }
+
+  function listenToParent() {
+    if (!framed || !enabled) return;
+    global.addEventListener("message", function (e) {
+      if (e.origin !== global.location.origin || e.source !== global.parent) return;
+      var d = e.data;
+      if (!d || d.type !== "bucket:session") return;
+      adoptSession(d.session || null);
+    });
+    try {
+      global.parent.postMessage({ type: "bucket:session-request" }, global.location.origin);
+    } catch (e) {}
+  }
+
   // Best-effort: if a magic-link redirect lands us here already signed in,
   // ensureClient() picks up the session and fires onAuthStateChange.
   function init() {
     if (!enabled) { emit(); return; }
     ensureClient().catch(function () {});
+    listenToParent();
   }
 
   global.BucketAuth = {
@@ -403,6 +436,7 @@
     requestCode: requestCode,
     verifyCode: verifyCode,
     signOut: signOut,
+    adoptSession: adoptSession,
     sync: syncAll,
     pushActive: pushActive,
     getProfile: getProfile,

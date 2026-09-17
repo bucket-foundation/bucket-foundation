@@ -29,9 +29,10 @@ Part of AGFarms venture studio. Org dashboard: https://nucleus.agfarms.dev/admin
 This venture is a single repo (cloned from `gianyrox/bucket-foundation`, pending transfer to `AGFarms/bucket-foundation` on formal nonprofit filing or a proper nonprofit legal entity).
 
 - **Next.js 14** app on Vercel (`src/app`, `src/components`, `src/context`, `src/lib`, `src/providers`)
-- **Story Protocol** SDK for IP NFT minting
-- **Walrus** for on-chain content storage
-- **Dynamic** for web3 auth
+- **Supabase Auth** for the one site session (`docs/AUTH.md`): email one-time code at `/sign-in`, cookies through `@supabase/ssr`, `bucket.identities` per person
+- **Research OS** is the product (`docs/RESEARCH-OS-APP.md`, `learning/research-os/INTEGRATION-PLAN.md`); the app lives under `src/app/research-os/(app)`
+- **Story Protocol** SDK for IP NFT minting and **Walrus** for content storage, on the bucket 1.0 publish path only
+- **Dynamic** for wallet linking under `/knowledge`, `/library`, `/research`, `/assets`
 - **Supabase** for off-chain metadata
 
 ## Strategic Docs
@@ -184,7 +185,7 @@ Secret, do not use it. Cleanup tracked in `bkt-*` bead.
 
 The learning system.
 
-**Bucket Academy** is a learning app shipped 2026-06-12..15. Lives in `learning/app/`
+**Bucket Academy** is the Learn module of Research OS as of 2026-09-16 (`docs/RESEARCH-OS-APP.md`; engine port in `src/lib/academy/{fsrs,engine}.ts`, surfaces under `src/app/research-os/(app)/learn`, `/academy` redirects there). The original app, still the corpus source and a standalone build, shipped 2026-06-12..15 and lives in `learning/app/`
 (vanilla-JS PWA: `js/{fsrs,engine,adaptive,diagnostic,assess,auth,auth-ui,tutor,
 onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 `corpus/*.json`), mirrored to `public/academy-app/` by `scripts/sync-academy.mjs`
