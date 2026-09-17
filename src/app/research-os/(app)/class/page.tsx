@@ -184,8 +184,8 @@ export default function ResearchOsClassPage() {
   }
 
   return (
-    <main className="stone-bone relative grain min-h-screen">
-      <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-10 md:py-16">
+    <main>
+      <div className="max-w-[1100px] mx-0 px-0 py-0">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-3">
           <Link href="/research-os" className="underline decoration-[color:var(--gold)] underline-offset-4">
             § Research OS · K-12
