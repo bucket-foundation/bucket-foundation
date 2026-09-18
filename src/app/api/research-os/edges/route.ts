@@ -6,7 +6,10 @@
  * and decided here by a signed-in reviewer.
  *
  * GET  -> { proposals: [...] }, every row still `status = 'pending'`,
- *   oldest first, with each node's own title looked up for display.
+ *   the most at stake first: impact (nodes resting on the target, set by
+ *   scripts/research-os/decompose-further.ts), then oldest, with each
+ *   node's own title looked up for display. `?source=prime_decompose_llm`
+ *   or `?source=inferred_llm` narrows the list to one proposer.
  *
  * POST { id, decision: "approved" | "rejected", reason? }
  *   -> src/lib/research-os/inference/decide.ts's `decideEdgeProposal` is
@@ -14,9 +17,11 @@
  *   returns. "approved" upserts a `prerequisite` edge into graph.edges at
  *   confidence 0.95, confidence_source 'teacher' (onConflict
  *   "from_id,to_id,kind", ignoreDuplicates -- the same unique index
- *   src/lib/research-os/db.ts's writeEngineEdges already relies on), then
+ *   src/lib/research-os/db.ts's writeEngineEdges already relies on) with
+ *   provenance naming the proposal, its proposer, and its model, then
  *   best-effort rebuilds graph.prereq_ancestor for the proposal's own
- *   branch (task item 4, src/lib/research-os/rebuild-ancestor.ts's
+ *   branch and for every branch holding a node that rests on the target
+ *   (task item 4, src/lib/research-os/rebuild-ancestor.ts's
  *   `rebuildPrereqAncestorForBranch`) -- a rebuild failure is logged and
  *   never fails this response, the same best-effort posture
  *   src/lib/research-os/db.ts's `writeEdgeFlags` already documents for
@@ -61,27 +66,47 @@ interface ProposalRow {
   prompt_hash: string;
   status: "pending" | "approved" | "rejected";
   created_at: string;
+  impact: number;
+  cross_branch: boolean;
 }
+
+const SOURCES = new Set(["inferred_llm", "prime_decompose_llm"]);
 
 export async function GET(req: NextRequest) {
   if (!configured()) return bad(503, "research_os_unavailable");
   const reviewer = await verifyReviewer(req);
   if (!reviewer) return bad(403, "forbidden");
 
-  const svc = graphService();
-  const { data: rows, error } = await svc
-    .from("edge_proposals")
-    .select("id,from_slug,to_slug,branch,confidence,confidence_source,agreement,justification,secondary_justification,model,prompt_hash,status,created_at")
-    .eq("status", "pending")
-    .order("created_at", { ascending: true });
-  if (error) return bad(500, "read_failed");
+  const source = req.nextUrl.searchParams.get("source");
+  if (source && !SOURCES.has(source)) return bad(400, "unknown source");
 
-  const proposals = (rows as ProposalRow[]) || [];
+  const svc = graphService();
+  const proposals: ProposalRow[] = [];
+  for (let from = 0; ; from += 1000) {
+    let q = svc
+      .from("edge_proposals")
+      .select("id,from_slug,to_slug,branch,confidence,confidence_source,agreement,justification,secondary_justification,model,prompt_hash,status,created_at,impact,cross_branch")
+      .eq("status", "pending");
+    if (source) q = q.eq("confidence_source", source);
+    const { data: rows, error } = await q
+      .order("impact", { ascending: false })
+      .order("created_at", { ascending: true })
+      .range(from, from + 999);
+    if (error) return bad(500, "read_failed");
+    const page = (rows as ProposalRow[]) || [];
+    proposals.push(...page);
+    if (page.length < 1000) break;
+  }
+
   const slugs = Array.from(new Set(proposals.flatMap((p) => [p.from_slug, p.to_slug])));
-  let titleBySlug = new Map<string, string>();
-  if (slugs.length) {
-    const { data: nodes } = await svc.from("nodes").select("slug,title").in("slug", slugs);
-    titleBySlug = new Map(((nodes as Array<{ slug: string; title: string }>) || []).map((n) => [n.slug, n.title]));
+  const titleBySlug = new Map<string, string>();
+  const branchBySlug = new Map<string, string>();
+  for (let i = 0; i < slugs.length; i += 200) {
+    const { data: nodes } = await svc.from("nodes").select("slug,title,branch").in("slug", slugs.slice(i, i + 200));
+    for (const n of (nodes as Array<{ slug: string; title: string; branch: string }>) || []) {
+      titleBySlug.set(n.slug, n.title);
+      branchBySlug.set(n.slug, n.branch);
+    }
   }
 
   return NextResponse.json(
@@ -90,6 +115,7 @@ export async function GET(req: NextRequest) {
         id: p.id,
         fromSlug: p.from_slug,
         fromTitle: titleBySlug.get(p.from_slug) ?? p.from_slug,
+        fromBranch: branchBySlug.get(p.from_slug) ?? null,
         toSlug: p.to_slug,
         toTitle: titleBySlug.get(p.to_slug) ?? p.to_slug,
         branch: p.branch,
@@ -101,6 +127,8 @@ export async function GET(req: NextRequest) {
         model: p.model,
         promptHash: p.prompt_hash,
         createdAt: p.created_at,
+        impact: p.impact,
+        crossBranch: p.cross_branch,
       })),
     },
     { headers: { "cache-control": "no-store" } },
@@ -132,7 +160,7 @@ export async function POST(req: NextRequest) {
   const svc = graphService();
   const { data: row, error: readErr } = await svc
     .from("edge_proposals")
-    .select("id,from_slug,to_slug,branch,status")
+    .select("id,from_slug,to_slug,branch,status,confidence_source,model")
     .eq("id", id)
     .maybeSingle();
   if (readErr) return bad(500, "read_failed");
@@ -157,6 +185,7 @@ export async function POST(req: NextRequest) {
           kind: outcome.edgeToWrite.kind,
           confidence: outcome.edgeToWrite.confidence,
           confidence_source: outcome.edgeToWrite.confidenceSource,
+          provenance: { type: "edge_proposal", proposal_id: row.id, proposed_by: row.confidence_source, model: row.model, reviewer_id: reviewer.id },
         },
       ],
       { onConflict: "from_id,to_id,kind", ignoreDuplicates: true },
@@ -170,10 +199,25 @@ export async function POST(req: NextRequest) {
     // table is a derived cache safe to rebuild again later (a later
     // approve on the same branch, or a manual
     // `npm run rebuild:research-os-ancestors` run, both fix a missed one).
+    // The new factor's ancestors reach every node that rests on the target,
+    // in any branch, so each of those branches rebuilds too.
+    const branches = new Set<string>([row.branch]);
     try {
-      await rebuildPrereqAncestorForBranch(svc, row.branch);
+      const { data: dependents } = await svc.from("prereq_ancestor").select("node_id").eq("ancestor_id", toNode.id).limit(5000);
+      const ids = ((dependents as Array<{ node_id: string }>) || []).map((d) => d.node_id);
+      for (let i = 0; i < ids.length; i += 200) {
+        const { data: nodes } = await svc.from("nodes").select("branch").in("id", ids.slice(i, i + 200));
+        for (const n of (nodes as Array<{ branch: string }>) || []) branches.add(n.branch);
+      }
     } catch (err) {
-      console.error("[research-os/edges] prereq_ancestor rebuild failed (non-fatal):", (err as Error).message);
+      console.error("[research-os/edges] dependent lookup failed (non-fatal):", (err as Error).message);
+    }
+    for (const b of Array.from(branches)) {
+      try {
+        await rebuildPrereqAncestorForBranch(svc, b);
+      } catch (err) {
+        console.error(`[research-os/edges] prereq_ancestor rebuild failed for ${b} (non-fatal):`, (err as Error).message);
+      }
     }
   }
 
