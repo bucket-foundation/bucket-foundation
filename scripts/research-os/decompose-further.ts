@@ -253,6 +253,19 @@ async function main() {
     node_proposals: nodeProposals.length,
     queued_node_proposals: queuedNodes,
     base_matches: nodeProposals.filter((n) => n.base_match).map((n) => ({ title: n.title, base: n.base_match, named_by: n.named_by.length })),
+    // The share of pairs the verifier confirmed, split the two ways that matter
+    // for bias: factors from another branch, and targets that were primes.
+    confirmation: (() => {
+      const rate = (rows: ProposalRow[]) => ({ pairs: rows.length, confirmed: rows.filter((r) => r.agreement).length });
+      const primeTargets = new Set(results.filter((r) => r.target.status === "prime").map((r) => r.target.slug));
+      return {
+        all: rate(proposals),
+        cross_branch: rate(proposals.filter((p) => p.cross_branch)),
+        same_branch: rate(proposals.filter((p) => !p.cross_branch)),
+        prime_targets: rate(proposals.filter((p) => primeTargets.has(p.to_slug))),
+        unfactored_targets: rate(proposals.filter((p) => !primeTargets.has(p.to_slug))),
+      };
+    })(),
     irreducible,
     missing_primes: missing,
     answers: results.map((r) => ({
