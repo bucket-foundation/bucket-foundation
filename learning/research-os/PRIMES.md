@@ -87,6 +87,20 @@ The most penetrating primes:
 
 **Equations sit high, as expected.** Schrödinger's equation sits at depth 14 and the Einstein field equation at 13; Stoichiometry and balanced equations at 2. Depth tracks how much has to be in place before an idea makes sense.
 
+## Slice 2: the decompose-further queue
+
+Every prime and every unfactored concept, law, or derivation (167 on the local graph) gets decomposed by a model and reviewed by a person. Nothing the model says writes `graph.edges`; the review at `/research-os/edges` does.
+
+**Targets and shortlist.** Facts, primary sources, figures, and sites are evidence, and stay out of the targets. Each target's shortlist holds every prime and every tier-1 node in every branch, plus the 20 closest lexical neighbours, and leaves out any node that already rests on the target, so no proposal can close a cycle. `src/lib/research-os/decompose-further.ts`.
+
+**Two judgments.** Prerequisite judgment is subjective enough that trained annotators agree only moderately (Alzetta and colleagues, 2018), so one model's word is not enough. The proposer (Sonnet) names up to six direct factors per target and up to four missing base ideas. A verifier on a different model (Opus) then reads each proposed pair, in one batched call per target, and answers whether a learner must hold the factor to hold the target. The pair's `agreement` records whether the verifier confirmed it, and its confidence is 0.6 when confirmed and 0.3 when not, both under the 0.95 a reviewer's approval writes. Two Claude models share more failure modes than two model families would; the verifier's disagreement rate is logged so that gap stays measured.
+
+**Missing primes.** The base ideas the proposer names go to a new table, `graph.node_proposals`, merged by normalized title with the targets that named each one. Each is checked against the semantic primes (THE SAME, ONE, TWO, ALL, SOME, KIND, PART, BECAUSE, IF, NOT, TRUE, BEFORE, AFTER, TIME, PLACE) and the foundations of mathematics (number, set, function, equality, measurement), and a match is flagged. Approving a missing prime creates a tier-0 concept node with the proposal's provenance and queues a pending `prerequisite` proposal from it to every target that named it.
+
+**Review order.** A reviewer's time goes furthest on the proposals with the most at stake (Liang and colleagues, 2018). Each proposal stores its impact, the number of nodes that rest on its target, and whether it crosses a branch. The review lists pending proposals grouped by target, highest impact first, with disagreements flagged, and lists missing primes by how many targets named them.
+
+**What moves.** Every approval changes the decomposition. After a review pass, `scripts/research-os/primes-report.ts` shows the primes that moved down to new base ideas and the concepts that left the unfactored pool.
+
 ## Next slices
 
 1. **Decompose further** (ros-prime 2). For every prime and every unfactored concept, propose factors with the local engine's `claude -p` path, including factors in other branches, and write them as low-confidence proposed edges routed to the existing edge review. Seed the bottom layer with the primes the graph lacks: equality, number, set, function, measurement, cause.
