@@ -3158,3 +3158,12 @@ Uncommitted work from the main checkout and the old worktrees, squashed into one
 - Archive mirror refresh from the main checkout, 65 files, plus the catalog entry for the Feynman Lectures with its in-copyright full text kept off the repo.
 - 29 pending beads that existed only in the main checkout's `BEADS-PENDING.jsonl`.
 - Runner logs, runner status and bead backups untracked; the Academy build loop's runner removed.
+
+## 2026-09-18: hte-serve as a local user service
+
+Research OS loop task, PR #184. Move 4 of `learning/research-os/IDEAL-STATE.md` (engine hypotheses as frontier targets) waited on an engine host, and local first makes that this machine.
+
+- `scripts/systemd/hte-serve.service` and `install-hte-serve.sh`: `hte-serve` on 127.0.0.1:8420 in live mode through the machine's `claude` login. The unit uses `%h`, so it carries no machine path, and loads no `~/.env`.
+- `.env.local` (not tracked) sets `HTE_SERVE_URL` and `HTE_SERVE_TIMEOUT_S=600`.
+- Verified: a fake-mode request through the local MCP `hypothesize` tool returns an engine run, where it answered `engine offline` before.
+- PROBLEM-REGISTER PR-019 fixed.

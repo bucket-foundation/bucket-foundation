@@ -3811,3 +3811,7 @@ Continued after `origin/docs/ros-plan-revision-4` advanced further (the second r
 - PR #68 confirmed real and in scope: `gh pr view 68` shows merged 2026-09-11T03:18:55Z, after PR #69 (revision 3's own filing, 02:43:19Z).
 - `git log --all` across every branch for 2026-09-11 through 2026-09-13: the claimed gap runs 06:24 to 22:23 (real commits land at 02:13 and after, ruling out the claimed 02:08 start); every other cited timestamp in the same paragraph checked out exact.
 - `npm run test:research-os`: 455 passed, 0 failed. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed. Both re-run after each of the two further `origin/dev` merges.
+
+## hte-serve as a local user service
+
+Date 2026-09-18. Research OS loop, PR #184. Adds `scripts/systemd/hte-serve.service` and its installer so `/api/research-os/hypothesize` and the MCP `hypothesize` tool reach a running engine on this machine. Updates `CLAUDE.md` (Local First, Engine) and `docs/MCP.md`. Closes PROBLEM-REGISTER PR-019.

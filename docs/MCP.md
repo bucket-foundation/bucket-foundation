@@ -23,7 +23,7 @@ The endpoint answers from the deployment it runs on, so a Vercel preview URL wor
 | `canon_list_branches` | `BRANCHES` | slug, name, figure count |
 | `canon_list_bridges` | cross-branch bridges, or one by slug | bridge entries |
 | `bucket_cite` | doi.org content negotiation | CSL-JSON, or a webpage stub for a plain URL |
-| `hypothesize` | `hte-serve` at `HTE_SERVE_URL` | the engine's ranked timeline, gap nodes, coverage, self-report; an `engine offline` error until the engine is hosted |
+| `hypothesize` | `hte-serve` at `HTE_SERVE_URL` | the engine's ranked timeline, gap nodes, coverage, self-report. Answers on a local run through the `hte-serve.service` user unit; the hosted endpoint returns `engine offline` until the engine has a public host |
 
 Every tool result is returned twice, as `structuredContent` and as JSON text in `content`, with `isError` set when the tool's own `ok` is false.
 
