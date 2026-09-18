@@ -296,9 +296,17 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
 def _cmd_holdout_ledger_report(args: argparse.Namespace) -> int:
     """The hit-rate script `PLAN.md` section 10 asks for: the current
     ranking-holdout status (`hte.holdout_ledger.ranking_status`) over the
-    ledger at `args.path`, printed as one JSON object to stdout."""
+    ledger at `args.path`, plus Murphy (1973)'s reliability/resolution/
+    uncertainty partition of that same verified population (`hte.
+    holdout_ledger.murphy_decomposition`, PLAN-REVISION-4.md section 2b),
+    printed as one JSON object to stdout under a `murphy` key alongside
+    the existing ranking-status fields."""
     status = holdout_ledger.ranking_status(path=args.path, min_verified=args.min_verified)
-    print(json.dumps(status.to_dict(), indent=2))
+    entries = holdout_ledger.load_ledger(args.path)
+    murphy = holdout_ledger.murphy_decomposition(entries)
+    report = status.to_dict()
+    report["murphy"] = murphy.to_dict()
+    print(json.dumps(report, indent=2))
     return 0
 
 

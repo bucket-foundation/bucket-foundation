@@ -337,6 +337,7 @@ def test_render_card_carries_opinion_slots_and_candidate_tier(linking_run):
     assert "A plain-language test explanation of this claim." in text
     assert "model-written" in text.lower() or "Model-written" in text
     assert "Novelty score:" in text
+    assert "Stage: ideation" in text
 
 
 def test_write_back_dry_run_lists_paths_and_writes_nothing(tmp_path, linking_run):
@@ -403,6 +404,7 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     assert "understanding" in item["data"]
     assert item["data"]["understanding"]["generated_by"] == "model"
     assert item["data"]["novelty"] is not None
+    assert item["data"]["novelty"]["stage"] == "ideation"
     assert item["data"]["elo_status"] == "unvalidated_tournament_ranking"
 
     ledger_entries = ledger_path.read_text().strip().splitlines()
