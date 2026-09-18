@@ -31,13 +31,14 @@ how_it_bears_on_research_os: >
   argument for Check's own rubric-graded, pointer-to-what-is-missing design over a simple
   right-or-wrong verdict on a submitted claim.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring Systems
 
 > **Promoted to outcome tier, 2026-09-10.** This record lives in
 > `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
 > `bkt-1fa55749afd0`, `canon_score` 70) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
-> Outcome tier, not canon: it reports tutoring-system effect sizes, RUBRIC
+> Outcome tier, external to canon: it reports tutoring-system effect sizes, RUBRIC
 > E7, and depends on the retrieval-practice/testing-effect mechanism in
 > `bucket-canon/07-mind/memory-systems/` (Roediger and Karpicke 2006). This
 > file stays in place as the Research OS-specific reading; the sub-outcomes

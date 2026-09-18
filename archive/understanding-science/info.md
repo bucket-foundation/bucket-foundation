@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Science, Chemistry, Physics, Natural History, Educational
-- **Captured**: 2026-05-09T10:08:07
+- **Captured**: 2026-09-17T17:07:52
 
 ## Description
 

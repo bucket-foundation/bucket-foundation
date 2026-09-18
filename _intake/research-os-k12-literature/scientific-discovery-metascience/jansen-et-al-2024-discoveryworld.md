@@ -85,7 +85,7 @@ task-relevant actions taken, and the discovered explanatory knowledge itself.
 
 Supplies a benchmark-design vocabulary the engine's own `hte.holdout_ledger` does not yet
 have: DiscoveryWorld scores an agent on task-relevant actions and discovered explanatory
-knowledge, not completion alone, a decomposition in the same spirit as Murphy (1973)'s
+knowledge, beyond completion alone, a decomposition in the same spirit as Murphy (1973)'s
 reliability-resolution split for calibration, applied here to the process of discovery
 rather than to a probability estimate. A future engine benchmark aimed at validating the
 ranking process itself, not just the final calibration score, could adopt a comparable

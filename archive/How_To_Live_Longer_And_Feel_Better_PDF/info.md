@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: linus pauling, how to live longer and feel better pdf
-- **Captured**: 2026-05-09T09:48:46
+- **Captured**: 2026-09-17T17:07:39
 
 ## Description
 

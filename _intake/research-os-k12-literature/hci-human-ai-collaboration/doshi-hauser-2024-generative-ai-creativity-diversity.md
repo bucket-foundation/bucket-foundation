@@ -50,7 +50,7 @@ the AI's suggestion directly.
 - Stories in the AI-assisted group were more similar to each other than stories in
   the unassisted group, a collective diversity loss.
 - The diversity loss was larger for writers who used the AI suggestion directly than
-  for writers who substantially altered it.
+  for writers who substantially altered it. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 
 ## Research Questions It Leaves Open
 

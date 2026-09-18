@@ -52,7 +52,7 @@ that looks real without a matching gain in understanding.
 
 ## Research Questions It Leaves Open
 
-- What practices reliably catch an illusion of understanding before it enters a
+- What practices reliably catch an illusion of understanding before it enters a <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   field's literature.
 - Whether cheap verification, available in a K-12 classroom, is enough to prevent the
   illusion or only its surface form.
@@ -60,7 +60,7 @@ that looks real without a matching gain in understanding.
 ## How It Bears on Research OS
 
 Names the exact risk behind the overlap map's question 12: Production should be graded
-against the illusion-of-explanatory-depth case this paper describes, not against
-whether a claim merely passes the Check tool. A learner unable to reconstruct their own
+against the illusion-of-explanatory-depth case this paper describes, distinct from
+whether a claim passes the Check tool. A learner unable to reconstruct their own
 claim without the AI has the illusion this paper names, whatever a surface-correctness
 check assigns.

@@ -50,7 +50,7 @@ Documents the specific missing-instrument problem the hypothesis engine's own do
 
 ## Key Claims
 
-- A national meeting of researchers and practitioners in course-based undergraduate research found no widely shared, validated instrument for assessing the outcomes of course-based research experiences, despite years of programs claiming research-skill gains.
+- A national meeting of researchers and practitioners in course-based undergraduate research found no shared, validated instrument for assessing the outcomes of course-based research experiences, despite years of programs claiming research-skill gains.
 - Existing assessments were largely program-specific, self-report-based, or borrowed from unrelated contexts, limiting comparison across programs and making claimed gains difficult to verify independently.
 - The report calls for coordinated development of shared, validated assessment instruments as a prerequisite for the field to make credible, comparable claims about what course-based research experiences produce.
 

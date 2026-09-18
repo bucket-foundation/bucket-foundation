@@ -46,6 +46,7 @@ how_it_bears_on_research_os: >
   incidental-choice conditions recovered most of the motivational and learning benefit
   choice offers without touching whether the underlying task was required.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # Intrinsic Motivation and the Process of Learning: Beneficial Effects of Contextualization, Personalization, and Choice
 
@@ -62,8 +63,8 @@ learning, not just stated interest, in elementary-school children.
   students' motivation, depth of engagement, amount learned in a fixed time period, and
   perceived competence and aspiration, relative to the abstract control condition.
 - The choices offered were instructionally incidental, for example which of several
-  equally valid problem-story settings to use, not choices over the arithmetic content
-  itself, yet still produced a motivational and learning benefit.
+  equally valid problem-story settings to use, leaving the arithmetic content itself
+  unchosen, yet still produced a motivational and learning benefit.
 
 ## Research Questions It Leaves Open
 

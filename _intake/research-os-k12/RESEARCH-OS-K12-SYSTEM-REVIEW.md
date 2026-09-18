@@ -61,7 +61,7 @@ consent is not a flat number, it runs 13 to 16 depending on EU member state, wit
 Austria at 14. The inventory reports Academy's actual shipped line as a flat 13-plus threshold
 (`EPIC.md`). The architecture report's grounding section repeats the flat 13-plus framing without
 flagging the mismatch. This review treats Academy's current posture as already non-compliant for a
-meaningful share of the EU, a fact none of the three reports states outright when read on its own,
+meaningful share of the EU, a fact none of the three reports states outright when read on its own, <!-- voice-ignore-line: "read on its own" means read in isolation, not meta commentary -->
 and carries that forward into the gap analysis and the compliance summary's jurisdiction-aware
 age-gate requirement.
 
@@ -127,7 +127,7 @@ and
   documented relationship between the second and third. Building new account types on top of this
   (teacher, parent, district admin) without reconciling it first compounds the ambiguity.
 - **Story Protocol minting**: hardcoded to `https://testnet.storyrpc.io` and Base Sepolia EAS. The
-  architecture correctly routes around this for K-12 credentials (Open Badges and W3C VC only, no
+  architecture routes around this for K-12 credentials (Open Badges and W3C VC only, no
   NFT mint), so this gap does not block the K-12 build, but it remains unresolved for the adult
   product and should not be assumed production-ready anywhere.
 - **The L0 to L5 site-journey ladder** (`src/lib/depth-ladder.ts`): valid as a site-navigation
@@ -602,7 +602,7 @@ rebuildable from Postgres.
 | Dedupe and entity-link worker | pgvector used for canon search only | Similarity search against existing nodes, human-reviewed merge proposals | New worker | M | 0 | Build |
 | Prerequisite edge inference | Not built | LLM-proposed edges from standards sequencing, queued for human review | New pipeline | M | 1 | Build |
 | Offline and low-bandwidth mode | Not built | Versioned content bundles, idempotent evidence sync on reconnect | New mobile and sync work | L | 2 | Build |
-| Multilingual node labels | No i18n on content, UI chrome only | `graph.node_label` locale-keyed from the start, machine-translate then human-review by traffic | Schema already supports this if built correctly at Phase 0 | M | 1 | Buy machine translation, build the review workflow |
+| Multilingual node labels | No i18n on content, UI chrome only | `graph.node_label` locale-keyed from the start, machine-translate then human-review by traffic | Schema already supports this if built right at Phase 0 | M | 1 | Buy machine translation, build the review workflow |
 | SDPC NDPA and Common Sense rating | Neither signed nor run yet | Signed NDPA on the Resource Registry, completed self-assessment | Paperwork, near-zero engineering | S | 0 | Buy the process (free), build nothing |
 | EU AI Act conformity review | Not started | Risk management system, technical documentation, conformity assessment before EU market placement | Dedicated legal and engineering review, gated behind a later phase | XL | 3 | Outsource legal, build the documentation trail |
 | Accessibility pass on the canvas | Not started; a pan/zoom graph is the highest-risk accessibility surface in the product | WCAG 2.2 AA linear navigation path, keyboard equivalents for pan/zoom, no color-only state encoding | Dedicated engineering pass before any district pilot | L | 1 | Build in-house, buy the third-party audit and VPAT |
@@ -612,7 +612,7 @@ The five biggest gaps by system risk, in order, are the knowledge graph schema, 
 routing, the spatial canvas workspace, the compliance and consent layer, and the teacher and school
 layer. The graph schema is the precondition for everything else in this table: routing, the
 five-state model, the production pipeline, and reporting all read and write against `graph.node` and
-`graph.edge`, so no other row in this table can ship correctly until this one lands. That single
+`graph.edge`, so no other row in this table can ship until this one lands. That single
 dependency is why Phase 0 spends its entire budget here plus one hardcoded path, and touches no
 other subsystem. Frontier-backward routing is the product's namesake mechanic and does not exist in
 any form; Academy's diagnostic runs the opposite direction, so this is new algorithm work that
@@ -726,7 +726,7 @@ All figures monthly. Every line states its basis; ranges reflect real divergence
 reports' own assumptions, called out explicitly where it matters instead of collapsed into a single
 false-precision number.
 
-### Phase 0, prototype, 50 learners
+### Phase 0: prototype: 50 learners
 
 | Category | Cost | Assumption |
 |---|---|---|
@@ -737,7 +737,7 @@ false-precision number.
 | People | $0 cash | Founder only, sweat equity, per the architecture report's own claim that Phase 0 is buildable by one founder in weeks |
 | **Total** | **$30-75/mo** | |
 
-### Phase 1, pilot, 500 learners, one to two schools
+### Phase 1: pilot: 500 learners: one to two schools
 
 | Category | Cost | Assumption |
 |---|---|---|
@@ -748,7 +748,7 @@ false-precision number.
 | People | $0-10,000 | Founder plus, optionally, one part-time engineering or teacher-success contractor; wide range reflects whether Phase 1 hiring has started |
 | **Total** | **$650-12,600/mo** | Wide range driven entirely by the people line; a founder-only Phase 1 lands near $650-2,600/mo |
 
-### Phase 2, district, 10,000 learners, three to ten districts
+### Phase 2: district: 10,000 learners: three to ten districts
 
 | Category | Cost | Assumption |
 |---|---|---|
@@ -759,7 +759,7 @@ false-precision number.
 | People | $40,000-70,000 | Two to three engineers, one operations or compliance lead, one teacher-success role, loaded cost assumed at $10,000-15,000/mo per person, standard nonprofit edtech staffing ratio for a multi-district product |
 | **Total** | **$45,000-85,000/mo** | The people line dominates the budget for the first time in the plan, a different balance than Phase 0 and Phase 1 |
 
-### Phase 3, global free, 1,000,000 learners
+### Phase 3: global free: 1,000,000 learners
 
 | Category | Cost | Assumption |
 |---|---|---|
@@ -797,7 +797,7 @@ false-precision number.
    affiliation, psychological state, sex behavior, or five other protected categories needs prior
    written parental consent; the design keeps onboarding and workspace telemetry limited to academic
    content and skill state, by construction, to stay outside this law's scope.
-4. **CIPA filter compatibility.** The product must function correctly behind district content
+4. **CIPA filter compatibility.** The product must function behind district content
    filters and cannot rely on any workaround, since districts cannot disable filtering for anyone
    under 17.
 5. **The SDPC National Data Privacy Agreement as a force multiplier.** A single signed NDPA,
@@ -1013,7 +1013,7 @@ design provides that a self-run evaluation does not.
 **Conflict of interest.** The founder is simultaneously the product's builder, the study's designer,
 and the person whose PhD application benefits from the result, a known category of research
 conflict. State it plainly in the IRB application and in the consent materials; a partner faculty PI
-who did not build the product strengthens the design considerably, and an independent data-access
+who did not build the product strengthens the design, and an independent data-access
 reviewer, ideally that same partner PI, should hold a technical or procedural check on what the
 founder can access from live student accounts outside the consented research cohort.
 

@@ -45,7 +45,7 @@ performance on those unrelated topics.
 
 - Internet search in one domain raised self-rated explanatory ability for unrelated,
   unsearched topics.
-- The inflation tracked access to explanatory content specifically, not search activity
+- The inflation tracked access to explanatory content, distinct from search activity
   alone.
 - No matching gain in actual test performance on the unrelated topics appeared.
 

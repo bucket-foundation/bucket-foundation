@@ -9,7 +9,7 @@
 - **License**: https://creativecommons.org/licenses/by-nc-nd/4.0/
 - **Mediatype**: texts
 - **Subjects**: Physics, Mathematics, Mathematical Physics, Statistical mechanics, Gas theory, Lectures on Gas Theory, Ludwig Boltzmann, Stephen G. Brush, english langauge, English script.
-- **Captured**: 2026-05-09T09:49:11
+- **Captured**: 2026-09-17T17:07:48
 
 ## Description
 

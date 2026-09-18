@@ -34,6 +34,7 @@ how_it_bears_on_research_os: >
   itself as the quantity worth routing toward, both for the engine's own gap-node
   queue and, by direct analogy, for `ROUTING.md`'s own frontier-backward cost function.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # Information-Seeking, Curiosity, and Attention: Computational and Neural Mechanisms
 

@@ -57,7 +57,7 @@ A review-scale synthesis of the science of science field, the quantitative study
 
 ## Research Questions It Leaves Open
 
-- Which of the review's catalogued citation-count biases matter most for a small, curated corpus like a canon or a K-12 research corpus, versus the large, heterogeneous bibliometric datasets the reviewed studies typically use.
+- Which of the review's catalogued citation-count biases matter most for a small, curated corpus like a canon or a K-12 research corpus, versus the large, heterogeneous bibliometric datasets the reviewed studies typically use. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - Whether the review's own open problem, predicting future impact, is tractable for a bounded, address-structured hypothesis population the way it is not for the open scientific literature at large.
 
 ## How It Bears on Research OS

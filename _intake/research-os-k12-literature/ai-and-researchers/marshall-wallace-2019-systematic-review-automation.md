@@ -38,14 +38,14 @@ A practical, method-by-method survey of where machine learning can and cannot ye
 
 ## Key Claims
 
-- Machine learning tools can reliably assist several discrete steps of a systematic review, screening candidate studies for relevance, extracting structured data like sample size or outcome measures from a paper's text, but no tool fully automates the synthesis and judgment steps a systematic review requires.
+- Machine learning tools can reliably assist several discrete steps of a systematic review, screening candidate studies for relevance, extracting structured data like sample size or outcome measures from a paper's text, but no tool fully automates the synthesis and judgment steps a systematic review requires. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - Screening-assistance tools, ranking studies by predicted relevance so a human reviews the most likely candidates first, are among the most mature and most validated of the surveyed methods.
 - The authors are explicit that automation should augment a human reviewer's own judgment at every step surveyed rather than replace it, given the current state of the tools' own reliability.
 
 ## Research Questions It Leaves Open
 
 - Which specific systematic-review-automation methods transfer directly to Bucket's own canon-intake rubric, and which of the rubric's own eligibility checks already are, in effect, one of these methods.
-- How to validate an automation tool's own reliability for a new, narrower literature, a single research question's own citation base, rather than the large, general biomedical review corpora most of the surveyed validation studies use.
+- How to validate an automation tool's own reliability for a new, narrower literature, a single research question's own citation base, distinct from the large, general biomedical review corpora most of the surveyed validation studies use.
 
 ## How It Bears on Research OS
 

@@ -47,4 +47,4 @@ The IRT half of the mastery formula's own fusion (proficiency to the alpha power
 
 ## How It Bears on Research OS
 
-Explains why the shipped fusion formula reaches for IRT/Elo rather than classical test theory for its proficiency term: item and person parameters that do not depend on which students happened to answer let the same difficulty estimate travel across cohorts, a property a graph serving millions of learners needs and classical test theory does not reliably provide.
+Explains why the shipped fusion formula reaches for IRT/Elo rather than classical test theory for its proficiency term: item and person parameters that do not depend on which students happened to answer let the same difficulty estimate travel across cohorts, a property a graph serving millions of learners needs and classical test theory does not reliably provide. <!-- voice-ignore-line: the qualifier states how strong the finding is -->

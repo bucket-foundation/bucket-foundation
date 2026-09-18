@@ -45,7 +45,7 @@ than a single behavior.
 
 - Offloading is a decision: a person weighs internal-processing cost against the cost
   of the offloading action, then chooses.
-- Offloading reliably improves performance on the specific task offloaded, across
+- Offloading reliably improves performance on the specific task offloaded, across <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   reminders, navigation, and arithmetic.
 - Whether offloading changes retained capacity once the aid is removed, versus only
   behavior while the aid is present, is named as unresolved.

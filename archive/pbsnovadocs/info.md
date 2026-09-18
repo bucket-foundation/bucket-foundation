@@ -9,11 +9,11 @@
 - **License**: (see metadata)
 - **Mediatype**: movies
 - **Subjects**: Documentary, PBS, tv, media, History, Culture, Architecture, Science, Nature, Biology
-- **Captured**: 2026-05-09T09:45:37
+- **Captured**: 2026-09-17T17:06:37
 
 ## Description
 
-<div><a href="https://www.pbs.org/wgbh/nova/" rel="nofollow">https://www.pbs.org/wgbh/nova/</a></div>
+<div><a href="https://www.pbs.org/wgbh/nova/" rel="ugc nofollow">https://www.pbs.org/wgbh/nova/</a></div>
 
 ## Files
 

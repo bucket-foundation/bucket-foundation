@@ -9,7 +9,7 @@
 - **License**: http://creativecommons.org/licenses/by-nc-sa/3.0/
 - **Mediatype**: movies
 - **Subjects**: Mendel; Mendel's laws; pea plants; experiments; inherited traits; controls; gene; allele; genotype; heterozygote; homozygote; phenotype; dominant; recessive; independent assortment; round; wrinkled; green; yellow; true-breeding; cytology; chromosomes; drosophila; levels of organization; biosphere; ecosystem; organism; organ; tissues; cells; organelles; molecules; nucleated cells; prokaryotes; eukaryotes; heredity; transforming principle; Griffiths; Pneumoccocus bacteria; virulent; Avery; McCarty; McLeod; DNA; adenine; guanine; thymine; cytosine; deoxyribose; polymerization; Hershey-Chase; bacterial viruses; Watson; Crick; Franklin; x-ray crystallography; double helix; Meselson and Stahl; semi-conservative replication; semi-conservative replication model; DNA; 14N; 15N density centrifugation; DNA Replication; enzyme; bacterial cells; assay; 5'; 3'; primer; nucleotides; DNA Polymerase; primase; ligase; topo isomerase; topological problem; fidelity of replication; cloning; purification; vector; transformation
-- **Captured**: 2026-05-09T10:11:21
+- **Captured**: 2026-09-17T17:07:58
 
 ## Description
 

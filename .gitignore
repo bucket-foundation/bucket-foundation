@@ -145,23 +145,24 @@ scripts/research-os/ingest/out/*
 !scripts/research-os/ingest/out/sample-infer-preview.json
 !scripts/research-os/ingest/out/sample-canon-claims.json
 
-# --- Proposed, not yet active: see "Founder decision: untrack these" in ---
+# --- Founder decision: untrack these, see ---
 # --- learning/research-os/compliance/REPO-HYGIENE-2026-09-11.md ---
-# These files carry thousands of /home/<user> hits from their own runners
-# and are already tracked, so uncommenting the line alone will not stop
-# them appearing in `git status`; each needs `git rm --cached <path>` too
-# (see the hygiene doc for the exact command and what it does and does not
-# remove from history). Left commented until the founder decides.
+# Runner logs, runner status and bead backups: untracked 2026-09-18 with
+# `git rm --cached`. The files stay on disk and in history; their runners
+# rewrite them on every run, so tracking them kept every checkout dirty.
+# The systemd unit lines below stay commented, still open for the founder.
 #
 # .beads/backup/events.jsonl and .beads/backup/issues.jsonl: the blanket
 # `.beads/` rule above already covers this path for anything not yet
 # tracked; these two files were tracked before that rule existed and the
 # rule does not retroactively untrack them.
-# .beads/backup/events.jsonl
-# .beads/backup/issues.jsonl
+.beads/backup/events.jsonl
+.beads/backup/issues.jsonl
 #
-# _intake/.archive-runner.log
-# learning/.buildloop/run.log
+_intake/.archive-runner.log
+_intake/war-gov-pursue-release-01/runner.log
+_intake/war-gov-pursue-release-01/.status.json
+learning/.buildloop/run.log
 #
 # systemd unit files: paths inside these are load-bearing for the specific
 # box the unit is installed on (see the hygiene doc's systemd note before

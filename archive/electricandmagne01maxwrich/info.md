@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Electricity, Magnetism, Electricity, Magnetics
-- **Captured**: 2026-05-09T09:45:21
+- **Captured**: 2026-09-17T17:06:30
 
 ## Description
 

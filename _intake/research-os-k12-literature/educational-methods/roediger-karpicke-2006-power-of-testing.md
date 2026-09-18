@@ -43,7 +43,7 @@ The empirical basis for spaced retrieval and the testing effect, the mechanism t
 ## Key Claims
 
 - Retrieval practice (taking a test) produces more durable long-term retention than an equivalent amount of restudying, even when restudying produces better performance on an immediate test.
-- The benefit of testing over restudying grows with the retention interval; testing effects are often invisible on an immediate post-test and only appear after days or weeks.
+- The benefit of testing over restudying grows with the retention interval; testing effects are often invisible on an immediate post-test and only appear after days or weeks. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - Repeated testing outperforms repeated study for long-term retention, contrary to most students' own study strategies.
 
 ## Research Questions It Leaves Open

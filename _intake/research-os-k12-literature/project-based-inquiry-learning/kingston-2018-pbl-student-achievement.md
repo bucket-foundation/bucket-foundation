@@ -33,6 +33,7 @@ how_it_bears_on_research_os: >
   while keeping the same qualifier Condliffe (2017) states more cautiously: promising, subject
   and grade-band dependent, short of proven across the board.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # Project Based Learning & Student Achievement: What Does the Research Tell Us?
 
@@ -46,7 +47,7 @@ record (ED590832).
 - The brief reviews 20 studies on whether PBL affects learning in core content areas,
   finding PBL can promote learning in social studies and science, to a more limited degree
   in mathematics and literacy.
-- The brief answers the question practitioners, principals, and grant writers most often ask
+- The brief answers the question practitioners, principals, and grant writers most often ask <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   the publishing organization, rather than presenting an original research contribution.
 - The brief positions itself as a starting evidence base while research on PBL continues to
   build, distinct from a closed case for the approach.

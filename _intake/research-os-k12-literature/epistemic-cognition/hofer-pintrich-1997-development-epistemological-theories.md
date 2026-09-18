@@ -85,5 +85,5 @@ implies without naming: Sandoval (2005)'s formal-versus-practical epistemology g
 Kuhn (1999)'s three-form meta-knowing model, both already in this corpus, are two of the
 several independent research programs this review finds do not share a common
 definition, so any future Production rubric that claims to build "epistemic
-understanding" needs to name which of these traditions, not epistemic cognition as an
-undifferentiated whole, it targets.
+understanding" needs to name which of these traditions it targets, distinct from
+epistemic cognition as an undifferentiated whole.

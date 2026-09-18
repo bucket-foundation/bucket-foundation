@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: CIA Reading Room;
-- **Captured**: 2026-05-09T09:49:22
+- **Captured**: 2026-09-17T17:07:49
 
 ## Description
 

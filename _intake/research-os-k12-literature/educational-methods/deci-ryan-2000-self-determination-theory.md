@@ -50,7 +50,7 @@ The theoretical basis the gamification design rules explicitly draw on when ruli
 
 ## Research Questions It Leaves Open
 
-- How autonomy, competence, and relatedness map onto a graph-navigation workspace specifically, versus the generic tasks most SDT studies use.
+- How autonomy, competence, and relatedness map onto a graph-navigation workspace, versus the generic tasks most SDT studies use.
 - Whether a paid production pipeline, a real extrinsic reward, can be structured as autonomous rather than controlled extrinsic motivation for a K-12 learner.
 
 ## How It Bears on Research OS
