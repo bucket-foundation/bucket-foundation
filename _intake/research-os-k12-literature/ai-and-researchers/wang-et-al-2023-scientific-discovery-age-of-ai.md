@@ -45,6 +45,7 @@ why_it_matters: >
   relative to the field as a whole.
 key_claims:
   - "The review organizes AI-for-science contributions into stages of the discovery pipeline, representation learning over scientific data, hypothesis and experiment generation, and closed-loop autonomous experimentation, and finds the strongest, most mature results cluster in representation learning and prediction, with generation and closed-loop autonomy still comparatively early."
+  # voice-ignore-next 1: the qualifier states how strong the finding is
   - "Cross-domain transfer of AI-for-science methods is inconsistent: techniques that work well in one field, molecular property prediction in chemistry, often require substantial re-engineering to transfer to a structurally different field."
   - "The review identifies evaluation and benchmarking as a persistent weak point across the field: many claimed AI-for-science advances lack the kind of blind, adversarial validation a field like structural biology established with CASP."
 research_questions_it_leaves_open:
@@ -67,7 +68,7 @@ A broad Nature review synthesizing AI's role across the scientific-discovery pip
 ## Key Claims
 
 - The review organizes AI-for-science contributions into stages of the discovery pipeline, representation learning over scientific data, hypothesis and experiment generation, and closed-loop autonomous experimentation, and finds the strongest, most mature results cluster in representation learning and prediction, with generation and closed-loop autonomy still comparatively early.
-- Cross-domain transfer of AI-for-science methods is inconsistent: techniques that work well in one field, molecular property prediction in chemistry, often require substantial re-engineering to transfer to a structurally different field.
+- Cross-domain transfer of AI-for-science methods is inconsistent: techniques that work well in one field, molecular property prediction in chemistry, often require substantial re-engineering to transfer to a structurally different field. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - The review identifies evaluation and benchmarking as a persistent weak point across the field: many claimed AI-for-science advances lack the kind of blind, adversarial validation a field like structural biology established with CASP.
 
 ## Research Questions It Leaves Open

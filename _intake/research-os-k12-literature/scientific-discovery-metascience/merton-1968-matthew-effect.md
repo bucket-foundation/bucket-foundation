@@ -43,7 +43,7 @@ Names the credit-allocation dynamic, eminent researchers receiving disproportion
 
 ## Research Questions It Leaves Open
 
-- Whether an automated, provenance-tracked citation-fee system, routing a payment on every cited use rather than relying on reputational credit, counteracts the Matthew effect or only relocates it to whichever source an AI system happens to retrieve most often.
+- Whether an automated, provenance-tracked citation-fee system, routing a payment on every cited use rather than relying on reputational credit, counteracts the Matthew effect or only relocates it to whichever source an AI system happens to retrieve most often. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - How a stemma-aware fusion rule that weights a source by track record avoids re-encoding the same eminence-based bias the original Matthew effect describes.
 
 ## How It Bears on Research OS

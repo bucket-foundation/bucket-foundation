@@ -1,5 +1,5 @@
 ---
-title: "A Demonstration That School-Based Required Service Does Not Deter—But Heightens—Volunteerism"  # voice-ignore-line: verbatim journal-article title, the em dashes are the publisher's own typesetting
+title: "A Demonstration That School-Based Required Service Does Not Deter—But Heightens—Volunteerism"
 authors:
   - "Metz, Edward"
   - "Youniss, James"

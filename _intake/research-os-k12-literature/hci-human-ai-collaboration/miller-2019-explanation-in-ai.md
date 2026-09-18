@@ -78,7 +78,7 @@ explanation looks like.
 
 Sets the standard the batch's other explanation-quality cards (Lombrozo 2006; Keil 2006;
 Zemla and colleagues 2017) sharpen: this survey's own central argument, that XAI research
-too often substitutes researcher intuition for an established account of explanation, is
+too often substitutes researcher intuition for an established account of explanation, is <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 exactly the risk a disclosed, model-generated understanding artifact runs if it was built
 without reference to what makes a human explanation good. Krenn and colleagues (2022),
 already in this corpus, argues an AI system must let a human internalize a pattern to

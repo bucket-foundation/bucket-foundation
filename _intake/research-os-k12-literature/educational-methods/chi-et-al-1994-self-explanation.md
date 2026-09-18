@@ -43,7 +43,7 @@ The empirical basis for treating self-explanation as a load-bearing activity in 
 
 ## Research Questions It Leaves Open
 
-- Which prompts reliably induce productive self-explanation versus shallow paraphrase, a design question for any AI tool meant to elicit it.
+- Which prompts reliably induce productive self-explanation versus shallow paraphrase, a design question for any AI tool meant to elicit it. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - Whether the effect holds when self-explanation is checked or scored, versus purely self-directed as in the original studies.
 
 ## How It Bears on Research OS

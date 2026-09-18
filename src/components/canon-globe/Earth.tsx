@@ -1,5 +1,5 @@
 "use client";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { loadLandmask } from "./landmaskFromImage";
@@ -15,6 +15,15 @@ interface EarthProps {
   targetRotationY: number;
   reducedMotion: boolean;
   landmaskUrl: string;
+  /** Dot material opacity; below 1 the dots render transparent. */
+  dotOpacity?: number;
+  /** Sphere segments per dot; 8 is the interactive globe, 4 is a cheap disc. */
+  dotDetail?: number;
+  /** Dot color. */
+  dotColor?: number;
+  /** Scale of a dot seen edge-on at the sphere's limb, 1 leaves dots as
+   * they are; below 1 thins the dark rim that stacked dots form there. */
+  limbScale?: number;
   children?: React.ReactNode;
   /** number of fibonacci candidate points; ~15000 is the sweet spot. */
   sampleCount?: number;
@@ -49,6 +58,10 @@ export function Earth({
   targetRotationY,
   reducedMotion,
   landmaskUrl,
+  dotOpacity = 1,
+  dotDetail = 8,
+  dotColor = 0x1f1c16,
+  limbScale = 1,
   children,
   sampleCount = 36000,
   dotRadius = 0.0038,
@@ -56,6 +69,10 @@ export function Earth({
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const [count, setCount] = useState(0);
+  // The canvas runs frameloop="demand": a mutation made outside React's
+  // render (this effect resolves a promise) draws nothing until something
+  // asks for a frame. Ask for one once the dots are placed.
+  const invalidate = useThree((state) => state.invalidate);
 
   // Build a stable buffer of dot transforms once the landmask is loaded.
   const transforms = useMemo(
@@ -123,13 +140,14 @@ export function Earth({
       mesh.instanceColor.needsUpdate = true;
       mesh.count = kept;
       setCount(kept);
+      invalidate();
     }).catch((err) => {
       // Non-fatal: globe will render as the faint sphere alone.
       console.warn("[CanonGlobe] landmask load failed:", err);
     });
 
     return () => { cancelled = true; };
-  }, [landmaskUrl, sampleCount, transforms]);
+  }, [landmaskUrl, sampleCount, transforms, invalidate]);
 
   useFrame((_state, delta) => {
     if (!groupRef.current) return;
@@ -148,15 +166,40 @@ export function Earth({
   });
 
   // Shared geometry for instanced dots, small, low-poly disc-like sphere.
-  const dotGeo = useMemo(() => new THREE.SphereGeometry(dotRadius, 8, 8), [dotRadius]);
-  const dotMat = useMemo(
-    () =>
-      new THREE.MeshBasicMaterial({
-        color: 0x1f1c16,
-        toneMapped: false,
-      }),
-    []
+  const dotGeo = useMemo(
+    () => new THREE.SphereGeometry(dotRadius, dotDetail, Math.max(3, Math.round(dotDetail / 2))),
+    [dotRadius, dotDetail]
   );
+  const dotMat = useMemo(() => {
+    const mat = new THREE.MeshBasicMaterial({
+      color: dotColor,
+      toneMapped: false,
+      transparent: dotOpacity < 1,
+      opacity: dotOpacity,
+    });
+    if (limbScale < 1) {
+      // Shrink each instance by how far it faces away from the camera:
+      // the instance's local +z is its outward normal (Earth orients
+      // every dot with lookAt).
+      mat.onBeforeCompile = (shader) => {
+        shader.uniforms.uLimbScale = { value: limbScale };
+        shader.vertexShader =
+          "uniform float uLimbScale;\n" +
+          shader.vertexShader.replace(
+            "#include <begin_vertex>",
+            `vec3 transformed = vec3(position);
+            #ifdef USE_INSTANCING
+              vec3 dotNormal = normalize((modelMatrix * instanceMatrix * vec4(0.0, 0.0, 1.0, 0.0)).xyz);
+              vec3 dotCenter = (modelMatrix * instanceMatrix * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+              float facing = clamp(dot(dotNormal, normalize(cameraPosition - dotCenter)), 0.0, 1.0);
+              transformed *= mix(uLimbScale, 1.0, facing);
+            #endif`
+          );
+      };
+      mat.customProgramCacheKey = () => "limb-" + limbScale;
+    }
+    return mat;
+  }, [dotOpacity, dotColor, limbScale]);
 
   return (
     <group ref={groupRef} rotation={[0.35, 0, 0]}>

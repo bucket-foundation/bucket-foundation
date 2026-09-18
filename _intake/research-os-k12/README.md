@@ -33,8 +33,8 @@ registry of branches or collections under `src/`, the kind `src/lib/
 tools.ts`'s `TOOLS` array is for the 30 research tools:
 
 - `src/lib/canon-fs.ts`'s `getBranches()` walks `bucket-canon/` on disk for
-  the 9 numbered canon branches. Filesystem-driven, not an edit-to-register
-  list, and scoped to canon branches specifically; Research OS is not a
+  the 9 numbered canon branches. Filesystem-driven (walks disk, no
+  edit-to-register list) and scoped to canon branches; Research OS is not a
   canon branch, so this is not the right registry regardless.
 - `src/components/Header.tsx`'s `const NAV: NavItem[]` (lines 14-38) is
   the actual top-level site registry: it lists every top-nav collection
@@ -42,8 +42,8 @@ tools.ts`'s `TOOLS` array is for the 30 research tools:
   a `label`, and an optional `sub` array of child links, and it drives
   both the desktop and mobile nav (both iterate the same `NAV` constant).
   Research OS is not in it today. This is a **hardcoded literal array in a
-  UI component**, not a data file, so per this pass's scope (canon intake,
-  not a site-nav change) the registration is documented here instead of
+  UI component**, distinct from a data file, so within this pass's scope of
+  canon intake alone, the registration is documented here instead of
   applied at the time of this check.
 
 **To register** (the path PR #12 then took), add an entry to `NAV` in

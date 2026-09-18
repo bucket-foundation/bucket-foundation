@@ -139,7 +139,7 @@ export default function Page() {
             style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
           >
             Not global h-index ranking — these are the people most
-            central to <em>this corpus's</em> intellectual lineage,
+            central to <em>this corpus&rsquo;s</em> intellectual lineage,
             measured by PageRank on the canon knowledge graph.
           </p>
           <div className="space-y-1 text-base" style={{ fontFamily: "var(--font-fraunces)" }}>

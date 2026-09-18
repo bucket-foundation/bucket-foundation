@@ -63,6 +63,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { verifyRequestUser } from "@/lib/auth/verify";
+import { syncAcademyMastery } from "@/lib/research-os/learn-sync";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -126,21 +128,8 @@ function service(): SupabaseClient {
  * client might send, only the token, verified by gotrue, decides identity.
  */
 async function verifyUser(req: NextRequest): Promise<string | null> {
-  const auth = req.headers.get("authorization") || "";
-  const m = auth.match(/^Bearer\s+(.+)$/i);
-  if (!m) return null;
-  const token = m[1].trim();
-  if (!token) return null;
-  try {
-    const verifier = createClient(SUPABASE_URL as string, ANON_KEY as string, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
-    const { data, error } = await verifier.auth.getUser(token);
-    if (error || !data?.user?.id) return null;
-    return data.user.id;
-  } catch {
-    return null;
-  }
+  const user = await verifyRequestUser(req);
+  return user?.id ?? null;
 }
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
@@ -224,5 +213,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   if (error) return json({ error: "write_failed" }, 500);
 
-  return json({ ok: true, written: rows.length });
+  // Learn to graph (docs/RESEARCH-OS-APP.md, Learn): a mastered atom moves
+  // its graph node to Understanding. Best-effort; the progress write above
+  // is what the client is waiting on.
+  let advanced = 0;
+  for (const row of rows) {
+    try {
+      advanced += (await syncAcademyMastery(uid, row.branch, row.data)).advanced;
+    } catch {
+      /* graph unavailable or not migrated */
+    }
+  }
+
+  return json({ ok: true, written: rows.length, advanced });
 }

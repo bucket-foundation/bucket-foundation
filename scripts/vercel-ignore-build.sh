@@ -82,8 +82,8 @@ if [[ "$MSG" == *"[skip ci]"* ]]; then
 fi
 
 # --- step 2: branch-prefix skip signals ----------------------------------
-if [[ "$REF" =~ ^(run|intake|data)/ ]]; then
-  skip "branch '$REF' matches a whole-prefix engine pattern (run|intake|data)/*"
+if [[ "$REF" =~ ^(run|intake|data|hte)/ ]]; then
+  skip "branch '$REF' matches a whole-prefix engine pattern (run|intake|data|hte)/*"
 fi
 if [[ "$REF" =~ ^[^/]+/(hte|feed|canon|paper)- ]]; then
   skip "branch '$REF' matches an engine-topic pattern */(hte|feed|canon|paper)-*"

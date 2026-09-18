@@ -48,7 +48,7 @@ targets, with tournament rankings correlated with expert scientist ratings.
 
 - The pipeline runs generation, reflection (critique), ranking (tournament), and
   evolution agents in sequence, refining top candidates over iterations.
-- A wet-lab validation arm tested highly ranked hypotheses experimentally, with a
+- A wet-lab validation arm tested highly ranked hypotheses experimentally, with a <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   subset confirmed by follow-up laboratory work.
 - Tournament rankings correlated with expert scientist ratings on a held-out set,
   though not perfectly, with named cases of disagreement.

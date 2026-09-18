@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Bioenergetics
-- **Captured**: 2026-05-09T09:45:52
+- **Captured**: 2026-09-17T17:06:44
 
 ## Description
 

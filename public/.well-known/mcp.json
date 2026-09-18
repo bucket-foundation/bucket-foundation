@@ -1,59 +1,42 @@
 {
   "$schema": "https://modelcontextprotocol.io/schemas/server-manifest.json",
   "name": "bucket-foundation",
-  "version": "0.1.0",
-  "description": "Query the bucket.foundation research canon — feed402/0.2, free and zero-key for the caller. No wallet, no signature, no payment step on the read/cite path. Every response returns a citeable envelope (data + citation + receipt with price_usd 0).",
+  "version": "0.2.0",
+  "description": "Query the bucket.foundation research canon \u2014 feed402/0.2, free and zero-key for the caller. No wallet, no signature, no payment step on the read/cite path. Every response returns a citeable envelope (data + citation + receipt with price_usd 0).",
   "homepage": "https://www.bucket.foundation",
   "license": "MIT",
   "contact": "ops@bucket.foundation",
   "repository": "https://github.com/bucket-foundation/bucket-mcp",
   "transport": {
-    "type": "stdio",
-    "description": "Zero-dependency Python stdio MCP server. Clone the repo and register at user scope."
+    "type": "streamable-http",
+    "url": "https://www.bucket.foundation/api/mcp",
+    "auth": "none",
+    "description": "Hosted Streamable HTTP endpoint (stateless JSON responses). Add it as a custom connector in Claude.ai or ChatGPT, or `claude mcp add --transport http bucket https://www.bucket.foundation/api/mcp`. A stdio server for offline use stays at mcp-server/bucket-mcp.py."
   },
   "install": {
-    "claude_code": "claude mcp add --scope user --transport stdio bucket -- bash -lc \"exec python3 $HOME/bucket-mcp/bucket-mcp.py\"",
-    "clone": "gh repo clone bucket-foundation/bucket-mcp ~/bucket-mcp",
-    "npx": "pending",
-    "uvx": "pending",
-    "note": "Repo is live at github.com/bucket-foundation/bucket-mcp. npx/uvx packages pending publish."
+    "claude_ai": "Settings > Connectors > Add custom connector > URL https://www.bucket.foundation/api/mcp",
+    "chatgpt": "Settings > Apps & Connectors > Advanced > Developer mode > Create > MCP server URL https://www.bucket.foundation/api/mcp, authentication None",
+    "claude_code": "claude mcp add --transport http bucket https://www.bucket.foundation/api/mcp",
+    "stdio": "claude mcp add --scope user --transport stdio bucket -- bash -lc \"exec python3 $PWD/mcp-server/bucket-mcp.py\""
   },
   "tools": [
     {
-      "name": "bucket_research",
-      "description": "Query the bucket.foundation research canon. Routes through bucket.foundation/api/research (free, zero-key proxy) → cited envelope. The caller pays nothing and needs no wallet; any settlement is server-side and invisible. Default tier 'insight' (tier selects response detail only — it is NOT a price).",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "query": { "type": "string", "description": "Natural-language research question." },
-          "tier":  { "type": "string", "enum": ["raw", "query", "insight"], "default": "insight" }
-        },
-        "required": ["query"]
-      }
+      "name": "canon_search"
     },
     {
-      "name": "bucket_cite",
-      "description": "Return a CSL-JSON citation block for a DOI or URL. Uses doi.org content negotiation when a DOI is present.",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "doi_or_url": { "type": "string", "description": "A DOI (10.xxxx/...) or a URL that may contain one." }
-        },
-        "required": ["doi_or_url"]
-      }
+      "name": "canon_get_claim"
     },
     {
-      "name": "bucket_canon_list",
-      "description": "List canon-tier entries for a branch. Canon holds only foundations — axioms, laws, primary derivations.",
-      "input_schema": {
-        "type": "object",
-        "properties": {
-          "branch": {
-            "type": "string",
-            "enum": ["mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind"]
-          }
-        }
-      }
+      "name": "canon_list_branches"
+    },
+    {
+      "name": "canon_list_bridges"
+    },
+    {
+      "name": "bucket_cite"
+    },
+    {
+      "name": "hypothesize"
     }
   ],
   "resources": [
@@ -72,5 +55,6 @@
       "name": "feed402.json",
       "description": "Static feed402/0.2 discovery manifest."
     }
-  ]
+  ],
+  "tools_note": "Full input schemas come from tools/list on the endpoint; this manifest names them only."
 }

@@ -34,7 +34,7 @@ export default function Page() {
           <span className="inlay-gold">causal study.</span>
         </h1>
         <p className="mt-6 text-[16px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Describe a study — treatment, outcome, confounders, and the assumed causal graph. CausalDesigner builds the DAG, enumerates the backdoor paths, and finds a valid minimal adjustment set with real do-calculus (Pearl's back-door criterion via networkx d-separation — it never conditions on a collider or a mediator), then recommends an estimator (difference-in-differences, regression discontinuity, instrumental variables, matching, or covariate-adjusted regression) with its identifying assumptions and the concrete threats to validity. A field tool for the social/economic sciences, where causal-inference best practice is most under-tooled.
+          Describe a study — treatment, outcome, confounders, and the assumed causal graph. CausalDesigner builds the DAG, enumerates the backdoor paths, and finds a valid minimal adjustment set with real do-calculus (Pearl&rsquo;s back-door criterion via networkx d-separation — it never conditions on a collider or a mediator), then recommends an estimator (difference-in-differences, regression discontinuity, instrumental variables, matching, or covariate-adjusted regression) with its identifying assumptions and the concrete threats to validity. A field tool for the social/economic sciences, where causal-inference best practice is most under-tooled.
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 

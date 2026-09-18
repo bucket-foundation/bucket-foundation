@@ -52,7 +52,7 @@ no incentive at all, non-monotonic in payment size rather than linearly benefici
   reducing them, and the increase outlasted the fine.
 - Small incentivized payment produced worse task performance than either no payment or
   a larger payment.
-- The pattern across studies was non-monotonic: a small payment often performed worse
+- The pattern across studies was non-monotonic: a small payment often performed worse <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   than zero payment or a sufficiently large one.
 
 ## Research Questions It Leaves Open

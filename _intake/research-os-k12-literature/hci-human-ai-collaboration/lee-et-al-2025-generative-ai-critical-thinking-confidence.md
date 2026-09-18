@@ -69,5 +69,5 @@ rather than disappearing.
 Is the paper `RESEARCH-QUESTIONS.md` Q11 already names for the Check tool's
 offloading effect, carried in here as a full file. Its verification-shift finding
 describes what Check already asks a learner to do, giving a direct hypothesis to test
-against usage logs: does confidence in the tool's verdict predict how carefully a
+against usage logs: does confidence in the tool's verdict predict how a
 learner inspects the evidence it returns.

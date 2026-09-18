@@ -76,7 +76,7 @@ improvement is rare across five common explanation methods.
 - Whether the engine's own disclosed, model-generated understanding artifact has ever
   been tested for simulatability, whether a K-12 learner who reads it can then predict how
   the ranking would change on a new, unseen hypothesis, the same test this paper applies
-  to algorithmic explanations generally.
+  to algorithmic explanations.
 - Whether the subjective-rating-does-not-predict-helpfulness finding means a learner's
   own stated confidence after reading a Check verdict's rationale is an unreliable signal
   of whether that rationale improved their understanding, a caution for any
@@ -90,5 +90,5 @@ measurable gains in a person's ability to predict model behavior, and subjective
 of explanation quality do not track that measurable gain. Read against the disclosed
 understanding artifact PR #60 shipped, this paper argues that artifact's own value should
 be tested by whether it lets a learner predict how the engine's ranking would move on a
-new case, not by whether the artifact reads as satisfying, the same simulatability
+new case. Whether the artifact reads as satisfying does not count toward it: the same simulatability
 standard this paper finds most tested explanation methods fail to clear.

@@ -51,6 +51,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
 import { consentBlockedBody, requireConsent } from "@/lib/research-os/consent";
+import { PRODUCTION_KINDS, type ProductionKind } from "@/lib/research-os/production-node";
 import {
   configured,
   graphService,
@@ -94,12 +95,25 @@ export async function GET(req: NextRequest) {
   if (targetNodeId) q = q.eq("target_node_id", targetNodeId);
   const { data, error } = await q;
   if (error) return bad(500, "read_failed");
-  return NextResponse.json({ productions: data || [] }, { headers: { "cache-control": "no-store" } });
+  // Titles for the target and the node an accepted production became, so a
+  // list can read without a second round trip.
+  const rows = (data || []) as { target_node_id: string; related_node_id?: string | null; node_id?: string | null }[];
+  const ids = Array.from(new Set(rows.flatMap((r) => [r.target_node_id, r.related_node_id ?? null, r.node_id ?? null]).filter((x): x is string => Boolean(x))));
+  const titles: Record<string, { slug: string; title: string; kind: string }> = {};
+  if (ids.length) {
+    const { data: nodes } = await svc.from("nodes").select("id,slug,title,kind").in("id", ids);
+    for (const nd of (nodes || []) as { id: string; slug: string; title: string; kind: string }[]) titles[nd.id] = { slug: nd.slug, title: nd.title, kind: nd.kind };
+  }
+  return NextResponse.json({ productions: data || [], nodes: titles }, { headers: { "cache-control": "no-store" } });
 }
 
 interface ProductionBody {
   id?: string;
   targetNodeId?: string;
+  /** production (default), extension, replication, or peer_review. */
+  kind?: string;
+  /** The node an extension, replication, or peer review acts on. */
+  relatedNodeId?: string | null;
   claim?: string;
   evidence?: unknown[];
   sources?: unknown[];
@@ -206,6 +220,8 @@ export async function POST(req: NextRequest) {
   };
   if (body.id) row.id = body.id;
   if (body.targetNodeId) row.target_node_id = body.targetNodeId;
+  if (typeof body.kind === "string" && PRODUCTION_KINDS.includes(body.kind as ProductionKind)) row.kind = body.kind;
+  if (body.relatedNodeId !== undefined) row.related_node_id = body.relatedNodeId;
   // source_provenance/duplicate_flag/counter_evidence_required are guard
   // output, only ever recomputed on a real submission (see above); a draft
   // save omits these keys so a prior submission's own guard results are

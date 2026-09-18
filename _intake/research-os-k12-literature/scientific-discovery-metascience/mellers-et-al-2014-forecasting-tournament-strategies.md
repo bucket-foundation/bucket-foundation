@@ -76,14 +76,14 @@ independently raised human forecasting accuracy in a multi-year geopolitical tou
   confidence outputs, or is specific to the human forecasters whose probability judgments
   this paper measures.
 - Whether the engine's own tournament-style Elo ranking, which already fuses evidence
-  across hypotheses, would benefit from an analogous elevate-top-performers step, distinct
+  across hypotheses, would benefit from an analogous promote-top-performers step, distinct
   from the calibration-and-ranking blend it already runs.
 
 ## How It Bears on Research OS
 
 Offers a human-side precedent for the engine's own `MIN_VERIFIED_FOR_LABEL = 20` gate: the
 tournament's own headline result is that tracking and elevating a small number of
-consistently well-calibrated forecasters into elite teams beat a larger undifferentiated
+consistently well-calibrated forecasters into elite teams beat a larger undifferentiated <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 pool, the same selection-after-tracking logic a ranking label that waits for enough
 held-out cases applies to a model run instead of a person. Also names training as an
 independent lever: if a future engine iteration exposes its own calibration record (the

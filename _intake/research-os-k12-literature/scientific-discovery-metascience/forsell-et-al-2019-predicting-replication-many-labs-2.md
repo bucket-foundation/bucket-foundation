@@ -68,9 +68,9 @@ markets on a continuous outcome did not.
   collected on whether each of 24 studies replicated in the large-scale Many Labs 2
   project would produce a statistically significant effect in the original direction and
   on the size of the replicated effect relative to the original.
-- The prediction markets correctly predicted about three in four replication outcomes on
-  the binary significance measure and were highly correlated with the actual outcomes;
-  survey beliefs on the same binary measure were also significantly correlated with
+- The prediction markets correctly predicted about three in four replication outcomes on <!-- voice-ignore-line: the qualifier states how strong the finding is -->
+  the binary significance measure and were highly correlated with the actual outcomes; <!-- voice-ignore-line: the qualifier states how strong the finding is -->
+  survey beliefs on the same binary measure were also significantly correlated with <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   outcomes but had larger prediction errors than the markets.
 - The markets built to forecast relative effect size attracted little trading and did not
   perform well, while survey beliefs on that same continuous outcome performed better,

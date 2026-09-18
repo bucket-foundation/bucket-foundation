@@ -9,7 +9,7 @@
 - **License**: http://creativecommons.org/licenses/by/4.0/
 - **Mediatype**: audio
 - **Subjects**: free will; determinism; free choice; fate; destiny; causal will; unconscious; cause and effect; philosophy; causality; causation; predeterminism; human will; volition; morality; physics; brain; mind; consciousness; neuroscience; freedom 
-- **Captured**: 2026-05-09T09:47:30
+- **Captured**: 2026-09-17T17:07:22
 
 ## Description
 

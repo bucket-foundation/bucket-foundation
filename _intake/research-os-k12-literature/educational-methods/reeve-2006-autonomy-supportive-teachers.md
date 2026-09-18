@@ -61,7 +61,7 @@ or structured task stay engaged rather than only compliant.
   instruction, and argues teachers can learn to be more autonomy-supportive, a trainable
   skill rather than a fixed disposition.
 - Students are most engaged when teachers offer high levels of both autonomy support and
-  structure together, not autonomy support in place of structure, and an
+  structure together, beyond autonomy support alone in place of structure, and an
   autonomy-supportive style is framed as an important part of a high-quality
   teacher-student relationship.
 

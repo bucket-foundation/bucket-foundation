@@ -39,7 +39,7 @@ The field-tested elaboration of Perkins 1993's understanding-performances framew
 ## Key Claims
 
 - A four-part framework operationalizes teaching for understanding in a real classroom: generative topics (rich, connected, engaging to both teacher and students), understanding goals (explicit statements of what students should come to understand, made visible to students), understanding performances (activities requiring students to extend, apply, and synthesize what they know in new ways, the visible evidence of understanding), and ongoing assessment (frequent, criterion-based feedback throughout the unit, not only at its end).
-- Teachers across many subjects and grade levels, studied over multiple years, could adopt the framework and reported it clarified their own instructional goals, though implementation quality varied widely by teacher and was the strongest predictor of whether students' understanding performances improved.
+- Teachers across many subjects and grade levels, studied over multiple years, could adopt the framework and reported it clarified their own instructional goals, though implementation quality varied widely by teacher and was the strongest predictor of whether students' understanding performances improved. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - Understanding performances are meant to increase in sophistication across a unit, moving from performances that build and clarify basic understanding, to performances that let students go beyond what they have already grasped, to performances integrating and applying what was learned in new, more independent ways.
 
 ## Research Questions It Leaves Open

@@ -147,17 +147,17 @@ one engine-side wiring bead in `hte.runner`.
 
 | File | What lives there | Status |
 |---|---|---|
-| `tools/hypothesis-engine/hte/corpus/production.py` | Reads a production JSON directory or a live Supabase table into an `hte.corpus.Corpus` | Built, not registered |
+| `tools/hypothesis-engine/hte/corpus/production.py` | Reads a production JSON directory or a live Supabase table into an `hte.corpus.Corpus` | Built, pending registration |
 | `tools/hypothesis-engine/hte/data/production-fixtures/` | Twelve fixture productions across three grade bands and two districts | Built |
 | `tools/hypothesis-engine/docs/PRODUCTION-SCHEMA.md` | The production JSON schema and its field-by-field mapping onto `hte.evidence` | Written |
 | `tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md` | The 49-question map, the `hypothesize` tool contract, the milestones table, the write-side hook | Written |
 | `tools/hypothesis-engine/docs/K12-INTEGRATION.md` | The `education-atlas` corpus adapter and the `hypothesize` request and response shape | Built and written |
 | `tools/hypothesis-engine/hte/runner.py:91`, `hte/cli.py:18` | `_CORPUS_LOADERS`, where a `--corpus production` registration would land | Open, one line |
-| `tools/hypothesis-engine/hte/unknowns.py:273` | `GapNode` | Built, not wired into `hte.runner` |
-| `tools/hypothesis-engine/hte/unknowns.py:289`, `:323` | `value_of_information`, `active_priority` | Built, not wired into `hte.runner` |
+| `tools/hypothesis-engine/hte/unknowns.py:273` | `GapNode` | Built, pending wiring into `hte.runner` |
+| `tools/hypothesis-engine/hte/unknowns.py:289`, `:323` | `value_of_information`, `active_priority` | Built, pending wiring into `hte.runner` |
 | `tools/hypothesis-engine/hte/belief.py:69`, `:106`, `:391` | `Opinion`, `fuse`, `score`, the belief-fusion math a `hypothesize` result would expose to a teacher view | Built |
 | `tools/hypothesis-engine/hte/roles.py` | `extract`'s span-anchoring discipline, the pattern named for Research OS's own Quote tool | Built, pattern not ported |
-| `mcp-server/bucket-mcp.py:246` | `TOOLS`, where a future `hypothesize` entry sits beside `canon_search`/`bucket_research`/`bucket_cite` | Named, not added |
+| `mcp-server/bucket-mcp.py:246` | `TOOLS`, where a future `hypothesize` entry sits beside `canon_search`/`bucket_research`/`bucket_cite` | Named only, pending addition |
 | `PROTOCOL.md` §3.1, §4.1 | The agent-trust rule and the sidecar schema both systems' citation envelopes share | Written, both consume |
 | `learning/research-os/PLAN.md` §5 | The production schema's source of truth and the HCI-review overlap map this document reads from | Written, merged |
 | `learning/research-os/RESEARCH-QUESTIONS.md` | 49 numbered open questions, nine of them (19-27) already citing AI-for-science papers this corpus now carries as full files | Written, merged |
@@ -319,12 +319,12 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    target:* Bangert-Drowns, Hurley, and Wilkinson (2004) find metacognitive prompting predicts a
    stronger writing-to-learn effect while longer individual writing assignments predict a weaker one,
    and Berland and Reiser (2009) name a third goal, persuading, that students pursue as a rule
-   less often than sensemaking and articulating, a goal the current Production rubric does not score for.
+   less than sensemaking and articulating, a goal the current Production rubric does not score for.
 
    *Evidence added in batch five, complicates and sharpens the design bet:* Stukas, Snyder, and Clary
    (1999) and Metz and Youniss (2003) report directly opposed findings on the same required-versus-
    voluntary question a citation-payment incentive sits inside: in the first, laboratory-adjacent
-   study, a mandate to serve reduced future volunteering intentions specifically for students who
+   study, a mandate to serve reduced future volunteering intentions for students who
    would not have chosen to volunteer freely; in the second, real-world, school-based study, a
    required-service program did not depress, and appeared to raise, subsequent volunteering, leaving
    whether requiring Production helps or harms engagement unresolved rather than settled
@@ -419,7 +419,7 @@ Each item names the paper or papers that pose it and, where one exists, the numb
     Laboratory) keep a human in the loop at every pipeline stage by design, the same constraint
     Research OS's workspace enforces by construction; Binz and Schulz (2023)'s method, probing a model
     with canonical psychology tasks rather than one benchmark score, is a candidate way to test whether
-    the division of labor actually shifts with a learner's own age or state rather than staying fixed.
+    the division of labor shifts with a learner's own age or state rather than staying fixed.
 
     *Evidence added in batch three, supports and complicates the design bet:* Shneiderman (2020)'s
     separable control-and-automation axes give a vocabulary for the division already built into the
@@ -455,7 +455,7 @@ Each item names the paper or papers that pose it and, where one exists, the numb
 
     *Evidence added in batch two, supports the design bet:* Kitano (2021)'s discovery spectrum, from
     confirming a known result to formulating a new framework, gives a way to score whether a routed gap
-    node produces a merely confirming production or a genuinely gap-closing one, sharpening what
+    node produces a confirming production or a gap-closing one, sharpening what
     "citable production" should mean for this question.
 
     *Evidence added in batch three, supports the design bet:* Oudeyer, Kaplan, and Hafner (2007) supply
@@ -493,7 +493,7 @@ Each item names the paper or papers that pose it and, where one exists, the numb
     framework, of which the sources-and-justification component maps onto what Check's own citation
     verification already checks while epistemic virtues, aims, and value name dimensions no current tool
     or rubric touches. *Complicates:* Sandoval (2005) argues formal epistemological belief and the
-    practical epistemology guiding a learner's own inquiry are distinct and often disconnected,
+    practical epistemology guiding a learner's own inquiry are distinct and disconnected
     so a learner could pass every Check verdict without an underlying epistemic-stance shift; Lederman
     and colleagues (2002)'s VNOS instrument is the validated way to assess nature-of-science
     understanding directly this gap calls for, but its own open-ended-plus-interview design argues

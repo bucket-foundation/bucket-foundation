@@ -1,0 +1,93 @@
+name: site-ci
+
+on:
+  pull_request:
+    branches: [dev, main]
+    paths:
+      - "src/**"
+      - "scripts/**"
+      - "learning/app/**"
+      - "supabase/migrations/**"
+      - "tests/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.json"
+      - "next.config.mjs"
+      - "playwright.config.ts"
+      - ".github/workflows/site-ci.yml"
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+concurrency:
+  group: site-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: typecheck
+        run: npm run typecheck
+      - name: lint
+        run: npm run lint
+      - name: unit tests
+        run: npm test
+      - name: research os tests
+        run: npm run test:research-os
+      - name: academy app
+        run: bash learning/app/validate.sh
+
+  # The loop as a person, over a fresh local stack. On demand: it pulls the
+  # Supabase images and seeds the graph, which is too slow for every pull
+  # request.
+  e2e:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: local supabase
+        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,pg_prove
+      - name: env
+        run: |
+          npx supabase@latest status -o env > .supa.env
+          set -a; . ./.supa.env; set +a
+          {
+            echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY"
+          } > .env.local
+      - name: seed and ingest
+        run: |
+          set -a; . ./.env.local; set +a
+          npm run seed:research-os
+          npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/ingest/academy-import.ts --apply
+      - name: browser
+        run: npx playwright install --with-deps chromium
+      - name: dev server
+        run: |
+          (npx next dev -p 3100 > dev.log 2>&1 &)
+          for i in $(seq 1 90); do
+            if wget -q -O /dev/null http://localhost:3100/sign-in; then break; fi
+            sleep 2
+          done
+      - name: e2e
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-results
+          path: test-results

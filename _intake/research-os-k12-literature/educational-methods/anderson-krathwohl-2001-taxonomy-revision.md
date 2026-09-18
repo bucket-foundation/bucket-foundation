@@ -36,20 +36,21 @@ how_it_bears_on_research_os: >
   Understanding state collapses the revision's cognitive-process and knowledge-type
   dimensions into one undifferentiated stage, where the source taxonomy keeps them separate.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives
 
-Names the third framework `learning/research-os/LEARNER-STATE-MODEL.md` section 2 maps the five Research OS states against, the most widely used cognitive-objective taxonomy in K-12 curriculum design, and the one whose top category, Create, gives Bucket's Production state its closest published counterpart.
+Names the third framework `learning/research-os/LEARNER-STATE-MODEL.md` section 2 maps the five Research OS states against, the most used cognitive-objective taxonomy in K-12 curriculum design, and the one whose top category, Create, gives Bucket's Production state its closest published counterpart.
 
 ## Key Claims
 
 - The original Bloom taxonomy's single cognitive dimension, Knowledge through Evaluation, is replaced by two crossed dimensions: six cognitive processes (Remember, Understand, Apply, Analyze, Evaluate, Create) crossed against four knowledge types (factual, conceptual, procedural, metacognitive).
 - Create, the revision's new top category in place of the original Evaluation, is defined as putting elements together to form a novel, coherent whole, or reorganizing elements into a new pattern or structure, a stronger and more generative bar than the original taxonomy's evaluation-as-judgment ceiling.
-- A single learning objective or assessment item is meant to be placed at one cell of the six-by-four grid, not on the cognitive-process dimension alone, so two items both labeled Understand can differ in which knowledge type they test.
+- A single learning objective or assessment item is meant to be placed at one cell of the six-by-four grid, combining both the cognitive-process and knowledge-type dimensions, so two items both labeled Understand can differ in which knowledge type they test.
 
 ## Research Questions It Leaves Open
 
-- Whether a K-12 assessment practice can reliably place an item into one specific knowledge-type cell, given that most classroom assessment in practice reports only the cognitive-process dimension.
+- Whether a K-12 assessment practice can reliably place an item into one specific knowledge-type cell, given that most classroom assessment in practice reports only the cognitive-process dimension. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - How Create, defined around synthesis within an existing domain's known elements, should be scored when the elements combined include externally cited sources rather than only the learner's own prior knowledge.
 
 ## How It Bears on Research OS

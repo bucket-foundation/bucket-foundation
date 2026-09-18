@@ -9,7 +9,7 @@
 - **License**: https://creativecommons.org/licenses/by-nc-sa/4.0/
 - **Mediatype**: movies
 - **Subjects**: 8.701, nuclear physics, particle physics, nuetrino physics, fermions, bosons, photons, quarks, antiparticles, Higgs physics
-- **Captured**: 2026-05-09T10:11:16
+- **Captured**: 2026-09-17T17:07:57
 
 ## Description
 
