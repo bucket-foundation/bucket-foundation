@@ -45,9 +45,9 @@ function fakeSupabase(nodes: FakeNodeRow[], edges: FakeEdgeRow[], calls: { inser
       if (table === "edges") {
         return {
           select: () => ({
-            in: (_col: string, ids: string[]) => ({
-              eq: (_col2: string, kind: string) => ({
-                data: edges.filter((e) => ids.includes(e.from_id) && e.kind === kind),
+            eq: (_col: string, kind: string) => ({
+              range: (from: number, to: number) => ({
+                data: edges.filter((e) => e.kind === kind).slice(from, to + 1),
                 error: null,
               }),
             }),
@@ -118,4 +118,23 @@ test("rebuildPrereqAncestorForBranch: a branch with nodes but no prerequisite ed
   assert.equal(result.closureRowCount, 0);
   assert.equal(calls.inserted, undefined, "no insert call at all when the closure is empty");
   assert.deepEqual(calls.deletedNodeIds, ["n-a"], "the delete still runs, clearing any now-stale prior rows");
+});
+
+test("rebuildPrereqAncestorForBranch: a factor in another branch joins the closure", async () => {
+  const calls: { inserted?: unknown[]; deletedNodeIds?: string[] } = {};
+  const nodes: FakeNodeRow[] = [
+    { id: "phys-kin", slug: "kinematics", branch: "02-physics" },
+    { id: "math-fn", slug: "functions", branch: "01-mathematics" },
+    { id: "math-eq", slug: "equality", branch: "01-mathematics" },
+  ];
+  const edges: FakeEdgeRow[] = [
+    { from_id: "math-eq", to_id: "math-fn", kind: "prerequisite", confidence: 0.95 },
+    { from_id: "math-fn", to_id: "phys-kin", kind: "prerequisite", confidence: 0.95 },
+  ];
+  const svc = fakeSupabase(nodes, edges, calls);
+  const result = await rebuildPrereqAncestorForBranch(svc, "02-physics");
+  assert.deepEqual(calls.deletedNodeIds, ["phys-kin"]);
+  const ancestors = (calls.inserted as Array<{ node_id: string; ancestor_id: string; min_hops: number }>).map((r) => [r.node_id, r.ancestor_id, r.min_hops]);
+  assert.deepEqual(ancestors.sort(), [["phys-kin", "math-eq", 2], ["phys-kin", "math-fn", 1]]);
+  assert.equal(result.edgeCount, 2);
 });
