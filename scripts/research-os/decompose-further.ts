@@ -16,9 +16,10 @@
  *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/decompose-further.ts [--limit N] [--dry-run] [--concurrency 4] [--model sonnet]
  *
  * --dry-run asks the model and writes the report but queues nothing.
+ * --show-shortlist <slug> prints the candidates offered for one target and exits.
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { decompose, FACTOR_EDGES, type DepEdge } from "../../src/lib/research-os/primes";
@@ -26,7 +27,9 @@ import {
   aggregateMissing,
   buildPrompt,
   buildVerifyPrompt,
+  idfOf,
   impactOf,
+  isCandidateIdea,
   MAX_FACTORS,
   MAX_MISSING,
   parseAnswer,
@@ -71,6 +74,18 @@ const SCHEMA = {
   },
   required: ["irreducible", "factors", "missing"],
 };
+
+/** Unit vectors for each id's text from scripts/research-os/embed-texts.py (local model, cached). */
+export function embed(items: { id: string; text: string }[]): Map<string, number[]> {
+  if (!items.length) return new Map();
+  const res = spawnSync("python3", [path.join(__dirname, "embed-texts.py")], {
+    input: JSON.stringify(items),
+    encoding: "utf8",
+    maxBuffer: 512 * 1024 * 1024,
+  });
+  if (res.status !== 0) throw new Error(`embed-texts.py exited ${res.status}: ${(res.stderr || "").slice(-300)}`);
+  return new Map(Object.entries(JSON.parse(res.stdout) as Record<string, number[]>));
+}
 
 function arg(name: string, fallback?: string): string | undefined {
   const i = process.argv.indexOf(name);
@@ -155,7 +170,17 @@ async function main() {
     const d = dec.get(n.id)!;
     return { ...n, tier: d.status === "unfactored" ? null : d.tier, prime: d.status === "prime" };
   });
+  const ideaPool = pool.filter(isCandidateIdea);
+  const vectors = embed(ideaPool.map((c) => ({ id: c.slug, text: `${c.title}. ${c.summary ?? ""}`.trim() })));
+  const idf = idfOf(ideaPool);
   let targets = selectTargets(rows, dec);
+  const show = arg("--show-shortlist");
+  if (show) {
+    const t = targets.find((x) => x.slug === show);
+    if (!t) throw new Error(`${show} is not a decompose target`);
+    for (const c of shortlist(t, pool, dec, { vectors, idf })) console.log(`${c.branch}\t${c.tier ?? "-"}\t${c.slug}\t${c.title}`);
+    return;
+  }
   if (limit > 0) targets = targets.slice(0, limit);
   mkdirSync(CACHE, { recursive: true });
   console.log(`[decompose-further] ${targets.length} targets, proposer ${model}, verifier ${verifyModel}, concurrency ${concurrency}${dryRun ? ", dry run" : ""}`);
@@ -187,7 +212,7 @@ async function main() {
   async function worker() {
     while (next < targets.length) {
       const target = targets[next++];
-      const cands = shortlist(target, pool, dec);
+      const cands = shortlist(target, pool, dec, { vectors, idf });
       try {
         const allowed = new Set(cands.map((c) => c.slug));
         const ask = await cachedAsk(buildPrompt(target, cands), model, SCHEMA, (r) => parseAnswer(r, allowed, target.slug));

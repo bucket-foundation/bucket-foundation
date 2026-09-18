@@ -7,6 +7,10 @@ import {
   buildPrompt,
   missingKey,
   buildVerifyPrompt,
+  cosine,
+  idfOf,
+  lexicalScore,
+  stem,
   CONFIRMED_CONFIDENCE,
   impactOf,
   isCandidateIdea,
@@ -220,4 +224,47 @@ test("groupings and people are neither targets nor factors; a reviewer-added bas
   assert.equal(isCandidateIdea(by("base-equality")), true);
   assert.equal(isCandidateIdea(by("bridge")), false);
   assert.equal(isCandidateIdea(by("paper")), false);
+});
+
+test("stemming matches plurals and verb forms", () => {
+  assert.equal(stem("vectors"), "vector");
+  assert.equal(stem("theories"), "theory");
+  assert.equal(stem("classes"), "class");
+  assert.equal(stem("mass"), "mass");
+  assert.equal(stem("modeling"), "model");
+});
+
+test("IDF weighting makes a shared rare word count more than a shared common one", () => {
+  const pool = [
+    { title: "Dot product of vectors" },
+    { title: "Cross product of vectors" },
+    { title: "Product rule for derivatives" },
+    { title: "Inner product spaces" },
+    { title: "Vector spaces" },
+  ];
+  const idf = idfOf(pool);
+  const target = "Vectors and the dot and cross product";
+  assert.ok(lexicalScore(target, "Vector spaces", idf) > 0);
+  assert.ok(lexicalScore(target, "Vector spaces", idf) > lexicalScore(target, "Product rule for derivatives", idf));
+});
+
+test("cosine of unit vectors", () => {
+  assert.equal(cosine([1, 0], [1, 0]), 1);
+  assert.equal(cosine([1, 0], [0, 1]), 0);
+  assert.equal(cosine([0, 0], [1, 0]), 0);
+});
+
+test("the shortlist adds semantic neighbours when vectors are given and caps each branch's base layer", () => {
+  const target = selectTargets(nodes, dec).find((t) => t.slug === "lonely")!;
+  const vectors = new Map<string, number[]>([
+    ["lonely", [1, 0, 0]],
+    ["functions", [0.9, 0.1, 0]],
+    ["sets", [0, 1, 0]],
+    ["newton", [0, 0, 1]],
+    ["velocity", [0, 0.1, 0.9]],
+  ]);
+  const withVec = shortlist(target, pool, dec, { vectors, perBranch: 1, semantic: 1, lexical: 0 }).map((c) => c.slug);
+  assert.ok(withVec.includes("functions"), "nearest by embedding");
+  assert.ok(withVec.includes("sets") && withVec.includes("kinematics"), "one base node per branch");
+  assert.ok(!withVec.includes("velocity"), "beyond the per-branch cap and not a semantic pick");
 });

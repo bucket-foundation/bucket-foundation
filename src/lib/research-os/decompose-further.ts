@@ -103,42 +103,138 @@ export function selectTargets(nodes: GraphNode[], dec: Map<string, Decomposition
   return out.sort((a, b) => (a.status === b.status ? a.slug.localeCompare(b.slug) : a.status === "prime" ? -1 : 1));
 }
 
-const STOP = new Set(["the", "and", "of", "a", "an", "in", "to", "for", "on", "with", "as", "by", "is", "its", "from", "at", "or", "into", "how"]);
-function tokens(s: string): Set<string> {
+const STOP = new Set(
+  "the and of a an in to for on with as by is its from at or into how are be this that these those it their which what when where why can may use used using via per between within about over under than then also each one two more most other such".split(
+    " ",
+  ),
+);
+
+/** A light suffix stripper: plurals, -ing, -ed. Enough to match "vectors" with "vector". */
+export function stem(word: string): string {
+  let w = word.toLowerCase();
+  if (w.length > 4 && w.endsWith("ies")) return w.slice(0, -3) + "y";
+  if (w.length > 4 && /(sses|xes|ches|shes)$/.test(w)) return w.slice(0, -2);
+  if (w.length > 3 && w.endsWith("s") && !w.endsWith("ss") && !w.endsWith("us") && !w.endsWith("is")) w = w.slice(0, -1);
+  if (w.length > 5 && w.endsWith("ing")) return w.slice(0, -3);
+  if (w.length > 4 && w.endsWith("ed")) return w.slice(0, -2);
+  return w;
+}
+
+export function tokens(s: string): Set<string> {
   return new Set(
     s
       .toLowerCase()
       .replace(/[^a-z0-9 ]+/g, " ")
       .split(/\s+/)
-      .filter((w) => w.length > 2 && !STOP.has(w)),
+      .filter((w) => w.length > 2 && !STOP.has(w))
+      .map(stem),
   );
 }
 
+const textOf = (n: { title: string; summary?: string | null }) => `${n.title} ${n.summary ?? ""}`;
+
+/** Inverse document frequency of each stemmed token across a pool of nodes. */
+export function idfOf(pool: { title: string; summary?: string | null }[]): Map<string, number> {
+  const df = new Map<string, number>();
+  for (const n of pool) for (const t of Array.from(tokens(textOf(n)))) df.set(t, (df.get(t) ?? 0) + 1);
+  const out = new Map<string, number>();
+  for (const [t, d] of Array.from(df)) out.set(t, Math.log((1 + pool.length) / (1 + d)) + 1);
+  return out;
+}
+
+/** Cosine of two stemmed token sets weighted by IDF, so shared rare words count and shared common ones barely do. */
+export function lexicalScore(a: string, b: string, idf: Map<string, number>): number {
+  const ta = tokens(a);
+  const tb = tokens(b);
+  let dot = 0;
+  let na = 0;
+  let nb = 0;
+  for (const t of Array.from(ta)) {
+    const w = idf.get(t) ?? 1;
+    na += w * w;
+    if (tb.has(t)) dot += w * w;
+  }
+  for (const t of Array.from(tb)) {
+    const w = idf.get(t) ?? 1;
+    nb += w * w;
+  }
+  return na && nb ? dot / Math.sqrt(na * nb) : 0;
+}
+
+export function cosine(a: ArrayLike<number>, b: ArrayLike<number>): number {
+  let dot = 0;
+  let na = 0;
+  let nb = 0;
+  for (let i = 0; i < a.length; i++) {
+    dot += a[i] * b[i];
+    na += a[i] * a[i];
+    nb += b[i] * b[i];
+  }
+  return na && nb ? dot / Math.sqrt(na * nb) : 0;
+}
+
+export type ShortlistOptions = {
+  /** Unit vectors by slug (scripts/research-os/embed-texts.py); without them the semantic part is skipped. */
+  vectors?: Map<string, number[]>;
+  idf?: Map<string, number>;
+  /** Lowest-depth nodes offered from every branch, so each branch's base layer is always in view. */
+  perBranch?: number;
+  semantic?: number;
+  lexical?: number;
+};
+
 /**
- * The candidates offered for one target: every prime, every tier-1 node in
- * every branch, and the closest lexical neighbours. Nodes that already rest
- * on the target are left out, so no proposal can close a cycle.
+ * The candidates offered for one target, from every public idea node:
+ * each branch's lowest-depth nodes (the base layer, ordered by closeness to
+ * the target), the nearest nodes by embedding, and the best stemmed IDF
+ * matches. Nodes that already rest on the target are left out, so no
+ * single proposal can close a cycle with the edges already in the graph.
  */
-export function shortlist(target: Target, pool: Candidate[], dec: Map<string, Decomposition>, neighbours = 20): Candidate[] {
+export function shortlist(target: Target, pool: Candidate[], dec: Map<string, Decomposition>, opts: ShortlistOptions = {}): Candidate[] {
+  const perBranch = opts.perBranch ?? 3;
+  const semanticN = opts.semantic ?? 25;
+  const lexicalN = opts.lexical ?? 10;
   const restsOnTarget = (c: Candidate) => dec.get(c.id)?.signature.has(target.id) ?? false;
   const eligible = pool.filter((c) => c.id !== target.id && isCandidateIdea(c) && !restsOnTarget(c));
-  const base = eligible.filter((c) => c.prime || c.tier === 1);
-  const t = tokens(`${target.title} ${target.summary ?? ""}`);
-  const scored = eligible
-    .filter((c) => !(c.prime || c.tier === 1))
-    .map((c) => {
-      const w = tokens(`${c.title} ${c.summary ?? ""}`);
-      let shared = 0;
-      for (const x of Array.from(w)) if (t.has(x)) shared++;
-      return { c, score: shared / Math.sqrt(Math.max(1, w.size) * Math.max(1, t.size)) };
-    })
-    .filter((s) => s.score > 0)
-    .sort((a, b) => b.score - a.score || a.c.slug.localeCompare(b.c.slug))
-    .slice(0, neighbours)
-    .map((s) => s.c);
+  const tv = opts.vectors?.get(target.slug);
+  const sim = new Map<string, number>();
+  if (tv) for (const c of eligible) {
+    const v = opts.vectors!.get(c.slug);
+    if (v) sim.set(c.slug, cosine(tv, v));
+  }
+  const idf = opts.idf ?? idfOf(eligible.concat([target as unknown as Candidate]));
+  const lex = new Map<string, number>(eligible.map((c) => [c.slug, lexicalScore(textOf(target), textOf(c), idf)]));
+  const closeness = (c: Candidate) => (sim.get(c.slug) ?? 0) + (lex.get(c.slug) ?? 0);
+
+  const picked: Candidate[] = [];
+  const byBranch = new Map<string, Candidate[]>();
+  for (const c of eligible) {
+    if (c.tier === null && !c.prime) continue;
+    const b = c.branch ?? "none";
+    if (!byBranch.has(b)) byBranch.set(b, []);
+    byBranch.get(b)!.push(c);
+  }
+  for (const list of Array.from(byBranch.values())) {
+    list.sort((a, b) => (a.tier ?? 0) - (b.tier ?? 0) || closeness(b) - closeness(a) || a.slug.localeCompare(b.slug));
+    picked.push(...list.slice(0, perBranch));
+  }
+  if (tv) {
+    picked.push(
+      ...eligible
+        .filter((c) => sim.has(c.slug))
+        .sort((a, b) => sim.get(b.slug)! - sim.get(a.slug)! || a.slug.localeCompare(b.slug))
+        .slice(0, semanticN),
+    );
+  }
+  picked.push(
+    ...eligible
+      .filter((c) => (lex.get(c.slug) ?? 0) > 0)
+      .sort((a, b) => lex.get(b.slug)! - lex.get(a.slug)! || a.slug.localeCompare(b.slug))
+      .slice(0, lexicalN),
+  );
   const seen = new Set<string>();
   const out: Candidate[] = [];
-  for (const c of base.concat(scored)) {
+  for (const c of picked) {
     if (seen.has(c.slug)) continue;
     seen.add(c.slug);
     out.push(c);
