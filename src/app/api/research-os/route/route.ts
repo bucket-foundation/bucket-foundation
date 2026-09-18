@@ -94,7 +94,9 @@ export async function GET(req: NextRequest) {
 
   let nodes, edges;
   try {
-    ({ nodes, edges } = await loadSubgraph(branch));
+    // Factors from other branches join the walk, so a route can pass
+    // through the mathematics a physics node rests on.
+    ({ nodes, edges } = await loadSubgraph(branch, { externalFactors: true }));
     // ros-31: private and shared regions. Routing runs over the graph this
     // viewer may see; hidden nodes and their edges never enter the walk.
     ({ nodes, edges } = await filterSubgraphForViewer(nodes, edges, learnerId));

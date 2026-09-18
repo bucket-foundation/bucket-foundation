@@ -26,7 +26,7 @@ export const SOURCES = new Set(["inferred_llm", "prime_decompose_llm"]);
 export const KINDS = new Set<ApprovedKind>(["prerequisite", "derives_from"]);
 
 const PROPOSAL_COLUMNS =
-  "id,from_slug,to_slug,branch,confidence,confidence_source,agreement,justification,secondary_justification,model,prompt_hash,status,created_at,impact,cross_branch,verification,origin,refd";
+  "id,from_slug,to_slug,branch,confidence,confidence_source,agreement,justification,secondary_justification,model,prompt_hash,status,created_at,impact,cross_branch,verification,origin,refd,in_cycle";
 
 type ProposalRow = {
   id: string;
@@ -47,6 +47,7 @@ type ProposalRow = {
   verification: "confirmed" | "refuted" | "unchecked" | null;
   origin: "proposer" | "missing_matched" | "base_idea" | null;
   refd: number | null;
+  in_cycle: boolean | null;
 };
 
 type NodeLite = { id: string; slug: string; title: string; branch: string; tier: number | null; summary: string | null };
@@ -144,6 +145,7 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
         createdAt: p.created_at,
         impact: live,
         crossBranch: p.cross_branch,
+        inCycle: Boolean(p.in_cycle),
         priority: priorityOf(p, live),
       };
     })
@@ -418,4 +420,60 @@ export async function decideNode(
   }
   await svc.from("node_proposals").update({ created_node_id: nodeId }).eq("id", r.id);
   return ok({ decision: "approved", alreadyDecided: false, nodeSlug: n.slug, nodeTier: n.tier, queuedEdges: outcome.edgeProposals?.length ?? 0 });
+}
+
+type IrreducibleRow = { id: string; node_slug: string; justification: string; model: string; status: "pending" | "confirmed" | "rejected"; created_at: string };
+
+/** Nodes the proposer called irreducible, waiting on a reviewer, the ones most rested on first. */
+export async function listIrreducible(svc: SupabaseClient): Promise<ActionResult> {
+  const { data, error } = await svc.from("irreducible_proposals").select("id,node_slug,justification,model,status,created_at").eq("status", "pending").order("id").range(0, 999);
+  if (error) return fail(500, "read_failed");
+  const rows = (data as IrreducibleRow[]) || [];
+  let nodes: Map<string, NodeLite>;
+  let impact: Map<string, number>;
+  try {
+    nodes = await nodesBySlug(svc, rows.map((r) => r.node_slug));
+    impact = await dependents(svc, rows.map((r) => r.node_slug));
+  } catch {
+    return fail(500, "read_failed");
+  }
+  return ok({
+    proposals: rows
+      .map((r) => ({
+        id: r.id,
+        slug: r.node_slug,
+        title: nodes.get(r.node_slug)?.title ?? r.node_slug,
+        branch: nodes.get(r.node_slug)?.branch ?? null,
+        summary: nodes.get(r.node_slug)?.summary ?? null,
+        justification: r.justification,
+        model: r.model,
+        dependents: impact.get(r.node_slug) ?? 0,
+      }))
+      .sort((a, b) => b.dependents - a.dependents || a.title.localeCompare(b.title)),
+  });
+}
+
+/**
+ * Confirm or reject an irreducible verdict. A confirmed node is a prime by
+ * review: the decompose-further queue leaves it out of its targets. A
+ * rejected one returns to the queue on the next run.
+ */
+export async function decideIrreducible(
+  svc: SupabaseClient,
+  input: { id: string; decision: "confirmed" | "rejected"; reason: string | null; reviewerId: string },
+): Promise<ActionResult> {
+  const { data: row, error } = await svc.from("irreducible_proposals").select("id,status").eq("id", input.id).maybeSingle();
+  if (error) return fail(500, "read_failed");
+  if (!row) return fail(404, "proposal_not_found");
+  const r = row as { id: string; status: IrreducibleRow["status"] };
+  if (r.status !== "pending") return ok({ decision: r.status, alreadyDecided: true });
+  const { data: claimed, error: claimErr } = await svc
+    .from("irreducible_proposals")
+    .update({ status: input.decision, reviewer_id: input.reviewerId, decision_reason: input.reason, decided_at: new Date().toISOString() })
+    .eq("id", r.id)
+    .eq("status", "pending")
+    .select("id");
+  if (claimErr) return fail(500, "decision_write_failed");
+  if (!((claimed as unknown[]) || []).length) return ok({ decision: input.decision, alreadyDecided: true });
+  return ok({ decision: input.decision, alreadyDecided: false });
 }

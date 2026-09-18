@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
   if (!canView(access, viewer, grants)) return bad(404, "node_not_found");
 
   const [graph, standingRes, myClasses] = await Promise.all([
-    loadSubgraph(node.branch).catch(() => ({ nodes: [], edges: [] })),
+    loadSubgraph(node.branch, { externalFactors: true }).catch(() => ({ nodes: [], edges: [] })),
     viewerId ? svc.from("learner_node_state").select("stage,evidence,updated_at").eq("learner_id", viewerId).eq("node_id", node.id).maybeSingle() : Promise.resolve({ data: null }),
     viewerId ? listMyClasses(viewerId) : Promise.resolve([]),
   ]);

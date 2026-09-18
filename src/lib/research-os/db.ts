@@ -144,7 +144,15 @@ export async function inChunks<T>(ids: string[], run: (chunk: string[]) => Promi
   return out;
 }
 
-export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]; edges: GraphEdge[] }> {
+/**
+ * A branch's nodes and the edges leaving them. With `externalFactors`, also
+ * what the branch rests on in other branches (learning/research-os/
+ * PRIMES.md): every prereq_ancestor ancestor outside the branch, every
+ * derives_from factor outside it, the prerequisite edges coming in, and the
+ * edges among those nodes, so a node page shows a cross-branch factor and
+ * routing can walk into another branch.
+ */
+export async function loadSubgraph(branch: string, opts: { externalFactors?: boolean } = {}): Promise<{ nodes: GraphNode[]; edges: GraphEdge[] }> {
   const svc = graphService();
   // PostgREST pages at 1,000 rows; a branch can hold more.
   const nodeRows: NodeRow[] = [];
@@ -185,6 +193,13 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
   } catch (err) {
     throw new Error(`loadSubgraph: edge query failed: ${err instanceof Error ? err.message : String(err)}`);
   }
+  if (opts.externalFactors) {
+    try {
+      await addExternalFactors(svc, ids, nodes, (edgeRows ||= []));
+    } catch (err) {
+      throw new Error(`loadSubgraph: external factor query failed: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  }
   const edges: GraphEdge[] = (edgeRows || []).map((r) => ({
     id: r.id,
     fromId: r.from_id,
@@ -196,6 +211,56 @@ export async function loadSubgraph(branch: string): Promise<{ nodes: GraphNode[]
   }));
 
   return { nodes, edges };
+}
+
+const NODE_COLUMNS = "id,slug,title,kind,tier,branch,summary,labels,provenance,worked_example,visibility,owner_id,frontier_flag";
+const EDGE_COLUMNS = "id,from_id,to_id,kind,weight,confidence,confidence_source";
+
+/** Mutates `nodes` and `edgeRows`: adds the branch's factors from other branches and the edges among them. */
+async function addExternalFactors(svc: SupabaseClient, branchIds: string[], nodes: GraphNode[], edgeRows: EdgeRow[]): Promise<void> {
+  const inBranch = new Set(branchIds);
+  const external = new Set<string>();
+  const ancestors = await inChunks<{ ancestor_id: string }>(branchIds, (chunk) =>
+    svc.from("prereq_ancestor").select("ancestor_id").in("node_id", chunk) as unknown as Promise<{ data: { ancestor_id: string }[] | null; error: { message: string } | null }>,
+  );
+  for (const a of ancestors) if (!inBranch.has(a.ancestor_id)) external.add(a.ancestor_id);
+  const incoming = await inChunks<EdgeRow>(branchIds, (chunk) =>
+    svc.from("edges").select(EDGE_COLUMNS).in("to_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
+  );
+  for (const e of incoming) if (!inBranch.has(e.from_id) && e.kind === "prerequisite") external.add(e.from_id);
+  for (const e of edgeRows) if (e.kind === "derives_from" && !inBranch.has(e.to_id)) external.add(e.to_id);
+  if (!external.size) return;
+  const ext = Array.from(external);
+  const extRows = await inChunks<NodeRow>(ext, (chunk) =>
+    svc.from("nodes").select(NODE_COLUMNS).in("id", chunk) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>,
+  );
+  for (const r of extRows)
+    nodes.push({
+      id: r.id,
+      slug: r.slug,
+      title: r.title,
+      kind: r.kind as GraphNode["kind"],
+      tier: r.tier,
+      branch: r.branch,
+      summary: r.summary,
+      labels: r.labels ?? undefined,
+      provenance: r.provenance ?? undefined,
+      workedExample: toWorkedExample(r.worked_example),
+      visibility: (r.visibility as GraphNode["visibility"]) ?? "public",
+      ownerId: r.owner_id ?? null,
+      frontierFlag: (r.frontier_flag as GraphNode["frontierFlag"]) ?? null,
+    });
+  const all = new Set(branchIds.concat(extRows.map((r) => r.id)));
+  const fromExternal = await inChunks<EdgeRow>(
+    extRows.map((r) => r.id),
+    (chunk) => svc.from("edges").select(EDGE_COLUMNS).in("from_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
+  );
+  const seen = new Set(edgeRows.map((e) => e.id));
+  for (const e of incoming.concat(fromExternal)) {
+    if (seen.has(e.id) || !all.has(e.from_id) || !all.has(e.to_id)) continue;
+    seen.add(e.id);
+    edgeRows.push(e);
+  }
 }
 
 export async function loadLearnerStates(learnerId: string, nodeIds: string[]): Promise<LearnerNodeState[]> {
