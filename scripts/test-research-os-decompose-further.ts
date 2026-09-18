@@ -3,29 +3,36 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { decompose, type DepEdge } from "../src/lib/research-os/primes";
 import {
+  agreementStats,
   aggregateMissing,
+  blindSet,
+  buildConsolidatePrompt,
   buildPrompt,
-  missingKey,
   buildVerifyPrompt,
+  confidenceFor,
+  consolidate,
   cosine,
+  cyclicPairs,
+  headNoun,
   idfOf,
-  lexicalScore,
-  stem,
-  CONFIRMED_CONFIDENCE,
   impactOf,
   isCandidateIdea,
   isIdea,
+  lexicalScore,
   matchBase,
+  missingKey,
   parseAnswer,
+  parseConsolidation,
   parseVerdicts,
   selectTargets,
   shortlist,
-  toNodeProposals,
+  stem,
   toProposals,
-  UNCONFIRMED_CONFIDENCE,
+  verificationOf,
   type Candidate,
   type GraphNode,
 } from "../src/lib/research-os/decompose-further";
+import { DISAGREEMENT_CONFIDENCE, INFERRED_CONFIDENCE_MAX, INFERRED_CONFIDENCE_MIN } from "../src/lib/research-os/inference/calibration";
 
 const node = (id: string, branch: string, kind = "concept", title = id, provenanceType = "academy_atom"): GraphNode => ({ id, slug: id, title, kind, branch, summary: null, provenanceType });
 const pre = (from: string, to: string): DepEdge => ({ fromId: from, toId: to, kind: "prerequisite" });
@@ -115,7 +122,7 @@ test("proposals carry the verifier's verdict as agreement and confidence, plus i
     from_slug: "sets",
     to_slug: "kinematics",
     branch: "02-physics",
-    confidence: CONFIRMED_CONFIDENCE,
+    confidence: INFERRED_CONFIDENCE_MAX,
     confidence_source: "prime_decompose_llm",
     agreement: true,
     justification: "time as a function",
@@ -126,9 +133,13 @@ test("proposals carry the verifier's verdict as agreement and confidence, plus i
     status: "pending",
     impact: 2,
     cross_branch: true,
+    verification: "confirmed",
+    origin: "proposer",
+    refd: null,
   });
   assert.equal(rows[1].agreement, false);
-  assert.equal(rows[1].confidence, UNCONFIRMED_CONFIDENCE);
+  assert.equal(rows[1].verification, "refuted");
+  assert.equal(rows[1].confidence, DISAGREEMENT_CONFIDENCE);
 });
 
 test("a factor the verifier never answered counts as unconfirmed", () => {
@@ -143,6 +154,8 @@ test("a factor the verifier never answered counts as unconfirmed", () => {
     branchOf: new Map(),
   });
   assert.equal(rows[0].agreement, false);
+  assert.equal(rows[0].verification, "unchecked");
+  assert.equal(rows[0].confidence, INFERRED_CONFIDENCE_MIN);
   assert.equal(rows[0].secondary_justification, null);
   assert.match(rows[0].justification, /named as a factor/);
 });
@@ -166,44 +179,32 @@ test("the verify prompt lists each factor and the verdict parser keeps only aske
   assert.ok("error" in parseVerdicts("no", new Set()));
 });
 
-test("base ideas match the semantic primes and the foundations of mathematics", () => {
+test("base-idea hints read the head noun of the first phrase, so neighbouring ideas do not match", () => {
+  assert.equal(headNoun("Physical quantity and measurement"), "quantity");
+  assert.equal(headNoun("Vector space"), "space");
   assert.equal(matchBase("Equality"), "THE SAME (equality)");
-  assert.equal(matchBase("The concept of number"), "ONE, TWO (number)");
-  assert.equal(matchBase("Causation and mechanism"), "BECAUSE (cause)");
+  assert.equal(matchBase("Equality / equivalence"), "THE SAME (equality)");
+  assert.equal(matchBase("Causation"), "BECAUSE (cause)");
   assert.equal(matchBase("Units and measurement"), "measurement");
+  assert.equal(matchBase("Collection / object"), "set");
+  assert.equal(matchBase("Vector space"), null);
+  assert.equal(matchBase("Physical quantity and measurement"), null);
+  assert.equal(matchBase("Finite sequence / chain"), null);
   assert.equal(matchBase("Photosynthesis"), null);
 });
 
-test("missing base ideas merge by normalized title and count their targets", () => {
+test("missing ideas merge by key with each naming node's reason and a branch count", () => {
   const t = selectTargets(nodes, dec);
   const agg = aggregateMissing([
-    { target: t[0], answer: { irreducible: false, factors: [], missing: [{ title: "Equality", branch: "01-mathematics", why: "" }] } },
-    { target: t[1], answer: { irreducible: false, factors: [], missing: [{ title: "the equality", branch: "01-mathematics", why: "" }, { title: "Cause", branch: "07-mind", why: "" }] } },
+    { target: t[1], answer: { irreducible: false, factors: [], missing: [{ title: "the equality", branch: "01-mathematics", why: "sets need sameness" }, { title: "Cause", branch: "07-mind", why: "" }] } },
+    { target: t[0], answer: { irreducible: false, factors: [], missing: [{ title: "Equality", branch: "01-mathematics", why: "position equals" }] } },
   ]);
   assert.equal(agg[0].key, "equality");
   assert.deepEqual(agg[0].targets, ["kinematics", "sets"]);
+  assert.deepEqual(agg[0].reasons, { kinematics: "position equals", sets: "sets need sameness" });
+  assert.deepEqual(agg[0].branches, { "01-mathematics": 2 });
+  assert.deepEqual(agg[0].titles.sort(), ["Equality", "the equality"]);
   assert.equal(agg[1].key, "cause");
-});
-
-test("node proposals keep the first justification, the first branch, the sorted targets, and the base match", () => {
-  const t = selectTargets(nodes, dec);
-  const agg = aggregateMissing([
-    { target: t[1], answer: { irreducible: false, factors: [], missing: [{ title: "Equality", branch: "01-mathematics", why: "both sides name one value" }] } },
-    { target: t[0], answer: { irreducible: false, factors: [], missing: [{ title: "equality", branch: "02-physics", why: "later why" }] } },
-  ]);
-  const rows = toNodeProposals(agg, "sonnet");
-  assert.deepEqual(rows, [
-    {
-      key: "equality",
-      title: "Equality",
-      branch: "01-mathematics",
-      justification: "both sides name one value",
-      named_by: ["kinematics", "sets"],
-      base_match: "THE SAME (equality)",
-      model: "sonnet",
-      status: "pending",
-    },
-  ]);
 });
 
 test("missing-prime keys drop slash synonyms, parentheticals, and articles", () => {
@@ -267,4 +268,105 @@ test("the shortlist adds semantic neighbours when vectors are given and caps eac
   assert.ok(withVec.includes("functions"), "nearest by embedding");
   assert.ok(withVec.includes("sets") && withVec.includes("kinematics"), "one base node per branch");
   assert.ok(!withVec.includes("velocity"), "beyond the per-branch cap and not a semantic pick");
+});
+
+test("verdicts map to verification states and the shared confidence scale", () => {
+  assert.equal(verificationOf({ holds: true, why: "" }), "confirmed");
+  assert.equal(verificationOf({ holds: false, why: "" }), "refuted");
+  assert.equal(verificationOf(undefined), "unchecked");
+  assert.equal(confidenceFor("confirmed"), INFERRED_CONFIDENCE_MAX);
+  assert.equal(confidenceFor("refuted"), DISAGREEMENT_CONFIDENCE);
+  assert.equal(confidenceFor("unchecked"), INFERRED_CONFIDENCE_MIN);
+});
+
+test("the blinded set mixes picks with at least two passed-over candidates, and is the same on a rerun", () => {
+  const target = selectTargets(nodes, dec)[0];
+  const cands = shortlist(target, pool, dec);
+  const picks = cands.slice(0, 1);
+  const a = blindSet(target, picks, cands);
+  const b = blindSet(target, picks, cands);
+  assert.deepEqual(a.items.map((c) => c.slug), b.items.map((c) => c.slug));
+  assert.ok(a.items.some((c) => c.slug === picks[0].slug));
+  assert.equal(a.items.length, Math.min(cands.length, 1 + 2));
+  assert.deepEqual(Array.from(a.picked), [picks[0].slug]);
+});
+
+test("kappa is 1 for perfect agreement, 0 at chance, and carries a bootstrap interval", () => {
+  const perfect = [
+    { target: "a", picked: true, holds: true },
+    { target: "a", picked: false, holds: false },
+    { target: "b", picked: true, holds: true },
+    { target: "b", picked: false, holds: false },
+  ];
+  assert.equal(agreementStats(perfect).kappa, 1);
+  const chance = [
+    { target: "a", picked: true, holds: true },
+    { target: "a", picked: true, holds: false },
+    { target: "b", picked: false, holds: true },
+    { target: "b", picked: false, holds: false },
+  ];
+  const s = agreementStats(chance);
+  assert.equal(s.kappa, 0);
+  assert.deepEqual(s.table, { pickedHolds: 1, pickedNot: 1, passedHolds: 1, passedNot: 1 });
+  assert.ok(s.kappaInterval && s.kappaInterval[0] <= s.kappaInterval[1]);
+  assert.equal(agreementStats([]).kappa, null);
+});
+
+test("consolidation keeps each id in one group, accepts same_as only from the members' nearest nodes, and adds leftover singletons", () => {
+  const items = [
+    { id: "causation", title: "Causation", branch: "04-information", nearest: [{ slug: "cause-node", title: "Cause and effect" }] },
+    { id: "causality", title: "Causality", branch: "01-mathematics", nearest: [] },
+    { id: "vector space", title: "Vector space", branch: "01-mathematics", nearest: [{ slug: "academy-01-mathematics-vector-space", title: "Vector spaces" }] },
+    { id: "charge", title: "Electric charge", branch: "02-physics", nearest: [] },
+  ];
+  const prompt = buildConsolidatePrompt(items);
+  assert.match(prompt, /- causation \| 04-information \| Causation \| nearest existing: cause-node = Cause and effect/);
+  const reply = JSON.stringify({
+    groups: [
+      { canonical: "Causation", branch: "04-information", members: ["causation", "causality", "causation"], same_as: "invented-slug" },
+      { canonical: "Vector space", branch: "01-mathematics", members: ["vector space"], same_as: "academy-01-mathematics-vector-space" },
+    ],
+  });
+  const g = parseConsolidation(reply, items);
+  assert.ok(!("error" in g));
+  if ("error" in g) return;
+  assert.equal(g.length, 3);
+  assert.deepEqual(g[0], { canonical: "Causation", branch: "04-information", members: ["causation", "causality"], sameAs: null });
+  assert.equal(g[1].sameAs, "academy-01-mathematics-vector-space");
+  assert.deepEqual(g[2].members, ["charge"]);
+});
+
+test("consolidate turns a matched group into factors and the rest into missing primes with aliases and reasons", () => {
+  const t = selectTargets(nodes, dec);
+  const missing = aggregateMissing([
+    { target: t[0], answer: { irreducible: false, factors: [], missing: [{ title: "Causation", branch: "04-information", why: "motion has causes" }, { title: "Vector space", branch: "01-mathematics", why: "vectors live in one" }] } },
+    { target: t[1], answer: { irreducible: false, factors: [], missing: [{ title: "Causality", branch: "01-mathematics", why: "functions map causes" }] } },
+  ]);
+  const groups = [
+    { canonical: "Causation", branch: "04-information", members: ["causation", "causality"], sameAs: null },
+    { canonical: "Vector space", branch: "01-mathematics", members: ["vector space"], sameAs: "academy-01-mathematics-vector-space" },
+  ];
+  const out = consolidate(groups, missing, "sonnet", () => [{ slug: "cause-node", title: "Cause and effect", similarity: 0.77 }]);
+  assert.deepEqual(out.matched, [{ slug: "academy-01-mathematics-vector-space", targets: ["kinematics"], reasons: { kinematics: "vectors live in one" }, titles: ["Vector space"] }]);
+  assert.equal(out.nodeProposals.length, 1);
+  const r = out.nodeProposals[0];
+  assert.equal(r.key, "causation");
+  assert.deepEqual(r.named_by, ["kinematics", "sets"]);
+  assert.deepEqual(r.aliases, ["Causality"]);
+  assert.deepEqual(r.reasons, { kinematics: "motion has causes", sets: "functions map causes" });
+  assert.equal(r.base_match, "BECAUSE (cause)");
+  assert.equal(r.possible_duplicates[0].slug, "cause-node");
+});
+
+test("a pair is in a cycle when proposals and existing edges close a loop", () => {
+  const idOf = new Map(nodes.map((n) => [n.slug, n.id]));
+  const existing = [pre("sets", "functions")];
+  const cyc = cyclicPairs(existing, [{ from_slug: "functions", to_slug: "sets" }, { from_slug: "sets", to_slug: "kinematics" }], idOf);
+  assert.ok(cyc.has("functions->sets"));
+  assert.ok(!cyc.has("sets->kinematics"));
+});
+
+test("an irreducible answer keeps its reason", () => {
+  const a = parseAnswer('{"irreducible": true, "irreducible_why": "Nothing simpler than sameness.", "factors": [], "missing": []}', new Set(), "t");
+  assert.ok(!("error" in a) && a.irreducible && a.irreducibleWhy === "Nothing simpler than sameness.");
 });

@@ -13,7 +13,7 @@
  */
 import { createHash } from "node:crypto";
 import { DISAGREEMENT_CONFIDENCE, INFERRED_CONFIDENCE_MAX, INFERRED_CONFIDENCE_MIN } from "./inference/calibration";
-import type { Decomposition } from "./primes";
+import { components, factorMap, type DepEdge, type Decomposition } from "./primes";
 
 export type GraphNode = {
   id: string;
@@ -32,6 +32,8 @@ export type Candidate = GraphNode & { tier: number | null; prime: boolean };
 
 export type Answer = {
   irreducible: boolean;
+  /** The proposer's reason when it calls the node irreducible. */
+  irreducibleWhy?: string;
   factors: { slug: string; why: string }[];
   missing: { title: string; branch: string; why: string }[];
 };
@@ -275,9 +277,9 @@ export function buildPrompt(target: Target, candidates: Candidate[]): string {
     "",
     `Pick up to ${MAX_FACTORS} direct factors from the candidates, by slug. Pick only factors the node needs directly; skip what those factors already cover.`,
     `Name up to ${MAX_MISSING} more basic ideas the node rests on that no candidate covers, each with the branch it belongs to.`,
-    "Set irreducible to true only if the node rests on nothing more basic.",
+    "Set irreducible to true only if the node rests on nothing more basic, and say why in irreducible_why.",
     "",
-    'Answer with JSON only: {"irreducible": false, "factors": [{"slug": "...", "why": "one sentence"}], "missing": [{"title": "...", "branch": "01-mathematics", "why": "one sentence"}]}',
+    'Answer with JSON only: {"irreducible": false, "irreducible_why": "", "factors": [{"slug": "...", "why": "one sentence"}], "missing": [{"title": "...", "branch": "01-mathematics", "why": "one sentence"}]}',
   ]
     .filter((l, i, a) => !(l === "" && a[i - 1] === ""))
     .join("\n");
@@ -315,7 +317,8 @@ export function parseAnswer(text: string, allowed: Set<string>, targetSlug: stri
     missing.push({ title, branch: clip(m?.branch, 40), why: clip(m?.why, 400) });
     if (missing.length >= MAX_MISSING) break;
   }
-  return { irreducible: raw?.irreducible === true && factors.length === 0, factors, missing };
+  const irreducible = raw?.irreducible === true && factors.length === 0;
+  return { irreducible, irreducibleWhy: irreducible ? clip(raw?.irreducible_why, 400) : undefined, factors, missing };
 }
 
 /** Nodes resting on the target: how many decompositions an approved factor reaches. */
@@ -641,9 +644,13 @@ export function parseConsolidation(text: string, items: ConsolidateItem[]): Cons
   const used = new Set<string>();
   const out: ConsolidatedGroup[] = [];
   for (const g of Array.isArray(raw?.groups) ? raw.groups : []) {
-    const members = (Array.isArray(g?.members) ? g.members : []).filter((m: unknown) => typeof m === "string" && byId.has(m) && !used.has(m)) as string[];
+    const members: string[] = [];
+    for (const m of Array.isArray(g?.members) ? g.members : []) {
+      if (typeof m !== "string" || !byId.has(m) || used.has(m)) continue;
+      used.add(m);
+      members.push(m);
+    }
     if (!members.length) continue;
-    members.forEach((m) => used.add(m));
     const canonical = typeof g?.canonical === "string" && g.canonical.trim() ? g.canonical.trim().slice(0, 120) : byId.get(members[0])!.title;
     const nearest = new Set(members.flatMap((m) => byId.get(m)!.nearest.map((n) => n.slug)));
     const sameAs = typeof g?.same_as === "string" && nearest.has(g.same_as) ? g.same_as : null;
@@ -707,4 +714,32 @@ export function consolidate(
     }
   }
   return { matched, nodeProposals: Array.from(merged.values()).sort((a, b) => b.named_by.length - a.named_by.length || a.key.localeCompare(b.key)) };
+}
+
+/**
+ * Proposed pairs that sit in a cycle once every pending proposal is counted
+ * as a factor edge beside the graph's own: approving all of them would close
+ * it. Keys are "factor->target" slugs.
+ */
+export function cyclicPairs(edges: DepEdge[], proposals: { from_slug: string; to_slug: string }[], idOf: Map<string, string>): Set<string> {
+  const all: DepEdge[] = edges.slice();
+  for (const p of proposals) {
+    const f = idOf.get(p.from_slug);
+    const t = idOf.get(p.to_slug);
+    if (f && t) all.push({ fromId: f, toId: t, kind: "prerequisite" });
+  }
+  const factors = factorMap(all);
+  const ids = new Set<string>();
+  for (const [n, fs] of Array.from(factors)) {
+    ids.add(n);
+    for (const f of Array.from(fs.keys())) ids.add(f);
+  }
+  const comp = components(Array.from(ids), factors);
+  const out = new Set<string>();
+  for (const p of proposals) {
+    const f = idOf.get(p.from_slug);
+    const t = idOf.get(p.to_slug);
+    if (f && t && comp.get(f) === comp.get(t)) out.add(`${p.from_slug}->${p.to_slug}`);
+  }
+  return out;
 }

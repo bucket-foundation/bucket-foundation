@@ -93,8 +93,8 @@ export function factorMap(edges: DepEdge[]): Map<string, Map<string, number>> {
   return out;
 }
 
-/** Tarjan's strongly connected components over node to factor links, iterative. */
-function components(ids: string[], factors: Map<string, Map<string, number>>): Map<string, number> {
+/** Tarjan's strongly connected components over node to factor links, iterative. Component ids run in reverse topological order: factors first. */
+export function components(ids: string[], factors: Map<string, Map<string, number>>): Map<string, number> {
   const index = new Map<string, number>();
   const low = new Map<string, number>();
   const onStack = new Set<string>();
