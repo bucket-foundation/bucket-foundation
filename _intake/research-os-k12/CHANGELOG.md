@@ -3167,3 +3167,11 @@ Research OS loop task, PR #184. Move 4 of `learning/research-os/IDEAL-STATE.md` 
 - `.env.local` (not tracked) sets `HTE_SERVE_URL` and `HTE_SERVE_TIMEOUT_S=600`.
 - Verified: a fake-mode request through the local MCP `hypothesize` tool returns an engine run, where it answered `engine offline` before.
 - PROBLEM-REGISTER PR-019 fixed.
+
+## 2026-09-18: prime decomposition, slice one
+
+Research OS loop task, PR #185, from the founder's prime-decomposition idea (carries ros-25).
+
+- `src/lib/research-os/primes.ts`: every node is prime, composite or unfactored, with its factors, a prime signature with path multiplicity, depth and tier, and each prime's penetration by composites and branch spread. Cycles collapse through an iterative Tarjan pass.
+- `scripts/research-os/primes-report.ts` runs it over the graph; `scripts/test-research-os-primes.ts` joins `npm run test:research-os` (514 passing).
+- `learning/research-os/PRIMES.md`: terms, algorithm, results on the local graph (41 primes, 626 composites, 1,236 unfactored, depth up to 17), and what they show: the primes are course entry points, no prime crosses a branch, the deepest composites are transcript fragments, and the equals sign has no node yet.

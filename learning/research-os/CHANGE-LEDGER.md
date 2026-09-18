@@ -3815,3 +3815,7 @@ Continued after `origin/docs/ros-plan-revision-4` advanced further (the second r
 ## hte-serve as a local user service
 
 Date 2026-09-18. Research OS loop, PR #184. Adds `scripts/systemd/hte-serve.service` and its installer so `/api/research-os/hypothesize` and the MCP `hypothesize` tool reach a running engine on this machine. Updates `CLAUDE.md` (Local First, Engine) and `docs/MCP.md`. Closes PROBLEM-REGISTER PR-019.
+
+## Prime decomposition, slice one
+
+Date 2026-09-18. Research OS loop, PR #185. Adds `learning/research-os/PRIMES.md`, `src/lib/research-os/primes.ts`, its test, and `scripts/research-os/primes-report.ts`. The next slices are the decompose-further queue, the truth level with network statistics, and the node and map surfaces.
