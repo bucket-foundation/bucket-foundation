@@ -44,7 +44,7 @@ fewer labels than random selection.
 
 - Uncertainty sampling and query-by-committee strategies are compared against random
   selection for labeling candidate prerequisite pairs.
-- The best strategy reached target accuracy with substantially fewer labeled pairs
+- The best strategy reached target accuracy with substantially fewer labeled pairs <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   than random selection.
 - Gains from active learning were largest early in labeling and shrank as the labeled
   set grew.

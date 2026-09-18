@@ -25,13 +25,13 @@ tier: "canon"
 why_it_matters: >
   A companion piece to Binz and colleagues (2025), published alongside it in the same
   Messeri-and-Crockett-prompted PNAS collection, evaluating automated-science approaches
-  broadly rather than LLMs specifically, and naming ethical and practical consequences of
+  broadly, beyond LLMs alone, and naming ethical and practical consequences of
   automation directly relevant to whether the hypothesis engine's own campaign runs count
   as automating science or assisting it.
 key_claims:
   - "Evaluates the current scope of automation in scientific practice and assesses
     recent automated-discovery approaches, treating automation as a broader category than
-    LLM-based tools specifically, King and colleagues (2009)'s Automation of Science and
+    LLM-based tools, King and colleagues (2009)'s Automation of Science and
     Boiko and colleagues (2023)'s Coscientist among the kinds of systems it surveys."
   - "Discusses where the greatest opportunities for automation in scientific practice lie
     and what current bottlenecks limit further automation, treating opportunity and
@@ -60,7 +60,7 @@ how_it_bears_on_research_os: >
   Allen-relations check) address.
 ---
 
-# Automating the practice of science: Opportunities, challenges, and implications
+# Automating the practice of science: Opportunities, challenges, and implications <!-- voice-ignore-line: verbatim published paper title -->
 
 A companion piece to Binz and colleagues (2025), evaluating automated-science approaches
 broadly and naming ethical and practical consequences of automation.
@@ -69,7 +69,7 @@ broadly and naming ethical and practical consequences of automation.
 
 - Evaluates the current scope of automation in scientific practice and assesses recent
   automated-discovery approaches, treating automation as a broader category than
-  LLM-based tools specifically, King and colleagues (2009)'s Automation of Science and
+  LLM-based tools, King and colleagues (2009)'s Automation of Science and
   Boiko and colleagues (2023)'s Coscientist among the kinds of systems it surveys.
 - Discusses where the greatest opportunities for automation in scientific practice lie
   and what current bottlenecks limit further automation, treating opportunity and
@@ -85,7 +85,7 @@ broadly and naming ethical and practical consequences of automation.
   over a fixed corpus, sit on this paper's own opportunity-versus-bottleneck map, a
   placement no current engine document performs.
 - Whether the ethical consequences this paper names for automating scientific practice
-  generally have a K-12-specific counterpart once a Research OS gap node routes a learner
+  have a K-12-specific counterpart once a Research OS gap node routes a learner
   toward automated-hypothesis-generated territory rather than human-authored curriculum.
 
 ## How It Bears on Research OS

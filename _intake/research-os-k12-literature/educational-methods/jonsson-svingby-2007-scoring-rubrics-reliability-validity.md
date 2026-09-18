@@ -30,6 +30,7 @@ how_it_bears_on_research_os: >
   topic-specific rubrics with benchmarks outperform generic ones is also a concrete
   design lever for whatever rubric backs a teacher's contest decision.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # The Use of Scoring Rubrics: Reliability, Validity and Educational Consequences
 

@@ -47,7 +47,7 @@ how_it_bears_on_research_os: >
 > **Promoted to outcome tier, 2026-09-10.** This record lives in
 > `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
 > `bkt-1b34ca6c5af4`, `canon_score` 75) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
-> Outcome tier, not canon: it reports an intervention or team-performance effect
+> Outcome tier, external to canon: it reports an intervention or team-performance effect
 > size, RUBRIC E7, and depends on the foundation record named by
 > Roediger and Karpicke 2006. This file stays in place as the Research OS-specific reading;
 > the canon entry is the citeable record.
@@ -77,5 +77,5 @@ This is the direct causal precedent for the rule that the AI in Research OS's wo
 writes an answer: the same substitution mechanism this study documents is what the four-tool
 design (find, quote, check, organize) prevents by construction. It sets a falsifiable target for
 the three-arm testbed named in `RESEARCH-QUESTIONS.md` Q8 and Q11: a scoped workspace should
-match the guardrailed condition's protected exam performance, not the unrestricted condition's
+match the guardrailed condition's protected exam performance, distinct from the unrestricted condition's
 practice-only gain.

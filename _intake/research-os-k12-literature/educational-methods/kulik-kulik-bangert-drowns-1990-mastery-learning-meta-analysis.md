@@ -40,7 +40,7 @@ how_it_bears_on_research_os: >
 > **Promoted to outcome tier, 2026-09-10.** This record lives in
 > `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
 > `bkt-46a9894f6dd8`, `canon_score` 65) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
-> Outcome tier, not canon: it reports a 108-study meta-analytic effect size,
+> Outcome tier, external to canon: it reports a 108-study meta-analytic effect size,
 > RUBRIC E7, and depends on the retrieval-practice/testing-effect mechanism
 > in `bucket-canon/07-mind/memory-systems/` (Roediger and Karpicke 2006).
 > This file stays in place as the Research OS-specific reading; the
@@ -52,7 +52,7 @@ A large-sample replication check on Bloom's claim across 108 studies, tempering 
 
 - Across 108 controlled studies, group-based mastery learning programs raised examination scores by about 0.5 standard deviations on average, well below Bloom's two-sigma figure for one-to-one tutoring.
 - Effects were larger on researcher-made tests than on standardized tests, and larger in shorter studies, a pattern consistent with some inflation from study design rather than the intervention alone.
-- Mastery learning improved student attitudes toward subject matter but did not consistently improve attitudes toward the learning process itself.
+- Mastery learning improved student attitudes toward subject matter but did not consistently improve attitudes toward the learning process itself. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 
 ## Research Questions It Leaves Open
 

@@ -53,11 +53,11 @@ than an autonomous system, with feedback shown to improve output quality.
 - Intermediate-stage human feedback measurably improved output quality relative to a
   no-feedback ablation.
 - The system reduced research cost relative to an estimated human-only baseline while
-  stated as an assistant, not a replacement for human judgment.
+  stated as an assistant to human judgment, never its replacement.
 
 ## Research Questions It Leaves Open
 
-- What minimum dose of human feedback, how often and at which stages, sustains the
+- What minimum dose of human feedback, how often and at which stages, sustains the <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   quality gain.
 - Whether the assistant framing holds under pressure to reduce human involvement
   further.

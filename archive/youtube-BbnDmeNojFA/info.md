@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: movies
 - **Subjects**: Youtube;video;Education;ciência;computação;infinitamente;computador;tecnologia;8nfinitamente;ciencia;Computadores;Científico;
-- **Captured**: 2026-08-17T09:56:41
+- **Captured**: 2026-09-17T17:07:12
 
 ## Description
 

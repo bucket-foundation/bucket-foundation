@@ -196,6 +196,8 @@ untouched and unreviewed here.
 
 ## Founder decision: untrack these
 
+**2026-09-18:** done for the runner and backup rows. `.beads/backup/events.jsonl`, `.beads/backup/issues.jsonl` and `_intake/.archive-runner.log` are untracked with `git rm --cached`, along with the pursue mirror's `runner.log` and `.status.json`, which churn the same way. `learning/.buildloop/run.log` left the repo with the Academy build loop, which was removed. The five systemd unit rows stay open.
+
 The `.gitignore` changes in this PR are commented out and inert; nothing
 stops being tracked by this PR alone. Each line below is `git rm --cached
 <path>`, which removes the file from the next commit onward and from

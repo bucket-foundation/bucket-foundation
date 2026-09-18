@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: WHAT IS LIFE? - ERWIN SCHRODINGER
-- **Captured**: 2026-05-09T09:47:18
+- **Captured**: 2026-09-17T17:07:17
 
 ## Description
 

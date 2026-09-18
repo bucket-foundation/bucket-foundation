@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Books and Texts - G - NSL
-- **Captured**: 2026-05-09T10:10:32
+- **Captured**: 2026-09-17T17:07:55
 
 ## Description
 

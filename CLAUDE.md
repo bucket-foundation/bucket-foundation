@@ -18,11 +18,22 @@ Part of AGFarms venture studio. Org dashboard: https://nucleus.agfarms.dev/admin
 - **Bead Prefix**: `bkt-`
 - **Tier**: 3 (experiment/idea), graduating to Tier 2 once instance is deployed + first paying customer signs
 
+## Local First
+
+Set by the founder on 2026-09-18: Bucket runs on this machine first, and hosted services are optional.
+
+- **Database**: the local Supabase stack. `npm run db:local` starts it, `npm run db:local:status` prints the keys for `.env.local`, and `docs/AUTH.md` has the steps. Building and testing need no hosted Supabase project.
+- **App**: `npm run dev` against the local stack.
+- **Engine**: `hte-serve` on localhost, reached through `HTE_SERVE_URL` in `.env.local`.
+- **Beads**: new beads go to `BEADS-PENDING.jsonl` while the Nucleus host is down, and drain when it returns.
+- **Public site**: still ships. `dev` promotes to `main`, and Vercel builds `main` for bucket.foundation.
+
 ## Known Infra Gaps
 
 1. ~~**No TLS cert** for `bucket-foundation.nucleus.agfarms.dev`.~~ **RESOLVED 2026-05-04** (bead `bkt-q0x`). Let's Encrypt cert issued 2026-05-03 (valid through 2026-08-01). K3s namespace `inst-bucket-foundation` healthy (`nucleus-0` Running, Traefik ingress + host-nginx vhost both wired). End-to-end verified: `/issues=200`, `/admin=401`, `/api/version=200`. Direct `bkt-` bead filing now live; org-level dispatch fallback kept as backup only.
 2. **No `NSMotionUsageDescription`** on DerbyFish iOS (needed for Path B sensor capture, tracked as cross-venture `dbt-` bead).
 3. **`.beads/remote.json` newly created 2026-04-17.** Prior work in this venture was tracked in conversation context only; backfilled into `TIMELOG.md`.
+4. **Nucleus host unreachable since at least 2026-09-14.** `5.161.236.151` answered no ping and no port on 2026-09-18, so `bd-remote` and every `*.nucleus.agfarms.dev` call time out. Beads queue in `BEADS-PENDING.jsonl`.
 
 ## Repo
 
@@ -409,7 +420,7 @@ Every PR gets a review before merge with two tables, Secrets and QA, each row se
 
 ### Working tree rules
 
-The main checkout is shared by several sessions and carries their untracked work; never switch its branch, reset it, or stash in it. Engine sessions work in git worktrees on the home disk (`~/agfarms/.wt-*`), one branch per worktree, removed when the PR merges. `/tmp` is a 31 GB tmpfs shared by every session; keep worktrees and clones off it. One branch and one PR per distinct change; claim a branch by opening a draft PR before writing to it.
+The main checkout stays on `dev` and takes fast-forward pulls only (moved there on 2026-09-18). The mirror timers write into it, so never reset it or stash in it. Engine sessions work in git worktrees on the home disk (`~/agfarms/.wt-*`), one branch per worktree, removed when the PR merges. `/tmp` is a 31 GB tmpfs shared by every session; keep worktrees and clones off it. One branch and one PR per distinct change; claim a branch by opening a draft PR before writing to it.
 
 ### Research OS seam
 

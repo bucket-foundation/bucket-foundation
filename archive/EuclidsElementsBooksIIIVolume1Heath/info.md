@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: geometry, Euclid, Heath
-- **Captured**: 2026-05-09T09:46:07
+- **Captured**: 2026-09-17T17:06:56
 
 ## Description
 

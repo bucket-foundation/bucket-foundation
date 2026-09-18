@@ -41,6 +41,7 @@ how_it_bears_on_research_os: >
   applies to the Check tool's own commit-before-reveal design. Directly extends overlap-map
   question 1 and question 10 as the resolving half of this batch's guidance debate.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # Scaffolding and Achievement in Problem-Based and Inquiry Learning
 

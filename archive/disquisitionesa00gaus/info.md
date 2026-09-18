@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Number theory
-- **Captured**: 2026-05-09T09:46:09
+- **Captured**: 2026-09-17T17:06:58
 
 ## Description
 

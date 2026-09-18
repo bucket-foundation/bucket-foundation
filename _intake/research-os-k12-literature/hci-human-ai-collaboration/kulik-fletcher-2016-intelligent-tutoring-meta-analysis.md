@@ -38,7 +38,7 @@ how_it_bears_on_research_os: >
 > **Promoted to outcome tier, 2026-09-10.** This record lives in
 > `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
 > `bkt-2cce3fc65496`, `canon_score` 65) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
-> Outcome tier, not canon: it reports a 50-study meta-analytic effect size,
+> Outcome tier, external to canon: it reports a 50-study meta-analytic effect size,
 > RUBRIC E7, and depends on the retrieval-practice/testing-effect mechanism
 > in `bucket-canon/07-mind/memory-systems/` (Roediger and Karpicke 2006).
 > This file stays in place as the Research OS-specific reading; the

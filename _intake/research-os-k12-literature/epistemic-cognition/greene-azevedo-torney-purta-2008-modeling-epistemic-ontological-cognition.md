@@ -74,7 +74,7 @@ construct.
   justification standard, or whether Check's own design implicitly assumes a rationalist
   position without naming it.
 - Whether the model's own proposed statistical validation approach has ever been applied
-  to a K-12 sample specifically, a gap this paper, aimed at a general audience of
+  to a K-12 sample, a gap this paper, aimed at a general audience of
   researchers, does not close.
 
 ## How It Bears on Research OS

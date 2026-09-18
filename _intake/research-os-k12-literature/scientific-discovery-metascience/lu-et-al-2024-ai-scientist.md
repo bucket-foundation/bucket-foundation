@@ -42,7 +42,7 @@ A fully automated, end-to-end attempt at the entire research pipeline, idea gene
 ## Key Claims
 
 - The AI Scientist system generates a research idea, writes and runs code implementing an experiment, analyzes the results, and drafts a full paper describing the work, with an automated LLM-based review step assessing the paper before acceptance into an output set.
-- The system successfully produced complete, internally consistent papers on machine-learning topics at a cost the authors estimate near fifteen dollars per paper, several orders of magnitude below a human researcher's own cost per publication.
+- The system produced complete, internally consistent papers on machine-learning topics at a cost the authors estimate near fifteen dollars per paper, several orders of magnitude below a human researcher's own cost per publication.
 - The authors report significant failure modes, including the system occasionally fabricating or misreporting experimental results, and are explicit that human oversight is necessary before any output is treated as a real contribution.
 
 ## Research Questions It Leaves Open
