@@ -9,6 +9,8 @@ import {
   buildVerifyPrompt,
   CONFIRMED_CONFIDENCE,
   impactOf,
+  isCandidateIdea,
+  isIdea,
   matchBase,
   parseAnswer,
   parseVerdicts,
@@ -21,7 +23,7 @@ import {
   type GraphNode,
 } from "../src/lib/research-os/decompose-further";
 
-const node = (id: string, branch: string, kind = "concept", title = id): GraphNode => ({ id, slug: id, title, kind, branch, summary: null });
+const node = (id: string, branch: string, kind = "concept", title = id, provenanceType = "academy_atom"): GraphNode => ({ id, slug: id, title, kind, branch, summary: null, provenanceType });
 const pre = (from: string, to: string): DepEdge => ({ fromId: from, toId: to, kind: "prerequisite" });
 
 const nodes = [
@@ -32,6 +34,9 @@ const nodes = [
   node("functions", "01-mathematics", "concept", "Functions and their graphs"),
   node("lonely", "03-chemistry", "concept", "Chemical equilibrium and motion of molecules"),
   node("paper", "02-physics", "primary_source", "A paper"),
+  node("euler-tag", "01-mathematics", "concept", "Euler", "canon_concept"),
+  node("bridge", "02-physics", "concept", "Bridge: Einstein across 6 branches", "canon_bridge"),
+  node("base-equality", "01-mathematics", "concept", "Equality", "node_proposal"),
 ];
 const edges = [pre("kinematics", "velocity"), pre("velocity", "newton"), pre("sets", "functions")];
 const dec = decompose(nodes, edges);
@@ -202,4 +207,17 @@ test("missing-prime keys drop slash synonyms, parentheticals, and articles", () 
   assert.equal(missingKey("Boolean truth value (true/false)"), "boolean truth value");
   assert.equal(missingKey("The concept of number"), "concept of number");
   assert.equal(missingKey("Input/output"), "input output");
+});
+
+test("groupings and people are neither targets nor factors; a reviewer-added base idea is a factor only", () => {
+  const targets = selectTargets(nodes, dec).map((t) => t.slug);
+  assert.ok(!targets.includes("euler-tag") && !targets.includes("bridge") && !targets.includes("base-equality"));
+  const by = (id: string) => nodes.find((n) => n.id === id)!;
+  assert.equal(isIdea(by("kinematics")), true);
+  assert.equal(isIdea(by("euler-tag")), false);
+  assert.equal(isIdea(by("bridge")), false);
+  assert.equal(isIdea(by("base-equality")), false);
+  assert.equal(isCandidateIdea(by("base-equality")), true);
+  assert.equal(isCandidateIdea(by("bridge")), false);
+  assert.equal(isCandidateIdea(by("paper")), false);
 });

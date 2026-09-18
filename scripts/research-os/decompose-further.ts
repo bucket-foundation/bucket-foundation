@@ -142,7 +142,10 @@ async function main() {
   const dryRun = process.argv.includes("--dry-run");
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
 
-  const rows = await all<GraphNode>(svc, "nodes", "id, slug, title, kind, branch, summary");
+  // Public, current nodes only: private text never reaches the model.
+  const rows = await all<GraphNode>(svc, "nodes", "id, slug, title, kind, branch, summary, provenanceType:provenance->>type", (q) =>
+    q.eq("visibility", "public").is("superseded_by", null),
+  );
   const edgeRows = await all<{ from_id: string; to_id: string; kind: string; confidence: number | null }>(svc, "edges", "from_id, to_id, kind, confidence", (q) =>
     q.in("kind", Object.keys(FACTOR_EDGES)),
   );
@@ -157,14 +160,23 @@ async function main() {
   mkdirSync(CACHE, { recursive: true });
   console.log(`[decompose-further] ${targets.length} targets, proposer ${model}, verifier ${verifyModel}, concurrency ${concurrency}${dryRun ? ", dry run" : ""}`);
 
-  /** Ask once per prompt; the reply is cached by the prompt's hash. */
-  async function cachedAsk(prompt: string, m: string, schema: object): Promise<{ reply: string; hash: string; cached: boolean }> {
+  /**
+   * Ask once per prompt. A reply is cached by the prompt's hash only after
+   * `accept` parses it, so a malformed reply is asked again on the next run.
+   */
+  async function cachedAsk<T>(
+    prompt: string,
+    m: string,
+    schema: object,
+    accept: (reply: string) => T | { error: string },
+  ): Promise<{ value: T | { error: string }; hash: string; cached: boolean }> {
     const hash = promptHash(`${m}\n${prompt}`);
     const cacheFile = path.join(CACHE, `${hash}.txt`);
-    if (existsSync(cacheFile)) return { reply: readFileSync(cacheFile, "utf8"), hash, cached: true };
+    if (existsSync(cacheFile)) return { value: accept(readFileSync(cacheFile, "utf8")), hash, cached: true };
     const reply = await askClaude(prompt, m, 240_000, schema);
-    writeFileSync(cacheFile, reply);
-    return { reply, hash, cached: false };
+    const value = accept(reply);
+    if (!(value && typeof value === "object" && "error" in (value as object))) writeFileSync(cacheFile, reply);
+    return { value, hash, cached: false };
   }
 
   const bySlug = new Map(pool.map((c) => [c.slug, c]));
@@ -177,22 +189,28 @@ async function main() {
       const target = targets[next++];
       const cands = shortlist(target, pool, dec);
       try {
-        const ask = await cachedAsk(buildPrompt(target, cands), model, SCHEMA);
-        const parsed = parseAnswer(ask.reply, new Set(cands.map((c) => c.slug)), target.slug);
+        const allowed = new Set(cands.map((c) => c.slug));
+        const ask = await cachedAsk(buildPrompt(target, cands), model, SCHEMA, (r) => parseAnswer(r, allowed, target.slug));
+        const parsed = ask.value;
         if ("error" in parsed) {
           failures.push({ slug: target.slug, reason: `proposer: ${parsed.error}` });
         } else {
           let verdicts = new Map<string, Verdict>();
           let verifyHash: string | null = null;
+          let verified = true;
           if (parsed.factors.length) {
             const factors = parsed.factors.map((f) => bySlug.get(f.slug)!).filter(Boolean);
-            const v = await cachedAsk(buildVerifyPrompt(target, factors), verifyModel, VERIFY_SCHEMA);
-            const pv = parseVerdicts(v.reply, new Set(factors.map((f) => f.slug)));
-            if ("error" in pv) failures.push({ slug: target.slug, reason: `verifier: ${pv.error}` });
-            else verdicts = pv;
+            const asked = new Set(factors.map((f) => f.slug));
+            const v = await cachedAsk(buildVerifyPrompt(target, factors), verifyModel, VERIFY_SCHEMA, (r) => parseVerdicts(r, asked));
             verifyHash = v.hash;
+            if ("error" in v.value) {
+              // Without a verdict the pairs would queue as unconfirmed and a later
+              // good run could not upgrade them, so the target waits for a rerun.
+              failures.push({ slug: target.slug, reason: `verifier: ${v.value.error}` });
+              verified = false;
+            } else verdicts = v.value;
           }
-          results.push({ target, answer: parsed, hash: ask.hash, cached: ask.cached, verdicts, verifyHash });
+          if (verified) results.push({ target, answer: parsed, hash: ask.hash, cached: ask.cached, verdicts, verifyHash });
         }
       } catch (e) {
         failures.push({ slug: target.slug, reason: e instanceof Error ? e.message : String(e) });

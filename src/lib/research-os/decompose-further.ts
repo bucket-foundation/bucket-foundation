@@ -21,6 +21,8 @@ export type GraphNode = {
   kind: string;
   branch: string | null;
   summary?: string | null;
+  /** graph.nodes.provenance.type: where the node came from. */
+  provenanceType?: string | null;
 };
 
 export type Target = GraphNode & { status: "prime" | "unfactored" };
@@ -65,6 +67,24 @@ export type NodeProposalRow = {
 
 /** Kinds worth decomposing: ideas, as opposed to sources, figures, or sites. */
 export const DECOMPOSABLE_KINDS = new Set(["concept", "law", "derivation"]);
+
+/**
+ * Where an idea node can come from. Canon concept tags, bridges, intake
+ * digests, intake targets, and mirrors are groupings of other material (33
+ * of the 105 canon concept tags are people, such as Euler and Tesla), so
+ * they are neither targets nor factors.
+ */
+export const IDEA_SOURCES = new Set(["academy_atom", "canon_entry", "reference", "primary_source"]);
+/** Base ideas a reviewer added from a missing-prime proposal: factors, never targets. */
+export const BASE_IDEA_SOURCE = "node_proposal";
+
+export function isIdea(n: GraphNode): boolean {
+  return DECOMPOSABLE_KINDS.has(n.kind) && IDEA_SOURCES.has(n.provenanceType ?? "");
+}
+
+export function isCandidateIdea(n: GraphNode): boolean {
+  return DECOMPOSABLE_KINDS.has(n.kind) && (IDEA_SOURCES.has(n.provenanceType ?? "") || n.provenanceType === BASE_IDEA_SOURCE);
+}
 /** Confidence when the verifier confirmed the pair, and when it did not. Both sit
  * under the 0.95 a reviewer's approval writes (inference/decide.ts). */
 export const CONFIRMED_CONFIDENCE = 0.6;
@@ -77,7 +97,7 @@ export function selectTargets(nodes: GraphNode[], dec: Map<string, Decomposition
   const out: Target[] = [];
   for (const n of nodes) {
     const d = dec.get(n.id);
-    if (!d || !DECOMPOSABLE_KINDS.has(n.kind)) continue;
+    if (!d || !isIdea(n)) continue;
     if (d.status === "prime" || d.status === "unfactored") out.push({ ...n, status: d.status });
   }
   return out.sort((a, b) => (a.status === b.status ? a.slug.localeCompare(b.slug) : a.status === "prime" ? -1 : 1));
@@ -101,7 +121,7 @@ function tokens(s: string): Set<string> {
  */
 export function shortlist(target: Target, pool: Candidate[], dec: Map<string, Decomposition>, neighbours = 20): Candidate[] {
   const restsOnTarget = (c: Candidate) => dec.get(c.id)?.signature.has(target.id) ?? false;
-  const eligible = pool.filter((c) => c.id !== target.id && DECOMPOSABLE_KINDS.has(c.kind) && !restsOnTarget(c));
+  const eligible = pool.filter((c) => c.id !== target.id && isCandidateIdea(c) && !restsOnTarget(c));
   const base = eligible.filter((c) => c.prime || c.tier === 1);
   const t = tokens(`${target.title} ${target.summary ?? ""}`);
   const scored = eligible
@@ -140,7 +160,7 @@ export function buildPrompt(target: Target, candidates: Candidate[]): string {
     lines,
     "",
     `Pick up to ${MAX_FACTORS} direct factors from the candidates, by slug. Pick only factors the node needs directly; skip what those factors already cover.`,
-    `Name up to ${MAX_MISSING} base ideas the node rests on that no candidate covers, such as equality, number, set, function, measurement, or cause, each with the branch it belongs to.`,
+    `Name up to ${MAX_MISSING} more basic ideas the node rests on that no candidate covers, each with the branch it belongs to.`,
     "Set irreducible to true only if the node rests on nothing more basic.",
     "",
     'Answer with JSON only: {"irreducible": false, "factors": [{"slug": "...", "why": "one sentence"}], "missing": [{"title": "...", "branch": "01-mathematics", "why": "one sentence"}]}',
