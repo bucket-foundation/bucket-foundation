@@ -289,6 +289,20 @@ export function matchBase(title: string): string | null {
   return BASE_IDEAS.find((b) => b.pattern.test(t))?.key ?? null;
 }
 
+/**
+ * Merge key for a missing base idea: the title before any slash-separated
+ * synonym or parenthetical, lowercased, without a leading article. "Equality
+ * / equivalence" and "Equality" share the key "equality".
+ */
+export function missingKey(title: string): string {
+  return title
+    .split(/\s\/\s|\s*\(/)[0]
+    .toLowerCase()
+    .replace(/^(the|a|an)\s+/, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
 export type MissingPrime = { title: string; key: string; branches: string[]; targets: string[]; why: string };
 
 /** Tally the base ideas the model says the graph lacks, merged by normalized title. */
@@ -296,7 +310,7 @@ export function aggregateMissing(results: { target: Target; answer: Answer }[]):
   const by = new Map<string, MissingPrime>();
   for (const { target, answer } of results) {
     for (const m of answer.missing) {
-      const key = m.title.toLowerCase().replace(/^the\s+/, "").replace(/[^a-z0-9]+/g, " ").trim();
+      const key = missingKey(m.title);
       if (!key) continue;
       if (!by.has(key)) by.set(key, { title: m.title, key, branches: [], targets: [], why: m.why });
       const e = by.get(key)!;

@@ -36,7 +36,8 @@
  * src/lib/research-os/reviewer.ts's RESEARCH_OS_REVIEWER_EMAILS allowlist,
  * the exact gate /api/research-os/review already uses. 403 not a reviewer
  * (also covers an unset/empty allowlist, fail closed) · 400 bad input ·
- * 404 proposal or node not found · 500 the edge write itself failed
+ * 404 proposal or node not found · 409 approving would close a
+ * prerequisite cycle (the proposal stays pending) · 500 the edge write itself failed
  * (the proposal stays "pending" for a retry) · 503 not configured.
  */
 import { NextRequest, NextResponse } from "next/server";
@@ -176,6 +177,17 @@ export async function POST(req: NextRequest) {
   if (outcome.edgeToWrite) {
     const [fromNode, toNode] = await Promise.all([findNodeBySlug(outcome.edgeToWrite.fromSlug), findNodeBySlug(outcome.edgeToWrite.toSlug)]);
     if (!fromNode || !toNode) return bad(404, "node_not_found");
+
+    // A factor that already rests on its target would close a prerequisite
+    // cycle. Refuse, and leave the proposal pending for a reject.
+    const { data: loop, error: loopErr } = await svc
+      .from("prereq_ancestor")
+      .select("node_id")
+      .eq("node_id", fromNode.id)
+      .eq("ancestor_id", toNode.id)
+      .limit(1);
+    if (loopErr) return bad(500, "read_failed");
+    if (fromNode.id === toNode.id || ((loop as unknown[]) || []).length > 0) return bad(409, "would_close_cycle");
 
     const { error: edgeErr } = await svc.from("edges").upsert(
       [

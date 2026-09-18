@@ -54,6 +54,8 @@ export interface RebuildResult {
  * own -- both callers already have a `graphService()` instance.
  */
 const EDGE_PAGE = 1000;
+const ID_CHUNK = 150;
+const INSERT_CHUNK = 1000;
 
 export async function rebuildPrereqAncestorForBranch(svc: SupabaseClient, branch: string): Promise<RebuildResult> {
   const { data: nodeRows, error: nodeErr } = await svc.from("nodes").select("id,slug").eq("branch", branch);
@@ -97,8 +99,11 @@ export async function rebuildPrereqAncestorForBranch(svc: SupabaseClient, branch
 
   const closure = computeAncestorClosure(nodes, edges);
 
-  const { error: delErr } = await svc.from("prereq_ancestor").delete().in("node_id", nodeIds);
-  if (delErr) throw new Error(`delete failed: ${delErr.message}`);
+  // Chunked: a large branch's id list overflows a single request URL.
+  for (let i = 0; i < nodeIds.length; i += ID_CHUNK) {
+    const { error: delErr } = await svc.from("prereq_ancestor").delete().in("node_id", nodeIds.slice(i, i + ID_CHUNK));
+    if (delErr) throw new Error(`delete failed: ${delErr.message}`);
+  }
 
   if (closure.length === 0) {
     return { branch, nodeCount: nodes.length, edgeCount: edges.length, closureRowCount: 0 };
@@ -110,8 +115,10 @@ export async function rebuildPrereqAncestorForBranch(svc: SupabaseClient, branch
     min_hops: r.minHops,
     min_confidence: r.minConfidence,
   }));
-  const { error: insErr } = await svc.from("prereq_ancestor").insert(rows);
-  if (insErr) throw new Error(`insert failed: ${insErr.message}`);
+  for (let i = 0; i < rows.length; i += INSERT_CHUNK) {
+    const { error: insErr } = await svc.from("prereq_ancestor").insert(rows.slice(i, i + INSERT_CHUNK));
+    if (insErr) throw new Error(`insert failed: ${insErr.message}`);
+  }
 
   return { branch, nodeCount: nodes.length, edgeCount: edges.length, closureRowCount: rows.length };
 }

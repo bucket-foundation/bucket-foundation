@@ -5,6 +5,7 @@ import { decompose, type DepEdge } from "../src/lib/research-os/primes";
 import {
   aggregateMissing,
   buildPrompt,
+  missingKey,
   buildVerifyPrompt,
   CONFIRMED_CONFIDENCE,
   impactOf,
@@ -194,4 +195,11 @@ test("node proposals keep the first justification, the first branch, the sorted 
       status: "pending",
     },
   ]);
+});
+
+test("missing-prime keys drop slash synonyms, parentheticals, and articles", () => {
+  assert.equal(missingKey("Equality / equivalence"), "equality");
+  assert.equal(missingKey("Boolean truth value (true/false)"), "boolean truth value");
+  assert.equal(missingKey("The concept of number"), "concept of number");
+  assert.equal(missingKey("Input/output"), "input output");
 });

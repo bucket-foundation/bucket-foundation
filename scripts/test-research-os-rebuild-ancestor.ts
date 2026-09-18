@@ -58,12 +58,12 @@ function fakeSupabase(nodes: FakeNodeRow[], edges: FakeEdgeRow[], calls: { inser
         return {
           delete: () => ({
             in: (_col: string, ids: string[]) => {
-              calls.deletedNodeIds = ids;
+              calls.deletedNodeIds = [...(calls.deletedNodeIds ?? []), ...ids];
               return { error: null };
             },
           }),
           insert: (rows: unknown[]) => {
-            calls.inserted = rows;
+            calls.inserted = [...(calls.inserted ?? []), ...rows];
             return { error: null };
           },
         };
@@ -137,4 +137,15 @@ test("rebuildPrereqAncestorForBranch: a factor in another branch joins the closu
   const ancestors = (calls.inserted as Array<{ node_id: string; ancestor_id: string; min_hops: number }>).map((r) => [r.node_id, r.ancestor_id, r.min_hops]);
   assert.deepEqual(ancestors.sort(), [["phys-kin", "math-eq", 2], ["phys-kin", "math-fn", 1]]);
   assert.equal(result.edgeCount, 2);
+});
+
+test("rebuildPrereqAncestorForBranch: a large branch deletes in chunks and keeps every closure row", async () => {
+  const calls: { inserted?: unknown[]; deletedNodeIds?: string[] } = {};
+  const nodes: FakeNodeRow[] = Array.from({ length: 400 }, (_, i) => ({ id: `n${i}`, slug: `s${i}`, branch: "07-mind" }));
+  const edges: FakeEdgeRow[] = Array.from({ length: 399 }, (_, i) => ({ from_id: `n${i}`, to_id: `n${i + 1}`, kind: "prerequisite", confidence: 1 }));
+  const svc = fakeSupabase(nodes, edges, calls);
+  const result = await rebuildPrereqAncestorForBranch(svc, "07-mind");
+  assert.equal(calls.deletedNodeIds!.length, 400);
+  assert.equal(result.closureRowCount, (399 * 400) / 2);
+  assert.equal((calls.inserted as unknown[]).length, (399 * 400) / 2);
 });
