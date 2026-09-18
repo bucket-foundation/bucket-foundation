@@ -3,13 +3,14 @@
  * ros-prime 2, learning/research-os/PRIMES.md "Slice 2"). Pure: the route
  * at src/app/api/research-os/node-proposals persists whatever this returns.
  *
- * Approving creates one tier-0 concept node for the base idea and queues a
- * pending prerequisite proposal from it to every node that named it. Those
- * edge proposals carry no second model's check, so they arrive unconfirmed
- * and the reviewer decides each one on /research-os/edges like any other.
- * A decided proposal is never decided again.
+ * Approving creates one concept node for the base idea, with the title,
+ * summary, and branch the reviewer settled on, and queues a pending
+ * proposal from it to every node that named it. Those pairs have not been
+ * through the second model, so they arrive unchecked; the next
+ * decompose-further run verifies them. A decided proposal is never decided
+ * again.
  */
-import { CONFIDENCE_SOURCE, UNCONFIRMED_CONFIDENCE, type ProposalRow } from "../decompose-further";
+import { CONFIDENCE_SOURCE, confidenceFor, type ProposalRow } from "../decompose-further";
 
 export type NodeProposalRecord = {
   status: "pending" | "approved" | "rejected";
@@ -18,6 +19,8 @@ export type NodeProposalRecord = {
   branch: string;
   justification: string;
   namedBy: string[];
+  aliases: string[];
+  reasons: Record<string, string>;
   baseMatch: string | null;
   model: string;
 };
@@ -26,10 +29,10 @@ export type NodeToCreate = {
   slug: string;
   title: string;
   kind: "concept";
-  tier: 0;
+  tier: number;
   branch: string;
   summary: string;
-  labels: Record<string, unknown>;
+  labels: Record<string, { title: string; summary: string }>;
   provenance: Record<string, unknown>;
 };
 
@@ -40,14 +43,20 @@ export type NodeDecision = {
   edgeProposals?: ProposalRow[];
 };
 
-/** Slug for a base idea: `prime-` plus the normalized key, hyphenated. */
+/** What the reviewer may change before the node is created. */
+export type NodeOverrides = { title?: string; summary?: string; branch?: string };
+
+/** Grade tier when no naming node carries one: the Academy's first tier. */
+export const DEFAULT_TIER = 13;
+
+/** Slug for a base idea: `concept-` plus the normalized key, hyphenated. */
 export function nodeSlug(key: string): string {
   const s = key
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 80);
-  return `prime-${s || "idea"}`;
+  return `concept-${s || "idea"}`;
 }
 
 /**
@@ -62,28 +71,49 @@ export function chooseBranch(proposed: string, knownBranches: Set<string>, targe
   return best ? best[0] : "01-mathematics";
 }
 
+/**
+ * graph.nodes.tier is a grade level. A base idea has to be learnable before
+ * every node that rests on it, so it takes the lowest grade tier among them.
+ */
+export function chooseTier(targetTiers: (number | null | undefined)[]): number {
+  const known = targetTiers.filter((t): t is number => typeof t === "number" && Number.isFinite(t));
+  return known.length ? Math.min(...known) : DEFAULT_TIER;
+}
+
 export function decideNodeProposal(
   record: NodeProposalRecord,
   decision: "approved" | "rejected",
-  ctx: { proposalId: string; branch: string; branchOf: Map<string, string | null> },
+  ctx: {
+    proposalId: string;
+    branch: string;
+    branchOf: Map<string, string | null>;
+    tierOf: Map<string, number | null>;
+    impactOf?: Map<string, number>;
+    overrides?: NodeOverrides;
+  },
 ): NodeDecision {
   if (record.status !== "pending") return { status: record.status, alreadyDecided: true };
   if (decision === "rejected") return { status: "rejected", alreadyDecided: false };
   const slug = nodeSlug(record.key);
+  const title = ctx.overrides?.title?.trim() || record.title;
+  const summary = ctx.overrides?.summary?.trim() || record.justification;
+  const branch = ctx.overrides?.branch?.trim() || ctx.branch;
   const nodeToCreate: NodeToCreate = {
     slug,
-    title: record.title,
+    title,
     kind: "concept",
-    tier: 0,
-    branch: ctx.branch,
-    summary: record.justification,
-    labels: record.baseMatch ? { base_idea: record.baseMatch } : {},
+    tier: chooseTier(record.namedBy.map((t) => ctx.tierOf.get(t))),
+    branch,
+    summary,
+    labels: { en: { title, summary } },
     provenance: {
       type: "node_proposal",
       proposal_id: ctx.proposalId,
       proposed_by: CONFIDENCE_SOURCE,
       model: record.model,
       named_by: record.namedBy,
+      aliases: record.aliases,
+      base_idea_hint: record.baseMatch,
     },
   };
   const edgeProposals: ProposalRow[] = record.namedBy.map((target) => {
@@ -92,17 +122,20 @@ export function decideNodeProposal(
       from_slug: slug,
       to_slug: target,
       branch: targetBranch,
-      confidence: UNCONFIRMED_CONFIDENCE,
+      confidence: confidenceFor("unchecked"),
       confidence_source: CONFIDENCE_SOURCE,
       agreement: false,
-      justification: `Named as a missing base idea while decomposing ${target}.`,
+      justification: record.reasons[target] || `Named as a missing base idea while decomposing ${target}.`,
       secondary_justification: null,
       model: record.model,
       prompt_hash: `node-proposal:${ctx.proposalId}`.slice(0, 64),
       secondary_prompt_hash: null,
       status: "pending",
-      impact: 0,
-      cross_branch: targetBranch !== ctx.branch,
+      impact: ctx.impactOf?.get(target) ?? 0,
+      cross_branch: targetBranch !== branch,
+      verification: "unchecked",
+      origin: "base_idea",
+      refd: null,
     };
   });
   return { status: "approved", alreadyDecided: false, nodeToCreate, edgeProposals };

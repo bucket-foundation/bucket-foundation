@@ -12,6 +12,7 @@
  * scripts/test-research-os-decompose-further.ts.
  */
 import { createHash } from "node:crypto";
+import { DISAGREEMENT_CONFIDENCE, INFERRED_CONFIDENCE_MAX, INFERRED_CONFIDENCE_MIN } from "./inference/calibration";
 import type { Decomposition } from "./primes";
 
 export type GraphNode = {
@@ -50,9 +51,17 @@ export type ProposalRow = {
   status: "pending";
   impact: number;
   cross_branch: boolean;
+  verification: Verification;
+  origin: Origin;
+  refd: number | null;
 };
 
 export type Verdict = { holds: boolean; why: string };
+
+/** The second model's verdict on a pair: it confirmed it, refuted it, or has not seen it yet. */
+export type Verification = "confirmed" | "refuted" | "unchecked";
+/** Where a decomposition proposal came from. */
+export type Origin = "proposer" | "missing_matched" | "base_idea";
 
 export type NodeProposalRow = {
   key: string;
@@ -60,9 +69,13 @@ export type NodeProposalRow = {
   branch: string;
   justification: string;
   named_by: string[];
+  aliases: string[];
+  /** Each naming node's own reason, by slug. */
+  reasons: Record<string, string>;
+  /** Existing nodes the idea may duplicate, nearest first. */
+  possible_duplicates: { slug: string; title: string; similarity: number }[];
   base_match: string | null;
   model: string;
-  status: "pending";
 };
 
 /** Kinds worth decomposing: ideas, as opposed to sources, figures, or sites. */
@@ -85,10 +98,15 @@ export function isIdea(n: GraphNode): boolean {
 export function isCandidateIdea(n: GraphNode): boolean {
   return DECOMPOSABLE_KINDS.has(n.kind) && (IDEA_SOURCES.has(n.provenanceType ?? "") || n.provenanceType === BASE_IDEA_SOURCE);
 }
-/** Confidence when the verifier confirmed the pair, and when it did not. Both sit
- * under the 0.95 a reviewer's approval writes (inference/decide.ts). */
-export const CONFIRMED_CONFIDENCE = 0.6;
-export const UNCONFIRMED_CONFIDENCE = 0.3;
+/**
+ * Confidence on the scale both proposers share (inference/calibration.ts):
+ * a pair the second model confirmed sits at the inferred ceiling, a refuted
+ * pair at the fixed disagreement value, an unchecked pair at the floor. All
+ * three sit under the 0.95 a reviewer's approval writes.
+ */
+export function confidenceFor(v: Verification): number {
+  return v === "confirmed" ? INFERRED_CONFIDENCE_MAX : v === "refuted" ? DISAGREEMENT_CONFIDENCE : INFERRED_CONFIDENCE_MIN;
+}
 export const CONFIDENCE_SOURCE = "prime_decompose_llm";
 export const MAX_FACTORS = 6;
 export const MAX_MISSING = 4;
@@ -353,21 +371,30 @@ export type ProposalContext = {
   verifyHash: string | null;
   impact: number;
   branchOf: Map<string, string | null>;
+  origin?: Origin;
+  /** Wikipedia link evidence by factor slug (see refd). */
+  refd?: Map<string, number>;
+  /** Per-factor reason when the factor came from a matched missing idea. */
+  reasons?: Map<string, string>;
 };
+
+export function verificationOf(v: Verdict | undefined): Verification {
+  return v ? (v.holds ? "confirmed" : "refuted") : "unchecked";
+}
 
 export function toProposals(target: Target, answer: Answer, ctx: ProposalContext): ProposalRow[] {
   const { model, hash, verdicts, verifyModel, verifyHash, impact, branchOf } = ctx;
   return answer.factors.map((f) => {
     const v = verdicts.get(f.slug);
-    const agreement = v?.holds === true;
+    const verification = verificationOf(v);
     return {
       from_slug: f.slug,
       to_slug: target.slug,
       branch: target.branch,
-      confidence: agreement ? CONFIRMED_CONFIDENCE : UNCONFIRMED_CONFIDENCE,
+      confidence: confidenceFor(verification),
       confidence_source: CONFIDENCE_SOURCE,
-      agreement,
-      justification: f.why || `named as a factor of ${target.title}`,
+      agreement: verification === "confirmed",
+      justification: ctx.reasons?.get(f.slug) || f.why || `named as a factor of ${target.title}`,
       secondary_justification: v ? `${verifyModel}: ${v.why || (v.holds ? "confirmed" : "not confirmed")}` : null,
       model,
       prompt_hash: hash,
@@ -375,34 +402,153 @@ export function toProposals(target: Target, answer: Answer, ctx: ProposalContext
       status: "pending",
       impact,
       cross_branch: (branchOf.get(f.slug) ?? null) !== target.branch,
+      verification,
+      origin: ctx.origin ?? "proposer",
+      refd: ctx.refd?.get(f.slug) ?? null,
     };
   });
 }
 
+/** Deterministic pseudo-random numbers from a string seed (mulberry32 over a hash). */
+export function seeded(seed: string): () => number {
+  let h = parseInt(createHash("sha256").update(seed).digest("hex").slice(0, 8), 16) >>> 0;
+  return () => {
+    h = (h + 0x6d2b79f5) >>> 0;
+    let t = h;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 /**
- * Base ideas from the semantic primes (Wierzbicka 1996) and the foundations
- * of mathematics. A missing-prime proposal whose title matches one is
- * flagged for the reviewer. Keys are the flag; patterns match normalized titles.
+ * The verifier's list for one target: the proposer's picks mixed with as
+ * many shortlist candidates it passed over (at least two), shuffled, with
+ * nothing marking which is which. The verifier's answers on the passed-over
+ * ones are the true negatives an agreement statistic needs. Seeded by the
+ * target, so a rerun asks the same question and hits the cache.
  */
-export const BASE_IDEAS: { key: string; pattern: RegExp }[] = [
-  { key: "THE SAME (equality)", pattern: /\b(equality|equal|same|identity|equivalence)\b/ },
-  { key: "ONE, TWO (number)", pattern: /\b(number|numbers|counting|quantity|natural numbers?)\b/ },
-  { key: "KIND (set, category)", pattern: /\b(set|sets|kind|category|class|classification)\b/ },
-  { key: "PART (part and whole)", pattern: /\b(part|parts|whole|composition|component)\b/ },
-  { key: "BECAUSE (cause)", pattern: /\b(cause|causes|causation|causal|causality)\b/ },
-  { key: "IF (condition, implication)", pattern: /\b(if|implication|conditional|inference|deduction|deductive)\b/ },
-  { key: "NOT (negation)", pattern: /\b(not|negation|contradiction)\b/ },
-  { key: "TRUE (truth)", pattern: /\b(true|truth|proposition|propositions)\b/ },
-  { key: "BEFORE, AFTER, TIME", pattern: /\b(time|before|after|order|sequence|temporal)\b/ },
-  { key: "PLACE, WHERE (space)", pattern: /\b(place|space|spatial|position|location)\b/ },
-  { key: "ALL, SOME (quantifiers)", pattern: /\b(all|some|quantifier|quantifiers|quantification)\b/ },
-  { key: "function", pattern: /\b(function|functions|mapping)\b/ },
-  { key: "measurement", pattern: /\b(measure|measurement|unit|units)\b/ },
+export function blindSet(target: Target, picks: Candidate[], shortlisted: Candidate[]): { items: Candidate[]; picked: Set<string> } {
+  const picked = new Set(picks.map((p) => p.slug));
+  const rand = seeded(`blind:${target.slug}`);
+  const others = shortlisted.filter((c) => !picked.has(c.slug)).map((c) => ({ c, r: rand() }));
+  others.sort((a, b) => a.r - b.r);
+  const extra = others.slice(0, Math.max(2, picks.length)).map((o) => o.c);
+  const items = picks.concat(extra).map((c) => ({ c, r: rand() }));
+  items.sort((a, b) => a.r - b.r);
+  return { items: items.map((i) => i.c), picked };
+}
+
+export type AgreementRow = { target: string; picked: boolean; holds: boolean };
+
+export type AgreementStats = {
+  pairs: number;
+  targets: number;
+  /** picked and confirmed, picked and refuted, passed over and confirmed, passed over and refuted */
+  table: { pickedHolds: number; pickedNot: number; passedHolds: number; passedNot: number };
+  observed: number;
+  kappa: number | null;
+  /** 95% percentile interval from resampling targets with replacement. */
+  kappaInterval: [number, number] | null;
+};
+
+function kappaOf(rows: AgreementRow[]): number | null {
+  const n = rows.length;
+  if (!n) return null;
+  let a = 0;
+  let pickYes = 0;
+  let holdYes = 0;
+  for (const r of rows) {
+    if (r.picked === r.holds) a++;
+    if (r.picked) pickYes++;
+    if (r.holds) holdYes++;
+  }
+  const po = a / n;
+  const pe = (pickYes / n) * (holdYes / n) + (1 - pickYes / n) * (1 - holdYes / n);
+  return pe >= 1 ? null : (po - pe) / (1 - pe);
+}
+
+/**
+ * Cohen's kappa (1960) between the proposer's pick and the verifier's
+ * verdict over blinded sets, with a bootstrap interval (Efron 1979) that
+ * resamples whole targets, since pairs within a target share a context.
+ */
+export function agreementStats(rows: AgreementRow[], resamples = 1000, seed = "kappa"): AgreementStats {
+  const table = { pickedHolds: 0, pickedNot: 0, passedHolds: 0, passedNot: 0 };
+  for (const r of rows) {
+    if (r.picked && r.holds) table.pickedHolds++;
+    else if (r.picked) table.pickedNot++;
+    else if (r.holds) table.passedHolds++;
+    else table.passedNot++;
+  }
+  const byTarget = new Map<string, AgreementRow[]>();
+  for (const r of rows) {
+    if (!byTarget.has(r.target)) byTarget.set(r.target, []);
+    byTarget.get(r.target)!.push(r);
+  }
+  const groups = Array.from(byTarget.values());
+  const kappa = kappaOf(rows);
+  let interval: [number, number] | null = null;
+  if (groups.length >= 2 && kappa !== null) {
+    const rand = seeded(seed);
+    const ks: number[] = [];
+    for (let i = 0; i < resamples; i++) {
+      const sample: AgreementRow[] = [];
+      for (let j = 0; j < groups.length; j++) sample.push(...groups[Math.floor(rand() * groups.length)]);
+      const k = kappaOf(sample);
+      if (k !== null) ks.push(k);
+    }
+    ks.sort((x, y) => x - y);
+    if (ks.length) interval = [ks[Math.floor(0.025 * (ks.length - 1))], ks[Math.ceil(0.975 * (ks.length - 1))]];
+  }
+  return {
+    pairs: rows.length,
+    targets: groups.length,
+    table,
+    observed: rows.length ? (table.pickedHolds + table.passedNot) / rows.length : 0,
+    kappa,
+    kappaInterval: interval,
+  };
+}
+
+/**
+ * Base ideas from the semantic primes (Wierzbicka 1996; Goddard and
+ * Wierzbicka 2014) and the foundations of mathematics, matched on the head
+ * noun of a title's first phrase. A lexical hint for the reviewer: it says a
+ * title reads like a base idea, and never that the idea is one.
+ */
+export const BASE_IDEAS: { key: string; heads: string[] }[] = [
+  { key: "THE SAME (equality)", heads: ["equality", "equivalence", "identity", "sameness"] },
+  { key: "ONE, TWO (number)", heads: ["number", "numeral", "counting", "cardinality", "integer"] },
+  { key: "set", heads: ["set", "collection"] },
+  { key: "KIND (category)", heads: ["kind", "category", "classification"] },
+  { key: "PART (part and whole)", heads: ["part", "whole", "mereology"] },
+  { key: "BECAUSE (cause)", heads: ["cause", "causation", "causality"] },
+  { key: "IF (condition, implication)", heads: ["implication", "conditional", "inference", "deduction", "entailment"] },
+  { key: "NOT (negation)", heads: ["negation", "contradiction"] },
+  { key: "TRUE (truth)", heads: ["truth", "proposition"] },
+  { key: "TIME", heads: ["time", "duration"] },
+  { key: "PLACE (location)", heads: ["place", "location"] },
+  { key: "ALL, SOME (quantifiers)", heads: ["quantifier", "quantification"] },
+  { key: "function", heads: ["function", "mapping"] },
+  { key: "measurement", heads: ["measurement", "measure", "unit"] },
 ];
 
+/** The last word of a title's first phrase, stemmed: "Physical quantity and measurement" gives "quantity". */
+export function headNoun(title: string): string {
+  const phrase = title.split(/\s\/\s|\s*\(|,|\s+and\s+|\s+of\s+|:|\s-\s/i)[0];
+  const words = phrase
+    .toLowerCase()
+    .replace(/[^a-z ]+/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+  return words.length ? stem(words[words.length - 1]) : "";
+}
+
 export function matchBase(title: string): string | null {
-  const t = title.toLowerCase().replace(/[^a-z0-9 ]+/g, " ");
-  return BASE_IDEAS.find((b) => b.pattern.test(t))?.key ?? null;
+  const head = headNoun(title);
+  if (!head) return null;
+  return BASE_IDEAS.find((b) => b.heads.some((h) => stem(h) === head))?.key ?? null;
 }
 
 /**
@@ -419,34 +565,146 @@ export function missingKey(title: string): string {
     .trim();
 }
 
-export type MissingPrime = { title: string; key: string; branches: string[]; targets: string[]; why: string };
+/** One missing base idea as the proposer named it, merged by key across targets. */
+export type MissingPrime = {
+  key: string;
+  title: string;
+  titles: string[];
+  branches: Record<string, number>;
+  targets: string[];
+  reasons: Record<string, string>;
+};
 
-/** Tally the base ideas the model says the graph lacks, merged by normalized title. */
+/** Tally the base ideas the proposer says the graph lacks, merged by key, targets and branches sorted. */
 export function aggregateMissing(results: { target: Target; answer: Answer }[]): MissingPrime[] {
   const by = new Map<string, MissingPrime>();
-  for (const { target, answer } of results) {
+  const ordered = results.slice().sort((a, b) => a.target.slug.localeCompare(b.target.slug));
+  for (const { target, answer } of ordered) {
     for (const m of answer.missing) {
       const key = missingKey(m.title);
       if (!key) continue;
-      if (!by.has(key)) by.set(key, { title: m.title, key, branches: [], targets: [], why: m.why });
+      if (!by.has(key)) by.set(key, { key, title: m.title, titles: [], branches: {}, targets: [], reasons: {} });
       const e = by.get(key)!;
-      if (m.branch && !e.branches.includes(m.branch)) e.branches.push(m.branch);
+      if (!e.titles.includes(m.title)) e.titles.push(m.title);
+      if (m.branch) e.branches[m.branch] = (e.branches[m.branch] ?? 0) + 1;
       if (!e.targets.includes(target.slug)) e.targets.push(target.slug);
+      if (m.why && !e.reasons[target.slug]) e.reasons[target.slug] = m.why;
     }
   }
   return Array.from(by.values()).sort((a, b) => b.targets.length - a.targets.length || a.key.localeCompare(b.key));
 }
 
-/** One pending node proposal per missing prime; the most-named branch first. */
-export function toNodeProposals(missing: MissingPrime[], model: string): NodeProposalRow[] {
-  return missing.map((m) => ({
-    key: m.key,
-    title: m.title,
-    branch: m.branches[0] ?? "01-mathematics",
-    justification: m.why || `named as a base idea by ${m.targets.length} node(s)`,
-    named_by: m.targets.slice().sort(),
-    base_match: matchBase(m.title),
-    model,
-    status: "pending",
-  }));
+/** The branch most of the proposer's namings used, ties broken by name. */
+export function topBranch(branches: Record<string, number>): string | null {
+  const best = Object.entries(branches).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
+  return best ? best[0] : null;
+}
+
+export type ConsolidateItem = { id: string; title: string; branch: string | null; nearest: { slug: string; title: string }[] };
+export type ConsolidatedGroup = { canonical: string; branch: string; members: string[]; sameAs: string | null };
+
+/**
+ * One model call over many missing ideas: group the ones that name the same
+ * idea under one short canonical title, and say when a group is the same
+ * idea as one of its members' nearest existing nodes (found by embedding).
+ */
+export function buildConsolidatePrompt(items: ConsolidateItem[]): string {
+  const lines = items.map((it) => {
+    const near = it.nearest.map((n) => `${n.slug} = ${n.title}`).join("; ");
+    return `- ${it.id} | ${it.branch ?? "none"} | ${it.title}${near ? ` | nearest existing: ${near}` : ""}`;
+  });
+  return [
+    "These are basic ideas a model said a research knowledge graph lacks, collected while decomposing its nodes. Each line is id | branch | title, then the existing nodes closest to it.",
+    "",
+    ...lines,
+    "",
+    "Group the lines that name the same idea. Give each group a short canonical title, a noun phrase for the idea itself, and the branch it belongs to.",
+    "If a group names the same idea as one of its members' nearest existing nodes, set same_as to that node's slug; otherwise null. Related or broader ideas are different ideas.",
+    "Every id belongs to exactly one group; a line with no synonym is a group of one.",
+    "",
+    'Answer with JSON only: {"groups": [{"canonical": "...", "branch": "01-mathematics", "members": ["id", "..."], "same_as": null}]}',
+  ].join("\n");
+}
+
+/** Keep valid groups, give each id exactly one group, and accept same_as only from the members' own nearest nodes. */
+export function parseConsolidation(text: string, items: ConsolidateItem[]): ConsolidatedGroup[] | { error: string } {
+  const start = text.indexOf("{");
+  const end = text.lastIndexOf("}");
+  if (start < 0 || end <= start) return { error: "no JSON object in the reply" };
+  let raw: any;
+  try {
+    raw = JSON.parse(text.slice(start, end + 1));
+  } catch (e) {
+    return { error: `unparseable JSON: ${e instanceof Error ? e.message : String(e)}` };
+  }
+  const byId = new Map(items.map((it) => [it.id, it]));
+  const used = new Set<string>();
+  const out: ConsolidatedGroup[] = [];
+  for (const g of Array.isArray(raw?.groups) ? raw.groups : []) {
+    const members = (Array.isArray(g?.members) ? g.members : []).filter((m: unknown) => typeof m === "string" && byId.has(m) && !used.has(m)) as string[];
+    if (!members.length) continue;
+    members.forEach((m) => used.add(m));
+    const canonical = typeof g?.canonical === "string" && g.canonical.trim() ? g.canonical.trim().slice(0, 120) : byId.get(members[0])!.title;
+    const nearest = new Set(members.flatMap((m) => byId.get(m)!.nearest.map((n) => n.slug)));
+    const sameAs = typeof g?.same_as === "string" && nearest.has(g.same_as) ? g.same_as : null;
+    out.push({ canonical, branch: typeof g?.branch === "string" ? g.branch.trim().slice(0, 40) : "", members, sameAs });
+  }
+  for (const it of items) if (!used.has(it.id)) out.push({ canonical: it.title, branch: it.branch ?? "", members: [it.id], sameAs: null });
+  return out;
+}
+
+export type ConsolidationOutcome = {
+  /** Groups that are an existing node: that node becomes a proposed factor of each naming target. */
+  matched: { slug: string; targets: string[]; reasons: Record<string, string>; titles: string[] }[];
+  nodeProposals: NodeProposalRow[];
+};
+
+/** Turn groups of missing ideas into matched factors and missing-prime rows. */
+export function consolidate(
+  groups: ConsolidatedGroup[],
+  missing: MissingPrime[],
+  model: string,
+  duplicatesOf: (title: string) => { slug: string; title: string; similarity: number }[],
+): ConsolidationOutcome {
+  const byKey = new Map(missing.map((m) => [m.key, m]));
+  const matched: ConsolidationOutcome["matched"] = [];
+  const rows: NodeProposalRow[] = [];
+  for (const g of groups) {
+    const members = g.members.map((k) => byKey.get(k)).filter(Boolean) as MissingPrime[];
+    if (!members.length) continue;
+    const targets = Array.from(new Set(members.flatMap((m) => m.targets))).sort();
+    const reasons: Record<string, string> = {};
+    for (const m of members) for (const [t, r] of Object.entries(m.reasons)) if (!reasons[t]) reasons[t] = r;
+    const titles = Array.from(new Set(members.flatMap((m) => m.titles))).sort();
+    if (g.sameAs) {
+      matched.push({ slug: g.sameAs, targets, reasons, titles });
+      continue;
+    }
+    const branches: Record<string, number> = {};
+    for (const m of members) for (const [b, n] of Object.entries(m.branches)) branches[b] = (branches[b] ?? 0) + n;
+    rows.push({
+      key: missingKey(g.canonical),
+      title: g.canonical,
+      branch: g.branch || topBranch(branches) || "01-mathematics",
+      justification: reasons[targets[0]] ?? `Named as a missing base idea by ${targets.length} node(s).`,
+      named_by: targets,
+      aliases: titles.filter((t) => t !== g.canonical),
+      reasons,
+      possible_duplicates: duplicatesOf(g.canonical),
+      base_match: matchBase(g.canonical),
+      model,
+    });
+  }
+  // Two groups can share a canonical key; merge them rather than let the database keep one.
+  const merged = new Map<string, NodeProposalRow>();
+  for (const r of rows) {
+    const e = merged.get(r.key);
+    if (!e) merged.set(r.key, r);
+    else {
+      e.named_by = Array.from(new Set(e.named_by.concat(r.named_by))).sort();
+      e.aliases = Array.from(new Set(e.aliases.concat(r.aliases, r.title !== e.title ? [r.title] : []))).sort();
+      e.reasons = { ...r.reasons, ...e.reasons };
+    }
+  }
+  return { matched, nodeProposals: Array.from(merged.values()).sort((a, b) => b.named_by.length - a.named_by.length || a.key.localeCompare(b.key)) };
 }

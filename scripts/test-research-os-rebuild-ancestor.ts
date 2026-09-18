@@ -32,13 +32,17 @@ interface FakeEdgeRow {
  * rebuildPrereqAncestorForBranch calls; anything else throws so a
  * future change to that function's own query shape fails this test loudly
  * rather than silently returning undefined. */
-function fakeSupabase(nodes: FakeNodeRow[], edges: FakeEdgeRow[], calls: { inserted?: unknown[]; deletedNodeIds?: string[] }) {
+function fakeSupabase(nodes: FakeNodeRow[], edges: FakeEdgeRow[], calls: { inserted?: unknown[]; deletedNodeIds?: string[]; rpcCalls?: number }) {
   return {
     from(table: string) {
       if (table === "nodes") {
         return {
           select: () => ({
-            eq: (_col: string, branch: string) => ({ data: nodes.filter((n) => n.branch === branch), error: null }),
+            eq: (_col: string, branch: string) => ({
+              order: () => ({
+                range: (from: number, to: number) => ({ data: nodes.filter((n) => n.branch === branch).slice(from, to + 1), error: null }),
+              }),
+            }),
           }),
         };
       }
@@ -46,29 +50,24 @@ function fakeSupabase(nodes: FakeNodeRow[], edges: FakeEdgeRow[], calls: { inser
         return {
           select: () => ({
             eq: (_col: string, kind: string) => ({
-              range: (from: number, to: number) => ({
-                data: edges.filter((e) => e.kind === kind).slice(from, to + 1),
-                error: null,
+              order: () => ({
+                range: (from: number, to: number) => ({
+                  data: edges.filter((e) => e.kind === kind).slice(from, to + 1),
+                  error: null,
+                }),
               }),
             }),
           }),
         };
       }
-      if (table === "prereq_ancestor") {
-        return {
-          delete: () => ({
-            in: (_col: string, ids: string[]) => {
-              calls.deletedNodeIds = [...(calls.deletedNodeIds ?? []), ...ids];
-              return { error: null };
-            },
-          }),
-          insert: (rows: unknown[]) => {
-            calls.inserted = [...(calls.inserted ?? []), ...rows];
-            return { error: null };
-          },
-        };
-      }
       throw new Error(`unexpected table in test fake: ${table}`);
+    },
+    rpc(fn: string, args: { p_branch: string; p_node_ids: string[]; p_rows: unknown[] }) {
+      if (fn !== "replace_prereq_ancestor") throw new Error(`unexpected rpc in test fake: ${fn}`);
+      calls.rpcCalls = (calls.rpcCalls ?? 0) + 1;
+      calls.deletedNodeIds = args.p_node_ids;
+      calls.inserted = args.p_rows;
+      return { error: null };
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any;
@@ -108,16 +107,17 @@ test("rebuildPrereqAncestorForBranch: a linear chain rebuilds its full closure a
   assert.equal(byNode.get("n-c:n-a")?.min_confidence, 0.5, "the minimum single-edge confidence along the path, not the product");
 });
 
-test("rebuildPrereqAncestorForBranch: a branch with nodes but no prerequisite edges rebuilds an empty closure without inserting", async () => {
+test("rebuildPrereqAncestorForBranch: a branch with nodes but no prerequisite edges clears its rows in one call and inserts none", async () => {
   const nodes: FakeNodeRow[] = [{ id: "n-a", slug: "a", branch: "02-physics" }];
-  const calls: { inserted?: unknown[]; deletedNodeIds?: string[] } = {};
+  const calls: { inserted?: unknown[]; deletedNodeIds?: string[]; rpcCalls?: number } = {};
   const svc = fakeSupabase(nodes, [], calls);
 
   const result = await rebuildPrereqAncestorForBranch(svc, "02-physics");
 
   assert.equal(result.closureRowCount, 0);
-  assert.equal(calls.inserted, undefined, "no insert call at all when the closure is empty");
-  assert.deepEqual(calls.deletedNodeIds, ["n-a"], "the delete still runs, clearing any now-stale prior rows");
+  assert.equal(calls.rpcCalls, 1, "one atomic replace");
+  assert.deepEqual(calls.inserted, [], "no rows to insert");
+  assert.deepEqual(calls.deletedNodeIds, ["n-a"], "the replace still clears any now-stale prior rows");
 });
 
 test("rebuildPrereqAncestorForBranch: a factor in another branch joins the closure", async () => {

@@ -54,13 +54,17 @@ export interface RebuildResult {
  * own -- both callers already have a `graphService()` instance.
  */
 const EDGE_PAGE = 1000;
-const ID_CHUNK = 150;
-const INSERT_CHUNK = 1000;
 
 export async function rebuildPrereqAncestorForBranch(svc: SupabaseClient, branch: string): Promise<RebuildResult> {
-  const { data: nodeRows, error: nodeErr } = await svc.from("nodes").select("id,slug").eq("branch", branch);
-  if (nodeErr) throw new Error(`node query failed: ${nodeErr.message}`);
-  const nodes: GraphNode[] = ((nodeRows as NodeRow[]) || []).map((r) => ({
+  const nodeRows: NodeRow[] = [];
+  for (let from = 0; ; from += EDGE_PAGE) {
+    const { data, error: nodeErr } = await svc.from("nodes").select("id,slug").eq("branch", branch).order("id").range(from, from + EDGE_PAGE - 1);
+    if (nodeErr) throw new Error(`node query failed: ${nodeErr.message}`);
+    const page = (data as NodeRow[]) || [];
+    nodeRows.push(...page);
+    if (page.length < EDGE_PAGE) break;
+  }
+  const nodes: GraphNode[] = nodeRows.map((r) => ({
     id: r.id,
     slug: r.slug,
     title: "",
@@ -82,8 +86,9 @@ export async function rebuildPrereqAncestorForBranch(svc: SupabaseClient, branch
   for (let from = 0; ; from += EDGE_PAGE) {
     const { data, error: edgeErr } = await svc
       .from("edges")
-      .select("from_id,to_id,kind,confidence")
+      .select("id,from_id,to_id,kind,confidence")
       .eq("kind", "prerequisite")
+      .order("id")
       .range(from, from + EDGE_PAGE - 1);
     if (edgeErr) throw new Error(`edge query failed: ${edgeErr.message}`);
     const page = (data as EdgeRow[]) || [];
@@ -99,26 +104,16 @@ export async function rebuildPrereqAncestorForBranch(svc: SupabaseClient, branch
 
   const closure = computeAncestorClosure(nodes, edges);
 
-  // Chunked: a large branch's id list overflows a single request URL.
-  for (let i = 0; i < nodeIds.length; i += ID_CHUNK) {
-    const { error: delErr } = await svc.from("prereq_ancestor").delete().in("node_id", nodeIds.slice(i, i + ID_CHUNK));
-    if (delErr) throw new Error(`delete failed: ${delErr.message}`);
-  }
-
-  if (closure.length === 0) {
-    return { branch, nodeCount: nodes.length, edgeCount: edges.length, closureRowCount: 0 };
-  }
-
+  // One locked transaction (graph.replace_prereq_ancestor): the branch's rows
+  // are never half rebuilt, and two rebuilds of one branch never collide.
   const rows = closure.map((r) => ({
     node_id: r.nodeId,
     ancestor_id: r.ancestorId,
     min_hops: r.minHops,
     min_confidence: r.minConfidence,
   }));
-  for (let i = 0; i < rows.length; i += INSERT_CHUNK) {
-    const { error: insErr } = await svc.from("prereq_ancestor").insert(rows.slice(i, i + INSERT_CHUNK));
-    if (insErr) throw new Error(`insert failed: ${insErr.message}`);
-  }
+  const { error: rpcErr } = await svc.rpc("replace_prereq_ancestor", { p_branch: branch, p_node_ids: nodeIds, p_rows: rows });
+  if (rpcErr) throw new Error(`replace failed: ${rpcErr.message}`);
 
   return { branch, nodeCount: nodes.length, edgeCount: edges.length, closureRowCount: rows.length };
 }
