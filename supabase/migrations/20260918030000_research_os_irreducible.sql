@@ -1,0 +1,72 @@
+-- ros-prime 2 (learning/research-os/PRIMES.md, "Slice 2"): the nodes the
+-- model calls irreducible, reviewable like any other proposal; a flag on
+-- edge proposals that form a cycle with other pending proposals; and a
+-- merging upsert for edge proposals. Idempotent.
+
+-- A node the proposer says rests on nothing more basic. A reviewer confirms
+-- or rejects; a confirmed node is a prime by review and leaves the
+-- decompose-further targets.
+create table if not exists graph.irreducible_proposals (
+  id               uuid        primary key default gen_random_uuid(),
+  node_slug        text        not null,
+  justification    text        not null,
+  model            text        not null,
+  prompt_hash      text        not null,
+  status           text        not null default 'pending' check (status in ('pending', 'confirmed', 'rejected')),
+  reviewer_id      uuid        references auth.users (id) on delete set null,
+  decision_reason  text,
+  decided_at       timestamptz,
+  created_at       timestamptz not null default now(),
+  constraint graph_irreducible_proposals_node_uidx unique (node_slug)
+);
+alter table graph.irreducible_proposals enable row level security;
+grant all on graph.irreducible_proposals to service_role;
+
+-- True when the pair sits in a cycle with other pending proposals (a
+-- strongly connected component over existing factor edges plus every
+-- pending proposal): approving all of them would close it.
+alter table graph.edge_proposals add column if not exists in_cycle boolean not null default false;
+
+-- Merge decomposition proposals by pair. A pending row takes the newer
+-- verdict, confidence, justification, impact, and cycle flag; a decided row
+-- stays as the reviewer left it.
+create or replace function graph.merge_edge_proposals(p_rows jsonb)
+returns integer
+language plpgsql
+as $$
+declare
+  r jsonb;
+  n integer := 0;
+begin
+  for r in select * from jsonb_array_elements(p_rows) loop
+    insert into graph.edge_proposals as ep
+      (from_slug, to_slug, branch, confidence, confidence_source, agreement, justification, secondary_justification,
+       model, prompt_hash, secondary_prompt_hash, status, impact, cross_branch, verification, origin, refd, in_cycle)
+    values (
+      r ->> 'from_slug', r ->> 'to_slug', r ->> 'branch', (r ->> 'confidence')::real, r ->> 'confidence_source',
+      coalesce((r ->> 'agreement')::boolean, false), r ->> 'justification', r ->> 'secondary_justification',
+      r ->> 'model', r ->> 'prompt_hash', r ->> 'secondary_prompt_hash', 'pending',
+      coalesce((r ->> 'impact')::integer, 0), coalesce((r ->> 'cross_branch')::boolean, false),
+      r ->> 'verification', r ->> 'origin', (r ->> 'refd')::real, coalesce((r ->> 'in_cycle')::boolean, false)
+    )
+    on conflict on constraint graph_edge_proposals_pair_uidx do update set
+      -- An unchecked rerun keeps the verdict it already had, with its
+      -- confidence and agreement; a new verdict replaces all three.
+      confidence = case when excluded.verification = 'unchecked' and ep.verification in ('confirmed', 'refuted') then ep.confidence else excluded.confidence end,
+      agreement = case when excluded.verification = 'unchecked' and ep.verification in ('confirmed', 'refuted') then ep.agreement else excluded.agreement end,
+      justification = excluded.justification,
+      secondary_justification = coalesce(excluded.secondary_justification, ep.secondary_justification),
+      secondary_prompt_hash = coalesce(excluded.secondary_prompt_hash, ep.secondary_prompt_hash),
+      impact = excluded.impact,
+      cross_branch = excluded.cross_branch,
+      verification = case when excluded.verification = 'unchecked' and ep.verification in ('confirmed', 'refuted') then ep.verification else excluded.verification end,
+      refd = coalesce(excluded.refd, ep.refd),
+      in_cycle = excluded.in_cycle
+    where ep.status = 'pending' and ep.confidence_source = excluded.confidence_source;
+    n := n + 1;
+  end loop;
+  return n;
+end;
+$$;
+
+grant execute on function graph.merge_edge_proposals(jsonb) to service_role;

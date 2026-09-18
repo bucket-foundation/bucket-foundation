@@ -123,3 +123,12 @@ test("graph.edge_proposals migration: RLS enabled, pair uniqueness, and a closed
   assert.match(sql, /alter table graph\.edge_proposals enable row level security/);
   assert.doesNotMatch(sql, /create policy .* on graph\.edge_proposals/, "no client-facing policy: every access goes through the service-role client, gated by reviewer.ts");
 });
+
+test("decideEdgeProposal: approving as derives_from runs the edge from the target to the factor", () => {
+  const outcome = decideEdgeProposal(pending(), "approved", "derives_from");
+  const p = pending();
+  assert.equal(outcome.edgeToWrite?.kind, "derives_from");
+  assert.equal(outcome.edgeToWrite?.fromSlug, p.toSlug);
+  assert.equal(outcome.edgeToWrite?.toSlug, p.fromSlug);
+  assert.equal(outcome.edgeToWrite?.confidence, TEACHER_APPROVED_CONFIDENCE);
+});
