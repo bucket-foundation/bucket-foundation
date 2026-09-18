@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-// Web3-gated route, skip static prerender (providers aren't mounted without envs).
+// Web3-gated route: Dynamic wallet + Story providers mount here only, and
+// the route skips static prerender (the providers need runtime env).
+import Web3Providers from "@/providers/Web3Providers";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -12,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return <Web3Providers>{children}</Web3Providers>;
 }

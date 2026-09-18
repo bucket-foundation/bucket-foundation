@@ -39,7 +39,7 @@ The book-length philosophical treatment of scientific understanding as a subject
 
 - Scientific understanding is defined through the Criterion for Understanding Phenomena: a scientist understands a phenomenon when they can construct a qualitative explanation of it using an intelligible theory, without doing the full calculation, evidence they have internalized how the theory works, beyond producing correct answers.
 - Intelligibility, the quality that lets scientists use a theory to construct such explanations, is not fixed but changes historically as scientific communities develop new conceptual and mathematical tools.
-- The book argues against reducing understanding to prediction or explanation alone: a theory can predict correctly without being understood, and a theory can be understood in ways that shift as tools and training change.
+- The book argues against reducing understanding to prediction or explanation alone: a theory can predict without being understood, and a theory can be understood in ways that shift as tools and training change.
 
 ## Research Questions It Leaves Open
 

@@ -30,6 +30,7 @@ how_it_bears_on_research_os: >
   resolve a citation's own DOI, venue, and open-access status before it can enter a
   student's evidence chain.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # OpenAlex: A fully-open index of scholarly works, authors, venues, institutions, and concepts
 

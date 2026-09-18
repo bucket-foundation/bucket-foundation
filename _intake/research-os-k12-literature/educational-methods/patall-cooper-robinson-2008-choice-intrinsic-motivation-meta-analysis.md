@@ -82,7 +82,7 @@ performance, with a reward attached to the choice weakening the effect.
 ## How It Bears on Research OS
 
 Directly informs the founder decision `PLAN-REVISION-3.md` section 2b leaves open,
-whether any pilot makes class participation, or Production submission specifically, a
+whether any pilot makes class participation, or Production submission, a
 requirement: this meta-analysis's own finding that reward undermines the choice effect
 complicates a design that pairs a required Production with a citation-payment incentive,
 since the incentive itself may erode whatever motivational benefit a remaining pocket of

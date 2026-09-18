@@ -9,7 +9,7 @@
 - **License**: http://creativecommons.org/publicdomain/mark/1.0/
 - **Mediatype**: audio
 - **Subjects**: librivox; audiobook; science; non-fiction; physics; optics; refraction; reflection; light; prism;
-- **Captured**: 2026-05-09T09:45:19
+- **Captured**: 2026-09-17T17:06:28
 
 ## Description
 

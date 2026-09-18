@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Science, Scientists' writings
-- **Captured**: 2026-05-09T09:48:50
+- **Captured**: 2026-09-17T17:07:46
 
 ## Description
 

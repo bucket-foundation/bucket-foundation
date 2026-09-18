@@ -28,16 +28,17 @@ Five hundred years later, the same three things are moving at once.
 
 ## 3. What bucket is
 
-bucket.foundation is the **patronage layer** for the new Renaissance.
+bucket.foundation reforms education. It is the operating system a person runs inside from the first year of school to the research frontier: a map of foundations, a workspace where a learner finds, quotes, checks, and organizes evidence, and a path where a student's own production enters the map as a citable contribution that outlives the term it was written in.
 
-It is not a publisher. It is not a journal. It is not a search engine. It is not an AI lab. It is the *durable substrate* that lets foundations survive their own circulation, and it is the *payment rail* that lets value flow to the people who produced the foundations.
+Underneath that product sits the **patronage layer** that makes it durable: the *substrate* that lets foundations survive their own circulation, and the *payment rail* that routes value to the people who produced them, the same rail whether the producer is a tenured researcher or a twelve-year-old whose accepted production just entered the graph. bucket.foundation is not a publisher, a journal, a search engine, or an AI lab. It is the substrate those roles sit on.
 
 Concretely:
 
+- **Research OS** is the product, and every other surface lives inside it. Five levels of interaction with the graph, each holding the ones before it: Access (who can see and use a node: public, private, or shared, the way a repository or a drive works), Awareness (where knowledge can go from here), Understanding (learning the node itself), Internalization (the learned node meets the rest of the graph), Production (a new node, built from the nodes you hold and placed among them). The workspace finds, quotes, checks, and organizes; it never writes the answer.
 - A **bucket** is a content-addressed folder containing a paper, a manifest, and an HTTP 402 payment receipt.
 - The **canon** is the small set of buckets that have been judged to contain *foundations*, axioms, real math, rules, laws, principles, primary derivations, across seven branches: mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind.
 - The **protocol** is the open specification (CC0-in-intent) that lets anyone implement a bucket. There is no permission to ask. No node is authoritative.
-- The **payout** is the on-chain receipt that routes citation fees back to the original author at a default rate of ≥80% of net receipts.
+- The **payout** is the on-chain receipt built to route citation fees back to the original author at a target rate of ≥80% of net receipts; reader-side settlement is live today, the author-side split is the next piece of the rail to ship.
 
 That is the whole machine. The novelty is not in any single piece. It is in the convention that holds them together and the license that makes the convention impossible to enclose.
 
@@ -125,4 +126,4 @@ The first Renaissance happened because a few hundred people in a few cities had 
 We are not asking you to wait for permission. We are asking you to start.
 
 The founding maintainer
-2026-04-14
+2026-04-14, revised 2026-09-15

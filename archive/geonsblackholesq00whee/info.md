@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Wheeler, John Archibald, 1911-, Physics, Astronomy, Physicists
-- **Captured**: 2026-05-09T09:47:41
+- **Captured**: 2026-09-17T17:07:32
 
 ## Description
 

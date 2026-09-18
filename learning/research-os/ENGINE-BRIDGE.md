@@ -49,7 +49,7 @@ This PR does not touch it; see "What PR #10 covers" below.
 `supabase/migrations/20260910010000_research_os_engine_bridge.sql`,
 alongside a `graph.edges (from_id, to_id, kind)` unique index item 1's own
 edge writer needs. `supabase/migrations/
-20260910030000_research_os_outbox_consumed_at.sql` (ros-12 item 2) adds
+20260910030002_research_os_outbox_consumed_at.sql` (ros-12 item 2) adds
 the row's own `consumed_at` column, `null` until a reader has used it:
 `hte.corpus.research_os_outbox.fetch_unconsumed_rows` filters on
 `consumed_at is null`; `mark_consumed` sets it.
@@ -154,7 +154,7 @@ engine's own `SUPABASE_SERVICE_KEY` ever hold that role.
   normalizes a `graph.productions`-shaped row, PR #10) and marking every
   row it read consumed. Registered as the `"research-os"` corpus in
   `hte.cli`'s own `_CORPUS_LOADERS`. `supabase/migrations/
-  20260910030000_research_os_outbox_consumed_at.sql` adds the column.
+  20260910030002_research_os_outbox_consumed_at.sql` adds the column.
   Tested against a fixture row and a monkeypatched `urllib.request.
   urlopen`, `tools/hypothesis-engine/tests/test_corpus_research_os_
   outbox.py`.

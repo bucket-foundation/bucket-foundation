@@ -42,6 +42,7 @@ how_it_bears_on_research_os: >
   problem-based and inquiry learning already carry, a design question this batch's evidence
   leaves open rather than settles either way.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # Why Minimal Guidance During Instruction Does Not Work
 

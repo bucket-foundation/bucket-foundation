@@ -29,6 +29,7 @@ how_it_bears_on_research_os: >
   of connection as itself a finding worth pursuing, rather than a topic not yet written
   about.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # Fish Oil, Raynaud's Syndrome, and Undiscovered Public Knowledge
 

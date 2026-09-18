@@ -54,7 +54,7 @@ how_it_bears_on_research_os: >
 # Contract cheating: a survey of Australian university staff
 
 A large-scale staff survey finding contract cheating is best addressed by improving the
-teaching and learning environment and the student-staff relationship, not detection alone.
+teaching and learning environment and the student-staff relationship, beyond detection alone.
 
 ## Key Claims
 

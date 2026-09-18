@@ -39,7 +39,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { seedPathOrder, buildClassGrid, findBlockedLearners, findReadyForHarderTarget } from "@/lib/research-os/class-view";
-import { configured, graphService, loadSubgraph, loadClassesForReviewer, loadClassMembers, loadLearnerStatesForMany } from "@/lib/research-os/db";
+import { configured, graphService, loadSubgraph, loadClassesForReviewer, loadClassMembers, loadLearnerStatesForMany, loadXpForLearners } from "@/lib/research-os/db";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
 import { computeCalibrationSummary, type CalibrationEvidenceEntry } from "@/lib/research-os/calibration";
 
@@ -125,6 +125,8 @@ export async function GET(req: NextRequest) {
     calibrationRows = computeCalibrationSummary(evidenceByLearner);
   }
 
+  // ros-33: XP per learner for the class leaderboard (class only, never global).
+  const xpByLearner = await loadXpForLearners(Array.from(new Set(Array.from(membersByClass.values()).flat())));
   const classViews = classes.map((c) => {
     const learnerIds = membersByClass.get(c.id) ?? [];
     const learnerIdSet = new Set(learnerIds);
@@ -132,6 +134,7 @@ export async function GET(req: NextRequest) {
       id: c.id,
       name: c.name,
       learnerIds,
+      xpByLearner: Object.fromEntries(learnerIds.map((id) => [id, xpByLearner.get(id) ?? 0])),
       grid: buildClassGrid(path, learnerIds, statesByLearner),
       blocked: findBlockedLearners(nodes, edges, target.id, learnerIds, statesByLearner, now, staleDaysThreshold),
       readyForHarderTarget: findReadyForHarderTarget(nodes, edges, learnerIds, statesByLearner),

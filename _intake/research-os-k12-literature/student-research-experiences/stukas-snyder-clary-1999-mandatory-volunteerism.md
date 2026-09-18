@@ -54,7 +54,7 @@ how_it_bears_on_research_os: >
 # The Effects of "Mandatory Volunteerism" on Intentions to Volunteer
 
 The founding experimental case for a reactance-based account of required participation: a
-mandate reduced future volunteering intentions specifically for students who would not
+mandate reduced future volunteering intentions for students who would not
 have volunteered freely.
 
 ## Key Claims
@@ -66,7 +66,7 @@ have volunteered freely.
 - A second, experimental study compared students who were mandated to serve against
   students given a choice to serve, and separately measured whether each student felt
   external control was necessary to get them to volunteer at all.
-- Students who initially felt unlikely to volunteer freely reported significantly lower
+- Students who initially felt unlikely to volunteer freely reported significantly lower <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   future intentions after being required to serve than after being given a choice;
   students who already felt likely to volunteer freely were relatively unaffected by
   whether service was mandated or chosen.
@@ -89,7 +89,7 @@ have volunteered freely.
 Sharpens the founder decision `PLAN-REVISION-3.md` section 2b leaves open with a
 moderator the existing batch-four evidence (Grinnell and colleagues 2020; Bangera and
 Brownell 2014; Sadler and colleagues 2010) does not name: whether a mandatory Production
-requirement helps or harms engagement may depend on which learners, specifically those
+requirement helps or harms engagement may depend on which learners, those
 who would not have chosen research participation on their own, are most exposed to the
 reactance this paper documents, a heterogeneous-effect design implication distinct from
 either an all-mandatory or all-voluntary rollout.

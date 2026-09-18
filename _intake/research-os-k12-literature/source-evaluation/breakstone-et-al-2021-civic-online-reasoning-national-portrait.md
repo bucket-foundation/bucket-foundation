@@ -58,7 +58,7 @@ across every task.
   could not distinguish news stories from ads on a popular site's home page.
 - More than half of students believed an anonymously posted, provenance-weak Facebook video
   provided strong evidence of US voter fraud.
-- Students were misled by weak credibility signals, a site's look, its top-level domain, its
+- Students were frequently misled by weak credibility signals, a site's look, its top-level domain, its <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   About page, and information volume; scores varied by grade level, self-reported grades,
   locality, socioeconomic status, race, maternal education, and lunch-program status.
 

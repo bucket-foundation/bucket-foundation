@@ -65,6 +65,6 @@ difference in either group's confidence about their own skill.
 ## How It Bears on Research OS
 
 Argues Research OS's Production state should be graded on an unassisted,
-unannounced check scheduled after a retention interval, not immediately after the
+unannounced check scheduled after a retention interval, distinct from immediately after the
 assisted session, since same-day testing would miss the decay this study documents.
 Read alongside Bastani and colleagues (2025) for the exam-performance parallel.

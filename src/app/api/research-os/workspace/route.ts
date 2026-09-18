@@ -130,6 +130,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { callGroundedModelWithUsage, logToolCost, parseModelJson, selectProvider } from "@/lib/research-os/llm";
 import { gradeExplanation, citationLabel } from "@/lib/research-os/grounding";
+import { deterministicCheck, deterministicOrganize, llmEnabled } from "@/lib/research-os/deterministic";
 import { onCheckResult, onQuoteReturned, onCorroborationRecorded } from "@/lib/research-os/stages";
 import { locateHits, findIndependentSources, assessSourceIndependence } from "@/lib/research-os/locate";
 import { groundOrganizeResult, type OrganizeModelOutput } from "@/lib/research-os/organize";
@@ -254,6 +255,10 @@ interface WorkspaceBody {
   quotedSourceNodeId?: string;
   secondSourceNodeId?: string;
   passagesAgree?: boolean;
+  /** ros-23, the workspace without a model: the learner's own verdict and
+   * the quotes they attached, graded by deterministic.ts's rubric. */
+  verdict?: "support" | "contradiction";
+  quotes?: { quotable_span: string | null; citation: string }[];
 }
 
 export async function POST(req: NextRequest) {
@@ -553,19 +558,28 @@ export async function POST(req: NextRequest) {
       // reveal once forcing commits).
       const guidance = await computeGuidanceForNode(learnerId, nodeId, node.branch);
 
-      const provider = selectProvider();
-      if (!provider) return bad(503, "Check isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY).");
-
       let safe: Awaited<ReturnType<typeof gradeExplanation>>;
-      try {
-        safe = await gradeExplanation(provider, node, prereqSummaries, explanation, guidance, getPassage(node.slug));
-      } catch (e: unknown) {
-        const err = e as { status?: number };
-        if (err?.status === 401) return bad(503, "Check credentials are invalid on the server.");
-        if (err?.status === 429) return bad(429, "Rate limited, try again in a moment.");
-        return bad(502, "check_failed");
+      if (!llmEnabled()) {
+        // ros-23: no model. The learner's verdict against their own quotes,
+        // graded by a fixed rubric (deterministic.ts). The quotes come from
+        // the client's evidence list; at least one quote event must exist
+        // on this node in the learner's own evidence log.
+        const quoted = (await loadLearnerQuoteEvidence(learnerId)).some((q) => q.nodeId === nodeId);
+        const quotes = quoted && Array.isArray(body.quotes) ? body.quotes.filter((q) => q && typeof q.citation === "string") : [];
+        safe = { ...deterministicCheck({ explanation, quotes, verdict: body.verdict }), usage: null };
+      } else {
+        const provider = selectProvider();
+        if (!provider) return bad(503, "Check isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY).");
+        try {
+          safe = await gradeExplanation(provider, node, prereqSummaries, explanation, guidance, getPassage(node.slug));
+        } catch (e: unknown) {
+          const err = e as { status?: number };
+          if (err?.status === 401) return bad(503, "Check credentials are invalid on the server.");
+          if (err?.status === 429) return bad(429, "Rate limited, try again in a moment.");
+          return bad(502, "check_failed");
+        }
+        logToolCost("check", learnerId, provider, safe.usage);
       }
-      logToolCost("check", learnerId, provider, safe.usage);
 
       const { data: existingState } = await svc
         .from("learner_node_state")
@@ -634,6 +648,14 @@ export async function POST(req: NextRequest) {
       const evidenceNotes = (body.evidenceNotes || "").trim();
       const sourceNotes = (body.sourceNotes || "").trim();
       if (!claim && !evidenceNotes && !sourceNotes) return bad(400, "at least one field is required");
+
+      if (!llmEnabled()) {
+        // ros-23: no model. The learner's own notes split into the scaffold,
+        // nothing added (deterministic.ts).
+        const safe = deterministicOrganize({ claim, evidenceNotes, sourceNotes });
+        logToolCall("organize", learnerId, sessionId, { abstained: false, claimKept: Boolean(safe.claim), evidenceKept: safe.evidence.length, sourcesKept: safe.sources.length, mode: "deterministic" });
+        return NextResponse.json(safe, { headers: { "cache-control": "no-store" } });
+      }
 
       const provider = selectProvider();
       if (!provider) return bad(503, "Organize isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY).");

@@ -37,12 +37,12 @@ Supplies the dimensions (how similar, how far, what kind of knowledge) the Inter
 ## Key Claims
 
 - Transfer studies vary along at least nine dimensions (knowledge domain, physical context, temporal context, functional context, social context, and more); the taxonomy shows most published transfer research clusters at the near end, leaving far transfer under-tested.
-- Far-transfer effects, when tested, are frequently small or null, contrary to the intuitive assumption that well-learned knowledge transfers broadly.
-- Explicit instruction in transfer strategies improves far-transfer outcomes more reliably than content mastery alone.
+- Far-transfer effects, when tested, are frequently small or null, contrary to the intuitive assumption that well-learned knowledge transfers broadly. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
+- Explicit instruction in transfer strategies improves far-transfer outcomes more reliably than content mastery alone. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 
 ## Research Questions It Leaves Open
 
-- Whether far transfer can be reliably engineered by generated items alone, or requires explicit strategy instruction the item generator does not currently provide.
+- Whether far transfer can be reliably engineered by generated items alone, or requires explicit strategy instruction the item generator does not currently provide. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - How to measure transfer distance in a graph-structured curriculum, where far has a natural graph-distance analog the taxonomy's own dimensions do not directly define.
 
 ## How It Bears on Research OS

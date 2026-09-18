@@ -37,6 +37,35 @@ None.
 
 `make test` (`tools/hypothesis-engine/`) and `ruff check` on every touched file, both clean. No network calls in any new or edited test. This branch merges `origin/hte/integration` before pushing per this repo's own concurrent-PR-#130/#123 note; gates rerun after the merge.
 
+## auth-1: system-wide auth and the Research OS application shell
+
+Date 2026-09-16. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry, `docs/AUTH.md`, `docs/RESEARCH-OS-APP.md`.
+
+### Added
+
+- `src/lib/supabase/browser.ts`, `src/lib/supabase/server.ts`, `src/lib/auth/paths.ts`, `src/lib/auth/verify.ts`, `src/lib/auth/identity.ts`, `src/lib/auth/handle.ts`, `src/providers/SessionProvider.tsx`.
+- `src/app/sign-in/{page,SignInForm}.tsx`, `src/app/account/{page,AccountForm}.tsx`, `src/app/auth/sign-out/route.ts`, `src/app/api/account/route.ts`, `src/components/auth/{UserMenu,SignInGate}.tsx`, `src/components/ui/index.tsx`.
+- `src/app/research-os/(app)/{layout,AppShell}.tsx`, `src/app/research-os/(app)/home/{page,HomeClient}.tsx`.
+- `src/app/academy/AcademyFrame.tsx`; `adoptSession`, `listenToParent`, `framed` in `learning/app/js/auth.js`; the framed sign-in link in `learning/app/js/auth-ui.js`.
+- `supabase/migrations/20260916000000_bucket_identities.sql`, `scripts/test-auth-paths.ts`, `.github/workflows/site-ci.yml`.
+- `isClassStaffAnywhere` in `src/lib/research-os/class-db.ts`.
+
+### Edited
+
+- `src/middleware.ts`: session refresh on every request, protected paths, Kruse gate kept.
+- `src/lib/research-os/db.ts`: `verifyToken` delegates to `verifyRequestUser`.
+- `src/app/api/academy/{progress,profile}/route.ts`: `verifyUser` delegates to `verifyRequestUser`.
+- `src/app/research-os/(app)/{workspace,class,review,roster,edges,profile}/page.tsx`, `src/app/canon/signoff/page.tsx`: the one-time-code form, `sendOtp`, `verifyOtp`, and the `email`, `otpSent`, `otpCode`, `authBusy`, `authError` state replaced by `<SignInGate signedIn={Boolean(token)} />`; pages other than the workspace also drop `signOut`. The removed form is recorded once in `_intake/research-os-k12/DELETIONS.md`.
+- `src/app/api/chat/route.ts`: `getSessionUser()` in place of NextAuth.
+- `src/app/layout.tsx`: `SessionProvider` in place of `Web3Providers`; `src/app/{knowledge,library,research,assets}/layout.tsx` mount `Web3Providers`.
+- `src/components/Header.tsx`: `UserMenu`, Home and Account entries. `src/app/research-os/page.tsx` and `landing.css`: the Open Research OS button.
+- `next.config.mjs` ESLint gate on; `src/app/canon/graph/page.tsx`, `src/app/research/tools/{causaldesigner,mlreprocard}/page.tsx`, `src/app/research-os/(app)/profile/GameSection.tsx` (apostrophes), `src/app/chat/page.tsx` (`for (;;)`).
+- `package.json` (`test`, `test:auth`, `typecheck`; `next-auth` and `@auth/supabase-adapter` removed), `.env.example`, `CLAUDE.md`.
+
+### Removed
+
+- `src/lib/auth.ts`, `src/app/api/auth/[...nextauth]/route.ts`, `src/app/research-os/layout.tsx`, `src/app/research-os/ResearchOsNav.tsx`. Text in `_intake/research-os-k12/DELETIONS.md`.
+
 ## ros-14: faded guidance for low-prior-knowledge learners
 
 Date 2026-09-10/11. Branch `feat/ros-faded-guidance`, worktree `.ros-worktrees/scaffold`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry. Concurrent with PR #63 (cognitive forcing, edits `src/app/research-os/workspace/page.tsx` and the workspace Check route); server-side and library work landed first, page work landed after PR #63 merged (confirmed via `gh pr view 63`).
@@ -816,7 +845,7 @@ touched here). Full account: `learning/research-os/ENGINE-BRIDGE.md`.
   filtered to `consumed_at is null`, through `hte.corpus.production`'s
   existing normalizer (`Production.from_dict`). Registered as the
   `"research-os"` corpus in `hte.cli`'s own `_CORPUS_LOADERS`.
-- `supabase/migrations/20260910030000_research_os_outbox_consumed_at.sql`
+- `supabase/migrations/20260910030002_research_os_outbox_consumed_at.sql`
   (ros-12 item 2): adds `consumed_at` to the outbox table, additive,
   idempotent.
 - `tools/hypothesis-engine/tests/test_corpus_research_os_outbox.py`
@@ -976,7 +1005,7 @@ the engine bridge both touched (`package.json`'s `test:research-os` script,
 - `src/lib/research-os/closure.ts` (from the preserved wip commits; item 1):
   `ancestorsOf` and `computeAncestorClosure`, the in-memory counterpart to
   `graph.prereq_ancestor`.
-- `supabase/migrations/20260910010000_research_os_prereq_ancestor.sql` (from the
+- `supabase/migrations/20260910010001_research_os_prereq_ancestor.sql` (from the
   preserved wip commits; item 1): the closure table itself, public-read RLS.
 - `scripts/rebuild-prereq-ancestor.ts` (item 1): rebuilds `graph.prereq_ancestor` for
   one branch from `graph.edges`, delete-and-reinsert, matching
@@ -1442,7 +1471,7 @@ already claim.
 
 ### Added
 
-- `supabase/migrations/20260910030000_research_os_edge_confidence.sql`: `confidence`
+- `supabase/migrations/20260910030001_research_os_edge_confidence.sql`: `confidence`
   (real, default 1.0) and `confidence_source` (text, checked against `seed`,
   `academy_requires`, `canon_map`, `inferred`, `teacher`) on `graph.edges`;
   `min_confidence` (real, default 1.0) on `graph.prereq_ancestor`.
@@ -2717,7 +2746,7 @@ touches nothing that file covers; left unchanged.
 - `src/lib/research-os/canon-link.ts`: fs-backed `loadCanonClaims`/`canonClaimsAsDuplicateCandidates` (reading `scripts/research-os/ingest/out/canon-claims.json`, falling back to the committed `sample-canon-claims.json`) and `lookupCanonSignoff` (the unfiltered `provenance_signoff` lookup `canon-primary.ts`'s own cached loader cannot answer).
 - `scripts/research-os/ingest/canon-claims.ts`: the canon-claims generator, every branch, reusing `ingest/canon.ts`'s own law-vs-title summary rule; wired as `npm run ingest:research-os:canon-claims`.
 - `scripts/research-os/ingest/out/sample-canon-claims.json`: seven hand-picked entries, one per canon branch, drawn from a real generator run.
-- `supabase/migrations/20260910060000_research_os_production_guard.sql`: five columns on `graph.productions`, `source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`, `production_incentive_eligible`.
+- `supabase/migrations/20260910060001_research_os_production_guard.sql`: five columns on `graph.productions`, `source_provenance`, `duplicate_flag`, `counter_evidence`, `counter_evidence_required`, `production_incentive_eligible`.
 - `scripts/test-research-os-production-guard.ts`: 21 tests over `production-guard.ts` and `canon-link.ts`, including a near-duplicate fixture; wired into `npm run test:research-os`.
 - `learning/research-os/PRODUCTION-GUARD.md`: the full rule set, what a teacher sees, what is logged.
 - `stages.ts`'s `onQuoteReturned`: a new `"quote"`-kind evidence event, `EvidenceEvent.locator`, written by the Quote tool whenever it returns a real curated passage (never for the `"summary"` fallback), the record `checkSourceProvenance` matches a Production's own sources against.
@@ -3044,7 +3073,7 @@ Review of PR #76 (preregistration revision 1, Iteration 25 above), docs-only, as
 - Naive n-per-arm formula (n = 2(z_alpha/2 + z_beta)^2/d^2, alpha = 0.025 two-sided, power = 0.80) hand-recomputed: 76/119/211 at d = 0.5/0.4/0.3. Cluster-corrected formula (DEFF = 1 + (m_bar-1) x ICC, m_bar = 25) hand-recomputed: 262/405/691 at ICC 0.05/0.10/0.20. Both match the draft's own tables exactly, no drift from the prior review's own expected figures.
 - Furtak and colleagues (2012), Lazonder and Harmsen (2016), and Chen and Yang (2019) checked against their own intake cards. Pooled effects match on all three (Furtak's mean d = 0.50 across 37 studies with the teacher-led/student-led 0.40 gap; Lazonder and Harmsen's d = 0.66/0.71/0.50 across 72 studies; Chen and Yang's positive, moderator-tested effect with no pooled number in its own card). Furtak's card states no explicit population line; the draft's table cell "K-12 and undergraduate science students" is this pass's own addition rather than a phrase traceable to the card, flagged as a minor citation-precision finding; the pooled effect the n-table depends on stays accurate.
 - Factor decision (forcing and guidance both fixed on for Phase 1) is stated with its own reasoning (the already-underpowered base three-arm contrast, the five-consented-learner integrity floor, the class-level confound risk of a factorial split, and both switches defaulting on in shipped code); `guidanceLevel` is registered as a pre-specified H1/H2 covariate in the Covariates section.
-- The two new outcomes map to real fields: `learnerConfidence`/`sourcePrediction`/`predictionCorrect`/`forcingEnabled` are typed `EvidenceEvent` fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` (PR #63, merged); `source_provenance`/`duplicate_flag`/`counter_evidence`/`counter_evidence_required` are real columns in `supabase/migrations/20260910060000_research_os_production_guard.sql` (PR #73, merged).
+- The two new outcomes map to real fields: `learnerConfidence`/`sourcePrediction`/`predictionCorrect`/`forcingEnabled` are typed `EvidenceEvent` fields in `src/lib/research-os/EVIDENCE-SCHEMA.md` (PR #63, merged); `source_provenance`/`duplicate_flag`/`counter_evidence`/`counter_evidence_required` are real columns in `supabase/migrations/20260910060001_research_os_production_guard.sql` (PR #73, merged).
 - Required participation and misconduct risk subsection cites Grinnell and colleagues (2020) and keeps Production submission opt-in per `PLAN-REVISION-3.md` decision 6, stratifying a required-Production class via the new `productionRequired` covariate rather than excluding it.
 - Revision history section exists in `PREREGISTRATION-DRAFT.md`; every sentence it replaces (both files' header status lines, the effect-size paragraph, the naive-n table, the diversity-outcome judge cell, the Exploratory analyses sentence, `INSTRUMENTS.md`'s intro paragraph and closing section) is preserved verbatim in `DELETIONS.md`. `RESEARCH-QUESTIONS.md`'s diff carries no removed lines against `origin/main`, append-only confirmed.
 - No partner school, IRB approval, PI, or host institution claimed: `PREREGISTRATION-DRAFT.md`'s opening paragraph and its Registration timing section both deny partner and IRB status directly, unchanged by this revision.
@@ -3053,6 +3082,22 @@ Review of PR #76 (preregistration revision 1, Iteration 25 above), docs-only, as
 
 No fix needed against any of the above. Merged as-is.
 
+## Research OS hero: the real canon globe
+
+Branch `feat/site-reform-education-reposition` (PR #11, worktree `.ros-worktrees/site-globe-demo`), after merging `origin/main` forward (a JSONL conflict in `BEADS-PENDING.jsonl` resolved by keeping both sides' pending-bead lines, `src/app/research-os/page.tsx` auto-merged clean). Founder direction, verbatim intent: the Research OS page mockup should use the real canon search globe component, and the hero subtext should be about access, awareness, understanding, internalization, and production, students of all levels reaching each in turn.
+
+### Edited
+
+- `src/app/research-os/page.tsx`: the hero's own visual is now `CanonGlobeMount`, the same live component (with real search) `/canon`, `/canon/search`, and the homepage mount, sized to match the homepage's `containerClassName` (`md:h-[88vh] md:max-h-[1000px] md:pr-[440px]`, full-bleed instead of the component's default `max-w-7xl` card) rather than the smaller default card the prior wip commit (`7383dcf33`) had used. Wrapped in `ScrollReveal`, matching the pattern `src/components/Presentation.tsx` uses for the same component. No hand-drawn canvas globe existed anywhere on this page, checked with `git log --follow -- src/app/research-os/page.tsx` across every commit that ever touched the file and a repo-wide `globe`/`canvas` grep, so `_intake/research-os-k12/DELETIONS.md` gets no new entry, nothing was removed.
+- Hero subtext rewritten from a sentence about the four AI tools (redundant with the hero's own "find. quote. check. organize." headline and the Tools section further down the page) to two sentences naming the workspace and the five learner states a student moves through, built on the founder's own phrasing. `STATES`, its five names and their meanings, is untouched and still reads consistent with this file's own `LEARNER-STATE-MODEL.md`.
+- `_intake/research-os-k12/CHANGELOG.md`: matching entry.
+
+### Verified
+
+- `npm ci`, `npx tsc --noEmit`, `npm run build` (`/research-os` builds static, 598 B page / 126 kB First Load JS, no new route errors): all clean. `npx eslint src/app/research-os/page.tsx`: clean, no warnings. `agf-lint-voice-src check src/app/research-os/page.tsx`: 0 violations.
+- Degrade-on-no-WebGL behavior stays inside `CanonGlobeMount`'s own `GlobeErrorBoundary` and `StaticCanonGlobe` fallback, untouched by this pass, so `/research-os` degrades the same way `/canon` does.
+- Scope held to `src/app/research-os/page.tsx`; no nav, `Header.tsx`, or homepage hero (`Presentation.tsx`) change, per the founder's direction to leave the rest of PR #11's repositioning as is.
+- Leak scan of this pass's own diff: clean, no keys, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs.
 ## Repo hygiene pass: local paths and machine-specific data
 
 The dedicated cleanup pass the PR #69 review above named as needed.
@@ -3217,6 +3262,85 @@ Reviewed `feat/ros-lateral-reading` (PR #84) against `main` in worktree `~/agfar
 - `agf-lint-voice check` on the full changed-file set found two antithesis constructions in `BEADS-PENDING.jsonl`'s own new bead line and one in `scripts/test-research-os-lateral-reading.ts`'s own test name, all introduced by this PR; fixed by hand, clean on the second pass. The remaining reported violations (`BEADS-PENDING.jsonl` lines outside the new entry, `workspace/page.tsx` line 1256) predate this PR and sit outside its own diff, left untouched. `agf-lint-voice-src check` clean on every touched source file, first pass.
 - Process note: the PR's own merge commit (`c7b3c095b`) used the org pre-commit hook's `AGF_VOICE_SKIP=1` bypass rather than `--no-verify`, per its own `BEADS-PENDING.jsonl` account; the commit squashes at merge so the artifact does not survive, flagged here for the record.
 
+## Research OS on a real localhost server
+
+Founder direction, verbatim intent: stop reviewing PR #11 through an artifact copy; run an actual localhost Bucket Foundation site and confirm `/research-os` uses the real canon search. Persistent worktree `~/agfarms/.ros-worktrees/site-local`, branch `site-local-2026-09-14`, tracking `feat/site-reform-education-reposition` (PR #11's head, `d520089ea`). Merged `origin/main` forward (29 commits ahead) to bring PR #12's nav and home section in alongside PR #11's repositioning; two changelog-only conflicts (this file and `_intake/research-os-k12/CHANGELOG.md`) resolved by keeping both sides' entries.
+
+### Verified
+
+- `CanonGlobeMount` is the same live component `/canon` and `/canon/search` mount, its full search included: its search box `fetch`es `/api/canon/search`, which builds its index from a real filesystem scan of `bucket-canon/` (`buildIndex()` in `src/lib/canon-search-index.ts`), the same 599 claim cards `/canon/search`'s own doc comment names, no fixture or demo data.
+- Which routes need Supabase: grepped every `src/app` file for a `supabase` import. `/api/canon/search` and the canon pages carry none, canon search works with no Supabase configured. `/research-os/workspace`, `/research-os/class`, `/research-os/edges`, `/research-os/profile`, `/research-os/review`, `/research-os/roster` and their API routes, plus `/academy/*`, `/api/auth/[...nextauth]`, `/canon/signoff`, `/contributors/[handle]`, `/knowledge`, and `/m/[handle]`, all import Supabase.
+
+### Fixed
+
+- `src/app/research-os/page.tsx`: passed `CanonGlobeMount` an empty `branches={[]}` where `/canon` and `/canon/search` both pass `getBranches()`'s real per-branch scan. The prop turned out to be dead code inside `CanonGlobeMount` (destructured as `_branches`, never read), so this changed no rendered behavior, but it was a stub value the founder's direction says should not exist. Now computes `globeBranches` via `getBranches()` (`src/lib/canon-fs.ts`) and passes it, matching `/canon/search/page.tsx`'s own pattern. Hero subtext and the five `STATES` names (Access, Awareness, Understanding, Internalization, Production) were already correct on PR #11's head and untouched.
+
+### Verified: gates and the running server
+
+- `npm ci` (1465 packages), `npx tsc --noEmit`, `npx eslint src/app/research-os/page.tsx`: all clean. `agf-lint-voice-src check src/app/research-os/page.tsx`: 0 violations.
+- Dev server started detached on port 3100 (3000 was in use): `/research-os`, `/`, `/canon/search` all returned 200; `/research-os`'s HTML carries the `globe-capture` mount root and the same search placeholder `/canon/search` uses; `GET /api/canon/search?q=light` returned 10 real results with real claim ids, branches, titles, excerpts, and `bucket.foundation/canon/claims/...` URLs from the live index.
+- Leak scan of this pass's own diff: clean, no keys, `.env` values, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. The merge commit carried 18 pre-existing files' worth of voice-lint hits from `origin/main` (17 auto-generated `bucket-canon/_bridges/detected/*/README.md` reports plus two `quantum/reference-impl/` setup docs), none touched by this pass's own diff and already logged as a founder-decision `AGF_VOICE_SKIP=1` bypass case in the repo hygiene entries above; committed the merge the same way.
+- No UI text was replaced, only a JSX comment and the `branches` prop's value, so `_intake/research-os-k12/DELETIONS.md` gets no new entry.
+
+## Homepage canon search panel and a research-os fixed background globe
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Added
+
+- `src/components/CanonSearchPanel.tsx`, `src/components/FixedCanonGlobeBackground.tsx`.
+- `public/research-os/state-{access,awareness,understanding,internalization,production}.png`.
+
+### Edited
+
+- `src/components/canon-globe/CanonGlobe.tsx`: `decorative`/`scrollSpeedRef` props on the R3F globe, plus the `AutoRotateDriver` inner component.
+- `src/app/canon/CanonGlobeMount.tsx`: split into `CanonGlobeMount` (dispatcher), `InteractiveCanonGlobeMount`, and `DecorativeCanonGlobeMount`; new `decorative`, `scrollSpeedRef`, `globeWrapperClassName` props.
+- `src/components/Presentation.tsx`: hero down to one CTA at `min-h-[88vh]`; `CanonSearchPanel` replaces the old branch-nav-plus-globe grid; the stat strip moved to its own section.
+- `src/app/research-os/page.tsx`: new h1/subtext/one CTA; `FixedCanonGlobeBackground` mounted at the page level; a new alternating-row "Five States" section added directly after the hero. The removed hero globe JSX is recorded in `_intake/research-os-k12/DELETIONS.md`'s matching entry.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on every touched file. `curl` confirmed `/` and `/research-os` return 200 on the running dev server (port 3100) with no restart, HTML carries the new headline and all five state headings.
+
+## 2026-09-14: Research OS and home page fixes
+
+`src/app/research-os/page.tsx`: removed six sections below the Five States rows (numbered-table restatement, "four tools, no pen", "frontier first, then backward", "productions that enter the graph", "where it sits", "status") on founder direction; the page keeps only the hero, the fixed globe, and the Five States alternating rows. Removed text is in `_intake/research-os-k12/DELETIONS.md`.
+
+`src/components/FixedCanonGlobeBackground.tsx`, `src/components/Presentation.tsx`, `src/components/CanonSearchPanel.tsx`: fixed the globe's position/blur/z-index on Research OS, removed the home logo mark, fixed the home headline's clamp/wrap, and made the home panel's top band and globe dome visible in the first screen. Full account in `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on every touched file. `curl` confirmed `/` and `/research-os` return 200 on the running dev server (port 3100) with no restart. Playwright screenshots verified the headline, panel peek, and globe visibility (top/mid/footer) match the founder's spec.
+
+## Research OS decorative globe: WebGL context survival
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+`src/components/canon-globe/CanonGlobe.tsx` is the repo's only `<Canvas>`/`gl={{...}}` config, shared by the decorative `/research-os` background and the interactive `/canon/search` tool; their gl attributes were already identical. The real gap was `src/components/FixedCanonGlobeBackground.tsx`'s `filter: blur(1.6px)` on the Canvas's ancestor, a known WebGL-context-creation risk on constrained renderers; removed it, kept the dimming `opacity`. `src/components/canon-globe/GlobeErrorBoundary.tsx` now `console.warn`s on catch, still renders nothing visual. `src/app/research-os/page.tsx`: added `priority` to the first Five States row's image (LCP fix).
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright reproduction (Chromium 1243, 1950x1160, `--disable-gpu --use-angle=swiftshader` and `--disable-gpu --use-gl=swiftshader`) rendered a live-context `<canvas>` with zero `pageerror`s on both `/canon/search` and `/research-os`, before and after; the founder's exact Brave failure did not reproduce locally.
+
+## Research OS decorative globe: missing point layer
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+The decorative and interactive mounts already shared one `R3FCanonGlobe` (same Earth mesh, same landmask texture, same materials and lighting), so the texture was never the gap. `src/app/canon/CanonGlobeMount.tsx`'s `DecorativeCanonGlobeMount` passed `markers={[]}` unconditionally; added `DECORATIVE_MARKERS`, built at module load from the same `ALL_EVENTS`/`ALL_SITES` static JSON the interactive mount's default state reads, and wired it in. `branches`/`getBranches()` turned out unused by either mount (`R3FCanonGlobe` has no such prop), so nothing to plumb there. `src/components/canon-globe/CanonGlobe.tsx`: removed the dead, unreferenced `_FallbackGlobe` SVG fallback.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright at 1600x1000, scroll 0, 8s wait: `/canon/search` and `/research-os` show matching landmass texture and colored point layer, research-os dimmed, lower right, behind content, autorotating, non-interactive.
+
+## Canon globe: precomputed land mask
+
+Date 2026-09-14. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. No canvas readback remains anywhere in the globe path. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+The globe's land dots came from drawing the daymap JPEG into a 2D canvas and reading pixels back with `getImageData`, in Brave with fingerprint protection this readback is refused and the globe rendered with no dots. `scripts/globe/build-landmask.mjs` now bakes the same threshold rule into `public/textures/earth/landmask-2k.bin` (1-bit packed, 256 KB) plus a JSON header at build time; `landmaskFromImage.ts`'s `loadLandmask` fetches and unpacks that asset instead of touching a canvas. `Earth.tsx` and both mounts (`/canon/search`, `/research-os`) needed no changes, they already shared one loader. Old function body preserved in `_intake/research-os-k12/DELETIONS.md`.
+
+### Verified
+
+`npx tsc --noEmit`, `npx eslint`, and `agf-lint-voice-src check` all clean on the three touched files. Playwright reproduction with a patched `HTMLCanvasElement.prototype.getContext('2d')` returning `null`: pre-fix showed the landmask warning and a dotless globe with zero `pageerror`s; post-fix showed the full dot globe with no warning and zero `pageerror`s. `magick compare` on plain (unpatched) 1950x1160 `/research-os` screenshots, before and after, showed only anti-aliasing-level differences, dot placement matches pixel-for-pixel.
 ## Iteration 27: literature batch five
 
 Date 2026-09-11. Branch `intake/ros-literature-5`, worktree `.ros-worktrees/lit5`.
@@ -3505,3 +3629,185 @@ Reviewed `feat/ros-status-band-2` (PR #117) against `main` in worktree `~/agfarm
 - `agf-lint-voice-src check` and `agf-lint-voice check`: 0 violations.
 
 Squash-merged after this pass.
+
+## 2026-09-14 canon globe frame request
+
+`src/components/canon-globe/Earth.tsx`: `invalidate()` after the instanced mesh update so the land dots draw as soon as the land mask resolves under `frameloop="demand"`. PR #147 against `dev`; also on `site-local-2026-09-14`. `origin/dev` merged into `site-local-2026-09-14`; the #117 Research OS page sections stay removed here, recorded in `_intake/research-os-k12/DELETIONS.md`.
+
+## 2026-09-15 WebGL refusal diagnostic
+
+`src/components/canon-globe/GlobeErrorBoundary.tsx`: capturing `webglcontextcreationerror` listener logs the browser's status message and repeats it in the boundary's warning. No visual change.
+
+## 2026-09-15 Research OS globe redesign
+
+`src/components/canon-globe/CanonGlobe.tsx`: `ScrollSpinDriver`, `ParticleShell`, `ContextRecovery`, decorative tilt group, `scrollRef` prop, decorative dpr 0.4; `AutoRotateDriver` removed. `src/components/FixedCanonGlobeBackground.tsx`: 192vh, radial mask, no CSS filter, writes `{y, velocity}`. `src/app/canon/CanonGlobeMount.tsx`: forwards `scrollRef`. Verified on the founder's AMD Phoenix iGPU in Chrome 150: hardware context, no GPU hang.
+
+## 2026-09-15 Research OS page to the artifact layout
+
+`src/app/research-os/page.tsx` rebuilt to the artifact structure; `src/app/research-os/landing.css` and `src/app/research-os/RevealRow.tsx` added. Globe roll, position, opacity, and dpr adjusted in `CanonGlobe.tsx` and `FixedCanonGlobeBackground.tsx`.
+
+## 2026-09-15 decorative globe made safe on the Phoenix iGPU
+
+`Earth.tsx`: `dotDetail`, `dotColor`, `dotOpacity` props. `Halo.tsx`: `alpha` uniform. `CanonGlobe.tsx`: opaque lighter 18,000-dot decorative Earth, 20 fps scroll frame cap, diagnostic `variant` prop. `FixedCanonGlobeBackground.tsx`: no compositor effects, painted edge gradient, query switches. `Footer.tsx`: `relative z-[2]`. New `src/app/research-os/globe-test/page.tsx`.
+
+## 2026-09-15 decorative globe edge
+
+`Halo.tsx`: `fade` prop and `uFade` uniform. `CanonGlobe.tsx`: `ParticleShell` ShaderMaterial with radial fade, far-field stars off in decorative mode. `FixedCanonGlobeBackground.tsx`: painted overlay and `nofade` switch removed.
+
+## 2026-09-15 decorative globe blur in WebGL
+
+`CanonGlobe.tsx`: `BlurPipeline` (EffectComposer, one blur pass pair, priority-1 `useFrame`), `DECORATIVE_DPR` 0.5, `DECORATIVE_DOT_DETAIL` 6.
+
+## 2026-09-15 decorative dot field and live tuning
+
+`Earth.tsx`: `limbScale` prop with an `onBeforeCompile` vertex patch. `CanonGlobe.tsx`: `DecorativeVariant` type, numeric overrides, `BlurPipeline` props. `FixedCanonGlobeBackground.tsx`: numeric query parsing.
+
+## 2026-09-15 home canon search panel
+
+`src/app/canon/CanonGlobeMount.tsx`: `layout` prop, home left column, `Drawer` `transparent`. `src/components/CanonSearchPanel.tsx`: transparent, `layout="home"`, lift 38vh. `src/components/Presentation.tsx`: hero 78vh, `z-20`.
+
+## 2026-09-15 Research OS globe intro
+
+`CanonGlobe.tsx`: intro offset and shell growth inside `ScrollSpinDriver`, `INTRO_*` constants. `CanonSearchPanel.tsx`: lift 32vh.
+
+## 2026-09-15 home globe scroll placement
+
+`CanonSearchPanel.tsx`: scroll-driven lift (18vh to 0). `CanonGlobeMount.tsx`: `globeWrapperStyle` prop merged onto the globe wrapper.
+
+## 2026-09-15: home panel and hero fixes
+
+Home panel surfaces and two hero fixes: the seam and the scrubber width.
+
+`CanonGlobeMount.tsx`: home column card, drawer surface back, scrubber right padding. `Presentation.tsx`: `z-20` moved from the hero section to its content wrapper.
+
+## 2026-09-15 halo disc no longer clipped on the interactive globes
+
+`CanonGlobe.tsx`: camera fov 44 for interactive mounts, 42 decorative.
+
+## 2026-09-15 Research OS integration plan
+
+`learning/research-os/INTEGRATION-PLAN.md` added. `src/app/research-os/page.tsx` STATES copy and section sub. `BEADS-PENDING.jsonl` +13 (ros-20 to ros-33).
+
+## 2026-09-15 ros-22 shell and nav, first pass
+
+`Presentation.tsx` cut to hero and panel; `Header.tsx` NAV collapsed; `src/app/research-os/layout.tsx` and `ResearchOsNav.tsx` added; `MANIFESTO.md` section 3 bullet and date; `INTEGRATION-PLAN.md` section 11 and decision 6.
+
+## 2026-09-15 ros-21 the Access level as a data model
+
+New: migration `20260915000000_research_os_access.sql`, `access.ts`, `access-db.ts`, `api/research-os/access/route.ts`, `workspace/AccessBlock.tsx`, `profile/AccessMine.tsx`, `scripts/test-research-os-access.ts`, `ACCESS.md`. Edited: `types.ts` (Level alias), `workspace/page.tsx`, `profile/page.tsx`, `package.json` test entry.
+
+## 2026-09-15 ros-29 Learn inside the workspace, first pass
+
+New: `learn-link.ts`, `workspace/LearnBlock.tsx`, `scripts/test-research-os-learn-link.ts`. Edited: `academy/page.tsx` (deep-link pass-through), `workspace/page.tsx` (GraphNodeLite branch and provenance, LearnBlock), `Header.tsx` (DynamicWidget removed), `package.json`.
+
+## 2026-09-15: ros-23 and ros-30
+
+ros-23 runs the workspace without a model; ros-30 puts the Map in place.
+
+New: `deterministic.ts`, `workspace/PenBlock.tsx`, `workspace/MapBlock.tsx`, `scripts/test-research-os-deterministic.ts`, `NO-MODEL.md`. Edited: `api/research-os/workspace/route.ts` (verdict and quotes fields, deterministic Check and Organize), `api/research-os/route/route.ts` (`llmEnabled`), `workspace/page.tsx` (verdict control, request fields, mounts), `canon/CanonGlobeMount.tsx` (`?q=`), `package.json`.
+
+## 2026-09-15 ros-33 the game layer and the path map
+
+New: migration `20260915010000_research_os_game.sql`, `game.ts`, `workspace/PathMap.tsx`, `profile/GameSection.tsx`, `scripts/test-research-os-game.ts`, `GAME.md`. Edited: `db.ts` (award hook, loadGame, loadXpForLearners), `api/research-os/profile/route.ts`, `api/research-os/class/route.ts`, `workspace/page.tsx`, `profile/page.tsx`, `class/page.tsx`, `package.json`.
+
+## 2026-09-15: ros-27 roles as grants
+
+Also assignments and level overrides.
+
+New: migration `20260915020000_research_os_roles_assignments.sql`, `roles.ts`, `assignments.ts`, `class-db.ts`, `api/research-os/assignments`, `api/research-os/override`, `api/research-os/members`, `class/AssignmentsPanel.tsx`, `class/OverrideControl.tsx`, `workspace/AssignmentsBanner.tsx`, `scripts/test-research-os-roles-assignments.ts`, `CLASS.md`. Edited: `roster/sources.ts`, `class/page.tsx`, `workspace/page.tsx` (target from the URL), `package.json`.
+
+## 2026-09-15 ros-32 under-13 gates and the guardian payee
+
+New: migration `20260915030000_research_os_consent_paths.sql`, `consent-paths.ts`, `consent-vendor.ts`, `api/research-os/consent`, `api/research-os/payee`, `profile/ConsentPayeeSection.tsx`, `scripts/test-research-os-consent-paths.ts`, `CONSENT-PATHS.md`. Edited: `consent.ts` (`requireConsent`, `resolveConsentPaths`), `profile/page.tsx`, `package.json`.
+
+## 2026-09-15: ros-31 and ros-24
+
+ros-31 adds frontier kinds and regions; ros-24 adds the Awareness view.
+
+New: migration `20260915040000_research_os_frontier_kinds.sql`, `directions.ts`, `api/research-os/directions`, `api/research-os/frontier`, `workspace/DirectionsBlock.tsx`, `scripts/test-research-os-directions.ts`, `FRONTIER.md`. Edited: `types.ts`, `db.ts` (loadSubgraph), `access-db.ts` (filterSubgraphForViewer), `api/research-os/route/route.ts`, `workspace/page.tsx`, `package.json`.
+
+## Plan revision 4: docs from batch-five evidence and shipped Phase 1 work
+
+Date 2026-09-14. Branch `docs/ros-plan-revision-4`, worktree `~/agfarms/.ros-worktrees/plan4`, forked from `origin/main` at `d4deda529` (PR #87's own merge). Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-4.md`: the shipped-since-revision-3 PR table (#70 through #113), four evidence-driven revisions from the batch-five literature corpus read off `intake/ros-literature-5` (PR #90, unmerged), a Phase 1 scope narrowed to nine remaining items, the six founder decisions restated verbatim plus the hygiene untracking decision and the canon sign-off backlog, and updated operational blockers including a new spend-limit-pauses entry.
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "## Revision 4" section after the existing "## Revision 3" section, matching the per-revision pointer convention every prior revision already established. No other line changed.
+- `learning/research-os/PLAN-REVISION-3.md`: appended a "## Revision 4" pointer paragraph after its own tmpfs-constraint paragraph, the last line of the file before this edit. No other line changed.
+
+### Verified
+
+- `npm run test:research-os`: 30 chained files, every file `fail 0`, 455 tests, unchanged (this pass touched no test file). `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, unchanged.
+- `python3 tools/canon-pipeline/signoff.py list`: 20 pending records, same five-dossier breakdown as revision 3's own count (`07-mind/memory-systems` 3, `07-mind/sub-outcomes/education` 11, `07-mind/curiosity-and-motivation` 4, `07-mind/information-foraging` 1, `07-mind/cognition-and-automation` 1).
+- `agf-lint-voice check` on all three touched files: sixteen violations on the first pass (banned words `genuinely`/`genuine`/`actually`/`honest`, filler adverbs `specifically`/`correctly`, six antithesis constructions, one heading carrying an appended clause), all rewritten by hand; clean on the second pass.
+- `git log --all --grep="spend.limit" -i --format="%ad %h %s" --date=format:"%Y-%m-%d %H:%M"`: confirms the three spend-limit-stop windows named in the new operational-blockers entry (2026-09-10 ~09:37, 2026-09-11 ~01:17, and the 2026-09-11-to-2026-09-13 commit gap).
+
+## Plan revision 4: post-merge reconciliation
+
+Date 2026-09-14, same pass, after `git fetch origin && git merge origin/main` at the end of the revision-4 pass. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: PR #90 (this revision's own evidence source) merged to `main` mid-pass, so its cards' paths and the section-2 sourcing note updated to cite `main` directly; a new table added naming thirteen more PRs that merged in the same window (#95, #97, #99, #101, #114 through #116, #118 through #122); test-count paragraph updated with fresh post-merge numbers and the engine's newest recorded count (1585 passed, 0 failed, `f1eb897df`).
+- `tools/hypothesis-engine/tests/swarm/FINDINGS-2026-09-10.md`, `tools/hypothesis-engine/tests/test_corpus_literature.py`, `tools/hypothesis-engine/tests/swarm-20260914/test_predict_props.py`: three pre-existing voice-lint violations in content merged in from `origin/main` (none authored by this pass), fixed by hand so the merge commit's own diff stayed clean where it touched these files directly.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): one merge conflict in its own tail section, resolved by keeping both sides, this pass's own "Plan revision 4" section ahead of `main`'s own "Iteration 27" (literature batch five) and "PR #87 review" sections.
+
+### Verified
+
+- `npm run test:research-os`: 455 passed, 0 failed across 30 files, re-run fresh post-merge, unchanged from the pre-merge count. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, unchanged. `python3 tools/canon-pipeline/signoff.py list`: 20 pending, unchanged.
+- `agf-lint-voice check learning/research-os/PLAN-REVISION-4.md`: clean after the sourcing-note and test-count edits above.
+- The merge commit itself used `AGF_VOICE_SKIP=1`: `python3 "$HOME/agfarms/tools/voice/voice.py" check --staged` (the pre-commit hook's own invocation, which rescans a staged file's full content rather than only its diff) found 162 violations across 28 files pulled in by the merge, none in content this pass authored; the same bypass PR #84's own merge commit used for the same situation, per its own logged process note.
+
+## PR #127 review: plan revision 4 and merge
+
+Reviewed `docs/ros-plan-revision-4` (PR #127) against `dev` in worktree `~/agfarms/.ros-worktrees/r127`, branch `review/pr127`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (leak scan, fresh test and sign-off re-verification, PR-number and literature-card checks, the two accuracy fixes, the two voice fixes, and the `origin/dev` merge conflict resolution).
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: two voice fixes in this PR's own new entry (banned word `genuine`, one antithesis construction), plus this review's own entry logged.
+- `learning/research-os/PLAN-REVISION-4.md`: decision 6's recommended default restored to revision 3's verbatim wording (a dropped clause); two rule-of-three constructions rewritten to two joined clauses each, no named behavior removed.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): one merge conflict in its own tail section, resolved by keeping both sides, `dev`'s own content first, this branch's two entries appended after.
+
+### Verified
+
+- Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
+- `npm ci && npm run test:research-os`: 455 passed, 0 failed across 30 files. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed. `python3 tools/canon-pipeline/signoff.py list`: 20 pending, same five-dossier breakdown the PR names.
+- Every PR number in both shipped tables confirmed merged via `gh pr list --state merged --limit 130`; the six PRs named unmerged confirmed closed without merging. Every cited literature card confirmed present under `_intake/research-os-k12-literature/`.
+- `PLAN.md` and `PLAN-REVISION-3.md`: each edit confirmed a single append-only "## Revision 4" pointer section, no other line touched. `git diff origin/dev...HEAD --stat` (pre-merge) confirmed the PR's own diff touches no file under `src/` or `public/`.
+- `agf-lint-voice check` on `PLAN-REVISION-4.md` and the new entries in both log files: clean after the fixes above.
+
+## Plan revision 4: second reconciliation pass
+
+Date 2026-09-14, resuming a session that found this branch's worktree removed out from under it (a concurrent session's own cleanup) mid-task and PR #127 already open from the reconciliation pass above. Recreated the worktree from `origin/docs/ros-plan-revision-4` and continued rather than re-authoring.
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: added the fourth spend-limit-pause window this pass found (2026-09-14, 09:32:52-09:33:04, three worktrees), noted the task brief's own "TLS pauses" mention has no repository-visible evidence beyond the four spend-limit windows; corrected "stay unmerged" to "closed unmerged" for the six superseded `docs/hte-loop-log-*` branches (#89/#91/#93/#105/#107/#109, verified live via `gh pr view`); added PR #124 (real `hte/cli.py` coverage) and PR #128 (docs-only, names PR #125 closed unmerged after #124 landed the same coverage first) to the shipped table and the open/closed-PR accounting; added PR #127 (this document's own PR) to the still-open list.
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-3.md`: both "## Revision 4" pointer paragraphs corrected from "thirty-two PRs" / "#70 through #113" to the true count, forty-six PR numbers merged since revision 3 (`git log --oneline 7f49f271b..HEAD --format=%s | grep -oE '\(#[0-9]+\)'`, deduplicated and sorted), #70 through #124 plus #68 and #115 landing out of numeric order; "three spend-limit pauses" corrected to four in both.
+
+### Verified
+
+- `gh pr view` on each of #89, #91, #93, #105, #107, #109: all six read `CLOSED`, `mergedAt: null`, confirming "closed unmerged" over the prior "stay unmerged" wording.
+- `git log -1 --format=%ad` on the three 2026-09-14 wip commits (`6a20186da`, `6e88d3ef0`, `e8edd4d1e`): 09:32:52 to 09:33:04, twelve seconds apart. Resume times: `feat/ros-11-engine-review-items-2` merged `origin/main` at 09:41:16; `feat/ros-status-band-2` at 09:46:37; `intake/ros-canon-promotion-3`'s next commit on that branch, `wip(intake/ros-canon-promotion-3): resume canon pass three`, landed at 12:20:21.
+- `agf-lint-voice check` on all three edited files: clean, first pass.
+
+## PR #127 review, second pass
+
+Continued after `origin/docs/ros-plan-revision-4` advanced further (the second reconciliation pass above, a concurrent session). Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (the PR-count recount, the added PR #68 table row, the gap-timestamp fix, and the two further `origin/dev` merges).
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: added a table row for PR #68 (was cited in the pointer count but absent from the document's own tables); intro line and both pointer paragraphs corrected from "forty-six" to the verified "forty-eight"; the spend-limit-gap start time corrected from `02:08` to `06:24`.
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-3.md`: same forty-six to forty-eight correction in each "## Revision 4" pointer.
+- `_intake/research-os-k12/CHANGELOG.md`, `learning/research-os/CHANGE-LEDGER.md` (this file): two further merge conflicts with `origin/dev`, resolved keeping both sides.
+
+### Verified
+
+- Independent recount of every `#NNN` cell across `PLAN-REVISION-4.md`'s two shipped-PR tables: 48 distinct numbers, matching the corrected claim.
+- PR #68 confirmed real and in scope: `gh pr view 68` shows merged 2026-09-11T03:18:55Z, after PR #69 (revision 3's own filing, 02:43:19Z).
+- `git log --all` across every branch for 2026-09-11 through 2026-09-13: the claimed gap runs 06:24 to 22:23 (real commits land at 02:13 and after, ruling out the claimed 02:08 start); every other cited timestamp in the same paragraph checked out exact.
+- `npm run test:research-os`: 455 passed, 0 failed. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed. Both re-run after each of the two further `origin/dev` merges.

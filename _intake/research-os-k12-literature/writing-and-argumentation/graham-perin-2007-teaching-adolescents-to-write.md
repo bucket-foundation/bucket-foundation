@@ -34,6 +34,7 @@ how_it_bears_on_research_os: >
   naming what "process signals" a payout tied to writing quality, rather than final-answer
   correctness, should reward.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # What We Know, What We Still Need to Know: Teaching Adolescents to Write
 

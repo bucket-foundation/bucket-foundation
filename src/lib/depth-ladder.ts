@@ -74,7 +74,7 @@ export const DEPTH_LADDER: DepthRung[] = [
     surfaces: [
       {
         label: "Academy",
-        href: "/academy",
+        href: "/research-os/learn",
         note: "Spaced-repetition mastery over the foundations of each branch — the consume rung, done honestly.",
       },
     ],
@@ -88,7 +88,7 @@ export const DEPTH_LADDER: DepthRung[] = [
     surfaces: [
       {
         label: "Academy mastery",
-        href: "/academy",
+        href: "/research-os/learn",
         note: "Push a branch to high honest mastery (M = proficiency^α · retention^β) — the top of the consume side.",
       },
     ],

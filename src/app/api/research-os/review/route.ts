@@ -74,6 +74,7 @@
  * 400 bad input · 404 target row not found · 503 not configured.
  */
 import { NextRequest, NextResponse } from "next/server";
+import { createNodeFromProduction } from "@/lib/research-os/production-node";
 import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib/research-os/stages";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById } from "@/lib/research-os/db";
@@ -114,6 +115,8 @@ interface ProductionRow {
   id: string;
   learner_id: string;
   target_node_id: string;
+  related_node_id?: string | null;
+  kind?: string | null;
   claim: string | null;
   evidence: unknown[];
   sources: unknown[];
@@ -163,7 +166,7 @@ export async function GET(req: NextRequest) {
   const { data: productionRows, error: prodErr } = await svc
     .from("productions")
     .select(
-      "id,learner_id,target_node_id,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required,lateral_reading_flag",
+      "id,learner_id,target_node_id,related_node_id,kind,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required,lateral_reading_flag",
     )
     .eq("status", "submitted")
     .order("created_at", { ascending: true });
@@ -213,6 +216,8 @@ export async function GET(req: NextRequest) {
           id: p.id,
           learnerId: p.learner_id,
           targetNodeId: p.target_node_id,
+          relatedNodeId: p.related_node_id ?? null,
+          kind: p.kind ?? "production",
           targetTitle: titleById.get(p.target_node_id) ?? p.target_node_id,
           claim: p.claim,
           evidence: p.evidence,
@@ -318,7 +323,7 @@ export async function POST(req: NextRequest) {
 
   const { data: production, error: prodErr } = await svc
     .from("productions")
-    .select("id,learner_id,target_node_id,claim,evidence,sources,status,created_at,updated_at,notes,source_provenance")
+    .select("id,learner_id,target_node_id,related_node_id,kind,node_id,claim,evidence,sources,status,created_at,updated_at,notes,source_provenance")
     .eq("id", productionId)
     .maybeSingle();
   if (prodErr) return bad(500, "read_failed");
@@ -417,6 +422,25 @@ export async function POST(req: NextRequest) {
       transition.nextStage,
       transition.event as unknown as Record<string, unknown>,
     );
+  }
+
+  // The accepted production becomes a node of its kind with an edge to
+  // the node it acts on (production-node.ts). Never fails the review.
+  if (body.decision === "approved" && updated) {
+    try {
+      await createNodeFromProduction({
+        id: production.id as string,
+        learner_id: production.learner_id as string,
+        target_node_id: production.target_node_id as string,
+        related_node_id: (production.related_node_id as string | null) ?? null,
+        kind: (production.kind as string | null) ?? "production",
+        claim: (production.claim as string | null) ?? null,
+        sources: (production.sources as unknown[] | null) ?? [],
+        node_id: (production.node_id as string | null) ?? null,
+      });
+    } catch (err) {
+      console.error("[research-os/review] createNodeFromProduction failed:", err instanceof Error ? err.message : err);
+    }
   }
 
   if (body.decision === "approved" && updated) {

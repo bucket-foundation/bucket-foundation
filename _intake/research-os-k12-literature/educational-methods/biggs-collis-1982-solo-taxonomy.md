@@ -41,7 +41,7 @@ Names the second framework `learning/research-os/LEARNER-STATE-MODEL.md` section
 
 - A learner's response to a task can be coded by structural complexity alone, independent of whether it is correct, into five levels: prestructural (the task is missed entirely), unistructural (one relevant element used), multistructural (several relevant elements used, unconnected), relational (the elements integrated into a coherent whole), extended abstract (the relational structure generalized to a new domain or reconceptualized at a higher level).
 - The five levels are argued to form one ordered trait, later work runs a formal item-response or Rasch analysis to test that claim on a level-by-level basis rather than asserting it.
-- SOLO codes a single response to a single task, not a learner's overall standing in a subject; a learner scoring relational on one task can score unistructural on another, so a SOLO level is a property of a response, not a fixed property of the learner.
+- SOLO codes a single response to a single task, distinct from a learner's overall standing in a subject; a learner scoring relational on one task can score unistructural on another, so a SOLO level is a property of the response alone, changeable task to task.
 
 ## Research Questions It Leaves Open
 
