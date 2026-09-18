@@ -2,6 +2,41 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## Ranking-holdout scoring
+
+Murphy decomposition, a higher label floor, and an ideation-stage label on novelty scores.
+
+Date 2026-09-14. Branch `feat/hte-ledger-scoring-rev4`, worktree `.ros-worktrees/ledger`, engine-side (`tools/hypothesis-engine/`), PR against `hte/integration`. Reads against `PLAN-REVISION-4.md` sections 2b and 2d, turning three of the read-side literature findings `tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md`'s "Ranking validation evidence" section already named into code.
+
+### Added
+
+- `hte.holdout_ledger.MurphyDecomposition` and `hte.holdout_ledger.murphy_decomposition`: Murphy (1973)'s reliability/resolution/uncertainty partition of the ledger's own Brier-style score, reusing `hte.calibrate.brier_score`.
+- `hte.novelty.NOVELTY_STAGE` (`"ideation"`) and `NoveltyResult.stage`.
+- Tests: `tests/test_holdout_ledger.py` (murphy decomposition, label-floor range), `tests/test_novelty.py` (stage label), plus new assertions in `tests/test_cli.py` and `tests/test_canon_writeback.py`.
+
+### Edited
+
+- `hte/holdout_ledger.py`: `MIN_VERIFIED_FOR_LABEL` raised from `20` to `44` (Dreber et al. 2015's own N=44 replication-forecasting sample, corroborated at a comparable scale by Camerer et al. 2018); derivation and caveats in the module's own top docstring, replacing the prior undocumented "twenty, chosen by hand" account.
+- `hte/cli.py`: `_cmd_holdout_ledger_report` now prints `murphy_decomposition`'s own output under a `murphy` key alongside `elo_status`.
+- `hte/novelty.py`: module docstring gains a "Stage" section (Si, Hashimoto, and Yang 2025); `NoveltyResult.to_dict()` carries `stage`.
+- `hte/canon_writeback.py`: `render_card`'s "## 7. Novelty" section states the stage label and a one-line execution-evidence-required note; the feed402 envelope's `data.novelty.stage` field follows from `NoveltyResult.to_dict()` automatically, no separate envelope code changed.
+- `tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md`: "Ranking validation evidence" section gains a "Code changes, this pass" subsection with the decomposition's own formula table.
+- `tools/hypothesis-engine/docs/LOOP-LOG.md`: new entry at the top.
+
+### Removed
+
+None.
+
+### Not touched, and why
+
+- `hte/export.py`: TIMELINE.md's "Elo is unvalidated" text carries no verified-count number to duplicate; nothing to point at `MIN_VERIFIED_FOR_LABEL`.
+- `hte/casp_cadence.py`: not present on `hte/integration` as this pass ran (PR #130 open, unmerged); the constant-import instruction is noted in `hte.holdout_ledger`'s own docstring and this entry for whoever lands #130 next.
+- `learning/research-os/ENGINE-BRIDGE.md`: documents `graph.nodes`/`graph.edges`/the outbox table's own columns; none of them carry `elo_status`, `novelty`, or `MIN_VERIFIED_FOR_LABEL`, so no field there changed.
+
+### Verified
+
+`make test` (`tools/hypothesis-engine/`) and `ruff check` on every touched file, both clean. No network calls in any new or edited test. This branch merges `origin/hte/integration` before pushing per this repo's own concurrent-PR-#130/#123 note; gates rerun after the merge.
+
 ## auth-1: system-wide auth and the Research OS application shell
 
 Date 2026-09-16. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry, `docs/AUTH.md`, `docs/RESEARCH-OS-APP.md`.

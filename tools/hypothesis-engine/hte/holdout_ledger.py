@@ -17,13 +17,32 @@ canon_writeback.write_back` has recorded and later verified at least
 emits stays labeled `unvalidated_tournament_ranking`, `ranking_status`'s
 own single source of truth for that label.
 
-`MIN_VERIFIED_FOR_LABEL = 20`: a chosen constant, named here by hand.
-Twenty is small enough to reach after a modest run of write-backs, and
-large enough that
-one flipped verification moves the reported hit rate by at most five
-points (`1/20`), so the label does not turn on the strength of a single
-entry. Raise it once real verified volume makes a tighter bound worth
-having; this module never lowers it on its own.
+`MIN_VERIFIED_FOR_LABEL = 44`: a derived constant. Revision 3's original
+`= 20` carried no documented account of why twenty; `learning/research-
+os/PLAN-REVISION-4.md` section 2b traces a concrete anchor instead.
+Dreber and colleagues (2015, PNAS, `_intake/research-os-k12-
+literature/scientific-discovery-metascience/dreber-et-al-2015-
+prediction-markets-reproducibility.md`) show market-elicited probabilities
+predicted replication outcomes across 44 psychology studies, better than
+individual survey forecasts; Camerer and colleagues (2018, `camerer-et-
+al-2018-evaluating-replicability-nature-science.md`) corroborate the same
+forecast-validation shape on Nature/Science social-science experiments at
+a comparable scale. Forty-four is the point at which this design (a
+calibrated probability, elicited before ground truth, predicting whether
+a claim holds up) is the demonstrated one in the literature this project
+has read. No formal power analysis has been built for this ledger's own
+question. PLAN-REVISION-4 section 2b names that gap and flags Dreber's
+own low base-rate finding (about 9 percent of tested hypotheses held)
+as a caution: a higher floor still certifies no single ranking, only a
+longer track record. Raise it again once real verified
+volume, or a power analysis scoped to this ledger, makes a tighter bound
+worth having; this module never lowers it on its own. This module is the
+one place the number is defined; `hte.export`'s TIMELINE.md render cites
+no verified-count number to duplicate, and `hte.casp_cadence` (cadence
+review over the ledger, PR #130) restates no floor of its own. Any later
+use there imports `MIN_VERIFIED_FOR_LABEL` from here, the same
+single-source-of-truth rule `ranking_status` already holds for the label
+itself.
 
 The ledger file (`hte/data/ranking-holdout-ledger.jsonl`, one JSON object
 per line, newest entry last) is committed to the repository and grows by
@@ -41,11 +60,14 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Sequence
 
+from . import calibrate
+
 DATA_DIR = Path(__file__).parent / "data"
 DEFAULT_LEDGER_PATH = DATA_DIR / "ranking-holdout-ledger.jsonl"
 
-# See this module's own top docstring for why 20.
-MIN_VERIFIED_FOR_LABEL = 20
+# See this module's own top docstring for why 44 (Dreber et al. 2015's
+# own N=44 replication-forecasting sample, PLAN-REVISION-4.md section 2b).
+MIN_VERIFIED_FOR_LABEL = 44
 
 _VALID_OUTCOMES = frozenset({"correct", "incorrect"})
 
@@ -222,6 +244,83 @@ def compute_hit_rate(entries: Sequence[LedgerEntry]) -> HitRate:
 
 
 @dataclass(frozen=True)
+class MurphyDecomposition:
+    """Murphy (1973)'s three-term partition of the Brier score
+    (`learning/research-os/PLAN-REVISION-4.md` section 2b, `_intake/
+    research-os-k12-literature/scientific-discovery-metascience/murphy-
+    1973-vector-partition-probability-score.md`): `brier == reliability -
+    resolution + uncertainty`, splitting the one aggregate number
+    `compute_hit_rate` already reports into how far the ledger's own
+    forecast tracked observed frequency (`reliability`) versus how much
+    it discriminated between outcome classes (`resolution`), against the
+    outcome's own base-rate variance (`uncertainty`). PR #48's real bug
+    hunt (three bugs in candidate addressing, deduplication, and slot-
+    matching, found by reading code after a low calibration number came
+    back) is the diagnosis this decomposition exists to shortcut: a
+    future regression can be checked against which term moved instead.
+
+    This ledger's own `outcome` field is a binary judgment of a ranking (did
+    this ranked entry's top-of-tournament placement hold up) and carries no
+    graded per-entry confidence of its own, so every
+    verified entry scores against the same implicit forecast, `p = 1.0`
+    (the entry's own rank claims the read is correct). Murphy's partition
+    groups entries by distinct forecast value; with one group,
+    `resolution` is `0.0` by construction, `reliability` reduces to
+    `(1.0 - hit_rate) ** 2`, and `uncertainty` to `hit_rate * (1.0 -
+    hit_rate)`, and the aggregate identity still holds exactly (`brier ==
+    1.0 - hit_rate`, `HitRate.hit_rate`'s own complement); this module's
+    own tests assert both facts rather than only trusting the algebra. A
+    `resolution` pinned at zero is itself the diagnosis this decomposition
+    is built to surface: today's ledger cannot discriminate between a
+    confident and a marginal ranked read, only between held-up and not.
+    A future ledger design that records a real per-entry confidence
+    (`elo`-derived or otherwise) distinct from the binary outcome would be
+    the fix that moves `resolution` off zero.
+
+    `None` fields mirror `HitRate.hit_rate`: nothing verified, nothing to
+    decompose."""
+    brier: float | None
+    reliability: float | None
+    resolution: float | None
+    uncertainty: float | None
+    n_verified: int
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "brier": self.brier, "reliability": self.reliability,
+            "resolution": self.resolution, "uncertainty": self.uncertainty,
+            "n_verified": self.n_verified,
+        }
+
+
+def murphy_decomposition(entries: Sequence[LedgerEntry]) -> MurphyDecomposition:
+    """Splits `compute_hit_rate`'s own aggregate over `entries` into
+    Murphy (1973)'s reliability, resolution, and uncertainty terms; see
+    `MurphyDecomposition`'s own docstring for the one-forecast-group
+    reading this ledger's binary `outcome` field supports today. Reuses
+    `hte.calibrate.brier_score` directly (the module's own quadratic
+    scoring rule, `predictions=[1.0] * n_verified` against each entry's
+    binary outcome) rather than recomputing the mean-squared-error sum by
+    hand, so the two modules never drift on what "Brier score" means."""
+    verified = [e for e in entries if e.verified and e.outcome in _VALID_OUTCOMES]
+    n_verified = len(verified)
+    if n_verified == 0:
+        return MurphyDecomposition(brier=None, reliability=None, resolution=None, uncertainty=None, n_verified=0)
+
+    outcomes = [1.0 if e.outcome == "correct" else 0.0 for e in verified]
+    predictions = [1.0] * n_verified
+    brier = calibrate.brier_score(predictions, outcomes)
+    obar = sum(outcomes) / n_verified
+    reliability = (1.0 - obar) ** 2
+    resolution = 0.0
+    uncertainty = obar * (1.0 - obar)
+    return MurphyDecomposition(
+        brier=brier, reliability=reliability, resolution=resolution,
+        uncertainty=uncertainty, n_verified=n_verified,
+    )
+
+
+@dataclass(frozen=True)
 class RankingStatus:
     """`ranking_status`'s own return value: the `elo_status` string every
     write-back surface (`hte.canon_writeback`'s card, index, and
@@ -287,7 +386,7 @@ def ranking_status(
 
 __all__ = [
     "DEFAULT_LEDGER_PATH", "MIN_VERIFIED_FOR_LABEL", "UNVALIDATED_STATUS", "VALIDATED_STATUS",
-    "LedgerEntry", "HitRate", "RankingStatus",
+    "LedgerEntry", "HitRate", "MurphyDecomposition", "RankingStatus",
     "build_entries", "load_ledger", "append_entries", "verify_entry",
-    "compute_hit_rate", "ranking_status",
+    "compute_hit_rate", "murphy_decomposition", "ranking_status",
 ]

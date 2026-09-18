@@ -546,5 +546,49 @@ floor.
   apparent quality before it is checked overstates its quality after, the exact case the
   holdout ledger's own validated-versus-unvalidated label is built to catch.
 
-No code in this pass changes as a result of these ten cards; they are read-side
-literature grounding for `hte.holdout_ledger`'s own already-shipped design.
+### Code changes, this pass
+
+`PLAN-REVISION-4.md` section 2b and 2d turn three of the ten cards above into code:
+
+1. **Murphy decomposition.** `hte.holdout_ledger.murphy_decomposition` splits the
+   ledger's own aggregate hit rate into Murphy (1973)'s reliability, resolution, and
+   uncertainty terms, reusing `hte.calibrate.brier_score` rather than recomputing the
+   mean-squared-error sum by hand. `hte holdout-ledger report` prints it under a
+   `murphy` key alongside `elo_status`. This ledger's own `outcome` field is a binary
+   read per entry with no graded per-entry confidence, so every verified entry scores
+   against one implicit forecast group (`p = 1.0`); the identity below still holds
+   exactly, and `resolution` sits at `0.0` by construction until a future ledger design
+   records a real per-entry confidence distinct from the binary read:
+
+   | Term | Formula (one forecast group) | Reads as |
+   |---|---|---|
+   | `brier` | `1.0 - hit_rate` | The aggregate score `compute_hit_rate` already implies |
+   | `reliability` | `(1.0 - hit_rate) ** 2` | How far the ledger's implicit forecast (p=1.0) tracks observed frequency |
+   | `resolution` | `0.0` | How much the forecast discriminates between outcome classes; `0.0` here since every entry shares one forecast |
+   | `uncertainty` | `hit_rate * (1.0 - hit_rate)` | The outcome's own base-rate variance |
+
+   `brier == reliability - resolution + uncertainty` holds exactly; `tests/
+   test_holdout_ledger.py::test_murphy_decomposition_matches_brier_identity` asserts it
+   against a fixture ledger rather than trusting the algebra alone.
+
+2. **Label floor.** `MIN_VERIFIED_FOR_LABEL` moved from `20` to `44`, Dreber and
+   colleagues (2015)'s own N=44 replication-forecasting sample, corroborated at a
+   comparable scale by Camerer and colleagues (2018); derivation and caveats (neither
+   card runs a power analysis scoped to this ledger, and Dreber's own low base-rate
+   finding, about 9 percent, is a separate caution) are in `hte.holdout_ledger`'s own
+   top docstring. `hte.export`'s TIMELINE.md render carries no verified-count number to
+   duplicate; `hte.casp_cadence` (PR #130, cadence review over the ledger, not yet
+   merged as this section is written) should import the constant rather than restate it.
+
+3. **Novelty stage.** `hte.novelty.NoveltyResult` gained a `stage` field, always
+   `"ideation"` (`NOVELTY_STAGE`): Si, Hashimoto, and Yang (2025) found LLM-generated
+   ideas' novelty scores drop after execution, on several metrics below human-written
+   ideas' own scores, so a lexical novelty score computed at generation time is a
+   candidate-stage signal that no execution has validated yet. The feed402 envelope's
+   `data.novelty.stage` field and `hte.canon_writeback.render_card`'s own "## 7.
+   Novelty" section both carry the label and a one-line statement: execution or holdout
+   evidence is required before treating the score as validated.
+
+`tests/test_holdout_ledger.py`, `tests/test_cli.py`, `tests/test_novelty.py`, and
+`tests/test_canon_writeback.py` cover all three; see each module's own docstring for
+the full derivation.
