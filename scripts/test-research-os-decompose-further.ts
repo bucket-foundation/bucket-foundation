@@ -5,11 +5,17 @@ import { decompose, type DepEdge } from "../src/lib/research-os/primes";
 import {
   aggregateMissing,
   buildPrompt,
+  buildVerifyPrompt,
+  CONFIRMED_CONFIDENCE,
+  impactOf,
+  matchBase,
   parseAnswer,
-  PROPOSAL_CONFIDENCE,
+  parseVerdicts,
   selectTargets,
   shortlist,
+  toNodeProposals,
   toProposals,
+  UNCONFIRMED_CONFIDENCE,
   type Candidate,
   type GraphNode,
 } from "../src/lib/research-os/decompose-further";
@@ -81,23 +87,81 @@ test("a reply with no JSON is an error", () => {
   assert.ok("error" in parseAnswer("{not json}", new Set(), "t"));
 });
 
-test("proposals are pending prerequisite rows from each factor to the target", () => {
+test("proposals carry the verifier's verdict as agreement and confidence, plus impact and branch crossing", () => {
   const target = selectTargets(nodes, dec)[0];
-  const rows = toProposals(target, { irreducible: false, factors: [{ slug: "sets", why: "time as a function" }], missing: [] }, "sonnet", "abc");
-  assert.deepEqual(rows, [
-    {
-      from_slug: "sets",
-      to_slug: "kinematics",
-      branch: "02-physics",
-      confidence: PROPOSAL_CONFIDENCE,
-      confidence_source: "prime_decompose_llm",
-      agreement: null,
-      justification: "time as a function",
-      model: "sonnet",
-      prompt_hash: "abc",
-      status: "pending",
-    },
-  ]);
+  const answer = { irreducible: false, factors: [{ slug: "sets", why: "time as a function" }, { slug: "functions", why: "position over time" }], missing: [] };
+  const verdicts = new Map([["sets", { holds: true, why: "motion maps time to position" }], ["functions", { holds: false, why: "taught later" }]]);
+  const rows = toProposals(target, answer, {
+    model: "sonnet",
+    hash: "abc",
+    verdicts,
+    verifyModel: "opus",
+    verifyHash: "def",
+    impact: impactOf(target.id, dec),
+    branchOf: new Map(nodes.map((n) => [n.slug, n.branch])),
+  });
+  assert.equal(rows.length, 2);
+  assert.deepEqual(rows[0], {
+    from_slug: "sets",
+    to_slug: "kinematics",
+    branch: "02-physics",
+    confidence: CONFIRMED_CONFIDENCE,
+    confidence_source: "prime_decompose_llm",
+    agreement: true,
+    justification: "time as a function",
+    secondary_justification: "opus: motion maps time to position",
+    model: "sonnet",
+    prompt_hash: "abc",
+    secondary_prompt_hash: "def",
+    status: "pending",
+    impact: 2,
+    cross_branch: true,
+  });
+  assert.equal(rows[1].agreement, false);
+  assert.equal(rows[1].confidence, UNCONFIRMED_CONFIDENCE);
+});
+
+test("a factor the verifier never answered counts as unconfirmed", () => {
+  const target = selectTargets(nodes, dec)[0];
+  const rows = toProposals(target, { irreducible: false, factors: [{ slug: "sets", why: "" }], missing: [] }, {
+    model: "sonnet",
+    hash: "abc",
+    verdicts: new Map(),
+    verifyModel: "opus",
+    verifyHash: null,
+    impact: 0,
+    branchOf: new Map(),
+  });
+  assert.equal(rows[0].agreement, false);
+  assert.equal(rows[0].secondary_justification, null);
+  assert.match(rows[0].justification, /named as a factor/);
+});
+
+test("impact counts the nodes resting on a target", () => {
+  assert.equal(impactOf("kinematics", dec), 2);
+  assert.equal(impactOf("newton", dec), 0);
+});
+
+test("the verify prompt lists each factor and the verdict parser keeps only asked slugs with a boolean", () => {
+  const target = selectTargets(nodes, dec)[0];
+  const factors = pool.filter((c) => c.slug === "sets" || c.slug === "functions");
+  const p = buildVerifyPrompt(target, factors);
+  assert.match(p, /- functions \| 01-mathematics/);
+  assert.match(p, /must understand the candidate before/);
+  const v = parseVerdicts('{"verdicts": [{"slug": "sets", "holds": true, "why": "x"}, {"slug": "sets", "holds": false, "why": "dup"}, {"slug": "other", "holds": true, "why": "not asked"}, {"slug": "functions", "holds": "yes", "why": "not boolean"}]}', new Set(["sets", "functions"]));
+  assert.ok(!("error" in v));
+  if ("error" in v) return;
+  assert.deepEqual(Array.from(v.keys()), ["sets"]);
+  assert.equal(v.get("sets")!.holds, true);
+  assert.ok("error" in parseVerdicts("no", new Set()));
+});
+
+test("base ideas match the semantic primes and the foundations of mathematics", () => {
+  assert.equal(matchBase("Equality"), "THE SAME (equality)");
+  assert.equal(matchBase("The concept of number"), "ONE, TWO (number)");
+  assert.equal(matchBase("Causation and mechanism"), "BECAUSE (cause)");
+  assert.equal(matchBase("Units and measurement"), "measurement");
+  assert.equal(matchBase("Photosynthesis"), null);
 });
 
 test("missing base ideas merge by normalized title and count their targets", () => {
@@ -109,4 +173,25 @@ test("missing base ideas merge by normalized title and count their targets", () 
   assert.equal(agg[0].key, "equality");
   assert.deepEqual(agg[0].targets, ["kinematics", "sets"]);
   assert.equal(agg[1].key, "cause");
+});
+
+test("node proposals keep the first justification, the first branch, the sorted targets, and the base match", () => {
+  const t = selectTargets(nodes, dec);
+  const agg = aggregateMissing([
+    { target: t[1], answer: { irreducible: false, factors: [], missing: [{ title: "Equality", branch: "01-mathematics", why: "both sides name one value" }] } },
+    { target: t[0], answer: { irreducible: false, factors: [], missing: [{ title: "equality", branch: "02-physics", why: "later why" }] } },
+  ]);
+  const rows = toNodeProposals(agg, "sonnet");
+  assert.deepEqual(rows, [
+    {
+      key: "equality",
+      title: "Equality",
+      branch: "01-mathematics",
+      justification: "both sides name one value",
+      named_by: ["kinematics", "sets"],
+      base_match: "THE SAME (equality)",
+      model: "sonnet",
+      status: "pending",
+    },
+  ]);
 });

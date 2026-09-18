@@ -25,22 +25,38 @@ import { decompose, FACTOR_EDGES, type DepEdge } from "../../src/lib/research-os
 import {
   aggregateMissing,
   buildPrompt,
+  buildVerifyPrompt,
+  impactOf,
   MAX_FACTORS,
   MAX_MISSING,
   parseAnswer,
+  parseVerdicts,
   promptHash,
   selectTargets,
   shortlist,
+  toNodeProposals,
   toProposals,
   type Answer,
   type Candidate,
   type GraphNode,
   type ProposalRow,
   type Target,
+  type Verdict,
 } from "../../src/lib/research-os/decompose-further";
 
 const OUT = path.join(__dirname, "ingest", "out");
 const CACHE = path.join(OUT, "decompose-cache");
+
+const VERIFY_SCHEMA = {
+  type: "object",
+  properties: {
+    verdicts: {
+      type: "array",
+      items: { type: "object", properties: { slug: { type: "string" }, holds: { type: "boolean" }, why: { type: "string" } }, required: ["slug", "holds", "why"] },
+    },
+  },
+  required: ["verdicts"],
+};
 
 const SCHEMA = {
   type: "object",
@@ -74,7 +90,7 @@ async function all<T>(svc: SupabaseClient, table: string, columns: string, filte
 }
 
 /** One `claude -p` call; resolves to the reply text or throws with a short reason. */
-function askClaude(prompt: string, model: string, timeoutMs: number): Promise<string> {
+function askClaude(prompt: string, model: string, timeoutMs: number, schema: object): Promise<string> {
   const env = { ...process.env };
   delete env.ANTHROPIC_API_KEY;
   const argv = [
@@ -82,7 +98,7 @@ function askClaude(prompt: string, model: string, timeoutMs: number): Promise<st
     "--model", model,
     "--setting-sources", "",
     "--output-format", "json",
-    "--json-schema", JSON.stringify(SCHEMA),
+    "--json-schema", JSON.stringify(schema),
     "--tools", "",
     "--no-session-persistence",
     "--strict-mcp-config",
@@ -122,6 +138,7 @@ async function main() {
   const limit = Number(arg("--limit", "0"));
   const concurrency = Math.max(1, Number(arg("--concurrency", "4")));
   const model = arg("--model", "sonnet")!;
+  const verifyModel = arg("--verify-model", "opus")!;
   const dryRun = process.argv.includes("--dry-run");
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
 
@@ -138,9 +155,20 @@ async function main() {
   let targets = selectTargets(rows, dec);
   if (limit > 0) targets = targets.slice(0, limit);
   mkdirSync(CACHE, { recursive: true });
-  console.log(`[decompose-further] ${targets.length} targets, model ${model}, concurrency ${concurrency}${dryRun ? ", dry run" : ""}`);
+  console.log(`[decompose-further] ${targets.length} targets, proposer ${model}, verifier ${verifyModel}, concurrency ${concurrency}${dryRun ? ", dry run" : ""}`);
 
-  const results: { target: Target; answer: Answer; hash: string; cached: boolean }[] = [];
+  /** Ask once per prompt; the reply is cached by the prompt's hash. */
+  async function cachedAsk(prompt: string, m: string, schema: object): Promise<{ reply: string; hash: string; cached: boolean }> {
+    const hash = promptHash(`${m}\n${prompt}`);
+    const cacheFile = path.join(CACHE, `${hash}.txt`);
+    if (existsSync(cacheFile)) return { reply: readFileSync(cacheFile, "utf8"), hash, cached: true };
+    const reply = await askClaude(prompt, m, 240_000, schema);
+    writeFileSync(cacheFile, reply);
+    return { reply, hash, cached: false };
+  }
+
+  const bySlug = new Map(pool.map((c) => [c.slug, c]));
+  const results: { target: Target; answer: Answer; hash: string; cached: boolean; verdicts: Map<string, Verdict>; verifyHash: string | null }[] = [];
   const failures: { slug: string; reason: string }[] = [];
   let next = 0;
   let done = 0;
@@ -148,19 +176,24 @@ async function main() {
     while (next < targets.length) {
       const target = targets[next++];
       const cands = shortlist(target, pool, dec);
-      const prompt = buildPrompt(target, cands);
-      const hash = promptHash(prompt);
-      const cacheFile = path.join(CACHE, `${hash}.txt`);
-      let reply: string | null = existsSync(cacheFile) ? readFileSync(cacheFile, "utf8") : null;
-      const cached = reply !== null;
       try {
-        if (reply === null) {
-          reply = await askClaude(prompt, model, 240_000);
-          writeFileSync(cacheFile, reply);
+        const ask = await cachedAsk(buildPrompt(target, cands), model, SCHEMA);
+        const parsed = parseAnswer(ask.reply, new Set(cands.map((c) => c.slug)), target.slug);
+        if ("error" in parsed) {
+          failures.push({ slug: target.slug, reason: `proposer: ${parsed.error}` });
+        } else {
+          let verdicts = new Map<string, Verdict>();
+          let verifyHash: string | null = null;
+          if (parsed.factors.length) {
+            const factors = parsed.factors.map((f) => bySlug.get(f.slug)!).filter(Boolean);
+            const v = await cachedAsk(buildVerifyPrompt(target, factors), verifyModel, VERIFY_SCHEMA);
+            const pv = parseVerdicts(v.reply, new Set(factors.map((f) => f.slug)));
+            if ("error" in pv) failures.push({ slug: target.slug, reason: `verifier: ${pv.error}` });
+            else verdicts = pv;
+            verifyHash = v.hash;
+          }
+          results.push({ target, answer: parsed, hash: ask.hash, cached: ask.cached, verdicts, verifyHash });
         }
-        const parsed = parseAnswer(reply, new Set(cands.map((c) => c.slug)), target.slug);
-        if ("error" in parsed) failures.push({ slug: target.slug, reason: parsed.error });
-        else results.push({ target, answer: parsed, hash, cached });
       } catch (e) {
         failures.push({ slug: target.slug, reason: e instanceof Error ? e.message : String(e) });
       }
@@ -170,18 +203,39 @@ async function main() {
   }
   await Promise.all(Array.from({ length: concurrency }, () => worker()));
 
-  const proposals: ProposalRow[] = results.flatMap((r) => toProposals(r.target, r.answer, model, r.hash));
+  const branchOf = new Map<string, string | null>(rows.map((n) => [n.slug, n.branch]));
+  const proposals: ProposalRow[] = results.flatMap((r) =>
+    toProposals(r.target, r.answer, {
+      model,
+      hash: r.hash,
+      verdicts: r.verdicts,
+      verifyModel,
+      verifyHash: r.verifyHash,
+      impact: impactOf(r.target.id, dec),
+      branchOf,
+    }),
+  );
   const missing = aggregateMissing(results);
-  const crossBranch = proposals.filter((p) => rows.find((n) => n.slug === p.from_slug)?.branch !== p.branch).length;
+  const nodeProposals = toNodeProposals(missing, model);
+  const crossBranch = proposals.filter((p) => p.cross_branch).length;
+  const confirmed = proposals.filter((p) => p.agreement).length;
   const irreducible = results.filter((r) => r.answer.irreducible).map((r) => r.target.slug);
 
+  // Already-decided rows stay as they are: a rerun never reopens a reviewer's decision.
   let queued = 0;
-  if (!dryRun && proposals.length) {
+  let queuedNodes = 0;
+  if (!dryRun) {
     for (let i = 0; i < proposals.length; i += 200) {
       const chunk = proposals.slice(i, i + 200);
       const { error } = await svc.from("edge_proposals").upsert(chunk, { onConflict: "from_slug,to_slug", ignoreDuplicates: true });
       if (error) throw new Error(`edge_proposals: ${error.message}`);
       queued += chunk.length;
+    }
+    for (let i = 0; i < nodeProposals.length; i += 200) {
+      const chunk = nodeProposals.slice(i, i + 200);
+      const { error } = await svc.from("node_proposals").upsert(chunk, { onConflict: "key", ignoreDuplicates: true });
+      if (error) throw new Error(`node_proposals: ${error.message}`);
+      queuedNodes += chunk.length;
     }
   }
 
@@ -193,16 +247,27 @@ async function main() {
     from_cache: results.filter((r) => r.cached).length,
     failures,
     proposals: proposals.length,
+    confirmed_by_verifier: confirmed,
     cross_branch_proposals: crossBranch,
     queued,
+    node_proposals: nodeProposals.length,
+    queued_node_proposals: queuedNodes,
+    base_matches: nodeProposals.filter((n) => n.base_match).map((n) => ({ title: n.title, base: n.base_match, named_by: n.named_by.length })),
     irreducible,
     missing_primes: missing,
-    answers: results.map((r) => ({ slug: r.target.slug, status: r.target.status, branch: r.target.branch, ...r.answer })),
+    answers: results.map((r) => ({
+      slug: r.target.slug,
+      status: r.target.status,
+      branch: r.target.branch,
+      ...r.answer,
+      verdicts: Object.fromEntries(r.verdicts),
+    })),
   };
   writeFileSync(path.join(OUT, "decompose-further.json"), JSON.stringify(report, null, 1));
   console.log(
     `[decompose-further] answered ${results.length}/${targets.length} (${report.from_cache} from cache), ${failures.length} failed; ` +
-      `${proposals.length} proposals, ${crossBranch} across branches, ${queued} queued; ${irreducible.length} called irreducible`,
+      `${proposals.length} proposals, ${confirmed} confirmed by the verifier, ${crossBranch} across branches, ${queued} queued; ` +
+      `${nodeProposals.length} missing primes, ${queuedNodes} queued; ${irreducible.length} called irreducible`,
   );
   console.log("[decompose-further] missing base ideas named most often:");
   for (const m of missing.slice(0, 15)) console.log(`  ${m.targets.length}\t${m.title}\t${m.branches.join(", ")}`);

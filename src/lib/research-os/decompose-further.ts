@@ -39,17 +39,36 @@ export type ProposalRow = {
   branch: string | null;
   confidence: number;
   confidence_source: string;
-  agreement: boolean | null;
+  agreement: boolean;
   justification: string;
+  secondary_justification: string | null;
   model: string;
   prompt_hash: string;
+  secondary_prompt_hash: string | null;
+  status: "pending";
+  impact: number;
+  cross_branch: boolean;
+};
+
+export type Verdict = { holds: boolean; why: string };
+
+export type NodeProposalRow = {
+  key: string;
+  title: string;
+  branch: string;
+  justification: string;
+  named_by: string[];
+  base_match: string | null;
+  model: string;
   status: "pending";
 };
 
 /** Kinds worth decomposing: ideas, as opposed to sources, figures, or sites. */
 export const DECOMPOSABLE_KINDS = new Set(["concept", "law", "derivation"]);
-/** Proposals sit below every applied edge until a reviewer approves them. */
-export const PROPOSAL_CONFIDENCE = 0.5;
+/** Confidence when the verifier confirmed the pair, and when it did not. Both sit
+ * under the 0.95 a reviewer's approval writes (inference/decide.ts). */
+export const CONFIRMED_CONFIDENCE = 0.6;
+export const UNCONFIRMED_CONFIDENCE = 0.3;
 export const CONFIDENCE_SOURCE = "prime_decompose_llm";
 export const MAX_FACTORS = 6;
 export const MAX_MISSING = 4;
@@ -165,22 +184,112 @@ export function parseAnswer(text: string, allowed: Set<string>, targetSlug: stri
   return { irreducible: raw?.irreducible === true && factors.length === 0, factors, missing };
 }
 
-export function toProposals(target: Target, answer: Answer, model: string, hash: string): ProposalRow[] {
-  return answer.factors.map((f) => ({
-    from_slug: f.slug,
-    to_slug: target.slug,
-    branch: target.branch,
-    confidence: PROPOSAL_CONFIDENCE,
-    confidence_source: CONFIDENCE_SOURCE,
-    agreement: null,
-    justification: f.why || `named as a factor of ${target.title}`,
-    model,
-    prompt_hash: hash,
-    status: "pending",
-  }));
+/** Nodes resting on the target: how many decompositions an approved factor reaches. */
+export function impactOf(targetId: string, dec: Map<string, Decomposition>): number {
+  let n = 0;
+  for (const d of Array.from(dec.values())) if (d.id !== targetId && d.signature.has(targetId)) n++;
+  return n;
 }
 
-export type MissingPrime = { title: string; key: string; branches: string[]; targets: string[] };
+export function buildVerifyPrompt(target: Target, factors: Candidate[]): string {
+  const lines = factors.map((c) => `- ${c.slug} | ${c.branch ?? "none"} | ${c.title}`).join("\n");
+  return [
+    "You are checking proposed prerequisite links in a research knowledge graph.",
+    `Target: ${target.title} (${target.branch ?? "none"})`,
+    target.summary ? `Summary: ${target.summary}` : "",
+    "",
+    "For each candidate below, answer whether a learner must understand the candidate before they can understand the target.",
+    "Answer false when the candidate is only related, only taught nearby, or only useful later.",
+    "",
+    lines,
+    "",
+    'Answer with JSON only: {"verdicts": [{"slug": "...", "holds": true, "why": "one sentence"}]}',
+  ]
+    .filter((l, i, a) => !(l === "" && a[i - 1] === ""))
+    .join("\n");
+}
+
+/** Verdicts by slug for the slugs asked about; anything else in the reply is ignored. */
+export function parseVerdicts(text: string, asked: Set<string>): Map<string, Verdict> | { error: string } {
+  const start = text.indexOf("{");
+  const end = text.lastIndexOf("}");
+  if (start < 0 || end <= start) return { error: "no JSON object in the reply" };
+  let raw: any;
+  try {
+    raw = JSON.parse(text.slice(start, end + 1));
+  } catch (e) {
+    return { error: `unparseable JSON: ${e instanceof Error ? e.message : String(e)}` };
+  }
+  const out = new Map<string, Verdict>();
+  for (const v of Array.isArray(raw?.verdicts) ? raw.verdicts : []) {
+    const slug = typeof v?.slug === "string" ? v.slug.trim() : "";
+    if (!asked.has(slug) || out.has(slug) || typeof v?.holds !== "boolean") continue;
+    out.set(slug, { holds: v.holds, why: typeof v?.why === "string" ? v.why.trim().slice(0, 400) : "" });
+  }
+  return out;
+}
+
+export type ProposalContext = {
+  model: string;
+  hash: string;
+  verdicts: Map<string, Verdict>;
+  verifyModel: string;
+  verifyHash: string | null;
+  impact: number;
+  branchOf: Map<string, string | null>;
+};
+
+export function toProposals(target: Target, answer: Answer, ctx: ProposalContext): ProposalRow[] {
+  const { model, hash, verdicts, verifyModel, verifyHash, impact, branchOf } = ctx;
+  return answer.factors.map((f) => {
+    const v = verdicts.get(f.slug);
+    const agreement = v?.holds === true;
+    return {
+      from_slug: f.slug,
+      to_slug: target.slug,
+      branch: target.branch,
+      confidence: agreement ? CONFIRMED_CONFIDENCE : UNCONFIRMED_CONFIDENCE,
+      confidence_source: CONFIDENCE_SOURCE,
+      agreement,
+      justification: f.why || `named as a factor of ${target.title}`,
+      secondary_justification: v ? `${verifyModel}: ${v.why || (v.holds ? "confirmed" : "not confirmed")}` : null,
+      model,
+      prompt_hash: hash,
+      secondary_prompt_hash: verifyHash,
+      status: "pending",
+      impact,
+      cross_branch: (branchOf.get(f.slug) ?? null) !== target.branch,
+    };
+  });
+}
+
+/**
+ * Base ideas from the semantic primes (Wierzbicka 1996) and the foundations
+ * of mathematics. A missing-prime proposal whose title matches one is
+ * flagged for the reviewer. Keys are the flag; patterns match normalized titles.
+ */
+export const BASE_IDEAS: { key: string; pattern: RegExp }[] = [
+  { key: "THE SAME (equality)", pattern: /\b(equality|equal|same|identity|equivalence)\b/ },
+  { key: "ONE, TWO (number)", pattern: /\b(number|numbers|counting|quantity|natural numbers?)\b/ },
+  { key: "KIND (set, category)", pattern: /\b(set|sets|kind|category|class|classification)\b/ },
+  { key: "PART (part and whole)", pattern: /\b(part|parts|whole|composition|component)\b/ },
+  { key: "BECAUSE (cause)", pattern: /\b(cause|causes|causation|causal|causality)\b/ },
+  { key: "IF (condition, implication)", pattern: /\b(if|implication|conditional|inference|deduction|deductive)\b/ },
+  { key: "NOT (negation)", pattern: /\b(not|negation|contradiction)\b/ },
+  { key: "TRUE (truth)", pattern: /\b(true|truth|proposition|propositions)\b/ },
+  { key: "BEFORE, AFTER, TIME", pattern: /\b(time|before|after|order|sequence|temporal)\b/ },
+  { key: "PLACE, WHERE (space)", pattern: /\b(place|space|spatial|position|location)\b/ },
+  { key: "ALL, SOME (quantifiers)", pattern: /\b(all|some|quantifier|quantifiers|quantification)\b/ },
+  { key: "function", pattern: /\b(function|functions|mapping)\b/ },
+  { key: "measurement", pattern: /\b(measure|measurement|unit|units)\b/ },
+];
+
+export function matchBase(title: string): string | null {
+  const t = title.toLowerCase().replace(/[^a-z0-9 ]+/g, " ");
+  return BASE_IDEAS.find((b) => b.pattern.test(t))?.key ?? null;
+}
+
+export type MissingPrime = { title: string; key: string; branches: string[]; targets: string[]; why: string };
 
 /** Tally the base ideas the model says the graph lacks, merged by normalized title. */
 export function aggregateMissing(results: { target: Target; answer: Answer }[]): MissingPrime[] {
@@ -189,11 +298,25 @@ export function aggregateMissing(results: { target: Target; answer: Answer }[]):
     for (const m of answer.missing) {
       const key = m.title.toLowerCase().replace(/^the\s+/, "").replace(/[^a-z0-9]+/g, " ").trim();
       if (!key) continue;
-      if (!by.has(key)) by.set(key, { title: m.title, key, branches: [], targets: [] });
+      if (!by.has(key)) by.set(key, { title: m.title, key, branches: [], targets: [], why: m.why });
       const e = by.get(key)!;
       if (m.branch && !e.branches.includes(m.branch)) e.branches.push(m.branch);
       if (!e.targets.includes(target.slug)) e.targets.push(target.slug);
     }
   }
   return Array.from(by.values()).sort((a, b) => b.targets.length - a.targets.length || a.key.localeCompare(b.key));
+}
+
+/** One pending node proposal per missing prime; the most-named branch first. */
+export function toNodeProposals(missing: MissingPrime[], model: string): NodeProposalRow[] {
+  return missing.map((m) => ({
+    key: m.key,
+    title: m.title,
+    branch: m.branches[0] ?? "01-mathematics",
+    justification: m.why || `named as a base idea by ${m.targets.length} node(s)`,
+    named_by: m.targets.slice().sort(),
+    base_match: matchBase(m.title),
+    model,
+    status: "pending",
+  }));
 }
