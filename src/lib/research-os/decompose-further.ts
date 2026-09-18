@@ -375,8 +375,6 @@ export type ProposalContext = {
   impact: number;
   branchOf: Map<string, string | null>;
   origin?: Origin;
-  /** Wikipedia link evidence by factor slug (see refd). */
-  refd?: Map<string, number>;
   /** Per-factor reason when the factor came from a matched missing idea. */
   reasons?: Map<string, string>;
 };
@@ -407,7 +405,7 @@ export function toProposals(target: Target, answer: Answer, ctx: ProposalContext
       cross_branch: (branchOf.get(f.slug) ?? null) !== target.branch,
       verification,
       origin: ctx.origin ?? "proposer",
-      refd: ctx.refd?.get(f.slug) ?? null,
+      refd: null,
     };
   });
 }
@@ -442,7 +440,7 @@ export function blindSet(target: Target, picks: Candidate[], shortlisted: Candid
   return { items: items.map((i) => i.c), picked };
 }
 
-export type AgreementRow = { target: string; picked: boolean; holds: boolean };
+export type AgreementRow = { target: string; slug?: string; picked: boolean; holds: boolean };
 
 export type AgreementStats = {
   pairs: number;

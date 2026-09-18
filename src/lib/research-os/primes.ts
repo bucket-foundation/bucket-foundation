@@ -295,3 +295,36 @@ export function summarize(dec: Map<string, Decomposition>): PrimeSummary {
   }
   return s;
 }
+
+/** One node's standing in an earlier decomposition, as primes-report.json records it. */
+export type PriorStanding = { id: string; status: PrimeStatus; depth: number };
+
+export type PrimeMoves = {
+  /** Primes that gained factors: the base layer moved below them. */
+  decomposed: string[];
+  /** Unfactored nodes that joined the dependency graph. */
+  joined: string[];
+  /** Nodes that are prime now and were not before, new base ideas among them. */
+  newPrimes: string[];
+  /** Nodes whose depth changed while their status held. */
+  deeper: number;
+  shallower: number;
+};
+
+/** What changed between an earlier decomposition and this one. Nodes new since then count as joined when they have edges. */
+export function movesSince(prior: PriorStanding[], dec: Map<string, Decomposition>): PrimeMoves {
+  const before = new Map(prior.map((p) => [p.id, p]));
+  const out: PrimeMoves = { decomposed: [], joined: [], newPrimes: [], deeper: 0, shallower: 0 };
+  for (const d of Array.from(dec.values())) {
+    const p = before.get(d.id);
+    const was = p?.status ?? "unfactored";
+    if (was === "prime" && d.status === "composite") out.decomposed.push(d.id);
+    if (was === "unfactored" && d.status !== "unfactored") out.joined.push(d.id);
+    if (was !== "prime" && d.status === "prime") out.newPrimes.push(d.id);
+    if (p && was === d.status && d.status !== "unfactored") {
+      if (d.depth > p.depth) out.deeper++;
+      else if (d.depth < p.depth) out.shallower++;
+    }
+  }
+  return out;
+}

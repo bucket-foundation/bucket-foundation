@@ -1,19 +1,30 @@
 /**
  * Runs the prime decomposition (src/lib/research-os/primes.ts) over the
- * graph in Supabase and prints a report: status counts, tiers, the most
- * penetrating primes, the deepest composites, cycles, and the nodes that
- * name equality, the worked example in learning/research-os/PRIMES.md.
- * Writes the full result to scripts/research-os/ingest/out/primes-report.json
- * (ignored by git).
+ * graph's public, current nodes in Supabase and prints a report: status
+ * counts, tiers, the most penetrating primes, the deepest composites,
+ * cycles, the nodes that name equality (the worked example in
+ * learning/research-os/PRIMES.md), the primes a reviewer confirmed as
+ * irreducible, and what moved since the previous report. Writes the full
+ * result to scripts/research-os/ingest/out/primes-report.json (ignored by
+ * git), which the next run reads as its baseline.
  *
  * Run from the repo root with the local stack's keys in .env.local:
  *   set -a; . ./.env.local; set +a
  *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/primes-report.ts
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { decompose, FACTOR_EDGES, penetration, summarize, type DepEdge, type PrimeNodeInput } from "../../src/lib/research-os/primes";
+import {
+  decompose,
+  FACTOR_EDGES,
+  movesSince,
+  penetration,
+  summarize,
+  type DepEdge,
+  type PriorStanding,
+  type PrimeNodeInput,
+} from "../../src/lib/research-os/primes";
 
 type NodeRow = { id: string; slug: string | null; title: string | null; kind: string | null; branch: string | null };
 type EdgeRow = { from_id: string; to_id: string; kind: string; confidence: number | null };
@@ -36,8 +47,13 @@ async function main() {
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set");
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
 
-  const nodeRows = await all<NodeRow>(svc, "nodes", "id, slug, title, kind, branch");
-  const edgeRows = await all<EdgeRow>(svc, "edges", "from_id, to_id, kind, confidence", (q) => q.in("kind", Object.keys(FACTOR_EDGES)));
+  const nodeRows = await all<NodeRow>(svc, "nodes", "id, slug, title, kind, branch", (q) => q.eq("visibility", "public").is("superseded_by", null));
+  const live = new Set(nodeRows.map((n) => n.id));
+  const edgeRows = (await all<EdgeRow>(svc, "edges", "from_id, to_id, kind, confidence", (q) => q.in("kind", Object.keys(FACTOR_EDGES)))).filter(
+    (e) => live.has(e.from_id) && live.has(e.to_id),
+  );
+  const reviewed = await all<{ node_slug: string; status: string }>(svc, "irreducible_proposals", "node_slug, status");
+  const irreducible = new Set(reviewed.filter((r) => r.status === "approved").map((r) => r.node_slug));
   const nodes: PrimeNodeInput[] = nodeRows.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, branch: n.branch }));
   const edges: DepEdge[] = edgeRows.map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
 
@@ -82,12 +98,44 @@ async function main() {
     console.log(`  ${d.status}\tdepth ${d.depth}\tprimes ${d.signature.size}\tin ${reach?.composites ?? 0} composites\t${label(n.id)}`);
   }
 
+  const primeRows = nodeRows.filter((n) => dec.get(n.id)?.status === "prime");
+  const confirmed = primeRows.filter((n) => n.slug && irreducible.has(n.slug));
+  const lostStanding = nodeRows.filter((n) => n.slug && irreducible.has(n.slug) && dec.get(n.id)?.status !== "prime");
+  console.log(`\nprimes a reviewer confirmed as irreducible: ${confirmed.length} of ${primeRows.length}`);
+  for (const n of confirmed.slice(0, 15)) console.log(`  ${label(n.id)}`);
+  if (lostStanding.length) {
+    console.log(`confirmed irreducible, yet factors were approved later (review again): ${lostStanding.length}`);
+    for (const n of lostStanding.slice(0, 15)) console.log(`  ${label(n.id)}`);
+  }
+
   const outDir = path.join(__dirname, "ingest", "out");
+  const reportFile = path.join(outDir, "primes-report.json");
+  let moves: ReturnType<typeof movesSince> | null = null;
+  let since: string | null = null;
+  if (existsSync(reportFile)) {
+    try {
+      const prev = JSON.parse(readFileSync(reportFile, "utf8")) as { generated_at?: string; nodes?: PriorStanding[] };
+      if (Array.isArray(prev.nodes)) {
+        moves = movesSince(prev.nodes, dec);
+        since = prev.generated_at ?? null;
+      }
+    } catch (e) {
+      console.log(`\nprevious report unreadable, no baseline: ${e instanceof Error ? e.message : e}`);
+    }
+  }
+  if (moves) {
+    console.log(`\nsince ${since}: ${moves.decomposed.length} primes decomposed further, ${moves.newPrimes.length} new primes, ${moves.joined.length} nodes joined the dependency graph, ${moves.deeper} deeper, ${moves.shallower} shallower`);
+    for (const id of moves.decomposed.slice(0, 15)) console.log(`  decomposed\t${label(id)}`);
+    for (const id of moves.newPrimes.slice(0, 15)) console.log(`  new prime\t${label(id)}`);
+  } else console.log("\nno earlier report: this run is the baseline");
   mkdirSync(outDir, { recursive: true });
   const report = {
     generated_at: new Date().toISOString(),
     summary: sum,
     unfactored_by_kind: unfactoredByKind,
+    reviewed_irreducible: confirmed.map((n) => n.slug),
+    irreducible_with_new_factors: lostStanding.map((n) => n.slug),
+    moves: moves && { since, ...moves },
     penetration: pen.map((p) => ({ ...p, label: label(p.id) })),
     nodes: Array.from(dec.values()).map((d) => ({
       id: d.id,
@@ -99,7 +147,7 @@ async function main() {
       signature: Object.fromEntries(d.signature),
     })),
   };
-  writeFileSync(path.join(outDir, "primes-report.json"), JSON.stringify(report, null, 1));
+  writeFileSync(reportFile, JSON.stringify(report, null, 1));
   console.log(`\nwrote ${path.join("scripts", "research-os", "ingest", "out", "primes-report.json")}`);
 }
 

@@ -17,7 +17,10 @@
  *   5. Verify every pair still unchecked, including pending pairs queued
  *      from approved base ideas.
  *   6. Flag pairs that would close a cycle with other pending proposals.
- *   7. Merge everything into graph.edge_proposals, graph.node_proposals,
+ *   7. Score every pair with Wikipedia link evidence (RefD, Liang et al.
+ *      2015; scripts/research-os/wikipedia-links.ts), a judge outside the
+ *      Claude models, and tally how its sign meets the verifier's verdicts.
+ *   8. Merge everything into graph.edge_proposals, graph.node_proposals,
  *      and graph.irreducible_proposals; decided rows stay as reviewed.
  *
  * Model calls go through `claude -p` under this machine's login with the
@@ -30,13 +33,16 @@
  *   npx ts-node --compiler-options '{"module":"commonjs"}' scripts/research-os/decompose-further.ts [flags]
  *
  * Flags: --limit N, --concurrency 4, --model sonnet, --verify-model opus,
- * --dry-run (asks and reports, queues nothing), --show-shortlist <slug>.
+ * --dry-run (asks and reports, queues nothing), --show-shortlist <slug>,
+ * --offline-wiki (RefD from the cached Wikipedia replies only).
  */
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { decompose, FACTOR_EDGES, type DepEdge } from "../../src/lib/research-os/primes";
+import { refdAgreement, scorePairs } from "../../src/lib/research-os/refd";
+import { wikipediaIndex } from "./wikipedia-links";
 import {
   agreementStats,
   aggregateMissing,
@@ -203,7 +209,7 @@ function askClaude(prompt: string, model: string, timeoutMs: number, schema: obj
 }
 
 type Cached<T> = { value: T | { error: string }; hash: string; cached: boolean };
-type QueuedPair = { id: string; from_slug: string; to_slug: string };
+type QueuedPair = { id: string; from_slug: string; to_slug: string; refd?: number | null };
 
 async function main() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -295,7 +301,7 @@ async function main() {
               verified = false;
             } else {
               for (const [slug, verdict] of Array.from(v.value)) {
-                agreement.push({ target: target.slug, picked: picked.has(slug), holds: verdict.holds });
+                agreement.push({ target: target.slug, slug, picked: picked.has(slug), holds: verdict.holds });
                 if (picked.has(slug)) verdicts.set(slug, verdict);
               }
             }
@@ -465,7 +471,7 @@ async function main() {
   // Stage 6: cycles among the proposals and the graph's own factor edges.
   const pendingAll = dryRun
     ? []
-    : await all<QueuedPair>(svc, "edge_proposals", "id, from_slug, to_slug", (q) => q.eq("status", "pending").eq("confidence_source", CONFIDENCE_SOURCE));
+    : await all<QueuedPair>(svc, "edge_proposals", "id, from_slug, to_slug, refd", (q) => q.eq("status", "pending").eq("confidence_source", CONFIDENCE_SOURCE));
   const olderPending = pendingAll.filter((r) => !proposed.has(`${r.from_slug}->${r.to_slug}`));
   const cyclic = cyclicPairs(edges, [...proposals, ...olderPending], idOf);
   const inCycle = (p: { from_slug: string; to_slug: string }) => cyclic.has(`${p.from_slug}->${p.to_slug}`);
@@ -473,8 +479,56 @@ async function main() {
 
   const irreducible = results.filter((r) => r.answer.irreducible);
 
-  // Stage 7: merge into the review tables.
-  const queued = { edge_proposals: 0, node_proposals: 0, irreducible: 0, from_approved_base_ideas: 0, verdicts_on_queued: 0, older_pairs_in_cycle: 0 };
+  // Stage 7: Wikipedia link evidence for every pair, the proposals, the
+  // older pending pairs, and the blinded set alike.
+  const blindPairs = agreement.filter((a) => a.slug).map((a) => ({ from_slug: a.slug!, to_slug: a.target }));
+  let refdOf = (_from: string, _to: string): number | null => null;
+  let wiki: { articles: number; mapped: number; via_corpus: number; requests: number; error: string | null } = {
+    articles: 0,
+    mapped: 0,
+    via_corpus: 0,
+    requests: 0,
+    error: null,
+  };
+  try {
+    const idx = await wikipediaIndex(
+      ideaPool.map((c) => ({ slug: c.slug, title: c.title })),
+      { offline: process.argv.includes("--offline-wiki") },
+    );
+    const scores = scorePairs([...withCycle, ...olderPending, ...blindPairs], idx.titleOf, idx.links);
+    refdOf = (from, to) => {
+      const key = `${from}->${to}`;
+      if (scores.has(key)) return scores.get(key)!;
+      const one = scorePairs([{ from_slug: from, to_slug: to }], idx.titleOf, idx.links);
+      return one.get(key) ?? null;
+    };
+    wiki = {
+      articles: idx.links.size,
+      mapped: idx.titleOf.size,
+      via_corpus: Array.from(idx.via.values()).filter((v) => v === "corpus").length,
+      requests: idx.requests,
+      error: null,
+    };
+  } catch (e) {
+    wiki.error = e instanceof Error ? e.message : String(e);
+    failures.push({ slug: "wikipedia", reason: wiki.error });
+  }
+  for (const p of withCycle) p.refd = refdOf(p.from_slug, p.to_slug);
+  const refdProposals = refdAgreement(withCycle);
+  const refdBlind = refdAgreement(
+    agreement.filter((a) => a.slug).map((a) => ({ refd: refdOf(a.slug!, a.target), verification: a.holds ? "confirmed" : "refuted" })),
+  );
+
+  // Stage 8: merge into the review tables.
+  const queued = {
+    edge_proposals: 0,
+    node_proposals: 0,
+    irreducible: 0,
+    from_approved_base_ideas: 0,
+    verdicts_on_queued: 0,
+    older_pairs_in_cycle: 0,
+    older_pairs_scored: 0,
+  };
   if (!dryRun) {
     for (let i = 0; i < withCycle.length; i += 200) {
       const { error } = await svc.rpc("merge_edge_proposals", { p_rows: withCycle.slice(i, i + 200) });
@@ -496,6 +550,13 @@ async function main() {
         .eq("status", "pending");
       if (error) throw new Error(`edge_proposals verdict: ${error.message}`);
       queued.verdicts_on_queued++;
+    }
+    for (const r of olderPending) {
+      const score = r.refd == null ? refdOf(r.from_slug, r.to_slug) : null;
+      if (score === null) continue;
+      const { error } = await svc.from("edge_proposals").update({ refd: score }).eq("id", r.id).eq("status", "pending");
+      if (error) throw new Error(`edge_proposals refd: ${error.message}`);
+      queued.older_pairs_scored++;
     }
     for (const r of olderPending) {
       if (!inCycle(r)) continue;
@@ -531,6 +592,7 @@ async function main() {
             }),
           );
         }
+        for (const p of extra) p.refd = refdOf(p.from_slug, p.to_slug);
         if (extra.length) {
           const { error: e2 } = await svc.rpc("merge_edge_proposals", { p_rows: extra });
           if (e2) throw new Error(`merge_edge_proposals: ${e2.message}`);
@@ -569,6 +631,7 @@ async function main() {
     cross_branch_proposals: proposals.filter((p) => p.cross_branch).length,
     in_cycle: withCycle.filter((p) => p.in_cycle).length,
     agreement: stats,
+    refd: { wikipedia: wiki, proposals: refdProposals, blinded: refdBlind },
     confirmation: {
       all: rate(proposals),
       cross_branch: rate(proposals.filter((p) => p.cross_branch)),
@@ -601,6 +664,14 @@ async function main() {
       `${report.cross_branch_proposals} across branches, ${report.in_cycle} in a cycle`,
   );
   console.log(`[decompose-further] blinded agreement: ${stats.pairs} pairs over ${stats.targets} targets, kappa ${k}, 95% interval ${ci}, table ${JSON.stringify(stats.table)}`);
+  const share = (t: ReturnType<typeof refdAgreement>) =>
+    t.pairs
+      ? `${t.pairs} pairs, mean ${t.confirmed.mean ?? "n/a"} confirmed and ${t.refuted.mean ?? "n/a"} refuted, AUC ${t.auc ?? "n/a"}`
+      : "no scored pairs";
+  console.log(
+    `[decompose-further] Wikipedia: ${wiki.mapped} nodes mapped (${wiki.via_corpus} from the corpus), ${wiki.articles} articles, ${wiki.requests} requests${wiki.error ? `, error: ${wiki.error}` : ""}; ` +
+      `RefD against the verifier: proposals ${share(refdProposals)}, blinded set ${share(refdBlind)}`,
+  );
   console.log(
     `[decompose-further] missing ideas: ${missing.length} named, ${outcome.matched.length} already had a node, ${outcome.nodeProposals.length} missing primes; ${irreducible.length} called irreducible`,
   );

@@ -41,6 +41,7 @@ interface EdgeProposal {
   impact: number;
   crossBranch: boolean;
   inCycle: boolean;
+  refd: number | null;
   priority: number;
 }
 
@@ -76,6 +77,14 @@ const VERIFICATION_TEXT: Record<string, { text: string; className: string }> = {
   refuted: { text: "the second check disagreed, read both reasons", className: "text-red-700" },
   unchecked: { text: "not checked by a second model yet", className: "text-[color:var(--basalt-3)]" },
 };
+
+/** How to read a RefD score: which article's neighbourhood leans on the other. */
+const REFD_TEXT = (x: number) =>
+  x > 0.02
+    ? "the target's linked articles refer to this factor more than the reverse, which supports it"
+    : x < -0.02
+      ? "this factor's linked articles refer to the target more, which points the other way"
+      : "the links lean neither way";
 
 const ORIGIN_TEXT: Record<string, string> = {
   missing_matched: "The proposer called this idea missing; it already has this node.",
@@ -477,6 +486,12 @@ export default function ResearchOsEdgesPage() {
                             &middot; confidence {p.confidence.toFixed(2)} &middot; {p.model} &middot; prompt {p.promptHash.slice(0, 8)}
                           </span>
                         </div>
+                        {p.refd !== null && p.refd !== undefined && (
+                          <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]" title="RefD over Wikipedia links, Liang et al. 2015">
+                            Wikipedia links {p.refd > 0 ? "+" : ""}
+                            {p.refd.toFixed(2)}: {REFD_TEXT(p.refd)}
+                          </p>
+                        )}
                         {p.origin && ORIGIN_TEXT[p.origin] && <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">{ORIGIN_TEXT[p.origin]}</p>}
                         {p.inCycle && (
                           <p className="mt-1 text-[12px] text-red-700">Pending proposals point both ways here: approving all of them would close a cycle.</p>

@@ -1,7 +1,7 @@
 /** Prime decomposition: factors, statuses, signatures, cycles, penetration. */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { decompose, factorMap, penetration, summarize, type DepEdge } from "../src/lib/research-os/primes";
+import { decompose, factorMap, movesSince, penetration, summarize, type DepEdge } from "../src/lib/research-os/primes";
 
 const pre = (from: string, to: string, confidence?: number): DepEdge => ({ fromId: from, toId: to, kind: "prerequisite", confidence });
 const der = (from: string, to: string, confidence?: number): DepEdge => ({ fromId: from, toId: to, kind: "derives_from", confidence });
@@ -79,4 +79,17 @@ test("a long chain decomposes without recursion limits", () => {
   const d = decompose([], edges);
   assert.equal(d.get("n20000")!.depth, 20000);
   assert.deepEqual(Object.fromEntries(d.get("n20000")!.signature), { n0: 1 });
+});
+
+test("moves since an earlier run: a prime that gains a factor, a new base idea, and nodes that join", () => {
+  const before = decompose([{ id: "lonely" }], [pre("kin", "dyn")]);
+  const prior = Array.from(before.values()).map((d) => ({ id: d.id, status: d.status, depth: d.depth }));
+  // A new base idea "eq" now sits under "kin", and "lonely" rests on "kin".
+  const after = decompose([{ id: "lonely" }], [pre("kin", "dyn"), pre("eq", "kin"), pre("kin", "lonely")]);
+  const m = movesSince(prior, after);
+  assert.deepEqual(m.decomposed, ["kin"]);
+  assert.deepEqual(m.newPrimes.sort(), ["eq"]);
+  assert.deepEqual(m.joined.sort(), ["eq", "lonely"]);
+  assert.equal(m.deeper, 1);
+  assert.equal(m.shallower, 0);
 });
