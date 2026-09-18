@@ -24,7 +24,7 @@ Set by the founder on 2026-09-18: Bucket runs on this machine first, and hosted 
 
 - **Database**: the local Supabase stack. `npm run db:local` starts it, `npm run db:local:status` prints the keys for `.env.local`, and `docs/AUTH.md` has the steps. Building and testing need no hosted Supabase project.
 - **App**: `npm run dev` against the local stack.
-- **Engine**: `hte-serve` on localhost, reached through `HTE_SERVE_URL` in `.env.local`.
+- **Engine**: `hte-serve` runs as the `hte-serve.service` user unit on 127.0.0.1:8420 in live mode (`scripts/systemd/install-hte-serve.sh`). `.env.local` sets `HTE_SERVE_URL=http://127.0.0.1:8420` and `HTE_SERVE_TIMEOUT_S=600`, so `/api/research-os/hypothesize` and the MCP `hypothesize` tool answer locally.
 - **Beads**: new beads go to `BEADS-PENDING.jsonl` while the Nucleus host is down, and drain when it returns.
 - **Public site**: still ships. `dev` promotes to `main`, and Vercel builds `main` for bucket.foundation.
 
