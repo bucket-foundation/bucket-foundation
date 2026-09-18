@@ -24,7 +24,9 @@ import { buildIndex, tokenRank } from "../canon-search-index";
 
 export const PROTOCOL_VERSION = "2025-06-18";
 export const SERVER_INFO = { name: "bucket-foundation", version: "0.2.0" };
-const HTE_TIMEOUT_MS = 600_000;
+// The Hobby plan caps a function at 60 s (route.ts maxDuration). The engine
+// call gives up at 55 s so the tool returns an error the client can read.
+const HTE_TIMEOUT_MS = 55_000;
 
 type Json = Record<string, unknown>;
 export type ToolResult = { content: { type: "text"; text: string }[]; structuredContent?: Json; isError?: boolean };
