@@ -193,6 +193,7 @@ function seed(): Db {
         title: "Equality",
         branch: "01-mathematics",
         justification: "Both sides name one value.",
+        summary: "Two expressions are equal when they name the same value.",
         named_by: ["kinematics", "sets", "gone"],
         aliases: ["Equality / equivalence"],
         reasons: { kinematics: "Position equals the integral of velocity." },
@@ -341,4 +342,15 @@ test("an approval reuses an existing node with the slug, and an unknown branch o
   const db2 = seed();
   const bad = await decideNode(fake(db2, rpcs()), { id: "np-eq", decision: "approved", reason: null, reviewerId: "r", overrides: { branch: "99-nowhere" } });
   assert.equal(bad.status, 400);
+});
+
+test("a missing prime with no definition is refused until the reviewer writes one, and stays pending", async () => {
+  const db = seed();
+  db.node_proposals[0].summary = null;
+  const r = await decideNode(fake(db, rpcs()), { id: "np-eq", decision: "approved", reason: null, reviewerId: "rev-1" });
+  assert.equal(r.status, 400);
+  assert.equal(db.node_proposals[0].status, "pending");
+  assert.ok(!db.nodes.some((x) => x.slug === "concept-equality"));
+  const listed = await listNodeProposals(fake(db, rpcs()));
+  assert.equal((listed.body.proposals as Array<Record<string, any>>)[0].summary, null);
 });

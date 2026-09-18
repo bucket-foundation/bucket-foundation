@@ -105,7 +105,7 @@ Confidence follows the scale the other proposers use (`inference/calibration.ts`
 
 **Missing primes.** The base ideas the proposer names go through one more model pass that groups synonyms and spots ideas that already have a node. An idea that has a node becomes a factor proposal for every target that named it. The rest go to `graph.node_proposals` with their aliases, the targets that named them and why, and the existing nodes they may duplicate by embedding. Each is checked against the semantic primes and the foundations of mathematics (number, set, function, equality, measurement) by head noun, and a match is flagged as a hint. A later run that names the same idea reuses its key. Approving a missing prime creates a concept node at the lowest grade tier among the targets that named it and queues an unchecked factor proposal to each of them, which the next run verifies.
 
-**Irreducible verdicts.** A target the proposer calls irreducible goes to `graph.irreducible_proposals` with the reason. A reviewer who confirms it takes the node out of later runs; one who rejects it sends it back.
+**Irreducible verdicts.** A target the proposer calls irreducible goes to `graph.irreducible_proposals` with the reason, and later runs leave it out while the verdict is pending or confirmed. A reviewer who rejects it sends it back to the queue.
 
 **Review.** The page lists irreducible verdicts, missing primes by how many targets named them, and factor proposals grouped by target, highest impact first. Each proposal shows both judgments, the Wikipedia score, where it came from, and any cycle. The reviewer picks the edge kind: "rests on" writes a `derives_from` edge and leaves learning order alone, and "learning order" writes a `prerequisite` edge and rebuilds the routing closure. A decision claims the row first, so two reviewers cannot decide it twice, and an approval that would close a cycle in the graph is refused.
 
@@ -113,7 +113,32 @@ Confidence follows the scale the other proposers use (`inference/calibration.ts`
 
 ### Results
 
-RESULTS-V2
+Run on 2026-09-18 over the local graph, proposer `claude-sonnet-5`, verifier `claude-opus-5`, 40 targets (38 primes, 2 unfactored ideas). Every target answered. Report: `scripts/research-os/ingest/out/decompose-further.json`.
+
+| Measure | Value |
+|---|---|
+| Factor proposals | 147: 138 from the proposer, 9 from missing ideas that already had a node |
+| Confirmed by the verifier | 81 of 147 |
+| Across branches | 97, of which 62 confirmed; same branch 50, of which 19 confirmed |
+| On a cycle with other proposals | 7 |
+| Blinded set | 279 pairs over 39 targets; the verifier held 75 of 138 picks and 1 of 141 passed-over candidates |
+| Cohen's kappa, proposer against verifier | 0.54, 95% interval 0.44 to 0.63 |
+| Wikipedia coverage | 475 nodes mapped to 429 articles, 470 of them through the lesson's own link; 141 of 147 proposals scored |
+| RefD, confirmed against refuted | mean 0.139 against 0.047; ROC area 0.59 over the proposals, 0.63 over the blinded set |
+| Missing ideas | 71 named, 11 already had a node, 58 missing primes, each named by one target |
+| Called irreducible | 1 |
+
+**The proposer overreaches and the verifier catches it.** The verifier refused 63 of the proposer's 138 picks and accepted 1 of the 141 candidates the proposer passed over. Its confirmations carry signal; the proposer's picks alone do not. A kappa of 0.54 is moderate agreement, the word Alzetta and colleagues use for trained annotators making the same kind of judgment.
+
+**Factors now cross branches.** Two thirds of the proposals point across a branch, and the verifier confirmed those at a higher rate (62 of 97) than same-branch ones (19 of 50). Kinematics, a physics prime, gets Derivatives and integrals for physics as a confirmed factor, and the reverse proposal is refuted and flagged as a cycle. The slice 1 finding that no prime crosses a branch was a property of how the Academy was written.
+
+**Wikipedia's links lean with the verifier, weakly.** A confirmed pair scores above a refuted one 59 to 63 percent of the time. The score runs over 429 articles only, so many pairs share no linked article and score zero. It is a third opinion for the reviewer, too weak to decide a pair alone.
+
+**The missing primes are intermediate ideas.** Asked for base ideas, the proposer named what the graph lacks one step down: convolution, the divergence theorem, center of mass, Boolean algebra, cell theory. One names equality directly ("Equality and identity") and one names number ("Natural numbers and induction"). The base-idea hint matches by head noun and flagged 10, of which those 2 are base ideas; it points the reviewer and decides nothing. Each missing prime carries a one-sentence definition from the consolidation pass, which becomes the node's summary.
+
+**The one irreducible verdict is a claim about the field.** "The science of learning is settled, the learner is the last to know" is a thesis about an evidence base, and the proposer said so. Whether a claim of that kind belongs among the primes is a review call.
+
+The first run, before the target and blinding rules, asked about 166 targets and produced 716 proposals with no blinded check; its report is kept as `decompose-further-baseline-v1.json`.
 
 ## Next slices
 

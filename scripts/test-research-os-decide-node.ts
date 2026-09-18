@@ -10,6 +10,7 @@ const record: NodeProposalRecord = {
   title: "Equality",
   branch: "01-mathematics",
   justification: "Both sides of an equation name one value.",
+  summary: "Two expressions are equal when they name the same value.",
   namedBy: ["kinematics", "stoichiometry"],
   aliases: ["Equality / equivalence"],
   reasons: { kinematics: "Position equals the integral of velocity.", stoichiometry: "A balanced equation equates atoms on both sides." },
@@ -53,7 +54,7 @@ test("approving creates a concept at the naming nodes' grade tier with locale la
   assert.equal(n.slug, "concept-equality");
   assert.equal(n.tier, 14);
   assert.equal(n.kind, "concept");
-  assert.deepEqual(n.labels, { en: { title: "Equality", summary: "Both sides of an equation name one value." } });
+  assert.deepEqual(n.labels, { en: { title: "Equality", summary: "Two expressions are equal when they name the same value." } });
   assert.equal(n.provenance.type, "node_proposal");
   assert.equal(n.provenance.base_idea_hint, "THE SAME (equality)");
   assert.deepEqual(n.provenance.aliases, ["Equality / equivalence"]);
@@ -80,4 +81,15 @@ test("the reviewer's title, summary and branch override the proposal's", () => {
 test("rejecting writes nothing and a decided proposal stays decided", () => {
   assert.deepEqual(decideNodeProposal(record, "rejected", ctx), { status: "rejected", alreadyDecided: false });
   assert.deepEqual(decideNodeProposal({ ...record, status: "approved" }, "rejected", ctx), { status: "approved", alreadyDecided: true });
+});
+
+test("an approval needs a definition: the reviewer's, else the consolidation pass's, never the proposer's reason", () => {
+  const bare = { ...record, summary: null };
+  assert.equal(decideNodeProposal(bare, "approved", ctx).error, "summary_required");
+  assert.equal(decideNodeProposal(bare, "approved", { ...ctx, overrides: { summary: "   " } }).error, "summary_required");
+  const typed = decideNodeProposal(bare, "approved", { ...ctx, overrides: { summary: "Sameness of value." } });
+  assert.equal(typed.error, undefined);
+  assert.equal(typed.nodeToCreate?.summary, "Sameness of value.");
+  assert.equal(decideNodeProposal(record, "approved", ctx).nodeToCreate?.summary, "Two expressions are equal when they name the same value.");
+  assert.equal(decideNodeProposal(bare, "rejected", ctx).error, undefined);
 });

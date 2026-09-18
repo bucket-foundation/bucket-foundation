@@ -18,6 +18,8 @@ export type NodeProposalRecord = {
   title: string;
   branch: string;
   justification: string;
+  /** The consolidation pass's one-sentence definition, when it wrote one. */
+  summary: string | null;
   namedBy: string[];
   aliases: string[];
   reasons: Record<string, string>;
@@ -39,6 +41,8 @@ export type NodeToCreate = {
 export type NodeDecision = {
   status: "approved" | "rejected";
   alreadyDecided: boolean;
+  /** Set when an approval cannot go ahead: the node would have no definition. */
+  error?: "summary_required";
   nodeToCreate?: NodeToCreate;
   edgeProposals?: ProposalRow[];
 };
@@ -96,7 +100,10 @@ export function decideNodeProposal(
   if (decision === "rejected") return { status: "rejected", alreadyDecided: false };
   const slug = nodeSlug(record.key);
   const title = ctx.overrides?.title?.trim() || record.title;
-  const summary = ctx.overrides?.summary?.trim() || record.justification;
+  // The summary is the node's definition. The proposer's reason says why a
+  // target needs the idea, which is no definition, so it never fills in.
+  const summary = ctx.overrides?.summary?.trim() || record.summary?.trim() || "";
+  if (!summary) return { status: "approved", alreadyDecided: false, error: "summary_required" };
   const branch = ctx.overrides?.branch?.trim() || ctx.branch;
   const nodeToCreate: NodeToCreate = {
     slug,

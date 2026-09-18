@@ -70,3 +70,52 @@ end;
 $$;
 
 grant execute on function graph.merge_edge_proposals(jsonb) to service_role;
+
+-- A missing prime's one-sentence definition, written by the consolidation
+-- pass. Approval uses it as the new node's summary unless the reviewer
+-- writes another; the proposer's reason says why a target needs the idea
+-- and never stands in for it.
+alter table graph.node_proposals add column if not exists summary text;
+
+-- Merge missing primes by key. A pending row gathers the new naming nodes,
+-- aliases, and reasons, takes the newer duplicate list, and keeps its
+-- definition unless it had none; a decided row stays as the reviewer left it.
+create or replace function graph.merge_node_proposals(p_rows jsonb)
+returns table (key text, status text, created_node_id uuid)
+language plpgsql
+as $$
+declare
+  r jsonb;
+begin
+  for r in select * from jsonb_array_elements(p_rows) loop
+    insert into graph.node_proposals as np
+      (key, title, branch, justification, summary, named_by, aliases, reasons, possible_duplicates, base_match, model)
+    values (
+      r ->> 'key',
+      r ->> 'title',
+      r ->> 'branch',
+      r ->> 'justification',
+      nullif(r ->> 'summary', ''),
+      array(select jsonb_array_elements_text(coalesce(r -> 'named_by', '[]'::jsonb))),
+      array(select jsonb_array_elements_text(coalesce(r -> 'aliases', '[]'::jsonb))),
+      coalesce(r -> 'reasons', '{}'::jsonb),
+      coalesce(r -> 'possible_duplicates', '[]'::jsonb),
+      r ->> 'base_match',
+      r ->> 'model'
+    )
+    on conflict on constraint graph_node_proposals_key_uidx do update set
+      named_by = array(select distinct u from unnest(np.named_by || excluded.named_by) u order by u),
+      aliases = array(select distinct u from unnest(np.aliases || excluded.aliases) u order by u),
+      reasons = excluded.reasons || np.reasons,
+      possible_duplicates = excluded.possible_duplicates,
+      summary = coalesce(np.summary, excluded.summary)
+    where np.status = 'pending';
+  end loop;
+  return query
+    select np.key, np.status, np.created_node_id
+    from graph.node_proposals np
+    where np.key in (select e ->> 'key' from jsonb_array_elements(p_rows) e);
+end;
+$$;
+
+grant execute on function graph.merge_node_proposals(jsonb) to service_role;

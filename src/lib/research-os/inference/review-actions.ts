@@ -277,7 +277,7 @@ export async function decideEdge(
   return ok({ decision: "approved", alreadyDecided: false, kind });
 }
 
-const NODE_COLUMNS = "id,key,title,branch,justification,named_by,aliases,reasons,possible_duplicates,base_match,model,status,created_at";
+const NODE_COLUMNS = "id,key,title,branch,justification,summary,named_by,aliases,reasons,possible_duplicates,base_match,model,status,created_at";
 
 type NodeProposalRow = {
   id: string;
@@ -285,6 +285,7 @@ type NodeProposalRow = {
   title: string;
   branch: string;
   justification: string;
+  summary: string | null;
   named_by: string[];
   aliases: string[];
   reasons: Record<string, string>;
@@ -322,6 +323,7 @@ export async function listNodeProposals(svc: SupabaseClient): Promise<ActionResu
       branch: r.branch,
       branchToCreate: chooseBranch(r.branch, known, r.named_by.map((s) => nodes.get(s)?.branch ?? null)),
       justification: r.justification,
+      summary: r.summary,
       aliases: r.aliases,
       possibleDuplicates: r.possible_duplicates,
       baseMatch: r.base_match,
@@ -359,6 +361,7 @@ export async function decideNode(
     title: r.title,
     branch: r.branch,
     justification: r.justification,
+    summary: r.summary,
     namedBy,
     aliases: r.aliases,
     reasons: r.reasons,
@@ -374,6 +377,7 @@ export async function decideNode(
     overrides: input.overrides,
   });
   if (outcome.alreadyDecided) return ok({ decision: outcome.status, alreadyDecided: true });
+  if (outcome.error === "summary_required") return fail(400, "a definition is required to create the node");
 
   const decidedAt = new Date().toISOString();
   const { data: claimed, error: claimErr } = await svc
@@ -418,8 +422,17 @@ export async function decideNode(
       return fail(500, "edge_proposal_write_failed");
     }
   }
-  await svc.from("node_proposals").update({ created_node_id: nodeId }).eq("id", r.id);
-  return ok({ decision: "approved", alreadyDecided: false, nodeSlug: n.slug, nodeTier: n.tier, queuedEdges: outcome.edgeProposals?.length ?? 0 });
+  const { error: linkErr } = await svc.from("node_proposals").update({ created_node_id: nodeId }).eq("id", r.id);
+  return ok({
+    decision: "approved",
+    alreadyDecided: false,
+    nodeSlug: n.slug,
+    nodeTier: n.tier,
+    queuedEdges: outcome.edgeProposals?.length ?? 0,
+    // The node and its proposals exist; only the back link failed, so a
+    // later run cannot queue new pairs from this node until it is set.
+    ...(linkErr ? { warning: "the proposal's link to its new node was not saved" } : {}),
+  });
 }
 
 type IrreducibleRow = { id: string; node_slug: string; justification: string; model: string; status: "pending" | "confirmed" | "rejected"; created_at: string };

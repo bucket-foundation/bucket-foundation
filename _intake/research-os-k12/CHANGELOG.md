@@ -1,5 +1,18 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-18: primes and the decompose-further queue
+
+The graph's makeup has a review queue.
+
+Branch `feat/ros-loop-decompose-further`, PR #186. Founder direction: prime decomposition of concepts and equations, "can this be further", done deep and checked by a critic.
+
+### Added
+
+- The decompose-further runner: a proposer names what each prime and unfactored idea rests on, a verifier on another model judges the picks blind among passed-over candidates, and Wikipedia's links score every pair.
+- Missing base ideas merge by meaning and wait at `/research-os/edges` with the targets that named them; approving one creates the node.
+- Irreducible verdicts a reviewer can confirm or send back.
+- The primes report lists what moved since its last run.
+
 ## 2026-09-17: one graph of everything researched
 
 The workspace opens over the full scope of that graph.

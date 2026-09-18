@@ -53,7 +53,7 @@ async function main() {
     (e) => live.has(e.from_id) && live.has(e.to_id),
   );
   const reviewed = await all<{ node_slug: string; status: string }>(svc, "irreducible_proposals", "node_slug, status");
-  const irreducible = new Set(reviewed.filter((r) => r.status === "approved").map((r) => r.node_slug));
+  const irreducible = new Set(reviewed.filter((r) => r.status === "confirmed").map((r) => r.node_slug));
   const nodes: PrimeNodeInput[] = nodeRows.map((n) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, branch: n.branch }));
   const edges: DepEdge[] = edgeRows.map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
 

@@ -4,6 +4,8 @@ import assert from "node:assert/strict";
 import { decompose, type DepEdge } from "../src/lib/research-os/primes";
 import {
   agreementStats,
+  answeringModel,
+  clipText,
   aggregateMissing,
   blindSet,
   buildConsolidatePrompt,
@@ -323,7 +325,7 @@ test("consolidation keeps each id in one group, accepts same_as only from the me
   assert.match(prompt, /- causation \| 04-information \| Causation \| nearest existing: cause-node = Cause and effect/);
   const reply = JSON.stringify({
     groups: [
-      { canonical: "Causation", branch: "04-information", members: ["causation", "causality", "causation"], same_as: "invented-slug" },
+      { canonical: "Causation", branch: "04-information", definition: "  One event bringing about another.  ", members: ["causation", "causality", "causation"], same_as: "invented-slug" },
       { canonical: "Vector space", branch: "01-mathematics", members: ["vector space"], same_as: "academy-01-mathematics-vector-space" },
     ],
   });
@@ -331,7 +333,9 @@ test("consolidation keeps each id in one group, accepts same_as only from the me
   assert.ok(!("error" in g));
   if ("error" in g) return;
   assert.equal(g.length, 3);
-  assert.deepEqual(g[0], { canonical: "Causation", branch: "04-information", members: ["causation", "causality"], sameAs: null });
+  assert.deepEqual(g[0], { canonical: "Causation", branch: "04-information", members: ["causation", "causality"], sameAs: null, definition: "One event bringing about another." });
+  assert.equal(g[1].definition, null);
+  assert.match(prompt, /definition: one sentence that says what the idea is/);
   assert.equal(g[1].sameAs, "academy-01-mathematics-vector-space");
   assert.deepEqual(g[2].members, ["charge"]);
 });
@@ -343,8 +347,8 @@ test("consolidate turns a matched group into factors and the rest into missing p
     { target: t[1], answer: { irreducible: false, factors: [], missing: [{ title: "Causality", branch: "01-mathematics", why: "functions map causes" }] } },
   ]);
   const groups = [
-    { canonical: "Causation", branch: "04-information", members: ["causation", "causality"], sameAs: null },
-    { canonical: "Vector space", branch: "01-mathematics", members: ["vector space"], sameAs: "academy-01-mathematics-vector-space" },
+    { canonical: "Causation", branch: "04-information", members: ["causation", "causality"], sameAs: null, definition: "One event bringing about another." },
+    { canonical: "Vector space", branch: "01-mathematics", members: ["vector space"], sameAs: "academy-01-mathematics-vector-space", definition: null },
   ];
   const out = consolidate(groups, missing, "sonnet", () => [{ slug: "cause-node", title: "Cause and effect", similarity: 0.77 }]);
   assert.deepEqual(out.matched, [{ slug: "academy-01-mathematics-vector-space", targets: ["kinematics"], reasons: { kinematics: "vectors live in one" }, titles: ["Vector space"] }]);
@@ -355,6 +359,7 @@ test("consolidate turns a matched group into factors and the rest into missing p
   assert.deepEqual(r.aliases, ["Causality"]);
   assert.deepEqual(r.reasons, { kinematics: "motion has causes", sets: "functions map causes" });
   assert.equal(r.base_match, "BECAUSE (cause)");
+  assert.equal(r.summary, "One event bringing about another.");
   assert.equal(r.possible_duplicates[0].slug, "cause-node");
 });
 
@@ -369,4 +374,31 @@ test("a pair is in a cycle when proposals and existing edges close a loop", () =
 test("an irreducible answer keeps its reason", () => {
   const a = parseAnswer('{"irreducible": true, "irreducible_why": "Nothing simpler than sameness.", "factors": [], "missing": []}', new Set(), "t");
   assert.ok(!("error" in a) && a.irreducible && a.irreducibleWhy === "Nothing simpler than sameness.");
+});
+
+test("the answering model is the one with the most output, whatever order the usage lists", () => {
+  const usage = {
+    "claude-haiku-4-5-20251001": { outputTokens: 8, inputTokens: 899 },
+    "claude-opus-5": { outputTokens: 52, inputTokens: 2 },
+  };
+  assert.equal(answeringModel(usage, "opus"), "claude-opus-5");
+  assert.equal(answeringModel(undefined, "opus"), "opus");
+  assert.equal(answeringModel({}, "sonnet"), "sonnet");
+});
+
+test("the kappa interval is the same whatever order the rows arrive in", () => {
+  const rows = ["a", "b", "c", "d", "e"].flatMap((t, i) => [
+    { target: t, picked: true, holds: i % 2 === 0 },
+    { target: t, picked: false, holds: i === 3 },
+    { target: t, picked: true, holds: true },
+  ]);
+  const shuffled = rows.slice().reverse();
+  assert.deepEqual(agreementStats(rows).kappaInterval, agreementStats(shuffled).kappaInterval);
+});
+
+test("long model text ends at a sentence or a word, never mid-word", () => {
+  assert.equal(clipText("  short  ", 20), "short");
+  assert.equal(clipText("First sentence here. Second sentence runs on and on.", 30), "First sentence here.");
+  assert.equal(clipText("one two three four five six", 12), "one two…");
+  assert.equal(clipText(42, 10), "");
 });

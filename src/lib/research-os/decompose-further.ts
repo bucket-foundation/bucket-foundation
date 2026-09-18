@@ -70,6 +70,8 @@ export type NodeProposalRow = {
   title: string;
   branch: string;
   justification: string;
+  /** A one-sentence definition from the consolidation pass: the created node's summary. */
+  summary: string | null;
   named_by: string[];
   aliases: string[];
   /** Each naming node's own reason, by slug. */
@@ -290,6 +292,22 @@ export function promptHash(prompt: string): string {
 }
 
 /** Pull the first JSON object out of a model reply and keep only valid parts. */
+/**
+ * Model text held to n characters. A longer text ends at its last full
+ * sentence inside the limit, or failing that at a word, marked with an
+ * ellipsis, so a reviewer never reads a reason cut mid-word.
+ */
+export function clipText(s: unknown, n: number): string {
+  if (typeof s !== "string") return "";
+  const t = s.trim();
+  if (t.length <= n) return t;
+  const head = t.slice(0, n);
+  const sentence = Math.max(head.lastIndexOf(". "), head.lastIndexOf("? "), head.lastIndexOf("! "));
+  if (sentence >= n / 2) return head.slice(0, sentence + 1);
+  const word = head.lastIndexOf(" ");
+  return `${(word > 0 ? head.slice(0, word) : head.slice(0, n - 1)).replace(/[\s,;:]+$/, "")}…`;
+}
+
 export function parseAnswer(text: string, allowed: Set<string>, targetSlug: string): Answer | { error: string } {
   const start = text.indexOf("{");
   const end = text.lastIndexOf("}");
@@ -300,7 +318,7 @@ export function parseAnswer(text: string, allowed: Set<string>, targetSlug: stri
   } catch (e) {
     return { error: `unparseable JSON: ${e instanceof Error ? e.message : String(e)}` };
   }
-  const clip = (s: unknown, n: number) => (typeof s === "string" ? s.trim().slice(0, n) : "");
+  const clip = clipText;
   const seen = new Set<string>();
   const factors: Answer["factors"] = [];
   for (const f of Array.isArray(raw?.factors) ? raw.factors : []) {
@@ -318,7 +336,7 @@ export function parseAnswer(text: string, allowed: Set<string>, targetSlug: stri
     if (missing.length >= MAX_MISSING) break;
   }
   const irreducible = raw?.irreducible === true && factors.length === 0;
-  return { irreducible, irreducibleWhy: irreducible ? clip(raw?.irreducible_why, 400) : undefined, factors, missing };
+  return { irreducible, irreducibleWhy: irreducible ? clip(raw?.irreducible_why, 800) : undefined, factors, missing };
 }
 
 /** Nodes resting on the target: how many decompositions an approved factor reaches. */
@@ -361,7 +379,7 @@ export function parseVerdicts(text: string, asked: Set<string>): Map<string, Ver
   for (const v of Array.isArray(raw?.verdicts) ? raw.verdicts : []) {
     const slug = typeof v?.slug === "string" ? v.slug.trim() : "";
     if (!asked.has(slug) || out.has(slug) || typeof v?.holds !== "boolean") continue;
-    out.set(slug, { holds: v.holds, why: typeof v?.why === "string" ? v.why.trim().slice(0, 400) : "" });
+    out.set(slug, { holds: v.holds, why: clipText(v?.why, 400) });
   }
   return out;
 }
@@ -487,7 +505,11 @@ export function agreementStats(rows: AgreementRow[], resamples = 1000, seed = "k
     if (!byTarget.has(r.target)) byTarget.set(r.target, []);
     byTarget.get(r.target)!.push(r);
   }
-  const groups = Array.from(byTarget.values());
+  // Targets in a fixed order, so the seeded resample does not depend on the
+  // order the parallel workers finished in.
+  const groups = Array.from(byTarget.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, g]) => g);
   const kappa = kappaOf(rows);
   let interval: [number, number] | null = null;
   if (groups.length >= 2 && kappa !== null) {
@@ -602,7 +624,7 @@ export function topBranch(branches: Record<string, number>): string | null {
 }
 
 export type ConsolidateItem = { id: string; title: string; branch: string | null; nearest: { slug: string; title: string }[] };
-export type ConsolidatedGroup = { canonical: string; branch: string; members: string[]; sameAs: string | null };
+export type ConsolidatedGroup = { canonical: string; branch: string; members: string[]; sameAs: string | null; definition: string | null };
 
 /**
  * One model call over many missing ideas: group the ones that name the same
@@ -620,10 +642,11 @@ export function buildConsolidatePrompt(items: ConsolidateItem[]): string {
     ...lines,
     "",
     "Group the lines that name the same idea. Give each group a short canonical title, a noun phrase for the idea itself, and the branch it belongs to.",
+    "Give each group a definition: one sentence that says what the idea is, the way a glossary entry would, with no mention of the nodes that need it.",
     "If a group names the same idea as one of its members' nearest existing nodes, set same_as to that node's slug; otherwise null. Related or broader ideas are different ideas.",
     "Every id belongs to exactly one group; a line with no synonym is a group of one.",
     "",
-    'Answer with JSON only: {"groups": [{"canonical": "...", "branch": "01-mathematics", "members": ["id", "..."], "same_as": null}]}',
+    'Answer with JSON only: {"groups": [{"canonical": "...", "branch": "01-mathematics", "definition": "...", "members": ["id", "..."], "same_as": null}]}',
   ].join("\n");
 }
 
@@ -652,9 +675,10 @@ export function parseConsolidation(text: string, items: ConsolidateItem[]): Cons
     const canonical = typeof g?.canonical === "string" && g.canonical.trim() ? g.canonical.trim().slice(0, 120) : byId.get(members[0])!.title;
     const nearest = new Set(members.flatMap((m) => byId.get(m)!.nearest.map((n) => n.slug)));
     const sameAs = typeof g?.same_as === "string" && nearest.has(g.same_as) ? g.same_as : null;
-    out.push({ canonical, branch: typeof g?.branch === "string" ? g.branch.trim().slice(0, 40) : "", members, sameAs });
+    const definition = clipText(g?.definition, 400) || null;
+    out.push({ canonical, branch: typeof g?.branch === "string" ? g.branch.trim().slice(0, 40) : "", members, sameAs, definition });
   }
-  for (const it of items) if (!used.has(it.id)) out.push({ canonical: it.title, branch: it.branch ?? "", members: [it.id], sameAs: null });
+  for (const it of items) if (!used.has(it.id)) out.push({ canonical: it.title, branch: it.branch ?? "", members: [it.id], sameAs: null, definition: null });
   return out;
 }
 
@@ -692,6 +716,7 @@ export function consolidate(
       title: g.canonical,
       branch: g.branch || topBranch(branches) || "01-mathematics",
       justification: reasons[targets[0]] ?? `Named as a missing base idea by ${targets.length} node(s).`,
+      summary: g.definition,
       named_by: targets,
       aliases: titles.filter((t) => t !== g.canonical),
       reasons,
@@ -709,6 +734,7 @@ export function consolidate(
       e.named_by = Array.from(new Set(e.named_by.concat(r.named_by))).sort();
       e.aliases = Array.from(new Set(e.aliases.concat(r.aliases, r.title !== e.title ? [r.title] : []))).sort();
       e.reasons = { ...r.reasons, ...e.reasons };
+      e.summary = e.summary ?? r.summary;
     }
   }
   return { matched, nodeProposals: Array.from(merged.values()).sort((a, b) => b.named_by.length - a.named_by.length || a.key.localeCompare(b.key)) };
@@ -740,4 +766,24 @@ export function cyclicPairs(edges: DepEdge[], proposals: { from_slug: string; to
     if (f && t && comp.get(f) === comp.get(t)) out.add(`${p.from_slug}->${p.to_slug}`);
   }
   return out;
+}
+
+/**
+ * The model that wrote a `claude -p` answer, from the reply's `modelUsage`.
+ * The CLI also makes a small side call on another model, and that entry can
+ * come first, so the model with the most output tokens is the answer's
+ * model. Falls back to the requested alias when usage is missing.
+ */
+export function answeringModel(modelUsage: unknown, requested: string): string {
+  if (!modelUsage || typeof modelUsage !== "object") return requested;
+  let best: string | null = null;
+  let most = -1;
+  for (const [id, u] of Object.entries(modelUsage as Record<string, { outputTokens?: unknown }>)) {
+    const out = typeof u?.outputTokens === "number" ? u.outputTokens : 0;
+    if (out > most) {
+      most = out;
+      best = id;
+    }
+  }
+  return best ?? requested;
 }

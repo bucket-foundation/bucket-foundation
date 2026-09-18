@@ -45,6 +45,7 @@ import { refdAgreement, scorePairs } from "../../src/lib/research-os/refd";
 import { wikipediaIndex } from "./wikipedia-links";
 import {
   agreementStats,
+  answeringModel,
   aggregateMissing,
   blindSet,
   buildConsolidatePrompt,
@@ -126,10 +127,11 @@ const CONSOLIDATE_SCHEMA = {
         properties: {
           canonical: { type: "string" },
           branch: { type: "string" },
+          definition: { type: "string" },
           members: { type: "array", items: { type: "string" } },
           same_as: { type: ["string", "null"] },
         },
-        required: ["canonical", "branch", "members", "same_as"],
+        required: ["canonical", "branch", "definition", "members", "same_as"],
       },
     },
   },
@@ -202,7 +204,7 @@ function askClaude(prompt: string, model: string, timeoutMs: number, schema: obj
         reject(new Error(`claude -p exited ${code}${envelope?.stop_reason ? `, stop_reason ${envelope.stop_reason}` : ""}: ${(err || out).slice(0, 200)}`));
         return;
       }
-      const modelId = Object.keys(envelope.modelUsage ?? {})[0] ?? model;
+      const modelId = answeringModel(envelope.modelUsage, model);
       resolve({ text: envelope.structured_output ? JSON.stringify(envelope.structured_output) : String(envelope.result ?? ""), modelId });
     });
   });
@@ -227,11 +229,18 @@ async function main() {
   async function cachedAsk<T>(prompt: string, m: string, schema: object, accept: (reply: string) => T | { error: string }): Promise<Cached<T>> {
     const hash = promptHash(`${m}\n${prompt}`);
     const cacheFile = path.join(CACHE, `${hash}.txt`);
-    if (existsSync(cacheFile)) return { value: accept(readFileSync(cacheFile, "utf8")), hash, cached: true };
+    const metaFile = path.join(CACHE, `${hash}.model`);
+    if (existsSync(cacheFile)) {
+      if (existsSync(metaFile)) modelIds.set(m, readFileSync(metaFile, "utf8").trim());
+      return { value: accept(readFileSync(cacheFile, "utf8")), hash, cached: true };
+    }
     const res = await askClaude(prompt, m, 300_000, schema);
     modelIds.set(m, res.modelId);
     const value = accept(res.text);
-    if (!(value && typeof value === "object" && "error" in (value as object))) writeFileSync(cacheFile, res.text);
+    if (!(value && typeof value === "object" && "error" in (value as object))) {
+      writeFileSync(cacheFile, res.text);
+      writeFileSync(metaFile, res.modelId);
+    }
     return { value, hash, cached: false };
   }
 
@@ -338,7 +347,7 @@ async function main() {
   // Items near the same existing node share a batch, so their synonyms meet.
   items.sort((a, b) => (a.nearest[0]?.slug ?? "").localeCompare(b.nearest[0]?.slug ?? "") || a.id.localeCompare(b.id));
   const groups: ConsolidatedGroup[] = [];
-  const singletons = (batch: ConsolidateItem[]) => batch.map((it) => ({ canonical: it.title, branch: it.branch ?? "", members: [it.id], sameAs: null }));
+  const singletons = (batch: ConsolidateItem[]) => batch.map((it) => ({ canonical: it.title, branch: it.branch ?? "", members: [it.id], sameAs: null, definition: null }));
   for (let i = 0; i < items.length; i += CONSOLIDATE_BATCH) {
     const batch = items.slice(i, i + CONSOLIDATE_BATCH);
     try {

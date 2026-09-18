@@ -52,6 +52,7 @@ interface NodeProposal {
   branch: string;
   branchToCreate: string;
   justification: string;
+  summary: string | null;
   aliases: string[];
   possibleDuplicates: { slug: string; title: string; similarity: number }[];
   baseMatch: string | null;
@@ -201,19 +202,26 @@ export default function ResearchOsEdgesPage() {
   }
 
   async function decideNode(n: NodeProposal, decision: "approved" | "rejected") {
+    const e = editOf(n);
+    if (decision === "approved" && !e.summary.trim()) {
+      setNotice({ id: n.id, text: "Write a one-sentence definition first: it becomes the node's summary." });
+      return;
+    }
     setBusyId(n.id);
     setNotice(null);
     try {
-      const e = edits[n.id];
       const { res, data } = await post("/api/research-os/node-proposals", {
         id: n.id,
         decision,
         reason: notes[n.id]?.trim() || undefined,
-        ...(decision === "approved" && e ? { title: e.title, summary: e.summary, branch: e.branch } : {}),
+        ...(decision === "approved" ? { title: e.title, summary: e.summary, branch: e.branch } : {}),
       });
       if (!res.ok) setNotice({ id: n.id, text: `Could not save (${data.error || res.status}).` });
       else if (decision === "approved") {
-        setNotice({ id: null, text: `Added ${data.nodeSlug} at tier ${data.nodeTier}; ${data.queuedEdges} proposal(s) from it wait below.` });
+        setNotice({
+          id: null,
+          text: `Added ${data.nodeSlug} at tier ${data.nodeTier}; ${data.queuedEdges} proposal(s) from it wait below.${data.warning ? ` Warning: ${data.warning}.` : ""}`,
+        });
         await loadQueue();
       } else {
         setNodeProposals((list) => (list ?? []).filter((x) => x.id !== n.id));
@@ -240,7 +248,7 @@ export default function ResearchOsEdgesPage() {
   }
 
   const defaultKind = (p: EdgeProposal): Kind => (p.confidenceSource === "prime_decompose_llm" ? "derives_from" : "prerequisite");
-  const editOf = (n: NodeProposal) => edits[n.id] ?? { title: n.title, summary: n.justification, branch: n.branchToCreate };
+  const editOf = (n: NodeProposal) => edits[n.id] ?? { title: n.title, summary: n.summary ?? "", branch: n.branchToCreate };
 
   // Proposals grouped under the node they decompose, the group with the most at stake first.
   const groups = useMemo(() => {
@@ -287,7 +295,7 @@ export default function ResearchOsEdgesPage() {
         <h1 className="font-display uppercase text-[clamp(1.5rem,4vw,2.5rem)] leading-[1.1] chisel text-[color:var(--basalt)]">edge review queue</h1>
         <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
           What each node rests on, proposed by models and decided here. Lexical inference proposes learning order; the decompose-further queue asks
-          one model what a node rests on and a second model, blind to which were picked, whether each pair holds (learning/research-os/PRIMES.md).
+          one model what a node rests on and a second model, blind to which were picked, whether each pair holds, and scores each pair by Wikipedia's links (learning/research-os/PRIMES.md).
           Approving writes the edge at confidence 0.95, source &ldquo;teacher,&rdquo; with provenance naming the proposal. Gated to reviewers.
         </p>
 
@@ -383,16 +391,16 @@ export default function ResearchOsEdgesPage() {
                     {n.namedBy.length > 6 && <li>and {n.namedBy.length - 6} more</li>}
                   </ul>
                   <div className="mt-3 grid gap-2 md:grid-cols-[1fr_12rem]">
-                    <label className="text-[11px] small-caps text-[color:var(--basalt-3)]">
-                      title
+                    <label className="text-[11px] text-[color:var(--basalt-3)]">
+                      <span className="small-caps">title</span>
                       <input
                         value={e.title}
                         onChange={(ev) => setEdits((r) => ({ ...r, [n.id]: { ...e, title: ev.target.value } }))}
                         className="mt-1 block w-full border border-[color:var(--hairline)] px-2 py-1 text-[13px] normal-case bg-white/60"
                       />
                     </label>
-                    <label className="text-[11px] small-caps text-[color:var(--basalt-3)]">
-                      branch
+                    <label className="text-[11px] text-[color:var(--basalt-3)]">
+                      <span className="small-caps">branch</span>
                       <select
                         value={e.branch}
                         onChange={(ev) => setEdits((r) => ({ ...r, [n.id]: { ...e, branch: ev.target.value } }))}
@@ -405,8 +413,8 @@ export default function ResearchOsEdgesPage() {
                         ))}
                       </select>
                     </label>
-                    <label className="text-[11px] small-caps text-[color:var(--basalt-3)] md:col-span-2">
-                      summary, a definition of the idea
+                    <label className="text-[11px] text-[color:var(--basalt-3)] md:col-span-2">
+                      <span className="small-caps">summary, a definition of the idea</span>
                       <textarea
                         value={e.summary}
                         onChange={(ev) => setEdits((r) => ({ ...r, [n.id]: { ...e, summary: ev.target.value } }))}
