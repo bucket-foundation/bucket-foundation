@@ -2,6 +2,42 @@
 
 Dated entries from the hourly optimization loop. Newest entry first.
 
+## 2026-09-14, Murphy decomposition, label floor raised to 44, novelty ideation-stage label
+
+Session pass (`.ros-worktrees/ledger`, `feat/hte-ledger-scoring-rev4`), not a loop tick.
+Reads against `learning/research-os/PLAN-REVISION-4.md` sections 2b and 2d (open PR #127
+at the time this pass read it) and the ten batch-five cards `docs/RESEARCH-OS-INTEGRATION.
+md`'s own "Ranking validation evidence" section already names.
+
+- **`hte.holdout_ledger.murphy_decomposition`**: Murphy (1973)'s reliability, resolution,
+  uncertainty partition of the ledger's own Brier-style score, reusing `hte.calibrate.
+  brier_score` directly. `hte holdout-ledger report` prints it under a `murphy` key.
+  One implicit forecast group per verified entry (this ledger's own `outcome` is binary,
+  not a graded confidence), so `resolution` is `0.0` by construction until a future
+  ledger design records a real per-entry confidence; the module's own docstring names
+  this as the diagnostic finding, not a bug. Identity `brier == reliability - resolution
+  + uncertainty` asserted against a fixture ledger, not just algebra.
+- **`MIN_VERIFIED_FOR_LABEL`**: `20` to `44`, Dreber and colleagues (2015)'s own N=44
+  replication-forecasting sample, the strongest concrete anchor PLAN-REVISION-4 section
+  2b names; derivation and caveats in `hte.holdout_ledger`'s own top docstring.
+  `hte.export`'s TIMELINE.md render carried no duplicate number to fix; `hte.casp_cadence`
+  (PR #130, not yet merged as this pass runs) should import the constant when it lands.
+- **`hte.novelty.NoveltyResult.stage`**: always `"ideation"` (`NOVELTY_STAGE`). Si,
+  Hashimoto, and Yang (2025)'s execution-stage finding, LLM-generated ideas' novelty and
+  effectiveness scores drop after execution, motivates naming the score's own stage
+  rather than presenting it as a validated claim. Card and envelope both carry it; the
+  understanding artifact and write-back floor gate are untouched.
+- **Tests**: `tests/test_holdout_ledger.py` (+7), `tests/test_cli.py` (+3 assertions),
+  `tests/test_novelty.py` (+2), `tests/test_canon_writeback.py` (+2 assertions). `make
+  test` and `ruff check` clean on every touched file.
+- **Docs**: this entry, `docs/RESEARCH-OS-INTEGRATION.md`'s "Ranking validation
+  evidence" section (a new "Code changes, this pass" subsection with the decomposition's
+  own formula table), `learning/research-os/CHANGE-LEDGER.md`. `learning/research-os/
+  ENGINE-BRIDGE.md` left untouched: it documents `graph.nodes`/`graph.edges`/outbox table
+  shapes, none of which carry `elo_status`, `novelty`, or `MIN_VERIFIED_FOR_LABEL`.
+- **PR**: opened against `hte/integration` (never `dev`/`main`, per this repo's own
+  branch policy for engine work), not merged this pass.
+
 ## 2026-09-14, tick 19, diagnostics.py swarm
 
 - **Engine health**: fresh sandbox, installed `pytest`/`hypothesis`/

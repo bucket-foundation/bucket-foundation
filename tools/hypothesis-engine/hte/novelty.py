@@ -30,6 +30,24 @@ some overlap, never zero, which is why this module reports a continuous
 `score` and a `closest_path` rather than a binary novel/duplicate
 verdict, and why the closest match is always worth a human's own read
 before the recorded score is trusted on its own.
+
+**Stage.** `NoveltyResult.stage` is always `"ideation"` (`NOVELTY_STAGE`
+below): this module scores a candidate at generation time, before any
+holdout evidence exists for it. Si, Hashimoto, and Yang (2025, `_intake/
+research-os-k12-literature/ai-and-researchers/si-hashimoto-yang-2025-
+ideation-execution-gap.md`, the execution-stage follow-up to Si, Yang,
+and Hashimoto 2024 cited above) had 43 expert researchers each execute
+one of a set of randomly assigned research ideas, human-written or
+LLM-generated; blind review of the executed projects found LLM-generated
+ideas' novelty and effectiveness scores dropped more than human-written
+ideas' scores after execution, and on several metrics the ranking flipped
+outright once reviewers judged execution outcomes beside the idea itself
+(`learning/research-os/PLAN-REVISION-4.md` section 2d). A `score` this
+module returns is that same ideation-stage reading: a lexical distance at
+generation time. It makes no claim that this candidate's novelty survives execution.
+Treat any novelty claim derived from this score as provisional until
+`hte.holdout_ledger` carries verified evidence for the hypothesis it
+scored; no caller should describe a bare `score` from here as validated.
 """
 from __future__ import annotations
 
@@ -39,6 +57,14 @@ from pathlib import Path
 from typing import Iterator
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+")
+
+# See this module's own top docstring, "Stage": every `NoveltyResult`
+# this module produces is a candidate-stage signal, computed before any
+# execution or holdout evidence exists for the hypothesis it scored
+# (Si, Hashimoto, and Yang 2025). No code path in this module raises this
+# past "ideation"; only verified holdout evidence, tracked outside this
+# module entirely (`hte.holdout_ledger`), can do that.
+NOVELTY_STAGE = "ideation"
 
 # Read only the first slice of each file: a novelty check compares this
 # candidate's own one-sentence statement against another document's own
@@ -79,18 +105,27 @@ class NoveltyResult:
     `None` (and `closest_similarity` `0.0`) only when `bucket-canon/`
     holds no markdown file at all to compare against, the fresh-checkout
     case, never a "found nothing similar" case (that reads as `score`
-    near `1.0` with a real `closest_path` instead)."""
+    near `1.0` with a real `closest_path` instead).
+
+    `stage` is always `NOVELTY_STAGE` (`"ideation"`, see this module's
+    own top docstring, "Stage"): `score` is read at generation time, no
+    execution or holdout evidence behind it yet, and Si, Hashimoto, and
+    Yang (2025) is direct evidence that an ideation-stage novelty reading
+    overstates what survives execution. A caller surfacing `score` to a
+    human or a downstream envelope should surface `stage` alongside it
+    rather than presenting the number alone."""
     score: float
     closest_path: str | None
     closest_similarity: float
     closest_bucket: str | None  # "canon" | "engine" | None
     n_compared: int
+    stage: str = NOVELTY_STAGE
 
     def to_dict(self) -> dict:
         return {
             "score": self.score, "closest_path": self.closest_path,
             "closest_similarity": self.closest_similarity, "closest_bucket": self.closest_bucket,
-            "n_compared": self.n_compared,
+            "n_compared": self.n_compared, "stage": self.stage,
         }
 
 

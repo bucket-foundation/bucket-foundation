@@ -629,6 +629,13 @@ def render_card(
         f"near-duplicate exists). Compared against {novelty.n_compared} file(s) under "
         "`bucket-canon/`. Closest match: " + closest + ".",
         "",
+        f"**Stage: {novelty.stage}.** Read at generation time, before any execution or "
+        "holdout evidence exists for this candidate. Si, Hashimoto, and Yang (2025) find "
+        "LLM-generated research ideas' novelty scores drop after execution, on several "
+        "metrics below human-written ideas' own scores; treat this score as provisional "
+        "until `hte.holdout_ledger` carries verified evidence for this hypothesis. It is "
+        "a candidate-stage reading, and never a validated novelty claim on its own.",
+        "",
     ]
     if cascade_entry is not None:
         lines += [
