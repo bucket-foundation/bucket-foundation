@@ -41,9 +41,9 @@ Vercel documents `VERCEL_GIT_PREVIOUS_SHA` as the sha of the last successful dep
 
 Four changes, each against one finding above.
 
-1. **The gate fetches what it compares against.** The base is `VERCEL_GIT_PREVIOUS_SHA` when Vercel sets it. On a branch's first deployment it is the tip of `dev`, the default target of a pull request, and on `dev` or `main` the pushed commit's parent. When the base is not in the clone, the script fetches it at depth 1 from the public repository (`https://github.com/$VERCEL_GIT_REPO_OWNER/$VERCEL_GIT_REPO_SLUG.git`) within a time limit, then diffs with `--no-renames` so git reads trees alone. Any failure still builds, and the log says which step failed. `[skip vercel]` and `[vercel skip]` skip the Vercel build alone, the tokens `turbo-ignore` uses, so a push can run CI without a preview.
+1. **The gate fetches what it compares against.** The base is `VERCEL_GIT_PREVIOUS_SHA` when Vercel sets it. On a branch's first deployment it is the tip of `dev`, the default target of a pull request, and on `dev` or `main` the pushed commit's parent. When the base is not in the clone, the script fetches it at depth 1 from the public repository (`https://github.com/$VERCEL_GIT_REPO_OWNER/$VERCEL_GIT_REPO_SLUG.git`) within a time limit, then diffs with `--no-renames`, which lists both paths of a moved file. Any failure still builds, and the log says which step failed. `[skip vercel]` and `[vercel skip]` skip the Vercel build alone, the tokens `turbo-ignore` uses, so a push can run CI without a preview.
 2. **Node 24.** `package.json` gets `"engines": { "node": "24.x" }`, and CI runs Node 24, so the preview and CI build on the version Vercel requires from 2026-10-01.
-3. **A check before a building push.** `scripts/pre-push-vercel-check.sh` runs the gate locally over the range being pushed. When the push would build, it runs `npm run lint` and `npm run typecheck` and refuses the push on an error, so a lint or type error fails on the machine before it fails on Vercel. The org hook directory (`core.hooksPath`) gets a `pre-push` that runs a repository's own `scripts/pre-push-vercel-check.sh` when it has one. `AGF_PREPUSH_SKIP=1` bypasses it.
+3. **A check before a building push.** `scripts/pre-push-vercel-check.sh` runs the gate locally over the range being pushed. When the push would build, it runs `npm run lint` and `npm run typecheck` and refuses the push on an error, so a lint or type error fails on the machine before it fails on Vercel. `scripts/install-git-hooks.sh` adds a `pre-push` to the hooks directory (`core.hooksPath`, the org's shared directory on AGFarms machines) that runs a repository's own `scripts/pre-push-vercel-check.sh` when it has one. `AGF_PREPUSH_SKIP=1` bypasses it.
 4. **One building push per task.** Work in progress carries `[skip ci]`, which skips the Vercel build and GitHub Actions; the finish push of a task builds once, after lint, types, and tests pass locally. The Research OS loop has worked this way since 2026-09-18.
 
 No researcher-facing surface changes. The preview a reviewer opens from a pull request builds once per task and builds green, and a branch no longer burns a deployment on every bead commit.
@@ -51,16 +51,29 @@ No researcher-facing surface changes. The preview a reviewer opens from a pull r
 ## The rule
 
 1. Commit message contains `[vercel build]` -> build (forced override, wins over everything below).
-2. Commit message starts with `feed:` or contains `[skip ci]` -> skip.
+2. Commit message starts with `feed:`, or contains `[skip ci]`, `[skip vercel]`, or `[vercel skip]` -> skip.
 3. Branch matches an engine prefix (below) -> skip.
-4. Diff of this push touches an allowlisted path (below) -> build.
-5. Diff cannot be computed -> build (fail open).
+4. The diff from the base to the pushed commit touches an allowlisted path (below) -> build.
+5. The base cannot be fetched, or the diff cannot be computed -> build (fail open).
 6. Otherwise -> skip.
+
+The base at step 4 is `VERCEL_GIT_PREVIOUS_SHA`, the branch's last successful deployment, when Vercel sets it. On a branch's first deployment it is the tip of `dev`, and on `dev` or `main` with no earlier deployment it is the pushed commit's parent. Vercel's clone holds the pushed commit alone, so the script fetches a missing base at depth 1 from `https://github.com/$VERCEL_GIT_REPO_OWNER/$VERCEL_GIT_REPO_SLUG.git`, within `VERCEL_IGNORE_FETCH_TIMEOUT` seconds (120 by default), and diffs with `--no-renames` so a file moved out of an allowlisted directory counts there. The fetch works because the repository is public; a private repository would need a token, and without one every push builds, as before.
 
 Vercel's Ignored Build Step contract: the script exits `1` to build, `0`
 to skip. See `scripts/vercel-ignore-build.sh` for the implementation and
-`scripts/test-vercel-ignore-build.sh` for ten scenarios covering each
-branch of the decision above (run it with `bash scripts/test-vercel-ignore-build.sh`).
+`scripts/test-vercel-ignore-build.sh` for 22 scenarios, 9 of them in a
+depth-1 clone with no remote, the way Vercel's clone is (run it with
+`bash scripts/test-vercel-ignore-build.sh`). CI runs both test scripts.
+
+## Before a push
+
+`scripts/pre-push-vercel-check.sh` asks the gate whether a push would build, with the branch, the pushed commit's message, and the branch's merge base with `origin/dev` as the base. When the answer is build, it runs `npm run lint` and `npm run typecheck` and refuses the push on an error. A push Vercel would skip passes at once. `bash scripts/install-git-hooks.sh` installs a `pre-push` in the hooks directory (`core.hooksPath`, the org's shared directory on AGFarms machines) that runs a repository's own check when it has one and does nothing in other repositories; it leaves an existing `pre-push` alone. `AGF_PREPUSH_SKIP=1 git push` bypasses it. `scripts/test-pre-push-vercel-check.sh` covers nine cases.
+
+The check catches lint and type errors, the cause of 10 of the failed builds measured above. It does not run `next build`, so a page that fails to collect its data at build time, or a function over a plan limit, still fails on Vercel alone.
+
+## Node version
+
+`package.json` sets `engines.node` to `24.x`, which overrides the project's Node setting on Vercel, and CI runs Node 24. `next build` passes on Node 24.21 locally (976 static pages, 2026-09-19). Local development on Node 22 works; npm prints an engine warning.
 
 ## Branch prefixes skipped at step 3
 

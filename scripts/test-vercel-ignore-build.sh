@@ -26,13 +26,15 @@ sha_of() { git -C "$REPO" rev-parse "$1"; }
 
 run_case() {
   # run_case <name> <expect: build|skip> <VAR=val>...
+  # Runs in $RUN_IN, the fixture repo unless a case points it at a clone.
   local name="$1" expect="$2"
   shift 2
   local out status got
   out="$(
-    cd "$REPO" || exit 99
+    cd "${RUN_IN:-$REPO}" || exit 99
     unset VERCEL_ENV VERCEL_GIT_COMMIT_REF VERCEL_GIT_COMMIT_MESSAGE \
-          VERCEL_GIT_COMMIT_SHA VERCEL_GIT_PREVIOUS_SHA
+          VERCEL_GIT_COMMIT_SHA VERCEL_GIT_PREVIOUS_SHA VERCEL_IGNORE_FETCH_URL \
+          VERCEL_GIT_REPO_OWNER VERCEL_GIT_REPO_SLUG VERCEL_GIT_PROVIDER
     for kv in "$@"; do export "$kv"; done
     bash "$SCRIPT"
   )"
@@ -41,6 +43,7 @@ run_case() {
   if [[ "$got" == "$expect" ]]; then
     PASS=$((PASS + 1))
     printf 'PASS  %-42s (%s)\n' "$name" "$got"
+    [[ -n "${SHOW_REASON:-}" ]] && printf '      %s\n' "$(echo "$out" | grep -E "BUILD:|SKIP:" | cut -c1-220)"
   else
     FAIL=$((FAIL + 1))
     printf 'FAIL  %-42s expected %s, got %s\n' "$name" "$expect" "$got"
@@ -63,7 +66,12 @@ SHA_DOCS="$(sha_of HEAD)"
 commit_file "src/app/page.tsx" "feat(site): update homepage copy"
 SHA_SITE="$(sha_of HEAD)"
 
-echo "fixture: base=$SHA_BASE docs=$SHA_DOCS site=$SHA_SITE"
+git -C "$REPO" mv src/app/page.tsx papers/page-draft.tsx
+git -C "$REPO" commit -q -m "chore: move a file"
+SHA_MOVE="$(sha_of HEAD)"
+git -C "$REPO" reset -q --hard "$SHA_SITE"
+
+echo "fixture: base=$SHA_BASE docs=$SHA_DOCS site=$SHA_SITE move=$SHA_MOVE"
 echo
 
 # --- cases ----------------------------------------------------------------
@@ -98,11 +106,29 @@ run_case "feed commit skips (diff touches src/)" skip \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 
-run_case "empty previous sha falls back to HEAD^ HEAD" build \
+run_case "first deployment with no way to fetch dev builds" build \
   "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
   "VERCEL_GIT_COMMIT_MESSAGE=feat: normal work" \
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
+run_case "[skip vercel] skips (diff touches src/)" skip \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): work in progress [skip vercel]" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
+run_case "[vercel skip] skips (diff touches src/)" skip \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): work in progress [vercel skip]" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
+run_case "a file moved out of src/ counts as a src change" build \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=chore: move a file" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_SITE" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_MOVE"
 
 run_case "uncomputable diff builds (bad previous sha)" build \
   "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
@@ -129,6 +155,108 @@ run_case "[vercel build] forces a build over an engine branch + docs diff" build
   "VERCEL_GIT_COMMIT_MESSAGE=feat(hte): outbox seam [vercel build]" \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
+# --- a clone like Vercel's -------------------------------------------------
+# Vercel's build clone holds the pushed commit alone and has no remote
+# (docs/VERCEL-BUILDS.md, measured 2026-09-18). Each case below clones one
+# commit of the fixture at depth 1, drops the remote, and lets the script
+# fetch its base from VERCEL_IGNORE_FETCH_URL.
+git -C "$REPO" config uploadpack.allowReachableSHA1InWant true
+git -C "$REPO" branch -q -f dev "$SHA_DOCS"
+git -C "$REPO" checkout -q -b feat/docs-only "$SHA_DOCS"
+commit_file "docs/more.md" "docs: more notes"
+SHA_FEAT_DOCS="$(sha_of HEAD)"
+git -C "$REPO" checkout -q -b feat/earlier-site "$SHA_DOCS"
+commit_file "src/lib/x.ts" "feat(site): a site change"
+commit_file "docs/after.md" "docs: notes after the site change"
+SHA_FEAT_LATE_DOCS="$(sha_of HEAD)"
+git -C "$REPO" checkout -q -
+
+shallow_clone() {
+  # shallow_clone <sha>: a depth-1 clone of one commit with no remote, in $RUN_IN.
+  RUN_IN="$WORKDIR/clone-$1"
+  rm -rf "$RUN_IN"
+  git init -q "$RUN_IN"
+  git -C "$RUN_IN" fetch -q --depth=1 "file://$REPO" "$1"
+  git -C "$RUN_IN" checkout -q FETCH_HEAD
+  if git -C "$RUN_IN" cat-file -e "$1^" 2>/dev/null; then
+    echo "fixture error: the clone of $1 holds its parent" >&2
+    FAIL=$((FAIL + 1))
+  fi
+}
+
+shallow_clone "$SHA_DOCS"
+run_case "shallow clone: base fetched, docs-only diff skips" skip \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
+shallow_clone "$SHA_SITE"
+run_case "shallow clone: base fetched, site diff builds" build \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): update homepage copy" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
+shallow_clone "$SHA_FEAT_LATE_DOCS"
+run_case "shallow clone: a site change before the last commit builds" build \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=feat/earlier-site" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: notes after the site change" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_FEAT_LATE_DOCS"
+
+shallow_clone "$SHA_DOCS"
+run_case "shallow clone: no repository URL builds" build \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
+run_case "shallow clone: a base the repository lacks builds" build \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
+  "VERCEL_GIT_PREVIOUS_SHA=deadbeefdeadbeefdeadbeefdeadbeefdeadbeef" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
+shallow_clone "$SHA_FEAT_DOCS"
+run_case "shallow clone: first deployment, docs beside dev, skips" skip \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=feat/docs-only" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: more notes" \
+  "VERCEL_GIT_PREVIOUS_SHA=" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_FEAT_DOCS"
+
+shallow_clone "$SHA_FEAT_LATE_DOCS"
+run_case "shallow clone: first deployment, a site change beside dev, builds" build \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=feat/earlier-site" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: notes after the site change" \
+  "VERCEL_GIT_PREVIOUS_SHA=" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_FEAT_LATE_DOCS"
+
+shallow_clone "$SHA_DOCS"
+run_case "shallow clone: dev with no previous deployment compares with its parent" skip \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=dev" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
+  "VERCEL_GIT_PREVIOUS_SHA=" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
+shallow_clone "$SHA_DOCS"
+run_case "shallow clone: owner and slug form the GitHub URL, unreachable here, so it builds" build \
+  "VERCEL_GIT_REPO_OWNER=nobody-$$" \
+  "VERCEL_GIT_REPO_SLUG=none-$$" \
+  "VERCEL_IGNORE_FETCH_TIMEOUT=20" \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+RUN_IN=""
 
 echo
 echo "$PASS passed, $FAIL failed"

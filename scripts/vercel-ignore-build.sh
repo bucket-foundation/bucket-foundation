@@ -15,11 +15,19 @@
 # Decision order (first match wins):
 #   0. Commit message contains "[vercel build]"      -> BUILD (forced override)
 #   1. Commit message starts with "feed:"             -> SKIP  (bot feed sync)
-#      or contains "[skip ci]"
+#      or contains "[skip ci]", "[skip vercel]",
+#      or "[vercel skip]"
 #   2. Branch matches an engine prefix (below)         -> SKIP
-#   3. Diff of this push touches an allowlisted path   -> BUILD
-#      (git diff cannot be computed)                   -> BUILD (fail open)
+#   3. Diff since the base touches an allowlisted path -> BUILD
+#      (base cannot be fetched or diffed)              -> BUILD (fail open)
 #   4. otherwise                                        -> SKIP
+#
+# The base at step 3: VERCEL_GIT_PREVIOUS_SHA, the branch's last successful
+# deployment, when Vercel sets it; the tip of dev on a feature branch's first
+# deployment; the pushed commit's parent on dev or main. Vercel's build clone
+# holds the pushed commit alone and has no remote (measured 2026-09-18, see
+# docs/VERCEL-BUILDS.md), so the script fetches the base at depth 1 from the
+# public repository when the clone lacks it.
 #
 # Branch prefixes skipped at step 2, with the evidence behind each
 # (from `git branch -r` on 2026-09-14, ~75 remote branches):
@@ -60,6 +68,14 @@ SKIP_EXIT=0
 build() { echo "[vercel-ignore-build] BUILD: $1"; exit "$BUILD_EXIT"; }
 skip()  { echo "[vercel-ignore-build] SKIP: $1"; exit "$SKIP_EXIT"; }
 
+# The repository to fetch a missing base from. VERCEL_IGNORE_FETCH_URL
+# overrides it, for tests and for a run outside Vercel.
+REPO_URL="${VERCEL_IGNORE_FETCH_URL:-}"
+if [[ -z "$REPO_URL" && -n "${VERCEL_GIT_REPO_OWNER:-}" && -n "${VERCEL_GIT_REPO_SLUG:-}" && "${VERCEL_GIT_PROVIDER:-github}" == "github" ]]; then
+  REPO_URL="https://github.com/${VERCEL_GIT_REPO_OWNER}/${VERCEL_GIT_REPO_SLUG}.git"
+fi
+FETCH_TIMEOUT="${VERCEL_IGNORE_FETCH_TIMEOUT:-120}"
+
 REF="${VERCEL_GIT_COMMIT_REF:-}"
 MSG="${VERCEL_GIT_COMMIT_MESSAGE:-}"
 ENVIRONMENT="${VERCEL_ENV:-}"
@@ -77,9 +93,11 @@ fi
 if [[ "$MSG" == feed:* ]]; then
   skip "commit message starts with 'feed:' (bot feed sync)"
 fi
-if [[ "$MSG" == *"[skip ci]"* ]]; then
-  skip "commit message contains [skip ci]"
-fi
+for token in "[skip ci]" "[skip vercel]" "[vercel skip]"; do
+  if [[ "$MSG" == *"$token"* ]]; then
+    skip "commit message contains $token"
+  fi
+done
 
 # --- step 2: branch-prefix skip signals ----------------------------------
 if [[ "$REF" =~ ^(run|intake|data|hte)/ ]]; then
@@ -92,19 +110,58 @@ fi
 # --- step 3: content-aware fallback --------------------------------------
 # Applies uniformly, production included: skip only when the diff itself
 # proves no allowlisted path changed.
-if [[ -z "$PREV_SHA" ]]; then
-  RANGE_DESC="${CUR_SHA}^ ${CUR_SHA} (no previous sha, falling back to last commit)"
-  RANGE_ARGS=("${CUR_SHA}^" "$CUR_SHA")
-else
-  RANGE_DESC="$PREV_SHA $CUR_SHA"
-  RANGE_ARGS=("$PREV_SHA" "$CUR_SHA")
+
+have_commit() { git cat-file -e "$1^{commit}" 2>/dev/null; }
+
+# fetch_from_repo <sha or refs/heads/name> <depth>: fetch into the clone,
+# which has no remote. Prints git's output on failure.
+fetch_from_repo() {
+  if [[ -z "$REPO_URL" ]]; then
+    echo "no repository URL (VERCEL_GIT_REPO_OWNER and VERCEL_GIT_REPO_SLUG unset)"
+    return 1
+  fi
+  local runner=()
+  command -v timeout >/dev/null 2>&1 && runner=(timeout "$FETCH_TIMEOUT")
+  "${runner[@]}" git fetch --quiet --no-tags --depth="$2" "$REPO_URL" "$1" 2>&1
+}
+
+if [[ "$CUR_SHA" == "HEAD" ]]; then
+  CUR_SHA="$(git rev-parse HEAD 2>/dev/null || echo HEAD)"
 fi
 
-DIFF_OUTPUT="$(git diff --name-only "${RANGE_ARGS[@]}" 2>&1)"
+if [[ -n "$PREV_SHA" ]]; then
+  BASE="$PREV_SHA"
+  BASE_DESC="last successful deployment $PREV_SHA"
+  if ! have_commit "$BASE"; then
+    if ! out="$(fetch_from_repo "$BASE" 1)"; then
+      build "the $BASE_DESC is not in the clone and could not be fetched ($out); building to be safe"
+    fi
+  fi
+elif [[ "$REF" != "dev" && "$REF" != "main" ]]; then
+  # A feature branch's first deployment: compare with dev, where it will merge.
+  if ! out="$(fetch_from_repo refs/heads/dev 1)"; then
+    build "first deployment of '$REF' and the tip of dev could not be fetched ($out); building to be safe"
+  fi
+  BASE="$(git rev-parse FETCH_HEAD)"
+  BASE_DESC="the tip of dev $BASE (first deployment of this branch)"
+else
+  if ! have_commit "${CUR_SHA}^"; then
+    if ! out="$(fetch_from_repo "$CUR_SHA" 2)"; then
+      build "no previous deployment on '$REF' and the parent of $CUR_SHA could not be fetched ($out); building to be safe"
+    fi
+  fi
+  BASE="$(git rev-parse "${CUR_SHA}^" 2>/dev/null || echo "${CUR_SHA}^")"
+  BASE_DESC="the parent $BASE (no previous deployment on this branch)"
+fi
+
+RANGE_DESC="$BASE_DESC to $CUR_SHA"
+# --no-renames lists both paths of a moved file, so a file moved out of an
+# allowlisted directory still counts as a change there.
+DIFF_OUTPUT="$(git diff --name-only --no-renames "$BASE" "$CUR_SHA" 2>&1)"
 DIFF_STATUS=$?
 
 if [[ $DIFF_STATUS -ne 0 ]]; then
-  build "could not compute diff for '$RANGE_DESC' (git said: $DIFF_OUTPUT) — building defensively"
+  build "could not compute the diff from $RANGE_DESC (git said: $DIFF_OUTPUT); building to be safe"
 fi
 
 # Paths whose change requires a build. See docs/VERCEL-BUILDS.md for the
@@ -113,7 +170,7 @@ fi
 ALLOWLIST_RE='^(src/|public/|package\.json$|package-lock\.json$|next\.config\.mjs$|tailwind\.config\.ts$|postcss\.config\.mjs$|tsconfig\.json$|vercel\.json$|scripts/vercel-ignore-build\.sh$|scripts/sync-academy\.mjs$|learning/app/|bucket-canon/|canon-figures/figures\.json$|feed\.json$|PROTOCOL\.md$|GOVERNANCE\.md$|MANIFESTO\.md$|_intake/embeddings/|_intake/embeddings-v2/|_intake/connections/)'
 
 if echo "$DIFF_OUTPUT" | grep -qE "$ALLOWLIST_RE"; then
-  build "diff ($RANGE_DESC) touches an allowlisted site path"
+  build "the diff from $RANGE_DESC touches an allowlisted site path: $(echo "$DIFF_OUTPUT" | grep -E "$ALLOWLIST_RE" | head -3 | tr '\n' ' ')"
 fi
 
-skip "diff ($RANGE_DESC) touches no allowlisted site path"
+skip "the diff from $RANGE_DESC touches no allowlisted site path ($(echo "$DIFF_OUTPUT" | grep -c .) files changed)"
