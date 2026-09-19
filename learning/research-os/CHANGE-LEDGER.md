@@ -10,13 +10,13 @@ Date 2026-09-19. Branch `feat/ros-loop-patents-gateway`, worktree `.wt-ros-loop`
 
 ### Added
 
-- `learning/research-os/PATENTS.md`: the ros-patents epic's file. What feed402, the Go gateway, and this repository hold; what changed outside since the licensing matrix; and the design: one patent index read by the gateway and by Research OS behind keys that decide each reader's rights, the five gateway changes, rights by tier, pricing, the graph model, the surfaces by level, and four questions for the founder.
+- `learning/research-os/PATENTS.md`: the ros-patents epic's file. What feed402, the Go gateway, and this repository hold; what changed outside since the licensing matrix; and the design: one patent index read by the gateway and by Research OS behind keys that decide each reader's rights, the five gateway changes, rights by tier, pricing, the graph model, the surfaces by level, and five questions for the founder.
 
 ### Edited
 
 - `docs/PATENT_LICENSING.md`: a dated corrections block at the top: PatentsView's paused API and ODP accounts, the EPO OPS terms and free bulk data, WIPO's paid licences, the Lens, and Reliance on Science's non-commercial licence. The text below it is unchanged.
 - `docs/FEED402_PATENTS.md`: a dated corrections block at the top: the v1 corpus is US grants under CC BY 4.0, seven routes, and the local serve script's old `mountPatents` call. The text below it is unchanged.
-- `docs/PROBLEM-REGISTER.md`: PR-067, PR-068, PR-069.
+- `docs/PROBLEM-REGISTER.md`: PR-067, PR-068, PR-069, PR-070.
 - `_intake/research-os-k12/CHANGELOG.md`: the 2026-09-19 patents entry.
 
 ### Removed

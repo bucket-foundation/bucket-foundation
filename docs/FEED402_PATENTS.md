@@ -12,6 +12,7 @@
 - The v1 corpus is US grants under CC BY 4.0 alone. EPO data, through OPS or the EPO's free bulk products, waits on the EPO's raw-data terms, and WIPO PATENTSCOPE content needs a paid derivative licence before any tier carries it.
 - The route surface mounts seven routes: the six below and `/citation`.
 - The local serve script `local/patents/scripts/05-serve.ts` calls `mountPatents` with an older signature and needs updating before it serves.
+- feed402 has public remotes, `gianyrox/feed402` and `bucket-foundation/feed402` on GitHub; the "local-only repo" note below is out of date.
 
 ## Routes
 
