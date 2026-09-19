@@ -9,7 +9,7 @@
 
 `learning/research-os/PATENTS.md` records the checks behind these. The text below this block is kept as written.
 
-- The v1 corpus is US grants under CC BY 4.0 alone. EPO data, through OPS or the EPO's free bulk products, waits on the EPO's raw-data terms, and WIPO PATENTSCOPE content needs a paid derivative licence before any tier carries it.
+- The v1 corpus is US records, public domain or CC BY 4.0. EPO data, through OPS or the EPO's free bulk products, waits on the EPO's raw-data terms, and WIPO PATENTSCOPE content needs a paid derivative licence before any tier carries it.
 - The route surface mounts seven routes: the six below and `/citation`.
 - The local serve script `local/patents/scripts/05-serve.ts` calls `mountPatents` with an older signature and needs updating before it serves.
 - The x402 research gateway now serves US patents through its USPTO ODP adapter ([x402-research-gateway#64](https://github.com/bucket-foundation/x402-research-gateway/pull/64)), and the protocol changes these corrections imply are tracked in [feed402#12](https://github.com/bucket-foundation/feed402/issues/12).
