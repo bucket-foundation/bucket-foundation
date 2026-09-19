@@ -141,3 +141,34 @@ The gateway's own questions, who owns the mainnet facilitator and receiving wall
 - ros-patents 4 decomposes claims into elements and adds disclosure.
 
 The gateway's USPTO routes are on its org `main`; Research OS links to them once gateway #68 confirms them on the deployed host, and to the public patent records until then.
+
+## Slice 1: the research memo
+
+The prior work on patents in scientific discovery and innovation, checked against its sources, and the choices it settles for Research OS: which CPC classes load first, how prior art is found and ranked, how a claim reads as a combination of known ideas, and what Bucket does with inventions as a nonprofit.
+
+### What the repository holds for it
+
+- Slice 0 above: the sources, their terms, and the design of patents in the graph.
+- `pubmed/PMID-9034179-patent-threat-to-research/`: "Patent threat to research", a 1997 letter in Nature by Dalton, Goodwin, Ho, and others ([doi:10.1038/385672a0](https://doi.org/10.1038/385672a0)), captured with no abstract.
+- `quantum/06-ecosystem-geopolitics/E-patents.md`: a graded note on the quantum patent race. It separates filings from international patent families as measures, names CPC class G06N 10/00, and records that trade secrets keep part of the field out of the patent record.
+
+### Questions the memo answers
+
+1. How patents cite science, and how well those links can be recovered: front-page and in-text references, examiner and applicant citations, and the link sets built from them.
+2. How a claim is built, and what novelty and non-obviousness ask of it: independent and dependent claims, elements, and the combination of known elements.
+3. What CPC is, how its classes map onto the graph's fourteen branches, and which classes load first.
+4. What patent counts measure and where they mislead: filings against families, strategic patenting, and trade secrets.
+5. How prior art is searched today, by examiners and by tools, and how retrieval quality is measured.
+6. Open pledges, defensive publication, and the choices open to a nonprofit that publishes inventions.
+
+### How patents cite science
+
+Checked 2026-09-19. Each paper's claims come from its own abstract, read through OpenAlex.
+
+**Most science is near a patent, and most patents are near science.** Ahmadpoor and Jones measured the shortest citation path between 4.8 million US patents and 32 million research articles. Most cited articles (80%) link forward to a future patent, and most patents (61%) link back to a prior article. Linked works sit 2 to 4 citation steps from the other domain in the usual case, and work directly on the patent-paper boundary has more impact within its own field ([Science 357(6351) 583-587, 2017](https://doi.org/10.1126/science.aam9527)). For Research OS, a patent on the graph is expected to connect to the literature, in many cases through intermediate works.
+
+**The link sets are built from unstructured references.** Patent references to papers are free text on the front page and in the body. Marx and Fuegi match them to published papers and give each match a confidence score, calibrated on a random sample for coverage and accuracy ([Strategic Management Journal 41(9) 1572-1594, 2020](https://doi.org/10.1002/smj.3145)). A second pass extracts citations from the body text ([Journal of Economics and Management Strategy 31(2) 369-392](https://doi.org/10.1111/jems.12455)). Their set is CC BY-NC and out of v1 (Slice 0); the method is the template for the links Bucket builds from the PatentsView references: a match, a confidence score, and a hand-checked sample that gives coverage and accuracy.
+
+**Examiners add most of a patent's citations.** Two-thirds of the citations on the average US patent are inserted by examiners, and 40% of patents carry only examiner citations; pooling examiner and inventor citations can bias inferences about what inventors knew ([Alcácer and Gittelman, Review of Economics and Statistics 88(4) 774-779, 2006](https://doi.org/10.1162/rest.88.4.774)). A `cites` edge in Research OS records who added the citation, examiner or applicant, where the source says, so a reader can tell prior art the office found from knowledge the inventor used.
+
+**The line of work is long.** Narin, Hamilton, and Olivastro traced the growing reliance of US patents on public science in the 1990s ([Research Policy 26(3), 1997](https://doi.org/10.1016/s0048-7333(97)00013-9)); OpenAlex and Semantic Scholar hold no abstract for it, so no figure from it is quoted here.
