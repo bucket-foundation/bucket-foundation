@@ -15,18 +15,24 @@
  *      spots ideas that already have a node; earlier runs' keys are reused.
  *   4. A missing idea that already has a node becomes a factor proposal.
  *   5. Verify every pair still unchecked, including pending pairs queued
- *      from approved base ideas.
+ *      from approved base ideas. These checks name the factor, since no
+ *      pick exists to hide; the report counts them apart from blind ones.
  *   6. Flag pairs that would close a cycle with other pending proposals.
  *   7. Score every pair with Wikipedia link evidence (RefD, Liang et al.
  *      2015; scripts/research-os/wikipedia-links.ts), a judge outside the
- *      Claude models, and tally how its sign meets the verifier's verdicts.
+ *      Claude models, and report its ROC area against the verifier's
+ *      verdicts with target-level intervals.
  *   8. Merge everything into graph.edge_proposals, graph.node_proposals,
- *      and graph.irreducible_proposals; decided rows stay as reviewed.
+ *      and graph.irreducible_proposals; decided rows stay as reviewed, and
+ *      every pair the merge leaves alone is listed with what holds it.
  *
  * Model calls go through `claude -p` under this machine's login with the
  * hypothesis engine's flags; ANTHROPIC_API_KEY is removed from the child
- * environment. A reply is cached by prompt hash after it parses, in
- * scripts/research-os/ingest/out/decompose-cache/, so reruns converge.
+ * environment. Each model alias resolves to a model id with a one-line
+ * probe at the start of a run. A reply is cached after it parses, keyed by
+ * the resolved id and the prompt, in
+ * scripts/research-os/ingest/out/decompose-cache/, so reruns converge and
+ * a new model never replays an old one's answers.
  *
  * Run from the repo root with the local stack's keys in .env.local:
  *   set -a; . ./.env.local; set +a
@@ -41,11 +47,13 @@ import { spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { decompose, FACTOR_EDGES, type DepEdge } from "../../src/lib/research-os/primes";
-import { refdAgreement, scorePairs } from "../../src/lib/research-os/refd";
+import { refdAgreement, refdAucInterval, scorePairs } from "../../src/lib/research-os/refd";
 import { wikipediaIndex } from "./wikipedia-links";
 import {
   agreementStats,
   answeringModel,
+  applyVerdicts,
+  reuseEarlierKeys,
   aggregateMissing,
   blindSet,
   buildConsolidatePrompt,
@@ -212,6 +220,7 @@ function askClaude(prompt: string, model: string, timeoutMs: number, schema: obj
 
 type Cached<T> = { value: T | { error: string }; hash: string; cached: boolean };
 type QueuedPair = { id: string; from_slug: string; to_slug: string; refd?: number | null };
+type MergeRow = { pair_from: string; pair_to: string; written: boolean; held_status: string | null; held_source: string | null };
 
 async function main() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -219,23 +228,32 @@ async function main() {
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set");
   const limit = Number(arg("--limit", "0"));
   const concurrency = Math.max(1, Number(arg("--concurrency", "4")));
-  const model = arg("--model", "sonnet")!;
-  const verifyModel = arg("--verify-model", "opus")!;
+  const proposerAlias = arg("--model", "sonnet")!;
+  const verifierAlias = arg("--verify-model", "opus")!;
   const dryRun = process.argv.includes("--dry-run");
   const svc = createClient(url, key, { db: { schema: "graph" }, auth: { persistSession: false } }) as unknown as SupabaseClient;
-  const modelIds = new Map<string, string>();
+
+  // The CLI takes aliases, and an alias moves when a new model ships. Each
+  // alias resolves once per run with a one-line probe; the cache is keyed
+  // by the resolved id, so a new model never replays an old model's
+  // answers, and every row records the id that answered.
+  async function resolveModel(alias: string): Promise<string> {
+    const probe = await askClaude("Reply with the single word ok.", alias, 120_000, { type: "object", properties: { ok: { type: "string" } }, required: ["ok"] });
+    return probe.modelId;
+  }
+  const model = await resolveModel(proposerAlias);
+  const verifyModel = await resolveModel(verifierAlias);
+  // Replies whose own usage names a model other than the resolved one.
+  const mismatched: { hash: string; expected: string; answered: string }[] = [];
 
   // Ask once per prompt; a reply is cached only after `accept` parses it.
   async function cachedAsk<T>(prompt: string, m: string, schema: object, accept: (reply: string) => T | { error: string }): Promise<Cached<T>> {
     const hash = promptHash(`${m}\n${prompt}`);
     const cacheFile = path.join(CACHE, `${hash}.txt`);
     const metaFile = path.join(CACHE, `${hash}.model`);
-    if (existsSync(cacheFile)) {
-      if (existsSync(metaFile)) modelIds.set(m, readFileSync(metaFile, "utf8").trim());
-      return { value: accept(readFileSync(cacheFile, "utf8")), hash, cached: true };
-    }
+    if (existsSync(cacheFile)) return { value: accept(readFileSync(cacheFile, "utf8")), hash, cached: true };
     const res = await askClaude(prompt, m, 300_000, schema);
-    modelIds.set(m, res.modelId);
+    if (res.modelId !== m) mismatched.push({ hash, expected: m, answered: res.modelId });
     const value = accept(res.text);
     if (!(value && typeof value === "object" && "error" in (value as object))) {
       writeFileSync(cacheFile, res.text);
@@ -263,8 +281,15 @@ async function main() {
   const vectors = embed(ideaPool.map((c) => ({ id: c.slug, text: `${c.title}. ${c.summary ?? ""}`.trim() })));
   const idf = idfOf(ideaPool);
 
-  const irreducibleRows = await all<{ id: string; node_slug: string; status: string }>(svc, "irreducible_proposals", "id, node_slug, status");
+  const irreducibleRows = await all<{ id: string; node_slug: string; status: string; decision_reason: string | null }>(
+    svc,
+    "irreducible_proposals",
+    "id, node_slug, status, decision_reason",
+  );
+  // Pending and confirmed verdicts stay out of the run; a rejected one
+  // comes back with the reviewer's reason in its prompt.
   const settled = new Set(irreducibleRows.filter((r) => r.status !== "rejected").map((r) => r.node_slug));
+  const rejectedWhy = new Map(irreducibleRows.filter((r) => r.status === "rejected").map((r) => [r.node_slug, r.decision_reason ?? ""]));
   let targets = selectTargets(rows, dec).filter((t) => !settled.has(t.slug));
 
   const show = arg("--show-shortlist");
@@ -291,7 +316,9 @@ async function main() {
       const cands = shortlist(target, pool, dec, { vectors, idf });
       try {
         const allowed = new Set(cands.map((c) => c.slug));
-        const ask = await cachedAsk(buildPrompt(target, cands), model, SCHEMA, (r) => parseAnswer(r, allowed, target.slug));
+        const ask = await cachedAsk(buildPrompt(target, cands, { rejectedIrreducible: rejectedWhy.get(target.slug) ?? null }), model, SCHEMA, (r) =>
+          parseAnswer(r, allowed, target.slug),
+        );
         const parsed = ask.value;
         if ("error" in parsed) {
           failures.push({ slug: target.slug, reason: `proposer: ${parsed.error}` });
@@ -379,18 +406,16 @@ async function main() {
   );
   const earlierVectors = embed(earlier.map((e) => ({ id: e.key, text: e.title })));
   const newVectors = embed(outcome.nodeProposals.map((r) => ({ id: r.key, text: r.title })));
-  for (const r of outcome.nodeProposals) {
-    if (earlier.some((e) => e.key === r.key)) continue;
-    const v = newVectors.get(r.key);
-    const best = earlier
-      .map((e) => ({ e, s: v && earlierVectors.has(e.key) ? cosine(v, earlierVectors.get(e.key)!) : 0 }))
-      .sort((a, b) => b.s - a.s)[0];
-    if (best && best.s >= SAME_PROPOSAL_SIMILARITY) {
-      r.aliases = Array.from(new Set(r.aliases.concat([r.title]))).filter((t) => t !== best.e.title);
-      r.key = best.e.key;
-      r.title = best.e.title;
-    }
-  }
+  const reusedKeys = reuseEarlierKeys(
+    outcome.nodeProposals,
+    earlier,
+    (a, b) => {
+      const v = newVectors.get(a);
+      const w = earlierVectors.get(b);
+      return v && w ? cosine(v, w) : 0;
+    },
+    SAME_PROPOSAL_SIMILARITY,
+  );
 
   // Stage 4: proposals from the proposer and from matched missing ideas.
   const branchOf = new Map<string, string | null>(rows.map((n) => [n.slug, n.branch]));
@@ -458,16 +483,7 @@ async function main() {
         failures.push({ slug: `verify:${to}`, reason: v.value.error });
         continue;
       }
-      for (const p of s.fresh) {
-        const verdict = v.value.get(p.from_slug);
-        if (!verdict) continue;
-        const ver = verificationOf(verdict);
-        p.verification = ver;
-        p.confidence = confidenceFor(ver);
-        p.agreement = ver === "confirmed";
-        p.secondary_justification = `${verifyModel}: ${verdict.why || (verdict.holds ? "confirmed" : "not confirmed")}`;
-        p.secondary_prompt_hash = v.hash;
-      }
+      applyVerdicts(s.fresh, v.value, verifyModel, v.hash);
       for (const q of s.queued) {
         const verdict = v.value.get(q.from_slug);
         if (verdict) dbVerdicts.push({ id: q.id, verdict, hash: v.hash });
@@ -524,9 +540,20 @@ async function main() {
   }
   for (const p of withCycle) p.refd = refdOf(p.from_slug, p.to_slug);
   const refdProposals = refdAgreement(withCycle);
-  const refdBlind = refdAgreement(
-    agreement.filter((a) => a.slug).map((a) => ({ refd: refdOf(a.slug!, a.target), verification: a.holds ? "confirmed" : "refuted" })),
-  );
+  const blindScored = agreement
+    .filter((a) => a.slug)
+    .map((a) => ({ target: a.target, picked: a.picked, refd: refdOf(a.slug!, a.target), verification: a.holds ? "confirmed" : "refuted" }));
+  const refdBlind = refdAgreement(blindScored);
+  // The blinded set mixes picks and passed-over candidates, and the
+  // verifier confirms almost only picks, so an area over the whole set
+  // partly measures pick status; the split areas and the target-level
+  // intervals say how much the links add inside each group.
+  const refdAuc = {
+    proposals: refdAucInterval(withCycle.map((p) => ({ target: p.to_slug, refd: p.refd, verification: p.verification }))),
+    blinded: refdAucInterval(blindScored),
+    blinded_picks: refdAucInterval(blindScored.filter((b) => b.picked)),
+    blinded_passed_over: refdAucInterval(blindScored.filter((b) => !b.picked)),
+  };
 
   // Stage 8: merge into the review tables.
   const queued = {
@@ -537,12 +564,29 @@ async function main() {
     verdicts_on_queued: 0,
     older_pairs_in_cycle: 0,
     older_pairs_scored: 0,
+    irreducible_reopened: 0,
+    edge_rows_skipped: 0,
   };
+  // Pairs the merge left alone: decided by a reviewer, or held by a pending
+  // proposal from another source.
+  const skipped: { from: string; to: string; status: string | null; source: string | null }[] = [];
+  function tallyMerge(rowsOut: MergeRow[] | null, countWritten = true): number {
+    let written = 0;
+    for (const m of rowsOut ?? []) {
+      if (m.written) written++;
+      else {
+        skipped.push({ from: m.pair_from, to: m.pair_to, status: m.held_status, source: m.held_source });
+        queued.edge_rows_skipped++;
+      }
+    }
+    if (countWritten) queued.edge_proposals += written;
+    return written;
+  }
   if (!dryRun) {
     for (let i = 0; i < withCycle.length; i += 200) {
-      const { error } = await svc.rpc("merge_edge_proposals", { p_rows: withCycle.slice(i, i + 200) });
+      const { data, error } = await svc.rpc("merge_edge_proposals", { p_rows: withCycle.slice(i, i + 200) });
       if (error) throw new Error(`merge_edge_proposals: ${error.message}`);
-      queued.edge_proposals += Math.min(200, withCycle.length - i);
+      tallyMerge(data as MergeRow[] | null);
     }
     for (const d of dbVerdicts) {
       const ver = verificationOf(d.verdict);
@@ -603,22 +647,35 @@ async function main() {
         }
         for (const p of extra) p.refd = refdOf(p.from_slug, p.to_slug);
         if (extra.length) {
-          const { error: e2 } = await svc.rpc("merge_edge_proposals", { p_rows: extra });
+          const { data: d2, error: e2 } = await svc.rpc("merge_edge_proposals", { p_rows: extra });
           if (e2) throw new Error(`merge_edge_proposals: ${e2.message}`);
-          queued.from_approved_base_ideas += extra.length;
+          queued.from_approved_base_ideas += tallyMerge(d2 as MergeRow[] | null, false);
         }
       }
     }
-    if (irreducible.length) {
-      const rowsIrr = irreducible.map((r) => ({
-        node_slug: r.target.slug,
-        justification: r.answer.irreducibleWhy || "The proposer found nothing more basic among the candidates.",
-        model,
-        prompt_hash: r.hash,
-      }));
-      const { error } = await svc.from("irreducible_proposals").upsert(rowsIrr, { onConflict: "node_slug", ignoreDuplicates: true });
-      if (error) throw new Error(`irreducible_proposals: ${error.message}`);
-      queued.irreducible = rowsIrr.length;
+    // A new verdict is inserted; one on a node a reviewer rejected reopens
+    // that row as pending with the new reason and the reviewer's, so the
+    // reviewer sees it again; pending and confirmed rows are left alone.
+    const existingIrr = new Map(irreducibleRows.map((r) => [r.node_slug, r]));
+    for (const r of irreducible) {
+      const justification = r.answer.irreducibleWhy || "The proposer found nothing more basic among the candidates.";
+      const prior = existingIrr.get(r.target.slug);
+      if (!prior) {
+        const { error } = await svc
+          .from("irreducible_proposals")
+          .insert([{ node_slug: r.target.slug, justification, model, prompt_hash: r.hash }]);
+        if (error) throw new Error(`irreducible_proposals: ${error.message}`);
+        queued.irreducible++;
+      } else if (prior.status === "rejected") {
+        const note = prior.decision_reason ? ` A reviewer rejected an earlier verdict: ${prior.decision_reason}` : " A reviewer rejected an earlier verdict.";
+        const { error } = await svc
+          .from("irreducible_proposals")
+          .update({ status: "pending", justification: `${justification}${note}`, model, prompt_hash: r.hash, reviewer_id: null, decided_at: null })
+          .eq("id", prior.id)
+          .eq("status", "rejected");
+        if (error) throw new Error(`irreducible_proposals reopen: ${error.message}`);
+        queued.irreducible_reopened++;
+      }
     }
   }
 
@@ -627,7 +684,7 @@ async function main() {
   const primeTargets = new Set(results.filter((r) => r.target.status === "prime").map((r) => r.target.slug));
   const report = {
     generated_at: new Date().toISOString(),
-    models: { proposer: model, verifier: verifyModel, resolved: Object.fromEntries(modelIds) },
+    models: { proposer: model, verifier: verifyModel, aliases: { proposer: proposerAlias, verifier: verifierAlias }, mismatched },
     targets: targets.length,
     answered: results.length,
     from_cache: results.filter((r) => r.cached).length,
@@ -637,10 +694,14 @@ async function main() {
       proposer: proposals.filter((p) => p.origin === "proposer").length,
       missing_matched: proposals.filter((p) => p.origin === "missing_matched").length,
     },
+    // Proposer pairs were checked blind; matched missing ideas were checked
+    // in stage 5 with the factor named, since no pick exists to hide.
+    confirmed_blind: proposals.filter((p) => p.origin === "proposer" && p.verification === "confirmed").length,
+    confirmed_unblinded: proposals.filter((p) => p.origin !== "proposer" && p.verification === "confirmed").length,
     cross_branch_proposals: proposals.filter((p) => p.cross_branch).length,
     in_cycle: withCycle.filter((p) => p.in_cycle).length,
     agreement: stats,
-    refd: { wikipedia: wiki, proposals: refdProposals, blinded: refdBlind },
+    refd: { wikipedia: wiki, proposals: refdProposals, blinded: refdBlind, auc: refdAuc },
     confirmation: {
       all: rate(proposals),
       cross_branch: rate(proposals.filter((p) => p.cross_branch)),
@@ -648,8 +709,16 @@ async function main() {
       prime_targets: rate(proposals.filter((p) => primeTargets.has(p.to_slug))),
       unfactored_targets: rate(proposals.filter((p) => !primeTargets.has(p.to_slug))),
     },
-    missing: { named: missing.length, groups: groups.length, matched_to_existing: outcome.matched.length, node_proposals: outcome.nodeProposals.length },
+    missing: {
+      named: missing.length,
+      groups: groups.length,
+      matched_to_existing: outcome.matched.length,
+      node_proposals: outcome.nodeProposals.length,
+      reused_earlier_keys: reusedKeys,
+      named_by_more_than_one: outcome.nodeProposals.filter((n) => n.named_by.length > 1).length,
+    },
     queued,
+    skipped,
     irreducible: irreducible.map((r) => ({ slug: r.target.slug, why: r.answer.irreducibleWhy })),
     node_proposals: outcome.nodeProposals.map((n) => ({
       key: n.key,
@@ -673,13 +742,14 @@ async function main() {
       `${report.cross_branch_proposals} across branches, ${report.in_cycle} in a cycle`,
   );
   console.log(`[decompose-further] blinded agreement: ${stats.pairs} pairs over ${stats.targets} targets, kappa ${k}, 95% interval ${ci}, table ${JSON.stringify(stats.table)}`);
-  const share = (t: ReturnType<typeof refdAgreement>) =>
-    t.pairs
-      ? `${t.pairs} pairs, mean ${t.confirmed.mean ?? "n/a"} confirmed and ${t.refuted.mean ?? "n/a"} refuted, AUC ${t.auc ?? "n/a"}`
-      : "no scored pairs";
+  const iv = (a: ReturnType<typeof refdAucInterval>) =>
+    a.auc === null ? "n/a" : `${a.auc}${a.interval ? ` [${a.interval[0]}, ${a.interval[1]}]` : ""}`;
+  const share = (t: ReturnType<typeof refdAgreement>, a: ReturnType<typeof refdAucInterval>) =>
+    t.pairs ? `${t.pairs} pairs, mean ${t.confirmed.mean ?? "n/a"} confirmed and ${t.refuted.mean ?? "n/a"} refuted, AUC ${iv(a)}` : "no scored pairs";
   console.log(
     `[decompose-further] Wikipedia: ${wiki.mapped} nodes mapped (${wiki.via_corpus} from the corpus), ${wiki.articles} articles, ${wiki.requests} requests${wiki.error ? `, error: ${wiki.error}` : ""}; ` +
-      `RefD against the verifier: proposals ${share(refdProposals)}, blinded set ${share(refdBlind)}`,
+      `RefD against the verifier: proposals ${share(refdProposals, refdAuc.proposals)}, blinded set ${share(refdBlind, refdAuc.blinded)} ` +
+      `(picks ${iv(refdAuc.blinded_picks)}, passed over ${iv(refdAuc.blinded_passed_over)})`,
   );
   console.log(
     `[decompose-further] missing ideas: ${missing.length} named, ${outcome.matched.length} already had a node, ${outcome.nodeProposals.length} missing primes; ${irreducible.length} called irreducible`,

@@ -1,7 +1,7 @@
 /** Wikipedia link evidence: title parsing, the restricted RefD score, and its agreement tally. */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { knownLinks, refd, refdAgreement, resolveTitles, scorePairs, wikiTitleFromUrl, type LinkIndex } from "../src/lib/research-os/refd";
+import { knownLinks, refd, refdAgreement, refdAucInterval, resolveTitles, scorePairs, wikiTitleFromUrl, type LinkIndex } from "../src/lib/research-os/refd";
 
 test("titles come out of Wikipedia URLs with spaces and decoded characters", () => {
   assert.equal(wikiTitleFromUrl("https://en.wikipedia.org/wiki/Kinematics"), "Kinematics");
@@ -102,4 +102,19 @@ test("pairs score only when both ends have an article", () => {
   );
   assert.equal(s.size, 1);
   assert.ok(s.get("academy-01-mathematics-derivative->academy-02-physics-kinematics")! > 0);
+});
+
+test("the ROC area gets a target-level interval that repeats run to run and does not depend on row order", () => {
+  const rows = ["t1", "t2", "t3", "t4", "t5", "t6"].flatMap((t, i) => [
+    { target: t, refd: 0.1 + i * 0.01, verification: "confirmed" },
+    { target: t, refd: i % 2 ? 0.2 : -0.1, verification: "refuted" },
+    { target: t, refd: null, verification: "confirmed" },
+  ]);
+  const a = refdAucInterval(rows, 400);
+  const b = refdAucInterval(rows.slice().reverse(), 400);
+  assert.deepEqual(a, b);
+  assert.equal(a.targets, 6);
+  assert.ok(a.auc !== null && a.interval !== null);
+  assert.ok(a.interval![0] <= a.auc! && a.auc! <= a.interval![1]);
+  assert.deepEqual(refdAucInterval([{ target: "t", refd: 0.1, verification: "confirmed" }]), { auc: null, interval: null, targets: 1 });
 });

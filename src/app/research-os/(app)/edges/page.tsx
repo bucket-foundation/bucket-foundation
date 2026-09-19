@@ -194,7 +194,13 @@ export default function ResearchOsEdgesPage() {
       else if (!res.ok) setNotice({ id: p.id, text: `Could not save (${data.error || res.status}).` });
       else {
         setProposals((list) => (list ?? []).filter((x) => x.id !== p.id));
-        setNotice({ id: null, text: decision === "approved" ? `Approved: ${p.toTitle} ${kind === "derives_from" ? "rests on" : "comes after"} ${p.fromTitle}.` : `Rejected: ${p.fromTitle} for ${p.toTitle}.` });
+        setNotice({
+          id: null,
+          text:
+            decision === "approved"
+              ? `Approved: ${p.toTitle} ${kind === "derives_from" ? "rests on" : "comes after"} ${p.fromTitle}.${data.warning ? ` Warning: ${data.warning}.` : ""}`
+              : `Rejected: ${p.fromTitle} for ${p.toTitle}.`,
+        });
       }
     } finally {
       setBusyId(null);
@@ -502,7 +508,7 @@ export default function ResearchOsEdgesPage() {
                         )}
                         {p.origin && ORIGIN_TEXT[p.origin] && <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">{ORIGIN_TEXT[p.origin]}</p>}
                         {p.inCycle && (
-                          <p className="mt-1 text-[12px] text-red-700">Pending proposals point both ways here: approving all of them would close a cycle.</p>
+                          <p className="mt-1 text-[12px] text-red-700">This pair sits on a cycle with other pending proposals: approving all of them would make a loop. Approve one direction.</p>
                         )}
                         <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">{p.justification}</p>
                         {p.secondaryJustification && <p className="mt-1 text-[12px] text-[color:var(--basalt-2)] italic">second check: {p.secondaryJustification}</p>}

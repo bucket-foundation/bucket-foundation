@@ -1,11 +1,12 @@
 /**
  * The decompose-further queue (ros-prime 2). learning/research-os/PRIMES.md
- * found the graph's 41 primes are course entry points and 126 concepts carry
- * no dependency edge at all. For each of them, a model names what the node
- * rests on, chosen from a shortlist of existing nodes in every branch, and
- * names base primes the graph lacks. Proposals land in graph.edge_proposals
- * as pending `prerequisite` edges for the /research-os/edges review; only
- * that review's approve action writes graph.edges.
+ * found the graph's 41 primes are course entry points and many ideas carry
+ * no dependency edge at all. For each prime and unfactored idea, a model
+ * names what the node rests on, chosen from a shortlist of existing nodes
+ * in every branch, and names base ideas the graph lacks. Proposals land in
+ * graph.edge_proposals as pending pairs for the /research-os/edges review,
+ * where the reviewer writes each one as `derives_from` (rests on) or
+ * `prerequisite` (learning order); only that review writes graph.edges.
  *
  * Pure: the script in scripts/research-os/decompose-further.ts does the
  * database reads, the model calls, and the writes. Tests in
@@ -264,8 +265,18 @@ export function shortlist(target: Target, pool: Candidate[], dec: Map<string, De
   return out.sort((a, b) => (a.branch ?? "").localeCompare(b.branch ?? "") || a.slug.localeCompare(b.slug));
 }
 
-export function buildPrompt(target: Target, candidates: Candidate[]): string {
+/**
+ * The proposer's prompt. When a reviewer rejected an earlier irreducible
+ * verdict on this node, the prompt says so and carries the reviewer's
+ * reason, which also changes the prompt hash, so the cached verdict is
+ * never replayed.
+ */
+export function buildPrompt(target: Target, candidates: Candidate[], opts: { rejectedIrreducible?: string | null } = {}): string {
   const lines = candidates.map((c) => `- ${c.slug} | ${c.branch ?? "none"} | ${c.title}`).join("\n");
+  const rejected =
+    opts.rejectedIrreducible === undefined || opts.rejectedIrreducible === null
+      ? ""
+      : `A reviewer rejected an earlier answer that this node is irreducible${opts.rejectedIrreducible.trim() ? `, with this reason: ${opts.rejectedIrreducible.trim().replace(/[.!?\s]+$/, "")}` : ""}. Name what it rests on.`;
   return [
     "You are decomposing a node of a research knowledge graph into its factors, the way a number breaks into prime factors.",
     "A factor is an idea the node rests on: someone must hold the factor to hold the node. Factors may come from any branch; physics rests on mathematics, chemistry on physics.",
@@ -280,6 +291,7 @@ export function buildPrompt(target: Target, candidates: Candidate[]): string {
     `Pick up to ${MAX_FACTORS} direct factors from the candidates, by slug. Pick only factors the node needs directly; skip what those factors already cover.`,
     `Name up to ${MAX_MISSING} more basic ideas the node rests on that no candidate covers, each with the branch it belongs to.`,
     "Set irreducible to true only if the node rests on nothing more basic, and say why in irreducible_why.",
+    rejected,
     "",
     'Answer with JSON only: {"irreducible": false, "irreducible_why": "", "factors": [{"slug": "...", "why": "one sentence"}], "missing": [{"title": "...", "branch": "01-mathematics", "why": "one sentence"}]}',
   ]
@@ -291,7 +303,6 @@ export function promptHash(prompt: string): string {
   return createHash("sha256").update(prompt).digest("hex").slice(0, 16);
 }
 
-/** Pull the first JSON object out of a model reply and keep only valid parts. */
 /**
  * Model text held to n characters. A longer text ends at its last full
  * sentence inside the limit, or failing that at a word, marked with an
@@ -308,6 +319,7 @@ export function clipText(s: unknown, n: number): string {
   return `${(word > 0 ? head.slice(0, word) : head.slice(0, n - 1)).replace(/[\s,;:]+$/, "")}…`;
 }
 
+/** Pull the first JSON object out of a model reply and keep only valid parts. */
 export function parseAnswer(text: string, allowed: Set<string>, targetSlug: string): Answer | { error: string } {
   const start = text.indexOf("{");
   const end = text.lastIndexOf("}");
@@ -786,4 +798,60 @@ export function answeringModel(modelUsage: unknown, requested: string): string {
     }
   }
   return best ?? requested;
+}
+
+/**
+ * Stage 5's write-back: a verdict from the unblinded check of a pair still
+ * unchecked sets its verification, confidence, agreement, and second
+ * reason. Pairs with no verdict stay unchecked.
+ */
+export function applyVerdicts(rows: ProposalRow[], verdicts: Map<string, Verdict>, verifyModel: string, hash: string): number {
+  let n = 0;
+  for (const p of rows) {
+    const verdict = verdicts.get(p.from_slug);
+    if (!verdict) continue;
+    const ver = verificationOf(verdict);
+    p.verification = ver;
+    p.confidence = confidenceFor(ver);
+    p.agreement = ver === "confirmed";
+    p.secondary_justification = `${verifyModel}: ${verdict.why || (verdict.holds ? "confirmed" : "not confirmed")}`;
+    p.secondary_prompt_hash = hash;
+    n++;
+  }
+  return n;
+}
+
+/**
+ * A new missing prime that names the same idea as one from an earlier run
+ * takes that run's key and title, keeping its own title as an alias, so the
+ * database merges them into one row. `similarity` compares titles by
+ * embedding; a key already in use is kept as is.
+ */
+export function reuseEarlierKeys(
+  rows: NodeProposalRow[],
+  earlier: { key: string; title: string }[],
+  similarity: (newKey: string, earlierKey: string) => number,
+  threshold: number,
+): number {
+  let reused = 0;
+  const known = new Set(earlier.map((e) => e.key));
+  for (const r of rows) {
+    if (known.has(r.key)) continue;
+    let best: { key: string; title: string } | null = null;
+    let bestScore = -Infinity;
+    for (const e of earlier) {
+      const s = similarity(r.key, e.key);
+      if (s > bestScore || (s === bestScore && best && e.key < best.key)) {
+        best = e;
+        bestScore = s;
+      }
+    }
+    if (best && bestScore >= threshold) {
+      r.aliases = Array.from(new Set(r.aliases.concat([r.title]))).filter((t) => t !== best!.title);
+      r.key = best.key;
+      r.title = best.title;
+      reused++;
+    }
+  }
+  return reused;
 }

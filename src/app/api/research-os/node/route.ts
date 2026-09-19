@@ -49,7 +49,12 @@ export async function GET(req: NextRequest) {
   if (!canView(access, viewer, grants)) return bad(404, "node_not_found");
 
   const [graph, standingRes, myClasses] = await Promise.all([
-    loadSubgraph(node.branch, { externalFactors: true }).catch(() => ({ nodes: [], edges: [] })),
+    // A failed graph read still serves the node itself; the reply says the
+    // neighbourhood is missing instead of showing an empty one as real.
+    loadSubgraph(node.branch, { externalFactors: true }).catch((err: unknown) => {
+      console.error("[research-os/node] subgraph load failed:", err instanceof Error ? err.message : err);
+      return { nodes: [], edges: [], failed: true as const };
+    }),
     viewerId ? svc.from("learner_node_state").select("stage,evidence,updated_at").eq("learner_id", viewerId).eq("node_id", node.id).maybeSingle() : Promise.resolve({ data: null }),
     viewerId ? listMyClasses(viewerId) : Promise.resolve([]),
   ]);
@@ -121,6 +126,7 @@ export async function GET(req: NextRequest) {
         frontierFlag: node.frontier_flag, createdAt: node.created_at,
       },
       standing: standingRow ? { stage: standingRow.stage, updatedAt: standingRow.updated_at, evidence } : { stage: null, updatedAt: null, evidence: [] },
+      ...("failed" in graph ? { graphUnavailable: true } : {}),
       prerequisites,
       dependents,
       related,

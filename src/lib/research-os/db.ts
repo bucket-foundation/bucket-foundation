@@ -112,7 +112,7 @@ function toWorkedExample(raw: NodeRow["worked_example"]): { text: string; source
   if (!raw || typeof raw.text !== "string" || typeof raw.source !== "string" || !raw.text.trim() || !raw.source.trim()) return undefined;
   return { text: raw.text, source: raw.source };
 }
-interface EdgeRow {
+export interface EdgeRow {
   id: string;
   from_id: string;
   to_id: string;
@@ -217,7 +217,7 @@ const NODE_COLUMNS = "id,slug,title,kind,tier,branch,summary,labels,provenance,w
 const EDGE_COLUMNS = "id,from_id,to_id,kind,weight,confidence,confidence_source";
 
 /** Mutates `nodes` and `edgeRows`: adds the branch's factors from other branches and the edges among them. */
-async function addExternalFactors(svc: SupabaseClient, branchIds: string[], nodes: GraphNode[], edgeRows: EdgeRow[]): Promise<void> {
+export async function addExternalFactors(svc: SupabaseClient, branchIds: string[], nodes: GraphNode[], edgeRows: EdgeRow[]): Promise<void> {
   const inBranch = new Set(branchIds);
   const external = new Set<string>();
   const ancestors = await inChunks<{ ancestor_id: string }>(branchIds, (chunk) =>

@@ -8,8 +8,9 @@
  * Every decision is claimed first with an update that only matches a
  * pending row, so two reviewers acting at once cannot both decide one
  * proposal. The edge or node is written after the claim, and the claim is
- * released if that write fails, so no edge or node is left behind by a
- * decision that did not stick.
+ * released if that write fails. When the release or the cleanup itself
+ * fails, the error code says so ("..._claim_held", "..._node_left"), so a
+ * half-applied decision never passes for a clean failure.
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IN_CHUNK } from "../db";
@@ -191,8 +192,13 @@ export async function decideEdge(
     if (error) throw new Error(error.message);
     return ((data as unknown[]) || []).length > 0;
   };
-  const release = () =>
-    svc.from("edge_proposals").update({ status: "pending", decided_kind: null, reviewer_id: null, decision_reason: null, decided_at: null }).eq("id", p.id);
+  const release = async (): Promise<boolean> => {
+    const { error } = await svc
+      .from("edge_proposals")
+      .update({ status: "pending", decided_kind: null, reviewer_id: null, decision_reason: null, decided_at: null })
+      .eq("id", p.id);
+    return !error;
+  };
 
   if (!outcome.edgeToWrite) {
     try {
@@ -226,6 +232,15 @@ export async function decideEdge(
   } catch {
     return fail(500, "decision_write_failed");
   }
+  // A concurrent approval of the reverse pair can land between the check
+  // above and the claim; checking again after the claim narrows that window
+  // to the edge write itself.
+  const { data: loopAfter, error: loopAfterErr } = await svc.rpc("rests_on", { p_node: factor.id, p_factor: target.id });
+  if (loopAfterErr || loopAfter === true) {
+    const released = await release();
+    if (!released) return fail(500, "read_failed_claim_held");
+    return loopAfterErr ? fail(500, "read_failed") : fail(409, "would_close_cycle");
+  }
   const e = outcome.edgeToWrite;
   const bySlug = new Map([
     [factor.slug, factor],
@@ -252,29 +267,40 @@ export async function decideEdge(
     ],
     { onConflict: "from_id,to_id,kind", ignoreDuplicates: true },
   );
-  if (edgeErr) {
-    await release();
-    return fail(500, "edge_write_failed");
-  }
+  if (edgeErr) return fail(500, (await release()) ? "edge_write_failed" : "edge_write_failed_claim_held");
   // A prerequisite edge changes the ancestor closure of the target's branch
   // and of every branch holding a node that rests on the target; a
   // derives_from edge leaves learning order, and the closure, alone.
+  // The edge stands either way; a failed rebuild leaves routing stale, so
+  // the reply carries a warning the page shows.
+  const stale: string[] = [];
   if (e.kind === "prerequisite") {
     const branches = new Set<string>([target.branch]);
+    let lookupFailed = false;
     try {
       for (const b of Array.from(await branchesResting(svc, target.id))) branches.add(b);
     } catch (err) {
-      console.error("[research-os/edges] dependent lookup failed (non-fatal):", (err as Error).message);
+      lookupFailed = true;
+      console.error("[research-os/edges] dependent lookup failed:", (err as Error).message);
     }
     for (const b of Array.from(branches)) {
       try {
         await rebuildPrereqAncestorForBranch(svc, b);
       } catch (err) {
-        console.error(`[research-os/edges] prereq_ancestor rebuild failed for ${b} (non-fatal):`, (err as Error).message);
+        stale.push(b);
+        console.error(`[research-os/edges] prereq_ancestor rebuild failed for ${b}:`, (err as Error).message);
       }
     }
+    if (lookupFailed) stale.push("branches resting on the target");
   }
-  return ok({ decision: "approved", alreadyDecided: false, kind });
+  return ok({
+    decision: "approved",
+    alreadyDecided: false,
+    kind,
+    ...(stale.length
+      ? { warning: `learning order was not rebuilt for ${stale.join(", ")}; run scripts/rebuild-prereq-ancestor.ts --all` }
+      : {}),
+  });
 }
 
 const NODE_COLUMNS = "id,key,title,branch,justification,summary,named_by,aliases,reasons,possible_duplicates,base_match,model,status,created_at";
@@ -390,16 +416,18 @@ export async function decideNode(
   if (!((claimed as unknown[]) || []).length) return ok({ decision: outcome.status, alreadyDecided: true });
   if (!outcome.nodeToCreate) return ok({ decision: outcome.status, alreadyDecided: false });
 
-  const release = () =>
-    svc.from("node_proposals").update({ status: "pending", reviewer_id: null, decision_reason: null, decided_at: null, created_node_id: null }).eq("id", r.id);
+  const release = async (): Promise<boolean> => {
+    const { error } = await svc
+      .from("node_proposals")
+      .update({ status: "pending", reviewer_id: null, decision_reason: null, decided_at: null, created_node_id: null })
+      .eq("id", r.id);
+    return !error;
+  };
   const n = outcome.nodeToCreate;
   let nodeId: string;
   let created = false;
   const { data: existing, error: existErr } = await svc.from("nodes").select("id").eq("slug", n.slug).maybeSingle();
-  if (existErr) {
-    await release();
-    return fail(500, "read_failed");
-  }
+  if (existErr) return fail(500, (await release()) ? "read_failed" : "read_failed_claim_held");
   if (existing) nodeId = (existing as { id: string }).id;
   else {
     const { data: inserted, error: insErr } = await svc
@@ -407,19 +435,21 @@ export async function decideNode(
       .insert([{ slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, branch: n.branch, summary: n.summary, labels: n.labels, provenance: n.provenance }])
       .select("id")
       .single();
-    if (insErr || !inserted) {
-      await release();
-      return fail(500, "node_write_failed");
-    }
+    if (insErr || !inserted) return fail(500, (await release()) ? "node_write_failed" : "node_write_failed_claim_held");
     nodeId = (inserted as { id: string }).id;
     created = true;
   }
   if (outcome.edgeProposals?.length) {
     const { error: epErr } = await svc.from("edge_proposals").upsert(outcome.edgeProposals, { onConflict: "from_slug,to_slug", ignoreDuplicates: true });
     if (epErr) {
-      if (created) await svc.from("nodes").delete().eq("id", nodeId);
-      await release();
-      return fail(500, "edge_proposal_write_failed");
+      let nodeLeft = false;
+      if (created) {
+        const { error: delErr } = await svc.from("nodes").delete().eq("id", nodeId);
+        nodeLeft = !!delErr;
+      }
+      const released = await release();
+      if (nodeLeft) return { status: 500, body: { error: "edge_proposal_write_failed_node_left", nodeSlug: n.slug, claimHeld: !released } };
+      return fail(500, released ? "edge_proposal_write_failed" : "edge_proposal_write_failed_claim_held");
     }
   }
   const { error: linkErr } = await svc.from("node_proposals").update({ created_node_id: nodeId }).eq("id", r.id);

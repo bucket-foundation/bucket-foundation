@@ -5,7 +5,9 @@ import { decompose, type DepEdge } from "../src/lib/research-os/primes";
 import {
   agreementStats,
   answeringModel,
+  applyVerdicts,
   clipText,
+  reuseEarlierKeys,
   aggregateMissing,
   blindSet,
   buildConsolidatePrompt,
@@ -31,8 +33,12 @@ import {
   stem,
   toProposals,
   verificationOf,
+  CONFIDENCE_SOURCE,
+  promptHash,
   type Candidate,
   type GraphNode,
+  type NodeProposalRow,
+  type ProposalRow,
 } from "../src/lib/research-os/decompose-further";
 import { DISAGREEMENT_CONFIDENCE, INFERRED_CONFIDENCE_MAX, INFERRED_CONFIDENCE_MIN } from "../src/lib/research-os/inference/calibration";
 
@@ -401,4 +407,45 @@ test("long model text ends at a sentence or a word, never mid-word", () => {
   assert.equal(clipText("First sentence here. Second sentence runs on and on.", 30), "First sentence here.");
   assert.equal(clipText("one two three four five six", 12), "one two…");
   assert.equal(clipText(42, 10), "");
+});
+
+test("a node whose irreducible verdict was rejected gets a prompt with the reviewer's reason and a new hash", () => {
+  const t = selectTargets(nodes, dec)[0];
+  const cands = shortlist(t, pool, dec);
+  const plain = buildPrompt(t, cands);
+  const again = buildPrompt(t, cands, { rejectedIrreducible: "It rests on vectors." });
+  const bare = buildPrompt(t, cands, { rejectedIrreducible: "" });
+  assert.doesNotMatch(plain, /rejected/);
+  assert.match(again, /A reviewer rejected an earlier answer that this node is irreducible, with this reason: It rests on vectors\. Name what it rests on\./);
+  assert.match(bare, /A reviewer rejected an earlier answer that this node is irreducible\. Name what it rests on\./);
+  assert.notEqual(promptHash(plain), promptHash(again));
+  assert.equal(buildPrompt(t, cands, { rejectedIrreducible: null }), plain);
+});
+
+test("stage 5 write-back sets each verified pair's state and leaves the rest unchecked", () => {
+  const row = (from: string): ProposalRow => ({
+    from_slug: from, to_slug: "t", branch: "b", confidence: 0.3, confidence_source: CONFIDENCE_SOURCE, agreement: false,
+    justification: "j", secondary_justification: null, model: "m", prompt_hash: "h", secondary_prompt_hash: null, status: "pending",
+    impact: 0, cross_branch: false, verification: "unchecked", origin: "missing_matched", refd: null,
+  });
+  const rows = [row("a"), row("b"), row("c")];
+  const n = applyVerdicts(rows, new Map([["a", { holds: true, why: "needed" }], ["b", { holds: false, why: "" }]]), "claude-opus-5", "vh");
+  assert.equal(n, 2);
+  assert.deepEqual([rows[0].verification, rows[0].confidence, rows[0].agreement, rows[0].secondary_justification], ["confirmed", 0.65, true, "claude-opus-5: needed"]);
+  assert.deepEqual([rows[1].verification, rows[1].confidence, rows[1].secondary_justification], ["refuted", 0.4, "claude-opus-5: not confirmed"]);
+  assert.deepEqual([rows[2].verification, rows[2].confidence, rows[2].secondary_prompt_hash], ["unchecked", 0.3, null]);
+});
+
+test("a new missing prime takes an earlier run's key at the threshold, never below it, and keeps its title as an alias", () => {
+  const np = (key: string, title: string): NodeProposalRow => ({
+    key, title, branch: "01-mathematics", justification: "", summary: null, named_by: ["t"], aliases: [], reasons: {}, possible_duplicates: [], base_match: null, model: "m",
+  });
+  const rows = [np("sameness", "Sameness"), np("causation", "Causation"), np("equality", "Equality")];
+  const earlier = [{ key: "equality", title: "Equality" }, { key: "cause", title: "Cause" }];
+  const sim: Record<string, number> = { "sameness|equality": 0.93, "sameness|cause": 0.2, "causation|cause": 0.92, "causation|equality": 0.1 };
+  const n = reuseEarlierKeys(rows, earlier, (a, b) => sim[`${a}|${b}`] ?? 0, 0.93);
+  assert.equal(n, 1);
+  assert.deepEqual([rows[0].key, rows[0].title, rows[0].aliases], ["equality", "Equality", ["Sameness"]]);
+  assert.equal(rows[1].key, "causation");
+  assert.equal(rows[2].key, "equality");
 });

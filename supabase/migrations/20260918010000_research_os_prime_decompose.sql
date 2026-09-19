@@ -17,8 +17,9 @@ create index if not exists graph_edge_proposals_queue_idx on graph.edge_proposal
 
 -- Base ideas the graph lacks, named by the proposer while decomposing a
 -- target. One row per normalized title; `named_by` holds the target slugs.
--- Approving a row creates a tier-0 concept node and queues a pending
--- prerequisite proposal from it to every target in `named_by`.
+-- Approving a row creates a concept node at the lowest grade tier among
+-- its naming targets and queues an unchecked factor proposal from it to
+-- every target in `named_by` (later migrations and decide-node.ts).
 create table if not exists graph.node_proposals (
   id               uuid        primary key default gen_random_uuid(),
   key              text        not null,

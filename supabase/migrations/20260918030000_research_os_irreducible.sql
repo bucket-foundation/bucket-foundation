@@ -27,16 +27,20 @@ grant all on graph.irreducible_proposals to service_role;
 -- pending proposal): approving all of them would close it.
 alter table graph.edge_proposals add column if not exists in_cycle boolean not null default false;
 
--- Merge decomposition proposals by pair. A pending row takes the newer
--- verdict, confidence, justification, impact, and cycle flag; a decided row
--- stays as the reviewer left it.
-create or replace function graph.merge_edge_proposals(p_rows jsonb)
-returns integer
+-- Merge decomposition proposals by pair. A pending row from the same
+-- source takes the newer verdict, confidence, justification, impact, and
+-- cycle flag; a decided row stays as the reviewer left it, and a pending
+-- row from another source (lexical inference) keeps the pair. One result
+-- row per input says whether it was written and, when it was not, what
+-- holds the pair, so the runner reports every skip.
+drop function if exists graph.merge_edge_proposals(jsonb);
+create function graph.merge_edge_proposals(p_rows jsonb)
+returns table (pair_from text, pair_to text, written boolean, held_status text, held_source text)
 language plpgsql
 as $$
 declare
   r jsonb;
-  n integer := 0;
+  rc integer;
 begin
   for r in select * from jsonb_array_elements(p_rows) loop
     insert into graph.edge_proposals as ep
@@ -57,15 +61,27 @@ begin
       justification = excluded.justification,
       secondary_justification = coalesce(excluded.secondary_justification, ep.secondary_justification),
       secondary_prompt_hash = coalesce(excluded.secondary_prompt_hash, ep.secondary_prompt_hash),
+      model = excluded.model,
+      prompt_hash = excluded.prompt_hash,
       impact = excluded.impact,
       cross_branch = excluded.cross_branch,
       verification = case when excluded.verification = 'unchecked' and ep.verification in ('confirmed', 'refuted') then ep.verification else excluded.verification end,
       refd = coalesce(excluded.refd, ep.refd),
       in_cycle = excluded.in_cycle
     where ep.status = 'pending' and ep.confidence_source = excluded.confidence_source;
-    n := n + 1;
+    get diagnostics rc = row_count;
+    pair_from := r ->> 'from_slug';
+    pair_to := r ->> 'to_slug';
+    written := rc > 0;
+    held_status := null;
+    held_source := null;
+    if rc = 0 then
+      select ep.status, ep.confidence_source into held_status, held_source
+      from graph.edge_proposals ep
+      where ep.from_slug = pair_from and ep.to_slug = pair_to;
+    end if;
+    return next;
   end loop;
-  return n;
 end;
 $$;
 
@@ -119,3 +135,12 @@ end;
 $$;
 
 grant execute on function graph.merge_node_proposals(jsonb) to service_role;
+
+-- These functions write or read proposal and closure rows for the review
+-- tooling only; PUBLIC loses the default execute grant, and service_role
+-- keeps its explicit one.
+revoke execute on function graph.merge_edge_proposals(jsonb) from public;
+revoke execute on function graph.merge_node_proposals(jsonb) from public;
+revoke execute on function graph.rests_on(uuid, uuid) from public;
+revoke execute on function graph.idea_dependents(text[]) from public;
+revoke execute on function graph.replace_prereq_ancestor(text, uuid[], jsonb) from public;

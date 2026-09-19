@@ -18,8 +18,10 @@
  * This is a restricted variant: r(x, a) needs x's own links, and only the
  * articles the graph maps to have been fetched, so the means run over the
  * linked articles inside that set (scripts/research-os/wikipedia-links.ts).
- * A pair whose articles share no fetched neighbour gets null.
+ * A pair gets null when neither article links to a fetched one, and 0 when
+ * they do but neither side refers to the other.
  */
+import { seeded } from "./decompose-further";
 
 /** The article title in a Wikipedia URL, each "_" read as a space. */
 export function wikiTitleFromUrl(url: string): string | null {
@@ -75,17 +77,64 @@ function counts(xs: number[]): SignCounts {
   };
 }
 
+function aucOf(yes: number[], no: number[]): number | null {
+  if (!yes.length || !no.length) return null;
+  let wins = 0;
+  for (const a of yes) for (const b of no) wins += a > b ? 1 : a === b ? 0.5 : 0;
+  return wins / (yes.length * no.length);
+}
+
+/**
+ * The ROC area with a 95% percentile interval from resampling whole targets
+ * with replacement (Efron 1979), since pairs under one target share its
+ * articles. Targets resample in a fixed order under a seed, so the interval
+ * repeats run to run.
+ */
+export function refdAucInterval(
+  rows: { target: string; refd: number | null; verification: string }[],
+  resamples = 1000,
+  seed = "refd",
+): { auc: number | null; interval: [number, number] | null; targets: number } {
+  const scored = rows.filter((r) => r.refd !== null && (r.verification === "confirmed" || r.verification === "refuted"));
+  const byTarget = new Map<string, typeof scored>();
+  for (const r of scored) {
+    if (!byTarget.has(r.target)) byTarget.set(r.target, []);
+    byTarget.get(r.target)!.push(r);
+  }
+  const groups = Array.from(byTarget.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, g]) => g);
+  const split = (rs: typeof scored) => [
+    rs.filter((r) => r.verification === "confirmed").map((r) => r.refd!),
+    rs.filter((r) => r.verification === "refuted").map((r) => r.refd!),
+  ];
+  const [yes, no] = split(scored);
+  const point = aucOf(yes, no);
+  let interval: [number, number] | null = null;
+  if (point !== null && groups.length >= 2) {
+    const rand = seeded(seed);
+    const xs: number[] = [];
+    for (let i = 0; i < resamples; i++) {
+      const sample: typeof scored = [];
+      for (let j = 0; j < groups.length; j++) sample.push(...groups[Math.floor(rand() * groups.length)]);
+      const [y, n] = split(sample);
+      const a = aucOf(y, n);
+      if (a !== null) xs.push(a);
+    }
+    xs.sort((a, b) => a - b);
+    if (xs.length) interval = [round3(xs[Math.floor(0.025 * (xs.length - 1))]), round3(xs[Math.ceil(0.975 * (xs.length - 1))])];
+  }
+  return { auc: point === null ? null : round3(point), interval, targets: groups.length };
+}
+
+const round3 = (x: number) => Math.round(x * 1000) / 1000;
+
 /** How the link evidence lines up with the second model's verdicts. */
 export function refdAgreement(rows: { refd: number | null; verification: string }[]): RefdAgreement {
   const yes = rows.filter((r) => r.refd !== null && r.verification === "confirmed").map((r) => r.refd!);
   const no = rows.filter((r) => r.refd !== null && r.verification === "refuted").map((r) => r.refd!);
-  let auc: number | null = null;
-  if (yes.length && no.length) {
-    let wins = 0;
-    for (const a of yes) for (const b of no) wins += a > b ? 1 : a === b ? 0.5 : 0;
-    auc = Math.round((wins / (yes.length * no.length)) * 1000) / 1000;
-  }
-  return { pairs: yes.length + no.length, confirmed: counts(yes), refuted: counts(no), auc };
+  const a = aucOf(yes, no);
+  return { pairs: yes.length + no.length, confirmed: counts(yes), refuted: counts(no), auc: a === null ? null : round3(a) };
 }
 
 /** The parts of a MediaWiki `action=query` reply (formatversion=2) that title resolution reads. */
