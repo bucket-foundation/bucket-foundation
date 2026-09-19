@@ -12,6 +12,12 @@ Branch `feat/ros-loop-decompose-further`, PR #186. Founder direction: prime deco
 - Missing base ideas merge by meaning and wait at `/research-os/edges` with the targets that named them; approving one creates the node.
 - Irreducible verdicts a reviewer can confirm or send back.
 - The primes report lists what moved since its last run.
+- Every public node page has a "made of" section: prime or composite, tier, the primes under it, and the proposals waiting on review for it.
+- The review queue has a summary, a find box, and filters.
+
+### Corrected
+
+- The PRET card (Alzetta and colleagues, 2018) said annotators agreed moderately and disagreed most on same-section pairs. The paper reports fair agreement, Fleiss' kappa 38.50%, and has no same-section finding. The card carries the paper's figures; three docs that cited it carry dated corrections.
 
 ## 2026-09-17: one graph of everything researched
 

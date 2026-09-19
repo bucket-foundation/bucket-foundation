@@ -24,19 +24,19 @@ why_it_matters: >
   no resolvable DOI; this 2018 paper carries Adorni as a co-author and covers the
   same prerequisite-annotation ground.
 key_claims:
-  - "The PRET dataset annotates prerequisite relations between terms extracted from an introductory computer science textbook, with each candidate pair independently labeled by multiple human annotators rather than a single rater."
-  - "Inter-annotator agreement on whether one term is a prerequisite of another was moderate, lower than agreement rates reported for simpler labeling tasks, evidence prerequisite judgment carries real subjectivity even among trained annotators reading the same source text."
-  - "Disagreement concentrated on term pairs from the same section of the source text, where a co-occurrence relation and a true prerequisite relation are easy to conflate, distinct from clearer disagreement patterns on pairs from distant sections."
+  - "PRET annotates prerequisite relations between concepts extracted from chapter 4 of the textbook Computer Science: An Overview (Brookshear and Brylow, 2015), each pair labelled independently by four annotators of different competence, one of them a quasi-expert."
+  - "Agreement was low: Fleiss' kappa across all four annotators was 38.50%, which the authors call fair on the Landis and Koch scale, and pairwise Cohen's kappa ran from 25.35% to 57.80%; many relations were marked by one annotator alone."
+  - "Agreement rose with competence: pairs involving the quasi-expert agreed least, while the more experienced pairs reached moderate or substantial agreement; removing cycles and adding transitive relations raised Fleiss' kappa to 39.94%."
 research_questions_it_leaves_open:
-  - "Whether the same-section conflation pattern this dataset documents also affects Research OS's own `inferred` edge proposals, which score lexical overlap within a single branch rather than across branches."
-  - "What agreement rate a Research OS teacher-flag review of prerequisite edges should expect, given this dataset's moderate human-to-human agreement on comparable material."
+  - "Whether competence effects like PRET's apply to the reviewers of Research OS edge proposals, and how many reviewers a disputed pair needs."
+  - "What agreement rate a Research OS review of prerequisite edges should expect, given this dataset's fair human-to-human agreement on comparable material."
 how_it_bears_on_research_os: >
-  Extends overlap map question 3 and `ROUTING.md`'s `inferred` confidence discussion
-  with an edge-labeling agreement baseline: if trained human annotators reach only
-  moderate agreement on prerequisite judgments, and disagreement concentrates on the
-  same-section, co-occurrence-versus-prerequisite conflation `infer-edges.ts`'s own
-  Jaccard-overlap method is most exposed to, a reviewer's own disagreement rate on a
-  flagged `inferred` edge should not be read as evidence the edge is wrong.
+  Gives an edge-labelling agreement baseline for overlap map question 3,
+  `ROUTING.md`'s `inferred` confidence discussion, and the decompose-further
+  queue (learning/research-os/PRIMES.md): trained annotators reach only fair
+  agreement on prerequisite judgments, so a model pair's agreement is read
+  against that baseline, and a reviewer's disagreement with a proposed edge is
+  one judgment among several.
 ---
 
 # PRET: Prerequisite-Enriched Terminology

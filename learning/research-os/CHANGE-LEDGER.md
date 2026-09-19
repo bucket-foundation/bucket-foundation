@@ -17,6 +17,9 @@ Date 2026-09-18. Branch `feat/ros-loop-decompose-further`, worktree `.wt-ros-loo
 - `src/app/api/research-os/node-proposals/route.ts`, `src/app/api/research-os/irreducible/route.ts`.
 - Migrations `20260918010000_research_os_prime_decompose.sql`, `20260918020000_research_os_prime_decompose_review.sql`, `20260918030000_research_os_irreducible.sql`: `graph.node_proposals`, `graph.irreducible_proposals`, verification state, origin, RefD, and cycle flags on `graph.edge_proposals`, the merge functions, `graph.rests_on`, and an atomic `replace_prereq_ancestor`.
 - `primes.ts` `movesSince`; `primes-report.ts` reports reviewed irreducible primes and what moved since its last run.
+- `src/lib/research-os/makeup.ts`, `src/app/api/research-os/makeup/route.ts`, `src/app/research-os/(app)/n/MakeupSection.tsx`: the node page's "made of" section, a node's place in the decomposition and what waits on review for it (founder direction: the work shows inside Research OS).
+- `supabase/tests/research_os_proposals.sql` with `scripts/test-research-os-proposal-sql.ts`: the merge, reachability, and closure functions in real Postgres, in a transaction that rolls back.
+- Tests: `test-research-os-makeup.ts`, `test-research-os-external-factors.ts`.
 - Tests: `test-research-os-decompose-further.ts`, `test-research-os-refd.ts`, `test-research-os-decide-node.ts`, `test-research-os-review-actions.ts`, additions to the primes, rebuild-ancestor, and edges-review tests.
 
 ### Edited
@@ -27,7 +30,11 @@ Date 2026-09-18. Branch `feat/ros-loop-decompose-further`, worktree `.wt-ros-loo
 - `src/lib/research-os/db.ts`, `node/route.ts`, `route/route.ts`: node pages and routing read factors from other branches.
 - `src/lib/research-os/rebuild-ancestor.ts`, `scripts/rebuild-prereq-ancestor.ts`: paged reads, cross-branch edges, one atomic replace.
 - `learning/research-os/PRIMES.md`: prior work corrected (semantic prime counts, eleven prerequisite papers), Slice 2 rewritten to match the code, results added.
-- `docs/PROBLEM-REGISTER.md`: PR-059 and PR-060.
+- `docs/PROBLEM-REGISTER.md`: PR-059, PR-060, PR-061.
+- `src/app/research-os/(app)/edges/page.tsx`: a summary line, a find box, verdict and cross-branch filters, anchors a node page links to, and warnings from approvals.
+- `src/app/research-os/(app)/n/AroundSection.tsx`, `src/app/api/research-os/node/route.ts`: a failed graph read says so on the node page, where it used to show an empty neighbourhood as real.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md`: key claims replaced with the paper's own figures. Old text: agreement "was moderate", and "Disagreement concentrated on term pairs from the same section of the source text"; the paper reports fair agreement (Fleiss' kappa 38.50%) and has no same-section finding.
+- `learning/research-os/ROUTING.md`, `learning/research-os/PLAN-REVISION-2.md`, `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: dated corrections beside the passages that cited the same-section finding or "moderate" agreement; the passages themselves stay as written.
 
 ### Removed
 
