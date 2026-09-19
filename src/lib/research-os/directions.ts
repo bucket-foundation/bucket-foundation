@@ -10,7 +10,10 @@
  * kinds from their toId. The walk passes through ideas (idea.ts) and the
  * work built on them (productions, hypotheses, extensions, replications,
  * reviews); facts, sources, figures, sites, and grouping nodes such as canon
- * tags stop it.
+ * tags stop it. A node flagged as an open question or a frontier appears in
+ * the walk whatever its kind (the eight open questions are intake targets,
+ * which fail the idea rule), and the walk ends there unless the node is an
+ * idea or work itself.
  */
 import { isIdeaNode } from "./idea";
 import type { GraphEdge, GraphNode, NodeKind } from "./types";
@@ -24,6 +27,11 @@ function walkable(n: GraphNode): boolean {
   if (WORK_NODE_KINDS.has(n.kind)) return true;
   const type = (n.provenance as { type?: unknown } | undefined)?.type;
   return isIdeaNode({ kind: n.kind, provenanceType: typeof type === "string" ? type : null });
+}
+
+/** Flagged nodes the walk lists even when it cannot pass through them. */
+function flagged(n: GraphNode): boolean {
+  return n.frontierFlag === "open_question" || n.frontierFlag === "frontier";
 }
 
 /** Kinds whose `from` end comes first: forward runs from → to. */
@@ -53,7 +61,8 @@ export function directionsFrom(nodeId: string, nodes: GraphNode[], edges: GraphE
     if (!byId.has(e.fromId) || !byId.has(e.toId)) continue;
     const [a, b] = FORWARD_FROM_KINDS.has(e.kind) ? [e.fromId, e.toId] : FORWARD_TO_KINDS.has(e.kind) ? [e.toId, e.fromId] : [null, null];
     if (!a || !b) continue;
-    if (!walkable(byId.get(b)!)) continue;
+    const target = byId.get(b)!;
+    if (!walkable(target) && !flagged(target)) continue;
     forward.set(a, [...(forward.get(a) ?? []), b]);
   }
   const seen = new Set<string>([nodeId]);
@@ -62,16 +71,18 @@ export function directionsFrom(nodeId: string, nodes: GraphNode[], edges: GraphE
   const reached: GraphNode[] = [];
   for (let d = 1; d <= depth; d++) {
     const next: string[] = [];
+    let found = 0;
     for (const id of layer) {
       for (const to of forward.get(id) ?? []) {
         if (seen.has(to)) continue;
         seen.add(to);
-        next.push(to);
-        const n = byId.get(to);
-        if (n) reached.push(n);
+        found++;
+        const n = byId.get(to)!;
+        reached.push(n);
+        if (walkable(n)) next.push(to);
       }
     }
-    reach.push(next.length);
+    reach.push(found);
     layer = next;
     if (layer.length === 0) {
       while (reach.length < depth) reach.push(0);

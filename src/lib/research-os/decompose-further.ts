@@ -710,7 +710,8 @@ export function consolidate(
   groups: ConsolidatedGroup[],
   missing: MissingPrime[],
   model: string,
-  duplicatesOf: (title: string) => { slug: string; title: string; similarity: number }[],
+  /** Nearest existing nodes to a title, skipping `exclude`, so the cut to the top few happens after the naming nodes leave. */
+  duplicatesOf: (title: string, exclude: ReadonlySet<string>) => { slug: string; title: string; similarity: number }[],
 ): ConsolidationOutcome {
   const byKey = new Map(missing.map((m) => [m.key, m]));
   const matched: ConsolidationOutcome["matched"] = [];
@@ -738,7 +739,7 @@ export function consolidate(
       aliases: titles.filter((t) => t !== g.canonical),
       reasons,
       // A node that named the idea is where it was found missing; it is left out of the duplicates.
-      possible_duplicates: duplicatesOf(g.canonical).filter((d) => !targets.includes(d.slug)),
+      possible_duplicates: duplicatesOf(g.canonical, new Set(targets)).filter((d) => !targets.includes(d.slug)),
       base_match: matchBase(g.canonical),
       model,
     });
@@ -753,6 +754,7 @@ export function consolidate(
       e.aliases = Array.from(new Set(e.aliases.concat(r.aliases, r.title !== e.title ? [r.title] : []))).sort();
       e.reasons = { ...r.reasons, ...e.reasons };
       e.summary = e.summary ?? r.summary;
+      e.possible_duplicates = e.possible_duplicates.filter((d) => !e.named_by.includes(d.slug));
     }
   }
   return { matched, nodeProposals: Array.from(merged.values()).sort((a, b) => b.named_by.length - a.named_by.length || a.key.localeCompare(b.key)) };

@@ -408,12 +408,15 @@ async function main() {
   }
   const canonicalVectors = embed(groups.map((g, i) => ({ id: String(i), text: g.canonical })));
   const canonicalIndex = new Map(groups.map((g, i) => [g.canonical, String(i)]));
-  const duplicatesOf = (title: string) =>
-    nearestOf(canonicalVectors.get(canonicalIndex.get(title) ?? ""), 3, DUPLICATE_SIMILARITY).map((x) => ({
-      slug: x.c.slug,
-      title: x.c.title,
-      similarity: Math.round(x.s * 1000) / 1000,
-    }));
+  const duplicatesOf = (title: string, exclude: ReadonlySet<string>) =>
+    nearestOf(canonicalVectors.get(canonicalIndex.get(title) ?? ""), 3 + exclude.size, DUPLICATE_SIMILARITY)
+      .filter((x) => !exclude.has(x.c.slug))
+      .slice(0, 3)
+      .map((x) => ({
+        slug: x.c.slug,
+        title: x.c.title,
+        similarity: Math.round(x.s * 1000) / 1000,
+      }));
   const outcome = consolidate(groups, missing, model, duplicatesOf);
 
   // Earlier runs' missing ideas: reuse a key when the idea is the same.

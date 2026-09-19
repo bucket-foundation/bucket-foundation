@@ -166,6 +166,8 @@ test("a pending pair that confirmed pending pairs already lead to is flagged as 
     { from_slug: "equality", to_slug: "lonely", verification: "refuted" },
   ]);
   assert.equal(st.get("equality->lonely")!.viaPending, true);
+  assert.deepEqual(st.get("equality->lonely")!.through, [{ slug: "vectors", title: "Vectors" }], "the note names the chain it shortcuts");
+  assert.deepEqual(st.get("vectors->lonely")!.through, [], "no chain, nothing named");
   // A chain through a refuted pair does not count.
   const weak = pairStandings(snap, [
     { from_slug: "vectors", to_slug: "lonely", verification: "refuted" },
@@ -177,7 +179,18 @@ test("a pending pair that confirmed pending pairs already lead to is flagged as 
   assert.equal(st.get("equality->vectors")!.viaPending, false);
   // A pair the graph already implies is marked implied and not also a pending shortcut.
   const g = pairStandings(snap, [{ from_slug: "equality", to_slug: "dynamics" }]).get("equality->dynamics")!;
-  assert.deepEqual(g, { graphLoop: false, implied: true, viaPending: false });
+  assert.deepEqual(g, { graphLoop: false, implied: true, viaPending: false, through: [{ slug: "derivatives", title: "Derivatives" }] });
+  // A loop with the graph names no chain, so the page never offers the shortcut note beside the loop warning.
+  const loop = pairStandings(snap, [{ from_slug: "dynamics", to_slug: "equality" }]).get("dynamics->equality")!;
+  assert.deepEqual(loop, { graphLoop: true, implied: false, viaPending: false, through: [] });
+});
+
+test("the shortest chain is the one named", () => {
+  // dyn rests on kin and der, kin rests on der: dyn to eq runs through der alone.
+  const st = pairStandings(snap, [{ from_slug: "equality", to_slug: "dynamics" }]);
+  assert.deepEqual(st.get("equality->dynamics")!.through.map((t) => t.slug), ["derivatives"]);
+  const s = pairStandings(snap, [{ from_slug: "vectors", to_slug: "dynamics" }]);
+  assert.deepEqual(s.get("vectors->dynamics")!.through.map((t) => t.slug), ["kinematics"]);
 });
 
 test("the graph check follows chains through evidence", () => {

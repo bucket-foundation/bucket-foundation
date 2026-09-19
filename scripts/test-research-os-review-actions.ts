@@ -502,3 +502,25 @@ test("loop flags are computed from the pending set as it stands, so rejecting on
   assert.equal(flag(after, "p-conf"), false);
   forgetMakeupSnapshot();
 });
+
+test("the list names the chain a pair would shortcut, and the names follow each approval", async () => {
+  forgetMakeupSnapshot();
+  const db = seed();
+  for (const n of db.nodes) n.visibility = "public";
+  // Pending and agreed: kinematics rests on derivatives (p-conf), derivatives rests on sets (p-chain).
+  // So sets for kinematics (p-ref) is a shortcut past derivatives.
+  db.edge_proposals.push({ ...db.edge_proposals[0], id: "p-chain", from_slug: "sets", to_slug: "derivatives", branch: "01-mathematics", created_at: "2026-09-18T00:00:03Z" });
+  const standing = async () => {
+    const ps = (await listEdgeProposals(fake(db, rpcs()), null)).body.proposals as Array<Record<string, any>>;
+    const p = ps.find((x) => x.id === "p-ref")!;
+    return { implied: p.implied, viaPending: p.viaPending, through: p.through.map((t: { slug: string }) => t.slug) };
+  };
+  assert.deepEqual(await standing(), { implied: false, viaPending: true, through: ["derivatives"] });
+  const a = await decideEdge(fake(db, rpcs()), { id: "p-conf", decision: "approved", kind: "derives_from", reason: null, reviewerId: "rev-1" });
+  assert.equal(a.status, 200);
+  assert.deepEqual(await standing(), { implied: false, viaPending: true, through: ["derivatives"] }, "half the chain in the graph, half pending");
+  const b = await decideEdge(fake(db, rpcs()), { id: "p-chain", decision: "approved", kind: "derives_from", reason: null, reviewerId: "rev-1" });
+  assert.equal(b.status, 200);
+  assert.deepEqual(await standing(), { implied: true, viaPending: false, through: ["derivatives"] }, "the whole chain in the graph");
+  forgetMakeupSnapshot();
+});

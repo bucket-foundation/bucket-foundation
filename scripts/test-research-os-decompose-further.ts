@@ -360,10 +360,13 @@ test("consolidate turns a matched group into factors and the rest into missing p
     { canonical: "Causation", branch: "04-information", members: ["causation", "causality"], sameAs: null, definition: "One event bringing about another." },
     { canonical: "Vector space", branch: "01-mathematics", members: ["vector space"], sameAs: "academy-01-mathematics-vector-space", definition: null },
   ];
-  const out = consolidate(groups, missing, "sonnet", () => [
+  // The fake keeps the top one after exclusion, as the runner keeps the top three.
+  const pool = [
+    { slug: "kinematics", title: "Kinematics, describing motion", similarity: 0.78 },
     { slug: "cause-node", title: "Cause and effect", similarity: 0.77 },
-    { slug: "kinematics", title: "Kinematics, describing motion", similarity: 0.76 },
-  ]);
+    { slug: "other", title: "Other", similarity: 0.7 },
+  ];
+  const out = consolidate(groups, missing, "sonnet", (_title, exclude) => pool.filter((d) => !exclude.has(d.slug)).slice(0, 1));
   assert.deepEqual(out.matched, [{ slug: "academy-01-mathematics-vector-space", targets: ["kinematics"], reasons: { kinematics: "vectors live in one" }, titles: ["Vector space"] }]);
   assert.equal(out.nodeProposals.length, 1);
   const r = out.nodeProposals[0];
@@ -373,7 +376,7 @@ test("consolidate turns a matched group into factors and the rest into missing p
   assert.deepEqual(r.reasons, { kinematics: "motion has causes", sets: "functions map causes" });
   assert.equal(r.base_match, "BECAUSE (cause)");
   assert.equal(r.summary, "One event bringing about another.");
-  assert.deepEqual(r.possible_duplicates.map((d) => d.slug), ["cause-node"], "a node that named the idea is left out of its duplicates");
+  assert.deepEqual(r.possible_duplicates.map((d) => d.slug), ["cause-node"], "a naming node leaves before the cut, so it does not take a slot");
 });
 
 test("a pair is in a cycle when proposals and existing edges close a loop", () => {

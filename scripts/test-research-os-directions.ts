@@ -64,3 +64,34 @@ test("grouping nodes such as canon tags stay out of where knowledge leads", () =
   const es = [e("tag", "kinematics", "derives_from"), e("dyn", "kinematics", "derives_from")];
   assert.deepEqual(directionsFrom("kinematics", ns, es).dependents.map((x) => x.id), ["dyn"]);
 });
+
+test("open questions from intake show as endpoints and the walk ends at them", () => {
+  // The eight open questions in the graph are intake targets, which fail the idea rule, and derive from academy concepts.
+  const ns = [
+    n("chemiosmosis"),
+    n("why-atp", { provenance: { type: "intake_target" }, frontierFlag: "open_question" }),
+    n("beyond", { provenance: { type: "intake_target" } }),
+    n("after-question"),
+    n("site", { kind: "fact" }),
+  ];
+  const es = [
+    e("why-atp", "chemiosmosis", "derives_from"),
+    e("beyond", "chemiosmosis", "derives_from"),
+    e("after-question", "why-atp", "derives_from"),
+    e("site", "chemiosmosis", "derives_from"),
+  ];
+  const d = directionsFrom("chemiosmosis", ns, es);
+  assert.deepEqual(d.dependents.map((x) => x.id), ["why-atp"], "an unflagged intake target and a fact stay out");
+  assert.deepEqual(d.openQuestions.map((x) => x.id), ["why-atp"]);
+  assert.deepEqual(d.reach, [1, 0, 0], "the walk lists the question and goes no further");
+  const fromQuestion = directionsFrom("why-atp", ns, es);
+  assert.deepEqual(fromQuestion.dependents.map((x) => x.id), ["after-question"], "from the question's own page the walk still starts");
+});
+
+test("a flagged idea stays walkable", () => {
+  const ns = [n("a"), n("b", { frontierFlag: "frontier" }), n("c")];
+  const es = [e("a", "b"), e("b", "c")];
+  const d = directionsFrom("a", ns, es);
+  assert.deepEqual(d.frontier.map((x) => x.id), ["b"]);
+  assert.deepEqual(d.reach, [1, 1, 0]);
+});

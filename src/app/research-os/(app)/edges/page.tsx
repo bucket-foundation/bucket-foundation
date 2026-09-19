@@ -12,7 +12,7 @@
  * Signing in is necessary and not sufficient: the APIs gate on
  * src/lib/research-os/reviewer.ts, so a signed-in non-reviewer sees a 403.
  */
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import SignInGate from "@/components/auth/SignInGate";
@@ -49,6 +49,8 @@ interface EdgeProposal {
   implied: boolean;
   /** Other pending proposals already lead from the target to the factor: approving them makes this a shortcut. */
   viaPending: boolean;
+  /** The nodes between target and factor on that chain, target side first. */
+  through: { slug: string; title: string }[];
   refd: number | null;
   priority: number;
 }
@@ -109,6 +111,11 @@ async function readJson(res: Response): Promise<Record<string, any>> {
 }
 
 /** What a failed save means to the reviewer, and what to do next. */
+/** " through A, B" for the nodes on a chain, or nothing when the chain is direct. */
+function chainText(through: { title: string }[] | undefined): string {
+  return through && through.length ? ` through ${through.map((t) => t.title).join(", ")}` : "";
+}
+
 function saveError(code: string | undefined, status: number): string {
   switch (code) {
     case "decision_write_failed":
@@ -154,6 +161,7 @@ export default function ResearchOsEdgesPage() {
   const [busyId, setBusyId] = useState<string | null>(null);
   const [verdict, setVerdict] = useState<"all" | "confirmed" | "refuted" | "unchecked">("all");
   const [crossOnly, setCrossOnly] = useState(false);
+  const [shortcutsOnly, setShortcutsOnly] = useState(false);
   const [find, setFind] = useState("");
   const [showAllMissing, setShowAllMissing] = useState(false);
   const [landed, setLanded] = useState<string | null>(null);
@@ -174,8 +182,12 @@ export default function ResearchOsEdgesPage() {
 
   const authHeaders = useCallback((): Record<string, string> => (token ? { authorization: `Bearer ${token}` } : {}), [token]);
 
+  // Each load takes a number; a response from an older load is dropped, so a
+  // slow reload never overwrites a newer one.
+  const loadSeq = useRef(0);
   const loadQueue = useCallback(async () => {
     if (!token) return;
+    const seq = ++loadSeq.current;
     setQueueError(null);
     try {
       const qs = source === "all" ? "" : `?source=${source}`;
@@ -185,6 +197,7 @@ export default function ResearchOsEdgesPage() {
         fetch("/api/research-os/irreducible", { headers: authHeaders() }),
       ]);
       const [edgeData, nodeData, irrData] = await Promise.all([readJson(edgeRes), readJson(nodeRes), readJson(irrRes)]);
+      if (seq !== loadSeq.current) return;
       if (!edgeRes.ok) {
         setQueueError(edgeRes.status === 403 ? "forbidden" : edgeData.error || "load_failed");
         setProposals(null);
@@ -200,7 +213,7 @@ export default function ResearchOsEdgesPage() {
       if (irrRes.ok) setIrreducible(irrData.proposals);
       else setQueueError(`irreducible: ${irrData.error || "load_failed"}`);
     } catch {
-      setQueueError("network_error");
+      if (seq === loadSeq.current) setQueueError("network_error");
     }
   }, [token, authHeaders, source]);
 
@@ -231,7 +244,10 @@ export default function ResearchOsEdgesPage() {
       if (res.status === 409)
         setNotice({ id: p.id, text: `${p.fromTitle} already rests on ${p.toTitle} in the graph, so this edge would make a loop. Reject it.` });
       else if (!res.ok) setNotice({ id: p.id, text: saveError(data.error, res.status) });
-      else {
+      else if (data.alreadyDecided) {
+        setNotice({ id: null, text: `Another reviewer already ${data.decision} ${p.fromTitle} for ${p.toTitle}; the queue now shows their decision.` });
+        void loadQueue();
+      } else {
         setProposals((list) => (list ?? []).filter((x) => x.id !== p.id));
         setNotice({
           id: null,
@@ -265,7 +281,10 @@ export default function ResearchOsEdgesPage() {
         ...(decision === "approved" ? { title: e.title, summary: e.summary, branch: e.branch } : {}),
       });
       if (!res.ok) setNotice({ id: n.id, text: data.error === "a definition is required to create the node" ? "Write a one-sentence definition first." : saveError(data.error, res.status) });
-      else if (decision === "approved") {
+      else if (data.alreadyDecided) {
+        setNotice({ id: null, text: `Another reviewer already ${data.decision} ${n.title}; the queue now shows their decision.` });
+        await loadQueue();
+      } else if (decision === "approved") {
         setNotice({
           id: null,
           text: `${data.reused ? `Linked to the existing node ${data.nodeSlug}` : `Added ${data.nodeSlug} at grade tier ${data.nodeTier}`}; ${data.queuedEdges} new ${data.queuedEdges === 1 ? "proposal" : "proposals"} from it ${data.queuedEdges === 1 ? "waits" : "wait"} below.${data.warning ? ` Warning: ${data.warning}.` : ""}`,
@@ -286,7 +305,10 @@ export default function ResearchOsEdgesPage() {
     try {
       const { res, data } = await post("/api/research-os/irreducible", { id: r.id, decision, reason: notes[r.id]?.trim() || undefined });
       if (!res.ok) setNotice({ id: r.id, text: saveError(data.error, res.status) });
-      else {
+      else if (data.alreadyDecided) {
+        setNotice({ id: null, text: `Another reviewer already ${data.decision} ${r.title}; the queue now shows their decision.` });
+        await loadQueue();
+      } else {
         setIrreducible((list) => (list ?? []).filter((x) => x.id !== r.id));
         setNotice({ id: null, text: decision === "confirmed" ? `${r.title} is a prime by review.` : `${r.title} goes back to the decompose-further queue.` });
       }
@@ -323,12 +345,13 @@ export default function ResearchOsEdgesPage() {
               (!focus || p.toSlug === focus) &&
               (verdict === "all" || verdictOf(p) === verdict) &&
               (!crossOnly || p.crossBranch) &&
+              (!shortcutsOnly || ((p.implied || p.viaPending) && !p.graphLoop)) &&
               (!needle || p.toTitle.toLowerCase().includes(needle) || p.fromTitle.toLowerCase().includes(needle)),
           ),
         }))
         .filter((g) => g.items.length > 0),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [groups, verdict, crossOnly, needle, focus],
+    [groups, verdict, crossOnly, shortcutsOnly, needle, focus],
   );
   const visibleMissing = useMemo(
     () =>
@@ -356,7 +379,8 @@ export default function ResearchOsEdgesPage() {
       confirmed: ps.filter((p) => verdictOf(p) === "confirmed").length,
       refuted: ps.filter((p) => verdictOf(p) === "refuted").length,
       unchecked: ps.filter((p) => verdictOf(p) === "unchecked").length,
-      loops: ps.filter((p) => p.inCycle).length,
+      loops: ps.filter((p) => p.inCycle || p.graphLoop).length,
+      shortcuts: ps.filter((p) => (p.implied || p.viaPending) && !p.graphLoop).length,
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [proposals]);
@@ -454,7 +478,8 @@ export default function ResearchOsEdgesPage() {
               {" · "}
               <a href="#pending-edges" className="underline decoration-[color:var(--hairline)] underline-offset-4">{proposals.length} proposals</a>: {counts.confirmed} the second model agrees with, {counts.refuted} it disagrees with
               {counts.unchecked > 0 && `, ${counts.unchecked} not checked yet`}
-              {counts.loops > 0 && `, ${counts.loops} on a loop`}.
+              {counts.loops > 0 && `, ${counts.loops} on a loop`}
+              {counts.shortcuts > 0 && `, ${counts.shortcuts} ${counts.shortcuts === 1 ? "shortcut" : "shortcuts"} past a chain`}.
             </p>
             {focus && (
               <p className="text-[13px] text-[color:var(--basalt)] bg-[color:var(--gold)]/25 px-3 py-2" role="status">
@@ -656,6 +681,9 @@ export default function ResearchOsEdgesPage() {
               <label className="inline-flex items-center gap-1.5">
                 <input id="cross-only" type="checkbox" checked={crossOnly} onChange={(e) => setCrossOnly(e.target.checked)} /> across branches only
               </label>
+              <label className="inline-flex items-center gap-1.5">
+                <input id="shortcuts-only" type="checkbox" checked={shortcutsOnly} onChange={(e) => setShortcutsOnly(e.target.checked)} /> shortcuts only
+              </label>
             </div>
             {proposals.length === 0 && <p className="text-[13px] text-[color:var(--basalt-2)]">Nothing pending.</p>}
             {proposals.length > 0 && visibleGroups.length === 0 && <p className="text-[13px] text-[color:var(--basalt-2)]">No proposal matches these filters.</p>}
@@ -704,13 +732,18 @@ export default function ResearchOsEdgesPage() {
                             <p className="mt-1 text-[12px] text-red-700">This pair sits on a loop with other pending proposals: approving all of them would close it. Reject at least one.</p>
                           )
                         )}
-                        {p.viaPending && (
+                        {p.viaPending && !p.graphLoop && (
                           <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">
-                            Pending proposals the second model agreed with already lead from {p.toTitle} to {p.fromTitle}; if they are approved, this pair is a shortcut past them. Prefer the chain unless this link is direct.
+                            Pending proposals the second model agreed with already lead from {p.toTitle}
+                            {chainText(p.through)} to {p.fromTitle}; if they are approved, this pair is a shortcut past them. Prefer the chain unless this link is
+                            direct.
                           </p>
                         )}
                         {p.implied && !p.graphLoop && (
-                          <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">The graph already has {p.toTitle} resting on {p.fromTitle} through other nodes; approving adds a direct link.</p>
+                          <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">
+                            The graph already has {p.toTitle} resting on {p.fromTitle}
+                            {chainText(p.through)}; approving adds a direct link.
+                          </p>
                         )}
                         <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">{p.justification}</p>
                         {p.secondaryJustification && <p className="mt-1 text-[12px] text-[color:var(--basalt-2)] italic">second check: {p.secondaryJustification}</p>}

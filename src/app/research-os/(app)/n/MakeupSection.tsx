@@ -4,7 +4,12 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import Section from "./Section";
 import { branchName } from "./types";
-import type { Makeup } from "@/lib/research-os/makeup";
+import type { ChainStep, Makeup } from "@/lib/research-os/makeup";
+
+/** " through A, B" for the nodes on a chain; `direct` when there are none. */
+function chainNames(through: ChainStep[] | undefined, direct: string): string {
+  return through && through.length ? ` through ${through.map((t) => t.title).join(", ")}` : direct;
+}
 
 const VERDICT: Record<string, { text: string; className: string }> = {
   confirmed: { text: "second model agrees", className: "text-[color:var(--laurel-deep)]" },
@@ -128,7 +133,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                       <Link href={`/research-os/n/${encodeURIComponent(f.slug)}`} className="underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
                         {f.title}
                       </Link>
-                      {f.throughEvidence && <span className="text-[color:var(--basalt-3)]"> (through the evidence below)</span>}
+                      {f.throughEvidence && <span className="text-[color:var(--basalt-3)]"> · through its evidence</span>}
                     </span>
                   ))}
                   .
@@ -191,8 +196,12 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                           ) : (
                             p.inCycle && <span className="text-red-700">· on a loop with other proposals</span>
                           )}
-                          {p.implied && !p.graphLoop && <span className="text-[color:var(--basalt-3)]">· already in the graph through other nodes</span>}
-                          {p.viaPending && <span className="text-[color:var(--basalt-3)]">· agreed proposals already lead there</span>}
+                          {p.implied && !p.graphLoop && (
+                            <span className="text-[color:var(--basalt-3)]">· already in the graph{chainNames(p.through, " through other nodes")}</span>
+                          )}
+                          {p.viaPending && !p.graphLoop && (
+                            <span className="text-[color:var(--basalt-3)]">· agreed proposals already lead there{chainNames(p.through, "")}</span>
+                          )}
                         </div>
                       </li>
                     );

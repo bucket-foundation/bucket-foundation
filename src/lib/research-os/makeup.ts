@@ -47,6 +47,8 @@ export type MakeupProposal = {
   graphLoop?: boolean;
   implied?: boolean;
   viaPending?: boolean;
+  /** Set for reviewers: the nodes on the chain behind `implied` or `viaPending`. */
+  through?: ChainStep[];
   source: string;
 };
 
@@ -257,29 +259,44 @@ export function makeupForViewer(makeup: Makeup, pending: PendingCounts, isReview
   };
 }
 
-/** True when `nodeId` reaches `factorId` over `factors`, optionally ignoring one direct link. */
-function reaches(factors: (id: string) => Iterable<string>, nodeId: string, factorId: string, skip?: [string, string]): boolean {
-  if (nodeId === factorId) return false;
+/**
+ * The shortest chain from `nodeId` down to `factorId` over `factors`, both
+ * ends included, or null when there is none. `skip` ignores one direct link.
+ */
+function chainTo(factors: (id: string) => Iterable<string>, nodeId: string, factorId: string, skip?: [string, string]): string[] | null {
+  if (nodeId === factorId) return null;
+  const parent = new Map<string, string>();
   const seen = new Set<string>([nodeId]);
-  const stack = [nodeId];
-  while (stack.length) {
-    const id = stack.pop()!;
-    for (const f of Array.from(factors(id))) {
-      if (skip && id === skip[0] && f === skip[1]) continue;
-      if (f === factorId) return true;
-      if (!seen.has(f)) {
+  let layer = [nodeId];
+  while (layer.length) {
+    const next: string[] = [];
+    for (const id of layer) {
+      for (const f of Array.from(factors(id))) {
+        if (skip && id === skip[0] && f === skip[1]) continue;
+        if (seen.has(f)) continue;
         seen.add(f);
-        stack.push(f);
+        parent.set(f, id);
+        if (f === factorId) {
+          const path = [f];
+          while (path[0] !== nodeId) path.unshift(parent.get(path[0])!);
+          return path;
+        }
+        next.push(f);
       }
     }
+    layer = next;
   }
-  return false;
+  return null;
 }
+
+const graphFactors = (snap: Snapshot) => (id: string) => snap.factors.get(id)?.keys() ?? [];
 
 /** True when `nodeId` rests on `factorId` through any chain of public factor edges. */
 export function restsOnInGraph(snap: Snapshot, nodeId: string, factorId: string): boolean {
-  return reaches((id) => snap.factors.get(id)?.keys() ?? [], nodeId, factorId);
+  return chainTo(graphFactors(snap), nodeId, factorId) !== null;
 }
+
+export type ChainStep = { slug: string; title: string };
 
 export type PairStanding = {
   /** The factor already rests on the target in the graph: approval makes a loop, and the review refuses it. */
@@ -288,6 +305,8 @@ export type PairStanding = {
   implied: boolean;
   /** Other pending proposals the second model confirmed, with the graph, already lead from the target to the factor: approving them makes this pair a shortcut. */
   viaPending: boolean;
+  /** For `implied` or `viaPending`, the nodes between target and factor on the shortest such chain, target side first. Empty otherwise. */
+  through: ChainStep[];
 };
 
 /**
@@ -308,20 +327,28 @@ export function pairStandings(snap: Snapshot, pending: { from_slug: string; to_s
     if (!withPending.has(t)) withPending.set(t, new Set());
     withPending.get(t)!.add(f);
   }
+  const step = (id: string): ChainStep => {
+    const n = snap.byId.get(id);
+    return { slug: n?.slug ?? id, title: n?.title ?? id };
+  };
   const out = new Map<string, PairStanding>();
   for (const p of pending) {
     const key = `${p.from_slug}->${p.to_slug}`;
     const f = idOf(p.from_slug);
     const t = idOf(p.to_slug);
     if (!f || !t) {
-      out.set(key, { graphLoop: false, implied: false, viaPending: false });
+      out.set(key, { graphLoop: false, implied: false, viaPending: false, through: [] });
       continue;
     }
-    const implied = restsOnInGraph(snap, t, f);
+    const graphLoop = chainTo(graphFactors(snap), f, t) !== null;
+    const inGraph = chainTo(graphFactors(snap), t, f);
+    const inQueue = inGraph ? null : chainTo((id) => withPending.get(id) ?? [], t, f, [t, f]);
+    const chain = inGraph ?? inQueue;
     out.set(key, {
-      graphLoop: restsOnInGraph(snap, f, t),
-      implied,
-      viaPending: !implied && reaches((id) => withPending.get(id) ?? [], t, f, [t, f]),
+      graphLoop,
+      implied: inGraph !== null,
+      viaPending: inQueue !== null,
+      through: chain ? chain.slice(1, -1).map(step) : [],
     });
   }
   return out;

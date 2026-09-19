@@ -158,7 +158,7 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
         impact: live,
         crossBranch: p.cross_branch,
         inCycle: loops.has(`${p.from_slug}->${p.to_slug}`),
-        ...(standings.get(`${p.from_slug}->${p.to_slug}`) ?? { graphLoop: false, implied: false, viaPending: false }),
+        ...(standings.get(`${p.from_slug}->${p.to_slug}`) ?? { graphLoop: false, implied: false, viaPending: false, through: [] }),
         priority: priorityOf(p, live),
       };
     })
