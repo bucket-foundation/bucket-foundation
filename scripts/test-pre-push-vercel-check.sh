@@ -119,6 +119,11 @@ run_case "missing node_modules is refused with the reason" 1 no "$(ref feat/site
 run_case "a push to dev checks" 0 yes "$(ref dev "$DOCS" "$BASE")"
 run_case "[skip ci] on dev pushes without a check" 0 no "$(ref dev "$SITE_WIP" "$BASE")" FAIL_LINT=1
 run_case "a tag push has no check" 0 no "refs/tags/v1 $SITE refs/tags/v1 $ZERO" FAIL_LINT=1
+# A gate that crashes answers build on Vercel, so the check must run.
+cp "$REPO/scripts/vercel-ignore-build.sh" "$WORKDIR/gate.keep"
+printf '#!/usr/bin/env bash\nset -u\necho "$UNBOUND_FOR_THE_TEST"\n' >"$REPO/scripts/vercel-ignore-build.sh"
+run_case "a gate that crashes counts as build and the check runs" 1 yes "$(ref feat/docs "$DOCS" "$ZERO")" FAIL_LINT=1
+cp "$WORKDIR/gate.keep" "$REPO/scripts/vercel-ignore-build.sh"
 
 # --- the installer --------------------------------------------------------
 HOOKS="$WORKDIR/hooks"

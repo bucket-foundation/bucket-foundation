@@ -13,7 +13,7 @@
 # squash merge to main must not rebuild the site either.
 #
 # Decision order (first match wins):
-#   0. Commit message contains "[vercel build]"      -> BUILD (forced override)
+#   0. Commit subject contains "[vercel build]"      -> BUILD (forced override)
 #   1. Commit subject starts with "feed:"             -> SKIP  (bot feed sync)
 #      or contains "[skip ci]", "[skip vercel]",
 #      or "[vercel skip]" (subject line alone)
@@ -59,7 +59,7 @@
 # evidence trail per entry.
 #
 # Force a build regardless of any of the above: put "[vercel build]" in
-# the commit message.
+# the commit subject line.
 
 set -uo pipefail
 
@@ -85,9 +85,12 @@ PREV_SHA="${VERCEL_GIT_PREVIOUS_SHA:-}"
 
 echo "[vercel-ignore-build] env=$ENVIRONMENT ref=$REF cur=$CUR_SHA prev=${PREV_SHA:-<empty>}"
 
+# Every token counts on the subject line alone (step 1 says why).
+SUBJECT="${MSG%%$'\n'*}"
+
 # --- step 0: forced override, always wins ------------------------------
-if [[ "$MSG" == *"[vercel build]"* ]]; then
-  build "commit message contains [vercel build] (forced)"
+if [[ "$SUBJECT" == *"[vercel build]"* ]]; then
+  build "commit subject contains [vercel build] (forced)"
 fi
 
 # --- step 1: commit-message skip signals --------------------------------
@@ -95,7 +98,6 @@ fi
 # every commit message of a pull request in its body, including the
 # work-in-progress commits marked [skip ci]; those lines must not skip the
 # merge itself.
-SUBJECT="${MSG%%$'\n'*}"
 if [[ "$SUBJECT" == feed:* ]]; then
   skip "commit message starts with 'feed:' (bot feed sync)"
 fi
@@ -123,9 +125,10 @@ have_commit() { git cat-file -e "$1^{commit}" 2>/dev/null; }
 # not, so both commits' trees are fetched at depth 1 into a scratch bare
 # repository and the diff runs there. The scratch repository leaves the
 # build's clone untouched, and it has no objects of its own for git 2.48
-# and later to copy into a promisor pack, which in the clone measured 815 MB
+# and later to copy into a promisor pack, which in the clone measured 814 MB
 # (critic round 2, 2026-09-19). --filter=blob:none: the diff needs trees
-# alone, about 7 MB for this repository against 815 MB with blobs.
+# alone, 8.2 MB for two commits of this repository against a pack of about
+# 815 MB with blobs.
 # VERCEL_IGNORE_SCRATCH_DIR keeps the scratch repository, for tests.
 SCRATCH=""
 cleanup() {

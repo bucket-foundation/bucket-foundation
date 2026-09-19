@@ -41,13 +41,15 @@ run_case() {
   )"
   status=$?
   if [[ $status -eq 1 ]]; then got=build; else got=skip; fi
-  if [[ "$got" == "$expect" ]]; then
+  local reason_ok=yes
+  if [[ -n "${EXPECT_REASON:-}" && "$out" != *"$EXPECT_REASON"* ]]; then reason_ok=no; fi
+  if [[ "$got" == "$expect" && "$reason_ok" == yes ]]; then
     PASS=$((PASS + 1))
     printf 'PASS  %-42s (%s)\n' "$name" "$got"
     [[ -n "${SHOW_REASON:-}" ]] && printf '      %s\n' "$(echo "$out" | grep -E "BUILD:|SKIP:" | cut -c1-220)"
   else
     FAIL=$((FAIL + 1))
-    printf 'FAIL  %-42s expected %s, got %s\n' "$name" "$expect" "$got"
+    printf 'FAIL  %-42s expected %s, got %s%s\n' "$name" "$expect" "$got" "$([[ $reason_ok == no ]] && echo ", reason lacks: $EXPECT_REASON")"
     printf '      output:\n%s\n' "$out" | sed 's/^/      /'
   fi
 }
@@ -188,6 +190,14 @@ run_case "production builds on site-touching diff" build \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 
+run_case "[vercel build] in a squash body does not force a build" skip \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes (#201)
+
+* docs: force a build with [vercel build] when needed" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
 run_case "[vercel build] forces a build over an engine branch + docs diff" build \
   "VERCEL_GIT_COMMIT_REF=feat/hte-outbox-seam" \
   "VERCEL_GIT_COMMIT_MESSAGE=feat(hte): outbox seam [vercel build]" \
@@ -323,6 +333,7 @@ run_case "shallow clone: dev with no previous deployment builds" build \
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
 
 shallow_clone "$SHA_DOCS"
+EXPECT_REASON="github.com/nobody-$$/none-$$.git" \
 run_case "shallow clone: owner and slug form the GitHub URL, unreachable here, so it builds" build \
   "VERCEL_GIT_REPO_OWNER=nobody-$$" \
   "VERCEL_GIT_REPO_SLUG=none-$$" \
@@ -331,6 +342,23 @@ run_case "shallow clone: owner and slug form the GitHub URL, unreachable here, s
   "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+RUN_IN=""
+
+# The scratch repository is removed when the gate exits.
+PRIVATE_TMP="$WORKDIR/private-tmp"
+mkdir -p "$PRIVATE_TMP"
+shallow_clone "$SHA_DOCS"
+TMPDIR="$PRIVATE_TMP" run_case "shallow clone: a fetched base under a private TMPDIR skips" skip \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+if [[ -z "$(ls -A "$PRIVATE_TMP")" ]]; then
+  PASS=$((PASS + 1)); echo "PASS  the scratch repository is removed"
+else
+  FAIL=$((FAIL + 1)); echo "FAIL  the scratch repository was left in TMPDIR: $(ls "$PRIVATE_TMP")"
+fi
 RUN_IN=""
 
 echo

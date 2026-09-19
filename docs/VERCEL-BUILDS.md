@@ -52,7 +52,7 @@ No researcher-facing surface changes. The preview a reviewer opens from a pull r
 
 ## The rule
 
-1. Commit message contains `[vercel build]` -> build (forced override, wins over everything below).
+1. Commit subject contains `[vercel build]` -> build (forced override, wins over everything below).
 2. Commit subject starts with `feed:`, or contains `[skip ci]`, `[skip vercel]`, or `[vercel skip]` -> skip. The subject line alone counts: a squash merge can list every commit of a pull request in its body, work-in-progress `[skip ci]` commits included, and those lines must not skip the merge.
 3. Branch matches an engine prefix (below) -> skip.
 4. The diff from the base to the pushed commit touches an allowlisted path (below) -> build.
@@ -63,16 +63,17 @@ The base at step 4 is `VERCEL_GIT_PREVIOUS_SHA`, the branch's last successful de
 
 Vercel's Ignored Build Step contract: the script exits `1` to build, `0`
 to skip. See `scripts/vercel-ignore-build.sh` for the implementation and
-`scripts/test-vercel-ignore-build.sh` for 28 checks (run it with
-`bash scripts/test-vercel-ignore-build.sh`). Twelve run in a depth-1 clone
+`scripts/test-vercel-ignore-build.sh` for 31 checks (run it with
+`bash scripts/test-vercel-ignore-build.sh`). Fourteen run in a depth-1 clone
 with no remote, the way Vercel's clone is, and check that the fetch leaves
-the base's blobs behind and the clone unchanged. Others cover a diff of
-4,000 paths and a squash body full of `[skip ci]` lines. CI runs both test
+the base's blobs behind, the clone unchanged, and no scratch repository in
+`TMPDIR`. Others cover a diff of
+4,000 paths and squash bodies carrying `[skip ci]` or `[vercel build]` lines. CI runs both test
 scripts.
 
 ## Before a push
 
-`scripts/pre-push-vercel-check.sh` asks the gate whether a push would build, with the branch, the pushed commit's message, and the branch's merge base with `origin/dev` as the base; on `dev` and `main` it gives no base, so every push there that the message or branch does not skip is checked. When the answer is build, it runs `npm run lint` and `npm run typecheck` and refuses the push on an error. Both read the working tree, so the check first refuses a push whose commit is not the one checked out, a tracked or untracked source file that differs from it, and a checkout without `node_modules`, each with the reason. A push Vercel would skip passes at once. `bash scripts/install-git-hooks.sh` installs a `pre-push` in the hooks directory (`core.hooksPath`, the org's shared directory on AGFarms machines) that runs a repository's own check when it has one and does nothing in other repositories; it leaves an existing `pre-push` alone. `AGF_PREPUSH_SKIP=1 git push` bypasses it. `scripts/test-pre-push-vercel-check.sh` covers 22 cases, the installer among them.
+`scripts/pre-push-vercel-check.sh` asks the gate whether a push would build, with the branch, the pushed commit's message, and the branch's merge base with `origin/dev` as the base; on `dev` and `main` it gives no base, so every push there that the message or branch does not skip is checked. When the answer is build, it runs `npm run lint` and `npm run typecheck` and refuses the push on an error. Both read the working tree, so the check first refuses a push whose commit is not the one checked out, a tracked or untracked source file that differs from it, and a checkout without `node_modules`, each with the reason. A push Vercel would skip passes at once. `bash scripts/install-git-hooks.sh` installs a `pre-push` in the hooks directory (`core.hooksPath`, the org's shared directory on AGFarms machines) that runs a repository's own check when it has one and does nothing in other repositories; it leaves an existing `pre-push` alone. `AGF_PREPUSH_SKIP=1 git push` bypasses it. `scripts/test-pre-push-vercel-check.sh` covers 23 cases, the installer and a crashing gate among them.
 
 The check catches lint and type errors, the cause of 10 of the failed builds measured above. Generated route types under `.next/types` count in the type check as they do in `next build`; a stale copy from an old dev server can fail it, and deleting `.next/types` clears that. It does not run `next build`, so a page that fails to collect its data at build time, or a function over a plan limit, still fails on Vercel alone.
 
@@ -130,7 +131,7 @@ Every entry below has a concrete reader; nothing here is guessed.
 
 ## Forcing a build
 
-Put `[vercel build]` anywhere in the commit message. It wins over the
+Put `[vercel build]` in the commit subject line. It wins over the
 engine-branch skip, the feed/skip-ci message skip, and the diff check.
 It does **not** override `git.deploymentEnabled` (below): that gate
 runs before any deployment exists, so there is no commit for the

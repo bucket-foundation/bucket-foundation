@@ -44,7 +44,9 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   else
     base="$(git merge-base "$local_sha" origin/dev 2>/dev/null || true)"
   fi
-  verdict="$(
+  # The gate's exit status is its answer, as Vercel reads it: 0 skips, and
+  # anything else builds, a crash included.
+  gate_out="$(
     cd "$TOP" &&
       VERCEL_GIT_COMMIT_REF="$branch" \
       VERCEL_GIT_COMMIT_MESSAGE="$message" \
@@ -52,11 +54,18 @@ while read -r local_ref local_sha remote_ref remote_sha; do
       VERCEL_GIT_PREVIOUS_SHA="$base" \
       VERCEL_IGNORE_BASE_LABEL="merge base with origin/dev" \
       VERCEL_IGNORE_FETCH_URL="" \
-      bash "$GATE" 2>&1 | grep -E "BUILD:|SKIP:" | tail -1
+      bash "$GATE" 2>&1
   )"
-  if [[ "$verdict" == *"BUILD:"* ]]; then
+  gate_status=$?
+  if [[ $gate_status -ne 0 ]]; then
+    verdict="$(grep -E "BUILD:" <<<"$gate_out" | tail -1)"
     echo "[pre-push] $branch: Vercel would build this push"
-    echo "  ${verdict#*] }"
+    if [[ -n "$verdict" ]]; then
+      echo "  ${verdict#*] }"
+    else
+      echo "  the gate exited $gate_status with no verdict:"
+      tail -n 5 <<<"$gate_out" | sed 's/^/    /'
+    fi
     needs_check="yes"
     pushed_shas="$pushed_shas $local_sha"
   fi
