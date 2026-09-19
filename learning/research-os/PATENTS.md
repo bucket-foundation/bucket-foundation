@@ -141,3 +141,22 @@ The gateway's own questions, who owns the mainnet facilitator and receiving wall
 - ros-patents 4 decomposes claims into elements and adds disclosure.
 
 The gateway's USPTO routes are on its org `main`; Research OS links to them once gateway #68 confirms them on the deployed host, and to the public patent records until then.
+
+## Slice 1: the research memo
+
+The prior work on patents in scientific discovery and innovation, checked against its sources, and the choices it settles for Research OS: which CPC classes load first, how prior art is found and ranked, how a claim reads as a combination of known ideas, and what Bucket does with inventions as a nonprofit.
+
+### What the repository holds for it
+
+- Slice 0 above: the sources, their terms, and the design of patents in the graph.
+- `pubmed/PMID-9034179-patent-threat-to-research/`: "Patent threat to research", a 1997 letter in Nature by Dalton, Goodwin, Ho, and others ([doi:10.1038/385672a0](https://doi.org/10.1038/385672a0)), captured with no abstract.
+- `quantum/06-ecosystem-geopolitics/E-patents.md`: a graded note on the quantum patent race. It separates filings from international patent families as measures, names CPC class G06N 10/00, and records that trade secrets keep part of the field out of the patent record.
+
+### Questions the memo answers
+
+1. How patents cite science, and how well those links can be recovered: front-page and in-text references, examiner and applicant citations, and the link sets built from them.
+2. How a claim is built, and what novelty and non-obviousness ask of it: independent and dependent claims, elements, and the combination of known elements.
+3. What CPC is, how its classes map onto the graph's fourteen branches, and which classes load first.
+4. What patent counts measure and where they mislead: filings against families, strategic patenting, and trade secrets.
+5. How prior art is searched today, by examiners and by tools, and how retrieval quality is measured.
+6. Open pledges, defensive publication, and the choices open to a nonprofit that publishes inventions.
