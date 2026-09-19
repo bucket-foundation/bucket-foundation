@@ -2,6 +2,31 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-builds: fewer Vercel builds
+
+The Vercel gate compares each push with the last successful deployment, builds on Node 24, and a local check stops a push that would fail on lint or types.
+
+Date 2026-09-19. Branch `feat/ros-loop-builds`, worktree `.wt-ros-loop`, PR #187 into `dev`. Research and design in `docs/VERCEL-BUILDS.md`. Founder direction: fewer Vercel builds, and no failing ones.
+
+### Added
+
+- `scripts/pre-push-vercel-check.sh`: asks the gate whether a push would build and runs lint and the type check first when it would, on the pushed commit alone.
+- `scripts/install-git-hooks.sh`: installs a `pre-push` beside the org's shared `pre-commit` that runs a repository's own check.
+- `scripts/test-pre-push-vercel-check.sh`: 23 cases, the installer among them.
+
+### Edited
+
+- `scripts/vercel-ignore-build.sh`: skip and build tokens count on the commit subject alone; step 3 fetches the trees of the base and the pushed commit at depth 1 into a scratch repository when Vercel's one-commit clone lacks the base, compares a branch with no successful deployment against `dev`, builds on `dev` or `main` with no previous deployment, diffs with `--no-renames`, and matches the allowlist from a here-string; `[skip vercel]` and `[vercel skip]` skip Vercel alone. Old behaviour: skip tokens anywhere in the message, so a squash body could skip a merge; `git diff` against the previous sha, which always failed on Vercel and built; the parent as the base with no previous sha; `echo | grep -q`, which skipped a site change in a diff past 64 KB.
+- `scripts/test-vercel-ignore-build.sh`: 31 checks, 14 in a depth-1 clone with no remote. Old: ten cases in a full clone.
+- `package.json`, `package-lock.json`: `engines.node` 24.x.
+- `.github/workflows/site-ci.yml`: Node 24, the two gate test scripts, and `vercel.json` among the watched paths. Old: Node 20.
+- `docs/VERCEL-BUILDS.md`: measured deployments and failures, the changes, the rule as it now runs, the pre-push check, and the Node version.
+- `docs/PROBLEM-REGISTER.md`: PR-064, PR-065, PR-066.
+
+### Removed
+
+None.
+
 ## ros-prime 2: the decompose-further queue
 
 Every prime and unfactored idea gets factors proposed by one model, checked blind by a second and by Wikipedia's links, and decided by a person at `/research-os/edges`.
