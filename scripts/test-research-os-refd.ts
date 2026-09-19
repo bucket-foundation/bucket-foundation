@@ -105,7 +105,7 @@ test("pairs score only when both ends have an article", () => {
 });
 
 test("the ROC area gets a target-level interval that repeats run to run and does not depend on row order", () => {
-  const rows = ["t1", "t2", "t3", "t4", "t5", "t6"].flatMap((t, i) => [
+  const rows = ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9", "t10", "t11", "t12"].flatMap((t, i) => [
     { target: t, refd: 0.1 + i * 0.01, verification: "confirmed" },
     { target: t, refd: i % 2 ? 0.2 : -0.1, verification: "refuted" },
     { target: t, refd: null, verification: "confirmed" },
@@ -113,8 +113,13 @@ test("the ROC area gets a target-level interval that repeats run to run and does
   const a = refdAucInterval(rows, 400);
   const b = refdAucInterval(rows.slice().reverse(), 400);
   assert.deepEqual(a, b);
-  assert.equal(a.targets, 6);
+  assert.equal(a.targets, 12);
   assert.ok(a.auc !== null && a.interval !== null);
   assert.ok(a.interval![0] <= a.auc! && a.auc! <= a.interval![1]);
-  assert.deepEqual(refdAucInterval([{ target: "t", refd: 0.1, verification: "confirmed" }]), { auc: null, interval: null, targets: 1 });
+  assert.deepEqual(refdAucInterval([{ target: "t", refd: 0.1, verification: "confirmed" }]), { auc: null, interval: null, targets: 1, confirmed: 1, refuted: 0 });
+  // Three confirmed pairs: an area, and no interval.
+  const few = refdAucInterval(rows.filter((r) => r.verification === "refuted" || ["t1", "t2", "t3"].includes(r.target)));
+  assert.ok(few.auc !== null);
+  assert.equal(few.interval, null);
+  assert.equal(few.confirmed, 3);
 });

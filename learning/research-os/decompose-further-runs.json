@@ -1,0 +1,138 @@
+{
+ "about": "Aggregate results of the decompose-further runs cited in learning/research-os/PRIMES.md. Full reports live in scripts/research-os/ingest/out/ and are not committed.",
+ "runs": [
+  {
+   "run": "v1 baseline, before the target and blinding rules",
+   "generated_at": "2026-09-18T19:17:15.722Z",
+   "targets": 166,
+   "answered": 166,
+   "proposals": 716,
+   "confirmed": null,
+   "cross_branch": 294,
+   "in_cycle": null,
+   "agreement": null,
+   "models": null,
+   "missing": null,
+   "refd_auc": null,
+   "irreducible": 0,
+   "failures": 0
+  },
+  {
+   "run": "v3, models resolved, blinded verifier, RefD",
+   "generated_at": "2026-09-19T01:10:46.338Z",
+   "targets": 40,
+   "answered": 40,
+   "proposals": 151,
+   "confirmed": 94,
+   "cross_branch": 99,
+   "in_cycle": 7,
+   "agreement": {
+    "pairs": 277,
+    "targets": 38,
+    "table": {
+     "pickedHolds": 84,
+     "pickedNot": 53,
+     "passedHolds": 3,
+     "passedNot": 137
+    },
+    "observed": 0.7978339350180506,
+    "kappa": 0.5940329756608218,
+    "kappaInterval": [
+     0.49361678036629214,
+     0.6850876744542713
+    ]
+   },
+   "models": {
+    "proposer": "claude-sonnet-5",
+    "verifier": "claude-opus-5",
+    "aliases": {
+     "proposer": "sonnet",
+     "verifier": "opus"
+    },
+    "mismatched": []
+   },
+   "missing": {
+    "named": 74,
+    "groups": 67,
+    "matched_to_existing": 16,
+    "node_proposals": 51,
+    "reused_earlier_keys": 0,
+    "matched_pairs_made": 14,
+    "named_by_more_than_one": 3
+   },
+   "refd_auc": {
+    "proposals": {
+     "auc": 0.593,
+     "interval": [
+      0.505,
+      0.685
+     ],
+     "targets": 38,
+     "confirmed": 88,
+     "refuted": 56
+    },
+    "blinded": {
+     "auc": 0.647,
+     "interval": [
+      0.569,
+      0.726
+     ],
+     "targets": 38,
+     "confirmed": 81,
+     "refuted": 179
+    },
+    "blinded_picks": {
+     "auc": 0.576,
+     "interval": [
+      0.482,
+      0.675
+     ],
+     "targets": 38,
+     "confirmed": 78,
+     "refuted": 52
+    },
+    "blinded_passed_over": {
+     "auc": 0.997,
+     "interval": null,
+     "targets": 37,
+     "confirmed": 3,
+     "refuted": 127
+    }
+   },
+   "irreducible": 0,
+   "failures": 0,
+   "matched_dropped": [
+    {
+     "factor": "academy-00-learning-to-learn-fluency-illusion",
+     "target": "academy-00-learning-to-learn-how-learning-works",
+     "reason": "rests_on_target"
+    },
+    {
+     "factor": "academy-00-learning-to-learn-retrieval-practice",
+     "target": "academy-00-learning-to-learn-how-learning-works",
+     "reason": "rests_on_target"
+    },
+    {
+     "factor": "academy-00-learning-to-learn-spacing",
+     "target": "academy-00-learning-to-learn-how-learning-works",
+     "reason": "rests_on_target"
+    },
+    {
+     "factor": "academy-03-chemistry-atom-nucleus-electrons",
+     "target": "academy-03-chemistry-atom-nucleus-electrons",
+     "reason": "is_the_target"
+    },
+    {
+     "factor": "academy-biophysics-ideal-chain",
+     "target": "academy-biophysics-ideal-chain",
+     "reason": "is_the_target"
+    },
+    {
+     "factor": "academy-02-physics-equivalence-principle",
+     "target": "academy-06-cosmology-equivalence-principle",
+     "reason": "already_proposed"
+    }
+   ]
+  }
+ ]
+}

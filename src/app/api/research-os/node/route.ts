@@ -49,8 +49,8 @@ export async function GET(req: NextRequest) {
   if (!canView(access, viewer, grants)) return bad(404, "node_not_found");
 
   const [graph, standingRes, myClasses] = await Promise.all([
-    // A failed graph read still serves the node itself; the reply says the
-    // neighbourhood is missing instead of showing an empty one as real.
+    // A failed graph read still serves the node itself, and the reply marks
+    // the neighbourhood as unavailable so the page says so.
     loadSubgraph(node.branch, { externalFactors: true }).catch((err: unknown) => {
       console.error("[research-os/node] subgraph load failed:", err instanceof Error ? err.message : err);
       return { nodes: [], edges: [], failed: true as const };

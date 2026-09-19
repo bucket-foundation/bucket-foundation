@@ -93,9 +93,10 @@ grant execute on function graph.merge_edge_proposals(jsonb) to service_role;
 -- and never stands in for it.
 alter table graph.node_proposals add column if not exists summary text;
 
--- Merge missing primes by key. A pending row gathers the new naming nodes,
--- aliases, and reasons, takes the newer duplicate list, and keeps its
--- definition unless it had none; a decided row stays as the reviewer left it.
+-- Merge missing ideas by key. A pending row gathers the new naming nodes,
+-- aliases, and reasons, takes the newer duplicate list and base-idea hint,
+-- and keeps its definition unless it had none; a decided row stays as the
+-- reviewer left it.
 create or replace function graph.merge_node_proposals(p_rows jsonb)
 returns table (key text, status text, created_node_id uuid)
 language plpgsql
@@ -124,6 +125,7 @@ begin
       aliases = array(select distinct u from unnest(np.aliases || excluded.aliases) u order by u),
       reasons = excluded.reasons || np.reasons,
       possible_duplicates = excluded.possible_duplicates,
+      base_match = excluded.base_match,
       summary = coalesce(np.summary, excluded.summary)
     where np.status = 'pending';
   end loop;

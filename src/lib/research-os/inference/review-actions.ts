@@ -14,7 +14,7 @@
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IN_CHUNK } from "../db";
-import { forgetMakeupSnapshot } from "../makeup";
+import { forgetMakeupSnapshot, liveCycles, makeupSnapshot } from "../makeup";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type ApprovedKind } from "./decide";
 import { chooseBranch, decideNodeProposal, type NodeOverrides, type NodeProposalRecord } from "./decide-node";
@@ -114,9 +114,24 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
   }
   let nodes: Map<string, NodeLite>;
   let impact: Map<string, number>;
+  let loops: Set<string>;
   try {
     nodes = await nodesBySlug(svc, rows.flatMap((p) => [p.from_slug, p.to_slug]));
     impact = await dependents(svc, rows.map((p) => p.to_slug));
+    // Loops are computed over every pending pair and the graph as they
+    // stand now, so a decision clears or adds a flag at once.
+    let pendingAll: { from_slug: string; to_slug: string }[] = rows;
+    if (source) {
+      pendingAll = [];
+      for (let from = 0; ; from += 1000) {
+        const { data, error } = await svc.from("edge_proposals").select("from_slug,to_slug").eq("status", "pending").order("id").range(from, from + 999);
+        if (error) throw new Error(error.message);
+        const page = (data as { from_slug: string; to_slug: string }[]) || [];
+        pendingAll.push(...page);
+        if (page.length < 1000) break;
+      }
+    }
+    loops = liveCycles(await makeupSnapshot(svc), pendingAll);
   } catch {
     return fail(500, "read_failed");
   }
@@ -131,7 +146,9 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
         fromTitle: from?.title ?? p.from_slug,
         fromSummary: from?.summary ?? null,
         fromBranch: from?.branch ?? null,
+        fromTier: from?.tier ?? null,
         toSlug: p.to_slug,
+        toTier: to?.tier ?? null,
         toTitle: to?.title ?? p.to_slug,
         branch: p.branch,
         confidence: p.confidence,
@@ -147,7 +164,7 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
         createdAt: p.created_at,
         impact: live,
         crossBranch: p.cross_branch,
-        inCycle: Boolean(p.in_cycle),
+        inCycle: loops.has(`${p.from_slug}->${p.to_slug}`),
         priority: priorityOf(p, live),
       };
     })

@@ -2,7 +2,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { decompose, penetration, type DepEdge } from "../src/lib/research-os/primes";
-import { buildMakeup, type MakeupNode, type Snapshot } from "../src/lib/research-os/makeup";
+import { buildMakeup, forgetMakeupSnapshot, liveCycles, makeupSnapshot, type MakeupNode, type Snapshot } from "../src/lib/research-os/makeup";
 
 const nodes: MakeupNode[] = [
   { id: "eq", slug: "equality", title: "Equality", branch: "01-mathematics" },
@@ -18,6 +18,7 @@ const edges = [pre("vec", "kin"), pre("der", "kin"), pre("eq", "der"), pre("kin"
 const dec = decompose(nodes, edges);
 const snap: Snapshot = {
   dec,
+  edges,
   byId: new Map(nodes.map((n) => [n.id, n])),
   bySlug: new Map(nodes.map((n) => [n.slug, n])),
   reach: new Map(penetration(nodes, dec).map((p) => [p.id, p])),
@@ -63,4 +64,39 @@ test("an unknown node has no makeup, and the prime list stops at the limit", () 
   assert.equal(buildMakeup("nope", snap, none), null);
   assert.equal(buildMakeup("dyn", snap, none, 1)!.primes.length, 1);
   assert.equal(buildMakeup("dyn", snap, none, 1)!.primeCount, 2);
+});
+
+test("concurrent reads share one graph read, and a read an approval overtook is served once and never cached", async () => {
+  let reads = 0;
+  let release!: () => void;
+  const gate = new Promise<void>((r) => (release = r));
+  const slow = async () => {
+    reads++;
+    await gate;
+    return snap;
+  };
+  forgetMakeupSnapshot();
+  const a = makeupSnapshot({} as any, 60_000, slow);
+  const b = makeupSnapshot({} as any, 60_000, slow);
+  assert.equal(reads, 1, "the second request joins the first read");
+  forgetMakeupSnapshot(); // an approval lands while the read runs
+  const c = makeupSnapshot({} as any, 60_000, slow);
+  assert.equal(reads, 2, "a request after the approval starts a fresh read");
+  release();
+  await Promise.all([a, b, c]);
+  const d = makeupSnapshot({} as any, 60_000, slow);
+  await d;
+  assert.equal(reads, 2, "the fresh read was cached; the overtaken one was not");
+  forgetMakeupSnapshot();
+});
+
+test("cycle flags come from the current pending set and the graph", () => {
+  // derivatives -> equality exists as a pending pair; equality rests on nothing, derivatives rests on equality already.
+  const loops = liveCycles(snap, [
+    { from_slug: "derivatives", to_slug: "equality" },
+    { from_slug: "vectors", to_slug: "lonely" },
+  ]);
+  assert.ok(loops.has("derivatives->equality"));
+  assert.ok(!loops.has("vectors->lonely"));
+  assert.equal(liveCycles(snap, [{ from_slug: "vectors", to_slug: "lonely" }]).size, 0);
 });

@@ -88,13 +88,16 @@ function aucOf(yes: number[], no: number[]): number | null {
  * The ROC area with a 95% percentile interval from resampling whole targets
  * with replacement (Efron 1979), since pairs under one target share its
  * articles. Targets resample in a fixed order under a seed, so the interval
- * repeats run to run.
+ * repeats run to run. With fewer than `minEach` confirmed or refuted pairs
+ * the interval is left out, since a handful of positives makes a resampled
+ * area look certain.
  */
 export function refdAucInterval(
   rows: { target: string; refd: number | null; verification: string }[],
   resamples = 1000,
   seed = "refd",
-): { auc: number | null; interval: [number, number] | null; targets: number } {
+  minEach = 10,
+): { auc: number | null; interval: [number, number] | null; targets: number; confirmed: number; refuted: number } {
   const scored = rows.filter((r) => r.refd !== null && (r.verification === "confirmed" || r.verification === "refuted"));
   const byTarget = new Map<string, typeof scored>();
   for (const r of scored) {
@@ -111,7 +114,7 @@ export function refdAucInterval(
   const [yes, no] = split(scored);
   const point = aucOf(yes, no);
   let interval: [number, number] | null = null;
-  if (point !== null && groups.length >= 2) {
+  if (point !== null && groups.length >= 2 && yes.length >= minEach && no.length >= minEach) {
     const rand = seeded(seed);
     const xs: number[] = [];
     for (let i = 0; i < resamples; i++) {
@@ -124,7 +127,7 @@ export function refdAucInterval(
     xs.sort((a, b) => a - b);
     if (xs.length) interval = [round3(xs[Math.floor(0.025 * (xs.length - 1))]), round3(xs[Math.ceil(0.975 * (xs.length - 1))])];
   }
-  return { auc: point === null ? null : round3(point), interval, targets: groups.length };
+  return { auc: point === null ? null : round3(point), interval, targets: groups.length, confirmed: yes.length, refuted: no.length };
 }
 
 const round3 = (x: number) => Math.round(x * 1000) / 1000;

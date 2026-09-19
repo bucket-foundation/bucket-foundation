@@ -10,13 +10,14 @@
  * for a minute, so opening node after node does not re-read the graph.
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { cyclicPairs } from "./decompose-further";
 import { decompose, FACTOR_EDGES, penetration, type Decomposition, type DepEdge, type PrimePenetration, type PrimeStatus } from "./primes";
 
 export type MakeupNode = { id: string; slug: string; title: string; branch: string };
 
 export type Makeup = {
   status: PrimeStatus;
-  /** Tier by primality: 0 for a prime, one more per layer of combination. */
+  /** Layers of combination above the node's primes: 0 for a prime. Distinct from the grade tier on the node. */
   tier: number;
   inCycle: boolean;
   /** Distinct primes under the node. */
@@ -54,6 +55,8 @@ export type ProposalRowLite = {
 
 export type Snapshot = {
   dec: Map<string, Decomposition>;
+  /** The factor edges the decomposition ran over. */
+  edges: DepEdge[];
   byId: Map<string, MakeupNode>;
   bySlug: Map<string, MakeupNode>;
   reach: Map<string, PrimePenetration>;
@@ -123,11 +126,7 @@ async function paged<T>(q: (from: number) => PromiseLike<{ data: unknown; error:
   }
 }
 
-let cached: { at: number; snap: Snapshot } | null = null;
-
-/** The public graph's decomposition, reused for `ttlMs` so node pages stay fast. */
-export async function makeupSnapshot(svc: SupabaseClient, ttlMs = 60_000): Promise<Snapshot> {
-  if (cached && Date.now() - cached.at < ttlMs) return cached.snap;
+async function readSnapshot(svc: SupabaseClient): Promise<Snapshot> {
   const rows = await paged<MakeupNode>((from) =>
     svc.from("nodes").select("id,slug,title,branch").eq("visibility", "public").is("superseded_by", null).order("id").range(from, from + 999),
   );
@@ -139,17 +138,53 @@ export async function makeupSnapshot(svc: SupabaseClient, ttlMs = 60_000): Promi
     .filter((e) => live.has(e.from_id) && live.has(e.to_id))
     .map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
   const dec = decompose(rows, edges);
-  const snap: Snapshot = {
+  return {
     dec,
+    edges,
     byId: new Map(rows.map((n) => [n.id, n])),
     bySlug: new Map(rows.map((n) => [n.slug, n])),
     reach: new Map(penetration(rows, dec).map((p) => [p.id, p])),
   };
-  cached = { at: Date.now(), snap };
-  return snap;
+}
+
+let cached: { at: number; snap: Snapshot } | null = null;
+let inflight: { gen: number; promise: Promise<Snapshot> } | null = null;
+/** Bumped when an approval changes the graph; a read started before the bump is never stored. */
+let generation = 0;
+
+/**
+ * The public graph's decomposition, reused for `ttlMs` so node pages stay
+ * fast. Requests that arrive while a read is running share it, and a read
+ * that an approval overtook is served once and never cached.
+ */
+export async function makeupSnapshot(svc: SupabaseClient, ttlMs = 60_000, read: (svc: SupabaseClient) => Promise<Snapshot> = readSnapshot): Promise<Snapshot> {
+  if (cached && Date.now() - cached.at < ttlMs) return cached.snap;
+  if (inflight && inflight.gen === generation) return inflight.promise;
+  const started = generation;
+  const promise = read(svc)
+    .then((snap) => {
+      if (generation === started) cached = { at: Date.now(), snap };
+      return snap;
+    })
+    .finally(() => {
+      if (inflight?.promise === promise) inflight = null;
+    });
+  inflight = { gen: started, promise };
+  return promise;
+}
+
+/**
+ * Pending pairs that close a loop with the graph's factor edges and the
+ * other pending pairs right now, keyed "factor->target". Computed on read,
+ * so a decision elsewhere clears or adds a flag at once.
+ */
+export function liveCycles(snap: Snapshot, pending: { from_slug: string; to_slug: string }[]): Set<string> {
+  const idOf = new Map(Array.from(snap.bySlug.entries()).map(([slug, n]) => [slug, n.id]));
+  return cyclicPairs(snap.edges, pending, idOf);
 }
 
 /** Drop the cached decomposition, so the next read sees a just-approved edge. */
 export function forgetMakeupSnapshot(): void {
   cached = null;
+  generation++;
 }

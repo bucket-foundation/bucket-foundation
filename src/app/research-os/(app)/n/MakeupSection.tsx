@@ -22,6 +22,7 @@ const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? o
 export default function MakeupSection({ slug, branch }: { slug: string; branch: string }) {
   const [makeup, setMakeup] = useState<Makeup | null>(null);
   const [canReview, setCanReview] = useState(false);
+  const [pending, setPending] = useState<{ proposals: number; missing: number; irreducible: boolean; truncated: boolean } | null>(null);
   const [state, setState] = useState<"loading" | "ready" | "missing" | "error">("loading");
 
   const load = useCallback(async () => {
@@ -30,9 +31,10 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
       const res = await fetch(`/api/research-os/makeup?slug=${encodeURIComponent(slug)}`, { cache: "no-store" });
       if (res.status === 404) return setState("missing");
       if (!res.ok) return setState("error");
-      const body = (await res.json()) as { makeup: Makeup; canReview: boolean };
+      const body = (await res.json()) as { makeup: Makeup; canReview: boolean; pending: { proposals: number; missing: number; irreducible: boolean; truncated: boolean } };
       setMakeup(body.makeup);
       setCanReview(body.canReview);
+      setPending(body.pending);
       setState("ready");
     } catch {
       setState("error");
@@ -52,9 +54,9 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
       : m.status === "prime"
         ? `prime${m.reach ? ` · in ${plural(m.reach.composites, "composite")} across ${plural(m.reach.branches, "branch", "branches")}` : ""}`
         : m.status === "composite"
-          ? `tier ${m.tier} · ${plural(m.primeCount, "prime")} under it`
+          ? `${plural(m.primeCount, "prime")} under it · ${plural(m.tier, "layer")} above them`
           : "not decomposed yet";
-  const waiting = m ? m.proposals.length + m.missing.length + (m.irreducible?.status === "pending" ? 1 : 0) : 0;
+  const waiting = pending ? pending.proposals + pending.missing + (pending.irreducible ? 1 : 0) : 0;
 
   return (
     <Section id="makeup" level="understanding" title="made of" meta={meta}>
@@ -119,8 +121,23 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
             </div>
 
             <div>
-              <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">waiting on review · {waiting}</h3>
+              <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">
+                waiting on review · {waiting}
+                {pending?.truncated ? "+" : ""}
+              </h3>
               {waiting === 0 && <p className="text-[13px] text-[color:var(--basalt-3)]">Nothing proposed for this node right now.</p>}
+              {waiting > 0 && !canReview && pending && (
+                <p className="text-[13px] text-[color:var(--basalt-2)]">
+                  {[
+                    pending.proposals ? `${plural(pending.proposals, "proposed factor")}` : "",
+                    pending.missing ? `${plural(pending.missing, "missing idea")}` : "",
+                    pending.irreducible ? "an irreducible verdict" : "",
+                  ]
+                    .filter(Boolean)
+                    .join(", ")}{" "}
+                  {waiting === 1 ? "waits" : "wait"} on a reviewer. Each joins the graph once a reviewer approves it.
+                </p>
+              )}
               {m.irreducible && (
                 <p className="mb-3 text-[12.5px] text-[color:var(--basalt-2)]">
                   {m.irreducible.status === "pending" && "The proposer called this node irreducible; a reviewer has not decided. "}
@@ -181,7 +198,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                   review these
                 </Link>
               )}
-              {waiting > 0 && !canReview && <p className="text-[12px] text-[color:var(--basalt-3)]">A reviewer decides each one before it joins the graph.</p>}
+
             </div>
           </div>
         </div>

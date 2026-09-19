@@ -93,15 +93,21 @@ export const DECOMPOSABLE_KINDS = new Set(["concept", "law", "derivation"]);
  * they are neither targets nor factors.
  */
 export const IDEA_SOURCES = new Set(["academy_atom", "canon_entry", "reference", "primary_source"]);
-/** Base ideas a reviewer added from a missing-prime proposal: factors, never targets. */
+/**
+ * Base ideas a reviewer added from a missing-idea proposal. They are
+ * targets as well as factors, so decomposition goes on below them: an
+ * approved idea is asked what it rests on in the next run, and the
+ * reviewer gates every level, which bounds the depth.
+ */
 export const BASE_IDEA_SOURCE = "node_proposal";
 
 export function isIdea(n: GraphNode): boolean {
-  return DECOMPOSABLE_KINDS.has(n.kind) && IDEA_SOURCES.has(n.provenanceType ?? "");
+  return DECOMPOSABLE_KINDS.has(n.kind) && (IDEA_SOURCES.has(n.provenanceType ?? "") || n.provenanceType === BASE_IDEA_SOURCE);
 }
 
+/** Candidates and targets come from the same set. */
 export function isCandidateIdea(n: GraphNode): boolean {
-  return DECOMPOSABLE_KINDS.has(n.kind) && (IDEA_SOURCES.has(n.provenanceType ?? "") || n.provenanceType === BASE_IDEA_SOURCE);
+  return isIdea(n);
 }
 /**
  * Confidence on the scale both proposers share (inference/calibration.ts):
@@ -561,7 +567,7 @@ export const BASE_IDEAS: { key: string; heads: string[] }[] = [
   { key: "BECAUSE (cause)", heads: ["cause", "causation", "causality"] },
   { key: "IF (condition, implication)", heads: ["implication", "conditional", "inference", "deduction", "entailment"] },
   { key: "NOT (negation)", heads: ["negation", "contradiction"] },
-  { key: "TRUE (truth)", heads: ["truth", "proposition"] },
+  { key: "TRUE (truth)", heads: ["truth", "proposition", "bivalence"] },
   { key: "TIME", heads: ["time", "duration"] },
   { key: "PLACE (location)", heads: ["place", "location"] },
   { key: "ALL, SOME (quantifiers)", heads: ["quantifier", "quantification"] },
@@ -570,8 +576,17 @@ export const BASE_IDEAS: { key: string; heads: string[] }[] = [
 ];
 
 /** The last word of a title's first phrase, stemmed: "Physical quantity and measurement" gives "quantity". */
+/** Words that name a kind of statement; in "law of X" the idea is X. */
+const CONTAINERS = new Set(["law", "principle", "theory", "concept", "notion", "idea", "axiom", "rule", "postulate"]);
+
 export function headNoun(title: string): string {
-  const phrase = title.split(/\s\/\s|\s*\(|,|\s+and\s+|\s+of\s+|:|\s-\s/i)[0];
+  // "X as Y" is about X; "the law of X" is about X.
+  let t = title.split(/\s+as\s+/i)[0];
+  const ofMatch = /^(?:the\s+)?(\w+)\s+of\s+(?:the\s+)?(.+)$/i.exec(t.trim());
+  // Only when one word follows: "the law of bivalence" is about bivalence,
+  // "the law of large numbers" is a law in its own right.
+  if (ofMatch && CONTAINERS.has(ofMatch[1].toLowerCase()) && /^[\w-]+$/.test(ofMatch[2].split(/\s*\(|,|:/)[0].trim())) t = ofMatch[2];
+  const phrase = t.split(/\s\/\s|\s*\(|,|\s+and\s+|\s+of\s+|:|\s-\s/i)[0];
   const words = phrase
     .toLowerCase()
     .replace(/[^a-z ]+/g, " ")
@@ -854,4 +869,28 @@ export function reuseEarlierKeys(
     }
   }
   return reused;
+}
+
+/**
+ * What an irreducible verdict does to the review table. A new node gets a
+ * row. A node a reviewer rejected reopens as pending with the new reason
+ * and the reviewer's, and the old decision fields clear, since the row is
+ * undecided again. Pending and confirmed rows stay as they are.
+ */
+export function irreducibleAction(
+  prior: { status: string; decision_reason: string | null } | null,
+  why: string,
+  ctx: { model: string; promptHash: string },
+):
+  | { op: "insert"; row: { justification: string; model: string; prompt_hash: string } }
+  | { op: "reopen"; row: { status: "pending"; justification: string; model: string; prompt_hash: string; reviewer_id: null; decision_reason: null; decided_at: null } }
+  | { op: "skip" } {
+  const justification = why.trim() || "The proposer found nothing more basic among the candidates.";
+  if (!prior) return { op: "insert", row: { justification, model: ctx.model, prompt_hash: ctx.promptHash } };
+  if (prior.status !== "rejected") return { op: "skip" };
+  const note = prior.decision_reason?.trim() ? ` A reviewer rejected an earlier verdict: ${prior.decision_reason.trim()}` : " A reviewer rejected an earlier verdict.";
+  return {
+    op: "reopen",
+    row: { status: "pending", justification: `${justification}${note}`, model: ctx.model, prompt_hash: ctx.promptHash, reviewer_id: null, decision_reason: null, decided_at: null },
+  };
 }

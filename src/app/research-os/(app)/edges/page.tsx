@@ -26,8 +26,10 @@ interface EdgeProposal {
   fromTitle: string;
   fromSummary: string | null;
   fromBranch: string | null;
+  fromTier: number | null;
   toSlug: string;
   toTitle: string;
+  toTier: number | null;
   branch: string;
   confidence: number;
   confidenceSource: string;
@@ -100,6 +102,30 @@ async function readJson(res: Response): Promise<Record<string, any>> {
   }
 }
 
+/** What a failed save means to the reviewer, and what to do next. */
+function saveError(code: string | undefined, status: number): string {
+  switch (code) {
+    case "decision_write_failed":
+    case "read_failed":
+      return "The database did not answer. Nothing changed; try again.";
+    case "edge_write_failed":
+    case "node_write_failed":
+    case "edge_proposal_write_failed":
+      return "The write failed and was undone, so the proposal is still open. Try again.";
+    case "edge_write_failed_claim_held":
+    case "node_write_failed_claim_held":
+    case "edge_proposal_write_failed_claim_held":
+    case "read_failed_claim_held":
+      return "The write failed and the proposal could not be reopened: it shows as decided with nothing written. Ask an admin to set it back to pending in graph.edge_proposals or graph.node_proposals.";
+    case "edge_proposal_write_failed_node_left":
+      return "The new node was created, its proposals were not, and the cleanup failed. Ask an admin to remove the node or queue its proposals.";
+    case "forbidden":
+      return "This account is not a reviewer.";
+    default:
+      return `Could not save (${code || status}).`;
+  }
+}
+
 export default function ResearchOsEdgesPage() {
   const supabase = useMemo(() => {
     try {
@@ -162,7 +188,7 @@ export default function ResearchOsEdgesPage() {
       if (nodeRes.ok) {
         setNodeProposals(nodeData.proposals);
         setBranches(nodeData.branches ?? []);
-      } else setQueueError(`missing primes: ${nodeData.error || "load_failed"}`);
+      } else setQueueError(`missing ideas: ${nodeData.error || "load_failed"}`);
       if (irrRes.ok) setIrreducible(irrData.proposals);
       else setQueueError(`irreducible: ${irrData.error || "load_failed"}`);
     } catch {
@@ -195,8 +221,8 @@ export default function ResearchOsEdgesPage() {
       const kind = kinds[p.id] ?? defaultKind(p);
       const { res, data } = await post("/api/research-os/edges", { id: p.id, decision, kind: decision === "approved" ? kind : undefined, reason: notes[p.id]?.trim() || undefined });
       if (res.status === 409)
-        setNotice({ id: p.id, text: `${p.fromTitle} already rests on ${p.toTitle}, so this edge would close a cycle. Reject it, or approve the other direction instead.` });
-      else if (!res.ok) setNotice({ id: p.id, text: `Could not save (${data.error || res.status}).` });
+        setNotice({ id: p.id, text: `${p.fromTitle} already rests on ${p.toTitle} in the graph, so this edge would make a loop. Reject it.` });
+      else if (!res.ok) setNotice({ id: p.id, text: saveError(data.error, res.status) });
       else {
         setProposals((list) => (list ?? []).filter((x) => x.id !== p.id));
         setNotice({
@@ -227,7 +253,7 @@ export default function ResearchOsEdgesPage() {
         reason: notes[n.id]?.trim() || undefined,
         ...(decision === "approved" ? { title: e.title, summary: e.summary, branch: e.branch } : {}),
       });
-      if (!res.ok) setNotice({ id: n.id, text: `Could not save (${data.error || res.status}).` });
+      if (!res.ok) setNotice({ id: n.id, text: data.error === "a definition is required to create the node" ? "Write a one-sentence definition first." : saveError(data.error, res.status) });
       else if (decision === "approved") {
         setNotice({
           id: null,
@@ -248,7 +274,7 @@ export default function ResearchOsEdgesPage() {
     setNotice(null);
     try {
       const { res, data } = await post("/api/research-os/irreducible", { id: r.id, decision, reason: notes[r.id]?.trim() || undefined });
-      if (!res.ok) setNotice({ id: r.id, text: `Could not save (${data.error || res.status}).` });
+      if (!res.ok) setNotice({ id: r.id, text: saveError(data.error, res.status) });
       else {
         setIrreducible((list) => (list ?? []).filter((x) => x.id !== r.id));
         setNotice({ id: null, text: decision === "confirmed" ? `${r.title} is a prime by review.` : `${r.title} goes back to the decompose-further queue.` });
@@ -313,15 +339,26 @@ export default function ResearchOsEdgesPage() {
   // A node page links here as #target-<slug>; the queue loads after the
   // browser has tried the anchor, so jump once the group exists.
   useEffect(() => {
-    if (!proposals || typeof window === "undefined") return;
+    if (!proposals || !nodeProposals || typeof window === "undefined") return;
     const hash = decodeURIComponent(window.location.hash.slice(1));
     if (!hash.startsWith("target-") || landed === hash) return;
     const el = document.getElementById(hash);
     if (el) {
       el.scrollIntoView({ block: "start" });
       setLanded(hash);
+      return;
     }
-  }, [proposals, landed]);
+    // No factor proposals for this node: narrow the queue to it by title,
+    // which keeps the missing ideas it named, and go to them.
+    const slug = hash.slice("target-".length);
+    const title =
+      proposals.find((p) => p.toSlug === slug)?.toTitle ?? nodeProposals.flatMap((n) => n.namedBy).find((t) => t.slug === slug)?.title ?? null;
+    if (title) {
+      setFind(title);
+      setLanded(hash);
+      window.setTimeout(() => document.getElementById("missing-primes")?.scrollIntoView({ block: "start" }), 50);
+    }
+  }, [proposals, nodeProposals, landed]);
 
   const noteInput = (id: string) => (
     <input
@@ -386,9 +423,9 @@ export default function ResearchOsEdgesPage() {
               )}
               {" · "}
               {nodeProposals?.length ? (
-                <a href="#missing-primes" className="underline decoration-[color:var(--hairline)] underline-offset-4">{nodeProposals.length} missing primes</a>
+                <a href="#missing-primes" className="underline decoration-[color:var(--hairline)] underline-offset-4">{nodeProposals.length} missing ideas</a>
               ) : (
-                <span>no missing primes</span>
+                <span>no missing ideas</span>
               )}
               {" · "}
               <a href="#pending-edges" className="underline decoration-[color:var(--hairline)] underline-offset-4">{proposals.length} proposals</a>: {counts.confirmed} the second model agrees with, {counts.refuted} it disagrees with
@@ -443,7 +480,7 @@ export default function ResearchOsEdgesPage() {
         {nodeProposals && nodeProposals.length > 0 && (
           <section className="mt-8 flex flex-col gap-3" aria-labelledby="missing-primes">
             <h2 id="missing-primes" className="font-display uppercase text-[16px] text-[color:var(--basalt)] mb-1">
-              missing primes ({needle ? `${visibleMissing.length} of ${nodeProposals.length}` : nodeProposals.length})
+              missing ideas ({needle ? `${visibleMissing.length} of ${nodeProposals.length}` : nodeProposals.length})
             </h2>
             <p className="text-[13px] text-[color:var(--basalt-2)] max-w-2xl">
               Base ideas the proposer named while decomposing nodes, merged with their synonyms, the most-named first. Check the possible duplicates
@@ -463,7 +500,7 @@ export default function ResearchOsEdgesPage() {
                   </div>
                   {n.aliases.length > 0 && <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">also named: {n.aliases.join("; ")}</p>}
                   {n.possibleDuplicates.length > 0 && (
-                    <p className="mt-1 text-[12px] text-red-700">
+                    <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]" title="Existing nodes with a similar title by embedding; many are loose matches.">
                       may duplicate:{" "}
                       {n.possibleDuplicates.map((d, i) => (
                         <span key={d.slug}>
@@ -598,6 +635,7 @@ export default function ResearchOsEdgesPage() {
               >
                 <div className="text-[14px] text-[color:var(--basalt)]">
                   <strong>{nodeLink(g.toSlug, g.toTitle)}</strong> &middot; {g.branch}
+                  {g.items[0]?.toTier !== null && g.items[0]?.toTier !== undefined && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; grade tier {g.items[0].toTier}</span>}
                   {g.impact > 0 && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; {g.impact} idea node(s) rest on it</span>}
                 </div>
                 <div className="mt-3 flex flex-col gap-3">
@@ -609,6 +647,7 @@ export default function ResearchOsEdgesPage() {
                         <div className="text-[13px] text-[color:var(--basalt)]">
                           rests on <strong>{nodeLink(p.fromSlug, p.fromTitle)}</strong>
                           {p.fromBranch && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; {p.fromBranch}</span>}
+                          {p.fromTier !== null && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; grade tier {p.fromTier}</span>}
                           {p.crossBranch && <span className="ml-2 px-1.5 py-0.5 text-[11px] small-caps bg-[color:var(--aegean-deep)]/15">across branches</span>}
                         </div>
                         {p.fromSummary && <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">{p.fromSummary}</p>}
@@ -642,6 +681,11 @@ export default function ResearchOsEdgesPage() {
                             learning order, changes routing
                           </label>
                         </fieldset>
+                        {kind === "prerequisite" && p.fromTier !== null && p.toTier !== null && p.fromTier > p.toTier && (
+                          <p className="mt-1 text-[12px] text-red-700">
+                            Learning order would put a grade-tier {p.fromTier} idea before a grade-tier {p.toTier} one. Keep it as &ldquo;rests on&rdquo;, or fix the tiers first.
+                          </p>
+                        )}
                         {noteInput(p.id)}
                         <div className="mt-2 flex gap-3">
                           <button onClick={() => decideEdge(p, "approved")} disabled={busyId === p.id} className={`${button} bg-[color:var(--gold)] text-[color:var(--basalt)]`}>

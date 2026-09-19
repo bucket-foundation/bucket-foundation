@@ -7,6 +7,7 @@ import {
   answeringModel,
   applyVerdicts,
   clipText,
+  irreducibleAction,
   reuseEarlierKeys,
   aggregateMissing,
   blindSet,
@@ -63,7 +64,7 @@ const pool: Candidate[] = nodes.map((n) => ({ ...n, tier: dec.get(n.id)!.status 
 
 test("targets are primes and unfactored ideas, primes first, sources skipped", () => {
   const t = selectTargets(nodes, dec);
-  assert.deepEqual(t.map((x) => [x.slug, x.status]), [["kinematics", "prime"], ["sets", "prime"], ["lonely", "unfactored"]]);
+  assert.deepEqual(t.map((x) => [x.slug, x.status]), [["kinematics", "prime"], ["sets", "prime"], ["base-equality", "unfactored"], ["lonely", "unfactored"]]);
 });
 
 test("the shortlist spans branches and leaves out nodes that rest on the target", () => {
@@ -222,14 +223,15 @@ test("missing-prime keys drop slash synonyms, parentheticals, and articles", () 
   assert.equal(missingKey("Input/output"), "input output");
 });
 
-test("groupings and people are neither targets nor factors; a reviewer-added base idea is a factor only", () => {
+test("groupings and people are neither targets nor factors; a reviewer-added base idea is both, so decomposition goes on below it", () => {
   const targets = selectTargets(nodes, dec).map((t) => t.slug);
-  assert.ok(!targets.includes("euler-tag") && !targets.includes("bridge") && !targets.includes("base-equality"));
+  assert.ok(!targets.includes("euler-tag") && !targets.includes("bridge"));
+  assert.ok(targets.includes("base-equality"));
   const by = (id: string) => nodes.find((n) => n.id === id)!;
   assert.equal(isIdea(by("kinematics")), true);
   assert.equal(isIdea(by("euler-tag")), false);
   assert.equal(isIdea(by("bridge")), false);
-  assert.equal(isIdea(by("base-equality")), false);
+  assert.equal(isIdea(by("base-equality")), true);
   assert.equal(isCandidateIdea(by("base-equality")), true);
   assert.equal(isCandidateIdea(by("bridge")), false);
   assert.equal(isCandidateIdea(by("paper")), false);
@@ -448,4 +450,29 @@ test("a new missing prime takes an earlier run's key at the threshold, never bel
   assert.deepEqual([rows[0].key, rows[0].title, rows[0].aliases], ["equality", "Equality", ["Sameness"]]);
   assert.equal(rows[1].key, "causation");
   assert.equal(rows[2].key, "equality");
+});
+
+test("an irreducible verdict inserts once, reopens a rejected row with both reasons and cleared decision fields, and leaves the rest", () => {
+  const ctx = { model: "claude-sonnet-5", promptHash: "h" };
+  assert.deepEqual(irreducibleAction(null, " Nothing simpler. ", ctx), { op: "insert", row: { justification: "Nothing simpler.", model: "claude-sonnet-5", prompt_hash: "h" } });
+  const re = irreducibleAction({ status: "rejected", decision_reason: "It rests on vectors." }, "Still nothing simpler.", ctx);
+  assert.equal(re.op, "reopen");
+  if (re.op === "reopen") {
+    assert.equal(re.row.justification, "Still nothing simpler. A reviewer rejected an earlier verdict: It rests on vectors.");
+    assert.equal(re.row.decision_reason, null);
+    assert.equal(re.row.reviewer_id, null);
+    assert.equal(re.row.status, "pending");
+  }
+  assert.deepEqual(irreducibleAction({ status: "confirmed", decision_reason: null }, "x", ctx), { op: "skip" });
+  assert.deepEqual(irreducibleAction({ status: "pending", decision_reason: null }, "x", ctx), { op: "skip" });
+});
+
+test("the base-idea hint reads past 'X as Y' and 'the law of X'", () => {
+  assert.equal(matchBase("Time as an independent physical parameter"), "TIME");
+  assert.equal(matchBase("Propositions as truth-bearing objects"), "TRUE (truth)");
+  assert.equal(matchBase("The law of bivalence (excluded middle)"), "TRUE (truth)");
+  assert.equal(matchBase("The principle of causality"), "BECAUSE (cause)");
+  assert.equal(matchBase("Conservation of energy"), null);
+  assert.equal(matchBase("Law of large numbers"), null);
+  assert.equal(matchBase("Equality and identity"), "THE SAME (equality)");
 });

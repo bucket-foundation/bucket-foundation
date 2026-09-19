@@ -15,6 +15,7 @@ import {
   listNodeProposals,
   priorityOf,
 } from "../src/lib/research-os/inference/review-actions";
+import { forgetMakeupSnapshot } from "../src/lib/research-os/makeup";
 
 type Row = Record<string, any>;
 type Db = Record<string, Row[]>;
@@ -462,4 +463,29 @@ test("irreducible verdicts list by how many ideas rest on them, and a decision i
   assert.deepEqual(again.body, { decision: "confirmed", alreadyDecided: true });
   assert.equal((await decideIrreducible(fake(db, rpcs()), { id: "nope", decision: "confirmed", reason: null, reviewerId: "r" })).status, 404);
   assert.equal((await decideIrreducible(fake(db, rpcs(), new Set(["irreducible_proposals:update"])), { id: "ir-set", decision: "rejected", reason: null, reviewerId: "r" })).status, 500);
+});
+
+test("loop flags are computed from the pending set as it stands, so rejecting one side clears the other", async () => {
+  forgetMakeupSnapshot();
+  const db = seed();
+  for (const n of db.nodes) n.visibility = "public";
+  db.edge_proposals.push({
+    ...db.edge_proposals[0],
+    id: "p-back",
+    from_slug: "kinematics",
+    to_slug: "derivatives",
+    branch: "01-mathematics",
+    in_cycle: false,
+    created_at: "2026-09-18T00:00:02Z",
+  });
+  const before = (await listEdgeProposals(fake(db, rpcs()), null)).body.proposals as Array<Record<string, any>>;
+  const flag = (ps: Array<Record<string, any>>, id: string) => ps.find((p) => p.id === id)?.inCycle;
+  assert.equal(flag(before, "p-conf"), true);
+  assert.equal(flag(before, "p-back"), true);
+  assert.equal(flag(before, "p-ref"), false);
+  assert.deepEqual([before.find((p) => p.id === "p-conf")!.fromTier, before.find((p) => p.id === "p-conf")!.toTier], [15, 14]);
+  await decideEdge(fake(db, rpcs()), { id: "p-back", decision: "rejected", reason: "backwards", reviewerId: "rev-1" });
+  const after = (await listEdgeProposals(fake(db, rpcs()), null)).body.proposals as Array<Record<string, any>>;
+  assert.equal(flag(after, "p-conf"), false);
+  forgetMakeupSnapshot();
 });

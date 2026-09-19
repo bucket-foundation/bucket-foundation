@@ -53,6 +53,7 @@ import {
   agreementStats,
   answeringModel,
   applyVerdicts,
+  irreducibleAction,
   reuseEarlierKeys,
   aggregateMissing,
   blindSet,
@@ -96,7 +97,7 @@ const CACHE = path.join(OUT, "decompose-cache");
 const CONSOLIDATE_BATCH = 60;
 /** A missing idea's possible duplicates: existing nodes at least this close by embedding. */
 const DUPLICATE_SIMILARITY = 0.75;
-/** An earlier run's missing prime whose title sits this close reuses its key. */
+/** An earlier run's missing idea whose title sits this close reuses its key. */
 const SAME_PROPOSAL_SIMILARITY = 0.93;
 
 const VERIFY_SCHEMA = {
@@ -219,7 +220,7 @@ function askClaude(prompt: string, model: string, timeoutMs: number, schema: obj
 }
 
 type Cached<T> = { value: T | { error: string }; hash: string; cached: boolean };
-type QueuedPair = { id: string; from_slug: string; to_slug: string; refd?: number | null };
+type QueuedPair = { id: string; from_slug: string; to_slug: string; refd?: number | null; in_cycle?: boolean | null };
 type MergeRow = { pair_from: string; pair_to: string; written: boolean; held_status: string | null; held_source: string | null };
 
 async function main() {
@@ -253,7 +254,12 @@ async function main() {
     const metaFile = path.join(CACHE, `${hash}.model`);
     if (existsSync(cacheFile)) return { value: accept(readFileSync(cacheFile, "utf8")), hash, cached: true };
     const res = await askClaude(prompt, m, 300_000, schema);
-    if (res.modelId !== m) mismatched.push({ hash, expected: m, answered: res.modelId });
+    if (res.modelId !== m) {
+      // A reply from another model would carry the wrong id on its rows,
+      // so it is neither cached nor used; the call counts as a failure.
+      mismatched.push({ hash, expected: m, answered: res.modelId });
+      return { value: { error: `answered by ${res.modelId}, expected ${m}` } as T | { error: string }, hash, cached: false };
+    }
     const value = accept(res.text);
     if (!(value && typeof value === "object" && "error" in (value as object))) {
       writeFileSync(cacheFile, res.text);
@@ -398,7 +404,7 @@ async function main() {
     }));
   const outcome = consolidate(groups, missing, model, duplicatesOf);
 
-  // Earlier runs' missing primes: reuse a key when the idea is the same.
+  // Earlier runs' missing ideas: reuse a key when the idea is the same.
   const earlier = await all<{ id: string; key: string; title: string; status: string; created_node_id: string | null }>(
     svc,
     "node_proposals",
@@ -432,13 +438,34 @@ async function main() {
   );
   const proposed = new Set(proposals.map((p) => `${p.from_slug}->${p.to_slug}`));
   const targetBySlug = new Map(results.map((r) => [r.target.slug, r.target]));
+  // Matched ideas that cannot become a pair, with the reason, so the report
+  // accounts for every match. A match that already rests on its target is
+  // the model reading an existing edge backward: a reversal to review.
+  const matchedDropped: { factor: string; target: string; reason: "is_the_target" | "rests_on_target" | "already_proposed" | "not_a_target" | "no_node" }[] = [];
   for (const m of outcome.matched) {
     const factor = bySlug.get(m.slug);
-    if (!factor) continue;
+    if (!factor) {
+      for (const t of m.targets) matchedDropped.push({ factor: m.slug, target: t, reason: "no_node" });
+      continue;
+    }
     for (const t of m.targets) {
       const target = targetBySlug.get(t);
-      if (!target || t === m.slug || proposed.has(`${m.slug}->${t}`)) continue;
-      if (dec.get(factor.id)?.signature.has(target.id)) continue;
+      if (!target) {
+        matchedDropped.push({ factor: m.slug, target: t, reason: "not_a_target" });
+        continue;
+      }
+      if (t === m.slug) {
+        matchedDropped.push({ factor: m.slug, target: t, reason: "is_the_target" });
+        continue;
+      }
+      if (proposed.has(`${m.slug}->${t}`)) {
+        matchedDropped.push({ factor: m.slug, target: t, reason: "already_proposed" });
+        continue;
+      }
+      if (dec.get(factor.id)?.signature.has(target.id)) {
+        matchedDropped.push({ factor: m.slug, target: t, reason: "rests_on_target" });
+        continue;
+      }
       proposed.add(`${m.slug}->${t}`);
       const named = `named as "${m.titles.join('", "')}"`;
       proposals.push(
@@ -496,7 +523,7 @@ async function main() {
   // Stage 6: cycles among the proposals and the graph's own factor edges.
   const pendingAll = dryRun
     ? []
-    : await all<QueuedPair>(svc, "edge_proposals", "id, from_slug, to_slug, refd", (q) => q.eq("status", "pending").eq("confidence_source", CONFIDENCE_SOURCE));
+    : await all<QueuedPair>(svc, "edge_proposals", "id, from_slug, to_slug, refd, in_cycle", (q) => q.eq("status", "pending").eq("confidence_source", CONFIDENCE_SOURCE));
   const olderPending = pendingAll.filter((r) => !proposed.has(`${r.from_slug}->${r.to_slug}`));
   const cyclic = cyclicPairs(edges, [...proposals, ...olderPending], idOf);
   const inCycle = (p: { from_slug: string; to_slug: string }) => cyclic.has(`${p.from_slug}->${p.to_slug}`);
@@ -566,6 +593,7 @@ async function main() {
     older_pairs_scored: 0,
     irreducible_reopened: 0,
     edge_rows_skipped: 0,
+    older_pairs_out_of_cycle: 0,
   };
   // Pairs the merge left alone: decided by a reviewer, or held by a pending
   // proposal from another source.
@@ -611,11 +639,15 @@ async function main() {
       if (error) throw new Error(`edge_proposals refd: ${error.message}`);
       queued.older_pairs_scored++;
     }
+    // Stored flags follow the pending set both ways; the review page and
+    // the node page compute them live, and the stored copy feeds reports.
     for (const r of olderPending) {
-      if (!inCycle(r)) continue;
-      const { error } = await svc.from("edge_proposals").update({ in_cycle: true }).eq("id", r.id).eq("status", "pending");
+      const now = inCycle(r);
+      if (Boolean(r.in_cycle) === now) continue;
+      const { error } = await svc.from("edge_proposals").update({ in_cycle: now }).eq("id", r.id).eq("status", "pending");
       if (error) throw new Error(`edge_proposals cycle flag: ${error.message}`);
-      queued.older_pairs_in_cycle++;
+      if (now) queued.older_pairs_in_cycle++;
+      else queued.older_pairs_out_of_cycle++;
     }
     for (let i = 0; i < outcome.nodeProposals.length; i += 100) {
       const chunk: NodeProposalRow[] = outcome.nodeProposals.slice(i, i + 100);
@@ -658,21 +690,14 @@ async function main() {
     // reviewer sees it again; pending and confirmed rows are left alone.
     const existingIrr = new Map(irreducibleRows.map((r) => [r.node_slug, r]));
     for (const r of irreducible) {
-      const justification = r.answer.irreducibleWhy || "The proposer found nothing more basic among the candidates.";
       const prior = existingIrr.get(r.target.slug);
-      if (!prior) {
-        const { error } = await svc
-          .from("irreducible_proposals")
-          .insert([{ node_slug: r.target.slug, justification, model, prompt_hash: r.hash }]);
+      const act = irreducibleAction(prior ?? null, r.answer.irreducibleWhy ?? "", { model, promptHash: r.hash });
+      if (act.op === "insert") {
+        const { error } = await svc.from("irreducible_proposals").insert([{ node_slug: r.target.slug, ...act.row }]);
         if (error) throw new Error(`irreducible_proposals: ${error.message}`);
         queued.irreducible++;
-      } else if (prior.status === "rejected") {
-        const note = prior.decision_reason ? ` A reviewer rejected an earlier verdict: ${prior.decision_reason}` : " A reviewer rejected an earlier verdict.";
-        const { error } = await svc
-          .from("irreducible_proposals")
-          .update({ status: "pending", justification: `${justification}${note}`, model, prompt_hash: r.hash, reviewer_id: null, decided_at: null })
-          .eq("id", prior.id)
-          .eq("status", "rejected");
+      } else if (act.op === "reopen") {
+        const { error } = await svc.from("irreducible_proposals").update(act.row).eq("id", prior!.id).eq("status", "rejected");
         if (error) throw new Error(`irreducible_proposals reopen: ${error.message}`);
         queued.irreducible_reopened++;
       }
@@ -715,6 +740,9 @@ async function main() {
       matched_to_existing: outcome.matched.length,
       node_proposals: outcome.nodeProposals.length,
       reused_earlier_keys: reusedKeys,
+      matched_pairs_made: proposals.filter((p) => p.origin === "missing_matched").length,
+      matched_dropped: matchedDropped,
+      reversal_candidates: matchedDropped.filter((d) => d.reason === "rests_on_target"),
       named_by_more_than_one: outcome.nodeProposals.filter((n) => n.named_by.length > 1).length,
     },
     queued,
@@ -752,7 +780,8 @@ async function main() {
       `(picks ${iv(refdAuc.blinded_picks)}, passed over ${iv(refdAuc.blinded_passed_over)})`,
   );
   console.log(
-    `[decompose-further] missing ideas: ${missing.length} named, ${outcome.matched.length} already had a node, ${outcome.nodeProposals.length} missing primes; ${irreducible.length} called irreducible`,
+    `[decompose-further] missing ideas: ${missing.length} named; ${outcome.matched.length} matched an existing node, giving ${report.missing.matched_pairs_made} pairs and ${matchedDropped.length} drops ` +
+      `(${matchedDropped.filter((d) => d.reason === "rests_on_target").length} read an existing edge backward); ${outcome.nodeProposals.length} missing ideas; ${irreducible.length} called irreducible`,
   );
   for (const m of outcome.nodeProposals.slice(0, 15)) console.log(`  ${m.named_by.length}\t${m.title}\t${m.branch}${m.aliases.length ? `\t(also ${m.aliases.slice(0, 3).join("; ")})` : ""}`);
   if (failures.length) console.log(`[decompose-further] first failure: ${failures[0].slug}: ${failures[0].reason}`);
