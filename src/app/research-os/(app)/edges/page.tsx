@@ -43,6 +43,10 @@ interface EdgeProposal {
   impact: number;
   crossBranch: boolean;
   inCycle: boolean;
+  /** The factor already rests on the target in the graph: approval makes a loop. */
+  graphLoop: boolean;
+  /** The target already rests on the factor through other nodes. */
+  implied: boolean;
   refd: number | null;
   priority: number;
 }
@@ -688,8 +692,15 @@ export default function ResearchOsEdgesPage() {
                           </p>
                         )}
                         {p.origin && ORIGIN_TEXT[p.origin] && <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">{ORIGIN_TEXT[p.origin]}</p>}
-                        {p.inCycle && (
-                          <p className="mt-1 text-[12px] text-red-700">This pair sits on a cycle with other pending proposals: approving all of them would make a loop. Approve one direction.</p>
+                        {p.graphLoop ? (
+                          <p className="mt-1 text-[12px] text-red-700">{p.fromTitle} already rests on {p.toTitle} in the graph, so approving this makes a loop. Reject it.</p>
+                        ) : (
+                          p.inCycle && (
+                            <p className="mt-1 text-[12px] text-red-700">This pair sits on a cycle with other pending proposals: approving all of them would make a loop. Approve one direction.</p>
+                          )
+                        )}
+                        {p.implied && !p.graphLoop && (
+                          <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">The graph already has {p.toTitle} resting on {p.fromTitle} through other nodes; approving adds a direct link.</p>
                         )}
                         <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">{p.justification}</p>
                         {p.secondaryJustification && <p className="mt-1 text-[12px] text-[color:var(--basalt-2)] italic">second check: {p.secondaryJustification}</p>}

@@ -185,7 +185,12 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                               · Wikipedia links {p.refd > 0 ? "support it" : "lean the other way"}
                             </span>
                           )}
-                          {p.inCycle && <span className="text-red-700">· on a loop with other proposals</span>}
+                          {p.graphLoop ? (
+                            <span className="text-red-700">· makes a loop with the graph</span>
+                          ) : (
+                            p.inCycle && <span className="text-red-700">· on a loop with other proposals</span>
+                          )}
+                          {p.implied && !p.graphLoop && <span className="text-[color:var(--basalt-3)]">· already in the graph through other nodes</span>}
                         </div>
                       </li>
                     );

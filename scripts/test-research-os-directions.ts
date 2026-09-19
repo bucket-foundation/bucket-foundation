@@ -44,13 +44,17 @@ test("cites edges do not count as forward and cycles do not loop", () => {
   assert.deepEqual(d.reach, [0, 0, 0]);
 });
 
-test("derives_from and extends run from the newer node to its base, so forward goes base to newer", () => {
-  // "fact" derives from "kinematics"; "ext" extends "kinematics". Both are where kinematics leads, and kinematics is where neither leads.
-  const ns = [n("kinematics"), n("fact", { kind: "fact" }), n("ext", { kind: "extension" }), n("vectors")];
-  const es = [e("fact", "kinematics", "derives_from"), e("ext", "kinematics", "extends"), e("kinematics", "vectors", "derives_from")];
+test("derives_from and extends run from the newer node to its base, so forward goes base to newer, and stops at evidence", () => {
+  // "fact" derives from "kinematics"; "ext" extends "kinematics"; "dyn" derives from "kinematics".
+  const ns = [n("kinematics"), n("fact", { kind: "fact" }), n("ext", { kind: "extension" }), n("dyn"), n("vectors")];
+  const es = [
+    e("fact", "kinematics", "derives_from"),
+    e("ext", "kinematics", "extends"),
+    e("dyn", "kinematics", "derives_from"),
+    e("kinematics", "vectors", "derives_from"),
+  ];
   const d = directionsFrom("kinematics", ns, es);
-  assert.deepEqual(d.dependents.map((x) => x.id).sort(), ["ext", "fact"]);
-  const back = directionsFrom("fact", ns, es);
-  assert.deepEqual(back.dependents, [], "a node that derives from another does not lead to it");
+  assert.deepEqual(d.dependents.map((x) => x.id).sort(), ["dyn", "ext"], "a fact is evidence, and the walk stops at it");
+  assert.deepEqual(directionsFrom("dyn", ns, es).dependents, [], "a node that derives from another does not lead to it");
   assert.deepEqual(directionsFrom("vectors", ns, es).dependents.map((x) => x.id), ["kinematics"]);
 });

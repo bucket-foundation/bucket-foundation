@@ -14,7 +14,7 @@
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IN_CHUNK } from "../db";
-import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot } from "../makeup";
+import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot, pairInGraph, type Snapshot } from "../makeup";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type ApprovedKind } from "./decide";
 import { chooseBranch, decideNodeProposal, type NodeOverrides, type NodeProposalRecord } from "./decide-node";
@@ -115,13 +115,15 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
   let nodes: Map<string, NodeLite>;
   let impact: Map<string, number>;
   let loops: Set<string>;
+  let snap: Snapshot;
   try {
     nodes = await nodesBySlug(svc, rows.flatMap((p) => [p.from_slug, p.to_slug]));
     impact = await dependents(svc, rows.map((p) => p.to_slug));
     // Loops are computed over every pending pair and the graph as they
     // stand now, so a decision clears or adds a flag at once.
     const pendingAll = source ? await allPendingPairs(svc) : rows;
-    loops = liveCycles(await makeupSnapshot(svc), pendingAll);
+    snap = await makeupSnapshot(svc);
+    loops = liveCycles(snap, pendingAll);
   } catch {
     return fail(500, "read_failed");
   }
@@ -155,6 +157,7 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
         impact: live,
         crossBranch: p.cross_branch,
         inCycle: loops.has(`${p.from_slug}->${p.to_slug}`),
+        ...pairInGraph(snap, p.from_slug, p.to_slug),
         priority: priorityOf(p, live),
       };
     })

@@ -15,7 +15,7 @@
 import { createHash } from "node:crypto";
 import { isIdeaNode } from "./idea";
 import { DISAGREEMENT_CONFIDENCE, INFERRED_CONFIDENCE_MAX, INFERRED_CONFIDENCE_MIN } from "./inference/calibration";
-import { components, factorMap, type DepEdge, type Decomposition } from "./primes";
+import { components, contractedFactorEdges, factorMap, type DepEdge, type Decomposition } from "./primes";
 
 export type GraphNode = {
   id: string;
@@ -886,16 +886,16 @@ export function irreducibleAction(
 }
 
 /**
- * The idea layer of the graph: idea nodes and the factor edges between
- * them. The queue and the node page's "made of" decompose this layer, so a
- * prime is an idea with no idea under it. Facts, sources, figures, and tags
- * are evidence: an idea that rests only on facts is a prime of the idea
- * layer, which the queue asks to decompose further.
+ * The idea layer of the graph: idea nodes, with an edge from B to A
+ * whenever A rests on B directly or through facts, sources, or other
+ * evidence alone (contractedFactorEdges). The queue and the node page's
+ * "made of" decompose this layer, so a prime is an idea with no idea under
+ * it. An idea that rests only on facts is a prime of the idea layer, which
+ * the queue asks to decompose further; the facts show as its evidence.
  */
 export function ideaLayer<N extends GraphNode>(nodes: N[], edges: DepEdge[]): { nodes: N[]; edges: DepEdge[] } {
   const ideas = nodes.filter((n) => isIdea(n));
-  const ids = new Set(ideas.map((n) => n.id));
-  return { nodes: ideas, edges: edges.filter((e) => ids.has(e.fromId) && ids.has(e.toId)) };
+  return { nodes: ideas, edges: contractedFactorEdges(new Set(ideas.map((n) => n.id)), edges) };
 }
 
 /** A family alias ("sonnet") must resolve inside its family; a full model id must resolve to itself. */

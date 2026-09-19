@@ -12,7 +12,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { cyclicPairs } from "./decompose-further";
 import { isIdeaNode } from "./idea";
-import { decompose, FACTOR_EDGES, factorMap, penetration, type Decomposition, type DepEdge, type PrimePenetration, type PrimeStatus } from "./primes";
+import { contractedFactorEdges, decompose, FACTOR_EDGES, factorMap, penetration, type Decomposition, type DepEdge, type PrimePenetration, type PrimeStatus } from "./primes";
 
 export type MakeupNode = { id: string; slug: string; title: string; branch: string; kind?: string; provenanceType?: string | null };
 
@@ -43,6 +43,9 @@ export type MakeupProposal = {
   refd: number | null;
   crossBranch: boolean;
   inCycle: boolean;
+  /** Set for reviewers: the factor already rests on the node in the graph, or the node already rests on the factor. */
+  graphLoop?: boolean;
+  implied?: boolean;
   source: string;
 };
 
@@ -63,6 +66,8 @@ export type Snapshot = {
   edges: DepEdge[];
   /** Each idea's direct non-idea factors. */
   evidence: Map<string, MakeupNode[]>;
+  /** Node id to its direct factors over every public factor edge. */
+  factors: Map<string, Map<string, number>>;
   byId: Map<string, MakeupNode>;
   bySlug: Map<string, MakeupNode>;
   reach: Map<string, PrimePenetration>;
@@ -140,23 +145,32 @@ async function readSnapshot(svc: SupabaseClient): Promise<Snapshot> {
   const rows = await paged<MakeupNode>((from) =>
     svc.from("nodes").select("id,slug,title,branch,kind,provenanceType:provenance->>type").eq("visibility", "public").is("superseded_by", null).order("id").range(from, from + 999),
   );
-  const live = new Set(rows.map((n) => n.id));
   const edgeRows = await paged<{ from_id: string; to_id: string; kind: string; confidence: number | null }>((from) =>
     svc.from("edges").select("from_id,to_id,kind,confidence").in("kind", Object.keys(FACTOR_EDGES)).order("id").range(from, from + 999),
   );
-  const edges: DepEdge[] = edgeRows
-    .filter((e) => live.has(e.from_id) && live.has(e.to_id))
-    .map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
-  // The idea layer, as the queue decomposes it (decompose-further.ts ideaLayer).
+  return snapshotFrom(
+    rows,
+    edgeRows.map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence })),
+  );
+}
+
+/**
+ * The snapshot from public nodes and factor edges: the idea layer, as the
+ * queue decomposes it (decompose-further.ts ideaLayer), with paths through
+ * evidence contracted into idea-to-idea edges; each idea's direct non-idea
+ * factors as its evidence; and every public factor edge kept for loop
+ * checks, which may pass through evidence.
+ */
+export function snapshotFrom(rows: MakeupNode[], allEdges: DepEdge[]): Snapshot {
+  const live = new Set(rows.map((n) => n.id));
+  const edges = allEdges.filter((e) => live.has(e.fromId) && live.has(e.toId));
   const ideas = rows.filter((n) => isIdeaNode({ kind: n.kind ?? "", provenanceType: n.provenanceType ?? null }));
   const ideaIds = new Set(ideas.map((n) => n.id));
-  const dec = decompose(
-    ideas,
-    edges.filter((e) => ideaIds.has(e.fromId) && ideaIds.has(e.toId)),
-  );
+  const dec = decompose(ideas, contractedFactorEdges(ideaIds, edges));
   const byId = new Map(rows.map((n) => [n.id, n]));
   const evidence = new Map<string, MakeupNode[]>();
-  for (const [nodeId, factors] of Array.from(factorMap(edges).entries())) {
+  const allFactors = factorMap(edges);
+  for (const [nodeId, factors] of Array.from(allFactors.entries())) {
     if (!ideaIds.has(nodeId)) continue;
     const ev = Array.from(factors.keys())
       .filter((f) => !ideaIds.has(f))
@@ -168,6 +182,7 @@ async function readSnapshot(svc: SupabaseClient): Promise<Snapshot> {
     dec,
     edges,
     evidence,
+    factors: allFactors,
     byId,
     bySlug: new Map(rows.map((n) => [n.slug, n])),
     reach: new Map(penetration(ideas, dec).map((p) => [p.id, p])),
@@ -237,4 +252,35 @@ export function makeupForViewer(makeup: Makeup, pending: PendingCounts, isReview
     pending,
     canReview: false,
   };
+}
+
+/** True when `nodeId` rests on `factorId` through any chain of public factor edges. */
+export function restsOnInGraph(snap: Snapshot, nodeId: string, factorId: string): boolean {
+  if (nodeId === factorId) return false;
+  const seen = new Set<string>([nodeId]);
+  const stack = [nodeId];
+  while (stack.length) {
+    const id = stack.pop()!;
+    for (const f of Array.from(snap.factors.get(id)?.keys() ?? [])) {
+      if (f === factorId) return true;
+      if (!seen.has(f)) {
+        seen.add(f);
+        stack.push(f);
+      }
+    }
+  }
+  return false;
+}
+
+/**
+ * How a proposed pair meets the graph as it stands: `graphLoop` when the
+ * factor already rests on the target, so approval makes a loop and the
+ * review refuses it; `implied` when the target already rests on the factor
+ * through other nodes, so approval adds a direct edge to a chain.
+ */
+export function pairInGraph(snap: Snapshot, factorSlug: string, targetSlug: string): { graphLoop: boolean; implied: boolean } {
+  const f = snap.bySlug.get(factorSlug)?.id;
+  const t = snap.bySlug.get(targetSlug)?.id;
+  if (!f || !t) return { graphLoop: false, implied: false };
+  return { graphLoop: restsOnInGraph(snap, f, t), implied: restsOnInGraph(snap, t, f) };
 }

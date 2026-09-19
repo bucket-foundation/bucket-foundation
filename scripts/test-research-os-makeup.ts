@@ -1,8 +1,8 @@
 /** The node page's "made of" section: decomposition place, primes under a node, and what waits on review for it. */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { decompose, penetration, type DepEdge } from "../src/lib/research-os/primes";
-import { buildMakeup, forgetMakeupSnapshot, liveCycles, makeupForViewer, makeupSnapshot, type MakeupNode, type Snapshot } from "../src/lib/research-os/makeup";
+import { decompose, factorMap, penetration, type DepEdge } from "../src/lib/research-os/primes";
+import { buildMakeup, forgetMakeupSnapshot, liveCycles, makeupForViewer, makeupSnapshot, pairInGraph, snapshotFrom, type MakeupNode, type Snapshot } from "../src/lib/research-os/makeup";
 
 const nodes: MakeupNode[] = [
   { id: "eq", slug: "equality", title: "Equality", branch: "01-mathematics" },
@@ -19,6 +19,7 @@ const dec = decompose(nodes, edges);
 const snap: Snapshot = {
   dec,
   edges,
+  factors: factorMap(edges),
   evidence: new Map([["kin", [{ id: "f1", slug: "fact-motion", title: "A ball falls 4.9 m in the first second", branch: "02-physics" }]]]),
   byId: new Map(nodes.map((n) => [n.id, n])),
   bySlug: new Map(nodes.map((n) => [n.slug, n])),
@@ -126,4 +127,32 @@ test("an idea's evidence is listed apart from its primes", () => {
   assert.deepEqual(m.evidence, { count: 1, items: [{ id: "f1", slug: "fact-motion", title: "A ball falls 4.9 m in the first second", branch: "02-physics" }] });
   assert.ok(!m.primes.some((p) => p.id === "f1"));
   assert.deepEqual(buildMakeup("dyn", snap, none)!.evidence, { count: 0, items: [] });
+});
+
+test("the snapshot sees ideas under an idea through its evidence, and lists the evidence apart", () => {
+  const rows: MakeupNode[] = [
+    { id: "law", slug: "rayleigh-law", title: "Rayleigh scattering law", branch: "02-physics", kind: "law", provenanceType: "reference" },
+    { id: "paper", slug: "rayleigh-1871", title: "Rayleigh 1871", branch: "02-physics", kind: "primary_source", provenanceType: "canon_paper" },
+    { id: "size", slug: "size-vs-wavelength", title: "Scattering strength and particle size", branch: "02-physics", kind: "concept", provenanceType: "reference" },
+    { id: "hidden", slug: "private", title: "Not public", branch: "02-physics", kind: "concept", provenanceType: "reference" },
+  ];
+  const s = snapshotFrom(rows, [
+    { fromId: "law", toId: "paper", kind: "derives_from" },
+    { fromId: "size", toId: "paper", kind: "prerequisite" },
+    { fromId: "hidden-elsewhere", toId: "law", kind: "prerequisite" },
+  ]);
+  const m = buildMakeup("law", s, none)!;
+  assert.equal(m.status, "composite");
+  assert.deepEqual(m.primes.map((p) => p.slug), ["size-vs-wavelength"]);
+  assert.deepEqual(m.evidence.items.map((e) => e.slug), ["rayleigh-1871"]);
+  assert.equal(s.edges.length, 2, "edges to nodes outside the public set are dropped");
+  assert.deepEqual(s.reach.get("size"), { id: "size", composites: 1, branches: 1, spread: 0 });
+});
+
+test("a pair the graph already implies, and a pair whose factor already rests on its target, are told apart", () => {
+  // dyn rests on kin, kin rests on der, der rests on eq.
+  assert.deepEqual(pairInGraph(snap, "equality", "dynamics"), { graphLoop: false, implied: true });
+  assert.deepEqual(pairInGraph(snap, "dynamics", "equality"), { graphLoop: true, implied: false });
+  assert.deepEqual(pairInGraph(snap, "lonely", "dynamics"), { graphLoop: false, implied: false });
+  assert.deepEqual(pairInGraph(snap, "nope", "dynamics"), { graphLoop: false, implied: false });
 });

@@ -480,22 +480,28 @@ test("the base-idea hint reads past 'X as Y' and 'the law of X'", () => {
   assert.equal(matchBase("Equality and identity"), "THE SAME (equality)");
 });
 
-test("the idea layer drops evidence, so an idea resting only on a fact becomes a prime to decompose", () => {
+test("the idea layer keeps idea-to-idea paths through evidence and drops the evidence itself", () => {
   const ns = [
     node("law", "02-physics", "law", "Rayleigh scattering law"),
-    node("fact", "02-physics", "fact", "The sky is blue at noon", "canon_claim"),
+    node("paper", "02-physics", "primary_source", "Rayleigh 1871", "canon_paper"),
     node("wave", "02-physics", "concept", "Wave optics"),
+    node("lonely-law", "02-physics", "law", "A law on a fact"),
+    node("fact", "02-physics", "fact", "The sky is blue at noon", "canon_claim"),
   ];
-  // The law rests on the fact (derives_from law -> fact), and on nothing else.
-  const es: DepEdge[] = [{ fromId: "law", toId: "fact", kind: "derives_from" }, pre("wave", "fact")];
-  const all = decompose(ns, es);
-  assert.equal(all.get("law")!.status, "composite");
+  // law rests on the paper, which rests on wave optics; lonely-law rests only on a fact.
+  const es: DepEdge[] = [
+    { fromId: "law", toId: "paper", kind: "derives_from" },
+    pre("wave", "paper"),
+    { fromId: "lonely-law", toId: "fact", kind: "derives_from" },
+  ];
   const layer = ideaLayer(ns, es);
-  assert.deepEqual(layer.nodes.map((n) => n.id).sort(), ["law", "wave"]);
-  assert.equal(layer.edges.length, 0);
+  assert.deepEqual(layer.nodes.map((n) => n.id).sort(), ["law", "lonely-law", "wave"]);
+  assert.deepEqual(layer.edges.map((e) => `${e.fromId}->${e.toId}`), ["wave->law"]);
   const ideas = decompose(layer.nodes, layer.edges);
-  assert.equal(ideas.get("law")!.status, "unfactored");
-  assert.ok(selectTargets(ns, ideas).some((t) => t.slug === "law"));
+  assert.equal(ideas.get("law")!.status, "composite", "the law rests on wave optics through the paper");
+  assert.equal(ideas.get("lonely-law")!.status, "unfactored", "an idea resting only on a fact is asked to decompose");
+  assert.ok(selectTargets(ns, ideas).some((t) => t.slug === "lonely-law"));
+  assert.ok(!selectTargets(ns, ideas).some((t) => t.slug === "law"));
 });
 
 test("a model alias resolves only inside its family, and a full id only to itself", () => {
