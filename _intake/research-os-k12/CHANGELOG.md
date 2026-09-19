@@ -1,5 +1,19 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-19: patents in Research OS
+
+The patents gateway and service are designed.
+
+Branch `feat/ros-loop-patents-gateway`, PR #188. Founder direction: patents matter as much as papers for discovery and innovation, with their own x402 gateway and feed402 service.
+
+### Added
+
+- The design of one patent index that the x402 research gateway sells per call and Research OS reads free, with the rights each paid tier may carry and the graph model for patents.
+
+### Corrected
+
+- The patent licensing matrix of 2026-05-03, against current sources: PatentsView's API is paused, EPO data may not be relayed as it comes, WIPO resale needs a paid licence, and the patent-to-paper citation set is non-commercial.
+
 ## 2026-09-19: fewer Vercel builds
 
 Previews build once per task and build green.

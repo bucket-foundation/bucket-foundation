@@ -2,6 +2,24 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-patents 0: the patents gateway and service
+
+Research and design for a patents x402 gateway and feed402 service that Research OS also reads.
+
+Date 2026-09-19. Branch `feat/ros-loop-patents-gateway`, worktree `.wt-ros-loop`, PR #188 into `dev`. Founder direction: patents as first-class research objects, with their own x402 gateway and feed402 service.
+
+### Added
+
+- `learning/research-os/PATENTS.md`: the ros-patents epic's file. What feed402, the Go gateway, and this repository hold; what changed outside since the licensing matrix; and the design: one patent index read by the gateway and by Research OS, rights by tier, pricing, the graph model, the surfaces, and three questions for the founder.
+
+### Edited
+
+- `docs/PATENT_LICENSING.md`: a dated corrections block at the top: PatentsView's paused API and ODP accounts, the EPO OPS terms, WIPO's paid licences, the Lens, and Reliance on Science's non-commercial licence. The text below it is unchanged.
+
+### Removed
+
+None.
+
 ## ros-builds: fewer Vercel builds
 
 The Vercel gate compares each push with the last successful deployment, builds on Node 24, and a local check stops a push that would fail on lint or types.
