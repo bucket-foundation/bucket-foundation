@@ -404,7 +404,7 @@ test("the kappa interval is the same whatever order the rows arrive in", () => {
   assert.deepEqual(agreementStats(rows).kappaInterval, agreementStats(shuffled).kappaInterval);
 });
 
-test("long model text ends at a sentence or a word, never mid-word", () => {
+test("long model text ends at a sentence or a whole word", () => {
   assert.equal(clipText("  short  ", 20), "short");
   assert.equal(clipText("First sentence here. Second sentence runs on and on.", 30), "First sentence here.");
   assert.equal(clipText("one two three four five six", 12), "one two…");
@@ -438,7 +438,7 @@ test("stage 5 write-back sets each verified pair's state and leaves the rest unc
   assert.deepEqual([rows[2].verification, rows[2].confidence, rows[2].secondary_prompt_hash], ["unchecked", 0.3, null]);
 });
 
-test("a new missing prime takes an earlier run's key at the threshold, never below it, and keeps its title as an alias", () => {
+test("a new missing prime takes an earlier run's key at the threshold or above, and keeps its title as an alias", () => {
   const np = (key: string, title: string): NodeProposalRow => ({
     key, title, branch: "01-mathematics", justification: "", summary: null, named_by: ["t"], aliases: [], reasons: {}, possible_duplicates: [], base_match: null, model: "m",
   });
@@ -474,5 +474,6 @@ test("the base-idea hint reads past 'X as Y' and 'the law of X'", () => {
   assert.equal(matchBase("The principle of causality"), "BECAUSE (cause)");
   assert.equal(matchBase("Conservation of energy"), null);
   assert.equal(matchBase("Law of large numbers"), null);
+  assert.equal(matchBase("The idea of a set"), "set");
   assert.equal(matchBase("Equality and identity"), "THE SAME (equality)");
 });

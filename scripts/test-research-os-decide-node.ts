@@ -83,7 +83,7 @@ test("rejecting writes nothing and a decided proposal stays decided", () => {
   assert.deepEqual(decideNodeProposal({ ...record, status: "approved" }, "rejected", ctx), { status: "approved", alreadyDecided: true });
 });
 
-test("an approval needs a definition: the reviewer's, else the consolidation pass's, never the proposer's reason", () => {
+test("an approval needs a definition: the reviewer's, else the consolidation pass's; the proposer's reason stays out", () => {
   const bare = { ...record, summary: null };
   assert.equal(decideNodeProposal(bare, "approved", ctx).error, "summary_required");
   assert.equal(decideNodeProposal(bare, "approved", { ...ctx, overrides: { summary: "   " } }).error, "summary_required");

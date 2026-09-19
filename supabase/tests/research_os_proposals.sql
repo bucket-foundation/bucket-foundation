@@ -17,7 +17,7 @@ insert into graph.edges (from_id, to_id, kind) values
 
 do $$
 begin
-  -- rests_on follows both link kinds, never answers true for a node and itself.
+  -- rests_on follows both link kinds, and a node does not rest on itself.
   assert graph.rests_on('00000000-0000-4000-8000-000000000003', '00000000-0000-4000-8000-000000000001'), 'C rests on A through B';
   assert not graph.rests_on('00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000003'), 'A does not rest on C';
   assert not graph.rests_on('00000000-0000-4000-8000-000000000001', '00000000-0000-4000-8000-000000000001'), 'a node never rests on itself';

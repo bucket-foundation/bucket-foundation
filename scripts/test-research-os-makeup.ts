@@ -2,7 +2,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { decompose, penetration, type DepEdge } from "../src/lib/research-os/primes";
-import { buildMakeup, forgetMakeupSnapshot, liveCycles, makeupSnapshot, type MakeupNode, type Snapshot } from "../src/lib/research-os/makeup";
+import { buildMakeup, forgetMakeupSnapshot, liveCycles, makeupForViewer, makeupSnapshot, type MakeupNode, type Snapshot } from "../src/lib/research-os/makeup";
 
 const nodes: MakeupNode[] = [
   { id: "eq", slug: "equality", title: "Equality", branch: "01-mathematics" },
@@ -99,4 +99,23 @@ test("cycle flags come from the current pending set and the graph", () => {
   assert.ok(loops.has("derivatives->equality"));
   assert.ok(!loops.has("vectors->lonely"));
   assert.equal(liveCycles(snap, [{ from_slug: "vectors", to_slug: "lonely" }]).size, 0);
+});
+
+test("a viewer who is not a reviewer gets the decomposition and counts, and no review data", () => {
+  const full = buildMakeup("lone", snap, {
+    proposals: [{ id: "p1", from_slug: "vectors", verification: "confirmed", refd: 0.2, cross_branch: true, in_cycle: false, confidence_source: "prime_decompose_llm" }],
+    missing: [{ key: "attention", title: "Attention", summary: "s", reasons: { lonely: "r" } }],
+    irreducible: { status: "pending", justification: "j" },
+  })!;
+  const counts = { proposals: 1, missing: 1, irreducible: true, truncated: false };
+  const learner = makeupForViewer(full, counts, false);
+  assert.equal(learner.canReview, false);
+  assert.deepEqual([learner.makeup.proposals, learner.makeup.missing, learner.makeup.irreducible], [[], [], null]);
+  assert.deepEqual(learner.pending, counts);
+  assert.equal(learner.makeup.status, full.status);
+  const confirmed = makeupForViewer({ ...full, irreducible: { status: "confirmed", justification: "j" } }, counts, false);
+  assert.equal(confirmed.makeup.irreducible?.status, "confirmed");
+  const reviewer = makeupForViewer(full, counts, true);
+  assert.equal(reviewer.makeup.proposals.length, 1);
+  assert.equal(reviewer.canReview, true);
 });

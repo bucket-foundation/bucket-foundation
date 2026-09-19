@@ -15,7 +15,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type EdgeProposalRecord } from "../src/lib/research-os/inference/decide";
-import { isReviewerEmail } from "../src/lib/research-os/reviewer";
+import { isGraphReviewer, isReviewerEmail } from "../src/lib/research-os/reviewer";
 
 function pending(): EdgeProposalRecord {
   return { status: "pending", fromSlug: "wavefunction", toSlug: "uncertainty" };
@@ -131,4 +131,20 @@ test("decideEdgeProposal: approving as derives_from runs the edge from the targe
   assert.equal(outcome.edgeToWrite?.fromSlug, p.toSlug);
   assert.equal(outcome.edgeToWrite?.toSlug, p.fromSlug);
   assert.equal(outcome.edgeToWrite?.confidence, TEACHER_APPROVED_CONFIDENCE);
+});
+
+test("isGraphReviewer: only the allowlist changes the graph, whatever classes the person teaches", () => {
+  const prior = process.env.RESEARCH_OS_REVIEWER_EMAILS;
+  process.env.RESEARCH_OS_REVIEWER_EMAILS = "reviewer@school.example";
+  try {
+    assert.deepEqual(isGraphReviewer({ id: "u1", email: "Reviewer@School.example" }), { id: "u1", email: "Reviewer@School.example" });
+    assert.equal(isGraphReviewer({ id: "u2", email: "teacher@school.example" }), null);
+    assert.equal(isGraphReviewer({ id: "u3", email: null }), null);
+    assert.equal(isGraphReviewer(null), null);
+    delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
+    assert.equal(isGraphReviewer({ id: "u1", email: "reviewer@school.example" }), null);
+  } finally {
+    if (prior === undefined) delete process.env.RESEARCH_OS_REVIEWER_EMAILS;
+    else process.env.RESEARCH_OS_REVIEWER_EMAILS = prior;
+  }
 });

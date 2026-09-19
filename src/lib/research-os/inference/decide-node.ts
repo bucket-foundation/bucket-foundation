@@ -101,7 +101,7 @@ export function decideNodeProposal(
   const slug = nodeSlug(record.key);
   const title = ctx.overrides?.title?.trim() || record.title;
   // The summary is the node's definition. The proposer's reason says why a
-  // target needs the idea, which is no definition, so it never fills in.
+  // target needs the idea, so it stays out of the summary.
   const summary = ctx.overrides?.summary?.trim() || record.summary?.trim() || "";
   if (!summary) return { status: "approved", alreadyDecided: false, error: "summary_required" };
   const branch = ctx.overrides?.branch?.trim() || ctx.branch;

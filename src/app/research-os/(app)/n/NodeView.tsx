@@ -16,6 +16,7 @@ import ClassSection from "./ClassSection";
 import AccessBlock from "../workspace/AccessBlock";
 import Section from "./Section";
 import { useSession } from "@/providers/SessionProvider";
+import { isIdeaNode } from "@/lib/research-os/idea";
 
 const SECTIONS: { id: string; label: string; level: string }[] = [
   { id: "learn", label: "Learn", level: "understanding" },
@@ -62,6 +63,9 @@ export default function NodeView({ slug }: { slug: string }) {
   if (!data) return <ErrorState body="Could not open the node." retry={() => void load()} />;
 
   const { node, standing } = data;
+  // "Made of" is for ideas on the public graph, the nodes the decomposition covers.
+  const provenanceType = typeof node.provenance?.type === "string" ? node.provenance.type : null;
+  const showMakeup = node.visibility === "public" && isIdeaNode({ kind: node.kind, provenanceType });
   const last = standing.evidence.length ? standing.evidence[standing.evidence.length - 1] : null;
   const raisedBy = last ? `${EVIDENCE_LABEL[String(last.kind)] ?? String(last.kind)}${last.at ? ` · ${new Date(String(last.at)).toLocaleDateString(undefined, { month: "short", day: "numeric" })}` : ""}` : null;
 
@@ -99,7 +103,7 @@ export default function NodeView({ slug }: { slug: string }) {
 
       <nav aria-label="Verbs" className="sticky top-[58px] z-20 -mx-4 md:mx-0 px-4 md:px-0 bg-[color:var(--bone)]/90 backdrop-blur-[2px] border-y border-[color:var(--hairline)]">
         <div className="flex gap-1 overflow-x-auto">
-          {SECTIONS.filter((s) => s.id !== "makeup" || node.visibility === "public").map((s) => (
+          {SECTIONS.filter((s) => s.id !== "makeup" || showMakeup).map((s) => (
             <a key={s.id} href={`#${s.id}`} className="small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] border-b-2 border-transparent hover:border-[color:var(--gold)]">
               {s.label}
             </a>
@@ -112,7 +116,7 @@ export default function NodeView({ slug }: { slug: string }) {
       <CheckSection data={data} quotes={quotes} onChanged={load} />
       <TransferSection data={data} onChanged={load} />
       <AroundSection data={data} />
-      {node.visibility === "public" && <MakeupSection slug={node.slug} branch={node.branch} />}
+      {showMakeup && <MakeupSection slug={node.slug} branch={node.branch} />}
       <ProductionsSection data={data} quotes={quotes} onChanged={load} />
       <ClassSection data={data} onChanged={load} />
       <Section id="access" level="access" title="access" meta={node.visibility}>

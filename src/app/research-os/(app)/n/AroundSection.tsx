@@ -32,12 +32,14 @@ export default function AroundSection({ data }: { data: NodeData }) {
       )}
       <div className="grid md:grid-cols-2 gap-5">
         <div>
-          <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">rests on</h3>
-          <NodeList items={prerequisites} empty={data.graphUnavailable ? "Not loaded." : "A root: nothing before it."} />
+          <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2" title="Prerequisite edges: what the learning path puts first. What the node is made of is under Made of.">
+            learned after
+          </h3>
+          <NodeList items={prerequisites} empty={data.graphUnavailable ? "Not loaded." : "A starting point: nothing comes before it in learning order."} />
         </div>
         <div>
           <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">unlocks</h3>
-          <NodeList items={dependents} empty={data.graphUnavailable ? "Not loaded." : "Nothing rests on it yet."} />
+          <NodeList items={dependents} empty={data.graphUnavailable ? "Not loaded." : "Nothing comes after it in learning order yet."} />
         </div>
         <div>
           <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-2">where it leads</h3>

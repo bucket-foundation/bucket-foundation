@@ -12,7 +12,7 @@ Branch `feat/ros-loop-decompose-further`, PR #186. Founder direction: prime deco
 - Missing base ideas merge by meaning and wait at `/research-os/edges` with the targets that named them; approving one creates the node.
 - Irreducible verdicts a reviewer can confirm or send back.
 - The primes report lists what moved since its last run.
-- Every public node page has a "made of" section: prime or composite, tier, the primes under it, and the proposals waiting on review for it.
+- Every public idea node has a "made of" section: prime or composite, how many layers above its primes, the primes under it, and what waits on review for it, in detail for reviewers and as counts for everyone else.
 - The review queue has a summary, a find box, and filters.
 
 ### Corrected

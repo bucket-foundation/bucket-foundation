@@ -90,7 +90,7 @@ grant execute on function graph.merge_edge_proposals(jsonb) to service_role;
 -- A missing prime's one-sentence definition, written by the consolidation
 -- pass. Approval uses it as the new node's summary unless the reviewer
 -- writes another; the proposer's reason says why a target needs the idea
--- and never stands in for it.
+-- and stays out of the summary.
 alter table graph.node_proposals add column if not exists summary text;
 
 -- Merge missing ideas by key. A pending row gathers the new naming nodes,

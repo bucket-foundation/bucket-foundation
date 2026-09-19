@@ -11,8 +11,9 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService } from "@/lib/research-os/db";
-import { verifyReviewer } from "@/lib/research-os/reviewer";
-import { buildMakeup, liveCycles, makeupSnapshot, type ProposalRowLite } from "@/lib/research-os/makeup";
+import { verifyGraphReviewer } from "@/lib/research-os/reviewer";
+import { isIdeaNode } from "@/lib/research-os/idea";
+import { allPendingPairs, buildMakeup, liveCycles, makeupForViewer, makeupSnapshot, type ProposalRowLite } from "@/lib/research-os/makeup";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,6 +33,9 @@ export async function GET(req: NextRequest) {
     const snap = await makeupSnapshot(svc);
     const node = snap.bySlug.get(slug);
     if (!node) return NextResponse.json({ error: "node_not_found" }, { status: 404, ...NO_STORE });
+    // Figures, sites, sources, and tags are evidence; only ideas are decomposed.
+    if (!isIdeaNode({ kind: node.kind ?? "", provenanceType: node.provenanceType ?? null }))
+      return NextResponse.json({ error: "not_an_idea" }, { status: 404, ...NO_STORE });
     const [proposals, missing, irreducible, reviewer] = await Promise.all([
       svc
         .from("edge_proposals")
@@ -48,20 +52,15 @@ export async function GET(req: NextRequest) {
         .order("key")
         .range(0, MISSING_CAP - 1),
       svc.from("irreducible_proposals").select("status,justification").eq("node_slug", slug).maybeSingle(),
-      verifyReviewer(req),
+      verifyGraphReviewer(req),
     ]);
     for (const r of [proposals, missing, irreducible]) if (r.error) throw new Error(r.error.message);
     const rows = ((proposals.data as (ProposalRowLite & { to_slug: string })[]) || []).slice();
-    // Loop flags from the pending set as it stands, so a decision elsewhere shows at once.
-    if (rows.length) {
-      const { data: pendingAll, error: pendingErr } = await svc
-        .from("edge_proposals")
-        .select("from_slug,to_slug")
-        .eq("status", "pending")
-        .order("id")
-        .range(0, 4999);
-      if (pendingErr) throw new Error(pendingErr.message);
-      const loops = liveCycles(snap, (pendingAll as { from_slug: string; to_slug: string }[]) || []);
+    // Loop flags from the pending set as it stands, so a decision elsewhere
+    // shows at once. Only a reviewer sees the pairs, so only a reviewer pays
+    // for the read.
+    if (reviewer && rows.length) {
+      const loops = liveCycles(snap, await allPendingPairs(svc));
       for (const r of rows) r.in_cycle = loops.has(`${r.from_slug}->${r.to_slug}`);
     }
     const missingRows = (missing.data as { key: string; title: string; summary: string | null; reasons: Record<string, string> | null }[]) || [];
@@ -74,12 +73,7 @@ export async function GET(req: NextRequest) {
       irreducible: irr?.status === "pending",
       truncated: rows.length === PROPOSAL_CAP || missingRows.length === MISSING_CAP,
     };
-    if (reviewer) return NextResponse.json({ makeup, pending, canReview: true }, NO_STORE);
-    // Everyone else sees the decomposition and how much waits on review.
-    return NextResponse.json(
-      { makeup: { ...makeup, proposals: [], missing: [], irreducible: irr?.status === "confirmed" ? irr : null }, pending, canReview: false },
-      NO_STORE,
-    );
+    return NextResponse.json(makeupForViewer(makeup, pending, !!reviewer), NO_STORE);
   } catch (err) {
     console.error("[research-os/makeup] read failed:", err instanceof Error ? err.message : err);
     return NextResponse.json({ error: "read_failed" }, { status: 500, ...NO_STORE });

@@ -20,8 +20,10 @@
  *   ancestor closure of every branch it touches.
  *
  * Auth: Authorization: Bearer <supabase access token>, checked by
- * src/lib/research-os/reviewer.ts. 403 not a reviewer (also an unset
- * allowlist, fail closed) · 400 bad input · 404 proposal or node not found
+ * src/lib/research-os/reviewer.ts verifyGraphReviewer: the
+ * RESEARCH_OS_REVIEWER_EMAILS allowlist alone, since a class membership
+ * anyone can create opens teacher review. 403 not a graph reviewer (also an
+ * unset allowlist, fail closed) · 400 bad input · 404 proposal or node not found
  * · 409 approving would close a cycle (the proposal stays pending) · 500 a
  * read or write failed (the proposal stays pending) · 503 not configured.
  * Deciding an already-decided proposal returns alreadyDecided and writes
@@ -29,7 +31,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService } from "@/lib/research-os/db";
-import { verifyReviewer } from "@/lib/research-os/reviewer";
+import { verifyGraphReviewer } from "@/lib/research-os/reviewer";
 import { decideEdge, KINDS, listEdgeProposals } from "@/lib/research-os/inference/review-actions";
 import type { ApprovedKind } from "@/lib/research-os/inference/decide";
 
@@ -41,7 +43,7 @@ const reply = (r: { status: number; body: Record<string, unknown> }) =>
 
 export async function GET(req: NextRequest) {
   if (!configured()) return reply({ status: 503, body: { error: "research_os_unavailable" } });
-  if (!(await verifyReviewer(req))) return reply({ status: 403, body: { error: "forbidden" } });
+  if (!(await verifyGraphReviewer(req))) return reply({ status: 403, body: { error: "forbidden" } });
   return reply(await listEdgeProposals(graphService(), req.nextUrl.searchParams.get("source")));
 }
 
@@ -54,7 +56,7 @@ interface Body {
 
 export async function POST(req: NextRequest) {
   if (!configured()) return reply({ status: 503, body: { error: "research_os_unavailable" } });
-  const reviewer = await verifyReviewer(req);
+  const reviewer = await verifyGraphReviewer(req);
   if (!reviewer) return reply({ status: 403, body: { error: "forbidden" } });
   let body: Body;
   try {

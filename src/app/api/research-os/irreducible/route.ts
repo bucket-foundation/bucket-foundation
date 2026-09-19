@@ -13,7 +13,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService } from "@/lib/research-os/db";
-import { verifyReviewer } from "@/lib/research-os/reviewer";
+import { verifyGraphReviewer } from "@/lib/research-os/reviewer";
 import { decideIrreducible, listIrreducible } from "@/lib/research-os/inference/review-actions";
 
 export const runtime = "nodejs";
@@ -24,13 +24,13 @@ const reply = (r: { status: number; body: Record<string, unknown> }) =>
 
 export async function GET(req: NextRequest) {
   if (!configured()) return reply({ status: 503, body: { error: "research_os_unavailable" } });
-  if (!(await verifyReviewer(req))) return reply({ status: 403, body: { error: "forbidden" } });
+  if (!(await verifyGraphReviewer(req))) return reply({ status: 403, body: { error: "forbidden" } });
   return reply(await listIrreducible(graphService()));
 }
 
 export async function POST(req: NextRequest) {
   if (!configured()) return reply({ status: 503, body: { error: "research_os_unavailable" } });
-  const reviewer = await verifyReviewer(req);
+  const reviewer = await verifyGraphReviewer(req);
   if (!reviewer) return reply({ status: 403, body: { error: "forbidden" } });
   let body: { id?: string; decision?: string; reason?: string };
   try {

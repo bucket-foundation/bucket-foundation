@@ -54,7 +54,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
       : m.status === "prime"
         ? `prime${m.reach ? ` · in ${plural(m.reach.composites, "composite")} across ${plural(m.reach.branches, "branch", "branches")}` : ""}`
         : m.status === "composite"
-          ? `${plural(m.primeCount, "prime")} under it · ${plural(m.tier, "layer")} above them`
+          ? `${plural(m.primeCount, "prime")} under it · ${plural(m.tier, "layer")} above its primes`
           : "not decomposed yet";
   const waiting = pending ? pending.proposals + pending.missing + (pending.irreducible ? 1 : 0) : 0;
 

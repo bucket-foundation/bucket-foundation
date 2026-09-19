@@ -240,6 +240,10 @@ async function main() {
   // answers, and every row records the id that answered.
   async function resolveModel(alias: string): Promise<string> {
     const probe = await askClaude("Reply with the single word ok.", alias, 120_000, { type: "object", properties: { ok: { type: "string" } }, required: ["ok"] });
+    // A family alias must resolve inside its family, and a full id to itself.
+    const family = ["haiku", "sonnet", "opus"].find((f) => alias === f);
+    if (family ? !probe.modelId.includes(family) : probe.modelId !== alias)
+      throw new Error(`model alias ${alias} resolved to ${probe.modelId}; refusing to run under the wrong model`);
     return probe.modelId;
   }
   const model = await resolveModel(proposerAlias);
@@ -498,6 +502,8 @@ async function main() {
   for (const p of proposals) if (p.verification === "unchecked") slot(p.to_slug).fresh.push(p);
   for (const r of pendingUnchecked) if (!proposed.has(`${r.from_slug}->${r.to_slug}`)) slot(r.to_slug).queued.push(r);
   const dbVerdicts: { id: string; verdict: Verdict; hash: string }[] = [];
+  // Pairs whose verdict came from this stage, where the factor is named.
+  const checkedNamed = new Set<string>();
   for (const [to, s] of Array.from(byTarget)) {
     const target = bySlug.get(to);
     const factors = s.fresh.map((p) => p.from_slug).concat(s.queued.map((q) => q.from_slug)).map((slug) => bySlug.get(slug)).filter(Boolean) as Candidate[];
@@ -510,6 +516,7 @@ async function main() {
         failures.push({ slug: `verify:${to}`, reason: v.value.error });
         continue;
       }
+      for (const p of s.fresh) if (v.value.has(p.from_slug)) checkedNamed.add(`${p.from_slug}->${p.to_slug}`);
       applyVerdicts(s.fresh, v.value, verifyModel, v.hash);
       for (const q of s.queued) {
         const verdict = v.value.get(q.from_slug);
@@ -663,7 +670,8 @@ async function main() {
         const extra: ProposalRow[] = [];
         for (const t of src.named_by) {
           const target = targetBySlug.get(t);
-          if (!target || proposed.has(`${nodeSlug}->${t}`)) continue;
+          // A node is never queued as its own factor.
+          if (!target || t === nodeSlug || proposed.has(`${nodeSlug}->${t}`)) continue;
           extra.push(
             ...toProposals(target, { irreducible: false, factors: [{ slug: nodeSlug, why: src.reasons[t] ?? "" }], missing: [] }, {
               model,
@@ -721,8 +729,8 @@ async function main() {
     },
     // Proposer pairs were checked blind; matched missing ideas were checked
     // in stage 5 with the factor named, since no pick exists to hide.
-    confirmed_blind: proposals.filter((p) => p.origin === "proposer" && p.verification === "confirmed").length,
-    confirmed_unblinded: proposals.filter((p) => p.origin !== "proposer" && p.verification === "confirmed").length,
+    confirmed_blind: proposals.filter((p) => p.verification === "confirmed" && !checkedNamed.has(`${p.from_slug}->${p.to_slug}`)).length,
+    confirmed_unblinded: proposals.filter((p) => p.verification === "confirmed" && checkedNamed.has(`${p.from_slug}->${p.to_slug}`)).length,
     cross_branch_proposals: proposals.filter((p) => p.cross_branch).length,
     in_cycle: withCycle.filter((p) => p.in_cycle).length,
     agreement: stats,

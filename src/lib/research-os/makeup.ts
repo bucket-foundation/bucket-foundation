@@ -13,7 +13,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { cyclicPairs } from "./decompose-further";
 import { decompose, FACTOR_EDGES, penetration, type Decomposition, type DepEdge, type PrimePenetration, type PrimeStatus } from "./primes";
 
-export type MakeupNode = { id: string; slug: string; title: string; branch: string };
+export type MakeupNode = { id: string; slug: string; title: string; branch: string; kind?: string; provenanceType?: string | null };
 
 export type Makeup = {
   status: PrimeStatus;
@@ -128,7 +128,7 @@ async function paged<T>(q: (from: number) => PromiseLike<{ data: unknown; error:
 
 async function readSnapshot(svc: SupabaseClient): Promise<Snapshot> {
   const rows = await paged<MakeupNode>((from) =>
-    svc.from("nodes").select("id,slug,title,branch").eq("visibility", "public").is("superseded_by", null).order("id").range(from, from + 999),
+    svc.from("nodes").select("id,slug,title,branch,kind,provenanceType:provenance->>type").eq("visibility", "public").is("superseded_by", null).order("id").range(from, from + 999),
   );
   const live = new Set(rows.map((n) => n.id));
   const edgeRows = await paged<{ from_id: string; to_id: string; kind: string; confidence: number | null }>((from) =>
@@ -183,8 +183,31 @@ export function liveCycles(snap: Snapshot, pending: { from_slug: string; to_slug
   return cyclicPairs(snap.edges, pending, idOf);
 }
 
+/** Every pending proposal pair, paged past PostgREST's 1,000-row cap. */
+export async function allPendingPairs(svc: SupabaseClient): Promise<{ from_slug: string; to_slug: string }[]> {
+  return paged<{ from_slug: string; to_slug: string }>((from) =>
+    svc.from("edge_proposals").select("from_slug,to_slug").eq("status", "pending").order("id").range(from, from + 999),
+  );
+}
+
 /** Drop the cached decomposition, so the next read sees a just-approved edge. */
 export function forgetMakeupSnapshot(): void {
   cached = null;
   generation++;
+}
+
+export type PendingCounts = { proposals: number; missing: number; irreducible: boolean; truncated: boolean };
+
+/**
+ * What a viewer gets. The decomposition is public; what waits on review is
+ * reviewer data, so everyone else gets the counts and only a confirmed
+ * irreducible verdict, which is a review outcome.
+ */
+export function makeupForViewer(makeup: Makeup, pending: PendingCounts, isReviewer: boolean): { makeup: Makeup; pending: PendingCounts; canReview: boolean } {
+  if (isReviewer) return { makeup, pending, canReview: true };
+  return {
+    makeup: { ...makeup, proposals: [], missing: [], irreducible: makeup.irreducible?.status === "confirmed" ? makeup.irreducible : null },
+    pending,
+    canReview: false,
+  };
 }

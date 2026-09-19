@@ -13,6 +13,7 @@
  * scripts/test-research-os-decompose-further.ts.
  */
 import { createHash } from "node:crypto";
+import { isIdeaNode } from "./idea";
 import { DISAGREEMENT_CONFIDENCE, INFERRED_CONFIDENCE_MAX, INFERRED_CONFIDENCE_MIN } from "./inference/calibration";
 import { components, factorMap, type DepEdge, type Decomposition } from "./primes";
 
@@ -83,32 +84,17 @@ export type NodeProposalRow = {
   model: string;
 };
 
-/** Kinds worth decomposing: ideas, as opposed to sources, figures, or sites. */
-export const DECOMPOSABLE_KINDS = new Set(["concept", "law", "derivation"]);
-
-/**
- * Where an idea node can come from. Canon concept tags, bridges, intake
- * digests, intake targets, and mirrors are groupings of other material (33
- * of the 105 canon concept tags are people, such as Euler and Tesla), so
- * they are neither targets nor factors.
- */
-export const IDEA_SOURCES = new Set(["academy_atom", "canon_entry", "reference", "primary_source"]);
-/**
- * Base ideas a reviewer added from a missing-idea proposal. They are
- * targets as well as factors, so decomposition goes on below them: an
- * approved idea is asked what it rests on in the next run, and the
- * reviewer gates every level, which bounds the depth.
- */
-export const BASE_IDEA_SOURCE = "node_proposal";
+export { BASE_IDEA_SOURCE, DECOMPOSABLE_KINDS, IDEA_SOURCES } from "./idea";
 
 export function isIdea(n: GraphNode): boolean {
-  return DECOMPOSABLE_KINDS.has(n.kind) && (IDEA_SOURCES.has(n.provenanceType ?? "") || n.provenanceType === BASE_IDEA_SOURCE);
+  return isIdeaNode(n);
 }
 
 /** Candidates and targets come from the same set. */
 export function isCandidateIdea(n: GraphNode): boolean {
-  return isIdea(n);
+  return isIdeaNode(n);
 }
+
 /**
  * Confidence on the scale both proposers share (inference/calibration.ts):
  * a pair the second model confirmed sits at the inferred ceiling, a refuted
@@ -556,7 +542,7 @@ export function agreementStats(rows: AgreementRow[], resamples = 1000, seed = "k
  * Base ideas from the semantic primes (Wierzbicka 1996; Goddard and
  * Wierzbicka 2014) and the foundations of mathematics, matched on the head
  * noun of a title's first phrase. A lexical hint for the reviewer: it says a
- * title reads like a base idea, and never that the idea is one.
+ * title reads like a base idea; whether the idea is one stays the reviewer's call.
  */
 export const BASE_IDEAS: { key: string; heads: string[] }[] = [
   { key: "THE SAME (equality)", heads: ["equality", "equivalence", "identity", "sameness"] },
@@ -575,14 +561,18 @@ export const BASE_IDEAS: { key: string; heads: string[] }[] = [
   { key: "measurement", heads: ["measurement", "measure", "unit"] },
 ];
 
-/** The last word of a title's first phrase, stemmed: "Physical quantity and measurement" gives "quantity". */
 /** Words that name a kind of statement; in "law of X" the idea is X. */
 const CONTAINERS = new Set(["law", "principle", "theory", "concept", "notion", "idea", "axiom", "rule", "postulate"]);
 
+/**
+ * The last word of a title's first phrase, stemmed: "Physical quantity and
+ * measurement" gives "quantity". "X as Y" reads as X, and "the law of X" as
+ * X when X is one word.
+ */
 export function headNoun(title: string): string {
   // "X as Y" is about X; "the law of X" is about X.
   let t = title.split(/\s+as\s+/i)[0];
-  const ofMatch = /^(?:the\s+)?(\w+)\s+of\s+(?:the\s+)?(.+)$/i.exec(t.trim());
+  const ofMatch = /^(?:the\s+)?(\w+)\s+of\s+(?:(?:the|a|an)\s+)?(.+)$/i.exec(t.trim());
   // Only when one word follows: "the law of bivalence" is about bivalence,
   // "the law of large numbers" is a law in its own right.
   if (ofMatch && CONTAINERS.has(ofMatch[1].toLowerCase()) && /^[\w-]+$/.test(ofMatch[2].split(/\s*\(|,|:/)[0].trim())) t = ofMatch[2];

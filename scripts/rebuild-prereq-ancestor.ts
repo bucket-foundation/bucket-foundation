@@ -38,7 +38,7 @@ async function main(): Promise<void> {
   if (branch === "--all") {
     const branches = new Set<string>();
     for (let from = 0; ; from += 1000) {
-      const { data, error } = await svc.from("nodes").select("branch").range(from, from + 999);
+      const { data, error } = await svc.from("nodes").select("branch").order("id").range(from, from + 999);
       if (error) throw new Error(`branch query failed: ${error.message}`);
       for (const r of (data as Array<{ branch: string }>) || []) branches.add(r.branch);
       if (!data || data.length < 1000) break;

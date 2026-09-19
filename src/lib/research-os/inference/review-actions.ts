@@ -10,11 +10,11 @@
  * proposal. The edge or node is written after the claim, and the claim is
  * released if that write fails. When the release or the cleanup itself
  * fails, the error code says so ("..._claim_held", "..._node_left"), so a
- * half-applied decision never passes for a clean failure.
+ * half-applied decision reads as half-applied.
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IN_CHUNK } from "../db";
-import { forgetMakeupSnapshot, liveCycles, makeupSnapshot } from "../makeup";
+import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot } from "../makeup";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type ApprovedKind } from "./decide";
 import { chooseBranch, decideNodeProposal, type NodeOverrides, type NodeProposalRecord } from "./decide-node";
@@ -120,17 +120,7 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
     impact = await dependents(svc, rows.map((p) => p.to_slug));
     // Loops are computed over every pending pair and the graph as they
     // stand now, so a decision clears or adds a flag at once.
-    let pendingAll: { from_slug: string; to_slug: string }[] = rows;
-    if (source) {
-      pendingAll = [];
-      for (let from = 0; ; from += 1000) {
-        const { data, error } = await svc.from("edge_proposals").select("from_slug,to_slug").eq("status", "pending").order("id").range(from, from + 999);
-        if (error) throw new Error(error.message);
-        const page = (data as { from_slug: string; to_slug: string }[]) || [];
-        pendingAll.push(...page);
-        if (page.length < 1000) break;
-      }
-    }
+    const pendingAll = source ? await allPendingPairs(svc) : rows;
     loops = liveCycles(await makeupSnapshot(svc), pendingAll);
   } catch {
     return fail(500, "read_failed");
@@ -489,9 +479,14 @@ type IrreducibleRow = { id: string; node_slug: string; justification: string; mo
 
 /** Nodes the proposer called irreducible, waiting on a reviewer, the ones most rested on first. */
 export async function listIrreducible(svc: SupabaseClient): Promise<ActionResult> {
-  const { data, error } = await svc.from("irreducible_proposals").select("id,node_slug,justification,model,status,created_at").eq("status", "pending").order("id").range(0, 999);
-  if (error) return fail(500, "read_failed");
-  const rows = (data as IrreducibleRow[]) || [];
+  const rows: IrreducibleRow[] = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await svc.from("irreducible_proposals").select("id,node_slug,justification,model,status,created_at").eq("status", "pending").order("id").range(from, from + 999);
+    if (error) return fail(500, "read_failed");
+    const page = (data as IrreducibleRow[]) || [];
+    rows.push(...page);
+    if (page.length < 1000) break;
+  }
   let nodes: Map<string, NodeLite>;
   let impact: Map<string, number>;
   try {

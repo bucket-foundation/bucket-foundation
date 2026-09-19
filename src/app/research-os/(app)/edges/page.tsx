@@ -151,6 +151,8 @@ export default function ResearchOsEdgesPage() {
   const [find, setFind] = useState("");
   const [showAllMissing, setShowAllMissing] = useState(false);
   const [landed, setLanded] = useState<string | null>(null);
+  // The node a node page sent the reviewer to: every list narrows to it.
+  const [focus, setFocus] = useState<string | null>(null);
   const [notice, setNotice] = useState<{ id: string | null; text: string } | null>(null);
 
   useEffect(() => {
@@ -257,7 +259,7 @@ export default function ResearchOsEdgesPage() {
       else if (decision === "approved") {
         setNotice({
           id: null,
-          text: `Added ${data.nodeSlug} at tier ${data.nodeTier}; ${data.queuedEdges} proposal(s) from it wait below.${data.warning ? ` Warning: ${data.warning}.` : ""}`,
+          text: `Added ${data.nodeSlug} at grade tier ${data.nodeTier}; ${data.queuedEdges} ${data.queuedEdges === 1 ? "proposal" : "proposals"} from it ${data.queuedEdges === 1 ? "waits" : "wait"} below.${data.warning ? ` Warning: ${data.warning}.` : ""}`,
         });
         await loadQueue();
       } else {
@@ -309,6 +311,7 @@ export default function ResearchOsEdgesPage() {
           ...g,
           items: g.items.filter(
             (p) =>
+              (!focus || p.toSlug === focus) &&
               (verdict === "all" || verdictOf(p) === verdict) &&
               (!crossOnly || p.crossBranch) &&
               (!needle || p.toTitle.toLowerCase().includes(needle) || p.fromTitle.toLowerCase().includes(needle)),
@@ -316,14 +319,27 @@ export default function ResearchOsEdgesPage() {
         }))
         .filter((g) => g.items.length > 0),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [groups, verdict, crossOnly, needle],
+    [groups, verdict, crossOnly, needle, focus],
   );
   const visibleMissing = useMemo(
     () =>
       (nodeProposals ?? []).filter(
-        (n) => !needle || n.title.toLowerCase().includes(needle) || n.aliases.some((a) => a.toLowerCase().includes(needle)) || n.namedBy.some((t) => t.title.toLowerCase().includes(needle)),
+        (n) =>
+          (!focus || n.namedBy.some((t) => t.slug === focus)) &&
+          (!needle || n.title.toLowerCase().includes(needle) || n.aliases.some((a) => a.toLowerCase().includes(needle)) || n.namedBy.some((t) => t.title.toLowerCase().includes(needle))),
       ),
-    [nodeProposals, needle],
+    [nodeProposals, needle, focus],
+  );
+  const visibleIrreducible = useMemo(() => (irreducible ?? []).filter((r) => !focus || r.slug === focus), [irreducible, focus]);
+  const focusTitle = useMemo(
+    () =>
+      !focus
+        ? null
+        : (proposals ?? []).find((p) => p.toSlug === focus)?.toTitle ??
+          (nodeProposals ?? []).flatMap((n) => n.namedBy).find((t) => t.slug === focus)?.title ??
+          (irreducible ?? []).find((r) => r.slug === focus)?.title ??
+          focus,
+    [focus, proposals, nodeProposals, irreducible],
   );
   const counts = useMemo(() => {
     const ps = proposals ?? [];
@@ -336,29 +352,27 @@ export default function ResearchOsEdgesPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [proposals]);
 
-  // A node page links here as #target-<slug>; the queue loads after the
-  // browser has tried the anchor, so jump once the group exists.
+  // A node page links here as #target-<slug>: narrow every list to that
+  // node, and go to the first list with something in it once the queue loads.
   useEffect(() => {
-    if (!proposals || !nodeProposals || typeof window === "undefined") return;
+    if (!proposals || !nodeProposals || !irreducible || typeof window === "undefined") return;
     const hash = decodeURIComponent(window.location.hash.slice(1));
     if (!hash.startsWith("target-") || landed === hash) return;
-    const el = document.getElementById(hash);
-    if (el) {
-      el.scrollIntoView({ block: "start" });
-      setLanded(hash);
-      return;
-    }
-    // No factor proposals for this node: narrow the queue to it by title,
-    // which keeps the missing ideas it named, and go to them.
     const slug = hash.slice("target-".length);
-    const title =
-      proposals.find((p) => p.toSlug === slug)?.toTitle ?? nodeProposals.flatMap((n) => n.namedBy).find((t) => t.slug === slug)?.title ?? null;
-    if (title) {
-      setFind(title);
-      setLanded(hash);
-      window.setTimeout(() => document.getElementById("missing-primes")?.scrollIntoView({ block: "start" }), 50);
-    }
-  }, [proposals, nodeProposals, landed]);
+    setFocus(slug);
+    setLanded(hash);
+    const first = irreducible.some((r) => r.slug === slug)
+      ? "irreducible"
+      : nodeProposals.some((n) => n.namedBy.some((t) => t.slug === slug))
+        ? "missing-primes"
+        : `target-${slug}`;
+    window.setTimeout(() => document.getElementById(first)?.scrollIntoView({ block: "start" }), 50);
+  }, [proposals, nodeProposals, irreducible, landed]);
+
+  const clearFocus = () => {
+    setFocus(null);
+    if (typeof window !== "undefined") window.history.replaceState(null, "", window.location.pathname);
+  };
 
   const noteInput = (id: string) => (
     <input
@@ -432,6 +446,14 @@ export default function ResearchOsEdgesPage() {
               {counts.unchecked > 0 && `, ${counts.unchecked} not checked yet`}
               {counts.loops > 0 && `, ${counts.loops} on a loop`}.
             </p>
+            {focus && (
+              <p className="text-[13px] text-[color:var(--basalt)] bg-[color:var(--gold)]/25 px-3 py-2" role="status">
+                Showing only what waits for <strong>{focusTitle}</strong>.{" "}
+                <button type="button" onClick={clearFocus} className="underline underline-offset-4">
+                  Show everything
+                </button>
+              </p>
+            )}
             <label className="text-[12px] text-[color:var(--basalt-3)] flex items-center gap-2">
               <span className="small-caps">find</span>
               <input
@@ -445,20 +467,20 @@ export default function ResearchOsEdgesPage() {
           </div>
         )}
 
-        {irreducible && irreducible.length > 0 && (
+        {visibleIrreducible.length > 0 && (
           <section className="mt-8 flex flex-col gap-3" aria-labelledby="irreducible">
             <h2 id="irreducible" className="font-display uppercase text-[16px] text-[color:var(--basalt)] mb-1">
-              called irreducible ({irreducible.length})
+              called irreducible ({focus ? `${visibleIrreducible.length} of ${irreducible?.length ?? 0}` : visibleIrreducible.length})
             </h2>
             <p className="text-[13px] text-[color:var(--basalt-2)] max-w-2xl">
               Nodes the proposer found nothing more basic for. Confirming one makes it a prime by review, and the queue stops trying to decompose it;
               rejecting it sends it back.
             </p>
-            {irreducible.map((r) => (
+            {visibleIrreducible.map((r) => (
               <div key={r.id} className="p-4 bg-[color:var(--bone)]">
                 <div className="text-[13px] text-[color:var(--basalt)]">
                   <strong>{nodeLink(r.slug, r.title)}</strong> &middot; {r.branch}
-                  {r.dependents > 0 && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; {r.dependents} idea node(s) rest on it</span>}
+                  {r.dependents > 0 && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; {r.dependents} idea {r.dependents === 1 ? "node" : "nodes"} rest{r.dependents === 1 ? "s" : ""} on it</span>}
                 </div>
                 {r.summary && <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">{r.summary}</p>}
                 <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">{r.justification}</p>
@@ -477,16 +499,16 @@ export default function ResearchOsEdgesPage() {
           </section>
         )}
 
-        {nodeProposals && nodeProposals.length > 0 && (
+        {nodeProposals && nodeProposals.length > 0 && (!focus || visibleMissing.length > 0) && (
           <section className="mt-8 flex flex-col gap-3" aria-labelledby="missing-primes">
             <h2 id="missing-primes" className="font-display uppercase text-[16px] text-[color:var(--basalt)] mb-1">
-              missing ideas ({needle ? `${visibleMissing.length} of ${nodeProposals.length}` : nodeProposals.length})
+              missing ideas ({needle || focus ? `${visibleMissing.length} of ${nodeProposals.length}` : nodeProposals.length})
             </h2>
             <p className="text-[13px] text-[color:var(--basalt-2)] max-w-2xl">
               Base ideas the proposer named while decomposing nodes, merged with their synonyms, the most-named first. Check the possible duplicates
               first; adding one creates a concept at the lowest grade tier among the nodes that named it, and queues a proposal from it to each.
             </p>
-            {(showAllMissing || needle ? visibleMissing : visibleMissing.slice(0, 12)).map((n) => {
+            {(showAllMissing || needle || focus ? visibleMissing : visibleMissing.slice(0, 12)).map((n) => {
               const e = editOf(n);
               return (
                 <div key={n.id} className="p-4 bg-[color:var(--bone)]">
@@ -565,7 +587,7 @@ export default function ResearchOsEdgesPage() {
                 </div>
               );
             })}
-            {!needle && visibleMissing.length > 12 && (
+            {!needle && !focus && visibleMissing.length > 12 && (
               <button type="button" onClick={() => setShowAllMissing((v) => !v)} className="self-start text-[12px] underline underline-offset-4">
                 {showAllMissing ? "show the first 12" : `show all ${visibleMissing.length}`}
               </button>
@@ -636,7 +658,7 @@ export default function ResearchOsEdgesPage() {
                 <div className="text-[14px] text-[color:var(--basalt)]">
                   <strong>{nodeLink(g.toSlug, g.toTitle)}</strong> &middot; {g.branch}
                   {g.items[0]?.toTier !== null && g.items[0]?.toTier !== undefined && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; grade tier {g.items[0].toTier}</span>}
-                  {g.impact > 0 && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; {g.impact} idea node(s) rest on it</span>}
+                  {g.impact > 0 && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; {g.impact} idea {g.impact === 1 ? "node" : "nodes"} rest{g.impact === 1 ? "s" : ""} on it</span>}
                 </div>
                 <div className="mt-3 flex flex-col gap-3">
                   {g.items.map((p) => {
