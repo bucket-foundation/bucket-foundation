@@ -8,7 +8,7 @@ Branch `feat/ros-loop-patents-gateway`, PR #188. Founder direction: "if we are f
 
 ### Added
 
-- The design of one patent index that the x402 research gateway sells per call and Research OS reads free, with the rights each paid tier may carry and the graph model for patents.
+- The design of patents in Research OS: imported into the graph from a bulk corpus, free to read, each linked to the x402 research gateway's citeable USPTO record. The gateway and protocol work lives in the bucket-foundation org repositories, where the findings went as issues.
 
 ### Corrected
 

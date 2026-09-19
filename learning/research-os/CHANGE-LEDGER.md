@@ -2,15 +2,15 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
-## ros-patents 0: the patents gateway and service
+## ros-patents 0: the patents gateway and Research OS
 
-Research and design for a patents x402 gateway and feed402 service that Research OS also reads.
+Research on patent sources, terms, and x402 sellers; the Research OS side of patents; and the gateway and protocol findings handed to the bucket-foundation org repositories, where that work lives.
 
-Date 2026-09-19. Branch `feat/ros-loop-patents-gateway`, worktree `.wt-ros-loop`, PR #188 into `dev`. Founder direction: patents as first-class research objects, with their own x402 gateway and feed402 service.
+Date 2026-09-19. Branch `feat/ros-loop-patents-gateway`, worktree `.wt-ros-loop`, PR #188 into `dev`. Founder direction: patents as first-class research objects, with their own x402 gateway and feed402 service; "the x402 feed402 patents work is a different bucket org repo". Issues filed: x402-research-gateway#67 and #68, feed402#12.
 
 ### Added
 
-- `learning/research-os/PATENTS.md`: the ros-patents epic's file. What feed402, the Go gateway, and this repository hold; what changed outside since the licensing matrix; and the design: one patent index read by the gateway and by Research OS behind keys that decide each reader's rights, the five gateway changes, rights by tier, pricing, the graph model, the surfaces by level, and five questions for the founder.
+- `learning/research-os/PATENTS.md`: the ros-patents epic's file. What feed402, the Go gateway, and this repository hold; what changed outside since the licensing matrix; and the design of Research OS's side: patents imported into the graph from a bulk corpus and linked to the gateway's citeable USPTO records, the readers inside Research OS, the rights it shows, the graph model, the surfaces by level, and three questions for the founder.
 
 ### Edited
 

@@ -4,9 +4,9 @@ Patents as first-class research objects: a paid patents gateway over x402 with f
 
 The founder, 2026-09-18: "if we are focused on scientific research, discovery, and innovation, patents are super important too," and "patents should have its own x402 researchgateway and feed402, do some internal external research on that."
 
-This file holds the ros-patents epic. Slice 0, the gateway and the service, comes first; slices 1 to 4 (the research memo, the first corpus, prior-art search, claims and disclosure) follow in the queue.
+The founder, 2026-09-19: "the x402 feed402 patents work is a different bucket org repo." The gateway lives in [bucket-foundation/x402-research-gateway](https://github.com/bucket-foundation/x402-research-gateway) and the protocol in [bucket-foundation/feed402](https://github.com/bucket-foundation/feed402); their patent work is tracked there. This file holds the Research OS side of the ros-patents epic: what Research OS reads, how patents enter the graph, and where a researcher meets them. Slice 0 comes first; slices 1 to 4 (the research memo, the first corpus, prior-art search, claims and disclosure) follow in the queue.
 
-## Slice 0: the gateway and the service
+## Slice 0: the gateway and Research OS
 
 ### What the repositories hold
 
@@ -17,11 +17,14 @@ As of 2026-09-19.
 - `SPEC.md` §6.1 defines six routes: `/patents/search`, `/patents/{id}`, `/patents/by-coord`, `/patents/family/{id}`, `/patents/citations/{id}` at the query and raw tiers ($0.005, $0.010), and `/patents/insight` at $0.002. Section 6.1.1 turns the jurisdiction rules into a structured rights block: US records from PatentsView or Google Patents carry CC-BY-4.0 on metadata and content with every action allowed; EP records through EPO OPS allow metadata and deny content, text mining, and training; WO records reach the insight tier alone. The fixture is `fixtures/v0.3/insight-rights-patents-jurisdiction.json`.
 - `routes/patents.ts` (651 lines) mounts the six routes and a seventh, `/citation`, behind a payment guard, with domain types that mirror this repository's USPTO schema, a `PatentsRepo` interface, and a `MockPatentsRepo`. No real data backs it.
 
-**x402-research-gateway** (`~/agfarms/x402-research-gateway`, Gian's MIT Go service, deployed at `x402-research.agfarms.dev`):
+**x402-research-gateway** (bucket-foundation org, `main` at `af92a61`; the local checkout under `~/agfarms` follows `gianyrox` and lags it):
 
-- A config-driven paid proxy. Each route in `config/routes.yaml` names an upstream (base URL, path, headers with environment expansion, fixed and passed-through query parameters, timeout), a price, a cache time, a feed402 tier, and a citation block (source prefix, canonical URL template, license). Handlers wrap upstream replies in feed402 envelopes.
-- `config/routes.yaml` holds seven routes over PubMed, Semantic Scholar, OpenAlex, ClinicalTrials.gov, PubChem, and the Kruse corpus, priced $0.001 to $0.002; the deployed gateway runs `config/routes.hetzner.yaml`, with six of them and no Kruse route, on Base Sepolia through the facilitator at `facilitator.x402.rs`. The insight endpoint over PubMed is priced $0.005, above its query routes, where feed402 §5 makes insight the cheapest tier.
-- No patents route.
+- A provider registry (`config/providers.yaml`) with typed adapters behind feed402/0.3 envelopes.
+- One live patent provider, `uspto-odp` (gateway #18, closed by #64 on 2026-08-18): search and fetch over USPTO ODP's Patent File Wrapper API, with parties, CPC and USPC classes, and the parent and child continuity that stands in for a family. It is US only and public domain, verified live against an ODP key provisioned to the founder's USPTO account.
+  - Forward and backward citations are verified absent from that API, so the gateway answers a citation request for this provider as unsupported.
+  - The routes are `/research/uspto/search` and `/research/uspto/fetch` in `config/routes.yaml`. They are missing from `config/routes.hetzner.yaml`, the config the deployment runs.
+- Google Patents, EPO OPS, and WIPO PATENTSCOPE are registered as `discovered`, with redistribution unknown and no adapter. Lens is registered.
+- It settles on FareSide's free testnet facilitator. `decodeAndVerifyPayment` builds its payment requirements from the client's payload, as on the older copy.
 
 **bucket-foundation**:
 
@@ -60,58 +63,40 @@ Checked 2026-09-19 against the sources named.
 
 ### Design
 
-The gateway, the corpus behind it, and Research OS read one patent index. The gateway sells it per call; Research OS reads it free, as it reads the rest of the graph.
+The gateway sells citeable patent records over x402. Research OS reads patents free from its own graph, and links each patent to the gateway for the citeable record: free to read, paid to cite.
 
-**One index, two readers.** A patents service holds the corpus and answers the feed402 patent routes of §6.1. It is the feed402 reference server's `mountPatents` with a real `PatentsRepo` in place of the mock: the DuckDB index of `local/patents` (full-text and vector search fused by reciprocal rank, the Kruse Index pattern), whose `05-serve.ts` needs its call updated to the current `mountPatents(app, {repo, guard})`, and ros-patents 2 keeps that DuckDB store wherever the service runs; the USPTO Postgres schema waits until the corpus outgrows it. It runs with payment off. Two readers sit in front of it.
+**What the gateway serves, and what it still needs.** `uspto-search` and `uspto-fetch` already answer with US applications and grants in feed402/0.3 envelopes. The rest is tracked in the org repositories:
 
-The x402 research gateway sells it. Each patent route becomes an entry in `config/routes.yaml` whose upstream is the patents service, so payment, the facilitator, receipts, and discovery stay in the one gateway that already sells PubMed and OpenAlex at `x402-research.agfarms.dev`. The patent routes go into `config/routes.hetzner.yaml`, the config the deployed gateway runs. The gateway needs five changes for that, found by reading its handlers:
+- [gateway #67](https://github.com/bucket-foundation/x402-research-gateway/issues/67): payment checks built from the route's own price, payee, and asset. This gates any mainnet traffic.
+- [gateway #68](https://github.com/bucket-foundation/x402-research-gateway/issues/68) carries the provider terms read here into the registry: EPO OPS inside composed answers only, EPO bulk data with its terms unread, WIPO paid, Google Patents Public Data CC BY 4.0. It also covers a licensed citation source, the missing deployed routes, and the mainnet facilitator and wallet.
+- [feed402 #12](https://github.com/bucket-foundation/feed402/issues/12): §6.1's EP and WO rights brought in line with those terms, an `attribution` field, rights emission, canonical URLs, and patent-to-paper links.
 
-1. **Receipts.** The patents service answers in feed402 envelopes whose receipt says `tx: "local-mode-no-payment"`. The gateway must keep the upstream's data and citation and put its own settlement receipt in place of that one; today it wraps every upstream reply in a new envelope.
-2. **Path parameters.** The gateway finds a route by exact method and path (`routeIndex["GET /path"]`) and fills an upstream path template from query parameters alone, so `/patents/{id}`, `/patents/family/{id}`, and `/patents/citations/{id}` do not route. It needs path patterns and path-parameter forwarding.
-3. **Spec version.** The gateway declares `feed402/0.2`, where `citation` is one object; the patents routes answer in v0.3 with a list of citations. Either the gateway moves to 0.3 or a route declares its own version.
-4. **Payee.** One `recipientAddress` serves every route. Patent fees go wherever the founder decides (below), which may be a different wallet, so a route needs its own `payTo`.
-5. **Payment checks.** `decodeAndVerifyPayment` in `internal/handler/handler.go` builds the requirements it sends to the facilitator from the client's own payment payload, payee, amount, and asset included, and never compares them with the route's price or the gateway's recipient; the handler also serves the data when settlement returns nothing, and keeps no record of a payment it has already accepted. The gateway must build the requirements from its route config, refuse a payment whose payee, amount, asset, or network differ, refuse a payment it has seen, and wait for settlement before it answers. This is live on testnet today, where no real money moves and the routes relay public APIs; it gates any mainnet traffic, patents or not.
+**Research OS's patents come from the graph.** ODP's API has no citations, and Research OS needs them, so the ros-patents 2 importer writes patent nodes and `cites` edges into the Supabase `graph` schema from a bulk corpus:
 
-Research OS reads the same corpus free, in two ways. The ros-patents 2 importer writes patent nodes and their links into the Supabase `graph` schema, so node pages, search, and the map read patents the way they read every other node, with no call to the service. Prior-art search over the whole corpus (ros-patents 3) calls the service from Research OS's server routes on Vercel.
+- the PatentsView bulk tables on ODP (grants, claims, application numbers, patent-to-patent citations, non-patent literature references, CPC classes, disambiguated assignees and inventors; CC BY 4.0, to be confirmed on the signed-in download page); or
+- Google Patents Public Data on BigQuery (CC BY 4.0), whose `publications` table is 899.4 GB over 98,176,830 rows with no documented partitioning, so a dry run gives the bytes before any slice query runs. The BigQuery sandbox allows 1 TiB of queries a month and 10 GiB of storage for the project's life, and expires tables after 60 days ([BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox), updated 2026-09-16).
 
-**Keys decide what a caller gets.** The service runs with payment off, so no call reaches it without a key, and the key decides the reader profile; the service filters rows by each row's rights block before it answers:
+The slice is the CPC classes that match the graph's branches, chosen in ros-patents 1. The fetch scripts in `data/patents/uspto/scripts` need new hosts either way. Each patent node carries its application number, so its page links to the gateway's `uspto-fetch` for the citeable record, and its source with attribution: "USPTO; PatentsView, CC BY 4.0" or "Google Patents Public Data by IFI CLAIMS Patent Services and Google, CC BY 4.0". Node pages, search, and the map read patents from Supabase like any node, with no call to the gateway.
 
-- The gateway's key gives the `paid` profile: only rows whose rights allow the tier, with no CC BY-NC rows and no EP or WO content. The gateway reaches the service over the Hetzner box's private network, and sends the key through the route's `headers`, which the gateway sets and a client cannot.
-- Research OS's key gives the `research-os` profile, which adds rows Research OS may show, such as Reliance on Science links, each marked non-commercial. Research OS calls from its server routes on Vercel over the service's HTTPS address; the key lives in Vercel's server environment alone and is compared in constant time. The service accepts a current and a next key for each profile, so each side rotates on its own schedule without dropping calls; a new Vercel value takes effect on the next deployment, so Research OS rotates with a release.
-- A call without a key gets 401. The service has no public, keyless path, so nothing it sells is free outside the gateway.
+**Readers inside Research OS.**
 
-The filter lives in the service: `05-serve.ts` mounts one feed402 sub-app per profile, each with a `PatentsRepo` that reads only the rows its profile allows, and feed402's `patentCitation` emits each row's rights block so a reader can check it. The service is built and tested on the local DuckDB index first. Where it runs in public is question 5 below: the Hetzner box that runs the gateway is AGFarms' Nucleus server, Bucket is legally separate from AGFarms, and that box has run out of memory before, so the DuckDB vector index is sized against its 16 GB before anything moves there.
+- **Prior-art search** (ros-patents 3) runs over the imported patent nodes, by text and by embeddings, as search does today. Past the imported slice, it offers the gateway's `uspto-search` as a paid call that the researcher or their agent makes.
+- **The MCP endpoint** in `src/app/api/mcp` takes no sign-in and answers any origin. Its `patents_search` tool reads the imported nodes: titles, abstracts, CPC classes, their `cites` links, and a link to the gateway record. It runs under a per-IP limit that the tool's slice adds, since the endpoint has none today.
+- **Research OS's chat** tool `feed402_search_patents` moves to the same imported nodes in ros-patents 2. Today it calls a local feed402 server through `src/lib/feed402-client.ts`, with a stub payment and paths the service does not answer (PR-070).
+- **The local DuckDB index** in `local/patents`, served by feed402's `mountPatents` through `05-serve.ts`, is the protocol's reference path. Research OS does not depend on it.
 
-The MCP endpoint in `src/app/api/mcp` takes no sign-in and answers any origin, so its `patents_search` tool reads the free layer alone: the patent nodes Research OS has imported, with titles, abstracts, CPC classes, their `cites` links in the graph (a link drawn from Reliance on Science carries its non-commercial mark), and a link to the gateway route that sells the full record, under a per-IP limit the tool's slice adds, since the endpoint has none today and this is its first tool to read Supabase. Full records and insight answers, the citeable envelopes with receipts, come from the gateway. That keeps Bucket's split: free to read, paid to cite.
+**Rights Research OS shows.** Research OS is free to read, so it may show some sources a paid route may not sell. What the gateway may sell is settled in gateway #68 and feed402 #12.
 
-Research OS's chat reads patents too, and follows the MCP tool: `feed402_search_patents` in `src/app/api/chat/route.ts` reads the imported patent nodes through the same free layer, where today it calls the service with a stub payment. Chat answers any visitor, so it gets no key to the service; `src/lib/feed402-client.ts` keeps its PubMed and OpenAlex calls, and its patent calls move to the graph in ros-patents 2.
+| Source | Research OS | Gateway paid routes |
+|---|---|---|
+| USPTO ODP (public domain) | yes | yes (live) |
+| PatentsView and Google Patents Public Data, CC BY 4.0 | yes, with attribution | yes, with attribution, per #68 |
+| Patent-to-paper links Bucket builds from PatentsView references matched to OpenAlex | yes, marked as Bucket's adaptation of CC BY data | once feed402 #12 adds a field |
+| Reliance on Science, CC BY-NC 4.0 | yes, marked non-commercial | no |
+| EPO, through OPS or the free bulk products | not in v1 | inside composed answers only, per #68 |
+| WIPO PATENTSCOPE | no | no, until a paid licence |
 
-A config-only proxy in front of a public patent API was the other shape considered. It has no usable upstream today: PatentsView's search API is paused, the one live ODP API gives one person's key 60 requests a minute, EPO forbids relaying OPS data as such, and WIPO needs a paid licence.
-
-**Corpus v1: US grants, CC BY 4.0, in the classes the graph covers.** The first load is US granted patents, in the CPC classes that match the graph's branches, chosen in ros-patents 1 and loaded in ros-patents 2. Two sources carry them under CC BY 4.0:
-
-- the PatentsView bulk tables, now on ODP: grants, claims, patent-to-patent citations, non-patent literature references, current CPC classes, and disambiguated assignees and inventors. Their CC BY 4.0 licence is to be confirmed on the ODP download page, which needs a signed-in account;
-- the Google Patents Public Data tables on BigQuery, with worldwide bibliographic data and US full text. The `publications` table is 899.4 GB over 98,176,830 rows with no documented partitioning ([table list](https://github.com/google/patents-public-data/blob/master/tables/dataset_Google%20Patents%20Public%20Datasets.md)), and BigQuery bills the columns a query reads across every row, so a dry run gives the bytes before any slice query runs. The BigQuery sandbox, which needs no billing, allows 1 TiB of queries a month and 10 GiB of storage for the life of the project, and expires every table after 60 days ([BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox), updated 2026-09-16); its page does not say whether export to Cloud Storage works without billing.
-
-The fetch scripts in `data/patents/uspto/scripts` need new hosts either way.
-
-**Rights by tier.** Each record carries the §6.1.1 rights block, and the service's reader profile applies it. For v1:
-
-| Source | Raw and query tiers | Insight tier | Research OS |
-|---|---|---|---|
-| PatentsView and Google Patents Public Data, CC BY 4.0 | yes, with attribution | yes, with attribution | yes |
-| Patent-to-paper links Bucket builds from PatentsView references matched to OpenAlex | yes once a route serves them (ros-patents 2), marked as Bucket's adaptation of CC BY data | yes, from ros-patents 2 | yes |
-| Reliance on Science, CC BY-NC 4.0 | no | no | yes, marked non-commercial |
-| EPO, through OPS or the free bulk products | not in v1 | not in v1 | not in v1 |
-| WIPO PATENTSCOPE | no | no, until a paid derivative licence | no |
-
-EP data waits on the EPO's raw-data terms, read in ros-patents 1. The OPS terms allow it inside Bucket's products, but feed402's EP rights block marks text mining denied, and an insight answer is a model reading the text, so the two need reconciling before EP enters any tier.
-
-Attribution rides in each citation as an `attribution` string: "USPTO; PatentsView, CC BY 4.0" or "Google Patents Public Data by IFI CLAIMS Patent Services and Google, CC BY 4.0", with "adapted by Bucket" on the links Bucket builds. The `canonical_url` points at the record's real source: the USPTO's published document (`https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/{number}`) for PatentsView records, and `https://patents.google.com/patent/{country}{number}{kind}` for BigQuery records, built from `publication_number` with its hyphens removed (`US-7654321-B2` gives `US7654321B2`; the hyphenated form answers 404).
-
-**Pricing.** The §6.1 prices stand: $0.010 for a full grant, $0.005 for a query, $0.002 for an insight. They sit far below the one x402 patent seller found ($0.10 a patent), which fits Bucket's aim that citing stays cheap. Settlement sets the floor. Past 1,000 settlements a month, Coinbase's facilitator takes $0.001 of each, half of an insight call. The gateway settles on a free testnet facilitator today, so the mainnet facilitator is a choice still to make: Coinbase's CDP, FareSide's hosted service, or x402-rs run by Bucket; its fee belongs in the price. The feed402 `/patents/insight` route (`routes/patents.ts`) builds its summary from a template with no model call, so its only cost is settlement; the gateway's own insight route, a POST over PubMed with `gpt-4o-mini`, is a different path. If the patents insight later calls a model, the call runs in the patents service, and the price less settlement and the model is the margin, near zero at $0.002 past the free settlements. The gateway's own insight route over PubMed is priced $0.005, above its query routes, against §5; the patents routes follow the spec, and the PubMed price is flagged for the gateway.
-
-**Where the fees go.** PROTOCOL.md sends a citation fee to the author's `payout_wallet`. A patent's inventors and assignees have no wallet on record and never signed up. The options are Bucket's operating costs with a public ledger, an escrow per inventor that a claim releases, or a donation to the open data sources. It is the founder's call, and until then patent fees go to operations and the ledger is public.
+**Where the fees go.** PROTOCOL.md sends a citation fee to the author's `payout_wallet`. A patent's inventors and assignees have no wallet on record and never signed up. The options are Bucket's operating costs with a public ledger, an escrow per inventor that a claim releases, or a donation to the open data sources. It is the founder's call. Until then patent fees go to operations with a public ledger; on testnet no real money moves.
 
 **Graph model by slice.**
 
@@ -131,43 +116,22 @@ Attribution rides in each citation as an `attribution` string: "USPTO; PatentsVi
 The split of work is the human-AI-computer one this epic serves:
 
 - **The computer** holds the index and ranks prior art by text, vectors, and CPC overlap.
-- **The model** proposes what a claim combines, and would write the insight summaries if the insight route later calls a model.
+- **The model** proposes what a claim combines, and summarizes a patent for a researcher who asks.
 - **The researcher** reads both, judges novelty, and approves or rejects each proposed edge.
 
-**Changes outside this repository, logged for their own sessions:**
+**Waiting on the founder.** Until he answers, the loop does only work that can be undone and spends nothing.
 
-- **feed402**, with hours logged to `feed402/TIMELOG.md`:
-  - The §6.1 prose names EPO OPS on the query tier and WIPO on the insight tier. It should match the v1 table above.
-  - The EP and WO rights blocks in §6.1.1 and the fixture `fixtures/v0.3/insight-rights-patents-jurisdiction.json` need the same change.
-  - In `routes/patents.ts`, the comments need the same change, and so do `canonicalUrl` and `patentCitation` (lines 305 to 338), for the source URLs and the `attribution` field above.
-  - The spec should name the key-based reader profiles and the `attribution` field, and `patentCitation` should emit each row's rights block.
-  - `getByCanonicalUrl` compares URLs exactly in the mock repository of `routes/patents.ts`, and matches `/US(\d+)/` in this repository's `05-serve.ts`, which finds Google URLs and misses the USPTO pattern (lowercase `uspto` followed by the bare number) and numbers with a letter prefix such as `D`, `RE`, or `PP`. Both need to parse the two URL patterns above.
-  - No route serves patent-to-paper links: `PatentCitation` holds patent-to-patent citations alone. A link field or route comes with ros-patents 2, and until then the paid tiers carry no patent-to-paper links.
-- **The x402 research gateway** needs the five changes above, the patent routes, a mainnet facilitator, and a look at its insight price. Its feed402 manifest gives `research@viatika.ai` as the contact, which is a vendor's address.
-- **`local/patents/scripts/05-serve.ts`** needs the current `mountPatents` call. It lives in this repository and is part of ros-patents 2.
-
-`docs/PATENT_LICENSING.md` and `docs/FEED402_PATENTS.md` carry the corrections found here in dated blocks at their tops: PatentsView's paused API, the OPS terms, the free EPO bulk data with its terms unread, WIPO's paid licence, Reliance on Science's licence, and Lens paid for any commercial or integrated use, with a 14-day trial otherwise ([Lens API access](https://support.lens.org/knowledge-base/lens-patent-and-scholar-api/), updated 2026-05-21).
-
-**Waiting on the founder.** Each question has a recommendation. Until he answers, the loop does only work that can be undone and spends nothing:
-
-1. **An account for the bulk data.** Blocked: both options sign in as him.
-   - The recommendation is a USPTO.gov account with MFA for the PatentsView tables on ODP: free, CC BY 4.0 to be confirmed on ODP, with disambiguated assignees and inventors and the non-patent literature references.
-   - The option is BigQuery, either the sandbox within its limits above, or a project with billing and a daily cost cap, with a dry run of the slice query first.
+1. **The account for the bulk data.** The gateway already runs on an ODP key provisioned to his USPTO account on 2026-08-18.
+   - The recommendation is that ros-patents 2 downloads the PatentsView bulk tables with that account.
+   - The option is BigQuery, either the sandbox within its limits or a project with billing and a daily cost cap.
    - ros-patents 2 waits on one of them.
-2. **Where patent citation fees go.** The recommendation is Bucket's operations, with a public ledger. The options are an escrow per inventor that a claim releases, or a donation to the open data sources. On testnet no real money moves, so nothing waits on this yet.
+2. **Where patent citation fees go.** The recommendation is Bucket's operations, with a public ledger.
 3. **The IP stance before disclosure becomes a production.**
    - The options are defensive publication (Bucket publishes disclosures as prior art and files nothing), filing and pledging the patents open, or counsel's review first.
-   - Publishing a disclosure cannot be undone: in Europe it ends novelty at once, and in the US it starts a one-year grace period.
+   - Publishing cannot be undone: in Europe it ends novelty at once, and in the US it starts a one-year grace period.
    - Until he answers, a disclosure stays private to its author.
-4. **Who owns the mainnet money path.** Blocked: it needs accounts in Bucket's name.
-   - The gateway runs on a testnet facilitator, with one receiving address and a vendor contact in its manifest.
-   - The recommendation is Coinbase's CDP facilitator under a Bucket account, a Bucket wallet receiving patent fees on Base, and a Bucket contact, once the gateway's payment checks (change 5) are fixed.
-   - The option is x402-rs run by Bucket.
-   - Until then the gateway stays on testnet.
-5. **Who hosts the patents service.** Blocked: it is an agreement between Bucket and AGFarms.
-   - The gateway runs on AGFarms' Nucleus server, and Bucket is legally separate from AGFarms.
-   - The options are that server under a written agreement between the two, a small server in Bucket's name, or this machine alone until one of those exists.
-   - Until he answers, the service runs locally for Research OS development, and nothing public depends on it.
+
+The gateway's own questions, who owns the mainnet facilitator and receiving wallet and who hosts the service, are in gateway #68.
 
 **Slices after this one:**
 
@@ -176,4 +140,4 @@ The split of work is the human-AI-computer one this epic serves:
 - ros-patents 3 builds prior-art search.
 - ros-patents 4 decomposes claims into elements and adds disclosure.
 
-The gateway routes go live with ros-patents 2, once a real `PatentsRepo` has data behind it.
+The gateway's USPTO routes answer today; Research OS links to them from ros-patents 2.
