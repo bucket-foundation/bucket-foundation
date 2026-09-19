@@ -71,6 +71,21 @@ git -C "$REPO" commit -q -m "chore: move a file"
 SHA_MOVE="$(sha_of HEAD)"
 git -C "$REPO" reset -q --hard "$SHA_SITE"
 
+# 4,000 paths under yt/ (about 150 KB of names, past the 64 KB pipe buffer)
+# beside one src/ change, which sorts first in the diff.
+mkdir -p "$REPO/yt"
+for i in $(seq 1 4000); do echo "$i" >"$REPO/yt/transcript-$(printf '%05d' "$i")-of-a-long-video-title.txt"; done
+echo "big" >>"$REPO/src/app/page.tsx"
+git -C "$REPO" add -A
+git -C "$REPO" commit -q -m "feat: a site change among many files"
+SHA_BIG="$(sha_of HEAD)"
+git -C "$REPO" reset -q --hard "$SHA_SITE"
+BIG_BYTES="$(git -C "$REPO" diff --name-only "$SHA_SITE" "$SHA_BIG" | wc -c)"
+if (( BIG_BYTES <= 65536 )); then
+  echo "fixture error: the big diff is only $BIG_BYTES bytes" >&2
+  FAIL=$((FAIL + 1))
+fi
+
 echo "fixture: base=$SHA_BASE docs=$SHA_DOCS site=$SHA_SITE move=$SHA_MOVE"
 echo
 
@@ -130,11 +145,23 @@ run_case "a file moved out of src/ counts as a src change" build \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_SITE" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_MOVE"
 
-run_case "uncomputable diff builds (bad previous sha)" build \
+run_case "an unknown previous sha with nothing to fetch from builds" build \
   "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
   "VERCEL_GIT_COMMIT_MESSAGE=feat: normal work" \
   "VERCEL_GIT_PREVIOUS_SHA=deadbeefdeadbeefdeadbeefdeadbeefdeadbeef" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
+run_case "an unknown pushed commit fails the diff and builds" build \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat: normal work" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
+  "VERCEL_GIT_COMMIT_SHA=feedfacefeedfacefeedfacefeedfacefeedface"
+
+run_case "a diff past the pipe buffer with a site change builds" build \
+  "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat: a site change among many files" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_SITE" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_BIG"
 
 run_case "production skips on engine-only diff" skip \
   "VERCEL_ENV=production" \
@@ -162,6 +189,7 @@ run_case "[vercel build] forces a build over an engine branch + docs diff" build
 # commit of the fixture at depth 1, drops the remote, and lets the script
 # fetch its base from VERCEL_IGNORE_FETCH_URL.
 git -C "$REPO" config uploadpack.allowReachableSHA1InWant true
+git -C "$REPO" config uploadpack.allowFilter true
 git -C "$REPO" branch -q -f dev "$SHA_DOCS"
 git -C "$REPO" checkout -q -b feat/docs-only "$SHA_DOCS"
 commit_file "docs/more.md" "docs: more notes"
@@ -192,6 +220,29 @@ run_case "shallow clone: base fetched, docs-only diff skips" skip \
   "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_BASE" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
+# The fetch asks for trees alone: a blob only the base holds stays unfetched.
+git -C "$REPO" checkout -q -b feat/blob-check "$SHA_DOCS"
+commit_file "papers/only-in-base.md" "docs: a file the next commit removes"
+SHA_BLOB_BASE="$(sha_of HEAD)"
+git -C "$REPO" rm -q papers/only-in-base.md
+git -C "$REPO" commit -q -m "docs: remove it"
+SHA_BLOB_CUR="$(sha_of HEAD)"
+git -C "$REPO" checkout -q -
+shallow_clone "$SHA_BLOB_CUR"
+run_case "shallow clone: a removed docs file skips" skip \
+  "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_GIT_COMMIT_REF=feat/blob-check" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: remove it" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_BLOB_BASE" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_BLOB_CUR"
+if GIT_NO_LAZY_FETCH=1 git -C "$RUN_IN" cat-file -e "$SHA_BLOB_BASE:papers/only-in-base.md" 2>/dev/null; then
+  FAIL=$((FAIL + 1))
+  echo "FAIL  the base fetch brought blobs; it should bring trees alone"
+else
+  PASS=$((PASS + 1))
+  echo "PASS  the base fetch brought trees alone"
+fi
 
 shallow_clone "$SHA_SITE"
 run_case "shallow clone: base fetched, site diff builds" build \
@@ -240,7 +291,7 @@ run_case "shallow clone: first deployment, a site change beside dev, builds" bui
   "VERCEL_GIT_COMMIT_SHA=$SHA_FEAT_LATE_DOCS"
 
 shallow_clone "$SHA_DOCS"
-run_case "shallow clone: dev with no previous deployment compares with its parent" skip \
+run_case "shallow clone: dev with no previous deployment builds" build \
   "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
   "VERCEL_GIT_COMMIT_REF=dev" \
   "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \

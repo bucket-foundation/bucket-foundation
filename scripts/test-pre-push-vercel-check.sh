@@ -31,7 +31,9 @@ cat >"$REPO/package.json" <<'JSON'
   }
 }
 JSON
-printf 'ran-*\n*-fails\n' >"$REPO/.gitignore"
+printf 'ran-*\n*-fails\nnode_modules/\n' >"$REPO/.gitignore"
+mkdir -p "$REPO/node_modules/.bin"
+touch "$REPO/node_modules/.bin/next" "$REPO/node_modules/.bin/tsc"
 git -C "$REPO" add -A
 git -C "$REPO" commit -q -m "base"
 BASE="$(git -C "$REPO" rev-parse HEAD)"
@@ -59,22 +61,35 @@ SITE_THEN_DOCS="$(git -C "$REPO" rev-parse HEAD)"
 
 run_case() {
   # run_case <name> <expect exit> <expect lint ran: yes|no> <stdin line> [VAR=val]...
+  # The checkout moves to the pushed commit first, as when pushing the
+  # current branch; AT=<sha> checks out another commit instead.
   local name="$1" expect="$2" ran="$3" line="$4"
   shift 4
   rm -f "$REPO"/ran-* "$REPO"/*-fails
-  local status got_ran out
+  local status got_ran out at
+  at="$(echo "$line" | awk '{print $2}')"
+  for kv in "$@"; do [[ "$kv" == AT=* ]] && at="${kv#AT=}"; done
+  [[ "$at" == "$ZERO" ]] && at="$BASE"
+  git -C "$REPO" checkout -q --detach "$at"
   out="$(
     cd "$REPO" || exit 99
     for kv in "$@"; do
       case "$kv" in
         FAIL_LINT=1) touch lint-fails ;;
         FAIL_TYPES=1) touch typecheck-fails ;;
+        DIRTY=1) echo "// changed" >>src/app/page.tsx ;;
+        UNTRACKED=1) mkdir -p src/lib && echo "broken(" >src/lib/stray.ts ;;
+        NO_MODULES=1) mv node_modules node_modules.off ;;
+        AT=*) ;;
         *) export "$kv" ;;
       esac
     done
     echo "$line" | bash scripts/pre-push-vercel-check.sh origin "file://$REPO" 2>&1
   )"
   status=$?
+  git -C "$REPO" checkout -q -- . 2>/dev/null
+  rm -f "$REPO/src/lib/stray.ts"
+  [[ -d "$REPO/node_modules.off" ]] && mv "$REPO/node_modules.off" "$REPO/node_modules"
   [[ -f "$REPO/ran-lint" ]] && got_ran=yes || got_ran=no
   if [[ "$status" == "$expect" && "$got_ran" == "$ran" ]]; then
     PASS=$((PASS + 1))
@@ -97,6 +112,51 @@ run_case "an engine branch pushes without a check" 0 no "$(ref feat/hte-run "$EN
 run_case "docs on top of a branch's site change still checks" 1 yes "$(ref feat/two "$SITE_THEN_DOCS" "$SITE")" FAIL_LINT=1
 run_case "deleting a branch pushes without a check" 0 no "(delete) $ZERO refs/heads/feat/site $SITE" FAIL_LINT=1
 run_case "AGF_PREPUSH_SKIP=1 bypasses the check" 0 no "$(ref feat/site "$SITE" "$ZERO")" FAIL_LINT=1 AGF_PREPUSH_SKIP=1
+run_case "a push from another checkout is refused" 1 no "$(ref feat/site "$SITE" "$ZERO")" "AT=$DOCS"
+run_case "an uncommitted change to a checked file is refused" 1 no "$(ref feat/site "$SITE" "$ZERO")" DIRTY=1
+run_case "an untracked .ts file is refused" 1 no "$(ref feat/site "$SITE" "$ZERO")" UNTRACKED=1
+run_case "missing node_modules is refused with the reason" 1 no "$(ref feat/site "$SITE" "$ZERO")" NO_MODULES=1
+run_case "a push to dev checks" 0 yes "$(ref dev "$DOCS" "$BASE")"
+run_case "[skip ci] on dev pushes without a check" 0 no "$(ref dev "$SITE_WIP" "$BASE")" FAIL_LINT=1
+run_case "a tag push has no check" 0 no "refs/tags/v1 $SITE refs/tags/v1 $ZERO" FAIL_LINT=1
+
+# --- the installer --------------------------------------------------------
+HOOKS="$WORKDIR/hooks"
+git -C "$REPO" config core.hooksPath "$HOOKS"
+cp "$HERE/install-git-hooks.sh" "$REPO/scripts/"
+install_case() {
+  # install_case <name> <expect exit>
+  local status
+  (cd "$REPO" && bash scripts/install-git-hooks.sh >/dev/null 2>&1)
+  status=$?
+  if [[ "$status" == "$2" ]]; then
+    PASS=$((PASS + 1)); printf 'PASS  %-58s (exit %s)\n' "$1" "$status"
+  else
+    FAIL=$((FAIL + 1)); printf 'FAIL  %-58s expected exit %s, got %s\n' "$1" "$2" "$status"
+  fi
+}
+install_case "the installer writes a pre-push" 0
+install_case "running it again is harmless" 0
+if grep -qF "scripts/pre-push-vercel-check.sh" "$HOOKS/pre-push" && [[ -x "$HOOKS/pre-push" ]]; then
+  PASS=$((PASS + 1)); echo "PASS  the installed hook runs the repository's check"
+else
+  FAIL=$((FAIL + 1)); echo "FAIL  the installed hook does not run the repository's check"
+fi
+git -C "$REPO" checkout -q --detach "$SITE"
+rm -f "$REPO"/ran-* "$REPO"/*-fails
+if (cd "$REPO" && echo "$(ref feat/site "$SITE" "$ZERO")" | "$HOOKS/pre-push" origin x >"$WORKDIR/hook.out" 2>&1) && [[ -f "$REPO/ran-lint" ]]; then
+  PASS=$((PASS + 1)); echo "PASS  the installed hook runs lint on a building push"
+else
+  FAIL=$((FAIL + 1)); echo "FAIL  the installed hook did not run lint on a building push"
+  sed "s/^/      /" "$WORKDIR/hook.out"
+fi
+printf '#!/bin/sh\necho mine\n' >"$HOOKS/pre-push"
+install_case "an existing pre-push of someone else's is left alone" 1
+if grep -q "echo mine" "$HOOKS/pre-push"; then
+  PASS=$((PASS + 1)); echo "PASS  the other hook is unchanged"
+else
+  FAIL=$((FAIL + 1)); echo "FAIL  the installer overwrote another hook"
+fi
 
 echo
 echo "$PASS passed, $FAIL failed"

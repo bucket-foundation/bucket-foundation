@@ -23,11 +23,12 @@
 #   4. otherwise                                        -> SKIP
 #
 # The base at step 3: VERCEL_GIT_PREVIOUS_SHA, the branch's last successful
-# deployment, when Vercel sets it; the tip of dev on a feature branch's first
-# deployment; the pushed commit's parent on dev or main. Vercel's build clone
-# holds the pushed commit alone and has no remote (measured 2026-09-18, see
-# docs/VERCEL-BUILDS.md), so the script fetches the base at depth 1 from the
-# public repository when the clone lacks it.
+# deployment, when Vercel sets it; the tip of dev on a feature branch with no
+# successful deployment yet. On dev or main with no previous deployment the
+# script builds. Vercel's build clone holds the pushed commit alone and has
+# no remote (measured 2026-09-18, see docs/VERCEL-BUILDS.md), so the script
+# fetches the base's trees at depth 1 from the public repository when the
+# clone lacks it.
 #
 # Branch prefixes skipped at step 2, with the evidence behind each
 # (from `git branch -r` on 2026-09-14, ~75 remote branches):
@@ -74,7 +75,7 @@ REPO_URL="${VERCEL_IGNORE_FETCH_URL:-}"
 if [[ -z "$REPO_URL" && -n "${VERCEL_GIT_REPO_OWNER:-}" && -n "${VERCEL_GIT_REPO_SLUG:-}" && "${VERCEL_GIT_PROVIDER:-github}" == "github" ]]; then
   REPO_URL="https://github.com/${VERCEL_GIT_REPO_OWNER}/${VERCEL_GIT_REPO_SLUG}.git"
 fi
-FETCH_TIMEOUT="${VERCEL_IGNORE_FETCH_TIMEOUT:-120}"
+FETCH_TIMEOUT="${VERCEL_IGNORE_FETCH_TIMEOUT:-60}"
 
 REF="${VERCEL_GIT_COMMIT_REF:-}"
 MSG="${VERCEL_GIT_COMMIT_MESSAGE:-}"
@@ -113,16 +114,37 @@ fi
 
 have_commit() { git cat-file -e "$1^{commit}" 2>/dev/null; }
 
-# fetch_from_repo <sha or refs/heads/name> <depth>: fetch into the clone,
-# which has no remote. Prints git's output on failure.
+# fetch_from_repo <sha or refs/heads/name>: fetch one commit's trees into
+# the clone, which has no remote of its own. The fetch goes through a named
+# remote marked as a partial-clone promisor so --filter=blob:none applies:
+# the diff needs trees alone, and a full depth-1 fetch of this repository
+# is a pack of about 815 MB (measured 2026-09-19) against 7 MB filtered.
+# Prints the reason on failure.
+GATE_REMOTE="vercel-ignore-build-base"
 fetch_from_repo() {
   if [[ -z "$REPO_URL" ]]; then
     echo "no repository URL (VERCEL_GIT_REPO_OWNER and VERCEL_GIT_REPO_SLUG unset)"
     return 1
   fi
-  local runner=()
+  if git remote get-url "$GATE_REMOTE" >/dev/null 2>&1; then
+    git remote set-url "$GATE_REMOTE" "$REPO_URL"
+  else
+    git remote add "$GATE_REMOTE" "$REPO_URL"
+  fi
+  git config "remote.$GATE_REMOTE.promisor" true
+  git config "remote.$GATE_REMOTE.partialclonefilter" blob:none
+  local runner=() out status
   command -v timeout >/dev/null 2>&1 && runner=(timeout "$FETCH_TIMEOUT")
-  "${runner[@]}" git fetch --quiet --no-tags --depth="$2" "$REPO_URL" "$1" 2>&1
+  out="$(GIT_TERMINAL_PROMPT=0 "${runner[@]}" git fetch --quiet --no-tags --filter=blob:none --depth=1 "$GATE_REMOTE" "$1" 2>&1)"
+  status=$?
+  if [[ $status -eq 124 ]]; then
+    echo "timed out after ${FETCH_TIMEOUT}s"
+    return 1
+  fi
+  if [[ $status -ne 0 ]]; then
+    echo "git fetch exited $status: ${out:-no output}"
+    return 1
+  fi
 }
 
 if [[ "$CUR_SHA" == "HEAD" ]]; then
@@ -133,25 +155,23 @@ if [[ -n "$PREV_SHA" ]]; then
   BASE="$PREV_SHA"
   BASE_DESC="last successful deployment $PREV_SHA"
   if ! have_commit "$BASE"; then
-    if ! out="$(fetch_from_repo "$BASE" 1)"; then
+    if ! out="$(fetch_from_repo "$BASE")"; then
       build "the $BASE_DESC is not in the clone and could not be fetched ($out); building to be safe"
     fi
   fi
 elif [[ "$REF" != "dev" && "$REF" != "main" ]]; then
-  # A feature branch's first deployment: compare with dev, where it will merge.
-  if ! out="$(fetch_from_repo refs/heads/dev 1)"; then
-    build "first deployment of '$REF' and the tip of dev could not be fetched ($out); building to be safe"
+  # No successful deployment on this branch yet: compare with dev, where it
+  # will merge. A branch cut from an older dev compares against changes it
+  # lacks too, which can only add a build.
+  if ! out="$(fetch_from_repo refs/heads/dev)"; then
+    build "no successful deployment of '$REF' yet and the tip of dev could not be fetched ($out); building to be safe"
   fi
   BASE="$(git rev-parse FETCH_HEAD)"
-  BASE_DESC="the tip of dev $BASE (first deployment of this branch)"
+  BASE_DESC="the tip of dev $BASE (no successful deployment of this branch yet)"
 else
-  if ! have_commit "${CUR_SHA}^"; then
-    if ! out="$(fetch_from_repo "$CUR_SHA" 2)"; then
-      build "no previous deployment on '$REF' and the parent of $CUR_SHA could not be fetched ($out); building to be safe"
-    fi
-  fi
-  BASE="$(git rev-parse "${CUR_SHA}^" 2>/dev/null || echo "${CUR_SHA}^")"
-  BASE_DESC="the parent $BASE (no previous deployment on this branch)"
+  # dev and main have deployed for as long as this gate has existed; with no
+  # previous deployment there is no base that covers every pushed commit.
+  build "no successful deployment on '$REF' to compare with; building to be safe"
 fi
 
 RANGE_DESC="$BASE_DESC to $CUR_SHA"
@@ -169,8 +189,12 @@ fi
 # .vercelignore, and direct grep of what src/ imports or reads).
 ALLOWLIST_RE='^(src/|public/|package\.json$|package-lock\.json$|next\.config\.mjs$|tailwind\.config\.ts$|postcss\.config\.mjs$|tsconfig\.json$|vercel\.json$|scripts/vercel-ignore-build\.sh$|scripts/sync-academy\.mjs$|learning/app/|bucket-canon/|canon-figures/figures\.json$|feed\.json$|PROTOCOL\.md$|GOVERNANCE\.md$|MANIFESTO\.md$|_intake/embeddings/|_intake/embeddings-v2/|_intake/connections/)'
 
-if echo "$DIFF_OUTPUT" | grep -qE "$ALLOWLIST_RE"; then
-  build "the diff from $RANGE_DESC touches an allowlisted site path: $(echo "$DIFF_OUTPUT" | grep -E "$ALLOWLIST_RE" | head -3 | tr '\n' ' ')"
+# grep reads a here-string. Under pipefail, `echo | grep -q` on a diff past
+# the pipe buffer (about 64 KB of paths) lets grep exit at the first match,
+# echo dies of SIGPIPE, the pipeline fails, and a site change would skip.
+if grep -qE "$ALLOWLIST_RE" <<<"$DIFF_OUTPUT"; then
+  MATCHED="$(grep -E "$ALLOWLIST_RE" <<<"$DIFF_OUTPUT")"
+  build "the diff from $RANGE_DESC touches an allowlisted site path: $(head -3 <<<"$MATCHED" | tr '\n' ' ')"
 fi
 
-skip "the diff from $RANGE_DESC touches no allowlisted site path ($(echo "$DIFF_OUTPUT" | grep -c .) files changed)"
+skip "the diff from $RANGE_DESC touches no allowlisted site path ($(grep -c . <<<"$DIFF_OUTPUT") files changed)"
