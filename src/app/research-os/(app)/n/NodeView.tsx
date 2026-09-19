@@ -10,6 +10,7 @@ import SourcesSection from "./SourcesSection";
 import CheckSection from "./CheckSection";
 import TransferSection from "./TransferSection";
 import AroundSection from "./AroundSection";
+import MakeupSection from "./MakeupSection";
 import ProductionsSection from "./ProductionsSection";
 import ClassSection from "./ClassSection";
 import AccessBlock from "../workspace/AccessBlock";
@@ -22,6 +23,7 @@ const SECTIONS: { id: string; label: string; level: string }[] = [
   { id: "check", label: "Check", level: "understanding" },
   { id: "transfer", label: "Transfer", level: "internalization" },
   { id: "around", label: "Around", level: "awareness" },
+  { id: "makeup", label: "Made of", level: "understanding" },
   { id: "produce", label: "Produce", level: "production" },
   { id: "class", label: "Class", level: "" },
   { id: "access", label: "Access", level: "access" },
@@ -97,7 +99,7 @@ export default function NodeView({ slug }: { slug: string }) {
 
       <nav aria-label="Verbs" className="sticky top-[58px] z-20 -mx-4 md:mx-0 px-4 md:px-0 bg-[color:var(--bone)]/90 backdrop-blur-[2px] border-y border-[color:var(--hairline)]">
         <div className="flex gap-1 overflow-x-auto">
-          {SECTIONS.map((s) => (
+          {SECTIONS.filter((s) => s.id !== "makeup" || node.visibility === "public").map((s) => (
             <a key={s.id} href={`#${s.id}`} className="small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] border-b-2 border-transparent hover:border-[color:var(--gold)]">
               {s.label}
             </a>
@@ -110,6 +112,7 @@ export default function NodeView({ slug }: { slug: string }) {
       <CheckSection data={data} quotes={quotes} onChanged={load} />
       <TransferSection data={data} onChanged={load} />
       <AroundSection data={data} />
+      {node.visibility === "public" && <MakeupSection slug={node.slug} branch={node.branch} />}
       <ProductionsSection data={data} quotes={quotes} onChanged={load} />
       <ClassSection data={data} onChanged={load} />
       <Section id="access" level="access" title="access" meta={node.visibility}>

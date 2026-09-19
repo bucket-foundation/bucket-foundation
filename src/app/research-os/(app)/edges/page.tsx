@@ -120,6 +120,11 @@ export default function ResearchOsEdgesPage() {
   const [kinds, setKinds] = useState<Record<string, Kind>>({});
   const [edits, setEdits] = useState<Record<string, { title: string; summary: string; branch: string }>>({});
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [verdict, setVerdict] = useState<"all" | "confirmed" | "refuted" | "unchecked">("all");
+  const [crossOnly, setCrossOnly] = useState(false);
+  const [find, setFind] = useState("");
+  const [showAllMissing, setShowAllMissing] = useState(false);
+  const [landed, setLanded] = useState<string | null>(null);
   const [notice, setNotice] = useState<{ id: string | null; text: string } | null>(null);
 
   useEffect(() => {
@@ -269,6 +274,55 @@ export default function ResearchOsEdgesPage() {
     return Array.from(by.values()).sort((a, b) => b.priority - a.priority || a.toTitle.localeCompare(b.toTitle));
   }, [proposals]);
 
+  const verdictOf = (p: EdgeProposal) => p.verification ?? (p.agreement ? "confirmed" : "refuted");
+  const needle = find.trim().toLowerCase();
+  const visibleGroups = useMemo(
+    () =>
+      groups
+        .map((g) => ({
+          ...g,
+          items: g.items.filter(
+            (p) =>
+              (verdict === "all" || verdictOf(p) === verdict) &&
+              (!crossOnly || p.crossBranch) &&
+              (!needle || p.toTitle.toLowerCase().includes(needle) || p.fromTitle.toLowerCase().includes(needle)),
+          ),
+        }))
+        .filter((g) => g.items.length > 0),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [groups, verdict, crossOnly, needle],
+  );
+  const visibleMissing = useMemo(
+    () =>
+      (nodeProposals ?? []).filter(
+        (n) => !needle || n.title.toLowerCase().includes(needle) || n.aliases.some((a) => a.toLowerCase().includes(needle)) || n.namedBy.some((t) => t.title.toLowerCase().includes(needle)),
+      ),
+    [nodeProposals, needle],
+  );
+  const counts = useMemo(() => {
+    const ps = proposals ?? [];
+    return {
+      confirmed: ps.filter((p) => verdictOf(p) === "confirmed").length,
+      refuted: ps.filter((p) => verdictOf(p) === "refuted").length,
+      unchecked: ps.filter((p) => verdictOf(p) === "unchecked").length,
+      loops: ps.filter((p) => p.inCycle).length,
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [proposals]);
+
+  // A node page links here as #target-<slug>; the queue loads after the
+  // browser has tried the anchor, so jump once the group exists.
+  useEffect(() => {
+    if (!proposals || typeof window === "undefined") return;
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    if (!hash.startsWith("target-") || landed === hash) return;
+    const el = document.getElementById(hash);
+    if (el) {
+      el.scrollIntoView({ block: "start" });
+      setLanded(hash);
+    }
+  }, [proposals, landed]);
+
   const noteInput = (id: string) => (
     <input
       value={notes[id] || ""}
@@ -322,6 +376,38 @@ export default function ResearchOsEdgesPage() {
         )}
         {queueError && queueError !== "forbidden" && <p className="mt-6 text-[13px] text-red-700">Could not load part of the queue ({queueError}).</p>}
 
+        {token && proposals && (
+          <div className="mt-6 flex flex-col gap-3 border-y border-[color:var(--hairline)] py-3">
+            <p className="text-[13px] text-[color:var(--basalt-2)]">
+              {irreducible?.length ? (
+                <a href="#irreducible" className="underline decoration-[color:var(--hairline)] underline-offset-4">{irreducible.length} called irreducible</a>
+              ) : (
+                <span>none called irreducible</span>
+              )}
+              {" · "}
+              {nodeProposals?.length ? (
+                <a href="#missing-primes" className="underline decoration-[color:var(--hairline)] underline-offset-4">{nodeProposals.length} missing primes</a>
+              ) : (
+                <span>no missing primes</span>
+              )}
+              {" · "}
+              <a href="#pending-edges" className="underline decoration-[color:var(--hairline)] underline-offset-4">{proposals.length} proposals</a>: {counts.confirmed} the second model agrees with, {counts.refuted} it disagrees with
+              {counts.unchecked > 0 && `, ${counts.unchecked} not checked yet`}
+              {counts.loops > 0 && `, ${counts.loops} on a loop`}.
+            </p>
+            <label className="text-[12px] text-[color:var(--basalt-3)] flex items-center gap-2">
+              <span className="small-caps">find</span>
+              <input
+                id="queue-find"
+                value={find}
+                onChange={(e) => setFind(e.target.value)}
+                placeholder="a node, a factor, or a missing idea"
+                className="flex-1 max-w-md border border-[color:var(--hairline)] px-2 py-1 text-[13px] bg-white/60"
+              />
+            </label>
+          </div>
+        )}
+
         {irreducible && irreducible.length > 0 && (
           <section className="mt-8 flex flex-col gap-3" aria-labelledby="irreducible">
             <h2 id="irreducible" className="font-display uppercase text-[16px] text-[color:var(--basalt)] mb-1">
@@ -357,13 +443,13 @@ export default function ResearchOsEdgesPage() {
         {nodeProposals && nodeProposals.length > 0 && (
           <section className="mt-8 flex flex-col gap-3" aria-labelledby="missing-primes">
             <h2 id="missing-primes" className="font-display uppercase text-[16px] text-[color:var(--basalt)] mb-1">
-              missing primes ({nodeProposals.length})
+              missing primes ({needle ? `${visibleMissing.length} of ${nodeProposals.length}` : nodeProposals.length})
             </h2>
             <p className="text-[13px] text-[color:var(--basalt-2)] max-w-2xl">
               Base ideas the proposer named while decomposing nodes, merged with their synonyms, the most-named first. Check the possible duplicates
               first; adding one creates a concept at the lowest grade tier among the nodes that named it, and queues a proposal from it to each.
             </p>
-            {nodeProposals.map((n) => {
+            {(showAllMissing || needle ? visibleMissing : visibleMissing.slice(0, 12)).map((n) => {
               const e = editOf(n);
               return (
                 <div key={n.id} className="p-4 bg-[color:var(--bone)]">
@@ -442,6 +528,11 @@ export default function ResearchOsEdgesPage() {
                 </div>
               );
             })}
+            {!needle && visibleMissing.length > 12 && (
+              <button type="button" onClick={() => setShowAllMissing((v) => !v)} className="self-start text-[12px] underline underline-offset-4">
+                {showAllMissing ? "show the first 12" : `show all ${visibleMissing.length}`}
+              </button>
+            )}
           </section>
         )}
 
@@ -449,7 +540,7 @@ export default function ResearchOsEdgesPage() {
           <section className="mt-8 flex flex-col gap-3" aria-labelledby="pending-edges">
             <div className="flex flex-wrap items-baseline gap-3">
               <h2 id="pending-edges" className="font-display uppercase text-[16px] text-[color:var(--basalt)] mb-1">
-                pending proposals ({proposals.length})
+                pending proposals ({visibleGroups.reduce((n, g) => n + g.items.length, 0) === proposals.length ? proposals.length : `${visibleGroups.reduce((n, g) => n + g.items.length, 0)} of ${proposals.length}`})
               </h2>
               <div className="flex gap-2 text-[12px] small-caps" role="group" aria-label="proposer">
                 {(
@@ -474,9 +565,37 @@ export default function ResearchOsEdgesPage() {
               Ordered by how uncertain the models were, weighted by how many idea nodes rest on the target. &ldquo;Rests on&rdquo; records what the
               node is made of and leaves learning order alone; &ldquo;learning order&rdquo; adds a prerequisite that K-12 routing will follow.
             </p>
+            <div className="flex flex-wrap items-center gap-3 text-[12px]" role="group" aria-label="filter proposals">
+              {(
+                [
+                  ["all", "every verdict"],
+                  ["confirmed", "agreed"],
+                  ["refuted", "disagreed"],
+                  ["unchecked", "not checked"],
+                ] as ["all" | "confirmed" | "refuted" | "unchecked", string][]
+              ).map(([key, label]) => (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setVerdict(key)}
+                  aria-pressed={verdict === key}
+                  className={`px-2 py-0.5 small-caps border border-[color:var(--hairline)] ${verdict === key ? "bg-[color:var(--gold)]" : ""}`}
+                >
+                  {label}
+                </button>
+              ))}
+              <label className="inline-flex items-center gap-1.5">
+                <input id="cross-only" type="checkbox" checked={crossOnly} onChange={(e) => setCrossOnly(e.target.checked)} /> across branches only
+              </label>
+            </div>
             {proposals.length === 0 && <p className="text-[13px] text-[color:var(--basalt-2)]">Nothing pending.</p>}
-            {groups.map((g) => (
-              <div key={g.toSlug} className="p-4 bg-[color:var(--bone)]">
+            {proposals.length > 0 && visibleGroups.length === 0 && <p className="text-[13px] text-[color:var(--basalt-2)]">No proposal matches these filters.</p>}
+            {visibleGroups.map((g) => (
+              <div
+                key={g.toSlug}
+                id={`target-${g.toSlug}`}
+                className={`scroll-mt-24 p-4 bg-[color:var(--bone)] ${landed === `target-${g.toSlug}` ? "ring-2 ring-[color:var(--gold)]" : ""}`}
+              >
                 <div className="text-[14px] text-[color:var(--basalt)]">
                   <strong>{nodeLink(g.toSlug, g.toTitle)}</strong> &middot; {g.branch}
                   {g.impact > 0 && <span className="text-[12px] text-[color:var(--basalt-2)]"> &middot; {g.impact} idea node(s) rest on it</span>}
