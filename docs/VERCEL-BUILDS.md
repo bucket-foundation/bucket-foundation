@@ -10,7 +10,9 @@ skips too, since the diff check runs for every environment.
 
 ## Measured on 2026-09-18
 
-The founder, 2026-09-18: "too many vercel builds especially failing builds." The numbers below come from the Vercel API (the project's deployment list, 2026-09-14 14:39 UTC to 2026-09-19 03:37 UTC) and from the build logs of the deployments named. <!-- voice-ignore-line: the founder's words, quoted -->
+The founder, 2026-09-18: "too many vercel builds especially failing builds." <!-- voice-ignore-line: the founder's words, quoted -->
+
+Sources: the Vercel API (the project's deployment list, 2026-09-14 14:39 UTC to 2026-09-19 03:37 UTC) and the build logs of the deployments named.
 
 | Measure | Value |
 |---|---|
@@ -23,7 +25,7 @@ The founder, 2026-09-18: "too many vercel builds especially failing builds." The
 - `feat/ros-loop-decompose-further` at `3134cc7`: the previous sha Vercel supplied was `aa14079`, the direct parent, and the clone could not reach it. The commit changed `BEADS-PENDING.jsonl` alone and built.
 - The same branch's first deployment, `965c9f3`, had no previous sha, and the fallback to the parent failed the same way.
 
-Vercel documents `VERCEL_GIT_PREVIOUS_SHA` as the sha of the last successful deployment for the project and branch ([system environment variables](https://vercel.com/docs/environment-variables/system-environment-variables); [release note, 2023-01-19](https://github.com/vercel/vercel/discussions/7251)) and says nothing about whether that commit is in the build's clone. A public write-up found a clone of depth 10 with no remote configured ([Git on Vercel](https://fryuni.dev/notes/vercel-git/)); the logs above show this repo's clone holding the pushed commit and not its parent. Vercel's own `turbo-ignore` checks whether the previous sha exists (`git cat-file -t`), falls back to `HEAD^` when it does not, and names "a shallow clone with insufficient history" as a known failure (turbo-ignore 2.11.2, `dist/cli.js`). So every push built unless its message carried `[skip ci]` or `feed:`, or its branch was an engine prefix. Bead-only commits `3134cc7`, `7f8396d`, and `c137373` built.
+Vercel documents `VERCEL_GIT_PREVIOUS_SHA` as the sha of the last successful deployment for the project and branch ([system environment variables](https://vercel.com/docs/environment-variables/system-environment-variables); [release note, 2023-01-19](https://github.com/vercel/vercel/discussions/7251)) and says nothing about whether that commit is in the build's clone. A public write-up found a clone of depth 10 with no remote configured ([Git on Vercel](https://fryuni.dev/notes/vercel-git/)); in this repo's logs the clone lacks even the pushed commit's parent. Vercel's own `turbo-ignore` checks whether the previous sha exists (`git cat-file -t`), falls back to `HEAD^` when it does not, and names "a shallow clone with insufficient history" as a known failure (turbo-ignore 2.11.2, `dist/cli.js`). So every push built unless its message carried `[skip ci]` or `feed:`, or its branch was an engine prefix. Bead-only commits `3134cc7`, `7f8396d`, and `c137373` built.
 
 **A gate change reaches a branch when that branch merges it.** Vercel runs the `vercel.json` and the script of the commit it deploys. `hte/integration` built 23 times after #144 blocked `hte/*` on `dev`, because it took #144 only when #181 synced it on 2026-09-18.
 
@@ -41,30 +43,32 @@ Vercel documents `VERCEL_GIT_PREVIOUS_SHA` as the sha of the last successful dep
 
 Four changes, each against one finding above.
 
-1. **The gate fetches what it compares against.** The base is `VERCEL_GIT_PREVIOUS_SHA` when Vercel sets it. On a branch with no successful deployment yet it is the tip of `dev`, the default target of a pull request; on `dev` or `main` with no previous deployment the gate builds. When the base is not in the clone, the script fetches its trees alone at depth 1 from the public repository (`https://github.com/$VERCEL_GIT_REPO_OWNER/$VERCEL_GIT_REPO_SLUG.git`, `--filter=blob:none` through a remote marked as a partial-clone promisor) within a time limit, then diffs with `--no-renames`, which lists both paths of a moved file. A depth-1 fetch with blobs is a pack of about 815 MB for this repository and ran past two minutes; the tree-only fetch is about 7 MB in under two seconds (critic round 1, 2026-09-19, against commit `3134cc7`). Any failure still builds, and the log says which step failed. `[skip vercel]` and `[vercel skip]` skip the Vercel build alone, the tokens `turbo-ignore` uses, so a push can run CI without a preview.
+1. **The gate fetches what it compares against.** The base is `VERCEL_GIT_PREVIOUS_SHA` when Vercel sets it. On a branch with no successful deployment yet it is the tip of `dev`, the default target of a pull request; on `dev` or `main` with no previous deployment the gate builds. When the clone lacks the base, the script fetches the trees of the base and the pushed commit at depth 1 (`--filter=blob:none`) from the public repository (`https://github.com/$VERCEL_GIT_REPO_OWNER/$VERCEL_GIT_REPO_SLUG.git`) into a scratch bare repository, within a time limit, and diffs there with `--no-renames`, which lists both paths of a moved file. The build's clone is left untouched. A depth-1 fetch with blobs is a pack of about 815 MB for this repository and ran past two minutes; fetching into the clone itself made git 2.48 and later copy its local objects into an 814 MB promisor pack (critic rounds 1 and 2, 2026-09-19). The scratch fetch of `aa14079` and `3134cc7` comes to 8.2 MB and skipped, as it should; it took 4.5 to 33 s over a home connection, and the critic measured 1.3 to 2.7 s in 7 of 9 runs with 28 s and 45 s in the other two. Any failure still builds, and the log says which step failed.
 2. **Node 24.** `package.json` gets `"engines": { "node": "24.x" }`, and CI runs Node 24, so the preview and CI build on the version Vercel requires from 2026-10-01.
 3. **A check before a building push.** `scripts/pre-push-vercel-check.sh` asks the gate whether the push would build, with the branch's changes since its merge base with `origin/dev`. When the push would build, it runs `npm run lint` and `npm run typecheck` and refuses the push on an error, so a lint or type error fails on the machine before it fails on Vercel. `scripts/install-git-hooks.sh` adds a `pre-push` to the hooks directory (`core.hooksPath`, the org's shared directory on AGFarms machines) that runs a repository's own `scripts/pre-push-vercel-check.sh` when it has one. `AGF_PREPUSH_SKIP=1` bypasses it.
-4. **One building push per task.** Work in progress carries `[skip ci]`, which skips the Vercel build and GitHub Actions; the finish push of a task builds once, after lint, types, and tests pass locally. The Research OS loop has worked this way since 2026-09-18.
+4. **One building push per task.** Work in progress carries `[skip ci]`, which skips the Vercel build and GitHub Actions; the finish push of a task builds once, after lint, types, and tests pass locally. The Research OS loop has worked this way since 2026-09-18. GitHub Actions reads `[skip ci]` anywhere in a pushed commit's message, and the repository's squash default puts every commit message in the merge's body, so a merge made with the default would skip CI on `dev`. The loop merges with its own subject and a body free of skip tokens. Setting the squash default to the pull request title alone (repository settings, "Default commit message", or `squash_merge_commit_message=BLANK` through the API) would close this for merges made by hand; that is the founder's call.
 
 No researcher-facing surface changes. The preview a reviewer opens from a pull request builds once per task and builds green, and a branch no longer burns a deployment on every bead commit.
 
 ## The rule
 
 1. Commit message contains `[vercel build]` -> build (forced override, wins over everything below).
-2. Commit message starts with `feed:`, or contains `[skip ci]`, `[skip vercel]`, or `[vercel skip]` -> skip.
+2. Commit subject starts with `feed:`, or contains `[skip ci]`, `[skip vercel]`, or `[vercel skip]` -> skip. The subject line alone counts: a squash merge can list every commit of a pull request in its body, work-in-progress `[skip ci]` commits included, and those lines must not skip the merge.
 3. Branch matches an engine prefix (below) -> skip.
 4. The diff from the base to the pushed commit touches an allowlisted path (below) -> build.
 5. The base cannot be fetched, or the diff cannot be computed -> build (fail open).
 6. Otherwise -> skip.
 
-The base at step 4 is `VERCEL_GIT_PREVIOUS_SHA`, the branch's last successful deployment, when Vercel sets it. On a branch with no successful deployment yet it is the tip of `dev`; on `dev` or `main` with no previous deployment the gate builds, since no one base covers every commit pushed. Vercel's clone holds the pushed commit alone, so the script fetches a missing base's trees at depth 1 (`--filter=blob:none`) from `https://github.com/$VERCEL_GIT_REPO_OWNER/$VERCEL_GIT_REPO_SLUG.git`, within `VERCEL_IGNORE_FETCH_TIMEOUT` seconds (60 by default), and diffs with `--no-renames` so a file moved out of an allowlisted directory counts there. The allowlist match reads the diff from a here-string: a pipe into `grep -q` under `pipefail` failed on diffs past 64 KB of paths and skipped a site change. The fetch works because the repository is public; a private repository would need a token, and without one every push builds, as before.
+The base at step 4 is `VERCEL_GIT_PREVIOUS_SHA`, the branch's last successful deployment, when Vercel sets it. On a branch with no successful deployment yet it is the tip of `dev`; on `dev` or `main` with no previous deployment the gate builds, since no one base covers every commit pushed. Vercel's clone holds the pushed commit alone, so the script fetches a missing base's trees at depth 1 (`--filter=blob:none`), with the pushed commit's, from `https://github.com/$VERCEL_GIT_REPO_OWNER/$VERCEL_GIT_REPO_SLUG.git` into a scratch bare repository, within `VERCEL_IGNORE_FETCH_TIMEOUT` seconds (90 by default), and diffs with `--no-renames` so a file moved out of an allowlisted directory counts there. The allowlist match reads the diff from a here-string: a pipe into `grep -q` under `pipefail` failed on diffs past 64 KB of paths and skipped a site change. The fetch works because the repository is public; a private repository would need a token, and without one every push builds, as before.
 
 Vercel's Ignored Build Step contract: the script exits `1` to build, `0`
 to skip. See `scripts/vercel-ignore-build.sh` for the implementation and
-`scripts/test-vercel-ignore-build.sh` for 26 checks, 11 of them in a
-depth-1 clone with no remote, the way Vercel's clone is, including a diff of
-4,000 paths and a fetch that must leave the base's blobs behind (run it with
-`bash scripts/test-vercel-ignore-build.sh`). CI runs both test scripts.
+`scripts/test-vercel-ignore-build.sh` for 28 checks (run it with
+`bash scripts/test-vercel-ignore-build.sh`). Twelve run in a depth-1 clone
+with no remote, the way Vercel's clone is, and check that the fetch leaves
+the base's blobs behind and the clone unchanged. Others cover a diff of
+4,000 paths and a squash body full of `[skip ci]` lines. CI runs both test
+scripts.
 
 ## Before a push
 

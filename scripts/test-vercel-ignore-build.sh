@@ -34,7 +34,8 @@ run_case() {
     cd "${RUN_IN:-$REPO}" || exit 99
     unset VERCEL_ENV VERCEL_GIT_COMMIT_REF VERCEL_GIT_COMMIT_MESSAGE \
           VERCEL_GIT_COMMIT_SHA VERCEL_GIT_PREVIOUS_SHA VERCEL_IGNORE_FETCH_URL \
-          VERCEL_GIT_REPO_OWNER VERCEL_GIT_REPO_SLUG VERCEL_GIT_PROVIDER
+          VERCEL_GIT_REPO_OWNER VERCEL_GIT_REPO_SLUG VERCEL_GIT_PROVIDER \
+          VERCEL_IGNORE_SCRATCH_DIR VERCEL_IGNORE_BASE_LABEL
     for kv in "$@"; do export "$kv"; done
     bash "$SCRIPT"
   )"
@@ -125,6 +126,16 @@ run_case "first deployment with no way to fetch dev builds" build \
   "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
   "VERCEL_GIT_COMMIT_MESSAGE=feat: normal work" \
   "VERCEL_GIT_PREVIOUS_SHA=" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
+run_case "a squash body carrying [skip ci] lines still builds a site change" build \
+  "VERCEL_GIT_COMMIT_REF=dev" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): a task (#200)
+
+* wip(site): first pass [skip ci]
+
+* fix(site): second pass [skip ci]" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 
 run_case "[skip vercel] skips (diff touches src/)" skip \
@@ -230,18 +241,31 @@ git -C "$REPO" commit -q -m "docs: remove it"
 SHA_BLOB_CUR="$(sha_of HEAD)"
 git -C "$REPO" checkout -q -
 shallow_clone "$SHA_BLOB_CUR"
+KEPT="$WORKDIR/scratch-kept"
+rm -rf "$KEPT"
 run_case "shallow clone: a removed docs file skips" skip \
   "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
+  "VERCEL_IGNORE_SCRATCH_DIR=$KEPT" \
   "VERCEL_GIT_COMMIT_REF=feat/blob-check" \
   "VERCEL_GIT_COMMIT_MESSAGE=docs: remove it" \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_BLOB_BASE" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_BLOB_CUR"
-if GIT_NO_LAZY_FETCH=1 git -C "$RUN_IN" cat-file -e "$SHA_BLOB_BASE:papers/only-in-base.md" 2>/dev/null; then
+# Object listing works on every git version and never fetches: the base's
+# own blob must be absent from the scratch repository.
+BLOB="$(git -C "$REPO" rev-parse "$SHA_BLOB_BASE:papers/only-in-base.md")"
+if git --git-dir="$KEPT" cat-file --batch-all-objects --batch-check 2>/dev/null | grep -q "^$BLOB "; then
   FAIL=$((FAIL + 1))
   echo "FAIL  the base fetch brought blobs; it should bring trees alone"
 else
   PASS=$((PASS + 1))
   echo "PASS  the base fetch brought trees alone"
+fi
+if [[ -z "$(git -C "$RUN_IN" remote)" && -z "$(git -C "$RUN_IN" config --get-regexp '^remote\.' 2>/dev/null)" ]]; then
+  PASS=$((PASS + 1))
+  echo "PASS  the build's clone gained no remote"
+else
+  FAIL=$((FAIL + 1))
+  echo "FAIL  the gate changed the build's clone"
 fi
 
 shallow_clone "$SHA_SITE"

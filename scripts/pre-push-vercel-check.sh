@@ -50,6 +50,7 @@ while read -r local_ref local_sha remote_ref remote_sha; do
       VERCEL_GIT_COMMIT_MESSAGE="$message" \
       VERCEL_GIT_COMMIT_SHA="$local_sha" \
       VERCEL_GIT_PREVIOUS_SHA="$base" \
+      VERCEL_IGNORE_BASE_LABEL="merge base with origin/dev" \
       VERCEL_IGNORE_FETCH_URL="" \
       bash "$GATE" 2>&1 | grep -E "BUILD:|SKIP:" | tail -1
   )"
