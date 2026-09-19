@@ -158,11 +158,11 @@ fetch_pair() {
     --filter=blob:none --depth=1 origin "+$1:refs/gate/base" "+$CUR_SHA:refs/gate/cur" 2>&1)"
   status=$?
   if [[ $status -eq 124 ]]; then
-    echo "timed out after ${FETCH_TIMEOUT}s"
+    echo "fetch from $REPO_URL timed out after ${FETCH_TIMEOUT}s"
     return 1
   fi
   if [[ $status -ne 0 ]]; then
-    echo "git fetch exited $status: ${out:-no output}"
+    echo "git fetch from $REPO_URL exited $status: ${out:-no output}"
     return 1
   fi
 }
