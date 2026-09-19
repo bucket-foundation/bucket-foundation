@@ -737,7 +737,8 @@ export function consolidate(
       named_by: targets,
       aliases: titles.filter((t) => t !== g.canonical),
       reasons,
-      possible_duplicates: duplicatesOf(g.canonical),
+      // A node that named the idea is where it was found missing; it is left out of the duplicates.
+      possible_duplicates: duplicatesOf(g.canonical).filter((d) => !targets.includes(d.slug)),
       base_match: matchBase(g.canonical),
       model,
     });

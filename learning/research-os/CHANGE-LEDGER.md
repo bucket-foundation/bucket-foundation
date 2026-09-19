@@ -22,6 +22,8 @@ Date 2026-09-18. Branch `feat/ros-loop-decompose-further`, worktree `.wt-ros-loo
 - Tests: `test-research-os-makeup.ts`, `test-research-os-external-factors.ts`.
 - `src/lib/research-os/idea.ts`: which nodes are ideas, shared by the queue and the node page; the queue and "made of" decompose the idea layer, and facts under an idea show as its evidence.
 - `src/lib/research-os/reviewer.ts` `verifyGraphReviewer`: graph review on the allowlist alone, since a class membership anyone can create opens teacher review.
+- `src/lib/research-os/primes.ts` `contractedFactorEdges`: the idea layer keeps an idea-to-idea edge wherever one idea rests on another through evidence alone, so a paper between two ideas no longer hides the link.
+- `src/lib/research-os/makeup.ts` `pairStandings`: each pending pair is labelled when it loops with the graph, repeats a chain the graph has, or shortcuts a chain other pending pairs make; the review page reloads the labels after every decision.
 - Tests: `test-research-os-decompose-further.ts`, `test-research-os-refd.ts`, `test-research-os-decide-node.ts`, `test-research-os-review-actions.ts`, additions to the primes, rebuild-ancestor, and edges-review tests.
 
 ### Edited
@@ -32,9 +34,9 @@ Date 2026-09-18. Branch `feat/ros-loop-decompose-further`, worktree `.wt-ros-loo
 - `src/lib/research-os/db.ts`, `node/route.ts`, `route/route.ts`: node pages and routing read factors from other branches.
 - `src/lib/research-os/rebuild-ancestor.ts`, `scripts/rebuild-prereq-ancestor.ts`: paged reads, cross-branch edges, one atomic replace.
 - `learning/research-os/PRIMES.md`: prior work corrected (semantic prime counts, eleven prerequisite papers), Slice 2 rewritten to match the code, results added.
-- `docs/PROBLEM-REGISTER.md`: PR-059, PR-060, PR-061.
+- `docs/PROBLEM-REGISTER.md`: PR-059, PR-060, PR-061, PR-062.
 - `src/app/research-os/(app)/edges/page.tsx`: a summary line, a find box, verdict and cross-branch filters, anchors a node page links to, and warnings from approvals.
-- `src/lib/research-os/directions.ts`: "where it leads" follows each edge kind's direction; `derives_from`, `extends`, `replicates`, `generalizes`, and `answers` run from the newer node to its base, as the data and `primes.ts` have them. Old behaviour: every kind walked from its from end, so a node's derived facts and extensions never showed where it leads, and an approved "rests on" edge would have shown the factor as where the target leads.
+- `src/lib/research-os/directions.ts`: "where it leads" follows each edge kind's direction; `derives_from`, `extends`, `replicates`, `generalizes`, and `answers` run from the newer node to its base, as the data and `primes.ts` have them. The walk visits ideas (idea.ts) and the work built on them, and stops at facts, sources, and grouping nodes. Old behaviour: every kind walked from its from end, so extensions never showed where a node leads, and an approved "rests on" edge would have shown the factor as where the target leads.
 - `src/app/research-os/(app)/n/AroundSection.tsx`: the learning-order list is labelled "learned after". Old label: "rests on", which contradicted "made of".
 - `src/app/research-os/(app)/n/AroundSection.tsx`, `src/app/api/research-os/node/route.ts`: a failed graph read says so on the node page, where it used to show an empty neighbourhood as real.
 - `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md`: key claims replaced with the paper's own figures. Old text: agreement "was moderate", and "Disagreement concentrated on term pairs from the same section of the source text"; the paper reports fair agreement (Fleiss' kappa 38.50%) and has no same-section finding.

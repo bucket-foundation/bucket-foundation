@@ -2,7 +2,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { decompose, factorMap, penetration, type DepEdge } from "../src/lib/research-os/primes";
-import { buildMakeup, forgetMakeupSnapshot, liveCycles, makeupForViewer, makeupSnapshot, pairInGraph, snapshotFrom, type MakeupNode, type Snapshot } from "../src/lib/research-os/makeup";
+import { buildMakeup, forgetMakeupSnapshot, liveCycles, makeupForViewer, makeupSnapshot, pairInGraph, pairStandings, snapshotFrom, type MakeupNode, type Snapshot } from "../src/lib/research-os/makeup";
 
 const nodes: MakeupNode[] = [
   { id: "eq", slug: "equality", title: "Equality", branch: "01-mathematics" },
@@ -33,7 +33,7 @@ test("a composite lists its primes, the most-reached first, and what it rests on
   assert.equal(m.primeCount, 2);
   // Equality reaches dynamics by two paths (through derivatives, and through kinematics then derivatives).
   assert.deepEqual(m.primes.map((p) => [p.slug, p.paths]), [["equality", 2], ["vectors", 1]]);
-  assert.deepEqual(m.factors.map((f) => f.slug), ["derivatives", "kinematics"]);
+  assert.deepEqual(m.factors.map((f) => [f.slug, f.throughEvidence]), [["derivatives", false], ["kinematics", false]]);
   assert.equal(m.reach, null);
 });
 
@@ -134,7 +134,7 @@ test("the snapshot sees ideas under an idea through its evidence, and lists the 
     { id: "law", slug: "rayleigh-law", title: "Rayleigh scattering law", branch: "02-physics", kind: "law", provenanceType: "reference" },
     { id: "paper", slug: "rayleigh-1871", title: "Rayleigh 1871", branch: "02-physics", kind: "primary_source", provenanceType: "canon_paper" },
     { id: "size", slug: "size-vs-wavelength", title: "Scattering strength and particle size", branch: "02-physics", kind: "concept", provenanceType: "reference" },
-    { id: "hidden", slug: "private", title: "Not public", branch: "02-physics", kind: "concept", provenanceType: "reference" },
+    { id: "hidden", slug: "unlinked", title: "An unlinked idea", branch: "02-physics", kind: "concept", provenanceType: "reference" },
   ];
   const s = snapshotFrom(rows, [
     { fromId: "law", toId: "paper", kind: "derives_from" },
@@ -145,6 +145,7 @@ test("the snapshot sees ideas under an idea through its evidence, and lists the 
   assert.equal(m.status, "composite");
   assert.deepEqual(m.primes.map((p) => p.slug), ["size-vs-wavelength"]);
   assert.deepEqual(m.evidence.items.map((e) => e.slug), ["rayleigh-1871"]);
+  assert.deepEqual(m.factors.map((f) => [f.slug, f.throughEvidence]), [["size-vs-wavelength", true]]);
   assert.equal(s.edges.length, 2, "edges to nodes outside the public set are dropped");
   assert.deepEqual(s.reach.get("size"), { id: "size", composites: 1, branches: 1, spread: 0 });
 });
@@ -155,4 +156,41 @@ test("a pair the graph already implies, and a pair whose factor already rests on
   assert.deepEqual(pairInGraph(snap, "dynamics", "equality"), { graphLoop: true, implied: false });
   assert.deepEqual(pairInGraph(snap, "lonely", "dynamics"), { graphLoop: false, implied: false });
   assert.deepEqual(pairInGraph(snap, "nope", "dynamics"), { graphLoop: false, implied: false });
+});
+
+test("a pending pair that confirmed pending pairs already lead to is flagged as a shortcut", () => {
+  // Pending: vectors -> lonely, equality -> vectors, equality -> lonely. The last is a shortcut past the first two.
+  const st = pairStandings(snap, [
+    { from_slug: "vectors", to_slug: "lonely", verification: "confirmed" },
+    { from_slug: "equality", to_slug: "vectors", verification: "confirmed" },
+    { from_slug: "equality", to_slug: "lonely", verification: "refuted" },
+  ]);
+  assert.equal(st.get("equality->lonely")!.viaPending, true);
+  // A chain through a refuted pair does not count.
+  const weak = pairStandings(snap, [
+    { from_slug: "vectors", to_slug: "lonely", verification: "refuted" },
+    { from_slug: "equality", to_slug: "vectors", verification: "confirmed" },
+    { from_slug: "equality", to_slug: "lonely", verification: "confirmed" },
+  ]);
+  assert.equal(weak.get("equality->lonely")!.viaPending, false);
+  assert.equal(st.get("vectors->lonely")!.viaPending, false);
+  assert.equal(st.get("equality->vectors")!.viaPending, false);
+  // A pair the graph already implies is marked implied and not also a pending shortcut.
+  const g = pairStandings(snap, [{ from_slug: "equality", to_slug: "dynamics" }]).get("equality->dynamics")!;
+  assert.deepEqual(g, { graphLoop: false, implied: true, viaPending: false });
+});
+
+test("the graph check follows chains through evidence", () => {
+  const rows: MakeupNode[] = [
+    { id: "a", slug: "law", title: "Law", branch: "b", kind: "law", provenanceType: "reference" },
+    { id: "p", slug: "paper", title: "Paper", branch: "b", kind: "primary_source", provenanceType: "canon_paper" },
+    { id: "c", slug: "idea", title: "Idea", branch: "b", kind: "concept", provenanceType: "reference" },
+  ];
+  // law rests on paper, paper rests on idea.
+  const s2 = snapshotFrom(rows, [
+    { fromId: "a", toId: "p", kind: "derives_from" },
+    { fromId: "c", toId: "p", kind: "prerequisite" },
+  ]);
+  assert.deepEqual(pairInGraph(s2, "idea", "law"), { graphLoop: false, implied: true });
+  assert.deepEqual(pairInGraph(s2, "law", "idea"), { graphLoop: true, implied: false });
 });

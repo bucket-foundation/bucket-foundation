@@ -8,7 +8,7 @@ import { test } from "node:test";
 import { directionsFrom, isFrontierNode } from "../src/lib/research-os/directions";
 import type { GraphEdge, GraphNode } from "../src/lib/research-os/types";
 
-const n = (id: string, extra: Partial<GraphNode> = {}): GraphNode => ({ id, slug: id, title: id, kind: "concept", tier: 0, branch: "02-physics", summary: null, ...extra });
+const n = (id: string, extra: Partial<GraphNode> = {}): GraphNode => ({ id, slug: id, title: id, kind: "concept", tier: 0, branch: "02-physics", summary: null, provenance: { type: "reference" }, ...extra });
 const e = (from: string, to: string, kind: GraphEdge["kind"] = "prerequisite"): GraphEdge => ({ fromId: from, toId: to, kind });
 
 // light -> scattering -> {rayleigh -> sky-blue-hypothesis, sunset}
@@ -57,4 +57,10 @@ test("derives_from and extends run from the newer node to its base, so forward g
   assert.deepEqual(d.dependents.map((x) => x.id).sort(), ["dyn", "ext"], "a fact is evidence, and the walk stops at it");
   assert.deepEqual(directionsFrom("dyn", ns, es).dependents, [], "a node that derives from another does not lead to it");
   assert.deepEqual(directionsFrom("vectors", ns, es).dependents.map((x) => x.id), ["kinematics"]);
+});
+
+test("grouping nodes such as canon tags stay out of where knowledge leads", () => {
+  const ns = [n("kinematics"), n("tag", { provenance: { type: "canon_concept" } }), n("dyn")];
+  const es = [e("tag", "kinematics", "derives_from"), e("dyn", "kinematics", "derives_from")];
+  assert.deepEqual(directionsFrom("kinematics", ns, es).dependents.map((x) => x.id), ["dyn"]);
 });

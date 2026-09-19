@@ -121,13 +121,14 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
               )}
               {m.factors.length > 0 && !(m.factors.length === m.primes.length && m.factors.every((f) => m.primes.some((p) => p.id === f.id))) && (
                 <p className="mt-3 text-[12.5px] text-[color:var(--basalt-2)]">
-                  Rests on directly:{" "}
+                  Rests on, one step down:{" "}
                   {m.factors.map((f, i) => (
                     <span key={f.id}>
                       {i > 0 && ", "}
                       <Link href={`/research-os/n/${encodeURIComponent(f.slug)}`} className="underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
                         {f.title}
                       </Link>
+                      {f.throughEvidence && <span className="text-[color:var(--basalt-3)]"> (through the evidence below)</span>}
                     </span>
                   ))}
                   .
@@ -191,6 +192,7 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                             p.inCycle && <span className="text-red-700">· on a loop with other proposals</span>
                           )}
                           {p.implied && !p.graphLoop && <span className="text-[color:var(--basalt-3)]">· already in the graph through other nodes</span>}
+                          {p.viaPending && <span className="text-[color:var(--basalt-3)]">· agreed proposals already lead there</span>}
                         </div>
                       </li>
                     );

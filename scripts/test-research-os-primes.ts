@@ -113,3 +113,11 @@ test("contracted edges carry an idea through facts to the next idea, and stop th
   // law does not reach base directly, since wave, an idea, stands between them.
   assert.deepEqual(out, ["base->wave@1", "wave->law@0.7"]);
 });
+
+test("contraction keeps the better of two paths and ignores a loop back to the start", () => {
+  const der = (from: string, to: string, confidence = 1): DepEdge => ({ fromId: from, toId: to, kind: "derives_from", confidence });
+  // a rests on b through f1 (0.4) and through f2 (0.8); a also reaches itself through f3.
+  const edges: DepEdge[] = [der("a", "f1", 0.4), der("f1", "b"), der("a", "f2"), der("f2", "b", 0.8), der("a", "f3"), der("f3", "a")];
+  const out = contractedFactorEdges(new Set(["a", "b"]), edges);
+  assert.deepEqual(out.map((e) => `${e.fromId}->${e.toId}@${e.confidence}`), ["b->a@0.8"]);
+});

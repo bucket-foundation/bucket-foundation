@@ -7,15 +7,24 @@
  * from the newer node to the node it builds on (production-node.ts writes
  * them from the production to its target). "Forward" from a node, where
  * knowledge goes, follows a prerequisite edge from its fromId and the other
- * kinds from their toId. The walk passes through ideas and the work built
- * on them (productions, hypotheses, extensions, replications, reviews);
- * facts, sources, figures, and sites are evidence, so it stops at them.
+ * kinds from their toId. The walk passes through ideas (idea.ts) and the
+ * work built on them (productions, hypotheses, extensions, replications,
+ * reviews); facts, sources, figures, sites, and grouping nodes such as canon
+ * tags stop it.
  */
+import { isIdeaNode } from "./idea";
 import type { GraphEdge, GraphNode, NodeKind } from "./types";
 
 export const FRONTIER_NODE_KINDS: NodeKind[] = ["hypothesis", "extension", "replication", "peer_review"];
-/** Node kinds the forward walk visits and lists. */
-const WALK_NODE_KINDS = new Set(["concept", "law", "derivation", "production", "hypothesis", "extension", "replication", "peer_review"]);
+/** Work built on ideas, which the walk visits beside the ideas themselves. */
+const WORK_NODE_KINDS = new Set(["production", "hypothesis", "extension", "replication", "peer_review"]);
+
+/** An idea (idea.ts, the rule the decomposition uses) or work built on one. Canon tags, digests, and evidence stay out. */
+function walkable(n: GraphNode): boolean {
+  if (WORK_NODE_KINDS.has(n.kind)) return true;
+  const type = (n.provenance as { type?: unknown } | undefined)?.type;
+  return isIdeaNode({ kind: n.kind, provenanceType: typeof type === "string" ? type : null });
+}
 
 /** Kinds whose `from` end comes first: forward runs from → to. */
 const FORWARD_FROM_KINDS = new Set(["prerequisite"]);
@@ -44,7 +53,7 @@ export function directionsFrom(nodeId: string, nodes: GraphNode[], edges: GraphE
     if (!byId.has(e.fromId) || !byId.has(e.toId)) continue;
     const [a, b] = FORWARD_FROM_KINDS.has(e.kind) ? [e.fromId, e.toId] : FORWARD_TO_KINDS.has(e.kind) ? [e.toId, e.fromId] : [null, null];
     if (!a || !b) continue;
-    if (!WALK_NODE_KINDS.has(byId.get(b)!.kind)) continue;
+    if (!walkable(byId.get(b)!)) continue;
     forward.set(a, [...(forward.get(a) ?? []), b]);
   }
   const seen = new Set<string>([nodeId]);

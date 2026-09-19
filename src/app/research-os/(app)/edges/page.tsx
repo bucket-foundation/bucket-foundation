@@ -47,6 +47,8 @@ interface EdgeProposal {
   graphLoop: boolean;
   /** The target already rests on the factor through other nodes. */
   implied: boolean;
+  /** Other pending proposals already lead from the target to the factor: approving them makes this a shortcut. */
+  viaPending: boolean;
   refd: number | null;
   priority: number;
 }
@@ -238,6 +240,9 @@ export default function ResearchOsEdgesPage() {
               ? `Approved: ${p.toTitle} ${kind === "derives_from" ? "rests on" : "comes after"} ${p.fromTitle}.${data.warning ? ` Warning: ${data.warning}.` : ""}`
               : `Rejected: ${p.fromTitle} for ${p.toTitle}.`,
         });
+        // A decision changes which pairs loop, repeat a chain, or shortcut
+        // one; reload so every flag matches the queue as it now stands.
+        void loadQueue();
       }
     } finally {
       setBusyId(null);
@@ -696,8 +701,13 @@ export default function ResearchOsEdgesPage() {
                           <p className="mt-1 text-[12px] text-red-700">{p.fromTitle} already rests on {p.toTitle} in the graph, so approving this makes a loop. Reject it.</p>
                         ) : (
                           p.inCycle && (
-                            <p className="mt-1 text-[12px] text-red-700">This pair sits on a cycle with other pending proposals: approving all of them would make a loop. Approve one direction.</p>
+                            <p className="mt-1 text-[12px] text-red-700">This pair sits on a loop with other pending proposals: approving all of them would close it. Reject at least one.</p>
                           )
+                        )}
+                        {p.viaPending && (
+                          <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">
+                            Pending proposals the second model agreed with already lead from {p.toTitle} to {p.fromTitle}; if they are approved, this pair is a shortcut past them. Prefer the chain unless this link is direct.
+                          </p>
                         )}
                         {p.implied && !p.graphLoop && (
                           <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">The graph already has {p.toTitle} resting on {p.fromTitle} through other nodes; approving adds a direct link.</p>

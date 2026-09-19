@@ -13,7 +13,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService } from "@/lib/research-os/db";
 import { verifyGraphReviewer } from "@/lib/research-os/reviewer";
 import { isIdeaNode } from "@/lib/research-os/idea";
-import { allPendingPairs, buildMakeup, liveCycles, makeupForViewer, makeupSnapshot, pairInGraph, type ProposalRowLite } from "@/lib/research-os/makeup";
+import { allPendingPairs, buildMakeup, liveCycles, makeupForViewer, makeupSnapshot, pairStandings, type PairStanding, type ProposalRowLite } from "@/lib/research-os/makeup";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -59,15 +59,18 @@ export async function GET(req: NextRequest) {
     // Loop flags from the pending set as it stands, so a decision elsewhere
     // shows at once. Only a reviewer sees the pairs, so only a reviewer pays
     // for the read.
+    let standings = new Map<string, PairStanding>();
     if (reviewer && rows.length) {
-      const loops = liveCycles(snap, await allPendingPairs(svc));
+      const pendingAll = await allPendingPairs(svc);
+      const loops = liveCycles(snap, pendingAll);
+      standings = pairStandings(snap, pendingAll);
       for (const r of rows) r.in_cycle = loops.has(`${r.from_slug}->${r.to_slug}`);
     }
     const missingRows = (missing.data as { key: string; title: string; summary: string | null; reasons: Record<string, string> | null }[]) || [];
     const irr = (irreducible.data as { status: "pending" | "confirmed" | "rejected"; justification: string } | null) ?? null;
     const makeup = buildMakeup(node.id, snap, { proposals: rows, missing: missingRows, irreducible: irr });
     if (!makeup) return NextResponse.json({ error: "node_not_found" }, { status: 404, ...NO_STORE });
-    if (reviewer) for (const p of makeup.proposals) Object.assign(p, pairInGraph(snap, p.factor.slug, slug));
+    if (reviewer) for (const p of makeup.proposals) Object.assign(p, standings.get(`${p.factor.slug}->${slug}`) ?? {});
     const pending = {
       proposals: rows.length,
       missing: missingRows.length,

@@ -280,7 +280,11 @@ async function main() {
   const edgeRows = await all<{ id: string; from_id: string; to_id: string; kind: string; confidence: number | null }>(svc, "edges", "id, from_id, to_id, kind, confidence", (q) =>
     q.in("kind", Object.keys(FACTOR_EDGES)),
   );
-  const edges: DepEdge[] = edgeRows.map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
+  // Only edges between public, current nodes: the node page's snapshot reads the same set.
+  const liveIds = new Set(rows.map((n) => n.id));
+  const edges: DepEdge[] = edgeRows
+    .filter((e) => liveIds.has(e.from_id) && liveIds.has(e.to_id))
+    .map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
   // Decompose the idea layer: facts and sources under an idea are its
   // evidence, and an idea resting only on them is a prime to decompose.
   const layer = ideaLayer(rows, edges);

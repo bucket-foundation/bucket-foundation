@@ -25,8 +25,8 @@ export type Makeup = {
   primeCount: number;
   /** The primes under it, the most-reached first, at most `limit`. */
   primes: (MakeupNode & { paths: number })[];
-  /** What the node rests on directly, through approved edges. */
-  factors: MakeupNode[];
+  /** The ideas the node rests on one step down in the idea layer, each marked when the link runs through evidence such as a paper or a fact. */
+  factors: (MakeupNode & { throughEvidence: boolean })[];
   /** For a prime: how many idea composites contain it, across how many branches. */
   reach: { composites: number; branches: number } | null;
   /** Facts, sources, and other non-idea nodes the idea rests on directly: its evidence, apart from its makeup. */
@@ -46,6 +46,7 @@ export type MakeupProposal = {
   /** Set for reviewers: the factor already rests on the node in the graph, or the node already rests on the factor. */
   graphLoop?: boolean;
   implied?: boolean;
+  viaPending?: boolean;
   source: string;
 };
 
@@ -60,7 +61,7 @@ export type ProposalRowLite = {
 };
 
 export type Snapshot = {
-  /** The decomposition of the idea layer: idea nodes and the factor edges between them. */
+  /** The decomposition of the idea layer: idea nodes, with paths through evidence contracted into idea-to-idea edges. */
   dec: Map<string, Decomposition>;
   /** Every factor edge on the public graph, for loop checks that may pass through evidence. */
   edges: DepEdge[];
@@ -94,9 +95,11 @@ export function buildMakeup(
     .filter((p): p is { node: MakeupNode; paths: number } => !!p.node)
     .sort((a, b) => b.paths - a.paths || a.node.title.localeCompare(b.node.title))
     .map((p) => ({ ...p.node, paths: p.paths }));
+  const direct = snap.factors.get(nodeId);
   const factors = d.factors
     .map((f) => snap.byId.get(f.id))
     .filter((n): n is MakeupNode => !!n)
+    .map((n) => ({ ...n, throughEvidence: !direct?.has(n.id) }))
     .sort((a, b) => a.title.localeCompare(b.title));
   const r = d.status === "prime" ? snap.reach.get(nodeId) : undefined;
   const proposals: MakeupProposal[] = pending.proposals
@@ -225,10 +228,10 @@ export function liveCycles(snap: Snapshot, pending: { from_slug: string; to_slug
   return cyclicPairs(snap.edges, pending, idOf);
 }
 
-/** Every pending proposal pair, paged past PostgREST's 1,000-row cap. */
-export async function allPendingPairs(svc: SupabaseClient): Promise<{ from_slug: string; to_slug: string }[]> {
-  return paged<{ from_slug: string; to_slug: string }>((from) =>
-    svc.from("edge_proposals").select("from_slug,to_slug").eq("status", "pending").order("id").range(from, from + 999),
+/** Every pending proposal pair with its verdict, paged past PostgREST's 1,000-row cap. */
+export async function allPendingPairs(svc: SupabaseClient): Promise<{ from_slug: string; to_slug: string; verification: string | null }[]> {
+  return paged<{ from_slug: string; to_slug: string; verification: string | null }>((from) =>
+    svc.from("edge_proposals").select("from_slug,to_slug,verification").eq("status", "pending").order("id").range(from, from + 999),
   );
 }
 
@@ -254,14 +257,15 @@ export function makeupForViewer(makeup: Makeup, pending: PendingCounts, isReview
   };
 }
 
-/** True when `nodeId` rests on `factorId` through any chain of public factor edges. */
-export function restsOnInGraph(snap: Snapshot, nodeId: string, factorId: string): boolean {
+/** True when `nodeId` reaches `factorId` over `factors`, optionally ignoring one direct link. */
+function reaches(factors: (id: string) => Iterable<string>, nodeId: string, factorId: string, skip?: [string, string]): boolean {
   if (nodeId === factorId) return false;
   const seen = new Set<string>([nodeId]);
   const stack = [nodeId];
   while (stack.length) {
     const id = stack.pop()!;
-    for (const f of Array.from(snap.factors.get(id)?.keys() ?? [])) {
+    for (const f of Array.from(factors(id))) {
+      if (skip && id === skip[0] && f === skip[1]) continue;
       if (f === factorId) return true;
       if (!seen.has(f)) {
         seen.add(f);
@@ -272,15 +276,59 @@ export function restsOnInGraph(snap: Snapshot, nodeId: string, factorId: string)
   return false;
 }
 
+/** True when `nodeId` rests on `factorId` through any chain of public factor edges. */
+export function restsOnInGraph(snap: Snapshot, nodeId: string, factorId: string): boolean {
+  return reaches((id) => snap.factors.get(id)?.keys() ?? [], nodeId, factorId);
+}
+
+export type PairStanding = {
+  /** The factor already rests on the target in the graph: approval makes a loop, and the review refuses it. */
+  graphLoop: boolean;
+  /** The target already rests on the factor through other nodes: approval adds a direct link to a chain. */
+  implied: boolean;
+  /** Other pending proposals the second model confirmed, with the graph, already lead from the target to the factor: approving them makes this pair a shortcut. */
+  viaPending: boolean;
+};
+
 /**
- * How a proposed pair meets the graph as it stands: `graphLoop` when the
- * factor already rests on the target, so approval makes a loop and the
- * review refuses it; `implied` when the target already rests on the factor
- * through other nodes, so approval adds a direct edge to a chain.
+ * How each pending pair meets the graph and the rest of the queue. Pairs
+ * are keyed "factor->target" by slug. One pass per list, so the reachability
+ * walks share the combined factor map.
  */
+export function pairStandings(snap: Snapshot, pending: { from_slug: string; to_slug: string; verification?: string | null }[]): Map<string, PairStanding> {
+  const idOf = (slug: string) => snap.bySlug.get(slug)?.id;
+  const withPending = new Map<string, Set<string>>();
+  for (const [node, fs] of Array.from(snap.factors.entries())) withPending.set(node, new Set(fs.keys()));
+  // Chains count only pairs likely to be approved: the ones the second model confirmed.
+  for (const p of pending) {
+    if (p.verification !== "confirmed") continue;
+    const f = idOf(p.from_slug);
+    const t = idOf(p.to_slug);
+    if (!f || !t) continue;
+    if (!withPending.has(t)) withPending.set(t, new Set());
+    withPending.get(t)!.add(f);
+  }
+  const out = new Map<string, PairStanding>();
+  for (const p of pending) {
+    const key = `${p.from_slug}->${p.to_slug}`;
+    const f = idOf(p.from_slug);
+    const t = idOf(p.to_slug);
+    if (!f || !t) {
+      out.set(key, { graphLoop: false, implied: false, viaPending: false });
+      continue;
+    }
+    const implied = restsOnInGraph(snap, t, f);
+    out.set(key, {
+      graphLoop: restsOnInGraph(snap, f, t),
+      implied,
+      viaPending: !implied && reaches((id) => withPending.get(id) ?? [], t, f, [t, f]),
+    });
+  }
+  return out;
+}
+
+/** One pair against the graph alone, as `pairStandings` reads it with nothing else pending. */
 export function pairInGraph(snap: Snapshot, factorSlug: string, targetSlug: string): { graphLoop: boolean; implied: boolean } {
-  const f = snap.bySlug.get(factorSlug)?.id;
-  const t = snap.bySlug.get(targetSlug)?.id;
-  if (!f || !t) return { graphLoop: false, implied: false };
-  return { graphLoop: restsOnInGraph(snap, f, t), implied: restsOnInGraph(snap, t, f) };
+  const s = pairStandings(snap, [{ from_slug: factorSlug, to_slug: targetSlug }]).get(`${factorSlug}->${targetSlug}`)!;
+  return { graphLoop: s.graphLoop, implied: s.implied };
 }

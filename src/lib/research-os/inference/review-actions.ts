@@ -14,7 +14,7 @@
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { IN_CHUNK } from "../db";
-import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot, pairInGraph, type Snapshot } from "../makeup";
+import { allPendingPairs, forgetMakeupSnapshot, liveCycles, makeupSnapshot, pairStandings, type PairStanding } from "../makeup";
 import { rebuildPrereqAncestorForBranch } from "../rebuild-ancestor";
 import { decideEdgeProposal, TEACHER_APPROVED_CONFIDENCE, type ApprovedKind } from "./decide";
 import { chooseBranch, decideNodeProposal, type NodeOverrides, type NodeProposalRecord } from "./decide-node";
@@ -115,15 +115,16 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
   let nodes: Map<string, NodeLite>;
   let impact: Map<string, number>;
   let loops: Set<string>;
-  let snap: Snapshot;
+  let standings: Map<string, PairStanding>;
   try {
     nodes = await nodesBySlug(svc, rows.flatMap((p) => [p.from_slug, p.to_slug]));
     impact = await dependents(svc, rows.map((p) => p.to_slug));
     // Loops are computed over every pending pair and the graph as they
     // stand now, so a decision clears or adds a flag at once.
     const pendingAll = source ? await allPendingPairs(svc) : rows;
-    snap = await makeupSnapshot(svc);
+    const snap = await makeupSnapshot(svc);
     loops = liveCycles(snap, pendingAll);
+    standings = pairStandings(snap, pendingAll);
   } catch {
     return fail(500, "read_failed");
   }
@@ -157,7 +158,7 @@ export async function listEdgeProposals(svc: SupabaseClient, source: string | nu
         impact: live,
         crossBranch: p.cross_branch,
         inCycle: loops.has(`${p.from_slug}->${p.to_slug}`),
-        ...pairInGraph(snap, p.from_slug, p.to_slug),
+        ...(standings.get(`${p.from_slug}->${p.to_slug}`) ?? { graphLoop: false, implied: false, viaPending: false }),
         priority: priorityOf(p, live),
       };
     })
