@@ -4,7 +4,7 @@
 
 The patents gateway and service are designed.
 
-Branch `feat/ros-loop-patents-gateway`, PR #188. Founder direction: patents matter as much as papers for discovery and innovation, with their own x402 gateway and feed402 service.
+Branch `feat/ros-loop-patents-gateway`, PR #188. Founder direction: "if we are focused on scientific research, discovery, and innovation, patents are super important too," and they get their own x402 gateway and feed402 service.
 
 ### Added
 
