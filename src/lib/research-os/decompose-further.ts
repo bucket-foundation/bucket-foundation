@@ -754,7 +754,7 @@ export function consolidate(
       e.aliases = Array.from(new Set(e.aliases.concat(r.aliases, r.title !== e.title ? [r.title] : []))).sort();
       e.reasons = { ...r.reasons, ...e.reasons };
       e.summary = e.summary ?? r.summary;
-      e.possible_duplicates = e.possible_duplicates.filter((d) => !e.named_by.includes(d.slug));
+      e.possible_duplicates = duplicatesOf(e.title, new Set(e.named_by)).filter((d) => !e.named_by.includes(d.slug));
     }
   }
   return { matched, nodeProposals: Array.from(merged.values()).sort((a, b) => b.named_by.length - a.named_by.length || a.key.localeCompare(b.key)) };

@@ -27,8 +27,10 @@ const newId = () => `id-${nextId++}`;
 /**
  * The query chains review-actions uses, over plain arrays. `fail` names
  * "table:op" pairs that always error, or "table:op#n" for only the nth call.
+ * `before` runs a change to the data just before the named "table:op#n"
+ * call, as another reviewer's write landing in between would.
  */
-function fake(db: Db, rpcs: Record<string, Rpc>, fail: Set<string> = new Set(), calls: string[] = []) {
+function fake(db: Db, rpcs: Record<string, Rpc>, fail: Set<string> = new Set(), calls: string[] = [], before: Record<string, () => void> = {}) {
   const seen = new Map<string, number>();
   class Q {
     op: "select" | "update" | "delete" | "insert" | "upsert" = "select";
@@ -103,6 +105,7 @@ function fake(db: Db, rpcs: Record<string, Rpc>, fail: Set<string> = new Set(), 
       calls.push(key);
       const nth = (seen.get(key) ?? 0) + 1;
       seen.set(key, nth);
+      before[`${key}#${nth}`]?.();
       if (fail.has(key) || fail.has(`${key}#${nth}`)) return { data: null, error: { message: "injected failure" } };
       const t = (db[this.table] ??= []);
       const match = (r: Row) => this.filters.every((f) => f(r));
@@ -523,4 +526,35 @@ test("the list names the chain a pair would shortcut, and the names follow each 
   assert.equal(b.status, 200);
   assert.deepEqual(await standing(), { implied: true, viaPending: false, through: ["derivatives"] }, "the whole chain in the graph");
   forgetMakeupSnapshot();
+});
+
+test("a claim that loses the race reports the status the row holds now", async () => {
+  const db = seed();
+  // Reviewer A reads p-ref as pending; reviewer B approves it before A's reject claims the row.
+  const raced = () => {
+    db.edge_proposals.find((x) => x.id === "p-ref")!.status = "approved";
+  };
+  const r = await decideEdge(fake(db, rpcs(), new Set(), [], { "edge_proposals:update#1": raced }), { id: "p-ref", decision: "rejected", reason: null, reviewerId: "rev-a" });
+  assert.deepEqual(r.body, { decision: "approved", alreadyDecided: true });
+  // The same for a missing idea and an irreducible verdict.
+  const np = db.node_proposals[0];
+  const r2 = await decideNode(
+    fake(db, rpcs(), new Set(), [], { "node_proposals:update#1": () => (np.status = "rejected") }),
+    { id: np.id as string, decision: "approved", reason: null, reviewerId: "rev-a", overrides: {} },
+  );
+  assert.deepEqual(r2.body, { decision: "rejected", alreadyDecided: true });
+  db.irreducible_proposals = [{ id: "ir-set", node_slug: "sets", justification: "Nothing simpler.", model: "m", status: "pending", created_at: "2026-09-18T00:00:00Z" }];
+  const ir = db.irreducible_proposals[0];
+  const r3 = await decideIrreducible(
+    fake(db, rpcs(), new Set(), [], { "irreducible_proposals:update#1": () => (ir.status = "confirmed") }),
+    { id: ir.id as string, decision: "rejected", reason: null, reviewerId: "rev-a" },
+  );
+  assert.deepEqual(r3.body, { decision: "confirmed", alreadyDecided: true });
+  // When the re-read fails, the decision is unknown, and the page words it as decided.
+  const db2 = seed();
+  const r4 = await decideEdge(
+    fake(db2, rpcs(), new Set(["edge_proposals:select#2"]), [], { "edge_proposals:update#1": () => (db2.edge_proposals.find((x) => x.id === "p-ref")!.status = "approved") }),
+    { id: "p-ref", decision: "rejected", reason: null, reviewerId: "rev-a" },
+  );
+  assert.deepEqual(r4.body, { decision: null, alreadyDecided: true });
 });

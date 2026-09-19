@@ -110,12 +110,17 @@ async function readJson(res: Response): Promise<Record<string, any>> {
   }
 }
 
-/** What a failed save means to the reviewer, and what to do next. */
 /** " through A, B" for the nodes on a chain, or nothing when the chain is direct. */
 function chainText(through: { title: string }[] | undefined): string {
   return through && through.length ? ` through ${through.map((t) => t.title).join(", ")}` : "";
 }
 
+/** A decision that found the row decided already, by another reviewer or by an earlier try of this one. */
+function alreadyText(title: string, decision: unknown): string {
+  return `${title} was already ${typeof decision === "string" && decision !== "pending" ? decision : "decided"}; it has left the queue.`;
+}
+
+/** What a failed save means to the reviewer, and what to do next. */
 function saveError(code: string | undefined, status: number): string {
   switch (code) {
     case "decision_write_failed":
@@ -245,7 +250,7 @@ export default function ResearchOsEdgesPage() {
         setNotice({ id: p.id, text: `${p.fromTitle} already rests on ${p.toTitle} in the graph, so this edge would make a loop. Reject it.` });
       else if (!res.ok) setNotice({ id: p.id, text: saveError(data.error, res.status) });
       else if (data.alreadyDecided) {
-        setNotice({ id: null, text: `Another reviewer already ${data.decision} ${p.fromTitle} for ${p.toTitle}; the queue now shows their decision.` });
+        setNotice({ id: null, text: alreadyText(`${p.fromTitle} for ${p.toTitle}`, data.decision) });
         void loadQueue();
       } else {
         setProposals((list) => (list ?? []).filter((x) => x.id !== p.id));
@@ -282,7 +287,7 @@ export default function ResearchOsEdgesPage() {
       });
       if (!res.ok) setNotice({ id: n.id, text: data.error === "a definition is required to create the node" ? "Write a one-sentence definition first." : saveError(data.error, res.status) });
       else if (data.alreadyDecided) {
-        setNotice({ id: null, text: `Another reviewer already ${data.decision} ${n.title}; the queue now shows their decision.` });
+        setNotice({ id: null, text: alreadyText(n.title, data.decision) });
         await loadQueue();
       } else if (decision === "approved") {
         setNotice({
@@ -293,6 +298,8 @@ export default function ResearchOsEdgesPage() {
       } else {
         setNodeProposals((list) => (list ?? []).filter((x) => x.id !== n.id));
         setNotice({ id: null, text: `Rejected: ${n.title}.` });
+        // A reload started before this rejection would bring the row back; a new one supersedes it.
+        void loadQueue();
       }
     } finally {
       setBusyId(null);
@@ -306,10 +313,11 @@ export default function ResearchOsEdgesPage() {
       const { res, data } = await post("/api/research-os/irreducible", { id: r.id, decision, reason: notes[r.id]?.trim() || undefined });
       if (!res.ok) setNotice({ id: r.id, text: saveError(data.error, res.status) });
       else if (data.alreadyDecided) {
-        setNotice({ id: null, text: `Another reviewer already ${data.decision} ${r.title}; the queue now shows their decision.` });
+        setNotice({ id: null, text: alreadyText(r.title, data.decision) });
         await loadQueue();
       } else {
         setIrreducible((list) => (list ?? []).filter((x) => x.id !== r.id));
+        void loadQueue();
         setNotice({ id: null, text: decision === "confirmed" ? `${r.title} is a prime by review.` : `${r.title} goes back to the decompose-further queue.` });
       }
     } finally {

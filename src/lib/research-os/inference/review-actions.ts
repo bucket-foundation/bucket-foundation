@@ -24,6 +24,17 @@ export type ActionResult = { status: number; body: Record<string, unknown> };
 const ok = (body: Record<string, unknown>): ActionResult => ({ status: 200, body });
 const fail = (status: number, error: string): ActionResult => ({ status, body: { error } });
 
+/**
+ * A claim that matched no pending row lost to another decision, or repeats
+ * this reviewer's own. Report the status the row holds now, or a null
+ * decision when that read fails.
+ */
+async function lostClaim(svc: SupabaseClient, table: string, id: string): Promise<ActionResult> {
+  const { data, error } = await svc.from(table).select("status").eq("id", id).maybeSingle();
+  const status = !error && data ? ((data as { status?: unknown }).status ?? null) : null;
+  return ok({ decision: typeof status === "string" ? status : null, alreadyDecided: true });
+}
+
 export const SOURCES = new Set(["inferred_llm", "prime_decompose_llm"]);
 export const KINDS = new Set<ApprovedKind>(["prerequisite", "derives_from"]);
 
@@ -215,7 +226,7 @@ export async function decideEdge(
   if (!outcome.edgeToWrite) {
     try {
       if (!(await claim({ status: "rejected", reviewer_id: input.reviewerId, decision_reason: input.reason, decided_at: decidedAt })))
-        return ok({ decision: "rejected", alreadyDecided: true });
+        return lostClaim(svc, "edge_proposals", p.id);
     } catch {
       return fail(500, "decision_write_failed");
     }
@@ -240,7 +251,7 @@ export async function decideEdge(
 
   try {
     if (!(await claim({ status: "approved", decided_kind: kind, reviewer_id: input.reviewerId, decision_reason: input.reason, decided_at: decidedAt })))
-      return ok({ decision: "approved", alreadyDecided: true });
+      return lostClaim(svc, "edge_proposals", p.id);
   } catch {
     return fail(500, "decision_write_failed");
   }
@@ -426,7 +437,7 @@ export async function decideNode(
     .eq("status", "pending")
     .select("id");
   if (claimErr) return fail(500, "decision_write_failed");
-  if (!((claimed as unknown[]) || []).length) return ok({ decision: outcome.status, alreadyDecided: true });
+  if (!((claimed as unknown[]) || []).length) return lostClaim(svc, "node_proposals", r.id);
   if (!outcome.nodeToCreate) return ok({ decision: outcome.status, alreadyDecided: false });
 
   const release = async (): Promise<boolean> => {
@@ -543,6 +554,6 @@ export async function decideIrreducible(
     .eq("status", "pending")
     .select("id");
   if (claimErr) return fail(500, "decision_write_failed");
-  if (!((claimed as unknown[]) || []).length) return ok({ decision: input.decision, alreadyDecided: true });
+  if (!((claimed as unknown[]) || []).length) return lostClaim(svc, "irreducible_proposals", r.id);
   return ok({ decision: input.decision, alreadyDecided: false });
 }

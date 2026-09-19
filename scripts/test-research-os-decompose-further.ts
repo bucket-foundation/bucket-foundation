@@ -379,6 +379,27 @@ test("consolidate turns a matched group into factors and the rest into missing p
   assert.deepEqual(r.possible_duplicates.map((d) => d.slug), ["cause-node"], "a naming node leaves before the cut, so it does not take a slot");
 });
 
+test("two groups merged under one key rank duplicates again, so a naming node from either leaves before the cut", () => {
+  const t = selectTargets(nodes, dec);
+  const missing = aggregateMissing([
+    { target: t[0], answer: { irreducible: false, factors: [], missing: [{ title: "Causation", branch: "04-information", why: "motion has causes" }] } },
+    { target: t[1], answer: { irreducible: false, factors: [], missing: [{ title: "Causality", branch: "01-mathematics", why: "functions map causes" }] } },
+  ]);
+  const groups = [
+    { canonical: "Causation", branch: "04-information", members: ["causation"], sameAs: null, definition: null },
+    { canonical: "Causation", branch: "04-information", members: ["causality"], sameAs: null, definition: null },
+  ];
+  // The second target ranks first; the first group's list keeps it, since only the first target named that group.
+  const pool = [
+    { slug: t[1].slug, title: t[1].title, similarity: 0.9 },
+    { slug: "cause-node", title: "Cause and effect", similarity: 0.8 },
+  ];
+  const out = consolidate(groups, missing, "sonnet", (_title, exclude) => pool.filter((d) => !exclude.has(d.slug)).slice(0, 1));
+  assert.equal(out.nodeProposals.length, 1);
+  assert.deepEqual(out.nodeProposals[0].named_by, [t[0].slug, t[1].slug].sort());
+  assert.deepEqual(out.nodeProposals[0].possible_duplicates.map((d) => d.slug), ["cause-node"], "the merged row keeps a full list");
+});
+
 test("a pair is in a cycle when proposals and existing edges close a loop", () => {
   const idOf = new Map(nodes.map((n) => [n.slug, n.id]));
   const existing = [pre("sets", "functions")];
