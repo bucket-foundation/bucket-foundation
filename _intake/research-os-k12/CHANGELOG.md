@@ -1,5 +1,17 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-19: fewer Vercel builds
+
+Previews build once per task and build green.
+
+Branch `feat/ros-loop-builds`, PR #187. Founder direction: fewer Vercel builds and no failing ones.
+
+### Fixed
+
+- The skip gate compares a push with the last successful deployment on Vercel, where it had failed and built on every push.
+- Builds run on Node 24 ahead of Vercel's 2026-10-01 cutoff for Node 20.
+- A push that would build is checked for lint and type errors on the machine first.
+
 ## 2026-09-18: primes and the decompose-further queue
 
 The graph's makeup has a review queue.
