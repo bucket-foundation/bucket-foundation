@@ -1,5 +1,27 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-18: primes and the decompose-further queue
+
+The graph's makeup has a review queue.
+
+Branch `feat/ros-loop-decompose-further`, PR #186. Founder direction: prime decomposition of concepts and equations, "can this be further", done deep and checked by a critic.
+
+### Added
+
+- The decompose-further runner: a proposer names what each prime and unfactored idea rests on, a verifier on another model judges the picks blind among passed-over candidates, and Wikipedia's links score every pair.
+- Missing base ideas merge by meaning and wait at `/research-os/edges` with the targets that named them; approving one creates the node.
+- Irreducible verdicts a reviewer can confirm or send back.
+- The primes report lists what moved since its last run.
+- Every public idea node has a "made of" section: prime or composite, how many layers above its primes, the primes under it, and what waits on review for it, in detail for reviewers and as counts for everyone else.
+- The review queue has a summary, a find box, filters, and a view narrowed to one node from its page.
+- Graph review is open to the reviewer allowlist alone.
+- "Where it leads" on the node page follows each edge kind's direction, and lists open questions and frontier nodes where the walk ends.
+- A pending pair that would shortcut a chain names the chain, and the review queue can show the shortcuts alone.
+
+### Corrected
+
+- The PRET card (Alzetta and colleagues, 2018) said annotators agreed moderately and disagreed most on same-section pairs. The paper reports fair agreement, Fleiss' kappa 38.50%, and has no same-section finding. The card carries the paper's figures; three docs that cited it carry dated corrections.
+
 ## 2026-09-17: one graph of everything researched
 
 The workspace opens over the full scope of that graph.

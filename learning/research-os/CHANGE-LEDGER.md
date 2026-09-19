@@ -2,6 +2,50 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-prime 2: the decompose-further queue
+
+Every prime and unfactored idea gets factors proposed by one model, checked blind by a second and by Wikipedia's links, and decided by a person at `/research-os/edges`.
+
+Date 2026-09-18. Branch `feat/ros-loop-decompose-further`, worktree `.wt-ros-loop`, PR #186 into `dev`. Design and results in `learning/research-os/PRIMES.md`, "Slice 2". Founder direction: decompose concepts and equations into primes, "can this be further", and build it deep, with a critic.
+
+### Added
+
+- `src/lib/research-os/decompose-further.ts`: target selection (idea nodes only), the three-pool shortlist, prompts and parsers for the proposer, the blinded verifier, and consolidation, Cohen's kappa with a target-level bootstrap interval, missing-idea aggregation and base-idea hints, cycle detection over pending pairs.
+- `src/lib/research-os/refd.ts` and `scripts/research-os/wikipedia-links.ts`: RefD over Wikipedia links (Liang and colleagues, 2015), title resolution through redirects, and the ROC area of the score against the verifier's verdicts.
+- `scripts/research-os/decompose-further.ts`, the eight-stage runner; `scripts/research-os/embed-texts.py`, local embeddings with a cache.
+- `src/lib/research-os/inference/decide-node.ts` and `review-actions.ts`: decisions on factor proposals, missing primes, and irreducible verdicts, each claimed before it writes.
+- `src/app/api/research-os/node-proposals/route.ts`, `src/app/api/research-os/irreducible/route.ts`.
+- Migrations `20260918010000_research_os_prime_decompose.sql`, `20260918020000_research_os_prime_decompose_review.sql`, `20260918030000_research_os_irreducible.sql`: `graph.node_proposals`, `graph.irreducible_proposals`, verification state, origin, RefD, and cycle flags on `graph.edge_proposals`, the merge functions, `graph.rests_on`, and an atomic `replace_prereq_ancestor`.
+- `primes.ts` `movesSince`; `primes-report.ts` reports reviewed irreducible primes and what moved since its last run.
+- `src/lib/research-os/makeup.ts`, `src/app/api/research-os/makeup/route.ts`, `src/app/research-os/(app)/n/MakeupSection.tsx`: the node page's "made of" section, a node's place in the decomposition and what waits on review for it (founder direction: the work shows inside Research OS).
+- `supabase/tests/research_os_proposals.sql` with `scripts/test-research-os-proposal-sql.ts`: the merge, reachability, and closure functions in real Postgres, in a transaction that rolls back.
+- Tests: `test-research-os-makeup.ts`, `test-research-os-external-factors.ts`.
+- `src/lib/research-os/idea.ts`: which nodes are ideas, shared by the queue and the node page; the queue and "made of" decompose the idea layer, and facts under an idea show as its evidence.
+- `src/lib/research-os/reviewer.ts` `verifyGraphReviewer`: graph review on the allowlist alone, since a class membership anyone can create opens teacher review.
+- `src/lib/research-os/primes.ts` `contractedFactorEdges`: the idea layer keeps an idea-to-idea edge wherever one idea rests on another through evidence alone, so a paper between two ideas no longer hides the link.
+- `src/lib/research-os/makeup.ts` `pairStandings`: each pending pair is labelled when it loops with the graph, repeats a chain the graph has, or shortcuts a chain other pending pairs make, and names the nodes on the shortest such chain; the review page reloads the labels after every decision, drops a reload an older request started, and reports the status a row holds when someone decided it first.
+- Tests: `test-research-os-decompose-further.ts`, `test-research-os-refd.ts`, `test-research-os-decide-node.ts`, `test-research-os-review-actions.ts`, additions to the primes, rebuild-ancestor, and edges-review tests.
+
+### Edited
+
+- `src/app/research-os/(app)/edges/page.tsx`: sections for irreducible verdicts, missing primes, and factor proposals grouped by target, with the edge kind chosen per proposal.
+- `src/app/api/research-os/edges/route.ts`: a thin wrapper over `review-actions.ts`.
+- `src/lib/research-os/inference/decide.ts`: an approval can write `derives_from` as well as `prerequisite`.
+- `src/lib/research-os/db.ts`, `node/route.ts`, `route/route.ts`: node pages and routing read factors from other branches.
+- `src/lib/research-os/rebuild-ancestor.ts`, `scripts/rebuild-prereq-ancestor.ts`: paged reads, cross-branch edges, one atomic replace.
+- `learning/research-os/PRIMES.md`: prior work corrected (semantic prime counts, eleven prerequisite papers), Slice 2 rewritten to match the code, results added.
+- `docs/PROBLEM-REGISTER.md`: PR-059, PR-060, PR-061, PR-062, PR-063.
+- `src/app/research-os/(app)/edges/page.tsx`: a summary line, a find box, verdict, cross-branch, and shortcut filters, anchors a node page links to, and warnings from approvals.
+- `src/lib/research-os/directions.ts`: "where it leads" follows each edge kind's direction; `derives_from`, `extends`, `replicates`, `generalizes`, and `answers` run from the newer node to its base, as the data and `primes.ts` have them. The walk visits ideas (idea.ts) and the work built on them, and stops at facts, sources, and grouping nodes. A node flagged as an open question or a frontier is listed whatever its kind and ends the walk unless it is an idea or work: the eight open questions are intake targets, which fail the idea rule, and the idea rule alone hid all of them. Old behaviour: every kind walked from its from end, so extensions never showed where a node leads, and an approved "rests on" edge would have shown the factor as where the target leads.
+- `src/app/research-os/(app)/n/AroundSection.tsx`: the learning-order list is labelled "learned after". Old label: "rests on", which contradicted "made of".
+- `src/app/research-os/(app)/n/AroundSection.tsx`, `src/app/api/research-os/node/route.ts`: a failed graph read says so on the node page, where it used to show an empty neighbourhood as real.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md`: key claims replaced with the paper's own figures. Old text: agreement "was moderate", and "Disagreement concentrated on term pairs from the same section of the source text"; the paper reports fair agreement (Fleiss' kappa 38.50%) and has no same-section finding.
+- `learning/research-os/ROUTING.md`, `learning/research-os/PLAN-REVISION-2.md`, `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: dated corrections beside the passages that cited the same-section finding or "moderate" agreement; the passages themselves stay as written.
+
+### Removed
+
+None.
+
 ## Ranking-holdout scoring
 
 Murphy decomposition, a higher label floor, and an ideation-stage label on novelty scores.

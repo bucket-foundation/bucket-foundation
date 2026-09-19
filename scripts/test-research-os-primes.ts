@@ -1,7 +1,7 @@
 /** Prime decomposition: factors, statuses, signatures, cycles, penetration. */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { decompose, factorMap, penetration, summarize, type DepEdge } from "../src/lib/research-os/primes";
+import { contractedFactorEdges, decompose, factorMap, movesSince, penetration, summarize, type DepEdge } from "../src/lib/research-os/primes";
 
 const pre = (from: string, to: string, confidence?: number): DepEdge => ({ fromId: from, toId: to, kind: "prerequisite", confidence });
 const der = (from: string, to: string, confidence?: number): DepEdge => ({ fromId: from, toId: to, kind: "derives_from", confidence });
@@ -79,4 +79,45 @@ test("a long chain decomposes without recursion limits", () => {
   const d = decompose([], edges);
   assert.equal(d.get("n20000")!.depth, 20000);
   assert.deepEqual(Object.fromEntries(d.get("n20000")!.signature), { n0: 1 });
+});
+
+test("moves since an earlier run: a prime that gains a factor, a new base idea, and nodes that join", () => {
+  const before = decompose([{ id: "lonely" }], [pre("kin", "dyn")]);
+  const prior = Array.from(before.values()).map((d) => ({ id: d.id, status: d.status, depth: d.depth }));
+  // A new base idea "eq" now sits under "kin", and "lonely" rests on "kin".
+  const after = decompose([{ id: "lonely" }], [pre("kin", "dyn"), pre("eq", "kin"), pre("kin", "lonely")]);
+  const m = movesSince(prior, after);
+  assert.deepEqual(m.decomposed, ["kin"]);
+  assert.deepEqual(m.newPrimes.sort(), ["eq"]);
+  assert.deepEqual(m.joined.sort(), ["eq", "lonely"]);
+  assert.equal(m.deeper, 1);
+  assert.equal(m.shallower, 0);
+});
+
+test("contracted edges carry an idea through facts to the next idea, and stop there", () => {
+  const der = (from: string, to: string, confidence = 1): DepEdge => ({ fromId: from, toId: to, kind: "derives_from", confidence });
+  // law rests on paper (derives_from), paper rests on wave (prerequisite wave -> paper),
+  // wave rests on fact2, fact2 rests on base; fact3 and fact4 loop on each other under law.
+  const edges: DepEdge[] = [
+    der("law", "paper", 0.9),
+    { fromId: "wave", toId: "paper", kind: "prerequisite", confidence: 0.7 },
+    der("wave", "fact2"),
+    der("fact2", "base"),
+    der("law", "fact3"),
+    der("fact3", "fact4"),
+    der("fact4", "fact3"),
+  ];
+  const keep = new Set(["law", "wave", "base"]);
+  const out = contractedFactorEdges(keep, edges).map((e) => `${e.fromId}->${e.toId}@${e.confidence}`).sort();
+  // law rests on wave through the paper at the lower confidence; wave rests on base through fact2;
+  // law does not reach base directly, since wave, an idea, stands between them.
+  assert.deepEqual(out, ["base->wave@1", "wave->law@0.7"]);
+});
+
+test("contraction keeps the better of two paths and ignores a loop back to the start", () => {
+  const der = (from: string, to: string, confidence = 1): DepEdge => ({ fromId: from, toId: to, kind: "derives_from", confidence });
+  // a rests on b through f1 (0.4) and through f2 (0.8); a also reaches itself through f3.
+  const edges: DepEdge[] = [der("a", "f1", 0.4), der("f1", "b"), der("a", "f2"), der("f2", "b", 0.8), der("a", "f3"), der("f3", "a")];
+  const out = contractedFactorEdges(new Set(["a", "b"]), edges);
+  assert.deepEqual(out.map((e) => `${e.fromId}->${e.toId}@${e.confidence}`), ["b->a@0.8"]);
 });

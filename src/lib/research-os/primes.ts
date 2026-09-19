@@ -93,8 +93,46 @@ export function factorMap(edges: DepEdge[]): Map<string, Map<string, number>> {
   return out;
 }
 
-/** Tarjan's strongly connected components over node to factor links, iterative. */
-function components(ids: string[], factors: Map<string, Map<string, number>>): Map<string, number> {
+/**
+ * Factor edges among the nodes in `keep`, with every path through other
+ * nodes contracted: A rests on B here when a factor path runs from A to B
+ * and every node between them lies outside `keep`. The idea layer uses it
+ * so an idea that rests on another through a fact or a paper still rests
+ * on it. Each contracted edge is written as a prerequisite edge from the
+ * factor to the node, carrying the lowest confidence along the path.
+ */
+export function contractedFactorEdges(keep: Set<string>, edges: DepEdge[]): DepEdge[] {
+  const factors = factorMap(edges);
+  const out = new Map<string, number>();
+  for (const start of Array.from(keep)) {
+    // Walk down through nodes outside `keep`; stop at the first kept node on each path.
+    const best = new Map<string, number>();
+    const stack: [string, number][] = Array.from(factors.get(start) ?? new Map<string, number>()).map(([f, c]) => [f, c] as [string, number]);
+    const seen = new Map<string, number>();
+    while (stack.length) {
+      const [id, conf] = stack.pop()!;
+      if (id === start) continue;
+      if ((seen.get(id) ?? -1) >= conf) continue;
+      seen.set(id, conf);
+      if (keep.has(id)) {
+        best.set(id, Math.max(best.get(id) ?? 0, conf));
+        continue;
+      }
+      for (const [next, c] of Array.from(factors.get(id) ?? new Map<string, number>())) stack.push([next, Math.min(conf, c)]);
+    }
+    for (const [factor, conf] of Array.from(best)) {
+      const key = `${factor}\u0000${start}`;
+      out.set(key, Math.max(out.get(key) ?? 0, conf));
+    }
+  }
+  return Array.from(out).map(([key, confidence]) => {
+    const [fromId, toId] = key.split("\u0000");
+    return { fromId, toId, kind: "prerequisite", confidence };
+  });
+}
+
+/** Tarjan's strongly connected components over node to factor links, iterative. Component ids run in reverse topological order: factors first. */
+export function components(ids: string[], factors: Map<string, Map<string, number>>): Map<string, number> {
   const index = new Map<string, number>();
   const low = new Map<string, number>();
   const onStack = new Set<string>();
@@ -294,4 +332,37 @@ export function summarize(dec: Map<string, Decomposition>): PrimeSummary {
     s.tiers[d.tier]++;
   }
   return s;
+}
+
+/** One node's standing in an earlier decomposition, as primes-report.json records it. */
+export type PriorStanding = { id: string; status: PrimeStatus; depth: number };
+
+export type PrimeMoves = {
+  /** Primes that gained factors: the base layer moved below them. */
+  decomposed: string[];
+  /** Unfactored nodes that joined the dependency graph. */
+  joined: string[];
+  /** Nodes that are prime now and were not before, new base ideas among them. */
+  newPrimes: string[];
+  /** Nodes whose depth changed while their status held. */
+  deeper: number;
+  shallower: number;
+};
+
+/** What changed between an earlier decomposition and this one. Nodes new since then count as joined when they have edges. */
+export function movesSince(prior: PriorStanding[], dec: Map<string, Decomposition>): PrimeMoves {
+  const before = new Map(prior.map((p) => [p.id, p]));
+  const out: PrimeMoves = { decomposed: [], joined: [], newPrimes: [], deeper: 0, shallower: 0 };
+  for (const d of Array.from(dec.values())) {
+    const p = before.get(d.id);
+    const was = p?.status ?? "unfactored";
+    if (was === "prime" && d.status === "composite") out.decomposed.push(d.id);
+    if (was === "unfactored" && d.status !== "unfactored") out.joined.push(d.id);
+    if (was !== "prime" && d.status === "prime") out.newPrimes.push(d.id);
+    if (p && was === d.status && d.status !== "unfactored") {
+      if (d.depth > p.depth) out.deeper++;
+      else if (d.depth < p.depth) out.shallower++;
+    }
+  }
+  return out;
 }

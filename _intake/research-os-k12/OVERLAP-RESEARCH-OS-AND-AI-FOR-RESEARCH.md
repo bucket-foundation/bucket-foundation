@@ -239,7 +239,7 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    related finding. Valdez, Roldan, and Masuli (2025) extend the technique itself: centrality analysis
    over a real prerequisite network could identify which frontier nodes serve the most downstream
    targets once mastered, a criterion orthogonal to the router's edge-confidence weighting. *Complicates:*
-   Alzetta and colleagues (2018)'s gold-standard dataset finds only moderate inter-annotator agreement
+   Alzetta and colleagues (2018)'s gold-standard dataset finds only fair inter-annotator agreement (Fleiss' kappa 0.385, corrected 2026-09-18 from "moderate")
    among trained humans labeling prerequisite pairs, and Novak (1990) sets a validity bar for any
    claimed concept structure, expert review against a domain's accepted structure, that a
    lexical-overlap `inferred` edge does not clear by construction.

@@ -66,6 +66,25 @@ export async function verifyReviewer(req: NextRequest): Promise<Reviewer | null>
 }
 
 /**
+ * The gate for changing the graph itself: approving edges, creating nodes
+ * from missing ideas, and confirming irreducible verdicts, on
+ * /api/research-os/{edges,node-proposals,irreducible} and the review detail
+ * on /api/research-os/makeup. A class membership opens teacher review, and
+ * anyone signed in can create a class and hold one, so only the env
+ * allowlist opens this gate. Unset, nobody is a graph reviewer.
+ */
+export async function verifyGraphReviewer(req: NextRequest): Promise<Reviewer | null> {
+  const identity = await verifyLearnerIdentity(req);
+  return isGraphReviewer(identity);
+}
+
+/** The graph-review decision on a verified identity: the allowlist, and nothing else. */
+export function isGraphReviewer(identity: { id: string; email?: string | null } | null): Reviewer | null {
+  if (!identity?.email || !isReviewerEmail(identity.email)) return null;
+  return { id: identity.id, email: identity.email };
+}
+
+/**
  * A teacher or librarian membership in any class (graph.class_members.role)
  * makes a person a reviewer beside the env allowlist, so a teacher who
  * created their own class reviews without a deploy.
