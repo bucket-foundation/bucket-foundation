@@ -22,7 +22,7 @@ As of 2026-09-19.
 - A provider registry (`config/providers.yaml`) with typed adapters behind feed402/0.3 envelopes.
 - One live patent provider, `uspto-odp` (gateway #18, closed by #64 on 2026-08-18): search and fetch over USPTO ODP's Patent File Wrapper API, with parties, CPC and USPC classes, and the parent and child continuity that stands in for a family. It is US only and public domain, verified live against an ODP key provisioned to the founder's USPTO account.
   - Forward and backward citations are verified absent from that API, so the gateway answers a citation request for this provider as unsupported.
-  - The routes are `/research/uspto/search` and `/research/uspto/fetch` in `config/routes.yaml`. They are missing from `config/routes.hetzner.yaml`, the config the deployment runs.
+  - The routes are `/research/uspto/search` and `/research/uspto/fetch` in `config/routes.yaml`, the config `deploy.sh` loads through `docker-compose.prod.yml`. They are missing from `config/routes.hetzner.yaml`, which `docker-compose.hetzner.yml` loads. Which of the two runs at `x402-research.agfarms.dev` is unconfirmed.
 - Google Patents, EPO OPS, and WIPO PATENTSCOPE are registered as `discovered`, with redistribution unknown and no adapter. Lens is registered.
 - It settles on FareSide's free testnet facilitator. `decodeAndVerifyPayment` builds its payment requirements from the client's payload, as on the older copy.
 
@@ -51,7 +51,7 @@ Checked 2026-09-19 against the sources named.
 
 **EPO's bulk data became free in 2025.** Under a pricing change dated 2025-01-01, with the products released between 2025-01-23 and 2025-02-17, the EPO serves seven bulk products, DOCDB worldwide bibliographic data, INPADOC, and EP full text among them, free and without an account from the public area of its Bulk Data Distribution Service ([patent.dev](https://patent.dev/game-changer-key-epo-patent-datasets-are-now-free/); [patent-dev/epo-bdds](https://github.com/patent-dev/epo-bdds)). They fall under the EPO's raw-data licensing terms, which did not render to the tools used here and were not read. Until they are, EP data stays out of v1.
 
-**ODP has one live US API.** The Open Data Portal's Patent File Wrapper search answers today with US application data ([ODP search API](https://data.uspto.gov/apis/patent-file-wrapper/search)). It runs on one person's key at 60 requests a minute, which suits a loader or a nightly refresh and does not suit a public paid route.
+**ODP has one live US API.** The Open Data Portal's Patent File Wrapper search answers today with US application data ([ODP search API](https://data.uspto.gov/apis/patent-file-wrapper/search)). It runs on one person's key, and the ODP pages give 60 requests a minute per key, while the gateway's registry records weekly quotas for its key. A loader or a nightly refresh fits within that; whether a public paid route can run on a personal key, and at what volume, is a question in gateway #68.
 
 **WIPO data costs a licence before any resale.** WIPO's terms for PCT data products (last updated 2025-11-12) grant bulk redistribution only under a paid derivative licence, and only "with 'added value' (i.e., with substantial modification of the PCT data, beyond that made available 'as is')"; the basic, non-derivative, and derivative licences all carry fees ([WIPO terms](https://www.wipo.int/en/web/patentscope/data/terms)). The matrix admitted WIPO content to the insight tier under the derivative clause; that clause applies after a licence is bought. WIPO stays out of v1.
 
@@ -65,10 +65,10 @@ Checked 2026-09-19 against the sources named.
 
 The gateway sells citeable patent records over x402. Research OS reads patents free from its own graph, and links each patent to the gateway for the citeable record: free to read, paid to cite.
 
-**What the gateway serves, and what it still needs.** `uspto-search` and `uspto-fetch` are on the gateway's org `main`, answering with US applications and grants in feed402/0.3 envelopes. They are not confirmed on the deployed host: they are missing from `routes.hetzner.yaml`, the gateway's own runbook deploys with `routes.yaml`, and `x402-research.agfarms.dev` did not answer when checked. The rest is tracked in the org repositories:
+**What the gateway serves, and what it still needs.** `uspto-search` and `uspto-fetch` are on the gateway's org `main`, answering with US applications and grants in feed402/0.3 envelopes. They are not confirmed on the deployed host: the two deploy configs differ on them, as above, and `x402-research.agfarms.dev` did not answer when checked. The rest is tracked in the org repositories:
 
 - [gateway #67](https://github.com/bucket-foundation/x402-research-gateway/issues/67): payment checks built from the route's own price, payee, and asset. This gates any mainnet traffic.
-- [gateway #68](https://github.com/bucket-foundation/x402-research-gateway/issues/68) carries the provider terms read here into the registry: EPO OPS inside composed answers only, EPO bulk data with its terms unread, WIPO paid, Google Patents Public Data CC BY 4.0. It also covers a licensed citation source, the missing deployed routes, and the mainnet facilitator and wallet.
+- [gateway #68](https://github.com/bucket-foundation/x402-research-gateway/issues/68) carries the provider terms read here into the registry: EPO OPS inside composed answers only, EPO bulk data with its terms unread, WIPO paid, Google Patents Public Data CC BY 4.0. It also covers a licensed citation source, the deployed routes, the capacity of the ODP key behind a public route, and the mainnet facilitator, wallet, and host.
 - [feed402 #12](https://github.com/bucket-foundation/feed402/issues/12): §6.1's EP and WO rights brought in line with those terms, an `attribution` field, rights emission, canonical URLs, and patent-to-paper links.
 
 **Research OS's patents come from the graph.** ODP's API has no citations, and Research OS needs them, so the ros-patents 2 importer writes patent nodes and `cites` edges into the Supabase `graph` schema from a bulk corpus:
@@ -76,7 +76,7 @@ The gateway sells citeable patent records over x402. Research OS reads patents f
 - the PatentsView bulk tables on ODP (grants, claims, application numbers, patent-to-patent citations, non-patent literature references, CPC classes, disambiguated assignees and inventors; CC BY 4.0, to be confirmed on the signed-in download page); or
 - Google Patents Public Data on BigQuery (CC BY 4.0), whose `publications` table was 899.4 GB over 98,176,830 rows with no documented partitioning when its schema page was written (2018-11-26), so a dry run gives the bytes before any slice query runs. The BigQuery sandbox allows 1 TiB of queries a month and 10 GiB of storage for the project's life, and expires tables after 60 days ([BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox), updated 2026-09-16).
 
-The slice is the CPC classes that match the graph's branches, chosen in ros-patents 1. The fetch scripts in `data/patents/uspto/scripts` need new hosts either way. Each patent node carries its application number, converted to the 8-digit form ODP takes: PatentsView writes it as series and serial (`02/002761`), and BigQuery in DOCDB form (`US-87124404-A`) or not at all, with `application_number_formatted` as the fallback. The conversion comes with tests, and a node with no number gets no link. The page links to the USPTO's free record at `https://patentcenter.uspto.gov/applications/{number}`, and to the gateway's `uspto-fetch` for the citeable record once gateway #68 confirms the routes on the deployed host. It also shows its source with attribution: "USPTO; PatentsView, CC BY 4.0" or "Google Patents Public Data by IFI CLAIMS Patent Services and Google, CC BY 4.0". Node pages, search, and the map read patents from Supabase like any node, with no call to the gateway.
+The slice is the CPC classes that match the graph's branches, chosen in ros-patents 1. The fetch scripts in `data/patents/uspto/scripts` need new hosts either way. Each patent node carries its application number, converted to the 8-digit form ODP takes: PatentsView writes it as series and serial (`02/002761`), and BigQuery in DOCDB forms that vary by year (`US-87124404-A` in its schema's example, `US201514643719A` for a 2015 filing) or not at all, with `application_number_formatted` (`US14/643,719`) preferred when set. The conversion comes with tests over both DOCDB forms and design series codes such as `D`. A granted patent's page links to the public record by patent number, with no sign-in: the USPTO's PDF at `https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/{number}` and Google Patents at `https://patents.google.com/patent/US{number}{kind}`. Patent Center (`patentcenter.uspto.gov/applications/{number}`) is labelled "sign-in required", since the USPTO ended guest access on 2025-09-11 ([USPTO notice](https://www.uspto.gov/subscription-center/2025/effective-tomorrow-identity-verification-will-be-required-all-patent)). The page links to the gateway's `uspto-fetch` for the citeable record once gateway #68 confirms the routes on the deployed host, and the "no number, no link" rule applies to that link. It also shows its source with attribution: "USPTO; PatentsView, CC BY 4.0" or "Google Patents Public Data by IFI CLAIMS Patent Services and Google, CC BY 4.0". Node pages, search, and the map read patents from Supabase like any node, with no call to the gateway.
 
 **Readers inside Research OS.**
 
@@ -89,7 +89,7 @@ The slice is the CPC classes that match the graph's branches, chosen in ros-pate
 
 | Source | Research OS | Gateway paid routes |
 |---|---|---|
-| USPTO ODP (public domain) | yes | yes (live) |
+| USPTO ODP (public domain) | yes | on org `main`, deployment unconfirmed (#68) |
 | PatentsView and Google Patents Public Data, CC BY 4.0 | yes, with attribution | yes, with attribution, per #68 |
 | Patent-to-paper links Bucket builds from PatentsView references matched to OpenAlex | yes, marked as Bucket's adaptation of CC BY data | once feed402 #12 adds a field |
 | Reliance on Science, CC BY-NC 4.0 | not in v1: Bucket charges citation fees and is not yet a filed nonprofit | no |
@@ -121,7 +121,7 @@ The split of work is the human-AI-computer one this epic serves:
 
 **Waiting on the founder.** Until he answers, the loop does only work that can be undone and spends nothing.
 
-1. **The account for the bulk data.** The gateway already runs on an ODP key provisioned to his USPTO account on 2026-08-18.
+1. **The account for the bulk data.** The gateway's ODP adapter was verified live on 2026-08-18 with a key provisioned to his USPTO account.
    - The recommendation is that ros-patents 2 downloads the PatentsView bulk tables with that account.
    - The option is BigQuery, either the sandbox within its limits or a project with billing and a daily cost cap.
    - ros-patents 2 waits on one of them.
@@ -140,4 +140,4 @@ The gateway's own questions, who owns the mainnet facilitator and receiving wall
 - ros-patents 3 builds prior-art search.
 - ros-patents 4 decomposes claims into elements and adds disclosure.
 
-The gateway's USPTO routes are on its org `main`; Research OS links to them once gateway #68 confirms them on the deployed host, and to the USPTO's free record until then.
+The gateway's USPTO routes are on its org `main`; Research OS links to them once gateway #68 confirms them on the deployed host, and to the public patent records until then.
