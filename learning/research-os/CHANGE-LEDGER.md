@@ -14,7 +14,8 @@ Date 2026-09-19. Branch `feat/ros-loop-patents-gateway`, worktree `.wt-ros-loop`
 
 ### Edited
 
-- `docs/PATENT_LICENSING.md`: a dated corrections block at the top: PatentsView's paused API and ODP accounts, the EPO OPS terms, WIPO's paid licences, the Lens, and Reliance on Science's non-commercial licence. The text below it is unchanged.
+- `docs/PATENT_LICENSING.md`: a dated corrections block at the top: PatentsView's paused API and ODP accounts, the EPO OPS terms and free bulk data, WIPO's paid licences, the Lens, and Reliance on Science's non-commercial licence. The text below it is unchanged.
+- `docs/FEED402_PATENTS.md`: a dated corrections block at the top: the v1 corpus is US grants under CC BY 4.0, seven routes, and the local serve script's old `mountPatents` call. The text below it is unchanged.
 
 ### Removed
 
