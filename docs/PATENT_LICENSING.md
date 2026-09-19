@@ -17,7 +17,7 @@ Checked against the sources in `learning/research-os/PATENTS.md`, "What changed 
 - **EPO bulk data.** Since 2025-01-01 the EPO serves DOCDB, INPADOC, and EP full text free from the public area of its Bulk Data Distribution Service, under its raw-data licensing terms, which were not read. EP data stays out of v1 until they are.
 - **WIPO PATENTSCOPE.** Every WIPO licence, the derivative one included, carries a fee (terms updated 2025-11-12). WIPO content is out of v1 until one is bought.
 - **The Lens.** API access past a 14-day trial is paid, for any commercial or integrated use (updated 2026-05-21), as the matrix said.
-- **Reliance on Science.** The patent-to-paper citation set of Marx and Fuegi is CC BY-NC 4.0; Research OS may use it, and paid feed402 tiers may not.
+- **Reliance on Science.** The patent-to-paper citation set of Marx and Fuegi is CC BY-NC 4.0. Bucket charges citation fees and is not yet a filed nonprofit, so it stays out of v1, Research OS included; patent-to-paper links come from the PatentsView references, CC BY 4.0, matched to OpenAlex.
 - These findings are carried to the gateway's provider registry in [x402-research-gateway#68](https://github.com/bucket-foundation/x402-research-gateway/issues/68).
 
 ---

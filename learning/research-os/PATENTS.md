@@ -55,7 +55,7 @@ Checked 2026-09-19 against the sources named.
 
 **WIPO data costs a licence before any resale.** WIPO's terms for PCT data products (last updated 2025-11-12) grant bulk redistribution only under a paid derivative licence, and only "with 'added value' (i.e., with substantial modification of the PCT data, beyond that made available 'as is')"; the basic, non-derivative, and derivative licences all carry fees ([WIPO terms](https://www.wipo.int/en/web/patentscope/data/terms)). The matrix admitted WIPO content to the insight tier under the derivative clause; that clause applies after a licence is bought. WIPO stays out of v1.
 
-**The patent-to-paper link data is non-commercial.** Reliance on Science by Matt Marx and Aaron Fuegi, version 65 (2026-07-22), holds patent-to-paper citations through patents granted in 2025, front page and body text, with a confidence score from 1 to 10 for each, in `pcs_oa_uspto.csv` (1.4 GB) keyed to OpenAlex works, under CC BY-NC 4.0 ([Zenodo](https://zenodo.org/records/21493744); Marx and Fuegi, [Strategic Management Journal 41(9) 2020](https://doi.org/10.1002/smj.3145) and [Journal of Economics and Management Strategy 31(2)](https://doi.org/10.1111/jems.12455), published though Zenodo still calls it forthcoming; both DOIs checked in OpenAlex). Research OS, free to read, may use it for links between patent and paper nodes. A paid x402 route may not carry it; the paid routes need links built from CC BY sources, such as the non-patent literature references in PatentsView, matched to OpenAlex by Bucket.
+**The patent-to-paper link data is non-commercial.** Reliance on Science by Matt Marx and Aaron Fuegi, version 65 (2026-07-22), holds patent-to-paper citations through patents granted in 2025, front page and body text, with a confidence score from 1 to 10 for each, in `pcs_oa_uspto.csv` (1.4 GB) keyed to OpenAlex works, under CC BY-NC 4.0 ([Zenodo](https://zenodo.org/records/21493744); Marx and Fuegi, [Strategic Management Journal 41(9) 2020](https://doi.org/10.1002/smj.3145) and [Journal of Economics and Management Strategy 31(2)](https://doi.org/10.1111/jems.12455), published though Zenodo still calls it forthcoming; both DOIs checked in OpenAlex). The licence bars use "primarily intended for or directed towards commercial advantage or monetary compensation". Bucket charges x402 citation fees and is not yet a filed nonprofit, so Reliance on Science stays out of v1 everywhere, Research OS included. Patent-to-paper links come from the non-patent literature references in the PatentsView bulk tables (CC BY 4.0), matched to OpenAlex by Bucket.
 
 **Patent data already sells over x402, at far higher prices.** Apify's "USPTO Patent Search" actor accepts x402 payment in USDC with no API key and charges $0.10 per patent, returning claims text, CPC classes, cited patents, and forward citation counts ([Apify, nexgendata/uspto-patent-search](https://apify.com/nexgendata/uspto-patent-search)). Catalogs of keyless x402 endpoints list patents among hundreds of data kinds ([2s.io](https://2s.io/learn/x402)). Subscription sellers price by the month: SerpApi's Google Patents API from $25 a month, about 2.5 cents a search at the entry plan; PQAI's API from $199 a month for 600 queries; IFI CLAIMS by quote with no metering ([SerpApi](https://serpapi.com/google-patents-api); [PQAI on Lens alternatives](https://projectpq.ai/lens-org-alternatives/); [IFI CLAIMS FAQ](https://www.ificlaims.com/about-us/faqs/)). feed402's $0.010 for a full grant is a tenth of that x402 seller's price.
 
@@ -65,7 +65,7 @@ Checked 2026-09-19 against the sources named.
 
 The gateway sells citeable patent records over x402. Research OS reads patents free from its own graph, and links each patent to the gateway for the citeable record: free to read, paid to cite.
 
-**What the gateway serves, and what it still needs.** `uspto-search` and `uspto-fetch` already answer with US applications and grants in feed402/0.3 envelopes. The rest is tracked in the org repositories:
+**What the gateway serves, and what it still needs.** `uspto-search` and `uspto-fetch` are on the gateway's org `main`, answering with US applications and grants in feed402/0.3 envelopes. They are not confirmed on the deployed host: they are missing from `routes.hetzner.yaml`, the gateway's own runbook deploys with `routes.yaml`, and `x402-research.agfarms.dev` did not answer when checked. The rest is tracked in the org repositories:
 
 - [gateway #67](https://github.com/bucket-foundation/x402-research-gateway/issues/67): payment checks built from the route's own price, payee, and asset. This gates any mainnet traffic.
 - [gateway #68](https://github.com/bucket-foundation/x402-research-gateway/issues/68) carries the provider terms read here into the registry: EPO OPS inside composed answers only, EPO bulk data with its terms unread, WIPO paid, Google Patents Public Data CC BY 4.0. It also covers a licensed citation source, the missing deployed routes, and the mainnet facilitator and wallet.
@@ -74,9 +74,9 @@ The gateway sells citeable patent records over x402. Research OS reads patents f
 **Research OS's patents come from the graph.** ODP's API has no citations, and Research OS needs them, so the ros-patents 2 importer writes patent nodes and `cites` edges into the Supabase `graph` schema from a bulk corpus:
 
 - the PatentsView bulk tables on ODP (grants, claims, application numbers, patent-to-patent citations, non-patent literature references, CPC classes, disambiguated assignees and inventors; CC BY 4.0, to be confirmed on the signed-in download page); or
-- Google Patents Public Data on BigQuery (CC BY 4.0), whose `publications` table is 899.4 GB over 98,176,830 rows with no documented partitioning, so a dry run gives the bytes before any slice query runs. The BigQuery sandbox allows 1 TiB of queries a month and 10 GiB of storage for the project's life, and expires tables after 60 days ([BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox), updated 2026-09-16).
+- Google Patents Public Data on BigQuery (CC BY 4.0), whose `publications` table was 899.4 GB over 98,176,830 rows with no documented partitioning when its schema page was written (2018-11-26), so a dry run gives the bytes before any slice query runs. The BigQuery sandbox allows 1 TiB of queries a month and 10 GiB of storage for the project's life, and expires tables after 60 days ([BigQuery sandbox](https://docs.cloud.google.com/bigquery/docs/sandbox), updated 2026-09-16).
 
-The slice is the CPC classes that match the graph's branches, chosen in ros-patents 1. The fetch scripts in `data/patents/uspto/scripts` need new hosts either way. Each patent node carries its application number, so its page links to the gateway's `uspto-fetch` for the citeable record, and its source with attribution: "USPTO; PatentsView, CC BY 4.0" or "Google Patents Public Data by IFI CLAIMS Patent Services and Google, CC BY 4.0". Node pages, search, and the map read patents from Supabase like any node, with no call to the gateway.
+The slice is the CPC classes that match the graph's branches, chosen in ros-patents 1. The fetch scripts in `data/patents/uspto/scripts` need new hosts either way. Each patent node carries its application number, converted to the 8-digit form ODP takes: PatentsView writes it as series and serial (`02/002761`), and BigQuery in DOCDB form (`US-87124404-A`) or not at all, with `application_number_formatted` as the fallback. The conversion comes with tests, and a node with no number gets no link. The page links to the USPTO's free record at `https://patentcenter.uspto.gov/applications/{number}`, and to the gateway's `uspto-fetch` for the citeable record once gateway #68 confirms the routes on the deployed host. It also shows its source with attribution: "USPTO; PatentsView, CC BY 4.0" or "Google Patents Public Data by IFI CLAIMS Patent Services and Google, CC BY 4.0". Node pages, search, and the map read patents from Supabase like any node, with no call to the gateway.
 
 **Readers inside Research OS.**
 
@@ -85,14 +85,14 @@ The slice is the CPC classes that match the graph's branches, chosen in ros-pate
 - **Research OS's chat** tool `feed402_search_patents` moves to the same imported nodes in ros-patents 2. Today it calls a local feed402 server through `src/lib/feed402-client.ts`, with a stub payment and paths the service does not answer (PR-070).
 - **The local DuckDB index** in `local/patents`, served by feed402's `mountPatents` through `05-serve.ts`, is the protocol's reference path. Research OS does not depend on it.
 
-**Rights Research OS shows.** Research OS is free to read, so it may show some sources a paid route may not sell. What the gateway may sell is settled in gateway #68 and feed402 #12.
+**Rights Research OS shows.** Research OS is free to read, and it sits beside paid citation, so it holds to the same licences as the paid routes in v1. What the gateway may sell is settled in gateway #68 and feed402 #12.
 
 | Source | Research OS | Gateway paid routes |
 |---|---|---|
 | USPTO ODP (public domain) | yes | yes (live) |
 | PatentsView and Google Patents Public Data, CC BY 4.0 | yes, with attribution | yes, with attribution, per #68 |
 | Patent-to-paper links Bucket builds from PatentsView references matched to OpenAlex | yes, marked as Bucket's adaptation of CC BY data | once feed402 #12 adds a field |
-| Reliance on Science, CC BY-NC 4.0 | yes, marked non-commercial | no |
+| Reliance on Science, CC BY-NC 4.0 | not in v1: Bucket charges citation fees and is not yet a filed nonprofit | no |
 | EPO, through OPS or the free bulk products | not in v1 | inside composed answers only, per #68 |
 | WIPO PATENTSCOPE | no | no, until a paid licence |
 
@@ -140,4 +140,4 @@ The gateway's own questions, who owns the mainnet facilitator and receiving wall
 - ros-patents 3 builds prior-art search.
 - ros-patents 4 decomposes claims into elements and adds disclosure.
 
-The gateway's USPTO routes answer today; Research OS links to them from ros-patents 2.
+The gateway's USPTO routes are on its org `main`; Research OS links to them once gateway #68 confirms them on the deployed host, and to the USPTO's free record until then.

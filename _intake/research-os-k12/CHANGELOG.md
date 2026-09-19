@@ -2,9 +2,9 @@
 
 ## 2026-09-19: patents in Research OS
 
-The patents gateway and service are designed.
+Patents in Research OS are designed, and the gateway findings went to the org repositories.
 
-Branch `feat/ros-loop-patents-gateway`, PR #188. Founder direction: "if we are focused on scientific research, discovery, and innovation, patents are super important too," and they get their own x402 gateway and feed402 service.
+Branch `feat/ros-loop-patents-gateway`, PR #188. Founder direction: "if we are focused on scientific research, discovery, and innovation, patents are super important too"; the patents x402 and feed402 work lives in the bucket-foundation org repositories.
 
 ### Added
 
@@ -12,7 +12,7 @@ Branch `feat/ros-loop-patents-gateway`, PR #188. Founder direction: "if we are f
 
 ### Corrected
 
-- The patent licensing matrix of 2026-05-03, against current sources: PatentsView's API is paused, EPO data may not be relayed as it comes, WIPO resale needs a paid licence, and the patent-to-paper citation set is non-commercial.
+- The patent licensing matrix of 2026-05-03, against current sources: PatentsView's API is paused, EPO data may not be relayed as it comes, WIPO resale needs a paid licence, and the patent-to-paper citation set is non-commercial, so it stays out of v1.
 
 ## 2026-09-19: fewer Vercel builds
 
