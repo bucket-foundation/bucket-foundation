@@ -51,3 +51,71 @@ Checked 2026-09-19 against the sources named.
 **Patent data already sells over x402, at far higher prices.** Apify's "USPTO Patent Search" actor accepts x402 payment in USDC with no API key and charges $0.10 per patent, returning claims text, CPC classes, cited patents, and forward citation counts ([Apify, nexgendata/uspto-patent-search](https://apify.com/nexgendata/uspto-patent-search)). Catalogs of keyless x402 endpoints list patents among hundreds of data kinds ([2s.io](https://2s.io/learn/x402)). Subscription sellers price by the month: SerpApi's Google Patents API from $25 a month, about 2.5 cents a search at the entry plan; PQAI's API from $199 a month for 600 queries; IFI CLAIMS by quote with no metering ([SerpApi](https://serpapi.com/google-patents-api); [PQAI on Lens alternatives](https://projectpq.ai/lens-org-alternatives/); [IFI CLAIMS FAQ](https://www.ificlaims.com/about-us/faqs/)). feed402's $0.010 for a full grant is a tenth of that x402 seller's price.
 
 **The facilitator fee is a floor on price.** Coinbase's CDP facilitator settles the first 1,000 onchain transactions a month free, then charges $0.001 each, and needs a CDP API key; it covers Base, Polygon, Arbitrum, World, and Solana, and indexes an endpoint in the Bazaar discovery layer once it settles a payment for an endpoint that advertises Bazaar metadata ([CDP facilitator](https://docs.cdp.coinbase.com/x402/core-concepts/facilitator)). Past the free thousand, a $0.002 insight call pays half its price to settlement. The research gateway settles through `facilitator.x402.rs` on Base Sepolia today.
+
+### Design
+
+The gateway, the corpus behind it, and Research OS read one patent index. The gateway sells it per call; Research OS reads it free, as it reads the rest of the graph.
+
+**One index, two readers.** A patents service holds the corpus and answers the six feed402 routes of §6.1. It is the feed402 reference server's `mountPatents` with a real `PatentsRepo` in place of the mock, over the local DuckDB index that `local/patents` designs (full-text and vector search fused by reciprocal rank, the Kruse Index pattern), or over the USPTO Postgres schema when it moves to the Hetzner box. It runs with payment off on a private port. Two readers sit in front of it:
+
+- The x402 research gateway sells it. Each of the six routes becomes an entry in `config/routes.yaml` whose upstream is the private patents service, so payment, the facilitator, receipts, and discovery stay in the one gateway that already sells PubMed and OpenAlex, at `x402-research.agfarms.dev`. The patents service already answers in feed402 envelopes, so the gateway needs one change: a per-route flag that passes an upstream envelope through, where today it wraps every upstream reply in a new one.
+- Research OS reads the same service directly and free, for patent nodes, prior-art search, and the MCP tool.
+
+A config-only proxy route in front of a public patent API was the other shape considered. It has no lawful upstream today: PatentsView's search API is paused, ODP gives one person's key 60 requests a minute and ties it to that person, EPO forbids relaying OPS data as such, and WIPO needs a paid licence.
+
+**Corpus v1: US grants, CC BY 4.0, in the classes the graph covers.** The first load is US granted patents from the PatentsView bulk tables on ODP, which are CC BY 4.0: grants, claims, patent-to-patent citations, non-patent literature references, current CPC classes, and disambiguated assignees and inventors. The slice is the CPC classes that match the graph's branches, chosen in ros-patents 1 and loaded in ros-patents 2. The Google Patents Public Data tables on BigQuery, also CC BY 4.0, are the fallback source and the route to worldwide bibliographic data later. Either source needs an account in the founder's name: a USPTO.gov account with MFA for ODP, or a Google Cloud project with billing for BigQuery.
+
+**Rights by tier.** Each record carries the §6.1.1 rights block, and the rules below decide what a tier may hold:
+
+| Source | Raw and query tiers | Insight tier | Research OS |
+|---|---|---|---|
+| PatentsView and Google Patents Public Data, CC BY 4.0 | yes, with attribution | yes | yes |
+| EPO OPS | no: the terms forbid the data as such | inside a composed answer only, with the EPO credit | inside composed views only |
+| WIPO PATENTSCOPE | no | no, until a paid derivative licence | no |
+| Reliance on Science, CC BY-NC 4.0 | no | no | yes, marked non-commercial |
+| Patent-to-paper links Bucket builds from PatentsView references matched to OpenAlex | yes | yes | yes |
+
+Reliance on Science stays out of every paid tier, so the paid routes carry only the links Bucket builds. OpenAlex metadata is CC0.
+
+**Pricing.** The §6.1 prices stand: $0.010 for a full grant, $0.005 for a query, $0.002 for an insight. They sit far below the one x402 patent seller found ($0.10 a patent), which fits Bucket's aim that citing stays cheap. Settlement sets the floor. Past 1,000 settlements a month, Coinbase's facilitator takes $0.001 of each, half of an insight call. The gateway settles through `facilitator.x402.rs` today, whose fees were not checked here; the fee of whichever facilitator carries mainnet traffic belongs in the pricing decision. The gateway's own insight route over PubMed is priced $0.005, above its query routes, against §5; the patents routes follow the spec, and the PubMed price is flagged for the gateway.
+
+**Where the fees go.** PROTOCOL.md sends a citation fee to the author's `payout_wallet`. A patent's inventors and assignees have no wallet on record and never signed up. The options are Bucket's operating costs with a public ledger, an escrow per inventor that a claim releases, or a donation to the open data sources. It is the founder's call, and until then patent fees go to operations and the ledger is public.
+
+**Graph model** (built in ros-patents 2):
+
+- A node kind `patent`, with provenance `{type: "patent", number, jurisdiction, grant_date, cpc, assignees, inventors, license, source}` and the first independent claim as its summary.
+- Edges reuse `cites`: a patent citing a patent, and a patent citing a paper when the paper is a literature or canon node, with the link's source and confidence in its provenance.
+- A patent rests on the ideas its claims combine, through the `derives_from` proposals the decompose-further queue already runs (ros-patents 4). A reviewer approves them at `/research-os/edges` like any other proposal.
+- Patents are work built on ideas: the directions walk passes through them, and the idea rule leaves them out of decomposition targets until ros-patents 4 decomposes claims into elements.
+
+**Where a researcher meets it:**
+
+- the node page of an idea gets the patents that cite its papers or rest on it (ros-patents 2);
+- search returns patents beside papers and canon (ros-patents 2);
+- the production form checks prior art before a production is submitted, and the node page offers the same check (ros-patents 3);
+- the MCP endpoint gets a `patents_search` tool over the same service, so an agent working with a researcher reaches the patent record the way it reaches the literature;
+- a patent's own node page shows its claims, its citations both ways, and the ideas it rests on.
+
+That is the human-AI-computer division this epic serves. The machine finds and ranks the prior art and proposes what a claim combines. The researcher reads it, judges novelty, and decides.
+
+**Changes outside this repository, logged for their own sessions:**
+
+- feed402 `SPEC.md` §6.1 prose names EPO OPS on the query tier, and the matrix calls it a passthrough. Both should say EP data appears only inside composed answers, as the §6.1.1 rights block already implies. Hours for that edit go to `feed402/TIMELOG.md`.
+- The x402 research gateway needs the envelope passthrough flag, the six patents routes, and a look at its insight price.
+
+`docs/PATENT_LICENSING.md` carries the corrections found here in a dated block at its top: PatentsView's paused API, the OPS terms, WIPO's paid licence, Reliance on Science's licence, and Lens paid for any commercial or integrated use, with a 14-day trial otherwise ([Lens API access](https://support.lens.org/knowledge-base/lens-patent-and-scholar-api/), updated 2026-05-21).
+
+**Waiting on the founder:**
+
+1. An account for the bulk data: a USPTO.gov account with MFA for the PatentsView tables on ODP, or a Google Cloud project with billing for BigQuery. ros-patents 2 needs one.
+2. Where patent citation fees go: operations with a public ledger (the default until decided), escrow per inventor, or a donation to the data sources.
+3. The IP stance for a nonprofit that publishes inventions, before ros-patents 4 adds disclosure as a production.
+
+**Slices after this one:**
+
+- ros-patents 1 (the research memo) fills this file with the prior work on patents in discovery and picks the CPC slice.
+- ros-patents 2 loads the corpus and writes patent nodes and links.
+- ros-patents 3 builds prior-art search.
+- ros-patents 4 decomposes claims into elements and adds disclosure.
+
+The gateway routes go live with ros-patents 2, once a real `PatentsRepo` has data behind it.

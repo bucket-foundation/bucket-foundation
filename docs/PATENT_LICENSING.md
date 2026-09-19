@@ -8,6 +8,16 @@ Per-Jurisdiction Redistribution Matrix.
 **Date:** 2026-05-03
 **Context:** Bucket Foundation plans to expose a `/patents/*` endpoint family on feed402 (x402 micropayments on Base, raw $0.010 / query $0.005 / insight $0.002 per call). This document determines, per source, whether we can resell content, link out only, or must skip.
 
+## Corrections, 2026-09-19
+
+Checked against the sources in `learning/research-os/PATENTS.md`, "What changed outside since the licensing matrix". The text below this block is kept as written on 2026-05-03.
+
+- **USPTO and PatentsView.** PatentsView moved into the USPTO Open Data Portal on 2026-03-20. Its bulk downloads stay CC BY 4.0 on ODP; its search API is paused with no return date, so the v1 query tier has no live PatentsView API to query. ODP now needs a USPTO.gov account with multi-factor authentication (from 2026-06-18) and an ID.me-verified key, 60 requests a minute.
+- **EPO OPS.** The OPS terms (version 2.0, 2017) allow OPS data inside a user's own products and services and forbid making "the data as such available to the public". A query-tier passthrough breaks that clause; EP data belongs inside composed answers only. No royalties are due on products built with it.
+- **WIPO PATENTSCOPE.** Every WIPO licence, the derivative one included, carries a fee (terms updated 2025-11-12). WIPO content is out of v1 until one is bought.
+- **The Lens.** API access past a 14-day trial is paid, for any commercial or integrated use (updated 2026-05-21), as the matrix said.
+- **Reliance on Science.** The patent-to-paper citation set of Marx and Fuegi is CC BY-NC 4.0; Research OS may use it, and paid feed402 tiers may not.
+
 ---
 
 ## Executive Summary
