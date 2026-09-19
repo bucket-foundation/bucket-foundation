@@ -20,6 +20,8 @@ Date 2026-09-18. Branch `feat/ros-loop-decompose-further`, worktree `.wt-ros-loo
 - `src/lib/research-os/makeup.ts`, `src/app/api/research-os/makeup/route.ts`, `src/app/research-os/(app)/n/MakeupSection.tsx`: the node page's "made of" section, a node's place in the decomposition and what waits on review for it (founder direction: the work shows inside Research OS).
 - `supabase/tests/research_os_proposals.sql` with `scripts/test-research-os-proposal-sql.ts`: the merge, reachability, and closure functions in real Postgres, in a transaction that rolls back.
 - Tests: `test-research-os-makeup.ts`, `test-research-os-external-factors.ts`.
+- `src/lib/research-os/idea.ts`: which nodes are ideas, shared by the queue and the node page; the queue and "made of" decompose the idea layer, and facts under an idea show as its evidence.
+- `src/lib/research-os/reviewer.ts` `verifyGraphReviewer`: graph review on the allowlist alone, since a class membership anyone can create opens teacher review.
 - Tests: `test-research-os-decompose-further.ts`, `test-research-os-refd.ts`, `test-research-os-decide-node.ts`, `test-research-os-review-actions.ts`, additions to the primes, rebuild-ancestor, and edges-review tests.
 
 ### Edited
@@ -32,6 +34,8 @@ Date 2026-09-18. Branch `feat/ros-loop-decompose-further`, worktree `.wt-ros-loo
 - `learning/research-os/PRIMES.md`: prior work corrected (semantic prime counts, eleven prerequisite papers), Slice 2 rewritten to match the code, results added.
 - `docs/PROBLEM-REGISTER.md`: PR-059, PR-060, PR-061.
 - `src/app/research-os/(app)/edges/page.tsx`: a summary line, a find box, verdict and cross-branch filters, anchors a node page links to, and warnings from approvals.
+- `src/lib/research-os/directions.ts`: "where it leads" follows each edge kind's direction; `derives_from`, `extends`, `replicates`, `generalizes`, and `answers` run from the newer node to its base, as the data and `primes.ts` have them. Old behaviour: every kind walked from its from end, so a node's derived facts and extensions never showed where it leads, and an approved "rests on" edge would have shown the factor as where the target leads.
+- `src/app/research-os/(app)/n/AroundSection.tsx`: the learning-order list is labelled "learned after". Old label: "rests on", which contradicted "made of".
 - `src/app/research-os/(app)/n/AroundSection.tsx`, `src/app/api/research-os/node/route.ts`: a failed graph read says so on the node page, where it used to show an empty neighbourhood as real.
 - `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md`: key claims replaced with the paper's own figures. Old text: agreement "was moderate", and "Disagreement concentrated on term pairs from the same section of the source text"; the paper reports fair agreement (Fleiss' kappa 38.50%) and has no same-section finding.
 - `learning/research-os/ROUTING.md`, `learning/research-os/PLAN-REVISION-2.md`, `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: dated corrections beside the passages that cited the same-section finding or "moderate" agreement; the passages themselves stay as written.

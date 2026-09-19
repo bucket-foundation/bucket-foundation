@@ -13,7 +13,9 @@ Branch `feat/ros-loop-decompose-further`, PR #186. Founder direction: prime deco
 - Irreducible verdicts a reviewer can confirm or send back.
 - The primes report lists what moved since its last run.
 - Every public idea node has a "made of" section: prime or composite, how many layers above its primes, the primes under it, and what waits on review for it, in detail for reviewers and as counts for everyone else.
-- The review queue has a summary, a find box, and filters.
+- The review queue has a summary, a find box, filters, and a view narrowed to one node from its page.
+- Graph review is open to the reviewer allowlist alone.
+- "Where it leads" on the node page follows each edge kind's direction.
 
 ### Corrected
 
