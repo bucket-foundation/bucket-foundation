@@ -8,7 +8,7 @@ Per-Jurisdiction Redistribution Matrix.
 **Date:** 2026-05-03
 **Context:** Bucket Foundation plans to expose a `/patents/*` endpoint family on feed402 (x402 micropayments on Base, raw $0.010 / query $0.005 / insight $0.002 per call). This document determines, per source, whether we can resell content, link out only, or must skip.
 
-## Corrections, 2026-09-19
+## Corrections of 2026-09-19
 
 Checked against the sources in `learning/research-os/PATENTS.md`, "What changed outside since the licensing matrix". The text below this block is kept as written on 2026-05-03.
 

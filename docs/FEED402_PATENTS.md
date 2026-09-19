@@ -5,7 +5,7 @@
 **Licensing matrix:** [`PATENT_LICENSING.md`](./PATENT_LICENSING.md)
 **Schema source of truth:** [`/data/patents/uspto/schema/uspto.sql`](../data/patents/uspto/schema/uspto.sql)
 
-## Corrections, 2026-09-19
+## Corrections of 2026-09-19
 
 `learning/research-os/PATENTS.md` records the checks behind these. The text below this block is kept as written.
 
