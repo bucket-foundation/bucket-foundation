@@ -8,6 +8,46 @@ skips a build unless the push provably touches a path the deployed app
 reads. Production is not exempt: an engine-only squash merge to `main`
 skips too, since the diff check runs for every environment.
 
+## Measured on 2026-09-18
+
+The founder, 2026-09-18: "too many vercel builds especially failing builds." The numbers below come from the Vercel API (the project's deployment list, 2026-09-14 14:39 UTC to 2026-09-19 03:37 UTC) and from the build logs of the deployments named. <!-- voice-ignore-line: the founder's words, quoted -->
+
+| Measure | Value |
+|---|---|
+| Deployments | 178: 108 ready, 40 errored, 26 canceled, 1 building, 3 unreadable in the API reply |
+| Most deployed branches | `site-local-2026-09-14` 48 (9 errored), `feat/ros-loop-decompose-further` 38 (10 errored, 15 canceled), `hte/integration` 35 (12 errored), `dev` 25 (1 errored), `main` 5 (3 errored) |
+
+**The diff check never ran on Vercel.** Every build log read shows the gate failing to compute its diff and building to be safe:
+
+- `dev` at `0b57b2e` (2026-09-16): `could not compute diff for 'b1a4bea… 0b57b2e…' (git said: error: Could not access 'b1a4bea…') — building defensively`.
+- `feat/ros-loop-decompose-further` at `3134cc7`: the previous sha Vercel supplied was `aa14079`, the direct parent, and the clone could not reach it. The commit changed `BEADS-PENDING.jsonl` alone and built.
+- The same branch's first deployment, `965c9f3`, had no previous sha, and the fallback to the parent failed the same way.
+
+Vercel documents `VERCEL_GIT_PREVIOUS_SHA` as the sha of the last successful deployment for the project and branch ([system environment variables](https://vercel.com/docs/environment-variables/system-environment-variables); [release note, 2023-01-19](https://github.com/vercel/vercel/discussions/7251)) and says nothing about whether that commit is in the build's clone. A public write-up found a clone of depth 10 with no remote configured ([Git on Vercel](https://fryuni.dev/notes/vercel-git/)); the logs above show this repo's clone holding the pushed commit and not its parent. Vercel's own `turbo-ignore` checks whether the previous sha exists (`git cat-file -t`), falls back to `HEAD^` when it does not, and names "a shallow clone with insufficient history" as a known failure (turbo-ignore 2.11.2, `dist/cli.js`). So every push built unless its message carried `[skip ci]` or `feed:`, or its branch was an engine prefix. Bead-only commits `3134cc7`, `7f8396d`, and `c137373` built.
+
+**A gate change reaches a branch when that branch merges it.** Vercel runs the `vercel.json` and the script of the commit it deploys. `hte/integration` built 23 times after #144 blocked `hte/*` on `dev`, because it took #144 only when #181 synced it on 2026-09-18.
+
+**Three causes account for the failures read:**
+
+1. `Failed to collect page data for /contributors/[handle]` on 2026-09-14, in `next build`: `hte/integration`, `site-local-2026-09-14`, and the branches cut from them that day.
+2. A function over the Hobby plan's duration limit on 2026-09-17 (`/api/mcp`, fixed by #177): the build completed and the deploy was refused, on `dev`, `main`, and `feat/mcp-http-endpoint`.
+3. One ESLint error (`react/no-unescaped-entities` in `src/app/research-os/(app)/edges/page.tsx`) on `feat/ros-loop-decompose-further`, 10 builds from 2026-09-18 19:46 to 2026-09-19 01:39 UTC. `next build` runs ESLint and fails on an error, and the loop pushed without linting.
+
+**Node 20 stops building on 2026-10-01.** Every build log read since 2026-09-18 prints `Node.js version 20.x is deprecated. Deployments created on or after 2026-10-01 will fail to build. Please set Node.js Version to 24.x`. An `engines.node` field in `package.json` overrides the project setting ([Node.js versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions)).
+
+**A canceled build still counts.** Vercel's docs: "Canceled builds are counted as full deployments as they execute a build command in the build step", so they count toward the daily deployment quota and the concurrent build slots ([project settings, Ignored Build Step](https://vercel.com/docs/project-configuration/project-settings#ignored-build-step)). The ignore step saves build minutes and keeps a failing build from running; only `git.deploymentEnabled` and fewer pushes avoid the deployment itself.
+
+## Changes on 2026-09-18
+
+Four changes, each against one finding above.
+
+1. **The gate fetches what it compares against.** The base is `VERCEL_GIT_PREVIOUS_SHA` when Vercel sets it. On a branch's first deployment it is the tip of `dev`, the default target of a pull request, and on `dev` or `main` the pushed commit's parent. When the base is not in the clone, the script fetches it at depth 1 from the public repository (`https://github.com/$VERCEL_GIT_REPO_OWNER/$VERCEL_GIT_REPO_SLUG.git`) within a time limit, then diffs with `--no-renames` so git reads trees alone. Any failure still builds, and the log says which step failed. `[skip vercel]` and `[vercel skip]` skip the Vercel build alone, the tokens `turbo-ignore` uses, so a push can run CI without a preview.
+2. **Node 24.** `package.json` gets `"engines": { "node": "24.x" }`, and CI runs Node 24, so the preview and CI build on the version Vercel requires from 2026-10-01.
+3. **A check before a building push.** `scripts/pre-push-vercel-check.sh` runs the gate locally over the range being pushed. When the push would build, it runs `npm run lint` and `npm run typecheck` and refuses the push on an error, so a lint or type error fails on the machine before it fails on Vercel. The org hook directory (`core.hooksPath`) gets a `pre-push` that runs a repository's own `scripts/pre-push-vercel-check.sh` when it has one. `AGF_PREPUSH_SKIP=1` bypasses it.
+4. **One building push per task.** Work in progress carries `[skip ci]`, which skips the Vercel build and GitHub Actions; the finish push of a task builds once, after lint, types, and tests pass locally. The Research OS loop has worked this way since 2026-09-18.
+
+No researcher-facing surface changes. The preview a reviewer opens from a pull request builds once per task and builds green, and a branch no longer burns a deployment on every bead commit.
+
 ## The rule
 
 1. Commit message contains `[vercel build]` -> build (forced override, wins over everything below).
