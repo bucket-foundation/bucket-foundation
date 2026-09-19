@@ -6,7 +6,8 @@
  * src/lib/research-os/decompose-further.ts.
  *
  * Stages, in order:
- *   1. Load public, current nodes and the factor edges; decompose; embed
+ *   1. Load public, current nodes and the factor edges; decompose the idea
+ *      layer (idea nodes and the edges between them, ideaLayer); embed
  *      every idea node with a local model (embed-texts.py).
  *   2. For each target: the proposer (Sonnet) picks factors from a
  *      shortlist and names missing base ideas; the verifier (Opus) judges
@@ -53,7 +54,9 @@ import {
   agreementStats,
   answeringModel,
   applyVerdicts,
+  ideaLayer,
   irreducibleAction,
+  modelMatchesAlias,
   reuseEarlierKeys,
   aggregateMissing,
   blindSet,
@@ -240,9 +243,7 @@ async function main() {
   // answers, and every row records the id that answered.
   async function resolveModel(alias: string): Promise<string> {
     const probe = await askClaude("Reply with the single word ok.", alias, 120_000, { type: "object", properties: { ok: { type: "string" } }, required: ["ok"] });
-    // A family alias must resolve inside its family, and a full id to itself.
-    const family = ["haiku", "sonnet", "opus"].find((f) => alias === f);
-    if (family ? !probe.modelId.includes(family) : probe.modelId !== alias)
+    if (!modelMatchesAlias(alias, probe.modelId))
       throw new Error(`model alias ${alias} resolved to ${probe.modelId}; refusing to run under the wrong model`);
     return probe.modelId;
   }
@@ -280,10 +281,13 @@ async function main() {
     q.in("kind", Object.keys(FACTOR_EDGES)),
   );
   const edges: DepEdge[] = edgeRows.map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
-  const dec = decompose(rows, edges);
+  // Decompose the idea layer: facts and sources under an idea are its
+  // evidence, and an idea resting only on them is a prime to decompose.
+  const layer = ideaLayer(rows, edges);
+  const dec = decompose(layer.nodes, layer.edges);
   const pool: Candidate[] = rows.map((n) => {
-    const d = dec.get(n.id)!;
-    return { ...n, tier: d.status === "unfactored" ? null : d.tier, prime: d.status === "prime" };
+    const d = dec.get(n.id);
+    return { ...n, tier: !d || d.status === "unfactored" ? null : d.tier, prime: d?.status === "prime" };
   });
   const bySlug = new Map(pool.map((c) => [c.slug, c]));
   const idOf = new Map(rows.map((n) => [n.slug, n.id]));
@@ -670,8 +674,9 @@ async function main() {
         const extra: ProposalRow[] = [];
         for (const t of src.named_by) {
           const target = targetBySlug.get(t);
-          // A node is never queued as its own factor.
+          // A node is never queued as its own factor, nor as a factor of an idea it rests on.
           if (!target || t === nodeSlug || proposed.has(`${nodeSlug}->${t}`)) continue;
+          if (dec.get(row.created_node_id)?.signature.has(target.id)) continue;
           extra.push(
             ...toProposals(target, { irreducible: false, factors: [{ slug: nodeSlug, why: src.reasons[t] ?? "" }], missing: [] }, {
               model,

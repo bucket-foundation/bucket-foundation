@@ -884,3 +884,22 @@ export function irreducibleAction(
     row: { status: "pending", justification: `${justification}${note}`, model: ctx.model, prompt_hash: ctx.promptHash, reviewer_id: null, decision_reason: null, decided_at: null },
   };
 }
+
+/**
+ * The idea layer of the graph: idea nodes and the factor edges between
+ * them. The queue and the node page's "made of" decompose this layer, so a
+ * prime is an idea with no idea under it. Facts, sources, figures, and tags
+ * are evidence: an idea that rests only on facts is a prime of the idea
+ * layer, which the queue asks to decompose further.
+ */
+export function ideaLayer<N extends GraphNode>(nodes: N[], edges: DepEdge[]): { nodes: N[]; edges: DepEdge[] } {
+  const ideas = nodes.filter((n) => isIdea(n));
+  const ids = new Set(ideas.map((n) => n.id));
+  return { nodes: ideas, edges: edges.filter((e) => ids.has(e.fromId) && ids.has(e.toId)) };
+}
+
+/** A family alias ("sonnet") must resolve inside its family; a full model id must resolve to itself. */
+export function modelMatchesAlias(alias: string, modelId: string): boolean {
+  const family = ["haiku", "sonnet", "opus"].find((f) => alias === f);
+  return family ? modelId.includes(family) : modelId === alias;
+}

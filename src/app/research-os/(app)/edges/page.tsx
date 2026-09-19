@@ -259,7 +259,7 @@ export default function ResearchOsEdgesPage() {
       else if (decision === "approved") {
         setNotice({
           id: null,
-          text: `Added ${data.nodeSlug} at grade tier ${data.nodeTier}; ${data.queuedEdges} ${data.queuedEdges === 1 ? "proposal" : "proposals"} from it ${data.queuedEdges === 1 ? "waits" : "wait"} below.${data.warning ? ` Warning: ${data.warning}.` : ""}`,
+          text: `${data.reused ? `Linked to the existing node ${data.nodeSlug}` : `Added ${data.nodeSlug} at grade tier ${data.nodeTier}`}; ${data.queuedEdges} new ${data.queuedEdges === 1 ? "proposal" : "proposals"} from it ${data.queuedEdges === 1 ? "waits" : "wait"} below.${data.warning ? ` Warning: ${data.warning}.` : ""}`,
         });
         await loadQueue();
       } else {
@@ -355,19 +355,21 @@ export default function ResearchOsEdgesPage() {
   // A node page links here as #target-<slug>: narrow every list to that
   // node, and go to the first list with something in it once the queue loads.
   useEffect(() => {
-    if (!proposals || !nodeProposals || !irreducible || typeof window === "undefined") return;
+    // Wait for each list to load or fail, then focus on whatever loaded.
+    const settled = (list: unknown[] | null) => list !== null || queueError !== null;
+    if (!settled(proposals) || !settled(nodeProposals) || !settled(irreducible) || typeof window === "undefined") return;
     const hash = decodeURIComponent(window.location.hash.slice(1));
     if (!hash.startsWith("target-") || landed === hash) return;
     const slug = hash.slice("target-".length);
     setFocus(slug);
     setLanded(hash);
-    const first = irreducible.some((r) => r.slug === slug)
+    const first = (irreducible ?? []).some((r) => r.slug === slug)
       ? "irreducible"
-      : nodeProposals.some((n) => n.namedBy.some((t) => t.slug === slug))
+      : (nodeProposals ?? []).some((n) => n.namedBy.some((t) => t.slug === slug))
         ? "missing-primes"
         : `target-${slug}`;
     window.setTimeout(() => document.getElementById(first)?.scrollIntoView({ block: "start" }), 50);
-  }, [proposals, nodeProposals, irreducible, landed]);
+  }, [proposals, nodeProposals, irreducible, landed, queueError]);
 
   const clearFocus = () => {
     setFocus(null);
@@ -406,7 +408,7 @@ export default function ResearchOsEdgesPage() {
         <h1 className="font-display uppercase text-[clamp(1.5rem,4vw,2.5rem)] leading-[1.1] chisel text-[color:var(--basalt)]">edge review queue</h1>
         <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
           What each node rests on, proposed by models and decided here. Lexical inference proposes learning order; the decompose-further queue asks
-          one model what a node rests on and a second model, blind to which were picked, whether each pair holds, and scores each pair by Wikipedia's links (learning/research-os/PRIMES.md).
+          one model what a node rests on and a second model, blind to which were picked, whether each pair holds, and scores each pair by Wikipedia&apos;s links.
           Approving writes the edge at confidence 0.95, source &ldquo;teacher,&rdquo; with provenance naming the proposal. Gated to reviewers.
         </p>
 
@@ -421,8 +423,7 @@ export default function ResearchOsEdgesPage() {
 
         {queueError === "forbidden" && token && (
           <p className="mt-6 text-[13px] text-red-700">
-            This account is not on the reviewer allowlist. Ask an admin to add your email to RESEARCH_OS_REVIEWER_EMAILS (see
-            src/lib/research-os/reviewer.ts).
+            This account is not a graph reviewer. Graph review is open to the reviewer allowlist only; ask an admin to add your email.
           </p>
         )}
         {queueError && queueError !== "forbidden" && <p className="mt-6 text-[13px] text-red-700">Could not load part of the queue ({queueError}).</p>}

@@ -19,6 +19,7 @@ const dec = decompose(nodes, edges);
 const snap: Snapshot = {
   dec,
   edges,
+  evidence: new Map([["kin", [{ id: "f1", slug: "fact-motion", title: "A ball falls 4.9 m in the first second", branch: "02-physics" }]]]),
   byId: new Map(nodes.map((n) => [n.id, n])),
   bySlug: new Map(nodes.map((n) => [n.slug, n])),
   reach: new Map(penetration(nodes, dec).map((p) => [p.id, p])),
@@ -118,4 +119,11 @@ test("a viewer who is not a reviewer gets the decomposition and counts, and no r
   const reviewer = makeupForViewer(full, counts, true);
   assert.equal(reviewer.makeup.proposals.length, 1);
   assert.equal(reviewer.canReview, true);
+});
+
+test("an idea's evidence is listed apart from its primes", () => {
+  const m = buildMakeup("kin", snap, none)!;
+  assert.deepEqual(m.evidence, { count: 1, items: [{ id: "f1", slug: "fact-motion", title: "A ball falls 4.9 m in the first second", branch: "02-physics" }] });
+  assert.ok(!m.primes.some((p) => p.id === "f1"));
+  assert.deepEqual(buildMakeup("dyn", snap, none)!.evidence, { count: 0, items: [] });
 });

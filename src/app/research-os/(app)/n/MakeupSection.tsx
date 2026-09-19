@@ -73,9 +73,9 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
         <div className="flex flex-col gap-5">
           <p className="text-[13px] leading-[1.6] text-[color:var(--basalt-2)] max-w-[68ch]">
             {m.status === "prime" &&
-              "A prime: nothing in the graph sits under it yet. Every idea that rests on it, directly or through others, carries it."}
-            {m.status === "composite" && "Like a number broken into prime factors: the ideas below are what this node rests on at the bottom of the graph."}
-            {m.status === "unfactored" && "No factor links this node to anything yet, so the graph cannot say what it is made of."}
+              "A prime: no idea in the graph sits under it yet. Every idea that rests on it, directly or through others, carries it."}
+            {m.status === "composite" && "Like a number broken into prime factors: the ideas below are what this node rests on at the bottom of the graph's ideas."}
+            {m.status === "unfactored" && "No idea links to this node as a factor yet, so the graph cannot say what it is made of."}
             {m.inCycle && " It sits in a loop of factor links, which a reviewer should break."}
           </p>
 
@@ -103,6 +103,21 @@ export default function MakeupSection({ slug, branch }: { slug: string; branch: 
                   ))}
                   {m.primeCount > m.primes.length && <li className="self-center text-[12px] text-[color:var(--basalt-3)]">and {m.primeCount - m.primes.length} more</li>}
                 </ul>
+              )}
+              {m.evidence.count > 0 && (
+                <div className="mt-4">
+                  <h3 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)] mb-1.5">evidence under it · {m.evidence.count}</h3>
+                  <ul className="flex flex-col gap-1">
+                    {m.evidence.items.map((ev) => (
+                      <li key={ev.id} className="text-[12.5px] leading-[1.45]">
+                        <Link href={`/research-os/n/${encodeURIComponent(ev.slug)}`} className="text-[color:var(--basalt-2)] underline decoration-[color:var(--hairline)] underline-offset-4 hover:decoration-[color:var(--gold)]">
+                          {ev.title}
+                        </Link>
+                      </li>
+                    ))}
+                    {m.evidence.count > m.evidence.items.length && <li className="text-[12px] text-[color:var(--basalt-3)]">and {m.evidence.count - m.evidence.items.length} more</li>}
+                  </ul>
+                </div>
               )}
               {m.factors.length > 0 && !(m.factors.length === m.primes.length && m.factors.every((f) => m.primes.some((p) => p.id === f.id))) && (
                 <p className="mt-3 text-[12.5px] text-[color:var(--basalt-2)]">

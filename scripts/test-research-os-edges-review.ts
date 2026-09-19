@@ -148,3 +148,11 @@ test("isGraphReviewer: only the allowlist changes the graph, whatever classes th
     else process.env.RESEARCH_OS_REVIEWER_EMAILS = prior;
   }
 });
+
+test("every route that changes the graph through review uses the allowlist gate", () => {
+  for (const route of ["edges", "node-proposals", "irreducible", "makeup"]) {
+    const src = readFileSync(join(__dirname, "..", "src", "app", "api", "research-os", route, "route.ts"), "utf8");
+    assert.match(src, /verifyGraphReviewer\(req\)/, `${route} checks the graph reviewer`);
+    assert.doesNotMatch(src, /\bverifyReviewer\(/, `${route} does not use the teacher gate`);
+  }
+});

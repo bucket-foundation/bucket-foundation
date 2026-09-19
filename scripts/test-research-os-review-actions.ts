@@ -122,12 +122,22 @@ function fake(db: Db, rpcs: Record<string, Rpc>, fail: Set<string> = new Set(), 
         data = this.returning ? added : null;
       } else {
         const keys = (this.opts?.onConflict ?? "id").split(",");
+        const written: Row[] = [];
         for (const r of this.rows!) {
           const existing = t.find((x) => keys.every((k) => x[k] === r[k]));
           if (existing) {
-            if (!this.opts?.ignoreDuplicates) Object.assign(existing, r);
-          } else t.push({ id: newId(), ...r });
+            if (!this.opts?.ignoreDuplicates) {
+              Object.assign(existing, r);
+              written.push(existing);
+            }
+          } else {
+            const added = { id: newId(), ...r };
+            t.push(added);
+            written.push(added);
+          }
         }
+        // Like PostgREST: with ignoreDuplicates, only inserted rows come back.
+        data = this.returning ? written.map((r) => ({ id: r.id })) : null;
       }
       if (this.one) {
         const first = (data ?? [])[0] ?? null;
@@ -328,6 +338,8 @@ test("approving a missing prime creates the node at the lowest naming tier and q
   const r = await decideNode(fake(db, rpcs()), { id: "np-eq", decision: "approved", reason: null, reviewerId: "rev-1", overrides: { summary: "Two expressions name one value." } });
   assert.equal(r.status, 200);
   assert.equal(r.body.nodeSlug, "concept-equality");
+  assert.equal(r.body.reused, false);
+  assert.equal(r.body.queuedEdges, 2);
   const n = db.nodes.find((x) => x.slug === "concept-equality")!;
   assert.equal(n.tier, 13);
   assert.deepEqual(n.labels, { en: { title: "Equality", summary: "Two expressions name one value." } });
@@ -354,6 +366,7 @@ test("an approval reuses an existing node with the slug, and an unknown branch o
   const r = await decideNode(fake(db, rpcs()), { id: "np-eq", decision: "approved", reason: null, reviewerId: "rev-1" });
   assert.equal(r.status, 200);
   assert.equal(db.nodes.filter((x) => x.slug === "concept-equality").length, 1);
+  assert.equal(r.body.reused, true);
   assert.equal(db.node_proposals[0].created_node_id, "n-eq");
   const db2 = seed();
   const bad = await decideNode(fake(db2, rpcs()), { id: "np-eq", decision: "approved", reason: null, reviewerId: "r", overrides: { branch: "99-nowhere" } });

@@ -11,7 +11,8 @@
  */
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { cyclicPairs } from "./decompose-further";
-import { decompose, FACTOR_EDGES, penetration, type Decomposition, type DepEdge, type PrimePenetration, type PrimeStatus } from "./primes";
+import { isIdeaNode } from "./idea";
+import { decompose, FACTOR_EDGES, factorMap, penetration, type Decomposition, type DepEdge, type PrimePenetration, type PrimeStatus } from "./primes";
 
 export type MakeupNode = { id: string; slug: string; title: string; branch: string; kind?: string; provenanceType?: string | null };
 
@@ -26,8 +27,10 @@ export type Makeup = {
   primes: (MakeupNode & { paths: number })[];
   /** What the node rests on directly, through approved edges. */
   factors: MakeupNode[];
-  /** For a prime: how many composites contain it, across how many branches. */
+  /** For a prime: how many idea composites contain it, across how many branches. */
   reach: { composites: number; branches: number } | null;
+  /** Facts, sources, and other non-idea nodes the idea rests on directly: its evidence, apart from its makeup. */
+  evidence: { count: number; items: MakeupNode[] };
   proposals: MakeupProposal[];
   missing: { key: string; title: string; summary: string | null; reason: string | null }[];
   irreducible: { status: "pending" | "confirmed" | "rejected"; justification: string } | null;
@@ -54,9 +57,12 @@ export type ProposalRowLite = {
 };
 
 export type Snapshot = {
+  /** The decomposition of the idea layer: idea nodes and the factor edges between them. */
   dec: Map<string, Decomposition>;
-  /** The factor edges the decomposition ran over. */
+  /** Every factor edge on the public graph, for loop checks that may pass through evidence. */
   edges: DepEdge[];
+  /** Each idea's direct non-idea factors. */
+  evidence: Map<string, MakeupNode[]>;
   byId: Map<string, MakeupNode>;
   bySlug: Map<string, MakeupNode>;
   reach: Map<string, PrimePenetration>;
@@ -107,6 +113,10 @@ export function buildMakeup(
     primes: primes.slice(0, limit),
     factors,
     reach: r ? { composites: r.composites, branches: r.branches } : null,
+    evidence: (() => {
+      const ev = (snap.evidence.get(nodeId) ?? []).slice().sort((a, b) => a.title.localeCompare(b.title));
+      return { count: ev.length, items: ev.slice(0, 6) };
+    })(),
     proposals,
     missing: pending.missing
       .map((m) => ({ key: m.key, title: m.title, summary: m.summary, reason: m.reasons?.[self.slug] ?? null }))
@@ -137,13 +147,30 @@ async function readSnapshot(svc: SupabaseClient): Promise<Snapshot> {
   const edges: DepEdge[] = edgeRows
     .filter((e) => live.has(e.from_id) && live.has(e.to_id))
     .map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind, confidence: e.confidence }));
-  const dec = decompose(rows, edges);
+  // The idea layer, as the queue decomposes it (decompose-further.ts ideaLayer).
+  const ideas = rows.filter((n) => isIdeaNode({ kind: n.kind ?? "", provenanceType: n.provenanceType ?? null }));
+  const ideaIds = new Set(ideas.map((n) => n.id));
+  const dec = decompose(
+    ideas,
+    edges.filter((e) => ideaIds.has(e.fromId) && ideaIds.has(e.toId)),
+  );
+  const byId = new Map(rows.map((n) => [n.id, n]));
+  const evidence = new Map<string, MakeupNode[]>();
+  for (const [nodeId, factors] of Array.from(factorMap(edges).entries())) {
+    if (!ideaIds.has(nodeId)) continue;
+    const ev = Array.from(factors.keys())
+      .filter((f) => !ideaIds.has(f))
+      .map((f) => byId.get(f))
+      .filter((n): n is MakeupNode => !!n);
+    if (ev.length) evidence.set(nodeId, ev);
+  }
   return {
     dec,
     edges,
-    byId: new Map(rows.map((n) => [n.id, n])),
+    evidence,
+    byId,
     bySlug: new Map(rows.map((n) => [n.slug, n])),
-    reach: new Map(penetration(rows, dec).map((p) => [p.id, p])),
+    reach: new Map(penetration(ideas, dec).map((p) => [p.id, p])),
   };
 }
 

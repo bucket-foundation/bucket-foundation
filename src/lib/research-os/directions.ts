@@ -1,15 +1,21 @@
 /**
  * Research OS, the Awareness level as a view (ros-24): from any node,
  * where knowledge goes. Pure, over the same nodes and edges the router
- * uses. Edge convention (frontier.ts, the workspace route's prerequisite
- * lookup): a prerequisite or derives_from edge runs from the prerequisite
- * to the node that needs it, so "forward" from a node follows edges whose
- * fromId is the node.
+ * uses. Edge conventions, as the data and primes.ts (FACTOR_EDGES) have
+ * them: a prerequisite edge runs from the prerequisite to the node that
+ * needs it; derives_from, extends, replicates, generalizes, and answers run
+ * from the newer node to the node it builds on (production-node.ts writes
+ * them from the production to its target). "Forward" from a node, where
+ * knowledge goes, follows a prerequisite edge from its fromId and the other
+ * kinds from their toId.
  */
 import type { GraphEdge, GraphNode, NodeKind } from "./types";
 
 export const FRONTIER_NODE_KINDS: NodeKind[] = ["hypothesis", "extension", "replication", "peer_review"];
-const FORWARD_KINDS = new Set(["prerequisite", "derives_from", "generalizes", "extends", "replicates", "answers"]);
+/** Kinds whose `from` end comes first: forward runs from → to. */
+const FORWARD_FROM_KINDS = new Set(["prerequisite"]);
+/** Kinds written from the newer node to the node it builds on: forward runs to → from. */
+const FORWARD_TO_KINDS = new Set(["derives_from", "generalizes", "extends", "replicates", "answers"]);
 
 export interface Directions {
   /** Nodes one step forward: what this node is a prerequisite of. */
@@ -30,9 +36,10 @@ export function directionsFrom(nodeId: string, nodes: GraphNode[], edges: GraphE
   const byId = new Map(nodes.map((n) => [n.id, n]));
   const forward = new Map<string, string[]>();
   for (const e of edges) {
-    if (!FORWARD_KINDS.has(e.kind)) continue;
     if (!byId.has(e.fromId) || !byId.has(e.toId)) continue;
-    forward.set(e.fromId, [...(forward.get(e.fromId) ?? []), e.toId]);
+    const [a, b] = FORWARD_FROM_KINDS.has(e.kind) ? [e.fromId, e.toId] : FORWARD_TO_KINDS.has(e.kind) ? [e.toId, e.fromId] : [null, null];
+    if (!a || !b) continue;
+    forward.set(a, [...(forward.get(a) ?? []), b]);
   }
   const seen = new Set<string>([nodeId]);
   let layer = [nodeId];

@@ -448,8 +448,13 @@ export async function decideNode(
     nodeId = (inserted as { id: string }).id;
     created = true;
   }
+  let queuedEdges = 0;
   if (outcome.edgeProposals?.length) {
-    const { error: epErr } = await svc.from("edge_proposals").upsert(outcome.edgeProposals, { onConflict: "from_slug,to_slug", ignoreDuplicates: true });
+    const { data: queuedRows, error: epErr } = await svc
+      .from("edge_proposals")
+      .upsert(outcome.edgeProposals, { onConflict: "from_slug,to_slug", ignoreDuplicates: true })
+      .select("id");
+    queuedEdges = ((queuedRows as unknown[]) || []).length;
     if (epErr) {
       let nodeLeft = false;
       if (created) {
@@ -468,7 +473,9 @@ export async function decideNode(
     alreadyDecided: false,
     nodeSlug: n.slug,
     nodeTier: n.tier,
-    queuedEdges: outcome.edgeProposals?.length ?? 0,
+    // True when a node with this slug existed and the approval linked to it.
+    reused: !created,
+    queuedEdges,
     // The node and its proposals exist; only the back link failed, so a
     // later run cannot queue new pairs from this node until it is set.
     ...(linkErr ? { warning: "the proposal's link to its new node was not saved" } : {}),

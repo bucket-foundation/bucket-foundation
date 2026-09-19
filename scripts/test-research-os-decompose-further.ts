@@ -7,7 +7,9 @@ import {
   answeringModel,
   applyVerdicts,
   clipText,
+  ideaLayer,
   irreducibleAction,
+  modelMatchesAlias,
   reuseEarlierKeys,
   aggregateMissing,
   blindSet,
@@ -476,4 +478,29 @@ test("the base-idea hint reads past 'X as Y' and 'the law of X'", () => {
   assert.equal(matchBase("Law of large numbers"), null);
   assert.equal(matchBase("The idea of a set"), "set");
   assert.equal(matchBase("Equality and identity"), "THE SAME (equality)");
+});
+
+test("the idea layer drops evidence, so an idea resting only on a fact becomes a prime to decompose", () => {
+  const ns = [
+    node("law", "02-physics", "law", "Rayleigh scattering law"),
+    node("fact", "02-physics", "fact", "The sky is blue at noon", "canon_claim"),
+    node("wave", "02-physics", "concept", "Wave optics"),
+  ];
+  // The law rests on the fact (derives_from law -> fact), and on nothing else.
+  const es: DepEdge[] = [{ fromId: "law", toId: "fact", kind: "derives_from" }, pre("wave", "fact")];
+  const all = decompose(ns, es);
+  assert.equal(all.get("law")!.status, "composite");
+  const layer = ideaLayer(ns, es);
+  assert.deepEqual(layer.nodes.map((n) => n.id).sort(), ["law", "wave"]);
+  assert.equal(layer.edges.length, 0);
+  const ideas = decompose(layer.nodes, layer.edges);
+  assert.equal(ideas.get("law")!.status, "unfactored");
+  assert.ok(selectTargets(ns, ideas).some((t) => t.slug === "law"));
+});
+
+test("a model alias resolves only inside its family, and a full id only to itself", () => {
+  assert.equal(modelMatchesAlias("sonnet", "claude-sonnet-5"), true);
+  assert.equal(modelMatchesAlias("opus", "claude-haiku-4-5-20251001"), false);
+  assert.equal(modelMatchesAlias("claude-opus-5", "claude-opus-5"), true);
+  assert.equal(modelMatchesAlias("claude-opus-5", "claude-opus-4"), false);
 });

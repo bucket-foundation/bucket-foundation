@@ -14,7 +14,7 @@ const e = (from: string, to: string, kind: GraphEdge["kind"] = "prerequisite"): 
 // light -> scattering -> {rayleigh -> sky-blue-hypothesis, sunset}
 //                     -> why-red (open question)
 const nodes = [n("light"), n("scattering"), n("rayleigh"), n("sunset"), n("sky-blue-hypothesis", { kind: "hypothesis" }), n("why-red", { frontierFlag: "open_question" }), n("unrelated")];
-const edges = [e("light", "scattering"), e("scattering", "rayleigh"), e("scattering", "sunset"), e("rayleigh", "sky-blue-hypothesis", "extends"), e("scattering", "why-red"), e("sunset", "light", "cites")];
+const edges = [e("light", "scattering"), e("scattering", "rayleigh"), e("scattering", "sunset"), e("sky-blue-hypothesis", "rayleigh", "extends"), e("scattering", "why-red"), e("sunset", "light", "cites")];
 
 test("dependents are one step forward along prerequisite-like edges", () => {
   const d = directionsFrom("scattering", nodes, edges);
@@ -42,4 +42,15 @@ test("cites edges do not count as forward and cycles do not loop", () => {
   const d = directionsFrom("sunset", nodes, edges);
   assert.deepEqual(d.dependents, []);
   assert.deepEqual(d.reach, [0, 0, 0]);
+});
+
+test("derives_from and extends run from the newer node to its base, so forward goes base to newer", () => {
+  // "fact" derives from "kinematics"; "ext" extends "kinematics". Both are where kinematics leads, and kinematics is where neither leads.
+  const ns = [n("kinematics"), n("fact", { kind: "fact" }), n("ext", { kind: "extension" }), n("vectors")];
+  const es = [e("fact", "kinematics", "derives_from"), e("ext", "kinematics", "extends"), e("kinematics", "vectors", "derives_from")];
+  const d = directionsFrom("kinematics", ns, es);
+  assert.deepEqual(d.dependents.map((x) => x.id).sort(), ["ext", "fact"]);
+  const back = directionsFrom("fact", ns, es);
+  assert.deepEqual(back.dependents, [], "a node that derives from another does not lead to it");
+  assert.deepEqual(directionsFrom("vectors", ns, es).dependents.map((x) => x.id), ["kinematics"]);
 });
