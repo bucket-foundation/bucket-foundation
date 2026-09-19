@@ -1,5 +1,19 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-19: patents in Research OS
+
+Patents in Research OS are designed, and the gateway findings went to the org repositories.
+
+Branch `feat/ros-loop-patents-gateway`, PR #188. Founder direction: "if we are focused on scientific research, discovery, and innovation, patents are super important too"; the patents x402 and feed402 work lives in the bucket-foundation org repositories.
+
+### Added
+
+- The design of patents in Research OS: imported into the graph from a bulk corpus, free to read, each linked to the x402 research gateway's citeable USPTO record. The gateway and protocol work lives in the bucket-foundation org repositories, where the findings went as issues.
+
+### Corrected
+
+- The patent licensing matrix of 2026-05-03, against current sources: PatentsView's API is paused, EPO data may not be relayed as it comes, WIPO resale needs a paid licence, and the patent-to-paper citation set is non-commercial, so it stays out of v1.
+
 ## 2026-09-19: fewer Vercel builds
 
 Previews build once per task and build green.

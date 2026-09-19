@@ -2,6 +2,27 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-patents 0: the patents gateway and Research OS
+
+Research on patent sources, terms, and x402 sellers; the Research OS side of patents; and the gateway and protocol findings handed to the bucket-foundation org repositories, where that work lives.
+
+Date 2026-09-19. Branch `feat/ros-loop-patents-gateway`, worktree `.wt-ros-loop`, PR #188 into `dev`. Founder direction: patents as first-class research objects, with their own x402 gateway and feed402 service; "the x402 feed402 patents work is a different bucket org repo". Issues filed: x402-research-gateway#67 and #68, feed402#12.
+
+### Added
+
+- `learning/research-os/PATENTS.md`: the ros-patents epic's file. What feed402, the Go gateway, and this repository hold; what changed outside since the licensing matrix; and the design of Research OS's side: patents imported into the graph from a bulk corpus and linked to the gateway's citeable USPTO records, the readers inside Research OS, the rights it shows, the graph model, the surfaces by level, and three questions for the founder.
+
+### Edited
+
+- `docs/PATENT_LICENSING.md`: a dated corrections block at the top: PatentsView's paused API and ODP accounts, the EPO OPS terms and free bulk data, WIPO's paid licences, the Lens, and Reliance on Science's non-commercial licence. The text below it is unchanged.
+- `docs/FEED402_PATENTS.md`: a dated corrections block at the top: the v1 corpus is US grants under CC BY 4.0, seven routes, and the local serve script's old `mountPatents` call. The text below it is unchanged.
+- `docs/PROBLEM-REGISTER.md`: PR-067, PR-068, PR-069, PR-070.
+- `_intake/research-os-k12/CHANGELOG.md`: the 2026-09-19 patents entry.
+
+### Removed
+
+None.
+
 ## ros-builds: fewer Vercel builds
 
 The Vercel gate compares each push with the last successful deployment, builds on Node 24, and a local check stops a push that would fail on lint or types.
