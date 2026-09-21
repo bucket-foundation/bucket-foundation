@@ -195,3 +195,23 @@ The graph holds 1,903 public nodes across fourteen branches, the largest being b
 | 02-physics | `G01` (measuring and testing), `H01` (basic electric elements) | Apparatus and measurement rather than theory |
 
 Mathematics, cosmology, mind, deep history, literature, sacred texts, tradition, art, learning to learn, and earth stay out of the first slice: the patent record touches them rarely, and a slice that reached for them would buy mostly noise. ros-patents 2 loads these four branches' classes, records how many patents and links each class contributes, and the count decides whether the slice widens.
+
+### What patent counts measure
+
+Counting patents is an old measure with old warnings. Griliches surveyed the use of patent statistics as economic indicators ([NBER working paper 3301, 1990](https://doi.org/10.3386/w3301)), and Nagaoka, Motohashi, and Goto revisited it two decades later ([Handbook of the Economics of Innovation, 2010](https://doi.org/10.1016/s0169-7218(10)02009-5)); neither abstract is published in OpenAlex or Semantic Scholar, so no figure from them is quoted here.
+
+Three distortions matter for anything Research OS shows:
+
+- **Filings against families.** This repository's own note on the quantum patent race records the split: China leads global filings while the United States leads international patent families, and the two measures answer differently because a family counts one invention filed in several offices (`quantum/06-ecosystem-geopolitics/E-patents.md`, graded T5, with the caveat that family-counting methods differ).
+- **Filing incentives.** The same note records subsidy programs that reward filing volume, which inflates raw counts.
+- **What never gets filed.** It also records that error-correction decoders, control calibration, and fabrication recipes are kept as trade secrets, so a patent landscape undercounts the real work.
+
+So a patent count is evidence that a field has applied activity, and it is not a ranking of ideas. Research OS shows patents as objects with their own links and never scores an idea by how many patents cite it; where a count appears, it names the measure, filings or families, and its date.
+
+### Prior-art search and its measurement
+
+Patent retrieval is its own branch of information retrieval, and the methods that made web search work do not carry over. Shalaby and Zadrozny's review states it: the successes of web search "cannot be transferred directly to PR without deliberate domain adaptation and customization", automatic patent retrieval is "still around average in terms of recall", and the field's answer is interactive tools that assist a professional rather than replace the search ([Knowledge and Information Systems, 2019](https://doi.org/10.1007/s10115-018-1322-7)).
+
+The measurement tradition is the CLEF-IP campaigns, which evaluated retrieval systems on European patent data from 2009 onward ([CLEF-IP 2009 overview](https://doi.org/10.1007/978-3-642-15754-7_47); [the campaign in retrospect](https://doi.org/10.1007/978-3-662-53817-3_4)).
+
+That sets what ros-patents 3 builds and how it reports. Prior-art search over the imported slice ranks candidates by text, by embeddings, and by CPC overlap, and shows a researcher the ranked list with the reason each candidate appears. Its quality is measured the way the campaigns do, on citations the corpus already carries: hold out a patent's own backward citations, search from its claims, and report recall at 10, 50, and 100 over a sample, with the numbers written into this file. A number below what a professional search reaches is the expected result, and it is reported rather than hidden: the tool's job is to put candidates in front of a researcher who judges them.
