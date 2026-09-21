@@ -6,7 +6,7 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { canAssign, canOverride, overrideEvent, reviewsForClass, rolesIn, runsClass, validateOverride, visibleLearnerIds, type Membership } from "../src/lib/research-os/roles";
-import { assignmentStatus, validateAssignment, type Assignment } from "../src/lib/research-os/assignments";
+import { assignmentStatus, firstOpenTarget, targetIsLinkable, validateAssignment, type Assignment } from "../src/lib/research-os/assignments";
 
 const learners = ["l1", "l2", "l3"];
 
@@ -69,4 +69,48 @@ test("validateAssignment trims and defaults", () => {
   assert.equal(ok.value.requiresProduction, true);
   assert.equal((validateAssignment({ title: "ab" }) as { error: string }).error, "title_required");
   assert.equal((validateAssignment({ title: "fine", dueAt: "nope" }) as { error: string }).error, "bad_due_at");
+});
+
+/**
+ * Which assignment a surface opens on, and which it may link to
+ * (src/lib/research-os/assignments.ts). A learner who may not read a
+ * target gets no slug for it, and the workspace used to redirect to
+ * `?target=` on that empty value, read the empty value as no target, and
+ * fire again on every load (Bucket critic C38, C49).
+ */
+test("a hidden target is never the one a surface opens on", () => {
+  const rows = [
+    { id: "a", status: "accepted", targetSlug: "done", targetHidden: false },
+    { id: "b", status: "not_started", targetSlug: "", targetHidden: true },
+    { id: "c", status: "in_progress", targetSlug: "open-me", targetHidden: false },
+  ];
+  const open = firstOpenTarget(rows);
+  assert.equal(open?.id, "c", "the hidden one is skipped and the accepted one is done");
+});
+
+test("an empty slug is skipped even when nothing marked it hidden", () => {
+  // A blanked slug can arrive from a failed read as well as a denial, so
+  // the predicate checks the slug rather than trusting the flag alone.
+  const rows = [{ id: "b", status: "not_started", targetSlug: "", targetHidden: false }];
+  assert.equal(firstOpenTarget(rows), null, "nothing to open, so nothing is opened");
+  assert.equal(targetIsLinkable(rows[0]), false, "and nothing links to it");
+});
+
+test("every assignment hidden or blank leaves the surface on its default", () => {
+  assert.equal(firstOpenTarget([]), null);
+  assert.equal(
+    firstOpenTarget([
+      { id: "a", status: "not_started", targetSlug: "", targetHidden: true },
+      { id: "b", status: "overdue", targetSlug: "", targetHidden: true },
+    ]),
+    null,
+    "a learner with only withheld targets is never redirected",
+  );
+});
+
+test("a readable target is linkable and a withheld one is not", () => {
+  assert.equal(targetIsLinkable({ targetSlug: "why-the-sky-is-blue", targetHidden: false }), true);
+  assert.equal(targetIsLinkable({ targetSlug: "why-the-sky-is-blue", targetHidden: true }), false);
+  assert.equal(targetIsLinkable({ targetSlug: "", targetHidden: false }), false);
+  assert.equal(targetIsLinkable({}), false, "a row missing both fields links nowhere");
 });

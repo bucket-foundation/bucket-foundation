@@ -6,7 +6,7 @@
  * component.
  */
 import type { NextRequest } from "next/server";
-import { awardProgress, graphService, verifyLearnerIdentity } from "./db";
+import { awardProgress, graphService, inChunks, verifyLearnerIdentity } from "./db";
 import { authorizeNode, authorizeNodes } from "./read-access";
 import { canAssign, canManageMembers, canOverride, rolesIn, validateOverride, type Membership, type Role } from "./roles";
 import { assignmentStatus, validateAssignment, type Assignment, type AssignmentStatus, type NewAssignment } from "./assignments";
@@ -124,12 +124,36 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
   const assignments = ((rows as AssignmentRow[]) || []).map(assignmentFromRow);
   if (assignments.length === 0) return { ok: true, assignments: [] };
   const nodeIds = Array.from(new Set(assignments.map((a) => a.targetNodeId)));
-  const [{ data: nodes }, { data: classes }, { data: states }, { data: productions }] = await Promise.all([
-    svc.from("nodes").select("id,slug,title").in("id", nodeIds),
-    svc.from("classes").select("id,name").in("id", classIds),
-    svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).in("node_id", nodeIds),
-    svc.from("productions").select("target_node_id,status").eq("learner_id", learnerId).in("target_node_id", nodeIds),
-  ]);
+  // Every one of these reads used to discard its error and go unchunked.
+  // Above roughly 200 ids the nodes read answers 414, `nodes` came back
+  // null, and every row was served with a blank title and a blank slug
+  // while targetHidden stayed false, which is the invariant this file
+  // declares on LearnerAssignment and the failure its own header forbids
+  // (Bucket critic C50). inChunks throws on an error, so a failed read
+  // reaches the caller as unavailable.
+  let nodes: { id: string; slug: string; title: string }[];
+  let classes: { id: string; name: string }[];
+  let states: { node_id: string; stage: Stage }[];
+  let productions: { target_node_id: string; status: string }[];
+  try {
+    [nodes, classes, states, productions] = await Promise.all([
+      inChunks<{ id: string; slug: string; title: string }>(nodeIds, (chunk, page) =>
+        svc.from("nodes").select("id,slug,title").in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; slug: string; title: string }[] | null; error: { message: string } | null }>,
+      ),
+      inChunks<{ id: string; name: string }>(classIds, (chunk, page) =>
+        svc.from("classes").select("id,name").in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; name: string }[] | null; error: { message: string } | null }>,
+      ),
+      inChunks<{ node_id: string; stage: Stage }>(nodeIds, (chunk, page) =>
+        svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: Stage }[] | null; error: { message: string } | null }>,
+      ),
+      inChunks<{ target_node_id: string; status: string }>(nodeIds, (chunk, page) =>
+        svc.from("productions").select("target_node_id,status").eq("learner_id", learnerId).in("target_node_id", chunk).order("target_node_id").order("status").range(page.from, page.to) as unknown as Promise<{ data: { target_node_id: string; status: string }[] | null; error: { message: string } | null }>,
+      ),
+    ]);
+  } catch (err) {
+    console.error("[research-os] assignment read failed:", err instanceof Error ? err.message : err);
+    return { ok: false, reason: "unavailable" };
+  }
   // An assignment names a node, and its title reaches the learner, so a
   // node they may not read carries no title or slug here (Bucket critic
   // C27). The assignment itself stays in the list: it is theirs, and the
@@ -137,15 +161,11 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
   const readableTargets = await authorizeNodes(nodeIds, { id: learnerId }, "view");
   if (!readableTargets.ok) return { ok: false, reason: "unavailable" };
   const visibleTargets = new Set(readableTargets.allowed);
-  const nodeById = new Map(
-    ((nodes as { id: string; slug: string; title: string }[]) || [])
-      .filter((n) => visibleTargets.has(n.id))
-      .map((n) => [n.id, n]),
-  );
-  const classById = new Map(((classes as { id: string; name: string }[]) || []).map((c) => [c.id, c.name]));
-  const stageByNode = new Map(((states as { node_id: string; stage: Stage }[]) || []).map((s) => [s.node_id, s.stage]));
+  const nodeById = new Map(nodes.filter((n) => visibleTargets.has(n.id)).map((n) => [n.id, n]));
+  const classById = new Map(classes.map((c) => [c.id, c.name]));
+  const stageByNode = new Map(states.map((s) => [s.node_id, s.stage]));
   const prodsByNode = new Map<string, { status: string }[]>();
-  for (const p of (productions as { target_node_id: string; status: string }[]) || []) {
+  for (const p of productions) {
     prodsByNode.set(p.target_node_id, [...(prodsByNode.get(p.target_node_id) ?? []), { status: p.status }]);
   }
   return {

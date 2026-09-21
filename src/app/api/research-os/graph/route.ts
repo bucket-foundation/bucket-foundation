@@ -27,8 +27,11 @@ export async function GET(req: NextRequest) {
       // This answers before identity, so it counts the public graph
       // alone: a private node's existence is not a branch statistic
       // (Bucket critic C23).
-      const { data } = await graphService().from("nodes").select("branch").eq("visibility", "public").range(from, from + 999);
-      const rows = (data as { branch: string }[]) || [];
+      // Ordered, because an unordered page can serve one node twice and
+      // skip another, and these rows are counted.
+      const { data, error } = await graphService().from("nodes").select("id,branch").eq("visibility", "public").order("id").range(from, from + 999);
+      if (error) return bad(503, "graph_read_failed");
+      const rows = (data as { id: string; branch: string }[]) || [];
       rows.forEach((r) => counts.set(r.branch, (counts.get(r.branch) ?? 0) + 1));
       if (rows.length < 1000) break;
     }
@@ -56,24 +59,50 @@ export async function GET(req: NextRequest) {
   let holders: Record<string, Record<string, number>> | null = null;
   let learners = 0;
   if (viewerId && ids.length) {
-    const [st, classes] = await Promise.all([
-      inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []),
-      listMyClasses(viewerId),
-    ]);
+    // A read that failed is not a learner who has opened nothing. Serving
+    // an empty standing map behind a 200 told them exactly that, and it
+    // now also swallowed the PagingError the page guard raises (Bucket
+    // critic C53).
+    let st: { node_id: string; stage: string }[];
+    let classes: Awaited<ReturnType<typeof listMyClasses>>;
+    try {
+      [st, classes] = await Promise.all([
+        inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>),
+        listMyClasses(viewerId),
+      ]);
+    } catch (err) {
+      console.error("[research-os/graph] standing read failed:", err instanceof Error ? err.message : err);
+      return bad(503, "graph_read_failed");
+    }
     st.forEach((r) => (standing[r.node_id] = r.stage));
     const classIds = classes.map((c) => c.id);
     if (classIds.length) {
-      const { data: asg } = await svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", classIds).is("closed_at", null);
+      const { data: asg, error: asgErr } = await svc.from("assignments").select("target_node_id,title,class_id,due_at").in("class_id", classIds).is("closed_at", null).order("target_node_id").limit(1000);
+      if (asgErr) return bad(503, "graph_read_failed");
       const nameOf = new Map(classes.map((c) => [c.id, c.name]));
       const idSet = new Set(ids);
       assignments = ((asg as { target_node_id: string; title: string; class_id: string; due_at: string | null }[]) || []).filter((a) => idSet.has(a.target_node_id)).map((a) => ({ nodeId: a.target_node_id, title: a.title, className: nameOf.get(a.class_id) ?? "", dueAt: a.due_at }));
       const staffIds = classes.filter((c) => c.role === "teacher" || c.role === "librarian").map((c) => c.id);
       if (staffIds.length) {
-        const { data: members } = await svc.from("class_members").select("learner_id").in("class_id", staffIds);
-        const learnerIds = Array.from(new Set(((members as { learner_id: string }[]) || []).map((m) => m.learner_id)));
+        let members: { learner_id: string }[];
+        try {
+          members = await inChunks<{ learner_id: string }>(staffIds, (chunk, page) =>
+            svc.from("class_members").select("learner_id").in("class_id", chunk).order("learner_id").range(page.from, page.to) as unknown as Promise<{ data: { learner_id: string }[] | null; error: { message: string } | null }>,
+          );
+        } catch (err) {
+          console.error("[research-os/graph] roster read failed:", err instanceof Error ? err.message : err);
+          return bad(503, "graph_read_failed");
+        }
+        const learnerIds = Array.from(new Set(members.map((m) => m.learner_id)));
         learners = learnerIds.length;
         if (learnerIds.length) {
-          const rows = await inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", learnerIds.slice(0, IN_CHUNK)).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []);
+          let rows: { node_id: string; stage: string }[];
+          try {
+            rows = await inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", learnerIds.slice(0, IN_CHUNK)).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>);
+          } catch (err) {
+            console.error("[research-os/graph] heatmap read failed:", err instanceof Error ? err.message : err);
+            return bad(503, "graph_read_failed");
+          }
           holders = {};
           rows.forEach((r) => {
             const h = (holders![r.node_id] = holders![r.node_id] ?? Object.fromEntries(STAGES.map((s) => [s, 0])));

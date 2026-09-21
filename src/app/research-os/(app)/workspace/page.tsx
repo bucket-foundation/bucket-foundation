@@ -83,6 +83,7 @@
  * refreshes it here. See learning/research-os/GUIDANCE.md.
  */
 import type { LearnerAssignment } from "@/lib/research-os/class-db";
+import { firstOpenTarget } from "@/lib/research-os/assignments";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -310,7 +311,7 @@ export default function ResearchOsWorkspacePage() {
         // to `?target=` would land back here with an empty value, which
         // the guard above reads as no target and fires again, forever
         // (Bucket critic C38).
-        const open = (j.assignments ?? []).find((a) => a.status !== "accepted" && !a.targetHidden && a.targetSlug);
+        const open = firstOpenTarget(j.assignments ?? []);
         if (open && open.targetSlug !== TARGET_SLUG) window.location.replace(`/research-os/workspace?target=${encodeURIComponent(open.targetSlug)}`);
       })
       .catch(() => {});

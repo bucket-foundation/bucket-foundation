@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_SECONDARY, LoadingState, PageHeader, Panel, STAGE_LABEL } from "@/components/ui";
 import type { LearnerAssignment } from "@/lib/research-os/class-db";
+import { targetIsLinkable } from "@/lib/research-os/assignments";
 
 interface Hit {
   id: string;
@@ -91,7 +92,7 @@ export default function TargetPicker() {
             <ul className="flex flex-col divide-y divide-[color:var(--hairline)]">
               {assignments.map((a) => (
                 <li key={a.id} className="py-2">
-                  {a.targetHidden || !a.targetSlug ? (
+                  {!targetIsLinkable(a) ? (
                     <span className="text-[14px] text-[color:var(--basalt-3)]">target not shared with you</span>
                   ) : (
                     <a href={open(a.targetSlug)} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">{a.targetTitle}</a>

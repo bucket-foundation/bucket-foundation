@@ -36,7 +36,14 @@ export async function GET(req: NextRequest) {
   const learnerId = await verifyLearner(req);
   if (!learnerId) return bad(401, "unauthorized");
   const svc = graphService();
-  const [statesRes, ownedRes, importsRes, prodRes, requestsRes, connections, decks] = await Promise.all([
+  // A read that fails is an outage. Before these reads paged, a failure
+  // left the data null and every counter rendered zero, which told the
+  // learner they had opened nothing (the third defect in
+  // docs/CRITIC-PROTOCOL.md). pagedRead throws instead, and the throw
+  // becomes a 503 here rather than an unhandled rejection.
+  let reads;
+  try {
+    reads = await Promise.all([
     pagedRead<{ node_id: string; stage: string }>((page) =>
       svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>,
     ),
@@ -48,7 +55,12 @@ export async function GET(req: NextRequest) {
     svc.from("access_requests").select("id", { count: "exact", head: true }).eq("requester_id", learnerId).eq("status", "pending"),
     loadConnections(learnerId).catch(() => ({ held: [], bridges: [], unavailable: true as const })),
     learnDecksStarted(learnerId),
-  ]);
+    ]);
+  } catch (err) {
+    console.error("[research-os/loop] read failed:", err instanceof Error ? err.message : err);
+    return bad(503, "loop_unavailable");
+  }
+  const [statesRes, ownedRes, importsRes, prodRes, requestsRes, connections, decks] = reads;
   const states = (statesRes as { node_id: string; stage: Stage }[]) || [];
   const atLeast = (s: Stage) => states.filter((r) => stageAtLeast(r.stage, s)).length;
   const productions = (prodRes as { id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }[]) || [];

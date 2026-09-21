@@ -1,5 +1,5 @@
 /** Load a person's cross-branch connections (connections.ts) from the graph. Server-only. */
-import { graphService, inChunks } from "./db";
+import { graphService, inChunks, pagedRead } from "./db";
 import { authorizeNodes, readVisibility, storeWithNodes } from "./read-access";
 import type { NodeAccess } from "./access";
 import { crossBranchConnections, type ConnEdge, type ConnNode } from "./connections";
@@ -7,22 +7,31 @@ import type { Stage } from "./types";
 
 export async function loadConnections(learnerId: string) {
   const svc = graphService();
-  const { data: stateRows, error } = await svc
-    .from("learner_node_state")
-    .select("node_id,stage")
-    .eq("learner_id", learnerId)
-    .in("stage", ["understanding", "internalization", "production"]);
-  if (error) throw new Error("read_failed");
-  const states = ((stateRows as { node_id: string; stage: Stage }[]) || []).map((r) => ({ nodeId: r.node_id, stage: r.stage }));
+  const stateRows = await pagedRead<{ node_id: string; stage: Stage }>((page) =>
+    svc
+      .from("learner_node_state")
+      .select("node_id,stage")
+      .eq("learner_id", learnerId)
+      .in("stage", ["understanding", "internalization", "production"])
+      .order("node_id")
+      .range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: Stage }[] | null; error: { message: string } | null }>,
+  );
+  const states = stateRows.map((r) => ({ nodeId: r.node_id, stage: r.stage }));
   if (states.length === 0) return { held: [], bridges: [] };
   const ids = states.map((s) => s.nodeId);
-  type Row = { from_id: string; to_id: string; kind: string };
+  type Row = { id: string; from_id: string; to_id: string; kind: string };
   const [out, inn] = await Promise.all([
-    inChunks<Row>(ids, (chunk, page) => svc.from("edges").select("from_id,to_id,kind").in("from_id", chunk).neq("kind", "prerequisite").order("from_id").order("to_id").range(page.from, page.to) as unknown as Promise<{ data: Row[] | null; error: { message: string } | null }>),
-    inChunks<Row>(ids, (chunk, page) => svc.from("edges").select("from_id,to_id,kind").in("to_id", chunk).neq("kind", "prerequisite").order("to_id").order("from_id").range(page.from, page.to) as unknown as Promise<{ data: Row[] | null; error: { message: string } | null }>),
+    inChunks<Row>(ids, (chunk, page) => svc.from("edges").select("id,from_id,to_id,kind").in("from_id", chunk).neq("kind", "prerequisite").order("from_id").order("to_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: Row[] | null; error: { message: string } | null }>),
+    inChunks<Row>(ids, (chunk, page) => svc.from("edges").select("id,from_id,to_id,kind").in("to_id", chunk).neq("kind", "prerequisite").order("to_id").order("from_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: Row[] | null; error: { message: string } | null }>),
   ]);
-  const rows = [...out, ...inn];
-  const edges: ConnEdge[] = rows.map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind }));
+  // An edge can be read twice, once from each direction, so the two
+  // lists are merged by the primary key. `id` is also the final sort
+  // key above: graph.edges is unique on `id` alone, so a page boundary
+  // landing inside a group of edges sharing a pair would otherwise
+  // repeat one and skip another (Bucket critic C48).
+  const byId = new Map<string, Row>();
+  for (const e of [...out, ...inn]) byId.set(e.id, e);
+  const edges: ConnEdge[] = Array.from(byId.values()).map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind }));
   const nodeIds = Array.from(new Set(edges.flatMap((e) => [e.fromId, e.toId])));
   if (nodeIds.length === 0) return { held: [], bridges: [] };
   // A bridge points at a node the learner holds no state on, which is

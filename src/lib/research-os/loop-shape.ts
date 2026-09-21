@@ -41,12 +41,17 @@ export function internalizationState(internalization: LoopInternalization): stri
 }
 
 /**
- * The second line of that column. An unknown bridge count used to fall
- * into the same branch as zero bridges, which is the point this file
- * exists to make (Bucket critic C46).
+ * The second line of that column.
+ *
+ * An unknown bridge count fell into the same branch as zero bridges, and
+ * a learner with nothing internalized yet then read "0 internalized" off
+ * a read that never completed: unknown rendered as none (Bucket critic
+ * C46). A null count says so whenever there is no other number to show.
  */
 export function internalizationDetail(internalization: LoopInternalization): string {
-  if (internalization.bridges === null) return `${internalization.nodes} internalized`;
+  if (internalization.bridges === null) {
+    return internalization.nodes > 0 ? `${internalization.nodes} internalized` : "count unavailable";
+  }
   if (internalization.bridges > 0) return `${internalization.bridges} ${internalization.bridges === 1 ? "bridge" : "bridges"} one step away`;
   return `${internalization.nodes} internalized`;
 }

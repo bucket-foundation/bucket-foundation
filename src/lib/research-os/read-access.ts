@@ -86,6 +86,12 @@ function liveGrant(grant: NodeGrant, now: Date): boolean {
 // turns into a 414 (Bucket critic C7).
 /** PostgREST answers at most this many rows per request. */
 const PAGE = 1000;
+/**
+ * A page loop that never terminates is worse than one that truncates,
+ * so both loops below stop here and report an outage. db.ts carries the
+ * same bound for the same reason (Bucket critic C54).
+ */
+const MAX_PAGES = 200;
 
 function chunk<T>(items: T[], size = 100): T[][] {
   const out: T[][] = [];
@@ -114,7 +120,9 @@ export const dbAccessStore: AccessStore = {
       // grants each overflow it, and the dropped rows come back as a
       // denial of a live grant with no error at all. Rule 1 in this
       // file's header forbids exactly that (Bucket critic C41).
-      for (let from = 0; ; from += PAGE) {
+      for (let p = 0; ; p += 1) {
+      if (p >= MAX_PAGES) return { ok: false, error: "grants: a paged read did not terminate" };
+      const from = p * PAGE;
       const { data, error } = await graphService()
         .from("node_grants")
         .select("id,node_id,grantee_id,grantee_group,role,expires_at")
@@ -160,7 +168,9 @@ export const dbAccessStore: AccessStore = {
     // is (Bucket critic C36). `nodes` above needs no page loop: it reads
     // at most one row per id, and `chunk` already bounds that at 100.
     const groups: string[] = [];
-    for (let from = 0; ; from += PAGE) {
+    for (let p = 0; ; p += 1) {
+      if (p >= MAX_PAGES) return { ok: false, error: "groups: a paged read did not terminate" };
+      const from = p * PAGE;
       const { data, error } = await graphService()
         .from("class_members")
         .select("class_id")

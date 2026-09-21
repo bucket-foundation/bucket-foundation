@@ -5,7 +5,7 @@
  */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { internalizationLit, internalizationState, type LoopInternalization } from "../src/lib/research-os/loop-shape";
+import { internalizationDetail, internalizationLit, internalizationState, type LoopInternalization } from "../src/lib/research-os/loop-shape";
 
 const base: LoopInternalization = { nodes: 0, held: 0, bridges: 0, nextBridge: null };
 
@@ -27,4 +27,28 @@ test("an unknown count lights the column only on what is known", () => {
   assert.equal(internalizationLit({ ...base, held: null, bridges: null, nodes: 2 }), true, "internalized nodes still light it");
   assert.equal(internalizationLit({ ...base, held: 1 }), true);
   assert.equal(internalizationLit({ ...base, held: 0, nodes: 0 }), false);
+});
+
+test("an unknown bridge count is unknown, never zero bridges", () => {
+  // The shared type forced `held === null` to be handled and left
+  // `bridges === null` falling into the same branch as no bridges at all
+  // (Bucket critic C46, C49).
+  const unknown = internalizationDetail({ ...base, nodes: 3, bridges: null, held: null });
+  assert.ok(!unknown.includes("null"), "the literal null never reaches the learner");
+  assert.ok(!unknown.includes("bridge"), "and an unknown count is not reported as a bridge count");
+  assert.equal(unknown, "3 internalized");
+});
+
+test("an unknown count with nothing else to show says unknown", () => {
+  // A learner who has internalized nothing yet, on a read that failed,
+  // used to be told "0 internalized", which is the outage reading as an
+  // answer (Bucket critic C46).
+  assert.equal(internalizationDetail({ ...base, nodes: 0, bridges: null, held: null }), "count unavailable");
+  assert.notEqual(internalizationDetail({ ...base, nodes: 0, bridges: null, held: null }), "0 internalized");
+});
+
+test("a known bridge count reads as one, singular and plural", () => {
+  assert.equal(internalizationDetail({ ...base, bridges: 1 }), "1 bridge one step away");
+  assert.equal(internalizationDetail({ ...base, bridges: 4 }), "4 bridges one step away");
+  assert.equal(internalizationDetail({ ...base, bridges: 0, nodes: 7 }), "7 internalized", "no bridges falls back to what is held");
 });

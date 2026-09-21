@@ -36,6 +36,7 @@ interface ProfileResponse {
 // error here rather than a wrong string on the page. `import type` is
 // erased, so none of class-db's server-only imports reach the client.
 import type { LearnerAssignment } from "@/lib/research-os/class-db";
+import { firstOpenTarget, targetIsLinkable } from "@/lib/research-os/assignments";
 interface NodeLite {
   id: string;
   slug: string;
@@ -127,7 +128,7 @@ export default function HomeClient() {
       if (!alive) return;
       setProfile(p);
       setAssignments(a);
-      const open = a.state === "ready" ? a.value.assignments.find((x) => x.status !== "accepted" && !x.targetHidden) : undefined;
+      const open = a.state === "ready" ? firstOpenTarget(a.value.assignments) : null;
       const target = open?.targetSlug || DEFAULT_TARGET;
       const r = await load<RouteResponse>(`/api/research-os/route?target=${encodeURIComponent(target)}&branch=${encodeURIComponent(DEFAULT_BRANCH)}`, headers);
       if (alive) setRoute(r);
@@ -214,7 +215,7 @@ export default function HomeClient() {
               {assignments.value.assignments.map((a) => (
                 <li key={a.id} className="py-3 flex flex-wrap items-center justify-between gap-2">
                   <div className="min-w-0">
-                    {a.targetHidden ? (
+                    {targetIsLinkable(a) ? (
                       <span className="text-[14px] text-[color:var(--basalt)]">{a.title}</span>
                     ) : (
                       <Link href={`/research-os/workspace?target=${encodeURIComponent(a.targetSlug)}`} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">
@@ -222,7 +223,7 @@ export default function HomeClient() {
                       </Link>
                     )}
                     <div className="text-[12px] text-[color:var(--basalt-3)]">
-                      {a.className} · {a.targetHidden ? "target not shared with you" : a.targetTitle}
+                      {a.className} · {targetIsLinkable(a) ? a.targetTitle : "target not shared with you"}
                       {a.requiresProduction ? " · paper required" : ""}
                       {due(a.dueAt) ? ` · due ${due(a.dueAt)}` : ""}
                     </div>

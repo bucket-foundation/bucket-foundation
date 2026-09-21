@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 // The server type, so a change to what /assignments returns is a compile
 // error here rather than a wrong label on the page (Bucket critic C40).
 import type { LearnerAssignment } from "@/lib/research-os/class-db";
+import { targetIsLinkable } from "@/lib/research-os/assignments";
 
 const STATUS: Record<LearnerAssignment["status"], string> = {
   not_started: "not started",
@@ -63,7 +64,7 @@ export default function AssignmentsBanner({ token, currentTarget }: { token: str
             <span className="text-[color:var(--basalt-3)]">{a.className}</span>
             <span className="text-[color:var(--basalt-3)]">· {STATUS[a.status]}</span>
             {a.dueAt && <span className="text-[color:var(--basalt-3)]">· due {a.dueAt.slice(0, 10)}</span>}
-            {a.targetHidden ? (
+            {!targetIsLinkable(a) ? (
               // Labelling a node the learner may not read as "this target"
               // tells them they are already on it (Bucket critic C38).
               <span className="text-[color:var(--basalt-3)]">· target not shared with you</span>

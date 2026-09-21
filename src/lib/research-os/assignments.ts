@@ -63,3 +63,30 @@ export function validateAssignment(input: NewAssignment): { ok: true; value: Req
     },
   };
 }
+
+/**
+ * The assignment a surface should open on, and the surfaces that link to
+ * one target.
+ *
+ * A learner who may not read an assignment's target gets no slug for it.
+ * The workspace redirected to `?target=` on that empty value, its own
+ * guard read the empty value as no target at all, and the effect fired
+ * again on every load: a learner whose first open assignment pointed at a
+ * revoked node lost the workspace (Bucket critic C38). Both halves are
+ * checked here so one predicate serves every caller.
+ */
+export function isOpenTarget(a: { status: AssignmentStatus | string; targetSlug?: string; targetHidden?: boolean }): boolean {
+  return a.status !== "accepted" && !a.targetHidden && Boolean(a.targetSlug);
+}
+
+/** The first assignment a surface may open, or null when none may be. */
+export function firstOpenTarget<T extends { status: AssignmentStatus | string; targetSlug?: string; targetHidden?: boolean }>(
+  assignments: T[],
+): T | null {
+  return assignments.find(isOpenTarget) ?? null;
+}
+
+/** Whether a surface may link to this assignment's target at all. */
+export function targetIsLinkable(a: { targetSlug?: string; targetHidden?: boolean }): boolean {
+  return !a.targetHidden && Boolean(a.targetSlug);
+}
