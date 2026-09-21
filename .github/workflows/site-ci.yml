@@ -64,8 +64,16 @@ jobs:
         run: |
           base="${{ github.event.pull_request.base.sha }}"
           if [ -z "$base" ]; then base="$(git rev-parse HEAD~1)"; fi
-          changed="$(git diff --name-only "$base"...HEAD || true)"
-          if printf '%s\n' "$changed" | grep -qE '^(supabase/(migrations|tests)/|scripts/test-research-os-evidence-append\.ts$|src/lib/research-os/(db|class-db)\.ts$|\.github/workflows/site-ci\.yml$)'; then
+          # A diff this step cannot compute is not "nothing changed": it runs
+          # the job rather than passing a check nobody performed.
+          if ! changed="$(git diff --name-only "$base"...HEAD)"; then
+            echo "could not diff against $base; running the database tests" >&2
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Every path that writes through the functions, their callers
+          # included: the route that calls an RPC is the code under test.
+          if printf '%s\n' "$changed" | grep -qE '^(supabase/(migrations|tests)/|scripts/test-research-os-|src/(app/api|lib)/research-os/|\.github/workflows/site-ci\.yml$)'; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
@@ -79,12 +87,12 @@ jobs:
         if: steps.paths.outputs.run == 'true'
       - name: local supabase
         if: steps.paths.outputs.run == 'true'
-        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,pg_prove
+        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
       - name: env
         if: steps.paths.outputs.run == 'true'
         run: |
-          npx supabase@latest status -o env > .supa.env
-          set -a; . ./.supa.env; set +a
+          npx supabase@latest status -o env > "$RUNNER_TEMP/supa.env"
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
           {
             echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
             echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"

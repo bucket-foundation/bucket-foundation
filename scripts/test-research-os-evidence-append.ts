@@ -416,3 +416,76 @@ test("a failed audit row leaves the stage where it was", { skip: skipApplied }, 
   const audits = sql(`select count(*) from graph.level_overrides where learner_id = '${learner}'`);
   assert.equal(audits.out, "0", `no audit row was written, got ${audits.out}`);
 });
+
+// The route calls graph.review_production through PostgREST, so the
+// argument names are a contract between TypeScript and SQL. A rename on
+// either side passes every psql test and fails in production.
+test("review_production accepts the route's own argument object", { skip: skipApplied }, async (t) => {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) {
+    t.skip("no local Supabase URL and service key in .env.local");
+    return;
+  }
+
+  const learner = randomUUID();
+  const teacher = randomUUID();
+  const node = randomUUID();
+  const production = randomUUID();
+  const reviewId = randomUUID();
+
+  const made = sql(`
+    insert into auth.users (id, instance_id, aud, role, email) values
+      ('${learner}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'rpc-${learner}@bucket.test'),
+      ('${teacher}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'rpc-t-${teacher}@bucket.test');
+    insert into graph.nodes (id, slug, title, kind, tier, branch, summary)
+      values ('${node}', 'rpc-fixture-${node}', 'RPC fixture', 'concept', 10, '01-mathematics', 'fixture');
+    insert into graph.productions (id, learner_id, target_node_id, kind, claim, status)
+      values ('${production}', '${learner}', '${node}', 'production', 'a claim', 'submitted');
+    select 'made';
+  `);
+  assert.equal(made.status, 0, made.out);
+
+  t.after(() => {
+    sql(`delete from graph.teacher_reviews where production_id = '${production}';
+         delete from graph.productions where id = '${production}';
+         delete from graph.learner_node_state where learner_id = '${learner}';
+         delete from graph.nodes where id = '${node}';
+         delete from auth.users where id in ('${learner}', '${teacher}');`);
+  });
+
+  // The same keys the route sends, in the same shape.
+  const args = {
+    p_production: production,
+    p_review_id: reviewId,
+    p_reviewer: teacher,
+    p_decision: "approved",
+    p_next_status: "accepted",
+    p_notes: [{ at: new Date().toISOString(), reviewerId: teacher, decision: "approved", reason: null }],
+    p_incentive: false,
+    p_reason: null,
+    p_note: { at: new Date().toISOString(), reviewerId: teacher, decision: "approved", reason: null },
+    p_learner: learner,
+    p_target: node,
+    p_stage: "production",
+    p_event: { kind: "teacher_review", reviewId, at: new Date().toISOString() },
+  };
+
+  const res = await fetch(`${url.replace(/\/$/, "")}/rest/v1/rpc/review_production`, {
+    method: "POST",
+    headers: {
+      apikey: key,
+      authorization: `Bearer ${key}`,
+      "content-type": "application/json",
+      "content-profile": "graph",
+    },
+    body: JSON.stringify(args),
+  });
+  const body = (await res.json()) as { ok?: boolean; review_id?: string; error?: string };
+  assert.equal(res.status, 200, `PostgREST refused the route's arguments: ${JSON.stringify(body)}`);
+  assert.equal(body.ok, true, `the review did not commit: ${JSON.stringify(body)}`);
+  assert.equal(body.review_id, reviewId, "the review row takes the id the route sent");
+
+  const status = sql(`select status from graph.productions where id = '${production}'`);
+  assert.equal(status.out, "accepted", `the production is accepted, got ${status.out}`);
+});

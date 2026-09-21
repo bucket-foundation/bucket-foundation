@@ -258,6 +258,7 @@ revoke insert, update, delete, truncate, trigger, references on graph.learner_no
 
 -- Rollback for this migration, in order:
 --   revoke: grant insert, update, delete, truncate, trigger, references on graph.learner_node_state to service_role;
+--   drop function if exists graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb);
 --   drop function if exists graph.override_level(uuid, uuid, uuid, uuid, text, text, timestamptz);
 --   drop function if exists graph.append_evidence(uuid, uuid, text, jsonb, boolean);
 --   drop function if exists graph.stage_rank(text);
@@ -288,8 +289,7 @@ create or replace function graph.review_production(
   p_learner uuid,
   p_target uuid,
   p_stage text,
-  p_event jsonb,
-  p_at timestamptz default now()
+  p_event jsonb
 )
 returns jsonb
 language plpgsql
@@ -312,10 +312,11 @@ begin
     return jsonb_build_object('ok', false, 'error', 'not_pending', 'status', v_status);
   end if;
 
+  -- updated_at belongs to the graph_productions_touch trigger, which
+  -- overwrites anything this statement sets.
   update graph.productions
      set status = p_next_status,
          notes = p_notes,
-         updated_at = p_at,
          production_incentive_eligible = p_incentive
    where id = p_production
   returning to_jsonb(graph.productions.*) into v_row;
@@ -341,5 +342,5 @@ begin
 end;
 $$;
 
-revoke all on function graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb, timestamptz) from public;
-grant execute on function graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb, timestamptz) to service_role;
+revoke all on function graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb) from public;
+grant execute on function graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb) to service_role;

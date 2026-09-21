@@ -178,3 +178,6 @@ learning/.buildloop/run.log
 # Playwright
 /test-results/
 /playwright-report/
+
+# The local stack writes a service-role key here
+.supa.env

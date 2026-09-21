@@ -159,6 +159,83 @@ begin
   assert caught, 'an unknown class refuses the override';
 end $$;
 
+-- A production review writes three rows together, or none of them.
+do $$
+declare
+  l uuid; n uuid; t uuid; c uuid; pr uuid; rv uuid; r jsonb; caught boolean;
+  v_reviews integer; v_events integer;
+begin
+  select learner, node into l, n from t_ids;
+  insert into auth.users (id, instance_id, aud, role, email)
+  values (gen_random_uuid(), '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated',
+          'review-sql-' || gen_random_uuid() || '@bucket.test')
+  returning id into t;
+  insert into graph.classes (id, name, reviewer_email, created_by)
+  values (gen_random_uuid(), 'Review SQL fixture', 'review-sql@bucket.test', t)
+  returning id into c;
+  insert into graph.productions (learner_id, target_node_id, kind, claim, status)
+  values (l, n, 'production', 'a claim under review', 'submitted')
+  returning id into pr;
+
+  delete from graph.learner_node_state where learner_id = l and node_id = n;
+  perform graph.append_evidence(l, n, 'production', '{"kind":"production_submitted"}'::jsonb);
+
+  rv := gen_random_uuid();
+  r := graph.review_production(
+    pr, rv, t, 'approved', 'accepted', '[]'::jsonb, false, 'clear', '{"at":"now"}'::jsonb,
+    l, n, 'production', jsonb_build_object('kind', 'teacher_review', 'reviewId', rv)
+  );
+  assert (r->>'ok')::boolean, 'the review commits: ' || r::text;
+  assert r->>'review_id' = rv::text, 'the review row takes the id the event names: ' || r::text;
+  assert (select status from graph.productions where id = pr) = 'accepted', 'the production is accepted';
+  assert (select count(*) from graph.teacher_reviews where production_id = pr) = 1, 'one audit row';
+  assert (select count(*) from graph.learner_node_state, jsonb_array_elements(evidence) e
+           where learner_id = l and node_id = n and e->>'reviewId' = rv::text) = 1,
+    'one evidence event naming the review';
+
+  -- A production that is no longer submitted is refused, and writes nothing.
+  select count(*) into v_reviews from graph.teacher_reviews where production_id = pr;
+  r := graph.review_production(
+    pr, gen_random_uuid(), t, 'approved', 'accepted', '[]'::jsonb, false, 'again', '{"at":"now"}'::jsonb,
+    l, n, 'production', '{"kind":"teacher_review"}'::jsonb
+  );
+  assert not (r->>'ok')::boolean and r->>'error' = 'not_pending', 'a settled production is refused: ' || r::text;
+  assert r->>'status' = 'accepted', 'the refusal names the status it found: ' || r::text;
+  assert (select count(*) from graph.teacher_reviews where production_id = pr) = v_reviews,
+    'the refusal writes no audit row';
+
+  -- A production that does not exist answers, rather than raising.
+  r := graph.review_production(
+    gen_random_uuid(), gen_random_uuid(), t, 'approved', 'accepted', '[]'::jsonb, false, 'ghost', '{}'::jsonb,
+    l, n, 'production', '{"kind":"teacher_review"}'::jsonb
+  );
+  assert not (r->>'ok')::boolean and r->>'error' = 'production_not_found', 'an unknown production answers: ' || r::text;
+
+  -- A failure inside the transaction takes every write with it: an unknown
+  -- reviewer breaks the audit row's foreign key after the status update.
+  insert into graph.productions (learner_id, target_node_id, kind, claim, status)
+  values (l, n, 'production', 'a second claim', 'submitted')
+  returning id into pr;
+  select count(*) into v_events from graph.learner_node_state, jsonb_array_elements(evidence) e
+   where learner_id = l and node_id = n;
+  caught := false;
+  begin
+    perform graph.review_production(
+      pr, gen_random_uuid(), gen_random_uuid(), 'approved', 'accepted', '[]'::jsonb, false, 'no such reviewer',
+      '{}'::jsonb, l, n, 'production', '{"kind":"teacher_review"}'::jsonb
+    );
+  exception when others then caught := true;
+  end;
+  assert caught, 'an unknown reviewer refuses the review';
+  assert (select status from graph.productions where id = pr) = 'submitted',
+    'the production stays submitted when the audit row fails';
+  assert (select count(*) from graph.teacher_reviews where production_id = pr) = 0,
+    'no audit row survives the failure';
+  assert (select count(*) from graph.learner_node_state, jsonb_array_elements(evidence) e
+           where learner_id = l and node_id = n) = v_events,
+    'no evidence event survives the failure';
+end $$;
+
 -- Bad input is refused rather than written.
 do $$
 declare

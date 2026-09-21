@@ -11,7 +11,7 @@
 --   psql "$DB" -v ON_ERROR_STOP=1 -f supabase/tests/research_os_evidence_append_fresh.sql
 begin;
 
-drop function if exists graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb, timestamptz);
+drop function if exists graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb);
 drop function if exists graph.override_level(uuid, uuid, uuid, uuid, text, text, timestamptz);
 drop function if exists graph.append_evidence(uuid, uuid, text, jsonb, boolean);
 drop function if exists graph.stage_rank(text);
@@ -36,7 +36,7 @@ begin
     'every write privilege is revoked after a fresh apply';
   assert has_table_privilege('service_role', 'graph.learner_node_state', 'SELECT'),
     'the read survives a fresh apply';
-  assert to_regprocedure('graph.review_production(uuid,uuid,uuid,text,text,jsonb,boolean,text,jsonb,uuid,uuid,text,jsonb,timestamptz)') is not null,
+  assert to_regprocedure('graph.review_production(uuid,uuid,uuid,text,text,jsonb,boolean,text,jsonb,uuid,uuid,text,jsonb)') is not null,
     'review_production exists after a fresh apply';
 end $$;
 

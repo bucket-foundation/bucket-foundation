@@ -72,6 +72,13 @@
  * own header has the full plan to replace this with a roster-backed role.
  * 403 not a reviewer (also covers an unset/empty allowlist, fail closed) ·
  * 400 bad input · 404 target row not found · 503 not configured.
+ *
+ * A production decision also answers 409 when the production is no longer
+ * submitted or carries an unverified source, and 503 with retry-after when
+ * graph.review_production cannot take its lock inside a second. That
+ * function writes the status, the notes, the audit row and the evidence
+ * event together, so an audit-row failure now reads as write_failed rather
+ * than the review_write_failed the four-statement sequence returned.
  */
 import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
@@ -408,7 +415,6 @@ export async function POST(req: NextRequest) {
     p_target: production.target_node_id as string,
     p_stage: transition.nextStage,
     p_event: transition.event as unknown as Record<string, unknown>,
-    p_at: now,
   });
   if (rpcErr) {
     const code = (rpcErr as { code?: string }).code ?? null;
