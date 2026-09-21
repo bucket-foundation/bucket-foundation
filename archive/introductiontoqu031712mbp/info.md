@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: NATURAL SCIENCES, Physics, General mechanics. Mechanics of solid and rigid bodies
-- **Captured**: 2026-05-09T09:48:24
+- **Captured**: 2026-09-17T17:07:39
 
 ## Description
 

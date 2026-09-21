@@ -221,7 +221,7 @@ unfiltered research-agent pass for an area should start from the raw file instea
 | [Lateral Reading and the Nature of Expertise](source-evaluation/wineburg-mcgrew-2019-lateral-reading.md) | Source evaluation | 2019 | canon | promoted |
 | [Students' Civic Online Reasoning: A National Portrait](source-evaluation/breakstone-et-al-2021-civic-online-reasoning-national-portrait.md) | Source evaluation | 2021 | canon | promoted |
 | [Can Students Evaluate Online Sources? Learning From Assessments of Civic Online Reasoning](source-evaluation/mcgrew-et-al-2018-can-students-evaluate-online-sources.md) | Source evaluation | 2018 | canon | verified |
-| [The Web as an Information Resource in K–12 Education](source-evaluation/kuiper-volman-terwel-2005-web-information-resource-k12.md) | Source evaluation | 2005 | canon | verified |
+| [The Web as an Information Resource in K-12 Education](source-evaluation/kuiper-volman-terwel-2005-web-information-resource-k12.md) | Source evaluation | 2005 | canon | verified |
 
 180 papers: 40 educational methods, 37 HCI and human-AI collaboration, 27 scientific discovery
 and metascience, 15 AI and researchers, 7 teacher workload and adoption, 11 prerequisite and

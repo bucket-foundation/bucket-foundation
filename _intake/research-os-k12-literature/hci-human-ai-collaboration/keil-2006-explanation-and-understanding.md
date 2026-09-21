@@ -57,7 +57,7 @@ knowing how to access explanatory knowledge held elsewhere.
   distinct from, though related to, work on intuitive theories, concepts, and mental
   models, with explanations sorting into distinct types by pattern of causation, content
   domain, and explanatory stance, each with its own cognitive consequences.
-- People's own explanations are necessarily incomplete, often dramatically so, yet those
+- People's own explanations are necessarily incomplete, often dramatically so, yet those <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   gaps are difficult for the person holding the explanation to notice, the mechanism
   underlying what later work names the illusion of explanatory depth.
 - People compensate for their own incomplete explanations by knowing how to access
@@ -69,7 +69,7 @@ knowing how to access explanatory knowledge held elsewhere.
 
 - Whether a K-12 learner's own confidence in a Check-verified claim tracks their actual
   explanatory depth, or reflects the same gap-blindness this paper finds characterizes
-  laypeople's explanations generally.
+  laypeople's explanations.
 - Whether the access-to-other-minds compensation strategy this paper names has a direct
   analog in a learner's own use of Locate and Quote, tools that surface explanatory
   knowledge from elsewhere in the graph rather than requiring the learner to hold the full

@@ -38,7 +38,7 @@ Documents the exact provenance-and-attribution controversy any AI-assisted resea
 ## Key Claims
 
 - Several published papers listed a generative AI tool as a co-author, prompting objections from publishers and researchers on the grounds that an AI tool cannot take responsibility for a paper's accuracy or give informed consent to authorship, both requirements of standard authorship criteria.
-- Major publishers and journals moved quickly to issue policies barring AI tools from author credit, while generally permitting disclosed use of AI tools as an assistive technology, provided that use is stated in the paper's own methods or acknowledgments.
+- Major publishers and journals moved quickly to issue policies barring AI tools from author credit, while generally permitting disclosed use of AI tools as an assistive technology, provided that use is stated in the paper's own methods or acknowledgments. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 - The controversy surfaced an unresolved definitional problem: existing authorship criteria, accountability, contribution, consent, were written for human collaborators and do not map cleanly onto a tool that meaningfully shaped a paper's content but cannot be held accountable for it.
 
 ## Research Questions It Leaves Open

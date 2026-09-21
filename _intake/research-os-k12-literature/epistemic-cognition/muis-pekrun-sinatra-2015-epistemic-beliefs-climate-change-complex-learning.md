@@ -51,6 +51,7 @@ how_it_bears_on_research_os: >
   close in kind to what a Locate-and-Check pass over contested evidence already asks a
   Research OS learner to do.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # The curious case of climate change: Testing a theoretical model of epistemic beliefs, epistemic emotions, and complex learning
 

@@ -60,7 +60,7 @@ between outcomes.
   the inherent variance of the outcome itself; reliability, how far a forecaster's stated
   probabilities track observed frequencies; and resolution, how much a forecaster's
   probabilities vary across different outcome classes independent of whether they are
-  correctly calibrated.
+  calibrated.
 - The new partition's reliability and resolution terms are related to, but not linearly
   equivalent to, the terms in an earlier partition scheme, and the paper works through two
   forecast collections to show where the two partitions diverge.

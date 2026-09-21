@@ -45,7 +45,7 @@ hypothesis proposal and refinement.
 - Builds a large knowledge graph from a literature corpus, then samples graph paths
   as seeds for a multi-agent generate-and-critique pipeline.
 - The system proposed a hypothesis the authors pursued as a real research direction,
-  treated as a genuine lead rather than only a demonstration.
+  treated as a lead rather than only a demonstration.
 - Graph-path sampling is presented as materially shaping the hypothesis space, a
   design lever the paper controls deliberately.
 

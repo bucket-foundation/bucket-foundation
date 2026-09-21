@@ -64,7 +64,7 @@ understanding.
 ## How It Bears on Research OS
 
 A sharp complication for any claim that workspace use builds nature-of-science understanding
-as a byproduct: formal belief and practical inquiry epistemology are distinct and often
+as a byproduct: formal belief and practical inquiry epistemology are distinct and often <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 disconnected, so a learner could pass every Check verdict without their epistemic stance
 toward evidence changing. Extends overlap-map question 12, and complicates Sadler and
 colleagues (2010)'s finding of mixed nature-of-science outcomes from apprenticeship

@@ -1,0 +1,21 @@
+# hte-serve: the history hypothesis engine over HTTP on 127.0.0.1:8420, the
+# host behind /api/research-os/hypothesize and the MCP hypothesize tool.
+# Live mode shells out to the claude CLI under this machine's login; the
+# unit loads no ~/.env, so no ANTHROPIC_API_KEY reaches it. %h is the home
+# directory, so the file holds no machine path. Install with
+# scripts/systemd/install-hte-serve.sh.
+[Unit]
+Description=Bucket Foundation hte-serve on 127.0.0.1:8420
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/agfarms/bucket-foundation/tools/hypothesis-engine
+Environment=PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/env python3 -m hte.serve --host 127.0.0.1 --port 8420
+Restart=on-failure
+RestartSec=10
+Nice=5
+
+[Install]
+WantedBy=default.target

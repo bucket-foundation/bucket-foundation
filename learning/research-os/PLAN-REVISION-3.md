@@ -157,3 +157,7 @@ Decisions 1 through 5 repeat revision 2's own exact questions and recommended de
 **The ETH portal.** Unchanged. The ETH AI Center's application portal opens 2026-09-15, five days from this revision's own date; `PLAN-REVISION-1.md` section 5's own research-question paragraph and two-PI pairing rationale stay the draft to adapt once the portal opens.
 
 **The tmpfs constraint.** Unchanged, standing. This pass's own worktree lives at `~/agfarms/.ros-worktrees/plan3`, on the home disk rather than `/tmp`, per the convention `CLAUDE.md` and every prior `ros-` bead already follow.
+
+## Revision 4
+
+`PLAN-REVISION-4.md`, alongside this file, reads forty-eight PRs merged since this revision (#68 and #70 through #124, a few out of numeric order) against this plan: what shipped, including four of this revision's own nine Phase 1 items (the provenance guard, faded guidance, Locate's second-source mode, and the counter-evidence field, items 4 through 7 above); four new evidence-driven revisions from a fifth literature batch on required participation, holdout-ledger scoring, explanation quality, and the engine's own novelty claim; a Phase 1 scope narrowed further; decision 6 above sharpened by new evidence that conflicts with itself; and the operational blockers here updated, including a new one, four spend-limit pauses that stopped agents mid-task between this revision's own commit and the next. This file stays the revision-3 record; `PLAN-REVISION-4.md` is where the fourth revision lives.

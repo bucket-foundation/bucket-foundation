@@ -159,3 +159,54 @@ def test_min_verified_for_label_is_positive_and_small_enough_to_reach():
     # flipped verification cannot swing the label, small enough to reach
     # in a modest run of write-backs.
     assert 0 < holdout_ledger.MIN_VERIFIED_FOR_LABEL <= 50
+
+
+def test_min_verified_for_label_sits_in_the_dreber_camerer_range():
+    # PLAN-REVISION-4.md section 2b: Dreber et al. (2015)'s own N=44
+    # replication-forecasting sample is the strongest concrete anchor
+    # this pass found; the recommended range is 40 to 44.
+    assert 40 <= holdout_ledger.MIN_VERIFIED_FOR_LABEL <= 44
+
+
+def test_murphy_decomposition_none_when_nothing_verified():
+    entries = holdout_ledger.build_entries(_rows(3), run_id="run-1", corpus="c")
+    decomp = holdout_ledger.murphy_decomposition(entries)
+    assert decomp.n_verified == 0
+    assert decomp.brier is None
+    assert decomp.reliability is None
+    assert decomp.resolution is None
+    assert decomp.uncertainty is None
+
+
+def test_murphy_decomposition_matches_brier_identity(tmp_path):
+    path = tmp_path / "ledger.jsonl"
+    holdout_ledger.append_entries(holdout_ledger.build_entries(_rows(4), run_id="run-1", corpus="c"), path=path)
+    holdout_ledger.verify_entry("run-1:100", "correct", verified_by="jane", path=path)
+    holdout_ledger.verify_entry("run-1:101", "correct", verified_by="jane", path=path)
+    holdout_ledger.verify_entry("run-1:102", "incorrect", verified_by="jane", path=path)
+
+    entries = holdout_ledger.load_ledger(path)
+    decomp = holdout_ledger.murphy_decomposition(entries)
+    rate = holdout_ledger.compute_hit_rate(entries)
+
+    assert decomp.n_verified == 3
+    # Murphy's identity: brier == reliability - resolution + uncertainty.
+    assert decomp.brier == pytest.approx(decomp.reliability - decomp.resolution + decomp.uncertainty)
+    # This ledger's own binary outcome carries one implicit forecast
+    # group (p=1.0 for every verified entry), so resolution is 0.0 by
+    # construction and brier reduces to the hit-rate's own complement.
+    assert decomp.resolution == pytest.approx(0.0)
+    assert decomp.brier == pytest.approx(1.0 - rate.hit_rate)
+
+
+def test_murphy_decomposition_perfect_hit_rate_has_zero_reliability(tmp_path):
+    path = tmp_path / "ledger.jsonl"
+    holdout_ledger.append_entries(holdout_ledger.build_entries(_rows(2), run_id="run-1", corpus="c"), path=path)
+    holdout_ledger.verify_entry("run-1:100", "correct", verified_by="jane", path=path)
+    holdout_ledger.verify_entry("run-1:101", "correct", verified_by="jane", path=path)
+
+    decomp = holdout_ledger.murphy_decomposition(holdout_ledger.load_ledger(path))
+    assert decomp.brier == pytest.approx(0.0)
+    assert decomp.reliability == pytest.approx(0.0)
+    assert decomp.resolution == pytest.approx(0.0)
+    assert decomp.uncertainty == pytest.approx(0.0)

@@ -50,7 +50,7 @@ how_it_bears_on_research_os: >
 > **Promoted to outcome tier, 2026-09-10.** This record lives in
 > `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
 > `bkt-f3c246bffb55`, `canon_score` 30) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
-> Outcome tier, not canon: it reports an intervention or team-performance effect
+> Outcome tier, external to canon: it reports an intervention or team-performance effect
 > size, RUBRIC E7, and depends on the foundation record named by
 > Sparrow, Liu and Wegner 2011. This file stays in place as the Research OS-specific reading;
 > the canon entry is the citeable record.

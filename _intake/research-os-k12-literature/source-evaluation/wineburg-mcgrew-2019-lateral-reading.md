@@ -45,11 +45,11 @@ how_it_bears_on_research_os: >
 
 An expert/novice study of 45 experienced internet users, finding fact checkers evaluate
 websites by leaving the page to check other sources, "lateral reading," while historians and
-students stayed within a site and were misled by superficial cues.
+students stayed within a site and were more often misled by superficial cues. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 
 ## Key Claims
 
-- Historians and undergraduate students fell victim to features that are simple to
+- Historians and undergraduate students often fell victim to features that are simple to <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   fake, such as official-looking logos and domain names, reading vertically within one site.
 - Professional fact checkers left the site under evaluation to check other sources first,
   the strategy the paper names lateral reading, before returning to judge the original site.

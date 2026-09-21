@@ -51,7 +51,7 @@ and that the function of explanation is generalization beyond the single observe
 
 ## Key Claims
 
-- Reviews evidence that explanation is a central cognitive activity, not an afterthought
+- Reviews evidence that explanation is a central cognitive activity integral
   to belief formation, shaping what people learn, remember, and infer beyond the specific
   case being explained.
 - People show a systematic preference for explanations that are simpler and broader in
@@ -75,7 +75,7 @@ and that the function of explanation is generalization beyond the single observe
 
 Gives Krenn and colleagues (2022)'s own bar, that a human must be able to internalize and
 independently apply a pattern an AI found, a specific psychological mechanism: this
-paper's own claim is that generalization to new cases, not restatement of the one case
+paper's own claim is that generalization to new cases, beyond restatement of the one case
 explained, is what separates an explanation that supports internalization from one that
 does not. A future revision to the engine's own disclosed understanding artifact, or to a
 Production's own explanation field, could test directly whether either transfers to a new,

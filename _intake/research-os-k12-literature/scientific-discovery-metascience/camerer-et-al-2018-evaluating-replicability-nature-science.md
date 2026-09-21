@@ -65,8 +65,8 @@ predicted which studies replicated.
 
 - Attempted direct replications of a sample of social-science experiments originally
   published in Nature and Science between 2010 and 2015, about three in five of which
-  successfully replicated by conventional significance criteria, with replicated effect
-  sizes substantially smaller on average than the original published estimates, the same
+  replicated by conventional significance criteria, with replicated effect
+  sizes substantially smaller on average than the original published estimates, the same <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   pattern Open Science Collaboration (2015) reports for psychology alone.
 - Prediction markets and surveys run on the same studies before the replications were
   known forecast which studies would and would not replicate with meaningfully better than
@@ -74,7 +74,7 @@ predicted which studies replicated.
   higher-prestige sample.
 - Publication in a top general-science venue is treated as an insufficient reliability
   signal on its own, the same conclusion Open Science Collaboration (2015) reaches for peer
-  review generally.
+  review.
 
 ## Research Questions It Leaves Open
 

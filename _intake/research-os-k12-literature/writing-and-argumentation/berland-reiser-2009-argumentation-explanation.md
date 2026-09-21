@@ -46,12 +46,12 @@ third.
 - Students in the studied curriculum routinely used evidence to make sense of a
   phenomenon and to articulate their understanding, meeting the first two goals.
 - Students did not routinely attend to persuading others, a gap attributed to social
-  interactions traditional classroom structures often inhibit rather than a missing
+  interactions traditional classroom structures often inhibit rather than a missing <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   individual skill.
 
 ## Research Questions It Leaves Open
 
-- Whether a Production's teacher-review step, evaluative rather than dialogic, supplies any
+- Whether a Production's teacher-review step, an evaluative exchange without dialogic back-and-forth, supplies any
   version of the persuading goal, or whether Production only ever reaches sensemaking and
   articulating.
 - What a persuading-goal component would look like inside a constrained four-tool workspace

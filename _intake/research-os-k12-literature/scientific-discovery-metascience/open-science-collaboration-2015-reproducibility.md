@@ -30,7 +30,7 @@ how_it_bears_on_research_os: >
 
 # Estimating the reproducibility of psychological science
 
-The large-scale empirical measurement of how often a published finding replicates, the base rate any AI-assisted hypothesis-ranking or evidence-fusion system has to treat as a prior on a cited claim's own reliability.
+The large-scale empirical measurement of how often a published finding replicates, the base rate any AI-assisted hypothesis-ranking or evidence-fusion system has to treat as a prior on a cited claim's own reliability. <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 
 ## Key Claims
 

@@ -87,3 +87,24 @@ def test_score_is_one_minus_similarity(tmp_path):
     _write(tmp_path, "bucket-canon/a/one.md", "alpha team sighted a comet near the outer observatory")
     result = novelty.check_novelty("alpha team sighted a comet near the outer observatory", repo_root=tmp_path)
     assert result.score == 1.0 - result.closest_similarity
+
+
+def test_result_carries_the_ideation_stage_label(tmp_path):
+    # PLAN-REVISION-4.md section 2d: this module's own score is read at
+    # generation time, before any execution or holdout evidence exists,
+    # so every result names that stage explicitly (Si, Hashimoto, and
+    # Yang 2025).
+    result = novelty.check_novelty("alpha team sighted a comet", repo_root=tmp_path)
+    assert result.stage == "ideation"
+    assert result.stage == novelty.NOVELTY_STAGE
+    assert result.to_dict()["stage"] == "ideation"
+
+
+def test_no_canon_directory_result_also_carries_the_ideation_stage(tmp_path):
+    # The "no bucket-canon/ material at all" path builds its own
+    # `NoveltyResult` directly rather than through the loop below it;
+    # confirms that path also carries the stage label, not only the
+    # loop's own return.
+    result = novelty.check_novelty("alpha team sighted a comet", repo_root=tmp_path)
+    assert result.closest_path is None
+    assert result.stage == "ideation"

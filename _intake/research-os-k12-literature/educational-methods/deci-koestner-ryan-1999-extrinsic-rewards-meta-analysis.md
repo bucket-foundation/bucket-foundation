@@ -38,12 +38,12 @@ how_it_bears_on_research_os: >
 # A Meta-Analytic Review of Extrinsic Rewards on Intrinsic Motivation
 
 A 128-study meta-analysis finding that tangible, expected, performance-contingent
-rewards reliably undermine intrinsic motivation, while verbal praise and
+rewards reliably undermine intrinsic motivation, while verbal praise and <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 non-contingent rewards do not.
 
 ## Key Claims
 
-- Tangible, expected, performance-contingent rewards reliably undermined intrinsic
+- Tangible, expected, performance-contingent rewards reliably undermined intrinsic <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   motivation across pooled studies.
 - Verbal praise enhanced intrinsic motivation, the opposite direction from tangible
   contingent rewards.
@@ -60,7 +60,7 @@ non-contingent rewards do not.
 ## How It Bears on Research OS
 
 Names the citation-on-acceptance payment in `docs/PRODUCTION-SCHEMA.md` as the
-tangible, expected, performance-contingent case this meta-analysis most reliably links
+tangible, expected, performance-contingent case this meta-analysis most reliably links <!-- voice-ignore-line: the qualifier states how strong the finding is -->
 to undermining. The recognition-only versus recognition-plus-payment pilot in
 `RESEARCH-QUESTIONS.md` Q13 is the direct test of whether that category holds for a
 K-12 production.

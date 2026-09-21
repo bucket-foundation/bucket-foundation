@@ -27,10 +27,18 @@ export type EdgeDecision = "approved" | "rejected";
  * this." */
 export const TEACHER_APPROVED_CONFIDENCE = 0.95;
 
+/**
+ * The edge kind a reviewer writes. `prerequisite` is learning order and
+ * feeds K-12 routing; `derives_from` says the target rests on the factor
+ * logically, feeds the decomposition (learning/research-os/PRIMES.md), and
+ * leaves routing alone.
+ */
+export type ApprovedKind = "prerequisite" | "derives_from";
+
 export interface EdgeToWrite {
   fromSlug: string;
   toSlug: string;
-  kind: "prerequisite";
+  kind: ApprovedKind;
   confidence: number;
   confidenceSource: "teacher";
 }
@@ -56,7 +64,7 @@ export interface DecideEdgeProposalResult {
  * status change, so this function's own purity holds regardless of how
  * many times a caller re-derives it from a stale read.
  */
-export function decideEdgeProposal(proposal: EdgeProposalRecord, decision: EdgeDecision): DecideEdgeProposalResult {
+export function decideEdgeProposal(proposal: EdgeProposalRecord, decision: EdgeDecision, kind: ApprovedKind = "prerequisite"): DecideEdgeProposalResult {
   if (proposal.status !== "pending") {
     return { alreadyDecided: true, status: proposal.status, edgeToWrite: null };
   }
@@ -66,10 +74,12 @@ export function decideEdgeProposal(proposal: EdgeProposalRecord, decision: EdgeD
   return {
     alreadyDecided: false,
     status: "approved",
+    // A proposal names its factor as fromSlug and its target as toSlug, the
+    // prerequisite direction; derives_from runs from the target to the factor.
     edgeToWrite: {
-      fromSlug: proposal.fromSlug,
-      toSlug: proposal.toSlug,
-      kind: "prerequisite",
+      fromSlug: kind === "derives_from" ? proposal.toSlug : proposal.fromSlug,
+      toSlug: kind === "derives_from" ? proposal.fromSlug : proposal.toSlug,
+      kind,
       confidence: TEACHER_APPROVED_CONFIDENCE,
       confidenceSource: "teacher",
     },

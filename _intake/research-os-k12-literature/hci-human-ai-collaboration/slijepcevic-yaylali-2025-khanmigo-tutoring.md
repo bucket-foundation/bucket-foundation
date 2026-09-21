@@ -51,8 +51,8 @@ Khanmigo users scored higher than web-search users and reported higher engagemen
 
 ## Research Questions It Leaves Open
 
-- Whether the gain over web search reflects Socratic questioning specifically or
-  structured tutoring generally.
+- Whether the gain over web search reflects Socratic questioning or
+  structured tutoring.
 - Whether the result generalizes from undergraduate physics to K-12 students or less
   structured subjects.
 

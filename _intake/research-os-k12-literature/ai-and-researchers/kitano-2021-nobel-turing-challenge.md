@@ -60,4 +60,4 @@ result to formulating an entirely new theoretical framework.
 Offers a graded notion of discovery closer to Research OS's own five-state ladder than
 a binary correctness grade, bearing on the overlap map's question 12. Its spectrum
 also gives `RESEARCH-QUESTIONS.md` Q6 a way to score whether a routed gap node
-produces a confirming production or a genuinely gap-closing one.
+produces a confirming production or a gap-closing one.

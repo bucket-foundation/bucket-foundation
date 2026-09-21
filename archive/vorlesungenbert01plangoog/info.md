@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Thermodynamics
-- **Captured**: 2026-05-09T09:49:49
+- **Captured**: 2026-09-17T17:07:51
 
 ## Description
 

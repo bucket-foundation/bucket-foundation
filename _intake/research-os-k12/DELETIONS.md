@@ -6,7 +6,7 @@ replaced sentence is never lost. See also
 `learning/research-os/CHANGE-LEDGER.md`, PR #3's own ledger for the same
 convention.
 
-## 2026-09-16, the Contribute button and the /join page
+## 2026-09-16: the Contribute button and the /join page
 
 **Reason.** Founder direction: "make the contribute button just be sign in". The header's
 Contribute button (desktop and phone drawer) is now the Sign in control
@@ -35,7 +35,7 @@ Contribute button (desktop and phone drawer) is now the Sign in control
               </Link>
 ```
 
-## 2026-09-16, the per-page one-time-code form and the module bar
+## 2026-09-16: the per-page one-time-code form and the module bar
 
 **Reason.** One site session (`docs/AUTH.md`). The seven copies of the form below
 (`src/app/research-os/{workspace,class,review,roster,edges,profile}/page.tsx`,
@@ -145,17 +145,17 @@ better demonstrate the product?"). PR #3's own `learning/research-os/PLAN.md`
 section 8 answered that open question differently, picking the history of
 quantum physics, grades 9-12, as its Phase 0 scope. This build (Phase 0
 prototype: graph schema, seed data, routing, workspace) was scoped by the
-orchestrating task to follow the system review's explicit recommendation, not
-PLAN.md's choice, so the shipped code is the sky-is-blue path. The site page's
+orchestrating task to follow the system review's explicit recommendation over
+PLAN.md's own choice, so the shipped code is the sky-is-blue path. The site page's
 status paragraph named the quantum-history slice as what Phase 0 "covers,"
 which no longer matched the code once this build landed; the paragraph was
 updated to describe the path this PR ships and to flag the slice choice as
-still open, rather than silently overwriting PLAN.md's own decision.
+still open, leaving PLAN.md's own decision untouched.
 
 `learning/research-os/PLAN.md` itself is untouched by this PR; its Phase 0
 row (quantum-history) stands as the record of that planning decision. The
 review's section 11 open question is still open: which slice best
-demonstrates the product is a founder call, not one this PR makes for good.
+demonstrates the product remains a founder call, left open by this PR.
 
 **Original text, replaced in the "§ status" paragraph:**
 
@@ -168,7 +168,7 @@ demonstrates the product is a founder call, not one this PR makes for good.
 > the four-tool constraint, and a state-validation paper come before any
 > wider release.
 
-## 2026-09-10, PR #6 review pass, voice-lint word and construction swaps
+## 2026-09-10: PR #6 review pass: voice-lint word and construction swaps
 
 **Reason.** `agf-lint-voice` / `agf-lint-voice-src check` flagged a banned
 adverb in two files and an antithesis construction in three files. Each
@@ -176,12 +176,15 @@ swap is a single word or short phrase; the original wording is kept here
 verbatim rather than only in the diff.
 
 - `_intake/research-os-k12/DELETIONS.md` (this file's own opening
+  <!-- voice-ignore-next 2: quotes the removed word verbatim for the changelog record -->
   paragraph): "this log exists so a replaced sentence is never **actually**
   lost" to "never lost."
 - `src/app/api/research-os/workspace/route.ts` (Check tool system prompt):
+  <!-- voice-ignore-next 2: quotes the removed word verbatim for the changelog record -->
   "and only if you **actually** leaned on it" to "and only if you leaned on
   it."
 - `scripts/seed-research-os.mjs` (header comment): "but the destination
+  <!-- voice-ignore-next 2: quotes the removed antithesis construction verbatim for the changelog record -->
   here is Postgres, **not a static file mirror, since the graph is
   server-queried, not shipped to the browser**." to "with Postgres as the
   destination: the graph is server-queried at request time."
@@ -194,7 +197,7 @@ verbatim rather than only in the diff.
   sunset looks red. Using the lambda^-4 law, explain why the SAME
   scattering that makes the daytime sky blue makes a sunset red instead."
 
-## 2026-09-10, `src/lib/research-os/engine-bridge.ts`, task item 3 rebuilt against PR #10
+## 2026-09-10: `src/lib/research-os/engine-bridge.ts`: task item 3 rebuilt against PR #10
 
 **Reason.** This WIP commit's own "Direction 2" section hand-built the
 engine's `PRODUCTION-SCHEMA.md` JSON envelope (`claims`/`evidence`/`review`
@@ -356,7 +359,7 @@ export function buildProductionEnvelope(
 }
 ```
 
-## 2026-09-10, `src/app/research-os/page.tsx`, site alignment pass
+## 2026-09-10: `src/app/research-os/page.tsx`: site alignment pass
 
 **Reason.** The site-alignment task requires a visible "Try the prototype"
 link on this page. The existing prototype link's label was replaced to carry
@@ -368,7 +371,7 @@ GitHub; nothing was removed to make room for it.
 
 > open the Phase 0 prototype →
 
-## 2026-09-10, PR #10 review pass, voice-lint construction swap
+## 2026-09-10: PR #10 review pass: voice-lint construction swap
 
 **Reason.** `agf-lint-voice-src check` flagged an antithesis construction in
 `tools/hypothesis-engine/hte/api.py`'s `_sanitize()` docstring.
@@ -381,7 +384,7 @@ GitHub; nothing was removed to make room for it.
   explicit `run_dir` replacement above, worth widening the moment a real
   deployment names a root not yet on it."
 
-## 2026-09-10, `learning/research-os/ENGINE-BRIDGE.md`, ros-12 stub closures
+## 2026-09-10: `learning/research-os/ENGINE-BRIDGE.md`: ros-12 stub closures
 
 **Reason.** PR #14's own "Stubs, open items" section named three open
 items: the outbox reader, item 1's missing caller, and `GapNode`/
@@ -435,7 +438,7 @@ new `unresolved_slot_gaps`, pending PR #20's review landing).
 >   accepted hypothesis nodes already in the graph, never a live gap-node
 >   queue.
 
-## 2026-09-10, ros-12 review pass, voice-lint heading swap
+## 2026-09-10: ros-12 review pass: voice-lint heading swap
 
 **Reason.** `agf-lint-voice`'s pre-commit hook flagged an appended-clause
 heading in `learning/research-os/CHANGE-LEDGER.md`, pre-existing from an
@@ -451,7 +454,7 @@ rather than carrying two competing fixes of the same line forward.
   Phase 1 stub closures: closure table, diagnostic probe, real quotes,
   review hold" to "## Iteration 6: Phase 1 stub closures".
 
-## 2026-09-10, ros-12 merge pass, voice-lint construction swap
+## 2026-09-10: ros-12 merge pass: voice-lint construction swap
 
 **Reason.** Merging `origin/main` into `feat/ros-12-engine-wiring` pulled
 in `tools/hypothesis-engine/docs/LOOP-LOG.md`'s "tick 2" entry (the
@@ -460,12 +463,13 @@ an antithesis construction the pre-commit hook caught on the merge
 commit.
 
 - `tools/hypothesis-engine/docs/LOOP-LOG.md` ("tick 2" entry): "own
+  <!-- voice-ignore-next 1: quotes the removed antithesis construction verbatim for the changelog record -->
   documented fake-mode short-circuit, a test-isolation quirk, not a code
   defect; `make test` runs with it unset from here on." to "own
   documented fake-mode short-circuit, a test-isolation quirk; `make test`
   runs with it unset from here on."
 
-## 2026-09-10, `src/app/api/research-os/production/route.ts`, outbox emission extracted to a shared function
+## 2026-09-10: `src/app/api/research-os/production/route.ts`: outbox emission extracted to a shared function
 
 **Reason.** Bead `ros-06` adds a second caller that can reach `graph.productions.status = "accepted"` (`/api/research-os/review`'s new accept path). Rather than copy the three-call outbox-emission sequence a second time, it moved into `src/lib/research-os/db.ts`'s `emitProductionOutboxIfAccepted`, with the same best-effort try/catch and the same reasoning, so both entry points share one function. Behavior is unchanged; the full replaced block, with its original comment, is in `learning/research-os/CHANGE-LEDGER.md`'s `ros-06` entry.
 
@@ -500,7 +504,7 @@ commit.
 >   }
 > ```
 
-## 2026-09-10, `src/app/api/research-os/review/route.ts`, header comment corrected for the accept path fix
+## 2026-09-10: `src/app/api/research-os/review/route.ts`: header comment corrected for the accept path fix
 
 **Reason.** The header comment originally documented an "approved production flips `graph.productions.status` to 'accepted' ('returned' otherwise)" contract. Bead `ros-06`'s own work changed that contract (a return sets `status` to `"draft"`, not `"returned"`, and appends a teacher note); a mid-review fix (`ros-02`'s evidence-schema pass) then added a `recordEvidence` call on both approve and return, closing a gap where a returned production's `learner_node_state.stage` stayed at `"production"` with no evidence event recording the correction. The comment was rewritten to match; see `learning/research-os/TEACHER-LAYER.md` for the full account.
 
@@ -520,7 +524,7 @@ commit.
 > this function -- the production goes back to `draft` for the learner to
 > revise, with no learner_node_state change.
 
-## 2026-09-10, `learning/research-os/CHANGE-LEDGER.md`, a pre-existing heading fixed for the voice pre-commit hook
+## 2026-09-10: `learning/research-os/CHANGE-LEDGER.md`: a pre-existing heading fixed for the voice pre-commit hook
 
 **Reason.** The pre-commit hook runs `agf-lint-voice` over every file a commit touches, not only its own diff lines; `CHANGE-LEDGER.md`'s "Iteration 6" heading (from an earlier, already-merged pass, predating `ros-06`) carried an appended clause after a comma, rule 7's own banned construction. Fixing it was required to commit `ros-06`'s own addition to the same file. The clause is not dropped, it moves to the first line of that section's body, per rule 7's own instruction ("if the extra detail matters, put it in the first line of the body").
 
@@ -528,15 +532,16 @@ commit.
 
 > ## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
 
-## 2026-09-10, `src/app/research-os/workspace/page.tsx`, notes-field placeholder rewritten for voice review (PR #37 review pass)
+## 2026-09-10: `src/app/research-os/workspace/page.tsx`: notes-field placeholder rewritten for voice review
 
+<!-- voice-ignore-next 1: quotes the rule's own canonical pattern name -->
 **Reason.** PR review for `ros-04` ran `agf-lint-voice check` on every changed file. The notes textarea placeholder used the banned antithesis construction (rule 4, "X, not Y"). Rewritten to state the fact once, positively.
 
 **Original text, replaced in the notes textarea placeholder:**
 
-> scratch space, not graded, saved on this device only…
+> scratch space, not graded, saved on this device only… <!-- voice-ignore-line: quotes the removed text verbatim for the changelog record -->
 
-## 2026-09-10, `src/app/research-os/page.tsx`, status section rewritten for the consent gate wiring pass (ros-07 follow-up)
+## 2026-09-10: `src/app/research-os/page.tsx`: status section rewritten for the consent gate wiring pass
 
 **Reason.** Bead `ros-07`'s follow-up task item 3: "update the existing Phase 0 status section to list, truthfully, what is on main... and what is not." The paragraph below described only the Phase 0 seed path (grades 3 to 5, why the sky is blue) and the open grades-9-to-12 question; it named none of the routing, probe, workspace, teacher-layer, engine-bridge, privacy, or consent-gate work that landed on main since (`ros-03` through this pass). Replaced with a status paragraph that names what is on main and what is not, keeping the same heading, the same repository-path sentence, and the same "pilot classrooms" closing sentence in substance. Nothing else on the page changed.
 
@@ -558,15 +563,15 @@ commit.
 > Pilot classrooms, a pre-registered study of the four-tool constraint,
 > and a state-validation paper come before any wider release.
 
-## 2026-09-10, `learning/research-os/study/INSTRUMENTS.md` section 2, confidence item moved before the verdict (cognitive forcing on Check)
+## 2026-09-10: `learning/research-os/study/INSTRUMENTS.md` section 2: confidence item moved before the verdict
 
-**Reason.** `PLAN-REVISION-2.md` section 2a's design response to Buçinca, Malaya and Gajos (2021), Bansal et al. (2021), and Vaccaro, Almaatouq and Malone (2024) puts the metacognitive confidence item BEFORE Check's verdict is revealed, a commit-before-reveal cognitive forcing function, rather than after it. Section 2's own "Design" paragraph, and the "Schema gap" paragraph's calibration-score description, described the item as it would be built if fired after the verdict was already shown. Both are rewritten to describe the shipped pre-reveal placement and its actual calibration record (`src/lib/research-os/calibration.ts`, mean confidence against mean source-prediction correctness, not the human-audited verdict-correctness score the original paragraph named). The "Fisher-and-colleagues unrelated-topic check" subsection is untouched: that instrument stays unbuilt, out of this pass's scope.
+**Reason.** `PLAN-REVISION-2.md` section 2a's design response to Buçinca, Malaya and Gajos (2021), Bansal et al. (2021), and Vaccaro, Almaatouq and Malone (2024) puts the metacognitive confidence item BEFORE Check's verdict is revealed, a commit-before-reveal cognitive forcing function. Section 2's own "Design" paragraph, and the "Schema gap" paragraph's calibration-score description, described the item as it would be built if fired after the verdict was already shown. Both are rewritten to describe the shipped pre-reveal placement and its actual calibration record (`src/lib/research-os/calibration.ts`, mean confidence against mean source-prediction correctness, distinct from the human-audited verdict-correctness score the original paragraph named). The "Fisher-and-colleagues unrelated-topic check" subsection is untouched: that instrument stays unbuilt, out of this pass's scope.
 
 **Original "Design" paragraph, replaced:**
 
 > Immediately after the Check tool returns a verdict (support, contradiction, or unknown, with or without abstaining), the workspace asks the learner one additional question before advancing: "How sure are you that this explanation is correct, now that you have seen the check?" on a four-point scale (not sure at all, a little sure, fairly sure, certain), logged as part of the same `check` evidence event rather than as a separate event, since it is a property of that specific check attempt. This is the calibration outcome Lee and colleagues (2025) name directly: across 936 real generative-AI use examples, higher self-reported confidence in the AI's own output was associated with less critical thinking during the task, while higher self-confidence in one's own unassisted ability was associated with more, the opposite direction. The item above asks for the first of those two confidences (confidence in the tool's verdict, given the tool's own verdict just returned), against which this study computes a calibration score: the gap between the learner's stated confidence and the tool's own verdict correctness on a later-audited subset (the same human cross-scoring sample the Understanding-scoring rubric already draws, per `PREREGISTRATION-DRAFT.md`'s Variables section), following Lee and colleagues' own framing that a well-calibrated learner's stated confidence should track the tool's actual reliability rather than the tool's own confidence label alone.
 
-## 2026-09-10, `learning/research-os/WORKSPACE.md` section 6, held-attempt store description rewritten for the persistence fix (PR #63 review pass)
+## 2026-09-10: `learning/research-os/WORKSPACE.md` section 6: held-attempt store description rewritten for the persistence fix
 
 **Reason.** PR review for PR #63 found the held-attempt store described below was an in-memory `Map`, correct at the time it was written but wrong for a Vercel deploy: a phase-1 Check and its phase-2 reveal can land on two different route instances, losing the held verdict between them. The fix moves the store into `graph.check_attempts` (migration `20260910070000_research_os_check_attempts.sql`, `src/lib/research-os/check-attempts-db.ts`); the two paragraphs below, describing the old in-memory-only behavior as the shipped production posture, no longer describe the shipped behavior and are replaced with a description of the persisted store, the 24-hour hard expiry, and the privacy-delete purge sweep. `forcing.ts`'s in-memory `Map` is not deleted, it is kept and re-scoped as the test double `scripts/test-research-os-forcing.ts` exercises directly.
 
@@ -576,7 +581,7 @@ commit.
 >
 > **In-memory, best effort.** The held-attempt store, like `src/lib/research-os/rate-limit.ts`'s daily cap, is an in-memory `Map`: a serverless cold start or a multi-instance deploy can lose a pending attempt, and the learner sees the Check form again rather than an error. A 30-minute TTL (`forcing.ts`'s `ATTEMPT_TTL_MS`) bounds how long an abandoned attempt lingers. A durable store is Phase 2 work, the same posture the daily cap already documents.
 
-## 2026-09-10, `learning/research-os/study/PREREGISTRATION-DRAFT.md`, revision 1: effect-size anchoring, arms and factors, new outcomes, required participation
+## 2026-09-10: `learning/research-os/study/PREREGISTRATION-DRAFT.md`: revision 1
 
 **Reason.** `PLAN-REVISION-3.md` section 2's evidence-driven revisions (effect-size anchoring, guidance for low-prior-knowledge learners, required participation and production misconduct) and two newly shipped design docs (`GUIDANCE.md` on branch `feat/ros-faded-guidance`, `PRODUCTION-GUARD.md` on PR #73) drove five changes to the preregistration draft, logged in full in `learning/research-os/study/PREREGISTRATION-DRAFT.md`'s own new "Revision history" section. The passages below are the exact original sentences each change replaced.
 
@@ -604,7 +609,7 @@ commit.
 
 > Named explicitly here so they are not later reported as if pre-specified: the class-level production-diversity secondary outcome under H1; the Production-tier scientific-understanding probing pass named for overlap-map question 12 in the Study Information section above; the prior-Academy-proficiency covariate; the per-protocol sensitivity analysis under Data exclusion; and any subgroup analysis by grade band, gifted-versus-Title I channel, or route condition not already named as a primary contrast.
 
-## 2026-09-10, `learning/research-os/study/INSTRUMENTS.md`, revision 1: guidance level and production provenance flags added
+## 2026-09-10: `learning/research-os/study/INSTRUMENTS.md`: revision 1: guidance level and production provenance flags added
 
 **Reason.** Same revision 1 pass as the `PREREGISTRATION-DRAFT.md` entry above. `INSTRUMENTS.md` gained two new sections (4, guidance level; 5, production provenance flags) and a new per-class field (6, `productionRequired`), each reading against a design doc that did not exist when the file's own header and closing section were last written.
 
@@ -622,7 +627,9 @@ commit.
 >
 > Every field named above as a schema gap is additive and optional, following the same discipline `EVIDENCE-SCHEMA.md`'s own contract states directly: a writer omits a field it has nothing for, and no existing transition function, review route, or evidence-event reader needs to change to tolerate the addition. None of the three instruments is implemented; this file specifies what `ros-04` and `ros-06` build against, the same relationship `EVIDENCE-SCHEMA.md` holds to `LEARNER-STATE-MODEL.md` section 4.
 
-## 2026-09-14, `src/app/research-os/page.tsx`, hero-mounted interactive globe removed
+## 2026-09-14: hero-mounted interactive globe removed
+
+In `src/app/research-os/page.tsx`.
 
 **Reason.** Founder spec for the site-local homepage/research-os pass: the interactive `CanonGlobeMount` search tool comes out of the `/research-os` hero, replaced by a fixed, decorative, non-interactive globe rendered once at the page level (`FixedCanonGlobeBackground`, position fixed, anchored bottom right, behind all content, blurred, `pointer-events: none`). The interactive search tool stays live on `/canon`, `/canon/search`, and the new homepage `CanonSearchPanel`; `/research-os` no longer needs its own copy.
 
@@ -651,7 +658,9 @@ commit.
 
 Also removed from the same component: the `getBranches()`/`globeBranches` computation at the top of `ResearchOsPage` (its only consumer was the JSX above) and the `"Read the plan ↗"` external link beside the "Try the prototype →" CTA, trimming the hero to the one CTA the founder spec asked for.
 
-## 2026-09-14: Research OS landing trimmed to hero, fixed globe, Five States
+## 2026-09-14: Research OS landing trimmed
+
+What remains: the hero, the fixed globe, and the Five States section.
 
 File: `src/app/research-os/page.tsx`. Reason: founder direction 2026-09-14: Research OS landing is hero, fixed globe, Five States only. Six sections removed, the alternating-row "Five States" block stays. The `TOOLS` array, the `Card` helper, and their only call sites went with the sections that used them.
 
@@ -911,7 +920,9 @@ export async function loadLandmask(
   return { width, height, isLand, sample };
 }
 ```
-## 2026-09-11, `src/app/research-os/page.tsx`, status band refresh to current main
+## 2026-09-11: status band refresh to current main
+
+In `src/app/research-os/page.tsx`.
 
 **Reason.** Bead-equivalent task: refresh the status band so it states truthfully what is on main today, verified against `gh pr list --state merged --limit 60` and the docs under `learning/research-os/` (`ROUTING.md`, `WORKSPACE.md`, `GUIDANCE.md`, `LATERAL-READING.md`, `PRODUCTION-GUARD.md`, `TEACHER-LAYER.md`, `ROSTER.md`, `ENGINE-BRIDGE.md`, `compliance/`, `study/`, `tools/canon-pipeline/SIGNOFF.md`). The paragraph below named only the `ros-07`-era shipped set (routing, probe, workspace, teacher layer, engine bridge, export/delete, consent gate); it named none of cognitive forcing, faded guidance, lateral reading, the production provenance guard, or the OneRoster CSV importer, all merged to `main` since. Replaced with two paragraphs that name every shipped item this pass confirmed against a merged PR, keeping the same heading and the same lead sentence shape. The "not yet on main" paragraph below it also understated the gap: it named "roster sync from a school system" where a OneRoster CSV importer has since shipped (Clever and ClassLink stay stubs), and it named "canon write-back without a human sign-off" where the sign-off tool has since shipped, but it omitted the LLM-assisted edge-inference proposal path and the absence of a partner school. Replaced with the accurate list. The third paragraph (candidate subjects, repository pointers, pilot/study framing) is unchanged in substance, gaining only a closing sentence and a link to `PLAN-REVISION-3.md`.
 

@@ -9,7 +9,7 @@
 - **License**: http://creativecommons.org/licenses/publicdomain/
 - **Mediatype**: audio
 - **Subjects**: librivox; science; audiobook; physics; relativity; einstein
-- **Captured**: 2026-05-09T09:45:51
+- **Captured**: 2026-09-17T17:06:42
 
 ## Description
 

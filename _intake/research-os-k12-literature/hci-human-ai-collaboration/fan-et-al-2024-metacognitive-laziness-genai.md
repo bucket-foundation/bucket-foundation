@@ -41,6 +41,7 @@ how_it_bears_on_research_os: >
   rather than only by an average effect. Extends `RESEARCH-QUESTIONS.md` Q11 and
   `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` question 1.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # Beware of Metacognitive Laziness
 

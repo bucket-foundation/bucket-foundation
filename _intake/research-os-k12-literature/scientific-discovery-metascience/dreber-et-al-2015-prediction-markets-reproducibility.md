@@ -83,7 +83,7 @@ would replicate better than an individual survey forecast did.
 ## How It Bears on Research OS
 
 Corroborates the design choice behind the engine's own ranking label: this paper treats a
-calibrated probability, not a binary pass or fail, as the informative unit a
+calibrated probability, in place of a binary pass or fail, as the informative unit a
 replication-forecasting system should output, the same shape `hte.holdout_ledger`'s own
 ranking-status label is built around. Its own low-prior finding is a caution for the
 engine's belief fusion: if the domains the engine ranks hypotheses in carry a similarly low

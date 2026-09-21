@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Heat
-- **Captured**: 2026-05-09T10:10:16
+- **Captured**: 2026-09-17T17:07:54
 
 ## Description
 

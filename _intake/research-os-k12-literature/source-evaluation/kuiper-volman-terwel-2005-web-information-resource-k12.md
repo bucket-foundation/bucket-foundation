@@ -1,5 +1,5 @@
 ---
-title: "The Web as an Information Resource in K–12 Education: Strategies for Supporting Students in Searching and Processing Information"  # voice-ignore-line: verbatim journal-article title, the en dash is the publisher's own typesetting
+title: "The Web as an Information Resource in K–12 Education: Strategies for Supporting Students in Searching and Processing Information"
 authors:
   - "Kuiper, Els"
   - "Volman, Monique"

@@ -13,7 +13,6 @@
 # Runner logs: raw captured terminal output from autonomous sessions.
 # Rewriting a log falsifies the record of what actually ran.
 _intake/.archive-runner.log
-learning/.buildloop/run.log
 
 # systemd unit files: paths here are load-bearing for the specific box the
 # unit is installed on. Genericizing them would silently break the service.

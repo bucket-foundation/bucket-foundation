@@ -93,4 +93,4 @@ discovery tasks, an AI-generated hypothesis ranking, whether from the engine or 
 K-12 learner's own routed workspace, should be read against a similarly low base rate of
 reliable automated discovery rather than assumed correct by default, the same caution
 Dreber and colleagues (2015)'s own low-prior finding raises for psychology hypotheses
-generally.
+.

@@ -38,7 +38,7 @@ The magazine-length statement of the understanding-performances framework `learn
 ## Key Claims
 
 - Understanding is not a possession, a quantity of stored information, but a performance capacity: the ability to think and act flexibly with what one knows, in ways that go beyond rote repetition.
-- Understanding is demonstrated through understanding performances, generative activities such as explaining a concept in one's own words, exemplifying it with a new case, applying it to an unfamiliar problem, justifying a claim with evidence, comparing and contrasting it with a related idea, or generalizing it to a wider class of cases; possessing information is a prerequisite for these performances, not equivalent to them.
+- Understanding is demonstrated through understanding performances, generative activities such as explaining a concept in one's own words, exemplifying it with a new case, applying it to an unfamiliar problem, justifying a claim with evidence, comparing and contrasting it with a related idea, or generalizing it to a wider class of cases; possessing information is a prerequisite for these performances, insufficient on its own to constitute them.
 - Teaching for understanding requires an explicit understanding goal stated to students, ongoing assessment against that goal throughout instruction, and ongoing feedback, not only a summative test at the end.
 
 ## Research Questions It Leaves Open

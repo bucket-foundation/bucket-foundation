@@ -1,0 +1,92 @@
+{
+  "note": "Scoring backbone for the Earth-data globe. Each indicator has a direction (higher/lower/neutral is better) so the ranking engine can normalize and combine them. Preset targets are weighted objective profiles; the UI also allows custom weights. Labels MUST match the keys in world-indicators.json .values exactly.",
+  "directions": {
+    "Overweight adults (% of adults, BMI>=25)": "lower",
+    "Life expectancy at birth (years)": "higher",
+    "Health expenditure per capita (US$)": "higher",
+    "Under-5 mortality (per 1,000)": "lower",
+    "Infant mortality (per 1,000)": "lower",
+    "Suicide mortality rate (per 100,000)": "lower",
+    "Death rate (per 1,000)": "lower",
+    "GDP per capita (current US$)": "higher",
+    "GDP (current US$)": "neutral",
+    "Inflation, consumer prices (% annual)": "lower",
+    "Unemployment (% of labor force)": "lower",
+    "Gini index (inequality)": "lower",
+    "Household consumption per capita (const US$)": "higher",
+    "Population, total": "neutral",
+    "Urban population (%)": "neutral",
+    "Population growth (% annual)": "neutral",
+    "Population density (per sq km)": "neutral",
+    "Fertility rate (births per woman)": "neutral",
+    "Education expenditure (% of GDP)": "higher",
+    "Adult literacy rate (%)": "higher",
+    "Tertiary school enrollment (% gross)": "higher",
+    "CO2 emissions per capita (t)": "lower",
+    "Forest area (% of land)": "higher",
+    "Renewable energy (% of final consumption)": "higher",
+    "Renewable internal freshwater (billion m3)": "higher",
+    "PM2.5 air pollution (ug/m3)": "lower",
+    "Food production index (2014-16=100)": "higher",
+    "Agricultural land (% of land)": "neutral",
+    "Undernourishment prevalence (%)": "lower",
+    "Cereal yield (kg/ha)": "higher",
+    "Internet users (%)": "higher",
+    "Mobile subscriptions (per 100)": "neutral"
+  },
+  "normalization": "min-max per indicator across all countries; flip lower-is-better; weighted sum -> 0..100 composite score",
+  "presets": [
+    {
+      "id": "longevity",
+      "name": "Longevity & Health",
+      "blurb": "Where bodies last longest. Validate against the Blue Zones overlay.",
+      "weights": {
+        "Life expectancy at birth (years)": 3,
+        "Overweight adults (% of adults, BMI>=25)": 2,
+        "PM2.5 air pollution (ug/m3)": 2,
+        "Undernourishment prevalence (%)": 1,
+        "Health expenditure per capita (US$)": 1,
+        "Suicide mortality rate (per 100,000)": 1,
+        "Infant mortality (per 1,000)": 1
+      }
+    },
+    {
+      "id": "quality-of-life",
+      "name": "Quality of Life",
+      "blurb": "Live well: long, prosperous, equal, clean, connected.",
+      "weights": {
+        "Life expectancy at birth (years)": 2,
+        "GDP per capita (current US$)": 2,
+        "Gini index (inequality)": 2,
+        "PM2.5 air pollution (ug/m3)": 1,
+        "Internet users (%)": 1,
+        "Unemployment (% of labor force)": 1,
+        "Tertiary school enrollment (% gross)": 1
+      }
+    },
+    {
+      "id": "sustainability",
+      "name": "Sustainability",
+      "blurb": "Lightest footprint: clean energy, forest, low emissions, clean air.",
+      "weights": {
+        "Renewable energy (% of final consumption)": 3,
+        "Forest area (% of land)": 2,
+        "CO2 emissions per capita (t)": 3,
+        "PM2.5 air pollution (ug/m3)": 2
+      }
+    },
+    {
+      "id": "founder-base",
+      "name": "Founder Base",
+      "blurb": "Gian's filter: long-lived, clean, connected, prosperous, low-friction.",
+      "weights": {
+        "Life expectancy at birth (years)": 2,
+        "Internet users (%)": 2,
+        "PM2.5 air pollution (ug/m3)": 2,
+        "GDP per capita (current US$)": 1,
+        "Unemployment (% of labor force)": 1,
+        "Tertiary school enrollment (% gross)": 1
+      }
+    }
+  ]
+}

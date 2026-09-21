@@ -2,6 +2,149 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-patents 1: the research memo
+
+The prior work on patents in discovery, checked against its sources, and the choices it settles for Research OS.
+
+Date 2026-09-20. Branch `feat/ros-loop-patents-memo`, worktree `.wt-ros-loop`, PR #189 into `dev`. Founder direction: patents are as much a part of discovery and innovation as papers.
+
+### Edited
+
+- `learning/research-os/PATENTS.md`: Slice 1. How patents cite science (the dual frontier, matched link sets, examiner citations); claims and obviousness after KSR; CPC and the four branches of the first slice, with their classes; what patent counts measure; prior-art search and how its recall is reported; pledges and defensive publication; the measured cost of intellectual property on follow-on work; and what the memo settles.
+
+### Added
+
+None.
+
+### Removed
+
+None.
+
+## ros-patents 0: the patents gateway and Research OS
+
+Research on patent sources, terms, and x402 sellers; the Research OS side of patents; and the gateway and protocol findings handed to the bucket-foundation org repositories, where that work lives.
+
+Date 2026-09-19. Branch `feat/ros-loop-patents-gateway`, worktree `.wt-ros-loop`, PR #188 into `dev`. Founder direction: patents as first-class research objects, with their own x402 gateway and feed402 service; "the x402 feed402 patents work is a different bucket org repo". Issues filed: x402-research-gateway#67 and #68, feed402#12.
+
+### Added
+
+- `learning/research-os/PATENTS.md`: the ros-patents epic's file. What feed402, the Go gateway, and this repository hold; what changed outside since the licensing matrix; and the design of Research OS's side: patents imported into the graph from a bulk corpus and linked to the gateway's citeable USPTO records, the readers inside Research OS, the rights it shows, the graph model, the surfaces by level, and three questions for the founder.
+
+### Edited
+
+- `docs/PATENT_LICENSING.md`: a dated corrections block at the top: PatentsView's paused API and ODP accounts, the EPO OPS terms and free bulk data, WIPO's paid licences, the Lens, and Reliance on Science's non-commercial licence. The text below it is unchanged.
+- `docs/FEED402_PATENTS.md`: a dated corrections block at the top: the v1 corpus is US grants under CC BY 4.0, seven routes, and the local serve script's old `mountPatents` call. The text below it is unchanged.
+- `docs/PROBLEM-REGISTER.md`: PR-067, PR-068, PR-069, PR-070.
+- `_intake/research-os-k12/CHANGELOG.md`: the 2026-09-19 patents entry.
+
+### Removed
+
+None.
+
+## ros-builds: fewer Vercel builds
+
+The Vercel gate compares each push with the last successful deployment, builds on Node 24, and a local check stops a push that would fail on lint or types.
+
+Date 2026-09-19. Branch `feat/ros-loop-builds`, worktree `.wt-ros-loop`, PR #187 into `dev`. Research and design in `docs/VERCEL-BUILDS.md`. Founder direction: fewer Vercel builds, and no failing ones.
+
+### Added
+
+- `scripts/pre-push-vercel-check.sh`: asks the gate whether a push would build and runs lint and the type check first when it would, on the pushed commit alone.
+- `scripts/install-git-hooks.sh`: installs a `pre-push` beside the org's shared `pre-commit` that runs a repository's own check.
+- `scripts/test-pre-push-vercel-check.sh`: 23 cases, the installer among them.
+
+### Edited
+
+- `scripts/vercel-ignore-build.sh`: skip and build tokens count on the commit subject alone; step 3 fetches the trees of the base and the pushed commit at depth 1 into a scratch repository when Vercel's one-commit clone lacks the base, compares a branch with no successful deployment against `dev`, builds on `dev` or `main` with no previous deployment, diffs with `--no-renames`, and matches the allowlist from a here-string; `[skip vercel]` and `[vercel skip]` skip Vercel alone. Old behaviour: skip tokens anywhere in the message, so a squash body could skip a merge; `git diff` against the previous sha, which always failed on Vercel and built; the parent as the base with no previous sha; `echo | grep -q`, which skipped a site change in a diff past 64 KB.
+- `scripts/test-vercel-ignore-build.sh`: 31 checks, 14 in a depth-1 clone with no remote. Old: ten cases in a full clone.
+- `package.json`, `package-lock.json`: `engines.node` 24.x.
+- `.github/workflows/site-ci.yml`: Node 24, the two gate test scripts, and `vercel.json` among the watched paths. Old: Node 20.
+- `docs/VERCEL-BUILDS.md`: measured deployments and failures, the changes, the rule as it now runs, the pre-push check, and the Node version.
+- `docs/PROBLEM-REGISTER.md`: PR-064, PR-065, PR-066.
+
+### Removed
+
+None.
+
+## ros-prime 2: the decompose-further queue
+
+Every prime and unfactored idea gets factors proposed by one model, checked blind by a second and by Wikipedia's links, and decided by a person at `/research-os/edges`.
+
+Date 2026-09-18. Branch `feat/ros-loop-decompose-further`, worktree `.wt-ros-loop`, PR #186 into `dev`. Design and results in `learning/research-os/PRIMES.md`, "Slice 2". Founder direction: decompose concepts and equations into primes, "can this be further", and build it deep, with a critic.
+
+### Added
+
+- `src/lib/research-os/decompose-further.ts`: target selection (idea nodes only), the three-pool shortlist, prompts and parsers for the proposer, the blinded verifier, and consolidation, Cohen's kappa with a target-level bootstrap interval, missing-idea aggregation and base-idea hints, cycle detection over pending pairs.
+- `src/lib/research-os/refd.ts` and `scripts/research-os/wikipedia-links.ts`: RefD over Wikipedia links (Liang and colleagues, 2015), title resolution through redirects, and the ROC area of the score against the verifier's verdicts.
+- `scripts/research-os/decompose-further.ts`, the eight-stage runner; `scripts/research-os/embed-texts.py`, local embeddings with a cache.
+- `src/lib/research-os/inference/decide-node.ts` and `review-actions.ts`: decisions on factor proposals, missing primes, and irreducible verdicts, each claimed before it writes.
+- `src/app/api/research-os/node-proposals/route.ts`, `src/app/api/research-os/irreducible/route.ts`.
+- Migrations `20260918010000_research_os_prime_decompose.sql`, `20260918020000_research_os_prime_decompose_review.sql`, `20260918030000_research_os_irreducible.sql`: `graph.node_proposals`, `graph.irreducible_proposals`, verification state, origin, RefD, and cycle flags on `graph.edge_proposals`, the merge functions, `graph.rests_on`, and an atomic `replace_prereq_ancestor`.
+- `primes.ts` `movesSince`; `primes-report.ts` reports reviewed irreducible primes and what moved since its last run.
+- `src/lib/research-os/makeup.ts`, `src/app/api/research-os/makeup/route.ts`, `src/app/research-os/(app)/n/MakeupSection.tsx`: the node page's "made of" section, a node's place in the decomposition and what waits on review for it (founder direction: the work shows inside Research OS).
+- `supabase/tests/research_os_proposals.sql` with `scripts/test-research-os-proposal-sql.ts`: the merge, reachability, and closure functions in real Postgres, in a transaction that rolls back.
+- Tests: `test-research-os-makeup.ts`, `test-research-os-external-factors.ts`.
+- `src/lib/research-os/idea.ts`: which nodes are ideas, shared by the queue and the node page; the queue and "made of" decompose the idea layer, and facts under an idea show as its evidence.
+- `src/lib/research-os/reviewer.ts` `verifyGraphReviewer`: graph review on the allowlist alone, since a class membership anyone can create opens teacher review.
+- `src/lib/research-os/primes.ts` `contractedFactorEdges`: the idea layer keeps an idea-to-idea edge wherever one idea rests on another through evidence alone, so a paper between two ideas no longer hides the link.
+- `src/lib/research-os/makeup.ts` `pairStandings`: each pending pair is labelled when it loops with the graph, repeats a chain the graph has, or shortcuts a chain other pending pairs make, and names the nodes on the shortest such chain; the review page reloads the labels after every decision, drops a reload an older request started, and reports the status a row holds when someone decided it first.
+- Tests: `test-research-os-decompose-further.ts`, `test-research-os-refd.ts`, `test-research-os-decide-node.ts`, `test-research-os-review-actions.ts`, additions to the primes, rebuild-ancestor, and edges-review tests.
+
+### Edited
+
+- `src/app/research-os/(app)/edges/page.tsx`: sections for irreducible verdicts, missing primes, and factor proposals grouped by target, with the edge kind chosen per proposal.
+- `src/app/api/research-os/edges/route.ts`: a thin wrapper over `review-actions.ts`.
+- `src/lib/research-os/inference/decide.ts`: an approval can write `derives_from` as well as `prerequisite`.
+- `src/lib/research-os/db.ts`, `node/route.ts`, `route/route.ts`: node pages and routing read factors from other branches.
+- `src/lib/research-os/rebuild-ancestor.ts`, `scripts/rebuild-prereq-ancestor.ts`: paged reads, cross-branch edges, one atomic replace.
+- `learning/research-os/PRIMES.md`: prior work corrected (semantic prime counts, eleven prerequisite papers), Slice 2 rewritten to match the code, results added.
+- `docs/PROBLEM-REGISTER.md`: PR-059, PR-060, PR-061, PR-062, PR-063.
+- `src/app/research-os/(app)/edges/page.tsx`: a summary line, a find box, verdict, cross-branch, and shortcut filters, anchors a node page links to, and warnings from approvals.
+- `src/lib/research-os/directions.ts`: "where it leads" follows each edge kind's direction; `derives_from`, `extends`, `replicates`, `generalizes`, and `answers` run from the newer node to its base, as the data and `primes.ts` have them. The walk visits ideas (idea.ts) and the work built on them, and stops at facts, sources, and grouping nodes. A node flagged as an open question or a frontier is listed whatever its kind and ends the walk unless it is an idea or work: the eight open questions are intake targets, which fail the idea rule, and the idea rule alone hid all of them. Old behaviour: every kind walked from its from end, so extensions never showed where a node leads, and an approved "rests on" edge would have shown the factor as where the target leads.
+- `src/app/research-os/(app)/n/AroundSection.tsx`: the learning-order list is labelled "learned after". Old label: "rests on", which contradicted "made of".
+- `src/app/research-os/(app)/n/AroundSection.tsx`, `src/app/api/research-os/node/route.ts`: a failed graph read says so on the node page, where it used to show an empty neighbourhood as real.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md`: key claims replaced with the paper's own figures. Old text: agreement "was moderate", and "Disagreement concentrated on term pairs from the same section of the source text"; the paper reports fair agreement (Fleiss' kappa 38.50%) and has no same-section finding.
+- `learning/research-os/ROUTING.md`, `learning/research-os/PLAN-REVISION-2.md`, `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: dated corrections beside the passages that cited the same-section finding or "moderate" agreement; the passages themselves stay as written.
+
+### Removed
+
+None.
+
+## Ranking-holdout scoring
+
+Murphy decomposition, a higher label floor, and an ideation-stage label on novelty scores.
+
+Date 2026-09-14. Branch `feat/hte-ledger-scoring-rev4`, worktree `.ros-worktrees/ledger`, engine-side (`tools/hypothesis-engine/`), PR against `hte/integration`. Reads against `PLAN-REVISION-4.md` sections 2b and 2d, turning three of the read-side literature findings `tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md`'s "Ranking validation evidence" section already named into code.
+
+### Added
+
+- `hte.holdout_ledger.MurphyDecomposition` and `hte.holdout_ledger.murphy_decomposition`: Murphy (1973)'s reliability/resolution/uncertainty partition of the ledger's own Brier-style score, reusing `hte.calibrate.brier_score`.
+- `hte.novelty.NOVELTY_STAGE` (`"ideation"`) and `NoveltyResult.stage`.
+- Tests: `tests/test_holdout_ledger.py` (murphy decomposition, label-floor range), `tests/test_novelty.py` (stage label), plus new assertions in `tests/test_cli.py` and `tests/test_canon_writeback.py`.
+
+### Edited
+
+- `hte/holdout_ledger.py`: `MIN_VERIFIED_FOR_LABEL` raised from `20` to `44` (Dreber et al. 2015's own N=44 replication-forecasting sample, corroborated at a comparable scale by Camerer et al. 2018); derivation and caveats in the module's own top docstring, replacing the prior undocumented "twenty, chosen by hand" account.
+- `hte/cli.py`: `_cmd_holdout_ledger_report` now prints `murphy_decomposition`'s own output under a `murphy` key alongside `elo_status`.
+- `hte/novelty.py`: module docstring gains a "Stage" section (Si, Hashimoto, and Yang 2025); `NoveltyResult.to_dict()` carries `stage`.
+- `hte/canon_writeback.py`: `render_card`'s "## 7. Novelty" section states the stage label and a one-line execution-evidence-required note; the feed402 envelope's `data.novelty.stage` field follows from `NoveltyResult.to_dict()` automatically, no separate envelope code changed.
+- `tools/hypothesis-engine/docs/RESEARCH-OS-INTEGRATION.md`: "Ranking validation evidence" section gains a "Code changes, this pass" subsection with the decomposition's own formula table.
+- `tools/hypothesis-engine/docs/LOOP-LOG.md`: new entry at the top.
+
+### Removed
+
+None.
+
+### Not touched, and why
+
+- `hte/export.py`: TIMELINE.md's "Elo is unvalidated" text carries no verified-count number to duplicate; nothing to point at `MIN_VERIFIED_FOR_LABEL`.
+- `hte/casp_cadence.py`: not present on `hte/integration` as this pass ran (PR #130 open, unmerged); the constant-import instruction is noted in `hte.holdout_ledger`'s own docstring and this entry for whoever lands #130 next.
+- `learning/research-os/ENGINE-BRIDGE.md`: documents `graph.nodes`/`graph.edges`/the outbox table's own columns; none of them carry `elo_status`, `novelty`, or `MIN_VERIFIED_FOR_LABEL`, so no field there changed.
+
+### Verified
+
+`make test` (`tools/hypothesis-engine/`) and `ruff check` on every touched file, both clean. No network calls in any new or edited test. This branch merges `origin/hte/integration` before pushing per this repo's own concurrent-PR-#130/#123 note; gates rerun after the merge.
+
 ## auth-1: system-wide auth and the Research OS application shell
 
 Date 2026-09-16. Branch `site-local-2026-09-14`, worktree `.ros-worktrees/site-local`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry, `docs/AUTH.md`, `docs/RESEARCH-OS-APP.md`.
@@ -3639,7 +3782,9 @@ Squash-merged after this pass.
 
 `CanonSearchPanel.tsx`: scroll-driven lift (18vh to 0). `CanonGlobeMount.tsx`: `globeWrapperStyle` prop merged onto the globe wrapper.
 
-## 2026-09-15 home panel surfaces, hero seam, scrubber width
+## 2026-09-15: home panel and hero fixes
+
+Home panel surfaces and two hero fixes: the seam and the scrubber width.
 
 `CanonGlobeMount.tsx`: home column card, drawer surface back, scrubber right padding. `Presentation.tsx`: `z-20` moved from the hero section to its content wrapper.
 
@@ -3663,7 +3808,9 @@ New: migration `20260915000000_research_os_access.sql`, `access.ts`, `access-db.
 
 New: `learn-link.ts`, `workspace/LearnBlock.tsx`, `scripts/test-research-os-learn-link.ts`. Edited: `academy/page.tsx` (deep-link pass-through), `workspace/page.tsx` (GraphNodeLite branch and provenance, LearnBlock), `Header.tsx` (DynamicWidget removed), `package.json`.
 
-## 2026-09-15 ros-23 the workspace without a model, ros-30 the Map in place
+## 2026-09-15: ros-23 and ros-30
+
+ros-23 runs the workspace without a model; ros-30 puts the Map in place.
 
 New: `deterministic.ts`, `workspace/PenBlock.tsx`, `workspace/MapBlock.tsx`, `scripts/test-research-os-deterministic.ts`, `NO-MODEL.md`. Edited: `api/research-os/workspace/route.ts` (verdict and quotes fields, deterministic Check and Organize), `api/research-os/route/route.ts` (`llmEnabled`), `workspace/page.tsx` (verdict control, request fields, mounts), `canon/CanonGlobeMount.tsx` (`?q=`), `package.json`.
 
@@ -3671,7 +3818,9 @@ New: `deterministic.ts`, `workspace/PenBlock.tsx`, `workspace/MapBlock.tsx`, `sc
 
 New: migration `20260915010000_research_os_game.sql`, `game.ts`, `workspace/PathMap.tsx`, `profile/GameSection.tsx`, `scripts/test-research-os-game.ts`, `GAME.md`. Edited: `db.ts` (award hook, loadGame, loadXpForLearners), `api/research-os/profile/route.ts`, `api/research-os/class/route.ts`, `workspace/page.tsx`, `profile/page.tsx`, `class/page.tsx`, `package.json`.
 
-## 2026-09-15 ros-27 roles as grants, assignments, level overrides
+## 2026-09-15: ros-27 roles as grants
+
+Also assignments and level overrides.
 
 New: migration `20260915020000_research_os_roles_assignments.sql`, `roles.ts`, `assignments.ts`, `class-db.ts`, `api/research-os/assignments`, `api/research-os/override`, `api/research-os/members`, `class/AssignmentsPanel.tsx`, `class/OverrideControl.tsx`, `workspace/AssignmentsBanner.tsx`, `scripts/test-research-os-roles-assignments.ts`, `CLASS.md`. Edited: `roster/sources.ts`, `class/page.tsx`, `workspace/page.tsx` (target from the URL), `package.json`.
 
@@ -3679,6 +3828,102 @@ New: migration `20260915020000_research_os_roles_assignments.sql`, `roles.ts`, `
 
 New: migration `20260915030000_research_os_consent_paths.sql`, `consent-paths.ts`, `consent-vendor.ts`, `api/research-os/consent`, `api/research-os/payee`, `profile/ConsentPayeeSection.tsx`, `scripts/test-research-os-consent-paths.ts`, `CONSENT-PATHS.md`. Edited: `consent.ts` (`requireConsent`, `resolveConsentPaths`), `profile/page.tsx`, `package.json`.
 
-## 2026-09-15 ros-31 frontier kinds and regions, ros-24 the Awareness view
+## 2026-09-15: ros-31 and ros-24
+
+ros-31 adds frontier kinds and regions; ros-24 adds the Awareness view.
 
 New: migration `20260915040000_research_os_frontier_kinds.sql`, `directions.ts`, `api/research-os/directions`, `api/research-os/frontier`, `workspace/DirectionsBlock.tsx`, `scripts/test-research-os-directions.ts`, `FRONTIER.md`. Edited: `types.ts`, `db.ts` (loadSubgraph), `access-db.ts` (filterSubgraphForViewer), `api/research-os/route/route.ts`, `workspace/page.tsx`, `package.json`.
+
+## Plan revision 4: docs from batch-five evidence and shipped Phase 1 work
+
+Date 2026-09-14. Branch `docs/ros-plan-revision-4`, worktree `~/agfarms/.ros-worktrees/plan4`, forked from `origin/main` at `d4deda529` (PR #87's own merge). Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-4.md`: the shipped-since-revision-3 PR table (#70 through #113), four evidence-driven revisions from the batch-five literature corpus read off `intake/ros-literature-5` (PR #90, unmerged), a Phase 1 scope narrowed to nine remaining items, the six founder decisions restated verbatim plus the hygiene untracking decision and the canon sign-off backlog, and updated operational blockers including a new spend-limit-pauses entry.
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "## Revision 4" section after the existing "## Revision 3" section, matching the per-revision pointer convention every prior revision already established. No other line changed.
+- `learning/research-os/PLAN-REVISION-3.md`: appended a "## Revision 4" pointer paragraph after its own tmpfs-constraint paragraph, the last line of the file before this edit. No other line changed.
+
+### Verified
+
+- `npm run test:research-os`: 30 chained files, every file `fail 0`, 455 tests, unchanged (this pass touched no test file). `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, unchanged.
+- `python3 tools/canon-pipeline/signoff.py list`: 20 pending records, same five-dossier breakdown as revision 3's own count (`07-mind/memory-systems` 3, `07-mind/sub-outcomes/education` 11, `07-mind/curiosity-and-motivation` 4, `07-mind/information-foraging` 1, `07-mind/cognition-and-automation` 1).
+- `agf-lint-voice check` on all three touched files: sixteen violations on the first pass (banned words `genuinely`/`genuine`/`actually`/`honest`, filler adverbs `specifically`/`correctly`, six antithesis constructions, one heading carrying an appended clause), all rewritten by hand; clean on the second pass.
+- `git log --all --grep="spend.limit" -i --format="%ad %h %s" --date=format:"%Y-%m-%d %H:%M"`: confirms the three spend-limit-stop windows named in the new operational-blockers entry (2026-09-10 ~09:37, 2026-09-11 ~01:17, and the 2026-09-11-to-2026-09-13 commit gap).
+
+## Plan revision 4: post-merge reconciliation
+
+Date 2026-09-14, same pass, after `git fetch origin && git merge origin/main` at the end of the revision-4 pass. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching entry.
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: PR #90 (this revision's own evidence source) merged to `main` mid-pass, so its cards' paths and the section-2 sourcing note updated to cite `main` directly; a new table added naming thirteen more PRs that merged in the same window (#95, #97, #99, #101, #114 through #116, #118 through #122); test-count paragraph updated with fresh post-merge numbers and the engine's newest recorded count (1585 passed, 0 failed, `f1eb897df`).
+- `tools/hypothesis-engine/tests/swarm/FINDINGS-2026-09-10.md`, `tools/hypothesis-engine/tests/test_corpus_literature.py`, `tools/hypothesis-engine/tests/swarm-20260914/test_predict_props.py`: three pre-existing voice-lint violations in content merged in from `origin/main` (none authored by this pass), fixed by hand so the merge commit's own diff stayed clean where it touched these files directly.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): one merge conflict in its own tail section, resolved by keeping both sides, this pass's own "Plan revision 4" section ahead of `main`'s own "Iteration 27" (literature batch five) and "PR #87 review" sections.
+
+### Verified
+
+- `npm run test:research-os`: 455 passed, 0 failed across 30 files, re-run fresh post-merge, unchanged from the pre-merge count. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed, unchanged. `python3 tools/canon-pipeline/signoff.py list`: 20 pending, unchanged.
+- `agf-lint-voice check learning/research-os/PLAN-REVISION-4.md`: clean after the sourcing-note and test-count edits above.
+- The merge commit itself used `AGF_VOICE_SKIP=1`: `python3 "$HOME/agfarms/tools/voice/voice.py" check --staged` (the pre-commit hook's own invocation, which rescans a staged file's full content rather than only its diff) found 162 violations across 28 files pulled in by the merge, none in content this pass authored; the same bypass PR #84's own merge commit used for the same situation, per its own logged process note.
+
+## PR #127 review: plan revision 4 and merge
+
+Reviewed `docs/ros-plan-revision-4` (PR #127) against `dev` in worktree `~/agfarms/.ros-worktrees/r127`, branch `review/pr127`. Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (leak scan, fresh test and sign-off re-verification, PR-number and literature-card checks, the two accuracy fixes, the two voice fixes, and the `origin/dev` merge conflict resolution).
+
+### Edited
+
+- `_intake/research-os-k12/CHANGELOG.md`: two voice fixes in this PR's own new entry (banned word `genuine`, one antithesis construction), plus this review's own entry logged.
+- `learning/research-os/PLAN-REVISION-4.md`: decision 6's recommended default restored to revision 3's verbatim wording (a dropped clause); two rule-of-three constructions rewritten to two joined clauses each, no named behavior removed.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): one merge conflict in its own tail section, resolved by keeping both sides, `dev`'s own content first, this branch's two entries appended after.
+
+### Verified
+
+- Leak scan of the PR diff clean (no keys, `.env` values, IPs, non-public hostnames, personal emails beyond `gianyrox@gmail.com`, PII, absolute `/home/gian` paths, or Claude session URLs in file content).
+- `npm ci && npm run test:research-os`: 455 passed, 0 failed across 30 files. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed. `python3 tools/canon-pipeline/signoff.py list`: 20 pending, same five-dossier breakdown the PR names.
+- Every PR number in both shipped tables confirmed merged via `gh pr list --state merged --limit 130`; the six PRs named unmerged confirmed closed without merging. Every cited literature card confirmed present under `_intake/research-os-k12-literature/`.
+- `PLAN.md` and `PLAN-REVISION-3.md`: each edit confirmed a single append-only "## Revision 4" pointer section, no other line touched. `git diff origin/dev...HEAD --stat` (pre-merge) confirmed the PR's own diff touches no file under `src/` or `public/`.
+- `agf-lint-voice check` on `PLAN-REVISION-4.md` and the new entries in both log files: clean after the fixes above.
+
+## Plan revision 4: second reconciliation pass
+
+Date 2026-09-14, resuming a session that found this branch's worktree removed out from under it (a concurrent session's own cleanup) mid-task and PR #127 already open from the reconciliation pass above. Recreated the worktree from `origin/docs/ros-plan-revision-4` and continued rather than re-authoring.
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: added the fourth spend-limit-pause window this pass found (2026-09-14, 09:32:52-09:33:04, three worktrees), noted the task brief's own "TLS pauses" mention has no repository-visible evidence beyond the four spend-limit windows; corrected "stay unmerged" to "closed unmerged" for the six superseded `docs/hte-loop-log-*` branches (#89/#91/#93/#105/#107/#109, verified live via `gh pr view`); added PR #124 (real `hte/cli.py` coverage) and PR #128 (docs-only, names PR #125 closed unmerged after #124 landed the same coverage first) to the shipped table and the open/closed-PR accounting; added PR #127 (this document's own PR) to the still-open list.
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-3.md`: both "## Revision 4" pointer paragraphs corrected from "thirty-two PRs" / "#70 through #113" to the true count, forty-six PR numbers merged since revision 3 (`git log --oneline 7f49f271b..HEAD --format=%s | grep -oE '\(#[0-9]+\)'`, deduplicated and sorted), #70 through #124 plus #68 and #115 landing out of numeric order; "three spend-limit pauses" corrected to four in both.
+
+### Verified
+
+- `gh pr view` on each of #89, #91, #93, #105, #107, #109: all six read `CLOSED`, `mergedAt: null`, confirming "closed unmerged" over the prior "stay unmerged" wording.
+- `git log -1 --format=%ad` on the three 2026-09-14 wip commits (`6a20186da`, `6e88d3ef0`, `e8edd4d1e`): 09:32:52 to 09:33:04, twelve seconds apart. Resume times: `feat/ros-11-engine-review-items-2` merged `origin/main` at 09:41:16; `feat/ros-status-band-2` at 09:46:37; `intake/ros-canon-promotion-3`'s next commit on that branch, `wip(intake/ros-canon-promotion-3): resume canon pass three`, landed at 12:20:21.
+- `agf-lint-voice check` on all three edited files: clean, first pass.
+
+## PR #127 review, second pass
+
+Continued after `origin/docs/ros-plan-revision-4` advanced further (the second reconciliation pass above, a concurrent session). Full account: `_intake/research-os-k12/CHANGELOG.md`'s matching 2026-09-14 entry (the PR-count recount, the added PR #68 table row, the gap-timestamp fix, and the two further `origin/dev` merges).
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-4.md`: added a table row for PR #68 (was cited in the pointer count but absent from the document's own tables); intro line and both pointer paragraphs corrected from "forty-six" to the verified "forty-eight"; the spend-limit-gap start time corrected from `02:08` to `06:24`.
+- `learning/research-os/PLAN.md`, `learning/research-os/PLAN-REVISION-3.md`: same forty-six to forty-eight correction in each "## Revision 4" pointer.
+- `_intake/research-os-k12/CHANGELOG.md`, `learning/research-os/CHANGE-LEDGER.md` (this file): two further merge conflicts with `origin/dev`, resolved keeping both sides.
+
+### Verified
+
+- Independent recount of every `#NNN` cell across `PLAN-REVISION-4.md`'s two shipped-PR tables: 48 distinct numbers, matching the corrected claim.
+- PR #68 confirmed real and in scope: `gh pr view 68` shows merged 2026-09-11T03:18:55Z, after PR #69 (revision 3's own filing, 02:43:19Z).
+- `git log --all` across every branch for 2026-09-11 through 2026-09-13: the claimed gap runs 06:24 to 22:23 (real commits land at 02:13 and after, ruling out the claimed 02:08 start); every other cited timestamp in the same paragraph checked out exact.
+- `npm run test:research-os`: 455 passed, 0 failed. `python3 -m pytest tools/canon-pipeline/tests/`: 41 passed. Both re-run after each of the two further `origin/dev` merges.
+
+## hte-serve as a local user service
+
+Date 2026-09-18. Research OS loop, PR #184. Adds `scripts/systemd/hte-serve.service` and its installer so `/api/research-os/hypothesize` and the MCP `hypothesize` tool reach a running engine on this machine. Updates `CLAUDE.md` (Local First, Engine) and `docs/MCP.md`. Closes PROBLEM-REGISTER PR-019.
+
+## Prime decomposition, slice one
+
+Date 2026-09-18. Research OS loop, PR #185. Adds `learning/research-os/PRIMES.md`, `src/lib/research-os/primes.ts`, its test, and `scripts/research-os/primes-report.ts`. The next slices are the decompose-further queue, the truth level with network statistics, and the node and map surfaces.

@@ -9,7 +9,7 @@
 - **License**: http://creativecommons.org/publicdomain/zero/1.0/
 - **Mediatype**: audio
 - **Subjects**: librivox; audiobook; nature; science; animals; evolution; natural selection;
-- **Captured**: 2026-05-09T09:47:56
+- **Captured**: 2026-09-17T17:07:36
 
 ## Description
 

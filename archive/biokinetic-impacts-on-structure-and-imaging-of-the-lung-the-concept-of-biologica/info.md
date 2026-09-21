@@ -9,7 +9,7 @@
 - **License**: (see metadata)
 - **Mediatype**: texts
 - **Subjects**: Acupuncture, Nordenstrom
-- **Captured**: 2026-05-09T09:46:05
+- **Captured**: 2026-09-17T17:06:55
 
 ## Description
 

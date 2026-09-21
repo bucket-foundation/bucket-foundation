@@ -13,13 +13,22 @@
 # squash merge to main must not rebuild the site either.
 #
 # Decision order (first match wins):
-#   0. Commit message contains "[vercel build]"      -> BUILD (forced override)
-#   1. Commit message starts with "feed:"             -> SKIP  (bot feed sync)
-#      or contains "[skip ci]"
+#   0. Commit subject contains "[vercel build]"      -> BUILD (forced override)
+#   1. Commit subject starts with "feed:"             -> SKIP  (bot feed sync)
+#      or contains "[skip ci]", "[skip vercel]",
+#      or "[vercel skip]" (subject line alone)
 #   2. Branch matches an engine prefix (below)         -> SKIP
-#   3. Diff of this push touches an allowlisted path   -> BUILD
-#      (git diff cannot be computed)                   -> BUILD (fail open)
+#   3. Diff since the base touches an allowlisted path -> BUILD
+#      (base cannot be fetched or diffed)              -> BUILD (fail open)
 #   4. otherwise                                        -> SKIP
+#
+# The base at step 3: VERCEL_GIT_PREVIOUS_SHA, the branch's last successful
+# deployment, when Vercel sets it; the tip of dev on a feature branch with no
+# successful deployment yet. On dev or main with no previous deployment the
+# script builds. Vercel's build clone holds the pushed commit alone and has
+# no remote (measured 2026-09-18, see docs/VERCEL-BUILDS.md), so the script
+# fetches the trees of the base and the pushed commit at depth 1 from the
+# public repository into a scratch repository when the clone lacks the base.
 #
 # Branch prefixes skipped at step 2, with the evidence behind each
 # (from `git branch -r` on 2026-09-14, ~75 remote branches):
@@ -50,7 +59,7 @@
 # evidence trail per entry.
 #
 # Force a build regardless of any of the above: put "[vercel build]" in
-# the commit message.
+# the commit subject line.
 
 set -uo pipefail
 
@@ -60,6 +69,14 @@ SKIP_EXIT=0
 build() { echo "[vercel-ignore-build] BUILD: $1"; exit "$BUILD_EXIT"; }
 skip()  { echo "[vercel-ignore-build] SKIP: $1"; exit "$SKIP_EXIT"; }
 
+# The repository to fetch a missing base from. VERCEL_IGNORE_FETCH_URL
+# overrides it, for tests and for a run outside Vercel.
+REPO_URL="${VERCEL_IGNORE_FETCH_URL:-}"
+if [[ -z "$REPO_URL" && -n "${VERCEL_GIT_REPO_OWNER:-}" && -n "${VERCEL_GIT_REPO_SLUG:-}" && "${VERCEL_GIT_PROVIDER:-github}" == "github" ]]; then
+  REPO_URL="https://github.com/${VERCEL_GIT_REPO_OWNER}/${VERCEL_GIT_REPO_SLUG}.git"
+fi
+FETCH_TIMEOUT="${VERCEL_IGNORE_FETCH_TIMEOUT:-90}"
+
 REF="${VERCEL_GIT_COMMIT_REF:-}"
 MSG="${VERCEL_GIT_COMMIT_MESSAGE:-}"
 ENVIRONMENT="${VERCEL_ENV:-}"
@@ -68,18 +85,27 @@ PREV_SHA="${VERCEL_GIT_PREVIOUS_SHA:-}"
 
 echo "[vercel-ignore-build] env=$ENVIRONMENT ref=$REF cur=$CUR_SHA prev=${PREV_SHA:-<empty>}"
 
+# Every token counts on the subject line alone (step 1 says why).
+SUBJECT="${MSG%%$'\n'*}"
+
 # --- step 0: forced override, always wins ------------------------------
-if [[ "$MSG" == *"[vercel build]"* ]]; then
-  build "commit message contains [vercel build] (forced)"
+if [[ "$SUBJECT" == *"[vercel build]"* ]]; then
+  build "commit subject contains [vercel build] (forced)"
 fi
 
 # --- step 1: commit-message skip signals --------------------------------
-if [[ "$MSG" == feed:* ]]; then
+# Skip tokens count on the subject line alone. A squash merge can carry
+# every commit message of a pull request in its body, including the
+# work-in-progress commits marked [skip ci]; those lines must not skip the
+# merge itself.
+if [[ "$SUBJECT" == feed:* ]]; then
   skip "commit message starts with 'feed:' (bot feed sync)"
 fi
-if [[ "$MSG" == *"[skip ci]"* ]]; then
-  skip "commit message contains [skip ci]"
-fi
+for token in "[skip ci]" "[skip vercel]" "[vercel skip]"; do
+  if [[ "$SUBJECT" == *"$token"* ]]; then
+    skip "commit subject contains $token"
+  fi
+done
 
 # --- step 2: branch-prefix skip signals ----------------------------------
 if [[ "$REF" =~ ^(run|intake|data|hte)/ ]]; then
@@ -92,19 +118,113 @@ fi
 # --- step 3: content-aware fallback --------------------------------------
 # Applies uniformly, production included: skip only when the diff itself
 # proves no allowlisted path changed.
-if [[ -z "$PREV_SHA" ]]; then
-  RANGE_DESC="${CUR_SHA}^ ${CUR_SHA} (no previous sha, falling back to last commit)"
-  RANGE_ARGS=("${CUR_SHA}^" "$CUR_SHA")
-else
-  RANGE_DESC="$PREV_SHA $CUR_SHA"
-  RANGE_ARGS=("$PREV_SHA" "$CUR_SHA")
+
+have_commit() { git cat-file -e "$1^{commit}" 2>/dev/null; }
+
+# The diff runs in the clone when it holds the base. Vercel's clone does
+# not, so both commits' trees are fetched at depth 1 into a scratch bare
+# repository and the diff runs there. The scratch repository leaves the
+# build's clone untouched, and it has no objects of its own for git 2.48
+# and later to copy into a promisor pack, which in the clone measured 814 MB
+# (critic round 2, 2026-09-19). --filter=blob:none: the diff needs trees
+# alone, 8.2 MB for two commits of this repository against a pack of about
+# 815 MB with blobs.
+# VERCEL_IGNORE_SCRATCH_DIR keeps the scratch repository, for tests.
+SCRATCH=""
+cleanup() {
+  if [[ -n "$SCRATCH" && -z "${VERCEL_IGNORE_SCRATCH_DIR:-}" ]]; then
+    rm -rf "$SCRATCH"
+  fi
+}
+trap cleanup EXIT
+
+# fetch_pair <base refspec source>: fetch the base (a sha or refs/heads/name)
+# and the pushed commit into the scratch repository as refs/gate/base and
+# refs/gate/cur. It runs in a command substitution to capture its reason on
+# failure, so the scratch repository is made beforehand in this shell,
+# where SCRATCH must be set for the diff and the cleanup to see it.
+fetch_pair() {
+  if [[ -z "$REPO_URL" ]]; then
+    echo "no repository URL (VERCEL_GIT_REPO_OWNER and VERCEL_GIT_REPO_SLUG unset)"
+    return 1
+  fi
+  if [[ -z "$SCRATCH" ]]; then
+    echo "no scratch repository"
+    return 1
+  fi
+  local runner=() out status
+  command -v timeout >/dev/null 2>&1 && runner=(timeout "$FETCH_TIMEOUT")
+  out="$(GIT_TERMINAL_PROMPT=0 "${runner[@]}" git --git-dir="$SCRATCH" fetch --quiet --no-tags \
+    --filter=blob:none --depth=1 origin "+$1:refs/gate/base" "+$CUR_SHA:refs/gate/cur" 2>&1)"
+  status=$?
+  if [[ $status -eq 124 ]]; then
+    echo "fetch from $REPO_URL timed out after ${FETCH_TIMEOUT}s"
+    return 1
+  fi
+  if [[ $status -ne 0 ]]; then
+    echo "git fetch from $REPO_URL exited $status: ${out:-no output}"
+    return 1
+  fi
+}
+
+make_scratch() {
+  [[ -n "$REPO_URL" ]] || return 0
+  SCRATCH="${VERCEL_IGNORE_SCRATCH_DIR:-$(mktemp -d)}"
+  if git init -q --bare "$SCRATCH" &&
+    git --git-dir="$SCRATCH" remote add origin "$REPO_URL" &&
+    git --git-dir="$SCRATCH" config remote.origin.promisor true &&
+    git --git-dir="$SCRATCH" config remote.origin.partialclonefilter blob:none; then
+    return 0
+  fi
+  cleanup
+  SCRATCH=""
+}
+
+if [[ "$CUR_SHA" == "HEAD" ]]; then
+  CUR_SHA="$(git rev-parse HEAD 2>/dev/null || echo HEAD)"
 fi
 
-DIFF_OUTPUT="$(git diff --name-only "${RANGE_ARGS[@]}" 2>&1)"
+BASE_LABEL="${VERCEL_IGNORE_BASE_LABEL:-last successful deployment}"
+DIFF_GIT=(git)
+DIFF_BASE=""
+DIFF_CUR="$CUR_SHA"
+if [[ -n "$PREV_SHA" ]]; then
+  BASE_DESC="$BASE_LABEL $PREV_SHA"
+  if have_commit "$PREV_SHA"; then
+    DIFF_BASE="$PREV_SHA"
+  elif make_scratch && out="$(fetch_pair "$PREV_SHA")"; then
+    DIFF_GIT=(git --git-dir="$SCRATCH")
+    DIFF_BASE="refs/gate/base"
+    DIFF_CUR="refs/gate/cur"
+  else
+    build "the $BASE_DESC is not in the clone and could not be fetched ($out); building to be safe"
+  fi
+elif [[ "$REF" != "dev" && "$REF" != "main" ]]; then
+  # No successful deployment on this branch yet: compare with dev, where it
+  # will merge. A branch cut from an older dev compares against changes it
+  # lacks too, which can only add a build.
+  make_scratch
+  if ! out="$(fetch_pair refs/heads/dev)"; then
+    build "no successful deployment of '$REF' yet and the tip of dev could not be fetched ($out); building to be safe"
+  fi
+  DIFF_GIT=(git --git-dir="$SCRATCH")
+  DIFF_BASE="refs/gate/base"
+  DIFF_CUR="refs/gate/cur"
+  BASE_DESC="the tip of dev $("${DIFF_GIT[@]}" rev-parse refs/gate/base 2>/dev/null) (no successful deployment of this branch yet)"
+else
+  # dev and main have deployed for as long as this gate has existed; with no
+  # previous deployment there is no base that covers every pushed commit.
+  build "no successful deployment on '$REF' to compare with; building to be safe"
+fi
+
+RANGE_DESC="$BASE_DESC to $CUR_SHA"
+# --no-renames lists both paths of a moved file, so a file moved out of an
+# allowlisted directory still counts as a change there.
+DIFF_OUTPUT="$("${DIFF_GIT[@]}" diff --name-only --no-renames "$DIFF_BASE" "$DIFF_CUR" 2>&1)"
 DIFF_STATUS=$?
 
 if [[ $DIFF_STATUS -ne 0 ]]; then
-  build "could not compute diff for '$RANGE_DESC' (git said: $DIFF_OUTPUT) — building defensively"
+  build "could not compute the diff from $RANGE_DESC (git said: $DIFF_OUTPUT); building to be safe"
 fi
 
 # Paths whose change requires a build. See docs/VERCEL-BUILDS.md for the
@@ -112,8 +232,12 @@ fi
 # .vercelignore, and direct grep of what src/ imports or reads).
 ALLOWLIST_RE='^(src/|public/|package\.json$|package-lock\.json$|next\.config\.mjs$|tailwind\.config\.ts$|postcss\.config\.mjs$|tsconfig\.json$|vercel\.json$|scripts/vercel-ignore-build\.sh$|scripts/sync-academy\.mjs$|learning/app/|bucket-canon/|canon-figures/figures\.json$|feed\.json$|PROTOCOL\.md$|GOVERNANCE\.md$|MANIFESTO\.md$|_intake/embeddings/|_intake/embeddings-v2/|_intake/connections/)'
 
-if echo "$DIFF_OUTPUT" | grep -qE "$ALLOWLIST_RE"; then
-  build "diff ($RANGE_DESC) touches an allowlisted site path"
+# grep reads a here-string. Under pipefail, `echo | grep -q` on a diff past
+# the pipe buffer (about 64 KB of paths) lets grep exit at the first match,
+# echo dies of SIGPIPE, the pipeline fails, and a site change would skip.
+if grep -qE "$ALLOWLIST_RE" <<<"$DIFF_OUTPUT"; then
+  MATCHED="$(grep -E "$ALLOWLIST_RE" <<<"$DIFF_OUTPUT")"
+  build "the diff from $RANGE_DESC touches an allowlisted site path: $(head -3 <<<"$MATCHED" | tr '\n' ' ')"
 fi
 
-skip "diff ($RANGE_DESC) touches no allowlisted site path"
+skip "the diff from $RANGE_DESC touches no allowlisted site path ($(grep -c . <<<"$DIFF_OUTPUT") files changed)"

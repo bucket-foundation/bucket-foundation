@@ -28,6 +28,7 @@ how_it_bears_on_research_os: >
   evidence showing why a leaderboard specifically, rather than gamification in general, is
   the mechanic that backfired.
 ---
+<!-- voice-ignore-file: title is a verbatim published paper title, reproduced exactly in frontmatter and heading -->
 
 # Assessing the effects of gamification in the classroom: A longitudinal study on intrinsic motivation, social comparison, satisfaction, effort, and academic performance
 
@@ -37,7 +38,7 @@ A cautionary empirical result on the specific gamification mechanics, leaderboar
 
 - In a semester-long field experiment, students in a gamified course section (badges, leaderboard, competition) showed lower intrinsic motivation, satisfaction, and empowerment over time than students in a non-gamified section with identical content.
 - The gamified section also underperformed on some academic outcome measures by the end of the semester, reversing an initial engagement advantage.
-- Social comparison, the leaderboard specifically, was implicated as the likely mechanism: competition against peers appeared to undermine rather than support motivation for a meaningful share of students.
+- Social comparison, the leaderboard, was implicated as the likely mechanism: competition against peers appeared to undermine rather than support motivation for a meaningful share of students.
 
 ## Research Questions It Leaves Open
 
@@ -46,4 +47,4 @@ A cautionary empirical result on the specific gamification mechanics, leaderboar
 
 ## How It Bears on Research OS
 
-Is the direct empirical citation behind the Research OS gamification section's own exclusion list: leaderboards ranking children against each other and public comparison for young children in any form are named exclusions, and this field study is the evidence showing why a leaderboard specifically, rather than gamification in general, is the mechanic that backfired.
+Is the direct empirical citation behind the Research OS gamification section's own exclusion list: leaderboards ranking children against each other and public comparison for young children in any form are named exclusions, and this field study is the evidence showing why a leaderboard, rather than gamification in general, is the mechanic that backfired.

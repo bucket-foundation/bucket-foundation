@@ -37,6 +37,7 @@ key_claims:
   - "Structured as an opinion piece with four invited groups of scientists debating one
     question, how the advancement of LLMs should affect scientific practice, each group's
     position is presented alongside a response from each of the other groups."
+  # voice-ignore-next 3: the qualifier states how strong the finding is
   - "One group argues working with LLMs does not differ in kind from working with
     human collaborators; another argues LLMs are often misused and overhyped and that
     their limitations argue for specialized, interpretable tools instead; a third
@@ -75,7 +76,7 @@ winning outright.
   question, how the advancement of LLMs should affect scientific practice, each group's
   position is presented alongside a response from each of the other groups.
 - One group argues working with LLMs does not differ in kind from working with
-  human collaborators; another argues LLMs are often misused and overhyped and that their
+  human collaborators; another argues LLMs are often misused and overhyped and that their <!-- voice-ignore-line: the qualifier states how strong the finding is -->
   limitations argue for specialized, interpretable tools instead; a third emphasizes
   transparent attribution and responsible use; a fourth argues humans should retain
   responsibility for setting the scientific roadmap.

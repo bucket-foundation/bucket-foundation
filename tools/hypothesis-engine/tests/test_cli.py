@@ -314,6 +314,8 @@ def test_holdout_ledger_report_on_an_empty_ledger(tmp_path, capsys):
     assert status["elo_status"] == "unvalidated_tournament_ranking"
     assert status["n_verified"] == 0
     assert status["hit_rate"] is None
+    assert status["murphy"]["n_verified"] == 0
+    assert status["murphy"]["brier"] is None
 
 
 def test_holdout_ledger_verify_then_report_reflects_it(tmp_path, capsys):
@@ -340,6 +342,9 @@ def test_holdout_ledger_verify_then_report_reflects_it(tmp_path, capsys):
     status = json.loads(capsys.readouterr().out)
     assert status["elo_status"] == "validated_tournament_ranking"
     assert status["hit_rate"] == 1.0
+    assert status["murphy"]["n_verified"] == 1
+    assert status["murphy"]["brier"] == 0.0
+    assert status["murphy"]["resolution"] == 0.0
 
 
 def test_holdout_ledger_verify_unknown_entry_fails(tmp_path, capsys):

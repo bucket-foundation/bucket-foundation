@@ -77,6 +77,6 @@ RESEARCH-OS-INTEGRATION.md`), so `hte.holdout_ledger`'s own hit-rate report rest
 75-year-old, still-standard scoring rule rather than a novel metric invented for this
 system. Motivates why the ledger's own `MIN_VERIFIED_FOR_LABEL = 20` gate withholds a
 validated label until enough held-out cases accumulate: a proper scoring rule rewards
-truthful reporting in expectation, not on any single held-out case, so a ranking label
+truthful reporting in expectation across many held-out cases, so a ranking label
 earned from too few cases is exactly the overconfidence this rule's own properness guards
 against once enough cases exist to check it.

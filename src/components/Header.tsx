@@ -38,6 +38,7 @@ const NAV: NavItem[] = [
       { href: "/canon/claims",   label: "All claims",    meta: "browse the cards" },
       { href: "/canon/bridges",  label: "Bridges",       meta: "17 multi-branch primitives" },
       { href: "/canon/graph",    label: "Knowledge graph", meta: "1,133 nodes · PageRank" },
+      { href: "/earth",          label: "Earth data",    meta: "32 indicators, 211 countries" },
       { href: "/access",         label: "Agent access",  meta: "MCP, llms.txt, x402" },
     ],
   },
