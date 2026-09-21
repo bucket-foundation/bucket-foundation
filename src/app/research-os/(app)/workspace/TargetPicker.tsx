@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_SECONDARY, LoadingState, PageHeader, Panel, STAGE_LABEL } from "@/components/ui";
+import type { LearnerAssignment } from "@/lib/research-os/class-db";
 
 interface Hit {
   id: string;
@@ -13,27 +14,27 @@ interface Hit {
   summary: string | null;
   stage: string | null;
 }
-interface Assignment {
-  id: string;
-  title: string;
-  className: string;
-  targetSlug: string;
-  targetTitle: string;
-  status: string;
-}
+// The server type, so a change to what /assignments returns is a compile
+// error here rather than a blank link on the page (Bucket critic C40).
+type Assignment = LearnerAssignment;
 
 /** The workspace with no target: pick any node on the graph to work toward. */
 export default function TargetPicker() {
   const [q, setQ] = useState("");
   const [hits, setHits] = useState<Hit[]>([]);
   const [busy, setBusy] = useState(false);
-  const [assignments, setAssignments] = useState<Assignment[] | null>(null);
+  const [assignments, setAssignments] = useState<Assignment[] | "unavailable" | null>(null);
 
   useEffect(() => {
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : { assignments: [] }))
-      .then((j: { assignments?: Assignment[] }) => setAssignments(j.assignments ?? []))
-      .catch(() => setAssignments([]));
+      .then(async (r) => {
+        // An outage answers 503. Rendering "None open." would tell the
+        // learner they have no assignments (Bucket critic C44).
+        if (!r.ok) return { unavailable: true as const };
+        return (await r.json()) as { assignments?: Assignment[] };
+      })
+      .then((j) => ("unavailable" in j ? setAssignments("unavailable") : setAssignments(j.assignments ?? [])))
+      .catch(() => setAssignments("unavailable"));
   }, []);
 
   useEffect(() => {
@@ -82,13 +83,19 @@ export default function TargetPicker() {
         <Panel title="your assignments">
           {assignments === null ? (
             <LoadingState />
+          ) : assignments === "unavailable" ? (
+            <p className="text-[13px] text-[color:var(--basalt-3)]">Assignments could not be read right now.</p>
           ) : assignments.length === 0 ? (
             <p className="text-[13px] text-[color:var(--basalt-3)]">None open.</p>
           ) : (
             <ul className="flex flex-col divide-y divide-[color:var(--hairline)]">
               {assignments.map((a) => (
                 <li key={a.id} className="py-2">
-                  <a href={open(a.targetSlug)} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">{a.targetTitle}</a>
+                  {a.targetHidden || !a.targetSlug ? (
+                    <span className="text-[14px] text-[color:var(--basalt-3)]">target not shared with you</span>
+                  ) : (
+                    <a href={open(a.targetSlug)} className="text-[14px] text-[color:var(--basalt)] hover:underline underline-offset-4">{a.targetTitle}</a>
+                  )}
                   <div className="text-[11px] text-[color:var(--basalt-3)]">{a.title} · {a.className} · {a.status.replace("_", " ")}</div>
                 </li>
               ))}

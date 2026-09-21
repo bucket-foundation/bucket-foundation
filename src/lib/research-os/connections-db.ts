@@ -18,8 +18,8 @@ export async function loadConnections(learnerId: string) {
   const ids = states.map((s) => s.nodeId);
   type Row = { from_id: string; to_id: string; kind: string };
   const [out, inn] = await Promise.all([
-    inChunks<Row>(ids, (chunk) => svc.from("edges").select("from_id,to_id,kind").in("from_id", chunk).neq("kind", "prerequisite") as unknown as Promise<{ data: Row[] | null; error: { message: string } | null }>),
-    inChunks<Row>(ids, (chunk) => svc.from("edges").select("from_id,to_id,kind").in("to_id", chunk).neq("kind", "prerequisite") as unknown as Promise<{ data: Row[] | null; error: { message: string } | null }>),
+    inChunks<Row>(ids, (chunk, page) => svc.from("edges").select("from_id,to_id,kind").in("from_id", chunk).neq("kind", "prerequisite").order("from_id").order("to_id").range(page.from, page.to) as unknown as Promise<{ data: Row[] | null; error: { message: string } | null }>),
+    inChunks<Row>(ids, (chunk, page) => svc.from("edges").select("from_id,to_id,kind").in("to_id", chunk).neq("kind", "prerequisite").order("to_id").order("from_id").range(page.from, page.to) as unknown as Promise<{ data: Row[] | null; error: { message: string } | null }>),
   ]);
   const rows = [...out, ...inn];
   const edges: ConnEdge[] = rows.map((e) => ({ fromId: e.from_id, toId: e.to_id, kind: e.kind }));
@@ -30,7 +30,7 @@ export async function loadConnections(learnerId: string) {
   // filtered before they are joined (Bucket critic C20). The select
   // carries visibility and owner, so the decision costs no extra read.
   type NodeRow = ConnNode & { visibility: string | null; owner_id: string | null };
-  const nodeRows = await inChunks<NodeRow>(nodeIds, (chunk) => svc.from("nodes").select("id,slug,title,branch,kind,visibility,owner_id").in("id", chunk) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>);
+  const nodeRows = await inChunks<NodeRow>(nodeIds, (chunk, page) => svc.from("nodes").select("id,slug,title,branch,kind,visibility,owner_id").in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>);
   const access: NodeAccess[] = nodeRows.map((n) => ({
     id: n.id,
     visibility: readVisibility(n.visibility),

@@ -130,16 +130,80 @@ interface StateRow {
 
 /** Every node + prerequisite/derivation/citation/canon edge in one branch (Phase 0: '02-physics'). */
 /**
- * PostgREST filters travel in the URL, and a long `in (...)` list of ids
- * fails with "URI too long". Run a query per chunk of ids and merge.
+ * Two different limits bite on a read filtered by a list of ids.
+ *
+ * PostgREST filters travel in the URL, and a long `in (...)` list fails
+ * with "URI too long", so the ids are chunked at IN_CHUNK. PostgREST also
+ * stops at PAGE rows per request, which the chunking says nothing about:
+ * 60 node ids on a dense branch overflow a thousand edges without an
+ * error, and the caller reads the truncation as the whole answer. The
+ * page loop closes that (Bucket critic C42).
+ *
+ * The callback takes the page and must apply both `.range(page.from,
+ * page.to)` and an `.order()`. Postgres gives no stable row order across
+ * LIMIT/OFFSET without one, so an unordered page can repeat a row and
+ * skip another.
  */
 export const IN_CHUNK = 60;
-export async function inChunks<T>(ids: string[], run: (chunk: string[]) => Promise<{ data: T[] | null; error: { message: string } | null }>): Promise<T[]> {
+export const PAGE = 1000;
+/**
+ * A callback that forgets `.range()` answers the same full page forever,
+ * so the loop would spin rather than truncate. This turns that mistake
+ * into a loud failure at 200,000 rows.
+ */
+export const MAX_PAGES = 200;
+
+export class PagingError extends Error {
+  constructor(what: string) {
+    super(`${what}: a paged read did not terminate after ${MAX_PAGES} pages. The callback must apply .range(page.from, page.to).`);
+    this.name = "PagingError";
+    // Downlevelled `extends Error` loses the prototype chain, so
+    // `instanceof PagingError` answers false without this.
+    Object.setPrototypeOf(this, PagingError.prototype);
+  }
+}
+
+export interface ChunkPage {
+  from: number;
+  to: number;
+}
+
+/**
+ * One read, paged. For a query with no id list to chunk: the row cap
+ * still applies, so a learner past a thousand rows loses the remainder
+ * with no error (Bucket critic C45). The callback applies
+ * `.range(page.from, page.to)` and an `.order()`.
+ */
+export async function pagedRead<T>(
+  run: (page: ChunkPage) => Promise<{ data: T[] | null; error: { message: string } | null }>,
+): Promise<T[]> {
+  const out: T[] = [];
+  for (let p = 0; ; p += 1) {
+    if (p >= MAX_PAGES) throw new PagingError("pagedRead");
+    const { data, error } = await run({ from: p * PAGE, to: p * PAGE + PAGE - 1 });
+    if (error) throw new Error(error.message);
+    const page = data || [];
+    out.push(...page);
+    if (page.length < PAGE) break;
+  }
+  return out;
+}
+
+export async function inChunks<T>(
+  ids: string[],
+  run: (chunk: string[], page: ChunkPage) => Promise<{ data: T[] | null; error: { message: string } | null }>,
+): Promise<T[]> {
   const out: T[] = [];
   for (let i = 0; i < ids.length; i += IN_CHUNK) {
-    const { data, error } = await run(ids.slice(i, i + IN_CHUNK));
-    if (error) throw new Error(error.message);
-    if (data) out.push(...data);
+    const chunk = ids.slice(i, i + IN_CHUNK);
+    for (let p = 0; ; p += 1) {
+      if (p >= MAX_PAGES) throw new PagingError("inChunks");
+      const { data, error } = await run(chunk, { from: p * PAGE, to: p * PAGE + PAGE - 1 });
+      if (error) throw new Error(error.message);
+      const page = data || [];
+      out.push(...page);
+      if (page.length < PAGE) break;
+    }
   }
   return out;
 }
@@ -189,7 +253,7 @@ export async function loadSubgraph(branch: string, opts: { externalFactors?: boo
 
   let edgeRows: EdgeRow[];
   try {
-    edgeRows = await inChunks<EdgeRow>(ids, (chunk) => svc.from("edges").select("id,from_id,to_id,kind,weight,confidence,confidence_source").in("from_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>);
+    edgeRows = await inChunks<EdgeRow>(ids, (chunk, page) => svc.from("edges").select("id,from_id,to_id,kind,weight,confidence,confidence_source").in("from_id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>);
   } catch (err) {
     throw new Error(`loadSubgraph: edge query failed: ${err instanceof Error ? err.message : String(err)}`);
   }
@@ -220,19 +284,19 @@ const EDGE_COLUMNS = "id,from_id,to_id,kind,weight,confidence,confidence_source"
 export async function addExternalFactors(svc: SupabaseClient, branchIds: string[], nodes: GraphNode[], edgeRows: EdgeRow[]): Promise<void> {
   const inBranch = new Set(branchIds);
   const external = new Set<string>();
-  const ancestors = await inChunks<{ ancestor_id: string }>(branchIds, (chunk) =>
-    svc.from("prereq_ancestor").select("ancestor_id").in("node_id", chunk) as unknown as Promise<{ data: { ancestor_id: string }[] | null; error: { message: string } | null }>,
+  const ancestors = await inChunks<{ ancestor_id: string }>(branchIds, (chunk, page) =>
+    svc.from("prereq_ancestor").select("ancestor_id").in("node_id", chunk).order("node_id").order("ancestor_id").range(page.from, page.to) as unknown as Promise<{ data: { ancestor_id: string }[] | null; error: { message: string } | null }>,
   );
   for (const a of ancestors) if (!inBranch.has(a.ancestor_id)) external.add(a.ancestor_id);
-  const incoming = await inChunks<EdgeRow>(branchIds, (chunk) =>
-    svc.from("edges").select(EDGE_COLUMNS).in("to_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
+  const incoming = await inChunks<EdgeRow>(branchIds, (chunk, page) =>
+    svc.from("edges").select(EDGE_COLUMNS).in("to_id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
   );
   for (const e of incoming) if (!inBranch.has(e.from_id) && e.kind === "prerequisite") external.add(e.from_id);
   for (const e of edgeRows) if (e.kind === "derives_from" && !inBranch.has(e.to_id)) external.add(e.to_id);
   if (!external.size) return;
   const ext = Array.from(external);
-  const extRows = await inChunks<NodeRow>(ext, (chunk) =>
-    svc.from("nodes").select(NODE_COLUMNS).in("id", chunk) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>,
+  const extRows = await inChunks<NodeRow>(ext, (chunk, page) =>
+    svc.from("nodes").select(NODE_COLUMNS).in("id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: NodeRow[] | null; error: { message: string } | null }>,
   );
   for (const r of extRows)
     nodes.push({
@@ -253,7 +317,7 @@ export async function addExternalFactors(svc: SupabaseClient, branchIds: string[
   const all = new Set(branchIds.concat(extRows.map((r) => r.id)));
   const fromExternal = await inChunks<EdgeRow>(
     extRows.map((r) => r.id),
-    (chunk) => svc.from("edges").select(EDGE_COLUMNS).in("from_id", chunk) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
+    (chunk, page) => svc.from("edges").select(EDGE_COLUMNS).in("from_id", chunk).order("id").range(page.from, page.to) as unknown as Promise<{ data: EdgeRow[] | null; error: { message: string } | null }>,
   );
   const seen = new Set(edgeRows.map((e) => e.id));
   for (const e of incoming.concat(fromExternal)) {
@@ -268,7 +332,7 @@ export async function loadLearnerStates(learnerId: string, nodeIds: string[]): P
   const svc = graphService();
   let data: StateRow[];
   try {
-    data = await inChunks<StateRow>(nodeIds, (chunk) => svc.from("learner_node_state").select("node_id,stage,confidence,updated_at").eq("learner_id", learnerId).in("node_id", chunk) as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>);
+    data = await inChunks<StateRow>(nodeIds, (chunk, page) => svc.from("learner_node_state").select("node_id,stage,confidence,updated_at").eq("learner_id", learnerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>);
   } catch (err) {
     throw new Error(`loadLearnerStates: query failed: ${err instanceof Error ? err.message : String(err)}`);
   }
@@ -307,7 +371,7 @@ export async function loadLearnerStatesForMany(learnerIds: string[], nodeIds: st
   let data: (StateRow & { learner_id: string })[];
   try {
     const learners = learnerIds.slice(0, IN_CHUNK);
-    data = await inChunks<StateRow & { learner_id: string }>(nodeIds, (chunk) => svc.from("learner_node_state").select("learner_id,node_id,stage,confidence,updated_at").in("learner_id", learners).in("node_id", chunk) as unknown as Promise<{ data: (StateRow & { learner_id: string })[] | null; error: { message: string } | null }>);
+    data = await inChunks<StateRow & { learner_id: string }>(nodeIds, (chunk, page) => svc.from("learner_node_state").select("learner_id,node_id,stage,confidence,updated_at").in("learner_id", learners).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: (StateRow & { learner_id: string })[] | null; error: { message: string } | null }>);
   } catch (err) {
     throw new Error(`loadLearnerStatesForMany: query failed: ${err instanceof Error ? err.message : String(err)}`);
   }

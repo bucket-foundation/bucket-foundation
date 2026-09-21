@@ -57,7 +57,7 @@ export async function GET(req: NextRequest) {
   let learners = 0;
   if (viewerId && ids.length) {
     const [st, classes] = await Promise.all([
-      inChunks<{ node_id: string; stage: string }>(ids, (chunk) => svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", chunk) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []),
+      inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").eq("learner_id", viewerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []),
       listMyClasses(viewerId),
     ]);
     st.forEach((r) => (standing[r.node_id] = r.stage));
@@ -73,7 +73,7 @@ export async function GET(req: NextRequest) {
         const learnerIds = Array.from(new Set(((members as { learner_id: string }[]) || []).map((m) => m.learner_id)));
         learners = learnerIds.length;
         if (learnerIds.length) {
-          const rows = await inChunks<{ node_id: string; stage: string }>(ids, (chunk) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", learnerIds.slice(0, IN_CHUNK)).in("node_id", chunk) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []);
+          const rows = await inChunks<{ node_id: string; stage: string }>(ids, (chunk, page) => svc.from("learner_node_state").select("node_id,stage").in("learner_id", learnerIds.slice(0, IN_CHUNK)).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>).catch(() => []);
           holders = {};
           rows.forEach((r) => {
             const h = (holders![r.node_id] = holders![r.node_id] ?? Object.fromEntries(STAGES.map((s) => [s, 0])));

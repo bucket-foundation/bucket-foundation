@@ -40,6 +40,17 @@ export function internalizationState(internalization: LoopInternalization): stri
   return `${internalization.held} ${internalization.held === 1 ? "connection" : "connections"} held`;
 }
 
+/**
+ * The second line of that column. An unknown bridge count used to fall
+ * into the same branch as zero bridges, which is the point this file
+ * exists to make (Bucket critic C46).
+ */
+export function internalizationDetail(internalization: LoopInternalization): string {
+  if (internalization.bridges === null) return `${internalization.nodes} internalized`;
+  if (internalization.bridges > 0) return `${internalization.bridges} ${internalization.bridges === 1 ? "bridge" : "bridges"} one step away`;
+  return `${internalization.nodes} internalized`;
+}
+
 /** Whether that column reads as lit, with an unknown count counting for nothing. */
 export function internalizationLit(internalization: LoopInternalization): boolean {
   return (internalization.held ?? 0) > 0 || internalization.nodes > 0;

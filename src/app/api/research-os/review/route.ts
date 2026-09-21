@@ -347,6 +347,7 @@ function chunkIds(ids: string[], size = 100): string[][] {
  * (Bucket critic C30). Each page is ordered by the caller.
  */
 const PAGE = 1000;
+const MAX_PAGES = 200;
 
 async function inLearnerChunks<T>(
   learners: string[] | null,
@@ -354,8 +355,11 @@ async function inLearnerChunks<T>(
 ): Promise<{ ok: true; rows: T[] } | { ok: false }> {
   const rows: T[] = [];
   for (const part of learners ? chunkIds(learners) : [null]) {
-    for (let from = 0; ; from += PAGE) {
-      const { data, error } = await read(part, from, from + PAGE - 1);
+    for (let p = 0; ; p += 1) {
+      // A read that forgets `.range()` answers the same page forever.
+      // Failing loudly beats spinning.
+      if (p >= MAX_PAGES) return { ok: false };
+      const { data, error } = await read(part, p * PAGE, p * PAGE + PAGE - 1);
       if (error) return { ok: false };
       const page = (data as T[]) || [];
       rows.push(...page);

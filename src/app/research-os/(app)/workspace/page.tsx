@@ -82,6 +82,7 @@
  * feedback; loadRoute() (already called after every successful Check)
  * refreshes it here. See learning/research-os/GUIDANCE.md.
  */
+import type { LearnerAssignment } from "@/lib/research-os/class-db";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
@@ -304,8 +305,12 @@ export default function ResearchOsWorkspacePage() {
     if (!token || new URLSearchParams(window.location.search).get("target")) return;
     fetch("/api/research-os/assignments?mine=1", { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : { assignments: [] }))
-      .then((j: { assignments?: { targetSlug: string; status: string }[] }) => {
-        const open = (j.assignments ?? []).find((a) => a.status !== "accepted");
+      .then((j: { assignments?: LearnerAssignment[] }) => {
+        // A target the learner may not read carries no slug. Redirecting
+        // to `?target=` would land back here with an empty value, which
+        // the guard above reads as no target and fires again, forever
+        // (Bucket critic C38).
+        const open = (j.assignments ?? []).find((a) => a.status !== "accepted" && !a.targetHidden && a.targetSlug);
         if (open && open.targetSlug !== TARGET_SLUG) window.location.replace(`/research-os/workspace?target=${encodeURIComponent(open.targetSlug)}`);
       })
       .catch(() => {});

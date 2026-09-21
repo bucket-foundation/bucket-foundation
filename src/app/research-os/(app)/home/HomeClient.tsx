@@ -57,7 +57,7 @@ interface RouteResponse {
   llmEnabled: boolean;
 }
 
-type Load<T> = { state: "loading" } | { state: "ready"; value: T } | { state: "error"; status: number };
+type Load<T> = { state: "loading" } | { state: "ready"; value: T } | { state: "error"; status: number; code?: string | null };
 
 const STATUS: Record<LearnerAssignment["status"], string> = {
   not_started: "not started",
@@ -70,14 +70,23 @@ const STATUS: Record<LearnerAssignment["status"], string> = {
 async function load<T>(url: string, headers: Record<string, string>): Promise<Load<T>> {
   try {
     const res = await fetch(url, { headers, cache: "no-store" });
-    if (!res.ok) return { state: "error", status: res.status };
+    if (!res.ok) {
+      const body = (await res.json().catch(() => ({}))) as { error?: string };
+      return { state: "error", status: res.status, code: body.error ?? null };
+    }
     return { state: "ready", value: (await res.json()) as T };
   } catch {
     return { state: "error", status: 0 };
   }
 }
 
-function Unavailable({ status, retry }: { status: number; retry: () => void }) {
+function Unavailable({ status, code, retry }: { status: number; code?: string | null; retry: () => void }) {
+  // A 503 carrying access_unavailable is an outage that passes. Reading it
+  // as an unconfigured deployment told the learner their install was
+  // broken and offered nothing to do about it (Bucket critic C44).
+  if (code === "access_unavailable") {
+    return <ErrorState title="Permissions are unavailable right now" body="The server could not check what you may read. Try again in a moment." retry={retry} />;
+  }
   if (status === 503) return <ErrorState title="Research OS is unavailable on this deployment" body="The graph database is not configured here." />;
   if (status === 401) return <ErrorState title="Your session ended" body="Sign in again to continue." />;
   return <ErrorState body={status ? `The server answered ${status}.` : "The request did not reach the server."} retry={retry} />;
@@ -176,7 +185,7 @@ export default function HomeClient() {
           </div>
         ) : profile.state === "error" ? (
           <div className="col-span-2 md:col-span-4">
-            <Unavailable status={profile.status} retry={retry} />
+            <Unavailable status={profile.status} code={profile.code} retry={retry} />
           </div>
         ) : (
           <>
@@ -193,7 +202,7 @@ export default function HomeClient() {
           {assignments.state === "loading" ? (
             <LoadingState />
           ) : assignments.state === "error" ? (
-            <Unavailable status={assignments.status} retry={retry} />
+            <Unavailable status={assignments.status} code={assignments.code} retry={retry} />
           ) : assignments.value.assignments.length === 0 ? (
             <EmptyState
               title="No assignments yet"
@@ -231,7 +240,7 @@ export default function HomeClient() {
           {route.state === "loading" ? (
             <LoadingState label="Finding your place on the graph" />
           ) : route.state === "error" ? (
-            <Unavailable status={route.status} retry={retry} />
+            <Unavailable status={route.status} code={route.code} retry={retry} />
           ) : (
             <PathList route={route.value} />
           )}

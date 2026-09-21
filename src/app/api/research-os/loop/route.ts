@@ -8,7 +8,7 @@
 import type { LoopResponse } from "@/lib/research-os/loop-shape";
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
+import { configured, graphService, pagedRead, verifyLearner } from "@/lib/research-os/db";
 import { loadConnections } from "@/lib/research-os/connections-db";
 import { stageAtLeast } from "@/lib/research-os/types";
 import type { Stage } from "@/lib/research-os/types";
@@ -37,17 +37,21 @@ export async function GET(req: NextRequest) {
   if (!learnerId) return bad(401, "unauthorized");
   const svc = graphService();
   const [statesRes, ownedRes, importsRes, prodRes, requestsRes, connections, decks] = await Promise.all([
-    svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId),
+    pagedRead<{ node_id: string; stage: string }>((page) =>
+      svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: string }[] | null; error: { message: string } | null }>,
+    ),
     svc.from("nodes").select("id", { count: "exact", head: true }).eq("owner_id", learnerId),
     svc.from("imports").select("id", { count: "exact", head: true }).eq("owner_id", learnerId),
-    svc.from("productions").select("id,status,kind,node_id,target_node_id,claim,updated_at").eq("learner_id", learnerId).order("updated_at", { ascending: false }),
+    pagedRead<{ id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }>((page) =>
+      svc.from("productions").select("id,status,kind,node_id,target_node_id,claim,updated_at").eq("learner_id", learnerId).order("updated_at", { ascending: false }).order("id").range(page.from, page.to) as unknown as Promise<{ data: { id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }[] | null; error: { message: string } | null }>,
+    ),
     svc.from("access_requests").select("id", { count: "exact", head: true }).eq("requester_id", learnerId).eq("status", "pending"),
     loadConnections(learnerId).catch(() => ({ held: [], bridges: [], unavailable: true as const })),
     learnDecksStarted(learnerId),
   ]);
-  const states = ((statesRes.data as { node_id: string; stage: Stage }[]) || []);
+  const states = (statesRes as { node_id: string; stage: Stage }[]) || [];
   const atLeast = (s: Stage) => states.filter((r) => stageAtLeast(r.stage, s)).length;
-  const productions = ((prodRes.data as { id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }[]) || []);
+  const productions = (prodRes as { id: string; status: string; kind: string; node_id: string | null; target_node_id: string; claim: string | null; updated_at: string }[]) || [];
   const byStatus = (st: string) => productions.filter((p) => p.status === st).length;
   const payload: LoopResponse = {
       access: { owned: ownedRes.count ?? 0, imports: importsRes.count ?? 0, pendingRequests: requestsRes.count ?? 0 },

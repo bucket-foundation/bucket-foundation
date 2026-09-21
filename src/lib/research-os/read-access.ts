@@ -84,6 +84,9 @@ function liveGrant(grant: NodeGrant, now: Date): boolean {
 // 100 ids is about 3.7 KB of request line, half the 8 KB a proxy allows by
 // default. 200 measured at 7.5 KB, which a longer host or select clause
 // turns into a 414 (Bucket critic C7).
+/** PostgREST answers at most this many rows per request. */
+const PAGE = 1000;
+
 function chunk<T>(items: T[], size = 100): T[][] {
   const out: T[][] = [];
   for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size));
@@ -106,11 +109,20 @@ export const dbAccessStore: AccessStore = {
   async grants(ids) {
     const rows: NodeGrant[] = [];
     for (const part of chunk(ids)) {
+      // Paged. Chunking the ids bounds the request line and says nothing
+      // about PostgREST's thousand-row cap: a hundred nodes averaging ten
+      // grants each overflow it, and the dropped rows come back as a
+      // denial of a live grant with no error at all. Rule 1 in this
+      // file's header forbids exactly that (Bucket critic C41).
+      for (let from = 0; ; from += PAGE) {
       const { data, error } = await graphService()
         .from("node_grants")
         .select("id,node_id,grantee_id,grantee_group,role,expires_at")
-        .in("node_id", part);
+        .in("node_id", part)
+        .order("id", { ascending: true })
+        .range(from, from + PAGE - 1);
       if (error) return { ok: false, error: `grants: ${error.message}` };
+      const page = (data as unknown[]) || [];
       for (const r of (data as {
         id: string;
         node_id: string;
@@ -136,26 +148,29 @@ export const dbAccessStore: AccessStore = {
           expiresAt: r.expires_at ?? null,
         });
       }
+        if (page.length < PAGE) break;
+      }
     }
     return { ok: true, value: rows };
   },
   async groups(learnerId) {
-    // Paged and ordered, the way every other read here is. PostgREST stops
-    // at a thousand rows, and a learner past that would lose the group
-    // grants on the classes it dropped, which reads as a denial rather
-    // than as the truncation it is (Bucket critic C36).
+    // Paged and ordered. PostgREST stops at a thousand rows, and a
+    // learner past that would lose the group grants on the classes it
+    // dropped, which reads as a denial rather than as the truncation it
+    // is (Bucket critic C36). `nodes` above needs no page loop: it reads
+    // at most one row per id, and `chunk` already bounds that at 100.
     const groups: string[] = [];
-    for (let from = 0; ; from += 1000) {
+    for (let from = 0; ; from += PAGE) {
       const { data, error } = await graphService()
         .from("class_members")
         .select("class_id")
         .eq("learner_id", learnerId)
         .order("class_id", { ascending: true })
-        .range(from, from + 999);
+        .range(from, from + PAGE - 1);
       if (error) return { ok: false, error: `groups: ${error.message}` };
       const rows = (data as { class_id: string }[]) || [];
       groups.push(...rows.map((r) => `class:${r.class_id}`));
-      if (rows.length < 1000) break;
+      if (rows.length < PAGE) break;
     }
     return { ok: true, value: groups };
   },

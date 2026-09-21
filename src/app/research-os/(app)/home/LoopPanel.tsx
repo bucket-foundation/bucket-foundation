@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_PRIMARY, ErrorState, LoadingState } from "@/components/ui";
-import { internalizationLit, internalizationState, type LoopResponse } from "@/lib/research-os/loop-shape";
+import { internalizationDetail, internalizationLit, internalizationState, type LoopResponse } from "@/lib/research-os/loop-shape";
 
 type Loop = LoopResponse;
 
@@ -90,7 +90,7 @@ export default function LoopPanel() {
     {
       name: "Internalization",
       state: internalizationState(loop.internalization),
-      detail: loop.internalization.bridges ? `${n(loop.internalization.bridges, "bridge")} one step away` : `${loop.internalization.nodes} internalized`,
+      detail: internalizationDetail(loop.internalization),
       href: loop.internalization.nextBridge ? `/research-os/n/${encodeURIComponent(loop.internalization.nextBridge.slug)}` : "/research-os/workspace",
       cta: loop.internalization.nextBridge ? `cross to ${loop.internalization.nextBridge.title}` : "transfer",
       lit: internalizationLit(loop.internalization),

@@ -6,21 +6,42 @@
  */
 import test from "node:test";
 import assert from "node:assert/strict";
-import { addExternalFactors, type EdgeRow } from "../src/lib/research-os/db";
+import { PAGE, PagingError, addExternalFactors, inChunks, type EdgeRow } from "../src/lib/research-os/db";
 import type { GraphNode } from "../src/lib/research-os/types";
 
 type Row = Record<string, any>;
 
+/**
+ * A stand-in for the PostgREST builder that honours `order` and `range`
+ * rather than ignoring them, and caps an unranged read at PAGE rows the
+ * way the server does. A caller that forgets `.range()` therefore reads
+ * the same full page forever here too, which is what the paging guard in
+ * db.ts exists to catch (Bucket critic C42).
+ */
 function fake(tables: Record<string, Row[]>, failOn?: string) {
   return {
     from(table: string) {
       const filters: ((r: Row) => boolean)[] = [];
+      const sorts: { col: string; asc: boolean }[] = [];
+      let span: { from: number; to: number } | null = null;
       const q = {
         select: () => q,
         in: (c: string, vs: unknown[]) => (filters.push((r) => vs.includes(r[c])), q),
+        eq: (c: string, v: unknown) => (filters.push((r) => r[c] === v), q),
+        neq: (c: string, v: unknown) => (filters.push((r) => r[c] !== v), q),
+        order: (col: string, opts?: { ascending?: boolean }) => (sorts.push({ col, asc: opts?.ascending !== false }), q),
+        range: (from: number, to: number) => ((span = { from, to }), q),
         then(res: (v: { data: Row[] | null; error: { message: string } | null }) => unknown) {
           if (failOn === table) return Promise.resolve({ data: null, error: { message: "down" } }).then(res);
-          return Promise.resolve({ data: (tables[table] ?? []).filter((r) => filters.every((f) => f(r))), error: null }).then(res);
+          let rows = (tables[table] ?? []).filter((r) => filters.every((f) => f(r)));
+          for (const s of [...sorts].reverse()) {
+            rows = [...rows].sort((x, y) => (String(x[s.col]) < String(y[s.col]) ? -1 : String(x[s.col]) > String(y[s.col]) ? 1 : 0) * (s.asc ? 1 : -1));
+          }
+          // PostgREST answers at most PAGE rows whether or not a range
+          // was asked for.
+          rows = span ? rows.slice(span.from, span.to + 1) : rows;
+          rows = rows.slice(0, PAGE);
+          return Promise.resolve({ data: rows, error: null }).then(res);
         },
       };
       return q;
@@ -51,4 +72,31 @@ test("factors from other branches join the subgraph with the edges among them", 
 
 test("a failed read surfaces as an error", async () => {
   await assert.rejects(addExternalFactors(fake({ nodes: [], edges: [] }, "prereq_ancestor"), ["b1"], [], []));
+});
+
+test("a chunked read pages past the row cap instead of truncating", async () => {
+  // PostgREST answers at most PAGE rows. Chunking the id list bounds the
+  // request line and says nothing about that, so a read without a page
+  // loop returns the first thousand and reads as the whole answer
+  // (Bucket critic C42).
+  const rows: Row[] = Array.from({ length: PAGE * 2 + 7 }, (_, i) => ({
+    id: String(i).padStart(6, "0"),
+    from_id: "n1",
+  }));
+  const svc = fake({ edges: rows });
+  const got = await inChunks<Row>(["n1"], (chunk, page) =>
+    svc.from("edges").select("id,from_id").in("from_id", chunk).order("id").range(page.from, page.to),
+  );
+  assert.equal(got.length, rows.length, "every row came back, not the first page");
+  assert.equal(new Set(got.map((r) => r.id)).size, rows.length, "and none came back twice");
+});
+
+test("a read that forgets its range fails loudly rather than spinning", async () => {
+  const rows: Row[] = Array.from({ length: PAGE + 1 }, (_, i) => ({ id: String(i), from_id: "n1" }));
+  const svc = fake({ edges: rows });
+  await assert.rejects(
+    () => inChunks<Row>(["n1"], (chunk) => svc.from("edges").select("id,from_id").in("from_id", chunk).order("id")),
+    (err: unknown) => err instanceof PagingError,
+    "an unranged callback answers the same page forever, so the loop has to stop itself",
+  );
 });
