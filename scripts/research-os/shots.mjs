@@ -83,8 +83,17 @@ async function revealAll(page) {
     window.scrollTo(0, 0);
     await new Promise((r) => setTimeout(r, 200));
   });
-  // The reveals are 0.6s to 0.7s transitions, so wait one out.
-  await page.waitForTimeout(900);
+  // A fixed wait is not a property of the transition: a five-row page
+  // left two rows unrevealed at 900ms and a twelve-row page left none,
+  // so the outcome does not even rise with length. Poll until the count
+  // of still-hidden elements stops shrinking, or a deadline passes.
+  let previous = Infinity;
+  for (let i = 0; i < 12; i += 1) {
+    await page.waitForTimeout(250);
+    const { total } = await hiddenAfterReveal(page);
+    if (total === 0 || total >= previous) break;
+    previous = total;
+  }
 }
 
 /**
@@ -95,15 +104,23 @@ async function revealAll(page) {
 async function hiddenAfterReveal(page) {
   return page.evaluate(() => {
     const out = [];
-    for (const el of Array.from(document.querySelectorAll("main *"))) {
+    // The whole document, since a hero or a footer outside `main` is
+    // still content a reader cannot see. `display:none` and
+    // `visibility:hidden` are deliberate hiding and stay out of it; a
+    // transparent element is the accident this looks for.
+    for (const el of Array.from(document.querySelectorAll("body *"))) {
       const style = window.getComputedStyle(el);
       if (parseFloat(style.opacity) > 0.05) continue;
       if (style.display === "none" || style.visibility === "hidden") continue;
       const box = el.getBoundingClientRect();
-      if (box.width < 40 || box.height < 40) continue;
-      out.push(`${el.tagName.toLowerCase()}.${String(el.className || "").split(" ")[0]} ${Math.round(box.width)}x${Math.round(box.height)}`);
+      // Small enough to be an icon or a rule rather than content.
+      if (box.width < 24 || box.height < 24) continue;
+      // A transparent parent makes every child transparent, so only the
+      // outermost one is reported.
+      if (out.some((o) => o.el.contains(el))) continue;
+      out.push({ el, label: `${el.tagName.toLowerCase()}.${String(el.className || "").split(" ")[0]} ${Math.round(box.width)}x${Math.round(box.height)}` });
     }
-    return out.slice(0, 8);
+    return { total: out.length, sample: out.slice(0, 8).map((o) => o.label) };
   });
 }
 
@@ -175,6 +192,7 @@ try {
   if (signedOut) await signIn(context);
 
   let overflow = 0;
+  let hidden = 0;
   for (const path of paths) {
     const slug = path.replace(/^\//, "").replace(/[^a-zA-Z0-9]+/g, "-") || "root";
     for (const [name, width, height] of WIDTHS) {
@@ -185,8 +203,10 @@ try {
       const stillHidden = await hiddenAfterReveal(page);
       const file = `${OUT}/${slug}-${name}.png`;
       await page.screenshot({ path: file, fullPage: true });
-      if (stillHidden.length) {
-        console.log(`  ${stillHidden.length} element(s) still transparent after a full scroll: ${stillHidden.join(", ")}`);
+      if (stillHidden.total) {
+        hidden += stillHidden.total;
+        const more = stillHidden.total > stillHidden.sample.length ? `, and ${stillHidden.total - stillHidden.sample.length} more` : "";
+        console.log(`  ${stillHidden.total} element(s) still transparent after a full scroll: ${stillHidden.sample.join(", ")}${more}`);
       }
       const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
       const wide = scrollWidth > width + 1;
@@ -195,7 +215,11 @@ try {
       await page.close();
     }
   }
-  process.exitCode = overflow > 0 ? 1 : 0;
+  // A surface a reader cannot see fails the run. Reporting it and
+  // exiting 0 is the third defect in this repo's own protocol: a fault
+  // rendered with no consequence.
+  if (hidden > 0) console.log(`${hidden} element(s) were still transparent after a full scroll`);
+  process.exitCode = overflow > 0 || hidden > 0 ? 1 : 0;
 } finally {
   await context.close();
   await browser.close();

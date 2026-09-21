@@ -18,7 +18,6 @@ Open decisions only you can make, what each one blocks, and what the loop does w
 | PR-072 | An upward teacher override pays XP with no cap. The slice-1 review recorded it and left it, because a cap is a product decision | 2026-09-20 | Nothing; it is live behaviour | The override transaction is correct; only the reward is uncapped |
 | PR-073 | `graph.level_overrides` survives a privacy delete. A teacher decision about a learner may count as the teacher record, which is why it stayed | 2026-09-20 | Nothing; it is live behaviour | Every other learner-scoped table is deleted |
 | PR-074 | `holdsStaffRole` is self-grantable: anyone signed in can create a class, hold a teacher role in it, and become a reviewer. Class scoping now bounds what that reaches, and the gate itself is unchanged. `/class` also serves an unfiltered subgraph | 2026-09-20 | Nothing; it is live behaviour | PR #195 scopes the review queue and its decisions to the reviewer's own classes |
-| PR-075 | `graph.privacy_delete_learner` deletes from `bucket.academy_profiles`, a table **no migration creates**. It exists on the hosted database because it was made by hand, so the privacy delete raises on any fresh database, including a preview branch and CI | 2026-09-21 | A fresh-database privacy delete | PR #196 fixes the function's `search_path`, which was the second break in the same function, and carries a stand-in inside its own rolled-back test. The missing table is left for you: writing a `create table` here would guess at a schema that already exists in production |
 
 ## How a row closes
 

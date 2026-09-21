@@ -492,8 +492,16 @@ export const ROADMAP: RoadmapItem[] = [
 
 export const STAGES: Stage[] = ["mvp", "near", "later"];
 
-/** The rows of docs/FOUNDER-DECISIONS.md a `blockedBy` may name. */
-export const DECISIONS = ["FD-1", "FD-2", "FD-3", "FD-4", "FD-5", "FD-6", "FD-7", "FD-8"];
+/**
+ * The rows of `docs/FOUNDER-DECISIONS.md` a `blockedBy` may name.
+ *
+ * Declared here and in that file, which is one shape declared twice: the
+ * memo gained FD-9 to FD-11 and this list did not, so the roadmap
+ * reported three real decisions as rows that do not exist
+ * (Bucket critic F-4). `scripts/test-research-os-roadmap-decisions.ts`
+ * parses the ids out of the memo and fails on any divergence.
+ */
+export const DECISIONS = ["FD-1", "FD-2", "FD-3", "FD-4", "FD-5", "FD-6", "FD-7", "FD-8", "FD-9", "FD-10", "FD-11"];
 
 const STAGE_ORDER: Record<Stage, number> = { mvp: 0, near: 1, later: 2 };
 

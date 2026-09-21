@@ -17,12 +17,16 @@ import path from "node:path";
 const CHECKER = path.join(process.cwd(), "scripts/check-code-citations.mjs");
 
 /** A throwaway repo with one source file and one prose file. */
-function repo(prose, source = SOURCE) {
+function repo(prose, source = SOURCE, extra = {}) {
   const dir = mkdtempSync(path.join(tmpdir(), "cite-"));
   mkdirSync(path.join(dir, "src/lib"), { recursive: true });
   mkdirSync(path.join(dir, "docs"), { recursive: true });
   writeFileSync(path.join(dir, "src/lib/widget.ts"), source);
   writeFileSync(path.join(dir, "docs/memo.md"), prose);
+  for (const [rel, body] of Object.entries(extra)) {
+    mkdirSync(path.join(dir, path.dirname(rel)), { recursive: true });
+    writeFileSync(path.join(dir, rel), body);
+  }
   return dir;
 }
 
@@ -118,4 +122,88 @@ test("a second path on the line does not excuse a wrong single citation", () => 
   const r = run(repo("Both `src/lib/widget.ts:400` and `src/lib/other.ts` matter.\n"));
   assert.equal(r.code, 1, `an out-of-range line is caught whatever else the line mentions: ${r.out}`);
   assert.match(r.out, /out-of-range/);
+});
+
+test("a symbol on the line above the citation is still checked", () => {
+  // The scope is the paragraph. On the physical line alone this check
+  // reached one citation in forty-one across the live corpus while the
+  // run reported all forty-one as resolving (Bucket critic F-1).
+  const prose = "The `farAway` helper does the second thing,\nand it lives at `src/lib/widget.ts:3`.\n";
+  const r = run(repo(prose));
+  assert.equal(r.code, 1, `a wrong citation is caught with the symbol one line up: ${r.out}`);
+  assert.match(r.out, /symbol-not-there/);
+});
+
+test("a fence left open is a finding, never a silent skip", () => {
+  // A bare toggle let a `~~~` line inside a backtick block close it, so
+  // every citation below was skipped and the run printed success having
+  // checked nothing (Bucket critic F-2).
+  const prose = "```\nnot closed\n\nSee `src/lib/widget.ts:400`.\n";
+  const r = run(repo(prose));
+  assert.equal(r.code, 1, r.out);
+  assert.match(r.out, /unclosed-fence/);
+});
+
+test("a tilde line inside a backtick fence does not close it", () => {
+  const prose = "```\n~~~\nsee src/lib/widget.ts:400\n```\n\nThe `makeWidget` factory is at `src/lib/widget.ts:3`.\n";
+  const r = run(repo(prose));
+  assert.equal(r.code, 0, `the citation after the block is still checked, and the one inside it is not: ${r.out}`);
+  assert.match(r.out, /1 code citation\(s\) checked/, "exactly the one outside the block");
+});
+
+test("a basename matching two files is a finding", () => {
+  const prose = "The `makeWidget` factory is at `widget.ts:3`.\n";
+  const r = run(repo(prose, SOURCE, { "scripts/widget.ts": SOURCE }));
+  assert.equal(r.code, 1, r.out);
+  assert.match(r.out, /ambiguous/);
+});
+
+test("a name shorter than three characters is not hunted for", () => {
+  // `id` appears in half the lines of any file, so looking for it makes
+  // every citation pass.
+  const prose = "The `id` field is at `src/lib/widget.ts:16`.\n";
+  const r = run(repo(prose));
+  assert.equal(r.code, 0, `a two-letter name names nothing in particular: ${r.out}`);
+  assert.match(r.out, /0 with a named symbol/);
+});
+
+test("a word backticked all over the repo is not hunted for", () => {
+  const prose = "The `status` of it is at `src/lib/widget.ts:16`.\n";
+  const r = run(repo(prose));
+  assert.equal(r.code, 0, `a generic word names nothing in particular: ${r.out}`);
+  assert.match(r.out, /0 with a named symbol/);
+});
+
+test("a dotted name is matched on its head", () => {
+  // `provenance.canon_score` is how prose names a field, and the head is
+  // what appears in the source.
+  const prose = "The `makeWidget.id` field is at `src/lib/widget.ts:3`.\n";
+  const r = run(repo(prose));
+  assert.equal(r.code, 0, `the head of a dotted name is found: ${r.out}`);
+  assert.match(r.out, /1 with a named symbol/);
+});
+
+test("a backticked path is not mistaken for a symbol", () => {
+  // Taking the leading identifier of a backticked span made `src` the
+  // name to hunt for, and it is in no file.
+  const prose = "See `src/lib/widget.ts` at `src/lib/widget.ts:16`.\n";
+  const r = run(repo(prose));
+  assert.equal(r.code, 0, r.out);
+});
+
+test("citeignore exempts a file, and only the file it names", () => {
+  const prose = "See `src/lib/widget.ts:400`.\n";
+  const dir = repo(prose, SOURCE, { ".citeignore": "docs/memo.md\n" });
+  const exempt = run(dir);
+  assert.equal(exempt.code, 0, `the listed file is skipped: ${exempt.out}`);
+
+  const other = repo(prose, SOURCE, { ".citeignore": "docs/elsewhere.md\n" });
+  assert.equal(run(other).code, 1, "a file the list does not name is still checked");
+});
+
+test("the summary reports how many citations had a symbol to verify", () => {
+  const prose = "The `makeWidget` factory is at `src/lib/widget.ts:3`, and see `src/lib/widget.ts:16`.\n";
+  const r = run(repo(prose));
+  assert.match(r.out, /2 code citation\(s\) checked/);
+  assert.match(r.out, /0 with a named symbol/, "two paths on one line make the mapping ambiguous, so neither is symbol-checked");
 });

@@ -45,8 +45,11 @@ const PROSE = /\.(md|mdx)$/;
  */
 const CITE_COUNT = /(?<![\w./-])(?:[A-Za-z0-9_@.-]+\/)*[A-Za-z0-9_.-]+\.(?:ts|tsx|js|jsx|mjs|cjs|sql|py|sh|css|json|yaml|yml)\b/g;
 const CITE = /(?<![\w./-])((?:[A-Za-z0-9_@.-]+\/)*[A-Za-z0-9_.-]+\.(?:ts|tsx|js|jsx|mjs|cjs|sql|py|sh|css|json|yaml|yml)):(\d+)/g;
-const SOURCE_TREES = ["src", "supabase", "scripts", "tools", "learning"];
-const SYMBOL = /`([A-Za-z_$][A-Za-z0-9_$.]*)`/g;
+const SOURCE_TREES = ["src", "supabase", "scripts", "tools", "learning", "services", "deploy"];
+// The leading identifier of a backticked span. Requiring the whole span
+// to be an identifier meant `TOOLS = [` named nothing, and a citation
+// that pointed at exactly that line was reported as wrong.
+const SYMBOL = /`([A-Za-z_$][A-Za-z0-9_$.]*)([^`\n]*)`/g;
 /**
  * Words that are backticked all over this repo and name no symbol in
  * particular. Looking for them produces a hit on almost any line.
@@ -81,22 +84,64 @@ function bySuffix(dir, suffix) {
   return out;
 }
 
-/** Line numbers inside a fenced block, which are illustrations. */
+/**
+ * Line numbers inside a fenced block, which are illustrations, and
+ * whether a fence was left open.
+ *
+ * CommonMark closes a fence only with the same character, at least as
+ * long as the opener. A bare toggle got this wrong in both directions: a
+ * `~~~` line inside a backtick block closed it, so every citation below
+ * was skipped and the run reported success having checked nothing, and
+ * an unbalanced fence silenced the rest of the file the same way. An
+ * open fence at the end is now its own problem rather than a quiet skip.
+ */
 function fencedLines(text) {
   const inFence = new Set();
-  let open = false;
+  let open = null;
   text.split("\n").forEach((line, i) => {
-    // CommonMark allows a tilde fence as well as a backtick one, and a
-    // checker that only knows backticks reads a tilde-fenced example as
-    // a claim about the code.
-    if (/^\s*(```|~~~)/.test(line)) {
-      open = !open;
+    const m = line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+    if (m) {
+      const [, marks, rest] = m;
+      const char = marks[0];
+      if (open === null) {
+        // An opening fence may carry an info string; a closing one may not.
+        open = { char, length: marks.length };
+        inFence.add(i + 1);
+        return;
+      }
+      if (char === open.char && marks.length >= open.length && rest.trim() === "") {
+        open = null;
+        inFence.add(i + 1);
+        return;
+      }
+      // A fence of the other kind inside this one is content.
       inFence.add(i + 1);
       return;
     }
     if (open) inFence.add(i + 1);
   });
-  return inFence;
+  return { inFence, unclosed: open !== null };
+}
+
+/**
+ * The paragraph a citation sits in, for the symbols named near it.
+ *
+ * The physical line was too tight: hard-wrapped prose puts the symbol on
+ * the line above, and the check reached 1 citation in 41 while the run
+ * reported all 41 as resolving (Bucket critic F-1). A markdown table row
+ * still scopes to its own cell, because a register row names the fix in
+ * the next column and that fix is absent from the cited file by design.
+ */
+function scopeAround(text, index) {
+  const lineStart = text.lastIndexOf("\n", index - 1) + 1;
+  const lineEnd = text.indexOf("\n", index);
+  const line = text.slice(lineStart, lineEnd === -1 ? text.length : lineEnd);
+  if (line.trimStart().startsWith("|")) return lineAround(text, index);
+  let start = text.lastIndexOf("\n\n", index);
+  start = start === -1 ? 0 : start + 2;
+  let end = text.indexOf("\n\n", index);
+  if (end === -1) end = text.length;
+  return text.slice(start, end);
 }
 
 /**
@@ -145,12 +190,21 @@ const files = targets.length
 
 const problems = [];
 let checked = 0;
+let symbolChecked = 0;
 
 for (const file of files) {
   const rel = path.relative(ROOT, file);
   if (skip.some((s) => rel === s || rel.startsWith(s.endsWith("/") ? s : s + "/"))) continue;
   const text = readFileSync(file, "utf8");
-  const fenced = fencedLines(text);
+  const { inFence: fenced, unclosed } = fencedLines(text);
+  if (unclosed) {
+    problems.push({
+      kind: "unclosed-fence",
+      where: path.relative(ROOT, file),
+      cited: "",
+      detail: "a code fence is never closed, so every citation below it would be skipped",
+    });
+  }
   const lines = text.split("\n");
   let m;
   CITE.lastIndex = 0;
@@ -191,24 +245,28 @@ for (const file of files) {
       continue;
     }
 
-    const sentence = lineAround(text, m.index);
-    // A line citing several files gives no way to say which symbol
-    // belongs to which, so the symbol check only runs where the mapping
-    // is unambiguous. The line and file checks above still run on every
-    // citation.
-    const citesOnThisLine = (sentence.match(CITE_COUNT) || []).length;
+    // Symbols are looked for in the paragraph; ambiguity is judged on
+    // the line. Judging ambiguity on the paragraph too would skip every
+    // citation in any paragraph that mentions a second file, which is
+    // most of them.
+    const sentence = scopeAround(text, m.index);
+    const citesOnThisLine = (lineAround(text, m.index).match(CITE_COUNT) || []).length;
     const symbols = [];
     let s;
     SYMBOL.lastIndex = 0;
     while ((s = SYMBOL.exec(sentence))) {
       const name = s[1];
-      // A backticked path or a bare word is not a symbol to look for.
-      if (name.includes("/") || /\.(ts|tsx|sql|md)$/.test(name)) continue;
+      const whole = name + s[2];
+      // A backticked path is not a symbol to look for, and taking its
+      // first segment made `src` the name to hunt for in every file.
+      if (whole.includes("/") || /\.(ts|tsx|js|jsx|mjs|cjs|sql|py|sh|css|json|yaml|yml|md)\b/.test(whole)) continue;
+      if (name.includes("/")) continue;
       if (name.length < 3) continue;
       if (GENERIC.has(name.toLowerCase())) continue;
       symbols.push(name);
     }
     if (symbols.length === 0 || citesOnThisLine > 1) continue;
+    symbolChecked += 1;
 
     const window = body.slice(Math.max(0, n - 1 - WINDOW), n + WINDOW).join("\n");
     const found = symbols.filter((name) => window.includes(name.split(".")[0]));
@@ -225,8 +283,8 @@ for (const file of files) {
 }
 
 const byKind = (k) => problems.filter((p) => p.kind === k);
-console.log(`${checked} code citation(s) checked in ${files.length} prose file(s)`);
-for (const kind of ["missing-file", "ambiguous", "out-of-range", "symbol-not-there"]) {
+console.log(`${checked} code citation(s) checked in ${files.length} prose file(s), ${symbolChecked} with a named symbol to verify`);
+for (const kind of ["unclosed-fence", "missing-file", "ambiguous", "out-of-range", "symbol-not-there"]) {
   const rows = byKind(kind);
   if (!rows.length) continue;
   console.log(`\n${kind} (${rows.length}):`);
