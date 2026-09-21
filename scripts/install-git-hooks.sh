@@ -13,13 +13,17 @@ set -euo pipefail
 
 TOP="$(git rev-parse --show-toplevel)"
 HOOKS="$(git config --get core.hooksPath || true)"
-SHARED=""
+CONFIGURED="yes"
 if [[ -z "$HOOKS" ]]; then
+  # This repository's own hooks directory, which in a worktree lives in the
+  # main checkout and belongs to this repository all the same.
+  CONFIGURED=""
   HOOKS="$(git rev-parse --git-common-dir)/hooks"
 fi
 HOOKS="${HOOKS/#\~/$HOME}"
 [[ "$HOOKS" = /* ]] || HOOKS="$TOP/$HOOKS"
-if [[ "$HOOKS" != "$TOP"/* ]]; then
+SHARED=""
+if [[ -n "$CONFIGURED" && "$HOOKS" != "$TOP"/* ]]; then
   SHARED="yes"
 fi
 # A shared hooks directory serves every repository on the machine, so an

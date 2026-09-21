@@ -23,9 +23,9 @@ Date 2026-09-21. Branch `feat/ros-loop-roadmap`, worktree `.wt-ros-loop`, PR #19
 - `src/app/research-os/(app)/AppShell.tsx`: a Roadmap entry in the teaching nav.
 - `src/app/research-os/(app)/layout.tsx`: the staff test moves into `staff.ts`.
 - `.gitignore`: `ros-shots/` and `session.json`, so a screenshot run leaves no session in the tree.
-- `scripts/vercel-ignore-build.sh` and `scripts/test-vercel-ignore-build.sh`: the fail-open on `dev` and `main` after a canceled deployment, closed by the first-parent base for a merge or a squash merge alone, with six cases over the pair and the refusal.
+- `scripts/vercel-ignore-build.sh` and `scripts/test-vercel-ignore-build.sh`: the fail-open on `dev` and `main` after a canceled deployment, closed by the first-parent base for a merge or a squash merge alone, with six cases over the pair and the refusal. The suite stands at 36 checks.
 - `scripts/pre-push-vercel-check.sh` and `scripts/test-pre-push-vercel-check.sh`: lint and the type check run whenever a push carries code, and the base on `dev` and `main` is the remote's own tip.
-- `scripts/install-git-hooks.sh` and `package.json`: `npm install` wires the pre-push check, and leaves a shared hooks directory alone unless asked.
+- `scripts/install-git-hooks.sh` and `package.json`: `npm install` wires the pre-push check into this repository's own hooks directory, a worktree's included, and leaves a configured shared directory alone unless `AGF_INSTALL_HOOKS=1` asks. The pre-push suite stands at 26 checks, one of them a worktree install.
 - `docs/VERCEL-BUILDS.md`: what changed on 2026-09-21, with the two deployments that measured it.
 - `docs/PROBLEM-REGISTER.md`: PR-071 for the fail-open, and PR-064 pointing at it.
 - `learning/research-os/PATENTS.md`: `patent` stays out of `WORK_NODE_KINDS`, with the contract that decides it, and the fourteen branches say where they come from.
@@ -86,7 +86,7 @@ Date 2026-09-19. Branch `feat/ros-loop-builds`, worktree `.wt-ros-loop`, PR #187
 ### Edited
 
 - `scripts/vercel-ignore-build.sh`: skip and build tokens count on the commit subject alone; step 3 fetches the trees of the base and the pushed commit at depth 1 into a scratch repository when Vercel's one-commit clone lacks the base, compares a branch with no successful deployment against `dev`, falls back to the pushed commit's first parent on `dev` or `main` with no previous deployment sha, and only for a merge or a squash merge, diffs with `--no-renames`, and matches the allowlist from a here-string; `[skip vercel]` and `[vercel skip]` skip Vercel alone. Old behaviour: skip tokens anywhere in the message, so a squash body could skip a merge; `git diff` against the previous sha, which always failed on Vercel and built; the parent as the base with no previous sha; `echo | grep -q`, which skipped a site change in a diff past 64 KB.
-- `scripts/test-vercel-ignore-build.sh`: 36 checks, 14 in a depth-1 clone with no remote. Old: ten cases in a full clone.
+- `scripts/test-vercel-ignore-build.sh`: 31 checks, 14 in a depth-1 clone with no remote. Old: ten cases in a full clone.
 - `package.json`, `package-lock.json`: `engines.node` 24.x.
 - `.github/workflows/site-ci.yml`: Node 24, the two gate test scripts, and `vercel.json` among the watched paths. Old: Node 20.
 - `docs/VERCEL-BUILDS.md`: measured deployments and failures, the changes, the rule as it now runs, the pre-push check, and the Node version.

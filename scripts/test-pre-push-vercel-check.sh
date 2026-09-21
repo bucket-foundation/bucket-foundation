@@ -160,6 +160,21 @@ else
   FAIL=$((FAIL + 1)); echo "FAIL  the installed hook did not run lint on a building push"
   sed "s/^/      /" "$WORKDIR/hook.out"
 fi
+# A worktree's own hooks directory sits in the main checkout, so the shared
+# test must not read it as somebody else's.
+WT="$WORKDIR/worktree"
+git -C "$REPO" worktree add -q --detach "$WT" HEAD 2>/dev/null
+cp "$HERE/install-git-hooks.sh" "$HERE/pre-push-vercel-check.sh" "$HERE/vercel-ignore-build.sh" "$WT/scripts/" 2>/dev/null
+if (cd "$WT" && git config --unset core.hooksPath 2>/dev/null; cd "$WT" && npm_lifecycle_event=prepare bash scripts/install-git-hooks.sh >"$WORKDIR/wt.out" 2>&1) &&
+  [[ -x "$REPO/.git/hooks/pre-push" || -x "$(git -C "$WT" rev-parse --git-common-dir)/hooks/pre-push" ]]; then
+  PASS=$((PASS + 1)); echo "PASS  npm install inside a worktree installs the hook"
+else
+  FAIL=$((FAIL + 1)); echo "FAIL  npm install inside a worktree did not install the hook"
+  sed 's/^/      /' "$WORKDIR/wt.out" 2>/dev/null
+fi
+git -C "$REPO" worktree remove --force "$WT" 2>/dev/null
+git -C "$REPO" config core.hooksPath "$HOOKS"
+
 printf '#!/bin/sh\necho mine\n' >"$HOOKS/pre-push"
 install_case "an existing pre-push of someone else's is left alone" 1
 if grep -q "echo mine" "$HOOKS/pre-push"; then
