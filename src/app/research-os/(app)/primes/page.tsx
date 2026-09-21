@@ -97,7 +97,7 @@ function Report({ r }: { r: PrimesReport }) {
 
       <section className="mt-8">
         <h2 className={LABEL}>unfactored by kind</h2>
-        <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">Nodes with no factor edges yet, the queue for decompose-further.</p>
+        <p className="mt-1 text-[12px] text-[color:var(--basalt-3)]">Nodes with no factor edges. The ideas among them wait in the decompose-further queue; source excerpts never enter it.</p>
         <ul className="mt-2 flex flex-wrap gap-2 text-[12px] text-[color:var(--basalt-2)]">
           {r.unfactoredByKind.map((u) => (
             <li key={u.kind} className="border border-[color:var(--hairline)] px-2 py-1">
