@@ -1,4 +1,5 @@
-// /canon/claims/[concept]/[slug], single curated claim card.
+// /excerpts/[concept]/[slug], one source excerpt: a passage from a talk or
+// podcast with its video, its timestamp, and the evidence it names.
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,7 +19,7 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { concept: string; slug: string } }) {
   const c = getClaim(params.concept, params.slug);
-  if (!c) return { title: "Claim · bucket.foundation" };
+  if (!c) return { title: "Source excerpt · bucket.foundation" };
   return {
     title: `${c.excerpt.slice(0, 60)}… · ${c.concept} · bucket.foundation`,
     description: c.excerpt.slice(0, 160),
@@ -36,7 +37,7 @@ export default function Page({ params }: { params: { concept: string; slug: stri
         className="mb-3 text-xs uppercase tracking-[0.22em]"
         style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
       >
-        <Link href={`/canon/claims/${c.concept}`} className="hover:text-[color:var(--gold)]">
+        <Link href={`/excerpts/${c.concept}`} className="hover:text-[color:var(--gold)]">
           ← {c.concept.replace(/-/g, " ")}
         </Link>
       </p>
@@ -106,7 +107,7 @@ export default function Page({ params }: { params: { concept: string; slug: stri
               Status
             </dt>
             <dd style={{ color: "var(--ochre)" }}>
-              candidate — not yet promoted to canon
+              source excerpt, outside the canon until it names a foundation
             </dd>
           </div>
         </dl>
@@ -175,7 +176,7 @@ export default function Page({ params }: { params: { concept: string; slug: stri
             <li>☐ Verify excerpt against source recording</li>
             <li>☐ Tag tier (axiom · law · principle · primary derivation · observation)</li>
             <li>☐ Cross-cite to ≥1 primary source (PubMed / arXiv / archive.org)</li>
-            <li>☐ Promote to <code>bucket-canon/{c.branch}/</code></li>
+            <li>☐ Name the foundation it rests on, then promote to <code>bucket-canon/{c.branch}/</code></li>
           </ul>
         </section>
       </article>

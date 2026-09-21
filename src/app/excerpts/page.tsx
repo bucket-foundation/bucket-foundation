@@ -1,16 +1,19 @@
-// /canon/claims, index of curated candidate canon claims by concept.
+// /excerpts, source excerpts by concept: passages from talks and podcasts,
+// each with its video and timestamp. They sat at /canon/claims until the
+// founder's decision of 2026-09-21 moved them out of canon.
 // Build-time render. Filesystem is the CMS.
 
 import Link from "next/link";
 import { getClaimsByConcept, getConcepts } from "@/lib/canon-claims";
 
-export const metadata = { title: "Canon claims · bucket.foundation" };
+export const metadata = { title: "Source excerpts · bucket.foundation" };
 export const dynamic = "force-static";
 
 export default function Page() {
   const concepts = getConcepts();
   const byConcept = getClaimsByConcept();
   const total = concepts.reduce((s, c) => s + c.count, 0);
+  const videos = new Set(Object.values(byConcept).flat().map((c) => c.videoSlug)).size;
 
   return (
     <main className="mx-auto max-w-5xl px-5 pb-32 pt-16 md:px-8 md:pt-24">
@@ -19,22 +22,22 @@ export default function Page() {
           className="mb-4 text-xs uppercase tracking-[0.22em]"
           style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
         >
-          Branch V · biophysics · candidate claims
+          Source excerpts · talks and podcasts
         </p>
         <h1
           className="text-[2.4rem] leading-[1.05] md:text-[3.4rem]"
           style={{ fontFamily: "var(--font-fraunces)", fontWeight: 500 }}
         >
-          Canon claims
+          Source excerpts
         </h1>
         <p
           className="mt-4 max-w-2xl text-lg md:text-xl"
           style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
         >
-          {total} curated candidate claims across {concepts.length} concepts,
-          mined from {/* hardcoded for now */}126 long-form podcast transcripts.
-          Each card carries the verbatim excerpt, a timestamped link to source,
-          and a curation checklist. <em>Candidates, not yet canon</em>.
+          {total} passages across {concepts.length} concepts, from {videos} talks
+          and podcasts. Each carries the verbatim transcript, a timestamped link
+          to the video, and a curation checklist. An excerpt joins the canon when
+          it names the foundation it rests on and a primary source backs it.
         </p>
       </header>
 
@@ -49,7 +52,7 @@ export default function Page() {
           {concepts.map(({ concept, count }) => (
             <Link
               key={concept}
-              href={`/canon/claims/${concept}`}
+              href={`/excerpts/${concept}`}
               className="group flex items-baseline justify-between rounded-md border border-[color:var(--hairline)] px-4 py-3 transition hover:border-[color:var(--gold)]"
             >
               <span
@@ -95,7 +98,7 @@ export default function Page() {
                   <span>{c.timestamp}</span>
                 </div>
                 <Link
-                  href={`/canon/claims/${c.concept}/${c.slug}`}
+                  href={`/excerpts/${c.concept}/${c.slug}`}
                   className="block text-base md:text-lg"
                   style={{ fontFamily: "var(--font-fraunces)" }}
                 >
@@ -118,14 +121,14 @@ export default function Page() {
         style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
       >
         <p>
-          Candidate claims are extracted heuristically — assertion-pattern signals
+          Excerpts are found by pattern: assertion signals
           (&ldquo;the rule is&rdquo;, &ldquo;always&rdquo;, &ldquo;causes&rdquo;, &ldquo;must&rdquo;, &ldquo;only&rdquo;, &ldquo;I proved&rdquo;)
-          intersected with canon-tier concept terms. Each must be human-verified
-          and cross-cited to a primary source before promotion to canon.
+          in a transcript line that names a canon concept. A person checks each
+          one against a primary source before it can join the canon.
         </p>
         <p className="mt-3">
           See <Link className="underline" href="/canon">canon overview</Link> for
-          the seven branches.
+          the branches.
         </p>
       </footer>
     </main>

@@ -102,7 +102,7 @@ export default function Page() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <Link
-                    href={`/canon/claims/${c.concept}`}
+                    href={`/excerpts/${c.concept}`}
                     className="hover:text-[color:var(--gold)]"
                   >
                     {c.concept.replace(/-/g, " ")}
@@ -272,7 +272,7 @@ export default function Page() {
             bridges
           </Link>{" "}
           ·{" "}
-          <Link href="/canon/claims" className="underline">
+          <Link href="/excerpts" className="underline">
             claims
           </Link>{" "}
           ·{" "}
