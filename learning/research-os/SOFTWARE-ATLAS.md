@@ -888,6 +888,7 @@ Claims the rows mark in place:
 - Whether any parser reads Stata `.dta` versions 120 and 121, the ones Stata 18 and 19 write for alias variables.
 - Abaqus licensing in current releases; the source is the 6.12 guide of 2012, and current documentation sits behind a sign-in.
 - ChimeraX rendering without a display, which the runner path assumes.
+- `pandas.read_sas` inside Pyodide: `read_stata` read a Stata file there, and the SAS reader has no test yet.
 - The suite tools inside a browser page: the Pyodide check ran under Node 22 on the same WebAssembly a page loads; a page run is still owed.
 
 Pages that refused scripted access on 2026-09-21 and were read another way: the NCBI Bookshelf manual for BLAST+ answered with a CAPTCHA, so the `-outfmt` list comes from the 2.17.0 source; lumivero.com answered with a bot check, so the NVivo row cites Lumivero's help site; MathWorks and IBM pages refuse `curl` and were read through a browser fetch and the PDF manual; Voyant's public host answered 502 and JS9's host refused connections, so those rows rest on their repositories. The GNU pages for PSPP answered the research pass and timed out on a later link check, so the PSPP row also cites the GNU release directory, which answered.
