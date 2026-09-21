@@ -10,7 +10,15 @@ type Step = "email" | "code" | "done";
 const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
 const BUTTON = "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 
-export default function SignInForm({ next }: { next: string | null }) {
+/**
+ * Email, then a one-time code. With `allowNewAccounts` false the form asks
+ * Supabase to sign in existing accounts only (`shouldCreateUser` off): the
+ * launch-list page uses it so staff and invited testers keep access on
+ * production. The flag is a request from the browser. Whether the project
+ * accepts new accounts at all is GoTrue's signup setting on the server. The
+ * form answers the same for a known and an unknown address.
+ */
+export default function SignInForm({ next, allowNewAccounts = true }: { next: string | null; allowNewAccounts?: boolean }) {
   const { user, loading } = useSession();
   const destination = safeNextPath(next);
   const [step, setStep] = useState<Step>("email");
@@ -55,9 +63,12 @@ export default function SignInForm({ next }: { next: string | null }) {
     if (!address || busy) return;
     setBusy(true);
     setError(null);
-    const { error: err } = await getBrowserSupabase().auth.signInWithOtp({ email: address, options: { shouldCreateUser: true } });
+    const { error: err } = await getBrowserSupabase().auth.signInWithOtp({ email: address, options: { shouldCreateUser: allowNewAccounts } });
     setBusy(false);
-    if (err) {
+    // Existing-accounts mode moves on for an unknown address too, so the page
+    // never says whether an address has an account.
+    const unknownAccount = !allowNewAccounts && Boolean(err?.message.toLowerCase().includes("signups not allowed"));
+    if (err && !unknownAccount) {
       setError(friendly(err.message));
       return;
     }
@@ -107,7 +118,7 @@ export default function SignInForm({ next }: { next: string | null }) {
     return (
       <form onSubmit={verify} className="mt-8 flex flex-col gap-3">
         <label htmlFor="sign-in-code" className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
-          enter the code sent to {email.trim()}
+          {allowNewAccounts ? `enter the code sent to ${email.trim()}` : `if an account uses ${email.trim()}, a code is on the way`}
         </label>
         <input
           id="sign-in-code"

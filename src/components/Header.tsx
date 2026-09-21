@@ -59,7 +59,7 @@ const CANON = [
 ];
 
 
-export default function Header() {
+export default function Header({ launchList = false }: { launchList?: boolean }) {
   const [open, setOpen] = useState(false);
   const [openSub, setOpenSub] = useState<string | null>(null); // desktop hover dropdown
   const [expandedMobile, setExpandedMobile] = useState<string | null>(null);
@@ -188,7 +188,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <UserMenu />
+            <UserMenu launchList={launchList} />
             {/* Hamburger, md:hidden */}
             <button
               type="button"
@@ -379,7 +379,7 @@ export default function Header() {
           </nav>
 
           <div className="p-5 border-t border-[color:var(--hairline)] bg-[color:var(--bone-2)]">
-            <UserMenu drawer onNavigate={closeDrawer} />
+            <UserMenu drawer onNavigate={closeDrawer} launchList={launchList} />
             <div className="mt-3 text-center text-[10px] small-caps text-[color:var(--basalt-3)] tracking-[0.15em]">
               free to read · paid to cite
             </div>
