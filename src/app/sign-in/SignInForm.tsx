@@ -10,7 +10,12 @@ type Step = "email" | "code" | "done";
 const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
 const BUTTON = "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 
-export default function SignInForm({ next }: { next: string | null }) {
+/**
+ * Email, then a one-time code. With `allowNewAccounts` false the form signs
+ * in existing accounts only: the launch-list page uses it so staff and
+ * invited testers keep access on production while new people join the list.
+ */
+export default function SignInForm({ next, allowNewAccounts = true }: { next: string | null; allowNewAccounts?: boolean }) {
   const { user, loading } = useSession();
   const destination = safeNextPath(next);
   const [step, setStep] = useState<Step>("email");
@@ -55,7 +60,7 @@ export default function SignInForm({ next }: { next: string | null }) {
     if (!address || busy) return;
     setBusy(true);
     setError(null);
-    const { error: err } = await getBrowserSupabase().auth.signInWithOtp({ email: address, options: { shouldCreateUser: true } });
+    const { error: err } = await getBrowserSupabase().auth.signInWithOtp({ email: address, options: { shouldCreateUser: allowNewAccounts } });
     setBusy(false);
     if (err) {
       setError(friendly(err.message));
@@ -166,6 +171,7 @@ function friendly(message: string): string {
   const m = message.toLowerCase();
   if (m.includes("rate limit") || m.includes("too many")) return "Too many codes requested. Wait a minute and try again.";
   if (m.includes("expired")) return "That code expired. Ask for a new one.";
+  if (m.includes("signups not allowed")) return "No account uses that email yet. Join the launch list to hear when Research OS opens.";
   if (m.includes("invalid")) return "That code did not match. Check it and try again.";
   return message;
 }
