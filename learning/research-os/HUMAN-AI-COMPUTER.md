@@ -240,7 +240,7 @@ Each rule is stated so that a test could fail it, and each names the surface tha
 Enforced by `GradeResult`'s shape at `src/lib/research-os/grounding.ts:39`, which has no field for a corrected explanation. Falsified by: any response type gaining a field whose value a learner can paste into their own explanation box, or any UI that renders `feedback` into an editable field. Test: a fixture where the model returns a `correctedExplanation` key, asserting it never reaches the client.
 
 **Rule 2. The model cites from a set of one, checked in code.**
-Enforced by the filter at `grounding.ts:166`, an exact string match after trim against `citationLabel(node)`. Falsified by: any citation reaching the learner that was not byte-equal to the allowed label. Test: a fixture returning a plausible-but-different citation, asserting an empty array.
+Enforced by the filter at `src/lib/research-os/grounding.ts:166`, an exact string match after trim against the label `citationLabel` builds at `src/lib/research-os/grounding.ts:63`. Falsified by: any citation reaching the learner that was not byte-equal to the allowed label. Test: a fixture returning a plausible-but-different citation, asserting an empty array.
 
 **Rule 3. Abstain is the default when parsing fails.**
 Enforced by `sanitizeGradeResult` at `grounding.ts:157` returning `ABSTAIN_FALLBACK` on a null parse or an out-of-range enum. Falsified by: any code path that surfaces a verdict from an unparsed response. Test: `parseModelJson` returning null, asserting `abstained === true`.

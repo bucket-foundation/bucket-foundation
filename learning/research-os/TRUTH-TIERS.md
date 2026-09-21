@@ -53,10 +53,10 @@ A second field of the same name shadows the column. `Candidate` at `src/lib/rese
 
 Four readers interpret the column, and each reads it as difficulty:
 
-- `src/lib/research-os/graph-layout.ts:36-39` sorts distinct tiers and uses the rank as an x-axis column index. A T1 engine hypothesis and a grade-1 node land in the same column.
-- `src/lib/research-os/search.ts:40` adds `Math.max(0, 6 - n.tier)` to a hit's score, so a low tier raises relevance.
+- `layoutGraph` at `src/lib/research-os/graph-layout.ts:35`, at `:36-39`, sorts distinct tiers and uses the rank as an x-axis column index. A T1 engine hypothesis and a grade-1 node land in the same column.
+- `scoreNode` at `src/lib/research-os/search.ts:27` adds `Math.max(0, 6 - n.tier)` to a hit's score at `src/lib/research-os/search.ts:40`, so a low tier raises relevance.
 - `checkTierMonotonicity` at `src/lib/research-os/ingest/validate.ts:28-39` enforces tier monotonicity on `prerequisite` edges, and its doc comment at `src/lib/research-os/ingest/validate.ts:22-27` states that the other five edge kinds "carry no such ordering claim", the quoted phrase sitting at `:26`.<!-- voice-ignore-line: verbatim quotation from validate.ts -->
-- `src/lib/research-os/ingest/infer.ts:146` skips a candidate pair when the two tiers are equal, with the comment `no ordering signal`.
+- `inferEdges` at `src/lib/research-os/ingest/infer.ts:131` skips a candidate pair when the two tiers are equal, at `src/lib/research-os/ingest/infer.ts:146`, with the comment `no ordering signal`.
 
 `learning/research-os/IDEAL-STATE.md` lists `tier` in the node header a reader sees, beside title, kind, branch and owner. Adding another meaning to the column would put an evidence grade in a field the map already paints as difficulty.
 
