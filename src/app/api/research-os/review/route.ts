@@ -78,6 +78,7 @@ import { createNodeFromProduction } from "@/lib/research-os/production-node";
 import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib/research-os/stages";
 import type { Stage } from "@/lib/research-os/types";
 import { configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById } from "@/lib/research-os/db";
+import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
 import {
   hasUnverifiedSource,
@@ -311,7 +312,13 @@ export async function POST(req: NextRequest) {
     // "returned" is recorded above in teacher_reviews (the review's own
     // audit trail) without touching learner_node_state.
     if (body.decision === "approved") {
-      await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+      try {
+        await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+      } catch (err) {
+        const mapped = evidenceErrorResponse(err);
+        if (mapped) return mapped;
+        throw err;
+      }
     }
 
     return NextResponse.json({ decision: body.decision, stage: transition.nextStage }, { headers: { "cache-control": "no-store" } });

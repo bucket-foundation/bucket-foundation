@@ -361,8 +361,12 @@ export async function POST(req: NextRequest) {
           const currentStage = await loadCurrentStage(learnerId, nodeId);
           const transition = onQuoteReturned(currentStage, { sessionId, locator: passage.locator });
           await recordEvidence(learnerId, nodeId, transition.nextStage, transition.event as unknown as Record<string, unknown>);
-        } catch {
-          /* best-effort, see comment above */
+        } catch (err) {
+          // The degrade stays: a learner reading a source is not blocked by
+          // a write failure. The silence does not, since production-guard
+          // reads this event to verify a cited source later.
+          const message = err instanceof Error ? err.message : String(err);
+          console.warn(`[research-os] quote evidence not recorded for learner ${learnerId} node ${nodeId}: ${message}`);
         }
       }
 

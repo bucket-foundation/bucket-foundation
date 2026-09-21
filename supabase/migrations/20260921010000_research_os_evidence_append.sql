@@ -15,6 +15,21 @@
 -- learner backward; a caller that has to set a lower stage passes
 -- p_monotone false and says why at the call site.
 
+create or replace function graph.stage_rank(p_stage text)
+returns integer
+language sql
+immutable
+as $$
+  select case p_stage
+    when 'access' then 0
+    when 'awareness' then 1
+    when 'understanding' then 2
+    when 'internalization' then 3
+    when 'production' then 4
+    else -1
+  end;
+$$;
+
 -- The highest stage this learner has ever been awarded for on this node.
 -- XP rises once per stage per node: a teacher demotion followed by a
 -- re-promotion moves the stage and awards nothing, because the high-water
@@ -43,20 +58,6 @@ update graph.learner_node_state s
    )
  where awarded_stage is null;
 
-create or replace function graph.stage_rank(p_stage text)
-returns integer
-language sql
-immutable
-as $$
-  select case p_stage
-    when 'access' then 0
-    when 'awareness' then 1
-    when 'understanding' then 2
-    when 'internalization' then 3
-    when 'production' then 4
-    else -1
-  end;
-$$;
 
 create or replace function graph.append_evidence(
   p_learner uuid,
@@ -251,10 +252,12 @@ grant execute on function graph.override_level(uuid, uuid, uuid, uuid, text, tex
 -- definers, so the service role keeps its reads and loses the writes it no
 -- longer performs. This is the invariant the receipts in the next slice
 -- rest on, enforced where a test cannot be talked out of it.
-revoke insert, update, delete on graph.learner_node_state from service_role;
+-- truncate and trigger are writes too: truncate empties the table, and a
+-- trigger writes on the definer's behalf.
+revoke insert, update, delete, truncate, trigger, references on graph.learner_node_state from service_role;
 
 -- Rollback for this migration, in order:
---   revoke: grant insert, update, delete on graph.learner_node_state to service_role;
+--   revoke: grant insert, update, delete, truncate, trigger, references on graph.learner_node_state to service_role;
 --   drop function if exists graph.override_level(uuid, uuid, uuid, uuid, text, text, timestamptz);
 --   drop function if exists graph.append_evidence(uuid, uuid, text, jsonb, boolean);
 --   drop function if exists graph.stage_rank(text);

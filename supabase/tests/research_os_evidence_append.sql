@@ -162,9 +162,12 @@ end $$;
 -- Bad input is refused rather than written.
 do $$
 declare
-  l uuid; n uuid; caught boolean;
+  l uuid; n uuid; caught boolean; v_before integer;
 begin
   select learner, node into l, n from t_ids;
+  select jsonb_array_length(evidence) into v_before
+    from graph.learner_node_state where learner_id = l and node_id = n;
+  assert v_before > 0, 'the fixture has events before the refusals';
 
   caught := false;
   begin
@@ -187,9 +190,8 @@ begin
   end;
   assert caught, 'a missing learner is refused';
 
-  assert (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n)
-         = (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n),
-    'a refused call writes nothing';
+  assert (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n) = v_before,
+    'a refused call writes nothing: the log grew from ' || v_before::text;
 end $$;
 
 rollback;

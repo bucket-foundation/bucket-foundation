@@ -56,6 +56,19 @@ test("the append contract holds in real Postgres", { skip }, () => {
   assert.equal(run.status, 0, run.stderr || run.stdout);
 });
 
+// A database migrated one statement at a time can hide an ordering fault,
+// since an earlier pass left the object a later statement needs. This
+// replays the migration over a dropped copy of everything it creates.
+test("the migration applies to a database that has never seen it", { skip }, () => {
+  const root = path.join(__dirname, "..");
+  const run = spawnSync(
+    "psql",
+    [DB, "-v", "ON_ERROR_STOP=1", "-q", "-f", "supabase/tests/research_os_evidence_append_fresh.sql"],
+    { encoding: "utf8", cwd: root },
+  );
+  assert.equal(run.status, 0, run.stderr || run.stdout);
+});
+
 test("two writers racing on one row keep both events", { skip }, async (t) => {
   const learner = randomUUID();
   const node = randomUUID();
@@ -228,7 +241,7 @@ test("the writers of learner_node_state are the ones we know about", { skip }, (
   // invariant, so it is asserted here.
   const writes = sql(`
     select string_agg(priv, ',' order by priv) from (
-      select unnest(array['INSERT','UPDATE','DELETE']) as priv
+      select unnest(array['INSERT','UPDATE','DELETE','TRUNCATE','TRIGGER','REFERENCES']) as priv
     ) p
     where has_table_privilege('service_role', 'graph.learner_node_state', p.priv)
   `);
