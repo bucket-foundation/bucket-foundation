@@ -20,7 +20,9 @@ None.
 
 None.
 
-The memo owes a Research OS surface under the critic protocol's surface gate; ros-frontend carries it.
+Critic round 1 at `3083d4e0e` scored 7.0 and failed. The revision corrects the research tools' hosting (one gateway for all forty; `founder-gpu` is a stale label), registers the engine host as a service runner and lets a run name a production input by the hash of its canonical JSON, makes the engine a trusted job kind with its exemptions on the run, marks every run self-reported until others reproduce it, splits the reproducible mark by who can read the inputs, adds confidentiality of inputs to the security model with an output frame and a sanitizer that strips remote URLs, and tests the LaTeX namespace in bubblewrap on this machine. It re-syncs the atlas's directions to its commit `c12a88bf2`.
+
+The memo owes a Research OS surface under the critic protocol's surface gate; ros-frontend carries it, and the memo sets out the section's layout at 390 pixels. The roadmap row goes into `learning/research-os/ROADMAP.md` when the loop's branch that holds that file merges.
 
 ## ros-patents 1: the research memo
 
