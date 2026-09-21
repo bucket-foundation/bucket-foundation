@@ -40,6 +40,7 @@ const TEACH: Item[] = [
   { href: "/research-os/roster", label: "Roster", hint: "members and consent", match: ["/research-os/roster"] },
   { href: "/research-os/edges", label: "Edges", hint: "proposed graph links", match: ["/research-os/edges"] },
   { href: "/research-os/status", label: "Status", hint: "engine, tutor model, builds", match: ["/research-os/status"] },
+  { href: "/research-os/patents", label: "Patents", hint: "the design and what ships next", match: ["/research-os/patents"] },
 ];
 
 function isOn(item: Item, pathname: string): boolean {

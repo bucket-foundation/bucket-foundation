@@ -14,60 +14,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { cells, plain, segments, writeOrCheck } from "./md-inline.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const MEMO = path.join(ROOT, "learning/research-os/SOFTWARE-ATLAS.md");
 const OUT = path.join(ROOT, "src/lib/research-os/software-atlas-data.json");
 const PATHS = ["browser", "runner", "import", "link"];
-
-/** Splits a table row into cells, respecting code spans that hold a pipe. */
-function cells(line) {
-  const out = [];
-  let cur = "";
-  let code = false;
-  const body = line.trim().replace(/^\|/, "").replace(/\|$/, "");
-  for (const ch of body) {
-    if (ch === "`") code = !code;
-    if (ch === "|" && !code) {
-      out.push(cur.trim());
-      cur = "";
-    } else cur += ch;
-  }
-  out.push(cur.trim());
-  return out;
-}
-
-/** Inline markdown to segments; collects citation numbers. */
-function segments(text) {
-  const refs = [];
-  const segs = [];
-  const re = /(`[^`]+`)|(\[([^\]]+)\]\((https?:[^)\s]+)\))|(\[(\d+)\])|(<(https?:[^>\s]+)>)|(\*\*([^*]+)\*\*)/g;
-  let last = 0;
-  let m;
-  const push = (t) => {
-    if (!t) return;
-    const prev = segs[segs.length - 1];
-    if (prev && prev.t === "text") prev.v += t;
-    else segs.push({ t: "text", v: t });
-  };
-  while ((m = re.exec(text))) {
-    push(text.slice(last, m.index));
-    if (m[1]) segs.push({ t: "code", v: m[1].slice(1, -1) });
-    else if (m[2]) segs.push({ t: "link", v: m[3], href: m[4] });
-    else if (m[5]) refs.push(Number(m[6]));
-    else if (m[7]) segs.push({ t: "link", v: m[8], href: m[8] });
-    else if (m[9]) push(m[10]);
-    last = re.lastIndex;
-  }
-  push(text.slice(last));
-  // Tidy the space a removed citation leaves before punctuation.
-  for (const s of segs) if (s.t === "text") s.v = s.v.replace(/\s+([,.;:)])/g, "$1").replace(/\s{2,}/g, " ");
-  return { segs: segs.filter((s) => s.t !== "text" || s.v.trim() !== "" || segs.length === 1), refs };
-}
-
-function plain(segs) {
-  return segs.map((s) => s.v).join("").trim();
-}
 
 function parse(md) {
   const lines = md.split("\n");
@@ -190,14 +142,4 @@ const missing = data.tools.filter((t) => !PATHS.includes(t.first));
 if (missing.length) throw new Error(`no first path for ${missing.map((t) => t.name).join(", ")}`);
 const json = JSON.stringify(data, null, 1) + "\n";
 
-if (process.argv.includes("--check")) {
-  const now = fs.existsSync(OUT) ? fs.readFileSync(OUT, "utf8") : "";
-  if (now !== json) {
-    console.error("software-atlas-data.json is stale; run node scripts/research-os/software-atlas.mjs");
-    process.exit(1);
-  }
-  console.log(`software-atlas-data.json matches the memo: ${data.tools.length} tools, ${data.viewers.length} viewers, ${data.suite.length} suite tools`);
-} else {
-  fs.writeFileSync(OUT, json);
-  console.log(`wrote ${path.relative(ROOT, OUT)}: ${data.tools.length} tools in ${data.fields.length} fields, ${data.viewers.length} viewers, ${data.suite.length} suite tools, ${data.directions.length} directions`);
-}
+writeOrCheck(fs, OUT, json, "software-atlas-data.json", `${data.tools.length} tools in ${data.fields.length} fields, ${data.viewers.length} viewers, ${data.suite.length} suite tools, ${data.directions.length} directions`);
