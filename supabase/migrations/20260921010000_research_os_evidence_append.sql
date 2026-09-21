@@ -264,3 +264,82 @@ revoke insert, update, delete, truncate, trigger, references on graph.learner_no
 --   alter table graph.learner_node_state drop column if exists awarded_stage;
 -- A build carrying src/lib/research-os/db.ts's recordEvidence needs the
 -- functions, so the rollback goes with a revert of that build.
+
+-- A production review writes three rows: the production's status and notes,
+-- the teacher's audit row, and the learner's evidence event. Before this
+-- function the route wrote them in sequence, so a lock wait on the append
+-- left the production accepted with no review event and no way forward: a
+-- retry read the status as no longer submitted and answered 409 (Bucket
+-- critic ROS194-27). The three writes now commit together or not at all.
+--
+-- The route keeps every decision: it computes the next status, the note,
+-- the incentive flag, the audit note and the evidence event, and this
+-- function writes them under one lock.
+create or replace function graph.review_production(
+  p_production uuid,
+  p_review_id uuid,
+  p_reviewer uuid,
+  p_decision text,
+  p_next_status text,
+  p_notes jsonb,
+  p_incentive boolean,
+  p_reason text,
+  p_note jsonb,
+  p_learner uuid,
+  p_target uuid,
+  p_stage text,
+  p_event jsonb,
+  p_at timestamptz default now()
+)
+returns jsonb
+language plpgsql
+security definer
+set search_path = graph, pg_catalog, pg_temp
+as $$
+declare
+  v_status text;
+  v_review uuid;
+  v_append jsonb;
+  v_row jsonb;
+begin
+  set local lock_timeout = '1s';
+
+  select status into v_status from graph.productions where id = p_production for update;
+  if v_status is null then
+    return jsonb_build_object('ok', false, 'error', 'production_not_found');
+  end if;
+  if v_status <> 'submitted' then
+    return jsonb_build_object('ok', false, 'error', 'not_pending', 'status', v_status);
+  end if;
+
+  update graph.productions
+     set status = p_next_status,
+         notes = p_notes,
+         updated_at = p_at,
+         production_incentive_eligible = p_incentive
+   where id = p_production
+  returning to_jsonb(graph.productions.*) into v_row;
+
+  -- The caller supplies the id so the evidence event can name the review
+  -- it belongs to, which it has to build before this transaction opens.
+  insert into graph.teacher_reviews (id, reviewer_id, learner_id, kind, production_id, decision, reason, evidence)
+  values (coalesce(p_review_id, gen_random_uuid()), p_reviewer, p_learner, 'production', p_production, p_decision, p_reason, p_note)
+  returning id into v_review;
+
+  v_append := graph.append_evidence(p_learner, p_target, p_stage, p_event);
+  if coalesce((v_append->>'deleted')::boolean, false) then
+    raise exception 'review_production: learner % was deleted', p_learner;
+  end if;
+
+  return jsonb_build_object(
+    'ok', true,
+    'review_id', v_review,
+    'production', v_row,
+    'award_from', v_append->'award_from',
+    'awards', v_append->'awards'
+  );
+end;
+$$;
+
+revoke all on function graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb, timestamptz) from public;
+grant execute on function graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb, timestamptz) to service_role;

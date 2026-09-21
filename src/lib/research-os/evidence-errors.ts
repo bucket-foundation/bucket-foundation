@@ -27,5 +27,8 @@ export function evidenceErrorResponse(err: unknown): NextResponse | null {
       { status: 503, headers: { ...NO_STORE, "retry-after": "1" } },
     );
   }
+  // A missing function names the migration to apply, and the shaped
+  // response cannot carry it, so the server log does.
+  console.error(`[research-os] evidence append failed (${err.code ?? "unknown"}): ${err.message}`);
   return NextResponse.json({ error: "evidence_write_failed" }, { status: 500, headers: NO_STORE });
 }

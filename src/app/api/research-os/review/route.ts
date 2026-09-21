@@ -73,11 +73,12 @@
  * 403 not a reviewer (also covers an unset/empty allowlist, fail closed) ·
  * 400 bad input · 404 target row not found · 503 not configured.
  */
+import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { createNodeFromProduction } from "@/lib/research-os/production-node";
 import { onTeacherReview, onProductionReview, onProductionReturned } from "@/lib/research-os/stages";
 import type { Stage } from "@/lib/research-os/types";
-import { configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById } from "@/lib/research-os/db";
+import { awardProgress, configured, graphService, recordEvidence, emitProductionOutboxIfAccepted, findNodeById } from "@/lib/research-os/db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
 import { verifyReviewer } from "@/lib/research-os/reviewer";
 import {
@@ -385,50 +386,71 @@ export async function POST(req: NextRequest) {
     incentiveEligible = computeIncentiveEligible("accepted", signoff);
   }
 
-  const { data: updated, error: updErr } = await svc
-    .from("productions")
-    .update({ status: newStatus, notes, updated_at: now, production_incentive_eligible: incentiveEligible })
-    .eq("id", productionId)
-    .select("id,learner_id,target_node_id,claim,evidence,sources,status,created_at,updated_at,production_incentive_eligible")
-    .maybeSingle();
-  if (updErr) return bad(500, "write_failed");
+  // The production's status, the teacher's audit row and the learner's
+  // evidence event commit together (graph.review_production). Writing them
+  // in sequence left a lock wait on the append with an accepted production,
+  // no review event, and a retry that answered 409 because the status had
+  // already moved.
+  const reviewId = randomUUID();
+  const transition =
+    body.decision === "approved" ? onProductionReview(reviewer.id, reason, reviewId) : onProductionReturned(reviewer.id, reason, reviewId);
+  const { data: reviewed, error: rpcErr } = await svc.rpc("review_production", {
+    p_production: productionId,
+    p_review_id: reviewId,
+    p_reviewer: reviewer.id,
+    p_decision: body.decision,
+    p_next_status: newStatus,
+    p_notes: notes,
+    p_incentive: incentiveEligible,
+    p_reason: reason ?? null,
+    p_note: noteEntry,
+    p_learner: production.learner_id as string,
+    p_target: production.target_node_id as string,
+    p_stage: transition.nextStage,
+    p_event: transition.event as unknown as Record<string, unknown>,
+    p_at: now,
+  });
+  if (rpcErr) {
+    const code = (rpcErr as { code?: string }).code ?? null;
+    if (code === "55P03" || code === "40001" || code === "40P01") {
+      return NextResponse.json(
+        { error: "busy" },
+        { status: 503, headers: { "cache-control": "no-store", "retry-after": "1" } },
+      );
+    }
+    console.error(`[research-os/review] review_production failed (${code ?? "unknown"}): ${rpcErr.message}`);
+    return bad(500, "write_failed");
+  }
+  const result = (reviewed || {}) as {
+    ok?: boolean;
+    error?: string;
+    status?: string;
+    review_id?: string;
+    production?: Record<string, unknown>;
+    award_from?: string | null;
+    awards?: boolean;
+  };
+  if (!result.ok) {
+    if (result.error === "production_not_found") return bad(404, "production_not_found");
+    return bad(409, `production is already "${result.status}", not pending`);
+  }
+  const updated = (result.production ?? null) as Record<string, unknown> | null;
 
-  const { data: review, error: insErr } = await svc
-    .from("teacher_reviews")
-    .insert({
-      reviewer_id: reviewer.id,
-      learner_id: production.learner_id,
-      kind: "production",
-      production_id: productionId,
-      decision: body.decision,
-      reason: reason ?? null,
-      evidence: noteEntry,
-    })
-    .select("id")
-    .maybeSingle();
-  if (insErr) return bad(500, "review_write_failed");
-  const reviewId = review?.id as string | undefined;
-
-  if (updated) {
-    // ros-02's evidence-schema review found this gap: a returned
-    // production used to leave graph.learner_node_state.stage at
-    // "production" with no evidence event recording the correction, since
-    // only the "approved" branch ever called recordEvidence. Both
-    // branches call it now; stage never moves backward (the high-water-
-    // mark rule every transition in stages.ts enforces), so a "returned"
-    // event's fromStage/toStage both read "production": the correction
-    // lives in the event itself, and in graph.productions.status going
-    // back to "draft", with the stage column left alone. See
-    // src/lib/research-os/EVIDENCE-SCHEMA.md, "The corrective event on
-    // graph.productions."
-    const transition =
-      body.decision === "approved" ? onProductionReview(reviewer.id, reason, reviewId) : onProductionReturned(reviewer.id, reason, reviewId);
-    await recordEvidence(
+  // The game layer runs outside the transaction: activity on every review,
+  // XP only when the node's high-water mark moved.
+  try {
+    await awardProgress(
       production.learner_id as string,
       production.target_node_id as string,
-      transition.nextStage,
-      transition.event as unknown as Record<string, unknown>,
+      (result.award_from ?? null) as Stage | null,
+      transition.nextStage as Stage,
+      { xp: result.awards === true },
     );
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    if (!message.includes("update failed")) {
+      console.warn(`[research-os/review] award failed for production ${productionId}: ${message}`);
+    }
   }
 
   // The accepted production becomes a node of its kind with an edge to

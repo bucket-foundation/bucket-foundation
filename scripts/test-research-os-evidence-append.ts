@@ -46,11 +46,27 @@ function loadLocalEnv(): void {
 }
 loadLocalEnv();
 
-const probe = sql("select to_regprocedure('graph.append_evidence(uuid,uuid,text,jsonb,boolean)') is not null");
-const ready = probe.status === 0 && probe.out === "t";
-const skip = ready ? false : "no local database with the evidence-append migration";
+// The connection is what these tests need. Probing for the function would
+// skip the fresh-apply replay on exactly the database it exists to cover.
+const probe = sql("select 1");
+const reachable = probe.status === 0 && probe.out === "1";
+const migrated = sql("select to_regprocedure('graph.append_evidence(uuid,uuid,text,jsonb,boolean)') is not null");
 
-test("the append contract holds in real Postgres", { skip }, () => {
+// A skipped test reads as a pass. RESEARCH_OS_REQUIRE_DB=1 turns the skip
+// into a failure, which is how the database job in CI proves these ran.
+const REQUIRED = process.env.RESEARCH_OS_REQUIRE_DB === "1";
+if (REQUIRED && !reachable) {
+  throw new Error(`RESEARCH_OS_REQUIRE_DB=1 and no database answered at ${DB}: ${probe.out}`);
+}
+if (REQUIRED && migrated.out !== "t") {
+  throw new Error("RESEARCH_OS_REQUIRE_DB=1 and the evidence-append migration is not applied");
+}
+
+const skip = reachable ? false : "no local database reachable";
+const skipApplied =
+  !reachable ? "no local database reachable" : migrated.out === "t" ? false : "the evidence-append migration is not applied";
+
+test("the append contract holds in real Postgres", { skip: skipApplied }, () => {
   const file = path.join(__dirname, "..", "supabase", "tests", "research_os_evidence_append.sql");
   const run = spawnSync("psql", [DB, "-v", "ON_ERROR_STOP=1", "-q", "-f", file], { encoding: "utf8" });
   assert.equal(run.status, 0, run.stderr || run.stdout);
@@ -69,7 +85,7 @@ test("the migration applies to a database that has never seen it", { skip }, () 
   assert.equal(run.status, 0, run.stderr || run.stdout);
 });
 
-test("two writers racing on one row keep both events", { skip }, async (t) => {
+test("two writers racing on one row keep both events", { skip: skipApplied }, async (t) => {
   const learner = randomUUID();
   const node = randomUUID();
   const email = `append-race-${learner}@bucket.test`;
@@ -139,7 +155,7 @@ test("two writers racing on one row keep both events", { skip }, async (t) => {
   assert.equal(lost.out, "1", `the replaced shape loses an event on the same path, got ${lost.out}`);
 });
 
-test("a teacher override lowers the stage through overrideLevel", { skip }, async (t) => {
+test("a teacher override lowers the stage through overrideLevel", { skip: skipApplied }, async (t) => {
   const learner = randomUUID();
   const teacher = randomUUID();
   const node = randomUUID();
@@ -198,7 +214,7 @@ test("a teacher override lowers the stage through overrideLevel", { skip }, asyn
 // writes through db.ts, and the functions that write the table are the ones
 // named here. graph.override_level is absent on purpose: it locks the row
 // and appends through append_evidence, so it writes no statement of its own.
-test("the writers of learner_node_state are the ones we know about", { skip }, () => {
+test("the writers of learner_node_state are the ones we know about", { skip: skipApplied }, () => {
   const functions = sql(`
     select string_agg(p.proname, ',' order by p.proname)
     from pg_proc p join pg_namespace n on n.oid = p.pronamespace
@@ -263,7 +279,7 @@ test("the writers of learner_node_state are the ones we know about", { skip }, (
   );
 });
 
-test("a same-stage event keeps a streak alive and awards nothing", { skip }, async (t) => {
+test("a same-stage event keeps a streak alive and awards nothing", { skip: skipApplied }, async (t) => {
   const learner = randomUUID();
   const node = randomUUID();
 
@@ -301,7 +317,7 @@ test("a same-stage event keeps a streak alive and awards nothing", { skip }, asy
   assert.notEqual(day, "2020-01-01", `the day the learner was last active moves, got ${day}`);
 });
 
-test("a demote and a re-promote award no XP twice", { skip }, async (t) => {
+test("a demote and a re-promote award no XP twice", { skip: skipApplied }, async (t) => {
   const learner = randomUUID();
   const teacher = randomUUID();
   const node = randomUUID();
@@ -356,7 +372,7 @@ test("a demote and a re-promote award no XP twice", { skip }, async (t) => {
   assert.equal(Number(after.out), afterClimb, `three demote and re-promote cycles award nothing, got ${after.out}`);
 });
 
-test("a failed audit row leaves the stage where it was", { skip }, async (t) => {
+test("a failed audit row leaves the stage where it was", { skip: skipApplied }, async (t) => {
   const learner = randomUUID();
   const teacher = randomUUID();
   const node = randomUUID();
