@@ -1,0 +1,203 @@
+#!/usr/bin/env node
+/**
+ * Builds src/lib/research-os/software-atlas-data.json from the tables in
+ * learning/research-os/SOFTWARE-ATLAS.md, so the Software page in Research OS
+ * reads the atlas without a markdown parser in the bundle.
+ *
+ *   node scripts/research-os/software-atlas.mjs          # write the JSON
+ *   node scripts/research-os/software-atlas.mjs --check  # exit 1 when the JSON is stale
+ *
+ * Cells keep their inline markdown as segments: text, code, and links. A
+ * citation marker such as [12] becomes a source reference, resolved against
+ * the numbered source lists, which share one numbering across the memo.
+ */
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+const MEMO = path.join(ROOT, "learning/research-os/SOFTWARE-ATLAS.md");
+const OUT = path.join(ROOT, "src/lib/research-os/software-atlas-data.json");
+const PATHS = ["browser", "runner", "import", "link"];
+
+/** Splits a table row into cells, respecting code spans that hold a pipe. */
+function cells(line) {
+  const out = [];
+  let cur = "";
+  let code = false;
+  const body = line.trim().replace(/^\|/, "").replace(/\|$/, "");
+  for (const ch of body) {
+    if (ch === "`") code = !code;
+    if (ch === "|" && !code) {
+      out.push(cur.trim());
+      cur = "";
+    } else cur += ch;
+  }
+  out.push(cur.trim());
+  return out;
+}
+
+/** Inline markdown to segments; collects citation numbers. */
+function segments(text) {
+  const refs = [];
+  const segs = [];
+  const re = /(`[^`]+`)|(\[([^\]]+)\]\((https?:[^)\s]+)\))|(\[(\d+)\])|(<(https?:[^>\s]+)>)|(\*\*([^*]+)\*\*)/g;
+  let last = 0;
+  let m;
+  const push = (t) => {
+    if (!t) return;
+    const prev = segs[segs.length - 1];
+    if (prev && prev.t === "text") prev.v += t;
+    else segs.push({ t: "text", v: t });
+  };
+  while ((m = re.exec(text))) {
+    push(text.slice(last, m.index));
+    if (m[1]) segs.push({ t: "code", v: m[1].slice(1, -1) });
+    else if (m[2]) segs.push({ t: "link", v: m[3], href: m[4] });
+    else if (m[5]) refs.push(Number(m[6]));
+    else if (m[7]) segs.push({ t: "link", v: m[8], href: m[8] });
+    else if (m[9]) push(m[10]);
+    last = re.lastIndex;
+  }
+  push(text.slice(last));
+  // Tidy the space a removed citation leaves before punctuation.
+  for (const s of segs) if (s.t === "text") s.v = s.v.replace(/\s+([,.;:)])/g, "$1").replace(/\s{2,}/g, " ");
+  return { segs: segs.filter((s) => s.t !== "text" || s.v.trim() !== "" || segs.length === 1), refs };
+}
+
+function plain(segs) {
+  return segs.map((s) => s.v).join("").trim();
+}
+
+function parse(md) {
+  const lines = md.split("\n");
+  const sources = {};
+  for (const l of lines) {
+    const m = l.match(/^(\d+)\. (.+?): <(https?:[^>]+)>\s*$/);
+    if (m) sources[m[1]] = { title: m[2], url: m[3] };
+  }
+
+  const at = (h) => lines.findIndex((l) => l.trim() === h);
+  const atlasStart = at("## The atlas");
+  const suiteStart = at("## The research tools suite");
+  const unverifiedStart = at("## Unverified");
+  const directionsStart = at("## Directions for the workbench");
+  if ([atlasStart, suiteStart, unverifiedStart, directionsStart].some((i) => i < 0)) throw new Error("atlas headings moved");
+
+  // The index: first path and fallback for every tool.
+  const index = {};
+  for (let i = atlasStart; i < suiteStart; i++) {
+    const c = cells(lines[i]);
+    if (lines[i].startsWith("| ") && c.length === 4 && PATHS.includes(c[2]) && !c[0].startsWith("---")) {
+      index[c[0]] = { field: c[1], first: c[2], fallback: PATHS.includes(c[3]) ? c[3] : null };
+    }
+  }
+
+  const tools = [];
+  const viewers = [];
+  let field = null;
+  let intro = {};
+  for (let i = atlasStart; i < suiteStart; i++) {
+    const l = lines[i];
+    const h = l.match(/^### (.+)$/);
+    if (h) {
+      field = h[1];
+      const p = lines.slice(i + 1).find((x) => x.trim() && !x.startsWith("|"));
+      intro[field] = p ? plain(segments(p).segs) : "";
+      continue;
+    }
+    if (!field || !l.startsWith("| ") || l.startsWith("| ---") || l.startsWith("|---")) continue;
+    const c = cells(l);
+    if (field === "Viewers and runtimes for the page") {
+      if (c[0] === "Viewer or runtime" || c.length !== 6) continue;
+      const cell = (k) => segments(c[k]).segs;
+      viewers.push({
+        name: c[0],
+        license: cell(1),
+        reads: cell(2),
+        latest: cell(3),
+        maintained: cell(4),
+        serves: cell(5),
+      });
+      continue;
+    }
+    if (c[0] === "Tool" || c.length !== 7) continue;
+    const idx = index[c[0]];
+    const cell = (k) => segments(c[k]);
+    const license = cell(1);
+    const licText = plain(license.segs);
+    const closed = /^closed/i.test(licText) || /\bclosed\b/i.test(licText.split(";")[0]);
+    const refs = new Set();
+    const row = {
+      name: c[0],
+      field,
+      open: !closed,
+      license: license.segs,
+      renders: cell(2).segs,
+      formats: cell(3).segs,
+      first: idx ? idx.first : c[4].split(",")[0].trim(),
+      fallback: idx ? idx.fallback : null,
+      connects: cell(5).segs,
+      shows: cell(6).segs,
+      sources: [],
+    };
+    for (const k of [1, 2, 3, 5, 6]) for (const r of segments(c[k]).refs) refs.add(r);
+    row.sources = [...refs].sort((a, b) => a - b).map((n) => ({ n, ...(sources[n] ?? { title: `source ${n}`, url: null }) }));
+    tools.push(row);
+  }
+
+  const suite = [];
+  let group = null;
+  for (let i = suiteStart; i < unverifiedStart; i++) {
+    const l = lines[i];
+    const h = l.match(/^### Suite: (.+)$/);
+    if (h) {
+      group = h[1];
+      continue;
+    }
+    if (!group || !l.startsWith("| ") || l.startsWith("| ---")) continue;
+    const c = cells(l);
+    if (c[0] === "Tool" || c.length !== 5) continue;
+    const pyodide = plain(segments(c[3]).segs);
+    suite.push({
+      name: c[0],
+      group,
+      does: segments(c[1]).segs,
+      runs: segments(c[2]).segs,
+      pyodide,
+      inBrowser: /^same/.test(pyodide),
+      atlasRows: plain(segments(c[4]).segs),
+    });
+  }
+
+  const directions = [];
+  for (let i = directionsStart; i < lines.length; i++) {
+    const m = lines[i].match(/^(\d+)\. \*\*(.+?)\*\* (.+)$/);
+    if (m) directions.push({ n: Number(m[1]), title: m[2], body: segments(m[3]).segs });
+  }
+
+  const unverified = [];
+  for (let i = unverifiedStart; i < directionsStart; i++) {
+    const m = lines[i].match(/^- (.+)$/);
+    if (m) unverified.push(segments(m[1]).segs);
+  }
+
+  return { memo: "learning/research-os/SOFTWARE-ATLAS.md", fields: [...new Set(tools.map((t) => t.field))].map((f) => ({ name: f, intro: intro[f] ?? "" })), tools, viewers, suite, directions, unverified };
+}
+
+const data = parse(fs.readFileSync(MEMO, "utf8"));
+const missing = data.tools.filter((t) => !PATHS.includes(t.first));
+if (missing.length) throw new Error(`no first path for ${missing.map((t) => t.name).join(", ")}`);
+const json = JSON.stringify(data, null, 1) + "\n";
+
+if (process.argv.includes("--check")) {
+  const now = fs.existsSync(OUT) ? fs.readFileSync(OUT, "utf8") : "";
+  if (now !== json) {
+    console.error("software-atlas-data.json is stale; run node scripts/research-os/software-atlas.mjs");
+    process.exit(1);
+  }
+  console.log(`software-atlas-data.json matches the memo: ${data.tools.length} tools, ${data.viewers.length} viewers, ${data.suite.length} suite tools`);
+} else {
+  fs.writeFileSync(OUT, json);
+  console.log(`wrote ${path.relative(ROOT, OUT)}: ${data.tools.length} tools in ${data.fields.length} fields, ${data.viewers.length} viewers, ${data.suite.length} suite tools, ${data.directions.length} directions`);
+}

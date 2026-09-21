@@ -1,0 +1,7898 @@
+{
+ "memo": "learning/research-os/SOFTWARE-ATLAS.md",
+ "fields": [
+  {
+   "name": "Proof",
+   "intro": "Lean leads, as the brief asks, with Rocq and Isabelle beside it. The repository's own Lean pipeline is in the Lean section."
+  },
+  {
+   "name": "Mathematics",
+   "intro": "The brief names Mathematica and Maple, closed, with SageMath and GAP, open. PARI/GP is added as a number theory system whose own site serves a WebAssembly build."
+  },
+  {
+   "name": "Chemistry",
+   "intro": "The brief names RDKit and Avogadro, open, with Gaussian, closed. Open Babel is added as the format converter the others lean on, and GROMACS as the molecular dynamics engine chemistry shares with biology and physics; the suite's TrajMine reads its trajectories."
+  },
+  {
+   "name": "Biology",
+   "intro": "The brief names PyMOL, BLAST, Bioconductor, and Fiji. ChimeraX is added beside PyMOL as a molecular viewer, and IGV as a genome browser whose JavaScript build suits the page. Biopython is added because the suite's sequence tools meet its formats and it already runs in Pyodide."
+  },
+  {
+   "name": "Neuroscience",
+   "intro": "Neither row is in the brief. Five suite tools analyze electrophysiology and calcium imaging, and PatchSeqML already reads NWB files, so NEURON, a simulator of neurons and networks, and NWB, the data format the DANDI archive requires, are added."
+  },
+  {
+   "name": "Physics",
+   "intro": "The brief names ROOT, Geant4, COMSOL, and MATLAB. GNU Octave is added as the open runtime for MATLAB code, and LAMMPS as a molecular dynamics code for materials, with a maintained port that runs in the page."
+  },
+  {
+   "name": "Astronomy",
+   "intro": "The brief names Astropy. SAOImageDS9 is added as the desktop FITS viewer, and Aladin Lite as the maintained sky viewer for the page; JS9, once DS9's browser counterpart, is archived."
+  },
+  {
+   "name": "Earth science",
+   "intro": "The brief names QGIS and GDAL. Google Earth Engine is added as a closed platform for satellite remote sensing, and netCDF with xarray for gridded climate data. GMT is added for published maps. GeoSummary in the suite reads the kind of series these tools write."
+  },
+  {
+   "name": "CAD",
+   "intro": "The brief names SolidWorks and Onshape, closed, with FreeCAD and OpenSCAD, open. KiCad is added as an open tool for electronics design. STEP and glTF exports carry four of the five to the web, where Online3DViewer reads STEP; OpenSCAD runs in the page itself."
+  },
+  {
+   "name": "Simulation",
+   "intro": "The brief names Ansys and Abaqus, closed, with FEniCS and OpenFOAM, open. meshio is the import parser for the group: it reads Abaqus input, Gmsh, VTK, XDMF, and some thirty mesh formats in pure Python, though its last release was 2024-01-31."
+  },
+  {
+   "name": "Statistics",
+   "intro": "The brief names R with SPSS and Stata. SAS is added as the owner of the XPORT format the FDA requires for every electronic dataset in a submission, and PSPP as the free engine for SPSS syntax. The four data formats here, .sav, .dta, .sas7bdat, and .xpt, have readers that load in the page. pandas in Pyodide 314.0.7 read a Stata .dta file in a check on 2026-09-21, and its SAS reader is untested there. haven, which reads all four, is in webR's package repository."
+  },
+  {
+   "name": "Qualitative research",
+   "intro": "The brief names NVivo and ATLAS.ti. MAXQDA is added as a third closed package that writes the same exchange format. REFI-QDA is the exchange standard all of them write, so one parser covers the group; QualCoder and Taguette are added as the open tools on the desktop and on the web."
+  },
+  {
+   "name": "Humanities",
+   "intro": "The brief names Zotero and TEI. Voyant Tools is added for text analysis, and Transkribus for handwritten text recognition in archives. Research OS already holds 178 literature cards as primary_source nodes, so a reference manager is the row with the widest reach here."
+  },
+  {
+   "name": "Visualization",
+   "intro": "The brief names ParaView and VisIt for scientific data, and Blender for scenes. Their web path is one pattern: export a mesh or a scene in an open format and show it in a JavaScript viewer, vtk.js for VTK data and model-viewer or three.js for glTF."
+  },
+  {
+   "name": "Across the sciences",
+   "intro": "Added because the forty suite tools run on Python, and many rows here name a Python parser or port. The notebook design belongs to learning/research-os/WORKBENCH.md."
+  }
+ ],
+ "tools": [
+  {
+   "name": "Lean 4",
+   "field": "Proof",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Apache-2.0, open; Mathlib Apache-2.0 "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Goals and messages in the infoview; ProofWidgets adds diagrams and plots to it "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".lean"
+    },
+    {
+     "t": "text",
+     "v": " source; "
+    },
+    {
+     "t": "code",
+     "v": ".olean"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".ilean"
+    },
+    {
+     "t": "text",
+     "v": " build outputs; "
+    },
+    {
+     "t": "code",
+     "v": "lakefile.toml"
+    },
+    {
+     "t": "text",
+     "v": " or "
+    },
+    {
+     "t": "code",
+     "v": "lakefile.lean"
+    },
+    {
+     "t": "text",
+     "v": "; "
+    },
+    {
+     "t": "code",
+     "v": "lean-toolchain"
+    },
+    {
+     "t": "text",
+     "v": "; "
+    },
+    {
+     "t": "code",
+     "v": "lake-manifest.json"
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "The web editor at live.lean-lang.org runs the Lean server on a web server and talks to the page over a WebSocket, Apache-2.0. No official WebAssembly build: the \"Web Assembly\" job in the lean4 CI file is commented out, and v4.34.0 of 2026-09-14 ships desktop archives only, 580 MB for Linux. A community port, cauli/lean4-wasm-in-browser, runs Lean 4 in the page from a fork, with 70 to 101 MB of WebAssembly and a Mathlib layer near 316 MB, first created 2026-01-05. "
+    },
+    {
+     "t": "code",
+     "v": "lake exe cache get"
+    },
+    {
+     "t": "text",
+     "v": " fetches prebuilt Mathlib files; without them Mathlib rebuilds from scratch, which takes hours "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: the check chip and source view from the Lean design; interactive: "
+    },
+    {
+     "t": "code",
+     "v": "@leanprover/infoview"
+    },
+    {
+     "t": "text",
+     "v": " fed by a Lean server on a runner "
+    }
+   ],
+   "sources": [
+    {
+     "n": 1,
+     "title": "Lean 4 repository",
+     "url": "https://github.com/leanprover/lean4"
+    },
+    {
+     "n": 2,
+     "title": "Mathlib repository",
+     "url": "https://github.com/leanprover-community/mathlib4"
+    },
+    {
+     "n": 3,
+     "title": "ProofWidgets4 repository",
+     "url": "https://github.com/leanprover-community/ProofWidgets4"
+    },
+    {
+     "n": 4,
+     "title": "Lake README",
+     "url": "https://github.com/leanprover/lean4/blob/master/src/lake/README.md"
+    },
+    {
+     "n": 5,
+     "title": "lean4web repository",
+     "url": "https://github.com/leanprover-community/lean4web"
+    },
+    {
+     "n": 6,
+     "title": "Lean 4 CI workflow",
+     "url": "https://github.com/leanprover/lean4/blob/master/.github/workflows/ci.yml"
+    },
+    {
+     "n": 7,
+     "title": "Lean 4 release v4.34.0",
+     "url": "https://github.com/leanprover/lean4/releases/tag/v4.34.0"
+    },
+    {
+     "n": 8,
+     "title": "lean4-wasm-in-browser repository",
+     "url": "https://github.com/cauli/lean4-wasm-in-browser"
+    },
+    {
+     "n": 9,
+     "title": "Mathlib cache README",
+     "url": "https://github.com/leanprover-community/mathlib4/blob/master/Cache/README.md"
+    },
+    {
+     "n": 10,
+     "title": "@leanprover/infoview on the npm registry",
+     "url": "https://registry.npmjs.org/@leanprover/infoview"
+    }
+   ]
+  },
+  {
+   "name": "Rocq",
+   "field": "Proof",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "LGPL-2.1-only, open; renamed from Coq with Rocq 9.0, announced 2025-03-12 "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Proof goals and messages per sentence in an editor; "
+    },
+    {
+     "t": "code",
+     "v": "rocq doc"
+    },
+    {
+     "t": "text",
+     "v": " writes LaTeX and HTML "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".v"
+    },
+    {
+     "t": "text",
+     "v": " source compiled to "
+    },
+    {
+     "t": "code",
+     "v": ".vo"
+    },
+    {
+     "t": "text",
+     "v": "; "
+    },
+    {
+     "t": "code",
+     "v": "_CoqProject"
+    },
+    {
+     "t": "text",
+     "v": " or "
+    },
+    {
+     "t": "code",
+     "v": "_RocqProject"
+    },
+    {
+     "t": "text",
+     "v": "; Dune builds, experimental "
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "jsCoq runs Coq in the page through js_of_ocaml, AGPL-3.0-or-later; its last npm release, 0.17.1 of 2023-10-04, carries Coq 8.17, with commits into 2026. rocq-lsp ships a Rocq 9.1 WebAssembly build inside its VS Code extension, usable on vscode.dev, with only the standard library. A runner with an opam switch takes projects that need other libraries"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: live checking in the page through jsCoq; static: "
+    },
+    {
+     "t": "code",
+     "v": "rocq doc"
+    },
+    {
+     "t": "text",
+     "v": " HTML"
+    }
+   ],
+   "sources": [
+    {
+     "n": 11,
+     "title": "Rocq repository",
+     "url": "https://github.com/rocq-prover/rocq"
+    },
+    {
+     "n": 12,
+     "title": "Rocq, changelog",
+     "url": "https://rocq-prover.org/changelog"
+    },
+    {
+     "n": 13,
+     "title": "Rocq reference manual, rocq doc",
+     "url": "https://rocq-prover.org/doc/V9.2.0/refman/using/tools/coqdoc.html"
+    },
+    {
+     "n": 14,
+     "title": "Rocq reference manual, utilities",
+     "url": "https://rocq-prover.org/doc/V9.2.0/refman/practical-tools/utilities.html"
+    },
+    {
+     "n": 15,
+     "title": "jsCoq repository",
+     "url": "https://github.com/jscoq/jscoq"
+    },
+    {
+     "n": 16,
+     "title": "Rocq Discourse, coq-lsp 0.2.4 announcement",
+     "url": "https://discourse.rocq-prover.org/t/ann-coq-lsp-0-2-4/2829"
+    },
+    {
+     "n": 17,
+     "title": "rocq-lsp repository",
+     "url": "https://github.com/rocq-community/rocq-lsp"
+    }
+   ]
+  },
+  {
+   "name": "Isabelle",
+   "field": "Proof",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-style for the main code base, among other open licenses; Archive of Formal Proofs entries BSD-style or LGPL "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Continuous proof checking in Isabelle/jEdit and Isabelle/VSCode; LaTeX documents and HTML "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".thy"
+    },
+    {
+     "t": "text",
+     "v": " theories, "
+    },
+    {
+     "t": "code",
+     "v": "ROOT"
+    },
+    {
+     "t": "text",
+     "v": " session specifications, session heap images "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Linux, Windows 10 and 11, macOS 12 to 26, and a Docker image; Java bundled; 4 GB of memory for small work up to 64 GB for large projects; the Linux archive is 1.2 GB. No browser port found. The Isabelle server takes clients over TCP "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: HTML and PDF browser info; "
+    },
+    {
+     "t": "code",
+     "v": ".thy"
+    },
+    {
+     "t": "text",
+     "v": " sources as text"
+    }
+   ],
+   "sources": [
+    {
+     "n": 18,
+     "title": "Isabelle",
+     "url": "https://isabelle.in.tum.de/"
+    },
+    {
+     "n": 19,
+     "title": "Isabelle2025-2, COPYRIGHT",
+     "url": "https://isabelle.in.tum.de/website-Isabelle2025-2/dist/Isabelle2025-2/COPYRIGHT"
+    },
+    {
+     "n": 20,
+     "title": "Archive of Formal Proofs, about",
+     "url": "https://isa-afp.org/about/"
+    },
+    {
+     "n": 21,
+     "title": "Isabelle, overview",
+     "url": "https://isabelle.in.tum.de/overview.html"
+    },
+    {
+     "n": 22,
+     "title": "Isabelle2025-2, system manual",
+     "url": "https://isabelle.in.tum.de/website-Isabelle2025-2/dist/Isabelle2025-2/doc/system.pdf"
+    },
+    {
+     "n": 23,
+     "title": "Isabelle, installation",
+     "url": "https://isabelle.in.tum.de/installation.html"
+    }
+   ]
+  },
+  {
+   "name": "Mathematica",
+   "field": "Mathematics",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: cloud and node-locked licenses, and network licenses served by MathLM. The free Wolfram Engine is barred from any production application, internal services included "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Notebooks of text, typeset math, graphics, animation, and sound "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".nb"
+    },
+    {
+     "t": "text",
+     "v": " notebooks in plain text Wolfram Language syntax; "
+    },
+    {
+     "t": "code",
+     "v": ".wl"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".m"
+    },
+    {
+     "t": "text",
+     "v": " packages; "
+    },
+    {
+     "t": "code",
+     "v": ".mx"
+    },
+    {
+     "t": "text",
+     "v": " binary files; "
+    },
+    {
+     "t": "code",
+     "v": ".cdf"
+    },
+    {
+     "t": "text",
+     "v": ", now a legacy type "
+    }
+   ],
+   "first": "link",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Windows 10 and 11, Windows Server, macOS 13 to 26, and Linux; 10 to 23 GB of disk; a GPU with CUDA or OpenCL for GPU functions. Wolfram Cloud hosts notebooks and embeds them in a page, computing on Wolfram's servers. Parser: Wolfram's own codeparser, MIT "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: exported PDF or SVG; the "
+    },
+    {
+     "t": "code",
+     "v": ".nb"
+    },
+    {
+     "t": "text",
+     "v": " as text; interactive: an embedded Wolfram Cloud notebook, on the person's own account"
+    }
+   ],
+   "sources": [
+    {
+     "n": 24,
+     "title": "Wolfram, group and organization licensing",
+     "url": "https://www.wolfram.com/group-organization-licensing/"
+    },
+    {
+     "n": 25,
+     "title": "Wolfram, what is MathLM",
+     "url": "https://reference.wolfram.com/language/tutorial/WhatIsMathLM.html"
+    },
+    {
+     "n": 26,
+     "title": "Wolfram Engine, terms",
+     "url": "https://www.wolfram.com/legal/terms/wolfram-engine.html"
+    },
+    {
+     "n": 27,
+     "title": "Wolfram Engine, FAQ",
+     "url": "https://www.wolfram.com/engine/faq/"
+    },
+    {
+     "n": 28,
+     "title": "Wolfram Language, NB format",
+     "url": "https://reference.wolfram.com/language/ref/format/NB.html"
+    },
+    {
+     "n": 29,
+     "title": "Wolfram Language, WL format",
+     "url": "https://reference.wolfram.com/language/ref/format/WL.html"
+    },
+    {
+     "n": 30,
+     "title": "Wolfram, CDF",
+     "url": "https://www.wolfram.com/cdf/"
+    },
+    {
+     "n": 31,
+     "title": "Mathematica, system requirements",
+     "url": "https://www.wolfram.com/mathematica/system-requirements/"
+    },
+    {
+     "n": 32,
+     "title": "Wolfram Cloud",
+     "url": "https://www.wolfram.com/cloud/"
+    },
+    {
+     "n": 33,
+     "title": "codeparser repository",
+     "url": "https://github.com/WolframResearch/codeparser"
+    },
+    {
+     "n": 34,
+     "title": "Wolfram Language, MX format",
+     "url": "https://reference.wolfram.com/language/ref/format/MX.html"
+    }
+   ]
+  },
+  {
+   "name": "Maple",
+   "field": "Mathematics",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: single-user licenses activated online, and network licenses served by FlexNet "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Worksheets with math and 2D and 3D plots"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".mw"
+    },
+    {
+     "t": "text",
+     "v": " worksheets in XML, "
+    },
+    {
+     "t": "code",
+     "v": ".mws"
+    },
+    {
+     "t": "text",
+     "v": " classic worksheets, "
+    },
+    {
+     "t": "code",
+     "v": ".mpl"
+    },
+    {
+     "t": "text",
+     "v": " source, "
+    },
+    {
+     "t": "code",
+     "v": ".maple"
+    },
+    {
+     "t": "text",
+     "v": " workbooks in SQLite "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Desktop builds needing 8 GB of memory and 10 GB of disk, with internet access to activate. Maple Learn is hosted by Maplesoft "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: HTML or PDF exports; the "
+    },
+    {
+     "t": "code",
+     "v": ".mpl"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".mw"
+    },
+    {
+     "t": "text",
+     "v": " contents as text"
+    }
+   ],
+   "sources": [
+    {
+     "n": 35,
+     "title": "Maple 2026, install guide",
+     "url": "https://www.maplesoft.com/support/install/2026/Maple/Install.html"
+    },
+    {
+     "n": 36,
+     "title": "Maple help, MW format",
+     "url": "https://www.maplesoft.com/support/help/Maple/view.aspx?path=Formats/MW"
+    },
+    {
+     "n": 37,
+     "title": "Maple help, MPL format",
+     "url": "https://www.maplesoft.com/support/help/Maple/view.aspx?path=Formats/MPL"
+    },
+    {
+     "n": 38,
+     "title": "Maple help, workbook format",
+     "url": "https://www.maplesoft.com/support/help/Maple/view.aspx?path=Formats/Maple"
+    },
+    {
+     "n": 39,
+     "title": "Maple, system requirements",
+     "url": "https://www.maplesoft.com/products/system_requirements.aspx"
+    },
+    {
+     "n": 40,
+     "title": "Maple Learn",
+     "url": "https://learn.maplesoft.com/"
+    }
+   ]
+  },
+  {
+   "name": "SageMath",
+   "field": "Mathematics",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-3.0-only for the distribution, GPL-2.0-or-later for Sage's own code; open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "2D plots and 3D plots in a three.js viewer, inside Jupyter notebooks"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".sage"
+    },
+    {
+     "t": "text",
+     "v": " scripts, "
+    },
+    {
+     "t": "code",
+     "v": ".sobj"
+    },
+    {
+     "t": "text",
+     "v": " saved objects, "
+    },
+    {
+     "t": "code",
+     "v": ".ipynb"
+    },
+    {
+     "t": "text",
+     "v": " notebooks"
+    }
+   ],
+   "first": "runner",
+   "fallback": "browser",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Linux and macOS natively, Windows through WSL only. SageMathCell embeds a cell in a page and computes on its server, GPL-2.0-or-later. passagemath, a pip-installable fork, publishes WebAssembly packages with partial functionality since 2026-02 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: PNG or SVG plots; interactive: three.js 3D plots and SageMathCell embeds"
+    }
+   ],
+   "sources": [
+    {
+     "n": 41,
+     "title": "SageMath repository",
+     "url": "https://github.com/sagemath/sage"
+    },
+    {
+     "n": 42,
+     "title": "SageMath, three.js viewer",
+     "url": "https://doc.sagemath.org/html/en/reference/plot3d/threejs.html"
+    },
+    {
+     "n": 43,
+     "title": "SageMath, installation guide",
+     "url": "https://doc.sagemath.org/html/en/installation/index.html"
+    },
+    {
+     "n": 44,
+     "title": "SageMathCell repository",
+     "url": "https://github.com/sagemath/sagecell"
+    },
+    {
+     "n": 45,
+     "title": "passagemath repository",
+     "url": "https://github.com/passagemath/passagemath"
+    },
+    {
+     "n": 46,
+     "title": "SageMath tutorial, programming",
+     "url": "https://doc.sagemath.org/html/en/tutorial/programming.html"
+    },
+    {
+     "n": 47,
+     "title": "SageMath reference, persist",
+     "url": "https://doc.sagemath.org/html/en/reference/misc/sage/misc/persist.html"
+    }
+   ]
+  },
+  {
+   "name": "GAP",
+   "field": "Mathematics",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-2.0-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Text output in a console"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".g"
+    },
+    {
+     "t": "text",
+     "v": " code, "
+    },
+    {
+     "t": "code",
+     "v": ".gd"
+    },
+    {
+     "t": "text",
+     "v": " declarations and "
+    },
+    {
+     "t": "code",
+     "v": ".gi"
+    },
+    {
+     "t": "text",
+     "v": " implementations, binary workspaces "
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "An official WebAssembly build in the main repository, "
+    },
+    {
+     "t": "code",
+     "v": "etc/emscripten"
+    },
+    {
+     "t": "text",
+     "v": ", served at gap-in-the-browser, computing in the page. It needs cross-origin isolation headers and keeps no files across reloads; packages with native code do not load. Native GAP runs on the three desktop systems, with WSL recommended on Windows "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the GAP console in the page"
+    }
+   ],
+   "sources": [
+    {
+     "n": 48,
+     "title": "GAP repository",
+     "url": "https://github.com/gap-system/gap"
+    },
+    {
+     "n": 49,
+     "title": "GAP reference manual, chapter 76",
+     "url": "https://docs.gap-system.org/doc/ref/chap76.html"
+    },
+    {
+     "n": 50,
+     "title": "GAP reference manual, chapter 3",
+     "url": "https://docs.gap-system.org/doc/ref/chap3.html"
+    },
+    {
+     "n": 51,
+     "title": "gap-in-the-browser repository",
+     "url": "https://github.com/gap-system/gap-in-the-browser"
+    },
+    {
+     "n": 52,
+     "title": "GAP, installing on Windows",
+     "url": "https://www.gap-system.org/install/windows/"
+    }
+   ]
+  },
+  {
+   "name": "PARI/GP",
+   "field": "Mathematics",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-2.0-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Text output in a console"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "GP scripts as text; file extension unverified"
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "The PARI site serves GP compiled with Emscripten, stable and development builds, a 14 MB WebAssembly file dated 2026-08-16 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the GP console in the page"
+    }
+   ],
+   "sources": [
+    {
+     "n": 53,
+     "title": "PARI/GP",
+     "url": "https://pari.math.u-bordeaux.fr/"
+    },
+    {
+     "n": 54,
+     "title": "PARI/GP in the browser",
+     "url": "https://pari.math.u-bordeaux.fr/gp.html"
+    }
+   ]
+  },
+  {
+   "name": "RDKit",
+   "field": "Chemistry",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "2D depictions as SVG or PNG "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "SMILES, MOL and SDF, InChI, and pickles; PDB and Maestro files among its readers and writers "
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "RDKit.js, npm "
+    },
+    {
+     "t": "code",
+     "v": "@rdkit/rdkit"
+    },
+    {
+     "t": "text",
+     "v": ", compiles a subset of RDKit to WebAssembly: SVG depiction, descriptors, substructure search, fingerprints, and reactions; npm 2026.3.6 on 2026-09-13, a new package with every release. RDKit is absent from Pyodide 314.0.7. Python wheels take bulk jobs on a runner"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: SVG depictions drawn in the page by RDKit.js; 3D structures in Mol* or 3Dmol.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 55,
+     "title": "RDKit, license",
+     "url": "https://github.com/rdkit/rdkit/blob/master/license.txt"
+    },
+    {
+     "n": 56,
+     "title": "RDKit, getting started in Python",
+     "url": "https://www.rdkit.org/docs/GettingStartedInPython.html"
+    },
+    {
+     "n": 57,
+     "title": "RDKit reference, InChI",
+     "url": "https://www.rdkit.org/docs/source/rdkit.Chem.inchi.html"
+    },
+    {
+     "n": 58,
+     "title": "RDKit reference, rdmolfiles",
+     "url": "https://www.rdkit.org/docs/source/rdkit.Chem.rdmolfiles.html"
+    },
+    {
+     "n": 59,
+     "title": "RDKit MinimalLib",
+     "url": "https://github.com/rdkit/rdkit/tree/master/Code/MinimalLib"
+    },
+    {
+     "n": 60,
+     "title": "RDKit.js repository",
+     "url": "https://github.com/rdkit/rdkit-js"
+    },
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    }
+   ]
+  },
+  {
+   "name": "Gaussian",
+   "field": "Chemistry",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: site or single-computer licenses with a one-time fee and a twenty-year term; a US commercial site license for G16 is $35,000. Where a university hosts directly competitive work, its license excludes the competing research group "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Nothing of its own; GaussView, licensed separately, plots properties, animates vibrations, and shows spectra "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".gjf"
+    },
+    {
+     "t": "text",
+     "v": " input and "
+    },
+    {
+     "t": "code",
+     "v": ".log"
+    },
+    {
+     "t": "text",
+     "v": " output; "
+    },
+    {
+     "t": "code",
+     "v": ".chk"
+    },
+    {
+     "t": "text",
+     "v": " checkpoint and "
+    },
+    {
+     "t": "code",
+     "v": ".rwf"
+    },
+    {
+     "t": "text",
+     "v": " scratch files; "
+    },
+    {
+     "t": "code",
+     "v": ".fchk"
+    },
+    {
+     "t": "text",
+     "v": ", the formatted checkpoint for exchange between platforms "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Binaries for Linux, macOS, IBM Power, and Fujitsu A64FX, and no builds from source; optional NVIDIA GPUs from K40 to A100; Linda for runs across machines. Parser: cclib reads Gaussian logs and "
+    },
+    {
+     "t": "code",
+     "v": ".fchk"
+    },
+    {
+     "t": "text",
+     "v": " and the output of ORCA, Psi4, GAMESS, and other codes, BSD-3-Clause, a pure Python wheel "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Energies and frequencies from the log on the node; the geometry in Mol* or JSmol"
+    }
+   ],
+   "sources": [
+    {
+     "n": 62,
+     "title": "Gaussian, US commercial price list",
+     "url": "https://gaussian.com/wp-content/uploads/dl/us_com.pdf"
+    },
+    {
+     "n": 63,
+     "title": "Gaussian, licensing policy for competitors",
+     "url": "https://gaussian.com/silly/"
+    },
+    {
+     "n": 64,
+     "title": "GaussView 6",
+     "url": "https://gaussian.com/gaussview6/"
+    },
+    {
+     "n": 65,
+     "title": "Gaussian, running Gaussian",
+     "url": "https://gaussian.com/running/"
+    },
+    {
+     "n": 66,
+     "title": "Gaussian, formchk",
+     "url": "https://gaussian.com/formchk/"
+    },
+    {
+     "n": 67,
+     "title": "Gaussian 16, platform list",
+     "url": "https://gaussian.com/g16/g16_plat.pdf"
+    },
+    {
+     "n": 68,
+     "title": "cclib repository",
+     "url": "https://github.com/cclib/cclib"
+    }
+   ]
+  },
+  {
+   "name": "Avogadro 2",
+   "field": "Chemistry",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Interactive 3D molecules; exports PNG, SVG, PLY, POV-Ray, VRML, and a 3Dmol.js HTML snippet "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".cjson"
+    },
+    {
+     "t": "text",
+     "v": ", which keeps atoms, bonds, cells, orbitals, spectra, and more; CML, legacy; over 100 more through Open Babel; built-in readers for PDB, XYZ, GROMACS, LAMMPS, Molden, ORCA, and Gaussian cube and fchk "
+    }
+   ],
+   "first": "import",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Desktop builds and Python wheels; release 2.0.0 on 2026-04-01. "
+    },
+    {
+     "t": "code",
+     "v": "avogadro-web"
+    },
+    {
+     "t": "text",
+     "v": " exists as a repository with a README and no code, created 2026-09-14. "
+    },
+    {
+     "t": "code",
+     "v": ".cjson"
+    },
+    {
+     "t": "text",
+     "v": " is JSON, read by any JSON parser"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the molecule in Mol* or 3Dmol.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 69,
+     "title": "avogadrolibs repository",
+     "url": "https://github.com/OpenChemistry/avogadrolibs"
+    },
+    {
+     "n": 70,
+     "title": "Avogadro, file menu",
+     "url": "https://avogadro.cc/docs/menus/file-menu.html"
+    },
+    {
+     "n": 71,
+     "title": "Avogadro, saving files",
+     "url": "https://avogadro.cc/docs/getting-started/saving-files.html"
+    },
+    {
+     "n": 72,
+     "title": "Avogadro, file IO",
+     "url": "https://avogadro.cc/develop/io.html"
+    },
+    {
+     "n": 73,
+     "title": "avogadro-web repository",
+     "url": "https://github.com/OpenChemistry/avogadro-web"
+    }
+   ]
+  },
+  {
+   "name": "Open Babel",
+   "field": "Chemistry",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-2.0-only, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "2D depictions as SVG and PNG "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "146 formats, 108 read and 107 written, among them Gaussian files, SMILES, InChI, MOL and SDF, CML, PDB, mmCIF, GRO, and XTC "
+    }
+   ],
+   "first": "runner",
+   "fallback": "browser",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Desktop builds and Python wheels; release 3.2.1 on 2026-07-11. No official WebAssembly build; an experimental one, cheminfo-to-web, had its last commit on 2025-09-24. A runner keeps its GPL-2.0 code apart from the page bundle"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The converted structure, in whatever viewer its target format has"
+    }
+   ],
+   "sources": [
+    {
+     "n": 74,
+     "title": "Open Babel repository",
+     "url": "https://github.com/openbabel/openbabel"
+    },
+    {
+     "n": 75,
+     "title": "Open Babel, file formats",
+     "url": "https://openbabel.org/docs/FileFormats/Overview.html"
+    },
+    {
+     "n": 76,
+     "title": "cheminfo-to-web repository",
+     "url": "https://github.com/partridgejiang/cheminfo-to-web"
+    }
+   ]
+  },
+  {
+   "name": "GROMACS",
+   "field": "Chemistry",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "LGPL-2.1-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Nothing of its own; analysis tools write "
+    },
+    {
+     "t": "code",
+     "v": ".xvg"
+    },
+    {
+     "t": "text",
+     "v": " series for Grace "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".gro"
+    },
+    {
+     "t": "text",
+     "v": " coordinates, "
+    },
+    {
+     "t": "code",
+     "v": ".top"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".itp"
+    },
+    {
+     "t": "text",
+     "v": " topologies, "
+    },
+    {
+     "t": "code",
+     "v": ".mdp"
+    },
+    {
+     "t": "text",
+     "v": " parameters, "
+    },
+    {
+     "t": "code",
+     "v": ".tpr"
+    },
+    {
+     "t": "text",
+     "v": " run input, "
+    },
+    {
+     "t": "code",
+     "v": ".xtc"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".trr"
+    },
+    {
+     "t": "text",
+     "v": " trajectories, "
+    },
+    {
+     "t": "code",
+     "v": ".edr"
+    },
+    {
+     "t": "text",
+     "v": " energies "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Runs on x86-64, ARM, POWER9, and RISC-V; GPU optional, with CUDA for NVIDIA, SYCL for Intel and AMD, HIP for AMD, and OpenCL for Apple M-series. No browser port found. Parsers: MDAnalysis and MDTraj in Python "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the trajectory played in Mol* or NGL from "
+    },
+    {
+     "t": "code",
+     "v": ".gro"
+    },
+    {
+     "t": "text",
+     "v": " with "
+    },
+    {
+     "t": "code",
+     "v": ".xtc"
+    },
+    {
+     "t": "text",
+     "v": "; "
+    },
+    {
+     "t": "code",
+     "v": ".xvg"
+    },
+    {
+     "t": "text",
+     "v": " series as charts"
+    }
+   ],
+   "sources": [
+    {
+     "n": 77,
+     "title": "GROMACS repository",
+     "url": "https://gitlab.com/gromacs/gromacs"
+    },
+    {
+     "n": 78,
+     "title": "GROMACS manual, file formats",
+     "url": "https://manual.gromacs.org/current/reference-manual/file-formats.html"
+    },
+    {
+     "n": 79,
+     "title": "GROMACS install guide",
+     "url": "https://manual.gromacs.org/current/install-guide/index.html"
+    },
+    {
+     "n": 80,
+     "title": "MDAnalysis, topology formats",
+     "url": "https://docs.mdanalysis.org/stable/documentation_pages/topology/init.html"
+    },
+    {
+     "n": 81,
+     "title": "MDTraj repository",
+     "url": "https://github.com/mdtraj/mdtraj"
+    }
+   ]
+  },
+  {
+   "name": "PyMOL",
+   "field": "Biology",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Open-source PyMOL under a BSD-like copyright notice; Incentive PyMOL is a closed subscription, free to full-time students and educators, activated through the Schrodinger License Manager "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "3D molecular graphics, with ray-traced images "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Loads PDB, mmCIF, BinaryCIF, MOL2, SDF, XYZ, maps, and trajectories; "
+    },
+    {
+     "t": "code",
+     "v": ".pse"
+    },
+    {
+     "t": "text",
+     "v": " sessions and "
+    },
+    {
+     "t": "code",
+     "v": ".pml"
+    },
+    {
+     "t": "text",
+     "v": " scripts; saves PNG, glTF, OBJ, STL, VRML, and structure formats "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Incentive 3.x runs on 64-bit desktops, Linux with glibc 2.28 or later. Headless open-source PyMOL renders PNG or exports glTF on a runner. PyMOL-Wasm, a third-party Pyodide build of PyMOL 2, is experimental. No "
+    },
+    {
+     "t": "code",
+     "v": ".pse"
+    },
+    {
+     "t": "text",
+     "v": " parser outside PyMOL found"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: the ray-traced PNG; interactive: exported glTF in model-viewer, or the input structures in Mol*"
+    }
+   ],
+   "sources": [
+    {
+     "n": 82,
+     "title": "PyMOL open source, LICENSE",
+     "url": "https://github.com/schrodinger/pymol-open-source/blob/master/LICENSE"
+    },
+    {
+     "n": 83,
+     "title": "PyMOL, buy",
+     "url": "https://www.pymol.org/buy.html"
+    },
+    {
+     "n": 84,
+     "title": "PyMOL, support",
+     "url": "https://www.pymol.org/support.html"
+    },
+    {
+     "n": 85,
+     "title": "PyMOL open source repository",
+     "url": "https://github.com/schrodinger/pymol-open-source"
+    },
+    {
+     "n": 86,
+     "title": "PyMOL-Wasm repository",
+     "url": "https://github.com/yakomaxa/PyMOL-Wasm"
+    }
+   ]
+  },
+  {
+   "name": "UCSF ChimeraX",
+   "field": "Biology",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed for commercial use: the UCSF ChimeraX Non-Commercial Software License, with source on GitHub under the same terms; free for academic, government, nonprofit, and personal use "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Interactive 3D structures and maps with trajectory playback, in VR headsets too through OpenXR; saves PNG, TIFF, JPEG, and 3D scenes as GLB, STL, OBJ, X3D, and VRML "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".cxs"
+    },
+    {
+     "t": "text",
+     "v": " sessions, "
+    },
+    {
+     "t": "code",
+     "v": ".cxc"
+    },
+    {
+     "t": "text",
+     "v": " command files, Python; reads PDB, mmCIF, Mol2, SDF, GRO, XTC, TRR, DCD, and MRC maps "
+    }
+   ],
+   "first": "link",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Desktop builds, some Linux distributions among them, with OpenGL 3.3. The license forbids redistribution, so a runner serves noncommercial use only; headless rendering is unverified. RBVI's own web route is a saved "
+    },
+    {
+     "t": "code",
+     "v": ".glb"
+    },
+    {
+     "t": "text",
+     "v": " shown in model-viewer "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: PNG; interactive: exported "
+    },
+    {
+     "t": "code",
+     "v": ".glb"
+    },
+    {
+     "t": "text",
+     "v": " in model-viewer"
+    }
+   ],
+   "sources": [
+    {
+     "n": 87,
+     "title": "ChimeraX, License.md",
+     "url": "https://github.com/RBVI/ChimeraX/blob/develop/License.md"
+    },
+    {
+     "n": 88,
+     "title": "UCSF ChimeraX",
+     "url": "https://www.cgl.ucsf.edu/chimerax/"
+    },
+    {
+     "n": 89,
+     "title": "ChimeraX guide, VR",
+     "url": "https://www.cgl.ucsf.edu/chimerax/docs/user/vr.html"
+    },
+    {
+     "n": 90,
+     "title": "ChimeraX guide, save",
+     "url": "https://www.cgl.ucsf.edu/chimerax/docs/user/commands/save.html"
+    },
+    {
+     "n": 91,
+     "title": "ChimeraX guide, open",
+     "url": "https://www.cgl.ucsf.edu/chimerax/docs/user/commands/open.html"
+    },
+    {
+     "n": 92,
+     "title": "ChimeraX, known issues",
+     "url": "https://www.cgl.ucsf.edu/chimerax/issues.html"
+    },
+    {
+     "n": 93,
+     "title": "RBVI, glTF viewer example",
+     "url": "https://www.rbvi.ucsf.edu/chimerax/data/gltf-viewer-may2023/"
+    }
+   ]
+  },
+  {
+   "name": "BLAST+",
+   "field": "Biology",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Public domain as a United States Government Work; the NCBI C++ Toolkit around it bundles parts under Apache-2.0, MIT, BSD, and GPL terms "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Text and HTML alignment reports; no graphics from the command line"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "FASTA queries; BLAST version 5 databases in volumes; "
+    },
+    {
+     "t": "code",
+     "v": "-outfmt"
+    },
+    {
+     "t": "text",
+     "v": " 0 to 18 and 20 in the 2.17.0 source, among them XML, tabular, CSV, JSON, XML2, SAM, and the ASN.1 archive "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Desktop builds of 133 to 408 MB, and a Docker image; databases download separately. No NCBI WebAssembly build found, and biowasm does not package BLAST. Web BLAST runs on NCBI's servers behind a URL API. Parser: Biopython reads the XML and tabular outputs "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The hit table from tabular or JSON output; the report as text"
+    }
+   ],
+   "sources": [
+    {
+     "n": 94,
+     "title": "NCBI, BLAST+ latest executables and source",
+     "url": "https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/"
+    },
+    {
+     "n": 95,
+     "title": "NCBI BLAST help, developer information",
+     "url": "https://blast.ncbi.nlm.nih.gov/doc/blast-help/developerinfo.html"
+    },
+    {
+     "n": 96,
+     "title": "NCBI C++ Toolkit, LICENSE",
+     "url": "https://github.com/ncbi/ncbi-cxx-toolkit-public/blob/master/LICENSE"
+    },
+    {
+     "n": 97,
+     "title": "NCBI, BLAST databases",
+     "url": "https://ftp.ncbi.nlm.nih.gov/blast/documents/blastdb.html"
+    },
+    {
+     "n": 98,
+     "title": "NCBI, BLAST+ Docker documentation",
+     "url": "https://github.com/ncbi/blast_plus_docs"
+    },
+    {
+     "n": 99,
+     "title": "biowasm repository",
+     "url": "https://github.com/biowasm/biowasm"
+    },
+    {
+     "n": 100,
+     "title": "NCBI BLAST, URL API",
+     "url": "https://blast.ncbi.nlm.nih.gov/doc/blast-help/urlapi.html"
+    },
+    {
+     "n": 101,
+     "title": "Biopython tutorial, BLAST",
+     "url": "https://biopython.org/docs/latest/Tutorial/chapter_blast.html"
+    }
+   ]
+  },
+  {
+   "name": "Bioconductor",
+   "field": "Biology",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Each package carries its own open license; most core packages use Artistic-2.0, and licenses that restrict use are refused "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "R packages; figures come from R graphics"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "BAM, BCF, FASTA, and tabix files through Rsamtools; GFF, BED, WIG, and BigWig through rtracklayer; FASTQ through ShortRead; SummarizedExperiment containers "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "R 4.6 with release 3.23 of 2026-04-29, two releases a year; Linux, macOS, Windows, or Docker. The webR repository for R 4.6 lists none of Biobase, S4Vectors, GenomicRanges, or SummarizedExperiment; webr.bioconductor.org did not answer on 2026-09-21, so a WebAssembly repository run by Bioconductor is unverified. Parsers outside R: pysam, in Pyodide 314.0.7, and the @gmod packages for BAM, CRAM, VCF, and GFF in JavaScript"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: R plots; genomic tracks in igv.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 102,
+     "title": "Bioconductor contributions, license",
+     "url": "https://contributions.bioconductor.org/license.html"
+    },
+    {
+     "n": 103,
+     "title": "Bioconductor, Rsamtools",
+     "url": "https://bioconductor.org/packages/release/bioc/html/Rsamtools.html"
+    },
+    {
+     "n": 104,
+     "title": "Bioconductor, rtracklayer",
+     "url": "https://bioconductor.org/packages/release/bioc/html/rtracklayer.html"
+    },
+    {
+     "n": 105,
+     "title": "Bioconductor, ShortRead",
+     "url": "https://bioconductor.org/packages/release/bioc/html/ShortRead.html"
+    },
+    {
+     "n": 106,
+     "title": "Bioconductor, SummarizedExperiment",
+     "url": "https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html"
+    },
+    {
+     "n": 107,
+     "title": "Bioconductor, about",
+     "url": "https://bioconductor.org/about/"
+    },
+    {
+     "n": 108,
+     "title": "Bioconductor, install",
+     "url": "https://bioconductor.org/install/"
+    },
+    {
+     "n": 109,
+     "title": "webR package index for R 4.6",
+     "url": "https://repo.r-wasm.org/bin/emscripten/contrib/4.6/PACKAGES"
+    }
+   ]
+  },
+  {
+   "name": "Biopython",
+   "field": "Biology",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Biopython License Agreement, with some files dual-licensed BSD-3-Clause; open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Linear and circular genome maps through ReportLab, to PDF or SVG "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Reads FASTA, FASTQ, GenBank, EMBL, PDB, Stockholm, and some thirty more sequence formats, and BLAST output"
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "In Pyodide 314.0.7 as version 1.87; PyPI latest 1.88 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Parsed sequences and records on the node; static maps as SVG"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 110,
+     "title": "Biopython, LICENSE",
+     "url": "https://github.com/biopython/biopython/blob/master/LICENSE.rst"
+    },
+    {
+     "n": 111,
+     "title": "Biopython tutorial, graphics",
+     "url": "https://biopython.org/docs/latest/Tutorial/chapter_graphics.html"
+    },
+    {
+     "n": 112,
+     "title": "Biopython wiki, SeqIO",
+     "url": "https://biopython.org/wiki/SeqIO"
+    },
+    {
+     "n": 113,
+     "title": "Biopython on PyPI",
+     "url": "https://pypi.org/project/biopython/"
+    }
+   ]
+  },
+  {
+   "name": "Fiji and ImageJ",
+   "field": "Biology",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Fiji GPL-3.0; ImageJ2 BSD-2-Clause; ImageJ 1.x public domain under US law; Bio-Formats GPL, with a BSD-2-Clause component for OME-TIFF "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Image stacks in two or more dimensions, with ROIs and plots"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "TIFF by default; more than 130 formats through Bio-Formats, which writes OME-TIFF and OME-XML; "
+    },
+    {
+     "t": "code",
+     "v": ".ijm"
+    },
+    {
+     "t": "text",
+     "v": " macros; ROI files"
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Viv and Vizarr render OME-TIFF and OME-Zarr in the page with WebGL, MIT, both with commits in 2026. ImageJ.JS compiles ImageJ 1 to JavaScript with CheerpJ, last commit 2025-08-21, so unmaintained; a newer build, aicell-lab/imagej.js, runs on CheerpJ, whose community edition is free for noncommercial use only. Fiji needs Java 21 on any of the three desktop systems. Parsers: tifffile and roifile, Python, BSD-3-Clause "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: OME-TIFF or OME-Zarr in Vizarr; static: PNG exports"
+    }
+   ],
+   "sources": [
+    {
+     "n": 114,
+     "title": "ImageJ, licensing",
+     "url": "https://imagej.net/licensing/"
+    },
+    {
+     "n": 115,
+     "title": "Fiji",
+     "url": "https://imagej.net/software/fiji/"
+    },
+    {
+     "n": 116,
+     "title": "Bio-Formats repository",
+     "url": "https://github.com/ome/bioformats"
+    },
+    {
+     "n": 117,
+     "title": "ImageJ, formats",
+     "url": "https://imagej.net/formats/"
+    },
+    {
+     "n": 118,
+     "title": "ImageJ, macro language",
+     "url": "https://imagej.net/scripting/macro"
+    },
+    {
+     "n": 119,
+     "title": "Viv repository",
+     "url": "https://github.com/hms-dbmi/viv"
+    },
+    {
+     "n": 120,
+     "title": "Vizarr repository",
+     "url": "https://github.com/hms-dbmi/vizarr"
+    },
+    {
+     "n": 121,
+     "title": "ImageJ.JS repository",
+     "url": "https://github.com/imjoy-team/imagej.js"
+    },
+    {
+     "n": 122,
+     "title": "aicell-lab imagej.js repository",
+     "url": "https://github.com/aicell-lab/imagej.js"
+    },
+    {
+     "n": 123,
+     "title": "Fiji downloads",
+     "url": "https://imagej.net/software/fiji/downloads"
+    },
+    {
+     "n": 124,
+     "title": "tifffile on PyPI",
+     "url": "https://pypi.org/project/tifffile/"
+    },
+    {
+     "n": 125,
+     "title": "roifile on PyPI",
+     "url": "https://pypi.org/project/roifile/"
+    }
+   ]
+  },
+  {
+   "name": "IGV",
+   "field": "Biology",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT for all IGV software "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Genome tracks: alignments, variants, annotations, signal, and copy number"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "BAM, CRAM, VCF, BED, bigWig, bigBed, GFF3, GTF, WIG, and more track formats; FASTA and JSON genomes "
+    }
+   ],
+   "first": "browser",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "igv.js embeds in a page with ES2015 JavaScript, MIT, release v3.8.7 on 2026-09-09; the IGV-Web app runs only in the browser and uploads no data. Desktop IGV needs Java 21 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: igv.js in the page"
+    }
+   ],
+   "sources": [
+    {
+     "n": 126,
+     "title": "IGV",
+     "url": "https://igv.org/"
+    },
+    {
+     "n": 127,
+     "title": "IGV-Web, file formats",
+     "url": "https://igv.org/doc/webapp/FileFormats/"
+    },
+    {
+     "n": 128,
+     "title": "igv.js repository",
+     "url": "https://github.com/igvteam/igv.js"
+    },
+    {
+     "n": 129,
+     "title": "IGV-Web app documentation",
+     "url": "https://igv.org/doc/webapp/"
+    },
+    {
+     "n": 130,
+     "title": "IGV desktop, downloads",
+     "url": "https://igv.org/doc/desktop/DownloadPage/"
+    }
+   ]
+  },
+  {
+   "name": "NEURON",
+   "field": "Neuroscience",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause by the repository's "
+    },
+    {
+     "t": "code",
+     "v": "Copyright"
+    },
+    {
+     "t": "text",
+     "v": " file; PyPI classifies the "
+    },
+    {
+     "t": "code",
+     "v": "neuron"
+    },
+    {
+     "t": "text",
+     "v": " package as \"Other/Proprietary License\", which conflicts"
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Model cells and networks scripted in Python or HOC; shape plots through Matplotlib or plotly "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".hoc"
+    },
+    {
+     "t": "text",
+     "v": " and Python models, "
+    },
+    {
+     "t": "code",
+     "v": ".mod"
+    },
+    {
+     "t": "text",
+     "v": " mechanisms in NMODL compiled by "
+    },
+    {
+     "t": "code",
+     "v": "nrnivmodl"
+    },
+    {
+     "t": "text",
+     "v": ", "
+    },
+    {
+     "t": "code",
+     "v": ".ses"
+    },
+    {
+     "t": "text",
+     "v": " sessions "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "code",
+     "v": "pip install neuron"
+    },
+    {
+     "t": "text",
+     "v": " on Linux and macOS, an installer on Windows; release 9.0.2 on 2026-08-10. GPU is optional through CoreNEURON's OpenACC backend, now a source build since the GPU wheel was removed. No browser build found, and NEURON is absent from Pyodide 314.0.7 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: Matplotlib plots; interactive: plotly HTML; the model sources as text"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 131,
+     "title": "NEURON, Copyright file",
+     "url": "https://github.com/neuronsimulator/nrn/blob/master/Copyright"
+    },
+    {
+     "n": 132,
+     "title": "NEURON on PyPI",
+     "url": "https://pypi.org/project/NEURON/"
+    },
+    {
+     "n": 133,
+     "title": "NEURON documentation",
+     "url": "https://www.neuronsimulator.org/en/latest/"
+    },
+    {
+     "n": 134,
+     "title": "NEURON, CoreNEURON installation",
+     "url": "https://www.neuronsimulator.org/en/latest/coreneuron/installation.html"
+    }
+   ]
+  },
+  {
+   "name": "NWB",
+   "field": "Neuroscience",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "PyNWB BSD-3-Clause; MatNWB BSD-2-Clause "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Nothing; NWB is a data format for electrophysiology, optical physiology, tracking, and stimulus data "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".nwb"
+    },
+    {
+     "t": "text",
+     "v": ", an HDF5 file with a defined structure; the DANDI archive requires it for cellular neurophysiology "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "h5py is in Pyodide 314.0.7 and pynwb is absent; h5wasm reads HDF5 in JavaScript. Neurosift is a browser viewer for NWB on DANDI, Apache-2.0, last commit 2026-09-16 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: Neurosift, embedded or linked; the session, subject, device, and electrode metadata on the node"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 135,
+     "title": "PyNWB repository",
+     "url": "https://github.com/NeurodataWithoutBorders/pynwb"
+    },
+    {
+     "n": 136,
+     "title": "MatNWB repository",
+     "url": "https://github.com/NeurodataWithoutBorders/matnwb"
+    },
+    {
+     "n": 137,
+     "title": "NWB overview, file structure",
+     "url": "https://nwb-overview.readthedocs.io/en/latest/intro_to_nwb/2_file_structure.html"
+    },
+    {
+     "n": 138,
+     "title": "DANDI, data standards",
+     "url": "https://docs.dandiarchive.org/getting-started/data-standards/"
+    },
+    {
+     "n": 139,
+     "title": "h5wasm repository",
+     "url": "https://github.com/usnistgov/h5wasm"
+    },
+    {
+     "n": 140,
+     "title": "Neurosift repository",
+     "url": "https://github.com/flatironinstitute/neurosift"
+    },
+    {
+     "n": 141,
+     "title": "Neurodata Without Borders",
+     "url": "https://nwb.org/"
+    }
+   ]
+  },
+  {
+   "name": "ROOT",
+   "field": "Physics",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "LGPL-2.1-or-later, open, except MathMore under the GPL and RooFit under a University of California and Stanford license "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Histograms, graphs, trees, and detector geometry; publication figures as PDF and other formats "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".root"
+    },
+    {
+     "t": "text",
+     "v": " files, compressed and self-describing, holding TTree and RNTuple data; "
+    },
+    {
+     "t": "code",
+     "v": ".C"
+    },
+    {
+     "t": "text",
+     "v": " macros run by Cling; canvases save as PNG, SVG, PDF, JSON, and a dozen more "
+    }
+   ],
+   "first": "import",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "JSROOT draws ROOT objects in the page and reads "
+    },
+    {
+     "t": "code",
+     "v": ".root"
+    },
+    {
+     "t": "text",
+     "v": " files over HTTP, MIT, release 7.11.1 on 2026-07-27. uproot reads and writes "
+    },
+    {
+     "t": "code",
+     "v": ".root"
+    },
+    {
+     "t": "text",
+     "v": " in pure Python under BSD-3-Clause; its CI tests a Pyodide build, though uproot is absent from Pyodide 314.0.7. ROOT ships binaries for Linux and macOS, with Windows in beta, plus conda and Docker builds "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: histograms, graphs, trees, and geometry in JSROOT"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 142,
+     "title": "ROOT, license",
+     "url": "https://root.cern/about/license/"
+    },
+    {
+     "n": 143,
+     "title": "ROOT, about",
+     "url": "https://root.cern/about/"
+    },
+    {
+     "n": 144,
+     "title": "ROOT reference, RNTuple",
+     "url": "https://root.cern/doc/master/group__NTuple.html"
+    },
+    {
+     "n": 145,
+     "title": "ROOT reference, TPad",
+     "url": "https://root.cern/doc/master/classTPad.html"
+    },
+    {
+     "n": 146,
+     "title": "JSROOT repository",
+     "url": "https://github.com/root-project/jsroot"
+    },
+    {
+     "n": 147,
+     "title": "uproot repository",
+     "url": "https://github.com/scikit-hep/uproot5"
+    },
+    {
+     "n": 148,
+     "title": "ROOT, install",
+     "url": "https://root.cern/install/"
+    }
+   ]
+  },
+  {
+   "name": "Geant4",
+   "field": "Physics",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Geant4 Software License 1.0, open source with a clause against patenting modifications "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Detector geometry and particle tracks through OpenGL, Qt, Open Inventor, VTK, HepRep, VRML, and other drivers "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "GDML geometry, which needs Xerces-C; "
+    },
+    {
+     "t": "code",
+     "v": ".mac"
+    },
+    {
+     "t": "text",
+     "v": " macros; analysis output as ROOT, HDF5, XML, or CSV "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "RHEL-family Linux with GCC 11.5, macOS 14 to 26 with Xcode, Windows 11 with Visual Studio 2022, and C++17; multithreaded builds; physics datasets download at build time. Release 11.4.2 of 2026-06-17. No official web version; a third-party WebAssembly build for the YAPTIDE project runs Geant4 in a web worker, with no license file "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: images from the offscreen driver; interactive: ROOT output in JSROOT"
+    }
+   ],
+   "sources": [
+    {
+     "n": 149,
+     "title": "Geant4, software license",
+     "url": "https://geant4.web.cern.ch/download/license"
+    },
+    {
+     "n": 150,
+     "title": "Geant4 guide, visualization drivers",
+     "url": "https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Visualization/visdrivers.html"
+    },
+    {
+     "n": 151,
+     "title": "Geant4 guide, GDML",
+     "url": "https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Detector/Geometry/geomXML.html"
+    },
+    {
+     "n": 152,
+     "title": "Geant4 guide, running a program",
+     "url": "https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/GettingStarted/executeProgram.html"
+    },
+    {
+     "n": 153,
+     "title": "Geant4 guide, analysis managers",
+     "url": "https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Analysis/managers.html"
+    },
+    {
+     "n": 154,
+     "title": "Geant4 installation guide",
+     "url": "https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html"
+    },
+    {
+     "n": 155,
+     "title": "Geant4 11.4.2",
+     "url": "https://geant4.web.cern.ch/download/11.4.2.html"
+    },
+    {
+     "n": 156,
+     "title": "yaptide geant-web-application repository",
+     "url": "https://github.com/yaptide/geant-web-application"
+    }
+   ]
+  },
+  {
+   "name": "COMSOL Multiphysics",
+   "field": "Physics",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: CPU-locked, named single-user, floating network, and server licenses, term or perpetual, managed by FlexNet "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Result plots in one to three dimensions, and animations"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".mph"
+    },
+    {
+     "t": "text",
+     "v": " models holding the model and application trees; "
+    },
+    {
+     "t": "code",
+     "v": ".mphbin"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".mphtxt"
+    },
+    {
+     "t": "text",
+     "v": " geometry; exports VTK "
+    },
+    {
+     "t": "code",
+     "v": ".vtu"
+    },
+    {
+     "t": "text",
+     "v": ", STL, PLY, 3MF, and glTF "
+    },
+    {
+     "t": "code",
+     "v": ".glb"
+    },
+    {
+     "t": "text",
+     "v": ", images, WebM and GIF animations, and MATLAB or Java model code "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Windows 10 and 11, Windows Server, macOS 12 to 26, and several Linux distributions; 4 GB of memory and 2 to 25 GB of disk; GPU solvers need an NVIDIA GPU of compute capability 6.0. COMSOL Server runs apps for web browsers on the licensee's own server, and COMSOL Compiler builds apps that run with no license. No "
+    },
+    {
+     "t": "code",
+     "v": ".mph"
+    },
+    {
+     "t": "text",
+     "v": " parser outside COMSOL found"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: exported "
+    },
+    {
+     "t": "code",
+     "v": ".glb"
+    },
+    {
+     "t": "text",
+     "v": " in model-viewer or three.js; static: images and WebM"
+    }
+   ],
+   "sources": [
+    {
+     "n": 157,
+     "title": "COMSOL, licensing",
+     "url": "https://www.comsol.com/products/licensing"
+    },
+    {
+     "n": 158,
+     "title": "COMSOL 6.4, installation guide, license manager",
+     "url": "https://doc.comsol.com/6.4/doc/com.comsol.help.comsol/comsol_installation.02.026.html"
+    },
+    {
+     "n": 159,
+     "title": "COMSOL learning center, file formats",
+     "url": "https://www.comsol.com/support/learning-center/article/76161"
+    },
+    {
+     "n": 160,
+     "title": "COMSOL, system requirements",
+     "url": "https://www.comsol.com/system-requirements"
+    },
+    {
+     "n": 161,
+     "title": "COMSOL Server",
+     "url": "https://www.comsol.com/comsol-server"
+    },
+    {
+     "n": 162,
+     "title": "COMSOL Compiler",
+     "url": "https://www.comsol.com/comsol-compiler"
+    }
+   ]
+  },
+  {
+   "name": "MATLAB",
+   "field": "Physics",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: individual, designated computer, network named user, and concurrent licenses, the last served by Flexera's license manager "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Figures and plots, live scripts, Simulink models"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".m"
+    },
+    {
+     "t": "text",
+     "v": " code; "
+    },
+    {
+     "t": "code",
+     "v": ".mlx"
+    },
+    {
+     "t": "text",
+     "v": " live scripts, a zip under Open Packaging Conventions; "
+    },
+    {
+     "t": "code",
+     "v": ".mat"
+    },
+    {
+     "t": "text",
+     "v": " data, HDF5-based from version 7.3; "
+    },
+    {
+     "t": "code",
+     "v": ".fig"
+    },
+    {
+     "t": "text",
+     "v": "; "
+    },
+    {
+     "t": "code",
+     "v": ".slx"
+    },
+    {
+     "t": "text",
+     "v": " models, also OPC "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "MATLAB Online runs MATLAB in MathWorks' cloud, reached through a browser. Parsers: "
+    },
+    {
+     "t": "code",
+     "v": "scipy.io.loadmat"
+    },
+    {
+     "t": "text",
+     "v": " reads "
+    },
+    {
+     "t": "code",
+     "v": ".mat"
+    },
+    {
+     "t": "text",
+     "v": " up to 7.2 and h5py reads 7.3, both in Pyodide 314.0.7. "
+    },
+    {
+     "t": "code",
+     "v": "exportgraphics"
+    },
+    {
+     "t": "text",
+     "v": " writes an HTML file with an interactive canvas since R2026a "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The "
+    },
+    {
+     "t": "code",
+     "v": ".m"
+    },
+    {
+     "t": "text",
+     "v": " code as text; "
+    },
+    {
+     "t": "code",
+     "v": ".mat"
+    },
+    {
+     "t": "text",
+     "v": " variables as tables; interactive: exported HTML figures"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 163,
+     "title": "MathWorks, individual and designated computer licenses",
+     "url": "https://www.mathworks.com/help/install/administer-individual-and-designated-computer-licenses.html"
+    },
+    {
+     "n": 164,
+     "title": "MathWorks, concurrent licenses",
+     "url": "https://www.mathworks.com/help/install/license/concurrent-licenses.html"
+    },
+    {
+     "n": 165,
+     "title": "MATLAB, live script file format",
+     "url": "https://www.mathworks.com/help/matlab/matlab_prog/live-script-file-format.html"
+    },
+    {
+     "n": 166,
+     "title": "MATLAB, MAT-file versions",
+     "url": "https://www.mathworks.com/help/matlab/import_export/mat-file-versions.html"
+    },
+    {
+     "n": 167,
+     "title": "Simulink, save models",
+     "url": "https://www.mathworks.com/help/simulink/ug/save-models.html"
+    },
+    {
+     "n": 168,
+     "title": "MATLAB Online",
+     "url": "https://www.mathworks.com/products/matlab-online.html"
+    },
+    {
+     "n": 169,
+     "title": "MATLAB, exportgraphics",
+     "url": "https://www.mathworks.com/help/matlab/ref/exportgraphics.html"
+    }
+   ]
+  },
+  {
+   "name": "GNU Octave",
+   "field": "Physics",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-3.0-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "2D and 3D plots "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".m"
+    },
+    {
+     "t": "text",
+     "v": " scripts; MATLAB "
+    },
+    {
+     "t": "code",
+     "v": ".mat"
+    },
+    {
+     "t": "text",
+     "v": " versions 4 to 7, and 7.3 read in part through HDF5 "
+    }
+   ],
+   "first": "runner",
+   "fallback": "browser",
+   "connects": [
+    {
+     "t": "text",
+     "v": "GNU/Linux, macOS, BSD, and Windows, with no license. xeus-octave runs Octave in JupyterLite in the page, GPL-3.0, release v0.6.3 on 2026-01-26 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: plots printed to SVG, PDF, PNG, or JPEG "
+    }
+   ],
+   "sources": [
+    {
+     "n": 170,
+     "title": "GNU Octave repository",
+     "url": "https://github.com/gnu-octave/octave"
+    },
+    {
+     "n": 171,
+     "title": "GNU Octave",
+     "url": "https://octave.org/"
+    },
+    {
+     "n": 172,
+     "title": "Octave manual, simple file I/O",
+     "url": "https://docs.octave.org/latest/Simple-File-I_002fO.html"
+    },
+    {
+     "n": 173,
+     "title": "xeus-octave repository",
+     "url": "https://github.com/jupyter-xeus/xeus-octave"
+    },
+    {
+     "n": 174,
+     "title": "Octave manual, printing and saving plots",
+     "url": "https://docs.octave.org/latest/Printing-and-Saving-Plots.html"
+    }
+   ]
+  },
+  {
+   "name": "LAMMPS",
+   "field": "Physics",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPLv2, open; the site does not say \"or later\" "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Images of each snapshot, and movies of a run "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Input scripts and data files; dumps as XYZ, extended XYZ, DCD, XTC, netCDF, H5MD, VTK, YAML, and more "
+    }
+   ],
+   "first": "runner",
+   "fallback": "browser",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Executables for the three desktop systems. Atomify compiles LAMMPS to WebAssembly and runs it in the page at about half native speed, single-threaded, GPL-3.0, last commit 2026-09-11 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: Atomify's three.js view of a run; trajectories in Mol* or 3Dmol.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 175,
+     "title": "LAMMPS",
+     "url": "https://www.lammps.org/"
+    },
+    {
+     "n": 176,
+     "title": "LAMMPS manual, dump",
+     "url": "https://docs.lammps.org/dump.html"
+    },
+    {
+     "n": 177,
+     "title": "LAMMPS manual, install",
+     "url": "https://docs.lammps.org/Install.html"
+    },
+    {
+     "n": 178,
+     "title": "Atomify repository",
+     "url": "https://github.com/andeplane/atomify"
+    }
+   ]
+  },
+  {
+   "name": "Astropy",
+   "field": "Astronomy",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Plots through Matplotlib, with world coordinates through WCSAxes "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "FITS; tables as ASCII and ECSV, FITS, HDF5, Parquet, and VOTable; ASDF through asdf-astropy "
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "In Pyodide 314.0.7 as 7.2.0, with pyerfa and healpy; the upstream release is 8.0 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: Matplotlib figures; FITS headers and tables on the node; interactive: FITS images in Aladin Lite"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 179,
+     "title": "Astropy repository",
+     "url": "https://github.com/astropy/astropy"
+    },
+    {
+     "n": 180,
+     "title": "Astropy, WCSAxes",
+     "url": "https://docs.astropy.org/en/stable/visualization/wcsaxes/index.html"
+    },
+    {
+     "n": 181,
+     "title": "Astropy, unified table I/O",
+     "url": "https://docs.astropy.org/en/stable/io/unified_table.html"
+    },
+    {
+     "n": 182,
+     "title": "Astropy, installation",
+     "url": "https://docs.astropy.org/en/stable/install.html"
+    }
+   ]
+  },
+  {
+   "name": "SAOImageDS9",
+   "field": "Astronomy",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-3.0 for the DS9 code, which the README calls licensed in part; open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "FITS images and binary tables, frames, regions, scales, and colormaps "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "FITS images, tables, cubes, and mosaics, NRRD, ENVI, and common image formats; region and contour files "
+    }
+   ],
+   "first": "link",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Desktop builds, macOS 13 to 26 among them; stable 8.7 of 2026-03-15. JS9, its browser counterpart, is archived with a final release on 2024-12-14. Parsers: astropy for FITS and astropy-regions for DS9 region files "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the FITS image in Aladin Lite, with regions drawn from the region file"
+    }
+   ],
+   "sources": [
+    {
+     "n": 183,
+     "title": "SAOImageDS9 repository",
+     "url": "https://github.com/SAOImageDS9/SAOImageDS9"
+    },
+    {
+     "n": 184,
+     "title": "DS9 reference, file",
+     "url": "https://github.com/SAOImageDS9/SAOImageDS9/blob/master/ds9/doc/ref/file.html"
+    },
+    {
+     "n": 185,
+     "title": "SAOImageDS9, download",
+     "url": "https://sites.google.com/cfa.harvard.edu/saoimageds9/download"
+    },
+    {
+     "n": 186,
+     "title": "JS9 repository",
+     "url": "https://github.com/ericmandel/js9"
+    },
+    {
+     "n": 187,
+     "title": "astropy-regions repository",
+     "url": "https://github.com/astropy/regions"
+    }
+   ]
+  },
+  {
+   "name": "Aladin Lite",
+   "field": "Astronomy",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "LGPL-3.0-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "HiPS sky surveys and FITS images with catalogs overlaid, through a Rust and WebGL2 engine "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "HiPS, FITS images, JPEG and PNG with WCS "
+    }
+   ],
+   "first": "browser",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "An npm package, "
+    },
+    {
+     "t": "code",
+     "v": "aladin-lite"
+    },
+    {
+     "t": "text",
+     "v": "; stable v3.8.1 on 2026-03-05, last push 2026-09-17 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the sky view in the page"
+    }
+   ],
+   "sources": [
+    {
+     "n": 188,
+     "title": "Aladin Lite repository",
+     "url": "https://github.com/cds-astro/aladin-lite"
+    },
+    {
+     "n": 189,
+     "title": "aladin-lite on the npm registry",
+     "url": "https://registry.npmjs.org/aladin-lite"
+    }
+   ]
+  },
+  {
+   "name": "QGIS",
+   "field": "Earth science",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-2.0-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Maps of raster, vector, mesh, and point cloud data, with print layouts "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".qgz"
+    },
+    {
+     "t": "text",
+     "v": ", a zip holding the "
+    },
+    {
+     "t": "code",
+     "v": ".qgs"
+    },
+    {
+     "t": "text",
+     "v": " project XML and a "
+    },
+    {
+     "t": "code",
+     "v": ".qgd"
+    },
+    {
+     "t": "text",
+     "v": " SQLite file of auxiliary data; "
+    },
+    {
+     "t": "code",
+     "v": ".qml"
+    },
+    {
+     "t": "text",
+     "v": " styles and "
+    },
+    {
+     "t": "code",
+     "v": ".qlr"
+    },
+    {
+     "t": "text",
+     "v": " layer definitions; data formats through GDAL "
+    }
+   ],
+   "first": "import",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "qgis-js runs QGIS in the page as a public beta that loads a project and renders it to an image, with no network layers and no PyQGIS; npm 4.2.0 on 2026-07-06. QGIS Server provides WMS, WFS, WCS, and OGC API Features for a web client such as QWC2, BSD-2-Clause, release 2026-09-17. Desktop on Windows, macOS, Linux, and BSD, free of charge "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: a print layout exported as PDF or SVG; interactive: the layers on an OpenLayers map through QGIS Server and QWC2"
+    }
+   ],
+   "sources": [
+    {
+     "n": 190,
+     "title": "QGIS repository",
+     "url": "https://github.com/qgis/QGIS"
+    },
+    {
+     "n": 191,
+     "title": "QGIS manual, QGIS file formats",
+     "url": "https://docs.qgis.org/3.44/en/docs/user_manual/appendices/qgis_file_formats.html"
+    },
+    {
+     "n": 192,
+     "title": "QGIS manual, supported data formats",
+     "url": "https://docs.qgis.org/3.44/en/docs/user_manual/managing_data_source/supported_data.html"
+    },
+    {
+     "n": 193,
+     "title": "qgis-js repository",
+     "url": "https://github.com/qgis/qgis-js"
+    },
+    {
+     "n": 194,
+     "title": "QGIS Server manual, introduction",
+     "url": "https://docs.qgis.org/3.44/en/docs/server_manual/introduction.html"
+    },
+    {
+     "n": 195,
+     "title": "QWC2 repository",
+     "url": "https://github.com/qgis/qwc2"
+    },
+    {
+     "n": 196,
+     "title": "QGIS, download",
+     "url": "https://qgis.org/download/"
+    },
+    {
+     "n": 197,
+     "title": "QGIS manual, creating output",
+     "url": "https://docs.qgis.org/3.44/en/docs/user_manual/print_layout/create_output.html"
+    }
+   ]
+  },
+  {
+   "name": "GDAL",
+   "field": "Earth science",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT for most of the source, with some files under BSD terms "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Nothing; it translates raster and vector data through one abstract model for each "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "160 raster and 85 vector drivers in the stable documentation's tables on 2026-09-21, GeoTIFF, COG, GeoPackage, netCDF, HDF5, Zarr, Shapefile, GeoParquet, and GeoJSON among them"
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "gdal3.js compiles GDAL 3.8.4 to WebAssembly with "
+    },
+    {
+     "t": "code",
+     "v": "gdal_translate"
+    },
+    {
+     "t": "text",
+     "v": ", "
+    },
+    {
+     "t": "code",
+     "v": "ogr2ogr"
+    },
+    {
+     "t": "text",
+     "v": ", "
+    },
+    {
+     "t": "code",
+     "v": "gdalwarp"
+    },
+    {
+     "t": "text",
+     "v": ", and two more utilities, LGPL-2.1-or-later; last release v2.8.1 on 2024-02-22, npm beta 3.0.0-beta.4 on 2026-05-04, last commit 2026-05-13. Pyodide 314.0.7 has no GDAL package and ships rasterio, pyproj, fiona, and geopandas. geotiff.js reads GeoTIFF and COG in JavaScript, MIT "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: a raster as an image; interactive: a COG on a web map through geotiff.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 198,
+     "title": "GDAL, license",
+     "url": "https://gdal.org/en/stable/license.html"
+    },
+    {
+     "n": 199,
+     "title": "GDAL documentation",
+     "url": "https://gdal.org/en/stable/index.html"
+    },
+    {
+     "n": 200,
+     "title": "GDAL, raster drivers",
+     "url": "https://gdal.org/en/stable/drivers/raster/index.html"
+    },
+    {
+     "n": 201,
+     "title": "GDAL, vector drivers",
+     "url": "https://gdal.org/en/stable/drivers/vector/index.html"
+    },
+    {
+     "n": 202,
+     "title": "gdal3.js repository",
+     "url": "https://github.com/bugra9/gdal3.js"
+    },
+    {
+     "n": 203,
+     "title": "geotiff.js repository",
+     "url": "https://github.com/geotiffjs/geotiff.js"
+    }
+   ]
+  },
+  {
+   "name": "Google Earth Engine",
+   "field": "Earth science",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed and hosted: free for noncommercial and government research, and paid under Google Cloud terms for other use; the "
+    },
+    {
+     "t": "code",
+     "v": "earthengine-api"
+    },
+    {
+     "t": "text",
+     "v": " client is Apache-2.0 "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Map tiles and console output over a multi-petabyte catalog of satellite imagery and geospatial data "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Scripts in JavaScript in the Code Editor or in Python; images export as GeoTIFF or TFRecord, tables as CSV, SHP, GeoJSON, KML, KMZ, or TFRecord "
+    }
+   ],
+   "first": "link",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "A Google account and a Cloud project registered for commercial or noncommercial use. The Code Editor sends each script to Google for processing "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Exported COGs through geotiff.js and exported tables; the script as text"
+    }
+   ],
+   "sources": [
+    {
+     "n": 204,
+     "title": "Earth Engine, terms of service",
+     "url": "https://earthengine.google.com/terms/"
+    },
+    {
+     "n": 205,
+     "title": "earthengine-api repository",
+     "url": "https://github.com/google/earthengine-api"
+    },
+    {
+     "n": 206,
+     "title": "Google Earth Engine",
+     "url": "https://earthengine.google.com/"
+    },
+    {
+     "n": 207,
+     "title": "Earth Engine guide, exporting images",
+     "url": "https://developers.google.com/earth-engine/guides/exporting_images"
+    },
+    {
+     "n": 208,
+     "title": "Earth Engine guide, exporting tables",
+     "url": "https://developers.google.com/earth-engine/guides/exporting_tables"
+    },
+    {
+     "n": 209,
+     "title": "Earth Engine guide, access",
+     "url": "https://developers.google.com/earth-engine/guides/access"
+    },
+    {
+     "n": 210,
+     "title": "Earth Engine guide, Code Editor",
+     "url": "https://developers.google.com/earth-engine/guides/playground"
+    }
+   ]
+  },
+  {
+   "name": "netCDF and xarray",
+   "field": "Earth science",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "netCDF libraries BSD-3-Clause; the CF conventions document CC0; xarray Apache-2.0 "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "netCDF renders nothing; xarray plots through Matplotlib "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".nc"
+    },
+    {
+     "t": "text",
+     "v": " in the classic, 64-bit offset, CDF-5, and netCDF-4 variants, and every netCDF-4 file is an HDF5 file; CF metadata describes each variable and its space and time coordinates "
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Pyodide 314.0.7 ships xarray, netcdf4, h5py, and zarr. netcdfjs reads netCDF 3 in JavaScript, MIT, v4.0.0 on 2026-03-06; h5wasm reads HDF5 in JavaScript, v0.10.3 on 2026-06-11. A runner takes files too large to load in a page"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: Matplotlib plots of a variable; the variables with their attributes as a table"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 139,
+     "title": "h5wasm repository",
+     "url": "https://github.com/usnistgov/h5wasm"
+    },
+    {
+     "n": 211,
+     "title": "Unidata, netCDF licensing",
+     "url": "https://www.unidata.ucar.edu/software/netcdf/licensing"
+    },
+    {
+     "n": 212,
+     "title": "CF Conventions 1.13",
+     "url": "https://cfconventions.org/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html"
+    },
+    {
+     "n": 213,
+     "title": "xarray repository",
+     "url": "https://github.com/pydata/xarray"
+    },
+    {
+     "n": 214,
+     "title": "xarray, plotting",
+     "url": "https://docs.xarray.dev/en/stable/user-guide/plotting.html"
+    },
+    {
+     "n": 215,
+     "title": "netCDF-C, file format specifications",
+     "url": "https://docs.unidata.ucar.edu/netcdf-c/current/file_format_specifications.html"
+    },
+    {
+     "n": 216,
+     "title": "netcdfjs repository",
+     "url": "https://github.com/cheminfo/netcdfjs"
+    }
+   ]
+  },
+  {
+   "name": "GMT",
+   "field": "Earth science",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "LGPL-3.0-or-later, with one bundled file, "
+    },
+    {
+     "t": "code",
+     "v": "triangle.c"
+    },
+    {
+     "t": "text",
+     "v": ", under a non-permissive license "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Maps and figures for the geosciences "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Figures as PDF by default, or EPS, PS, PNG, JPEG, TIFF, and BMP; grids as netCDF"
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Command lines on Unix and Windows, no license; release 6.7.0 on 2026-07-30. No browser build found, and PyGMT is absent from Pyodide 314.0.7 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: the PDF or PNG figure"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 217,
+     "title": "GMT, LICENSE.TXT",
+     "url": "https://github.com/GenericMappingTools/gmt/blob/master/LICENSE.TXT"
+    },
+    {
+     "n": 218,
+     "title": "The Generic Mapping Tools",
+     "url": "https://www.generic-mapping-tools.org/"
+    },
+    {
+     "n": 219,
+     "title": "GMT documentation, figure",
+     "url": "https://docs.generic-mapping-tools.org/latest/figure.html"
+    },
+    {
+     "n": 220,
+     "title": "GMT repository",
+     "url": "https://github.com/GenericMappingTools/gmt"
+    }
+   ]
+  },
+  {
+   "name": "SolidWorks",
+   "field": "CAD",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed. Single seats activate on one machine or sign in online; networks use SolidNetWork on FlexNet for perpetual and term licenses "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "3D parts and assemblies, 2D drawings"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".sldprt"
+    },
+    {
+     "t": "text",
+     "v": ", "
+    },
+    {
+     "t": "code",
+     "v": ".sldasm"
+    },
+    {
+     "t": "text",
+     "v": ", "
+    },
+    {
+     "t": "code",
+     "v": ".slddrw"
+    },
+    {
+     "t": "text",
+     "v": "; exchanges STEP, IGES, Parasolid, ACIS, DXF and DWG, IFC, PDF; glTF and GLB; STL and 3MF meshes among others "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Windows 10 or 11, 64-bit, with 16 GB of memory and a certified graphics card. SOLIDWORKS xDesign runs in the browser on the 3DEXPERIENCE platform as a separate product. No open parser for the native files found"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: exported STEP in Online3DViewer or glTF in model-viewer; drawings as PDF"
+    }
+   ],
+   "sources": [
+    {
+     "n": 221,
+     "title": "SOLIDWORKS help, SolidNetWork licenses",
+     "url": "https://help.solidworks.com/2023/english/Installation/install_guide/c_administering_licenses_using_snl.htm"
+    },
+    {
+     "n": 222,
+     "title": "SOLIDWORKS help, online licensing",
+     "url": "https://help.solidworks.com/2021/english/SolidWorks/sldworks/t_log_into_SOLIDWORKS_with_online_licensing.htm"
+    },
+    {
+     "n": 223,
+     "title": "SOLIDWORKS help, types of files",
+     "url": "https://help.solidworks.com/2021/English/SolidWorks/acadhelp/c_Types_of_Files.htm"
+    },
+    {
+     "n": 224,
+     "title": "SOLIDWORKS help, import and export",
+     "url": "https://help.solidworks.com/2025/english/SolidWorks/sldworks/c_import_export_file_information.htm"
+    },
+    {
+     "n": 225,
+     "title": "SOLIDWORKS help, glTF and GLB",
+     "url": "https://help.solidworks.com/2025/English/SolidWorks/sldworks/c_glb_gltf_extended_reality_files.htm"
+    },
+    {
+     "n": 226,
+     "title": "SOLIDWORKS help, STL files",
+     "url": "https://help.solidworks.com/2025/english/SolidWorks/sldworks/c_stl_files.htm"
+    },
+    {
+     "n": 227,
+     "title": "SOLIDWORKS, system requirements",
+     "url": "https://www.solidworks.com/support/system-requirements"
+    },
+    {
+     "n": 228,
+     "title": "SOLIDWORKS xDesign",
+     "url": "https://www.3ds.com/store/solidworks-xdesign"
+    }
+   ]
+  },
+  {
+   "name": "FreeCAD",
+   "field": "CAD",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "LGPL-2.1-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Parametric 3D solids, sketches, drawings, and FEM meshes and results"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".FCStd"
+    },
+    {
+     "t": "text",
+     "v": ", a zip of "
+    },
+    {
+     "t": "code",
+     "v": "Document.xml"
+    },
+    {
+     "t": "text",
+     "v": " with BREP shapes and a thumbnail; STEP, IGES, STL, OBJ, 3MF, DXF, SVG, IFC, and more; exports glTF "
+    }
+   ],
+   "first": "import",
+   "fallback": "browser",
+   "connects": [
+    {
+     "t": "text",
+     "v": "The three desktop systems, with a console mode. freecad-web compiles FreeCAD 1.1.3 to WebAssembly, third party, Chrome or Edge 137 only, about 115 MB on first load, release v1.0.0 on 2026-09-18. Import reads "
+    },
+    {
+     "t": "code",
+     "v": "Document.xml"
+    },
+    {
+     "t": "text",
+     "v": " with any XML parser and the thumbnail as PNG"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: the thumbnail; interactive: the model in Online3DViewer, which reads "
+    },
+    {
+     "t": "code",
+     "v": ".fcstd"
+    }
+   ],
+   "sources": [
+    {
+     "n": 229,
+     "title": "FreeCAD source, Document.cpp",
+     "url": "https://github.com/FreeCAD/FreeCAD/blob/main/src/App/Document.cpp"
+    },
+    {
+     "n": 230,
+     "title": "FreeCAD wiki, FCStd file format",
+     "url": "https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/File_Format_FCStd.md"
+    },
+    {
+     "n": 231,
+     "title": "FreeCAD wiki, import and export",
+     "url": "https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/Import_Export.md"
+    },
+    {
+     "n": 232,
+     "title": "FreeCAD repository",
+     "url": "https://github.com/FreeCAD/FreeCAD"
+    },
+    {
+     "n": 233,
+     "title": "freecad-web repository",
+     "url": "https://github.com/Virtastic/freecad-web"
+    },
+    {
+     "n": 234,
+     "title": "Online3DViewer repository",
+     "url": "https://github.com/kovacsv/Online3DViewer"
+    }
+   ]
+  },
+  {
+   "name": "OpenSCAD",
+   "field": "CAD",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-2.0-or-later with a linking exception for CGAL; open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "3D solids by constructive geometry and extruded 2D outlines"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".scad"
+    },
+    {
+     "t": "text",
+     "v": " text in; STL, OBJ, OFF, 3MF, DXF, SVG, PNG, PDF, and more out on master; last stable release 2021.01 "
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "openscad-wasm is the headless WebAssembly build, last commit 2026-08-02; the OpenSCAD Playground runs it in the page and draws with model-viewer, last commit 2026-07-16. Native builds for the three desktop systems "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the rendered model in the page; the "
+    },
+    {
+     "t": "code",
+     "v": ".scad"
+    },
+    {
+     "t": "text",
+     "v": " source as text"
+    }
+   ],
+   "sources": [
+    {
+     "n": 235,
+     "title": "OpenSCAD repository",
+     "url": "https://github.com/openscad/openscad"
+    },
+    {
+     "n": 236,
+     "title": "OpenSCAD, about",
+     "url": "https://openscad.org/about.html"
+    },
+    {
+     "n": 237,
+     "title": "OpenSCAD source, export.cc",
+     "url": "https://github.com/openscad/openscad/blob/master/src/io/export.cc"
+    },
+    {
+     "n": 238,
+     "title": "openscad-wasm repository",
+     "url": "https://github.com/openscad/openscad-wasm"
+    },
+    {
+     "n": 239,
+     "title": "OpenSCAD Playground repository",
+     "url": "https://github.com/openscad/openscad-playground"
+    }
+   ]
+  },
+  {
+   "name": "Onshape",
+   "field": "CAD",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed subscription of PTC; the free plan is noncommercial and makes every document public; education plans are free "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "3D parts and assemblies, with drawings, in the browser through WebGL "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "No local files; imports STEP, Parasolid, SolidWorks, and a dozen more, and exports STEP, Parasolid, glTF, STL, 3MF, and URDF "
+    }
+   ],
+   "first": "link",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "A browser with WebGL and a sign-in. A REST API with API keys or OAuth2 exports glTF, Parasolid, STL, and translations to other formats "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: glTF from the API in model-viewer; a link to the document"
+    }
+   ],
+   "sources": [
+    {
+     "n": 240,
+     "title": "Onshape, pricing",
+     "url": "https://www.onshape.com/en/pricing"
+    },
+    {
+     "n": 241,
+     "title": "Onshape, education plans",
+     "url": "https://www.onshape.com/en/education/plans"
+    },
+    {
+     "n": 242,
+     "title": "Onshape help, hardware recommendations",
+     "url": "https://cad.onshape.com/help/Content/Home/hardware_and_graphics_performance_recommendations.htm"
+    },
+    {
+     "n": 243,
+     "title": "Onshape help, translation",
+     "url": "https://cad.onshape.com/help/Content/translation.htm"
+    },
+    {
+     "n": 244,
+     "title": "Onshape API, translation",
+     "url": "https://onshape-public.github.io/docs/api-adv/translation/"
+    }
+   ]
+  },
+  {
+   "name": "KiCad",
+   "field": "CAD",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-3.0-or-later for most of the source; libraries CC-BY-SA 4.0 "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Schematics, circuit boards, a 3D board view, and SPICE simulation"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".kicad_sch"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".kicad_pcb"
+    },
+    {
+     "t": "text",
+     "v": " S-expression text; "
+    },
+    {
+     "t": "code",
+     "v": "kicad-cli"
+    },
+    {
+     "t": "text",
+     "v": " exports Gerber, drill, SVG, PDF, STEP, and GLB "
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "KiCanvas views "
+    },
+    {
+     "t": "code",
+     "v": ".kicad_sch"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".kicad_pcb"
+    },
+    {
+     "t": "text",
+     "v": " in the page, MIT, early alpha, last commit 2026-04-28. "
+    },
+    {
+     "t": "code",
+     "v": "kicad-cli"
+    },
+    {
+     "t": "text",
+     "v": " runs headless on every desktop system KiCad supports "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the schematic or board in KiCanvas; the GLB board in model-viewer"
+    }
+   ],
+   "sources": [
+    {
+     "n": 245,
+     "title": "KiCad, licenses",
+     "url": "https://www.kicad.org/about/licenses/"
+    },
+    {
+     "n": 246,
+     "title": "KiCad, schematic file format",
+     "url": "https://dev-docs.kicad.org/en/file-formats/sexpr-schematic/"
+    },
+    {
+     "n": 247,
+     "title": "KiCad, board file format",
+     "url": "https://dev-docs.kicad.org/en/file-formats/sexpr-pcb/"
+    },
+    {
+     "n": 248,
+     "title": "KiCad 10, command line",
+     "url": "https://docs.kicad.org/10.0/en/cli/cli.html"
+    },
+    {
+     "n": 249,
+     "title": "KiCanvas repository",
+     "url": "https://github.com/theacodes/kicanvas"
+    }
+   ]
+  },
+  {
+   "name": "Ansys",
+   "field": "Simulation",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: FlexNet licensing through the Ansys License Management Center; Ansys became part of Synopsys on 2025-07-17; Ansys Student is a free twelve-month lease capped at 128K structural nodes and 1 million fluid cells "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Meshes and 3D field results, structural and fluid"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".wbpj"
+    },
+    {
+     "t": "text",
+     "v": " Workbench projects with "
+    },
+    {
+     "t": "code",
+     "v": ".mechdb"
+    },
+    {
+     "t": "text",
+     "v": " Mechanical and "
+    },
+    {
+     "t": "code",
+     "v": ".db"
+    },
+    {
+     "t": "text",
+     "v": " Mechanical APDL databases; Fluent "
+    },
+    {
+     "t": "code",
+     "v": ".cas.h5"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".dat.h5"
+    },
+    {
+     "t": "text",
+     "v": " in HDF5; exports EnSight, CGNS, Tecplot, and others "
+    }
+   ],
+   "first": "import",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Ansys Student runs on 64-bit Windows 10 and 11 with 50 GB of disk; full products need a FlexNet license server. ansys-mapdl-reader reads "
+    },
+    {
+     "t": "code",
+     "v": ".rst"
+    },
+    {
+     "t": "text",
+     "v": " result files in Python, MIT; Fluent's HDF5 files open with h5py"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: exported images; interactive: CGNS or EnSight converted to a mesh for vtk.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 250,
+     "title": "Ansys help, licensing introduction",
+     "url": "https://ansyshelp.ansys.com/public/Views/Secured/corp/v251/en/ai_elg/license_intro.html"
+    },
+    {
+     "n": 251,
+     "title": "Synopsys, acquisition of Ansys completed",
+     "url": "https://news.synopsys.com/2025-07-17-Synopsys-Completes-Acquisition-of-Ansys"
+    },
+    {
+     "n": 252,
+     "title": "Ansys Student",
+     "url": "https://ansys.synopsys.com/academic/students/ansys-student"
+    },
+    {
+     "n": 253,
+     "title": "Ansys help, Workbench file types",
+     "url": "https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/wb2_help/wb2h_wbfiles.html"
+    },
+    {
+     "n": 254,
+     "title": "Ansys Fluent guide, case and data files",
+     "url": "https://ansyshelp.ansys.com/public/Views/Secured/corp/v242/en/flu_ug/flu_ug_CaseDataFiles.html"
+    },
+    {
+     "n": 255,
+     "title": "Ansys Fluent guide, exporting data",
+     "url": "https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/flu_ug/flu_ug_FileExport.html"
+    },
+    {
+     "n": 256,
+     "title": "ansys-mapdl-reader repository",
+     "url": "https://github.com/ansys/pymapdl-reader"
+    }
+   ]
+  },
+  {
+   "name": "Abaqus",
+   "field": "Simulation",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: tokens served by FLEXnet or Dassault Systèmes licensing, per the 6.12 guide of 2012, with current licensing unverified behind a sign-in; the Learning Edition caps models at 1,000 nodes and runs on Windows only "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Finite element meshes and results"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".inp"
+    },
+    {
+     "t": "text",
+     "v": " text input, "
+    },
+    {
+     "t": "code",
+     "v": ".odb"
+    },
+    {
+     "t": "text",
+     "v": " binary results, "
+    },
+    {
+     "t": "code",
+     "v": ".cae"
+    },
+    {
+     "t": "text",
+     "v": " models, "
+    },
+    {
+     "t": "code",
+     "v": ".jnl"
+    },
+    {
+     "t": "text",
+     "v": " journals "
+    }
+   ],
+   "first": "import",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "meshio reads "
+    },
+    {
+     "t": "code",
+     "v": ".inp"
+    },
+    {
+     "t": "text",
+     "v": " in pure Python, MIT. No reader for "
+    },
+    {
+     "t": "code",
+     "v": ".odb"
+    },
+    {
+     "t": "text",
+     "v": " that works without Abaqus was found; ODB2VTK, MIT, converts it to "
+    },
+    {
+     "t": "code",
+     "v": ".vtu"
+    },
+    {
+     "t": "text",
+     "v": " with Abaqus installed "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the mesh from "
+    },
+    {
+     "t": "code",
+     "v": ".inp"
+    },
+    {
+     "t": "text",
+     "v": ", or "
+    },
+    {
+     "t": "code",
+     "v": ".vtu"
+    },
+    {
+     "t": "text",
+     "v": " results converted on a licensed runner, in vtk.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 257,
+     "title": "Abaqus 6.12 installation and licensing guide",
+     "url": "https://media.3ds.com/support/simulia/public/v612/installation_and_licensing_guides/books/sgb/ch02s01.html"
+    },
+    {
+     "n": 258,
+     "title": "Abaqus Learning Edition",
+     "url": "https://www.3ds.com/edu/education/students/solutions/abaqus-le"
+    },
+    {
+     "n": 259,
+     "title": "Dassault Systemes blog, Abaqus files",
+     "url": "https://blog.3ds.com/ko/brands/simulia/abaqus-file-1/"
+    },
+    {
+     "n": 260,
+     "title": "meshio repository",
+     "url": "https://github.com/nschloe/meshio"
+    },
+    {
+     "n": 261,
+     "title": "ODB2VTK repository",
+     "url": "https://github.com/Arris-Composites/ODB2VTK"
+    }
+   ]
+  },
+  {
+   "name": "FEniCS",
+   "field": "Simulation",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "DOLFINx LGPL-3.0-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Nothing of its own; it is a finite element library"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "XDMF with HDF5, VTK, VTX through ADIOS2, and VTKHDF "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Linux through apt, Docker, conda, or Spack; macOS through conda; Windows through Docker or WSL2; MPI for parallel runs; release v0.11.0 on 2026-06-10. No Pyodide or emscripten build found"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: VTK or XDMF output read by meshio and drawn in vtk.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 262,
+     "title": "DOLFINx source, XDMFFile.h",
+     "url": "https://github.com/FEniCS/dolfinx/blob/main/cpp/dolfinx/io/XDMFFile.h"
+    },
+    {
+     "n": 263,
+     "title": "DOLFINx documentation, dolfinx.io",
+     "url": "https://docs.fenicsproject.org/dolfinx/main/python/generated/dolfinx.io.html"
+    },
+    {
+     "n": 264,
+     "title": "DOLFINx repository",
+     "url": "https://github.com/FEniCS/dolfinx"
+    }
+   ]
+  },
+  {
+   "name": "OpenFOAM",
+   "field": "Simulation",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-3.0-or-later for openfoam.org; GPL v3 for openfoam.com; open"
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Nothing of its own; "
+    },
+    {
+     "t": "code",
+     "v": "paraFoam"
+    },
+    {
+     "t": "text",
+     "v": " opens ParaView"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "A case directory of text dictionaries: "
+    },
+    {
+     "t": "code",
+     "v": "system/"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": "constant/"
+    },
+    {
+     "t": "text",
+     "v": ", which holds the mesh, beside time directories such as "
+    },
+    {
+     "t": "code",
+     "v": "0/"
+    },
+    {
+     "t": "text",
+     "v": "; "
+    },
+    {
+     "t": "code",
+     "v": "foamToVTK"
+    },
+    {
+     "t": "text",
+     "v": " converts results to VTK "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Linux, or Windows through WSL, with OpenMPI for parallel runs; OpenFOAM 14 from the Foundation on 2026-07-14. A third-party WebAssembly demo runs "
+    },
+    {
+     "t": "code",
+     "v": "blockMesh"
+    },
+    {
+     "t": "text",
+     "v": " and one solver, with no license and one day of commits "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: "
+    },
+    {
+     "t": "code",
+     "v": "foamToVTK"
+    },
+    {
+     "t": "text",
+     "v": " output in vtk.js; the case dictionaries as text"
+    }
+   ],
+   "sources": [
+    {
+     "n": 265,
+     "title": "OpenFOAM-dev repository",
+     "url": "https://github.com/OpenFOAM/OpenFOAM-dev"
+    },
+    {
+     "n": 266,
+     "title": "OpenFOAM.com, licencing",
+     "url": "https://www.openfoam.com/documentation/licencing"
+    },
+    {
+     "n": 267,
+     "title": "OpenFOAM user guide, case file structure",
+     "url": "https://doc.cfd.direct/openfoam/user-guide-v13/case-file-structure"
+    },
+    {
+     "n": 268,
+     "title": "OpenFOAM user guide, ParaView",
+     "url": "https://doc.cfd.direct/openfoam/user-guide-v13/paraview"
+    },
+    {
+     "n": 269,
+     "title": "OpenFOAM user guide, running in parallel",
+     "url": "https://doc.cfd.direct/openfoam/user-guide-v13/running-applications-parallel"
+    },
+    {
+     "n": 270,
+     "title": "OpenFOAM Foundation, download",
+     "url": "https://openfoam.org/download/"
+    },
+    {
+     "n": 271,
+     "title": "openfoam-wasm repository",
+     "url": "https://github.com/FoamScience/openfoam-wasm"
+    }
+   ]
+  },
+  {
+   "name": "R",
+   "field": "Statistics",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-2 or GPL-3, as R states it; open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "2D statistical graphics through graphics devices, PDF, PNG, and SVG among them "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".R"
+    },
+    {
+     "t": "text",
+     "v": " scripts; "
+    },
+    {
+     "t": "code",
+     "v": ".RData"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".rda"
+    },
+    {
+     "t": "text",
+     "v": " workspaces; "
+    },
+    {
+     "t": "code",
+     "v": ".rds"
+    },
+    {
+     "t": "text",
+     "v": " objects, which R's own help calls unsuitable for interchange between machines; "
+    },
+    {
+     "t": "code",
+     "v": ".Rmd"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".qmd"
+    },
+    {
+     "t": "text",
+     "v": " documents "
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "webR runs R in the page through WebAssembly: MIT for its build scripts and console, GPL-3 for the binaries that contain R; release v0.6.0 on 2026-05-19, last commit 2026-06-23. Its package repository listed 22,741 packages for R 4.6 on 2026-09-21, haven, foreign, readxl, and ggplot2 among them. A package with compiled code needs a WebAssembly build, and webR cannot install from source. Shinylive runs Shiny apps in the page, MIT. A runner covers packages with no WebAssembly build"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: PNG or SVG plots; interactive: webR in the page, with plots drawn through "
+    },
+    {
+     "t": "code",
+     "v": "webr::canvas()"
+    },
+    {
+     "t": "text",
+     "v": ", or a Shinylive app"
+    }
+   ],
+   "sources": [
+    {
+     "n": 109,
+     "title": "webR package index for R 4.6",
+     "url": "https://repo.r-wasm.org/bin/emscripten/contrib/4.6/PACKAGES"
+    },
+    {
+     "n": 272,
+     "title": "R Project, licenses",
+     "url": "https://www.r-project.org/Licenses/"
+    },
+    {
+     "n": 273,
+     "title": "R manual, graphics devices",
+     "url": "https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/Devices.html"
+    },
+    {
+     "n": 274,
+     "title": "R manual, save",
+     "url": "https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html"
+    },
+    {
+     "n": 275,
+     "title": "R manual, readRDS",
+     "url": "https://stat.ethz.ch/R-manual/R-devel/library/base/html/readRDS.html"
+    },
+    {
+     "n": 276,
+     "title": "Quarto, using R",
+     "url": "https://quarto.org/docs/computations/r.html"
+    },
+    {
+     "n": 277,
+     "title": "webR repository",
+     "url": "https://github.com/r-wasm/webr"
+    },
+    {
+     "n": 278,
+     "title": "webR, building R packages",
+     "url": "https://docs.r-wasm.org/webr/latest/building.html"
+    },
+    {
+     "n": 279,
+     "title": "Shinylive for R repository",
+     "url": "https://github.com/posit-dev/r-shinylive"
+    },
+    {
+     "n": 280,
+     "title": "webR, plotting",
+     "url": "https://docs.r-wasm.org/webr/latest/plotting.html"
+    }
+   ]
+  },
+  {
+   "name": "IBM SPSS Statistics",
+   "field": "Statistics",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: per-user licenses or a subscription, with concurrent licenses served by a license manager "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Pivot tables and charts in the Viewer; exports to HTML, Word, Excel, and PDF "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".sav"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".zsav"
+    },
+    {
+     "t": "text",
+     "v": " data, "
+    },
+    {
+     "t": "code",
+     "v": ".spv"
+    },
+    {
+     "t": "text",
+     "v": " Viewer output, "
+    },
+    {
+     "t": "code",
+     "v": ".sps"
+    },
+    {
+     "t": "text",
+     "v": " syntax "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Desktop on Windows and macOS, 64-bit only, with no Linux desktop; SPSS Statistics Server runs on Linux; concurrent licenses use the Sentinel License Manager. Parsers: ReadStat (C, MIT), pyreadstat (Python, Apache-2.0), and haven in webR for the page; PSPP's "
+    },
+    {
+     "t": "code",
+     "v": "pspp-output"
+    },
+    {
+     "t": "text",
+     "v": " reads "
+    },
+    {
+     "t": "code",
+     "v": ".spv"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The dataset as a table with its variable labels; "
+    },
+    {
+     "t": "code",
+     "v": ".sps"
+    },
+    {
+     "t": "text",
+     "v": " syntax as text; "
+    },
+    {
+     "t": "code",
+     "v": ".spv"
+    },
+    {
+     "t": "text",
+     "v": " output converted to text or PDF by PSPP"
+    }
+   ],
+   "sources": [
+    {
+     "n": 281,
+     "title": "IBM SPSS Statistics 31, installation and licensing",
+     "url": "https://www.ibm.com/docs/en/SSLVMB_31.0.0/pdf/Getting_Started_with_Installation_and_Licensing.pdf"
+    },
+    {
+     "n": 282,
+     "title": "IBM SPSS Statistics 31, core system user guide",
+     "url": "https://www.ibm.com/docs/en/SSLVMB_31.0.0/pdf/IBM_SPSS_Statistics_Core_System_User_Guide.pdf"
+    },
+    {
+     "n": 283,
+     "title": "IBM, downloading SPSS Statistics 32",
+     "url": "https://www.ibm.com/support/pages/downloading-ibm-spss-statistics-32"
+    },
+    {
+     "n": 284,
+     "title": "ReadStat repository",
+     "url": "https://github.com/WizardMac/ReadStat"
+    },
+    {
+     "n": 285,
+     "title": "pyreadstat repository",
+     "url": "https://github.com/Roche/pyreadstat"
+    },
+    {
+     "n": 286,
+     "title": "haven on CRAN",
+     "url": "https://cran.r-project.org/package=haven"
+    },
+    {
+     "n": 287,
+     "title": "PSPP manual, pspp-output",
+     "url": "https://www.gnu.org/software/pspp/manual/html_node/Invoking-pspp_002doutput.html"
+    }
+   ]
+  },
+  {
+   "name": "PSPP",
+   "field": "Statistics",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-3.0-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Statistical tables and charts, output as text, PostScript, PDF, OpenDocument, or HTML "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Syntax and data files compatible with SPSS; "
+    },
+    {
+     "t": "code",
+     "v": "pspp-convert"
+    },
+    {
+     "t": "text",
+     "v": " turns SPSS system and portable files into CSV "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "The three desktop systems, with a command line and no license; 2.1.2 released 2026-09-19 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: PDF or HTML output of an "
+    },
+    {
+     "t": "code",
+     "v": ".sps"
+    },
+    {
+     "t": "text",
+     "v": " run"
+    }
+   ],
+   "sources": [
+    {
+     "n": 288,
+     "title": "GNU PSPP",
+     "url": "https://www.gnu.org/software/pspp/"
+    },
+    {
+     "n": 289,
+     "title": "PSPP manual, pspp-convert",
+     "url": "https://www.gnu.org/software/pspp/manual/html_node/Invoking-pspp_002dconvert.html"
+    },
+    {
+     "n": 290,
+     "title": "GNU PSPP release directory",
+     "url": "https://ftp.gnu.org/gnu/pspp/"
+    }
+   ]
+  },
+  {
+   "name": "Stata",
+   "field": "Statistics",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: single-user, network, site, and student lab licenses, annual or perpetual; editions up to MP, which runs on up to 64 cores "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "2D statistical graphs, exported as PS, EPS, SVG, PDF, PNG, TIFF, and more "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".dta"
+    },
+    {
+     "t": "text",
+     "v": " data, "
+    },
+    {
+     "t": "code",
+     "v": ".do"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".ado"
+    },
+    {
+     "t": "text",
+     "v": " code, "
+    },
+    {
+     "t": "code",
+     "v": ".smcl"
+    },
+    {
+     "t": "text",
+     "v": " logs, "
+    },
+    {
+     "t": "code",
+     "v": ".gph"
+    },
+    {
+     "t": "text",
+     "v": " graphs; "
+    },
+    {
+     "t": "code",
+     "v": ".dta"
+    },
+    {
+     "t": "text",
+     "v": " versions 113 to 121 across Stata 8 to 19 "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Windows 10, Windows 11, macOS 13 to 26, or 64-bit Linux with glibc 2.28; 4 GB of disk; a license and activation key. Parsers: "
+    },
+    {
+     "t": "code",
+     "v": "pandas.read_stata"
+    },
+    {
+     "t": "text",
+     "v": " for "
+    },
+    {
+     "t": "code",
+     "v": ".dta"
+    },
+    {
+     "t": "text",
+     "v": " 113 to 118, which read a version 118 file inside Pyodide 314.0.7 in a check on 2026-09-21; haven; ReadStat for versions 104 to 119. No parser here lists versions 120 and 121, which Stata 18 and 19 write for alias variables, so reading them is unverified"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The dataset as a table; "
+    },
+    {
+     "t": "code",
+     "v": ".do"
+    },
+    {
+     "t": "text",
+     "v": " files as text; graphs as the static exports"
+    }
+   ],
+   "sources": [
+    {
+     "n": 284,
+     "title": "ReadStat repository",
+     "url": "https://github.com/WizardMac/ReadStat"
+    },
+    {
+     "n": 291,
+     "title": "Stata, license options",
+     "url": "https://www.stata.com/order/license-options/"
+    },
+    {
+     "n": 292,
+     "title": "Stata, which Stata is right for me",
+     "url": "https://www.stata.com/products/which-stata-is-right-for-me/"
+    },
+    {
+     "n": 293,
+     "title": "Stata manual, graph export",
+     "url": "https://www.stata.com/manuals/g-2graphexport.pdf"
+    },
+    {
+     "n": 294,
+     "title": "Stata user's guide",
+     "url": "https://www.stata.com/manuals/u.pdf"
+    },
+    {
+     "n": 295,
+     "title": "Stata help, dta",
+     "url": "https://www.stata.com/help.cgi?dta"
+    },
+    {
+     "n": 296,
+     "title": "Stata, compatible operating systems",
+     "url": "https://www.stata.com/products/compatible-operating-systems/"
+    },
+    {
+     "n": 297,
+     "title": "pandas, IO tools",
+     "url": "https://pandas.pydata.org/docs/user_guide/io.html"
+    }
+   ]
+  },
+  {
+   "name": "SAS",
+   "field": "Statistics",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: SAS 9.4 runs on an annual SID license file; SAS OnDemand for Academics is free for coursework and noncommercial research, hosted by SAS "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Statistical output and graphics"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".sas"
+    },
+    {
+     "t": "text",
+     "v": " programs, "
+    },
+    {
+     "t": "code",
+     "v": ".sas7bdat"
+    },
+    {
+     "t": "text",
+     "v": " data sets, "
+    },
+    {
+     "t": "code",
+     "v": ".sas7bcat"
+    },
+    {
+     "t": "text",
+     "v": " catalogs; "
+    },
+    {
+     "t": "code",
+     "v": ".xpt"
+    },
+    {
+     "t": "text",
+     "v": " XPORT, which the FDA names as the file format for every electronic dataset in a submission "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "SAS Studio processes code on a SAS server and returns results to the browser. Parsers: "
+    },
+    {
+     "t": "code",
+     "v": "pandas.read_sas"
+    },
+    {
+     "t": "text",
+     "v": " reads "
+    },
+    {
+     "t": "code",
+     "v": ".xpt"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".sas7bdat"
+    },
+    {
+     "t": "text",
+     "v": ", untested inside Pyodide; ReadStat and haven read both"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The dataset as a table; "
+    },
+    {
+     "t": "code",
+     "v": ".sas"
+    },
+    {
+     "t": "text",
+     "v": " programs as text"
+    }
+   ],
+   "sources": [
+    {
+     "n": 297,
+     "title": "pandas, IO tools",
+     "url": "https://pandas.pydata.org/docs/user_guide/io.html"
+    },
+    {
+     "n": 298,
+     "title": "SAS, applying a SID file",
+     "url": "https://support.sas.com/documentation/installcenter/en/ikwinbasicri/66608/PDF/default/setinit_basic.pdf"
+    },
+    {
+     "n": 299,
+     "title": "SAS OnDemand for Academics",
+     "url": "https://www.sas.com/en_us/software/on-demand-for-academics.html"
+    },
+    {
+     "n": 300,
+     "title": "SAS OnDemand for Academics license",
+     "url": "https://support.sas.com/ondemand/pdf/click_license.pdf"
+    },
+    {
+     "n": 301,
+     "title": "SAS for Windows, file extensions",
+     "url": "https://support.sas.com/documentation/cdl/en/hostwin/69955/HTML/default/n0sk6o15955yoen19n9ghdziqw1u.htm"
+    },
+    {
+     "n": 302,
+     "title": "FDA, Study Data Technical Conformance Guide",
+     "url": "https://www.fda.gov/media/153632/download"
+    },
+    {
+     "n": 303,
+     "title": "SAS Studio support",
+     "url": "https://support.sas.com/en/software/studio-support.html"
+    }
+   ]
+  },
+  {
+   "name": "NVivo",
+   "field": "Qualitative research",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: perpetual, enterprise, student, and trial licenses activated through a MyLumivero account "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Coded sources, text, PDF, images, audio, and video, with code hierarchies and maps"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".nvp"
+    },
+    {
+     "t": "text",
+     "v": " on Windows and "
+    },
+    {
+     "t": "code",
+     "v": ".nvpx"
+    },
+    {
+     "t": "text",
+     "v": " on Mac; exports a REFI-QDA project "
+    },
+    {
+     "t": "code",
+     "v": ".qdpx"
+    },
+    {
+     "t": "text",
+     "v": " and a codebook as "
+    },
+    {
+     "t": "code",
+     "v": ".qdc"
+    },
+    {
+     "t": "text",
+     "v": " among other formats "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Windows 10 or later, 4 to 8 GB of memory, about 5 to 8 GB of disk. The "
+    },
+    {
+     "t": "code",
+     "v": ".qdpx"
+    },
+    {
+     "t": "text",
+     "v": " export leaves out queries, maps, framework matrices, dynamic sets, and aggregate coding "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The sources with their coded segments and the code tree, read from "
+    },
+    {
+     "t": "code",
+     "v": ".qdpx"
+    }
+   ],
+   "sources": [
+    {
+     "n": 304,
+     "title": "NVivo 15 help, activate a license",
+     "url": "https://help-nv.qsrinternational.com/15/win/Content/about-nvivo/activate-license.htm"
+    },
+    {
+     "n": 305,
+     "title": "NVivo 15 help, Windows and Mac projects",
+     "url": "https://help-nv.qsrinternational.com/15/win/Content/projects-teamwork/work-with-projects-windows-mac.htm"
+    },
+    {
+     "n": 306,
+     "title": "NVivo 15 help, REFI-QDA standard",
+     "url": "https://help-nv.qsrinternational.com/15/win/Content/projects-teamwork/refi-qda%20standard.htm"
+    },
+    {
+     "n": 307,
+     "title": "NVivo 14 help, export codes",
+     "url": "https://help-nv.qsrinternational.com/14/win/Content/nodes/export-nodes.htm"
+    },
+    {
+     "n": 308,
+     "title": "NVivo 15 help, installation",
+     "url": "https://help-nv.qsrinternational.com/15/win/Content/about-nvivo/installation.htm"
+    }
+   ]
+  },
+  {
+   "name": "ATLAS.ti",
+   "field": "Qualitative research",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: purchased or leased desktop licenses and leased web licenses, renewing yearly; every license covers both desktop editions and ATLAS.ti Web "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Coded documents and code networks"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".atlproj"
+    },
+    {
+     "t": "text",
+     "v": " project bundles; exports QDPX and Excel among its formats, and imports QDPX from any tool "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Desktop on Windows and Mac. ATLAS.ti Web is hosted, on servers in Germany "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The sources with their coded segments, read from "
+    },
+    {
+     "t": "code",
+     "v": ".qdpx"
+    }
+   ],
+   "sources": [
+    {
+     "n": 309,
+     "title": "ATLAS.ti, terms and conditions",
+     "url": "https://atlasti.com/legal/terms-conditions"
+    },
+    {
+     "n": 310,
+     "title": "ATLAS.ti, multi-user licenses",
+     "url": "https://atlasti.com/multi-user-licenses"
+    },
+    {
+     "n": 311,
+     "title": "ATLAS.ti manual, setting up a team project",
+     "url": "https://manuals.atlasti.com/Win/en/manual/Team/TeamWorkSettingUpProject.html"
+    },
+    {
+     "n": 312,
+     "title": "ATLAS.ti manual, QDPX export",
+     "url": "https://manuals.atlasti.com/Win/en/manual/Export/ExportQDPXUniversalDataExchange.html"
+    },
+    {
+     "n": 313,
+     "title": "ATLAS.ti manual, importing a project",
+     "url": "https://manuals.atlasti.com/Win/en/manual/Project/ProjectImportingAnExistingProject.html"
+    },
+    {
+     "n": 314,
+     "title": "ATLAS.ti Web",
+     "url": "https://atlasti.com/atlas-ti-web"
+    }
+   ]
+  },
+  {
+   "name": "MAXQDA",
+   "field": "Qualitative research",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: subscriptions of one to five years for single users and networks "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Coded documents and the code system"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".mqda"
+    },
+    {
+     "t": "text",
+     "v": " projects in MAXQDA 26, which opens "
+    },
+    {
+     "t": "code",
+     "v": ".mx24"
+    },
+    {
+     "t": "text",
+     "v": " back to "
+    },
+    {
+     "t": "code",
+     "v": ".mx12"
+    },
+    {
+     "t": "text",
+     "v": "; exports "
+    },
+    {
+     "t": "code",
+     "v": ".qdpx"
+    },
+    {
+     "t": "text",
+     "v": " and imports and exports "
+    },
+    {
+     "t": "code",
+     "v": ".qdc"
+    },
+    {
+     "t": "text",
+     "v": " codebooks "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Windows and Mac, with an internet connection once to activate. On a REFI import MAXQDA cuts comments on coded segments to 511 characters "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The sources with their coded segments, read from "
+    },
+    {
+     "t": "code",
+     "v": ".qdpx"
+    }
+   ],
+   "sources": [
+    {
+     "n": 315,
+     "title": "MAXQDA, pricing",
+     "url": "https://www.maxqda.com/pricing"
+    },
+    {
+     "n": 316,
+     "title": "MAXQDA help, opening older projects",
+     "url": "https://help.maxqda.com/en/support/solutions/articles/80001139450-how-to-open-projects-from-older-versions-2020-and-2022-in-the-current-maxqda-"
+    },
+    {
+     "n": 317,
+     "title": "MAXQDA help, REFI-QDA projects",
+     "url": "https://www.maxqda.com/help/report-and-export/export-and-import-refi-qda-projects"
+    },
+    {
+     "n": 318,
+     "title": "MAXQDA, system requirements",
+     "url": "https://www.maxqda.com/system-requirements"
+    }
+   ]
+  },
+  {
+   "name": "REFI-QDA",
+   "field": "Qualitative research",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "No license stated on the standard's pages; the site footer reads \"All rights reserved\" "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Nothing; it is an exchange format for sources, segments, codes, memos, cases, and sets "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".qdpx"
+    },
+    {
+     "t": "text",
+     "v": " projects, an XML file with the sources in one archive; "
+    },
+    {
+     "t": "code",
+     "v": ".qdc"
+    },
+    {
+     "t": "text",
+     "v": " codebooks with an XSD "
+    }
+   ],
+   "first": "import",
+   "fallback": null,
+   "connects": [
+    {
+     "t": "text",
+     "v": "Parsers: pyqdpx, which reads "
+    },
+    {
+     "t": "code",
+     "v": ".qdpx"
+    },
+    {
+     "t": "text",
+     "v": " as a zip with "
+    },
+    {
+     "t": "code",
+     "v": "project.qde"
+    },
+    {
+     "t": "text",
+     "v": " and a "
+    },
+    {
+     "t": "code",
+     "v": "Sources"
+    },
+    {
+     "t": "text",
+     "v": " folder (Python, MIT, last push 2026-04-29). The site lists ATLAS.ti, MAXQDA, NVivo, QualCoder, and eight more tools as supporting project exchange "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The one parser behind the NVivo, ATLAS.ti, MAXQDA, and QualCoder rows"
+    }
+   ],
+   "sources": [
+    {
+     "n": 319,
+     "title": "REFI-QDA, codebook implementation files",
+     "url": "https://www.qdasoftware.org/codebook-implementation-files"
+    },
+    {
+     "n": 320,
+     "title": "REFI-QDA, project exchange",
+     "url": "https://www.qdasoftware.org/project"
+    },
+    {
+     "n": 321,
+     "title": "pyqdpx repository",
+     "url": "https://github.com/DEpt-metagenom/pyqdpx"
+    },
+    {
+     "n": 322,
+     "title": "REFI-QDA, about",
+     "url": "https://www.qdasoftware.org/about"
+    }
+   ]
+  },
+  {
+   "name": "QualCoder",
+   "field": "Qualitative research",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "LGPL-3.0, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Coded text, images, audio, and video, with reports"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "A SQLite project; imports text, Word, HTML, Markdown, EPUB, PDF, and media; REFI-QDA project and codebook import and export "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "The three desktop systems, with Python 3.13 and PyQt6; stable 3.8.2 on 2026-02-26, last push 2026-09-21 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The sources with their coded segments, read from "
+    },
+    {
+     "t": "code",
+     "v": ".qdpx"
+    }
+   ],
+   "sources": [
+    {
+     "n": 320,
+     "title": "REFI-QDA, project exchange",
+     "url": "https://www.qdasoftware.org/project"
+    },
+    {
+     "n": 323,
+     "title": "QualCoder repository",
+     "url": "https://github.com/ccbogel/QualCoder"
+    }
+   ]
+  },
+  {
+   "name": "Taguette",
+   "field": "Qualitative research",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Documents with highlighted, tagged quotes"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Imports PDF, DOCX, TXT, ODT, Markdown, and HTML; exports highlights as HTML, CSV, XLSX, DOCX, or PDF, the codebook as "
+    },
+    {
+     "t": "code",
+     "v": ".qdc"
+    },
+    {
+     "t": "text",
+     "v": ", CSV, and more, and the project as SQLite "
+    }
+   ],
+   "first": "runner",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "A Python web server, self-hosted or at app.taguette.org; tag v1.5.2 on 2025-12-08, last commit 2026-02-05 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "The codebook from "
+    },
+    {
+     "t": "code",
+     "v": ".qdc"
+    },
+    {
+     "t": "text",
+     "v": "; highlights from CSV"
+    }
+   ],
+   "sources": [
+    {
+     "n": 324,
+     "title": "Taguette, LICENSE",
+     "url": "https://gitlab.com/remram44/taguette/-/raw/master/LICENSE.txt"
+    },
+    {
+     "n": 325,
+     "title": "Taguette, getting started",
+     "url": "https://www.taguette.org/getting-started.html"
+    },
+    {
+     "n": 326,
+     "title": "Taguette",
+     "url": "https://www.taguette.org/"
+    },
+    {
+     "n": 327,
+     "title": "Taguette repository",
+     "url": "https://gitlab.com/remram44/taguette"
+    }
+   ]
+  },
+  {
+   "name": "Zotero",
+   "field": "Humanities",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "AGPL-3.0-or-later, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "A reference library of items, notes, tags, and attachments; formatted citations through CSL styles "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": "zotero.sqlite"
+    },
+    {
+     "t": "text",
+     "v": " and a "
+    },
+    {
+     "t": "code",
+     "v": "storage"
+    },
+    {
+     "t": "text",
+     "v": " folder of attachments; imports and exports BibTeX, CSL JSON, MODS XML, RIS, Refer; exports BibLaTeX and Zotero RDF "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Web API v3 at "
+    },
+    {
+     "t": "code",
+     "v": "api.zotero.org"
+    },
+    {
+     "t": "text",
+     "v": ": public libraries read with no key, private ones with a user key, up to 100 items a request, "
+    },
+    {
+     "t": "code",
+     "v": "429"
+    },
+    {
+     "t": "text",
+     "v": " with "
+    },
+    {
+     "t": "code",
+     "v": "Retry-After"
+    },
+    {
+     "t": "text",
+     "v": " under load. A local API on "
+    },
+    {
+     "t": "code",
+     "v": "localhost:23119"
+    },
+    {
+     "t": "text",
+     "v": " in Zotero 10. Parsers: citation-js (MIT, JavaScript, npm 0.9.0 on 2026-09-18). Desktop on the three major systems "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Each reference as a "
+    },
+    {
+     "t": "code",
+     "v": "primary_source"
+    },
+    {
+     "t": "text",
+     "v": " node; formatted references from the API's "
+    },
+    {
+     "t": "code",
+     "v": "include=bib"
+    },
+    {
+     "t": "text",
+     "v": " or citeproc-js in the page"
+    }
+   ],
+   "sources": [
+    {
+     "n": 328,
+     "title": "Zotero, COPYING",
+     "url": "https://raw.githubusercontent.com/zotero/zotero/main/COPYING"
+    },
+    {
+     "n": 329,
+     "title": "Zotero Web API v3, basics",
+     "url": "https://www.zotero.org/support/dev/web_api/v3/basics"
+    },
+    {
+     "n": 330,
+     "title": "Zotero, the Zotero data directory",
+     "url": "https://www.zotero.org/support/zotero_data"
+    },
+    {
+     "n": 331,
+     "title": "Zotero, data formats",
+     "url": "https://www.zotero.org/support/dev/data_formats"
+    },
+    {
+     "n": 332,
+     "title": "Zotero, local API",
+     "url": "https://www.zotero.org/support/dev/web_api/v3/local_api"
+    },
+    {
+     "n": 333,
+     "title": "citation-js repository",
+     "url": "https://github.com/citation-js/citation-js"
+    },
+    {
+     "n": 334,
+     "title": "Zotero, system requirements",
+     "url": "https://www.zotero.org/support/system_requirements"
+    }
+   ]
+  },
+  {
+   "name": "TEI",
+   "field": "Humanities",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Guidelines and schemas under both CC BY 3.0 and BSD-2-Clause, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "TEI is an XML encoding; the TEI Stylesheets transform it to XHTML, LaTeX, XSL-FO, ePub, and Word "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "XML in the TEI namespace, with ODD customizations; P5 4.12.0 released 2026-07-28 "
+    }
+   ],
+   "first": "browser",
+   "fallback": "import",
+   "connects": [
+    {
+     "t": "text",
+     "v": "CETEIcean renders TEI in the page as custom elements, BSD-2-Clause, last release v1.9.5 on 2025-08-29 and last commit 2026-09-08. TEI Publisher (GPL-3.0) needs an eXist-db server. Import reads "
+    },
+    {
+     "t": "code",
+     "v": "teiHeader"
+    },
+    {
+     "t": "text",
+     "v": " metadata and the text into passages with any XML parser"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: the edition in the page through CETEIcean"
+    }
+   ],
+   "sources": [
+    {
+     "n": 335,
+     "title": "TEI, licensing and citation",
+     "url": "https://www.tei-c.org/guidelines/licensing-and-citation/"
+    },
+    {
+     "n": 336,
+     "title": "TEI Stylesheets repository",
+     "url": "https://github.com/TEIC/Stylesheets"
+    },
+    {
+     "n": 337,
+     "title": "TEI P5 Guidelines, chapter ST",
+     "url": "https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ST.html"
+    },
+    {
+     "n": 338,
+     "title": "TEI, P5 Guidelines",
+     "url": "https://www.tei-c.org/guidelines/p5/"
+    },
+    {
+     "n": 339,
+     "title": "CETEIcean repository",
+     "url": "https://github.com/TEIC/CETEIcean"
+    },
+    {
+     "n": 340,
+     "title": "TEI Publisher app repository",
+     "url": "https://github.com/eeditiones/tei-publisher-app"
+    }
+   ]
+  },
+  {
+   "name": "Voyant Tools",
+   "field": "Humanities",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "GPL-3.0, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Interactive corpus panels: Cirrus, Reader, Trends, Summary, Contexts, Collocates, Links "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Reads HTML, Word, Excel, ODT, Pages, PDF, plain text, RTF, XML, archives, JSON, RSS, and TEI "
+    }
+   ],
+   "first": "link",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Hosted at voyant-tools.org, which answered 502 on 2026-09-21. VoyantServer needs Java 11; release 2.6.23 on 2026-08-19 "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Interactive: a Voyant tool in an iframe, loading a document by "
+    },
+    {
+     "t": "code",
+     "v": "?input=<url>"
+    }
+   ],
+   "sources": [
+    {
+     "n": 341,
+     "title": "Voyant repository",
+     "url": "https://github.com/voyanttools/Voyant"
+    },
+    {
+     "n": 342,
+     "title": "Voyant, getting started guide",
+     "url": "https://github.com/voyanttools/Voyant/blob/master/src/main/webapp/docs/tutorials/guides/guides/start.md"
+    },
+    {
+     "n": 343,
+     "title": "Voyant, corpus creator guide",
+     "url": "https://github.com/voyanttools/Voyant/blob/master/src/main/webapp/docs/tutorials/guides/guides/corpuscreator.md"
+    },
+    {
+     "n": 344,
+     "title": "VoyantServer repository",
+     "url": "https://github.com/voyanttools/VoyantServer"
+    },
+    {
+     "n": 345,
+     "title": "Voyant, embedding guide",
+     "url": "https://github.com/voyanttools/Voyant/blob/master/src/main/webapp/docs/tutorials/guides/guides/embedding.md"
+    }
+   ]
+  },
+  {
+   "name": "Transkribus",
+   "field": "Humanities",
+   "open": false,
+   "license": [
+    {
+     "t": "text",
+     "v": "Closed: a subscription service of READ-COOP SCE; the free plan gives 50 credits a month, and recognizing handwriting costs 1 credit a page "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Handwritten text recognition and layout analysis over page images"
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Every plan exports JPEG, DOCX, PDF, TXT, and PAGE XML; paid plans add METS, CSV, ALTO XML, and TEI XML "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Hosted only. A processing API takes page images up to 20 MB and returns PAGE XML, ALTO, TEI, or text. Parser: pagexml-tools (Python, MIT) "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: the text as passages; the page image with the PAGE XML line polygons drawn over it is a viewer to build"
+    }
+   ],
+   "sources": [
+    {
+     "n": 346,
+     "title": "Transkribus, terms",
+     "url": "https://legal.transkribus.org/terms"
+    },
+    {
+     "n": 347,
+     "title": "Transkribus, plans",
+     "url": "https://www.transkribus.org/plans"
+    },
+    {
+     "n": 348,
+     "title": "Transkribus help, downloading",
+     "url": "https://help.transkribus.org/downloading"
+    },
+    {
+     "n": 349,
+     "title": "Transkribus metagrapho API documentation",
+     "url": "https://www.transkribus.org/metagrapho/documentation"
+    },
+    {
+     "n": 350,
+     "title": "pagexml-tools repository",
+     "url": "https://github.com/knaw-huc/pagexml"
+    }
+   ]
+  },
+  {
+   "name": "ParaView",
+   "field": "Visualization",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "3D views of meshes and volumes, with screenshots and animations "
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".pvsm"
+    },
+    {
+     "t": "text",
+     "v": " XML state files and Python state files; reads VTK XML "
+    },
+    {
+     "t": "code",
+     "v": ".vti"
+    },
+    {
+     "t": "text",
+     "v": ", "
+    },
+    {
+     "t": "code",
+     "v": ".vtp"
+    },
+    {
+     "t": "text",
+     "v": ", "
+    },
+    {
+     "t": "code",
+     "v": ".vtr"
+    },
+    {
+     "t": "text",
+     "v": ", "
+    },
+    {
+     "t": "code",
+     "v": ".vts"
+    },
+    {
+     "t": "text",
+     "v": ", and "
+    },
+    {
+     "t": "code",
+     "v": ".vtu"
+    },
+    {
+     "t": "text",
+     "v": ", and CGNS, EnSight, Exodus, OpenFOAM, netCDF, and XDMF among many more; exports scenes as WebGL, X3D, VRML, SVG, and PDF "
+    }
+   ],
+   "first": "import",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "vtk.js renders VTK data in the page, BSD-3-Clause, v37.1.0 on 2026-09-18. ParaView Glance last released on 2024-09-17 and ParaViewWeb is in maintenance mode, so neither counts as maintained. trame serves ParaView from a Python server to a web client, Apache-2.0, v4.0.0 on 2026-09-09. Desktop downloads of 466 to 827 MB "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: PNG or PDF exports; interactive: "
+    },
+    {
+     "t": "code",
+     "v": ".vtp"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".vti"
+    },
+    {
+     "t": "text",
+     "v": " in vtk.js, or a trame app on a runner"
+    }
+   ],
+   "sources": [
+    {
+     "n": 351,
+     "title": "ParaView, license",
+     "url": "https://www.paraview.org/license/"
+    },
+    {
+     "n": 352,
+     "title": "ParaView guide, saving results",
+     "url": "https://docs.paraview.org/en/latest/UsersGuide/savingResults.html"
+    },
+    {
+     "n": 353,
+     "title": "VTK, XML file formats",
+     "url": "https://docs.vtk.org/en/latest/vtk_file_formats/vtkxml_file_format.html"
+    },
+    {
+     "n": 354,
+     "title": "ParaView, features",
+     "url": "https://www.paraview.org/features/"
+    },
+    {
+     "n": 355,
+     "title": "vtk.js repository",
+     "url": "https://github.com/Kitware/vtk-js"
+    },
+    {
+     "n": 356,
+     "title": "ParaView Glance repository",
+     "url": "https://github.com/Kitware/glance"
+    },
+    {
+     "n": 357,
+     "title": "ParaViewWeb repository",
+     "url": "https://github.com/Kitware/paraviewweb"
+    },
+    {
+     "n": 358,
+     "title": "trame",
+     "url": "https://kitware.github.io/trame/"
+    },
+    {
+     "n": 359,
+     "title": "ParaView 6.1 downloads",
+     "url": "https://www.paraview.org/files/v6.1/"
+    }
+   ]
+  },
+  {
+   "name": "VisIt",
+   "field": "Visualization",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause, open "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Scalar and vector fields on structured and unstructured meshes in 2D and 3D, adaptive ones included "
+    }
+   ],
+   "formats": [
+    {
+     "t": "text",
+     "v": "Reads more than 130 formats, Silo, VTK, Exodus, and CGNS among them; XML session files; exports images, and geometry as OBJ, PLY, STL, and VTK "
+    }
+   ],
+   "first": "import",
+   "fallback": "link",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Desktop builds, five or more Linux distributions among them; release v3.5.0 on 2026-04-29. No browser port found"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: PNG exports; interactive: exported VTK in vtk.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 360,
+     "title": "VisIt, about",
+     "url": "https://visit-dav.github.io/visit-website/about/"
+    },
+    {
+     "n": 361,
+     "title": "VisIt",
+     "url": "https://visit-dav.github.io/visit-website/"
+    },
+    {
+     "n": 362,
+     "title": "VisIt manual, session files",
+     "url": "https://visit-sphinx-github-user-manual.readthedocs.io/en/3.4rc/using_visit/SavingPrinting/Session_files.html"
+    },
+    {
+     "n": 363,
+     "title": "VisIt manual, saving the window",
+     "url": "https://visit-sphinx-github-user-manual.readthedocs.io/en/3.4rc/using_visit/SavingPrinting/Saving_the_visualization_window.html"
+    },
+    {
+     "n": 364,
+     "title": "VisIt repository",
+     "url": "https://github.com/visit-dav/visit"
+    }
+   ]
+  },
+  {
+   "name": "Blender",
+   "field": "Visualization",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Source GPL-2.0-or-later, binaries GPL-3.0-or-later; the Cycles renderer Apache-2.0 "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "3D scenes through the Cycles and EEVEE renderers"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".blend"
+    },
+    {
+     "t": "text",
+     "v": "; imports and exports Alembic, FBX, OBJ, PLY, STL, and USD among others; glTF 2.0 "
+    },
+    {
+     "t": "code",
+     "v": ".glb"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".gltf"
+    },
+    {
+     "t": "text",
+     "v": " through an add-on that is on by default "
+    }
+   ],
+   "first": "import",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Cycles renders on a GPU through CUDA, OptiX, HIP, oneAPI, or Metal; the minimum is 8 GB of memory and a GPU with 2 GB and OpenGL 4.3. The "
+    },
+    {
+     "t": "code",
+     "v": "bpy"
+    },
+    {
+     "t": "text",
+     "v": " package runs Blender as a Python module for headless jobs. The web path is glTF in model-viewer, Apache-2.0, or three.js, MIT, which the app already ships "
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: rendered PNG; interactive: glTF in model-viewer or three.js"
+    }
+   ],
+   "sources": [
+    {
+     "n": 365,
+     "title": "Blender, license",
+     "url": "https://www.blender.org/about/license/"
+    },
+    {
+     "n": 366,
+     "title": "Blender manual, import and export",
+     "url": "https://docs.blender.org/manual/en/latest/files/import_export/index.html"
+    },
+    {
+     "n": 367,
+     "title": "Blender manual, glTF 2.0",
+     "url": "https://docs.blender.org/manual/en/latest/addons/scene_gltf2.html"
+    },
+    {
+     "n": 368,
+     "title": "Blender manual, GPU rendering",
+     "url": "https://docs.blender.org/manual/en/latest/render/cycles/gpu_rendering.html"
+    },
+    {
+     "n": 369,
+     "title": "Blender, requirements",
+     "url": "https://www.blender.org/download/requirements/"
+    },
+    {
+     "n": 370,
+     "title": "bpy on PyPI",
+     "url": "https://pypi.org/project/bpy/"
+    },
+    {
+     "n": 371,
+     "title": "model-viewer repository",
+     "url": "https://github.com/google/model-viewer"
+    },
+    {
+     "n": 372,
+     "title": "three.js repository",
+     "url": "https://github.com/mrdoob/three.js"
+    }
+   ]
+  },
+  {
+   "name": "Jupyter and the Python stack",
+   "field": "Across the sciences",
+   "open": true,
+   "license": [
+    {
+     "t": "text",
+     "v": "Jupyter under the modified BSD license; JupyterLite BSD-3-Clause; Pyodide MPL-2.0; NumPy and SciPy BSD-3-Clause; Matplotlib under its own PSF-based license "
+    }
+   ],
+   "renders": [
+    {
+     "t": "text",
+     "v": "Notebooks of code, Markdown, math, and outputs; Matplotlib's 2D plots"
+    }
+   ],
+   "formats": [
+    {
+     "t": "code",
+     "v": ".ipynb"
+    },
+    {
+     "t": "text",
+     "v": ", a JSON document in nbformat 4, with cell ids since 4.5 "
+    }
+   ],
+   "first": "browser",
+   "fallback": "runner",
+   "connects": [
+    {
+     "t": "text",
+     "v": "Pyodide 314.0.7 ships numpy, scipy, pandas, matplotlib, scikit-learn, statsmodels, networkx, and scikit-image. micropip installs pure-Python wheels from PyPI, and a package with compiled extensions needs a Pyodide build. JupyterLite runs JupyterLab in the browser on Pyodide, v0.8.3 on 2026-08-20. A runner hosts a native kernel for everything else"
+    }
+   ],
+   "shows": [
+    {
+     "t": "text",
+     "v": "Static: the notebook as HTML through nbconvert; interactive: the Pyodide worker, or JupyterLite"
+    }
+   ],
+   "sources": [
+    {
+     "n": 61,
+     "title": "Pyodide 314.0.7, packages built in Pyodide",
+     "url": "https://pyodide.org/en/stable/usage/packages-in-pyodide.html"
+    },
+    {
+     "n": 373,
+     "title": "Project Jupyter, about",
+     "url": "https://jupyter.org/about"
+    },
+    {
+     "n": 374,
+     "title": "JupyterLite repository",
+     "url": "https://github.com/jupyterlite/jupyterlite"
+    },
+    {
+     "n": 375,
+     "title": "Pyodide repository",
+     "url": "https://github.com/pyodide/pyodide"
+    },
+    {
+     "n": 376,
+     "title": "NumPy repository",
+     "url": "https://github.com/numpy/numpy"
+    },
+    {
+     "n": 377,
+     "title": "SciPy repository",
+     "url": "https://github.com/scipy/scipy"
+    },
+    {
+     "n": 378,
+     "title": "Matplotlib, license",
+     "url": "https://matplotlib.org/stable/project/license.html"
+    },
+    {
+     "n": 379,
+     "title": "nbformat, format description",
+     "url": "https://nbformat.readthedocs.io/en/latest/format_description.html"
+    },
+    {
+     "n": 380,
+     "title": "Pyodide, loading packages",
+     "url": "https://pyodide.org/en/stable/usage/loading-packages.html"
+    },
+    {
+     "n": 381,
+     "title": "Pyodide, FAQ",
+     "url": "https://pyodide.org/en/stable/usage/faq.html"
+    }
+   ]
+  }
+ ],
+ "viewers": [
+  {
+   "name": "Mol*",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "mmCIF, BinaryCIF, PDB, GRO, MOL, MOL2, SDF, XYZ; DCD, NetCDF, TRR, and XTC trajectories; CCP4, MRC, cube, and DX volumes "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "v5.11.0, 2026-07-19 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "PyMOL, ChimeraX, GROMACS, Avogadro 2, LAMMPS, and the suite's TrajMine"
+    }
+   ]
+  },
+  {
+   "name": "3Dmol.js",
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "PDB, SDF, MOL2, XYZ, CIF, MMTF, GRO, PQR, cube, VASP "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "2.5.5, 2026-05-22 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "Avogadro 2, RDKit"
+    }
+   ]
+  },
+  {
+   "name": "NGL Viewer",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "mmCIF, PDB, PQR, GRO, SDF, MOL2, MMTF; density maps; DCD, NetCDF, TRR, and XTC trajectories "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "npm 2.5.0, 2026-09-03 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "GROMACS"
+    }
+   ]
+  },
+  {
+   "name": "JSmol",
+   "license": [
+    {
+     "t": "text",
+     "v": "LGPL-2.1-or-later "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "MOL, SDF, CIF, PDB, and the output of Gaussian, GAMESS, MOPAC, NWChem, and other quantum chemistry codes "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "16.4, 2026-08-27 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "Gaussian"
+    }
+   ]
+  },
+  {
+   "name": "RDKit.js",
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "SMILES, MOL, SDF; draws SVG "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "npm 2026.3.6, 2026-09-13 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "RDKit, and the suite's ScreenServer inputs"
+    }
+   ]
+  },
+  {
+   "name": "igv.js",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "BAM, CRAM, VCF, BED, bigWig, GFF3, and other track formats "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "v3.8.7, 2026-09-09 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "IGV and Bioconductor, with the suite's ChromatinAccess and gRNA-Optimizer"
+    }
+   ]
+  },
+  {
+   "name": "Viv and Vizarr",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "OME-TIFF and OME-Zarr "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "Viv npm 0.22.1, 2026-08-10 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "Fiji and ImageJ, and the suite's CellSegTrack"
+    }
+   ]
+  },
+  {
+   "name": "Neurosift",
+   "license": [
+    {
+     "t": "text",
+     "v": "Apache-2.0 "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "NWB files on DANDI and other archives "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "no release since 2024-05-27; last commit 2026-09-16 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes, by commit"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "NWB, and the suite's PatchSeqML"
+    }
+   ]
+  },
+  {
+   "name": "JSROOT",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT "
+    }
+   ],
+   "reads": [
+    {
+     "t": "code",
+     "v": ".root"
+    },
+    {
+     "t": "text",
+     "v": " files over HTTP and ROOT JSON "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "7.11.1, 2026-07-27 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "ROOT, Geant4"
+    }
+   ]
+  },
+  {
+   "name": "Aladin Lite",
+   "license": [
+    {
+     "t": "text",
+     "v": "LGPL-3.0-or-later "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "HiPS surveys and FITS images, with catalogs "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "v3.8.1, 2026-03-05 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "Astropy, SAOImageDS9"
+    }
+   ]
+  },
+  {
+   "name": "geotiff.js",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "GeoTIFF and cloud-optimized GeoTIFF "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "v3.0.5, 2026-03-11, with a beta on 2026-03-30 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "GDAL, QGIS, Google Earth Engine exports"
+    }
+   ]
+  },
+  {
+   "name": "vtk.js",
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-3-Clause "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "VTK XML image and polygon data, legacy polygon data, STL, PLY, OBJ, glTF "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "v37.1.0, 2026-09-18 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "ParaView, VisIt, FEniCS, OpenFOAM, Ansys, Abaqus"
+    }
+   ]
+  },
+  {
+   "name": "model-viewer",
+   "license": [
+    {
+     "t": "text",
+     "v": "Apache-2.0 "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "glTF and GLB only "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "v4.3.1, 2026-06-04 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "Blender, ChimeraX, PyMOL, COMSOL, SolidWorks, Onshape, KiCad"
+    }
+   ]
+  },
+  {
+   "name": "three.js",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "glTF, STL, OBJ, 3MF, PLY, VTK, and other formats through its loaders "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "r186, 2026-09-08 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes; already in "
+    },
+    {
+     "t": "code",
+     "v": "package.json"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "Every mesh row"
+    }
+   ]
+  },
+  {
+   "name": "Online3DViewer",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "STEP, IGES, BREP, FCStd, IFC, glTF, STL, OBJ, 3MF, and more, with STEP through occt-import-js "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "0.18.0, 2025-12-18; last commit 2026-06-24 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "FreeCAD, SolidWorks, Onshape"
+    }
+   ]
+  },
+  {
+   "name": "KiCanvas",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT "
+    }
+   ],
+   "reads": [
+    {
+     "t": "code",
+     "v": ".kicad_sch"
+    },
+    {
+     "t": "text",
+     "v": " and "
+    },
+    {
+     "t": "code",
+     "v": ".kicad_pcb"
+    },
+    {
+     "t": "text",
+     "v": " from KiCad 6 on "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "no releases; last commit 2026-04-28 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes, early alpha"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "KiCad"
+    }
+   ]
+  },
+  {
+   "name": "CETEIcean",
+   "license": [
+    {
+     "t": "text",
+     "v": "BSD-2-Clause "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "TEI XML, rendered as custom elements "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "v1.9.5, 2025-08-29; last commit 2026-09-08 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes, by commit"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "TEI, Transkribus TEI exports"
+    }
+   ]
+  },
+  {
+   "name": "citeproc-js",
+   "license": [
+    {
+     "t": "text",
+     "v": "CPAL-1.0-or-later or AGPL-3.0-or-later "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "CSL JSON with CSL styles "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "npm 2.4.63, 2023-04-17; last commit 2026-07-05 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes, by commit"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "Zotero; its license needs a decision before it ships in the bundle"
+    }
+   ]
+  },
+  {
+   "name": "webR",
+   "license": [
+    {
+     "t": "text",
+     "v": "MIT for its scripts and console, GPL-3 for the binaries that contain R "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "R code and 22,741 WebAssembly packages for R 4.6 "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "v0.6.0, 2026-05-19 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "R, SPSS, Stata, SAS, through haven"
+    }
+   ]
+  },
+  {
+   "name": "Pyodide",
+   "license": [
+    {
+     "t": "text",
+     "v": "MPL-2.0 "
+    }
+   ],
+   "reads": [
+    {
+     "t": "text",
+     "v": "Python 3.14 with the packages its list names "
+    }
+   ],
+   "latest": [
+    {
+     "t": "text",
+     "v": "314.0.7, 2026-09-14 "
+    }
+   ],
+   "maintained": [
+    {
+     "t": "text",
+     "v": "yes"
+    }
+   ],
+   "serves": [
+    {
+     "t": "text",
+     "v": "Twenty-five suite tools, Astropy, Biopython, netCDF and xarray, Jupyter and the Python stack"
+    }
+   ]
+  }
+ ],
+ "suite": [
+  {
+   "name": "LabBrain",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Answers questions over one investigator's OpenAlex works with dense and BM25 retrieval, citing passages"
+    }
+   ],
+   "runs": [
+    {
+     "t": "text",
+     "v": "subprocess, "
+    },
+    {
+     "t": "code",
+     "v": "labbrain/labbrain.py --device cpu"
+    },
+    {
+     "t": "text",
+     "v": "; labeled founder GPU"
+    }
+   ],
+   "pyodide": "server: sentence-transformers, OpenAlex",
+   "inBrowser": false,
+   "atlasRows": "Zotero"
+  },
+  {
+   "name": "PaperRadar",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Ranks recent OpenAlex papers for a topic by relevance and recency, weighted by citation velocity"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_rag.py"
+    },
+    {
+     "t": "text",
+     "v": ", live OpenAlex with a disk cache"
+    }
+   ],
+   "pyodide": "server: OpenAlex",
+   "inBrowser": false,
+   "atlasRows": "Zotero"
+  },
+  {
+   "name": "GrantDraft",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Finds funders and drafts specific aims from NSF awards in the research-atlas corpus, with an OpenAlex fallback"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_rag.py"
+    }
+   ],
+   "pyodide": "server: local corpus",
+   "inBrowser": false,
+   "atlasRows": "none"
+  },
+  {
+   "name": "MethodsMatcher",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Mines recurring methods in OpenAlex results and points to the Bucket tool that runs one"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_rag.py"
+    }
+   ],
+   "pyodide": "server: OpenAlex",
+   "inBrowser": false,
+   "atlasRows": "every row"
+  },
+  {
+   "name": "ReviewGuard",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Sorts OpenAlex papers into supporting and contradicting evidence for a claim"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_rag.py"
+    }
+   ],
+   "pyodide": "server: OpenAlex",
+   "inBrowser": false,
+   "atlasRows": "Zotero"
+  },
+  {
+   "name": "QuantumBioRAG",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Scores how far OpenAlex papers support a quantum-biology claim; optional model synthesis"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_rag.py"
+    }
+   ],
+   "pyodide": "server: OpenAlex",
+   "inBrowser": false,
+   "atlasRows": "Zotero"
+  },
+  {
+   "name": "CitationGraph",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Builds a paper's citation neighborhood from OpenAlex and ranks it by degree"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_citation.py"
+    }
+   ],
+   "pyodide": "server: OpenAlex",
+   "inBrowser": false,
+   "atlasRows": "Zotero"
+  },
+  {
+   "name": "FigureMiner",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Mines figure captions, table captions, reported statistics, and unit-bearing measurements from pasted text or a PDF text layer"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_figure.py"
+    },
+    {
+     "t": "text",
+     "v": "; PyMuPDF or pypdf for PDF input"
+    }
+   ],
+   "pyodide": "same, for pasted text",
+   "inBrowser": true,
+   "atlasRows": "Zotero, R"
+  },
+  {
+   "name": "FAIRCheck",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Scores a dataset record against the 15 FAIR sub-principles"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_fair.py"
+    },
+    {
+     "t": "text",
+     "v": ", standard library"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "every import format"
+  },
+  {
+   "name": "RepliCheck",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Recomputes reported p-values and runs the GRIM test on a Results section"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_repli.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "R, SPSS, Stata"
+  },
+  {
+   "name": "MLReproCard",
+   "group": "literature and research practice",
+   "does": [
+    {
+     "t": "text",
+     "v": "Scores an ML experiment's reproducibility and fills a model card"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_mlrepro.py"
+    },
+    {
+     "t": "text",
+     "v": ", standard library"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "Jupyter and Python"
+  },
+  {
+   "name": "StabilityDesigner",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Predicts the stability change of point mutations with a scikit-learn tree ensemble trained on FireProtDB"
+    }
+   ],
+   "runs": [
+    {
+     "t": "text",
+     "v": "subprocess, "
+    },
+    {
+     "t": "code",
+     "v": "stabilitydesigner/"
+    }
+   ],
+   "pyodide": "server: trained model",
+   "inBrowser": false,
+   "atlasRows": "PyMOL, ChimeraX"
+  },
+  {
+   "name": "ProteinScout",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Per-residue scales and small ML models from a sequence or UniProt accession, as an HTML report"
+    }
+   ],
+   "runs": [
+    {
+     "t": "text",
+     "v": "subprocess, "
+    },
+    {
+     "t": "code",
+     "v": "proteinscout/"
+    }
+   ],
+   "pyodide": "server: trained models",
+   "inBrowser": false,
+   "atlasRows": "Biopython"
+  },
+  {
+   "name": "AggregatePredict",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Windowed aggregation propensity from β-sheet propensity and hydrophobicity, less net charge"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_genomics.py"
+    },
+    {
+     "t": "text",
+     "v": ", numpy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "Biopython"
+  },
+  {
+   "name": "SeqAlign",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Needleman-Wunsch and Smith-Waterman alignment with BLOSUM62"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_seqalign.py"
+    },
+    {
+     "t": "text",
+     "v": ", standard library"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "BLAST, Biopython"
+  },
+  {
+   "name": "RNAStructure",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Minimum free energy structure and base-pair probabilities through ViennaRNA"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_dnarna.py"
+    }
+   ],
+   "pyodide": "server: ViennaRNA",
+   "inBrowser": false,
+   "atlasRows": "none"
+  },
+  {
+   "name": "gRNA-Optimizer",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "SpCas9 guide design: PAM scan on both strands, on-target score, seed off-target flag"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_dnarna.py"
+    },
+    {
+     "t": "text",
+     "v": ", numpy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "IGV, Bioconductor"
+  },
+  {
+   "name": "RNA-FM-Embeds",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "RNA embedding from RNA-FM weights when installed, k-mer and structure features otherwise"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_dnarna.py"
+    }
+   ],
+   "pyodide": "same except the folding energy",
+   "inBrowser": true,
+   "atlasRows": "Jupyter and Python"
+  },
+  {
+   "name": "ChromatinAccess",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Accessibility score from GC content and CpG islands, with a scan for four core promoter motifs"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_genomics.py"
+    },
+    {
+     "t": "text",
+     "v": ", numpy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "IGV, Bioconductor"
+  },
+  {
+   "name": "ToxinChannelFinder",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Maps a toxin or peptide to likely ion-channel targets from a curated table and OpenAlex co-occurrence"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_toxin.py"
+    }
+   ],
+   "pyodide": "server: OpenAlex",
+   "inBrowser": false,
+   "atlasRows": "none"
+  },
+  {
+   "name": "ProtocolGPT",
+   "group": "molecular biology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Turns methods prose into ordered steps and a reagent table by rules, flagging safety hazards; optional model polish"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_protocol.py"
+    }
+   ],
+   "pyodide": "same, rules path",
+   "inBrowser": true,
+   "atlasRows": "none"
+  },
+  {
+   "name": "ScreenServer",
+   "group": "chemistry and materials",
+   "does": [
+    {
+     "t": "text",
+     "v": "Predicts 13 ADMET endpoints for up to 200 SMILES after RDKit standardization, as an HTML report"
+    }
+   ],
+   "runs": [
+    {
+     "t": "text",
+     "v": "subprocess, "
+    },
+    {
+     "t": "code",
+     "v": "gianyrox/screenserver"
+    }
+   ],
+   "pyodide": "server: RDKit, trained models",
+   "inBrowser": false,
+   "atlasRows": "RDKit, Open Babel"
+  },
+  {
+   "name": "StoichBalance",
+   "group": "chemistry and materials",
+   "does": [
+    {
+     "t": "text",
+     "v": "Balances a chemical equation by exact null-space elimination and finds the limiting reagent"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_stoich.py"
+    },
+    {
+     "t": "text",
+     "v": ", standard library"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "none"
+  },
+  {
+   "name": "MaterialsFeaturizer",
+   "group": "chemistry and materials",
+   "does": [
+    {
+     "t": "text",
+     "v": "Magpie-style composition descriptors from a formula"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_materials.py"
+    },
+    {
+     "t": "text",
+     "v": ", standard library"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "none"
+  },
+  {
+   "name": "TrajMine",
+   "group": "structural biology and simulation",
+   "does": [
+    {
+     "t": "text",
+     "v": "RMSD, RMSF, PCA, and Markov state models from a molecular dynamics trajectory; the gateway runs the demo trajectory"
+    }
+   ],
+   "runs": [
+    {
+     "t": "text",
+     "v": "subprocess, "
+    },
+    {
+     "t": "code",
+     "v": "trajmine/trajmine.py demo-md"
+    },
+    {
+     "t": "text",
+     "v": ", synthetic; labeled founder GPU"
+    }
+   ],
+   "pyodide": "server: MDTraj, deeptime",
+   "inBrowser": false,
+   "atlasRows": "GROMACS, Mol*"
+  },
+  {
+   "name": "CryoTriage",
+   "group": "structural biology and simulation",
+   "does": [
+    {
+     "t": "text",
+     "v": "Micrograph quality control: CTF fit, drift, ice, contamination; synthetic unless a file is uploaded"
+    }
+   ],
+   "runs": [
+    {
+     "t": "text",
+     "v": "subprocess, "
+    },
+    {
+     "t": "code",
+     "v": "cryotriage/"
+    },
+    {
+     "t": "text",
+     "v": ", synthetic; labeled founder GPU"
+    }
+   ],
+   "pyodide": "server: trained models",
+   "inBrowser": false,
+   "atlasRows": "none"
+  },
+  {
+   "name": "PatchSeqML",
+   "group": "neuroscience",
+   "does": [
+    {
+     "t": "text",
+     "v": "Detects action potentials, extracts eFEL features, builds an F-I curve, and classifies the firing type, from ABF or NWB sweeps or a simulated cell"
+    }
+   ],
+   "runs": [
+    {
+     "t": "text",
+     "v": "subprocess, "
+    },
+    {
+     "t": "code",
+     "v": "patchseqml/"
+    }
+   ],
+   "pyodide": "server: sibling repository",
+   "inBrowser": false,
+   "atlasRows": "NWB, NEURON"
+  },
+  {
+   "name": "HH-FitML",
+   "group": "neuroscience",
+   "does": [
+    {
+     "t": "text",
+     "v": "Fits passive membrane parameters to a current-clamp trace by least squares"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_neuro.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "NEURON"
+  },
+  {
+   "name": "SpikeFeatures",
+   "group": "neuroscience",
+   "does": [
+    {
+     "t": "text",
+     "v": "Detects spikes and extracts waveform features; spikeinterface when installed"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_neuro.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "NWB"
+  },
+  {
+   "name": "ChannelDwell",
+   "group": "neuroscience",
+   "does": [
+    {
+     "t": "text",
+     "v": "Idealizes a single-channel record into open and closed states with dwell times"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_genomics.py"
+    },
+    {
+     "t": "text",
+     "v": ", numpy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "NWB"
+  },
+  {
+   "name": "CalciumTraceML",
+   "group": "neuroscience",
+   "does": [
+    {
+     "t": "text",
+     "v": "ΔF/F over a rolling baseline, transient detection, decay fits, and firing-rate statistics from a fluorescence trace"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_imaging.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "Fiji, NWB"
+  },
+  {
+   "name": "CellSegTrack",
+   "group": "imaging and mechanobiology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Otsu threshold and seeded watershed segmentation, Cellpose when installed"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_imaging.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy and scikit-image"
+    }
+   ],
+   "pyodide": "same, watershed path",
+   "inBrowser": true,
+   "atlasRows": "Fiji"
+  },
+  {
+   "name": "AFM-CurveML",
+   "group": "imaging and mechanobiology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Finds the contact point of a force curve and fits a Hertz or Sneddon modulus, with adhesion from the retract minimum"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_imaging.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "none"
+  },
+  {
+   "name": "TractionForceML",
+   "group": "imaging and mechanobiology",
+   "does": [
+    {
+     "t": "text",
+     "v": "Block-matching displacement field between a relaxed and a deformed bead image"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_imaging.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "Fiji"
+  },
+  {
+   "name": "UnitDimCheck",
+   "group": "quantitative methods",
+   "does": [
+    {
+     "t": "text",
+     "v": "Converts units by their SI base dimensions and checks an equation for dimensional homogeneity"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_units.py"
+    },
+    {
+     "t": "text",
+     "v": ", standard library"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "MATLAB, COMSOL"
+  },
+  {
+   "name": "GeoSummary",
+   "group": "quantitative methods",
+   "does": [
+    {
+     "t": "text",
+     "v": "Descriptives, Mann-Kendall and Theil-Sen trend, seasonality, and spatial extent of a series"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_geo.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "QGIS, GDAL, NetCDF and xarray"
+  },
+  {
+   "name": "TimeSeriesForecast",
+   "group": "quantitative methods",
+   "does": [
+    {
+     "t": "text",
+     "v": "Holt-Winters decomposition and forecast with a holdout backtest against a naive baseline"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_forecast.py"
+    },
+    {
+     "t": "text",
+     "v": ", numpy and scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "R, Stata"
+  },
+  {
+   "name": "PowerPlan",
+   "group": "quantitative methods",
+   "does": [
+    {
+     "t": "text",
+     "v": "Power and sample size for t tests, ANOVA, two proportions, and correlation"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_power.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "R, SPSS, Stata"
+  },
+  {
+   "name": "SurvivalFit",
+   "group": "quantitative methods",
+   "does": [
+    {
+     "t": "text",
+     "v": "Kaplan-Meier estimates with Greenwood errors and the log-rank test"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_survival.py"
+    },
+    {
+     "t": "text",
+     "v": ", scipy"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "R, SAS, Stata"
+  },
+  {
+   "name": "CausalDesigner",
+   "group": "quantitative methods",
+   "does": [
+    {
+     "t": "text",
+     "v": "Finds a minimal adjustment set from a causal graph's backdoor paths and recommends an estimator"
+    }
+   ],
+   "runs": [
+    {
+     "t": "code",
+     "v": "tools_causal.py"
+    },
+    {
+     "t": "text",
+     "v": ", networkx"
+    }
+   ],
+   "pyodide": "same",
+   "inBrowser": true,
+   "atlasRows": "R, Stata"
+  }
+ ],
+ "directions": [
+  {
+   "n": 1,
+   "title": "link, for every row.",
+   "body": [
+    {
+     "t": "text",
+     "v": "An import or a production carries a software citation: the tool, its version, its license, and a URL, with the output file attached when there is one. The cost is one structured field on the typed import of ros-import 1 and one line in the production form. It reaches all 64 rows, closed tools included, and needs no license from anyone. Six rows start here, Mathematica, ChimeraX, SAOImageDS9, Earth Engine, Onshape, and Voyant Tools, because each lives on a desktop the person runs or on a hosted service; their exports come in through the import path where they exist."
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "title": "browser, one Pyodide worker, then webR.",
+   "body": [
+    {
+     "t": "text",
+     "v": "Twenty-five of the forty suite tools ran in Pyodide 314.0.7 on 2026-09-21 with the gateway's own inputs. Twenty-four gave the CPython answer, and the twenty-fifth dropped one field that needs ViennaRNA. The host that serves all forty did not answer that day, and one worker keeps those twenty-five working whatever that host does. The same worker carries ros-workbench 3's statistics on imported tables, since pandas, statsmodels, scikit-learn, and matplotlib ship in Pyodide 314.0.7, and pandas in the worker read a Stata file in a check on 2026-09-21. The cost is the worker with its loader, and a first load of 13.4 MB for the core alone and 53.3 MB with every package the twenty-five import. Pyodide is MPL-2.0, and numpy, scipy, networkx, and scikit-image are under BSD licenses. webR is the second worker: R in the page, with 22,741 packages for R 4.6, haven among them, which reads all four statistics formats in the atlas. The sixteen rows whose first path is browser follow the same pattern with their own ports, RDKit.js, igv.js, GAP's own build, and the OpenSCAD Playground among them."
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "title": "import, one format and one viewer at a time.",
+   "body": [
+    {
+     "t": "text",
+     "v": "Closed tools meet the web through their export formats: 25 rows take import as their first path, fourteen of them closed tools. Each format costs a parser with a node shape in the graph, and a viewer embedded under its own license. Once ros-import 3 lands tables, the order follows reach:"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "title": "runner, Lean first.",
+   "body": [
+    {
+     "t": "text",
+     "v": "Seventeen rows take the runner first, and it is the only path for heavy open codes and for closed tools under the person's own license on the person's own machine. Lean goes first because the repository already builds two Lean projects and "
+    },
+    {
+     "t": "code",
+     "v": "lake env lean --json"
+    },
+    {
+     "t": "text",
+     "v": " already reports each message as a line of JSON, so the first job, "
+    },
+    {
+     "t": "code",
+     "v": "lean-check"
+    },
+    {
+     "t": "text",
+     "v": ", has known answers to test against. A paper's Lean check is also a rule in "
+    },
+    {
+     "t": "code",
+     "v": "papers/PAPER-STANDARDS.md"
+    },
+    {
+     "t": "text",
+     "v": " that nothing outside the author's machine enforces. LaTeX builds come next, then TrajMine and CryoTriage, which stay synthetic until a machine with a GPU runs them. The registry's \"founder GPU\" label on those two and on LabBrain is stale: all forty suite tools go through one gateway, two of them in synthetic mode. The heavy simulation codes follow: GROMACS on a GPU, OpenFOAM over MPI, LAMMPS, and Geant4."
+    }
+   ]
+  }
+ ],
+ "unverified": [
+  [
+   {
+    "t": "text",
+    "v": "PARI/GP's script file extension."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "A WebAssembly package repository run by Bioconductor: webr.bioconductor.org did not answer on 2026-09-21."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "Whether any parser reads Stata "
+   },
+   {
+    "t": "code",
+    "v": ".dta"
+   },
+   {
+    "t": "text",
+    "v": " versions 120 and 121, the ones Stata 18 and 19 write for alias variables."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "Abaqus licensing in current releases; the source is the 6.12 guide of 2012, and current documentation sits behind a sign-in."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "ChimeraX rendering without a display, which the runner path assumes."
+   }
+  ],
+  [
+   {
+    "t": "code",
+    "v": "pandas.read_sas"
+   },
+   {
+    "t": "text",
+    "v": " inside Pyodide: "
+   },
+   {
+    "t": "code",
+    "v": "read_stata"
+   },
+   {
+    "t": "text",
+    "v": " read a Stata file there, and the SAS reader has no test yet."
+   }
+  ],
+  [
+   {
+    "t": "text",
+    "v": "The suite tools inside a browser page: the Pyodide check ran under Node 22 on the same WebAssembly a page loads; a page run is still owed."
+   }
+  ]
+ ]
+}
