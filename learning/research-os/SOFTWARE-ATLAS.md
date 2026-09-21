@@ -139,8 +139,8 @@ Lean leads, as the brief asks, with Rocq and Isabelle beside it. The repository'
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| Lean 4 | Apache-2.0, open [1]; Mathlib Apache-2.0 [2] | Goals and messages in the infoview; ProofWidgets adds diagrams and plots to it [3] | `.lean` source; `.olean` and `.ilean` build outputs; `lakefile.toml` or `lakefile.lean`; `lean-toolchain`; `lake-manifest.json` [4] | runner, import | The web editor at live.lean-lang.org runs the Lean server on a web server and talks to the page over a WebSocket, Apache-2.0 [5]. No official WebAssembly build: the "Web Assembly" job in the lean4 CI file is commented out, and v4.34.0 of 2026-09-14 ships Linux, macOS, and Windows archives only, 580 MB for Linux [6][7]. A community port, cauli/lean4-wasm-in-browser, runs Lean 4 in the page from a fork, with 70 to 101 MB of WebAssembly and a Mathlib layer near 316 MB, first created 2026-01-05 [8]. `lake exe cache get` fetches prebuilt Mathlib files; without them Mathlib rebuilds from scratch, which takes hours [9] | Static: the check chip and source view of the Lean section; interactive: `@leanprover/infoview` fed by a Lean server on a runner [10] |
-| Rocq | LGPL-2.1-only, open [11]; renamed from Coq with Rocq 9.0, announced 2025-03-12 [12] | Proof goals and messages per sentence in an editor; `rocq doc` writes LaTeX and HTML [13] | `.v` source compiled to `.vo`; `_CoqProject` or `_RocqProject`; Dune builds, experimental [14] | browser, runner | jsCoq runs Coq in the page through js_of_ocaml, AGPL-3.0-or-later; last release 0.17.1 in 2023, with commits into 2026 [15]. rocq-lsp ships a Rocq 9.1 WebAssembly build inside its VS Code extension, usable on vscode.dev, with only the standard library [16][17]. A runner with an opam switch takes projects that need other libraries | Interactive: live checking in the page through jsCoq; static: `rocq doc` HTML |
+| Lean 4 | Apache-2.0, open [1]; Mathlib Apache-2.0 [2] | Goals and messages in the infoview; ProofWidgets adds diagrams and plots to it [3] | `.lean` source; `.olean` and `.ilean` build outputs; `lakefile.toml` or `lakefile.lean`; `lean-toolchain`; `lake-manifest.json` [4] | runner, import | The web editor at live.lean-lang.org runs the Lean server on a web server and talks to the page over a WebSocket, Apache-2.0 [5]. No official WebAssembly build: the "Web Assembly" job in the lean4 CI file is commented out, and v4.34.0 of 2026-09-14 ships desktop archives only, 580 MB for Linux [6][7]. A community port, cauli/lean4-wasm-in-browser, runs Lean 4 in the page from a fork, with 70 to 101 MB of WebAssembly and a Mathlib layer near 316 MB, first created 2026-01-05 [8]. `lake exe cache get` fetches prebuilt Mathlib files; without them Mathlib rebuilds from scratch, which takes hours [9] | Static: the check chip and source view from the Lean design; interactive: `@leanprover/infoview` fed by a Lean server on a runner [10] |
+| Rocq | LGPL-2.1-only, open [11]; renamed from Coq with Rocq 9.0, announced 2025-03-12 [12] | Proof goals and messages per sentence in an editor; `rocq doc` writes LaTeX and HTML [13] | `.v` source compiled to `.vo`; `_CoqProject` or `_RocqProject`; Dune builds, experimental [14] | browser, runner | jsCoq runs Coq in the page through js_of_ocaml, AGPL-3.0-or-later; its last npm release, 0.17.1 of 2023-10-04, carries Coq 8.17, with commits into 2026 [15]. rocq-lsp ships a Rocq 9.1 WebAssembly build inside its VS Code extension, usable on vscode.dev, with only the standard library [16][17]. A runner with an opam switch takes projects that need other libraries | Interactive: live checking in the page through jsCoq; static: `rocq doc` HTML |
 | Isabelle | BSD-style for the main code base, among other open licenses [18][19]; Archive of Formal Proofs entries BSD-style or LGPL [20] | Continuous proof checking in Isabelle/jEdit and Isabelle/VSCode; LaTeX documents and HTML [21] | `.thy` theories, `ROOT` session specifications, session heap images [22] | runner, import | Linux, Windows 10 and 11, macOS 12 to 26, and a Docker image; Java bundled; 4 GB of memory for small work up to 64 GB for large projects; the Linux archive is 1.2 GB [23]. No browser port found. The Isabelle server takes clients over TCP [22] | Static: HTML and PDF browser info; `.thy` sources as text |
 
 Sources, read 2026-09-21:
@@ -177,7 +177,7 @@ The brief names Mathematica and Maple, closed, with SageMath and GAP, open. PARI
 |---|---|---|---|---|---|---|
 | Mathematica | Closed: cloud and node-locked licenses, and network licenses served by MathLM [24][25]. The free Wolfram Engine is barred from any production application, internal services included [26][27] | Notebooks of text, typeset math, graphics, animation, and sound [28] | `.nb` notebooks in plain text Wolfram Language syntax [28]; `.wl` and `.m` packages [29]; `.mx` binary files [34]; `.cdf`, now a legacy type [30] | link, import | Windows 10 and 11, Windows Server, macOS 13 to 26, and Linux; 10 to 23 GB of disk; a GPU with CUDA or OpenCL for GPU functions [31]. Wolfram Cloud hosts notebooks and embeds them in a page, computing on Wolfram's servers [32]. Parser: Wolfram's own codeparser, MIT [33] | Static: exported PDF or SVG; the `.nb` as text; interactive: an embedded Wolfram Cloud notebook, on the person's own account |
 | Maple | Closed: single-user licenses activated online, and network licenses served by FlexNet [35] | Worksheets with math and 2D and 3D plots | `.mw` worksheets in XML, `.mws` classic worksheets, `.mpl` source, `.maple` workbooks in SQLite [36][37][38] | import, link | Desktop builds needing 8 GB of memory and 10 GB of disk, with internet access to activate [39]. Maple Learn is hosted by Maplesoft [40] | Static: HTML or PDF exports; the `.mpl` and `.mw` contents as text |
-| SageMath | GPL-3.0-only for the distribution, GPL-2.0-or-later for Sage's own code; open [41] | 2D plots and 3D plots in a three.js viewer [42], inside Jupyter notebooks | `.sage` scripts [46], `.sobj` saved objects [47], `.ipynb` notebooks | runner, browser | Linux through conda-forge or packages, macOS through a signed app, Windows through WSL only [43]. SageMathCell embeds a cell in a page and computes on its server, GPL-2.0-or-later [44]. passagemath, a pip-installable fork, publishes WebAssembly packages with partial functionality since 2026-02 [45] | Static: PNG or SVG plots; interactive: three.js 3D plots and SageMathCell embeds |
+| SageMath | GPL-3.0-only for the distribution, GPL-2.0-or-later for Sage's own code; open [41] | 2D plots and 3D plots in a three.js viewer [42], inside Jupyter notebooks | `.sage` scripts [46], `.sobj` saved objects [47], `.ipynb` notebooks | runner, browser | Linux and macOS natively, Windows through WSL only [43]. SageMathCell embeds a cell in a page and computes on its server, GPL-2.0-or-later [44]. passagemath, a pip-installable fork, publishes WebAssembly packages with partial functionality since 2026-02 [45] | Static: PNG or SVG plots; interactive: three.js 3D plots and SageMathCell embeds |
 | GAP | GPL-2.0-or-later, open [48] | Text output in a console | `.g` code, `.gd` declarations and `.gi` implementations [49], binary workspaces [50] | browser, runner | An official WebAssembly build in the main repository, `etc/emscripten`, served at gap-in-the-browser, computing in the page [48][51]. It needs cross-origin isolation headers and keeps no files across reloads; packages with native code do not load [51]. Native GAP runs on the three desktop systems, with WSL recommended on Windows [52] | Interactive: the GAP console in the page |
 | PARI/GP | GPL-2.0-or-later, open [53] | Text output in a console | GP scripts as text; file extension unverified | browser, runner | The PARI site serves GP compiled with Emscripten, stable and development builds, a 14 MB WebAssembly file dated 2026-08-16 [54] | Interactive: the GP console in the page |
 
@@ -222,9 +222,9 @@ The brief names RDKit and Avogadro, open, with Gaussian, closed. Open Babel is a
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
 | RDKit | BSD-3-Clause, open [55] | 2D depictions as SVG or PNG [56] | SMILES, MOL and SDF, InChI, and pickles [56][57]; PDB and Maestro files among its readers and writers [58] | browser, runner | RDKit.js, npm `@rdkit/rdkit`, compiles a subset of RDKit to WebAssembly: SVG depiction, descriptors, substructure search, fingerprints, and reactions; npm 2026.3.6 on 2026-09-13, a new package with every release [59][60]. RDKit is absent from Pyodide 314.0.7 [61]. Python wheels take bulk jobs on a runner | Interactive: SVG depictions drawn in the page by RDKit.js; 3D structures in Mol* or 3Dmol.js |
-| Gaussian | Closed: site or single-computer licenses with a one-time fee and a twenty-year term; a US commercial site license for G16 is $35,000 [62]. Where a university hosts directly competitive work, its license excludes the competing research group [63] | Nothing of its own; GaussView, licensed separately, plots properties, animates vibrations, and shows spectra [64] | `.gjf` input and `.log` output; `.chk` checkpoint and `.rwf` scratch files [65]; `.fchk`, the formatted checkpoint for exchange between platforms [66] | import, link | Binaries for Linux, macOS, IBM Power, and Fujitsu A64FX, and no builds from source; optional NVIDIA GPUs from K40 to A100; Linda for runs across machines [67]. Parser: cclib reads Gaussian logs and `.fchk` and a dozen other quantum chemistry codes, BSD-3-Clause, a pure Python wheel [68] | Energies and frequencies from the log on the node; the geometry in Mol* or JSmol |
+| Gaussian | Closed: site or single-computer licenses with a one-time fee and a twenty-year term; a US commercial site license for G16 is $35,000 [62]. Where a university hosts directly competitive work, its license excludes the competing research group [63] | Nothing of its own; GaussView, licensed separately, plots properties, animates vibrations, and shows spectra [64] | `.gjf` input and `.log` output; `.chk` checkpoint and `.rwf` scratch files [65]; `.fchk`, the formatted checkpoint for exchange between platforms [66] | import, link | Binaries for Linux, macOS, IBM Power, and Fujitsu A64FX, and no builds from source; optional NVIDIA GPUs from K40 to A100; Linda for runs across machines [67]. Parser: cclib reads Gaussian logs and `.fchk` and the output of ORCA, Psi4, GAMESS, and other codes, BSD-3-Clause, a pure Python wheel [68] | Energies and frequencies from the log on the node; the geometry in Mol* or JSmol |
 | Avogadro 2 | BSD-3-Clause, open [69] | Interactive 3D molecules; exports PNG, SVG, PLY, POV-Ray, VRML, and a 3Dmol.js HTML snippet [70] | `.cjson`, which keeps atoms, bonds, cells, orbitals, spectra, and more [71]; CML, legacy; over 100 more through Open Babel [71]; built-in readers for PDB, XYZ, GROMACS, LAMMPS, Molden, ORCA, and Gaussian cube and fchk [72] | import, runner | Desktop builds and Python wheels; release 2.0.0 on 2026-04-01 [69]. `avogadro-web` exists as a repository with a README and no code, created 2026-09-14 [73]. `.cjson` is JSON, read by any JSON parser | Interactive: the molecule in Mol* or 3Dmol.js |
-| Open Babel | GPL-2.0-only, open [74] | 2D depictions as SVG and PNG [75] | 146 formats, 108 read and 107 written, among them Gaussian input, output, and fchk, SMILES, InChI, MOL and SDF, CML, PDB, mmCIF, GRO, and XTC [75] | runner, browser | Desktop builds and Python wheels; release 3.2.1 on 2026-07-11 [74]. No official WebAssembly build; an experimental one, cheminfo-to-web, had its last commit on 2025-09-24 [76]. Its GPL keeps it best on a runner, out of the page bundle | The converted structure, in whatever viewer its target format has |
+| Open Babel | GPL-2.0-only, open [74] | 2D depictions as SVG and PNG [75] | 146 formats, 108 read and 107 written, among them Gaussian files, SMILES, InChI, MOL and SDF, CML, PDB, mmCIF, GRO, and XTC [75] | runner, browser | Desktop builds and Python wheels; release 3.2.1 on 2026-07-11 [74]. No official WebAssembly build; an experimental one, cheminfo-to-web, had its last commit on 2025-09-24 [76]. A runner keeps its GPL-2.0 code apart from the page bundle | The converted structure, in whatever viewer its target format has |
 | GROMACS | LGPL-2.1-or-later, open [77] | Nothing of its own; analysis tools write `.xvg` series for Grace [78] | `.gro` coordinates, `.top` and `.itp` topologies, `.mdp` parameters, `.tpr` run input, `.xtc` and `.trr` trajectories, `.edr` energies [78] | runner, import | Runs on x86-64, ARM, POWER9, and RISC-V; GPU optional, with CUDA for NVIDIA, SYCL for Intel and AMD, HIP for AMD, and OpenCL for Apple M-series [79]. No browser port found. Parsers: MDAnalysis and MDTraj in Python [80][81] | Interactive: the trajectory played in Mol* or NGL from `.gro` with `.xtc`; `.xvg` series as charts |
 
 Sources, read 2026-09-21:
@@ -267,9 +267,9 @@ The brief names PyMOL, BLAST, Bioconductor, and Fiji. ChimeraX is added beside P
 | UCSF ChimeraX | Closed for commercial use: the UCSF ChimeraX Non-Commercial Software License, with source on GitHub under the same terms [87]; free for academic, government, nonprofit, and personal use [88] | Interactive 3D structures and maps with trajectory playback, in VR headsets too through OpenXR [89]; saves PNG, TIFF, JPEG, and 3D scenes as GLB, STL, OBJ, X3D, and VRML [90] | `.cxs` sessions, `.cxc` command files, Python; reads PDB, mmCIF, Mol2, SDF, GRO, XTC, TRR, DCD, and MRC maps [91] | link, runner | Desktop builds, some Linux distributions among them, with OpenGL 3.3 [92]. The license forbids redistribution, so a runner serves noncommercial use only; headless rendering is unverified. RBVI's own web route is a saved `.glb` shown in model-viewer [93] | Static: PNG; interactive: exported `.glb` in model-viewer |
 | BLAST+ | Public domain as a United States Government Work [94][95]; the NCBI C++ Toolkit around it bundles parts under Apache-2.0, MIT, BSD, and GPL terms [96] | Text and HTML alignment reports; no graphics from the command line | FASTA queries; BLAST version 5 databases in volumes [97]; `-outfmt` 0 to 18 and 20 in the 2.17.0 source, among them XML, tabular, CSV, JSON, XML2, SAM, and the ASN.1 archive [94] | runner, import | Desktop builds of 133 to 408 MB [94], and a Docker image [98]; databases download separately [97]. No NCBI WebAssembly build found, and biowasm does not package BLAST [99]. Web BLAST runs on NCBI's servers behind a URL API [100]. Parser: Biopython reads the XML and tabular outputs [101] | The hit table from tabular or JSON output; the report as text |
 | Bioconductor | Each package carries its own open license; most core packages use Artistic-2.0, and licenses that restrict use are refused [102] | R packages; figures come from R graphics | BAM, BCF, FASTA, and tabix files through Rsamtools; GFF, BED, WIG, and BigWig through rtracklayer; FASTQ through ShortRead; SummarizedExperiment containers [103][104][105][106] | runner, import | R 4.6 with release 3.23 of 2026-04-29, two releases a year [107]; Linux, macOS, Windows, or Docker [108]. The webR repository for R 4.6 lists none of Biobase, S4Vectors, GenomicRanges, or SummarizedExperiment [109]; webr.bioconductor.org did not answer on 2026-09-21, so a WebAssembly repository run by Bioconductor is unverified. Parsers outside R: pysam, in Pyodide 314.0.7 [61], and the @gmod packages for BAM, CRAM, VCF, and GFF in JavaScript | Static: R plots; genomic tracks in igv.js |
-| Biopython | Biopython License Agreement, with some files dual-licensed BSD-3-Clause; open [110] | Linear and circular genome maps through ReportLab, to PDF, EPS, or SVG [111] | Reads FASTA, FASTQ, GenBank, EMBL, PDB, Stockholm, and some thirty more sequence formats [112], and BLAST output | browser, runner | In Pyodide 314.0.7 as version 1.87 [61]; PyPI latest 1.88 [113] | Parsed sequences and records on the node; static maps as SVG |
-| Fiji and ImageJ | Fiji GPL-3.0 [114][115]; ImageJ2 BSD-2-Clause; ImageJ 1.x public domain under US law [114]; Bio-Formats GPL, with a BSD-2-Clause component for OME-TIFF [116] | Image stacks in two or more dimensions, with ROIs and plots | TIFF by default; more than 130 formats through Bio-Formats, which writes OME-TIFF and OME-XML [117]; `.ijm` macros [118]; ROI files | browser, runner | Viv and Vizarr render OME-TIFF and OME-Zarr in the page with WebGL, MIT, both with commits in 2026 [119][120]. ImageJ.JS compiles ImageJ 1 to JavaScript with CheerpJ, last commit 2025-08-21, so unmaintained [121]; a newer build, aicell-lab/imagej.js, runs on CheerpJ, whose community edition is free for noncommercial use only [122]. Fiji needs Java 21 on any of the three desktop systems [123]. Parsers: tifffile and roifile (Python, BSD-3-Clause) | Interactive: OME-TIFF or OME-Zarr in Vizarr; static: PNG exports |
-| IGV | MIT for all IGV software [124] | Genome tracks: alignments, variants, annotations, signal, and copy number | BAM, CRAM, VCF, BED, bigWig, bigBed, GFF3, GTF, WIG, and more track formats; FASTA and JSON genomes [125] | browser, link | igv.js embeds in a page with ES2015 JavaScript, MIT, release v3.8.7 on 2026-09-09 [126]; the IGV-Web app runs only in the browser and uploads no data [127]. Desktop IGV needs Java 21 [128] | Interactive: igv.js in the page |
+| Biopython | Biopython License Agreement, with some files dual-licensed BSD-3-Clause; open [110] | Linear and circular genome maps through ReportLab, to PDF or SVG [111] | Reads FASTA, FASTQ, GenBank, EMBL, PDB, Stockholm, and some thirty more sequence formats [112], and BLAST output | browser, runner | In Pyodide 314.0.7 as version 1.87 [61]; PyPI latest 1.88 [113] | Parsed sequences and records on the node; static maps as SVG |
+| Fiji and ImageJ | Fiji GPL-3.0 [114][115]; ImageJ2 BSD-2-Clause; ImageJ 1.x public domain under US law [114]; Bio-Formats GPL, with a BSD-2-Clause component for OME-TIFF [116] | Image stacks in two or more dimensions, with ROIs and plots | TIFF by default; more than 130 formats through Bio-Formats, which writes OME-TIFF and OME-XML [117]; `.ijm` macros [118]; ROI files | browser, runner | Viv and Vizarr render OME-TIFF and OME-Zarr in the page with WebGL, MIT, both with commits in 2026 [119][120]. ImageJ.JS compiles ImageJ 1 to JavaScript with CheerpJ, last commit 2025-08-21, so unmaintained [121]; a newer build, aicell-lab/imagej.js, runs on CheerpJ, whose community edition is free for noncommercial use only [122]. Fiji needs Java 21 on any of the three desktop systems [123]. Parsers: tifffile and roifile, Python, BSD-3-Clause [124][125] | Interactive: OME-TIFF or OME-Zarr in Vizarr; static: PNG exports |
+| IGV | MIT for all IGV software [126] | Genome tracks: alignments, variants, annotations, signal, and copy number | BAM, CRAM, VCF, BED, bigWig, bigBed, GFF3, GTF, WIG, and more track formats; FASTA and JSON genomes [127] | browser, link | igv.js embeds in a page with ES2015 JavaScript, MIT, release v3.8.7 on 2026-09-09 [128]; the IGV-Web app runs only in the browser and uploads no data [129]. Desktop IGV needs Java 21 [130] | Interactive: igv.js in the page |
 
 Sources, read 2026-09-21:
 
@@ -315,11 +315,13 @@ Sources, read 2026-09-21:
 121. ImageJ.JS repository: <https://github.com/imjoy-team/imagej.js>
 122. aicell-lab imagej.js repository: <https://github.com/aicell-lab/imagej.js>
 123. Fiji downloads: <https://imagej.net/software/fiji/downloads>
-124. IGV: <https://igv.org/>
-125. IGV-Web, file formats: <https://igv.org/doc/webapp/FileFormats/>
-126. igv.js repository: <https://github.com/igvteam/igv.js>
-127. IGV-Web app documentation: <https://igv.org/doc/webapp/>
-128. IGV desktop, downloads: <https://igv.org/doc/desktop/DownloadPage/>
+124. tifffile on PyPI: <https://pypi.org/project/tifffile/>
+125. roifile on PyPI: <https://pypi.org/project/roifile/>
+126. IGV: <https://igv.org/>
+127. IGV-Web, file formats: <https://igv.org/doc/webapp/FileFormats/>
+128. igv.js repository: <https://github.com/igvteam/igv.js>
+129. IGV-Web app documentation: <https://igv.org/doc/webapp/>
+130. IGV desktop, downloads: <https://igv.org/doc/desktop/DownloadPage/>
 
 ### Neuroscience
 
@@ -327,22 +329,22 @@ Neither row is in the brief. Five suite tools analyze electrophysiology and calc
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| NEURON | BSD-3-Clause by the repository's `Copyright` file [129]; PyPI classifies the `neuron` package as "Other/Proprietary License" [130], which conflicts | Model cells and networks scripted in Python or HOC; shape plots through Matplotlib or plotly [131] | `.hoc` and Python models, `.mod` mechanisms in NMODL compiled by `nrnivmodl`, `.ses` sessions [131] | runner, import | `pip install neuron` on Linux and macOS, an installer on Windows; release 9.0.2 on 2026-08-10 [130]. GPU is optional through CoreNEURON's OpenACC backend, now a source build since the GPU wheel was removed [132]. No browser build found, and NEURON is absent from Pyodide 314.0.7 [61] | Static: Matplotlib plots; interactive: plotly HTML; the model sources as text |
-| NWB | PyNWB BSD-3-Clause [133]; MatNWB BSD-2-Clause [134] | Nothing; NWB is a data format for electrophysiology, optical physiology, tracking, and stimulus data [139] | `.nwb`, an HDF5 file with a defined structure [135]; the DANDI archive requires it for cellular neurophysiology [136] | import, link | h5py is in Pyodide 314.0.7 and pynwb is absent [61]; h5wasm reads HDF5 in JavaScript [137]. Neurosift is a browser viewer for NWB on DANDI, Apache-2.0, last commit 2026-09-16 [138] | Interactive: Neurosift, embedded or linked; the session, subject, device, and electrode metadata on the node |
+| NEURON | BSD-3-Clause by the repository's `Copyright` file [131]; PyPI classifies the `neuron` package as "Other/Proprietary License" [132], which conflicts | Model cells and networks scripted in Python or HOC; shape plots through Matplotlib or plotly [133] | `.hoc` and Python models, `.mod` mechanisms in NMODL compiled by `nrnivmodl`, `.ses` sessions [133] | runner, import | `pip install neuron` on Linux and macOS, an installer on Windows; release 9.0.2 on 2026-08-10 [132]. GPU is optional through CoreNEURON's OpenACC backend, now a source build since the GPU wheel was removed [134]. No browser build found, and NEURON is absent from Pyodide 314.0.7 [61] | Static: Matplotlib plots; interactive: plotly HTML; the model sources as text |
+| NWB | PyNWB BSD-3-Clause [135]; MatNWB BSD-2-Clause [136] | Nothing; NWB is a data format for electrophysiology, optical physiology, tracking, and stimulus data [141] | `.nwb`, an HDF5 file with a defined structure [137]; the DANDI archive requires it for cellular neurophysiology [138] | import, link | h5py is in Pyodide 314.0.7 and pynwb is absent [61]; h5wasm reads HDF5 in JavaScript [139]. Neurosift is a browser viewer for NWB on DANDI, Apache-2.0, last commit 2026-09-16 [140] | Interactive: Neurosift, embedded or linked; the session, subject, device, and electrode metadata on the node |
 
 Sources, read 2026-09-21:
 
-129. NEURON, Copyright file: <https://github.com/neuronsimulator/nrn/blob/master/Copyright>
-130. NEURON on PyPI: <https://pypi.org/project/NEURON/>
-131. NEURON documentation: <https://www.neuronsimulator.org/en/latest/>
-132. NEURON, CoreNEURON installation: <https://www.neuronsimulator.org/en/latest/coreneuron/installation.html>
-133. PyNWB repository: <https://github.com/NeurodataWithoutBorders/pynwb>
-134. MatNWB repository: <https://github.com/NeurodataWithoutBorders/matnwb>
-135. NWB overview, file structure: <https://nwb-overview.readthedocs.io/en/latest/intro_to_nwb/2_file_structure.html>
-136. DANDI, data standards: <https://docs.dandiarchive.org/getting-started/data-standards/>
-137. h5wasm repository: <https://github.com/usnistgov/h5wasm>
-138. Neurosift repository: <https://github.com/flatironinstitute/neurosift>
-139. Neurodata Without Borders: <https://nwb.org/>
+131. NEURON, Copyright file: <https://github.com/neuronsimulator/nrn/blob/master/Copyright>
+132. NEURON on PyPI: <https://pypi.org/project/NEURON/>
+133. NEURON documentation: <https://www.neuronsimulator.org/en/latest/>
+134. NEURON, CoreNEURON installation: <https://www.neuronsimulator.org/en/latest/coreneuron/installation.html>
+135. PyNWB repository: <https://github.com/NeurodataWithoutBorders/pynwb>
+136. MatNWB repository: <https://github.com/NeurodataWithoutBorders/matnwb>
+137. NWB overview, file structure: <https://nwb-overview.readthedocs.io/en/latest/intro_to_nwb/2_file_structure.html>
+138. DANDI, data standards: <https://docs.dandiarchive.org/getting-started/data-standards/>
+139. h5wasm repository: <https://github.com/usnistgov/h5wasm>
+140. Neurosift repository: <https://github.com/flatironinstitute/neurosift>
+141. Neurodata Without Borders: <https://nwb.org/>
 
 ### Physics
 
@@ -350,52 +352,52 @@ The brief names ROOT, Geant4, COMSOL, and MATLAB. GNU Octave is added as the ope
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| ROOT | LGPL-2.1-or-later, open, except MathMore under the GPL and RooFit under a University of California and Stanford license [140] | Histograms, graphs, trees, and detector geometry; publication figures as PDF and other formats [141] | `.root` files, compressed and self-describing [141], holding TTree and RNTuple data [142]; `.C` macros run by Cling [141]; canvases save as PNG, SVG, PDF, JSON, and a dozen more [143] | import, runner | JSROOT draws ROOT objects in the page and reads `.root` files over HTTP, MIT, release 7.11.1 on 2026-07-27 [144]. uproot reads and writes `.root` in pure Python under BSD-3-Clause; its CI tests a Pyodide build, though uproot is absent from Pyodide 314.0.7 [145][61]. ROOT ships binaries for Linux and macOS, with Windows in beta, plus conda and Docker builds [146] | Interactive: histograms, graphs, trees, and geometry in JSROOT |
-| Geant4 | Geant4 Software License 1.0, open source with a clause against patenting modifications [147] | Detector geometry and particle tracks through OpenGL, Qt, Open Inventor, VTK, HepRep, VRML, and other drivers [148] | GDML geometry, which needs Xerces-C [149]; `.mac` macros [150]; analysis output as ROOT, HDF5, XML, or CSV [151] | runner, import | RHEL-family Linux with GCC 11.5, macOS 14 to 26 with Xcode, Windows 11 with Visual Studio 2022, and C++17; multithreaded builds; physics datasets download at build time [152]. Release 11.4.2 of 2026-06-17 [153]. No official web version; a third-party WebAssembly build for the YAPTIDE project runs Geant4 in a web worker, with no license file [154] | Static: images from the offscreen driver; interactive: ROOT output in JSROOT |
-| COMSOL Multiphysics | Closed: CPU-locked, named single-user, floating network, and server licenses, term or perpetual [155], managed by FlexNet [156] | Result plots in one to three dimensions, and animations | `.mph` models holding the model and application trees; `.mphbin` and `.mphtxt` geometry; exports VTK `.vtu`, STL, PLY, 3MF, and glTF `.glb`, images, WebM and GIF animations, and MATLAB or Java model code [157] | import, link | Windows 10 and 11, Windows Server, macOS 12 to 26, and several Linux distributions; 4 GB of memory and 2 to 25 GB of disk; GPU solvers need an NVIDIA GPU of compute capability 6.0 [158]. COMSOL Server runs apps for web browsers on the licensee's own server [159], and COMSOL Compiler builds apps that run with no license [160]. No `.mph` parser outside COMSOL found | Interactive: exported `.glb` in model-viewer or three.js; static: images and WebM |
-| MATLAB | Closed: individual, designated computer, network named user, and concurrent licenses, the last served by Flexera's license manager [161][162] | Figures and plots, live scripts, Simulink models | `.m` code; `.mlx` live scripts, a zip under Open Packaging Conventions [163]; `.mat` data, HDF5-based from version 7.3 [164]; `.fig`; `.slx` models, also OPC [165] | import, link | MATLAB Online runs on MathWorks servers [166]. Parsers: `scipy.io.loadmat` reads `.mat` up to 7.2 and h5py reads 7.3, both in Pyodide 314.0.7 [61]. `exportgraphics` writes an HTML file with an interactive canvas since R2026a [167] | The `.m` code as text; `.mat` variables as tables; interactive: exported HTML figures |
-| GNU Octave | GPL-3.0-or-later, open [168] | 2D and 3D plots [169] | `.m` scripts; MATLAB `.mat` versions 4 to 7, and 7.3 read in part through HDF5 [170] | runner, browser | GNU/Linux, macOS, BSD, and Windows, with no license [169]. xeus-octave runs Octave in JupyterLite in the page, GPL-3.0, release v0.6.3 on 2026-01-26 [171] | Static: plots printed to SVG, PDF, PNG, or JPEG [172] |
-| LAMMPS | GPLv2, open; the site does not say "or later" [173] | Images of each snapshot, and movies of a run [174] | Input scripts and data files; dumps as XYZ, extended XYZ, DCD, XTC, netCDF, H5MD, VTK, YAML, and more [174] | runner, browser | Executables for the three desktop systems [175]. Atomify compiles LAMMPS to WebAssembly and runs it in the page at about half native speed, single-threaded, GPL-3.0, last commit 2026-09-11 [176] | Interactive: Atomify's three.js view of a run; trajectories in Mol* or 3Dmol.js |
+| ROOT | LGPL-2.1-or-later, open, except MathMore under the GPL and RooFit under a University of California and Stanford license [142] | Histograms, graphs, trees, and detector geometry; publication figures as PDF and other formats [143] | `.root` files, compressed and self-describing [143], holding TTree and RNTuple data [144]; `.C` macros run by Cling [143]; canvases save as PNG, SVG, PDF, JSON, and a dozen more [145] | import, runner | JSROOT draws ROOT objects in the page and reads `.root` files over HTTP, MIT, release 7.11.1 on 2026-07-27 [146]. uproot reads and writes `.root` in pure Python under BSD-3-Clause; its CI tests a Pyodide build, though uproot is absent from Pyodide 314.0.7 [147][61]. ROOT ships binaries for Linux and macOS, with Windows in beta, plus conda and Docker builds [148] | Interactive: histograms, graphs, trees, and geometry in JSROOT |
+| Geant4 | Geant4 Software License 1.0, open source with a clause against patenting modifications [149] | Detector geometry and particle tracks through OpenGL, Qt, Open Inventor, VTK, HepRep, VRML, and other drivers [150] | GDML geometry, which needs Xerces-C [151]; `.mac` macros [152]; analysis output as ROOT, HDF5, XML, or CSV [153] | runner, import | RHEL-family Linux with GCC 11.5, macOS 14 to 26 with Xcode, Windows 11 with Visual Studio 2022, and C++17; multithreaded builds; physics datasets download at build time [154]. Release 11.4.2 of 2026-06-17 [155]. No official web version; a third-party WebAssembly build for the YAPTIDE project runs Geant4 in a web worker, with no license file [156] | Static: images from the offscreen driver; interactive: ROOT output in JSROOT |
+| COMSOL Multiphysics | Closed: CPU-locked, named single-user, floating network, and server licenses, term or perpetual [157], managed by FlexNet [158] | Result plots in one to three dimensions, and animations | `.mph` models holding the model and application trees; `.mphbin` and `.mphtxt` geometry; exports VTK `.vtu`, STL, PLY, 3MF, and glTF `.glb`, images, WebM and GIF animations, and MATLAB or Java model code [159] | import, link | Windows 10 and 11, Windows Server, macOS 12 to 26, and several Linux distributions; 4 GB of memory and 2 to 25 GB of disk; GPU solvers need an NVIDIA GPU of compute capability 6.0 [160]. COMSOL Server runs apps for web browsers on the licensee's own server [161], and COMSOL Compiler builds apps that run with no license [162]. No `.mph` parser outside COMSOL found | Interactive: exported `.glb` in model-viewer or three.js; static: images and WebM |
+| MATLAB | Closed: individual, designated computer, network named user, and concurrent licenses, the last served by Flexera's license manager [163][164] | Figures and plots, live scripts, Simulink models | `.m` code; `.mlx` live scripts, a zip under Open Packaging Conventions [165]; `.mat` data, HDF5-based from version 7.3 [166]; `.fig`; `.slx` models, also OPC [167] | import, link | MATLAB Online runs MATLAB in MathWorks' cloud, reached through a browser [168]. Parsers: `scipy.io.loadmat` reads `.mat` up to 7.2 and h5py reads 7.3, both in Pyodide 314.0.7 [61]. `exportgraphics` writes an HTML file with an interactive canvas since R2026a [169] | The `.m` code as text; `.mat` variables as tables; interactive: exported HTML figures |
+| GNU Octave | GPL-3.0-or-later, open [170] | 2D and 3D plots [171] | `.m` scripts; MATLAB `.mat` versions 4 to 7, and 7.3 read in part through HDF5 [172] | runner, browser | GNU/Linux, macOS, BSD, and Windows, with no license [171]. xeus-octave runs Octave in JupyterLite in the page, GPL-3.0, release v0.6.3 on 2026-01-26 [173] | Static: plots printed to SVG, PDF, PNG, or JPEG [174] |
+| LAMMPS | GPLv2, open; the site does not say "or later" [175] | Images of each snapshot, and movies of a run [176] | Input scripts and data files; dumps as XYZ, extended XYZ, DCD, XTC, netCDF, H5MD, VTK, YAML, and more [176] | runner, browser | Executables for the three desktop systems [177]. Atomify compiles LAMMPS to WebAssembly and runs it in the page at about half native speed, single-threaded, GPL-3.0, last commit 2026-09-11 [178] | Interactive: Atomify's three.js view of a run; trajectories in Mol* or 3Dmol.js |
 
 Sources, read 2026-09-21:
 
-140. ROOT, license: <https://root.cern/about/license/>
-141. ROOT, about: <https://root.cern/about/>
-142. ROOT reference, RNTuple: <https://root.cern/doc/master/group__NTuple.html>
-143. ROOT reference, TPad: <https://root.cern/doc/master/classTPad.html>
-144. JSROOT repository: <https://github.com/root-project/jsroot>
-145. uproot repository: <https://github.com/scikit-hep/uproot5>
-146. ROOT, install: <https://root.cern/install/>
-147. Geant4, software license: <https://geant4.web.cern.ch/download/license>
-148. Geant4 guide, visualization drivers: <https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Visualization/visdrivers.html>
-149. Geant4 guide, GDML: <https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Detector/Geometry/geomXML.html>
-150. Geant4 guide, running a program: <https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/GettingStarted/executeProgram.html>
-151. Geant4 guide, analysis managers: <https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Analysis/managers.html>
-152. Geant4 installation guide: <https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html>
-153. Geant4 11.4.2: <https://geant4.web.cern.ch/download/11.4.2.html>
-154. yaptide geant-web-application repository: <https://github.com/yaptide/geant-web-application>
-155. COMSOL, licensing: <https://www.comsol.com/products/licensing>
-156. COMSOL 6.4, installation guide, license manager: <https://doc.comsol.com/6.4/doc/com.comsol.help.comsol/comsol_installation.02.026.html>
-157. COMSOL learning center, file formats: <https://www.comsol.com/support/learning-center/article/76161>
-158. COMSOL, system requirements: <https://www.comsol.com/system-requirements>
-159. COMSOL Server: <https://www.comsol.com/comsol-server>
-160. COMSOL Compiler: <https://www.comsol.com/comsol-compiler>
-161. MathWorks, individual and designated computer licenses: <https://www.mathworks.com/help/install/administer-individual-and-designated-computer-licenses.html>
-162. MathWorks, concurrent licenses: <https://www.mathworks.com/help/install/license/concurrent-licenses.html>
-163. MATLAB, live script file format: <https://www.mathworks.com/help/matlab/matlab_prog/live-script-file-format.html>
-164. MATLAB, MAT-file versions: <https://www.mathworks.com/help/matlab/import_export/mat-file-versions.html>
-165. Simulink, save models: <https://www.mathworks.com/help/simulink/ug/save-models.html>
-166. MATLAB Online: <https://www.mathworks.com/products/matlab-online.html>
-167. MATLAB, exportgraphics: <https://www.mathworks.com/help/matlab/ref/exportgraphics.html>
-168. GNU Octave repository: <https://github.com/gnu-octave/octave>
-169. GNU Octave: <https://octave.org/>
-170. Octave manual, simple file I/O: <https://docs.octave.org/latest/Simple-File-I_002fO.html>
-171. xeus-octave repository: <https://github.com/jupyter-xeus/xeus-octave>
-172. Octave manual, printing and saving plots: <https://docs.octave.org/latest/Printing-and-Saving-Plots.html>
-173. LAMMPS: <https://www.lammps.org/>
-174. LAMMPS manual, dump: <https://docs.lammps.org/dump.html>
-175. LAMMPS manual, install: <https://docs.lammps.org/Install.html>
-176. Atomify repository: <https://github.com/andeplane/atomify>
+142. ROOT, license: <https://root.cern/about/license/>
+143. ROOT, about: <https://root.cern/about/>
+144. ROOT reference, RNTuple: <https://root.cern/doc/master/group__NTuple.html>
+145. ROOT reference, TPad: <https://root.cern/doc/master/classTPad.html>
+146. JSROOT repository: <https://github.com/root-project/jsroot>
+147. uproot repository: <https://github.com/scikit-hep/uproot5>
+148. ROOT, install: <https://root.cern/install/>
+149. Geant4, software license: <https://geant4.web.cern.ch/download/license>
+150. Geant4 guide, visualization drivers: <https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Visualization/visdrivers.html>
+151. Geant4 guide, GDML: <https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Detector/Geometry/geomXML.html>
+152. Geant4 guide, running a program: <https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/GettingStarted/executeProgram.html>
+153. Geant4 guide, analysis managers: <https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Analysis/managers.html>
+154. Geant4 installation guide: <https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html>
+155. Geant4 11.4.2: <https://geant4.web.cern.ch/download/11.4.2.html>
+156. yaptide geant-web-application repository: <https://github.com/yaptide/geant-web-application>
+157. COMSOL, licensing: <https://www.comsol.com/products/licensing>
+158. COMSOL 6.4, installation guide, license manager: <https://doc.comsol.com/6.4/doc/com.comsol.help.comsol/comsol_installation.02.026.html>
+159. COMSOL learning center, file formats: <https://www.comsol.com/support/learning-center/article/76161>
+160. COMSOL, system requirements: <https://www.comsol.com/system-requirements>
+161. COMSOL Server: <https://www.comsol.com/comsol-server>
+162. COMSOL Compiler: <https://www.comsol.com/comsol-compiler>
+163. MathWorks, individual and designated computer licenses: <https://www.mathworks.com/help/install/administer-individual-and-designated-computer-licenses.html>
+164. MathWorks, concurrent licenses: <https://www.mathworks.com/help/install/license/concurrent-licenses.html>
+165. MATLAB, live script file format: <https://www.mathworks.com/help/matlab/matlab_prog/live-script-file-format.html>
+166. MATLAB, MAT-file versions: <https://www.mathworks.com/help/matlab/import_export/mat-file-versions.html>
+167. Simulink, save models: <https://www.mathworks.com/help/simulink/ug/save-models.html>
+168. MATLAB Online: <https://www.mathworks.com/products/matlab-online.html>
+169. MATLAB, exportgraphics: <https://www.mathworks.com/help/matlab/ref/exportgraphics.html>
+170. GNU Octave repository: <https://github.com/gnu-octave/octave>
+171. GNU Octave: <https://octave.org/>
+172. Octave manual, simple file I/O: <https://docs.octave.org/latest/Simple-File-I_002fO.html>
+173. xeus-octave repository: <https://github.com/jupyter-xeus/xeus-octave>
+174. Octave manual, printing and saving plots: <https://docs.octave.org/latest/Printing-and-Saving-Plots.html>
+175. LAMMPS: <https://www.lammps.org/>
+176. LAMMPS manual, dump: <https://docs.lammps.org/dump.html>
+177. LAMMPS manual, install: <https://docs.lammps.org/Install.html>
+178. Atomify repository: <https://github.com/andeplane/atomify>
 
 ### Astronomy
 
@@ -403,22 +405,23 @@ The brief names Astropy. SAOImageDS9 is added as the desktop FITS viewer, and Al
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| Astropy | BSD-3-Clause, open [177] | Plots through Matplotlib, with world coordinates through WCSAxes [178] | FITS; tables as ASCII and ECSV, FITS, HDF5, Parquet, and VOTable [179]; ASDF through asdf-astropy | browser, runner | In Pyodide 314.0.7 as 7.2.0, with pyerfa and healpy [61]; the upstream release is 8.0 [177] | Static: Matplotlib figures; FITS headers and tables on the node; interactive: FITS images in Aladin Lite |
-| SAOImageDS9 | GPL-3.0 for the DS9 code, which the README calls licensed in part; open [180] | FITS images and binary tables, frames, regions, scales, and colormaps [180] | FITS images, tables, cubes, and mosaics, NRRD, ENVI, and common image formats; region and contour files [181] | link, import | Desktop builds, macOS 13 to 26 among them; stable 8.7 of 2026-03-15 [182]. JS9, its browser counterpart, is archived with a final release on 2024-12-14 [183]. Parsers: astropy for FITS and astropy-regions for DS9 region files [184] | Interactive: the FITS image in Aladin Lite, with regions drawn from the region file |
-| Aladin Lite | LGPL-3.0-or-later, open [185] | HiPS sky surveys and FITS images with catalogs overlaid, through a Rust and WebGL2 engine [185] | HiPS, FITS images, JPEG and PNG with WCS [185] | browser, link | An npm package, `aladin-lite`; stable v3.8.1 on 2026-03-05, last push 2026-09-17 [185][186] | Interactive: the sky view in the page |
+| Astropy | BSD-3-Clause, open [179] | Plots through Matplotlib, with world coordinates through WCSAxes [180] | FITS; tables as ASCII and ECSV, FITS, HDF5, Parquet, and VOTable [181]; ASDF through asdf-astropy [182] | browser, runner | In Pyodide 314.0.7 as 7.2.0, with pyerfa and healpy [61]; the upstream release is 8.0 [179] | Static: Matplotlib figures; FITS headers and tables on the node; interactive: FITS images in Aladin Lite |
+| SAOImageDS9 | GPL-3.0 for the DS9 code, which the README calls licensed in part; open [183] | FITS images and binary tables, frames, regions, scales, and colormaps [183] | FITS images, tables, cubes, and mosaics, NRRD, ENVI, and common image formats; region and contour files [184] | link, import | Desktop builds, macOS 13 to 26 among them; stable 8.7 of 2026-03-15 [185]. JS9, its browser counterpart, is archived with a final release on 2024-12-14 [186]. Parsers: astropy for FITS and astropy-regions for DS9 region files [187] | Interactive: the FITS image in Aladin Lite, with regions drawn from the region file |
+| Aladin Lite | LGPL-3.0-or-later, open [188] | HiPS sky surveys and FITS images with catalogs overlaid, through a Rust and WebGL2 engine [188] | HiPS, FITS images, JPEG and PNG with WCS [188] | browser, link | An npm package, `aladin-lite`; stable v3.8.1 on 2026-03-05, last push 2026-09-17 [188][189] | Interactive: the sky view in the page |
 
 Sources, read 2026-09-21:
 
-177. Astropy repository: <https://github.com/astropy/astropy>
-178. Astropy, WCSAxes: <https://docs.astropy.org/en/stable/visualization/wcsaxes/index.html>
-179. Astropy, unified table I/O: <https://docs.astropy.org/en/stable/io/unified_table.html>
-180. SAOImageDS9 repository: <https://github.com/SAOImageDS9/SAOImageDS9>
-181. DS9 reference, file: <https://github.com/SAOImageDS9/SAOImageDS9/blob/master/ds9/doc/ref/file.html>
-182. SAOImageDS9, download: <https://sites.google.com/cfa.harvard.edu/saoimageds9/download>
-183. JS9 repository: <https://github.com/ericmandel/js9>
-184. astropy-regions repository: <https://github.com/astropy/regions>
-185. Aladin Lite repository: <https://github.com/cds-astro/aladin-lite>
-186. aladin-lite on the npm registry: <https://registry.npmjs.org/aladin-lite>
+179. Astropy repository: <https://github.com/astropy/astropy>
+180. Astropy, WCSAxes: <https://docs.astropy.org/en/stable/visualization/wcsaxes/index.html>
+181. Astropy, unified table I/O: <https://docs.astropy.org/en/stable/io/unified_table.html>
+182. Astropy, installation: <https://docs.astropy.org/en/stable/install.html>
+183. SAOImageDS9 repository: <https://github.com/SAOImageDS9/SAOImageDS9>
+184. DS9 reference, file: <https://github.com/SAOImageDS9/SAOImageDS9/blob/master/ds9/doc/ref/file.html>
+185. SAOImageDS9, download: <https://sites.google.com/cfa.harvard.edu/saoimageds9/download>
+186. JS9 repository: <https://github.com/ericmandel/js9>
+187. astropy-regions repository: <https://github.com/astropy/regions>
+188. Aladin Lite repository: <https://github.com/cds-astro/aladin-lite>
+189. aladin-lite on the npm registry: <https://registry.npmjs.org/aladin-lite>
 
 ### Earth science
 
@@ -426,45 +429,45 @@ The brief names QGIS and GDAL. Google Earth Engine is added as a closed platform
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| QGIS | GPL-2.0-or-later, open [187] | Maps of raster, vector, mesh, and point cloud data, with print layouts [187] | `.qgz`, a zip holding the `.qgs` project XML and a `.qgd` SQLite file of auxiliary data; `.qml` styles and `.qlr` layer definitions [188]; data formats through GDAL [189] | import, runner | qgis-js runs QGIS in the page as a public beta that loads a project and renders it to an image, with no network layers and no PyQGIS; npm 4.2.0 on 2026-07-06 [190]. QGIS Server provides WMS, WFS, WCS, and OGC API Features [191] for a web client such as QWC2, BSD-2-Clause, release 2026-09-17 [192]. Desktop on Windows, macOS, Linux, and BSD, free of charge [193] | Static: a print layout exported as PDF or SVG [194]; interactive: the layers on an OpenLayers map through QGIS Server and QWC2 |
-| GDAL | MIT for most of the source, with some files under BSD terms [195] | Nothing; it translates raster and vector data through one abstract model for each [196] | 160 raster and 85 vector drivers in the stable documentation's tables on 2026-09-21 [197][198], GeoTIFF, COG, GeoPackage, netCDF, HDF5, Zarr, Shapefile, GeoParquet, and GeoJSON among them | browser, runner | gdal3.js compiles GDAL 3.8.4 to WebAssembly with `gdal_translate`, `ogr2ogr`, `gdalwarp`, and two more utilities, LGPL-2.1-or-later; last release v2.8.1 on 2024-02-22, npm beta 3.0.0-beta.4 on 2026-05-04, last commit 2026-05-13 [199]. Pyodide 314.0.7 has no GDAL package and ships rasterio, pyproj, fiona, and geopandas [61]. geotiff.js reads GeoTIFF and COG in JavaScript, MIT [200] | Static: a raster as an image; interactive: a COG on a web map through geotiff.js |
-| Google Earth Engine | Closed and hosted: free for noncommercial and government research, and paid under Google Cloud terms for other use [201]; the `earthengine-api` client is Apache-2.0 [202] | Map tiles and console output over a multi-petabyte catalog of satellite imagery and geospatial data [203] | Scripts in JavaScript in the Code Editor or in Python; images export as GeoTIFF or TFRecord [204], tables as CSV, SHP, GeoJSON, KML, KMZ, or TFRecord [205] | link, import | A Google account and a Cloud project registered for commercial or noncommercial use [206]. The Code Editor sends each script to Google for processing [207] | Exported COGs through geotiff.js and exported tables; the script as text |
-| netCDF and xarray | netCDF libraries BSD-3-Clause [208]; the CF conventions document CC0 [209]; xarray Apache-2.0 [210] | netCDF renders nothing; xarray plots through Matplotlib [211] | `.nc` in the classic, 64-bit offset, CDF-5, and netCDF-4 variants, and every netCDF-4 file is an HDF5 file [212]; CF metadata describes each variable and its space and time coordinates [209] | browser, runner | Pyodide 314.0.7 ships xarray, netcdf4, h5py, and zarr [61]. netcdfjs reads netCDF 3 in JavaScript, MIT, v4.0.0 on 2026-03-06 [213]; h5wasm reads HDF5 in JavaScript, v0.10.3 on 2026-06-11 [137]. A runner takes files too large to load in a page | Static: Matplotlib plots of a variable; the variables with their attributes as a table |
-| GMT | LGPL-3.0-or-later, with one bundled file, `triangle.c`, under a non-permissive license [214] | Maps and figures for the geosciences [215] | Figures as PDF by default, or EPS, PS, PNG, JPEG, TIFF, and BMP [216]; grids as netCDF | runner, import | Command lines on Unix and Windows, no license [215]; release 6.7.0 on 2026-07-30 [217]. No browser build found, and PyGMT is absent from Pyodide 314.0.7 [61] | Static: the PDF or PNG figure |
+| QGIS | GPL-2.0-or-later, open [190] | Maps of raster, vector, mesh, and point cloud data, with print layouts [190] | `.qgz`, a zip holding the `.qgs` project XML and a `.qgd` SQLite file of auxiliary data; `.qml` styles and `.qlr` layer definitions [191]; data formats through GDAL [192] | import, runner | qgis-js runs QGIS in the page as a public beta that loads a project and renders it to an image, with no network layers and no PyQGIS; npm 4.2.0 on 2026-07-06 [193]. QGIS Server provides WMS, WFS, WCS, and OGC API Features [194] for a web client such as QWC2, BSD-2-Clause, release 2026-09-17 [195]. Desktop on Windows, macOS, Linux, and BSD, free of charge [196] | Static: a print layout exported as PDF or SVG [197]; interactive: the layers on an OpenLayers map through QGIS Server and QWC2 |
+| GDAL | MIT for most of the source, with some files under BSD terms [198] | Nothing; it translates raster and vector data through one abstract model for each [199] | 160 raster and 85 vector drivers in the stable documentation's tables on 2026-09-21 [200][201], GeoTIFF, COG, GeoPackage, netCDF, HDF5, Zarr, Shapefile, GeoParquet, and GeoJSON among them | browser, runner | gdal3.js compiles GDAL 3.8.4 to WebAssembly with `gdal_translate`, `ogr2ogr`, `gdalwarp`, and two more utilities, LGPL-2.1-or-later; last release v2.8.1 on 2024-02-22, npm beta 3.0.0-beta.4 on 2026-05-04, last commit 2026-05-13 [202]. Pyodide 314.0.7 has no GDAL package and ships rasterio, pyproj, fiona, and geopandas [61]. geotiff.js reads GeoTIFF and COG in JavaScript, MIT [203] | Static: a raster as an image; interactive: a COG on a web map through geotiff.js |
+| Google Earth Engine | Closed and hosted: free for noncommercial and government research, and paid under Google Cloud terms for other use [204]; the `earthengine-api` client is Apache-2.0 [205] | Map tiles and console output over a multi-petabyte catalog of satellite imagery and geospatial data [206] | Scripts in JavaScript in the Code Editor or in Python; images export as GeoTIFF or TFRecord [207], tables as CSV, SHP, GeoJSON, KML, KMZ, or TFRecord [208] | link, import | A Google account and a Cloud project registered for commercial or noncommercial use [209]. The Code Editor sends each script to Google for processing [210] | Exported COGs through geotiff.js and exported tables; the script as text |
+| netCDF and xarray | netCDF libraries BSD-3-Clause [211]; the CF conventions document CC0 [212]; xarray Apache-2.0 [213] | netCDF renders nothing; xarray plots through Matplotlib [214] | `.nc` in the classic, 64-bit offset, CDF-5, and netCDF-4 variants, and every netCDF-4 file is an HDF5 file [215]; CF metadata describes each variable and its space and time coordinates [212] | browser, runner | Pyodide 314.0.7 ships xarray, netcdf4, h5py, and zarr [61]. netcdfjs reads netCDF 3 in JavaScript, MIT, v4.0.0 on 2026-03-06 [216]; h5wasm reads HDF5 in JavaScript, v0.10.3 on 2026-06-11 [139]. A runner takes files too large to load in a page | Static: Matplotlib plots of a variable; the variables with their attributes as a table |
+| GMT | LGPL-3.0-or-later, with one bundled file, `triangle.c`, under a non-permissive license [217] | Maps and figures for the geosciences [218] | Figures as PDF by default, or EPS, PS, PNG, JPEG, TIFF, and BMP [219]; grids as netCDF | runner, import | Command lines on Unix and Windows, no license [218]; release 6.7.0 on 2026-07-30 [220]. No browser build found, and PyGMT is absent from Pyodide 314.0.7 [61] | Static: the PDF or PNG figure |
 
 Sources, read 2026-09-21:
 
-187. QGIS repository: <https://github.com/qgis/QGIS>
-188. QGIS manual, QGIS file formats: <https://docs.qgis.org/3.44/en/docs/user_manual/appendices/qgis_file_formats.html>
-189. QGIS manual, supported data formats: <https://docs.qgis.org/3.44/en/docs/user_manual/managing_data_source/supported_data.html>
-190. qgis-js repository: <https://github.com/qgis/qgis-js>
-191. QGIS Server manual, introduction: <https://docs.qgis.org/3.44/en/docs/server_manual/introduction.html>
-192. QWC2 repository: <https://github.com/qgis/qwc2>
-193. QGIS, download: <https://qgis.org/download/>
-194. QGIS manual, creating output: <https://docs.qgis.org/3.44/en/docs/user_manual/print_layout/create_output.html>
-195. GDAL, license: <https://gdal.org/en/stable/license.html>
-196. GDAL documentation: <https://gdal.org/en/stable/index.html>
-197. GDAL, raster drivers: <https://gdal.org/en/stable/drivers/raster/index.html>
-198. GDAL, vector drivers: <https://gdal.org/en/stable/drivers/vector/index.html>
-199. gdal3.js repository: <https://github.com/bugra9/gdal3.js>
-200. geotiff.js repository: <https://github.com/geotiffjs/geotiff.js>
-201. Earth Engine, terms of service: <https://earthengine.google.com/terms/>
-202. earthengine-api repository: <https://github.com/google/earthengine-api>
-203. Google Earth Engine: <https://earthengine.google.com/>
-204. Earth Engine guide, exporting images: <https://developers.google.com/earth-engine/guides/exporting_images>
-205. Earth Engine guide, exporting tables: <https://developers.google.com/earth-engine/guides/exporting_tables>
-206. Earth Engine guide, access: <https://developers.google.com/earth-engine/guides/access>
-207. Earth Engine guide, Code Editor: <https://developers.google.com/earth-engine/guides/playground>
-208. Unidata, netCDF licensing: <https://www.unidata.ucar.edu/software/netcdf/licensing>
-209. CF Conventions 1.13: <https://cfconventions.org/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html>
-210. xarray repository: <https://github.com/pydata/xarray>
-211. xarray, plotting: <https://docs.xarray.dev/en/stable/user-guide/plotting.html>
-212. netCDF-C, file format specifications: <https://docs.unidata.ucar.edu/netcdf-c/current/file_format_specifications.html>
-213. netcdfjs repository: <https://github.com/cheminfo/netcdfjs>
-214. GMT, LICENSE.TXT: <https://github.com/GenericMappingTools/gmt/blob/master/LICENSE.TXT>
-215. The Generic Mapping Tools: <https://www.generic-mapping-tools.org/>
-216. GMT documentation, figure: <https://docs.generic-mapping-tools.org/latest/figure.html>
-217. GMT repository: <https://github.com/GenericMappingTools/gmt>
+190. QGIS repository: <https://github.com/qgis/QGIS>
+191. QGIS manual, QGIS file formats: <https://docs.qgis.org/3.44/en/docs/user_manual/appendices/qgis_file_formats.html>
+192. QGIS manual, supported data formats: <https://docs.qgis.org/3.44/en/docs/user_manual/managing_data_source/supported_data.html>
+193. qgis-js repository: <https://github.com/qgis/qgis-js>
+194. QGIS Server manual, introduction: <https://docs.qgis.org/3.44/en/docs/server_manual/introduction.html>
+195. QWC2 repository: <https://github.com/qgis/qwc2>
+196. QGIS, download: <https://qgis.org/download/>
+197. QGIS manual, creating output: <https://docs.qgis.org/3.44/en/docs/user_manual/print_layout/create_output.html>
+198. GDAL, license: <https://gdal.org/en/stable/license.html>
+199. GDAL documentation: <https://gdal.org/en/stable/index.html>
+200. GDAL, raster drivers: <https://gdal.org/en/stable/drivers/raster/index.html>
+201. GDAL, vector drivers: <https://gdal.org/en/stable/drivers/vector/index.html>
+202. gdal3.js repository: <https://github.com/bugra9/gdal3.js>
+203. geotiff.js repository: <https://github.com/geotiffjs/geotiff.js>
+204. Earth Engine, terms of service: <https://earthengine.google.com/terms/>
+205. earthengine-api repository: <https://github.com/google/earthengine-api>
+206. Google Earth Engine: <https://earthengine.google.com/>
+207. Earth Engine guide, exporting images: <https://developers.google.com/earth-engine/guides/exporting_images>
+208. Earth Engine guide, exporting tables: <https://developers.google.com/earth-engine/guides/exporting_tables>
+209. Earth Engine guide, access: <https://developers.google.com/earth-engine/guides/access>
+210. Earth Engine guide, Code Editor: <https://developers.google.com/earth-engine/guides/playground>
+211. Unidata, netCDF licensing: <https://www.unidata.ucar.edu/software/netcdf/licensing>
+212. CF Conventions 1.13: <https://cfconventions.org/Data/cf-conventions/cf-conventions-1.13/cf-conventions.html>
+213. xarray repository: <https://github.com/pydata/xarray>
+214. xarray, plotting: <https://docs.xarray.dev/en/stable/user-guide/plotting.html>
+215. netCDF-C, file format specifications: <https://docs.unidata.ucar.edu/netcdf-c/current/file_format_specifications.html>
+216. netcdfjs repository: <https://github.com/cheminfo/netcdfjs>
+217. GMT, LICENSE.TXT: <https://github.com/GenericMappingTools/gmt/blob/master/LICENSE.TXT>
+218. The Generic Mapping Tools: <https://www.generic-mapping-tools.org/>
+219. GMT documentation, figure: <https://docs.generic-mapping-tools.org/latest/figure.html>
+220. GMT repository: <https://github.com/GenericMappingTools/gmt>
 
 ### CAD
 
@@ -472,43 +475,43 @@ The brief names SolidWorks and Onshape, closed, with FreeCAD and OpenSCAD, open.
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| SolidWorks | Closed. Single seats activate on one machine or sign in online [219]; networks use SolidNetWork on FlexNet for perpetual and term licenses [218] | 3D parts and assemblies, 2D drawings | `.sldprt`, `.sldasm`, `.slddrw` [220]; exchanges STEP, IGES, Parasolid, ACIS, DXF and DWG, IFC, PDF [221]; glTF and GLB [222]; STL and 3MF meshes among others [223] | import, link | Windows 10 or 11, 64-bit, with 16 GB of memory and a certified graphics card [224]. SOLIDWORKS xDesign runs in the browser on the 3DEXPERIENCE platform as a separate product [225]. No open parser for the native files found | Interactive: exported STEP in Online3DViewer or glTF in model-viewer; drawings as PDF |
-| FreeCAD | LGPL-2.1-or-later, open [226] | Parametric 3D solids, sketches, drawings, and FEM meshes and results | `.FCStd`, a zip of `Document.xml`, BREP shapes, and a thumbnail [227]; STEP, IGES, STL, OBJ, 3MF, DXF, SVG, IFC, and more; exports glTF [228] | import, browser | The three desktop systems, with a console mode [229]. freecad-web compiles FreeCAD 1.1.3 to WebAssembly, third party, Chrome or Edge 137 only, about 115 MB on first load, release v1.0.0 on 2026-09-18 [230]. Import reads `Document.xml` with any XML parser and the thumbnail as PNG | Static: the thumbnail; interactive: the model in Online3DViewer, which reads `.fcstd` [231] |
-| OpenSCAD | GPL-2.0-or-later with a linking exception for CGAL; open [232][233] | 3D solids by constructive geometry and extruded 2D outlines | `.scad` text in; STL, OBJ, OFF, 3MF, DXF, SVG, PNG, PDF, and more out on master [234]; last stable release 2021.01 | browser, runner | openscad-wasm is the headless WebAssembly build, last commit 2026-08-02 [235]; the OpenSCAD Playground runs it in the page and draws with model-viewer, last commit 2026-07-16 [236]. Native builds for the three desktop systems [233] | Interactive: the rendered model in the page; the `.scad` source as text |
-| Onshape | Closed subscription of PTC; the free plan is noncommercial and makes every document public [237]; education plans are free [238] | 3D parts and assemblies, with drawings, in the browser through WebGL [239] | No local files; imports STEP, Parasolid, SolidWorks, and a dozen more, and exports STEP, Parasolid, glTF, STL, 3MF, and URDF [240] | link, import | A browser with WebGL and a sign-in [239]. A REST API with API keys or OAuth2 exports glTF, Parasolid, STL, and translations to other formats [241] | Interactive: glTF from the API in model-viewer; a link to the document |
-| KiCad | GPL-3.0-or-later for most of the source; libraries CC-BY-SA 4.0 [242] | Schematics, circuit boards, a 3D board view, and SPICE simulation | `.kicad_sch` and `.kicad_pcb` S-expression text [243][244]; `kicad-cli` exports Gerber, drill, SVG, PDF, STEP, and GLB [245] | browser, runner | KiCanvas views `.kicad_sch` and `.kicad_pcb` in the page, MIT, early alpha, last commit 2026-04-28 [246]. `kicad-cli` runs headless on every desktop system KiCad supports [245] | Interactive: the schematic or board in KiCanvas; the GLB board in model-viewer |
+| SolidWorks | Closed. Single seats activate on one machine or sign in online [222]; networks use SolidNetWork on FlexNet for perpetual and term licenses [221] | 3D parts and assemblies, 2D drawings | `.sldprt`, `.sldasm`, `.slddrw` [223]; exchanges STEP, IGES, Parasolid, ACIS, DXF and DWG, IFC, PDF [224]; glTF and GLB [225]; STL and 3MF meshes among others [226] | import, link | Windows 10 or 11, 64-bit, with 16 GB of memory and a certified graphics card [227]. SOLIDWORKS xDesign runs in the browser on the 3DEXPERIENCE platform as a separate product [228]. No open parser for the native files found | Interactive: exported STEP in Online3DViewer or glTF in model-viewer; drawings as PDF |
+| FreeCAD | LGPL-2.1-or-later, open [229] | Parametric 3D solids, sketches, drawings, and FEM meshes and results | `.FCStd`, a zip of `Document.xml` with BREP shapes and a thumbnail [230]; STEP, IGES, STL, OBJ, 3MF, DXF, SVG, IFC, and more; exports glTF [231] | import, browser | The three desktop systems, with a console mode [232]. freecad-web compiles FreeCAD 1.1.3 to WebAssembly, third party, Chrome or Edge 137 only, about 115 MB on first load, release v1.0.0 on 2026-09-18 [233]. Import reads `Document.xml` with any XML parser and the thumbnail as PNG | Static: the thumbnail; interactive: the model in Online3DViewer, which reads `.fcstd` [234] |
+| OpenSCAD | GPL-2.0-or-later with a linking exception for CGAL; open [235][236] | 3D solids by constructive geometry and extruded 2D outlines | `.scad` text in; STL, OBJ, OFF, 3MF, DXF, SVG, PNG, PDF, and more out on master [237]; last stable release 2021.01 [235] | browser, runner | openscad-wasm is the headless WebAssembly build, last commit 2026-08-02 [238]; the OpenSCAD Playground runs it in the page and draws with model-viewer, last commit 2026-07-16 [239]. Native builds for the three desktop systems [236] | Interactive: the rendered model in the page; the `.scad` source as text |
+| Onshape | Closed subscription of PTC; the free plan is noncommercial and makes every document public [240]; education plans are free [241] | 3D parts and assemblies, with drawings, in the browser through WebGL [242] | No local files; imports STEP, Parasolid, SolidWorks, and a dozen more, and exports STEP, Parasolid, glTF, STL, 3MF, and URDF [243] | link, import | A browser with WebGL and a sign-in [242]. A REST API with API keys or OAuth2 exports glTF, Parasolid, STL, and translations to other formats [244] | Interactive: glTF from the API in model-viewer; a link to the document |
+| KiCad | GPL-3.0-or-later for most of the source; libraries CC-BY-SA 4.0 [245] | Schematics, circuit boards, a 3D board view, and SPICE simulation | `.kicad_sch` and `.kicad_pcb` S-expression text [246][247]; `kicad-cli` exports Gerber, drill, SVG, PDF, STEP, and GLB [248] | browser, runner | KiCanvas views `.kicad_sch` and `.kicad_pcb` in the page, MIT, early alpha, last commit 2026-04-28 [249]. `kicad-cli` runs headless on every desktop system KiCad supports [248] | Interactive: the schematic or board in KiCanvas; the GLB board in model-viewer |
 
 Sources, read 2026-09-21:
 
-218. SOLIDWORKS help, SolidNetWork licenses: <https://help.solidworks.com/2023/english/Installation/install_guide/c_administering_licenses_using_snl.htm>
-219. SOLIDWORKS help, online licensing: <https://help.solidworks.com/2021/english/SolidWorks/sldworks/t_log_into_SOLIDWORKS_with_online_licensing.htm>
-220. SOLIDWORKS help, types of files: <https://help.solidworks.com/2021/English/SolidWorks/acadhelp/c_Types_of_Files.htm>
-221. SOLIDWORKS help, import and export: <https://help.solidworks.com/2025/english/SolidWorks/sldworks/c_import_export_file_information.htm>
-222. SOLIDWORKS help, glTF and GLB: <https://help.solidworks.com/2025/English/SolidWorks/sldworks/c_glb_gltf_extended_reality_files.htm>
-223. SOLIDWORKS help, STL files: <https://help.solidworks.com/2025/english/SolidWorks/sldworks/c_stl_files.htm>
-224. SOLIDWORKS, system requirements: <https://www.solidworks.com/support/system-requirements>
-225. SOLIDWORKS xDesign: <https://www.3ds.com/store/solidworks-xdesign>
-226. FreeCAD source, Document.cpp: <https://github.com/FreeCAD/FreeCAD/blob/main/src/App/Document.cpp>
-227. FreeCAD wiki, FCStd file format: <https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/File_Format_FCStd.md>
-228. FreeCAD wiki, import and export: <https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/Import_Export.md>
-229. FreeCAD repository: <https://github.com/FreeCAD/FreeCAD>
-230. freecad-web repository: <https://github.com/Virtastic/freecad-web>
-231. Online3DViewer repository: <https://github.com/kovacsv/Online3DViewer>
-232. OpenSCAD repository: <https://github.com/openscad/openscad>
-233. OpenSCAD, about: <https://openscad.org/about.html>
-234. OpenSCAD source, export.cc: <https://github.com/openscad/openscad/blob/master/src/io/export.cc>
-235. openscad-wasm repository: <https://github.com/openscad/openscad-wasm>
-236. OpenSCAD Playground repository: <https://github.com/openscad/openscad-playground>
-237. Onshape, pricing: <https://www.onshape.com/en/pricing>
-238. Onshape, education plans: <https://www.onshape.com/en/education/plans>
-239. Onshape help, hardware recommendations: <https://cad.onshape.com/help/Content/Home/hardware_and_graphics_performance_recommendations.htm>
-240. Onshape help, translation: <https://cad.onshape.com/help/Content/translation.htm>
-241. Onshape API, translation: <https://onshape-public.github.io/docs/api-adv/translation/>
-242. KiCad, licenses: <https://www.kicad.org/about/licenses/>
-243. KiCad, schematic file format: <https://dev-docs.kicad.org/en/file-formats/sexpr-schematic/>
-244. KiCad, board file format: <https://dev-docs.kicad.org/en/file-formats/sexpr-pcb/>
-245. KiCad 10, command line: <https://docs.kicad.org/10.0/en/cli/cli.html>
-246. KiCanvas repository: <https://github.com/theacodes/kicanvas>
+221. SOLIDWORKS help, SolidNetWork licenses: <https://help.solidworks.com/2023/english/Installation/install_guide/c_administering_licenses_using_snl.htm>
+222. SOLIDWORKS help, online licensing: <https://help.solidworks.com/2021/english/SolidWorks/sldworks/t_log_into_SOLIDWORKS_with_online_licensing.htm>
+223. SOLIDWORKS help, types of files: <https://help.solidworks.com/2021/English/SolidWorks/acadhelp/c_Types_of_Files.htm>
+224. SOLIDWORKS help, import and export: <https://help.solidworks.com/2025/english/SolidWorks/sldworks/c_import_export_file_information.htm>
+225. SOLIDWORKS help, glTF and GLB: <https://help.solidworks.com/2025/English/SolidWorks/sldworks/c_glb_gltf_extended_reality_files.htm>
+226. SOLIDWORKS help, STL files: <https://help.solidworks.com/2025/english/SolidWorks/sldworks/c_stl_files.htm>
+227. SOLIDWORKS, system requirements: <https://www.solidworks.com/support/system-requirements>
+228. SOLIDWORKS xDesign: <https://www.3ds.com/store/solidworks-xdesign>
+229. FreeCAD source, Document.cpp: <https://github.com/FreeCAD/FreeCAD/blob/main/src/App/Document.cpp>
+230. FreeCAD wiki, FCStd file format: <https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/File_Format_FCStd.md>
+231. FreeCAD wiki, import and export: <https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/Import_Export.md>
+232. FreeCAD repository: <https://github.com/FreeCAD/FreeCAD>
+233. freecad-web repository: <https://github.com/Virtastic/freecad-web>
+234. Online3DViewer repository: <https://github.com/kovacsv/Online3DViewer>
+235. OpenSCAD repository: <https://github.com/openscad/openscad>
+236. OpenSCAD, about: <https://openscad.org/about.html>
+237. OpenSCAD source, export.cc: <https://github.com/openscad/openscad/blob/master/src/io/export.cc>
+238. openscad-wasm repository: <https://github.com/openscad/openscad-wasm>
+239. OpenSCAD Playground repository: <https://github.com/openscad/openscad-playground>
+240. Onshape, pricing: <https://www.onshape.com/en/pricing>
+241. Onshape, education plans: <https://www.onshape.com/en/education/plans>
+242. Onshape help, hardware recommendations: <https://cad.onshape.com/help/Content/Home/hardware_and_graphics_performance_recommendations.htm>
+243. Onshape help, translation: <https://cad.onshape.com/help/Content/translation.htm>
+244. Onshape API, translation: <https://onshape-public.github.io/docs/api-adv/translation/>
+245. KiCad, licenses: <https://www.kicad.org/about/licenses/>
+246. KiCad, schematic file format: <https://dev-docs.kicad.org/en/file-formats/sexpr-schematic/>
+247. KiCad, board file format: <https://dev-docs.kicad.org/en/file-formats/sexpr-pcb/>
+248. KiCad 10, command line: <https://docs.kicad.org/10.0/en/cli/cli.html>
+249. KiCanvas repository: <https://github.com/theacodes/kicanvas>
 
 ### Simulation
 
@@ -516,35 +519,35 @@ The brief names Ansys and Abaqus, closed, with FEniCS and OpenFOAM, open. meshio
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| Ansys | Closed: FlexNet licensing through the Ansys License Management Center [247]; Ansys became part of Synopsys on 2025-07-17 [248]; Ansys Student is a free twelve-month lease capped at 128K structural nodes and 1 million fluid cells [249] | Meshes and 3D field results, structural and fluid | `.wbpj` Workbench projects with `.mechdb` Mechanical and `.db` Mechanical APDL databases [250]; Fluent `.cas.h5` and `.dat.h5` in HDF5 [251]; exports EnSight, CGNS, Tecplot, and others [252] | import, runner | Ansys Student runs on 64-bit Windows 10 and 11 with 50 GB of disk [249]; full products need a FlexNet license server [247]. ansys-mapdl-reader reads `.rst` result files in Python, MIT [253]; Fluent's HDF5 files open with h5py | Static: exported images; interactive: CGNS or EnSight converted to a mesh for vtk.js |
-| Abaqus | Closed: tokens served by FLEXnet or Dassault Systèmes licensing, per the 6.12 guide of 2012 [254], with current licensing unverified behind a sign-in; the Learning Edition caps models at 1,000 nodes and runs on Windows only [255] | Finite element meshes and results | `.inp` text input, `.odb` binary results, `.cae` models, `.jnl` journals [256] | import, runner | meshio reads `.inp` in pure Python, MIT [257]. `.odb` opens only through Abaqus's own Python or C++ API, and ODB2VTK, MIT, converts it to `.vtu` with Abaqus installed [258] | Interactive: the mesh from `.inp`, or `.vtu` results converted on a licensed runner, in vtk.js |
-| FEniCS | DOLFINx LGPL-3.0-or-later, open [259] | Nothing of its own; it is a finite element library | XDMF with HDF5, VTK, VTX through ADIOS2, and VTKHDF [260] | runner, import | Linux through apt, Docker, conda, or Spack; macOS through conda; Windows through Docker or WSL2; MPI for parallel runs; release v0.11.0 on 2026-06-10 [261]. No Pyodide or emscripten build found | Interactive: VTK or XDMF output read by meshio and drawn in vtk.js |
-| OpenFOAM | GPL-3.0-or-later for openfoam.org [262]; GPL v3 for openfoam.com [263]; open | Nothing of its own; `paraFoam` opens ParaView | A case directory of text dictionaries: `system/` and `constant/`, which holds the mesh, beside time directories such as `0/` [264]; `foamToVTK` converts results to VTK [265] | runner, import | Linux, or Windows through WSL, with OpenMPI for parallel runs [266]; OpenFOAM 14 from the Foundation on 2026-07-14 [267]. A third-party WebAssembly demo runs `blockMesh` and one solver, with no license and one day of commits [268]. | Interactive: `foamToVTK` output in vtk.js; the case dictionaries as text |
+| Ansys | Closed: FlexNet licensing through the Ansys License Management Center [250]; Ansys became part of Synopsys on 2025-07-17 [251]; Ansys Student is a free twelve-month lease capped at 128K structural nodes and 1 million fluid cells [252] | Meshes and 3D field results, structural and fluid | `.wbpj` Workbench projects with `.mechdb` Mechanical and `.db` Mechanical APDL databases [253]; Fluent `.cas.h5` and `.dat.h5` in HDF5 [254]; exports EnSight, CGNS, Tecplot, and others [255] | import, runner | Ansys Student runs on 64-bit Windows 10 and 11 with 50 GB of disk [252]; full products need a FlexNet license server [250]. ansys-mapdl-reader reads `.rst` result files in Python, MIT [256]; Fluent's HDF5 files open with h5py | Static: exported images; interactive: CGNS or EnSight converted to a mesh for vtk.js |
+| Abaqus | Closed: tokens served by FLEXnet or Dassault Systèmes licensing, per the 6.12 guide of 2012 [257], with current licensing unverified behind a sign-in; the Learning Edition caps models at 1,000 nodes and runs on Windows only [258] | Finite element meshes and results | `.inp` text input, `.odb` binary results, `.cae` models, `.jnl` journals [259] | import, runner | meshio reads `.inp` in pure Python, MIT [260]. No reader for `.odb` that works without Abaqus was found; ODB2VTK, MIT, converts it to `.vtu` with Abaqus installed [261] | Interactive: the mesh from `.inp`, or `.vtu` results converted on a licensed runner, in vtk.js |
+| FEniCS | DOLFINx LGPL-3.0-or-later, open [262] | Nothing of its own; it is a finite element library | XDMF with HDF5, VTK, VTX through ADIOS2, and VTKHDF [263] | runner, import | Linux through apt, Docker, conda, or Spack; macOS through conda; Windows through Docker or WSL2; MPI for parallel runs; release v0.11.0 on 2026-06-10 [264]. No Pyodide or emscripten build found | Interactive: VTK or XDMF output read by meshio and drawn in vtk.js |
+| OpenFOAM | GPL-3.0-or-later for openfoam.org [265]; GPL v3 for openfoam.com [266]; open | Nothing of its own; `paraFoam` opens ParaView | A case directory of text dictionaries: `system/` and `constant/`, which holds the mesh, beside time directories such as `0/` [267]; `foamToVTK` converts results to VTK [268] | runner, import | Linux, or Windows through WSL, with OpenMPI for parallel runs [269]; OpenFOAM 14 from the Foundation on 2026-07-14 [270]. A third-party WebAssembly demo runs `blockMesh` and one solver, with no license and one day of commits [271] | Interactive: `foamToVTK` output in vtk.js; the case dictionaries as text |
 
 Sources, read 2026-09-21:
 
-247. Ansys help, licensing introduction: <https://ansyshelp.ansys.com/public/Views/Secured/corp/v251/en/ai_elg/license_intro.html>
-248. Synopsys, acquisition of Ansys completed: <https://news.synopsys.com/2025-07-17-Synopsys-Completes-Acquisition-of-Ansys>
-249. Ansys Student: <https://ansys.synopsys.com/academic/students/ansys-student>
-250. Ansys help, Workbench file types: <https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/wb2_help/wb2h_wbfiles.html>
-251. Ansys Fluent guide, case and data files: <https://ansyshelp.ansys.com/public/Views/Secured/corp/v242/en/flu_ug/flu_ug_CaseDataFiles.html>
-252. Ansys Fluent guide, exporting data: <https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/flu_ug/flu_ug_FileExport.html>
-253. ansys-mapdl-reader repository: <https://github.com/ansys/pymapdl-reader>
-254. Abaqus 6.12 installation and licensing guide: <https://media.3ds.com/support/simulia/public/v612/installation_and_licensing_guides/books/sgb/ch02s01.html>
-255. Abaqus Learning Edition: <https://www.3ds.com/edu/education/students/solutions/abaqus-le>
-256. Dassault Systemes blog, Abaqus files: <https://blog.3ds.com/ko/brands/simulia/abaqus-file-1/>
-257. meshio repository: <https://github.com/nschloe/meshio>
-258. ODB2VTK repository: <https://github.com/Arris-Composites/ODB2VTK>
-259. DOLFINx source, XDMFFile.h: <https://github.com/FEniCS/dolfinx/blob/main/cpp/dolfinx/io/XDMFFile.h>
-260. DOLFINx documentation, dolfinx.io: <https://docs.fenicsproject.org/dolfinx/main/python/generated/dolfinx.io.html>
-261. DOLFINx repository: <https://github.com/FEniCS/dolfinx>
-262. OpenFOAM-dev repository: <https://github.com/OpenFOAM/OpenFOAM-dev>
-263. OpenFOAM.com, licencing: <https://www.openfoam.com/documentation/licencing>
-264. OpenFOAM user guide, case file structure: <https://doc.cfd.direct/openfoam/user-guide-v13/case-file-structure>
-265. OpenFOAM user guide, ParaView: <https://doc.cfd.direct/openfoam/user-guide-v13/paraview>
-266. OpenFOAM user guide, running in parallel: <https://doc.cfd.direct/openfoam/user-guide-v13/running-applications-parallel>
-267. OpenFOAM Foundation, download: <https://openfoam.org/download/>
-268. openfoam-wasm repository: <https://github.com/FoamScience/openfoam-wasm>
+250. Ansys help, licensing introduction: <https://ansyshelp.ansys.com/public/Views/Secured/corp/v251/en/ai_elg/license_intro.html>
+251. Synopsys, acquisition of Ansys completed: <https://news.synopsys.com/2025-07-17-Synopsys-Completes-Acquisition-of-Ansys>
+252. Ansys Student: <https://ansys.synopsys.com/academic/students/ansys-student>
+253. Ansys help, Workbench file types: <https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/wb2_help/wb2h_wbfiles.html>
+254. Ansys Fluent guide, case and data files: <https://ansyshelp.ansys.com/public/Views/Secured/corp/v242/en/flu_ug/flu_ug_CaseDataFiles.html>
+255. Ansys Fluent guide, exporting data: <https://ansyshelp.ansys.com/public/Views/Secured/corp/v252/en/flu_ug/flu_ug_FileExport.html>
+256. ansys-mapdl-reader repository: <https://github.com/ansys/pymapdl-reader>
+257. Abaqus 6.12 installation and licensing guide: <https://media.3ds.com/support/simulia/public/v612/installation_and_licensing_guides/books/sgb/ch02s01.html>
+258. Abaqus Learning Edition: <https://www.3ds.com/edu/education/students/solutions/abaqus-le>
+259. Dassault Systemes blog, Abaqus files: <https://blog.3ds.com/ko/brands/simulia/abaqus-file-1/>
+260. meshio repository: <https://github.com/nschloe/meshio>
+261. ODB2VTK repository: <https://github.com/Arris-Composites/ODB2VTK>
+262. DOLFINx source, XDMFFile.h: <https://github.com/FEniCS/dolfinx/blob/main/cpp/dolfinx/io/XDMFFile.h>
+263. DOLFINx documentation, dolfinx.io: <https://docs.fenicsproject.org/dolfinx/main/python/generated/dolfinx.io.html>
+264. DOLFINx repository: <https://github.com/FEniCS/dolfinx>
+265. OpenFOAM-dev repository: <https://github.com/OpenFOAM/OpenFOAM-dev>
+266. OpenFOAM.com, licencing: <https://www.openfoam.com/documentation/licencing>
+267. OpenFOAM user guide, case file structure: <https://doc.cfd.direct/openfoam/user-guide-v13/case-file-structure>
+268. OpenFOAM user guide, ParaView: <https://doc.cfd.direct/openfoam/user-guide-v13/paraview>
+269. OpenFOAM user guide, running in parallel: <https://doc.cfd.direct/openfoam/user-guide-v13/running-applications-parallel>
+270. OpenFOAM Foundation, download: <https://openfoam.org/download/>
+271. openfoam-wasm repository: <https://github.com/FoamScience/openfoam-wasm>
 
 ### Statistics
 
@@ -552,46 +555,46 @@ The brief names R with SPSS and Stata. SAS is added as the owner of the XPORT fo
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| R | GPL-2 or GPL-3, as R states it; open [269] | 2D statistical graphics through graphics devices, PDF, PNG, and SVG among them [270] | `.R` scripts; `.RData` and `.rda` workspaces [271]; `.rds` objects, which R's own help calls unsuitable for interchange between machines [272]; `.Rmd` and `.qmd` documents [273] | browser, runner | webR runs R in the page through WebAssembly: MIT for its build scripts and console, GPL-3 for the binaries that contain R; release v0.6.0 on 2026-05-19, last commit 2026-06-23 [274]. Its package repository listed 22,741 packages for R 4.6 on 2026-09-21, haven, foreign, readxl, and ggplot2 among them [109]. A package with compiled code needs a WebAssembly build, and webR cannot install from source [275]. Shinylive runs Shiny apps in the page, MIT [276]. A runner covers packages with no WebAssembly build | Static: PNG or SVG plots; interactive: webR in the page, with plots drawn through `webr::canvas()` [277], or a Shinylive app |
-| IBM SPSS Statistics | Closed: per-user licenses or a subscription, with concurrent licenses served by a license manager [278] | Pivot tables and charts in the Viewer; exports to HTML, Word, Excel, and PDF [279] | `.sav` and `.zsav` data, `.spv` Viewer output, `.sps` syntax [279] | import, link | Desktop on Windows and macOS, 64-bit only, with no Linux desktop; SPSS Statistics Server runs on Linux; concurrent licenses use the Sentinel License Manager [280]. Parsers: ReadStat (C, MIT) [281], pyreadstat (Python, Apache-2.0) [282], and haven in webR for the page [283]; PSPP's `pspp-output` reads `.spv` [284] | The dataset as a table with its variable labels; `.sps` syntax as text; `.spv` output converted to text or PDF by PSPP |
-| PSPP | GPL-3.0-or-later, open [285] | Statistical tables and charts, output as text, PostScript, PDF, OpenDocument, or HTML [285] | Syntax and data files compatible with SPSS [285]; `pspp-convert` turns SPSS system and portable files into CSV [286] | runner, import | The three desktop systems, with a command line and no license; 2.1.2 released 2026-09-19 [287] | Static: PDF or HTML output of an `.sps` run |
-| Stata | Closed: single-user, network, site, and student lab licenses, annual or perpetual; editions up to MP, which runs on up to 64 cores [288][289] | 2D statistical graphs, exported as PS, EPS, SVG, PDF, PNG, TIFF, and more [290] | `.dta` data, `.do` and `.ado` code, `.smcl` logs, `.gph` graphs [291]; `.dta` versions 113 to 121 across Stata 8 to 19 [292] | import, link | Windows 10, Windows 11, macOS 13 to 26, or 64-bit Linux with glibc 2.28; 4 GB of disk; a license and activation key [293]. Parsers: `pandas.read_stata` for `.dta` 113 to 118, which runs in Pyodide [294]; haven; ReadStat for versions 104 to 119 [281]. No parser here lists versions 120 and 121, which Stata 18 and 19 write for alias variables [292], so reading them is unverified | The dataset as a table; `.do` files as text; graphs as the static exports |
-| SAS | Closed: SAS 9.4 runs on an annual SID license file [295]; SAS OnDemand for Academics is free for coursework and noncommercial research, hosted by SAS [296][297] | Statistical output and graphics | `.sas` programs, `.sas7bdat` data sets, `.sas7bcat` catalogs [298]; `.xpt` XPORT, which the FDA names as the file format for every electronic dataset in a submission [299] | import, link | SAS Studio processes code on a SAS server and returns results to the browser [300]. Parsers: `pandas.read_sas` reads `.xpt` and `.sas7bdat` and runs in Pyodide [294]; ReadStat and haven read both | The dataset as a table; `.sas` programs as text |
+| R | GPL-2 or GPL-3, as R states it; open [272] | 2D statistical graphics through graphics devices, PDF, PNG, and SVG among them [273] | `.R` scripts; `.RData` and `.rda` workspaces [274]; `.rds` objects, which R's own help calls unsuitable for interchange between machines [275]; `.Rmd` and `.qmd` documents [276] | browser, runner | webR runs R in the page through WebAssembly: MIT for its build scripts and console, GPL-3 for the binaries that contain R; release v0.6.0 on 2026-05-19, last commit 2026-06-23 [277]. Its package repository listed 22,741 packages for R 4.6 on 2026-09-21, haven, foreign, readxl, and ggplot2 among them [109]. A package with compiled code needs a WebAssembly build, and webR cannot install from source [278]. Shinylive runs Shiny apps in the page, MIT [279]. A runner covers packages with no WebAssembly build | Static: PNG or SVG plots; interactive: webR in the page, with plots drawn through `webr::canvas()` [280], or a Shinylive app |
+| IBM SPSS Statistics | Closed: per-user licenses or a subscription, with concurrent licenses served by a license manager [281] | Pivot tables and charts in the Viewer; exports to HTML, Word, Excel, and PDF [282] | `.sav` and `.zsav` data, `.spv` Viewer output, `.sps` syntax [282] | import, link | Desktop on Windows and macOS, 64-bit only, with no Linux desktop; SPSS Statistics Server runs on Linux; concurrent licenses use the Sentinel License Manager [283]. Parsers: ReadStat (C, MIT) [284], pyreadstat (Python, Apache-2.0) [285], and haven in webR for the page [286]; PSPP's `pspp-output` reads `.spv` [287] | The dataset as a table with its variable labels; `.sps` syntax as text; `.spv` output converted to text or PDF by PSPP |
+| PSPP | GPL-3.0-or-later, open [288] | Statistical tables and charts, output as text, PostScript, PDF, OpenDocument, or HTML [288] | Syntax and data files compatible with SPSS [288]; `pspp-convert` turns SPSS system and portable files into CSV [289] | runner, import | The three desktop systems, with a command line and no license; 2.1.2 released 2026-09-19 [290] | Static: PDF or HTML output of an `.sps` run |
+| Stata | Closed: single-user, network, site, and student lab licenses, annual or perpetual; editions up to MP, which runs on up to 64 cores [291][292] | 2D statistical graphs, exported as PS, EPS, SVG, PDF, PNG, TIFF, and more [293] | `.dta` data, `.do` and `.ado` code, `.smcl` logs, `.gph` graphs [294]; `.dta` versions 113 to 121 across Stata 8 to 19 [295] | import, link | Windows 10, Windows 11, macOS 13 to 26, or 64-bit Linux with glibc 2.28; 4 GB of disk; a license and activation key [296]. Parsers: `pandas.read_stata` for `.dta` 113 to 118 [297], which read a version 118 file inside Pyodide 314.0.7 in a check on 2026-09-21; haven; ReadStat for versions 104 to 119 [284]. No parser here lists versions 120 and 121, which Stata 18 and 19 write for alias variables [295], so reading them is unverified | The dataset as a table; `.do` files as text; graphs as the static exports |
+| SAS | Closed: SAS 9.4 runs on an annual SID license file [298]; SAS OnDemand for Academics is free for coursework and noncommercial research, hosted by SAS [299][300] | Statistical output and graphics | `.sas` programs, `.sas7bdat` data sets, `.sas7bcat` catalogs [301]; `.xpt` XPORT, which the FDA names as the file format for every electronic dataset in a submission [302] | import, link | SAS Studio processes code on a SAS server and returns results to the browser [303]. Parsers: `pandas.read_sas` reads `.xpt` and `.sas7bdat` [297], untested inside Pyodide; ReadStat and haven read both | The dataset as a table; `.sas` programs as text |
 
 Sources, read 2026-09-21:
 
-269. R Project, licenses: <https://www.r-project.org/Licenses/>
-270. R manual, graphics devices: <https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/Devices.html>
-271. R manual, save: <https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html>
-272. R manual, readRDS: <https://stat.ethz.ch/R-manual/R-devel/library/base/html/readRDS.html>
-273. Quarto, using R: <https://quarto.org/docs/computations/r.html>
-274. webR repository: <https://github.com/r-wasm/webr>
-275. webR, building R packages: <https://docs.r-wasm.org/webr/latest/building.html>
-276. Shinylive for R repository: <https://github.com/posit-dev/r-shinylive>
-277. webR, plotting: <https://docs.r-wasm.org/webr/latest/plotting.html>
-278. IBM SPSS Statistics 31, installation and licensing: <https://www.ibm.com/docs/en/SSLVMB_31.0.0/pdf/Getting_Started_with_Installation_and_Licensing.pdf>
-279. IBM SPSS Statistics 31, core system user guide: <https://www.ibm.com/docs/en/SSLVMB_31.0.0/pdf/IBM_SPSS_Statistics_Core_System_User_Guide.pdf>
-280. IBM, downloading SPSS Statistics 32: <https://www.ibm.com/support/pages/downloading-ibm-spss-statistics-32>
-281. ReadStat repository: <https://github.com/WizardMac/ReadStat>
-282. pyreadstat repository: <https://github.com/Roche/pyreadstat>
-283. haven on CRAN: <https://cran.r-project.org/package=haven>
-284. PSPP manual, pspp-output: <https://www.gnu.org/software/pspp/manual/html_node/Invoking-pspp_002doutput.html>
-285. GNU PSPP: <https://www.gnu.org/software/pspp/>
-286. PSPP manual, pspp-convert: <https://www.gnu.org/software/pspp/manual/html_node/Invoking-pspp_002dconvert.html>
-287. GNU PSPP release directory: <https://ftp.gnu.org/gnu/pspp/>
-288. Stata, license options: <https://www.stata.com/order/license-options/>
-289. Stata, which Stata is right for me: <https://www.stata.com/products/which-stata-is-right-for-me/>
-290. Stata manual, graph export: <https://www.stata.com/manuals/g-2graphexport.pdf>
-291. Stata user's guide: <https://www.stata.com/manuals/u.pdf>
-292. Stata help, dta: <https://www.stata.com/help.cgi?dta>
-293. Stata, compatible operating systems: <https://www.stata.com/products/compatible-operating-systems/>
-294. pandas, IO tools: <https://pandas.pydata.org/docs/user_guide/io.html>
-295. SAS, applying a SID file: <https://support.sas.com/documentation/installcenter/en/ikwinbasicri/66608/PDF/default/setinit_basic.pdf>
-296. SAS OnDemand for Academics: <https://www.sas.com/en_us/software/on-demand-for-academics.html>
-297. SAS OnDemand for Academics license: <https://support.sas.com/ondemand/pdf/click_license.pdf>
-298. SAS for Windows, file extensions: <https://support.sas.com/documentation/cdl/en/hostwin/69955/HTML/default/n0sk6o15955yoen19n9ghdziqw1u.htm>
-299. FDA, Study Data Technical Conformance Guide: <https://www.fda.gov/media/153632/download>
-300. SAS Studio support: <https://support.sas.com/en/software/studio-support.html>
+272. R Project, licenses: <https://www.r-project.org/Licenses/>
+273. R manual, graphics devices: <https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/Devices.html>
+274. R manual, save: <https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html>
+275. R manual, readRDS: <https://stat.ethz.ch/R-manual/R-devel/library/base/html/readRDS.html>
+276. Quarto, using R: <https://quarto.org/docs/computations/r.html>
+277. webR repository: <https://github.com/r-wasm/webr>
+278. webR, building R packages: <https://docs.r-wasm.org/webr/latest/building.html>
+279. Shinylive for R repository: <https://github.com/posit-dev/r-shinylive>
+280. webR, plotting: <https://docs.r-wasm.org/webr/latest/plotting.html>
+281. IBM SPSS Statistics 31, installation and licensing: <https://www.ibm.com/docs/en/SSLVMB_31.0.0/pdf/Getting_Started_with_Installation_and_Licensing.pdf>
+282. IBM SPSS Statistics 31, core system user guide: <https://www.ibm.com/docs/en/SSLVMB_31.0.0/pdf/IBM_SPSS_Statistics_Core_System_User_Guide.pdf>
+283. IBM, downloading SPSS Statistics 32: <https://www.ibm.com/support/pages/downloading-ibm-spss-statistics-32>
+284. ReadStat repository: <https://github.com/WizardMac/ReadStat>
+285. pyreadstat repository: <https://github.com/Roche/pyreadstat>
+286. haven on CRAN: <https://cran.r-project.org/package=haven>
+287. PSPP manual, pspp-output: <https://www.gnu.org/software/pspp/manual/html_node/Invoking-pspp_002doutput.html>
+288. GNU PSPP: <https://www.gnu.org/software/pspp/>
+289. PSPP manual, pspp-convert: <https://www.gnu.org/software/pspp/manual/html_node/Invoking-pspp_002dconvert.html>
+290. GNU PSPP release directory: <https://ftp.gnu.org/gnu/pspp/>
+291. Stata, license options: <https://www.stata.com/order/license-options/>
+292. Stata, which Stata is right for me: <https://www.stata.com/products/which-stata-is-right-for-me/>
+293. Stata manual, graph export: <https://www.stata.com/manuals/g-2graphexport.pdf>
+294. Stata user's guide: <https://www.stata.com/manuals/u.pdf>
+295. Stata help, dta: <https://www.stata.com/help.cgi?dta>
+296. Stata, compatible operating systems: <https://www.stata.com/products/compatible-operating-systems/>
+297. pandas, IO tools: <https://pandas.pydata.org/docs/user_guide/io.html>
+298. SAS, applying a SID file: <https://support.sas.com/documentation/installcenter/en/ikwinbasicri/66608/PDF/default/setinit_basic.pdf>
+299. SAS OnDemand for Academics: <https://www.sas.com/en_us/software/on-demand-for-academics.html>
+300. SAS OnDemand for Academics license: <https://support.sas.com/ondemand/pdf/click_license.pdf>
+301. SAS for Windows, file extensions: <https://support.sas.com/documentation/cdl/en/hostwin/69955/HTML/default/n0sk6o15955yoen19n9ghdziqw1u.htm>
+302. FDA, Study Data Technical Conformance Guide: <https://www.fda.gov/media/153632/download>
+303. SAS Studio support: <https://support.sas.com/en/software/studio-support.html>
 
 ### Qualitative research
 
@@ -599,39 +602,39 @@ The brief names NVivo and ATLAS.ti. MAXQDA is added as a third closed package th
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| NVivo | Closed: perpetual, enterprise, student, and trial licenses activated through a MyLumivero account [301] | Coded sources, text, PDF, images, audio, and video, with code hierarchies, matrices, and maps | `.nvp` on Windows and `.nvpx` on Mac [302]; exports a REFI-QDA project `.qdpx` [303] and a codebook as `.qdc` among other formats [304] | import, link | Windows 10 or later, 4 to 8 GB of memory, about 5 to 8 GB of disk [305]. The `.qdpx` export leaves out queries, maps, framework matrices, dynamic sets, and aggregate coding [303] | The sources with their coded segments and the code tree, read from `.qdpx` |
-| ATLAS.ti | Closed: purchased or leased desktop licenses and leased web licenses, renewing yearly [306]; every license covers both desktop editions and ATLAS.ti Web [307] | Coded documents and code networks | `.atlproj` project bundles [308]; exports QDPX and Excel among its formats, and imports QDPX from any tool [309][310] | import, link | Desktop on Windows and Mac. ATLAS.ti Web is hosted, on servers in Germany [311] | The sources with their coded segments, read from `.qdpx` |
-| MAXQDA | Closed: subscriptions of one to five years for single users and networks [312] | Coded documents and the code system | `.mqda` projects in MAXQDA 26, which opens `.mx24` back to `.mx12` [313]; exports `.qdpx` and imports and exports `.qdc` codebooks [314] | import, link | Windows and Mac, with an internet connection once to activate [315]. On a REFI import MAXQDA cuts comments on coded segments to 511 characters [314] | The sources with their coded segments, read from `.qdpx` |
-| REFI-QDA | No license stated on the standard's pages; the site footer reads "All rights reserved" [316] | Nothing; it is an exchange format for sources, segments, codes, memos, cases, and sets [317] | `.qdpx` projects, an XML file with the sources in one archive [317]; `.qdc` codebooks with an XSD [316] | import | Parsers: pyqdpx, which reads `.qdpx` as a zip with `project.qde` and a `Sources` folder (Python, MIT, last push 2026-04-29) [318]. The site lists ATLAS.ti, MAXQDA, NVivo, QualCoder, and eight more tools as supporting project exchange [319] | The one parser behind the NVivo, ATLAS.ti, MAXQDA, and QualCoder rows |
-| QualCoder | LGPL-3.0, open [320] | Coded text, images, audio, and video, with reports | A SQLite project; imports text, Word, HTML, Markdown, EPUB, PDF, and media; REFI-QDA project and codebook import and export [320][317] | import, link | The three desktop systems, with Python 3.13 and PyQt6; stable 3.8.2 on 2026-02-26, last push 2026-09-21 [320] | The sources with their coded segments, read from `.qdpx` |
-| Taguette | BSD-3-Clause, open [321] | Documents with highlighted, tagged quotes | Imports PDF, DOCX, TXT, ODT, Markdown, and HTML; exports highlights as HTML, CSV, XLSX, DOCX, or PDF, the codebook as `.qdc`, CSV, and more, and the project as SQLite [322] | runner, import | A Python web server, self-hosted or at app.taguette.org [323]; tag v1.5.2 on 2025-12-08, last commit 2026-02-05 [324] | The codebook from `.qdc`; highlights from CSV |
+| NVivo | Closed: perpetual, enterprise, student, and trial licenses activated through a MyLumivero account [304] | Coded sources, text, PDF, images, audio, and video, with code hierarchies and maps | `.nvp` on Windows and `.nvpx` on Mac [305]; exports a REFI-QDA project `.qdpx` [306] and a codebook as `.qdc` among other formats [307] | import, link | Windows 10 or later, 4 to 8 GB of memory, about 5 to 8 GB of disk [308]. The `.qdpx` export leaves out queries, maps, framework matrices, dynamic sets, and aggregate coding [306] | The sources with their coded segments and the code tree, read from `.qdpx` |
+| ATLAS.ti | Closed: purchased or leased desktop licenses and leased web licenses, renewing yearly [309]; every license covers both desktop editions and ATLAS.ti Web [310] | Coded documents and code networks | `.atlproj` project bundles [311]; exports QDPX and Excel among its formats, and imports QDPX from any tool [312][313] | import, link | Desktop on Windows and Mac. ATLAS.ti Web is hosted, on servers in Germany [314] | The sources with their coded segments, read from `.qdpx` |
+| MAXQDA | Closed: subscriptions of one to five years for single users and networks [315] | Coded documents and the code system | `.mqda` projects in MAXQDA 26, which opens `.mx24` back to `.mx12` [316]; exports `.qdpx` and imports and exports `.qdc` codebooks [317] | import, link | Windows and Mac, with an internet connection once to activate [318]. On a REFI import MAXQDA cuts comments on coded segments to 511 characters [317] | The sources with their coded segments, read from `.qdpx` |
+| REFI-QDA | No license stated on the standard's pages; the site footer reads "All rights reserved" [319] | Nothing; it is an exchange format for sources, segments, codes, memos, cases, and sets [320] | `.qdpx` projects, an XML file with the sources in one archive [320]; `.qdc` codebooks with an XSD [319] | import | Parsers: pyqdpx, which reads `.qdpx` as a zip with `project.qde` and a `Sources` folder (Python, MIT, last push 2026-04-29) [321]. The site lists ATLAS.ti, MAXQDA, NVivo, QualCoder, and eight more tools as supporting project exchange [322] | The one parser behind the NVivo, ATLAS.ti, MAXQDA, and QualCoder rows |
+| QualCoder | LGPL-3.0, open [323] | Coded text, images, audio, and video, with reports | A SQLite project; imports text, Word, HTML, Markdown, EPUB, PDF, and media; REFI-QDA project and codebook import and export [323][320] | import, link | The three desktop systems, with Python 3.13 and PyQt6; stable 3.8.2 on 2026-02-26, last push 2026-09-21 [323] | The sources with their coded segments, read from `.qdpx` |
+| Taguette | BSD-3-Clause, open [324] | Documents with highlighted, tagged quotes | Imports PDF, DOCX, TXT, ODT, Markdown, and HTML; exports highlights as HTML, CSV, XLSX, DOCX, or PDF, the codebook as `.qdc`, CSV, and more, and the project as SQLite [325] | runner, import | A Python web server, self-hosted or at app.taguette.org [326]; tag v1.5.2 on 2025-12-08, last commit 2026-02-05 [327] | The codebook from `.qdc`; highlights from CSV |
 
 Sources, read 2026-09-21:
 
-301. NVivo 15 help, activate a license: <https://help-nv.qsrinternational.com/15/win/Content/about-nvivo/activate-license.htm>
-302. NVivo 15 help, Windows and Mac projects: <https://help-nv.qsrinternational.com/15/win/Content/projects-teamwork/work-with-projects-windows-mac.htm>
-303. NVivo 15 help, REFI-QDA standard: <https://help-nv.qsrinternational.com/15/win/Content/projects-teamwork/refi-qda%20standard.htm>
-304. NVivo 14 help, export codes: <https://help-nv.qsrinternational.com/14/win/Content/nodes/export-nodes.htm>
-305. NVivo 15 help, installation: <https://help-nv.qsrinternational.com/15/win/Content/about-nvivo/installation.htm>
-306. ATLAS.ti, terms and conditions: <https://atlasti.com/legal/terms-conditions>
-307. ATLAS.ti, multi-user licenses: <https://atlasti.com/multi-user-licenses>
-308. ATLAS.ti manual, setting up a team project: <https://manuals.atlasti.com/Win/en/manual/Team/TeamWorkSettingUpProject.html>
-309. ATLAS.ti manual, QDPX export: <https://manuals.atlasti.com/Win/en/manual/Export/ExportQDPXUniversalDataExchange.html>
-310. ATLAS.ti manual, importing a project: <https://manuals.atlasti.com/Win/en/manual/Project/ProjectImportingAnExistingProject.html>
-311. ATLAS.ti Web: <https://atlasti.com/atlas-ti-web>
-312. MAXQDA, pricing: <https://www.maxqda.com/pricing>
-313. MAXQDA help, opening older projects: <https://help.maxqda.com/en/support/solutions/articles/80001139450-how-to-open-projects-from-older-versions-2020-and-2022-in-the-current-maxqda->
-314. MAXQDA help, REFI-QDA projects: <https://www.maxqda.com/help/report-and-export/export-and-import-refi-qda-projects>
-315. MAXQDA, system requirements: <https://www.maxqda.com/system-requirements>
-316. REFI-QDA, codebook implementation files: <https://www.qdasoftware.org/codebook-implementation-files>
-317. REFI-QDA, project exchange: <https://www.qdasoftware.org/project>
-318. pyqdpx repository: <https://github.com/DEpt-metagenom/pyqdpx>
-319. REFI-QDA, about: <https://www.qdasoftware.org/about>
-320. QualCoder repository: <https://github.com/ccbogel/QualCoder>
-321. Taguette, LICENSE: <https://gitlab.com/remram44/taguette/-/raw/master/LICENSE.txt>
-322. Taguette, getting started: <https://www.taguette.org/getting-started.html>
-323. Taguette: <https://www.taguette.org/>
-324. Taguette repository: <https://gitlab.com/remram44/taguette>
+304. NVivo 15 help, activate a license: <https://help-nv.qsrinternational.com/15/win/Content/about-nvivo/activate-license.htm>
+305. NVivo 15 help, Windows and Mac projects: <https://help-nv.qsrinternational.com/15/win/Content/projects-teamwork/work-with-projects-windows-mac.htm>
+306. NVivo 15 help, REFI-QDA standard: <https://help-nv.qsrinternational.com/15/win/Content/projects-teamwork/refi-qda%20standard.htm>
+307. NVivo 14 help, export codes: <https://help-nv.qsrinternational.com/14/win/Content/nodes/export-nodes.htm>
+308. NVivo 15 help, installation: <https://help-nv.qsrinternational.com/15/win/Content/about-nvivo/installation.htm>
+309. ATLAS.ti, terms and conditions: <https://atlasti.com/legal/terms-conditions>
+310. ATLAS.ti, multi-user licenses: <https://atlasti.com/multi-user-licenses>
+311. ATLAS.ti manual, setting up a team project: <https://manuals.atlasti.com/Win/en/manual/Team/TeamWorkSettingUpProject.html>
+312. ATLAS.ti manual, QDPX export: <https://manuals.atlasti.com/Win/en/manual/Export/ExportQDPXUniversalDataExchange.html>
+313. ATLAS.ti manual, importing a project: <https://manuals.atlasti.com/Win/en/manual/Project/ProjectImportingAnExistingProject.html>
+314. ATLAS.ti Web: <https://atlasti.com/atlas-ti-web>
+315. MAXQDA, pricing: <https://www.maxqda.com/pricing>
+316. MAXQDA help, opening older projects: <https://help.maxqda.com/en/support/solutions/articles/80001139450-how-to-open-projects-from-older-versions-2020-and-2022-in-the-current-maxqda->
+317. MAXQDA help, REFI-QDA projects: <https://www.maxqda.com/help/report-and-export/export-and-import-refi-qda-projects>
+318. MAXQDA, system requirements: <https://www.maxqda.com/system-requirements>
+319. REFI-QDA, codebook implementation files: <https://www.qdasoftware.org/codebook-implementation-files>
+320. REFI-QDA, project exchange: <https://www.qdasoftware.org/project>
+321. pyqdpx repository: <https://github.com/DEpt-metagenom/pyqdpx>
+322. REFI-QDA, about: <https://www.qdasoftware.org/about>
+323. QualCoder repository: <https://github.com/ccbogel/QualCoder>
+324. Taguette, LICENSE: <https://gitlab.com/remram44/taguette/-/raw/master/LICENSE.txt>
+325. Taguette, getting started: <https://www.taguette.org/getting-started.html>
+326. Taguette: <https://www.taguette.org/>
+327. Taguette repository: <https://gitlab.com/remram44/taguette>
 
 ### Humanities
 
@@ -639,36 +642,36 @@ The brief names Zotero and TEI. Voyant Tools is added for text analysis, and Tra
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| Zotero | AGPL-3.0-or-later, open [325] | A reference library of items, notes, tags, and attachments; formatted citations through CSL styles [326] | `zotero.sqlite` and a `storage` folder of attachments [327]; imports and exports BibTeX, CSL JSON, MODS XML, RIS, Refer; exports BibLaTeX and Zotero RDF [328] | import, link | Web API v3 at `api.zotero.org`: public libraries read with no key, private ones with a user key, up to 100 items a request, `429` with `Retry-After` under load [326]. A local API on `localhost:23119` in Zotero 10 [329]. Parsers: citation-js (MIT, JavaScript, npm 0.9.0 on 2026-09-18) [330]. Desktop on the three major systems [331] | Each reference as a `primary_source` node; formatted references from the API's `include=bib` or citeproc-js in the page |
-| TEI | Guidelines and schemas under both CC BY 3.0 and BSD-2-Clause, open [332] | TEI is an XML encoding; the TEI Stylesheets transform it to XHTML, LaTeX, XSL-FO, ePub, and Word [333] | XML in the TEI namespace, with ODD customizations [334]; P5 4.12.0 released 2026-07-28 [335] | browser, import | CETEIcean renders TEI in the page as custom elements, BSD-2-Clause, last release v1.9.5 on 2025-08-29 and last commit 2026-09-08 [336]. TEI Publisher (GPL-3.0) needs an eXist-db server [337]. Import reads `teiHeader` metadata and the text into passages with any XML parser | Interactive: the edition in the page through CETEIcean |
-| Voyant Tools | GPL-3.0, open [338] | Interactive corpus panels: Cirrus, Reader, Trends, Summary, Contexts, Collocates, Links [339] | Reads HTML, Word, Excel, ODT, Pages, PDF, plain text, RTF, XML, archives, JSON, RSS, and TEI [340] | link, runner | Hosted at voyant-tools.org, which answered 502 on 2026-09-21. VoyantServer needs Java 11; release 2.6.23 on 2026-08-19 [341] | Interactive: a Voyant tool in an iframe, loading a document by `?input=<url>` [342] |
-| Transkribus | Closed: a subscription service of READ-COOP SCE; the free plan gives 50 credits a month, and recognizing handwriting costs 1 credit a page [343][344] | Handwritten text recognition and layout analysis over page images | Every plan exports JPEG, DOCX, PDF, TXT, and PAGE XML; paid plans add METS, CSV, ALTO XML, and TEI XML [345] | import, link | Hosted only. A processing API takes page images up to 20 MB and returns PAGE XML, ALTO, TEI, or text [346]. Parser: pagexml-tools (Python, MIT) [347] | Static: the text as passages; the page image with the PAGE XML line polygons drawn over it is a viewer to build |
+| Zotero | AGPL-3.0-or-later, open [328] | A reference library of items, notes, tags, and attachments; formatted citations through CSL styles [329] | `zotero.sqlite` and a `storage` folder of attachments [330]; imports and exports BibTeX, CSL JSON, MODS XML, RIS, Refer; exports BibLaTeX and Zotero RDF [331] | import, link | Web API v3 at `api.zotero.org`: public libraries read with no key, private ones with a user key, up to 100 items a request, `429` with `Retry-After` under load [329]. A local API on `localhost:23119` in Zotero 10 [332]. Parsers: citation-js (MIT, JavaScript, npm 0.9.0 on 2026-09-18) [333]. Desktop on the three major systems [334] | Each reference as a `primary_source` node; formatted references from the API's `include=bib` or citeproc-js in the page |
+| TEI | Guidelines and schemas under both CC BY 3.0 and BSD-2-Clause, open [335] | TEI is an XML encoding; the TEI Stylesheets transform it to XHTML, LaTeX, XSL-FO, ePub, and Word [336] | XML in the TEI namespace, with ODD customizations [337]; P5 4.12.0 released 2026-07-28 [338] | browser, import | CETEIcean renders TEI in the page as custom elements, BSD-2-Clause, last release v1.9.5 on 2025-08-29 and last commit 2026-09-08 [339]. TEI Publisher (GPL-3.0) needs an eXist-db server [340]. Import reads `teiHeader` metadata and the text into passages with any XML parser | Interactive: the edition in the page through CETEIcean |
+| Voyant Tools | GPL-3.0, open [341] | Interactive corpus panels: Cirrus, Reader, Trends, Summary, Contexts, Collocates, Links [342] | Reads HTML, Word, Excel, ODT, Pages, PDF, plain text, RTF, XML, archives, JSON, RSS, and TEI [343] | link, runner | Hosted at voyant-tools.org, which answered 502 on 2026-09-21. VoyantServer needs Java 11; release 2.6.23 on 2026-08-19 [344] | Interactive: a Voyant tool in an iframe, loading a document by `?input=<url>` [345] |
+| Transkribus | Closed: a subscription service of READ-COOP SCE; the free plan gives 50 credits a month, and recognizing handwriting costs 1 credit a page [346][347] | Handwritten text recognition and layout analysis over page images | Every plan exports JPEG, DOCX, PDF, TXT, and PAGE XML; paid plans add METS, CSV, ALTO XML, and TEI XML [348] | import, link | Hosted only. A processing API takes page images up to 20 MB and returns PAGE XML, ALTO, TEI, or text [349]. Parser: pagexml-tools (Python, MIT) [350] | Static: the text as passages; the page image with the PAGE XML line polygons drawn over it is a viewer to build |
 
 Sources, read 2026-09-21:
 
-325. Zotero, COPYING: <https://raw.githubusercontent.com/zotero/zotero/main/COPYING>
-326. Zotero Web API v3, basics: <https://www.zotero.org/support/dev/web_api/v3/basics>
-327. Zotero, the Zotero data directory: <https://www.zotero.org/support/zotero_data>
-328. Zotero, data formats: <https://www.zotero.org/support/dev/data_formats>
-329. Zotero, local API: <https://www.zotero.org/support/dev/web_api/v3/local_api>
-330. citation-js repository: <https://github.com/citation-js/citation-js>
-331. Zotero, system requirements: <https://www.zotero.org/support/system_requirements>
-332. TEI, licensing and citation: <https://www.tei-c.org/guidelines/licensing-and-citation/>
-333. TEI Stylesheets repository: <https://github.com/TEIC/Stylesheets>
-334. TEI P5 Guidelines, chapter ST: <https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ST.html>
-335. TEI, P5 Guidelines: <https://www.tei-c.org/guidelines/p5/>
-336. CETEIcean repository: <https://github.com/TEIC/CETEIcean>
-337. TEI Publisher app repository: <https://github.com/eeditiones/tei-publisher-app>
-338. Voyant repository: <https://github.com/voyanttools/Voyant>
-339. Voyant, getting started guide: <https://github.com/voyanttools/Voyant/blob/master/src/main/webapp/docs/tutorials/guides/guides/start.md>
-340. Voyant, corpus creator guide: <https://github.com/voyanttools/Voyant/blob/master/src/main/webapp/docs/tutorials/guides/guides/corpuscreator.md>
-341. VoyantServer repository: <https://github.com/voyanttools/VoyantServer>
-342. Voyant, embedding guide: <https://github.com/voyanttools/Voyant/blob/master/src/main/webapp/docs/tutorials/guides/guides/embedding.md>
-343. Transkribus, terms: <https://legal.transkribus.org/terms>
-344. Transkribus, plans: <https://www.transkribus.org/plans>
-345. Transkribus help, downloading: <https://help.transkribus.org/downloading>
-346. Transkribus metagrapho API documentation: <https://www.transkribus.org/metagrapho/documentation>
-347. pagexml-tools repository: <https://github.com/knaw-huc/pagexml>
+328. Zotero, COPYING: <https://raw.githubusercontent.com/zotero/zotero/main/COPYING>
+329. Zotero Web API v3, basics: <https://www.zotero.org/support/dev/web_api/v3/basics>
+330. Zotero, the Zotero data directory: <https://www.zotero.org/support/zotero_data>
+331. Zotero, data formats: <https://www.zotero.org/support/dev/data_formats>
+332. Zotero, local API: <https://www.zotero.org/support/dev/web_api/v3/local_api>
+333. citation-js repository: <https://github.com/citation-js/citation-js>
+334. Zotero, system requirements: <https://www.zotero.org/support/system_requirements>
+335. TEI, licensing and citation: <https://www.tei-c.org/guidelines/licensing-and-citation/>
+336. TEI Stylesheets repository: <https://github.com/TEIC/Stylesheets>
+337. TEI P5 Guidelines, chapter ST: <https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ST.html>
+338. TEI, P5 Guidelines: <https://www.tei-c.org/guidelines/p5/>
+339. CETEIcean repository: <https://github.com/TEIC/CETEIcean>
+340. TEI Publisher app repository: <https://github.com/eeditiones/tei-publisher-app>
+341. Voyant repository: <https://github.com/voyanttools/Voyant>
+342. Voyant, getting started guide: <https://github.com/voyanttools/Voyant/blob/master/src/main/webapp/docs/tutorials/guides/guides/start.md>
+343. Voyant, corpus creator guide: <https://github.com/voyanttools/Voyant/blob/master/src/main/webapp/docs/tutorials/guides/guides/corpuscreator.md>
+344. VoyantServer repository: <https://github.com/voyanttools/VoyantServer>
+345. Voyant, embedding guide: <https://github.com/voyanttools/Voyant/blob/master/src/main/webapp/docs/tutorials/guides/guides/embedding.md>
+346. Transkribus, terms: <https://legal.transkribus.org/terms>
+347. Transkribus, plans: <https://www.transkribus.org/plans>
+348. Transkribus help, downloading: <https://help.transkribus.org/downloading>
+349. Transkribus metagrapho API documentation: <https://www.transkribus.org/metagrapho/documentation>
+350. pagexml-tools repository: <https://github.com/knaw-huc/pagexml>
 
 ### Visualization
 
@@ -676,34 +679,34 @@ The brief names ParaView and VisIt for scientific data, and Blender for scenes. 
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| ParaView | BSD-3-Clause, open [348] | 3D views of meshes and volumes, with screenshots and animations [349] | `.pvsm` XML state files and Python state files [349]; reads VTK XML `.vti`, `.vtp`, `.vtr`, `.vts`, and `.vtu` [350], and CGNS, EnSight, Exodus, OpenFOAM, netCDF, and XDMF among many more [351]; exports scenes as WebGL, X3D, VRML, SVG, and PDF [349] | import, runner | vtk.js renders VTK data in the page, BSD-3-Clause, v37.1.0 on 2026-09-18 [352]. ParaView Glance last released on 2024-09-17 [353] and ParaViewWeb is in maintenance mode [354], so neither counts as maintained. trame serves ParaView from a Python server to a web client, Apache-2.0, v4.0.0 on 2026-09-09 [355]. Desktop downloads of 466 to 827 MB [356] | Static: PNG or PDF exports; interactive: `.vtp` and `.vti` in vtk.js, or a trame app on a runner |
-| VisIt | BSD-3-Clause, open [357] | Scalar and vector fields on structured and unstructured meshes in 2D and 3D, adaptive ones included [357] | Reads more than 130 formats, Silo, VTK, Exodus, and CGNS among them [358]; XML session files [359]; exports images, and geometry as OBJ, PLY, STL, and VTK [360] | import, link | Desktop builds, five or more Linux distributions among them [358]; release v3.5.0 on 2026-04-29 [361]. No browser port found | Static: PNG exports; interactive: exported VTK in vtk.js |
-| Blender | Source GPL-2.0-or-later, binaries GPL-3.0-or-later; the Cycles renderer Apache-2.0 [362] | 3D scenes through the Cycles and EEVEE renderers | `.blend`; imports and exports Alembic, FBX, OBJ, PLY, STL, and USD among others [363]; glTF 2.0 `.glb` and `.gltf` through an add-on that is on by default [364] | import, runner | Cycles renders on a GPU through CUDA, OptiX, HIP, oneAPI, or Metal [365]; the minimum is 8 GB of memory and a GPU with 2 GB and OpenGL 4.3 [366]. The `bpy` package runs Blender as a Python module for headless jobs [367]. The web path is glTF in model-viewer, Apache-2.0 [368], or three.js, MIT, which the app already ships [369] | Static: rendered PNG; interactive: glTF in model-viewer or three.js |
+| ParaView | BSD-3-Clause, open [351] | 3D views of meshes and volumes, with screenshots and animations [352] | `.pvsm` XML state files and Python state files [352]; reads VTK XML `.vti`, `.vtp`, `.vtr`, `.vts`, and `.vtu` [353], and CGNS, EnSight, Exodus, OpenFOAM, netCDF, and XDMF among many more [354]; exports scenes as WebGL, X3D, VRML, SVG, and PDF [352] | import, runner | vtk.js renders VTK data in the page, BSD-3-Clause, v37.1.0 on 2026-09-18 [355]. ParaView Glance last released on 2024-09-17 [356] and ParaViewWeb is in maintenance mode [357], so neither counts as maintained. trame serves ParaView from a Python server to a web client, Apache-2.0, v4.0.0 on 2026-09-09 [358]. Desktop downloads of 466 to 827 MB [359] | Static: PNG or PDF exports; interactive: `.vtp` and `.vti` in vtk.js, or a trame app on a runner |
+| VisIt | BSD-3-Clause, open [360] | Scalar and vector fields on structured and unstructured meshes in 2D and 3D, adaptive ones included [360] | Reads more than 130 formats, Silo, VTK, Exodus, and CGNS among them [361]; XML session files [362]; exports images, and geometry as OBJ, PLY, STL, and VTK [363] | import, link | Desktop builds, five or more Linux distributions among them [361]; release v3.5.0 on 2026-04-29 [364]. No browser port found | Static: PNG exports; interactive: exported VTK in vtk.js |
+| Blender | Source GPL-2.0-or-later, binaries GPL-3.0-or-later; the Cycles renderer Apache-2.0 [365] | 3D scenes through the Cycles and EEVEE renderers | `.blend`; imports and exports Alembic, FBX, OBJ, PLY, STL, and USD among others [366]; glTF 2.0 `.glb` and `.gltf` through an add-on that is on by default [367] | import, runner | Cycles renders on a GPU through CUDA, OptiX, HIP, oneAPI, or Metal [368]; the minimum is 8 GB of memory and a GPU with 2 GB and OpenGL 4.3 [369]. The `bpy` package runs Blender as a Python module for headless jobs [370]. The web path is glTF in model-viewer, Apache-2.0 [371], or three.js, MIT, which the app already ships [372] | Static: rendered PNG; interactive: glTF in model-viewer or three.js |
 
 Sources, read 2026-09-21:
 
-348. ParaView, license: <https://www.paraview.org/license/>
-349. ParaView guide, saving results: <https://docs.paraview.org/en/latest/UsersGuide/savingResults.html>
-350. VTK, XML file formats: <https://docs.vtk.org/en/latest/vtk_file_formats/vtkxml_file_format.html>
-351. ParaView, features: <https://www.paraview.org/features/>
-352. vtk.js repository: <https://github.com/Kitware/vtk-js>
-353. ParaView Glance repository: <https://github.com/Kitware/glance>
-354. ParaViewWeb repository: <https://github.com/Kitware/paraviewweb>
-355. trame: <https://kitware.github.io/trame/>
-356. ParaView 6.1 downloads: <https://www.paraview.org/files/v6.1/>
-357. VisIt, about: <https://visit-dav.github.io/visit-website/about/>
-358. VisIt: <https://visit-dav.github.io/visit-website/>
-359. VisIt manual, session files: <https://visit-sphinx-github-user-manual.readthedocs.io/en/3.4rc/using_visit/SavingPrinting/Session_files.html>
-360. VisIt manual, saving the window: <https://visit-sphinx-github-user-manual.readthedocs.io/en/3.4rc/using_visit/SavingPrinting/Saving_the_visualization_window.html>
-361. VisIt repository: <https://github.com/visit-dav/visit>
-362. Blender, license: <https://www.blender.org/about/license/>
-363. Blender manual, import and export: <https://docs.blender.org/manual/en/latest/files/import_export/index.html>
-364. Blender manual, glTF 2.0: <https://docs.blender.org/manual/en/latest/addons/scene_gltf2.html>
-365. Blender manual, GPU rendering: <https://docs.blender.org/manual/en/latest/render/cycles/gpu_rendering.html>
-366. Blender, requirements: <https://www.blender.org/download/requirements/>
-367. bpy on PyPI: <https://pypi.org/project/bpy/>
-368. model-viewer repository: <https://github.com/google/model-viewer>
-369. three.js repository: <https://github.com/mrdoob/three.js>
+351. ParaView, license: <https://www.paraview.org/license/>
+352. ParaView guide, saving results: <https://docs.paraview.org/en/latest/UsersGuide/savingResults.html>
+353. VTK, XML file formats: <https://docs.vtk.org/en/latest/vtk_file_formats/vtkxml_file_format.html>
+354. ParaView, features: <https://www.paraview.org/features/>
+355. vtk.js repository: <https://github.com/Kitware/vtk-js>
+356. ParaView Glance repository: <https://github.com/Kitware/glance>
+357. ParaViewWeb repository: <https://github.com/Kitware/paraviewweb>
+358. trame: <https://kitware.github.io/trame/>
+359. ParaView 6.1 downloads: <https://www.paraview.org/files/v6.1/>
+360. VisIt, about: <https://visit-dav.github.io/visit-website/about/>
+361. VisIt: <https://visit-dav.github.io/visit-website/>
+362. VisIt manual, session files: <https://visit-sphinx-github-user-manual.readthedocs.io/en/3.4rc/using_visit/SavingPrinting/Session_files.html>
+363. VisIt manual, saving the window: <https://visit-sphinx-github-user-manual.readthedocs.io/en/3.4rc/using_visit/SavingPrinting/Saving_the_visualization_window.html>
+364. VisIt repository: <https://github.com/visit-dav/visit>
+365. Blender, license: <https://www.blender.org/about/license/>
+366. Blender manual, import and export: <https://docs.blender.org/manual/en/latest/files/import_export/index.html>
+367. Blender manual, glTF 2.0: <https://docs.blender.org/manual/en/latest/addons/scene_gltf2.html>
+368. Blender manual, GPU rendering: <https://docs.blender.org/manual/en/latest/render/cycles/gpu_rendering.html>
+369. Blender, requirements: <https://www.blender.org/download/requirements/>
+370. bpy on PyPI: <https://pypi.org/project/bpy/>
+371. model-viewer repository: <https://github.com/google/model-viewer>
+372. three.js repository: <https://github.com/mrdoob/three.js>
 
 ### Across the sciences
 
@@ -711,19 +714,19 @@ Added because the forty suite tools run on Python, and many rows here name a Pyt
 
 | Tool | License | Renders | Main formats | Path | How it connects | Research OS shows |
 |---|---|---|---|---|---|---|
-| Jupyter and the Python stack | Jupyter under the modified BSD license [370]; JupyterLite BSD-3-Clause [371]; Pyodide MPL-2.0 [372]; NumPy and SciPy BSD-3-Clause [373][374]; Matplotlib under its own PSF-based license [375] | Notebooks of code, Markdown, math, and outputs; Matplotlib's 2D plots | `.ipynb`, a JSON document in nbformat 4, with cell ids since 4.5 [376] | browser, runner | Pyodide 314.0.7 ships numpy, scipy, pandas, matplotlib, scikit-learn, statsmodels, networkx, and scikit-image [61]. micropip installs pure-Python wheels from PyPI, and a package with compiled extensions needs a Pyodide build [377][378]. JupyterLite runs JupyterLab in the browser on Pyodide, v0.8.3 on 2026-08-20 [371]. A runner hosts a native kernel for everything else | Static: the notebook as HTML through nbconvert; interactive: the Pyodide worker, or JupyterLite |
+| Jupyter and the Python stack | Jupyter under the modified BSD license [373]; JupyterLite BSD-3-Clause [374]; Pyodide MPL-2.0 [375]; NumPy and SciPy BSD-3-Clause [376][377]; Matplotlib under its own PSF-based license [378] | Notebooks of code, Markdown, math, and outputs; Matplotlib's 2D plots | `.ipynb`, a JSON document in nbformat 4, with cell ids since 4.5 [379] | browser, runner | Pyodide 314.0.7 ships numpy, scipy, pandas, matplotlib, scikit-learn, statsmodels, networkx, and scikit-image [61]. micropip installs pure-Python wheels from PyPI, and a package with compiled extensions needs a Pyodide build [380][381]. JupyterLite runs JupyterLab in the browser on Pyodide, v0.8.3 on 2026-08-20 [374]. A runner hosts a native kernel for everything else | Static: the notebook as HTML through nbconvert; interactive: the Pyodide worker, or JupyterLite |
 
 Sources, read 2026-09-21:
 
-370. Project Jupyter, about: <https://jupyter.org/about>
-371. JupyterLite repository: <https://github.com/jupyterlite/jupyterlite>
-372. Pyodide repository: <https://github.com/pyodide/pyodide>
-373. NumPy repository: <https://github.com/numpy/numpy>
-374. SciPy repository: <https://github.com/scipy/scipy>
-375. Matplotlib, license: <https://matplotlib.org/stable/project/license.html>
-376. nbformat, format description: <https://nbformat.readthedocs.io/en/latest/format_description.html>
-377. Pyodide, loading packages: <https://pyodide.org/en/stable/usage/loading-packages.html>
-378. Pyodide, FAQ: <https://pyodide.org/en/stable/usage/faq.html>
+373. Project Jupyter, about: <https://jupyter.org/about>
+374. JupyterLite repository: <https://github.com/jupyterlite/jupyterlite>
+375. Pyodide repository: <https://github.com/pyodide/pyodide>
+376. NumPy repository: <https://github.com/numpy/numpy>
+377. SciPy repository: <https://github.com/scipy/scipy>
+378. Matplotlib, license: <https://matplotlib.org/stable/project/license.html>
+379. nbformat, format description: <https://nbformat.readthedocs.io/en/latest/format_description.html>
+380. Pyodide, loading packages: <https://pyodide.org/en/stable/usage/loading-packages.html>
+381. Pyodide, FAQ: <https://pyodide.org/en/stable/usage/faq.html>
 
 ### Viewers and runtimes for the page
 
@@ -731,39 +734,39 @@ The pieces an import or a browser path embeds. Every one runs in the page, and e
 
 | Viewer or runtime | License | Reads | Latest release | Maintained | Serves the rows |
 |---|---|---|---|---|---|
-| Mol* | MIT [379] | mmCIF, BinaryCIF, PDB, GRO, MOL, MOL2, SDF, XYZ; DCD, NetCDF, TRR, and XTC trajectories; CCP4, MRC, cube, and DX volumes [380] | v5.11.0, 2026-07-19 [379] | yes | PyMOL, ChimeraX, GROMACS, Avogadro 2, LAMMPS, and the suite's TrajMine |
-| 3Dmol.js | BSD-3-Clause [381] | PDB, SDF, MOL2, XYZ, CIF, MMTF, GRO, PQR, cube, VASP [381] | 2.5.5, 2026-05-22 [381] | yes | Avogadro 2, RDKit |
-| NGL Viewer | MIT [382] | mmCIF, PDB, PQR, GRO, SDF, MOL2, MMTF; density maps; DCD, NetCDF, TRR, and XTC trajectories [382] | npm 2.5.0, 2026-09-03 [383] | yes | GROMACS |
-| JSmol | LGPL-2.1-or-later [384] | MOL, SDF, CIF, PDB, and the output of Gaussian, GAMESS, MOPAC, NWChem, and other quantum chemistry codes [385] | 16.4, 2026-08-27 [386] | yes | Gaussian |
+| Mol* | MIT [382] | mmCIF, BinaryCIF, PDB, GRO, MOL, MOL2, SDF, XYZ; DCD, NetCDF, TRR, and XTC trajectories; CCP4, MRC, cube, and DX volumes [383] | v5.11.0, 2026-07-19 [382] | yes | PyMOL, ChimeraX, GROMACS, Avogadro 2, LAMMPS, and the suite's TrajMine |
+| 3Dmol.js | BSD-3-Clause [384] | PDB, SDF, MOL2, XYZ, CIF, MMTF, GRO, PQR, cube, VASP [384] | 2.5.5, 2026-05-22 [384] | yes | Avogadro 2, RDKit |
+| NGL Viewer | MIT [385] | mmCIF, PDB, PQR, GRO, SDF, MOL2, MMTF; density maps; DCD, NetCDF, TRR, and XTC trajectories [385] | npm 2.5.0, 2026-09-03 [386] | yes | GROMACS |
+| JSmol | LGPL-2.1-or-later [387] | MOL, SDF, CIF, PDB, and the output of Gaussian, GAMESS, MOPAC, NWChem, and other quantum chemistry codes [388] | 16.4, 2026-08-27 [389] | yes | Gaussian |
 | RDKit.js | BSD-3-Clause [60] | SMILES, MOL, SDF; draws SVG [59] | npm 2026.3.6, 2026-09-13 [60] | yes | RDKit, and the suite's ScreenServer inputs |
-| igv.js | MIT [126] | BAM, CRAM, VCF, BED, bigWig, GFF3, and other track formats [125] | v3.8.7, 2026-09-09 [126] | yes | IGV and Bioconductor, with the suite's ChromatinAccess and gRNA-Optimizer |
-| Viv and Vizarr | MIT [119][120] | OME-TIFF and OME-Zarr [119][120] | Viv npm 0.22.1, 2026-08-10 [387] | yes | Fiji and ImageJ, and the suite's CellSegTrack |
-| Neurosift | Apache-2.0 [138] | NWB files on DANDI and other archives [138] | no recent tag; last commit 2026-09-16 [138] | yes, by commit | NWB, and the suite's PatchSeqML |
-| JSROOT | MIT [144] | `.root` files over HTTP and ROOT JSON [144] | 7.11.1, 2026-07-27 [144] | yes | ROOT, Geant4 |
-| Aladin Lite | LGPL-3.0-or-later [185] | HiPS surveys, FITS images, catalogs [185] | v3.8.1, 2026-03-05 [185] | yes | Astropy, SAOImageDS9 |
-| geotiff.js | MIT [200] | GeoTIFF and cloud-optimized GeoTIFF [200] | v3.1.0-beta.0, 2026-03-30 [200] | yes | GDAL, QGIS, Google Earth Engine exports |
-| vtk.js | BSD-3-Clause [352] | VTK XML image and polygon data, legacy polygon data, STL, PLY, OBJ, glTF [352] | v37.1.0, 2026-09-18 [352] | yes | ParaView, VisIt, FEniCS, OpenFOAM, Ansys, Abaqus |
-| model-viewer | Apache-2.0 [368] | glTF and GLB only [368] | v4.3.1, 2026-06-04 [368] | yes | Blender, ChimeraX, PyMOL, COMSOL, SolidWorks, Onshape, KiCad |
-| three.js | MIT [369] | glTF, STL, OBJ, 3MF, PLY, VTK, and other formats through its loaders [369] | r186, 2026-09-08 [369] | yes; already in `package.json` | Every mesh row |
-| Online3DViewer | MIT [231] | STEP, IGES, BREP, FCStd, IFC, glTF, STL, OBJ, 3MF, and more, with STEP through occt-import-js [231] | 0.18.0, 2025-12-18; last commit 2026-06-24 [231] | yes | FreeCAD, SolidWorks, Onshape |
-| KiCanvas | MIT [246] | `.kicad_sch` and `.kicad_pcb` from KiCad 6 on [246] | no releases; last commit 2026-04-28 [246] | yes, early alpha | KiCad |
-| CETEIcean | BSD-2-Clause [336] | TEI XML, rendered as custom elements [336] | v1.9.5, 2025-08-29; last commit 2026-09-08 [336] | yes, by commit | TEI, Transkribus TEI exports |
-| citeproc-js | CPAL-1.0-or-later or AGPL-3.0-or-later [388] | CSL JSON with CSL styles [388] | npm 2.4.63, 2023-04-17; last commit 2026-07-05 [388] | yes, by commit | Zotero; its license needs a decision before it ships in the bundle |
-| webR | MIT for its scripts and console, GPL-3 for the binaries that contain R [274] | R code and 22,741 WebAssembly packages for R 4.6 [109] | v0.6.0, 2026-05-19 [274] | yes | R, SPSS, Stata, SAS, through haven |
-| Pyodide | MPL-2.0 [372] | Python 3.14 with the packages its list names [61] | 314.0.7, 2026-09-14 [372] | yes | Twenty-five suite tools, Astropy, Biopython, netCDF and xarray, Jupyter and the Python stack |
+| igv.js | MIT [128] | BAM, CRAM, VCF, BED, bigWig, GFF3, and other track formats [127] | v3.8.7, 2026-09-09 [128] | yes | IGV and Bioconductor, with the suite's ChromatinAccess and gRNA-Optimizer |
+| Viv and Vizarr | MIT [119][120] | OME-TIFF and OME-Zarr [119][120] | Viv npm 0.22.1, 2026-08-10 [390] | yes | Fiji and ImageJ, and the suite's CellSegTrack |
+| Neurosift | Apache-2.0 [140] | NWB files on DANDI and other archives [140] | no release since 2024-05-27; last commit 2026-09-16 [140] | yes, by commit | NWB, and the suite's PatchSeqML |
+| JSROOT | MIT [146] | `.root` files over HTTP and ROOT JSON [146] | 7.11.1, 2026-07-27 [146] | yes | ROOT, Geant4 |
+| Aladin Lite | LGPL-3.0-or-later [188] | HiPS surveys and FITS images, with catalogs [188] | v3.8.1, 2026-03-05 [188] | yes | Astropy, SAOImageDS9 |
+| geotiff.js | MIT [203] | GeoTIFF and cloud-optimized GeoTIFF [203] | v3.0.5, 2026-03-11, with a beta on 2026-03-30 [203] | yes | GDAL, QGIS, Google Earth Engine exports |
+| vtk.js | BSD-3-Clause [355] | VTK XML image and polygon data, legacy polygon data, STL, PLY, OBJ, glTF [355] | v37.1.0, 2026-09-18 [355] | yes | ParaView, VisIt, FEniCS, OpenFOAM, Ansys, Abaqus |
+| model-viewer | Apache-2.0 [371] | glTF and GLB only [371] | v4.3.1, 2026-06-04 [371] | yes | Blender, ChimeraX, PyMOL, COMSOL, SolidWorks, Onshape, KiCad |
+| three.js | MIT [372] | glTF, STL, OBJ, 3MF, PLY, VTK, and other formats through its loaders [372] | r186, 2026-09-08 [372] | yes; already in `package.json` | Every mesh row |
+| Online3DViewer | MIT [234] | STEP, IGES, BREP, FCStd, IFC, glTF, STL, OBJ, 3MF, and more, with STEP through occt-import-js [234] | 0.18.0, 2025-12-18; last commit 2026-06-24 [234] | yes | FreeCAD, SolidWorks, Onshape |
+| KiCanvas | MIT [249] | `.kicad_sch` and `.kicad_pcb` from KiCad 6 on [249] | no releases; last commit 2026-04-28 [249] | yes, early alpha | KiCad |
+| CETEIcean | BSD-2-Clause [339] | TEI XML, rendered as custom elements [339] | v1.9.5, 2025-08-29; last commit 2026-09-08 [339] | yes, by commit | TEI, Transkribus TEI exports |
+| citeproc-js | CPAL-1.0-or-later or AGPL-3.0-or-later [391] | CSL JSON with CSL styles [391] | npm 2.4.63, 2023-04-17; last commit 2026-07-05 [391] | yes, by commit | Zotero; its license needs a decision before it ships in the bundle |
+| webR | MIT for its scripts and console, GPL-3 for the binaries that contain R [277] | R code and 22,741 WebAssembly packages for R 4.6 [109] | v0.6.0, 2026-05-19 [277] | yes | R, SPSS, Stata, SAS, through haven |
+| Pyodide | MPL-2.0 [375] | Python 3.14 with the packages its list names [61] | 314.0.7, 2026-09-14 [375] | yes | Twenty-five suite tools, Astropy, Biopython, netCDF and xarray, Jupyter and the Python stack |
 
 Sources, read 2026-09-21:
 
-379. Mol* repository: <https://github.com/molstar/molstar>
-380. Mol*, file formats: <https://molstar.org/docs/plugin/file-formats/>
-381. 3Dmol.js repository: <https://github.com/3dmol/3Dmol.js>
-382. NGL Viewer repository: <https://github.com/nglviewer/ngl>
-383. ngl on the npm registry: <https://registry.npmjs.org/ngl>
-384. Jmol-SwingJS repository: <https://github.com/BobHanson/Jmol-SwingJS>
-385. Jmol: <https://jmol.sourceforge.net/>
-386. Jmol releases on SourceForge: <https://sourceforge.net/projects/jmol/files/Jmol/>
-387. @hms-dbmi/viv on the npm registry: <https://registry.npmjs.org/@hms-dbmi/viv>
-388. citeproc-js repository: <https://github.com/Juris-M/citeproc-js>
+382. Mol* repository: <https://github.com/molstar/molstar>
+383. Mol*, file formats: <https://molstar.org/docs/plugin/file-formats/>
+384. 3Dmol.js repository: <https://github.com/3dmol/3Dmol.js>
+385. NGL Viewer repository: <https://github.com/nglviewer/ngl>
+386. ngl on the npm registry: <https://registry.npmjs.org/ngl>
+387. Jmol-SwingJS repository: <https://github.com/BobHanson/Jmol-SwingJS>
+388. Jmol: <https://jmol.sourceforge.net/>
+389. Jmol releases on SourceForge: <https://sourceforge.net/projects/jmol/files/Jmol/>
+390. @hms-dbmi/viv on the npm registry: <https://registry.npmjs.org/@hms-dbmi/viv>
+391. citeproc-js repository: <https://github.com/Juris-M/citeproc-js>
 
 ## The research tools suite
 
@@ -904,5 +907,5 @@ From the path index: import is the first path for 25 of the 64 rows and a path f
    - `.qdpx` projects through one REFI-QDA parser, for the NVivo, ATLAS.ti, MAXQDA, and QualCoder rows;
    - then Zotero's CSL JSON, which meets the 178 literature cards already in the graph, and the formats with one or two rows behind them: FITS, `.root`, `.nwb`, TEI, BAM, and VCF.
 
-   Every viewer in the table of viewers and runtimes is under an MIT, BSD, Apache-2.0, or LGPL license except citeproc-js, whose CPAL or AGPL terms need a decision before it ships in the bundle. The two runtimes are Pyodide, MPL-2.0, and webR, whose R binaries are GPL-3.
+   Every viewer in the table of viewers and runtimes is under an MIT, BSD, Apache-2.0, or LGPL license except citeproc-js, whose CPAL or AGPL terms need a decision before it ships in the bundle. The two runtimes are Pyodide under MPL-2.0 and webR, whose R binaries are GPL-3.
 4. **runner, Lean first.** Seventeen rows take the runner first, and it is the only path for heavy open codes and for closed tools under the person's own license on the person's own machine. Lean goes first because the repository already builds two Lean projects and `lake env lean --json` already reports each message as a line of JSON, so the first job, `lean-check`, has known answers to test against. A paper's Lean check is also a rule in `papers/PAPER-STANDARDS.md` that nothing outside the author's machine enforces. LaTeX builds come next, then TrajMine and CryoTriage, which stay synthetic until a machine with a GPU runs them. The registry's "founder GPU" label on those two and on LabBrain is stale: all forty suite tools go through one gateway, two of them in synthetic mode. The heavy simulation codes follow: GROMACS on a GPU, OpenFOAM over MPI, LAMMPS, and Geant4.
