@@ -51,3 +51,46 @@ The PR body holds one table of rounds: the round, its score, its verdict, the fi
 ## The surface gate
 
 A task merges when its result is usable inside Research OS at 1280 and 390, which is the founder's standing rule of 2026-09-18. A task whose output is a memo or a script owes a surface, and the loop records that debt as a roadmap row in the same pass. `ros-frontend 1` carries the debt from the four tasks that shipped before this rule had teeth.
+
+## The three defects this repo produces
+
+Seven review rounds on the Research OS authorization work found the same
+three shapes over and over, in different files each time. A critic reads
+for these before anything else, and a change that introduces one is a
+finding even when every test passes.
+
+**One shape declared twice.** A route builds its response inline and its
+client declares the same fields by hand. Widening a field on the route is
+invisible to the client, and the page renders the new value as text: the
+`/loop` route made two counts nullable and the panel printed "null
+connections held" to the learner. Four copies of the assignment shape
+meant a fix reached one of four surfaces. The check: for every response
+field a client reads, find the one declaration both compile against. The
+repair is `import type` from the server module, which is erased at build
+and costs the client nothing.
+
+**A list of ids chunked but not paged.** PostgREST puts an `in()` filter
+in the request line, so the ids get chunked to keep the URL short. That
+bound says nothing about the separate cap of 1,000 rows per response. A
+chunked read past that cap returns a prefix with no error, and the caller
+treats the prefix as the whole answer: sixty node ids on a dense branch
+overflow a thousand edges routinely. Worse in an authorization path,
+where the dropped rows read as a denial of a live grant. The check: every
+`in(...)` read pages with `.range()` and carries an `.order()`, since
+Postgres gives no stable order across LIMIT and OFFSET without one. A
+page loop whose callback forgets the range answers the same page forever,
+so the loop stops itself and throws.
+
+**An outage collapsed into an empty result.** A read fails, the code
+answers `[]` or an empty `Set`, and the surface says the learner has
+nothing. The two are different facts and the reader cannot tell them
+apart: "no assignments" and "we could not check your assignments" render
+the same. This one survives a fix by moving, from a library to a route
+to a client, so the check follows it the whole way: an unavailable result
+propagates as its own case to every consumer, and each consumer renders
+it as unknown with a way to retry.
+
+Each has a mutation that proves the fix: blank the field and watch the
+client print the wrong text, strip the `.range()` and watch a
+thousand-and-first row disappear, force the store to fail and watch the
+surface claim emptiness. A repair with no such mutation is unverified.
