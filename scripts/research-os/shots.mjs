@@ -9,6 +9,10 @@
  *
  *   node scripts/research-os/shots.mjs /research-os/roadmap [more paths...]
  *
+ * A staff-gated path needs SHOTS_EMAIL on RESEARCH_OS_REVIEWER_EMAILS in
+ * .env.local, or the run screenshots a 404. Any page that answers outside
+ * the 200s stops the run.
+ *
  * Env: SHOTS_BASE (default http://127.0.0.1:3140), SHOTS_MAIL
  * (default http://127.0.0.1:54324), SHOTS_EMAIL, SHOTS_OUT.
  */
@@ -31,6 +35,22 @@ if (paths.length === 0) {
   process.exit(2);
 }
 mkdirSync(OUT, { recursive: true });
+
+async function open(page, url) {
+  let res;
+  try {
+    res = await page.goto(url, { waitUntil: "networkidle", timeout: 60000 });
+  } catch (err) {
+    throw new Error(`${url} did not answer (${err.message}). Start the dev server, or set SHOTS_BASE.`);
+  }
+  const status = res?.status() ?? 0;
+  if (status < 200 || status > 299) {
+    throw new Error(
+      `${url} answered ${status}. A staff-gated path needs SHOTS_EMAIL (${EMAIL}) on RESEARCH_OS_REVIEWER_EMAILS.`,
+    );
+  }
+  return res;
+}
 
 async function mail(path) {
   try {
@@ -68,7 +88,7 @@ async function latestCode(address, after) {
 
 async function signIn(context) {
   const page = await context.newPage();
-  await page.goto(`${BASE}/sign-in`, { waitUntil: "networkidle", timeout: 60000 });
+  await open(page, `${BASE}/sign-in`);
   const sent = Date.now();
   // Type after hydration, since a fill before it is lost when React mounts.
   await page.locator("#sign-in-email").click();
@@ -88,10 +108,16 @@ const browser = await chromium.launch();
 const context = await browser.newContext(existsSync(STATE) ? { storageState: STATE } : {});
 try {
   const probe = await context.newPage();
-  await probe.goto(`${BASE}${paths[0]}`, { waitUntil: "networkidle", timeout: 60000 });
-  const signedOut = await probe.locator("#sign-in-email").count();
+  let res;
+  try {
+    res = await probe.goto(`${BASE}${paths[0]}`, { waitUntil: "networkidle", timeout: 60000 });
+  } catch (err) {
+    await probe.close();
+    throw new Error(`${BASE}${paths[0]} did not answer (${err.message}). Start the dev server, or set SHOTS_BASE.`);
+  }
+  const signedOut = (await probe.locator("#sign-in-email").count()) > 0 || res?.status() === 401;
   await probe.close();
-  if (signedOut > 0) await signIn(context);
+  if (signedOut) await signIn(context);
 
   let overflow = 0;
   for (const path of paths) {
@@ -99,7 +125,7 @@ try {
     for (const [name, width, height] of WIDTHS) {
       const page = await context.newPage();
       await page.setViewportSize({ width, height });
-      await page.goto(`${BASE}${path}`, { waitUntil: "networkidle", timeout: 60000 });
+      await open(page, `${BASE}${path}`);
       const file = `${OUT}/${slug}-${name}.png`;
       await page.screenshot({ path: file, fullPage: true });
       const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);

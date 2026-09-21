@@ -3,11 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/ui";
 import { getSessionUser } from "@/lib/supabase/server";
-import { isReviewerEmail } from "@/lib/research-os/reviewer";
-import { isClassStaffAnywhere } from "@/lib/research-os/class-db";
+import { isStaff } from "@/lib/research-os/staff";
 import {
   COST_LABEL,
   decisionsFor,
+  type Stage as StageName,
   ROADMAP,
   STAGE_LABEL,
   STAGE_TEST,
@@ -53,6 +53,7 @@ function Item({
   decisions: string[];
 }) {
   const status = statusChip(item);
+  const inherited = decisions.filter((d) => !(item.blockedBy ?? []).includes(d));
   return (
     <li className={CARD}>
       <div className="flex flex-wrap items-center gap-2">
@@ -78,9 +79,12 @@ function Item({
             className="underline underline-offset-4"
             href="https://github.com/bucket-foundation/bucket-foundation/blob/dev/docs/FOUNDER-DECISIONS.md"
           >
-            {decisions.join(", ")}
+              {decisions.join(", ")}
           </Link>
-          {item.blockedBy ? "" : ", through what it rests on"}, and only the founder answers that.
+          {inherited.length > 0
+            ? `, ${inherited.join(" and ")} through what it rests on`
+            : ""}
+          , and only the founder answers that.
         </p>
       )}
     </li>
@@ -93,10 +97,7 @@ export default async function RoadmapPage({
   searchParams?: Record<string, string | string[] | undefined>;
 }) {
   const user = await getSessionUser();
-  const staff =
-    (user?.email ? isReviewerEmail(user.email) : false) ||
-    (user ? await isClassStaffAnywhere(user.id) : false);
-  if (!staff) notFound();
+  if (!(await isStaff(user))) notFound();
 
   const pick = (k: string) => {
     const v = searchParams?.[k];
@@ -111,10 +112,20 @@ export default async function RoadmapPage({
   );
   const filtered = Boolean(stageFilter || epicFilter);
   const counts = countsByStage(visible);
-  const ready = readyNow(visible);
+  const ready = readyNow(visible, ROADMAP);
   const problems = roadmapProblems();
   const statusById = new Map(ROADMAP.map((i) => [i.id, i.status]));
   const shownStages: Stage[] = stageFilter ? [stageFilter] : STAGES;
+
+  const hrefWith = (next: { stage?: StageName | null; epic?: string | null }) => {
+    const params = new URLSearchParams();
+    const stage = next.stage === undefined ? stageFilter : next.stage;
+    const epic = next.epic === undefined ? epicFilter : next.epic;
+    if (stage) params.set("stage", stage);
+    if (epic) params.set("epic", epic);
+    const query = params.toString();
+    return query ? `/research-os/roadmap?${query}` : "/research-os/roadmap";
+  };
 
   const filterLink = (label: string, href: string, active: boolean) => (
     <Link
@@ -136,19 +147,17 @@ export default async function RoadmapPage({
 
       <section className="flex flex-col gap-3">
         <div className="flex flex-wrap gap-2">
-          {filterLink("all stages", "/research-os/roadmap", !stageFilter && !epicFilter)}
+          {filterLink("everything", "/research-os/roadmap", !stageFilter && !epicFilter)}
           {STAGES.map((s) =>
             filterLink(
-              `${STAGE_LABEL[s]} · ${counts[s].open} open`,
-              `/research-os/roadmap?stage=${s}`,
+              `${STAGE_LABEL[s]} · ${countsByStage(ROADMAP.filter((i) => !epicFilter || i.epic === epicFilter))[s].open} open`,
+              hrefWith({ stage: stageFilter === s ? null : s }),
               stageFilter === s,
             ),
           )}
         </div>
         <div className="flex flex-wrap gap-2">
-          {epics.map((e) =>
-            filterLink(e, `/research-os/roadmap?epic=${encodeURIComponent(e)}`, epicFilter === e),
-          )}
+          {epics.map((e) => filterLink(e, hrefWith({ epic: epicFilter === e ? null : e }), epicFilter === e))}
         </div>
       </section>
 
@@ -184,7 +193,9 @@ export default async function RoadmapPage({
 
       {visible.length === 0 && (
         <p className="text-[14px] text-[color:var(--basalt-3)]">
-          No item matches that stage and epic together.{" "}
+          {stageFilter && epicFilter
+            ? `No ${epicFilter} item is staged ${STAGE_LABEL[stageFilter]}.`
+            : "No item matches that filter."}{" "}
           <Link className="underline underline-offset-4" href="/research-os/roadmap">
             Clear the filters
           </Link>

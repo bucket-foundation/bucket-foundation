@@ -11,7 +11,7 @@ Open decisions only you can make, what each one blocks, and what the loop does w
 | FD-5 | `ANTHROPIC_API_KEY` in Vercel for the Academy tutor | 2026-06-14 | The grounded Socratic tutor on the live site | The route ships dark and fails safe |
 | FD-6 | The Nucleus host, unreachable since 2026-09-14 (no ping, no port) | 2026-09-14 | `bd-remote` and every `*.nucleus.agfarms.dev` call | Beads queue in `BEADS-PENDING.jsonl` and drain when the host returns |
 | FD-7 | Promotion of `dev` to `main`, which is yours by the branch policy | standing | Anything reaching bucket.foundation | Work merges into `dev` and waits there |
-| FD-8 | The legal entity behind a funding application: state incorporation and a 501(c)(3) filing, or a fiscal sponsor. Bucket is held in the founder's personal capacity today | 2026-09-21 | `ros-09`, funding wave 1, and every application that asks who the applicant is | The research and the drafts stay current; nothing is submitted. Fast Forward's 2026-09-18 date has passed, and NLnet NGI Zero closes 2026-11-03, 12:00 CET |
+| FD-8 | The legal entity behind a funding application: state incorporation and a 501(c)(3) filing, or a fiscal sponsor. Bucket is held in the founder's personal capacity today | 2026-09-21 | `ros-09b`, the funders that ask who the applicant is: Fast Forward, whose 2026-09-18 date has passed, and NLnet NGI Zero, closing 2026-11-03 at 12:00 CET | `ros-09a` proceeds: the Tools Competition takes individuals and teams at any phase, Phase I abstract due 2026-10-13, and DPG registration names individuals as eligible submitters |
 
 ## How a row closes
 

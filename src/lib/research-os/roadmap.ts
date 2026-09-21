@@ -375,15 +375,25 @@ export const ROADMAP: RoadmapItem[] = [
   },
 
   {
-    id: "ros-09",
+    id: "ros-09a",
     epic: "funding",
-    title: "Funding wave 1: the applications, and the entity the applications need",
+    title: "The wave-1 applications that take an individual: Tools Competition by 2026-10-13, and DPG registration",
+    stage: "near",
+    status: "open",
+    cost: "m",
+    dependsOn: [],
+    unlocks: "Funding applications that need no entity decision, on the nearest live deadline",
+  },
+  {
+    id: "ros-09b",
+    epic: "funding",
+    title: "The wave-1 applications that ask who the applicant is: Fast Forward, NLnet NGI Zero by 2026-11-03",
     stage: "near",
     status: "open",
     cost: "m",
     dependsOn: [],
     blockedBy: ["FD-8"],
-    unlocks: "Money for the work, and the deadlines that are already running",
+    unlocks: "The funders that ask for a nonprofit or a fiscal sponsor",
   },
 
   // ---- later -----------------------------------------------------------
@@ -484,9 +494,13 @@ export function countsByStage(items: RoadmapItem[] = ROADMAP): Record<Stage, { o
   return out;
 }
 
-/** Items with nothing open in front of them, in stage order. */
-export function readyNow(items: RoadmapItem[] = ROADMAP): RoadmapItem[] {
-  const status = new Map(items.map((i) => [i.id, i.status]));
+/**
+ * Items with nothing open in front of them, in stage order. `items` is what
+ * to return, and `universe` is where a dependency's status is read, so a
+ * filtered view does not read a dependency outside it as unshipped.
+ */
+export function readyNow(items: RoadmapItem[] = ROADMAP, universe: RoadmapItem[] = ROADMAP): RoadmapItem[] {
+  const status = new Map(universe.map((i) => [i.id, i.status]));
   return items
     .filter((i) => i.status === "open" && !i.blockedBy)
     .filter((i) => i.dependsOn.every((d) => status.get(d) === "shipped"))
@@ -525,8 +539,9 @@ export function roadmapProblems(items: RoadmapItem[] = ROADMAP): string[] {
     for (const d of i.dependsOn) {
       if (!ids.has(d)) problems.push(`${i.id} depends on ${d}, which is not on the list`);
     }
-    if (i.stage === "mvp" && i.blockedBy) {
-      problems.push(`${i.id} sits in MVP and waits on ${i.blockedBy.join(" and ")}`);
+    const waiting = decisionsFor(i, items);
+    if (i.stage === "mvp" && waiting.length > 0) {
+      problems.push(`${i.id} sits in MVP and waits on ${waiting.join(" and ")}`);
     }
     for (const fd of i.blockedBy ?? []) {
       if (!DECISIONS.includes(fd)) problems.push(`${i.id} waits on ${fd}, which is not a row of FOUNDER-DECISIONS.md`);
@@ -537,7 +552,13 @@ export function roadmapProblems(items: RoadmapItem[] = ROADMAP): string[] {
         problems.push(`${i.id} is staged ${STAGE_LABEL[i.stage]} over ${d}, which is staged ${STAGE_LABEL[dep.stage]}`);
       }
     }
-    if (i.status === "shipped" && i.dependsOn.some((d) => items.find((x) => x.id === d)?.status !== "shipped")) {
+    if (
+      i.status === "shipped" &&
+      i.dependsOn.some((d) => {
+        const dep = items.find((x) => x.id === d);
+        return dep && dep.status !== "shipped";
+      })
+    ) {
       problems.push(`${i.id} is shipped over an unshipped dependency`);
     }
   }

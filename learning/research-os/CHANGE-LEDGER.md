@@ -14,11 +14,14 @@ Date 2026-09-21. Branch `feat/ros-loop-roadmap`, worktree `.wt-ros-loop`, PR #19
 - `src/app/research-os/(app)/roadmap/page.tsx`: the roadmap surface for staff, grouped by stage with stage and epic filters, a ready-to-start list, and the rule problems the list finds in itself.
 - `scripts/research-os/shots.mjs`: signed-in screenshots of any Research OS path at desktop and phone width against the local stack, reporting horizontal overflow, for the standing rule that each task shows its work.
 - `docs/FOUNDER-DECISIONS.md`: the eight open decisions that need the founder, each with what it blocks and what the loop does while it waits.
+- `learning/research-os/ROADMAP.md`: the staging test behind MVP, near-term and later, the scope of the list, what the staging says today, and what the page does not do yet.
+- `src/lib/research-os/staff.ts`: one staff test, read by the app layout and by the roadmap page.
 
 ### Edited
 
-- `learning/research-os/ROADMAP.md`: the staging test behind MVP, near-term and later, the scope of the list, what the staging says today, and what the page does not do yet.
 - `src/app/research-os/(app)/AppShell.tsx`: a Roadmap entry in the teaching nav.
+- `src/app/research-os/(app)/layout.tsx`: the staff test moves into `staff.ts`.
+- `.gitignore`: `ros-shots/` and `session.json`, so a screenshot run leaves no session in the tree.
 
 ## ros-patents 1: the research memo
 
