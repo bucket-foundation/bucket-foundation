@@ -670,12 +670,29 @@ export async function findNodeById(id: string): Promise<GraphNode | null> {
 /** Append one evidence event and, if `nextStage` differs, raise `stage`. Upserts the row if absent. */
 /** What the append left behind, for a caller that has to report durability. */
 export interface EvidenceAppend {
-  /** The stage the row held when the append locked it. */
+  /** The stage the row held when the append locked it, null when this call created it. */
   priorStage: Stage | null;
   /** The stage the row holds now. */
   stage: Stage;
+  /** True when this call created the learner's row for that node. */
+  created: boolean;
   /** How many events the log holds after this one. */
   eventCount: number;
+}
+
+/** Postgres codes worth one more attempt: lock timeout, serialization, deadlock. */
+const RETRYABLE_SQLSTATES = new Set(["55P03", "40001", "40P01"]);
+
+/** An append that failed, carrying the SQLSTATE so a caller can tell a wait from a refusal. */
+export class EvidenceAppendError extends Error {
+  readonly code: string | null;
+  readonly retryable: boolean;
+  constructor(message: string, code: string | null) {
+    super(message);
+    this.name = "EvidenceAppendError";
+    this.code = code;
+    this.retryable = code !== null && RETRYABLE_SQLSTATES.has(code);
+  }
 }
 
 /**
@@ -685,33 +702,70 @@ export interface EvidenceAppend {
  * the same learner and node keep both events; the read-then-upsert this
  * replaced let the second writer erase the first.
  *
- * Throws when the append fails. A caller that reports a durable result to
- * the person in front of it has to let that throw reach them.
+ * Stage is monotone by default, matching stages.ts, where a transition
+ * never moves a learner backward. A teacher override is the one caller that
+ * lowers a stage on purpose and passes `monotone: false`.
+ *
+ * A lock wait raises a retryable error, which this retries once before it
+ * throws. A caller that reports a durable result to the person in front of
+ * it has to let that throw reach them.
  */
 export async function recordEvidence(
   learnerId: string,
   nodeId: string,
   nextStage: string,
   event: Record<string, unknown>,
+  options: { monotone?: boolean } = {},
 ): Promise<EvidenceAppend> {
   const svc = graphService();
-  const { data, error } = await svc.rpc("append_evidence", {
+  const args = {
     p_learner: learnerId,
     p_node: nodeId,
     p_stage: nextStage || "",
     p_event: event,
-  });
-  if (error) throw new Error(`recordEvidence: append failed: ${error.message}`);
-  const row = (data || {}) as { prior_stage?: string | null; stage?: string; event_count?: number };
+    p_monotone: options.monotone !== false,
+  };
+
+  type AppendRow = { prior_stage?: string | null; stage?: string; created?: boolean; event_count?: number };
+  let last: EvidenceAppendError | null = null;
+  let row: AppendRow | null = null;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const { data, error } = await svc.rpc("append_evidence", args);
+    if (!error) {
+      row = (data || {}) as AppendRow;
+      last = null;
+      break;
+    }
+    const code = (error as { code?: string }).code ?? null;
+    // PGRST202 and 42883 both mean the function is missing, which happens
+    // when a deploy lands before its migration. Say so, since the fix is to
+    // apply the migration rather than to retry.
+    if (code === "PGRST202" || code === "42883") {
+      throw new EvidenceAppendError(
+        "recordEvidence: graph.append_evidence is missing; apply supabase/migrations/20260921010000_research_os_evidence_append.sql before deploying this build",
+        code,
+      );
+    }
+    // The database's message can carry the function body, so the error the
+    // caller sees names the code and the first line alone.
+    const first = (error.message || "append failed").split("\n")[0].slice(0, 200);
+    last = new EvidenceAppendError(`recordEvidence: append failed (${code ?? "unknown"}): ${first}`, code);
+    if (!last.retryable) break;
+    await new Promise((r) => setTimeout(r, 120));
+  }
+  if (last) throw last;
+
   const result: EvidenceAppend = {
-    priorStage: (row.prior_stage as Stage | null) ?? null,
-    stage: (row.stage as Stage) ?? ((nextStage || "access") as Stage),
-    eventCount: row.event_count ?? 0,
+    priorStage: (row?.prior_stage as Stage | null) ?? null,
+    stage: (row?.stage as Stage) ?? ((nextStage || "access") as Stage),
+    created: row?.created === true,
+    eventCount: row?.event_count ?? 0,
   };
 
   // ros-33: the game layer reads every recorded transition here, so a level
-  // rise counts once wherever it was recorded. Awarding never fails the
-  // evidence write.
+  // rise counts once wherever it was recorded. A row this call created has
+  // no prior stage, which is what the old read-then-upsert reported too.
+  // Awarding never fails the evidence write.
   try {
     await awardProgress(learnerId, nodeId, result.priorStage, result.stage);
   } catch {

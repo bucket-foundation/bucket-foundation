@@ -25,7 +25,10 @@ begin
   select learner, node into l, n from t_ids;
 
   r := graph.append_evidence(l, n, 'awareness', '{"kind":"open","at":"1"}'::jsonb);
-  assert r->>'prior_stage' = 'access', 'first append reports the created row''s stage: ' || r::text;
+  -- A row this call created has no prior stage. The game layer counts a
+  -- first touch differently from a learner who was already at access.
+  assert r->'prior_stage' = 'null'::jsonb, 'a created row reports no prior stage: ' || r::text;
+  assert (r->>'created')::boolean, 'the first append says it created the row: ' || r::text;
   assert r->>'stage' = 'awareness', 'first append raises the stage: ' || r::text;
   assert (r->>'event_count')::int = 1, 'first append writes one event: ' || r::text;
 
@@ -33,6 +36,7 @@ begin
   r := graph.append_evidence(l, n, 'understanding', '{"kind":"check","at":"2"}'::jsonb);
   assert (r->>'event_count')::int = 2, 'the second append keeps the first event: ' || r::text;
   assert r->>'prior_stage' = 'awareness', 'the second append reports the stage it found: ' || r::text;
+  assert not (r->>'created')::boolean, 'a second append does not claim to create: ' || r::text;
 
   -- A lower stage cannot pull a learner backward, and the event still lands.
   r := graph.append_evidence(l, n, 'access', '{"kind":"quote","at":"3"}'::jsonb);
@@ -43,16 +47,26 @@ begin
   r := graph.append_evidence(l, n, 'awareness', '{"kind":"teacher_review","at":"4"}'::jsonb, false);
   assert r->>'stage' = 'awareness', 'p_monotone false lowers the stage: ' || r::text;
 
+  -- A teacher override lowers a stage on purpose, which is the one caller
+  -- that passes p_monotone false (src/lib/research-os/class-db.ts).
+  r := graph.append_evidence(l, n, 'production', '{"kind":"check","at":"3b"}'::jsonb);
+  assert r->>'stage' = 'production', 'the fixture reaches production: ' || r::text;
+  r := graph.append_evidence(l, n, 'awareness', '{"kind":"teacher_review","at":"3c"}'::jsonb, false);
+  assert r->>'stage' = 'awareness', 'an override lowers the stage: ' || r::text;
+  assert r->>'prior_stage' = 'production', 'the override reports what it locked: ' || r::text;
+  r := graph.append_evidence(l, n, 'production', '{"kind":"check","at":"3d"}'::jsonb);
+  assert r->>'stage' = 'production', 'a raise after an override holds: ' || r::text;
+
   -- An empty stage keeps the current one.
   r := graph.append_evidence(l, n, '', '{"kind":"open","at":"5"}'::jsonb);
-  assert r->>'stage' = 'awareness', 'an empty stage keeps the current one: ' || r::text;
+  assert r->>'stage' = 'production', 'an empty stage keeps the current one: ' || r::text;
 
   -- Every event is in order, none lost.
-  assert (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n) = 5,
-    'five appends leave five events';
+  assert (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n) = 8,
+    'eight appends leave eight events';
   assert (select evidence->0->>'at' from graph.learner_node_state where learner_id = l and node_id = n) = '1',
     'the first event stays first';
-  assert (select evidence->4->>'at' from graph.learner_node_state where learner_id = l and node_id = n) = '5',
+  assert (select evidence->7->>'at' from graph.learner_node_state where learner_id = l and node_id = n) = '5',
     'the last event is last';
 end $$;
 
@@ -84,7 +98,7 @@ begin
   end;
   assert caught, 'a missing learner is refused';
 
-  assert (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n) = 5,
+  assert (select jsonb_array_length(evidence) from graph.learner_node_state where learner_id = l and node_id = n) = 8,
     'a refused call writes nothing';
 end $$;
 

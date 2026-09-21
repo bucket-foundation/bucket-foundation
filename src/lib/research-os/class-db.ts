@@ -183,12 +183,36 @@ export async function overrideLevel(
   const fromStage = ((state as { stage: Stage } | null)?.stage ?? null) as Stage | null;
   const v = validateOverride({ fromStage, toStage, reason });
   if (!v.ok) return { ok: false, error: v.error };
+  // A teacher override is the one write that may lower a stage, so it opts
+  // out of the append's monotone rule (src/lib/research-os/db.ts). The
+  // append runs first and reports the stage it locked, so the audit row
+  // records the stage the state row held under that lock, in place of a
+  // value read before it.
+  let applied;
+  try {
+    applied = await recordEvidence(
+      learnerId,
+      nodeId,
+      toStage,
+      overrideEvent({ fromStage, toStage, reason, setBy: staff.id, classId }),
+      { monotone: false },
+    );
+  } catch {
+    return { ok: false, error: "write_failed" };
+  }
   const { error } = await svc
     .from("level_overrides")
-    .insert({ learner_id: learnerId, node_id: nodeId, set_by: staff.id, class_id: classId, from_stage: fromStage, to_stage: toStage, reason: reason.trim() });
+    .insert({
+      learner_id: learnerId,
+      node_id: nodeId,
+      set_by: staff.id,
+      class_id: classId,
+      from_stage: applied.priorStage,
+      to_stage: applied.stage,
+      reason: reason.trim(),
+    });
   if (error) return { ok: false, error: "write_failed" };
-  await recordEvidence(learnerId, nodeId, toStage, overrideEvent({ fromStage, toStage, reason, setBy: staff.id, classId }));
-  return { ok: true, value: { fromStage, toStage } };
+  return { ok: true, value: { fromStage: applied.priorStage, toStage: applied.stage } };
 }
 
 export async function setMemberRole(

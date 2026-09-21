@@ -44,11 +44,15 @@ declare
   v_prior text;
   v_stage text;
   v_asked text;
+  v_created boolean := false;
   v_count integer;
 begin
   -- A stuck row returns a retryable error instead of holding the request.
+  -- lock_timeout is read when a lock is requested, so setting it here binds
+  -- the waits below. A statement timeout is armed when the statement
+  -- starts, so setting it inside the running statement would do nothing;
+  -- that bound belongs to the calling role's default.
   set local lock_timeout = '1s';
-  set local statement_timeout = '3s';
 
   if p_learner is null or p_node is null then
     raise exception 'append_evidence: learner and node are required';
@@ -63,9 +67,13 @@ begin
     raise exception 'append_evidence: unknown stage %', v_asked;
   end if;
 
+  -- A row this call creates has no prior stage. Reporting 'access' for it
+  -- would tell a caller the learner had already been at access, which the
+  -- game layer counts differently from a first touch.
   insert into graph.learner_node_state (learner_id, node_id, stage, evidence)
   values (p_learner, p_node, 'access', '[]'::jsonb)
   on conflict (learner_id, node_id) do nothing;
+  v_created := found;
 
   select stage into v_prior
   from graph.learner_node_state
@@ -88,10 +96,16 @@ begin
    where learner_id = p_learner and node_id = p_node
    returning jsonb_array_length(evidence) into v_count;
 
-  return jsonb_build_object('prior_stage', v_prior, 'stage', v_stage, 'event_count', v_count);
+  return jsonb_build_object(
+    'prior_stage', case when v_created then null else to_jsonb(v_prior) end,
+    'stage', v_stage,
+    'created', v_created,
+    'event_count', v_count
+  );
 end;
 $$;
 
 revoke all on function graph.append_evidence(uuid, uuid, text, jsonb, boolean) from public;
 grant execute on function graph.append_evidence(uuid, uuid, text, jsonb, boolean) to service_role;
+revoke all on function graph.stage_rank(text) from public;
 grant execute on function graph.stage_rank(text) to service_role;
