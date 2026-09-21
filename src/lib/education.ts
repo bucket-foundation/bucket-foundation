@@ -306,7 +306,12 @@ export function readEducationDoc(relPath: string): string {
     return `# Document not found\n\n_Invalid path._`;
   }
   try {
-    return fs.readFileSync(full, "utf-8");
+    // The docs link figures by their path inside the education-atlas repo
+    // (../analysis/landscape/figures/X.png). On the site the PNGs live at
+    // /education/figures/X.png.
+    return fs
+      .readFileSync(full, "utf-8")
+      .replace(/\((?:\.\.\/)+analysis\/landscape\/figures\//g, "(/education/figures/");
   } catch {
     return `# ${safe}\n\n_Document not found._`;
   }
