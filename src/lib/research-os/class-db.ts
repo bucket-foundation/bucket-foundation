@@ -7,6 +7,7 @@
  */
 import type { NextRequest } from "next/server";
 import { awardProgress, graphService, verifyLearnerIdentity } from "./db";
+import { authorizeNode, authorizeNodes } from "./read-access";
 import { canAssign, canManageMembers, canOverride, rolesIn, validateOverride, type Membership, type Role } from "./roles";
 import { assignmentStatus, validateAssignment, type Assignment, type AssignmentStatus, type NewAssignment } from "./assignments";
 import type { Stage } from "./types";
@@ -117,7 +118,17 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
     svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).in("node_id", nodeIds),
     svc.from("productions").select("target_node_id,status").eq("learner_id", learnerId).in("target_node_id", nodeIds),
   ]);
-  const nodeById = new Map(((nodes as { id: string; slug: string; title: string }[]) || []).map((n) => [n.id, n]));
+  // An assignment names a node, and its title reaches the learner, so a
+  // node they may not read carries no title or slug here (Bucket critic
+  // C27). The assignment itself stays in the list: it is theirs, and the
+  // class staff who set it can see what it points at.
+  const readableTargets = await authorizeNodes(nodeIds, { id: learnerId }, "view");
+  const visibleTargets = readableTargets.ok ? new Set(readableTargets.allowed) : new Set<string>();
+  const nodeById = new Map(
+    ((nodes as { id: string; slug: string; title: string }[]) || [])
+      .filter((n) => visibleTargets.has(n.id))
+      .map((n) => [n.id, n]),
+  );
   const classById = new Map(((classes as { id: string; name: string }[]) || []).map((c) => [c.id, c.name]));
   const stageByNode = new Map(((states as { node_id: string; stage: Stage }[]) || []).map((s) => [s.node_id, s.stage]));
   const prodsByNode = new Map<string, { status: string }[]>();
@@ -142,6 +153,10 @@ export async function createAssignment(staff: ClassStaff, classId: string, targe
   const svc = graphService();
   const { data: node } = await svc.from("nodes").select("id").eq("slug", targetSlug).maybeSingle();
   if (!node) return { ok: false, error: "target_not_found" };
+  // Staff assign what they may read: resolving a slug is a read, and a
+  // node hidden from them cannot become an assignment.
+  const staffMayRead = await authorizeNode((node as { id: string }).id, { id: staff.id }, "view");
+  if (!staffMayRead.ok) return { ok: false, error: staffMayRead.reason === "unavailable" ? "write_failed" : "target_not_found" };
   const { data, error } = await svc
     .from("assignments")
     .insert({

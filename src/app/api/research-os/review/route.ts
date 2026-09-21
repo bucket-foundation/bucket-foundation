@@ -160,55 +160,39 @@ export async function GET(req: NextRequest) {
   // Internalization or Production either never held, or already got a
   // decision, so scoping to 'understanding' here is the same "pending"
   // filter a join against teacher_reviews would give, with no join needed.
-  // Who this reviewer may see. An email on RESEARCH_OS_REVIEWER_EMAILS is
-  // the graph's own reviewer and sees every queue. A reviewer who holds
-  // the role through a class sees the learners in their classes alone:
-  // creating a class is open to anyone signed in, so class staff is
-  // self-grantable and cannot carry a graph-wide read of other learners'
-  // claims, evidence and sources (Bucket critic C21).
-  const allowlisted = reviewer.email ? isReviewerEmail(reviewer.email) : false;
-  let scopedLearners: string[] | null = null;
-  if (!allowlisted) {
-    const { data: staffRows, error: staffErr } = await svc
-      .from("class_members")
-      .select("class_id")
-      .eq("learner_id", reviewer.id)
-      .in("role", ["teacher", "librarian"]);
-    if (staffErr) return bad(500, "read_failed");
-    const classIds = ((staffRows as { class_id: string }[]) || []).map((r) => r.class_id);
-    if (classIds.length === 0) return NextResponse.json({ transferHolds: [], productions: [] }, { headers: { "cache-control": "no-store" } });
-    const { data: memberRows, error: memberErr } = await svc
-      .from("class_members")
-      .select("learner_id")
-      .in("class_id", classIds);
-    if (memberErr) return bad(500, "read_failed");
-    scopedLearners = Array.from(new Set(((memberRows as { learner_id: string }[]) || []).map((r) => r.learner_id)));
-    if (scopedLearners.length === 0) return NextResponse.json({ transferHolds: [], productions: [] }, { headers: { "cache-control": "no-store" } });
+  const scope = await reviewerScope(reviewer);
+  if (!scope.ok) return bad(500, "read_failed");
+  const scopedLearners = scope.learners;
+  if (scopedLearners && scopedLearners.length === 0) {
+    return NextResponse.json({ transferHolds: [], productions: [] }, { headers: { "cache-control": "no-store" } });
   }
 
-  let stateQuery = svc
-    .from("learner_node_state")
-    .select("learner_id,node_id,stage,evidence,updated_at")
-    .eq("stage", "understanding");
-  if (scopedLearners) stateQuery = stateQuery.in("learner_id", scopedLearners);
-  const { data: stateRows, error: stateErr } = await stateQuery;
-  if (stateErr) return bad(500, "read_failed");
+  const stateRead = await inLearnerChunks<StateRow>(scopedLearners, (chunk) => {
+    let q = svc.from("learner_node_state").select("learner_id,node_id,stage,evidence,updated_at").eq("stage", "understanding");
+    if (chunk) q = q.in("learner_id", chunk);
+    return q as unknown as Promise<{ data: StateRow[] | null; error: { message: string } | null }>;
+  });
+  if (!stateRead.ok) return bad(500, "read_failed");
+  const stateRows = stateRead.rows;
 
-  const held = ((stateRows as StateRow[]) || []).filter((r) => {
+  const held = (stateRows || []).filter((r) => {
     const ev = r.evidence || [];
     const last = ev[ev.length - 1];
     return last && last.kind === "transfer_item" && last.held === true;
   });
 
-  let productionQuery = svc
-    .from("productions")
-    .select(
-      "id,learner_id,target_node_id,related_node_id,kind,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required,lateral_reading_flag",
-    )
-    .eq("status", "submitted");
-  if (scopedLearners) productionQuery = productionQuery.in("learner_id", scopedLearners);
-  const { data: productionRows, error: prodErr } = await productionQuery.order("created_at", { ascending: true });
-  if (prodErr) return bad(500, "read_failed");
+  const productionRead = await inLearnerChunks<ProductionRow>(scopedLearners, (chunk) => {
+    let q = svc
+      .from("productions")
+      .select(
+        "id,learner_id,target_node_id,related_node_id,kind,claim,evidence,sources,transfer_proof,status,created_at,notes,source_provenance,duplicate_flag,counter_evidence,counter_evidence_required,lateral_reading_flag",
+      )
+      .eq("status", "submitted");
+    if (chunk) q = q.in("learner_id", chunk);
+    return q.order("created_at", { ascending: true }) as unknown as Promise<{ data: ProductionRow[] | null; error: { message: string } | null }>;
+  });
+  if (!productionRead.ok) return bad(500, "read_failed");
+  const productionRows = productionRead.rows.sort((x, y) => String(x.created_at).localeCompare(String(y.created_at)));
 
   const nodeIds = Array.from(
     new Set([...held.map((r) => r.node_id), ...((productionRows as ProductionRow[]) || []).map((r) => r.target_node_id)]),
@@ -288,6 +272,75 @@ export async function GET(req: NextRequest) {
   );
 }
 
+/**
+ * Which learners a reviewer may act on. An email on
+ * RESEARCH_OS_REVIEWER_EMAILS is the graph's own reviewer and answers
+ * null, meaning every learner. A reviewer who holds the role through a
+ * class answers the members of their classes: creating a class is open to
+ * anyone signed in, so class staff is self-grantable and cannot carry a
+ * graph-wide read or a graph-wide decision (Bucket critic C21, C24).
+ *
+ * Both reads page, since PostgREST stops at a thousand rows and a
+ * reviewer above that would silently lose learners.
+ */
+async function reviewerScope(reviewer: { id: string; email: string | null }): Promise<{ ok: true; learners: string[] | null } | { ok: false }> {
+  if (reviewer.email && isReviewerEmail(reviewer.email)) return { ok: true, learners: null };
+  const svc = graphService();
+
+  const classIds: string[] = [];
+  for (let from = 0; ; from += 1000) {
+    const { data, error } = await svc
+      .from("class_members")
+      .select("class_id")
+      .eq("learner_id", reviewer.id)
+      .in("role", ["teacher", "librarian"])
+      .range(from, from + 999);
+    if (error) return { ok: false };
+    const rows = (data as { class_id: string }[]) || [];
+    classIds.push(...rows.map((r) => r.class_id));
+    if (rows.length < 1000) break;
+  }
+  if (classIds.length === 0) return { ok: true, learners: [] };
+
+  const learners = new Set<string>();
+  for (const part of chunkIds(classIds)) {
+    for (let from = 0; ; from += 1000) {
+      const { data, error } = await svc.from("class_members").select("learner_id").in("class_id", part).range(from, from + 999);
+      if (error) return { ok: false };
+      const rows = (data as { learner_id: string }[]) || [];
+      rows.forEach((r) => learners.add(r.learner_id));
+      if (rows.length < 1000) break;
+    }
+  }
+  return { ok: true, learners: Array.from(learners) };
+}
+
+/** 100 ids at a time, the bound read-access.ts measured for a request line. */
+function chunkIds(ids: string[], size = 100): string[][] {
+  const out: string[][] = [];
+  for (let i = 0; i < ids.length; i += size) out.push(ids.slice(i, i + size));
+  return out;
+}
+
+/** The rows for these learners, read in bounded batches. */
+async function inLearnerChunks<T>(
+  learners: string[] | null,
+  read: (chunk: string[] | null) => Promise<{ data: T[] | null; error: { message: string } | null }>,
+): Promise<{ ok: true; rows: T[] } | { ok: false }> {
+  if (!learners) {
+    const { data, error } = await read(null);
+    if (error) return { ok: false };
+    return { ok: true, rows: (data as T[]) || [] };
+  }
+  const rows: T[] = [];
+  for (const part of chunkIds(learners)) {
+    const { data, error } = await read(part);
+    if (error) return { ok: false };
+    rows.push(...((data as T[]) || []));
+  }
+  return { ok: true, rows };
+}
+
 interface ReviewBody {
   kind?: "transfer_item" | "production";
   learnerId?: string;
@@ -316,10 +369,20 @@ export async function POST(req: NextRequest) {
 
   const svc = graphService();
 
+  // A decision is a write on another learner's record, so it takes the
+  // same scope the queue takes. Scoping the read alone left a reviewer
+  // able to decide on work they can no longer see (Bucket critic C24).
+  const scope = await reviewerScope(reviewer);
+  if (!scope.ok) return bad(500, "read_failed");
+  const mayDecideFor = (learner: string): boolean => scope.learners === null || scope.learners.includes(learner);
+
   if (body.kind === "transfer_item") {
     const learnerId = (body.learnerId || "").trim();
     const nodeId = (body.nodeId || "").trim();
     if (!learnerId || !nodeId) return bad(400, "learnerId and nodeId are required");
+    // Out of scope answers the same 404 a missing hold does, so a
+    // reviewer cannot map the graph's learners by probing.
+    if (!mayDecideFor(learnerId)) return bad(404, "no_pending_transfer_item");
 
     const { data: existing, error: readErr } = await svc
       .from("learner_node_state")
@@ -363,6 +426,18 @@ export async function POST(req: NextRequest) {
 
   // kind === "production" (bkt-ros, ros-06 item 3, the accept path)
   const productionId = (body.productionId || "").trim();
+  // The production's own learner decides whether this reviewer may act.
+  // Read before the row is loaded for the decision, and answered as
+  // not-found so the id itself discloses nothing.
+  if (productionId && scope.learners !== null) {
+    const { data: owner, error: ownerErr } = await svc
+      .from("productions")
+      .select("learner_id")
+      .eq("id", productionId)
+      .maybeSingle();
+    if (ownerErr) return bad(500, "read_failed");
+    if (!owner || !mayDecideFor((owner as { learner_id: string }).learner_id)) return bad(404, "production_not_found");
+  }
   if (!productionId) return bad(400, "productionId is required");
 
   const { data: production, error: prodErr } = await svc

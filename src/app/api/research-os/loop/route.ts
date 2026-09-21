@@ -53,7 +53,14 @@ export async function GET(req: NextRequest) {
       access: { owned: ownedRes.count ?? 0, imports: importsRes.count ?? 0, pendingRequests: requestsRes.count ?? 0 },
       awareness: { opened: states.length, atLeastAwareness: atLeast("awareness") },
       understanding: { nodes: atLeast("understanding"), decksStarted: decks },
-      internalization: { nodes: atLeast("internalization"), held: connections.held.length, bridges: connections.bridges.length, nextBridge: connections.bridges[0]?.next ?? null },
+      // An access-store failure leaves the connection counts unknown. Zero
+      // would read as a learner with nothing connected (Bucket critic C25).
+      internalization: {
+        nodes: atLeast("internalization"),
+        ...("unavailable" in connections && connections.unavailable
+          ? { held: null, bridges: null, nextBridge: null, connectionsUnavailable: true }
+          : { held: connections.held.length, bridges: connections.bridges.length, nextBridge: connections.bridges[0]?.next ?? null }),
+      },
       production: {
         drafts: byStatus("draft"),
         submitted: byStatus("submitted"),

@@ -397,6 +397,74 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     assert.deepEqual(seen.sort(), [`${token} public idea`], "a cookie carrying nothing valid sees the public graph alone");
   });
 
+  await t.test("the review queue and its decisions are scoped to a reviewer's classes", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const review = require("../src/app/api/research-os/review/route") as {
+      GET: (req: NextRequest) => Promise<Response>;
+      POST: (req: NextRequest) => Promise<Response>;
+    };
+
+    const outsider = await makeLearner("outsider");
+    const teacher = await makeLearner("teacher");
+    learners.push(outsider.id, teacher.id);
+    const klass = randomUUID();
+    const insideProduction = randomUUID();
+    const outsideProduction = randomUUID();
+
+    sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Scope fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values
+        ('${klass}', '${teacher.id}', 'teacher'),
+        ('${klass}', '${grantee.id}', 'learner');
+      insert into graph.productions (id, learner_id, target_node_id, kind, claim, status) values
+        ('${insideProduction}', '${grantee.id}', '${publicNode}', 'production', 'a claim from inside the class', 'submitted'),
+        ('${outsideProduction}', '${outsider.id}', '${publicNode}', 'production', 'a claim from outside it', 'submitted');
+    `);
+
+    const read = async (token: string) => {
+      const res = await review.GET(new NextRequest("http://127.0.0.1/api/research-os/review", {
+        headers: { authorization: `Bearer ${token}` },
+      }));
+      const json = (await res.json()) as { productions?: { id: string }[] };
+      return { status: res.status, ids: (json.productions || []).map((p) => p.id) };
+    };
+
+    try {
+      // The class teacher sees the learner in their class and nobody else.
+      const scoped = await read(teacher.token);
+      assert.equal(scoped.status, 200, `the teacher reads the queue: ${scoped.status}`);
+      assert.ok(scoped.ids.includes(insideProduction), "their own class is in the queue");
+      assert.ok(!scoped.ids.includes(outsideProduction), "another class's learner is not");
+
+      // A decision on a production outside the class answers as missing.
+      const denied = await review.POST(new NextRequest("http://127.0.0.1/api/research-os/review", {
+        method: "POST",
+        headers: { authorization: `Bearer ${teacher.token}`, "content-type": "application/json" },
+        body: JSON.stringify({ kind: "production", productionId: outsideProduction, decision: "approved" }),
+      }));
+      assert.equal(denied.status, 404, `an out-of-scope decision is refused: ${denied.status}`);
+      const untouched = sql(`select status from graph.productions where id = '${outsideProduction}'`);
+      assert.equal(untouched.out, "submitted", "the refused production did not move");
+
+      // The same teacher may decide inside their own class.
+      const allowed = await review.POST(new NextRequest("http://127.0.0.1/api/research-os/review", {
+        method: "POST",
+        headers: { authorization: `Bearer ${teacher.token}`, "content-type": "application/json" },
+        body: JSON.stringify({ kind: "production", productionId: insideProduction, decision: "returned", reason: "revise the second source" }),
+      }));
+      assert.equal(allowed.status, 200, `an in-scope decision lands: ${allowed.status} ${await allowed.text()}`);
+      const moved = sql(`select status from graph.productions where id = '${insideProduction}'`);
+      assert.equal(moved.out, "draft", "the returned production went back to draft");
+    } finally {
+      sql(`delete from graph.teacher_reviews where production_id in ('${insideProduction}', '${outsideProduction}');
+           delete from graph.productions where id in ('${insideProduction}', '${outsideProduction}');
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';
+           delete from graph.learner_node_state where learner_id in ('${outsider.id}', '${teacher.id}');`);
+    }
+  });
+
   await t.test("an unverified token reads as anonymous rather than as its claim", async () => {
     const res = await get(search.GET, `q=${token}`, "not-a-real-token");
     assert.equal(res.status, 200);
