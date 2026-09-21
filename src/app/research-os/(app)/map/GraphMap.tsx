@@ -39,7 +39,12 @@ const branchLabel = (id: string) => id.replace(/^\d+-/, "").replace(/-/g, " ");
 const SOURCE_OF: Record<string, string> = {
   academy_atom: "atoms",
   seed: "atoms",
-  canon_claim: "claims",
+  // A transcript card is a source excerpt, out of canon by the founder's
+  // decision of 2026-09-21, so it gets its own filter rather than sitting
+  // under claims. `canon_claim` stays until the hosted graph takes the
+  // migration that renames it, and both answer the same group.
+  source_excerpt: "excerpts",
+  canon_claim: "excerpts",
   canon_concept: "claims",
   canon_bridge: "claims",
   canon_entry: "papers",
@@ -51,7 +56,7 @@ const SOURCE_OF: Record<string, string> = {
   import: "productions",
 };
 const SOURCE_STROKE: Record<string, string> = { atoms: "var(--basalt-3)", claims: "var(--aegean-deep)", papers: "var(--gold-deep)", figures: "var(--laurel-deep)", productions: "var(--crimson)" };
-const SOURCES = ["atoms", "claims", "papers", "figures", "productions"] as const;
+const SOURCES = ["atoms", "claims", "excerpts", "papers", "figures", "productions"] as const;
 const PRODUCTION_KINDS = new Set(["production", "extension", "replication", "peer_review", "hypothesis"]);
 const sourceOf = (n: GNode) => SOURCE_OF[n.source] ?? (PRODUCTION_KINDS.has(n.kind) || n.source === "import" ? "productions" : "atoms");
 
