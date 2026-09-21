@@ -882,6 +882,120 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     }
   });
 
+  await t.test("every read behind the loop is an outage when it fails", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const loop = require("../src/app/api/research-os/loop/route") as { GET: (req: NextRequest) => Promise<Response> };
+
+    const call = async () => {
+      const res = await loop.GET(new NextRequest("http://127.0.0.1/api/research-os/loop", {
+        headers: { authorization: `Bearer ${grantee.token}` },
+      }));
+      return { status: res.status, json: (await res.json().catch(() => ({}))) as Record<string, unknown> };
+    };
+
+    assert.equal((await call()).status, 200, "the loop answers when its reads work");
+
+    // Seven reads feed this response and each one used to fail its own
+    // way. A head count resolves with {count: null, error} and never
+    // threw; the academy read was caught and answered zero, which also
+    // flipped `empty` and showed the first-run screen to a learner who
+    // had started a deck (Bucket critic C58, C70, C74).
+    const tables = ["graph.access_requests", "graph.imports", "bucket.academy_progress", "graph.productions"];
+    for (const table of tables) {
+      try {
+        requireLoopback();
+        const revoked = sql(`revoke select on ${table} from service_role;`);
+        assert.equal(revoked.status, 0, revoked.out);
+        const res = await call();
+        assert.equal(res.status, 503, `a failed read of ${table} is an outage: ${res.status} ${JSON.stringify(res.json).slice(0, 90)}`);
+        assert.equal(res.json.error, "loop_unavailable", `and ${table} says so`);
+        assert.equal(res.json.empty, undefined, `no first-run screen is served from a failed read of ${table}`);
+      } finally {
+        sql(`grant select on ${table} to service_role;`);
+      }
+    }
+    assert.equal((await call()).status, 200, "and the loop answers again once the reads work");
+  });
+
+  await t.test("an assignment list is refused when the assignments themselves cannot be read", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const classDb = require("../src/lib/research-os/class-db") as {
+      listAssignmentsForLearner: (id: string) => Promise<{ ok: true; assignments: unknown[] } | { ok: false; reason: string }>;
+    };
+
+    const teacher = await makeLearner("asgread-teacher");
+    learners.push(teacher.id);
+    const klass = randomUUID();
+    const seeded = sql(`
+      insert into graph.classes (id, name, reviewer_email, created_by)
+        values ('${klass}', 'Assignment read fixture', '${teacher.email}', '${teacher.id}');
+      insert into graph.class_members (class_id, learner_id, role) values
+        ('${klass}', '${teacher.id}', 'teacher'),
+        ('${klass}', '${grantee.id}', 'learner');
+      insert into graph.assignments (class_id, target_node_id, assigned_by, title)
+        values ('${klass}', '${publicNode}', '${teacher.id}', 'read the public one');
+      select 'seeded';
+    `);
+    assert.equal(seeded.status, 0, seeded.out);
+
+    try {
+      const listed = await classDb.listAssignmentsForLearner(grantee.id);
+      assert.equal(listed.ok, true, "the list comes back when the read works");
+
+      // The read that feeds the whole function sat six lines above reads
+      // that refuse the list, and it answered an empty list on an
+      // outage: a hidden assignment is a missed obligation
+      // (Bucket critic C71).
+      requireLoopback();
+      sql(`revoke select on graph.assignments from service_role;`);
+      const outage = await classDb.listAssignmentsForLearner(grantee.id);
+      assert.equal(outage.ok, false, "an outage is not a learner with no assignments");
+      assert.equal(outage.ok === false && outage.reason, "unavailable");
+    } finally {
+      sql(`grant select on graph.assignments to service_role;
+           delete from graph.assignments where class_id = '${klass}';
+           delete from graph.class_members where class_id = '${klass}';
+           delete from graph.classes where id = '${klass}';`);
+    }
+  });
+
+  await t.test("a class grid carries every learner in it, past the chunk bound", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const db = require("../src/lib/research-os/db") as {
+      IN_CHUNK: number;
+      loadLearnerStatesForMany: (learnerIds: string[], nodeIds: string[]) => Promise<Map<string, unknown[]>>;
+    };
+
+    const tag = `grid-${Date.now().toString(36)}`;
+    // One more learner than a chunk holds. Slicing to the first chunk
+    // dropped everyone past it out of the teacher grid while the same
+    // response reported the true total (Bucket critic C63, C72).
+    const COUNT = db.IN_CHUNK + 1;
+    const ids: string[] = [];
+    for (let i = 0; i < COUNT; i += 1) ids.push(randomUUID());
+
+    try {
+      const values = ids.map((id) => `('${id}', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', '${tag}-${id}@bucket.test')`).join(",");
+      const seeded = sql(`
+        insert into auth.users (id, instance_id, aud, role, email) values ${values};
+        insert into graph.learner_node_state (learner_id, node_id, stage)
+          select id, '${publicNode}', 'understanding' from auth.users where email like '${tag}-%';
+        select 'seeded';
+      `);
+      assert.equal(seeded.status, 0, seeded.out);
+
+      const grid = await db.loadLearnerStatesForMany(ids, [publicNode]);
+      assert.equal(grid.size, COUNT, `every learner is in the grid, not the first ${db.IN_CHUNK}: ${grid.size}`);
+      for (const id of [ids[0], ids[db.IN_CHUNK - 1], ids[COUNT - 1]]) {
+        assert.equal((grid.get(id) || []).length, 1, `the learner at the boundary carries their state: ${id}`);
+      }
+    } finally {
+      const list = ids.map((id) => `'${id}'`).join(",");
+      sql(`delete from graph.learner_node_state where learner_id in (${list});
+           delete from auth.users where id in (${list});`);
+    }
+  });
+
   await t.test("an unverified token reads as anonymous rather than as its claim", async () => {
     const res = await get(search.GET, `q=${token}`, "not-a-real-token");
     assert.equal(res.status, 200);

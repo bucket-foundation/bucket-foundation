@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSession } from "@/providers/SessionProvider";
@@ -72,8 +73,7 @@ async function load<T>(url: string, headers: Record<string, string>): Promise<Lo
   try {
     const res = await fetch(url, { headers, cache: "no-store" });
     if (!res.ok) {
-      const body = (await res.json().catch(() => ({}))) as { error?: string };
-      return { state: "error", status: res.status, code: body.error ?? null };
+      return { state: "error", status: res.status, code: await readErrorCode(res) };
     }
     return { state: "ready", value: (await res.json()) as T };
   } catch {
@@ -82,13 +82,10 @@ async function load<T>(url: string, headers: Record<string, string>): Promise<Lo
 }
 
 function Unavailable({ status, code, retry }: { status: number; code?: string | null; retry: () => void }) {
-  // A 503 carrying access_unavailable is an outage that passes. Reading it
-  // as an unconfigured deployment told the learner their install was
-  // broken and offered nothing to do about it (Bucket critic C44).
-  if (code === "access_unavailable") {
-    return <ErrorState title="Permissions are unavailable right now" body="The server could not check what you may read. Try again in a moment." retry={retry} />;
+  if (isTransientOutage(status, code ?? null)) {
+    return <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={retry} />;
   }
-  if (status === 503) return <ErrorState title="Research OS is unavailable on this deployment" body="The graph database is not configured here." />;
+  if (status === 503) return <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />;
   if (status === 401) return <ErrorState title="Your session ended" body="Sign in again to continue." />;
   return <ErrorState body={status ? `The server answered ${status}.` : "The request did not reach the server."} retry={retry} />;
 }

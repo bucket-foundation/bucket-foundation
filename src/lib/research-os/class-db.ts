@@ -115,13 +115,27 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
   const memberships = await loadMemberships(learnerId);
   const classIds = Array.from(new Set(memberships.map((m) => m.classId)));
   if (classIds.length === 0) return { ok: true, assignments: [] };
-  const { data: rows } = await svc
-    .from("assignments")
-    .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
-    .in("class_id", classIds)
-    .is("closed_at", null)
-    .order("created_at", { ascending: false });
-  const assignments = ((rows as AssignmentRow[]) || []).map(assignmentFromRow);
+  // This read feeds the whole function, and it discarded its error and
+  // never paged: an outage rendered "No assignments yet" and a class
+  // past a thousand open assignments lost the remainder, both with no
+  // sign (Bucket critic C71, C77).
+  let rows: AssignmentRow[];
+  try {
+    rows = await inChunks<AssignmentRow>(classIds, (chunk, page) =>
+      svc
+        .from("assignments")
+        .select("id,class_id,target_node_id,assigned_by,title,instructions,due_at,required,requires_production,closed_at,created_at")
+        .in("class_id", chunk)
+        .is("closed_at", null)
+        .order("created_at", { ascending: false })
+        .order("id")
+        .range(page.from, page.to) as unknown as Promise<{ data: AssignmentRow[] | null; error: { message: string } | null }>,
+    );
+  } catch (err) {
+    console.error("[research-os] assignment read failed:", err instanceof Error ? err.message : err);
+    return { ok: false, reason: "unavailable" };
+  }
+  const assignments = rows.map(assignmentFromRow);
   if (assignments.length === 0) return { ok: true, assignments: [] };
   const nodeIds = Array.from(new Set(assignments.map((a) => a.targetNodeId)));
   // Every one of these reads used to discard its error and go unchunked.
@@ -147,7 +161,7 @@ export async function listAssignmentsForLearner(learnerId: string): Promise<Lear
         svc.from("learner_node_state").select("node_id,stage").eq("learner_id", learnerId).in("node_id", chunk).order("node_id").range(page.from, page.to) as unknown as Promise<{ data: { node_id: string; stage: Stage }[] | null; error: { message: string } | null }>,
       ),
       inChunks<{ target_node_id: string; status: string }>(nodeIds, (chunk, page) =>
-        svc.from("productions").select("target_node_id,status").eq("learner_id", learnerId).in("target_node_id", chunk).order("target_node_id").order("status").range(page.from, page.to) as unknown as Promise<{ data: { target_node_id: string; status: string }[] | null; error: { message: string } | null }>,
+        svc.from("productions").select("id,target_node_id,status").eq("learner_id", learnerId).in("target_node_id", chunk).order("target_node_id").order("id").range(page.from, page.to) as unknown as Promise<{ data: { target_node_id: string; status: string }[] | null; error: { message: string } | null }>,
       ),
     ]);
   } catch (err) {

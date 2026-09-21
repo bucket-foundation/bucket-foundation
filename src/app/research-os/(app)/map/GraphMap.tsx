@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -108,8 +109,7 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
           setData((await r.json()) as GraphData);
           return;
         }
-        const body = (await r.json().catch(() => ({}))) as { error?: string };
-        setCode(body.error ?? null);
+        setCode(await readErrorCode(r));
       })
       .catch(() => alive && setStatus(0));
     return () => {
@@ -221,10 +221,10 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
 
       {status === null ? (
         <LoadingState label="Laying out the branch" />
-      ) : status === 503 && code && code !== "research_os_unavailable" ? (
-        <ErrorState title="The branch could not be read" body="The server could not finish reading it. Try again in a moment." retry={() => location.reload()} />
+      ) : isTransientOutage(status, code) ? (
+        <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={() => location.reload()} />
       ) : status === 503 ? (
-        <ErrorState title="Research OS is unavailable on this deployment" />
+        <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />
       ) : !data || !layout ? (
         <ErrorState body="Could not load the branch." />
       ) : (

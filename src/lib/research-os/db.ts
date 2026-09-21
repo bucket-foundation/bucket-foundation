@@ -370,8 +370,17 @@ export async function loadLearnerStatesForMany(learnerIds: string[], nodeIds: st
   const svc = graphService();
   let data: (StateRow & { learner_id: string })[];
   try {
-    const learners = learnerIds.slice(0, IN_CHUNK);
-    data = await inChunks<StateRow & { learner_id: string }>(nodeIds, (chunk, page) => svc.from("learner_node_state").select("learner_id,node_id,stage,confidence,updated_at").in("learner_id", learners).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: (StateRow & { learner_id: string })[] | null; error: { message: string } | null }>);
+    // Both lists are chunked. Taking the first IN_CHUNK learners dropped
+    // everyone past sixty out of the teacher grid with no total to
+    // compare against, which is the defect fixed one file over in
+    // /graph's heatmap and left here (Bucket critic C72).
+    data = [];
+    for (let i = 0; i < learnerIds.length; i += IN_CHUNK) {
+      const learners = learnerIds.slice(i, i + IN_CHUNK);
+      data.push(
+        ...(await inChunks<StateRow & { learner_id: string }>(nodeIds, (chunk, page) => svc.from("learner_node_state").select("learner_id,node_id,stage,confidence,updated_at").in("learner_id", learners).in("node_id", chunk).order("learner_id").order("node_id").range(page.from, page.to) as unknown as Promise<{ data: (StateRow & { learner_id: string })[] | null; error: { message: string } | null }>)),
+      );
+    }
   } catch (err) {
     throw new Error(`loadLearnerStatesForMany: query failed: ${err instanceof Error ? err.message : String(err)}`);
   }

@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BTN_PRIMARY, ErrorState, LoadingState } from "@/components/ui";
@@ -33,8 +34,7 @@ export default function LoopPanel() {
           setLoop((await r.json()) as Loop);
           return;
         }
-        const body = (await r.json().catch(() => ({}))) as { error?: string };
-        setCode(body.error ?? null);
+        setCode(await readErrorCode(r));
       })
       .catch(() => alive && setStatus(0));
     return () => {
@@ -43,10 +43,10 @@ export default function LoopPanel() {
   }, []);
 
   if (status === null) return <LoadingState label="Reading your loop" />;
-  if (status === 503 && code && code !== "research_os_unavailable") {
-    return <ErrorState title="Your loop could not be read" body="The server could not finish reading it. Try again in a moment." retry={() => location.reload()} />;
+  if (isTransientOutage(status, code)) {
+    return <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={() => location.reload()} />;
   }
-  if (status === 503) return <ErrorState title="Research OS is unavailable on this deployment" />;
+  if (status === 503) return <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />;
   if (!loop) return <ErrorState body="Could not read your loop." />;
 
   if (loop.empty) {

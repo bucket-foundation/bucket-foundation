@@ -6,7 +6,7 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { canAssign, canOverride, overrideEvent, reviewsForClass, rolesIn, runsClass, validateOverride, visibleLearnerIds, type Membership } from "../src/lib/research-os/roles";
-import { assignmentStatus, firstOpenTarget, targetIsLinkable, validateAssignment, type Assignment } from "../src/lib/research-os/assignments";
+import { assignmentStatus, assignmentTargetHref, firstOpenTarget, targetIsLinkable, validateAssignment, type Assignment } from "../src/lib/research-os/assignments";
 
 const learners = ["l1", "l2", "l3"];
 
@@ -113,4 +113,18 @@ test("a readable target is linkable and a withheld one is not", () => {
   assert.equal(targetIsLinkable({ targetSlug: "why-the-sky-is-blue", targetHidden: true }), false);
   assert.equal(targetIsLinkable({ targetSlug: "", targetHidden: false }), false);
   assert.equal(targetIsLinkable({}), false, "a row missing both fields links nowhere");
+});
+
+test("the href carries both halves of the rule, so neither can be dropped", () => {
+  // targetIsLinkable and assignmentTargetHref are separate exports, and
+  // a mutation of the href's own check restored the full withheld-target
+  // link with every predicate test still green (Bucket critic C74).
+  assert.equal(assignmentTargetHref({ targetSlug: "why-the-sky-is-blue", targetHidden: false }), "/research-os/workspace?target=why-the-sky-is-blue");
+  assert.equal(assignmentTargetHref({ targetSlug: "why-the-sky-is-blue", targetHidden: true }), null, "a withheld target gets no link");
+  assert.equal(assignmentTargetHref({ targetSlug: "", targetHidden: false }), null, "and neither does a blank slug");
+  assert.equal(assignmentTargetHref({}), null);
+});
+
+test("the href escapes what it puts in the query", () => {
+  assert.equal(assignmentTargetHref({ targetSlug: "a b&c", targetHidden: false }), "/research-os/workspace?target=a%20b%26c");
 });

@@ -18,17 +18,24 @@ export const dynamic = "force-dynamic";
 const NO_STORE = { headers: { "cache-control": "no-store" } };
 const bad = (status: number, error: string) => NextResponse.json({ error }, { status, ...NO_STORE });
 
+/**
+ * Decks the learner has started, from the Academy schema.
+ *
+ * The error was discarded and the catch answered 0, so a failed read
+ * reported no decks and flipped `empty`, showing the first-run screen to
+ * a learner whose only work is a started deck (Bucket critic C70). A
+ * stack with no Academy configured is a different fact and still
+ * answers 0.
+ */
 async function learnDecksStarted(userId: string): Promise<number> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return 0;
-  try {
-    const svc = createClient(url, key, { db: { schema: "bucket" }, auth: { persistSession: false, autoRefreshToken: false } });
-    const { data } = await svc.from("academy_progress").select("branch,data").eq("user_id", userId);
-    return ((data as { data: { cards?: Record<string, unknown> } }[]) || []).filter((r) => Object.keys(r.data?.cards ?? {}).length > 0).length;
-  } catch {
-    return 0;
-  }
+  const svc = createClient(url, key, { db: { schema: "bucket" }, auth: { persistSession: false, autoRefreshToken: false } });
+  const rows = await pagedRead<{ data: { cards?: Record<string, unknown> } }>((page) =>
+    svc.from("academy_progress").select("branch,data").eq("user_id", userId).order("branch").range(page.from, page.to) as unknown as Promise<{ data: { data: { cards?: Record<string, unknown> } }[] | null; error: { message: string } | null }>,
+  );
+  return rows.filter((r) => Object.keys(r.data?.cards ?? {}).length > 0).length;
 }
 
 /**

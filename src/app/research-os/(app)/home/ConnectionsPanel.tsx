@@ -1,5 +1,6 @@
 "use client";
 
+import { OUTAGE_COPY, UNCONFIGURED_COPY, isTransientOutage, readErrorCode } from "@/lib/research-os/outage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { EmptyState, ErrorState, LoadingState, Panel } from "@/components/ui";
@@ -22,6 +23,7 @@ const KIND: Record<string, string> = { derives_from: "derives from", generalizes
 export default function ConnectionsPanel() {
   const [data, setData] = useState<Data | null>(null);
   const [status, setStatus] = useState<number | null>(null);
+  const [errorCode, setErrorCode] = useState<string | null>(null);
 
   useEffect(() => {
     let alive = true;
@@ -29,6 +31,7 @@ export default function ConnectionsPanel() {
       .then(async (r) => {
         if (!alive) return;
         setStatus(r.status);
+        if (!r.ok) setErrorCode(await readErrorCode(r));
         if (r.ok) setData((await r.json()) as Data);
       })
       .catch(() => alive && setStatus(0));
@@ -41,8 +44,10 @@ export default function ConnectionsPanel() {
     <Panel title="across branches" meta={data ? `${data.held.length} held · ${data.bridges.length} one step away` : undefined}>
       {status === null ? (
         <LoadingState />
+      ) : isTransientOutage(status, errorCode) ? (
+        <ErrorState title={OUTAGE_COPY.title} body={OUTAGE_COPY.body} retry={() => location.reload()} />
       ) : status === 503 ? (
-        <ErrorState title="Research OS is unavailable on this deployment" />
+        <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />
       ) : !data ? (
         <ErrorState body="Could not load your connections." />
       ) : data.held.length === 0 && data.bridges.length === 0 ? (
