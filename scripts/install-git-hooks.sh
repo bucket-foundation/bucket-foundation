@@ -13,8 +13,19 @@ set -euo pipefail
 
 TOP="$(git rev-parse --show-toplevel)"
 HOOKS="$(git config --get core.hooksPath || true)"
+SHARED=""
 if [[ -z "$HOOKS" ]]; then
   HOOKS="$(git rev-parse --git-common-dir)/hooks"
+elif [[ "${HOOKS/#\~/$HOME}" != "$TOP"/* ]]; then
+  SHARED="yes"
+fi
+# A shared hooks directory serves every repository on the machine, so an
+# npm install in this one does not write there. AGF_INSTALL_HOOKS=1 asks
+# for it, which is what running this script by hand means.
+if [[ -n "$SHARED" && -z "${AGF_INSTALL_HOOKS:-}" && -n "${npm_lifecycle_event:-}" ]]; then
+  echo "core.hooksPath is $HOOKS, shared with other repositories; leaving it alone."
+  echo "To install the pre-push check there: AGF_INSTALL_HOOKS=1 bash scripts/install-git-hooks.sh"
+  exit 0
 fi
 HOOKS="${HOOKS/#\~/$HOME}"
 [[ "$HOOKS" = /* ]] || HOOKS="$TOP/$HOOKS"

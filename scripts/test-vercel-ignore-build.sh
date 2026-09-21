@@ -130,17 +130,31 @@ run_case "first deployment with no way to fetch dev builds" build \
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 
-run_case "dev with no previous sha skips a docs-only merge from the clone" skip \
+run_case "dev with no previous sha skips a docs-only squash merge from the clone" skip \
+  "VERCEL_GIT_COMMIT_REF=dev" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes (#200)" \
+  "VERCEL_GIT_PREVIOUS_SHA=" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
+run_case "dev with no previous sha builds a site squash merge from the clone" build \
+  "VERCEL_GIT_COMMIT_REF=dev" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): a page (#201)" \
+  "VERCEL_GIT_PREVIOUS_SHA=" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
+# One parent covers one commit, so a plain push to dev, which can carry
+# several, builds instead of trusting it.
+run_case "dev with no previous sha builds a plain docs commit" build \
   "VERCEL_GIT_COMMIT_REF=dev" \
   "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
 
-run_case "dev with no previous sha builds a site merge from the clone" build \
-  "VERCEL_GIT_COMMIT_REF=dev" \
-  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): a page" \
+run_case "main with no previous sha builds a plain docs commit" build \
+  "VERCEL_GIT_COMMIT_REF=main" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
   "VERCEL_GIT_PREVIOUS_SHA=" \
-  "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
 
 run_case "a squash body carrying [skip ci] lines still builds a site change" build \
   "VERCEL_GIT_COMMIT_REF=dev" \
@@ -340,18 +354,18 @@ run_case "shallow clone: first deployment, a site change beside dev, builds" bui
 # is what a skip produces, so the every-other-merge case is the one that
 # leaked before 2026-09-21: the gate falls back to the commit's own parent.
 shallow_clone "$SHA_DOCS"
-run_case "shallow clone: dev with no previous sha skips a docs-only merge" skip \
+run_case "shallow clone: dev with no previous sha skips a docs-only squash merge" skip \
   "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
   "VERCEL_GIT_COMMIT_REF=dev" \
-  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs: add research notes (#200)" \
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
 
 shallow_clone "$SHA_SITE"
-run_case "shallow clone: dev with no previous sha builds a site merge" build \
+run_case "shallow clone: dev with no previous sha builds a site squash merge" build \
   "VERCEL_IGNORE_FETCH_URL=file://$REPO" \
   "VERCEL_GIT_COMMIT_REF=dev" \
-  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): a page" \
+  "VERCEL_GIT_COMMIT_MESSAGE=feat(site): a page (#201)" \
   "VERCEL_GIT_PREVIOUS_SHA=" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 

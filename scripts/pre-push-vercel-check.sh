@@ -13,8 +13,9 @@
 # the commit being pushed, and a base. On a feature branch the base is its
 # merge base with origin/dev, so every site change the branch carries counts:
 # Vercel compares with the last successful deployment, which after a failed
-# build lies further back than the remote's tip. On dev and main there is no
-# base, so the gate answers build unless the message or branch skips.
+# build lies further back than the remote's tip. On dev and main no base is
+# passed, and the gate falls back to the pushed commit's first parent when
+# that commit is a merge or a squash merge.
 #
 # Lint and the type check read the working tree, so they vouch for the
 # pushed commit only when HEAD is that commit and no file they read differs
@@ -45,7 +46,10 @@ while read -r local_ref local_sha remote_ref remote_sha; do
   branch="${remote_ref#refs/heads/}"
   message="$(git log -1 --format=%B "$local_sha")"
   if [[ "$branch" == "dev" || "$branch" == "main" ]]; then
+    # The remote's current tip is exactly what this push adds to, which is
+    # a better base than the gate's own fallback and is known here.
     base=""
+    [[ "$remote_sha" != "$ZERO" ]] && base="$remote_sha"
   else
     base="$(git merge-base "$local_sha" origin/dev 2>/dev/null || true)"
   fi
