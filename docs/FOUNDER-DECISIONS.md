@@ -21,4 +21,12 @@ Open decisions only you can make, what each one blocks, and what the loop does w
 
 ## How a row closes
 
-Answer it in a session, or write the answer into the row. The loop reads this file at the start of a task, and an item whose decision is open cannot sit in the MVP stage of `learning/research-os/ROADMAP.md`.
+Answer it in a session, or write the answer into the row. The loop reads this file at the start of a task, and an item whose decision is open cannot sit in the MVP stage of `learning/research-os/ROADMAP.md`. An answered one moves into Decisions made on the same pass, because a decision nobody can see gets made twice.
+
+## Decisions made
+
+A ruling given in one session is invisible to every other one. On 2026-09-21 two sessions built competing fixes for the same problem, four hours apart, because the answer lived in one transcript. Whoever receives a ruling writes it here the moment it lands, before starting the work.
+
+| Date | Decision | Asked in | Carried by |
+|---|---|---|---|
+| 2026-09-21 | The 599 transcript cards under `bucket-canon/*/sub-claims/` are source excerpts and out of canon. They keep citing their video and timestamp, they move from `/canon/claims` to `/excerpts`, their graph kind is `excerpt` and their provenance type is `source_excerpt`. A card rejoins canon when it names its foundation and a person promotes it | the `bkt-nuc` session, as a posed question | #208, with the map filter in #195 and the promotion gate held on `fix/canon-claims-promotion-gate` until the first card is curated |
