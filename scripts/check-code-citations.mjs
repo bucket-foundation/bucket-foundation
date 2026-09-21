@@ -86,7 +86,10 @@ function fencedLines(text) {
   const inFence = new Set();
   let open = false;
   text.split("\n").forEach((line, i) => {
-    if (/^\s*```/.test(line)) {
+    // CommonMark allows a tilde fence as well as a backtick one, and a
+    // checker that only knows backticks reads a tilde-fenced example as
+    // a claim about the code.
+    if (/^\s*(```|~~~)/.test(line)) {
       open = !open;
       inFence.add(i + 1);
       return;
