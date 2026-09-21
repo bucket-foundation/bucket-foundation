@@ -95,6 +95,8 @@ Third, the grade attaches to a body of evidence for an outcome, and an expert's 
 
 GRADE also collapses rungs when a user cannot tell them apart: "Some of the organisations using the GRADE system have chosen to combine the low and very low categories."<!-- voice-ignore-line: verbatim quotation from Guyatt 2008 -->
 
+The Handbook's Table 5.1 restates the same four grades in terms of confidence in the estimate rather than in terms of what further research would do. High becomes "We are very confident that the true effect lies close to that of the estimate of the effect", and Very Low becomes "We have very little confidence in the effect estimate".<!-- voice-ignore-line: verbatim quotations from GRADE Handbook Table 5.1 --> The two framings pick out the same four rungs. The decision rules proposed below follow the Handbook's framing, because a rule about what is already known can be checked against the graph and a rule about what further research would do cannot.
+
 ### Stevens and Michell
 
 S. S. Stevens, "On the Theory of Scales of Measurement", Science 1946;103(2684):677-680. Stevens defines measurement at p.677: "measurement, in the broadest sense, is defined as the assignment of numerals to objects or events according to rules. The fact that numerals can be assigned under different rules leads to different kinds of scales and different kinds of measurement."<!-- voice-ignore-line: verbatim quotation from Stevens 1946 -->
@@ -111,14 +113,16 @@ What the pair settles for Bucket: a level is legitimate as an ordinal rank the m
 
 ### Popper
 
-Karl Popper, Logik der Forschung (Vienna: Julius Springer, 1935), English as The Logic of Scientific Discovery (London: Hutchinson, 1959). Section 6, "Falsifiability as a Criterion of Demarcation", at pp.17-18 of the Routledge Classics setting:
+Karl Popper, Logik der Forschung (Vienna: Julius Springer, 1935), English as The Logic of Scientific Discovery. Read in the Routledge Classics edition, 2002, ISBN 0-415-27844-9. Section 6, "Falsifiability as a Criterion of Demarcation", begins at p.17, and the criterion is stated at p.18:
 
 <!-- voice-ignore-next 6: verbatim quotation of Popper, section 6 -->
 > But I shall certainly admit a system as empirical or scientific only if it is capable of being tested by experience. These considerations suggest that not the verifiability but the falsifiability of a system is to be taken as a criterion of demarcation. In other words: I shall not require of a scientific system that it shall be capable of being singled out, once and for all, in a positive sense; but I shall require that its logical form shall be such that it can be singled out, by means of empirical tests, in a negative sense: it must be possible for an empirical scientific system to be refuted by experience.
 
 The asymmetry that forces the criterion sits on the same page: "Thus inference to theories, from singular statements which are 'verified by experience' (whatever that may mean), is logically inadmissible. Theories are, therefore, never empirically verifiable."<!-- voice-ignore-line: verbatim quotation of Popper, section 6 -->
 
-What it settles: falsifiability is a gate on the scale. A claim that no observation could refute takes no rung on an empirical scale at all. It can still take one on a derivational scale, which is how mathematics and logic get their standing.
+Popper's own name for what a surviving theory earns is the epigraph to Chapter 10, p.248: "Theories are not verifiable, but they can be 'corroborated'."<!-- voice-ignore-line: verbatim quotation of Popper, chapter 10 epigraph -->
+
+What it settles: falsifiability is a gate on the scale. A claim that no observation could refute takes no rung on an empirical scale at all. It can still take one on a derivational scale, which is how mathematics and logic get their standing. The `corroborated` rung below takes its name from p.248, and it carries Popper's meaning: a claim that has stood up to a test that could have refuted it.
 
 ### W3C PROV-O
 
@@ -394,7 +398,7 @@ These need a decision from you. I have not answered them.
 - Schünemann, H., Brożek, J., Guyatt, G., Oxman, A. (eds.) GRADE Handbook, 2013. Sections 5.1 through 5.4. gdt.gradepro.org/app/handbook/handbook.html
 - Stevens, S.S. On the Theory of Scales of Measurement. Science 1946;103(2684):677-680. doi:10.1126/science.103.2684.677. Table 1 at p.678.
 - Michell, J. Quantitative science and the definition of measurement in psychology. British Journal of Psychology 1997;88(3):355-383. doi:10.1111/j.2044-8295.1997.tb02641.x. Sections 1.4, 3.1 and 5.1.
-- Popper, K. Logik der Forschung. Vienna: Julius Springer, 1935. English: The Logic of Scientific Discovery. London: Hutchinson, 1959. Section 6, at pp.17-18 of the Routledge Classics setting.
+- Popper, K. Logik der Forschung. Vienna: Julius Springer, 1935. English: The Logic of Scientific Discovery. Read in the Routledge Classics edition, 2002, ISBN 0-415-27844-9. Section 6 at pp.17-18, and the Chapter 10 epigraph at p.248.
 - Lebo, T., Sahoo, S., McGuinness, D. (eds.) PROV-O: The PROV Ontology. W3C Recommendation, 30 April 2013. Sections 3.1 and 3.3. www.w3.org/TR/prov-o/
 - Clark, T., Ciccarese, P.N., Goble, C.A. Micropublications: a semantic model for claims, evidence, arguments and annotations in biomedical communications. Journal of Biomedical Semantics 2014;5:28. doi:10.1186/2041-1480-5-28.
 - Greenberg, S.A. How citation distortions create unfounded authority: analysis of a citation network. BMJ 2009;339:b2680. Cited here through Clark et al. 2014's account of it; the original was not read.

@@ -47,7 +47,13 @@ And the sharper form at p.28: "As common sense constructs, plans are a constitue
 
 The Abstract states the design consequence: "As common sense formulations designed to accomodate the unforseeable contingences of situated action, plans are inherently vague. Researchers interested in machine intelligence attempt to remedy the vagueness of plans, to make them the basis for artifacts intended to embody intelligent behavior."<!-- voice-ignore-line: verbatim quotation of Suchman ISL-6 abstract, spelling as printed -->
 
-The canoeist passage that circulates with Suchman's name appears in the 1987 Cambridge edition. The ISL-6 report read for this memo does not contain it, so it is not quoted here.
+The canoeist passage that circulates with Suchman's name is absent from ISL-6. It enters with the 1987 Cambridge edition, and Suchman gives its page herself when she answers Vera and Simon in the 2007 second edition, Chapter 5: "When it really comes down to the details of responding to the currents and handling a canoe, you effectively abandon the plan and fall back on whatever skills are available to you" (Suchman 1987: 52).<!-- voice-ignore-line: verbatim quotation of Suchman 2007 quoting Suchman 1987 -->
+
+Her correction in the same reply is the part worth building on: "the phrase 'effectively abandon' was an unfortunate one and legitimately prone to such a reading", and the sentence Vera and Simon omitted says what the plan was for: "The purpose of the plan in this case is not to get your canoe through the rapids, but rather to orient you in such a way that you can obtain the best possible position from which to use those embodied skills on which, in the final analysis, your success depends" (ibid.: 52).<!-- voice-ignore-line: verbatim quotations of Suchman 2007 chapter 5 -->
+
+The second edition's own formulation of the thesis, Chapter 6: "The alternative view is that plans are resources for situated action but do not in any strong sense determine its course."<!-- voice-ignore-line: verbatim quotation of Suchman 2007 chapter 6 -->
+
+A plan that positions a person to use a skill is what the routed chain is. `computeFrontier` in `src/lib/research-os/frontier.ts:139` returns a chain to a target and the learner walks it. The chain never runs the node for them.
 
 ### Hollnagel and Woods 1983
 
@@ -59,6 +65,8 @@ Erik Hollnagel and David D. Woods, "Cognitive Systems Engineering: New wine in n
 Hollnagel's own account of what the three themes were, on the same page: "coping with complexity, joint cognitive systems, and the use of tools/artefacts". And his diagnosis of why the dyadic frame fails, which is the reason this memo exists: "the focus on the interaction between humans and something, be it -machine, -computer, -environment or something else, reduced the problems to a dyadic relationship. This completely missed the point that we cannot really understand what takes place unless we adopt a genuine system perspective, hence look at the joint system, or the whole, rather than its parts."<!-- voice-ignore-line: verbatim quotations of Hollnagel's own retrospective -->
 
 On the two books that followed: "both referred to joint cognitive systems and thereby tried to make clear that it was the 'jointness' rather than the 'cognition' bit that was important."<!-- voice-ignore-line: verbatim quotation of Hollnagel's retrospective -->
+
+The phrase "joint cognitive system" is absent from the 1982 Risø report itself, checked by search over the report's text. It arrives with Hollnagel and Woods 2005. What the 1982 report gives is the claim the phrase later names: the operator and the machine each hold an image of the other, and the designer owes a match between them.
 
 The machine having an image of the operator is the part that matters most here. In Research OS the model is handed a grounding that says what the node means and what the learner has already covered. That grounding is the machine's image of the operator, and `buildGrounding` at `src/lib/research-os/grounding.ts:84` is where it is constructed, line by line.
 
@@ -268,8 +276,9 @@ The six Amershi violations are what that position costs today. Five of them are 
 
 - Licklider, J.C.R. Man-Computer Symbiosis. IRE Transactions on Human Factors in Electronics 1960;HFE-1:4-11. Sections 1.1, 1.2, 3.1 and 4. doi:10.1109/THFE2.1960.4503259
 - Engelbart, D.C. Augmenting Human Intellect: A Conceptual Framework. SRI Summary Report AFOSR-3223, October 1962. Contract AF 49(638)-1024, SRI Project 3578. Sections I.A.1, II.A and II.B. dougengelbart.org/content/view/138/
-- Suchman, L.A. Plans and Situated Actions: The Problem of Human-Machine Communication. Xerox PARC ISL-6, February 1985. Preface, Abstract, p.28 and Chapter 4 at p.35. Published as Cambridge University Press, 1987.
-- Hollnagel, E., Woods, D.D. Cognitive Systems Engineering: New wine in new bottles. International Journal of Man-Machine Studies 1983;18(6):583-600. doi:10.1016/s0020-7373(83)80034-0. First issued as Risø-M-2330, Risø National Laboratory, 1982. The introduction quoted above is reproduced by Hollnagel at erikhollnagel.com/ideas/cognitive-systems-engineering-1982; the journal article itself was not read.
+- Suchman, L.A. Plans and Situated Actions: The Problem of Human-Machine Communication. Xerox PARC ISL-6, Corporate Accession P85-00005, February 1985. Preface, Abstract, p.28 and Chapter 4 at p.35. Published as Cambridge University Press, 1987.
+- Suchman, L.A. Human-Machine Reconfigurations: Plans and Situated Actions, 2nd edition. Cambridge University Press, 2007. ISBN 0-521-85891-7. Chapters 5 and 6. The 1987 first edition's p.52 is cited here through Suchman's own quotation of it in Chapter 5.
+- Hollnagel, E., Woods, D.D. Cognitive Systems Engineering: New wine in new bottles. International Journal of Man-Machine Studies 1983;18(6):583-600. doi:10.1016/s0020-7373(83)80034-0. First issued as Risø-M-2330, Risø National Laboratory, February 1982, ISBN 87-550-0821-6, 41 pages. The introduction quoted above is reproduced by Hollnagel at erikhollnagel.com/ideas/cognitive-systems-engineering-1982; the journal article sits behind Elsevier's paywall and was not read. A scan of the 1982 report was searched to confirm that "joint cognitive system" is absent from it.
 - Hollnagel, E., Woods, D.D. Joint Cognitive Systems: Foundations of Cognitive Systems Engineering. Boca Raton: CRC Press, 2005. doi:10.1201/9781420038194. Cited for its title and thesis only; not read.
 - Shneiderman, B. Human-Centered Artificial Intelligence: Reliable, Safe & Trustworthy. International Journal of Human-Computer Interaction 2020;36(6):495-504. doi:10.1080/10447318.2020.1741118. Read in the arXiv:2002.04087 preprint; page numbers above are that preprint's.
 - Amershi, S., Weld, D., Vorvoreanu, M., Fourney, A., Nushi, B., Collisson, P., Suh, J., Iqbal, S., Bennett, P.N., Inkpen, K., Teevan, J., Kikin-Gil, R., Horvitz, E. Guidelines for Human-AI Interaction. CHI 2019, Glasgow, 4-9 May 2019, 13 pages. doi:10.1145/3290605.3300233. Table 1.
