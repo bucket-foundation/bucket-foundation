@@ -215,3 +215,25 @@ Patent retrieval is its own branch of information retrieval, and the methods tha
 The measurement tradition is the CLEF-IP campaigns, which evaluated retrieval systems on European patent data from 2009 onward ([CLEF-IP 2009 overview](https://doi.org/10.1007/978-3-642-15754-7_47); [the campaign in retrospect](https://doi.org/10.1007/978-3-662-53817-3_4)).
 
 That sets what ros-patents 3 builds and how it reports. Prior-art search over the imported slice ranks candidates by text, by embeddings, and by CPC overlap, and shows a researcher the ranked list with the reason each candidate appears. Its quality is measured the way the campaigns do, on citations the corpus already carries: hold out a patent's own backward citations, search from its claims, and report recall at 10, 50, and 100 over a sample, with the numbers written into this file. A number below what a professional search reaches is the expected result, and it is reported rather than hidden: the tool's job is to put candidates in front of a researcher who judges them.
+
+### Pledges and defensive publication
+
+Two ways exist to hold an invention open, and they differ in what they cost and what they bind.
+
+**A pledge keeps the patent and limits its enforcement.** De Rassenfosse and Palangkaraya studied over 1,200 patents pledged between 2005 and 2017, building a matched control group from the full text of patent documents and using difference-in-differences estimators for staggered adoption. Pledged patents received more citations afterwards, and the effect was strongest for the more open pledges and for the higher-quality and more novel patents ([Research Policy 52(8), 2023](https://doi.org/10.1016/j.respol.2023.104745)). A pledge needs a granted patent first, which needs filing fees, prosecution, and years.
+
+**A defensive publication files nothing and blocks the patent.** A disclosure published to a prior-art database is citable by examiners from its publication date, and it bars a later patent on the same idea by anyone, the discloser included. The venues are Research Disclosure, IP.com's Prior Art Database, and the Technical Disclosure Commons ([IP.com knowledge base](https://kb.ip.com/pad/knowledge-base/introduction-to-defensive-publishing-and-the-prior-art-database-pad/); [Technical Disclosure Commons](https://www.tdcommons.org/)). Those two are the platforms' own pages, so they state the service as its operators describe it.
+
+For Bucket the two fit differently. Bucket's work is publication, and its authors are paid per citation. A defensive publication is a production the graph can already hold: a dated document, with its own node and its links to the ideas it combines. A pledge would need Bucket to become a patent holder first, which its mission does not ask for.
+
+The cost of publishing is the one thing that cannot be undone. A disclosure ends novelty at once in Europe, and in the United States it starts a one-year grace period for the inventor's own filing. Anyone who might want to file has to decide before Bucket publishes, which is why a disclosure stays private to its author until the founder sets the stance (Slice 0, question 3).
+
+### What the memo settles
+
+- Patents belong near the graph's applied branches, and the first slice is biophysics, information, chemistry, and physics, by the CPC classes in the table above.
+- A `cites` edge records who added the citation, since examiners add most of them.
+- The patent-to-paper links Bucket builds follow the matched-link method: a match, a confidence score, and a hand-checked sample that reports coverage and accuracy.
+- A claim decomposes into elements against the graph, and the reviewer judges obviousness.
+- Prior-art search reports recall at 10, 50, and 100 against held-out citations, and shows its reasons.
+- Patent counts appear as counts of a named measure, never as a ranking of ideas.
+- Invention disclosure is the production kind that fits a nonprofit that publishes; it waits on the founder's stance.
