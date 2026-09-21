@@ -1,5 +1,15 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-20: the patents research memo
+
+What the prior work says about patents in discovery, and what it settles for Research OS.
+
+Branch `feat/ros-loop-patents-memo`, PR #189.
+
+### Added
+
+- The memo in `learning/research-os/PATENTS.md`: patent-to-science citation, claims and obviousness, the classification classes of the first slice, the limits of patent counts, how prior-art search reports its recall, and the place of defensive publication.
+
 ## 2026-09-19: patents in Research OS
 
 Patents in Research OS are designed, and the gateway findings went to the org repositories.
