@@ -2,6 +2,26 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-workbench 1: the research memo and design
+
+The prior work on compute shared across machines, notebooks, Python and R in the browser, statistics, machine learning, and LaTeX, checked against its sources, and a design that joins the node page, productions, imports, and the engine through one new object, the run.
+
+Date 2026-09-21. Branch `feat/ros-workbench-memo`, worktree `.wt-ros-workbench-1`, a draft PR into `dev`. Founder direction of 2026-09-18, recorded in the ros-workbench epic: people hook up their own machines as compute for their research, with statistics, machine learning, custom code, and LaTeX on top. The software atlas's directions (ros-workbench 0) are folded into the design.
+
+### Added
+
+- `learning/research-os/WORKBENCH.md`: what the repository holds for the workbench; the survey of volunteer and cluster computing, notebooks, in-browser runtimes, statistics and machine learning packages, LaTeX, sandboxes, and provenance standards, with a primary source beside each claim; the design, with the four integration paths, the run record, reproduction, the security model, failure and the owner's policy, what imports owe the workbench, the engine, the node page section, the atlas's directions, and the build order; and the claims left unverified.
+
+### Edited
+
+None.
+
+### Removed
+
+None.
+
+The memo owes a Research OS surface under the critic protocol's surface gate; ros-frontend carries it.
+
 ## ros-patents 1: the research memo
 
 The prior work on patents in discovery, checked against its sources, and the choices it settles for Research OS.
