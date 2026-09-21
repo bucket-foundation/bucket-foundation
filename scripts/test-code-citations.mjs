@@ -67,7 +67,7 @@ test("a citation naming a symbol that is nowhere near it fails", () => {
   const r = run(repo("The `farAway` helper is at `src/lib/widget.ts:3`.\n"));
   assert.equal(r.code, 1, r.out);
   assert.match(r.out, /symbol-not-there/);
-  assert.match(r.out, /is at line 16/, "and it says where the symbol really is");
+  assert.match(r.out, /is at line 16/, "and it says where the symbol is");
 });
 
 test("a line past the end of the file fails", () => {
@@ -88,7 +88,7 @@ test("an abbreviated path that resolves to one file passes", () => {
   assert.equal(r.code, 0, r.out);
 });
 
-test("a citation inside a fenced block is an illustration, not a claim", () => {
+test("a citation inside a fenced block is an illustration", () => {
   const r = run(repo("```\nsee src/lib/widget.ts:400 for the shape\n```\n"));
   assert.equal(r.code, 0, r.out);
 });
@@ -134,7 +134,7 @@ test("a symbol on the line above the citation is still checked", () => {
   assert.match(r.out, /symbol-not-there/);
 });
 
-test("a fence left open is a finding, never a silent skip", () => {
+test("a fence left open is its own finding", () => {
   // A bare toggle let a `~~~` line inside a backtick block close it, so
   // every citation below was skipped and the run printed success having
   // checked nothing (Bucket critic F-2).
@@ -206,4 +206,45 @@ test("the summary reports how many citations had a symbol to verify", () => {
   const r = run(repo(prose));
   assert.match(r.out, /2 code citation\(s\) checked/);
   assert.match(r.out, /0 with a named symbol/, "two paths on one line make the mapping ambiguous, so neither is symbol-checked");
+});
+
+test("a marker on the line exempts that citation and nothing else", () => {
+  const prose = [
+    "See `src/lib/widget.ts:400`.  <!-- cite-ignore-line: another repo -->",
+    "",
+    "And see `src/lib/widget.ts:401`.",
+    "",
+  ].join("\n");
+  const r = run(repo(prose));
+  assert.equal(r.code, 1, `the unmarked one is still checked: ${r.out}`);
+  assert.match(r.out, /widget\.ts:401/);
+  assert.ok(!r.out.includes("widget.ts:400"), "and the marked one is not reported");
+  assert.match(r.out, /1 code citation\(s\) checked/, "the marked one is not even counted");
+});
+
+test("a marker on the line above exempts the citation under it", () => {
+  const prose = "<!-- cite-ignore-next: the gateway, another repo -->\nSee `src/lib/widget.ts:400`.\n";
+  const r = run(repo(prose));
+  assert.equal(r.code, 0, r.out);
+});
+
+test("a marker exempts one line, not the rest of the file", () => {
+  const prose = [
+    "<!-- cite-ignore-next: another repo -->",
+    "See `src/lib/widget.ts:400`.",
+    "",
+    "Later, `src/lib/widget.ts:900`.",
+    "",
+  ].join("\n");
+  const r = run(repo(prose));
+  assert.equal(r.code, 1, `the later citation is still checked: ${r.out}`);
+  assert.match(r.out, /widget\.ts:900/);
+});
+
+test("the missing-file message names every tree it searched", () => {
+  const r = run(repo("See `src/lib/ghost.ts:3`.\n"));
+  assert.equal(r.code, 1);
+  for (const tree of ["src", "supabase", "scripts", "tools", "learning", "services", "deploy"]) {
+    assert.ok(r.out.includes(tree), `the message names ${tree}, so a reader looks in the right places`);
+  }
 });

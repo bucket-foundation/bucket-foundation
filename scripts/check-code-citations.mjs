@@ -16,11 +16,15 @@
  *
  * What counts as a hit: `path/to/file.ext:N`, where the path resolves
  * from the repo root. A citation inside a fenced code block is skipped,
- * since that is usually sample output rather than a claim.
+ * since a fenced block holds sample output rather than a claim.
  *
  * A prose file that reviews another repository cites paths this one does
- * not hold. List those files in `.citeignore`, one path per line, the way
- * `.voiceignore` works for the voice rules.
+ * not hold. Mark the citation with `cite-ignore-line`, or the line above
+ * it with `cite-ignore-next`, and say which repository it lives in. A
+ * whole file can go in `.citeignore`, one path per line, the way
+ * `.voiceignore` works for the voice rules, which is the blunter tool:
+ * it hid four dead in-repo citations inside a review that cited two
+ * repositories.
  *
  * What counts as a symbol: a backticked identifier in the same sentence.
  * The line itself, or the twelve lines around it, must contain it. The
@@ -40,7 +44,7 @@ const PROSE = /\.(md|mdx)$/;
 /**
  * Any file path on the line, with or without a line number. A row citing
  * two files gives no way to say which symbol belongs to which, and the
- * second file often carries no line number at all, which is how the
+ * second file may carry no line number at all, which is how the
  * first version of this check reported a symbol against the wrong file.
  */
 const CITE_COUNT = /(?<![\w./-])(?:[A-Za-z0-9_@.-]+\/)*[A-Za-z0-9_.-]+\.(?:ts|tsx|js|jsx|mjs|cjs|sql|py|sh|css|json|yaml|yml)\b/g;
@@ -172,6 +176,24 @@ function lineAround(text, index) {
   return line;
 }
 
+/**
+ * Whether this citation is exempted on its own line.
+ *
+ * `.citeignore` exempts a whole file, which is the wrong shape for a
+ * review covering work in two repositories: exempting one to hide its
+ * cross-repo citations hid four dead citations into this repo's own code
+ * along with them. A marker on the line, or on the line above, exempts
+ * one citation and says why in the same breath.
+ *
+ *   See `routes/patents.ts:40`.  <!-- cite-ignore-line: x402 gateway -->
+ *   <!-- cite-ignore-next: the feed402 server, another repo -->
+ */
+function exemptedOnLine(lines, proseLine) {
+  const here = lines[proseLine - 1] ?? "";
+  const above = lines[proseLine - 2] ?? "";
+  return /cite-ignore-line/.test(here) || /cite-ignore-next/.test(above);
+}
+
 /** Prose files exempted in `.citeignore`, one path per line. */
 function ignored() {
   const file = path.join(ROOT, ".citeignore");
@@ -211,6 +233,7 @@ for (const file of files) {
   while ((m = CITE.exec(text))) {
     const proseLine = text.slice(0, m.index).split("\n").length;
     if (fenced.has(proseLine)) continue;
+    if (exemptedOnLine(lines, proseLine)) continue;
     const [, cited, lineText] = m;
     const where = `${path.relative(ROOT, file)}:${proseLine}`;
     checked += 1;
@@ -224,7 +247,7 @@ for (const file of files) {
       // follow it either.
       const matches = SOURCE_TREES.flatMap((t) => bySuffix(path.join(ROOT, t), cited));
       if (matches.length === 0) {
-        problems.push({ kind: "missing-file", where, cited, detail: "nothing under src, supabase, scripts, tools or learning ends with that path" });
+        problems.push({ kind: "missing-file", where, cited, detail: `nothing under ${SOURCE_TREES.join(", ")} ends with that path` });
         continue;
       }
       if (matches.length > 1) {
