@@ -12,6 +12,7 @@
 begin;
 
 drop function if exists graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb);
+drop function if exists graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb, timestamptz);
 drop function if exists graph.override_level(uuid, uuid, uuid, uuid, text, text, timestamptz);
 drop function if exists graph.append_evidence(uuid, uuid, text, jsonb, boolean);
 drop function if exists graph.stage_rank(text);
@@ -38,6 +39,11 @@ begin
     'the read survives a fresh apply';
   assert to_regprocedure('graph.review_production(uuid,uuid,uuid,text,text,jsonb,boolean,text,jsonb,uuid,uuid,text,jsonb)') is not null,
     'review_production exists after a fresh apply';
+  assert (select count(*) from pg_proc p join pg_namespace n on n.oid = p.pronamespace
+           where n.nspname = 'graph'
+             and p.proname in ('append_evidence','override_level','review_production','stage_rank')
+           group by p.proname order by count(*) desc limit 1) = 1,
+    'each function has one overload, so a named call cannot be ambiguous';
 end $$;
 
 rollback;

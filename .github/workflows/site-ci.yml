@@ -119,11 +119,11 @@ jobs:
           cache: npm
       - run: npm ci
       - name: local supabase
-        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,pg_prove
+        run: npx supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
       - name: env
         run: |
-          npx supabase@latest status -o env > .supa.env
-          set -a; . ./.supa.env; set +a
+          npx supabase@latest status -o env > "$RUNNER_TEMP/supa.env"
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
           {
             echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
             echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"

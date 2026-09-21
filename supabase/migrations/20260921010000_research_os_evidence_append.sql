@@ -259,6 +259,7 @@ revoke insert, update, delete, truncate, trigger, references on graph.learner_no
 -- Rollback for this migration, in order:
 --   revoke: grant insert, update, delete, truncate, trigger, references on graph.learner_node_state to service_role;
 --   drop function if exists graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb);
+--   drop function if exists graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb, timestamptz);
 --   drop function if exists graph.override_level(uuid, uuid, uuid, uuid, text, text, timestamptz);
 --   drop function if exists graph.append_evidence(uuid, uuid, text, jsonb, boolean);
 --   drop function if exists graph.stage_rank(text);
@@ -276,6 +277,12 @@ revoke insert, update, delete, truncate, trigger, references on graph.learner_no
 -- The route keeps every decision: it computes the next status, the note,
 -- the incentive flag, the audit note and the evidence event, and this
 -- function writes them under one lock.
+-- A signature change makes create-or-replace create a second overload
+-- rather than replace the first, and PostgREST then refuses a named call as
+-- ambiguous, so every review would answer 500 (Bucket critic ROS194-44).
+-- The earlier shape is dropped by name and arguments before the create.
+drop function if exists graph.review_production(uuid, uuid, uuid, text, text, jsonb, boolean, text, jsonb, uuid, uuid, text, jsonb, timestamptz);
+
 create or replace function graph.review_production(
   p_production uuid,
   p_review_id uuid,

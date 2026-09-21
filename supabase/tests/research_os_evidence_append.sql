@@ -211,6 +211,21 @@ begin
   );
   assert not (r->>'ok')::boolean and r->>'error' = 'production_not_found', 'an unknown production answers: ' || r::text;
 
+  -- The other decision: returned sends the production back to draft.
+  insert into graph.productions (learner_id, target_node_id, kind, claim, status)
+  values (l, n, 'production', 'a claim to revise', 'submitted')
+  returning id into pr;
+  rv := gen_random_uuid();
+  r := graph.review_production(
+    pr, rv, t, 'returned', 'draft', '[]'::jsonb, false, 'revise the second source', '{"at":"now"}'::jsonb,
+    l, n, 'production', jsonb_build_object('kind', 'teacher_review', 'reviewId', rv)
+  );
+  assert (r->>'ok')::boolean, 'a returned decision commits: ' || r::text;
+  assert (select status from graph.productions where id = pr) = 'draft',
+    'a returned production goes back to draft';
+  assert (select decision from graph.teacher_reviews where id = rv) = 'returned',
+    'the audit row records the decision it was given';
+
   -- A failure inside the transaction takes every write with it: an unknown
   -- reviewer breaks the audit row's foreign key after the status update.
   insert into graph.productions (learner_id, target_node_id, kind, claim, status)
@@ -226,6 +241,10 @@ begin
     );
   exception when others then caught := true;
   end;
+  -- A begin/exception block opens a savepoint, so the three assertions
+  -- below hold whatever the function does internally; `caught` is what
+  -- carries the evidence, and a mutation that swallows the insert error
+  -- inside the function fails on it.
   assert caught, 'an unknown reviewer refuses the review';
   assert (select status from graph.productions where id = pr) = 'submitted',
     'the production stays submitted when the audit row fails';

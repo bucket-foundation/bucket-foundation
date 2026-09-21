@@ -424,6 +424,9 @@ test("review_production accepts the route's own argument object", { skip: skipAp
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) {
+    if (REQUIRED) {
+      throw new Error("RESEARCH_OS_REQUIRE_DB=1 and .env.local carries no Supabase URL and service key");
+    }
     t.skip("no local Supabase URL and service key in .env.local");
     return;
   }
