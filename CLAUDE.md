@@ -8,6 +8,10 @@ Canon thesis: AI + foundations + a small number of brilliant humans = the next l
 
 Part of AGFarms venture studio. Org dashboard: https://nucleus.agfarms.dev/admin
 
+## Bucket critic
+
+Use the repo-wide [Bucket critic](docs/agents/BUCKET-CRITIC.md) and the review loop in [AGENTS.md](AGENTS.md) for material architecture, implementation and research changes. The saved Claude agent is `bucket-critic`. Its role is review; the parent implements fixes and saves the report. Preserve evidence and failed rounds until the artifact passes above 9/10 with no critical/high blocker. This applies across the repository, including Research OS and HTE.
+
 ## Nucleus Connection
 
 - **Instance ID**: `bucket-foundation`
