@@ -141,3 +141,112 @@ The gateway's own questions, who owns the mainnet facilitator and receiving wall
 - ros-patents 4 decomposes claims into elements and adds disclosure.
 
 The gateway's USPTO routes are on its org `main`; Research OS links to them once gateway #68 confirms them on the deployed host, and to the public patent records until then.
+
+## Slice 1: the research memo
+
+The prior work on patents in scientific discovery and innovation, checked against its sources, and the choices it settles for Research OS: which CPC classes load first, how prior art is found and ranked, how a claim reads as a combination of known ideas, and what Bucket does with inventions as a nonprofit.
+
+### What the repository holds for it
+
+Slice 0 above gives the sources, their terms, and the design of patents in the graph. Two captures carry the rest.
+
+- `pubmed/PMID-9034179-patent-threat-to-research/`: "Patent threat to research", a 1997 letter in Nature by Dalton, Goodwin, Ho, and others ([doi:10.1038/385672a0](https://doi.org/10.1038/385672a0)), captured with no abstract.
+- `quantum/06-ecosystem-geopolitics/E-patents.md`: a graded note on the quantum patent race. It separates filings from international patent families as measures, and records that trade secrets keep part of the field out of the patent record.
+
+### Questions the memo answers
+
+1. How patents cite science, and how well those links can be recovered: front-page references, in-text references, examiner and applicant citations, and the link sets built from them.
+2. How a claim is built, and what novelty and non-obviousness ask of it: independent and dependent claims, and the combination of known elements.
+3. What CPC is, how its classes map onto the graph's fourteen branches, and which classes load first.
+4. What patent counts measure and where they mislead: filings against families, filing subsidies, trade secrets, and the limits of the citation data.
+5. How prior art is searched today, by examiners and by tools, and how retrieval quality is measured.
+6. Open pledges, defensive publication, and the choices open to a nonprofit that publishes inventions.
+
+### How patents cite science
+
+Checked 2026-09-19. Each paper's claims come from its own abstract, read through OpenAlex.
+
+**Most science is near a patent, and most patents are near science.** Ahmadpoor and Jones measured the shortest citation path between 4.8 million US patents and 32 million research articles. Most cited articles (80%) link forward to a future patent, and most patents (61%) link back to a prior article. Linked works sit 2 to 4 citation steps from the other domain in the usual case, and work directly on the patent-paper boundary has more impact within its own field ([Science 357(6351) 583-587, 2017](https://doi.org/10.1126/science.aam9527)). For Research OS, a patent on the graph is expected to connect to the literature, in many cases through intermediate works.
+
+**The link sets are built from unstructured references.** Patent references to papers are free text on the front page and in the body. Marx and Fuegi match them to published papers and give each match a confidence score, calibrated on a random sample for coverage and accuracy ([Strategic Management Journal 41(9) 1572-1594, 2020](https://doi.org/10.1002/smj.3145)). A second pass extracts citations from the body text ([Journal of Economics and Management Strategy 31(2) 369-392](https://doi.org/10.1111/jems.12455)). Their set is CC BY-NC and out of v1 (Slice 0); the method is the template for the links Bucket builds from the PatentsView references: a match, a confidence score, and a hand-checked sample that gives coverage and accuracy.
+
+**Examiners add most of a patent's citations.** Two-thirds of the citations on the average US patent are inserted by examiners, and 40% of patents carry only examiner citations; pooling examiner and inventor citations can bias inferences about what inventors knew ([Alcácer and Gittelman, Review of Economics and Statistics 88(4) 774-779, 2006](https://doi.org/10.1162/rest.88.4.774)). A `cites` edge in Research OS records who added the citation, examiner or applicant, where the source says, so a reader can tell prior art the office found from knowledge the inventor used.
+
+**The line of work is long.** Narin, Hamilton, and Olivastro traced the growing reliance of US patents on public science in the 1990s ([Research Policy 26(3), 1997](https://doi.org/10.1016/s0048-7333(97)00013-9)); OpenAlex and Semantic Scholar hold no abstract for it, so no figure from it is quoted here.
+
+### Claims and obviousness
+
+A patent's claims set its scope. An independent claim stands alone, and a dependent claim carries every limitation of the claim it refers to and adds at least one further limitation (35 U.S.C. 112(d)).
+
+Novelty and non-obviousness ask different things of a claim. Novelty is a one-reference test: "A claim is anticipated only if each and every element as set forth in the claim is found, either expressly or inherently described, in a single prior art reference" (Verdegaal Bros. v. Union Oil, quoted at [MPEP 2131](https://www.uspto.gov/web/offices/pac/mpep/s2131.html)). Non-obviousness reaches across references.
+
+Combining known things can still be patentable, and the test asks what a skilled person would have found predictable. The USPTO's own manual lists the rationales for obviousness that follow from KSR, starting with "(A) Combining prior art elements according to known methods to yield predictable results", and through "(E) 'Obvious to try'" and "(G) Some teaching, suggestion, or motivation in the prior art". It states the combination case plainly: a claim is obvious where "all the claimed elements were known in the prior art and one skilled in the art could have combined the elements as claimed by known methods with no change in their respective functions, and the combination yielded nothing more than predictable results to one of ordinary skill in the art" ([MPEP 2143](https://www.uspto.gov/web/offices/pac/mpep/s2143.html)).
+
+That is the shape ros-patents 4 builds on. An independent claim splits into elements; each element that the graph already holds becomes a link to an idea node, and the elements with no node are what the patent adds. The decompose-further machinery already does this for ideas: a proposer names the parts, and a reviewer decides after a second model checks them blind. A claim is the same job with a different unit. What the machine cannot decide is obviousness, which turns on what a skilled person would have expected; the researcher reads the combination and judges.
+
+### Patent classification and the first slice
+
+CPC is the classification the USPTO and the EPO maintain together, harmonizing their two earlier systems under a joint implementation group ([CPC, about](https://www.cooperativepatentclassification.org/about)). A symbol reads from the outside in: section, class, subclass, main group, subgroup, as in `A01B 33/00`, where `A` is human necessities, `01` agriculture, `B` soil working. A main group ends in `/00`, and a subgroup replaces that with up to six digits. Section `Y` is a tagging layer for cross-sectional technologies that already carry a classification elsewhere ([USPTO, MPEP 905](https://www.uspto.gov/web/offices/pac/mpep/s905.html); [CPC scheme specification](https://www.cooperativepatentclassification.org/sites/default/files/attachments/31d08aa9-2ccd-43f4-8c66-dfff0dea5bc3/CPC_Scheme_Specification_v1_0.pdf)).
+
+Counted on 2026-09-20 over the local Supabase graph, it holds 1,903 public nodes across fourteen branches, the largest being biophysics (673), physics (275), mind (197), literature (178), cosmology (140), mathematics (115), deep history (100), information (86), and chemistry (85). Patents cover applied technology, so the branches they meet are few, and the first slice follows the overlap:
+
+| Branch | CPC symbols for the first slice | Why |
+|---|---|---|
+| 05-biophysics | `A61` (medical or veterinary science; hygiene), `C12N` (microorganisms or enzymes, mutation or genetic engineering, culture media) and `C12Q` (measuring or testing processes involving enzymes, nucleic acids or microorganisms), `G01N` (investigating or analysing materials by determining their chemical or physical properties) | The largest branch, and the one where measurement of materials meets the literature |
+| 04-information | `G06N` (computing arrangements based on specific computational models), `G06F` (electric digital data processing), `H04L` (transmission of digital information) | The branch's own subject is computation and information |
+| 03-chemistry | `C07` (organic chemistry), `C08` (organic macromolecular compounds) | Compounds and materials, beside the canon's chemistry entries |
+| 02-physics | `G01` other than `G01N` (measuring; testing), `H01` (electric elements) | Apparatus and measurement |
+
+A patent carries several symbols, so the importer needs a rule that gives one branch: take the patent's main CPC symbol (PatentsView `cpc_current` where the type is inventional and the sequence is 0; `cpc.first` in the BigQuery table), and the longest symbol in the table that is a prefix of it wins. That sends `G01N 33/48` to biophysics and the rest of `G01` to physics. Two table symbols of the same length cannot both prefix one symbol, so no tie arises. A patent whose main symbol has no prefix in the table is left out of the slice, `C12M` (apparatus for enzymology or microbiology) among them, and ros-patents 2's counts will show how much that drops.
+
+The other ten branches get no row, and the rule still imports patents that belong near them under a shorter symbol. `G01V` (geophysics, gravitational measurements, detecting masses or objects, tags) loads under `G01` and is labelled physics; `H04L 9/00` (cryptographic mechanisms and network security protocols) loads under `H04L` and is labelled information. Reaching earth or mathematics means adding a longer row that re-routes patents the slice already holds, and the re-route costs the review that follows it. ros-patents 2 loads the four branches above, records how many patents and links each symbol contributes, and those counts decide which row joins next.
+
+### What patent counts measure
+
+Counting patents is an old measure with old warnings. Griliches surveyed the use of patent data as an indicator of technological change and found that the fall in US patents granted in the 1970s "is an artifact of the budget stringencies at the Patent Office" ([NBER working paper 3301, 1990](https://doi.org/10.3386/w3301)). A count can move because the office changed, with no change in invention at all. Nagaoka, Motohashi, and Goto revisited the question two decades later ([Handbook of the Economics of Innovation, 2010](https://doi.org/10.1016/s0169-7218(10)02009-5)); no abstract of that chapter is published in OpenAlex or Semantic Scholar, so nothing is quoted from it here.
+
+Four distortions matter for anything Research OS shows:
+
+- **Filings against families.** This repository's own note on the quantum patent race records the split: China leads global filings while the United States leads international patent families, and the two measures answer differently because a family counts one invention filed in several offices (`quantum/06-ecosystem-geopolitics/E-patents.md`, graded T5, with the caveat that family-counting methods differ).
+- **Filing incentives.** The same note records subsidy programs that reward filing volume, which inflates raw counts.
+- **What never gets filed.** Cohen, Nelson, and Walsh surveyed 1,478 US manufacturing R&D labs and found that patents "tend to be the least emphasized by firms in the majority of manufacturing industries, and secrecy and lead time tend to be emphasized most heavily" ([NBER working paper 7552, 2000](https://doi.org/10.3386/w7552)). The repository's quantum note reports the same pattern in its field, where decoders and fabrication recipes stay secret. A patent landscape undercounts the work.
+- **The citation data has its own caveats.** Hall, Jaffe, and Trajtenberg wrote the standard account of what the US patent citation record can and cannot support ([NBER working paper 8498, 2001](https://doi.org/10.3386/w8498)).
+
+So a patent count is evidence that a field has applied activity, and it stays a count. Research OS shows patents as objects with their own links, and a count that appears names its measure, filings or families, and its date. An idea's standing in the graph stays independent of how many patents cite it.
+
+### Prior-art search and its measurement
+
+Patent retrieval is its own branch of information retrieval, and the methods that made web search work do not carry over. Shalaby and Zadrozny's review states it: the successes of web search "cannot be transferred directly to PR without deliberate domain adaptation and customization", automatic patent retrieval is "still around average in terms of recall", and the field's answer is interactive tools that assist a professional through the search ([Knowledge and Information Systems, 2019](https://doi.org/10.1007/s10115-018-1322-7)).
+
+An examiner's search is the other half of the practice, and the USPTO's manual sets it out. The examiner reads the application first, then searches patents and other published documents; "The first search should cover the invention as described and claimed, including the inventive concepts toward which the claims appear to be directed. It should not be extended merely to add immaterial variants." The first Office action rests on that search, a second one follows an amendment or a reference that becomes available and appears "substantially more pertinent" than what the first action cited, and the examiner records the classification locations searched on a "Search Notes" form ([MPEP 904](https://www.uspto.gov/web/offices/pac/mpep/s904.html)). Two things in that carry over to Research OS: the search starts from the claimed concepts, and where it looked is part of the record.  <!-- voice-ignore-line: two verbatim phrases quoted from MPEP 904 -->
+
+The measurement tradition is the CLEF-IP campaigns, which evaluated retrieval systems on European patent data from 2009 onward ([CLEF-IP 2009 overview](https://doi.org/10.1007/978-3-642-15754-7_47); [the campaign in retrospect](https://doi.org/10.1007/978-3-662-53817-3_4)).
+
+That sets what ros-patents 3 builds and how it reports. Prior-art search over the imported slice ranks candidates by text and by embeddings, weighted by CPC overlap, and shows a researcher the ranked list with the reason each candidate appears. Its quality is measured on citations the corpus already carries: hold out a patent's own backward citations, search from its claims, and report recall at 10, 50, and 100 over a sample, with the numbers written into this file. The later CLEF-IP campaigns scored systems with PRES, published in 2010, which scores how deep in the ranking each held-out reference is found and charges an unfound one at the cut-off ([Magdy and Jones, SIGIR 2010](https://doi.org/10.1145/1835449.1835551)), so the report carries PRES beside recall. A number below what a professional search reaches is the expected result, and the report states it plainly: the tool's job is to put candidates in front of a researcher who judges them.
+
+### Pledges and defensive publication
+
+Holding an invention open answers a measured cost. Dalton, Goodwin, Ho, and others put the concern to Nature in 1997 under the title "Patent threat to research" ([doi:10.1038/385672a0](https://doi.org/10.1038/385672a0)); the letter is in this repository with no abstract, so it stands here as what researchers in the field said at the time. Heller and Eisenberg named the mechanism a year later, "an 'anticommons' in which people underuse scarce resources because too many owners can block each other", and warned that more intellectual property rights "may lead paradoxically to fewer useful products for improving human health" ([Science 280(5364) 698-701, 1998](https://doi.org/10.1126/science.280.5364.698)).
+
+Two studies put numbers on it. Murray and Stern took 169 patent-paper pairs, where one discovery appears as a paper and as a patent granted years later, and compared citations to the paper before and after the grant against a control group from the same journals: the citation rate after the grant declines by 9 to 17%, and the decline grows with the years since the grant ([NBER working paper 11465, 2005](https://doi.org/10.3386/w11465), published as [Journal of Economic Behavior and Organization 63(4) 648-687, 2007](https://doi.org/10.1016/j.jebo.2006.05.017)). Williams measured the genes Celera sequenced first, which carried Celera's gene-level IP for up to two years and entered the public domain once the public effort re-sequenced them, and found that the IP "led to reductions in subsequent scientific research and product development on the order of 20 to 30 percent", with effects that persisted after it lapsed ([Journal of Political Economy 121(1) 1-27, 2013](https://doi.org/10.1086/669706)). Murray and Stern measure the case Bucket's authors are in, where the discovery is published either way and a patent arrives later. Williams measures access: genes held under Celera's gene-level IP against the same genes in the public domain.
+
+Two ways exist to hold an invention open, and they differ in what they cost and what they bind.
+
+**A pledge keeps the patent and limits its enforcement.** De Rassenfosse and Palangkaraya studied over 1,200 patents pledged between 2005 and 2017, building a matched control group from the full text of patent documents and using difference-in-differences estimators for staggered adoption. Pledged patents received more citations afterwards, and the effect was strongest for the more open pledges and for the higher-quality and more novel patents ([Research Policy 52(5), article 104745, 2023](https://doi.org/10.1016/j.respol.2023.104745)). A pledge needs a granted patent first, which costs filing fees and years of prosecution.
+
+**A defensive publication files nothing and blocks the patent.** A disclosure published to a prior-art database is citable by examiners from its publication date, and it bars a later patent on the same idea by a third party. The discloser keeps a year: under 35 U.S.C. 102(b)(1)(A) an inventor's own disclosure does not bar that inventor's own US filing made within twelve months. Two venues publish them into searchable databases, IP.com's Prior Art Database ([its knowledge base](https://kb.ip.com/pad/knowledge-base/introduction-to-defensive-publishing-and-the-prior-art-database-pad/)) and the Technical Disclosure Commons ([its site](https://www.tdcommons.org/)), and the journal Research Disclosure has carried the same kind of publication for decades. Both links are the platforms' own pages, so they state the service as its operators describe it.
+
+For Bucket the two fit differently. Bucket's work is publication, and its authors are paid per citation. A defensive publication is a production the graph can already hold: a dated document, with its own node and its links to the ideas it combines. A pledge would need Bucket to become a patent holder first, which its mission does not ask for.
+
+The cost of publishing is the one thing that cannot be undone. A disclosure ends European novelty at once, with the six-month exceptions of EPC Article 55 for evident abuse and for a recognized international exhibition, while the US grace period above leaves the inventor twelve months. Anyone who might want to file has to decide before Bucket publishes, which is why a disclosure stays private to its author until the founder sets the stance (Slice 0, question 3).
+
+### What the memo settles
+
+- Patents belong near the graph's applied branches, and the first slice is biophysics, information, chemistry, and physics, by the CPC classes in the table above.
+- A `cites` edge records who added the citation, since examiners add most of them.
+- The patent-to-paper links Bucket builds follow the matched-link method: a match, a confidence score, and a hand-checked sample that reports coverage and accuracy.
+- A claim decomposes into elements against the graph, and the reviewer judges obviousness.
+- Prior-art search reports recall at 10, 50, and 100 and PRES against held-out citations, and shows its reasons.
+- Patent counts appear as counts of a named measure, with the measure and its date beside the number.
+- Invention disclosure is the production kind that fits a nonprofit that publishes; it waits on the founder's stance.
+- The case for holding an invention open rests on measured follow-on effects: citations to a paper fall 9 to 17% after its patent grants, and Celera's gene-level IP, held up to two years, cut later research and product development on the order of 20 to 30 percent.

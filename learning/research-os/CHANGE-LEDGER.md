@@ -2,6 +2,24 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## ros-patents 1: the research memo
+
+The prior work on patents in discovery, checked against its sources, and the choices it settles for Research OS.
+
+Date 2026-09-20. Branch `feat/ros-loop-patents-memo`, worktree `.wt-ros-loop`, PR #189 into `dev`. Founder direction: patents are as much a part of discovery and innovation as papers.
+
+### Edited
+
+- `learning/research-os/PATENTS.md`: Slice 1. How patents cite science (the dual frontier, matched link sets, examiner citations); claims and obviousness after KSR; CPC and the four branches of the first slice, with their classes; what patent counts measure; prior-art search and how its recall is reported; pledges and defensive publication; the measured cost of intellectual property on follow-on work; and what the memo settles.
+
+### Added
+
+None.
+
+### Removed
+
+None.
+
 ## ros-patents 0: the patents gateway and Research OS
 
 Research on patent sources, terms, and x402 sellers; the Research OS side of patents; and the gateway and protocol findings handed to the bucket-foundation org repositories, where that work lives.
