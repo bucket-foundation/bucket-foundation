@@ -172,3 +172,26 @@ Checked 2026-09-19. Each paper's claims come from its own abstract, read through
 **Examiners add most of a patent's citations.** Two-thirds of the citations on the average US patent are inserted by examiners, and 40% of patents carry only examiner citations; pooling examiner and inventor citations can bias inferences about what inventors knew ([Alcácer and Gittelman, Review of Economics and Statistics 88(4) 774-779, 2006](https://doi.org/10.1162/rest.88.4.774)). A `cites` edge in Research OS records who added the citation, examiner or applicant, where the source says, so a reader can tell prior art the office found from knowledge the inventor used.
 
 **The line of work is long.** Narin, Hamilton, and Olivastro traced the growing reliance of US patents on public science in the 1990s ([Research Policy 26(3), 1997](https://doi.org/10.1016/s0048-7333(97)00013-9)); OpenAlex and Semantic Scholar hold no abstract for it, so no figure from it is quoted here.
+
+### Claims and obviousness
+
+A patent's claims set its scope. An independent claim stands alone; a dependent claim carries every limitation of the claim it refers to and adds one.
+
+Combining known things can still be patentable, and the test asks what a skilled person would have found predictable. The USPTO's own manual lists the rationales for obviousness that follow from KSR, starting with "(A) Combining prior art elements according to known methods to yield predictable results", and through "(E) 'Obvious to try'" and "(G) Some teaching, suggestion, or motivation in the prior art". It states the combination case plainly: a claim is obvious where "all the claimed elements were known in the prior art and one skilled in the art could have combined the elements as claimed by known methods with no change in their respective functions, and the combination yielded nothing more than predictable results" ([MPEP 2143](https://www.uspto.gov/web/offices/pac/mpep/s2143.html)).
+
+That is the shape ros-patents 4 builds on. An independent claim splits into elements; each element that the graph already holds becomes a link to an idea node, and the elements with no node are what the patent adds. The decompose-further machinery already does this for ideas: a proposer names the parts, a second model checks them blind, and a reviewer decides. A claim is the same job with a different unit. What the machine cannot decide is obviousness, which turns on what a skilled person would have expected; the researcher reads the combination and judges.
+
+### Patent classification and the first slice
+
+CPC is the classification the USPTO and the EPO maintain together, harmonizing their two earlier systems under a joint implementation group ([CPC, about](https://www.cooperativepatentclassification.org/about)). A symbol reads from the outside in: section, class, subclass, main group, subgroup, as in `A01B 33/00`, where `A` is human necessities, `01` agriculture, `B` soil working. A main group ends in `/00`, and a subgroup replaces that with up to six digits. Section `Y` is a tagging layer for cross-sectional technologies that already carry a classification elsewhere ([USPTO, MPEP 905](https://www.uspto.gov/web/offices/pac/mpep/s905.html); [CPC scheme specification](https://www.cooperativepatentclassification.org/sites/default/files/attachments/31d08aa9-2ccd-43f4-8c66-dfff0dea5bc3/CPC_Scheme_Specification_v1_0.pdf)).
+
+The graph holds 1,903 public nodes across fourteen branches, the largest being biophysics (673), physics (275), mind (197), literature (178), cosmology (140), mathematics (115), deep history (100), information (86), and chemistry (85). Patents cover applied technology, so the branches they meet are few, and the first slice follows the overlap:
+
+| Branch | CPC classes for the first slice | Why |
+|---|---|---|
+| 05-biophysics | `A61` (medical and veterinary), `C12` (biochemistry, microbiology), `G01N` (measuring and testing) | The largest branch, and the one where instruments and measurement meet the literature |
+| 04-information | `G06N` (computing arrangements based on specific models, machine learning and quantum computing among them), `G06F` (electric digital data processing), `H04L` (transmission) | Where the repository's own quantum note already reads the patent record |
+| 03-chemistry | `C07` (organic chemistry), `C08` (macromolecular compounds) | Compounds and materials, close to the canon's chemistry entries |
+| 02-physics | `G01` (measuring and testing), `H01` (basic electric elements) | Apparatus and measurement rather than theory |
+
+Mathematics, cosmology, mind, deep history, literature, sacred texts, tradition, art, learning to learn, and earth stay out of the first slice: the patent record touches them rarely, and a slice that reached for them would buy mostly noise. ros-patents 2 loads these four branches' classes, records how many patents and links each class contributes, and the count decides whether the slice widens.
