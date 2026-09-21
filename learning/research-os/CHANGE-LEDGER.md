@@ -6,7 +6,7 @@ Every file this work adds, edits, or would remove is listed here with the reason
 
 The prior work on compute shared across machines, notebooks, Python and R in the browser, statistics, machine learning, and LaTeX, checked against its sources, and a design that joins the node page, productions, imports, and the engine through one new object, the run.
 
-Date 2026-09-21. Branch `feat/ros-workbench-memo`, worktree `.wt-ros-workbench-1`, a draft PR into `dev`. Founder direction of 2026-09-18, recorded in the ros-workbench epic: people hook up their own machines as compute for their research, with statistics, machine learning, custom code, and LaTeX on top. The software atlas's directions (ros-workbench 0) are folded into the design.
+Date 2026-09-21. Branch `feat/ros-workbench-memo`, worktree `.wt-ros-workbench-1`, draft PR #202 into `dev`. Founder direction of 2026-09-18, recorded in the ros-workbench epic: people hook up their own machines as compute for their research, with statistics, machine learning, custom code, and LaTeX on top. The software atlas's directions (ros-workbench 0) are folded into the design.
 
 ### Added
 
