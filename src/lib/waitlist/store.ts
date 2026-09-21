@@ -6,7 +6,8 @@
  * object storage and keeps every object until someone deletes it. Private
  * means every read needs the store's credentials, so no URL exposes an
  * address. Each Vercel environment writes under its own prefix, so preview
- * tests never mix into the production list.
+ * tests never mix into the production list. Signups that filled the honeypot
+ * field go under `<prefix>suspect/`, which the list's key filter skips.
  *
  * Off Vercel with no Blob credentials: the same layout as files under
  * `.data/waitlist-local/`, so the form works in local dev.
@@ -124,8 +125,8 @@ export function fileStore(root: string, prefix: string): WaitlistStore {
  * Blob store connected. The route answers 503 then, so a signup is never
  * accepted and dropped.
  */
-export function getWaitlistStore(env: Env = process.env): WaitlistStore | null {
-  const prefix = waitlistPrefix(env);
+export function getWaitlistStore(env: Env = process.env, part: "list" | "suspect" = "list"): WaitlistStore | null {
+  const prefix = waitlistPrefix(env) + (part === "suspect" ? "suspect/" : "");
   if (env.BLOB_READ_WRITE_TOKEN?.trim() || env.BLOB_STORE_ID?.trim()) return blobStore(prefix);
   if (!env.VERCEL_ENV && !env.VERCEL) return fileStore(path.join(process.cwd(), ".data"), prefix);
   return null;
@@ -139,12 +140,14 @@ export async function saveSignup(store: WaitlistStore, input: SignupInput, now =
   return existing === null;
 }
 
-/** Every entry, newest first. Reads eight records at a time. */
+const READ_BATCH = 32;
+
+/** Every entry, newest first. Reads 32 records at a time. */
 export async function listSignups(store: WaitlistStore): Promise<WaitlistEntry[]> {
   const keys = await store.keys();
   const out: WaitlistEntry[] = [];
-  for (let i = 0; i < keys.length; i += 8) {
-    const batch = await Promise.all(keys.slice(i, i + 8).map((k) => store.read(k)));
+  for (let i = 0; i < keys.length; i += READ_BATCH) {
+    const batch = await Promise.all(keys.slice(i, i + READ_BATCH).map((k) => store.read(k)));
     for (const e of batch) if (e) out.push(e);
   }
   return sortEntries(out);

@@ -24,7 +24,7 @@ test("normalizeEmail trims, lowercases, and rejects malformed addresses", () => 
 
 test("parseSignup keeps valid fields, drops unknown roles, and flags the honeypot", () => {
   const ok = parseSignup({ email: "Ada@Example.org", name: "  Ada \n Lovelace ", role: "Teacher", wanted: "/research-os/workspace?x=1" });
-  assert.deepEqual(ok, { ok: true, input: { email: "ada@example.org", name: "Ada Lovelace", role: "teacher", wanted: "/research-os/workspace?x=1" } });
+  assert.deepEqual(ok, { ok: true, input: { email: "ada@example.org", name: "Ada Lovelace", role: "teacher", wanted: "/research-os/workspace?x=1" }, suspect: false });
 
   const loose = parseSignup({ email: "ada@example.org", role: "wizard", wanted: "https://evil.example/", name: "x".repeat(200) });
   assert.equal(loose.ok, true);
@@ -38,7 +38,9 @@ test("parseSignup keeps valid fields, drops unknown roles, and flags the honeypo
 
   assert.deepEqual(parseSignup({ email: "nope" }), { ok: false, error: "Enter a valid email address." });
   assert.deepEqual(parseSignup(null), { ok: false, error: "Enter a valid email address." });
-  assert.deepEqual(parseSignup({ email: "ada@example.org", website: "http://spam.example" }), { ok: false, bot: true });
+  const held = parseSignup({ email: "ada@example.org", website: "http://spam.example" });
+  assert.equal(held.ok && held.suspect, true);
+  assert.equal(held.ok && held.input.email, "ada@example.org");
 });
 
 test("mergeEntry keeps the first signup time and lets newer answers win", () => {
@@ -110,6 +112,11 @@ test("file store round-trips signups, one record per address", async () => {
     const files = await readdir(path.join(root, "waitlist-local"));
     assert.deepEqual(files.sort(), [`${emailKey("ada@example.org")}.json`, `${emailKey("emmy@example.org")}.json`].sort());
 
+    // Suspects live under suspect/ and stay out of the list.
+    const held = fileStore(root, "waitlist-local/suspect/");
+    await saveSignup(held, { email: "bot@example.org", name: null, role: null, wanted: null }, "2026-09-21T13:00:00.000Z");
+    assert.deepEqual((await listSignups(held)).map((e) => e.email), ["bot@example.org"]);
+
     // Stray and broken files are skipped.
     await writeFile(path.join(root, "waitlist-local", "notes.txt"), "x");
     await writeFile(path.join(root, "waitlist-local", `${"0".repeat(64)}.json`), "{broken");
@@ -135,6 +142,7 @@ test("the store follows the environment", () => {
   const local = getWaitlistStore({});
   assert.equal(local?.kind, "file");
   assert.equal(local?.prefix, "waitlist-local/");
+  assert.equal(getWaitlistStore({ VERCEL: "1", VERCEL_ENV: "production", BLOB_STORE_ID: "store_x" }, "suspect")?.prefix, "waitlist/suspect/");
 });
 
 test("the list key must match and be long enough", () => {

@@ -24,15 +24,17 @@ export default function UserMenu({ drawer = false, onNavigate, launchList = fals
 
   if (!user) {
     const cta = launchList ? "Notify me" : "Sign in";
+    // The launch list records `wanted` only for pages a person was blocked from.
+    const href = launchList ? "/sign-in" : signIn;
     if (drawer) {
       return (
-        <Link href={signIn} onClick={onNavigate} className={DRAWER_BUTTON}>
+        <Link href={href} onClick={onNavigate} className={DRAWER_BUTTON}>
           {cta}
         </Link>
       );
     }
     return (
-      <Link href={signIn} className={BUTTON + (loading ? " opacity-70" : "")}>
+      <Link href={href} className={BUTTON + (loading ? " opacity-70" : "")}>
         {cta}
       </Link>
     );

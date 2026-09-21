@@ -55,9 +55,9 @@ Until Research OS opens, production `/sign-in` shows a launch list: email, an op
 |---|---|---|
 | Rules | `src/lib/waitlist/core.ts` | Validation, one record per address, CSV export with formula cells defused. Tested in `scripts/test-waitlist.ts` (`npm run test:waitlist`). |
 | Store | `src/lib/waitlist/store.ts` | The private Vercel Blob store `bucket-foundation-blob`, one JSON object per address at `waitlist/<sha256(email)>.json` on production and `waitlist-preview/` on previews. Off Vercel with no Blob credentials it writes the same layout under `.data/waitlist-local/`. |
-| Route | `src/app/api/waitlist/route.ts` | `POST` adds or updates a signup and answers the same for new and known addresses; a honeypot field drops bots; 503 when no store is connected. `GET` with `Authorization: Bearer <WAITLIST_ADMIN_KEY>` returns the list, `?format=csv` a download. |
-| List | `src/app/admin/waitlist/` | `/admin/waitlist`: count, roles, every entry, CSV download, copy all emails. Asks for the list key. |
-| Accounts | `src/app/sign-in/page.tsx` | `/sign-in?account=1` signs in existing accounts with `shouldCreateUser` off, so staff and testers keep access on production. |
+| Route | `src/app/api/waitlist/route.ts` | `POST` adds or updates a signup and answers the same for new and known addresses; a filled honeypot field saves the signup under `suspect/` for review; 503 when no store is connected. `GET` with `Authorization: Bearer <WAITLIST_ADMIN_KEY>` returns the list and the suspects, `?format=csv` the list as a download. |
+| List | `src/app/admin/waitlist/` | `/admin/waitlist`: count, roles, every entry, CSV download, copy all emails, and the signups the bot filter held. Asks for the list key. |
+| Accounts | `src/app/sign-in/page.tsx` | `/sign-in?account=1` asks Supabase to sign in existing accounts only (`shouldCreateUser` off) and answers the same for a known and an unknown address. The flag comes from the browser; whether the project accepts new accounts is GoTrue's signup setting (`GOTRUE_DISABLE_SIGNUP` on the self-hosted stack), which is the server-side control. |
 
 The Blob store keeps every object until someone deletes it; it lives on the Vercel account, apart from the Hetzner box. Connecting it to the project sets `BLOB_READ_WRITE_TOKEN`. `WAITLIST_ADMIN_KEY` (16 characters or more) turns the list view on. From a terminal:
 

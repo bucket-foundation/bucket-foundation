@@ -3,11 +3,13 @@
  *
  * POST { email, name?, role?, wanted? } adds an address or updates its
  * record. The answer is the same for a new and a known address, so the form
- * never tells a visitor who else signed up. 503 when no store is connected,
- * so nothing is accepted and then lost.
+ * never tells a visitor who else signed up. A filled honeypot field saves the
+ * signup under suspect/ for review. 503 when no store is connected, so
+ * nothing is accepted and then lost.
  *
  * GET with `Authorization: Bearer <WAITLIST_ADMIN_KEY>` returns every entry
- * as JSON, or as a CSV download with `?format=csv`. 404 without the key.
+ * and the suspects as JSON, or the list as a CSV download with `?format=csv`.
+ * 404 without the key.
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -16,6 +18,8 @@ import { adminKeyMatches, getWaitlistStore, listSignups, saveSignup } from "@/li
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// Listing reads one object per signup; room for a few thousand.
+export const maxDuration = 60;
 
 const NO_STORE = { "cache-control": "no-store" };
 
@@ -53,17 +57,15 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   }
 
   const parsed = parseSignup(body);
-  if (!parsed.ok) {
-    if ("bot" in parsed) return json({ ok: true });
-    return json({ error: parsed.error }, 400);
-  }
+  if (!parsed.ok) return json({ error: parsed.error }, 400);
 
-  const store = getWaitlistStore();
+  const store = getWaitlistStore(process.env, parsed.suspect ? "suspect" : "list");
   if (!store) {
     console.error("[waitlist] no Blob store connected; signup refused");
     return json({ error: "The launch list is closed for a moment. Try again later." }, 503);
   }
 
+  if (parsed.suspect) console.warn("[waitlist] honeypot field filled; signup held under suspect/");
   try {
     await saveSignup(store, parsed.input);
   } catch (err) {
@@ -83,9 +85,11 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const store = getWaitlistStore();
   if (!store) return json({ error: "No Blob store is connected to this deployment." }, 503);
 
+  const suspectStore = getWaitlistStore(process.env, "suspect");
   let entries;
+  let suspects;
   try {
-    entries = await listSignups(store);
+    [entries, suspects] = await Promise.all([listSignups(store), suspectStore ? listSignups(suspectStore) : []]);
   } catch (err) {
     console.error("[waitlist] list failed:", err instanceof Error ? err.message : err);
     return json({ error: "The list did not load. Try again in a minute." }, 502);
@@ -101,5 +105,5 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
       },
     });
   }
-  return json({ store: store.kind, prefix: store.prefix, count: entries.length, entries });
+  return json({ store: store.kind, prefix: store.prefix, count: entries.length, entries, suspects });
 }

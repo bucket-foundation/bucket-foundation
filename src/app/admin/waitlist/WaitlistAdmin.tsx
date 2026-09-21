@@ -22,6 +22,8 @@ interface ListResponse {
   prefix: string;
   count: number;
   entries: WaitlistEntry[];
+  /** Signups that filled the hidden honeypot field; held apart for review. */
+  suspects?: WaitlistEntry[];
 }
 
 function readKey(): string {
@@ -317,6 +319,24 @@ export default function WaitlistAdmin() {
             </table>
           </div>
         </>
+      )}
+      {(data.suspects?.length ?? 0) > 0 && (
+        <details className="mt-8 text-[13px] text-[color:var(--basalt-2)]">
+          <summary className="cursor-pointer small-caps text-[11px] tracking-[0.14em] text-[color:var(--basalt-3)] min-h-[44px] flex items-center">
+            held by the bot filter: {data.suspects?.length}
+          </summary>
+          <p className="mt-2 text-[12px] text-[color:var(--basalt-3)]">
+            These filled the hidden field that bots fill. A password manager can fill it for a real person, so they are kept here apart from the count and the CSV.
+          </p>
+          <ul className="mt-3 border-t border-[color:var(--hairline)]">
+            {data.suspects?.map((e) => (
+              <li key={e.email} className="border-b border-[color:var(--hairline)] py-2 break-all">
+                {e.email}
+                <span className="text-[12px] text-[color:var(--basalt-3)]"> · {when(e.created_at)}</span>
+              </li>
+            ))}
+          </ul>
+        </details>
       )}
       <p className="mt-4 text-[11px] text-[color:var(--basalt-3)]">
         Stored in{" "}

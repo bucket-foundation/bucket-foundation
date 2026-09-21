@@ -11,9 +11,12 @@ const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px
 const BUTTON = "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 
 /**
- * Email, then a one-time code. With `allowNewAccounts` false the form signs
- * in existing accounts only: the launch-list page uses it so staff and
- * invited testers keep access on production while new people join the list.
+ * Email, then a one-time code. With `allowNewAccounts` false the form asks
+ * Supabase to sign in existing accounts only (`shouldCreateUser` off): the
+ * launch-list page uses it so staff and invited testers keep access on
+ * production. The flag is a request from the browser. Whether the project
+ * accepts new accounts at all is GoTrue's signup setting on the server. The
+ * form answers the same for a known and an unknown address.
  */
 export default function SignInForm({ next, allowNewAccounts = true }: { next: string | null; allowNewAccounts?: boolean }) {
   const { user, loading } = useSession();
@@ -62,7 +65,10 @@ export default function SignInForm({ next, allowNewAccounts = true }: { next: st
     setError(null);
     const { error: err } = await getBrowserSupabase().auth.signInWithOtp({ email: address, options: { shouldCreateUser: allowNewAccounts } });
     setBusy(false);
-    if (err) {
+    // Existing-accounts mode moves on for an unknown address too, so the page
+    // never says whether an address has an account.
+    const unknownAccount = !allowNewAccounts && Boolean(err?.message.toLowerCase().includes("signups not allowed"));
+    if (err && !unknownAccount) {
       setError(friendly(err.message));
       return;
     }
@@ -112,7 +118,7 @@ export default function SignInForm({ next, allowNewAccounts = true }: { next: st
     return (
       <form onSubmit={verify} className="mt-8 flex flex-col gap-3">
         <label htmlFor="sign-in-code" className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
-          enter the code sent to {email.trim()}
+          {allowNewAccounts ? `enter the code sent to ${email.trim()}` : `if an account uses ${email.trim()}, a code is on the way`}
         </label>
         <input
           id="sign-in-code"
@@ -171,7 +177,6 @@ function friendly(message: string): string {
   const m = message.toLowerCase();
   if (m.includes("rate limit") || m.includes("too many")) return "Too many codes requested. Wait a minute and try again.";
   if (m.includes("expired")) return "That code expired. Ask for a new one.";
-  if (m.includes("signups not allowed")) return "No account uses that email yet. Join the launch list to hear when Research OS opens.";
   if (m.includes("invalid")) return "That code did not match. Check it and try again.";
   return message;
 }

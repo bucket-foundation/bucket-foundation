@@ -36,10 +36,7 @@ export interface SignupInput {
   wanted: string | null;
 }
 
-export type ParsedSignup =
-  | { ok: true; input: SignupInput }
-  | { ok: false; error: string }
-  | { ok: false; bot: true };
+export type ParsedSignup = { ok: true; input: SignupInput; suspect: boolean } | { ok: false; error: string };
 
 function clean(value: unknown): string {
   if (typeof value !== "string") return "";
@@ -71,18 +68,19 @@ function normalizeWanted(raw: unknown): string | null {
 
 /**
  * Validates a signup body. `website` is a honeypot field the form hides from
- * people; a value there means a bot filled every input, and the route answers
- * as if it saved the entry.
+ * people. A value there marks the signup `suspect`: bots fill every input, and
+ * so can a password manager filling a real person's details. The route keeps
+ * suspects apart from the list for review and answers the same either way.
  */
 export function parseSignup(body: unknown): ParsedSignup {
   const b = (body && typeof body === "object" ? body : {}) as Record<string, unknown>;
-  if (clean(b.website)) return { ok: false, bot: true };
+  const suspect = clean(b.website) !== "";
   const email = normalizeEmail(b.email);
   if (!email) return { ok: false, error: "Enter a valid email address." };
   const name = clean(b.name).slice(0, NAME_MAX) || null;
   const roleRaw = clean(b.role).toLowerCase();
   const role = (WAITLIST_ROLES as readonly string[]).includes(roleRaw) ? (roleRaw as WaitlistRole) : null;
-  return { ok: true, input: { email, name, role, wanted: normalizeWanted(b.wanted) } };
+  return { ok: true, input: { email, name, role, wanted: normalizeWanted(b.wanted) }, suspect };
 }
 
 /** The record after a signup: first signup time kept, newer answers win. */
