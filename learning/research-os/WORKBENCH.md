@@ -175,7 +175,7 @@ Every run is reported by someone. A browser run is reported by the person's own 
 
 #### Runners
 
-`graph.runners` holds every machine that runs jobs, each with an owner and a kind: `person` for a machine a person registers in ros-workbench 2, and `service` for a machine Research OS operates for everyone. The engine host, `hte-serve` on this machine, is the first service runner, registered by the migration that adds runs, so an engine run names a `runner_id` from the first step of the build order. Pooled runners, which take strangers' jobs, come later as a third kind.
+`graph.runners` holds every machine that runs jobs, each with an owner and a kind: `person` for a machine a person registers in ros-workbench 2, and `service` for a machine Research OS operates for everyone. The engine host, `hte-serve` on this machine, is the first service runner, registered on the local stack with the migration that adds runs, so an engine run names a `runner_id` from the first step of the build order. A hosted stack registers its own engine host, or has none and writes no engine runs. Pooled runners, which take strangers' jobs, come later as a third kind.
 
 #### Where inputs come from
 
@@ -191,13 +191,13 @@ A run names every input by its id and its SHA-256, under one of five kinds. The 
 
 A run's outputs are files: tables, figures, a PDF, a log, a model file. Each goes to Supabase Storage under a path keyed by the owner and the hash, `<owner_id>/<sha256>`, so the owner-scoped Storage policies of ros-import 1 apply to it and two people with identical bytes keep separate objects. The run lists each output with its media type and size.
 
-A run takes the most restrictive visibility of its inputs: a run on a private import is private to its owner. A run over public inputs starts private and becomes public when the production it supports is accepted.
+A run takes the most restrictive visibility of its inputs: a run on a private import is private to its owner. A run over public inputs starts private and becomes public when the production it supports is accepted. The one exception is the owner's decision to publish a run that rests on their own private inputs, below; the inputs stay private when the run is published.
 
 The run record, proposed for the migration that opens the build order:
 
 | Field | Holds |
 |---|---|
-| `id`, `owner_id`, `created_at`, `visibility` | who asked for it and when; who may see it, the strictest visibility among its inputs |
+| `id`, `owner_id`, `created_at`, `visibility` | who asked for it and when; who may see it, the strictest visibility among its inputs unless its owner published it |
 | `path` | browser, runner, import, or link |
 | `runner_id` | the registered machine, a person's or a service runner, for a runner run |
 | `recipe` | the kind (function, script, notebook, LaTeX build, Lean check, engine campaign, software citation), a name and version for a built-in function, or the SHA-256 of the code for custom code |
@@ -215,7 +215,7 @@ Every field maps onto [W3C PROV-O](https://www.w3.org/TR/prov-o/): the run is an
 
 A production cites a run through its evidence, as `{run_id, output}` beside the quote entries it holds today. `/api/research-os/production` stores `evidence` as the client sends it (`src/app/api/research-os/production/route.ts`, the `row` it upserts), so the route gains a check at write time: every `run_id` in the evidence must name a run the author owns or can see, and the save is refused otherwise. `NodeView` gains a runs list beside its quotes, and `ProduceForm` adds the runs a person attaches to the evidence it starts from. On acceptance `createNodeFromProduction` adds the run ids to the new node's provenance, so a citation of the node reaches the computation behind it.
 
-A public node can rest on a private run. Its page then shows the run as a private run: its path, its recipe's name, its mark, and the hashes of its outputs, with the inputs and the outputs held back. At submission the author can publish the run with the production, which the form allows when every input is public or the author's own. The reviewer sees the run's record and outputs through the production under review.
+A public node can rest on a private run. Its page then shows the run as a private run: its path, its recipe's name, its mark, and the hashes of its outputs, with the inputs and the outputs held back. At submission the author can publish the run with the production, which the form allows when every input is public or the author's own. Publishing shows the run's record and outputs; an input that is the author's own private import stays private, so the published run keeps the mark reproducible by its owner. The reviewer sees the run's record and outputs through the production under review.
 
 #### How a result is reproduced
 
@@ -246,9 +246,9 @@ The interpreter runs in a Web Worker inside that frame. A worker's script "must 
 - the sanitizer strips every remote URL from an output before it is stored: `src`, `href`, `srcset`, and CSS `url()` values that point off the page;
 - the node page, on the app's origin, shows an output as text, or as an image from a `data:` or `blob:` URL, and renders no output HTML.
 
-A job on a runner has no network, so its outputs are its one way out, and they pass the same sanitizer and the same output frame.
+A sandboxed job on a runner has no network, so its outputs are its one way out, and they pass the same sanitizer and the same output frame.
 
-**Code on a runner.** In ros-workbench 2 a person's runner takes only jobs its owner submitted. That keeps GitHub's rule for self-hosted runners: a machine runs code from people its owner knows. A job's code can still come from someone else, since reproducing a public production runs its author's recipe, so every job runs sandboxed:
+**Code on a runner.** In ros-workbench 2 a person's runner takes only jobs its owner submitted. That keeps GitHub's rule for self-hosted runners: a machine runs code from people its owner knows. A job's code can still come from someone else, since reproducing a public production runs its author's recipe, so every job that carries a recipe runs sandboxed, and trusted jobs, below, are the one exception:
 
 - a rootless Podman container with `--network=none` and `--read-only`, the inputs mounted read-only, one writable output directory, and limits on CPU, memory, process count, and wall-clock time, with the image pinned by digest;
 - for a LaTeX build on the host's TeX Live, a bubblewrap namespace started with `--unshare-all`, `--clearenv`, `--die-with-parent`, `--ro-bind` of `/usr` and `/etc/texlive`, `--bind` of the job directory, and `--tmpfs /tmp`, running `pdflatex -no-shell-escape`. Run on this machine on 2026-09-21 with bubblewrap 0.10.0, a document that `\input`s a file outside the job typeset that file's contents outside the namespace and stopped with "not found" inside it. A clean document compiled inside it. Inside, the job saw no `/home` and had no network ("Network is unreachable"); its environment held the variables set with `--setenv` and those the shell sets itself. TeX Live 2026 has no reading restriction left to set, so the namespace is the boundary for reads;
@@ -287,7 +287,7 @@ The engine already runs research compute on this machine: a campaign runs behind
 - `/api/research-os/hypothesize` writes a run for every call: path runner, the engine host's `runner_id`, recipe `engine campaign` at the engine's commit, the production as an input hashed by its canonical JSON, and the response's `run_id`, `artifact_version`, `models`, and corpus counts.
 - The engine's response adds `git_sha`, `config`, the seeds, and the preregistration hash from its manifest, and keeps the model cache as an output. `_git_sha` in `hte/runner.py` runs `git rev-parse --short HEAD` when each campaign starts, with no mark for uncommitted changes, while the service runs from a checkout that takes fast-forward pulls, so the proposal records the commit and a dirty flag once, when the process starts. These are engine changes, so they go to `hte/integration` under the branch policy.
 - A campaign that runs past the route's timeout becomes a queued job the service runner claims, in place of a request held open for up to 600 seconds.
-- An engine run is reproduced through the proposed cache input: a `replay_only` request replays the kept cache with no model call.
+- An engine run is reproduced through the proposed cache input: a `replay_only` request replays the stored production JSON against the kept cache, with no model call. The production's owner rule governs a new campaign; a replay reads only the run's stored outputs, so anyone who can see the run can replay it.
 
 #### Where it shows on the node page
 
@@ -299,12 +299,12 @@ The surface is owed, since this slice is a memo and the critic protocol's surfac
 
 #### Directions from the atlas
 
-The software atlas, ros-workbench 0, ends with four directions for the workbench (`SOFTWARE-ATLAS.md`, "Directions for the workbench", read at commit `c12a88bf2` on its branch, draft PR #203). The design takes each one.
+The software atlas, ros-workbench 0, ends with four directions for the workbench (`SOFTWARE-ATLAS.md`, "Directions for the workbench", read at commit `dc17e1501` on its branch, draft PR #203). The design takes each one.
 
 1. **link, for every row.** A production or an import carries a software citation, the tool, its version, its license, and a URL, with the output file when there is one. It reaches all 64 atlas rows, closed tools included, and six rows start there, Mathematica and Earth Engine among them. Here it is the link run, and the first producer of runs.
 2. **browser, one Pyodide worker, then webR.** Twenty-five of the forty research tools ran in Pyodide 314.0.7 in the atlas's run of 2026-09-21, twenty-four of them giving the CPython answer, while the gateway that serves all forty did not answer. The atlas measured a first load of 13.4 MB for the core and 53.3 MB with every package those tools import, and a second run the same day measured 13.5 MB and 53.4 MB. The same worker carries ros-workbench 3's statistics, and webR, whose packages include haven for statistics files, is the second worker. Here it is the opaque-origin frame and its worker.
 3. **import, one format and one viewer at a time.** Closed tools meet the web through their export formats, and each format costs a parser with a node shape, and a viewer under its own license. After tables, the atlas's order follows reach: statistics files (`.sav`, `.dta`, `.sas7bdat`, `.xpt`), meshes and scenes, molecules, and qualitative-research projects in `.qdpx`, then the formats with one or two rows behind them. Here it is what imports owe the workbench, and the reported run.
-4. **runner, Lean first.** The repository builds two Lean projects under `papers/`, and `lake env lean --json` reports each message as a line of JSON, a `hasSorry` message among them in a run on 2026-09-21, so the first job has known answers to test against. A paper's Lean check is a rule in `papers/PAPER-STANDARDS.md` that nothing outside the author's machine enforces. LaTeX builds and the seven research tools that shell out to programs follow, then GPU and MPI codes. Here it sets the runner's job kinds. The atlas repeats the registry's `founder-gpu` label for three of those tools, which `gateway.py` shows is stale.
+4. **runner, Lean first.** The repository builds two Lean projects under `papers/`, and `lake env lean --json` reports each message as a line of JSON, a `hasSorry` message among them in a run on 2026-09-21, so the first job has known answers to test against. A paper's Lean check is a rule in `papers/PAPER-STANDARDS.md` that nothing outside the author's machine enforces. LaTeX builds follow, then TrajMine and CryoTriage, which stay synthetic until a machine with a GPU runs them, then the heavy simulation codes: GROMACS on a GPU, OpenFOAM over MPI, LAMMPS, and Geant4. Here it sets the runner's job kinds.
 
 The atlas also names what Research OS shows for a tool's output, a static export or a web viewer named in the tool's row, and the workbench's first outputs are static files: tables, images, PDFs, and logs.
 
@@ -315,7 +315,7 @@ Local First sets where each step runs: on this machine against the local stack f
 1. **The run record, with link runs and the engine.** The `graph.runs` and `graph.runners` migrations, with the engine host registered as the first service runner, and outputs in local Storage. The first producers compute nothing new: a software citation on a production, written as a link run from one line in the production form, and the hypothesize route, which writes an engine run for every call. The node page's workbench section lists runs.
 2. **One Pyodide worker, the browser path.** The opaque-origin frame and its `blob:` worker, with its Content Security Policy and `'wasm-unsafe-eval'` tested in the browsers the app supports, and the output frame with its sanitizer. Pyodide's files are served from the app's own origin so this machine needs no CDN, and the lock file is pinned. Its first use is the research tools the atlas ran in Pyodide, which keeps them running whatever the gateway does. webR joins for R.
 3. **ros-import 1 to 3, then the import path.** Storage and upload, then extraction, come from the ros-import epic, tables first; each further format adds a parser and a viewer, in the order the atlas sets.
-4. **ros-workbench 2, the runner on this machine.** A `bucket-runner` user unit beside `hte-serve.service`, registered to the founder's account, polling the local stack. Job kinds in the atlas's order: Lean checks of a paper's `lean/` project; LaTeX builds of `papers/template` in the bubblewrap namespace the security model describes; the research tools that shell out to programs, and notebooks executed headless through `nbclient`, in rootless Podman; then GPU codes on this machine's Radeon. Engine campaigns move from the service runner's request path to its queue as trusted jobs. Every tool it needs is installed here, R aside.
+4. **ros-workbench 2, the runner on this machine.** A `bucket-runner` user unit beside `hte-serve.service`, registered to the founder's account, polling the local stack. Job kinds in the atlas's order: Lean checks of a paper's `lean/` project; LaTeX builds of `papers/template` in the bubblewrap namespace the security model describes; notebooks executed headless through `nbclient` in rootless Podman; then TrajMine and CryoTriage on this machine's Radeon, and the heavy simulation codes after them. Engine campaigns move from the service runner's request path to its queue as trusted jobs. Every tool it needs is installed here, R aside.
 5. **ros-workbench 3, statistics and plots.** Built-in functions over an imported table on the worker from step 2: summaries, group summaries, the common tests, correlation, and regression, each drawn as a plot, with the runner taking tables past the browser's memory. The spreadsheet view reads ros-import 3's preview.
 6. **ros-workbench 4, machine learning.** Regression, classification, clustering, and embeddings as functions with a fixed seed and a held-out split recorded on the run, in the browser for small tables and on the runner otherwise. AutoML and large embeddings run on a runner, where this machine's GPU is.
 7. **ros-workbench 5, custom code and LaTeX.** Code cells in Python and R on the browser worker, with notebook import and export; and LaTeX documents that attach to a production and compile on a runner, with an in-browser engine as an option once one is maintained.
