@@ -65,6 +65,7 @@ import {
   loadLearnerCorroborationEvidence,
 } from "@/lib/research-os/db";
 import { evidenceErrorResponse } from "@/lib/research-os/evidence-errors";
+import { authorizeNodes } from "@/lib/research-os/read-access";
 import {
   checkSourceProvenance,
   computeDuplicateFlag,
@@ -102,8 +103,14 @@ export async function GET(req: NextRequest) {
   const ids = Array.from(new Set(rows.flatMap((r) => [r.target_node_id, r.related_node_id ?? null, r.node_id ?? null]).filter((x): x is string => Boolean(x))));
   const titles: Record<string, { slug: string; title: string; kind: string }> = {};
   if (ids.length) {
-    const { data: nodes } = await svc.from("nodes").select("id,slug,title,kind").in("id", ids);
-    for (const nd of (nodes || []) as { id: string; slug: string; title: string; kind: string }[]) titles[nd.id] = { slug: nd.slug, title: nd.title, kind: nd.kind };
+    // A row can name a node whose access changed after it was written, so
+    // the titles are filtered on the way out as well.
+    const readable = await authorizeNodes(ids, { id: learnerId }, "view");
+    if (!readable.ok) return bad(503, "access_unavailable");
+    if (readable.allowed.length) {
+      const { data: nodes } = await svc.from("nodes").select("id,slug,title,kind").in("id", readable.allowed);
+      for (const nd of (nodes || []) as { id: string; slug: string; title: string; kind: string }[]) titles[nd.id] = { slug: nd.slug, title: nd.title, kind: nd.kind };
+    }
   }
   return NextResponse.json({ productions: data || [], nodes: titles }, { headers: { "cache-control": "no-store" } });
 }
@@ -220,6 +227,19 @@ export async function POST(req: NextRequest) {
     updated_at: new Date().toISOString(),
   };
   if (body.id) row.id = body.id;
+
+  // A production names nodes, and naming one is reading it: without this a
+  // learner who knows a uuid could target a node they may not see and read
+  // its slug, title and kind back from the list (Bucket critic C14).
+  const namedNodes = [body.targetNodeId, body.relatedNodeId].filter(
+    (id): id is string => typeof id === "string" && id.length > 0,
+  );
+  if (namedNodes.length) {
+    const readable = await authorizeNodes(namedNodes, { id: learnerId }, "view");
+    if (!readable.ok) return bad(503, "access_unavailable");
+    if (readable.allowed.length < namedNodes.length) return bad(404, "node_not_found");
+  }
+
   if (body.targetNodeId) row.target_node_id = body.targetNodeId;
   if (typeof body.kind === "string" && PRODUCTION_KINDS.includes(body.kind as ProductionKind)) row.kind = body.kind;
   if (body.relatedNodeId !== undefined) row.related_node_id = body.relatedNodeId;

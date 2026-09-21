@@ -102,7 +102,7 @@ export async function GET(req: NextRequest) {
     const filtered = await filterSubgraphForViewer(nodes, edges, learnerId);
     // An access-store failure is an outage: routing over an empty graph
     // would answer "no path" to a learner who has one.
-    if (filtered.unavailable) return bad(503, "access_unavailable");
+    if (!filtered.ok) return bad(503, "access_unavailable");
     ({ nodes, edges } = filtered);
   } catch {
     return bad(500, "graph_load_failed");

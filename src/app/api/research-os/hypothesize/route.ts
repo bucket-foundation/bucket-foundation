@@ -32,6 +32,7 @@
  */
 import { NextRequest, NextResponse } from "next/server";
 import { configured, graphService, verifyLearner } from "@/lib/research-os/db";
+import { authorizeNode } from "@/lib/research-os/read-access";
 import { authorizeHypothesize } from "@/lib/research-os/hypothesize-auth";
 import type { HypothesizeResult } from "@/lib/research-os/types";
 
@@ -93,6 +94,15 @@ export async function POST(req: NextRequest) {
     .maybeSingle();
   if (prodErr) return bad(500, "read_failed");
   if (!authorizeHypothesize(production, learnerId)) return bad(404, "production_not_found");
+
+  // Owning the production is not reading the node it names: a production
+  // written before a node was hidden would otherwise forward its slug,
+  // title, tier and branch to the engine (Bucket critic C14).
+  const readable = await authorizeNode(production.target_node_id as string, { id: learnerId }, "view");
+  if (!readable.ok) {
+    if (readable.reason === "unavailable") return bad(503, "access_unavailable");
+    return bad(404, "production_not_found");
+  }
 
   const { data: node } = await svc
     .from("nodes")

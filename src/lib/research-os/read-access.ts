@@ -53,6 +53,22 @@ export type AuthorizeResult = Authorized | Unavailable;
 
 const KNOWN_VISIBILITY: Visibility[] = ["public", "private", "shared"];
 
+const VISIBILITY_RANK: Record<Visibility, number> = { public: 0, shared: 1, private: 2 };
+
+/**
+ * A store answering with the same id twice resolves to the stricter row,
+ * since nothing in the interface promises an order. Both entry points read
+ * their nodes through this, so they cannot disagree.
+ */
+function strictestById(nodes: NodeAccess[]): Map<string, NodeAccess> {
+  const byId = new Map<string, NodeAccess>();
+  for (const node of nodes) {
+    const held = byId.get(node.id);
+    if (!held || VISIBILITY_RANK[node.visibility] > VISIBILITY_RANK[held.visibility]) byId.set(node.id, node);
+  }
+  return byId;
+}
+
 /** A visibility this code does not know is treated as private. */
 export function readVisibility(value: string | null | undefined): Visibility {
   return KNOWN_VISIBILITY.includes(value as Visibility) ? (value as Visibility) : "private";
@@ -150,14 +166,7 @@ export async function authorizeNodes(
   const nodes = await store.nodes(unique);
   if (!nodes.ok) return { ok: false, reason: "unavailable", detail: nodes.error };
 
-  // A store that answers with the same id twice resolves to the stricter
-  // row, since nothing in the interface promises an order.
-  const rank: Record<Visibility, number> = { public: 0, shared: 1, private: 2 };
-  const byId = new Map<string, NodeAccess>();
-  for (const node of nodes.value) {
-    const held = byId.get(node.id);
-    if (!held || rank[node.visibility] > rank[held.visibility]) byId.set(node.id, node);
-  }
+  const byId = strictestById(nodes.value);
   const missing = unique.filter((id) => !byId.has(id));
 
   // A `view` over public rows needs no grant and no group, so it costs one
@@ -222,18 +231,23 @@ export async function authorizeVerbs(
 ): Promise<VerbsResult> {
   const nodes = await store.nodes([id]);
   if (!nodes.ok) return { ok: false, reason: "unavailable", detail: nodes.error };
-  const node = nodes.value.find((n) => n.id === id);
+  const node = strictestById(nodes.value).get(id);
   if (!node) return { ok: false, reason: "not_found" };
 
-  const loadedGrants = await store.grants([id]);
-  if (!loadedGrants.ok) return { ok: false, reason: "unavailable", detail: loadedGrants.error };
-  const grants = loadedGrants.value.filter((g) => liveGrant(g, now));
-
+  // A public node read for `view` alone needs neither, the same saving
+  // authorizeNodes makes.
+  const onlyView = node.visibility === "public" && verbs.every((v) => v === "view");
+  let grants: NodeGrant[] = [];
   let groups: string[] = [];
-  if (viewer.id) {
-    const inGroups = await store.groups(viewer.id);
-    if (!inGroups.ok) return { ok: false, reason: "unavailable", detail: inGroups.error };
-    groups = inGroups.value;
+  if (!onlyView) {
+    const loadedGrants = await store.grants([id]);
+    if (!loadedGrants.ok) return { ok: false, reason: "unavailable", detail: loadedGrants.error };
+    grants = loadedGrants.value.filter((g) => liveGrant(g, now));
+    if (viewer.id) {
+      const inGroups = await store.groups(viewer.id);
+      if (!inGroups.ok) return { ok: false, reason: "unavailable", detail: inGroups.error };
+      groups = inGroups.value;
+    }
   }
   const subject: Viewer = { id: viewer.id, groups: Array.from(new Set([...(viewer.groups ?? []), ...groups])) };
 
@@ -241,6 +255,9 @@ export async function authorizeVerbs(
   for (const verb of verbs) {
     allowed[verb] = verb === "view" ? canView(node, subject, grants, now) : can(node, subject, verb, grants, now);
   }
+  // A caller that cannot view the node reads a denial, so a verb map can
+  // never be handed out for a node the viewer cannot see.
+  if (!allowed.view && verbs.includes("view")) return { ok: false, reason: "denied" };
   return { ok: true, node, allowed };
 }
 

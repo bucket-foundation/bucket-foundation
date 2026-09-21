@@ -121,7 +121,8 @@ test("the read gates hold at the routes", { skip }, async (t) => {
   const owner = await makeLearner("owner");
   const grantee = await makeLearner("grantee");
   const stranger = await makeLearner("stranger");
-  learners.push(owner.id, grantee.id, stranger.id);
+  const viewOnly = await makeLearner("viewonly");
+  learners.push(owner.id, grantee.id, stranger.id, viewOnly.id);
 
   const branch = "01-mathematics";
   const publicNode = randomUUID();
@@ -138,6 +139,7 @@ test("the read gates hold at the routes", { skip }, async (t) => {
       ('${sharedNode}', 'ra-shared-${sharedNode}', '${token} shared idea', 'concept', 10, '${branch}', 'a shared summary', 'shared', '${owner.id}'),
       ('${expiredNode}', 'ra-expired-${expiredNode}', '${token} expired idea', 'concept', 10, '${branch}', 'an expired summary', 'shared', '${owner.id}');
     insert into graph.node_grants (node_id, grantee_id, role, expires_at) values
+      ('${sharedNode}', '${viewOnly.id}', 'view', null),
       ('${sharedNode}', '${grantee.id}', 'view', null),
       ('${expiredNode}', '${grantee.id}', 'view', now() - interval '1 day');
     select 'made';
@@ -244,6 +246,30 @@ test("the read gates hold at the routes", { skip }, async (t) => {
     assert.equal(res.status, 404, `a private node answers 404: ${JSON.stringify(res.json)}`);
     const state = sql(`select count(*) from graph.learner_node_state where learner_id = '${stranger.id}' and node_id = '${privateNode}'`);
     assert.equal(state.out, "0", "a refused probe writes no learner state");
+
+    // A learner holding view and nothing else tells the two verbs apart: a
+    // probe needs continue, so view alone is refused (Bucket critic C15).
+    const res2 = await post(probe.POST, { nodeId: sharedNode, answer: "an answer long enough to be graded", sessionId: randomUUID() }, viewOnly.token);
+    assert.equal(res2.status, 404, `view alone cannot probe: ${JSON.stringify(res2.json)}`);
+
+    sql(`insert into graph.node_grants (node_id, grantee_id, role, expires_at) values ('${sharedNode}', '${viewOnly.id}', 'continue', null)
+         on conflict do nothing;`);
+    const res3 = await post(probe.POST, { nodeId: sharedNode, answer: "an answer long enough to be graded", sessionId: randomUUID() }, viewOnly.token);
+    assert.notEqual(res3.status, 404, `a continue grant passes the gate: ${JSON.stringify(res3.json)}`);
+  });
+
+  await t.test("probe abstains when every prerequisite is withheld", async () => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+    const probe = require("../src/app/api/research-os/probe/route") as { POST: (req: NextRequest) => Promise<Response> };
+    sql(`insert into graph.edges (from_id, to_id, kind) values ('${privateNode}', '${publicNode}', 'prerequisite')
+         on conflict do nothing;`);
+    try {
+      const res = await post(probe.POST, { nodeId: publicNode, answer: "an answer long enough to be graded", sessionId: randomUUID() }, stranger.token);
+      assert.equal(res.status, 409, `the probe abstains: ${JSON.stringify(res.json)}`);
+      assert.equal(res.json.error, "probe_grounding_unavailable");
+    } finally {
+      sql(`delete from graph.edges where from_id = '${privateNode}' and to_id = '${publicNode}';`);
+    }
   });
 
   await t.test("check abstains when every prerequisite is withheld", async () => {
@@ -275,6 +301,34 @@ test("the read gates hold at the routes", { skip }, async (t) => {
 
       const quote503 = await post(workspace.POST, { action: "quote", nodeId: sharedNode, sessionId: randomUUID() }, grantee.token);
       assert.equal(quote503.status, 503, `quote says the store is down: ${JSON.stringify(quote503.json)}`);
+
+      // Every route that reads the graph through the adapter answers the
+      // same way, including the node page, whose empty neighbourhood used
+      // to read as a node that rests on nothing.
+      /* eslint-disable @typescript-eslint/no-var-requires */
+      const node = require("../src/app/api/research-os/node/route") as { GET: (req: NextRequest) => Promise<Response> };
+      const graph = require("../src/app/api/research-os/graph/route") as { GET: (req: NextRequest) => Promise<Response> };
+      /* eslint-enable @typescript-eslint/no-var-requires */
+      const nodeRes = await node.GET(new NextRequest(`http://127.0.0.1/api/research-os/node?slug=ra-shared-${sharedNode}`, {
+        headers: { authorization: `Bearer ${grantee.token}` },
+      }));
+      assert.equal(nodeRes.status, 503, "the node page says the store is down");
+      const graphRes = await graph.GET(new NextRequest(`http://127.0.0.1/api/research-os/graph?branch=${branch}`, {
+        headers: { authorization: `Bearer ${grantee.token}` },
+      }));
+      assert.equal(graphRes.status, 503, "the graph says the store is down");
+
+      // The node page answers 503 from its own gate before the
+      // neighbourhood is filtered, so the filter's contract is asserted
+      // where it lives: an outage is a refusal, never an empty subgraph.
+      /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+      const { filterSubgraphForViewer } = require("../src/lib/research-os/access-db") as typeof import("../src/lib/research-os/access-db");
+      const filtered = await filterSubgraphForViewer(
+        [{ id: sharedNode, visibility: "shared" as const, ownerId: owner.id }],
+        [],
+        grantee.id,
+      );
+      assert.equal(filtered.ok, false, "the subgraph filter refuses during an outage");
     } finally {
       sql(`grant select on graph.node_grants to service_role;`);
     }

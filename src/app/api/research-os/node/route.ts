@@ -52,7 +52,6 @@ export async function GET(req: NextRequest) {
     if (readable.reason === "unavailable") return bad(503, "access_unavailable");
     return bad(404, "node_not_found");
   }
-  if (!readable.allowed.view) return bad(404, "node_not_found");
   const access = readable.node;
 
   const [graph, standingRes, myClasses] = await Promise.all([
@@ -65,7 +64,12 @@ export async function GET(req: NextRequest) {
     viewerId ? svc.from("learner_node_state").select("stage,evidence,updated_at").eq("learner_id", viewerId).eq("node_id", node.id).maybeSingle() : Promise.resolve({ data: null }),
     viewerId ? listMyClasses(viewerId) : Promise.resolve([]),
   ]);
-  const visible = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  const filtered = await filterSubgraphForViewer(graph.nodes, graph.edges, viewerId);
+  // An access-store failure would otherwise serve this node with an empty
+  // neighbourhood and a 200, which tells the reader the node rests on
+  // nothing (Bucket critic C13).
+  if (!filtered.ok) return bad(503, "access_unavailable");
+  const visible = filtered;
   const byId = new Map(visible.nodes.map((n) => [n.id, n]));
   const lite = (id: string) => {
     const n = byId.get(id);

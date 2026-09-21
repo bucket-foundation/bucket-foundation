@@ -67,16 +67,20 @@ function requestFromRow(r: RequestRow): AccessRequest & { createdAt: string } {
  * which answer `[]` on error, and an outage then hid every shared node
  * behind a 404 (Bucket critic C2).
  *
- * `unavailable` is set when the store failed, with no nodes and no edges,
- * so a caller can say so rather than serve a graph with holes in it.
+ * The result is a union, so a caller cannot read the nodes without
+ * deciding what an outage means. An optional `unavailable` flag let one of
+ * the four callers serve an empty neighbourhood with a 200 (Bucket critic
+ * C13); the compiler now names every caller that has to choose.
  */
+export type SubgraphForViewer<N, E> = { ok: true; nodes: N[]; edges: E[] } | { ok: false; reason: "unavailable" };
+
 export async function filterSubgraphForViewer<N extends { id: string; visibility?: Visibility; ownerId?: string | null }, E extends { fromId: string; toId: string }>(
   nodes: N[],
   edges: E[],
   viewerId: string | null
-): Promise<{ nodes: N[]; edges: E[]; unavailable?: true }> {
+): Promise<SubgraphForViewer<N, E>> {
   const nonPublic = nodes.filter((n) => (n.visibility ?? "public") !== "public");
-  if (nonPublic.length === 0) return { nodes, edges };
+  if (nonPublic.length === 0) return { ok: true, nodes, edges };
 
   const access: NodeAccess[] = nodes.map((n) => ({
     id: n.id,
@@ -89,9 +93,9 @@ export async function filterSubgraphForViewer<N extends { id: string; visibility
     "view",
     storeWithNodes(access),
   );
-  if (!decision.ok) return { nodes: [], edges: [], unavailable: true };
+  if (!decision.ok) return { ok: false, reason: "unavailable" };
   const keep = new Set(decision.allowed);
-  return { nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
+  return { ok: true, nodes: nodes.filter((n) => keep.has(n.id)), edges: edges.filter((e) => keep.has(e.fromId) && keep.has(e.toId)) };
 }
 
 export async function loadNodeAccess(nodeId: string): Promise<NodeAccess | null> {

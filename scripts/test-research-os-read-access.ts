@@ -9,6 +9,7 @@ import assert from "node:assert/strict";
 import {
   authorizeNode,
   authorizeNodes,
+  authorizeVerbs,
   readVisibility,
   type AccessStore,
   type StoreResult,
@@ -172,4 +173,62 @@ test("reading public nodes costs one store call", async () => {
   assert.equal(grantCalls, 0, "a public node needs no grant read");
   await authorizeNodes(["shared"], { id: LEARNER }, "view", counting, NOW);
   assert.equal(grantCalls, 1, "a shared node reads grants once");
+});
+
+test("authorizeVerbs agrees with authorizeNodes, verb by verb", async () => {
+  for (const id of ["pub", "own", "priv", "shared"]) {
+    const verbs = await authorizeVerbs(id, { id: LEARNER }, ["view", "cite", "continue"], store(), NOW);
+    for (const verb of ["view", "cite", "continue"] as const) {
+      const one = await authorizeNodes([id], { id: LEARNER }, verb, store(), NOW);
+      const fromNodes = one.ok && one.allowed.includes(id);
+      const fromVerbs = verbs.ok ? verbs.allowed[verb] === true : false;
+      assert.equal(fromVerbs, fromNodes, `${id} disagrees on ${verb}`);
+    }
+  }
+});
+
+test("a verb map is never handed out for a node the viewer cannot see", async () => {
+  const denied = await authorizeVerbs("priv", { id: STRANGER }, ["view", "cite"], store(), NOW);
+  assert.equal(denied.ok, false);
+  if (denied.ok) return;
+  assert.equal(denied.reason, "denied");
+});
+
+test("a public view through authorizeVerbs reads no grants", async () => {
+  let grantCalls = 0;
+  const counting: AccessStore = {
+    async nodes(ids) {
+      return { ok: true, value: nodes.filter((n) => ids.includes(n.id)) };
+    },
+    async grants(ids) {
+      grantCalls += 1;
+      return { ok: true, value: grants.filter((g) => ids.includes(g.nodeId)) };
+    },
+    async groups() {
+      return { ok: true, value: [] };
+    },
+  };
+  await authorizeVerbs("pub", { id: LEARNER }, ["view"], counting, NOW);
+  assert.equal(grantCalls, 0, "a public view needs no grant read");
+  await authorizeVerbs("pub", { id: LEARNER }, ["view", "cite"], counting, NOW);
+  assert.equal(grantCalls, 1, "any other verb loads them");
+});
+
+test("both entry points resolve a duplicate id to the stricter row", async () => {
+  const twice: AccessStore = {
+    ...store(),
+    async nodes() {
+      return {
+        ok: true,
+        value: [
+          { id: "dup", visibility: "public", ownerId: OWNER },
+          { id: "dup", visibility: "private", ownerId: OWNER },
+        ],
+      };
+    },
+  };
+  const many = await authorizeNodes(["dup"], { id: STRANGER }, "view", twice, NOW);
+  const one = await authorizeVerbs("dup", { id: STRANGER }, ["view"], twice, NOW);
+  assert.equal(many.ok && many.allowed.length, 0, "the private row decides");
+  assert.equal(one.ok, false, "and it decides the same way here");
 });
